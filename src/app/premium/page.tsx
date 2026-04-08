@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { FeatureIcon } from "@/components/FeatureIcon";
 import { useLanguage } from "@/i18n/LanguageContext";
+import PromoPopup from "@/components/PromoPopup";
 
 const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a", DARK = "#4a5570";
 
@@ -14,6 +15,7 @@ export default function PremiumPage() {
   const PREMIUM_FEATURES = pT.features;
   return (
     <div style={{ background: BG, color: "#fff", fontFamily: "'Outfit',sans-serif", minHeight: "100vh" }}>
+      <PromoPopup />
       {/* Hero */}
       <section style={{ padding: "20px 20px 60px", textAlign: "center", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at center,rgba(201,168,76,0.15) 0%,transparent 60%)" }} />

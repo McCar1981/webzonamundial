@@ -8,6 +8,7 @@ import FormularioRegistro from '@/components/FormularioRegistro';
 import { FeatureIcon } from '@/components/FeatureIcon';
 import { getTotalSeguidores, getCreadoresActivos } from '@/data/creadores';
 import { useLanguage } from '@/i18n/LanguageContext';
+import PromoPopup from '@/components/PromoPopup';
 
 const FEATURE_COLORS = ['#22c55e', '#f59e0b', '#8b5cf6', '#ec4899', '#3b82f6', '#f97316', '#06b6d4', '#14b8a6', '#eab308'];
 
@@ -21,6 +22,7 @@ export default function RegistroPage() {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
+      <PromoPopup />
       {/* Background Effects */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div className="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full opacity-20"

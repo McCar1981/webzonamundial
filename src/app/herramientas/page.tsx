@@ -154,7 +154,6 @@ function BracketTool(){
     return pts;
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const[groupResults,setGroupResults]=useState<any>({});
   const[simulated,setSimulated]=useState(false);
 

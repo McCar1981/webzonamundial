@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ══════════════════════════════════════
+   ZonaMundial — Global Styles
+   Font: Outfit (Google Fonts)
+   Colors: #060B14 bg, #c9a84c gold
+   ══════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --zm-bg: #060B14;
+  --zm-surface: #0F1D32;
+  --zm-surface2: #0B1825;
+  --zm-gold: #c9a84c;
+  --zm-gold-light: #e8d48b;
+  --zm-text: #E2E8F0;
+  --zm-text-muted: #94A3B8;
+  --zm-border: #1E293B;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+  background-color: var(--zm-bg);
+  color: var(--zm-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ══════ SCROLLBAR ══════ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--zm-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--zm-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--zm-gold);
+}
+
+/* ══════ SELECTION ══════ */
+::selection {
+  background: rgba(201, 168, 76, 0.3);
+  color: #fff;
+}
+
+/* ══════ LINKS ══════ */
+a {
+  color: var(--zm-gold);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+a:hover {
+  color: var(--zm-gold-light);
+}
+
+/* ══════ ANIMATIONS ══════ */
+@keyframes gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(201, 168, 76, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(201, 168, 76, 0.6);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ══════ UTILITY CLASSES ══════ */
+@layer utilities {
+  .text-gold {
+    color: var(--zm-gold);
+  }
+  .bg-zm {
+    background-color: var(--zm-bg);
+  }
+  .bg-zm-surface {
+    background-color: var(--zm-surface);
+  }
+  .border-zm {
+    border-color: var(--zm-border);
+  }
+  .gold-glow {
+    box-shadow: 0 0 20px rgba(201, 168, 76, 0.15);
+  }
+  .gold-border {
+    border: 1px solid rgba(201, 168, 76, 0.25);
+  }
+  .animate-gradient {
+    background-size: 200% auto;
+    animation: gradient 4s ease infinite;
+  }
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+  .animate-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.1), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+}

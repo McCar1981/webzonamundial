@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc:*)",
+      "Bash(xargs wc:*)",
+      "Bash(wc:*)",
+      "Bash(npm install:*)",
+      "Bash(npm show:*)",
+      "Bash(node -e \"const v=require\\('fs'\\).readFileSync\\('/dev/stdin','utf8'\\); const arr=JSON.parse\\(v\\); console.log\\(arr.filter\\(x=>x.startsWith\\('9'\\)||x.startsWith\\('8'\\)||x.startsWith\\('7'\\)\\).slice\\(-10\\).join\\('\\\\n'\\)\\)\")",
+      "Bash(node -e \"require\\('@sanity/vision'\\)\")",
+      "Bash(node -e \"const {visionTool} = require\\('sanity/_singletons'\\); console.log\\(typeof visionTool\\)\")",
+      "Bash(npx next:*)",
+      "Bash(git stash:*)",
+      "Bash(git checkout:*)",
+      "Bash(grep -l \"useLanguage\" /d/webzonamundial/src/app/**/*.tsx)",
+      "Bash(python3:*)",
+      "Bash(grep -n '\"[A-ZÁÉÍÓÚ].*\":$\\\\|>[A-ZÁÉÍÓÚ][a-záéíóúñ]\\\\{3,\\\\}\\\\|>[A-ZÁÉÍÓÚ][a-záéíóúñ ]\\\\{5,\\\\}<' /d/webzonamundial/src/app/app/predicciones/page.tsx)",
+      "Bash(rm:*)",
+      "Bash(rm -rf .next)",
+      "Bash(rm -rf node_modules/.cache)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(taskkill //F //IM node.exe)",
+      "Bash(find C:\\\\Users\\\\carlo\\\\Desktop\\\\webzona con traduccion\\\\webzonamundial-main\\\\public\\\\img\\\\imagenessilviu:*)",
+      "Bash(xargs -I {} bash -c 'echo \"File: {}\"; identify \"{}\" 2>/dev/null || echo \"Could not identify\"')"
+    ]
+  }
+}

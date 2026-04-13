@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { getPartidosByEstadio } from '@/data/calendario';
 import { getSeleccionBySlug } from '@/data/selecciones';
 import FlagImage from '@/components/FlagImage';
+import { SvgIcon } from '@/components/icons';
 import { useLanguage } from '@/i18n/LanguageContext';
 
 interface Props {
@@ -50,7 +51,7 @@ export default function PartidosSede({ estadio, accentColor = '#c9a84c' }: Props
       <div className="px-5 sm:px-6 py-5 border-b border-white/5" style={{ background: `${accentColor}08` }}>
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: `${accentColor}20` }}>
-            <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/formato 2026.png" alt="" className="w-6 h-6 object-contain" />
+            <SvgIcon name="formato 2026" size={24} />
           </div>
           <div>
             <h2 className="text-lg font-bold text-white">{labels.title}</h2>

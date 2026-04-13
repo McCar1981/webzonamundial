@@ -2,14 +2,14 @@
 
 import Link from "next/link"
 import { useLanguage } from "@/i18n/LanguageContext"
+import { SvgIcon } from '@/components/icons'
 
 const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a"
 
-const IMG_BASE = "/img/zonamundial-images/imagenes/logos para sustuir emojis/";
-const LEAGUE_TYPE_ICONS = [`${IMG_BASE}predicciones.png`,`${IMG_BASE}match center.png`,`${IMG_BASE}ia coach.png`];
-const FEATURE_ICONS = [`${IMG_BASE}ligas privadas.png`,`${IMG_BASE}ranking.png`,`${IMG_BASE}chat en vivo.png`,`${IMG_BASE}fantasy.png`,`${IMG_BASE}ranking.png`,`${IMG_BASE}micro-predicciones.png`];
-const IDEA_ICONS = [`${IMG_BASE}ligas privadas.png`,`${IMG_BASE}48 selecciones.png`,`${IMG_BASE}historia.png`,`${IMG_BASE}match center.png`,`${IMG_BASE}ligas privadas.png`];
-const STEP_ICONS = [`${IMG_BASE}formato 2026.png`,`${IMG_BASE}formato 2026.png`,`${IMG_BASE}formato 2026.png`,`${IMG_BASE}formato 2026.png`];
+const LEAGUE_TYPE_ICONS = ["predicciones","match center","ia coach"];
+const FEATURE_ICONS = ["ligas privadas","ranking","chat en vivo","fantasy","ranking","micro-predicciones"];
+const IDEA_ICONS = ["ligas privadas","48 selecciones","historia","match center","ligas privadas"];
+const STEP_ICONS = ["formato 2026","formato 2026","formato 2026","formato 2026"];
 
 export default function LigasPage() {
   const { t } = useLanguage(); const lT = t.ligasPage;
@@ -87,7 +87,7 @@ export default function LigasPage() {
                 padding: 28, borderRadius: 16, background: BG2,
                 border: "1px solid rgba(255,255,255,0.05)"
               }}>
-                <img src={type.icon} alt="" style={{ width: 40, height: 40, objectFit: "contain", marginBottom: 12 }} />
+                <SvgIcon name={type.icon} size={40} style={{ marginBottom: 12 }} />
                 <h3 style={{ fontWeight: 700, fontSize: 20, marginBottom: 16, color: GOLD }}>{type.title}</h3>
                 <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 10 }}>
                   {type.features.map((feature, j) => (
@@ -119,7 +119,7 @@ export default function LigasPage() {
                 border: "1px solid rgba(255,255,255,0.05)",
                 display: "flex", gap: 16, alignItems: "flex-start"
               }}>
-                <img src={feature.icon} alt="" style={{ width: 28, height: 28, objectFit: "contain", flexShrink: 0 }} />
+                <SvgIcon name={feature.icon} size={28} style={{ flexShrink: 0 }} />
                 <div>
                   <h3 style={{ fontWeight: 700, fontSize: 16, marginBottom: 4 }}>{feature.title}</h3>
                   <p style={{ fontSize: 14, color: DIM }}>{feature.desc}</p>
@@ -145,7 +145,7 @@ export default function LigasPage() {
                 padding: 24, borderRadius: 16, background: BG2,
                 border: "1px solid rgba(255,255,255,0.05)"
               }}>
-                <img src={idea.icon} alt="" style={{ width: 32, height: 32, objectFit: "contain", marginBottom: 12 }} />
+                <SvgIcon name={idea.icon} size={32} style={{ marginBottom: 12 }} />
                 <h3 style={{ fontWeight: 700, fontSize: 16, marginBottom: 8 }}>{idea.title}</h3>
                 <p style={{ fontSize: 14, color: DIM, fontStyle: "italic" }}>&ldquo;{idea.desc}&rdquo;</p>
               </div>
@@ -171,7 +171,7 @@ export default function LigasPage() {
                 textAlign: "center"
               }}>
                 <div style={{ position: "relative", width: 48, height: 48, margin: "0 auto 12px" }}>
-                  <img src={step.step} alt="" style={{ width: 48, height: 48, objectFit: "contain" }} />
+                  <SvgIcon name={step.step} size={48} />
                   <span style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, fontSize: 20, color: "#fff" }}>{i + 1}</span>
                 </div>
                 <h3 style={{ fontWeight: 700, fontSize: 18, marginBottom: 8 }}>{step.title}</h3>
@@ -185,7 +185,7 @@ export default function LigasPage() {
       {/* CTA */}
       <section style={{ padding: "80px 20px", textAlign: "center" }}>
         <div style={{ maxWidth: 600, margin: "0 auto" }}>
-          <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png" alt="" style={{ width: 64, height: 64, objectFit: "contain", marginBottom: 24, display: "inline-block" }} />
+          <SvgIcon name="predicciones" size={64} style={{ marginBottom: 24, display: "inline-block" }} />
           <h2 style={{ fontSize: "clamp(24px,4vw,36px)", fontWeight: 800, marginBottom: 16 }}>
             {lT.ctaTitle} <span style={{ color: GOLD }}>{lT.ctaTitle2}</span>
           </h2>

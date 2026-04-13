@@ -3,22 +3,23 @@
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { SvgIcon } from "@/components/icons";
 
 const BG="#060B14",BG2="#0F1D32",GOLD="#c9a84c",GOLD2="#e8d48b",MID="#8a94b0",DIM="#6a7a9a";
 
 const MODULES=[
-  {id:"predicciones",icon:"/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png",title:"Predicciones",desc:"8 tipos de predicción para cada partido",color:"#c9a84c",gradient:"linear-gradient(135deg,#c9a84c20,#060B14)"},
-  {id:"fantasy",icon:"/img/zonamundial-images/imagenes/logos para sustuir emojis/fantasy.png",title:"Fantasy Mundial",desc:"Arma tu 11 ideal y compite en el ranking global",color:"#00d4ff",gradient:"linear-gradient(135deg,#00d4ff15,#060B14)"},
-  {id:"ia-coach",icon:"/img/zonamundial-images/imagenes/logos para sustuir emojis/ia coach.png",title:"IA Coach",desc:"Tu analista personal con inteligencia artificial",color:"#22c55e",gradient:"linear-gradient(135deg,#22c55e15,#060B14)"},
-  {id:"trivia",icon:"/img/zonamundial-images/imagenes/logos para sustuir emojis/trivia.png",title:"Trivia Diaria",desc:"Preguntas de fútbol con puntos y ranking",color:"#f59e0b",gradient:"linear-gradient(135deg,#f59e0b15,#060B14)"},
-  {id:"modo-carrera",icon:"/img/zonamundial-images/imagenes/logos para sustuir emojis/modo carrera.png",title:"Modo Carrera",desc:"Dirige una selección como DT virtual",color:"#ef4444",gradient:"linear-gradient(135deg,#ef444415,#060B14)"},
-  {id:"ligas",icon:"/img/zonamundial-images/imagenes/logos para sustuir emojis/ligas privadas.png",title:"Ligas Privadas",desc:"Compite con amigos en tu propia liga",color:"#8b5cf6",gradient:"linear-gradient(135deg,#8b5cf615,#060B14)"},
-  {id:"streaming",icon:"/img/zonamundial-images/imagenes/logos para sustuir emojis/streaming.png",title:"Zona Streaming",desc:"Directos con creadores durante los partidos",color:"#e879f9",gradient:"linear-gradient(135deg,#e879f915,#060B14)"},
-  {id:"rankings",icon:"/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png",title:"Rankings",desc:"Global, por país, por creador",color:"#06b6d4",gradient:"linear-gradient(135deg,#06b6d415,#060B14)"},
-  {id:"micro",icon:"/img/zonamundial-images/imagenes/logos para sustuir emojis/micro-predicciones.png",title:"Micro-predicciones",desc:"Predicciones en vivo durante el partido",color:"#f97316",gradient:"linear-gradient(135deg,#f9731615,#060B14)"},
-  {id:"stories",icon:"/img/zonamundial-images/imagenes/logos para sustuir emojis/stories.png",title:"Stories",desc:"Contenido editorial diario del Mundial",color:"#14b8a6",gradient:"linear-gradient(135deg,#14b8a615,#060B14)"},
-  {id:"chat",icon:"/img/zonamundial-images/imagenes/logos para sustuir emojis/chat en vivo.png",title:"Chat por Liga",desc:"Chat en tiempo real durante los partidos",color:"#3b82f6",gradient:"linear-gradient(135deg,#3b82f615,#060B14)"},
-  {id:"matchcenter",icon:"/img/zonamundial-images/imagenes/logos para sustuir emojis/match center.png",title:"Match Center",desc:"Cada partido en vivo con stats completas",color:"#10b981",gradient:"linear-gradient(135deg,#10b98115,#060B14)"},
+  {id:"predicciones",icon:"predicciones",title:"Predicciones",desc:"8 tipos de predicción para cada partido",color:"#c9a84c",gradient:"linear-gradient(135deg,#c9a84c20,#060B14)"},
+  {id:"fantasy",icon:"fantasy",title:"Fantasy Mundial",desc:"Arma tu 11 ideal y compite en el ranking global",color:"#00d4ff",gradient:"linear-gradient(135deg,#00d4ff15,#060B14)"},
+  {id:"ia-coach",icon:"ia coach",title:"IA Coach",desc:"Tu analista personal con inteligencia artificial",color:"#22c55e",gradient:"linear-gradient(135deg,#22c55e15,#060B14)"},
+  {id:"trivia",icon:"trivia",title:"Trivia Diaria",desc:"Preguntas de fútbol con puntos y ranking",color:"#f59e0b",gradient:"linear-gradient(135deg,#f59e0b15,#060B14)"},
+  {id:"modo-carrera",icon:"modo carrera",title:"Modo Carrera",desc:"Dirige una selección como DT virtual",color:"#ef4444",gradient:"linear-gradient(135deg,#ef444415,#060B14)"},
+  {id:"ligas",icon:"ligas privadas",title:"Ligas Privadas",desc:"Compite con amigos en tu propia liga",color:"#8b5cf6",gradient:"linear-gradient(135deg,#8b5cf615,#060B14)"},
+  {id:"streaming",icon:"streaming",title:"Zona Streaming",desc:"Directos con creadores durante los partidos",color:"#e879f9",gradient:"linear-gradient(135deg,#e879f915,#060B14)"},
+  {id:"rankings",icon:"ranking",title:"Rankings",desc:"Global, por país, por creador",color:"#06b6d4",gradient:"linear-gradient(135deg,#06b6d415,#060B14)"},
+  {id:"micro",icon:"micro-predicciones",title:"Micro-predicciones",desc:"Predicciones en vivo durante el partido",color:"#f97316",gradient:"linear-gradient(135deg,#f9731615,#060B14)"},
+  {id:"stories",icon:"stories",title:"Stories",desc:"Contenido editorial diario del Mundial",color:"#14b8a6",gradient:"linear-gradient(135deg,#14b8a615,#060B14)"},
+  {id:"chat",icon:"chat en vivo",title:"Chat por Liga",desc:"Chat en tiempo real durante los partidos",color:"#3b82f6",gradient:"linear-gradient(135deg,#3b82f615,#060B14)"},
+  {id:"matchcenter",icon:"match center",title:"Match Center",desc:"Cada partido en vivo con stats completas",color:"#10b981",gradient:"linear-gradient(135deg,#10b98115,#060B14)"},
 ];
 
 function useInView(th=0.1): [React.RefObject<HTMLDivElement>, boolean]{
@@ -50,7 +51,7 @@ function ModuleCard({mod,index,verDemo}){
     >
       <div style={{position:"absolute",top:-20,right:-20,width:100,height:100,borderRadius:"50%",background:mod.color,filter:"blur(50px)",opacity:hov?0.08:0.03,transition:"opacity .5s"}} />
       <div style={{position:"relative"}}>
-        <img src={mod.icon} alt="" style={{width:40,height:40,objectFit:"contain",display:"block",marginBottom:12}} />
+        <SvgIcon name={mod.icon} size={40} style={{display:"block",marginBottom:12}} />
         <h3 style={{fontWeight:800,fontSize:18,marginBottom:6,color:hov?mod.color:"#fff",transition:"color .3s"}}>{mod.title}</h3>
         <p style={{fontSize:13,color:DIM,lineHeight:1.5,marginBottom:14}}>{mod.desc}</p>
         <div style={{display:"flex",alignItems:"center",gap:4,fontSize:12,fontWeight:600,color:mod.color,opacity:hov?1:0.7,transition:"opacity .3s"}}>

@@ -45,7 +45,7 @@ export function SedesMatches() {
     <div className="rounded-2xl border border-white/5 bg-gradient-to-br from-[#0B1825] to-[#0F1D32] p-5 md:p-6">
       <div className="mb-4 flex items-center gap-3">
         <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#c9a84c]/20 bg-gradient-to-br from-[#c9a84c]/20 to-[#c9a84c]/5">
-          <span className="text-lg">⚽</span>
+          <svg className="w-5 h-5 text-[#c9a84c]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" strokeWidth={2} /><path strokeWidth={2} d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10zM2 12h20" /></svg>
         </div>
         <div>
           <h3 className="text-lg font-bold text-white">{sT.matchesTitle}</h3>

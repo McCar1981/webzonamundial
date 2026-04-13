@@ -47,7 +47,7 @@ const POSTS: BlogPost[] = [
     tags: ["Táctica", "España", "Mundial2026"],
     comments: [
       { id: 1, author: "CarlosM", avatar: "CM", team: "Argentina", content: "Totalmente de acuerdo. El mediocampo español es de lo mejor del mundo.", time: "Hace 1 hora", likes: 45 },
-      { id: 2, author: "LuciaF", avatar: "LF", team: "Francia", content: "Pedri y Gavi son el futuro 👏", time: "Hace 45 min", likes: 23 },
+      { id: 2, author: "LuciaF", avatar: "LF", team: "Francia", content: "Pedri y Gavi son el futuro", time: "Hace 45 min", likes: 23 },
     ]
   },
   {
@@ -62,7 +62,7 @@ const POSTS: BlogPost[] = [
     likes: 567,
     tags: ["Mbappé", "Francia", "Jugadores"],
     comments: [
-      { id: 3, author: "PedroG", avatar: "PG", team: "Brasil", content: "Es un crack, pero Brasil tiene a Vinicius Jr 🔥", time: "Hace 3 horas", likes: 89 },
+      { id: 3, author: "PedroG", avatar: "PG", team: "Brasil", content: "Es un crack, pero Brasil tiene a Vinicius Jr", time: "Hace 3 horas", likes: 89 },
     ]
   },
   {

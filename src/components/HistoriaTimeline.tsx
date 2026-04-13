@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { WorldCupDetail } from "@/data/historia";
@@ -230,13 +231,15 @@ export default function HistoriaTimeline({ data, isEN = false }: HistoriaTimelin
         </div>
       </div>
 
-      {selected && (
-        <TimelineModal
-          wc={selected}
-          onClose={() => setSelected(null)}
-          isEN={isEN}
-        />
-      )}
+      {selected &&
+        createPortal(
+          <TimelineModal
+            wc={selected}
+            onClose={() => setSelected(null)}
+            isEN={isEN}
+          />,
+          document.body
+        )}
     </>
   );
 }

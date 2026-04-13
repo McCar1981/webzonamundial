@@ -1,8 +1,10 @@
 "use client";
 
+import React from 'react';
 import Link from 'next/link';
 import SimuladorGrupos from '@/components/SimuladorGrupos';
 import FlagImage from '@/components/FlagImage';
+import { SvgIcon } from '@/components/icons';
 import TablaClasificacion from '@/components/TablaClasificacion';
 import CalendarioGrupo from '@/components/CalendarioGrupo';
 import { AnimatedSection } from '@/components/AnimatedSection';
@@ -147,6 +149,30 @@ function AnalysisSection({ letter, groupColor, gsT, gT }: {
 }
 
 /* ── Group Stats ──────────────────────────────────────────────────── */
+const GROUP_STAT_ICONS: Record<string, React.ReactNode> = {
+  chart: (
+    <svg className="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#c9a84c' }}>
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+    </svg>
+  ),
+  trophy: (
+    <svg className="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#c9a84c' }}>
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M8 21h8m-4-4v4m-4.5-9.5A4.5 4.5 0 0112 3a4.5 4.5 0 014.5 4.5M7.5 7.5H5a2 2 0 00-2 2c0 1.657 1.343 3 3 3h1.5m9-5H19a2 2 0 012 2c0 1.657-1.343 3-3 3h-1.5" />
+    </svg>
+  ),
+  globe: (
+    <svg className="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#c9a84c' }}>
+      <circle cx="12" cy="12" r="10" strokeWidth={1.8} />
+      <path strokeWidth={1.8} d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+    </svg>
+  ),
+  star: (
+    <svg className="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#c9a84c' }}>
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+    </svg>
+  ),
+};
+
 function GroupStats({ selecciones, groupColor, gsT }: {
   selecciones: Seleccion[]; groupColor: string;
   gsT: Record<string, string | Record<string, unknown>>;
@@ -162,17 +188,17 @@ function GroupStats({ selecciones, groupColor, gsT }: {
   }, 0);
 
   const stats = [
-    { label: gsT.rankingPromedio as string, value: `#${avgRanking}`, icon: '📊' },
-    { label: gsT.mundialesTotal as string, value: `${totalMundiales}`, icon: '🏆' },
-    { label: gsT.confederaciones as string, value: confeds.join(', '), icon: '🌍' },
-    { label: gsT.campeonatos as string, value: `${titulos}`, icon: '⭐' },
+    { label: gsT.rankingPromedio as string, value: `#${avgRanking}`, icon: 'chart' },
+    { label: gsT.mundialesTotal as string, value: `${totalMundiales}`, icon: 'trophy' },
+    { label: gsT.confederaciones as string, value: confeds.join(', '), icon: 'globe' },
+    { label: gsT.campeonatos as string, value: `${titulos}`, icon: 'star' },
   ];
 
   return (
     <AnimatedSection className="rounded-3xl p-6 border border-white/5" style={{ background: '#0B0F1A' }} y={20}>
       <div className="flex items-center gap-3 mb-5">
         <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: `${groupColor}15` }}>
-          <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png" alt="" className="w-6 h-6 object-contain" />
+          <SvgIcon name="predicciones" size={24} />
         </div>
         <div>
           <h3 className="text-lg font-bold text-white">{gsT.statsTitle as string}</h3>
@@ -182,7 +208,7 @@ function GroupStats({ selecciones, groupColor, gsT }: {
       <div className="grid grid-cols-2 gap-3">
         {stats.map((stat) => (
           <div key={stat.label} className="p-3 rounded-2xl border border-white/5 bg-white/[0.02] text-center">
-            <span className="text-2xl">{stat.icon}</span>
+            <div className="mb-1">{GROUP_STAT_ICONS[stat.icon]}</div>
             <p className="text-lg font-black text-white mt-1">{stat.value}</p>
             <p className="text-xs text-gray-500 mt-0.5">{stat.label}</p>
           </div>
@@ -475,7 +501,7 @@ export default function GrupoSlugClient({ letter, selecciones }: Props) {
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: `${groupColor}20` }}>
-                    <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png" alt="" className="w-6 h-6 object-contain" />
+                    <SvgIcon name="predicciones" size={24} />
                   </div>
                   <div>
                     <h2 className="text-lg font-bold text-white">{gsT.simuladorGrupo} {letter}</h2>
@@ -506,7 +532,7 @@ export default function GrupoSlugClient({ letter, selecciones }: Props) {
             <AnimatedSection className="rounded-3xl p-6 border border-white/5" style={{ background: '#0B0F1A' }} y={20}>
               <div className="flex items-center gap-3 mb-5">
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: `${groupColor}15` }}>
-                  <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/48 selecciones.png" alt="" className="w-6 h-6 object-contain" />
+                  <SvgIcon name="48 selecciones" size={24} />
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-white">{gT.stats.equipos}</h3>
@@ -547,7 +573,7 @@ export default function GrupoSlugClient({ letter, selecciones }: Props) {
             {/* CTA Card */}
             <AnimatedSection className="rounded-3xl p-6 border" style={{ background: `${groupColor}10`, borderColor: `${groupColor}30` }} y={20}>
               <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4" style={{ background: `${groupColor}20` }}>
-                <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png" alt="" className="w-8 h-8 object-contain" />
+                <SvgIcon name="predicciones" size={32} />
               </div>
               <h3 className="font-bold text-white text-lg mb-2">{gsT.quienGanara}</h3>
               <p className="text-sm text-gray-400 mb-5">{gsT.quienGanaraDesc}</p>

@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { createPortal } from "react-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
 import type { Translations } from "@/i18n/translations";
 import PromoPopup from "@/components/PromoPopup";
@@ -180,6 +181,19 @@ function NavDropdown({ label, items, isMobile, expanded, onToggle, onNavigate }:
   );
 }
 
+function LateralAds() {
+  return (
+    <>
+      <div className="zm-pub-lat zm-pub-lat--izq">
+        <img src="/img/imagenessilviu/rotulemos120x600.png" alt="" />
+      </div>
+      <div className="zm-pub-lat zm-pub-lat--der">
+        <img src="/img/imagenessilviu/ChatGPT Image 8 abr 2026, 04_49_43 p.m..png" alt="" />
+      </div>
+    </>
+  );
+}
+
 function LanguageToggle() {
   const { locale, setLocale } = useLanguage();
 
@@ -233,8 +247,10 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
   const NAV = buildNav(t);
   const FOOTER_LINKS = buildFooterLinks(t);
 
-  const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
-    setScrolled(e.currentTarget.scrollTop > 20);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const closeMobile = () => setMobileOpen(false);
@@ -242,10 +258,9 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
   return (
     <div
       ref={containerRef}
-      onScroll={handleScroll}
       style={{
         background: BG, color: "#fff", fontFamily: "'Outfit',sans-serif",
-        minHeight: "100vh", overflowY: "auto", overflowX: "hidden",
+        minHeight: "100vh", overflowX: "hidden",
         position: "relative",
       }}
     >
@@ -373,23 +388,8 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
         </nav>
       </div>
 
-      {/* ═══ LATERAL ADS — Desktop only, fixed en los laterales fuera del contenido ═══ */}
-      <a href="https://rotulemos.com" target="_blank" rel="noopener noreferrer"
-        className="lateral-ad lateral-ad-left"
-        style={{
-          position:"fixed",top:100,zIndex:40,
-          display:"none",
-        }}>
-        <img src="/img/imagenessilviu/rotulemos120x600.png" alt="Rotulemos - Publicidad" style={{width:160,height:"auto",borderRadius:14,boxShadow:"0 4px 24px rgba(0,0,0,0.4)"}} />
-      </a>
-      <a href="#" target="_blank" rel="noopener noreferrer"
-        className="lateral-ad lateral-ad-right"
-        style={{
-          position:"fixed",top:100,zIndex:40,
-          display:"none",
-        }}>
-        <img src="/img/imagenessilviu/ChatGPT Image 8 abr 2026, 04_49_43 p.m..png" alt="Publicidad" style={{width:160,height:"auto",borderRadius:14,boxShadow:"0 4px 24px rgba(0,0,0,0.4)"}} />
-      </a>
+      {/* ═══ LATERAL ADS — Desktop only, append directly to body to escape scroll container ═══ */}
+      <LateralAds />
 
       {/* ═══ PROMO POPUP (global) ═══ */}
       <PromoPopup />
@@ -440,11 +440,6 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
         .cta-desktop { display: inline-flex; }
         .hamburger-btn { display: none; }
         .lang-toggle { display: flex; }
-        @media(min-width:1600px) {
-          .lateral-ad { display: block !important; }
-          .lateral-ad-left { left: calc((100vw - 1200px) / 2 - 184px); }
-          .lateral-ad-right { right: calc((100vw - 1200px) / 2 - 184px); }
-        }
         @media(max-width:768px) {
           .desktop-nav { display: none !important; }
           .cta-desktop { display: none !important; }

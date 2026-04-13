@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SvgIcon } from "@/components/icons";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,10 +20,10 @@ const RANK_DATA = [
 ];
 
 const RANK_TYPES = [
-  { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png", title: "Global", desc: "Compite contra todos los usuarios de ZonaMundial en el ranking mundial." },
-  { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/48 selecciones.png", title: "Por País", desc: "Representa a tu selección y sube en el ranking nacional de tu país." },
-  { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/creadores.png", title: "Por Creador", desc: "Rankings exclusivos dentro de la comunidad de cada creador oficial." },
-  { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/ligas privadas.png", title: "Por Liga", desc: "Mide tu nivel frente a amigos en tus ligas privadas personalizadas." },
+  { icon: "ranking", title: "Global", desc: "Compite contra todos los usuarios de ZonaMundial en el ranking mundial." },
+  { icon: "48 selecciones", title: "Por País", desc: "Representa a tu selección y sube en el ranking nacional de tu país." },
+  { icon: "creadores", title: "Por Creador", desc: "Rankings exclusivos dentro de la comunidad de cada creador oficial." },
+  { icon: "ligas privadas", title: "Por Liga", desc: "Mide tu nivel frente a amigos en tus ligas privadas personalizadas." },
 ];
 
 const SEASONS = [
@@ -126,7 +127,7 @@ export default function RankingsPage() {
                 padding: 28, borderRadius: 20, background: BG2,
                 border: "1px solid rgba(255,255,255,0.05)", cursor: "pointer"
               }}>
-                <img src={t.icon} alt="" style={{ width: 48, height: 48, objectFit: "contain", marginBottom: 16 }} />
+                <SvgIcon name={t.icon} size={48} style={{ marginBottom: 16 }} />
                 <h3 style={{ fontWeight: 800, fontSize: 20, marginBottom: 8 }}>{t.title}</h3>
                 <p style={{ fontSize: 14, color: DIM, lineHeight: 1.6 }}>{t.desc}</p>
               </div>
@@ -198,7 +199,7 @@ export default function RankingsPage() {
       <section data-cta-section style={{ padding: "100px 20px", textAlign: "center", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at center, rgba(201,168,76,0.1) 0%, transparent 60%)" }} />
         <div style={{ maxWidth: 700, margin: "0 auto", position: "relative" }}>
-          <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png" alt="" style={{ width: 64, height: 64, objectFit: "contain", marginBottom: 24, display: "inline-block" }} />
+          <SvgIcon name="ranking" size={64} style={{ marginBottom: 24, display: "inline-block" }} />
           <h2 data-cta-content style={{ fontSize: "clamp(28px,5vw,44px)", fontWeight: 900, marginBottom: 16 }}>
             ¿Serás el <span style={{ color: GOLD }}>número 1</span>?
           </h2>

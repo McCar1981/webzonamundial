@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SvgIcon } from "@/components/icons";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,10 +12,10 @@ const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825", GOLD = "#c9a84c", GOLD2 
 
 const MICRO_TYPES = [
   { icon: "/img/imagenessilviu/balondefutbol.png", title: "Próximo gol", desc: "¿Quién marcará en los próximos 10 minutos?", mult: "×2 - ×5" },
-  { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/match center.png", title: "Corners", desc: "¿Habrá más de 2 corners antes del minuto 30?", mult: "×1.5 - ×3" },
-  { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png", title: "Tarjetas", desc: "¿Veremos tarjeta en la siguiente jugada?", mult: "×2 - ×4" },
-  { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/micro-predicciones.png", title: "Sustitución", desc: "¿Sale Mbappé en el segundo tiempo?", mult: "×2 - ×6" },
-  { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/ia coach.png", title: "Penalti", desc: "¿Habrá penalti antes del final del partido?", mult: "×3 - ×8" },
+  { icon: "match center", title: "Corners", desc: "¿Habrá más de 2 corners antes del minuto 30?", mult: "×1.5 - ×3" },
+  { icon: "predicciones", title: "Tarjetas", desc: "¿Veremos tarjeta en la siguiente jugada?", mult: "×2 - ×4" },
+  { icon: "micro-predicciones", title: "Sustitución", desc: "¿Sale Mbappé en el segundo tiempo?", mult: "×2 - ×6" },
+  { icon: "ia coach", title: "Penalti", desc: "¿Habrá penalti antes del final del partido?", mult: "×3 - ×8" },
 ];
 
 const MOMENTS = [
@@ -124,7 +125,7 @@ export default function MicroPage() {
                 border: "1px solid rgba(255,255,255,0.05)", cursor: "pointer"
               }}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
-                  <img src={t.icon} alt="" style={{ width: 40, height: 40, objectFit: "contain" }} />
+                  <SvgIcon name={t.icon} size={40} />
                   <span style={{ padding: "4px 10px", borderRadius: 20, background: "rgba(249,115,22,0.15)", color: "#f97316", fontWeight: 700, fontSize: 12 }}>{t.mult}</span>
                 </div>
                 <h3 style={{ fontWeight: 800, fontSize: 18, marginBottom: 6 }}>{t.title}</h3>
@@ -189,7 +190,7 @@ export default function MicroPage() {
       <section data-cta-section style={{ padding: "100px 20px", textAlign: "center", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at center, rgba(249,115,22,0.1) 0%, transparent 60%)" }} />
         <div style={{ maxWidth: 700, margin: "0 auto", position: "relative" }}>
-          <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/micro-predicciones.png" alt="" style={{ width: 72, height: 72, objectFit: "contain", marginBottom: 24, display: "inline-block" }} />
+          <SvgIcon name="micro-predicciones" size={72} style={{marginBottom:24}} />
           <h2 data-cta-content style={{ fontSize: "clamp(28px,5vw,44px)", fontWeight: 900, marginBottom: 16 }}>
             ¡El partido no espera!
           </h2>

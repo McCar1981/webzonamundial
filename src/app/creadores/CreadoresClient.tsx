@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useLanguage } from '@/i18n/LanguageContext';
 import type { Creador, RedSocial } from '@/data/creadores';
 import { AnimatedSection } from '@/components/AnimatedSection';
+import { SvgIcon } from '@/components/icons';
 
 interface Props {
   creadores: Creador[];
@@ -264,11 +265,7 @@ export default function CreadoresClient({ creadores, total }: Props) {
               border: '1px solid rgba(201,168,76,0.2)',
             }}
           >
-            <img
-              src="/img/zonamundial-images/imagenes/logos para sustuir emojis/creadores.png"
-              alt=""
-              className="w-10 h-10 object-contain mx-auto"
-            />
+            <SvgIcon name="creadores" size={40} />
           </div>
           <h3 className="text-xl font-bold text-white mb-2">{cT.moreSoon}</h3>
           <p className="text-sm text-gray-400 max-w-md mx-auto">{cT.moreSoonDesc}</p>
@@ -295,7 +292,7 @@ export default function CreadoresClient({ creadores, total }: Props) {
               border: '1px solid rgba(201,168,76,0.3)',
             }}
           >
-            <span className="text-2xl">🤔</span>
+            <span className="text-2xl">?</span>
           </div>
           <p className="text-[#C9A84C] text-base font-semibold mb-2">{cT.noFav}</p>
           <p className="text-gray-400 text-sm mb-5 max-w-sm mx-auto">{cT.noFavDesc}</p>

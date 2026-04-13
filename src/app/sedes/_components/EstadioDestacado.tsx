@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { SEDES } from '@/data/sedes';
 import { useLanguage } from '@/i18n/LanguageContext';
 import { STADIUM_IMAGES } from './stadium-images';
+import { SvgIcon } from '@/components/icons';
 
 interface Props {
   sede: typeof SEDES[0];
@@ -60,29 +61,21 @@ export function EstadioDestacado({ sede, badge, badgeColor }: Props) {
         {/* Stats */}
         <div className="flex flex-wrap gap-4">
           <div className="flex items-center gap-2">
-            <span className="text-xl">👥</span>
+            <svg className="w-5 h-5 text-[#6a7a9a]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
             <div>
               <p className="text-xs text-[#6a7a9a]">{sT.capacidad}</p>
               <p className="text-base font-bold text-[#c9a84c]">{sede.capacidad.toLocaleString()}</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <img
-              src="/img/zonamundial-images/imagenes/logos para sustuir emojis/match center.png"
-              alt=""
-              className="inline-block h-7 w-7 object-contain"
-            />
+            <SvgIcon name="match center" size={28} className="inline-block" />
             <div>
               <p className="text-xs text-[#6a7a9a]">{sT.partidos}</p>
               <p className="text-base font-bold text-white">{sede.totalPartidos}</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <img
-              src="/img/zonamundial-images/imagenes/logos para sustuir emojis/streaming.png"
-              alt=""
-              className="inline-block h-7 w-7 object-contain"
-            />
+            <SvgIcon name="streaming" size={28} className="inline-block" />
             <div>
               <p className="text-xs text-[#6a7a9a]">{sT.clima}</p>
               <p className="text-base font-bold text-white">{sede.clima.tempMedia}</p>

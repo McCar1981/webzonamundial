@@ -117,6 +117,29 @@ a:hover {
   }
 }
 
+/* ══════ PUBLICIDAD LATERAL ══════ */
+.zm-pub-lat {
+  position: absolute;
+  top: 220px;
+  height: 100%;
+  width: 120px;
+  z-index: 50;
+  pointer-events: none;
+  display: none;
+}
+.zm-pub-lat img {
+  width: 120px;
+  height: auto;
+  display: block;
+  pointer-events: auto;
+}
+.zm-pub-lat--izq { left: 0; }
+.zm-pub-lat--der { right: 0; }
+
+@media (min-width: 1441px) {
+  .zm-pub-lat { display: block; }
+}
+
 /* ══════ UTILITY CLASSES ══════ */
 @layer utilities {
   .text-gold {

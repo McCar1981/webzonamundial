@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SvgIcon } from '@/components/icons';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,10 +14,10 @@ const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825", GOLD = "#c9a84c", GOLD2 
 const FORMATION_CODES = ["4-3-3","4-4-2","3-5-2","5-3-2","4-2-3-1","3-4-3"];
 
 const ACHIEVEMENT_ICONS = [
-  "/img/imagenessilviu/balondefutbol.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/micro-predicciones.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/48 selecciones.png",
+  "match center",
+  "ranking",
+  "micro-predicciones",
+  "48 selecciones",
 ];
 
 const ImgStyle = {
@@ -80,10 +81,10 @@ export default function ModoCarreraPage() {
   ];
 
   const partidoFeatures = [
-    { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/formato 2026.png", text: mcT.partidoFeat1 },
-    { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/micro-predicciones.png", text: mcT.partidoFeat2 },
-    { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png", text: mcT.partidoFeat3 },
-    { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/match center.png", text: mcT.partidoFeat4 },
+    { icon: "formato 2026", text: mcT.partidoFeat1 },
+    { icon: "micro-predicciones", text: mcT.partidoFeat2 },
+    { icon: "predicciones", text: mcT.partidoFeat3 },
+    { icon: "match center", text: mcT.partidoFeat4 },
   ];
 
   useEffect(() => {
@@ -296,7 +297,7 @@ export default function ModoCarreraPage() {
           <div data-tactica-grid style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(280px,1fr))", gap: 32 }}>
             {/* Formaciones */}
             <div data-tactica-card data-hover-card style={{ padding: 28, borderRadius: 20, background: BG2, border: "1px solid rgba(255,255,255,0.05)", cursor: "pointer" }}>
-              <h3 style={{ fontWeight: 700, fontSize: 18, marginBottom: 20, color: GOLD, display: "flex", alignItems: "center", gap: 8 }}><img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/modo carrera.png" alt="" style={{ width: 24, height: 24, objectFit: "contain" }} /> {mcT.formacionesSectionTitle}</h3>
+              <h3 style={{ fontWeight: 700, fontSize: 18, marginBottom: 20, color: GOLD, display: "flex", alignItems: "center", gap: 8 }}><SvgIcon name="modo carrera" size={24} /> {mcT.formacionesSectionTitle}</h3>
               <div data-formaciones-grid style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 12 }}>
                 {formations.map((f, i) => (
                   <div key={i} data-formacion-item data-hover-card style={{ padding: 16, borderRadius: 12, background: BG3, textAlign: "center", cursor: "pointer" }}>
@@ -309,7 +310,7 @@ export default function ModoCarreraPage() {
 
             {/* Tácticas */}
             <div data-tactica-card data-hover-card style={{ padding: 28, borderRadius: 20, background: BG2, border: "1px solid rgba(255,255,255,0.05)", cursor: "pointer" }}>
-              <h3 style={{ fontWeight: 700, fontSize: 18, marginBottom: 20, color: GOLD, display: "flex", alignItems: "center", gap: 8 }}><img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/modo carrera.png" alt="" style={{ width: 24, height: 24, objectFit: "contain" }} /> {mcT.tacticasSectionTitle}</h3>
+              <h3 style={{ fontWeight: 700, fontSize: 18, marginBottom: 20, color: GOLD, display: "flex", alignItems: "center", gap: 8 }}><SvgIcon name="modo carrera" size={24} /> {mcT.tacticasSectionTitle}</h3>
               <div data-tacticas-list style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                 {tactics.map((tac, i) => (
                   <div key={i} data-tactica-item data-hover-card style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: 14, borderRadius: 10, background: BG3, cursor: "pointer" }}>
@@ -330,7 +331,7 @@ export default function ModoCarreraPage() {
             <div data-torneo-content>
               <div style={{ marginBottom: 32 }}>
                 <h2 style={{ fontSize: "clamp(28px,5vw,42px)", fontWeight: 800, marginBottom: 24 }}>
-                  <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/match center.png" alt="" style={{ width: 32, height: 32, objectFit: "contain", display: "inline-block", verticalAlign: "middle" }} /> {mcT.torneoTitle}
+                  <SvgIcon name="match center" size={32} style={{ display: "inline-block", verticalAlign: "middle" }} /> {mcT.torneoTitle}
                 </h2>
               </div>
 
@@ -377,7 +378,7 @@ export default function ModoCarreraPage() {
             <div data-partidos-content>
               <span style={{ color: GOLD, fontSize: 12, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase" }}>{mcT.step4Label}</span>
               <h2 style={{ fontSize: "clamp(28px,4vw,40px)", fontWeight: 800, marginTop: 16, marginBottom: 24 }}>
-                <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/match center.png" alt="" style={{ width: 32, height: 32, objectFit: "contain", display: "inline-block", verticalAlign: "middle" }} /> {mcT.partidosTitle} <span style={{ color: GOLD }}>{mcT.partidosTitleHighlight}</span>
+                <SvgIcon name="match center" size={32} style={{ display: "inline-block", verticalAlign: "middle" }} /> {mcT.partidosTitle} <span style={{ color: GOLD }}>{mcT.partidosTitleHighlight}</span>
               </h2>
               <p style={{ color: MID, fontSize: 17, lineHeight: 1.7, marginBottom: 32 }}>
                 {mcT.partidosDesc}
@@ -385,7 +386,7 @@ export default function ModoCarreraPage() {
               <div data-partido-features style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                 {partidoFeatures.map((item, i) => (
                   <div key={i} data-partido-feature style={{ display: "flex", alignItems: "center", gap: 12, fontSize: 15 }}>
-                    <img src={item.icon} alt="" style={{ width: 20, height: 20, objectFit: "contain", flexShrink: 0 }} />
+                    <SvgIcon name={item.icon} size={20} style={{ flexShrink: 0 }} />
                     {item.text}
                   </div>
                 ))}
@@ -403,7 +404,7 @@ export default function ModoCarreraPage() {
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <div data-logros-header style={{ textAlign: "center", marginBottom: 48 }}>
             <h2 style={{ fontSize: "clamp(28px,5vw,42px)", fontWeight: 800 }}>
-              <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png" alt="" style={{ width: 32, height: 32, objectFit: "contain", display: "inline-block", verticalAlign: "middle" }} /> {mcT.logrosSectionTitle}
+              <SvgIcon name="ranking" size={32} style={{ display: "inline-block", verticalAlign: "middle" }} /> {mcT.logrosSectionTitle}
             </h2>
             <p style={{ color: MID, marginTop: 12 }}>{mcT.logrosDesc}</p>
           </div>
@@ -411,7 +412,7 @@ export default function ModoCarreraPage() {
           <div data-logros-grid style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: 16 }}>
             {achievements.map((a, i) => (
               <div key={i} data-logro-card data-hover-card style={{ padding: 24, borderRadius: 16, background: BG2, border: "1px solid rgba(255,255,255,0.05)", textAlign: "center", cursor: "pointer" }}>
-                <img src={a.icon} alt="" style={{ width: 48, height: 48, objectFit: "contain", marginBottom: 12 }} />
+                <SvgIcon name={a.icon} size={48} style={{ marginBottom: 12 }} />
                 <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 4 }}>{a.name}</div>
                 <div style={{ fontSize: 11, color: DIM, textTransform: "uppercase", letterSpacing: 1 }}>{a.rarity}</div>
               </div>
@@ -424,7 +425,7 @@ export default function ModoCarreraPage() {
       <section data-cta-section style={{ padding: "100px 20px", textAlign: "center", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at center, rgba(201,168,76,0.1) 0%, transparent 60%)" }} />
         <div style={{ maxWidth: 600, margin: "0 auto", position: "relative" }}>
-          <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png" alt="" style={{ width: 64, height: 64, objectFit: "contain", marginBottom: 24 }} />
+          <SvgIcon name="ranking" size={64} style={{ marginBottom: 24 }} />
           <h2 data-cta-content style={{ fontSize: "clamp(28px,5vw,44px)", fontWeight: 900, marginBottom: 16 }}>
             {mcT.ctaFinalTitle}
           </h2>

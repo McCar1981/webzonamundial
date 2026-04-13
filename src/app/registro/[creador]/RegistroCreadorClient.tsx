@@ -531,7 +531,7 @@ export default function RegistroCreadorClient({ c, otrosCreadores }: Props) {
               <p className="text-xs text-gray-400 mb-3">{rT.conocesAlguien}</p>
               <a
                 href={`https://wa.me/?text=${encodeURIComponent(
-                  `Únete al equipo de ${c.nombre} en ZonaMundial para el torneo 2026 🏆⚽ https://zonamundial.app/registro/${c.slug}`
+                  `Únete al equipo de ${c.nombre} en ZonaMundial para el torneo 2026 https://zonamundial.app/registro/${c.slug}`
                 )}`}
                 target="_blank"
                 rel="noopener"

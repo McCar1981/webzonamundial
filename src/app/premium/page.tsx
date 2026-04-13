@@ -7,9 +7,9 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { StatCounter } from "@/components/StatCounter";
 import { ShimmerButton } from "@/components/ShimmerButton";
 import { AnimatedSection } from "@/components/AnimatedSection";
+import { SvgIcon } from "@/components/icons";
 
 const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a", DARK = "#4a5570";
-const IMG = "/img/zonamundial-images/imagenes/logos para sustuir emojis";
 
 export default function PremiumPage() {
   const { t } = useLanguage();
@@ -22,16 +22,16 @@ export default function PremiumPage() {
 
   const highlights = isEN
     ? [
-        { label: 'Unlimited predictions', icon: `${IMG}/predicciones.png`, desc: '8 types + multipliers' },
-        { label: 'AI Coach Pro', icon: `${IMG}/ia coach.png`, desc: 'Full analysis & alerts' },
-        { label: 'Zero ads', icon: `${IMG}/streaming.png`, desc: 'Distraction-free' },
-        { label: 'Advanced stats', icon: `${IMG}/ranking.png`, desc: 'xG, xA & more' },
+        { label: 'Unlimited predictions', icon: 'predicciones', desc: '8 types + multipliers' },
+        { label: 'AI Coach Pro', icon: 'ia coach', desc: 'Full analysis & alerts' },
+        { label: 'Zero ads', icon: 'streaming', desc: 'Distraction-free' },
+        { label: 'Advanced stats', icon: 'ranking', desc: 'xG, xA & more' },
       ]
     : [
-        { label: 'Predicciones ilimitadas', icon: `${IMG}/predicciones.png`, desc: '8 tipos + multiplicadores' },
-        { label: 'IA Coach Pro', icon: `${IMG}/ia coach.png`, desc: 'Análisis y alertas' },
-        { label: 'Sin anuncios', icon: `${IMG}/streaming.png`, desc: 'Experiencia limpia' },
-        { label: 'Stats avanzadas', icon: `${IMG}/ranking.png`, desc: 'xG, xA y más' },
+        { label: 'Predicciones ilimitadas', icon: 'predicciones', desc: '8 tipos + multiplicadores' },
+        { label: 'IA Coach Pro', icon: 'ia coach', desc: 'Análisis y alertas' },
+        { label: 'Sin anuncios', icon: 'streaming', desc: 'Experiencia limpia' },
+        { label: 'Stats avanzadas', icon: 'ranking', desc: 'xG, xA y más' },
       ];
 
   const testimonials = isEN
@@ -55,7 +55,7 @@ export default function PremiumPage() {
         <div className="absolute top-0 left-0 w-full h-1" style={{ background: `linear-gradient(90deg, transparent, ${GOLD}, transparent)` }} />
 
         <div className="max-w-4xl mx-auto relative z-10 text-center">
-          <img src={`${IMG}/fantasy.png`} alt="" className="w-16 h-16 object-contain mx-auto mb-4" />
+          <div className="flex justify-center mb-4"><SvgIcon name="fantasy" size={64} /></div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-4 leading-tight">
             {pT.heroTitle}
@@ -78,13 +78,6 @@ export default function PremiumPage() {
                 </div>
               </div>
             ))}
-          </div>
-
-          {/* ShimmerButton badge */}
-          <div className="mb-6 flex justify-center">
-            <ShimmerButton className="text-xs sm:text-sm">
-              {isEN ? "7 days free · No card required" : "7 días gratis · Sin tarjeta"}
-            </ShimmerButton>
           </div>
 
           <Link
@@ -173,7 +166,7 @@ export default function PremiumPage() {
             {highlights.map((item, i) => (
               <div key={i} className="flex items-center gap-4 p-5 rounded-2xl border border-white/5 hover:border-[#C9A84C]/30 transition-all" style={{ background: BG2 }}>
                 <div className="w-12 h-12 rounded-xl bg-[#C9A84C]/10 flex items-center justify-center flex-shrink-0">
-                  <img src={item.icon} alt="" className="w-7 h-7 object-contain" />
+                  <SvgIcon name={item.icon} size={28} />
                 </div>
                 <div>
                   <span className="block text-base text-white font-bold">{item.label}</span>
@@ -203,13 +196,13 @@ export default function PremiumPage() {
                 >
                   <span style={{ fontWeight: row.highlight ? 600 : 400 }}>{row.feature}</span>
                   <span className="text-center">
-                    {row.free === "✅" ? <svg className="inline" width="16" height="16" viewBox="0 0 24 24" fill={GOLD}><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
-                    : row.free === "❌" ? <svg className="inline" width="14" height="14" viewBox="0 0 24 24" fill={DARK}><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                    {(row.free === "Sí" || row.free === "Yes") ? <svg className="inline" width="16" height="16" viewBox="0 0 24 24" fill={GOLD}><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+                    : row.free === "No" ? <svg className="inline" width="14" height="14" viewBox="0 0 24 24" fill={DARK}><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
                     : <span style={{ color: DIM }}>{row.free}</span>}
                   </span>
                   <span className="text-center" style={{ color: row.highlight ? GOLD : DIM, fontWeight: row.highlight ? 600 : 400 }}>
-                    {row.premium === "✅" ? <svg className="inline" width="16" height="16" viewBox="0 0 24 24" fill={GOLD}><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
-                    : row.premium.startsWith("✅") ? <><svg className="inline mr-1" width="14" height="14" viewBox="0 0 24 24" fill={GOLD}><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>{row.premium.replace("✅ ", "")}</>
+                    {(row.premium === "Sí" || row.premium === "Yes") ? <svg className="inline" width="16" height="16" viewBox="0 0 24 24" fill={GOLD}><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+                    : (row.premium !== "No" && row.premium !== "Sí" && row.premium !== "Yes") ? <><svg className="inline mr-1" width="14" height="14" viewBox="0 0 24 24" fill={GOLD}><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>{row.premium}</>
                     : row.premium}
                   </span>
                 </div>
@@ -303,7 +296,7 @@ export default function PremiumPage() {
               <div className="flex-shrink-0">
                 <div className="relative">
                   <div className="absolute inset-0 bg-[#c9a84c]/20 blur-[60px] rounded-full" />
-                  <img src={`${IMG}/unete ahora.png`} alt="" className="relative w-44 h-44 object-contain float-animation drop-shadow-[0_0_40px_rgba(201,168,76,0.4)]" loading="lazy" />
+                  <SvgIcon name="unete ahora" size={176} className="relative float-animation drop-shadow-[0_0_40px_rgba(201,168,76,0.4)]" />
                 </div>
               </div>
               <div className="text-center lg:text-left flex-1">

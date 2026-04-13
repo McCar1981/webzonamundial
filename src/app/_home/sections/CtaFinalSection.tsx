@@ -2,6 +2,7 @@ import { RefObject } from "react";
 import { MagneticButton } from "../components/MagneticButton";
 import { BG3 } from "../constants";
 import { ParallaxImage } from "@/components/ParallaxImage";
+import { SvgIcon } from "@/components/icons";
 
 export function CtaFinalSection({
   ctaRef,
@@ -30,12 +31,7 @@ export function CtaFinalSection({
             <div className="flex-shrink-0">
               <div className="relative">
                 <div className="absolute inset-0 bg-[#C9A84C]/20 blur-[60px] rounded-full" />
-                <img
-                  src="/img/zonamundial-images/imagenes/logos para sustuir emojis/unete ahora.png"
-                  alt="Únete ahora"
-                  className="relative w-48 h-48 sm:w-60 sm:h-60 object-contain float-animation drop-shadow-[0_0_40px_rgba(201,168,76,0.4)]"
-                  loading="lazy"
-                />
+                <SvgIcon name="unete ahora" size={240} className="relative float-animation drop-shadow-[0_0_40px_rgba(201,168,76,0.4)] w-48 h-48 sm:w-60 sm:h-60" />
               </div>
             </div>
 

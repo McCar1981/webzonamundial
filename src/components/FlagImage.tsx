@@ -1,10 +1,11 @@
 // src/components/FlagImage.tsx
-// Muestra banderas usando country-flag-icons (SVG local, sin CDN)
+// Muestra banderas usando react-world-flags
 
 "use client";
 
 import type { CSSProperties, ReactNode } from 'react';
-import Flags from 'country-flag-icons/react/3x2';
+// @ts-expect-error -- react-world-flags no incluye tipos
+import Flag from 'react-world-flags';
 
 interface FlagImageProps {
   code: string;
@@ -30,7 +31,6 @@ export default function FlagImage({
 }: FlagImageProps) {
   const upperCode = code.toUpperCase();
   const resolvedCode = CODE_OVERRIDES[code.toLowerCase()] || upperCode;
-  const FlagComponent = (Flags as Record<string, React.ComponentType<{ title?: string; className?: string }>>)[resolvedCode];
 
   const displayFallback = fallback || upperCode;
   const hasExplicitSize =
@@ -43,36 +43,31 @@ export default function FlagImage({
     ? {}
     : { width, height };
 
-  if (!FlagComponent) {
-    return (
-      <span
-        className={`inline-flex items-center justify-center overflow-hidden ${className}`}
-        style={wrapperStyle}
-        title={alt}
-      >
-        {typeof displayFallback === 'string' ? (
-          <span
-            className="flex items-center justify-center leading-none select-none text-[#c9a84c]"
-            style={{ fontSize: width * 0.5 }}
-          >
-            {displayFallback}
-          </span>
-        ) : (
-          <span className="flex items-center justify-center leading-none select-none">
-            {displayFallback}
-          </span>
-        )}
-      </span>
-    );
-  }
-
   return (
     <span
       className={`inline-flex items-center justify-center overflow-hidden ${className}`}
       style={wrapperStyle}
       title={alt}
     >
-      <FlagComponent title={alt} className="h-full w-full object-cover" />
+      <Flag
+        code={resolvedCode}
+        alt={alt}
+        fallback={
+          typeof displayFallback === 'string' ? (
+            <span
+              className="flex items-center justify-center leading-none select-none text-[#c9a84c]"
+              style={{ fontSize: width * 0.5 }}
+            >
+              {displayFallback}
+            </span>
+          ) : (
+            <span className="flex items-center justify-center leading-none select-none">
+              {displayFallback}
+            </span>
+          )
+        }
+        className="h-full w-full object-cover"
+      />
     </span>
   );
 }

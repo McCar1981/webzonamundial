@@ -13,7 +13,6 @@ export function CarouselRows({
   label1?: string;
   label2?: string;
 }) {
-  const [isPaused, setIsPaused] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const row1Ref = useRef<HTMLDivElement>(null);
@@ -40,7 +39,6 @@ export function CarouselRows({
     scrollStartX.current = rowRef.current.scrollLeft;
     currentRowRef.current = rowRef.current;
     setIsDragging(true);
-    setIsPaused(true);
   };
 
   const handleDragMove = (e: React.MouseEvent | React.TouchEvent) => {
@@ -53,7 +51,6 @@ export function CarouselRows({
   const handleDragEnd = () => {
     setIsDragging(false);
     currentRowRef.current = null;
-    setTimeout(() => setIsPaused(false), 100);
   };
 
   const row1Items = [...modules, ...modules];
@@ -91,7 +88,7 @@ export function CarouselRows({
             style={{
               width: "max-content",
               animation: reducedMotion ? "none" : "carousel-left 45s linear infinite",
-              animationPlayState: reducedMotion || isPaused || isDragging ? "paused" : "running",
+              animationPlayState: reducedMotion || isDragging ? "paused" : "running",
             }}
           >
             {row1Items.map((m, i) => (
@@ -99,8 +96,6 @@ export function CarouselRows({
                 key={i}
                 href={m.href || "/la-app"}
                 className="flex-shrink-0 w-64 group select-none"
-                onMouseEnter={() => setIsPaused(true)}
-                onMouseLeave={() => !isDragging && setIsPaused(false)}
                 draggable={false}
               >
                 <div
@@ -174,7 +169,7 @@ export function CarouselRows({
             style={{
               width: "max-content",
               animation: reducedMotion ? "none" : "carousel-right 55s linear infinite",
-              animationPlayState: reducedMotion || isPaused || isDragging ? "paused" : "running",
+              animationPlayState: reducedMotion || isDragging ? "paused" : "running",
             }}
           >
             {row2Items.map((m, i) => (
@@ -182,8 +177,6 @@ export function CarouselRows({
                 key={i}
                 href={m.href || "/la-app"}
                 className="flex-shrink-0 w-64 group select-none"
-                onMouseEnter={() => setIsPaused(true)}
-                onMouseLeave={() => !isDragging && setIsPaused(false)}
                 draggable={false}
               >
                 <div

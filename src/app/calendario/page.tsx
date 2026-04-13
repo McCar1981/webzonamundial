@@ -9,6 +9,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { AnimatedSection } from "@/components/AnimatedSection";
+import { SvgIcon } from "@/components/icons";
 import { SELECCIONES } from "@/data/selecciones";
 import {
   MATCHES,
@@ -409,11 +410,7 @@ export default function CalendarioPage() {
             background: "linear-gradient(135deg, rgba(201,168,76,0.1), transparent)",
           }}
         >
-          <img
-            src="/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png"
-            alt=""
-            className="mx-auto mb-4 block h-12 w-12 object-contain"
-          />
+          <SvgIcon name="predicciones" size={48} className="mx-auto mb-4 block" />
           <h2 className="mb-3 text-2xl font-black sm:text-[28px]">{cT.ctaTitle}</h2>
           <p className="mx-auto mb-6 max-w-lg text-base text-[#8a94b0]">
             {cT.ctaDesc}

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/i18n/LanguageContext';
+import { SvgIcon } from '@/components/icons';
 import { IconicMoment, MOMENTS_ES, MOMENTS_EN } from '@/data/momentos-iconicos';
 
 function MomentCard({
@@ -238,7 +239,7 @@ export default function MomentosIconicosClient() {
       <header className="mb-8 sm:mb-10">
         <div className="flex items-center gap-4 mb-4">
           <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#C9A84C]/20 to-[#C9A84C]/5 flex items-center justify-center border border-[#C9A84C]/20">
-            <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/historia.png" alt="" className="w-9 h-9 object-contain" />
+            <SvgIcon name="historia" size={36} />
           </div>
           <div>
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white">

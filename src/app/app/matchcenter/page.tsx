@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SvgIcon } from "@/components/icons";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,19 +20,19 @@ const STATS = [
 ];
 
 const EVENTS = [
-  { min: "23'", text: "Gol de Messi", icon: "⚽", side: "home" },
-  { min: "36'", text: "Tarjeta amarilla", icon: "🟡", side: "away" },
-  { min: "41'", text: "Gol de Di María", icon: "⚽", side: "home" },
-  { min: "HT", text: "Descanso", icon: "⏸️", side: "neutral" },
-  { min: "68'", text: "Sustitución", icon: "🔄", side: "away" },
-  { min: "80'", text: "Gol de Mbappé", icon: "⚽", side: "away" },
+  { min: "23'", text: "Gol de Messi", icon: "goal", side: "home" },
+  { min: "36'", text: "Tarjeta amarilla", icon: "yellow", side: "away" },
+  { min: "41'", text: "Gol de Di María", icon: "goal", side: "home" },
+  { min: "HT", text: "Descanso", icon: "pause", side: "neutral" },
+  { min: "68'", text: "Sustitución", icon: "sub", side: "away" },
+  { min: "80'", text: "Gol de Mbappé", icon: "goal", side: "away" },
 ];
 
 const LIVE_FEATURES = [
-  { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/match center.png", title: "Alineaciones confirmadas", desc: "Once titular, suplentes y formación táctica." },
-  { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png", title: "Eventos en vivo", desc: "Goles, tarjetas, sustituciones y VAR en tiempo real." },
-  { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/micro-predicciones.png", title: "Stats avanzados", desc: "xG, posesión, pases progresivos y más métricas." },
-  { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/ia coach.png", title: "Análisis IA", desc: "Resumen automático del rendimiento de cada equipo." },
+  { icon: "match center", title: "Alineaciones confirmadas", desc: "Once titular, suplentes y formación táctica." },
+  { icon: "predicciones", title: "Eventos en vivo", desc: "Goles, tarjetas, sustituciones y VAR en tiempo real." },
+  { icon: "micro-predicciones", title: "Stats avanzados", desc: "xG, posesión, pases progresivos y más métricas." },
+  { icon: "ia coach", title: "Análisis IA", desc: "Resumen automático del rendimiento de cada equipo." },
 ];
 
 export default function MatchCenterPage() {
@@ -198,7 +199,7 @@ export default function MatchCenterPage() {
                 padding: 24, borderRadius: 16, background: BG2,
                 border: "1px solid rgba(255,255,255,0.05)", cursor: "pointer"
               }}>
-                <img src={f.icon} alt="" style={{ width: 40, height: 40, objectFit: "contain", marginBottom: 12 }} />
+                <SvgIcon name={f.icon} size={40} style={{ marginBottom: 12 }} />
                 <h3 style={{ fontWeight: 800, fontSize: 16, marginBottom: 6 }}>{f.title}</h3>
                 <p style={{ fontSize: 14, color: DIM, lineHeight: 1.5 }}>{f.desc}</p>
               </div>
@@ -211,7 +212,7 @@ export default function MatchCenterPage() {
       <section data-cta-section style={{ padding: "100px 20px", textAlign: "center", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at center, rgba(16,185,129,0.1) 0%, transparent 60%)" }} />
         <div style={{ maxWidth: 700, margin: "0 auto", position: "relative" }}>
-          <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/match center.png" alt="" style={{ width: 72, height: 72, objectFit: "contain", marginBottom: 24, display: "inline-block" }} />
+          <SvgIcon name="match center" size={72} style={{ marginBottom: 24, display: "inline-block" }} />
           <h2 data-cta-content style={{ fontSize: "clamp(28px,5vw,44px)", fontWeight: 900, marginBottom: 16 }}>
             Vive cada partido al <span style={{ color: "#10b981" }}>máximo</span>
           </h2>

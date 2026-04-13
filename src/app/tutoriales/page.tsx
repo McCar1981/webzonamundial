@@ -522,7 +522,7 @@ function TutorialModal({ tutorial, onClose }: { tutorial: Tutorial; onClose: () 
           <div className="p-5 rounded-2xl border"
             style={{ background: `${GOLD}08`, borderColor: `${GOLD}25` }}>
             <div className="flex items-center gap-2 mb-4">
-              <span className="text-base">💡</span>
+              <span className="text-base"></span>
               <h3 className="text-sm font-bold" style={{ color: GOLD }}>Consejos y trucos</h3>
             </div>
             <ul className="flex flex-col gap-3">

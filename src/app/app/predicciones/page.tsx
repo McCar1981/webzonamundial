@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SvgIcon } from "@/components/icons";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,15 +16,15 @@ const PREDICTION_TYPE_DIFFICULTIES = ["4/5","2/5","5/5","5/5","3/5","3/5","4/5",
 const PREDICTION_TYPE_POINTS = ["Hasta 50x","Hasta 15x","Hasta 100x","Hasta 200x","Hasta 25x","Hasta 20x","Hasta 75x","Hasta 10x"];
 
 const MULTIPLIER_ICONS = [
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/micro-predicciones.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png",
+  "micro-predicciones",
+  "ranking",
 ];
 const MULTIPLIER_VALUES = ["x2","x3"];
 
 const CHIP_ICONS = [
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/ia coach.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/micro-predicciones.png",
+  "predicciones",
+  "ia coach",
+  "micro-predicciones",
 ];
 
 export default function PrediccionesPage() {
@@ -60,9 +61,9 @@ export default function PrediccionesPage() {
   ];
 
   const appFeatures = [
-    { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/match center.png", title: pT.feat1Title, desc: pT.feat1Desc },
-    { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png", title: pT.feat2Title, desc: pT.feat2Desc },
-    { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png", title: pT.feat3Title, desc: pT.feat3Desc },
+    { icon: "match center", title: pT.feat1Title, desc: pT.feat1Desc },
+    { icon: "ranking", title: pT.feat2Title, desc: pT.feat2Desc },
+    { icon: "ranking", title: pT.feat3Title, desc: pT.feat3Desc },
   ];
 
   useEffect(() => {
@@ -157,8 +158,8 @@ export default function PrediccionesPage() {
       {/* HERO SECTION */}
       <section style={{padding:"20px 20px 60px",textAlign:"center",position:"relative",overflow:"hidden"}}>
         <div style={{position:"absolute",inset:0,background:"radial-gradient(ellipse at center,rgba(201,168,76,0.08) 0%,transparent 60%)"}}/>
-        <img data-hero-decor src="/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png" alt="" style={{position:"absolute",top:"10%",left:"5%",width:120,height:120,opacity:0.06,transform:"rotate(-15deg)",pointerEvents:"none"}} />
-        <img data-hero-decor src="/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png" alt="" style={{position:"absolute",bottom:"10%",right:"5%",width:100,height:100,opacity:0.06,transform:"rotate(15deg)",pointerEvents:"none"}} />
+        <span data-hero-decor style={{position:"absolute",top:"10%",left:"5%",opacity:0.06,transform:"rotate(-15deg)",pointerEvents:"none"}}><SvgIcon name="predicciones" size={120} /></span>
+        <span data-hero-decor style={{position:"absolute",bottom:"10%",right:"5%",opacity:0.06,transform:"rotate(15deg)",pointerEvents:"none"}}><SvgIcon name="ranking" size={100} /></span>
 
         <div style={{maxWidth:800,margin:"0 auto",position:"relative"}}>
           <span data-hero-badge style={{color:GOLD,fontSize:12,fontWeight:700,letterSpacing:3,textTransform:"uppercase",display:"inline-block"}}>{pT.badge}</span>
@@ -223,7 +224,7 @@ export default function PrediccionesPage() {
               <div data-app-features style={{display:"flex",flexDirection:"column",gap:16}}>
                 {appFeatures.map((feat, i) => (
                   <div key={i} data-app-feature data-hover-card style={{display:"flex",alignItems:"center",gap:16,padding:16,borderRadius:12,background:BG2,border:"1px solid rgba(255,255,255,0.05)",cursor:"pointer"}}>
-                    <div style={{width:44,height:44,borderRadius:10,background:`${GOLD}20`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}><img src={feat.icon} alt="" style={{width:28,height:28,objectFit:"contain"}} /></div>
+                    <div style={{width:44,height:44,borderRadius:10,background:`${GOLD}20`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}><SvgIcon name={feat.icon} size={28} /></div>
                     <div>
                       <div style={{fontWeight:700,fontSize:15}}>{feat.title}</div>
                       <div style={{fontSize:13,color:DIM}}>{feat.desc}</div>
@@ -290,7 +291,7 @@ export default function PrediccionesPage() {
                 {multipliers.map((mult,i)=>(
                   <div key={i} data-mult-item data-hover-card style={{padding:20,borderRadius:16,background:BG2,border:"1px solid rgba(255,255,255,0.05)",display:"flex",gap:16,alignItems:"center",cursor:"pointer"}}>
                     <div style={{width:48,height:48,borderRadius:12,background:`linear-gradient(135deg,${GOLD},${GOLD2})`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
-                      <img src={mult.icon} alt="" style={{width:32,height:32,objectFit:"contain"}} />
+                      <SvgIcon name={mult.icon} size={32} />
                     </div>
                     <div style={{flex:1}}>
                       <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:4}}>
@@ -311,7 +312,7 @@ export default function PrediccionesPage() {
                 {chips.map((chip,i)=>(
                   <div key={i} data-chip-item data-hover-card style={{padding:20,borderRadius:16,background:BG2,border:"1px solid rgba(255,255,255,0.05)",display:"flex",gap:16,alignItems:"center",cursor:"pointer"}}>
                     <div style={{width:48,height:48,borderRadius:12,background:`${GOLD}20`,border:`2px solid ${GOLD}40`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
-                      <img src={chip.icon} alt="" style={{width:32,height:32,objectFit:"contain"}} />
+                      <SvgIcon name={chip.icon} size={32} />
                     </div>
                     <div style={{flex:1}}>
                       <span style={{fontWeight:700,display:"block",marginBottom:4}}>{chip.title}</span>

@@ -9,6 +9,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SELECCIONES, getSeleccionesByGrupo } from '@/data/selecciones';
 import { useLanguage } from '@/i18n/LanguageContext';
 import { MATCHES } from '@/data/matches';
+import { SvgIcon } from '@/components/icons';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,18 +17,18 @@ const BG = "#060B14";
 const BG3 = "#0B1825";
 
 const TAG_STYLES: Record<string, { color: string; bg: string; icon?: string }> = {
-  'A': { color: '#22c55e', bg: 'rgba(34,197,94,0.15)',   icon: '/img/zonamundial-images/imagenes/logos para sustuir emojis/48 selecciones.png' },
-  'B': { color: '#22c55e', bg: 'rgba(34,197,94,0.15)',   icon: '/img/zonamundial-images/imagenes/logos para sustuir emojis/48 selecciones.png' },
+  'A': { color: '#22c55e', bg: 'rgba(34,197,94,0.15)',   icon: '48 selecciones' },
+  'B': { color: '#22c55e', bg: 'rgba(34,197,94,0.15)',   icon: '48 selecciones' },
   'C': { color: '#22c55e', bg: 'rgba(34,197,94,0.15)',   icon: '/img/imagenessilviu/balondefutbol.png' },
-  'D': { color: '#22c55e', bg: 'rgba(34,197,94,0.15)',   icon: '/img/zonamundial-images/imagenes/logos para sustuir emojis/48 selecciones.png' },
+  'D': { color: '#22c55e', bg: 'rgba(34,197,94,0.15)',   icon: '48 selecciones' },
   'E': { color: '#fbbf24', bg: 'rgba(251,191,36,0.15)',  icon: '/img/imagenessilviu/balondefutbol.png' },
   'F': { color: '#f97316', bg: 'rgba(249,115,22,0.15)',  icon: '/img/imagenessilviu/balondefutbol.png' },
-  'G': { color: '#ef4444', bg: 'rgba(239,68,68,0.15)',   icon: '/img/zonamundial-images/imagenes/logos para sustuir emojis/micro-predicciones.png' },
+  'G': { color: '#ef4444', bg: 'rgba(239,68,68,0.15)',   icon: 'micro-predicciones' },
   'H': { color: '#c9a84c', bg: 'rgba(201,168,76,0.15)',  icon: '/img/imagenessilviu/balondefutbol.png' },
   'I': { color: '#3b82f6', bg: 'rgba(59,130,246,0.15)',  icon: '/img/imagenessilviu/balondefutbol.png' },
-  'J': { color: '#38bdf8', bg: 'rgba(56,189,248,0.15)',  icon: '/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png' },
-  'K': { color: '#a855f7', bg: 'rgba(168,85,247,0.15)',  icon: '/img/zonamundial-images/imagenes/logos para sustuir emojis/modo carrera.png' },
-  'L': { color: '#94a3b8', bg: 'rgba(148,163,184,0.15)', icon: '/img/zonamundial-images/imagenes/logos para sustuir emojis/historia.png' },
+  'J': { color: '#38bdf8', bg: 'rgba(56,189,248,0.15)',  icon: 'ranking' },
+  'K': { color: '#a855f7', bg: 'rgba(168,85,247,0.15)',  icon: 'modo carrera' },
+  'L': { color: '#94a3b8', bg: 'rgba(148,163,184,0.15)', icon: 'historia' },
 };
 
 function formatDate(dateStr: string, locale: string) {
@@ -139,7 +140,7 @@ function GrupoCard({ letra, index }: { letra: string; index: number }) {
             borderBottom: `1px solid ${tag.color}30`
           }}
         >
-          {tag.icon && <img src={tag.icon} alt="" className="w-3 h-3 object-contain" />}
+          {tag.icon && (tag.icon.startsWith('/') ? <img src={tag.icon} alt="" className="w-3 h-3 object-contain" /> : <SvgIcon name={tag.icon} size={12} />)}
           {tag.text}
         </div>
       )}
@@ -409,8 +410,8 @@ export default function GruposIndex() {
       {/* Hero Section */}
       <section ref={heroRef} className="relative overflow-hidden" style={{ padding: '20px 20px 60px' }}>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(201,168,76,0.08)_0%,transparent_60%)]" />
-        <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/los 12 grupos.png" alt="" className="absolute top-10 left-10 w-28 h-28 opacity-[0.06] rotate-[-15deg] pointer-events-none" />
-        <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/match center.png" alt="" className="absolute bottom-10 right-10 w-24 h-24 opacity-[0.06] rotate-[15deg] pointer-events-none" />
+        <SvgIcon name="los 12 grupos" size={112} className="absolute top-10 left-10 opacity-[0.06] rotate-[-15deg] pointer-events-none" />
+        <SvgIcon name="match center" size={96} className="absolute bottom-10 right-10 opacity-[0.06] rotate-[15deg] pointer-events-none" />
 
         <div className="max-w-6xl mx-auto relative">
           {/* Breadcrumb */}
@@ -435,13 +436,13 @@ export default function GruposIndex() {
             {/* Stats */}
             <div ref={statsRef} className="flex flex-wrap justify-center gap-4">
               {[
-                { value: '12', label: gT.stats.grupos, icon: '/img/zonamundial-images/imagenes/logos para sustuir emojis/los 12 grupos.png' },
-                { value: '48', label: gT.stats.equipos, icon: '/img/zonamundial-images/imagenes/logos para sustuir emojis/48 selecciones.png' },
-                { value: '72', label: gT.stats.partidos, icon: '/img/zonamundial-images/imagenes/logos para sustuir emojis/match center.png' },
-                { value: '32', label: gT.stats.clasifican, icon: '/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png' },
+                { value: '12', label: gT.stats.grupos, icon: 'los 12 grupos' },
+                { value: '48', label: gT.stats.equipos, icon: '48 selecciones' },
+                { value: '72', label: gT.stats.partidos, icon: 'match center' },
+                { value: '32', label: gT.stats.clasifican, icon: 'ranking' },
               ].map((stat) => (
                 <div key={stat.label} className="stat-item flex items-center gap-3 px-4 py-2 bg-[#0F1D32] rounded-xl border border-white/5">
-                  <img src={stat.icon} alt="" className="w-10 h-10 object-contain" />
+                  <SvgIcon name={stat.icon} size={40} />
                   <div className="text-left">
                     <p className="text-xl font-black text-[#c9a84c]">{stat.value}</p>
                     <p className="text-xs text-[#6a7a9a]">{stat.label}</p>
@@ -465,7 +466,7 @@ export default function GruposIndex() {
       <section className="max-w-6xl mx-auto px-4 mb-16">
         <div ref={sectionTitleRef} className="flex items-center gap-4 mb-8">
           <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#c9a84c]/20 to-[#c9a84c]/5 flex items-center justify-center border border-[#c9a84c]/20">
-            <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/los 12 grupos.png" alt="" className="w-8 h-8 object-contain" />
+            <SvgIcon name="los 12 grupos" size={32} />
           </div>
           <div>
             <h2 className="text-2xl md:text-3xl font-bold text-white">{gT.allGroups}</h2>
@@ -484,7 +485,7 @@ export default function GruposIndex() {
       <section ref={tabsRef} className="max-w-6xl mx-auto px-4 mb-16">
         <div className="flex items-center gap-4 mb-6">
           <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#c9a84c]/20 to-[#c9a84c]/5 flex items-center justify-center border border-[#c9a84c]/20">
-            <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/historia.png" alt="" className="w-8 h-8 object-contain" />
+            <SvgIcon name="historia" size={32} />
           </div>
           <div>
             <h2 className="text-2xl md:text-3xl font-bold text-white">{gT.analysis}</h2>
@@ -521,7 +522,7 @@ export default function GruposIndex() {
         <div className="bg-gradient-to-br from-[#0B1825] to-[#0F1D32] rounded-2xl p-6 md:p-8 border border-white/5">
           <div className="flex items-center gap-4 mb-8">
             <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500/20 to-blue-600/5 flex items-center justify-center border border-blue-500/20">
-              <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/formato 2026.png" alt="" className="w-8 h-8 object-contain" />
+              <SvgIcon name="formato 2026" size={32} />
             </div>
             <div>
               <h2 className="text-2xl font-bold text-white">{gT.format.title}</h2>
@@ -531,16 +532,16 @@ export default function GruposIndex() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { step: '1', title: gT.format.step1Title, desc: gT.format.step1Desc, icon: '/img/zonamundial-images/imagenes/logos para sustuir emojis/los 12 grupos.png' },
-              { step: '2', title: gT.format.step2Title, desc: gT.format.step2Desc, icon: '/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png' },
-              { step: '3', title: gT.format.step3Title, desc: gT.format.step3Desc, icon: '/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png' },
+              { step: '1', title: gT.format.step1Title, desc: gT.format.step1Desc, icon: 'los 12 grupos' },
+              { step: '2', title: gT.format.step2Title, desc: gT.format.step2Desc, icon: 'ranking' },
+              { step: '3', title: gT.format.step3Title, desc: gT.format.step3Desc, icon: 'predicciones' },
             ].map((item) => (
               <div key={item.step} className="format-step relative">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-[#c9a84c]/10 text-[#c9a84c] flex items-center justify-center font-black text-lg border border-[#c9a84c]/20">
                     {item.step}
                   </div>
-                  <img src={item.icon} alt="" className="w-8 h-8 object-contain" />
+                  <SvgIcon name={item.icon} size={32} />
                 </div>
                 <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
                 <p className="text-sm text-[#8a94b0] leading-relaxed">{item.desc}</p>
@@ -573,7 +574,7 @@ export default function GruposIndex() {
             <div className="flex-shrink-0">
               <div className="relative">
                 <div className="absolute inset-0 bg-[#c9a84c]/20 blur-[60px] rounded-full"/>
-                <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/unete ahora.png" alt="Únete ahora" className="relative w-48 h-48 sm:w-56 sm:h-56 object-contain float-animation drop-shadow-[0_0_40px_rgba(201,168,76,0.4)]" loading="lazy" />
+                <SvgIcon name="unete ahora" size={192} className="relative float-animation drop-shadow-[0_0_40px_rgba(201,168,76,0.4)] sm:!w-56 sm:!h-56" />
               </div>
             </div>
             <div className="text-center lg:text-left flex-1">

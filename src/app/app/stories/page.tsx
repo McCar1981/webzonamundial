@@ -4,27 +4,28 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SvgIcon } from "@/components/icons";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a";
 
 const TEMPLATES = [
-  { name: "Resultado épico", style: { background: "linear-gradient(135deg,#ef4444,#b91c1c)" }, icon: "⚽" },
-  { name: "Predicción acertada", style: { background: "linear-gradient(135deg,#22c55e,#15803d)" }, icon: "🎯" },
-  { name: "Top del ranking", style: { background: "linear-gradient(135deg,#06b6d4,#0e7490)" }, icon: "🏆" },
-  { name: "Fantasy team", style: { background: "linear-gradient(135deg,#a855f7,#7e22ce)" }, icon: "👕" },
-  { name: "MVP del partido", style: { background: "linear-gradient(135deg,#f59e0b,#b45309)" }, icon: "⭐" },
-  { name: "Hinchada", style: { background: "linear-gradient(135deg,#3b82f6,#1d4ed8)" }, icon: "🎉" },
+  { name: "Resultado épico", style: { background: "linear-gradient(135deg,#ef4444,#b91c1c)" }, icon: "ball" },
+  { name: "Predicción acertada", style: { background: "linear-gradient(135deg,#22c55e,#15803d)" }, icon: "target" },
+  { name: "Top del ranking", style: { background: "linear-gradient(135deg,#06b6d4,#0e7490)" }, icon: "trophy" },
+  { name: "Fantasy team", style: { background: "linear-gradient(135deg,#a855f7,#7e22ce)" }, icon: "shirt" },
+  { name: "MVP del partido", style: { background: "linear-gradient(135deg,#f59e0b,#b45309)" }, icon: "star" },
+  { name: "Hinchada", style: { background: "linear-gradient(135deg,#3b82f6,#1d4ed8)" }, icon: "party" },
 ];
 
-const STICKERS = ["🔥", "⚽", "🏆", "🎯", "💯", "🚀", "👑", "⚡", "🎉", "🇦🇷", "🇧🇷", "🇪🇸", "🇲🇽", "🇨🇴"];
+const STICKERS = ["GOL!", "MVP", "TOP", "CRACK", "GOLAZO", "FUEGO", "REY", "RAYO", "FIESTA", "ARG", "BRA", "ESP", "MEX", "COL"];
 
 const FEATURES = [
-  { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png", title: "Plantillas automáticas", desc: "Elige entre diseños pre-armados para resultados, rankings y fantasy." },
-  { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png", title: "Stats en tiempo real", desc: "Tus predicciones, puntos y posición se actualizan solos en la story." },
-  { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/micro-predicciones.png", title: "Stickers y badges", desc: "Añade emojis, banderas y logros desbloqueados para personalizar." },
-  { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/ia coach.png", title: "Texto editable", desc: "Escribe tu frase, elige tipografía y colores del tema de tu selección." },
+  { icon: "predicciones", title: "Plantillas automáticas", desc: "Elige entre diseños pre-armados para resultados, rankings y fantasy." },
+  { icon: "ranking", title: "Stats en tiempo real", desc: "Tus predicciones, puntos y posición se actualizan solos en la story." },
+  { icon: "micro-predicciones", title: "Stickers y badges", desc: "Añade emojis, banderas y logros desbloqueados para personalizar." },
+  { icon: "ia coach", title: "Texto editable", desc: "Escribe tu frase, elige tipografía y colores del tema de tu selección." },
 ];
 
 const SHARES = [
@@ -46,7 +47,7 @@ export default function StoriesPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [selectedTemplate, setSelectedTemplate] = useState(0);
   const [caption, setCaption] = useState("¡Gané 150 pts!");
-  const [stickers, setStickers] = useState<string[]>(["🔥", "⚽"]);
+  const [stickers, setStickers] = useState<string[]>(["GOL!", "MVP"]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -216,7 +217,7 @@ export default function StoriesPage() {
           <div data-feats-grid style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))", gap: 20 }}>
             {FEATURES.map((f, i) => (
               <div key={i} data-feat-card data-hover-card style={{ padding: 24, borderRadius: 16, background: BG2, border: "1px solid rgba(255,255,255,0.05)", cursor: "pointer" }}>
-                <img src={f.icon} alt="" style={{ width: 40, height: 40, objectFit: "contain", marginBottom: 12 }} />
+                <SvgIcon name={f.icon} size={40} style={{ marginBottom: 12 }} />
                 <h3 style={{ fontWeight: 800, fontSize: 16, marginBottom: 6 }}>{f.title}</h3>
                 <p style={{ fontSize: 14, color: DIM, lineHeight: 1.5 }}>{f.desc}</p>
               </div>
@@ -277,7 +278,7 @@ export default function StoriesPage() {
       <section data-cta-section style={{ padding: "100px 20px", textAlign: "center", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at center, rgba(20,184,166,0.1) 0%, transparent 60%)" }} />
         <div style={{ maxWidth: 700, margin: "0 auto", position: "relative" }}>
-          <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/stories.png" alt="" style={{ width: 72, height: 72, objectFit: "contain", marginBottom: 24, display: "inline-block" }} />
+          <SvgIcon name="stories" size={72} style={{ marginBottom: 24, display: "inline-block" }} />
           <h2 data-cta-content style={{ fontSize: "clamp(28px,5vw,44px)", fontWeight: 900, marginBottom: 16 }}>
             Dale visibilidad a tus <span style={{ color: "#14b8a6" }}>logros</span>
           </h2>

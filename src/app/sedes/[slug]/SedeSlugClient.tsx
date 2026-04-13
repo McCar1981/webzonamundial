@@ -7,6 +7,7 @@ import { useLanguage } from '@/i18n/LanguageContext';
 import type { Sede } from '@/data/sedes';
 import PartidosSede from '@/components/PartidosSede';
 import { AnimatedSection } from '@/components/AnimatedSection';
+import { SvgIcon } from '@/components/icons';
 
 const GOLD = "#c9a84c";
 
@@ -47,17 +48,11 @@ function StatBadge({ value, label, delay = 0 }: { value: string; label: string; 
   );
 }
 
-function InfoCard({ title, icon, children }: { title: string; icon: string; children: React.ReactNode }) {
+function InfoCard({ title, icon, children }: { title: string; icon: React.ReactNode; children: React.ReactNode }) {
   return (
     <div className="bg-[#0B1825] rounded-2xl p-5 md:p-6 border border-white/5 hover:border-[#c9a84c]/20 transition-all">
       <div className="flex items-center gap-3 mb-4">
-        <span className="text-2xl">
-          {icon.startsWith('/') ? (
-            <img src={icon} alt="" className="w-8 h-8 object-contain" />
-          ) : (
-            icon
-          )}
-        </span>
+        <span className="text-2xl">{icon}</span>
         <h3 className="text-lg font-bold text-white">{title}</h3>
       </div>
       {children}
@@ -232,7 +227,7 @@ export default function SedeSlugClient({ sede }: { sede: Sede }) {
               />
             ) : (
               <div className="w-full h-full bg-gradient-to-br from-[#0F1D32] to-[#1a2a3f] flex items-center justify-center">
-                <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/match center.png" alt="" className="w-20 h-20 object-contain" />
+                <SvgIcon name="match center" size={80} />
               </div>
             )}
             <div className="absolute inset-0 bg-gradient-to-t from-[#060B14] via-[#060B14]/50 to-[#060B14]/30" />
@@ -306,7 +301,7 @@ export default function SedeSlugClient({ sede }: { sede: Sede }) {
             <AnimatedSection className="bg-[#0B1825] rounded-3xl p-6 md:p-8 border border-white/5">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#c9a84c]/20 to-[#c9a84c]/5 flex items-center justify-center border border-[#c9a84c]/20">
-                  <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/historia.png" alt="" className="w-8 h-8 object-contain" />
+                  <SvgIcon name="historia" size={32} />
                 </div>
                 <h2 className="text-2xl font-bold text-white">{sT.historiaTitle}</h2>
               </div>
@@ -324,7 +319,7 @@ export default function SedeSlugClient({ sede }: { sede: Sede }) {
             <AnimatedSection className="bg-[#0B1825] rounded-3xl p-6 md:p-8 border border-white/5">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#c9a84c]/20 to-[#c9a84c]/5 flex items-center justify-center border border-[#c9a84c]/20">
-                  <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/match center.png" alt="" className="w-8 h-8 object-contain" />
+                  <SvgIcon name="match center" size={32} />
                 </div>
                 <h2 className="text-2xl font-bold text-white">{sT.partidosTitle}</h2>
               </div>
@@ -365,7 +360,7 @@ export default function SedeSlugClient({ sede }: { sede: Sede }) {
                   <div className="space-y-2">
                     {sede.partidosDestacados.map((p, i) => (
                       <div key={i} className="flex items-center gap-3 p-3 bg-[#060B14] rounded-xl border border-white/5">
-                        <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png" alt="" className="w-4 h-4 object-contain inline-block" />
+                        <SvgIcon name="ranking" size={16} className="inline-block" />
                         <span className="text-white">{p}</span>
                       </div>
                     ))}
@@ -378,7 +373,7 @@ export default function SedeSlugClient({ sede }: { sede: Sede }) {
             <AnimatedSection>
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#c9a84c]/20 to-[#c9a84c]/5 flex items-center justify-center border border-[#c9a84c]/20">
-                  <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/stories.png" alt="" className="w-8 h-8 object-contain" />
+                  <SvgIcon name="stories" size={32} />
                 </div>
                 <h2 className="text-2xl font-bold text-white">{sT.comoLlegar}</h2>
               </div>
@@ -391,7 +386,7 @@ export default function SedeSlugClient({ sede }: { sede: Sede }) {
             <AnimatedSection className="bg-[#0B1825] rounded-3xl p-6 md:p-8 border border-white/5">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#c9a84c]/20 to-[#c9a84c]/5 flex items-center justify-center border border-[#c9a84c]/20">
-                  <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/match center.png" alt="" className="w-8 h-8 object-contain" />
+                  <SvgIcon name="match center" size={32} />
                 </div>
                 <h2 className="text-2xl font-bold text-white">{sT.datosTecnicos}</h2>
               </div>
@@ -421,25 +416,25 @@ export default function SedeSlugClient({ sede }: { sede: Sede }) {
             {/* Travel guide */}
             <AnimatedSection className="bg-gradient-to-br from-[#0B1825] to-[#0F1D32] rounded-3xl p-6 border border-white/5">
               <div className="flex items-center gap-3 mb-6">
-                <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/stories.png" alt="" className="w-8 h-8 object-contain" />
+                <SvgIcon name="stories" size={32} />
                 <h3 className="text-xl font-bold text-white">{sT.guiaViaje}</h3>
               </div>
 
               <div className="space-y-4">
-                <InfoCard title={sT.comoLlegar} icon="/img/zonamundial-images/imagenes/logos para sustuir emojis/stories.png">
+                <InfoCard title={sT.comoLlegar} icon={<SvgIcon name="stories" size={32} />}>
                   <p className="text-[#8a94b0] text-sm mb-2"><strong className="text-white">{sT.labelAeropuerto}</strong> {sede.transporte.aeropuerto}</p>
                   <p className="text-[#8a94b0] text-sm mb-2"><strong className="text-white">{sT.labelCodigo}</strong> {sede.transporte.codigoIATA}</p>
                   <p className="text-[#8a94b0] text-sm mb-2"><strong className="text-white">{sT.labelAlEstadio}</strong> {sede.transporte.distanciaEstadio}</p>
                   <p className="text-[#8a94b0] text-sm"><strong className="text-white">{sT.labelTransporte}</strong> {sede.transporte.metroTren}</p>
                 </InfoCard>
 
-                <InfoCard title={sT.visaYDinero} icon="/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png">
+                <InfoCard title={sT.visaYDinero} icon={<SvgIcon name="predicciones" size={32} />}>
                   <p className="text-[#8a94b0] text-sm mb-2"><strong className="text-white">{sT.labelVisa}</strong> {g.visa}</p>
                   <p className="text-[#8a94b0] text-sm mb-2"><strong className="text-white">{sT.labelIdioma}</strong> {g.idioma}</p>
                   <p className="text-[#8a94b0] text-sm"><strong className="text-white">{sT.labelMoneda}</strong> {g.moneda}</p>
                 </InfoCard>
 
-                <InfoCard title={sT.alojamiento} icon="/img/zonamundial-images/imagenes/logos para sustuir emojis/ligas privadas.png">
+                <InfoCard title={sT.alojamiento} icon={<SvgIcon name="ligas privadas" size={32} />}>
                   <p className="text-[#8a94b0] text-sm mb-3">{g.costoAlojamiento}</p>
                   <p className="text-white text-sm font-semibold mb-2">{sT.zonasRecomendadas}</p>
                   <div className="flex flex-wrap gap-2">
@@ -449,17 +444,17 @@ export default function SedeSlugClient({ sede }: { sede: Sede }) {
                   </div>
                 </InfoCard>
 
-                <InfoCard title={sT.clima} icon="/img/zonamundial-images/imagenes/logos para sustuir emojis/streaming.png">
+                <InfoCard title={sT.clima} icon={<SvgIcon name="streaming" size={32} />}>
                   <p className="text-[#8a94b0] text-sm mb-2"><strong className="text-white">{sT.labelJunio}</strong> {sede.clima.junio}</p>
                   <p className="text-[#8a94b0] text-sm mb-2"><strong className="text-white">{sT.labelJulio}</strong> {sede.clima.julio}</p>
                   <p className="text-[#8a94b0] text-sm"><strong className="text-white">{sT.labelLluvia}</strong> {sede.clima.lluvia}</p>
                 </InfoCard>
 
-                <InfoCard title={sT.gastronomia} icon="/img/zonamundial-images/imagenes/logos para sustuir emojis/creadores.png">
+                <InfoCard title={sT.gastronomia} icon={<SvgIcon name="creadores" size={32} />}>
                   <p className="text-[#8a94b0] text-sm">{g.gastronomia}</p>
                 </InfoCard>
 
-                <InfoCard title={sT.seguridad} icon="/img/zonamundial-images/imagenes/logos para sustuir emojis/ia coach.png">
+                <InfoCard title={sT.seguridad} icon={<SvgIcon name="ia coach" size={32} />}>
                   <p className="text-[#8a94b0] text-sm mb-2">{g.seguridadNota}</p>
                   {g.fanZone && (
                     <p className="text-[#8a94b0] text-sm"><strong className="text-white">{sT.fanZone}</strong> {g.fanZone}</p>
@@ -487,17 +482,17 @@ export default function SedeSlugClient({ sede }: { sede: Sede }) {
           <h2 className="text-2xl font-bold text-white mb-6">{sT.explorarMas}</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-              { href: '/sedes', icon: '/img/zonamundial-images/imagenes/logos para sustuir emojis/match center.png', label: sT.todasLasSedes },
-              { href: '/calendario', icon: '/img/zonamundial-images/imagenes/logos para sustuir emojis/formato 2026.png', label: nav.calendario },
-              { href: '/selecciones', icon: '/img/zonamundial-images/imagenes/logos para sustuir emojis/48 selecciones.png', label: nav.selecciones },
-              { href: '/grupos', icon: '/img/zonamundial-images/imagenes/logos para sustuir emojis/los 12 grupos.png', label: nav.grupos },
+              { href: '/sedes', icon: 'match center', label: sT.todasLasSedes },
+              { href: '/calendario', icon: 'formato 2026', label: nav.calendario },
+              { href: '/selecciones', icon: '48 selecciones', label: nav.selecciones },
+              { href: '/grupos', icon: 'los 12 grupos', label: nav.grupos },
             ].map(link => (
               <Link
                 key={link.href}
                 href={link.href}
                 className="flex items-center gap-3 p-4 bg-[#0B1825] rounded-xl border border-white/5 hover:border-[#c9a84c]/30 hover:text-[#c9a84c] transition-all group"
               >
-                <img src={link.icon} alt="" className="w-6 h-6 object-contain group-hover:scale-110 transition-transform" />
+                <SvgIcon name={link.icon} size={24} className="group-hover:scale-110 transition-transform" />
                 <span className="font-medium">{link.label}</span>
               </Link>
             ))}

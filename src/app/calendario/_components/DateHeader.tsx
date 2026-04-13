@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/i18n/LanguageContext";
 import { fmtDate, fmtShort } from "@/data/matches";
+import { SvgIcon } from "@/components/icons";
 
 interface DateHeaderProps {
   date: string;
@@ -21,11 +22,7 @@ export function DateHeader({ date, count }: DateHeaderProps) {
     >
       <div className="flex h-12 w-12 items-center justify-center rounded-[14px] border-2 border-[#c9a84c]/30 bg-gradient-to-br from-[#c9a84c]/20 to-[#c9a84c]/5 shadow-[0_0_20px_rgba(201,168,76,0.15)]"
       >
-        <img
-          src="/img/zonamundial-images/imagenes/logos para sustuir emojis/formato 2026.png"
-          alt=""
-          className="h-5 w-5 object-contain"
-        />
+        <SvgIcon name="formato 2026" size={20} />
       </div>
 
       <div>

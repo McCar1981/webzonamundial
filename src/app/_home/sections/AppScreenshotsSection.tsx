@@ -29,7 +29,7 @@ export function AppScreenshotsSection({
           {/* Screenshot grande izquierda */}
           <ShimmerCard className="screenshot-card lg:row-span-2 relative rounded-3xl overflow-hidden border border-white/10 bg-[#0B1825] group hover:border-[#C9A84C]/30 transition-all duration-500 hover:-translate-y-1">
             <img
-              src="/img/zonamundial-images/imagenes/apuesta para portada.jpeg"
+              src="/img/capturas/Captura de pantalla 2026-04-13 132229.png"
               alt={h.appScreenshots.screenshots.predicciones.label}
               className="w-full h-full object-cover min-h-[280px] lg:min-h-[420px] opacity-90 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-500"
             />

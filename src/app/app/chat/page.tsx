@@ -4,17 +4,18 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SvgIcon } from "@/components/icons";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a";
 
 const FEATURES = [
-  { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/micro-predicciones.png", title: "Reacciones en vivo", desc: "Envía reacciones rápidas para celebrar goles, paradas y jugadas polémicas." },
-  { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png", title: "Predicciones compartidas", desc: "Comparte tu pronóstico en el chat antes de cada partido." },
-  { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png", title: "Rankings de la sala", desc: "Descubre quién es el más acertado dentro de cada chat." },
-  { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/ia coach.png", title: "Spoiler-free", desc: "Modo seguidor: oculta resultados si llegaste tarde al partido." },
-  { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/match center.png", title: "Moderación oficial", desc: "Moderadores en cada sala para mantener el respeto." },
+  { icon: "micro-predicciones", title: "Reacciones en vivo", desc: "Envía reacciones rápidas para celebrar goles, paradas y jugadas polémicas." },
+  { icon: "predicciones", title: "Predicciones compartidas", desc: "Comparte tu pronóstico en el chat antes de cada partido." },
+  { icon: "ranking", title: "Rankings de la sala", desc: "Descubre quién es el más acertado dentro de cada chat." },
+  { icon: "ia coach", title: "Spoiler-free", desc: "Modo seguidor: oculta resultados si llegaste tarde al partido." },
+  { icon: "match center", title: "Moderación oficial", desc: "Moderadores en cada sala para mantener el respeto." },
 ];
 
 const ROOMS = [
@@ -117,7 +118,7 @@ export default function ChatPage() {
                     padding: 16, borderRadius: 12, background: BG2,
                     border: "1px solid rgba(255,255,255,0.05)", display: "flex", gap: 14, alignItems: "center", cursor: "pointer"
                   }}>
-                    <img src={f.icon} alt="" style={{ width: 32, height: 32, objectFit: "contain", flexShrink: 0 }} />
+                    <SvgIcon name={f.icon} size={32} style={{ flexShrink: 0 }} />
                     <div>
                       <div style={{ fontWeight: 700, fontSize: 15 }}>{f.title}</div>
                       <div style={{ fontSize: 13, color: DIM }}>{f.desc}</div>
@@ -140,7 +141,7 @@ export default function ChatPage() {
                 {[
                   { user: "Messi10", text: "¡Vamos Argentina!", color: "#60a5fa", align: "left" },
                   { user: "LaScaloneta", text: "Gol de Messi en cualquier momento", color: "#f59e0b", align: "right" },
-                  { user: "FanFootball", text: "Qué jugada de Di María 🔥", color: "#60a5fa", align: "left" },
+                  { user: "FanFootball", text: "Qué jugada de Di María", color: "#60a5fa", align: "left" },
                 ].map((m, i) => (
                   <div key={i} style={{
                     alignSelf: m.align === "right" ? "flex-end" : "flex-start",
@@ -195,7 +196,7 @@ export default function ChatPage() {
       <section data-cta-section style={{ padding: "100px 20px", textAlign: "center", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at center, rgba(59,130,246,0.1) 0%, transparent 60%)" }} />
         <div style={{ maxWidth: 700, margin: "0 auto", position: "relative" }}>
-          <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/chat en vivo.png" alt="" style={{ width: 72, height: 72, objectFit: "contain", marginBottom: 24, display: "inline-block" }} />
+          <SvgIcon name="chat en vivo" size={72} style={{ marginBottom: 24 }} />
           <h2 data-cta-content style={{ fontSize: "clamp(28px,5vw,44px)", fontWeight: 900, marginBottom: 16 }}>
             La fiesta está en el <span style={{ color: "#3b82f6" }}>chat</span>
           </h2>

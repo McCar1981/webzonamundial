@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { SvgIcon } from "@/components/icons";
 import { MATCHES, PHASE_COLORS, flagUrl, fmtDate, GOLD, BG, BG2, BG3, MID, DIM } from "@/data/matches";
 import type { Match } from "@/data/matches";
 
@@ -169,11 +170,7 @@ export function MatchModal({ m, onClose, onNav }: MatchModalProps) {
 
           {/* Estadio */}
           <div className="mb-8 flex items-center justify-center gap-3 rounded-2xl border border-white/5 bg-[#0B1825] px-6 py-4">
-            <img
-              src="/img/zonamundial-images/imagenes/logos para sustuir emojis/match center.png"
-              alt=""
-              className="h-6 w-6 object-contain"
-            />
+            <SvgIcon name="match center" size={24} />
             <div>
               <p className="text-base font-bold text-white">{m.vn}</p>
               <p className="text-sm text-[#8a94b0]">{m.vc}</p>
@@ -186,33 +183,21 @@ export function MatchModal({ m, onClose, onNav }: MatchModalProps) {
               href="/app/predicciones"
               className="flex flex-col items-center justify-center gap-2 rounded-[14px] border border-[#c9a84c]/20 bg-gradient-to-br from-[#c9a84c]/15 to-[#c9a84c]/5 p-4 text-center transition-all hover:opacity-90"
             >
-              <img
-                src="/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png"
-                alt=""
-                className="h-7 w-7 object-contain"
-              />
+              <SvgIcon name="predicciones" size={28} />
               <span className="font-bold text-white">{cT.predice}</span>
             </Link>
             <Link
               href="/selecciones"
               className="flex flex-col items-center justify-center gap-2 rounded-[14px] border border-white/8 bg-white/[0.03] p-4 text-center transition-all hover:bg-white/5"
             >
-              <img
-                src="/img/zonamundial-images/imagenes/logos para sustuir emojis/match center.png"
-                alt=""
-                className="h-7 w-7 object-contain"
-              />
+              <SvgIcon name="match center" size={28} />
               <span className="font-bold text-[#8a94b0]">{cT.equipos}</span>
             </Link>
             <Link
               href="/sedes"
               className="flex flex-col items-center justify-center gap-2 rounded-[14px] border border-white/8 bg-white/[0.03] p-4 text-center transition-all hover:bg-white/5"
             >
-              <img
-                src="/img/zonamundial-images/imagenes/logos para sustuir emojis/match center.png"
-                alt=""
-                className="h-7 w-7 object-contain"
-              />
+              <SvgIcon name="match center" size={28} />
               <span className="font-bold text-[#8a94b0]">{cT.sede}</span>
             </Link>
           </div>

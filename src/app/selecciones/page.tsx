@@ -12,16 +12,17 @@ import {
   DebutantesSection,
   CuriosidadesSection,
 } from './_components';
+import { ICON_V3, ICON_DESCUBRE } from '@/components/icons';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const CONFEDERACIONES_DATA = [
-  { name: 'UEFA', plazas: 16, icon: '⚽', color: 'from-blue-500/20 to-blue-600/10 border-blue-500/20 text-blue-400' },
-  { name: 'CONMEBOL', plazas: '6+1', icon: '🌎', color: 'from-yellow-500/20 to-yellow-600/10 border-yellow-500/20 text-yellow-400' },
-  { name: 'CONCACAF', plazas: 6, icon: '⭐', color: 'from-red-500/20 to-red-600/10 border-red-500/20 text-red-400' },
-  { name: 'CAF', plazas: 9, icon: '🌍', color: 'from-green-500/20 to-green-600/10 border-green-500/20 text-green-400' },
-  { name: 'AFC', plazas: 8, icon: '🌏', color: 'from-purple-500/20 to-purple-600/10 border-purple-500/20 text-purple-400' },
-  { name: 'OFC', plazas: 1, icon: '🌊', color: 'from-cyan-500/20 to-cyan-600/10 border-cyan-500/20 text-cyan-400' },
+  { name: 'UEFA', plazas: 16, icon: 'ball', color: 'from-blue-500/20 to-blue-600/10 border-blue-500/20 text-blue-400' },
+  { name: 'CONMEBOL', plazas: '6+1', icon: 'americas', color: 'from-yellow-500/20 to-yellow-600/10 border-yellow-500/20 text-yellow-400' },
+  { name: 'CONCACAF', plazas: 6, icon: 'star', color: 'from-red-500/20 to-red-600/10 border-red-500/20 text-red-400' },
+  { name: 'CAF', plazas: 9, icon: 'africa', color: 'from-green-500/20 to-green-600/10 border-green-500/20 text-green-400' },
+  { name: 'AFC', plazas: 8, icon: 'asia', color: 'from-purple-500/20 to-purple-600/10 border-purple-500/20 text-purple-400' },
+  { name: 'OFC', plazas: 1, icon: 'ocean', color: 'from-cyan-500/20 to-cyan-600/10 border-cyan-500/20 text-cyan-400' },
 ];
 
 export default function SeleccionesIndex() {
@@ -186,16 +187,16 @@ export default function SeleccionesIndex() {
 
             <div className="flex flex-wrap justify-center gap-4">
               {[
-                { value: '48', label: sT.stats.selecciones, icon: '/img/zonamundial-images/imagenes/logos para sustuir emojis/48 selecciones.png' },
-                { value: '12', label: sT.stats.grupos, icon: '/img/zonamundial-images/imagenes/logos para sustuir emojis/los 12 grupos.png' },
-                { value: '6', label: sT.stats.confederaciones, icon: '/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png' },
-                { value: '104', label: sT.stats.partidos, icon: '/img/zonamundial-images/imagenes/logos para sustuir emojis/match center.png' },
+                { value: '48', label: sT.stats.selecciones, icon: ICON_DESCUBRE.selecciones },
+                { value: '12', label: sT.stats.grupos, icon: ICON_DESCUBRE.grupos },
+                { value: '6', label: sT.stats.confederaciones, icon: ICON_V3.rankings },
+                { value: '104', label: sT.stats.partidos, icon: ICON_V3.matchCenter },
               ].map((stat) => (
                 <div
                   key={stat.label}
                   className="gsap-stat-item flex items-center gap-3 rounded-xl border border-white/5 bg-[#0F1D32] px-4 py-2"
                 >
-                  <img src={stat.icon} alt="" className="h-10 w-10 object-contain" />
+                  <div className="flex h-10 w-10 items-center justify-center [&_svg]:h-8 [&_svg]:w-8">{stat.icon}</div>
                   <div className="text-left">
                     <p className="text-xl font-black text-[#c9a84c]">{stat.value}</p>
                     <p className="text-xs text-[#6a7a9a]">{stat.label}</p>
@@ -258,7 +259,7 @@ export default function SeleccionesIndex() {
           <section ref={aSeguirRef} className="mb-12">
             <div className="gsap-section-header mb-6 flex items-center gap-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-500/20 to-blue-600/5">
-                <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/micro-predicciones.png" alt="" className="h-8 w-8 object-contain" />
+                <div className="flex h-8 w-8 items-center justify-center [&_svg]:h-7 [&_svg]:w-7">{ICON_V3.microPred}</div>
               </div>
               <div>
                 <h2 className="text-2xl font-bold text-white md:text-3xl">{sT.aSeguir}</h2>
@@ -276,8 +277,8 @@ export default function SeleccionesIndex() {
         {/* Confederaciones */}
         <section ref={confederacionesRef} className="mb-12">
           <div className="gsap-section-header mb-6 flex items-center gap-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-green-500/20 bg-gradient-to-br from-green-500/20 to-green-600/5">
-              <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/48 selecciones.png" alt="" className="h-8 w-8 object-contain" />
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-green-500/20 bg-gradient-to-br from-green-500/20 to-green-600/5 [&_svg]:h-7 [&_svg]:w-7">
+              {ICON_DESCUBRE.selecciones}
             </div>
             <div>
               <h2 className="text-2xl font-bold text-white md:text-3xl">{sT.confederaciones}</h2>
@@ -305,8 +306,8 @@ export default function SeleccionesIndex() {
         {resto.length > 0 && (
           <section ref={restoRef} className="mb-12">
             <div className="gsap-section-header mb-6 flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/20 to-emerald-600/5">
-                <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/48 selecciones.png" alt="" className="h-8 w-8 object-contain" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/20 to-emerald-600/5 [&_svg]:h-7 [&_svg]:w-7">
+                {ICON_DESCUBRE.selecciones}
               </div>
               <div>
                 <h2 className="text-2xl font-bold text-white md:text-3xl">{sT.restoSelecciones}</h2>
@@ -344,12 +345,9 @@ export default function SeleccionesIndex() {
               <div className="flex-shrink-0">
                 <div className="relative">
                   <div className="absolute inset-0 rounded-full bg-[#c9a84c]/20 blur-[60px]" />
-                  <img
-                    src="/img/zonamundial-images/imagenes/logos para sustuir emojis/unete ahora.png"
-                    alt="Únete ahora"
-                    className="relative h-48 w-48 object-contain drop-shadow-[0_0_40px_rgba(201,168,76,0.4)] sm:h-56 sm:w-56"
-                    loading="lazy"
-                  />
+                  <div className="relative flex h-48 w-48 items-center justify-center drop-shadow-[0_0_40px_rgba(201,168,76,0.4)] sm:h-56 sm:w-56 [&_svg]:h-32 [&_svg]:w-32 sm:[&_svg]:h-40 sm:[&_svg]:w-40">
+                    {ICON_DESCUBRE.unete}
+                  </div>
                 </div>
               </div>
 

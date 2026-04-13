@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/i18n/LanguageContext';
 import { AnimatedSection } from '@/components/AnimatedSection';
+import { SvgIcon } from '@/components/icons';
 import { StatCounter } from '@/components/StatCounter';
 import HistoriaTimeline from '@/components/HistoriaTimeline';
 import { WORLD_CUP_DETAILS } from '@/data/historia';
@@ -230,7 +231,7 @@ function TrophiesSection({ hT }: { hT: any }) {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       {hT.trophies.map((t: any, i: number) => (
         <div key={i} className="rounded-2xl border border-white/5 bg-[#0F1D32]/80 p-5 flex items-start gap-4 hover:border-[#c9a84c]/20 transition-all">
-          <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style={{ background: `${t.color}20`, color: t.color }}>🏆</div>
+          <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style={{ background: `${t.color}20`, color: t.color }}></div>
           <div>
             <h4 className="font-bold text-white">{t.name}</h4>
             <p className="text-xs text-[#C9A84C] mb-1">{t.period}</p>
@@ -371,7 +372,7 @@ export default function HistoriaClient() {
       <section id="moments" className="scroll-mt-24 mb-10 sm:mb-12">
         <div className="flex items-center gap-4 mb-6">
           <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#C9A84C]/20 to-[#C9A84C]/5 flex items-center justify-center border border-[#C9A84C]/20">
-            <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/historia.png" alt="" className="w-8 h-8 object-contain" />
+            <SvgIcon name="historia" size={32} />
           </div>
           <div>
             <h2 className="text-xl sm:text-2xl font-bold text-white">{hT.iconicTitle}</h2>
@@ -420,7 +421,7 @@ export default function HistoriaClient() {
       <section id="records" className="scroll-mt-24 mb-10 sm:mb-12">
         <div className="flex items-center gap-4 mb-6">
           <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500/20 to-amber-600/5 flex items-center justify-center border border-amber-500/20">
-            <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/los 12 grupos.png" alt="" className="w-8 h-8 object-contain" />
+            <SvgIcon name="los 12 grupos" size={32} />
           </div>
           <div>
             <h2 className="text-xl sm:text-2xl font-bold text-white">{hT.recordsTitle}</h2>
@@ -447,7 +448,7 @@ export default function HistoriaClient() {
       <section className="mb-10 sm:mb-12">
         <div className="flex items-center gap-4 mb-6">
           <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500/20 to-blue-600/5 flex items-center justify-center border border-blue-500/20">
-            <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/48 selecciones.png" alt="" className="w-8 h-8 object-contain" />
+            <SvgIcon name="48 selecciones" size={32} />
           </div>
           <div>
             <h2 className="text-xl sm:text-2xl font-bold text-white">{hT.hostsTitle}</h2>
@@ -472,7 +473,7 @@ export default function HistoriaClient() {
         <section id="evolution" className="scroll-mt-24 mb-10 sm:mb-12">
           <div className="flex items-center gap-4 mb-6">
             <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#c9a84c]/20 to-[#c9a84c]/5 flex items-center justify-center border border-[#c9a84c]/20">
-              <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/formato 2026.png" alt="" className="w-8 h-8 object-contain" />
+              <SvgIcon name="formato 2026" size={32} />
             </div>
             <div>
               <h2 className="text-xl sm:text-2xl font-bold text-white">{hT.evolutionTitle}</h2>
@@ -512,7 +513,7 @@ export default function HistoriaClient() {
       <section id="finals" className="scroll-mt-24 mb-10 sm:mb-12">
         <div className="flex items-center gap-4 mb-6">
           <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-red-500/20 to-red-600/5 flex items-center justify-center border border-red-500/20">
-            <span className="text-2xl">🏆</span>
+            <span className="text-2xl"></span>
           </div>
           <div>
             <h2 className="text-xl sm:text-2xl font-bold text-white">{hT.finalsTitle}</h2>
@@ -528,7 +529,7 @@ export default function HistoriaClient() {
       <section id="trophies" className="scroll-mt-24 mb-10 sm:mb-12">
         <div className="flex items-center gap-4 mb-6">
           <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500/20 to-amber-600/5 flex items-center justify-center border border-amber-500/20">
-            <span className="text-2xl">🥇</span>
+            <span className="text-2xl"></span>
           </div>
           <div>
             <h2 className="text-xl sm:text-2xl font-bold text-white">{hT.trophiesTitle}</h2>
@@ -544,7 +545,7 @@ export default function HistoriaClient() {
       <section id="cancelled" className="scroll-mt-24 mb-10 sm:mb-12">
         <div className="flex items-center gap-4 mb-6">
           <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-gray-500/20 to-gray-600/5 flex items-center justify-center border border-gray-500/20">
-            <span className="text-2xl">🕊️</span>
+            <span className="text-2xl"></span>
           </div>
           <div>
             <h2 className="text-xl sm:text-2xl font-bold text-white">{hT.cancelledTitle}</h2>
@@ -561,7 +562,7 @@ export default function HistoriaClient() {
         <section id="scorers" className="scroll-mt-24 mb-10 sm:mb-12">
           <div className="flex items-center gap-4 mb-6">
             <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-red-500/20 to-red-600/5 flex items-center justify-center border border-red-500/20">
-              <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/match center.png" alt="" className="w-8 h-8 object-contain" />
+              <SvgIcon name="match center" size={32} />
             </div>
             <div>
               <h2 className="text-xl sm:text-2xl font-bold text-white">{hT.topScorersTitle}</h2>
@@ -588,7 +589,7 @@ export default function HistoriaClient() {
         <section className="mb-10 sm:mb-12">
           <div className="flex items-center gap-4 mb-6">
             <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-emerald-600/5 flex items-center justify-center border border-emerald-500/20">
-              <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/trivia.png" alt="" className="w-8 h-8 object-contain" />
+              <SvgIcon name="trivia" size={32} />
             </div>
             <div>
               <h2 className="text-xl sm:text-2xl font-bold text-white">{hT.curiositiesTitle}</h2>
@@ -610,7 +611,7 @@ export default function HistoriaClient() {
       <section id="all" className="scroll-mt-24 mb-10 sm:mb-12">
         <div className="flex items-center gap-4 mb-6">
           <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500/20 to-purple-600/5 flex items-center justify-center border border-purple-500/20">
-            <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/historia.png" alt="" className="w-8 h-8 object-contain" />
+            <SvgIcon name="historia" size={32} />
           </div>
           <div>
             <h2 className="text-xl sm:text-2xl font-bold text-white">{hT.allTitle}</h2>
@@ -625,12 +626,12 @@ export default function HistoriaClient() {
       {/* CTAs */}
       <AnimatedSection className="grid grid-cols-1 sm:grid-cols-2 gap-4" y={20}>
         <Link href="/historia/campeones" className="p-6 rounded-2xl border border-[#C9A84C]/20 bg-gradient-to-br from-[#C9A84C]/10 to-transparent text-center hover:border-[#C9A84C]/40 transition-all duration-300 group">
-          <div className="mb-3 group-hover:scale-110 transition-transform flex justify-center"><img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/historia.png" alt="" className="w-10 h-10 object-contain" /></div>
+          <div className="mb-3 group-hover:scale-110 transition-transform flex justify-center"><SvgIcon name="historia" size={40} /></div>
           <h3 className="text-lg font-bold text-white mb-2">{hT.cta1Title}</h3>
           <p className="text-sm text-gray-400">{hT.cta1Desc}</p>
         </Link>
         <Link href="/app/trivia" className="p-6 rounded-2xl border border-white/10 bg-[#0F1D32] text-center hover:border-[#C9A84C]/30 transition-all duration-300 group">
-          <div className="mb-3 group-hover:scale-110 transition-transform flex justify-center"><img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png" alt="" className="w-10 h-10 object-contain" /></div>
+          <div className="mb-3 group-hover:scale-110 transition-transform flex justify-center"><SvgIcon name="predicciones" size={40} /></div>
           <h3 className="text-lg font-bold text-white mb-2">{hT.cta2Title}</h3>
           <p className="text-sm text-gray-400">{hT.cta2Desc}</p>
         </Link>

@@ -5,25 +5,26 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SvgIcon } from "@/components/icons";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const BG="#060B14",BG2="#0F1D32",BG3="#0B1825",GOLD="#c9a84c",GOLD2="#e8d48b",MID="#8a94b0",DIM="#6a7a9a";
 
 const GAME_MODE_ICONS = [
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/trivia.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/micro-predicciones.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/modo carrera.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png",
+  "trivia",
+  "micro-predicciones",
+  "ranking",
+  "modo carrera",
+  "predicciones",
 ];
 
 const CATEGORY_ICONS = [
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/historia.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/48 selecciones.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/stories.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/trivia.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png",
+  "historia",
+  "48 selecciones",
+  "stories",
+  "trivia",
+  "predicciones",
 ];
 
 const DIFFICULTY_POINTS = ["5 pts","10 pts","15 pts","25 pts"];
@@ -32,25 +33,25 @@ const DIFFICULTY_COLORS = ["#22c55e", GOLD, "#f97316", "#ef4444"];
 const BONUS_MULTIPLIERS = ["×2","×1.5","×2","×3"];
 
 const BADGE_ICONS = [
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/historia.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/stories.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/micro-predicciones.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/modo carrera.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png",
+  "historia",
+  "stories",
+  "micro-predicciones",
+  "modo carrera",
+  "ranking",
 ];
 
 const TITLE_ICONS = [
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/ia coach.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png",
-  "/img/imagenessilviu/balondefutbol.png",
+  "ia coach",
+  "ranking",
+  "balondefutbol",
 ];
 
 const EXAMPLE_FEATURE_ICONS = [
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/match center.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/micro-predicciones.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/fantasy.png",
+  "match center",
+  "predicciones",
+  "ranking",
+  "micro-predicciones",
+  "fantasy",
 ];
 
 export default function TriviaPage() {
@@ -286,7 +287,7 @@ export default function TriviaPage() {
           <div data-section-header style={{textAlign:"center",marginBottom:48}}>
             <span style={{color:GOLD,fontSize:12,fontWeight:700,letterSpacing:2,textTransform:"uppercase"}}>{trT.modesSectionBadge}</span>
             <h2 style={{fontSize:"clamp(28px,5vw,42px)",fontWeight:800,marginTop:12}}>
-              <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/trivia.png" alt="" style={{width:32,height:32,objectFit:"contain",display:"inline-block",verticalAlign:"middle",marginRight:8}} />{trT.modesSectionTitle} <span style={{color:GOLD}}>{trT.modesSectionTitleHighlight}</span>
+              <SvgIcon name="trivia" size={32} style={{display:"inline-block",verticalAlign:"middle",marginRight:8}} />{trT.modesSectionTitle} <span style={{color:GOLD}}>{trT.modesSectionTitleHighlight}</span>
             </h2>
             <p style={{color:MID,marginTop:12,fontSize:15}}>{trT.modesSectionDesc}</p>
           </div>
@@ -303,7 +304,7 @@ export default function TriviaPage() {
                     border:"1px solid rgba(255,255,255,0.05)",
                     display:"flex",alignItems:"center",gap:12,cursor:"pointer"
                   }}>
-                    <img src={mode.icon} alt="" style={{width:32,height:32,objectFit:"contain"}} />
+                    <SvgIcon name={mode.icon} size={32} />
                     <div>
                       <div style={{fontWeight:700,fontSize:15}}>{mode.title}</div>
                       <div style={{fontSize:12,color:DIM}}>{mode.highlight}</div>
@@ -342,7 +343,7 @@ export default function TriviaPage() {
                   {mode.highlight}
                 </div>
                 <div style={{display:"flex",alignItems:"flex-start",gap:16}}>
-                  <img src={mode.icon} alt="" style={{width:48,height:48,objectFit:"contain"}} />
+                  <SvgIcon name={mode.icon} size={48} />
                   <div style={{flex:1}}>
                     <h3 style={{fontWeight:800,fontSize:20,marginBottom:8}}>{mode.title}</h3>
                     <p style={{fontSize:14,color:DIM,lineHeight:1.7}}>{mode.desc}</p>
@@ -360,7 +361,7 @@ export default function TriviaPage() {
           <div data-categories-header style={{textAlign:"center",marginBottom:48}}>
             <span style={{color:GOLD,fontSize:12,fontWeight:700,letterSpacing:2,textTransform:"uppercase"}}>{trT.catSectionBadge}</span>
             <h2 style={{fontSize:"clamp(28px,5vw,42px)",fontWeight:800,marginTop:12}}>
-              <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/historia.png" alt="" style={{width:32,height:32,objectFit:"contain",display:"inline-block",verticalAlign:"middle",marginRight:8}} />{trT.catSectionTitle} <span style={{color:GOLD}}>{trT.catSectionTitleHighlight}</span>
+              <SvgIcon name="historia" size={32} style={{display:"inline-block",verticalAlign:"middle",marginRight:8}} />{trT.catSectionTitle} <span style={{color:GOLD}}>{trT.catSectionTitleHighlight}</span>
             </h2>
           </div>
 
@@ -382,7 +383,7 @@ export default function TriviaPage() {
                 padding:"20px 24px",borderBottom:"1px solid rgba(255,255,255,0.05)",
                 alignItems:"center",cursor:"pointer"
               }}>
-                <img src={cat.icon} alt="" style={{width:28,height:28,objectFit:"contain"}} />
+                <SvgIcon name={cat.icon} size={28} />
                 <span style={{fontWeight:700,fontSize:16}}>{cat.name}</span>
                 <span style={{fontSize:14,color:DIM}}>{cat.desc}</span>
                 <span style={{textAlign:"center",fontWeight:700,color:GOLD}}>2,000+</span>
@@ -398,7 +399,7 @@ export default function TriviaPage() {
         <div style={{maxWidth:1100,margin:"0 auto"}}>
           <div style={{textAlign:"center",marginBottom:48}}>
             <h2 style={{fontSize:"clamp(28px,5vw,42px)",fontWeight:800}}>
-              <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png" alt="" style={{width:32,height:32,objectFit:"contain",display:"inline-block",verticalAlign:"middle",marginRight:8}} />{trT.exampleTitle} <span style={{color:GOLD}}>{trT.exampleTitleHighlight}</span>
+              <SvgIcon name="predicciones" size={32} style={{display:"inline-block",verticalAlign:"middle",marginRight:8}} />{trT.exampleTitle} <span style={{color:GOLD}}>{trT.exampleTitleHighlight}</span>
             </h2>
           </div>
 
@@ -422,7 +423,7 @@ export default function TriviaPage() {
               <div data-features-list style={{display:"flex",flexDirection:"column",gap:14}}>
                 {exFeatures.map((item,i)=>(
                   <div key={i} data-feature-item style={{display:"flex",alignItems:"center",gap:12,fontSize:15}}>
-                    <img src={item.icon} alt="" style={{width:24,height:24,objectFit:"contain"}} />
+                    <SvgIcon name={item.icon} size={24} />
                     {item.text}
                   </div>
                 ))}
@@ -441,7 +442,7 @@ export default function TriviaPage() {
           <div data-points-header style={{textAlign:"center",marginBottom:48}}>
             <span style={{color:GOLD,fontSize:12,fontWeight:700,letterSpacing:2,textTransform:"uppercase"}}>{trT.pointsSectionBadge}</span>
             <h2 style={{fontSize:"clamp(28px,5vw,42px)",fontWeight:800,marginTop:12}}>
-              <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png" alt="" style={{width:32,height:32,objectFit:"contain",display:"inline-block",verticalAlign:"middle",marginRight:8}} />{trT.pointsSectionTitle} <span style={{color:GOLD}}>{trT.pointsSectionTitleHighlight}</span>
+              <SvgIcon name="ranking" size={32} style={{display:"inline-block",verticalAlign:"middle",marginRight:8}} />{trT.pointsSectionTitle} <span style={{color:GOLD}}>{trT.pointsSectionTitleHighlight}</span>
             </h2>
           </div>
 
@@ -490,7 +491,7 @@ export default function TriviaPage() {
           <div data-badges-header style={{textAlign:"center",marginBottom:48}}>
             <span style={{color:GOLD,fontSize:12,fontWeight:700,letterSpacing:2,textTransform:"uppercase"}}>{trT.badgesSectionBadge}</span>
             <h2 style={{fontSize:"clamp(28px,5vw,42px)",fontWeight:800,marginTop:12}}>
-              <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png" alt="" style={{width:32,height:32,objectFit:"contain",display:"inline-block",verticalAlign:"middle",marginRight:8}} />{trT.badgesSectionTitle} <span style={{color:GOLD}}>{trT.badgesSectionTitleHighlight}</span>
+              <SvgIcon name="ranking" size={32} style={{display:"inline-block",verticalAlign:"middle",marginRight:8}} />{trT.badgesSectionTitle} <span style={{color:GOLD}}>{trT.badgesSectionTitleHighlight}</span>
             </h2>
           </div>
 
@@ -502,7 +503,7 @@ export default function TriviaPage() {
                 border:"1px solid rgba(255,255,255,0.05)",
                 textAlign:"center",cursor:"pointer"
               }}>
-                <img src={badge.icon} alt="" style={{width:48,height:48,objectFit:"contain",marginBottom:12}} />
+                <SvgIcon name={badge.icon} size={48} style={{marginBottom:12}} />
                 <h4 style={{fontWeight:700,fontSize:16,marginBottom:4}}>{badge.name}</h4>
                 <p style={{fontSize:13,color:DIM,marginBottom:12,lineHeight:1.5}}>{badge.desc}</p>
                 <span style={{
@@ -524,7 +525,7 @@ export default function TriviaPage() {
           {/* Titles Section */}
           <div style={{textAlign:"center",marginBottom:32}}>
             <h3 style={{fontSize:"clamp(20px,3vw,28px)",fontWeight:700}}>
-              <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png" alt="" style={{width:32,height:32,objectFit:"contain",display:"inline-block",verticalAlign:"middle",marginRight:8}} />{trT.titlesSectionTitle} <span style={{color:GOLD}}>{trT.titlesSectionTitleHighlight}</span>
+              <SvgIcon name="ranking" size={32} style={{display:"inline-block",verticalAlign:"middle",marginRight:8}} />{trT.titlesSectionTitle} <span style={{color:GOLD}}>{trT.titlesSectionTitleHighlight}</span>
             </h3>
           </div>
           <div data-titles-grid style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(250px,1fr))",gap:20}}>
@@ -534,7 +535,7 @@ export default function TriviaPage() {
                 background:`linear-gradient(135deg,rgba(201,168,76,0.15),rgba(201,168,76,0.05))`,
                 border:`1px solid ${GOLD}`,textAlign:"center",cursor:"pointer"
               }}>
-                <img src={title.icon} alt="" style={{width:40,height:40,objectFit:"contain",marginBottom:12}} />
+                <SvgIcon name={title.icon} size={40} style={{marginBottom:12}} />
                 <div style={{fontSize:14,color:GOLD,fontWeight:700,marginBottom:4}}>{title.rank}</div>
                 <h4 style={{fontWeight:800,fontSize:22,marginBottom:8,color:GOLD2}}>{title.title}</h4>
                 <p style={{fontSize:13,color:MID,lineHeight:1.5}}>{title.desc}</p>
@@ -548,7 +549,7 @@ export default function TriviaPage() {
       <section data-cta-section style={{padding:"80px 20px",textAlign:"center",position:"relative",overflow:"hidden"}}>
         <div style={{position:"absolute",inset:0,background:"radial-gradient(ellipse at center,rgba(201,168,76,0.1) 0%,transparent 60%)"}}/>
         <div style={{maxWidth:600,margin:"0 auto",position:"relative"}}>
-          <div data-cta-icon style={{marginBottom:24}}><img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/ia coach.png" alt="" style={{width:72,height:72,objectFit:"contain",margin:"0 auto"}} /></div>
+          <div data-cta-icon style={{marginBottom:24}}><SvgIcon name="ia coach" size={72} style={{margin:"0 auto"}} /></div>
           <h2 data-cta-content style={{fontSize:"clamp(28px,5vw,42px)",fontWeight:800,marginBottom:16}}>
             {trT.ctaFinalTitle1} <span style={{color:GOLD}}>{trT.ctaFinalTitle2}</span>
           </h2>

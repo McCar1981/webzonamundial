@@ -58,7 +58,11 @@
       "Bash(mkdir -p /d/tmp/docs-legales)",
       "Bash(unzip -o \"src/documentacion legal web.zip\" -d \"D:/tmp/docs-legales\")",
       "Read(//d/tmp/**)",
-      "Bash(ls src/app/legal/*/page.tsx)"
+      "Bash(ls src/app/legal/*/page.tsx)",
+      "Bash(grep -rn \"transform\\\\|will-change\\\\|backdrop-filter\\\\|perspective\\\\|contain:\" tailwind.config.* postcss.config.*)",
+      "Bash(npm uninstall:*)",
+      "Bash(ls node_modules/react-world-flags/index.d.ts)",
+      "Bash(ls:*)"
     ]
   }
 }

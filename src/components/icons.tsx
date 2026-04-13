@@ -541,6 +541,57 @@ export const ICON_UI = {
 };
 
 /* ═══════════════════════════════════════════════════════════════════
+   IMAGE_TO_ICON — Mapeo de nombres de archivo de imagen a iconos SVG
+   Permite reemplazar <img src="...filename.png"> por <SvgIcon name="filename">
+   ═══════════════════════════════════════════════════════════════════ */
+export const IMAGE_TO_ICON: Record<string, React.ReactNode> = {
+  'match center': ICON_V3.matchCenter,
+  'predicciones': ICON_V3.predicciones,
+  'fantasy': ICON_V3.fantasy,
+  'ia coach': ICON_V3.iaCoach,
+  'streaming': ICON_V3.streaming,
+  'trivia': ICON_V3.trivia,
+  'modo carrera': ICON_V3.carrera,
+  'ligas privadas': ICON_V3.ligas,
+  'ranking': ICON_V3.rankings,
+  'chat en vivo': ICON_V3.chat,
+  'micro-predicciones': ICON_V3.microPred,
+  'stories': ICON_V3.stories,
+  '48 selecciones': ICON_DESCUBRE.selecciones,
+  'creadores': ICON_DESCUBRE.creadores,
+  'formato 2026': ICON_DESCUBRE.formato,
+  'historia': ICON_DESCUBRE.historia,
+  'los 12 grupos': ICON_DESCUBRE.grupos,
+  'unete ahora': ICON_DESCUBRE.unete,
+};
+
+/** Componente que renderiza un icono SVG a partir de un nombre o path de imagen */
+export function SvgIcon({
+  name,
+  size = 24,
+  className = '',
+  style,
+}: {
+  name: string;
+  size?: number;
+  className?: string;
+  style?: React.CSSProperties;
+}) {
+  // Extraer nombre del archivo si viene un path completo
+  const key = name.includes('/') ? (name.split('/').pop()?.replace('.png', '') || '') : name.replace('.png', '');
+  const icon = IMAGE_TO_ICON[key];
+  if (!icon) return null;
+  return (
+    <span
+      className={`inline-flex items-center justify-center shrink-0 [&_svg]:w-full [&_svg]:h-full ${className}`}
+      style={{ width: size, height: size, ...style }}
+    >
+      {icon}
+    </span>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════
    Tipos exportados para autocompletado
    ═══════════════════════════════════════════════════════════════════ */
 export type IconV3Key = keyof typeof ICON_V3;

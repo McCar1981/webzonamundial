@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { SEDES } from '@/data/sedes';
 import { useLanguage } from '@/i18n/LanguageContext';
 import { STADIUM_IMAGES } from './stadium-images';
+import { SvgIcon } from '@/components/icons';
 
 interface Props {
   sede: typeof SEDES[0];
@@ -36,11 +37,7 @@ export function EstadioCard({ sede }: Props) {
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#0F1D32] to-[#1a2a3f]">
-            <img
-              src="/img/zonamundial-images/imagenes/logos para sustuir emojis/match center.png"
-              alt=""
-              className="inline-block h-12 w-12 object-contain opacity-50"
-            />
+            <SvgIcon name="match center" size={48} className="inline-block opacity-50" />
           </div>
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-[#060B14] via-transparent to-transparent" />

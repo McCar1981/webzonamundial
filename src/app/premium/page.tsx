@@ -4,6 +4,9 @@ import { useState } from "react";
 import Link from "next/link";
 import { FeatureIcon } from "@/components/FeatureIcon";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { StatCounter } from "@/components/StatCounter";
+import { ShimmerButton } from "@/components/ShimmerButton";
+import { AnimatedSection } from "@/components/AnimatedSection";
 
 const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a", DARK = "#4a5570";
 const IMG = "/img/zonamundial-images/imagenes/logos para sustuir emojis";
@@ -16,6 +19,32 @@ export default function PremiumPage() {
   const PRICING_PLANS = pT.plans;
   const PREMIUM_FEATURES = pT.features;
   const [showTable, setShowTable] = useState(false);
+
+  const highlights = isEN
+    ? [
+        { label: 'Unlimited predictions', icon: `${IMG}/predicciones.png`, desc: '8 types + multipliers' },
+        { label: 'AI Coach Pro', icon: `${IMG}/ia coach.png`, desc: 'Full analysis & alerts' },
+        { label: 'Zero ads', icon: `${IMG}/streaming.png`, desc: 'Distraction-free' },
+        { label: 'Advanced stats', icon: `${IMG}/ranking.png`, desc: 'xG, xA & more' },
+      ]
+    : [
+        { label: 'Predicciones ilimitadas', icon: `${IMG}/predicciones.png`, desc: '8 tipos + multiplicadores' },
+        { label: 'IA Coach Pro', icon: `${IMG}/ia coach.png`, desc: 'Análisis y alertas' },
+        { label: 'Sin anuncios', icon: `${IMG}/streaming.png`, desc: 'Experiencia limpia' },
+        { label: 'Stats avanzadas', icon: `${IMG}/ranking.png`, desc: 'xG, xA y más' },
+      ];
+
+  const testimonials = isEN
+    ? [
+        { name: "Alex M.", role: "Fantasy champion 2022", quote: "Premium stats changed everything. I won my private league thanks to the xG data." },
+        { name: "Sofia R.", role: "Predictions fanatic", quote: "Unlimited predictions and the AI Coach tips are worth every penny. Never going back." },
+        { name: "Marcus T.", role: "Streamer", quote: "The badge and animated avatar look epic on stream. My community loves it." },
+      ]
+    : [
+        { name: "Juan M.", role: "Campeón Fantasy 2022", quote: "Las estadísticas Premium cambiaron todo. Gané mi liga privada gracias a los datos de xG." },
+        { name: "Sofía R.", role: "Fanática de predicciones", quote: "Las predicciones ilimitadas y los consejos del IA Coach valen cada céntimo. No vuelvo atrás." },
+        { name: "Marcos T.", role: "Streamer", quote: "El badge dorado y el avatar animado quedan épicos en stream. Mi comunidad lo adora." },
+      ];
 
   return (
     <div style={{ background: BG, color: "#fff", fontFamily: "'Outfit',sans-serif", minHeight: "100vh" }}>
@@ -39,9 +68,9 @@ export default function PremiumPage() {
           </p>
 
           {/* Precio destacado inline */}
-          <div className="flex flex-wrap justify-center gap-6 mb-8">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-6">
             {PRICING_PLANS.map((plan: { region: string; price: string; period: string; badge: string }, i: number) => (
-              <div key={i} className="flex items-center gap-3 px-6 py-3 rounded-2xl border" style={{ borderColor: `${GOLD}40`, background: `${GOLD}08` }}>
+              <div key={i} className="flex items-center gap-3 px-5 sm:px-6 py-3 rounded-2xl border" style={{ borderColor: `${GOLD}40`, background: `${GOLD}08` }}>
                 <span className="text-3xl font-black text-white">{plan.price}</span>
                 <div className="text-left">
                   <p className="text-xs font-bold uppercase tracking-wider" style={{ color: GOLD }}>{plan.region}</p>
@@ -49,6 +78,13 @@ export default function PremiumPage() {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* ShimmerButton badge */}
+          <div className="mb-6 flex justify-center">
+            <ShimmerButton className="text-xs sm:text-sm">
+              {isEN ? "7 days free · No card required" : "7 días gratis · Sin tarjeta"}
+            </ShimmerButton>
           </div>
 
           <Link
@@ -60,6 +96,26 @@ export default function PremiumPage() {
           </Link>
         </div>
       </section>
+
+      {/* Stats banner */}
+      <AnimatedSection className="border-y border-white/5" style={{ background: BG3 }} y={20}>
+        <div className="max-w-5xl mx-auto px-4 py-6 sm:py-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 text-center">
+            <div className="p-4 rounded-2xl border border-white/5 bg-[#0B0F1A]">
+              <div className="text-3xl sm:text-4xl font-black text-[#C9A84C]"><StatCounter value={2847} /></div>
+              <div className="text-xs text-gray-500 mt-1">{isEN ? "Premium users" : "Usuarios Premium"}</div>
+            </div>
+            <div className="p-4 rounded-2xl border border-white/5 bg-[#0B0F1A]">
+              <div className="text-3xl sm:text-4xl font-black text-[#C9A84C]"><StatCounter value={98} suffix="%" /></div>
+              <div className="text-xs text-gray-500 mt-1">{isEN ? "Would renew" : "Renovarían"}</div>
+            </div>
+            <div className="p-4 rounded-2xl border border-white/5 bg-[#0B0F1A]">
+              <div className="text-3xl sm:text-4xl font-black text-[#C9A84C]"><StatCounter value={24} suffix="h" /></div>
+              <div className="text-xs text-gray-500 mt-1">{isEN ? "Priority support" : "Soporte prioritario"}</div>
+            </div>
+          </div>
+        </div>
+      </AnimatedSection>
 
       {/* Qué incluye Premium - Visual Grid */}
       <section style={{ padding: "60px 20px", background: BG3 }}>
@@ -88,7 +144,7 @@ export default function PremiumPage() {
         </div>
       </section>
 
-      {/* Free vs Premium - Compacto con toggle */}
+      {/* Free vs Premium - 4 key differentiators + toggle */}
       <section style={{ padding: "60px 20px" }}>
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-8">
@@ -112,19 +168,17 @@ export default function PremiumPage() {
             </button>
           </div>
 
-          {/* Quick highlights (siempre visible) */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
-            {[
-              { label: isEN ? 'Unlimited predictions' : 'Predicciones ilimitadas', icon: `${IMG}/predicciones.png` },
-              { label: isEN ? 'Pro AI Coach' : 'IA Coach Pro', icon: `${IMG}/ia coach.png` },
-              { label: isEN ? 'No ads' : 'Sin anuncios', icon: `${IMG}/streaming.png` },
-              { label: isEN ? 'Advanced stats' : 'Stats avanzadas', icon: `${IMG}/ranking.png` },
-              { label: isEN ? 'Premium leagues' : 'Ligas Premium', icon: `${IMG}/ligas privadas.png` },
-              { label: isEN ? 'Priority support' : 'Soporte prioritario', icon: `${IMG}/chat en vivo.png` },
-            ].map((item, i) => (
-              <div key={i} className="flex items-center gap-3 p-3 rounded-xl border border-white/5" style={{ background: BG2 }}>
-                <img src={item.icon} alt="" className="w-6 h-6 object-contain flex-shrink-0" />
-                <span className="text-sm text-white font-medium">{item.label}</span>
+          {/* 4 big differentiators */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+            {highlights.map((item, i) => (
+              <div key={i} className="flex items-center gap-4 p-5 rounded-2xl border border-white/5 hover:border-[#C9A84C]/30 transition-all" style={{ background: BG2 }}>
+                <div className="w-12 h-12 rounded-xl bg-[#C9A84C]/10 flex items-center justify-center flex-shrink-0">
+                  <img src={item.icon} alt="" className="w-7 h-7 object-contain" />
+                </div>
+                <div>
+                  <span className="block text-base text-white font-bold">{item.label}</span>
+                  <span className="text-sm" style={{ color: DIM }}>{item.desc}</span>
+                </div>
               </div>
             ))}
           </div>
@@ -200,6 +254,38 @@ export default function PremiumPage() {
                 >
                   {pT.pricingCta}
                 </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section style={{ padding: "60px 20px" }}>
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-3">
+              {isEN ? "What our Premium users say" : "Qué dicen nuestros usuarios Premium"}
+            </h2>
+            <p className="text-base" style={{ color: MID }}>
+              {isEN ? "Join thousands who already upgraded" : "Únete a miles que ya dieron el salto"}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {testimonials.map((t, i) => (
+              <div key={i} className="relative p-6 rounded-2xl border border-white/5 hover:border-[#C9A84C]/20 transition-all" style={{ background: BG2 }}>
+                <div className="absolute top-4 right-4 text-4xl leading-none" style={{ color: `${GOLD}30` }}>“</div>
+                <p className="text-sm leading-relaxed mb-5" style={{ color: MID }}>{t.quote}</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#C9A84C]/30 to-[#C9A84C]/10 flex items-center justify-center text-sm font-bold text-white">
+                    {t.name.split(' ').map(n => n[0]).join('')}
+                  </div>
+                  <div>
+                    <div className="text-sm font-bold text-white">{t.name}</div>
+                    <div className="text-xs" style={{ color: DIM }}>{t.role}</div>
+                  </div>
+                </div>
               </div>
             ))}
           </div>

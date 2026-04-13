@@ -12,6 +12,10 @@ export function useGSAPAnimations() {
   const featuresRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
   const creatorsRef = useRef<HTMLDivElement>(null);
+  const exploreRef = useRef<HTMLDivElement>(null);
+  const screenshotsRef = useRef<HTMLDivElement>(null);
+  const howItWorksRef = useRef<HTMLDivElement>(null);
+  const albumRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -128,6 +132,92 @@ export function useGSAPAnimations() {
         );
       }
 
+      // Explore cards stagger
+      const exploreCards = exploreRef.current?.querySelectorAll(".explore-card");
+      if (exploreCards && exploreCards.length > 0) {
+        gsap.fromTo(
+          exploreCards,
+          { y: 60, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.7,
+            stagger: 0.1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: exploreRef.current,
+              start: "top 80%",
+              once: true,
+            },
+          }
+        );
+      }
+
+      // Screenshot cards stagger
+      const screenshotCards = screenshotsRef.current?.querySelectorAll(".screenshot-card");
+      if (screenshotCards && screenshotCards.length > 0) {
+        gsap.fromTo(
+          screenshotCards,
+          { y: 80, opacity: 0, scale: 0.95 },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 0.8,
+            stagger: 0.12,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: screenshotsRef.current,
+              start: "top 75%",
+              once: true,
+            },
+          }
+        );
+      }
+
+      // How it works stagger
+      const howCards = howItWorksRef.current?.querySelectorAll(".howitworks-card");
+      if (howCards && howCards.length > 0) {
+        gsap.fromTo(
+          howCards,
+          { y: 60, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: howItWorksRef.current,
+              start: "top 80%",
+              once: true,
+            },
+          }
+        );
+      }
+
+      // Album cards stagger
+      const albumCards = albumRef.current?.querySelectorAll(".album-card");
+      if (albumCards && albumCards.length > 0) {
+        gsap.fromTo(
+          albumCards,
+          { y: 70, opacity: 0, scale: 0.95 },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 0.8,
+            stagger: 0.12,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: albumRef.current,
+              start: "top 80%",
+              once: true,
+            },
+          }
+        );
+      }
+
       // CTA dramatic entrance
       if (ctaRef.current) {
         gsap.fromTo(
@@ -177,7 +267,7 @@ export function useGSAPAnimations() {
     return () => ctx.revert();
   }, []);
 
-  return { heroRef, statsRef, featuresRef, cardsRef, creatorsRef, ctaRef };
+  return { heroRef, statsRef, featuresRef, cardsRef, creatorsRef, exploreRef, screenshotsRef, howItWorksRef, albumRef, ctaRef };
 }
 
 // Hook for hover animations
@@ -222,7 +312,7 @@ export function useHoverAnimation() {
 
 // Hook for magnetic button effect
 export function useMagneticButton() {
-  const ref = useRef<HTMLButtonElement>(null);
+  const ref = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
     const button = ref.current;
@@ -250,12 +340,12 @@ export function useMagneticButton() {
       });
     };
 
-    button.addEventListener("mousemove", onMove);
-    button.addEventListener("mouseleave", onLeave);
+    button.addEventListener("mousemove", onMove as EventListener);
+    button.addEventListener("mouseleave", onLeave as EventListener);
 
     return () => {
-      button.removeEventListener("mousemove", onMove);
-      button.removeEventListener("mouseleave", onLeave);
+      button.removeEventListener("mousemove", onMove as EventListener);
+      button.removeEventListener("mouseleave", onLeave as EventListener);
     };
   }, []);
 

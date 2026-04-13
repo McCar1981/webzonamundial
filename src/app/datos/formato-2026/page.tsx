@@ -1,228 +1,233 @@
-// src/app/datos/formato-2026/page.tsx
-// ZonaMundial.app — Explicación del formato 48 equipos
-// Keyword target: "formato mundial 2026", "48 equipos mundial", "mejores terceros mundial"
+'use client';
 
-import { Metadata } from 'next';
+import { useMemo } from 'react';
 import Link from 'next/link';
+import { useLanguage } from '@/i18n/LanguageContext';
+import { BracketDiagram } from '@/components/BracketDiagram';
+import { StatCounter } from '@/components/StatCounter';
+import { AnimatedSection } from '@/components/AnimatedSection';
+import { ShimmerButton } from '@/components/ShimmerButton';
+import { SimuladorTerceros, FAQAccordion } from './_components';
+import { ICON_V3, ICON_DESCUBRE } from '@/components/icons';
 
-export const metadata: Metadata = {
-  title: 'Formato del Torneo 2026: 48 Equipos, 12 Grupos, 104 Partidos Explicados | ZonaMundial',
-  description: 'Cómo funciona el nuevo formato de 48 equipos del torneo 2026: 12 grupos de 4, mejores terceros, dieciseisavos de final, y el camino a la final. Todo explicado paso a paso.',
-  keywords: ['formato mundial 2026', '48 equipos mundial 2026', 'mejores terceros mundial', 'dieciseisavos de final mundial', 'cómo funciona mundial 2026', 'nuevo formato copa del mundo'],
-  robots: { index: true, follow: true, 'max-image-preview': 'large' },
-};
+function FormatoStep({ step, index, total }: { step: any; index: number; total: number }) {
+  return (
+    <div className="relative pl-8 sm:pl-12">
+      {index < total - 1 && (
+        <div className="absolute bottom-0 left-[19px] top-12 w-px bg-gradient-to-b from-white/20 to-transparent sm:left-[27px]" />
+      )}
+      <div
+        className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-xl text-lg font-black shadow-lg sm:h-14 sm:w-14 sm:rounded-2xl sm:text-2xl"
+        style={{ background: `linear-gradient(135deg, ${step.color}, ${step.color}80)`, color: '#030712' }}
+      >
+        {step.n}
+      </div>
+      <div className="pb-10">
+        <h3 className="mb-2 text-xl font-bold text-white sm:text-2xl">{step.title}</h3>
+        <p className="text-sm leading-relaxed text-[#8a94b0] sm:text-base">{step.desc}</p>
+      </div>
+    </div>
+  );
+}
 
-export default function Formato2026() {
+export default function Formato2026Page() {
+  const { t, locale } = useLanguage();
+  const f = t.formato2026;
+
+  const schema = useMemo(() => {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: f.faq.map((item: any) => ({
+        '@type': 'Question',
+        name: item.q,
+        acceptedAnswer: { '@type': 'Answer', text: item.a },
+      })),
+    };
+  }, [f.faq]);
+
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        '@context': 'https://schema.org', '@type': 'FAQPage',
-        mainEntity: [
-          { '@type': 'Question', name: '¿Cuántos equipos participan en el torneo 2026?', acceptedAnswer: { '@type': 'Answer', text: '48 equipos, divididos en 12 grupos de 4. Es la primera vez que se expande de 32 a 48 equipos.' }},
-          { '@type': 'Question', name: '¿Cómo funcionan los mejores terceros?', acceptedAnswer: { '@type': 'Answer', text: 'Los 8 mejores terceros de los 12 grupos clasifican a la ronda de 32. Se comparan por puntos, diferencia de goles, goles a favor y ranking FIFA.' }},
-          { '@type': 'Question', name: '¿Cuántos partidos tiene el torneo 2026?', acceptedAnswer: { '@type': 'Answer', text: '104 partidos en total: 72 en fase de grupos y 32 en fase eliminatoria. El torneo dura 39 días.' }},
-        ],
-      })}} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-      <nav className="text-xs sm:text-sm text-gray-400 mb-4 sm:mb-6">
-        <ol className="flex gap-2 flex-wrap">
-          <li><Link href="/" className="hover:text-[#C9A84C]">Inicio</Link></li>
+      <nav className="mb-4 text-xs text-gray-400 sm:mb-6 sm:text-sm">
+        <ol className="flex flex-wrap gap-2">
+          <li><Link href="/" className="hover:text-[#C9A84C]">{f.breadcrumbInicio}</Link></li>
           <li>/</li>
-          <li><Link href="/datos" className="hover:text-[#C9A84C]">Datos</Link></li>
+          <li><Link href="/datos" className="hover:text-[#C9A84C]">{f.breadcrumbDatos}</Link></li>
           <li>/</li>
-          <li className="text-[#C9A84C]">Formato 2026</li>
+          <li className="text-[#C9A84C]">{f.breadcrumbCurrent}</li>
         </ol>
       </nav>
 
-      <header className="mb-6 sm:mb-10">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-3">
-          El Nuevo Formato 2026
-        </h1>
-        <p className="text-base sm:text-lg text-gray-300">
-          Por primera vez en la historia, 48 selecciones compiten en 12 grupos. Así funciona.
-        </p>
-      </header>
-
-      {/* KEY NUMBERS */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-8 sm:mb-10">
-        {[
-          { n: '48', label: 'Equipos', sub: '+16 vs 2022' },
-          { n: '12', label: 'Grupos', sub: 'de 4 equipos' },
-          { n: '104', label: 'Partidos', sub: '+40 vs 2022' },
-          { n: '39', label: 'Días', sub: '11 jun — 19 jul' },
-        ].map(d => (
-          <div key={d.label} className="p-4 sm:p-5 rounded-xl border border-[#1E293B]"
-            style={{ background: 'rgba(15,23,42,0.5)' }}>
-            <div className="text-2xl sm:text-3xl font-black text-[#C9A84C]">{d.n}</div>
-            <div className="text-sm font-bold text-white mt-1">{d.label}</div>
-            <div className="text-[10px] sm:text-xs text-gray-500">{d.sub}</div>
-          </div>
-        ))}
-      </div>
-
-      {/* PHASE 1: GROUPS */}
-      <section className="mb-8 sm:mb-10">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center text-xl font-black"
-            style={{ background: 'linear-gradient(135deg, #C9A84C, #A8893D)', color: '#030712' }}>1</div>
-          <h2 className="text-xl sm:text-2xl font-bold text-white">Fase de Grupos</h2>
+      {/* HERO */}
+      <section className="relative mb-10 overflow-hidden rounded-3xl sm:mb-14">
+        <div className="absolute inset-0">
+          <img
+            src="/img/zonamundial-images/stadiums/metlife-stadium.jpg"
+            alt=""
+            className="h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#060B14] via-[#060B14]/90 to-[#060B14]/70" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#060B14] via-transparent to-transparent" />
         </div>
-        <div className="p-4 sm:p-6 rounded-xl border border-[#1E293B]" style={{ background: 'rgba(15,23,42,0.5)' }}>
-          <p className="text-sm sm:text-base text-gray-300 leading-relaxed mb-4">
-            48 selecciones se dividen en 12 grupos de 4 equipos (Grupo A al Grupo L). Cada equipo juega 3 partidos: uno contra cada rival de su grupo. Los partidos se juegan del 11 al 28 de junio de 2026.
+
+        <div className="relative z-10 px-6 py-12 sm:px-10 sm:py-16">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#c9a84c]/20 bg-[#c9a84c]/10 px-3 py-1.5 backdrop-blur-sm">
+            <span className="h-2 w-2 animate-pulse rounded-full bg-[#c9a84c]" />
+            <span className="text-[10px] font-bold uppercase tracking-wider text-[#c9a84c] sm:text-xs">{f.heroBadge}</span>
+          </div>
+
+          <h1 className="mb-4 max-w-3xl text-3xl font-black leading-tight text-white sm:text-5xl md:text-6xl">
+            {f.heroTitle}
+            <span className="bg-gradient-to-r from-[#c9a84c] to-[#e8d48b] bg-clip-text text-transparent">
+              {f.heroTitleHighlight}
+            </span>
+            {f.heroTitleAfter}
+          </h1>
+          <p className="mb-8 max-w-2xl text-base text-[#8a94b0] sm:text-lg">
+            {f.heroSubtitle}
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div className="p-3 rounded-lg bg-[#0F172A] border border-[#22C55E33]">
-              <span className="text-xs font-bold text-[#22C55E]">✅ CLASIFICAN DIRECTO</span>
-              <p className="text-sm text-gray-300 mt-1">Los 2 primeros de cada grupo (24 equipos)</p>
-            </div>
-            <div className="p-3 rounded-lg bg-[#0F172A] border border-[#FBBF2433]">
-              <span className="text-xs font-bold text-[#FBBF24]">⚡ POSIBLE CLASIFICACIÓN</span>
-              <p className="text-sm text-gray-300 mt-1">Los 8 mejores terceros de los 12 grupos</p>
-            </div>
+
+          {/* Stats grid */}
+          <div className="grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+            {f.stats.map((d: any, i: number) => {
+              const statIcons = [ICON_DESCUBRE.selecciones, ICON_DESCUBRE.grupos, ICON_V3.matchCenter, ICON_V3.microPred];
+              return (
+                <div key={d.label} className="rounded-xl border border-white/5 bg-[#0B1825]/80 p-4 backdrop-blur-sm">
+                  <div className="mb-2 flex items-center gap-2">
+                    <span className="w-5 h-5 flex-shrink-0 opacity-70">{statIcons[i]}</span>
+                    <div className="text-[10px] text-gray-500 sm:text-xs">{d.sub}</div>
+                  </div>
+                  <div className="text-2xl font-black text-[#c9a84c] sm:text-3xl">
+                    <StatCounter value={d.n} />
+                  </div>
+                  <div className="mt-1 text-sm font-bold text-white">{d.label}</div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* PHASE 2: BEST THIRD */}
-      <section className="mb-8 sm:mb-10">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center text-xl font-black"
-            style={{ background: 'linear-gradient(135deg, #FBBF24, #D97706)', color: '#030712' }}>2</div>
-          <h2 className="text-xl sm:text-2xl font-bold text-white">Mejores Terceros</h2>
-        </div>
-        <div className="p-4 sm:p-6 rounded-xl border border-[#1E293B]" style={{ background: 'rgba(15,23,42,0.5)' }}>
-          <p className="text-sm sm:text-base text-gray-300 leading-relaxed mb-4">
-            De los 12 terceros, se clasifican los 8 mejores. Se comparan entre sí usando estos criterios en orden:
-          </p>
-          <div className="space-y-2">
-            {[
-              { n: '1', text: 'Puntos obtenidos', desc: '3 por victoria, 1 por empate' },
-              { n: '2', text: 'Diferencia de goles', desc: 'Goles a favor menos goles en contra' },
-              { n: '3', text: 'Goles a favor', desc: 'Total de goles marcados' },
-              { n: '4', text: 'Conducta deportiva', desc: 'Tarjetas amarillas y rojas' },
-              { n: '5', text: 'Ranking FIFA', desc: 'Último recurso si todo lo anterior es igual' },
-            ].map(c => (
-              <div key={c.n} className="flex items-center gap-3 p-2.5 sm:p-3 rounded-lg bg-[#0F172A]">
-                <span className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-black bg-[#FBBF2422] text-[#FBBF24] flex-shrink-0">{c.n}</span>
-                <div>
-                  <span className="text-sm font-bold text-white">{c.text}</span>
-                  <span className="text-xs text-gray-500 ml-2">{c.desc}</span>
-                </div>
-              </div>
+      {/* PASOS DEL FORMATO */}
+      <section className="mb-12 sm:mb-16">
+        <AnimatedSection>
+          <h2 className="mb-8 text-2xl font-black text-white sm:text-3xl">{f.stepsTitle}</h2>
+        </AnimatedSection>
+        <AnimatedSection stagger={0.15} y={20}>
+          <div className="max-w-2xl">
+            {f.steps.map((step: any, i: number) => (
+              <FormatoStep key={step.n} step={step} index={i} total={f.steps.length} />
             ))}
           </div>
-          <div className="mt-4 p-3 rounded-lg border-l-4 border-[#C9A84C]" style={{ background: 'rgba(201,168,76,0.06)' }}>
-            <p className="text-xs sm:text-sm text-[#C9A84C] font-semibold">
-              💡 Esto significa que un equipo puede quedar tercero con 4 puntos y clasificar, mientras que otro con 3 puntos queda eliminado. Cada gol cuenta.
-            </p>
-          </div>
-        </div>
+        </AnimatedSection>
       </section>
 
-      {/* PHASE 3: KNOCKOUT */}
-      <section className="mb-8 sm:mb-10">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center text-xl font-black"
-            style={{ background: 'linear-gradient(135deg, #22C55E, #16A34A)', color: '#030712' }}>3</div>
-          <h2 className="text-xl sm:text-2xl font-bold text-white">Fase Eliminatoria</h2>
-        </div>
-        <div className="p-4 sm:p-6 rounded-xl border border-[#1E293B]" style={{ background: 'rgba(15,23,42,0.5)' }}>
-          <p className="text-sm sm:text-base text-gray-300 leading-relaxed mb-4">
-            32 equipos pasan a las eliminatorias. El formato añade una ronda nueva que no existía antes: los dieciseisavos de final.
-          </p>
-          <div className="space-y-2 sm:space-y-3">
-            {[
-              { fase: 'Dieciseisavos', equipos: 32, partidos: 16, fechas: '28 jun — 2 jul', nota: 'NUEVA RONDA' },
-              { fase: 'Octavos de final', equipos: 16, partidos: 8, fechas: '3 — 6 jul' },
-              { fase: 'Cuartos de final', equipos: 8, partidos: 4, fechas: '9 — 12 jul' },
-              { fase: 'Semifinales', equipos: 4, partidos: 2, fechas: '14 — 15 jul', nota: 'Atlanta y Dallas' },
-              { fase: 'Tercer puesto', equipos: 2, partidos: 1, fechas: '18 jul', nota: 'Miami' },
-              { fase: 'FINAL', equipos: 2, partidos: 1, fechas: '19 jul', nota: 'Nueva York' },
-            ].map(f => (
-              <div key={f.fase} className={`flex items-center justify-between p-3 rounded-lg ${f.fase === 'FINAL' ? 'border border-[#C9A84C44]' : 'bg-[#0F172A]'}`}
-                style={f.fase === 'FINAL' ? { background: 'linear-gradient(135deg, rgba(201,168,76,0.1), transparent)' } : {}}>
-                <div className="flex items-center gap-3">
-                  <div className="text-sm sm:text-base font-bold text-white">{f.fase}</div>
-                  {f.nota && (
-                    <span className={`text-[9px] sm:text-[10px] font-bold px-2 py-0.5 rounded-full ${f.fase === 'FINAL' ? 'bg-[#C9A84C22] text-[#C9A84C]' : f.nota === 'NUEVA RONDA' ? 'bg-[#22C55E22] text-[#22C55E]' : 'bg-[#0F172A] text-gray-500'}`}>
-                      {f.nota}
-                    </span>
-                  )}
-                </div>
-                <div className="text-right">
-                  <div className="text-xs text-gray-400">{f.fechas}</div>
-                  <div className="text-[10px] text-gray-500">{f.partidos} {f.partidos === 1 ? 'partido' : 'partidos'}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+      {/* BRACKET DIAGRAM */}
+      <section className="mb-12 rounded-3xl border border-white/5 bg-gradient-to-b from-[#0B1825]/50 to-transparent p-5 sm:mb-16 sm:p-8">
+        <AnimatedSection>
+          <h2 className="mb-2 text-2xl font-black text-white sm:text-3xl">{f.bracketTitle}</h2>
+          <p className="mb-6 text-sm text-[#8a94b0] sm:text-base">{f.bracketSubtitle}</p>
+        </AnimatedSection>
+        <BracketDiagram labels={f.bracketRounds} playLabel={f.bracketPlay} />
       </section>
 
-      {/* KEY CHANGES */}
-      <section className="mb-8 sm:mb-10">
-        <h2 className="text-xl sm:text-2xl font-bold text-white mb-4">¿Qué cambia respecto a 2022?</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {[
-            { before: '32 equipos', after: '48 equipos', label: '+16 selecciones' },
-            { before: '8 grupos', after: '12 grupos', label: '+4 grupos' },
-            { before: '64 partidos', after: '104 partidos', label: '+40 partidos' },
-            { before: '32 días', after: '39 días', label: '+7 días' },
-            { before: '7 partidos al campeón', after: '8 partidos al campeón', label: '+1 ronda nueva' },
-            { before: '6 confederaciones (OFC sin plaza fija)', after: '6 conf. (OFC con plaza garantizada)', label: 'Primera vez para Oceanía' },
-          ].map(c => (
-            <div key={c.label} className="flex items-center gap-3 p-3 rounded-lg bg-[#0F172A] border border-[#1E293B]">
-              <div className="text-right flex-1">
-                <div className="text-xs text-gray-500 line-through">{c.before}</div>
+      {/* COMPARATIVA 2022 VS 2026 */}
+      <section className="mb-12 sm:mb-16">
+        <AnimatedSection>
+          <h2 className="mb-8 text-2xl font-black text-white sm:text-3xl">{f.comparisonTitle}</h2>
+        </AnimatedSection>
+        <AnimatedSection className="grid grid-cols-1 gap-4 sm:grid-cols-2" stagger={0.08}>
+          {f.comparisonItems.map((c: any) => (
+            <div key={c.label} className="flex items-center gap-4 rounded-2xl border border-white/5 bg-[#0B1825] p-5 transition-colors hover:border-[#c9a84c]/20">
+              <div className="flex-1 text-right">
+                <div className="text-xl font-black text-gray-500 line-through sm:text-2xl">{c.before}</div>
+                <div className="text-xs text-gray-600">{c.label}</div>
               </div>
-              <div className="text-[#C9A84C] font-black text-lg">→</div>
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#c9a84c]/20 to-[#c9a84c]/5">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M5 12h14" stroke="#c9a84c" strokeWidth="2" strokeLinecap="round" />
+                  <path d="M13 5l7 7-7 7" stroke="#c9a84c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
               <div className="flex-1">
-                <div className="text-sm font-bold text-white">{c.after}</div>
-                <div className="text-[10px] text-[#C9A84C]">{c.label}</div>
+                <div className="text-2xl font-black text-white sm:text-3xl">
+                  <StatCounter value={parseInt(c.after)} />
+                </div>
+                <div className="text-xs font-semibold text-[#c9a84c]">{c.label}</div>
               </div>
             </div>
           ))}
-        </div>
+        </AnimatedSection>
       </section>
 
-      {/* BRACKET SEPARATION */}
-      <section className="mb-8 sm:mb-10">
-        <h2 className="text-xl sm:text-2xl font-bold text-white mb-4">Sistema de Brackets Separados</h2>
-        <div className="p-4 sm:p-6 rounded-xl border border-[#1E293B]" style={{ background: 'rgba(15,23,42,0.5)' }}>
-          <p className="text-sm sm:text-base text-gray-300 leading-relaxed mb-3">
-            Por primera vez, el cuadro de eliminatorias se divide en dos caminos separados, asegurando que los 4 mejores equipos del ranking (España, Argentina, Francia e Inglaterra) no se enfrenten hasta las semifinales si ganan sus grupos.
+      {/* SISTEMA DE BRACKETS SEPARADOS */}
+      <section className="mb-12 sm:mb-16">
+        <AnimatedSection>
+          <h2 className="mb-6 text-2xl font-black text-white sm:text-3xl">{f.bracketsSystemTitle}</h2>
+        </AnimatedSection>
+        <AnimatedSection className="rounded-3xl border border-white/5 bg-[#0B1825] p-6 sm:p-8" stagger={0.1}>
+          <p className="mb-6 text-sm leading-relaxed text-[#8a94b0] sm:text-base">
+            {f.bracketsSystemDesc}
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div className="p-3 rounded-lg bg-[#0F172A]">
-              <div className="text-xs font-bold text-[#C9A84C] mb-2">CAMINO 1</div>
-              <p className="text-xs text-gray-400">España (#1) y Argentina (#2) están en este camino. Solo pueden encontrarse en la final.</p>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="rounded-2xl border border-white/5 bg-[#060B14] p-5 transition-all hover:border-[#c9a84c]/20">
+              <div className="mb-3 flex items-center gap-2">
+                <span className="w-6 h-6 flex-shrink-0">{ICON_V3.rankings}</span>
+                <span className="text-xs font-bold uppercase tracking-wider text-[#c9a84c]">{f.bracketPath1Label}</span>
+              </div>
+              <p className="text-sm text-gray-300">{f.bracketPath1Desc}</p>
             </div>
-            <div className="p-3 rounded-lg bg-[#0F172A]">
-              <div className="text-xs font-bold text-[#C9A84C] mb-2">CAMINO 2</div>
-              <p className="text-xs text-gray-400">Francia (#3) e Inglaterra (#4) están en este camino. Solo pueden encontrarse en la final.</p>
+            <div className="rounded-2xl border border-white/5 bg-[#060B14] p-5 transition-all hover:border-[#c9a84c]/20">
+              <div className="mb-3 flex items-center gap-2">
+                <span className="w-6 h-6 flex-shrink-0">{ICON_V3.rankings}</span>
+                <span className="text-xs font-bold uppercase tracking-wider text-[#c9a84c]">{f.bracketPath2Label}</span>
+              </div>
+              <p className="text-sm text-gray-300">{f.bracketPath2Desc}</p>
             </div>
           </div>
-        </div>
+        </AnimatedSection>
+      </section>
+
+      {/* SIMULADOR */}
+      <section className="mb-12 sm:mb-16">
+        <AnimatedSection>
+          <SimuladorTerceros />
+        </AnimatedSection>
+      </section>
+
+      {/* FAQ */}
+      <section className="mb-12 sm:mb-16">
+        <AnimatedSection>
+          <FAQAccordion title={f.faqTitle} items={f.faq} />
+        </AnimatedSection>
       </section>
 
       {/* CTA */}
-      <div className="text-center p-5 sm:p-7 rounded-2xl border border-[#C9A84C22] mb-6"
-        style={{ background: 'linear-gradient(135deg, rgba(201,168,76,0.06), rgba(15,23,42,0.3))' }}>
-        <p className="text-[#C9A84C] text-sm font-semibold mb-3">¿Listo para predecir los 104 partidos?</p>
-        <Link href="/registro"
-          className="inline-block px-7 py-3 rounded-xl text-[#030712] font-extrabold text-sm no-underline"
-          style={{ background: 'linear-gradient(135deg, #C9A84C, #A8893D)', boxShadow: '0 4px 24px rgba(201,168,76,0.3)' }}>
-          Regístrate Gratis
+      <AnimatedSection className="mb-10 rounded-3xl border border-[#c9a84c]/20 bg-gradient-to-br from-[#c9a84c]/6 to-[#0B1825]/50 p-8 text-center sm:mb-10 sm:p-10">
+        <div className="mx-auto mb-4 w-10 h-10 opacity-80">{ICON_V3.predicciones}</div>
+        <p className="mb-4 text-base font-semibold text-[#c9a84c]">{f.ctaTitle}</p>
+        <Link href="/registro">
+          <ShimmerButton>{f.ctaBtn}</ShimmerButton>
         </Link>
-      </div>
+      </AnimatedSection>
 
       {/* Internal links */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-        <Link href="/grupos" className="p-3 bg-[#0B1825] border border-[#1a2a3f] rounded-lg text-gray-300 hover:border-[#C9A84C] hover:text-[#C9A84C] transition-all text-xs no-underline">📊 12 grupos</Link>
-        <Link href="/selecciones" className="p-3 bg-[#0B1825] border border-[#1a2a3f] rounded-lg text-gray-300 hover:border-[#C9A84C] hover:text-[#C9A84C] transition-all text-xs no-underline">📋 48 selecciones</Link>
-        <Link href="/calendario" className="p-3 bg-[#0B1825] border border-[#1a2a3f] rounded-lg text-gray-300 hover:border-[#C9A84C] hover:text-[#C9A84C] transition-all text-xs no-underline">📅 Calendario</Link>
-      </div>
+      <AnimatedSection className="grid grid-cols-2 gap-3 sm:grid-cols-3" stagger={0.05} y={10}>
+        <Link href="/grupos" className="flex flex-col items-center gap-2 rounded-xl border border-[#1a2a3f] bg-[#0B1825] p-4 text-center text-sm font-semibold text-gray-300 transition-all hover:border-[#C9A84C] hover:text-[#C9A84C]">
+          <span className="w-6 h-6">{ICON_DESCUBRE.grupos}</span>
+          {f.links.grupos}
+        </Link>
+        <Link href="/selecciones" className="flex flex-col items-center gap-2 rounded-xl border border-[#1a2a3f] bg-[#0B1825] p-4 text-center text-sm font-semibold text-gray-300 transition-all hover:border-[#C9A84C] hover:text-[#C9A84C]">
+          <span className="w-6 h-6">{ICON_DESCUBRE.selecciones}</span>
+          {f.links.selecciones}
+        </Link>
+        <Link href="/calendario" className="flex flex-col items-center gap-2 rounded-xl border border-[#1a2a3f] bg-[#0B1825] p-4 text-center text-sm font-semibold text-gray-300 transition-all hover:border-[#C9A84C] hover:text-[#C9A84C]">
+          <span className="w-6 h-6">{ICON_V3.microPred}</span>
+          {f.links.calendario}
+        </Link>
+      </AnimatedSection>
     </>
   );
 }

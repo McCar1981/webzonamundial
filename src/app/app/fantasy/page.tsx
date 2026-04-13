@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ICON_V3, ICON_DESCUBRE } from "@/components/icons";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,40 +23,40 @@ const FORMACION_DESCS = [
 ];
 
 const PUNTOS_ICONOS = [
-  "/img/imagenessilviu/balondefutbol.png",
-  "/img/imagenessilviu/balondefutbol.png",
-  "/img/imagenessilviu/balondefutbol.png",
-  "/img/imagenessilviu/balondefutbol.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/micro-predicciones.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/48 selecciones.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/modo carrera.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/historia.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/historia.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/micro-predicciones.png",
+  ICON_V3.matchCenter,   // Gol (Delantero)
+  ICON_V3.matchCenter,   // Gol (Mediocentro)
+  ICON_V3.matchCenter,   // Gol (Defensa)
+  ICON_V3.matchCenter,   // Gol (Portero)
+  ICON_V3.microPred,     // Asistencia
+  ICON_V3.fantasy,       // Portería a 0 (POR)
+  ICON_V3.fantasy,       // Portería a 0 (DEF)
+  ICON_V3.carrera,       // Titular (60+ min)
+  ICON_V3.carrera,       // Suplente (<60 min)
+  ICON_V3.trivia,        // Tarjeta amarilla
+  ICON_V3.trivia,        // Tarjeta roja
+  ICON_V3.predicciones,  // Autogol
+  ICON_V3.predicciones,  // Penalti fallado
 ];
 const PUNTOS_VALORES = ["+5","+6","+8","+10","+3","+5","+4","+2","+1","-1","-3","-2","-2"];
 
 const CHIPS_ICONOS = [
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/modo carrera.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/ia coach.png",
+  ICON_V3.predicciones,
+  ICON_V3.rankings,
+  ICON_V3.carrera,
+  ICON_V3.iaCoach,
 ];
 
 const LIST_FEAT_ICONS = [
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/ia coach.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/48 selecciones.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/micro-predicciones.png",
+  ICON_V3.iaCoach,
+  ICON_V3.rankings,
+  ICON_DESCUBRE.selecciones,
+  ICON_V3.microPred,
 ];
 
 const ALI_FEAT_ICONS = [
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/los 12 grupos.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png",
-  "/img/zonamundial-images/imagenes/logos para sustuir emojis/stories.png",
+  ICON_DESCUBRE.grupos,
+  ICON_V3.predicciones,
+  ICON_V3.stories,
 ];
 
 export default function FantasyPage() {
@@ -226,7 +227,7 @@ export default function FantasyPage() {
       <section style={{padding:"20px 20px 60px",textAlign:"center",position:"relative",overflow:"hidden"}}>
         <div style={{position:"absolute",inset:0,background:"radial-gradient(ellipse at center,rgba(201,168,76,0.08) 0%,transparent 60%)"}}/>
         <img data-hero-decor src="/img/imagenessilviu/balondefutbol.png" alt="" style={{position:"absolute",top:"10%",left:"5%",width:120,opacity:0.03,transform:"rotate(-15deg)"}} />
-        <img data-hero-decor src="/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png" alt="" style={{position:"absolute",bottom:"10%",right:"5%",width:100,opacity:0.03,transform:"rotate(15deg)"}} />
+        <span data-hero-decor style={{position:"absolute",bottom:"10%",right:"5%",width:100,height:100,opacity:0.03,transform:"rotate(15deg)",display:"flex",alignItems:"center",justifyContent:"center"}}><svg viewBox="0 0 24 24" fill="none" width="100" height="100">{ICON_V3.rankings.props.children}</svg></span>
 
         <div style={{maxWidth:800,margin:"0 auto",position:"relative"}}>
           <span data-hero-badge style={{color:GOLD,fontSize:12,fontWeight:700,letterSpacing:3,textTransform:"uppercase",display:"inline-block"}}>{fT.badge}</span>
@@ -289,7 +290,7 @@ export default function FantasyPage() {
                 {aliFeatList.map((feat,i)=>(
                   <div key={i} data-ali-feature data-hover-card style={{display:"flex",alignItems:"center",gap:16,padding:16,borderRadius:12,background:BG2,border:"1px solid rgba(255,255,255,0.05)",cursor:"pointer"}}>
                     <div style={{width:44,height:44,borderRadius:10,background:`${GOLD}20`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
-                      <img src={feat.icon} alt="" style={{width:28,height:28,objectFit:"contain"}} />
+                      <span style={{width:28,height:28,display:"flex",alignItems:"center",justifyContent:"center"}}>{feat.icon}</span>
                     </div>
                     <div>
                       <div style={{fontWeight:700,fontSize:15}}>{feat.title}</div>
@@ -331,7 +332,7 @@ export default function FantasyPage() {
               <div data-list-features style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:12}}>
                 {listFeatList.map((item,i)=>(
                   <div key={i} data-list-feature data-hover-card style={{padding:20,borderRadius:12,background:BG2,border:"1px solid rgba(255,255,255,0.05)",cursor:"pointer"}}>
-                    <img src={item.icon} alt="" style={{width:28,height:28,objectFit:"contain",marginBottom:8}} />
+                    <span style={{width:28,height:28,display:"flex",alignItems:"center",justifyContent:"center",marginBottom:8}}>{item.icon}</span>
                     <div style={{fontWeight:700,fontSize:14,marginBottom:4}}>{item.title}</div>
                     <div style={{fontSize:12,color:DIM}}>{item.desc}</div>
                   </div>
@@ -398,7 +399,7 @@ export default function FantasyPage() {
                   <img src={`https://flagcdn.com/w40/${item.code}.png`} alt={item.pais} style={{width:32,height:20,borderRadius:3,flexShrink:0}} />
                   <div style={{flex:1,minWidth:0}}>
                     <div style={{fontWeight:700,fontSize:13,color:item.doble?GOLD:'#fff',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>
-                      {item.pais} {item.doble && <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png" alt="" style={{width:16,height:16,objectFit:"contain",display:"inline-block",verticalAlign:"middle"}} />}
+                      {item.pais} {item.doble && <span style={{width:16,height:16,display:"inline-flex",alignItems:"center",justifyContent:"center",verticalAlign:"middle"}}>{ICON_V3.rankings}</span>}
                     </div>
                     <div style={{fontSize:11,color:DIM,whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>
                       {item.jug}
@@ -460,7 +461,7 @@ export default function FantasyPage() {
             {puntosSistema.map((p,i)=>(
               <div key={i} data-punto-item data-hover-card style={{padding:20,borderRadius:16,background:BG2,border:"1px solid rgba(255,255,255,0.05)",display:"flex",alignItems:"center",justifyContent:"space-between",cursor:"pointer"}}>
                 <div style={{display:"flex",alignItems:"center",gap:12}}>
-                  <img src={p.icono} alt="" style={{width:28,height:28,objectFit:"contain"}} />
+                  <span style={{width:28,height:28,display:"flex",alignItems:"center",justifyContent:"center"}}>{p.icono}</span>
                   <span style={{fontSize:14,color:MID}}>{p.accion}</span>
                 </div>
                 <span style={{fontSize:18,fontWeight:800,color:p.puntos.includes("-")?"#ef4444":GOLD}}>
@@ -491,11 +492,11 @@ export default function FantasyPage() {
                 <div style={{position:"absolute",top:16,right:16,padding:"4px 12px",borderRadius:12,background:BG3,fontSize:11,color:GOLD,fontWeight:700}}>
                   {chip.usos}
                 </div>
-                <img src={chip.icono} alt="" style={{width:64,height:64,objectFit:"contain",marginBottom:16}} />
+                <span style={{width:64,height:64,display:"flex",alignItems:"center",justifyContent:"center",marginBottom:16}}><svg viewBox="0 0 24 24" fill="none" width="64" height="64">{(chip.icono as React.ReactElement).props.children}</svg></span>
                 <h3 style={{fontSize:20,fontWeight:800,marginBottom:12}}>{chip.nombre}</h3>
                 <p style={{fontSize:14,color:MID,lineHeight:1.7,marginBottom:16}}>{chip.desc}</p>
                 <div style={{padding:12,borderRadius:8,background:BG3,fontSize:12,color:GOLD}}>
-                  <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/ia coach.png" alt="" style={{width:16,height:16,objectFit:"contain",display:"inline-block",verticalAlign:"middle",marginRight:4}} /> <strong>{fT.comodinCuando}</strong> {chip.cuando}
+                  <span style={{width:16,height:16,display:"inline-flex",alignItems:"center",justifyContent:"center",verticalAlign:"middle",marginRight:4}}>{ICON_V3.iaCoach}</span> <strong>{fT.comodinCuando}</strong> {chip.cuando}
                 </div>
               </div>
             ))}
@@ -507,7 +508,7 @@ export default function FantasyPage() {
       <section data-duelos-section style={{padding:"60px 20px"}}>
         <div style={{maxWidth:800,margin:"0 auto",textAlign:"center"}}>
           <div data-duelos-card style={{padding:40,borderRadius:24,background:`linear-gradient(135deg,${GOLD}10,transparent)`,border:`1px solid ${GOLD}30`}}>
-            <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/micro-predicciones.png" alt="" style={{width:64,height:64,objectFit:"contain",marginBottom:16}} />
+            <span style={{width:64,height:64,display:"flex",alignItems:"center",justifyContent:"center",marginBottom:16,margin:"0 auto 16px"}}><svg viewBox="0 0 24 24" fill="none" width="64" height="64">{ICON_V3.microPred.props.children}</svg></span>
             <h2 style={{fontSize:"clamp(24px,4vw,36px)",fontWeight:800,marginBottom:16}}>
               {fT.duelosTitle} <span style={{color:GOLD}}>1vs1</span>
             </h2>

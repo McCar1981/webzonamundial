@@ -27,6 +27,7 @@ function buildNav(t: Translations) {
       { id: "modoCarrera",  label: t.nav.modoCarrera,  href: "/app/modo-carrera" },
       { id: "ligas",        label: t.nav.ligas,        href: "/app/ligas" },
       { id: "streaming",    label: t.nav.streaming,    href: "/app/streaming" },
+      { id: "album",        label: t.nav.album,        href: "/app/album" },
     ]},
     { id: "noticias",   label: t.nav.noticias,   href: "/noticias" },
     { id: "blog",       label: t.nav.blog,        href: "/blog" },
@@ -63,10 +64,12 @@ function buildFooterLinks(t: Translations) {
       { label: t.footer.streaming,   href: "/app/streaming" },
     ],
     [t.footer.legal]: [
-      { label: t.footer.terminos,   href: "/legal/terminos" },
-      { label: t.footer.privacidad, href: "/legal/privacidad" },
-      { label: t.footer.cookies,    href: "/legal/cookies" },
-      { label: t.footer.contacto,   href: "/contacto" },
+      { label: t.footer.avisoLegal,  href: "/legal/aviso-legal" },
+      { label: t.footer.terminos,    href: "/legal/terminos" },
+      { label: t.footer.privacidad,  href: "/legal/privacidad" },
+      { label: t.footer.cookies,     href: "/legal/cookies" },
+      { label: t.footer.eula,        href: "/legal/eula" },
+      { label: t.footer.contacto,    href: "/contacto" },
     ],
   };
 }
@@ -370,11 +373,11 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
         </nav>
       </div>
 
-      {/* ═══ LATERAL ADS — Desktop only, todas las páginas, estáticas arriba ═══ */}
+      {/* ═══ LATERAL ADS — Desktop only, fixed en los laterales fuera del contenido ═══ */}
       <a href="https://rotulemos.com" target="_blank" rel="noopener noreferrer"
         className="lateral-ad lateral-ad-left"
         style={{
-          position:"absolute",top:220,left:16,zIndex:40,
+          position:"fixed",top:100,zIndex:40,
           display:"none",
         }}>
         <img src="/img/imagenessilviu/rotulemos120x600.png" alt="Rotulemos - Publicidad" style={{width:160,height:"auto",borderRadius:14,boxShadow:"0 4px 24px rgba(0,0,0,0.4)"}} />
@@ -382,7 +385,7 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
       <a href="#" target="_blank" rel="noopener noreferrer"
         className="lateral-ad lateral-ad-right"
         style={{
-          position:"absolute",top:220,right:16,zIndex:40,
+          position:"fixed",top:100,zIndex:40,
           display:"none",
         }}>
         <img src="/img/imagenessilviu/ChatGPT Image 8 abr 2026, 04_49_43 p.m..png" alt="Publicidad" style={{width:160,height:"auto",borderRadius:14,boxShadow:"0 4px 24px rgba(0,0,0,0.4)"}} />
@@ -437,8 +440,10 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
         .cta-desktop { display: inline-flex; }
         .hamburger-btn { display: none; }
         .lang-toggle { display: flex; }
-        @media(min-width:1500px) {
+        @media(min-width:1600px) {
           .lateral-ad { display: block !important; }
+          .lateral-ad-left { left: calc((100vw - 1200px) / 2 - 184px); }
+          .lateral-ad-right { right: calc((100vw - 1200px) / 2 - 184px); }
         }
         @media(max-width:768px) {
           .desktop-nav { display: none !important; }

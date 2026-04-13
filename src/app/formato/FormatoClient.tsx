@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/i18n/LanguageContext';
+import { ICON_V3, ICON_DESCUBRE } from '@/components/icons';
 
 const FORMAT_2026 = { teams: 48, groups: 12, matches: 104, venues: 16, days: 39 };
 
@@ -22,13 +23,13 @@ const COMPARISON_NEW = [
   { key: 'nuevaRonda', value: '32avos de final', highlight: true },
 ];
 
-const IMG = "/img/zonamundial-images/imagenes/logos para sustuir emojis";
+const TAB_ICONS = [ICON_DESCUBRE.formato, ICON_V3.predicciones, ICON_DESCUBRE.historia, ICON_V3.rankings] as const;
 
 const TABS = [
-  { id: 'resumen', icon: `${IMG}/formato 2026.png` },
-  { id: 'como', icon: `${IMG}/predicciones.png` },
-  { id: 'fases', icon: `${IMG}/historia.png` },
-  { id: 'debate', icon: `${IMG}/ranking.png` },
+  { id: 'resumen' },
+  { id: 'como' },
+  { id: 'fases' },
+  { id: 'debate' },
 ] as const;
 
 type TabId = typeof TABS[number]['id'];
@@ -46,12 +47,12 @@ export default function FormatoClient() {
     : { resumen: 'Resumen', como: 'Cómo funciona', fases: 'Fases', debate: 'Pros y Contras' };
 
   const stats = [
-    { value: FORMAT_2026.teams, label: fT.stats.selecciones, icon: `${IMG}/48 selecciones.png` },
-    { value: FORMAT_2026.groups, label: fT.stats.grupos, icon: `${IMG}/los 12 grupos.png` },
-    { value: FORMAT_2026.matches, label: fT.stats.partidos, icon: `${IMG}/match center.png` },
-    { value: FORMAT_2026.venues, label: fT.stats.sedes, icon: `${IMG}/match center.png` },
-    { value: FORMAT_2026.days, label: fT.stats.dias, icon: `${IMG}/formato 2026.png` },
-    { value: "3", label: fT.stats.paises, icon: `${IMG}/48 selecciones.png` },
+    { value: FORMAT_2026.teams, label: fT.stats.selecciones, icon: ICON_DESCUBRE.selecciones },
+    { value: FORMAT_2026.groups, label: fT.stats.grupos, icon: ICON_DESCUBRE.grupos },
+    { value: FORMAT_2026.matches, label: fT.stats.partidos, icon: ICON_V3.matchCenter },
+    { value: FORMAT_2026.venues, label: fT.stats.sedes, icon: ICON_V3.streaming },
+    { value: FORMAT_2026.days, label: fT.stats.dias, icon: ICON_V3.microPred },
+    { value: "3" as any, label: fT.stats.paises, icon: ICON_DESCUBRE.selecciones },
   ];
 
   return (
@@ -92,7 +93,7 @@ export default function FormatoClient() {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
           {stats.map((stat, i) => (
             <div key={i} className="p-4 rounded-xl border border-white/5 bg-[#0F1D32]/80 text-center hover:border-[#C9A84C]/30 transition-all duration-300">
-              <img src={stat.icon} alt="" className="w-8 h-8 object-contain mx-auto mb-2" />
+              <span className="block w-8 h-8 mx-auto mb-2">{stat.icon}</span>
               <div className="text-2xl sm:text-3xl font-black text-[#C9A84C] mb-1">{stat.value}</div>
               <div className="text-xs text-gray-500">{stat.label}</div>
             </div>
@@ -112,7 +113,7 @@ export default function FormatoClient() {
                 : 'bg-[#0F1D32] border border-white/5 text-gray-400 hover:border-white/10 hover:text-white'
             }`}
           >
-            <img src={tab.icon} alt="" className="w-5 h-5 object-contain" />
+            <span className="w-5 h-5 flex-shrink-0">{TAB_ICONS[TABS.indexOf(tab)]}</span>
             {tabLabels[tab.id]}
           </button>
         ))}
@@ -126,7 +127,7 @@ export default function FormatoClient() {
           <section className="animate-in fade-in">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#C9A84C]/20 to-[#C9A84C]/5 flex items-center justify-center border border-[#C9A84C]/20">
-                <img src={`${IMG}/formato 2026.png`} alt="" className="w-8 h-8 object-contain" />
+                <span className="w-8 h-8">{ICON_DESCUBRE.formato}</span>
               </div>
               <div>
                 <h2 className="text-xl sm:text-2xl font-bold text-white">{fT.antesAhora}</h2>
@@ -171,8 +172,8 @@ export default function FormatoClient() {
             {/* Fase de grupos */}
             <div className="p-6 sm:p-8 rounded-2xl border border-white/5 bg-[#0F1D32]/80">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#C9A84C] to-[#E8D48B] flex items-center justify-center">
-                  <img src={`${IMG}/los 12 grupos.png`} alt="" className="w-7 h-7 object-contain" />
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#C9A84C] to-[#E8D48B] flex items-center justify-center p-2">
+                  <span className="w-7 h-7">{ICON_DESCUBRE.grupos}</span>
                 </div>
                 <h3 className="text-xl font-bold text-white">{fT.faseGrupos}</h3>
               </div>
@@ -190,8 +191,8 @@ export default function FormatoClient() {
             {/* Eliminatoria */}
             <div className="p-6 sm:p-8 rounded-2xl border border-white/5 bg-[#0F1D32]/80">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#C9A84C] to-[#E8D48B] flex items-center justify-center">
-                  <img src={`${IMG}/predicciones.png`} alt="" className="w-7 h-7 object-contain" />
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#C9A84C] to-[#E8D48B] flex items-center justify-center p-2">
+                  <span className="w-7 h-7">{ICON_V3.predicciones}</span>
                 </div>
                 <h3 className="text-xl font-bold text-white">{fT.eliminatoria}</h3>
               </div>
@@ -213,7 +214,7 @@ export default function FormatoClient() {
           <section className="animate-in fade-in">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500/20 to-purple-600/5 flex items-center justify-center border border-purple-500/20">
-                <img src={`${IMG}/historia.png`} alt="" className="w-8 h-8 object-contain" />
+                <span className="w-8 h-8">{ICON_DESCUBRE.historia}</span>
               </div>
               <div>
                 <h2 className="text-xl sm:text-2xl font-bold text-white">{fT.fasesTorneo}</h2>
@@ -226,7 +227,7 @@ export default function FormatoClient() {
                   <div className="flex items-center gap-3 mb-3">
                     <div className={`w-10 h-10 rounded-full flex items-center justify-center text-base flex-shrink-0 ${i === fT.phases.length - 1 ? 'bg-gradient-to-br from-[#C9A84C] to-[#E8D48B]' : 'bg-[#0B1825] border border-[#C9A84C]/20'}`}>
                       {i === fT.phases.length - 1
-                        ? <img src={`${IMG}/historia.png`} alt="" className="w-5 h-5 object-contain" />
+                        ? <span className="w-5 h-5">{ICON_V3.fantasy}</span>
                         : <span className="text-[#C9A84C] font-bold text-sm">{i + 1}</span>
                       }
                     </div>
@@ -254,7 +255,7 @@ export default function FormatoClient() {
             <div>
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-emerald-600/5 flex items-center justify-center border border-emerald-500/20">
-                  <img src={`${IMG}/ranking.png`} alt="" className="w-8 h-8 object-contain" />
+                  <span className="w-8 h-8">{ICON_V3.rankings}</span>
                 </div>
                 <div>
                   <h2 className="text-xl sm:text-2xl font-bold text-white">{fT.ventajas}</h2>
@@ -278,7 +279,7 @@ export default function FormatoClient() {
             <div>
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-red-500/20 to-red-600/5 flex items-center justify-center border border-red-500/20">
-                  <img src={`${IMG}/micro-predicciones.png`} alt="" className="w-8 h-8 object-contain" />
+                  <span className="w-8 h-8">{ICON_V3.microPred}</span>
                 </div>
                 <div>
                   <h2 className="text-xl sm:text-2xl font-bold text-white">{fT.criticas}</h2>
@@ -304,12 +305,12 @@ export default function FormatoClient() {
       {/* CTAs */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10">
         <Link href="/grupos" className="p-6 rounded-2xl border border-[#C9A84C]/20 bg-gradient-to-br from-[#C9A84C]/10 to-transparent text-center hover:border-[#C9A84C]/40 transition-all duration-300 group">
-          <img src={`${IMG}/los 12 grupos.png`} alt="" className="w-10 h-10 object-contain mx-auto mb-3 group-hover:scale-110 transition-transform" />
+          <span className="block w-10 h-10 mx-auto mb-3 group-hover:scale-110 transition-transform">{ICON_DESCUBRE.grupos}</span>
           <h3 className="text-lg font-bold text-white mb-2">{fT.cta1Title}</h3>
           <p className="text-sm text-gray-400">{fT.cta1Desc}</p>
         </Link>
         <Link href="/registro" className="p-6 rounded-2xl border border-white/10 bg-[#0F1D32] text-center hover:border-[#C9A84C]/30 transition-all duration-300 group">
-          <img src={`${IMG}/unete ahora.png`} alt="" className="w-10 h-10 object-contain mx-auto mb-3 group-hover:scale-110 transition-transform" />
+          <span className="block w-10 h-10 mx-auto mb-3 group-hover:scale-110 transition-transform">{ICON_DESCUBRE.unete}</span>
           <h3 className="text-lg font-bold text-white mb-2">{fT.cta2Title}</h3>
           <p className="text-sm text-gray-400">{fT.cta2Desc}</p>
         </Link>

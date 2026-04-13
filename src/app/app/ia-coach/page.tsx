@@ -2,8 +2,13 @@
 
 import Link from "next/link";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { ICON_V3 } from "@/components/icons";
 
 const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a";
+
+const Icon = ({ icon, size = 24 }: { icon: React.ReactNode; size?: number }) => (
+  <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: size, height: size, flexShrink: 0 }}>{icon}</span>
+);
 
 export default function IACoachPage() {
   const { t } = useLanguage(); const iT = t.iaCoachPage;
@@ -43,12 +48,12 @@ export default function IACoachPage() {
   ];
 
   const iaFeatures = [
-    { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png", title: iT.feat1Title, desc: iT.feat1Desc },
-    { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png", title: iT.feat2Title, desc: iT.feat2Desc },
-    { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png", title: iT.feat3Title, desc: iT.feat3Desc },
-    { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png", title: iT.feat4Title, desc: iT.feat4Desc },
-    { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png", title: iT.feat5Title, desc: iT.feat5Desc },
-    { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/ia coach.png", title: iT.feat6Title, desc: iT.feat6Desc },
+    { icon: ICON_V3.predicciones, title: iT.feat1Title, desc: iT.feat1Desc },
+    { icon: ICON_V3.rankings, title: iT.feat2Title, desc: iT.feat2Desc },
+    { icon: ICON_V3.predicciones, title: iT.feat3Title, desc: iT.feat3Desc },
+    { icon: ICON_V3.predicciones, title: iT.feat4Title, desc: iT.feat4Desc },
+    { icon: ICON_V3.rankings, title: iT.feat5Title, desc: iT.feat5Desc },
+    { icon: ICON_V3.iaCoach, title: iT.feat6Title, desc: iT.feat6Desc },
   ];
 
   return (
@@ -90,12 +95,12 @@ export default function IACoachPage() {
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                 {[
-                  { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png", text: iT.iaBullet1 },
-                  { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png", text: iT.iaBullet2 },
-                  { icon: "/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png", text: iT.iaBullet3 },
+                  { icon: ICON_V3.predicciones, text: iT.iaBullet1 },
+                  { icon: ICON_V3.rankings, text: iT.iaBullet2 },
+                  { icon: ICON_V3.predicciones, text: iT.iaBullet3 },
                 ].map((item, i) => (
                   <div key={i} style={{ display: "flex", alignItems: "center", gap: 12, fontSize: 15 }}>
-                    <img src={item.icon} alt="" style={{ width: 20, height: 20 }} />
+                    <Icon icon={item.icon} size={20} />
                     {item.text}
                   </div>
                 ))}
@@ -127,7 +132,7 @@ export default function IACoachPage() {
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 48 }}>
             <h2 style={{ fontSize: "clamp(24px,4vw,36px)", fontWeight: 800 }}>
-              <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/ia coach.png" alt="" style={{ width: 32, height: 32, display: "inline-block", verticalAlign: "middle" }} /> {iT.howTitle} <span style={{ color: GOLD }}>{iT.howTitleHighlight}</span>
+              <Icon icon={ICON_V3.iaCoach} size={32} /> {iT.howTitle} <span style={{ color: GOLD }}>{iT.howTitleHighlight}</span>
             </h2>
           </div>
 
@@ -215,7 +220,7 @@ export default function IACoachPage() {
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 48 }}>
             <h2 style={{ fontSize: "clamp(24px,4vw,36px)", fontWeight: 800 }}>
-              <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png" alt="" style={{ width: 32, height: 32, display: "inline-block", verticalAlign: "middle" }} /> {iT.featSectionTitle} <span style={{ color: GOLD }}>{iT.featSectionTitleHighlight}</span>
+              <Icon icon={ICON_V3.rankings} size={32} /> {iT.featSectionTitle} <span style={{ color: GOLD }}>{iT.featSectionTitleHighlight}</span>
             </h2>
           </div>
 
@@ -226,7 +231,7 @@ export default function IACoachPage() {
                 border: "1px solid rgba(255,255,255,0.05)",
                 display: "flex", flexDirection: "column"
               }}>
-                <div style={{ marginBottom: 16 }}><img src={feature.icon} alt="" style={{ width: 40, height: 40 }} /></div>
+                <div style={{ marginBottom: 16 }}><Icon icon={feature.icon} size={40} /></div>
                 <h3 style={{ fontWeight: 700, fontSize: 18, marginBottom: 12 }}>{feature.title}</h3>
                 <p style={{ fontSize: 14, color: DIM, lineHeight: 1.6, flex: 1 }}>{feature.desc}</p>
               </div>
@@ -240,7 +245,7 @@ export default function IACoachPage() {
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 40 }}>
             <h2 style={{ fontSize: "clamp(24px,4vw,36px)", fontWeight: 800 }}>
-              <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/chat en vivo.png" alt="" style={{ width: 32, height: 32, display: "inline-block", verticalAlign: "middle" }} /> {iT.exampleTitle} <span style={{ color: GOLD }}>{iT.exampleTitleHighlight}</span>
+              <Icon icon={ICON_V3.chat} size={32} /> {iT.exampleTitle} <span style={{ color: GOLD }}>{iT.exampleTitleHighlight}</span>
             </h2>
           </div>
 
@@ -256,7 +261,7 @@ export default function IACoachPage() {
                 display: "flex", alignItems: "center", justifyContent: "center",
                 flexShrink: 0, overflow: "hidden"
               }}>
-                <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/creadores.png" alt="" style={{ width: 28, height: 28 }} />
+                <Icon icon={ICON_V3.creadores} size={28} />
               </div>
               <div style={{
                 padding: "16px 20px", borderRadius: 16,
@@ -278,7 +283,7 @@ export default function IACoachPage() {
                 display: "flex", alignItems: "center", justifyContent: "center",
                 flexShrink: 0, overflow: "hidden"
               }}>
-                <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/ia coach.png" alt="" style={{ width: 28, height: 28 }} />
+                <Icon icon={ICON_V3.iaCoach} size={28} />
               </div>
               <div style={{
                 padding: "20px 24px", borderRadius: 16,
@@ -321,7 +326,7 @@ export default function IACoachPage() {
             border: "1px solid rgba(251,191,36,0.3)",
             display: "flex", gap: 16, alignItems: "flex-start"
           }}>
-            <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png" alt="" style={{ width: 28, height: 28, flexShrink: 0 }} />
+            <Icon icon={ICON_V3.predicciones} size={28} />
             <div>
               <h4 style={{ fontWeight: 700, fontSize: 15, color: "#fbbf24", marginBottom: 8 }}>{iT.disclaimerTitle}</h4>
               <p style={{ fontSize: 14, color: MID, lineHeight: 1.6, fontStyle: "italic" }}>
@@ -335,7 +340,7 @@ export default function IACoachPage() {
       {/* CTA */}
       <section style={{ padding: "80px 20px", textAlign: "center", background: BG3 }}>
         <div style={{ maxWidth: 600, margin: "0 auto" }}>
-          <div style={{ marginBottom: 24 }}><img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/predicciones.png" alt="" style={{ width: 48, height: 48, margin: "0 auto" }} /></div>
+          <div style={{ marginBottom: 24, display: "flex", justifyContent: "center" }}><Icon icon={ICON_V3.predicciones} size={48} /></div>
           <h2 style={{ fontSize: "clamp(24px,4vw,36px)", fontWeight: 800, marginBottom: 16 }}>
             {iT.ctaFinalTitle} <span style={{ color: GOLD }}>{iT.ctaFinalTitleHighlight}</span>
           </h2>

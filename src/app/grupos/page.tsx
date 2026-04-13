@@ -1,21 +1,19 @@
 'use client';
 // src/app/grupos/page.tsx
-// ZonaMundial.app — Índice de los 12 grupos con animaciones GSAP
+// ZonaMundial.app — Índice de los 12 grupos
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SELECCIONES, getSeleccionesByGrupo } from '@/data/selecciones';
 import { useLanguage } from '@/i18n/LanguageContext';
+import { MATCHES } from '@/data/matches';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const BG = "#060B14";
-const BG2 = "#0F1D32";
 const BG3 = "#0B1825";
-const GOLD = "#c9a84c";
-const GOLD2 = "#e8d48b";
 
 const TAG_STYLES: Record<string, { color: string; bg: string; icon?: string }> = {
   'A': { color: '#22c55e', bg: 'rgba(34,197,94,0.15)',   icon: '/img/zonamundial-images/imagenes/logos para sustuir emojis/48 selecciones.png' },
@@ -23,13 +21,55 @@ const TAG_STYLES: Record<string, { color: string; bg: string; icon?: string }> =
   'C': { color: '#22c55e', bg: 'rgba(34,197,94,0.15)',   icon: '/img/imagenessilviu/balondefutbol.png' },
   'D': { color: '#22c55e', bg: 'rgba(34,197,94,0.15)',   icon: '/img/zonamundial-images/imagenes/logos para sustuir emojis/48 selecciones.png' },
   'E': { color: '#fbbf24', bg: 'rgba(251,191,36,0.15)',  icon: '/img/imagenessilviu/balondefutbol.png' },
+  'F': { color: '#f97316', bg: 'rgba(249,115,22,0.15)',  icon: '/img/imagenessilviu/balondefutbol.png' },
   'G': { color: '#ef4444', bg: 'rgba(239,68,68,0.15)',   icon: '/img/zonamundial-images/imagenes/logos para sustuir emojis/micro-predicciones.png' },
   'H': { color: '#c9a84c', bg: 'rgba(201,168,76,0.15)',  icon: '/img/imagenessilviu/balondefutbol.png' },
   'I': { color: '#3b82f6', bg: 'rgba(59,130,246,0.15)',  icon: '/img/imagenessilviu/balondefutbol.png' },
-  'J': { color: '#38bdf8', bg: 'rgba(56,189,248,0.15)',  icon: '/img/zonamundial-images/imagenas/logos para sustuir emojis/ranking.png' },
+  'J': { color: '#38bdf8', bg: 'rgba(56,189,248,0.15)',  icon: '/img/zonamundial-images/imagenes/logos para sustuir emojis/ranking.png' },
   'K': { color: '#a855f7', bg: 'rgba(168,85,247,0.15)',  icon: '/img/zonamundial-images/imagenes/logos para sustuir emojis/modo carrera.png' },
   'L': { color: '#94a3b8', bg: 'rgba(148,163,184,0.15)', icon: '/img/zonamundial-images/imagenes/logos para sustuir emojis/historia.png' },
 };
+
+function formatDate(dateStr: string, locale: string) {
+  const d = new Date(dateStr + 'T00:00:00');
+  return d.toLocaleDateString(locale === 'en' ? 'en-US' : 'es-ES', { day: 'numeric', month: 'short' });
+}
+
+// Mini fixture de 6 partidos para cada grupo
+function MiniFixture({ letra, locale }: { letra: string; locale: string }) {
+  const matches = MATCHES.filter((m) => m.g === letra);
+  if (matches.length === 0) return null;
+
+  return (
+    <div className="mt-6">
+      <h4 className="text-sm font-bold uppercase tracking-wider text-[#c9a84c] mb-3">{locale === 'en' ? 'Group fixtures' : 'Fixture del grupo'}</h4>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {matches.map((m) => (
+          <div
+            key={m.i}
+            className="rounded-xl border border-white/5 bg-[#060B14] p-3 transition hover:border-[#c9a84c]/20"
+          >
+            <div className="flex items-center justify-between gap-2 mb-2">
+              <div className="flex items-center gap-2 min-w-0">
+                <img src={`https://flagcdn.com/w20/${m.hf}.png`} alt={m.h} className="w-5 h-3.5 object-cover rounded" />
+                <span className="text-sm font-semibold text-white truncate">{m.h}</span>
+              </div>
+              <span className="text-[10px] text-[#6a7a9a]">VS</span>
+              <div className="flex items-center gap-2 min-w-0 justify-end">
+                <span className="text-sm font-semibold text-white truncate">{m.a}</span>
+                <img src={`https://flagcdn.com/w20/${m.af}.png`} alt={m.a} className="w-5 h-3.5 object-cover rounded" />
+              </div>
+            </div>
+            <div className="flex items-center justify-between text-[10px] text-[#6a7a9a]">
+              <span>{formatDate(m.d, locale)} · {m.t}</span>
+              <span className="truncate max-w-[60%]">{m.vc}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 // Componente de tarjeta de grupo
 function GrupoCard({ letra, index }: { letra: string; index: number }) {
@@ -48,117 +88,54 @@ function GrupoCard({ letra, index }: { letra: string; index: number }) {
     const card = cardRef.current;
     const tagEl = tagRef.current;
     const teamsEl = teamsRef.current;
-    
+
     if (!card) return;
 
-    // Animación de entrada inmediata al cargar la página
     gsap.fromTo(card,
       { opacity: 0, y: 50, scale: 0.95 },
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.6,
-        delay: 0.2 + index * 0.08,
-        ease: "power3.out"
-      }
+      { opacity: 1, y: 0, scale: 1, duration: 0.6, delay: 0.2 + index * 0.08, ease: "power3.out" }
     );
 
-    // Animación del tag
     if (tagEl) {
       gsap.fromTo(tagEl,
         { opacity: 0, x: 20 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.4,
-          delay: 0.5 + index * 0.08,
-          ease: "power2.out"
-        }
+        { opacity: 1, x: 0, duration: 0.4, delay: 0.5 + index * 0.08, ease: "power2.out" }
       );
     }
 
-    // Animación de equipos con stagger
     if (teamsEl) {
       const teams = teamsEl.querySelectorAll('.team-item');
       gsap.fromTo(teams,
         { opacity: 0, x: -20 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.4,
-          stagger: 0.1,
-          delay: 0.6 + index * 0.08,
-          ease: "power2.out"
-        }
+        { opacity: 1, x: 0, duration: 0.4, stagger: 0.1, delay: 0.6 + index * 0.08, ease: "power2.out" }
       );
     }
-
-    // Hover effect con GSAP
-    const handleMouseEnter = () => {
-      gsap.to(card, {
-        y: -8,
-        scale: 1.02,
-        duration: 0.3,
-        ease: "power2.out"
-      });
-      
-      if (isHighlight) {
-        gsap.to(card, {
-          boxShadow: "0 20px 40px rgba(239,68,68,0.3)",
-          duration: 0.3
-        });
-      } else {
-        gsap.to(card, {
-          boxShadow: "0 20px 40px rgba(201,168,76,0.2)",
-          duration: 0.3
-        });
-      }
-    };
-
-    const handleMouseLeave = () => {
-      gsap.to(card, {
-        y: 0,
-        scale: 1,
-        boxShadow: "0 0 0 rgba(0,0,0,0)",
-        duration: 0.3,
-        ease: "power2.out"
-      });
-    };
-
-    card.addEventListener('mouseenter', handleMouseEnter);
-    card.addEventListener('mouseleave', handleMouseLeave);
-
-    return () => {
-      card.removeEventListener('mouseenter', handleMouseEnter);
-      card.removeEventListener('mouseleave', handleMouseLeave);
-    };
-  }, [index, isHighlight]);
+  }, [index]);
 
   return (
     <Link
       ref={cardRef}
       href={`/grupos/grupo-${letra.toLowerCase()}`}
-      className={`group relative block rounded-2xl overflow-hidden ${
-        isHighlight 
-          ? 'border-2 border-red-500/50' 
-          : 'border border-white/5'
+      className={`group relative block rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 ${
+        isHighlight
+          ? 'border-2 border-red-500/50 hover:shadow-[0_8px_32px_rgba(239,68,68,0.25)]'
+          : 'border border-white/5 hover:shadow-[0_8px_32px_rgba(201,168,76,0.15)]'
       }`}
-      style={{ 
-        background: isHighlight 
+      style={{
+        background: isHighlight
           ? 'linear-gradient(135deg, rgba(239,68,68,0.1), rgba(15,23,42,0.8))'
           : BG3
       }}
     >
       {/* Tag */}
       {tag && (
-        <div 
+        <div
           ref={tagRef}
           className="absolute top-0 right-0 px-3 py-1.5 rounded-bl-xl text-[10px] font-black tracking-wider z-10 flex items-center gap-1"
-          style={{ 
-            background: tag.bg, 
-            color: tag.color, 
-            borderLeft: `1px solid ${tag.color}30`, 
+          style={{
+            background: tag.bg,
+            color: tag.color,
+            borderLeft: `1px solid ${tag.color}30`,
             borderBottom: `1px solid ${tag.color}30`
           }}
         >
@@ -170,12 +147,12 @@ function GrupoCard({ letra, index }: { letra: string; index: number }) {
       <div className="p-5">
         {/* Header */}
         <div className="flex items-center gap-4 mb-5">
-          <div 
+          <div
             className={`w-14 h-14 rounded-xl flex items-center justify-center font-black text-2xl ${
               isHighlight ? 'bg-red-500/20 text-red-400 border border-red-500/30' : ''
             }`}
-            style={!isHighlight ? { 
-              background: 'linear-gradient(135deg, rgba(201,168,76,0.2), rgba(201,168,76,0.05))', 
+            style={!isHighlight ? {
+              background: 'linear-gradient(135deg, rgba(201,168,76,0.2), rgba(201,168,76,0.05))',
               color: '#c9a84c',
               border: '1px solid rgba(201,168,76,0.3)'
             } : {}}
@@ -198,7 +175,7 @@ function GrupoCard({ letra, index }: { letra: string; index: number }) {
               href={`/selecciones/${team.slug}`}
               className="team-item flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors cursor-pointer"
             >
-              <img 
+              <img
                 src={`https://flagcdn.com/w40/${team.flagCode}.png`}
                 alt={team.nombre}
                 className="w-7 h-5 object-cover rounded shadow-md"
@@ -232,7 +209,7 @@ function GrupoCard({ letra, index }: { letra: string; index: number }) {
 
       {/* Glow effect on hover */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#c9a84c]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-      
+
       {/* Highlight pulse effect */}
       {isHighlight && (
         <div className="absolute inset-0 border-2 border-red-500/30 rounded-2xl animate-pulse pointer-events-none" />
@@ -241,126 +218,94 @@ function GrupoCard({ letra, index }: { letra: string; index: number }) {
   );
 }
 
-// Componente de descripción de grupo
-function GrupoDescripcion({ letra, index }: { letra: string; index: number }) {
-  const { t } = useLanguage();
+// Componente de contenido de tab de grupo
+function GrupoTabContent({ letra }: { letra: string }) {
+  const { t, locale } = useLanguage();
   const gT = t.grupos;
-  const descRef = useRef<HTMLDivElement>(null);
-  const flagsRef = useRef<HTMLDivElement>(null);
   const selecciones = getSeleccionesByGrupo(letra);
   const descripcion = gT.descriptions[letra as keyof typeof gT.descriptions];
   const isHighlight = ['C', 'I'].includes(letra);
+  const analysis = gT.detailedAnalysis ? gT.detailedAnalysis[letra as keyof typeof gT.detailedAnalysis] : null;
+  const labels = gT.analysisLabels;
 
-  useEffect(() => {
-    const desc = descRef.current;
-    const flags = flagsRef.current;
-    
-    if (!desc) return;
-
-    // Animación de entrada inmediata
-    gsap.fromTo(desc,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-        delay: 0.3 + index * 0.05,
-        ease: "power2.out"
-      }
-    );
-
-    // Animación de banderas
-    if (flags) {
-      const flagItems = flags.querySelectorAll('.flag-item');
-      gsap.fromTo(flagItems,
-        { opacity: 0, scale: 0.8 },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.3,
-          stagger: 0.05,
-          delay: 0.5 + index * 0.05,
-          ease: "back.out(1.7)"
-        }
-      );
-    }
-  }, [index]);
+  const sections = analysis ? [
+    { key: 'keyMatchups', label: labels.keyMatchups, color: '#ef4444', icon: 'M12 2L2 12h3v8h14v-8h3L12 2z' },
+    { key: 'favorites', label: labels.favorites, color: '#c9a84c', icon: 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z' },
+    { key: 'darkHorses', label: labels.darkHorses, color: '#a855f7', icon: 'M13 10V3L4 14h7v7l9-11h-7z' },
+    { key: 'keyPlayers', label: labels.keyPlayers, color: '#3b82f6', icon: 'M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z' },
+    { key: 'history', label: labels.history, color: '#f59e0b', icon: 'M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z' },
+  ] : [];
 
   return (
-    <div 
-      ref={descRef}
-      className={`p-5 rounded-xl border transition-all hover:border-[#c9a84c]/30 ${
+    <div
+      className={`p-5 md:p-6 rounded-2xl border transition-all ${
         isHighlight ? 'border-red-500/30 bg-gradient-to-br from-red-500/5 to-transparent' : 'border-white/5 bg-[#0B1825]'
       }`}
     >
-      <div className="flex items-center gap-3 mb-4">
-        <div 
-          className={`w-10 h-10 rounded-lg flex items-center justify-center font-black text-lg ${
-            isHighlight ? 'bg-red-500/20 text-red-400 border border-red-500/30' : 'bg-[#c9a84c]/10 text-[#c9a84c]'
-          }`}
-        >
-          {letra}
-        </div>
-        <h3 className="text-lg font-bold text-white">{t.ui.grupo} {letra}</h3>
-      </div>
+      <div className="flex flex-col md:flex-row md:items-start gap-6">
+        <div className="flex-1">
+          <div className="flex items-center gap-3 mb-4">
+            <div
+              className={`w-12 h-12 rounded-xl flex items-center justify-center font-black text-xl ${
+                isHighlight ? 'bg-red-500/20 text-red-400 border border-red-500/30' : 'bg-[#c9a84c]/10 text-[#c9a84c]'
+              }`}
+            >
+              {letra}
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-white">{t.ui.grupo} {letra}</h3>
+              <p className="text-sm text-[#6a7a9a]">{descripcion}</p>
+            </div>
+          </div>
 
-      {/* Banderas */}
-      <div ref={flagsRef} className="flex flex-wrap gap-2 mb-4">
-        {selecciones.map((team) => (
-          <Link
-            key={team.slug}
-            href={`/selecciones/${team.slug}`}
-            className="flag-item flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-[#060B14] border border-white/5 hover:border-[#c9a84c]/30 transition-all"
-           
-          >
-            <img 
-              src={`https://flagcdn.com/w20/${team.flagCode}.png`}
-              alt={team.nombre}
-              className="w-5 h-3.5 object-cover rounded"
-            />
-            <span className="text-xs text-[#CBD5E1] hover:text-[#c9a84c]">{team.nombre}</span>
-          </Link>
-        ))}
-      </div>
-
-      <p className="text-sm text-gray-400 leading-relaxed mb-4">{descripcion}</p>
-
-      {/* Análisis detallado */}
-      {gT.detailedAnalysis && gT.detailedAnalysis[letra as keyof typeof gT.detailedAnalysis] && (() => {
-        const analysis = gT.detailedAnalysis[letra as keyof typeof gT.detailedAnalysis];
-        const labels = gT.analysisLabels;
-        const sections = [
-          { key: 'keyMatchups', label: labels.keyMatchups, color: '#ef4444', icon: 'M12 2L2 12h3v8h14v-8h3L12 2z' },
-          { key: 'favorites', label: labels.favorites, color: '#c9a84c', icon: 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z' },
-          { key: 'darkHorses', label: labels.darkHorses, color: '#a855f7', icon: 'M13 10V3L4 14h7v7l9-11h-7z' },
-          { key: 'keyPlayers', label: labels.keyPlayers, color: '#3b82f6', icon: 'M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z' },
-          { key: 'history', label: labels.history, color: '#f59e0b', icon: 'M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z' },
-        ];
-        return (
-          <div className="space-y-3 pt-3 border-t border-white/5">
-            {sections.map(s => (
-              <div key={s.key} className="flex gap-3">
-                <div className="flex-shrink-0 mt-0.5">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill={s.color}><path d={s.icon}/></svg>
-                </div>
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: s.color }}>{s.label}</p>
-                  <p className="text-xs text-gray-400 leading-relaxed">{analysis[s.key as keyof typeof analysis]}</p>
-                </div>
-              </div>
+          {/* Banderas */}
+          <div className="flex flex-wrap gap-2 mb-5">
+            {selecciones.map((team) => (
+              <Link
+                key={team.slug}
+                href={`/selecciones/${team.slug}`}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#060B14] border border-white/5 hover:border-[#c9a84c]/30 transition-all"
+              >
+                <img
+                  src={`https://flagcdn.com/w20/${team.flagCode}.png`}
+                  alt={team.nombre}
+                  className="w-5 h-3.5 object-cover rounded"
+                />
+                <span className="text-xs text-[#CBD5E1] hover:text-[#c9a84c]">{team.nombre}</span>
+              </Link>
             ))}
           </div>
-        );
-      })()}
+
+          {/* Análisis detallado */}
+          {analysis && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {sections.map((s) => (
+                <div key={s.key} className="flex gap-3 p-3 rounded-xl bg-[#060B14]/60 border border-white/5">
+                  <div className="flex-shrink-0 mt-0.5">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill={s.color}><path d={s.icon}/></svg>
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: s.color }}>{s.label}</p>
+                    <p className="text-xs text-gray-400 leading-relaxed">{analysis[s.key as keyof typeof analysis]}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+
+      <MiniFixture letra={letra} locale={locale} />
     </div>
   );
 }
 
 export default function GruposIndex() {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
   const gT = t.grupos;
   const gruposLetras = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
-  
+  const [activeTab, setActiveTab] = useState('A');
+
   const heroRef = useRef<HTMLDivElement>(null);
   const breadcrumbRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -369,10 +314,10 @@ export default function GruposIndex() {
   const sectionTitleRef = useRef<HTMLDivElement>(null);
   const formatRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
+  const tabsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Animación del breadcrumb
       if (breadcrumbRef.current) {
         gsap.fromTo(breadcrumbRef.current,
           { opacity: 0, y: -20 },
@@ -380,7 +325,6 @@ export default function GruposIndex() {
         );
       }
 
-      // Animación del título
       if (titleRef.current) {
         gsap.fromTo(titleRef.current,
           { opacity: 0, y: 30, scale: 0.95 },
@@ -388,7 +332,6 @@ export default function GruposIndex() {
         );
       }
 
-      // Animación del subtítulo
       if (subtitleRef.current) {
         gsap.fromTo(subtitleRef.current,
           { opacity: 0, y: 20 },
@@ -396,89 +339,54 @@ export default function GruposIndex() {
         );
       }
 
-      // Animación de stats con stagger
       if (statsRef.current) {
         const statItems = statsRef.current.querySelectorAll('.stat-item');
         gsap.fromTo(statItems,
           { opacity: 0, y: 30, scale: 0.9 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.5,
-            stagger: 0.1,
-            ease: "back.out(1.7)",
-            delay: 0.5
-          }
+          { opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.1, ease: "back.out(1.7)", delay: 0.5 }
         );
       }
 
-      // Animación de títulos de sección
       if (sectionTitleRef.current) {
         gsap.fromTo(sectionTitleRef.current,
           { opacity: 0, x: -30 },
-          {
-            opacity: 1,
-            x: 0,
-            duration: 0.6,
-            ease: "power2.out",
-            delay: 0.1
-          }
+          { opacity: 1, x: 0, duration: 0.6, ease: "power2.out", delay: 0.1 }
         );
       }
 
-      // Animación de sección de formato
       if (formatRef.current) {
         gsap.fromTo(formatRef.current,
           { opacity: 0, y: 40 },
           {
-            opacity: 1,
-            y: 0,
-            duration: 0.7,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: formatRef.current,
-              start: "top 80%",
-              toggleActions: "play none none reverse"
-            }
+            opacity: 1, y: 0, duration: 0.7, ease: "power2.out",
+            scrollTrigger: { trigger: formatRef.current, start: "top 80%", toggleActions: "play none none reverse" }
           }
         );
 
-        // Animación de pasos del formato
         const steps = formatRef.current.querySelectorAll('.format-step');
         gsap.fromTo(steps,
           { opacity: 0, y: 30 },
           {
-            opacity: 1,
-            y: 0,
-            duration: 0.5,
-            stagger: 0.15,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: formatRef.current,
-              start: "top 75%",
-              toggleActions: "play none none reverse"
-            }
+            opacity: 1, y: 0, duration: 0.5, stagger: 0.15, ease: "power2.out",
+            scrollTrigger: { trigger: formatRef.current, start: "top 75%", toggleActions: "play none none reverse" }
           }
         );
       }
 
-      // Animación del CTA
       if (ctaRef.current) {
         gsap.fromTo(ctaRef.current,
           { opacity: 0, scale: 0.9, y: 50 },
           {
-            opacity: 1,
-            scale: 1,
-            y: 0,
-            duration: 0.8,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: ctaRef.current,
-              start: "top 85%",
-              toggleActions: "play none none reverse"
-            }
+            opacity: 1, scale: 1, y: 0, duration: 0.8, ease: "power3.out",
+            scrollTrigger: { trigger: ctaRef.current, start: "top 85%", toggleActions: "play none none reverse" }
           }
+        );
+      }
+
+      if (tabsRef.current) {
+        gsap.fromTo(tabsRef.current,
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.6, ease: "power2.out", delay: 0.3 }
         );
       }
     });
@@ -490,7 +398,7 @@ export default function GruposIndex() {
     <div style={{ background: BG, minHeight: '100vh' }}>
       {/* Schema */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        '@context': 'https://schema.org', 
+        '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://zonamundial.app' },
@@ -572,9 +480,9 @@ export default function GruposIndex() {
         </div>
       </section>
 
-      {/* Descripciones detalladas */}
-      <section className="max-w-6xl mx-auto px-4 mb-16">
-        <div className="flex items-center gap-4 mb-8">
+      {/* Análisis detallado con Tabs */}
+      <section ref={tabsRef} className="max-w-6xl mx-auto px-4 mb-16">
+        <div className="flex items-center gap-4 mb-6">
           <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#c9a84c]/20 to-[#c9a84c]/5 flex items-center justify-center border border-[#c9a84c]/20">
             <img src="/img/zonamundial-images/imagenes/logos para sustuir emojis/historia.png" alt="" className="w-8 h-8 object-contain" />
           </div>
@@ -584,11 +492,28 @@ export default function GruposIndex() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {gruposLetras.map((letra, index) => (
-            <GrupoDescripcion key={letra} letra={letra} index={index} />
-          ))}
+        {/* Tabs navegación */}
+        <div className="flex flex-wrap gap-2 mb-6">
+          {gruposLetras.map((letra) => {
+            const active = activeTab === letra;
+            return (
+              <button
+                key={letra}
+                onClick={() => setActiveTab(letra)}
+                className={`min-w-[2.5rem] rounded-xl px-3 py-2 text-sm font-bold transition-all border ${
+                  active
+                    ? 'bg-[#c9a84c]/15 text-[#c9a84c] border-[#c9a84c]/40'
+                    : 'bg-[#0B1825] text-[#8a94b0] border-white/10 hover:border-white/20 hover:text-white'
+                }`}
+              >
+                {letra}
+              </button>
+            );
+          })}
         </div>
+
+        {/* Contenido activo */}
+        <GrupoTabContent letra={activeTab} />
       </section>
 
       {/* Cómo funciona el formato */}

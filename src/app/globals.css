@@ -108,6 +108,15 @@ a:hover {
   }
 }
 
+@keyframes shimmer-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /* ══════ UTILITY CLASSES ══════ */
 @layer utilities {
   .text-gold {
@@ -142,5 +151,8 @@ a:hover {
     background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.1), transparent);
     background-size: 200% 100%;
     animation: shimmer 2s infinite;
+  }
+  .shimmer-rotate {
+    animation: shimmer-rotate 3s linear infinite;
   }
 }

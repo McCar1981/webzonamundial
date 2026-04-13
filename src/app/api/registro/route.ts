@@ -1,46 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { promises as fs } from 'fs';
-import path from 'path';
+import db from '@/lib/db';
+import { sendWelcomeEmail } from '@/lib/email';
 
-const DATA_FILE = path.join(process.cwd(), 'data', 'registros.json');
-
-interface Registro {
-  id: string;
+interface RegistroBody {
   email: string;
   nombre: string;
-  creador: string;
-  fecha: string;
-  ip: string;
+  creador?: string;
 }
 
-async function ensureDataFile() {
-  const dir = path.dirname(DATA_FILE);
-  try {
-    await fs.access(dir);
-  } catch {
-    await fs.mkdir(dir, { recursive: true });
-  }
-  try {
-    await fs.access(DATA_FILE);
-  } catch {
-    await fs.writeFile(DATA_FILE, '[]', 'utf-8');
-  }
-}
-
-async function getRegistros(): Promise<Registro[]> {
-  await ensureDataFile();
-  const data = await fs.readFile(DATA_FILE, 'utf-8');
-  return JSON.parse(data);
-}
-
-async function saveRegistros(registros: Registro[]) {
-  await ensureDataFile();
-  await fs.writeFile(DATA_FILE, JSON.stringify(registros, null, 2), 'utf-8');
+function getClientIp(request: NextRequest): string {
+  return (
+    request.headers.get('x-forwarded-for') ||
+    request.headers.get('x-real-ip') ||
+    'unknown'
+  );
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
+    const body = (await request.json()) as RegistroBody;
     const { email, nombre, creador } = body;
 
     // Validation
@@ -66,49 +44,44 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check duplicates
-    const registros = await getRegistros();
-    const emailExists = registros.some(r => r.email.toLowerCase() === email.toLowerCase());
-    if (emailExists) {
-      return NextResponse.json(
-        { error: 'Este email ya está registrado' },
-        { status: 409 }
-      );
-    }
+    const id = `zm_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+    const normalizedEmail = email.toLowerCase().trim();
+    const normalizedNombre = nombre.trim();
+    const fecha = new Date().toISOString();
+    const ip = getClientIp(request);
 
-    const nombreExists = registros.some(r => r.nombre.toLowerCase() === nombre.toLowerCase());
-    if (nombreExists) {
-      return NextResponse.json(
-        { error: 'Este nombre de usuario ya está en uso' },
-        { status: 409 }
-      );
-    }
+    const insert = db.prepare(`
+      INSERT INTO registros (id, email, nombre, creador, fecha, ip)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `);
 
-    // Create registration
-    const registro: Registro = {
-      id: `zm_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
-      email: email.toLowerCase().trim(),
-      nombre: nombre.trim(),
-      creador: creador || '',
-      fecha: new Date().toISOString(),
-      ip: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown',
-    };
+    insert.run(id, normalizedEmail, normalizedNombre, creador || '', fecha, ip);
 
-    registros.push(registro);
-    await saveRegistros(registros);
+    // Enviar email de bienvenida sin bloquear la respuesta
+    void sendWelcomeEmail(normalizedEmail, normalizedNombre);
+
+    const total = (db.prepare('SELECT COUNT(*) as total FROM registros').get() as { total: number }).total;
 
     return NextResponse.json(
       {
         success: true,
         message: 'Registro completado',
-        id: registro.id,
-        total: registros.length,
+        id,
+        total,
       },
       { status: 201 }
     );
-
   } catch (error) {
     console.error('Error en registro:', error);
+
+    if (error instanceof Error && error.message.includes('UNIQUE constraint failed')) {
+      const field = error.message.includes('email') ? 'email' : 'nombre de usuario';
+      return NextResponse.json(
+        { error: `Este ${field} ya está registrado` },
+        { status: 409 }
+      );
+    }
+
     return NextResponse.json(
       { error: 'Error interno del servidor' },
       { status: 500 }
@@ -119,9 +92,10 @@ export async function POST(request: NextRequest) {
 // GET: count registrations (public stat)
 export async function GET() {
   try {
-    const registros = await getRegistros();
-    return NextResponse.json({ total: registros.length });
-  } catch {
+    const row = db.prepare('SELECT COUNT(*) as total FROM registros').get() as { total: number } | undefined;
+    return NextResponse.json({ total: row?.total ?? 0 });
+  } catch (error) {
+    console.error('Error al contar registros:', error);
     return NextResponse.json({ total: 0 });
   }
 }

@@ -1,0 +1,18 @@
+export const STADIUM_IMAGES: Record<string, string> = {
+  'nueva-york': '/img/zonamundial-images/stadiums/metlife-stadium.jpg',
+  'los-angeles': '/img/zonamundial-images/stadiums/sofi-stadium-los-angeles.jpg',
+  'miami': '/img/zonamundial-images/stadiums/hard-rock-stadium-miami.jpg',
+  'dallas': '/img/zonamundial-images/stadiums/att-stadium-dallas.jpg',
+  'san-francisco': '/img/zonamundial-images/stadiums/levis-stadium-san-francisco.jpg',
+  'seattle': '/img/zonamundial-images/stadiums/lumen-field-seattle.jpg',
+  'atlanta': '/img/zonamundial-images/stadiums/mercedes-benz-stadium-atlanta.jpg',
+  'houston': '/img/zonamundial-images/stadiums/nrg-stadium-houston.jpg',
+  'filadelfia': '/img/zonamundial-images/stadiums/lincoln-financial-field-filadelfia.jpg',
+  'boston': '/img/zonamundial-images/stadiums/gillette-stadium-boston.jpg',
+  'kansas-city': '/img/zonamundial-images/stadiums/arrowhead-stadium-kansas-city.jpg',
+  'ciudad-de-mexico': '/img/zonamundial-images/stadiums/estadio-azteca-cdmx.jpg',
+  'guadalajara': '/img/zonamundial-images/stadiums/estadio-akron-guadalajara.jpg',
+  'monterrey': '/img/zonamundial-images/stadiums/estadio-bbva-monterrey.jpg',
+  'toronto': '/img/zonamundial-images/stadiums/bmo-field-toronto.jpg',
+  'vancouver': '/img/zonamundial-images/stadiums/bc-place-vancouver.jpg',
+};

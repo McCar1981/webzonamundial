@@ -257,8 +257,8 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
               </label>
             </div>
             <label htmlFor="terms" className="text-xs text-gray-500 leading-relaxed cursor-pointer">
-              {labels.terms} <Link href="/terminos" className="text-[#C9A84C] hover:underline font-medium">{labels.termsLink}</Link> {labels.and}{' '}
-              <Link href="/privacidad" className="text-[#C9A84C] hover:underline font-medium">{labels.privacyLink}</Link>
+              {labels.terms} <Link href="/legal/terminos" className="text-[#C9A84C] hover:underline font-medium">{labels.termsLink}</Link> {labels.and}{' '}
+              <Link href="/legal/privacidad" className="text-[#C9A84C] hover:underline font-medium">{labels.privacyLink}</Link>
             </label>
           </div>
 

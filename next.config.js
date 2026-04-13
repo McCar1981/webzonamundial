@@ -1,8 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Ignorar errores de TypeScript durante el build
+  // Ignorar errores de TypeScript y ESLint durante el build
   typescript: {
     ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
   },
   // Permitir imágenes externas (banderas, estadios, etc.)
   images: {

@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Post } from "@/sanity/types";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { AnimatedSection } from "@/components/AnimatedSection";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -109,7 +110,7 @@ function FeaturedCard({
   return (
     <div ref={cardRef} onClick={() => onClick(post)} className="group cursor-pointer">
       <div
-        className="relative overflow-hidden rounded-3xl border border-white/5 hover:border-[var(--cat-color)]/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+        className="relative overflow-hidden rounded-3xl border border-white/5 hover:border-[var(--cat-color)]/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_16px_48px_rgba(201,168,76,0.15)] group/card"
         style={{ "--cat-color": cat?.color } as React.CSSProperties}
       >
         <div
@@ -125,7 +126,7 @@ function FeaturedCard({
           }
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#060B14] via-[#060B14]/70 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--cat-color)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--cat-color)]/10 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
         <div className="relative p-8 min-h-[280px] flex flex-col justify-end">
           <div className="flex items-center gap-3 mb-4">
             {post.flags.length > 0 && (
@@ -142,8 +143,9 @@ function FeaturedCard({
             )}
             <AnimatedBadge color={cat?.color || GOLD}>{cat?.label}</AnimatedBadge>
           </div>
-          <h3 className="text-xl sm:text-2xl font-extrabold text-white mb-3 group-hover:text-[#C9A84C] transition-colors leading-tight">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-white mb-3 group-hover/card:text-[#C9A84C] transition-colors leading-tight relative inline-block">
             {post.title}
+            <span className="absolute left-0 -bottom-1 h-0.5 bg-gradient-to-r from-[#C9A84C] to-transparent w-0 group-hover/card:w-full transition-all duration-500" />
           </h3>
           <p className="text-sm text-[#8a94b0] mb-4 line-clamp-2">{post.excerpt}</p>
           <div className="flex items-center gap-3 text-xs text-[#6a7a9a]">
@@ -168,78 +170,63 @@ function FeaturedCard({
 function ArticleCard({
   post,
   onClick,
-  index,
   categories,
 }: {
   post: Post;
   onClick: (p: Post) => void;
-  index: number;
   categories: { id: string; label: string; color: string }[];
 }) {
   const cat = categories.find((c) => c.id === post.cat);
-  const cardRef = useRef<HTMLDivElement>(null);
   const [hov, setHov] = useState(false);
-
-  useEffect(() => {
-    if (!cardRef.current) return;
-    gsap.fromTo(
-      cardRef.current,
-      { y: 40, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.6,
-        delay: index * 0.08,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: cardRef.current,
-          start: "top 90%",
-          once: true,
-        },
-      }
-    );
-  }, [index]);
 
   return (
     <div
-      ref={cardRef}
       onClick={() => onClick(post)}
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
       className="group cursor-pointer"
     >
       <div
-        className="relative p-5 rounded-2xl border transition-all duration-300 hover:-translate-y-1"
+        className="relative p-5 rounded-2xl border transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_32px_rgba(201,168,76,0.1)] overflow-hidden"
         style={{
           background: hov ? `${cat?.color}08` : BG2,
-          borderColor: hov ? `${cat?.color}40` : "rgba(255,255,255,0.04)",
+          borderColor: hov ? `${cat?.color}50` : "rgba(255,255,255,0.04)",
         }}
       >
-        <div className="flex items-center gap-2 mb-3">
-          <span
-            className="px-2.5 py-1 rounded-md text-[10px] font-bold"
-            style={{ background: `${cat?.color}15`, color: cat?.color }}
+        {/* Glow de fondo en hover */}
+        <div
+          className="absolute -top-10 -right-10 w-32 h-32 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+          style={{ background: `radial-gradient(circle, ${cat?.color}20 0%, transparent 70%)`, filter: "blur(20px)" }}
+        />
+
+        <div className="relative z-10">
+          <div className="flex items-center gap-2 mb-3">
+            <span
+              className="px-2.5 py-1 rounded-md text-[10px] font-bold"
+              style={{ background: `${cat?.color}15`, color: cat?.color }}
+            >
+              {cat?.label}
+            </span>
+            {post.flags.slice(0, 3).map((f) => (
+              <img
+                key={f}
+                src={flagUrl(f, 30) || ""}
+                alt=""
+                className="w-4 h-3 rounded object-cover"
+              />
+            ))}
+            <span className="text-[10px] text-[#4a5570] ml-auto">{post.readTime} min</span>
+          </div>
+          <h3
+            className="text-base font-bold mb-2 transition-colors relative inline-block"
+            style={{ color: hov ? GOLD : "#fff" }}
           >
-            {cat?.label}
-          </span>
-          {post.flags.slice(0, 3).map((f) => (
-            <img
-              key={f}
-              src={flagUrl(f, 30) || ""}
-              alt=""
-              className="w-4 h-3 rounded object-cover"
-            />
-          ))}
-          <span className="text-[10px] text-[#4a5570] ml-auto">{post.readTime} min</span>
+            {post.title}
+            <span className="absolute left-0 -bottom-0.5 h-px bg-gradient-to-r from-[#c9a84c] to-transparent w-0 group-hover:w-full transition-all duration-500" />
+          </h3>
+          <p className="text-xs text-[#6a7a9a] line-clamp-2 group-hover:text-[#8a94b0] transition-colors">{post.excerpt}</p>
+          <div className="text-[10px] text-[#4a5570] mt-3 group-hover:text-[#6a7a9a] transition-colors">{fmtBlogDate(post.date)}</div>
         </div>
-        <h3
-          className="text-base font-bold mb-2 transition-colors"
-          style={{ color: hov ? GOLD : "#fff" }}
-        >
-          {post.title}
-        </h3>
-        <p className="text-xs text-[#6a7a9a] line-clamp-2">{post.excerpt}</p>
-        <div className="text-[10px] text-[#4a5570] mt-3">{fmtBlogDate(post.date)}</div>
       </div>
     </div>
   );
@@ -427,23 +414,36 @@ export default function NoticiasClient({ posts }: { posts: Post[] }) {
           />
         ) : (
           <>
-            <div ref={heroRef} className="mb-12">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#c9a84c]/10 border border-[#c9a84c]/20 mb-6">
-                <span className="w-2 h-2 rounded-full bg-[#c9a84c] animate-pulse" />
-                <span className="text-[#c9a84c] text-xs font-bold tracking-wider uppercase">
-                  {nT.badge}
-                </span>
+            <div ref={heroRef} className="relative rounded-3xl overflow-hidden mb-12 p-8 sm:p-12">
+              {/* Background image */}
+              <div className="absolute inset-0">
+                <img
+                  src="/img/zonamundial-images/stadiums/estadio-azteca-cdmx.jpg"
+                  alt=""
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#060B14] via-[#060B14]/85 to-[#060B14]/60" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#060B14] via-transparent to-transparent" />
               </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black mb-6 leading-tight">
-                {nT.title1}
-                <br />
-                <span className="bg-gradient-to-r from-[#c9a84c] via-[#e8d48b] to-[#c9a84c] bg-clip-text text-transparent">
-                  {nT.title2}
-                </span>
-              </h1>
-              <p className="text-lg text-[#8a94b0] max-w-xl leading-relaxed">
-                {nT.subtitle}
-              </p>
+
+              <div className="relative z-10 max-w-2xl">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#c9a84c]/10 border border-[#c9a84c]/20 mb-6 backdrop-blur-sm">
+                  <span className="w-2 h-2 rounded-full bg-[#c9a84c] animate-pulse" />
+                  <span className="text-[#c9a84c] text-xs font-bold tracking-wider uppercase">
+                    {nT.badge}
+                  </span>
+                </div>
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black mb-6 leading-tight">
+                  {nT.title1}
+                  <br />
+                  <span className="bg-gradient-to-r from-[#c9a84c] via-[#e8d48b] to-[#c9a84c] bg-clip-text text-transparent">
+                    {nT.title2}
+                  </span>
+                </h1>
+                <p className="text-lg text-[#8a94b0] max-w-xl leading-relaxed">
+                  {nT.subtitle}
+                </p>
+              </div>
             </div>
 
             <div
@@ -454,11 +454,12 @@ export default function NoticiasClient({ posts }: { posts: Post[] }) {
                 <button
                   key={c.id}
                   onClick={() => setCat(c.id)}
-                  className="px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all duration-300"
+                  className="px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all duration-300 hover:scale-105 active:scale-95"
                   style={{
                     background: cat === c.id ? `${c.color}15` : "transparent",
-                    border: `1px solid ${cat === c.id ? `${c.color}40` : "rgba(255,255,255,0.05)"}`,
+                    border: `1px solid ${cat === c.id ? `${c.color}50` : "rgba(255,255,255,0.08)"}`,
                     color: cat === c.id ? c.color : DIM,
+                    boxShadow: cat === c.id ? `0 4px 20px ${c.color}15` : "none",
                   }}
                 >
                   {c.label}
@@ -474,11 +475,15 @@ export default function NoticiasClient({ posts }: { posts: Post[] }) {
               </div>
             )}
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {regular.map((p, i) => (
-                <ArticleCard key={p.id} post={p} onClick={setSelectedPost} index={i} categories={CATEGORIES} />
+            <AnimatedSection
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+              stagger={0.06}
+              y={30}
+            >
+              {regular.map((p) => (
+                <ArticleCard key={p.id} post={p} onClick={setSelectedPost} categories={CATEGORIES} />
               ))}
-            </div>
+            </AnimatedSection>
 
             {filtered.length === 0 && (
               <div className="text-center py-20 text-[#6a7a9a]">

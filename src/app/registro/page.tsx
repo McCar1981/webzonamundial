@@ -5,11 +5,28 @@
 
 import Link from 'next/link';
 import FormularioRegistro from '@/components/FormularioRegistro';
-import { FeatureIcon } from '@/components/FeatureIcon';
 import { getTotalSeguidores, getCreadoresActivos } from '@/data/creadores';
 import { useLanguage } from '@/i18n/LanguageContext';
+import { ICON_UI, ICON_V3, ICON_DESCUBRE } from '@/components/icons';
 
-const IMG = "/img/zonamundial-images/imagenes/logos para sustuir emojis";
+const FEATURE_ICON_MAP: Record<string, React.ReactNode> = {
+  'Predicciones': ICON_V3.predicciones,
+  'Fantasy': ICON_V3.fantasy,
+  'IA Coach': ICON_V3.iaCoach,
+  'Streaming': ICON_V3.streaming,
+  'Rankings': ICON_V3.rankings,
+  'Trivia': ICON_V3.trivia,
+  'Modo Carrera': ICON_V3.carrera,
+  'Chat': ICON_V3.chat,
+  'Logros': ICON_V3.ligas,
+  'Match Center': ICON_V3.matchCenter,
+  'Micro-predicciones': ICON_V3.microPred,
+  'Stories': ICON_V3.stories,
+  'Ligas Privadas': ICON_V3.ligas,
+  'Chat en Vivo': ICON_V3.chat,
+  'Zona Streaming': ICON_V3.streaming,
+  'Trivia Diaria': ICON_V3.trivia,
+};
 
 export default function RegistroPage() {
   const { t } = useLanguage();
@@ -92,22 +109,16 @@ export default function RegistroPage() {
               {/* Trust badges */}
               <div className="mt-6 pt-5 border-t border-[#1E293B]/50">
                 <div className="flex flex-wrap items-center justify-center gap-5 text-xs text-gray-500">
-                  <span className="flex items-center gap-1.5">
-                    <svg className="w-4 h-4 text-[#C9A84C]" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
+                  <span className="flex items-center gap-1.5 text-[#C9A84C]">
+                    {ICON_UI.shieldCheck}
                     {rT.trust.free}
                   </span>
-                  <span className="flex items-center gap-1.5">
-                    <svg className="w-4 h-4 text-[#C9A84C]" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
-                    </svg>
+                  <span className="flex items-center gap-1.5 text-[#C9A84C]">
+                    {ICON_UI.lock}
                     {rT.trust.secure}
                   </span>
-                  <span className="flex items-center gap-1.5">
-                    <svg className="w-4 h-4 text-[#C9A84C]" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
+                  <span className="flex items-center gap-1.5 text-[#C9A84C]">
+                    {ICON_UI.star}
                     {rT.trust.noSpam}
                   </span>
                 </div>
@@ -122,13 +133,13 @@ export default function RegistroPage() {
             <div className="p-6 rounded-2xl border border-[#1E293B]/50"
               style={{ background: 'rgba(15,23,42,0.4)', backdropFilter: 'blur(12px)' }}>
               <h3 className="text-base font-bold text-white mb-4 flex items-center gap-2">
-                <img src={`${IMG}/predicciones.png`} alt="" className="w-6 h-6 object-contain" />
+                <span className="w-6 h-6 flex-shrink-0">{ICON_V3.predicciones}</span>
                 {rT.includes}
               </h3>
               <div className="space-y-3">
                 {rT.features.slice(0, 6).map((f: { iconTitle: string; title: string; desc: string }, i: number) => (
                   <div key={i} className="flex items-center gap-3">
-                    <FeatureIcon title={f.iconTitle} size={28} />
+                    <span className="w-7 h-7 flex-shrink-0">{FEATURE_ICON_MAP[f.iconTitle] || ICON_V3.matchCenter}</span>
                     <div>
                       <p className="text-sm font-semibold text-white">{f.title}</p>
                       <p className="text-xs text-gray-500">{f.desc}</p>
@@ -137,7 +148,7 @@ export default function RegistroPage() {
                 ))}
               </div>
               <p className="text-xs text-[#C9A84C] mt-4 flex items-center gap-1.5">
-                <img src={`${IMG}/stories.png`} alt="" className="w-4 h-4 object-contain" />
+                <span className="w-4 h-4 flex-shrink-0">{ICON_V3.stories}</span>
                 {rT.surprises}
               </p>
             </div>
@@ -146,7 +157,7 @@ export default function RegistroPage() {
             <div className="p-6 rounded-2xl border border-[#1E293B]/50"
               style={{ background: 'rgba(15,23,42,0.4)', backdropFilter: 'blur(12px)' }}>
               <h3 className="text-base font-bold text-white mb-4 flex items-center gap-2">
-                <img src={`${IMG}/creadores.png`} alt="" className="w-6 h-6 object-contain" />
+                <span className="w-6 h-6 flex-shrink-0">{ICON_DESCUBRE.creadores}</span>
                 {rT.featuredCreators}
               </h3>
               <div className="space-y-3">
@@ -173,12 +184,12 @@ export default function RegistroPage() {
             {/* Stats mini */}
             <div className="grid grid-cols-2 gap-3">
               {[
-                { value: '104', label: rT.stats.partidos, icon: `${IMG}/match center.png` },
-                { value: '8', label: rT.stats.modos, icon: `${IMG}/fantasy.png` },
+                { value: '104', label: rT.stats.partidos, icon: ICON_V3.matchCenter },
+                { value: '8', label: rT.stats.modos, icon: ICON_V3.fantasy },
               ].map((stat, i) => (
                 <div key={i} className="flex items-center gap-3 p-4 rounded-xl border border-[#1E293B]/50"
                   style={{ background: 'rgba(15,23,42,0.4)' }}>
-                  <img src={stat.icon} alt="" className="w-8 h-8 object-contain" />
+                  <span className="w-8 h-8 flex-shrink-0">{stat.icon}</span>
                   <div>
                     <p className="text-xl font-black text-[#C9A84C]">{stat.value}</p>
                     <p className="text-[10px] text-gray-500 uppercase tracking-wider">{stat.label}</p>

@@ -7,6 +7,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { AnimatedSection } from "@/components/AnimatedSection";
 
 interface Comment {
   id: number;
@@ -120,21 +121,12 @@ function CommentCard({ comment }: { comment: Comment }) {
   );
 }
 
-function PostCard({ post, index }: { post: BlogPost; index: number }) {
+function PostCard({ post, isTop }: { post: BlogPost; isTop?: boolean }) {
   const [showComments, setShowComments] = useState(false);
   const [liked, setLiked] = useState(false);
-  const cardRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!cardRef.current) return;
-    gsap.fromTo(cardRef.current,
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.6, delay: index * 0.1, ease: "power3.out" }
-    );
-  }, [index]);
 
   return (
-    <div ref={cardRef} className="bg-white/[0.02] border border-white/10 rounded-3xl overflow-hidden hover:border-white/20 transition-all duration-300">
+    <div className="group bg-white/[0.02] border border-white/10 rounded-3xl overflow-hidden hover:border-[#c9a84c]/30 hover:shadow-[0_12px_40px_rgba(201,168,76,0.12)] hover:-translate-y-1 transition-all duration-300">
       {/* Header */}
       <div className="p-5 flex items-center gap-4">
         <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#c9a84c]/20 to-[#c9a84c]/5 border-2 border-[#c9a84c]/30 flex items-center justify-center text-sm font-bold text-[#c9a84c]">
@@ -144,6 +136,11 @@ function PostCard({ post, index }: { post: BlogPost; index: number }) {
           <div className="flex items-center gap-2">
             <span className="font-bold text-white">{post.author}</span>
             {post.role && <span className="text-xs text-gray-500">· {post.role}</span>}
+            {isTop && (
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-gradient-to-r from-[#c9a84c] to-[#e8d48b] text-[#030712] animate-pulse">
+                Top
+              </span>
+            )}
           </div>
           <div className="flex items-center gap-2 text-xs">
             <span className="text-[#c9a84c]">{post.team}</span>
@@ -168,8 +165,8 @@ function PostCard({ post, index }: { post: BlogPost; index: number }) {
       {/* Imagen */}
       {post.image && (
         <div className="px-5 pb-5">
-          <div className="relative rounded-2xl overflow-hidden">
-            <img src={post.image} alt="Post" className="w-full h-64 lg:h-80 object-cover hover:scale-105 transition-transform duration-700" />
+          <div className="relative rounded-2xl overflow-hidden group/img">
+            <img src={post.image} alt="Post" className="w-full h-64 lg:h-80 object-cover group-hover/img:scale-105 transition-transform duration-700" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#030712]/50 to-transparent" />
           </div>
         </div>
@@ -275,9 +272,11 @@ export default function BlogPage() {
         </div>
 
         {/* Feed */}
-        <div className="space-y-6">
-          {POSTS.map((post, index) => <PostCard key={post.id} post={post} index={index} />)}
-        </div>
+        <AnimatedSection className="space-y-6" stagger={0.12} y={30}>
+          {POSTS.map((post) => (
+            <PostCard key={post.id} post={post} isTop={post.likes === Math.max(...POSTS.map(p => p.likes))} />
+          ))}
+        </AnimatedSection>
       </div>
     </div>
   );

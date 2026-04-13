@@ -1,8 +1,13 @@
 "use client";
 
 import Link from 'next/link';
+import FlagImage from '@/components/FlagImage';
+import { AnimatedSection } from '@/components/AnimatedSection';
+import { StatCounter } from '@/components/StatCounter';
 import { useLanguage } from '@/i18n/LanguageContext';
+import type { SeleccionExtended } from '@/data/selecciones-extended';
 import type { Seleccion } from '@/data/selecciones';
+import type { ReactNode } from 'react';
 
 // Degradados personalizados por país basados en sus banderas
 const getFlagGradient = (slug: string): string => {
@@ -48,8 +53,85 @@ const getConfederacionStyle = (conf: string) => {
 };
 
 interface Props {
-  team: Seleccion & Record<string, any>;
+  team: SeleccionExtended;
   companeros: Seleccion[];
+}
+
+function Icon({ name, className = 'w-5 h-5' }: { name: string; className?: string }) {
+  const icons: Record<string, ReactNode> = {
+    stadium: (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 21h18M5 21V7l8-4 8 4v14M8 21v-6a2 2 0 0 1 4 0v6m4 0v-6a2 2 0 0 1 4 0v6"/></svg>
+    ),
+    trophy: (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6m12 5h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22m10-7.34V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M9 2h6v5a3 3 0 1 1-6 0V2Z"/></svg>
+    ),
+    book: (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+    ),
+    bulb: (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M9 18h6M10 22h4M15.09 14c.18-.9.27-1.46.27-2A5.5 5.5 0 0 0 5.5 9c0 1.54.36 2.98.97 4.24"/><path d="M8.87 3.16A6.5 6.5 0 0 1 18.5 9c0 1.38-.43 2.66-1.16 3.72M9 18h6"/><path d="M10 22h4"/></svg>
+    ),
+    target: (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+    ),
+    chart: (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/></svg>
+    ),
+    star: (
+      <svg className={className} viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    ),
+    gloves: (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M7 11v-1a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1"/><path d="M12 12v6"/><path d="M8 15h8"/><path d="M10 22h4a2 2 0 0 0 2-2v-3H8v3a2 2 0 0 0 2 2Z"/></svg>
+    ),
+    shield: (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    ),
+    gear: (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.7.2 1.21.71 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>
+    ),
+    ball: (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+    ),
+    cap: (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5Z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>
+    ),
+    swords: (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M14.5 17.5 3 6V3h3l11.5 11.5"/><path d="M13 19l6-6"/><path d="M16 16l4 4"/><path d="M19 21l2-2"/><path d="m14.5 6.5 11.5 11.5V21h-3L11.5 9.5"/></svg>
+    ),
+    calendar: (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    ),
+    gym: (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M6.5 6.5h11"/><path d="M6.5 17.5h11"/><path d="M6 20v-2a6 6 0 1 1 12 0v2"/><path d="M7 4v2a5 5 0 0 0 10 0V4"/></svg>
+    ),
+    pin: (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+    ),
+    flag: (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+    ),
+  };
+  return <>{icons[name] || null}</>;
+}
+
+function SectionHeader({ icon, title }: { icon: string; title: string }) {
+  return (
+    <div className="flex items-center gap-3 mb-5">
+      <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-[#c9a84c]"><Icon name={icon} className="w-5 h-5" /></div>
+      <h2 className="text-xl font-bold text-white">{title}</h2>
+    </div>
+  );
+}
+
+function StatCard({ label, value, suffix = '', accent = false }: { label: string; value: number; suffix?: string; accent?: boolean }) {
+  return (
+    <div className="p-5 rounded-2xl bg-white/[0.03] border border-white/10">
+      <div className="text-gray-500 text-sm mb-1">{label}</div>
+      <div className={`text-3xl font-black ${accent ? 'text-amber-400' : 'text-white'}`}>
+        <StatCounter value={value} suffix={suffix} />
+      </div>
+    </div>
+  );
 }
 
 export default function SeleccionClient({ team, companeros }: Props) {
@@ -65,6 +147,23 @@ export default function SeleccionClient({ team, companeros }: Props) {
     if (flagGradient) return flagGradient;
     return 'from-[#c9a84c] via-[#e8d48b] to-[#c9a84c]';
   };
+
+  const posicionIcon = (pos: string) => {
+    if (pos === 'POR') return 'gloves';
+    if (pos === 'DEF') return 'shield';
+    if (pos === 'MED') return 'gear';
+    return 'ball';
+  };
+
+  const upcomingMatches = team.proximosPartidos.length > 0
+    ? team.proximosPartidos
+    : companeros.slice(0, 3).map((c) => ({
+        rival: c.nombre,
+        rivalFlag: c.flagCode,
+        date: 'Jun 2026',
+        time: 'Por confirmar',
+        venue: 'Estados Unidos',
+      }));
 
   return (
     <div className="min-h-screen bg-[#030712]">
@@ -113,10 +212,12 @@ export default function SeleccionClient({ team, companeros }: Props) {
           {/* Bandera */}
           <div className="relative">
             <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-white/10">
-              <img
-                src={`https://flagcdn.com/w640/${team.flagCode}.png`}
+              <FlagImage
+                code={team.flagCode}
                 alt={team.nombre}
+                width={640}
                 className="w-full h-full object-cover"
+                fallback={team.emoji}
               />
             </div>
             <div className="absolute -inset-4 bg-gradient-to-r from-white/5 to-transparent rounded-3xl -z-10 blur-2xl" />
@@ -126,8 +227,8 @@ export default function SeleccionClient({ team, companeros }: Props) {
           <div className="flex flex-col justify-center">
             <div className="flex flex-wrap items-center gap-3 mb-4">
               {team.esAnfitrion && (
-                <span className="px-3 py-1 bg-amber-500/10 text-amber-400 text-xs font-bold rounded-full border border-amber-500/20">
-                  🏟️ {sT.anfitrion}
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-500/10 text-amber-400 text-xs font-bold rounded-full border border-amber-500/20">
+                  <Icon name="stadium" className="w-3.5 h-3.5" /> {sT.anfitrion}
                 </span>
               )}
               <span className={`px-3 py-1 bg-white/5 text-xs font-bold rounded-full border border-white/10 ${style.text}`}>
@@ -159,7 +260,7 @@ export default function SeleccionClient({ team, companeros }: Props) {
                 <>
                   <div className="w-px h-6 bg-white/10" />
                   <div className="flex items-center gap-2">
-                    <span className="text-amber-400">🏆</span>
+                    <Icon name="trophy" className="w-5 h-5 text-amber-400" />
                     <span className="text-amber-400 font-bold">{team.mejorResultado.match(/\d+/)?.[0] || '1'} {sT.titulos}</span>
                   </div>
                 </>
@@ -199,61 +300,194 @@ export default function SeleccionClient({ team, companeros }: Props) {
           {/* Columna izquierda - 2/3 */}
           <div className="lg:col-span-2 space-y-6">
             {/* Historia */}
-            <section className="p-8 rounded-3xl bg-white/[0.02] border border-white/10">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-xl">📖</div>
-                <h2 className="text-xl font-bold text-white">{sT.historia}</h2>
-              </div>
-              <p className="text-gray-400 leading-relaxed text-lg">
-                {team.historia || `${team.nombre} se prepara para su participación en el Mundial 2026. ${team.mundiales > 0 ? `Esta será su ${team.mundiales + 1}ª aparición en la historia de los mundiales.` : 'Será su primera experiencia en una Copa del Mundo.'}`}
-              </p>
-              {team.datosClave && (
-                <div className="mt-6 p-5 rounded-2xl bg-[#c9a84c]/5 border border-[#c9a84c]/20">
-                  <p className="text-[#c9a84c]">💡 {team.datosClave}</p>
-                </div>
-              )}
-            </section>
+            <AnimatedSection y={20}>
+              <section className="p-8 rounded-3xl bg-white/[0.02] border border-white/10">
+                <SectionHeader icon="book" title={sT.historia} />
+                <p className="text-gray-400 leading-relaxed text-lg">
+                  {team.historia || `${team.nombre} se prepara para su participación en el Mundial 2026. ${team.mundiales > 0 ? `Esta será su ${team.mundiales + 1}ª aparición en la historia de los mundiales.` : 'Será su primera experiencia en una Copa del Mundo.'}`}
+                </p>
+                {team.datosClave && (
+                  <div className="mt-6 p-5 rounded-2xl bg-[#c9a84c]/5 border border-[#c9a84c]/20">
+                    <p className="text-[#c9a84c] flex items-center gap-2"><Icon name="bulb" className="w-4 h-4" /> {team.datosClave}</p>
+                  </div>
+                )}
+              </section>
+            </AnimatedSection>
 
             {/* Clasificación */}
-            <section className="p-8 rounded-3xl bg-white/[0.02] border border-white/10">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-xl">🎯</div>
-                <h2 className="text-xl font-bold text-white">{sT.clasificacion}</h2>
-              </div>
-              <p className="text-gray-400 leading-relaxed">
-                {team.clasificacion || `${team.nombre} ${team.esAnfitrion ? 'se clasificó automáticamente como uno de los países anfitriones del Mundial 2026' : `obtuvo su plaza para el Mundial 2026 a través del proceso clasificatorio de ${team.confederacion}`}.`}
-              </p>
-            </section>
+            <AnimatedSection y={20}>
+              <section className="p-8 rounded-3xl bg-white/[0.02] border border-white/10">
+                <SectionHeader icon="target" title={sT.clasificacion} />
+                <p className="text-gray-400 leading-relaxed">
+                  {team.clasificacion || `${team.nombre} ${team.esAnfitrion ? 'se clasificó automáticamente como uno de los países anfitriones del Mundial 2026' : `obtuvo su plaza para el Mundial 2026 a través del proceso clasificatorio de ${team.confederacion}`}.`}
+                </p>
+              </section>
+            </AnimatedSection>
+
+            {/* Estadísticas en Mundiales */}
+            <AnimatedSection y={20}>
+              <section className="p-8 rounded-3xl bg-white/[0.02] border border-white/10">
+                <SectionHeader icon="chart" title={sT.estadisticas} />
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  <StatCard label={sT.pj} value={team.estadisticasMundial?.pj ?? 0} />
+                  <StatCard label={sT.pg} value={team.estadisticasMundial?.pg ?? 0} accent />
+                  <StatCard label={sT.pe} value={team.estadisticasMundial?.pe ?? 0} />
+                  <StatCard label={sT.pp} value={team.estadisticasMundial?.pp ?? 0} />
+                  <StatCard label={sT.gf} value={team.estadisticasMundial?.gf ?? 0} accent />
+                  <StatCard label={sT.gc} value={team.estadisticasMundial?.gc ?? 0} />
+                </div>
+              </section>
+            </AnimatedSection>
 
             {/* Jugadores Clave */}
             {team.jugadoresClave && team.jugadoresClave.length > 0 && (
-              <section className="p-8 rounded-3xl bg-white/[0.02] border border-white/10">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-xl">⭐</div>
-                  <h2 className="text-xl font-bold text-white">{sT.jugadores}</h2>
-                </div>
-                <div className="space-y-4">
-                  {team.jugadoresClave.map((j: any) => (
-                    <div key={j.nombre} className="flex items-center gap-4 p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.05] transition-colors border border-white/5">
-                      <div className="w-14 h-14 rounded-xl bg-white/5 flex items-center justify-center text-2xl">
-                        {j.posicion === 'POR' ? '🧤' : j.posicion === 'DEF' ? '🛡️' : j.posicion === 'MED' ? '⚙️' : '⚽'}
+              <AnimatedSection y={20}>
+                <section className="p-8 rounded-3xl bg-white/[0.02] border border-white/10">
+                  <SectionHeader icon="star" title={sT.jugadores} />
+                  <div className="space-y-4">
+                    {team.jugadoresClave.map((j) => (
+                      <div key={j.nombre} className="flex items-center gap-4 p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.05] transition-colors border border-white/5">
+                        <div className="w-14 h-14 rounded-xl bg-white/5 flex items-center justify-center text-[#c9a84c]">
+                          <Icon name={posicionIcon(j.posicion)} className="w-7 h-7" />
+                        </div>
+                        <div className="flex-1">
+                          <p className="font-bold text-white text-lg">{j.nombre}</p>
+                          <p className="text-sm text-gray-500">{j.club} · {j.posicion}</p>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-2xl font-bold text-[#c9a84c]">{j.golesIntl}</p>
+                          <p className="text-xs text-gray-600">{sT.goles}</p>
+                        </div>
+                        <div className="text-right px-4 border-l border-white/10">
+                          <p className="text-xl font-bold text-white">{j.internacionalidades}</p>
+                          <p className="text-xs text-gray-600">{sT.partidos}</p>
+                        </div>
                       </div>
-                      <div className="flex-1">
-                        <p className="font-bold text-white text-lg">{j.nombre}</p>
-                        <p className="text-sm text-gray-500">{j.club} · {j.posicion}</p>
+                    ))}
+                  </div>
+                </section>
+              </AnimatedSection>
+            )}
+
+            {/* Cuerpo técnico */}
+            <AnimatedSection y={20}>
+              <section className="p-8 rounded-3xl bg-white/[0.02] border border-white/10">
+                <SectionHeader icon="cap" title={sT.cuerpoTecnico} />
+                <div className="grid sm:grid-cols-3 gap-4">
+                  {[
+                    { label: sT.dt, value: team.cuerpoTecnico?.dt },
+                    { label: sT.capitan, value: team.cuerpoTecnico?.capitan },
+                    { label: sT.estrella, value: team.cuerpoTecnico?.estrella },
+                  ].map((item) => (
+                    <div key={item.label} className="p-5 rounded-2xl bg-white/[0.03] border border-white/5">
+                      <p className="text-xs text-gray-500 mb-1">{item.label}</p>
+                      <p className="text-lg font-bold text-white">{item.value || '—'}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            </AnimatedSection>
+
+            {/* Palmarés */}
+            {team.palmares && team.palmares.length > 0 && (
+              <AnimatedSection y={20}>
+                <section className="p-8 rounded-3xl bg-white/[0.02] border border-white/10">
+                  <SectionHeader icon="trophy" title={sT.palmares} />
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {team.palmares.map((p) => (
+                      <div key={`${p.year}-${p.result}`} className="p-5 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-[#c9a84c]/30 transition-colors">
+                        <div className="flex items-center gap-3 mb-2">
+                          <img src={`https://flagcdn.com/w40/${p.hostFlag}.png`} alt={p.host} className="w-8 h-6 object-cover rounded" />
+                          <span className="text-sm text-gray-400">{p.host}</span>
+                        </div>
+                        <div className="text-2xl font-black text-white">{p.year}</div>
+                        <div className={`text-sm font-bold ${p.result === 'Campeón' ? 'text-amber-400' : 'text-[#c9a84c]'}`}>{p.result}</div>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              </AnimatedSection>
+            )}
+
+            {/* Partidos icónicos */}
+            {team.partidosIronicos && team.partidosIronicos.length > 0 && (
+              <AnimatedSection y={20}>
+                <section className="p-8 rounded-3xl bg-white/[0.02] border border-white/10">
+                  <SectionHeader icon="swords" title={sT.partidosIronicos} />
+                  <div className="space-y-4">
+                    {team.partidosIronicos.map((p, idx) => (
+                      <div key={idx} className="p-5 rounded-2xl bg-white/[0.03] border border-white/5">
+                        <div className="flex flex-wrap items-center gap-3 mb-3">
+                          <FlagImage code={p.rivalFlag} alt={p.rival} width={40} className="w-8 h-6 object-cover rounded" fallback={<Icon name="flag" className="w-5 h-5 text-gray-400" />} />
+                          <span className="font-bold text-white">{p.rival}</span>
+                          <span className="text-[#c9a84c] font-black text-lg">{p.result}</span>
+                          <span className="text-xs px-2 py-1 rounded-full bg-white/5 text-gray-400">{p.year}</span>
+                          <span className="text-xs px-2 py-1 rounded-full bg-white/5 text-gray-400">{p.stage}</span>
+                        </div>
+                        <p className="text-sm text-gray-400 leading-relaxed">{p.context}</p>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              </AnimatedSection>
+            )}
+
+            {/* Curiosidades */}
+            {team.curiosidades && team.curiosidades.length > 0 && (
+              <AnimatedSection y={20}>
+                <section className="p-8 rounded-3xl bg-white/[0.02] border border-white/10">
+                  <SectionHeader icon="bulb" title={sT.curiosidades} />
+                  <ul className="space-y-3">
+                    {team.curiosidades.map((c, idx) => (
+                      <li key={idx} className="flex items-start gap-3 text-gray-400">
+                        <span className="text-[#c9a84c] mt-1">•</span>
+                        <span className="leading-relaxed">{c}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              </AnimatedSection>
+            )}
+
+            {/* Próximos partidos */}
+            <AnimatedSection y={20}>
+              <section className="p-8 rounded-3xl bg-white/[0.02] border border-white/10">
+                <SectionHeader icon="calendar" title={sT.proximosPartidos} />
+                <div className="space-y-3">
+                  {upcomingMatches.map((m, idx) => (
+                    <div key={idx} className="flex items-center gap-4 p-4 rounded-2xl bg-white/[0.03] border border-white/5">
+                      <div className="flex items-center gap-3 flex-1">
+                        <FlagImage code={m.rivalFlag} alt={m.rival} width={40} className="w-8 h-6 object-cover rounded" fallback={<Icon name="flag" className="w-5 h-5 text-gray-400" />} />
+                        <span className="font-bold text-white">{m.rival}</span>
                       </div>
                       <div className="text-right">
-                        <p className="text-2xl font-bold text-[#c9a84c]">{j.golesIntl}</p>
-                        <p className="text-xs text-gray-600">{sT.goles}</p>
+                        <p className="text-sm text-white">{m.date}</p>
+                        <p className="text-xs text-gray-500">{m.time}</p>
                       </div>
-                      <div className="text-right px-4 border-l border-white/10">
-                        <p className="text-xl font-bold text-white">{j.internacionalidades}</p>
-                        <p className="text-xs text-gray-600">{sT.partidos}</p>
+                      <div className="hidden sm:block text-right min-w-[120px]">
+                        <p className="text-xs text-gray-500">{sT.sede}</p>
+                        <p className="text-sm text-gray-400">{m.venue}</p>
                       </div>
                     </div>
                   ))}
                 </div>
               </section>
+            </AnimatedSection>
+
+            {/* Base de entrenamiento */}
+            {team.sedeEntrenamiento?.ciudad && (
+              <AnimatedSection y={20}>
+                <section className="p-8 rounded-3xl bg-white/[0.02] border border-white/10">
+                  <SectionHeader icon="gym" title={sT.sedeEntrenamiento} />
+                  <div className="flex items-center gap-4 p-5 rounded-2xl bg-white/[0.03] border border-white/5">
+                    <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-white"><Icon name="pin" className="w-6 h-6" /></div>
+                    <div>
+                      <p className="text-lg font-bold text-white">{team.sedeEntrenamiento.ciudad}</p>
+                      <p className="text-sm text-gray-500">{team.sedeEntrenamiento.pais}</p>
+                    </div>
+                  </div>
+                </section>
+              </AnimatedSection>
             )}
 
             {/* Sponsor */}
@@ -281,7 +515,7 @@ export default function SeleccionClient({ team, companeros }: Props) {
                       className={`flex items-center gap-3 p-3 rounded-xl ${t.slug === team.slug ? 'bg-[#c9a84c]/10 border border-[#c9a84c]/30' : 'bg-white/[0.02]'}`}
                     >
                       <span className="text-gray-600 w-5">{idx + 1}</span>
-                      <img src={`https://flagcdn.com/w40/${t.flagCode}.png`} alt="" className="w-8 h-6 object-cover rounded" />
+                      <FlagImage code={t.flagCode} alt="" width={40} className="w-8 h-6 object-cover rounded" fallback={t.emoji} />
                       <span className={`flex-1 font-medium ${t.slug === team.slug ? 'text-[#c9a84c]' : 'text-white'}`}>
                         {t.nombre}
                       </span>

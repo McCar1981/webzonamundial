@@ -3,6 +3,32 @@
 import { useState, useEffect } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";
 
+const STORAGE_KEY = "zm_promo_v2";
+
+function isDismissed(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return false;
+    const parsed = JSON.parse(raw);
+    return parsed?.dismissed === true;
+  } catch {
+    return false;
+  }
+}
+
+function markDismissed() {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({ dismissed: true, at: new Date().toISOString() })
+    );
+  } catch {
+    // ignore
+  }
+}
+
 export default function PromoPopup() {
   const [visible, setVisible] = useState(false);
   const [closing, setClosing] = useState(false);
@@ -10,9 +36,7 @@ export default function PromoPopup() {
   const isEs = t.nav.inicio === "Inicio";
 
   useEffect(() => {
-    if (typeof window !== "undefined" && localStorage.getItem("promo_dismissed")) {
-      return;
-    }
+    if (isDismissed()) return;
     const timer = setTimeout(() => setVisible(true), 1500);
     return () => clearTimeout(timer);
   }, []);
@@ -20,9 +44,7 @@ export default function PromoPopup() {
   const handleClose = () => {
     setClosing(true);
     setTimeout(() => setVisible(false), 300);
-    if (typeof window !== "undefined") {
-      localStorage.setItem("promo_dismissed", "true");
-    }
+    markDismissed();
   };
 
   if (!visible) return null;

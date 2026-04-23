@@ -30,6 +30,7 @@
   color: #fff;
   overflow: hidden;
   font-family: var(--zm-font-body);
+  isolation: isolate;
 }
 
 .zmStadiumPhoto {
@@ -302,6 +303,7 @@
   position: relative; z-index: 4;
   display: flex; align-items: center; justify-content: center;
   min-height: 560px;
+  overflow: visible;
 }
 .zmPhoneStage {
   position: relative;
@@ -405,26 +407,177 @@
 }
 .zmStatL { color: rgba(255,255,255,0.55); font-size: 13px; }
 
-@media (max-width: 900px) {
-  .zmStatsInner { justify-content: center; }
-  .zmStatL { font-size: 12px; }
-}
-@media (max-width: 1024px) {
-  .zmHero { padding: 24px 24px 60px; }
-  .zmPhoneStage { max-width: 420px; margin: 0 auto; }
+/* ==================================================================
+   RESPONSIVE — Mobile-first tier refinement
+   Breakpoints: mobile ≤640 · tablet 641-1023 · desktop ≥1024
+   ================================================================== */
+
+/* ---------- TABLET (641-1023) ---------- */
+@media (max-width: 1023px) {
+  .zmHero {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 32px 32px 72px;
+    min-height: auto;
+  }
+  .zmStatsInner { padding: 20px 32px 28px; }
+  .zmPhoneStage {
+    max-width: 460px;
+    margin: 0 auto;
+    aspect-ratio: 4 / 4.2;
+  }
+  /* Chips tuck inside stage bounds on tablet */
+  .zmChipLive { left: 2%; }
   .zmChipScore { left: 0; }
+  .zmChipPoints { right: 0; }
   .zmChipAi { right: 0; }
-  .zmStatsInner { padding: 18px 24px; }
 }
+
+/* ---------- MOBILE (≤640) ---------- */
 @media (max-width: 640px) {
-  .zmHero { gap: 30px; }
-  .zmPillars { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-  .zmPillar { padding: 14px 12px; }
-  .zmPillarN { font-size: 18px; }
-  .zmPillarL { font-size: 11px; }
-  .zmPhoneStage { max-width: 340px; }
-  .zmChipCard { padding: 8px 10px; }
-  .zmChipMain { font-size: 12px; }
+  .zmHero {
+    padding: 20px 20px 56px;
+    gap: 36px;
+  }
+
+  /* Countdown pill: more compact, wrap gracefully */
+  .zmCountdown {
+    gap: 10px;
+    padding: 6px 6px 6px 12px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    max-width: 100%;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .zmTimer { padding: 3px 8px; font-size: 10px; }
+
+  /* Headline: tighter scale, preserve hierarchy */
+  .zmH1 {
+    font-size: clamp(2.5rem, 11vw, 3.75rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+  }
+
+  .zmSub {
+    margin-top: 20px;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  /* Pillars: still 3 columns, but tighter */
+  .zmPillars {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 28px;
+  }
+  .zmPillar { padding: 14px 10px 12px; border-radius: 12px; }
+  .zmPillarIc {
+    width: 28px; height: 28px; border-radius: 8px; margin-bottom: 8px;
+  }
+  .zmPillarN { font-size: 17px; }
+  .zmPillarN small { font-size: 11px; }
+  .zmPillarL { font-size: 10.5px; line-height: 1.3; }
+
+  /* CTAs: full-width on mobile, stack with solid rhythm */
+  .zmCtas {
+    margin-top: 28px;
+    gap: 10px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .zmCtaPrimary {
+    padding: 16px 22px;
+    font-size: 15px;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .zmCtaGhost {
+    padding: 14px 20px;
+    font-size: 14px;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .zmCtaNote {
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    gap: 6px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+
+  /* Social proof */
+  .zmProof { margin-top: 32px; gap: 12px; }
+  .zmProofAvatar { width: 32px; height: 32px; }
+  .zmProofText { font-size: 12.5px; }
+  .zmProofText b { font-size: 13.5px; }
+
+  /* Phone stage: controlled within viewport */
+  .zmRight { min-height: 440px; }
+  .zmPhoneStage {
+    max-width: 320px;
+    aspect-ratio: 4 / 4.6;
+  }
+  .zmPhone { width: 82%; }
+  /* Reduce phone rotation on small screens to avoid clipping */
+  .zmPhone {
+    transform: rotate(-2deg) translateY(0);
+    animation: zmFloatMobile 6s ease-in-out infinite, zmPhoneIn 1.1s var(--zm-ease-out) .3s backwards;
+  }
+
+  /* Chips: smaller, kept inside stage bounds, less count visible */
+  .zmChipCard {
+    padding: 7px 10px;
+    border-radius: 11px;
+    gap: 8px;
+    box-shadow: 0 8px 20px -6px rgba(0,0,0,0.55);
+  }
+  .zmChipIc { width: 26px; height: 26px; border-radius: 7px; }
+  .zmChipIc svg { width: 13px; height: 13px; }
+  .zmChipMain { font-size: 11.5px; }
+  .zmChipSub { font-size: 8.5px; }
+  .zmChipVal { font-size: 12.5px; }
+
+  .zmChipLive { top: 10%; left: 4%; }
+  .zmChipScore { top: 52%; left: 2%; }
+  .zmChipPoints { top: 8%; right: 4%; }
+  .zmChipAi { bottom: 8%; right: 2%; }
+  .zmChipAi .zmChipMain { font-size: 10.5px; }
+  .zmChipAi .zmChipSub { font-size: 8px; }
+
+  /* Stats bar: centered grid on mobile, readable */
+  .zmStatsInner {
+    padding: 14px 20px 22px;
+    justify-content: center;
+    gap: 12px 18px;
+  }
+  .zmStat { font-size: 11.5px; gap: 8px; }
+  .zmStatIc { width: 26px; height: 26px; border-radius: 7px; }
+  .zmStat b { font-size: 14px; }
+  .zmStatL { font-size: 11px; }
+}
+
+/* ---------- EXTRA-SMALL (≤380) — phones like iPhone SE ---------- */
+@media (max-width: 380px) {
+  .zmHero { padding: 16px 16px 48px; }
+  .zmH1 { font-size: clamp(2.25rem, 12vw, 3rem); }
+  .zmPillars { gap: 6px; }
+  .zmPillar { padding: 10px 8px; }
+  .zmPillarN { font-size: 15px; }
+  .zmPillarL { font-size: 9.5px; }
+  .zmPhoneStage { max-width: 280px; }
+  .zmChipLive, .zmChipScore, .zmChipPoints, .zmChipAi {
+    padding: 6px 8px;
+  }
+  .zmChipAi .zmChipMain { font-size: 10px; }
+  .zmStat .zmStatL { display: none; } /* keep only number + icon on very narrow */
+}
+
+/* ---------- MOBILE phone float keyframe (gentler) ---------- */
+@keyframes zmFloatMobile {
+  0%, 100% { transform: rotate(-2deg) translateY(0); }
+  50% { transform: rotate(-2deg) translateY(-8px); }
 }
 
 /* ===== TWEAKS PANEL (floating bottom-right) ===== */
@@ -495,6 +648,20 @@
 }
 .zmTweakToggle input { accent-color: var(--zm-brand-gold); }
 .zmTweakToggle span { font-size: 12px; color: rgba(255,255,255,0.8); }
+
+/* Tweaks: adapt button + panel position for mobile */
+@media (max-width: 640px) {
+  .zmTweaksToggleBtn {
+    bottom: 16px; right: 16px;
+    width: 44px; height: 44px;
+  }
+  .zmTweaks {
+    bottom: 72px; right: 16px; left: 16px;
+    width: auto; max-width: none;
+    padding: 16px;
+    border-radius: 16px;
+  }
+}
 
 /* ===== ANIMATIONS ===== */
 @keyframes zmRise {

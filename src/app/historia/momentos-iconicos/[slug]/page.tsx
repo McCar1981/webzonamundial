@@ -14,13 +14,38 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const moment = MOMENTS_ES.find((m) => m.id === slug);
-  if (!moment) return { title: 'Momento no encontrado | ZonaMundial' };
+  if (!moment) {
+    return {
+      title: 'Momento no encontrado',
+      robots: { index: false, follow: false },
+    };
+  }
 
+  const title = `${moment.title} (${moment.year}): el momento icónico del Mundial`;
   return {
-    title: `${moment.title} | Momentos Icónicos | ZonaMundial`,
+    title,
     description: moment.description,
-    keywords: [moment.title, moment.country, 'mundial', 'momento iconico', `${moment.year}`],
-    robots: { index: true, follow: true },
+    keywords: [
+      moment.title.toLowerCase(),
+      moment.country.toLowerCase(),
+      `mundial ${moment.year}`,
+      'momento iconico mundial',
+      'historia fútbol',
+    ],
+    alternates: { canonical: `/historia/momentos-iconicos/${slug}` },
+    openGraph: {
+      title,
+      description: moment.description,
+      url: `/historia/momentos-iconicos/${slug}`,
+      type: 'article',
+      images: ['/og-image.jpg'],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description: moment.description,
+    },
+    robots: { index: true, follow: true, 'max-image-preview': 'large' },
   };
 }
 

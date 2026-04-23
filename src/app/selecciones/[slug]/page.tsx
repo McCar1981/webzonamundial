@@ -13,10 +13,37 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const team = getExtendedSeleccion(params.slug);
-  if (!team) return { title: 'Selección no encontrada | ZonaMundial' };
+  if (!team) {
+    return {
+      title: 'Selección no encontrada',
+      robots: { index: false, follow: false },
+    };
+  }
+  const title = `${team.nombre} en el Mundial 2026: plantilla, historia y predicciones`;
+  const description = `Todo sobre ${team.nombre} en el Mundial 2026: plantilla, calendario de partidos, historia, estadísticas y predicciones. Grupo ${team.grupo}.`;
   return {
-    title: `${team.nombre} — Mundial 2026 | ZonaMundial`,
-    description: `Todo sobre ${team.nombre} en el Mundial 2026`,
+    title,
+    description,
+    keywords: [
+      `${team.nombre} mundial 2026`,
+      `selección ${team.nombre}`,
+      `${team.nombre} plantilla`,
+      `${team.nombre} partidos mundial`,
+      'mundial 2026 selecciones',
+    ],
+    alternates: { canonical: `/selecciones/${params.slug}` },
+    openGraph: {
+      title: `${team.nombre} en el Mundial 2026`,
+      description,
+      url: `/selecciones/${params.slug}`,
+      type: 'article',
+      images: ['/og-image.jpg'],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${team.nombre} en el Mundial 2026`,
+      description,
+    },
   };
 }
 

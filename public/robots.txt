@@ -1,0 +1,24 @@
+# robots.txt — zonamundial.app
+# https://zonamundial.app
+
+User-agent: *
+Allow: /
+
+# Bloquear rutas privadas / técnicas
+Disallow: /api/
+Disallow: /studio/
+Disallow: /_next/
+
+# Permitir explícitamente recursos estáticos importantes
+Allow: /img/
+Allow: /favicon.ico
+Allow: /og-image.jpg
+Allow: /manifest.json
+
+# Bots agresivos / scrapers AI sin valor SEO (opcional, descomentar si se desea bloquear)
+# User-agent: GPTBot
+# Disallow: /
+# User-agent: CCBot
+# Disallow: /
+
+Sitemap: https://zonamundial.app/sitemap.xml

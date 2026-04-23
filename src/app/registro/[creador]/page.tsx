@@ -12,18 +12,38 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: { creador: string } }): Promise<Metadata> {
   const c = getCreadorBySlug(params.creador);
-  if (!c) return { title: 'Creador no encontrado | ZonaMundial' };
+  if (!c) {
+    return {
+      title: 'Creador no encontrado',
+      robots: { index: false, follow: false },
+    };
+  }
+  const title = `Juega el Mundial 2026 con ${c.nombre} — ZonaMundial`;
+  const description = `${c.nombre} te invita a unirte a ZonaMundial. Predicciones, Fantasy, Streaming y más durante el Mundial 2026. Regístrate gratis y compite con su comunidad.`;
   return {
-    title: `Únete al Equipo de ${c.nombre} — ZonaMundial 2026`,
-    description: `${c.nombre} te invita a unirte a ZonaMundial. Predicciones, Fantasy, Streaming y más durante el torneo de selecciones 2026. Regístrate gratis.`,
-    keywords: [`${c.nombre.toLowerCase()} zonamundial`, `${c.nombre.toLowerCase()} mundial 2026`, 'predicciones mundial gratis'],
+    title,
+    description,
+    keywords: [
+      `${c.nombre.toLowerCase()} zonamundial`,
+      `${c.nombre.toLowerCase()} mundial 2026`,
+      `${c.nombre.toLowerCase()} fantasy`,
+      `${c.nombre.toLowerCase()} predicciones`,
+      'predicciones mundial gratis',
+    ],
+    alternates: { canonical: `/registro/${c.slug}` },
     openGraph: {
-      title: `Únete al Equipo de ${c.nombre} — ZonaMundial`,
-      description: `${c.seguidores} fans ya siguen a ${c.nombre}. Únete y compite durante el torneo 2026.`,
-      url: `https://zonamundial.app/registro/${c.slug}`,
-      images: [{ url: `https://zonamundial.app/api/og/creador?c=${c.slug}`, width: 1200, height: 630 }],
+      title,
+      description: `${c.seguidores} fans ya siguen a ${c.nombre}. Únete y compite durante el Mundial 2026.`,
+      url: `/registro/${c.slug}`,
+      type: 'profile',
+      images: ['/og-image.jpg'],
     },
-    robots: { index: true, follow: true },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+    },
+    robots: { index: true, follow: true, 'max-image-preview': 'large' },
   };
 }
 

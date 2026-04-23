@@ -67,9 +67,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  // Rutas dinámicas: grupos (A–L)
+  // Rutas dinámicas: grupos (A–L) — slug pattern: "grupo-a", "grupo-b", ...
   const grupoRoutes: MetadataRoute.Sitemap = Object.keys(GRUPOS).map((letra) => ({
-    url: `${BASE_URL}/grupos/${letra.toLowerCase()}`,
+    url: `${BASE_URL}/grupos/grupo-${letra.toLowerCase()}`,
     lastModified,
     changeFrequency: "daily",
     priority: 0.8,

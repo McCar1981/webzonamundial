@@ -30,15 +30,36 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const letter = params.slug.replace('grupo-', '').toUpperCase();
   const meta = GROUP_META[letter.toLowerCase()];
-  if (!meta) return { title: 'Grupo no encontrado | ZonaMundial' };
+  if (!meta) {
+    return {
+      title: 'Grupo no encontrado',
+      robots: { index: false, follow: false },
+    };
+  }
+  const title = `${meta.title} Mundial 2026: equipos, calendario y predicciones`;
+  const description = `${meta.desc} Consulta el calendario, clasificación y predicciones del ${meta.title} del Mundial 2026 en ZonaMundial.`;
   return {
-    title: `${meta.title} — Mundial 2026 | ZonaMundial`,
-    description: meta.desc,
-    keywords: [`grupo ${letter.toLowerCase()} mundial 2026`, `mundial 2026 grupo ${letter.toLowerCase()}`, meta.subtitle.toLowerCase()],
+    title,
+    description,
+    keywords: [
+      `grupo ${letter.toLowerCase()} mundial 2026`,
+      `mundial 2026 grupo ${letter.toLowerCase()}`,
+      `${meta.title.toLowerCase()} mundial`,
+      meta.subtitle.toLowerCase(),
+      `partidos grupo ${letter.toLowerCase()} mundial`,
+    ],
+    alternates: { canonical: `/grupos/grupo-${letter.toLowerCase()}` },
     openGraph: {
-      title: `${meta.title} — Mundial 2026 | ZonaMundial`,
-      description: meta.desc,
-      url: `https://zonamundial.app/grupos/grupo-${letter.toLowerCase()}`,
+      title,
+      description,
+      url: `/grupos/grupo-${letter.toLowerCase()}`,
+      type: 'article',
+      images: ['/og-image.jpg'],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
     },
     robots: { index: true, follow: true, 'max-image-preview': 'large' },
   };

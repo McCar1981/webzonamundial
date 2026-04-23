@@ -30,6 +30,7 @@
   color: #fff;
   overflow: hidden;
   font-family: var(--zm-font-body);
+  isolation: isolate;
 }
 
 .zmStadiumPhoto {
@@ -122,24 +123,24 @@
   margin: 0; color: #fff;
   animation: zmRise .9s var(--zm-ease-out) .2s backwards;
 }
-.zmH1 .line { display: block; }
-.zmH1 .gold {
+.zmH1Line { display: block; }
+.zmH1Gold {
   color: var(--zm-brand-gold);
   background: linear-gradient(180deg, #F5D07A 0%, #D4A853 60%, #B8913F 100%);
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 4px 20px rgba(212,168,83,0.3));
 }
-.zmH1 .strike {
+.zmH1Strike {
   position: relative; display: inline-block; color: rgba(255,255,255,0.38);
 }
-.zmH1 .strike::after {
+.zmH1Strike::after {
   content: ""; position: absolute; left: -2%; right: -2%; top: 52%; height: 6px;
   background: linear-gradient(90deg, transparent, var(--zm-brand-gold) 20%, var(--zm-brand-gold) 80%, transparent);
   transform: rotate(-3deg);
   animation: zmStrike .7s var(--zm-ease-out) .9s backwards;
   transform-origin: left;
 }
-.zmH1 em {
+.zmH1Em {
   font-style: italic; font-weight: 800;
   background: linear-gradient(90deg, #4FA0C2, #9b51e0 60%, #D4A853);
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
@@ -275,7 +276,7 @@
 }
 .zmProofAvatars { display: flex; align-items: center; }
 .zmProofAvatar {
-  width: 34px; height: 34px; border-radius: 50%;
+  width: 38px; height: 38px; border-radius: 50%;
   background: linear-gradient(135deg, var(--zm-brand-blue), var(--zm-brand-purple));
   border: 2px solid #0B0B16;
   margin-left: -10px;
@@ -283,8 +284,14 @@
   font-family: var(--zm-font-display); font-weight: 700; font-size: 12px; color: #fff;
   box-shadow: 0 2px 8px rgba(0,0,0,0.4);
   overflow: hidden;
+  position: relative;
 }
 .zmProofAvatar:first-child { margin-left: 0; }
+.zmProofAvatar img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
 .zmProofText {
   font-size: 13px; line-height: 1.4; color: rgba(255,255,255,0.55);
   font-family: var(--zm-font-body);
@@ -296,6 +303,7 @@
   position: relative; z-index: 4;
   display: flex; align-items: center; justify-content: center;
   min-height: 560px;
+  overflow: visible;
 }
 .zmPhoneStage {
   position: relative;
@@ -399,26 +407,260 @@
 }
 .zmStatL { color: rgba(255,255,255,0.55); font-size: 13px; }
 
-@media (max-width: 900px) {
-  .zmStatsInner { justify-content: center; }
-  .zmStatL { font-size: 12px; }
-}
-@media (max-width: 1024px) {
-  .zmHero { padding: 24px 24px 60px; }
-  .zmPhoneStage { max-width: 420px; margin: 0 auto; }
+/* ==================================================================
+   RESPONSIVE — Mobile-first tier refinement
+   Breakpoints: mobile ≤640 · tablet 641-1023 · desktop ≥1024
+   ================================================================== */
+
+/* ---------- TABLET (641-1023) ---------- */
+@media (max-width: 1023px) {
+  .zmHero {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 32px 32px 72px;
+    min-height: auto;
+  }
+  .zmStatsInner { padding: 20px 32px 28px; }
+  .zmPhoneStage {
+    max-width: 460px;
+    margin: 0 auto;
+    aspect-ratio: 4 / 4.2;
+  }
+  /* Chips tuck inside stage bounds on tablet */
+  .zmChipLive { left: 2%; }
   .zmChipScore { left: 0; }
+  .zmChipPoints { right: 0; }
   .zmChipAi { right: 0; }
-  .zmStatsInner { padding: 18px 24px; }
 }
+
+/* ---------- MOBILE (≤640) ---------- */
 @media (max-width: 640px) {
-  .zmHero { gap: 30px; }
-  .zmPillars { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-  .zmPillar { padding: 14px 12px; }
-  .zmPillarN { font-size: 18px; }
-  .zmPillarL { font-size: 11px; }
-  .zmPhoneStage { max-width: 340px; }
-  .zmChipCard { padding: 8px 10px; }
-  .zmChipMain { font-size: 12px; }
+  .zmHero {
+    padding: 20px 20px 56px;
+    gap: 36px;
+  }
+
+  /* Countdown pill: more compact, wrap gracefully */
+  .zmCountdown {
+    gap: 10px;
+    padding: 6px 6px 6px 12px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    max-width: 100%;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .zmTimer { padding: 3px 8px; font-size: 10px; }
+
+  /* Headline: tighter scale, preserve hierarchy */
+  .zmH1 {
+    font-size: clamp(2.5rem, 11vw, 3.75rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+  }
+
+  .zmSub {
+    margin-top: 20px;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  /* Pillars: still 3 columns, but tighter */
+  .zmPillars {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 28px;
+  }
+  .zmPillar { padding: 14px 10px 12px; border-radius: 12px; }
+  .zmPillarIc {
+    width: 28px; height: 28px; border-radius: 8px; margin-bottom: 8px;
+  }
+  .zmPillarN { font-size: 17px; }
+  .zmPillarN small { font-size: 11px; }
+  .zmPillarL { font-size: 10.5px; line-height: 1.3; }
+
+  /* CTAs: full-width on mobile, stack with solid rhythm */
+  .zmCtas {
+    margin-top: 28px;
+    gap: 10px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .zmCtaPrimary {
+    padding: 16px 22px;
+    font-size: 15px;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .zmCtaGhost {
+    padding: 14px 20px;
+    font-size: 14px;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .zmCtaNote {
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    gap: 6px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+
+  /* Social proof */
+  .zmProof { margin-top: 32px; gap: 12px; }
+  .zmProofAvatar { width: 32px; height: 32px; }
+  .zmProofText { font-size: 12.5px; }
+  .zmProofText b { font-size: 13.5px; }
+
+  /* Phone stage: controlled within viewport */
+  .zmRight { min-height: 440px; }
+  .zmPhoneStage {
+    max-width: 320px;
+    aspect-ratio: 4 / 4.6;
+  }
+  .zmPhone { width: 82%; }
+  /* Reduce phone rotation on small screens to avoid clipping */
+  .zmPhone {
+    transform: rotate(-2deg) translateY(0);
+    animation: zmFloatMobile 6s ease-in-out infinite, zmPhoneIn 1.1s var(--zm-ease-out) .3s backwards;
+  }
+
+  /* Chips: smaller, kept inside stage bounds, less count visible */
+  .zmChipCard {
+    padding: 7px 10px;
+    border-radius: 11px;
+    gap: 8px;
+    box-shadow: 0 8px 20px -6px rgba(0,0,0,0.55);
+  }
+  .zmChipIc { width: 26px; height: 26px; border-radius: 7px; }
+  .zmChipIc svg { width: 13px; height: 13px; }
+  .zmChipMain { font-size: 11.5px; }
+  .zmChipSub { font-size: 8.5px; }
+  .zmChipVal { font-size: 12.5px; }
+
+  .zmChipLive { top: 10%; left: 4%; }
+  .zmChipScore { top: 52%; left: 2%; }
+  .zmChipPoints { top: 8%; right: 4%; }
+  .zmChipAi { bottom: 8%; right: 2%; }
+  .zmChipAi .zmChipMain { font-size: 10.5px; }
+  .zmChipAi .zmChipSub { font-size: 8px; }
+
+  /* Stats bar: centered grid on mobile, readable */
+  .zmStatsInner {
+    padding: 14px 20px 22px;
+    justify-content: center;
+    gap: 12px 18px;
+  }
+  .zmStat { font-size: 11.5px; gap: 8px; }
+  .zmStatIc { width: 26px; height: 26px; border-radius: 7px; }
+  .zmStat b { font-size: 14px; }
+  .zmStatL { font-size: 11px; }
+}
+
+/* ---------- EXTRA-SMALL (≤380) — phones like iPhone SE ---------- */
+@media (max-width: 380px) {
+  .zmHero { padding: 16px 16px 48px; }
+  .zmH1 { font-size: clamp(2.25rem, 12vw, 3rem); }
+  .zmPillars { gap: 6px; }
+  .zmPillar { padding: 10px 8px; }
+  .zmPillarN { font-size: 15px; }
+  .zmPillarL { font-size: 9.5px; }
+  .zmPhoneStage { max-width: 280px; }
+  .zmChipLive, .zmChipScore, .zmChipPoints, .zmChipAi {
+    padding: 6px 8px;
+  }
+  .zmChipAi .zmChipMain { font-size: 10px; }
+  .zmStat .zmStatL { display: none; } /* keep only number + icon on very narrow */
+}
+
+/* ---------- MOBILE phone float keyframe (gentler) ---------- */
+@keyframes zmFloatMobile {
+  0%, 100% { transform: rotate(-2deg) translateY(0); }
+  50% { transform: rotate(-2deg) translateY(-8px); }
+}
+
+/* ===== TWEAKS PANEL (floating bottom-right) ===== */
+.zmTweaksToggleBtn {
+  position: fixed; bottom: 20px; right: 20px; z-index: 10000;
+  width: 42px; height: 42px; border-radius: 50%;
+  background: linear-gradient(135deg, #F5D07A, #D4A853);
+  color: #1A1A2E; border: 0; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 10px 30px -6px rgba(212,168,83,0.5);
+  transition: transform .2s var(--zm-ease-out);
+}
+.zmTweaksToggleBtn:hover { transform: rotate(30deg) scale(1.06); }
+.zmTweaksToggleBtn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+.zmTweaks {
+  position: fixed; bottom: 74px; right: 20px; z-index: 9999;
+  width: 280px;
+  background: rgba(11,11,22,0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 20px 60px -10px rgba(0,0,0,0.8);
+  color: #fff; font-family: var(--zm-font-body); font-size: 13px;
+  transform: translateY(8px); opacity: 0; pointer-events: none;
+  transition: all .3s var(--zm-ease-out);
+}
+.zmTweaksOpen { transform: translateY(0); opacity: 1; pointer-events: auto; }
+.zmTweaks h4 {
+  margin: 0 0 14px; font-family: var(--zm-font-display); font-size: 13px; font-weight: 700;
+  color: var(--zm-brand-gold); letter-spacing: 0.05em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 8px;
+}
+.zmTweaks h4::before {
+  content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--zm-brand-gold);
+  box-shadow: 0 0 8px var(--zm-brand-gold);
+}
+.zmTweakRow { margin-bottom: 14px; }
+.zmTweakRow:last-child { margin-bottom: 0; }
+.zmTweakRow > label:not(.zmTweakToggle) {
+  display: block; font-size: 11px; font-family: var(--zm-font-mono);
+  color: rgba(255,255,255,0.5); letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.zmTweakOpts { display: flex; gap: 6px; flex-wrap: wrap; }
+.zmTweakOpts button {
+  flex: 1; min-width: 70px;
+  padding: 8px 10px; border-radius: 8px; cursor: pointer;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.7);
+  font-family: var(--zm-font-body); font-size: 12px; font-weight: 500;
+  transition: all .2s;
+}
+.zmTweakOpts button:hover { background: rgba(255,255,255,0.08); color: #fff; }
+.zmTweakOn {
+  background: linear-gradient(135deg, rgba(212,168,83,0.2), rgba(212,168,83,0.1)) !important;
+  border-color: rgba(212,168,83,0.4) !important; color: var(--zm-brand-gold) !important; font-weight: 600 !important;
+}
+.zmTweakToggle {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 8px 10px; border-radius: 8px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  cursor: pointer;
+}
+.zmTweakToggle input { accent-color: var(--zm-brand-gold); }
+.zmTweakToggle span { font-size: 12px; color: rgba(255,255,255,0.8); }
+
+/* Tweaks: adapt button + panel position for mobile */
+@media (max-width: 640px) {
+  .zmTweaksToggleBtn {
+    bottom: 16px; right: 16px;
+    width: 44px; height: 44px;
+  }
+  .zmTweaks {
+    bottom: 72px; right: 16px; left: 16px;
+    width: auto; max-width: none;
+    padding: 16px;
+    border-radius: 16px;
+  }
 }
 
 /* ===== ANIMATIONS ===== */

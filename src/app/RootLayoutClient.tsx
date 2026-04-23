@@ -185,10 +185,10 @@ function LateralAds() {
   return (
     <>
       <div className="zm-pub-lat zm-pub-lat--izq">
-        <img src="/img/imagenessilviu/rotulemos120x600.png" alt="" />
+        <img src="/img/imagenessilviu/rotulemos120x600.png" alt="Publicidad Rotulemos — rótulos profesionales" loading="lazy" decoding="async" />
       </div>
       <div className="zm-pub-lat zm-pub-lat--der">
-        <img src="/img/imagenessilviu/ChatGPT Image 8 abr 2026, 04_49_43 p.m..png" alt="" />
+        <img src="/img/imagenessilviu/ChatGPT Image 8 abr 2026, 04_49_43 p.m..png" alt="Publicidad Mr Cool Cat — cerveza artesanal" loading="lazy" decoding="async" />
       </div>
     </>
   );

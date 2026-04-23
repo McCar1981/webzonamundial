@@ -566,7 +566,7 @@ export default function GruposIndex() {
       {/* CTA Final */}
       <section className="max-w-5xl mx-auto px-4 mb-16">
         <div ref={ctaRef} className="relative rounded-3xl border border-[#c9a84c]/20 overflow-hidden group">
-          <img src="/img/imagenessilviu/Estadio Atmosphere.png" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+          <img src="/img/imagenessilviu/Estadio Atmosphere.png" alt="" role="presentation" className="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#060B14] via-[#060B14]/85 to-[#060B14]/70"/>
           <div className="absolute inset-0 bg-gradient-to-r from-[#c9a84c]/10 via-transparent to-[#c9a84c]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"/>
 

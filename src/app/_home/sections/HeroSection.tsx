@@ -47,9 +47,11 @@ export function HeroSection({
       <div className="absolute inset-0">
         <img
           src="https://images.pexels.com/photos/28847309/pexels-photo-28847309.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
-          alt=""
+          alt="Estadio de fútbol con gradas iluminadas durante el Mundial 2026"
           className="w-full h-full object-cover"
           loading="eager"
+          decoding="async"
+          fetchPriority="high"
         />
       </div>
       {/* Overlays for readability */}
@@ -181,6 +183,9 @@ export function HeroSection({
                   key={i}
                   src={src}
                   alt=""
+                  role="presentation"
+                  loading="lazy"
+                  decoding="async"
                   className="w-8 h-8 rounded-full border-2 border-[#060B14] object-cover"
                 />
               ))}

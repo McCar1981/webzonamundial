@@ -8,8 +8,10 @@ export function WhyDifferentSection({ h }: { h: any }) {
         <img
           src="https://images.pexels.com/photos/14744117/pexels-photo-14744117.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
           alt=""
+          role="presentation"
           className="w-full h-full object-cover"
           loading="lazy"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-[#0F1D32]/90" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0F1D32] via-transparent to-[#0F1D32]" />

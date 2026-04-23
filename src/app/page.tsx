@@ -83,6 +83,7 @@ export default function HomePage() {
       <GuaranteesBar items={h.guarantees} />
       <CinematicDivider
         src="https://images.pexels.com/photos/46798/the-ball-stadion-football-the-pitch-46798.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
+        alt="Balón oficial sobre el campo de fútbol iluminado"
         height="h-[250px] sm:h-[350px]"
         overlay="from-[#060B14] via-[#060B14]/20 to-[#0B1825]"
       />

@@ -239,7 +239,7 @@ export default function SeleccionesIndex() {
           <section ref={favoritosRef} className="mb-12">
             <div className="gsap-section-header mb-6 flex items-center gap-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#c9a84c]/20 bg-gradient-to-br from-[#c9a84c]/20 to-[#c9a84c]/5">
-                <img src="/img/imagenessilviu/balondefutbol.png" alt="" className="h-8 w-8 object-contain" />
+                <img src="/img/imagenessilviu/balondefutbol.png" alt="" role="presentation" loading="lazy" decoding="async" className="h-8 w-8 object-contain" />
               </div>
               <div>
                 <h2 className="text-2xl font-bold text-white md:text-3xl">{sT.favoritos}</h2>
@@ -335,8 +335,10 @@ export default function SeleccionesIndex() {
             <img
               src="/img/imagenessilviu/Estadio Atmosphere.png"
               alt=""
+              role="presentation"
               className="absolute inset-0 h-full w-full object-cover"
               loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#060B14] via-[#060B14]/85 to-[#060B14]/70" />
             <div className="absolute inset-0 bg-gradient-to-r from-[#c9a84c]/10 via-transparent to-[#c9a84c]/10 opacity-0 transition-opacity duration-700 group-hover:opacity-100" />

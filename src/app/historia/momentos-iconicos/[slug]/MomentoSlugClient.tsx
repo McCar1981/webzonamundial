@@ -41,6 +41,10 @@ export default function MomentoSlugClient({ slug }: { slug: string }) {
         <img
           src={`https://flagcdn.com/w1280/${moment.flag}.png`}
           alt=""
+          role="presentation"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
           className="absolute inset-0 w-full h-full object-cover opacity-30 blur-[4px] scale-125"
         />
         {/* Multiple overlay layers for depth */}

@@ -419,8 +419,10 @@ export default function NoticiasClient({ posts }: { posts: Post[] }) {
               <div className="absolute inset-0">
                 <img
                   src="/img/zonamundial-images/stadiums/estadio-azteca-cdmx.jpg"
-                  alt=""
+                  alt="Estadio Azteca en Ciudad de México, sede del Mundial 2026"
                   className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-[#060B14] via-[#060B14]/85 to-[#060B14]/60" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#060B14] via-transparent to-transparent" />

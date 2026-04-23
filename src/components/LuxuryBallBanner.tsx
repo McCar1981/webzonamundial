@@ -207,10 +207,13 @@ export function LuxuryBallBanner() {
       </svg>
 
       {/* Balón de fútbol */}
-      <img 
+      <img
         ref={ballRef}
-        src="/img/imagenessilviu/balondefutbol.png" 
+        src="/img/imagenessilviu/balondefutbol.png"
         alt=""
+        role="presentation"
+        loading="lazy"
+        decoding="async"
         className="absolute w-[400px] sm:w-[500px] md:w-[600px] h-auto object-contain"
         style={{
           filter: 'drop-shadow(0 60px 120px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 100px rgba(201, 168, 76, 0.2))',

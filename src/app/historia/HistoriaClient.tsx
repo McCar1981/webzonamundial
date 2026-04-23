@@ -386,8 +386,10 @@ export default function HistoriaClient() {
               <img
                 src={`https://flagcdn.com/w640/${moment.flag}.png`}
                 alt=""
+                role="presentation"
                 className="absolute inset-0 w-full h-full object-cover opacity-25 transition-all duration-500 group-hover:opacity-35 group-hover:scale-110 blur-[2px]"
                 loading="lazy"
+                decoding="async"
               />
               {/* Dark overlay gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F1A] via-[#0B0F1A]/70 to-transparent" />

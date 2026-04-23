@@ -65,8 +65,10 @@ export default function Formato2026Page() {
         <div className="absolute inset-0">
           <img
             src="/img/zonamundial-images/stadiums/metlife-stadium.jpg"
-            alt=""
+            alt="MetLife Stadium, sede de la final del Mundial 2026 en Nueva Jersey"
             className="h-full w-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#060B14] via-[#060B14]/90 to-[#060B14]/70" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#060B14] via-transparent to-transparent" />

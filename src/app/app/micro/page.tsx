@@ -11,7 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a";
 
 const MICRO_TYPES = [
-  { icon: "/img/imagenessilviu/balondefutbol.png", title: "Próximo gol", desc: "¿Quién marcará en los próximos 10 minutos?", mult: "×2 - ×5" },
+  { icon: "/img/imagenessilviu/balondefutbol.webp", title: "Próximo gol", desc: "¿Quién marcará en los próximos 10 minutos?", mult: "×2 - ×5" },
   { icon: "match center", title: "Corners", desc: "¿Habrá más de 2 corners antes del minuto 30?", mult: "×1.5 - ×3" },
   { icon: "predicciones", title: "Tarjetas", desc: "¿Veremos tarjeta en la siguiente jugada?", mult: "×2 - ×4" },
   { icon: "micro-predicciones", title: "Sustitución", desc: "¿Sale Mbappé en el segundo tiempo?", mult: "×2 - ×6" },

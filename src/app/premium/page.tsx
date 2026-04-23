@@ -289,7 +289,7 @@ export default function PremiumPage() {
       <section className="relative overflow-hidden" style={{ padding: "80px 20px" }}>
         <div className="max-w-4xl mx-auto relative z-10">
           <div className="relative rounded-3xl border overflow-hidden group" style={{ borderColor: `${GOLD}30` }}>
-            <img src="/img/imagenessilviu/Estadio Atmosphere.png" alt="" role="presentation" className="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
+            <img src="/img/imagenessilviu/Estadio Atmosphere.webp" alt="" role="presentation" className="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#060B14] via-[#060B14]/85 to-[#060B14]/70" />
 
             <div className="relative z-10 flex flex-col lg:flex-row items-center gap-8 p-10 sm:p-14">

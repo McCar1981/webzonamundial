@@ -185,10 +185,10 @@ function LateralAds() {
   return (
     <>
       <div className="zm-pub-lat zm-pub-lat--izq">
-        <img src="/img/imagenessilviu/rotulemos120x600.png" alt="Publicidad Rotulemos — rótulos profesionales" loading="lazy" decoding="async" />
+        <img src="/img/imagenessilviu/rotulemos120x600.webp" alt="Publicidad Rotulemos — rótulos profesionales" loading="lazy" decoding="async" />
       </div>
       <div className="zm-pub-lat zm-pub-lat--der">
-        <img src="/img/imagenessilviu/ChatGPT Image 8 abr 2026, 04_49_43 p.m..png" alt="Publicidad Mr Cool Cat — cerveza artesanal" loading="lazy" decoding="async" />
+        <img src="/img/imagenessilviu/ChatGPT Image 8 abr 2026, 04_49_43 p.m..webp" alt="Publicidad Mr Cool Cat — cerveza artesanal" loading="lazy" decoding="async" />
       </div>
     </>
   );
@@ -278,7 +278,7 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
           {/* Logo */}
           <Link href="/" style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", textDecoration: "none" }} onClick={closeMobile}>
             <img
-              src="/img/zonamundial-images/imagenes/IMG-20260302-WA0016-removebg-preview.png"
+              src="/img/zonamundial-images/imagenes/IMG-20260302-WA0016-removebg-preview.webp"
               alt="ZonaMundial Logo"
               style={{ width: 36, height: 36, objectFit: "contain" }}
             />

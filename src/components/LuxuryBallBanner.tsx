@@ -158,7 +158,7 @@ export function LuxuryBallBanner() {
       <div 
         className="absolute inset-0 opacity-[0.05]"
         style={{
-          backgroundImage: `url('/img/imagenessilviu/Background Patterns.png')`,
+          backgroundImage: `url('/img/imagenessilviu/Background Patterns.webp')`,
           backgroundSize: '600px',
           backgroundPosition: 'center',
         }}
@@ -168,7 +168,7 @@ export function LuxuryBallBanner() {
       <div 
         className="absolute inset-0 opacity-[0.03]"
         style={{
-          backgroundImage: `url('/img/imagenessilviu/Estadio Atmosphere.png')`,
+          backgroundImage: `url('/img/imagenessilviu/Estadio Atmosphere.webp')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center bottom',
           filter: 'blur(40px)'
@@ -209,7 +209,7 @@ export function LuxuryBallBanner() {
       {/* Balón de fútbol */}
       <img
         ref={ballRef}
-        src="/img/imagenessilviu/balondefutbol.png"
+        src="/img/imagenessilviu/balondefutbol.webp"
         alt=""
         role="presentation"
         loading="lazy"

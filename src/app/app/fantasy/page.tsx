@@ -226,7 +226,7 @@ export default function FantasyPage() {
       {/* HERO SECTION */}
       <section style={{padding:"20px 20px 60px",textAlign:"center",position:"relative",overflow:"hidden"}}>
         <div style={{position:"absolute",inset:0,background:"radial-gradient(ellipse at center,rgba(201,168,76,0.08) 0%,transparent 60%)"}}/>
-        <img data-hero-decor src="/img/imagenessilviu/balondefutbol.png" alt="" role="presentation" aria-hidden="true" loading="lazy" decoding="async" style={{position:"absolute",top:"10%",left:"5%",width:120,opacity:0.03,transform:"rotate(-15deg)"}} />
+        <img data-hero-decor src="/img/imagenessilviu/balondefutbol.webp" alt="" role="presentation" aria-hidden="true" loading="lazy" decoding="async" style={{position:"absolute",top:"10%",left:"5%",width:120,opacity:0.03,transform:"rotate(-15deg)"}} />
         <span data-hero-decor style={{position:"absolute",bottom:"10%",right:"5%",width:100,height:100,opacity:0.03,transform:"rotate(15deg)",display:"flex",alignItems:"center",justifyContent:"center"}}><svg viewBox="0 0 24 24" fill="none" width="100" height="100">{ICON_V3.rankings.props.children}</svg></span>
 
         <div style={{maxWidth:800,margin:"0 auto",position:"relative"}}>
@@ -529,7 +529,7 @@ export default function FantasyPage() {
         <div style={{position:"absolute",inset:0,background:"radial-gradient(ellipse at center, rgba(201,168,76,0.1) 0%, transparent 60%)"}}/>
 
         <div style={{maxWidth:700,margin:"0 auto",textAlign:"center",position:"relative"}}>
-          <img src="/img/imagenessilviu/balondefutbol.png" alt="" role="presentation" aria-hidden="true" loading="lazy" decoding="async" style={{width:80,height:80,objectFit:"contain",marginBottom:24}} />
+          <img src="/img/imagenessilviu/balondefutbol.webp" alt="" role="presentation" aria-hidden="true" loading="lazy" decoding="async" style={{width:80,height:80,objectFit:"contain",marginBottom:24}} />
           <h2 data-cta-content style={{fontSize:"clamp(28px,5vw,44px)",fontWeight:900,marginBottom:16,lineHeight:1.1}}>
             {fT.ctaFinalTitle} <span style={{color:GOLD}}>{fT.ctaFinalTitleHighlight}</span>
           </h2>

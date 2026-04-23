@@ -564,7 +564,7 @@ export default function SeleccionClient({ team, companeros }: Props) {
 
             {/* Sponsor */}
             <a href="#" target="_blank" rel="noopener noreferrer" className="rounded-3xl bg-white/[0.02] border border-white/10 flex items-center justify-center py-3">
-              <img src="/img/imagenessilviu/ChatGPT Image 8 abr 2026, 04_53_21 p.m..png" alt="Publicidad" className="rounded-lg" style={{maxWidth:"100%",height:"auto"}} />
+              <img src="/img/imagenessilviu/ChatGPT Image 8 abr 2026, 04_53_21 p.m..webp" alt="Publicidad" className="rounded-lg" style={{maxWidth:"100%",height:"auto"}} />
             </a>
           </div>
         </div>

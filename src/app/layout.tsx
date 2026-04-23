@@ -94,10 +94,10 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
-      { url: "/img/zonamundial-images/imagenes/IMG-20260302-WA0016-removebg-preview.png", type: "image/png" },
+      { url: "/img/zonamundial-images/imagenes/IMG-20260302-WA0016-removebg-preview.webp", type: "image/webp" },
     ],
     shortcut: "/favicon.ico",
-    apple: "/img/zonamundial-images/imagenes/IMG-20260302-WA0016-removebg-preview.png",
+    apple: "/img/zonamundial-images/imagenes/IMG-20260302-WA0016-removebg-preview.webp",
   },
   formatDetection: {
     email: false,
@@ -147,7 +147,7 @@ const jsonLd = {
       url: SITE_URL,
       logo: {
         "@type": "ImageObject",
-        url: `${SITE_URL}/img/zonamundial-images/imagenes/IMG-20260302-WA0016-removebg-preview.png`,
+        url: `${SITE_URL}/img/zonamundial-images/imagenes/IMG-20260302-WA0016-removebg-preview.webp`,
       },
       foundingDate: "2025",
       founder: { "@type": "Organization", name: "SprintMarkt" },

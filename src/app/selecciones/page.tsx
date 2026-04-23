@@ -239,7 +239,7 @@ export default function SeleccionesIndex() {
           <section ref={favoritosRef} className="mb-12">
             <div className="gsap-section-header mb-6 flex items-center gap-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#c9a84c]/20 bg-gradient-to-br from-[#c9a84c]/20 to-[#c9a84c]/5">
-                <img src="/img/imagenessilviu/balondefutbol.png" alt="" role="presentation" loading="lazy" decoding="async" className="h-8 w-8 object-contain" />
+                <img src="/img/imagenessilviu/balondefutbol.webp" alt="" role="presentation" loading="lazy" decoding="async" className="h-8 w-8 object-contain" />
               </div>
               <div>
                 <h2 className="text-2xl font-bold text-white md:text-3xl">{sT.favoritos}</h2>
@@ -333,7 +333,7 @@ export default function SeleccionesIndex() {
             style={{ opacity: 0 }}
           >
             <img
-              src="/img/imagenessilviu/Estadio Atmosphere.png"
+              src="/img/imagenessilviu/Estadio Atmosphere.webp"
               alt=""
               role="presentation"
               className="absolute inset-0 h-full w-full object-cover"

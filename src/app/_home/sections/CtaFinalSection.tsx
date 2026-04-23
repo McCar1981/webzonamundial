@@ -17,7 +17,7 @@ export function CtaFinalSection({
         <div className="relative rounded-3xl border-2 border-dashed border-[#C9A84C]/30 overflow-hidden group">
           {/* Imagen de estadio como fondo con parallax */}
           <ParallaxImage
-            src="/img/imagenessilviu/Estadio Atmosphere.png"
+            src="/img/imagenessilviu/Estadio Atmosphere.webp"
             alt=""
             className="absolute inset-0 w-full h-full"
             speed={0.3}

@@ -90,7 +90,7 @@ export default function CampeonesClient() {
       <div className="w-full bg-[#0B1825] border border-[#1a2a3f] rounded-lg flex items-center justify-center mb-6 sm:mb-8 py-3"
         data-sponsor-slot="historia-campeones">
         <a href="#" target="_blank" rel="noopener noreferrer">
-          <img src="/img/imagenessilviu/ChatGPT Image 8 abr 2026, 04_53_21 p.m..png" alt="Publicidad" className="rounded-lg" style={{maxWidth:"100%",height:"auto"}} />
+          <img src="/img/imagenessilviu/ChatGPT Image 8 abr 2026, 04_53_21 p.m..webp" alt="Publicidad" className="rounded-lg" style={{maxWidth:"100%",height:"auto"}} />
         </a>
       </div>
 

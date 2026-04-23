@@ -19,13 +19,13 @@ const BG3 = "#0B1825";
 const TAG_STYLES: Record<string, { color: string; bg: string; icon?: string }> = {
   'A': { color: '#22c55e', bg: 'rgba(34,197,94,0.15)',   icon: '48 selecciones' },
   'B': { color: '#22c55e', bg: 'rgba(34,197,94,0.15)',   icon: '48 selecciones' },
-  'C': { color: '#22c55e', bg: 'rgba(34,197,94,0.15)',   icon: '/img/imagenessilviu/balondefutbol.png' },
+  'C': { color: '#22c55e', bg: 'rgba(34,197,94,0.15)',   icon: '/img/imagenessilviu/balondefutbol.webp' },
   'D': { color: '#22c55e', bg: 'rgba(34,197,94,0.15)',   icon: '48 selecciones' },
-  'E': { color: '#fbbf24', bg: 'rgba(251,191,36,0.15)',  icon: '/img/imagenessilviu/balondefutbol.png' },
-  'F': { color: '#f97316', bg: 'rgba(249,115,22,0.15)',  icon: '/img/imagenessilviu/balondefutbol.png' },
+  'E': { color: '#fbbf24', bg: 'rgba(251,191,36,0.15)',  icon: '/img/imagenessilviu/balondefutbol.webp' },
+  'F': { color: '#f97316', bg: 'rgba(249,115,22,0.15)',  icon: '/img/imagenessilviu/balondefutbol.webp' },
   'G': { color: '#ef4444', bg: 'rgba(239,68,68,0.15)',   icon: 'micro-predicciones' },
-  'H': { color: '#c9a84c', bg: 'rgba(201,168,76,0.15)',  icon: '/img/imagenessilviu/balondefutbol.png' },
-  'I': { color: '#3b82f6', bg: 'rgba(59,130,246,0.15)',  icon: '/img/imagenessilviu/balondefutbol.png' },
+  'H': { color: '#c9a84c', bg: 'rgba(201,168,76,0.15)',  icon: '/img/imagenessilviu/balondefutbol.webp' },
+  'I': { color: '#3b82f6', bg: 'rgba(59,130,246,0.15)',  icon: '/img/imagenessilviu/balondefutbol.webp' },
   'J': { color: '#38bdf8', bg: 'rgba(56,189,248,0.15)',  icon: 'ranking' },
   'K': { color: '#a855f7', bg: 'rgba(168,85,247,0.15)',  icon: 'modo carrera' },
   'L': { color: '#94a3b8', bg: 'rgba(148,163,184,0.15)', icon: 'historia' },
@@ -566,7 +566,7 @@ export default function GruposIndex() {
       {/* CTA Final */}
       <section className="max-w-5xl mx-auto px-4 mb-16">
         <div ref={ctaRef} className="relative rounded-3xl border border-[#c9a84c]/20 overflow-hidden group">
-          <img src="/img/imagenessilviu/Estadio Atmosphere.png" alt="" role="presentation" className="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
+          <img src="/img/imagenessilviu/Estadio Atmosphere.webp" alt="" role="presentation" className="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#060B14] via-[#060B14]/85 to-[#060B14]/70"/>
           <div className="absolute inset-0 bg-gradient-to-r from-[#c9a84c]/10 via-transparent to-[#c9a84c]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"/>
 

@@ -101,7 +101,7 @@ export function AlbumSection({
             <div className="absolute -inset-4 bg-[#C9A84C]/15 blur-[80px] rounded-full pointer-events-none" />
             <div className="relative rounded-3xl border-2 border-[#C9A84C]/30 bg-gradient-to-br from-[#0F1D32] to-[#0B1825] p-4 sm:p-5 shadow-[0_0_60px_rgba(201,168,76,0.15)] group-hover:border-[#C9A84C]/60 group-hover:shadow-[0_0_80px_rgba(201,168,76,0.3)] transition-all duration-500">
               <img
-                src="/img/zonamundial-images/4250c5f8-7831-4fcd-bd97-7a82a51df125.png"
+                src="/img/zonamundial-images/4250c5f8-7831-4fcd-bd97-7a82a51df125.webp"
                 alt="Álbum Mundial 2026"
                 className="w-[240px] sm:w-[290px] lg:w-[330px] h-auto rounded-2xl group-hover:scale-[1.03] transition-transform duration-500"
                 loading="lazy"

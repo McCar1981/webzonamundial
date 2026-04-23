@@ -157,7 +157,7 @@ export default function AlbumPage() {
                 padding: 4,
               }}>
                 <img
-                  src="/img/zonamundial-images/3ed8e8c7-8e9f-49d0-9a54-518d3f7b4dcb.png"
+                  src="/img/zonamundial-images/3ed8e8c7-8e9f-49d0-9a54-518d3f7b4dcb.webp"
                   alt="Álbum de cromos ZonaMundial 2026"
                   style={{
                     width: "100%",

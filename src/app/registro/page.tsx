@@ -93,7 +93,7 @@ export default function RegistroPage() {
                 <div className="w-14 h-14 rounded-2xl flex items-center justify-center overflow-hidden"
                   style={{ background: 'linear-gradient(135deg, rgba(201,168,76,0.2), rgba(201,168,76,0.05))', border: '1px solid rgba(201,168,76,0.3)' }}>
                   <img
-                    src="/img/zonamundial-images/imagenes/IMG-20260302-WA0016-removebg-preview.png"
+                    src="/img/zonamundial-images/imagenes/IMG-20260302-WA0016-removebg-preview.webp"
                     alt="ZonaMundial"
                     className="w-10 h-10 object-contain"
                   />

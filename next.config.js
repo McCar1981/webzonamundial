@@ -8,29 +8,17 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   // Permitir imágenes externas (banderas, estadios, etc.)
+  // Nota: imágenes de Pexels migradas a /public/img/heroes/ en PR de performance (2026-04-23)
   images: {
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "flagcdn.com",
-      },
-      {
-        protocol: "https",
-        hostname: "zonamundial.app",
-      },
-      {
-        protocol: "https",
-        hostname: "upload.wikimedia.org",
-      },
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-      },
+      { protocol: "https", hostname: "flagcdn.com" },
+      { protocol: "https", hostname: "zonamundial.app" },
+      { protocol: "https", hostname: "www.zonamundial.app" },
+      { protocol: "https", hostname: "upload.wikimedia.org" },
+      { protocol: "https", hostname: "images.unsplash.com" },
       // Sanity CDN
-      {
-        protocol: "https",
-        hostname: "cdn.sanity.io",
-      },
+      { protocol: "https", hostname: "cdn.sanity.io" },
     ],
   },
   // Redirecciones SEO

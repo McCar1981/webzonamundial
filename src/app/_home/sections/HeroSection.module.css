@@ -133,12 +133,19 @@
 .zmH1Strike {
   position: relative; display: inline-block; color: rgba(255,255,255,0.38);
 }
+/* Artistic hand-drawn gold scribble over the text (not a straight line) */
 .zmH1Strike::after {
-  content: ""; position: absolute; left: -2%; right: -2%; top: 52%; height: 6px;
-  background: linear-gradient(90deg, transparent, var(--zm-brand-gold) 20%, var(--zm-brand-gold) 80%, transparent);
-  transform: rotate(-3deg);
-  animation: zmStrike .7s var(--zm-ease-out) .9s backwards;
-  transform-origin: left;
+  content: "";
+  position: absolute;
+  left: -5%; right: -5%; top: 0;
+  width: 110%; height: 100%;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 120' preserveAspectRatio='none'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='0%25'><stop offset='0%25' stop-color='%23F5D07A' stop-opacity='0'/><stop offset='8%25' stop-color='%23F5D07A' stop-opacity='1'/><stop offset='50%25' stop-color='%23D4A853' stop-opacity='1'/><stop offset='92%25' stop-color='%23B8913F' stop-opacity='1'/><stop offset='100%25' stop-color='%23B8913F' stop-opacity='0'/></linearGradient></defs><path d='M8 72 C 60 58, 140 82, 205 64 S 340 78, 410 66 S 530 80, 592 60' stroke='url(%23g)' stroke-width='10' stroke-linecap='round' fill='none' filter='drop-shadow(0 2px 8px rgba(212,168,83,0.55))'/><path d='M20 75 C 95 68, 160 86, 230 70 S 355 82, 430 72 S 540 84, 580 68' stroke='url(%23g)' stroke-width='4' stroke-linecap='round' fill='none' opacity='0.5'/></svg>");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center center;
+  transform-origin: left center;
+  animation: zmStrikeArtist .9s var(--zm-ease-out) .9s backwards;
+  pointer-events: none;
 }
 .zmH1Em {
   font-style: italic; font-weight: 800;
@@ -421,10 +428,12 @@
     min-height: auto;
   }
   .zmStatsInner { padding: 20px 32px 28px; }
+  .zmRight { min-height: 0; }
   .zmPhoneStage {
-    max-width: 460px;
+    max-width: 420px;
     margin: 0 auto;
-    aspect-ratio: 4 / 4.2;
+    aspect-ratio: auto;
+    padding: 70px 16px;
   }
   /* Chips tuck inside stage bounds on tablet */
   .zmChipLive { left: 2%; }
@@ -513,15 +522,18 @@
   .zmProofText { font-size: 12.5px; }
   .zmProofText b { font-size: 13.5px; }
 
-  /* Phone stage: controlled within viewport */
-  .zmRight { min-height: 440px; }
-  .zmPhoneStage {
-    max-width: 320px;
-    aspect-ratio: 4 / 4.6;
+  /* Phone stage: hug the device, no huge empty top/bottom */
+  .zmRight {
+    min-height: 0;
+    padding: 0;
   }
-  .zmPhone { width: 82%; }
-  /* Reduce phone rotation on small screens to avoid clipping */
+  .zmPhoneStage {
+    max-width: 300px;
+    aspect-ratio: auto;
+    padding: 56px 10px; /* breathing room for floating chips, not vacuum */
+  }
   .zmPhone {
+    width: 100%;
     transform: rotate(-2deg) translateY(0);
     animation: zmFloatMobile 6s ease-in-out infinite, zmPhoneIn 1.1s var(--zm-ease-out) .3s backwards;
   }
@@ -566,7 +578,7 @@
   .zmPillar { padding: 10px 8px; }
   .zmPillarN { font-size: 15px; }
   .zmPillarL { font-size: 9.5px; }
-  .zmPhoneStage { max-width: 280px; }
+  .zmPhoneStage { max-width: 260px; padding: 48px 8px; }
   .zmChipLive, .zmChipScore, .zmChipPoints, .zmChipAi {
     padding: 6px 8px;
   }
@@ -690,6 +702,10 @@
   from { transform: rotate(-3deg) scaleX(0); }
   to { transform: rotate(-3deg) scaleX(1); }
 }
+@keyframes zmStrikeArtist {
+  from { clip-path: inset(0 100% 0 0); opacity: 0; }
+  to { clip-path: inset(0 0 0 0); opacity: 1; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .zmPhone, .zmH1, .zmSub, .zmPillars, .zmCtas, .zmCtaNote, .zmProof, .zmCountdown, .zmChipCard {
@@ -697,5 +713,5 @@
     transform: none !important;
   }
   .zmPhone { transform: rotate(-4deg) !important; }
-  .zmH1 .strike::after { transform: rotate(-3deg) scaleX(1) !important; }
+  .zmH1Strike::after { clip-path: inset(0) !important; opacity: 1 !important; }
 }

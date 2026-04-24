@@ -15,6 +15,7 @@ import { ScrollProgressBar } from "./_home/components/ScrollProgressBar";
 import { HeroSection } from "./_home/sections/HeroSection";
 import { StatsSection } from "./_home/sections/StatsSection";
 import { PlatformShowcaseSection } from "./_home/sections/PlatformShowcaseSection";
+import { ModulesGridSection } from "./_home/sections/ModulesGridSection";
 import { ModulesBentoSection } from "./_home/sections/ModulesBentoSection";
 import { GuaranteesBar } from "./_home/sections/GuaranteesBar";
 import { CreatorsSection } from "./_home/sections/CreatorsSection";
@@ -72,6 +73,7 @@ export default function HomePage() {
       <StatsSection statsRef={statsRef} h={h} />
       <HowItWorksSection sectionRef={howItWorksRef} h={h} />
       <PlatformShowcaseSection />
+      <ModulesGridSection />
       <ModulesBentoSection />
       <GuaranteesBar items={h.guarantees} />
       <CinematicDivider

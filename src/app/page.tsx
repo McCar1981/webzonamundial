@@ -18,7 +18,7 @@ import { PlatformShowcaseSection } from "./_home/sections/PlatformShowcaseSectio
 import { ModulesGridSection } from "./_home/sections/ModulesGridSection";
 import { ModulesBentoSection } from "./_home/sections/ModulesBentoSection";
 import { GuaranteesBar } from "./_home/sections/GuaranteesBar";
-import { CreatorsSection } from "./_home/sections/CreatorsSection";
+import { CommunityCreatorsSection } from "./_home/sections/CommunityCreatorsSection";
 import { SocialProofTicker } from "./_home/sections/SocialProofTicker";
 import { AppBannerSection } from "./_home/sections/AppBannerSection";
 import { CtaFinalSection } from "./_home/sections/CtaFinalSection";
@@ -81,7 +81,7 @@ export default function HomePage() {
         height="h-[250px] sm:h-[350px]"
         overlay="from-[#060B14] via-[#060B14]/20 to-[#0B1825]"
       />
-      <CreatorsSection creatorsRef={creatorsRef} h={h} />
+      <CommunityCreatorsSection />
       <AlbumSection albumRef={albumRef} h={h} />
       <AppBannerSection h={h} />
       <SocialProofTicker items={h.testimonials} />

@@ -81,15 +81,17 @@ const FEATURES = [
   },
 ];
 
-/* Floating sparks around section */
-const SPARKS = [
-  { left: "8%", dur: "14s", delay: "0s" },
-  { left: "22%", dur: "18s", delay: "3s" },
-  { left: "38%", dur: "16s", delay: "6s" },
-  { left: "55%", dur: "20s", delay: "2s" },
-  { left: "68%", dur: "15s", delay: "9s" },
-  { left: "82%", dur: "17s", delay: "4s" },
-  { left: "94%", dur: "13s", delay: "11s" },
+/* Floating sparks — mix gold + purple */
+const SPARKS: Array<{ left: string; dur: string; delay: string; kind: "gold" | "purple" }> = [
+  { left: "6%", dur: "14s", delay: "0s", kind: "purple" },
+  { left: "14%", dur: "18s", delay: "3s", kind: "gold" },
+  { left: "24%", dur: "16s", delay: "6s", kind: "purple" },
+  { left: "36%", dur: "20s", delay: "2s", kind: "gold" },
+  { left: "48%", dur: "15s", delay: "9s", kind: "purple" },
+  { left: "58%", dur: "17s", delay: "4s", kind: "gold" },
+  { left: "70%", dur: "13s", delay: "11s", kind: "purple" },
+  { left: "80%", dur: "19s", delay: "7s", kind: "purple" },
+  { left: "92%", dur: "16s", delay: "5s", kind: "gold" },
 ];
 
 /* ============== Main Component ============== */
@@ -124,11 +126,12 @@ export function CommunityCreatorsSection() {
     <section ref={sectionRef} className={styles.section} id="community-creators">
       {/* Background layers */}
       <div className={styles.cursorGlow} aria-hidden="true" />
+      <div className={styles.ambientPurple} aria-hidden="true" />
       <div className={styles.sparks} aria-hidden="true">
         {SPARKS.map((s, i) => (
           <span
             key={i}
-            className={styles.spark}
+            className={`${styles.spark} ${s.kind === "gold" ? styles.sparkGold : styles.sparkPurple}`}
             style={{
               left: s.left,
               bottom: "-20px",
@@ -139,8 +142,8 @@ export function CommunityCreatorsSection() {
         ))}
       </div>
 
-      <div className={styles.inner}>
-        {/* ========== HERO (top block) ========== */}
+      {/* ========== HERO with BG image ========== */}
+      <div className={styles.heroBg}>
         <div className={styles.hero}>
           <div className={styles.copyCol}>
             <div className={styles.pill}>
@@ -178,28 +181,11 @@ export function CommunityCreatorsSection() {
               <IconArrow />
             </Link>
           </div>
-
-          {/* Right: ball image */}
-          <div className={styles.ballCol}>
-            <div className={styles.ballRays} aria-hidden="true" />
-            <picture>
-              <source
-                srcSet="/img/community/ball-hero-mobile.webp"
-                media="(max-width: 640px)"
-                type="image/webp"
-              />
-              <source srcSet="/img/community/ball-hero.webp" type="image/webp" />
-              <img
-                className={styles.ballImg}
-                src="/img/community/ball-hero.webp"
-                alt="Balón oficial del Mundial 2026 sobre el césped"
-                loading="lazy"
-                decoding="async"
-              />
-            </picture>
-          </div>
+          {/* Right column is rendered by the heroBg image (stadium + ball baked in) */}
         </div>
+      </div>
 
+      <div className={styles.inner}>
         {/* ========== FEATURES STRIP ========== */}
         <div className={styles.features}>
           {FEATURES.map((f) => (

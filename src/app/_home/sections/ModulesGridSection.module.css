@@ -1,0 +1,298 @@
+/* ==================================================================
+   Modules Grid — 12 cards "Todo lo que necesitas para no quedarte fuera"
+   Each card uses its own accent color (--c) for icon, glow, border.
+   ================================================================== */
+
+.section {
+  position: relative;
+  padding: clamp(80px, 10vw, 140px) clamp(20px, 4vw, 56px);
+  background:
+    radial-gradient(ellipse 60% 50% at 10% 0%, rgba(212,168,83,0.08), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 90% 100%, rgba(46,134,171,0.06), transparent 60%),
+    linear-gradient(180deg, #06060E 0%, #0A0A18 50%, #06060E 100%);
+  color: #fff;
+  overflow: hidden;
+  font-family: var(--zm-font-body, "Inter", system-ui, sans-serif);
+}
+.section::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0);
+  background-size: 3px 3px;
+  opacity: 0.35;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* Ambient globe glow on the left (like mockup) */
+.section::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: -10%;
+  width: 500px; height: 500px;
+  transform: translateY(-50%);
+  background: radial-gradient(circle, rgba(212,168,83,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== HEAD ===== */
+.head { text-align: center; margin-bottom: clamp(48px, 6vw, 80px); }
+
+.pill {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 10px 22px; border-radius: 999px;
+  background: rgba(212,168,83,0.08);
+  border: 1px solid rgba(212,168,83,0.35);
+  font-family: var(--zm-font-mono, "JetBrains Mono", monospace);
+  font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: #D4A853;
+  margin-bottom: 24px;
+  box-shadow: 0 0 30px -10px rgba(212,168,83,0.3);
+}
+.pill::before {
+  content: ""; width: 7px; height: 7px; border-radius: 50%;
+  background: #D4A853;
+  box-shadow: 0 0 10px #D4A853;
+  animation: pulseDot 2s ease-in-out infinite;
+}
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+.title {
+  font-family: var(--zm-font-display, "Syne", sans-serif);
+  font-weight: 800;
+  font-size: clamp(36px, 5.5vw, 68px);
+  line-height: 1.05; letter-spacing: -0.025em;
+  color: #fff;
+  margin: 0 auto 24px;
+  max-width: 960px;
+  text-wrap: balance;
+}
+.titleEm {
+  font-style: italic;
+  background: linear-gradient(135deg, #F5D07A 0%, #D4A853 50%, #B8913F 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  font-style: normal;
+}
+
+.sub {
+  font-size: clamp(15px, 1.3vw, 17px);
+  line-height: 1.65;
+  color: rgba(255,255,255,0.6);
+  max-width: 780px;
+  margin: 0 auto;
+}
+.subAccent {
+  color: #D4A853;
+  font-weight: 600;
+}
+
+/* ===== DIVIDER "MÓDULOS" ===== */
+.divider {
+  display: flex; align-items: center; justify-content: center;
+  gap: 24px;
+  margin: 0 0 40px;
+  max-width: 960px;
+  margin-left: auto; margin-right: auto;
+}
+.dividerLine {
+  flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,168,83,0.5), transparent);
+}
+.dividerLabel {
+  font-family: var(--zm-font-mono, monospace);
+  font-size: 12px; letter-spacing: 0.4em; text-transform: uppercase;
+  color: rgba(212,168,83,0.9);
+  font-weight: 600;
+}
+
+/* ===== GRID ===== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+}
+
+/* ===== CARD ===== */
+.card {
+  --c: #D4A853;              /* accent color per card, overridden inline */
+  --c-bg: rgba(212, 168, 83, 0.1);
+  position: relative;
+  min-height: 320px;
+  border-radius: 24px;
+  padding: 28px 22px 24px;
+  background:
+    linear-gradient(180deg, rgba(10, 10, 22, 0.4) 0%, rgba(6, 6, 14, 0.85) 100%),
+    #0A0A18;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s,
+              box-shadow 0.4s;
+  display: flex;
+  flex-direction: column;
+}
+.card::before {
+  /* Card-specific background image layer */
+  content: "";
+  position: absolute; inset: 0;
+  background-image: var(--bg);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.45;
+  transition: opacity 0.5s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 0;
+}
+.card::after {
+  /* Card-specific color tint + vignette */
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 50% 30%, color-mix(in srgb, var(--c) 22%, transparent) 0%, transparent 65%),
+    linear-gradient(180deg, rgba(6, 6, 14, 0.35) 0%, rgba(6, 6, 14, 0.85) 80%, rgba(6, 6, 14, 0.95) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--c) 45%, transparent);
+  box-shadow:
+    0 20px 50px -20px color-mix(in srgb, var(--c) 50%, transparent),
+    0 8px 16px -8px rgba(0, 0, 0, 0.5);
+}
+.card:hover::before {
+  opacity: 0.65;
+  transform: scale(1.05);
+}
+
+.cardBody {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Icon: circular badge with glow, colored per card */
+.iconWrap {
+  width: 68px; height: 68px;
+  border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  background:
+    radial-gradient(circle at 35% 30%, color-mix(in srgb, var(--c) 35%, transparent), color-mix(in srgb, var(--c) 8%, transparent) 60%),
+    rgba(10, 10, 22, 0.85);
+  border: 1.5px solid color-mix(in srgb, var(--c) 55%, transparent);
+  color: var(--c);
+  margin-bottom: 20px;
+  box-shadow:
+    0 0 30px -6px color-mix(in srgb, var(--c) 65%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s;
+  flex-shrink: 0;
+}
+.card:hover .iconWrap {
+  transform: scale(1.06);
+  box-shadow:
+    0 0 45px -4px color-mix(in srgb, var(--c) 75%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+.iconWrap svg { width: 30px; height: 30px; }
+
+.cardTitle {
+  font-family: var(--zm-font-display, "Syne", sans-serif);
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin: 0 0 12px;
+  line-height: 1.15;
+}
+.cardDesc {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0;
+}
+
+/* ===== FOOTER CTA ===== */
+.foot {
+  text-align: center;
+  margin-top: 56px;
+}
+.exploreCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 32px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid rgba(212, 168, 83, 0.45);
+  color: #D4A853;
+  font-family: var(--zm-font-display, "Syne", sans-serif);
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+.exploreCta::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.25) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.7s;
+}
+.exploreCta:hover {
+  background: #D4A853;
+  color: #0A0A14;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px -10px rgba(212, 168, 83, 0.55);
+}
+.exploreCta:hover::before { transform: translateX(100%); }
+.exploreCta svg { transition: transform 0.3s; }
+.exploreCta:hover svg { transform: translateX(4px); }
+
+/* ==================================================================
+   Responsive
+   ================================================================== */
+@media (max-width: 1200px) {
+  .grid { grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .card { min-height: 300px; }
+}
+@media (max-width: 860px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+  .card { min-height: 280px; padding: 24px 18px 20px; }
+  .cardTitle { font-size: 20px; }
+}
+@media (max-width: 620px) {
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .card { min-height: 240px; padding: 20px 16px 18px; }
+  .iconWrap { width: 56px; height: 56px; margin-bottom: 14px; }
+  .iconWrap svg { width: 26px; height: 26px; }
+  .cardTitle { font-size: 17px; margin-bottom: 8px; }
+  .cardDesc { font-size: 12.5px; }
+}
+@media (max-width: 400px) {
+  .grid { grid-template-columns: 1fr; }
+  .card { min-height: 200px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card, .card::before, .iconWrap, .exploreCta, .exploreCta::before, .exploreCta svg {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

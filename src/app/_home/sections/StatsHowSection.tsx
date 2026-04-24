@@ -29,8 +29,8 @@ const STEPS = [
   {
     n: "01",
     Icon: IconStepChoose,
-    title: "Elige tu selección",
-    desc: "Descubre datos, fixture y estadísticas de los 48 equipos del Mundial 2026.",
+    title: "Selecciona a tu creador",
+    desc: "Eliges tu selección, descubre datos, fixture del Mundial 2026.",
   },
   {
     n: "02",

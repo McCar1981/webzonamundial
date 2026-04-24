@@ -14,7 +14,7 @@ import { MODULES_BASE } from "./_home/data";
 import { ScrollProgressBar } from "./_home/components/ScrollProgressBar";
 import { HeroSection } from "./_home/sections/HeroSection";
 import { StatsSection } from "./_home/sections/StatsSection";
-import { WhyDifferentSection } from "./_home/sections/WhyDifferentSection";
+import { PlatformShowcaseSection } from "./_home/sections/PlatformShowcaseSection";
 import { ModulesBentoSection } from "./_home/sections/ModulesBentoSection";
 import { GuaranteesBar } from "./_home/sections/GuaranteesBar";
 import { CreatorsSection } from "./_home/sections/CreatorsSection";
@@ -71,7 +71,7 @@ export default function HomePage() {
       />
       <StatsSection statsRef={statsRef} h={h} />
       <HowItWorksSection sectionRef={howItWorksRef} h={h} />
-      <WhyDifferentSection h={h} />
+      <PlatformShowcaseSection />
       <ModulesBentoSection />
       <GuaranteesBar items={h.guarantees} />
       <CinematicDivider

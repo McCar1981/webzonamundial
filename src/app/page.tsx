@@ -74,13 +74,6 @@ export default function HomePage() {
       <PlatformShowcaseSection />
       <ModulesBentoSection />
       <GuaranteesBar items={h.guarantees} />
-      <CinematicDivider
-        src="/img/heroes/ball-stadium-pitch.jpg"
-        srcWebp="/img/heroes/ball-stadium-pitch.webp"
-        alt="Balón oficial sobre el campo de fútbol iluminado"
-        height="h-[250px] sm:h-[350px]"
-        overlay="from-[#060B14] via-[#060B14]/20 to-[#0B1825]"
-      />
       <CommunityCreatorsSection />
       <AlbumSection albumRef={albumRef} h={h} />
       <AppBannerSection h={h} />

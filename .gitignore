@@ -2,3 +2,4 @@ node_modules/
 .next/
 dist/
 data/registros.json
+data/waitlist.json

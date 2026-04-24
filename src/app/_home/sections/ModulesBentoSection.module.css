@@ -34,9 +34,49 @@
   pointer-events: none;
   mix-blend-mode: overlay;
 }
+/* Subtle floating gold blobs + slow diagonal shimmer for depth */
+.modules::after {
+  content: "";
+  position: absolute; inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle 280px at 15% 30%, rgba(212, 168, 83, 0.08), transparent 65%),
+    radial-gradient(circle 360px at 85% 70%, rgba(79, 160, 194, 0.07), transparent 65%),
+    radial-gradient(circle 240px at 60% 15%, rgba(212, 168, 83, 0.05), transparent 60%);
+  animation: bentoAmbient 14s ease-in-out infinite alternate;
+}
+@keyframes bentoAmbient {
+  from { transform: translate(0, 0); opacity: 0.85; }
+  to { transform: translate(-30px, 20px); opacity: 1; }
+}
+
 .inner {
   max-width: 1320px; margin: 0 auto;
   position: relative; z-index: 1;
+}
+
+/* Floating gold sparks (subtle) — pure CSS */
+.bentoSparks {
+  position: absolute; inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.bentoSpark {
+  position: absolute;
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #F5D07A, transparent 60%);
+  box-shadow: 0 0 8px rgba(245, 208, 122, 0.55);
+  opacity: 0;
+  animation: bentoSparkFloat var(--dur, 16s) linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+@keyframes bentoSparkFloat {
+  0% { transform: translateY(40px); opacity: 0; }
+  10% { opacity: 0.75; }
+  85% { opacity: 0.55; }
+  100% { transform: translateY(-100vh); opacity: 0; }
 }
 
 /* ===== HEAD ===== */
@@ -116,6 +156,21 @@
 }
 .card:hover { border-color: rgba(212,168,83,0.35); }
 .card:hover .cardImage { transform: scale(1.06); }
+/* Intensify the bottom overlay on hover so the title stays readable
+   after the image zooms in */
+.card:hover .cardImageWrap::after {
+  background: linear-gradient(180deg,
+    rgba(6,6,14,0.55) 0%,
+    rgba(6,6,14,0.88) 50%,
+    rgba(6,6,14,0.98) 100%) !important;
+}
+/* Reinforce title + tag with text-shadow so they stay punchy over any image */
+.card .cardTitle,
+.card .tag,
+.card .tagline,
+.card .cardText {
+  text-shadow: 0 2px 14px rgba(6, 6, 14, 0.85);
+}
 .card:hover .cta { background: var(--zm-brand-gold); color: #0A0A14; }
 .card:hover .cta svg { transform: translateX(3px); }
 

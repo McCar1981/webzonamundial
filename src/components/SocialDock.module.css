@@ -1,0 +1,168 @@
+/* ==================================================================
+   SocialDock — floating vertical social rail (left side, fixed).
+   Visible on all pages/sizes. Collapses to a compact form on mobile.
+   ================================================================== */
+
+.dock {
+  position: fixed;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  pointer-events: none; /* so the rail line doesn't block clicks, buttons enable back */
+}
+.dock > * { pointer-events: auto; }
+
+.line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, transparent, rgba(212, 168, 83, 0.6), transparent);
+  animation: lineShimmer 3s ease-in-out infinite;
+}
+@keyframes lineShimmer {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+.btn {
+  position: relative;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #D4A853;
+  background: rgba(6, 6, 14, 0.75);
+  border: 1px solid rgba(212, 168, 83, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  text-decoration: none;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.35s;
+  box-shadow:
+    0 8px 20px -6px rgba(212, 168, 83, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+.btn svg {
+  width: 18px; height: 18px;
+  transition: transform 0.3s;
+}
+.btn::before {
+  /* pulsing ring */
+  content: "";
+  position: absolute; inset: -2px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 168, 83, 0.4);
+  opacity: 0;
+  transition: opacity 0.35s, transform 0.6s;
+}
+.btn:hover {
+  background: linear-gradient(135deg, #F5D07A 0%, #D4A853 60%, #B8913F 100%);
+  color: #0A0A14;
+  transform: translateX(6px) scale(1.08);
+  border-color: rgba(245, 208, 122, 0.9);
+  box-shadow:
+    0 14px 30px -6px rgba(212, 168, 83, 0.7),
+    0 0 24px -4px rgba(245, 208, 122, 0.6);
+}
+.btn:hover svg { transform: scale(1.1); }
+.btn:hover::before {
+  opacity: 1;
+  transform: scale(1.35);
+}
+
+/* Floating tooltip label on hover */
+.label {
+  position: absolute;
+  left: calc(100% + 12px);
+  top: 50%;
+  transform: translate(-6px, -50%);
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #0A0A14;
+  border: 1px solid rgba(212, 168, 83, 0.55);
+  color: #F5D07A;
+  font-family: var(--zm-font-mono, "JetBrains Mono", monospace);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+  box-shadow: 0 6px 16px -4px rgba(0, 0, 0, 0.5);
+}
+.btn:hover .label {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+/* The small "follow us" mono badge at the top of the rail */
+.eyebrow {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--zm-font-mono, "JetBrains Mono", monospace);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(212, 168, 83, 0.75);
+  padding: 10px 0;
+  user-select: none;
+}
+
+/* ===== Responsive ===== */
+
+/* Tablet: slightly smaller, tighter to the edge */
+@media (max-width: 1024px) {
+  .dock { left: 14px; gap: 10px; }
+  .btn { width: 40px; height: 40px; }
+  .btn svg { width: 16px; height: 16px; }
+  .line { height: 36px; }
+  .label { display: none; }
+}
+
+/* Mobile: move to bottom horizontally + compact */
+@media (max-width: 640px) {
+  .dock {
+    left: 50%;
+    top: auto;
+    bottom: 14px;
+    transform: translateX(-50%);
+    flex-direction: row;
+    gap: 10px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(6, 6, 14, 0.85);
+    border: 1px solid rgba(212, 168, 83, 0.35);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px -6px rgba(0, 0, 0, 0.6);
+  }
+  .line, .eyebrow { display: none; }
+  .btn {
+    width: 36px; height: 36px;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .btn:hover {
+    transform: translateY(-2px) scale(1.1);
+    background: linear-gradient(135deg, #F5D07A, #B8913F);
+  }
+  .btn svg { width: 16px; height: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn, .btn svg, .btn::before, .label, .line {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

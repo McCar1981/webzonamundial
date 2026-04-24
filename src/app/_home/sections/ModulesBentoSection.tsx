@@ -280,9 +280,32 @@ function StreamingCard() {
 }
 
 /* ---------- SECTION EXPORT ---------- */
+const BENTO_SPARKS = [
+  { left: "8%", dur: "14s", delay: "0s" },
+  { left: "22%", dur: "18s", delay: "3s" },
+  { left: "38%", dur: "16s", delay: "6s" },
+  { left: "55%", dur: "19s", delay: "2s" },
+  { left: "72%", dur: "15s", delay: "9s" },
+  { left: "88%", dur: "17s", delay: "5s" },
+];
+
 export function ModulesBentoSection() {
   return (
     <section className={styles.modules} id="modulos">
+      <div className={styles.bentoSparks} aria-hidden="true">
+        {BENTO_SPARKS.map((s, i) => (
+          <span
+            key={i}
+            className={styles.bentoSpark}
+            style={{
+              left: s.left,
+              bottom: "-20px",
+              ["--dur" as string]: s.dur,
+              ["--delay" as string]: s.delay,
+            }}
+          />
+        ))}
+      </div>
       <div className={styles.inner}>
         <div className={styles.head}>
           <span className={styles.pill}>

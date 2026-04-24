@@ -8,6 +8,7 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import type { Translations } from "@/i18n/translations";
 import PromoPopup from "@/components/PromoPopup";
 import { SiteFooter } from "@/components/SiteFooter";
+import { SocialDock } from "@/components/SocialDock";
 
 const BG="#060B14",BG2="#0F1D32",BG3="#0B1825",GOLD="#c9a84c",GOLD2="#e8d48b",MID="#8a94b0",DIM="#6a7a9a",DARK="#4a5570";
 
@@ -400,6 +401,9 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
 
       {/* ═══ PAGE CONTENT ═══ */}
       <main>{children}</main>
+
+      {/* ═══ FLOATING SOCIAL DOCK ═══ */}
+      <SocialDock />
 
       {/* ═══ FOOTER ═══ */}
       <SiteFooter />

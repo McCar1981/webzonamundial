@@ -22,7 +22,7 @@ import { CommunityCreatorsSection } from "./_home/sections/CommunityCreatorsSect
 import { SocialProofTicker } from "./_home/sections/SocialProofTicker";
 import { AppBannerSection } from "./_home/sections/AppBannerSection";
 import { CtaFinalSection } from "./_home/sections/CtaFinalSection";
-import { AlbumSection } from "./_home/sections/AlbumSection";
+import { AlbumDominaSection } from "./_home/sections/AlbumDominaSection";
 import { CinematicDivider } from "./_home/sections/CinematicDivider";
 
 export default function HomePage() {
@@ -75,7 +75,7 @@ export default function HomePage() {
       <ModulesBentoSection />
       <GuaranteesBar items={h.guarantees} />
       <CommunityCreatorsSection />
-      <AlbumSection albumRef={albumRef} h={h} />
+      <AlbumDominaSection />
       <AppBannerSection h={h} />
       <SocialProofTicker items={h.testimonials} />
       <CtaFinalSection ctaRef={ctaRef} h={h} />

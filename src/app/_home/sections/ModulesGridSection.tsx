@@ -221,11 +221,8 @@ const MODULES: Module[] = [
 export function ModulesGridSection() {
   return (
     <section className={styles.section} id="modulos-grid">
-      {/* Ambient backgrounds: planet on left, stadium arc on right, faded into bg */}
-      <div className={styles.ambient} aria-hidden="true">
-        <div className={styles.ambientGlobe} />
-        <div className={styles.ambientStadium} />
-      </div>
+      {/* Ambient background scene: desktop & mobile variants provided as image */}
+      <div className={styles.ambient} aria-hidden="true" />
       <div className={styles.inner}>
         <div className={styles.head}>
           <span className={styles.pill}>12 formas de ganar. Elige la tuya.</span>

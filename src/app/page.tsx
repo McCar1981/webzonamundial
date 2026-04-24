@@ -72,8 +72,8 @@ export default function HomePage() {
       />
       <StatsSection statsRef={statsRef} h={h} />
       <HowItWorksSection sectionRef={howItWorksRef} h={h} />
-      <PlatformShowcaseSection />
       <ModulesGridSection />
+      <PlatformShowcaseSection />
       <ModulesBentoSection />
       <GuaranteesBar items={h.guarantees} />
       <CinematicDivider

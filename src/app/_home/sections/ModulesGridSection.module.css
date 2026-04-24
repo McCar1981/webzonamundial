@@ -25,55 +25,29 @@
   mix-blend-mode: overlay;
 }
 
-/* Ambient decorations: left globe + right stadium, faded into bg */
+/* Ambient background — single composed scene.
+   Desktop: wide landscape (planet + stadium already baked into the asset).
+   Mobile : tall portrait variant.
+   The image already includes fade-to-black edges, so we keep it at full
+   opacity and just use it as a background layer. */
 .ambient {
   position: absolute; inset: 0;
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
-}
-.ambientGlobe,
-.ambientStadium {
-  position: absolute;
-}
-.ambientGlobe {
-  left: -280px;
-  top: -120px;
-  width: 980px;
-  height: 980px;
-  background-image: url("/img/modules-grid-bg/planet-gold.webp");
-  background-size: contain;
-  background-repeat: no-repeat;
-  opacity: 0.95;
-  /* Feather only outer edges so the globe stays clearly visible */
-  -webkit-mask-image: radial-gradient(ellipse 58% 58% at 50% 50%, #000 55%, rgba(0,0,0,0.65) 78%, transparent 96%);
-          mask-image: radial-gradient(ellipse 58% 58% at 50% 50%, #000 55%, rgba(0,0,0,0.65) 78%, transparent 96%);
-}
-.ambientStadium {
-  right: -120px;
-  top: -60px;
-  width: 1200px;
-  height: 640px;
-  background-image: url("/img/modules-grid-bg/stadium-lights.webp");
+  background-image: url("/img/modules-grid-bg/ambient-desktop.webp");
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
-  opacity: 0.85;
-  /* Fade left edge so floodlights remain visible on the right */
-  -webkit-mask-image: linear-gradient(
-    to left,
-    #000 0%,
-    rgba(0, 0, 0, 0.95) 35%,
-    rgba(0, 0, 0, 0.55) 70%,
-    transparent 100%
-  );
-          mask-image: linear-gradient(
-    to left,
-    #000 0%,
-    rgba(0, 0, 0, 0.95) 35%,
-    rgba(0, 0, 0, 0.55) 70%,
-    transparent 100%
-  );
+  opacity: 1;
+}
+
+@media (max-width: 760px) {
+  .ambient {
+    background-image: url("/img/modules-grid-bg/ambient-mobile.webp");
+    background-position: center top;
+    background-size: 100% auto;
+  }
 }
 
 /* Golden sparkles under the CTA — tight, no huge empty space */
@@ -364,15 +338,11 @@
 @media (max-width: 1200px) {
   .grid { grid-template-columns: repeat(4, 1fr); gap: 18px; }
   .card { min-height: 300px; }
-  .ambientGlobe { width: 560px; height: 560px; left: -200px; }
-  .ambientStadium { width: 700px; height: 400px; right: -100px; }
 }
 @media (max-width: 860px) {
   .grid { grid-template-columns: repeat(3, 1fr); }
   .card { min-height: 280px; padding: 24px 18px 20px; }
   .cardTitle { font-size: 20px; }
-  .ambientGlobe { width: 420px; height: 420px; left: -180px; opacity: 0.45; }
-  .ambientStadium { width: 520px; height: 320px; opacity: 0.4; }
 }
 @media (max-width: 720px) {
   /* 2 columns forced below 720px — keeps info tight, 6 rows total */
@@ -382,8 +352,6 @@
   .iconWrap svg { width: 24px; height: 24px; }
   .cardTitle { font-size: 16px; margin-bottom: 8px; line-height: 1.2; }
   .cardDesc { font-size: 12px; line-height: 1.45; }
-  .ambientGlobe { width: 320px; height: 320px; left: -140px; opacity: 0.35; }
-  .ambientStadium { width: 420px; height: 260px; opacity: 0.3; }
 }
 @media (max-width: 420px) {
   /* Still 2 columns — never drop to 1 */

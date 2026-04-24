@@ -21,7 +21,7 @@ import { GuaranteesBar } from "./_home/sections/GuaranteesBar";
 import { CommunityCreatorsSection } from "./_home/sections/CommunityCreatorsSection";
 import { SocialProofTicker } from "./_home/sections/SocialProofTicker";
 import { WaitlistSection } from "./_home/sections/WaitlistSection";
-import { CtaFinalSection } from "./_home/sections/CtaFinalSection";
+import { FinalCTASection } from "./_home/sections/FinalCTASection";
 import { AlbumDominaSection } from "./_home/sections/AlbumDominaSection";
 import { CinematicDivider } from "./_home/sections/CinematicDivider";
 
@@ -78,7 +78,7 @@ export default function HomePage() {
       <AlbumDominaSection />
       <WaitlistSection />
       <SocialProofTicker items={h.testimonials} />
-      <CtaFinalSection ctaRef={ctaRef} h={h} />
+      <FinalCTASection />
     </div>
   );
 }

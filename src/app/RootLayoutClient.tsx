@@ -7,6 +7,7 @@ import { createPortal } from "react-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
 import type { Translations } from "@/i18n/translations";
 import PromoPopup from "@/components/PromoPopup";
+import { SiteFooter } from "@/components/SiteFooter";
 
 const BG="#060B14",BG2="#0F1D32",BG3="#0B1825",GOLD="#c9a84c",GOLD2="#e8d48b",MID="#8a94b0",DIM="#6a7a9a",DARK="#4a5570";
 
@@ -401,41 +402,7 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
       <main>{children}</main>
 
       {/* ═══ FOOTER ═══ */}
-      <footer style={{ borderTop: "1px solid rgba(255,255,255,0.04)", background: BG3, padding: "48px 20px", position: "relative" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div className="footer-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(180px,1fr))", gap: 32, marginBottom: 32 }}>
-            <div>
-              <Link href="/" style={{ fontWeight: 900, fontSize: 22, marginBottom: 12, textDecoration: "none", display: "inline-block" }}>
-                <span style={{ color: "#fff" }}>ZONA</span><span style={{ color: GOLD }}>MUNDIAL</span>
-              </Link>
-              <p style={{ fontSize: 13, color: DIM, lineHeight: 1.65, maxWidth: 260 }}>
-                {t.footer.tagline}
-              </p>
-              <p style={{ fontSize: 12, color: DARK, marginTop: 10 }}>
-                Powered by <span style={{ color: DIM }}>Sprintmarkt</span>
-              </p>
-            </div>
-            {Object.entries(FOOTER_LINKS).map(([title, links]) => (
-              <div key={title}>
-                <h4 style={{ fontWeight: 700, fontSize: 11, color: GOLD, marginBottom: 12, letterSpacing: 2.5, textTransform: "uppercase" }}>{title}</h4>
-                <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: 8 }}>
-                  {links.map(l => (
-                    <li key={l.href}>
-                      <Link href={l.href} style={{ fontSize: 13, color: DIM, cursor: "pointer", textDecoration: "none" }}>
-                        {l.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div style={{ borderTop: "1px solid rgba(255,255,255,0.04)", paddingTop: 20, display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: 12 }}>
-            <span style={{ fontSize: 11, color: DARK }}>{t.footer.copyright}</span>
-            <span style={{ fontSize: 11, color: DARK }}>{t.footer.disclaimer}</span>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
 
       {/* Responsive CSS */}
       <style>{`

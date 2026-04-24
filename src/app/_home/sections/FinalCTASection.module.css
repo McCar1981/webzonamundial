@@ -1,0 +1,203 @@
+/* ==================================================================
+   FINAL CTA — "¿Quién ganará el Mundial 2026? Spoiler: da igual."
+   Door hero on the left, copy + CTA on the right.
+   ================================================================== */
+
+.section {
+  position: relative;
+  padding: clamp(60px, 7vw, 100px) clamp(16px, 3vw, 40px);
+  background: #06060E;
+  overflow: hidden;
+  font-family: var(--zm-font-body, "Inter", system-ui, sans-serif);
+}
+
+.card {
+  position: relative;
+  max-width: 1280px;
+  margin: 0 auto;
+  min-height: 480px;
+  border-radius: 28px;
+  overflow: hidden;
+  background-image: url("/img/final-cta/door-hero.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow:
+    0 40px 80px -20px rgba(0, 0, 0, 0.6),
+    0 0 50px -10px rgba(212, 168, 83, 0.2);
+  border: 1px solid rgba(212, 168, 83, 0.22);
+}
+/* Dark overlay on right side so copy stays readable on top of the BG */
+.card::before {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(90deg, transparent 0%, rgba(6, 6, 14, 0.2) 35%, rgba(10, 10, 22, 0.7) 55%, rgba(6, 6, 14, 0.92) 80%),
+    radial-gradient(ellipse 50% 60% at 20% 60%, rgba(212, 168, 83, 0.25), transparent 70%);
+  pointer-events: none;
+}
+/* Animated conic gold border */
+.card::after {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: 28px;
+  padding: 1px;
+  background: conic-gradient(
+    from 0deg,
+    rgba(212, 168, 83, 0) 0deg,
+    rgba(212, 168, 83, 0.5) 90deg,
+    rgba(245, 208, 122, 0.7) 180deg,
+    rgba(212, 168, 83, 0.5) 270deg,
+    rgba(212, 168, 83, 0) 360deg
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  animation: spinBorder 10s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+@keyframes spinBorder { to { transform: rotate(360deg); } }
+
+.content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 4vw, 72px);
+  align-items: center;
+  padding: clamp(48px, 6vw, 84px) clamp(32px, 4vw, 72px);
+}
+/* Left column is visually filled by the BG image (door), so it's empty but
+   reserves the grid slot */
+.imageSlot {
+  min-height: 280px;
+}
+
+/* Right column — copy & CTA */
+.copy {
+  position: relative;
+  z-index: 3;
+}
+
+.title {
+  font-family: var(--zm-font-display, "Syne", sans-serif);
+  font-weight: 800;
+  font-size: clamp(34px, 4.4vw, 60px);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  color: #fff;
+  margin: 0 0 24px;
+  text-wrap: balance;
+}
+.titleGold {
+  font-style: normal;
+  background: linear-gradient(135deg, #FFF1C4 0%, #F5D07A 40%, #D4A853 70%, #B8913F 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 20px rgba(212, 168, 83, 0.4));
+}
+
+.desc {
+  font-size: clamp(14px, 1.15vw, 16px);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0 0 28px;
+}
+
+.cta {
+  display: inline-flex; align-items: center; gap: 14px;
+  padding: 16px 30px;
+  border-radius: 14px;
+  border: 0; cursor: pointer; text-decoration: none;
+  background: linear-gradient(135deg, #F5D07A 0%, #D4A853 50%, #B8913F 100%);
+  color: #0F2A44;
+  font-family: var(--zm-font-display, "Syne", sans-serif);
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s;
+  box-shadow:
+    0 14px 36px -10px rgba(212, 168, 83, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+.cta::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.45) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.7s;
+}
+.cta:hover { transform: translateY(-2px); box-shadow: 0 18px 44px -8px rgba(212, 168, 83, 0.8); }
+.cta:hover::before { transform: translateX(100%); }
+.cta svg { transition: transform 0.3s; }
+.cta:hover svg { transform: translateX(4px); }
+
+/* Assurance strip at the bottom of the copy */
+.assurance {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 3vw, 32px);
+  flex-wrap: wrap;
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(212, 168, 83, 0.15);
+}
+.assuranceItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.75);
+  font-family: var(--zm-font-display, "Syne", sans-serif);
+  font-weight: 600;
+  font-size: 13.5px;
+  letter-spacing: 0.02em;
+}
+.assuranceIcon {
+  width: 20px; height: 20px;
+  color: #D4A853;
+  flex-shrink: 0;
+}
+.assuranceSep {
+  width: 1px;
+  height: 14px;
+  background: rgba(212, 168, 83, 0.35);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 960px) {
+  .card { min-height: 0; }
+  .content {
+    grid-template-columns: 1fr;
+    padding: clamp(40px, 5vw, 56px) clamp(24px, 5vw, 40px);
+  }
+  .imageSlot {
+    min-height: 240px;
+    position: relative;
+  }
+  .card {
+    background-position: center top;
+  }
+  .card::before {
+    background:
+      linear-gradient(180deg, transparent 0%, rgba(6, 6, 14, 0.15) 35%, rgba(6, 6, 14, 0.85) 65%, #06060E 90%);
+  }
+}
+@media (max-width: 560px) {
+  .section { padding: 48px 14px; }
+  .card { border-radius: 22px; }
+  .title { font-size: clamp(28px, 8vw, 38px); }
+  .assurance { gap: 14px; justify-content: center; }
+  .assuranceSep { display: none; }
+  .cta { width: 100%; justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card::after, .cta, .cta::before {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

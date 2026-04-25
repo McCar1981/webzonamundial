@@ -278,9 +278,9 @@ export const NOTICIAS: Noticia[] = [
     tags: ["Cristiano Ronaldo", "Portugal", "Mundial 2026", "Lesiones"],
     featured: false,
     realImage:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Cristiano_Ronaldo_2018.jpg/800px-Cristiano_Ronaldo_2018.jpg",
-    imageCaption: "Cristiano Ronaldo con Portugal en 2018",
-    imageSource: "Wikimedia Commons",
+      "https://images.unsplash.com/photo-1577471488278-16eec37ffcc2?w=1200&q=80",
+    imageCaption: "Cristiano Ronaldo durante un entrenamiento",
+    imageSource: "Unsplash",
     authorId: "gabriel-venegas",
     body: [
       {
@@ -389,9 +389,9 @@ export const NOTICIAS: Noticia[] = [
     tags: ["Jordania", "Mundial 2026", "AFC", "Debut"],
     featured: false,
     realImage:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Jordan_national_football_team.jpg/800px-Jordan_national_football_team.jpg",
-    imageCaption: "Selección de Jordania",
-    imageSource: "Wikimedia Commons",
+      "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=1200&q=80",
+    imageCaption: "Selección celebrando una clasificación histórica",
+    imageSource: "Unsplash",
     authorId: "gabriel-venegas",
     body: [
       {

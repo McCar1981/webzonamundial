@@ -108,42 +108,116 @@ export async function gnewsTopHeadlines(opts: {
 /* ---------------------------------------------------------------- */
 
 /**
- * Queries cover the full World Cup beat — players, selecciones, sedes,
- * historia, fichajes, lesiones, partidos, polémicas. Each runs against
- * the GNews search endpoint independently so we maximize topical
- * coverage without exhausting the daily quota.
+ * Queries cover the full FOOTBALL World Cup 2026 beat — players, selecciones,
+ * sedes, historia, fichajes, lesiones, partidos, polémicas. Each query is
+ * narrowed with FIFA / fútbol terms to avoid catching results from other
+ * "Copa del Mundo" sports (cycling, rugby, swimming, etc.) that share the
+ * same noun in Spanish/English.
+ *
+ * Anchor pattern (used in every query):
+ *   FOOTBALL_ANCHOR + AND + topic terms
  */
+const FOOTBALL_ANCHOR =
+  '("Mundial 2026" OR "Copa del Mundo 2026" OR "World Cup 2026") AND ' +
+  '(fútbol OR futbol OR football OR FIFA OR selección OR seleccion OR ' +
+  '"copa mundial" OR Mundial OR jugador OR partido OR estadio OR liga)';
+
 export const WORLD_CUP_QUERIES = {
-  // Anchor: any World Cup 2026 article
-  general: '"Mundial 2026" OR "World Cup 2026" OR "Copa del Mundo 2026"',
+  // Anchor: any football-tagged World Cup 2026 article
+  general: FOOTBALL_ANCHOR,
   // Match-day, fixtures, lineups
-  fixtures: '("Mundial 2026" OR "FIFA 2026") AND (calendario OR fixture OR alineación OR convocatoria OR lista)',
+  fixtures: `${FOOTBALL_ANCHOR} AND (calendario OR fixture OR alineación OR convocatoria OR lista OR partido)`,
   // Injuries beat
-  injuries: '("Mundial 2026" OR "World Cup 2026") AND (lesión OR baja OR operad OR injury)',
+  injuries: `${FOOTBALL_ANCHOR} AND (lesión OR baja OR operad OR injury OR ligamento)`,
   // Coach / DT / staff
-  coaches: '("Mundial 2026" OR "Copa del Mundo") AND (seleccionador OR DT OR técnico OR coach OR cuerpo técnico)',
-  // Player profiles + stars (rotates, edit if needed)
-  stars: '("Mundial 2026" OR "Copa del Mundo") AND (Messi OR Mbapp OR Vinicius OR Lamine OR Bellingham OR Yamal OR Kane OR Cristiano OR Neymar)',
+  coaches: `${FOOTBALL_ANCHOR} AND (seleccionador OR DT OR técnico OR coach OR "cuerpo técnico")`,
+  // Player profiles + stars
+  stars: `${FOOTBALL_ANCHOR} AND (Messi OR Mbapp OR Vinicius OR Lamine OR Bellingham OR Yamal OR Kane OR Cristiano OR Neymar OR Haaland OR Pedri)`,
   // Venues + cities + stadiums (sedes)
-  venues: '("Mundial 2026" OR "World Cup 2026") AND (sede OR estadio OR MetLife OR Azteca OR SoFi OR "ciudad anfitriona" OR "host city")',
+  venues: `${FOOTBALL_ANCHOR} AND (sede OR estadio OR MetLife OR Azteca OR SoFi OR "ciudad anfitriona" OR "host city")`,
   // Tickets, hotels, fan experience
-  tickets: '("Mundial 2026" OR "World Cup 2026") AND (entrada OR boleto OR ticket OR hotel OR fan)',
+  tickets: `${FOOTBALL_ANCHOR} AND (entrada OR boleto OR ticket OR hotel OR fan OR aficionado)`,
   // Federations / FIFA institutional
-  fifa: '"FIFA" AND ("Mundial 2026" OR "World Cup 2026") AND (decisión OR anuncio OR norma OR reglamento)',
+  fifa: `"FIFA" AND ("Mundial 2026" OR "World Cup 2026") AND (fútbol OR futbol OR football) AND (decisión OR anuncio OR norma OR reglamento OR sanción)`,
   // Eliminatorias / qualifiers leading up to the World Cup
-  qualifiers: '(eliminatoria OR clasificación OR qualifier) AND ("Mundial 2026" OR "World Cup 2026")',
+  qualifiers: `${FOOTBALL_ANCHOR} AND (eliminatoria OR clasificación OR qualifier OR repechaje)`,
   // Historical context (anniversaries, classics, retrospectives)
-  history: '(historia OR histórico OR retrospectiva) AND ("Copa del Mundo" OR "Mundial")',
-  // Argentina beat (high reader interest in LatAm)
-  argentina: '(Argentina OR Albiceleste OR Scaloni OR Messi) AND ("Mundial 2026" OR "Copa del Mundo")',
+  history: `(fútbol OR futbol OR football OR FIFA OR selección) AND (historia OR histórico OR retrospectiva) AND ("Copa del Mundo" OR Mundial)`,
+  // Argentina beat
+  argentina: `${FOOTBALL_ANCHOR} AND (Argentina OR Albiceleste OR Scaloni OR Messi)`,
   // Brazil beat
-  brazil: '(Brasil OR Brazil OR Canarinha OR Ancelotti) AND ("Mundial 2026" OR "Copa del Mundo")',
+  brazil: `${FOOTBALL_ANCHOR} AND (Brasil OR Brazil OR Canarinha OR Ancelotti)`,
   // Spain beat
-  spain: '(España OR "La Roja" OR "De la Fuente" OR Lamine) AND ("Mundial 2026" OR "Copa del Mundo")',
+  spain: `${FOOTBALL_ANCHOR} AND (España OR "La Roja" OR "De la Fuente" OR Lamine)`,
   // Mexico beat (host country)
-  mexico: '(México OR Tri OR Aguirre OR Giménez) AND ("Mundial 2026" OR "Copa del Mundo")',
+  mexico: `${FOOTBALL_ANCHOR} AND (México OR Tri OR Aguirre OR Giménez OR "Hirving Lozano")`,
   // USA beat (host country)
-  usa: '("Estados Unidos" OR USMNT OR "United States") AND ("Mundial 2026" OR "World Cup 2026")',
+  usa: `${FOOTBALL_ANCHOR} AND ("Estados Unidos" OR USMNT OR "Christian Pulisic")`,
 };
 
 export type WorldCupQueryKey = keyof typeof WORLD_CUP_QUERIES;
+
+/**
+ * Hard-blocked terms in titles or descriptions: if any appears, the article
+ * is dropped before reaching the LLM, regardless of which query found it.
+ * Catches "Copa del Mundo" articles about cycling, rugby, swimming etc.
+ */
+const NON_FOOTBALL_BLOCK_LIST = [
+  // Cycling
+  "ciclismo",
+  "cycling",
+  "ciclista",
+  "uci",
+  "tour de france",
+  // Rugby
+  "rugby",
+  // Other ball sports
+  "baloncesto",
+  "basket",
+  "voleibol",
+  "volleyball",
+  "balonmano",
+  "handball",
+  "hockey",
+  "criquet",
+  "cricket",
+  // Athletics / pool / racket
+  "atletismo",
+  "natación",
+  "swimming",
+  "tenis",
+  "tennis",
+  "pádel",
+  "padel",
+  "golf",
+  "esquí",
+  "ski",
+  "patinaje",
+  "skating",
+  "judo",
+  "karate",
+  "esgrima",
+  "fencing",
+  "halterofilia",
+  "weightlifting",
+  // Motor / racing
+  "fórmula 1",
+  "formula 1",
+  "f1 ",
+  "motogp",
+  "nascar",
+  // Other
+  "ajedrez",
+  "chess",
+  "esports",
+  "videojuegos",
+];
+
+/**
+ * Returns true if the article is clearly NOT about football.
+ * Used to filter GNews results before feeding them to the LLM.
+ */
+export function isNonFootballArticle(article: { title: string; description?: string }): boolean {
+  const haystack = `${article.title} ${article.description || ""}`.toLowerCase();
+  return NON_FOOTBALL_BLOCK_LIST.some((term) => haystack.includes(term));
+}

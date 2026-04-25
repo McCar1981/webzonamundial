@@ -15,7 +15,7 @@
  */
 
 import { createHash } from "node:crypto";
-import { gnewsSearch, WORLD_CUP_QUERIES, type GNewsArticle } from "./gnews";
+import { gnewsSearch, WORLD_CUP_QUERIES, isNonFootballArticle, type GNewsArticle } from "./gnews";
 import { pickAuthorForArticle } from "@/data/noticias-authors";
 import type { Noticia, NoticiaBlock, NoticiaCategory } from "@/data/noticias";
 
@@ -166,6 +166,16 @@ export async function ingestNews(opts: {
       const resp = await gnewsSearch({ q, lang: "es", max: maxPerQuery });
       result.fetched += resp.articles.length;
       resp.articles.forEach((a, i) => {
+        // Drop non-football "Copa del Mundo" articles (cycling, rugby, etc.)
+        if (isNonFootballArticle(a)) {
+          result.duplicates += 1; // count as filtered out
+          return;
+        }
+        // Drop articles without a usable image — UX policy: every published
+        // article needs a hero image.
+        if (!a.image) {
+          return;
+        }
         const hash = hashUrl(a.url);
         if (knownHashes.has(hash)) {
           result.duplicates += 1;

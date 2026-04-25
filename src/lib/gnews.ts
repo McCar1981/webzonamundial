@@ -108,51 +108,43 @@ export async function gnewsTopHeadlines(opts: {
 /* ---------------------------------------------------------------- */
 
 /**
- * Queries cover the full FOOTBALL World Cup 2026 beat — players, selecciones,
- * sedes, historia, fichajes, lesiones, partidos, polémicas. Each query is
- * narrowed with FIFA / fútbol terms to avoid catching results from other
- * "Copa del Mundo" sports (cycling, rugby, swimming, etc.) that share the
- * same noun in Spanish/English.
+ * Queries cover the full FOOTBALL World Cup 2026 beat. GNews limits each
+ * query to 200 chars, so we keep them short and rely on the post-fetch
+ * filter (isNonFootballArticle) to drop non-football results.
  *
- * Anchor pattern (used in every query):
- *   FOOTBALL_ANCHOR + AND + topic terms
+ * Each query: ≤200 chars, focused on a single topic + Mundial 2026 anchor.
  */
-const FOOTBALL_ANCHOR =
-  '("Mundial 2026" OR "Copa del Mundo 2026" OR "World Cup 2026") AND ' +
-  '(fútbol OR futbol OR football OR FIFA OR selección OR seleccion OR ' +
-  '"copa mundial" OR Mundial OR jugador OR partido OR estadio OR liga)';
-
 export const WORLD_CUP_QUERIES = {
-  // Anchor: any football-tagged World Cup 2026 article
-  general: FOOTBALL_ANCHOR,
+  // Football + Mundial anchor (broad, default)
+  general: '"Mundial 2026" AND (fútbol OR FIFA OR selección)',
   // Match-day, fixtures, lineups
-  fixtures: `${FOOTBALL_ANCHOR} AND (calendario OR fixture OR alineación OR convocatoria OR lista OR partido)`,
+  fixtures: '"Mundial 2026" AND (convocatoria OR calendario OR alineación OR partido)',
   // Injuries beat
-  injuries: `${FOOTBALL_ANCHOR} AND (lesión OR baja OR operad OR injury OR ligamento)`,
+  injuries: '"Mundial 2026" AND (lesión OR baja OR operación OR injury) AND (jugador OR selección)',
   // Coach / DT / staff
-  coaches: `${FOOTBALL_ANCHOR} AND (seleccionador OR DT OR técnico OR coach OR "cuerpo técnico")`,
+  coaches: '"Mundial 2026" AND (seleccionador OR DT OR técnico OR coach)',
   // Player profiles + stars
-  stars: `${FOOTBALL_ANCHOR} AND (Messi OR Mbapp OR Vinicius OR Lamine OR Bellingham OR Yamal OR Kane OR Cristiano OR Neymar OR Haaland OR Pedri)`,
-  // Venues + cities + stadiums (sedes)
-  venues: `${FOOTBALL_ANCHOR} AND (sede OR estadio OR MetLife OR Azteca OR SoFi OR "ciudad anfitriona" OR "host city")`,
-  // Tickets, hotels, fan experience
-  tickets: `${FOOTBALL_ANCHOR} AND (entrada OR boleto OR ticket OR hotel OR fan OR aficionado)`,
-  // Federations / FIFA institutional
-  fifa: `"FIFA" AND ("Mundial 2026" OR "World Cup 2026") AND (fútbol OR futbol OR football) AND (decisión OR anuncio OR norma OR reglamento OR sanción)`,
-  // Eliminatorias / qualifiers leading up to the World Cup
-  qualifiers: `${FOOTBALL_ANCHOR} AND (eliminatoria OR clasificación OR qualifier OR repechaje)`,
-  // Historical context (anniversaries, classics, retrospectives)
-  history: `(fútbol OR futbol OR football OR FIFA OR selección) AND (historia OR histórico OR retrospectiva) AND ("Copa del Mundo" OR Mundial)`,
+  stars: '"Mundial 2026" AND (Messi OR Mbappé OR Vinicius OR Yamal OR Bellingham OR Cristiano)',
+  // Venues + stadiums
+  venues: '"Mundial 2026" AND (sede OR estadio OR MetLife OR Azteca)',
+  // Tickets / fan experience
+  tickets: '"Mundial 2026" AND (entrada OR boleto OR ticket OR hotel)',
+  // FIFA institutional
+  fifa: '"FIFA" AND "Mundial 2026" AND (decisión OR anuncio OR reglamento)',
+  // Eliminatorias / qualifiers
+  qualifiers: '"Mundial 2026" AND (eliminatoria OR clasificación OR qualifier OR repechaje)',
+  // Historical context
+  history: '"Copa del Mundo" AND fútbol AND (historia OR histórico OR retrospectiva)',
   // Argentina beat
-  argentina: `${FOOTBALL_ANCHOR} AND (Argentina OR Albiceleste OR Scaloni OR Messi)`,
+  argentina: '"Mundial 2026" AND (Argentina OR Albiceleste OR Scaloni)',
   // Brazil beat
-  brazil: `${FOOTBALL_ANCHOR} AND (Brasil OR Brazil OR Canarinha OR Ancelotti)`,
+  brazil: '"Mundial 2026" AND (Brasil OR Canarinha OR Ancelotti)',
   // Spain beat
-  spain: `${FOOTBALL_ANCHOR} AND (España OR "La Roja" OR "De la Fuente" OR Lamine)`,
+  spain: '"Mundial 2026" AND (España OR "La Roja" OR "De la Fuente")',
   // Mexico beat (host country)
-  mexico: `${FOOTBALL_ANCHOR} AND (México OR Tri OR Aguirre OR Giménez OR "Hirving Lozano")`,
+  mexico: '"Mundial 2026" AND (México OR Tri OR Aguirre)',
   // USA beat (host country)
-  usa: `${FOOTBALL_ANCHOR} AND ("Estados Unidos" OR USMNT OR "Christian Pulisic")`,
+  usa: '"World Cup 2026" AND (USMNT OR "United States" OR Pulisic)',
 };
 
 export type WorldCupQueryKey = keyof typeof WORLD_CUP_QUERIES;

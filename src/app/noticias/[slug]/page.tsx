@@ -146,7 +146,7 @@ export default async function NoticiaPage({ params }: Props) {
   );
 }
 
-// Allow runtime ISR for newly auto-published slugs (auto-ingest pipeline).
-// Pages get pre-rendered at build for known slugs, plus on-demand for fresh ones.
+// Allow runtime ISR for newly auto-published slugs.
 export const dynamicParams = true;
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;

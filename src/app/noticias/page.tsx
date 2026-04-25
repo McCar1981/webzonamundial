@@ -28,7 +28,11 @@ export const metadata: Metadata = {
   },
 };
 
-export const revalidate = 60;
+// Always re-render. KV reads are cheap (~5ms) and freshness is critical
+// for an autopublishing news hub. ISR cache caused stale content during
+// validation phase.
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function NoticiasPage() {
   const posts = await getAllPublicNoticias();

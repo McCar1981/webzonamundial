@@ -12,7 +12,11 @@ import { NextResponse } from "next/server";
 import { kv } from "@vercel/kv";
 import { revalidatePath } from "next/cache";
 
-const KV_KEY = "noticias:ingested-store";
+const KV_KEYS = [
+  "noticias:ingested-store",
+  "noticias:ingested-store:v2",
+  "noticias:ingested-store:v3",
+];
 
 export async function GET(req: Request) {
   const expected = process.env.CRON_SECRET;
@@ -23,26 +27,20 @@ export async function GET(req: Request) {
     }
   }
 
-  // Hard delete the KV key entirely + write back an empty store as a fresh
-  // state. Some SDK paths cache GET results so a plain SET may not invalidate
-  // them; DEL is unambiguous.
-  let deleted = 0;
-  let beforeCount: number | null = null;
-  try {
-    const before = await kv.get<{ drafts?: unknown[] }>(KV_KEY);
-    beforeCount = Array.isArray(before?.drafts) ? before!.drafts!.length : 0;
-    deleted = await kv.del(KV_KEY);
-  } catch (err) {
-    return NextResponse.json(
-      { ok: false, error: (err as Error).message },
-      { status: 500 },
-    );
+  // Hard delete every known KV key (current + legacy) so no stale data
+  // can leak through cache layers.
+  const deletedDetails: Record<string, number> = {};
+  let totalDeleted = 0;
+  for (const key of KV_KEYS) {
+    try {
+      const d = await kv.del(key);
+      deletedDetails[key] = d;
+      totalDeleted += d;
+    } catch (err) {
+      deletedDetails[key] = -1;
+      console.error("[reset] del failed for", key, (err as Error).message);
+    }
   }
-  // Write a fresh empty store so future reads work without a fallback path.
-  await kv.set(KV_KEY, {
-    generatedAt: new Date().toISOString(),
-    drafts: [],
-  });
 
   // Force-invalidate every news page so visitors see the empty state
   // immediately instead of stale cached HTML.
@@ -55,9 +53,9 @@ export async function GET(req: Request) {
 
   return NextResponse.json({
     ok: true,
-    deleted,
-    beforeCount,
-    message: "Store wiped (DEL + SET). Static articles only until next ingest.",
+    totalDeleted,
+    deletedDetails,
+    message: "All KV keys wiped. Static articles only until next ingest.",
   });
 }
 

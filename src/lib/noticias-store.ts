@@ -30,6 +30,9 @@ interface IngestStore {
 }
 
 const KV_KEY = "noticias:ingested-store";
+// Bumped to force a clean slate. Older format had stale articles (cycling,
+// short bodies) we couldn't evict due to KV cache propagation issues.
+const KV_KEY_VERSIONED = "noticias:ingested-store:v3";
 const FALLBACK_PATH = path.join(process.cwd(), "data", "noticias-ingested.json");
 
 function isKvEnabled(): boolean {
@@ -45,7 +48,7 @@ export function getStorePath(): string {
 
 async function readFromKv(): Promise<IngestStore> {
   try {
-    const raw = await kv.get<IngestStore>(KV_KEY);
+    const raw = await kv.get<IngestStore>(KV_KEY_VERSIONED);
     if (raw && Array.isArray(raw.drafts)) return raw;
   } catch (err) {
     console.error("[store] KV read failed", (err as Error).message);
@@ -55,7 +58,9 @@ async function readFromKv(): Promise<IngestStore> {
 
 async function writeToKv(store: IngestStore): Promise<void> {
   try {
-    await kv.set(KV_KEY, store);
+    await kv.set(KV_KEY_VERSIONED, store);
+    // Also delete the old un-versioned key (one-time migration cleanup)
+    await kv.del(KV_KEY).catch(() => {});
   } catch (err) {
     console.error("[store] KV write failed", (err as Error).message);
     throw err;

@@ -30,10 +30,28 @@ export async function GET(req: Request) {
   const store = await readIngestStore();
   const knownHashes = new Set(store.drafts.map((d) => d.sourceUrlHash));
 
-  // Run ALL the World Cup beat queries every cron tick to ensure no topic
-  // is left behind (selecciones, jugadores, sedes, historia, lesiones,
-  // entradas, FIFA, eliminatorias, etc).
-  const queries = Object.keys(WORLD_CUP_QUERIES) as (keyof typeof WORLD_CUP_QUERIES)[];
+  // Vercel Hobby plan caps serverless functions at 60s. Each Claude Haiku
+  // rewrite takes 2-4s, so we can safely do ~10 rewrites + the GNews fetches
+  // within the budget. The cron runs hourly, so over 24h we accumulate
+  // 240 published articles/day rotating through all topics.
+  const url = new URL(req.url);
+  const skipRewrite = url.searchParams.get("rewrite") === "0";
+  const rewriteLimit = parseInt(
+    url.searchParams.get("rewriteLimit") ||
+      process.env.NEWS_REWRITE_LIMIT ||
+      "8",
+    10,
+  );
+  // Pick a small subset of queries per tick (rotate by hour). Full coverage
+  // is achieved over 24h since we have 15 queries × ~10 results = 150 articles
+  // per full rotation.
+  const ALL_QUERIES = Object.keys(WORLD_CUP_QUERIES) as (keyof typeof WORLD_CUP_QUERIES)[];
+  const QUERIES_PER_TICK = parseInt(process.env.NEWS_QUERIES_PER_TICK || "4", 10);
+  const hourSeed = new Date().getUTCHours();
+  const queries: (keyof typeof WORLD_CUP_QUERIES)[] = [];
+  for (let i = 0; i < QUERIES_PER_TICK; i++) {
+    queries.push(ALL_QUERIES[(hourSeed + i) % ALL_QUERIES.length]);
+  }
 
   const result = await ingestNews({
     knownHashes,
@@ -41,12 +59,6 @@ export async function GET(req: Request) {
     maxPerQuery: 10,
   });
 
-  // Optionally rewrite each fresh draft via the LLM. Controlled by env so
-  // we can disable it in case of quota issues without touching code.
-  // Default: ENABLED when ANTHROPIC_API_KEY is present.
-  const url = new URL(req.url);
-  const skipRewrite = url.searchParams.get("rewrite") === "0";
-  const rewriteLimit = parseInt(url.searchParams.get("rewriteLimit") || "0", 10);
   const rewriteEnabled = !!process.env.ANTHROPIC_API_KEY && !skipRewrite;
 
   let rewritten = 0;
@@ -57,7 +69,7 @@ export async function GET(req: Request) {
     for (let i = 0; i < cap; i++) {
       try {
         result.drafts[i] = await applyRewrite(result.drafts[i]);
-        if (result.drafts[i].status === "review") rewritten += 1;
+        if (result.drafts[i].status === "published") rewritten += 1;
       } catch (err) {
         rewriteFailed += 1;
         console.error("[cron] rewrite failed", (err as Error).message);

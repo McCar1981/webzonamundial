@@ -233,10 +233,10 @@ export function AppRevealSection() {
               <div className={styles.phoneScreen}>
                 <div className={styles.phoneLogo}>
                   <Image
-                    src="/img/hero/isotipo.png"
+                    src="/img/zonamundial-images/imagenes/IMG-20260302-WA0016-removebg-preview.webp"
                     alt={t.phoneLabel}
-                    width={140}
-                    height={140}
+                    width={180}
+                    height={180}
                     className={styles.phoneLogoImg}
                     priority={false}
                   />

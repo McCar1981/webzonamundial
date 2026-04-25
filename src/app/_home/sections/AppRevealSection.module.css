@@ -444,14 +444,14 @@
   z-index: 2;
 }
 .phoneLogo {
-  width: 130px;
-  height: 130px;
+  width: 160px;
+  height: 160px;
   display: flex;
   align-items: center;
   justify-content: center;
   filter: drop-shadow(0 8px 28px rgba(212, 168, 83, 0.5));
   animation: logoBreath 4s ease-in-out infinite;
-  margin-bottom: 24px;
+  margin-bottom: 22px;
 }
 @keyframes logoBreath {
   0%, 100% { transform: scale(1); filter: drop-shadow(0 8px 28px rgba(212, 168, 83, 0.45)); }

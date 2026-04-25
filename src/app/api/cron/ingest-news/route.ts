@@ -39,14 +39,14 @@ export async function GET(req: Request) {
   const rewriteLimit = parseInt(
     url.searchParams.get("rewriteLimit") ||
       process.env.NEWS_REWRITE_LIMIT ||
-      "8",
+      "5",
     10,
   );
   // Pick a small subset of queries per tick (rotate by hour). Full coverage
   // is achieved over 24h since we have 15 queries × ~10 results = 150 articles
   // per full rotation.
   const ALL_QUERIES = Object.keys(WORLD_CUP_QUERIES) as (keyof typeof WORLD_CUP_QUERIES)[];
-  const QUERIES_PER_TICK = parseInt(process.env.NEWS_QUERIES_PER_TICK || "4", 10);
+  const QUERIES_PER_TICK = parseInt(process.env.NEWS_QUERIES_PER_TICK || "3", 10);
   const hourSeed = new Date().getUTCHours();
   const queries: (keyof typeof WORLD_CUP_QUERIES)[] = [];
   for (let i = 0; i < QUERIES_PER_TICK; i++) {
@@ -63,10 +63,18 @@ export async function GET(req: Request) {
 
   let rewritten = 0;
   let rewriteFailed = 0;
+  let abortedByTimeout = false;
+  // Soft deadline: stop the rewrite loop ~50s into the request to leave
+  // ~10s of headroom under Vercel Hobby's 60s function cap. Any drafts not
+  // rewritten remain status: "draft" and will be picked up on the next tick.
+  const deadlineMs = Date.now() + 50_000;
   if (rewriteEnabled) {
     const cap = rewriteLimit > 0 ? Math.min(rewriteLimit, result.drafts.length) : result.drafts.length;
-    // Process sequentially to respect rate limits + minimize cost.
     for (let i = 0; i < cap; i++) {
+      if (Date.now() > deadlineMs) {
+        abortedByTimeout = true;
+        break;
+      }
       try {
         result.drafts[i] = await applyRewrite(result.drafts[i]);
         if (result.drafts[i].status === "published") rewritten += 1;
@@ -101,12 +109,14 @@ export async function GET(req: Request) {
   return NextResponse.json({
     ok: true,
     queries: queries.length,
+    queriesUsed: queries,
     fetched: result.fetched,
     new: result.drafts.length,
     duplicates: result.duplicates,
     rewritten,
     rewriteFailed,
     rewriteEnabled,
+    abortedByTimeout,
     errors: result.errors,
     totalStored: store.drafts.length,
     publishedCount: published,

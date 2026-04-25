@@ -172,18 +172,28 @@
   .card { min-height: 0; }
   .content {
     grid-template-columns: 1fr;
-    padding: clamp(40px, 5vw, 56px) clamp(24px, 5vw, 40px);
+    gap: clamp(16px, 3vw, 28px);
+    padding: clamp(32px, 4vw, 48px) clamp(24px, 5vw, 40px);
   }
   .imageSlot {
-    min-height: 240px;
+    min-height: 160px;
     position: relative;
   }
   .card {
     background-position: center top;
+    background-size: 130% auto;
   }
   .card::before {
     background:
-      linear-gradient(180deg, transparent 0%, rgba(6, 6, 14, 0.15) 35%, rgba(6, 6, 14, 0.85) 65%, #06060E 90%);
+      linear-gradient(180deg, transparent 0%, rgba(6, 6, 14, 0.2) 18%, rgba(6, 6, 14, 0.85) 38%, #06060E 60%);
+  }
+}
+@media (max-width: 560px) {
+  .imageSlot {
+    min-height: 130px;
+  }
+  .card {
+    background-size: 150% auto;
   }
 }
 @media (max-width: 560px) {

@@ -47,11 +47,14 @@ REGLAS INVIOLABLES:
 5. NUNCA inventar quotes (citas textuales). Si no hay quote en la fuente, no inventes una.
 6. Devuelve SOLO un JSON válido, sin texto adicional, sin markdown, sin backticks.
 
-EXTENSIÓN OBLIGATORIA DEL ARTÍCULO:
-- Mínimo 500 palabras en total el body, idealmente 600-800.
-- Mínimo 6 párrafos sustanciosos (cada uno 60-120 palabras).
-- Mínimo 2 subtítulos H2 que organicen la lectura.
+EXTENSIÓN OBLIGATORIA DEL ARTÍCULO (NO NEGOCIABLE):
+- Mínimo 700 palabras en total el body. Ideal: 800-1100.
+- Mínimo 8 párrafos sustanciosos (cada uno 80-140 palabras).
+- Mínimo 3 subtítulos H2 que organicen la lectura.
+- Mínimo 1 lista con 4-6 puntos.
+- Mínimo 1 callout de cierre.
 - Cada párrafo debe aportar contexto adicional, análisis, comparación o consecuencia, no resumir lo mismo varias veces.
+- Si el material fuente es escaso, profundiza con contexto histórico, formato del torneo, palmarés del jugador, comparación con otros mundiales, panorama de las federaciones implicadas. Pero SIN inventar datos concretos (cifras, fechas, declaraciones).
 
 CÓMO AÑADIR PROFUNDIDAD SIN INVENTAR DATOS:
 - Contextualiza con conocimiento general verificable: explica qué es el Mundial 2026, cómo funciona la fase de grupos, quiénes son los rivales del grupo, qué es el formato 48 selecciones.
@@ -84,7 +87,7 @@ ESTRUCTURA DEL JSON DE SALIDA:
   ]
 }
 
-REQUISITO MÍNIMO DEL BODY: 8 bloques (no menos). Idealmente 9-11 bloques. La estructura mínima es: lede(p) + 1 párrafo de contexto(p) + h2 + 2 párrafos(p) + list + h2 + 2 párrafos(p) + callout.`;
+REQUISITO MÍNIMO DEL BODY: 10 bloques (no menos). Idealmente 11-14 bloques. La estructura mínima es: lede(p) + p contexto + h2 + 2p + h2 + 2p + list + h2 + 2p + callout. Cuenta los bloques antes de devolver el JSON.`;
 
 function buildUserMessage(draft: DraftNoticia): string {
   const sourceText = draft.body
@@ -112,7 +115,7 @@ export async function rewriteDraft(draft: DraftNoticia): Promise<RewriteOutput |
   try {
     resp = await client.messages.create({
       model,
-      max_tokens: 4000, // articles are 600-800 words = ~1200-1600 tokens; 4k gives margin for JSON overhead
+      max_tokens: 6000, // articles 800-1100 words = ~1800-2200 tokens; 6k gives margin
       temperature: 0.4,
       system: SYSTEM_PROMPT,
       messages: [{ role: "user", content: buildUserMessage(draft) }],
@@ -137,9 +140,17 @@ export async function rewriteDraft(draft: DraftNoticia): Promise<RewriteOutput |
     return null;
   }
 
-  // Defensive: must have at least the required fields and a substantive body
-  if (!parsed.title || !parsed.body || !Array.isArray(parsed.body) || parsed.body.length < 6) {
-    console.error("[rewriter] output too short or missing fields", parsed.body?.length);
+  // Defensive: must have at least the required fields and a substantive body.
+  // Reject any rewrite shorter than 10 blocks or 600 words — those are stubs.
+  if (!parsed.title || !parsed.body || !Array.isArray(parsed.body) || parsed.body.length < 10) {
+    console.error("[rewriter] output too short", parsed.body?.length, "blocks");
+    return null;
+  }
+  const wordCount = parsed.body
+    .filter((b) => b.type === "p" || b.type === "h2" || b.type === "h3")
+    .reduce((sum, b) => sum + ((b as { text: string }).text || "").split(/\s+/).length, 0);
+  if (wordCount < 600) {
+    console.error("[rewriter] body too short:", wordCount, "words");
     return null;
   }
   return parsed;

@@ -278,8 +278,8 @@ export const NOTICIAS: Noticia[] = [
     tags: ["Cristiano Ronaldo", "Portugal", "Mundial 2026", "Lesiones"],
     featured: false,
     realImage:
-      "https://images.unsplash.com/photo-1577471488278-16eec37ffcc2?w=1200&q=80",
-    imageCaption: "Cristiano Ronaldo durante un entrenamiento",
+      "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=1200&q=80&auto=format&fit=crop",
+    imageCaption: "Estadio iluminado, contexto del Mundial 2026",
     imageSource: "Unsplash",
     authorId: "gabriel-venegas",
     body: [
@@ -389,8 +389,8 @@ export const NOTICIAS: Noticia[] = [
     tags: ["Jordania", "Mundial 2026", "AFC", "Debut"],
     featured: false,
     realImage:
-      "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=1200&q=80",
-    imageCaption: "Selección celebrando una clasificación histórica",
+      "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=1200&q=80&auto=format&fit=crop",
+    imageCaption: "Aficionados celebrando una clasificación histórica",
     imageSource: "Unsplash",
     authorId: "gabriel-venegas",
     body: [

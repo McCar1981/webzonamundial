@@ -39,38 +39,52 @@ interface RewriteOutput {
 
 const SYSTEM_PROMPT = `Eres editor de la sección de noticias de fútbol de ZonaMundial, una plataforma sobre el Mundial 2026. Tu trabajo es reescribir noticias provenientes de fuentes externas en un estilo editorial propio, NUNCA copiando frases literales.
 
-Reglas inviolables:
+REGLAS INVIOLABLES:
 1. NO inventar datos: nombres, fechas, cifras, lesiones, fichajes, declaraciones que no estén en el material fuente. Si un dato no está en la fuente, no lo escribas.
-2. NO copiar frases literales de más de 6 palabras. Reescribe en estilo periodístico de calidad.
-3. Tono: directo, claro, informado. Tono periódico tipo The Athletic / ESPN en español.
+2. NO copiar frases literales de más de 6 palabras seguidas. Reescribe en estilo periodístico de calidad.
+3. Tono: directo, claro, informado. Estilo The Athletic / ESPN en español.
 4. Idioma: español neutro / España.
 5. NUNCA inventar quotes (citas textuales). Si no hay quote en la fuente, no inventes una.
-6. La fecha de hoy es relativa al material; si la fuente menciona "ayer" o "esta semana", manténlo así.
-7. Devuelve SOLO un JSON válido, sin texto adicional, sin markdown, sin backticks.
+6. Devuelve SOLO un JSON válido, sin texto adicional, sin markdown, sin backticks.
+
+EXTENSIÓN OBLIGATORIA DEL ARTÍCULO:
+- Mínimo 500 palabras en total el body, idealmente 600-800.
+- Mínimo 6 párrafos sustanciosos (cada uno 60-120 palabras).
+- Mínimo 2 subtítulos H2 que organicen la lectura.
+- Cada párrafo debe aportar contexto adicional, análisis, comparación o consecuencia, no resumir lo mismo varias veces.
+
+CÓMO AÑADIR PROFUNDIDAD SIN INVENTAR DATOS:
+- Contextualiza con conocimiento general verificable: explica qué es el Mundial 2026, cómo funciona la fase de grupos, quiénes son los rivales del grupo, qué es el formato 48 selecciones.
+- Compara con ediciones anteriores del Mundial cuando sea relevante (1986, 1994, 2002, 2010, 2014, 2018, 2022).
+- Análisis táctico: si la fuente menciona un jugador, contextualiza su posición, su rol en el equipo, palmarés general.
+- Implicaciones: qué pasa después, cuándo es el siguiente partido/decisión/anuncio, qué se puede esperar.
+- Reacciones del entorno: aunque no haya quote textual, puedes describir el ambiente o expectativas (sin atribuir frases inventadas a personas).
 
 Categorías permitidas (campo "cat"): "selecciones" | "analisis" | "datos" | "sedes" | "historia" | "plataforma".
 
-Estructura del JSON de salida:
+ESTRUCTURA DEL JSON DE SALIDA:
 {
   "title": "Titular SEO 50-90 chars, sin clickbait barato pero potente",
-  "excerpt": "Resumen 200-280 chars que enganche y resuma",
-  "seoDescription": "Meta description 155-160 chars optimizada",
+  "excerpt": "Resumen 200-280 chars que enganche y resuma la noticia",
+  "seoDescription": "Meta description 155-160 chars optimizada para Google",
   "slug": "slug-en-minusculas-con-guiones-sin-acentos-max-70-chars",
-  "tags": ["Tag1", "Tag2", "Tag3"],
+  "tags": ["Tag1", "Tag2", "Tag3", "Tag4"],
   "cat": "selecciones",
   "body": [
-    { "type": "p", "text": "Lede de 2-3 frases que conteste qué pasa, quién, cuándo, dónde." },
-    { "type": "h2", "text": "Subtítulo de sección" },
-    { "type": "p", "text": "Párrafo de desarrollo." },
-    { "type": "p", "text": "Otro párrafo." },
-    { "type": "h2", "text": "Otro subtítulo (opcional)" },
-    { "type": "p", "text": "Más desarrollo." },
-    { "type": "list", "items": ["Punto 1", "Punto 2", "Punto 3"] },
-    { "type": "callout", "title": "Lo que viene", "text": "Cierre con próximo paso o consecuencia." }
+    { "type": "p", "text": "LEDE: 2-3 frases que respondan qué pasa, quién, cuándo, dónde. ~70 palabras." },
+    { "type": "p", "text": "Segundo párrafo: amplía el contexto inmediato. ~90 palabras." },
+    { "type": "h2", "text": "Subtítulo de la primera sección de desarrollo" },
+    { "type": "p", "text": "Párrafo de análisis o desarrollo. ~100 palabras." },
+    { "type": "p", "text": "Otro párrafo con datos o comparación histórica. ~90 palabras." },
+    { "type": "list", "items": ["Punto 1 con contexto concreto", "Punto 2 con dato", "Punto 3 con consecuencia", "Punto 4"] },
+    { "type": "h2", "text": "Subtítulo de la segunda sección" },
+    { "type": "p", "text": "Párrafo sobre implicaciones o reacciones. ~100 palabras." },
+    { "type": "p", "text": "Cierre del análisis con perspectiva a futuro. ~80 palabras." },
+    { "type": "callout", "title": "Lo que viene", "text": "Cierre con próximo paso o consecuencia. 2-3 frases." }
   ]
 }
 
-El body debe tener entre 4 y 8 bloques. Mínimo: 1 lede + 1 h2 + 2 p + 1 callout.`;
+REQUISITO MÍNIMO DEL BODY: 8 bloques (no menos). Idealmente 9-11 bloques. La estructura mínima es: lede(p) + 1 párrafo de contexto(p) + h2 + 2 párrafos(p) + list + h2 + 2 párrafos(p) + callout.`;
 
 function buildUserMessage(draft: DraftNoticia): string {
   const sourceText = draft.body
@@ -98,7 +112,7 @@ export async function rewriteDraft(draft: DraftNoticia): Promise<RewriteOutput |
   try {
     resp = await client.messages.create({
       model,
-      max_tokens: 2000,
+      max_tokens: 4000, // articles are 600-800 words = ~1200-1600 tokens; 4k gives margin for JSON overhead
       temperature: 0.4,
       system: SYSTEM_PROMPT,
       messages: [{ role: "user", content: buildUserMessage(draft) }],
@@ -123,9 +137,9 @@ export async function rewriteDraft(draft: DraftNoticia): Promise<RewriteOutput |
     return null;
   }
 
-  // Defensive: must have at least the required fields
-  if (!parsed.title || !parsed.body || !Array.isArray(parsed.body) || parsed.body.length < 3) {
-    console.error("[rewriter] output missing required fields");
+  // Defensive: must have at least the required fields and a substantive body
+  if (!parsed.title || !parsed.body || !Array.isArray(parsed.body) || parsed.body.length < 6) {
+    console.error("[rewriter] output too short or missing fields", parsed.body?.length);
     return null;
   }
   return parsed;
@@ -151,6 +165,14 @@ export async function applyRewrite(draft: DraftNoticia): Promise<DraftNoticia> {
     // immediately. Failed rewrites stay at "review" and never appear in the
     // public site (filtered out in the data layer).
     status: "published",
-    readTime: Math.max(2, Math.round(out.body.length * 1.3)),
+    // Estimate reading time from word count (180 wpm average)
+    readTime: Math.max(
+      3,
+      Math.ceil(
+        out.body
+          .filter((b) => b.type === "p" || b.type === "h2" || b.type === "h3")
+          .reduce((sum, b) => sum + ((b as { text: string }).text || "").split(/\s+/).length, 0) / 180,
+      ),
+    ),
   };
 }

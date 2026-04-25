@@ -39,7 +39,7 @@ export async function GET(req: Request) {
   const rewriteLimit = parseInt(
     url.searchParams.get("rewriteLimit") ||
       process.env.NEWS_REWRITE_LIMIT ||
-      "5",
+      "3", // articles are now longer (600-800 words) so each rewrite takes ~10s
     10,
   );
   // Pick a small subset of queries per tick (rotate by hour). Full coverage

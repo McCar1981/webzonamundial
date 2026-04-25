@@ -2,16 +2,21 @@
  * Unified noticias loader.
  *
  * Combines static curated articles (src/data/noticias.ts) with the
- * published drafts from the auto-ingest pipeline (data/noticias-ingested.json).
+ * published drafts from the auto-ingest pipeline.
  *
- * In production on Vercel the local filesystem is read-only outside
- * /tmp, so the cron writes to /tmp and reads back from /tmp. For long-term
- * persistence you should swap this for Vercel KV / Upstash / Sanity —
- * see TODO at the bottom.
+ * Storage backend:
+ *  - Production: Vercel KV (Redis managed). Persists across deployments
+ *    and lambda invocations, which is what makes autopublish work.
+ *  - Local dev: filesystem JSON at data/noticias-ingested.json. Same
+ *    interface, no KV credentials needed.
+ *
+ * The backend is auto-detected: if KV_URL is set, KV wins. Otherwise we
+ * fall back to filesystem.
  */
 
 import { promises as fs } from "node:fs";
 import path from "node:path";
+import { kv } from "@vercel/kv";
 import {
   NOTICIAS as STATIC_NOTICIAS,
   type Noticia,
@@ -24,33 +29,63 @@ interface IngestStore {
   drafts: DraftNoticia[];
 }
 
-/** Where the ingest cron writes / reads the JSON store. */
-function storePath(): string {
-  // In Vercel serverless, the only writable path is /tmp. Locally we use the
-  // project's data/ folder so dev edits are visible.
-  if (process.env.VERCEL) {
-    return path.join("/tmp", "noticias-ingested.json");
-  }
-  return path.join(process.cwd(), "data", "noticias-ingested.json");
+const KV_KEY = "noticias:ingested-store";
+const FALLBACK_PATH = path.join(process.cwd(), "data", "noticias-ingested.json");
+
+function isKvEnabled(): boolean {
+  // Vercel KV connection injects KV_REST_API_URL when "Connect Project" is run.
+  return !!process.env.KV_REST_API_URL && !!process.env.KV_REST_API_TOKEN;
 }
 
 export function getStorePath(): string {
-  return storePath();
+  return isKvEnabled() ? `kv:${KV_KEY}` : FALLBACK_PATH;
 }
 
-export async function readIngestStore(): Promise<IngestStore> {
+/* ---------- KV adapter ---------- */
+
+async function readFromKv(): Promise<IngestStore> {
   try {
-    const raw = await fs.readFile(storePath(), "utf-8");
+    const raw = await kv.get<IngestStore>(KV_KEY);
+    if (raw && Array.isArray(raw.drafts)) return raw;
+  } catch (err) {
+    console.error("[store] KV read failed", (err as Error).message);
+  }
+  return { generatedAt: new Date().toISOString(), drafts: [] };
+}
+
+async function writeToKv(store: IngestStore): Promise<void> {
+  try {
+    await kv.set(KV_KEY, store);
+  } catch (err) {
+    console.error("[store] KV write failed", (err as Error).message);
+    throw err;
+  }
+}
+
+/* ---------- Filesystem adapter ---------- */
+
+async function readFromFs(): Promise<IngestStore> {
+  try {
+    const raw = await fs.readFile(FALLBACK_PATH, "utf-8");
     return JSON.parse(raw) as IngestStore;
   } catch {
     return { generatedAt: new Date().toISOString(), drafts: [] };
   }
 }
 
+async function writeToFs(store: IngestStore): Promise<void> {
+  await fs.mkdir(path.dirname(FALLBACK_PATH), { recursive: true });
+  await fs.writeFile(FALLBACK_PATH, JSON.stringify(store, null, 2), "utf-8");
+}
+
+/* ---------- Public API ---------- */
+
+export async function readIngestStore(): Promise<IngestStore> {
+  return isKvEnabled() ? readFromKv() : readFromFs();
+}
+
 export async function writeIngestStore(store: IngestStore): Promise<void> {
-  const p = storePath();
-  await fs.mkdir(path.dirname(p), { recursive: true });
-  await fs.writeFile(p, JSON.stringify(store, null, 2), "utf-8");
+  return isKvEnabled() ? writeToKv(store) : writeToFs(store);
 }
 
 /** Convert a published draft into the public Noticia shape. */
@@ -128,13 +163,3 @@ export async function getRelatedNoticiasPublic(
   });
   return scored.slice(0, limit).map((s) => s.n);
 }
-
-/* TODO (production):
- * Replace fs-based store with Vercel KV (or Upstash, or Sanity) so writes
- * persist across deployments and lambda invocations. See:
- *   - https://vercel.com/docs/storage/vercel-kv
- *   - npm i @vercel/kv
- *
- * The interface above (readIngestStore / writeIngestStore) is the only
- * surface to swap.
- */

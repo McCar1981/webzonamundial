@@ -426,6 +426,10 @@
   color: #fff;
   flex-shrink: 0;
 }
+.authorFooterBody {
+  flex: 1;
+  min-width: 0;
+}
 .authorFooter strong {
   display: block;
   font-size: 16px;
@@ -433,10 +437,34 @@
   color: #fff;
   margin: 0;
 }
-.authorFooter p {
+.authorFooterRole {
   margin: 2px 0 0;
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.55);
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  color: #c9a84c;
+  font-weight: 600;
+}
+.authorFooterBio {
+  margin: 8px 0 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.7);
+}
+.authorFooterTwitter {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 11px;
+  border-radius: 6px;
+  background: rgba(29, 161, 242, 0.12);
+  border: 1px solid rgba(29, 161, 242, 0.4);
+  color: #6cd0ff;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.authorFooterTwitter:hover {
+  background: rgba(29, 161, 242, 0.22);
 }
 
 .sourceLine {

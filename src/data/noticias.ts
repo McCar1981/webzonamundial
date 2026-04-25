@@ -5,7 +5,12 @@
  * Each item has a SEO-ready slug, a multi-paragraph body, an author,
  * tags, and an updatedAt date. Designed to render as a real article
  * page at /noticias/[slug] with full JSON-LD.
+ *
+ * Fase 2: every article is signed by Carlos Zamudio or Gabriel Venegas
+ * (see `noticias-authors.ts`).
  */
+
+import { AUTHORS, getAuthor, type AuthorId, type NoticiaAuthor as RegAuthor } from "./noticias-authors";
 
 export type NoticiaCategory =
   | "analisis"
@@ -15,11 +20,7 @@ export type NoticiaCategory =
   | "selecciones"
   | "plataforma";
 
-export interface NoticiaAuthor {
-  name: string;
-  role?: string;
-  avatar?: string;
-}
+export type NoticiaAuthor = RegAuthor;
 
 export interface Noticia {
   /** Stable numeric id (used for keys and analytics) */
@@ -52,8 +53,8 @@ export interface Noticia {
   imageCaption?: string;
   /** Photo credit */
   imageSource?: string;
-  /** Author byline */
-  author: NoticiaAuthor;
+  /** Author byline — must be a registered author id */
+  authorId: AuthorId;
   /** Multi-paragraph body. Each entry is a markdown-ish block. */
   body: NoticiaBlock[];
   /** Optional canonical attribution URL (when article rewrites a source) */
@@ -69,10 +70,7 @@ export type NoticiaBlock =
   | { type: "list"; items: string[] }
   | { type: "callout"; title?: string; text: string };
 
-const DEFAULT_AUTHOR: NoticiaAuthor = {
-  name: "Redacción ZonaMundial",
-  role: "Equipo editorial",
-};
+const DEFAULT_AUTHOR: NoticiaAuthor = AUTHORS["carlos-zamudio"];
 
 export const NOTICIAS: Noticia[] = [
   {
@@ -94,7 +92,7 @@ export const NOTICIAS: Noticia[] = [
       "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2264605162.jpg?q=w_1160,c_fill/f_webp",
     imageCaption: "Rodrygo Goes durante un partido con el Real Madrid",
     imageSource: "Getty Images vía CNN",
-    author: { name: "Carlos Méndez", role: "Editor de selecciones" },
+    authorId: "carlos-zamudio",
     body: [
       {
         type: "p",
@@ -159,7 +157,7 @@ export const NOTICIAS: Noticia[] = [
       "https://images.ctfassets.net/3mv54pzvptwz/7Jj4ryLGJazS8pDUlCK2Vg/10b71577e0270c8158d669b5fca17aa9/54331642772_05fa9ffe6b_o_dentro.jpg",
     imageCaption: "Neymar Jr. durante un partido con el Santos",
     imageSource: "FIFA via Getty Images",
-    author: { name: "Carlos Méndez", role: "Editor de selecciones" },
+    authorId: "carlos-zamudio",
     body: [
       {
         type: "p",
@@ -219,7 +217,7 @@ export const NOTICIAS: Noticia[] = [
       "https://blob.postadeportes.com/images/2026/03/23/zinedine-zidane-ya-tiene-fecha-para-dirigir-a-francia-97eaf274-focus-0.2-0.41-1479-828.webp",
     imageCaption: "Zinedine Zidane",
     imageSource: "Posta Deportes",
-    author: { name: "Lucía Ortega", role: "Corresponsal Europa" },
+    authorId: "gabriel-venegas",
     body: [
       {
         type: "p",
@@ -283,7 +281,7 @@ export const NOTICIAS: Noticia[] = [
       "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Cristiano_Ronaldo_2018.jpg/800px-Cristiano_Ronaldo_2018.jpg",
     imageCaption: "Cristiano Ronaldo con Portugal en 2018",
     imageSource: "Wikimedia Commons",
-    author: { name: "Diogo Freitas", role: "Corresponsal Portugal" },
+    authorId: "gabriel-venegas",
     body: [
       {
         type: "p",
@@ -339,7 +337,7 @@ export const NOTICIAS: Noticia[] = [
       "https://media.elcomercio.com/wp-content/uploads/2025/12/lionel-messi-2-1024x683.jpg",
     imageCaption: "Lionel Messi con el Inter de Miami",
     imageSource: "El Comercio",
-    author: { name: "Martín Pereyra", role: "Editor América" },
+    authorId: "carlos-zamudio",
     body: [
       {
         type: "p",
@@ -394,7 +392,7 @@ export const NOTICIAS: Noticia[] = [
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Jordan_national_football_team.jpg/800px-Jordan_national_football_team.jpg",
     imageCaption: "Selección de Jordania",
     imageSource: "Wikimedia Commons",
-    author: { name: "Yara Khoury", role: "Corresponsal Oriente Medio" },
+    authorId: "gabriel-venegas",
     body: [
       {
         type: "p",

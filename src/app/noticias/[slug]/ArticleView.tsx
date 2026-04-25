@@ -11,6 +11,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import type { Noticia, NoticiaBlock } from "@/data/noticias";
+import { getAuthor } from "@/data/noticias-authors";
 import styles from "./ArticleView.module.css";
 
 const CAT_LABELS: Record<string, string> = {
@@ -123,6 +124,7 @@ export function ArticleView({
   const catLabel = CAT_LABELS[noticia.cat] || noticia.cat;
   const shareText = encodeURIComponent(`${noticia.title} — ZonaMundial`);
   const shareUrl = encodeURIComponent(url);
+  const author = getAuthor(noticia.authorId);
 
   return (
     <div className={styles.shell}>
@@ -163,12 +165,16 @@ export function ArticleView({
 
         <div className={styles.byline}>
           <div className={styles.author}>
-            <span className={styles.authorAvatar} aria-hidden>
-              {noticia.author.name.charAt(0)}
+            <span
+              className={styles.authorAvatar}
+              aria-hidden
+              style={{ background: `linear-gradient(135deg, ${author.accent}, #5b21b6)` }}
+            >
+              {author.name.charAt(0)}
             </span>
             <div>
-              <strong>{noticia.author.name}</strong>
-              {noticia.author.role && <span>{noticia.author.role}</span>}
+              <strong>{author.name}</strong>
+              {author.role && <span>{author.role}</span>}
             </div>
           </div>
           <div className={styles.bylineMeta}>
@@ -276,12 +282,27 @@ export function ArticleView({
 
           {/* Author footer */}
           <footer className={styles.authorFooter}>
-            <span className={styles.authorAvatarLg} aria-hidden>
-              {noticia.author.name.charAt(0)}
+            <span
+              className={styles.authorAvatarLg}
+              aria-hidden
+              style={{ background: `linear-gradient(135deg, ${author.accent}, #5b21b6)` }}
+            >
+              {author.name.charAt(0)}
             </span>
-            <div>
-              <strong>{noticia.author.name}</strong>
-              {noticia.author.role && <p>{noticia.author.role}</p>}
+            <div className={styles.authorFooterBody}>
+              <strong>{author.name}</strong>
+              {author.role && <p className={styles.authorFooterRole}>{author.role}</p>}
+              {author.bio && <p className={styles.authorFooterBio}>{author.bio}</p>}
+              {author.twitter && (
+                <a
+                  href={`https://twitter.com/${author.twitter.replace(/^@/, "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.authorFooterTwitter}
+                >
+                  {author.twitter}
+                </a>
+              )}
             </div>
           </footer>
 

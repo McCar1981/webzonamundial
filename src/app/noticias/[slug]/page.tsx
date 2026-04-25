@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import {
-  NOTICIAS,
   getNoticiaBySlug,
   getRelatedNoticias,
   getAllNoticiaSlugs,
 } from "@/data/noticias";
+import { getAuthor } from "@/data/noticias-authors";
 import { ArticleView } from "./ArticleView";
 
 const SITE_URL = "https://zonamundial.app";
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${n.title} | ZonaMundial`,
     description,
     keywords: n.tags,
-    authors: [{ name: n.author.name }],
+    authors: [{ name: getAuthor(n.authorId).name }],
     alternates: {
       canonical: url,
       languages: { es: url, en: url },
@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       locale: "es_ES",
       publishedTime: `${n.date}T08:00:00.000Z`,
       modifiedTime: `${n.updatedAt || n.date}T08:00:00.000Z`,
-      authors: [n.author.name],
+      authors: [getAuthor(n.authorId).name],
       tags: n.tags,
       images: n.realImage
         ? [
@@ -74,6 +74,7 @@ export default function NoticiaPage({ params }: Props) {
 
   const related = getRelatedNoticias(noticia, 4);
   const url = `${SITE_URL}/noticias/${noticia.slug}`;
+  const author = getAuthor(noticia.authorId);
 
   // JSON-LD: NewsArticle
   const newsArticleLd = {
@@ -86,8 +87,9 @@ export default function NoticiaPage({ params }: Props) {
     dateModified: `${noticia.updatedAt || noticia.date}T08:00:00.000Z`,
     author: {
       "@type": "Person",
-      name: noticia.author.name,
-      jobTitle: noticia.author.role,
+      name: author.name,
+      jobTitle: author.role,
+      sameAs: author.twitter ? [`https://twitter.com/${author.twitter.replace(/^@/, "")}`] : undefined,
     },
     publisher: {
       "@type": "Organization",

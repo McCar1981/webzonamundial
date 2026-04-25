@@ -1,4 +1,5 @@
 import { getNoticiasSorted } from "@/data/noticias";
+import { getAuthor } from "@/data/noticias-authors";
 
 const SITE_URL = "https://zonamundial.app";
 
@@ -23,7 +24,7 @@ export async function GET() {
       <link>${url}</link>
       <guid isPermaLink="true">${url}</guid>
       <pubDate>${pub}</pubDate>
-      <author>noreply@zonamundial.app (${escapeXml(n.author.name)})</author>
+      <author>noreply@zonamundial.app (${escapeXml(getAuthor(n.authorId).name)})</author>
       <category>${escapeXml(n.cat)}</category>
       <description><![CDATA[${n.excerpt}]]></description>
       ${n.realImage ? `<enclosure url="${escapeXml(n.realImage)}" type="image/jpeg" />` : ""}

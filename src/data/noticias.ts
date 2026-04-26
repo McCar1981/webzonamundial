@@ -96,7 +96,11 @@ export const NOTICIAS: Noticia[] = [
     body: [
       {
         type: "p",
-        text: "Las pruebas médicas no dieron lugar a dudas: Rodrygo Goes sufrió rotura completa del ligamento cruzado anterior y del menisco interno de la rodilla derecha tras una entrada fortuita en la primera mitad del Real Madrid–Getafe. El club blanco confirmó esta mañana que el delantero será operado en las próximas 48 horas y que el plazo estimado de baja es de ocho meses.",
+        text: "Las pruebas médicas no dieron lugar a dudas: Rodrygo Goes sufrió rotura completa del ligamento cruzado anterior y del menisco interno de la rodilla derecha tras una entrada fortuita en la primera mitad del Real Madrid–Getafe. El club blanco confirmó esta mañana que el delantero será operado en las próximas 48 horas en una clínica privada de Madrid y que el plazo estimado de baja es de ocho meses, lo que lo deja fuera de manera definitiva del Mundial 2026.",
+      },
+      {
+        type: "p",
+        text: "La noticia ha caído como un mazazo en Brasil. Rodrygo, de 25 años, vivía su mejor momento futbolístico tras una temporada con números sobresalientes en LaLiga y Champions, y se había convertido en un fijo del once que Carlo Ancelotti perfilaba para encarar la cita norteamericana. La lesión añade un capítulo más a una temporada marcada por las ausencias prolongadas en la Canarinha, que ha tenido que reorganizar su delantera en varias ocasiones durante los últimos seis meses.",
       },
       {
         type: "h2",
@@ -104,7 +108,11 @@ export const NOTICIAS: Noticia[] = [
       },
       {
         type: "p",
-        text: "Rodrygo era una pieza fija en los planes de Carlo Ancelotti como seleccionador de la Canarinha. El italiano lo había situado en el extremo izquierdo del esquema 4-2-3-1, complementando a Vinicius por la banda contraria y dejando a Endrick como referencia ofensiva. La ausencia obliga a reconsiderar la lista que se hará pública el próximo 15 de mayo.",
+        text: "Rodrygo era una pieza fija en los planes de Carlo Ancelotti como seleccionador de la Canarinha. El italiano lo había situado en el extremo izquierdo del esquema 4-2-3-1, complementando a Vinicius por la banda contraria y dejando a Endrick como referencia ofensiva en la punta. Su capacidad para asociarse en espacios reducidos, atacar al primer toque y aparecer como falso interior lo convertía en el comodín perfecto para un sistema con muchas variaciones tácticas.",
+      },
+      {
+        type: "p",
+        text: "La ausencia obliga a reconsiderar la lista que se hará pública el próximo 15 de mayo. Brasil pierde a un jugador que aportaba versatilidad en tres posiciones distintas (extremo izquierdo, extremo derecho y mediapunta), y eso impacta especialmente en partidos donde se necesite cerrar el campo sin perder profundidad por bandas. Ancelotti tendrá que repensar también si mantiene a Vinicius como referencia única en la izquierda o si abre la puerta a un perfil distinto.",
       },
       {
         type: "h2",
@@ -113,11 +121,20 @@ export const NOTICIAS: Noticia[] = [
       {
         type: "list",
         items: [
-          "Antony (Manchester United) — opción natural por banda derecha si Vinicius cambia de lado",
-          "Pedro (Flamengo) — vuelve a estar en órbita tras un gran inicio de temporada en el Brasileirão",
-          "Estêvão Willian (Palmeiras / Chelsea) — el comodín joven que ha enamorado a Ancelotti",
-          "Neymar Jr. (Santos) — la opción más mediática, en plena recuperación física",
+          "Antony (Manchester United) — opción natural por banda derecha si Vinicius cambia de lado. Conoce el sistema y ha jugado bajo presión en escenarios europeos exigentes.",
+          "Pedro (Flamengo) — vuelve a estar en órbita tras un gran inicio de temporada en el Brasileirão. Un '9' de área, distinto perfil al de Endrick.",
+          "Estêvão Willian (Palmeiras / Chelsea) — el comodín joven que ha enamorado a Ancelotti. Aporta verticalidad y desborde por la derecha.",
+          "Neymar Jr. (Santos) — la opción más mediática, en plena recuperación física. Su llamado depende de cómo llegue al cierre del Brasileirão.",
+          "Raphinha (Barcelona) — un nombre que vuelve al debate, especialmente si Ancelotti busca un extremo con experiencia europea de máximo nivel.",
         ],
+      },
+      {
+        type: "h2",
+        text: "El precedente histórico",
+      },
+      {
+        type: "p",
+        text: "Brasil llega al Mundial 2026 con un historial de bajas de última hora que ha dejado huella en cada edición. En 2014, el país perdió a Neymar en el infausto partido ante Colombia; en 2018, Marcelo y Casemiro acumularon problemas físicos; en 2022, Neymar volvió a sufrir una lesión clave en la fase de grupos. La salud del grupo siempre ha sido un factor decisivo en el rendimiento en Mundiales, y la baja de Rodrygo, ocho meses antes del torneo, abre dudas sobre cómo gestionar la carga del resto del plantel hasta junio.",
       },
       {
         type: "h3",
@@ -130,12 +147,12 @@ export const NOTICIAS: Noticia[] = [
       },
       {
         type: "p",
-        text: "El tiempo apremia. La fase de grupos arranca el 11 de junio y Brasil debutará seis días después contra Marruecos en el AT&T Stadium de Dallas. Ancelotti tendrá que tomar decisiones rápidas, pero la línea editorial del cuerpo técnico es clara: priorizar continuidad táctica sobre nombres.",
+        text: "El tiempo apremia. La fase de grupos arranca el 11 de junio y Brasil debutará seis días después contra Marruecos en el AT&T Stadium de Dallas. Ancelotti tendrá que tomar decisiones rápidas, pero la línea editorial del cuerpo técnico es clara: priorizar continuidad táctica sobre nombres. La selección tiene un proyecto de juego instalado y el italiano no quiere reformar el sistema por una baja, por dolorosa que sea.",
       },
       {
         type: "callout",
         title: "Lo que viene",
-        text: "Brasil presentará la lista preliminar el 15 de mayo y la definitiva el 4 de junio. Antes, todavía hay tres jornadas de Liga, semifinales de Champions y un amistoso ante Croacia que pueden mover el equilibrio.",
+        text: "Brasil presentará la lista preliminar el 15 de mayo y la definitiva el 4 de junio. Antes, todavía hay tres jornadas de Liga, semifinales de Champions y un amistoso ante Croacia que pueden mover el equilibrio. Rodrygo ya está en Madrid preparando su operación; volverá a los terrenos de juego en torno a noviembre de 2026.",
       },
     ],
   },
@@ -161,7 +178,11 @@ export const NOTICIAS: Noticia[] = [
     body: [
       {
         type: "p",
-        text: "La conversación volvió a abrirse en la concentración brasileña. Tras conocerse la baja de Rodrygo, fuentes próximas a la CBF confirmaron que el cuerpo técnico de Carlo Ancelotti ha incluido a Neymar en la prelista ampliada de candidatos al Mundial 2026.",
+        text: "La conversación volvió a abrirse en la concentración brasileña. Tras conocerse la baja de Rodrygo, fuentes próximas a la CBF confirmaron que el cuerpo técnico de Carlo Ancelotti ha incluido a Neymar en la prelista ampliada de candidatos al Mundial 2026, una decisión que parecía improbable hace solo seis meses pero que la realidad del calendario y de las lesiones ha terminado imponiendo.",
+      },
+      {
+        type: "p",
+        text: "El '10' del Santos vive una segunda juventud futbolística desde su regreso al fútbol brasileño en 2024. Lejos del foco mediático del Al-Hilal, donde apenas pudo jugar por culpa de varias lesiones graves, ha encontrado en su club de origen una válvula de escape que le ha permitido recuperar tono físico, ritmo competitivo y, sobre todo, esa sonrisa que parecía haber perdido. Para muchos, su nivel actual es el más estable que se le ha visto en cinco años.",
       },
       {
         type: "h2",
@@ -169,7 +190,7 @@ export const NOTICIAS: Noticia[] = [
       },
       {
         type: "p",
-        text: "Neymar lleva tres meses sin parones físicos en el Santos, club al que regresó como apuesta personal. El doblete frente al Palmeiras del fin de semana —incluido un golazo de tijera— es la mejor noticia para el clan del jugador, que ha enviado mensajes públicos al seleccionador.",
+        text: "Neymar lleva tres meses sin parones físicos en el Santos, club al que regresó como apuesta personal y emocional. El doblete frente al Palmeiras del fin de semana —incluido un golazo de tijera— es la mejor noticia para el clan del jugador, que ha enviado mensajes públicos al seleccionador en los últimos días subrayando que el delantero está disponible y disponible bien. El cuerpo médico del Santos ha sido el primero en avalar la condición física, algo que pesa en el cuerpo técnico de la Canarinha.",
       },
       {
         type: "list",
@@ -178,6 +199,7 @@ export const NOTICIAS: Noticia[] = [
           "Goles + asistencias en Brasileirão 2026: 7 + 5",
           "Sprints máximos por partido: 18 (top-3 de la liga)",
           "Sesiones perdidas por molestias: 0",
+          "Nivel de pulsaciones máximas en partido: 192 (rango óptimo para su edad)",
         ],
       },
       {
@@ -186,7 +208,19 @@ export const NOTICIAS: Noticia[] = [
       },
       {
         type: "p",
-        text: "Ancelotti ha repetido en varias entrevistas que su lista será meritocrática. Sin embargo, el italiano también ha admitido que en torneos cortos «la jerarquía pesa». Neymar, con 128 partidos internacionales y 79 goles, encarna esa jerarquía.",
+        text: "Ancelotti ha repetido en varias entrevistas que su lista será meritocrática. Sin embargo, el italiano también ha admitido que en torneos cortos «la jerarquía pesa». Neymar, con 128 partidos internacionales y 79 goles, encarna esa jerarquía. La pregunta no es si Neymar puede aportar — eso parece probado — sino qué rol específico tendría en un equipo donde Vinicius es el referente ofensivo y donde la generación de Endrick, Estêvão y Pedro presiona con fuerza por minutos.",
+      },
+      {
+        type: "p",
+        text: "Las opciones más realistas pasan por usar a Neymar como mediapunta entre líneas o como '9' falso en partidos donde Brasil necesite generar superioridad técnica frente a rivales que cierren espacios. En ningún caso se le ve como titular indiscutible para todos los partidos, pero su presencia podría ser decisiva en momentos puntuales del torneo, especialmente en la fase eliminatoria si Brasil llega a octavos como cabeza de serie.",
+      },
+      {
+        type: "h2",
+        text: "El precedente y la herida abierta",
+      },
+      {
+        type: "p",
+        text: "Para Neymar, el Mundial 2026 representa también una redención. Ha jugado tres ediciones (2014, 2018, 2022) y en todas se quedó sin la final. La de 2014 acabó con la imagen del país hundido tras el 7-1 ante Alemania y con él en la grada por una lesión. En 2018, una eliminación contra Bélgica en cuartos. En 2022, una despedida en penaltis ante Croacia que volvió a marcar su historia. A los 34 años, esta es probablemente la última oportunidad real de levantar el trofeo.",
       },
       {
         type: "quote",
@@ -195,7 +229,12 @@ export const NOTICIAS: Noticia[] = [
       },
       {
         type: "p",
-        text: "El llamado se confirmaría definitivamente el 15 de mayo, cuando la federación anuncie la prelista de 35 nombres antes de la convocatoria final.",
+        text: "El llamado se confirmaría definitivamente el 15 de mayo, cuando la federación anuncie la prelista de 35 nombres antes de la convocatoria final. Hasta entonces, Santos juega ocho partidos más y Neymar tiene que mantener el nivel físico y futbolístico que ha exhibido en las últimas semanas. Cualquier recaída cerraría la puerta de manera definitiva.",
+      },
+      {
+        type: "callout",
+        title: "Lo que viene",
+        text: "Prelista de 35 jugadores el 15 de mayo. Convocatoria definitiva de 26 el 4 de junio. Si entra, Neymar viajará al Mundial con el reto de demostrar que el regreso al Santos fue la mejor decisión de su carrera.",
       },
     ],
   },
@@ -341,7 +380,11 @@ export const NOTICIAS: Noticia[] = [
     body: [
       {
         type: "p",
-        text: "Lionel Messi llega al Mundial 2026 con un factor inédito en su carrera: jugará la cita más importante de la temporada en su ciudad de residencia. Desde julio de 2023 reside en Miami con su familia, y la mayoría de los partidos de Argentina en la fase de grupos se disputarán a menos de tres horas de vuelo.",
+        text: "Lionel Messi llega al Mundial 2026 con un factor inédito en su carrera: jugará la cita más importante de la temporada en su ciudad de residencia. Desde julio de 2023 reside en Miami con su familia, y la mayoría de los partidos de Argentina en la fase de grupos se disputarán a menos de tres horas de vuelo de su domicilio. Es la primera vez en cinco Mundiales disputados que el rosarino disputará un torneo en su lugar de vida cotidiana, un detalle aparentemente menor pero con consecuencias importantes en términos físicos, mentales y logísticos.",
+      },
+      {
+        type: "p",
+        text: "El factor 'casa' no es despreciable. La rutina mantenida durante semanas, el sueño en su propia cama, la familia presente y el entorno conocido son variables que en torneos cortos pueden marcar la diferencia. Entrenadores como Marcelo Bielsa o el propio Lionel Scaloni han subrayado en distintas oportunidades el peso emocional de jugar 'cerca de casa', y para Messi, con 38 años, todo lo que reduzca el estrés ambiental es una ventaja en estado puro.",
       },
       {
         type: "h2",
@@ -350,14 +393,15 @@ export const NOTICIAS: Noticia[] = [
       {
         type: "list",
         items: [
-          "Argentina vs Marruecos — 13 junio, MetLife Stadium (Nueva York)",
-          "Argentina vs Camerún — 19 junio, Hard Rock Stadium (Miami)",
-          "Argentina vs Australia — 24 junio, AT&T Stadium (Dallas)",
+          "Argentina vs Marruecos — 13 junio, MetLife Stadium (Nueva York). Debut frente al verdugo del Mundial 2022 en cuartos.",
+          "Argentina vs Camerún — 19 junio, Hard Rock Stadium (Miami). Partido en su ciudad, ya considerado evento estelar.",
+          "Argentina vs Australia — 24 junio, AT&T Stadium (Dallas). Cierre de fase de grupos, posiblemente con la clasificación ya cerrada.",
+          "Posible octavo de final — 28-30 junio, sede según primera o segunda posición del grupo C.",
         ],
       },
       {
         type: "p",
-        text: "El partido frente a Camerún en Miami se ha vendido como una semifinal en términos comerciales: las entradas se agotaron en menos de 30 minutos. Messi vivirá una de las experiencias más particulares de su carrera al disputar un partido de Mundial en su ciudad.",
+        text: "El partido frente a Camerún en Miami se ha vendido como una semifinal en términos comerciales: las entradas se agotaron en menos de 30 minutos y el mercado secundario alcanzó precios récord. Messi vivirá una de las experiencias más particulares de su carrera al disputar un partido de Mundial en su ciudad, con su familia en la grada y con un público mayoritariamente argentino-americano que llevará el partido casi al estatus de visita 'local' encubierta.",
       },
       {
         type: "h2",
@@ -365,12 +409,24 @@ export const NOTICIAS: Noticia[] = [
       },
       {
         type: "p",
-        text: "Javier Mascherano, técnico de Inter Miami, ya anunció que no dará descanso a Leo en mayo: la franquicia tiene compromisos clave en MLS y la directiva considera contraproducente apartarlo del rodaje. Messi, sin embargo, sí tendrá libre las dos semanas previas al Mundial para preparar la concentración con la selección.",
+        text: "Javier Mascherano, técnico de Inter Miami, ya anunció que no dará descanso a Leo en mayo: la franquicia tiene compromisos clave en MLS y la directiva considera contraproducente apartarlo del rodaje. La conversación con Scaloni ha sido fluida y se ha llegado a un acuerdo: Messi tendrá libre las dos últimas semanas antes de la concentración con la selección, lo que le permitirá llegar al primer entrenamiento sin la fatiga de un fin de semana de partido.",
+      },
+      {
+        type: "p",
+        text: "El plan físico es probablemente el aspecto más sensible del proceso. A 38 años, Messi necesita un equilibrio fino entre minutos en MLS para mantener ritmo competitivo y descansos para preservar las articulaciones. El cuerpo médico de Argentina trabaja en estrecha coordinación con el del Inter Miami desde febrero, compartiendo datos GPS, ritmo cardíaco y carga interna semana a semana.",
+      },
+      {
+        type: "h2",
+        text: "El reto deportivo: defender la corona",
+      },
+      {
+        type: "p",
+        text: "Argentina llega a Norteamérica como vigente campeón del Mundo, con la responsabilidad histórica de revalidar el título. Solo dos selecciones lo han logrado consecutivamente: Italia (1934-1938) y Brasil (1958-1962). Repetir sería poner a Messi en un escalón aún superior dentro de la conversación del mejor futbolista de la historia, y emparentarlo con leyendas como Pelé o Maradona en términos de impacto duradero.",
       },
       {
         type: "callout",
         title: "Dato clave",
-        text: "Messi acumula 14 Mundiales jugados con Argentina y es el único futbolista en haber disputado 5 ediciones distintas. Si juega los 7 partidos hasta la final, alcanzará los 30 minutos disputados en Mundiales: récord absoluto.",
+        text: "Messi acumula 26 partidos jugados en Mundiales con Argentina y es el único futbolista en haber disputado cinco ediciones distintas. Si juega los 7 partidos hasta la final, alcanzará los 33 partidos disputados en Mundiales: récord absoluto de todos los tiempos.",
       },
     ],
   },
@@ -396,37 +452,63 @@ export const NOTICIAS: Noticia[] = [
     body: [
       {
         type: "p",
-        text: "Jordania disputará en junio el primer Mundial de su historia. Los hijos del rey Abdalá II celebraron su clasificación tras vencer a Irak por 2-1 en Ammán, en un partido que el país recordará durante décadas.",
-      },
-      {
-        type: "h2",
-        text: "Un proyecto de 24 años",
+        text: "Jordania disputará en junio el primer Mundial de su historia. La clasificación quedó sellada tras vencer a Irak por 2-1 en Ammán, un resultado que desató una celebración nacional sin precedentes y que pone fin a más de cuatro décadas intentando llegar a la cita futbolística más importante del planeta. La afición tomó las calles de la capital durante toda la madrugada, con caravanas de coches, banderas y un ambiente que recordó al de pequeñas naciones que han debutado en torneos internacionales.",
       },
       {
         type: "p",
-        text: "El programa de desarrollo arrancó en 2002 con la creación de la academia Shabab Al-Ordon. Hoy, 24 años después, ese trabajo está dando sus frutos: 8 jugadores del actual XI titular son egresados directos del programa, y el seleccionador Hussein Ammouta ha construido un equipo joven —media de 24,3 años— con identidad clara: bloque medio, salida desde atrás y transiciones.",
+        text: "La hazaña tiene un componente simbólico que va más allá del puro resultado deportivo. Jordania, una nación de 11 millones de habitantes ubicada en el corazón de Oriente Medio, llega al Mundial 2026 representando a una región históricamente postergada en el fútbol mundial y al mismo tiempo confirmando un cambio profundo en la geopolítica deportiva del balompié árabe, que en los últimos años ha invertido recursos sustanciales en infraestructura, formación y profesionalización.",
       },
       {
         type: "h2",
-        text: "Las estrellas a seguir",
+        text: "Un proyecto de 24 años con paciencia y método",
+      },
+      {
+        type: "p",
+        text: "El programa de desarrollo arrancó en 2002 con la creación de la academia Shabab Al-Ordon, una iniciativa impulsada directamente por la Casa Real que buscaba dotar al país de una cantera estable y formadora. Veinticuatro años después, el trabajo está dando sus frutos: ocho jugadores del actual once titular son egresados directos del programa, lo que demuestra que la apuesta por la base ha sido la decisión correcta y que la federación supo resistir la tentación del cortoplacismo.",
+      },
+      {
+        type: "p",
+        text: "El seleccionador Hussein Ammouta ha construido un equipo joven —con una media de 24,3 años— y con identidad clara: bloque medio, salida desde atrás y transiciones rápidas para aprovechar la velocidad de sus extremos. El esquema 4-2-3-1 que utiliza con regularidad permite tanto cerrar el centro del campo ante rivales superiores como liberar a sus dos referencias ofensivas. Ammouta, marroquí de nacimiento y con paso por equipos del Magreb, conoce a fondo el fútbol árabe y aporta a la selección una organización táctica que rara vez se había visto en Jordania.",
+      },
+      {
+        type: "h2",
+        text: "Las estrellas que llevan al equipo al Mundial",
       },
       {
         type: "list",
         items: [
-          "Mousa Al-Tamari (Montpellier) — extremo izquierdo, capitán y goleador",
-          "Yazan Al-Naimat (Al-Ahli) — '9' móvil, 14 goles en clasificación",
-          "Noor Al-Rawabdeh (Al-Faisaly) — mediocentro creativo, motor del juego",
-          "Yazan Al-Arab (Al-Wehdat) — central de futuro, ya en órbita europea",
+          "Mousa Al-Tamari (Montpellier) — extremo izquierdo, capitán y goleador. Lleva años jugando en Europa y aporta el desborde y la pegada que el equipo necesita en zonas decisivas.",
+          "Yazan Al-Naimat (Al-Ahli) — '9' móvil con 14 goles en clasificación. Es el máximo artillero histórico de la selección y la principal amenaza dentro del área.",
+          "Noor Al-Rawabdeh (Al-Faisaly) — mediocentro creativo y motor del juego. Encargado de conectar líneas y ralentizar el juego cuando hace falta.",
+          "Yazan Al-Arab (Al-Wehdat) — central de futuro, ya en órbita europea. Lectura defensiva precoz y proyección con balón. Varios clubes europeos siguen su evolución.",
+          "Anas Bani Yaseen (Al-Wehdat) — pareja en el eje de la defensa. La experiencia que necesita la zaga en partidos de máxima exigencia.",
         ],
       },
       {
+        type: "h2",
+        text: "El grupo F: España, Marruecos y Costa Rica",
+      },
+      {
         type: "p",
-        text: "El sorteo emparejó a Jordania con España, Marruecos y Costa Rica en el grupo F. La sensación interna del cuerpo técnico es que cualquier resultado positivo será histórico, pero internamente apuntan a colarse entre los terceros mejor clasificados.",
+        text: "El sorteo emparejó a Jordania con España, Marruecos y Costa Rica en el grupo F. La realidad es que la lógica del fútbol coloca a Jordania como cuarta cabeza del grupo, pero el cuerpo técnico no se da por vencido y maneja un objetivo realista pero ambicioso: cualquier resultado positivo será histórico, y el plan interno apunta a competir hasta el último minuto en cada partido para colarse entre los terceros mejor clasificados, una posibilidad real con el formato ampliado a 48 selecciones que abre la puerta a 8 plazas para terceros.",
+      },
+      {
+        type: "p",
+        text: "El debut será frente a España el 14 de junio en el SoFi Stadium de Los Ángeles, un escenario inédito para los jordanos. El segundo encuentro contra Marruecos —al que ven como rival decisivo para sus aspiraciones— se disputará en el AT&T Stadium de Dallas, y el cierre ante Costa Rica tendrá lugar en el Estadio Akron de Guadalajara. La logística del viaje es uno de los desafíos: tres ciudades, dos países distintos, una variabilidad climática enorme entre la costa californiana y el centro de México.",
       },
       {
         type: "quote",
         text: "No vamos solo a participar. Vamos a representar a 11 millones de jordanos y a recordar al mundo que el fútbol árabe ya juega en otra liga.",
         cite: "Hussein Ammouta, seleccionador de Jordania",
+      },
+      {
+        type: "p",
+        text: "Las palabras del seleccionador resumen el espíritu con el que la selección llega a Norteamérica. Más allá del resultado deportivo, el solo hecho de estar en el Mundial implica un salto institucional para la federación jordana, que tendrá que gestionar derechos televisivos, patrocinios, logística internacional y atención mediática a niveles nunca antes vistos en su historia. Un éxito en cualquiera de esos planos será un triunfo a futuro, independientemente del marcador en los partidos.",
+      },
+      {
+        type: "callout",
+        title: "Lo que viene",
+        text: "Jordania jugará dos amistosos preparatorios en mayo —ante Túnez y Corea del Sur— para afinar la convocatoria definitiva, que se anunciará el 4 de junio. El debut frente a España será el 14 de junio. Para muchos jordanos, ese día será inolvidable.",
       },
     ],
   },

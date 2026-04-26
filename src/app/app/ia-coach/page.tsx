@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { ICON_V3 } from "@/components/icons";
+import { ICON_V3, ICON_DESCUBRE } from "@/components/icons";
 
 const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a";
 
@@ -261,7 +261,7 @@ export default function IACoachPage() {
                 display: "flex", alignItems: "center", justifyContent: "center",
                 flexShrink: 0, overflow: "hidden"
               }}>
-                <Icon icon={ICON_V3.creadores} size={28} />
+                <Icon icon={ICON_DESCUBRE.creadores} size={28} />
               </div>
               <div style={{
                 padding: "16px 20px", borderRadius: 16,

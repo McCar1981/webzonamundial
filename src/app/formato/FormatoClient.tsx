@@ -197,7 +197,7 @@ export default function FormatoClient() {
                 <h3 className="text-xl font-bold text-white">{fT.eliminatoria}</h3>
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-                {fT.rounds.map((round: { from: string; to: string; name: string; isNew: boolean }, i: number) => (
+                {fT.rounds.map((round: { from: number; to: number; name: string; isNew: boolean }, i: number) => (
                   <div key={i} className={`p-4 rounded-xl border text-center ${round.isNew ? 'border-[#C9A84C] bg-[#C9A84C]/5' : 'border-white/5 bg-[#060B14]'}`}>
                     <div className="text-xs text-gray-500 mb-1">{round.from} → {round.to}</div>
                     <div className={`text-base font-bold ${round.isNew ? 'text-[#C9A84C]' : 'text-white'}`}>{round.name}</div>
@@ -222,7 +222,7 @@ export default function FormatoClient() {
               </div>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              {fT.phases.map((phase: { icon: string; name: string; desc: string; matches: string; qualified: string }, i: number) => (
+              {fT.phases.map((phase: { icon: string; name: string; desc: string; matches: number; qualified: number }, i: number) => (
                 <div key={i} className="group p-4 sm:p-5 rounded-xl border border-white/5 bg-[#0F1D32]/80 hover:border-white/10 transition-all duration-300">
                   <div className="flex items-center gap-3 mb-3">
                     <div className={`w-10 h-10 rounded-full flex items-center justify-center text-base flex-shrink-0 ${i === fT.phases.length - 1 ? 'bg-gradient-to-br from-[#C9A84C] to-[#E8D48B]' : 'bg-[#0B1825] border border-[#C9A84C]/20'}`}>

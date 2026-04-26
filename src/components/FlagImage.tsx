@@ -4,7 +4,6 @@
 "use client";
 
 import type { CSSProperties, ReactNode } from 'react';
-// @ts-expect-error -- react-world-flags no incluye tipos
 import Flag from 'react-world-flags';
 
 interface FlagImageProps {

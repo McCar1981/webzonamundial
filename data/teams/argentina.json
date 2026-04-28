@@ -45,7 +45,7 @@
       "brand": "Adidas",
       "season": "2025-2026",
       "home": {
-        "front_url": "[PLACEHOLDER: /img/kits/2026/home/argentina.svg]",
+        "front_url": "/img/kits/2026/home/argentina.png",
         "back_url": null,
         "primary_color": "#75AADB",
         "secondary_color": "#FFFFFF",

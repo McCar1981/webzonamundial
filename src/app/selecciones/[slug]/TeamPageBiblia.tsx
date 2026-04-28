@@ -4,12 +4,17 @@
 import type { NationalTeam } from "@/types/team";
 import HeroSection from "@/components/biblia/HeroSection";
 import MiniNav from "@/components/biblia/MiniNav";
+import CountryCard from "@/components/biblia/CountryCard";
+import KitSection from "@/components/biblia/KitSection";
+import GroupSection from "@/components/biblia/GroupSection";
+import ScheduleSection from "@/components/biblia/ScheduleSection";
 
 const SECTIONS = [
   { id: "identidad", label: "Identidad" },
   { id: "ficha", label: "País" },
   { id: "equipacion", label: "Camiseta" },
   { id: "grupo", label: "Grupo" },
+  { id: "schedule", label: "Partidos" },
   { id: "clasificacion", label: "Camino al Mundial" },
   { id: "plantilla", label: "Plantilla" },
   { id: "once", label: "11 Ideal" },
@@ -27,23 +32,14 @@ export default function TeamPageBiblia({ team }: { team: NationalTeam }) {
       {/* MINI-NAV STICKY */}
       <MiniNav sections={SECTIONS} />
 
-      {/* SECCIONES — placeholders por ahora; se rellenan en commits siguientes */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-16">
-        <PlaceholderSection
-          id="ficha"
-          title="Ficha país y federación"
-          note="Pendiente — commit 3"
-        />
-        <PlaceholderSection
-          id="equipacion"
-          title="Equipación oficial"
-          note="Pendiente — commit 3"
-        />
-        <PlaceholderSection
-          id="grupo"
-          title="Grupo y partidos en Mundial 2026"
-          note="Pendiente — commit 3"
-        />
+      {/* SECCIONES */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-12">
+        <CountryCard team={team} />
+        <KitSection team={team} />
+        <GroupSection team={team} />
+        <ScheduleSection team={team} />
+
+        {/* Pendientes en commits siguientes */}
         <PlaceholderSection
           id="clasificacion"
           title="Camino al Mundial 2026"

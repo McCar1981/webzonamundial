@@ -74,19 +74,19 @@ export default function QualifyingPath({ team }: { team: NationalTeam }) {
         <Highlight
           label="Mejor partido"
           tone="ok"
-          ref={resolveMatchRef(q.best_match?.match_ref, matches, ourIso)}
+          matchRef={resolveMatchRef(q.best_match?.match_ref, matches, ourIso)}
           reason={q.best_match?.reason}
         />
         <Highlight
           label="Peor partido"
           tone="bad"
-          ref={resolveMatchRef(q.worst_match?.match_ref, matches, ourIso)}
+          matchRef={resolveMatchRef(q.worst_match?.match_ref, matches, ourIso)}
           reason={q.worst_match?.reason}
         />
         <Highlight
           label="Partido decisivo"
           tone="decisive"
-          ref={resolveMatchRef(q.decisive_match?.match_ref, matches, ourIso)}
+          matchRef={resolveMatchRef(q.decisive_match?.match_ref, matches, ourIso)}
           reason={q.decisive_match?.reason}
         />
       </div>
@@ -209,12 +209,12 @@ function StatsGrid({ stats }: { stats: MatchStats }) {
 function Highlight({
   label,
   tone,
-  ref,
+  matchRef,
   reason,
 }: {
   label: string;
   tone: "ok" | "bad" | "decisive";
-  ref: { home: string; away: string; date: string } | null;
+  matchRef: { home: string; away: string; date: string } | null;
   reason: string | undefined;
 }) {
   if (!reason) return null;
@@ -236,10 +236,10 @@ function Highlight({
       >
         {label}
       </div>
-      {ref ? (
+      {matchRef ? (
         <div className="text-sm font-bold text-white mb-2">
-          {ref.home} <span className="text-gray-500">vs</span> {ref.away}
-          <span className="text-gray-500 font-normal ml-2">· {ref.date}</span>
+          {matchRef.home} <span className="text-gray-500">vs</span> {matchRef.away}
+          <span className="text-gray-500 font-normal ml-2">· {matchRef.date}</span>
         </div>
       ) : null}
       <p className="text-xs text-gray-300 leading-relaxed">{reason}</p>

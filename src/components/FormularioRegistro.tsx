@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { getCreadoresActivos } from '@/data/creadores';
 import { useLanguage } from '@/i18n/LanguageContext';
+import { createSupabaseBrowserClient } from '@/lib/supabase/client';
 
 export default function FormularioRegistro({ creadorPreseleccionado }: { creadorPreseleccionado?: string }) {
   const { t } = useLanguage();
@@ -41,11 +42,11 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
     noCreator: 'Skip for now',
     noCreatorDesc: 'You can choose your favorite creator later',
     submit: 'Complete registration',
-    submitting: 'Creating your account...',
-    successTitle: 'Welcome to ZonaMundial!',
-    successDesc: 'Your registration was completed successfully.',
-    successEmail: 'We sent a confirmation email to',
-    explore: 'Explore platform',
+    submitting: 'Sending sign-in link...',
+    successTitle: 'Check your email',
+    successDesc: 'We sent you a sign-in link. Click it to confirm your account and finish setup.',
+    successEmail: 'Sent to',
+    explore: 'Back to home',
     login: 'Go to my account',
     alreadyAccount: 'Already have an account?',
     loginLink: 'Log in',
@@ -68,11 +69,11 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
     noCreator: 'No elegir ninguno',
     noCreatorDesc: 'Podrás elegir tu creador favorito más tarde',
     submit: 'Completar registro',
-    submitting: 'Creando tu cuenta...',
-    successTitle: '¡Bienvenido a ZonaMundial!',
-    successDesc: 'Tu registro se ha completado exitosamente.',
-    successEmail: 'Te hemos enviado un email de confirmación a',
-    explore: 'Explorar plataforma',
+    submitting: 'Enviando enlace…',
+    successTitle: 'Revisa tu email',
+    successDesc: 'Te enviamos un enlace de acceso. Haz clic para confirmar tu cuenta y terminar de configurarla.',
+    successEmail: 'Enviado a',
+    explore: 'Volver al inicio',
     login: 'Ir a mi cuenta',
     alreadyAccount: '¿Ya tienes cuenta?',
     loginLink: 'Iniciar sesión',
@@ -110,29 +111,67 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
     setLoading(true);
     setError('');
 
+    const cleanEmail = formData.email.trim().toLowerCase();
+    const cleanNombre = formData.nombre.trim();
+    const cleanCreador = formData.creador?.trim() || '';
+
+    // 1) Snapshot a Vercel KV (waitlist) — mantiene el CSV de leads.
+    //    No bloquea: si falla, seguimos con el magic link.
     try {
-      const res = await fetch('/api/registro', {
+      await fetch('/api/registro', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          email: formData.email,
-          nombre: formData.nombre,
-          creador: formData.creador,
+          email: cleanEmail,
+          nombre: cleanNombre,
+          creador: cleanCreador,
         }),
       });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        setError(data.error || (isEN ? 'Registration error' : 'Error en el registro'));
-        setLoading(false);
-        return;
-      }
-
-      setSubmitted(true);
     } catch {
-      setError(isEN ? 'Connection error. Please try again.' : 'Error de conexión. Inténtalo de nuevo.');
+      // Logged on server. No bloqueamos al usuario.
     }
+
+    // 2) Crea cuenta real Supabase con magic link.
+    //    Pasamos username + creador en raw_user_meta_data → el trigger
+    //    handle_new_user los lee y los inyecta en profiles al crear el
+    //    user. Así el usuario llega al onboarding con nombre y creador
+    //    ya seleccionado.
+    let supabase;
+    try {
+      supabase = createSupabaseBrowserClient();
+    } catch {
+      setError(isEN
+        ? 'Sign-up service unavailable. Try again in a minute.'
+        : 'Servicio de registro no disponible. Inténtalo en un minuto.');
+      setLoading(false);
+      return;
+    }
+
+    const siteUrl =
+      process.env.NEXT_PUBLIC_SITE_URL ||
+      (typeof window !== 'undefined' ? window.location.origin : '');
+    const callbackUrl = `${siteUrl}/auth/callback?next=${encodeURIComponent('/onboarding')}`;
+
+    const { error: signUpError } = await supabase.auth.signInWithOtp({
+      email: cleanEmail,
+      options: {
+        emailRedirectTo: callbackUrl,
+        shouldCreateUser: true,
+        data: {
+          username: cleanNombre,
+          fav_creator: cleanCreador,
+          locale: isEN ? 'en' : 'es',
+        },
+      },
+    });
+
+    if (signUpError) {
+      setError(signUpError.message);
+      setLoading(false);
+      return;
+    }
+
+    setSubmitted(true);
     setLoading(false);
   };
 

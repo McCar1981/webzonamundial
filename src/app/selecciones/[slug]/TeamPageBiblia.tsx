@@ -10,6 +10,8 @@ import GroupSection from "@/components/biblia/GroupSection";
 import ScheduleSection from "@/components/biblia/ScheduleSection";
 import QualifyingPath from "@/components/biblia/QualifyingPath";
 import SquadAndField from "@/components/biblia/SquadAndField";
+import AnalysisSection from "@/components/biblia/AnalysisSection";
+import DeepTabs from "@/components/biblia/DeepTabs";
 
 const SECTIONS = [
   { id: "identidad", label: "Identidad" },
@@ -42,18 +44,10 @@ export default function TeamPageBiblia({ team }: { team: NationalTeam }) {
         <ScheduleSection team={team} />
         <QualifyingPath team={team} />
         <SquadAndField team={team} />
+        <AnalysisSection team={team} />
+        <DeepTabs team={team} />
 
         {/* Pendientes en commits siguientes */}
-        <PlaceholderSection
-          id="analisis"
-          title="Análisis profesional"
-          note="Pendiente — commit 6"
-        />
-        <PlaceholderSection
-          id="profundidad"
-          title="Historia · Palmarés · Récords · Icónicos · Curiosidades"
-          note="Pendiente — commit 6 (TABS profundos)"
-        />
         <PlaceholderSection
           id="sedes"
           title="Base + Sedes + CTA Final"

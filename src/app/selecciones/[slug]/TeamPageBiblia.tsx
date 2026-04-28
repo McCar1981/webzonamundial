@@ -8,6 +8,7 @@ import CountryCard from "@/components/biblia/CountryCard";
 import KitSection from "@/components/biblia/KitSection";
 import GroupSection from "@/components/biblia/GroupSection";
 import ScheduleSection from "@/components/biblia/ScheduleSection";
+import QualifyingPath from "@/components/biblia/QualifyingPath";
 
 const SECTIONS = [
   { id: "identidad", label: "Identidad" },
@@ -38,13 +39,9 @@ export default function TeamPageBiblia({ team }: { team: NationalTeam }) {
         <KitSection team={team} />
         <GroupSection team={team} />
         <ScheduleSection team={team} />
+        <QualifyingPath team={team} />
 
         {/* Pendientes en commits siguientes */}
-        <PlaceholderSection
-          id="clasificacion"
-          title="Camino al Mundial 2026"
-          note="Pendiente — commit 4"
-        />
         <PlaceholderSection
           id="plantilla"
           title="Posibles convocados"

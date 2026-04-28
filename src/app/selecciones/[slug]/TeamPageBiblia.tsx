@@ -9,6 +9,7 @@ import KitSection from "@/components/biblia/KitSection";
 import GroupSection from "@/components/biblia/GroupSection";
 import ScheduleSection from "@/components/biblia/ScheduleSection";
 import QualifyingPath from "@/components/biblia/QualifyingPath";
+import SquadAndField from "@/components/biblia/SquadAndField";
 
 const SECTIONS = [
   { id: "identidad", label: "Identidad" },
@@ -40,18 +41,9 @@ export default function TeamPageBiblia({ team }: { team: NationalTeam }) {
         <GroupSection team={team} />
         <ScheduleSection team={team} />
         <QualifyingPath team={team} />
+        <SquadAndField team={team} />
 
         {/* Pendientes en commits siguientes */}
-        <PlaceholderSection
-          id="plantilla"
-          title="Posibles convocados"
-          note="Pendiente — commit 5"
-        />
-        <PlaceholderSection
-          id="once"
-          title="11 Ideal — Campo digital"
-          note="Pendiente — commit 5"
-        />
         <PlaceholderSection
           id="analisis"
           title="Análisis profesional"

@@ -9,6 +9,7 @@ import type { Translations } from "@/i18n/translations";
 import PromoPopup from "@/components/PromoPopup";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SocialDock } from "@/components/SocialDock";
+import HeaderUserMenu from "@/components/HeaderUserMenu";
 
 const BG="#060B14",BG2="#0F1D32",BG3="#0B1825",GOLD="#c9a84c",GOLD2="#e8d48b",MID="#8a94b0",DIM="#6a7a9a",DARK="#4a5570";
 
@@ -319,16 +320,8 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
               <LanguageToggle />
             </div>
 
-            {/* CTA desktop */}
-            <Link href="/registro" className="cta-desktop" style={{
-              padding: "8px 20px", borderRadius: 10, border: "none", cursor: "pointer",
-              background: `linear-gradient(135deg,${GOLD},${GOLD2})`,
-              color: BG, fontWeight: 700, fontSize: 13, fontFamily: "inherit",
-              transition: "all 0.3s", letterSpacing: 0.2,
-              textDecoration: "none", display: "inline-flex",
-            }}>
-              {t.cta.register}
-            </Link>
+            {/* User menu (login / avatar+dropdown) — fallback al CTA viejo si Supabase no está */}
+            <HeaderUserMenu fallbackCtaLabel={t.cta.register} />
 
             {/* Hamburger mobile */}
             <button className="hamburger-btn" onClick={() => setMobileOpen(!mobileOpen)}

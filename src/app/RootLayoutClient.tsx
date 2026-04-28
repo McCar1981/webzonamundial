@@ -10,6 +10,7 @@ import PromoPopup from "@/components/PromoPopup";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SocialDock } from "@/components/SocialDock";
 import HeaderUserMenu from "@/components/HeaderUserMenu";
+import MobileUserMenu from "@/components/MobileUserMenu";
 
 const BG="#060B14",BG2="#0F1D32",BG3="#0B1825",GOLD="#c9a84c",GOLD2="#e8d48b",MID="#8a94b0",DIM="#6a7a9a",DARK="#4a5570";
 
@@ -320,8 +321,10 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
               <LanguageToggle />
             </div>
 
-            {/* User menu (login / avatar+dropdown) — fallback al CTA viejo si Supabase no está */}
-            <HeaderUserMenu fallbackCtaLabel={t.cta.register} />
+            {/* User menu (login / avatar+dropdown) — desktop solamente */}
+            <div className="user-menu-desktop">
+              <HeaderUserMenu fallbackCtaLabel={t.cta.register} />
+            </div>
 
             {/* Hamburger mobile */}
             <button className="hamburger-btn" onClick={() => setMobileOpen(!mobileOpen)}
@@ -368,21 +371,11 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
           <div style={{ marginTop: 20, paddingBottom: 16 }}>
             <LanguageToggle />
           </div>
-          <div style={{ marginTop: 8, textAlign: "center" }}>
-            <Link
-              href="/registro"
-              onClick={closeMobile}
-              style={{
-                display: "block", width: "100%", padding: "14px 0", borderRadius: 14, border: "none", cursor: "pointer",
-                background: `linear-gradient(135deg,${GOLD},${GOLD2})`,
-                color: BG, fontWeight: 700, fontSize: 16, fontFamily: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              {t.cta.registerFree}
-            </Link>
-            <p style={{ fontSize: 12, color: DARK, marginTop: 10 }}>{t.cta.registerHint}</p>
-          </div>
+          <MobileUserMenu
+            onNavigate={closeMobile}
+            fallbackCtaLabel={t.cta.registerFree}
+            fallbackCtaHint={t.cta.registerHint}
+          />
         </nav>
       </div>
 
@@ -407,11 +400,15 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
         .cta-desktop { display: inline-flex; }
         .hamburger-btn { display: none; }
         .lang-toggle { display: flex; }
+        .user-menu-desktop { display: flex; }
+        .user-menu-mobile { display: none; }
         @media(max-width:768px) {
           .desktop-nav { display: none !important; }
           .cta-desktop { display: none !important; }
           .hamburger-btn { display: flex !important; }
           .lang-toggle { display: none !important; }
+          .user-menu-desktop { display: none !important; }
+          .user-menu-mobile { display: block !important; }
           .footer-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 24px !important; }
         }
       `}</style>

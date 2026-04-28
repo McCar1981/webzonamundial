@@ -48,45 +48,75 @@ export default function AvatarUploader({
 
     setUploading(true);
 
-    // Path determinado: <userId>/avatar.<ext>
-    // El path inicia con el userId — coincide con la RLS policy que
-    // solo deja escribir si la primera carpeta es auth.uid().
-    const ext = file.name.split(".").pop()?.toLowerCase() ?? "jpg";
-    const path = `${userId}/avatar.${ext}`;
+    try {
+      // Determina extensión a partir del MIME (más fiable que el nombre).
+      // Algunos navegadores cambian el nombre del archivo (ej. fotos de
+      // cámara salen como "image.jpg" siempre, sin que el original lo sea).
+      const extFromMime: Record<string, string> = {
+        "image/jpeg": "jpg",
+        "image/png": "png",
+        "image/webp": "webp",
+      };
+      const ext = extFromMime[file.type] ?? "jpg";
 
-    const { error: uploadError } = await supabase.storage
-      .from("avatars")
-      .upload(path, file, {
-        upsert: true,
-        contentType: file.type,
-        cacheControl: "3600",
-      });
+      // Path: <userId>/avatar.<ext>
+      // RLS policy obliga: primera carpeta del path == auth.uid().
+      const path = `${userId}/avatar.${ext}`;
 
-    if (uploadError) {
-      setError("Error subiendo la imagen. Inténtalo de nuevo.");
+      // 1. Antes de subir, limpia los archivos viejos del usuario.
+      //    Si subió antes avatar.png y ahora sube avatar.jpg, el .png
+      //    quedaba huérfano. Limpiamos para no acumular basura.
+      const { data: existing } = await supabase.storage
+        .from("avatars")
+        .list(userId);
+      if (existing && existing.length > 0) {
+        const toRemove = existing
+          .map((f) => `${userId}/${f.name}`)
+          .filter((p) => p !== path); // no borres el que vamos a sobrescribir
+        if (toRemove.length > 0) {
+          await supabase.storage.from("avatars").remove(toRemove);
+        }
+      }
+
+      // 2. Sube (upsert por si ya existe el mismo path).
+      const { error: uploadError } = await supabase.storage
+        .from("avatars")
+        .upload(path, file, {
+          upsert: true,
+          contentType: file.type,
+          cacheControl: "3600",
+        });
+
+      if (uploadError) {
+        // Mostramos el mensaje real de Supabase (RLS, MIME, size, etc.).
+        setError(`Error subiendo: ${uploadError.message}`);
+        setUploading(false);
+        return;
+      }
+
+      // 3. Public URL + cache-bust para que el navegador refresque.
+      const { data: pub } = supabase.storage.from("avatars").getPublicUrl(path);
+      const cacheBusted = `${pub.publicUrl}?v=${Date.now()}`;
+
+      // 4. Update profile.avatar_url
+      const { error: updateError } = await supabase
+        .from("profiles")
+        .update({ avatar_url: cacheBusted })
+        .eq("id", userId);
+
+      if (updateError) {
+        setError(`Imagen subida pero no pude actualizar el perfil: ${updateError.message}`);
+        setUploading(false);
+        return;
+      }
+
+      setPreview(cacheBusted);
+      router.refresh();
+    } catch (err) {
+      setError(`Error inesperado: ${(err as Error).message}`);
+    } finally {
       setUploading(false);
-      return;
     }
-
-    // Public URL — añadimos timestamp para romper cache del browser
-    const { data: pub } = supabase.storage.from("avatars").getPublicUrl(path);
-    const cacheBusted = `${pub.publicUrl}?v=${Date.now()}`;
-
-    // Update profile.avatar_url
-    const { error: updateError } = await supabase
-      .from("profiles")
-      .update({ avatar_url: cacheBusted })
-      .eq("id", userId);
-
-    if (updateError) {
-      setError("Imagen subida pero no pude actualizar el perfil.");
-      setUploading(false);
-      return;
-    }
-
-    setPreview(cacheBusted);
-    setUploading(false);
-    router.refresh(); // refresca header (avatar nuevo en menú)
   }
 
   async function handleRemove() {

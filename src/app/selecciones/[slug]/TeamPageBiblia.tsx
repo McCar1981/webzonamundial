@@ -1,5 +1,6 @@
 // Server Component — wrapper de la ficha BIBLIA Mundial 2026.
-// Compone Hero + Mini-nav + secciones siempre visibles + tabs profundos.
+// Compone Hero + Mini-nav + secciones siempre visibles + tabs profundos
+// + cuerpo técnico + sedes + CTA + JSON-LD SportsTeam.
 
 import type { NationalTeam } from "@/types/team";
 import HeroSection from "@/components/biblia/HeroSection";
@@ -12,6 +13,8 @@ import QualifyingPath from "@/components/biblia/QualifyingPath";
 import SquadAndField from "@/components/biblia/SquadAndField";
 import AnalysisSection from "@/components/biblia/AnalysisSection";
 import DeepTabs from "@/components/biblia/DeepTabs";
+import CoachAndBase from "@/components/biblia/CoachAndBase";
+import TeamCTA from "@/components/biblia/TeamCTA";
 
 const SECTIONS = [
   { id: "identidad", label: "Identidad" },
@@ -28,8 +31,19 @@ const SECTIONS = [
 ];
 
 export default function TeamPageBiblia({ team }: { team: NationalTeam }) {
+  // Construye JSON-LD. Si el JSON ya trae seo.schema_org, lo usamos
+  // tal cual. Si no, generamos uno mínimo desde los campos disponibles.
+  const jsonLd = team.seo?.schema_org ?? buildSportsTeamJsonLd(team);
+
   return (
     <div className="min-h-screen relative">
+      {/* JSON-LD SportsTeam */}
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/* HERO */}
       <HeroSection team={team} />
 
@@ -46,38 +60,27 @@ export default function TeamPageBiblia({ team }: { team: NationalTeam }) {
         <SquadAndField team={team} />
         <AnalysisSection team={team} />
         <DeepTabs team={team} />
-
-        {/* Pendientes en commits siguientes */}
-        <PlaceholderSection
-          id="sedes"
-          title="Base + Sedes + CTA Final"
-          note="Pendiente — commit 7"
-        />
+        <CoachAndBase team={team} />
+        <TeamCTA team={team} />
       </div>
     </div>
   );
 }
 
-function PlaceholderSection({
-  id,
-  title,
-  note,
-}: {
-  id: string;
-  title: string;
-  note: string;
-}) {
-  return (
-    <section
-      id={id}
-      className="rounded-2xl border border-[#1E293B]/50 p-8"
-      style={{
-        background:
-          "linear-gradient(135deg, rgba(15,23,42,0.4), rgba(11,24,37,0.2))",
-      }}
-    >
-      <h2 className="text-2xl font-bold text-white mb-2">{title}</h2>
-      <p className="text-sm text-gray-500">{note}</p>
-    </section>
-  );
+function buildSportsTeamJsonLd(team: NationalTeam): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "SportsTeam",
+    name: `Selección de ${team.name_es} de fútbol`,
+    alternateName: team.nicknames ?? [],
+    sport: "Football",
+    memberOf: {
+      "@type": "SportsOrganization",
+      name: team.confederation,
+    },
+    coach: team.wc_2026?.coach
+      ? { "@type": "Person", name: team.wc_2026.coach.name }
+      : undefined,
+    url: `https://www.zonamundial.app/selecciones/${team.slug}`,
+  };
 }

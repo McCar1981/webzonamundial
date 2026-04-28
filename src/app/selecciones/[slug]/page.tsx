@@ -1,17 +1,47 @@
 // src/app/selecciones/[slug]/page.tsx
-// ZonaMundial.app — Página de selección (Diseño 2025)
+// ZonaMundial.app — Página de selección
+//
+// Routing dual: si existe data/teams/{slug}.json (BIBLIA Mundial 2026)
+// se renderiza con el nuevo sistema (TeamPageBiblia, datos ricos).
+// Si no, fallback al sistema viejo (selecciones-extended) para que las
+// 47 selecciones sin JSON BIBLIA sigan funcionando.
 
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getSeleccionesByGrupo, getAllSlugs } from '@/data/selecciones';
 import { getExtendedSeleccion } from '@/data/selecciones-extended';
+import { loadTeam } from '@/lib/biblia';
 import SeleccionClient from './SeleccionClient';
+import TeamPageBiblia from './TeamPageBiblia';
 
 export async function generateStaticParams() {
   return getAllSlugs().map(slug => ({ slug }));
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  // Prefer SEO BIBLIA si está disponible
+  const biblia = await loadTeam(params.slug);
+  if (biblia?.seo) {
+    return {
+      title: biblia.seo.meta_title,
+      description: biblia.seo.meta_description,
+      alternates: { canonical: `/selecciones/${params.slug}` },
+      openGraph: {
+        title: biblia.seo.meta_title,
+        description: biblia.seo.meta_description,
+        url: `/selecciones/${params.slug}`,
+        type: 'article',
+        images: biblia.seo.og_image_url ? [biblia.seo.og_image_url] : ['/og-image.jpg'],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: biblia.seo.meta_title,
+        description: biblia.seo.meta_description,
+      },
+    };
+  }
+
+  // Fallback al sistema viejo
   const team = getExtendedSeleccion(params.slug);
   if (!team) {
     return {
@@ -47,7 +77,14 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default function SeleccionPage({ params }: { params: { slug: string } }) {
+export default async function SeleccionPage({ params }: { params: { slug: string } }) {
+  // Si hay JSON BIBLIA, renderiza con el nuevo sistema
+  const biblia = await loadTeam(params.slug);
+  if (biblia) {
+    return <TeamPageBiblia team={biblia} />;
+  }
+
+  // Fallback al sistema viejo
   const team = getExtendedSeleccion(params.slug);
   if (!team) notFound();
 

@@ -31,5 +31,26 @@ export async function GET(request: NextRequest) {
 
   // Same-origin only — never honor an open-redirect.
   const safeNext = next.startsWith("/") ? next : "/";
+
+  // Si el usuario aún no completó onboarding y no pidió un destino
+  // específico (ej. checkout, liga concreta), llévalo al wizard.
+  // Si pidió un destino, respétalo — vuelve al onboarding después
+  // desde el menú si quiere.
+  if (safeNext === "/") {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (user) {
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("onboarded_at")
+        .eq("id", user.id)
+        .maybeSingle();
+      if (!profile?.onboarded_at) {
+        return NextResponse.redirect(`${origin}/onboarding`);
+      }
+    }
+  }
+
   return NextResponse.redirect(`${origin}${safeNext}`);
 }

@@ -419,41 +419,88 @@ function PlayerDot({
   y: number;
   player: Player;
 }) {
-  // El JSON usa y=92 para el GK (abajo, lado nuestro) y y=15 para los DEL (arriba, ataque).
-  // Coordenadas 0-100. Las pasamos a 0-100 del eje vertical del SVG visual.
-  // El campo visual va de 0 (arriba) a 150 (abajo) → multiplicamos y por 1.5.
+  // Coordenadas 0-100 sobre el SVG del campo (top:0 = ataque rival,
+  // top:100 = portería propia).
   const left = `${x}%`;
-  const top = `${(y * 1.5) / 1.5}%`; // mantengo proporción 0-100 del contenedor
+  const top = `${y}%`;
+
+  // Apellido (último componente del display_name)
+  const lastName = (player.display_name ?? player.full_name)
+    .split(" ")
+    .slice(-1)[0];
 
   return (
     <div
       className="absolute -translate-x-1/2 -translate-y-1/2 group"
       style={{ left, top }}
     >
-      <div className="flex flex-col items-center gap-1">
-        <span
-          className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-black shadow-lg overflow-hidden border-2"
-          style={{
-            background: player.photo_url
-              ? `url(${player.photo_url}) center/cover no-repeat`
-              : "linear-gradient(135deg, #C9A84C, #A8893D)",
-            color: "#030712",
-            borderColor: "rgba(255,255,255,0.4)",
-          }}
-        >
-          {!player.photo_url ? (player.shirt_number_expected ?? "?") : null}
+      <div className="flex flex-col items-center gap-1.5">
+        {/* Avatar con foto + dorsal flotante */}
+        <span className="relative">
+          {/* Glow dorado detrás (capa lejana) */}
+          <span
+            aria-hidden
+            className="absolute inset-0 rounded-full"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(201,168,76,0.55), transparent 70%)",
+              filter: "blur(8px)",
+              transform: "scale(1.4)",
+            }}
+          />
+          {/* Avatar real */}
+          <span
+            className="relative block w-14 h-14 rounded-full overflow-hidden flex items-center justify-center text-base font-black shadow-xl border-2"
+            style={{
+              background: player.photo_url
+                ? `url(${player.photo_url}) center/cover no-repeat, linear-gradient(135deg, #1a2438, #0B1825)`
+                : "linear-gradient(135deg, #C9A84C, #A8893D)",
+              color: "#030712",
+              borderColor: "rgba(232,212,139,0.85)",
+              boxShadow:
+                "0 0 0 1px rgba(0,0,0,0.5), 0 4px 14px rgba(0,0,0,0.5), 0 0 24px rgba(201,168,76,0.25)",
+            }}
+            aria-hidden
+          >
+            {!player.photo_url ? (player.shirt_number_expected ?? "?") : null}
+          </span>
+          {/* Dorsal flotante (badge) */}
+          {player.shirt_number_expected ? (
+            <span
+              className="absolute -bottom-1 -right-1 min-w-[20px] h-5 px-1 rounded-full flex items-center justify-center text-[10px] font-black border-2 leading-none"
+              style={{
+                background: "linear-gradient(135deg, #C9A84C, #A8893D)",
+                color: "#030712",
+                borderColor: "#0B1825",
+                boxShadow: "0 0 8px rgba(201,168,76,0.6)",
+              }}
+              aria-hidden
+            >
+              {player.shirt_number_expected}
+            </span>
+          ) : null}
         </span>
+        {/* Apellido bajo la foto */}
         <span
-          className="text-[10px] font-bold text-white px-1.5 py-0.5 rounded whitespace-nowrap"
+          className="text-[10px] font-bold text-white px-2 py-0.5 rounded whitespace-nowrap leading-none"
           style={{
-            background: "rgba(0,0,0,0.5)",
-            backdropFilter: "blur(4px)",
-            maxWidth: "80px",
+            background: "rgba(0,0,0,0.65)",
+            backdropFilter: "blur(6px)",
+            WebkitBackdropFilter: "blur(6px)",
+            border: "1px solid rgba(255,255,255,0.08)",
+            maxWidth: "92px",
             overflow: "hidden",
             textOverflow: "ellipsis",
+            textShadow: "0 1px 2px rgba(0,0,0,0.8)",
           }}
         >
-          {(player.display_name ?? player.full_name).split(" ").slice(-1)[0]}
+          {lastName}
+        </span>
+        {/* Tooltip con full name al hover (a11y screen readers ya leen
+            el nombre via texto debajo) */}
+        <span className="sr-only">
+          {player.display_name ?? player.full_name}
+          {player.detailed_position ? ` · ${player.detailed_position}` : ""}
         </span>
       </div>
     </div>

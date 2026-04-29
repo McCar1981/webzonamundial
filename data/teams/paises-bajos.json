@@ -556,15 +556,15 @@
       {
         "matchday": 3,
         "opponent": {
-          "iso": "tn",
-          "name": "Túnez"
+          "iso": "se",
+          "name": "Suecia"
         },
         "date": "2026-06-29",
         "kickoff_local": "15:00",
         "venue": {
-          "stadium": "Hard Rock Stadium",
-          "city": "Miami",
-          "country_iso": "us"
+          "stadium": "BMO Field",
+          "city": "Toronto",
+          "country_iso": "ca"
         },
         "status": "scheduled"
       }

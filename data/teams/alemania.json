@@ -424,14 +424,14 @@
       {
         "matchday": 3,
         "opponent": {
-          "iso": "ci",
-          "name": "C. de Marfil"
+          "iso": "ec",
+          "name": "Ecuador"
         },
         "date": "2026-06-28",
         "kickoff_local": "21:00",
         "venue": {
-          "stadium": "MetLife Stadium",
-          "city": "Nueva York/NJ",
+          "stadium": "Gillette Stadium",
+          "city": "Boston",
           "country_iso": "us"
         },
         "status": "scheduled"

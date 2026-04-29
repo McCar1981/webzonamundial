@@ -500,14 +500,14 @@
       {
         "matchday": 3,
         "opponent": {
-          "iso": "pa",
-          "name": "Panamá"
+          "iso": "gh",
+          "name": "Ghana"
         },
         "date": "2026-06-30",
         "kickoff_local": "21:00",
         "venue": {
-          "stadium": "Arrowhead Stadium",
-          "city": "Kansas City",
+          "stadium": "AT&T Stadium",
+          "city": "Dallas",
           "country_iso": "us"
         },
         "status": "scheduled"

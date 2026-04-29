@@ -113,11 +113,11 @@ export const MATCHES: Match[] = [
   { "i": 55, "g": "D", "p": "Fase de grupos", "j": 3, "h": "Turquía", "hf": "tr", "a": "Australia", "af": "au", "d": "2026-06-28", "t": "15:00", "vn": "Lumen Field", "vc": "Seattle", "vf": "us" },
   { "i": 56, "g": "D", "p": "Fase de grupos", "j": 3, "h": "EE.UU.", "hf": "us", "a": "Paraguay", "af": "py", "d": "2026-06-28", "t": "15:00", "vn": "Lincoln Financial Field", "vc": "Filadelfia", "vf": "us" },
 
-  { "i": 57, "g": "E", "p": "Fase de grupos", "j": 3, "h": "Ecuador", "hf": "ec", "a": "Curazao", "af": "cw", "d": "2026-06-28", "t": "21:00", "vn": "Gillette Stadium", "vc": "Boston", "vf": "us" },
-  { "i": 58, "g": "E", "p": "Fase de grupos", "j": 3, "h": "Alemania", "hf": "de", "a": "C. de Marfil", "af": "ci", "d": "2026-06-28", "t": "21:00", "vn": "MetLife Stadium", "vc": "Nueva York/NJ", "vf": "us" },
+  { "i": 57, "g": "E", "p": "Fase de grupos", "j": 3, "h": "Ecuador", "hf": "ec", "a": "Alemania", "af": "de", "d": "2026-06-28", "t": "21:00", "vn": "Gillette Stadium", "vc": "Boston", "vf": "us" },
+  { "i": 58, "g": "E", "p": "Fase de grupos", "j": 3, "h": "Curazao", "hf": "cw", "a": "C. de Marfil", "af": "ci", "d": "2026-06-28", "t": "21:00", "vn": "MetLife Stadium", "vc": "Nueva York/NJ", "vf": "us" },
 
-  { "i": 59, "g": "F", "p": "Fase de grupos", "j": 3, "h": "Suecia", "hf": "se", "a": "Japón", "af": "jp", "d": "2026-06-29", "t": "15:00", "vn": "BMO Field", "vc": "Toronto", "vf": "ca" },
-  { "i": 60, "g": "F", "p": "Fase de grupos", "j": 3, "h": "Túnez", "hf": "tn", "a": "P. Bajos", "af": "nl", "d": "2026-06-29", "t": "15:00", "vn": "Hard Rock Stadium", "vc": "Miami", "vf": "us" },
+  { "i": 59, "g": "F", "p": "Fase de grupos", "j": 3, "h": "Suecia", "hf": "se", "a": "P. Bajos", "af": "nl", "d": "2026-06-29", "t": "15:00", "vn": "BMO Field", "vc": "Toronto", "vf": "ca" },
+  { "i": 60, "g": "F", "p": "Fase de grupos", "j": 3, "h": "Túnez", "hf": "tn", "a": "Japón", "af": "jp", "d": "2026-06-29", "t": "15:00", "vn": "Hard Rock Stadium", "vc": "Miami", "vf": "us" },
 
   { "i": 61, "g": "G", "p": "Fase de grupos", "j": 3, "h": "Irán", "hf": "ir", "a": "N. Zelanda", "af": "nz", "d": "2026-06-29", "t": "21:00", "vn": "Estadio BBVA", "vc": "Monterrey", "vf": "mx" },
   { "i": 62, "g": "G", "p": "Fase de grupos", "j": 3, "h": "Egipto", "hf": "eg", "a": "Bélgica", "af": "be", "d": "2026-06-29", "t": "21:00", "vn": "Levi's Stadium", "vc": "Bay Area", "vf": "us" },
@@ -134,8 +134,8 @@ export const MATCHES: Match[] = [
   { "i": 69, "g": "K", "p": "Fase de grupos", "j": 3, "h": "RD Congo", "hf": "cd", "a": "Portugal", "af": "pt", "d": "2026-06-30", "t": "21:00", "vn": "BC Place", "vc": "Vancouver", "vf": "ca" },
   { "i": 70, "g": "K", "p": "Fase de grupos", "j": 3, "h": "Colombia", "hf": "co", "a": "Uzbekistán", "af": "uz", "d": "2026-06-30", "t": "21:00", "vn": "Lumen Field", "vc": "Seattle", "vf": "us" },
 
-  { "i": 71, "g": "L", "p": "Fase de grupos", "j": 3, "h": "Panamá", "hf": "pa", "a": "Inglaterra", "af": "gb-eng", "d": "2026-06-30", "t": "21:00", "vn": "Arrowhead Stadium", "vc": "Kansas City", "vf": "us" },
-  { "i": 72, "g": "L", "p": "Fase de grupos", "j": 3, "h": "Ghana", "hf": "gh", "a": "Croacia", "af": "hr", "d": "2026-06-30", "t": "21:00", "vn": "AT&T Stadium", "vc": "Dallas", "vf": "us" },
+  { "i": 71, "g": "L", "p": "Fase de grupos", "j": 3, "h": "Panamá", "hf": "pa", "a": "Croacia", "af": "hr", "d": "2026-06-30", "t": "21:00", "vn": "Arrowhead Stadium", "vc": "Kansas City", "vf": "us" },
+  { "i": 72, "g": "L", "p": "Fase de grupos", "j": 3, "h": "Ghana", "hf": "gh", "a": "Inglaterra", "af": "gb-eng", "d": "2026-06-30", "t": "21:00", "vn": "AT&T Stadium", "vc": "Dallas", "vf": "us" },
 
   // ELIMINATORIAS - Dieciseisavos (28 jun - 2 jul)
   { "i": 73, "g": "", "p": "Dieciseisavos", "j": 0, "h": "1A", "hf": "tbd", "a": "3C/D/E/F", "af": "tbd", "d": "2026-06-28", "t": "12:00", "vn": "MetLife Stadium", "vc": "Nueva York/NJ", "vf": "us" },

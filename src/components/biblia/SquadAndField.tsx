@@ -5,6 +5,7 @@
 
 import { useMemo, useState } from "react";
 import type { NationalTeam, Player, StartingXI } from "@/types/team";
+import SectionCard, { SectionHeader } from "./SectionCard";
 
 type PosFilter = "ALL" | "GK" | "DEF" | "MID" | "FWD";
 
@@ -37,52 +38,41 @@ export default function SquadAndField({ team }: { team: NationalTeam }) {
   if (squad.length === 0) return null;
 
   return (
-    <section
-      id="plantilla"
-      className="rounded-2xl border border-[#1E293B]/50 p-6 sm:p-8"
-      style={{
-        background:
-          "linear-gradient(135deg, rgba(15,23,42,0.6), rgba(11,24,37,0.4))",
-      }}
-    >
-      <div className="flex items-start justify-between flex-wrap gap-4 mb-6">
-        <div>
-          <div className="text-xs font-bold text-[#C9A84C] uppercase tracking-widest mb-2">
-            Posibles convocados
+    <SectionCard id="plantilla">
+      <SectionHeader
+        eyebrow="Posibles convocados"
+        title={`Plantilla ${team.name_es}`}
+        subtitle="Proyección de los 26 convocados al Mundial 2026."
+        action={
+          <div
+            className="inline-flex rounded-xl border p-1"
+            style={{
+              borderColor: "var(--bb-border-subtle)",
+              background: "rgba(11,24,37,0.6)",
+            }}
+            role="tablist"
+            aria-label="Vista de plantilla"
+          >
+            <ToggleButton
+              active={view === "squad"}
+              onClick={() => setView("squad")}
+              label="26 Convocados"
+            />
+            <ToggleButton
+              active={view === "xi"}
+              onClick={() => setView("xi")}
+              label="11 Ideal"
+              disabled={!xi}
+            />
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-white">
-            Plantilla {team.name_es}
-          </h2>
-          <p className="text-sm text-gray-400 mt-1">
-            Proyección de los 26 convocados al Mundial 2026.
-          </p>
-        </div>
-
-        {/* Toggle Squad / XI */}
-        <div
-          className="inline-flex rounded-xl border border-[#1E293B]/60 p-1"
-          style={{ background: "rgba(11,24,37,0.6)" }}
-          role="tablist"
-        >
-          <ToggleButton
-            active={view === "squad"}
-            onClick={() => setView("squad")}
-            label="26 Convocados"
-          />
-          <ToggleButton
-            active={view === "xi"}
-            onClick={() => setView("xi")}
-            label="11 Ideal"
-            disabled={!xi}
-          />
-        </div>
-      </div>
+        }
+      />
 
       {view === "squad" ? <SquadGrid squad={squad} /> : null}
       {view === "xi" && xi ? (
         <DigitalField xi={xi} squad={squad} teamName={team.name_es} />
       ) : null}
-    </section>
+    </SectionCard>
   );
 }
 
@@ -100,12 +90,14 @@ function ToggleButton({
   return (
     <button
       type="button"
+      role="tab"
+      aria-selected={active}
       onClick={onClick}
       disabled={disabled}
-      className="px-4 py-2 rounded-lg text-xs font-bold transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+      className="bb-focusable px-4 py-2 rounded-lg text-xs font-bold transition-all disabled:opacity-30 disabled:cursor-not-allowed bb-touch"
       style={{
         background: active ? "linear-gradient(135deg, #C9A84C, #A8893D)" : "transparent",
-        color: active ? "#030712" : "#cbd5e1",
+        color: active ? "#030712" : "var(--bb-text-soft)",
       }}
     >
       {label}

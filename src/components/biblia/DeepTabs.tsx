@@ -16,6 +16,7 @@ import type {
   PlayerRecord,
   MatchRecord,
 } from "@/types/team";
+import SectionCard, { SectionHeader } from "./SectionCard";
 
 type TabId = "historia" | "palmares" | "records" | "iconicos" | "curiosidades";
 
@@ -43,22 +44,8 @@ export default function DeepTabs({ team }: { team: NationalTeam }) {
   const [active, setActive] = useState<TabId>(initial);
 
   return (
-    <section
-      id="profundidad"
-      className="rounded-2xl border border-[#1E293B]/50 p-6 sm:p-8"
-      style={{
-        background:
-          "linear-gradient(135deg, rgba(15,23,42,0.6), rgba(11,24,37,0.4))",
-      }}
-    >
-      <div className="mb-6">
-        <div className="text-xs font-bold text-[#C9A84C] uppercase tracking-widest mb-2">
-          Profundidad
-        </div>
-        <h2 className="text-2xl sm:text-3xl font-black text-white">
-          Historia, datos y leyenda
-        </h2>
-      </div>
+    <SectionCard id="profundidad">
+      <SectionHeader eyebrow="Profundidad" title="Historia, datos y leyenda" />
 
       {/* Tab strip */}
       <div
@@ -122,7 +109,7 @@ export default function DeepTabs({ team }: { team: NationalTeam }) {
       <Panel id="curiosidades" active={active === "curiosidades"}>
         <CuriosidadesPanel team={team} />
       </Panel>
-    </section>
+    </SectionCard>
   );
 }
 

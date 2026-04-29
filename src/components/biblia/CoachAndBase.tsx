@@ -5,6 +5,7 @@
 
 import Link from "next/link";
 import type { NationalTeam } from "@/types/team";
+import SectionCard, { SectionHeader } from "./SectionCard";
 
 export default function CoachAndBase({ team }: { team: NationalTeam }) {
   const coach = team.wc_2026?.coach;
@@ -25,22 +26,11 @@ export default function CoachAndBase({ team }: { team: NationalTeam }) {
   if (!coach && !base && venues.length === 0) return null;
 
   return (
-    <section
-      id="sedes"
-      className="rounded-2xl border border-[#1E293B]/50 p-6 sm:p-8"
-      style={{
-        background:
-          "linear-gradient(135deg, rgba(15,23,42,0.6), rgba(11,24,37,0.4))",
-      }}
-    >
-      <div className="mb-6">
-        <div className="text-xs font-bold text-[#C9A84C] uppercase tracking-widest mb-2">
-          Cuerpo técnico · Base · Sedes
-        </div>
-        <h2 className="text-2xl sm:text-3xl font-black text-white">
-          Quién dirige y dónde juega {team.name_es}
-        </h2>
-      </div>
+    <SectionCard id="sedes">
+      <SectionHeader
+        eyebrow="Cuerpo técnico · Base · Sedes"
+        title={`Quién dirige y dónde juega ${team.name_es}`}
+      />
 
       {/* DT + capitán + estrella */}
       {(coach || captain || star) ? (
@@ -142,7 +132,7 @@ export default function CoachAndBase({ team }: { team: NationalTeam }) {
           </Link>
         </div>
       ) : null}
-    </section>
+    </SectionCard>
   );
 }
 

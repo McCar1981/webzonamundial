@@ -9,6 +9,7 @@ import type {
   QualifyingMatch,
   MatchStats,
 } from "@/types/team";
+import SectionCard, { SectionHeader } from "./SectionCard";
 
 export default function QualifyingPath({ team }: { team: NationalTeam }) {
   const q = team.wc_2026?.qualifying;
@@ -19,45 +20,34 @@ export default function QualifyingPath({ team }: { team: NationalTeam }) {
   const ourIso = team.iso;
 
   return (
-    <section
-      id="clasificacion"
-      className="rounded-2xl border border-[#1E293B]/50 p-6 sm:p-8"
-      style={{
-        background:
-          "linear-gradient(135deg, rgba(15,23,42,0.6), rgba(11,24,37,0.4))",
-      }}
-    >
-      <div className="flex items-start justify-between flex-wrap gap-3 mb-6">
-        <div>
-          <div className="text-xs font-bold text-[#C9A84C] uppercase tracking-widest mb-2">
-            Camino al Mundial · Eliminatorias 2026
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-white">
-            Cómo llegó {team.name_es} al Mundial
-          </h2>
-          {q.format ? (
-            <p className="text-sm text-gray-400 mt-1">
-              {q.confederation_round} · {q.format}
-            </p>
-          ) : null}
-        </div>
-        {q.final_position ? (
-          <div
-            className="rounded-xl border px-4 py-2 text-center"
-            style={{
-              borderColor: "rgba(201,168,76,0.3)",
-              background: "rgba(201,168,76,0.08)",
-            }}
-          >
-            <div className="text-3xl font-black text-[#C9A84C] leading-none">
-              #{q.final_position}
+    <SectionCard id="clasificacion">
+      <SectionHeader
+        eyebrow="Camino al Mundial · Eliminatorias 2026"
+        title={`Cómo llegó ${team.name_es} al Mundial`}
+        subtitle={
+          q.format
+            ? `${q.confederation_round} · ${q.format}`
+            : q.confederation_round
+        }
+        action={
+          q.final_position ? (
+            <div
+              className="rounded-xl border px-4 py-2 text-center"
+              style={{
+                borderColor: "rgba(201,168,76,0.3)",
+                background: "rgba(201,168,76,0.08)",
+              }}
+            >
+              <div className="text-3xl font-black text-[var(--bb-gold)] leading-none">
+                #{q.final_position}
+              </div>
+              <div className="text-[10px] uppercase tracking-widest text-[var(--bb-text-muted)] mt-1">
+                Posición final
+              </div>
             </div>
-            <div className="text-[10px] uppercase tracking-widest text-gray-500 mt-1">
-              Posición final
-            </div>
-          </div>
-        ) : null}
-      </div>
+          ) : undefined
+        }
+      />
 
       {/* Resumen narrativo */}
       {summary ? (
@@ -147,7 +137,7 @@ export default function QualifyingPath({ team }: { team: NationalTeam }) {
           </div>
         </div>
       ) : null}
-    </section>
+    </SectionCard>
   );
 }
 

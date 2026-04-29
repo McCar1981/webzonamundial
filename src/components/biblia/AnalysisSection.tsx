@@ -2,6 +2,7 @@
 // Sección 8 — Análisis profesional con probabilidades.
 
 import type { NationalTeam, Analysis } from "@/types/team";
+import SectionCard, { SectionHeader } from "./SectionCard";
 
 const PROB_LABELS: Record<keyof Analysis["probabilities"], string> = {
   advance_groups: "Pasar de grupos",
@@ -22,22 +23,11 @@ export default function AnalysisSection({ team }: { team: NationalTeam }) {
   >;
 
   return (
-    <section
-      id="analisis"
-      className="rounded-2xl border border-[#1E293B]/50 p-6 sm:p-8"
-      style={{
-        background:
-          "linear-gradient(135deg, rgba(15,23,42,0.6), rgba(11,24,37,0.4))",
-      }}
-    >
-      <div className="mb-6">
-        <div className="text-xs font-bold text-[#C9A84C] uppercase tracking-widest mb-2">
-          Análisis profesional
-        </div>
-        <h2 className="text-2xl sm:text-3xl font-black text-white">
-          ¿Cómo juega {team.name_es}?
-        </h2>
-      </div>
+    <SectionCard id="analisis">
+      <SectionHeader
+        eyebrow="Análisis profesional"
+        title={`¿Cómo juega ${team.name_es}?`}
+      />
 
       {/* Estilo */}
       {a.style ? (
@@ -122,11 +112,11 @@ export default function AnalysisSection({ team }: { team: NationalTeam }) {
 
       {/* vs últimos 3 mundiales */}
       {a.vs_last_3_wcs ? (
-        <p className="text-xs text-gray-500 leading-relaxed italic pt-3 border-t border-white/5">
+        <p className="text-xs text-[var(--bb-text-muted)] leading-relaxed italic pt-3 border-t border-white/5">
           {a.vs_last_3_wcs}
         </p>
       ) : null}
-    </section>
+    </SectionCard>
   );
 }
 

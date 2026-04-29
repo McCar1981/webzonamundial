@@ -500,26 +500,23 @@
         {
           "iso": "br",
           "name": "Brasil",
-          "fifa_rank": 6,
-          "is_seed": true
-        },
-        {
-          "iso": "ma",
-          "name": "Marruecos",
-          "fifa_rank": 11,
-          "is_seed": false
-        },
-        {
-          "iso": "sct",
-          "name": "Escocia",
           "fifa_rank": null,
-          "is_seed": false
+          "is_seed": true
         },
         {
           "iso": "ht",
           "name": "Haití",
-          "fifa_rank": null,
-          "is_seed": false
+          "fifa_rank": null
+        },
+        {
+          "iso": "ma",
+          "name": "Marruecos",
+          "fifa_rank": null
+        },
+        {
+          "iso": "gb-sct",
+          "name": "Escocia",
+          "fifa_rank": null
         }
       ],
       "notes": "Sorteo confirmado el 5 de diciembre de 2025 en Washington D.C."
@@ -528,13 +525,14 @@
       {
         "matchday": 1,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "ht",
+          "name": "Haití"
         },
-        "date": "[POR CONFIRMAR — fixture FIFA pendiente]",
+        "date": "2026-06-12",
+        "kickoff_local": "18:00",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "NRG Stadium",
+          "city": "Houston",
           "country_iso": "us"
         },
         "status": "scheduled"
@@ -542,13 +540,14 @@
       {
         "matchday": 2,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "gb-sct",
+          "name": "Escocia"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-20",
+        "kickoff_local": "15:00",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "NRG Stadium",
+          "city": "Houston",
           "country_iso": "us"
         },
         "status": "scheduled"
@@ -556,13 +555,14 @@
       {
         "matchday": 3,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "ma",
+          "name": "Marruecos"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-27",
+        "kickoff_local": "21:00",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "Mercedes-Benz Stadium",
+          "city": "Atlanta",
           "country_iso": "us"
         },
         "status": "scheduled"

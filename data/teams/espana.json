@@ -395,28 +395,28 @@
       }
     },
     "group_2026": {
-      "letter": "[POR CONFIRMAR]",
+      "letter": "H",
       "label": "Grupo asignado en sorteo del Mundial 2026",
       "teams": [
         {
           "iso": "es",
           "name": "España",
-          "fifa_rank": 2,
+          "fifa_rank": null,
           "is_seed": true
         },
         {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]",
+          "iso": "cv",
+          "name": "Cabo Verde",
           "fifa_rank": null
         },
         {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]",
+          "iso": "uy",
+          "name": "Uruguay",
           "fifa_rank": null
         },
         {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]",
+          "iso": "sa",
+          "name": "A. Saudí",
           "fifa_rank": null
         }
       ],
@@ -426,27 +426,29 @@
       {
         "matchday": 1,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "cv",
+          "name": "Cabo Verde"
         },
-        "date": "[POR CONFIRMAR — fixture FIFA pendiente]",
+        "date": "2026-06-15",
+        "kickoff_local": "12:00",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
-          "country_iso": "us"
+          "stadium": "Estadio Azteca",
+          "city": "Ciudad de México",
+          "country_iso": "mx"
         },
         "status": "scheduled"
       },
       {
         "matchday": 2,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "uy",
+          "name": "Uruguay"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-23",
+        "kickoff_local": "18:00",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "SoFi Stadium",
+          "city": "Los Ángeles",
           "country_iso": "us"
         },
         "status": "scheduled"
@@ -454,14 +456,15 @@
       {
         "matchday": 3,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "sa",
+          "name": "A. Saudí"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-30",
+        "kickoff_local": "15:00",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
-          "country_iso": "us"
+          "stadium": "Estadio Azteca",
+          "city": "Ciudad de México",
+          "country_iso": "mx"
         },
         "status": "scheduled"
       }

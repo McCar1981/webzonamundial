@@ -488,26 +488,23 @@
         {
           "iso": "es",
           "name": "España",
-          "fifa_rank": 2,
-          "is_seed": true
-        },
-        {
-          "iso": "uy",
-          "name": "Uruguay",
-          "fifa_rank": 5,
-          "is_seed": false
+          "fifa_rank": null
         },
         {
           "iso": "cv",
           "name": "Cabo Verde",
+          "fifa_rank": null
+        },
+        {
+          "iso": "uy",
+          "name": "Uruguay",
           "fifa_rank": null,
           "is_seed": false
         },
         {
           "iso": "sa",
-          "name": "Arabia Saudita",
-          "fifa_rank": null,
-          "is_seed": false
+          "name": "A. Saudí",
+          "fifa_rank": null
         }
       ],
       "notes": "Grupo confirmado en sorteo 5 dic 2025. Uruguay vs España es el cruce decisivo de un grupo con 2 campeones del mundo."
@@ -516,13 +513,14 @@
       {
         "matchday": 1,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "sa",
+          "name": "A. Saudí"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-15",
+        "kickoff_local": "15:00",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "SoFi Stadium",
+          "city": "Los Ángeles",
           "country_iso": "us"
         },
         "status": "scheduled"
@@ -530,13 +528,14 @@
       {
         "matchday": 2,
         "opponent": {
-          "iso": "cv",
-          "name": "Cabo Verde"
+          "iso": "es",
+          "name": "España"
         },
-        "date": "2026-06-21",
+        "date": "2026-06-23",
+        "kickoff_local": "18:00",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "Miami",
+          "stadium": "SoFi Stadium",
+          "city": "Los Ángeles",
           "country_iso": "us"
         },
         "status": "scheduled"
@@ -544,14 +543,15 @@
       {
         "matchday": 3,
         "opponent": {
-          "iso": "es",
-          "name": "España"
+          "iso": "cv",
+          "name": "Cabo Verde"
         },
-        "date": "2026-06-26",
+        "date": "2026-06-30",
+        "kickoff_local": "15:00",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "Guadalajara",
-          "country_iso": "mx"
+          "stadium": "SoFi Stadium",
+          "city": "Los Ángeles",
+          "country_iso": "us"
         },
         "status": "scheduled"
       }

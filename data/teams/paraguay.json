@@ -587,28 +587,28 @@
       }
     },
     "group_2026": {
-      "letter": "[POR CONFIRMAR]",
+      "letter": "D",
       "label": "Grupo asignado en sorteo Mundial 2026",
       "teams": [
         {
+          "iso": "us",
+          "name": "EE.UU.",
+          "fifa_rank": null
+        },
+        {
+          "iso": "au",
+          "name": "Australia",
+          "fifa_rank": null
+        },
+        {
           "iso": "py",
           "name": "Paraguay",
-          "fifa_rank": 38,
+          "fifa_rank": null,
           "is_seed": false
         },
         {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]",
-          "fifa_rank": null
-        },
-        {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]",
-          "fifa_rank": null
-        },
-        {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]",
+          "iso": "tr",
+          "name": "Turquía",
           "fifa_rank": null
         }
       ],
@@ -618,13 +618,14 @@
       {
         "matchday": 1,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "tr",
+          "name": "Turquía"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-13",
+        "kickoff_local": "15:00",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "Lumen Field",
+          "city": "Seattle",
           "country_iso": "us"
         },
         "status": "scheduled"
@@ -632,13 +633,14 @@
       {
         "matchday": 2,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "au",
+          "name": "Australia"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-20",
+        "kickoff_local": "18:00",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "Lumen Field",
+          "city": "Seattle",
           "country_iso": "us"
         },
         "status": "scheduled"
@@ -646,13 +648,14 @@
       {
         "matchday": 3,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "us",
+          "name": "EE.UU."
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-28",
+        "kickoff_local": "15:00",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "Lincoln Financial Field",
+          "city": "Filadelfia",
           "country_iso": "us"
         },
         "status": "scheduled"

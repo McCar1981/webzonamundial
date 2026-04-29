@@ -391,26 +391,23 @@
         {
           "iso": "br",
           "name": "Brasil",
-          "fifa_rank": null,
-          "is_seed": true
-        },
-        {
-          "iso": "ma",
-          "name": "Marruecos",
-          "fifa_rank": 11,
-          "is_seed": false
-        },
-        {
-          "iso": "sct",
-          "name": "Escocia",
-          "fifa_rank": null,
-          "is_seed": false
+          "fifa_rank": null
         },
         {
           "iso": "ht",
           "name": "Haití",
+          "fifa_rank": null
+        },
+        {
+          "iso": "ma",
+          "name": "Marruecos",
           "fifa_rank": null,
           "is_seed": false
+        },
+        {
+          "iso": "gb-sct",
+          "name": "Escocia",
+          "fifa_rank": null
         }
       ],
       "notes": "Grupo confirmado según ESPN y zonamundial.app/grupos. Brasil como cabeza de serie. Marruecos parte como segundo favorito. Validar rivales y FIFA Ranking actualizado al publicar."
@@ -419,13 +416,14 @@
       {
         "matchday": 1,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "gb-sct",
+          "name": "Escocia"
         },
-        "date": "[POR CONFIRMAR — fixture FIFA pendiente con fecha/hora/sede]",
+        "date": "2026-06-12",
+        "kickoff_local": "21:00",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "Mercedes-Benz Stadium",
+          "city": "Atlanta",
           "country_iso": "us"
         },
         "status": "scheduled"
@@ -433,13 +431,14 @@
       {
         "matchday": 2,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "ht",
+          "name": "Haití"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-19",
+        "kickoff_local": "21:00",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "AT&T Stadium",
+          "city": "Dallas",
           "country_iso": "us"
         },
         "status": "scheduled"
@@ -447,13 +446,14 @@
       {
         "matchday": 3,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "br",
+          "name": "Brasil"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-27",
+        "kickoff_local": "21:00",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "Mercedes-Benz Stadium",
+          "city": "Atlanta",
           "country_iso": "us"
         },
         "status": "scheduled"

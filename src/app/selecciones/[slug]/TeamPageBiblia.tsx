@@ -16,6 +16,8 @@ import AnalysisSection from "@/components/biblia/AnalysisSection";
 import DeepTabs from "@/components/biblia/DeepTabs";
 import CoachAndBase from "@/components/biblia/CoachAndBase";
 import TeamCTA from "@/components/biblia/TeamCTA";
+import TeamPager from "@/components/biblia/TeamPager";
+import { getTeamNavigation } from "@/lib/biblia";
 
 const SECTIONS = [
   { id: "identidad", label: "Identidad" },
@@ -31,10 +33,11 @@ const SECTIONS = [
   { id: "sedes", label: "Sedes" },
 ];
 
-export default function TeamPageBiblia({ team }: { team: NationalTeam }) {
+export default async function TeamPageBiblia({ team }: { team: NationalTeam }) {
   // Construye JSON-LD. Si el JSON ya trae seo.schema_org, lo usamos
   // tal cual. Si no, generamos uno mínimo desde los campos disponibles.
   const jsonLd = team.seo?.schema_org ?? buildSportsTeamJsonLd(team);
+  const { prev, next } = await getTeamNavigation(team.slug);
 
   return (
     <div className="min-h-screen relative">
@@ -66,6 +69,9 @@ export default function TeamPageBiblia({ team }: { team: NationalTeam }) {
         <DeepTabs team={team} />
         <CoachAndBase team={team} />
         <TeamCTA team={team} />
+
+        {/* Navegación anterior/siguiente entre fichas BIBLIA */}
+        <TeamPager prev={prev} next={next} />
       </div>
     </div>
   );

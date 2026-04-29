@@ -597,29 +597,29 @@
       }
     },
     "group_2026": {
-      "letter": "[POR CONFIRMAR]",
+      "letter": "E",
       "label": "Grupo asignado en sorteo Mundial 2026",
       "teams": [
         {
+          "iso": "de",
+          "name": "Alemania",
+          "fifa_rank": null
+        },
+        {
+          "iso": "ci",
+          "name": "C. de Marfil",
+          "fifa_rank": null
+        },
+        {
+          "iso": "cw",
+          "name": "Curazao",
+          "fifa_rank": null
+        },
+        {
           "iso": "ec",
           "name": "Ecuador",
-          "fifa_rank": 23,
+          "fifa_rank": null,
           "is_seed": false
-        },
-        {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]",
-          "fifa_rank": null
-        },
-        {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]",
-          "fifa_rank": null
-        },
-        {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]",
-          "fifa_rank": null
         }
       ],
       "notes": "Pendiente cruce con /grupos zonamundial.app. Ecuador llega como cabeza de bombo 2 (no fue cabeza de serie por ranking)."
@@ -628,13 +628,14 @@
       {
         "matchday": 1,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "cw",
+          "name": "Curazao"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-13",
+        "kickoff_local": "21:00",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "Gillette Stadium",
+          "city": "Boston",
           "country_iso": "us"
         },
         "status": "scheduled"
@@ -642,13 +643,14 @@
       {
         "matchday": 2,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "ci",
+          "name": "C. de Marfil"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-21",
+        "kickoff_local": "12:00",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "Gillette Stadium",
+          "city": "Boston",
           "country_iso": "us"
         },
         "status": "scheduled"
@@ -656,13 +658,14 @@
       {
         "matchday": 3,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "cw",
+          "name": "Curazao"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-28",
+        "kickoff_local": "21:00",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "Gillette Stadium",
+          "city": "Boston",
           "country_iso": "us"
         },
         "status": "scheduled"

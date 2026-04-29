@@ -703,26 +703,23 @@
         {
           "iso": "pt",
           "name": "Portugal",
-          "fifa_rank": null,
-          "is_seed": true
-        },
-        {
-          "iso": "co",
-          "name": "Colombia",
-          "fifa_rank": 14,
-          "is_seed": false
+          "fifa_rank": null
         },
         {
           "iso": "uz",
           "name": "Uzbekistán",
-          "fifa_rank": 50,
+          "fifa_rank": null
+        },
+        {
+          "iso": "co",
+          "name": "Colombia",
+          "fifa_rank": null,
           "is_seed": false
         },
         {
           "iso": "cd",
           "name": "RD Congo",
-          "fifa_rank": 60,
-          "is_seed": false
+          "fifa_rank": null
         }
       ],
       "notes": "Grupo confirmado según sorteo del 5 de diciembre 2025. Colombia debuta el 17 de junio vs Uzbekistán en Estadio Azteca de CDMX, luego vs RD Congo el 23 en Guadalajara, y cierra ante Portugal el 27 en Hard Rock Stadium de Miami."
@@ -731,41 +728,44 @@
       {
         "matchday": 1,
         "opponent": {
-          "iso": "uz",
-          "name": "Uzbekistán"
+          "iso": "cd",
+          "name": "RD Congo"
         },
-        "date": "2026-06-17",
+        "date": "2026-06-16",
+        "kickoff_local": "21:00",
         "venue": {
-          "stadium": "Estadio Azteca",
-          "city": "Ciudad de México",
-          "country_iso": "mx"
+          "stadium": "Lincoln Financial Field",
+          "city": "Filadelfia",
+          "country_iso": "us"
         },
         "status": "scheduled"
       },
       {
         "matchday": 2,
         "opponent": {
-          "iso": "cd",
-          "name": "RD Congo"
+          "iso": "pt",
+          "name": "Portugal"
         },
-        "date": "2026-06-23",
+        "date": "2026-06-25",
+        "kickoff_local": "18:00",
         "venue": {
-          "stadium": "Estadio Akron",
-          "city": "Guadalajara",
-          "country_iso": "mx"
+          "stadium": "BC Place",
+          "city": "Vancouver",
+          "country_iso": "ca"
         },
         "status": "scheduled"
       },
       {
         "matchday": 3,
         "opponent": {
-          "iso": "pt",
-          "name": "Portugal"
+          "iso": "uz",
+          "name": "Uzbekistán"
         },
-        "date": "2026-06-27",
+        "date": "2026-06-30",
+        "kickoff_local": "21:00",
         "venue": {
-          "stadium": "Hard Rock Stadium",
-          "city": "Miami",
+          "stadium": "Lumen Field",
+          "city": "Seattle",
           "country_iso": "us"
         },
         "status": "scheduled"

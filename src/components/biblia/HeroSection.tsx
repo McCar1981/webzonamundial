@@ -27,8 +27,8 @@ export default function HeroSection({ team }: { team: NationalTeam }) {
 
   return (
     <section
-      className="relative overflow-hidden"
-      style={{ minHeight: "min(840px, 92vh)" }}
+      className="relative overflow-hidden flex items-center"
+      style={{ minHeight: "min(720px, 80vh)" }}
     >
       {/* Fondo: bandera blureada + capas */}
       <div
@@ -65,7 +65,7 @@ export default function HeroSection({ team }: { team: NationalTeam }) {
       {/* Contenido */}
       <div
         id="identidad"
-        className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pt-20 pb-16"
+        className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16"
       >
         {/* Breadcrumb */}
         <nav className="text-xs mb-6" aria-label="Breadcrumb">

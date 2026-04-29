@@ -240,24 +240,42 @@ a:hover {
 }
 
 /* Glow ambiental detrás de bandera (color del país inyectado vía --c) */
-.bb-flag-glow::before {
+.bb-flag-glow {
+  position: relative;
+}
+.bb-flag-glow::before,
+.bb-flag-glow::after {
   content: "";
   position: absolute;
-  inset: -30px;
-  background: radial-gradient(
-    ellipse at center,
-    var(--c, rgba(117, 170, 219, 0.4)) 0%,
-    transparent 65%
-  );
-  filter: blur(48px);
-  z-index: -1;
-  animation: bb-glow-pulse 6s ease-in-out infinite;
+  inset: -40px;
   pointer-events: none;
 }
 
+/* Capa 1: glow del color del país (azul para Argentina) */
+.bb-flag-glow::before {
+  background: radial-gradient(
+    ellipse at center,
+    var(--c, rgba(117, 170, 219, 0.4)) 0%,
+    transparent 60%
+  );
+  filter: blur(60px);
+  animation: bb-glow-pulse 6s ease-in-out infinite;
+}
+
+/* Capa 2: glow dorado más pequeño, ligeramente desfasado */
+.bb-flag-glow::after {
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(201, 168, 76, 0.32) 0%,
+    transparent 55%
+  );
+  filter: blur(72px);
+  animation: bb-glow-pulse 8s ease-in-out infinite reverse;
+}
+
 @keyframes bb-glow-pulse {
-  0%, 100% { opacity: 0.55; transform: scale(1); }
-  50%      { opacity: 0.9;  transform: scale(1.05); }
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%      { opacity: 0.95; transform: scale(1.07); }
 }
 
 /* Marco luminoso de bandera (multi-capa) */
@@ -285,7 +303,8 @@ a:hover {
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .bb-flag-glow::before {
+  .bb-flag-glow::before,
+  .bb-flag-glow::after {
     animation: none !important;
   }
   .bb-no-motion-fallback,

@@ -5,8 +5,11 @@
   "name_es": "Argentina",
   "name_en": "Argentina",
   "name_local": "Argentina",
-  "nicknames": ["La Albiceleste", "La Selección", "La Scaloneta"],
-
+  "nicknames": [
+    "La Albiceleste",
+    "La Selección",
+    "La Scaloneta"
+  ],
   "flag": {
     "colors": {
       "primary": "#75AADB",
@@ -15,16 +18,16 @@
       "contrast_text": "#0F1D32"
     }
   },
-
   "country": {
     "capital": "Buenos Aires",
-    "language_official": ["Español"],
+    "language_official": [
+      "Español"
+    ],
     "population": 46044703,
     "area_km2": 2780400,
     "timezone": "America/Argentina/Buenos_Aires",
     "continent": "Sudamérica"
   },
-
   "federation": {
     "name": "Asociación del Fútbol Argentino",
     "abbreviation": "AFA",
@@ -32,14 +35,11 @@
     "headquarters": "Ezeiza, Buenos Aires",
     "website": "https://www.afa.com.ar"
   },
-
   "confederation": "CONMEBOL",
-
   "fifa_ranking": {
     "current": 1,
     "last_updated": "2026-04-03"
   },
-
   "kit": {
     "wc_2026": {
       "brand": "Adidas",
@@ -76,18 +76,15 @@
       }
     ]
   },
-
   "wc_2026": {
     "qualified_via": "direct",
     "qualifying_summary": "Líder absoluto de las Eliminatorias CONMEBOL prácticamente desde la fecha 2. Selló su clasificación en la fecha 14 (25 marzo 2025) cuatro fechas antes del cierre, tras el empate 0-0 entre Bolivia y Uruguay; horas después goleó 4-1 a Brasil en El Monumental. Cerró las Eliminatorias en 1ª posición con 38 puntos, posición que no obtenía desde el ciclo Brasil 2014.",
-
     "qualifying": {
       "confederation_round": "Eliminatorias CONMEBOL Mundial 2026",
       "format": "Liguilla todos contra todos · 18 jornadas · ida y vuelta",
       "duration": "Septiembre 2023 — Septiembre 2025",
       "final_position": 1,
       "total_teams_in_group": 10,
-
       "stats": {
         "played": 18,
         "won": 12,
@@ -100,336 +97,1293 @@
         "win_percentage": 66.7,
         "clean_sheets": 11
       },
-
       "coach_during_qualifying": "Lionel Scaloni",
-
       "matches": [
         {
           "matchday": 1,
           "date": "2023-09-07",
-          "home": { "iso": "ar", "name": "Argentina", "score": 1 },
-          "away": { "iso": "ec", "name": "Ecuador", "score": 0 },
-          "venue": { "stadium": "Más Monumental", "city": "Buenos Aires", "country_iso": "ar" },
-          "goals_arg": [{ "player": "Lionel Messi", "minute": "78'", "type": "freekick" }],
+          "home": {
+            "iso": "ar",
+            "name": "Argentina",
+            "score": 1
+          },
+          "away": {
+            "iso": "ec",
+            "name": "Ecuador",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Más Monumental",
+            "city": "Buenos Aires",
+            "country_iso": "ar"
+          },
+          "goals_arg": [
+            {
+              "player": "Lionel Messi",
+              "minute": "78'",
+              "type": "freekick"
+            }
+          ],
           "notes": "Debut como campeón del mundo. Gol de tiro libre de Messi."
         },
         {
           "matchday": 2,
           "date": "2023-09-12",
-          "home": { "iso": "bo", "name": "Bolivia", "score": 0 },
-          "away": { "iso": "ar", "name": "Argentina", "score": 3 },
-          "venue": { "stadium": "Hernando Siles", "city": "La Paz", "country_iso": "bo" },
+          "home": {
+            "iso": "bo",
+            "name": "Bolivia",
+            "score": 0
+          },
+          "away": {
+            "iso": "ar",
+            "name": "Argentina",
+            "score": 3
+          },
+          "venue": {
+            "stadium": "Hernando Siles",
+            "city": "La Paz",
+            "country_iso": "bo"
+          },
           "goals_arg": [
-            { "player": "Enzo Fernández", "minute": "32'", "type": "goal" },
-            { "player": "Nicolás Tagliafico", "minute": "42'", "type": "goal" },
-            { "player": "Nicolás González", "minute": "85'", "type": "goal" }
+            {
+              "player": "Enzo Fernández",
+              "minute": "32'",
+              "type": "goal"
+            },
+            {
+              "player": "Nicolás Tagliafico",
+              "minute": "42'",
+              "type": "goal"
+            },
+            {
+              "player": "Nicolás González",
+              "minute": "85'",
+              "type": "goal"
+            }
           ],
           "notes": "Histórica victoria a 3.640 m de altitud sin Messi."
         },
         {
           "matchday": 3,
           "date": "2023-10-12",
-          "home": { "iso": "ar", "name": "Argentina", "score": 1 },
-          "away": { "iso": "py", "name": "Paraguay", "score": 0 },
-          "venue": { "stadium": "Más Monumental", "city": "Buenos Aires", "country_iso": "ar" },
-          "goals_arg": [{ "player": "Nicolás Otamendi", "minute": "33'", "type": "goal" }]
+          "home": {
+            "iso": "ar",
+            "name": "Argentina",
+            "score": 1
+          },
+          "away": {
+            "iso": "py",
+            "name": "Paraguay",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Más Monumental",
+            "city": "Buenos Aires",
+            "country_iso": "ar"
+          },
+          "goals_arg": [
+            {
+              "player": "Nicolás Otamendi",
+              "minute": "33'",
+              "type": "goal"
+            }
+          ]
         },
         {
           "matchday": 4,
           "date": "2023-10-17",
-          "home": { "iso": "pe", "name": "Perú", "score": 0 },
-          "away": { "iso": "ar", "name": "Argentina", "score": 2 },
-          "venue": { "stadium": "Estadio Nacional", "city": "Lima", "country_iso": "pe" },
+          "home": {
+            "iso": "pe",
+            "name": "Perú",
+            "score": 0
+          },
+          "away": {
+            "iso": "ar",
+            "name": "Argentina",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Estadio Nacional",
+            "city": "Lima",
+            "country_iso": "pe"
+          },
           "goals_arg": [
-            { "player": "Lionel Messi", "minute": "32'", "type": "goal" },
-            { "player": "Lionel Messi", "minute": "37'", "type": "goal" }
+            {
+              "player": "Lionel Messi",
+              "minute": "32'",
+              "type": "goal"
+            },
+            {
+              "player": "Lionel Messi",
+              "minute": "37'",
+              "type": "goal"
+            }
           ],
           "notes": "Doblete de Messi."
         },
         {
           "matchday": 5,
           "date": "2023-11-16",
-          "home": { "iso": "ar", "name": "Argentina", "score": 0 },
-          "away": { "iso": "uy", "name": "Uruguay", "score": 2 },
-          "venue": { "stadium": "Más Monumental", "city": "Buenos Aires", "country_iso": "ar" },
+          "home": {
+            "iso": "ar",
+            "name": "Argentina",
+            "score": 0
+          },
+          "away": {
+            "iso": "uy",
+            "name": "Uruguay",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Más Monumental",
+            "city": "Buenos Aires",
+            "country_iso": "ar"
+          },
           "goals_arg": [],
           "notes": "Primera derrota oficial de la era Scaloni desde la Copa América 2019."
         },
         {
           "matchday": 6,
           "date": "2023-11-21",
-          "home": { "iso": "br", "name": "Brasil", "score": 0 },
-          "away": { "iso": "ar", "name": "Argentina", "score": 1 },
-          "venue": { "stadium": "Maracaná", "city": "Río de Janeiro", "country_iso": "br" },
-          "goals_arg": [{ "player": "Nicolás Otamendi", "minute": "63'", "type": "goal" }],
+          "home": {
+            "iso": "br",
+            "name": "Brasil",
+            "score": 0
+          },
+          "away": {
+            "iso": "ar",
+            "name": "Argentina",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Maracaná",
+            "city": "Río de Janeiro",
+            "country_iso": "br"
+          },
+          "goals_arg": [
+            {
+              "player": "Nicolás Otamendi",
+              "minute": "63'",
+              "type": "goal"
+            }
+          ],
           "notes": "Primera victoria oficial de Argentina en el Maracaná. Partido retrasado 30 minutos por incidentes."
         },
         {
           "matchday": 7,
           "date": "2024-09-05",
-          "home": { "iso": "ar", "name": "Argentina", "score": 3 },
-          "away": { "iso": "cl", "name": "Chile", "score": 0 },
-          "venue": { "stadium": "Más Monumental", "city": "Buenos Aires", "country_iso": "ar" },
+          "home": {
+            "iso": "ar",
+            "name": "Argentina",
+            "score": 3
+          },
+          "away": {
+            "iso": "cl",
+            "name": "Chile",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Más Monumental",
+            "city": "Buenos Aires",
+            "country_iso": "ar"
+          },
           "goals_arg": [
-            { "player": "Julián Álvarez", "minute": "48'", "type": "goal" },
-            { "player": "Paulo Dybala", "minute": "84'", "type": "goal" },
-            { "player": "Alexis Mac Allister", "minute": "90+2'", "type": "goal" }
+            {
+              "player": "Julián Álvarez",
+              "minute": "48'",
+              "type": "goal"
+            },
+            {
+              "player": "Paulo Dybala",
+              "minute": "84'",
+              "type": "goal"
+            },
+            {
+              "player": "Alexis Mac Allister",
+              "minute": "90+2'",
+              "type": "goal"
+            }
           ]
         },
         {
           "matchday": 8,
           "date": "2024-09-10",
-          "home": { "iso": "co", "name": "Colombia", "score": 2 },
-          "away": { "iso": "ar", "name": "Argentina", "score": 1 },
-          "venue": { "stadium": "Metropolitano Roberto Meléndez", "city": "Barranquilla", "country_iso": "co" },
-          "goals_arg": [{ "player": "Nicolás González", "minute": "26'", "type": "goal" }],
+          "home": {
+            "iso": "co",
+            "name": "Colombia",
+            "score": 2
+          },
+          "away": {
+            "iso": "ar",
+            "name": "Argentina",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Metropolitano Roberto Meléndez",
+            "city": "Barranquilla",
+            "country_iso": "co"
+          },
+          "goals_arg": [
+            {
+              "player": "Nicolás González",
+              "minute": "26'",
+              "type": "goal"
+            }
+          ],
           "notes": "Revancha de la final de la Copa América 2024."
         },
         {
           "matchday": 9,
           "date": "2024-10-10",
-          "home": { "iso": "ve", "name": "Venezuela", "score": 1 },
-          "away": { "iso": "ar", "name": "Argentina", "score": 1 },
-          "venue": { "stadium": "Monumental de Maturín", "city": "Maturín", "country_iso": "ve" },
-          "goals_arg": [{ "player": "Lautaro Martínez", "minute": "47'", "type": "goal" }],
+          "home": {
+            "iso": "ve",
+            "name": "Venezuela",
+            "score": 1
+          },
+          "away": {
+            "iso": "ar",
+            "name": "Argentina",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Monumental de Maturín",
+            "city": "Maturín",
+            "country_iso": "ve"
+          },
+          "goals_arg": [
+            {
+              "player": "Lautaro Martínez",
+              "minute": "47'",
+              "type": "goal"
+            }
+          ],
           "notes": "Partido retrasado por las luces del estadio."
         },
         {
           "matchday": 10,
           "date": "2024-10-15",
-          "home": { "iso": "ar", "name": "Argentina", "score": 6 },
-          "away": { "iso": "bo", "name": "Bolivia", "score": 0 },
-          "venue": { "stadium": "Más Monumental", "city": "Buenos Aires", "country_iso": "ar" },
+          "home": {
+            "iso": "ar",
+            "name": "Argentina",
+            "score": 6
+          },
+          "away": {
+            "iso": "bo",
+            "name": "Bolivia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Más Monumental",
+            "city": "Buenos Aires",
+            "country_iso": "ar"
+          },
           "goals_arg": [
-            { "player": "Lionel Messi", "minute": "19'", "type": "goal" },
-            { "player": "Lautaro Martínez", "minute": "23'", "type": "goal" },
-            { "player": "Lionel Messi", "minute": "44'", "type": "penalty" },
-            { "player": "Julián Álvarez", "minute": "84'", "type": "goal" },
-            { "player": "Lautaro Martínez", "minute": "88'", "type": "goal" },
-            { "player": "Lionel Messi", "minute": "90+2'", "type": "goal" }
+            {
+              "player": "Lionel Messi",
+              "minute": "19'",
+              "type": "goal"
+            },
+            {
+              "player": "Lautaro Martínez",
+              "minute": "23'",
+              "type": "goal"
+            },
+            {
+              "player": "Lionel Messi",
+              "minute": "44'",
+              "type": "penalty"
+            },
+            {
+              "player": "Julián Álvarez",
+              "minute": "84'",
+              "type": "goal"
+            },
+            {
+              "player": "Lautaro Martínez",
+              "minute": "88'",
+              "type": "goal"
+            },
+            {
+              "player": "Lionel Messi",
+              "minute": "90+2'",
+              "type": "goal"
+            }
           ],
           "notes": "Hat-trick de Messi a los 37 años. Goleada histórica."
         },
         {
           "matchday": 11,
           "date": "2024-11-14",
-          "home": { "iso": "py", "name": "Paraguay", "score": 2 },
-          "away": { "iso": "ar", "name": "Argentina", "score": 1 },
-          "venue": { "stadium": "Defensores del Chaco", "city": "Asunción", "country_iso": "py" },
-          "goals_arg": [{ "player": "Thiago Almada", "minute": "37'", "type": "goal" }]
+          "home": {
+            "iso": "py",
+            "name": "Paraguay",
+            "score": 2
+          },
+          "away": {
+            "iso": "ar",
+            "name": "Argentina",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Defensores del Chaco",
+            "city": "Asunción",
+            "country_iso": "py"
+          },
+          "goals_arg": [
+            {
+              "player": "Thiago Almada",
+              "minute": "37'",
+              "type": "goal"
+            }
+          ]
         },
         {
           "matchday": 12,
           "date": "2024-11-19",
-          "home": { "iso": "ar", "name": "Argentina", "score": 1 },
-          "away": { "iso": "pe", "name": "Perú", "score": 0 },
-          "venue": { "stadium": "Más Monumental", "city": "Buenos Aires", "country_iso": "ar" },
-          "goals_arg": [{ "player": "Lautaro Martínez", "minute": "55'", "type": "goal" }]
+          "home": {
+            "iso": "ar",
+            "name": "Argentina",
+            "score": 1
+          },
+          "away": {
+            "iso": "pe",
+            "name": "Perú",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Más Monumental",
+            "city": "Buenos Aires",
+            "country_iso": "ar"
+          },
+          "goals_arg": [
+            {
+              "player": "Lautaro Martínez",
+              "minute": "55'",
+              "type": "goal"
+            }
+          ]
         },
         {
           "matchday": 13,
           "date": "2025-03-21",
-          "home": { "iso": "uy", "name": "Uruguay", "score": 0 },
-          "away": { "iso": "ar", "name": "Argentina", "score": 1 },
-          "venue": { "stadium": "Centenario", "city": "Montevideo", "country_iso": "uy" },
-          "goals_arg": [{ "player": "Thiago Almada", "minute": "67'", "type": "goal" }]
+          "home": {
+            "iso": "uy",
+            "name": "Uruguay",
+            "score": 0
+          },
+          "away": {
+            "iso": "ar",
+            "name": "Argentina",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Centenario",
+            "city": "Montevideo",
+            "country_iso": "uy"
+          },
+          "goals_arg": [
+            {
+              "player": "Thiago Almada",
+              "minute": "67'",
+              "type": "goal"
+            }
+          ]
         },
         {
           "matchday": 14,
           "date": "2025-03-25",
-          "home": { "iso": "ar", "name": "Argentina", "score": 4 },
-          "away": { "iso": "br", "name": "Brasil", "score": 1 },
-          "venue": { "stadium": "Más Monumental", "city": "Buenos Aires", "country_iso": "ar" },
+          "home": {
+            "iso": "ar",
+            "name": "Argentina",
+            "score": 4
+          },
+          "away": {
+            "iso": "br",
+            "name": "Brasil",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Más Monumental",
+            "city": "Buenos Aires",
+            "country_iso": "ar"
+          },
           "goals_arg": [
-            { "player": "Julián Álvarez", "minute": "4'", "type": "goal" },
-            { "player": "Enzo Fernández", "minute": "12'", "type": "goal" },
-            { "player": "Alexis Mac Allister", "minute": "37'", "type": "goal" },
-            { "player": "Giuliano Simeone", "minute": "71'", "type": "goal" }
+            {
+              "player": "Julián Álvarez",
+              "minute": "4'",
+              "type": "goal"
+            },
+            {
+              "player": "Enzo Fernández",
+              "minute": "12'",
+              "type": "goal"
+            },
+            {
+              "player": "Alexis Mac Allister",
+              "minute": "37'",
+              "type": "goal"
+            },
+            {
+              "player": "Giuliano Simeone",
+              "minute": "71'",
+              "type": "goal"
+            }
           ],
-          "goals_opponent": [{ "player": "Matheus Cunha", "minute": "26'", "type": "goal" }],
+          "goals_opponent": [
+            {
+              "player": "Matheus Cunha",
+              "minute": "26'",
+              "type": "goal"
+            }
+          ],
           "notes": "Partido de la clasificación matemática. Argentina celebró el pase al Mundial con su mayor goleada histórica ante Brasil en eliminatorias. Sin Messi ni Lautaro. Tras la derrota, Brasil destituyó a Dorival Júnior y contrató a Carlo Ancelotti.",
           "is_decisive_match": true
         },
         {
           "matchday": 15,
           "date": "2025-06-05",
-          "home": { "iso": "cl", "name": "Chile", "score": 0 },
-          "away": { "iso": "ar", "name": "Argentina", "score": 1 },
-          "venue": { "stadium": "Nacional Julio Martínez Prádanos", "city": "Santiago", "country_iso": "cl" },
-          "goals_arg": [{ "player": "Julián Álvarez", "minute": "59'", "type": "goal" }],
+          "home": {
+            "iso": "cl",
+            "name": "Chile",
+            "score": 0
+          },
+          "away": {
+            "iso": "ar",
+            "name": "Argentina",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Nacional Julio Martínez Prádanos",
+            "city": "Santiago",
+            "country_iso": "cl"
+          },
+          "goals_arg": [
+            {
+              "player": "Julián Álvarez",
+              "minute": "59'",
+              "type": "goal"
+            }
+          ],
           "notes": "Resultado que selló la 1ª posición y eliminó matemáticamente a Chile."
         },
         {
           "matchday": 16,
           "date": "2025-06-10",
-          "home": { "iso": "ar", "name": "Argentina", "score": 1 },
-          "away": { "iso": "co", "name": "Colombia", "score": 1 },
-          "venue": { "stadium": "Más Monumental", "city": "Buenos Aires", "country_iso": "ar" },
-          "goals_arg": [{ "player": "Thiago Almada", "minute": "81'", "type": "goal" }]
+          "home": {
+            "iso": "ar",
+            "name": "Argentina",
+            "score": 1
+          },
+          "away": {
+            "iso": "co",
+            "name": "Colombia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Más Monumental",
+            "city": "Buenos Aires",
+            "country_iso": "ar"
+          },
+          "goals_arg": [
+            {
+              "player": "Thiago Almada",
+              "minute": "81'",
+              "type": "goal"
+            }
+          ]
         },
         {
           "matchday": 17,
           "date": "2025-09-04",
-          "home": { "iso": "ar", "name": "Argentina", "score": 3 },
-          "away": { "iso": "ve", "name": "Venezuela", "score": 0 },
-          "venue": { "stadium": "Más Monumental", "city": "Buenos Aires", "country_iso": "ar" },
+          "home": {
+            "iso": "ar",
+            "name": "Argentina",
+            "score": 3
+          },
+          "away": {
+            "iso": "ve",
+            "name": "Venezuela",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Más Monumental",
+            "city": "Buenos Aires",
+            "country_iso": "ar"
+          },
           "goals_arg": [
-            { "player": "Lionel Messi", "minute": "39'", "type": "goal" },
-            { "player": "Lautaro Martínez", "minute": "76'", "type": "goal" },
-            { "player": "Lionel Messi", "minute": "80'", "type": "goal" }
+            {
+              "player": "Lionel Messi",
+              "minute": "39'",
+              "type": "goal"
+            },
+            {
+              "player": "Lautaro Martínez",
+              "minute": "76'",
+              "type": "goal"
+            },
+            {
+              "player": "Lionel Messi",
+              "minute": "80'",
+              "type": "goal"
+            }
           ],
           "notes": "Último partido oficial de Messi como local en El Monumental por eliminatorias. Doblete emotivo."
         },
         {
           "matchday": 18,
           "date": "2025-09-09",
-          "home": { "iso": "ec", "name": "Ecuador", "score": 1 },
-          "away": { "iso": "ar", "name": "Argentina", "score": 0 },
-          "venue": { "stadium": "Banco Pichincha", "city": "Guayaquil", "country_iso": "ec" },
+          "home": {
+            "iso": "ec",
+            "name": "Ecuador",
+            "score": 1
+          },
+          "away": {
+            "iso": "ar",
+            "name": "Argentina",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Banco Pichincha",
+            "city": "Guayaquil",
+            "country_iso": "ec"
+          },
           "goals_arg": [],
           "notes": "Cierre de eliminatorias con derrota intrascendente. Argentina ya como líder consolidado."
         }
       ],
-
       "top_scorers": [
-        { "player": "Lionel Messi", "goals": 8, "notes": "Goleador del equipo en el ciclo. A los 38 años, máximo goleador veterano en la historia de las Eliminatorias mundialistas." },
-        { "player": "Lautaro Martínez", "goals": 5 },
-        { "player": "Julián Álvarez", "goals": 4 },
-        { "player": "Thiago Almada", "goals": 3 },
-        { "player": "Nicolás Otamendi", "goals": 2 },
-        { "player": "Nicolás González", "goals": 2 },
-        { "player": "Enzo Fernández", "goals": 2 },
-        { "player": "Alexis Mac Allister", "goals": 2 },
-        { "player": "Nicolás Tagliafico", "goals": 1 },
-        { "player": "Paulo Dybala", "goals": 1 },
-        { "player": "Giuliano Simeone", "goals": 1 }
+        {
+          "player": "Lionel Messi",
+          "goals": 8,
+          "notes": "Goleador del equipo en el ciclo. A los 38 años, máximo goleador veterano en la historia de las Eliminatorias mundialistas."
+        },
+        {
+          "player": "Lautaro Martínez",
+          "goals": 5
+        },
+        {
+          "player": "Julián Álvarez",
+          "goals": 4
+        },
+        {
+          "player": "Thiago Almada",
+          "goals": 3
+        },
+        {
+          "player": "Nicolás Otamendi",
+          "goals": 2
+        },
+        {
+          "player": "Nicolás González",
+          "goals": 2
+        },
+        {
+          "player": "Enzo Fernández",
+          "goals": 2
+        },
+        {
+          "player": "Alexis Mac Allister",
+          "goals": 2
+        },
+        {
+          "player": "Nicolás Tagliafico",
+          "goals": 1
+        },
+        {
+          "player": "Paulo Dybala",
+          "goals": 1
+        },
+        {
+          "player": "Giuliano Simeone",
+          "goals": 1
+        }
       ],
-
       "best_match": {
         "match_ref": "matchday_14",
         "reason": "El 4-1 a Brasil en El Monumental el 25 de marzo de 2025. Partido de la clasificación matemática, máximo nivel futbolístico, goleada al rival histórico. Tras la derrota, Brasil destituyó a Dorival Júnior y contrató a Carlo Ancelotti."
       },
-
       "worst_match": {
         "match_ref": "matchday_5",
         "reason": "Derrota 0-2 ante Uruguay en El Monumental el 16 de noviembre de 2023. Primera derrota oficial de Argentina desde la Copa América 2019, ya con la era Scaloni consolidada."
       },
-
       "decisive_match": {
         "match_ref": "matchday_14",
         "reason": "El empate 0-0 entre Bolivia y Uruguay del mismo 25 de marzo le otorgó la clasificación matemática a Argentina horas antes de jugar. Argentina celebró goleando 4-1 a Brasil esa misma noche."
       }
     },
-
     "group_2026": {
       "letter": "J",
       "label": "Grupo J — campeón vigente",
       "teams": [
-        { "iso": "ar", "name": "Argentina", "fifa_rank": 1, "is_seed": true },
-        { "iso": "dz", "name": "Argelia", "fifa_rank": null },
-        { "iso": "at", "name": "Austria", "fifa_rank": null },
-        { "iso": "jo", "name": "Jordania", "fifa_rank": null }
+        {
+          "iso": "ar",
+          "name": "Argentina",
+          "fifa_rank": 1,
+          "is_seed": true
+        },
+        {
+          "iso": "dz",
+          "name": "Argelia",
+          "fifa_rank": null
+        },
+        {
+          "iso": "at",
+          "name": "Austria",
+          "fifa_rank": null
+        },
+        {
+          "iso": "jo",
+          "name": "Jordania",
+          "fifa_rank": null
+        }
       ],
       "notes": "Datos del sorteo confirmados según /grupos de zonamundial.app. Validar rankings FIFA al mes vigente."
     },
-
     "schedule": [
       {
         "matchday": 1,
-        "opponent": { "iso": "dz", "name": "Argelia" },
+        "opponent": {
+          "iso": "dz",
+          "name": "Argelia"
+        },
         "date": "2026-06-16",
         "kickoff_local": "12:00",
-        "venue": { "stadium": "Mercedes-Benz Stadium", "city": "Atlanta", "country_iso": "us" },
+        "venue": {
+          "stadium": "Mercedes-Benz Stadium",
+          "city": "Atlanta",
+          "country_iso": "us"
+        },
         "status": "scheduled"
       },
       {
         "matchday": 2,
-        "opponent": { "iso": "at", "name": "Austria" },
+        "opponent": {
+          "iso": "at",
+          "name": "Austria"
+        },
         "date": "2026-06-24",
         "kickoff_local": "21:00",
-        "venue": { "stadium": "NRG Stadium", "city": "Houston", "country_iso": "us" },
+        "venue": {
+          "stadium": "NRG Stadium",
+          "city": "Houston",
+          "country_iso": "us"
+        },
         "status": "scheduled"
       },
       {
         "matchday": 3,
-        "opponent": { "iso": "jo", "name": "Jordania" },
+        "opponent": {
+          "iso": "jo",
+          "name": "Jordania"
+        },
         "date": "2026-06-30",
         "kickoff_local": "21:00",
-        "venue": { "stadium": "Mercedes-Benz Stadium", "city": "Atlanta", "country_iso": "us" },
+        "venue": {
+          "stadium": "Mercedes-Benz Stadium",
+          "city": "Atlanta",
+          "country_iso": "us"
+        },
         "status": "scheduled"
       }
     ],
-
     "base_camp": {
       "city": "[POR CONFIRMAR — AFA aún no anunció]",
       "country": "Estados Unidos",
       "facility_name": "[POR CONFIRMAR]",
       "status": "pending"
     },
-
     "coach": {
       "name": "Lionel Scaloni",
       "age": 47,
       "nationality": "Argentina",
       "since": "2018-08-13",
-      "previous_teams": ["Selección Argentina sub-20 (asistente, 2017-2018)"],
+      "previous_teams": [
+        "Selección Argentina sub-20 (asistente, 2017-2018)"
+      ],
       "profile_summary": "Asumió el cargo en 2018 con dudas y construyó el ciclo más exitoso de la selección desde Bilardo. Campeón Copa América 2021 (Maracaná), Finalíssima 2022 (Wembley), Mundial Qatar 2022 y Copa América 2024. Convirtió a la 'Scaloneta' en sinónimo de espíritu colectivo y eficiencia. Renovó hasta 2026 tras Qatar."
     },
-
-    "captain": { "name": "Lionel Messi", "club": "Inter Miami CF" },
-
+    "captain": {
+      "name": "Lionel Messi",
+      "club": "Inter Miami CF"
+    },
     "star_player": {
       "name": "Lionel Messi",
       "club": "Inter Miami CF",
       "reason": "Capitán, ídolo y goleador del ciclo eliminatorio. El Mundial 2026 sería su 6º Mundial — récord histórico junto a Cristiano Ronaldo. Máximo goleador histórico de Argentina (115+ goles) y récord de presencias (198+)."
     },
-
     "likely_squad": [
-      { "id": "emiliano-martinez", "full_name": "Emiliano Martínez", "display_name": "Dibu Martínez", "position": "GK", "detailed_position": "GK", "club": { "name": "Aston Villa", "country_iso": "gb-eng", "league": "Premier League" }, "shirt_number_expected": 23, "status": "fixed" },
-      { "id": "geronimo-rulli", "full_name": "Gerónimo Rulli", "display_name": "Gerónimo Rulli", "position": "GK", "detailed_position": "GK", "club": { "name": "Olympique Marsella", "country_iso": "fr", "league": "Ligue 1" }, "shirt_number_expected": 12, "status": "probable" },
-      { "id": "walter-benitez", "full_name": "Walter Benítez", "display_name": "Walter Benítez", "position": "GK", "detailed_position": "GK", "club": { "name": "PSV Eindhoven", "country_iso": "nl", "league": "Eredivisie" }, "shirt_number_expected": 1, "status": "bubble" },
-      { "id": "nahuel-molina", "full_name": "Nahuel Molina", "display_name": "Nahuel Molina", "position": "DEF", "detailed_position": "RB", "club": { "name": "Atlético de Madrid", "country_iso": "es", "league": "La Liga" }, "shirt_number_expected": 4, "status": "fixed" },
-      { "id": "gonzalo-montiel", "full_name": "Gonzalo Montiel", "display_name": "Cachete Montiel", "position": "DEF", "detailed_position": "RB", "club": { "name": "River Plate", "country_iso": "ar", "league": "Liga Profesional" }, "shirt_number_expected": 26, "status": "probable" },
-      { "id": "cristian-romero", "full_name": "Cristian Romero", "display_name": "Cuti Romero", "position": "DEF", "detailed_position": "CB", "club": { "name": "Tottenham", "country_iso": "gb-eng", "league": "Premier League" }, "shirt_number_expected": 13, "status": "fixed" },
-      { "id": "nicolas-otamendi", "full_name": "Nicolás Otamendi", "display_name": "Nicolás Otamendi", "position": "DEF", "detailed_position": "CB", "club": { "name": "Benfica", "country_iso": "pt", "league": "Primeira Liga" }, "shirt_number_expected": 19, "status": "fixed" },
-      { "id": "lisandro-martinez", "full_name": "Lisandro Martínez", "display_name": "Licha Martínez", "position": "DEF", "detailed_position": "CB", "club": { "name": "Manchester United", "country_iso": "gb-eng", "league": "Premier League" }, "shirt_number_expected": 25, "status": "probable" },
-      { "id": "leonardo-balerdi", "full_name": "Leonardo Balerdi", "display_name": "Leo Balerdi", "position": "DEF", "detailed_position": "CB", "club": { "name": "Olympique Marsella", "country_iso": "fr", "league": "Ligue 1" }, "shirt_number_expected": 6, "status": "probable" },
-      { "id": "nicolas-tagliafico", "full_name": "Nicolás Tagliafico", "display_name": "Nicolás Tagliafico", "position": "DEF", "detailed_position": "LB", "club": { "name": "Olympique Lyonnais", "country_iso": "fr", "league": "Ligue 1" }, "shirt_number_expected": 3, "status": "fixed" },
-      { "id": "marcos-acuna", "full_name": "Marcos Acuña", "display_name": "Huevo Acuña", "position": "DEF", "detailed_position": "LB", "club": { "name": "River Plate", "country_iso": "ar", "league": "Liga Profesional" }, "shirt_number_expected": 8, "status": "probable" },
-      { "id": "facundo-medina", "full_name": "Facundo Medina", "display_name": "Facundo Medina", "position": "DEF", "detailed_position": "LB", "club": { "name": "Olympique Marsella", "country_iso": "fr", "league": "Ligue 1" }, "shirt_number_expected": 24, "status": "bubble" },
-      { "id": "rodrigo-de-paul", "full_name": "Rodrigo De Paul", "display_name": "Rodrigo De Paul", "position": "MID", "detailed_position": "CM", "club": { "name": "Inter Miami CF", "country_iso": "us", "league": "MLS" }, "shirt_number_expected": 7, "status": "fixed" },
-      { "id": "leandro-paredes", "full_name": "Leandro Paredes", "display_name": "Leandro Paredes", "position": "MID", "detailed_position": "CDM", "club": { "name": "Boca Juniors", "country_iso": "ar", "league": "Liga Profesional" }, "shirt_number_expected": 5, "status": "fixed" },
-      { "id": "enzo-fernandez", "full_name": "Enzo Fernández", "display_name": "Enzo Fernández", "position": "MID", "detailed_position": "CM", "club": { "name": "Chelsea", "country_iso": "gb-eng", "league": "Premier League" }, "shirt_number_expected": 24, "status": "fixed" },
-      { "id": "alexis-mac-allister", "full_name": "Alexis Mac Allister", "display_name": "Alexis Mac Allister", "position": "MID", "detailed_position": "CM", "club": { "name": "Liverpool", "country_iso": "gb-eng", "league": "Premier League" }, "shirt_number_expected": 20, "status": "fixed" },
-      { "id": "giovani-lo-celso", "full_name": "Giovani Lo Celso", "display_name": "Gio Lo Celso", "position": "MID", "detailed_position": "CAM", "club": { "name": "Real Betis", "country_iso": "es", "league": "La Liga" }, "shirt_number_expected": 18, "status": "probable" },
-      { "id": "exequiel-palacios", "full_name": "Exequiel Palacios", "display_name": "Exequiel Palacios", "position": "MID", "detailed_position": "CM", "club": { "name": "Bayer Leverkusen", "country_iso": "de", "league": "Bundesliga" }, "shirt_number_expected": 14, "status": "probable" },
-      { "id": "thiago-almada", "full_name": "Thiago Almada", "display_name": "Thiago Almada", "position": "MID", "detailed_position": "CAM", "club": { "name": "Olympique Lyonnais", "country_iso": "fr", "league": "Ligue 1" }, "shirt_number_expected": 16, "status": "fixed" },
-      { "id": "lionel-messi", "full_name": "Lionel Andrés Messi", "display_name": "Lionel Messi", "position": "FWD", "detailed_position": "RW", "club": { "name": "Inter Miami CF", "country_iso": "us", "league": "MLS" }, "shirt_number_expected": 10, "status": "fixed" },
-      { "id": "julian-alvarez", "full_name": "Julián Álvarez", "display_name": "La Araña Álvarez", "position": "FWD", "detailed_position": "ST", "club": { "name": "Atlético de Madrid", "country_iso": "es", "league": "La Liga" }, "shirt_number_expected": 9, "status": "fixed" },
-      { "id": "lautaro-martinez", "full_name": "Lautaro Martínez", "display_name": "Lautaro Martínez", "position": "FWD", "detailed_position": "ST", "club": { "name": "Inter de Milán", "country_iso": "it", "league": "Serie A" }, "shirt_number_expected": 22, "status": "fixed" },
-      { "id": "nico-gonzalez", "full_name": "Nicolás González", "display_name": "Nico González", "position": "FWD", "detailed_position": "LW", "club": { "name": "Juventus", "country_iso": "it", "league": "Serie A" }, "shirt_number_expected": 11, "status": "fixed" },
-      { "id": "giuliano-simeone", "full_name": "Giuliano Simeone", "display_name": "Giuliano Simeone", "position": "FWD", "detailed_position": "RW", "club": { "name": "Atlético de Madrid", "country_iso": "es", "league": "La Liga" }, "shirt_number_expected": 21, "status": "probable" },
-      { "id": "paulo-dybala", "full_name": "Paulo Dybala", "display_name": "Paulo Dybala", "position": "FWD", "detailed_position": "CAM", "club": { "name": "Roma", "country_iso": "it", "league": "Serie A" }, "shirt_number_expected": 15, "status": "bubble" },
-      { "id": "valentin-castellanos", "full_name": "Valentín Castellanos", "display_name": "Taty Castellanos", "position": "FWD", "detailed_position": "ST", "club": { "name": "Lazio", "country_iso": "it", "league": "Serie A" }, "shirt_number_expected": 17, "status": "bubble" }
+      {
+        "id": "emiliano-martinez",
+        "full_name": "Emiliano Martínez",
+        "display_name": "Dibu Martínez",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Aston Villa",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 23,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/St._Louis_City_vs_Aston_Villa_%28Jul_2025%29_14_%28Emiliano_Mart%C3%ADnez%29.jpg/330px-St._Louis_City_vs_Aston_Villa_%28Jul_2025%29_14_%28Emiliano_Mart%C3%ADnez%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Emiliano_Mart%C3%ADnez"
+        }
+      },
+      {
+        "id": "geronimo-rulli",
+        "full_name": "Gerónimo Rulli",
+        "display_name": "Gerónimo Rulli",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Olympique Marsella",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 12,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/GAE_-_Ajax_-_52787523707_%28Ger%C3%B3nimo_Rulli%29.jpg/330px-GAE_-_Ajax_-_52787523707_%28Ger%C3%B3nimo_Rulli%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ger%C3%B3nimo_Rulli"
+        }
+      },
+      {
+        "id": "walter-benitez",
+        "full_name": "Walter Benítez",
+        "display_name": "Walter Benítez",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "PSV Eindhoven",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 1,
+        "status": "bubble"
+      },
+      {
+        "id": "nahuel-molina",
+        "full_name": "Nahuel Molina",
+        "display_name": "Nahuel Molina",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Atlético de Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/69/Nahuel_Molina_WC2022.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Nahuel_Molina"
+        }
+      },
+      {
+        "id": "gonzalo-montiel",
+        "full_name": "Gonzalo Montiel",
+        "display_name": "Cachete Montiel",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "River Plate",
+          "country_iso": "ar",
+          "league": "Liga Profesional"
+        },
+        "shirt_number_expected": 26,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Palestino_-_River_Plate_20190424_05.jpg/330px-Palestino_-_River_Plate_20190424_05.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Gonzalo_Montiel"
+        }
+      },
+      {
+        "id": "cristian-romero",
+        "full_name": "Cristian Romero",
+        "display_name": "Cuti Romero",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Tottenham",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 13,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Cristian_Gabriel_Romero_%28cropped_3%29.jpg/330px-Cristian_Gabriel_Romero_%28cropped_3%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Cuti_Romero"
+        }
+      },
+      {
+        "id": "nicolas-otamendi",
+        "full_name": "Nicolás Otamendi",
+        "display_name": "Nicolás Otamendi",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Benfica",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Arg_vs_mexico_otamendi_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Nicol%C3%A1s_Otamendi"
+        }
+      },
+      {
+        "id": "lisandro-martinez",
+        "full_name": "Lisandro Martínez",
+        "display_name": "Licha Martínez",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Manchester United",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 25,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Argentina_-_Colombia_2022_%2851%29_%28cropped%29.jpg/330px-Argentina_-_Colombia_2022_%2851%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Lisandro_Mart%C3%ADnez"
+        }
+      },
+      {
+        "id": "leonardo-balerdi",
+        "full_name": "Leonardo Balerdi",
+        "display_name": "Leo Balerdi",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Olympique Marsella",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 6,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Leonardo_Balerdi_OM_%28cropped%29.jpg/330px-Leonardo_Balerdi_OM_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Leonardo_Balerdi"
+        }
+      },
+      {
+        "id": "nicolas-tagliafico",
+        "full_name": "Nicolás Tagliafico",
+        "display_name": "Nicolás Tagliafico",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Olympique Lyonnais",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Tagliafico_with_Lyon_in_2022.png/330px-Tagliafico_with_Lyon_in_2022.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Nicol%C3%A1s_Tagliafico"
+        }
+      },
+      {
+        "id": "marcos-acuna",
+        "full_name": "Marcos Acuña",
+        "display_name": "Huevo Acuña",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "River Plate",
+          "country_iso": "ar",
+          "league": "Liga Profesional"
+        },
+        "shirt_number_expected": 8,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Marcos_acuna_vs_mexico_2022.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Marcos_Acu%C3%B1a"
+        }
+      },
+      {
+        "id": "facundo-medina",
+        "full_name": "Facundo Medina",
+        "display_name": "Facundo Medina",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Olympique Marsella",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 24,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Entra%C3%AEnement_du_RC_Lens_-_15_juillet_2020_21.jpg/330px-Entra%C3%AEnement_du_RC_Lens_-_15_juillet_2020_21.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Facundo_Medina"
+        }
+      },
+      {
+        "id": "rodrigo-de-paul",
+        "full_name": "Rodrigo De Paul",
+        "display_name": "Rodrigo De Paul",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Inter Miami CF",
+          "country_iso": "us",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Rodrigo_De_Paul_NYCFC_Miami_24_Sep_2025-018_%28cropped%29.jpg/330px-Rodrigo_De_Paul_NYCFC_Miami_24_Sep_2025-018_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Rodrigo_De_Paul"
+        }
+      },
+      {
+        "id": "leandro-paredes",
+        "full_name": "Leandro Paredes",
+        "display_name": "Leandro Paredes",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Boca Juniors",
+          "country_iso": "ar",
+          "league": "Liga Profesional"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Leandro_Paredes_2018_%28cropped%29.jpg/330px-Leandro_Paredes_2018_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Leandro_Paredes"
+        }
+      },
+      {
+        "id": "enzo-fernandez",
+        "full_name": "Enzo Fernández",
+        "display_name": "Enzo Fernández",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Chelsea",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 24,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Enzo_Fern%C3%A1ndez_WC2022.jpg/330px-Enzo_Fern%C3%A1ndez_WC2022.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Enzo_Fern%C3%A1ndez"
+        }
+      },
+      {
+        "id": "alexis-mac-allister",
+        "full_name": "Alexis Mac Allister",
+        "display_name": "Alexis Mac Allister",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Liverpool",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 20,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Alexis_Mac_Allister_WC_2022.jpg/330px-Alexis_Mac_Allister_WC_2022.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Alexis_Mac_Allister"
+        }
+      },
+      {
+        "id": "giovani-lo-celso",
+        "full_name": "Giovani Lo Celso",
+        "display_name": "Gio Lo Celso",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Real Betis",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 18,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/2020-03-10_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League_Achtelfinale%2C_RB_Leipzig_-_Tottenham_Hotspur_1DX_3705_by_Stepro.jpg/330px-2020-03-10_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League_Achtelfinale%2C_RB_Leipzig_-_Tottenham_Hotspur_1DX_3705_by_Stepro.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Giovani_Lo_Celso"
+        }
+      },
+      {
+        "id": "exequiel-palacios",
+        "full_name": "Exequiel Palacios",
+        "display_name": "Exequiel Palacios",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Bayer Leverkusen",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 14,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Exequiel_Palacios%2C_2022-07-31%2C_Saisoner%C3%B6ffnung_Bayer_04%2C_Leverkusen_%281%29.jpg/330px-Exequiel_Palacios%2C_2022-07-31%2C_Saisoner%C3%B6ffnung_Bayer_04%2C_Leverkusen_%281%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Exequiel_Palacios"
+        }
+      },
+      {
+        "id": "thiago-almada",
+        "full_name": "Thiago Almada",
+        "display_name": "Thiago Almada",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Olympique Lyonnais",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 16,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Almada_asse_ol_2425.png/330px-Almada_asse_ol_2425.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Thiago_Almada"
+        }
+      },
+      {
+        "id": "lionel-messi",
+        "full_name": "Lionel Andrés Messi",
+        "display_name": "Lionel Messi",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Inter Miami CF",
+          "country_iso": "us",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg/330px-Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Lionel_Messi"
+        }
+      },
+      {
+        "id": "julian-alvarez",
+        "full_name": "Julián Álvarez",
+        "display_name": "La Araña Álvarez",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Atlético de Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/03/Argentina_national_football_team_-_2_-_2022_%28Juli%C3%A1n_%C3%81lvarez%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Juli%C3%A1n_Alvarez"
+        }
+      },
+      {
+        "id": "lautaro-martinez",
+        "full_name": "Lautaro Martínez",
+        "display_name": "Lautaro Martínez",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Inter de Milán",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 22,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Lautaro_Mart%C3%ADnez_%28cropped%29.jpg/330px-Lautaro_Mart%C3%ADnez_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Lautaro_Mart%C3%ADnez"
+        }
+      },
+      {
+        "id": "nico-gonzalez",
+        "full_name": "Nicolás González",
+        "display_name": "Nico González",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Juventus",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/NicolasGonzalez_%28cropped%29.jpg/330px-NicolasGonzalez_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Nicol%C3%A1s_Iv%C3%A1n_Gonz%C3%A1lez"
+        }
+      },
+      {
+        "id": "giuliano-simeone",
+        "full_name": "Giuliano Simeone",
+        "display_name": "Giuliano Simeone",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Atlético de Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 21,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Giuliano_Simeone%2C_FC_Salzburg_vs._Atletico_Madrid_%282025-01-29_UEFA_Championsleague%29_53_%28cropped%29.jpg/330px-Giuliano_Simeone%2C_FC_Salzburg_vs._Atletico_Madrid_%282025-01-29_UEFA_Championsleague%29_53_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Giuliano_Simeone"
+        }
+      },
+      {
+        "id": "paulo-dybala",
+        "full_name": "Paulo Dybala",
+        "display_name": "Paulo Dybala",
+        "position": "FWD",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Roma",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 15,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_38_-_Paulo_Dybala_%28cropped%29.jpg/330px-FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_38_-_Paulo_Dybala_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Paulo_Dybala"
+        }
+      },
+      {
+        "id": "valentin-castellanos",
+        "full_name": "Valentín Castellanos",
+        "display_name": "Taty Castellanos",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Lazio",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 17,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Zapaterito.jpg/330px-Zapaterito.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Valent%C3%ADn_Castellanos"
+        }
+      }
     ],
-
     "starting_xi": {
       "formation": "4-4-2",
       "players": [
-        { "player_id": "emiliano-martinez", "position": { "x": 50, "y": 92 } },
-        { "player_id": "nahuel-molina", "position": { "x": 85, "y": 72 } },
-        { "player_id": "cristian-romero", "position": { "x": 65, "y": 75 } },
-        { "player_id": "nicolas-otamendi", "position": { "x": 35, "y": 75 } },
-        { "player_id": "nicolas-tagliafico", "position": { "x": 15, "y": 72 } },
-        { "player_id": "rodrigo-de-paul", "position": { "x": 70, "y": 50 } },
-        { "player_id": "enzo-fernandez", "position": { "x": 50, "y": 55 } },
-        { "player_id": "alexis-mac-allister", "position": { "x": 30, "y": 50 } },
-        { "player_id": "thiago-almada", "position": { "x": 25, "y": 30 } },
-        { "player_id": "lionel-messi", "position": { "x": 70, "y": 25 } },
-        { "player_id": "julian-alvarez", "position": { "x": 50, "y": 15 } }
+        {
+          "player_id": "emiliano-martinez",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "nahuel-molina",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "cristian-romero",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "nicolas-otamendi",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "nicolas-tagliafico",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "rodrigo-de-paul",
+          "position": {
+            "x": 70,
+            "y": 50
+          }
+        },
+        {
+          "player_id": "enzo-fernandez",
+          "position": {
+            "x": 50,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "alexis-mac-allister",
+          "position": {
+            "x": 30,
+            "y": 50
+          }
+        },
+        {
+          "player_id": "thiago-almada",
+          "position": {
+            "x": 25,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "lionel-messi",
+          "position": {
+            "x": 70,
+            "y": 25
+          }
+        },
+        {
+          "player_id": "julian-alvarez",
+          "position": {
+            "x": 50,
+            "y": 15
+          }
+        }
       ]
     },
-
     "analysis": {
       "style": "Argentina combina solidez defensiva con un mediocampo de alto vuelo técnico. Scaloni alterna entre 4-3-3 con Messi falso 9 y 4-4-2 con doble delantero (Messi/Álvarez o Lautaro). Identidad: bloque medio-bajo, presión coordinada por momentos, transiciones rápidas vertical. La pelota detenida es arma constante (Messi tiros libres, Otamendi/Romero por arriba).",
       "strengths": [
@@ -463,16 +1417,26 @@
       "vs_last_3_wcs": "Russia 2018: octavos eliminado por Francia 3-4. Qatar 2022: CAMPEÓN tras vencer en final 3-3 (4-2 pen) a Francia. Mundial 2026: parte como vigente campeón con un equipo más maduro pero con 4 años más en sus piernas. La continuidad táctica de Scaloni (8 años en el cargo) es valor único entre los favoritos."
     }
   },
-
   "history": {
     "first_appearance": 1930,
     "appearances_count_before_2026": 18,
     "appearances_count_with_2026": 19,
     "consecutive_streak_since": 1974,
     "titles": 3,
-    "titles_years": [1978, 1986, 2022],
+    "titles_years": [
+      1978,
+      1986,
+      2022
+    ],
     "finals": 6,
-    "finals_years": [1930, 1978, 1986, 1990, 2014, 2022],
+    "finals_years": [
+      1930,
+      1978,
+      1986,
+      1990,
+      2014,
+      2022
+    ],
     "semi_finals": 7,
     "best_result": "Campeón (1978, 1986, 2022)",
     "aggregate_stats_through_2022": {
@@ -488,12 +1452,24 @@
     "by_world_cup": [
       {
         "year": 1930,
-        "host": { "countries": ["Uruguay"], "iso": ["uy"] },
+        "host": {
+          "countries": [
+            "Uruguay"
+          ],
+          "iso": [
+            "uy"
+          ]
+        },
         "result": "Subcampeón",
         "coach": "Francisco Olazar / Juan Tramutola",
         "captain": "Manuel Ferreira / Manuel Seoane",
         "matches": [],
-        "team_top_scorers": [{ "player": "Guillermo Stábile", "goals": 8 }],
+        "team_top_scorers": [
+          {
+            "player": "Guillermo Stábile",
+            "goals": 8
+          }
+        ],
         "goals_scored": 18,
         "goals_conceded": 9,
         "notable_facts": [
@@ -505,11 +1481,27 @@
       },
       {
         "year": 1934,
-        "host": { "countries": ["Italia"], "iso": ["it"] },
+        "host": {
+          "countries": [
+            "Italia"
+          ],
+          "iso": [
+            "it"
+          ]
+        },
         "result": "1ª ronda",
         "coach": "Felipe Pascucci",
         "matches": [],
-        "team_top_scorers": [{ "player": "Alberto Galateo", "goals": 1 }, { "player": "Ernesto Belis", "goals": 1 }],
+        "team_top_scorers": [
+          {
+            "player": "Alberto Galateo",
+            "goals": 1
+          },
+          {
+            "player": "Ernesto Belis",
+            "goals": 1
+          }
+        ],
         "goals_scored": 2,
         "goals_conceded": 3,
         "notable_facts": [
@@ -520,11 +1512,27 @@
       },
       {
         "year": 1958,
-        "host": { "countries": ["Suecia"], "iso": ["se"] },
+        "host": {
+          "countries": [
+            "Suecia"
+          ],
+          "iso": [
+            "se"
+          ]
+        },
         "result": "Fase de grupos",
         "coach": "Guillermo Stábile",
         "matches": [],
-        "team_top_scorers": [{ "player": "Norberto Menéndez", "goals": 1 }, { "player": "Oreste Corbatta", "goals": 1 }],
+        "team_top_scorers": [
+          {
+            "player": "Norberto Menéndez",
+            "goals": 1
+          },
+          {
+            "player": "Oreste Corbatta",
+            "goals": 1
+          }
+        ],
         "goals_scored": 5,
         "goals_conceded": 10,
         "notable_facts": [
@@ -535,11 +1543,27 @@
       },
       {
         "year": 1962,
-        "host": { "countries": ["Chile"], "iso": ["cl"] },
+        "host": {
+          "countries": [
+            "Chile"
+          ],
+          "iso": [
+            "cl"
+          ]
+        },
         "result": "Fase de grupos",
         "coach": "Juan Carlos Lorenzo",
         "matches": [],
-        "team_top_scorers": [{ "player": "Hector Facundo", "goals": 1 }, { "player": "Marcelo Pagani", "goals": 1 }],
+        "team_top_scorers": [
+          {
+            "player": "Hector Facundo",
+            "goals": 1
+          },
+          {
+            "player": "Marcelo Pagani",
+            "goals": 1
+          }
+        ],
         "goals_scored": 2,
         "goals_conceded": 3,
         "notable_facts": [
@@ -550,12 +1574,28 @@
       },
       {
         "year": 1966,
-        "host": { "countries": ["Inglaterra"], "iso": ["gb-eng"] },
+        "host": {
+          "countries": [
+            "Inglaterra"
+          ],
+          "iso": [
+            "gb-eng"
+          ]
+        },
         "result": "Cuartos de final",
         "coach": "Juan Carlos Lorenzo",
         "captain": "Antonio Rattín",
         "matches": [],
-        "team_top_scorers": [{ "player": "Luis Artime", "goals": 1 }, { "player": "Ermindo Onega", "goals": 1 }],
+        "team_top_scorers": [
+          {
+            "player": "Luis Artime",
+            "goals": 1
+          },
+          {
+            "player": "Ermindo Onega",
+            "goals": 1
+          }
+        ],
         "goals_scored": 4,
         "goals_conceded": 1,
         "notable_facts": [
@@ -567,11 +1607,27 @@
       },
       {
         "year": 1974,
-        "host": { "countries": ["Alemania Federal"], "iso": ["de"] },
+        "host": {
+          "countries": [
+            "Alemania Federal"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
         "result": "Segunda ronda",
         "coach": "Vladislao Cap",
         "matches": [],
-        "team_top_scorers": [{ "player": "René Houseman", "goals": 2 }, { "player": "Mario Kempes", "goals": 0 }],
+        "team_top_scorers": [
+          {
+            "player": "René Houseman",
+            "goals": 2
+          },
+          {
+            "player": "Mario Kempes",
+            "goals": 0
+          }
+        ],
         "goals_scored": 9,
         "goals_conceded": 12,
         "notable_facts": [
@@ -582,12 +1638,28 @@
       },
       {
         "year": 1978,
-        "host": { "countries": ["Argentina"], "iso": ["ar"] },
+        "host": {
+          "countries": [
+            "Argentina"
+          ],
+          "iso": [
+            "ar"
+          ]
+        },
         "result": "Campeón",
         "coach": "César Luis Menotti",
         "captain": "Daniel Passarella",
         "matches": [],
-        "team_top_scorers": [{ "player": "Mario Kempes", "goals": 6 }, { "player": "Leopoldo Luque", "goals": 4 }],
+        "team_top_scorers": [
+          {
+            "player": "Mario Kempes",
+            "goals": 6
+          },
+          {
+            "player": "Leopoldo Luque",
+            "goals": 4
+          }
+        ],
         "goals_scored": 15,
         "goals_conceded": 4,
         "notable_facts": [
@@ -600,12 +1672,28 @@
       },
       {
         "year": 1982,
-        "host": { "countries": ["España"], "iso": ["es"] },
+        "host": {
+          "countries": [
+            "España"
+          ],
+          "iso": [
+            "es"
+          ]
+        },
         "result": "Segunda ronda",
         "coach": "César Luis Menotti",
         "captain": "Daniel Passarella",
         "matches": [],
-        "team_top_scorers": [{ "player": "Daniel Bertoni", "goals": 2 }, { "player": "Diego Maradona", "goals": 2 }],
+        "team_top_scorers": [
+          {
+            "player": "Daniel Bertoni",
+            "goals": 2
+          },
+          {
+            "player": "Diego Maradona",
+            "goals": 2
+          }
+        ],
         "goals_scored": 8,
         "goals_conceded": 7,
         "notable_facts": [
@@ -617,12 +1705,28 @@
       },
       {
         "year": 1986,
-        "host": { "countries": ["México"], "iso": ["mx"] },
+        "host": {
+          "countries": [
+            "México"
+          ],
+          "iso": [
+            "mx"
+          ]
+        },
         "result": "Campeón",
         "coach": "Carlos Salvador Bilardo",
         "captain": "Diego Maradona",
         "matches": [],
-        "team_top_scorers": [{ "player": "Diego Maradona", "goals": 5 }, { "player": "Jorge Valdano", "goals": 4 }],
+        "team_top_scorers": [
+          {
+            "player": "Diego Maradona",
+            "goals": 5
+          },
+          {
+            "player": "Jorge Valdano",
+            "goals": 4
+          }
+        ],
         "goals_scored": 14,
         "goals_conceded": 5,
         "notable_facts": [
@@ -635,12 +1739,28 @@
       },
       {
         "year": 1990,
-        "host": { "countries": ["Italia"], "iso": ["it"] },
+        "host": {
+          "countries": [
+            "Italia"
+          ],
+          "iso": [
+            "it"
+          ]
+        },
         "result": "Subcampeón",
         "coach": "Carlos Salvador Bilardo",
         "captain": "Diego Maradona",
         "matches": [],
-        "team_top_scorers": [{ "player": "Claudio Caniggia", "goals": 2 }, { "player": "Jorge Burruchaga", "goals": 2 }],
+        "team_top_scorers": [
+          {
+            "player": "Claudio Caniggia",
+            "goals": 2
+          },
+          {
+            "player": "Jorge Burruchaga",
+            "goals": 2
+          }
+        ],
         "goals_scored": 5,
         "goals_conceded": 4,
         "notable_facts": [
@@ -653,12 +1773,28 @@
       },
       {
         "year": 1994,
-        "host": { "countries": ["Estados Unidos"], "iso": ["us"] },
+        "host": {
+          "countries": [
+            "Estados Unidos"
+          ],
+          "iso": [
+            "us"
+          ]
+        },
         "result": "Octavos de final",
         "coach": "Alfio Basile",
         "captain": "Diego Maradona",
         "matches": [],
-        "team_top_scorers": [{ "player": "Gabriel Batistuta", "goals": 4 }, { "player": "Diego Maradona", "goals": 1 }],
+        "team_top_scorers": [
+          {
+            "player": "Gabriel Batistuta",
+            "goals": 4
+          },
+          {
+            "player": "Diego Maradona",
+            "goals": 1
+          }
+        ],
         "goals_scored": 8,
         "goals_conceded": 6,
         "notable_facts": [
@@ -670,12 +1806,28 @@
       },
       {
         "year": 1998,
-        "host": { "countries": ["Francia"], "iso": ["fr"] },
+        "host": {
+          "countries": [
+            "Francia"
+          ],
+          "iso": [
+            "fr"
+          ]
+        },
         "result": "Cuartos de final",
         "coach": "Daniel Passarella",
         "captain": "Diego Simeone",
         "matches": [],
-        "team_top_scorers": [{ "player": "Gabriel Batistuta", "goals": 5 }, { "player": "Claudio López", "goals": 1 }],
+        "team_top_scorers": [
+          {
+            "player": "Gabriel Batistuta",
+            "goals": 5
+          },
+          {
+            "player": "Claudio López",
+            "goals": 1
+          }
+        ],
         "goals_scored": 10,
         "goals_conceded": 4,
         "notable_facts": [
@@ -687,12 +1839,30 @@
       },
       {
         "year": 2002,
-        "host": { "countries": ["Corea del Sur", "Japón"], "iso": ["kr", "jp"] },
+        "host": {
+          "countries": [
+            "Corea del Sur",
+            "Japón"
+          ],
+          "iso": [
+            "kr",
+            "jp"
+          ]
+        },
         "result": "Fase de grupos",
         "coach": "Marcelo Bielsa",
         "captain": "Roberto Ayala",
         "matches": [],
-        "team_top_scorers": [{ "player": "Gabriel Batistuta", "goals": 1 }, { "player": "Hernán Crespo", "goals": 1 }],
+        "team_top_scorers": [
+          {
+            "player": "Gabriel Batistuta",
+            "goals": 1
+          },
+          {
+            "player": "Hernán Crespo",
+            "goals": 1
+          }
+        ],
         "goals_scored": 2,
         "goals_conceded": 2,
         "notable_facts": [
@@ -704,12 +1874,28 @@
       },
       {
         "year": 2006,
-        "host": { "countries": ["Alemania"], "iso": ["de"] },
+        "host": {
+          "countries": [
+            "Alemania"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
         "result": "Cuartos de final",
         "coach": "José Pekerman",
         "captain": "Juan Pablo Sorín",
         "matches": [],
-        "team_top_scorers": [{ "player": "Hernán Crespo", "goals": 3 }, { "player": "Maxi Rodríguez", "goals": 2 }],
+        "team_top_scorers": [
+          {
+            "player": "Hernán Crespo",
+            "goals": 3
+          },
+          {
+            "player": "Maxi Rodríguez",
+            "goals": 2
+          }
+        ],
         "goals_scored": 11,
         "goals_conceded": 3,
         "notable_facts": [
@@ -722,12 +1908,28 @@
       },
       {
         "year": 2010,
-        "host": { "countries": ["Sudáfrica"], "iso": ["za"] },
+        "host": {
+          "countries": [
+            "Sudáfrica"
+          ],
+          "iso": [
+            "za"
+          ]
+        },
         "result": "Cuartos de final",
         "coach": "Diego Maradona",
         "captain": "Javier Mascherano",
         "matches": [],
-        "team_top_scorers": [{ "player": "Gonzalo Higuaín", "goals": 4 }, { "player": "Carlos Tévez", "goals": 2 }],
+        "team_top_scorers": [
+          {
+            "player": "Gonzalo Higuaín",
+            "goals": 4
+          },
+          {
+            "player": "Carlos Tévez",
+            "goals": 2
+          }
+        ],
         "goals_scored": 10,
         "goals_conceded": 6,
         "notable_facts": [
@@ -739,12 +1941,28 @@
       },
       {
         "year": 2014,
-        "host": { "countries": ["Brasil"], "iso": ["br"] },
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
         "result": "Subcampeón",
         "coach": "Alejandro Sabella",
         "captain": "Lionel Messi",
         "matches": [],
-        "team_top_scorers": [{ "player": "Lionel Messi", "goals": 4 }, { "player": "Gonzalo Higuaín", "goals": 1 }],
+        "team_top_scorers": [
+          {
+            "player": "Lionel Messi",
+            "goals": 4
+          },
+          {
+            "player": "Gonzalo Higuaín",
+            "goals": 1
+          }
+        ],
         "goals_scored": 8,
         "goals_conceded": 4,
         "notable_facts": [
@@ -756,12 +1974,28 @@
       },
       {
         "year": 2018,
-        "host": { "countries": ["Rusia"], "iso": ["ru"] },
+        "host": {
+          "countries": [
+            "Rusia"
+          ],
+          "iso": [
+            "ru"
+          ]
+        },
         "result": "Octavos de final",
         "coach": "Jorge Sampaoli",
         "captain": "Lionel Messi",
         "matches": [],
-        "team_top_scorers": [{ "player": "Lionel Messi", "goals": 1 }, { "player": "Marcos Rojo", "goals": 1 }],
+        "team_top_scorers": [
+          {
+            "player": "Lionel Messi",
+            "goals": 1
+          },
+          {
+            "player": "Marcos Rojo",
+            "goals": 1
+          }
+        ],
         "goals_scored": 6,
         "goals_conceded": 9,
         "notable_facts": [
@@ -773,12 +2007,28 @@
       },
       {
         "year": 2022,
-        "host": { "countries": ["Catar"], "iso": ["qa"] },
+        "host": {
+          "countries": [
+            "Catar"
+          ],
+          "iso": [
+            "qa"
+          ]
+        },
         "result": "Campeón",
         "coach": "Lionel Scaloni",
         "captain": "Lionel Messi",
         "matches": [],
-        "team_top_scorers": [{ "player": "Lionel Messi", "goals": 7 }, { "player": "Julián Álvarez", "goals": 4 }],
+        "team_top_scorers": [
+          {
+            "player": "Lionel Messi",
+            "goals": 7
+          },
+          {
+            "player": "Julián Álvarez",
+            "goals": 4
+          }
+        ],
         "goals_scored": 15,
         "goals_conceded": 8,
         "notable_facts": [
@@ -791,15 +2041,44 @@
       }
     ],
     "palmares": [
-      { "competition": "Copa Mundial de la FIFA", "year": 1978, "position": "Campeón", "host": "Argentina" },
-      { "competition": "Copa Mundial de la FIFA", "year": 1986, "position": "Campeón", "host": "México" },
-      { "competition": "Copa Mundial de la FIFA", "year": 2022, "position": "Campeón", "host": "Catar" },
-      { "competition": "Copa Mundial de la FIFA", "year": 1930, "position": "Subcampeón", "host": "Uruguay" },
-      { "competition": "Copa Mundial de la FIFA", "year": 1990, "position": "Subcampeón", "host": "Italia" },
-      { "competition": "Copa Mundial de la FIFA", "year": 2014, "position": "Subcampeón", "host": "Brasil" }
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 1978,
+        "position": "Campeón",
+        "host": "Argentina"
+      },
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 1986,
+        "position": "Campeón",
+        "host": "México"
+      },
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 2022,
+        "position": "Campeón",
+        "host": "Catar"
+      },
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 1930,
+        "position": "Subcampeón",
+        "host": "Uruguay"
+      },
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 1990,
+        "position": "Subcampeón",
+        "host": "Italia"
+      },
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 2014,
+        "position": "Subcampeón",
+        "host": "Brasil"
+      }
     ]
   },
-
   "records": {
     "top_scorer_history": {
       "name": "Lionel Messi",
@@ -832,12 +2111,14 @@
       "competition": "Copa Mundial 1958"
     }
   },
-
   "iconic_matches": [
     {
       "title": "El Mundial de Stábile",
       "date": "1930-07-30",
-      "opponent": { "iso": "uy", "name": "Uruguay" },
+      "opponent": {
+        "iso": "uy",
+        "name": "Uruguay"
+      },
       "score": "2-4",
       "competition": "Final Mundial 1930",
       "narrative": "Argentina perdió la primera final mundial ante Uruguay 4-2 en el Estadio Centenario. Stábile, primer Bota de Oro de la historia con 8 goles, no pudo evitar la derrota. Inicio de la rivalidad rioplatense más histórica."
@@ -845,7 +2126,10 @@
     {
       "title": "El Gol del Siglo y la Mano de Dios",
       "date": "1986-06-22",
-      "opponent": { "iso": "gb-eng", "name": "Inglaterra" },
+      "opponent": {
+        "iso": "gb-eng",
+        "name": "Inglaterra"
+      },
       "score": "2-1",
       "competition": "Cuartos Mundial 1986",
       "narrative": "El partido más simbólico de la historia argentina. Maradona marcó dos goles en cuatro minutos: el primero con la mano (la Mano de Dios al 51'), el segundo tras correr 60 metros sorteando 5 ingleses en lo que la FIFA votó como 'Gol del Siglo' (55'). Argentina avanzó a semis. La Guerra de Malvinas (1982) atravesaba el contexto.",
@@ -854,7 +2138,10 @@
     {
       "title": "El Maracanazo del Diego (final 86)",
       "date": "1986-06-29",
-      "opponent": { "iso": "de", "name": "Alemania" },
+      "opponent": {
+        "iso": "de",
+        "name": "Alemania"
+      },
       "score": "3-2",
       "competition": "Final Mundial 1986",
       "narrative": "Argentina ganó su segundo Mundial en el Estadio Azteca con 114.600 espectadores. Goles de Brown, Valdano y Burruchaga (asistencia magistral de Maradona en el último). Cierre de la era Maradona Balón de Oro del torneo."
@@ -862,7 +2149,10 @@
     {
       "title": "El Maracanazo del Diego (semi 90)",
       "date": "1990-07-03",
-      "opponent": { "iso": "it", "name": "Italia" },
+      "opponent": {
+        "iso": "it",
+        "name": "Italia"
+      },
       "score": "1-1 (4-3 pen)",
       "competition": "Semifinal Mundial 1990",
       "narrative": "En Nápoles, ciudad-templo de Maradona, Argentina venció a Italia por penales tras 1-1 reglamentario. Goycochea gigante en la tanda. Recordada por la frase de Maradona pidiéndole a Nápoles: 'Solo un día por favor'."
@@ -870,7 +2160,10 @@
     {
       "title": "El gol de Bergkamp",
       "date": "1998-07-04",
-      "opponent": { "iso": "nl", "name": "Países Bajos" },
+      "opponent": {
+        "iso": "nl",
+        "name": "Países Bajos"
+      },
       "score": "1-2",
       "competition": "Cuartos Mundial 1998",
       "narrative": "En Marsella, Argentina cayó 2-1 ante Países Bajos. Bergkamp marcó al 90' tras un control milimétrico de cinco metros tras pase larguísimo de De Boer, considerado uno de los goles más bellos de la historia. Adiós temprano de una Argentina que prometía."
@@ -878,7 +2171,10 @@
     {
       "title": "El gol colectivo a Serbia (24 toques)",
       "date": "2006-06-16",
-      "opponent": { "iso": "rs", "name": "Serbia y Montenegro" },
+      "opponent": {
+        "iso": "rs",
+        "name": "Serbia y Montenegro"
+      },
       "score": "6-0",
       "competition": "Fase de Grupos Mundial 2006",
       "narrative": "Argentina firmó uno de los goles colectivos más bellos de la historia mundialista: 24 pases sin que Serbia tocara la pelota, definido por Cambiasso. Debut de Messi con gol en el mismo partido."
@@ -886,7 +2182,10 @@
     {
       "title": "Mineirazo invertido — el 0-4 ante Alemania",
       "date": "2010-07-03",
-      "opponent": { "iso": "de", "name": "Alemania" },
+      "opponent": {
+        "iso": "de",
+        "name": "Alemania"
+      },
       "score": "0-4",
       "competition": "Cuartos Mundial 2010",
       "narrative": "La peor derrota argentina en una fase eliminatoria moderna. Müller, Klose (x2) y Friedrich liquidaron a la Argentina de Maradona en menos de 75 minutos. Renuncia posterior del Diego como DT."
@@ -894,7 +2193,10 @@
     {
       "title": "La final del Maracaná (2014)",
       "date": "2014-07-13",
-      "opponent": { "iso": "de", "name": "Alemania" },
+      "opponent": {
+        "iso": "de",
+        "name": "Alemania"
+      },
       "score": "0-1 (prórroga)",
       "competition": "Final Mundial 2014",
       "narrative": "Argentina y Alemania, viejos conocidos en finales mundialistas (1986, 1990). En el Maracaná, errores claros de Higuaín y Palacio dejaron pasar oportunidades. Mario Götze marcó al 113' tras pase de André Schürrle. Tercera final perdida ante Alemania. Messi, Balón de Oro del torneo polémico, lloró."
@@ -902,7 +2204,10 @@
     {
       "title": "La consagración eterna",
       "date": "2022-12-18",
-      "opponent": { "iso": "fr", "name": "Francia" },
+      "opponent": {
+        "iso": "fr",
+        "name": "Francia"
+      },
       "score": "3-3 (4-2 pen)",
       "competition": "Final Mundial 2022",
       "narrative": "La final más espectacular de la historia. Argentina ganaba 2-0 al 80' (Messi penal + Di María). Mbappé hizo dos en 90 segundos para empatar. En la prórroga, Messi marcó el 3-2 al 108'. Mbappé empató con su tercer gol al 118'. En penales, Dibu Martínez fue gigante (atajada a Coman) y Montiel marcó el penal definitivo. Messi levantó la Copa que se le había negado durante 16 años. Coronación de leyenda.",
@@ -911,13 +2216,15 @@
     {
       "title": "El 4-1 a Brasil de la clasificación",
       "date": "2025-03-25",
-      "opponent": { "iso": "br", "name": "Brasil" },
+      "opponent": {
+        "iso": "br",
+        "name": "Brasil"
+      },
       "score": "4-1",
       "competition": "Eliminatorias Mundial 2026",
       "narrative": "Argentina goleó 4-1 a Brasil en El Monumental (sin Messi ni Lautaro) la noche que selló su clasificación matemática al Mundial 2026. Mayor goleada histórica ante Brasil en eliminatorias. Brasil destituyó a Dorival Júnior tras la derrota y contrató a Carlo Ancelotti."
     }
   ],
-
   "curiosities": [
     {
       "text": "Argentina disputó 18 de las 22 ediciones del Mundial. Solo faltó a Francia 1938, Brasil 1950, Suiza 1954 y México 1970 (único en el que falló en clasificar deportivamente).",
@@ -968,7 +2275,6 @@
       "status": "validated"
     }
   ],
-
   "fan_culture": {
     "famous_chants": [
       "Muchachos, ahora nos volvimos a ilusionar (himno post-Qatar 2022, adaptado de Muchachos de Ráfaga)",
@@ -986,7 +2292,6 @@
       "city": "Buenos Aires"
     }
   },
-
   "seo": {
     "meta_title": "Argentina en el Mundial 2026 | Plantilla, historia y predicciones",
     "meta_description": "Selección Argentina Mundial 2026: 26 convocados, Grupo J, historia mundialista, eliminatorias y análisis táctico de Scaloni.",
@@ -995,7 +2300,10 @@
       "@context": "https://schema.org",
       "@type": "SportsTeam",
       "name": "Selección de Argentina de fútbol",
-      "alternateName": ["La Albiceleste", "La Scaloneta"],
+      "alternateName": [
+        "La Albiceleste",
+        "La Scaloneta"
+      ],
       "sport": "Football",
       "memberOf": {
         "@type": "SportsOrganization",
@@ -1008,7 +2316,6 @@
       "url": "https://www.zonamundial.app/selecciones/argentina"
     }
   },
-
   "_meta": {
     "schema_version": "1.0.0",
     "last_updated": "2026-04-28",

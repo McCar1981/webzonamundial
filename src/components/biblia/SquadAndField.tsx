@@ -145,6 +145,22 @@ function SquadGrid({ squad }: { squad: Player[] }) {
           <PlayerCard key={p.id ?? p.full_name} player={p} />
         ))}
       </div>
+
+      {/* Atribución global de fotos (cumple licencia Wikipedia Commons) */}
+      {squad.some((p) => p.photo_url) ? (
+        <p className="text-[10px] text-[var(--bb-text-dim)] mt-4 italic">
+          Fotos:{" "}
+          <a
+            href="https://commons.wikimedia.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bb-focusable underline decoration-dotted underline-offset-2 hover:text-[var(--bb-gold)]"
+          >
+            Wikipedia Commons
+          </a>{" "}
+          (licencias CC BY-SA / CC BY / dominio público según cada autor).
+        </p>
+      ) : null}
     </div>
   );
 }

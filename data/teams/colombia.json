@@ -1,0 +1,1851 @@
+{
+  "slug": "colombia",
+  "iso": "co",
+  "iso3": "COL",
+  "name_es": "Colombia",
+  "name_en": "Colombia",
+  "name_local": "Colombia",
+  "nicknames": [
+    "La Tricolor",
+    "Los Cafeteros",
+    "La Selección Colombia"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#FCD116",
+      "secondary": "#003893",
+      "tertiary": "#CE1126",
+      "contrast_text": "#003893"
+    }
+  },
+  "country": {
+    "capital": "Bogotá",
+    "language_official": [
+      "Español"
+    ],
+    "population": 52215503,
+    "area_km2": 1141748,
+    "timezone": "America/Bogota",
+    "continent": "Sudamérica"
+  },
+  "federation": {
+    "name": "Federación Colombiana de Fútbol",
+    "abbreviation": "FCF",
+    "founded": 1924,
+    "headquarters": "Bogotá",
+    "website": "https://www.fcf.com.co"
+  },
+  "confederation": "CONMEBOL",
+  "fifa_ranking": {
+    "current": 14,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Adidas",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/colombia.png",
+        "back_url": null,
+        "primary_color": "#FCD116",
+        "secondary_color": "#003893",
+        "description": "Camiseta amarilla emblemática de la Tricolor con detalles en azul y rojo, los colores de la bandera nacional. Símbolo del fútbol cafetero desde 1985.",
+        "alt_text": "Camiseta titular Colombia Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#003893",
+        "secondary_color": "#FCD116",
+        "description": "Equipación visitante en azul. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Colombia Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "La camiseta amarilla actual fue introducida en 1985, sustituyendo a la histórica camiseta color salmón. Desde entonces es uno de los uniformes deportivos más vendidos de América Latina.",
+        "source": "FCF + ESPN histórico",
+        "verified_at": "2026-04-28",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Colombia regresó al Mundial tras la ausencia de Catar 2022. Cerró las eliminatorias en 3ª posición con 28 puntos, tras un arranque histórico (invicto de 28 partidos contando amistosos hasta marzo 2025) que incluyó la primera victoria oficial sobre Brasil en eliminatorias. Tuvo un bache de 6 partidos sin ganar a mitad de eliminatoria que puso en peligro la clasificación, pero la goleada 6-3 a Venezuela en Maturín en la última fecha (con triplete de Suárez incluido) selló matemáticamente el 3er puesto. Subcampeona de la Copa América 2024 (cayó 1-0 ante Argentina con gol de Lautaro en prórroga).",
+    "qualifying": {
+      "confederation_round": "Eliminatorias CONMEBOL Mundial 2026",
+      "format": "Liguilla todos contra todos · 18 jornadas · ida y vuelta",
+      "duration": "Septiembre 2023 — Septiembre 2025",
+      "final_position": 3,
+      "total_teams_in_group": 10,
+      "stats": {
+        "played": 18,
+        "won": 7,
+        "drawn": 7,
+        "lost": 4,
+        "goals_for": 26,
+        "goals_against": 21,
+        "goal_difference": 5,
+        "points": 28,
+        "win_percentage": 38.9,
+        "clean_sheets": 5
+      },
+      "coach_during_qualifying": "Néstor Lorenzo",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2023-09-08",
+          "home": {
+            "iso": "ve",
+            "name": "Venezuela",
+            "score": 1
+          },
+          "away": {
+            "iso": "co",
+            "name": "Colombia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Monumental de Maturín",
+            "city": "Maturín",
+            "country_iso": "ve"
+          },
+          "goals_arg": [],
+          "notes": "Debut con derrota inesperada."
+        },
+        {
+          "matchday": 2,
+          "date": "2023-09-12",
+          "home": {
+            "iso": "co",
+            "name": "Colombia",
+            "score": 1
+          },
+          "away": {
+            "iso": "cl",
+            "name": "Chile",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Metropolitano Roberto Meléndez",
+            "city": "Barranquilla",
+            "country_iso": "co"
+          },
+          "goals_arg": [
+            {
+              "player": "Luis Díaz",
+              "minute": "31'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 3,
+          "date": "2023-10-12",
+          "home": {
+            "iso": "uy",
+            "name": "Uruguay",
+            "score": 2
+          },
+          "away": {
+            "iso": "co",
+            "name": "Colombia",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Centenario",
+            "city": "Montevideo",
+            "country_iso": "uy"
+          },
+          "goals_arg": [
+            {
+              "player": "Mateus Uribe",
+              "minute": "27'",
+              "type": "goal"
+            },
+            {
+              "player": "Rafael Borré",
+              "minute": "70'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Empate de jerarquía en Montevideo."
+        },
+        {
+          "matchday": 4,
+          "date": "2023-10-17",
+          "home": {
+            "iso": "co",
+            "name": "Colombia",
+            "score": 0
+          },
+          "away": {
+            "iso": "ec",
+            "name": "Ecuador",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Metropolitano Roberto Meléndez",
+            "city": "Barranquilla",
+            "country_iso": "co"
+          },
+          "goals_arg": []
+        },
+        {
+          "matchday": 5,
+          "date": "2023-11-16",
+          "home": {
+            "iso": "co",
+            "name": "Colombia",
+            "score": 2
+          },
+          "away": {
+            "iso": "br",
+            "name": "Brasil",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Metropolitano Roberto Meléndez",
+            "city": "Barranquilla",
+            "country_iso": "co"
+          },
+          "goals_arg": [
+            {
+              "player": "Luis Díaz",
+              "minute": "75'",
+              "type": "goal"
+            },
+            {
+              "player": "Luis Díaz",
+              "minute": "79'",
+              "type": "goal"
+            }
+          ],
+          "goals_opponent": [
+            {
+              "player": "Gabriel Martinelli",
+              "minute": "4'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Doblete de Luis Díaz. Victoria histórica de Colombia ante Brasil en eliminatorias.",
+          "is_decisive_match": true
+        },
+        {
+          "matchday": 6,
+          "date": "2023-11-21",
+          "home": {
+            "iso": "py",
+            "name": "Paraguay",
+            "score": 0
+          },
+          "away": {
+            "iso": "co",
+            "name": "Colombia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Defensores del Chaco",
+            "city": "Asunción",
+            "country_iso": "py"
+          },
+          "goals_arg": []
+        },
+        {
+          "matchday": 7,
+          "date": "2024-09-06",
+          "home": {
+            "iso": "co",
+            "name": "Colombia",
+            "score": 2
+          },
+          "away": {
+            "iso": "pe",
+            "name": "Perú",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Metropolitano Roberto Meléndez",
+            "city": "Barranquilla",
+            "country_iso": "co"
+          },
+          "goals_arg": [
+            {
+              "player": "Luis Díaz",
+              "minute": "26'",
+              "type": "goal"
+            },
+            {
+              "player": "Luis Díaz",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 8,
+          "date": "2024-09-10",
+          "home": {
+            "iso": "co",
+            "name": "Colombia",
+            "score": 2
+          },
+          "away": {
+            "iso": "ar",
+            "name": "Argentina",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Metropolitano Roberto Meléndez",
+            "city": "Barranquilla",
+            "country_iso": "co"
+          },
+          "goals_arg": [
+            {
+              "player": "Yerson Mosquera",
+              "minute": "25'",
+              "type": "goal"
+            },
+            {
+              "player": "James Rodríguez",
+              "minute": "60'",
+              "type": "penalty"
+            }
+          ],
+          "goals_opponent": [
+            {
+              "player": "Nicolás González",
+              "minute": "26'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Revancha de la final Copa América 2024."
+        },
+        {
+          "matchday": 9,
+          "date": "2024-10-10",
+          "home": {
+            "iso": "bo",
+            "name": "Bolivia",
+            "score": 1
+          },
+          "away": {
+            "iso": "co",
+            "name": "Colombia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Hernando Siles",
+            "city": "La Paz",
+            "country_iso": "bo"
+          },
+          "goals_arg": [],
+          "notes": "Sorprendente derrota a 3.640 m de altitud."
+        },
+        {
+          "matchday": 10,
+          "date": "2024-10-15",
+          "home": {
+            "iso": "co",
+            "name": "Colombia",
+            "score": 4
+          },
+          "away": {
+            "iso": "cl",
+            "name": "Chile",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Metropolitano Roberto Meléndez",
+            "city": "Barranquilla",
+            "country_iso": "co"
+          },
+          "goals_arg": [
+            {
+              "player": "Jhon Córdoba",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "James Rodríguez",
+              "minute": "33'",
+              "type": "goal"
+            },
+            {
+              "player": "Luis Díaz",
+              "minute": "60'",
+              "type": "goal"
+            },
+            {
+              "player": "Jhon Arias",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 11,
+          "date": "2024-11-14",
+          "home": {
+            "iso": "uy",
+            "name": "Uruguay",
+            "score": 3
+          },
+          "away": {
+            "iso": "co",
+            "name": "Colombia",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Centenario",
+            "city": "Montevideo",
+            "country_iso": "uy"
+          },
+          "goals_arg": [
+            {
+              "player": "Daniel Muñoz",
+              "minute": "57'",
+              "type": "goal"
+            },
+            {
+              "player": "James Rodríguez",
+              "minute": "68'",
+              "type": "penalty"
+            }
+          ],
+          "notes": "Manuel Ugarte sentenció en el 90+11. Inicio del bache."
+        },
+        {
+          "matchday": 12,
+          "date": "2024-11-19",
+          "home": {
+            "iso": "co",
+            "name": "Colombia",
+            "score": 0
+          },
+          "away": {
+            "iso": "ec",
+            "name": "Ecuador",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Metropolitano Roberto Meléndez",
+            "city": "Barranquilla",
+            "country_iso": "co"
+          },
+          "goals_arg": [],
+          "notes": "Derrota a pesar de superioridad numérica. Profundización del bache."
+        },
+        {
+          "matchday": 13,
+          "date": "2025-03-20",
+          "home": {
+            "iso": "br",
+            "name": "Brasil",
+            "score": 2
+          },
+          "away": {
+            "iso": "co",
+            "name": "Colombia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Mané Garrincha",
+            "city": "Brasilia",
+            "country_iso": "br"
+          },
+          "goals_arg": [
+            {
+              "player": "Luis Díaz",
+              "minute": "41'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 14,
+          "date": "2025-03-25",
+          "home": {
+            "iso": "co",
+            "name": "Colombia",
+            "score": 2
+          },
+          "away": {
+            "iso": "py",
+            "name": "Paraguay",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Metropolitano Roberto Meléndez",
+            "city": "Barranquilla",
+            "country_iso": "co"
+          },
+          "goals_arg": [
+            {
+              "player": "Luis Díaz",
+              "minute": "10'",
+              "type": "goal"
+            },
+            {
+              "player": "Jhon Lucumí",
+              "minute": "70'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Empate frustrante en casa que prolongó el bache."
+        },
+        {
+          "matchday": 15,
+          "date": "2025-06-05",
+          "home": {
+            "iso": "pe",
+            "name": "Perú",
+            "score": 0
+          },
+          "away": {
+            "iso": "co",
+            "name": "Colombia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Estadio Nacional",
+            "city": "Lima",
+            "country_iso": "pe"
+          },
+          "goals_arg": []
+        },
+        {
+          "matchday": 16,
+          "date": "2025-06-10",
+          "home": {
+            "iso": "ar",
+            "name": "Argentina",
+            "score": 1
+          },
+          "away": {
+            "iso": "co",
+            "name": "Colombia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Más Monumental",
+            "city": "Buenos Aires",
+            "country_iso": "ar"
+          },
+          "goals_arg": [
+            {
+              "player": "James Rodríguez",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 17,
+          "date": "2025-09-04",
+          "home": {
+            "iso": "co",
+            "name": "Colombia",
+            "score": 3
+          },
+          "away": {
+            "iso": "bo",
+            "name": "Bolivia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Metropolitano Roberto Meléndez",
+            "city": "Barranquilla",
+            "country_iso": "co"
+          },
+          "goals_arg": [
+            {
+              "player": "Juan Fernando Quintero",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "James Rodríguez",
+              "minute": "55'",
+              "type": "penalty"
+            },
+            {
+              "player": "Jhon Córdoba",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Goleada que selló virtualmente la clasificación."
+        },
+        {
+          "matchday": 18,
+          "date": "2025-09-09",
+          "home": {
+            "iso": "ve",
+            "name": "Venezuela",
+            "score": 3
+          },
+          "away": {
+            "iso": "co",
+            "name": "Colombia",
+            "score": 6
+          },
+          "venue": {
+            "stadium": "Monumental de Maturín",
+            "city": "Maturín",
+            "country_iso": "ve"
+          },
+          "goals_arg": [
+            {
+              "player": "Luis Suárez",
+              "minute": "10'",
+              "type": "goal"
+            },
+            {
+              "player": "Luis Suárez",
+              "minute": "35'",
+              "type": "goal"
+            },
+            {
+              "player": "Luis Suárez",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Luis Suárez",
+              "minute": "70'",
+              "type": "goal"
+            },
+            {
+              "player": "Yerry Mina",
+              "minute": "78'",
+              "type": "goal"
+            },
+            {
+              "player": "Juan Fernando Quintero",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Cierre histórico con 6 goles. Póker de Luis Suárez (delantero del Sporting de Lisboa, no confundir con el uruguayo). Selló 3er puesto definitivo."
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Luis Díaz",
+          "goals": 7,
+          "notes": "Goleador del equipo. Doblete histórico ante Brasil."
+        },
+        {
+          "player": "James Rodríguez",
+          "goals": 4
+        },
+        {
+          "player": "Luis Suárez",
+          "goals": 4,
+          "notes": "Póker en Venezuela 6-3 en última fecha."
+        },
+        {
+          "player": "Juan Fernando Quintero",
+          "goals": 2
+        },
+        {
+          "player": "Jhon Córdoba",
+          "goals": 2
+        },
+        {
+          "player": "Mateus Uribe",
+          "goals": 1
+        },
+        {
+          "player": "Rafael Borré",
+          "goals": 1
+        },
+        {
+          "player": "Yerson Mosquera",
+          "goals": 1
+        },
+        {
+          "player": "Daniel Muñoz",
+          "goals": 1
+        },
+        {
+          "player": "Jhon Arias",
+          "goals": 1
+        },
+        {
+          "player": "Jhon Lucumí",
+          "goals": 1
+        },
+        {
+          "player": "Yerry Mina",
+          "goals": 1
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_5",
+        "reason": "El 2-1 a Brasil en Barranquilla el 16 de noviembre de 2023 con doblete de Luis Díaz. Primera victoria oficial de Colombia ante Brasil en eliminatorias."
+      },
+      "worst_match": {
+        "match_ref": "matchday_9",
+        "reason": "Derrota 1-0 ante Bolivia en La Paz. Sorpresa ante una de las selecciones más débiles del continente y inicio de la racha de mal rendimiento."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_18",
+        "reason": "El 6-3 a Venezuela en Maturín con póker de Luis Suárez selló el 3er puesto y cerró la eliminatoria con la mejor goleada del ciclo."
+      }
+    },
+    "group_2026": {
+      "letter": "K",
+      "label": "Grupo K — junto a Portugal, Uzbekistán y RD Congo",
+      "teams": [
+        {
+          "iso": "pt",
+          "name": "Portugal",
+          "fifa_rank": null,
+          "is_seed": true
+        },
+        {
+          "iso": "co",
+          "name": "Colombia",
+          "fifa_rank": 14,
+          "is_seed": false
+        },
+        {
+          "iso": "uz",
+          "name": "Uzbekistán",
+          "fifa_rank": 50,
+          "is_seed": false
+        },
+        {
+          "iso": "cd",
+          "name": "RD Congo",
+          "fifa_rank": 60,
+          "is_seed": false
+        }
+      ],
+      "notes": "Grupo confirmado según sorteo del 5 de diciembre 2025. Colombia debuta el 17 de junio vs Uzbekistán en Estadio Azteca de CDMX, luego vs RD Congo el 23 en Guadalajara, y cierra ante Portugal el 27 en Hard Rock Stadium de Miami."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "uz",
+          "name": "Uzbekistán"
+        },
+        "date": "2026-06-17",
+        "venue": {
+          "stadium": "Estadio Azteca",
+          "city": "Ciudad de México",
+          "country_iso": "mx"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "cd",
+          "name": "RD Congo"
+        },
+        "date": "2026-06-23",
+        "venue": {
+          "stadium": "Estadio Akron",
+          "city": "Guadalajara",
+          "country_iso": "mx"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "pt",
+          "name": "Portugal"
+        },
+        "date": "2026-06-27",
+        "venue": {
+          "stadium": "Hard Rock Stadium",
+          "city": "Miami",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — FCF aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Néstor Lorenzo",
+      "age": 60,
+      "nationality": "Argentina",
+      "since": "2022-06-08",
+      "previous_teams": [
+        "Asistente de José Pekerman en Argentina y Colombia (2007-2018)",
+        "Melgar (2020-2022)",
+        "Banfield (2018-2019)"
+      ],
+      "profile_summary": "Argentino, ayudante histórico de José Pekerman en la propia Colombia 2014-2018. Tras Pekerman dirigió varios clubes sin gran éxito. Asumió Colombia en 2022 con escepticismo pero construyó un proyecto sólido. Subcampeón Copa América 2024. Tras un bache eliminatorio a finales de 2024, recompuso al equipo para asegurar el 3º puesto. Identidad táctica: 4-2-3-1 con James enganchado, Luis Díaz como referencia ofensiva por izquierda y bloque medio-bajo con transiciones.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/FWC_2018_-_Round_of_16_-_COL_v_ENG_-_N%C3%A9stor_Lorenzo.jpg/330px-FWC_2018_-_Round_of_16_-_COL_v_ENG_-_N%C3%A9stor_Lorenzo.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/N%C3%A9stor_Lorenzo"
+      }
+    },
+    "captain": {
+      "name": "James Rodríguez",
+      "club": "Club León",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/2019-03-09_Fu%C3%9Fball%2C_M%C3%A4nner%2C_1._Bundesliga%2C_FC_Bayern_M%C3%BCnchen_-_VfL_Wolfsburg_StP_2655_by_Stepro.jpg/330px-2019-03-09_Fu%C3%9Fball%2C_M%C3%A4nner%2C_1._Bundesliga%2C_FC_Bayern_M%C3%BCnchen_-_VfL_Wolfsburg_StP_2655_by_Stepro.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/James_Rodr%C3%ADguez"
+      }
+    },
+    "star_player": {
+      "name": "Luis Díaz",
+      "club": "Bayern Múnich",
+      "reason": "El extremo del Bayern Múnich (transferido del Liverpool en julio 2025) es el goleador histórico del ciclo eliminatorio (7 goles) y referente del ataque. Capaz de desequilibrar 1vs1 y de marcar de cualquier forma. A los 29 años llega a su pico futbolístico en su primer Mundial.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/FC_RB_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%282026-01-06_Testspiel%29_40_%28Luiz_D%C3%ADaz%29.jpg/330px-FC_RB_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%282026-01-06_Testspiel%29_40_%28Luiz_D%C3%ADaz%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Luis_D%C3%ADaz"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "camilo-vargas",
+        "full_name": "Camilo Vargas",
+        "display_name": "Camilo Vargas",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Atlas FC",
+          "country_iso": "mx",
+          "league": "Liga MX"
+        },
+        "shirt_number_expected": 22,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Camilo_Vargas_2022.jpeg/330px-Camilo_Vargas_2022.jpeg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Camilo_Vargas"
+        }
+      },
+      {
+        "id": "david-ospina",
+        "full_name": "David Ospina",
+        "display_name": "David Ospina",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Atlético Nacional",
+          "country_iso": "co",
+          "league": "Liga BetPlay"
+        },
+        "shirt_number_expected": 1,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/David_Ospina%2C_2015-05-31_%28cropped%29.JPG/330px-David_Ospina%2C_2015-05-31_%28cropped%29.JPG",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/David_Ospina"
+        }
+      },
+      {
+        "id": "alvaro-montero",
+        "full_name": "Álvaro Montero",
+        "display_name": "Álvaro Montero",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Millonarios",
+          "country_iso": "co",
+          "league": "Liga BetPlay"
+        },
+        "shirt_number_expected": 12,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Alvaro_Montero.jpg/330px-Alvaro_Montero.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/%C3%81lvaro_Montero"
+        }
+      },
+      {
+        "id": "daniel-munoz",
+        "full_name": "Daniel Muñoz",
+        "display_name": "Daniel Muñoz",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Crystal Palace",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed"
+      },
+      {
+        "id": "santiago-arias",
+        "full_name": "Santiago Arias",
+        "display_name": "Santiago Arias",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Bahia",
+          "country_iso": "br",
+          "league": "Brasileirão"
+        },
+        "shirt_number_expected": 17,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Santiago_Arias_2019.jpg/330px-Santiago_Arias_2019.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Santiago_Arias"
+        }
+      },
+      {
+        "id": "davinson-sanchez",
+        "full_name": "Dávinson Sánchez",
+        "display_name": "Dávinson Sánchez",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Galatasaray",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 23,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/D%C3%A1vinson_S%C3%A1nchez%2C_POL_vs_COL%3B_FWC_2018.jpg/330px-D%C3%A1vinson_S%C3%A1nchez%2C_POL_vs_COL%3B_FWC_2018.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/D%C3%A1vinson_S%C3%A1nchez"
+        }
+      },
+      {
+        "id": "jhon-lucumi",
+        "full_name": "Jhon Lucumí",
+        "display_name": "Jhon Lucumí",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Bologna",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Jhon_Lucum%C3%AD_September_2019.jpg/330px-Jhon_Lucum%C3%AD_September_2019.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jhon_Lucum%C3%AD"
+        }
+      },
+      {
+        "id": "yerry-mina",
+        "full_name": "Yerry Mina",
+        "display_name": "Yerry Mina",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Cagliari",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 13,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/FWC_2018_-_Round_of_16_-_COL_v_ENG_-_Photo_103_%28cropped%29.jpg/330px-FWC_2018_-_Round_of_16_-_COL_v_ENG_-_Photo_103_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Yerry_Mina"
+        }
+      },
+      {
+        "id": "carlos-cuesta",
+        "full_name": "Carlos Cuesta",
+        "display_name": "Carlos Cuesta",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Galatasaray",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 5,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/%28Carlos_Cuesta%29_FORO_MADRID_ESPA%C3%91A_SIN_FILTROS._Pablo_Casado%2C_Carlos_Cuesta%2C_Daniel_Lacalle_y_Jose_Luis_Martinez_Almeida._%2845581836112%29_%28cropped%29.jpg/330px-%28Carlos_Cuesta%29_FORO_MADRID_ESPA%C3%91A_SIN_FILTROS._Pablo_Casado%2C_Carlos_Cuesta%2C_Daniel_Lacalle_y_Jose_Luis_Martinez_Almeida._%2845581836112%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Carlos_Cuesta"
+        }
+      },
+      {
+        "id": "johan-mojica",
+        "full_name": "Johan Mojica",
+        "display_name": "Johan Mojica",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "RCD Mallorca",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/FWC_2018_-_Round_of_16_-_COL_v_ENG_-_Photo_102_%28cropped%29_2.jpg/330px-FWC_2018_-_Round_of_16_-_COL_v_ENG_-_Photo_102_%28cropped%29_2.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Johan_Mojica"
+        }
+      },
+      {
+        "id": "jefferson-lerma",
+        "full_name": "Jefferson Lerma",
+        "display_name": "Jefferson Lerma",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Crystal Palace",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 16,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Jefferson_Lerma_2018.png/330px-Jefferson_Lerma_2018.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jefferson_Lerma"
+        }
+      },
+      {
+        "id": "richard-rios",
+        "full_name": "Richard Ríos",
+        "display_name": "Richard Ríos",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Palmeiras",
+          "country_iso": "br",
+          "league": "Brasileirão"
+        },
+        "shirt_number_expected": 25,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Richard-Rios-Palmeiras-Liverpool-abr24.jpg/330px-Richard-Rios-Palmeiras-Liverpool-abr24.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Richard_R%C3%ADos"
+        }
+      },
+      {
+        "id": "kevin-castano",
+        "full_name": "Kevin Castaño",
+        "display_name": "Kevin Castaño",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "River Plate",
+          "country_iso": "ar",
+          "league": "Liga Profesional"
+        },
+        "shirt_number_expected": 6,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Kevin_con_Krasnodar_en_2023.jpg/330px-Kevin_con_Krasnodar_en_2023.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Kevin_Casta%C3%B1o"
+        }
+      },
+      {
+        "id": "james-rodriguez",
+        "full_name": "James David Rodríguez",
+        "display_name": "James Rodríguez",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Club León",
+          "country_iso": "mx",
+          "league": "Liga MX"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/James_Roday_by_Gage_Skidmore.jpg/330px-James_Roday_by_Gage_Skidmore.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/James_Roday"
+        }
+      },
+      {
+        "id": "juan-fernando-quintero",
+        "full_name": "Juan Fernando Quintero",
+        "display_name": "Juanfer Quintero",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "América de Cali",
+          "country_iso": "co",
+          "league": "Liga BetPlay"
+        },
+        "shirt_number_expected": 20,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Juan_Quintero_%28cropped%29.jpg/330px-Juan_Quintero_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Juan_Fernando_Quintero"
+        }
+      },
+      {
+        "id": "jaminton-campaz",
+        "full_name": "Jaminton Campaz",
+        "display_name": "Jaminton Campaz",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Rosario Central",
+          "country_iso": "ar",
+          "league": "Liga Profesional"
+        },
+        "shirt_number_expected": 21,
+        "status": "bubble"
+      },
+      {
+        "id": "luis-diaz",
+        "full_name": "Luis Fernando Díaz",
+        "display_name": "Luis Díaz",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Bayern Múnich",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/FC_RB_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%282026-01-06_Testspiel%29_40_%28Luiz_D%C3%ADaz%29.jpg/330px-FC_RB_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%282026-01-06_Testspiel%29_40_%28Luiz_D%C3%ADaz%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Luis_D%C3%ADaz_(footballer%2C_born_1997)"
+        }
+      },
+      {
+        "id": "jhon-arias",
+        "full_name": "Jhon Arias",
+        "display_name": "Jhon Arias",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Wolverhampton",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed"
+      },
+      {
+        "id": "jhon-duran",
+        "full_name": "Jhon Jáder Durán",
+        "display_name": "Jhon Durán",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Al-Nassr",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 24,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Jhon_Dur%C3%A1n%2C_Esteghlal_FC_vs_Al-Nassr_FC_%28ACLElite%29%3B_3_Mar_2025.png/330px-Jhon_Dur%C3%A1n%2C_Esteghlal_FC_vs_Al-Nassr_FC_%28ACLElite%29%3B_3_Mar_2025.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Jhon_Dur%C3%A1n"
+        }
+      },
+      {
+        "id": "jhon-cordoba",
+        "full_name": "Jhon Córdoba",
+        "display_name": "Jhon Córdoba",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Krasnodar",
+          "country_iso": "ru",
+          "league": "RPL"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Jhon_C%C3%B3rdoba%2C_FC_K%C3%B6ln%3B_29_Jul_2018.jpg/330px-Jhon_C%C3%B3rdoba%2C_FC_K%C3%B6ln%3B_29_Jul_2018.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jhon_C%C3%B3rdoba"
+        }
+      },
+      {
+        "id": "luis-suarez",
+        "full_name": "Luis Javier Suárez",
+        "display_name": "Luis Suárez (col)",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Sporting CP",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Luis_Javier_Su%C3%A1rez_Charris.jpg/330px-Luis_Javier_Su%C3%A1rez_Charris.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Luis_Javier_Su%C3%A1rez"
+        }
+      },
+      {
+        "id": "luis-sinisterra",
+        "full_name": "Luis Sinisterra",
+        "display_name": "Luis Sinisterra",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Bournemouth",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 26,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Luis_Sinisterra.png/330px-Luis_Sinisterra.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Luis_Sinisterra"
+        }
+      },
+      {
+        "id": "yaser-asprilla",
+        "full_name": "Yáser Asprilla",
+        "display_name": "Yáser Asprilla",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Girona",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 14,
+        "status": "probable"
+      },
+      {
+        "id": "rafael-borre",
+        "full_name": "Rafael Santos Borré",
+        "display_name": "Rafael Borré",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Internacional",
+          "country_iso": "br",
+          "league": "Brasileirão"
+        },
+        "shirt_number_expected": 8,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/RAFAEL_BORRE_%28cropped2%29.jpg/330px-RAFAEL_BORRE_%28cropped2%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Rafael_Santos_Borr%C3%A9"
+        }
+      },
+      {
+        "id": "marino-hinestroza",
+        "full_name": "Marino Hinestroza",
+        "display_name": "Marino Hinestroza",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Atlético Nacional",
+          "country_iso": "co",
+          "league": "Liga BetPlay"
+        },
+        "shirt_number_expected": 15,
+        "status": "bubble"
+      },
+      {
+        "id": "jorge-carrascal",
+        "full_name": "Jorge Carrascal",
+        "display_name": "Jorge Carrascal",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Dinamo Moscú",
+          "country_iso": "ru",
+          "league": "RPL"
+        },
+        "shirt_number_expected": 2,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Jorge_Carrascal_2025.jpg/330px-Jorge_Carrascal_2025.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jorge_Carrascal"
+        }
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-2-3-1",
+      "players": [
+        {
+          "player_id": "camilo-vargas",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "daniel-munoz",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "davinson-sanchez",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "jhon-lucumi",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "johan-mojica",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "jefferson-lerma",
+          "position": {
+            "x": 65,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "richard-rios",
+          "position": {
+            "x": 35,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "jhon-arias",
+          "position": {
+            "x": 85,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "james-rodriguez",
+          "position": {
+            "x": 50,
+            "y": 35
+          }
+        },
+        {
+          "player_id": "luis-diaz",
+          "position": {
+            "x": 15,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "jhon-duran",
+          "position": {
+            "x": 50,
+            "y": 15
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Néstor Lorenzo plantea un 4-2-3-1 sólido con doble pivote (Lerma + Ríos), James Rodríguez como '10' enganchado y Luis Díaz por la izquierda. Identidad: control del partido, transiciones rápidas con Díaz y Arias, y juego asociativo en el último tercio con James como director. Cuando James no puede jugar, el equipo pierde mucho potencial creativo.",
+      "strengths": [
+        "Luis Díaz: extremo de élite mundial, goleador del ciclo (7 en eliminatorias).",
+        "James Rodríguez: a los 34, sigue siendo el director técnico del equipo desde dentro. Capitán y figura.",
+        "Defensa sólida: Dávinson Sánchez, Lucumí, Mojica con experiencia europea.",
+        "Profundidad ofensiva: Jhon Durán, Luis Suárez, Sinisterra, Asprilla. Variedad de perfiles.",
+        "Mentalidad ganadora: subcampeón Copa América 2024."
+      ],
+      "weaknesses": [
+        "Dependencia excesiva de James: cuando él no rinde, el equipo se desconecta.",
+        "Bache de 6 partidos sin ganar a finales de 2024 mostró fragilidad mental.",
+        "Posición del 9 sin titular claro: Durán, Córdoba, Suárez son alternativas.",
+        "Edad de varios titulares: James (34), Lerma (31), Mojica (33).",
+        "Defensa aérea ocasional: 21 goles encajados (más que ningún top 4 CONMEBOL)."
+      ],
+      "x_factor": {
+        "player": "Richard Ríos",
+        "reason": "El mediocampista del Palmeiras (24 años) emergió como sorpresa del ciclo. Físico, técnico, capaz de romper líneas y aparecer en área. Su presencia da equilibrio al doble pivote junto a Lerma, liberando a James para crear."
+      },
+      "prediction_text": "Colombia llega tras 12 años sin levantar el trofeo continental (CA 2001) y con el dolor reciente de la final perdida ante Argentina en 2024. En el Grupo K con Portugal, Uzbekistán y RD Congo, el objetivo claro es pasar como 1ª o 2ª. Cuartos de final es objetivo realista. Romper el techo histórico (cuartos en 2014) requiere que James llegue al 100% y que Luis Díaz mantenga su nivel goleador.",
+      "probabilities": {
+        "advance_groups": 90,
+        "round_of_32": 82,
+        "round_of_16": 65,
+        "quarter_finals": 35,
+        "semi_finals": 15,
+        "final": 6,
+        "champion": 2
+      },
+      "vs_last_3_wcs": "Brasil 2014: cuartos, eliminada por Brasil 2-1 (lesión grave de Neymar por entrada de Zúñiga). Rusia 2018: octavos, eliminada por Inglaterra en penales tras 1-1. Catar 2022: NO clasificó (6º puesto eliminatoria). Mundial 2026: regreso tras 8 años de ausencia con la generación de James-Luis Díaz buscando superar los cuartos por primera vez."
+    }
+  },
+  "history": {
+    "first_appearance": 1962,
+    "appearances_count_before_2026": 6,
+    "appearances_count_with_2026": 7,
+    "consecutive_streak_since": 2026,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 0,
+    "best_result": "Cuartos de final (Brasil 2014)",
+    "aggregate_stats_through_2022": {
+      "played": 22,
+      "won": 7,
+      "drawn": 6,
+      "lost": 9,
+      "goals_for": 26,
+      "goals_against": 30,
+      "win_percentage": 31.8,
+      "notes": "Datos hasta Qatar 2022 (sin participación)."
+    },
+    "by_world_cup": [
+      {
+        "year": 1962,
+        "host": {
+          "countries": [
+            "Chile"
+          ],
+          "iso": [
+            "cl"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Adolfo Pedernera",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Marcos Coll",
+            "goals": 1
+          },
+          {
+            "player": "Francisco Zuluaga",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 5,
+        "goals_conceded": 11,
+        "notable_facts": [
+          "Debut histórico de Colombia.",
+          "Empate 4-4 ante URSS con gol olímpico de Marcos Coll (único en la historia mundial)."
+        ],
+        "narrative": "Colombia debutó en Mundiales con el 4-4 ante URSS, una de las grandes sorpresas del torneo. Tras ir 1-3 abajo, remontó. Marcos Coll marcó al 21' un gol olímpico (de saque de esquina directamente a portería), único en la historia de los Mundiales hasta hoy."
+      },
+      {
+        "year": 1990,
+        "host": {
+          "countries": [
+            "Italia"
+          ],
+          "iso": [
+            "it"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Francisco Maturana",
+        "captain": "Carlos Valderrama",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Bernardo Redín",
+            "goals": 1
+          },
+          {
+            "player": "Freddy Rincón",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "Primer regreso al Mundial tras 28 años.",
+          "Eliminada por Camerún 2-1 en prórroga (Roger Milla)."
+        ],
+        "narrative": "Colombia volvió al Mundial con Carlos Valderrama, René Higuita, Freddy Rincón y Pacho Maturana al frente. Empate 1-1 con Alemania al 92' con gol icónico de Rincón en jugada de Valderrama. En octavos cayó ante Camerún en prórroga: Roger Milla marcó dos goles, uno tras error de Higuita en salida con bicicleta."
+      },
+      {
+        "year": 1994,
+        "host": {
+          "countries": [
+            "Estados Unidos"
+          ],
+          "iso": [
+            "us"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Francisco Maturana",
+        "captain": "Carlos Valderrama",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Adolfo Valencia",
+            "goals": 1
+          },
+          {
+            "player": "Hernán Gaviria",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Llegó como favorita tras goleada 5-0 a Argentina en eliminatorias.",
+          "Eliminación traumática: derrotas con Rumania y Estados Unidos.",
+          "Andrés Escobar marcó autogol decisivo y fue asesinado al regresar a Colombia."
+        ],
+        "narrative": "El trauma fundacional. Colombia llegaba como favorita tras la histórica goleada 5-0 a Argentina en El Monumental. Pero perdió 1-3 con Rumania, 1-2 con USA (autogol de Andrés Escobar tras presión narco-deportiva), y solo venció 2-0 a Suiza. Andrés Escobar fue asesinado en Medellín 5 días después de regresar. Tragedia que marcó al fútbol colombiano para siempre."
+      },
+      {
+        "year": 1998,
+        "host": {
+          "countries": [
+            "Francia"
+          ],
+          "iso": [
+            "fr"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Hernán Darío Gómez",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Léider Preciado",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 1,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Eliminada en primera ronda con solo 3 puntos.",
+          "Cierre de la era Valderrama-Higuita."
+        ],
+        "narrative": "Tercera participación consecutiva. Colombia perdió 0-1 con Rumania, ganó 1-0 a Túnez con gol de Preciado, y perdió 0-2 con Inglaterra (Beckham anotó). Cierre de la era dorada del fútbol colombiano."
+      },
+      {
+        "year": 2014,
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "José Pekerman",
+        "captain": "Mario Yepes",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "James Rodríguez",
+            "goals": 6
+          }
+        ],
+        "goals_scored": 12,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "MEJOR PARTICIPACIÓN HISTÓRICA: cuartos de final.",
+          "James Rodríguez fue Bota de Oro con 6 goles.",
+          "Eliminada por Brasil 2-1 en cuartos (lesión grave de Neymar por Zúñiga)."
+        ],
+        "narrative": "El mejor Mundial de Colombia. Sin Falcao (lesionado pre-Mundial), James Rodríguez se convirtió en figura mundial. Goleó 3-0 a Grecia, 2-1 a Costa de Marfil, 4-1 a Japón en grupos. En octavos 2-0 a Uruguay con un golazo de volea de James (Premio Puskás 2014). En cuartos ante Brasil: 1-2. Zúñiga lesionó gravemente a Neymar (vértebra fracturada). James fue Bota de Oro con 6 goles. Cuartos de final, mejor papel histórico."
+      },
+      {
+        "year": 2018,
+        "host": {
+          "countries": [
+            "Rusia"
+          ],
+          "iso": [
+            "ru"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "José Pekerman",
+        "captain": "Radamel Falcao",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Yerry Mina",
+            "goals": 3
+          }
+        ],
+        "goals_scored": 6,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Eliminada por Inglaterra en penales (1-1 reglamentario)."
+        ],
+        "narrative": "Colombia con James, Falcao y Cuadrado llegó a Rusia con esperanzas. Perdió 1-2 con Japón en debut sorpresivo, batió 3-0 a Polonia (gol icónico de Quintero) y 1-0 a Senegal. En octavos ante Inglaterra empató 1-1 con Yerry Mina al 93'. En penales, Mateus Uribe falló y Bacca también. Adiós."
+      }
+    ],
+    "palmares": [
+      {
+        "competition": "Copa América",
+        "year": 2001,
+        "position": "Campeón",
+        "host": "Colombia"
+      },
+      {
+        "competition": "Copa América",
+        "year": 1975,
+        "position": "Subcampeón",
+        "host": "Sudamérica (sin sede fija)"
+      },
+      {
+        "competition": "Copa América",
+        "year": 2024,
+        "position": "Subcampeón",
+        "host": "Estados Unidos"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Radamel Falcao García",
+      "value": 36,
+      "period": "2007-presente",
+      "notes": "El 'Tigre' es máximo goleador histórico de Colombia. Lesión grave en 2014 le impidió jugar el mejor Mundial colombiano."
+    },
+    "most_capped": {
+      "name": "David Ospina",
+      "value": 128,
+      "period": "2007-presente",
+      "notes": "Récord de presencias. Portero de la generación dorada y el regreso al Mundial 2014/2018."
+    },
+    "youngest_debut": {
+      "name": "James Rodríguez",
+      "value": "20 años aprox.",
+      "period": "2011 vs Bolivia",
+      "notes": "Datos pendientes verificación primaria FCF."
+    },
+    "biggest_win": {
+      "result": "5-0",
+      "opponent": "Argentina",
+      "date": "1993-09-05",
+      "competition": "Eliminatorias Mundial 1994"
+    },
+    "worst_loss": {
+      "result": "0-9",
+      "opponent": "Brasil",
+      "date": "1957-04-24",
+      "competition": "Copa América (sub)"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El gol olímpico de Marcos Coll",
+      "date": "1962-06-03",
+      "opponent": {
+        "iso": "ru",
+        "name": "Unión Soviética"
+      },
+      "score": "4-4",
+      "competition": "Fase de Grupos Mundial 1962",
+      "narrative": "Colombia debutó en Mundiales con el icónico empate 4-4 ante URSS de Lev Yashin. Marcos Coll marcó un gol olímpico (de saque de esquina directamente a portería) al 21'. Es el ÚNICO gol olímpico en la historia de los Mundiales."
+    },
+    {
+      "title": "El 5-0 a Argentina",
+      "date": "1993-09-05",
+      "opponent": {
+        "iso": "ar",
+        "name": "Argentina"
+      },
+      "score": "5-0",
+      "competition": "Eliminatorias Mundial 1994",
+      "narrative": "Colombia goleó 5-0 a Argentina en El Monumental de Buenos Aires por las eliminatorias de USA 1994. Goles de Rincón (2), Asprilla (2) y Valencia. Una de las mayores humillaciones del fútbol argentino. La Tricolor de Pacho Maturana llegó al Mundial 1994 como una de las grandes favoritas."
+    },
+    {
+      "title": "El autogol de Andrés Escobar",
+      "date": "1994-06-22",
+      "opponent": {
+        "iso": "us",
+        "name": "Estados Unidos"
+      },
+      "score": "1-2",
+      "competition": "Fase de Grupos Mundial 1994",
+      "narrative": "Colombia perdió 2-1 ante Estados Unidos en Pasadena. Andrés Escobar marcó en propia portería al 35'. Tras la derrota, Colombia quedó eliminada. Escobar fue ASESINADO 5 días después de regresar a Medellín, en un caso vinculado al narcotráfico que marcó al fútbol colombiano para siempre."
+    },
+    {
+      "title": "El golazo de James a Uruguay",
+      "date": "2014-06-28",
+      "opponent": {
+        "iso": "uy",
+        "name": "Uruguay"
+      },
+      "score": "2-0",
+      "competition": "Octavos Mundial 2014",
+      "narrative": "James Rodríguez marcó un golazo de volea ante Uruguay tras pase de Abel Aguilar. Bajada de pecho, giro y voleo al ángulo. Fue elegido Premio Puskás 2014 al mejor gol del año. Uno de los goles más bellos de la historia mundialista."
+    },
+    {
+      "title": "La final de la Copa América 2024",
+      "date": "2024-07-14",
+      "opponent": {
+        "iso": "ar",
+        "name": "Argentina"
+      },
+      "score": "0-1 (prórroga)",
+      "competition": "Final Copa América 2024",
+      "narrative": "Colombia llegó invicta a la final ante Argentina en Miami. 0-0 reglamentario. En la prórroga, Lautaro Martínez marcó al 112' tras pase de Lo Celso. Argentina ganó su 16ª Copa América. James fue Mejor Jugador del Torneo. Subcampeonato amargo."
+    },
+    {
+      "title": "El doblete de Lucho a Brasil",
+      "date": "2023-11-16",
+      "opponent": {
+        "iso": "br",
+        "name": "Brasil"
+      },
+      "score": "2-1",
+      "competition": "Eliminatorias Mundial 2026",
+      "narrative": "Colombia derrotó 2-1 a Brasil en Barranquilla con doblete de Luis Díaz al 75' y 79'. Primera victoria oficial de la Tricolor sobre Brasil en eliminatorias. Lucho jugó dedicando los goles a su padre, secuestrado por el ELN días antes y posteriormente liberado."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "Marcos Coll es el ÚNICO jugador en marcar un gol olímpico (de saque de esquina directo) en la historia de los Mundiales (vs URSS 1962).",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "James Rodríguez ganó el Bota de Oro del Mundial 2014 con 6 goles. Es el único colombiano en lograr este premio.",
+      "source": "FIFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "El asesinato de Andrés Escobar en 1994 tras su autogol marcó al fútbol colombiano para siempre. Película documental 'The Two Escobars' de ESPN cuenta la conexión narcotráfico-fútbol de los 80-90.",
+      "source": "ESPN + BBC",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Colombia es la única selección sudamericana cuyo mejor papel mundialista (cuartos 2014) lo logró fuera del top 5 histórico continental.",
+      "source": "FIFA + RSSSF",
+      "verified_at": "2026-04-28",
+      "status": "single_source"
+    },
+    {
+      "text": "La generación 'Dorada' (1990-1998) liderada por Carlos Valderrama, René Higuita, Faustino Asprilla, Freddy Rincón clasificó 3 Mundiales consecutivos (1990, 1994, 1998), récord histórico colombiano.",
+      "source": "FCF + ESPN",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Néstor Lorenzo es el segundo argentino que dirige a Colombia tras José Pekerman (2012-2018). Ambos llegaron tras malos ciclos y construyeron clasificaciones mundialistas.",
+      "source": "FCF",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Luis Díaz fue 2º colombiano en ganar la Premier League (Liverpool 2024-25, tras la primera de Faustino Asprilla con Newcastle... validar). En julio 2025 fichó por el Bayern Múnich.",
+      "source": "Premier League + Bayern Munich",
+      "verified_at": "2026-04-28",
+      "status": "needs_review"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Yo soy colombiano, soy cafetero",
+      "Vamos Colombia carajo",
+      "Oé Colombia, oé"
+    ],
+    "main_rival": {
+      "iso": "ar",
+      "name": "Argentina",
+      "story": "Rivalidad histórica que se intensificó en los 90 con la generación Maturana-Valderrama. El 5-0 de 1993 en Buenos Aires y la final perdida de la Copa América 2024 son los dos polos opuestos de la relación."
+    },
+    "home_stadium": {
+      "name": "Estadio Metropolitano Roberto Meléndez",
+      "capacity": 46692,
+      "city": "Barranquilla"
+    }
+  },
+  "seo": {
+    "meta_title": "Colombia en el Mundial 2026 | Plantilla, historia y predicciones",
+    "meta_description": "Colombia Mundial 2026: 26 convocados de Néstor Lorenzo, James Rodríguez, Luis Díaz. Grupo K con Portugal, Uzbekistán y RD Congo.",
+    "og_image_url": "/img/og/teams/colombia.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Colombia",
+      "alternateName": [
+        "Tricolor",
+        "Cafeteros"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "CONMEBOL"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Néstor Lorenzo"
+      },
+      "url": "https://www.zonamundial.app/selecciones/colombia"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-28",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_Colombia",
+      "https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_de_Conmebol_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/15890881/mundial-2026-colombia-perfil-figuras-como-juega-historia",
+      "https://www.lanacion.com.ar/estados-unidos/colombia-ya-tiene-su-lista-de-jugadores-para-el-mundial-2026-con-luis-diaz-al-frente-segun-panini-nid22042026/",
+      "https://www.tudn.com/mundial-2026/eliminatorias/eliminatorias-mundial-2026-asi-quedo-tabla-posiciones-conmebol",
+      "https://www.elespectador.com/deportes/futbol-mundial/asi-quedo-la-tabla-de-las-eliminatorias-al-mundial-2026-tras-la-ultima-fecha-video-goles-colombia-argentina-venezuela-bolivia-brasil-noticias-hoy/",
+      "https://www.prensafutbol.cl/seleccion-colombia-perfil-historia-mundial/",
+      "https://www.infobae.com/colombia/deportes/2025/12/23/asi-fue-el-2025-de-la-seleccion-colombia-del-bache-en-eliminatorias-a-la-clasificacion-al-mundial-2026/",
+      "https://www.fcf.com.co",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias cruzadas con Wikipedia + TUDN + Infobae + ESPN. Historia mundialista validada con FIFA + Wikipedia + FCF. Plantilla con ESPN + Panini álbum oficial Mundial 2026.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "complete",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante: pendiente",
+      "Curiosidad Faustino Asprilla / Premier League: validar primera vs segunda victoria de un colombiano",
+      "Récord 'youngest_debut': cruzar con archivo FCF",
+      "Base de entrenamiento: FCF aún no anunció",
+      "FIFA Ranking #14: validar mes vigente"
+    ]
+  }
+}

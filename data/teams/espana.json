@@ -1,0 +1,1930 @@
+{
+  "slug": "espana",
+  "iso": "es",
+  "iso3": "ESP",
+  "name_es": "España",
+  "name_en": "Spain",
+  "name_local": "España",
+  "nicknames": [
+    "La Roja",
+    "La Furia Roja",
+    "La Selección"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#AA151B",
+      "secondary": "#F1BF00",
+      "tertiary": "#FFFFFF",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Madrid",
+    "language_official": [
+      "Español"
+    ],
+    "population": 48592909,
+    "area_km2": 505990,
+    "timezone": "Europe/Madrid",
+    "continent": "Europa"
+  },
+  "federation": {
+    "name": "Real Federación Española de Fútbol",
+    "abbreviation": "RFEF",
+    "founded": 1913,
+    "headquarters": "Las Rozas, Madrid",
+    "website": "https://www.rfef.es"
+  },
+  "confederation": "UEFA",
+  "fifa_ranking": {
+    "current": 2,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Adidas",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/espana.png",
+        "back_url": null,
+        "primary_color": "#AA151B",
+        "secondary_color": "#F1BF00",
+        "description": "Camiseta roja clásica con detalles dorados sobre el escudo de la RFEF, símbolo de La Roja. Lleva la única estrella ganada en Sudáfrica 2010.",
+        "alt_text": "Camiseta titular España Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#AA151B",
+        "description": "Equipación visitante en blanco con detalles rojos. Pendiente de subir.",
+        "alt_text": "Camiseta visitante España Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "España añadió su primera y única estrella sobre el escudo tras la final de Sudáfrica 2010, ganada 1-0 ante Países Bajos en prórroga con gol de Andrés Iniesta en el minuto 116.",
+        "source": "FIFA.com + RFEF oficial",
+        "verified_at": "2026-04-28",
+        "status": "validated"
+      },
+      {
+        "text": "La camiseta roja se llamó originalmente La Furia Roja por la actitud bravía del equipo en los Juegos Olímpicos de Amberes 1920, donde España logró la medalla de plata en su primer torneo internacional.",
+        "source": "RFEF oficial + Marca histórico",
+        "verified_at": "2026-04-28",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Líder del Grupo E de las eliminatorias UEFA con 16 de 18 puntos posibles (5 victorias y 1 empate). Cinco goleadas consecutivas (3-0, 6-0, 2-0, 4-0, 4-0) y solo el empate 2-2 ante Turquía en la última jornada como única mancha. Sin encajar gol en los primeros 5 partidos hasta el cierre. Mikel Merino terminó como goleador del equipo en el ciclo. España aseguró su 13ª clasificación consecutiva al Mundial.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias UEFA Mundial 2026 — Grupo E",
+      "format": "6 partidos · ida y vuelta · todos contra todos",
+      "duration": "Septiembre 2025 — Noviembre 2025",
+      "final_position": 1,
+      "total_teams_in_group": 4,
+      "stats": {
+        "played": 6,
+        "won": 5,
+        "drawn": 1,
+        "lost": 0,
+        "goals_for": 21,
+        "goals_against": 2,
+        "goal_difference": 19,
+        "points": 16,
+        "win_percentage": 83.3,
+        "clean_sheets": 5
+      },
+      "coach_during_qualifying": "Luis de la Fuente",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2025-09-04",
+          "home": {
+            "iso": "bg",
+            "name": "Bulgaria",
+            "score": 0
+          },
+          "away": {
+            "iso": "es",
+            "name": "España",
+            "score": 3
+          },
+          "venue": {
+            "stadium": "Vasil Levski",
+            "city": "Sofía",
+            "country_iso": "bg"
+          },
+          "goals_arg": [
+            {
+              "player": "Mikel Oyarzabal",
+              "minute": "5'",
+              "type": "goal"
+            },
+            {
+              "player": "Marc Cucurella",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Mikel Merino",
+              "minute": "38'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Debut sólido. Gran asistencia colectiva en el primer gol: Yamal-Pedri-Zubimendi-Oyarzabal."
+        },
+        {
+          "matchday": 2,
+          "date": "2025-09-07",
+          "home": {
+            "iso": "tr",
+            "name": "Turquía",
+            "score": 0
+          },
+          "away": {
+            "iso": "es",
+            "name": "España",
+            "score": 6
+          },
+          "venue": {
+            "stadium": "Konya Büyükşehir Arena",
+            "city": "Konya",
+            "country_iso": "tr"
+          },
+          "goals_arg": [
+            {
+              "player": "Pedri",
+              "minute": "6'",
+              "type": "goal"
+            },
+            {
+              "player": "Mikel Merino",
+              "minute": "22'",
+              "type": "goal"
+            },
+            {
+              "player": "Mikel Merino",
+              "minute": "45'",
+              "type": "goal"
+            },
+            {
+              "player": "Ferran Torres",
+              "minute": "53'",
+              "type": "goal"
+            },
+            {
+              "player": "Mikel Merino",
+              "minute": "57'",
+              "type": "goal"
+            },
+            {
+              "player": "Pedri",
+              "minute": "62'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Hat-trick de Mikel Merino y triplete de asistencias de Oyarzabal en una de las mejores actuaciones de La Roja del ciclo. Lamine Yamal también brilló con asistencias."
+        },
+        {
+          "matchday": 3,
+          "date": "2025-10-11",
+          "home": {
+            "iso": "es",
+            "name": "España",
+            "score": 2
+          },
+          "away": {
+            "iso": "ge",
+            "name": "Georgia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "El Sadar",
+            "city": "Pamplona",
+            "country_iso": "es"
+          },
+          "goals_arg": [
+            {
+              "player": "Mikel Oyarzabal",
+              "minute": "11'",
+              "type": "goal"
+            },
+            {
+              "player": "Ferran Torres",
+              "minute": "63'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Victoria menos vistosa pero efectiva. España manejó el partido con comodidad."
+        },
+        {
+          "matchday": 4,
+          "date": "2025-10-15",
+          "home": {
+            "iso": "es",
+            "name": "España",
+            "score": 4
+          },
+          "away": {
+            "iso": "bg",
+            "name": "Bulgaria",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "José Zorrilla",
+            "city": "Valladolid",
+            "country_iso": "es"
+          },
+          "goals_arg": [
+            {
+              "player": "Mikel Merino",
+              "minute": "27'",
+              "type": "goal"
+            },
+            {
+              "player": "Mikel Merino",
+              "minute": "53'",
+              "type": "goal"
+            },
+            {
+              "player": "Mikel Merino",
+              "minute": "76'",
+              "type": "goal"
+            },
+            {
+              "player": "Mikel Oyarzabal",
+              "minute": "90+1'",
+              "type": "penalty"
+            }
+          ],
+          "notes": "Hat-trick de Mikel Merino (su segundo en menos de 5 semanas) y penal final de Oyarzabal. Los goles de Merino vinieron de jugadas aéreas tras córneres y centros de Grimaldo y Yamal."
+        },
+        {
+          "matchday": 5,
+          "date": "2025-11-15",
+          "home": {
+            "iso": "ge",
+            "name": "Georgia",
+            "score": 0
+          },
+          "away": {
+            "iso": "es",
+            "name": "España",
+            "score": 4
+          },
+          "venue": {
+            "stadium": "Boris Paichadze Dinamo Arena",
+            "city": "Tbilisi",
+            "country_iso": "ge"
+          },
+          "goals_arg": [
+            {
+              "player": "Mikel Oyarzabal",
+              "minute": "11'",
+              "type": "goal"
+            },
+            {
+              "player": "Martín Zubimendi",
+              "minute": "22'",
+              "type": "goal"
+            },
+            {
+              "player": "Ferran Torres",
+              "minute": "35'",
+              "type": "goal"
+            },
+            {
+              "player": "Ferran Torres",
+              "minute": "63'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Doblete de Ferran Torres. Este resultado dejó a España con la clasificación virtualmente sellada."
+        },
+        {
+          "matchday": 6,
+          "date": "2025-11-18",
+          "home": {
+            "iso": "es",
+            "name": "España",
+            "score": 2
+          },
+          "away": {
+            "iso": "tr",
+            "name": "Turquía",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Cívitas Metropolitano",
+            "city": "Madrid",
+            "country_iso": "es"
+          },
+          "goals_arg": [
+            {
+              "player": "Dani Olmo",
+              "minute": "4'",
+              "type": "goal"
+            },
+            {
+              "player": "Mikel Oyarzabal",
+              "minute": "62'",
+              "type": "goal"
+            }
+          ],
+          "goals_opponent": [
+            {
+              "player": "Deniz Gül",
+              "minute": "42'",
+              "type": "goal"
+            },
+            {
+              "player": "Salih Özcan",
+              "minute": "54'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Empate en el cierre que perdió el pleno pero confirmó la clasificación matemática y la 1ª plaza. Olmo abrió con golazo desde fuera del área de volea. Turquía puso emoción al partido y se aseguró el 2º puesto.",
+          "is_decisive_match": true
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Mikel Merino",
+          "goals": 7,
+          "notes": "Goleador del equipo en el ciclo. Dos hat-tricks (Turquía y Bulgaria). Especialista en juego aéreo desde su rol de mediocentro box-to-box."
+        },
+        {
+          "player": "Mikel Oyarzabal",
+          "goals": 5
+        },
+        {
+          "player": "Ferran Torres",
+          "goals": 4
+        },
+        {
+          "player": "Pedri",
+          "goals": 2
+        },
+        {
+          "player": "Marc Cucurella",
+          "goals": 1
+        },
+        {
+          "player": "Martín Zubimendi",
+          "goals": 1
+        },
+        {
+          "player": "Dani Olmo",
+          "goals": 1
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_2",
+        "reason": "El 0-6 a Turquía en Konya el 7 de septiembre de 2025. Hat-trick de Merino, doblete de Pedri, gol de Ferran. Triplete de asistencias de Oyarzabal. Una de las mejores actuaciones colectivas de La Roja del ciclo."
+      },
+      "worst_match": {
+        "match_ref": "matchday_6",
+        "reason": "Empate 2-2 ante Turquía en el Metropolitano. Único partido en que España no ganó en todo el grupo y único en que encajó goles. Aunque la clasificación ya estaba sellada, perdió el pleno simbólico."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_5",
+        "reason": "El 4-0 a Georgia en Tbilisi el 15 de noviembre de 2025 dejó a España matemáticamente clasificada antes del último partido."
+      }
+    },
+    "group_2026": {
+      "letter": "[POR CONFIRMAR]",
+      "label": "Grupo asignado en sorteo del Mundial 2026",
+      "teams": [
+        {
+          "iso": "es",
+          "name": "España",
+          "fifa_rank": 2,
+          "is_seed": true
+        },
+        {
+          "iso": "[POR CONFIRMAR]",
+          "name": "[POR CONFIRMAR]",
+          "fifa_rank": null
+        },
+        {
+          "iso": "[POR CONFIRMAR]",
+          "name": "[POR CONFIRMAR]",
+          "fifa_rank": null
+        },
+        {
+          "iso": "[POR CONFIRMAR]",
+          "name": "[POR CONFIRMAR]",
+          "fifa_rank": null
+        }
+      ],
+      "notes": "Pendiente de cruzar con la página /grupos de zonamundial.app para confirmar grupo y rivales asignados a España en el sorteo final."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "[POR CONFIRMAR]",
+          "name": "[POR CONFIRMAR]"
+        },
+        "date": "[POR CONFIRMAR — fixture FIFA pendiente]",
+        "venue": {
+          "stadium": "[POR CONFIRMAR]",
+          "city": "",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "[POR CONFIRMAR]",
+          "name": "[POR CONFIRMAR]"
+        },
+        "date": "[POR CONFIRMAR]",
+        "venue": {
+          "stadium": "[POR CONFIRMAR]",
+          "city": "",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "[POR CONFIRMAR]",
+          "name": "[POR CONFIRMAR]"
+        },
+        "date": "[POR CONFIRMAR]",
+        "venue": {
+          "stadium": "[POR CONFIRMAR]",
+          "city": "",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — RFEF aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Luis de la Fuente",
+      "age": 64,
+      "nationality": "España",
+      "since": "2022-12-08",
+      "previous_teams": [
+        "España sub-21 (2018-2022)",
+        "España sub-19 (2013-2018)",
+        "Athletic Club B (2007-2010)",
+        "Bilbao Athletic / Athletic B (2001-2007)"
+      ],
+      "profile_summary": "Formador histórico de las categorías inferiores de La Roja. Asumió la selección absoluta en diciembre de 2022 tras Luis Enrique. En su primer año conquistó la UEFA Nations League 2023. En 2024 ganó la Eurocopa de Alemania de manera contundente (sin perder ningún partido). Construyó un equipo joven, agresivo y con identidad clara basada en intensidad, presión alta y verticalidad. Su pacto con Pedri y Lamine Yamal es la columna del proyecto."
+    },
+    "captain": {
+      "name": "Álvaro Morata",
+      "club": "Como",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/%C3%81lvaro_Morata_in_2025.jpg/330px-%C3%81lvaro_Morata_in_2025.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/%C3%81lvaro_Morata"
+      }
+    },
+    "star_player": {
+      "name": "Lamine Yamal",
+      "club": "FC Barcelona",
+      "reason": "El extremo del Barcelona, con 18 años a las puertas del Mundial, llega como uno de los 3 mejores jugadores del mundo. Balón de Oro futuro casi seguro. Decisivo en la Eurocopa 2024 con 18 meses de edad récord. Su capacidad de regate, pase y gol desde la banda derecha hace de España una candidata real al título.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Lamine_Yamal_in_2025.jpg/330px-Lamine_Yamal_in_2025.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Lamine_Yamal"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "unai-simon",
+        "full_name": "Unai Simón",
+        "display_name": "Unai Simón",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Athletic Club",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 23,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Unai_Sim%C3%B3n_2025_%28cropped%29.jpg/330px-Unai_Sim%C3%B3n_2025_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Unai_Sim%C3%B3n"
+        }
+      },
+      {
+        "id": "david-raya",
+        "full_name": "David Raya",
+        "display_name": "David Raya",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Arsenal",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 13,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/David_Raya_in_2025.jpg/330px-David_Raya_in_2025.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/David_Raya"
+        }
+      },
+      {
+        "id": "alex-remiro",
+        "full_name": "Álex Remiro",
+        "display_name": "Álex Remiro",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Real Sociedad",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 1,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/DSC_2448_%2851300097850%29_%28Alex_Remiro%29.jpg/330px-DSC_2448_%2851300097850%29_%28Alex_Remiro%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/%C3%81lex_Remiro"
+        }
+      },
+      {
+        "id": "pedro-porro",
+        "full_name": "Pedro Porro",
+        "display_name": "Pedro Porro",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Tottenham",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/85/Pedro_Porro_2021.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Pedro_Porro"
+        }
+      },
+      {
+        "id": "dani-carvajal",
+        "full_name": "Dani Carvajal",
+        "display_name": "Dani Carvajal",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Real Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 20,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Daniel_Carvajal_2015.jpg/330px-Daniel_Carvajal_2015.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Dani_Carvajal"
+        }
+      },
+      {
+        "id": "robin-le-normand",
+        "full_name": "Robin Le Normand",
+        "display_name": "Le Normand",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Atlético de Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Robin_Le_Normand%2C_FC_Salzburg_vs._Atletico_Madrid_%282025-01-29_UEFA_Championsleague%29_56_%28cropped%29.jpg/330px-Robin_Le_Normand%2C_FC_Salzburg_vs._Atletico_Madrid_%282025-01-29_UEFA_Championsleague%29_56_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Robin_Le_Normand"
+        }
+      },
+      {
+        "id": "aymeric-laporte",
+        "full_name": "Aymeric Laporte",
+        "display_name": "Aymeric Laporte",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Athletic Club",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Aymeric_Laporte_2023_%28cropped%29_2.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Aymeric_Laporte"
+        }
+      },
+      {
+        "id": "pau-cubarsi",
+        "full_name": "Pau Cubarsí",
+        "display_name": "Pau Cubarsí",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "FC Barcelona",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Pau_Cubars%C3%AD_%28cropped%29.jpg/330px-Pau_Cubars%C3%AD_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Pau_Cubars%C3%AD"
+        }
+      },
+      {
+        "id": "dean-huijsen",
+        "full_name": "Dean Huijsen",
+        "display_name": "Dean Huijsen",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Real Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 24,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Dean_Huijsen_2024.jpg/330px-Dean_Huijsen_2024.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Dean_Huijsen"
+        }
+      },
+      {
+        "id": "marc-cucurella",
+        "full_name": "Marc Cucurella",
+        "display_name": "Marc Cucurella",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Chelsea",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Spain_football_team_in_202_%28Marc_Cucurella%29.jpg/330px-Spain_football_team_in_202_%28Marc_Cucurella%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Marc_Cucurella"
+        }
+      },
+      {
+        "id": "alejandro-grimaldo",
+        "full_name": "Alejandro Grimaldo",
+        "display_name": "Grimaldo",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Bayer Leverkusen",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 18,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Alex_Grimaldo_2020.png/330px-Alex_Grimaldo_2020.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Alejandro_Grimaldo"
+        }
+      },
+      {
+        "id": "rodri",
+        "full_name": "Rodri Hernández",
+        "display_name": "Rodri",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Manchester City",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 16,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/RODRI_-_SWE_vs_ESP_-_UEFA_EURO_2020_QUALIFIERS_-_2019.10.15_%28cropped%29.jpg/330px-RODRI_-_SWE_vs_ESP_-_UEFA_EURO_2020_QUALIFIERS_-_2019.10.15_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Rodri_Hern%C3%A1ndez"
+        }
+      },
+      {
+        "id": "martin-zubimendi",
+        "full_name": "Martín Zubimendi",
+        "display_name": "Zubimendi",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Arsenal",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Mart%C3%ADn_Zubimendi.jpg/330px-Mart%C3%ADn_Zubimendi.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mart%C3%ADn_Zubimendi"
+        }
+      },
+      {
+        "id": "pedri",
+        "full_name": "Pedro González López",
+        "display_name": "Pedri",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "FC Barcelona",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Pedri.jpg/330px-Pedri.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Pedri"
+        }
+      },
+      {
+        "id": "fabian-ruiz",
+        "full_name": "Fabián Ruiz",
+        "display_name": "Fabián Ruiz",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Paris Saint-Germain",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 12,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Ruiz_asse_psg_2425.png/330px-Ruiz_asse_psg_2425.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Fabi%C3%A1n_Ruiz"
+        }
+      },
+      {
+        "id": "mikel-merino",
+        "full_name": "Mikel Merino",
+        "display_name": "Mikel Merino",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Arsenal",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 15,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/1_mikel_merino_arsenal_2025_%28cropped%29.jpg/330px-1_mikel_merino_arsenal_2025_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mikel_Merino"
+        }
+      },
+      {
+        "id": "dani-olmo",
+        "full_name": "Dani Olmo",
+        "display_name": "Dani Olmo",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "FC Barcelona",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Dani_Olmo_2022.jpg/330px-Dani_Olmo_2022.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Dani_Olmo"
+        }
+      },
+      {
+        "id": "alex-baena",
+        "full_name": "Álex Baena",
+        "display_name": "Álex Baena",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Atlético de Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 22,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/%C3%81lex_Baena_2019.jpg/330px-%C3%81lex_Baena_2019.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/%C3%81lex_Baena"
+        }
+      },
+      {
+        "id": "lamine-yamal",
+        "full_name": "Lamine Yamal",
+        "display_name": "Lamine Yamal",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "FC Barcelona",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Lamine_Yamal_in_2025.jpg/330px-Lamine_Yamal_in_2025.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Lamine_Yamal"
+        }
+      },
+      {
+        "id": "nico-williams",
+        "full_name": "Nicholas Williams",
+        "display_name": "Nico Williams",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Athletic Club",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed"
+      },
+      {
+        "id": "mikel-oyarzabal",
+        "full_name": "Mikel Oyarzabal",
+        "display_name": "Oyarzabal",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Real Sociedad",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 21,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_108_%28cropped%29.jpg/330px-UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_108_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mikel_Oyarzabal"
+        }
+      },
+      {
+        "id": "ferran-torres",
+        "full_name": "Ferran Torres",
+        "display_name": "Ferran Torres",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "FC Barcelona",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Ferran_Torres_2019.png/330px-Ferran_Torres_2019.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ferran_Torres"
+        }
+      },
+      {
+        "id": "alvaro-morata",
+        "full_name": "Álvaro Morata",
+        "display_name": "Morata",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Como",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 9,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/%C3%81lvaro_Morata_in_2025.jpg/330px-%C3%81lvaro_Morata_in_2025.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/%C3%81lvaro_Morata"
+        }
+      },
+      {
+        "id": "samu-aghehowa",
+        "full_name": "Samu Aghehowa",
+        "display_name": "Samu Aghehowa",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Porto",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
+        },
+        "shirt_number_expected": 25,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Uzbekistan_vs._Spain%2C_2024_Summer_Olympic_men%27s_association_football%2C_2024-07-24_%28471%29_-_Samu.jpg/330px-Uzbekistan_vs._Spain%2C_2024_Summer_Olympic_men%27s_association_football%2C_2024-07-24_%28471%29_-_Samu.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Samu_Aghehowa"
+        }
+      },
+      {
+        "id": "yeremy-pino",
+        "full_name": "Yeremy Pino",
+        "display_name": "Yeremy Pino",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Crystal Palace",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/80/Manchester_United_v_Villarreal_CF%2C_29_September_2021_%2807%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Y%C3%A9remi_Pino"
+        }
+      },
+      {
+        "id": "ayoze-perez",
+        "full_name": "Ayoze Pérez",
+        "display_name": "Ayoze Pérez",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Villarreal",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 3,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Ayoze_Perez_20150710.jpg/330px-Ayoze_Perez_20150710.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ayoze_P%C3%A9rez"
+        }
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-3-3",
+      "players": [
+        {
+          "player_id": "unai-simon",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "pedro-porro",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "robin-le-normand",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "aymeric-laporte",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "marc-cucurella",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "rodri",
+          "position": {
+            "x": 50,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "pedri",
+          "position": {
+            "x": 30,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "fabian-ruiz",
+          "position": {
+            "x": 70,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "lamine-yamal",
+          "position": {
+            "x": 85,
+            "y": 22
+          }
+        },
+        {
+          "player_id": "mikel-oyarzabal",
+          "position": {
+            "x": 50,
+            "y": 18
+          }
+        },
+        {
+          "player_id": "nico-williams",
+          "position": {
+            "x": 15,
+            "y": 22
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "España juega un 4-3-3 con identidad clara: presión alta sincronizada, posesión asociativa de toques rápidos, y verticalidad por banda con dos extremos puros (Yamal y Nico). Diferencia con la era tiki-taka anterior: menos posesión obsesiva, más juego directo y transiciones rápidas. Rodri es el ancla; Pedri el director; los extremos rompen.",
+      "strengths": [
+        "Mejor mediocampo del torneo: Rodri (Balón de Oro 2024), Pedri, Fabián Ruiz, Zubimendi, Merino, Olmo. Profundidad histórica.",
+        "Extremos diferenciales: Lamine Yamal (18) y Nico Williams (24) son top-3 mundial en su posición.",
+        "Defensa joven y sólida: Cubarsí (19), Huijsen (21) emergen como pareja del futuro junto a Le Normand y Laporte.",
+        "Mentalidad ganadora: Eurocopa 2024 sin perder + Nations League 2023 + base de la generación dorada que ganó Mundial 2010.",
+        "Luis de la Fuente: identidad táctica clara, gestión inteligente del vestuario y jerarquía de minutos."
+      ],
+      "weaknesses": [
+        "El '9' es la posición más débil. Morata (33) baja goleadora en clubs; Samu Aghehowa joven sin experiencia internacional alta; Ayoze Pérez veterano discontinuo.",
+        "Dependencia excesiva de Rodri: cuando se lesionó (Eurocopa final 2024), el equipo cambió. En 2026 debe llegar al 100%.",
+        "Falta de experiencia mundialista en jugadores clave: Yamal, Cubarsí, Huijsen son debutantes.",
+        "Plan B sin extremos: si Yamal o Nico no están al 100%, el equipo pierde mucha amenaza vertical. Pino y Yeremy son sustitutos pero no del mismo nivel.",
+        "Jugar en EE.UU. con calor y altitud variable puede afectar a un equipo acostumbrado a clima europeo."
+      ],
+      "x_factor": {
+        "player": "Pedri",
+        "reason": "A los 23 años, Pedri es el cerebro de La Roja. Capaz de dictar el ritmo del partido, romper líneas con pases vertical y aparecer entre líneas. Su salud es clave: cuando está al 100% (como en la Eurocopa 2024 antes de lesionarse), España es candidata clara al título."
+      },
+      "prediction_text": "España llega a 2026 como uno de los 3 grandes favoritos junto a Argentina y Francia. Vigente campeona europea, con un grupo de talento generacional (Pedri, Yamal, Nico, Cubarsí) y un mediocampo de élite mundial. El '9' y la salud de Rodri son las dos incógnitas. Llegar a semifinales como mínimo es objetivo realista; final muy posible si esquiva a Argentina o Francia hasta el último cruce.",
+      "probabilities": {
+        "advance_groups": 97,
+        "round_of_32": 92,
+        "round_of_16": 80,
+        "quarter_finals": 65,
+        "semi_finals": 42,
+        "final": 22,
+        "champion": 13
+      },
+      "vs_last_3_wcs": "Sudáfrica 2010: CAMPEONA con final 1-0 ante Países Bajos (gol Iniesta 116'). Brasil 2014: eliminada en fase de grupos, peor papel de la generación dorada. Rusia 2018: octavos eliminada por Rusia en penales tras 1-1. Catar 2022: octavos eliminada por Marruecos en penales tras 0-0. Mundial 2026: tras los dos octavos consecutivos, llega como vigente campeona de Europa con un equipo joven que mezcla talento generacional con experiencia ganadora."
+    }
+  },
+  "history": {
+    "first_appearance": 1934,
+    "appearances_count_before_2026": 16,
+    "appearances_count_with_2026": 17,
+    "consecutive_streak_since": 1978,
+    "titles": 1,
+    "titles_years": [
+      2010
+    ],
+    "finals": 1,
+    "finals_years": [
+      2010
+    ],
+    "semi_finals": 2,
+    "best_result": "Campeona (2010)",
+    "aggregate_stats_through_2022": {
+      "played": 67,
+      "won": 31,
+      "drawn": 16,
+      "lost": 20,
+      "goals_for": 108,
+      "goals_against": 75,
+      "win_percentage": 46.3,
+      "notes": "España es la 7ª selección con más partidos en la historia del Mundial. Datos hasta Qatar 2022."
+    },
+    "by_world_cup": [
+      {
+        "year": 1934,
+        "host": {
+          "countries": [
+            "Italia"
+          ],
+          "iso": [
+            "it"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Amadeo García Salazar",
+        "captain": "Ricardo Zamora",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Isidro Lángara",
+            "goals": 1
+          },
+          {
+            "player": "Luis Regueiro",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Primera participación de España en un Mundial.",
+          "Eliminada por Italia en cuartos tras un 1-1 inicial y 0-1 en el desempate al día siguiente.",
+          "Ricardo Zamora, considerado el primer gran portero del fútbol mundial, fue brutalmente golpeado por los italianos según las crónicas."
+        ],
+        "narrative": "España debutó en el Mundial con una generación brillante liderada por Ricardo Zamora, leyenda del Real Madrid. Tras vencer 3-1 a Brasil en primera ronda, eliminó a uno de los favoritos. En cuartos, ante la anfitriona Italia, empató 1-1 en un partido violento que dejó a Zamora muy lastimado. Al día siguiente, en el desempate (sin reglas anti-prórroga modernas), España no pudo contar con su mejor portero y cayó 1-0. Italia sería luego campeona."
+      },
+      {
+        "year": 1950,
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
+        "result": "Cuarto puesto",
+        "coach": "Guillermo Eizaguirre",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Estanislao Basora",
+            "goals": 5
+          },
+          {
+            "player": "Telmo Zarra",
+            "goals": 4
+          }
+        ],
+        "goals_scored": 10,
+        "goals_conceded": 12,
+        "notable_facts": [
+          "Mejor papel histórico de España hasta 2010.",
+          "Famoso 1-0 a Inglaterra con gol de Telmo Zarra, considerado uno de los hitos del fútbol español.",
+          "Cuarto puesto tras perder por Brasil 6-1, Uruguay 2-1 y vencer a Suecia 6-1."
+        ],
+        "narrative": "Tras 16 años sin clasificar (Mundial 1950 fue después de la Guerra Civil y la Segunda Guerra Mundial), España firmó su mejor papel histórico hasta 2010. Liderada por Telmo Zarra y Estanislao Basora, ganó su grupo invicta (3-1 a EEUU, 2-0 a Chile, 1-0 a Inglaterra con gol de Zarra que es uno de los hitos del fútbol español). En la fase final (formato de liguilla, no eliminación directa) cayó ante Uruguay (2-2... espera, fue 2-1) y Brasil (1-6) pero venció a Suecia 6-1 para terminar 4ª. Único Mundial sin sistema de eliminación directa."
+      },
+      {
+        "year": 1962,
+        "host": {
+          "countries": [
+            "Chile"
+          ],
+          "iso": [
+            "cl"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Helenio Herrera",
+        "captain": "Joaquín Peiró",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Joaquín Peiró",
+            "goals": 1
+          },
+          {
+            "player": "Adelardo Rodríguez",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Eliminación temprana pese a contar con jugadores nacionalizados de gran nivel.",
+          "Helenio Herrera, técnico estrella, no logró sacar rédito al equipo."
+        ],
+        "narrative": "Tras 12 años de ausencia, España regresó al Mundial con el técnico más mediático del momento (Helenio Herrera) y jugadores nacionalizados como Alfredo Di Stéfano y Ferenc Puskás. Pero Di Stéfano no jugó por lesión y el equipo cayó 1-0 ante Checoslovaquia en el debut, perdió 1-2 con Brasil pese a adelantarse, y ganó solo a México 1-0. Eliminación dolorosa."
+      },
+      {
+        "year": 1966,
+        "host": {
+          "countries": [
+            "Inglaterra"
+          ],
+          "iso": [
+            "gb-eng"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "José Villalonga",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Manuel Sanchís",
+            "goals": 1
+          },
+          {
+            "player": "Pirri",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Otra eliminación en primera ronda.",
+          "Caída ante Argentina 1-2 fue clave."
+        ],
+        "narrative": "España recibió varapalos sucesivos en su clasificación. Cayó 1-2 ante Argentina, perdió 1-2 con Alemania Federal y solo venció a Suiza 2-1. Eliminada en primera ronda pese a tener jugadores como Luis Suárez (mediocampista del Inter de Milán)."
+      },
+      {
+        "year": 1978,
+        "host": {
+          "countries": [
+            "Argentina"
+          ],
+          "iso": [
+            "ar"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Ladislao Kubala",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Daniel Ruiz",
+            "goals": 1
+          },
+          {
+            "player": "Juanito",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 2,
+        "notable_facts": [
+          "Tras 12 años de ausencia, España regresó al Mundial.",
+          "Eliminada en primera ronda con apenas 2 goles a favor."
+        ],
+        "narrative": "Regreso tras una larga ausencia. España no logró clasificar a Mundiales entre 1970 y 1974. Dirigida por Kubala, integró un grupo difícil con Brasil, Suecia y Austria. Empató 1-1 con Austria, 0-1 perdió con Brasil y empató 1-1 con Suecia. Eliminación con apenas 2 puntos."
+      },
+      {
+        "year": 1982,
+        "host": {
+          "countries": [
+            "España"
+          ],
+          "iso": [
+            "es"
+          ]
+        },
+        "result": "Segunda ronda",
+        "coach": "José Santamaría",
+        "captain": "Juanito",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Juanito",
+            "goals": 1
+          },
+          {
+            "player": "Roberto López Ufarte",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "España como anfitriona del Mundial.",
+          "Decepción nacional: eliminada en segunda ronda tras pasar a duras penas la primera.",
+          "Empate 0-0 con Inglaterra y derrota 0-2 con Alemania."
+        ],
+        "narrative": "Como anfitriona del Mundial 1982, España generó enormes expectativas que no cumplió. Tras pasar la primera ronda con dificultad (1-1 con Honduras, 2-1 a Yugoslavia, 0-1 con Irlanda del Norte) cayó eliminada en segunda fase con 0-2 ante Alemania Federal y 0-0 con Inglaterra. José Santamaría fue muy criticado y la 'Furia Roja' enterró las esperanzas. Italia fue la campeona del torneo."
+      },
+      {
+        "year": 1986,
+        "host": {
+          "countries": [
+            "México"
+          ],
+          "iso": [
+            "mx"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Miguel Muñoz",
+        "captain": "José Antonio Camacho",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Emilio Butragueño",
+            "goals": 5
+          },
+          {
+            "player": "Julio Salinas",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 11,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "Emilio Butragueño hizo poker (4 goles) ante Dinamarca en octavos (5-1).",
+          "Eliminada por Bélgica en cuartos por penales tras 1-1.",
+          "Generación de la 'Quinta del Buitre' brilló."
+        ],
+        "narrative": "España firmó su mejor papel desde 1950. La 'Quinta del Buitre' del Real Madrid (Butragueño, Sanchís, Pardeza, Míchel, Martín Vázquez) lideró un equipo brillante. En octavos, España humilló 5-1 a Dinamarca con el famoso 'póker' de Butragueño (4 goles), única hazaña de un español en una fase eliminatoria mundial. En cuartos cayó por penales ante Bélgica tras 1-1 reglamentario. Quedó como una de las grandes promesas no cumplidas."
+      },
+      {
+        "year": 1990,
+        "host": {
+          "countries": [
+            "Italia"
+          ],
+          "iso": [
+            "it"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Luis Suárez",
+        "captain": "Andoni Zubizarreta",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Míchel",
+            "goals": 3
+          },
+          {
+            "player": "Emilio Butragueño",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 6,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "Pasó la primera ronda como segunda del grupo.",
+          "Eliminada en octavos por Yugoslavia 1-2 tras prórroga."
+        ],
+        "narrative": "España, con la 'Quinta del Buitre' aún vigente, pasó a octavos con un Míchel inspirado (hat-trick a Corea del Sur). Pero en octavos Yugoslavia sentenció con goles de Stojkovic en la prórroga. Otra decepción tras las expectativas."
+      },
+      {
+        "year": 1994,
+        "host": {
+          "countries": [
+            "Estados Unidos"
+          ],
+          "iso": [
+            "us"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Javier Clemente",
+        "captain": "Andoni Zubizarreta",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Julio Salinas",
+            "goals": 2
+          },
+          {
+            "player": "Goikoetxea",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 10,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Eliminada por Italia 1-2 en cuartos en partido polémico.",
+          "Codazo de Tassotti a Luis Enrique fue sancionado a posteriori (dejó al jugador con tabique fracturado)."
+        ],
+        "narrative": "España, dirigida por Clemente, hizo una buena fase de grupos (3 puntos invicta) y en octavos venció 3-0 a Suiza. En cuartos, ante Italia, perdió 1-2 con un partido marcado por el codazo de Mauro Tassotti a Luis Enrique que le rompió el tabique nasal y no fue sancionado. La FIFA luego suspendió a Tassotti pero el daño ya estaba hecho. Italia llegaría a la final."
+      },
+      {
+        "year": 1998,
+        "host": {
+          "countries": [
+            "Francia"
+          ],
+          "iso": [
+            "fr"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Javier Clemente",
+        "captain": "Andoni Zubizarreta",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Fernando Hierro",
+            "goals": 2
+          },
+          {
+            "player": "Raúl González",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 8,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "Eliminación traumática pese al 6-1 a Bulgaria en última jornada.",
+          "Errores de Zubizarreta clave en el 2-3 ante Nigeria.",
+          "Final de la era Clemente."
+        ],
+        "narrative": "Mundial traumático para España. Pese a contar con Raúl, Hierro, Luis Enrique, Guardiola y Zubizarreta, perdió ante Nigeria 2-3 (con error grave de Zubizarreta), empató 0-0 con Paraguay y goleó 6-1 a Bulgaria en la última jornada cuando ya no servía. Eliminada por diferencia de goles. Clemente fue destituido."
+      },
+      {
+        "year": 2002,
+        "host": {
+          "countries": [
+            "Corea del Sur",
+            "Japón"
+          ],
+          "iso": [
+            "kr",
+            "jp"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "José Antonio Camacho",
+        "captain": "Fernando Hierro",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Raúl González",
+            "goals": 3
+          },
+          {
+            "player": "Fernando Morientes",
+            "goals": 3
+          }
+        ],
+        "goals_scored": 10,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Eliminada por Corea del Sur 5-3 por penales en cuartos en partido muy polémico (dos goles anulados a España).",
+          "Generación Raúl-Hierro-Morientes en su pico."
+        ],
+        "narrative": "España fue una de las grandes víctimas del controvertido arbitraje del Mundial. Con un equipo en buen momento (Raúl, Morientes, Hierro), pasó la fase de grupos invicta y eliminó a Irlanda en octavos (3-2 pen tras 1-1). En cuartos ante Corea del Sur (anfitriona), el árbitro anuló dos goles legales a España (uno de Morientes por offside inexistente y otro por falta inventada). En penales, Corea ganó 5-3 para alcanzar su única semifinal histórica. Indignación nacional."
+      },
+      {
+        "year": 2006,
+        "host": {
+          "countries": [
+            "Alemania"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Luis Aragonés",
+        "captain": "Raúl González",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Fernando Torres",
+            "goals": 3
+          },
+          {
+            "player": "David Villa",
+            "goals": 3
+          }
+        ],
+        "goals_scored": 9,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "Eliminada por Francia 1-3 en octavos.",
+          "Mundial de transición hacia la generación de la Eurocopa 2008."
+        ],
+        "narrative": "Luis Aragonés inició su construcción del 'tiki-taka' que conquistaría Europa y el mundo entre 2008-2012. España ganó su grupo (4-0 Ucrania, 3-1 Túnez, 1-0 Arabia Saudí) pero en octavos cayó 3-1 ante Francia (Vieira y Zidane sentenciaron). La generación dorada estaba naciendo: Iniesta, Xavi, Casillas, Villa, Torres, Ramos."
+      },
+      {
+        "year": 2010,
+        "host": {
+          "countries": [
+            "Sudáfrica"
+          ],
+          "iso": [
+            "za"
+          ]
+        },
+        "result": "Campeona",
+        "coach": "Vicente del Bosque",
+        "captain": "Iker Casillas",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "David Villa",
+            "goals": 5
+          },
+          {
+            "player": "Andrés Iniesta",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 8,
+        "goals_conceded": 2,
+        "notable_facts": [
+          "PRIMER y único título mundial de España.",
+          "Final ganada 1-0 ante Países Bajos con gol de Iniesta en el minuto 116 (prórroga).",
+          "Solo encajó 2 goles en todo el torneo, récord de defensa de un campeón.",
+          "Iker Casillas fue Guante de Oro; David Villa terminó como goleador del torneo (compartido)."
+        ],
+        "narrative": "El triunfo de la generación dorada. España debutó perdiendo 0-1 ante Suiza (sorpresa enorme) pero se recompuso: 2-0 a Honduras, 2-1 a Chile. En octavos venció a Portugal 1-0; en cuartos a Paraguay 1-0; en semifinal a Alemania 1-0 con gol de Puyol. La final ante Países Bajos en Johannesburgo fue dura, áspera, llena de tarjetas. Tras 0-0 reglamentario, en la prórroga Andrés Iniesta marcó al 116' tras pase de Cesc Fàbregas. España conquistaba su primer Mundial. Iker levantó la Copa con el corazón colectivo del país. La Furia Roja completaba el triplete: Eurocopa 2008 + Mundial 2010 + Eurocopa 2012, único equipo que ha logrado tres títulos consecutivos en la historia del fútbol europeo."
+      },
+      {
+        "year": 2014,
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Vicente del Bosque",
+        "captain": "Iker Casillas",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Diego Costa",
+            "goals": 0
+          },
+          {
+            "player": "David Silva",
+            "goals": 0
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 7,
+        "notable_facts": [
+          "Eliminación traumática como campeona vigente: 1-5 ante Países Bajos en el debut.",
+          "Tercer campeón consecutivo eliminado en primera ronda (junto a Francia 2002 e Italia 2010).",
+          "Final del ciclo dorado."
+        ],
+        "narrative": "El derrumbe. España, vigente campeona de todo, salió a defender su título y fue arrasada en el debut: 1-5 ante Países Bajos en Salvador con doblete de Robin van Persie y triplete de Arjen Robben. Imagen icónica: el cabezazo en plancha de Van Persie. Casillas fue sustituido. España perdió luego 0-2 con Chile y solo se despidió ganando 3-0 a Australia. Eliminación traumática en primera ronda como vigente campeona. Final de la era Del Bosque dorada."
+      },
+      {
+        "year": 2018,
+        "host": {
+          "countries": [
+            "Rusia"
+          ],
+          "iso": [
+            "ru"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Fernando Hierro",
+        "captain": "Sergio Ramos",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Diego Costa",
+            "goals": 3
+          },
+          {
+            "player": "Isco Alarcón",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 7,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Crisis previa: Lopetegui fichado por el Real Madrid 2 días antes del Mundial; destituido por la RFEF y reemplazado por Hierro.",
+          "Eliminada por Rusia (anfitriona) por penales tras 1-1.",
+          "Pase aburrido y poco efectivo, criticado en España."
+        ],
+        "narrative": "España llegó a Rusia con caos institucional: el técnico Julen Lopetegui fue anunciado por el Real Madrid 2 días antes del debut y la RFEF lo destituyó. Fernando Hierro asumió de urgencia. España empató 3-3 con Portugal (hat-trick de Cristiano), 1-0 a Irán y 2-2 con Marruecos. En octavos ante Rusia, empató 1-1 reglamentario tras un partido pobre y cayó por penales. Aburrida posesión sin profundidad. Crisis de identidad."
+      },
+      {
+        "year": 2022,
+        "host": {
+          "countries": [
+            "Catar"
+          ],
+          "iso": [
+            "qa"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Luis Enrique",
+        "captain": "Sergio Busquets",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Álvaro Morata",
+            "goals": 3
+          },
+          {
+            "player": "Ferran Torres",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 9,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Goleo histórico 7-0 a Costa Rica en el debut con generación nueva.",
+          "Eliminada por Marruecos en octavos en penales tras 0-0 reglamentario.",
+          "Octavos consecutivos como techo, generando dudas con Luis Enrique."
+        ],
+        "narrative": "España debutó arrasando 7-0 a Costa Rica con un fútbol que ilusionó. Empató 1-1 con Alemania y perdió 1-2 con Japón en partido absurdo (la 'jugada del milímetro'). Pasó como segunda. En octavos, ante Marruecos, dominó la posesión pero no creó ocasiones claras. 0-0 reglamentario y prórroga. En penales, los Bono Marroquí adivinó tres y España fue eliminada. Luis Enrique destituido. Llega de la Fuente."
+      }
+    ],
+    "palmares": [
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 2010,
+        "position": "Campeón",
+        "host": "Sudáfrica"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "David Villa",
+      "value": 59,
+      "period": "2005-2017",
+      "notes": "Máximo goleador histórico de España. 59 goles en 98 partidos. También el máximo goleador de España en Mundiales con 9."
+    },
+    "most_capped": {
+      "name": "Sergio Ramos",
+      "value": 180,
+      "period": "2005-2021",
+      "notes": "Récord de presencias. 23 goles. Capitán y referente de la generación post-2010."
+    },
+    "youngest_debut": {
+      "name": "Lamine Yamal",
+      "value": "16 años, 57 días",
+      "period": "2023-09-08 vs Georgia",
+      "notes": "Debut como el jugador más joven en debutar con la absoluta de España (rompiendo récord de Ángel Zubieta en 1936)."
+    },
+    "biggest_win": {
+      "result": "13-0",
+      "opponent": "Bulgaria",
+      "date": "1933-05-21",
+      "competition": "Amistoso"
+    },
+    "worst_loss": {
+      "result": "1-7",
+      "opponent": "Inglaterra",
+      "date": "1931-12-09",
+      "competition": "Amistoso (Highbury)"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El gol de Zarra a Inglaterra",
+      "date": "1950-07-02",
+      "opponent": {
+        "iso": "gb-eng",
+        "name": "Inglaterra"
+      },
+      "score": "1-0",
+      "competition": "Fase de Grupos Mundial 1950",
+      "narrative": "El gol de cabeza de Telmo Zarra al 49' eliminó a Inglaterra del Mundial 1950 y se convirtió en uno de los momentos fundacionales del fútbol español. La narración de radio de Matías Prats hijo es referencia histórica del periodismo deportivo. Hizo que España terminara 4ª, su mejor papel en Mundiales hasta 2010."
+    },
+    {
+      "title": "El póker de Butragueño",
+      "date": "1986-06-18",
+      "opponent": {
+        "iso": "dk",
+        "name": "Dinamarca"
+      },
+      "score": "5-1",
+      "competition": "Octavos Mundial 1986",
+      "narrative": "Emilio Butragueño marcó 4 goles a Dinamarca en una de las exhibiciones individuales más recordadas del fútbol español. Único 'póker' de un español en fase eliminatoria de un Mundial. La 'Quinta del Buitre' alcanzaba uno de sus picos. España ganó 5-1 con un sexto gol de Goicoechea anulado."
+    },
+    {
+      "title": "El robo de Corea",
+      "date": "2002-06-22",
+      "opponent": {
+        "iso": "kr",
+        "name": "Corea del Sur"
+      },
+      "score": "0-0 (3-5 pen)",
+      "competition": "Cuartos Mundial 2002",
+      "narrative": "España quedó eliminada en cuartos del Mundial Corea-Japón 2002 ante el anfitrión Corea del Sur. El partido es recordado por el arbitraje del egipcio Gamal Al-Ghandour, quien anuló dos goles legales a España (uno de Morientes por un offside inexistente y otro por una falta inventada). En la tanda de penales, Corea ganó 5-3. Indignación que persiste como una de las grandes injusticias del fútbol mundial."
+    },
+    {
+      "title": "Iniesta de mi vida",
+      "date": "2010-07-11",
+      "opponent": {
+        "iso": "nl",
+        "name": "Países Bajos"
+      },
+      "score": "1-0 (prórroga)",
+      "competition": "Final Mundial 2010",
+      "narrative": "España conquistó su primer y único Mundial en Sudáfrica. La final en Soccer City (Johannesburgo) fue áspera y violenta (14 amarillas + 1 roja). Tras 0-0 reglamentario, en la prórroga, Andrés Iniesta marcó al 116' tras pase de Cesc Fàbregas. La icónica narración 'Iniesta de mi vida' del comentarista José Ángel de la Casa quedó eterna. Iker Casillas levantó la Copa. Cierre de la triple corona europea (Euro 2008 + Mundial 2010 + Euro 2012).",
+      "site_link": "/historia/momentos-iconicos/iniesta-2010"
+    },
+    {
+      "title": "El derrumbe (1-5 vs Países Bajos)",
+      "date": "2014-06-13",
+      "opponent": {
+        "iso": "nl",
+        "name": "Países Bajos"
+      },
+      "score": "1-5",
+      "competition": "Fase de Grupos Mundial 2014",
+      "narrative": "España defendía título y fue arrasada en su debut por Países Bajos: 1-5 con doblete de Van Persie (cabezazo en plancha icónico) y hat-trick de Robben. Tercer campeón vigente eliminado en primera ronda en la era moderna. Cierre traumático de la generación dorada. Casillas perdió la titularidad."
+    },
+    {
+      "title": "La eliminación de Marruecos",
+      "date": "2022-12-06",
+      "opponent": {
+        "iso": "ma",
+        "name": "Marruecos"
+      },
+      "score": "0-0 (0-3 pen)",
+      "competition": "Octavos Mundial 2022",
+      "narrative": "España dominó el balón ante Marruecos pero apenas creó ocasiones claras en los 120 minutos. Sin gol en regulación ni prórroga, en penales el portero marroquí Yassine Bono adivinó los 3 lanzamientos españoles (Sarabia, Soler, Busquets). Marruecos pasó por primera vez a cuartos en su historia. Para España, el segundo octavos consecutivo eliminada en penales."
+    },
+    {
+      "title": "La consagración europea (Eurocopa 2024)",
+      "date": "2024-07-14",
+      "opponent": {
+        "iso": "gb-eng",
+        "name": "Inglaterra"
+      },
+      "score": "2-1",
+      "competition": "Final Eurocopa 2024 (no Mundial pero contexto)",
+      "narrative": "España conquistó su 4ª Eurocopa en Berlín derrotando 2-1 a Inglaterra con goles de Nico Williams y Mikel Oyarzabal. Lamine Yamal, con 17 años, fue revelación del torneo y mejor jugador joven. Generación nueva consolidada de cara al Mundial 2026."
+    },
+    {
+      "title": "El 0-6 a Turquía (clasificación 2026)",
+      "date": "2025-09-07",
+      "opponent": {
+        "iso": "tr",
+        "name": "Turquía"
+      },
+      "score": "6-0",
+      "competition": "Eliminatorias Mundial 2026",
+      "narrative": "España firmó una de sus mejores actuaciones del ciclo en Konya con un 6-0 ante Turquía. Hat-trick de Mikel Merino, doblete de Pedri y gol de Ferran Torres. Triplete de asistencias de Oyarzabal. Demostración de fuerza colectiva."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "España disputará en 2026 su 13ª Mundial consecutivo, racha iniciada en 1978.",
+      "source": "FIFA + RFEF",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "La generación 2008-2012 ganó 3 títulos consecutivos: Eurocopa 2008 + Mundial 2010 + Eurocopa 2012, hazaña única en el fútbol europeo.",
+      "source": "UEFA + FIFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "España es el equipo con menos goles encajados de cualquier campeón del Mundial: solo 2 goles en 7 partidos en Sudáfrica 2010.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Lamine Yamal debutó con la absoluta a los 16 años y 57 días (8 sep 2023 vs Georgia), batiendo el récord de Ángel Zubieta de 1936 (17 años y 290 días) que llevaba 87 años vigente.",
+      "source": "RFEF + Marca",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "España ha caído eliminada en penales en sus dos últimos Mundiales (2018 vs Rusia, 2022 vs Marruecos), ambos en octavos tras empate sin remontar el resultado.",
+      "source": "FIFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Ricardo Zamora, leyenda del fútbol español de los años 30, da nombre al Trofeo Zamora, premio al portero menos goleado de La Liga desde 1958.",
+      "source": "Marca histórico + RFEF",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "La final del Mundial 2010 (1-0 vs Países Bajos) tuvo 14 tarjetas amarillas, récord absoluto de una final mundialista. El árbitro Howard Webb superó las 12 que había sacado Romeu en 1986.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Mikel Merino fue el goleador del equipo español en las eliminatorias 2026 (7 goles en 6 partidos), incluidos dos hat-tricks (Turquía y Bulgaria) en menos de 5 semanas.",
+      "source": "UEFA + RFEF",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Yo soy español, español, español (clásico desde Eurocopa 2008)",
+      "A por ellos, oé! (himno de la afición desde 2008)",
+      "Que viva España (canción popular adoptada como himno extraoficial)"
+    ],
+    "main_rival": {
+      "iso": "pt",
+      "name": "Portugal",
+      "story": "El derbi ibérico es la gran rivalidad histórica de España, aunque más amistoso que otros derbis europeos. Cruzes recordados: Eurocopa 2004 (Portugal eliminó a España), Eurocopa 2012 (España eliminó a Portugal en penales en semifinales), Mundial 2010 (España 1-0 en octavos), Mundial 2018 (3-3 con hat-trick de Cristiano Ronaldo). En la era moderna, Portugal-España es uno de los duelos televisivamente más vistos."
+    },
+    "home_stadium": {
+      "name": "Estadio de La Cartuja (Sevilla) / Cívitas Metropolitano (Madrid) — RFEF rota",
+      "capacity": 70000,
+      "city": "España (sin estadio fijo: la RFEF rota partidos por las principales ciudades)"
+    }
+  },
+  "seo": {
+    "meta_title": "España en el Mundial 2026 | Plantilla, historia y predicciones",
+    "meta_description": "Selección Española Mundial 2026: 26 convocados de Luis de la Fuente, Yamal, Pedri y la generación europea, Grupo E eliminatorias y análisis táctico.",
+    "og_image_url": "/img/og/teams/espana.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de España de fútbol",
+      "alternateName": [
+        "La Roja",
+        "La Furia Roja"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "UEFA"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Luis de la Fuente"
+      },
+      "url": "https://www.zonamundial.app/selecciones/espana"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-28",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_de_UEFA_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_Espa%C3%B1a",
+      "https://es.uefa.com/european-qualifiers/news/0294-1c9176cbb26d-f0cf158f5fa0-1000--clasificatorios-europeos-para-la-copa-mundial-2026-resul/",
+      "https://es.uefa.com/european-qualifiers/news/029f-1f3188cfc443-494e0d8af33d-1000--mundial-2026-que-selecciones-europeas-se-han-clasificado/",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/15953404/mundial-2026-espana-perfil-figuras-como-juega-historia",
+      "https://www.tudn.com/mundial-2026/eliminatorias/espana-vs-turquia-goles-resultado-resumen-partido-eliminatorias-uefa-rumbo-mundial-2026",
+      "https://www.tudn.com/mundial-2026/eliminatorias/turquia-vs-espana-resumen-goles-resultado-del-partido-rumbo-mundial-2026",
+      "https://www.vavel.com/es/futbol/2025/09/04/seleccion-espanola/1232651-bulgaria-vs-espana-en-vivo-y-en-directo-en-eliminatorias-2026.html",
+      "https://www.vavel.com/es/futbol/2025/10/14/seleccion-espanola/1237577-espana-vs-bulgaria-en-vivo-y-en-directo-eliminatorias-al-mundial-2026.html",
+      "https://www.eurosport.es/futbol/mundial/2026/rivales-espana-grupo-clasificacion-turquia-georgia-bulgaria-fechas-horarios-formato-repesca_sto23166894/story.shtml",
+      "https://www.rfef.es",
+      "https://www.fifa.com/es/tournaments/mens/worldcup/canadamexicousa2026/qualifiers/uefa/scores-fixtures",
+      "https://bolavip.com/mx/eliminatorias-uefa/asi-quedo-el-grupo-e-tras-el-empate-de-espana-contra-turquia-rumbo-al-mundial-2026"
+    ],
+    "validation_method": "Cada partido del Grupo E cruzado con UEFA oficial + ESPN/TUDN/Vavel. Historia mundialista validada con Wikipedia + RFEF oficial. Plantilla con ESPN + RFEF.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "needs_review",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante: pendiente entrega/upload",
+      "Goleadores exactos partido España 2-0 Georgia (oct 2025): cruzar con UEFA detalle",
+      "Goleadores exactos partido Georgia 0-4 España (nov 2025): cruzar con UEFA detalle",
+      "Grupo y rivales 2026 de España: cruzar con /grupos zonamundial.app y FIFA oficial",
+      "Calendario fase de grupos 2026: pendiente fixture FIFA oficial con fechas/sedes/horarios",
+      "Base de entrenamiento: RFEF aún no anunció",
+      "FIFA Ranking #2: validar último mes vigente al publicar"
+    ]
+  }
+}

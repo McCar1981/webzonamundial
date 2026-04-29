@@ -1,0 +1,1776 @@
+{
+  "slug": "paraguay",
+  "iso": "py",
+  "iso3": "PAR",
+  "name_es": "Paraguay",
+  "name_en": "Paraguay",
+  "name_local": "Paraguái",
+  "nicknames": [
+    "La Albirroja",
+    "La Selección Paraguaya",
+    "Los Guaraníes"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#D52B1E",
+      "secondary": "#0038A8",
+      "tertiary": "#FFFFFF",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Asunción",
+    "language_official": [
+      "Español",
+      "Guaraní"
+    ],
+    "population": 7350000,
+    "area_km2": 406752,
+    "timezone": "America/Asuncion",
+    "continent": "Sudamérica"
+  },
+  "federation": {
+    "name": "Asociación Paraguaya de Fútbol",
+    "abbreviation": "APF",
+    "founded": 1906,
+    "headquarters": "Luque",
+    "website": "https://www.apf.org.py"
+  },
+  "confederation": "CONMEBOL",
+  "fifa_ranking": {
+    "current": 38,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Adidas",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/paraguay.png",
+        "back_url": null,
+        "primary_color": "#D52B1E",
+        "secondary_color": "#0038A8",
+        "description": "Camiseta histórica con franjas rojas y blancas verticales, símbolo del fútbol paraguayo desde el siglo XX. Detalles azules y blancos.",
+        "alt_text": "Camiseta titular Paraguay Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#D52B1E",
+        "description": "Equipación visitante en blanco. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Paraguay Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "La camiseta de franjas rojas y blancas se inspira en la bandera del Club Olimpia, fundador del fútbol paraguayo. Es uno de los uniformes más característicos del fútbol mundial.",
+        "source": "APF + ESPN histórico",
+        "verified_at": "2026-04-28",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Paraguay regresa al Mundial tras 16 AÑOS DE AUSENCIA (su última participación fue Sudáfrica 2010). Cerró las eliminatorias en 6º puesto con 28 puntos. Gustavo Alfaro (DT argentino, exDT de Ecuador) tomó el equipo y construyó un proyecto sólido. Selló la clasificación con un 0-0 ante Ecuador en Asunción el 4 de septiembre de 2025. Antonio Sanabria es el capitán y referente. La icónica chilena de Sanabria contra Argentina en noviembre 2024 (1-0) marcó el ciclo.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias CONMEBOL Mundial 2026",
+      "format": "Liguilla todos contra todos · 18 jornadas · ida y vuelta",
+      "duration": "Septiembre 2023 — Septiembre 2025",
+      "final_position": 6,
+      "total_teams_in_group": 10,
+      "stats": {
+        "played": 18,
+        "won": 7,
+        "drawn": 7,
+        "lost": 4,
+        "goals_for": 14,
+        "goals_against": 12,
+        "goal_difference": 2,
+        "points": 28,
+        "win_percentage": 38.9,
+        "clean_sheets": 9
+      },
+      "coach_during_qualifying": "Daniel Garnero (sept 2023 - jul 2024) → Gustavo Alfaro (ago 2024 - presente)",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2023-09-07",
+          "home": {
+            "iso": "py",
+            "name": "Paraguay",
+            "score": 0
+          },
+          "away": {
+            "iso": "pe",
+            "name": "Perú",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Defensores del Chaco",
+            "city": "Asunción",
+            "country_iso": "py"
+          },
+          "goals_arg": [],
+          "notes": "Primer partido de las eliminatorias mundiales 2026 (a nivel mundial)."
+        },
+        {
+          "matchday": 2,
+          "date": "2023-09-12",
+          "home": {
+            "iso": "ve",
+            "name": "Venezuela",
+            "score": 1
+          },
+          "away": {
+            "iso": "py",
+            "name": "Paraguay",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Monumental de Maturín",
+            "city": "Maturín",
+            "country_iso": "ve"
+          },
+          "goals_arg": []
+        },
+        {
+          "matchday": 3,
+          "date": "2023-10-12",
+          "home": {
+            "iso": "py",
+            "name": "Paraguay",
+            "score": 0
+          },
+          "away": {
+            "iso": "ar",
+            "name": "Argentina",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Defensores del Chaco",
+            "city": "Asunción",
+            "country_iso": "py"
+          },
+          "goals_arg": []
+        },
+        {
+          "matchday": 4,
+          "date": "2023-10-17",
+          "home": {
+            "iso": "bo",
+            "name": "Bolivia",
+            "score": 0
+          },
+          "away": {
+            "iso": "py",
+            "name": "Paraguay",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Hernando Siles",
+            "city": "La Paz",
+            "country_iso": "bo"
+          },
+          "goals_arg": [
+            {
+              "player": "Antonio Sanabria",
+              "minute": "55'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 5,
+          "date": "2023-11-16",
+          "home": {
+            "iso": "py",
+            "name": "Paraguay",
+            "score": 0
+          },
+          "away": {
+            "iso": "co",
+            "name": "Colombia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Defensores del Chaco",
+            "city": "Asunción",
+            "country_iso": "py"
+          },
+          "goals_arg": []
+        },
+        {
+          "matchday": 6,
+          "date": "2023-11-21",
+          "home": {
+            "iso": "cl",
+            "name": "Chile",
+            "score": 0
+          },
+          "away": {
+            "iso": "py",
+            "name": "Paraguay",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Monumental",
+            "city": "Santiago",
+            "country_iso": "cl"
+          },
+          "goals_arg": []
+        },
+        {
+          "matchday": 7,
+          "date": "2024-09-06",
+          "home": {
+            "iso": "py",
+            "name": "Paraguay",
+            "score": 1
+          },
+          "away": {
+            "iso": "uy",
+            "name": "Uruguay",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Defensores del Chaco",
+            "city": "Asunción",
+            "country_iso": "py"
+          },
+          "goals_arg": [
+            {
+              "player": "Diego Gómez",
+              "minute": "20'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Debut de Gustavo Alfaro con victoria."
+        },
+        {
+          "matchday": 8,
+          "date": "2024-09-10",
+          "home": {
+            "iso": "py",
+            "name": "Paraguay",
+            "score": 1
+          },
+          "away": {
+            "iso": "br",
+            "name": "Brasil",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Defensores del Chaco",
+            "city": "Asunción",
+            "country_iso": "py"
+          },
+          "goals_arg": [
+            {
+              "player": "Diego Gómez",
+              "minute": "20'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Triunfo histórico ante Brasil. Alfaro firmó dos victorias en sus dos primeros partidos."
+        },
+        {
+          "matchday": 9,
+          "date": "2024-10-10",
+          "home": {
+            "iso": "ec",
+            "name": "Ecuador",
+            "score": 0
+          },
+          "away": {
+            "iso": "py",
+            "name": "Paraguay",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Rodrigo Paz Delgado",
+            "city": "Quito",
+            "country_iso": "ec"
+          },
+          "goals_arg": []
+        },
+        {
+          "matchday": 10,
+          "date": "2024-10-15",
+          "home": {
+            "iso": "py",
+            "name": "Paraguay",
+            "score": 2
+          },
+          "away": {
+            "iso": "ve",
+            "name": "Venezuela",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Defensores del Chaco",
+            "city": "Asunción",
+            "country_iso": "py"
+          },
+          "goals_arg": [
+            {
+              "player": "Antonio Sanabria",
+              "minute": "27'",
+              "type": "goal"
+            },
+            {
+              "player": "Diego Gómez",
+              "minute": "65'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 11,
+          "date": "2024-11-14",
+          "home": {
+            "iso": "ar",
+            "name": "Argentina",
+            "score": 1
+          },
+          "away": {
+            "iso": "py",
+            "name": "Paraguay",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Más Monumental",
+            "city": "Buenos Aires",
+            "country_iso": "ar"
+          },
+          "goals_arg": [
+            {
+              "player": "Antonio Sanabria",
+              "minute": "33'",
+              "type": "goal"
+            },
+            {
+              "player": "Omar Alderete",
+              "minute": "47'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Triunfo histórico ante Argentina campeona del mundo. CHILENA PERFECTA de Antonio Sanabria. Mayor sorpresa de las eliminatorias.",
+          "is_decisive_match": true
+        },
+        {
+          "matchday": 12,
+          "date": "2024-11-19",
+          "home": {
+            "iso": "py",
+            "name": "Paraguay",
+            "score": 2
+          },
+          "away": {
+            "iso": "bo",
+            "name": "Bolivia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Defensores del Chaco",
+            "city": "Asunción",
+            "country_iso": "py"
+          },
+          "goals_arg": [
+            {
+              "player": "Andrés Cubas",
+              "minute": "15'",
+              "type": "goal"
+            },
+            {
+              "player": "Antonio Sanabria",
+              "minute": "65'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 13,
+          "date": "2025-03-20",
+          "home": {
+            "iso": "py",
+            "name": "Paraguay",
+            "score": 1
+          },
+          "away": {
+            "iso": "cl",
+            "name": "Chile",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Defensores del Chaco",
+            "city": "Asunción",
+            "country_iso": "py"
+          },
+          "goals_arg": [
+            {
+              "player": "Julio Enciso",
+              "minute": "70'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 14,
+          "date": "2025-03-25",
+          "home": {
+            "iso": "co",
+            "name": "Colombia",
+            "score": 2
+          },
+          "away": {
+            "iso": "py",
+            "name": "Paraguay",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Metropolitano",
+            "city": "Barranquilla",
+            "country_iso": "co"
+          },
+          "goals_arg": [
+            {
+              "player": "Antonio Sanabria",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Julio Enciso",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 15,
+          "date": "2025-06-05",
+          "home": {
+            "iso": "py",
+            "name": "Paraguay",
+            "score": 2
+          },
+          "away": {
+            "iso": "uy",
+            "name": "Uruguay",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Defensores del Chaco",
+            "city": "Asunción",
+            "country_iso": "py"
+          },
+          "goals_arg": [
+            {
+              "player": "Antonio Sanabria",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Diego Gómez",
+              "minute": "60'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Tercera victoria sobre Uruguay en el ciclo."
+        },
+        {
+          "matchday": 16,
+          "date": "2025-06-10",
+          "home": {
+            "iso": "br",
+            "name": "Brasil",
+            "score": 1
+          },
+          "away": {
+            "iso": "py",
+            "name": "Paraguay",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Neo Química Arena",
+            "city": "São Paulo",
+            "country_iso": "br"
+          },
+          "goals_arg": [],
+          "notes": "Brasil aseguró su clasificación al Mundial 2026."
+        },
+        {
+          "matchday": 17,
+          "date": "2025-09-04",
+          "home": {
+            "iso": "py",
+            "name": "Paraguay",
+            "score": 0
+          },
+          "away": {
+            "iso": "ec",
+            "name": "Ecuador",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Defensores del Chaco",
+            "city": "Asunción",
+            "country_iso": "py"
+          },
+          "goals_arg": [],
+          "notes": "EMPATE QUE SELLÓ LA CLASIFICACIÓN al Mundial 2026 tras 16 años. Paraguay y Ecuador celebraron juntos en cancha."
+        },
+        {
+          "matchday": 18,
+          "date": "2025-09-09",
+          "home": {
+            "iso": "pe",
+            "name": "Perú",
+            "score": 0
+          },
+          "away": {
+            "iso": "py",
+            "name": "Paraguay",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Estadio Nacional",
+            "city": "Lima",
+            "country_iso": "pe"
+          },
+          "goals_arg": [
+            {
+              "player": "Antonio Sanabria",
+              "minute": "60'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Cierre con victoria. Paraguay terminó 6º con 28 puntos."
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Antonio Sanabria",
+          "goals": 6,
+          "notes": "Goleador y capitán del equipo. Chilena perfecta vs Argentina recordada."
+        },
+        {
+          "player": "Diego Gómez",
+          "goals": 4,
+          "notes": "Mediocampista del Brighton, gran ciclo."
+        },
+        {
+          "player": "Julio Enciso",
+          "goals": 2
+        },
+        {
+          "player": "Omar Alderete",
+          "goals": 1
+        },
+        {
+          "player": "Andrés Cubas",
+          "goals": 1
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_11",
+        "reason": "Victoria histórica 2-1 ante Argentina campeona del mundo en El Monumental el 14 de noviembre de 2024. CHILENA PERFECTA de Antonio Sanabria al 33', uno de los goles del año."
+      },
+      "worst_match": {
+        "match_ref": "matchday_2",
+        "reason": "Derrota 0-1 en Maturín ante Venezuela. Inicio dudoso del ciclo en la era Garnero (anterior a Alfaro)."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_17",
+        "reason": "El 0-0 ante Ecuador en Asunción el 4 de septiembre de 2025 selló matemáticamente la clasificación de Paraguay al Mundial tras 16 años de ausencia."
+      }
+    },
+    "group_2026": {
+      "letter": "[POR CONFIRMAR]",
+      "label": "Grupo asignado en sorteo Mundial 2026",
+      "teams": [
+        {
+          "iso": "py",
+          "name": "Paraguay",
+          "fifa_rank": 38,
+          "is_seed": false
+        },
+        {
+          "iso": "[POR CONFIRMAR]",
+          "name": "[POR CONFIRMAR]",
+          "fifa_rank": null
+        },
+        {
+          "iso": "[POR CONFIRMAR]",
+          "name": "[POR CONFIRMAR]",
+          "fifa_rank": null
+        },
+        {
+          "iso": "[POR CONFIRMAR]",
+          "name": "[POR CONFIRMAR]",
+          "fifa_rank": null
+        }
+      ],
+      "notes": "Pendiente cruce con /grupos zonamundial.app. Paraguay llega como bombo 3 (no fue cabeza de serie por ranking)."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "[POR CONFIRMAR]",
+          "name": "[POR CONFIRMAR]"
+        },
+        "date": "[POR CONFIRMAR]",
+        "venue": {
+          "stadium": "[POR CONFIRMAR]",
+          "city": "",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "[POR CONFIRMAR]",
+          "name": "[POR CONFIRMAR]"
+        },
+        "date": "[POR CONFIRMAR]",
+        "venue": {
+          "stadium": "[POR CONFIRMAR]",
+          "city": "",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "[POR CONFIRMAR]",
+          "name": "[POR CONFIRMAR]"
+        },
+        "date": "[POR CONFIRMAR]",
+        "venue": {
+          "stadium": "[POR CONFIRMAR]",
+          "city": "",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — APF aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Gustavo Alfaro",
+      "age": 63,
+      "nationality": "Argentina",
+      "since": "2024-08-01",
+      "previous_teams": [
+        "Ecuador (2020-2022, clasificó al Mundial 2022)",
+        "Boca Juniors (2019)",
+        "Huracán (2018)",
+        "Tigre (2014-2017)",
+        "Olimpo (2010-2014)"
+      ],
+      "profile_summary": "Argentino, conocido como el 'Lechuga'. Ex DT de Ecuador a quien clasificó al Mundial 2022. Asumió Paraguay en agosto 2024 tras el cese de Daniel Garnero. Identidad táctica: 4-4-2 sólido, defensa cerrada, juego directo, eficacia en jugadas a balón parado. En 7 partidos de eliminatoria firmó 14 puntos (2 puntos/partido), recuperando la posición clasificatoria.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Gustavo_Alfaro_%282022%29_%28cropped%29.jpg/330px-Gustavo_Alfaro_%282022%29_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Gustavo_Alfaro"
+      }
+    },
+    "captain": {
+      "name": "Antonio Sanabria",
+      "club": "Cremonese",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Antonio_Sanabria%2C_2025_%28cropped%29.jpg/330px-Antonio_Sanabria%2C_2025_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Antonio_Sanabria"
+      }
+    },
+    "star_player": {
+      "name": "Antonio Sanabria",
+      "club": "Cremonese",
+      "reason": "El delantero del Cremonese (Serie A italiana) es capitán, goleador (6 en eliminatorias) y emblema del equipo. Su chilena perfecta ante Argentina en noviembre 2024 quedó como uno de los goles del año. A los 30 años llegará a su primer Mundial. Liderazgo y olfato goleador.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Antonio_Sanabria%2C_2025_%28cropped%29.jpg/330px-Antonio_Sanabria%2C_2025_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Antonio_Sanabria"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "roberto-junior-fernandez",
+        "full_name": "Roberto Junior Fernández",
+        "display_name": "Roberto J. Fernández",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Olimpia",
+          "country_iso": "py",
+          "league": "Primera División"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Gatito_Fernandez.jpg/330px-Gatito_Fernandez.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Roberto_Junior_Fern%C3%A1ndez"
+        }
+      },
+      {
+        "id": "carlos-coronel",
+        "full_name": "Carlos Coronel",
+        "display_name": "Carlos Coronel",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "New York RB",
+          "country_iso": "us",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 12,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/FC_Liefering_gegen_FC_Blau-Wei%C3%9F_Linz_%2824._April_2018%29_08.jpg/330px-FC_Liefering_gegen_FC_Blau-Wei%C3%9F_Linz_%2824._April_2018%29_08.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Carlos_Coronel"
+        }
+      },
+      {
+        "id": "anthony-silva",
+        "full_name": "Anthony Silva",
+        "display_name": "Anthony Silva",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Olimpia",
+          "country_iso": "py",
+          "league": "Primera División"
+        },
+        "shirt_number_expected": 22,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/85/Antony_Silva_France_2_juin_2017.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Antony_Silva"
+        }
+      },
+      {
+        "id": "robert-rojas",
+        "full_name": "Robert Rojas",
+        "display_name": "Robert Rojas",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Vasco da Gama",
+          "country_iso": "br",
+          "league": "Brasileirão"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Palestino_-_River_Plate_20190424_30.jpg/330px-Palestino_-_River_Plate_20190424_30.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Robert_Rojas"
+        }
+      },
+      {
+        "id": "agustin-sandez",
+        "full_name": "Agustín Sández",
+        "display_name": "Agustín Sández",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Boca Juniors",
+          "country_iso": "ar",
+          "league": "Liga Profesional"
+        },
+        "shirt_number_expected": 6,
+        "status": "probable"
+      },
+      {
+        "id": "gustavo-gomez",
+        "full_name": "Gustavo Gómez",
+        "display_name": "Gustavo Gómez",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Palmeiras",
+          "country_iso": "br",
+          "league": "Brasileirão"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Gustavo-Gomez-Palmeiras-Athletico-jul-2022-2.jpg/330px-Gustavo-Gomez-Palmeiras-Athletico-jul-2022-2.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Gustavo_G%C3%B3mez"
+        }
+      },
+      {
+        "id": "omar-alderete",
+        "full_name": "Omar Alderete",
+        "display_name": "Omar Alderete",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Sunderland",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Omar_Alderete_2019_%28cropped%29.jpg/330px-Omar_Alderete_2019_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Omar_Alderete"
+        }
+      },
+      {
+        "id": "junior-alonso",
+        "full_name": "Junior Alonso",
+        "display_name": "Junior Alonso",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Boca Juniors",
+          "country_iso": "ar",
+          "league": "Liga Profesional"
+        },
+        "shirt_number_expected": 23,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/J%C3%BAnior_Alonso_20180612_%28cropped%29.jpg/330px-J%C3%BAnior_Alonso_20180612_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Junior_Alonso"
+        }
+      },
+      {
+        "id": "alan-benitez",
+        "full_name": "Alan Benítez",
+        "display_name": "Alan Benítez",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Independiente",
+          "country_iso": "ar",
+          "league": "Liga Profesional"
+        },
+        "shirt_number_expected": 17,
+        "status": "probable"
+      },
+      {
+        "id": "matias-espinoza",
+        "full_name": "Matías Espinoza",
+        "display_name": "Matías Espinoza",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Aldosivi",
+          "country_iso": "ar",
+          "league": "Liga Profesional"
+        },
+        "shirt_number_expected": 16,
+        "status": "bubble"
+      },
+      {
+        "id": "andres-cubas",
+        "full_name": "Andrés Cubas",
+        "display_name": "Andrés Cubas",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Vancouver Whitecaps",
+          "country_iso": "ca",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/InddelVal-Boca_%283%29.jpg/330px-InddelVal-Boca_%283%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Andr%C3%A9s_Cubas"
+        }
+      },
+      {
+        "id": "damian-bobadilla",
+        "full_name": "Damián Bobadilla",
+        "display_name": "Damián Bobadilla",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "São Paulo",
+          "country_iso": "br",
+          "league": "Brasileirão"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed"
+      },
+      {
+        "id": "diego-gomez",
+        "full_name": "Diego Gómez",
+        "display_name": "Diego Gómez",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Brighton",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed"
+      },
+      {
+        "id": "ramon-sosa",
+        "full_name": "Ramón Sosa",
+        "display_name": "Ramón Sosa",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Nottingham Forest",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Ramon-sosa-palmeiras-sport-ago-25-4_%28cropped%29.jpg/330px-Ramon-sosa-palmeiras-sport-ago-25-4_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ram%C3%B3n_Sosa"
+        }
+      },
+      {
+        "id": "richard-sanchez",
+        "full_name": "Richard Sánchez",
+        "display_name": "Richard Sánchez",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Internacional",
+          "country_iso": "br",
+          "league": "Brasileirão"
+        },
+        "shirt_number_expected": 15,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Sanchez_Richard_Columbus_Crew_SC_vs_Chicago_Fire_May_12_2018.jpg/330px-Sanchez_Richard_Columbus_Crew_SC_vs_Chicago_Fire_May_12_2018.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Richard_S%C3%A1nchez_Alcaraz"
+        }
+      },
+      {
+        "id": "miguel-almiron",
+        "full_name": "Miguel Almirón",
+        "display_name": "Miguel Almirón",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Atlanta United",
+          "country_iso": "us",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Miguel_Almir%C3%B3n_2021-08-07_1_%28cropped%29.jpg/330px-Miguel_Almir%C3%B3n_2021-08-07_1_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Miguel_Almir%C3%B3n"
+        }
+      },
+      {
+        "id": "matias-galarza-fonda",
+        "full_name": "Matías Galarza Fonda",
+        "display_name": "Matías Galarza",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Talleres",
+          "country_iso": "ar",
+          "league": "Liga Profesional"
+        },
+        "shirt_number_expected": 21,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Mat%C3%ADas_Galarza_-_Brasileir%C3%A3o_S%C3%A9rie_A-_Bragantino_4_x_2_Coritiba_-_52150854647_%28cropped%29.jpg/330px-Mat%C3%ADas_Galarza_-_Brasileir%C3%A3o_S%C3%A9rie_A-_Bragantino_4_x_2_Coritiba_-_52150854647_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mat%C3%ADas_Galarza"
+        }
+      },
+      {
+        "id": "antonio-sanabria",
+        "full_name": "Antonio Sanabria",
+        "display_name": "Antonio Sanabria",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Cremonese",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Antonio_Sanabria%2C_2025_%28cropped%29.jpg/330px-Antonio_Sanabria%2C_2025_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Antonio_Sanabria"
+        }
+      },
+      {
+        "id": "julio-enciso",
+        "full_name": "Julio Enciso",
+        "display_name": "Julio Enciso",
+        "position": "FWD",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Ipswich",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Enciso_2022.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Julio_Enciso"
+        }
+      },
+      {
+        "id": "alex-arce",
+        "full_name": "Alex Arce",
+        "display_name": "Alex Arce",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "LDU Quito",
+          "country_iso": "ec",
+          "league": "Serie A Ecuador"
+        },
+        "shirt_number_expected": 19,
+        "status": "probable"
+      },
+      {
+        "id": "adam-bareiro",
+        "full_name": "Adam Bareiro",
+        "display_name": "Adam Bareiro",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "San Lorenzo",
+          "country_iso": "ar",
+          "league": "Liga Profesional"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble"
+      },
+      {
+        "id": "gabriel-avalos",
+        "full_name": "Gabriel Ávalos",
+        "display_name": "Gabriel Ávalos",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Argentinos Juniors",
+          "country_iso": "ar",
+          "league": "Liga Profesional"
+        },
+        "shirt_number_expected": 25,
+        "status": "bubble"
+      },
+      {
+        "id": "alejandro-romero",
+        "full_name": "Alejandro Romero Gamarra",
+        "display_name": "Kaku Romero",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Toronto FC",
+          "country_iso": "ca",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 20,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Alejandro_Romero_20180612_%28cropped%29.jpg/330px-Alejandro_Romero_20180612_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Alejandro_Romero_Gamarra"
+        }
+      },
+      {
+        "id": "fabian-balbuena",
+        "full_name": "Fabián Balbuena",
+        "display_name": "Fabián Balbuena",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Internacional",
+          "country_iso": "br",
+          "league": "Brasileirão"
+        },
+        "shirt_number_expected": 13,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Fabi%C3%A1n_Balbuena_2021.jpg/330px-Fabi%C3%A1n_Balbuena_2021.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Fabi%C3%A1n_Balbuena"
+        }
+      },
+      {
+        "id": "braian-samudio",
+        "full_name": "Braian Samudio",
+        "display_name": "Braian Samudio",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Sportivo Luqueño",
+          "country_iso": "py",
+          "league": "Primera División"
+        },
+        "shirt_number_expected": 24,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/FC_Red_Bull_Salzburg_gegen_%C3%87aykur_Rizespor_%28Testspiel%29_06.jpg/330px-FC_Red_Bull_Salzburg_gegen_%C3%87aykur_Rizespor_%28Testspiel%29_06.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Braian_Samudio"
+        }
+      },
+      {
+        "id": "ivan-leguizamon",
+        "full_name": "Iván Leguizamón",
+        "display_name": "Iván Leguizamón",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Lanús",
+          "country_iso": "ar",
+          "league": "Liga Profesional"
+        },
+        "shirt_number_expected": 2,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Leguizamon.jpg/330px-Leguizamon.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Iv%C3%A1n_Leguizam%C3%B3n"
+        }
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-4-2",
+      "players": [
+        {
+          "player_id": "roberto-junior-fernandez",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "robert-rojas",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "gustavo-gomez",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "omar-alderete",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "junior-alonso",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "ramon-sosa",
+          "position": {
+            "x": 85,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "andres-cubas",
+          "position": {
+            "x": 60,
+            "y": 50
+          }
+        },
+        {
+          "player_id": "damian-bobadilla",
+          "position": {
+            "x": 40,
+            "y": 50
+          }
+        },
+        {
+          "player_id": "diego-gomez",
+          "position": {
+            "x": 15,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "antonio-sanabria",
+          "position": {
+            "x": 60,
+            "y": 18
+          }
+        },
+        {
+          "player_id": "julio-enciso",
+          "position": {
+            "x": 40,
+            "y": 18
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Gustavo Alfaro plantea un 4-4-2 clásico, defensa cerrada en bloque medio, juego directo, balones largos para Sanabria y eficacia en jugadas a balón parado. Identidad: orden, intensidad, mucho corazón. Equipo difícil de batir, especialmente en El Defensores del Chaco.",
+      "strengths": [
+        "Defensa central sólida: Gustavo Gómez (Palmeiras), Omar Alderete (Sunderland), Junior Alonso (Boca).",
+        "Antonio Sanabria: capitán, goleador, líder. Chilena vs Argentina inolvidable.",
+        "Diego Gómez (Brighton): mediocampista versátil, anotó 4 goles en eliminatorias.",
+        "Gustavo Alfaro: experiencia mundialista (clasificó Ecuador a 2022). Identidad táctica clara.",
+        "Estadio Defensores del Chaco: fortín muy difícil de visitar. 6 victorias en 9 locales en eliminatorias.",
+        "Mentalidad de underdog: vencieron a Argentina campeona del mundo y a Brasil en Asunción."
+      ],
+      "weaknesses": [
+        "Pobreza ofensiva: solo 14 goles en 18 partidos. Generación creativa sin un '10' top.",
+        "Sanabria es el goleador y único '9' fijo: si se lesiona, riesgo enorme.",
+        "Plantilla con jugadores en clubes sudamericanos y europeos de segundo nivel: pocos en élite mundial.",
+        "Escasa profundidad: las opciones de banco son muy limitadas.",
+        "Edad media alta: Sanabria 30, Almirón 32, Cubas 30, Gómez 33."
+      ],
+      "x_factor": {
+        "player": "Julio Enciso",
+        "reason": "El joven '10' del Ipswich (22 años), con experiencia previa en el Brighton, puede ser el creativo que Paraguay necesita. Su técnica, gambeta y visión de juego pueden romper a equipos cerrados. En Mundial 2026 puede consolidarse como referente generacional."
+      },
+      "prediction_text": "Paraguay regresa al Mundial tras 16 años con un proyecto sólido bajo Gustavo Alfaro. El objetivo realista es disputar la fase de grupos con dignidad y aspirar a octavos. Repetir cuartos como en Sudáfrica 2010 sería gesta histórica. La identidad táctica de Alfaro (defensa cerrada y eficacia) puede dar sorpresas si el sorteo es favorable.",
+      "probabilities": {
+        "advance_groups": 50,
+        "round_of_32": 38,
+        "round_of_16": 18,
+        "quarter_finals": 5,
+        "semi_finals": 1,
+        "final": 0,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Sudáfrica 2010: cuartos de final, eliminada por España futura campeona (1-0 con gol de Villa). Brasil 2014: NO clasificó. Rusia 2018: NO clasificó. Catar 2022: NO clasificó. Mundial 2026: regreso histórico tras 16 años de ausencia (3 ediciones consecutivas sin Paraguay)."
+    }
+  },
+  "history": {
+    "first_appearance": 1930,
+    "appearances_count_before_2026": 8,
+    "appearances_count_with_2026": 9,
+    "consecutive_streak_since": 2026,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 0,
+    "best_result": "Cuartos de final (Sudáfrica 2010)",
+    "aggregate_stats_through_2022": {
+      "played": 27,
+      "won": 7,
+      "drawn": 9,
+      "lost": 11,
+      "goals_for": 30,
+      "goals_against": 38,
+      "win_percentage": 25.9,
+      "notes": "Datos hasta Sudáfrica 2010 (última participación)."
+    },
+    "by_world_cup": [
+      {
+        "year": 1930,
+        "host": {
+          "countries": [
+            "Uruguay"
+          ],
+          "iso": [
+            "uy"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "José Durán Laguardia",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Luis Vargas Peña",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 1,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Uno de los 13 países en el primer Mundial."
+        ],
+        "narrative": "Paraguay debutó en el primer Mundial. Cayó 0-1 con Estados Unidos y empató 1-1 con Bélgica. Eliminación temprana."
+      },
+      {
+        "year": 1950,
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Manuel Fleitas Solich",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Atilio López",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Tercera mejor diferencia de goles del torneo."
+        ],
+        "narrative": "Paraguay perdió 0-2 con Suecia y empató 2-2 con Italia. Eliminación en primera ronda."
+      },
+      {
+        "year": 1958,
+        "host": {
+          "countries": [
+            "Suecia"
+          ],
+          "iso": [
+            "se"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Aurelio González",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Florencio Amarilla",
+            "goals": 3
+          }
+        ],
+        "goals_scored": 9,
+        "goals_conceded": 12,
+        "notable_facts": [
+          "Goleó 3-2 a Escocia.",
+          "Eliminada pese a buen rendimiento ofensivo."
+        ],
+        "narrative": "Paraguay batió 3-2 a Escocia con doblete de Amarilla. Empató 3-3 con Yugoslavia. Cayó 1-7 con Francia. Quedó eliminada con 3 puntos."
+      },
+      {
+        "year": 1986,
+        "host": {
+          "countries": [
+            "México"
+          ],
+          "iso": [
+            "mx"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Cayetano Re",
+        "captain": "Roberto Cabañas",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Roberto Cabañas",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Tras 28 años de ausencia, Paraguay volvió al Mundial.",
+          "Eliminada por Inglaterra 0-3 en octavos."
+        ],
+        "narrative": "Paraguay volvió tras 28 años con un equipo memorable. Empató con Iraq 1-1 y Bélgica 2-2, batió 2-1 a Hungría. En octavos cayó ante Inglaterra de Lineker (3-0). Adiós digno."
+      },
+      {
+        "year": 1998,
+        "host": {
+          "countries": [
+            "Francia"
+          ],
+          "iso": [
+            "fr"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Paulo César Carpegiani",
+        "captain": "José Luis Chilavert",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "José Cardozo",
+            "goals": 1
+          },
+          {
+            "player": "Miguel Ángel Benítez",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 3,
+        "goals_conceded": 1,
+        "notable_facts": [
+          "José Luis Chilavert fue figura como portero-goleador.",
+          "Eliminada por Francia campeona en prórroga (1-0 gol de oro de Laurent Blanc)."
+        ],
+        "narrative": "Paraguay con el icónico portero José Luis Chilavert llegó a octavos. Empató 0-0 con Bulgaria, perdió 0-3 con España y batió 3-1 a Nigeria. En octavos contra Francia futura campeona, 0-0 reglamentario y derrota 0-1 en prórroga con gol de oro de Blanc al 113'. Adiós histórico."
+      },
+      {
+        "year": 2002,
+        "host": {
+          "countries": [
+            "Corea del Sur",
+            "Japón"
+          ],
+          "iso": [
+            "kr",
+            "jp"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Cesare Maldini",
+        "captain": "José Luis Chilavert",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Roque Santa Cruz",
+            "goals": 2
+          },
+          {
+            "player": "Nelson Cuevas",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 6,
+        "goals_conceded": 7,
+        "notable_facts": [
+          "Eliminada por Alemania 0-1 en octavos."
+        ],
+        "narrative": "Paraguay con Chilavert, Roque Santa Cruz y Cuevas pasó la fase de grupos. En octavos cayó 0-1 ante Alemania finalista (gol de Neuville al 87')."
+      },
+      {
+        "year": 2006,
+        "host": {
+          "countries": [
+            "Alemania"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Aníbal Ruiz",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Roque Santa Cruz",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 2,
+        "notable_facts": [
+          "Eliminada en grupo de la muerte (Inglaterra, Suecia, Trinidad)."
+        ],
+        "narrative": "Paraguay perdió 0-1 con Inglaterra (autogol Carlos Gamarra), 0-1 con Suecia y batió 2-0 a Trinidad. Adiós primera ronda."
+      },
+      {
+        "year": 2010,
+        "host": {
+          "countries": [
+            "Sudáfrica"
+          ],
+          "iso": [
+            "za"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Gerardo Martino",
+        "captain": "Justo Villar",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Lucas Barrios",
+            "goals": 1
+          },
+          {
+            "player": "Nelson Haedo Valdez",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 3,
+        "goals_conceded": 2,
+        "notable_facts": [
+          "MEJOR PARTICIPACIÓN HISTÓRICA: cuartos de final.",
+          "Eliminada por España futura campeona 0-1 (gol de Villa).",
+          "Cardozo falló un penal a Casillas en el partido decisivo."
+        ],
+        "narrative": "Paraguay firmó su mejor Mundial. Empató 1-1 con Italia, 0-0 con Nueva Zelanda y batió 1-0 a Eslovaquia. En octavos eliminó a Japón en penales tras 0-0 (Justo Villar atajó). En CUARTOS DE FINAL contra España futura campeona: 0-1 con gol de David Villa al 83'. Cardozo falló penal a Casillas. Mejor papel histórico paraguayo. Generación Chilavert-Santa Cruz-Cabañas-Cardozo-Villar fue época dorada."
+      }
+    ],
+    "palmares": [
+      {
+        "competition": "Copa América",
+        "year": 1953,
+        "position": "Campeón",
+        "host": "Perú"
+      },
+      {
+        "competition": "Copa América",
+        "year": 1979,
+        "position": "Campeón",
+        "host": "Sudamérica (sin sede fija)"
+      },
+      {
+        "competition": "Copa América",
+        "year": 2011,
+        "position": "Subcampeón",
+        "host": "Argentina"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Roque Santa Cruz",
+      "value": 32,
+      "period": "1999-2018",
+      "notes": "Goleador histórico absoluto. Capitán y referente de la generación 2002-2010. Jugó 4 Mundiales."
+    },
+    "most_capped": {
+      "name": "Paulo da Silva",
+      "value": 148,
+      "period": "2000-2016",
+      "notes": "Defensa central. Récord histórico de presencias."
+    },
+    "youngest_debut": {
+      "name": "Diego Gómez",
+      "value": "18 años aprox.",
+      "period": "2022 vs Argentina",
+      "notes": "Datos pendientes verificación primaria APF."
+    },
+    "biggest_win": {
+      "result": "7-0",
+      "opponent": "Bolivia",
+      "date": "1949-04-23",
+      "competition": "Copa América"
+    },
+    "worst_loss": {
+      "result": "1-8",
+      "opponent": "Argentina",
+      "date": "1942-02-05",
+      "competition": "Sudamericano de Selecciones 1942"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El gol de Chilavert vs Bulgaria",
+      "date": "1998-06-12",
+      "opponent": {
+        "iso": "bg",
+        "name": "Bulgaria"
+      },
+      "score": "0-0",
+      "competition": "Fase de Grupos Mundial 1998",
+      "narrative": "El portero José Luis Chilavert estuvo cerca de marcar en el debut mundialista del 0-0 con Bulgaria. Su carisma y capacidad goleadora desde la portería lo convirtieron en figura mundial. Chilavert es uno de los porteros con más goles de la historia."
+    },
+    {
+      "title": "Cuartos de final histórico",
+      "date": "2010-07-03",
+      "opponent": {
+        "iso": "es",
+        "name": "España"
+      },
+      "score": "0-1",
+      "competition": "Cuartos Mundial 2010",
+      "narrative": "Paraguay alcanzó por primera y única vez los cuartos de final en Sudáfrica 2010. Cayó 0-1 ante España futura campeona del mundo con gol de David Villa al 83'. Antes, Cardozo había fallado un penal a Iker Casillas. Mejor papel histórico."
+    },
+    {
+      "title": "Penales a Japón (Sudáfrica 2010)",
+      "date": "2010-06-29",
+      "opponent": {
+        "iso": "jp",
+        "name": "Japón"
+      },
+      "score": "0-0 (5-3 pen)",
+      "competition": "Octavos Mundial 2010",
+      "narrative": "Paraguay eliminó a Japón en octavos del Mundial 2010 tras 0-0 reglamentario y prórroga. Justo Villar atajó el penal de Komano y Cardozo, Barreto, Riveros, Barrios y Valdez convirtieron los suyos. Pase histórico a cuartos."
+    },
+    {
+      "title": "La chilena de Sanabria",
+      "date": "2024-11-14",
+      "opponent": {
+        "iso": "ar",
+        "name": "Argentina"
+      },
+      "score": "2-1",
+      "competition": "Eliminatorias Mundial 2026",
+      "narrative": "Antonio Sanabria marcó una CHILENA PERFECTA al 33' ante Argentina en El Monumental, en uno de los goles del año. Paraguay venció 2-1 a la campeona del mundo (con gol también de Omar Alderete). Punto de inflexión del ciclo Alfaro."
+    },
+    {
+      "title": "El 1-0 a Brasil en Asunción",
+      "date": "2024-09-10",
+      "opponent": {
+        "iso": "br",
+        "name": "Brasil"
+      },
+      "score": "1-0",
+      "competition": "Eliminatorias Mundial 2026",
+      "narrative": "Paraguay venció 1-0 a Brasil en Asunción con gol de Diego Gómez al 20'. Triunfo histórico de la era Alfaro y otra muestra de la solidez del proyecto albirrojo en el Defensores del Chaco."
+    },
+    {
+      "title": "El regreso al Mundial",
+      "date": "2025-09-04",
+      "opponent": {
+        "iso": "ec",
+        "name": "Ecuador"
+      },
+      "score": "0-0",
+      "competition": "Eliminatorias Mundial 2026",
+      "narrative": "Paraguay y Ecuador empataron 0-0 en Asunción y AMBOS sellaron matemáticamente la clasificación al Mundial 2026. Para Paraguay, regreso después de 16 años (última participación: Sudáfrica 2010). El estadio Defensores del Chaco festejó con histórica alegría."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "Paraguay regresa al Mundial tras 16 años de ausencia (última participación: Sudáfrica 2010, donde alcanzó cuartos de final). Es la racha más larga sin Mundial de la generación Chilavert-Santa Cruz.",
+      "source": "FIFA + APF",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "José Luis Chilavert es uno de los porteros con más goles en la historia (62 oficiales). Anotó 8 goles con Paraguay como portero. Falló un penal en el Mundial 2002 ante Alemania.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Gustavo Alfaro es el único entrenador que ha clasificado a 2 selecciones a Mundiales consecutivos: Ecuador 2022 y Paraguay 2026. Los dos como argentino contratado.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "La chilena de Antonio Sanabria a Argentina (14 nov 2024) fue elegida por la prensa sudamericana como uno de los 5 goles del año 2024 en Sudamérica.",
+      "source": "ESPN + Olé",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Paraguay batió 5-0 a Argentina en eliminatorias del Mundial 1969 (rumbo a México 1970). Es la mayor goleada paraguaya sobre Argentina en eliminatorias.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "El estadio Defensores del Chaco de Asunción es uno de los estadios sudamericanos donde menos visitantes han logrado ganar en eliminatorias en la última década. Paraguay lo aprovechó como fortín en el ciclo 2026.",
+      "source": "CONMEBOL",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Roque Santa Cruz es el único paraguayo en jugar 4 Mundiales (1998, 2002, 2006, 2010). Marcó goles en 2002 y 2006. Su carrera en Bayern Múnich y Manchester City le dio proyección mundial.",
+      "source": "FIFA + Bayern Munich",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Vamos vamos Paraguay",
+      "Albirroja, te llevo en el alma",
+      "Sapukai (grito en guaraní de la afición)"
+    ],
+    "main_rival": {
+      "iso": "ar",
+      "name": "Argentina",
+      "story": "Vecinos comparten frontera y rivalidad histórica intensa. El 5-0 paraguayo en eliminatorias 1969 y la chilena de Sanabria 2024 son dos momentos icónicos."
+    },
+    "home_stadium": {
+      "name": "Estadio Defensores del Chaco",
+      "capacity": 36000,
+      "city": "Asunción"
+    }
+  },
+  "seo": {
+    "meta_title": "Paraguay en el Mundial 2026 | Plantilla, historia y predicciones",
+    "meta_description": "Paraguay Mundial 2026: 26 convocados de Gustavo Alfaro, Sanabria, Almirón. Regreso al Mundial tras 16 años de ausencia.",
+    "og_image_url": "/img/og/teams/paraguay.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Paraguay",
+      "alternateName": [
+        "Albirroja",
+        "Guaraníes"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "CONMEBOL"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Gustavo Alfaro"
+      },
+      "url": "https://www.zonamundial.app/selecciones/paraguay"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-28",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_de_Conmebol_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://www.tudn.com/mundial-2026/eliminatorias/eliminatorias-mundial-2026-asi-quedo-tabla-posiciones-conmebol",
+      "https://www.infobae.com/deportes/2025/09/04/la-paraguay-de-gustavo-alfaro-buscara-sellar-su-clasificacion-al-mundial-2026-frente-a-ecuador-hora-tv-y-formaciones/",
+      "https://www.elespectador.com/deportes/futbol-mundial/asi-quedo-la-tabla-de-las-eliminatorias-al-mundial-2026-tras-la-ultima-fecha-video-goles-colombia-argentina-venezuela-bolivia-brasil-noticias-hoy/",
+      "https://www.apf.org.py",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias cruzadas con Wikipedia + Infobae + TUDN + El Espectador. Historia mundialista validada con FIFA + Wikipedia + APF. Plantilla con APF + medios paraguayos.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "needs_review",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante: pendiente",
+      "Grupo Mundial 2026 y rivales: cruzar con /grupos zonamundial.app",
+      "Calendario fase de grupos 2026: fixture FIFA pendiente",
+      "Base de entrenamiento: APF aún no anunció",
+      "FIFA Ranking #38: validar mes vigente",
+      "Récord 'youngest_debut' Diego Gómez: cruzar fecha exacta APF",
+      "Goleadores secundarios eliminatoria: revisar exactitud (Cubas, Alderete)"
+    ]
+  }
+}

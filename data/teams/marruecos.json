@@ -1,0 +1,1598 @@
+{
+  "slug": "marruecos",
+  "iso": "ma",
+  "iso3": "MAR",
+  "name_es": "Marruecos",
+  "name_en": "Morocco",
+  "name_local": "Al-Maghrib · المغرب",
+  "nicknames": [
+    "Los Leones del Atlas",
+    "Asoud Al Atlas",
+    "أسود الأطلس"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#C1272D",
+      "secondary": "#006233",
+      "tertiary": "#FFFFFF",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Rabat",
+    "language_official": [
+      "Árabe",
+      "Bereber"
+    ],
+    "population": 37840000,
+    "area_km2": 446550,
+    "timezone": "Africa/Casablanca",
+    "continent": "África"
+  },
+  "federation": {
+    "name": "Federación Real Marroquí de Fútbol",
+    "abbreviation": "FRMF",
+    "founded": 1955,
+    "headquarters": "Rabat",
+    "website": "https://www.frmf.ma"
+  },
+  "confederation": "CAF",
+  "fifa_ranking": {
+    "current": 11,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Puma",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/marruecos.png",
+        "back_url": null,
+        "primary_color": "#C1272D",
+        "secondary_color": "#006233",
+        "description": "Camiseta roja con detalles verdes inspirados en la bandera nacional. La estrella de cinco puntas verde, símbolo del islam y de la marroquinidad, aparece en el escudo.",
+        "alt_text": "Camiseta titular Marruecos Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#C1272D",
+        "description": "Equipación visitante en blanco con detalles rojos. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Marruecos Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "Tras el histórico 4º puesto en Qatar 2022, las ventas internacionales de la camiseta marroquí experimentaron un boom histórico, convirtiendo a Marruecos en el equipo africano más vendido de la historia del Mundial.",
+        "source": "Marca + reportes de prensa Puma",
+        "verified_at": "2026-04-28",
+        "status": "needs_review"
+      },
+      {
+        "text": "El escudo de la FRMF lleva una estrella verde de cinco puntas que representa el sello de Salomón, símbolo histórico de la cultura marroquí presente también en la bandera nacional desde 1915.",
+        "source": "FRMF oficial",
+        "verified_at": "2026-04-28",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Paso perfecto en eliminatorias CAF: 8 victorias en 8 partidos, primer país africano en clasificarse al Mundial 2026 (5 sept 2025) tras golear 5-0 a Níger. Lideró el Grupo E con 24 puntos, 8 más que el segundo (Tanzania). 24 puntos posibles de 24, mayor balance del continente. La FRMF capitalizó el impulso de Qatar 2022 y la generación de Hakimi/Bono sigue siendo la columna del proyecto, ahora reforzada por Brahim Díaz y nuevos talentos como Saibari, El Khannouss e Igamane.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias CAF Mundial 2026 — Grupo E (1ª ronda)",
+      "format": "Liguilla todos contra todos · ida y vuelta · 5 equipos (Eritrea retirada)",
+      "duration": "Junio 2024 — Octubre 2025",
+      "final_position": 1,
+      "total_teams_in_group": 5,
+      "stats": {
+        "played": 8,
+        "won": 8,
+        "drawn": 0,
+        "lost": 0,
+        "goals_for": 25,
+        "goals_against": 1,
+        "goal_difference": 24,
+        "points": 24,
+        "win_percentage": 100,
+        "clean_sheets": 7
+      },
+      "coach_during_qualifying": "Walid Regragui",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2024-06-07",
+          "home": {
+            "iso": "zm",
+            "name": "Zambia",
+            "score": 1
+          },
+          "away": {
+            "iso": "ma",
+            "name": "Marruecos",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Levy Mwanawasa",
+            "city": "Ndola",
+            "country_iso": "zm"
+          },
+          "goals_arg": [
+            {
+              "player": "Hakim Ziyech",
+              "minute": "—",
+              "type": "goal"
+            },
+            {
+              "player": "Eliesse Ben Seghir",
+              "minute": "—",
+              "type": "goal"
+            }
+          ],
+          "notes": "Debut con victoria. Único partido del ciclo en que Marruecos encajó gol."
+        },
+        {
+          "matchday": 2,
+          "date": "2024-06-11",
+          "home": {
+            "iso": "cd",
+            "name": "Congo",
+            "score": 0
+          },
+          "away": {
+            "iso": "ma",
+            "name": "Marruecos",
+            "score": 6
+          },
+          "venue": {
+            "stadium": "Adrar",
+            "city": "Agadir",
+            "country_iso": "ma"
+          },
+          "goals_arg": [
+            {
+              "player": "Azzedine Ounahi",
+              "minute": "8'",
+              "type": "goal"
+            },
+            {
+              "player": "Mohammed Riad",
+              "minute": "16'",
+              "type": "goal"
+            },
+            {
+              "player": "Ayoub El Kaabi",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Ayoub El Kaabi",
+              "minute": "39'",
+              "type": "goal"
+            },
+            {
+              "player": "Ayoub El Kaabi",
+              "minute": "53'",
+              "type": "goal"
+            },
+            {
+              "player": "Soufiane Rahimi",
+              "minute": "62'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Hat-trick de El Kaabi. Partido jugado en Agadir (Marruecos) por motivos diplomáticos pese a ser Congo el local sobre el papel."
+        },
+        {
+          "matchday": 3,
+          "date": "2025-03-21",
+          "home": {
+            "iso": "ma",
+            "name": "Marruecos",
+            "score": 2
+          },
+          "away": {
+            "iso": "ne",
+            "name": "Níger",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Príncipe Moulay Abdellah",
+            "city": "Rabat",
+            "country_iso": "ma"
+          },
+          "goals_arg": [],
+          "notes": "Victoria sólida. Datos de goleadores pendientes verificación primaria."
+        },
+        {
+          "matchday": 4,
+          "date": "2025-03-25",
+          "home": {
+            "iso": "tz",
+            "name": "Tanzania",
+            "score": 0
+          },
+          "away": {
+            "iso": "ma",
+            "name": "Marruecos",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Benjamin Mkapa",
+            "city": "Dar es Salaam",
+            "country_iso": "tz"
+          },
+          "goals_arg": [],
+          "notes": "Datos de goleadores pendientes verificación primaria."
+        },
+        {
+          "matchday": 5,
+          "date": "2025-09-05",
+          "home": {
+            "iso": "ma",
+            "name": "Marruecos",
+            "score": 5
+          },
+          "away": {
+            "iso": "ne",
+            "name": "Níger",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Príncipe Moulay Abdellah",
+            "city": "Rabat",
+            "country_iso": "ma"
+          },
+          "goals_arg": [
+            {
+              "player": "Ismail Saibari",
+              "minute": "—",
+              "type": "goal"
+            },
+            {
+              "player": "Ayoub El Kaabi",
+              "minute": "—",
+              "type": "goal"
+            },
+            {
+              "player": "Hamza Igamane",
+              "minute": "—",
+              "type": "goal"
+            },
+            {
+              "player": "Azzedine Ounahi",
+              "minute": "—",
+              "type": "goal"
+            }
+          ],
+          "notes": "Partido en que Marruecos selló matemáticamente su clasificación al Mundial 2026. Primer país africano en lograrlo. Cuatro goleadores diferentes (5º gol pendiente verificación).",
+          "is_decisive_match": true
+        },
+        {
+          "matchday": 6,
+          "date": "2025-09-08",
+          "home": {
+            "iso": "ma",
+            "name": "Marruecos",
+            "score": 2
+          },
+          "away": {
+            "iso": "zm",
+            "name": "Zambia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Príncipe Moulay Abdellah",
+            "city": "Rabat",
+            "country_iso": "ma"
+          },
+          "goals_arg": [],
+          "notes": "Victoria con la clasificación ya asegurada."
+        },
+        {
+          "matchday": 7,
+          "date": "2025-10-09",
+          "home": {
+            "iso": "ma",
+            "name": "Marruecos",
+            "score": 1
+          },
+          "away": {
+            "iso": "cd",
+            "name": "Congo",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Príncipe Moulay Abdellah",
+            "city": "Rabat",
+            "country_iso": "ma"
+          },
+          "goals_arg": []
+        },
+        {
+          "matchday": 8,
+          "date": "2025-10-13",
+          "home": {
+            "iso": "ma",
+            "name": "Marruecos",
+            "score": 5
+          },
+          "away": {
+            "iso": "tz",
+            "name": "Tanzania",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Príncipe Moulay Abdellah",
+            "city": "Rabat",
+            "country_iso": "ma"
+          },
+          "goals_arg": [],
+          "notes": "Cierre del ciclo perfecto: 8 partidos, 24 puntos, 8 victorias. Marruecos firmó el mejor camino de la CAF al Mundial 2026."
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Ayoub El Kaabi",
+          "goals": 7,
+          "notes": "Goleador del equipo en el ciclo. Hat-trick contra Congo en el debut. Delantero del Olympiakos."
+        },
+        {
+          "player": "Hamza Igamane",
+          "goals": 5
+        },
+        {
+          "player": "Ismail Saibari",
+          "goals": 4
+        },
+        {
+          "player": "Azzedine Ounahi",
+          "goals": 3
+        },
+        {
+          "player": "Hakim Ziyech",
+          "goals": 2
+        },
+        {
+          "player": "Eliesse Ben Seghir",
+          "goals": 1
+        },
+        {
+          "player": "Mohammed Riad",
+          "goals": 1
+        },
+        {
+          "player": "Soufiane Rahimi",
+          "goals": 1
+        },
+        {
+          "player": "Otros (resto)",
+          "goals": 1
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_2",
+        "reason": "El 6-0 a Congo el 11 de junio de 2024 en Agadir. Hat-trick de Ayoub El Kaabi (20', 39', 53'), gol madrugador de Ounahi al 8', y goles de Riad y Rahimi. Mejor exhibición ofensiva del ciclo."
+      },
+      "worst_match": {
+        "match_ref": "matchday_1",
+        "reason": "Victoria 2-1 ante Zambia en Ndola el 7 de junio de 2024. Único partido del ciclo en que Marruecos encajó gol; el resto de victorias fueron por la mínima diferencia o con porterías a cero."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_5",
+        "reason": "El 5-0 a Níger del 5 de septiembre de 2025 dejó a Marruecos como primer clasificado de toda África al Mundial 2026."
+      }
+    },
+    "group_2026": {
+      "letter": "C",
+      "label": "Grupo C — junto a Brasil, Haití y Escocia",
+      "teams": [
+        {
+          "iso": "br",
+          "name": "Brasil",
+          "fifa_rank": null,
+          "is_seed": true
+        },
+        {
+          "iso": "ma",
+          "name": "Marruecos",
+          "fifa_rank": 11,
+          "is_seed": false
+        },
+        {
+          "iso": "sct",
+          "name": "Escocia",
+          "fifa_rank": null,
+          "is_seed": false
+        },
+        {
+          "iso": "ht",
+          "name": "Haití",
+          "fifa_rank": null,
+          "is_seed": false
+        }
+      ],
+      "notes": "Grupo confirmado según ESPN y zonamundial.app/grupos. Brasil como cabeza de serie. Marruecos parte como segundo favorito. Validar rivales y FIFA Ranking actualizado al publicar."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "[POR CONFIRMAR]",
+          "name": "[POR CONFIRMAR]"
+        },
+        "date": "[POR CONFIRMAR — fixture FIFA pendiente con fecha/hora/sede]",
+        "venue": {
+          "stadium": "[POR CONFIRMAR]",
+          "city": "",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "[POR CONFIRMAR]",
+          "name": "[POR CONFIRMAR]"
+        },
+        "date": "[POR CONFIRMAR]",
+        "venue": {
+          "stadium": "[POR CONFIRMAR]",
+          "city": "",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "[POR CONFIRMAR]",
+          "name": "[POR CONFIRMAR]"
+        },
+        "date": "[POR CONFIRMAR]",
+        "venue": {
+          "stadium": "[POR CONFIRMAR]",
+          "city": "",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — FRMF aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Walid Regragui",
+      "age": 50,
+      "nationality": "Marruecos",
+      "since": "2022-08-31",
+      "previous_teams": [
+        "Wydad Casablanca (2021-2022)",
+        "Al-Duhail (2020-2021)",
+        "FUS Rabat (2014-2020)"
+      ],
+      "profile_summary": "Asumió la selección apenas 3 meses antes del Mundial Qatar 2022 y firmó el mejor papel de la historia africana en una Copa del Mundo (4º puesto). Hijo de inmigrantes marroquíes en Francia, exjugador de Racing de Santander y Grenoble. Ganó la Liga de Campeones de la CAF con Wydad en 2022 antes de la selección. Identidad táctica clara: bloque medio-bajo bien estructurado, transiciones rápidas, capacidad para neutralizar a equipos superiores. Tras la final perdida de la CAN 2025 ante Senegal en casa (primera derrota local desde 2009), llega a 2026 con la presión de capitalizar el ciclo.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/RegraguiCoach.jpg/330px-RegraguiCoach.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Walid_Regragui"
+      }
+    },
+    "captain": {
+      "name": "Achraf Hakimi",
+      "club": "Paris Saint-Germain",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Achraf_Hakimi_vs_Niger%2C_5_Sept_2025.jpg/330px-Achraf_Hakimi_vs_Niger%2C_5_Sept_2025.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Achraf_Hakimi"
+      }
+    },
+    "star_player": {
+      "name": "Achraf Hakimi",
+      "club": "Paris Saint-Germain",
+      "reason": "El lateral derecho del PSG, formado en La Fábrica del Real Madrid, es la cara, capitán y mejor jugador de Marruecos. Capaz de defender al máximo nivel y aportar gol/asistencia desde la banda. Fue determinante en la eliminación de España en Qatar 2022 (anotó el penal definitivo). Llega al Mundial 2026 como uno de los 3 mejores laterales del mundo, y será su 3ª Copa del Mundo.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Achraf_Hakimi_vs_Niger%2C_5_Sept_2025.jpg/330px-Achraf_Hakimi_vs_Niger%2C_5_Sept_2025.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Achraf_Hakimi"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "yassine-bounou",
+        "full_name": "Yassine Bounou",
+        "display_name": "Bono",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Al-Hilal",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Yassine_Bono_%28cropped%29.jpg/330px-Yassine_Bono_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Bono_(futbolista)"
+        }
+      },
+      {
+        "id": "munir-mohamedi",
+        "full_name": "Munir Mohamedi",
+        "display_name": "Munir El Kajoui",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Wydad Casablanca",
+          "country_iso": "ma",
+          "league": "Botola Pro"
+        },
+        "shirt_number_expected": 12,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/38/Munir_Mohand_Mohamedi_%28cropped2%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Munir_Mohamedi"
+        }
+      },
+      {
+        "id": "ahmed-reda-tagnaouti",
+        "full_name": "Ahmed Reda Tagnaouti",
+        "display_name": "Tagnaouti",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "IR Tánger",
+          "country_iso": "ma",
+          "league": "Botola Pro"
+        },
+        "shirt_number_expected": 22,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/%D8%A3%D8%AD%D9%85%D8%AF_%D8%B1%D8%B6%D8%A7_%D8%A7%D9%84%D8%AA%D9%83%D9%86%D8%A7%D9%88%D8%AA%D9%8A.jpg/330px-%D8%A3%D8%AD%D9%85%D8%AF_%D8%B1%D8%B6%D8%A7_%D8%A7%D9%84%D8%AA%D9%83%D9%86%D8%A7%D9%88%D8%AA%D9%8A.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ahmed_Reda_Tagnaouti"
+        }
+      },
+      {
+        "id": "achraf-hakimi",
+        "full_name": "Achraf Hakimi",
+        "display_name": "Achraf Hakimi",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Paris Saint-Germain",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Achraf_Hakimi_vs_Niger%2C_5_Sept_2025.jpg/330px-Achraf_Hakimi_vs_Niger%2C_5_Sept_2025.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Achraf_Hakimi"
+        }
+      },
+      {
+        "id": "noussair-mazraoui",
+        "full_name": "Noussair Mazraoui",
+        "display_name": "Mazraoui",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Manchester United",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Mazraoui.jpg/330px-Mazraoui.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Noussair_Mazraoui"
+        }
+      },
+      {
+        "id": "achraf-dari",
+        "full_name": "Achraf Dari",
+        "display_name": "Dari",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Brest",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed"
+      },
+      {
+        "id": "nayef-aguerd",
+        "full_name": "Nayef Aguerd",
+        "display_name": "Aguerd",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Real Sociedad",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Nayef_Aguerd_vs_Niger%2C_5_Sept_2025.jpg/330px-Nayef_Aguerd_vs_Niger%2C_5_Sept_2025.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Nayef_Aguerd"
+        }
+      },
+      {
+        "id": "romain-saiss",
+        "full_name": "Romain Saiss",
+        "display_name": "Romain Saïss",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Al-Shabab",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 4,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/RomainSaiss.jpg/330px-RomainSaiss.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Romain_Sa%C3%AFss"
+        }
+      },
+      {
+        "id": "jawad-el-yamiq",
+        "full_name": "Jawad El Yamiq",
+        "display_name": "El Yamiq",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Real Valladolid",
+          "country_iso": "es",
+          "league": "La Liga 2"
+        },
+        "shirt_number_expected": 17,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Elyamiq.jpg/330px-Elyamiq.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jawad_El_Yamiq"
+        }
+      },
+      {
+        "id": "adam-masina",
+        "full_name": "Adam Masina",
+        "display_name": "Adam Masina",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Torino",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 3,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Adam_Masina_-_Maroc_vs_Niger_%28cropped%29.jpg/330px-Adam_Masina_-_Maroc_vs_Niger_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Adam_Masina"
+        }
+      },
+      {
+        "id": "yahia-attiat-allah",
+        "full_name": "Yahia Attiat-Allah",
+        "display_name": "Attiat-Allah",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Wydad Casablanca",
+          "country_iso": "ma",
+          "league": "Botola Pro"
+        },
+        "shirt_number_expected": 25,
+        "status": "bubble"
+      },
+      {
+        "id": "sofyan-amrabat",
+        "full_name": "Sofyan Amrabat",
+        "display_name": "Sofyan Amrabat",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Real Betis",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Sofyan_Amrabat_vs_Niger_%28cropped%29.jpg/330px-Sofyan_Amrabat_vs_Niger_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Sofyan_Amrabat"
+        }
+      },
+      {
+        "id": "azzedine-ounahi",
+        "full_name": "Azzedine Ounahi",
+        "display_name": "Ounahi",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Girona",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Ounahi_vs_Paraguay_%28cropped%29.jpg/330px-Ounahi_vs_Paraguay_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Azzedine_Ounahi"
+        }
+      },
+      {
+        "id": "bilal-el-khannouss",
+        "full_name": "Bilal El Khannouss",
+        "display_name": "El Khannouss",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Stuttgart",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/El_Khannouss.jpg/330px-El_Khannouss.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Bilal_El_Khannouss"
+        }
+      },
+      {
+        "id": "ismail-saibari",
+        "full_name": "Ismail Saibari",
+        "display_name": "Saibari",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "PSV Eindhoven",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 21,
+        "status": "fixed"
+      },
+      {
+        "id": "selim-amallah",
+        "full_name": "Selim Amallah",
+        "display_name": "Amallah",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Valladolid",
+          "country_iso": "es",
+          "league": "La Liga 2"
+        },
+        "shirt_number_expected": 16,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Amellah_%28cropped%29.jpg/330px-Amellah_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Selim_Amallah"
+        }
+      },
+      {
+        "id": "neil-el-aynaoui",
+        "full_name": "Neil El Aynaoui",
+        "display_name": "El Aynaoui",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Lens",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 23,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Neil_El_Aynaoui_vs_Niger_%28cropped%29.jpg/330px-Neil_El_Aynaoui_vs_Niger_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Neil_El_Aynaoui"
+        }
+      },
+      {
+        "id": "brahim-diaz",
+        "full_name": "Brahim Díaz",
+        "display_name": "Brahim Díaz",
+        "position": "FWD",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Real Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Brahim_Diaz_3_vs_Niger_%28cropped%29_%28cropped%29.jpg/330px-Brahim_Diaz_3_vs_Niger_%28cropped%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Brahim_D%C3%ADaz"
+        }
+      },
+      {
+        "id": "hakim-ziyech",
+        "full_name": "Hakim Ziyech",
+        "display_name": "Ziyech",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Al Duhail",
+          "country_iso": "qa",
+          "league": "QSL"
+        },
+        "shirt_number_expected": 7,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Hakim_Ziyech_2021.jpg/330px-Hakim_Ziyech_2021.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Hakim_Ziyech"
+        }
+      },
+      {
+        "id": "youssef-en-nesyri",
+        "full_name": "Youssef En-Nesyri",
+        "display_name": "En-Nesyri",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Fenerbahçe",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Ennesyri.jpg/330px-Ennesyri.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Youssef_En-Nesyri"
+        }
+      },
+      {
+        "id": "ayoub-el-kaabi",
+        "full_name": "Ayoub El Kaabi",
+        "display_name": "El Kaabi",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Olympiakos",
+          "country_iso": "gr",
+          "league": "Super League Greece"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Ayoub_El_Kaabi_vs_Niger_%28cropped%29.jpg/330px-Ayoub_El_Kaabi_vs_Niger_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ayoub_El_Kaabi"
+        }
+      },
+      {
+        "id": "hamza-igamane",
+        "full_name": "Hamza Igamane",
+        "display_name": "Igamane",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Rangers",
+          "country_iso": "gb-sct",
+          "league": "Scottish Premiership"
+        },
+        "shirt_number_expected": 13,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Hamza_Igamane_vs_Niger_%28cropped%29.jpg/330px-Hamza_Igamane_vs_Niger_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Hamza_Igamane"
+        }
+      },
+      {
+        "id": "sofiane-boufal",
+        "full_name": "Sofiane Boufal",
+        "display_name": "Boufal",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Al-Rayyan",
+          "country_iso": "qa",
+          "league": "QSL"
+        },
+        "shirt_number_expected": 24,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/XXIII_Memorial_Quinocho_%28RC_Celta_vs_Mainz_05%29_-_23_%28cropped%29.jpg/330px-XXIII_Memorial_Quinocho_%28RC_Celta_vs_Mainz_05%29_-_23_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Sofiane_Boufal"
+        }
+      },
+      {
+        "id": "amine-adli",
+        "full_name": "Amine Adli",
+        "display_name": "Adli",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Bournemouth",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 15,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/AmineAdli.jpg/330px-AmineAdli.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Amine_Adli"
+        }
+      },
+      {
+        "id": "eliesse-ben-seghir",
+        "full_name": "Eliesse Ben Seghir",
+        "display_name": "Ben Seghir",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Bayer Leverkusen",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 20,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Eliesse_Ben_Seghir_vs_Niger_%28cropped%29_%28cropped%29.jpg/330px-Eliesse_Ben_Seghir_vs_Niger_%28cropped%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Eliesse_Ben_Seghir"
+        }
+      },
+      {
+        "id": "abde-ezzalzouli",
+        "full_name": "Abde Ezzalzouli",
+        "display_name": "Abde Ezzalzouli",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Real Betis",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/AbdeEz.jpg/330px-AbdeEz.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ez_Abde"
+        }
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-3-3",
+      "players": [
+        {
+          "player_id": "yassine-bounou",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "achraf-hakimi",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "achraf-dari",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "nayef-aguerd",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "noussair-mazraoui",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "sofyan-amrabat",
+          "position": {
+            "x": 50,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "azzedine-ounahi",
+          "position": {
+            "x": 70,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "bilal-el-khannouss",
+          "position": {
+            "x": 30,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "amine-adli",
+          "position": {
+            "x": 85,
+            "y": 22
+          }
+        },
+        {
+          "player_id": "youssef-en-nesyri",
+          "position": {
+            "x": 50,
+            "y": 18
+          }
+        },
+        {
+          "player_id": "brahim-diaz",
+          "position": {
+            "x": 15,
+            "y": 22
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Marruecos juega un 4-3-3 sólido y físico, con bloque medio-bajo cuando defiende y transiciones rápidas verticales con Hakimi por banda derecha y los extremos en las espaldas rivales. Identidad reforzada en Qatar 2022: orden defensivo riguroso, intensidad coordinada, eficacia ofensiva con pocas ocasiones convertidas. La defensa central Aguerd-Dari y el portero Bono son la base del proyecto. Amrabat es el ancla del medio. Brahim Díaz, Saibari, El Khannouss aportan creatividad ofensiva.",
+      "strengths": [
+        "Defensa élite mundial: Aguerd, Dari, Saïss y Bono. En las eliminatorias 2026 solo encajó 1 gol en 8 partidos (récord histórico de Marruecos).",
+        "Lateral derecho diferencial: Hakimi es uno de los 3 mejores del mundo en su posición y capitán carismático.",
+        "Mediocampo de gran tránsito: Amrabat (CDM) + Ounahi (CM creativo) + El Khannouss / Saibari (talentos jóvenes en alza).",
+        "Generación con experiencia mundial: 14 jugadores de Qatar 2022 siguen activos y conocen lo que es jugar contra cualquier favorito.",
+        "Gestión Regragui: identidad táctica clara, química de grupo, dominio del juego mental ante rivales superiores en papel."
+      ],
+      "weaknesses": [
+        "Generación de delanteros centrales discontinua: En-Nesyri irregular en clubs, El Kaabi sin experiencia top europea, Igamane (joven) en proceso.",
+        "Dependencia del bloque defensivo: si Aguerd o Bono se lesionan, baja sustancialmente el nivel.",
+        "Edad creciente del eje: Ziyech (33), Saïss (35), Bono (35) llegarán a 2026 con kilómetros.",
+        "Falta de gol en jugadas de ataque posicional: Marruecos brilla en transiciones, pero sufre cuando el rival se cierra atrás (visto en final CAN 2025).",
+        "Transición entre generación Qatar 2022 y nuevos jugadores (Brahim Díaz, El Khannouss, Saibari) aún no consolidada al 100%.",
+        "Final CAN 2025 perdida en casa ante Senegal — primera derrota local desde 2009 — pone presión sobre el ciclo Regragui."
+      ],
+      "x_factor": {
+        "player": "Brahim Díaz",
+        "reason": "El madridista, formado en España y Manchester City, eligió a Marruecos en febrero 2024 sobre la selección española. A los 26 años, llega al Mundial en su mejor momento futbolístico. Su capacidad de regate, gol y desequilibrio puede convertir a Marruecos de equipo defensivo en equipo ofensivo. Con Hakimi por la derecha y Brahim entre líneas, el ataque marroquí da otro salto."
+      },
+      "prediction_text": "Marruecos llega a 2026 como mejor selección africana del ranking FIFA. En el Grupo C con Brasil, Haití y Escocia, parece favorita junto a Brasil para pasar como una de las dos primeras. Cuartos de final es el techo razonable. Repetir el 4º puesto histórico de Qatar requiere sorteo favorable y mantener el bloque defensivo de élite. El reto es gestionar la edad de varios titulares y consolidar la nueva generación liderada por Brahim, Saibari y El Khannouss tras la final perdida de la CAN 2025.",
+      "probabilities": {
+        "advance_groups": 78,
+        "round_of_32": 65,
+        "round_of_16": 42,
+        "quarter_finals": 22,
+        "semi_finals": 8,
+        "final": 3,
+        "champion": 1
+      },
+      "vs_last_3_wcs": "Rusia 2018: fase de grupos, último con 1 punto. Catar 2022: 4º PUESTO HISTÓRICO. Eliminó a Bélgica en grupos, a España en octavos (penales), a Portugal en cuartos. Cayó ante Francia en semis (2-0) y ante Croacia (2-1) en el partido por el bronce. Mundial 2026: llega como semifinalista vigente del Mundial, subcampeón Africano 2025 (CAN), con la mayoría del bloque vigente más nuevos talentos de élite (Brahim Díaz, El Khannouss, Saibari)."
+    }
+  },
+  "history": {
+    "first_appearance": 1970,
+    "appearances_count_before_2026": 6,
+    "appearances_count_with_2026": 7,
+    "consecutive_streak_since": 2018,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 1,
+    "best_result": "Cuarto puesto (Catar 2022)",
+    "aggregate_stats_through_2022": {
+      "played": 22,
+      "won": 5,
+      "drawn": 8,
+      "lost": 9,
+      "goals_for": 17,
+      "goals_against": 24,
+      "win_percentage": 22.7,
+      "notes": "Datos hasta Qatar 2022. La impresión de Qatar 2022 (4º puesto) marca un antes y un después: solo en ese torneo ganó 3 partidos, igual o más que la suma de todos los Mundiales anteriores."
+    },
+    "by_world_cup": [
+      {
+        "year": 1970,
+        "host": {
+          "countries": [
+            "México"
+          ],
+          "iso": [
+            "mx"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Blagoje Vidinić",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Houmane Jarir",
+            "goals": 1
+          },
+          {
+            "player": "Mohamed Ghazouani",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Primera participación de Marruecos y de un país árabe en un Mundial.",
+          "Empate histórico 1-1 con Bulgaria en el último partido tras perder con Alemania Federal y Perú.",
+          "Único país africano en ese Mundial."
+        ],
+        "narrative": "Marruecos debutó en el Mundial México 1970 como primer país árabe en clasificarse a una Copa del Mundo. Integró un grupo durísimo con Alemania Federal, Perú y Bulgaria. Perdió 2-1 con Alemania (gol de Houmane Jarir), 3-0 con Perú y empató 1-1 con Bulgaria, su primer punto histórico en un Mundial. Ghazouani anotó el gol del empate."
+      },
+      {
+        "year": 1986,
+        "host": {
+          "countries": [
+            "México"
+          ],
+          "iso": [
+            "mx"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "José Faria",
+        "captain": "Noureddine Bouyahyaoui",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Abderrazak Khairi",
+            "goals": 2
+          },
+          {
+            "player": "Abdelmadjid Dolmy",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 3,
+        "goals_conceded": 2,
+        "notable_facts": [
+          "Marruecos se convirtió en el primer país africano en pasar a octavos de final de un Mundial.",
+          "Líder de su grupo con 4 puntos por delante de Inglaterra, Polonia y Portugal.",
+          "Eliminada por Alemania Federal 0-1 en octavos con gol de Lothar Matthäus."
+        ],
+        "narrative": "El primer hito histórico del fútbol africano: Marruecos se convirtió en el primer país del continente en pasar la fase de grupos. Empató 0-0 con Polonia, 0-0 con Inglaterra y batió 3-1 a Portugal con doblete de Khairi. Lideró su grupo con 4 puntos. En octavos, ante Alemania Federal en León, cayó 0-1 con gol de Matthäus al 88'. Faria dirigió a un equipo que rompió todos los esquemas para África."
+      },
+      {
+        "year": 1994,
+        "host": {
+          "countries": [
+            "Estados Unidos"
+          ],
+          "iso": [
+            "us"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Abdellah Blinda",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Mohammed Chaouch",
+            "goals": 1
+          },
+          {
+            "player": "Hassan Nader",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Eliminada en primera ronda con 3 derrotas.",
+          "Caída ante Países Bajos, Arabia Saudí y Bélgica."
+        ],
+        "narrative": "Tras 8 años de ausencia, Marruecos volvió al Mundial pero sin el éxito de México 86. Cayó 0-1 con Bélgica, 1-2 con Arabia Saudí (sorpresa árabe contra árabe) y 1-2 con Países Bajos. Eliminación dura, sin sumar puntos."
+      },
+      {
+        "year": 1998,
+        "host": {
+          "countries": [
+            "Francia"
+          ],
+          "iso": [
+            "fr"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Henri Michel",
+        "captain": "Abdelkrim Merry",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Salaheddine Bassir",
+            "goals": 2
+          },
+          {
+            "player": "Abdeljalil Hadda",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 5,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Eliminación dolorosa pese a las opciones.",
+          "Goleó 3-0 a Escocia en la última jornada cuando ya estaba sin chances de pasar.",
+          "Eliminada por diferencia de goles (mismo puntos que Noruega)."
+        ],
+        "narrative": "Marruecos hizo un buen Mundial pero quedó eliminado por diferencia de goles ante Noruega. Empató 2-2 con Noruega, perdió 0-3 con Brasil y goleó 3-0 a Escocia en la última fecha. Triste matemática lo dejó fuera. Henri Michel sería luego DT clave del fútbol africano."
+      },
+      {
+        "year": 2018,
+        "host": {
+          "countries": [
+            "Rusia"
+          ],
+          "iso": [
+            "ru"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Hervé Renard",
+        "captain": "Mehdi Benatia",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Khalid Boutaïb",
+            "goals": 1
+          },
+          {
+            "player": "Youssef En-Nesyri",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "Tras 20 años de ausencia, Marruecos volvió a un Mundial.",
+          "Eliminada en primera ronda pese a partidos competitivos.",
+          "Derrota 0-1 ante Irán por autogol en el 94' descorazonadora."
+        ],
+        "narrative": "Marruecos regresó al Mundial después de 20 años sin clasificar (su última participación había sido Francia 1998). El grupo (Portugal, España, Irán) era durísimo. Debutó perdiendo 0-1 ante Irán por autogol de Aziz Bouhaddouz en el minuto 94. Perdió 0-1 con Portugal (gol de Cristiano Ronaldo) y empató 2-2 con España (gol de Iago Aspas en descuento que le hubiera dado el triunfo). Eliminación temprana pero con sensación de equipo en construcción."
+      },
+      {
+        "year": 2022,
+        "host": {
+          "countries": [
+            "Catar"
+          ],
+          "iso": [
+            "qa"
+          ]
+        },
+        "result": "Cuarto puesto",
+        "coach": "Walid Regragui",
+        "captain": "Romain Saiss",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Youssef En-Nesyri",
+            "goals": 2
+          },
+          {
+            "player": "Achraf Hakimi",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 6,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "PRIMER país africano y árabe en alcanzar las semifinales de un Mundial.",
+          "Mejor resultado histórico para África en un Mundial.",
+          "Solo 1 gol en juego abierto encajado en fase de grupos + octavos. La mayor parte de los goles encajados llegaron en semis y partido por bronce.",
+          "Eliminó a Bélgica (en grupos), España (octavos, penales) y Portugal (cuartos)."
+        ],
+        "narrative": "El Mundial que cambió el fútbol africano. Marruecos integró el 'Grupo de la Muerte' con Croacia (subcampeona vigente), Bélgica (favorita) y Canadá. Empató 0-0 con Croacia, batió 2-0 a Bélgica (sorpresa monumental con goles de Sabiri y Aboukhlal) y venció 2-1 a Canadá. Pasó como 1º invicta. En octavos ante España: 0-0 reglamentario con dominio español de la posesión pero sin ocasiones claras. En penales, Bono atajó dos lanzamientos (Soler y Busquets) y Hakimi marcó el penal definitivo (panenka) ante un país en el que nació y creció. En cuartos contra Portugal de Cristiano: gol de En-Nesyri al 42' tras saltar más que Rúben Dias en un cabezazo. Marruecos resistió con orden defensivo el resto del partido. SEMIFINAL HISTÓRICA: primer país africano y árabe en una semi de Mundial. Ante Francia (campeón vigente), abrió Theo Hernández al 5'. Marruecos creó ocasiones (poste de El Yamiq) pero Kolo Muani sentenció al 79' con el 2-0. En el partido por el 3er lugar, Croacia ganó 2-1. 4º puesto: el mejor papel histórico de África en un Mundial. Bono fue de los 3 mejores porteros del torneo. Hakimi, En-Nesyri, Ziyech, Aguerd, Amrabat se consolidaron como estrellas mundiales."
+      }
+    ],
+    "palmares": [
+      {
+        "competition": "Copa Africana de Naciones",
+        "year": 1976,
+        "position": "Campeón",
+        "host": "Etiopía"
+      },
+      {
+        "competition": "Copa Africana de Naciones",
+        "year": 2025,
+        "position": "Subcampeón",
+        "host": "Marruecos"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Ahmed Faras",
+      "value": 36,
+      "period": "1965-1979",
+      "notes": "Goleador histórico. Capitán en México 70 y campeón de la Copa Africana 1976."
+    },
+    "most_capped": {
+      "name": "Noureddine Naybet",
+      "value": 115,
+      "period": "1990-2006",
+      "notes": "Defensa central legendario. Jugó Mundiales 1994 y 1998."
+    },
+    "youngest_debut": {
+      "name": "Mehdi Benatia",
+      "value": "20 años aprox.",
+      "period": "Datos pendientes verificación primaria FRMF",
+      "notes": "Pendiente cruce con archivo FRMF."
+    },
+    "biggest_win": {
+      "result": "13-1",
+      "opponent": "Arabia Saudí",
+      "date": "1961-09-06",
+      "competition": "Juegos Panárabes"
+    },
+    "worst_loss": {
+      "result": "0-6",
+      "opponent": "Hungría",
+      "date": "1964-08-29",
+      "competition": "Juegos Olímpicos Tokio 1964"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El primer punto africano en un Mundial",
+      "date": "1970-06-11",
+      "opponent": {
+        "iso": "bg",
+        "name": "Bulgaria"
+      },
+      "score": "1-1",
+      "competition": "Fase de Grupos Mundial 1970",
+      "narrative": "Marruecos empató 1-1 con Bulgaria en el primer Mundial al que asistió un país árabe. Gol de Mohamed Ghazouani al 60'. Aunque no pasaron de fase, este punto rompió un techo simbólico para todo el continente africano."
+    },
+    {
+      "title": "El primer país africano en octavos",
+      "date": "1986-06-17",
+      "opponent": {
+        "iso": "pt",
+        "name": "Portugal"
+      },
+      "score": "3-1",
+      "competition": "Fase de Grupos Mundial 1986",
+      "narrative": "Marruecos batió 3-1 a Portugal en el partido decisivo del Grupo F y se convirtió en el primer país africano en pasar la fase de grupos de un Mundial. Doblete de Khairi y gol de Krimau. Lideró su grupo con 4 puntos por delante de Inglaterra, Polonia y Portugal."
+    },
+    {
+      "title": "La sorpresa de Bélgica en Qatar",
+      "date": "2022-11-27",
+      "opponent": {
+        "iso": "be",
+        "name": "Bélgica"
+      },
+      "score": "2-0",
+      "competition": "Fase de Grupos Mundial 2022",
+      "narrative": "Marruecos batió 2-0 a Bélgica (entonces 2ª del ranking FIFA) en el Estadio Al Thumama. Goles de Sabiri al 73' y Aboukhlal al 90+2'. Sorpresa monumental que abriría las puertas a la mayor gesta africana en Mundiales."
+    },
+    {
+      "title": "La eliminación de España en penales",
+      "date": "2022-12-06",
+      "opponent": {
+        "iso": "es",
+        "name": "España"
+      },
+      "score": "0-0 (3-0 pen)",
+      "competition": "Octavos Mundial 2022",
+      "narrative": "Marruecos eliminó a España (campeona del mundo en 2010) en octavos de final del Mundial Catar 2022. Tras 0-0 reglamentario, en penales Bono atajó dos lanzamientos (Carlos Soler y Sergio Busquets) y Hakimi cerró con un penal panenka en el país donde nació (Madrid) y creció. Marruecos pasaba por primera vez a cuartos de final."
+    },
+    {
+      "title": "La gesta ante Portugal: primer país africano en semis",
+      "date": "2022-12-10",
+      "opponent": {
+        "iso": "pt",
+        "name": "Portugal"
+      },
+      "score": "1-0",
+      "competition": "Cuartos Mundial 2022",
+      "narrative": "Marruecos batió 1-0 a Portugal de Cristiano Ronaldo en el Estadio Al Thumama. Gol de Youssef En-Nesyri al 42' tras saltar más alto que Rúben Dias y anticipar a Diogo Costa. Defensa heroica del resto del partido (Cristiano entró al 51' pero no pudo evitar la derrota). Marruecos se convirtió en el primer país africano y árabe en alcanzar una semifinal de un Mundial.",
+      "site_link": "/historia/momentos-iconicos/marruecos-2022"
+    },
+    {
+      "title": "La semifinal histórica vs Francia",
+      "date": "2022-12-14",
+      "opponent": {
+        "iso": "fr",
+        "name": "Francia"
+      },
+      "score": "0-2",
+      "competition": "Semifinal Mundial 2022",
+      "narrative": "Marruecos cayó 2-0 ante Francia (campeón vigente) en la primera semifinal mundialista de un país africano. Theo Hernández abrió al 5' aprovechando un contragolpe. Marruecos creó ocasiones (un poste de El Yamiq levantó el estadio Al Bayt) pero no pudo empatar. Kolo Muani entró desde el banco y marcó al 79' el 2-0 definitivo. Aun así, Marruecos hizo historia: 4º puesto al perder luego ante Croacia."
+    },
+    {
+      "title": "La final amarga de la CAN 2025",
+      "date": "2025-12-21",
+      "opponent": {
+        "iso": "sn",
+        "name": "Senegal"
+      },
+      "score": "0-1 (prórroga)",
+      "competition": "Final Copa Africana 2025",
+      "narrative": "Marruecos disputó la final de la CAN 2025 en su propia casa (Marruecos como anfitrión). Tras una campaña casi perfecta en el torneo, cayó 1-0 en la prórroga ante Senegal. Fue la primera derrota local de Marruecos desde 2009. Decepción enorme para los Leones del Atlas que aspiraban a ganar el segundo título africano de su historia."
+    },
+    {
+      "title": "El primer clasificado africano al Mundial 2026",
+      "date": "2025-09-05",
+      "opponent": {
+        "iso": "ne",
+        "name": "Níger"
+      },
+      "score": "5-0",
+      "competition": "Eliminatorias Mundial 2026",
+      "narrative": "Marruecos goleó 5-0 a Níger en Rabat en el partido que selló la primera clasificación africana al Mundial 2026. Cuatro goleadores diferentes (Saibari, El Kaabi, Igamane y Ounahi). Sexta victoria consecutiva. Inicio del ciclo perfecto que cerraría con 8 victorias en 8 partidos."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "Marruecos será sede de la Copa Mundial de la FIFA 2030 junto con España y Portugal, primer país árabe-africano en organizar un Mundial junto a sedes europeas.",
+      "source": "FIFA + RFEF + FRMF",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "En el Mundial Qatar 2022, Marruecos solo encajó 1 gol en juego abierto en sus primeros 5 partidos. Los otros 4 fueron: 1 autogol propio (vs Canadá), 2 contra Francia en semis y 2 contra Croacia en el partido por el bronce. Defensa de élite mundial.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "14 de los 26 jugadores convocados por Walid Regragui en Qatar 2022 NO nacieron en Marruecos. La mayoría son hijos de inmigrantes en Bélgica, Países Bajos, Francia o España. La diáspora marroquí es el corazón del equipo.",
+      "source": "FRMF + La Nación",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Achraf Hakimi nació en Madrid (Hospital Gregorio Marañón) y se formó en La Fábrica del Real Madrid. Eligió jugar para Marruecos por su origen familiar. En octavos de Qatar 2022 marcó el penal definitivo que eliminó a España, el país donde nació y creció.",
+      "source": "Real Madrid CF + Marca",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Brahim Díaz, formado en La Roja sub-21, eligió jugar para Marruecos en febrero de 2024 sobre la selección española. Su decisión fue muy comentada en España y en el mundo árabe. Su debut con la absoluta marroquí fue en marzo de 2024.",
+      "source": "FRMF + RFEF",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Walid Regragui asumió la selección apenas 3 meses antes de Qatar 2022 (agosto 2022). En esos 3 meses logró que el equipo alcanzara el mejor resultado africano en la historia de los Mundiales (4º puesto), gestión considerada una de las más eficaces de la historia reciente.",
+      "source": "FRMF + ESPN",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "En octavos contra España (2022), el portero Yassine Bono atajó dos penales (a Soler y Busquets). Sarabia falló su lanzamiento contra el palo. Marruecos venció 3-0 en la tanda con un panenka final de Hakimi.",
+      "source": "FIFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Marruecos clasificó al Mundial 2026 con paso perfecto: 8 victorias en 8 partidos en eliminatorias. Solo encajó 1 gol en todo el ciclo (ante Zambia en el debut). Récord histórico para Marruecos y uno de los mejores de la CAF.",
+      "source": "FIFA + CAF",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Dima Maghrib (Siempre Marruecos) — himno principal de la afición",
+      "Sir, Sir Maghrib (Adelante Marruecos)",
+      "Vamos los Leones del Atlas — adoptado entre la diáspora hispanohablante"
+    ],
+    "main_rival": {
+      "iso": "dz",
+      "name": "Argelia",
+      "story": "El 'derbi del Magreb' es la rivalidad más intensa del fútbol árabe. Las tensiones políticas entre los dos países (frontera cerrada desde 1994) hacen que cada enfrentamiento futbolístico tenga carga simbólica. Notables encuentros: final Copa Africana 2004 (Argelia ganó), Copa Árabe 2021 (3-3 en cuartos, Argelia ganó en penales). Ambos clasificados al Mundial 2026."
+    },
+    "home_stadium": {
+      "name": "Estadio Príncipe Moulay Abdellah",
+      "capacity": 69000,
+      "city": "Rabat"
+    }
+  },
+  "seo": {
+    "meta_title": "Marruecos en el Mundial 2026 | Plantilla, historia y predicciones",
+    "meta_description": "Marruecos Mundial 2026: 26 convocados de Regragui, Hakimi, Bono, Brahim. Grupo C con Brasil, Haití y Escocia. Semifinalista de Qatar 2022.",
+    "og_image_url": "/img/og/teams/marruecos.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Marruecos",
+      "alternateName": [
+        "Los Leones del Atlas",
+        "Atlas Lions"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "CAF"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Walid Regragui"
+      },
+      "url": "https://www.zonamundial.app/selecciones/marruecos"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-28",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_Marruecos",
+      "https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_de_CAF_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://es.wikipedia.org/wiki/Anexo:Grupo_E_de_la_Clasificaci%C3%B3n_de_CAF_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://es.wikipedia.org/wiki/Copa_Mundial_de_F%C3%BAtbol_de_2022",
+      "https://www.tudn.com/mundial-2026/eliminatorias/mundial-2026-seleccion-marruecos-se-suma-clasificados",
+      "https://www.tudn.com/mundial-2026/eliminatorias/eliminatorias-mundial-2026-asi-quedo-tabla-posiciones-africa",
+      "https://www.mediotiempo.com/futbol/copa-mundial/marruecos-clasifica-mundial-2026-seleccion-africa",
+      "https://www.fifa.com/es/articles/marruecos-victoria-portugal-historia-copa-mundial-qatar-2022",
+      "https://www.lanacion.com.ar/deportes/canchallena/portugal-vs-marruecos-resumen-goles-y-resultado-del-partido-del-mundial-2022-nid10122022/",
+      "https://cnnespanol.cnn.com/2022/12/10/portugal-marruecos-resultado-mundial-qatar-2022-en-vivo-directo/",
+      "https://www.elespanol.com/deportes/futbol/mundial/20221211/francia-marruecos-semifinal-historica-eliminar-inglaterra-portugal-dramaticos/725177479_0.amp.html",
+      "https://www.vavel.com/mx/en-vivo/2024/06/11/1184784-congo-marruecos.html",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/15915078/mundial-2026-marruecos-perfil-figuras-como-juega-historia",
+      "https://www.frmf.ma",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias CAF cruzadas con Vavel + ESPN + Wikipedia + TUDN. Historia mundialista (especialmente Qatar 2022) validada con FIFA oficial + Wikipedia + CNN + La Nación. Plantilla y grupo 2026 con ESPN. Detectado y corregido inicialmente: el partido Congo-Marruecos junio 2024 fue 0-6 (no 1-1), y la final CAN 2025 la perdió Marruecos ante Senegal.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "partial",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante: pendiente entrega/upload",
+      "Goleadores y minutos exactos partidos 3, 4, 6, 7, 8 eliminatorias: cruzar con FIFA/CAF detalle por partido",
+      "Récord 'youngest_debut': pendiente cruce con archivo FRMF primario",
+      "Calendario fase de grupos 2026: pendiente fixture FIFA con fechas/sedes/horarios exactos del Grupo C",
+      "Base de entrenamiento: FRMF aún no anunció",
+      "FIFA Ranking #11: validar último mes vigente al publicar",
+      "Curiosidad incremento ventas Puma: marcada needs_review (sin segunda fuente sólida)",
+      "Detalle exacto goleador faltante en 5-0 a Níger del 5 sept 2025"
+    ]
+  }
+}

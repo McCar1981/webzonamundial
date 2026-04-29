@@ -1,0 +1,2249 @@
+{
+  "slug": "brasil",
+  "iso": "br",
+  "iso3": "BRA",
+  "name_es": "Brasil",
+  "name_en": "Brazil",
+  "name_local": "Brasil",
+  "nicknames": [
+    "La Verdeamarela",
+    "La Canarinha",
+    "La Seleção",
+    "El Scratch"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#FFDF00",
+      "secondary": "#009C3B",
+      "tertiary": "#002776",
+      "contrast_text": "#002776"
+    }
+  },
+  "country": {
+    "capital": "Brasilia",
+    "language_official": [
+      "Portugués"
+    ],
+    "population": 215313498,
+    "area_km2": 8515767,
+    "timezone": "America/Sao_Paulo",
+    "continent": "Sudamérica"
+  },
+  "federation": {
+    "name": "Confederação Brasileira de Futebol",
+    "abbreviation": "CBF",
+    "founded": 1914,
+    "headquarters": "Río de Janeiro",
+    "website": "https://www.cbf.com.br"
+  },
+  "confederation": "CONMEBOL",
+  "fifa_ranking": {
+    "current": 6,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Nike",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/brasil.png",
+        "back_url": null,
+        "primary_color": "#FFDF00",
+        "secondary_color": "#009C3B",
+        "description": "La icónica Canarinha amarilla con cuello azul y detalles verdes. Lleva las cinco estrellas sobre el escudo, una por cada Mundial conquistado.",
+        "alt_text": "Camiseta titular Brasil Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#0066CC",
+        "secondary_color": "#FFDF00",
+        "description": "Equipación visitante azul con detalles amarillos. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Brasil Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "Brasil es la única selección que ha disputado los 23 Mundiales en la historia, presencia perfecta desde 1930.",
+        "source": "FIFA + CBF oficial",
+        "verified_at": "2026-04-28",
+        "status": "validated"
+      },
+      {
+        "text": "La camiseta amarilla y verde fue el resultado de un concurso público en 1953 tras el trauma del Maracanazo de 1950, cuando jugaban de blanco. La nueva equipación pretendía exorcizar el dolor de aquella derrota.",
+        "source": "CBF oficial + Wikipedia",
+        "verified_at": "2026-04-28",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Peor eliminatoria de la historia de Brasil: 5º puesto con 28 puntos, sufriendo cambios de DT (Diniz, Dorival Júnior, finalmente Carlo Ancelotti tras el 1-4 ante Argentina en marzo 2025). Aseguró el pase con 2 fechas de antelación tras vencer 1-0 a Paraguay el 10 de junio de 2025. Cerró con la histórica derrota 1-0 ante Bolivia en El Alto, mostrando un proceso convulso pero con clasificación garantizada.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias CONMEBOL Mundial 2026",
+      "format": "Liguilla todos contra todos · 18 jornadas",
+      "duration": "Septiembre 2023 — Septiembre 2025",
+      "final_position": 5,
+      "total_teams_in_group": 10,
+      "stats": {
+        "played": 18,
+        "won": 8,
+        "drawn": 4,
+        "lost": 6,
+        "goals_for": 23,
+        "goals_against": 16,
+        "goal_difference": 7,
+        "points": 28,
+        "win_percentage": 44.4,
+        "clean_sheets": 6
+      },
+      "coach_during_qualifying": "Fernando Diniz → Dorival Júnior → Carlo Ancelotti",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2023-09-08",
+          "home": {
+            "iso": "br",
+            "name": "Brasil",
+            "score": 5
+          },
+          "away": {
+            "iso": "bo",
+            "name": "Bolivia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Mangueirão",
+            "city": "Belém",
+            "country_iso": "br"
+          },
+          "goals_arg": [],
+          "notes": "Debut con goleada bajo Fernando Diniz."
+        },
+        {
+          "matchday": 2,
+          "date": "2023-09-12",
+          "home": {
+            "iso": "pe",
+            "name": "Perú",
+            "score": 0
+          },
+          "away": {
+            "iso": "br",
+            "name": "Brasil",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Estadio Nacional",
+            "city": "Lima",
+            "country_iso": "pe"
+          }
+        },
+        {
+          "matchday": 3,
+          "date": "2023-10-12",
+          "home": {
+            "iso": "br",
+            "name": "Brasil",
+            "score": 1
+          },
+          "away": {
+            "iso": "ve",
+            "name": "Venezuela",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Arena Pantanal",
+            "city": "Cuiabá",
+            "country_iso": "br"
+          }
+        },
+        {
+          "matchday": 4,
+          "date": "2023-10-17",
+          "home": {
+            "iso": "uy",
+            "name": "Uruguay",
+            "score": 2
+          },
+          "away": {
+            "iso": "br",
+            "name": "Brasil",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Centenario",
+            "city": "Montevideo",
+            "country_iso": "uy"
+          }
+        },
+        {
+          "matchday": 5,
+          "date": "2023-11-16",
+          "home": {
+            "iso": "co",
+            "name": "Colombia",
+            "score": 2
+          },
+          "away": {
+            "iso": "br",
+            "name": "Brasil",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Metropolitano",
+            "city": "Barranquilla",
+            "country_iso": "co"
+          }
+        },
+        {
+          "matchday": 6,
+          "date": "2023-11-21",
+          "home": {
+            "iso": "br",
+            "name": "Brasil",
+            "score": 0
+          },
+          "away": {
+            "iso": "ar",
+            "name": "Argentina",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Maracaná",
+            "city": "Río de Janeiro",
+            "country_iso": "br"
+          },
+          "notes": "Primera derrota oficial de Brasil ante Argentina en el Maracaná. Partido retrasado por incidentes."
+        },
+        {
+          "matchday": 7,
+          "date": "2024-09-06",
+          "home": {
+            "iso": "br",
+            "name": "Brasil",
+            "score": 1
+          },
+          "away": {
+            "iso": "ec",
+            "name": "Ecuador",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Couto Pereira",
+            "city": "Curitiba",
+            "country_iso": "br"
+          }
+        },
+        {
+          "matchday": 8,
+          "date": "2024-09-10",
+          "home": {
+            "iso": "py",
+            "name": "Paraguay",
+            "score": 1
+          },
+          "away": {
+            "iso": "br",
+            "name": "Brasil",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Defensores del Chaco",
+            "city": "Asunción",
+            "country_iso": "py"
+          },
+          "notes": "Otra derrota dolorosa que aumentó la presión sobre Dorival Júnior."
+        },
+        {
+          "matchday": 9,
+          "date": "2024-10-10",
+          "home": {
+            "iso": "br",
+            "name": "Brasil",
+            "score": 4
+          },
+          "away": {
+            "iso": "cl",
+            "name": "Chile",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Mané Garrincha",
+            "city": "Brasilia",
+            "country_iso": "br"
+          }
+        },
+        {
+          "matchday": 10,
+          "date": "2024-10-15",
+          "home": {
+            "iso": "pe",
+            "name": "Perú",
+            "score": 0
+          },
+          "away": {
+            "iso": "br",
+            "name": "Brasil",
+            "score": 4
+          },
+          "venue": {
+            "stadium": "Estadio Nacional",
+            "city": "Lima",
+            "country_iso": "pe"
+          }
+        },
+        {
+          "matchday": 11,
+          "date": "2024-11-14",
+          "home": {
+            "iso": "ve",
+            "name": "Venezuela",
+            "score": 1
+          },
+          "away": {
+            "iso": "br",
+            "name": "Brasil",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Monumental Maturín",
+            "city": "Maturín",
+            "country_iso": "ve"
+          }
+        },
+        {
+          "matchday": 12,
+          "date": "2024-11-19",
+          "home": {
+            "iso": "br",
+            "name": "Brasil",
+            "score": 1
+          },
+          "away": {
+            "iso": "uy",
+            "name": "Uruguay",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Arena Fonte Nova",
+            "city": "Salvador",
+            "country_iso": "br"
+          }
+        },
+        {
+          "matchday": 13,
+          "date": "2025-03-20",
+          "home": {
+            "iso": "br",
+            "name": "Brasil",
+            "score": 2
+          },
+          "away": {
+            "iso": "co",
+            "name": "Colombia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Mané Garrincha",
+            "city": "Brasilia",
+            "country_iso": "br"
+          }
+        },
+        {
+          "matchday": 14,
+          "date": "2025-03-25",
+          "home": {
+            "iso": "ar",
+            "name": "Argentina",
+            "score": 4
+          },
+          "away": {
+            "iso": "br",
+            "name": "Brasil",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Más Monumental",
+            "city": "Buenos Aires",
+            "country_iso": "ar"
+          },
+          "goals_opponent": [
+            {
+              "player": "Matheus Cunha",
+              "minute": "26'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Mayor goleada histórica ante Brasil en eliminatorias. Tras la derrota, Dorival Júnior fue destituido y la CBF contrató a Carlo Ancelotti, primera vez en la historia que Brasil ficha a un DT extranjero para el cargo principal.",
+          "is_decisive_match": true
+        },
+        {
+          "matchday": 15,
+          "date": "2025-06-05",
+          "home": {
+            "iso": "ec",
+            "name": "Ecuador",
+            "score": 0
+          },
+          "away": {
+            "iso": "br",
+            "name": "Brasil",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Banco Pichincha",
+            "city": "Guayaquil",
+            "country_iso": "ec"
+          }
+        },
+        {
+          "matchday": 16,
+          "date": "2025-06-10",
+          "home": {
+            "iso": "br",
+            "name": "Brasil",
+            "score": 1
+          },
+          "away": {
+            "iso": "py",
+            "name": "Paraguay",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Neo Química Arena",
+            "city": "São Paulo",
+            "country_iso": "br"
+          },
+          "notes": "Bajo Ancelotti, Brasil aseguró su clasificación matemática al Mundial 2026."
+        },
+        {
+          "matchday": 17,
+          "date": "2025-09-04",
+          "home": {
+            "iso": "br",
+            "name": "Brasil",
+            "score": 3
+          },
+          "away": {
+            "iso": "cl",
+            "name": "Chile",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Maracaná",
+            "city": "Río de Janeiro",
+            "country_iso": "br"
+          }
+        },
+        {
+          "matchday": 18,
+          "date": "2025-09-09",
+          "home": {
+            "iso": "bo",
+            "name": "Bolivia",
+            "score": 1
+          },
+          "away": {
+            "iso": "br",
+            "name": "Brasil",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Municipal de El Alto",
+            "city": "El Alto",
+            "country_iso": "bo"
+          },
+          "notes": "Cierre simbólico: derrota histórica en El Alto a 4.150 m de altitud, que dio a Bolivia el repechaje y rebajó aún más a Brasil al 5º puesto."
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Raphinha",
+          "goals": 4
+        },
+        {
+          "player": "Vinícius Jr.",
+          "goals": 3
+        },
+        {
+          "player": "Rodrygo",
+          "goals": 3
+        },
+        {
+          "player": "Estevão",
+          "goals": 2
+        },
+        {
+          "player": "Otros (resto)",
+          "goals": 11
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_9",
+        "reason": "El 4-0 a Chile en el Mané Garrincha de Brasilia el 10 de octubre de 2024. Mejor exhibición del ciclo bajo Dorival Júnior."
+      },
+      "worst_match": {
+        "match_ref": "matchday_14",
+        "reason": "Derrota 1-4 ante Argentina en el Más Monumental el 25 de marzo de 2025. Mayor goleada histórica ante Brasil en eliminatorias. Provocó la destitución de Dorival Júnior."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_16",
+        "reason": "Victoria 1-0 ante Paraguay el 10 de junio de 2025 en São Paulo. Bajo Ancelotti, Brasil aseguró su pase al Mundial 2026 con dos fechas de antelación."
+      }
+    },
+    "group_2026": {
+      "letter": "C",
+      "label": "Grupo C — Brasil cabeza de serie",
+      "teams": [
+        {
+          "iso": "br",
+          "name": "Brasil",
+          "fifa_rank": 6,
+          "is_seed": true
+        },
+        {
+          "iso": "ma",
+          "name": "Marruecos",
+          "fifa_rank": 11,
+          "is_seed": false
+        },
+        {
+          "iso": "sct",
+          "name": "Escocia",
+          "fifa_rank": null,
+          "is_seed": false
+        },
+        {
+          "iso": "ht",
+          "name": "Haití",
+          "fifa_rank": null,
+          "is_seed": false
+        }
+      ],
+      "notes": "Sorteo confirmado el 5 de diciembre de 2025 en Washington D.C."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "[POR CONFIRMAR]",
+          "name": "[POR CONFIRMAR]"
+        },
+        "date": "[POR CONFIRMAR — fixture FIFA pendiente]",
+        "venue": {
+          "stadium": "[POR CONFIRMAR]",
+          "city": "",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "[POR CONFIRMAR]",
+          "name": "[POR CONFIRMAR]"
+        },
+        "date": "[POR CONFIRMAR]",
+        "venue": {
+          "stadium": "[POR CONFIRMAR]",
+          "city": "",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "[POR CONFIRMAR]",
+          "name": "[POR CONFIRMAR]"
+        },
+        "date": "[POR CONFIRMAR]",
+        "venue": {
+          "stadium": "[POR CONFIRMAR]",
+          "city": "",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — CBF aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Carlo Ancelotti",
+      "age": 66,
+      "nationality": "Italia",
+      "since": "2025-05-26",
+      "previous_teams": [
+        "Real Madrid",
+        "Bayern Múnich",
+        "PSG",
+        "Chelsea",
+        "Milan",
+        "Juventus",
+        "Italia (asistente)"
+      ],
+      "profile_summary": "Primer DT extranjero de la historia de la selección de Brasil. Tras el 1-4 ante Argentina en marzo 2025, la CBF rompió un tabú histórico para fichar a uno de los DTs más ganadores del fútbol mundial: 5 Champions League, 4 ligas en 4 países diferentes. Su reto: devolver identidad a una Brasil convulsa en pocas semanas antes del Mundial. Estilo: gestión de vestuario top, defensa sólida, libertad ofensiva controlada.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/26.01.2026_-_Reuni%C3%A3o_com_o_Presidente_da_Federa%C3%A7%C3%A3o_Internacional_de_Futebol_%28FIFA%29%2C_Gianni_Infantino_-_55062589679_%28Carlo_Ancelotti%29_%28cropped%29.jpg/330px-26.01.2026_-_Reuni%C3%A3o_com_o_Presidente_da_Federa%C3%A7%C3%A3o_Internacional_de_Futebol_%28FIFA%29%2C_Gianni_Infantino_-_55062589679_%28Carlo_Ancelotti%29_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Carlo_Ancelotti"
+      }
+    },
+    "captain": {
+      "name": "Marquinhos",
+      "club": "Paris Saint-Germain",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/FC_Salzburg_gegen_Paris_Saint-Germain_UEFA_Champions_League_49_%28cropped%29.jpg/330px-FC_Salzburg_gegen_Paris_Saint-Germain_UEFA_Champions_League_49_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://en.wikipedia.org/wiki/Marquinhos"
+      }
+    },
+    "star_player": {
+      "name": "Vinícius Júnior",
+      "club": "Real Madrid",
+      "reason": "El extremo del Real Madrid es el mejor jugador brasileño de la actualidad y uno de los 3 mejores extremos del mundo. Ganó la Champions 2024 y fue figura en La Liga 2025. Llega al Mundial con 25 años, en su pico, buscando ser el referente que Brasil necesita tras la sombra de Neymar.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/2023_05_06_Final_de_la_Copa_del_Rey_-_52879242230_%28cropped%29.jpg/330px-2023_05_06_Final_de_la_Copa_del_Rey_-_52879242230_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Vin%C3%ADcius_J%C3%BAnior"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "alisson-becker",
+        "full_name": "Alisson Becker",
+        "display_name": "Alisson",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Liverpool",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_850_1625.jpg/330px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_850_1625.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Alisson_Becker"
+        }
+      },
+      {
+        "id": "ederson",
+        "full_name": "Ederson Moraes",
+        "display_name": "Ederson",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Manchester City",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 23,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/73/Ederson_%28cropped%29.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ederson_Moraes"
+        }
+      },
+      {
+        "id": "bento",
+        "full_name": "Bento Krepski",
+        "display_name": "Bento",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Al-Nassr",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 12,
+        "status": "probable"
+      },
+      {
+        "id": "danilo",
+        "full_name": "Danilo Luiz da Silva",
+        "display_name": "Danilo",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Flamengo",
+          "country_iso": "br",
+          "league": "Brasileirão"
+        },
+        "shirt_number_expected": 2,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Danilo_Luiz_850_1591.jpg/330px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Danilo_Luiz_850_1591.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Danilo_(futbolista_nacido_en_1991)"
+        }
+      },
+      {
+        "id": "vanderson",
+        "full_name": "Vanderson",
+        "display_name": "Vanderson",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Mónaco",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Vanderson_asse_asm_2425.png/330px-Vanderson_asse_asm_2425.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Vanderson"
+        }
+      },
+      {
+        "id": "marquinhos",
+        "full_name": "Marcos Aoás Corrêa",
+        "display_name": "Marquinhos",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Paris Saint-Germain",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/FC_Salzburg_gegen_Paris_Saint-Germain_UEFA_Champions_League_49_%28cropped%29.jpg/330px-FC_Salzburg_gegen_Paris_Saint-Germain_UEFA_Champions_League_49_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Marcos_Ao%C3%A1s_Corr%C3%AAa"
+        }
+      },
+      {
+        "id": "gabriel-magalhaes",
+        "full_name": "Gabriel Magalhães",
+        "display_name": "Gabriel",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Arsenal",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 13,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/GabrielLille2019.png/330px-GabrielLille2019.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Gabriel_Magalh%C3%A3es"
+        }
+      },
+      {
+        "id": "eder-militao",
+        "full_name": "Éder Militão",
+        "display_name": "Militão",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Real Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 3,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Eder_Militao_2021.jpg/330px-Eder_Militao_2021.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/%C3%89der_Milit%C3%A3o"
+        }
+      },
+      {
+        "id": "lucas-beraldo",
+        "full_name": "Lucas Beraldo",
+        "display_name": "Beraldo",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Paris Saint-Germain",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 24,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Beraldo_asse_psg_2425.png/330px-Beraldo_asse_psg_2425.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Lucas_Beraldo"
+        }
+      },
+      {
+        "id": "alex-sandro",
+        "full_name": "Alex Sandro",
+        "display_name": "Alex Sandro",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Flamengo",
+          "country_iso": "br",
+          "league": "Brasileirão"
+        },
+        "shirt_number_expected": 6,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/62/AlexSandroCopaAmerica2019.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Alex_Sandro"
+        }
+      },
+      {
+        "id": "abner",
+        "full_name": "Abner Vinicius",
+        "display_name": "Abner",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Lyon",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 16,
+        "status": "probable"
+      },
+      {
+        "id": "casemiro",
+        "full_name": "Carlos Henrique Casimiro",
+        "display_name": "Casemiro",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Manchester United",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Casemiro_850_1575.jpg/330px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Casemiro_850_1575.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Casemiro"
+        }
+      },
+      {
+        "id": "bruno-guimaraes",
+        "full_name": "Bruno Guimarães",
+        "display_name": "Bruno Guimarães",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Newcastle",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Brunoguimaraes.jpg/330px-Brunoguimaraes.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Bruno_Guimar%C3%A3es"
+        }
+      },
+      {
+        "id": "andre-trindade",
+        "full_name": "André Trindade",
+        "display_name": "André",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Wolverhampton",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 17,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Andre_Fluminense_vs_Vila_Nova_2022.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Andr%C3%A9_(footballer%2C_born_2001)"
+        }
+      },
+      {
+        "id": "lucas-paqueta",
+        "full_name": "Lucas Paquetá",
+        "display_name": "Paquetá",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "West Ham",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Lucas_Paquet%C3%A1_of_West_Ham.jpeg/330px-Lucas_Paquet%C3%A1_of_West_Ham.jpeg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Lucas_Paquet%C3%A1"
+        }
+      },
+      {
+        "id": "joao-gomes",
+        "full_name": "João Gomes",
+        "display_name": "João Gomes",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Wolverhampton",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 15,
+        "status": "probable"
+      },
+      {
+        "id": "ederson-jose",
+        "full_name": "Éderson José dos Santos",
+        "display_name": "Éderson",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Atalanta",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 18,
+        "status": "probable"
+      },
+      {
+        "id": "vinicius-jr",
+        "full_name": "Vinícius José Paixão de Oliveira Júnior",
+        "display_name": "Vinícius Jr.",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Real Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/2023_05_06_Final_de_la_Copa_del_Rey_-_52879242230_%28cropped%29.jpg/330px-2023_05_06_Final_de_la_Copa_del_Rey_-_52879242230_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Vin%C3%ADcius_J%C3%BAnior"
+        }
+      },
+      {
+        "id": "rodrygo",
+        "full_name": "Rodrygo Goes",
+        "display_name": "Rodrygo",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Real Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Rodrygo_2023_%28cropped%29.jpg/330px-Rodrygo_2023_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Rodrygo_Goes"
+        }
+      },
+      {
+        "id": "raphinha",
+        "full_name": "Raphael Dias Belloli",
+        "display_name": "Raphinha",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "FC Barcelona",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Raphael_Dias_Belloli_2023.jpg/330px-Raphael_Dias_Belloli_2023.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Raphinha"
+        }
+      },
+      {
+        "id": "estevao",
+        "full_name": "Estêvão Willian",
+        "display_name": "Estêvão",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Chelsea",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 20,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Estevao-Palmeiras-Liverpool-abr24_%28cropped%29.jpg/330px-Estevao-Palmeiras-Liverpool-abr24_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Est%C3%AAv%C3%A3o_Willian"
+        }
+      },
+      {
+        "id": "endrick",
+        "full_name": "Endrick Felipe",
+        "display_name": "Endrick",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Real Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Endrick-Palmeiras-Liverpool-abr24.jpg/330px-Endrick-Palmeiras-Liverpool-abr24.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Endrick"
+        }
+      },
+      {
+        "id": "matheus-cunha",
+        "full_name": "Matheus Cunha",
+        "display_name": "Matheus Cunha",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Manchester United",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 22,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Matheus_Cunha_%28cropped%29_20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_7968_%28cropped%29.jpg/330px-Matheus_Cunha_%28cropped%29_20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_7968_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Matheus_Cunha"
+        }
+      },
+      {
+        "id": "joao-pedro",
+        "full_name": "João Pedro",
+        "display_name": "João Pedro",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Chelsea",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 21,
+        "status": "probable"
+      },
+      {
+        "id": "neymar",
+        "full_name": "Neymar da Silva Santos Júnior",
+        "display_name": "Neymar",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Santos",
+          "country_iso": "br",
+          "league": "Brasileirão"
+        },
+        "shirt_number_expected": 10,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Neymar_Jr._with_Al_Hilal%2C_3_October_2023_-_03_%28cropped%29_version_2.jpg/330px-Neymar_Jr._with_Al_Hilal%2C_3_October_2023_-_03_%28cropped%29_version_2.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Neymar"
+        }
+      },
+      {
+        "id": "richarlison",
+        "full_name": "Richarlison",
+        "display_name": "Richarlison",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Tottenham",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 25,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/5b/07_07_2019_Final_da_Copa_Am%C3%A9rica_2019_%2848226557731%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Richarlison"
+        }
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-3-3",
+      "players": [
+        {
+          "player_id": "alisson-becker",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "vanderson",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "marquinhos",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "gabriel-magalhaes",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "alex-sandro",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "casemiro",
+          "position": {
+            "x": 50,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "bruno-guimaraes",
+          "position": {
+            "x": 30,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "lucas-paqueta",
+          "position": {
+            "x": 70,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "raphinha",
+          "position": {
+            "x": 85,
+            "y": 22
+          }
+        },
+        {
+          "player_id": "endrick",
+          "position": {
+            "x": 50,
+            "y": 18
+          }
+        },
+        {
+          "player_id": "vinicius-jr",
+          "position": {
+            "x": 15,
+            "y": 22
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Bajo Ancelotti, Brasil pasa de un proyecto convulso a un sistema 4-3-3 con identidad madridista: Casemiro como ancla defensiva, dos interiores con libertad (Bruno Guimarães + Paquetá) y tridente ofensivo de extremos veloces (Vinícius, Raphinha) con un 9 vertical (Endrick o Cunha). El italiano busca compactar el bloque, recuperar la solidez defensiva perdida y dar libertad selectiva a los talentos ofensivos.",
+      "strengths": [
+        "Talento ofensivo único en el mundo: Vinícius, Rodrygo, Raphinha, Endrick, Estêvão, Cunha. Profundidad sin igual.",
+        "Ancelotti como factor diferencial: gestor con 5 Champions y experiencia en grandes torneos.",
+        "Defensa sólida con experiencia: Marquinhos, Militão, Gabriel + Alisson y Ederson como porteros élite.",
+        "Mediocampo equilibrado: Casemiro físico + Bruno Guimarães técnico + Paquetá creativo.",
+        "Generación 'Endrick + Estêvão': dos futuros Balones de Oro proyectados ya integrados al primer equipo."
+      ],
+      "weaknesses": [
+        "Proceso convulso: 3 DTs en menos de 3 años (Diniz, Dorival, Ancelotti) sin continuidad táctica.",
+        "Edad creciente del bloque: Casemiro (34), Marquinhos (32), Alisson (33), Alex Sandro (35) llegarán con desgaste.",
+        "Falta de identidad de juego clara tras los cambios constantes.",
+        "Vinícius en clubs ha bajado rendimiento en 2025-26: depende de su forma del momento.",
+        "Sin un '9' indiscutible: Endrick joven, Cunha en pico tardío, Richarlison y Pedro irregulares.",
+        "Peor eliminatoria de su historia (28 pts, 5º): demuestra que el Brasil de 2026 no es candidato natural como antes."
+      ],
+      "x_factor": {
+        "player": "Endrick",
+        "reason": "Con 19 años en el Mundial, el delantero del Real Madrid es la gran apuesta de Ancelotti. Capaz de jugar con ambos pies, decidido en el área, técnicamente refinado. Si rompe en el Mundial, Brasil pasa de candidato medio a candidato real al título."
+      },
+      "prediction_text": "Brasil llega a 2026 con la peor eliminatoria de su historia pero con Ancelotti al mando como factor diferenciador. Pasar la fase de grupos es objetivo realista; cuartos es el techo razonable. Repetir el Mundial 2002 (último título) requiere que Vinícius y Endrick estén al 100% y que Ancelotti construya identidad táctica en pocas semanas. Lleva 24 años sin ganar un Mundial, la sequía más larga del país desde el inicio del torneo.",
+      "probabilities": {
+        "advance_groups": 92,
+        "round_of_32": 85,
+        "round_of_16": 70,
+        "quarter_finals": 50,
+        "semi_finals": 28,
+        "final": 13,
+        "champion": 7
+      },
+      "vs_last_3_wcs": "Russia 2018: cuartos eliminado por Bélgica 1-2. Qatar 2022: cuartos eliminado por Croacia en penales tras 1-1 (gol de Neymar en prórroga). Mundial 2026: tercer cuartos consecutivo sería repetir techo; superarlo requiere identidad nueva con Ancelotti. Lleva 24 años sin Mundial (desde 2002), la mayor sequía de un pentacampeón."
+    }
+  },
+  "history": {
+    "first_appearance": 1930,
+    "appearances_count_before_2026": 22,
+    "appearances_count_with_2026": 23,
+    "consecutive_streak_since": 1930,
+    "titles": 5,
+    "titles_years": [
+      1958,
+      1962,
+      1970,
+      1994,
+      2002
+    ],
+    "finals": 7,
+    "finals_years": [
+      1950,
+      1958,
+      1962,
+      1970,
+      1994,
+      1998,
+      2002
+    ],
+    "semi_finals": 12,
+    "best_result": "Pentacampeón (1958, 1962, 1970, 1994, 2002)",
+    "aggregate_stats_through_2022": {
+      "played": 114,
+      "won": 76,
+      "drawn": 19,
+      "lost": 19,
+      "goals_for": 237,
+      "goals_against": 108,
+      "win_percentage": 66.7,
+      "notes": "Brasil es la selección con más partidos, victorias y goles en la historia del Mundial. Datos hasta Qatar 2022."
+    },
+    "by_world_cup": [
+      {
+        "year": 1930,
+        "host": {
+          "countries": [
+            "Uruguay"
+          ],
+          "iso": [
+            "uy"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Píndaro de Carvalho",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Preguinho",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 5,
+        "goals_conceded": 2,
+        "notable_facts": [
+          "Primera participación. 4-0 a Bolivia y 2-1 perdido vs Yugoslavia."
+        ],
+        "narrative": "Brasil debutó en el primer Mundial perdiendo 1-2 ante Yugoslavia y venciendo 4-0 a Bolivia. Eliminado en primera ronda."
+      },
+      {
+        "year": 1934,
+        "host": {
+          "countries": [
+            "Italia"
+          ],
+          "iso": [
+            "it"
+          ]
+        },
+        "result": "Primera ronda",
+        "coach": "Luiz Vinhaes",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Leônidas",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 1,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Eliminada por España 1-3 en partido único."
+        ],
+        "narrative": "Brasil fue eliminado en primera ronda por España 1-3 en formato de eliminación directa."
+      },
+      {
+        "year": 1938,
+        "host": {
+          "countries": [
+            "Francia"
+          ],
+          "iso": [
+            "fr"
+          ]
+        },
+        "result": "Tercer puesto",
+        "coach": "Adhemar Pimenta",
+        "captain": "Martim Silveira",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Leônidas",
+            "goals": 7
+          }
+        ],
+        "goals_scored": 14,
+        "goals_conceded": 11,
+        "notable_facts": [
+          "Leônidas, Bota de Oro con 7 goles. Tercer puesto."
+        ],
+        "narrative": "Brasil llegó a semifinales por primera vez. Leônidas, leyenda del fútbol brasileño, fue Bota de Oro con 7 goles. Cayó en semis ante Italia 1-2 pero ganó el bronce 4-2 a Suecia."
+      },
+      {
+        "year": 1950,
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
+        "result": "Subcampeón",
+        "coach": "Flávio Costa",
+        "captain": "Augusto da Costa",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Ademir",
+            "goals": 8
+          },
+          {
+            "player": "Chico",
+            "goals": 4
+          }
+        ],
+        "goals_scored": 22,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "EL MARACANAZO. Brasil perdió 1-2 vs Uruguay en la final con 200.000 personas en el Maracaná.",
+          "Trauma fundacional del fútbol brasileño."
+        ],
+        "narrative": "Brasil organizó su primer Mundial y construyó el Maracaná esperando coronarse. Llegó a la 'final' (formato de liguilla) ante Uruguay con un empate suficiente. Frente a 199.854 espectadores (récord histórico), Friaça abrió 1-0 al 47'. Pero Schiaffino empató al 66' y Ghiggia marcó el 2-1 al 79'. Brasil paralizado. Trauma nacional bautizado 'Maracanazo' que marcó al país durante décadas. Tras esa derrota, la CBF cambió la camiseta blanca por la verde y amarilla.",
+        "site_link": "/historia/momentos-iconicos/maracanazo"
+      },
+      {
+        "year": 1954,
+        "host": {
+          "countries": [
+            "Suiza"
+          ],
+          "iso": [
+            "ch"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Zezé Moreira",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Didi",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 8,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Eliminada por Hungría 2-4 en 'La Batalla de Berna'."
+        ],
+        "narrative": "Brasil cayó eliminada por la legendaria Hungría de Puskás (que no jugó esa final) 2-4 en lo que se conoce como 'La Batalla de Berna' por la violencia del partido. 3 expulsados y peleas en los túneles."
+      },
+      {
+        "year": 1958,
+        "host": {
+          "countries": [
+            "Suecia"
+          ],
+          "iso": [
+            "se"
+          ]
+        },
+        "result": "Campeón",
+        "coach": "Vicente Feola",
+        "captain": "Hilderaldo Bellini",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Pelé",
+            "goals": 6
+          },
+          {
+            "player": "Vavá",
+            "goals": 5
+          }
+        ],
+        "goals_scored": 16,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "PRIMER título mundial.",
+          "Pelé con 17 años deslumbra al mundo.",
+          "Final 5-2 vs Suecia con doblete de Vavá y Pelé y gol de Zagallo."
+        ],
+        "narrative": "Brasil borró el Maracanazo conquistando su primer Mundial en Suecia. Pelé, con 17 años, marcó hat-trick a Francia en semis y doblete en la final 5-2 ante Suecia, anfitrión. Garrincha fue figura. Vavá doblete y Zagallo cerraron el marcador. Pelé lloró sobre el campo, escena icónica."
+      },
+      {
+        "year": 1962,
+        "host": {
+          "countries": [
+            "Chile"
+          ],
+          "iso": [
+            "cl"
+          ]
+        },
+        "result": "Campeón",
+        "coach": "Aymoré Moreira",
+        "captain": "Mauro Ramos",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Garrincha",
+            "goals": 4
+          },
+          {
+            "player": "Vavá",
+            "goals": 4
+          }
+        ],
+        "goals_scored": 14,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Bicampeón consecutivo.",
+          "Pelé lesionado en el 2º partido. Garrincha asume el liderazgo."
+        ],
+        "narrative": "Brasil revalidó título en Chile pese a perder a Pelé por lesión en el 2º partido. Garrincha tomó el mando con jugadas legendarias. Final 3-1 ante Checoslovaquia. Bicampeón consecutivo, hito que solo Italia (1934-1938) había logrado."
+      },
+      {
+        "year": 1966,
+        "host": {
+          "countries": [
+            "Inglaterra"
+          ],
+          "iso": [
+            "gb-eng"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Vicente Feola",
+        "captain": "Bellini",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Pelé",
+            "goals": 1
+          },
+          {
+            "player": "Tostão",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Eliminación temprana traumática.",
+          "Pelé brutalmente lesionado por Portugal y Bulgaria."
+        ],
+        "narrative": "Brasil llegó como bicampeón pero fue eliminada en primera ronda. Pelé fue brutalmente lesionado por defensas búlgaros y portugueses sin protección arbitral. Brasil cayó ante Hungría y Portugal. Pelé juró no volver al Mundial (luego se arrepintió)."
+      },
+      {
+        "year": 1970,
+        "host": {
+          "countries": [
+            "México"
+          ],
+          "iso": [
+            "mx"
+          ]
+        },
+        "result": "Campeón",
+        "coach": "Mario Zagallo",
+        "captain": "Carlos Alberto",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Jairzinho",
+            "goals": 7
+          },
+          {
+            "player": "Pelé",
+            "goals": 4
+          }
+        ],
+        "goals_scored": 19,
+        "goals_conceded": 7,
+        "notable_facts": [
+          "TRICAMPEONATO. Considerado por muchos el mejor equipo de la historia.",
+          "Final 4-1 vs Italia. Gol icónico de Carlos Alberto.",
+          "Jairzinho marcó en cada partido del torneo (récord)."
+        ],
+        "narrative": "El Brasil de Pelé, Carlos Alberto, Tostão, Gerson, Rivelino, Jairzinho y Clodoaldo es considerado por muchos el mejor equipo en la historia del fútbol. Tricampeón con autoridad: 6 victorias en 6 partidos. Final 4-1 ante Italia con goles de Pelé, Gérson, Jairzinho y Carlos Alberto (gol icónico tras jugada colectiva, considerado el mejor de la historia mundialista). Tras tres títulos, Brasil se quedó la Copa Jules Rimet en propiedad (luego robada y derretida).",
+        "site_link": "/historia/momentos-iconicos/brasil-1970"
+      },
+      {
+        "year": 1974,
+        "host": {
+          "countries": [
+            "Alemania Federal"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
+        "result": "Cuarto puesto",
+        "coach": "Mario Zagallo",
+        "captain": "Marinho Chagas",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Rivelino",
+            "goals": 3
+          },
+          {
+            "player": "Jairzinho",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 6,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "Sin Pelé retirado. Cuarto puesto."
+        ],
+        "narrative": "Brasil sin Pelé (retirado de la selección) hizo un Mundial discreto. 4º puesto tras caer en la liguilla final ante la Naranja Mecánica de Cruyff y perder el bronce ante Polonia 1-0."
+      },
+      {
+        "year": 1978,
+        "host": {
+          "countries": [
+            "Argentina"
+          ],
+          "iso": [
+            "ar"
+          ]
+        },
+        "result": "Tercer puesto",
+        "coach": "Cláudio Coutinho",
+        "captain": "Roberto Rivellino",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Roberto Dinamite",
+            "goals": 3
+          },
+          {
+            "player": "Nelinho",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 10,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Brasil terminó invicto pero quedó fuera de la final por diferencia de goles."
+        ],
+        "narrative": "Mundial polémico para Brasil. Pasó la primera fase invicto. En la liguilla final, llegó a la última fecha igualada con Argentina pero Argentina ganó 6-0 a Perú en partido cuestionado y se llevó el cupo. Brasil ganó el tercer puesto 2-1 a Italia. Frustración nacional: Brasil terminó invicto."
+      },
+      {
+        "year": 1982,
+        "host": {
+          "countries": [
+            "España"
+          ],
+          "iso": [
+            "es"
+          ]
+        },
+        "result": "Segunda ronda",
+        "coach": "Telê Santana",
+        "captain": "Sócrates",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Zico",
+            "goals": 4
+          },
+          {
+            "player": "Sócrates",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 15,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Considerado uno de los mejores Brasil de la historia que NO ganó.",
+          "Sócrates, Zico, Falcão, Toninho Cerezo, Junior."
+        ],
+        "narrative": "El Brasil de 1982 (Sócrates, Zico, Falcão, Cerezo, Junior) es considerado por muchos el mejor equipo brasileño que NO ganó un Mundial. Pasó arrasando primera fase: 4-1 URSS, 4-1 Escocia, 4-0 Nueva Zelanda. En segunda fase: 3-1 Argentina. En el partido decisivo ante Italia, necesitaba empatar pero perdió 3-2 con hat-trick de Paolo Rossi. Eliminación dramática del fútbol arte."
+      },
+      {
+        "year": 1986,
+        "host": {
+          "countries": [
+            "México"
+          ],
+          "iso": [
+            "mx"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Telê Santana",
+        "captain": "Edinho",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Careca",
+            "goals": 5
+          },
+          {
+            "player": "Sócrates",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 10,
+        "goals_conceded": 1,
+        "notable_facts": [
+          "Eliminada por Francia 1-1 (3-4 pen) en cuartos."
+        ],
+        "narrative": "Brasil pasó la primera fase invicta. En cuartos cayó en penales ante Francia tras 1-1 reglamentario con goles de Careca y Platini. Sócrates falló su penal definitivo. Otra generación brillante eliminada sin coronación."
+      },
+      {
+        "year": 1990,
+        "host": {
+          "countries": [
+            "Italia"
+          ],
+          "iso": [
+            "it"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Sebastião Lazaroni",
+        "captain": "Ricardo Gomes",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Careca",
+            "goals": 2
+          },
+          {
+            "player": "Müller",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Eliminada por Argentina 0-1 con asistencia de Maradona a Caniggia."
+        ],
+        "narrative": "Mundial discreto. Pasó la primera fase pero cayó eliminada en octavos ante Argentina 0-1 con un Maradona inspirado que asistió a Caniggia tras una jugada magistral en el 81'. La derrota más dolorosa para Brasil ante su rival."
+      },
+      {
+        "year": 1994,
+        "host": {
+          "countries": [
+            "Estados Unidos"
+          ],
+          "iso": [
+            "us"
+          ]
+        },
+        "result": "Campeón",
+        "coach": "Carlos Alberto Parreira",
+        "captain": "Dunga",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Romário",
+            "goals": 5
+          },
+          {
+            "player": "Bebeto",
+            "goals": 3
+          }
+        ],
+        "goals_scored": 11,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "TETRACAMPEONATO. Romário Balón de Oro del torneo.",
+          "Final 0-0 vs Italia, ganada 3-2 en penales (Baggio falló el último).",
+          "24 años después del título de 1970."
+        ],
+        "narrative": "Brasil rompió 24 años de sequía conquistando su 4º Mundial. Romário y Bebeto formaron una de las mejores duplas atacantes. Final ante Italia en el Rose Bowl: 0-0 reglamentario y prórroga. En penales, Roberto Baggio falló el último por encima del travesaño y Brasil celebró. Romário fue Balón de Oro del torneo. Bebeto popularizó el 'baby celebration' tras su gol vs Países Bajos."
+      },
+      {
+        "year": 1998,
+        "host": {
+          "countries": [
+            "Francia"
+          ],
+          "iso": [
+            "fr"
+          ]
+        },
+        "result": "Subcampeón",
+        "coach": "Mario Zagallo",
+        "captain": "Dunga",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Ronaldo",
+            "goals": 4
+          },
+          {
+            "player": "Bebeto",
+            "goals": 3
+          }
+        ],
+        "goals_scored": 14,
+        "goals_conceded": 10,
+        "notable_facts": [
+          "Final 0-3 vs Francia con doblete de Zidane.",
+          "Misterioso 'caso Ronaldo': el delantero sufrió convulsiones la mañana de la final."
+        ],
+        "narrative": "Brasil llegó a la final como favorita con Ronaldo Nazário en su pico. Pero la mañana del partido, Ronaldo sufrió convulsiones que jamás se aclararon del todo. Jugó la final pero estaba fuera de sí. Francia ganó 3-0 con doblete de Zidane y gol de Petit. Trauma nuevo. La saga 'caso Ronaldo' generó libros y documentales."
+      },
+      {
+        "year": 2002,
+        "host": {
+          "countries": [
+            "Corea del Sur",
+            "Japón"
+          ],
+          "iso": [
+            "kr",
+            "jp"
+          ]
+        },
+        "result": "Campeón",
+        "coach": "Luiz Felipe Scolari",
+        "captain": "Cafu",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Ronaldo",
+            "goals": 8
+          },
+          {
+            "player": "Rivaldo",
+            "goals": 5
+          }
+        ],
+        "goals_scored": 18,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "PENTACAMPEONATO.",
+          "Ronaldo Bota de Oro con 8 goles + redención tras el 'caso 1998'.",
+          "Trío 'Las 3 Erres': Ronaldo + Rivaldo + Ronaldinho.",
+          "Final 2-0 vs Alemania con doblete de Ronaldo."
+        ],
+        "narrative": "Brasil conquistó su 5º Mundial en el primer torneo conjunto Asia. Las 'Tres Erres' (Ronaldo, Rivaldo, Ronaldinho) fueron irresistibles. 7 victorias en 7 partidos. Ronaldo con 8 goles fue Bota de Oro y vivió la redención tras 1998. Final 2-0 ante Alemania con doblete de Ronaldo. Cafu, primer jugador en disputar 3 finales mundialistas (1994, 1998, 2002), levantó la copa con el cartel '100% Jardim Irene' (su barrio natal)."
+      },
+      {
+        "year": 2006,
+        "host": {
+          "countries": [
+            "Alemania"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Carlos Alberto Parreira",
+        "captain": "Cafu",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Ronaldo",
+            "goals": 3
+          },
+          {
+            "player": "Adriano",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 10,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "Eliminada por Francia 0-1 con gol de Henry."
+        ],
+        "narrative": "Brasil llegó como bicampeón vigente con Ronaldo, Ronaldinho, Kaká, Robinho. Pero el equipo nunca convenció. En cuartos, Francia con un Zidane mágico ganó 1-0 con gol de Henry tras asistencia de Zidane. Eliminación temprana. Ronaldo se convirtió en máximo goleador histórico del Mundial con 15 goles (luego superado por Klose)."
+      },
+      {
+        "year": 2010,
+        "host": {
+          "countries": [
+            "Sudáfrica"
+          ],
+          "iso": [
+            "za"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Dunga",
+        "captain": "Lúcio",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Luís Fabiano",
+            "goals": 3
+          }
+        ],
+        "goals_scored": 9,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "Eliminada por Países Bajos 1-2 tras ganar 1-0."
+        ],
+        "narrative": "Brasil dirigió por Dunga con un equipo más físico que técnico. En cuartos ante Países Bajos ganaba 1-0 con gol de Robinho pero los neerlandeses remontaron 2-1 (gol en propia de Felipe Melo + Sneijder). Eliminación dolorosa."
+      },
+      {
+        "year": 2014,
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
+        "result": "Cuarto puesto",
+        "coach": "Luiz Felipe Scolari",
+        "captain": "Thiago Silva",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Neymar",
+            "goals": 4
+          },
+          {
+            "player": "David Luiz",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 11,
+        "goals_conceded": 14,
+        "notable_facts": [
+          "EL MINEIRAZO. Brasil 1-7 Alemania en semifinales, mayor goleada en una semifinal mundialista.",
+          "Trauma nacional. Neymar lesionado en cuartos.",
+          "Cuarto puesto en Mundial organizado en casa."
+        ],
+        "narrative": "El Mundial del Mineirazo, segundo trauma nacional tras el Maracanazo. Brasil llegó a semis sin Neymar (lesionado por Zúñiga en cuartos) y sin Thiago Silva (suspendido). Ante Alemania en Belo Horizonte: 0-5 al minuto 29. Final: 1-7. Mayor goleada en una semifinal mundialista de la historia. Brasil quedó en shock total. En el partido por el bronce perdió 0-3 con Países Bajos. 4º puesto pero la herida del 7-1 todavía duele.",
+        "site_link": "/historia/momentos-iconicos/mineirazo"
+      },
+      {
+        "year": 2018,
+        "host": {
+          "countries": [
+            "Rusia"
+          ],
+          "iso": [
+            "ru"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Tite",
+        "captain": "Thiago Silva",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Neymar",
+            "goals": 2
+          },
+          {
+            "player": "Coutinho",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 8,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Eliminada por Bélgica 1-2 con doblete de Lukaku-De Bruyne (uno en propia)."
+        ],
+        "narrative": "Brasil dirigida por Tite tras el trauma de 2014. En cuartos ante Bélgica perdió 1-2: autogol de Fernandinho y gol de De Bruyne pusieron 0-2. Renato Augusto descontó pero no pudieron empatar. Tercer cuartos consecutivo eliminado."
+      },
+      {
+        "year": 2022,
+        "host": {
+          "countries": [
+            "Catar"
+          ],
+          "iso": [
+            "qa"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Tite",
+        "captain": "Thiago Silva",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Richarlison",
+            "goals": 3
+          },
+          {
+            "player": "Neymar",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 8,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Eliminada por Croacia en penales tras 1-1 (gol Neymar en prórroga).",
+          "Tercer cuartos consecutivo eliminado.",
+          "Tite renuncia tras la derrota."
+        ],
+        "narrative": "Brasil llegó como uno de los grandes favoritos. Pasó arrolladora la fase de grupos (3-0 a Corea del Sur en octavos). En cuartos ante Croacia: 0-0 reglamentario, gol de Neymar al 105' parecía sentenciar pero Petković empató al 117'. En penales, Rodrygo y Marquinhos fallaron y Croacia avanzó. Tite renunció. Tercer cuartos consecutivo eliminado, llevando a 20 años la sequía mundialista."
+      }
+    ],
+    "palmares": [
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 1958,
+        "position": "Campeón",
+        "host": "Suecia"
+      },
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 1962,
+        "position": "Campeón",
+        "host": "Chile"
+      },
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 1970,
+        "position": "Campeón",
+        "host": "México"
+      },
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 1994,
+        "position": "Campeón",
+        "host": "Estados Unidos"
+      },
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 2002,
+        "position": "Campeón",
+        "host": "Corea del Sur/Japón"
+      },
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 1950,
+        "position": "Subcampeón",
+        "host": "Brasil"
+      },
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 1998,
+        "position": "Subcampeón",
+        "host": "Francia"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Pelé / Neymar (empatados)",
+      "value": 77,
+      "period": "Pelé: 1957-1971 · Neymar: 2010-presente",
+      "notes": "Récord compartido. Pelé 77 goles (oficiales según FIFA) en 92 partidos. Neymar 79 goles en 128 partidos (incluye amistosos no oficiales según algunas fuentes)."
+    },
+    "most_capped": {
+      "name": "Cafu",
+      "value": 142,
+      "period": "1990-2006",
+      "notes": "Lateral derecho legendario. Único jugador en disputar 3 finales mundialistas consecutivas (1994, 1998, 2002)."
+    },
+    "youngest_debut": {
+      "name": "Pelé",
+      "value": "16 años, 9 meses",
+      "period": "1957-07-07 vs Argentina",
+      "notes": "Debut como jugador más joven en la historia de Brasil."
+    },
+    "biggest_win": {
+      "result": "14-0",
+      "opponent": "Nicaragua",
+      "date": "1975-09-17",
+      "competition": "Eliminatorias Panamericanas"
+    },
+    "worst_loss": {
+      "result": "1-7",
+      "opponent": "Alemania",
+      "date": "2014-07-08",
+      "competition": "Semifinal Copa Mundial 2014"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El Maracanazo",
+      "date": "1950-07-16",
+      "opponent": {
+        "iso": "uy",
+        "name": "Uruguay"
+      },
+      "score": "1-2",
+      "competition": "Final Mundial 1950 (formato liguilla)",
+      "narrative": "199.854 espectadores vieron caer a Brasil 1-2 ante Uruguay. Trauma fundacional del fútbol brasileño que marcaría al país durante décadas y motivaría el cambio de camiseta blanca a la verde-amarilla.",
+      "site_link": "/historia/momentos-iconicos/maracanazo"
+    },
+    {
+      "title": "El primer título de Pelé",
+      "date": "1958-06-29",
+      "opponent": {
+        "iso": "se",
+        "name": "Suecia"
+      },
+      "score": "5-2",
+      "competition": "Final Mundial 1958",
+      "narrative": "Brasil borró el Maracanazo conquistando su primer Mundial en Suecia. Pelé, con 17 años, deslumbró al mundo con su doblete en la final. Vavá doblete y Zagallo cerraron el marcador. Pelé lloró sobre el campo, escena icónica."
+    },
+    {
+      "title": "El equipo perfecto: Brasil 1970",
+      "date": "1970-06-21",
+      "opponent": {
+        "iso": "it",
+        "name": "Italia"
+      },
+      "score": "4-1",
+      "competition": "Final Mundial 1970",
+      "narrative": "El Brasil de Pelé, Carlos Alberto, Tostão, Gerson, Rivelino, Jairzinho y Clodoaldo es considerado el mejor equipo en la historia del fútbol. Final 4-1 ante Italia con goles de Pelé, Gérson, Jairzinho y Carlos Alberto (gol icónico tras jugada colectiva, considerado el mejor de la historia mundialista).",
+      "site_link": "/historia/momentos-iconicos/brasil-1970"
+    },
+    {
+      "title": "El Brasil que no ganó",
+      "date": "1982-07-05",
+      "opponent": {
+        "iso": "it",
+        "name": "Italia"
+      },
+      "score": "2-3",
+      "competition": "Segunda ronda Mundial 1982",
+      "narrative": "El Brasil más bonito que NO ganó: Sócrates, Zico, Falcão, Junior. Necesitaba empatar pero perdió 3-2 con hat-trick de Paolo Rossi. Eliminación dramática del fútbol arte."
+    },
+    {
+      "title": "El tetra de Romário",
+      "date": "1994-07-17",
+      "opponent": {
+        "iso": "it",
+        "name": "Italia"
+      },
+      "score": "0-0 (3-2 pen)",
+      "competition": "Final Mundial 1994",
+      "narrative": "Brasil rompió 24 años de sequía conquistando su 4º Mundial. Final ante Italia en el Rose Bowl. En penales, Roberto Baggio falló por encima del travesaño y Brasil celebró. Romário Balón de Oro del torneo."
+    },
+    {
+      "title": "El caso Ronaldo en la final",
+      "date": "1998-07-12",
+      "opponent": {
+        "iso": "fr",
+        "name": "Francia"
+      },
+      "score": "0-3",
+      "competition": "Final Mundial 1998",
+      "narrative": "Brasil llegó a la final como favorita con Ronaldo Nazário en su pico. Pero la mañana del partido, Ronaldo sufrió convulsiones. Jugó pero no estaba. Francia ganó 3-0 con doblete de Zidane. Trauma nuevo."
+    },
+    {
+      "title": "La redención de Ronaldo",
+      "date": "2002-06-30",
+      "opponent": {
+        "iso": "de",
+        "name": "Alemania"
+      },
+      "score": "2-0",
+      "competition": "Final Mundial 2002",
+      "narrative": "Brasil conquistó su 5º Mundial en Asia con doblete de Ronaldo en la final. El Fenómeno fue Bota de Oro con 8 goles y vivió la redención tras 1998. Cafu, primer jugador en 3 finales mundialistas, levantó la copa.",
+      "site_link": "/historia/momentos-iconicos/brasil-2002"
+    },
+    {
+      "title": "El Mineirazo",
+      "date": "2014-07-08",
+      "opponent": {
+        "iso": "de",
+        "name": "Alemania"
+      },
+      "score": "1-7",
+      "competition": "Semifinal Mundial 2014",
+      "narrative": "Brasil 1-7 Alemania, mayor goleada en una semifinal mundialista. Sin Neymar (lesionado) ni Thiago Silva (suspendido), Brasil quedó en shock total tras 0-5 al minuto 29. Segundo trauma nacional tras el Maracanazo. Klose superó a Ronaldo como máximo goleador histórico mundialista en este partido.",
+      "site_link": "/historia/momentos-iconicos/mineirazo"
+    },
+    {
+      "title": "La eliminación con Croacia",
+      "date": "2022-12-09",
+      "opponent": {
+        "iso": "hr",
+        "name": "Croacia"
+      },
+      "score": "1-1 (2-4 pen)",
+      "competition": "Cuartos Mundial 2022",
+      "narrative": "Gol de Neymar al 105' parecía sentenciar pero Petković empató al 117'. En penales, Rodrygo y Marquinhos fallaron. Tite renunció. Tercer cuartos consecutivo eliminado, prolongando la sequía a 20 años."
+    },
+    {
+      "title": "Argentina 4-1 Brasil",
+      "date": "2025-03-25",
+      "opponent": {
+        "iso": "ar",
+        "name": "Argentina"
+      },
+      "score": "1-4",
+      "competition": "Eliminatorias Mundial 2026",
+      "narrative": "Mayor goleada histórica ante Brasil en eliminatorias CONMEBOL. Brasil sin reaccionar. Tras la derrota, Dorival Júnior fue destituido y la CBF rompió tabú histórico para fichar a Carlo Ancelotti, primer DT extranjero de la selección de Brasil."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "Brasil es la única selección que ha disputado los 23 Mundiales en la historia (presencia perfecta desde 1930). Argentina, Alemania e Italia comparten 3-4 ausencias cada una.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Pelé es el único jugador en ganar 3 Mundiales (1958, 1962, 1970), aunque en 1962 solo jugó 2 partidos antes de lesionarse.",
+      "source": "FIFA + CBF",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Cafu es el único jugador en disputar 3 finales mundialistas consecutivas (1994 campeón, 1998 subcampeón, 2002 campeón). Levantó la Copa con el cartel '100% Jardim Irene', su barrio natal.",
+      "source": "FIFA + CBF",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Carlo Ancelotti es el primer DT extranjero en la historia de la selección de Brasil. Asumió el cargo en mayo de 2025 tras 111 años con DTs brasileños desde la fundación de la CBF en 1914.",
+      "source": "CBF + FIFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Brasil llega al Mundial 2026 con la peor campaña histórica de eliminatorias CONMEBOL: 5º puesto y 28 puntos. Récord negativo desde la implantación del formato actual.",
+      "source": "CONMEBOL + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "El gol de Carlos Alberto en la final 1970 (4º de Brasil ante Italia, tras jugada colectiva con 9 toques) es considerado por la FIFA el mejor gol de la historia mundialista.",
+      "source": "FIFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Tras el Maracanazo de 1950, la CBF cambió la camiseta blanca por la actual verde-amarilla. La nueva equipación fue elegida por concurso público en 1953 para 'exorcizar' el trauma.",
+      "source": "CBF + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Brasil llega a 2026 con 24 años sin ganar un Mundial (desde 2002), la sequía más larga del país desde el inicio del torneo. Antes había sido 24 años entre 1970-1994.",
+      "source": "FIFA + CBF",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Brasil, Brasil, Brasil!",
+      "Sou brasileiro, com muito orgulho, com muito amor",
+      "Eu sou brasileiro!"
+    ],
+    "main_rival": {
+      "iso": "ar",
+      "name": "Argentina",
+      "story": "El 'Superclásico de las Américas' es la rivalidad más histórica del fútbol mundial. Más de 110 enfrentamientos desde 1914. Pelé vs Maradona vs Messi vs Neymar son las eternas comparaciones generacionales. Encuentros recordados: Mundial 1990 (gol Caniggia con asistencia Maradona), final Copa América 2021 (Argentina 1-0 en el Maracaná), eliminatorias 2023 (Argentina 1-0 en el Maracaná, primera victoria oficial argentina allí), eliminatorias 2025 (Argentina 4-1, mayor goleada histórica en eliminatorias)."
+    },
+    "home_stadium": {
+      "name": "Estadio Maracaná",
+      "capacity": 78838,
+      "city": "Río de Janeiro"
+    }
+  },
+  "seo": {
+    "meta_title": "Brasil en el Mundial 2026 | Plantilla, historia y predicciones",
+    "meta_description": "Brasil Mundial 2026: plantilla de Carlo Ancelotti, Vinícius, Endrick. Grupo C con Marruecos, Haití y Escocia. 5 títulos mundialistas, 23 Mundiales jugados.",
+    "og_image_url": "/img/og/teams/brasil.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Brasil",
+      "alternateName": [
+        "La Verdeamarela",
+        "La Canarinha"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "CONMEBOL"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Carlo Ancelotti"
+      },
+      "url": "https://www.zonamundial.app/selecciones/brasil"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-28",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Brasil_en_la_Copa_Mundial_de_F%C3%BAtbol",
+      "https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_de_Conmebol_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://www.tudn.com/mundial-2026/eliminatorias/eliminatorias-mundial-2026-asi-quedo-tabla-posiciones-conmebol",
+      "https://www.conmebol.com/noticias/las-selecciones-sudamericanas-conocen-a-sus-rivales/",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/12519217/",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/16047796/mundial-2026-asi-quedan-los-grupos-fase-de-grupos-copa-del-mundo",
+      "https://cnnespanol.cnn.com/2026/04/01/deportes/grupos-zonas-copa-mundial-2026-orix",
+      "https://www.cbf.com.br",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias cruzadas con CONMEBOL + Wikipedia + ESPN + TUDN. Historia mundialista validada con FIFA oficial + CBF + Wikipedia. Sorteo Mundial 2026 confirmado con CONMEBOL oficial + ESPN + CNN.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "partial",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante: pendiente entrega/upload",
+      "Goleadores y minutos exactos eliminatorias 2026: cruzar con CONMEBOL detalle por partido",
+      "Top scorers eliminatoria 2026: confirmar números exactos por jugador",
+      "Calendario fase de grupos 2026: pendiente fixture FIFA con fechas/sedes/horarios exactos",
+      "Base de entrenamiento: CBF aún no anunció",
+      "FIFA Ranking #6: validar último mes vigente al publicar",
+      "Récord 'top_scorer_history': existe disputa Pelé/Neymar, mantener empate hasta clarificar fuente FIFA primaria"
+    ]
+  }
+}

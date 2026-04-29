@@ -1,0 +1,1649 @@
+{
+  "slug": "ecuador",
+  "iso": "ec",
+  "iso3": "ECU",
+  "name_es": "Ecuador",
+  "name_en": "Ecuador",
+  "name_local": "Ecuador",
+  "nicknames": [
+    "La Tri",
+    "La Tricolor",
+    "La Selección Ecuatoriana"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#FFDF00",
+      "secondary": "#0033A0",
+      "tertiary": "#EF3340",
+      "contrast_text": "#0033A0"
+    }
+  },
+  "country": {
+    "capital": "Quito",
+    "language_official": [
+      "Español"
+    ],
+    "population": 18190000,
+    "area_km2": 283561,
+    "timezone": "America/Guayaquil",
+    "continent": "Sudamérica"
+  },
+  "federation": {
+    "name": "Federación Ecuatoriana de Fútbol",
+    "abbreviation": "FEF",
+    "founded": 1925,
+    "headquarters": "Guayaquil",
+    "website": "https://www.fef.ec"
+  },
+  "confederation": "CONMEBOL",
+  "fifa_ranking": {
+    "current": 23,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Marathon Sports",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/ecuador.png",
+        "back_url": null,
+        "primary_color": "#FFDF00",
+        "secondary_color": "#0033A0",
+        "description": "Camiseta amarilla emblemática con detalles azules y rojos. Marathon Sports, marca local ecuatoriana, viste a la Tri desde 2008 — relación más larga de toda Sudamérica con una marca nacional.",
+        "alt_text": "Camiseta titular Ecuador Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#0033A0",
+        "secondary_color": "#FFDF00",
+        "description": "Equipación visitante en azul. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Ecuador Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "Ecuador es la única selección sudamericana vestida por una marca local (Marathon Sports), lo que ha generado polémica con jugadores que demandaban una marca global.",
+        "source": "FEF + ESPN",
+        "verified_at": "2026-04-28",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Ecuador firmó la MEJOR ELIMINATORIA HISTÓRICA: 2º puesto con 29 puntos (8G 8E 2P), pese a iniciar con sanción de -3 puntos por el caso Byron Castillo. Defensa de élite mundial: solo 5 goles encajados en 18 partidos, récord absoluto del torneo. Cambió de DT en agosto 2024 (Félix Sánchez Bas → Sebastián Beccacece, argentino). Cierre épico: 1-0 a Argentina en Guayaquil en la última fecha. Su primera vez por encima de Brasil en una eliminatoria.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias CONMEBOL Mundial 2026",
+      "format": "Liguilla todos contra todos · 18 jornadas · ida y vuelta",
+      "duration": "Septiembre 2023 — Septiembre 2025",
+      "final_position": 2,
+      "total_teams_in_group": 10,
+      "stats": {
+        "played": 18,
+        "won": 8,
+        "drawn": 8,
+        "lost": 2,
+        "goals_for": 15,
+        "goals_against": 5,
+        "goal_difference": 10,
+        "points": 29,
+        "win_percentage": 44.4,
+        "clean_sheets": 11,
+        "notes": "Iniciaron con -3 puntos por sanción TAS por caso Byron Castillo. Cálculo real: 8G*3 + 8E - 3 sanción = 29 puntos."
+      },
+      "coach_during_qualifying": "Félix Sánchez Bas (sept 2023 - jul 2024) → Sebastián Beccacece (ago 2024 - presente)",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2023-09-07",
+          "home": {
+            "iso": "ar",
+            "name": "Argentina",
+            "score": 1
+          },
+          "away": {
+            "iso": "ec",
+            "name": "Ecuador",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Más Monumental",
+            "city": "Buenos Aires",
+            "country_iso": "ar"
+          },
+          "goals_arg": [],
+          "notes": "Debut difícil ante el campeón mundial."
+        },
+        {
+          "matchday": 2,
+          "date": "2023-09-12",
+          "home": {
+            "iso": "ec",
+            "name": "Ecuador",
+            "score": 2
+          },
+          "away": {
+            "iso": "uy",
+            "name": "Uruguay",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Rodrigo Paz Delgado",
+            "city": "Quito",
+            "country_iso": "ec"
+          },
+          "goals_arg": [
+            {
+              "player": "Félix Torres",
+              "minute": "10'",
+              "type": "goal"
+            },
+            {
+              "player": "Pervis Estupiñán",
+              "minute": "57'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Primera victoria del ciclo."
+        },
+        {
+          "matchday": 3,
+          "date": "2023-10-12",
+          "home": {
+            "iso": "bo",
+            "name": "Bolivia",
+            "score": 1
+          },
+          "away": {
+            "iso": "ec",
+            "name": "Ecuador",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Hernando Siles",
+            "city": "La Paz",
+            "country_iso": "bo"
+          },
+          "goals_arg": [
+            {
+              "player": "Enner Valencia",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Enner Valencia",
+              "minute": "65'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 4,
+          "date": "2023-10-17",
+          "home": {
+            "iso": "co",
+            "name": "Colombia",
+            "score": 0
+          },
+          "away": {
+            "iso": "ec",
+            "name": "Ecuador",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Metropolitano",
+            "city": "Barranquilla",
+            "country_iso": "co"
+          },
+          "goals_arg": []
+        },
+        {
+          "matchday": 5,
+          "date": "2023-11-16",
+          "home": {
+            "iso": "ec",
+            "name": "Ecuador",
+            "score": 0
+          },
+          "away": {
+            "iso": "ve",
+            "name": "Venezuela",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Rodrigo Paz Delgado",
+            "city": "Quito",
+            "country_iso": "ec"
+          },
+          "goals_arg": [],
+          "notes": "Sorpresiva derrota local."
+        },
+        {
+          "matchday": 6,
+          "date": "2023-11-21",
+          "home": {
+            "iso": "cl",
+            "name": "Chile",
+            "score": 0
+          },
+          "away": {
+            "iso": "ec",
+            "name": "Ecuador",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Monumental",
+            "city": "Santiago",
+            "country_iso": "cl"
+          },
+          "goals_arg": [
+            {
+              "player": "Felipe Caicedo",
+              "minute": "15'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 7,
+          "date": "2024-09-06",
+          "home": {
+            "iso": "br",
+            "name": "Brasil",
+            "score": 1
+          },
+          "away": {
+            "iso": "ec",
+            "name": "Ecuador",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Couto Pereira",
+            "city": "Curitiba",
+            "country_iso": "br"
+          },
+          "goals_arg": [],
+          "notes": "Debut de Beccacece como DT. Última derrota de Ecuador en el ciclo (9 partidos invicto a partir de aquí)."
+        },
+        {
+          "matchday": 8,
+          "date": "2024-09-10",
+          "home": {
+            "iso": "ec",
+            "name": "Ecuador",
+            "score": 1
+          },
+          "away": {
+            "iso": "pe",
+            "name": "Perú",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Rodrigo Paz Delgado",
+            "city": "Quito",
+            "country_iso": "ec"
+          },
+          "goals_arg": [
+            {
+              "player": "John Yeboah",
+              "minute": "65'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 9,
+          "date": "2024-10-10",
+          "home": {
+            "iso": "ec",
+            "name": "Ecuador",
+            "score": 0
+          },
+          "away": {
+            "iso": "py",
+            "name": "Paraguay",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Rodrigo Paz Delgado",
+            "city": "Quito",
+            "country_iso": "ec"
+          },
+          "goals_arg": []
+        },
+        {
+          "matchday": 10,
+          "date": "2024-10-15",
+          "home": {
+            "iso": "uy",
+            "name": "Uruguay",
+            "score": 0
+          },
+          "away": {
+            "iso": "ec",
+            "name": "Ecuador",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Centenario",
+            "city": "Montevideo",
+            "country_iso": "uy"
+          },
+          "goals_arg": [],
+          "notes": "Empate sin goles en visita al Centenario."
+        },
+        {
+          "matchday": 11,
+          "date": "2024-11-14",
+          "home": {
+            "iso": "ec",
+            "name": "Ecuador",
+            "score": 4
+          },
+          "away": {
+            "iso": "bo",
+            "name": "Bolivia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Rodrigo Paz Delgado",
+            "city": "Quito",
+            "country_iso": "ec"
+          },
+          "goals_arg": [
+            {
+              "player": "Enner Valencia",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Kendry Páez",
+              "minute": "40'",
+              "type": "goal"
+            },
+            {
+              "player": "Moisés Caicedo",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Alan Minda",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Goleada más amplia del ciclo. Kendry Páez (17 años) marcó."
+        },
+        {
+          "matchday": 12,
+          "date": "2024-11-19",
+          "home": {
+            "iso": "co",
+            "name": "Colombia",
+            "score": 0
+          },
+          "away": {
+            "iso": "ec",
+            "name": "Ecuador",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Metropolitano",
+            "city": "Barranquilla",
+            "country_iso": "co"
+          },
+          "goals_arg": [
+            {
+              "player": "Enner Valencia",
+              "minute": "55'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Triunfo histórico fuera de casa con superioridad numérica de Colombia."
+        },
+        {
+          "matchday": 13,
+          "date": "2025-03-21",
+          "home": {
+            "iso": "ec",
+            "name": "Ecuador",
+            "score": 2
+          },
+          "away": {
+            "iso": "ve",
+            "name": "Venezuela",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Rodrigo Paz Delgado",
+            "city": "Quito",
+            "country_iso": "ec"
+          },
+          "goals_arg": [
+            {
+              "player": "Enner Valencia",
+              "minute": "40'",
+              "type": "goal"
+            },
+            {
+              "player": "Moisés Caicedo",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 14,
+          "date": "2025-03-25",
+          "home": {
+            "iso": "cl",
+            "name": "Chile",
+            "score": 0
+          },
+          "away": {
+            "iso": "ec",
+            "name": "Ecuador",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Nacional",
+            "city": "Santiago",
+            "country_iso": "cl"
+          },
+          "goals_arg": []
+        },
+        {
+          "matchday": 15,
+          "date": "2025-06-05",
+          "home": {
+            "iso": "ec",
+            "name": "Ecuador",
+            "score": 0
+          },
+          "away": {
+            "iso": "br",
+            "name": "Brasil",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Monumental Banco Pichincha",
+            "city": "Guayaquil",
+            "country_iso": "ec"
+          },
+          "goals_arg": [],
+          "notes": "Debut de Ancelotti con Brasil. Ecuador resistió bien. Selló su clasificación matemática."
+        },
+        {
+          "matchday": 16,
+          "date": "2025-06-10",
+          "home": {
+            "iso": "pe",
+            "name": "Perú",
+            "score": 0
+          },
+          "away": {
+            "iso": "ec",
+            "name": "Ecuador",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Estadio Nacional",
+            "city": "Lima",
+            "country_iso": "pe"
+          },
+          "goals_arg": []
+        },
+        {
+          "matchday": 17,
+          "date": "2025-09-04",
+          "home": {
+            "iso": "py",
+            "name": "Paraguay",
+            "score": 0
+          },
+          "away": {
+            "iso": "ec",
+            "name": "Ecuador",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Defensores del Chaco",
+            "city": "Asunción",
+            "country_iso": "py"
+          },
+          "goals_arg": [],
+          "notes": "Empate que selló clasificación de Paraguay también."
+        },
+        {
+          "matchday": 18,
+          "date": "2025-09-09",
+          "home": {
+            "iso": "ec",
+            "name": "Ecuador",
+            "score": 1
+          },
+          "away": {
+            "iso": "ar",
+            "name": "Argentina",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Monumental Banco Pichincha",
+            "city": "Guayaquil",
+            "country_iso": "ec"
+          },
+          "goals_arg": [
+            {
+              "player": "Enner Valencia",
+              "minute": "47'",
+              "type": "penalty"
+            }
+          ],
+          "notes": "Cierre histórico: 1-0 al líder Argentina en Guayaquil. Penal de Enner Valencia. Argentina jugó sin Messi.",
+          "is_decisive_match": true
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Enner Valencia",
+          "goals": 6,
+          "notes": "Goleador del ciclo y figura histórica de Ecuador. Capitán."
+        },
+        {
+          "player": "Moisés Caicedo",
+          "goals": 2
+        },
+        {
+          "player": "Pervis Estupiñán",
+          "goals": 1
+        },
+        {
+          "player": "Félix Torres",
+          "goals": 1
+        },
+        {
+          "player": "Felipe Caicedo",
+          "goals": 1
+        },
+        {
+          "player": "John Yeboah",
+          "goals": 1
+        },
+        {
+          "player": "Kendry Páez",
+          "goals": 1
+        },
+        {
+          "player": "Alan Minda",
+          "goals": 1
+        },
+        {
+          "player": "Otros (1)",
+          "goals": 1
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_18",
+        "reason": "El 1-0 a Argentina en Guayaquil el 9 de septiembre de 2025 con penal de Enner Valencia. Triunfo simbólico para cerrar la eliminatoria por encima de Brasil, Colombia y Uruguay."
+      },
+      "worst_match": {
+        "match_ref": "matchday_5",
+        "reason": "Derrota 0-1 ante Venezuela en casa el 16 de noviembre de 2023. Sorpresa local que casi compromete la clasificación."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_18",
+        "reason": "Triunfo 1-0 a Argentina cerró eliminatoria con 29 puntos y 2º puesto histórico, por encima de Brasil. Mejor papel ecuatoriano en eliminatorias desde 1998."
+      }
+    },
+    "group_2026": {
+      "letter": "[POR CONFIRMAR]",
+      "label": "Grupo asignado en sorteo Mundial 2026",
+      "teams": [
+        {
+          "iso": "ec",
+          "name": "Ecuador",
+          "fifa_rank": 23,
+          "is_seed": false
+        },
+        {
+          "iso": "[POR CONFIRMAR]",
+          "name": "[POR CONFIRMAR]",
+          "fifa_rank": null
+        },
+        {
+          "iso": "[POR CONFIRMAR]",
+          "name": "[POR CONFIRMAR]",
+          "fifa_rank": null
+        },
+        {
+          "iso": "[POR CONFIRMAR]",
+          "name": "[POR CONFIRMAR]",
+          "fifa_rank": null
+        }
+      ],
+      "notes": "Pendiente cruce con /grupos zonamundial.app. Ecuador llega como cabeza de bombo 2 (no fue cabeza de serie por ranking)."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "[POR CONFIRMAR]",
+          "name": "[POR CONFIRMAR]"
+        },
+        "date": "[POR CONFIRMAR]",
+        "venue": {
+          "stadium": "[POR CONFIRMAR]",
+          "city": "",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "[POR CONFIRMAR]",
+          "name": "[POR CONFIRMAR]"
+        },
+        "date": "[POR CONFIRMAR]",
+        "venue": {
+          "stadium": "[POR CONFIRMAR]",
+          "city": "",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "[POR CONFIRMAR]",
+          "name": "[POR CONFIRMAR]"
+        },
+        "date": "[POR CONFIRMAR]",
+        "venue": {
+          "stadium": "[POR CONFIRMAR]",
+          "city": "",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — FEF aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Sebastián Beccacece",
+      "age": 45,
+      "nationality": "Argentina",
+      "since": "2024-08-01",
+      "previous_teams": [
+        "Independiente (2022-2023)",
+        "Racing Club (2019-2020)",
+        "Defensa y Justicia (2018-2019)",
+        "Ayudante de Jorge Sampaoli en Sevilla, Argentina y Chile (2010-2017)"
+      ],
+      "profile_summary": "Argentino, primera experiencia con selecciones nacionales tras carrera de clubes. Asumió Ecuador tras el cese de Félix Sánchez Bas en julio 2024. Identidad táctica: 3-4-3 con velocidad por bandas y presión alta. Defensa de élite mundial bajo su mando: solo 5 goles encajados en 12 partidos. Crítica: pobreza ofensiva (solo 9 goles marcados en 12 partidos).",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Sebasti%C3%A1n_Beccacece_-_Russia_2018.jpg/330px-Sebasti%C3%A1n_Beccacece_-_Russia_2018.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Sebasti%C3%A1n_Beccacece"
+      }
+    },
+    "captain": {
+      "name": "Enner Valencia",
+      "club": "Internacional",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Enner_Valencia%2C_January_2016.jpg/330px-Enner_Valencia%2C_January_2016.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Enner_Valencia"
+      }
+    },
+    "star_player": {
+      "name": "Moisés Caicedo",
+      "club": "Chelsea",
+      "reason": "El mediocampista del Chelsea (£115M) es el motor de Ecuador. Capaz de cubrir la cancha entera, romper líneas, recuperar y marcar. A los 24 años llega a su segundo Mundial siendo uno de los volantes defensivos más cotizados del mundo. Campeón Premier League, Champions League y Mundial de Clubes con el Chelsea.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Mois%C3%A9s_Caicedo_20042025_%281%29.jpg/330px-Mois%C3%A9s_Caicedo_20042025_%281%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Mois%C3%A9s_Caicedo"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "gonzalo-valle",
+        "full_name": "Gonzalo Valle",
+        "display_name": "Gonzalo Valle",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "LDU Quito",
+          "country_iso": "ec",
+          "league": "Serie A Ecuador"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed"
+      },
+      {
+        "id": "alexander-dominguez",
+        "full_name": "Alexander Domínguez",
+        "display_name": "Alexander Domínguez",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "LDU Quito",
+          "country_iso": "ec",
+          "league": "Serie A Ecuador"
+        },
+        "shirt_number_expected": 12,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Ecuador_tren2015_%281%29.jpg/330px-Ecuador_tren2015_%281%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Alexander_Dom%C3%ADnguez"
+        }
+      },
+      {
+        "id": "hernan-galindez",
+        "full_name": "Hernán Galíndez",
+        "display_name": "Galíndez",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Aucas",
+          "country_iso": "ec",
+          "league": "Serie A Ecuador"
+        },
+        "shirt_number_expected": 22,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/HERN%C3%81N_GAL%C3%8DNDEZ.jpg/330px-HERN%C3%81N_GAL%C3%8DNDEZ.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Hern%C3%A1n_Gal%C3%ADndez"
+        }
+      },
+      {
+        "id": "william-pacho",
+        "full_name": "William Pacho",
+        "display_name": "William Pacho",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "PSG",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Pacho_asse_psg_2425.png/330px-Pacho_asse_psg_2425.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Willian_Pacho"
+        }
+      },
+      {
+        "id": "felix-torres",
+        "full_name": "Félix Torres",
+        "display_name": "Félix Torres",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Corinthians",
+          "country_iso": "br",
+          "league": "Brasileirão"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed"
+      },
+      {
+        "id": "piero-hincapie",
+        "full_name": "Piero Hincapié",
+        "display_name": "Piero Hincapié",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Bayer Leverkusen",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Piero_Hincapi%C3%A9%2C_2022-07-31%2C_Saisoner%C3%B6ffnung_Bayer_04%2C_Leverkusen_%281%29.jpg/330px-Piero_Hincapi%C3%A9%2C_2022-07-31%2C_Saisoner%C3%B6ffnung_Bayer_04%2C_Leverkusen_%281%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Piero_Hincapi%C3%A9"
+        }
+      },
+      {
+        "id": "joel-ordonez",
+        "full_name": "Joel Ordóñez",
+        "display_name": "Joel Ordóñez",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Club Brujas",
+          "country_iso": "be",
+          "league": "Pro League"
+        },
+        "shirt_number_expected": 6,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/JoelOrd%C3%B3%C3%B1ez.jpg/330px-JoelOrd%C3%B3%C3%B1ez.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Joel_Ord%C3%B3%C3%B1ez"
+        }
+      },
+      {
+        "id": "angelo-preciado",
+        "full_name": "Ángelo Preciado",
+        "display_name": "Ángelo Preciado",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Standard Lieja",
+          "country_iso": "be",
+          "league": "Pro League"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Angelo_Preciado.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/%C3%81ngelo_Preciado"
+        }
+      },
+      {
+        "id": "pervis-estupinan",
+        "full_name": "Pervis Estupiñán",
+        "display_name": "Pervis Estupiñán",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Brighton",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Pervis_Estupi%C3%B1%C3%A1n_WC2022.jpg/330px-Pervis_Estupi%C3%B1%C3%A1n_WC2022.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Pervis_Estupi%C3%B1%C3%A1n"
+        }
+      },
+      {
+        "id": "moises-caicedo",
+        "full_name": "Moisés Caicedo",
+        "display_name": "Moisés Caicedo",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Chelsea",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 23,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Mois%C3%A9s_Caicedo_20042025_%281%29.jpg/330px-Mois%C3%A9s_Caicedo_20042025_%281%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mois%C3%A9s_Caicedo"
+        }
+      },
+      {
+        "id": "jhegson-mendez",
+        "full_name": "Jhegson Méndez",
+        "display_name": "Jhegson Méndez",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "LAFC",
+          "country_iso": "us",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 18,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f1/SELECCI%C3%93N_DE_F%C3%9ATBOL_SUB_20_-_Jhegson_Martinez_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jhegson_M%C3%A9ndez"
+        }
+      },
+      {
+        "id": "alan-franco",
+        "full_name": "Alan Franco",
+        "display_name": "Alan Franco",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Charlotte FC",
+          "country_iso": "us",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 13,
+        "status": "probable"
+      },
+      {
+        "id": "patrickson-delgado",
+        "full_name": "Patrickson Delgado",
+        "display_name": "Patrickson Delgado",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Independiente del Valle",
+          "country_iso": "ec",
+          "league": "Serie A Ecuador"
+        },
+        "shirt_number_expected": 14,
+        "status": "probable"
+      },
+      {
+        "id": "kendry-paez",
+        "full_name": "Kendry Páez",
+        "display_name": "Kendry Páez",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Estrasburgo",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 20,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Kendry_Paez_2023_Sudamericano_Sub_17_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Kendry_P%C3%A1ez"
+        }
+      },
+      {
+        "id": "jeremy-sarmiento",
+        "full_name": "Jeremy Sarmiento",
+        "display_name": "Jeremy Sarmiento",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Ipswich",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 19,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/BHA_5_v_Espanyol_1_pre_season_30_07_2022_160.jpg/330px-BHA_5_v_Espanyol_1_pre_season_30_07_2022_160.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jeremy_Sarmiento"
+        }
+      },
+      {
+        "id": "kevin-rodriguez",
+        "full_name": "Kevin Rodríguez",
+        "display_name": "Kevin Rodríguez",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Union Saint-Gilloise",
+          "country_iso": "be",
+          "league": "Pro League"
+        },
+        "shirt_number_expected": 9,
+        "status": "probable"
+      },
+      {
+        "id": "enner-valencia",
+        "full_name": "Enner Valencia",
+        "display_name": "Enner Valencia",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Internacional",
+          "country_iso": "br",
+          "league": "Brasileirão"
+        },
+        "shirt_number_expected": 13,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Enner_Valencia%2C_January_2016.jpg/330px-Enner_Valencia%2C_January_2016.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Enner_Valencia"
+        }
+      },
+      {
+        "id": "gonzalo-plata",
+        "full_name": "Gonzalo Plata",
+        "display_name": "Gonzalo Plata",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Flamengo",
+          "country_iso": "br",
+          "league": "Brasileirão"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/92/2022_FIFA_World_Cup_Qatar_0%E2%80%932_Ecuador_-_Plata.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Gonzalo_Plata"
+        }
+      },
+      {
+        "id": "john-yeboah",
+        "full_name": "John Yeboah",
+        "display_name": "John Yeboah",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Standard Lieja",
+          "country_iso": "be",
+          "league": "Pro League"
+        },
+        "shirt_number_expected": 10,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/John_Yeboah_2020.png/330px-John_Yeboah_2020.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/John_Yeboah"
+        }
+      },
+      {
+        "id": "alan-minda",
+        "full_name": "Alan Minda",
+        "display_name": "Alan Minda",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Cercle Brujas",
+          "country_iso": "be",
+          "league": "Pro League"
+        },
+        "shirt_number_expected": 8,
+        "status": "probable"
+      },
+      {
+        "id": "leonardo-campana",
+        "full_name": "Leonardo Campana",
+        "display_name": "Leonardo Campana",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Inter Miami",
+          "country_iso": "us",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 21,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Leo_Campana_Revolution_Nashville_6.25.25-155_%28cropped%29.jpg/330px-Leo_Campana_Revolution_Nashville_6.25.25-155_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Leonardo_Campana"
+        }
+      },
+      {
+        "id": "djorkaeff-reasco",
+        "full_name": "Djorkaeff Reasco",
+        "display_name": "Djorkaeff Reasco",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Universidad Católica",
+          "country_iso": "ec",
+          "league": "Serie A Ecuador"
+        },
+        "shirt_number_expected": 25,
+        "status": "bubble"
+      },
+      {
+        "id": "denil-castillo",
+        "full_name": "Denil Castillo",
+        "display_name": "Denil Castillo",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Independiente del Valle",
+          "country_iso": "ec",
+          "league": "Serie A Ecuador"
+        },
+        "shirt_number_expected": 15,
+        "status": "bubble"
+      },
+      {
+        "id": "jordy-caicedo",
+        "full_name": "Jordy Caicedo",
+        "display_name": "Jordy Caicedo",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Tijuana",
+          "country_iso": "mx",
+          "league": "Liga MX"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/J._Kaisedo.jpg/330px-J._Kaisedo.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jordy_Caicedo"
+        }
+      },
+      {
+        "id": "willian-pacho-2",
+        "full_name": "Diego Palacios",
+        "display_name": "Diego Palacios",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Corinthians",
+          "country_iso": "br",
+          "league": "Brasileirão"
+        },
+        "shirt_number_expected": 16,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/%D0%94%D1%96%D1%94%D0%B3%D0%BE_%D0%9F%D0%B0%D0%BB%D0%B0%D1%81%D1%96%D0%BE%D1%81_%E2%80%94_%D0%A4%D0%9A_%D0%9A%D0%B0%D1%80%D0%BF%D0%B0%D1%82%D0%B8_%D0%9B%D1%8C%D0%B2%D1%96%D0%B2_%282025%29_full_image.png/330px-%D0%94%D1%96%D1%94%D0%B3%D0%BE_%D0%9F%D0%B0%D0%BB%D0%B0%D1%81%D1%96%D0%BE%D1%81_%E2%80%94_%D0%A4%D0%9A_%D0%9A%D0%B0%D1%80%D0%BF%D0%B0%D1%82%D0%B8_%D0%9B%D1%8C%D0%B2%D1%96%D0%B2_%282025%29_full_image.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Diego_Palacios"
+        }
+      },
+      {
+        "id": "yaimar-medina",
+        "full_name": "Yaimar Medina",
+        "display_name": "Yaimar Medina",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Independiente del Valle",
+          "country_iso": "ec",
+          "league": "Serie A Ecuador"
+        },
+        "shirt_number_expected": 24,
+        "status": "bubble"
+      }
+    ],
+    "starting_xi": {
+      "formation": "3-4-3",
+      "players": [
+        {
+          "player_id": "gonzalo-valle",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "william-pacho",
+          "position": {
+            "x": 50,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "piero-hincapie",
+          "position": {
+            "x": 25,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "felix-torres",
+          "position": {
+            "x": 75,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "angelo-preciado",
+          "position": {
+            "x": 88,
+            "y": 50
+          }
+        },
+        {
+          "player_id": "moises-caicedo",
+          "position": {
+            "x": 60,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "jhegson-mendez",
+          "position": {
+            "x": 40,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "pervis-estupinan",
+          "position": {
+            "x": 12,
+            "y": 50
+          }
+        },
+        {
+          "player_id": "kendry-paez",
+          "position": {
+            "x": 50,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "enner-valencia",
+          "position": {
+            "x": 75,
+            "y": 18
+          }
+        },
+        {
+          "player_id": "gonzalo-plata",
+          "position": {
+            "x": 25,
+            "y": 18
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Beccacece plantea un 3-4-3 con tres centrales potentes (Pacho-Hincapié-Torres), carrileros agresivos (Preciado-Estupiñán), doble pivote (Caicedo-Méndez) y tres ofensivos. Identidad: defensa cerrada, transiciones rápidas, presión alta para recuperar el balón. Estilo eficaz pero criticado por pobreza ofensiva.",
+      "strengths": [
+        "DEFENSA DE ÉLITE MUNDIAL: solo 5 goles encajados en 18 partidos eliminatoria, récord absoluto del torneo.",
+        "Centrales jóvenes y top: Pacho (PSG), Hincapié (Bayer Leverkusen), Torres (Corinthians). Promedio edad 24 años.",
+        "Moisés Caicedo: motor élite mundial. Campeón Champions y Mundial de Clubes con Chelsea.",
+        "Generación nueva en Europa: 14+ jugadores en clubes europeos top.",
+        "Kendry Páez (18): joya de Estrasburgo (futuro Chelsea). El '10' del futuro.",
+        "Mentalidad: 9 partidos invictos al cierre del ciclo eliminatorio."
+      ],
+      "weaknesses": [
+        "POBREZA OFENSIVA: solo 14 goles en 18 partidos. Ataque sin chispa.",
+        "Enner Valencia (36): único delantero con experiencia top, pero envejeciendo.",
+        "Sin un '9' joven consolidado: Kevin Rodríguez, Campana, Jordy Caicedo en busca de rol.",
+        "Fragilidad ante presión: bache antes de Beccacece (jul 2024).",
+        "Beccacece debutante en selecciones, sin experiencia mundialista.",
+        "Estilo 3-4-3 muy dependiente del nivel físico de los carrileros."
+      ],
+      "x_factor": {
+        "player": "Kendry Páez",
+        "reason": "El '10' de 18 años (Estrasburgo, futuro Chelsea por contrato cerrado) puede ser la sensación del torneo. Técnica élite, visión de juego, capacidad para crear de la nada. Si Beccacece le da las llaves del ataque, Ecuador puede sorprender."
+      },
+      "prediction_text": "Ecuador llega a 2026 como gran sorpresa positiva del ciclo eliminatorio. La defensa de élite mundial es su gran arma para neutralizar a cualquier rival. El reto: marcar goles. Pasar la fase de grupos es objetivo realista. Llegar a octavos sería superar Qatar 2022. Cuartos sería igualar la mejor marca de su historia (2006).",
+      "probabilities": {
+        "advance_groups": 75,
+        "round_of_32": 65,
+        "round_of_16": 38,
+        "quarter_finals": 12,
+        "semi_finals": 4,
+        "final": 1,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Brasil 2014: fase de grupos eliminada por diferencia de goles. Catar 2022: fase de grupos, eliminada con 4 puntos. Mundial 2026: 5ª participación histórica, segunda consecutiva. Llega como 2º clasificado CONMEBOL, mejor papel desde 1998."
+    }
+  },
+  "history": {
+    "first_appearance": 2002,
+    "appearances_count_before_2026": 4,
+    "appearances_count_with_2026": 5,
+    "consecutive_streak_since": 2022,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 0,
+    "best_result": "Octavos de final (Alemania 2006)",
+    "aggregate_stats_through_2022": {
+      "played": 13,
+      "won": 5,
+      "drawn": 2,
+      "lost": 6,
+      "goals_for": 14,
+      "goals_against": 14,
+      "win_percentage": 38.5,
+      "notes": "Datos hasta Qatar 2022. Ecuador tiene presencia mundialista relativamente reciente (debut 2002)."
+    },
+    "by_world_cup": [
+      {
+        "year": 2002,
+        "host": {
+          "countries": [
+            "Corea del Sur",
+            "Japón"
+          ],
+          "iso": [
+            "kr",
+            "jp"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Hernán Darío Gómez",
+        "captain": "Iván Hurtado",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Édison Méndez",
+            "goals": 1
+          },
+          {
+            "player": "Agustín Delgado",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "DEBUT mundialista de Ecuador.",
+          "1 victoria (Croacia 1-0) y 2 derrotas."
+        ],
+        "narrative": "Ecuador debutó en Mundiales 72 años después de su primer partido como selección. Cayó 0-2 con Italia, 0-2 con México y batió 1-0 a Croacia con gol de Delgado al 48'. Bombardo el comienzo de la era 'La Tri'."
+      },
+      {
+        "year": 2006,
+        "host": {
+          "countries": [
+            "Alemania"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Luis Fernando Suárez",
+        "captain": "Iván Hurtado",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Agustín Delgado",
+            "goals": 1
+          },
+          {
+            "player": "Carlos Tenorio",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 5,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "MEJOR participación histórica: octavos de final.",
+          "Eliminada por Inglaterra 0-1 (gol de Beckham de tiro libre)."
+        ],
+        "narrative": "Mejor papel histórico de Ecuador. Ganó 2-0 a Polonia, 3-0 a Costa Rica y perdió 0-3 con Alemania pero ya pasaba como segundo. En octavos contra Inglaterra, David Beckham marcó al 60' un tiro libre cabeceado por... Beckham al ángulo. Adiós con cabeza alta."
+      },
+      {
+        "year": 2014,
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Reinaldo Rueda",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Enner Valencia",
+            "goals": 3
+          }
+        ],
+        "goals_scored": 3,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Eliminada por diferencia de goles tras empate 0-0 con Francia.",
+          "Enner Valencia hizo hat-trick (1 a Suiza, 2 a Honduras)."
+        ],
+        "narrative": "Ecuador empató con Suiza 1-2, ganó 2-1 a Honduras y empató 0-0 con Francia. Quedó eliminada por diferencia de goles ante Suiza. Enner Valencia se consagró como goleador del torneo ecuatoriano (3 goles)."
+      },
+      {
+        "year": 2022,
+        "host": {
+          "countries": [
+            "Catar"
+          ],
+          "iso": [
+            "qa"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Gustavo Alfaro",
+        "captain": "Enner Valencia",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Enner Valencia",
+            "goals": 3
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Inauguración del Mundial: ganó 2-0 al anfitrión Catar.",
+          "Enner Valencia volvió a hacer 3 goles."
+        ],
+        "narrative": "Ecuador abrió el Mundial Qatar 2022 contra el anfitrión y ganó 2-0 con doblete de Enner Valencia. Empató 1-1 con Países Bajos (gol Valencia, su 3er gol mundialista) y perdió 1-2 con Senegal. Quedó eliminada con 4 puntos. Enner Valencia fue figura del torneo ecuatoriano."
+      }
+    ],
+    "palmares": []
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Enner Valencia",
+      "value": 47,
+      "period": "2012-presente",
+      "notes": "Goleador histórico absoluto. Capitán y referente."
+    },
+    "most_capped": {
+      "name": "Iván Hurtado",
+      "value": 168,
+      "period": "1992-2014",
+      "notes": "Récord histórico de presencias. Capitán en 2002 y 2006."
+    },
+    "youngest_debut": {
+      "name": "Kendry Páez",
+      "value": "16 años, 197 días",
+      "period": "2023 vs Bolivia",
+      "notes": "Considerado uno de los debuts más jóvenes en la historia de las eliminatorias sudamericanas."
+    },
+    "biggest_win": {
+      "result": "6-1",
+      "opponent": "Perú",
+      "date": "1975-08-10",
+      "competition": "Copa América 1975"
+    },
+    "worst_loss": {
+      "result": "0-6",
+      "opponent": "Argentina",
+      "date": "1942-02-22",
+      "competition": "Sudamericano de Selecciones 1942"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El debut histórico (Catar 2022)",
+      "date": "2022-11-20",
+      "opponent": {
+        "iso": "qa",
+        "name": "Catar"
+      },
+      "score": "2-0",
+      "competition": "Inauguración Mundial 2022",
+      "narrative": "Ecuador abrió el Mundial Qatar 2022 ante el anfitrión y ganó 2-0 con doblete de Enner Valencia (16' de penal y 31' de cabeza). Primer partido del Mundial fue un triunfo ecuatoriano histórico ante un país árabe-musulmán. Enner Valencia fue figura absoluta."
+    },
+    {
+      "title": "El triunfo a Polonia 2006",
+      "date": "2006-06-09",
+      "opponent": {
+        "iso": "pl",
+        "name": "Polonia"
+      },
+      "score": "2-0",
+      "competition": "Fase de Grupos Mundial 2006",
+      "narrative": "Ecuador batió 2-0 a Polonia en el debut del Mundial 2006 con goles de Carlos Tenorio (24') y Agustín Delgado (80'). Inicio del mejor Mundial histórico ecuatoriano que terminaría en octavos."
+    },
+    {
+      "title": "La octava final ante Inglaterra",
+      "date": "2006-06-25",
+      "opponent": {
+        "iso": "gb-eng",
+        "name": "Inglaterra"
+      },
+      "score": "0-1",
+      "competition": "Octavos Mundial 2006",
+      "narrative": "Ecuador cayó 0-1 ante Inglaterra en octavos del Mundial 2006. Gol de David Beckham al 60' de tiro libre directo. Adiós digno de la mejor participación ecuatoriana en Mundiales hasta hoy."
+    },
+    {
+      "title": "El hat-trick contra Honduras (Brasil 2014)",
+      "date": "2014-06-20",
+      "opponent": {
+        "iso": "hn",
+        "name": "Honduras"
+      },
+      "score": "2-1",
+      "competition": "Fase de Grupos Mundial 2014",
+      "narrative": "Enner Valencia marcó doblete (34' y 65') para que Ecuador venciera 2-1 a Honduras. Tras su gol a Suiza, quedó como goleador ecuatoriano en Mundiales con 3 dianas. Adiós por diferencia de goles."
+    },
+    {
+      "title": "El 1-0 a Argentina en Guayaquil",
+      "date": "2025-09-09",
+      "opponent": {
+        "iso": "ar",
+        "name": "Argentina"
+      },
+      "score": "1-0",
+      "competition": "Eliminatorias Mundial 2026",
+      "narrative": "Ecuador venció 1-0 a Argentina en Guayaquil en la última fecha de las eliminatorias 2026. Penal de Enner Valencia al 47'. Triunfo simbólico de la nueva generación liderada por Pacho, Caicedo, Hincapié y Páez. Cierre de la mejor eliminatoria histórica de Ecuador (2º puesto)."
+    },
+    {
+      "title": "El triunfo a Colombia (Barranquilla)",
+      "date": "2024-11-19",
+      "opponent": {
+        "iso": "co",
+        "name": "Colombia"
+      },
+      "score": "1-0",
+      "competition": "Eliminatorias Mundial 2026",
+      "narrative": "Ecuador venció 1-0 a Colombia en Barranquilla con gol de Enner Valencia, jugando con superioridad numérica más de la mitad del partido. Triunfo simbólico fuera de casa que consolidó el ciclo Beccacece."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "Ecuador inició las eliminatorias 2026 con SANCIÓN DE -3 PUNTOS por el caso Byron Castillo (TAS dictaminó que el jugador no era ecuatoriano y se alineó indebidamente en eliminatorias 2022). Pese a la sanción, terminó 2º.",
+      "source": "TAS + FIFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Ecuador firmó el RÉCORD ABSOLUTO DE LA ELIMINATORIA: solo 5 goles encajados en 18 partidos (0,28 por partido). 11 partidos con la portería a cero.",
+      "source": "CONMEBOL + FIFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Marathon Sports es la ÚNICA marca local sudamericana que viste a una selección de su país. Relación que dura desde 2008. Polémicas con jugadores y prensa por la falta de marca global.",
+      "source": "FEF + ESPN",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Enner Valencia es el único jugador ecuatoriano con 3 goles en una sola edición del Mundial (Brasil 2014 y Catar 2022, repetido).",
+      "source": "FIFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Kendry Páez es el primer jugador ecuatoriano de 16 años en debutar oficialmente con la selección absoluta. Ya tiene contrato cerrado con el Chelsea para julio 2026.",
+      "source": "FEF + Chelsea FC",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Ecuador es la 2ª selección de Sudamérica en clasificar al Mundial 2026 (después de Argentina) y firmó el mejor balance del continente sin perder más de 2 partidos en 18 jornadas.",
+      "source": "CONMEBOL",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "¡Y dale, dale, dale Ecuador!",
+      "Vamos Ecuador, vamos a dejar todo en la cancha",
+      "La Tricolor"
+    ],
+    "main_rival": {
+      "iso": "co",
+      "name": "Colombia",
+      "story": "Rivalidad regional sudamericana del norte. Ambos países comparten frontera y muchos derbis amistosos a lo largo de la historia. En eliminatorias 2026 los enfrentamientos fueron equilibrados (1 victoria de Ecuador, 1 empate)."
+    },
+    "home_stadium": {
+      "name": "Estadio Rodrigo Paz Delgado (Quito) y Monumental Banco Pichincha (Guayaquil)",
+      "capacity": 41575,
+      "city": "Quito y Guayaquil — la FEF rota sedes"
+    }
+  },
+  "seo": {
+    "meta_title": "Ecuador en el Mundial 2026 | Plantilla, historia y predicciones",
+    "meta_description": "Ecuador Mundial 2026: 26 convocados de Beccacece, Caicedo, Pacho, Hincapié, Páez. 2º puesto eliminatorias CONMEBOL con la mejor defensa.",
+    "og_image_url": "/img/og/teams/ecuador.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Ecuador",
+      "alternateName": [
+        "La Tri",
+        "La Tricolor"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "CONMEBOL"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Sebastián Beccacece"
+      },
+      "url": "https://www.zonamundial.app/selecciones/ecuador"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-28",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Ecuador_en_la_clasificaci%C3%B3n_de_Conmebol_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_de_Conmebol_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://www.eluniverso.com/deportes/futbol/estos-fueron-los-resultados-de-ecuador-en-las-eliminatorias-sudamericanas-que-le-aseguraron-el-segundo-lugar-para-clasificar-al-mundial-2026-nota/",
+      "https://www.primicias.ec/deportes/mundial-2026/seleccion-ecuador/balance-rendimiento-eliminatorias-sudamericanas-clasificacion-beccacece-104774/",
+      "https://www.primicias.ec/deportes/mundial-2026/seleccion-ecuador/rendimiento-puntos-paraguay-asuncion-eliminatorias-sudamericanas-104370/",
+      "https://www.infobae.com/peru/deportes/2025/12/03/asi-llego-ecuador-al-mundial-2026-como-se-clasifico-su-dt-debutante-y-cuestionado-y-jugadores-destacando-en-europa/",
+      "https://www.futbolecuador.com/site/noticia/el-camino-de-ecuador-en-la-historia-de-la-copa-mundial-2026-y-tabla-de-posiciones-en-eliminatorias/162093",
+      "https://www.fef.ec",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias cruzadas con El Universo + Primicias Ecuador + Wikipedia + Infobae. Historia mundialista con FIFA + Wikipedia. Plantilla validada con FEF + Primicias.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "needs_review",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante: pendiente",
+      "Grupo Mundial 2026 y rivales: cruzar con /grupos zonamundial.app",
+      "Calendario fase de grupos 2026: pendiente fixture FIFA",
+      "Base de entrenamiento: FEF aún no anunció",
+      "FIFA Ranking #23: validar mes vigente",
+      "Edad Beccacece: revisar exacta (45 estimado)",
+      "1 gol decisivo eliminatoria — verificar autor (atribuido a Otros)"
+    ]
+  }
+}

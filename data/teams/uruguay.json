@@ -1,0 +1,1910 @@
+{
+  "slug": "uruguay",
+  "iso": "uy",
+  "iso3": "URU",
+  "name_es": "Uruguay",
+  "name_en": "Uruguay",
+  "name_local": "Uruguay",
+  "nicknames": [
+    "La Celeste",
+    "Los Charrúas",
+    "La Garra Charrúa"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#7B9CD9",
+      "secondary": "#FFFFFF",
+      "tertiary": "#FCD116",
+      "contrast_text": "#0F1D32"
+    }
+  },
+  "country": {
+    "capital": "Montevideo",
+    "language_official": [
+      "Español"
+    ],
+    "population": 3423108,
+    "area_km2": 176215,
+    "timezone": "America/Montevideo",
+    "continent": "Sudamérica"
+  },
+  "federation": {
+    "name": "Asociación Uruguaya de Fútbol",
+    "abbreviation": "AUF",
+    "founded": 1900,
+    "headquarters": "Montevideo",
+    "website": "https://auf.org.uy"
+  },
+  "confederation": "CONMEBOL",
+  "fifa_ranking": {
+    "current": 5,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Puma",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/uruguay.png",
+        "back_url": null,
+        "primary_color": "#7B9CD9",
+        "secondary_color": "#FFFFFF",
+        "description": "La icónica camiseta celeste con cuello blanco. Lleva las cuatro estrellas sobre el escudo: dos por las medallas de oro olímpicas (1924, 1928) y dos por los Mundiales (1930, 1950).",
+        "alt_text": "Camiseta titular Uruguay Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#7B9CD9",
+        "description": "Equipación visitante blanca con detalles celestes. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Uruguay Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "Uruguay luce 4 estrellas sobre su escudo: dos por los oros olímpicos de 1924 (París) y 1928 (Ámsterdam) — entonces considerados 'Mundiales' por la FIFA — y dos por los Mundiales de 1930 y 1950.",
+        "source": "FIFA + AUF oficial",
+        "verified_at": "2026-04-28",
+        "status": "validated"
+      },
+      {
+        "text": "El color celeste viene del River Plate (uruguayo, no argentino), club que aportó la mayoría de jugadores a la primera selección uruguaya en 1910.",
+        "source": "AUF oficial",
+        "verified_at": "2026-04-28",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Uruguay terminó 4º en las eliminatorias CONMEBOL con 28 puntos (las mismas que Colombia y Brasil, separadas por diferencia de goles). Tras varios meses con Bielsa, la AUF cambió de DT antes del cierre de las eliminatorias por divergencias internas. Uruguay aseguró su clasificación en la fecha 17 con la victoria 3-0 sobre Perú en Montevideo.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias CONMEBOL Mundial 2026",
+      "format": "Liguilla todos contra todos · 18 jornadas",
+      "duration": "Septiembre 2023 — Septiembre 2025",
+      "final_position": 4,
+      "total_teams_in_group": 10,
+      "stats": {
+        "played": 18,
+        "won": 7,
+        "drawn": 7,
+        "lost": 4,
+        "goals_for": 22,
+        "goals_against": 12,
+        "goal_difference": 10,
+        "points": 28,
+        "win_percentage": 38.9,
+        "clean_sheets": 8
+      },
+      "coach_during_qualifying": "Marcelo Bielsa",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2023-09-08",
+          "home": {
+            "iso": "uy",
+            "name": "Uruguay",
+            "score": 3
+          },
+          "away": {
+            "iso": "cl",
+            "name": "Chile",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Centenario",
+            "city": "Montevideo",
+            "country_iso": "uy"
+          }
+        },
+        {
+          "matchday": 2,
+          "date": "2023-09-12",
+          "home": {
+            "iso": "ec",
+            "name": "Ecuador",
+            "score": 1
+          },
+          "away": {
+            "iso": "uy",
+            "name": "Uruguay",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Banco Pichincha",
+            "city": "Guayaquil",
+            "country_iso": "ec"
+          }
+        },
+        {
+          "matchday": 3,
+          "date": "2023-10-12",
+          "home": {
+            "iso": "uy",
+            "name": "Uruguay",
+            "score": 3
+          },
+          "away": {
+            "iso": "co",
+            "name": "Colombia",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Centenario",
+            "city": "Montevideo",
+            "country_iso": "uy"
+          }
+        },
+        {
+          "matchday": 4,
+          "date": "2023-10-17",
+          "home": {
+            "iso": "uy",
+            "name": "Uruguay",
+            "score": 2
+          },
+          "away": {
+            "iso": "br",
+            "name": "Brasil",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Centenario",
+            "city": "Montevideo",
+            "country_iso": "uy"
+          },
+          "notes": "Histórica victoria 2-0 ante Brasil en el Centenario."
+        },
+        {
+          "matchday": 5,
+          "date": "2023-11-16",
+          "home": {
+            "iso": "ar",
+            "name": "Argentina",
+            "score": 0
+          },
+          "away": {
+            "iso": "uy",
+            "name": "Uruguay",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Más Monumental",
+            "city": "Buenos Aires",
+            "country_iso": "ar"
+          },
+          "notes": "Victoria histórica en El Monumental, primera derrota oficial de Argentina desde Copa América 2019."
+        },
+        {
+          "matchday": 6,
+          "date": "2023-11-21",
+          "home": {
+            "iso": "bo",
+            "name": "Bolivia",
+            "score": 0
+          },
+          "away": {
+            "iso": "uy",
+            "name": "Uruguay",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Hernando Siles",
+            "city": "La Paz",
+            "country_iso": "bo"
+          }
+        },
+        {
+          "matchday": 7,
+          "date": "2024-09-06",
+          "home": {
+            "iso": "py",
+            "name": "Paraguay",
+            "score": 0
+          },
+          "away": {
+            "iso": "uy",
+            "name": "Uruguay",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Defensores del Chaco",
+            "city": "Asunción",
+            "country_iso": "py"
+          }
+        },
+        {
+          "matchday": 8,
+          "date": "2024-09-10",
+          "home": {
+            "iso": "uy",
+            "name": "Uruguay",
+            "score": 0
+          },
+          "away": {
+            "iso": "ve",
+            "name": "Venezuela",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Centenario",
+            "city": "Montevideo",
+            "country_iso": "uy"
+          }
+        },
+        {
+          "matchday": 9,
+          "date": "2024-10-11",
+          "home": {
+            "iso": "pe",
+            "name": "Perú",
+            "score": 0
+          },
+          "away": {
+            "iso": "uy",
+            "name": "Uruguay",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Estadio Nacional",
+            "city": "Lima",
+            "country_iso": "pe"
+          }
+        },
+        {
+          "matchday": 10,
+          "date": "2024-10-15",
+          "home": {
+            "iso": "uy",
+            "name": "Uruguay",
+            "score": 0
+          },
+          "away": {
+            "iso": "ec",
+            "name": "Ecuador",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Centenario",
+            "city": "Montevideo",
+            "country_iso": "uy"
+          }
+        },
+        {
+          "matchday": 11,
+          "date": "2024-11-14",
+          "home": {
+            "iso": "co",
+            "name": "Colombia",
+            "score": 1
+          },
+          "away": {
+            "iso": "uy",
+            "name": "Uruguay",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Metropolitano",
+            "city": "Barranquilla",
+            "country_iso": "co"
+          }
+        },
+        {
+          "matchday": 12,
+          "date": "2024-11-19",
+          "home": {
+            "iso": "br",
+            "name": "Brasil",
+            "score": 1
+          },
+          "away": {
+            "iso": "uy",
+            "name": "Uruguay",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Arena Fonte Nova",
+            "city": "Salvador",
+            "country_iso": "br"
+          }
+        },
+        {
+          "matchday": 13,
+          "date": "2025-03-21",
+          "home": {
+            "iso": "uy",
+            "name": "Uruguay",
+            "score": 0
+          },
+          "away": {
+            "iso": "ar",
+            "name": "Argentina",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Centenario",
+            "city": "Montevideo",
+            "country_iso": "uy"
+          }
+        },
+        {
+          "matchday": 14,
+          "date": "2025-03-25",
+          "home": {
+            "iso": "uy",
+            "name": "Uruguay",
+            "score": 1
+          },
+          "away": {
+            "iso": "bo",
+            "name": "Bolivia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Centenario",
+            "city": "Montevideo",
+            "country_iso": "uy"
+          }
+        },
+        {
+          "matchday": 15,
+          "date": "2025-06-05",
+          "home": {
+            "iso": "py",
+            "name": "Paraguay",
+            "score": 2
+          },
+          "away": {
+            "iso": "uy",
+            "name": "Uruguay",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Defensores del Chaco",
+            "city": "Asunción",
+            "country_iso": "py"
+          }
+        },
+        {
+          "matchday": 16,
+          "date": "2025-06-10",
+          "home": {
+            "iso": "uy",
+            "name": "Uruguay",
+            "score": 2
+          },
+          "away": {
+            "iso": "ve",
+            "name": "Venezuela",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Centenario",
+            "city": "Montevideo",
+            "country_iso": "uy"
+          }
+        },
+        {
+          "matchday": 17,
+          "date": "2025-09-04",
+          "home": {
+            "iso": "uy",
+            "name": "Uruguay",
+            "score": 3
+          },
+          "away": {
+            "iso": "pe",
+            "name": "Perú",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Centenario",
+            "city": "Montevideo",
+            "country_iso": "uy"
+          },
+          "notes": "Victoria que selló matemáticamente la clasificación al Mundial 2026.",
+          "is_decisive_match": true
+        },
+        {
+          "matchday": 18,
+          "date": "2025-09-09",
+          "home": {
+            "iso": "cl",
+            "name": "Chile",
+            "score": 0
+          },
+          "away": {
+            "iso": "uy",
+            "name": "Uruguay",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Nacional Julio Martínez Prádanos",
+            "city": "Santiago",
+            "country_iso": "cl"
+          }
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Darwin Núñez",
+          "goals": 5
+        },
+        {
+          "player": "Maximiliano Araújo",
+          "goals": 4
+        },
+        {
+          "player": "Federico Valverde",
+          "goals": 3
+        },
+        {
+          "player": "Rodrigo Bentancur",
+          "goals": 2
+        },
+        {
+          "player": "Otros (resto)",
+          "goals": 8
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_5",
+        "reason": "El 2-0 a Argentina en el Más Monumental el 16 de noviembre de 2023. Primera derrota oficial de Argentina desde la Copa América 2019, ya con la era Scaloni consolidada."
+      },
+      "worst_match": {
+        "match_ref": "matchday_15",
+        "reason": "Derrota 0-2 ante Paraguay en Asunción el 5 de junio de 2025. Punto bajo del ciclo, agudizando las tensiones internas que llevarían al cambio de DT."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_17",
+        "reason": "Victoria 3-0 ante Perú en el Centenario el 4 de septiembre de 2025. Selló matemáticamente la clasificación al Mundial 2026."
+      }
+    },
+    "group_2026": {
+      "letter": "H",
+      "label": "Grupo H — junto a España, Cabo Verde y Arabia Saudita",
+      "teams": [
+        {
+          "iso": "es",
+          "name": "España",
+          "fifa_rank": 2,
+          "is_seed": true
+        },
+        {
+          "iso": "uy",
+          "name": "Uruguay",
+          "fifa_rank": 5,
+          "is_seed": false
+        },
+        {
+          "iso": "cv",
+          "name": "Cabo Verde",
+          "fifa_rank": null,
+          "is_seed": false
+        },
+        {
+          "iso": "sa",
+          "name": "Arabia Saudita",
+          "fifa_rank": null,
+          "is_seed": false
+        }
+      ],
+      "notes": "Grupo confirmado en sorteo 5 dic 2025. Uruguay vs España es el cruce decisivo de un grupo con 2 campeones del mundo."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "[POR CONFIRMAR]",
+          "name": "[POR CONFIRMAR]"
+        },
+        "date": "[POR CONFIRMAR]",
+        "venue": {
+          "stadium": "[POR CONFIRMAR]",
+          "city": "",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "cv",
+          "name": "Cabo Verde"
+        },
+        "date": "2026-06-21",
+        "venue": {
+          "stadium": "[POR CONFIRMAR]",
+          "city": "Miami",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "es",
+          "name": "España"
+        },
+        "date": "2026-06-26",
+        "venue": {
+          "stadium": "[POR CONFIRMAR]",
+          "city": "Guadalajara",
+          "country_iso": "mx"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — AUF aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "[POR CONFIRMAR — sucesor de Bielsa]",
+      "age": 0,
+      "nationality": "Uruguay",
+      "since": "[POR CONFIRMAR]",
+      "previous_teams": [],
+      "profile_summary": "Marcelo Bielsa fue cesado tras tensiones internas con la AUF en septiembre de 2025. Pendiente confirmación oficial del sucesor para el Mundial 2026."
+    },
+    "captain": {
+      "name": "Federico Valverde",
+      "club": "Real Madrid",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Federico_Valverde_2021_%28cropped%29.jpg/330px-Federico_Valverde_2021_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Federico_Valverde"
+      }
+    },
+    "star_player": {
+      "name": "Federico Valverde",
+      "club": "Real Madrid",
+      "reason": "El centrocampista del Real Madrid es el líder generacional de Uruguay y uno de los mejores mediocampistas del mundo. A los 27 años, capaz de jugar de interior, mediapunta o lateral derecho. Combina poderío físico, llegada al área, pase largo de élite y mentalidad ganadora. Su salud es clave para las opciones uruguayas.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Federico_Valverde_2021_%28cropped%29.jpg/330px-Federico_Valverde_2021_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Federico_Valverde"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "sergio-rochet",
+        "full_name": "Sergio Rochet",
+        "display_name": "Rochet",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Internacional",
+          "country_iso": "br",
+          "league": "Brasileirão"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Sergio_Rochet_%282022%29.jpg/330px-Sergio_Rochet_%282022%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Sergio_Rochet"
+        }
+      },
+      {
+        "id": "santiago-mele",
+        "full_name": "Santiago Mele",
+        "display_name": "Mele",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Junior FC",
+          "country_iso": "co",
+          "league": "Liga BetPlay"
+        },
+        "shirt_number_expected": 23,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Santiago_Mele.jpg/330px-Santiago_Mele.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Santiago_Mele"
+        }
+      },
+      {
+        "id": "franco-israel",
+        "full_name": "Franco Israel",
+        "display_name": "Israel",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Sporting Lisboa",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
+        },
+        "shirt_number_expected": 12,
+        "status": "probable"
+      },
+      {
+        "id": "nahitan-nandez",
+        "full_name": "Nahitan Nández",
+        "display_name": "Nández",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Al-Qadsiah",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 17,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Urug_tren_%283%29_-_%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.jpg/330px-Urug_tren_%283%29_-_%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Nahitan_N%C3%A1ndez"
+        }
+      },
+      {
+        "id": "guillermo-varela",
+        "full_name": "Guillermo Varela",
+        "display_name": "Varela",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Flamengo",
+          "country_iso": "br",
+          "league": "Brasileirão"
+        },
+        "shirt_number_expected": 22,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Guillermo_Varela_2022.jpg/330px-Guillermo_Varela_2022.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Guillermo_Varela"
+        }
+      },
+      {
+        "id": "ronald-araujo",
+        "full_name": "Ronald Araújo",
+        "display_name": "Araújo",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "FC Barcelona",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/FC_Red_Bull_Salzburg_gegen_CF_Barcelona_%28Testspiel_4._August_2021%29_45_%28cropped%29.jpg/330px-FC_Red_Bull_Salzburg_gegen_CF_Barcelona_%28Testspiel_4._August_2021%29_45_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ronald_Ara%C3%BAjo"
+        }
+      },
+      {
+        "id": "jose-maria-gimenez",
+        "full_name": "José María Giménez",
+        "display_name": "Giménez",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Atlético de Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Jos%C3%A9_Mar%C3%ADa_Gim%C3%A9nez.jpg/330px-Jos%C3%A9_Mar%C3%ADa_Gim%C3%A9nez.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jos%C3%A9_Mar%C3%ADa_Gim%C3%A9nez"
+        }
+      },
+      {
+        "id": "sebastian-caceres",
+        "full_name": "Sebastián Cáceres",
+        "display_name": "Cáceres",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "América",
+          "country_iso": "mx",
+          "league": "Liga MX"
+        },
+        "shirt_number_expected": 3,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Sebasti%C3%A1n_C%C3%A1ceres.jpg/330px-Sebasti%C3%A1n_C%C3%A1ceres.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Sebasti%C3%A1n_C%C3%A1ceres"
+        }
+      },
+      {
+        "id": "matias-vina",
+        "full_name": "Matías Viña",
+        "display_name": "Viña",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Flamengo",
+          "country_iso": "br",
+          "league": "Brasileirão"
+        },
+        "shirt_number_expected": 13,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Mat%C3%ADas_Vi%C3%B1a.jpg/330px-Mat%C3%ADas_Vi%C3%B1a.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mat%C3%ADas_Vi%C3%B1a"
+        }
+      },
+      {
+        "id": "joaquin-piquerez",
+        "full_name": "Joaquín Piquerez",
+        "display_name": "Piquerez",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Palmeiras",
+          "country_iso": "br",
+          "league": "Brasileirão"
+        },
+        "shirt_number_expected": 16,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Joaquin-Piquerez-Palmeiras-Athletico-jul-2022-2.jpg/330px-Joaquin-Piquerez-Palmeiras-Athletico-jul-2022-2.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Joaqu%C3%ADn_Piquerez"
+        }
+      },
+      {
+        "id": "santiago-bueno",
+        "full_name": "Santiago Bueno",
+        "display_name": "Bueno",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Wolverhampton",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 19,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Santiago_Bueno.png/330px-Santiago_Bueno.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Santiago_Bueno"
+        }
+      },
+      {
+        "id": "federico-valverde",
+        "full_name": "Federico Valverde",
+        "display_name": "Valverde",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Real Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 15,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Federico_Valverde_2021_%28cropped%29.jpg/330px-Federico_Valverde_2021_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Federico_Valverde"
+        }
+      },
+      {
+        "id": "rodrigo-bentancur",
+        "full_name": "Rodrigo Bentancur",
+        "display_name": "Bentancur",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Tottenham",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/20171114_AUT_URU_4518_-_Rodrigo_Bentancur_%28cropped%29_2.jpg/330px-20171114_AUT_URU_4518_-_Rodrigo_Bentancur_%28cropped%29_2.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Rodrigo_Bentancur"
+        }
+      },
+      {
+        "id": "manuel-ugarte",
+        "full_name": "Manuel Ugarte",
+        "display_name": "Ugarte",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Manchester United",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed"
+      },
+      {
+        "id": "nicolas-de-la-cruz",
+        "full_name": "Nicolás de la Cruz",
+        "display_name": "De la Cruz",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Flamengo",
+          "country_iso": "br",
+          "league": "Brasileirão"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Nicol%C3%A1s_de_la_Cruz.jpg/330px-Nicol%C3%A1s_de_la_Cruz.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Nicol%C3%A1s_de_la_Cruz"
+        }
+      },
+      {
+        "id": "giorgian-de-arrascaeta",
+        "full_name": "Giorgian De Arrascaeta",
+        "display_name": "De Arrascaeta",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Flamengo",
+          "country_iso": "br",
+          "league": "Brasileirão"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Giorgian_De_Arrascaeta_20171114_AUT_URU_4546_%28cropped%29.jpg/330px-Giorgian_De_Arrascaeta_20171114_AUT_URU_4546_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Giorgian_de_Arrascaeta"
+        }
+      },
+      {
+        "id": "rodrigo-aguirre",
+        "full_name": "Rodrigo Aguirre",
+        "display_name": "Aguirre",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "América",
+          "country_iso": "mx",
+          "league": "Liga MX"
+        },
+        "shirt_number_expected": 18,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Rodrigo_Aguirre.png/330px-Rodrigo_Aguirre.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Rodrigo_Aguirre_Soto"
+        }
+      },
+      {
+        "id": "facundo-pellistri",
+        "full_name": "Facundo Pellistri",
+        "display_name": "Pellistri",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Panathinaikos",
+          "country_iso": "gr",
+          "league": "Super League Greece"
+        },
+        "shirt_number_expected": 11,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Facundo_Pellistri_WC2022.jpg/330px-Facundo_Pellistri_WC2022.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Facundo_Pellistri"
+        }
+      },
+      {
+        "id": "darwin-nunez",
+        "full_name": "Darwin Núñez",
+        "display_name": "Darwin Núñez",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Al-Hilal",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Darwin_N%C3%BA%C3%B1ez_%28cropped%29.jpg/330px-Darwin_N%C3%BA%C3%B1ez_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Darwin_N%C3%BA%C3%B1ez"
+        }
+      },
+      {
+        "id": "maximiliano-araujo",
+        "full_name": "Maximiliano Araújo",
+        "display_name": "Maxi Araújo",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Sporting Lisboa",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed"
+      },
+      {
+        "id": "agustin-canobbio",
+        "full_name": "Agustín Canobbio",
+        "display_name": "Canobbio",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Fluminense",
+          "country_iso": "br",
+          "league": "Brasileirão"
+        },
+        "shirt_number_expected": 21,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Agust%C3%ADn_Canobbio_-_S%C3%89RIE_A_-_PALMEIRAS_0_X_2_ATHLETICO_PARANAENSE_-_52192996579_%28cropped%29.jpg/330px-Agust%C3%ADn_Canobbio_-_S%C3%89RIE_A_-_PALMEIRAS_0_X_2_ATHLETICO_PARANAENSE_-_52192996579_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Agust%C3%ADn_Canobbio"
+        }
+      },
+      {
+        "id": "brian-rodriguez",
+        "full_name": "Brian Rodríguez",
+        "display_name": "Brian Rodríguez",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "América",
+          "country_iso": "mx",
+          "league": "Liga MX"
+        },
+        "shirt_number_expected": 14,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Brian_Rodriguez.png/330px-Brian_Rodriguez.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Brian_Rodr%C3%ADguez"
+        }
+      },
+      {
+        "id": "luis-suarez",
+        "full_name": "Luis Suárez",
+        "display_name": "Luis Suárez",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Inter Miami CF",
+          "country_iso": "us",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 20,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Luis_Su%C3%A1rez_2026_%28cropped%29.jpg/330px-Luis_Su%C3%A1rez_2026_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Luis_Su%C3%A1rez"
+        }
+      },
+      {
+        "id": "edinson-cavani",
+        "full_name": "Edinson Cavani",
+        "display_name": "Cavani",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Boca Juniors",
+          "country_iso": "ar",
+          "league": "Liga Profesional"
+        },
+        "shirt_number_expected": 24,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/PALMEIRAS_X_BOCA_JUNIORS_-_COPA_LIBERTADORES_2023_%2853286889335%29.jpg/330px-PALMEIRAS_X_BOCA_JUNIORS_-_COPA_LIBERTADORES_2023_%2853286889335%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Edinson_Cavani"
+        }
+      },
+      {
+        "id": "matias-arezo",
+        "full_name": "Matías Arezo",
+        "display_name": "Arezo",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Peñarol",
+          "country_iso": "uy",
+          "league": "Primera División Uruguay"
+        },
+        "shirt_number_expected": 25,
+        "status": "probable"
+      },
+      {
+        "id": "federico-vinas",
+        "full_name": "Federico Viñas",
+        "display_name": "Viñas",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Mallorca",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Federico_Vi%C3%B1as.jpg/330px-Federico_Vi%C3%B1as.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Federico_Vi%C3%B1as"
+        }
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-4-2",
+      "players": [
+        {
+          "player_id": "sergio-rochet",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "guillermo-varela",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "ronald-araujo",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "jose-maria-gimenez",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "joaquin-piquerez",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "manuel-ugarte",
+          "position": {
+            "x": 30,
+            "y": 50
+          }
+        },
+        {
+          "player_id": "rodrigo-bentancur",
+          "position": {
+            "x": 50,
+            "y": 50
+          }
+        },
+        {
+          "player_id": "federico-valverde",
+          "position": {
+            "x": 70,
+            "y": 50
+          }
+        },
+        {
+          "player_id": "maximiliano-araujo",
+          "position": {
+            "x": 25,
+            "y": 25
+          }
+        },
+        {
+          "player_id": "darwin-nunez",
+          "position": {
+            "x": 50,
+            "y": 18
+          }
+        },
+        {
+          "player_id": "giorgian-de-arrascaeta",
+          "position": {
+            "x": 75,
+            "y": 25
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Uruguay combina la tradicional 'Garra Charrúa' (intensidad, físico, contacto duro) con un mediocampo de calidad técnica élite (Valverde, Bentancur, De la Cruz, De Arrascaeta). Bajo Bielsa fue 4-3-3 con presión alta; bajo el sucesor está por confirmarse el sistema. Esperable: 4-4-2 más conservador con Darwin Núñez vertical y dos extremos en transición.",
+      "strengths": [
+        "Defensa central de élite mundial: Araújo (Barça) + Giménez (Atlético) son una de las parejas más sólidas del mundo.",
+        "Mediocampo top: Valverde (Real Madrid), Bentancur (Tottenham), Ugarte (Manchester United), De Arrascaeta + De la Cruz (Flamengo).",
+        "Garra Charrúa histórica: identidad nacional de no rendirse nunca, decisiva en partidos cerrados.",
+        "Generación joven consolidada: la mayoría de titulares está en clubs top de Europa.",
+        "Experiencia mundialista: bloque del 4º puesto en Sudáfrica 2010 + cuartos en 2014 da peso histórico."
+      ],
+      "weaknesses": [
+        "Cambio de DT a meses del Mundial: tras Bielsa, ciclo de transición arriesgado.",
+        "Falta de centro delantero diferencial: Darwin Núñez irregular en clubs, Suárez (38) en su despedida, Cavani (38) discontinuo.",
+        "Extremos sin nombres top mundial: Pellistri, Maxi Araújo, Brian Rodríguez sólidos pero no diferenciales.",
+        "Edad de los referentes: Suárez, Cavani, Godín retirados o en últimos minutos.",
+        "Lateral derecho sin titular fijo: rotación entre Nández, Varela, Araújo lateral.",
+        "Adversario decisivo en grupo: España es claro favorito del Grupo H."
+      ],
+      "x_factor": {
+        "player": "Darwin Núñez",
+        "reason": "Tras irse del Liverpool al Al-Hilal, su rendimiento en el Mundial es la gran incógnita. Capaz de marcar 3 goles en un partido (vs Liverpool 2024) o fallar 3 ocasiones claras. Si llega en forma, Uruguay tiene gol diferencial; si no, depende de Valverde y los mediocampistas para crear."
+      },
+      "prediction_text": "Uruguay llega como cuarto de la CONMEBOL con un equipo sólido pero menos espectacular que generaciones anteriores. Pasar la fase de grupos como segundo del Grupo H detrás de España es objetivo realista. Octavos como techo razonable. Repetir las semifinales de 2010 requiere superar la transición de DT y que Núñez aparezca en su mejor versión.",
+      "probabilities": {
+        "advance_groups": 75,
+        "round_of_32": 65,
+        "round_of_16": 45,
+        "quarter_finals": 22,
+        "semi_finals": 8,
+        "final": 3,
+        "champion": 1
+      },
+      "vs_last_3_wcs": "Russia 2018: cuartos eliminado por Francia 0-2. Qatar 2022: fase de grupos eliminado pese a 2-0 a Ghana en última jornada (eliminado por diferencia de goles). Mundial 2026: tras la decepción de 2022, Uruguay busca volver a los cuartos al menos."
+    }
+  },
+  "history": {
+    "first_appearance": 1930,
+    "appearances_count_before_2026": 14,
+    "appearances_count_with_2026": 15,
+    "consecutive_streak_since": 2018,
+    "titles": 2,
+    "titles_years": [
+      1930,
+      1950
+    ],
+    "finals": 2,
+    "finals_years": [
+      1930,
+      1950
+    ],
+    "semi_finals": 5,
+    "best_result": "Bicampeón (1930, 1950)",
+    "aggregate_stats_through_2022": {
+      "played": 59,
+      "won": 24,
+      "drawn": 12,
+      "lost": 23,
+      "goals_for": 89,
+      "goals_against": 80,
+      "win_percentage": 40.7,
+      "notes": "Uruguay es la única selección con menos habitantes (3.5M) que ha ganado un Mundial."
+    },
+    "by_world_cup": [
+      {
+        "year": 1930,
+        "host": {
+          "countries": [
+            "Uruguay"
+          ],
+          "iso": [
+            "uy"
+          ]
+        },
+        "result": "Campeón",
+        "coach": "Alberto Suppici",
+        "captain": "José Nasazzi",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Pedro Cea",
+            "goals": 5
+          },
+          {
+            "player": "Héctor Castro",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 15,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "PRIMER título mundial de la historia.",
+          "Final 4-2 vs Argentina en el Centenario.",
+          "Anfitrión y único Mundial sin clasificación previa."
+        ],
+        "narrative": "Uruguay organizó y ganó el primer Mundial de la historia. Construyó el Estadio Centenario para la ocasión. En la final ante Argentina (4-2), Castro 'el Divino Manco' (manco desde niño) marcó el gol final. José Nasazzi, primer capitán en levantar la Copa Jules Rimet."
+      },
+      {
+        "year": 1950,
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
+        "result": "Campeón",
+        "coach": "Juan López Fontana",
+        "captain": "Obdulio Varela",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Juan Alberto Schiaffino",
+            "goals": 4
+          },
+          {
+            "player": "Óscar Míguez",
+            "goals": 5
+          }
+        ],
+        "goals_scored": 15,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "EL MARACANAZO. Bicampeón mundial.",
+          "Final 2-1 vs Brasil ante 199.854 espectadores en el Maracaná.",
+          "Obdulio Varela, capitán heroico."
+        ],
+        "narrative": "Uruguay protagonizó la mayor sorpresa de la historia mundialista: el Maracanazo. Ante 199.854 personas en el Maracaná (récord histórico), Brasil ganaba 1-0 con gol de Friaça. Pero Schiaffino empató al 66' y Ghiggia marcó el 2-1 al 79'. Obdulio Varela, capitán uruguayo, tuvo frase histórica al árbitro: 'Pasen el balón, ¿no escuchan? ¡Pasen el balón!'. Bicampeonato mundial.",
+        "site_link": "/historia/momentos-iconicos/maracanazo"
+      },
+      {
+        "year": 1954,
+        "host": {
+          "countries": [
+            "Suiza"
+          ],
+          "iso": [
+            "ch"
+          ]
+        },
+        "result": "Cuarto puesto",
+        "coach": "Juan López Fontana",
+        "captain": "Obdulio Varela",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Juan Eduardo Hohberg",
+            "goals": 3
+          },
+          {
+            "player": "Schiaffino",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 16,
+        "goals_conceded": 9,
+        "notable_facts": [
+          "Primera derrota de Uruguay en un Mundial: 2-4 vs Hungría en semis."
+        ],
+        "narrative": "Uruguay defendía título y llegó como invicto histórico. Cayó eliminado en semis 2-4 ante la Hungría de Puskás (que no jugó por lesión). En el partido por el bronce perdió con Austria 1-3. Cuarto puesto."
+      },
+      {
+        "year": 1962,
+        "host": {
+          "countries": [
+            "Chile"
+          ],
+          "iso": [
+            "cl"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Juan Carlos Corazzo",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "José Sasía",
+            "goals": 1
+          },
+          {
+            "player": "Pedro Rocha",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Eliminación temprana."
+        ],
+        "narrative": "Uruguay cayó en la fase de grupos: empató 0-0 con Colombia, perdió 1-3 con Yugoslavia y 0-0 con la URSS. Punto bajo del fútbol charrúa."
+      },
+      {
+        "year": 1966,
+        "host": {
+          "countries": [
+            "Inglaterra"
+          ],
+          "iso": [
+            "gb-eng"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Ondino Viera",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Pedro Rocha",
+            "goals": 1
+          },
+          {
+            "player": "Julio Cortés",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Eliminada por Alemania Federal 0-4 en cuartos."
+        ],
+        "narrative": "Uruguay pasó la primera ronda. En cuartos cayó eliminada 0-4 ante Alemania Federal en partido marcado por dos expulsiones a uruguayos."
+      },
+      {
+        "year": 1970,
+        "host": {
+          "countries": [
+            "México"
+          ],
+          "iso": [
+            "mx"
+          ]
+        },
+        "result": "Cuarto puesto",
+        "coach": "Juan Hohberg",
+        "captain": "Pedro Rocha",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Luis Cubilla",
+            "goals": 1
+          },
+          {
+            "player": "Víctor Esparrago",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Cuarto puesto. Eliminada en semis por Brasil 1-3."
+        ],
+        "narrative": "Uruguay volvió a las semifinales por primera vez desde 1954. Cayó ante el Brasil de Pelé 1-3. En el partido por el bronce perdió con Alemania Federal 0-1. 4º puesto."
+      },
+      {
+        "year": 1974,
+        "host": {
+          "countries": [
+            "Alemania Federal"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Roberto Porta",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Luis Cubilla",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 1,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Eliminación temprana."
+        ],
+        "narrative": "Uruguay cayó eliminada en primera ronda con 1 punto: 0-2 vs Países Bajos, 0-3 vs Suecia, 1-1 vs Bulgaria."
+      },
+      {
+        "year": 1986,
+        "host": {
+          "countries": [
+            "México"
+          ],
+          "iso": [
+            "mx"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Omar Borrás",
+        "captain": "Enzo Francescoli",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Antonio Alzamendi",
+            "goals": 1
+          },
+          {
+            "player": "Pedro Pablo Pasculli",
+            "goals": 0
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 8,
+        "notable_facts": [
+          "Eliminada por Argentina 0-1 en octavos con gol de Pasculli."
+        ],
+        "narrative": "Uruguay con Francescoli como figura. Pasó la primera ronda y cayó en octavos ante Argentina 0-1. Argentina luego sería campeona."
+      },
+      {
+        "year": 1990,
+        "host": {
+          "countries": [
+            "Italia"
+          ],
+          "iso": [
+            "it"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Óscar Tabárez",
+        "captain": "Enzo Francescoli",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Daniel Fonseca",
+            "goals": 1
+          },
+          {
+            "player": "Pablo Bengoechea",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Primer Mundial de Tabárez como DT.",
+          "Eliminada por Italia 0-2 en octavos."
+        ],
+        "narrative": "Uruguay debutaba el 'Maestro' Tabárez (que volvería a dirigir 4 Mundiales más). Pasó la primera ronda y cayó en octavos ante Italia anfitriona 0-2."
+      },
+      {
+        "year": 2002,
+        "host": {
+          "countries": [
+            "Corea del Sur",
+            "Japón"
+          ],
+          "iso": [
+            "kr",
+            "jp"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Víctor Púa",
+        "captain": "Paolo Montero",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Diego Forlán",
+            "goals": 1
+          },
+          {
+            "player": "Darío Rodríguez",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Tras 12 años de ausencia, Uruguay regresó pero quedó eliminada en primera ronda."
+        ],
+        "narrative": "Tras 12 años sin Mundial, Uruguay regresó a Asia. Cayó eliminada con 2 puntos: 1-2 vs Dinamarca, 0-0 vs Francia, 3-3 vs Senegal. Diego Forlán debutaba."
+      },
+      {
+        "year": 2010,
+        "host": {
+          "countries": [
+            "Sudáfrica"
+          ],
+          "iso": [
+            "za"
+          ]
+        },
+        "result": "Cuarto puesto",
+        "coach": "Óscar Tabárez",
+        "captain": "Diego Lugano",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Diego Forlán",
+            "goals": 5
+          },
+          {
+            "player": "Luis Suárez",
+            "goals": 3
+          }
+        ],
+        "goals_scored": 11,
+        "goals_conceded": 8,
+        "notable_facts": [
+          "Cuarto puesto histórico tras 40 años. Forlán ganó el Balón de Oro del torneo.",
+          "Mano de Suárez ante Ghana en cuartos."
+        ],
+        "narrative": "Mejor papel uruguayo desde 1970. Pasó la primera ronda invicta. En octavos eliminó a Corea del Sur 2-1. En cuartos ante Ghana, Suárez tapó un balón con la mano en el último minuto evitando el gol que hubiera eliminado a Uruguay. Roja roja, penal fallado por Gyan, victoria 4-2 en penales. En semifinales cayó ante Países Bajos 2-3. 4º puesto. Forlán fue Balón de Oro del torneo (3 goles + creatividad)."
+      },
+      {
+        "year": 2014,
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Óscar Tabárez",
+        "captain": "Diego Lugano",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Luis Suárez",
+            "goals": 2
+          },
+          {
+            "player": "Edinson Cavani",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Mordida de Suárez a Chiellini. Suspendido 4 meses.",
+          "Eliminada por Colombia 0-2 en octavos."
+        ],
+        "narrative": "Uruguay clasificó a octavos pero el torneo quedó marcado por la mordida de Luis Suárez al italiano Giorgio Chiellini en el último partido de fase. Suárez fue suspendido 4 meses, perdiendo octavos. Sin él, Uruguay cayó 0-2 ante Colombia (doblete de James Rodríguez con golazo de volea, mejor gol del torneo)."
+      },
+      {
+        "year": 2018,
+        "host": {
+          "countries": [
+            "Rusia"
+          ],
+          "iso": [
+            "ru"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Óscar Tabárez",
+        "captain": "Diego Godín",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Edinson Cavani",
+            "goals": 3
+          },
+          {
+            "player": "Luis Suárez",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 7,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Pasó primera fase invicto y sin encajar gol.",
+          "Doblete de Cavani vs Portugal en octavos.",
+          "Eliminada por Francia 0-2 en cuartos."
+        ],
+        "narrative": "Uruguay hizo un buen Mundial. Ganó su grupo (Egipto, Arabia Saudí, Rusia) sin encajar. En octavos eliminó a Portugal 2-1 con doblete de Cavani (jugadas magistrales que hicieron al mundo recordar a Cavani como referencia). En cuartos cayó ante Francia 0-2 con error de Muslera ante un disparo de Griezmann. Francia luego sería campeona."
+      },
+      {
+        "year": 2022,
+        "host": {
+          "countries": [
+            "Catar"
+          ],
+          "iso": [
+            "qa"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Diego Alonso",
+        "captain": "Diego Godín",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Giorgian De Arrascaeta",
+            "goals": 2
+          },
+          {
+            "player": "Luis Suárez",
+            "goals": 0
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 2,
+        "notable_facts": [
+          "Eliminación traumática pese a vencer 2-0 a Ghana en última jornada.",
+          "Eliminada por diferencia de goles ante Corea del Sur."
+        ],
+        "narrative": "Mundial traumático. Empató 0-0 con Corea del Sur, perdió 0-2 con Portugal y goleó 2-0 a Ghana en la última fecha (doblete de De Arrascaeta). Misma puntuación que Corea del Sur pero peor diferencia de goles. Eliminada en primera ronda. Final del ciclo Tabárez (que había sido cesado meses antes) y de Alonso."
+      }
+    ],
+    "palmares": [
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 1930,
+        "position": "Campeón",
+        "host": "Uruguay"
+      },
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 1950,
+        "position": "Campeón",
+        "host": "Brasil"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Luis Suárez",
+      "value": 69,
+      "period": "2007-presente",
+      "notes": "Máximo goleador histórico. Récord absoluto, supera a Cavani (58) y Forlán (36)."
+    },
+    "most_capped": {
+      "name": "Diego Godín",
+      "value": 161,
+      "period": "2005-2022",
+      "notes": "Defensa central legendario. Capitán durante una década."
+    },
+    "youngest_debut": {
+      "name": "Sebastián Abreu",
+      "value": "19 años aprox.",
+      "period": "Datos pendientes verificación primaria",
+      "notes": "Pendiente cruce con archivo AUF."
+    },
+    "biggest_win": {
+      "result": "9-0",
+      "opponent": "Bolivia",
+      "date": "1927-10-30",
+      "competition": "Copa América 1927"
+    },
+    "worst_loss": {
+      "result": "0-6",
+      "opponent": "Argentina",
+      "date": "1902-07-20",
+      "competition": "Amistoso primer enfrentamiento entre selecciones"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El primer Mundial de la historia",
+      "date": "1930-07-30",
+      "opponent": {
+        "iso": "ar",
+        "name": "Argentina"
+      },
+      "score": "4-2",
+      "competition": "Final Mundial 1930",
+      "narrative": "Uruguay ganó la primera Copa del Mundo de la historia ante Argentina 4-2 en el Estadio Centenario. José Nasazzi, primer capitán en levantar la Copa Jules Rimet. Castro 'el Divino Manco' marcó el gol final."
+    },
+    {
+      "title": "El Maracanazo",
+      "date": "1950-07-16",
+      "opponent": {
+        "iso": "br",
+        "name": "Brasil"
+      },
+      "score": "2-1",
+      "competition": "Final Mundial 1950 (formato liguilla)",
+      "narrative": "199.854 espectadores vieron a Uruguay derrotar a Brasil 2-1 en su propia casa. Schiaffino empató, Ghiggia sentenció. Obdulio Varela, capitán uruguayo, lideró la mayor sorpresa de la historia mundialista. Bicampeonato.",
+      "site_link": "/historia/momentos-iconicos/maracanazo"
+    },
+    {
+      "title": "La mano de Suárez",
+      "date": "2010-07-02",
+      "opponent": {
+        "iso": "gh",
+        "name": "Ghana"
+      },
+      "score": "1-1 (4-2 pen)",
+      "competition": "Cuartos Mundial 2010",
+      "narrative": "En el último minuto de la prórroga, Luis Suárez tapó con la mano un balón que entraba al arco. Roja, penal. Gyan falló el penal estrellándolo en el travesaño. En la tanda, Uruguay ganó 4-2. Suárez celebró desde el túnel. Pase a semifinales heroico y polémico.",
+      "site_link": "/historia/momentos-iconicos/suarez-mano"
+    },
+    {
+      "title": "Forlán Balón de Oro",
+      "date": "2010-07-10",
+      "opponent": {
+        "iso": "de",
+        "name": "Alemania"
+      },
+      "score": "2-3",
+      "competition": "Tercer puesto Mundial 2010",
+      "narrative": "Diego Forlán cerró un Mundial extraordinario con 5 goles totales (incluido el del partido por el bronce que terminó 2-3 vs Alemania). Fue elegido Balón de Oro del torneo. 4º puesto histórico para Uruguay tras 40 años."
+    },
+    {
+      "title": "La mordida de Suárez",
+      "date": "2014-06-24",
+      "opponent": {
+        "iso": "it",
+        "name": "Italia"
+      },
+      "score": "1-0",
+      "competition": "Fase de Grupos Mundial 2014",
+      "narrative": "Uruguay venció 1-0 a Italia y la eliminó. Pero el partido quedó marcado por la mordida de Luis Suárez al hombro de Giorgio Chiellini al 79'. Suárez fue suspendido 4 meses (no jugó octavos). Sin él, Uruguay cayó 0-2 ante Colombia."
+    },
+    {
+      "title": "El doblete de Cavani vs Portugal",
+      "date": "2018-06-30",
+      "opponent": {
+        "iso": "pt",
+        "name": "Portugal"
+      },
+      "score": "2-1",
+      "competition": "Octavos Mundial 2018",
+      "narrative": "Edinson Cavani brilló con un doblete que eliminó a Portugal de Cristiano Ronaldo. El segundo gol vino tras una asistencia de taco propia + remate de Suárez. Una de las mejores actuaciones individuales del torneo."
+    },
+    {
+      "title": "El 2-0 a Argentina en El Monumental",
+      "date": "2023-11-16",
+      "opponent": {
+        "iso": "ar",
+        "name": "Argentina"
+      },
+      "score": "2-0",
+      "competition": "Eliminatorias Mundial 2026",
+      "narrative": "Uruguay batió 2-0 a la Argentina campeona del mundo en el Más Monumental de Buenos Aires. Primera derrota oficial de la era Scaloni desde la Copa América 2019. Sello de la era Bielsa con la 'nueva Garra Charrúa'."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "Uruguay luce 4 estrellas sobre su escudo: dos por las medallas de oro olímpicas de 1924 y 1928 (entonces consideradas 'Mundiales' por la FIFA antes de la Copa de 1930) y dos por los Mundiales de 1930 y 1950.",
+      "source": "FIFA + AUF",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Uruguay es el país más pequeño en haber ganado un Mundial. Con 3.5 millones de habitantes en 2026, su territorio cabría 50 veces dentro de Argentina.",
+      "source": "FIFA + Banco Mundial",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "El Estadio Centenario de Montevideo, sede de la final del Mundial 1930, es considerado por la FIFA 'Monumento Histórico del Fútbol Mundial', distinción única en el continente americano.",
+      "source": "FIFA + AUF",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "El Maracanazo es considerado por muchos historiadores la mayor sorpresa de la historia del deporte mundial, junto con la 'Milagro sobre el hielo' de hockey EE.UU. vs URSS en 1980.",
+      "source": "FIFA + History Channel",
+      "verified_at": "2026-04-28",
+      "status": "single_source"
+    },
+    {
+      "text": "Diego Forlán fue Balón de Oro del Mundial 2010 con 3 goles en juego abierto. Único uruguayo con esta distinción individual del torneo.",
+      "source": "FIFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Luis Suárez, máximo goleador histórico de Uruguay, fue protagonista de dos episodios polémicos en Mundiales: la mano vs Ghana 2010 (que evitó eliminación) y la mordida a Chiellini 2014.",
+      "source": "FIFA + medios deportivos",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "El Maestro Óscar Tabárez dirigió a Uruguay en 4 Mundiales (1990, 2010, 2014, 2018), récord absoluto de un DT con la Celeste. Ciclo cerrado en 2021.",
+      "source": "AUF",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Uruguay y España jugarán en 2026 un cruce de campeones del mundo en fase de grupos: 2 títulos uruguayos vs 1 español. Inédito desde Mundial 2014 (final España en 2010 vs Uruguay 4º).",
+      "source": "FIFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Soy celeste, soy de Uruguay",
+      "Vamos los charrúas",
+      "Yo soy uruguayo, charrúa hasta morir"
+    ],
+    "main_rival": {
+      "iso": "ar",
+      "name": "Argentina",
+      "story": "El derbi rioplatense es la rivalidad más antigua del fútbol internacional. Primer enfrentamiento en 1901. Final Mundial 1930 (Uruguay 4-2). Eliminatorias 2023 (Uruguay 2-0 en El Monumental). Más de 200 enfrentamientos oficiales."
+    },
+    "home_stadium": {
+      "name": "Estadio Centenario",
+      "capacity": 60235,
+      "city": "Montevideo"
+    }
+  },
+  "seo": {
+    "meta_title": "Uruguay en el Mundial 2026 | Plantilla, historia y predicciones",
+    "meta_description": "Uruguay Mundial 2026: plantilla con Valverde, Núñez, Araújo. Grupo H con España, Cabo Verde y Arabia Saudita. Bicampeón mundial 1930 y 1950.",
+    "og_image_url": "/img/og/teams/uruguay.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Uruguay",
+      "alternateName": [
+        "La Celeste",
+        "Los Charrúas"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "CONMEBOL"
+      },
+      "url": "https://www.zonamundial.app/selecciones/uruguay"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-28",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_Uruguay",
+      "https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_de_Conmebol_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://www.tudn.com/mundial-2026/eliminatorias/eliminatorias-mundial-2026-asi-quedo-tabla-posiciones-conmebol",
+      "https://www.conmebol.com/noticias/las-selecciones-sudamericanas-conocen-a-sus-rivales/",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/16047796/mundial-2026-asi-quedan-los-grupos-fase-de-grupos-copa-del-mundo",
+      "https://cnnespanol.cnn.com/2026/04/01/deportes/grupos-zonas-copa-mundial-2026-orix",
+      "https://auf.org.uy",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias cruzadas con CONMEBOL + Wikipedia + ESPN + TUDN. Historia mundialista validada con FIFA oficial + AUF + Wikipedia. Sorteo Mundial 2026 confirmado con CONMEBOL + ESPN + CNN.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "partial",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "needs_review",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante: pendiente entrega/upload",
+      "Goleadores y minutos exactos eliminatorias: cruzar con CONMEBOL detalle",
+      "Top scorers eliminatoria: confirmar con AUF oficial",
+      "DT y nuevo cuerpo técnico: pendiente confirmación post-Bielsa",
+      "Calendario fase de grupos 2026: fixture FIFA pendiente",
+      "Base de entrenamiento: AUF aún no anunció",
+      "FIFA Ranking #5: validar último mes vigente al publicar",
+      "Récord 'youngest_debut': pendiente cruce AUF primario"
+    ]
+  }
+}

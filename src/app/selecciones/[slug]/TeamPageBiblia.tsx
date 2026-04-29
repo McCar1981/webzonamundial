@@ -5,6 +5,7 @@
 import type { NationalTeam } from "@/types/team";
 import HeroSection from "@/components/biblia/HeroSection";
 import MiniNav from "@/components/biblia/MiniNav";
+import { FlagWaveFilter } from "@/components/biblia/FlagFrame";
 import CountryCard from "@/components/biblia/CountryCard";
 import KitSection from "@/components/biblia/KitSection";
 import GroupSection from "@/components/biblia/GroupSection";
@@ -43,6 +44,9 @@ export default function TeamPageBiblia({ team }: { team: NationalTeam }) {
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+
+      {/* SVG filter para el efecto wave de FlagFrame (uno por página) */}
+      <FlagWaveFilter />
 
       {/* HERO */}
       <HeroSection team={team} />

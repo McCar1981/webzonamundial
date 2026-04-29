@@ -198,3 +198,225 @@ a:hover {
     animation: shimmer-rotate 3s linear infinite;
   }
 }
+
+/* ══════════════════════════════════════
+   BIBLIA — Tokens y helpers para /selecciones/[slug]
+   Usados por src/components/biblia/*
+   ══════════════════════════════════════ */
+
+:root {
+  /* Cards */
+  --bb-card: rgba(15, 23, 42, 0.7);
+  --bb-card-ghost: rgba(11, 24, 37, 0.4);
+  --bb-border-subtle: rgba(255, 255, 255, 0.06);
+  --bb-border-strong: rgba(201, 168, 76, 0.25);
+  --bb-border-blue: rgba(124, 192, 255, 0.18);
+
+  /* Texto — todos cumplen contraste WCAG AA sobre #060B14 */
+  --bb-text: #f1f5f9;          /* 17.5:1 */
+  --bb-text-soft: #cbd5e1;     /* 11.7:1 */
+  --bb-text-muted: #94a3b8;    /* 7.6:1  ← reemplaza el viejo #6a7a9a (3.4:1) */
+  --bb-text-dim: #64748b;      /* 4.8:1, solo para info terciaria */
+
+  /* Acentos */
+  --bb-gold: #c9a84c;
+  --bb-gold-soft: #e8d48b;
+  --bb-icon-blue: #7cc0ff;
+
+  /* Spacing scale (Tailwind nativo) — referencia para code review */
+  /* gap-1=4 gap-2=8 gap-3=12 gap-4=16 gap-6=24 gap-8=32 gap-12=48 */
+}
+
+/* Focus visible dorado coherente con marca */
+.bb-focusable:focus-visible {
+  outline: 2px solid var(--bb-gold);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* Wave SVG filter — bandera con ondulación sutil */
+.bb-flag-wave {
+  filter: url(#bb-flag-wave-filter);
+}
+
+/* ═══════════════════════════════════════
+   FlagFrame — efectos dorados premium
+   ═══════════════════════════════════════ */
+
+.bb-frame-root {
+  position: relative;
+  isolation: isolate;
+}
+
+/* CAPA 1: Aura grande del color del país. */
+.bb-aura-country {
+  content: "";
+  position: absolute;
+  inset: -60px;
+  pointer-events: none;
+  z-index: -2;
+  background: radial-gradient(
+    ellipse at center,
+    var(--c, rgba(117, 170, 219, 0.5)) 0%,
+    transparent 65%
+  );
+  filter: blur(70px);
+  animation: bb-aura-pulse 7s ease-in-out infinite;
+}
+
+/* CAPA 2: Aura dorada que rota constantemente. */
+.bb-aura-gold {
+  content: "";
+  position: absolute;
+  inset: -50px;
+  pointer-events: none;
+  z-index: -1;
+  background: conic-gradient(
+    from 0deg,
+    rgba(201, 168, 76, 0.0) 0%,
+    rgba(201, 168, 76, 0.55) 25%,
+    rgba(232, 212, 139, 0.4) 50%,
+    rgba(201, 168, 76, 0.55) 75%,
+    rgba(201, 168, 76, 0.0) 100%
+  );
+  filter: blur(50px);
+  animation: bb-rotate 18s linear infinite;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+/* CAPA 3: Rayos radiales dorados — sweep angular. */
+.bb-rays {
+  content: "";
+  position: absolute;
+  inset: -30px;
+  pointer-events: none;
+  z-index: -1;
+  background: repeating-conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(201, 168, 76, 0.25) 4deg,
+    transparent 8deg
+  );
+  filter: blur(8px);
+  mix-blend-mode: screen;
+  opacity: 0.55;
+  animation: bb-rotate 32s linear infinite reverse;
+  mask-image: radial-gradient(ellipse, transparent 35%, black 65%, transparent 90%);
+  -webkit-mask-image: radial-gradient(ellipse, transparent 35%, black 65%, transparent 90%);
+}
+
+/* CAPA 4: Sparkles dorados orbitando. */
+.bb-sparkles {
+  position: absolute;
+  inset: -20px;
+  pointer-events: none;
+  z-index: 1;
+}
+.bb-spark {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f7e3a0;
+  box-shadow:
+    0 0 6px #c9a84c,
+    0 0 14px rgba(232, 212, 139, 0.85),
+    0 0 24px rgba(201, 168, 76, 0.45);
+  animation: bb-spark-twinkle 2.4s ease-in-out infinite;
+}
+
+/* 18 sparks distribuidos */
+.bb-spark-1  { top:  4%; left: 10%; animation-delay: 0.0s;  }
+.bb-spark-2  { top:  2%; left: 48%; animation-delay: 0.3s;  width: 4px; height: 4px; }
+.bb-spark-3  { top:  6%; left: 86%; animation-delay: 0.7s;  }
+.bb-spark-4  { top: 22%; left:  2%; animation-delay: 1.1s;  width: 5px; height: 5px; }
+.bb-spark-5  { top: 18%; left: 95%; animation-delay: 0.5s;  }
+.bb-spark-6  { top: 38%; left: -1%; animation-delay: 1.6s;  }
+.bb-spark-7  { top: 42%; left: 98%; animation-delay: 0.2s;  width: 4px; height: 4px; }
+.bb-spark-8  { top: 58%; left: -2%; animation-delay: 0.9s;  }
+.bb-spark-9  { top: 62%; left: 96%; animation-delay: 1.4s;  width: 5px; height: 5px; }
+.bb-spark-10 { top: 78%; left:  3%; animation-delay: 0.4s;  }
+.bb-spark-11 { top: 82%; left: 94%; animation-delay: 1.8s;  }
+.bb-spark-12 { top: 94%; left: 12%; animation-delay: 0.6s;  width: 4px; height: 4px; }
+.bb-spark-13 { top: 96%; left: 50%; animation-delay: 1.2s;  }
+.bb-spark-14 { top: 92%; left: 84%; animation-delay: 0.0s;  width: 5px; height: 5px; }
+.bb-spark-15 { top: 12%; left: 28%; animation-delay: 1.5s;  }
+.bb-spark-16 { top: 14%; left: 70%; animation-delay: 0.8s;  width: 4px; height: 4px; }
+.bb-spark-17 { top: 86%; left: 30%; animation-delay: 1.0s;  }
+.bb-spark-18 { top: 88%; left: 68%; animation-delay: 1.3s;  width: 5px; height: 5px; }
+
+/* Sheen diagonal que cruza la bandera. */
+.bb-sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.18) 48%,
+    rgba(232, 212, 139, 0.25) 50%,
+    rgba(255, 255, 255, 0.18) 52%,
+    transparent 65%
+  );
+  background-size: 200% 100%;
+  animation: bb-sheen-sweep 6s ease-in-out infinite;
+  mix-blend-mode: overlay;
+}
+
+@keyframes bb-aura-pulse {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50%      { opacity: 0.95; transform: scale(1.08); }
+}
+@keyframes bb-rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes bb-spark-twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.6); }
+  50%      { opacity: 1;   transform: scale(1.4); }
+}
+@keyframes bb-sheen-sweep {
+  0%   { background-position: -120% 0; }
+  60%  { background-position:  120% 0; }
+  100% { background-position:  120% 0; }
+}
+
+/* Marco luminoso de bandera (multi-capa) */
+.bb-flag-frame {
+  box-shadow:
+    inset 0 0 0 2px rgba(201, 168, 76, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 0 60px rgba(201, 168, 76, 0.18),
+    0 0 120px var(--c-soft, rgba(117, 170, 219, 0.18)),
+    0 30px 80px -20px rgba(0, 0, 0, 0.85);
+}
+
+/* Highlight de borde dorado (sustituye los glows fuertes) */
+.bb-card-accent {
+  border-color: rgba(201, 168, 76, 0.35);
+  background:
+    linear-gradient(135deg, rgba(201, 168, 76, 0.08), rgba(201, 168, 76, 0.02));
+}
+
+/* Touch target accessible (>= 44px) */
+.bb-touch {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .bb-aura-country,
+  .bb-aura-gold,
+  .bb-rays,
+  .bb-spark,
+  .bb-sheen {
+    animation: none !important;
+  }
+  .bb-no-motion-fallback,
+  .bb-no-motion-fallback * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

@@ -1,0 +1,15 @@
+# Camisetas visitantes Mundial 2026
+
+Guarda aquí los PNG de las camisetas visitantes con el mismo naming
+que las titulares (slug en minúsculas, sin acentos):
+
+  argentina.png
+  espana.png
+  marruecos.png
+  ...
+
+El componente `KitSection` las lee desde `/img/kits/2026/away/{slug}.png`
+automáticamente cuando el JSON tenga `team.kit.wc_2026.away.front_url`
+apuntando a esa ruta.
+
+Si la imagen no existe → fallback "Imagen pendiente" elegante.

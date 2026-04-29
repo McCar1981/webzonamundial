@@ -1,0 +1,1056 @@
+{
+  "slug": "argentina",
+  "iso": "ar",
+  "iso3": "ARG",
+  "name_es": "Argentina",
+  "name_en": "Argentina",
+  "name_local": "Argentina",
+  "nicknames": ["La Albiceleste", "La Selección", "La Scaloneta"],
+
+  "flag": {
+    "colors": {
+      "primary": "#75AADB",
+      "secondary": "#FFFFFF",
+      "tertiary": "#F6B40E",
+      "contrast_text": "#0F1D32"
+    }
+  },
+
+  "country": {
+    "capital": "Buenos Aires",
+    "language_official": ["Español"],
+    "population": 46044703,
+    "area_km2": 2780400,
+    "timezone": "America/Argentina/Buenos_Aires",
+    "continent": "Sudamérica"
+  },
+
+  "federation": {
+    "name": "Asociación del Fútbol Argentino",
+    "abbreviation": "AFA",
+    "founded": 1893,
+    "headquarters": "Ezeiza, Buenos Aires",
+    "website": "https://www.afa.com.ar"
+  },
+
+  "confederation": "CONMEBOL",
+
+  "fifa_ranking": {
+    "current": 1,
+    "last_updated": "2026-04-03"
+  },
+
+  "kit": {
+    "wc_2026": {
+      "brand": "Adidas",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/argentina.png",
+        "back_url": null,
+        "primary_color": "#75AADB",
+        "secondary_color": "#FFFFFF",
+        "description": "Las clásicas franjas verticales celestes y blancas, símbolo de la selección desde principios del siglo XX. Lleva las tres estrellas sobre el escudo, una por cada Mundial conquistado (1978, 1986, 2022).",
+        "alt_text": "Camiseta titular Argentina Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#1F2A56",
+        "secondary_color": "#75AADB",
+        "description": "Equipación visitante en azul oscuro con detalles celestes. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Argentina Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "Argentina añadió la tercera estrella sobre su escudo tras la final de Qatar 2022 ante Francia, ganada 4-2 en penales después de un 3-3 considerado por la propia FIFA como una de las mejores finales en la historia del torneo.",
+        "source": "FIFA.com + AFA oficial",
+        "verified_at": "2026-04-28",
+        "status": "validated"
+      },
+      {
+        "text": "La famosa segunda equipación azul de Argentina en México 1986 contra Inglaterra fue comprada de urgencia en una tienda local de Ciudad de México días antes del partido. Maradona pidió alternativa porque la titular acumulaba sudor bajo el calor mexicano.",
+        "source": "Pendiente cruce con archivo AFA + ESPN The Last Dance",
+        "verified_at": "2026-04-28",
+        "status": "needs_review"
+      }
+    ]
+  },
+
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Líder absoluto de las Eliminatorias CONMEBOL prácticamente desde la fecha 2. Selló su clasificación en la fecha 14 (25 marzo 2025) cuatro fechas antes del cierre, tras el empate 0-0 entre Bolivia y Uruguay; horas después goleó 4-1 a Brasil en El Monumental. Cerró las Eliminatorias en 1ª posición con 38 puntos, posición que no obtenía desde el ciclo Brasil 2014.",
+
+    "qualifying": {
+      "confederation_round": "Eliminatorias CONMEBOL Mundial 2026",
+      "format": "Liguilla todos contra todos · 18 jornadas · ida y vuelta",
+      "duration": "Septiembre 2023 — Septiembre 2025",
+      "final_position": 1,
+      "total_teams_in_group": 10,
+
+      "stats": {
+        "played": 18,
+        "won": 12,
+        "drawn": 2,
+        "lost": 4,
+        "goals_for": 31,
+        "goals_against": 10,
+        "goal_difference": 21,
+        "points": 38,
+        "win_percentage": 66.7,
+        "clean_sheets": 11
+      },
+
+      "coach_during_qualifying": "Lionel Scaloni",
+
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2023-09-07",
+          "home": { "iso": "ar", "name": "Argentina", "score": 1 },
+          "away": { "iso": "ec", "name": "Ecuador", "score": 0 },
+          "venue": { "stadium": "Más Monumental", "city": "Buenos Aires", "country_iso": "ar" },
+          "goals_arg": [{ "player": "Lionel Messi", "minute": "78'", "type": "freekick" }],
+          "notes": "Debut como campeón del mundo. Gol de tiro libre de Messi."
+        },
+        {
+          "matchday": 2,
+          "date": "2023-09-12",
+          "home": { "iso": "bo", "name": "Bolivia", "score": 0 },
+          "away": { "iso": "ar", "name": "Argentina", "score": 3 },
+          "venue": { "stadium": "Hernando Siles", "city": "La Paz", "country_iso": "bo" },
+          "goals_arg": [
+            { "player": "Enzo Fernández", "minute": "32'", "type": "goal" },
+            { "player": "Nicolás Tagliafico", "minute": "42'", "type": "goal" },
+            { "player": "Nicolás González", "minute": "85'", "type": "goal" }
+          ],
+          "notes": "Histórica victoria a 3.640 m de altitud sin Messi."
+        },
+        {
+          "matchday": 3,
+          "date": "2023-10-12",
+          "home": { "iso": "ar", "name": "Argentina", "score": 1 },
+          "away": { "iso": "py", "name": "Paraguay", "score": 0 },
+          "venue": { "stadium": "Más Monumental", "city": "Buenos Aires", "country_iso": "ar" },
+          "goals_arg": [{ "player": "Nicolás Otamendi", "minute": "33'", "type": "goal" }]
+        },
+        {
+          "matchday": 4,
+          "date": "2023-10-17",
+          "home": { "iso": "pe", "name": "Perú", "score": 0 },
+          "away": { "iso": "ar", "name": "Argentina", "score": 2 },
+          "venue": { "stadium": "Estadio Nacional", "city": "Lima", "country_iso": "pe" },
+          "goals_arg": [
+            { "player": "Lionel Messi", "minute": "32'", "type": "goal" },
+            { "player": "Lionel Messi", "minute": "37'", "type": "goal" }
+          ],
+          "notes": "Doblete de Messi."
+        },
+        {
+          "matchday": 5,
+          "date": "2023-11-16",
+          "home": { "iso": "ar", "name": "Argentina", "score": 0 },
+          "away": { "iso": "uy", "name": "Uruguay", "score": 2 },
+          "venue": { "stadium": "Más Monumental", "city": "Buenos Aires", "country_iso": "ar" },
+          "goals_arg": [],
+          "notes": "Primera derrota oficial de la era Scaloni desde la Copa América 2019."
+        },
+        {
+          "matchday": 6,
+          "date": "2023-11-21",
+          "home": { "iso": "br", "name": "Brasil", "score": 0 },
+          "away": { "iso": "ar", "name": "Argentina", "score": 1 },
+          "venue": { "stadium": "Maracaná", "city": "Río de Janeiro", "country_iso": "br" },
+          "goals_arg": [{ "player": "Nicolás Otamendi", "minute": "63'", "type": "goal" }],
+          "notes": "Primera victoria oficial de Argentina en el Maracaná. Partido retrasado 30 minutos por incidentes."
+        },
+        {
+          "matchday": 7,
+          "date": "2024-09-05",
+          "home": { "iso": "ar", "name": "Argentina", "score": 3 },
+          "away": { "iso": "cl", "name": "Chile", "score": 0 },
+          "venue": { "stadium": "Más Monumental", "city": "Buenos Aires", "country_iso": "ar" },
+          "goals_arg": [
+            { "player": "Julián Álvarez", "minute": "48'", "type": "goal" },
+            { "player": "Paulo Dybala", "minute": "84'", "type": "goal" },
+            { "player": "Alexis Mac Allister", "minute": "90+2'", "type": "goal" }
+          ]
+        },
+        {
+          "matchday": 8,
+          "date": "2024-09-10",
+          "home": { "iso": "co", "name": "Colombia", "score": 2 },
+          "away": { "iso": "ar", "name": "Argentina", "score": 1 },
+          "venue": { "stadium": "Metropolitano Roberto Meléndez", "city": "Barranquilla", "country_iso": "co" },
+          "goals_arg": [{ "player": "Nicolás González", "minute": "26'", "type": "goal" }],
+          "notes": "Revancha de la final de la Copa América 2024."
+        },
+        {
+          "matchday": 9,
+          "date": "2024-10-10",
+          "home": { "iso": "ve", "name": "Venezuela", "score": 1 },
+          "away": { "iso": "ar", "name": "Argentina", "score": 1 },
+          "venue": { "stadium": "Monumental de Maturín", "city": "Maturín", "country_iso": "ve" },
+          "goals_arg": [{ "player": "Lautaro Martínez", "minute": "47'", "type": "goal" }],
+          "notes": "Partido retrasado por las luces del estadio."
+        },
+        {
+          "matchday": 10,
+          "date": "2024-10-15",
+          "home": { "iso": "ar", "name": "Argentina", "score": 6 },
+          "away": { "iso": "bo", "name": "Bolivia", "score": 0 },
+          "venue": { "stadium": "Más Monumental", "city": "Buenos Aires", "country_iso": "ar" },
+          "goals_arg": [
+            { "player": "Lionel Messi", "minute": "19'", "type": "goal" },
+            { "player": "Lautaro Martínez", "minute": "23'", "type": "goal" },
+            { "player": "Lionel Messi", "minute": "44'", "type": "penalty" },
+            { "player": "Julián Álvarez", "minute": "84'", "type": "goal" },
+            { "player": "Lautaro Martínez", "minute": "88'", "type": "goal" },
+            { "player": "Lionel Messi", "minute": "90+2'", "type": "goal" }
+          ],
+          "notes": "Hat-trick de Messi a los 37 años. Goleada histórica."
+        },
+        {
+          "matchday": 11,
+          "date": "2024-11-14",
+          "home": { "iso": "py", "name": "Paraguay", "score": 2 },
+          "away": { "iso": "ar", "name": "Argentina", "score": 1 },
+          "venue": { "stadium": "Defensores del Chaco", "city": "Asunción", "country_iso": "py" },
+          "goals_arg": [{ "player": "Thiago Almada", "minute": "37'", "type": "goal" }]
+        },
+        {
+          "matchday": 12,
+          "date": "2024-11-19",
+          "home": { "iso": "ar", "name": "Argentina", "score": 1 },
+          "away": { "iso": "pe", "name": "Perú", "score": 0 },
+          "venue": { "stadium": "Más Monumental", "city": "Buenos Aires", "country_iso": "ar" },
+          "goals_arg": [{ "player": "Lautaro Martínez", "minute": "55'", "type": "goal" }]
+        },
+        {
+          "matchday": 13,
+          "date": "2025-03-21",
+          "home": { "iso": "uy", "name": "Uruguay", "score": 0 },
+          "away": { "iso": "ar", "name": "Argentina", "score": 1 },
+          "venue": { "stadium": "Centenario", "city": "Montevideo", "country_iso": "uy" },
+          "goals_arg": [{ "player": "Thiago Almada", "minute": "67'", "type": "goal" }]
+        },
+        {
+          "matchday": 14,
+          "date": "2025-03-25",
+          "home": { "iso": "ar", "name": "Argentina", "score": 4 },
+          "away": { "iso": "br", "name": "Brasil", "score": 1 },
+          "venue": { "stadium": "Más Monumental", "city": "Buenos Aires", "country_iso": "ar" },
+          "goals_arg": [
+            { "player": "Julián Álvarez", "minute": "4'", "type": "goal" },
+            { "player": "Enzo Fernández", "minute": "12'", "type": "goal" },
+            { "player": "Alexis Mac Allister", "minute": "37'", "type": "goal" },
+            { "player": "Giuliano Simeone", "minute": "71'", "type": "goal" }
+          ],
+          "goals_opponent": [{ "player": "Matheus Cunha", "minute": "26'", "type": "goal" }],
+          "notes": "Partido de la clasificación matemática. Argentina celebró el pase al Mundial con su mayor goleada histórica ante Brasil en eliminatorias. Sin Messi ni Lautaro. Tras la derrota, Brasil destituyó a Dorival Júnior y contrató a Carlo Ancelotti.",
+          "is_decisive_match": true
+        },
+        {
+          "matchday": 15,
+          "date": "2025-06-05",
+          "home": { "iso": "cl", "name": "Chile", "score": 0 },
+          "away": { "iso": "ar", "name": "Argentina", "score": 1 },
+          "venue": { "stadium": "Nacional Julio Martínez Prádanos", "city": "Santiago", "country_iso": "cl" },
+          "goals_arg": [{ "player": "Julián Álvarez", "minute": "59'", "type": "goal" }],
+          "notes": "Resultado que selló la 1ª posición y eliminó matemáticamente a Chile."
+        },
+        {
+          "matchday": 16,
+          "date": "2025-06-10",
+          "home": { "iso": "ar", "name": "Argentina", "score": 1 },
+          "away": { "iso": "co", "name": "Colombia", "score": 1 },
+          "venue": { "stadium": "Más Monumental", "city": "Buenos Aires", "country_iso": "ar" },
+          "goals_arg": [{ "player": "Thiago Almada", "minute": "81'", "type": "goal" }]
+        },
+        {
+          "matchday": 17,
+          "date": "2025-09-04",
+          "home": { "iso": "ar", "name": "Argentina", "score": 3 },
+          "away": { "iso": "ve", "name": "Venezuela", "score": 0 },
+          "venue": { "stadium": "Más Monumental", "city": "Buenos Aires", "country_iso": "ar" },
+          "goals_arg": [
+            { "player": "Lionel Messi", "minute": "39'", "type": "goal" },
+            { "player": "Lautaro Martínez", "minute": "76'", "type": "goal" },
+            { "player": "Lionel Messi", "minute": "80'", "type": "goal" }
+          ],
+          "notes": "Último partido oficial de Messi como local en El Monumental por eliminatorias. Doblete emotivo."
+        },
+        {
+          "matchday": 18,
+          "date": "2025-09-09",
+          "home": { "iso": "ec", "name": "Ecuador", "score": 1 },
+          "away": { "iso": "ar", "name": "Argentina", "score": 0 },
+          "venue": { "stadium": "Banco Pichincha", "city": "Guayaquil", "country_iso": "ec" },
+          "goals_arg": [],
+          "notes": "Cierre de eliminatorias con derrota intrascendente. Argentina ya como líder consolidado."
+        }
+      ],
+
+      "top_scorers": [
+        { "player": "Lionel Messi", "goals": 8, "notes": "Goleador del equipo en el ciclo. A los 38 años, máximo goleador veterano en la historia de las Eliminatorias mundialistas." },
+        { "player": "Lautaro Martínez", "goals": 5 },
+        { "player": "Julián Álvarez", "goals": 4 },
+        { "player": "Thiago Almada", "goals": 3 },
+        { "player": "Nicolás Otamendi", "goals": 2 },
+        { "player": "Nicolás González", "goals": 2 },
+        { "player": "Enzo Fernández", "goals": 2 },
+        { "player": "Alexis Mac Allister", "goals": 2 },
+        { "player": "Nicolás Tagliafico", "goals": 1 },
+        { "player": "Paulo Dybala", "goals": 1 },
+        { "player": "Giuliano Simeone", "goals": 1 }
+      ],
+
+      "best_match": {
+        "match_ref": "matchday_14",
+        "reason": "El 4-1 a Brasil en El Monumental el 25 de marzo de 2025. Partido de la clasificación matemática, máximo nivel futbolístico, goleada al rival histórico. Tras la derrota, Brasil destituyó a Dorival Júnior y contrató a Carlo Ancelotti."
+      },
+
+      "worst_match": {
+        "match_ref": "matchday_5",
+        "reason": "Derrota 0-2 ante Uruguay en El Monumental el 16 de noviembre de 2023. Primera derrota oficial de Argentina desde la Copa América 2019, ya con la era Scaloni consolidada."
+      },
+
+      "decisive_match": {
+        "match_ref": "matchday_14",
+        "reason": "El empate 0-0 entre Bolivia y Uruguay del mismo 25 de marzo le otorgó la clasificación matemática a Argentina horas antes de jugar. Argentina celebró goleando 4-1 a Brasil esa misma noche."
+      }
+    },
+
+    "group_2026": {
+      "letter": "J",
+      "label": "Grupo J — campeón vigente",
+      "teams": [
+        { "iso": "ar", "name": "Argentina", "fifa_rank": 1, "is_seed": true },
+        { "iso": "dz", "name": "Argelia", "fifa_rank": null },
+        { "iso": "at", "name": "Austria", "fifa_rank": null },
+        { "iso": "jo", "name": "Jordania", "fifa_rank": null }
+      ],
+      "notes": "Datos del sorteo confirmados según /grupos de zonamundial.app. Validar rankings FIFA al mes vigente."
+    },
+
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": { "iso": "dz", "name": "Argelia" },
+        "date": "[POR CONFIRMAR — pendiente fixture oficial FIFA]",
+        "venue": { "stadium": "[POR CONFIRMAR]", "city": "", "country_iso": "us" },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": { "iso": "at", "name": "Austria" },
+        "date": "[POR CONFIRMAR]",
+        "venue": { "stadium": "[POR CONFIRMAR]", "city": "", "country_iso": "us" },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": { "iso": "jo", "name": "Jordania" },
+        "date": "[POR CONFIRMAR]",
+        "venue": { "stadium": "[POR CONFIRMAR]", "city": "", "country_iso": "us" },
+        "status": "scheduled"
+      }
+    ],
+
+    "base_camp": {
+      "city": "[POR CONFIRMAR — AFA aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+
+    "coach": {
+      "name": "Lionel Scaloni",
+      "age": 47,
+      "nationality": "Argentina",
+      "since": "2018-08-13",
+      "previous_teams": ["Selección Argentina sub-20 (asistente, 2017-2018)"],
+      "profile_summary": "Asumió el cargo en 2018 con dudas y construyó el ciclo más exitoso de la selección desde Bilardo. Campeón Copa América 2021 (Maracaná), Finalíssima 2022 (Wembley), Mundial Qatar 2022 y Copa América 2024. Convirtió a la 'Scaloneta' en sinónimo de espíritu colectivo y eficiencia. Renovó hasta 2026 tras Qatar."
+    },
+
+    "captain": { "name": "Lionel Messi", "club": "Inter Miami CF" },
+
+    "star_player": {
+      "name": "Lionel Messi",
+      "club": "Inter Miami CF",
+      "reason": "Capitán, ídolo y goleador del ciclo eliminatorio. El Mundial 2026 sería su 6º Mundial — récord histórico junto a Cristiano Ronaldo. Máximo goleador histórico de Argentina (115+ goles) y récord de presencias (198+)."
+    },
+
+    "likely_squad": [
+      { "id": "emiliano-martinez", "full_name": "Emiliano Martínez", "display_name": "Dibu Martínez", "position": "GK", "detailed_position": "GK", "club": { "name": "Aston Villa", "country_iso": "gb-eng", "league": "Premier League" }, "shirt_number_expected": 23, "status": "fixed" },
+      { "id": "geronimo-rulli", "full_name": "Gerónimo Rulli", "display_name": "Gerónimo Rulli", "position": "GK", "detailed_position": "GK", "club": { "name": "Olympique Marsella", "country_iso": "fr", "league": "Ligue 1" }, "shirt_number_expected": 12, "status": "probable" },
+      { "id": "walter-benitez", "full_name": "Walter Benítez", "display_name": "Walter Benítez", "position": "GK", "detailed_position": "GK", "club": { "name": "PSV Eindhoven", "country_iso": "nl", "league": "Eredivisie" }, "shirt_number_expected": 1, "status": "bubble" },
+      { "id": "nahuel-molina", "full_name": "Nahuel Molina", "display_name": "Nahuel Molina", "position": "DEF", "detailed_position": "RB", "club": { "name": "Atlético de Madrid", "country_iso": "es", "league": "La Liga" }, "shirt_number_expected": 4, "status": "fixed" },
+      { "id": "gonzalo-montiel", "full_name": "Gonzalo Montiel", "display_name": "Cachete Montiel", "position": "DEF", "detailed_position": "RB", "club": { "name": "River Plate", "country_iso": "ar", "league": "Liga Profesional" }, "shirt_number_expected": 26, "status": "probable" },
+      { "id": "cristian-romero", "full_name": "Cristian Romero", "display_name": "Cuti Romero", "position": "DEF", "detailed_position": "CB", "club": { "name": "Tottenham", "country_iso": "gb-eng", "league": "Premier League" }, "shirt_number_expected": 13, "status": "fixed" },
+      { "id": "nicolas-otamendi", "full_name": "Nicolás Otamendi", "display_name": "Nicolás Otamendi", "position": "DEF", "detailed_position": "CB", "club": { "name": "Benfica", "country_iso": "pt", "league": "Primeira Liga" }, "shirt_number_expected": 19, "status": "fixed" },
+      { "id": "lisandro-martinez", "full_name": "Lisandro Martínez", "display_name": "Licha Martínez", "position": "DEF", "detailed_position": "CB", "club": { "name": "Manchester United", "country_iso": "gb-eng", "league": "Premier League" }, "shirt_number_expected": 25, "status": "probable" },
+      { "id": "leonardo-balerdi", "full_name": "Leonardo Balerdi", "display_name": "Leo Balerdi", "position": "DEF", "detailed_position": "CB", "club": { "name": "Olympique Marsella", "country_iso": "fr", "league": "Ligue 1" }, "shirt_number_expected": 6, "status": "probable" },
+      { "id": "nicolas-tagliafico", "full_name": "Nicolás Tagliafico", "display_name": "Nicolás Tagliafico", "position": "DEF", "detailed_position": "LB", "club": { "name": "Olympique Lyonnais", "country_iso": "fr", "league": "Ligue 1" }, "shirt_number_expected": 3, "status": "fixed" },
+      { "id": "marcos-acuna", "full_name": "Marcos Acuña", "display_name": "Huevo Acuña", "position": "DEF", "detailed_position": "LB", "club": { "name": "River Plate", "country_iso": "ar", "league": "Liga Profesional" }, "shirt_number_expected": 8, "status": "probable" },
+      { "id": "facundo-medina", "full_name": "Facundo Medina", "display_name": "Facundo Medina", "position": "DEF", "detailed_position": "LB", "club": { "name": "Olympique Marsella", "country_iso": "fr", "league": "Ligue 1" }, "shirt_number_expected": 24, "status": "bubble" },
+      { "id": "rodrigo-de-paul", "full_name": "Rodrigo De Paul", "display_name": "Rodrigo De Paul", "position": "MID", "detailed_position": "CM", "club": { "name": "Inter Miami CF", "country_iso": "us", "league": "MLS" }, "shirt_number_expected": 7, "status": "fixed" },
+      { "id": "leandro-paredes", "full_name": "Leandro Paredes", "display_name": "Leandro Paredes", "position": "MID", "detailed_position": "CDM", "club": { "name": "Boca Juniors", "country_iso": "ar", "league": "Liga Profesional" }, "shirt_number_expected": 5, "status": "fixed" },
+      { "id": "enzo-fernandez", "full_name": "Enzo Fernández", "display_name": "Enzo Fernández", "position": "MID", "detailed_position": "CM", "club": { "name": "Chelsea", "country_iso": "gb-eng", "league": "Premier League" }, "shirt_number_expected": 24, "status": "fixed" },
+      { "id": "alexis-mac-allister", "full_name": "Alexis Mac Allister", "display_name": "Alexis Mac Allister", "position": "MID", "detailed_position": "CM", "club": { "name": "Liverpool", "country_iso": "gb-eng", "league": "Premier League" }, "shirt_number_expected": 20, "status": "fixed" },
+      { "id": "giovani-lo-celso", "full_name": "Giovani Lo Celso", "display_name": "Gio Lo Celso", "position": "MID", "detailed_position": "CAM", "club": { "name": "Real Betis", "country_iso": "es", "league": "La Liga" }, "shirt_number_expected": 18, "status": "probable" },
+      { "id": "exequiel-palacios", "full_name": "Exequiel Palacios", "display_name": "Exequiel Palacios", "position": "MID", "detailed_position": "CM", "club": { "name": "Bayer Leverkusen", "country_iso": "de", "league": "Bundesliga" }, "shirt_number_expected": 14, "status": "probable" },
+      { "id": "thiago-almada", "full_name": "Thiago Almada", "display_name": "Thiago Almada", "position": "MID", "detailed_position": "CAM", "club": { "name": "Olympique Lyonnais", "country_iso": "fr", "league": "Ligue 1" }, "shirt_number_expected": 16, "status": "fixed" },
+      { "id": "lionel-messi", "full_name": "Lionel Andrés Messi", "display_name": "Lionel Messi", "position": "FWD", "detailed_position": "RW", "club": { "name": "Inter Miami CF", "country_iso": "us", "league": "MLS" }, "shirt_number_expected": 10, "status": "fixed" },
+      { "id": "julian-alvarez", "full_name": "Julián Álvarez", "display_name": "La Araña Álvarez", "position": "FWD", "detailed_position": "ST", "club": { "name": "Atlético de Madrid", "country_iso": "es", "league": "La Liga" }, "shirt_number_expected": 9, "status": "fixed" },
+      { "id": "lautaro-martinez", "full_name": "Lautaro Martínez", "display_name": "Lautaro Martínez", "position": "FWD", "detailed_position": "ST", "club": { "name": "Inter de Milán", "country_iso": "it", "league": "Serie A" }, "shirt_number_expected": 22, "status": "fixed" },
+      { "id": "nico-gonzalez", "full_name": "Nicolás González", "display_name": "Nico González", "position": "FWD", "detailed_position": "LW", "club": { "name": "Juventus", "country_iso": "it", "league": "Serie A" }, "shirt_number_expected": 11, "status": "fixed" },
+      { "id": "giuliano-simeone", "full_name": "Giuliano Simeone", "display_name": "Giuliano Simeone", "position": "FWD", "detailed_position": "RW", "club": { "name": "Atlético de Madrid", "country_iso": "es", "league": "La Liga" }, "shirt_number_expected": 21, "status": "probable" },
+      { "id": "paulo-dybala", "full_name": "Paulo Dybala", "display_name": "Paulo Dybala", "position": "FWD", "detailed_position": "CAM", "club": { "name": "Roma", "country_iso": "it", "league": "Serie A" }, "shirt_number_expected": 15, "status": "bubble" },
+      { "id": "valentin-castellanos", "full_name": "Valentín Castellanos", "display_name": "Taty Castellanos", "position": "FWD", "detailed_position": "ST", "club": { "name": "Lazio", "country_iso": "it", "league": "Serie A" }, "shirt_number_expected": 17, "status": "bubble" }
+    ],
+
+    "starting_xi": {
+      "formation": "4-4-2",
+      "players": [
+        { "player_id": "emiliano-martinez", "position": { "x": 50, "y": 92 } },
+        { "player_id": "nahuel-molina", "position": { "x": 85, "y": 72 } },
+        { "player_id": "cristian-romero", "position": { "x": 65, "y": 75 } },
+        { "player_id": "nicolas-otamendi", "position": { "x": 35, "y": 75 } },
+        { "player_id": "nicolas-tagliafico", "position": { "x": 15, "y": 72 } },
+        { "player_id": "rodrigo-de-paul", "position": { "x": 70, "y": 50 } },
+        { "player_id": "enzo-fernandez", "position": { "x": 50, "y": 55 } },
+        { "player_id": "alexis-mac-allister", "position": { "x": 30, "y": 50 } },
+        { "player_id": "thiago-almada", "position": { "x": 25, "y": 30 } },
+        { "player_id": "lionel-messi", "position": { "x": 70, "y": 25 } },
+        { "player_id": "julian-alvarez", "position": { "x": 50, "y": 15 } }
+      ]
+    },
+
+    "analysis": {
+      "style": "Argentina combina solidez defensiva con un mediocampo de alto vuelo técnico. Scaloni alterna entre 4-3-3 con Messi falso 9 y 4-4-2 con doble delantero (Messi/Álvarez o Lautaro). Identidad: bloque medio-bajo, presión coordinada por momentos, transiciones rápidas vertical. La pelota detenida es arma constante (Messi tiros libres, Otamendi/Romero por arriba).",
+      "strengths": [
+        "Mediocampo de élite mundial: Mac Allister, Enzo Fernández, De Paul, Paredes, Lo Celso. Probablemente el más completo del torneo.",
+        "Espíritu de grupo y química 'Scaloneta' construida desde 2021 con Copa América + Mundial + Copa América consecutivas.",
+        "Emiliano Martínez como portero diferencial en momentos críticos (especialista en tandas de penales).",
+        "Centrales experimentados: Romero (28), Otamendi (38) llevan +60 caps cada uno juntos.",
+        "Plan B ofensivo claro: Messi descansable sin perder eficiencia gracias a Lautaro y Álvarez."
+      ],
+      "weaknesses": [
+        "Edad media alta del bloque clave: Messi 39, Otamendi 38, De Paul 32. Calendario de 7 partidos en 32 días en 3 países exigirá rotaciones.",
+        "Lateral izquierdo: Tagliafico 33 años; falta recambio de garantías más allá de Acuña (también 34) y Medina (verde).",
+        "Suplencia del 9: si Lautaro o Álvarez se lesionan, las opciones (Castellanos, Dybala) están lejos de su nivel histórico.",
+        "Sin Di María (retirado de la selección) pierde un perfil ofensivo único en transiciones largas.",
+        "Equipo sensible al rendimiento individual de Messi: cuando él baja, el equipo tiende a depender mucho del control de Mac Allister/Enzo."
+      ],
+      "x_factor": {
+        "player": "Julián Álvarez",
+        "reason": "A los 26 años, está en el mejor momento de su carrera tras el traspaso al Atlético de Madrid. Capaz de jugar de 9 puro o de mediapunta, marcó 4 goles en el ciclo eliminatorio incluido el del 4-1 a Brasil. Si Messi necesita rotación, Álvarez es quien sostiene el ataque al máximo nivel."
+      },
+      "prediction_text": "Argentina llega como uno de los 4 grandes favoritos junto a España, Francia y Brasil. Con un grupo accesible (Argelia, Austria, Jordania) tiene altísimas probabilidades de pasar 1ª y evitar cruces complicados en 16vos. El gran reto es la edad del bloque y gestionar a Messi en su 6º Mundial con 39 años. Si la pegada se mantiene, semifinales como mínimo es objetivo realista. Final muy posible si esquiva a España o Francia hasta el último cruce.",
+      "probabilities": {
+        "advance_groups": 96,
+        "round_of_32": 90,
+        "round_of_16": 78,
+        "quarter_finals": 60,
+        "semi_finals": 35,
+        "final": 18,
+        "champion": 11
+      },
+      "vs_last_3_wcs": "Russia 2018: octavos eliminado por Francia 3-4. Qatar 2022: CAMPEÓN tras vencer en final 3-3 (4-2 pen) a Francia. Mundial 2026: parte como vigente campeón con un equipo más maduro pero con 4 años más en sus piernas. La continuidad táctica de Scaloni (8 años en el cargo) es valor único entre los favoritos."
+    }
+  },
+
+  "history": {
+    "first_appearance": 1930,
+    "appearances_count_before_2026": 18,
+    "appearances_count_with_2026": 19,
+    "consecutive_streak_since": 1974,
+    "titles": 3,
+    "titles_years": [1978, 1986, 2022],
+    "finals": 6,
+    "finals_years": [1930, 1978, 1986, 1990, 2014, 2022],
+    "semi_finals": 7,
+    "best_result": "Campeón (1978, 1986, 2022)",
+    "aggregate_stats_through_2022": {
+      "played": 88,
+      "won": 47,
+      "drawn": 16,
+      "lost": 25,
+      "goals_for": 152,
+      "goals_against": 101,
+      "win_percentage": 53.4,
+      "notes": "Argentina ocupa el 2º puesto en partidos ganados en la historia del Mundial, solo por detrás de Brasil. Datos hasta Qatar 2022."
+    },
+    "by_world_cup": [
+      {
+        "year": 1930,
+        "host": { "countries": ["Uruguay"], "iso": ["uy"] },
+        "result": "Subcampeón",
+        "coach": "Francisco Olazar / Juan Tramutola",
+        "captain": "Manuel Ferreira / Manuel Seoane",
+        "matches": [],
+        "team_top_scorers": [{ "player": "Guillermo Stábile", "goals": 8 }],
+        "goals_scored": 18,
+        "goals_conceded": 9,
+        "notable_facts": [
+          "Guillermo Stábile fue el goleador del torneo con 8 goles, autor del primer triplete en la historia de los Mundiales.",
+          "Argentina llegó a la final perdiendo 4-2 ante Uruguay en el Estadio Centenario.",
+          "Único Mundial de invitación: solo 13 selecciones participaron."
+        ],
+        "narrative": "Argentina disputó la primera Copa del Mundo de la historia como uno de los grandes favoritos. Tras dominar su grupo (Chile, Francia, México) y una semifinal de gala 6-1 ante Estados Unidos, llegó a la final ante el anfitrión Uruguay. En un Centenario lleno, Argentina llegó al descanso 2-1 arriba pero Uruguay remontó con 3 goles en la segunda parte para sentenciar 4-2. Guillermo Stábile, autor del primer hat-trick mundialista, terminó como Bota de Oro."
+      },
+      {
+        "year": 1934,
+        "host": { "countries": ["Italia"], "iso": ["it"] },
+        "result": "1ª ronda",
+        "coach": "Felipe Pascucci",
+        "matches": [],
+        "team_top_scorers": [{ "player": "Alberto Galateo", "goals": 1 }, { "player": "Ernesto Belis", "goals": 1 }],
+        "goals_scored": 2,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Argentina presentó equipo amateur dirigido por italiano por boicot de los grandes clubes.",
+          "Eliminada en primera ronda por Suecia 3-2."
+        ],
+        "narrative": "Tras el éxodo de jugadores al fútbol italiano (Stábile, Orsi, Monti, Cesarini), la AFA presentó equipo amateur. La consecuencia fue una eliminación rápida y dolorosa: Suecia ganó 3-2 en partido único. Único Mundial dirigido por entrenador no argentino."
+      },
+      {
+        "year": 1958,
+        "host": { "countries": ["Suecia"], "iso": ["se"] },
+        "result": "Fase de grupos",
+        "coach": "Guillermo Stábile",
+        "matches": [],
+        "team_top_scorers": [{ "player": "Norberto Menéndez", "goals": 1 }, { "player": "Oreste Corbatta", "goals": 1 }],
+        "goals_scored": 5,
+        "goals_conceded": 10,
+        "notable_facts": [
+          "El humillante 6-1 de Checoslovaquia provocó la mítica frase 'No hubo argentino que no se golpeara el pecho'.",
+          "Regreso al Mundial tras 24 años de ausencia."
+        ],
+        "narrative": "Argentina volvía al Mundial después de 24 años pero con un fútbol obsoleto frente a la modernidad europea. Tras vencer 3-1 a Irlanda del Norte en el debut, fue arrasada 3-1 por Alemania Federal y humillada 6-1 por Checoslovaquia, una de las peores derrotas históricas. La selección regresó a Buenos Aires en silencio y sin dirigentes recibiéndola. Marcó un punto de inflexión hacia un fútbol más físico y europeo."
+      },
+      {
+        "year": 1962,
+        "host": { "countries": ["Chile"], "iso": ["cl"] },
+        "result": "Fase de grupos",
+        "coach": "Juan Carlos Lorenzo",
+        "matches": [],
+        "team_top_scorers": [{ "player": "Hector Facundo", "goals": 1 }, { "player": "Marcelo Pagani", "goals": 1 }],
+        "goals_scored": 2,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Argentina ganó 1-0 a Bulgaria pero perdió 1-3 con Inglaterra y empató 0-0 con Hungría.",
+          "Eliminada por diferencia de goles."
+        ],
+        "narrative": "Pese a una mejora respecto a 1958, Argentina volvió a quedarse en primera ronda. Cayó eliminada por diferencia de goles tras un grupo igualado con Inglaterra, Hungría y Bulgaria."
+      },
+      {
+        "year": 1966,
+        "host": { "countries": ["Inglaterra"], "iso": ["gb-eng"] },
+        "result": "Cuartos de final",
+        "coach": "Juan Carlos Lorenzo",
+        "captain": "Antonio Rattín",
+        "matches": [],
+        "team_top_scorers": [{ "player": "Luis Artime", "goals": 1 }, { "player": "Ermindo Onega", "goals": 1 }],
+        "goals_scored": 4,
+        "goals_conceded": 1,
+        "notable_facts": [
+          "Mejor campaña desde 1930 hasta entonces: 1ª ronda con 5 puntos.",
+          "Eliminada en cuartos por Inglaterra 0-1, partido marcado por la expulsión polémica de Antonio Rattín.",
+          "Inglaterra fue luego campeona; Argentina quedó como 'campeón moral' según la prensa local."
+        ],
+        "narrative": "En tierras inglesas Argentina mostró su mejor cara: 0-0 con Alemania, 2-1 a España y 2-0 a Suiza. En cuartos enfrentó al anfitrión y favorito Inglaterra. La expulsión polémica de Rattín en el primer tiempo marcó el partido: el capitán argentino se sentó en la alfombra roja de la reina y abandonó el campo arrugando un banderín inglés. Sin él, Argentina cayó 1-0 con gol de Geoff Hurst. Inglaterra fue luego campeona. La eliminación dejó secuelas en la relación Argentina-Inglaterra que se extenderían 20 años más."
+      },
+      {
+        "year": 1974,
+        "host": { "countries": ["Alemania Federal"], "iso": ["de"] },
+        "result": "Segunda ronda",
+        "coach": "Vladislao Cap",
+        "matches": [],
+        "team_top_scorers": [{ "player": "René Houseman", "goals": 2 }, { "player": "Mario Kempes", "goals": 0 }],
+        "goals_scored": 9,
+        "goals_conceded": 12,
+        "notable_facts": [
+          "0-4 ante Países Bajos en segunda ronda, primer encuentro con Cruyff y el 'fútbol total'.",
+          "Eliminada en segunda ronda."
+        ],
+        "narrative": "Argentina superó la primera ronda con dificultad pero en la segunda fue arrollada 4-0 por la Naranja Mecánica de Cruyff, que mostraba al mundo el 'fútbol total'. Aquella derrota marcó la urgencia de modernizar la preparación argentina. Menotti asumiría poco después como entrenador con un proyecto de 4 años."
+      },
+      {
+        "year": 1978,
+        "host": { "countries": ["Argentina"], "iso": ["ar"] },
+        "result": "Campeón",
+        "coach": "César Luis Menotti",
+        "captain": "Daniel Passarella",
+        "matches": [],
+        "team_top_scorers": [{ "player": "Mario Kempes", "goals": 6 }, { "player": "Leopoldo Luque", "goals": 4 }],
+        "goals_scored": 15,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "Primer título mundial de Argentina como anfitriona.",
+          "Mario Kempes fue Bota de Oro con 6 goles, incluidos 2 en la final ante Países Bajos (3-1 en prórroga).",
+          "Daniel Passarella fue el primer argentino en levantar la Copa.",
+          "El 6-0 a Perú en la última fase de grupos sigue siendo discutido por sospechas históricas."
+        ],
+        "narrative": "Argentina fue elegida sede en circunstancias políticas complejas (dictadura militar). Con Menotti al frente y un equipo construido pacientemente desde 1974, llegó a la final tras una segunda fase con polémico 6-0 a Perú. En el Monumental ante Países Bajos (sin Cruyff), Kempes abrió el marcador a los 38'. Nanninga empató al 82'. En la prórroga, Kempes (105') y Bertoni (115') sentenciaron 3-1. Passarella levantó la Copa con un país dividido emocionalmente entre la euforia popular y la represión política. Kempes terminó Bota de Oro y Balón de Oro del torneo."
+      },
+      {
+        "year": 1982,
+        "host": { "countries": ["España"], "iso": ["es"] },
+        "result": "Segunda ronda",
+        "coach": "César Luis Menotti",
+        "captain": "Daniel Passarella",
+        "matches": [],
+        "team_top_scorers": [{ "player": "Daniel Bertoni", "goals": 2 }, { "player": "Diego Maradona", "goals": 2 }],
+        "goals_scored": 8,
+        "goals_conceded": 7,
+        "notable_facts": [
+          "Debut mundialista de Diego Maradona (21 años).",
+          "Eliminada en segunda ronda por Italia (1-2) y Brasil (1-3).",
+          "Maradona expulsado contra Brasil por agresión a João Batista."
+        ],
+        "narrative": "Argentina llegaba como campeona vigente con Maradona ya consolidado y vendido al Barcelona. Pero el 'Diez' fue marcado de forma asfixiante por Claudio Gentile en el partido vs Italia y la Albiceleste cayó 2-1. Contra Brasil, frustrado por el marcaje, Maradona fue expulsado por agresión. Eliminación temprana que cerraba el ciclo Menotti."
+      },
+      {
+        "year": 1986,
+        "host": { "countries": ["México"], "iso": ["mx"] },
+        "result": "Campeón",
+        "coach": "Carlos Salvador Bilardo",
+        "captain": "Diego Maradona",
+        "matches": [],
+        "team_top_scorers": [{ "player": "Diego Maradona", "goals": 5 }, { "player": "Jorge Valdano", "goals": 4 }],
+        "goals_scored": 14,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Diego Maradona conduce a Argentina al título con un torneo histórico individual.",
+          "Mano de Dios y Gol del Siglo en el mismo partido (cuartos vs Inglaterra).",
+          "Final 3-2 ante Alemania con asistencia de Maradona a Burruchaga.",
+          "Maradona ganó Balón de Oro del torneo. La final tuvo 114.600 espectadores en el Azteca."
+        ],
+        "narrative": "El Mundial de Maradona. Argentina superó la fase de grupos invicta y se topó con Inglaterra en cuartos, partido cargado de simbolismo por la Guerra de Malvinas (1982). Allí Diego escribió la historia: la 'Mano de Dios' al 51' y, 4 minutos después, el 'Gol del Siglo' tras correr 60 metros sorteando 5 ingleses. En semis, dos golazos de Maradona a Bélgica (2-0). En la final, 114.600 personas en el Azteca vieron a Argentina ganar 3-2 a Alemania con goles de Brown, Valdano y Burruchaga (asistencia de Maradona en el último). Diego ganó el Balón de Oro del torneo y selló su leyenda."
+      },
+      {
+        "year": 1990,
+        "host": { "countries": ["Italia"], "iso": ["it"] },
+        "result": "Subcampeón",
+        "coach": "Carlos Salvador Bilardo",
+        "captain": "Diego Maradona",
+        "matches": [],
+        "team_top_scorers": [{ "player": "Claudio Caniggia", "goals": 2 }, { "player": "Jorge Burruchaga", "goals": 2 }],
+        "goals_scored": 5,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "Argentina campeona defensora pero sufrida: derrota 0-1 ante Camerún en el debut.",
+          "Sergio Goycochea, héroe en penales contra Yugoslavia y Italia (semi).",
+          "Final 0-1 ante Alemania por penal de Brehme tras polémica falta a Voller.",
+          "Maradona expulsado dos veces en el campeonato (vs Brasil y final)."
+        ],
+        "narrative": "Argentina llegó como campeona pero con un Maradona ya tocado físicamente. Debutó con la sorpresa más grande del torneo: 0-1 ante Camerún. Tras eso, ajustada clasificación a octavos, donde el genio de Maradona habilitó el 1-0 a Brasil con asistencia magistral a Caniggia. En cuartos eliminó a Yugoslavia por penales (Goycochea figura). En semis, en Nápoles, eliminó a Italia por penales con Goycochea otra vez héroe. En la final ante Alemania (0-1 por penal de Brehme tras falta dudosa a Voller), Argentina perdió. Maradona lloró sobre el campo. Subcampeonato amargo."
+      },
+      {
+        "year": 1994,
+        "host": { "countries": ["Estados Unidos"], "iso": ["us"] },
+        "result": "Octavos de final",
+        "coach": "Alfio Basile",
+        "captain": "Diego Maradona",
+        "matches": [],
+        "team_top_scorers": [{ "player": "Gabriel Batistuta", "goals": 4 }, { "player": "Diego Maradona", "goals": 1 }],
+        "goals_scored": 8,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Maradona dado positivo en doping y expulsado del torneo tras 2 partidos.",
+          "Eliminada por Rumania 2-3 en octavos.",
+          "Batistuta inició su saga goleadora mundialista (4 en el torneo)."
+        ],
+        "narrative": "Argentina arrancó como un huracán: 4-0 a Grecia (hat-trick de Batistuta) y 2-1 a Nigeria con Maradona en gran nivel. Pero tras ese partido, el Diego dio positivo en doping (efedrina). Su expulsión sembró desánimo en el grupo. Sin Maradona, Argentina cayó 2-0 ante Bulgaria y 3-2 ante Rumania en octavos. Hat-trick + 1 gol de Batistuta el balance individual destacado. El último Mundial de Maradona terminó en escándalo."
+      },
+      {
+        "year": 1998,
+        "host": { "countries": ["Francia"], "iso": ["fr"] },
+        "result": "Cuartos de final",
+        "coach": "Daniel Passarella",
+        "captain": "Diego Simeone",
+        "matches": [],
+        "team_top_scorers": [{ "player": "Gabriel Batistuta", "goals": 5 }, { "player": "Claudio López", "goals": 1 }],
+        "goals_scored": 10,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "Argentina avanzó por penales en octavos vs Inglaterra (gol de Beckham expulsado).",
+          "Eliminada por Países Bajos 1-2 con golazo de Bergkamp en el último minuto.",
+          "Batistuta, máximo goleador argentino del torneo (5 goles)."
+        ],
+        "narrative": "Pasarella dirigía con disciplina estricta (prohibió pelo largo). Argentina ganó su grupo (Japón, Jamaica, Croacia) y superó en penales a Inglaterra en uno de los partidos más recordados del torneo, tras el 2-2 reglamentario y la expulsión de Beckham por patear a Simeone. En cuartos perdió ante Países Bajos 2-1. El gol decisivo de Bergkamp al 90' (control milimétrico tras pase largo de De Boer) es uno de los más bellos de la historia mundialista. Adiós temprano para una Argentina que ilusionaba."
+      },
+      {
+        "year": 2002,
+        "host": { "countries": ["Corea del Sur", "Japón"], "iso": ["kr", "jp"] },
+        "result": "Fase de grupos",
+        "coach": "Marcelo Bielsa",
+        "captain": "Roberto Ayala",
+        "matches": [],
+        "team_top_scorers": [{ "player": "Gabriel Batistuta", "goals": 1 }, { "player": "Hernán Crespo", "goals": 1 }],
+        "goals_scored": 2,
+        "goals_conceded": 2,
+        "notable_facts": [
+          "Argentina llegaba como uno de los grandes favoritos tras dominar las eliminatorias.",
+          "Eliminación traumática en grupo: derrota 0-1 ante Inglaterra (penal de Beckham) y empate 1-1 con Suecia.",
+          "Último Mundial de Gabriel Batistuta."
+        ],
+        "narrative": "Argentina, dirigida por Bielsa, dominó la eliminatoria sudamericana y llegaba como favorito. Pero el 'Grupo de la Muerte' (Inglaterra, Suecia, Nigeria) demostró ser una emboscada. Tras vencer 1-0 a Nigeria, perdió ante Inglaterra 0-1 (penal de Beckham, revancha del 98) y empató 1-1 con Suecia. Eliminada en primera ronda. Batistuta marcó su último gol mundialista contra Nigeria. Crisis institucional posterior."
+      },
+      {
+        "year": 2006,
+        "host": { "countries": ["Alemania"], "iso": ["de"] },
+        "result": "Cuartos de final",
+        "coach": "José Pekerman",
+        "captain": "Juan Pablo Sorín",
+        "matches": [],
+        "team_top_scorers": [{ "player": "Hernán Crespo", "goals": 3 }, { "player": "Maxi Rodríguez", "goals": 2 }],
+        "goals_scored": 11,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Argentina firmó un 6-0 sobre Serbia en fase de grupos con un gol colectivo de 24 toques que es ícono mundial.",
+          "Debut mundialista de Lionel Messi (19 años) con gol vs Serbia.",
+          "Eliminada por Alemania en cuartos por penales (1-1 reglamentario).",
+          "Pekerman criticado por no meter a Messi en el partido decisivo."
+        ],
+        "narrative": "Mundial de la jugada perfecta: el 6-0 a Serbia incluyó un gol colectivo de 24 pases (Cambiasso) considerado el mejor gol colectivo de la historia mundialista. Debut de Messi con gol. Argentina llegó a cuartos vs Alemania donde Klose empató sobre el final tras gol de Ayala. En la tanda Lehmann atajó a Ayala y Cambiasso y Argentina quedó eliminada. Pekerman recibió críticas por no usar a Messi en el partido decisivo."
+      },
+      {
+        "year": 2010,
+        "host": { "countries": ["Sudáfrica"], "iso": ["za"] },
+        "result": "Cuartos de final",
+        "coach": "Diego Maradona",
+        "captain": "Javier Mascherano",
+        "matches": [],
+        "team_top_scorers": [{ "player": "Gonzalo Higuaín", "goals": 4 }, { "player": "Carlos Tévez", "goals": 2 }],
+        "goals_scored": 10,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Maradona como DT generó atracción mundial.",
+          "Argentina arrancó arrollando: 1-0 Nigeria, 4-1 Corea del Sur, 2-0 Grecia, 3-1 México.",
+          "Eliminada con humillante 0-4 ante Alemania en cuartos (Müller, Klose x2, Friedrich)."
+        ],
+        "narrative": "El Mundial dirigido por Maradona generó ilusión y debate. Argentina comenzó arrolladora: 4 victorias seguidas con buen fútbol y goles. Pero en cuartos, Alemania rompió todos los esquemas: 4-0 sin paliativos. Müller abrió a los 3'; Klose hizo dos; Friedrich cerró. La peor derrota argentina en una fase eliminatoria desde 1974. Maradona renunciaría poco después."
+      },
+      {
+        "year": 2014,
+        "host": { "countries": ["Brasil"], "iso": ["br"] },
+        "result": "Subcampeón",
+        "coach": "Alejandro Sabella",
+        "captain": "Lionel Messi",
+        "matches": [],
+        "team_top_scorers": [{ "player": "Lionel Messi", "goals": 4 }, { "player": "Gonzalo Higuaín", "goals": 1 }],
+        "goals_scored": 8,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "Primera final de Messi como capitán.",
+          "Final 0-1 ante Alemania en el Maracaná, gol de Mario Götze a los 113'.",
+          "Messi ganó el Balón de Oro del torneo, decisión polémica."
+        ],
+        "narrative": "Argentina llegó al Maracaná de la mano de Messi, quien condujo a la Albiceleste hasta la final con un gol clave en la fase de grupos vs Irán. En octavos pasó a Suiza con gol de Di María en el 118'. En cuartos venció 1-0 a Bélgica (Higuaín). En semis empató 0-0 con Países Bajos y avanzó por penales gracias a Romero, héroe ante Vlaar y Sneijder. La final ante Alemania en el Maracaná fue cerrada: errores de Higuaín y Palacio dejaron pasar oportunidades claras. Götze marcó al 113' y Argentina perdió por 3ª vez una final ante Alemania. Messi, Balón de Oro del torneo polémico, lloró. Subcampeonato dolido."
+      },
+      {
+        "year": 2018,
+        "host": { "countries": ["Rusia"], "iso": ["ru"] },
+        "result": "Octavos de final",
+        "coach": "Jorge Sampaoli",
+        "captain": "Lionel Messi",
+        "matches": [],
+        "team_top_scorers": [{ "player": "Lionel Messi", "goals": 1 }, { "player": "Marcos Rojo", "goals": 1 }],
+        "goals_scored": 6,
+        "goals_conceded": 9,
+        "notable_facts": [
+          "Mundial caótico: Sampaoli en el banquillo, crisis interna, Messi falla penal contra Islandia.",
+          "Eliminada por Francia 3-4 en octavos en partido espectacular.",
+          "Final del ciclo de varios históricos (Mascherano, Aguero, Higuaín)."
+        ],
+        "narrative": "Argentina llegaba al Mundial con caos previo (cancelación gira contra Israel, ausencia de Lavezzi). Empate 1-1 con Islandia con penal fallado por Messi, derrota 0-3 ante Croacia y agónico triunfo 2-1 vs Nigeria con gol de Rojo en el final que clasificó al equipo. En octavos, partido espectacular ante la Francia de Mbappé: Argentina perdió 4-3 con doblete del francés que mostraba al mundo. Messi llegó a casa con 30 años y dudas existenciales sobre su carrera con la selección. Sampaoli destituido."
+      },
+      {
+        "year": 2022,
+        "host": { "countries": ["Catar"], "iso": ["qa"] },
+        "result": "Campeón",
+        "coach": "Lionel Scaloni",
+        "captain": "Lionel Messi",
+        "matches": [],
+        "team_top_scorers": [{ "player": "Lionel Messi", "goals": 7 }, { "player": "Julián Álvarez", "goals": 4 }],
+        "goals_scored": 15,
+        "goals_conceded": 8,
+        "notable_facts": [
+          "TERCER título mundial. Lionel Messi consigue el único trofeo que le faltaba.",
+          "Debut traumático: derrota 1-2 ante Arabia Saudita rompiendo invicto de 36 partidos.",
+          "Final más emocionante de la historia: 3-3 con hat-trick de Mbappé + 4-2 en penales.",
+          "Messi: 7 goles, Balón de Oro del torneo, máximo goleador histórico de Argentina en Mundiales (13 goles totales superando a Batistuta)."
+        ],
+        "narrative": "Argentina llegó a Qatar con 36 partidos invicta y favoritos. La derrota inaugural 1-2 ante Arabia Saudita fue terremoto. Lejos de hundirse, el equipo se reconstruyó: 2-0 a México (gol de Messi y Enzo Fernández), 2-0 a Polonia. En octavos eliminó a Australia 2-1 (gol número 1.000 de Messi en su carrera). En cuartos batalla con Países Bajos: 2-0 ganaba con gol de Molina y penal de Messi, los neerlandeses empataron al 100' por Weghorst. En la prórroga 0-0, fue a penales: Argentina ganó 4-3 con Dibu Martínez como héroe. En semis arrolló a Croacia 3-0 (Messi penal y asistencia magistral a Álvarez). En la final ante Francia, Argentina ganaba 2-0 al 80' (Messi penal + Di María) pero Francia con doblete de Mbappé empató. En la prórroga Messi marcó el 3-2, Mbappé empató con su tercer gol al 118'. En penales, atajadas de Dibu y precisión argentina (Montiel marcó el último). Messi levantó la Copa que se le había negado durante 16 años. Coronación de leyenda."
+      }
+    ],
+    "palmares": [
+      { "competition": "Copa Mundial de la FIFA", "year": 1978, "position": "Campeón", "host": "Argentina" },
+      { "competition": "Copa Mundial de la FIFA", "year": 1986, "position": "Campeón", "host": "México" },
+      { "competition": "Copa Mundial de la FIFA", "year": 2022, "position": "Campeón", "host": "Catar" },
+      { "competition": "Copa Mundial de la FIFA", "year": 1930, "position": "Subcampeón", "host": "Uruguay" },
+      { "competition": "Copa Mundial de la FIFA", "year": 1990, "position": "Subcampeón", "host": "Italia" },
+      { "competition": "Copa Mundial de la FIFA", "year": 2014, "position": "Subcampeón", "host": "Brasil" }
+    ]
+  },
+
+  "records": {
+    "top_scorer_history": {
+      "name": "Lionel Messi",
+      "value": 116,
+      "period": "2005-presente",
+      "notes": "Máximo goleador histórico (más del doble que el segundo). 116 goles validados en 198 partidos a marzo 2026."
+    },
+    "most_capped": {
+      "name": "Lionel Messi",
+      "value": 198,
+      "period": "2005-presente",
+      "notes": "Récord absoluto de presencias. Superó a Mascherano (147) en 2021."
+    },
+    "youngest_debut": {
+      "name": "Lionel Messi",
+      "value": "18 años, 51 días",
+      "period": "2005-08-17 vs Hungría",
+      "notes": "Debut accidentado: expulsado a los 2 minutos en su primer partido."
+    },
+    "biggest_win": {
+      "result": "12-0",
+      "opponent": "Ecuador",
+      "date": "1942-01-22",
+      "competition": "Copa América (Sudamericana 1942)"
+    },
+    "worst_loss": {
+      "result": "1-6",
+      "opponent": "Checoslovaquia",
+      "date": "1958-06-15",
+      "competition": "Copa Mundial 1958"
+    }
+  },
+
+  "iconic_matches": [
+    {
+      "title": "El Mundial de Stábile",
+      "date": "1930-07-30",
+      "opponent": { "iso": "uy", "name": "Uruguay" },
+      "score": "2-4",
+      "competition": "Final Mundial 1930",
+      "narrative": "Argentina perdió la primera final mundial ante Uruguay 4-2 en el Estadio Centenario. Stábile, primer Bota de Oro de la historia con 8 goles, no pudo evitar la derrota. Inicio de la rivalidad rioplatense más histórica."
+    },
+    {
+      "title": "El Gol del Siglo y la Mano de Dios",
+      "date": "1986-06-22",
+      "opponent": { "iso": "gb-eng", "name": "Inglaterra" },
+      "score": "2-1",
+      "competition": "Cuartos Mundial 1986",
+      "narrative": "El partido más simbólico de la historia argentina. Maradona marcó dos goles en cuatro minutos: el primero con la mano (la Mano de Dios al 51'), el segundo tras correr 60 metros sorteando 5 ingleses en lo que la FIFA votó como 'Gol del Siglo' (55'). Argentina avanzó a semis. La Guerra de Malvinas (1982) atravesaba el contexto.",
+      "site_link": "/historia/momentos-iconicos/mano-de-dios"
+    },
+    {
+      "title": "El Maracanazo del Diego (final 86)",
+      "date": "1986-06-29",
+      "opponent": { "iso": "de", "name": "Alemania" },
+      "score": "3-2",
+      "competition": "Final Mundial 1986",
+      "narrative": "Argentina ganó su segundo Mundial en el Estadio Azteca con 114.600 espectadores. Goles de Brown, Valdano y Burruchaga (asistencia magistral de Maradona en el último). Cierre de la era Maradona Balón de Oro del torneo."
+    },
+    {
+      "title": "El Maracanazo del Diego (semi 90)",
+      "date": "1990-07-03",
+      "opponent": { "iso": "it", "name": "Italia" },
+      "score": "1-1 (4-3 pen)",
+      "competition": "Semifinal Mundial 1990",
+      "narrative": "En Nápoles, ciudad-templo de Maradona, Argentina venció a Italia por penales tras 1-1 reglamentario. Goycochea gigante en la tanda. Recordada por la frase de Maradona pidiéndole a Nápoles: 'Solo un día por favor'."
+    },
+    {
+      "title": "El gol de Bergkamp",
+      "date": "1998-07-04",
+      "opponent": { "iso": "nl", "name": "Países Bajos" },
+      "score": "1-2",
+      "competition": "Cuartos Mundial 1998",
+      "narrative": "En Marsella, Argentina cayó 2-1 ante Países Bajos. Bergkamp marcó al 90' tras un control milimétrico de cinco metros tras pase larguísimo de De Boer, considerado uno de los goles más bellos de la historia. Adiós temprano de una Argentina que prometía."
+    },
+    {
+      "title": "El gol colectivo a Serbia (24 toques)",
+      "date": "2006-06-16",
+      "opponent": { "iso": "rs", "name": "Serbia y Montenegro" },
+      "score": "6-0",
+      "competition": "Fase de Grupos Mundial 2006",
+      "narrative": "Argentina firmó uno de los goles colectivos más bellos de la historia mundialista: 24 pases sin que Serbia tocara la pelota, definido por Cambiasso. Debut de Messi con gol en el mismo partido."
+    },
+    {
+      "title": "Mineirazo invertido — el 0-4 ante Alemania",
+      "date": "2010-07-03",
+      "opponent": { "iso": "de", "name": "Alemania" },
+      "score": "0-4",
+      "competition": "Cuartos Mundial 2010",
+      "narrative": "La peor derrota argentina en una fase eliminatoria moderna. Müller, Klose (x2) y Friedrich liquidaron a la Argentina de Maradona en menos de 75 minutos. Renuncia posterior del Diego como DT."
+    },
+    {
+      "title": "La final del Maracaná (2014)",
+      "date": "2014-07-13",
+      "opponent": { "iso": "de", "name": "Alemania" },
+      "score": "0-1 (prórroga)",
+      "competition": "Final Mundial 2014",
+      "narrative": "Argentina y Alemania, viejos conocidos en finales mundialistas (1986, 1990). En el Maracaná, errores claros de Higuaín y Palacio dejaron pasar oportunidades. Mario Götze marcó al 113' tras pase de André Schürrle. Tercera final perdida ante Alemania. Messi, Balón de Oro del torneo polémico, lloró."
+    },
+    {
+      "title": "La consagración eterna",
+      "date": "2022-12-18",
+      "opponent": { "iso": "fr", "name": "Francia" },
+      "score": "3-3 (4-2 pen)",
+      "competition": "Final Mundial 2022",
+      "narrative": "La final más espectacular de la historia. Argentina ganaba 2-0 al 80' (Messi penal + Di María). Mbappé hizo dos en 90 segundos para empatar. En la prórroga, Messi marcó el 3-2 al 108'. Mbappé empató con su tercer gol al 118'. En penales, Dibu Martínez fue gigante (atajada a Coman) y Montiel marcó el penal definitivo. Messi levantó la Copa que se le había negado durante 16 años. Coronación de leyenda.",
+      "site_link": "/historia/momentos-iconicos/messi-2022"
+    },
+    {
+      "title": "El 4-1 a Brasil de la clasificación",
+      "date": "2025-03-25",
+      "opponent": { "iso": "br", "name": "Brasil" },
+      "score": "4-1",
+      "competition": "Eliminatorias Mundial 2026",
+      "narrative": "Argentina goleó 4-1 a Brasil en El Monumental (sin Messi ni Lautaro) la noche que selló su clasificación matemática al Mundial 2026. Mayor goleada histórica ante Brasil en eliminatorias. Brasil destituyó a Dorival Júnior tras la derrota y contrató a Carlo Ancelotti."
+    }
+  ],
+
+  "curiosities": [
+    {
+      "text": "Argentina disputó 18 de las 22 ediciones del Mundial. Solo faltó a Francia 1938, Brasil 1950, Suiza 1954 y México 1970 (único en el que falló en clasificar deportivamente).",
+      "source": "AFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Lionel Messi llegará al Mundial 2026 con 39 años. Sería su 6º Mundial, igualando o superando el récord de Cristiano Ronaldo (depende de si Portugal pasa a 2026 - confirmado).",
+      "source": "FIFA + AFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Lionel Scaloni es el DT más joven en ganar un Mundial moderno (44 años en Qatar 2022) y el único argentino en ganar Copa América + Finalíssima + Mundial + Copa América de forma consecutiva.",
+      "source": "FIFA + AFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "En el Mundial 1986 Argentina jugó 7 partidos y solo recibió 5 goles (4 gracias al portero Nery Pumpido y 1 con su sustituto Islas tras lesión).",
+      "source": "RSSSF",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Argentina ha perdido 3 finales del Mundial: 1930 vs Uruguay (2-4), 1990 vs Alemania (0-1) y 2014 vs Alemania (0-1 prórroga). En las tres finales perdidas, el rival fue europeo.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Guillermo Stábile fue el Bota de Oro del primer Mundial (1930) con 8 goles en 4 partidos, además del primer hat-trick mundialista de la historia (vs México).",
+      "source": "FIFA + RSSSF",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "En la final de Qatar 2022 Argentina conquistó el Mundial 36 años después del título de Maradona en 1986. Messi tenía la misma edad (35) que Maradona cuando se retiró del Mundial 1994.",
+      "source": "FIFA + AFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Diego Maradona y Lionel Messi son los dos únicos argentinos que ganaron el Balón de Oro del Mundial (1986 y 2022 respectivamente). Messi también lo ganó en 2014 sin haber sido campeón.",
+      "source": "FIFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    }
+  ],
+
+  "fan_culture": {
+    "famous_chants": [
+      "Muchachos, ahora nos volvimos a ilusionar (himno post-Qatar 2022, adaptado de Muchachos de Ráfaga)",
+      "Vamos, vamos Argentina (clásico desde 1978)",
+      "Brasil, decime qué se siente (provocación dirigida a Brasil)"
+    ],
+    "main_rival": {
+      "iso": "br",
+      "name": "Brasil",
+      "story": "El Superclásico de las Américas. Más de 100 enfrentamientos desde 1914, con Brasil ganando 41 y Argentina 39 (resto empates). Encuentros históricos: Mineirazo 2014 (no jugaron pero contexto), final Copa América 2021 (Argentina 1-0), final Copa América 2024 no jugada por cruzes. La rivalidad mezcla fútbol, samba vs tango, y eternas comparaciones Pelé-Maradona-Messi."
+    },
+    "home_stadium": {
+      "name": "Estadio Más Monumental (River Plate)",
+      "capacity": 84567,
+      "city": "Buenos Aires"
+    }
+  },
+
+  "seo": {
+    "meta_title": "Argentina en el Mundial 2026 | Plantilla, historia y predicciones",
+    "meta_description": "Selección Argentina Mundial 2026: 26 convocados, Grupo J, historia mundialista, eliminatorias y análisis táctico de Scaloni.",
+    "og_image_url": "/img/og/teams/argentina.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de Argentina de fútbol",
+      "alternateName": ["La Albiceleste", "La Scaloneta"],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "CONMEBOL"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Lionel Scaloni"
+      },
+      "url": "https://www.zonamundial.app/selecciones/argentina"
+    }
+  },
+
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-28",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Argentina_en_la_clasificaci%C3%B3n_de_Conmebol_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://es.wikipedia.org/wiki/Argentina_en_la_Copa_Mundial_de_F%C3%BAtbol",
+      "https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_de_Conmebol_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://es.wikipedia.org/wiki/Anexo:R%C3%A9cords_de_Lionel_Messi",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/12519217/",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/11761044/",
+      "https://www.espn.com.ar/futbol/mundial/nota/_/id/10658009/argentina-historia-antecedentes-mundial-2026",
+      "https://www.espn.com.ar/futbol/mundial/nota/_/id/14465061/maximos-goleadores-historicos-de-la-seleccion-argentina-messi",
+      "https://www.afa.com.ar/es/posts/historia-de-la-seleccion-argentina-en-los-mundiales",
+      "https://www.afa.com.ar/upl/posts/lionel-messi-lleva-115-goles-con-la-seleccion-argentina-y-es-el-maximo-artillero-de-la-historia-de-la-albiceleste",
+      "https://www.eldiariodelarepublica.com/nota/2025-3-25-23-4-0-con-una-funcion-de-gala-argentina-festejo-la-clasificacion-al-mundial-2026",
+      "https://www.infobae.com/deportes/2022/12/09/messi-historico-se-convirtio-en-el-maximo-goleador-de-la-seleccion-argentina-en-mundiales/",
+      "https://cnnespanol.cnn.com/2022/12/18/comoha-ido-argentina-mundiales-futbol-orix/amp/",
+      "https://cnnespanol.cnn.com/2025/09/03/deportes/fecha-17-eliminatorias-sudamericanas-partidos-horarios-orix",
+      "https://www.goal.com/es/noticias/lionel-messi-en-la-seleccion-argentina-partidos-goles-asistencias-y-efectividad/cqaya3umcllk17ms7v2e36b9r",
+      "https://www.perfil.com/noticias/deportes/la-seleccion-argentina-en-los-mundiales-todos-los-sorteos-y-formatos-de-la-historia.phtml"
+    ],
+    "validation_method": "Cada partido del camino al Mundial 2026 cruzado con mínimo 2 fuentes (Wikipedia + ESPN/medio especializado). Historia mundialista validada con AFA oficial + Wikipedia + ESPN + RSSSF para datos antiguos.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "partial",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante: pendiente entrega/upload",
+      "Curiosidad camiseta '86: validar con archivo AFA primario",
+      "Base de entrenamiento: AFA aún no anunció oficialmente",
+      "Calendario fase de grupos 2026: pendiente fixture FIFA con fechas/sedes/horarios",
+      "FIFA Ranking #1: validar último mes vigente al publicar"
+    ]
+  }
+}

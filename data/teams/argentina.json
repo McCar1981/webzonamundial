@@ -337,22 +337,25 @@
       {
         "matchday": 1,
         "opponent": { "iso": "dz", "name": "Argelia" },
-        "date": "[POR CONFIRMAR — pendiente fixture oficial FIFA]",
-        "venue": { "stadium": "[POR CONFIRMAR]", "city": "", "country_iso": "us" },
+        "date": "2026-06-16",
+        "kickoff_local": "12:00",
+        "venue": { "stadium": "Mercedes-Benz Stadium", "city": "Atlanta", "country_iso": "us" },
         "status": "scheduled"
       },
       {
         "matchday": 2,
         "opponent": { "iso": "at", "name": "Austria" },
-        "date": "[POR CONFIRMAR]",
-        "venue": { "stadium": "[POR CONFIRMAR]", "city": "", "country_iso": "us" },
+        "date": "2026-06-24",
+        "kickoff_local": "21:00",
+        "venue": { "stadium": "NRG Stadium", "city": "Houston", "country_iso": "us" },
         "status": "scheduled"
       },
       {
         "matchday": 3,
         "opponent": { "iso": "jo", "name": "Jordania" },
-        "date": "[POR CONFIRMAR]",
-        "venue": { "stadium": "[POR CONFIRMAR]", "city": "", "country_iso": "us" },
+        "date": "2026-06-30",
+        "kickoff_local": "21:00",
+        "venue": { "stadium": "Mercedes-Benz Stadium", "city": "Atlanta", "country_iso": "us" },
         "status": "scheduled"
       }
     ],

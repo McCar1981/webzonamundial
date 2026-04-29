@@ -1,5 +1,6 @@
 import type { NationalTeam, WCMatch2026 } from "@/types/team";
 import SectionCard, { SectionHeader } from "./SectionCard";
+import KickoffDisplay from "./KickoffDisplay";
 
 export default function ScheduleSection({ team }: { team: NationalTeam }) {
   const matches = team.wc_2026?.schedule;
@@ -10,6 +11,7 @@ export default function ScheduleSection({ team }: { team: NationalTeam }) {
       <SectionHeader
         eyebrow="Sus partidos · Fase de grupos"
         title={`Los 3 partidos de ${team.name_es}`}
+        subtitle="Las horas se muestran en tu zona horaria local. Pulsa el icono para alternar a la hora del estadio."
       />
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -19,8 +21,9 @@ export default function ScheduleSection({ team }: { team: NationalTeam }) {
       </div>
 
       <p className="text-[11px] text-[var(--bb-text-dim)] mt-4 italic">
-        Calendario sujeto a confirmación oficial de FIFA. Ya en vivo en{" "}
-        <span className="text-[var(--bb-text-muted)]">/grupos</span> con los datos del sorteo.
+        Datos oficiales de FIFA Mundial 2026 — sorteo confirmado. Ya en vivo en{" "}
+        <span className="text-[var(--bb-text-muted)]">/grupos</span> y{" "}
+        <span className="text-[var(--bb-text-muted)]">/calendario</span>.
       </p>
     </SectionCard>
   );
@@ -33,11 +36,16 @@ function MatchCard({
   match: WCMatch2026;
   ourIso: string;
 }) {
-  const dateLabel = formatDate(match.date);
   const venueLabel =
     match.venue?.stadium && !match.venue.stadium.startsWith("[")
       ? `${match.venue.stadium}${match.venue.city ? ` · ${match.venue.city}` : ""}`
       : "Sede por confirmar";
+
+  const hasKickoff =
+    match.date &&
+    !match.date.startsWith("[") &&
+    match.kickoff_local &&
+    !match.kickoff_local.startsWith("[");
 
   return (
     <article
@@ -68,22 +76,30 @@ function MatchCard({
 
       <div className="flex items-center justify-between gap-2 mb-4">
         <TeamCell iso={ourIso} />
-        <span className="text-xs font-bold text-[var(--bb-text-dim)] uppercase tracking-widest">
+        <span
+          className="text-xs font-bold text-[var(--bb-text-dim)] uppercase tracking-widest"
+          aria-hidden
+        >
           vs
         </span>
         <TeamCell iso={match.opponent.iso} name={match.opponent.name} />
       </div>
 
-      <div className="text-center text-sm text-white font-semibold mb-1">
-        {dateLabel}
+      {/* Hora multi-zona */}
+      <div className="mb-3">
+        {hasKickoff && match.kickoff_local && match.date ? (
+          <KickoffDisplay
+            localDate={match.date}
+            localTime={match.kickoff_local}
+            city={match.venue?.city}
+            countryIso={match.venue?.country_iso}
+          />
+        ) : (
+          <div className="text-center text-sm text-white font-semibold">
+            Fecha por confirmar
+          </div>
+        )}
       </div>
-      {match.kickoff_local || match.kickoff_madrid ? (
-        <div className="text-center text-[11px] text-[var(--bb-text-muted)] mb-3">
-          {match.kickoff_local ? `${match.kickoff_local} local` : null}
-          {match.kickoff_local && match.kickoff_madrid ? " · " : null}
-          {match.kickoff_madrid ? `${match.kickoff_madrid} Madrid` : null}
-        </div>
-      ) : null}
 
       <div className="text-center text-[11px] text-[var(--bb-text-muted)] pt-3 border-t border-white/5">
         {venueLabel}
@@ -112,15 +128,4 @@ function TeamCell({ iso, name }: { iso: string; name?: string }) {
       ) : null}
     </div>
   );
-}
-
-function formatDate(raw: string | undefined): string {
-  if (!raw || raw.startsWith("[")) return "Fecha por confirmar";
-  const d = new Date(raw);
-  if (isNaN(d.getTime())) return raw;
-  return d.toLocaleDateString("es-ES", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
 }

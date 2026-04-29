@@ -800,16 +800,31 @@
       "previous_teams": [
         "Selección Argentina sub-20 (asistente, 2017-2018)"
       ],
-      "profile_summary": "Asumió el cargo en 2018 con dudas y construyó el ciclo más exitoso de la selección desde Bilardo. Campeón Copa América 2021 (Maracaná), Finalíssima 2022 (Wembley), Mundial Qatar 2022 y Copa América 2024. Convirtió a la 'Scaloneta' en sinónimo de espíritu colectivo y eficiencia. Renovó hasta 2026 tras Qatar."
+      "profile_summary": "Asumió el cargo en 2018 con dudas y construyó el ciclo más exitoso de la selección desde Bilardo. Campeón Copa América 2021 (Maracaná), Finalíssima 2022 (Wembley), Mundial Qatar 2022 y Copa América 2024. Convirtió a la 'Scaloneta' en sinónimo de espíritu colectivo y eficiencia. Renovó hasta 2026 tras Qatar.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Lionel_Scaloni_-_2022.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Lionel_Scaloni"
+      }
     },
     "captain": {
       "name": "Lionel Messi",
-      "club": "Inter Miami CF"
+      "club": "Inter Miami CF",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg/330px-Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Lionel_Messi"
+      }
     },
     "star_player": {
       "name": "Lionel Messi",
       "club": "Inter Miami CF",
-      "reason": "Capitán, ídolo y goleador del ciclo eliminatorio. El Mundial 2026 sería su 6º Mundial — récord histórico junto a Cristiano Ronaldo. Máximo goleador histórico de Argentina (115+ goles) y récord de presencias (198+)."
+      "reason": "Capitán, ídolo y goleador del ciclo eliminatorio. El Mundial 2026 sería su 6º Mundial — récord histórico junto a Cristiano Ronaldo. Máximo goleador histórico de Argentina (115+ goles) y récord de presencias (198+).",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg/330px-Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Lionel_Messi"
+      }
     },
     "likely_squad": [
       {

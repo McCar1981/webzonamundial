@@ -146,8 +146,8 @@ export interface WorldCup2026 {
   schedule: WCMatch2026[];
   base_camp?: BaseCamp;
   coach: Coach;
-  captain: { name: string; club: string };
-  star_player: { name: string; club: string; reason: string };
+  captain: PersonRef;
+  star_player: PersonRef & { reason: string };
   likely_squad?: Player[];
   starting_xi?: StartingXI;
   analysis?: Analysis;
@@ -245,6 +245,13 @@ export interface BaseCamp {
   status: "confirmed" | "needs_review" | "pending";
 }
 
+export interface PersonRef {
+  name: string;
+  club?: string;
+  photo_url?: string;
+  photo_credit?: { source: string; page: string };
+}
+
 export interface Coach {
   name: string;
   age?: number;
@@ -252,6 +259,8 @@ export interface Coach {
   since?: string;
   previous_teams?: string[];
   profile_summary?: string;
+  photo_url?: string;
+  photo_credit?: { source: string; page: string };
 }
 
 export interface Player {

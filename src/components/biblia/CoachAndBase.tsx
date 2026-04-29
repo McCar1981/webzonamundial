@@ -49,6 +49,8 @@ export default function CoachAndBase({ team }: { team: NationalTeam }) {
                   .join(" · ")
               }
               note={coach.profile_summary}
+              photoUrl={coach.photo_url}
+              photoCreditPage={coach.photo_credit?.page}
             />
           ) : null}
           {captain ? (
@@ -56,6 +58,8 @@ export default function CoachAndBase({ team }: { team: NationalTeam }) {
               role="Capitán"
               name={captain.name}
               meta={captain.club}
+              photoUrl={captain.photo_url}
+              photoCreditPage={captain.photo_credit?.page}
             />
           ) : null}
           {star ? (
@@ -65,6 +69,8 @@ export default function CoachAndBase({ team }: { team: NationalTeam }) {
               meta={star.club}
               note={star.reason}
               accent
+              photoUrl={star.photo_url}
+              photoCreditPage={star.photo_credit?.page}
             />
           ) : null}
         </div>
@@ -142,13 +148,25 @@ function RoleCard({
   meta,
   note,
   accent,
+  photoUrl,
+  photoCreditPage,
 }: {
   role: string;
   name: string;
   meta?: string;
   note?: string;
   accent?: boolean;
+  photoUrl?: string;
+  photoCreditPage?: string;
 }) {
+  // Iniciales para fallback cuando no hay foto
+  const initials = name
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((p) => p.charAt(0).toUpperCase())
+    .join("");
+
   return (
     <article
       className="rounded-xl border p-4"
@@ -157,18 +175,61 @@ function RoleCard({
         background: accent ? "rgba(201,168,76,0.05)" : "rgba(11,24,37,0.5)",
       }}
     >
-      <div
-        className="text-[10px] font-bold uppercase tracking-widest mb-2"
-        style={{ color: accent ? "#C9A84C" : "#9ca3af" }}
-      >
-        {role}
+      <div className="flex items-start gap-3 mb-2">
+        {/* Avatar foto / fallback con iniciales */}
+        <span
+          className="relative w-14 h-14 rounded-2xl overflow-hidden flex items-center justify-center flex-shrink-0 border"
+          style={{
+            borderColor: accent
+              ? "rgba(201,168,76,0.4)"
+              : "rgba(255,255,255,0.1)",
+            background: photoUrl
+              ? `url(${photoUrl}) center/cover no-repeat`
+              : accent
+              ? "linear-gradient(135deg, #C9A84C, #A8893D)"
+              : "linear-gradient(135deg, rgba(124,192,255,0.18), rgba(11,24,37,0.6))",
+            color: accent ? "#030712" : "#7CC0FF",
+            boxShadow: accent
+              ? "0 0 16px rgba(201,168,76,0.25)"
+              : "0 0 12px rgba(124,192,255,0.12)",
+          }}
+          aria-hidden
+        >
+          {!photoUrl ? (
+            <span className="text-lg font-black">{initials}</span>
+          ) : null}
+        </span>
+        <div className="min-w-0 flex-1 pt-0.5">
+          <div
+            className="text-[10px] font-bold uppercase tracking-widest mb-1"
+            style={{ color: accent ? "#C9A84C" : "var(--bb-text-muted)" }}
+          >
+            {role}
+          </div>
+          <div className="text-base font-black text-white leading-tight">
+            {name}
+          </div>
+          {meta ? (
+            <div className="text-xs text-[var(--bb-text-muted)] mt-0.5">
+              {meta}
+            </div>
+          ) : null}
+        </div>
       </div>
-      <div className="text-base font-black text-white mb-1">{name}</div>
-      {meta ? <div className="text-xs text-[var(--bb-text-muted)] mb-2">{meta}</div> : null}
       {note ? (
-        <div className="text-xs text-[var(--bb-text-muted)] leading-relaxed line-clamp-4">
+        <div className="text-xs text-[var(--bb-text-muted)] leading-relaxed line-clamp-4 mt-2">
           {note}
         </div>
+      ) : null}
+      {photoUrl && photoCreditPage ? (
+        <a
+          href={photoCreditPage}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bb-focusable text-[9px] text-[var(--bb-text-dim)] hover:text-[var(--bb-gold)] mt-2 inline-block italic"
+        >
+          Foto: Wikipedia ↗
+        </a>
       ) : null}
     </article>
   );

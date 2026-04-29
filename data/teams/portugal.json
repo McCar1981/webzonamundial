@@ -1,0 +1,1646 @@
+{
+  "slug": "portugal",
+  "iso": "pt",
+  "iso3": "POR",
+  "name_es": "Portugal",
+  "name_en": "Portugal",
+  "name_local": "Portugal",
+  "nicknames": [
+    "A Seleção das Quinas",
+    "Os Navegadores",
+    "La Roja Lusa"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#006A4E",
+      "secondary": "#DA291C",
+      "tertiary": "#FFD700",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Lisboa",
+    "language_official": [
+      "Portugués"
+    ],
+    "population": 10330000,
+    "area_km2": 92212,
+    "timezone": "Europe/Lisbon",
+    "continent": "Europa"
+  },
+  "federation": {
+    "name": "Federação Portuguesa de Futebol",
+    "abbreviation": "FPF",
+    "founded": 1914,
+    "headquarters": "Lisboa (Cidade do Futebol)",
+    "website": "https://www.fpf.pt"
+  },
+  "confederation": "UEFA",
+  "fifa_ranking": {
+    "current": 8,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Puma",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/portugal.png",
+        "back_url": null,
+        "primary_color": "#006A4E",
+        "secondary_color": "#DA291C",
+        "description": "Camiseta roja con detalles verdes, los colores de la bandera portuguesa. Lleva las cinco quinas (escudos azules) heráldicas, símbolo de la nación.",
+        "alt_text": "Camiseta titular Portugal Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#006A4E",
+        "description": "Equipación visitante en blanco. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Portugal Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "Las cinco 'quinas' (escudos azules) en el escudo portugués datan del siglo XII y representan, según la leyenda, las cinco heridas de Cristo.",
+        "source": "FPF + ESPN histórico",
+        "verified_at": "2026-04-28",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Portugal clasificó como 1º del Grupo F de la UEFA con 13 puntos. Cierre brillante con un 9-1 a Armenia en Porto en la última jornada (sin Cristiano Ronaldo, suspendido por roja). 9ª participación mundialista. La generación dorada (Cristiano, Bruno Fernandes, Bernardo Silva, Rúben Dias) busca por fin el primer Mundial. Bajo Roberto Martínez, el ataque combina experiencia y juventud (Vitinha, Leão, Neto, Conceição).",
+    "qualifying": {
+      "confederation_round": "Eliminatorias UEFA Mundial 2026 — Grupo F",
+      "format": "Liguilla todos contra todos · 4 equipos · 6 partidos · ida y vuelta",
+      "duration": "Septiembre 2025 — Noviembre 2025",
+      "final_position": 1,
+      "total_teams_in_group": 4,
+      "stats": {
+        "played": 6,
+        "won": 4,
+        "drawn": 1,
+        "lost": 1,
+        "goals_for": 19,
+        "goals_against": 6,
+        "goal_difference": 13,
+        "points": 13,
+        "win_percentage": 66.7,
+        "clean_sheets": 2
+      },
+      "coach_during_qualifying": "Roberto Martínez",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2025-09-06",
+          "home": {
+            "iso": "am",
+            "name": "Armenia",
+            "score": 0
+          },
+          "away": {
+            "iso": "pt",
+            "name": "Portugal",
+            "score": 5
+          },
+          "venue": {
+            "stadium": "Vazgen Sargsyan",
+            "city": "Ereván",
+            "country_iso": "am"
+          },
+          "goals_arg": [
+            {
+              "player": "João Félix",
+              "minute": "10'",
+              "type": "goal"
+            },
+            {
+              "player": "João Félix",
+              "minute": "21'",
+              "type": "goal"
+            },
+            {
+              "player": "João Cancelo",
+              "minute": "33'",
+              "type": "goal"
+            },
+            {
+              "player": "Bruno Fernandes",
+              "minute": "52'",
+              "type": "goal"
+            },
+            {
+              "player": "Cristiano Ronaldo",
+              "minute": "70'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 2,
+          "date": "2025-09-09",
+          "home": {
+            "iso": "pt",
+            "name": "Portugal",
+            "score": 2
+          },
+          "away": {
+            "iso": "hu",
+            "name": "Hungría",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Estádio José Alvalade",
+            "city": "Lisboa",
+            "country_iso": "pt"
+          },
+          "goals_arg": [
+            {
+              "player": "Bernardo Silva",
+              "minute": "27'",
+              "type": "goal"
+            },
+            {
+              "player": "Cristiano Ronaldo",
+              "minute": "58'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Empate sorpresivo."
+        },
+        {
+          "matchday": 3,
+          "date": "2025-10-11",
+          "home": {
+            "iso": "ie",
+            "name": "República de Irlanda",
+            "score": 0
+          },
+          "away": {
+            "iso": "pt",
+            "name": "Portugal",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Aviva",
+            "city": "Dublín",
+            "country_iso": "ie"
+          },
+          "goals_arg": [
+            {
+              "player": "Cristiano Ronaldo",
+              "minute": "44'",
+              "type": "goal"
+            },
+            {
+              "player": "Cristiano Ronaldo",
+              "minute": "73'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 4,
+          "date": "2025-10-14",
+          "home": {
+            "iso": "hu",
+            "name": "Hungría",
+            "score": 2
+          },
+          "away": {
+            "iso": "pt",
+            "name": "Portugal",
+            "score": 3
+          },
+          "venue": {
+            "stadium": "Puskás Aréna",
+            "city": "Budapest",
+            "country_iso": "hu"
+          },
+          "goals_arg": [
+            {
+              "player": "Bernardo Silva",
+              "minute": "21'",
+              "type": "goal"
+            },
+            {
+              "player": "Cristiano Ronaldo",
+              "minute": "58'",
+              "type": "goal"
+            },
+            {
+              "player": "Cristiano Ronaldo",
+              "minute": "67'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 5,
+          "date": "2025-11-13",
+          "home": {
+            "iso": "ie",
+            "name": "República de Irlanda",
+            "score": 2
+          },
+          "away": {
+            "iso": "pt",
+            "name": "Portugal",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Aviva",
+            "city": "Dublín",
+            "country_iso": "ie"
+          },
+          "goals_arg": [],
+          "notes": "Sorprendente derrota. CRISTIANO RONALDO EXPULSADO con tarjeta roja directa."
+        },
+        {
+          "matchday": 6,
+          "date": "2025-11-16",
+          "home": {
+            "iso": "pt",
+            "name": "Portugal",
+            "score": 9
+          },
+          "away": {
+            "iso": "am",
+            "name": "Armenia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Estádio do Dragão",
+            "city": "Porto",
+            "country_iso": "pt"
+          },
+          "goals_arg": [
+            {
+              "player": "Renato Veiga",
+              "minute": "7'",
+              "type": "goal"
+            },
+            {
+              "player": "João Neves",
+              "minute": "28'",
+              "type": "goal"
+            },
+            {
+              "player": "Bruno Fernandes",
+              "minute": "30'",
+              "type": "penalty"
+            },
+            {
+              "player": "Bruno Fernandes",
+              "minute": "41'",
+              "type": "goal"
+            },
+            {
+              "player": "Bruno Fernandes",
+              "minute": "45'",
+              "type": "goal"
+            },
+            {
+              "player": "João Cancelo",
+              "minute": "53'",
+              "type": "goal"
+            },
+            {
+              "player": "Gonçalo Ramos",
+              "minute": "72'",
+              "type": "goal"
+            },
+            {
+              "player": "Francisco Conceição",
+              "minute": "82'",
+              "type": "goal"
+            },
+            {
+              "player": "Francisco Trincão",
+              "minute": "90'",
+              "type": "goal"
+            }
+          ],
+          "notes": "GOLEADA HISTÓRICA 9-1 a Armenia SIN CRISTIANO (suspendido). HAT-TRICK DE BRUNO FERNANDES. Selló clasificación al Mundial 2026 como 1º.",
+          "is_decisive_match": true
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Cristiano Ronaldo",
+          "goals": 4,
+          "notes": "Líder y capitán. 41 años en el Mundial 2026."
+        },
+        {
+          "player": "Bruno Fernandes",
+          "goals": 4,
+          "notes": "Hat-trick decisivo a Armenia."
+        },
+        {
+          "player": "João Félix",
+          "goals": 2
+        },
+        {
+          "player": "Bernardo Silva",
+          "goals": 2
+        },
+        {
+          "player": "João Cancelo",
+          "goals": 2
+        },
+        {
+          "player": "Renato Veiga",
+          "goals": 1
+        },
+        {
+          "player": "João Neves",
+          "goals": 1
+        },
+        {
+          "player": "Gonçalo Ramos",
+          "goals": 1
+        },
+        {
+          "player": "Francisco Conceição",
+          "goals": 1
+        },
+        {
+          "player": "Francisco Trincão",
+          "goals": 1
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_6",
+        "reason": "El 9-1 a Armenia en Porto el 16 de noviembre de 2025 SIN CRISTIANO RONALDO suspendido. Hat-trick de Bruno Fernandes. Selló la clasificación al Mundial 2026."
+      },
+      "worst_match": {
+        "match_ref": "matchday_5",
+        "reason": "Derrota 0-2 ante Irlanda en Dublín. CRISTIANO RONALDO EXPULSADO por tarjeta roja directa, primer rojo de su carrera con la selección. Crisis."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_6",
+        "reason": "Goleada 9-1 sobre Armenia en Porto selló matemáticamente el primer puesto del Grupo F y la clasificación al Mundial 2026 (9ª participación)."
+      }
+    },
+    "group_2026": {
+      "letter": "K",
+      "label": "Grupo K — junto a Colombia, Uzbekistán y RD Congo",
+      "teams": [
+        {
+          "iso": "pt",
+          "name": "Portugal",
+          "fifa_rank": null,
+          "is_seed": true
+        },
+        {
+          "iso": "uz",
+          "name": "Uzbekistán",
+          "fifa_rank": null
+        },
+        {
+          "iso": "co",
+          "name": "Colombia",
+          "fifa_rank": null
+        },
+        {
+          "iso": "cd",
+          "name": "RD Congo",
+          "fifa_rank": null
+        }
+      ],
+      "notes": "Grupo K confirmado en el sorteo del 5 dic 2025. Portugal cabeza de serie. Cruce estelar contra Colombia el 27 de junio en Hard Rock Stadium de Miami."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "uz",
+          "name": "Uzbekistán"
+        },
+        "date": "2026-06-16",
+        "kickoff_local": "18:00",
+        "venue": {
+          "stadium": "Lumen Field",
+          "city": "Seattle",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "co",
+          "name": "Colombia"
+        },
+        "date": "2026-06-25",
+        "kickoff_local": "18:00",
+        "venue": {
+          "stadium": "BC Place",
+          "city": "Vancouver",
+          "country_iso": "ca"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "cd",
+          "name": "RD Congo"
+        },
+        "date": "2026-06-30",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "BC Place",
+          "city": "Vancouver",
+          "country_iso": "ca"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — FPF aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Roberto Martínez",
+      "age": 52,
+      "nationality": "España",
+      "since": "2023-01-09",
+      "previous_teams": [
+        "Bélgica (2016-2022)",
+        "Everton (2013-2016)",
+        "Wigan (2009-2013)",
+        "Swansea (2007-2009)"
+      ],
+      "profile_summary": "Español (Balaguer, Cataluña), llevó a Bélgica al 3er puesto del Mundial 2018 y al ranking FIFA #1. Asumió Portugal en enero 2023 tras la salida de Fernando Santos. Identidad táctica: 4-3-3 ofensivo, posesión, libertad creativa para los talentos. Eurocopa 2024: cuartos eliminados por Francia. Ahora busca el primer Mundial portugués.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Roberto_Mart%C3%ADnez_USMNT_v_Portugal_Mar_31_2026-35.jpg/330px-Roberto_Mart%C3%ADnez_USMNT_v_Portugal_Mar_31_2026-35.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://en.wikipedia.org/wiki/Roberto_Mart%C3%ADnez"
+      }
+    },
+    "captain": {
+      "name": "Cristiano Ronaldo",
+      "club": "Al-Nassr",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg/330px-Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Cristiano_Ronaldo"
+      }
+    },
+    "star_player": {
+      "name": "Cristiano Ronaldo",
+      "club": "Al-Nassr",
+      "reason": "Capitán histórico, máximo goleador de selecciones del mundo masculino (143+ goles). El Mundial 2026 será su 6º Mundial (récord absoluto, comparte con Carbajal/Matthäus/Messi). A los 41 años llega a su última Copa del Mundo. Aunque Bruno Fernandes asume liderazgo de juego, Cristiano sigue siendo capitán y referente emocional.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg/330px-Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Cristiano_Ronaldo"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "diogo-costa",
+        "full_name": "Diogo Costa",
+        "display_name": "Diogo Costa",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Porto",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
+        },
+        "shirt_number_expected": 22,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Portugal_national_football_team_0866_%28Diogo_Costa%29.jpg/330px-Portugal_national_football_team_0866_%28Diogo_Costa%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Diogo_Costa"
+        }
+      },
+      {
+        "id": "rui-patricio",
+        "full_name": "Rui Patrício",
+        "display_name": "Rui Patrício",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Atalanta",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 1,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Rui_Patr%C3%ADcio_2018.jpg/330px-Rui_Patr%C3%ADcio_2018.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Rui_Patr%C3%ADcio"
+        }
+      },
+      {
+        "id": "jose-sa",
+        "full_name": "José Sá",
+        "display_name": "José Sá",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Wolves",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 12,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Jos%C3%A9_S%C3%A1_2019.jpg/330px-Jos%C3%A9_S%C3%A1_2019.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jos%C3%A9_S%C3%A1"
+        }
+      },
+      {
+        "id": "ruben-dias",
+        "full_name": "Rúben Dias",
+        "display_name": "Rúben Dias",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Manchester City",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Portugal_national_football_team_0866_%28R%C3%BAben_Dias%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/R%C3%BAben_Dias"
+        }
+      },
+      {
+        "id": "antonio-silva",
+        "full_name": "António Silva",
+        "display_name": "António Silva",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Benfica",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Ant%C3%B3nioSilva22.jpg/330px-Ant%C3%B3nioSilva22.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ant%C3%B3nio_Silva"
+        }
+      },
+      {
+        "id": "goncalo-inacio",
+        "full_name": "Gonçalo Inácio",
+        "display_name": "Gonçalo Inácio",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Sporting CP",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
+        },
+        "shirt_number_expected": 14,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Portugal_national_football_team_0866_%28Gon%C3%A7alo_In%C3%A1cio%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Gon%C3%A7alo_In%C3%A1cio"
+        }
+      },
+      {
+        "id": "renato-veiga",
+        "full_name": "Renato Veiga",
+        "display_name": "Renato Veiga",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Villarreal",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Renato_Veiga_USMNT_v_Portugal_Mar_31_2026-20.jpg/330px-Renato_Veiga_USMNT_v_Portugal_Mar_31_2026-20.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Renato_Veiga"
+        }
+      },
+      {
+        "id": "joao-cancelo",
+        "full_name": "João Cancelo",
+        "display_name": "João Cancelo",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Al-Hilal",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 20,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Portugal_national_football_team_0866_%28Jo%C3%A3o_Cancelo%29.jpg/330px-Portugal_national_football_team_0866_%28Jo%C3%A3o_Cancelo%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jo%C3%A3o_Cancelo"
+        }
+      },
+      {
+        "id": "nelson-semedo",
+        "full_name": "Nélson Semedo",
+        "display_name": "Nélson Semedo",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Fenerbahçe",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 19,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Mex-por-14_%28cropped%29.jpg/330px-Mex-por-14_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/N%C3%A9lson_Semedo"
+        }
+      },
+      {
+        "id": "nuno-mendes",
+        "full_name": "Nuno Mendes",
+        "display_name": "Nuno Mendes",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Paris Saint-Germain",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 23,
+        "status": "fixed"
+      },
+      {
+        "id": "vitinha",
+        "full_name": "Vítor Ferreira",
+        "display_name": "Vitinha",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Paris Saint-Germain",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Vitinha_USMNT_v_Portugal_Mar_31_2026-50.jpg/330px-Vitinha_USMNT_v_Portugal_Mar_31_2026-50.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/V%C3%ADtor_Ferreira"
+        }
+      },
+      {
+        "id": "joao-neves",
+        "full_name": "João Neves",
+        "display_name": "João Neves",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Paris Saint-Germain",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Neves_asse_psg_2425.png/330px-Neves_asse_psg_2425.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jo%C3%A3o_Neves"
+        }
+      },
+      {
+        "id": "bruno-fernandes",
+        "full_name": "Bruno Fernandes",
+        "display_name": "Bruno Fernandes",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Manchester United",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Portugal_national_football_team_0866_%28Bruno_Fernandes%29.jpg/330px-Portugal_national_football_team_0866_%28Bruno_Fernandes%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Bruno_Fernandes"
+        }
+      },
+      {
+        "id": "bernardo-silva",
+        "full_name": "Bernardo Silva",
+        "display_name": "Bernardo Silva",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Manchester City",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Bernardo_Silva_%28Isto_%C3%89_Gozar_Com_Quem_Trabalha%2C_2024%29.png/330px-Bernardo_Silva_%28Isto_%C3%89_Gozar_Com_Quem_Trabalha%2C_2024%29.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Bernardo_Silva"
+        }
+      },
+      {
+        "id": "ruben-neves",
+        "full_name": "Rúben Neves",
+        "display_name": "Rúben Neves",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Al-Hilal",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 6,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/97/R%C3%BAben_Neves_WC2022.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/R%C3%BAben_Neves"
+        }
+      },
+      {
+        "id": "matheus-nunes",
+        "full_name": "Matheus Nunes",
+        "display_name": "Matheus Nunes",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Manchester City",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 16,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/be/Matheus_Nunes.2jpg.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Matheus_Nunes"
+        }
+      },
+      {
+        "id": "cristiano-ronaldo",
+        "full_name": "Cristiano Ronaldo",
+        "display_name": "Cristiano Ronaldo",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Al-Nassr",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg/330px-Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Cristiano_Ronaldo"
+        }
+      },
+      {
+        "id": "rafael-leao",
+        "full_name": "Rafael Leão",
+        "display_name": "Rafael Leão",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "AC Milan",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Rafael_Le%C3%A3o_WC2022.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Rafael_Le%C3%A3o"
+        }
+      },
+      {
+        "id": "pedro-neto",
+        "full_name": "Pedro Neto",
+        "display_name": "Pedro Neto",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Chelsea",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Portugal_national_football_team_0866_%28Pedro_Neto%29.jpg/330px-Portugal_national_football_team_0866_%28Pedro_Neto%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Pedro_Neto"
+        }
+      },
+      {
+        "id": "joao-felix",
+        "full_name": "João Félix",
+        "display_name": "João Félix",
+        "position": "FWD",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Al-Nassr",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 21,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Portugal_national_football_team_0866_%28Jo%C3%A3o_F%C3%A9lix%29.jpg/330px-Portugal_national_football_team_0866_%28Jo%C3%A3o_F%C3%A9lix%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jo%C3%A3o_F%C3%A9lix"
+        }
+      },
+      {
+        "id": "francisco-conceicao",
+        "full_name": "Francisco Conceição",
+        "display_name": "Francisco Conceição",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Juventus",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 25,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/GAE_-_Ajax_-_52788521318_%28cropped%29.jpg/330px-GAE_-_Ajax_-_52788521318_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Francisco_Concei%C3%A7%C3%A3o"
+        }
+      },
+      {
+        "id": "goncalo-ramos",
+        "full_name": "Gonçalo Ramos",
+        "display_name": "Gonçalo Ramos",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Paris Saint-Germain",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Goncalo_Ramos_2020.png/330px-Goncalo_Ramos_2020.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Gon%C3%A7alo_Ramos"
+        }
+      },
+      {
+        "id": "francisco-trincao",
+        "full_name": "Francisco Trincão",
+        "display_name": "Francisco Trincão",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Sporting CP",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
+        },
+        "shirt_number_expected": 26,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Francisco_Trinc%C3%A3o_2019_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Francisco_Trinc%C3%A3o"
+        }
+      },
+      {
+        "id": "diogo-jota",
+        "full_name": "Diogo Jota",
+        "display_name": "Diogo Jota",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Liverpool",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 15,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Diogo_Jota_2025.jpg/330px-Diogo_Jota_2025.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Diogo_Jota"
+        }
+      },
+      {
+        "id": "rafael-rodrigues",
+        "full_name": "Geovany Quenda",
+        "display_name": "Geovany Quenda",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Sporting CP",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
+        },
+        "shirt_number_expected": 24,
+        "status": "bubble"
+      },
+      {
+        "id": "joao-palhinha",
+        "full_name": "João Palhinha",
+        "display_name": "João Palhinha",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Tottenham",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 13,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Jo%C3%A3o_Palhinha_2019.jpg/330px-Jo%C3%A3o_Palhinha_2019.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jo%C3%A3o_Palhinha"
+        }
+      },
+      {
+        "id": "diogo-dalot",
+        "full_name": "Diogo Dalot",
+        "display_name": "Diogo Dalot",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Manchester United",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 2,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Diogo_Dalot_2022_%28cropped%29.jpg/330px-Diogo_Dalot_2022_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Diogo_Dalot"
+        }
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-3-3",
+      "players": [
+        {
+          "player_id": "diogo-costa",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "joao-cancelo",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "ruben-dias",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "antonio-silva",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "nuno-mendes",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "joao-neves",
+          "position": {
+            "x": 50,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "vitinha",
+          "position": {
+            "x": 70,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "bruno-fernandes",
+          "position": {
+            "x": 30,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "bernardo-silva",
+          "position": {
+            "x": 85,
+            "y": 22
+          }
+        },
+        {
+          "player_id": "cristiano-ronaldo",
+          "position": {
+            "x": 50,
+            "y": 18
+          }
+        },
+        {
+          "player_id": "rafael-leao",
+          "position": {
+            "x": 15,
+            "y": 22
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Roberto Martínez plantea un 4-3-3 ofensivo con doble pivote (Vitinha + João Neves), Bruno Fernandes como '10' libre, Cristiano fijo arriba con Leão y Bernardo Silva por las bandas. Identidad: posesión, juego asociativo, libertad creativa, dominio territorial. La calidad técnica es de las mejores del torneo.",
+      "strengths": [
+        "Plantilla con la mejor profundidad ofensiva detrás de Francia: Cristiano, Bruno, Bernardo, Leão, Félix, Neto, Ramos, Conceição, Trincão.",
+        "Mediocampo PSG: Vitinha + João Neves + Nuno Mendes + Gonçalo Ramos. Generación dorada del Paris.",
+        "Defensa central élite: Rúben Dias (City), Renato Veiga (Villarreal), António Silva (Benfica).",
+        "Cristiano sigue marcando: 5 en 5 partidos eliminatoria. Goleador histórico activo.",
+        "Bruno Fernandes en su mejor versión: hat-trick decisivo a Armenia, líder de juego.",
+        "Roberto Martínez: experiencia mundialista (3º Bélgica 2018), conocimiento del rival sudamericano (España)."
+      ],
+      "weaknesses": [
+        "Cristiano a sus 41 años: cuestión de minutos y rendimiento físico decreciente.",
+        "Convivencia Cristiano-Bruno-Bernardo-Félix puede crear tensiones por minutos.",
+        "Roja directa de Cristiano en eliminatoria mostró fragilidad emocional del capitán.",
+        "Generación que ha fallado en 2 Mundiales seguidos (cuartos en 2022, octavos en 2018).",
+        "Defensa fuera de Rúben Dias menos consolidada.",
+        "Sin un '9' táctico: Cristiano juega más como referencia que como '9' moderno; Ramos y Félix son alternativas."
+      ],
+      "x_factor": {
+        "player": "Vitinha",
+        "reason": "El motor del PSG (campeón Champions 2025) llega como uno de los mediocampistas top del mundo. Capaz de dirigir el juego, romper líneas y aparecer en área. Si Portugal consigue dar las llaves del centro a Vitinha, la generación '95-99 (Vitinha, Neves, Conceição, Mendes) puede dominar Mundial."
+      },
+      "prediction_text": "Portugal llega a 2026 como una de las 5 grandes favoritas. La generación más talentosa de su historia (combinación dorada Cristiano + jóvenes PSG) busca el primer Mundial. En el Grupo K con Colombia, Uzbekistán y RD Congo debe pasar como 1º. Cuartos de final es objetivo realista; semifinales es el techo aspiracional. La presión sobre la generación de Cristiano (último Mundial) es enorme.",
+      "probabilities": {
+        "advance_groups": 92,
+        "round_of_32": 85,
+        "round_of_16": 70,
+        "quarter_finals": 45,
+        "semi_finals": 22,
+        "final": 10,
+        "champion": 4
+      },
+      "vs_last_3_wcs": "Rusia 2018: octavos, eliminada por Uruguay 1-2 (doblete Cavani). Catar 2022: cuartos, eliminada por Marruecos 0-1 (En-Nesyri). Mundial 2026: 9ª participación, último Mundial de la era Cristiano. La generación Vitinha-Neves-Leão-Conceição busca consolidarse y abrir la post-Cristiano."
+    }
+  },
+  "history": {
+    "first_appearance": 1966,
+    "appearances_count_before_2026": 8,
+    "appearances_count_with_2026": 9,
+    "consecutive_streak_since": 2010,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 1,
+    "best_result": "Tercer puesto (Inglaterra 1966)",
+    "aggregate_stats_through_2022": {
+      "played": 32,
+      "won": 16,
+      "drawn": 6,
+      "lost": 10,
+      "goals_for": 51,
+      "goals_against": 35,
+      "win_percentage": 50,
+      "notes": "Datos hasta Qatar 2022. Portugal nunca ganó un Mundial pese a tener generaciones legendarias (Eusébio, Figo, Cristiano)."
+    },
+    "by_world_cup": [
+      {
+        "year": 1966,
+        "host": {
+          "countries": [
+            "Inglaterra"
+          ],
+          "iso": [
+            "gb-eng"
+          ]
+        },
+        "result": "Tercer puesto",
+        "coach": "Otto Glória",
+        "captain": "Mário Coluna",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Eusébio",
+            "goals": 9
+          }
+        ],
+        "goals_scored": 17,
+        "goals_conceded": 8,
+        "notable_facts": [
+          "DEBUT mundialista en 1966.",
+          "EUSÉBIO fue Bota de Oro con 9 GOLES (incluido HAT-TRICK ante Corea del Norte 5-3 remontando 0-3).",
+          "Mejor papel histórico hasta hoy: 3er puesto."
+        ],
+        "narrative": "Portugal debutó en Mundiales en Inglaterra 1966 con Eusébio, da Silva y Coluna en su mejor generación pre-2000. Eliminó a la sorpresa coreana 5-3 (REMONTANDO 0-3, hat-trick + asistencia de Eusébio). Cayó en semis ante Inglaterra 1-2 (gol de Eusébio). Bronce ganado a URSS 2-1. Eusébio fue Bota de Oro con 9 goles y consolidó leyenda."
+      },
+      {
+        "year": 1986,
+        "host": {
+          "countries": [
+            "México"
+          ],
+          "iso": [
+            "mx"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "José Augusto Torres",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Carlos Manuel",
+            "goals": 1
+          },
+          {
+            "player": "Diamantino Miranda",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "Tras 20 años de ausencia.",
+          "Eliminada en primera ronda."
+        ],
+        "narrative": "Portugal volvió tras 20 años pero cayó en grupos. Generación pos-Eusébio en transición."
+      },
+      {
+        "year": 2002,
+        "host": {
+          "countries": [
+            "Corea del Sur",
+            "Japón"
+          ],
+          "iso": [
+            "kr",
+            "jp"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "António Oliveira",
+        "captain": "Fernando Couto",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Pauleta",
+            "goals": 3
+          }
+        ],
+        "goals_scored": 6,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "Generación Figo, Rui Costa, Couto.",
+          "Eliminada por sorpresa Estados Unidos 2-3 en debut."
+        ],
+        "narrative": "Portugal con la 'Generación Dorada' (Figo, Rui Costa, Couto) llegó como favorita pero cayó 2-3 con USA en debut. Goleó 4-0 a Polonia, pero perdió 0-1 con Corea del Sur. Figo pidió disculpas a la afición."
+      },
+      {
+        "year": 2006,
+        "host": {
+          "countries": [
+            "Alemania"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
+        "result": "Cuarto puesto",
+        "coach": "Luiz Felipe Scolari",
+        "captain": "Luís Figo",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Maniche",
+            "goals": 2
+          },
+          {
+            "player": "Cristiano Ronaldo",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 7,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Mejor Mundial moderno: cuarto puesto.",
+          "Eliminada por Francia 0-1 en semis (penal de Zidane)."
+        ],
+        "narrative": "Portugal con Figo, Scholari, un joven Cristiano Ronaldo (21 años) llegó a semis en su mejor papel moderno. Eliminó a Inglaterra en penales en cuartos (Cristiano fue protagonista). En semis cayó 0-1 con Francia (penal Zidane). 4º puesto perdiendo con Alemania 1-3."
+      },
+      {
+        "year": 2010,
+        "host": {
+          "countries": [
+            "Sudáfrica"
+          ],
+          "iso": [
+            "za"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Carlos Queiroz",
+        "captain": "Cristiano Ronaldo",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Cristiano Ronaldo",
+            "goals": 1
+          },
+          {
+            "player": "Hugo Almeida",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 7,
+        "goals_conceded": 1,
+        "notable_facts": [
+          "Goleó 7-0 a Corea del Norte.",
+          "Eliminada por España 0-1 en octavos."
+        ],
+        "narrative": "Portugal aplastó 7-0 a Corea del Norte (Tiago, Liedson, Cristiano y otros). Pero cayó ante España 0-1 en octavos (gol Villa). Cristiano tuvo Mundial discreto."
+      },
+      {
+        "year": 2014,
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Paulo Bento",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Cristiano Ronaldo",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 7,
+        "notable_facts": [
+          "Eliminada en primera ronda.",
+          "0-4 ante Alemania en debut, gran golpe."
+        ],
+        "narrative": "Portugal cayó 0-4 con Alemania en debut (Müller hat-trick, Pepe expulsado por cabezazo a Müller). Empate 2-2 con USA y victoria 2-1 sobre Ghana. Eliminada por diferencia de goles."
+      },
+      {
+        "year": 2018,
+        "host": {
+          "countries": [
+            "Rusia"
+          ],
+          "iso": [
+            "ru"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Fernando Santos",
+        "captain": "Cristiano Ronaldo",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Cristiano Ronaldo",
+            "goals": 4
+          }
+        ],
+        "goals_scored": 6,
+        "goals_conceded": 7,
+        "notable_facts": [
+          "HAT-TRICK DE CRISTIANO ANTE ESPAÑA 3-3 EN EL DEBUT.",
+          "Eliminada por Uruguay 1-2 con doblete de Cavani."
+        ],
+        "narrative": "Portugal arrancó con HAT-TRICK DE CRISTIANO ante España 3-3 (incluido tiro libre al ángulo en el 88'). Pasó como 1ª de grupo. En octavos contra Uruguay: 1-2, doblete de Cavani. Cristiano Mundial decente."
+      },
+      {
+        "year": 2022,
+        "host": {
+          "countries": [
+            "Catar"
+          ],
+          "iso": [
+            "qa"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Fernando Santos",
+        "captain": "Cristiano Ronaldo",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Gonçalo Ramos",
+            "goals": 3
+          },
+          {
+            "player": "Bruno Fernandes",
+            "goals": 2
+          },
+          {
+            "player": "Cristiano Ronaldo",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 12,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "GONÇALO RAMOS HIZO HAT-TRICK A SUIZA 6-1 EN OCTAVOS (sustituyendo a Cristiano relegado al banco).",
+          "Cristiano lloró tras eliminación ante Marruecos."
+        ],
+        "narrative": "Portugal con Cristiano y Bruno llegó cómoda. EN OCTAVOS, Fernando Santos sentó a Cristiano y Gonçalo Ramos hizo HAT-TRICK en su debut mundialista (6-1 a Suiza). En cuartos contra Marruecos: 0-1 con gol de En-Nesyri. CRISTIANO LLORÓ EN LA SALIDA tras la eliminación. Adiós doloroso. Santos renunció."
+      }
+    ],
+    "palmares": [
+      {
+        "competition": "Eurocopa",
+        "year": 2016,
+        "position": "Campeón",
+        "host": "Francia"
+      },
+      {
+        "competition": "UEFA Nations League",
+        "year": 2019,
+        "position": "Campeón",
+        "host": "Portugal"
+      },
+      {
+        "competition": "UEFA Nations League",
+        "year": 2025,
+        "position": "Campeón",
+        "host": "Alemania"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Cristiano Ronaldo",
+      "value": 143,
+      "period": "2003-presente",
+      "notes": "MÁXIMO GOLEADOR HISTÓRICO DEL FÚTBOL MASCULINO MUNDIAL DE SELECCIONES. Récord absoluto."
+    },
+    "most_capped": {
+      "name": "Cristiano Ronaldo",
+      "value": 222,
+      "period": "2003-presente",
+      "notes": "RÉCORD MUNDIAL ABSOLUTO de partidos en selecciones masculinas."
+    },
+    "youngest_debut": {
+      "name": "Diogo Costa",
+      "value": "20 años aprox.",
+      "period": "2021 vs Catar",
+      "notes": "Datos pendientes verificación primaria FPF."
+    },
+    "biggest_win": {
+      "result": "9-1",
+      "opponent": "Armenia",
+      "date": "2025-11-16",
+      "competition": "Eliminatorias Mundial 2026"
+    },
+    "worst_loss": {
+      "result": "0-10",
+      "opponent": "Inglaterra",
+      "date": "1947-05-25",
+      "competition": "Amistoso (en Lisboa)"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "Eusébio y los 9 goles del 66",
+      "date": "1966-07-23",
+      "opponent": {
+        "iso": "kp",
+        "name": "Corea del Norte"
+      },
+      "score": "5-3",
+      "competition": "Cuartos Mundial 1966",
+      "narrative": "Portugal remontó un 0-3 ante Corea del Norte en cuartos del Mundial 1966. EUSÉBIO marcó 4 GOLES (2 de penal) en la mítica remontada. Lo tiraron a la lona pero se levantó: era la nueva estrella negra del fútbol mundial. Bota de Oro con 9 goles en el torneo."
+    },
+    {
+      "title": "Hat-trick de Cristiano vs España",
+      "date": "2018-06-15",
+      "opponent": {
+        "iso": "es",
+        "name": "España"
+      },
+      "score": "3-3",
+      "competition": "Fase de Grupos Mundial 2018",
+      "narrative": "Cristiano Ronaldo HIZO HAT-TRICK ante España en el debut del Mundial 2018: 4' (penal), 44', y 88' (TIRO LIBRE AL ÁNGULO superior, golazo). Empate 3-3 inolvidable. Cristiano llegó a los 4 hat-tricks contra Diego Costa, ya leyenda viva."
+    },
+    {
+      "title": "Hat-trick de Gonçalo Ramos",
+      "date": "2022-12-06",
+      "opponent": {
+        "iso": "ch",
+        "name": "Suiza"
+      },
+      "score": "6-1",
+      "competition": "Octavos Mundial 2022",
+      "narrative": "Portugal aplastó 6-1 a Suiza en octavos del Mundial 2022. Fernando Santos SENTÓ A CRISTIANO RONALDO (controversia mundial). El sustituto fue Gonçalo Ramos (21 años, debut mundialista) quien marcó HAT-TRICK. Decisión que tensó la relación Cristiano-Santos hasta la eliminación en cuartos."
+    },
+    {
+      "title": "La eliminación ante Marruecos",
+      "date": "2022-12-10",
+      "opponent": {
+        "iso": "ma",
+        "name": "Marruecos"
+      },
+      "score": "0-1",
+      "competition": "Cuartos Mundial 2022",
+      "narrative": "Portugal cayó eliminada en cuartos del Mundial Catar 2022 ante Marruecos. Gol de Youssef En-Nesyri al 42' tras saltar por encima de Rúben Dias. Cristiano entró al 51' pero no pudo evitar la derrota. CRISTIANO LLORÓ AL DEJAR LA CANCHA, imagen icónica del fin de la era Santos."
+    },
+    {
+      "title": "El 9-1 a Armenia (sin Cristiano)",
+      "date": "2025-11-16",
+      "opponent": {
+        "iso": "am",
+        "name": "Armenia"
+      },
+      "score": "9-1",
+      "competition": "Eliminatorias Mundial 2026",
+      "narrative": "Portugal goleó 9-1 a Armenia en Porto SIN CRISTIANO RONALDO (suspendido por roja en partido anterior). HAT-TRICK DE BRUNO FERNANDES (3 goles), 2 de João Cancelo, gol de João Neves, Renato Veiga, Gonçalo Ramos, Conceição y Trincão. Selló clasificación al Mundial 2026 como 1º del Grupo F."
+    },
+    {
+      "title": "El penal del 88 (Cristiano vs Inglaterra)",
+      "date": "2006-07-01",
+      "opponent": {
+        "iso": "gb-eng",
+        "name": "Inglaterra"
+      },
+      "score": "0-0 (3-1 pen)",
+      "competition": "Cuartos Mundial 2006",
+      "narrative": "Portugal eliminó a Inglaterra en cuartos del Mundial 2006 en penales. Cristiano Ronaldo (21 años, en su 1er Mundial) marcó el penal definitivo y guiñó el ojo al banco rumbo al Manchester United, momento icónico que casi le cuesta la salida del club inglés."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "Cristiano Ronaldo es MÁXIMO GOLEADOR HISTÓRICO DEL FÚTBOL MASCULINO DE SELECCIONES (143+ goles) y ostenta también el récord de MÁS PARTIDOS (222+). Récords absolutos.",
+      "source": "FIFA + UEFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Cristiano disputará en 2026 SU 6º MUNDIAL, récord histórico que comparte solo con Antonio Carbajal (México), Lothar Matthäus (Alemania), Rafa Márquez (México), Andrés Guardado (México) y Lionel Messi (Argentina).",
+      "source": "FIFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Eusébio fue Bota de Oro del Mundial 1966 con 9 goles, primer africano-portugués en lograrlo (nació en Mozambique). Considerado uno de los mejores 10 jugadores de la historia.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Portugal ganó la Eurocopa 2016 sin Cristiano en gran parte de la final (lesionado al 25'). Eder marcó el gol del título 1-0 a Francia en prórroga. Primer título oficial portugués.",
+      "source": "UEFA + FPF",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "El 9-1 a Armenia (16 nov 2025) es la MAYOR GOLEADA de Portugal en la historia de los Mundiales (eliminatorias o fases finales).",
+      "source": "FPF + UEFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Cristiano Ronaldo marcó al menos UN GOL en sus 5 Mundiales (2006-2022), récord histórico que comparte solo con Pelé (1958-1970) entre los grandes goleadores.",
+      "source": "FIFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Roberto Martínez es el primer DT español de Portugal. Lleva a la 'Generación dorada PSG' (Vitinha + Neves + Mendes + Ramos) hacia su primer Mundial.",
+      "source": "FPF + ESPN",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Gonçalo Ramos es el ÚNICO portugués (junto a Eusébio) con hat-trick mundialista. Lo logró en su DEBUT mundial (vs Suiza 2022), reemplazando a Cristiano relegado al banco.",
+      "source": "FIFA + FPF",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "A Portuguesa (himno)",
+      "Portugal! Portugal!",
+      "Vamos Portugal"
+    ],
+    "main_rival": {
+      "iso": "es",
+      "name": "España",
+      "story": "Rivalidad ibérica clásica. Portugal nunca ha ganado un partido oficial a España en Mundiales o Eurocopas (hasta el momento). El 3-3 con hat-trick de Cristiano en 2018 es el momento más recordado de la rivalidad reciente."
+    },
+    "home_stadium": {
+      "name": "Estádio do Dragão (Porto) y José Alvalade (Lisboa)",
+      "capacity": 50033,
+      "city": "Sin estadio fijo: la FPF rota partidos"
+    }
+  },
+  "seo": {
+    "meta_title": "Portugal en el Mundial 2026 | Plantilla, historia y predicciones",
+    "meta_description": "Portugal Mundial 2026: 26 convocados de Roberto Martínez, Cristiano, Bruno Fernandes, Vitinha. Grupo K con Colombia, Uzbekistán y RD Congo.",
+    "og_image_url": "/img/og/teams/portugal.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Portugal",
+      "alternateName": [
+        "A Seleção",
+        "Os Lusos"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "UEFA"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Roberto Martínez"
+      },
+      "url": "https://www.zonamundial.app/selecciones/portugal"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-28",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_Portugal",
+      "https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_de_UEFA_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://es.uefa.com/european-qualifiers/news/029f-1f3188cfc443-494e0d8af33d-1000--mundial-2026-que-selecciones-europeas-se-han-clasificado/",
+      "https://es.uefa.com/european-qualifiers/news/029e-1f01439ca503-abab482d736d-1000--mundial-2026-quienes-se-han-clasificado-de-europa-quienes-e/",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/15895830/se-definen-eliminatorias-uefa-europa-mundial-2026-quien-puede-clasificar",
+      "https://www.fpf.pt",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias cruzadas con UEFA + Wikipedia + ESPN. Historia mundialista validada con FIFA + Wikipedia + FPF.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "complete",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante: pendiente",
+      "Calendario fase de grupos 2026: fechas FIFA exactas pendientes",
+      "Base de entrenamiento: FPF aún no anunció",
+      "FIFA Ranking #8: validar mes vigente",
+      "Historia 1970/1974/1978/1990/1994/1998: ediciones omitidas (no clasificó)"
+    ]
+  }
+}

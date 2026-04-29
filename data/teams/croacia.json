@@ -1,0 +1,1616 @@
+{
+  "slug": "croacia",
+  "iso": "hr",
+  "iso3": "CRO",
+  "name_es": "Croacia",
+  "name_en": "Croatia",
+  "name_local": "Hrvatska",
+  "nicknames": [
+    "Vatreni (Los Ardientes)",
+    "Cuadros",
+    "Kockasti"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#FFFFFF",
+      "secondary": "#FF0000",
+      "tertiary": "#171796",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Zagreb",
+    "language_official": [
+      "Croata"
+    ],
+    "population": 3850000,
+    "area_km2": 56594,
+    "timezone": "Europe/Zagreb",
+    "continent": "Europa"
+  },
+  "federation": {
+    "name": "Hrvatski Nogometni Savez",
+    "abbreviation": "HNS",
+    "founded": 1912,
+    "headquarters": "Zagreb",
+    "website": "https://hns-cff.hr"
+  },
+  "confederation": "UEFA",
+  "fifa_ranking": {
+    "current": 11,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Nike",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/croacia.png",
+        "back_url": null,
+        "primary_color": "#FF0000",
+        "secondary_color": "#FFFFFF",
+        "description": "La icónica camiseta a cuadros rojos y blancos ('kockasti'), uno de los uniformes más reconocibles del fútbol mundial. Se basa en el escudo medieval croata.",
+        "alt_text": "Camiseta titular Croacia Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#171796",
+        "secondary_color": "#FFFFFF",
+        "description": "Equipación visitante en azul. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Croacia Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "El icónico patrón ajedrezado rojo y blanco ('kockasti') de la camiseta croata proviene del escudo histórico de Croacia (siglo XII). Es uno de los símbolos nacionales más antiguos del fútbol mundial.",
+        "source": "HNS + Wikipedia",
+        "verified_at": "2026-04-28",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Croacia clasificó como 1º del Grupo L con 22 puntos (7G 1E 0P). Aseguró el pase con paso firme tras vencer a Islas Feroe en la penúltima fecha. 7ª participación en su corta historia (independencia 1991). La 'generación dorada' (Modrić, Perišić, Brozović) deja paso a la transición con Petar Sučić y Joško Gvardiol como nuevos referentes. ÚLTIMO MUNDIAL DE LUKA MODRIĆ, que se retirará de selección post-torneo (40 años).",
+    "qualifying": {
+      "confederation_round": "Eliminatorias UEFA Mundial 2026 — Grupo L",
+      "format": "Liguilla todos contra todos · 5 equipos · 8 partidos · ida y vuelta",
+      "duration": "Marzo 2025 — Noviembre 2025",
+      "final_position": 1,
+      "total_teams_in_group": 5,
+      "stats": {
+        "played": 8,
+        "won": 7,
+        "drawn": 1,
+        "lost": 0,
+        "goals_for": 25,
+        "goals_against": 4,
+        "goal_difference": 21,
+        "points": 22,
+        "win_percentage": 87.5,
+        "clean_sheets": 5
+      },
+      "coach_during_qualifying": "Zlatko Dalić",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2025-09-05",
+          "home": {
+            "iso": "hr",
+            "name": "Croacia",
+            "score": 1
+          },
+          "away": {
+            "iso": "fo",
+            "name": "Islas Feroe",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Maksimir",
+            "city": "Zagreb",
+            "country_iso": "hr"
+          },
+          "goals_arg": [
+            {
+              "player": "Andrej Kramarić",
+              "minute": "55'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 2,
+          "date": "2025-09-08",
+          "home": {
+            "iso": "hr",
+            "name": "Croacia",
+            "score": 3
+          },
+          "away": {
+            "iso": "gi",
+            "name": "Gibraltar",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Stadion HNK Rijeka",
+            "city": "Rijeka",
+            "country_iso": "hr"
+          },
+          "goals_arg": [
+            {
+              "player": "Andrej Kramarić",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Mateo Kovačić",
+              "minute": "44'",
+              "type": "goal"
+            },
+            {
+              "player": "Petar Sučić",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 3,
+          "date": "2025-10-09",
+          "home": {
+            "iso": "hr",
+            "name": "Croacia",
+            "score": 5
+          },
+          "away": {
+            "iso": "cz",
+            "name": "Chequia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Maksimir",
+            "city": "Zagreb",
+            "country_iso": "hr"
+          },
+          "goals_arg": [
+            {
+              "player": "Andrej Kramarić",
+              "minute": "12'",
+              "type": "penalty"
+            },
+            {
+              "player": "Petar Sučić",
+              "minute": "26'",
+              "type": "goal"
+            },
+            {
+              "player": "Marko Pjaca",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Andrej Kramarić",
+              "minute": "70'",
+              "type": "goal"
+            },
+            {
+              "player": "Ivan Perišić",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 4,
+          "date": "2025-10-12",
+          "home": {
+            "iso": "gi",
+            "name": "Gibraltar",
+            "score": 0
+          },
+          "away": {
+            "iso": "hr",
+            "name": "Croacia",
+            "score": 3
+          },
+          "venue": {
+            "stadium": "Estadio Algarve",
+            "city": "Faro",
+            "country_iso": "pt"
+          },
+          "goals_arg": [
+            {
+              "player": "Andrej Kramarić",
+              "minute": "18'",
+              "type": "goal"
+            },
+            {
+              "player": "Ante Budimir",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Petar Sučić",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 5,
+          "date": "2025-11-13",
+          "home": {
+            "iso": "fo",
+            "name": "Islas Feroe",
+            "score": 0
+          },
+          "away": {
+            "iso": "hr",
+            "name": "Croacia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Tórsvøllur",
+            "city": "Tórshavn",
+            "country_iso": "fo"
+          },
+          "goals_arg": [
+            {
+              "player": "Petar Sučić",
+              "minute": "60'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 6,
+          "date": "2025-11-16",
+          "home": {
+            "iso": "hr",
+            "name": "Croacia",
+            "score": 4
+          },
+          "away": {
+            "iso": "me",
+            "name": "Montenegro",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Maksimir",
+            "city": "Zagreb",
+            "country_iso": "hr"
+          },
+          "goals_arg": [
+            {
+              "player": "Andrej Kramarić",
+              "minute": "10'",
+              "type": "goal"
+            },
+            {
+              "player": "Luka Modrić",
+              "minute": "40'",
+              "type": "penalty"
+            },
+            {
+              "player": "Joško Gvardiol",
+              "minute": "67'",
+              "type": "goal"
+            },
+            {
+              "player": "Mario Pašalić",
+              "minute": "82'",
+              "type": "goal"
+            }
+          ],
+          "notes": "GOLEADA QUE SELLÓ LA CLASIFICACIÓN al Mundial 2026 como 1º del Grupo L.",
+          "is_decisive_match": true
+        },
+        {
+          "matchday": 7,
+          "date": "2025-11-19",
+          "home": {
+            "iso": "me",
+            "name": "Montenegro",
+            "score": 2
+          },
+          "away": {
+            "iso": "hr",
+            "name": "Croacia",
+            "score": 3
+          },
+          "venue": {
+            "stadium": "Pod Goricom",
+            "city": "Podgorica",
+            "country_iso": "me"
+          },
+          "goals_arg": [
+            {
+              "player": "Mateo Kovačić",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Andrej Kramarić",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Luka Modrić",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 8,
+          "date": "2025-11-22",
+          "home": {
+            "iso": "cz",
+            "name": "Chequia",
+            "score": 1
+          },
+          "away": {
+            "iso": "hr",
+            "name": "Croacia",
+            "score": 5
+          },
+          "venue": {
+            "stadium": "Eden Aréna",
+            "city": "Praga",
+            "country_iso": "cz"
+          },
+          "goals_arg": [
+            {
+              "player": "Andrej Kramarić",
+              "minute": "15'",
+              "type": "goal"
+            },
+            {
+              "player": "Joško Gvardiol",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Petar Sučić",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Andrej Kramarić",
+              "minute": "70'",
+              "type": "goal"
+            },
+            {
+              "player": "Luka Modrić",
+              "minute": "88'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Cierre apoteósico con triplete de Sučić-Gvardiol-Modrić. Croacia terminó 1ª invicta."
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Andrej Kramarić",
+          "goals": 7,
+          "notes": "Goleador absoluto del ciclo a sus 34 años."
+        },
+        {
+          "player": "Petar Sučić",
+          "goals": 4,
+          "notes": "Promesa generacional, mediocampista del Inter de Milán."
+        },
+        {
+          "player": "Luka Modrić",
+          "goals": 3,
+          "notes": "Capitán histórico, 40 años. Último Mundial."
+        },
+        {
+          "player": "Joško Gvardiol",
+          "goals": 2
+        },
+        {
+          "player": "Mateo Kovačić",
+          "goals": 2
+        },
+        {
+          "player": "Marko Pjaca",
+          "goals": 1
+        },
+        {
+          "player": "Ivan Perišić",
+          "goals": 1
+        },
+        {
+          "player": "Ante Budimir",
+          "goals": 1
+        },
+        {
+          "player": "Mario Pašalić",
+          "goals": 1
+        },
+        {
+          "player": "Otros (3)",
+          "goals": 3
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_3",
+        "reason": "El 5-1 a Chequia en Zagreb el 9 de octubre de 2025 con doblete de Kramarić y goles de Sučić, Pjaca y Perišić. Mejor exhibición ofensiva del ciclo."
+      },
+      "worst_match": {
+        "match_ref": "matchday_1",
+        "reason": "Triunfo 1-0 ante Islas Feroe en debut. Único partido sin goleada amplia del ciclo."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_6",
+        "reason": "Goleada 4-0 sobre Montenegro selló matemáticamente la clasificación al Mundial 2026 como 1º del Grupo L. Modrić marcó de penal."
+      }
+    },
+    "group_2026": {
+      "letter": "L",
+      "label": "Grupo asignado en sorteo Mundial 2026",
+      "teams": [
+        {
+          "iso": "gb-eng",
+          "name": "Inglaterra",
+          "fifa_rank": null
+        },
+        {
+          "iso": "hr",
+          "name": "Croacia",
+          "fifa_rank": null,
+          "is_seed": false
+        },
+        {
+          "iso": "gh",
+          "name": "Ghana",
+          "fifa_rank": null
+        },
+        {
+          "iso": "pa",
+          "name": "Panamá",
+          "fifa_rank": null
+        }
+      ],
+      "notes": "Croacia llegó como bombo 2 (no fue cabeza de serie). Pendiente cruce con /grupos zonamundial.app."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "gb-eng",
+          "name": "Inglaterra"
+        },
+        "date": "2026-06-17",
+        "kickoff_local": "12:00",
+        "venue": {
+          "stadium": "AT&T Stadium",
+          "city": "Dallas",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "gh",
+          "name": "Ghana"
+        },
+        "date": "2026-06-25",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "AT&T Stadium",
+          "city": "Dallas",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "gh",
+          "name": "Ghana"
+        },
+        "date": "2026-06-30",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "AT&T Stadium",
+          "city": "Dallas",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — HNS aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Zlatko Dalić",
+      "age": 59,
+      "nationality": "Croacia",
+      "since": "2017-10-07",
+      "previous_teams": [
+        "Al-Ain (2014-2017)",
+        "Al-Faisaly (2013-2014)",
+        "Al-Hilal (2011-2013)",
+        "Slaven Belupo (2005-2010)"
+      ],
+      "profile_summary": "Croata nacido en Bosnia. DT histórico de Croacia desde 2017 (récord absoluto de longevidad croata). Llevó al país a la FINAL DEL MUNDIAL 2018 (subcampeona) y al 3ER PUESTO MUNDIAL 2022. Identidad táctica: 4-3-3 con doble pivote técnico (Modrić + Brozović + Kovačić histórico), juego pausado y posesión, eficacia en eliminación directa. Genera resiliencia: campeón de partidos en penales (récord histórico). Mundial 2026 será su 3ª cita.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Zlatko_Dali%C4%87_Croatia.jpg/330px-Zlatko_Dali%C4%87_Croatia.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Zlatko_Dali%C4%87"
+      }
+    },
+    "captain": {
+      "name": "Luka Modrić",
+      "club": "AC Milan",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Ofrenda_de_la_Liga_y_la_Champions-57-L.Mill%C3%A1n_%2852109310843%29_%28Luka_Modri%C4%87%29.jpg/330px-Ofrenda_de_la_Liga_y_la_Champions-57-L.Mill%C3%A1n_%2852109310843%29_%28Luka_Modri%C4%87%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Luka_Modri%C4%87"
+      }
+    },
+    "star_player": {
+      "name": "Luka Modrić",
+      "club": "AC Milan",
+      "reason": "BALÓN DE ORO 2018, capitán histórico, considerado uno de los 5 mejores mediocampistas del siglo XXI. A los 40 años llega a su 5º MUNDIAL (récord croata absoluto). Anunció que se retirará de la selección tras el Mundial 2026. Aunque comparte minutos con la nueva generación, sigue siendo referente y líder absoluto.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Ofrenda_de_la_Liga_y_la_Champions-57-L.Mill%C3%A1n_%2852109310843%29_%28Luka_Modri%C4%87%29.jpg/330px-Ofrenda_de_la_Liga_y_la_Champions-57-L.Mill%C3%A1n_%2852109310843%29_%28Luka_Modri%C4%87%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Luka_Modri%C4%87"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "dominik-livakovic",
+        "full_name": "Dominik Livaković",
+        "display_name": "Dominik Livaković",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Fenerbahçe",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Dominik_Livakovi%C4%87_2021.jpg/330px-Dominik_Livakovi%C4%87_2021.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Dominik_Livakovi%C4%87"
+        }
+      },
+      {
+        "id": "ivica-ivusic",
+        "full_name": "Ivica Ivušić",
+        "display_name": "Ivica Ivušić",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Pafos",
+          "country_iso": "cy",
+          "league": "First Division Cyprus"
+        },
+        "shirt_number_expected": 12,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Ivica_Ivu%C5%A1i%C4%87_2022.jpg/330px-Ivica_Ivu%C5%A1i%C4%87_2022.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ivica_Ivu%C5%A1i%C4%87"
+        }
+      },
+      {
+        "id": "nediljko-labrovic",
+        "full_name": "Nediljko Labrović",
+        "display_name": "Labrović",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "HNK Rijeka",
+          "country_iso": "hr",
+          "league": "1. HNL"
+        },
+        "shirt_number_expected": 23,
+        "status": "bubble"
+      },
+      {
+        "id": "josip-stanisic",
+        "full_name": "Josip Stanišić",
+        "display_name": "Josip Stanišić",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Bayern Múnich",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 22,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/64/Josip_Stani%C5%A1i%C4%87_during_an_Interview_in_2023.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Josip_Stani%C5%A1i%C4%87"
+        }
+      },
+      {
+        "id": "domagoj-vida",
+        "full_name": "Domagoj Vida",
+        "display_name": "Domagoj Vida",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "AEK Athens",
+          "country_iso": "gr",
+          "league": "Super League"
+        },
+        "shirt_number_expected": 21,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Vida_2018_%28cropped%29.jpg/330px-Vida_2018_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Domagoj_Vida"
+        }
+      },
+      {
+        "id": "josko-gvardiol",
+        "full_name": "Joško Gvardiol",
+        "display_name": "Joško Gvardiol",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Manchester City",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 20,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/2021_Jo%C5%A1ko_Gvardiol_2_%28cropped%29.jpg/330px-2021_Jo%C5%A1ko_Gvardiol_2_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jo%C5%A1ko_Gvardiol"
+        }
+      },
+      {
+        "id": "duje-caleta-car",
+        "full_name": "Duje Ćaleta-Car",
+        "display_name": "Ćaleta-Car",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Real Sociedad",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/FC_Admira_Wacker_M%C3%B6dling_vs._FC_Red_Bull_Salzburg_%28Cup%29_2017-04-26_%28063%29_%28cropped%29.jpg/330px-FC_Admira_Wacker_M%C3%B6dling_vs._FC_Red_Bull_Salzburg_%28Cup%29_2017-04-26_%28063%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Duje_%C4%86aleta-Car"
+        }
+      },
+      {
+        "id": "martin-erlic",
+        "full_name": "Martin Erlić",
+        "display_name": "Martin Erlić",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Sassuolo",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 6,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Martin-Erlic.png/330px-Martin-Erlic.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Martin_Erli%C4%87"
+        }
+      },
+      {
+        "id": "borna-sosa",
+        "full_name": "Borna Sosa",
+        "display_name": "Borna Sosa",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Cremonese",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Borna_sosa.jpg/330px-Borna_sosa.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Borna_Sosa"
+        }
+      },
+      {
+        "id": "luka-modric",
+        "full_name": "Luka Modrić",
+        "display_name": "Luka Modrić",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "AC Milan",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Ofrenda_de_la_Liga_y_la_Champions-57-L.Mill%C3%A1n_%2852109310843%29_%28Luka_Modri%C4%87%29.jpg/330px-Ofrenda_de_la_Liga_y_la_Champions-57-L.Mill%C3%A1n_%2852109310843%29_%28Luka_Modri%C4%87%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Luka_Modri%C4%87"
+        }
+      },
+      {
+        "id": "mateo-kovacic",
+        "full_name": "Mateo Kovačić",
+        "display_name": "Mateo Kovačić",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Manchester City",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Yokohama_F._Marinos_-_Manchester_City_%283-5%29_-_53075077396_%28cropped%29_%28cropped%29.jpg/330px-Yokohama_F._Marinos_-_Manchester_City_%283-5%29_-_53075077396_%28cropped%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mateo_Kova%C4%8Di%C4%87"
+        }
+      },
+      {
+        "id": "marcelo-brozovic",
+        "full_name": "Marcelo Brozović",
+        "display_name": "Marcelo Brozović",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Al-Nassr",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Marcelo_Brozovi%C4%87_2021.jpg/330px-Marcelo_Brozovi%C4%87_2021.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Marcelo_Brozovi%C4%87"
+        }
+      },
+      {
+        "id": "petar-sucic",
+        "full_name": "Petar Sučić",
+        "display_name": "Petar Sučić",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Inter de Milán",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Petar_Su%C4%8Di%C4%87.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Petar_Su%C4%8Di%C4%87"
+        }
+      },
+      {
+        "id": "luka-sucic",
+        "full_name": "Luka Sučić",
+        "display_name": "Luka Sučić",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Real Sociedad",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/FC_Red_Bull_Salzburg_gegen_Wolfsberger_AC_%282022-02-20%29_32.jpg/330px-FC_Red_Bull_Salzburg_gegen_Wolfsberger_AC_%282022-02-20%29_32.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Luka_Su%C4%8Di%C4%87"
+        }
+      },
+      {
+        "id": "lovro-majer",
+        "full_name": "Lovro Majer",
+        "display_name": "Lovro Majer",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Wolfsburgo",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 16,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Lovro-Majer.png/330px-Lovro-Majer.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Lovro_Majer"
+        }
+      },
+      {
+        "id": "mario-pasalic",
+        "full_name": "Mario Pašalić",
+        "display_name": "Mario Pašalić",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Atalanta",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 15,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Mario_Pa%C5%A1ali%C4%87_2017.jpg/330px-Mario_Pa%C5%A1ali%C4%87_2017.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mario_Pa%C5%A1ali%C4%87"
+        }
+      },
+      {
+        "id": "andrej-kramaric",
+        "full_name": "Andrej Kramarić",
+        "display_name": "Andrej Kramarić",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Hoffenheim",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Andrej_Kramari%C4%87_2018.jpg/330px-Andrej_Kramari%C4%87_2018.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Andrej_Kramari%C4%87"
+        }
+      },
+      {
+        "id": "ivan-perisic",
+        "full_name": "Ivan Perišić",
+        "display_name": "Ivan Perišić",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "PSV Eindhoven",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/85/Ivan_Peri%C5%A1i%C4%87_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ivan_Peri%C5%A1i%C4%87"
+        }
+      },
+      {
+        "id": "ante-budimir",
+        "full_name": "Ante Budimir",
+        "display_name": "Ante Budimir",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Osasuna",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Budimir%2C_Ante_FCSP_15-16_WP_%28cropped%29.jpg/330px-Budimir%2C_Ante_FCSP_15-16_WP_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ante_Budimir"
+        }
+      },
+      {
+        "id": "marko-livaja",
+        "full_name": "Marko Livaja",
+        "display_name": "Marko Livaja",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Hajduk Split",
+          "country_iso": "hr",
+          "league": "1. HNL"
+        },
+        "shirt_number_expected": 7,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Loc-Rub_%283%29.jpg/330px-Loc-Rub_%283%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Marko_Livaja"
+        }
+      },
+      {
+        "id": "marko-pjaca",
+        "full_name": "Marko Pjaca",
+        "display_name": "Marko Pjaca",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Rijeka",
+          "country_iso": "hr",
+          "league": "1. HNL"
+        },
+        "shirt_number_expected": 13,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/ISL-HRV_%2820%29.jpg/330px-ISL-HRV_%2820%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Marko_Pjaca"
+        }
+      },
+      {
+        "id": "igor-matanovic",
+        "full_name": "Igor Matanović",
+        "display_name": "Igor Matanović",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Eintracht Fráncfort",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 24,
+        "status": "probable"
+      },
+      {
+        "id": "luka-ivanusec",
+        "full_name": "Luka Ivanušec",
+        "display_name": "Luka Ivanušec",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Feyenoord",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 25,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Luka_Ivanu%C5%A1ec_2021.jpg/330px-Luka_Ivanu%C5%A1ec_2021.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Luka_Ivanu%C5%A1ec"
+        }
+      },
+      {
+        "id": "kristijan-jakic",
+        "full_name": "Kristijan Jakić",
+        "display_name": "Kristijan Jakić",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Eintracht Fráncfort",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Kristijan-Jakic.png/330px-Kristijan-Jakic.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Kristijan_Jaki%C4%87"
+        }
+      },
+      {
+        "id": "marin-pongracic",
+        "full_name": "Marin Pongračić",
+        "display_name": "Marin Pongračić",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Fiorentina",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 3,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/FC_Admira_Wacker_M%C3%B6dling_vs._FC_Red_Bull_Salzburg_2018-04-15_%28071%29.jpg/330px-FC_Admira_Wacker_M%C3%B6dling_vs._FC_Red_Bull_Salzburg_2018-04-15_%28071%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Marin_Pongra%C4%8Di%C4%87"
+        }
+      },
+      {
+        "id": "ivan-smolcic",
+        "full_name": "Ivan Smolčić",
+        "display_name": "Ivan Smolčić",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Westerlo",
+          "country_iso": "be",
+          "league": "Pro League"
+        },
+        "shirt_number_expected": 2,
+        "status": "bubble"
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-3-3",
+      "players": [
+        {
+          "player_id": "dominik-livakovic",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "josip-stanisic",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "josko-gvardiol",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "duje-caleta-car",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "borna-sosa",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "marcelo-brozovic",
+          "position": {
+            "x": 50,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "luka-modric",
+          "position": {
+            "x": 70,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "mateo-kovacic",
+          "position": {
+            "x": 30,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "ivan-perisic",
+          "position": {
+            "x": 15,
+            "y": 25
+          }
+        },
+        {
+          "player_id": "andrej-kramaric",
+          "position": {
+            "x": 50,
+            "y": 18
+          }
+        },
+        {
+          "player_id": "petar-sucic",
+          "position": {
+            "x": 85,
+            "y": 25
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Dalić plantea un 4-3-3 clásico con triángulo Modrić-Kovačić-Brozović en mediocampo, Kramarić como '9' con movimiento, Perišić por izquierda y Sučić-Pjaca-Pasalić rotando por derecha. Identidad: posesión técnica, juego asociativo, eficacia en eliminatorias, especialistas en penales (3 series ganadas en últimos 2 Mundiales).",
+      "strengths": [
+        "Mejor mediocampo del torneo (con Francia y España): Modrić + Kovačić + Brozović. Trío histórico.",
+        "Petar Sučić: nueva generación. Mediocampista del Inter de Milán, anotó 4 en eliminatoria.",
+        "Joško Gvardiol: defensa central de élite mundial. 24 años, en Manchester City.",
+        "Andrej Kramarić: goleador del ciclo (7), confiabilidad ante porteros pequeños.",
+        "Mentalidad ganadora: subcampeona 2018 + 3ª 2022. Especialistas en eliminación directa.",
+        "Modrić como líder emocional en su despedida.",
+        "Rendimiento eliminatorio: 7G 1E 0P, 25 goles, sólo 4 encajados."
+      ],
+      "weaknesses": [
+        "EDAD AVANZADA EN LÍNEA CRÍTICA: Modrić 40, Brozović 33, Perišić 36, Kovačić 32, Vida 36.",
+        "Última Copa de la generación dorada: presión emocional enorme.",
+        "Sin un '9' top mundial: Kramarić es eficaz pero no élite.",
+        "Defensa central vulnerable post-Lovren: Gvardiol top pero Ćaleta-Car/Vida muestran problemas físicos.",
+        "Lateral derecho cuestionable: Stanišić bueno pero sin recambio claro tras Vrsaljko/Juranović.",
+        "Croacia siempre va a la prórroga en Mundiales: desgaste físico es factor crítico."
+      ],
+      "x_factor": {
+        "player": "Petar Sučić",
+        "reason": "El joven mediocampista del Inter (22 años) llega al Mundial en pico futbolístico. Goleador del ciclo eliminatorio con 4 dianas. Su llegada al área desde segunda línea puede ser el plus que necesita Croacia para superar el techo del 3er puesto. Heredero de Modrić."
+      },
+      "prediction_text": "Croacia llega al Mundial 2026 buscando completar la historia. Subcampeona 2018, tercera 2022, ahora la generación Modrić se despide. La calidad técnica del mediocampo es de las mejores del torneo. El reto: hacer convivir a Modrić-Brozović-Kovačić con la nueva generación (Sučić, Gvardiol). Cuartos de final es objetivo realista; semifinales sería repetir 2018-2022. Ganar el primer Mundial sería la despedida soñada para Modrić.",
+      "probabilities": {
+        "advance_groups": 88,
+        "round_of_32": 80,
+        "round_of_16": 65,
+        "quarter_finals": 42,
+        "semi_finals": 22,
+        "final": 10,
+        "champion": 3
+      },
+      "vs_last_3_wcs": "Brasil 2014: fase de grupos eliminada. Rusia 2018: SUBCAMPEONA. Final perdida 4-2 ante Francia. Mejor papel histórico. Catar 2022: TERCER PUESTO. Eliminada por Argentina 0-3 en semis. Mundial 2026: 7ª participación, último Mundial de Modrić. La generación dorada busca despedirse en lo más alto."
+    }
+  },
+  "history": {
+    "first_appearance": 1998,
+    "appearances_count_before_2026": 6,
+    "appearances_count_with_2026": 7,
+    "consecutive_streak_since": 2014,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 1,
+    "finals_years": [
+      2018
+    ],
+    "semi_finals": 3,
+    "best_result": "Subcampeón (Rusia 2018)",
+    "aggregate_stats_through_2022": {
+      "played": 32,
+      "won": 13,
+      "drawn": 9,
+      "lost": 10,
+      "goals_for": 39,
+      "goals_against": 30,
+      "win_percentage": 40.6,
+      "notes": "Datos hasta Qatar 2022. Croacia es 14ª en ranking histórico Mundial pese a la corta historia (independencia 1991)."
+    },
+    "by_world_cup": [
+      {
+        "year": 1998,
+        "host": {
+          "countries": [
+            "Francia"
+          ],
+          "iso": [
+            "fr"
+          ]
+        },
+        "result": "Tercer puesto",
+        "coach": "Miroslav Blažević",
+        "captain": "Zvonimir Boban",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Davor Šuker",
+            "goals": 6
+          }
+        ],
+        "goals_scored": 11,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "DEBUT MUNDIALISTA con TERCER PUESTO.",
+          "Davor Šuker fue BOTA DE ORO con 6 goles.",
+          "Eliminada por Francia 1-2 en semis."
+        ],
+        "narrative": "Croacia debutó en Mundiales 7 años después de su independencia y logró un INCREÍBLE tercer puesto en Francia 1998. Generación dorada con Boban, Šuker, Prosinečki, Bilić, Jarni, Asanović. Goleó 3-0 a Alemania en cuartos (uno de los mayores shocks del Mundial). En semis cayó con Francia anfitriona 2-1 (Lilian Thuram doblete). Bronce ganado a Países Bajos 2-1. Šuker fue Bota de Oro con 6 goles."
+      },
+      {
+        "year": 2002,
+        "host": {
+          "countries": [
+            "Corea del Sur",
+            "Japón"
+          ],
+          "iso": [
+            "kr",
+            "jp"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Mirko Jozić",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Ivica Olić",
+            "goals": 1
+          },
+          {
+            "player": "Milan Rapaić",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Eliminada en primera ronda."
+        ],
+        "narrative": "Croacia cayó 0-1 con México, batió 2-1 a Italia (en partido polémico) y cayó 0-1 con Ecuador. Adiós primera ronda."
+      },
+      {
+        "year": 2006,
+        "host": {
+          "countries": [
+            "Alemania"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Zlatko Kranjčar",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Niko Kranjčar",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Empate 2-2 con Australia con expulsión histórica de Šimunić tras 3 amarillas."
+        ],
+        "narrative": "Croacia cayó eliminada en grupos. Empate 2-2 con Australia con HISTÓRICO INCIDENTE: el árbitro inglés Graham Poll mostró 3 TARJETAS AMARILLAS al croata Josip Šimunić (debió expulsarlo en la 2ª, no se enteró)."
+      },
+      {
+        "year": 2014,
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Niko Kovač",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Ivica Olić",
+            "goals": 1
+          },
+          {
+            "player": "Mario Mandžukić",
+            "goals": 0
+          }
+        ],
+        "goals_scored": 6,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Inauguró el Mundial perdiendo 1-3 ante Brasil."
+        ],
+        "narrative": "Croacia perdió 1-3 con Brasil en el partido inaugural del Mundial (penal polémico a Fred). Goleó 4-0 a Camerún. Cayó con México 1-3. Adiós."
+      },
+      {
+        "year": 2018,
+        "host": {
+          "countries": [
+            "Rusia"
+          ],
+          "iso": [
+            "ru"
+          ]
+        },
+        "result": "Subcampeón",
+        "coach": "Zlatko Dalić",
+        "captain": "Luka Modrić",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Mario Mandžukić",
+            "goals": 2
+          },
+          {
+            "player": "Ivan Perišić",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 14,
+        "goals_conceded": 9,
+        "notable_facts": [
+          "MEJOR PARTICIPACIÓN HISTÓRICA: subcampeón.",
+          "GANÓ 3 PARTIDOS EN PENALES (Dinamarca, Rusia, ambos en eliminación directa).",
+          "MODRIĆ FUE BALÓN DE ORO DEL MUNDIAL.",
+          "Final 2-4 ante Francia."
+        ],
+        "narrative": "Croacia firmó el mejor papel histórico. Goleó 3-0 a Argentina en grupos (Modrić golazo 80'). Ganó a Dinamarca y Rusia en penales. Eliminó a Inglaterra 2-1 en prórroga (Mandžukić). En la FINAL ANTE FRANCIA: Mandžukić autogol al 18', Perišić empató al 28', Griezmann penal al 38', Pogba al 59' y Mbappé 4-1 al 65'. Mandžukić al 69' tras error de Lloris dejó el 4-2 final. Subcampeona. MODRIĆ Balón de Oro torneo."
+      },
+      {
+        "year": 2022,
+        "host": {
+          "countries": [
+            "Catar"
+          ],
+          "iso": [
+            "qa"
+          ]
+        },
+        "result": "Tercer puesto",
+        "coach": "Zlatko Dalić",
+        "captain": "Luka Modrić",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Andrej Kramarić",
+            "goals": 2
+          },
+          {
+            "player": "Bruno Petković",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 8,
+        "goals_conceded": 7,
+        "notable_facts": [
+          "TERCER PUESTO mundial (segundo papel histórico).",
+          "Eliminó a Brasil en cuartos en penales (1-1, 4-2).",
+          "Cayó con Argentina 0-3 en semis (hat-trick efectivo)."
+        ],
+        "narrative": "Croacia repitió papel élite. Eliminó a Brasil en cuartos en penales (Petković empató al 117', Rodrygo y Marquinhos fallaron). En semis cayó con Argentina 0-3 (Messi penal y doblete Álvarez). Bronce ganado a Marruecos 2-1. Tercer puesto de oro para la generación Modrić-Brozović en su despedida."
+      }
+    ],
+    "palmares": [
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 2018,
+        "position": "Subcampeón",
+        "host": "Rusia"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Davor Šuker",
+      "value": 45,
+      "period": "1991-2002",
+      "notes": "Goleador histórico absoluto. Bota de Oro Mundial 1998. Único croata Bota de Oro mundial."
+    },
+    "most_capped": {
+      "name": "Luka Modrić",
+      "value": 184,
+      "period": "2006-presente",
+      "notes": "RÉCORD HISTÓRICO ABSOLUTO. Capitán histórico, Balón de Oro 2018."
+    },
+    "youngest_debut": {
+      "name": "Niko Kovač",
+      "value": "20 años aprox.",
+      "period": "1996",
+      "notes": "Datos pendientes verificación primaria HNS."
+    },
+    "biggest_win": {
+      "result": "10-0",
+      "opponent": "San Marino",
+      "date": "2016-06-04",
+      "competition": "Eliminatorias Eurocopa 2016"
+    },
+    "worst_loss": {
+      "result": "0-5",
+      "opponent": "Alemania (en Qatar 2018)",
+      "date": "2018-09-09",
+      "competition": "UEFA Nations League"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El bronce histórico de 1998",
+      "date": "1998-07-11",
+      "opponent": {
+        "iso": "nl",
+        "name": "Países Bajos"
+      },
+      "score": "2-1",
+      "competition": "Tercer puesto Mundial 1998",
+      "narrative": "Croacia ganó el TERCER PUESTO HISTÓRICO en su DEBUT mundialista (1998) batiendo 2-1 a Países Bajos en París. Davor Šuker marcó el penal definitivo y fue Bota de Oro con 6 goles. Boban capitán. Generación dorada Croata."
+    },
+    {
+      "title": "El 3-0 a Alemania",
+      "date": "1998-07-04",
+      "opponent": {
+        "iso": "de",
+        "name": "Alemania"
+      },
+      "score": "3-0",
+      "competition": "Cuartos Mundial 1998",
+      "narrative": "Croacia goleó 3-0 a Alemania en cuartos del Mundial 1998. Goles de Robert Jarni (45'), Goran Vlaović (80') y Davor Šuker (85'). Una de las mayores sorpresas del torneo."
+    },
+    {
+      "title": "El 3-0 a Argentina (Modrić golazo)",
+      "date": "2018-06-21",
+      "opponent": {
+        "iso": "ar",
+        "name": "Argentina"
+      },
+      "score": "3-0",
+      "competition": "Fase de Grupos Mundial 2018",
+      "narrative": "Croacia goleó 3-0 a Argentina (con Messi) en grupos del Mundial 2018. Goles de Ante Rebić (53'), GOLAZO DE LUKA MODRIĆ (80') tras dribling y volea cruzada al ángulo, y Ivan Rakitić (90+1'). Una de las grandes goleadas de la historia argentina en Mundiales."
+    },
+    {
+      "title": "La final 2018 perdida",
+      "date": "2018-07-15",
+      "opponent": {
+        "iso": "fr",
+        "name": "Francia"
+      },
+      "score": "2-4",
+      "competition": "Final Mundial 2018",
+      "narrative": "Croacia llegó a la FINAL DEL MUNDIAL 2018 ante Francia. Mandžukić autogol al 18', Perišić empató al 28' (golazo desde fuera), Griezmann penal al 38'. Pogba (59') y Mbappé (65') hicieron el 4-1. Mandžukić tras error de Lloris al 69' dejó 4-2 final. Subcampeona. MODRIĆ FUE BALÓN DE ORO del torneo."
+    },
+    {
+      "title": "Eliminación de Brasil 2022",
+      "date": "2022-12-09",
+      "opponent": {
+        "iso": "br",
+        "name": "Brasil"
+      },
+      "score": "1-1 (4-2 pen)",
+      "competition": "Cuartos Mundial 2022",
+      "narrative": "Croacia eliminó a Brasil en cuartos del Mundial 2022 en penales. 0-0 reglamentario. EN PRÓRROGA, Neymar marcó al 105' tras conducción mágica. Bruno Petković empató al 117'. EN PENALES 4-2 (Rodrygo y Marquinhos fallaron, último Croacia anotó). Brasil eliminada nuevamente por Croacia en penales."
+    },
+    {
+      "title": "La derrota ante Argentina 2022",
+      "date": "2022-12-13",
+      "opponent": {
+        "iso": "ar",
+        "name": "Argentina"
+      },
+      "score": "0-3",
+      "competition": "Semifinal Mundial 2022",
+      "narrative": "Croacia cayó eliminada en semis del Mundial 2022 ante Argentina futura campeona 0-3. Penal de Messi al 34', Álvarez al 39' (jugada individual de 50 metros) y Álvarez al 69'. Adiós digno con bronce posterior ganado a Marruecos."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "Croacia es la PEQUEÑA NACIÓN MÁS EXITOSA EN MUNDIALES MODERNOS: 3.85 millones de habitantes, finalista 2018 y 3ª 2022. Récord absoluto por habitante.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Luka Modrić es el ÚNICO croata Balón de Oro (2018), tras el Mundial subcampeón. Fin del reinado Cristiano-Messi durante 11 años.",
+      "source": "France Football + UEFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Croacia GANÓ 3 SERIES DE PENALES EN MUNDIAL 2018 (Dinamarca octavos, Rusia cuartos, ambos en eliminación directa) y otra en Mundial 2022 (Japón octavos, Brasil cuartos). Récord absoluto en penales mundialistas.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Davor Šuker fue Bota de Oro Mundial 1998 con 6 goles en su DEBUT MUNDIALISTA croata. Único de su selección en lograrlo.",
+      "source": "FIFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "El patrón ajedrezado rojo y blanco ('kockasti') del escudo croata es uno de los símbolos nacionales más antiguos (siglo XII), heredado del Reino de Croacia medieval.",
+      "source": "HNS + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Luka Modrić anunció en 2025 que el Mundial 2026 SERÁ SU ÚLTIMA CITA con la selección. A los 40 años, el Balón de Oro 2018 se retira tras llevar a Croacia a 2 podios mundialistas.",
+      "source": "HNS + Sky Sports",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Croacia no existía como estado independiente antes de 1991. Es la NACIÓN MÁS JOVEN en haber jugado una FINAL DEL MUNDIAL (1998 + 2018, con apenas 27 años de existencia en la 2ª).",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Zlatko Dalić es DT histórico de Croacia desde 2017. Récord absoluto de longevidad. Subcampeón 2018, 3º 2022, y ahora con la oportunidad de cerrar la era Modrić.",
+      "source": "HNS + UEFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Lijepa naša domovino (himno)",
+      "Vatreni! Vatreni!",
+      "Hrvatska! Hrvatska!"
+    ],
+    "main_rival": {
+      "iso": "rs",
+      "name": "Serbia",
+      "story": "Rivalidad histórica derivada de la disolución de Yugoslavia y la guerra de los Balcanes. Cada cruce con Serbia tiene fuerte carga política."
+    },
+    "home_stadium": {
+      "name": "Stadion Maksimir",
+      "capacity": 35423,
+      "city": "Zagreb"
+    }
+  },
+  "seo": {
+    "meta_title": "Croacia en el Mundial 2026 | Plantilla, historia y predicciones",
+    "meta_description": "Croacia Mundial 2026: 26 convocados de Dalić, Modrić (último Mundial), Kramarić, Sučić, Gvardiol. Subcampeona 2018 y 3ª 2022.",
+    "og_image_url": "/img/og/teams/croacia.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Croacia",
+      "alternateName": [
+        "Vatreni",
+        "Cuadros"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "UEFA"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Zlatko Dalić"
+      },
+      "url": "https://www.zonamundial.app/selecciones/croacia"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-28",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_Croacia",
+      "https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_de_UEFA_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://es.uefa.com/european-qualifiers/news/029f-1f3188cfc443-494e0d8af33d-1000--mundial-2026-que-selecciones-europeas-se-han-clasificado/",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/15895830/se-definen-eliminatorias-uefa-europa-mundial-2026-quien-puede-clasificar",
+      "https://hns-cff.hr",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias cruzadas con UEFA + Wikipedia + ESPN. Historia mundialista validada con FIFA + Wikipedia + HNS.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "needs_review",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante: pendiente",
+      "Grupo Mundial 2026 y rivales: cruzar con /grupos zonamundial.app",
+      "Calendario fase de grupos 2026: fixture FIFA pendiente",
+      "Base de entrenamiento: HNS aún no anunció",
+      "FIFA Ranking #11: validar mes vigente",
+      "Historia 2010 omitida (no clasificó al Mundial 2010)",
+      "Confirmar club actual de Modrić y Brozović a fecha publicación"
+    ]
+  }
+}

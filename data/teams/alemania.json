@@ -1,0 +1,2005 @@
+{
+  "slug": "alemania",
+  "iso": "de",
+  "iso3": "GER",
+  "name_es": "Alemania",
+  "name_en": "Germany",
+  "name_local": "Deutschland",
+  "nicknames": [
+    "Die Mannschaft",
+    "El Equipo",
+    "La Nationalmannschaft"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#000000",
+      "secondary": "#DD0000",
+      "tertiary": "#FFCE00",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Berlín",
+    "language_official": [
+      "Alemán"
+    ],
+    "population": 84480000,
+    "area_km2": 357596,
+    "timezone": "Europe/Berlin",
+    "continent": "Europa"
+  },
+  "federation": {
+    "name": "Deutscher Fußball-Bund",
+    "abbreviation": "DFB",
+    "founded": 1900,
+    "headquarters": "Frankfurt",
+    "website": "https://www.dfb.de"
+  },
+  "confederation": "UEFA",
+  "fifa_ranking": {
+    "current": 9,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Adidas",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/alemania.png",
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#000000",
+        "description": "Camiseta blanca emblemática con detalles negros, dorados y rojos (colores de la bandera alemana). Lleva las cuatro estrellas de los títulos mundiales (1954, 1974, 1990, 2014).",
+        "alt_text": "Camiseta titular Alemania Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#000000",
+        "secondary_color": "#DD0000",
+        "description": "Equipación visitante en negro con detalles rojos. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Alemania Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "La relación Alemania-Adidas es la más longeva del fútbol mundial: la marca alemana viste a la DFB desde 1954, año del 'Milagro de Berna'. Más de 70 años de continuidad.",
+        "source": "Adidas + DFB",
+        "verified_at": "2026-04-28",
+        "status": "validated"
+      },
+      {
+        "text": "El águila negra (Bundesadler) del escudo de la DFB es el símbolo nacional alemán. Aparece en la equipación desde 1954 con pequeñas variaciones de diseño.",
+        "source": "DFB",
+        "verified_at": "2026-04-28",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Alemania clasificó como 1ª del Grupo A pese a un debut alarmante: derrota 0-2 ante Eslovaquia en septiembre 2025. La reacción fue enérgica: 5 victorias consecutivas incluyendo el 6-0 a Eslovaquia en la vuelta y el 6-0 a Luxemburgo. Goleó 6-0 a Eslovaquia en la última fecha para asegurar el cupo. La generación post-Kroos/Müller (retirados tras Eurocopa 2024) emerge con Florian Wirtz, Nick Woltemade y Jamal Musiala como nuevas figuras. Nagelsmann sigue al frente tras la Eurocopa.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias UEFA Mundial 2026 — Grupo A",
+      "format": "Liguilla todos contra todos · 6 partidos · ida y vuelta · 4 equipos",
+      "duration": "Septiembre 2025 — Noviembre 2025",
+      "final_position": 1,
+      "total_teams_in_group": 4,
+      "stats": {
+        "played": 6,
+        "won": 5,
+        "drawn": 0,
+        "lost": 1,
+        "goals_for": 18,
+        "goals_against": 3,
+        "goal_difference": 15,
+        "points": 15,
+        "win_percentage": 83.3,
+        "clean_sheets": 3
+      },
+      "coach_during_qualifying": "Julian Nagelsmann",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2025-09-04",
+          "home": {
+            "iso": "sk",
+            "name": "Eslovaquia",
+            "score": 2
+          },
+          "away": {
+            "iso": "de",
+            "name": "Alemania",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Tehelné Pole",
+            "city": "Bratislava",
+            "country_iso": "sk"
+          },
+          "goals_arg": [],
+          "notes": "Derrota traumática en debut. Sorpresa monumental. Críticas a Nagelsmann."
+        },
+        {
+          "matchday": 2,
+          "date": "2025-09-07",
+          "home": {
+            "iso": "de",
+            "name": "Alemania",
+            "score": 3
+          },
+          "away": {
+            "iso": "gb-nir",
+            "name": "Irlanda del Norte",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Rhein-Energie-Stadion",
+            "city": "Colonia",
+            "country_iso": "de"
+          },
+          "goals_arg": [
+            {
+              "player": "Serge Gnabry",
+              "minute": "31'",
+              "type": "goal"
+            },
+            {
+              "player": "Nadiem Amiri",
+              "minute": "47'",
+              "type": "goal"
+            },
+            {
+              "player": "Florian Wirtz",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Reacción tras la derrota."
+        },
+        {
+          "matchday": 3,
+          "date": "2025-10-10",
+          "home": {
+            "iso": "lu",
+            "name": "Luxemburgo",
+            "score": 0
+          },
+          "away": {
+            "iso": "de",
+            "name": "Alemania",
+            "score": 4
+          },
+          "venue": {
+            "stadium": "Stade de Luxembourg",
+            "city": "Luxemburgo",
+            "country_iso": "lu"
+          },
+          "goals_arg": [
+            {
+              "player": "Joshua Kimmich",
+              "minute": "12'",
+              "type": "penalty"
+            },
+            {
+              "player": "Serge Gnabry",
+              "minute": "21'",
+              "type": "goal"
+            },
+            {
+              "player": "Florian Wirtz",
+              "minute": "67'",
+              "type": "goal"
+            },
+            {
+              "player": "Florian Wirtz",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 4,
+          "date": "2025-10-13",
+          "home": {
+            "iso": "gb-nir",
+            "name": "Irlanda del Norte",
+            "score": 0
+          },
+          "away": {
+            "iso": "de",
+            "name": "Alemania",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Windsor Park",
+            "city": "Belfast",
+            "country_iso": "gb-nir"
+          },
+          "goals_arg": [
+            {
+              "player": "Nick Woltemade",
+              "minute": "70'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 5,
+          "date": "2025-11-14",
+          "home": {
+            "iso": "de",
+            "name": "Alemania",
+            "score": 2
+          },
+          "away": {
+            "iso": "lu",
+            "name": "Luxemburgo",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Volksparkstadion",
+            "city": "Hamburgo",
+            "country_iso": "de"
+          },
+          "goals_arg": [
+            {
+              "player": "Nick Woltemade",
+              "minute": "32'",
+              "type": "goal"
+            },
+            {
+              "player": "Florian Wirtz",
+              "minute": "60'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 6,
+          "date": "2025-11-17",
+          "home": {
+            "iso": "de",
+            "name": "Alemania",
+            "score": 6
+          },
+          "away": {
+            "iso": "sk",
+            "name": "Eslovaquia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "RheinEnergieStadion",
+            "city": "Colonia",
+            "country_iso": "de"
+          },
+          "goals_arg": [
+            {
+              "player": "Nick Woltemade",
+              "minute": "18'",
+              "type": "goal"
+            },
+            {
+              "player": "Serge Gnabry",
+              "minute": "29'",
+              "type": "goal"
+            },
+            {
+              "player": "Leroy Sané",
+              "minute": "36'",
+              "type": "goal"
+            },
+            {
+              "player": "Nadiem Amiri",
+              "minute": "67'",
+              "type": "goal"
+            },
+            {
+              "player": "Felix Nmecha",
+              "minute": "75'",
+              "type": "goal"
+            },
+            {
+              "player": "Assan Ouedraogo",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Goleada de revancha que selló la clasificación al Mundial 2026.",
+          "is_decisive_match": true
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Florian Wirtz",
+          "goals": 4,
+          "notes": "Estrella emergente. '10' del Liverpool."
+        },
+        {
+          "player": "Nick Woltemade",
+          "goals": 3,
+          "notes": "Delantero del Newcastle, sorpresa positiva."
+        },
+        {
+          "player": "Serge Gnabry",
+          "goals": 3
+        },
+        {
+          "player": "Nadiem Amiri",
+          "goals": 2
+        },
+        {
+          "player": "Joshua Kimmich",
+          "goals": 1
+        },
+        {
+          "player": "Leroy Sané",
+          "goals": 1
+        },
+        {
+          "player": "Felix Nmecha",
+          "goals": 1
+        },
+        {
+          "player": "Assan Ouedraogo",
+          "goals": 1
+        },
+        {
+          "player": "Otros (2)",
+          "goals": 2
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_6",
+        "reason": "El 6-0 a Eslovaquia en Colonia el 17 de noviembre de 2025 — venganza perfecta de la derrota inicial. Goleada que selló la clasificación con autoridad."
+      },
+      "worst_match": {
+        "match_ref": "matchday_1",
+        "reason": "Derrota 0-2 en Bratislava ante Eslovaquia. Inicio traumático del ciclo. Críticas masivas a Nagelsmann."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_6",
+        "reason": "El 6-0 a Eslovaquia selló matemáticamente la 1ª posición y la clasificación directa al Mundial 2026."
+      }
+    },
+    "group_2026": {
+      "letter": "E",
+      "label": "Grupo E — junto a Curazao, Costa de Marfil y Ecuador",
+      "teams": [
+        {
+          "iso": "de",
+          "name": "Alemania",
+          "fifa_rank": null,
+          "is_seed": true
+        },
+        {
+          "iso": "ci",
+          "name": "C. de Marfil",
+          "fifa_rank": null
+        },
+        {
+          "iso": "cw",
+          "name": "Curazao",
+          "fifa_rank": null
+        },
+        {
+          "iso": "ec",
+          "name": "Ecuador",
+          "fifa_rank": null
+        }
+      ],
+      "notes": "Grupo E confirmado. Alemania cabeza de serie. Cruce contra Ecuador el partido más esperado (segunda eliminatoria de Sudamérica vs Alemania)."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "ci",
+          "name": "C. de Marfil"
+        },
+        "date": "2026-06-13",
+        "kickoff_local": "18:00",
+        "venue": {
+          "stadium": "AT&T Stadium",
+          "city": "Dallas",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "cw",
+          "name": "Curazao"
+        },
+        "date": "2026-06-21",
+        "kickoff_local": "18:00",
+        "venue": {
+          "stadium": "MetLife Stadium",
+          "city": "Nueva York/NJ",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "ci",
+          "name": "C. de Marfil"
+        },
+        "date": "2026-06-28",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "MetLife Stadium",
+          "city": "Nueva York/NJ",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — DFB aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Julian Nagelsmann",
+      "age": 38,
+      "nationality": "Alemania",
+      "since": "2023-09-22",
+      "previous_teams": [
+        "Bayern Múnich (2021-2023)",
+        "RB Leipzig (2019-2021)",
+        "Hoffenheim (2016-2019)"
+      ],
+      "profile_summary": "El entrenador más joven de la Bundesliga histórica (28 años en Hoffenheim). Asumió Alemania tras el cese de Hansi Flick post-Mundial 2022 con la expectativa de revolucionar el equipo. Cuartos de final Eurocopa 2024 (eliminado por España campeona en cuartos). Identidad táctica: presión alta, juego posicional, 4-2-3-1 flexible. Apuesta decidida por la nueva generación: Wirtz, Musiala, Sané, Woltemade. Tras la derrota inicial 0-2 con Eslovaquia, recompuso al equipo y selló la clasificación con goleada 6-0 en la vuelta.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Julian_Nagelsmann.jpg/330px-Julian_Nagelsmann.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Julian_Nagelsmann"
+      }
+    },
+    "captain": {
+      "name": "Joshua Kimmich",
+      "club": "Bayern Múnich",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/2019-06-11_Fu%C3%9Fball%2C_M%C3%A4nner%2C_L%C3%A4nderspiel%2C_Deutschland-Estland_StP_2078_LR10_by_Stepro.jpg/330px-2019-06-11_Fu%C3%9Fball%2C_M%C3%A4nner%2C_L%C3%A4nderspiel%2C_Deutschland-Estland_StP_2078_LR10_by_Stepro.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Joshua_Kimmich"
+      }
+    },
+    "star_player": {
+      "name": "Florian Wirtz",
+      "club": "Liverpool",
+      "reason": "El '10' del Liverpool (transferido del Bayer Leverkusen en julio 2025), a sus 23 años, es el cerebro creativo de la Mannschaft. Capacidad para regate, pase, gol y visión de juego. Goleador del ciclo eliminatorio (4 goles). Su asociación con Musiala y Wolemade es el motor del nuevo proyecto.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Florian_Wirtz_04012026_%283%29_%28extracted%29.jpg/330px-Florian_Wirtz_04012026_%283%29_%28extracted%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Florian_Wirtz"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "manuel-neuer",
+        "full_name": "Manuel Neuer",
+        "display_name": "Manuel Neuer",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Bayern Múnich",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/20180602_FIFA_Friendly_Match_Austria_vs._Germany_Manuel_Neuer_850_0723.jpg/330px-20180602_FIFA_Friendly_Match_Austria_vs._Germany_Manuel_Neuer_850_0723.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Manuel_Neuer"
+        }
+      },
+      {
+        "id": "marc-andre-ter-stegen",
+        "full_name": "Marc-André ter Stegen",
+        "display_name": "ter Stegen",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "FC Barcelona",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 12,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Marc-Andre_Ter_Stegen_ACCI_FCBARCELONA_Turisme_Catalunya_gira_pretemporada_CATPRESS.jpg/330px-Marc-Andre_Ter_Stegen_ACCI_FCBARCELONA_Turisme_Catalunya_gira_pretemporada_CATPRESS.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Marc-Andr%C3%A9_ter_Stegen"
+        }
+      },
+      {
+        "id": "alexander-nubel",
+        "full_name": "Alexander Nübel",
+        "display_name": "Nübel",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Stuttgart",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 22,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Alexander_nuebel.jpg/330px-Alexander_nuebel.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Alexander_N%C3%BCbel"
+        }
+      },
+      {
+        "id": "antonio-rudiger",
+        "full_name": "Antonio Rüdiger",
+        "display_name": "Rüdiger",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Real Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/20180602_FIFA_Friendly_Match_Austria_vs._Germany_Antonio_R%C3%BCdiger_850_0711.jpg/330px-20180602_FIFA_Friendly_Match_Austria_vs._Germany_Antonio_R%C3%BCdiger_850_0711.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Antonio_R%C3%BCdiger"
+        }
+      },
+      {
+        "id": "jonathan-tah",
+        "full_name": "Jonathan Tah",
+        "display_name": "Tah",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Bayern Múnich",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Jonathan_Tah_2019.jpg/330px-Jonathan_Tah_2019.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jonathan_Tah"
+        }
+      },
+      {
+        "id": "nico-schlotterbeck",
+        "full_name": "Nico Schlotterbeck",
+        "display_name": "Schlotterbeck",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Borussia Dortmund",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 23,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93069.jpg/330px-2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93069.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Nico_Schlotterbeck"
+        }
+      },
+      {
+        "id": "waldemar-anton",
+        "full_name": "Waldemar Anton",
+        "display_name": "Anton",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Borussia Dortmund",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 5,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Waldemar_anton_%28cropped%29.jpg/330px-Waldemar_anton_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Waldemar_Anton"
+        }
+      },
+      {
+        "id": "joshua-kimmich",
+        "full_name": "Joshua Kimmich",
+        "display_name": "Kimmich",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Bayern Múnich",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/2019-06-11_Fu%C3%9Fball%2C_M%C3%A4nner%2C_L%C3%A4nderspiel%2C_Deutschland-Estland_StP_2078_LR10_by_Stepro.jpg/330px-2019-06-11_Fu%C3%9Fball%2C_M%C3%A4nner%2C_L%C3%A4nderspiel%2C_Deutschland-Estland_StP_2078_LR10_by_Stepro.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Joshua_Kimmich"
+        }
+      },
+      {
+        "id": "joshua-kimmich-rb",
+        "full_name": "Joshua Kimmich (RB)",
+        "display_name": "Kimmich (lateral)",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Bayern Múnich",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 7,
+        "status": "bubble"
+      },
+      {
+        "id": "david-raum",
+        "full_name": "David Raum",
+        "display_name": "David Raum",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "RB Leipzig",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2658_%28cropped%29.jpg/330px-2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2658_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/David_Raum"
+        }
+      },
+      {
+        "id": "robin-koch",
+        "full_name": "Robin Koch",
+        "display_name": "Robin Koch",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Eintracht Frankfurt",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 17,
+        "status": "probable"
+      },
+      {
+        "id": "pascal-gross",
+        "full_name": "Pascal Groß",
+        "display_name": "Pascal Groß",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Borussia Dortmund",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 8,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Pascal_Gross.jpg/330px-Pascal_Gross.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Pascal_Gro%C3%9F"
+        }
+      },
+      {
+        "id": "leon-goretzka",
+        "full_name": "Leon Goretzka",
+        "display_name": "Goretzka",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Bayern Múnich",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 18,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/2019-06-11_Fu%C3%9Fball%2C_M%C3%A4nner%2C_L%C3%A4nderspiel%2C_Deutschland-Estland_StP_2074_LR10_by_Stepro_%28cropped%29.jpg/330px-2019-06-11_Fu%C3%9Fball%2C_M%C3%A4nner%2C_L%C3%A4nderspiel%2C_Deutschland-Estland_StP_2074_LR10_by_Stepro_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Leon_Goretzka"
+        }
+      },
+      {
+        "id": "florian-wirtz",
+        "full_name": "Florian Wirtz",
+        "display_name": "Florian Wirtz",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Liverpool",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Florian_Wirtz_04012026_%283%29_%28extracted%29.jpg/330px-Florian_Wirtz_04012026_%283%29_%28extracted%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Florian_Wirtz"
+        }
+      },
+      {
+        "id": "nadiem-amiri",
+        "full_name": "Nadiem Amiri",
+        "display_name": "Amiri",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Mainz",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/NadiemAmiri.jpg/330px-NadiemAmiri.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Nadiem_Amiri"
+        }
+      },
+      {
+        "id": "felix-nmecha",
+        "full_name": "Felix Nmecha",
+        "display_name": "Nmecha",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Borussia Dortmund",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 15,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Felix_Nmecha_2021.jpg/330px-Felix_Nmecha_2021.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Felix_Nmecha"
+        }
+      },
+      {
+        "id": "assan-ouedraogo",
+        "full_name": "Assan Ouédraogo",
+        "display_name": "Ouédraogo",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "RB Leipzig",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 21,
+        "status": "bubble"
+      },
+      {
+        "id": "jamal-musiala",
+        "full_name": "Jamal Musiala",
+        "display_name": "Musiala",
+        "position": "FWD",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Bayern Múnich",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Jamal_Musiala_2022_%28cropped%29.jpg/330px-Jamal_Musiala_2022_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jamal_Musiala"
+        }
+      },
+      {
+        "id": "leroy-sane",
+        "full_name": "Leroy Sané",
+        "display_name": "Leroy Sané",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Galatasaray",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/20180602_FIFA_Friendly_Match_Austria_vs._Germany_Leroy_San%C3%A9_850_0668.jpg/330px-20180602_FIFA_Friendly_Match_Austria_vs._Germany_Leroy_San%C3%A9_850_0668.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Leroy_San%C3%A9"
+        }
+      },
+      {
+        "id": "serge-gnabry",
+        "full_name": "Serge Gnabry",
+        "display_name": "Gnabry",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Bayern Múnich",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 20,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/2022-07-30_Fu%C3%9Fball%2C_M%C3%A4nner%2C_DFL-Supercup%2C_RB_Leipzig_-_FC_Bayern_M%C3%BCnchen_1DX_3276_by_Stepro.jpg/330px-2022-07-30_Fu%C3%9Fball%2C_M%C3%A4nner%2C_DFL-Supercup%2C_RB_Leipzig_-_FC_Bayern_M%C3%BCnchen_1DX_3276_by_Stepro.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Serge_Gnabry"
+        }
+      },
+      {
+        "id": "nick-woltemade",
+        "full_name": "Nick Woltemade",
+        "display_name": "Woltemade",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Newcastle",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed"
+      },
+      {
+        "id": "niclas-fullkrug",
+        "full_name": "Niclas Füllkrug",
+        "display_name": "Füllkrug",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "West Ham",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 13,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/NiclasF%C3%BCllkrug_%28cropped%29.jpg/330px-NiclasF%C3%BCllkrug_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Niclas_F%C3%BCllkrug"
+        }
+      },
+      {
+        "id": "tim-kleindienst",
+        "full_name": "Tim Kleindienst",
+        "display_name": "Kleindienst",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Borussia Mönchengladbach",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 25,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Kleindienst%2C_Tim_Heidenheim_16-17_%283%29_WP.jpg/330px-Kleindienst%2C_Tim_Heidenheim_16-17_%283%29_WP.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Tim_Kleindienst"
+        }
+      },
+      {
+        "id": "deniz-undav",
+        "full_name": "Deniz Undav",
+        "display_name": "Undav",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Stuttgart",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Deniz_undav.jpg/330px-Deniz_undav.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Deniz_Undav"
+        }
+      },
+      {
+        "id": "karim-adeyemi",
+        "full_name": "Karim Adeyemi",
+        "display_name": "Adeyemi",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Borussia Dortmund",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 24,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/FC_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%28Championsleague_Achtelfinale_Hinspiel_16._Februar_2022%29_63.jpg/330px-FC_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%28Championsleague_Achtelfinale_Hinspiel_16._Februar_2022%29_63.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Karim_Adeyemi"
+        }
+      },
+      {
+        "id": "lukas-nmecha",
+        "full_name": "Lukas Nmecha",
+        "display_name": "Lukas Nmecha",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Wolfsburg",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 16,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Youth_League_FC_Salzburg_gegen_Manchester_City_FC_%288._Februar_2017%29_01.jpg/330px-Youth_League_FC_Salzburg_gegen_Manchester_City_FC_%288._Februar_2017%29_01.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Lukas_Nmecha"
+        }
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-2-3-1",
+      "players": [
+        {
+          "player_id": "marc-andre-ter-stegen",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "joshua-kimmich",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "antonio-rudiger",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "jonathan-tah",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "david-raum",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "leon-goretzka",
+          "position": {
+            "x": 65,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "felix-nmecha",
+          "position": {
+            "x": 35,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "leroy-sane",
+          "position": {
+            "x": 85,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "florian-wirtz",
+          "position": {
+            "x": 50,
+            "y": 35
+          }
+        },
+        {
+          "player_id": "jamal-musiala",
+          "position": {
+            "x": 15,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "nick-woltemade",
+          "position": {
+            "x": 50,
+            "y": 15
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Nagelsmann plantea un 4-2-3-1 dinámico con presión alta, posesión y transición rápida. Kimmich asume rol de capitán (puede jugar como CDM o RB). Wirtz-Musiala-Sané forman un trío creativo de élite. Woltemade emergió como '9' físico, ágil. La defensa sigue siendo el punto débil, con 3 goles en contra en 6 partidos pero la mayoría en debut con Eslovaquia.",
+      "strengths": [
+        "Wirtz-Musiala: dúo creativo joven, élite mundial, con química desde Sub-21.",
+        "Kimmich: capitán élite mundial. Puede jugar CDM o RB. Liderazgo y técnica.",
+        "Profundidad ofensiva: Sané, Gnabry, Woltemade, Adeyemi, Füllkrug, Kleindienst.",
+        "Defensa central: Rüdiger (Real Madrid), Tah (Bayern), Schlotterbeck (Dortmund) — élite Champions.",
+        "Ambición de Nagelsmann: estilo moderno, identidad clara.",
+        "Memoria del 7-1 a Brasil 2014 sigue intacta — generación con apetito de redención."
+      ],
+      "weaknesses": [
+        "Lateral derecho sin solución clara: Kimmich es CDM natural.",
+        "Portería en transición: Neuer (39 años), ter Stegen (33) en debate.",
+        "Generación post-2014 sin trofeo grande aún: Mundial 2018 (eliminada en grupos), Mundial 2022 (eliminada en grupos), Eurocopa 2024 (cuartos).",
+        "Sin un '9' clase mundial confirmado: Woltemade es promesa, Füllkrug irregular.",
+        "Falta experiencia Mundial: solo 5-6 jugadores con experiencia en Catar 2022.",
+        "Presión histórica: 12 años sin Mundial es la racha más larga desde 1990."
+      ],
+      "x_factor": {
+        "player": "Jamal Musiala",
+        "reason": "El '10' del Bayern Múnich (22 años) puede ser el jugador del torneo si está al 100% de forma. Capaz de regate, gol y asistencia. Su explosividad, talento y madurez en momentos clave son únicos. Si se asocia bien con Wirtz, Alemania puede ser invencible."
+      },
+      "prediction_text": "Alemania llega a 2026 con la presión histórica de un país tetracampeón sin éxito desde 2014. La generación post-Kroos/Müller emerge fuerte con Wirtz, Musiala y Woltemade. El Grupo E (Curazao, Costa de Marfil, Ecuador) es razonable. Cuartos es objetivo realista, semis ambicioso. Repetir el título de 2014 requiere todo a la vez: Wirtz al pico, Musiala sin lesiones, Nagelsmann encontrando el equilibrio defensivo.",
+      "probabilities": {
+        "advance_groups": 92,
+        "round_of_32": 85,
+        "round_of_16": 70,
+        "quarter_finals": 45,
+        "semi_finals": 22,
+        "final": 10,
+        "champion": 5
+      },
+      "vs_last_3_wcs": "Rusia 2018: ELIMINADA EN PRIMERA RONDA (defensora del título), 1 victoria en 3 partidos. Catar 2022: ELIMINADA EN PRIMERA RONDA por diferencia de goles. Mundial 2026: la presión de 12 años sin pasar de octavos es enorme. Generación nueva busca redención."
+    }
+  },
+  "history": {
+    "first_appearance": 1934,
+    "appearances_count_before_2026": 19,
+    "appearances_count_with_2026": 20,
+    "consecutive_streak_since": 1954,
+    "titles": 4,
+    "titles_years": [
+      1954,
+      1974,
+      1990,
+      2014
+    ],
+    "finals": 8,
+    "finals_years": [
+      1954,
+      1966,
+      1974,
+      1982,
+      1986,
+      1990,
+      2002,
+      2014
+    ],
+    "semi_finals": 13,
+    "best_result": "Tetracampeona (1954, 1974, 1990, 2014)",
+    "aggregate_stats_through_2022": {
+      "played": 109,
+      "won": 67,
+      "drawn": 21,
+      "lost": 21,
+      "goals_for": 232,
+      "goals_against": 130,
+      "win_percentage": 61.5,
+      "notes": "Datos hasta Qatar 2022. Alemania es 2ª en la tabla histórica del Mundial detrás de Brasil."
+    },
+    "by_world_cup": [
+      {
+        "year": 1934,
+        "host": {
+          "countries": [
+            "Italia"
+          ],
+          "iso": [
+            "it"
+          ]
+        },
+        "result": "Tercer puesto",
+        "coach": "Otto Nerz",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Edmund Conen",
+            "goals": 4
+          }
+        ],
+        "goals_scored": 11,
+        "goals_conceded": 8,
+        "notable_facts": [
+          "Debut con bronce histórico."
+        ],
+        "narrative": "Alemania debutó con un tercer puesto. Eliminada en semis por Checoslovaquia 1-3. Conen fue figura goleadora."
+      },
+      {
+        "year": 1938,
+        "host": {
+          "countries": [
+            "Francia"
+          ],
+          "iso": [
+            "fr"
+          ]
+        },
+        "result": "Primera ronda",
+        "coach": "Sepp Herberger",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Josef Gauchel",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 3,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Eliminada en primera ronda por Suiza."
+        ],
+        "narrative": "Eliminación temprana en formato de eliminación directa."
+      },
+      {
+        "year": 1954,
+        "host": {
+          "countries": [
+            "Suiza"
+          ],
+          "iso": [
+            "ch"
+          ]
+        },
+        "result": "Campeón",
+        "coach": "Sepp Herberger",
+        "captain": "Fritz Walter",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Max Morlock",
+            "goals": 6
+          },
+          {
+            "player": "Helmut Rahn",
+            "goals": 4
+          }
+        ],
+        "goals_scored": 25,
+        "goals_conceded": 14,
+        "notable_facts": [
+          "EL MILAGRO DE BERNA. Final 3-2 ante la Hungría imbatible (32 partidos invicta).",
+          "PRIMER título mundial de Alemania."
+        ],
+        "narrative": "EL MILAGRO DE BERNA. Alemania llegó a la final ante Hungría (favorita absoluta, vencedora 8-3 en grupos). Iban 0-2 al 8'. Empataron al 18'. Helmut Rahn marcó el 3-2 al 84'. Primer título mundial. Cambio histórico en la imagen alemana post-guerra. La radio narrando 'Tor! Tor! Tor! Tor für Deutschland!' es eternal."
+      },
+      {
+        "year": 1958,
+        "host": {
+          "countries": [
+            "Suecia"
+          ],
+          "iso": [
+            "se"
+          ]
+        },
+        "result": "Cuarto puesto",
+        "coach": "Sepp Herberger",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Helmut Rahn",
+            "goals": 6
+          }
+        ],
+        "goals_scored": 12,
+        "goals_conceded": 14,
+        "notable_facts": [
+          "Eliminada por Suecia anfitriona en semis.",
+          "Bronce perdido ante Francia 3-6 (4 goles de Fontaine)."
+        ],
+        "narrative": "Cuarto puesto tras caer ante Suecia y Francia."
+      },
+      {
+        "year": 1962,
+        "host": {
+          "countries": [
+            "Chile"
+          ],
+          "iso": [
+            "cl"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Sepp Herberger",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Uwe Seeler",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 2,
+        "notable_facts": [
+          "Eliminada por Yugoslavia 0-1 en cuartos."
+        ],
+        "narrative": "Cuartos de final con eliminación dura."
+      },
+      {
+        "year": 1966,
+        "host": {
+          "countries": [
+            "Inglaterra"
+          ],
+          "iso": [
+            "gb-eng"
+          ]
+        },
+        "result": "Subcampeón",
+        "coach": "Helmut Schön",
+        "captain": "Uwe Seeler",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Helmut Haller",
+            "goals": 6
+          }
+        ],
+        "goals_scored": 15,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Final 2-4 ante Inglaterra anfitriona (gol fantasma de Hurst)."
+        ],
+        "narrative": "Final dramática contra Inglaterra. 2-2 reglamentario. En prórroga Hurst marcó al 101' un gol que tocó el travesaño y rebotó cerca de la línea (gol fantasma). Hurst marcó otro al 120' (3 goles de hat-trick). Inglaterra ganó su único Mundial. Alemania subcampeona."
+      },
+      {
+        "year": 1970,
+        "host": {
+          "countries": [
+            "México"
+          ],
+          "iso": [
+            "mx"
+          ]
+        },
+        "result": "Tercer puesto",
+        "coach": "Helmut Schön",
+        "captain": "Uwe Seeler",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Gerd Müller",
+            "goals": 10
+          }
+        ],
+        "goals_scored": 17,
+        "goals_conceded": 10,
+        "notable_facts": [
+          "GERD MÜLLER fue Bota de Oro con 10 goles.",
+          "Semifinal épica vs Italia 3-4 en prórroga ('Partido del siglo')."
+        ],
+        "narrative": "Mundial famoso. Alemania llegó a semis. Ante Italia en Azteca: 'EL PARTIDO DEL SIGLO'. 1-1 reglamentario. En prórroga 5 goles en 30 minutos: Italia ganó 4-3. Alemania ganó el bronce. Gerd Müller Bota de Oro."
+      },
+      {
+        "year": 1974,
+        "host": {
+          "countries": [
+            "Alemania Federal"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
+        "result": "Campeón",
+        "coach": "Helmut Schön",
+        "captain": "Franz Beckenbauer",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Gerd Müller",
+            "goals": 4
+          }
+        ],
+        "goals_scored": 13,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "SEGUNDO título mundial.",
+          "Anfitriona campeona.",
+          "Final 2-1 ante Países Bajos de Cruyff."
+        ],
+        "narrative": "Anfitriona campeona. En la final ante la Naranja Mecánica de Cruyff: Países Bajos abrió de penal en jugada de 1 minuto sin que Alemania tocara el balón. Breitner empató, Müller anotó el 2-1 al 43'. Segundo título mundial. Beckenbauer capitán."
+      },
+      {
+        "year": 1978,
+        "host": {
+          "countries": [
+            "Argentina"
+          ],
+          "iso": [
+            "ar"
+          ]
+        },
+        "result": "Segunda ronda",
+        "coach": "Helmut Schön",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Karl-Heinz Rummenigge",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 10,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Eliminada en segunda ronda."
+        ],
+        "narrative": "Segunda ronda dura, eliminada por Austria 2-3 (el 'Milagro de Córdoba')."
+      },
+      {
+        "year": 1982,
+        "host": {
+          "countries": [
+            "España"
+          ],
+          "iso": [
+            "es"
+          ]
+        },
+        "result": "Subcampeón",
+        "coach": "Jupp Derwall",
+        "captain": "Karl-Heinz Rummenigge",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Karl-Heinz Rummenigge",
+            "goals": 5
+          }
+        ],
+        "goals_scored": 12,
+        "goals_conceded": 10,
+        "notable_facts": [
+          "Final 1-3 ante Italia.",
+          "Semifinal de Sevilla 3-3 con Francia (4-5 pen)."
+        ],
+        "narrative": "Mundial controvertido. Famosa la 'Vergüenza de Gijón' (1-0 vs Austria pactado para clasificar a ambos). Semifinal histórica vs Francia (3-3, victoria en penales tras la entrada brutal de Schumacher a Battiston). Final perdida ante Italia 1-3."
+      },
+      {
+        "year": 1986,
+        "host": {
+          "countries": [
+            "México"
+          ],
+          "iso": [
+            "mx"
+          ]
+        },
+        "result": "Subcampeón",
+        "coach": "Franz Beckenbauer",
+        "captain": "Karl-Heinz Rummenigge",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Karl-Heinz Rummenigge",
+            "goals": 2
+          },
+          {
+            "player": "Rudi Völler",
+            "goals": 3
+          }
+        ],
+        "goals_scored": 8,
+        "goals_conceded": 7,
+        "notable_facts": [
+          "Final 2-3 ante Argentina de Maradona."
+        ],
+        "narrative": "Beckenbauer DT. Final ante la Argentina de Maradona. 0-2 al 56'. Rummenigge y Völler empataron. Burruchaga marcó el 3-2 al 84' tras pase magistral de Maradona. Subcampeón."
+      },
+      {
+        "year": 1990,
+        "host": {
+          "countries": [
+            "Italia"
+          ],
+          "iso": [
+            "it"
+          ]
+        },
+        "result": "Campeón",
+        "coach": "Franz Beckenbauer",
+        "captain": "Lothar Matthäus",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Jürgen Klinsmann",
+            "goals": 3
+          },
+          {
+            "player": "Lothar Matthäus",
+            "goals": 4
+          }
+        ],
+        "goals_scored": 15,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "TERCER título mundial.",
+          "Final 1-0 ante Argentina con penal de Brehme.",
+          "Beckenbauer único en ganar como jugador y como DT."
+        ],
+        "narrative": "Tercer título. Beckenbauer DT, Matthäus capitán. En la final ante Argentina (sin Maradona al 100%), 1-0 con penal de Brehme al 85' tras falta a Völler. Beckenbauer se convirtió en el primer hombre en ganar Mundial como jugador (1974) Y como DT (1990)."
+      },
+      {
+        "year": 1994,
+        "host": {
+          "countries": [
+            "Estados Unidos"
+          ],
+          "iso": [
+            "us"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Berti Vogts",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Jürgen Klinsmann",
+            "goals": 5
+          }
+        ],
+        "goals_scored": 9,
+        "goals_conceded": 7,
+        "notable_facts": [
+          "Eliminada por Bulgaria 1-2 en cuartos."
+        ],
+        "narrative": "Defensora del título eliminada por Bulgaria sorprendente. Yordan Letchkov marcó el 2-1 al 78'."
+      },
+      {
+        "year": 1998,
+        "host": {
+          "countries": [
+            "Francia"
+          ],
+          "iso": [
+            "fr"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Berti Vogts",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Oliver Bierhoff",
+            "goals": 3
+          }
+        ],
+        "goals_scored": 8,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Eliminada por Croacia 0-3 en cuartos."
+        ],
+        "narrative": "Croacia, sorpresa del Mundial, batió a Alemania 3-0."
+      },
+      {
+        "year": 2002,
+        "host": {
+          "countries": [
+            "Corea del Sur",
+            "Japón"
+          ],
+          "iso": [
+            "kr",
+            "jp"
+          ]
+        },
+        "result": "Subcampeón",
+        "coach": "Rudi Völler",
+        "captain": "Oliver Kahn",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Miroslav Klose",
+            "goals": 5
+          }
+        ],
+        "goals_scored": 14,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Final 0-2 ante Brasil.",
+          "Oliver Kahn fue mejor portero del torneo."
+        ],
+        "narrative": "Generación de transición que sorprendió. Final ante Brasil 0-2 con doblete de Ronaldo Nazário tras error de Kahn al 67'. Subcampeón."
+      },
+      {
+        "year": 2006,
+        "host": {
+          "countries": [
+            "Alemania"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
+        "result": "Tercer puesto",
+        "coach": "Jürgen Klinsmann",
+        "captain": "Michael Ballack",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Miroslav Klose",
+            "goals": 5
+          }
+        ],
+        "goals_scored": 14,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Anfitriona, eliminada en semis por Italia 0-2 en prórroga."
+        ],
+        "narrative": "Klinsmann DT. Anfitriona. En semis ante Italia (Grosso al 119' y Del Piero al 121'). Bronce."
+      },
+      {
+        "year": 2010,
+        "host": {
+          "countries": [
+            "Sudáfrica"
+          ],
+          "iso": [
+            "za"
+          ]
+        },
+        "result": "Tercer puesto",
+        "coach": "Joachim Löw",
+        "captain": "Philipp Lahm",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Thomas Müller",
+            "goals": 5
+          }
+        ],
+        "goals_scored": 16,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Goleó 4-1 a Inglaterra y 4-0 a Argentina.",
+          "Eliminada por España 0-1 en semis."
+        ],
+        "narrative": "Mundial brillante de Alemania joven. Lahm capitán (25 años), generación Khedira-Özil-Müller. Goleó 4-1 a Inglaterra y 4-0 a Argentina. Eliminada por España campeona 0-1. Bronce. Klose llegó a 14 goles totales."
+      },
+      {
+        "year": 2014,
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
+        "result": "Campeón",
+        "coach": "Joachim Löw",
+        "captain": "Philipp Lahm",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Thomas Müller",
+            "goals": 5
+          }
+        ],
+        "goals_scored": 18,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "CUARTO título mundial.",
+          "EL MINEIRAZO: 7-1 a Brasil en semis.",
+          "Klose superó récord de Ronaldo (16 goles totales)."
+        ],
+        "narrative": "Cuarto título mundial. Generación Lahm-Müller-Khedira-Schweinsteiger-Özil-Götze. EL MINEIRAZO: 7-1 a Brasil en semis (5 goles en 18 minutos). Klose marcó allí el récord absoluto de goleadores (16 totales). En la final ante Argentina, 1-0 con gol de Mario Götze al 113' tras pase de Schürrle. CUARTO TÍTULO."
+      },
+      {
+        "year": 2018,
+        "host": {
+          "countries": [
+            "Rusia"
+          ],
+          "iso": [
+            "ru"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Joachim Löw",
+        "captain": "Manuel Neuer",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Toni Kroos",
+            "goals": 1
+          },
+          {
+            "player": "Marco Reus",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "DEFENSORA del título eliminada en primera ronda.",
+          "Derrota 0-1 con México en debut.",
+          "Eliminada por Corea del Sur 0-2 (Son al 96')."
+        ],
+        "narrative": "Mayor decepción reciente. Defensora del título cayó eliminada por México 0-1, ganó 2-1 a Suecia con gol de Kroos al 95', y perdió 0-2 con Corea del Sur (Son al 96'). Eliminación traumática."
+      },
+      {
+        "year": 2022,
+        "host": {
+          "countries": [
+            "Catar"
+          ],
+          "iso": [
+            "qa"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Hansi Flick",
+        "captain": "Manuel Neuer",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Niclas Füllkrug",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 6,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "DOS Mundiales seguidos eliminada en primera ronda — récord negativo.",
+          "Cayó por diferencia de goles tras 1-2 con Japón."
+        ],
+        "narrative": "Otra eliminación temprana. Cayó 1-2 con Japón en debut (sorpresa de Asia). Empató 1-1 con España. Ganó 4-2 a Costa Rica pero quedó eliminada por diferencia de goles. Hansi Flick destituido tras."
+      }
+    ],
+    "palmares": [
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 1954,
+        "position": "Campeón",
+        "host": "Suiza"
+      },
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 1974,
+        "position": "Campeón",
+        "host": "Alemania Federal"
+      },
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 1990,
+        "position": "Campeón",
+        "host": "Italia"
+      },
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 2014,
+        "position": "Campeón",
+        "host": "Brasil"
+      },
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 1966,
+        "position": "Subcampeón",
+        "host": "Inglaterra"
+      },
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 1982,
+        "position": "Subcampeón",
+        "host": "España"
+      },
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 1986,
+        "position": "Subcampeón",
+        "host": "México"
+      },
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 2002,
+        "position": "Subcampeón",
+        "host": "Corea del Sur · Japón"
+      },
+      {
+        "competition": "Eurocopa",
+        "year": 1972,
+        "position": "Campeón",
+        "host": "Bélgica"
+      },
+      {
+        "competition": "Eurocopa",
+        "year": 1980,
+        "position": "Campeón",
+        "host": "Italia"
+      },
+      {
+        "competition": "Eurocopa",
+        "year": 1996,
+        "position": "Campeón",
+        "host": "Inglaterra"
+      },
+      {
+        "competition": "Confederaciones",
+        "year": 2017,
+        "position": "Campeón",
+        "host": "Rusia"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Miroslav Klose",
+      "value": 71,
+      "period": "2001-2014",
+      "notes": "Goleador histórico absoluto y máximo goleador de la historia del Mundial (16 goles, superó récord de Ronaldo)."
+    },
+    "most_capped": {
+      "name": "Lothar Matthäus",
+      "value": 150,
+      "period": "1980-2000",
+      "notes": "Récord histórico de presencias. Capitán Mundial 1990 campeón."
+    },
+    "youngest_debut": {
+      "name": "Uwe Seeler",
+      "value": "17 años aprox.",
+      "period": "1954",
+      "notes": "Datos pendientes verificación primaria DFB."
+    },
+    "biggest_win": {
+      "result": "16-0",
+      "opponent": "URSS amateur",
+      "date": "1912-07-01",
+      "competition": "Juegos Olímpicos Estocolmo 1912 (era amateur)"
+    },
+    "worst_loss": {
+      "result": "0-9",
+      "opponent": "Inglaterra",
+      "date": "1909-09-01",
+      "competition": "Amistoso (era amateur)"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El Milagro de Berna",
+      "date": "1954-07-04",
+      "opponent": {
+        "iso": "hu",
+        "name": "Hungría"
+      },
+      "score": "3-2",
+      "competition": "Final Mundial 1954",
+      "narrative": "Alemania ganó su primer Mundial 3-2 a Hungría (favorita absoluta, 32 partidos invicta). Iban 0-2 al 8'. Helmut Rahn marcó el 3-2 al 84'. Cambio histórico para Alemania post-guerra. La radio: 'Tor! Tor! Tor! Tor für Deutschland!' es eterna.",
+      "site_link": "/historia/momentos-iconicos/milagro-berna"
+    },
+    {
+      "title": "El Partido del Siglo",
+      "date": "1970-06-17",
+      "opponent": {
+        "iso": "it",
+        "name": "Italia"
+      },
+      "score": "3-4 (prórroga)",
+      "competition": "Semifinal Mundial 1970",
+      "narrative": "Alemania-Italia en el Estadio Azteca. 1-1 reglamentario. EN LA PRÓRROGA 5 GOLES EN 30 MINUTOS. Italia ganó 4-3 con doblete de Rivera. Considerado por la UEFA como 'el partido del siglo'."
+    },
+    {
+      "title": "Final 1974 ante Cruyff",
+      "date": "1974-07-07",
+      "opponent": {
+        "iso": "nl",
+        "name": "Países Bajos"
+      },
+      "score": "2-1",
+      "competition": "Final Mundial 1974",
+      "narrative": "Alemania anfitriona ganó su 2º Mundial. Países Bajos abrió de penal al 0:53 sin que Alemania tocara el balón. Breitner empató al 25'. Müller marcó el 2-1 al 43'. Beckenbauer levantó la copa."
+    },
+    {
+      "title": "Final 1990 vs Argentina",
+      "date": "1990-07-08",
+      "opponent": {
+        "iso": "ar",
+        "name": "Argentina"
+      },
+      "score": "1-0",
+      "competition": "Final Mundial 1990",
+      "narrative": "Alemania ganó su 3º Mundial 1-0. Brehme penal al 85' tras falta a Völler. Beckenbauer DT, primer hombre en ganar Mundial como jugador (1974) y como DT (1990). Argentina sin Maradona al 100%."
+    },
+    {
+      "title": "El 7-1 a Brasil (Mineirazo)",
+      "date": "2014-07-08",
+      "opponent": {
+        "iso": "br",
+        "name": "Brasil"
+      },
+      "score": "7-1",
+      "competition": "Semifinal Mundial 2014",
+      "narrative": "Alemania goleó 7-1 a Brasil en su propio Mundial. 5 goles en 18 minutos del primer tiempo. Müller, Klose (récord absoluto goleador Mundial 16), Kroos x2, Khedira y luego Schürrle x2. Mayor humillación deportiva en la historia de Brasil. EL MINEIRAZO."
+    },
+    {
+      "title": "Final 2014 vs Argentina",
+      "date": "2014-07-13",
+      "opponent": {
+        "iso": "ar",
+        "name": "Argentina"
+      },
+      "score": "1-0 (prórroga)",
+      "competition": "Final Mundial 2014",
+      "narrative": "Alemania ganó su 4º Mundial 1-0 en Maracaná. Mario Götze marcó al 113' tras pase de Schürrle: control de pecho y voleo cruzado. Tras 24 años, cuarto título. Generación Lahm-Müller-Schweinsteiger-Khedira-Klose-Özil-Götze coronada."
+    },
+    {
+      "title": "El 0-2 ante Corea del Sur",
+      "date": "2018-06-27",
+      "opponent": {
+        "iso": "kr",
+        "name": "Corea del Sur"
+      },
+      "score": "0-2",
+      "competition": "Fase de Grupos Mundial 2018",
+      "narrative": "Alemania defensora del título cayó 0-2 ante Corea del Sur (Kim al 90+3' y Son al 90+6'). Eliminación traumática en primera ronda como defensora. Comparable al 7-1 brasileño en cuanto a impacto."
+    },
+    {
+      "title": "El 6-0 de revancha a Eslovaquia",
+      "date": "2025-11-17",
+      "opponent": {
+        "iso": "sk",
+        "name": "Eslovaquia"
+      },
+      "score": "6-0",
+      "competition": "Eliminatorias Mundial 2026",
+      "narrative": "Alemania goleó 6-0 a Eslovaquia en Colonia para sellar la clasificación al Mundial 2026. Venganza de la derrota inicial 0-2 en Bratislava. 6 goleadores diferentes. Cierre con autoridad del ciclo Nagelsmann."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "Miroslav Klose es el máximo goleador histórico del Mundial (16 goles en 4 ediciones: 2002-2014). Superó el récord de Ronaldo Nazário (15) en el Mineirazo 2014.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Franz Beckenbauer es uno de los 3 únicos hombres en ganar el Mundial como jugador (1974 capitán) y como ENTRENADOR (1990). Los otros: Mario Zagallo (Brasil) y Didier Deschamps (Francia).",
+      "source": "FIFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "El 7-1 de Alemania a Brasil en 2014 es la mayor goleada en una semifinal mundialista, y la mayor humillación de un anfitrión histórico. Los 5 goles de Alemania en 18 minutos son récord.",
+      "source": "FIFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Alemania (Federal hasta 1990) ha disputado más finales de Mundial (8) que cualquier otra selección europea. Solo Brasil tiene más (7 — pero con peor balance: 5-2).",
+      "source": "FIFA + RSSSF",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Alemania quedó eliminada en primera ronda en DOS Mundiales consecutivos (2018 y 2022) — peor racha negativa de su historia mundialista. Mundial 2026 marca el regreso buscado.",
+      "source": "FIFA + DFB",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "El 'Milagro de Berna' (1954) cambió la psique alemana post-guerra. La famosa frase del comentarista Herbert Zimmermann ('Tor für Deutschland! Tor für Deutschland!') es uno de los momentos más recordados del fútbol mundial.",
+      "source": "DFB + Documentales",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Lothar Matthäus jugó 5 Mundiales (1982, 1986, 1990, 1994, 1998), récord histórico hasta ser igualado por Buffon, Carbajal y otros.",
+      "source": "FIFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Julian Nagelsmann fue el ENTRENADOR MÁS JOVEN en debutar en la Bundesliga (28 años en Hoffenheim, febrero 2016). Asumió Alemania a los 36 años.",
+      "source": "DFB + Bundesliga",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Deutschland, Deutschland",
+      "Schwarz und weiß wie Schnee, der DFB sind wir!",
+      "Sieg! Sieg! Sieg!"
+    ],
+    "main_rival": {
+      "iso": "nl",
+      "name": "Países Bajos",
+      "story": "La rivalidad más intensa del fútbol europeo. Final 1974 (Alemania campeona). Semifinal Eurocopa 1988 (Países Bajos eliminó a Alemania por primera vez). Eurocopa 1992. Más de 80 partidos oficiales. Historia política compleja por la II Guerra Mundial intensifica las pasiones."
+    },
+    "home_stadium": {
+      "name": "Sin estadio fijo (rota sedes); más usado: Allianz Arena (Múnich)",
+      "capacity": 75000,
+      "city": "Berlín / Múnich (rotación)"
+    }
+  },
+  "seo": {
+    "meta_title": "Alemania en el Mundial 2026 | Plantilla, historia y predicciones",
+    "meta_description": "Alemania Mundial 2026: Wirtz, Musiala y Nagelsmann. Grupo E con Curazao, Costa de Marfil y Ecuador. 4 títulos mundiales (1954, 1974, 1990, 2014).",
+    "og_image_url": "/img/og/teams/alemania.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Alemania",
+      "alternateName": [
+        "Die Mannschaft",
+        "Nationalmannschaft"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "UEFA"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Julian Nagelsmann"
+      },
+      "url": "https://www.zonamundial.app/selecciones/alemania"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-28",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_de_UEFA_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://es.uefa.com/european-qualifiers/news/02a0-1f5b6ed60d45-6158c7bfa1ce-1000--sorteo-de-la-copa-mundial-2026-todos-los-grupos/",
+      "https://es.uefa.com/european-qualifiers/news/029f-1f3188cfc443-494e0d8af33d-1000--mundial-2026-que-selecciones-europeas-se-han-clasificado/",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/15895830/se-definen-eliminatorias-uefa-europa-mundial-2026-quien-puede-clasificar",
+      "https://www.dfb.de",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias UEFA cruzadas con UEFA + Wikipedia + ESPN. Historia mundialista validada con FIFA + DFB + Wikipedia. Plantilla con DFB + medios alemanes.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "partial",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante: pendiente",
+      "Calendario fase de grupos 2026: validar fechas/sedes exactas",
+      "Base de entrenamiento: DFB aún no anunció",
+      "Récord 'youngest_debut': cruzar con archivo DFB primario",
+      "FIFA Ranking #9: validar mes vigente",
+      "Goleadores secundarios: 'Otros (2)' debe especificarse"
+    ]
+  }
+}

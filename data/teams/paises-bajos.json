@@ -1,0 +1,1837 @@
+{
+  "slug": "paises-bajos",
+  "iso": "nl",
+  "iso3": "NED",
+  "name_es": "Países Bajos",
+  "name_en": "Netherlands",
+  "name_local": "Nederland",
+  "nicknames": [
+    "La Naranja Mecánica",
+    "Oranje",
+    "Holanda"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#FF6E00",
+      "secondary": "#FFFFFF",
+      "tertiary": "#21468B",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Ámsterdam",
+    "language_official": [
+      "Neerlandés"
+    ],
+    "population": 17533405,
+    "area_km2": 41850,
+    "timezone": "Europe/Amsterdam",
+    "continent": "Europa"
+  },
+  "federation": {
+    "name": "Koninklijke Nederlandse Voetbalbond",
+    "abbreviation": "KNVB",
+    "founded": 1889,
+    "headquarters": "Zeist",
+    "website": "https://www.knvb.nl"
+  },
+  "confederation": "UEFA",
+  "fifa_ranking": {
+    "current": 7,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Nike",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/paises-bajos.png",
+        "back_url": null,
+        "primary_color": "#FF6E00",
+        "secondary_color": "#FFFFFF",
+        "description": "La icónica camiseta naranja, color de la Casa de Orange-Nassau, dinastía real holandesa. Símbolo nacional reconocible en todo el mundo desde 1974.",
+        "alt_text": "Camiseta titular Países Bajos Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#21468B",
+        "secondary_color": "#FF6E00",
+        "description": "Equipación visitante en azul. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Países Bajos Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "El color naranja de la 'Oranje' proviene de la Casa de Orange-Nassau, dinastía real holandesa. La bandera neerlandesa es roja-blanca-azul, pero el deporte nacional viste de naranja por tradición monárquica.",
+        "source": "KNVB + Wikipedia",
+        "verified_at": "2026-04-28",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Países Bajos clasificó 1º del Grupo G con 20 puntos, tras lucha intensa con Polonia. Selló el pase con un 4-0 a Lituania en la última jornada. Memphis Depay fue goleador del ciclo (8 goles). Bajo Ronald Koeman, los Países Bajos buscan POR FIN su primer Mundial tras 3 finales perdidas (1974, 1978, 2010). 12ª participación histórica, segunda consecutiva.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias UEFA Mundial 2026 — Grupo G",
+      "format": "Liguilla todos contra todos · 5 equipos · 8 partidos · ida y vuelta",
+      "duration": "Marzo 2025 — Noviembre 2025",
+      "final_position": 1,
+      "total_teams_in_group": 5,
+      "stats": {
+        "played": 8,
+        "won": 6,
+        "drawn": 2,
+        "lost": 0,
+        "goals_for": 27,
+        "goals_against": 4,
+        "goal_difference": 23,
+        "points": 20,
+        "win_percentage": 75,
+        "clean_sheets": 6
+      },
+      "coach_during_qualifying": "Ronald Koeman",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2025-03-21",
+          "home": {
+            "iso": "nl",
+            "name": "Países Bajos",
+            "score": 2
+          },
+          "away": {
+            "iso": "es",
+            "name": "España",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "De Kuip",
+            "city": "Róterdam",
+            "country_iso": "nl"
+          },
+          "goals_arg": [
+            {
+              "player": "Memphis Depay",
+              "minute": "9'",
+              "type": "goal"
+            },
+            {
+              "player": "Tijjani Reijnders",
+              "minute": "28'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Cuartos UEFA Nations League — partido amistoso pre-clasificación, NO cuenta en grupo."
+        },
+        {
+          "matchday": 1,
+          "date": "2025-09-04",
+          "home": {
+            "iso": "fi",
+            "name": "Finlandia",
+            "score": 0
+          },
+          "away": {
+            "iso": "nl",
+            "name": "Países Bajos",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Olympiastadion",
+            "city": "Helsinki",
+            "country_iso": "fi"
+          },
+          "goals_arg": [
+            {
+              "player": "Memphis Depay",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Cody Gakpo",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 2,
+          "date": "2025-09-07",
+          "home": {
+            "iso": "nl",
+            "name": "Países Bajos",
+            "score": 4
+          },
+          "away": {
+            "iso": "lt",
+            "name": "Lituania",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Johan Cruyff ArenA",
+            "city": "Ámsterdam",
+            "country_iso": "nl"
+          },
+          "goals_arg": [
+            {
+              "player": "Memphis Depay",
+              "minute": "10'",
+              "type": "goal"
+            },
+            {
+              "player": "Donyell Malen",
+              "minute": "44'",
+              "type": "goal"
+            },
+            {
+              "player": "Memphis Depay",
+              "minute": "65'",
+              "type": "goal"
+            },
+            {
+              "player": "Ryan Gravenberch",
+              "minute": "82'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 3,
+          "date": "2025-10-09",
+          "home": {
+            "iso": "mt",
+            "name": "Malta",
+            "score": 0
+          },
+          "away": {
+            "iso": "nl",
+            "name": "Países Bajos",
+            "score": 4
+          },
+          "venue": {
+            "stadium": "National Stadium",
+            "city": "Ta' Qali",
+            "country_iso": "mt"
+          },
+          "goals_arg": [
+            {
+              "player": "Memphis Depay",
+              "minute": "5'",
+              "type": "goal"
+            },
+            {
+              "player": "Tijjani Reijnders",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Memphis Depay",
+              "minute": "55'",
+              "type": "penalty"
+            },
+            {
+              "player": "Donyell Malen",
+              "minute": "76'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 4,
+          "date": "2025-10-12",
+          "home": {
+            "iso": "nl",
+            "name": "Países Bajos",
+            "score": 1
+          },
+          "away": {
+            "iso": "pl",
+            "name": "Polonia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "De Kuip",
+            "city": "Róterdam",
+            "country_iso": "nl"
+          },
+          "goals_arg": [
+            {
+              "player": "Denzel Dumfries",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Empate clave. Polonia complicó la clasificación."
+        },
+        {
+          "matchday": 5,
+          "date": "2025-11-13",
+          "home": {
+            "iso": "nl",
+            "name": "Países Bajos",
+            "score": 4
+          },
+          "away": {
+            "iso": "fi",
+            "name": "Finlandia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Johan Cruyff ArenA",
+            "city": "Ámsterdam",
+            "country_iso": "nl"
+          },
+          "goals_arg": [
+            {
+              "player": "Memphis Depay",
+              "minute": "8'",
+              "type": "goal"
+            },
+            {
+              "player": "Memphis Depay",
+              "minute": "38'",
+              "type": "goal"
+            },
+            {
+              "player": "Cody Gakpo",
+              "minute": "60'",
+              "type": "goal"
+            },
+            {
+              "player": "Wout Weghorst",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 6,
+          "date": "2025-11-16",
+          "home": {
+            "iso": "lt",
+            "name": "Lituania",
+            "score": 0
+          },
+          "away": {
+            "iso": "nl",
+            "name": "Países Bajos",
+            "score": 4
+          },
+          "venue": {
+            "stadium": "Darius ir Girėnas",
+            "city": "Kaunas",
+            "country_iso": "lt"
+          },
+          "goals_arg": [
+            {
+              "player": "Cody Gakpo",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Tijjani Reijnders",
+              "minute": "47'",
+              "type": "goal"
+            },
+            {
+              "player": "Donyell Malen",
+              "minute": "60'",
+              "type": "goal"
+            },
+            {
+              "player": "Xavi Simons",
+              "minute": "80'",
+              "type": "goal"
+            }
+          ],
+          "notes": "VICTORIA QUE SELLÓ LA CLASIFICACIÓN al Mundial 2026 como 1º del Grupo G.",
+          "is_decisive_match": true
+        },
+        {
+          "matchday": 7,
+          "date": "2025-11-19",
+          "home": {
+            "iso": "pl",
+            "name": "Polonia",
+            "score": 1
+          },
+          "away": {
+            "iso": "nl",
+            "name": "Países Bajos",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Estadio Nacional",
+            "city": "Varsovia",
+            "country_iso": "pl"
+          },
+          "goals_arg": [
+            {
+              "player": "Memphis Depay",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 8,
+          "date": "2025-11-22",
+          "home": {
+            "iso": "nl",
+            "name": "Países Bajos",
+            "score": 8
+          },
+          "away": {
+            "iso": "mt",
+            "name": "Malta",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Johan Cruyff ArenA",
+            "city": "Ámsterdam",
+            "country_iso": "nl"
+          },
+          "goals_arg": [
+            {
+              "player": "Cody Gakpo",
+              "minute": "10'",
+              "type": "goal"
+            },
+            {
+              "player": "Cody Gakpo",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Memphis Depay",
+              "minute": "33'",
+              "type": "goal"
+            },
+            {
+              "player": "Memphis Depay",
+              "minute": "50'",
+              "type": "goal"
+            },
+            {
+              "player": "Donyell Malen",
+              "minute": "65'",
+              "type": "goal"
+            },
+            {
+              "player": "Wout Weghorst",
+              "minute": "75'",
+              "type": "goal"
+            },
+            {
+              "player": "Ryan Gravenberch",
+              "minute": "82'",
+              "type": "goal"
+            },
+            {
+              "player": "Frenkie de Jong",
+              "minute": "90'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Cierre apoteósico 8-0. Mayor goleada del ciclo."
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Memphis Depay",
+          "goals": 8,
+          "notes": "Goleador del ciclo y máximo goleador histórico de Países Bajos."
+        },
+        {
+          "player": "Cody Gakpo",
+          "goals": 4
+        },
+        {
+          "player": "Donyell Malen",
+          "goals": 3
+        },
+        {
+          "player": "Tijjani Reijnders",
+          "goals": 3
+        },
+        {
+          "player": "Ryan Gravenberch",
+          "goals": 2
+        },
+        {
+          "player": "Wout Weghorst",
+          "goals": 2
+        },
+        {
+          "player": "Denzel Dumfries",
+          "goals": 1
+        },
+        {
+          "player": "Xavi Simons",
+          "goals": 1
+        },
+        {
+          "player": "Frenkie de Jong",
+          "goals": 1
+        },
+        {
+          "player": "Otros (2)",
+          "goals": 2
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_8",
+        "reason": "El 8-0 a Malta el 22 de noviembre de 2025 en el cierre de eliminatorias. Mejor exhibición ofensiva con 8 goleadores diferentes."
+      },
+      "worst_match": {
+        "match_ref": "matchday_4",
+        "reason": "Empate 1-1 con Polonia en Róterdam. Único punto perdido en casa que complicó momentáneamente la clasificación."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_6",
+        "reason": "Victoria 4-0 sobre Lituania en Kaunas el 16 de noviembre selló matemáticamente la clasificación al Mundial 2026 como 1º del Grupo G."
+      }
+    },
+    "group_2026": {
+      "letter": "F",
+      "label": "Grupo asignado en sorteo Mundial 2026",
+      "teams": [
+        {
+          "iso": "nl",
+          "name": "P. Bajos",
+          "fifa_rank": null,
+          "is_seed": true
+        },
+        {
+          "iso": "tn",
+          "name": "Túnez",
+          "fifa_rank": null
+        },
+        {
+          "iso": "jp",
+          "name": "Japón",
+          "fifa_rank": null
+        },
+        {
+          "iso": "se",
+          "name": "Suecia",
+          "fifa_rank": null
+        }
+      ],
+      "notes": "Países Bajos cabeza de serie (Bombo 1). Pendiente cruce con /grupos zonamundial.app."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "tn",
+          "name": "Túnez"
+        },
+        "date": "2026-06-14",
+        "kickoff_local": "12:00",
+        "venue": {
+          "stadium": "BC Place",
+          "city": "Vancouver",
+          "country_iso": "ca"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "jp",
+          "name": "Japón"
+        },
+        "date": "2026-06-22",
+        "kickoff_local": "15:00",
+        "venue": {
+          "stadium": "Hard Rock Stadium",
+          "city": "Miami",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "tn",
+          "name": "Túnez"
+        },
+        "date": "2026-06-29",
+        "kickoff_local": "15:00",
+        "venue": {
+          "stadium": "Hard Rock Stadium",
+          "city": "Miami",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — KNVB aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Ronald Koeman",
+      "age": 63,
+      "nationality": "Países Bajos",
+      "since": "2023-01-01",
+      "previous_teams": [
+        "FC Barcelona (2020-2021)",
+        "Países Bajos (2018-2020)",
+        "Everton (2016-2017)",
+        "Southampton (2014-2016)",
+        "Feyenoord (2011-2014)",
+        "AZ Alkmaar (2009-2011)",
+        "Ajax (2001-2005, 2017-2018)"
+      ],
+      "profile_summary": "Leyenda histórica neerlandesa: jugador campeón de la Eurocopa 1988 con Holanda y de la Champions con Barcelona (1992, gol decisivo de tiro libre en final ante Sampdoria). DT de Países Bajos en su SEGUNDA etapa (la primera 2018-2020). Asumió tras el fracaso de Eurocopa 2024 (octavos). Identidad táctica: 4-3-3 ofensivo clásico con respeto al ADN total football neerlandés. Octava participación de un Koeman como protagonista del fútbol holandés (jugador o DT).",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Ronald_Koeman_%282014%29.jpg/330px-Ronald_Koeman_%282014%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Ronald_Koeman"
+      }
+    },
+    "captain": {
+      "name": "Virgil van Dijk",
+      "club": "Liverpool",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/20160604_AUT_NED_8876_%28cropped%29.jpg/330px-20160604_AUT_NED_8876_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Virgil_van_Dijk"
+      }
+    },
+    "star_player": {
+      "name": "Virgil van Dijk",
+      "club": "Liverpool",
+      "reason": "Capitán, defensa central considerado uno de los 3 mejores del mundo. 35 años en 2026 pero sigue al máximo nivel. Líder absoluto de la Oranje. Su presencia organiza la defensa entera. Premio Yashin 2019 (mejor portero), Balón de Oro segundo en 2019. Indispensable.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/20160604_AUT_NED_8876_%28cropped%29.jpg/330px-20160604_AUT_NED_8876_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Virgil_van_Dijk"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "bart-verbruggen",
+        "full_name": "Bart Verbruggen",
+        "display_name": "Bart Verbruggen",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Brighton",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Bart_Verbruggen.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Bart_Verbruggen"
+        }
+      },
+      {
+        "id": "mark-flekken",
+        "full_name": "Mark Flekken",
+        "display_name": "Mark Flekken",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Bayer Leverkusen",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 23,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Flekken%2C_Mark_Greuther_F%C3%BCrth_15-16_WP_%28cropped%29.jpg/330px-Flekken%2C_Mark_Greuther_F%C3%BCrth_15-16_WP_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mark_Flekken"
+        }
+      },
+      {
+        "id": "nick-olij",
+        "full_name": "Nick Olij",
+        "display_name": "Nick Olij",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Sparta Praga",
+          "country_iso": "cz",
+          "league": "Fortuna Liga"
+        },
+        "shirt_number_expected": 13,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Sparta_-_Go_Ahead_Eagles_-_53478974060_%28Nick_Olij%29.jpg/330px-Sparta_-_Go_Ahead_Eagles_-_53478974060_%28Nick_Olij%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Nick_Olij"
+        }
+      },
+      {
+        "id": "denzel-dumfries",
+        "full_name": "Denzel Dumfries",
+        "display_name": "Denzel Dumfries",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Inter de Milán",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 22,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Edison_ndreca_inter_egnati_%28cropped_Denzel_Dumfries%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Denzel_Dumfries"
+        }
+      },
+      {
+        "id": "lutsharel-geertruida",
+        "full_name": "Lutsharel Geertruida",
+        "display_name": "Geertruida",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "RB Leipzig",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 2,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Lutsharel_Geertruida_%28Testspiel_2022-07-09%29_14_%28cropped%29.jpg/330px-Lutsharel_Geertruida_%28Testspiel_2022-07-09%29_14_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Lutsharel_Geertruida"
+        }
+      },
+      {
+        "id": "virgil-van-dijk",
+        "full_name": "Virgil van Dijk",
+        "display_name": "Virgil van Dijk",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Liverpool",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/20160604_AUT_NED_8876_%28cropped%29.jpg/330px-20160604_AUT_NED_8876_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Virgil_van_Dijk"
+        }
+      },
+      {
+        "id": "matthijs-de-ligt",
+        "full_name": "Matthijs de Ligt",
+        "display_name": "Matthijs de Ligt",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Manchester United",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Matthijs_de_Ligt_2018.jpg/330px-Matthijs_de_Ligt_2018.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Matthijs_de_Ligt"
+        }
+      },
+      {
+        "id": "stefan-de-vrij",
+        "full_name": "Stefan de Vrij",
+        "display_name": "Stefan de Vrij",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Inter de Milán",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 6,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/FC_Salzburg_gegen_Inter_Mailand_%28Testspiel_2023-08-09%29_67_-_Stefan_de_Vrij_%28cropped%29.jpg/330px-FC_Salzburg_gegen_Inter_Mailand_%28Testspiel_2023-08-09%29_67_-_Stefan_de_Vrij_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Stefan_de_Vrij"
+        }
+      },
+      {
+        "id": "jurrien-timber",
+        "full_name": "Jurriën Timber",
+        "display_name": "Jurriën Timber",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Arsenal",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/GAE_-_Ajax_-_52788075131_%28Jurri%C3%ABn_Timber%29.jpg/330px-GAE_-_Ajax_-_52788075131_%28Jurri%C3%ABn_Timber%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jurri%C3%ABn_Timber"
+        }
+      },
+      {
+        "id": "nathan-ake",
+        "full_name": "Nathan Aké",
+        "display_name": "Nathan Aké",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Manchester City",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Yokohama_F._Marinos_-_Manchester_City_%283-5%29_-_53075276224_%28Nathan_Ake%29.jpg/330px-Yokohama_F._Marinos_-_Manchester_City_%283-5%29_-_53075276224_%28Nathan_Ake%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Nathan_Ak%C3%A9"
+        }
+      },
+      {
+        "id": "frenkie-de-jong",
+        "full_name": "Frenkie de Jong",
+        "display_name": "Frenkie de Jong",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "FC Barcelona",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 21,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/42/%D0%9C%D0%B0%D1%82%D1%87_%C2%AB%D0%94%D0%B8%D0%BD%D0%B0%D0%BC%D0%BE%C2%BB_-_%C2%AB%D0%91%D0%B0%D1%80%D1%81%D0%B5%D0%BB%D0%BE%D0%BD%D0%B0%C2%BB_0-1._2_%D0%BD%D0%BE%D1%8F%D0%B1%D1%80%D1%8F_2021_%D0%B3%D0%BE%D0%B4%D0%B0._II_%E2%80%94_1289671_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Frenkie_de_Jong"
+        }
+      },
+      {
+        "id": "ryan-gravenberch",
+        "full_name": "Ryan Gravenberch",
+        "display_name": "Ryan Gravenberch",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Liverpool",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/2022-07-30_Fu%C3%9Fball%2C_M%C3%A4nner%2C_DFL-Supercup%2C_RB_Leipzig_-_FC_Bayern_M%C3%BCnchen_1DX_3342_by_Stepro_%28cropped%29.jpg/330px-2022-07-30_Fu%C3%9Fball%2C_M%C3%A4nner%2C_DFL-Supercup%2C_RB_Leipzig_-_FC_Bayern_M%C3%BCnchen_1DX_3342_by_Stepro_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ryan_Gravenberch"
+        }
+      },
+      {
+        "id": "tijjani-reijnders",
+        "full_name": "Tijjani Reijnders",
+        "display_name": "Tijjani Reijnders",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Manchester City",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Reijnders_arriva_in_albergo_%28cropped%29.jpg/330px-Reijnders_arriva_in_albergo_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Tijjani_Reijnders"
+        }
+      },
+      {
+        "id": "xavi-simons",
+        "full_name": "Xavi Simons",
+        "display_name": "Xavi Simons",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Tottenham",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2672_%28Xavi_Simons%29.jpg/330px-2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2672_%28Xavi_Simons%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Xavi_Simons"
+        }
+      },
+      {
+        "id": "joey-veerman",
+        "full_name": "Joey Veerman",
+        "display_name": "Joey Veerman",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "PSV Eindhoven",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 25,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Joey_Veerman_sc_Heerenveen.png/330px-Joey_Veerman_sc_Heerenveen.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Joey_Veerman"
+        }
+      },
+      {
+        "id": "memphis-depay",
+        "full_name": "Memphis Depay",
+        "display_name": "Memphis Depay",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Corinthians",
+          "country_iso": "br",
+          "league": "Brasileirão"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Memphis_Depay_Barca_2021.jpg/330px-Memphis_Depay_Barca_2021.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Memphis_Depay"
+        }
+      },
+      {
+        "id": "cody-gakpo",
+        "full_name": "Cody Gakpo",
+        "display_name": "Cody Gakpo",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Liverpool",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Cody_Gakpo_06042025_%282%29_%28cropped%29.jpg/330px-Cody_Gakpo_06042025_%282%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Cody_Gakpo"
+        }
+      },
+      {
+        "id": "donyell-malen",
+        "full_name": "Donyell Malen",
+        "display_name": "Donyell Malen",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Aston Villa",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/DONYELL_MALEN_%E2%80%93_2023.08.12.jpg/330px-DONYELL_MALEN_%E2%80%93_2023.08.12.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Donyell_Malen"
+        }
+      },
+      {
+        "id": "joshua-zirkzee",
+        "full_name": "Joshua Zirkzee",
+        "display_name": "Joshua Zirkzee",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Manchester United",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 9,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Joshua_Zirkzee_2019.jpg/330px-Joshua_Zirkzee_2019.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Joshua_Zirkzee"
+        }
+      },
+      {
+        "id": "wout-weghorst",
+        "full_name": "Wout Weghorst",
+        "display_name": "Wout Weghorst",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Ajax",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 19,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Qaraba%C4%9F_vs_Ajax_%2824.10.2024%29_%284%29_%28Wout_Weghorst%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Wout_Weghorst"
+        }
+      },
+      {
+        "id": "noa-lang",
+        "full_name": "Noa Lang",
+        "display_name": "Noa Lang",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Napoli",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 26,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Austria_U-18_vs._Netherlands_U-18_2017-03-23_%28094%29.jpg/330px-Austria_U-18_vs._Netherlands_U-18_2017-03-23_%28094%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Noa_Lang"
+        }
+      },
+      {
+        "id": "brian-brobbey",
+        "full_name": "Brian Brobbey",
+        "display_name": "Brian Brobbey",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "RB Leipzig",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 24,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/GAE_-_Ajax_-_52788469380_%28Brobbey%29.jpg/330px-GAE_-_Ajax_-_52788469380_%28Brobbey%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Brian_Brobbey"
+        }
+      },
+      {
+        "id": "quilindschy-hartman",
+        "full_name": "Quilindschy Hartman",
+        "display_name": "Quilindschy Hartman",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Burnley",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 12,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Quilindschy_hartman-1680550566.jpeg/330px-Quilindschy_hartman-1680550566.jpeg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Quilindschy_Hartman"
+        }
+      },
+      {
+        "id": "jorrel-hato",
+        "full_name": "Jorrel Hato",
+        "display_name": "Jorrel Hato",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Chelsea",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 15,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Qaraba%C4%9F_vs_Ajax_%2824.10.2024%29_%284%29_%28Jorrel_Hato%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jorrel_Hato"
+        }
+      },
+      {
+        "id": "guus-til",
+        "full_name": "Guus Til",
+        "display_name": "Guus Til",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "PSV Eindhoven",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 16,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Guus_Til_%28Spartak_Moscow%2C_19.08.2019%29.jpg/330px-Guus_Til_%28Spartak_Moscow%2C_19.08.2019%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Guus_Til"
+        }
+      },
+      {
+        "id": "justin-kluivert",
+        "full_name": "Justin Kluivert",
+        "display_name": "Justin Kluivert",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Bournemouth",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 20,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Justin_Kluivert_2023.jpg/330px-Justin_Kluivert_2023.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Justin_Kluivert"
+        }
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-3-3",
+      "players": [
+        {
+          "player_id": "bart-verbruggen",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "denzel-dumfries",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "virgil-van-dijk",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "matthijs-de-ligt",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "nathan-ake",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "frenkie-de-jong",
+          "position": {
+            "x": 50,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "ryan-gravenberch",
+          "position": {
+            "x": 70,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "tijjani-reijnders",
+          "position": {
+            "x": 30,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "xavi-simons",
+          "position": {
+            "x": 85,
+            "y": 25
+          }
+        },
+        {
+          "player_id": "memphis-depay",
+          "position": {
+            "x": 50,
+            "y": 18
+          }
+        },
+        {
+          "player_id": "cody-gakpo",
+          "position": {
+            "x": 15,
+            "y": 25
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Koeman plantea un 4-3-3 clásico con doble pivote (de Jong + Reijnders/Gravenberch), Memphis Depay como '9' móvil, Gakpo y Simons por las bandas. Identidad: ADN total football, posesión, presión alta cuando el equipo es alto, transiciones letales. Defensa sólida con Van Dijk + de Ligt como pareja central de élite mundial.",
+      "strengths": [
+        "Defensa central de élite mundial: Van Dijk + de Ligt + Aké + de Vrij. Probablemente la mejor del torneo.",
+        "Memphis Depay: máximo goleador histórico (51+), goleador del ciclo con 8 goles.",
+        "Mediocampo de élite: Frenkie de Jong (Barça), Reijnders (City), Gravenberch (Liverpool), Xavi Simons (Tottenham).",
+        "Cody Gakpo: extremo top en su pico (Champions con Liverpool 2025).",
+        "Generación intermedia (de Jong, Gakpo, Reijnders, Simons) en pico futbolístico.",
+        "Eliminatoria perfecta defensivamente: solo 4 goles encajados en 8 partidos."
+      ],
+      "weaknesses": [
+        "MALDICIÓN DE LAS 3 FINALES PERDIDAS: 1974, 1978, 2010. Carga psicológica histórica.",
+        "Memphis Depay a 32 años sin equipo Top-5 europeo (Corinthians de Brasil).",
+        "Sin un '9' joven consolidado: Zirkzee, Brobbey, Weghorst alternativas pero sin total confianza.",
+        "Lateral derecho limitado: Dumfries (33 años) único fijo.",
+        "Koeman 2.0: discurso de DT un poco repetido tras fracaso Eurocopa 2024.",
+        "Convivencia de talentos (de Jong, Reijnders, Simons, Gakpo) puede ser difícil de gestionar tácticamente."
+      ],
+      "x_factor": {
+        "player": "Xavi Simons",
+        "reason": "El '10' del Tottenham (22 años) llega al Mundial en su pico futbolístico. Capaz de jugar como extremo, mediapunta o segundo delantero. Su técnica, gambeta y golazos pueden ser el diferencial neerlandés. Heredero técnico de Bergkamp y Sneijder."
+      },
+      "prediction_text": "Países Bajos llega al Mundial 2026 como una de las 5-7 grandes favoritas. La mezcla Van Dijk + de Jong + Depay + Gakpo + Simons da una de las plantillas más balanceadas del torneo. El reto histórico: superar la maldición de 3 finales perdidas (1974, 1978, 2010). Llegar a semifinales es objetivo realista; superarlo sería el primer Mundial naranja.",
+      "probabilities": {
+        "advance_groups": 95,
+        "round_of_32": 90,
+        "round_of_16": 78,
+        "quarter_finals": 55,
+        "semi_finals": 32,
+        "final": 16,
+        "champion": 7
+      },
+      "vs_last_3_wcs": "Brasil 2014: SEMIFINALES (3er puesto), eliminada por Argentina en penales tras 0-0. Rusia 2018: NO CLASIFICÓ (crisis nacional). Catar 2022: cuartos, eliminada por Argentina en penales 4-3 tras empate 2-2. Mundial 2026: 12ª participación, busca por fin levantar la Copa que se les ha resistido en 3 finales."
+    }
+  },
+  "history": {
+    "first_appearance": 1934,
+    "appearances_count_before_2026": 11,
+    "appearances_count_with_2026": 12,
+    "consecutive_streak_since": 2022,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 3,
+    "finals_years": [
+      1974,
+      1978,
+      2010
+    ],
+    "semi_finals": 5,
+    "best_result": "Subcampeona del Mundo 3 veces (1974, 1978, 2010)",
+    "aggregate_stats_through_2022": {
+      "played": 50,
+      "won": 27,
+      "drawn": 12,
+      "lost": 11,
+      "goals_for": 96,
+      "goals_against": 54,
+      "win_percentage": 54,
+      "notes": "Datos hasta Qatar 2022. Países Bajos 9º en ranking histórico Mundial."
+    },
+    "by_world_cup": [
+      {
+        "year": 1934,
+        "host": {
+          "countries": [
+            "Italia"
+          ],
+          "iso": [
+            "it"
+          ]
+        },
+        "result": "Primera ronda",
+        "coach": "Bob Glendenning",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Kick Smit",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "DEBUT mundialista."
+        ],
+        "narrative": "Países Bajos cayó 2-3 con Suiza en debut."
+      },
+      {
+        "year": 1938,
+        "host": {
+          "countries": [
+            "Francia"
+          ],
+          "iso": [
+            "fr"
+          ]
+        },
+        "result": "Primera ronda",
+        "coach": "Bob Glendenning",
+        "matches": [],
+        "team_top_scorers": [],
+        "goals_scored": 0,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Eliminada por Checoslovaquia 0-3."
+        ],
+        "narrative": "Eliminación temprana."
+      },
+      {
+        "year": 1974,
+        "host": {
+          "countries": [
+            "Alemania Federal"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
+        "result": "Subcampeón",
+        "coach": "Rinus Michels",
+        "captain": "Johan Cruyff",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Johan Neeskens",
+            "goals": 5
+          },
+          {
+            "player": "Johnny Rep",
+            "goals": 4
+          }
+        ],
+        "goals_scored": 15,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "LA NARANJA MECÁNICA en su máxima expresión.",
+          "Cruyff inventó el 'total football'.",
+          "Final 1-2 ante Alemania Federal en Múnich (Müller marcó al 43').",
+          "Penal de Neeskens al MINUTO 2 de la final, primer gol en final mundialista de penal."
+        ],
+        "narrative": "El Mundial mítico de la 'Naranja Mecánica' de Rinus Michels y Johan Cruyff. Total Football. Fútbol total que cambió el deporte para siempre. Goleó 4-1 a Argentina en 2ª ronda. En la FINAL ante Alemania anfitriona: Cruyff fue derribado en el primer minuto, Neeskens marcó penal al 2'. Pero Alemania remontó: Breitner (penal 25') y Gerd Müller (43'). Adiós doloroso a la mejor selección no-campeona de la historia."
+      },
+      {
+        "year": 1978,
+        "host": {
+          "countries": [
+            "Argentina"
+          ],
+          "iso": [
+            "ar"
+          ]
+        },
+        "result": "Subcampeón",
+        "coach": "Ernst Happel",
+        "captain": "Ruud Krol",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Rob Rensenbrink",
+            "goals": 5
+          },
+          {
+            "player": "Johnny Rep",
+            "goals": 3
+          }
+        ],
+        "goals_scored": 15,
+        "goals_conceded": 10,
+        "notable_facts": [
+          "SIN CRUYFF (negativa de viajar a Argentina por motivos políticos).",
+          "Final perdida 1-3 ante Argentina anfitriona en El Monumental con Mario Kempes héroe.",
+          "Rensenbrink remató al palo en el último minuto del tiempo reglamentario."
+        ],
+        "narrative": "Países Bajos sin Cruyff llegó a la final. Ante Argentina anfitriona en El Monumental, 1-1 reglamentario. Rob Rensenbrink remató al palo en el último minuto antes del final reglamentario. EN PRÓRROGA, Mario Kempes 2-1 al 105' y Bertoni 3-1 al 116'. Argentina campeona en su primer Mundial. Adiós a la 2ª final perdida consecutiva."
+      },
+      {
+        "year": 1990,
+        "host": {
+          "countries": [
+            "Italia"
+          ],
+          "iso": [
+            "it"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Leo Beenhakker",
+        "captain": "Ruud Gullit",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Marco van Basten",
+            "goals": 0
+          }
+        ],
+        "goals_scored": 3,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "Eliminada por Alemania Federal 1-2 (escupitajo de Rijkaard a Völler famoso)."
+        ],
+        "narrative": "Países Bajos campeona Eurocopa 1988 fracasó. Cayó ante Alemania (futura campeona) 1-2 en octavos. Frank Rijkaard escupió a Rudi Völler dos veces. Imágenes míticas de la disputa eterna entre los dos."
+      },
+      {
+        "year": 1994,
+        "host": {
+          "countries": [
+            "Estados Unidos"
+          ],
+          "iso": [
+            "us"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Dick Advocaat",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Dennis Bergkamp",
+            "goals": 3
+          }
+        ],
+        "goals_scored": 8,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Eliminada por Brasil 2-3 en cuartos."
+        ],
+        "narrative": "Países Bajos llegó a cuartos donde cayó 2-3 con Brasil futura campeona en Dallas."
+      },
+      {
+        "year": 1998,
+        "host": {
+          "countries": [
+            "Francia"
+          ],
+          "iso": [
+            "fr"
+          ]
+        },
+        "result": "Cuarto puesto",
+        "coach": "Guus Hiddink",
+        "captain": "Frank de Boer",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Dennis Bergkamp",
+            "goals": 3
+          },
+          {
+            "player": "Ronald de Boer",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 13,
+        "goals_conceded": 7,
+        "notable_facts": [
+          "GOLAZO DE BERGKAMP a Argentina en cuartos (1-0).",
+          "Eliminada por Brasil en penales en semis."
+        ],
+        "narrative": "Mundial mítico. Bergkamp marcó UN GOLAZO INOLVIDABLE a Argentina en cuartos (control con el pecho, giro y volea cruzada al 89' para el 2-1). En semis cayó con Brasil en penales 4-2 tras 1-1. Cuarto puesto."
+      },
+      {
+        "year": 2006,
+        "host": {
+          "countries": [
+            "Alemania"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Marco van Basten",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Arjen Robben",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 3,
+        "goals_conceded": 1,
+        "notable_facts": [
+          "Eliminada por Portugal 0-1 (16 tarjetas en el partido récord)."
+        ],
+        "narrative": "Adiós contra Portugal en partido violento (16 tarjetas, récord histórico)."
+      },
+      {
+        "year": 2010,
+        "host": {
+          "countries": [
+            "Sudáfrica"
+          ],
+          "iso": [
+            "za"
+          ]
+        },
+        "result": "Subcampeón",
+        "coach": "Bert van Marwijk",
+        "captain": "Giovanni van Bronckhorst",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Wesley Sneijder",
+            "goals": 5
+          },
+          {
+            "player": "Arjen Robben",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 12,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Tercera FINAL perdida.",
+          "Final 0-1 ante España en prórroga (Iniesta 116')."
+        ],
+        "narrative": "TERCERA Y ÚLTIMA FINAL PERDIDA hasta hoy. Países Bajos arrolló en grupos y eliminatoria con Sneijder (5 goles, top scorer + asistencias). En la FINAL ANTE ESPAÑA en Soccer City, partido brusco, 0-0 reglamentario. EN PRÓRROGA, Andrés Iniesta marcó al 116' tras pase de Cesc Fàbregas. España campeona, Países Bajos subcampeón por 3ª vez. Carga psicológica histórica que dura hasta hoy."
+      },
+      {
+        "year": 2014,
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
+        "result": "Tercer puesto",
+        "coach": "Louis van Gaal",
+        "captain": "Robin van Persie",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Robin van Persie",
+            "goals": 4
+          },
+          {
+            "player": "Arjen Robben",
+            "goals": 3
+          }
+        ],
+        "goals_scored": 15,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "GOLEÓ 5-1 A ESPAÑA EN DEBUT (revancha Mundial 2010).",
+          "EL CABEZAZO DE 'BUITRE' DE VAN PERSIE en plancha al 5-1.",
+          "Eliminada por Argentina en penales en semis."
+        ],
+        "narrative": "Países Bajos arrancó con la REVANCHA del Mundial 2010: 5-1 A ESPAÑA en Salvador. EL CABEZAZO DEL ÁGUILA de Robin van Persie (en plancha tras pase de Daley Blind) sigue siendo uno de los goles más bellos del siglo. Robben tuvo Mundial enorme. Eliminada en semis por Argentina en penales 4-2 tras 0-0. Bronce ganado a Brasil 3-0. Mejor papel histórico del siglo XXI hasta el momento."
+      },
+      {
+        "year": 2022,
+        "host": {
+          "countries": [
+            "Catar"
+          ],
+          "iso": [
+            "qa"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Louis van Gaal",
+        "captain": "Virgil van Dijk",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Cody Gakpo",
+            "goals": 3
+          },
+          {
+            "player": "Memphis Depay",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 10,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Eliminada por Argentina 2-2 (3-4 penales) en cuartos."
+        ],
+        "narrative": "Países Bajos llegó cómoda a cuartos donde se enfrentó a Argentina. 2-2 reglamentario (Weghorst doblete, hat-trick negado en últimos minutos en jugada de tiro libre que se convirtió en pase corto al área). Tras prórroga, en penales Argentina ganó 4-3 (Lautaro último). Adiós doloroso."
+      }
+    ],
+    "palmares": [
+      {
+        "competition": "Eurocopa",
+        "year": 1988,
+        "position": "Campeón",
+        "host": "Alemania Federal"
+      },
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 1974,
+        "position": "Subcampeón",
+        "host": "Alemania Federal"
+      },
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 1978,
+        "position": "Subcampeón",
+        "host": "Argentina"
+      },
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 2010,
+        "position": "Subcampeón",
+        "host": "Sudáfrica"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Memphis Depay",
+      "value": 51,
+      "period": "2013-presente",
+      "notes": "Máximo goleador histórico. Superó a Robin van Persie (50) en 2024."
+    },
+    "most_capped": {
+      "name": "Wesley Sneijder",
+      "value": 134,
+      "period": "2003-2018",
+      "notes": "Récord histórico."
+    },
+    "youngest_debut": {
+      "name": "Mauk Weber",
+      "value": "17 años, 10 meses",
+      "period": "1929",
+      "notes": "Récord histórico."
+    },
+    "biggest_win": {
+      "result": "9-0",
+      "opponent": "Noruega",
+      "date": "1972-11-01",
+      "competition": "Eliminatorias Mundial 1974"
+    },
+    "worst_loss": {
+      "result": "2-12",
+      "opponent": "Inglaterra Amateur",
+      "date": "1907-12-21",
+      "competition": "Amistoso"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "La Naranja Mecánica del 74",
+      "date": "1974-07-07",
+      "opponent": {
+        "iso": "de",
+        "name": "Alemania Federal"
+      },
+      "score": "1-2",
+      "competition": "Final Mundial 1974",
+      "narrative": "Países Bajos perdió la final del Mundial 1974 ante Alemania anfitriona 2-1 en Múnich. Cruyff fue derribado al primer minuto y Neeskens marcó penal al 2' (PRIMER GOL en una final de Mundial por penal). Pero Alemania remontó. La 'Naranja Mecánica' de Rinus Michels y Cruyff cambió el fútbol con el 'Total Football' aunque no ganó la Copa."
+    },
+    {
+      "title": "El penal de Rensenbrink al palo",
+      "date": "1978-06-25",
+      "opponent": {
+        "iso": "ar",
+        "name": "Argentina"
+      },
+      "score": "1-3 (prórroga)",
+      "competition": "Final Mundial 1978",
+      "narrative": "Países Bajos sin Cruyff perdió la final del Mundial 1978 ante Argentina anfitriona en prórroga. Rob Rensenbrink remató al palo EN EL ÚLTIMO MINUTO del tiempo reglamentario (90'). En prórroga, Mario Kempes (105') y Bertoni (116') sentenciaron el 3-1. Segunda final perdida consecutiva."
+    },
+    {
+      "title": "El golazo de Bergkamp a Argentina",
+      "date": "1998-07-04",
+      "opponent": {
+        "iso": "ar",
+        "name": "Argentina"
+      },
+      "score": "2-1",
+      "competition": "Cuartos Mundial 1998",
+      "narrative": "Dennis Bergkamp marcó al 89' del Argentina-Países Bajos uno de los goles más bellos de la historia mundial. Tras pase largo de Frank de Boer desde campo propio, control con el pecho en carrera, giro a Ayala y volea cruzada al ángulo. Adiós a Argentina en cuartos."
+    },
+    {
+      "title": "El cabezazo del águila de Van Persie",
+      "date": "2014-06-13",
+      "opponent": {
+        "iso": "es",
+        "name": "España"
+      },
+      "score": "5-1",
+      "competition": "Fase de Grupos Mundial 2014",
+      "narrative": "Robin van Persie marcó el 1-1 con un CABEZAZO EN PLANCHA AL ÁGUILA tras pase de 50 metros de Daley Blind. El gol más espectacular del Mundial 2014. Países Bajos goleó 5-1 a España (campeona vigente, revancha del Mundial 2010 perdido). Imagen icónica del fútbol moderno."
+    },
+    {
+      "title": "La final 2010 perdida con España",
+      "date": "2010-07-11",
+      "opponent": {
+        "iso": "es",
+        "name": "España"
+      },
+      "score": "0-1 (prórroga)",
+      "competition": "Final Mundial 2010",
+      "narrative": "TERCERA FINAL PERDIDA. Partido brusco de 14 amarillas y una roja (Heitinga al 109'). 0-0 reglamentario. EN PRÓRROGA, Andrés Iniesta marcó al 116' tras pase de Cesc Fàbregas. España campeona del mundo por primera vez. Países Bajos quedó marcada como la mejor selección sin Mundial, con 3 finales perdidas."
+    },
+    {
+      "title": "Eliminación ante Argentina 2022",
+      "date": "2022-12-09",
+      "opponent": {
+        "iso": "ar",
+        "name": "Argentina"
+      },
+      "score": "2-2 (3-4 pen)",
+      "competition": "Cuartos Mundial 2022",
+      "narrative": "Países Bajos cayó eliminada en cuartos del Mundial 2022 ante Argentina en penales. 2-2 reglamentario (Wout Weghorst doblete, el segundo al 100+11' tras jugada de tiro libre que se convirtió en pase corto al área). Tras prórroga sin goles, en penales Argentina ganó 4-3. Adiós doloroso ante la futura campeona."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "Países Bajos es la SELECCIÓN CON MÁS FINALES MUNDIALISTAS PERDIDAS de la historia (3): 1974, 1978, 2010. La 'maldición de Cruyff' los persigue.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "El 'Total Football' (fútbol total) es invención de Rinus Michels y los Países Bajos del 1974, sistema en que cada jugador puede ocupar cualquier posición. Influyó en Cruyff, Sacchi, Pep Guardiola y todo el fútbol moderno.",
+      "source": "Wikipedia + ESPN histórico",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Johan Cruyff es considerado uno de los 5 mejores jugadores de la historia. Inventor del 'Cruyff turn'. Balón de Oro 1971, 1973, 1974. Padre del fútbol Barça.",
+      "source": "FIFA + UEFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "El cabezazo en plancha de Van Persie ante España 2014 ('flying Dutchman') es uno de los goles más virales de la historia. La pose de van Persie volando se convirtió en meme mundial.",
+      "source": "FIFA + Reuters",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "El escupitajo de Frank Rijkaard a Rudi Völler en el Mundial 1990 es una de las imágenes más recordadas del fútbol mundial. Ambos fueron expulsados. Décadas después se reconciliaron en un partido de leyendas.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Países Bajos campeona Eurocopa 1988 con la generación AC Milan: Gullit, Van Basten, Rijkaard. Van Basten marcó el GOL DEL TORNEO en la final 2-0 sobre URSS (volea imposible al palo largo).",
+      "source": "UEFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Memphis Depay superó a Robin van Persie (50) como máximo goleador histórico de Países Bajos en 2024. Aunque su carrera de clubes ha sido irregular, sigue siendo letal con la Oranje.",
+      "source": "KNVB + ESPN",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Países Bajos NO CLASIFICÓ AL MUNDIAL 2018 (Rusia), uno de los grandes shocks europeos del último decenio. Crisis nacional que llevó al regreso de Koeman como DT.",
+      "source": "UEFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Wilhelmus (himno)",
+      "Hup Holland Hup",
+      "Oranje Boven",
+      "Viva Hollandia"
+    ],
+    "main_rival": {
+      "iso": "de",
+      "name": "Alemania",
+      "story": "Rivalidad histórica europea por excelencia. Final Mundial 1974 perdida ante Alemania, octavos 1990 (escupitajo Rijkaard a Völler), Eurocopa 1988 (semifinal 2-1 con doblete de Van Basten). Cargada de historia política (II Guerra Mundial) y deportiva."
+    },
+    "home_stadium": {
+      "name": "Johan Cruyff ArenA (Ámsterdam) y De Kuip (Róterdam)",
+      "capacity": 54033,
+      "city": "Sin estadio fijo: la KNVB rota partidos"
+    }
+  },
+  "seo": {
+    "meta_title": "Países Bajos en el Mundial 2026 | Plantilla, historia y predicciones",
+    "meta_description": "Países Bajos Mundial 2026: 26 convocados de Koeman, Van Dijk, Depay, Gakpo, De Jong. Tres finales perdidas buscan por fin el primer Mundial.",
+    "og_image_url": "/img/og/teams/paises-bajos.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de los Países Bajos",
+      "alternateName": [
+        "Oranje",
+        "Naranja Mecánica"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "UEFA"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Ronald Koeman"
+      },
+      "url": "https://www.zonamundial.app/selecciones/paises-bajos"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-28",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_los_Pa%C3%ADses_Bajos",
+      "https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_de_UEFA_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://es.uefa.com/european-qualifiers/news/029f-1f3188cfc443-494e0d8af33d-1000--mundial-2026-que-selecciones-europeas-se-han-clasificado/",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/15895830/se-definen-eliminatorias-uefa-europa-mundial-2026-quien-puede-clasificar",
+      "https://www.knvb.nl",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias cruzadas con UEFA + Wikipedia + ESPN. Historia mundialista validada con FIFA + Wikipedia + KNVB.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "needs_review",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante: pendiente",
+      "Grupo Mundial 2026 y rivales: cruzar con /grupos zonamundial.app",
+      "Calendario fase de grupos 2026: fixture FIFA pendiente",
+      "Base de entrenamiento: KNVB aún no anunció",
+      "FIFA Ranking #7: validar mes vigente",
+      "Historia 1950-1970: ediciones omitidas (no clasificó por décadas)",
+      "Plantilla Memphis Depay: validar club actual a fecha publicación"
+    ]
+  }
+}

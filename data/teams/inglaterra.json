@@ -1,0 +1,1836 @@
+{
+  "slug": "inglaterra",
+  "iso": "gb-eng",
+  "iso3": "ENG",
+  "name_es": "Inglaterra",
+  "name_en": "England",
+  "name_local": "England",
+  "nicknames": [
+    "Three Lions",
+    "Los Tres Leones",
+    "The English Lions"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#FFFFFF",
+      "secondary": "#CE1124",
+      "tertiary": "#012169",
+      "contrast_text": "#012169"
+    }
+  },
+  "country": {
+    "capital": "Londres",
+    "language_official": [
+      "Inglés"
+    ],
+    "population": 56489800,
+    "area_km2": 130279,
+    "timezone": "Europe/London",
+    "continent": "Europa"
+  },
+  "federation": {
+    "name": "The Football Association",
+    "abbreviation": "FA",
+    "founded": 1863,
+    "headquarters": "Londres (Wembley)",
+    "website": "https://www.thefa.com"
+  },
+  "confederation": "UEFA",
+  "fifa_ranking": {
+    "current": 5,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Nike",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/inglaterra.png",
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#CE1124",
+        "description": "Camiseta blanca histórica con la cruz de San Jorge en el escudo y los Tres Leones (Three Lions). Detalles rojos y azules.",
+        "alt_text": "Camiseta titular Inglaterra Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#CE1124",
+        "secondary_color": "#FFFFFF",
+        "description": "Equipación visitante en rojo. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Inglaterra Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "El escudo con los Tres Leones data de 1872 y proviene del escudo real de Ricardo Corazón de León, rey de Inglaterra en el siglo XII. Es uno de los escudos más antiguos del fútbol mundial.",
+        "source": "FA + ESPN histórico",
+        "verified_at": "2026-04-28",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Inglaterra firmó la MEJOR ELIMINATORIA UEFA: 8 victorias en 8 partidos, 22 goles a favor, 0 GOLES ENCAJADOS. Récord absoluto. Fue la primera europea en clasificarse. Bajo Thomas Tuchel (sustituyó a Gareth Southgate tras la final perdida de Eurocopa 2024 ante España), Inglaterra recuperó solidez defensiva y ataque con Harry Kane goleador. Subcampeona Eurocopa 2024 y semifinalista Eurocopa 2020 buscan terminar la sequía de 60 años sin Mundial.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias UEFA Mundial 2026 — Grupo K",
+      "format": "Liguilla todos contra todos · 5 equipos · 8 partidos · ida y vuelta",
+      "duration": "Marzo 2025 — Noviembre 2025",
+      "final_position": 1,
+      "total_teams_in_group": 5,
+      "stats": {
+        "played": 8,
+        "won": 8,
+        "drawn": 0,
+        "lost": 0,
+        "goals_for": 22,
+        "goals_against": 0,
+        "goal_difference": 22,
+        "points": 24,
+        "win_percentage": 100,
+        "clean_sheets": 8
+      },
+      "coach_during_qualifying": "Thomas Tuchel",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2025-03-21",
+          "home": {
+            "iso": "gb-eng",
+            "name": "Inglaterra",
+            "score": 2
+          },
+          "away": {
+            "iso": "al",
+            "name": "Albania",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Wembley",
+            "city": "Londres",
+            "country_iso": "gb-eng"
+          },
+          "goals_arg": [
+            {
+              "player": "Myles Lewis-Skelly",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Harry Kane",
+              "minute": "77'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Debut de Tuchel con victoria. Lewis-Skelly (18 años) marcó en su debut absoluto."
+        },
+        {
+          "matchday": 2,
+          "date": "2025-03-24",
+          "home": {
+            "iso": "gb-eng",
+            "name": "Inglaterra",
+            "score": 3
+          },
+          "away": {
+            "iso": "lv",
+            "name": "Letonia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Wembley",
+            "city": "Londres",
+            "country_iso": "gb-eng"
+          },
+          "goals_arg": [
+            {
+              "player": "Reece James",
+              "minute": "14'",
+              "type": "goal"
+            },
+            {
+              "player": "Harry Kane",
+              "minute": "23'",
+              "type": "penalty"
+            },
+            {
+              "player": "Harry Kane",
+              "minute": "44'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 3,
+          "date": "2025-06-07",
+          "home": {
+            "iso": "ad",
+            "name": "Andorra",
+            "score": 0
+          },
+          "away": {
+            "iso": "gb-eng",
+            "name": "Inglaterra",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "RCDE Stadium",
+            "city": "Cornellà-Barcelona",
+            "country_iso": "es"
+          },
+          "goals_arg": [
+            {
+              "player": "Harry Kane",
+              "minute": "50'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Andorra jugó como local en Cornellà (España). Victoria sin brillo."
+        },
+        {
+          "matchday": 4,
+          "date": "2025-09-06",
+          "home": {
+            "iso": "gb-eng",
+            "name": "Inglaterra",
+            "score": 2
+          },
+          "away": {
+            "iso": "ad",
+            "name": "Andorra",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Villa Park",
+            "city": "Birmingham",
+            "country_iso": "gb-eng"
+          },
+          "goals_arg": [
+            {
+              "player": "Declan Rice",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Bukayo Saka",
+              "minute": "67'",
+              "type": "penalty"
+            }
+          ]
+        },
+        {
+          "matchday": 5,
+          "date": "2025-09-09",
+          "home": {
+            "iso": "rs",
+            "name": "Serbia",
+            "score": 0
+          },
+          "away": {
+            "iso": "gb-eng",
+            "name": "Inglaterra",
+            "score": 5
+          },
+          "venue": {
+            "stadium": "Marakana",
+            "city": "Belgrado",
+            "country_iso": "rs"
+          },
+          "goals_arg": [
+            {
+              "player": "Anthony Gordon",
+              "minute": "33'",
+              "type": "goal"
+            },
+            {
+              "player": "Marc Guéhi",
+              "minute": "35'",
+              "type": "goal"
+            },
+            {
+              "player": "Harry Kane",
+              "minute": "57'",
+              "type": "goal"
+            },
+            {
+              "player": "Noni Madueke",
+              "minute": "77'",
+              "type": "goal"
+            },
+            {
+              "player": "Marcus Rashford",
+              "minute": "89'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Goleada histórica en Belgrado. Tuchel firmó su mejor partido al frente."
+        },
+        {
+          "matchday": 6,
+          "date": "2025-10-09",
+          "home": {
+            "iso": "lv",
+            "name": "Letonia",
+            "score": 0
+          },
+          "away": {
+            "iso": "gb-eng",
+            "name": "Inglaterra",
+            "score": 5
+          },
+          "venue": {
+            "stadium": "Daugava",
+            "city": "Riga",
+            "country_iso": "lv"
+          },
+          "goals_arg": [
+            {
+              "player": "Anthony Gordon",
+              "minute": "10'",
+              "type": "goal"
+            },
+            {
+              "player": "Harry Kane",
+              "minute": "44'",
+              "type": "penalty"
+            },
+            {
+              "player": "Harry Kane",
+              "minute": "86'",
+              "type": "goal"
+            },
+            {
+              "player": "Eberechi Eze",
+              "minute": "76'",
+              "type": "goal"
+            },
+            {
+              "player": "Marc Guéhi",
+              "minute": "90'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 7,
+          "date": "2025-10-12",
+          "home": {
+            "iso": "gb-eng",
+            "name": "Inglaterra",
+            "score": 2
+          },
+          "away": {
+            "iso": "rs",
+            "name": "Serbia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Wembley",
+            "city": "Londres",
+            "country_iso": "gb-eng"
+          },
+          "goals_arg": [
+            {
+              "player": "Harry Kane",
+              "minute": "26'",
+              "type": "goal"
+            },
+            {
+              "player": "Noni Madueke",
+              "minute": "84'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Selló matemáticamente la clasificación. PRIMERA SELECCIÓN EUROPEA en clasificarse al Mundial 2026.",
+          "is_decisive_match": true
+        },
+        {
+          "matchday": 8,
+          "date": "2025-11-13",
+          "home": {
+            "iso": "al",
+            "name": "Albania",
+            "score": 0
+          },
+          "away": {
+            "iso": "gb-eng",
+            "name": "Inglaterra",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Air Albania",
+            "city": "Tirana",
+            "country_iso": "al"
+          },
+          "goals_arg": [
+            {
+              "player": "Harry Kane",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Harry Kane",
+              "minute": "76'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Cierre con doblete de Kane. PASO PERFECTO: 8G/8 con 22 GF y 0 GC. Récord histórico inglés."
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Harry Kane",
+          "goals": 8,
+          "notes": "Goleador y capitán. Puntal absoluto del ataque inglés."
+        },
+        {
+          "player": "Anthony Gordon",
+          "goals": 2
+        },
+        {
+          "player": "Marc Guéhi",
+          "goals": 2
+        },
+        {
+          "player": "Noni Madueke",
+          "goals": 2
+        },
+        {
+          "player": "Myles Lewis-Skelly",
+          "goals": 1
+        },
+        {
+          "player": "Reece James",
+          "goals": 1
+        },
+        {
+          "player": "Declan Rice",
+          "goals": 1
+        },
+        {
+          "player": "Bukayo Saka",
+          "goals": 1
+        },
+        {
+          "player": "Marcus Rashford",
+          "goals": 1
+        },
+        {
+          "player": "Eberechi Eze",
+          "goals": 1
+        },
+        {
+          "player": "Otros (2)",
+          "goals": 2
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_5",
+        "reason": "El 5-0 a Serbia en Belgrado el 9 de septiembre de 2025. Goleada histórica y demostración del estilo Tuchel. Cinco goleadores diferentes."
+      },
+      "worst_match": {
+        "match_ref": "matchday_3",
+        "reason": "Triunfo 1-0 a Andorra en Cornellà. Único partido ganado por la mínima diferencia y sin gran fluidez."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_7",
+        "reason": "El 2-0 a Serbia en Wembley el 12 de octubre de 2025 selló la clasificación matemática. Inglaterra fue la PRIMERA selección europea en asegurar plaza al Mundial 2026."
+      }
+    },
+    "group_2026": {
+      "letter": "L",
+      "label": "Grupo asignado en sorteo Mundial 2026",
+      "teams": [
+        {
+          "iso": "gb-eng",
+          "name": "Inglaterra",
+          "fifa_rank": null,
+          "is_seed": true
+        },
+        {
+          "iso": "hr",
+          "name": "Croacia",
+          "fifa_rank": null
+        },
+        {
+          "iso": "gh",
+          "name": "Ghana",
+          "fifa_rank": null
+        },
+        {
+          "iso": "pa",
+          "name": "Panamá",
+          "fifa_rank": null
+        }
+      ],
+      "notes": "Inglaterra cabeza de serie (Bombo 1). Pendiente cruce con /grupos zonamundial.app."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "hr",
+          "name": "Croacia"
+        },
+        "date": "2026-06-17",
+        "kickoff_local": "12:00",
+        "venue": {
+          "stadium": "AT&T Stadium",
+          "city": "Dallas",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "pa",
+          "name": "Panamá"
+        },
+        "date": "2026-06-26",
+        "kickoff_local": "15:00",
+        "venue": {
+          "stadium": "Arrowhead Stadium",
+          "city": "Kansas City",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "pa",
+          "name": "Panamá"
+        },
+        "date": "2026-06-30",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "Arrowhead Stadium",
+          "city": "Kansas City",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — FA aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Thomas Tuchel",
+      "age": 52,
+      "nationality": "Alemania",
+      "since": "2025-01-01",
+      "previous_teams": [
+        "Bayern Múnich (2023-2024)",
+        "Chelsea (2021-2022)",
+        "PSG (2018-2020)",
+        "Borussia Dortmund (2015-2017)",
+        "Mainz 05 (2009-2014)"
+      ],
+      "profile_summary": "Alemán, ganador de la Champions League 2021 con el Chelsea. Asumió Inglaterra en enero 2025 tras la salida de Gareth Southgate (post-Eurocopa 2024). Identidad táctica: 4-3-3 ofensivo con presión alta, transiciones rápidas, defensa intensa. Primer DT extranjero de Inglaterra desde Sven-Göran Eriksson (2001-2006) y Fabio Capello (2008-2012). En 8 partidos de eliminatoria: 8 victorias, 22 goles, 0 encajados. Inicio histórico.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Thomas_Tuchel_Chelsea.jpg/330px-Thomas_Tuchel_Chelsea.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Thomas_Tuchel"
+      }
+    },
+    "captain": {
+      "name": "Harry Kane",
+      "club": "Bayern Múnich",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Harry_Kane_on_October_10%2C_2023.jpg/330px-Harry_Kane_on_October_10%2C_2023.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Harry_Kane"
+      }
+    },
+    "star_player": {
+      "name": "Harry Kane",
+      "club": "Bayern Múnich",
+      "reason": "Capitán, goleador histórico de Inglaterra (74+ goles). A los 32 años llega a su tercer Mundial siendo aún el referente ofensivo. Bota de Oro Mundial 2018 (6 goles). Llega tras temporadas de oro con el Bayern (Bundesliga 2024-25 + 51 goles). Es uno de los 9 mejores delanteros de los últimos 15 años.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Harry_Kane_on_October_10%2C_2023.jpg/330px-Harry_Kane_on_October_10%2C_2023.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Harry_Kane"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "jordan-pickford",
+        "full_name": "Jordan Pickford",
+        "display_name": "Jordan Pickford",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Everton",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Jordan_Pickford_2022-07-16_1.jpg/330px-Jordan_Pickford_2022-07-16_1.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jordan_Pickford"
+        }
+      },
+      {
+        "id": "dean-henderson",
+        "full_name": "Dean Henderson",
+        "display_name": "Dean Henderson",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Crystal Palace",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 13,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/DeanHenderson2018.jpg/330px-DeanHenderson2018.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Dean_Henderson"
+        }
+      },
+      {
+        "id": "james-trafford",
+        "full_name": "James Trafford",
+        "display_name": "James Trafford",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Manchester City",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 23,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Queen_Park_Rangers_v_Burnley_26042025_%2825%29_%28James_Trafford%29.jpg/330px-Queen_Park_Rangers_v_Burnley_26042025_%2825%29_%28James_Trafford%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/James_Trafford"
+        }
+      },
+      {
+        "id": "reece-james",
+        "full_name": "Reece James",
+        "display_name": "Reece James",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Chelsea",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Reece_James_2018.jpg/330px-Reece_James_2018.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Reece_James"
+        }
+      },
+      {
+        "id": "trent-alexander-arnold",
+        "full_name": "Trent Alexander-Arnold",
+        "display_name": "Trent Alexander-Arnold",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Real Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 12,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Trent_Alexander-Arnold_2018.jpg/330px-Trent_Alexander-Arnold_2018.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Trent_Alexander-Arnold"
+        }
+      },
+      {
+        "id": "marc-guehi",
+        "full_name": "Marc Guéhi",
+        "display_name": "Marc Guéhi",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Liverpool",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Marc_Guehi_December_2018.jpg/330px-Marc_Guehi_December_2018.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Marc_Gu%C3%A9hi"
+        }
+      },
+      {
+        "id": "john-stones",
+        "full_name": "John Stones",
+        "display_name": "John Stones",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Manchester City",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/John_Stones_2018-06-24_1.jpg/330px-John_Stones_2018-06-24_1.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/John_Stones"
+        }
+      },
+      {
+        "id": "ezri-konsa",
+        "full_name": "Ezri Konsa",
+        "display_name": "Ezri Konsa",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Aston Villa",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 3,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Ezri_Konsa.jpg/330px-Ezri_Konsa.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ezri_Konsa"
+        }
+      },
+      {
+        "id": "myles-lewis-skelly",
+        "full_name": "Myles Lewis-Skelly",
+        "display_name": "Lewis-Skelly",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Arsenal",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/1_Myles_Lewis-Skelly_arsenal_2025.jpg/330px-1_Myles_Lewis-Skelly_arsenal_2025.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Myles_Lewis-Skelly"
+        }
+      },
+      {
+        "id": "luke-shaw",
+        "full_name": "Luke Shaw",
+        "display_name": "Luke Shaw",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Manchester United",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 22,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Luke_Shaw%2C_Manchester_United_v_Newcastle_United%2C_11_September_2021_%2844%29_%28cropped%29.jpg/330px-Luke_Shaw%2C_Manchester_United_v_Newcastle_United%2C_11_September_2021_%2844%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Luke_Shaw"
+        }
+      },
+      {
+        "id": "declan-rice",
+        "full_name": "Declan Rice",
+        "display_name": "Declan Rice",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Arsenal",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%288%29_%28Declan_Rice%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Declan_Rice"
+        }
+      },
+      {
+        "id": "elliot-anderson",
+        "full_name": "Elliot Anderson",
+        "display_name": "Elliot Anderson",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Nottingham Forest",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed"
+      },
+      {
+        "id": "jude-bellingham",
+        "full_name": "Jude Bellingham",
+        "display_name": "Jude Bellingham",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Real Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/25th_Laureus_World_Sports_Awards_-_Red_Carpet_-_Jude_Bellingham_-_240422_190551-2_%28cropped%29.jpg/330px-25th_Laureus_World_Sports_Awards_-_Red_Carpet_-_Jude_Bellingham_-_240422_190551-2_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jude_Bellingham"
+        }
+      },
+      {
+        "id": "morgan-rogers",
+        "full_name": "Morgan Rogers",
+        "display_name": "Morgan Rogers",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Aston Villa",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/St._Louis_City_vs_Aston_Villa_%28Jul_2025%29_18.jpg/330px-St._Louis_City_vs_Aston_Villa_%28Jul_2025%29_18.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Morgan_Rogers"
+        }
+      },
+      {
+        "id": "phil-foden",
+        "full_name": "Phil Foden",
+        "display_name": "Phil Foden",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Manchester City",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 20,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2613%2C_Phil_Foden.jpg/330px-2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2613%2C_Phil_Foden.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Phil_Foden"
+        }
+      },
+      {
+        "id": "cole-palmer",
+        "full_name": "Cole Palmer",
+        "display_name": "Cole Palmer",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Chelsea",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 24,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Cole_Palmer_2025_FIFA_Club_World_Cup_Final.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Cole_Palmer"
+        }
+      },
+      {
+        "id": "harry-kane",
+        "full_name": "Harry Kane",
+        "display_name": "Harry Kane",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Bayern Múnich",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Harry_Kane_on_October_10%2C_2023.jpg/330px-Harry_Kane_on_October_10%2C_2023.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Harry_Kane"
+        }
+      },
+      {
+        "id": "bukayo-saka",
+        "full_name": "Bukayo Saka",
+        "display_name": "Bukayo Saka",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Arsenal",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/1_bukayo_saka_arsenal_2025_%28cropped%29.jpg/330px-1_bukayo_saka_arsenal_2025_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Bukayo_Saka"
+        }
+      },
+      {
+        "id": "anthony-gordon",
+        "full_name": "Anthony Gordon",
+        "display_name": "Anthony Gordon",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Newcastle",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Anthony_Gordon_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Anthony_Gordon"
+        }
+      },
+      {
+        "id": "noni-madueke",
+        "full_name": "Noni Madueke",
+        "display_name": "Noni Madueke",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Arsenal",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Fulham_v_Chelsea_20042025_%287%29_%28Noni_Madueke%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Noni_Madueke"
+        }
+      },
+      {
+        "id": "eberechi-eze",
+        "full_name": "Eberechi Eze",
+        "display_name": "Eberechi Eze",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Arsenal",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Qpr2018eberechieeze001.jpg/330px-Qpr2018eberechieeze001.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Eberechi_Eze"
+        }
+      },
+      {
+        "id": "marcus-rashford",
+        "full_name": "Marcus Rashford",
+        "display_name": "Marcus Rashford",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "FC Barcelona",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 21,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Marcus_Rashford_2022-11-21_1.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Marcus_Rashford"
+        }
+      },
+      {
+        "id": "ollie-watkins",
+        "full_name": "Ollie Watkins",
+        "display_name": "Ollie Watkins",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Aston Villa",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 15,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Manchester_United_v_Aston_Villa%2C_25_September_2021_%2817%29_%28cropped%29.jpg/330px-Manchester_United_v_Aston_Villa%2C_25_September_2021_%2817%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Ollie_Watkins"
+        }
+      },
+      {
+        "id": "dominic-solanke",
+        "full_name": "Dominic Solanke",
+        "display_name": "Solanke",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Tottenham",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 25,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Dominic_Solanke_YouTube_2024.png/330px-Dominic_Solanke_YouTube_2024.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Dominic_Solanke"
+        }
+      },
+      {
+        "id": "kobbie-mainoo",
+        "full_name": "Kobbie Mainoo",
+        "display_name": "Kobbie Mainoo",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Manchester United",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 16,
+        "status": "probable"
+      },
+      {
+        "id": "adam-wharton",
+        "full_name": "Adam Wharton",
+        "display_name": "Adam Wharton",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Crystal Palace",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble"
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-3-3",
+      "players": [
+        {
+          "player_id": "jordan-pickford",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "reece-james",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "marc-guehi",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "john-stones",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "myles-lewis-skelly",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "declan-rice",
+          "position": {
+            "x": 50,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "jude-bellingham",
+          "position": {
+            "x": 70,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "elliot-anderson",
+          "position": {
+            "x": 30,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "bukayo-saka",
+          "position": {
+            "x": 85,
+            "y": 22
+          }
+        },
+        {
+          "player_id": "harry-kane",
+          "position": {
+            "x": 50,
+            "y": 18
+          }
+        },
+        {
+          "player_id": "anthony-gordon",
+          "position": {
+            "x": 15,
+            "y": 22
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Tuchel plantea un 4-3-3 ofensivo con doble pivote (Rice + Bellingham/Anderson), Kane como '9' fijo, Saka y Gordon por las bandas. Identidad: presión alta, transiciones rápidas, defensa intensa con bloque medio-alto. Diferencia con Southgate: menos especulativo, más vertical, más confianza en jóvenes (Lewis-Skelly, Mainoo, Anderson).",
+      "strengths": [
+        "Generación dorada: Bellingham (22), Foden (25), Saka (24), Palmer (23), Mainoo (20), Anderson (23), Gordon (24). El recambio inglés más profundo de las últimas décadas.",
+        "Harry Kane: máximo goleador histórico inglés (74+), goleador del ciclo eliminatorio (8). Sigue al máximo nivel a los 32.",
+        "Defensa imbatible en clasificación: 0 GOLES ENCAJADOS en 8 partidos, récord absoluto.",
+        "Profundidad ofensiva: Kane, Saka, Foden, Bellingham, Palmer, Gordon, Madueke, Rogers, Watkins, Rashford. Lujo absoluto.",
+        "Tuchel: experiencia campeón Champions y mentalidad alemana de eficacia.",
+        "Wembley factor + disciplina inglesa renovada bajo Tuchel."
+      ],
+      "weaknesses": [
+        "60 años sin Mundial: presión psicológica enorme (último 1966).",
+        "Final Eurocopa 2024 perdida ante España aún reciente.",
+        "Lateral izquierdo sin nombre fijo: Lewis-Skelly debutante, Shaw lesivo.",
+        "Mediocampo con muchos talentos pero sin un creativo clásico tipo regista.",
+        "Tuchel debutante en Mundial con esta selección.",
+        "Convivencia Bellingham-Foden-Palmer (3 '10' en una posición) puede ser difícil de gestionar."
+      ],
+      "x_factor": {
+        "player": "Cole Palmer",
+        "reason": "El '10' del Chelsea (23 años) llega a su primer Mundial en pico futbolístico. Capaz de marcar de cualquier forma, asistir, ejecutar tiros libres. Si Tuchel le da minutos clave puede ser la sensación del torneo."
+      },
+      "prediction_text": "Inglaterra llega a 2026 con el mejor balance eliminatorio europeo y con la calidad para por fin acabar la sequía de 60 años (último título 1966). Bajo Tuchel, el equipo combina solidez defensiva alemana con explosividad ofensiva inglesa. Los Three Lions son favoritos al podio. Llegar a final igualaría 1966; ganarla sería el sueño de toda una nación.",
+      "probabilities": {
+        "advance_groups": 96,
+        "round_of_32": 92,
+        "round_of_16": 80,
+        "quarter_finals": 60,
+        "semi_finals": 40,
+        "final": 22,
+        "champion": 13
+      },
+      "vs_last_3_wcs": "Rusia 2018: SEMIFINALES (4º puesto) tras eliminar a Suecia y caer ante Croacia 1-2 en prórroga. Catar 2022: cuartos de final, eliminada por Francia 1-2 (Kane falló penal). Mundial 2026: primer torneo bajo Tuchel, busca acabar la sequía de 60 años desde 1966 (única estrella mundial sigue siendo Wembley)."
+    }
+  },
+  "history": {
+    "first_appearance": 1950,
+    "appearances_count_before_2026": 16,
+    "appearances_count_with_2026": 17,
+    "consecutive_streak_since": 2014,
+    "titles": 1,
+    "titles_years": [
+      1966
+    ],
+    "finals": 1,
+    "finals_years": [
+      1966
+    ],
+    "semi_finals": 3,
+    "best_result": "Campeón (Inglaterra 1966)",
+    "aggregate_stats_through_2022": {
+      "played": 74,
+      "won": 32,
+      "drawn": 22,
+      "lost": 20,
+      "goals_for": 104,
+      "goals_against": 71,
+      "win_percentage": 43.2,
+      "notes": "Datos hasta Qatar 2022. Inglaterra es 8ª en el ranking histórico del Mundial."
+    },
+    "by_world_cup": [
+      {
+        "year": 1950,
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Walter Winterbottom",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Wilf Mannion",
+            "goals": 1
+          },
+          {
+            "player": "Stan Mortensen",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 2,
+        "notable_facts": [
+          "DEBUT mundialista (Inglaterra rechazó participar antes).",
+          "PERDIÓ 0-1 ANTE ESTADOS UNIDOS en una de las mayores sorpresas de la historia."
+        ],
+        "narrative": "Inglaterra debutó en Mundiales tras boicotear los anteriores. Cayó 0-1 ante Estados Unidos en Belo Horizonte, una de las mayores sorpresas mundialistas de la historia. Eliminación temprana e icónica."
+      },
+      {
+        "year": 1954,
+        "host": {
+          "countries": [
+            "Suiza"
+          ],
+          "iso": [
+            "ch"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Walter Winterbottom",
+        "captain": "Billy Wright",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Nat Lofthouse",
+            "goals": 3
+          }
+        ],
+        "goals_scored": 8,
+        "goals_conceded": 8,
+        "notable_facts": [
+          "Eliminada por Uruguay 2-4 en cuartos."
+        ],
+        "narrative": "Inglaterra pasó la primera ronda pero cayó ante Uruguay en cuartos."
+      },
+      {
+        "year": 1958,
+        "host": {
+          "countries": [
+            "Suecia"
+          ],
+          "iso": [
+            "se"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Walter Winterbottom",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Bobby Robson",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Eliminada en primera ronda."
+        ],
+        "narrative": "Tras 3 empates, perdió play-off ante URSS 0-1."
+      },
+      {
+        "year": 1962,
+        "host": {
+          "countries": [
+            "Chile"
+          ],
+          "iso": [
+            "cl"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Walter Winterbottom",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Bobby Charlton",
+            "goals": 1
+          },
+          {
+            "player": "Jimmy Greaves",
+            "goals": 1
+          },
+          {
+            "player": "Ron Flowers",
+            "goals": 1
+          },
+          {
+            "player": "Gerry Hitchens",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 5,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Eliminada por Brasil 1-3 en cuartos (Garrincha imparable)."
+        ],
+        "narrative": "Inglaterra cayó ante Brasil de Garrincha en cuartos."
+      },
+      {
+        "year": 1966,
+        "host": {
+          "countries": [
+            "Inglaterra"
+          ],
+          "iso": [
+            "gb-eng"
+          ]
+        },
+        "result": "Campeón",
+        "coach": "Alf Ramsey",
+        "captain": "Bobby Moore",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Geoff Hurst",
+            "goals": 4
+          },
+          {
+            "player": "Bobby Charlton",
+            "goals": 3
+          },
+          {
+            "player": "Roger Hunt",
+            "goals": 3
+          }
+        ],
+        "goals_scored": 11,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "ÚNICO TÍTULO MUNDIAL en la historia inglesa.",
+          "Final 4-2 ante Alemania Federal en Wembley.",
+          "GEOFF HURST HIZO HAT-TRICK EN LA FINAL (único hasta Mbappé 2022).",
+          "El gol fantasma de Hurst (cruzó la línea o no, sigue siendo controversia)."
+        ],
+        "narrative": "El único Mundial inglés. Anfitrión, sin Pelé (lesionado en grupos por Bulgaria/Portugal), Inglaterra eliminó a Argentina 1-0 en cuartos (Antonio Rattín expulsado, escándalo) y a Portugal 2-1 en semis (doblete Bobby Charlton). En la FINAL ANTE ALEMANIA en Wembley, 2-2 reglamentario. EN PRÓRROGA, Geoff Hurst marcó el gol fantasma (el balón pegó en travesaño y bote dudoso, aprobado por árbitro suizo Dienst y juez de línea soviético Bakhramov). Hurst hizo el 4-2 al 120' (HAT-TRICK EN FINAL). Bobby Moore levantó la Jules Rimet. La canción 'Football's Coming Home' alude a este momento."
+      },
+      {
+        "year": 1970,
+        "host": {
+          "countries": [
+            "México"
+          ],
+          "iso": [
+            "mx"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Alf Ramsey",
+        "captain": "Bobby Moore",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Geoff Hurst",
+            "goals": 1
+          },
+          {
+            "player": "Allan Clarke",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "Eliminada por Alemania 2-3 en prórroga (revancha alemana).",
+          "Bobby Moore vs Pelé: el icónico cambio de camisetas."
+        ],
+        "narrative": "Inglaterra defensora del título cayó ante Alemania 2-3 en cuartos en León. Iban 2-0 cuando Beckenbauer descontó. Empate y derrota en prórroga. Imagen icónica: Bobby Moore intercambia camiseta con Pelé tras Brasil 1-0 Inglaterra en grupos."
+      },
+      {
+        "year": 1982,
+        "host": {
+          "countries": [
+            "España"
+          ],
+          "iso": [
+            "es"
+          ]
+        },
+        "result": "Segunda ronda",
+        "coach": "Ron Greenwood",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Bryan Robson",
+            "goals": 3
+          },
+          {
+            "player": "Trevor Francis",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 6,
+        "goals_conceded": 1,
+        "notable_facts": [
+          "Eliminada en segunda ronda sin perder."
+        ],
+        "narrative": "Inglaterra empató con España y Alemania, sin pasar de fase pero invicta. Adiós sin perder."
+      },
+      {
+        "year": 1986,
+        "host": {
+          "countries": [
+            "México"
+          ],
+          "iso": [
+            "mx"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Bobby Robson",
+        "captain": "Bryan Robson",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Gary Lineker",
+            "goals": 6
+          }
+        ],
+        "goals_scored": 7,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Lineker fue Bota de Oro con 6 goles.",
+          "Eliminada por Argentina 1-2 con la 'Mano de Dios' de Maradona."
+        ],
+        "narrative": "Mundial mítico de Maradona. Inglaterra batió 3-0 a Polonia con hat-trick de Lineker, 3-0 a Paraguay y avanzó. En CUARTOS ANTE ARGENTINA en el Azteca: Maradona marcó 'LA MANO DE DIOS' al 51' (gol con la mano). Cuatro minutos después marcó 'EL GOL DEL SIGLO' (jugada de 60 metros pasando 5 jugadores). Lineker descontó al 81'. 1-2. Adiós."
+      },
+      {
+        "year": 1990,
+        "host": {
+          "countries": [
+            "Italia"
+          ],
+          "iso": [
+            "it"
+          ]
+        },
+        "result": "Cuarto puesto",
+        "coach": "Bobby Robson",
+        "captain": "Bryan Robson",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Gary Lineker",
+            "goals": 4
+          },
+          {
+            "player": "David Platt",
+            "goals": 3
+          }
+        ],
+        "goals_scored": 8,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Eliminada por Alemania en penales en semis (1-1, 4-3).",
+          "Las lágrimas de Gascoigne tras tarjeta amarilla."
+        ],
+        "narrative": "Inglaterra llegó a semis donde cayó ante Alemania en penales. 1-1 reglamentario (gol de Lineker). En la prórroga, Paul Gascoigne recibió su segunda amarilla del torneo y supo que se perdería la final si llegaban: lloró en la cancha (imagen icónica). En penales 4-3 Alemania. Cuarto puesto perdiendo con Italia 2-1."
+      },
+      {
+        "year": 2002,
+        "host": {
+          "countries": [
+            "Corea del Sur",
+            "Japón"
+          ],
+          "iso": [
+            "kr",
+            "jp"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Sven-Göran Eriksson",
+        "captain": "David Beckham",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Michael Owen",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 6,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Eliminada por Brasil 1-2 (golazo de tiro libre de Ronaldinho)."
+        ],
+        "narrative": "Inglaterra de Beckham, Owen, Scholes cayó en cuartos ante Brasil. Empate y luego golazo de Ronaldinho de tiro libre directo desde 35 metros sobre David Seaman. Adiós."
+      },
+      {
+        "year": 2018,
+        "host": {
+          "countries": [
+            "Rusia"
+          ],
+          "iso": [
+            "ru"
+          ]
+        },
+        "result": "Cuarto puesto",
+        "coach": "Gareth Southgate",
+        "captain": "Harry Kane",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Harry Kane",
+            "goals": 6
+          }
+        ],
+        "goals_scored": 12,
+        "goals_conceded": 8,
+        "notable_facts": [
+          "MEJOR papel desde 1990: semis y 4º puesto.",
+          "Harry Kane fue BOTA DE ORO con 6 goles.",
+          "Eliminada por Croacia 1-2 en semis en prórroga."
+        ],
+        "narrative": "Inglaterra de Southgate y Kane recuperó la ilusión. Pasó como 2ª de grupo, eliminó a Colombia en penales en octavos (Pickford parando), batió a Suecia 2-0 en cuartos. EN SEMIS contra Croacia: Trippier abrió al 5'. Croacia empató por Perišić al 68' y ganó en prórroga 2-1 con gol de Mandžukić. Adiós. Mejor papel desde 1990. Kane Bota de Oro."
+      },
+      {
+        "year": 2022,
+        "host": {
+          "countries": [
+            "Catar"
+          ],
+          "iso": [
+            "qa"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Gareth Southgate",
+        "captain": "Harry Kane",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Harry Kane",
+            "goals": 2
+          },
+          {
+            "player": "Bukayo Saka",
+            "goals": 2
+          },
+          {
+            "player": "Marcus Rashford",
+            "goals": 3
+          }
+        ],
+        "goals_scored": 13,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "Eliminada por Francia 1-2 en cuartos.",
+          "KANE FALLÓ PENAL al 84'."
+        ],
+        "narrative": "Inglaterra batió 6-2 a Irán en debut, pasó cómoda. En cuartos contra Francia: Tchouaméni abrió al 17', Kane empató de penal al 54' (igualando récord de Rooney). Giroud marcó 2-1 al 78'. Al 84', KANE FALLÓ PENAL (lo mandó al cielo) y Inglaterra cayó. Adiós doloroso."
+      }
+    ],
+    "palmares": [
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 1966,
+        "position": "Campeón",
+        "host": "Inglaterra"
+      },
+      {
+        "competition": "Eurocopa",
+        "year": 2020,
+        "position": "Subcampeón",
+        "host": "Múltiple Europa"
+      },
+      {
+        "competition": "Eurocopa",
+        "year": 2024,
+        "position": "Subcampeón",
+        "host": "Alemania"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Harry Kane",
+      "value": 74,
+      "period": "2015-presente",
+      "notes": "Máximo goleador histórico de Inglaterra. Superó a Wayne Rooney (53) en marzo 2023. Sigue activo."
+    },
+    "most_capped": {
+      "name": "Peter Shilton",
+      "value": 125,
+      "period": "1970-1990",
+      "notes": "Récord histórico, portero. Superado en goleador por Kane pero no en presencias."
+    },
+    "youngest_debut": {
+      "name": "Theo Walcott",
+      "value": "17 años, 75 días",
+      "period": "2006 vs Hungría",
+      "notes": "Récord histórico."
+    },
+    "biggest_win": {
+      "result": "13-0",
+      "opponent": "Irlanda",
+      "date": "1882-02-18",
+      "competition": "British Home Championship"
+    },
+    "worst_loss": {
+      "result": "1-7",
+      "opponent": "Hungría",
+      "date": "1954-05-23",
+      "competition": "Amistoso (en Budapest)"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El Mundial de 1966",
+      "date": "1966-07-30",
+      "opponent": {
+        "iso": "de",
+        "name": "Alemania Federal"
+      },
+      "score": "4-2",
+      "competition": "Final Mundial 1966",
+      "narrative": "Inglaterra ganó su ÚNICO Mundial 4-2 en prórroga ante Alemania Federal en Wembley. Geoff Hurst HIZO HAT-TRICK incluyendo el famoso 'gol fantasma' (el balón pegó en el travesaño y rebotó en la línea, decisión polémica del juez de línea ruso Bakhramov). Bobby Moore alzó la Jules Rimet. 'Football's Coming Home' alude a este momento histórico.",
+      "site_link": "/historia/momentos-iconicos/inglaterra-1966"
+    },
+    {
+      "title": "El gol fantasma de Hurst",
+      "date": "1966-07-30",
+      "opponent": {
+        "iso": "de",
+        "name": "Alemania Federal"
+      },
+      "score": "4-2",
+      "competition": "Final Mundial 1966",
+      "narrative": "Al minuto 101' de la prórroga, Geoff Hurst remató al palo y el balón pegó en el travesaño y rebotó en la línea de gol. El árbitro suizo Gottfried Dienst consultó al juez de línea soviético Tofik Bakhramov, quien dio el gol. Polémica eterna que sigue debatiéndose hoy con los nuevos análisis tecnológicos."
+    },
+    {
+      "title": "La Mano de Dios y el Gol del Siglo",
+      "date": "1986-06-22",
+      "opponent": {
+        "iso": "ar",
+        "name": "Argentina"
+      },
+      "score": "1-2",
+      "competition": "Cuartos Mundial 1986",
+      "narrative": "Inglaterra cayó eliminada en cuartos ante Argentina por 1-2. Los dos goles fueron de Maradona en 4 minutos: 'LA MANO DE DIOS' al 51' (con la mano, pasó como gol) y 'EL GOL DEL SIGLO' al 55' (jugada de 60 metros pasando 5 jugadores ingleses, considerado el mejor gol individual de la historia). Lineker descontó al 81'."
+    },
+    {
+      "title": "Las lágrimas de Gazza",
+      "date": "1990-07-04",
+      "opponent": {
+        "iso": "de",
+        "name": "Alemania Federal"
+      },
+      "score": "1-1 (3-4 pen)",
+      "competition": "Semifinal Mundial 1990",
+      "narrative": "En la semifinal de Italia 1990 contra Alemania, Paul Gascoigne ('Gazza') recibió su 2ª amarilla del torneo y se dio cuenta que se perdería la final si llegaban. Lloró en pleno partido (imagen icónica del fútbol inglés). 1-1 reglamentario, prórroga sin goles. En penales, Stuart Pearce y Chris Waddle fallaron. Alemania 4-3. Adiós."
+    },
+    {
+      "title": "El golazo de Beckham",
+      "date": "1998-06-30",
+      "opponent": {
+        "iso": "ar",
+        "name": "Argentina"
+      },
+      "score": "2-2 (3-4 pen)",
+      "competition": "Octavos Mundial 1998",
+      "narrative": "Inglaterra empató 2-2 con Argentina en uno de los partidos más emocionantes del Mundial Francia 98. David Beckham marcó al recibir tarjeta roja al 47' por patear a Simeone. Michael Owen marcó un golazo individual al 16'. Argentina pasó por penales 4-3."
+    },
+    {
+      "title": "El golazo de Ronaldinho",
+      "date": "2002-06-21",
+      "opponent": {
+        "iso": "br",
+        "name": "Brasil"
+      },
+      "score": "1-2",
+      "competition": "Cuartos Mundial 2002",
+      "narrative": "Inglaterra cayó en cuartos del Mundial 2002 ante Brasil 1-2. El golazo de tiro libre de Ronaldinho desde 35+ metros que sorprendió a David Seaman se considera uno de los goles más bellos de la historia. Adiós a la generación Beckham-Owen."
+    },
+    {
+      "title": "La semi de Croacia",
+      "date": "2018-07-11",
+      "opponent": {
+        "iso": "hr",
+        "name": "Croacia"
+      },
+      "score": "1-2",
+      "competition": "Semifinal Mundial 2018",
+      "narrative": "Inglaterra cayó en semis ante Croacia 1-2 en prórroga. Trippier abrió al 5' con tiro libre. Perišić empató al 68' y Mandžukić sentenció al 109' en prórroga. Adiós doloroso al mejor papel desde 1990. Kane fue Bota de Oro con 6 goles."
+    },
+    {
+      "title": "El penal fallado de Kane",
+      "date": "2022-12-10",
+      "opponent": {
+        "iso": "fr",
+        "name": "Francia"
+      },
+      "score": "1-2",
+      "competition": "Cuartos Mundial 2022",
+      "narrative": "Inglaterra cayó eliminada en cuartos del Mundial 2022 ante Francia 1-2. Tchouaméni abrió al 17'. Kane empató de penal al 54'. Giroud marcó 2-1 al 78'. AL 84', KANE FALLÓ EL PENAL DEL EMPATE (al cielo). Imagen icónica del capitán cabizbajo. Adiós."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "Inglaterra es la única selección campeona del mundo que ganó SU ÚNICO TÍTULO COMO ANFITRIONA (Wembley 1966). Brasil ganó 5, Italia 4, Alemania 4, Argentina 3 y Francia 2.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Geoff Hurst es el ÚNICO jugador en hacer hat-trick en una final mundialista hasta 2022 (Mbappé igualó el récord 56 años después).",
+      "source": "FIFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Inglaterra clasificó al Mundial 2026 con PASO PERFECTO: 8 victorias de 8, 22 GF, 0 GC. Récord absoluto inglés en eliminatorias mundialistas y europeo del ciclo 2026.",
+      "source": "FA + UEFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "La canción 'Three Lions (Football's Coming Home)' de Baddiel, Skinner & The Lightning Seeds (Eurocopa 1996) se ha convertido en himno extraoficial de Inglaterra. Vuelve a ser viral en cada Mundial.",
+      "source": "BBC + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Thomas Tuchel es el primer entrenador alemán de Inglaterra y el 3er extranjero histórico (tras Sven-Göran Eriksson y Fabio Capello). Ironía: ganó la Champions con Chelsea en final ante Manchester City.",
+      "source": "FA + ESPN",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Inglaterra acumula 60 AÑOS SIN MUNDIAL desde Wembley 1966. La presión psicológica sobre cada generación es enorme. Cuatro semifinales en este lapso (1990, 2018) y 2 finales de Eurocopa (2020, 2024).",
+      "source": "FA + FIFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Harry Kane es el ÚNICO inglés con Bota de Oro mundialista (Mundial 2018, 6 goles). En el Mundial 2026 buscará igualar a Lineker (1986) y batir su propio récord.",
+      "source": "FIFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "El gol fantasma de Hurst en la final 1966 sigue siendo controvertido. Análisis modernos de cámara apuntan a que el balón NO cruzó completamente la línea. Pero el árbitro Dienst y juez Bakhramov dieron el gol y eso es lo que cuenta.",
+      "source": "BBC + Sky Sports histórico",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "God Save The King (himno)",
+      "Three Lions / Football's Coming Home",
+      "Sweet Caroline (popular post-Eurocopa 2020)",
+      "Engerland, Engerland, Engerland"
+    ],
+    "main_rival": {
+      "iso": "de",
+      "name": "Alemania",
+      "story": "Rivalidad histórica europea por excelencia. Final 1966 (Inglaterra), cuartos 1970 y 1990 (semi penales) y 2010 (4-1 alemán con gol fantasma de Lampard no concedido) hacen que cada cruce esté cargado de historia. La frase 'Two World Wars and One World Cup' resume la rivalidad."
+    },
+    "home_stadium": {
+      "name": "Wembley Stadium",
+      "capacity": 90000,
+      "city": "Londres"
+    }
+  },
+  "seo": {
+    "meta_title": "Inglaterra en el Mundial 2026 | Plantilla, historia y predicciones",
+    "meta_description": "Inglaterra Mundial 2026: 26 convocados de Tuchel, Kane, Bellingham, Saka, Foden. Paso perfecto en clasificación con 22-0.",
+    "og_image_url": "/img/og/teams/inglaterra.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Inglaterra",
+      "alternateName": [
+        "Three Lions"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "UEFA"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Thomas Tuchel"
+      },
+      "url": "https://www.zonamundial.app/selecciones/inglaterra"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-28",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_Inglaterra",
+      "https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_de_UEFA_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://es.uefa.com/european-qualifiers/news/029f-1f3188cfc443-494e0d8af33d-1000--mundial-2026-que-selecciones-europeas-se-han-clasificado/",
+      "https://es.uefa.com/european-qualifiers/news/029e-1f01439ca503-abab482d736d-1000--mundial-2026-quienes-se-han-clasificado-de-europa-quienes-e/",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/15895830/se-definen-eliminatorias-uefa-europa-mundial-2026-quien-puede-clasificar",
+      "https://www.thefa.com",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias cruzadas con UEFA + Wikipedia + ESPN. Historia mundialista validada con FIFA + Wikipedia + FA + BBC. Plantilla con FA + medios británicos.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "needs_review",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante: pendiente",
+      "Grupo Mundial 2026 y rivales: cruzar con /grupos zonamundial.app",
+      "Calendario fase de grupos 2026: fixture FIFA pendiente",
+      "Base de entrenamiento: FA aún no anunció",
+      "FIFA Ranking #5: validar mes vigente",
+      "Historia 1970-2002 (algunos Mundiales omitidos por concisión)",
+      "Goleadores secundarios eliminatorias UK partidos 4 y 6"
+    ]
+  }
+}

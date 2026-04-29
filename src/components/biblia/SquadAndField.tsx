@@ -215,7 +215,7 @@ function PlayerCard({ player }: { player: Player }) {
           <div className="text-sm font-bold text-white truncate">
             {player.display_name ?? player.full_name}
           </div>
-          <div className="text-[11px] text-gray-500 truncate">
+          <div className="text-[11px] text-[var(--bb-text-muted)] truncate">
             {player.detailed_position ?? player.position}
             {player.shirt_number_expected
               ? ` · #${player.shirt_number_expected}`
@@ -229,7 +229,7 @@ function PlayerCard({ player }: { player: Player }) {
           {STATUS_LABELS[player.status]}
         </span>
       </div>
-      <div className="flex items-center gap-2 text-[11px] text-gray-400">
+      <div className="flex items-center gap-2 text-[11px] text-[var(--bb-text-muted)]">
         {player.club?.country_iso ? (
           <img
             src={`https://flagcdn.com/w20/${player.club.country_iso}.png`}
@@ -269,7 +269,7 @@ function DigitalField({
   return (
     <div id="once">
       <div className="flex items-center justify-between mb-4">
-        <div className="text-sm text-gray-400">
+        <div className="text-sm text-[var(--bb-text-muted)]">
           <strong className="text-white">{xi.formation}</strong> · 11 ideal de{" "}
           {teamName}
         </div>
@@ -304,7 +304,7 @@ function DigitalField({
         })}
       </div>
 
-      <p className="text-[11px] text-gray-500 mt-3 text-center italic">
+      <p className="text-[11px] text-[var(--bb-text-muted)] mt-3 text-center italic">
         Proyección — alineación habitual del DT durante el ciclo.
       </p>
     </div>

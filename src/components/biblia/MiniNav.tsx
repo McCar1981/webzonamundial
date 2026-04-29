@@ -96,21 +96,22 @@ export default function MiniNav({ sections }: { sections: Section[] }) {
                   <button
                     type="button"
                     onClick={() => scrollTo(s.id)}
-                    className="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap"
+                    aria-current={isActive ? "true" : undefined}
+                    className="bb-focusable px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap"
                     style={{
-                      color: isActive ? "#030712" : "#cbd5e1",
+                      color: isActive ? "#030712" : "var(--bb-text-soft)",
                       background: isActive
                         ? "linear-gradient(135deg, #C9A84C, #A8893D)"
                         : "transparent",
                     }}
                     onMouseEnter={(e) => {
                       if (!isActive) {
-                        e.currentTarget.style.color = "#C9A84C";
+                        e.currentTarget.style.color = "var(--bb-gold)";
                       }
                     }}
                     onMouseLeave={(e) => {
                       if (!isActive) {
-                        e.currentTarget.style.color = "#cbd5e1";
+                        e.currentTarget.style.color = "var(--bb-text-soft)";
                       }
                     }}
                   >

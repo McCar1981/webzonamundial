@@ -73,7 +73,7 @@ export default function CoachAndBase({ team }: { team: NationalTeam }) {
       {/* Base de entrenamiento */}
       {base ? (
         <div className="mb-8">
-          <div className="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-3">
+          <div className="text-[10px] font-bold uppercase tracking-widest text-[var(--bb-text-muted)] mb-3">
             Base de entrenamiento · Mundial 2026
           </div>
           <div className="rounded-xl border border-[#1E293B]/60 bg-[#0B1825]/50 p-5">
@@ -86,12 +86,12 @@ export default function CoachAndBase({ team }: { team: NationalTeam }) {
               </div>
             </div>
             {base.facility_name && !base.facility_name.startsWith("[") ? (
-              <div className="text-sm text-gray-400 ml-7">
+              <div className="text-sm text-[var(--bb-text-muted)] ml-7">
                 {base.facility_name}
               </div>
             ) : null}
             {base.status === "pending" || base.status === "needs_review" ? (
-              <div className="text-[11px] text-gray-500 mt-2 ml-7 italic">
+              <div className="text-[11px] text-[var(--bb-text-muted)] mt-2 ml-7 italic">
                 Anuncio oficial pendiente de la federación.
               </div>
             ) : null}
@@ -102,7 +102,7 @@ export default function CoachAndBase({ team }: { team: NationalTeam }) {
       {/* Sedes donde juega la fase de grupos */}
       {venues.length > 0 ? (
         <div>
-          <div className="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-3">
+          <div className="text-[10px] font-bold uppercase tracking-widest text-[var(--bb-text-muted)] mb-3">
             Sus {venues.length} sedes en fase de grupos
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -112,14 +112,14 @@ export default function CoachAndBase({ team }: { team: NationalTeam }) {
                 href={`/sedes/${slugifyStadium(v.stadium)}`}
                 className="group rounded-xl border border-[#1E293B]/60 bg-[#0B1825]/50 p-4 hover:border-[#C9A84C]/30 transition-all"
               >
-                <div className="text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1">
+                <div className="text-[10px] font-bold uppercase tracking-wider text-[var(--bb-text-muted)] mb-1">
                   {v.country_iso?.toUpperCase() ?? ""}
                 </div>
                 <div className="text-sm font-bold text-white group-hover:text-[#C9A84C] transition-colors">
                   {v.stadium}
                 </div>
                 {v.city ? (
-                  <div className="text-xs text-gray-500 mt-1">{v.city}</div>
+                  <div className="text-xs text-[var(--bb-text-muted)] mt-1">{v.city}</div>
                 ) : null}
               </Link>
             ))}
@@ -164,9 +164,9 @@ function RoleCard({
         {role}
       </div>
       <div className="text-base font-black text-white mb-1">{name}</div>
-      {meta ? <div className="text-xs text-gray-500 mb-2">{meta}</div> : null}
+      {meta ? <div className="text-xs text-[var(--bb-text-muted)] mb-2">{meta}</div> : null}
       {note ? (
-        <div className="text-xs text-gray-400 leading-relaxed line-clamp-4">
+        <div className="text-xs text-[var(--bb-text-muted)] leading-relaxed line-clamp-4">
           {note}
         </div>
       ) : null}

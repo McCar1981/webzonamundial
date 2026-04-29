@@ -32,10 +32,10 @@ export default function AnalysisSection({ team }: { team: NationalTeam }) {
       {/* Estilo */}
       {a.style ? (
         <div className="mb-8">
-          <div className="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">
+          <div className="text-[10px] font-bold uppercase tracking-widest text-[var(--bb-text-muted)] mb-2">
             Sistema y estilo
           </div>
-          <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
+          <p className="text-sm sm:text-base text-[var(--bb-text-soft)] leading-relaxed">
             {a.style}
           </p>
         </div>
@@ -78,7 +78,7 @@ export default function AnalysisSection({ team }: { team: NationalTeam }) {
           <div className="text-lg font-black text-white mb-2">
             {a.x_factor.player}
           </div>
-          <p className="text-sm text-gray-300 leading-relaxed">
+          <p className="text-sm text-[var(--bb-text-soft)] leading-relaxed">
             {a.x_factor.reason}
           </p>
         </div>
@@ -87,7 +87,7 @@ export default function AnalysisSection({ team }: { team: NationalTeam }) {
       {/* Probabilities */}
       {probEntries.length > 0 ? (
         <div className="mb-8">
-          <div className="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-3">
+          <div className="text-[10px] font-bold uppercase tracking-widest text-[var(--bb-text-muted)] mb-3">
             Pronóstico — probabilidad por fase
           </div>
           <div className="space-y-2">
@@ -104,7 +104,7 @@ export default function AnalysisSection({ team }: { team: NationalTeam }) {
           <div className="text-[10px] font-bold uppercase tracking-widest text-[#C9A84C] mb-2">
             Veredicto
           </div>
-          <p className="text-sm text-gray-300 leading-relaxed">
+          <p className="text-sm text-[var(--bb-text-soft)] leading-relaxed">
             {a.prediction_text}
           </p>
         </div>
@@ -146,7 +146,7 @@ function BulletList({
       </div>
       <ul className="space-y-2">
         {items.map((item, i) => (
-          <li key={i} className="flex gap-2 text-sm text-gray-300 leading-snug">
+          <li key={i} className="flex gap-2 text-sm text-[var(--bb-text-soft)] leading-snug">
             <span style={{ color: palette.text }} className="flex-shrink-0">
               {palette.bullet}
             </span>
@@ -162,7 +162,7 @@ function ProbBar({ label, value }: { label: string; value: number }) {
   const pct = Math.max(0, Math.min(100, value));
   return (
     <div className="flex items-center gap-3">
-      <div className="text-xs text-gray-400 w-32 flex-shrink-0">{label}</div>
+      <div className="text-xs text-[var(--bb-text-muted)] w-32 flex-shrink-0">{label}</div>
       <div className="flex-1 h-7 rounded-md bg-[#0B1825] border border-[#1E293B]/50 overflow-hidden relative">
         <div
           className="absolute inset-y-0 left-0 transition-all"

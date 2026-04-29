@@ -63,15 +63,16 @@ export default function DeepTabs({ team }: { team: NationalTeam }) {
               role="tab"
               aria-selected={isActive}
               aria-controls={`panel-${t.id}`}
+              tabIndex={isActive ? 0 : -1}
               disabled={disabled}
               onClick={() => setActive(t.id)}
-              className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-bold whitespace-nowrap transition-all border disabled:opacity-30 disabled:cursor-not-allowed"
+              className="bb-focusable bb-touch flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-bold whitespace-nowrap transition-all border disabled:opacity-30 disabled:cursor-not-allowed"
               style={{
                 background: isActive
                   ? "linear-gradient(135deg, #C9A84C, #A8893D)"
                   : "rgba(11,24,37,0.5)",
-                color: isActive ? "#030712" : "#cbd5e1",
-                borderColor: isActive ? "#C9A84C" : "rgba(255,255,255,0.06)",
+                color: isActive ? "#030712" : "var(--bb-text-soft)",
+                borderColor: isActive ? "#C9A84C" : "var(--bb-border-subtle)",
               }}
             >
               {t.label}
@@ -158,7 +159,7 @@ function HistoriaPanel({ team }: { team: NationalTeam }) {
       ) : null}
 
       {agg?.notes ? (
-        <p className="text-[11px] text-gray-500 mb-6 italic">{agg.notes}</p>
+        <p className="text-[11px] text-[var(--bb-text-muted)] mb-6 italic">{agg.notes}</p>
       ) : null}
 
       <div className="space-y-2">
@@ -216,12 +217,12 @@ function WCEdition({
         </div>
         <div className="min-w-0 flex-1">
           <div className="text-sm font-bold text-white">{edition.result}</div>
-          <div className="text-[11px] text-gray-500 truncate">
+          <div className="text-[11px] text-[var(--bb-text-muted)] truncate">
             Sede: {edition.host?.countries?.join(", ") ?? "—"} · DT: {edition.coach}
           </div>
         </div>
         <svg
-          className="w-4 h-4 text-gray-500 transition-transform flex-shrink-0"
+          className="w-4 h-4 text-[var(--bb-text-muted)] transition-transform flex-shrink-0"
           style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0)" }}
           fill="none"
           stroke="currentColor"
@@ -237,12 +238,12 @@ function WCEdition({
       </button>
 
       {isOpen ? (
-        <div className="px-4 pb-4 pt-1 border-t border-white/5 text-sm leading-relaxed text-gray-300 space-y-3">
+        <div className="px-4 pb-4 pt-1 border-t border-white/5 text-sm leading-relaxed text-[var(--bb-text-soft)] space-y-3">
           {edition.narrative ? <p>{edition.narrative}</p> : null}
           {edition.notable_facts && edition.notable_facts.length > 0 ? (
             <ul className="space-y-1">
               {edition.notable_facts.map((f, i) => (
-                <li key={i} className="flex gap-2 text-xs text-gray-400">
+                <li key={i} className="flex gap-2 text-xs text-[var(--bb-text-muted)]">
                   <span className="text-[#C9A84C] flex-shrink-0">·</span>
                   <span>{f}</span>
                 </li>
@@ -250,7 +251,7 @@ function WCEdition({
             </ul>
           ) : null}
           {edition.team_top_scorers && edition.team_top_scorers.length > 0 ? (
-            <div className="text-xs text-gray-500">
+            <div className="text-xs text-[var(--bb-text-muted)]">
               Goleadores:{" "}
               {edition.team_top_scorers
                 .map((s) => `${s.player} (${s.goals})`)
@@ -300,7 +301,7 @@ function PalmaresPanel({ team }: { team: NationalTeam }) {
         <div className="overflow-x-auto rounded-xl border border-[#1E293B]/60">
           <table className="w-full text-sm">
             <thead>
-              <tr className="bg-[#0B1825]/70 text-[10px] uppercase tracking-wider text-gray-500">
+              <tr className="bg-[#0B1825]/70 text-[10px] uppercase tracking-wider text-[var(--bb-text-muted)]">
                 <th className="text-left font-semibold py-3 px-3">Competición</th>
                 <th className="text-left font-semibold py-3 px-3">Año</th>
                 <th className="text-left font-semibold py-3 px-3">Posición</th>
@@ -326,7 +327,7 @@ function PalmaresRow({ t }: { t: Trophy }) {
   return (
     <tr className="border-t border-[#1E293B]/40">
       <td className="py-2.5 px-3 text-white font-semibold">{t.competition}</td>
-      <td className="py-2.5 px-3 text-gray-400 font-mono">{t.year}</td>
+      <td className="py-2.5 px-3 text-[var(--bb-text-muted)] font-mono">{t.year}</td>
       <td className="py-2.5 px-3">
         <span
           className="text-xs font-bold px-2 py-0.5 rounded"
@@ -338,7 +339,7 @@ function PalmaresRow({ t }: { t: Trophy }) {
           {t.position}
         </span>
       </td>
-      <td className="py-2.5 px-3 text-gray-500 hidden sm:table-cell">
+      <td className="py-2.5 px-3 text-[var(--bb-text-muted)] hidden sm:table-cell">
         {t.host}
       </td>
     </tr>
@@ -373,7 +374,7 @@ function RecordsPanel({ team }: { team: NationalTeam }) {
 function RecordCard({ label, rec }: { label: string; rec: PlayerRecord }) {
   return (
     <div className="rounded-xl border border-[#1E293B]/60 bg-[#0B1825]/50 p-4">
-      <div className="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">
+      <div className="text-[10px] font-bold uppercase tracking-widest text-[var(--bb-text-muted)] mb-2">
         {label}
       </div>
       <div className="flex items-end gap-2">
@@ -383,10 +384,10 @@ function RecordCard({ label, rec }: { label: string; rec: PlayerRecord }) {
         </div>
       </div>
       {rec.period ? (
-        <div className="text-[11px] text-gray-500 mt-1">{rec.period}</div>
+        <div className="text-[11px] text-[var(--bb-text-muted)] mt-1">{rec.period}</div>
       ) : null}
       {rec.notes ? (
-        <div className="text-xs text-gray-400 mt-2 leading-snug">{rec.notes}</div>
+        <div className="text-xs text-[var(--bb-text-muted)] mt-2 leading-snug">{rec.notes}</div>
       ) : null}
     </div>
   );
@@ -416,9 +417,9 @@ function MatchRecordCard({
         {label}
       </div>
       <div className="text-xl font-black text-white">
-        {rec.result} <span className="text-gray-500">vs</span> {rec.opponent}
+        {rec.result} <span className="text-[var(--bb-text-muted)]">vs</span> {rec.opponent}
       </div>
-      <div className="text-[11px] text-gray-500 mt-1">
+      <div className="text-[11px] text-[var(--bb-text-muted)] mt-1">
         {rec.date} · {rec.competition}
       </div>
     </div>
@@ -446,7 +447,7 @@ function IconicCard({ m }: { m: IconicMatch }) {
       <div className="flex items-start justify-between gap-3 mb-3 flex-wrap">
         <div>
           <h3 className="text-base font-black text-white mb-1">{m.title}</h3>
-          <div className="text-[11px] text-gray-500">
+          <div className="text-[11px] text-[var(--bb-text-muted)]">
             {m.competition} · {m.date}
           </div>
         </div>
@@ -462,7 +463,7 @@ function IconicCard({ m }: { m: IconicMatch }) {
           </span>
         </div>
       </div>
-      <p className="text-sm text-gray-300 leading-relaxed">{m.narrative}</p>
+      <p className="text-sm text-[var(--bb-text-soft)] leading-relaxed">{m.narrative}</p>
       {m.site_link ? (
         <Link
           href={m.site_link}
@@ -507,7 +508,7 @@ function CuriosityCard({ c }: { c: Trivia }) {
         <span className="text-[#C9A84C] flex-shrink-0">★</span>
         <div className="flex-1">
           <p>{c.text}</p>
-          <p className="text-[10px] text-gray-600 mt-2 italic">
+          <p className="text-[10px] text-[var(--bb-text-dim)] mt-2 italic">
             Fuente: {c.source}
           </p>
         </div>
@@ -544,7 +545,7 @@ function Stat({
       >
         {value}
       </div>
-      <div className="text-[10px] uppercase tracking-wider text-gray-500 mt-1.5 font-semibold">
+      <div className="text-[10px] uppercase tracking-wider text-[var(--bb-text-muted)] mt-1.5 font-semibold">
         {label}
       </div>
     </div>
@@ -552,7 +553,7 @@ function Stat({
 }
 
 function EmptyMsg({ msg }: { msg: string }) {
-  return <div className="text-sm text-gray-500 italic py-4">{msg}</div>;
+  return <div className="text-sm text-[var(--bb-text-muted)] italic py-4">{msg}</div>;
 }
 
 function countRecords(team: NationalTeam): number {

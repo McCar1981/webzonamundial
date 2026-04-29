@@ -51,7 +51,7 @@ export default function QualifyingPath({ team }: { team: NationalTeam }) {
 
       {/* Resumen narrativo */}
       {summary ? (
-        <p className="text-sm sm:text-base text-gray-300 leading-relaxed mb-8 pl-4 border-l-2 border-[#C9A84C]/40 italic">
+        <p className="text-sm sm:text-base text-[var(--bb-text-soft)] leading-relaxed mb-8 pl-4 border-l-2 border-[#C9A84C]/40 italic">
           {summary}
         </p>
       ) : null}
@@ -88,9 +88,9 @@ export default function QualifyingPath({ team }: { team: NationalTeam }) {
             <h3 className="text-lg font-bold text-white">
               {matches.length} partidos disputados
             </h3>
-            <div className="text-[11px] text-gray-500">
+            <div className="text-[11px] text-[var(--bb-text-muted)]">
               DT durante el ciclo:{" "}
-              <span className="text-gray-300 font-semibold">
+              <span className="text-[var(--bb-text-soft)] font-semibold">
                 {q.coach_during_qualifying ?? "—"}
               </span>
             </div>
@@ -127,7 +127,7 @@ export default function QualifyingPath({ team }: { team: NationalTeam }) {
                     {s.player}
                   </div>
                   {s.notes ? (
-                    <div className="text-[11px] text-gray-500 truncate">
+                    <div className="text-[11px] text-[var(--bb-text-muted)] truncate">
                       {s.notes}
                     </div>
                   ) : null}
@@ -185,7 +185,7 @@ function StatsGrid({ stats }: { stats: MatchStats }) {
           >
             {it.value}
           </div>
-          <div className="text-[10px] uppercase tracking-wider text-gray-500 mt-1.5 font-semibold">
+          <div className="text-[10px] uppercase tracking-wider text-[var(--bb-text-muted)] mt-1.5 font-semibold">
             {it.label}
           </div>
         </div>
@@ -228,11 +228,11 @@ function Highlight({
       </div>
       {matchRef ? (
         <div className="text-sm font-bold text-white mb-2">
-          {matchRef.home} <span className="text-gray-500">vs</span> {matchRef.away}
-          <span className="text-gray-500 font-normal ml-2">· {matchRef.date}</span>
+          {matchRef.home} <span className="text-[var(--bb-text-muted)]">vs</span> {matchRef.away}
+          <span className="text-[var(--bb-text-muted)] font-normal ml-2">· {matchRef.date}</span>
         </div>
       ) : null}
-      <p className="text-xs text-gray-300 leading-relaxed">{reason}</p>
+      <p className="text-xs text-[var(--bb-text-soft)] leading-relaxed">{reason}</p>
     </article>
   );
 }
@@ -269,7 +269,7 @@ function MatchesTable({
     <div className="overflow-x-auto rounded-xl border border-[#1E293B]/60">
       <table className="w-full text-sm">
         <thead>
-          <tr className="bg-[#0B1825]/70 text-[10px] uppercase tracking-wider text-gray-500">
+          <tr className="bg-[#0B1825]/70 text-[10px] uppercase tracking-wider text-[var(--bb-text-muted)]">
             <th className="text-left font-semibold py-3 px-3">J</th>
             <th className="text-left font-semibold py-3 px-3">Fecha</th>
             <th className="text-right font-semibold py-3 px-3">Local</th>
@@ -297,15 +297,15 @@ function MatchesTable({
                 ? "text-green-400"
                 : result === "loss"
                 ? "text-red-400"
-                : "text-gray-400";
+                : "text-[var(--bb-text-muted)]";
 
             return (
               <tr
                 key={i}
                 className="border-t border-[#1E293B]/40 hover:bg-[#0B1825]/40 transition-colors"
               >
-                <td className="py-2.5 px-3 text-gray-500 font-mono">{m.matchday}</td>
-                <td className="py-2.5 px-3 text-gray-300 whitespace-nowrap">
+                <td className="py-2.5 px-3 text-[var(--bb-text-muted)] font-mono">{m.matchday}</td>
+                <td className="py-2.5 px-3 text-[var(--bb-text-soft)] whitespace-nowrap">
                   {formatShortDate(m.date)}
                 </td>
                 <td className="py-2.5 px-3 text-right">
@@ -328,12 +328,12 @@ function MatchesTable({
                     isUs={m.away.iso === ourIso}
                   />
                 </td>
-                <td className="py-2.5 px-3 text-gray-500 text-xs hidden md:table-cell">
+                <td className="py-2.5 px-3 text-[var(--bb-text-muted)] text-xs hidden md:table-cell">
                   <div className="truncate max-w-[200px]">
                     {m.venue.stadium}
                   </div>
                   {m.venue.city ? (
-                    <div className="text-[10px] text-gray-600 truncate">
+                    <div className="text-[10px] text-[var(--bb-text-dim)] truncate">
                       {m.venue.city}
                     </div>
                   ) : null}
@@ -372,7 +372,7 @@ function TeamLabel({
       />
       <span
         className={`text-xs font-semibold whitespace-nowrap ${
-          isUs ? "text-[#C9A84C]" : "text-gray-300"
+          isUs ? "text-[#C9A84C]" : "text-[var(--bb-text-soft)]"
         }`}
       >
         {name}

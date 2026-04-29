@@ -11,8 +11,9 @@ export default function TeamCTA({ team }: { team: NationalTeam }) {
   return (
     <section
       id="cta-final"
-      className="rounded-2xl border border-[#C9A84C]/20 p-6 sm:p-10 text-center"
+      className="relative rounded-3xl border p-6 sm:p-10 text-center overflow-hidden"
       style={{
+        borderColor: "rgba(201,168,76,0.2)",
         background:
           "radial-gradient(ellipse at center, rgba(201,168,76,0.12), rgba(11,24,37,0.6))",
       }}
@@ -23,7 +24,7 @@ export default function TeamCTA({ team }: { team: NationalTeam }) {
           {team.name_es}
         </span>
       </h2>
-      <p className="text-sm text-gray-400 max-w-xl mx-auto mb-8">
+      <p className="text-sm text-[var(--bb-text-muted)] max-w-xl mx-auto mb-8">
         Predice los partidos, compite con tu liga privada y arma tu fantasy.
         Todo gratis, todo en español.
       </p>
@@ -69,7 +70,7 @@ function CTACard({
   return (
     <Link
       href={href}
-      className="group rounded-xl p-5 border transition-all hover:scale-[1.02]"
+      className="bb-focusable group rounded-xl p-5 border transition-all hover:scale-[1.02] bb-touch"
       style={{
         borderColor: primary
           ? "rgba(201,168,76,0.4)"
@@ -86,7 +87,7 @@ function CTACard({
       >
         {title}
       </div>
-      <div className="text-xs text-gray-400 group-hover:text-gray-300 transition-colors">
+      <div className="text-xs text-[var(--bb-text-muted)] group-hover:text-[var(--bb-text-soft)] transition-colors">
         {desc}
       </div>
     </Link>

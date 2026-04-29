@@ -27,8 +27,14 @@ export default function HeroSection({ team }: { team: NationalTeam }) {
 
   return (
     <section
-      className="relative overflow-hidden flex items-center"
-      style={{ minHeight: "min(720px, 80vh)" }}
+      className="relative flex items-center"
+      style={{
+        minHeight: "min(720px, 80vh)",
+        // Recorte solo horizontal (para que el fondo blureado no salga
+        // por los lados), pero el div del FlagFrame tiene su propia caja
+        // donde sí pueden expandirse las auras.
+        overflow: "hidden",
+      }}
     >
       {/* Fondo: bandera blureada + capas */}
       <div
@@ -211,8 +217,11 @@ export default function HeroSection({ team }: { team: NationalTeam }) {
             </div>
           </div>
 
-          {/* Columna derecha — bandera con efectos */}
-          <div>
+          {/* Columna derecha — bandera con efectos.
+              Padding generoso (p-8) para que las auras (-60px inset) y los
+              sparkles tengan sitio donde expandirse sin quedar clipped por
+              el overflow:hidden del <section>. */}
+          <div className="p-6 sm:p-10">
             <FlagFrame
               iso={team.iso}
               colors={colors}

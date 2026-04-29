@@ -3,7 +3,7 @@
 // Sección 9 + 10 — Plantilla 26 + 11 ideal en campo digital.
 // Client component porque tiene tabs/filtros interactivos.
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { NationalTeam, Player, StartingXI } from "@/types/team";
 import SectionCard, { SectionHeader } from "./SectionCard";
 
@@ -34,6 +34,21 @@ export default function SquadAndField({ team }: { team: NationalTeam }) {
   const xi = team.wc_2026?.starting_xi;
 
   const [view, setView] = useState<"squad" | "xi">("squad");
+
+  // Si el usuario llega con hash #once (desde MiniNav o link directo),
+  // activamos automáticamente la vista XI. También al cambiar el hash
+  // mientras la página ya está abierta.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const checkHash = () => {
+      if (window.location.hash === "#once" && xi) {
+        setView("xi");
+      }
+    };
+    checkHash();
+    window.addEventListener("hashchange", checkHash);
+    return () => window.removeEventListener("hashchange", checkHash);
+  }, [xi]);
 
   if (squad.length === 0) return null;
 
@@ -67,6 +82,11 @@ export default function SquadAndField({ team }: { team: NationalTeam }) {
           </div>
         }
       />
+
+      {/* Ancla "once" SIEMPRE presente en el DOM (aunque la vista activa
+          sea Squad). El MiniNav scrollea aquí y nuestro useEffect del
+          hashchange activa setView("xi") en paralelo. */}
+      <span id="once" className="sr-only" aria-hidden />
 
       {view === "squad" ? <SquadGrid squad={squad} /> : null}
       {view === "xi" && xi ? (
@@ -214,18 +234,38 @@ function PlayerCard({ player }: { player: Player }) {
       }}
     >
       <div className="flex items-center gap-3 mb-3">
-        {/* Photo (placeholder por ahora — se llena con foto real cuando esté el campo photo_url) */}
+        {/* Avatar — usa <img> con object-position top para enfocar la cara
+            (las fotos Wikipedia suelen ser de cuerpo entero) */}
         <span
-          className="w-12 h-12 rounded-full flex items-center justify-center text-base font-black flex-shrink-0 overflow-hidden border border-white/5"
+          className="relative w-14 h-14 rounded-full flex items-center justify-center text-base font-black flex-shrink-0 overflow-hidden border-2"
           style={{
             background: player.photo_url
-              ? `url(${player.photo_url}) center/cover no-repeat`
-              : "linear-gradient(135deg, #C9A84C22, #C9A84C08)",
+              ? "linear-gradient(135deg, #1a2438, #0B1825)"
+              : "linear-gradient(135deg, rgba(201,168,76,0.25), rgba(201,168,76,0.08))",
             color: "#C9A84C",
+            borderColor: "rgba(201,168,76,0.35)",
           }}
           aria-hidden
         >
-          {!player.photo_url ? (player.shirt_number_expected ?? "?") : null}
+          {player.photo_url ? (
+            <img
+              src={player.photo_url}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              className="w-full h-full"
+              style={{
+                objectFit: "cover",
+                objectPosition: "center top",
+                // 1.15 escala ligeramente para que el rostro
+                // (que suele estar arriba de la imagen) llene el círculo
+                transform: "scale(1.15)",
+                transformOrigin: "center top",
+              }}
+            />
+          ) : (
+            (player.shirt_number_expected ?? "?")
+          )}
         </span>
         <div className="min-w-0 flex-1">
           <div className="text-sm font-bold text-white truncate">
@@ -283,7 +323,7 @@ function DigitalField({
   }, [squad]);
 
   return (
-    <div id="once">
+    <div>
       <div className="flex items-center justify-between mb-4">
         <div className="text-sm text-[var(--bb-text-muted)]">
           <strong className="text-white">{xi.formation}</strong> · 11 ideal de{" "}
@@ -453,7 +493,7 @@ function PlayerDot({
             className="relative block w-14 h-14 rounded-full overflow-hidden flex items-center justify-center text-base font-black shadow-xl border-2"
             style={{
               background: player.photo_url
-                ? `url(${player.photo_url}) center/cover no-repeat, linear-gradient(135deg, #1a2438, #0B1825)`
+                ? "linear-gradient(135deg, #1a2438, #0B1825)"
                 : "linear-gradient(135deg, #C9A84C, #A8893D)",
               color: "#030712",
               borderColor: "rgba(232,212,139,0.85)",
@@ -462,7 +502,23 @@ function PlayerDot({
             }}
             aria-hidden
           >
-            {!player.photo_url ? (player.shirt_number_expected ?? "?") : null}
+            {player.photo_url ? (
+              <img
+                src={player.photo_url}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full"
+                style={{
+                  objectFit: "cover",
+                  objectPosition: "center top",
+                  transform: "scale(1.15)",
+                  transformOrigin: "center top",
+                }}
+              />
+            ) : (
+              (player.shirt_number_expected ?? "?")
+            )}
           </span>
           {/* Dorsal flotante (badge) */}
           {player.shirt_number_expected ? (

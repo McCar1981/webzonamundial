@@ -62,6 +62,16 @@ export default function MiniNav({ sections }: { sections: Section[] }) {
     const headerOffset = 130; // header global + minimal margin
     const top = el.getBoundingClientRect().top + window.scrollY - headerOffset;
     window.scrollTo({ top, behavior: "smooth" });
+    // Actualiza el hash sin forzar otro scroll del navegador.
+    // history.replaceState para no llenar el back-button con cada click.
+    // El hashchange se dispara solo si cambia, así que usamos pushState
+    // si es distinto y manualmente disparamos un evento custom.
+    const newHash = `#${id}`;
+    if (window.location.hash !== newHash) {
+      history.replaceState(null, "", newHash);
+      // Aviso a componentes (ej. SquadAndField) que escuchan hashchange.
+      window.dispatchEvent(new HashChangeEvent("hashchange"));
+    }
   }
 
   return (

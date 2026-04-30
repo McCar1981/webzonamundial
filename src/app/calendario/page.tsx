@@ -31,6 +31,7 @@ import {
   MatchModal,
   MobileTimeline,
 } from "./_components";
+import CalendarExportButton from "@/components/CalendarExportButton";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -221,6 +222,14 @@ export default function CalendarioPage() {
 
               <div className="w-full max-w-3xl">
                 <CountdownBanner />
+              </div>
+
+              {/* Calendario descargable / suscripción */}
+              <div className="mt-8 flex justify-center">
+                <CalendarExportButton
+                  variant="panel"
+                  label="Añadir el Mundial 2026 a tu calendario"
+                />
               </div>
             </div>
           </AnimatedSection>

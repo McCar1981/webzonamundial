@@ -27,6 +27,21 @@ const nextConfig = {
       // Redirigir rutas antiguas si las hay
     ];
   },
+  // Rewrites — alias para que Apple/Google reconozcan extensión .ics
+  async rewrites() {
+    return [
+      {
+        // /api/calendar.ics → /api/calendar (preserva query string)
+        source: "/api/calendar.ics",
+        destination: "/api/calendar",
+      },
+      {
+        // /calendario.ics → /api/calendar (URL más bonita para compartir)
+        source: "/calendario.ics",
+        destination: "/api/calendar",
+      },
+    ];
+  },
   // Headers de seguridad
   async headers() {
     return [

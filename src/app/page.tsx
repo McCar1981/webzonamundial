@@ -25,6 +25,7 @@ import { FinalCTASection } from "./_home/sections/FinalCTASection";
 import { AlbumDominaSection } from "./_home/sections/AlbumDominaSection";
 import { AppRevealSection } from "./_home/sections/AppRevealSection";
 import { CinematicDivider } from "./_home/sections/CinematicDivider";
+import { CalendarBanner } from "./_home/sections/CalendarBanner";
 
 export default function HomePage() {
   const { t } = useLanguage();
@@ -71,6 +72,7 @@ export default function HomePage() {
         IMGS={IMGS}
       />
       <StatsHowSection />
+      <CalendarBanner />
       <ModulesGridSection />
       <PlatformShowcaseSection />
       <ModulesBentoSection />

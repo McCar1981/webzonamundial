@@ -33,25 +33,31 @@ export default function CalendarExportButton({
 }: Props) {
   const [open, setOpen] = useState(false);
   const [origin, setOrigin] = useState("https://www.zonamundial.app");
+  const [isMobile, setIsMobile] = useState(false);
 
   // Captura el origin real en cliente para construir las URLs
-  // webcal:// y https:// con el dominio del usuario (útil en preview
-  // deploys donde el dominio cambia).
+  // webcal:// y https:// con el dominio del usuario.
   useEffect(() => {
     if (typeof window !== "undefined") {
       setOrigin(window.location.origin);
+      // Detect mobile (Android/iOS) — usado para decidir flujo Google
+      const ua = navigator.userAgent;
+      setIsMobile(/Android|iPhone|iPad|iPod/i.test(ua));
     }
   }, []);
 
   const qs = preset ? `?${preset}` : "";
-  // URLs:
-  //   - https://...    → descarga directa (.ics)
-  //   - webcal://...   → suscripción viva (Apple Calendar nativo)
-  //   - https://www.google.com/calendar/render?cid=https://...  → import Google
   const httpsUrl = `${origin}/api/calendar.ics${qs}`;
   const webcalUrl = httpsUrl.replace(/^https?:/, "webcal:");
-  // Google Calendar quiere URL HTTPS pública en cid=
-  const googleUrl = `https://calendar.google.com/calendar/r?cid=${encodeURIComponent(httpsUrl)}`;
+
+  // Google Calendar — comportamiento distinto según device:
+  // - Móvil: webcal:// abre directo Google Calendar Android como suscripción.
+  //   La app /calendar/r?cid= en móvil suele fallar (descarga el .ics y nada más).
+  // - Desktop: calendar.google.com con cid= sí abre el flujo de suscripción
+  //   en navegador y permite confirmar.
+  const googleUrl = isMobile
+    ? webcalUrl
+    : `https://calendar.google.com/calendar/r?cid=${encodeURIComponent(httpsUrl)}`;
 
   if (variant === "hero") {
     return (
@@ -156,6 +162,8 @@ function ExportModal({
   webcalUrl: string;
   googleUrl: string;
 }) {
+  const [copied, setCopied] = useState(false);
+
   // Cerrar con Escape
   useEffect(() => {
     function handleKey(e: KeyboardEvent) {
@@ -169,6 +177,15 @@ function ExportModal({
   const isAppleDevice =
     typeof navigator !== "undefined" &&
     /iPhone|iPad|iPod|Mac/i.test(navigator.userAgent);
+  const isAndroid =
+    typeof navigator !== "undefined" && /Android/i.test(navigator.userAgent);
+
+  function copyUrl() {
+    navigator.clipboard?.writeText(httpsUrl).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }
 
   return (
     <div
@@ -248,6 +265,44 @@ function ExportModal({
           />
         </div>
 
+        {/* Aviso para Android */}
+        {isAndroid ? (
+          <div
+            className="rounded-xl p-3 mb-4 text-[11px] leading-relaxed"
+            style={{
+              borderLeft: "2px solid #C9A84C",
+              background: "rgba(201,168,76,0.06)",
+              color: "#cbd5e1",
+            }}
+          >
+            <strong className="text-white">Android · ¿No ves los partidos en tu calendario?</strong>
+            <p className="mt-1">
+              Google Calendar para Android importa las suscripciones, pero a veces las
+              añade <strong>desactivadas por defecto</strong>. Abre la app, toca el menú
+              ☰ y activa el calendario <em>Mundial 2026 · ZonaMundial</em>.
+            </p>
+            <p className="mt-2">
+              Si no aparece, abre desde un PC{" "}
+              <a
+                href={`https://calendar.google.com/calendar/r/settings/addbyurl`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline text-[#C9A84C]"
+              >
+                calendar.google.com/settings → Añadir por URL
+              </a>{" "}
+              y pega:
+            </p>
+            <button
+              type="button"
+              onClick={copyUrl}
+              className="mt-2 w-full rounded-lg border border-[#1E293B] bg-[#0B1825] px-3 py-2 text-left font-mono text-[10px] text-[#cbd5e1] hover:border-[#C9A84C]/40 transition-colors break-all"
+            >
+              {copied ? "✓ URL copiada" : httpsUrl}
+            </button>
+          </div>
+        ) : null}
+
         {/* Detalles */}
         <details className="mt-4 group">
           <summary className="text-xs text-[#94a3b8] hover:text-[#C9A84C] cursor-pointer list-none transition-colors">
@@ -268,6 +323,17 @@ function ExportModal({
             <li>· Se actualiza automáticamente si cambian fechas</li>
           </ul>
         </details>
+
+        {/* Copy URL universal — fallback para cualquier dispositivo */}
+        {!isAndroid ? (
+          <button
+            type="button"
+            onClick={copyUrl}
+            className="mt-4 w-full text-[10px] text-[#94a3b8] hover:text-[#C9A84C] transition-colors text-center"
+          >
+            {copied ? "✓ URL del calendario copiada al portapapeles" : "Copiar URL del calendario"}
+          </button>
+        ) : null}
       </div>
     </div>
   );

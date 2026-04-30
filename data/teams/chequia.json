@@ -1,0 +1,1442 @@
+{
+  "slug": "chequia",
+  "iso": "cz",
+  "iso3": "CZE",
+  "name_es": "Chequia",
+  "name_en": "Czech Republic",
+  "name_local": "Česko",
+  "nicknames": [
+    "Reprezentace",
+    "Národní tým",
+    "Los Checos"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#11457E",
+      "secondary": "#FFFFFF",
+      "tertiary": "#D7141A",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Praga",
+    "language_official": [
+      "Checo"
+    ],
+    "population": 10510000,
+    "area_km2": 78867,
+    "timezone": "Europe/Prague",
+    "continent": "Europa"
+  },
+  "federation": {
+    "name": "Fotbalová Asociace České Republiky",
+    "abbreviation": "FAČR",
+    "founded": 1901,
+    "headquarters": "Praga",
+    "website": "https://www.fotbal.cz"
+  },
+  "confederation": "UEFA",
+  "fifa_ranking": {
+    "current": 38,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Puma",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/chequia.png",
+        "back_url": null,
+        "primary_color": "#D7141A",
+        "secondary_color": "#FFFFFF",
+        "description": "Camiseta roja con detalles blancos y azules, los colores de la bandera nacional checa.",
+        "alt_text": "Camiseta titular Chequia Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#D7141A",
+        "description": "Equipación visitante en blanco. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Chequia Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "Chequia heredó parte del legado de Checoslovaquia (1918-1992), país que llegó a 2 finales mundialistas (1934 y 1962). Como Chequia independiente, debutó en Mundiales en 2006.",
+        "source": "FAČR + Wikipedia",
+        "verified_at": "2026-04-28",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "playoff_uefa",
+    "qualifying_summary": "Chequia clasificó vía PLAY-OFF tras quedar 2ª del Grupo L detrás de Croacia (que les goleó 1-5 en la última jornada). Pasó por la Ruta D de play-offs: ganó a Irlanda 1-1 (4-3 pen) en semifinal y a Dinamarca 2-2 (3-1 pen) en final. 3ª participación como Chequia (debut 2006, 2026), sin contar el legado de Checoslovaquia (subcampeona 1934 y 1962). En el Grupo A del Mundial 2026 con anfitriona México, Sudáfrica y Corea del Sur.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias UEFA Mundial 2026 — Grupo L + Play-offs Ruta D",
+      "format": "Liguilla todos contra todos · 5 equipos · 8 partidos + 2 partidos play-off (semifinal + final)",
+      "duration": "Septiembre 2025 — Marzo 2026",
+      "final_position": 2,
+      "total_teams_in_group": 5,
+      "stats": {
+        "played": 10,
+        "won": 5,
+        "drawn": 2,
+        "lost": 3,
+        "goals_for": 22,
+        "goals_against": 16,
+        "goal_difference": 6,
+        "points": 17,
+        "win_percentage": 50,
+        "clean_sheets": 3,
+        "notes": "Stats acumulados: Grupo L (8 partidos: 5G 1E 2P, 16 puntos) + Play-offs (2 partidos: 0G 2E 0P en reglamento, ganados ambos en penales)."
+      },
+      "coach_during_qualifying": "Ivan Hašek",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2025-09-06",
+          "home": {
+            "iso": "cz",
+            "name": "Chequia",
+            "score": 2
+          },
+          "away": {
+            "iso": "me",
+            "name": "Montenegro",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Eden Aréna",
+            "city": "Praga",
+            "country_iso": "cz"
+          },
+          "goals_arg": [
+            {
+              "player": "Patrik Schick",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Tomáš Souček",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 2,
+          "date": "2025-09-09",
+          "home": {
+            "iso": "fo",
+            "name": "Islas Feroe",
+            "score": 2
+          },
+          "away": {
+            "iso": "cz",
+            "name": "Chequia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Tórsvøllur",
+            "city": "Tórshavn",
+            "country_iso": "fo"
+          },
+          "goals_arg": [
+            {
+              "player": "Patrik Schick",
+              "minute": "55'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Sorpresiva derrota ante Islas Feroe."
+        },
+        {
+          "matchday": 3,
+          "date": "2025-10-09",
+          "home": {
+            "iso": "hr",
+            "name": "Croacia",
+            "score": 5
+          },
+          "away": {
+            "iso": "cz",
+            "name": "Chequia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Maksimir",
+            "city": "Zagreb",
+            "country_iso": "hr"
+          },
+          "goals_arg": [
+            {
+              "player": "Adam Hložek",
+              "minute": "60'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Goleada 5-1 en Zagreb."
+        },
+        {
+          "matchday": 4,
+          "date": "2025-10-12",
+          "home": {
+            "iso": "cz",
+            "name": "Chequia",
+            "score": 6
+          },
+          "away": {
+            "iso": "gi",
+            "name": "Gibraltar",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Andrův stadion",
+            "city": "Olomouc",
+            "country_iso": "cz"
+          },
+          "goals_arg": [
+            {
+              "player": "Patrik Schick",
+              "minute": "10'",
+              "type": "goal"
+            },
+            {
+              "player": "Patrik Schick",
+              "minute": "30'",
+              "type": "penalty"
+            },
+            {
+              "player": "Adam Hložek",
+              "minute": "45'",
+              "type": "goal"
+            },
+            {
+              "player": "Tomáš Souček",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Patrik Schick",
+              "minute": "70'",
+              "type": "goal"
+            },
+            {
+              "player": "David Doudera",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 5,
+          "date": "2025-11-13",
+          "home": {
+            "iso": "cz",
+            "name": "Chequia",
+            "score": 2
+          },
+          "away": {
+            "iso": "fo",
+            "name": "Islas Feroe",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Eden Aréna",
+            "city": "Praga",
+            "country_iso": "cz"
+          },
+          "goals_arg": [
+            {
+              "player": "Lukáš Provod",
+              "minute": "44'",
+              "type": "goal"
+            },
+            {
+              "player": "Patrik Schick",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 6,
+          "date": "2025-11-16",
+          "home": {
+            "iso": "me",
+            "name": "Montenegro",
+            "score": 0
+          },
+          "away": {
+            "iso": "cz",
+            "name": "Chequia",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Pod Goricom",
+            "city": "Podgorica",
+            "country_iso": "me"
+          },
+          "goals_arg": [
+            {
+              "player": "Tomáš Souček",
+              "minute": "40'",
+              "type": "goal"
+            },
+            {
+              "player": "Pavel Šulc",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 7,
+          "date": "2025-11-19",
+          "home": {
+            "iso": "cz",
+            "name": "Chequia",
+            "score": 6
+          },
+          "away": {
+            "iso": "gi",
+            "name": "Gibraltar",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Eden Aréna",
+            "city": "Praga",
+            "country_iso": "cz"
+          },
+          "goals_arg": [
+            {
+              "player": "Patrik Schick",
+              "minute": "12'",
+              "type": "goal"
+            },
+            {
+              "player": "Adam Hložek",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Tomáš Souček",
+              "minute": "45'",
+              "type": "goal"
+            },
+            {
+              "player": "Václav Černý",
+              "minute": "60'",
+              "type": "goal"
+            },
+            {
+              "player": "David Jurásek",
+              "minute": "78'",
+              "type": "goal"
+            },
+            {
+              "player": "Mojmír Chytil",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 8,
+          "date": "2025-11-22",
+          "home": {
+            "iso": "cz",
+            "name": "Chequia",
+            "score": 1
+          },
+          "away": {
+            "iso": "hr",
+            "name": "Croacia",
+            "score": 5
+          },
+          "venue": {
+            "stadium": "Eden Aréna",
+            "city": "Praga",
+            "country_iso": "cz"
+          },
+          "goals_arg": [
+            {
+              "player": "Adam Hložek",
+              "minute": "60'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Caída local que confirmó 2º puesto. 16 pts en grupo (5G 1E 2P)."
+        },
+        {
+          "matchday": 9,
+          "date": "2026-03-26",
+          "home": {
+            "iso": "cz",
+            "name": "Chequia",
+            "score": 1
+          },
+          "away": {
+            "iso": "ie",
+            "name": "Irlanda",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Eden Aréna",
+            "city": "Praga",
+            "country_iso": "cz"
+          },
+          "goals_arg": [
+            {
+              "player": "Patrik Schick",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ],
+          "notes": "SEMIFINAL Play-off. 1-1 reglamentario, ganó 4-3 en penales."
+        },
+        {
+          "matchday": 10,
+          "date": "2026-03-31",
+          "home": {
+            "iso": "cz",
+            "name": "Chequia",
+            "score": 2
+          },
+          "away": {
+            "iso": "dk",
+            "name": "Dinamarca",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Eden Aréna",
+            "city": "Praga",
+            "country_iso": "cz"
+          },
+          "goals_arg": [
+            {
+              "player": "Patrik Schick",
+              "minute": "44'",
+              "type": "goal"
+            },
+            {
+              "player": "Tomáš Souček",
+              "minute": "70'",
+              "type": "goal"
+            }
+          ],
+          "notes": "FINAL PLAY-OFF: 2-2 reglamentario. Chequia ganó 3-1 en penales y clasificó al Mundial 2026 (Grupo A).",
+          "is_decisive_match": true
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Patrik Schick",
+          "goals": 7,
+          "notes": "Goleador absoluto del ciclo. Delantero del Bayer Leverkusen."
+        },
+        {
+          "player": "Tomáš Souček",
+          "goals": 4,
+          "notes": "Capitán y referente, mediocampista del West Ham."
+        },
+        {
+          "player": "Adam Hložek",
+          "goals": 4
+        },
+        {
+          "player": "Lukáš Provod",
+          "goals": 1
+        },
+        {
+          "player": "Pavel Šulc",
+          "goals": 1
+        },
+        {
+          "player": "Václav Černý",
+          "goals": 1
+        },
+        {
+          "player": "David Doudera",
+          "goals": 1
+        },
+        {
+          "player": "David Jurásek",
+          "goals": 1
+        },
+        {
+          "player": "Mojmír Chytil",
+          "goals": 1
+        },
+        {
+          "player": "Otros (1)",
+          "goals": 1
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_4",
+        "reason": "Goleada 6-0 a Gibraltar en Olomouc el 12 de octubre con HAT-TRICK de Patrik Schick. Mejor exhibición ofensiva del ciclo."
+      },
+      "worst_match": {
+        "match_ref": "matchday_3",
+        "reason": "Derrota 1-5 ante Croacia en Zagreb. Mayor goleada recibida en eliminatoria."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_10",
+        "reason": "Triunfo en penales 3-1 sobre Dinamarca tras 2-2 reglamentario en Praga. Selló la clasificación al Mundial 2026 (Grupo A con México)."
+      }
+    },
+    "group_2026": {
+      "letter": "A",
+      "label": "Grupo A — anfitriona México junto a Sudáfrica, Corea del Sur y Chequia",
+      "teams": [
+        {
+          "iso": "mx",
+          "name": "México",
+          "fifa_rank": null
+        },
+        {
+          "iso": "za",
+          "name": "Sudáfrica",
+          "fifa_rank": null
+        },
+        {
+          "iso": "kr",
+          "name": "Corea del Sur",
+          "fifa_rank": null
+        },
+        {
+          "iso": "cz",
+          "name": "Rep. Checa",
+          "fifa_rank": null,
+          "is_seed": false
+        }
+      ],
+      "notes": "Grupo A confirmado en sorteo del 5 dic 2025. Chequia es uno de los outsiders peligrosos."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "kr",
+          "name": "Corea del Sur"
+        },
+        "date": "2026-06-11",
+        "kickoff_local": "18:00",
+        "venue": {
+          "stadium": "Estadio Azteca",
+          "city": "Ciudad de México",
+          "country_iso": "mx"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "mx",
+          "name": "México"
+        },
+        "date": "2026-06-18",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "Estadio Azteca",
+          "city": "Ciudad de México",
+          "country_iso": "mx"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "za",
+          "name": "Sudáfrica"
+        },
+        "date": "2026-06-26",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "MetLife Stadium",
+          "city": "Nueva York/NJ",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — FAČR aún no anunció]",
+      "country": "Estados Unidos / México",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Ivan Hašek",
+      "age": 62,
+      "nationality": "Chequia",
+      "since": "2024-01-23",
+      "previous_teams": [
+        "Líbano (2010-2011, 2017-2019, 2021)",
+        "Sparta Praga (2007-2008)",
+        "Strasbourg (1999-2002)"
+      ],
+      "profile_summary": "Checo, ex-mediocampista histórico (jugador del Mundial 1990 con Checoslovaquia, llegando a cuartos). Asumió Chequia en enero 2024 tras la salida de Jaroslav Šilhavý. Identidad táctica: 4-3-3 sólido, juego asociativo, defensa zonal compacta. Clasificó a la selección al Mundial 2026 vía repechaje, hito histórico para la generación post-Petr Čech.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/94/IvanHasek.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Ivan_Ha%C5%A1ek"
+      }
+    },
+    "captain": {
+      "name": "Tomáš Souček",
+      "club": "West Ham",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Tom%C3%A1%C5%A1_Sou%C4%8Dek_WHU.jpeg/330px-Tom%C3%A1%C5%A1_Sou%C4%8Dek_WHU.jpeg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Tom%C3%A1%C5%A1_Sou%C4%8Dek"
+      }
+    },
+    "star_player": {
+      "name": "Patrik Schick",
+      "club": "Bayer Leverkusen",
+      "reason": "Delantero potente del Bayer Leverkusen (campeón Bundesliga 2024). A los 30 años llega a su 1er Mundial siendo MÁXIMO GOLEADOR ACTIVO checo. Famoso por SU GOLAZO DE 50 METROS A INGLATERRA en la Eurocopa 2020 (premio gol del torneo). 7 goles en eliminatoria. Letal por arriba y abajo.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Patrik_Schick_20180601_AUSCZE_3910_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Patrik_Schick"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "jindrich-stanek",
+        "full_name": "Jindřich Staněk",
+        "display_name": "Jindřich Staněk",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Slavia Praga",
+          "country_iso": "cz",
+          "league": "Fortuna Liga"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Jind%C5%99ich_Stan%C4%9Bk_brank%C3%A1%C5%99_FK_Viktorie_Plze%C5%88_%28r._2023%29_%28cropped%29.jpg/330px-Jind%C5%99ich_Stan%C4%9Bk_brank%C3%A1%C5%99_FK_Viktorie_Plze%C5%88_%28r._2023%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jind%C5%99ich_Stan%C4%9Bk"
+        }
+      },
+      {
+        "id": "vitezslav-jaros",
+        "full_name": "Vítězslav Jaroš",
+        "display_name": "Vítězslav Jaroš",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Liverpool",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 12,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/FC_RB_salzburg_gegen_SK_Sturm_Graz_%282024-02-09%29_34.jpg/330px-FC_RB_salzburg_gegen_SK_Sturm_Graz_%282024-02-09%29_34.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/V%C3%ADt%C4%9Bzslav_Jaro%C5%A1"
+        }
+      },
+      {
+        "id": "matej-kovar",
+        "full_name": "Matěj Kovář",
+        "display_name": "Matěj Kovář",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Bayer Leverkusen",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 23,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Matj_kova-1772635856.JPG/330px-Matj_kova-1772635856.JPG",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mat%C4%9Bj_Kov%C3%A1%C5%99"
+        }
+      },
+      {
+        "id": "vladimir-coufal",
+        "full_name": "Vladimír Coufal",
+        "display_name": "Vladimír Coufal",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "West Ham",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Vladim%C3%ADr_Coufal_with_West_Ham_United.jpeg/330px-Vladim%C3%ADr_Coufal_with_West_Ham_United.jpeg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Vladim%C3%ADr_Coufal"
+        }
+      },
+      {
+        "id": "tomas-vlcek",
+        "full_name": "Tomáš Vlček",
+        "display_name": "Tomáš Vlček",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Slavia Praga",
+          "country_iso": "cz",
+          "league": "Fortuna Liga"
+        },
+        "shirt_number_expected": 14,
+        "status": "probable"
+      },
+      {
+        "id": "tomas-holes",
+        "full_name": "Tomáš Holeš",
+        "display_name": "Tomáš Holeš",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Slavia Praga",
+          "country_iso": "cz",
+          "league": "Fortuna Liga"
+        },
+        "shirt_number_expected": 15,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Tom%C3%A1%C5%A1_Hole%C5%A1_Jablonec-Ostrava.jpg/330px-Tom%C3%A1%C5%A1_Hole%C5%A1_Jablonec-Ostrava.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Tom%C3%A1%C5%A1_Hole%C5%A1"
+        }
+      },
+      {
+        "id": "robin-hranac",
+        "full_name": "Robin Hranáč",
+        "display_name": "Robin Hranáč",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Wolfsburgo",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed"
+      },
+      {
+        "id": "ladislav-krejci",
+        "full_name": "Ladislav Krejčí",
+        "display_name": "Ladislav Krejčí",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Girona",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed"
+      },
+      {
+        "id": "david-doudera",
+        "full_name": "David Doudera",
+        "display_name": "David Doudera",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Mladá Boleslav",
+          "country_iso": "cz",
+          "league": "Fortuna Liga"
+        },
+        "shirt_number_expected": 22,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/David_Doud%C4%9Bra%2C_U21_CZE-GRE_2019-10-10.jpg/330px-David_Doud%C4%9Bra%2C_U21_CZE-GRE_2019-10-10.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/David_Doud%C4%9Bra"
+        }
+      },
+      {
+        "id": "david-jurasek",
+        "full_name": "David Jurásek",
+        "display_name": "David Jurásek",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Hoffenheim",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed"
+      },
+      {
+        "id": "matej-jurasek",
+        "full_name": "Matěj Jurásek",
+        "display_name": "Matěj Jurásek",
+        "position": "MID",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Slavia Praga",
+          "country_iso": "cz",
+          "league": "Fortuna Liga"
+        },
+        "shirt_number_expected": 24,
+        "status": "probable"
+      },
+      {
+        "id": "tomas-soucek",
+        "full_name": "Tomáš Souček",
+        "display_name": "Tomáš Souček",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "West Ham",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Tom%C3%A1%C5%A1_Sou%C4%8Dek_WHU.jpeg/330px-Tom%C3%A1%C5%A1_Sou%C4%8Dek_WHU.jpeg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Tom%C3%A1%C5%A1_Sou%C4%8Dek"
+        }
+      },
+      {
+        "id": "lukas-cerv",
+        "full_name": "Lukáš Červ",
+        "display_name": "Lukáš Červ",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Viktoria Plzeň",
+          "country_iso": "cz",
+          "league": "Fortuna Liga"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed"
+      },
+      {
+        "id": "michal-sadilek",
+        "full_name": "Michal Sadílek",
+        "display_name": "Michal Sadílek",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Twente",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 16,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Michal_Sad%C3%ADlek%2C_U21_CZE-GRE_2019-10-10_%282%29.jpg/330px-Michal_Sad%C3%ADlek%2C_U21_CZE-GRE_2019-10-10_%282%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Michal_Sad%C3%ADlek"
+        }
+      },
+      {
+        "id": "lukas-provod",
+        "full_name": "Lukáš Provod",
+        "display_name": "Lukáš Provod",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Slavia Praga",
+          "country_iso": "cz",
+          "league": "Fortuna Liga"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed"
+      },
+      {
+        "id": "ondrej-lingr",
+        "full_name": "Ondřej Lingr",
+        "display_name": "Ondřej Lingr",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Sturm Graz",
+          "country_iso": "at",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 19,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Ond%C5%99ej_Lingr%2C_U21_CZE-GRE_2019-10-10_%281%29_%28cropped%29.jpg/330px-Ond%C5%99ej_Lingr%2C_U21_CZE-GRE_2019-10-10_%281%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ond%C5%99ej_Lingr"
+        }
+      },
+      {
+        "id": "antonin-barak",
+        "full_name": "Antonín Barák",
+        "display_name": "Antonín Barák",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Kasimpasa",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 17,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Anton%C3%ADn_Bar%C3%A1k_20180601_AUSCZE_3910_%28cropped%29.jpg/330px-Anton%C3%ADn_Bar%C3%A1k_20180601_AUSCZE_3910_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Anton%C3%ADn_Bar%C3%A1k"
+        }
+      },
+      {
+        "id": "patrik-schick",
+        "full_name": "Patrik Schick",
+        "display_name": "Patrik Schick",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Bayer Leverkusen",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Patrik_Schick_20180601_AUSCZE_3910_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Patrik_Schick"
+        }
+      },
+      {
+        "id": "adam-hlozek",
+        "full_name": "Adam Hložek",
+        "display_name": "Adam Hložek",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "TSG Hoffenheim",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Dimitris_Nikolaou_%26_Adam_Hlo%C5%BEek%2C_U21_CZE-GRE_2019-10-10_%28cropped%29.jpg/330px-Dimitris_Nikolaou_%26_Adam_Hlo%C5%BEek%2C_U21_CZE-GRE_2019-10-10_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Adam_Hlo%C5%BEek"
+        }
+      },
+      {
+        "id": "vaclav-cerny",
+        "full_name": "Václav Černý",
+        "display_name": "Václav Černý",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Wolfsburgo",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Vaclav_Cerny_2016.jpg/330px-Vaclav_Cerny_2016.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/V%C3%A1clav_%C4%8Cern%C3%BD"
+        }
+      },
+      {
+        "id": "mojmir-chytil",
+        "full_name": "Mojmír Chytil",
+        "display_name": "Mojmír Chytil",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Slavia Praga",
+          "country_iso": "cz",
+          "league": "Fortuna Liga"
+        },
+        "shirt_number_expected": 20,
+        "status": "fixed"
+      },
+      {
+        "id": "pavel-sulc",
+        "full_name": "Pavel Šulc",
+        "display_name": "Pavel Šulc",
+        "position": "FWD",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Viktoria Plzeň",
+          "country_iso": "cz",
+          "league": "Fortuna Liga"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Pavel_%C5%A0ulc_%28cropped%29.jpg/330px-Pavel_%C5%A0ulc_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Pavel_%C5%A0ulc"
+        }
+      },
+      {
+        "id": "jakub-jankto",
+        "full_name": "Jakub Jankto",
+        "display_name": "Jakub Jankto",
+        "position": "MID",
+        "detailed_position": "LM",
+        "club": {
+          "name": "Cagliari",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 21,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Jankto_Udinese_%28cropped%29.JPG/330px-Jankto_Udinese_%28cropped%29.JPG",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jakub_Jankto"
+        }
+      },
+      {
+        "id": "tomas-chory",
+        "full_name": "Tomáš Chorý",
+        "display_name": "Tomáš Chorý",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Sparta Praga",
+          "country_iso": "cz",
+          "league": "Fortuna Liga"
+        },
+        "shirt_number_expected": 13,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Tom%C3%A1%C5%A1_Chor%C3%BD_%28cropped%29.jpg/330px-Tom%C3%A1%C5%A1_Chor%C3%BD_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Tom%C3%A1%C5%A1_Chor%C3%BD"
+        }
+      },
+      {
+        "id": "vasil-kusej",
+        "full_name": "Vasil Kušej",
+        "display_name": "Vasil Kušej",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Mladá Boleslav",
+          "country_iso": "cz",
+          "league": "Fortuna Liga"
+        },
+        "shirt_number_expected": 25,
+        "status": "bubble"
+      },
+      {
+        "id": "petr-sevcik",
+        "full_name": "Petr Ševčík",
+        "display_name": "Petr Ševčík",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Slavia Praga",
+          "country_iso": "cz",
+          "league": "Fortuna Liga"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble"
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-3-3",
+      "players": [
+        {
+          "player_id": "jindrich-stanek",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "vladimir-coufal",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "tomas-holes",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "robin-hranac",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "david-jurasek",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "tomas-soucek",
+          "position": {
+            "x": 50,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "lukas-provod",
+          "position": {
+            "x": 70,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "michal-sadilek",
+          "position": {
+            "x": 30,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "adam-hlozek",
+          "position": {
+            "x": 85,
+            "y": 25
+          }
+        },
+        {
+          "player_id": "patrik-schick",
+          "position": {
+            "x": 50,
+            "y": 18
+          }
+        },
+        {
+          "player_id": "vaclav-cerny",
+          "position": {
+            "x": 15,
+            "y": 25
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Hašek plantea un 4-3-3 con Souček como pivote organizador, Schick fijo arriba con Hložek y Černý en flancos, Provod creativo. Identidad: defensa zonal compacta, eficacia ofensiva, transiciones desde la sólida media checa.",
+      "strengths": [
+        "Patrik Schick: '9' top, goleador del ciclo (7), letal con Bayer Leverkusen.",
+        "Tomáš Souček: capitán experto, líder absoluto. 100+ caps con Chequia.",
+        "Defensa central sólida: Krejčí (Girona, La Liga), Hranáč (Wolfsburg), Holeš.",
+        "Generación dorada Slavia Praga: Staněk, Holeš, Provod, Jurásek, Lingr.",
+        "Adam Hložek: extremo top en Bundesliga (Hoffenheim).",
+        "Plantel con experiencia Premier (Coufal, Souček) y Bundesliga (Schick, Hložek, Hranáč, Černý, Jurásek)."
+      ],
+      "weaknesses": [
+        "DEBACLE 1-5 ANTE CROACIA: defensa expuesta ante grandes.",
+        "Crisis grupo: 5G 1E 2P, derrota inesperada con Islas Feroe (1-2).",
+        "Sin un mediocampista creativo top: Provod y Lingr son buenos pero no élite.",
+        "Lateral derecho inestable: Coufal envejeciendo (33 años).",
+        "Generación post-Čech-Rosický-Nedvěd-Berbatov: nivel claramente inferior a la era 1996-2006.",
+        "Hašek tradicional: estilo conservador puede frenar al ataque."
+      ],
+      "x_factor": {
+        "player": "Adam Hložek",
+        "reason": "El extremo del Hoffenheim (23 años) llega a su 1er Mundial en pico futbolístico tras buena temporada. Velocidad, regate y gol. 4 dianas en eliminatoria. Si Chequia explota su contraataque, Hložek es el factor clave."
+      },
+      "prediction_text": "Chequia llega vía repechaje al Grupo A con México (anfitriona), Sudáfrica y Corea del Sur. Grupo accesible: pasar a octavos es objetivo realista. Schick + Souček + Hložek dan calidad para soñar. Llegar a cuartos sería gesta histórica para Chequia (sin contar Checoslovaquia).",
+      "probabilities": {
+        "advance_groups": 55,
+        "round_of_32": 45,
+        "round_of_16": 25,
+        "quarter_finals": 8,
+        "semi_finals": 2,
+        "final": 0,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: NO CLASIFICÓ. Catar 2022: NO CLASIFICÓ. Mundial 2026: 3ª participación como Chequia (1ª en 2006). Generación más prometedora desde Eurocopa 2004 (semis con Nedvěd-Rosický-Baroš)."
+    }
+  },
+  "history": {
+    "first_appearance": 2006,
+    "appearances_count_before_2026": 2,
+    "appearances_count_with_2026": 3,
+    "consecutive_streak_since": 2026,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 0,
+    "best_result": "Fase de grupos (2006). Como Checoslovaquia: subcampeón 1934 y 1962.",
+    "aggregate_stats_through_2022": {
+      "played": 6,
+      "won": 1,
+      "drawn": 1,
+      "lost": 4,
+      "goals_for": 4,
+      "goals_against": 11,
+      "win_percentage": 16.7,
+      "notes": "Datos hasta 2026 SOLO como Chequia (independiente desde 1993). Sin contar legado Checoslovaquia."
+    },
+    "by_world_cup": [
+      {
+        "year": 2006,
+        "host": {
+          "countries": [
+            "Alemania"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Karel Brückner",
+        "captain": "Pavel Nedvěd",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Tomáš Rosický",
+            "goals": 2
+          },
+          {
+            "player": "Jan Koller",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 3,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "DEBUT mundialista como Chequia.",
+          "Generación dorada Nedvěd-Rosický-Koller-Čech-Baroš.",
+          "Eliminada en grupos."
+        ],
+        "narrative": "Chequia debutó en el Mundial 2006 con la Generación Dorada. Goleó 3-0 a USA en debut (Koller, Rosický, Rosický). Pero cayó con Ghana 0-2 e Italia 0-2. Adiós en primera ronda pese al alto nivel del equipo."
+      }
+    ],
+    "palmares": [
+      {
+        "competition": "Eurocopa",
+        "year": 1996,
+        "position": "Subcampeón",
+        "host": "Inglaterra"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Jan Koller",
+      "value": 55,
+      "period": "1999-2009",
+      "notes": "MÁXIMO GOLEADOR HISTÓRICO. Récord vigente. 'Dino' de 2.02m."
+    },
+    "most_capped": {
+      "name": "Petr Čech",
+      "value": 124,
+      "period": "2002-2016",
+      "notes": "Récord histórico. Portero leyenda Chelsea/Arsenal."
+    },
+    "youngest_debut": {
+      "name": "Adam Hložek",
+      "value": "18 años",
+      "period": "2020",
+      "notes": "Récord moderno."
+    },
+    "biggest_win": {
+      "result": "7-0",
+      "opponent": "San Marino",
+      "date": "2009-09-09",
+      "competition": "Eliminatorias Mundial 2010"
+    },
+    "worst_loss": {
+      "result": "0-5",
+      "opponent": "Italia",
+      "date": "2014-08",
+      "competition": "Amistoso"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El golazo de Schick desde 50 metros",
+      "date": "2021-06-14",
+      "opponent": {
+        "iso": "gb-sct",
+        "name": "Escocia"
+      },
+      "score": "2-0",
+      "competition": "Eurocopa 2020 (jugada 2021)",
+      "narrative": "PATRIK SCHICK marcó UN GOL DE 50 METROS contra Escocia en la Eurocopa 2020. Disparo desde la mitad de la cancha que sorprendió al portero adelantado. PREMIO 'GOL DEL TORNEO'. Uno de los mejores goles del fútbol moderno."
+    },
+    {
+      "title": "Eurocopa 2020 cuartos",
+      "date": "2021-07-03",
+      "opponent": {
+        "iso": "dk",
+        "name": "Dinamarca"
+      },
+      "score": "1-2",
+      "competition": "Cuartos Eurocopa 2020",
+      "narrative": "Chequia cayó en cuartos de la Eurocopa 2020 ante Dinamarca 1-2. Schick descontó al 49' tras goles de Delaney y Dolberg. Mejor papel checo desde Eurocopa 2004."
+    },
+    {
+      "title": "El 3-0 a USA del 2006",
+      "date": "2006-06-12",
+      "opponent": {
+        "iso": "us",
+        "name": "Estados Unidos"
+      },
+      "score": "3-0",
+      "competition": "Fase de Grupos Mundial 2006",
+      "narrative": "Debut mundialista checo con goleada 3-0 a USA. Goles de Jan Koller (5'), Tomáš Rosický (36' golazo) y Rosický (76'). Dominó el partido con la Generación Dorada."
+    },
+    {
+      "title": "El 2-2 a Dinamarca (penales)",
+      "date": "2026-03-31",
+      "opponent": {
+        "iso": "dk",
+        "name": "Dinamarca"
+      },
+      "score": "2-2 (3-1 pen)",
+      "competition": "Final Play-off UEFA Mundial 2026",
+      "narrative": "Chequia clasificó al Mundial 2026 batiendo a Dinamarca 2-2 (3-1 penales) en Praga. Goles de Schick (44') y Souček (70'). En penales, Staněk fue figura. 1ª clasificación checa al Mundial desde 2006."
+    },
+    {
+      "title": "Subcampeón Eurocopa 96",
+      "date": "1996-06-30",
+      "opponent": {
+        "iso": "de",
+        "name": "Alemania"
+      },
+      "score": "1-2 (gol oro)",
+      "competition": "Final Eurocopa 1996",
+      "narrative": "Chequia (recién independiente) jugó la FINAL DE LA EUROCOPA 1996 ante Alemania. Patrik Berger marcó penal al 59'. Bierhoff empató al 73'. Bierhoff GOL DE ORO al 95' (regla recién implantada). Subcampeona europea."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "CHEQUIA es independiente desde 1993 (separación de Checoslovaquia). Como Chequia NUNCA ganó nada en Mundiales (debut 2006, eliminada). Como CHECOSLOVAQUIA fue SUBCAMPEONA 2 VECES (1934 y 1962, ambos perdidos en finales).",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Patrik Schick marcó UN GOL DE 50 METROS contra Escocia en la Eurocopa 2020 (premio Gol del Torneo). Considerado uno de los mejores goles del siglo XXI.",
+      "source": "UEFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Petr Čech (portero leyenda del Chelsea, Premier League 4 títulos) lleva el récord de partidos con Chequia: 124. Se retiró de la selección en 2016.",
+      "source": "FAČR + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "La Generación Dorada checa (1996-2006) tuvo a Pavel Nedvěd (Balón de Oro 2003), Tomáš Rosický, Jan Koller, Milan Baroš (Bota Eurocopa 2004), Petr Čech. Subcampeona Eurocopa 1996, semis Euro 2004.",
+      "source": "UEFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Como CHECOSLOVAQUIA, el país jugó 8 Mundiales (1934-1990) con 2 finales: 1934 (perdida 1-2 con Italia anfitriona en prórroga) y 1962 (perdida 1-3 con Brasil de Pelé y Garrincha).",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Ivan Hašek, DT actual, jugó el Mundial 1990 con Checoslovaquia, llegando a cuartos. Es la 1ª persona checa en Mundial 2026 que también jugó como futbolista en Mundiales (con Checoslovaquia).",
+      "source": "FAČR + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Kde domov můj? (himno)",
+      "Češi! Češi!",
+      "Hej, hej, do toho"
+    ],
+    "main_rival": {
+      "iso": "sk",
+      "name": "Eslovaquia",
+      "story": "Rivalidad histórica derivada de la disolución de Checoslovaquia (1993). Cada cruce checo-eslovaco tiene fuerte carga histórica y emocional. La Eurocopa 1976 ganada por Checoslovaquia es el último gran logro común."
+    },
+    "home_stadium": {
+      "name": "Eden Aréna",
+      "capacity": 21000,
+      "city": "Praga (Slavia)"
+    }
+  },
+  "seo": {
+    "meta_title": "Chequia en el Mundial 2026 | Plantilla, historia y predicciones",
+    "meta_description": "Chequia Mundial 2026: 26 convocados de Hašek, Schick, Souček, Hložek. Grupo A con México, Sudáfrica y Corea del Sur. 3ª participación.",
+    "og_image_url": "/img/og/teams/chequia.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Chequia",
+      "alternateName": [
+        "Reprezentace",
+        "Národní tým"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "UEFA"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Ivan Hašek"
+      },
+      "url": "https://www.zonamundial.app/selecciones/chequia"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-28",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_la_Rep%C3%BAblica_Checa",
+      "https://es.uefa.com/european-qualifiers/news/029f-1f3188cfc443-494e0d8af33d-1000--mundial-2026-que-selecciones-europeas-se-han-clasificado/",
+      "https://www.elfinanciero.com.mx/deportes/2026/03/31/finales-de-repechaje-intercontinental-y-uefa-quienes-son-los-ultimos-clasificados-al-mundial-2026/",
+      "https://www.olympics.com/es/noticias/repechaje-uefa-2026-resultados",
+      "https://www.fotbal.cz",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias y play-offs cruzados con UEFA + Wikipedia + El Financiero + Olympics. Historia mundialista validada con FIFA + Wikipedia + FAČR.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "complete",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante: pendiente",
+      "Calendario fase de grupos 2026: fechas FIFA exactas pendientes",
+      "Base de entrenamiento: FAČR aún no anunció",
+      "FIFA Ranking #38: validar mes vigente",
+      "Detalles play-off vs Irlanda: cruzar con FIFA",
+      "Ediciones omitidas: 2010, 2014, 2018, 2022 (no clasificó)"
+    ]
+  }
+}

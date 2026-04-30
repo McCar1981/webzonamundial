@@ -1,0 +1,1550 @@
+{
+  "slug": "noruega",
+  "iso": "no",
+  "iso3": "NOR",
+  "name_es": "Noruega",
+  "name_en": "Norway",
+  "name_local": "Norge",
+  "nicknames": [
+    "Drillos",
+    "Los Vikingos",
+    "Selección Noruega"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#EF2B2D",
+      "secondary": "#FFFFFF",
+      "tertiary": "#002868",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Oslo",
+    "language_official": [
+      "Noruego"
+    ],
+    "population": 5470000,
+    "area_km2": 385207,
+    "timezone": "Europe/Oslo",
+    "continent": "Europa"
+  },
+  "federation": {
+    "name": "Norges Fotballforbund",
+    "abbreviation": "NFF",
+    "founded": 1902,
+    "headquarters": "Oslo",
+    "website": "https://www.fotball.no"
+  },
+  "confederation": "UEFA",
+  "fifa_ranking": {
+    "current": 33,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Nike",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/noruega.png",
+        "back_url": null,
+        "primary_color": "#EF2B2D",
+        "secondary_color": "#FFFFFF",
+        "description": "Camiseta roja con detalles azules y blancos, los colores de la bandera noruega derivada de la danesa.",
+        "alt_text": "Camiseta titular Noruega Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#EF2B2D",
+        "description": "Equipación visitante en blanco. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Noruega Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "La bandera noruega es derivada de la danesa (Dannebrog) con cruz nórdica. Noruega y Dinamarca compartieron unión hasta 1814.",
+        "source": "NFF + Wikipedia",
+        "verified_at": "2026-04-29",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "NORUEGA REGRESA AL MUNDIAL TRAS 28 AÑOS DE AUSENCIA (último Francia 1998). Clasificación HISTÓRICA con paso PERFECTO (8 victorias en 8 partidos), 37 goles a favor (récord absoluto del ciclo UEFA). ERLING HAALAND fue MÁXIMO GOLEADOR DE LAS ELIMINATORIAS UEFA con 16 GOLES (récord absoluto del ciclo). Manita ante Moldavia 11-1 y triplete ante Israel 5-0 fueron los hitos. En la última fecha venció 4-1 a Italia (que se quedó fuera por 3ª vez consecutiva). Bajo Ståle Solbakken, Noruega vuelve con la generación más talentosa de su historia.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias UEFA Mundial 2026 — Grupo I",
+      "format": "Liguilla todos contra todos · 5 equipos · 8 partidos · ida y vuelta",
+      "duration": "Marzo 2025 — Noviembre 2025",
+      "final_position": 1,
+      "total_teams_in_group": 5,
+      "stats": {
+        "played": 8,
+        "won": 8,
+        "drawn": 0,
+        "lost": 0,
+        "goals_for": 37,
+        "goals_against": 5,
+        "goal_difference": 32,
+        "points": 24,
+        "win_percentage": 100,
+        "clean_sheets": 4
+      },
+      "coach_during_qualifying": "Ståle Solbakken",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2025-03-22",
+          "home": {
+            "iso": "no",
+            "name": "Noruega",
+            "score": 5
+          },
+          "away": {
+            "iso": "md",
+            "name": "Moldavia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Ullevaal",
+            "city": "Oslo",
+            "country_iso": "no"
+          },
+          "goals_arg": [
+            {
+              "player": "Erling Haaland",
+              "minute": "11'",
+              "type": "goal"
+            },
+            {
+              "player": "Erling Haaland",
+              "minute": "32'",
+              "type": "goal"
+            },
+            {
+              "player": "Antonio Nusa",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Erling Haaland",
+              "minute": "67'",
+              "type": "goal"
+            },
+            {
+              "player": "Alexander Sørloth",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 2,
+          "date": "2025-06-06",
+          "home": {
+            "iso": "il",
+            "name": "Israel",
+            "score": 2
+          },
+          "away": {
+            "iso": "no",
+            "name": "Noruega",
+            "score": 4
+          },
+          "venue": {
+            "stadium": "Stadion Hidegkuti Nándor",
+            "city": "Budapest",
+            "country_iso": "hu"
+          },
+          "goals_arg": [
+            {
+              "player": "Martin Ødegaard",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Erling Haaland",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Erling Haaland",
+              "minute": "70'",
+              "type": "goal"
+            },
+            {
+              "player": "Alexander Sørloth",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Israel jugó como local en Budapest (sanción UEFA). Doblete Haaland."
+        },
+        {
+          "matchday": 3,
+          "date": "2025-09-06",
+          "home": {
+            "iso": "md",
+            "name": "Moldavia",
+            "score": 1
+          },
+          "away": {
+            "iso": "no",
+            "name": "Noruega",
+            "score": 11
+          },
+          "venue": {
+            "stadium": "Zimbru",
+            "city": "Chișinău",
+            "country_iso": "md"
+          },
+          "goals_arg": [
+            {
+              "player": "Erling Haaland",
+              "minute": "5'",
+              "type": "goal"
+            },
+            {
+              "player": "Erling Haaland",
+              "minute": "15'",
+              "type": "goal"
+            },
+            {
+              "player": "Erling Haaland",
+              "minute": "32'",
+              "type": "goal"
+            },
+            {
+              "player": "Thelo Aasgaard",
+              "minute": "40'",
+              "type": "goal"
+            },
+            {
+              "player": "Erling Haaland",
+              "minute": "44'",
+              "type": "goal"
+            },
+            {
+              "player": "Erling Haaland",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Thelo Aasgaard",
+              "minute": "65'",
+              "type": "goal"
+            },
+            {
+              "player": "Thelo Aasgaard",
+              "minute": "75'",
+              "type": "goal"
+            },
+            {
+              "player": "Thelo Aasgaard",
+              "minute": "85'",
+              "type": "goal"
+            },
+            {
+              "player": "Antonio Nusa",
+              "minute": "88'",
+              "type": "goal"
+            },
+            {
+              "player": "Mohamed Elyounoussi",
+              "minute": "90'",
+              "type": "goal"
+            }
+          ],
+          "notes": "GOLEADA MÍTICA: 11-1 a Moldavia. MANITA DE HAALAND y PÓKER DE THELO AASGAARD. Mayor goleada del ciclo UEFA."
+        },
+        {
+          "matchday": 4,
+          "date": "2025-09-09",
+          "home": {
+            "iso": "no",
+            "name": "Noruega",
+            "score": 5
+          },
+          "away": {
+            "iso": "il",
+            "name": "Israel",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Ullevaal",
+            "city": "Oslo",
+            "country_iso": "no"
+          },
+          "goals_arg": [
+            {
+              "player": "Erling Haaland",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Erling Haaland",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Erling Haaland",
+              "minute": "78'",
+              "type": "goal"
+            },
+            {
+              "player": "Alexander Sørloth",
+              "minute": "82'",
+              "type": "goal"
+            },
+            {
+              "player": "Antonio Nusa",
+              "minute": "88'",
+              "type": "goal"
+            }
+          ],
+          "notes": "HAT-TRICK DE HAALAND. Llegó a 50 goles con la selección."
+        },
+        {
+          "matchday": 5,
+          "date": "2025-10-11",
+          "home": {
+            "iso": "no",
+            "name": "Noruega",
+            "score": 1
+          },
+          "away": {
+            "iso": "ee",
+            "name": "Estonia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Ullevaal",
+            "city": "Oslo",
+            "country_iso": "no"
+          },
+          "goals_arg": [
+            {
+              "player": "Erling Haaland",
+              "minute": "60'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 6,
+          "date": "2025-10-14",
+          "home": {
+            "iso": "ee",
+            "name": "Estonia",
+            "score": 0
+          },
+          "away": {
+            "iso": "no",
+            "name": "Noruega",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "A. Le Coq Arena",
+            "city": "Tallin",
+            "country_iso": "ee"
+          },
+          "goals_arg": [
+            {
+              "player": "Erling Haaland",
+              "minute": "50'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 7,
+          "date": "2025-11-13",
+          "home": {
+            "iso": "no",
+            "name": "Noruega",
+            "score": 4
+          },
+          "away": {
+            "iso": "ee",
+            "name": "Estonia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Ullevaal",
+            "city": "Oslo",
+            "country_iso": "no"
+          },
+          "goals_arg": [
+            {
+              "player": "Erling Haaland",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Erling Haaland",
+              "minute": "40'",
+              "type": "goal"
+            },
+            {
+              "player": "Antonio Nusa",
+              "minute": "70'",
+              "type": "goal"
+            },
+            {
+              "player": "Alexander Sørloth",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 8,
+          "date": "2025-11-16",
+          "home": {
+            "iso": "no",
+            "name": "Noruega",
+            "score": 4
+          },
+          "away": {
+            "iso": "it",
+            "name": "Italia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Ullevaal",
+            "city": "Oslo",
+            "country_iso": "no"
+          },
+          "goals_arg": [
+            {
+              "player": "Antonio Nusa",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Erling Haaland",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Erling Haaland",
+              "minute": "78'",
+              "type": "goal"
+            },
+            {
+              "player": "Jørgen Strand Larsen",
+              "minute": "88'",
+              "type": "goal"
+            }
+          ],
+          "notes": "VICTORIA HISTÓRICA 4-1 SOBRE ITALIA. SELLÓ LA CLASIFICACIÓN AL MUNDIAL 2026 TRAS 28 AÑOS. DOBLETE DE HAALAND. Italia quedó fuera del Mundial por 3ª vez consecutiva.",
+          "is_decisive_match": true
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Erling Haaland",
+          "goals": 16,
+          "notes": "MÁXIMO GOLEADOR ABSOLUTO DEL CICLO ELIMINATORIO UEFA 2026. Récord histórico."
+        },
+        {
+          "player": "Antonio Nusa",
+          "goals": 4
+        },
+        {
+          "player": "Alexander Sørloth",
+          "goals": 4
+        },
+        {
+          "player": "Thelo Aasgaard",
+          "goals": 4,
+          "notes": "Póker ante Moldavia 11-1."
+        },
+        {
+          "player": "Martin Ødegaard",
+          "goals": 1,
+          "notes": "Capitán y máximo asistente UEFA con 7 (récord ciclo)."
+        },
+        {
+          "player": "Mohamed Elyounoussi",
+          "goals": 1
+        },
+        {
+          "player": "Jørgen Strand Larsen",
+          "goals": 1
+        },
+        {
+          "player": "Otros (6)",
+          "goals": 6
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_3",
+        "reason": "EL MÍTICO 11-1 A MOLDAVIA en Chișinău (6 sept 2025). MANITA DE HAALAND (5 goles) + PÓKER DE THELO AASGAARD. La MAYOR GOLEADA del ciclo UEFA 2026."
+      },
+      "worst_match": {
+        "match_ref": "matchday_5",
+        "reason": "Triunfo 1-0 ante Estonia con gol único de Haaland. Único partido sin goleada amplia del ciclo."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_8",
+        "reason": "Victoria HISTÓRICA 4-1 sobre Italia el 16 nov 2025 selló matemáticamente el regreso al Mundial tras 28 años. Italia quedó fuera por 3ª vez consecutiva."
+      }
+    },
+    "group_2026": {
+      "letter": "I",
+      "label": "Grupo asignado en sorteo Mundial 2026",
+      "teams": [
+        {
+          "iso": "fr",
+          "name": "Francia",
+          "fifa_rank": null
+        },
+        {
+          "iso": "sn",
+          "name": "Senegal",
+          "fifa_rank": null
+        },
+        {
+          "iso": "no",
+          "name": "Noruega",
+          "fifa_rank": null,
+          "is_seed": false
+        },
+        {
+          "iso": "iq",
+          "name": "Irak",
+          "fifa_rank": null
+        }
+      ],
+      "notes": "Noruega llegó como bombo 2 (no fue cabeza de serie pese a la calidad). Pendiente cruce con /grupos zonamundial.app."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "iq",
+          "name": "Irak"
+        },
+        "date": "2026-06-15",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "Estadio Akron",
+          "city": "Guadalajara",
+          "country_iso": "mx"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "fr",
+          "name": "Francia"
+        },
+        "date": "2026-06-24",
+        "kickoff_local": "15:00",
+        "venue": {
+          "stadium": "MetLife Stadium",
+          "city": "Nueva York/NJ",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "sn",
+          "name": "Senegal"
+        },
+        "date": "2026-06-30",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "MetLife Stadium",
+          "city": "Nueva York/NJ",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — NFF aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Ståle Solbakken",
+      "age": 58,
+      "nationality": "Noruega",
+      "since": "2020-12-04",
+      "previous_teams": [
+        "FC Köln (2011-2013)",
+        "Wolverhampton (2012)",
+        "FC Copenhague (2006-2011, 2013-2020)"
+      ],
+      "profile_summary": "Noruego, ex jugador campeón de la Eurocopa 1992 con Dinamarca-No (clarificación: jugó en Wimbledon, Aalborg, FC Köln). DT histórico del FC Copenhague (5 títulos daneses). Asumió Noruega en diciembre 2020. Identidad táctica: 4-3-3 ofensivo con Haaland fijo arriba, Ødegaard como '10', Nusa por banda. Estilo directo, transiciones rápidas, eficacia. Bajo su mando, Noruega clasificó por primera vez tras 28 años.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Kopengagen-_%282%29.jpg/330px-Kopengagen-_%282%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/St%C3%A5le_Solbakken"
+      }
+    },
+    "captain": {
+      "name": "Martin Ødegaard",
+      "club": "Arsenal",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Norway_Italy_-_June_2025_E_04.jpg/330px-Norway_Italy_-_June_2025_E_04.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Martin_%C3%98degaard"
+      }
+    },
+    "star_player": {
+      "name": "Erling Haaland",
+      "club": "Manchester City",
+      "reason": "MÁXIMO GOLEADOR DE LAS ELIMINATORIAS UEFA 2026 con 16 GOLES (récord absoluto del ciclo). Considerado uno de los 2-3 delanteros top del mundo a sus 25 años. Bota de Oro Premier 2022-23 (36 goles). Llegará a 50 goles con la selección durante el Mundial. PRIMER MUNDIAL DE SU CARRERA. La razón principal por la que Noruega vuelve al Mundial.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Erling_Haaland_June_2025.jpg/330px-Erling_Haaland_June_2025.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Erling_Haaland"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "orjan-nyland",
+        "full_name": "Ørjan Nyland",
+        "display_name": "Ørjan Nyland",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Sevilla",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Norway_Italy_-_June_2025_A_10_%28cropped%29.jpg/330px-Norway_Italy_-_June_2025_A_10_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/%C3%98rjan_Nyland"
+        }
+      },
+      {
+        "id": "egil-selvik",
+        "full_name": "Egil Selvik",
+        "display_name": "Egil Selvik",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Sarpsborg 08",
+          "country_iso": "no",
+          "league": "Eliteserien"
+        },
+        "shirt_number_expected": 12,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Norway_Italy_-_June_2025_A_07_%28cropped%29.jpg/330px-Norway_Italy_-_June_2025_A_07_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Egil_Selvik"
+        }
+      },
+      {
+        "id": "nikita-haikin",
+        "full_name": "Nikita Haikin",
+        "display_name": "Nikita Haikin",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Bodø/Glimt",
+          "country_iso": "no",
+          "league": "Eliteserien"
+        },
+        "shirt_number_expected": 22,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Nikita_Haikin.jpg/330px-Nikita_Haikin.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Nikita_Haikin"
+        }
+      },
+      {
+        "id": "julian-ryerson",
+        "full_name": "Julian Ryerson",
+        "display_name": "Julian Ryerson",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Borussia Dortmund",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93157.jpg/330px-2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93157.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Julian_Ryerson"
+        }
+      },
+      {
+        "id": "kristoffer-ajer",
+        "full_name": "Kristoffer Ajer",
+        "display_name": "Kristoffer Ajer",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Brentford",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Cel-Zen_%285%29_%28cropped%29.jpg/330px-Cel-Zen_%285%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Kristoffer_Ajer"
+        }
+      },
+      {
+        "id": "leo-ostigard",
+        "full_name": "Leo Østigård",
+        "display_name": "Leo Østigård",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Stade Rennais",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Norway_Italy_-_June_2025_A_06_%28cropped%29.jpg/330px-Norway_Italy_-_June_2025_A_06_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Leo_%C3%98stig%C3%A5rd"
+        }
+      },
+      {
+        "id": "andreas-hanche-olsen",
+        "full_name": "Andreas Hanche-Olsen",
+        "display_name": "Hanche-Olsen",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Mainz 05",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Andreas_Hanche-Olsen_%28cropped%29.jpg/330px-Andreas_Hanche-Olsen_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Andreas_Hanche-Olsen"
+        }
+      },
+      {
+        "id": "marcus-pedersen",
+        "full_name": "Marcus Pedersen",
+        "display_name": "Marcus Pedersen",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Feyenoord",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 14,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Marcus_Holmgren_Pedersen_2022_FC_RB_Salzburg_gegen_Feyenoord_Rotterdam_%28cropped%29.jpg/330px-Marcus_Holmgren_Pedersen_2022_FC_RB_Salzburg_gegen_Feyenoord_Rotterdam_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Marcus_Holmgren_Pedersen"
+        }
+      },
+      {
+        "id": "fredrik-bjorkan",
+        "full_name": "Fredrik Bjørkan",
+        "display_name": "Fredrik Bjørkan",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Bodø/Glimt",
+          "country_iso": "no",
+          "league": "Eliteserien"
+        },
+        "shirt_number_expected": 13,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/F_Bj%C3%B8rkan.jpg/330px-F_Bj%C3%B8rkan.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Fredrik_Andr%C3%A9_Bj%C3%B8rkan"
+        }
+      },
+      {
+        "id": "stefan-strandberg",
+        "full_name": "Stefan Strandberg",
+        "display_name": "Stefan Strandberg",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Salernitana",
+          "country_iso": "it",
+          "league": "Serie B"
+        },
+        "shirt_number_expected": 21,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Stefan_Strandberg_2019.jpg/330px-Stefan_Strandberg_2019.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Stefan_Strandberg"
+        }
+      },
+      {
+        "id": "martin-odegaard",
+        "full_name": "Martin Ødegaard",
+        "display_name": "Martin Ødegaard",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Arsenal",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Norway_Italy_-_June_2025_E_04.jpg/330px-Norway_Italy_-_June_2025_E_04.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Martin_%C3%98degaard"
+        }
+      },
+      {
+        "id": "morten-thorsby",
+        "full_name": "Morten Thorsby",
+        "display_name": "Morten Thorsby",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Genoa",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Norway_Italy_-_June_2025_E_24_%28cropped%29.jpg/330px-Norway_Italy_-_June_2025_E_24_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Morten_Thorsby"
+        }
+      },
+      {
+        "id": "patrick-berg",
+        "full_name": "Patrick Berg",
+        "display_name": "Patrick Berg",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Bodø/Glimt",
+          "country_iso": "no",
+          "league": "Eliteserien"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Norway_Italy_-_June_2025_A_14_%28cropped%29.jpg/330px-Norway_Italy_-_June_2025_A_14_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Patrick_Berg"
+        }
+      },
+      {
+        "id": "thelo-aasgaard",
+        "full_name": "Thelo Aasgaard",
+        "display_name": "Thelo Aasgaard",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Rangers",
+          "country_iso": "gb-sct",
+          "league": "Scottish Premiership"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed"
+      },
+      {
+        "id": "sander-berge",
+        "full_name": "Sander Berge",
+        "display_name": "Sander Berge",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Fulham",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 16,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Norway_Italy_-_June_2025_E_25_%28cropped%29.jpg/330px-Norway_Italy_-_June_2025_E_25_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Sander_Berge"
+        }
+      },
+      {
+        "id": "fredrik-aursnes",
+        "full_name": "Fredrik Aursnes",
+        "display_name": "Fredrik Aursnes",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Benfica",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
+        },
+        "shirt_number_expected": 18,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Zenit-Mo%3Bde_%286%29_%28cropped%29.jpg/330px-Zenit-Mo%3Bde_%286%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Fredrik_Aursnes"
+        }
+      },
+      {
+        "id": "erling-haaland",
+        "full_name": "Erling Haaland",
+        "display_name": "Erling Haaland",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Manchester City",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Erling_Haaland_June_2025.jpg/330px-Erling_Haaland_June_2025.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Erling_Haaland"
+        }
+      },
+      {
+        "id": "alexander-sorloth",
+        "full_name": "Alexander Sørloth",
+        "display_name": "Alexander Sørloth",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Atlético Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Norway_Italy_-_June_2025_E_10.jpg/330px-Norway_Italy_-_June_2025_E_10.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Alexander_S%C3%B8rloth"
+        }
+      },
+      {
+        "id": "antonio-nusa",
+        "full_name": "Antonio Nusa",
+        "display_name": "Antonio Nusa",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "RB Leipzig",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Norway_Italy_-_June_2025_C_24.jpg/330px-Norway_Italy_-_June_2025_C_24.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Antonio_Nusa"
+        }
+      },
+      {
+        "id": "oscar-bobb",
+        "full_name": "Oscar Bobb",
+        "display_name": "Oscar Bobb",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Manchester City",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 20,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Yokohama_F._Marinos_-_Manchester_City_%283-5%29_-_53075274094_%28Oscar_Bobb%29.jpg/330px-Yokohama_F._Marinos_-_Manchester_City_%283-5%29_-_53075274094_%28Oscar_Bobb%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Oscar_Bobb"
+        }
+      },
+      {
+        "id": "mohamed-elyounoussi",
+        "full_name": "Mohamed Elyounoussi",
+        "display_name": "Elyounoussi",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Newcastle",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 15,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/CSKA_Moscow_v_Basel_%283%29.jpg/330px-CSKA_Moscow_v_Basel_%283%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mohamed_Elyounoussi"
+        }
+      },
+      {
+        "id": "jorgen-strand-larsen",
+        "full_name": "Jørgen Strand Larsen",
+        "display_name": "Strand Larsen",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Wolves",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 23,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Norway_Italy_-_June_2025_A_15_%28cropped%29.jpg/330px-Norway_Italy_-_June_2025_A_15_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/J%C3%B8rgen_Strand_Larsen"
+        }
+      },
+      {
+        "id": "andreas-schjelderup",
+        "full_name": "Andreas Schjelderup",
+        "display_name": "Schjelderup",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Benfica",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
+        },
+        "shirt_number_expected": 24,
+        "status": "probable"
+      },
+      {
+        "id": "alexander-fett-sorloth",
+        "full_name": "Sondre Langås",
+        "display_name": "Sondre Langås",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Brann",
+          "country_iso": "no",
+          "league": "Eliteserien"
+        },
+        "shirt_number_expected": 25,
+        "status": "bubble"
+      },
+      {
+        "id": "kristian-thorstvedt",
+        "full_name": "Kristian Thorstvedt",
+        "display_name": "Kristian Thorstvedt",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Sassuolo",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 2,
+        "status": "probable"
+      },
+      {
+        "id": "marius-broholm",
+        "full_name": "Marius Broholm",
+        "display_name": "Marius Broholm",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Brann",
+          "country_iso": "no",
+          "league": "Eliteserien"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble"
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-3-3",
+      "players": [
+        {
+          "player_id": "orjan-nyland",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "julian-ryerson",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "kristoffer-ajer",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "leo-ostigard",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "andreas-hanche-olsen",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "patrick-berg",
+          "position": {
+            "x": 50,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "martin-odegaard",
+          "position": {
+            "x": 70,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "thelo-aasgaard",
+          "position": {
+            "x": 30,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "antonio-nusa",
+          "position": {
+            "x": 85,
+            "y": 25
+          }
+        },
+        {
+          "player_id": "erling-haaland",
+          "position": {
+            "x": 50,
+            "y": 18
+          }
+        },
+        {
+          "player_id": "oscar-bobb",
+          "position": {
+            "x": 15,
+            "y": 25
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Solbakken plantea un 4-3-3 ofensivo construido alrededor de Haaland. Ødegaard como '10' libre conecta con el goleador. Nusa y Bobb por las bandas. Identidad: juego directo, balones largos a Haaland, transiciones rápidas tras presión coordinada. Equipo centrado en explotar la potencia y olfato del '9' de Manchester City.",
+      "strengths": [
+        "ERLING HAALAND: máximo goleador eliminatorias UEFA con 16 goles. Uno de los 3 delanteros top del mundo a sus 25.",
+        "Martin Ødegaard: capitán técnico, máximo asistente UEFA del ciclo (7), mejor '10' del Arsenal.",
+        "Antonio Nusa: extremo joven (21 años) del RB Leipzig, técnica top.",
+        "Oscar Bobb: extremo del Manchester City (22), futuro top mundial.",
+        "Defensa central sólida: Ajer (Brentford), Østigård (Rennes), Hanche-Olsen (Mainz).",
+        "Profundidad ofensiva: Haaland, Sørloth, Strand Larsen como '9'; Nusa, Bobb, Elyounoussi por bandas.",
+        "Eliminatoria perfecta: 8 victorias de 8, 37 goles a favor (récord absoluto ciclo UEFA)."
+      ],
+      "weaknesses": [
+        "28 AÑOS DE AUSENCIA: ausencia total de cultura mundialista en el equipo.",
+        "Dependencia EXCESIVA de Haaland: el 43% de los goles del ciclo (16/37) son suyos.",
+        "Sin Ødegaard, el equipo pierde el juego asociativo.",
+        "Defensa probada solo ante rivales menores: Estonia, Israel, Moldavia.",
+        "Solbakken sin experiencia mundialista como DT.",
+        "Lateral derecho cuestionable: Ryerson el único top.",
+        "Mediocampo defensivo: Berg, Thorsby útiles pero no élite mundial."
+      ],
+      "x_factor": {
+        "player": "Antonio Nusa",
+        "reason": "El extremo del RB Leipzig (21 años) es la nueva sensación noruega. Capaz de regatear y crear desigualdades. Si Haaland está marcado por defensas top, Nusa puede ser el desequilibrio que necesita el equipo. Generación dorada que llegó por fin a Mundial."
+      },
+      "prediction_text": "Noruega llega al Mundial 2026 con la mejor generación de su historia. Pasar fase de grupos es objetivo realista, pero todo dependerá del sorteo. Dependencia de Haaland es enorme. Llegar a octavos sería repetir 1998. Cuartos sería igualar Inglaterra 1966 (mejor papel histórico moderno). Una sorpresa real si Haaland está al máximo nivel.",
+      "probabilities": {
+        "advance_groups": 75,
+        "round_of_32": 65,
+        "round_of_16": 40,
+        "quarter_finals": 14,
+        "semi_finals": 4,
+        "final": 1,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Brasil 2014: NO clasificó. Rusia 2018: NO clasificó. Catar 2022: NO clasificó. Mundial 2026: 4ª participación absoluta (1938, 1994, 1998, 2026). Regreso histórico tras 28 años con la generación más talentosa de la historia."
+    }
+  },
+  "history": {
+    "first_appearance": 1938,
+    "appearances_count_before_2026": 3,
+    "appearances_count_with_2026": 4,
+    "consecutive_streak_since": 2026,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 0,
+    "best_result": "Octavos de final (1938, 1998)",
+    "aggregate_stats_through_2022": {
+      "played": 8,
+      "won": 2,
+      "drawn": 3,
+      "lost": 3,
+      "goals_for": 7,
+      "goals_against": 8,
+      "win_percentage": 25,
+      "notes": "Datos hasta Francia 1998 (último Mundial). 28 años de ausencia mundialista (1998-2026)."
+    },
+    "by_world_cup": [
+      {
+        "year": 1938,
+        "host": {
+          "countries": [
+            "Francia"
+          ],
+          "iso": [
+            "fr"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Asbjørn Halvorsen",
+        "captain": "Jørgen Juve",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Arne Brustad",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 1,
+        "goals_conceded": 2,
+        "notable_facts": [
+          "DEBUT mundialista en 1938.",
+          "Eliminada por Italia 1-2 en prórroga."
+        ],
+        "narrative": "Noruega debutó en Mundial 1938 ante Italia campeona vigente. 0-1 al medio tiempo, empató al 83'. EN PRÓRROGA, Silvio Piola marcó al 99'. Adiós digno."
+      },
+      {
+        "year": 1994,
+        "host": {
+          "countries": [
+            "Estados Unidos"
+          ],
+          "iso": [
+            "us"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Egil Olsen",
+        "captain": "Rune Bratseth",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Kjetil Rekdal",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 1,
+        "goals_conceded": 1,
+        "notable_facts": [
+          "Tras 56 años de ausencia, regresó al Mundial.",
+          "Eliminada por diferencia de goles."
+        ],
+        "narrative": "Noruega de Egil Olsen ('Drillo') con estilo defensivo y juego directo. Empató 1-0 con México (gol Rekdal), 0-1 con Italia y 0-0 con Irlanda. Eliminada por diferencia de goles (todos 4 puntos)."
+      },
+      {
+        "year": 1998,
+        "host": {
+          "countries": [
+            "Francia"
+          ],
+          "iso": [
+            "fr"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Egil Olsen",
+        "captain": "Kjetil Rekdal",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Tore André Flo",
+            "goals": 2
+          },
+          {
+            "player": "Kjetil Rekdal",
+            "goals": 1
+          },
+          {
+            "player": "Dan Eggen",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 5,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "MEJOR PARTICIPACIÓN MODERNA: octavos de final.",
+          "DEBUTÓ ELIMINANDO A BRASIL CAMPEÓN 2-1.",
+          "Eliminada por Italia 0-1 en octavos."
+        ],
+        "narrative": "Noruega se clasificó como 1ª de su grupo eliminando a Brasil futura subcampeona 2-1 (gol decisivo de Rekdal de penal al 89'). Una de las mayores sorpresas del Mundial 1998. EN OCTAVOS contra Italia: 0-1 (gol Vieri 18'). Adiós digno. ÚLTIMO MUNDIAL HASTA 2026."
+      }
+    ],
+    "palmares": []
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Erling Haaland",
+      "value": 50,
+      "period": "2019-presente",
+      "notes": "Máximo goleador histórico activo. Llegó a 50 goles en oct 2025 con triplete a Israel. A sus 25 años, en pico."
+    },
+    "most_capped": {
+      "name": "John Arne Riise",
+      "value": 110,
+      "period": "2000-2013",
+      "notes": "Récord histórico."
+    },
+    "youngest_debut": {
+      "name": "Marius Lødrup",
+      "value": "17 años",
+      "period": "1953",
+      "notes": "Datos pendientes verificación primaria NFF."
+    },
+    "biggest_win": {
+      "result": "12-0",
+      "opponent": "Finlandia",
+      "date": "1946-08-26",
+      "competition": "Amistoso"
+    },
+    "worst_loss": {
+      "result": "0-12",
+      "opponent": "Dinamarca",
+      "date": "1917-10-07",
+      "competition": "Amistoso"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El 2-1 a Brasil del 98",
+      "date": "1998-06-23",
+      "opponent": {
+        "iso": "br",
+        "name": "Brasil"
+      },
+      "score": "2-1",
+      "competition": "Fase de Grupos Mundial 1998",
+      "narrative": "Noruega ELIMINÓ A BRASIL 2-1 en la fase de grupos del Mundial 1998. Brasil iba 1-0 con gol de Bebeto al 78'. Tore André Flo empató al 83', y Kjetil Rekdal anotó penal al 89'. Una de las mayores sorpresas mundialistas. Brasil futuro subcampeón."
+    },
+    {
+      "title": "El debut histórico ante Italia",
+      "date": "1938-06-05",
+      "opponent": {
+        "iso": "it",
+        "name": "Italia"
+      },
+      "score": "1-2 (prórroga)",
+      "competition": "Octavos Mundial 1938",
+      "narrative": "Noruega debutó en Mundial 1938 contra Italia campeona vigente. 0-1 al medio tiempo. Arne Brustad empató al 83'. EN PRÓRROGA, Silvio Piola marcó al 99'. Adiós digno."
+    },
+    {
+      "title": "El 11-1 a Moldavia",
+      "date": "2025-09-06",
+      "opponent": {
+        "iso": "md",
+        "name": "Moldavia"
+      },
+      "score": "11-1",
+      "competition": "Eliminatorias Mundial 2026",
+      "narrative": "Noruega goleó 11-1 a Moldavia en Chișinău el 6 sept 2025. MANITA DE HAALAND (5 goles) y PÓKER DE THELO AASGAARD (4 goles). MAYOR GOLEADA del ciclo eliminatorio UEFA 2026 y una de las mayores en la historia mundialista clasificatoria."
+    },
+    {
+      "title": "Hat-trick de Haaland (50 goles)",
+      "date": "2025-09-09",
+      "opponent": {
+        "iso": "il",
+        "name": "Israel"
+      },
+      "score": "5-0",
+      "competition": "Eliminatorias Mundial 2026",
+      "narrative": "Erling Haaland marcó HAT-TRICK ante Israel en Oslo y LLEGÓ A 50 GOLES con la selección noruega a los 25 años. Hito histórico. Noruega goleó 5-0."
+    },
+    {
+      "title": "El 4-1 a Italia que selló pase",
+      "date": "2025-11-16",
+      "opponent": {
+        "iso": "it",
+        "name": "Italia"
+      },
+      "score": "4-1",
+      "competition": "Eliminatorias Mundial 2026",
+      "narrative": "Noruega VENCIÓ 4-1 A ITALIA en Oslo el 16 nov 2025. Goles de Nusa, doblete de Haaland y Strand Larsen. SELLÓ EL REGRESO AL MUNDIAL TRAS 28 AÑOS DE AUSENCIA. Italia eliminada por 3ª vez consecutiva del Mundial."
+    },
+    {
+      "title": "Empate 0-0 con Argentina (1994)",
+      "date": "1994-06-23",
+      "opponent": {
+        "iso": "ar",
+        "name": "Argentina"
+      },
+      "score": "0-0",
+      "competition": "Fase de Grupos Mundial 1994 (Maradona suspensión)",
+      "narrative": "Noruega-Argentina sin Maradona (suspendido por dopaje). Noruega defendió el 0-0. Hito olvidable, pero un 0-0 con la Argentina de Batistuta y Caniggia tenía mérito en la era de los Maradona."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "ERLING HAALAND fue MÁXIMO GOLEADOR DE LAS ELIMINATORIAS UEFA 2026 con 16 GOLES. RÉCORD ABSOLUTO DEL CICLO. Marcó al menos un gol en cada uno de los 8 partidos de Noruega.",
+      "source": "UEFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Noruega regresa al Mundial tras 28 AÑOS DE AUSENCIA (último Francia 1998). Es la 4ª participación mundialista de su historia (1938, 1994, 1998, 2026).",
+      "source": "FIFA + NFF",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Martin Ødegaard fue MÁXIMO ASISTENTE de las eliminatorias UEFA 2026 con 7 ASISTENCIAS (4 de ellas para Haaland). Récord del ciclo.",
+      "source": "UEFA",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Haaland marcó MANITA (5 goles) en el 11-1 a Moldavia y HAT-TRICK ante Israel. Llegó a 50 goles con Noruega a los 25 años, ritmo récord en la historia europea.",
+      "source": "UEFA + ESPN",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Noruega ELIMINÓ A BRASIL en el Mundial 1998 (2-1 con penal de Rekdal en el 89'). Brasil era subcampeón del torneo. Una de las mayores sorpresas mundialistas históricas.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Egil 'Drillo' Olsen llevó a Noruega a sus 2 últimos Mundiales modernos (1994, 1998). Su estilo defensivo de 'long ball' (balones largos) era despreciado por puristas pero efectivo.",
+      "source": "NFF + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Erling Haaland hijo de Alf-Inge Haaland (ex jugador noruego) y nacido en Leeds, Inglaterra. Padre lesionado por entrada de Roy Keane (United) en 2001 que terminó su carrera.",
+      "source": "Wikipedia + ESPN",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Italia QUEDÓ FUERA DEL MUNDIAL 2026 por 3ª VEZ CONSECUTIVA (2018, 2022, 2026). Increíble racha negativa para una selección 4 veces campeona del mundo.",
+      "source": "FIFA + ESPN",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Ja, vi elsker dette landet (himno)",
+      "Heia Norge!",
+      "Vi er Norge"
+    ],
+    "main_rival": {
+      "iso": "se",
+      "name": "Suecia",
+      "story": "Rivalidad nórdica histórica entre los dos países vecinos. Noruega y Suecia compartieron unión hasta 1905. Cada cruce está cargado de historia familiar."
+    },
+    "home_stadium": {
+      "name": "Ullevaal Stadion",
+      "capacity": 28000,
+      "city": "Oslo"
+    }
+  },
+  "seo": {
+    "meta_title": "Noruega en el Mundial 2026 | Plantilla, historia y predicciones",
+    "meta_description": "Noruega Mundial 2026: 26 convocados de Solbakken, Haaland (16 goles top scorer UEFA), Ødegaard, Nusa. Vuelta tras 28 años.",
+    "og_image_url": "/img/og/teams/noruega.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Noruega",
+      "alternateName": [
+        "Drillos",
+        "Vikingos"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "UEFA"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Ståle Solbakken"
+      },
+      "url": "https://www.zonamundial.app/selecciones/noruega"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-29",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_Noruega",
+      "https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_de_UEFA_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://es.uefa.com/european-qualifiers/news/0297-1d5d6d9675e1-41b59da97748-1000--maximo-goleador-de-los-clasificatorios-europeos-erling-ha/",
+      "https://es.uefa.com/european-qualifiers/news/029f-1f3188cfc443-494e0d8af33d-1000--mundial-2026-que-selecciones-europeas-se-han-clasificado/",
+      "https://www.fotball.no",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias cruzadas con UEFA + Wikipedia + ESPN. Récord goleador Haaland validado oficialmente por UEFA. Historia mundialista validada con FIFA + Wikipedia + NFF.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "needs_review",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante: pendiente",
+      "Grupo Mundial 2026 y rivales: cruzar con /grupos zonamundial.app",
+      "Calendario fase de grupos 2026: fixture FIFA pendiente",
+      "Base de entrenamiento: NFF aún no anunció",
+      "FIFA Ranking #33: validar mes vigente",
+      "Historia 1950/1954/1958/1962/1966/1970/1974/1978/1982/1986/1990/2002/2006/2010/2014/2018/2022: ediciones omitidas (no clasificó)",
+      "Egil Olsen aclaración: jugador noruego en años 70-80, DT en años 90"
+    ]
+  }
+}

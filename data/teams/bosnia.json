@@ -1,0 +1,1420 @@
+{
+  "slug": "bosnia",
+  "iso": "ba",
+  "iso3": "BIH",
+  "name_es": "Bosnia y Herzegovina",
+  "name_en": "Bosnia and Herzegovina",
+  "name_local": "Bosna i Hercegovina",
+  "nicknames": [
+    "Zmajevi (Los Dragones)",
+    "Plavi (Los Azules)",
+    "Los Dragones de los Balcanes"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#002D62",
+      "secondary": "#FFCD00",
+      "tertiary": "#FFFFFF",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Sarajevo",
+    "language_official": [
+      "Bosnio",
+      "Croata",
+      "Serbio"
+    ],
+    "population": 3280000,
+    "area_km2": 51197,
+    "timezone": "Europe/Sarajevo",
+    "continent": "Europa"
+  },
+  "federation": {
+    "name": "Nogometni/Fudbalski Savez Bosne i Hercegovine",
+    "abbreviation": "NFSBiH",
+    "founded": 1992,
+    "headquarters": "Sarajevo",
+    "website": "https://www.nfsbih.ba"
+  },
+  "confederation": "UEFA",
+  "fifa_ranking": {
+    "current": 67,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Adidas",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/bosnia.png",
+        "back_url": null,
+        "primary_color": "#002D62",
+        "secondary_color": "#FFCD00",
+        "description": "Camiseta azul histórica con detalles amarillos, los colores de la bandera bosnia. Los Dragones llevan también los lirios heráldicos.",
+        "alt_text": "Camiseta titular Bosnia Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#002D62",
+        "description": "Equipación visitante en blanco. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Bosnia Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "El apodo 'Zmajevi' (Dragones) proviene del símbolo del Reino medieval de Bosnia. Los lirios heráldicos del escudo bosnio aparecen en la equipación.",
+        "source": "NFSBiH + Wikipedia",
+        "verified_at": "2026-04-29",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "playoff_uefa",
+    "qualifying_summary": "Bosnia clasificó al SEGUNDO MUNDIAL DE SU HISTORIA (tras Brasil 2014) ganando el play-off Ruta A. Tras terminar 2ª del Grupo H detrás de Austria con 17 puntos, eliminó a Gales en semis 4-2 penales (1-1 reglamentario) y dio el GOLPE HISTÓRICO al batir a ITALIA 4-1 en penales (1-1 reglamentario) en Zenica. Edin Džeko a sus 39 años y la generación Tabaković-Hadžiahmetović protagonistas.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias UEFA Mundial 2026 — Grupo H + Play-off Ruta A",
+      "format": "Liguilla todos contra todos · 5 equipos · 8 partidos · ida y vuelta + Play-off (semifinal y final a partido único)",
+      "duration": "Marzo 2025 — Marzo 2026",
+      "final_position": 2,
+      "total_teams_in_group": 5,
+      "stats": {
+        "played": 8,
+        "won": 5,
+        "drawn": 2,
+        "lost": 1,
+        "goals_for": 13,
+        "goals_against": 7,
+        "goal_difference": 6,
+        "points": 17,
+        "win_percentage": 62.5,
+        "clean_sheets": 3,
+        "notes": "Stats grupo (8 partidos). Play-offs ganados a Gales (4-2 pen) y Italia (4-1 pen) NO contabilizados en stats principales."
+      },
+      "coach_during_qualifying": "Sergej Barbarez",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2025-03-21",
+          "home": {
+            "iso": "ba",
+            "name": "Bosnia",
+            "score": 1
+          },
+          "away": {
+            "iso": "ro",
+            "name": "Rumanía",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Bilino Polje",
+            "city": "Zenica",
+            "country_iso": "ba"
+          },
+          "goals_arg": [
+            {
+              "player": "Ermedin Demirović",
+              "minute": "55'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 2,
+          "date": "2025-03-24",
+          "home": {
+            "iso": "cy",
+            "name": "Chipre",
+            "score": 0
+          },
+          "away": {
+            "iso": "ba",
+            "name": "Bosnia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "GSP Stadium",
+            "city": "Nicosia",
+            "country_iso": "cy"
+          },
+          "goals_arg": [
+            {
+              "player": "Edin Džeko",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 3,
+          "date": "2025-09-04",
+          "home": {
+            "iso": "sm",
+            "name": "San Marino",
+            "score": 0
+          },
+          "away": {
+            "iso": "ba",
+            "name": "Bosnia",
+            "score": 6
+          },
+          "venue": {
+            "stadium": "San Marino Stadium",
+            "city": "Serravalle",
+            "country_iso": "sm"
+          },
+          "goals_arg": [
+            {
+              "player": "Edin Džeko",
+              "minute": "12'",
+              "type": "goal"
+            },
+            {
+              "player": "Ermedin Demirović",
+              "minute": "22'",
+              "type": "goal"
+            },
+            {
+              "player": "Edin Džeko",
+              "minute": "33'",
+              "type": "goal"
+            },
+            {
+              "player": "Haris Tabaković",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Sead Kolašinac",
+              "minute": "72'",
+              "type": "goal"
+            },
+            {
+              "player": "Edin Džeko",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Hat-trick de Džeko a sus 39 años."
+        },
+        {
+          "matchday": 4,
+          "date": "2025-09-07",
+          "home": {
+            "iso": "at",
+            "name": "Austria",
+            "score": 2
+          },
+          "away": {
+            "iso": "ba",
+            "name": "Bosnia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Ernst-Happel",
+            "city": "Viena",
+            "country_iso": "at"
+          },
+          "goals_arg": [
+            {
+              "player": "Edin Džeko",
+              "minute": "50'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Sabitzer y Laimer goles para Austria. Única derrota del ciclo."
+        },
+        {
+          "matchday": 5,
+          "date": "2025-10-09",
+          "home": {
+            "iso": "ba",
+            "name": "Bosnia",
+            "score": 1
+          },
+          "away": {
+            "iso": "cy",
+            "name": "Chipre",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Bilino Polje",
+            "city": "Zenica",
+            "country_iso": "ba"
+          },
+          "goals_arg": [
+            {
+              "player": "Edin Džeko",
+              "minute": "70'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 6,
+          "date": "2025-10-12",
+          "home": {
+            "iso": "ba",
+            "name": "Bosnia",
+            "score": 3
+          },
+          "away": {
+            "iso": "ro",
+            "name": "Rumanía",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Bilino Polje",
+            "city": "Zenica",
+            "country_iso": "ba"
+          },
+          "goals_arg": [
+            {
+              "player": "Edin Džeko",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Haris Tabaković",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Amar Memić",
+              "minute": "82'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 7,
+          "date": "2025-11-15",
+          "home": {
+            "iso": "ba",
+            "name": "Bosnia",
+            "score": 0
+          },
+          "away": {
+            "iso": "at",
+            "name": "Austria",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Bilino Polje",
+            "city": "Zenica",
+            "country_iso": "ba"
+          },
+          "goals_arg": [],
+          "notes": "Austria clasificó directa. Bosnia al play-off."
+        },
+        {
+          "matchday": 8,
+          "date": "2025-11-18",
+          "home": {
+            "iso": "ba",
+            "name": "Bosnia",
+            "score": 1
+          },
+          "away": {
+            "iso": "sm",
+            "name": "San Marino",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Bilino Polje",
+            "city": "Zenica",
+            "country_iso": "ba"
+          },
+          "goals_arg": [
+            {
+              "player": "Edin Džeko",
+              "minute": "33'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 9,
+          "date": "2026-03-26",
+          "home": {
+            "iso": "gb-wls",
+            "name": "Gales",
+            "score": 1
+          },
+          "away": {
+            "iso": "ba",
+            "name": "Bosnia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Cardiff City Stadium",
+            "city": "Cardiff",
+            "country_iso": "gb-wls"
+          },
+          "goals_arg": [
+            {
+              "player": "Haris Tabaković",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Semifinal play-off Ruta A. Bosnia ganó 4-2 en penales. PASE A FINAL."
+        },
+        {
+          "matchday": 10,
+          "date": "2026-03-31",
+          "home": {
+            "iso": "ba",
+            "name": "Bosnia",
+            "score": 1
+          },
+          "away": {
+            "iso": "it",
+            "name": "Italia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Bilino Polje",
+            "city": "Zenica",
+            "country_iso": "ba"
+          },
+          "goals_arg": [
+            {
+              "player": "Haris Tabaković",
+              "minute": "80'",
+              "type": "goal"
+            }
+          ],
+          "notes": "FINAL PLAY-OFF RUTA A. Kean abrió por Italia, Bastoni expulsado, Tabaković empató al 80'. EN PENALES, BOSNIA GANÓ 4-1. Italia eliminada por 3ª eliminatoria consecutiva. CLASIFICACIÓN HISTÓRICA al Mundial 2026.",
+          "is_decisive_match": true
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Edin Džeko",
+          "goals": 7,
+          "notes": "MÁXIMO GOLEADOR HISTÓRICO de Bosnia (74+). 39 años, último Mundial. Capitán."
+        },
+        {
+          "player": "Haris Tabaković",
+          "goals": 3,
+          "notes": "Gol decisivo a Italia en final play-off."
+        },
+        {
+          "player": "Ermedin Demirović",
+          "goals": 1
+        },
+        {
+          "player": "Sead Kolašinac",
+          "goals": 1
+        },
+        {
+          "player": "Amar Memić",
+          "goals": 1
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_10",
+        "reason": "El 1-1 (4-1 pen) a Italia en Zenica el 31 marzo 2026 fue la HAZAÑA HISTÓRICA. Bosnia eliminó a Italia tetracampeona del mundo y se clasificó al Mundial 2026 por 2ª vez en su historia."
+      },
+      "worst_match": {
+        "match_ref": "matchday_4",
+        "reason": "Derrota 1-2 en Viena ante Austria. La diferencia de calidad costó la 1ª plaza directa."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_10",
+        "reason": "Triunfo en penales 4-1 a Italia (1-1 reglamentario) en Zenica selló la clasificación al Mundial 2026 vía play-off Ruta A. Hito histórico bosnio."
+      }
+    },
+    "group_2026": {
+      "letter": "B",
+      "label": "Grupo B — Canadá + Bosnia + Catar + Suiza",
+      "teams": [
+        {
+          "iso": "ca",
+          "name": "Canadá",
+          "fifa_rank": null
+        },
+        {
+          "iso": "qa",
+          "name": "Qatar",
+          "fifa_rank": null
+        },
+        {
+          "iso": "ba",
+          "name": "Bosnia",
+          "fifa_rank": null,
+          "is_seed": false
+        },
+        {
+          "iso": "ch",
+          "name": "Suiza",
+          "fifa_rank": null
+        }
+      ],
+      "notes": "Grupo B confirmado en sorteo del 5 dic 2025 + colocación post play-off. Cruces complicados: Suiza es de las clasificadas top de UEFA, Canadá es anfitriona y Catar dió pelea en su Mundial."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "ch",
+          "name": "Suiza"
+        },
+        "date": "2026-06-12",
+        "kickoff_local": "15:00",
+        "venue": {
+          "stadium": "Hard Rock Stadium",
+          "city": "Miami",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "qa",
+          "name": "Qatar"
+        },
+        "date": "2026-06-19",
+        "kickoff_local": "12:00",
+        "venue": {
+          "stadium": "SoFi Stadium",
+          "city": "Los Ángeles",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "ca",
+          "name": "Canadá"
+        },
+        "date": "2026-06-27",
+        "kickoff_local": "15:00",
+        "venue": {
+          "stadium": "BC Place",
+          "city": "Vancouver",
+          "country_iso": "ca"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — NFSBiH aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Sergej Barbarez",
+      "age": 54,
+      "nationality": "Bosnia",
+      "since": "2024-08-01",
+      "previous_teams": [
+        "Hannover 96 (asistente, 2018-2019)",
+        "Hamburgo SV (asistente, 2014-2017)"
+      ],
+      "profile_summary": "Bosnio, exinternacional con 47 caps y goleador en la Bundesliga (Hamburgo). DT de Bosnia desde agosto 2024 tras la salida de Savo Milošević. Identidad táctica: 4-3-3 ofensivo con Džeko como referencia y juventud por bandas (Tabaković, Demirović, Memić). Llevó al país a su 2º Mundial vía play-off heroico.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Sergej_Barbarez_04_%28cropped%29.jpg/330px-Sergej_Barbarez_04_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Sergej_Barbarez"
+      }
+    },
+    "captain": {
+      "name": "Edin Džeko",
+      "club": "Fenerbahçe",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/20150331_2026_AUT_BIH_2177_Edin_D%C5%BEeko_%28cropped%29.jpg/330px-20150331_2026_AUT_BIH_2177_Edin_D%C5%BEeko_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Edin_D%C5%BEeko"
+      }
+    },
+    "star_player": {
+      "name": "Edin Džeko",
+      "club": "Fenerbahçe",
+      "reason": "MÁXIMO GOLEADOR HISTÓRICO de Bosnia (74+ goles), 39 años en el Mundial. Capitán y referente absoluto. Carrera en Wolfsburgo, Manchester City (campeón Premier 2014), Roma e Inter de Milán. Llega a su 2º MUNDIAL en lo que será SU ÚLTIMO. Un símbolo nacional desde la guerra de Bosnia (1992-95).",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/20150331_2026_AUT_BIH_2177_Edin_D%C5%BEeko_%28cropped%29.jpg/330px-20150331_2026_AUT_BIH_2177_Edin_D%C5%BEeko_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Edin_D%C5%BEeko"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "nikola-vasilj",
+        "full_name": "Nikola Vasilj",
+        "display_name": "Nikola Vasilj",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "St. Pauli",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/2025-04-23_-_FC_St_Pauli_-_Nikola_Vasilj.jpg/330px-2025-04-23_-_FC_St_Pauli_-_Nikola_Vasilj.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Nikola_Vasilj"
+        }
+      },
+      {
+        "id": "ibrahim-sehic",
+        "full_name": "Ibrahim Šehić",
+        "display_name": "Ibrahim Šehić",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Konyaspor",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 12,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/FC_Salzburg_gegen_Quarabag_Agdam_27.JPG/330px-FC_Salzburg_gegen_Quarabag_Agdam_27.JPG",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ibrahim_%C5%A0ehi%C4%87"
+        }
+      },
+      {
+        "id": "asmir-kovacevic",
+        "full_name": "Asmir Kovačević",
+        "display_name": "Asmir Kovačević",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Sarajevo",
+          "country_iso": "ba",
+          "league": "Premijer Liga"
+        },
+        "shirt_number_expected": 23,
+        "status": "bubble"
+      },
+      {
+        "id": "sead-kolasinac",
+        "full_name": "Sead Kolašinac",
+        "display_name": "Sead Kolašinac",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Atalanta",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/1_Sead_Kola%C5%A1inac_2018_%28cropped%29.jpg/330px-1_Sead_Kola%C5%A1inac_2018_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Sead_Kola%C5%A1inac"
+        }
+      },
+      {
+        "id": "amar-dedic",
+        "full_name": "Amar Dedić",
+        "display_name": "Amar Dedić",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Benfica",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/FC_Liefering_gegen_SV_Ried_%2819._Oktober_2019%29_31.jpg/330px-FC_Liefering_gegen_SV_Ried_%2819._Oktober_2019%29_31.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Amar_Dedi%C4%87"
+        }
+      },
+      {
+        "id": "nikola-katic",
+        "full_name": "Nikola Katić",
+        "display_name": "Nikola Katić",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Hajduk Split",
+          "country_iso": "hr",
+          "league": "1. HNL"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/SM-Rangers18_%2816%29.jpg/330px-SM-Rangers18_%2816%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Nikola_Kati%C4%87"
+        }
+      },
+      {
+        "id": "dennis-hadzikadunic",
+        "full_name": "Dennis Hadžikadunić",
+        "display_name": "Hadžikadunić",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Mainz 05",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Dennis_Had%C5%BEikaduni%C4%87_2021.jpg/330px-Dennis_Had%C5%BEikaduni%C4%87_2021.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Dennis_Had%C5%BEikaduni%C4%87"
+        }
+      },
+      {
+        "id": "anel-ahmedhodzic",
+        "full_name": "Anel Ahmedhodžić",
+        "display_name": "Anel Ahmedhodžić",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Sheffield United",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/05/Anel_Ahmedhodzic_vs_Elfsborg.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Anel_Ahmedhod%C5%BEi%C4%87"
+        }
+      },
+      {
+        "id": "branimir-cipetic",
+        "full_name": "Branimir Cipetić",
+        "display_name": "Branimir Cipetić",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Zrinjski Mostar",
+          "country_iso": "ba",
+          "league": "Premijer Liga"
+        },
+        "shirt_number_expected": 22,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Branimir_Cipeti%C4%87_2025.jpg/330px-Branimir_Cipeti%C4%87_2025.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Branimir_Cipeti%C4%87"
+        }
+      },
+      {
+        "id": "miralem-pjanic",
+        "full_name": "Miralem Pjanić",
+        "display_name": "Miralem Pjanić",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "CSKA Moscú",
+          "country_iso": "ru",
+          "league": "Premier League rusa"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Miralem_Pjani%C4%87_2025.jpg/330px-Miralem_Pjani%C4%87_2025.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Miralem_Pjani%C4%87"
+        }
+      },
+      {
+        "id": "rade-krunic",
+        "full_name": "Rade Krunić",
+        "display_name": "Rade Krunić",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Fenerbahçe",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 15,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/20140905_U21_AUT_BIH_BIH23_1045.jpg/330px-20140905_U21_AUT_BIH_BIH23_1045.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Rade_Kruni%C4%87"
+        }
+      },
+      {
+        "id": "edin-visca",
+        "full_name": "Edin Višća",
+        "display_name": "Edin Višća",
+        "position": "MID",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Trabzonspor",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 14,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Visca%2714.JPG/330px-Visca%2714.JPG",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Edin_Vi%C5%A1%C4%87a"
+        }
+      },
+      {
+        "id": "amar-hadzic",
+        "full_name": "Amar Hadžić",
+        "display_name": "Amar Hadžić",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Sarajevo",
+          "country_iso": "ba",
+          "league": "Premijer Liga"
+        },
+        "shirt_number_expected": 18,
+        "status": "probable"
+      },
+      {
+        "id": "amar-memic",
+        "full_name": "Amar Memić",
+        "display_name": "Amar Memić",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Anderlecht",
+          "country_iso": "be",
+          "league": "Pro League"
+        },
+        "shirt_number_expected": 16,
+        "status": "fixed"
+      },
+      {
+        "id": "luka-menalo",
+        "full_name": "Luka Menalo",
+        "display_name": "Luka Menalo",
+        "position": "MID",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Dinamo Zagreb",
+          "country_iso": "hr",
+          "league": "1. HNL"
+        },
+        "shirt_number_expected": 19,
+        "status": "probable"
+      },
+      {
+        "id": "edin-dzeko",
+        "full_name": "Edin Džeko",
+        "display_name": "Edin Džeko",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Fenerbahçe",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/20150331_2026_AUT_BIH_2177_Edin_D%C5%BEeko_%28cropped%29.jpg/330px-20150331_2026_AUT_BIH_2177_Edin_D%C5%BEeko_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Edin_D%C5%BEeko"
+        }
+      },
+      {
+        "id": "haris-tabakovic",
+        "full_name": "Haris Tabaković",
+        "display_name": "Haris Tabaković",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Eintracht Fráncfort",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/FC_RB_Salzburg_vs._FK_Austria_Wien_%282023-04-09%29_55.jpg/330px-FC_RB_Salzburg_vs._FK_Austria_Wien_%282023-04-09%29_55.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Haris_Tabakovi%C4%87"
+        }
+      },
+      {
+        "id": "ermedin-demirovic",
+        "full_name": "Ermedin Demirović",
+        "display_name": "Ermedin Demirović",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "VfB Stuttgart",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed"
+      },
+      {
+        "id": "kerim-alajbegovic",
+        "full_name": "Kerim Alajbegović",
+        "display_name": "Alajbegović",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Bayern Múnich II",
+          "country_iso": "de",
+          "league": "3. Liga"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Jahresbeginnfeier_FC_RB_Salzburg_%282026-01-25_RB_Arena%29_10.jpg/330px-Jahresbeginnfeier_FC_RB_Salzburg_%282026-01-25_RB_Arena%29_10.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Kerim_Alajbegovi%C4%87"
+        }
+      },
+      {
+        "id": "smail-prevljak",
+        "full_name": "Smail Prevljak",
+        "display_name": "Smail Prevljak",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Ümraniyespor",
+          "country_iso": "tr",
+          "league": "1. Lig"
+        },
+        "shirt_number_expected": 21,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FC_Salzburg_gegen_Celtic_FC_%284._Oktober_2918_Gruppe_B%2C_37._Spieltag%29.jpg/330px-FC_Salzburg_gegen_Celtic_FC_%284._Oktober_2918_Gruppe_B%2C_37._Spieltag%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Smail_Prevljak"
+        }
+      },
+      {
+        "id": "amar-rahmanovic",
+        "full_name": "Amar Rahmanović",
+        "display_name": "Amar Rahmanović",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Velež Mostar",
+          "country_iso": "ba",
+          "league": "Premijer Liga"
+        },
+        "shirt_number_expected": 7,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Amar_Rahmanovi%C4%87_2022.jpg/330px-Amar_Rahmanovi%C4%87_2022.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Amar_Rahmanovi%C4%87"
+        }
+      },
+      {
+        "id": "ervin-zukanovic",
+        "full_name": "Ervin Zukanović",
+        "display_name": "Ervin Zukanović",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Konyaspor",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 24,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/20150331_2025_AUT_BIH_2143.jpg/330px-20150331_2025_AUT_BIH_2143.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ervin_Zukanovi%C4%87"
+        }
+      },
+      {
+        "id": "elvedin-skoric",
+        "full_name": "Elvedin Škorić",
+        "display_name": "Elvedin Škorić",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Pendikspor",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 13,
+        "status": "bubble"
+      },
+      {
+        "id": "izet-hajrovic",
+        "full_name": "Izet Hajrović",
+        "display_name": "Izet Hajrović",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Sarajevo",
+          "country_iso": "ba",
+          "league": "Premijer Liga"
+        },
+        "shirt_number_expected": 25,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/20150331_2025_AUT_BIH_2151_Izet_Hajrovi%C4%87.jpg/330px-20150331_2025_AUT_BIH_2151_Izet_Hajrovi%C4%87.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Izet_Hajrovi%C4%87"
+        }
+      },
+      {
+        "id": "anes-celic",
+        "full_name": "Anes Ćelić",
+        "display_name": "Anes Ćelić",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Borussia Dortmund II",
+          "country_iso": "de",
+          "league": "3. Liga"
+        },
+        "shirt_number_expected": 20,
+        "status": "bubble"
+      },
+      {
+        "id": "armin-gigovic",
+        "full_name": "Armin Gigović",
+        "display_name": "Armin Gigović",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Spartak Trnava",
+          "country_iso": "sk",
+          "league": "Slovak Super Liga"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/59/Armin_Gigovi%C4%87_2020_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Armin_Gigovi%C4%87"
+        }
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-3-3",
+      "players": [
+        {
+          "player_id": "nikola-vasilj",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "amar-dedic",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "anel-ahmedhodzic",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "dennis-hadzikadunic",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "sead-kolasinac",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "rade-krunic",
+          "position": {
+            "x": 50,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "miralem-pjanic",
+          "position": {
+            "x": 70,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "amar-memic",
+          "position": {
+            "x": 30,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "haris-tabakovic",
+          "position": {
+            "x": 85,
+            "y": 25
+          }
+        },
+        {
+          "player_id": "edin-dzeko",
+          "position": {
+            "x": 50,
+            "y": 18
+          }
+        },
+        {
+          "player_id": "ermedin-demirovic",
+          "position": {
+            "x": 15,
+            "y": 25
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Barbarez plantea un 4-3-3 con Pjanić como organizador, Krunić como pivote, y un tridente ofensivo con Džeko como '9' fijo y dos secundarios (Tabaković/Demirović) que rotan posiciones. Identidad: orden defensivo, balones largos para Džeko, eficacia en jugadas a balón parado.",
+      "strengths": [
+        "Edin Džeko: máximo goleador histórico, líder absoluto, 7 goles eliminatoria.",
+        "Miralem Pjanić: organizador veterano (Juventus, Roma) en el ocaso pero aún calidad técnica top.",
+        "Haris Tabaković (Eintracht Fráncfort): generación nueva. Goleador decisivo en play-off vs Italia.",
+        "Bilino Polje (Zenica) histórico fortín: 5 victorias en 5 locales en el Grupo H.",
+        "Mentalidad de underdog: vencieron a Italia tetracampeona en penales.",
+        "Defensa central sólida: Ahmedhodžić (Sheffield United) y Hadžikadunić (Mainz)."
+      ],
+      "weaknesses": [
+        "Plantilla con muchos jugadores en Süper Lig turca, Bundesliga 2 alemana o liga local. Pocos en Top-5 europeo.",
+        "Edad alta en líneas críticas: Džeko 39, Pjanić 35, Krunić 32.",
+        "Dependencia absoluta de Džeko: si se lesiona, riesgo enorme.",
+        "Inexperiencia mundialista: solo Brasil 2014 (eliminada en grupos).",
+        "Barbarez debutante en Mundial.",
+        "Profundidad ofensiva limitada tras el '11 inicial'."
+      ],
+      "x_factor": {
+        "player": "Haris Tabaković",
+        "reason": "El delantero del Eintracht Fráncfort (31 años) llegó tarde a la selección absoluta pero ya marcó el gol clave del play-off ante Italia. Su físico (1.95m) y olfato de área son el complemento ideal a Džeko envejecido."
+      },
+      "prediction_text": "Bosnia llega al Mundial 2026 como una de las clasificadas más débiles en ranking, pero con el ADN de Sus Dragones de los Balcanes. En el Grupo B con Suiza, Catar y Canadá puede dar pelea. Pasar la fase de grupos sería hito histórico (no lo hizo en 2014). Octavos sería sueño máximo.",
+      "probabilities": {
+        "advance_groups": 35,
+        "round_of_32": 28,
+        "round_of_16": 8,
+        "quarter_finals": 2,
+        "semi_finals": 0,
+        "final": 0,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Brasil 2014: 1ª y única participación, eliminada en grupos. Rusia 2018: NO clasificó. Catar 2022: NO clasificó. Mundial 2026: 2ª participación absoluta vía play-off histórico ante Italia."
+    }
+  },
+  "history": {
+    "first_appearance": 2014,
+    "appearances_count_before_2026": 1,
+    "appearances_count_with_2026": 2,
+    "consecutive_streak_since": 2026,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 0,
+    "best_result": "Fase de grupos (Brasil 2014)",
+    "aggregate_stats_through_2022": {
+      "played": 3,
+      "won": 1,
+      "drawn": 0,
+      "lost": 2,
+      "goals_for": 4,
+      "goals_against": 4,
+      "win_percentage": 33.3,
+      "notes": "Datos hasta Brasil 2014 (única participación). Bosnia es la nación más joven en jugar Mundiales (independencia 1992)."
+    },
+    "by_world_cup": [
+      {
+        "year": 2014,
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Safet Sušić",
+        "captain": "Emir Spahić",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Vedad Ibišević",
+            "goals": 1
+          },
+          {
+            "player": "Edin Džeko",
+            "goals": 1
+          },
+          {
+            "player": "Avdija Vršajević",
+            "goals": 1
+          },
+          {
+            "player": "Miralem Pjanić",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "DEBUT MUNDIALISTA tras 22 años de independencia.",
+          "Eliminada con 0-2 ante Argentina y 0-1 ante Nigeria.",
+          "Batió 3-1 a Irán en último partido."
+        ],
+        "narrative": "Bosnia debutó en Mundiales en Brasil 2014. Cayó 1-2 con Argentina (autogol Sead Kolašinac al 3' y gol Messi al 65'; Vedad Ibišević descontó al 85'), 0-1 con Nigeria y batió 3-1 a Irán con goles de Džeko, Pjanić y Vršajević. Adiós con orgullo."
+      }
+    ],
+    "palmares": []
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Edin Džeko",
+      "value": 74,
+      "period": "2007-presente",
+      "notes": "MÁXIMO GOLEADOR HISTÓRICO ABSOLUTO. Sigue activo a 39 años."
+    },
+    "most_capped": {
+      "name": "Edin Džeko",
+      "value": 140,
+      "period": "2007-presente",
+      "notes": "Récord histórico absoluto. Capitán de los Dragones."
+    },
+    "youngest_debut": {
+      "name": "Anel Ahmedhodžić",
+      "value": "20 años aprox.",
+      "period": "2020 vs Países Bajos",
+      "notes": "Datos pendientes verificación primaria NFSBiH."
+    },
+    "biggest_win": {
+      "result": "8-1",
+      "opponent": "Liechtenstein",
+      "date": "2012-09-07",
+      "competition": "Eliminatorias Mundial 2014"
+    },
+    "worst_loss": {
+      "result": "0-5",
+      "opponent": "Argentina",
+      "date": "1998-05-14",
+      "competition": "Amistoso pre-Mundial 1998"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El debut histórico (Brasil 2014)",
+      "date": "2014-06-15",
+      "opponent": {
+        "iso": "ar",
+        "name": "Argentina"
+      },
+      "score": "1-2",
+      "competition": "Fase de Grupos Mundial 2014",
+      "narrative": "Bosnia debutó en Mundiales 2014 ante Argentina en el Maracaná. Autogol de Kolašinac al 3' (entrando), GOL DE MESSI al 65' tras conducción individual desde el área propia. Vedad Ibišević descontó al 85'. Adiós digno en debut."
+    },
+    {
+      "title": "El triunfo a Irán",
+      "date": "2014-06-25",
+      "opponent": {
+        "iso": "ir",
+        "name": "Irán"
+      },
+      "score": "3-1",
+      "competition": "Fase de Grupos Mundial 2014",
+      "narrative": "Bosnia batió 3-1 a Irán en el último partido del Mundial Brasil 2014. Goles de Džeko (23'), Pjanić (59') y Vršajević (83'). Primer triunfo bosnio en Mundiales pero no fue suficiente para pasar de fase."
+    },
+    {
+      "title": "La hazaña ante Italia (penales 4-1)",
+      "date": "2026-03-31",
+      "opponent": {
+        "iso": "it",
+        "name": "Italia"
+      },
+      "score": "1-1 (4-1 pen)",
+      "competition": "Final Play-off Ruta A Mundial 2026",
+      "narrative": "BOSNIA HIZO HISTORIA: 1-1 reglamentario con Italia tetracampeona del mundo. Kean abrió, Bastoni fue expulsado, Tabaković empató al 80'. EN PENALES, BOSNIA GANÓ 4-1. Sarajevo y Zenica explotaron de alegría. Italia eliminada del Mundial por 3ª eliminatoria consecutiva. Hito histórico bosnio."
+    },
+    {
+      "title": "La semifinal ante Gales",
+      "date": "2026-03-26",
+      "opponent": {
+        "iso": "gb-wls",
+        "name": "Gales"
+      },
+      "score": "1-1 (4-2 pen)",
+      "competition": "Semifinal Play-off Ruta A Mundial 2026",
+      "narrative": "Bosnia eliminó a Gales en Cardiff en semis del play-off. 1-1 reglamentario. EN PENALES, KERIM ALAJBEGOVIĆ marcó el penalti decisivo (joven del Bayern II) que selló el 4-2. Pase a la final que sería ante Italia."
+    },
+    {
+      "title": "El hat-trick de Džeko a 39 años",
+      "date": "2025-09-04",
+      "opponent": {
+        "iso": "sm",
+        "name": "San Marino"
+      },
+      "score": "6-0",
+      "competition": "Eliminatorias Mundial 2026",
+      "narrative": "Edin Džeko hizo HAT-TRICK A SUS 39 AÑOS en el 6-0 a San Marino. Demuestra la longevidad del capitán bosnio que sigue marcando con regularidad. Récord histórico bosnio de longevidad goleadora."
+    },
+    {
+      "title": "El golazo de Pjanić a Irán 2014",
+      "date": "2014-06-25",
+      "opponent": {
+        "iso": "ir",
+        "name": "Irán"
+      },
+      "score": "3-1",
+      "competition": "Fase de Grupos Mundial 2014",
+      "narrative": "Miralem Pjanić marcó UN GOLAZO al 59' del 3-1 a Irán: tiro libre directo desde 25 metros al ángulo. Imagen icónica de la generación bosnia 2014 que abrió camino al de 2026."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "Bosnia es la NACIÓN MÁS JOVEN entre las 32+16 selecciones que han disputado al menos un Mundial. Independencia: 1992. Solo 34 años cuando jugará el Mundial 2026.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Edin Džeko es el ÚNICO bosnio activo con más de 70 goles internacionales. A 39 años, llegará al Mundial 2026 siendo uno de los jugadores de campo más veteranos del torneo.",
+      "source": "NFSBiH + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Bosnia eliminó a Italia tetracampeona en el play-off del Mundial 2026 (1-1, 4-1 penales). Italia se queda fuera por 3ª eliminatoria consecutiva (2018, 2022, 2026), crisis profunda del fútbol italiano.",
+      "source": "FIFA + UEFA",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Sarajevo, capital bosnia, fue sede de los JUEGOS OLÍMPICOS DE INVIERNO 1984 (Yugoslavia). Tras la guerra (1992-95), el deporte recuperó su importancia simbólica. La selección de fútbol unifica las 3 etnias.",
+      "source": "Wikipedia + UEFA",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "El sobrenombre 'Zmajevi' (Dragones) se asocia al rey medieval Tvrtko I y al símbolo de los lirios heráldicos. Símbolos del Reino de Bosnia (siglos XIII-XV).",
+      "source": "NFSBiH + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Sergej Barbarez tomó la selección en agosto 2024 con una racha de 12 partidos sin ganar. La transformó al play-off ganado y al Mundial 2026 en 19 meses. Hito histórico bosnio.",
+      "source": "NFSBiH + ESPN",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Kerim Alajbegović (joven del Bayern II) marcó el penal decisivo del play-off vs Gales. Su carrera con sus 19 años apenas empieza pero ya es un nombre en la historia del fútbol bosnio.",
+      "source": "NFSBiH + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "El estadio Bilino Polje en Zenica tiene apenas 13.500 plazas pero es uno de los fortines más infranqueables de Europa: solo 1 derrota local en eliminatorias Mundial 2026 (vs Austria).",
+      "source": "NFSBiH + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Intermeco (himno bosnio)",
+      "Zmajevi! Zmajevi!",
+      "Naša Bosna!"
+    ],
+    "main_rival": {
+      "iso": "rs",
+      "name": "Serbia",
+      "story": "Rivalidad histórica derivada de la guerra de los Balcanes (1992-95). Bosnia y Serbia rara vez se enfrentan oficialmente; son cruces siempre tensos cuando ocurren."
+    },
+    "home_stadium": {
+      "name": "Stadion Bilino Polje (Zenica)",
+      "capacity": 13500,
+      "city": "Zenica"
+    }
+  },
+  "seo": {
+    "meta_title": "Bosnia en el Mundial 2026 | Plantilla, historia y predicciones",
+    "meta_description": "Bosnia Mundial 2026: 26 convocados de Sergej Barbarez, Edin Džeko, Pjanić, Tabaković. Eliminó a Italia en play-off. Grupo B con Suiza, Catar, Canadá.",
+    "og_image_url": "/img/og/teams/bosnia.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Bosnia y Herzegovina",
+      "alternateName": [
+        "Zmajevi",
+        "Dragones de los Balcanes"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "UEFA"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Sergej Barbarez"
+      },
+      "url": "https://www.zonamundial.app/selecciones/bosnia"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-29",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_Bosnia_y_Herzegovina",
+      "https://es.wikipedia.org/wiki/Anexo:Segunda_ronda_de_la_clasificaci%C3%B3n_de_UEFA_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://es.uefa.com/european-qualifiers/news/02a3-203dbb815fb6-8c1f813afd34-1000--confirmadas-las-finales-de-los-play-offs-europeos-para-el-mu/",
+      "https://www.espn.com.co/futbol/mundial/nota/_/id/15926977/eliminatorias-uefa-repechaje-fixture-ultimos-cuatro-cupos-clasificados-mundial-2026",
+      "https://www.nfsbih.ba",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias + play-offs cruzados con UEFA + Wikipedia + ESPN + EFE. Historia mundialista con FIFA + NFSBiH.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "complete",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante: pendiente",
+      "Calendario fase de grupos 2026: fixture FIFA pendiente",
+      "Base de entrenamiento: NFSBiH aún no anunció",
+      "FIFA Ranking #67: validar mes vigente",
+      "Confirmar club actual de Pjanić (CSKA Moscú) post-temporada"
+    ]
+  }
+}

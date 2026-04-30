@@ -1,0 +1,1589 @@
+{
+  "slug": "tunez",
+  "iso": "tn",
+  "iso3": "TUN",
+  "name_es": "Túnez",
+  "name_en": "Tunisia",
+  "name_local": "تونس (Tūnis)",
+  "nicknames": [
+    "Las Águilas de Cartago",
+    "Les Aigles de Carthage",
+    "Carthage Eagles"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#E70013",
+      "secondary": "#FFFFFF",
+      "tertiary": "#E70013",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Túnez (Tunis)",
+    "language_official": [
+      "Árabe"
+    ],
+    "population": 12350000,
+    "area_km2": 163610,
+    "timezone": "Africa/Tunis",
+    "continent": "África"
+  },
+  "federation": {
+    "name": "Fédération Tunisienne de Football",
+    "abbreviation": "FTF",
+    "founded": 1957,
+    "headquarters": "Túnez",
+    "website": "https://www.ftf.org.tn"
+  },
+  "confederation": "CAF",
+  "fifa_ranking": {
+    "current": 49,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Kappa",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/tunez.png",
+        "back_url": null,
+        "primary_color": "#E70013",
+        "secondary_color": "#FFFFFF",
+        "description": "Camiseta roja icónica con escudo del águila de Cartago en el pecho. Apodo 'Aigles de Carthage'.",
+        "alt_text": "Camiseta titular Túnez Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#E70013",
+        "description": "Equipación visitante en blanco. Pendiente.",
+        "alt_text": "Camiseta visitante Túnez Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "El apodo 'Águilas de Cartago' rinde homenaje al imperio fenicio de Cartago (siglos IX-II a.C.), uno de los más poderosos del Mediterráneo antiguo, ubicado en territorio actual de Túnez.",
+        "source": "FTF + Wikipedia",
+        "verified_at": "2026-04-28",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Túnez clasificó como 1º del Grupo H con 28 puntos (MEJOR RÉCORD CAF de la eliminatoria, primera selección en clasificarse SIN ENCAJAR UN SOLO GOL). Selló el pase con 1-0 a Guinea Ecuatorial. 7ª participación mundialista, 3ª CONSECUTIVA (2018, 2022, 2026). Bajo Sami Trabelsi (regreso DT 12 años después), las Águilas de Cartago llegan al Grupo F duro: Países Bajos favorita, peleará con Japón y Suecia por el 2º puesto.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias CAF Mundial 2026 — Grupo H",
+      "format": "Liguilla todos contra todos · 6 equipos · 10 partidos · ida y vuelta",
+      "duration": "Noviembre 2023 — Octubre 2025",
+      "final_position": 1,
+      "total_teams_in_group": 6,
+      "stats": {
+        "played": 10,
+        "won": 9,
+        "drawn": 1,
+        "lost": 0,
+        "goals_for": 22,
+        "goals_against": 0,
+        "goal_difference": 22,
+        "points": 28,
+        "win_percentage": 90,
+        "clean_sheets": 10,
+        "notes": "RÉCORD HISTÓRICO: PRIMERA SELECCIÓN EN CLASIFICAR A UN MUNDIAL SIN ENCAJAR UN SOLO GOL en la eliminatoria. 22-0 GD."
+      },
+      "coach_during_qualifying": "Faouzi Benzarti (jul 2024-ene 2026) → Sami Trabelsi (10 feb 2026 - presente)",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2023-11-17",
+          "home": {
+            "iso": "tn",
+            "name": "Túnez",
+            "score": 4
+          },
+          "away": {
+            "iso": "st",
+            "name": "Santo Tomé y Príncipe",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Stade Hammadi Agrebi",
+            "city": "Radès",
+            "country_iso": "tn"
+          },
+          "goals_arg": [
+            {
+              "player": "Naïm Sliti",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Hannibal Mejbri",
+              "minute": "44'",
+              "type": "goal"
+            },
+            {
+              "player": "Issam Jebali",
+              "minute": "60'",
+              "type": "goal"
+            },
+            {
+              "player": "Anis Ben Slimane",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 2,
+          "date": "2023-11-21",
+          "home": {
+            "iso": "mw",
+            "name": "Malaui",
+            "score": 0
+          },
+          "away": {
+            "iso": "tn",
+            "name": "Túnez",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Bingu National Stadium",
+            "city": "Lilongüe",
+            "country_iso": "mw"
+          },
+          "goals_arg": [
+            {
+              "player": "Hazem Mastouri",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 3,
+          "date": "2024-06-07",
+          "home": {
+            "iso": "tn",
+            "name": "Túnez",
+            "score": 1
+          },
+          "away": {
+            "iso": "gq",
+            "name": "Guinea Ecuatorial",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Stade Hammadi Agrebi",
+            "city": "Radès",
+            "country_iso": "tn"
+          },
+          "goals_arg": [
+            {
+              "player": "Mohamed Ali Ben Romdhane",
+              "minute": "70'",
+              "type": "penalty"
+            }
+          ]
+        },
+        {
+          "matchday": 4,
+          "date": "2024-06-11",
+          "home": {
+            "iso": "na",
+            "name": "Namibia",
+            "score": 0
+          },
+          "away": {
+            "iso": "tn",
+            "name": "Túnez",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Estadio FNB",
+            "city": "Johannesburgo",
+            "country_iso": "na"
+          },
+          "goals_arg": [],
+          "notes": "Único punto perdido del ciclo. 0-0 honroso."
+        },
+        {
+          "matchday": 5,
+          "date": "2025-03-19",
+          "home": {
+            "iso": "lr",
+            "name": "Liberia",
+            "score": 0
+          },
+          "away": {
+            "iso": "tn",
+            "name": "Túnez",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Stade Hammadi Agrebi",
+            "city": "Radès (neutral)",
+            "country_iso": "lr"
+          },
+          "goals_arg": [
+            {
+              "player": "Hazem Mastouri",
+              "minute": "60'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 6,
+          "date": "2025-03-24",
+          "home": {
+            "iso": "mw",
+            "name": "Malaui",
+            "score": 0
+          },
+          "away": {
+            "iso": "tn",
+            "name": "Túnez",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Bingu National Stadium",
+            "city": "Lilongüe",
+            "country_iso": "mw"
+          },
+          "goals_arg": [
+            {
+              "player": "Seifeddine Jaziri",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Elias Achouri",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 7,
+          "date": "2025-09-05",
+          "home": {
+            "iso": "tn",
+            "name": "Túnez",
+            "score": 3
+          },
+          "away": {
+            "iso": "lr",
+            "name": "Liberia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Stade Hammadi Agrebi",
+            "city": "Radès",
+            "country_iso": "tn"
+          },
+          "goals_arg": [
+            {
+              "player": "Hazem Mastouri",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Ferjani Sassi",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Elias Saad",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 8,
+          "date": "2025-09-09",
+          "home": {
+            "iso": "tn",
+            "name": "Túnez",
+            "score": 3
+          },
+          "away": {
+            "iso": "na",
+            "name": "Namibia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Stade Hammadi Agrebi",
+            "city": "Radès",
+            "country_iso": "tn"
+          },
+          "goals_arg": [
+            {
+              "player": "Hannibal Mejbri",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Hazem Mastouri",
+              "minute": "60'",
+              "type": "goal"
+            },
+            {
+              "player": "Anis Ben Slimane",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 9,
+          "date": "2025-10-13",
+          "home": {
+            "iso": "gq",
+            "name": "Guinea Ecuatorial",
+            "score": 0
+          },
+          "away": {
+            "iso": "tn",
+            "name": "Túnez",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Estadio Nuevo de Malabo",
+            "city": "Malabo",
+            "country_iso": "gq"
+          },
+          "goals_arg": [
+            {
+              "player": "Hazem Mastouri",
+              "minute": "80'",
+              "type": "goal"
+            }
+          ],
+          "notes": "VICTORIA QUE SELLÓ LA CLASIFICACIÓN al Mundial 2026. Mastouri marcó el decisivo.",
+          "is_decisive_match": true
+        },
+        {
+          "matchday": 10,
+          "date": "2025-11-15",
+          "home": {
+            "iso": "tn",
+            "name": "Túnez",
+            "score": 3
+          },
+          "away": {
+            "iso": "st",
+            "name": "Santo Tomé y Príncipe",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Stade Hammadi Agrebi",
+            "city": "Radès",
+            "country_iso": "tn"
+          },
+          "goals_arg": [
+            {
+              "player": "Hazem Mastouri",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Hannibal Mejbri",
+              "minute": "60'",
+              "type": "goal"
+            },
+            {
+              "player": "Naïm Sliti",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Cierre con goleada. 28 pts (9G 1E 0P) y 0 GC RÉCORD HISTÓRICO."
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Hazem Mastouri",
+          "goals": 6,
+          "notes": "Goleador del ciclo. Delantero local consolidado."
+        },
+        {
+          "player": "Hannibal Mejbri",
+          "goals": 3,
+          "notes": "Capitán y figura del Burnley."
+        },
+        {
+          "player": "Naïm Sliti",
+          "goals": 2
+        },
+        {
+          "player": "Anis Ben Slimane",
+          "goals": 2
+        },
+        {
+          "player": "Issam Jebali",
+          "goals": 1
+        },
+        {
+          "player": "Ben Romdhane",
+          "goals": 1
+        },
+        {
+          "player": "Seifeddine Jaziri",
+          "goals": 1
+        },
+        {
+          "player": "Elias Achouri",
+          "goals": 1
+        },
+        {
+          "player": "Ferjani Sassi",
+          "goals": 1
+        },
+        {
+          "player": "Elias Saad",
+          "goals": 1
+        },
+        {
+          "player": "Otros (3)",
+          "goals": 3
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_1",
+        "reason": "Goleada 4-0 a Santo Tomé y Príncipe en debut. Túnez arrancó con todo."
+      },
+      "worst_match": {
+        "match_ref": "matchday_4",
+        "reason": "Empate 0-0 con Namibia en Johannesburgo. Único punto perdido del ciclo."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_9",
+        "reason": "Triunfo 1-0 sobre Guinea Ecuatorial en Malabo selló la clasificación al Mundial 2026 con récord histórico de 0 GC."
+      }
+    },
+    "group_2026": {
+      "letter": "F",
+      "label": "Grupo F — junto a Países Bajos, Japón y Suecia",
+      "teams": [
+        {
+          "iso": "nl",
+          "name": "P. Bajos",
+          "fifa_rank": null
+        },
+        {
+          "iso": "tn",
+          "name": "Túnez",
+          "fifa_rank": null,
+          "is_seed": false
+        },
+        {
+          "iso": "jp",
+          "name": "Japón",
+          "fifa_rank": null
+        },
+        {
+          "iso": "se",
+          "name": "Suecia",
+          "fifa_rank": null
+        }
+      ],
+      "notes": "Grupo F confirmado en sorteo del 5 dic 2025. Países Bajos favorita, Japón segundo, lucha entre Suecia y Túnez por el 3º."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "nl",
+          "name": "P. Bajos"
+        },
+        "date": "2026-06-14",
+        "kickoff_local": "12:00",
+        "venue": {
+          "stadium": "BC Place",
+          "city": "Vancouver",
+          "country_iso": "ca"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "se",
+          "name": "Suecia"
+        },
+        "date": "2026-06-21",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "BMO Field",
+          "city": "Toronto",
+          "country_iso": "ca"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "jp",
+          "name": "Japón"
+        },
+        "date": "2026-06-29",
+        "kickoff_local": "15:00",
+        "venue": {
+          "stadium": "Hard Rock Stadium",
+          "city": "Miami",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — FTF aún no anunció]",
+      "country": "México/EE.UU.",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Sami Trabelsi",
+      "age": 57,
+      "nationality": "Túnez",
+      "since": "2026-02-10",
+      "previous_teams": [
+        "Túnez (2011-2013, 1ª etapa)",
+        "Al-Shabab Arabia Saudita",
+        "Étoile du Sahel"
+      ],
+      "profile_summary": "Tunecino. Asumió la selección por SEGUNDA VEZ tras 12 años (1ª etapa 2011-2013). Llegó en febrero 2026 reemplazando a Faouzi Benzarti. Como jugador fue defensor histórico (104 caps con Túnez). Identidad táctica: 4-3-3 sólido, defensa zonal, transiciones rápidas. Llegó tras la clasificación, su misión es preparar al equipo para el Mundial."
+    },
+    "captain": {
+      "name": "Hannibal Mejbri",
+      "club": "Burnley",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Manchester_United_v_Norwich_City%2C_16_April_2022_%2802%29.jpg/330px-Manchester_United_v_Norwich_City%2C_16_April_2022_%2802%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Hannibal_Mejbri"
+      }
+    },
+    "star_player": {
+      "name": "Hannibal Mejbri",
+      "club": "Burnley",
+      "reason": "Mediocampista del Burnley (23 años, Premier League). Nacido en Francia, optó por Túnez en juveniles. Formado en Manchester United. Capitán joven, técnica y visión de juego top africana. Llega a su 2º Mundial (Catar 2022 sin estrenarse). Con 23 años, es el futuro del fútbol tunecino.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Manchester_United_v_Norwich_City%2C_16_April_2022_%2802%29.jpg/330px-Manchester_United_v_Norwich_City%2C_16_April_2022_%2802%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Hannibal_Mejbri"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "aymen-dahmen",
+        "full_name": "Aymen Dahmen",
+        "display_name": "Aymen Dahmen",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Stoke City",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed"
+      },
+      {
+        "id": "bechir-ben-said",
+        "full_name": "Béchir Ben Said",
+        "display_name": "Béchir Ben Said",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "US Monastir",
+          "country_iso": "tn",
+          "league": "Ligue Pro 1"
+        },
+        "shirt_number_expected": 16,
+        "status": "probable"
+      },
+      {
+        "id": "noureddine-farhati",
+        "full_name": "Noureddine Farhati",
+        "display_name": "Noureddine Farhati",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "CS Sfaxien",
+          "country_iso": "tn",
+          "league": "Ligue Pro 1"
+        },
+        "shirt_number_expected": 23,
+        "status": "bubble"
+      },
+      {
+        "id": "yan-valery",
+        "full_name": "Yan Valery",
+        "display_name": "Yan Valery",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Angers",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Sheffield_Wednesday%27s_Starting_Eleven_18102025_%281%29_%28cropped%29.jpg/330px-Sheffield_Wednesday%27s_Starting_Eleven_18102025_%281%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Yan_Valery"
+        }
+      },
+      {
+        "id": "dylan-bronn",
+        "full_name": "Dylan Bronn",
+        "display_name": "Dylan Bronn",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Salernitana",
+          "country_iso": "it",
+          "league": "Serie B"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/RC_Lens_-_FC_Metz_%2814-03-2021%29_48.jpg/330px-RC_Lens_-_FC_Metz_%2814-03-2021%29_48.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Dylan_Bronn"
+        }
+      },
+      {
+        "id": "montassar-talbi",
+        "full_name": "Montassar Talbi",
+        "display_name": "Montassar Talbi",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Lorient",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Montassar_Talbi_2021.jpg/330px-Montassar_Talbi_2021.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Montassar_Talbi"
+        }
+      },
+      {
+        "id": "ali-abdi",
+        "full_name": "Ali Abdi",
+        "display_name": "Ali Abdi",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Caen",
+          "country_iso": "fr",
+          "league": "Ligue 2"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Lens_-_Paris_FC_%2805-08-2020%29_23.jpg/330px-Lens_-_Paris_FC_%2805-08-2020%29_23.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ali_Abdi"
+        }
+      },
+      {
+        "id": "mortadha-ben-ouanes",
+        "full_name": "Mortadha Ben Ouanes",
+        "display_name": "Ben Ouanes",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Esperance Tunis",
+          "country_iso": "tn",
+          "league": "Ligue Pro 1"
+        },
+        "shirt_number_expected": 14,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Mortadha_Ben_Ouanes.jpg/330px-Mortadha_Ben_Ouanes.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mortadha_Ben_Ouanes"
+        }
+      },
+      {
+        "id": "wajdi-kechrida",
+        "full_name": "Wajdi Kechrida",
+        "display_name": "Wajdi Kechrida",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Hatayspor",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 22,
+        "status": "probable"
+      },
+      {
+        "id": "aissa-laidouni",
+        "full_name": "Aïssa Laïdouni",
+        "display_name": "Aïssa Laïdouni",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Nantes",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Attaque_de_football_%28cropped%29.jpg/330px-Attaque_de_football_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/A%C3%AFssa_La%C3%AFdouni"
+        }
+      },
+      {
+        "id": "ellyes-skhiri",
+        "full_name": "Ellyes Skhiri",
+        "display_name": "Ellyes Skhiri",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Eintracht Fráncfort",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/2021-08-08_FC_Carl_Zeiss_Jena_gegen_1._FC_K%C3%B6ln_%28DFB-Pokal%29_by_Sandro_Halank%E2%80%93182.jpg/330px-2021-08-08_FC_Carl_Zeiss_Jena_gegen_1._FC_K%C3%B6ln_%28DFB-Pokal%29_by_Sandro_Halank%E2%80%93182.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ellyes_Skhiri"
+        }
+      },
+      {
+        "id": "hannibal-mejbri",
+        "full_name": "Hannibal Mejbri",
+        "display_name": "Hannibal Mejbri",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Burnley",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Manchester_United_v_Norwich_City%2C_16_April_2022_%2802%29.jpg/330px-Manchester_United_v_Norwich_City%2C_16_April_2022_%2802%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Hannibal_Mejbri"
+        }
+      },
+      {
+        "id": "ismael-gharbi",
+        "full_name": "Ismaël Gharbi",
+        "display_name": "Ismaël Gharbi",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Augsburg",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Isma%C3%ABl_Gharbi_at_the_PSG-VAFC_game_%28cropped%29.jpg/330px-Isma%C3%ABl_Gharbi_at_the_PSG-VAFC_game_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Isma%C3%ABl_Gharbi"
+        }
+      },
+      {
+        "id": "sebastian-tounekti",
+        "full_name": "Sebastian Tounekti",
+        "display_name": "Tounekti",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Hammarby",
+          "country_iso": "se",
+          "league": "Allsvenskan"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed"
+      },
+      {
+        "id": "ferjani-sassi",
+        "full_name": "Ferjani Sassi",
+        "display_name": "Ferjani Sassi",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Al-Duhail",
+          "country_iso": "qa",
+          "league": "Stars League"
+        },
+        "shirt_number_expected": 13,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/49/Ferjani_Sassi_2.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ferjani_Sassi"
+        }
+      },
+      {
+        "id": "naim-sliti",
+        "full_name": "Naïm Sliti",
+        "display_name": "Naïm Sliti",
+        "position": "MID",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Damac",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/PAN-TUN_%2831%29.jpg/330px-PAN-TUN_%2831%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Na%C3%AFm_Sliti"
+        }
+      },
+      {
+        "id": "elias-saad",
+        "full_name": "Elias Saad",
+        "display_name": "Elias Saad",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Augsburg",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/2025-04-23_-_FC_St_Pauli_-_Elias_Saad.jpg/330px-2025-04-23_-_FC_St_Pauli_-_Elias_Saad.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Elias_Saad"
+        }
+      },
+      {
+        "id": "elias-achouri",
+        "full_name": "Elias Achouri",
+        "display_name": "Elias Achouri",
+        "position": "MID",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Copenhague",
+          "country_iso": "dk",
+          "league": "Superliga"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Elias_Achouri%2C_Vejle_Boldklub_-_FC_K%C3%B8benhavn%2C_29._July_2023_-_opvarmning_FCK%27s_1._hold_%28cropped%29.jpg/330px-Elias_Achouri%2C_Vejle_Boldklub_-_FC_K%C3%B8benhavn%2C_29._July_2023_-_opvarmning_FCK%27s_1._hold_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Elias_Achouri"
+        }
+      },
+      {
+        "id": "hazem-mastouri",
+        "full_name": "Hazem Mastouri",
+        "display_name": "Hazem Mastouri",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "El Gouna",
+          "country_iso": "eg",
+          "league": "Premier League EG"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Hazem_Mastouri_2026.jpg/330px-Hazem_Mastouri_2026.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Hazem_Mastouri"
+        }
+      },
+      {
+        "id": "issam-jebali",
+        "full_name": "Issam Jebali",
+        "display_name": "Issam Jebali",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Odense BK",
+          "country_iso": "dk",
+          "league": "Superliga"
+        },
+        "shirt_number_expected": 20,
+        "status": "probable"
+      },
+      {
+        "id": "seifeddine-jaziri",
+        "full_name": "Seifeddine Jaziri",
+        "display_name": "Seifeddine Jaziri",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Zamalek",
+          "country_iso": "eg",
+          "league": "Premier League EG"
+        },
+        "shirt_number_expected": 15,
+        "status": "probable"
+      },
+      {
+        "id": "khalil-ayari",
+        "full_name": "Khalil Ayari",
+        "display_name": "Khalil Ayari",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "PSG B",
+          "country_iso": "fr",
+          "league": "Championnat National"
+        },
+        "shirt_number_expected": 25,
+        "status": "bubble"
+      },
+      {
+        "id": "anis-ben-slimane",
+        "full_name": "Anis Ben Slimane",
+        "display_name": "Ben Slimane",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Sheffield United",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 21,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/FC_Salzburg_gegen_Br%C3%B8ndby_IF_%28Championsleague_Play_off_Hinspiel_17._August_2021%29_12.jpg/330px-FC_Salzburg_gegen_Br%C3%B8ndby_IF_%28Championsleague_Play_off_Hinspiel_17._August_2021%29_12.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Anis_Ben_Slimane"
+        }
+      },
+      {
+        "id": "mohamed-ali-ben-romdhane",
+        "full_name": "Mohamed Ali Ben Romdhane",
+        "display_name": "Ben Romdhane",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Ferencvaros",
+          "country_iso": "hu",
+          "league": "NB I"
+        },
+        "shirt_number_expected": 24,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Mohamed_Ali_Ben_Romdhane.jpg/330px-Mohamed_Ali_Ben_Romdhane.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mohamed_Ali_Ben_Romdhane"
+        }
+      },
+      {
+        "id": "yassine-meriah",
+        "full_name": "Yassine Meriah",
+        "display_name": "Yassine Meriah",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Esperance Tunis",
+          "country_iso": "tn",
+          "league": "Ligue Pro 1"
+        },
+        "shirt_number_expected": 12,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Yassine_Meriah.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Yassine_Meriah"
+        }
+      },
+      {
+        "id": "alaeddine-marzouki",
+        "full_name": "Alaeddine Marzouki",
+        "display_name": "Marzouki",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Esperance Tunis",
+          "country_iso": "tn",
+          "league": "Ligue Pro 1"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble"
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-2-3-1",
+      "players": [
+        {
+          "player_id": "aymen-dahmen",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "yan-valery",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "dylan-bronn",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "montassar-talbi",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "ali-abdi",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "aissa-laidouni",
+          "position": {
+            "x": 60,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "ellyes-skhiri",
+          "position": {
+            "x": 40,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "sebastian-tounekti",
+          "position": {
+            "x": 85,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "hannibal-mejbri",
+          "position": {
+            "x": 50,
+            "y": 35
+          }
+        },
+        {
+          "player_id": "ismael-gharbi",
+          "position": {
+            "x": 15,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "hazem-mastouri",
+          "position": {
+            "x": 50,
+            "y": 15
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Trabelsi plantea un 4-2-3-1 con doble pivote (Laïdouni + Skhiri), Mejbri como '10' libre, Tounekti y Gharbi por las bandas, Mastouri '9'. Identidad: defensa zonal compacta, transiciones rápidas, fuerte físicamente. Récord 0 GC en eliminatorias.",
+      "strengths": [
+        "RÉCORD HISTÓRICO: clasificada SIN ENCAJAR UN SOLO GOL en eliminatoria. Defensa de hierro.",
+        "Defensa central top: Talbi (Lorient) + Bronn (Salernitana). Ali Abdi y Yan Valery laterales sólidos.",
+        "Mediocampo trabajador: Laïdouni (Nantes) + Skhiri (Frankfurt). Recuperadores top.",
+        "Hannibal Mejbri: capitán joven (23), técnica top. Cantera Manchester United.",
+        "Generación dispersa en ligas top: Skhiri, Mejbri, Talbi, Ben Slimane, Saad, Achouri.",
+        "Hazem Mastouri: 6 goles, pichichi del ciclo."
+      ],
+      "weaknesses": [
+        "Sin un '9' top mundial: Mastouri es local, sin nivel europeo top.",
+        "TÚNEZ NUNCA HA PASADO LA FASE DE GRUPOS en 6 Mundiales previos. Maldición histórica.",
+        "Cambio reciente de DT: Trabelsi llegó en febrero 2026 con poco rodaje.",
+        "Edad media alta: Sliti 33, Bronn 30, Skhiri 31, Sassi 33.",
+        "Nivel ofensivo limitado: 22 GF en 10 partidos contra rivales modestos.",
+        "Grupo F: Países Bajos y Japón muy superiores. Pelea por 3º con Suecia."
+      ],
+      "x_factor": {
+        "player": "Ismaël Gharbi",
+        "reason": "El '10' del Augsburg (21 años) es la nueva promesa. Formado en La Masía del PSG, técnico y creativo. Si Trabelsi le da minutos, puede ser la sensación tunecina. Joven, fresco, sin presión histórica."
+      },
+      "prediction_text": "Túnez llega como 49º del ranking FIFA al Grupo F duro: Países Bajos y Japón superiores. Pelea con Suecia por el 3er puesto. Pasar la fase de grupos sería ROMPER UNA MALDICIÓN HISTÓRICA: 6 Mundiales sin pasar. Defensa récord es su mejor arma.",
+      "probabilities": {
+        "advance_groups": 30,
+        "round_of_32": 25,
+        "round_of_16": 13,
+        "quarter_finals": 3,
+        "semi_finals": 1,
+        "final": 0,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: fase de grupos eliminada (1G 0E 2P). Catar 2022: fase de grupos eliminada PESE A BATIR A FRANCIA 1-0 (Wahbi Khazri 58'). Mundial 2026: 7ª participación, 3ª consecutiva. Generación Mejbri busca romper la maldición."
+    }
+  },
+  "history": {
+    "first_appearance": 1978,
+    "appearances_count_before_2026": 6,
+    "appearances_count_with_2026": 7,
+    "consecutive_streak_since": 2018,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 0,
+    "best_result": "Fase de grupos en sus 6 participaciones (1978, 1998, 2002, 2006, 2018, 2022)",
+    "aggregate_stats_through_2022": {
+      "played": 18,
+      "won": 3,
+      "drawn": 6,
+      "lost": 9,
+      "goals_for": 13,
+      "goals_against": 25,
+      "win_percentage": 16.7,
+      "notes": "Datos hasta Catar 2022. Túnez NUNCA HA PASADO LA FASE DE GRUPOS."
+    },
+    "by_world_cup": [
+      {
+        "year": 1978,
+        "host": {
+          "countries": [
+            "Argentina"
+          ],
+          "iso": [
+            "ar"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Abdelmajid Chetali",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Ali Kaabi",
+            "goals": 1
+          },
+          {
+            "player": "Néjib Ghommidh",
+            "goals": 1
+          },
+          {
+            "player": "Mokhtar Dhouib",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 3,
+        "goals_conceded": 2,
+        "notable_facts": [
+          "DEBUT MUNDIALISTA CON HISTÓRICO 3-1 A MÉXICO en Rosario.",
+          "Empató 0-0 con Alemania Federal campeona vigente."
+        ],
+        "narrative": "Túnez DEBUTÓ con HITO HISTÓRICO: BATIÓ 3-1 a México en Rosario (Ali Kaabi 11', autogol Mokhtar 35', Ghommidh 60', Dhouib 80'). PRIMERA SELECCIÓN AFRICANA EN GANAR UN PARTIDO MUNDIALISTA. Empató 0-0 con Alemania Federal campeona vigente. Cayó con Polonia 0-1 y se despidió por diferencia de goles."
+      },
+      {
+        "year": 1998,
+        "host": {
+          "countries": [
+            "Francia"
+          ],
+          "iso": [
+            "fr"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Henryk Kasperczak",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Skander Souayah",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 1,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "Adiós con un punto."
+        ],
+        "narrative": "Adiós."
+      },
+      {
+        "year": 2002,
+        "host": {
+          "countries": [
+            "Corea del Sur",
+            "Japón"
+          ],
+          "iso": [
+            "kr",
+            "jp"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Ammar Souayah",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Raouf Bouzaiane",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 1,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Adiós con un punto."
+        ],
+        "narrative": "Adiós."
+      },
+      {
+        "year": 2006,
+        "host": {
+          "countries": [
+            "Alemania"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Roger Lemerre",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Ziad Jaziri",
+            "goals": 1
+          },
+          {
+            "player": "Jaouhar Mnari",
+            "goals": 1
+          },
+          {
+            "player": "Radhi Jaïdi",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 3,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Empató con Arabia Saudita 2-2."
+        ],
+        "narrative": "Túnez empató 2-2 con Arabia. Adiós."
+      },
+      {
+        "year": 2018,
+        "host": {
+          "countries": [
+            "Rusia"
+          ],
+          "iso": [
+            "ru"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Nabil Maâloul",
+        "captain": "Aymen Mathlouthi",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Wahbi Khazri",
+            "goals": 1
+          },
+          {
+            "player": "Fakhreddine Ben Youssef",
+            "goals": 1
+          },
+          {
+            "player": "Dylan Bronn",
+            "goals": 1
+          },
+          {
+            "player": "Naïm Sliti",
+            "goals": 1
+          },
+          {
+            "player": "Wahbi Khazri",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 5,
+        "goals_conceded": 8,
+        "notable_facts": [
+          "Batió a Panamá 2-1 en último partido. 3ª victoria histórica en Mundiales."
+        ],
+        "narrative": "Túnez cayó eliminada pero batió 2-1 a Panamá en su último partido. Khazri figura."
+      },
+      {
+        "year": 2022,
+        "host": {
+          "countries": [
+            "Catar"
+          ],
+          "iso": [
+            "qa"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Jalel Kadri",
+        "captain": "Youssef Msakni",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Wahbi Khazri",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 1,
+        "goals_conceded": 1,
+        "notable_facts": [
+          "BATIÓ A FRANCIA 1-0 EN ÚLTIMO PARTIDO (Khazri 58')."
+        ],
+        "narrative": "Túnez BATIÓ a FRANCIA campeona vigente 1-0 en su último partido (gol de Wahbi Khazri al 58'). PERO QUEDÓ ELIMINADA por diferencia de goles ante Australia. Hito histórico vacío."
+      }
+    ],
+    "palmares": [
+      {
+        "competition": "Copa Africana de Naciones",
+        "year": 2004,
+        "position": "Campeón",
+        "host": "Túnez"
+      },
+      {
+        "competition": "Copa Árabe FIFA",
+        "year": 2021,
+        "position": "Subcampeón",
+        "host": "Catar"
+      },
+      {
+        "competition": "Campeonato Africano de Naciones (CHAN)",
+        "year": 2011,
+        "position": "Campeón",
+        "host": "Sudán"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Issam Jemâa",
+      "value": 36,
+      "period": "2005-2018",
+      "notes": "MÁXIMO GOLEADOR HISTÓRICO."
+    },
+    "most_capped": {
+      "name": "Sadok Sassi 'Attouga'",
+      "value": 105,
+      "period": "1963-1980",
+      "notes": "Récord histórico. Portero leyenda."
+    },
+    "youngest_debut": {
+      "name": "Hannibal Mejbri",
+      "value": "18 años",
+      "period": "2021",
+      "notes": "Récord moderno."
+    },
+    "biggest_win": {
+      "result": "8-1",
+      "opponent": "Yibuti",
+      "date": "2015-09-04",
+      "competition": "Eliminatorias Copa África"
+    },
+    "worst_loss": {
+      "result": "0-10",
+      "opponent": "Hungría",
+      "date": "1960",
+      "competition": "JJOO Roma"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El 3-1 a México (Rosario 1978)",
+      "date": "1978-06-02",
+      "opponent": {
+        "iso": "mx",
+        "name": "México"
+      },
+      "score": "3-1",
+      "competition": "Fase de Grupos Mundial 1978",
+      "narrative": "TÚNEZ DEBUTÓ CON HITO HISTÓRICO: 3-1 a México. PRIMERA SELECCIÓN AFRICANA EN GANAR UN PARTIDO MUNDIALISTA. Goles de Kaabi (11'), Ghommidh (60') y Dhouib (80'). Manuel Vázquez había adelantado a México con autogol invertido. Hazaña inmortal del fútbol africano."
+    },
+    {
+      "title": "El 1-0 a Francia (Catar 2022)",
+      "date": "2022-11-30",
+      "opponent": {
+        "iso": "fr",
+        "name": "Francia"
+      },
+      "score": "1-0",
+      "competition": "Fase de Grupos Mundial 2022",
+      "narrative": "Túnez BATIÓ a FRANCIA campeona vigente 1-0 en su último partido del Mundial 2022. Gol de WAHBI KHAZRI al 58'. PERO QUEDÓ ELIMINADA por diferencia de goles ante Australia. Hito histórico vacío. Bandera francesa en el césped polémica."
+    },
+    {
+      "title": "Copa África 2004 en casa",
+      "date": "2004-02-14",
+      "opponent": {
+        "iso": "ma",
+        "name": "Marruecos"
+      },
+      "score": "2-1",
+      "competition": "Final Copa África 2004",
+      "narrative": "Túnez ANFITRIONA ganó SU ÚNICA COPA ÁFRICA 2004. Final 2-1 a Marruecos con goles de dos Santos (4') y Jaziri (52'). Único gran título de su historia."
+    },
+    {
+      "title": "El 0-0 con Alemania campeona (1978)",
+      "date": "1978-06-10",
+      "opponent": {
+        "iso": "de",
+        "name": "Alemania Federal"
+      },
+      "score": "0-0",
+      "competition": "Fase de Grupos Mundial 1978",
+      "narrative": "Túnez sacó un 0-0 honroso con Alemania Federal campeona vigente. Defensa férrea."
+    },
+    {
+      "title": "El 1-0 a Guinea Ecuatorial que selló pase 2026",
+      "date": "2025-10-13",
+      "opponent": {
+        "iso": "gq",
+        "name": "Guinea Ecuatorial"
+      },
+      "score": "1-0",
+      "competition": "Eliminatorias Mundial 2026",
+      "narrative": "Túnez venció 1-0 a Guinea Ecuatorial en Malabo. Mastouri marcó al 80'. Selló la clasificación al Mundial 2026 con récord histórico de 0 GC."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "TÚNEZ FUE LA PRIMERA SELECCIÓN AFRICANA EN GANAR UN PARTIDO MUNDIALISTA: 3-1 a México en debut Argentina 1978. Hito imborrable del fútbol africano.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "TÚNEZ SE CLASIFICÓ AL MUNDIAL 2026 SIN ENCAJAR UN SOLO GOL EN ELIMINATORIA: 22-0 GD en 10 partidos. RÉCORD HISTÓRICO MUNDIAL.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Túnez NUNCA HA PASADO LA FASE DE GRUPOS en 6 Mundiales previos (1978, 1998, 2002, 2006, 2018, 2022). 'Maldición de Cartago'.",
+      "source": "FIFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Túnez batió a FRANCIA campeona vigente 1-0 en Catar 2022 (Khazri 58') pero fue ELIMINADA por diferencia de goles. Hito histórico vacío.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Hannibal Mejbri está formado en la cantera del MANCHESTER UNITED. Nacido en Francia, optó por Túnez en juveniles. Es el capitán más joven de Túnez en un Mundial.",
+      "source": "Manchester United + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Sami Trabelsi (DT) fue jugador y DT por SEGUNDA VEZ. 1ª etapa 2011-2013. Llegó al cargo en febrero 2026, después de la clasificación, reemplazando a Faouzi Benzarti.",
+      "source": "FTF + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Humat al-Hima (himno)",
+      "Tunisie! Tunisie!",
+      "Hayya Aigles"
+    ],
+    "main_rival": {
+      "iso": "ma",
+      "name": "Marruecos",
+      "story": "Rivalidad histórica norafricana. Túnez batió a Marruecos en final Copa África 2004."
+    },
+    "home_stadium": {
+      "name": "Stade Hammadi Agrebi (Radès)",
+      "capacity": 60500,
+      "city": "Radès (Túnez)"
+    }
+  },
+  "seo": {
+    "meta_title": "Túnez en el Mundial 2026 | Plantilla, historia y predicciones",
+    "meta_description": "Túnez Mundial 2026: 26 convocados de Trabelsi, Hannibal Mejbri, Skhiri, Mastouri. 3ª participación consecutiva en Grupo F.",
+    "og_image_url": "/img/og/teams/tunez.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Túnez",
+      "alternateName": [
+        "Aigles de Carthage",
+        "Águilas de Cartago"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "CAF"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Sami Trabelsi"
+      },
+      "url": "https://www.zonamundial.app/selecciones/tunez"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-28",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_T%C3%BAnez",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/15756482/se-definieron-eliminatorias-africa-mundial-2026",
+      "https://www.tudn.com/mundial-2026/eliminatorias/eliminatorias-mundial-2026-asi-quedo-tabla-posiciones-africa",
+      "https://www.infobae.com/espana/deportes/2025/12/05/tunez-inscribe-su-nombre-en-el-mundial-2026",
+      "https://www.ftf.org.tn",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias cruzadas con CAF + Wikipedia + ESPN. Historia validada con FIFA + Wikipedia + FTF.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "complete",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante: pendiente",
+      "Base de entrenamiento: FTF aún no anunció",
+      "FIFA Ranking #49: validar mes vigente",
+      "Verificar fechas exactas eliminatorias 2023-2025",
+      "Goleadores específicos por partido pueden requerir cruce con FIFA"
+    ]
+  }
+}

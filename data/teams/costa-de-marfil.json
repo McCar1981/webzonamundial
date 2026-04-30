@@ -1,0 +1,1542 @@
+{
+  "slug": "costa-de-marfil",
+  "iso": "ci",
+  "iso3": "CIV",
+  "name_es": "Costa de Marfil",
+  "name_en": "Ivory Coast",
+  "name_local": "Côte d'Ivoire",
+  "nicknames": [
+    "Los Elefantes",
+    "Les Éléphants"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#FF8200",
+      "secondary": "#FFFFFF",
+      "tertiary": "#009E60",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Yamusukro (oficial), Abiyán (económica)",
+    "language_official": [
+      "Francés"
+    ],
+    "population": 28870000,
+    "area_km2": 322463,
+    "timezone": "Africa/Abidjan",
+    "continent": "África"
+  },
+  "federation": {
+    "name": "Fédération Ivoirienne de Football",
+    "abbreviation": "FIF",
+    "founded": 1960,
+    "headquarters": "Abiyán",
+    "website": "https://www.fif-ci.com"
+  },
+  "confederation": "CAF",
+  "fifa_ranking": {
+    "current": 39,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Puma",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/costa-de-marfil.png",
+        "back_url": null,
+        "primary_color": "#FF8200",
+        "secondary_color": "#FFFFFF",
+        "description": "Camiseta naranja icónica con detalles blancos y verdes, los colores nacionales. Apodo 'Les Éléphants'.",
+        "alt_text": "Camiseta titular Costa de Marfil Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#FF8200",
+        "description": "Equipación visitante en blanco. Pendiente.",
+        "alt_text": "Camiseta visitante Costa de Marfil Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "El apodo 'Los Elefantes' es el animal nacional de Costa de Marfil. El nombre del país viene del comercio histórico de marfil de elefante en sus costas (siglos XV-XIX).",
+        "source": "FIF + Wikipedia",
+        "verified_at": "2026-04-28",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Costa de Marfil clasificó como 1º del Grupo F con 26 puntos tras pelea ajustada con Gabón. Selló el pase con 3-0 a Kenia el 14 de octubre 2025 en Abiyán. 4ª participación mundialista, regreso TRAS 12 AÑOS DE AUSENCIA (Brasil 2014). Bajo Émerse Faé (DT desde 2024), CAMPEONA DE COPA ÁFRICA 2024 como anfitriona en remontada épica. Grupo E del Mundial: Alemania favorita, Costa de Marfil pelea con Ecuador por el 2º.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias CAF Mundial 2026 — Grupo F",
+      "format": "Liguilla todos contra todos · 6 equipos · 10 partidos · ida y vuelta",
+      "duration": "Noviembre 2023 — Octubre 2025",
+      "final_position": 1,
+      "total_teams_in_group": 6,
+      "stats": {
+        "played": 10,
+        "won": 8,
+        "drawn": 2,
+        "lost": 0,
+        "goals_for": 21,
+        "goals_against": 4,
+        "goal_difference": 17,
+        "points": 26,
+        "win_percentage": 80,
+        "clean_sheets": 7
+      },
+      "coach_during_qualifying": "Émerse Faé (desde febrero 2024)",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2023-11-15",
+          "home": {
+            "iso": "sc",
+            "name": "Seychelles",
+            "score": 0
+          },
+          "away": {
+            "iso": "ci",
+            "name": "Costa de Marfil",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Stade Linité",
+            "city": "Victoria",
+            "country_iso": "sc"
+          },
+          "goals_arg": [
+            {
+              "player": "Sébastien Haller",
+              "minute": "70'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 2,
+          "date": "2023-11-21",
+          "home": {
+            "iso": "ci",
+            "name": "Costa de Marfil",
+            "score": 9
+          },
+          "away": {
+            "iso": "sc",
+            "name": "Seychelles",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Stade Olympique d'Ebimpé",
+            "city": "Abiyán",
+            "country_iso": "ci"
+          },
+          "goals_arg": [
+            {
+              "player": "Sébastien Haller",
+              "minute": "10'",
+              "type": "goal"
+            },
+            {
+              "player": "Wilfried Zaha",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Nicolas Pépé",
+              "minute": "35'",
+              "type": "goal"
+            },
+            {
+              "player": "Franck Kessié",
+              "minute": "44'",
+              "type": "goal"
+            },
+            {
+              "player": "Amad Diallo",
+              "minute": "50'",
+              "type": "goal"
+            },
+            {
+              "player": "Sébastien Haller",
+              "minute": "60'",
+              "type": "goal"
+            },
+            {
+              "player": "Jonathan Bamba",
+              "minute": "70'",
+              "type": "goal"
+            },
+            {
+              "player": "Simon Adingra",
+              "minute": "80'",
+              "type": "goal"
+            },
+            {
+              "player": "Evan Guessand",
+              "minute": "90'",
+              "type": "goal"
+            }
+          ],
+          "notes": "GOLEADA HISTÓRICA 9-0. Mayor goleada de Costa de Marfil en eliminatorias mundialistas."
+        },
+        {
+          "matchday": 3,
+          "date": "2024-06-06",
+          "home": {
+            "iso": "ci",
+            "name": "Costa de Marfil",
+            "score": 1
+          },
+          "away": {
+            "iso": "ga",
+            "name": "Gabón",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Stade Olympique d'Ebimpé",
+            "city": "Abiyán",
+            "country_iso": "ci"
+          },
+          "goals_arg": [
+            {
+              "player": "Franck Kessié",
+              "minute": "55'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 4,
+          "date": "2024-06-09",
+          "home": {
+            "iso": "bi",
+            "name": "Burundi",
+            "score": 0
+          },
+          "away": {
+            "iso": "ci",
+            "name": "Costa de Marfil",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Stade Ingange wa Maboke",
+            "city": "Bujumbura",
+            "country_iso": "bi"
+          },
+          "goals_arg": [
+            {
+              "player": "Amad Diallo",
+              "minute": "60'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 5,
+          "date": "2025-09-04",
+          "home": {
+            "iso": "ci",
+            "name": "Costa de Marfil",
+            "score": 1
+          },
+          "away": {
+            "iso": "bi",
+            "name": "Burundi",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Stade Olympique d'Ebimpé",
+            "city": "Abiyán",
+            "country_iso": "ci"
+          },
+          "goals_arg": [
+            {
+              "player": "Sébastien Haller",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 6,
+          "date": "2025-09-08",
+          "home": {
+            "iso": "gm",
+            "name": "Gambia",
+            "score": 0
+          },
+          "away": {
+            "iso": "ci",
+            "name": "Costa de Marfil",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Stade Lat Dior",
+            "city": "Thiès (neutral)",
+            "country_iso": "gm"
+          },
+          "goals_arg": [
+            {
+              "player": "Amad Diallo",
+              "minute": "55'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 7,
+          "date": "2025-09-12",
+          "home": {
+            "iso": "ci",
+            "name": "Costa de Marfil",
+            "score": 4
+          },
+          "away": {
+            "iso": "gm",
+            "name": "Gambia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Stade Olympique d'Ebimpé",
+            "city": "Abiyán",
+            "country_iso": "ci"
+          },
+          "goals_arg": [
+            {
+              "player": "Sébastien Haller",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Amad Diallo",
+              "minute": "44'",
+              "type": "goal"
+            },
+            {
+              "player": "Nicolas Pépé",
+              "minute": "65'",
+              "type": "goal"
+            },
+            {
+              "player": "Yan Diomande",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 8,
+          "date": "2025-10-08",
+          "home": {
+            "iso": "ke",
+            "name": "Kenia",
+            "score": 0
+          },
+          "away": {
+            "iso": "ci",
+            "name": "Costa de Marfil",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Mama Ndingu Stadium",
+            "city": "Nairobi",
+            "country_iso": "ke"
+          },
+          "goals_arg": [],
+          "notes": "Empate sin goles."
+        },
+        {
+          "matchday": 9,
+          "date": "2025-10-11",
+          "home": {
+            "iso": "ga",
+            "name": "Gabón",
+            "score": 0
+          },
+          "away": {
+            "iso": "ci",
+            "name": "Costa de Marfil",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Stade d'Angondjé",
+            "city": "Libreville",
+            "country_iso": "ga"
+          },
+          "goals_arg": [
+            {
+              "player": "Amad Diallo",
+              "minute": "70'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Triunfo decisivo en Libreville que dejó cerca la clasificación."
+        },
+        {
+          "matchday": 10,
+          "date": "2025-10-14",
+          "home": {
+            "iso": "ci",
+            "name": "Costa de Marfil",
+            "score": 3
+          },
+          "away": {
+            "iso": "ke",
+            "name": "Kenia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Stade Olympique d'Ebimpé",
+            "city": "Abiyán",
+            "country_iso": "ci"
+          },
+          "goals_arg": [
+            {
+              "player": "Amad Diallo",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Franck Kessié",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Evan Guessand",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ],
+          "notes": "VICTORIA QUE SELLÓ LA CLASIFICACIÓN al Mundial 2026 como 1º del Grupo F.",
+          "is_decisive_match": true
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Amad Diallo",
+          "goals": 5,
+          "notes": "Goleador del ciclo. Estrella del Manchester United."
+        },
+        {
+          "player": "Sébastien Haller",
+          "goals": 4,
+          "notes": "Veterano '9'. Volvió tras superar cáncer."
+        },
+        {
+          "player": "Nicolas Pépé",
+          "goals": 2
+        },
+        {
+          "player": "Franck Kessié",
+          "goals": 3,
+          "notes": "Capitán y referente."
+        },
+        {
+          "player": "Wilfried Zaha",
+          "goals": 1
+        },
+        {
+          "player": "Jonathan Bamba",
+          "goals": 1
+        },
+        {
+          "player": "Simon Adingra",
+          "goals": 1
+        },
+        {
+          "player": "Evan Guessand",
+          "goals": 2
+        },
+        {
+          "player": "Yan Diomande",
+          "goals": 1
+        },
+        {
+          "player": "Otros (1)",
+          "goals": 1
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_2",
+        "reason": "Goleada histórica 9-0 a Seychelles en Abiyán. 9 goleadores diferentes. Mayor goleada del ciclo."
+      },
+      "worst_match": {
+        "match_ref": "matchday_3",
+        "reason": "Empate 1-1 con Gabón en casa. Único punto perdido en local que casi compromete la clasificación."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_10",
+        "reason": "Triunfo 3-0 sobre Kenia en Abiyán selló matemáticamente la clasificación al Mundial 2026 como 1º del Grupo F."
+      }
+    },
+    "group_2026": {
+      "letter": "E",
+      "label": "Grupo E — junto a Alemania, Curazao y Ecuador",
+      "teams": [
+        {
+          "iso": "de",
+          "name": "Alemania",
+          "fifa_rank": null
+        },
+        {
+          "iso": "ci",
+          "name": "C. de Marfil",
+          "fifa_rank": null,
+          "is_seed": false
+        },
+        {
+          "iso": "cw",
+          "name": "Curazao",
+          "fifa_rank": null
+        },
+        {
+          "iso": "ec",
+          "name": "Ecuador",
+          "fifa_rank": null
+        }
+      ],
+      "notes": "Grupo E confirmado en sorteo del 5 dic 2025. Alemania favorita absoluta. Costa de Marfil pelea con Ecuador por el 2º puesto."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "de",
+          "name": "Alemania"
+        },
+        "date": "2026-06-13",
+        "kickoff_local": "18:00",
+        "venue": {
+          "stadium": "AT&T Stadium",
+          "city": "Dallas",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "ec",
+          "name": "Ecuador"
+        },
+        "date": "2026-06-21",
+        "kickoff_local": "12:00",
+        "venue": {
+          "stadium": "Gillette Stadium",
+          "city": "Boston",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "cw",
+          "name": "Curazao"
+        },
+        "date": "2026-06-28",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "MetLife Stadium",
+          "city": "Nueva York/NJ",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — FIF aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Émerse Faé",
+      "age": 41,
+      "nationality": "Costa de Marfil",
+      "since": "2024-02-01",
+      "previous_teams": [
+        "Costa de Marfil A' (juveniles, asistente 2022-2024)"
+      ],
+      "profile_summary": "Marfileño. Como JUGADOR fue plantel del Mundial 2006 (no jugó). Asumió la selección como INTERINO en plena Copa África 2024 (anfitrión) tras el cese de Jean-Louis Gasset. Lideró remontada épica desde la fase de grupos hasta GANAR EL TÍTULO. Identidad táctica: 4-3-3 con posesión y transiciones, defensa firme. Se ganó el cargo y clasificó al Mundial."
+    },
+    "captain": {
+      "name": "Franck Kessié",
+      "club": "Al-Ahli",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Franck_Yannick_Kessi%C3%A9.jpg/330px-Franck_Yannick_Kessi%C3%A9.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Franck_Kessi%C3%A9"
+      }
+    },
+    "star_player": {
+      "name": "Amad Diallo",
+      "club": "Manchester United",
+      "reason": "Extremo/lateral del Manchester United (23 años). Llegó del Atalanta italiano a los 18. Velocidad explosiva, regate y goles. Su gran temporada 2024-25 lo convirtió en figura del United. 5 GOLES en eliminatoria. Es la gran estrella generacional marfileña, heredero de Drogba.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Manchester_United_v_BSC_Young_Boys%2C_8_December_2021_%2817%29_%28cropped%29.jpg/330px-Manchester_United_v_BSC_Young_Boys%2C_8_December_2021_%2817%29_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Amad_Diallo"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "yahia-fofana",
+        "full_name": "Yahia Fofana",
+        "display_name": "Yahia Fofana",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Angers",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Fofana_asse_sco_2425.png/330px-Fofana_asse_sco_2425.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Yahia_Fofana"
+        }
+      },
+      {
+        "id": "ali-badra-sangare",
+        "full_name": "Ali Badra Sangaré",
+        "display_name": "Sangaré",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "ASEC Mimosas",
+          "country_iso": "ci",
+          "league": "Ligue 1 CI"
+        },
+        "shirt_number_expected": 16,
+        "status": "probable"
+      },
+      {
+        "id": "abdoul-cisse",
+        "full_name": "Abdoul Karim Cissé",
+        "display_name": "Cissé",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Lokomotiv Moscú",
+          "country_iso": "ru",
+          "league": "Premier League RU"
+        },
+        "shirt_number_expected": 23,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Match_cote_d%27ivoir_%2836%29.jpg/330px-Match_cote_d%27ivoir_%2836%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Abdoul_Karim_Ciss%C3%A9"
+        }
+      },
+      {
+        "id": "evan-ndicka",
+        "full_name": "Evan N'Dicka",
+        "display_name": "Evan N'Dicka",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Roma",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Evan_N%E2%80%99Dicka_2020.jpg/330px-Evan_N%E2%80%99Dicka_2020.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Evan_N'Dicka"
+        }
+      },
+      {
+        "id": "emmanuel-agbadou",
+        "full_name": "Emmanuel Agbadou",
+        "display_name": "Agbadou",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Wolverhampton",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Emmanuel_Agbadou.jpg/330px-Emmanuel_Agbadou.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Emmanuel_Agbadou"
+        }
+      },
+      {
+        "id": "odilon-kossounou",
+        "full_name": "Odilon Kossounou",
+        "display_name": "Kossounou",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Atalanta",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 22,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Odilon_Kossounou%2C_2022-07-31%2C_Saisoner%C3%B6ffnung_Bayer_04%2C_Leverkusen_%281%29.jpg/330px-Odilon_Kossounou%2C_2022-07-31%2C_Saisoner%C3%B6ffnung_Bayer_04%2C_Leverkusen_%281%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Odilon_Kossounou"
+        }
+      },
+      {
+        "id": "ousmane-diomande",
+        "full_name": "Ousmane Diomande",
+        "display_name": "Ousmane Diomande",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Sporting CP",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/%C3%89quipe_football_ivoirien_03_%28Ousmane_Diomande%29.jpg/330px-%C3%89quipe_football_ivoirien_03_%28Ousmane_Diomande%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ousmane_Diomand%C3%A9"
+        }
+      },
+      {
+        "id": "willy-boly",
+        "full_name": "Willy Boly",
+        "display_name": "Willy Boly",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Nottingham Forest",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 3,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Shahter-Braga_%287%29.jpg/330px-Shahter-Braga_%287%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Willy_Boly"
+        }
+      },
+      {
+        "id": "ghislain-konan",
+        "full_name": "Ghislain Konan",
+        "display_name": "Ghislain Konan",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Reims",
+          "country_iso": "fr",
+          "league": "Ligue 2"
+        },
+        "shirt_number_expected": 12,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Joueur_ivoirien_02.jpg/330px-Joueur_ivoirien_02.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ghislain_Konan"
+        }
+      },
+      {
+        "id": "guela-doue",
+        "full_name": "Guéla Doué",
+        "display_name": "Guéla Doué",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Strasbourg",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Doue_asse_rcsa_2425.jpg/330px-Doue_asse_rcsa_2425.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Gu%C3%A9la_Dou%C3%A9"
+        }
+      },
+      {
+        "id": "franck-kessie",
+        "full_name": "Franck Kessié",
+        "display_name": "Franck Kessié",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Al-Ahli",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Franck_Yannick_Kessi%C3%A9.jpg/330px-Franck_Yannick_Kessi%C3%A9.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Franck_Kessi%C3%A9"
+        }
+      },
+      {
+        "id": "ibrahim-sangare",
+        "full_name": "Ibrahim Sangaré",
+        "display_name": "Ibrahim Sangaré",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Nottingham Forest",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Ibrahim_Sangar%C3%A9_%282018-05-09%29.jpg/330px-Ibrahim_Sangar%C3%A9_%282018-05-09%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ibrahim_Sangar%C3%A9"
+        }
+      },
+      {
+        "id": "jean-michael-seri",
+        "full_name": "Jean Michaël Seri",
+        "display_name": "Jean Seri",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Hull City",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 8,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Jean_Seri.jpg/330px-Jean_Seri.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jean_Micha%C3%ABl_Seri"
+        }
+      },
+      {
+        "id": "amad-diallo",
+        "full_name": "Amad Diallo",
+        "display_name": "Amad Diallo",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Manchester United",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Manchester_United_v_BSC_Young_Boys%2C_8_December_2021_%2817%29_%28cropped%29.jpg/330px-Manchester_United_v_BSC_Young_Boys%2C_8_December_2021_%2817%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Amad_Diallo"
+        }
+      },
+      {
+        "id": "simon-adingra",
+        "full_name": "Simon Adingra",
+        "display_name": "Simon Adingra",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Brighton",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Simon_Adingra_USG_2023.jpg/330px-Simon_Adingra_USG_2023.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Simon_Adingra"
+        }
+      },
+      {
+        "id": "nicolas-pepe",
+        "full_name": "Nicolas Pépé",
+        "display_name": "Nicolas Pépé",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Villarreal",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 20,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Nicolas_Pepe_LOSC_%28cropped2%29.jpg/330px-Nicolas_Pepe_LOSC_%28cropped2%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Nicolas_P%C3%A9p%C3%A9"
+        }
+      },
+      {
+        "id": "evan-guessand",
+        "full_name": "Evann Guessand",
+        "display_name": "Evann Guessand",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Aston Villa",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Guessand_asse_ogcn_2425.png/330px-Guessand_asse_ogcn_2425.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Evann_Guessand"
+        }
+      },
+      {
+        "id": "sebastien-haller",
+        "full_name": "Sébastien Haller",
+        "display_name": "Sébastien Haller",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Borussia Dortmund",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/S%C3%A9bastien_Haller_2.jpg/330px-S%C3%A9bastien_Haller_2.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/S%C3%A9bastien_Haller"
+        }
+      },
+      {
+        "id": "wilfried-zaha",
+        "full_name": "Wilfried Zaha",
+        "display_name": "Wilfried Zaha",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Charlotte FC",
+          "country_iso": "us",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Wilfried_Zaha_NYCFC_v_Charlotte_20_Sep_2025-022_%28cropped%29.jpg/330px-Wilfried_Zaha_NYCFC_v_Charlotte_20_Sep_2025-022_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Wilfried_Zaha"
+        }
+      },
+      {
+        "id": "jonathan-bamba",
+        "full_name": "Jonathan Bamba",
+        "display_name": "Jonathan Bamba",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Celta de Vigo",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Jonathan_Bamba_Philadelphia_Chicago_10.26.25-002_%28cropped%29.jpg/330px-Jonathan_Bamba_Philadelphia_Chicago_10.26.25-002_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jonathan_Bamba"
+        }
+      },
+      {
+        "id": "yan-diomande",
+        "full_name": "Yan Diomande",
+        "display_name": "Yan Diomande",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "RB Leipzig",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 21,
+        "status": "fixed"
+      },
+      {
+        "id": "max-gradel",
+        "full_name": "Max-Alain Gradel",
+        "display_name": "Max Gradel",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Sivasspor",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 13,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Max_Gradel_9292.JPG/330px-Max_Gradel_9292.JPG",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Max_Gradel"
+        }
+      },
+      {
+        "id": "lassina-traore",
+        "full_name": "Lassina Traoré",
+        "display_name": "Lassina Traoré",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Shakhtar Donetsk",
+          "country_iso": "ua",
+          "league": "Premier League UA"
+        },
+        "shirt_number_expected": 25,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Lassina_Traor%C3%A9.jpg/330px-Lassina_Traor%C3%A9.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Lassina_Traor%C3%A9"
+        }
+      },
+      {
+        "id": "mohamed-diomande",
+        "full_name": "Mohamed Diomandé",
+        "display_name": "Mohamed Diomandé",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Rangers",
+          "country_iso": "gb-sct",
+          "league": "Premiership"
+        },
+        "shirt_number_expected": 26,
+        "status": "probable"
+      },
+      {
+        "id": "bouly-sambou",
+        "full_name": "Bouly Junior Sambou",
+        "display_name": "Bouly Sambou",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Charleroi",
+          "country_iso": "be",
+          "league": "Pro League"
+        },
+        "shirt_number_expected": 24,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/6d/5._Islamic_Solidarity_Games_2021_Konya_7_Bouly_Sambou_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Bouly_Sambou"
+        }
+      },
+      {
+        "id": "ahoua-keita",
+        "full_name": "Ahoua Keita",
+        "display_name": "Ahoua Keita",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Lille",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 15,
+        "status": "bubble"
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-3-3",
+      "players": [
+        {
+          "player_id": "yahia-fofana",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "guela-doue",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "emmanuel-agbadou",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "evan-ndicka",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "ghislain-konan",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "franck-kessie",
+          "position": {
+            "x": 50,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "ibrahim-sangare",
+          "position": {
+            "x": 70,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "amad-diallo",
+          "position": {
+            "x": 30,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "nicolas-pepe",
+          "position": {
+            "x": 85,
+            "y": 25
+          }
+        },
+        {
+          "player_id": "evan-guessand",
+          "position": {
+            "x": 50,
+            "y": 18
+          }
+        },
+        {
+          "player_id": "simon-adingra",
+          "position": {
+            "x": 15,
+            "y": 25
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Faé plantea un 4-3-3 con Kessié pivote, Sangaré medio, Amad Diallo creativo. Ataque con Guessand '9' y Pépé/Adingra extremos. Identidad: posesión, transiciones rápidas, fuerza física. Solidez defensiva con 4 centrales top.",
+      "strengths": [
+        "CAMPEONA COPA ÁFRICA 2024: ganó torneo siendo anfitriona en remontada épica.",
+        "Defensa central élite: N'Dicka (Roma), Agbadou (Wolves), Kossounou (Atalanta), O. Diomande (Sporting CP).",
+        "Amad Diallo: estrella generacional. Manchester United top.",
+        "Mediocampo experimentado: Kessié + Sangaré (Nottingham Forest). Veteranía y físico.",
+        "Profundidad ofensiva: Pépé, Adingra, Zaha, Guessand, Haller, Bamba, Y. Diomande.",
+        "Émerse Faé: DT joven exitoso, identidad clara, conoce el grupo.",
+        "Eliminatoria sólida: 8G 2E 0P, solo 4 GC."
+      ],
+      "weaknesses": [
+        "Ausencia 12 años Mundiales (2018, 2022): poca experiencia mundialista actual.",
+        "Generación Drogba se cerró sin grandes éxitos mundialistas.",
+        "Haller volvió tras cáncer pero ya no es lo mismo (32 años).",
+        "Sin un '10' top mundial: Amad cumple parcialmente.",
+        "Wilfried Zaha en MLS: nivel cuestionado.",
+        "Grupo E con Alemania favorita: pelea con Ecuador por el 2º."
+      ],
+      "x_factor": {
+        "player": "Simon Adingra",
+        "reason": "El extremo del Brighton (23 años) llega en pico futbolístico tras gran temporada. Velocidad explosiva, regate y gol. Mejor jugador joven Copa África 2024. Si Faé le da minutos, puede ser la sensación marfileña."
+      },
+      "prediction_text": "Costa de Marfil llega como 39º del ranking FIFA al Grupo E con Alemania favorita. Pelea con Ecuador por el 2º puesto. Pasar la fase de grupos sería gesta histórica (mejor papel: 1ª ronda en sus 3 Mundiales previos). Generación Amad Diallo con calidad para soñar.",
+      "probabilities": {
+        "advance_groups": 50,
+        "round_of_32": 42,
+        "round_of_16": 22,
+        "quarter_finals": 6,
+        "semi_finals": 1,
+        "final": 0,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Brasil 2014: fase de grupos eliminada (1G 1E 1P). Rusia 2018: NO CLASIFICÓ. Catar 2022: NO CLASIFICÓ. Mundial 2026: 4ª participación tras 12 años. Generación Amad-Adingra-Sangaré busca romper techo histórico (1ª ronda en sus 3 Mundiales)."
+    }
+  },
+  "history": {
+    "first_appearance": 2006,
+    "appearances_count_before_2026": 3,
+    "appearances_count_with_2026": 4,
+    "consecutive_streak_since": 2026,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 0,
+    "best_result": "Fase de grupos en sus 3 participaciones (2006, 2010, 2014)",
+    "aggregate_stats_through_2022": {
+      "played": 9,
+      "won": 3,
+      "drawn": 1,
+      "lost": 5,
+      "goals_for": 13,
+      "goals_against": 14,
+      "win_percentage": 33.3,
+      "notes": "Datos hasta Catar 2022. Costa de Marfil 50º en ranking histórico Mundial."
+    },
+    "by_world_cup": [
+      {
+        "year": 2006,
+        "host": {
+          "countries": [
+            "Alemania"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Henri Michel",
+        "captain": "Didier Drogba",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Aruna Dindane",
+            "goals": 2
+          },
+          {
+            "player": "Bonaventure Kalou",
+            "goals": 1
+          },
+          {
+            "player": "Didier Drogba",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 5,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "DEBUT MUNDIALISTA con Drogba.",
+          "Cayó en grupo de la muerte (Argentina, Países Bajos, Serbia)."
+        ],
+        "narrative": "Costa de Marfil debutó con Drogba en uno de los GRUPOS DE LA MUERTE más duros: Argentina, Países Bajos, Serbia. Cayó con Argentina 1-2 y Países Bajos 1-2. Batió a Serbia 3-2 en último partido (remontada de 0-2 a 3-2). Adiós digno."
+      },
+      {
+        "year": 2010,
+        "host": {
+          "countries": [
+            "Sudáfrica"
+          ],
+          "iso": [
+            "za"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Sven-Göran Eriksson",
+        "captain": "Didier Drogba",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Didier Drogba",
+            "goals": 2
+          },
+          {
+            "player": "Salomon Kalou",
+            "goals": 1
+          },
+          {
+            "player": "Romaric",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Otro grupo de la muerte: Brasil, Portugal, Corea del Norte.",
+          "Drogba lesionado en amistoso vs Japón (codo enyesado)."
+        ],
+        "narrative": "Costa de Marfil tuvo OTRO grupo de la muerte: Brasil, Portugal, Corea del Norte. Drogba se lesionó en amistoso con Japón antes del Mundial (fractura codo). Empató 0-0 con Portugal, cayó con Brasil 1-3 (Drogba marcó), goleó 3-0 a Corea del Norte. Adiós tercer puesto grupo."
+      },
+      {
+        "year": 2014,
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Sabri Lamouchi",
+        "captain": "Didier Drogba",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Wilfried Bony",
+            "goals": 1
+          },
+          {
+            "player": "Gervinho",
+            "goals": 1
+          },
+          {
+            "player": "Yaya Touré",
+            "goals": 1
+          },
+          {
+            "player": "Salomon Kalou",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Pasaba a octavos pero penal en último minuto eliminó.",
+          "ÚLTIMO MUNDIAL DE DROGBA."
+        ],
+        "narrative": "Costa de Marfil estuvo a 3 minutos de pasar a octavos. Empató 1-1 con Grecia con gol de Bony al 74'. Pero PENAL DE GIORGOS SAMARAS al minuto 90+3 dio victoria a Grecia 2-1 y eliminación. ÚLTIMO MUNDIAL DE DROGBA. Generación Drogba-Touré-Kalou-Gervinho cerró sin pasar."
+      }
+    ],
+    "palmares": [
+      {
+        "competition": "Copa Africana de Naciones",
+        "year": 1992,
+        "position": "Campeón",
+        "host": "Senegal"
+      },
+      {
+        "competition": "Copa Africana de Naciones",
+        "year": 2015,
+        "position": "Campeón",
+        "host": "Guinea Ecuatorial"
+      },
+      {
+        "competition": "Copa Africana de Naciones",
+        "year": 2024,
+        "position": "Campeón",
+        "host": "Costa de Marfil"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Didier Drogba",
+      "value": 65,
+      "period": "2002-2014",
+      "notes": "MÁXIMO GOLEADOR HISTÓRICO. Leyenda absoluta del fútbol marfileño."
+    },
+    "most_capped": {
+      "name": "Didier Zokora",
+      "value": 123,
+      "period": "2000-2014",
+      "notes": "Récord histórico."
+    },
+    "youngest_debut": {
+      "name": "Yan Diomande",
+      "value": "17 años",
+      "period": "2024",
+      "notes": "Récord moderno."
+    },
+    "biggest_win": {
+      "result": "9-0",
+      "opponent": "Seychelles",
+      "date": "2023-11-21",
+      "competition": "Eliminatorias Mundial 2026"
+    },
+    "worst_loss": {
+      "result": "0-6",
+      "opponent": "Marruecos",
+      "date": "1979",
+      "competition": "Eliminatorias Copa África"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "Drogba para la guerra civil 2005",
+      "date": "2005-10-08",
+      "opponent": {
+        "iso": "sd",
+        "name": "Sudán"
+      },
+      "score": "3-1",
+      "competition": "Eliminatorias Mundial 2006",
+      "narrative": "Costa de Marfil clasificó a su PRIMER MUNDIAL al ganar a Sudán 3-1. Tras el partido, DIDIER DROGBA hizo en directo en TV el HISTÓRICO LLAMAMIENTO PARA DETENER LA GUERRA CIVIL. Su discurso de rodillas en el vestuario: 'el fútbol más importante que un partido, dejen las armas, hagan elecciones'. La paz se firmó días después. EL FÚTBOL DETUVO UNA GUERRA."
+    },
+    {
+      "title": "Copa África 2024 anfitrión campeón",
+      "date": "2024-02-11",
+      "opponent": {
+        "iso": "ng",
+        "name": "Nigeria"
+      },
+      "score": "2-1",
+      "competition": "Final Copa África 2024",
+      "narrative": "Costa de Marfil ANFITRIONA ganó SU 3ª COPA ÁFRICA en remontada ÉPICA. Tras casi quedar eliminada en grupos (necesitó pasar como 3ª), echó al DT Gasset y pusieron a FAÉ. Remontada hasta final ante Nigeria 2-1 (Kessié 62', Haller 81'). Festejo histórico nacional."
+    },
+    {
+      "title": "El penal de Samaras (Brasil 2014)",
+      "date": "2014-06-24",
+      "opponent": {
+        "iso": "gr",
+        "name": "Grecia"
+      },
+      "score": "1-2",
+      "competition": "Fase de Grupos Mundial 2014",
+      "narrative": "Costa de Marfil estaba a 3 minutos de pasar a octavos. Pero al 90+3, Giorgos Samaras (Grecia) cayó en el área tras toque de Bony. Penal polémico. Samaras anotó. 1-2 Grecia. ÚLTIMO MUNDIAL DE DROGBA. Adiós con drama."
+    },
+    {
+      "title": "El 2-1 a Serbia 2006",
+      "date": "2006-06-21",
+      "opponent": {
+        "iso": "rs",
+        "name": "Serbia"
+      },
+      "score": "3-2",
+      "competition": "Fase de Grupos Mundial 2006",
+      "narrative": "Costa de Marfil REMONTÓ DE 0-2 A 3-2 ante Serbia y Montenegro. Goles de Dindane (38' penal), Dindane (45'), Drogba (69' golazo de tijera). PRIMERA VICTORIA HISTÓRICA marfileña en Mundiales."
+    },
+    {
+      "title": "El 3-0 a Kenia que selló pase 2026",
+      "date": "2025-10-14",
+      "opponent": {
+        "iso": "ke",
+        "name": "Kenia"
+      },
+      "score": "3-0",
+      "competition": "Eliminatorias Mundial 2026",
+      "narrative": "Costa de Marfil goleó 3-0 a Kenia en Abiyán el 14 de octubre. Amad Diallo, Kessié y Guessand marcaron. Selló la clasificación al Mundial 2026 tras 12 años de ausencia."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "DIDIER DROGBA HIZO QUE EL FÚTBOL DETUVIERA UNA GUERRA CIVIL: tras clasificar a Mundial 2006, llamó por TV a deponer las armas. Su discurso de rodillas en el vestuario es legendario. La paz se firmó días después.",
+      "source": "Wikipedia + ESPN",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Costa de Marfil es TRICAMPEONA AFRICANA: 1992 (en Senegal, ante Ghana 11-10 pen), 2015 (ante Ghana 9-8 pen), 2024 (ante Nigeria, anfitrión).",
+      "source": "CAF + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Émerse Faé asumió como DT INTERINO en plena Copa África 2024 y ganó el título. Hito único: DT que asume torneo en marcha y conquista título.",
+      "source": "FIF + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Sébastien Haller (delantero) SUPERÓ UN CÁNCER DE TESTÍCULO entre 2022-2023. Volvió a las canchas y ganó la Copa África 2024 anotando el gol decisivo en la final (81', 2-1 a Nigeria).",
+      "source": "Borussia Dortmund + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Amad Diallo tiene un récord curioso: fichado por el Atalanta a los 18 años por una cifra simbólica, fue revendido al Manchester United meses después por 21M€. Polémica de inversión.",
+      "source": "Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Wilfried Zaha podía elegir entre Inglaterra (donde se formó) y Costa de Marfil. Tras 2 amistosos con Inglaterra, optó por Costa de Marfil definitivamente. FIFA cambió la regla por su caso.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "L'Abidjanaise (himno)",
+      "Allez les Éléphants",
+      "Côte d'Ivoire!"
+    ],
+    "main_rival": {
+      "iso": "gh",
+      "name": "Ghana",
+      "story": "Rivalidad histórica de África Occidental. 2 finales de Copa África decididas por penales (1992 11-10, 2015 9-8). Ambas ganadas por Costa de Marfil con MARCADOR INVERSO."
+    },
+    "home_stadium": {
+      "name": "Stade Olympique Alassane Ouattara (Ebimpé)",
+      "capacity": 60000,
+      "city": "Abiyán"
+    }
+  },
+  "seo": {
+    "meta_title": "Costa de Marfil en el Mundial 2026 | Plantilla y predicciones",
+    "meta_description": "Costa de Marfil Mundial 2026: 26 convocados de Émerse Faé, Amad Diallo, Kessié, Haller. Campeona Copa África 2024 en el Grupo E.",
+    "og_image_url": "/img/og/teams/costa-de-marfil.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Costa de Marfil",
+      "alternateName": [
+        "Les Éléphants",
+        "Los Elefantes"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "CAF"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Émerse Faé"
+      },
+      "url": "https://www.zonamundial.app/selecciones/costa-de-marfil"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-28",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_Costa_de_Marfil",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/15756482/se-definieron-eliminatorias-africa-mundial-2026",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/15935865/mundial-2026-costa-de-marfil-perfil",
+      "https://www.primicias.ec/deportes/mundial-2026/seleccion-futbol-grupos/costa-marfil",
+      "https://www.fif-ci.com",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias cruzadas con CAF + Wikipedia + ESPN. Historia validada con FIFA + Wikipedia + FIF.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "needs_review",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante: pendiente",
+      "Calendario fase grupos 2026: solo confirmado vs Curazao 25/06 Filadelfia",
+      "Base de entrenamiento: FIF aún no anunció",
+      "FIFA Ranking #39: validar mes vigente"
+    ]
+  }
+}

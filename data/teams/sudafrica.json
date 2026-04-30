@@ -1,0 +1,1429 @@
+{
+  "slug": "sudafrica",
+  "iso": "za",
+  "iso3": "RSA",
+  "name_es": "Sudáfrica",
+  "name_en": "South Africa",
+  "name_local": "South Africa",
+  "nicknames": [
+    "Bafana Bafana",
+    "Los Muchachos"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#007749",
+      "secondary": "#FFB81C",
+      "tertiary": "#001489",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Pretoria (administrativa) / Ciudad del Cabo (legislativa) / Bloemfontein (judicial)",
+    "language_official": [
+      "Inglés",
+      "Afrikáans",
+      "Zulú",
+      "Xhosa",
+      "Sesotho",
+      "Tswana",
+      "Sepedi",
+      "Tsonga",
+      "Swazi",
+      "Venda",
+      "Ndebele"
+    ],
+    "population": 60410000,
+    "area_km2": 1221037,
+    "timezone": "Africa/Johannesburg",
+    "continent": "África"
+  },
+  "federation": {
+    "name": "South African Football Association",
+    "abbreviation": "SAFA",
+    "founded": 1991,
+    "headquarters": "Johannesburgo",
+    "website": "https://www.safa.net"
+  },
+  "confederation": "CAF",
+  "fifa_ranking": {
+    "current": 51,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Le Coq Sportif",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/sudafrica.png",
+        "back_url": null,
+        "primary_color": "#FFB81C",
+        "secondary_color": "#007749",
+        "description": "Camiseta amarilla con detalles verdes, los colores históricos de los Bafana Bafana.",
+        "alt_text": "Camiseta titular Sudáfrica Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#007749",
+        "secondary_color": "#FFB81C",
+        "description": "Equipación visitante en verde. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Sudáfrica Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "Los colores amarillo y verde simbolizan la unidad post-apartheid: amarillo del oro de las minas (riqueza nacional) y verde de las llanuras del Veld. Adoptados tras la reincorporación a FIFA en 1992 (la federación había sido excluida en 1961 por el apartheid).",
+        "source": "SAFA + Wikipedia",
+        "verified_at": "2026-04-29",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Sudáfrica clasificó como 1ª del Grupo C CAF con 18 puntos (5G 3E 2P, 15 GF 9 GC), mandando a Nigeria al repechaje. Vivió un susto judicial: la FIFA le restó 3 puntos por alineación indebida de Teboho Mokoena ante Lesoto (la victoria 2-0 fue convertida en 0-3 derrota). Pese a la sanción, los Bafana Bafana se sostuvieron con campañas convincentes ante Lesoto (3-0), Zimbabue (3-1) y Benín (2-1) en casa. Es su 4ª participación mundialista (tras 1998, 2002 y 2010 como anfitriones) y disputará el PARTIDO INAUGURAL del Mundial 2026 ante México el 11 de junio en el Estadio Azteca.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias CAF Mundial 2026 — Grupo C",
+      "format": "Liguilla todos contra todos · 6 equipos (Sudáfrica, Nigeria, Benín, Lesoto, Ruanda, Zimbabue) · 10 partidos",
+      "duration": "Noviembre 2023 — Octubre 2025",
+      "final_position": 1,
+      "total_teams_in_group": 6,
+      "stats": {
+        "played": 10,
+        "won": 5,
+        "drawn": 3,
+        "lost": 2,
+        "goals_for": 15,
+        "goals_against": 9,
+        "goal_difference": 6,
+        "points": 18,
+        "win_percentage": 50,
+        "clean_sheets": 4,
+        "notes": "Stats finales tras sanción FIFA: una de las 2 derrotas es el 0-3 en mesa contra Lesoto (originalmente victoria 2-0) por alineación indebida de Mokoena."
+      },
+      "coach_during_qualifying": "Hugo Broos",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2023-11-17",
+          "home": {
+            "iso": "rw",
+            "name": "Ruanda",
+            "score": 2
+          },
+          "away": {
+            "iso": "za",
+            "name": "Sudáfrica",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Amahoro Stadium",
+            "city": "Kigali",
+            "country_iso": "rw"
+          },
+          "goals_arg": [],
+          "notes": "Inicio adverso de eliminatoria con derrota 0-2 en Kigali."
+        },
+        {
+          "matchday": 2,
+          "date": "2023-11-21",
+          "home": {
+            "iso": "ng",
+            "name": "Nigeria",
+            "score": 1
+          },
+          "away": {
+            "iso": "za",
+            "name": "Sudáfrica",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Godswill Akpabio Stadium",
+            "city": "Uyo",
+            "country_iso": "ng"
+          },
+          "goals_arg": [
+            {
+              "player": "Themba Zwane",
+              "minute": "30'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Punto valioso ante el rival más fuerte del grupo."
+        },
+        {
+          "matchday": 3,
+          "date": "2024-06-07",
+          "home": {
+            "iso": "za",
+            "name": "Sudáfrica",
+            "score": 3
+          },
+          "away": {
+            "iso": "zw",
+            "name": "Zimbabue",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Free State Stadium",
+            "city": "Bloemfontein",
+            "country_iso": "za"
+          },
+          "goals_arg": [
+            {
+              "player": "Lyle Foster",
+              "minute": "21'",
+              "type": "goal"
+            },
+            {
+              "player": "Themba Zwane",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Percy Tau",
+              "minute": "78'",
+              "type": "penalty"
+            }
+          ]
+        },
+        {
+          "matchday": 4,
+          "date": "2024-06-11",
+          "home": {
+            "iso": "za",
+            "name": "Sudáfrica",
+            "score": 0
+          },
+          "away": {
+            "iso": "ls",
+            "name": "Lesoto",
+            "score": 3
+          },
+          "venue": {
+            "stadium": "Peter Mokaba Stadium",
+            "city": "Polokwane",
+            "country_iso": "za"
+          },
+          "goals_arg": [],
+          "notes": "Partido SANCIONADO. Originalmente Sudáfrica venció 2-0 (goles de Tau y Mokoena), pero la FIFA dio el resultado por 0-3 a favor de Lesoto el 25 sept 2025 por alineación indebida de Teboho Mokoena (con tarjeta acumulada que debía cumplir suspensión). Sudáfrica perdió 3 puntos."
+        },
+        {
+          "matchday": 5,
+          "date": "2025-03-21",
+          "home": {
+            "iso": "za",
+            "name": "Sudáfrica",
+            "score": 2
+          },
+          "away": {
+            "iso": "bj",
+            "name": "Benín",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Free State Stadium",
+            "city": "Bloemfontein",
+            "country_iso": "za"
+          },
+          "goals_arg": [
+            {
+              "player": "Lyle Foster",
+              "minute": "32'",
+              "type": "goal"
+            },
+            {
+              "player": "Mohau Nkota",
+              "minute": "67'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 6,
+          "date": "2025-03-25",
+          "home": {
+            "iso": "zw",
+            "name": "Zimbabue",
+            "score": 1
+          },
+          "away": {
+            "iso": "za",
+            "name": "Sudáfrica",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Estadio Mandela National",
+            "city": "Kampala (sede neutral)",
+            "country_iso": "ug"
+          },
+          "goals_arg": [
+            {
+              "player": "Lyle Foster",
+              "minute": "44'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 7,
+          "date": "2025-09-05",
+          "home": {
+            "iso": "za",
+            "name": "Sudáfrica",
+            "score": 3
+          },
+          "away": {
+            "iso": "ls",
+            "name": "Lesoto",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Free State Stadium",
+            "city": "Bloemfontein",
+            "country_iso": "za"
+          },
+          "goals_arg": [
+            {
+              "player": "Lyle Foster",
+              "minute": "29'",
+              "type": "goal"
+            },
+            {
+              "player": "Lyle Foster",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Relebohile Mofokeng",
+              "minute": "82'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Foster con doblete."
+        },
+        {
+          "matchday": 8,
+          "date": "2025-09-09",
+          "home": {
+            "iso": "za",
+            "name": "Sudáfrica",
+            "score": 1
+          },
+          "away": {
+            "iso": "ng",
+            "name": "Nigeria",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Free State Stadium",
+            "city": "Bloemfontein",
+            "country_iso": "za"
+          },
+          "goals_arg": [
+            {
+              "player": "Sphephelo Sithole",
+              "minute": "62'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Empate en duelo directo: con esto Nigeria casi pierde matemáticamente la chance directa."
+        },
+        {
+          "matchday": 9,
+          "date": "2025-10-10",
+          "home": {
+            "iso": "za",
+            "name": "Sudáfrica",
+            "score": 1
+          },
+          "away": {
+            "iso": "rw",
+            "name": "Ruanda",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Mbombela Stadium",
+            "city": "Mbombela",
+            "country_iso": "za"
+          },
+          "goals_arg": [
+            {
+              "player": "Themba Zwane",
+              "minute": "73'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 10,
+          "date": "2025-10-14",
+          "home": {
+            "iso": "bj",
+            "name": "Benín",
+            "score": 0
+          },
+          "away": {
+            "iso": "za",
+            "name": "Sudáfrica",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Stade Charles de Gaulle",
+            "city": "Porto-Novo",
+            "country_iso": "bj"
+          },
+          "goals_arg": [
+            {
+              "player": "Lyle Foster",
+              "minute": "67'",
+              "type": "goal"
+            }
+          ],
+          "notes": "TRIUNFO QUE SELLÓ EL PASE AL MUNDIAL. 1ª clasificación de Sudáfrica desde 2002 (sin contar 2010 como anfitrión). Bafana Bafana de regreso al Mundial.",
+          "is_decisive_match": true
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Lyle Foster",
+          "goals": 5,
+          "notes": "Goleador absoluto. Delantero del Burnley (Premier League)."
+        },
+        {
+          "player": "Themba Zwane",
+          "goals": 3,
+          "notes": "Cerebro de los Bafana, capitán histórico."
+        },
+        {
+          "player": "Percy Tau",
+          "goals": 1
+        },
+        {
+          "player": "Mohau Nkota",
+          "goals": 1
+        },
+        {
+          "player": "Relebohile Mofokeng",
+          "goals": 1
+        },
+        {
+          "player": "Sphephelo Sithole",
+          "goals": 1
+        },
+        {
+          "player": "Otros (3)",
+          "goals": 3
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_3",
+        "reason": "Goleada 3-1 a Zimbabue en Bloemfontein el 7 de junio de 2024. Foster, Zwane y Tau marcaron en una de las mejores actuaciones ofensivas del ciclo."
+      },
+      "worst_match": {
+        "match_ref": "matchday_4",
+        "reason": "El 0-3 SANCIONADO contra Lesoto. Aunque ganaron en el campo 2-0, la FIFA convirtió el resultado en derrota por la alineación indebida de Mokoena. Lección dura: 3 puntos perdidos en mesa por error administrativo."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_10",
+        "reason": "Triunfo 1-0 sobre Benín en Porto-Novo el 14 de octubre de 2025. Gol de Lyle Foster al 67'. Sudáfrica clasificó al Mundial 2026 tras 24 años de ausencia (sin contar 2010 anfitrión). Nigeria quedó relegada al repechaje."
+      }
+    },
+    "group_2026": {
+      "letter": "A",
+      "label": "Grupo A — anfitriona México junto a Sudáfrica, Corea del Sur y Chequia",
+      "teams": [
+        {
+          "iso": "mx",
+          "name": "México",
+          "fifa_rank": null
+        },
+        {
+          "iso": "za",
+          "name": "Sudáfrica",
+          "fifa_rank": null,
+          "is_seed": false
+        },
+        {
+          "iso": "kr",
+          "name": "Corea del Sur",
+          "fifa_rank": null
+        },
+        {
+          "iso": "cz",
+          "name": "Rep. Checa",
+          "fifa_rank": null
+        }
+      ],
+      "notes": "Grupo A confirmado en sorteo del 5 dic 2025. Sudáfrica disputa el PARTIDO INAUGURAL del Mundial el 11 de junio en el Estadio Azteca."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "mx",
+          "name": "México"
+        },
+        "date": "2026-06-11",
+        "kickoff_local": "12:00",
+        "venue": {
+          "stadium": "MetLife Stadium",
+          "city": "Nueva York/NJ",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "kr",
+          "name": "Corea del Sur"
+        },
+        "date": "2026-06-18",
+        "kickoff_local": "15:00",
+        "venue": {
+          "stadium": "MetLife Stadium",
+          "city": "Nueva York/NJ",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "cz",
+          "name": "Rep. Checa"
+        },
+        "date": "2026-06-26",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "MetLife Stadium",
+          "city": "Nueva York/NJ",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — SAFA aún no anunció]",
+      "country": "México (zona CDMX/Guadalajara)",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Hugo Broos",
+      "age": 73,
+      "nationality": "Bélgica",
+      "since": "2021-05-05",
+      "previous_teams": [
+        "Camerún (2016-2017, CAMPEÓN Copa África 2017)",
+        "Anderlecht (1999-2002)",
+        "Brujas (1995-1997)",
+        "Genk (2003-2005)"
+      ],
+      "profile_summary": "Belga, 73 años, gran experiencia africana. CAMPEÓN de la Copa África 2017 con Camerún (final 2-1 a Egipto en Libreville). Asumió Sudáfrica en mayo 2021 tras un período de inestabilidad. Identidad táctica: 4-2-3-1 flexible, orden defensivo y transiciones rápidas por bandas. Logró clasificar a Sudáfrica al Mundial tras 24 años de ausencia (sin contar 2010 anfitrión).",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Hugo_Broos_1.jpg/330px-Hugo_Broos_1.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Hugo_Broos"
+      }
+    },
+    "captain": {
+      "name": "Ronwen Williams",
+      "club": "Mamelodi Sundowns",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Ronwen_Williams_AFCON2025Q_35.jpg/330px-Ronwen_Williams_AFCON2025Q_35.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Ronwen_Williams"
+      }
+    },
+    "star_player": {
+      "name": "Lyle Foster",
+      "club": "Burnley",
+      "reason": "Delantero del Burnley (Premier League). 25 años, llega a su 1er Mundial siendo MÁXIMO GOLEADOR DEL CICLO con 5 dianas en 10 partidos. Potente, técnico, juego asociativo y con olfato de área. La gran esperanza ofensiva de los Bafana en Norteamérica.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Lyle_Foster_29112025_%286%29.jpg/330px-Lyle_Foster_29112025_%286%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Lyle_Foster"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "ronwen-williams",
+        "full_name": "Ronwen Williams",
+        "display_name": "Ronwen Williams",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Mamelodi Sundowns",
+          "country_iso": "za",
+          "league": "PSL"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Ronwen_Williams_AFCON2025Q_35.jpg/330px-Ronwen_Williams_AFCON2025Q_35.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ronwen_Williams"
+        }
+      },
+      {
+        "id": "ricardo-goss",
+        "full_name": "Ricardo Goss",
+        "display_name": "Ricardo Goss",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Siwelele FC",
+          "country_iso": "za",
+          "league": "PSL"
+        },
+        "shirt_number_expected": 12,
+        "status": "probable"
+      },
+      {
+        "id": "renaldo-leaner",
+        "full_name": "Renaldo Leaner",
+        "display_name": "Renaldo Leaner",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Sekhukhune United",
+          "country_iso": "za",
+          "league": "PSL"
+        },
+        "shirt_number_expected": 23,
+        "status": "probable"
+      },
+      {
+        "id": "khuliso-mudau",
+        "full_name": "Khuliso Mudau",
+        "display_name": "Khuliso Mudau",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Mamelodi Sundowns",
+          "country_iso": "za",
+          "league": "PSL"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed"
+      },
+      {
+        "id": "thabang-matuludi",
+        "full_name": "Thabang Matuludi",
+        "display_name": "Thabang Matuludi",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Polokwane City",
+          "country_iso": "za",
+          "league": "PSL"
+        },
+        "shirt_number_expected": 14,
+        "status": "probable"
+      },
+      {
+        "id": "nkosinathi-sibisi",
+        "full_name": "Nkosinathi Sibisi",
+        "display_name": "Nkosinathi Sibisi",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Orlando Pirates",
+          "country_iso": "za",
+          "league": "PSL"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed"
+      },
+      {
+        "id": "siyabonga-ngezana",
+        "full_name": "Siyabonga Ngezana",
+        "display_name": "Siyabonga Ngezana",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Steaua Bucarest",
+          "country_iso": "ro",
+          "league": "Liga I"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Siyabonga_Ngezana_-_3_July_2023_%28cropped%29.jpg/330px-Siyabonga_Ngezana_-_3_July_2023_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Siyabonga_Ngezana"
+        }
+      },
+      {
+        "id": "ime-okon",
+        "full_name": "Ime Okon",
+        "display_name": "Ime Okon",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Hannover 96",
+          "country_iso": "de",
+          "league": "2. Bundesliga"
+        },
+        "shirt_number_expected": 15,
+        "status": "fixed"
+      },
+      {
+        "id": "khulumani-ndamane",
+        "full_name": "Khulumani Ndamane",
+        "display_name": "Khulumani Ndamane",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Mamelodi Sundowns",
+          "country_iso": "za",
+          "league": "PSL"
+        },
+        "shirt_number_expected": 6,
+        "status": "probable"
+      },
+      {
+        "id": "samukelo-kabini",
+        "full_name": "Samukelo Kabini",
+        "display_name": "Samukelo Kabini",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Molde FK",
+          "country_iso": "no",
+          "league": "Eliteserien"
+        },
+        "shirt_number_expected": 22,
+        "status": "probable"
+      },
+      {
+        "id": "aubrey-modiba",
+        "full_name": "Aubrey Modiba",
+        "display_name": "Aubrey Modiba",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Mamelodi Sundowns",
+          "country_iso": "za",
+          "league": "PSL"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Aubrey_Modiba_%28cropped%29.jpg/330px-Aubrey_Modiba_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Aubrey_Modiba"
+        }
+      },
+      {
+        "id": "mbekezeli-mbokazi",
+        "full_name": "Mbekezeli Mbokazi",
+        "display_name": "Mbekezeli Mbokazi",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Chicago Fire",
+          "country_iso": "us",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 13,
+        "status": "probable"
+      },
+      {
+        "id": "teboho-mokoena",
+        "full_name": "Teboho Mokoena",
+        "display_name": "Teboho Mokoena",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Mamelodi Sundowns",
+          "country_iso": "za",
+          "league": "PSL"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed"
+      },
+      {
+        "id": "jayden-adams",
+        "full_name": "Jayden Adams",
+        "display_name": "Jayden Adams",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Mamelodi Sundowns",
+          "country_iso": "za",
+          "league": "PSL"
+        },
+        "shirt_number_expected": 16,
+        "status": "fixed"
+      },
+      {
+        "id": "thalente-mbatha",
+        "full_name": "Thalente Mbatha",
+        "display_name": "Thalente Mbatha",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Orlando Pirates",
+          "country_iso": "za",
+          "league": "PSL"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed"
+      },
+      {
+        "id": "sphephelo-sithole",
+        "full_name": "Sphephelo Sithole",
+        "display_name": "Sphephelo Sithole",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "CD Tondela",
+          "country_iso": "pt",
+          "league": "Liga Portugal"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed"
+      },
+      {
+        "id": "sipho-mbule",
+        "full_name": "Sipho Mbule",
+        "display_name": "Sipho Mbule",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Orlando Pirates",
+          "country_iso": "za",
+          "league": "PSL"
+        },
+        "shirt_number_expected": 19,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Go_Ahead_Eagles_-_Mamelodi_Sundowns_FC_-_53066348370.jpg/330px-Go_Ahead_Eagles_-_Mamelodi_Sundowns_FC_-_53066348370.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Sipho_Mbule"
+        }
+      },
+      {
+        "id": "themba-zwane",
+        "full_name": "Themba Zwane",
+        "display_name": "Themba Zwane",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Mamelodi Sundowns",
+          "country_iso": "za",
+          "league": "PSL"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed"
+      },
+      {
+        "id": "lyle-foster",
+        "full_name": "Lyle Foster",
+        "display_name": "Lyle Foster",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Burnley",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Lyle_Foster_29112025_%286%29.jpg/330px-Lyle_Foster_29112025_%286%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Lyle_Foster"
+        }
+      },
+      {
+        "id": "relebohile-mofokeng",
+        "full_name": "Relebohile Mofokeng",
+        "display_name": "Rele Mofokeng",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Orlando Pirates",
+          "country_iso": "za",
+          "league": "PSL"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed"
+      },
+      {
+        "id": "oswin-appollis",
+        "full_name": "Oswin Appollis",
+        "display_name": "Oswin Appollis",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Orlando Pirates",
+          "country_iso": "za",
+          "league": "PSL"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed"
+      },
+      {
+        "id": "tshepang-moremi",
+        "full_name": "Tshepang Moremi",
+        "display_name": "Tshepang Moremi",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Orlando Pirates",
+          "country_iso": "za",
+          "league": "PSL"
+        },
+        "shirt_number_expected": 20,
+        "status": "probable"
+      },
+      {
+        "id": "evidence-makgopa",
+        "full_name": "Evidence Makgopa",
+        "display_name": "Evidence Makgopa",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Orlando Pirates",
+          "country_iso": "za",
+          "league": "PSL"
+        },
+        "shirt_number_expected": 21,
+        "status": "probable"
+      },
+      {
+        "id": "bongokuhle-hlongwane",
+        "full_name": "Bongokuhle Hlongwane",
+        "display_name": "Bongi Hlongwane",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Minnesota United",
+          "country_iso": "us",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 25,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Bongokuhle_%27Bongi%27_Hlongwane_-_MNUFC_-_Allianz_Field_-_MLS_-_%2852125526845%29.jpg/330px-Bongokuhle_%27Bongi%27_Hlongwane_-_MNUFC_-_Allianz_Field_-_MLS_-_%2852125526845%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Bongokuhle_Hlongwane"
+        }
+      },
+      {
+        "id": "thapelo-maseko",
+        "full_name": "Thapelo Maseko",
+        "display_name": "Thapelo Maseko",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "AEL Limassol",
+          "country_iso": "cy",
+          "league": "Cypriot 1st Division"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Go_Ahead_Eagles_-_Mamelodi_Sundowns_FC_-_53066145739.jpg/330px-Go_Ahead_Eagles_-_Mamelodi_Sundowns_FC_-_53066145739.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Thapelo_Maseko"
+        }
+      },
+      {
+        "id": "percy-tau",
+        "full_name": "Percy Tau",
+        "display_name": "Percy Tau",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Al-Ahly",
+          "country_iso": "eg",
+          "league": "Premier League egipcia"
+        },
+        "shirt_number_expected": 24,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Percy_Tau_in_2019_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Percy_Tau"
+        }
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-2-3-1",
+      "players": [
+        {
+          "player_id": "ronwen-williams",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "khuliso-mudau",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "ime-okon",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "nkosinathi-sibisi",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "aubrey-modiba",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "teboho-mokoena",
+          "position": {
+            "x": 60,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "sphephelo-sithole",
+          "position": {
+            "x": 40,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "relebohile-mofokeng",
+          "position": {
+            "x": 80,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "themba-zwane",
+          "position": {
+            "x": 50,
+            "y": 32
+          }
+        },
+        {
+          "player_id": "oswin-appollis",
+          "position": {
+            "x": 20,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "lyle-foster",
+          "position": {
+            "x": 50,
+            "y": 12
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Hugo Broos plantea un 4-2-3-1 sólido con doble pivote (Mokoena + Sithole), Zwane creativo detrás de Foster. Identidad: orden defensivo, transiciones por bandas (Mofokeng y Appollis), explotar la potencia de Foster en el área. Defensa zonal compacta con Sundowns como base.",
+      "strengths": [
+        "Lyle Foster: '9' top, goleador del ciclo (5), juega Premier League con Burnley.",
+        "Themba Zwane: cerebro veterano, líder técnico, capitán histórico.",
+        "Ronwen Williams: portero seguro, capitán del equipo. Figura por penales.",
+        "Defensa con experiencia europea: Okon (Hannover), Ngezana (Steaua), Kabini (Molde).",
+        "Base sólida del Mamelodi Sundowns (campeón sudafricano repetido).",
+        "Cuerpo técnico experimentado: Broos campeón Copa África 2017 con Camerún."
+      ],
+      "weaknesses": [
+        "GOLEO ESCASO: solo 15 GF en 10 partidos. Mucha dependencia de Foster.",
+        "PUNTO BAJO: 0-3 sancionado vs Lesoto por error administrativo (Mokoena alineado indebidamente).",
+        "Zwane 36 años: edad como factor en torneo largo y alta intensidad.",
+        "Plantel mayoritariamente local: 18 de 26 juegan en PSL sudafricana, poca exposición a fútbol europeo top.",
+        "Falta de delantero suplente top: Foster sin lesionar es indispensable.",
+        "Récord histórico mundialista pobre: nunca pasó de fase de grupos en 3 participaciones."
+      ],
+      "x_factor": {
+        "player": "Relebohile 'Rele' Mofokeng",
+        "reason": "El extremo derecho del Orlando Pirates (21 años) es el JOVEN TALENTO que puede romper la historia. Velocidad, regate, capacidad de gol, considerado heredero natural de Zwane. Si encuentra forma en Norteamérica, Sudáfrica puede ilusionarse."
+      },
+      "prediction_text": "Sudáfrica llega al Grupo A con la responsabilidad del PARTIDO INAUGURAL del Mundial 2026 ante México en el Estadio Azteca. Grupo accesible (Corea, Chequia) abre la puerta a la histórica primera clasificación a octavos. Llegar a octavos sería el TECHO HISTÓRICO de los Bafana Bafana, que en 3 Mundiales nunca lo lograron.",
+      "probabilities": {
+        "advance_groups": 50,
+        "round_of_32": 45,
+        "round_of_16": 20,
+        "quarter_finals": 5,
+        "semi_finals": 1,
+        "final": 0,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: NO CLASIFICÓ. Catar 2022: NO CLASIFICÓ. Mundial 2026: 4ª participación tras 1998, 2002 y 2010 (anfitrión). 1ª clasificación deportiva desde 2002 (24 años de espera)."
+    }
+  },
+  "history": {
+    "first_appearance": 1998,
+    "appearances_count_before_2026": 3,
+    "appearances_count_with_2026": 4,
+    "consecutive_streak_since": 2026,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 0,
+    "best_result": "Fase de grupos (1998, 2002 y 2010 como anfitriones).",
+    "aggregate_stats_through_2022": {
+      "played": 9,
+      "won": 2,
+      "drawn": 4,
+      "lost": 3,
+      "goals_for": 11,
+      "goals_against": 16,
+      "win_percentage": 22.2,
+      "notes": "9 partidos en 3 Mundiales. NUNCA pasó de fase de grupos."
+    },
+    "by_world_cup": [
+      {
+        "year": 1998,
+        "host": {
+          "countries": [
+            "Francia"
+          ],
+          "iso": [
+            "fr"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Philippe Troussier",
+        "captain": "Lucas Radebe",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Benni McCarthy",
+            "goals": 1
+          },
+          {
+            "player": "Shaun Bartlett",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 3,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "DEBUT mundialista absoluto.",
+          "Empató 1-1 con Dinamarca (gol de McCarthy)."
+        ],
+        "narrative": "Sudáfrica debutó en Mundiales en Francia 98, apenas 6 años después de su reincorporación a FIFA tras el apartheid. Quedó en grupo con Francia anfitriona, Dinamarca y Arabia Saudita. Cayó 0-3 con Francia, empató 1-1 con Dinamarca y 2-2 con Arabia. Adiós en grupos."
+      },
+      {
+        "year": 2002,
+        "host": {
+          "countries": [
+            "Corea del Sur",
+            "Japón"
+          ],
+          "iso": [
+            "kr",
+            "jp"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Jomo Sono",
+        "captain": "Lucas Radebe",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Teboho Mokoena (no actual)",
+            "goals": 1
+          },
+          {
+            "player": "Quinton Fortune",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 5,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Empate 2-2 con Paraguay.",
+          "Victoria 1-0 a Eslovenia.",
+          "Eliminada por diferencia de gol con Paraguay."
+        ],
+        "narrative": "Sudáfrica jugó su 2º Mundial en 2002 (Corea/Japón). Empató 2-2 con Paraguay (rivales del 1998). Ganó 1-0 a Eslovenia con gol de Teboho Mokoena (homónimo del actual). Cayó 2-3 con España. Quedó eliminada por diferencia de goles, a un suspiro de octavos."
+      },
+      {
+        "year": 2010,
+        "host": {
+          "countries": [
+            "Sudáfrica"
+          ],
+          "iso": [
+            "za"
+          ]
+        },
+        "result": "Fase de grupos (anfitrión eliminado)",
+        "coach": "Carlos Alberto Parreira",
+        "captain": "Aaron Mokoena",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Siphiwe Tshabalala",
+            "goals": 1
+          },
+          {
+            "player": "Mphela",
+            "goals": 1
+          },
+          {
+            "player": "Khumalo",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 3,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "GOL INAUGURAL DEL MUNDIAL POR TSHABALALA.",
+          "Ganó 2-1 a Francia.",
+          "Empató 1-1 con México (inaugural).",
+          "Adiós en grupos pese a ganar el último partido."
+        ],
+        "narrative": "Sudáfrica organizó el Mundial 2010 (1er Mundial africano). Aunque ganó el último partido 2-1 a Francia (eliminándolos también), no pudo pasar de grupos. SIPHIWE TSHABALALA marcó EL GOL INAUGURAL del Mundial al 55' contra México (1-1) en Soccer City. Fue la 1ª vez en la historia que un anfitrión NO PASÓ de grupos."
+      }
+    ],
+    "palmares": [
+      {
+        "competition": "Copa Africana de Naciones",
+        "year": 1996,
+        "position": "Campeón",
+        "host": "Sudáfrica"
+      },
+      {
+        "competition": "Copa Africana de Naciones",
+        "year": 2024,
+        "position": "Tercero",
+        "host": "Costa de Marfil"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Benni McCarthy",
+      "value": 31,
+      "period": "1997-2012",
+      "notes": "MÁXIMO GOLEADOR HISTÓRICO. Récord vigente. Ex-Porto (campeón Champions 2004)."
+    },
+    "most_capped": {
+      "name": "Aaron Mokoena",
+      "value": 107,
+      "period": "1999-2012",
+      "notes": "Récord histórico. Ex-Portsmouth, capitán Mundial 2010."
+    },
+    "youngest_debut": {
+      "name": "Themba Zwane",
+      "value": "26 años",
+      "period": "2016",
+      "notes": "Tardío debutante por circunstancias personales."
+    },
+    "biggest_win": {
+      "result": "8-0",
+      "opponent": "Australia",
+      "date": "1955",
+      "competition": "Amistoso (era apartheid pre-suspensión FIFA)"
+    },
+    "worst_loss": {
+      "result": "0-7",
+      "opponent": "Brasil",
+      "date": "1996",
+      "competition": "Amistoso"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El gol de Tshabalala que abrió el Mundial 2010",
+      "date": "2010-06-11",
+      "opponent": {
+        "iso": "mx",
+        "name": "México"
+      },
+      "score": "1-1",
+      "competition": "Inaugural Mundial 2010",
+      "narrative": "SIPHIWE TSHABALALA marcó EL GOL INAUGURAL DEL MUNDIAL 2010 al 55' contra México en Soccer City Stadium ante 84.490 personas y mil millones globales en TV. Disparo cruzado al ángulo desde el borde del área con la zurda. UNO DE LOS GOLES MÁS ICÓNICOS DE LA HISTORIA MUNDIALISTA. Sudáfrica empató 1-1 con México y abrió oficialmente el Mundial africano."
+    },
+    {
+      "title": "Subcampeón africano en casa 1996",
+      "date": "1996-02-03",
+      "opponent": {
+        "iso": "tn",
+        "name": "Túnez"
+      },
+      "score": "2-0",
+      "competition": "Final Copa África 1996",
+      "narrative": "Sudáfrica fue CAMPEÓN AFRICANO 1996 en casa (Soccer City, Johannesburgo) ante 80.000 hinchas. Mark Williams marcó doblete (73' y 75'). Lucas Radebe fue capitán histórico. Es EL ÚNICO TÍTULO MAYOR DE BAFANA BAFANA. Nelson Mandela entregó el trofeo personalmente."
+    },
+    {
+      "title": "El 2-1 a Francia eliminando a los franceses 2010",
+      "date": "2010-06-22",
+      "opponent": {
+        "iso": "fr",
+        "name": "Francia"
+      },
+      "score": "2-1",
+      "competition": "Fase de Grupos Mundial 2010",
+      "narrative": "Sudáfrica derrotó 2-1 a Francia en Bloemfontein con goles de Khumalo (20') y Mphela (37'). Era una Francia en crisis (huelga de jugadores, Domenech). Ambos países quedaron eliminados pese a este triunfo histórico."
+    },
+    {
+      "title": "El 1-0 a Benín que selló el Mundial 2026",
+      "date": "2025-10-14",
+      "opponent": {
+        "iso": "bj",
+        "name": "Benín"
+      },
+      "score": "1-0",
+      "competition": "Eliminatorias CAF Mundial 2026",
+      "narrative": "Sudáfrica clasificó al Mundial 2026 con un 1-0 a Benín en Porto-Novo el 14 oct 2025. Gol de Lyle Foster al 67'. 1ª clasificación deportiva al Mundial desde 2002 (24 años de espera). Mandó a Nigeria al repechaje."
+    },
+    {
+      "title": "Tercero Copa África 2024 (renacimiento)",
+      "date": "2024-02-10",
+      "opponent": {
+        "iso": "cd",
+        "name": "RD Congo"
+      },
+      "score": "0-0 (6-5 pen)",
+      "competition": "Tercer Puesto Copa África 2024",
+      "narrative": "Sudáfrica logró el 3er PUESTO en la Copa África 2024 venciendo a RD Congo en penales 6-5 tras 0-0. Ronwen Williams figura del torneo (4 penales atajados en cuartos vs Cabo Verde). Renacimiento de Bafana Bafana bajo Hugo Broos."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "SUDÁFRICA fue SUSPENDIDA de FIFA en 1961 por el apartheid (régimen de segregación racial). Reincorporada en 1992 tras la liberación de Mandela. Su 1er Mundial fue Francia 98, apenas 6 años después.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "El 11 de junio de 2026 Sudáfrica disputará el PARTIDO INAUGURAL del Mundial 2026 ante México anfitriona en el ESTADIO AZTECA. Será el 3er partido inaugural mundialista en el Azteca (también 1970 y 1986).",
+      "source": "FIFA + sorteo 5 dic 2025",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Sudáfrica fue ANFITRIONA del Mundial 2010, el primer Mundial africano. Pero PERDIÓ MATEMÁTICAMENTE en fase de grupos pese a ganar 2-1 a Francia, siendo el 1er anfitrión en NO PASAR de grupos en la historia mundialista.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "EL GOL DE TSHABALALA en la inauguración del Mundial 2010 (vs México) está considerado UNO DE LOS 5 GOLES MÁS ICÓNICOS DE LA HISTORIA MUNDIALISTA. Disparo cruzado al ángulo con la zurda desde el borde del área.",
+      "source": "FIFA + listas históricas",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Sudáfrica fue CAMPEÓN AFRICANO 1996 en casa con Nelson Mandela en la entrega del trofeo. Es su ÚNICO TÍTULO mayor. Mark Williams marcó doblete en final ante Túnez (2-0 en Soccer City).",
+      "source": "CAF + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Hugo Broos, DT actual de Sudáfrica, fue CAMPEÓN DE LA COPA ÁFRICA 2017 con CAMERÚN (final 2-1 a Egipto). Es el 1er belga en ganar un torneo CAF.",
+      "source": "CAF + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "La SANCIÓN DE 3 PUNTOS por alineación indebida de Mokoena vs Lesoto fue UNA DE LAS PEORES MULTAS administrativas en eliminatorias modernas. Sudáfrica ganó el partido en el campo 2-0, pero la FIFA lo dio por 0-3. Sudáfrica clasificó pese a la sanción.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Shosholoza (canción tradicional)",
+      "Sudáfrica! Sudáfrica!",
+      "Diski Dance (baile)"
+    ],
+    "main_rival": {
+      "iso": "ng",
+      "name": "Nigeria",
+      "story": "La rivalidad histórica entre Bafana Bafana (Águilas) y Súper Águilas se intensificó desde los años 90. Han jugado más de 10 veces. Nigeria suele dominar pero Sudáfrica ha logrado victorias clave. La eliminatoria 2026 (Sudáfrica al Mundial, Nigeria al repechaje) renovó el morbo."
+    },
+    "home_stadium": {
+      "name": "FNB Stadium / Soccer City",
+      "capacity": 94736,
+      "city": "Johannesburgo"
+    }
+  },
+  "seo": {
+    "meta_title": "Sudáfrica en el Mundial 2026 | Guía completa Bafana Bafana",
+    "meta_description": "Sudáfrica Mundial 2026: 26 convocados de Hugo Broos, Foster, Zwane, Mofokeng. Inaugural vs México 11 jun en Azteca. Grupo A. 4ª participación.",
+    "og_image_url": "/img/og/teams/sudafrica.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Sudáfrica",
+      "alternateName": [
+        "Bafana Bafana"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "CAF"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Hugo Broos"
+      },
+      "url": "https://www.zonamundial.app/selecciones/sudafrica"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-29",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_de_CAF_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://www.tudn.com/mundial-2026/eliminatorias/eliminatorias-mundial-2026-asi-quedo-tabla-posiciones-africa",
+      "https://www.aljazeera.com/sports/2025/9/8/south-africa-vs-nigeria-world-cup-qualifier-start-team-news-and-lineups",
+      "https://www.thesouthafrican.com/sport/soccer/hugo-broos-names-the-latest-bafana-bafana-squad/",
+      "https://www.sowetan.co.za/sport/2026-03-19-broos-includes-zwane-in-final-bafana-squad-for-panama-world-cup-warm-ups/",
+      "https://www.365scores.com/es/news/sudafrica-mundial-2026-guia-completa/",
+      "https://www.safa.net",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias y plantel cruzados con Aljazeera + TUDN + The South African + Sowetan. Stats consolidadas de LiveScore (10 PJ, 5G 3E 2P, 18 pts, GF 15 GC 9). Sanción Lesoto y datos históricos validados con Wikipedia/FIFA.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "complete",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante Le Coq Sportif: pendiente",
+      "Calendario fase grupos 2026: hora exacta partido inaugural pendiente",
+      "Base de entrenamiento: SAFA aún no anunció",
+      "FIFA Ranking #51: validar mes vigente",
+      "Detalles partidos eliminatoria 5-6: cruzar con FIFA exactos",
+      "Numeración camisetas estimada"
+    ]
+  }
+}

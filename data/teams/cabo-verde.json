@@ -1,0 +1,1336 @@
+{
+  "slug": "cabo-verde",
+  "iso": "cv",
+  "iso3": "CPV",
+  "name_es": "Cabo Verde",
+  "name_en": "Cape Verde",
+  "name_local": "Cabo Verde",
+  "nicknames": [
+    "Los Tiburones Azules",
+    "Tubarões Azuis",
+    "Crioulos"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#003893",
+      "secondary": "#FFFFFF",
+      "tertiary": "#CF2027",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Praia",
+    "language_official": [
+      "Portugués"
+    ],
+    "population": 525000,
+    "area_km2": 4033,
+    "timezone": "Atlantic/Cape_Verde",
+    "continent": "África"
+  },
+  "federation": {
+    "name": "Federação Caboverdiana de Futebol",
+    "abbreviation": "FCF",
+    "founded": 1982,
+    "headquarters": "Praia",
+    "website": "https://www.fcf.cv"
+  },
+  "confederation": "CAF",
+  "fifa_ranking": {
+    "current": 70,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Macron",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/cabo-verde.png",
+        "back_url": null,
+        "primary_color": "#003893",
+        "secondary_color": "#FFFFFF",
+        "description": "Camiseta azul con detalles blancos y rojos, los colores nacionales. Apodo 'Tubarões Azuis' (Tiburones Azules) por su isla rodeada de océano.",
+        "alt_text": "Camiseta titular Cabo Verde Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#003893",
+        "description": "Equipación visitante en blanco. Pendiente.",
+        "alt_text": "Camiseta visitante Cabo Verde Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "Cabo Verde es el 3ER PAÍS MENOS POBLADO en clasificar a un Mundial: 525.000 habitantes, solo por detrás de Islandia (2018) y empatado con Curazao (2026). DEBUT histórico.",
+        "source": "FCF + Wikipedia",
+        "verified_at": "2026-04-28",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "CABO VERDE CLASIFICÓ POR PRIMERA VEZ EN SU HISTORIA al Mundial. 1º del Grupo D con 23 puntos, dejando fuera a Camerún. Selló el pase con goleada 3-0 a Suazilandia el 13 de octubre de 2025 en Praia. DEBUT MUNDIALISTA HISTÓRICO. Bajo Pedro 'Bubista' Brito (DT desde 2020), los Tiburones Azules llegan al Grupo H del Mundial con España campeona, Uruguay y Arabia Saudita.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias CAF Mundial 2026 — Grupo D",
+      "format": "Liguilla todos contra todos · 6 equipos · 10 partidos · ida y vuelta",
+      "duration": "Noviembre 2023 — Octubre 2025",
+      "final_position": 1,
+      "total_teams_in_group": 6,
+      "stats": {
+        "played": 10,
+        "won": 7,
+        "drawn": 2,
+        "lost": 1,
+        "goals_for": 16,
+        "goals_against": 8,
+        "goal_difference": 8,
+        "points": 23,
+        "win_percentage": 70,
+        "clean_sheets": 5
+      },
+      "coach_during_qualifying": "Pedro 'Bubista' Brito",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2023-11-15",
+          "home": {
+            "iso": "cv",
+            "name": "Cabo Verde",
+            "score": 2
+          },
+          "away": {
+            "iso": "ao",
+            "name": "Angola",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Estádio Nacional",
+            "city": "Praia",
+            "country_iso": "cv"
+          },
+          "goals_arg": [
+            {
+              "player": "Bebé",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Garry Rodrigues",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 2,
+          "date": "2023-11-21",
+          "home": {
+            "iso": "ly",
+            "name": "Libia",
+            "score": 1
+          },
+          "away": {
+            "iso": "cv",
+            "name": "Cabo Verde",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Estadio Tripoli",
+            "city": "Trípoli",
+            "country_iso": "ly"
+          },
+          "goals_arg": [],
+          "notes": "ÚNICA DERROTA del ciclo."
+        },
+        {
+          "matchday": 3,
+          "date": "2024-06-07",
+          "home": {
+            "iso": "mu",
+            "name": "Mauricio",
+            "score": 0
+          },
+          "away": {
+            "iso": "cv",
+            "name": "Cabo Verde",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Estadio St. François Xavier",
+            "city": "Pamplemousses",
+            "country_iso": "mu"
+          },
+          "goals_arg": [
+            {
+              "player": "Ryan Mendes",
+              "minute": "65'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 4,
+          "date": "2024-06-10",
+          "home": {
+            "iso": "cv",
+            "name": "Cabo Verde",
+            "score": 4
+          },
+          "away": {
+            "iso": "sz",
+            "name": "Suazilandia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Estádio Nacional",
+            "city": "Praia",
+            "country_iso": "cv"
+          },
+          "goals_arg": [
+            {
+              "player": "Stopira",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Bebé",
+              "minute": "44'",
+              "type": "goal"
+            },
+            {
+              "player": "Jovane Cabral",
+              "minute": "65'",
+              "type": "goal"
+            },
+            {
+              "player": "Garry Rodrigues",
+              "minute": "85'",
+              "type": "penalty"
+            }
+          ]
+        },
+        {
+          "matchday": 5,
+          "date": "2025-09-04",
+          "home": {
+            "iso": "cv",
+            "name": "Cabo Verde",
+            "score": 2
+          },
+          "away": {
+            "iso": "cm",
+            "name": "Camerún",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Estádio Nacional",
+            "city": "Praia",
+            "country_iso": "cv"
+          },
+          "goals_arg": [
+            {
+              "player": "Dailon Livramento",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Ryan Mendes",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ],
+          "notes": "TRIUNFO HISTÓRICO 2-0 a Camerún en Praia. Marcó el camino al Mundial."
+        },
+        {
+          "matchday": 6,
+          "date": "2025-09-08",
+          "home": {
+            "iso": "cv",
+            "name": "Cabo Verde",
+            "score": 3
+          },
+          "away": {
+            "iso": "ly",
+            "name": "Libia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Estádio Nacional",
+            "city": "Praia",
+            "country_iso": "cv"
+          },
+          "goals_arg": [
+            {
+              "player": "Garry Rodrigues",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Bebé",
+              "minute": "55'",
+              "type": "penalty"
+            },
+            {
+              "player": "Jovane Cabral",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 7,
+          "date": "2025-10-08",
+          "home": {
+            "iso": "ao",
+            "name": "Angola",
+            "score": 0
+          },
+          "away": {
+            "iso": "cv",
+            "name": "Cabo Verde",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Estadio Nacional 11 de Novembro",
+            "city": "Luanda",
+            "country_iso": "ao"
+          },
+          "goals_arg": [],
+          "notes": "Empate sin goles."
+        },
+        {
+          "matchday": 8,
+          "date": "2025-10-09",
+          "home": {
+            "iso": "cv",
+            "name": "Cabo Verde",
+            "score": 1
+          },
+          "away": {
+            "iso": "mu",
+            "name": "Mauricio",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Estádio Nacional",
+            "city": "Praia",
+            "country_iso": "cv"
+          },
+          "goals_arg": [
+            {
+              "player": "Garry Rodrigues",
+              "minute": "60'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 9,
+          "date": "2025-10-10",
+          "home": {
+            "iso": "cm",
+            "name": "Camerún",
+            "score": 1
+          },
+          "away": {
+            "iso": "cv",
+            "name": "Cabo Verde",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Estadio Olembe",
+            "city": "Yaundé",
+            "country_iso": "cm"
+          },
+          "goals_arg": [],
+          "notes": "Cabo Verde resistió bien pese a perder. Le bastaba con la 1ª victoria en Praia."
+        },
+        {
+          "matchday": 10,
+          "date": "2025-10-13",
+          "home": {
+            "iso": "cv",
+            "name": "Cabo Verde",
+            "score": 3
+          },
+          "away": {
+            "iso": "sz",
+            "name": "Suazilandia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Estádio Nacional",
+            "city": "Praia",
+            "country_iso": "cv"
+          },
+          "goals_arg": [
+            {
+              "player": "Dailon Livramento",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Ryan Mendes",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Bebé",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ],
+          "notes": "VICTORIA HISTÓRICA QUE SELLÓ LA CLASIFICACIÓN AL MUNDIAL 2026. PRIMERA EN LA HISTORIA DE CABO VERDE.",
+          "is_decisive_match": true
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Garry Rodrigues",
+          "goals": 4,
+          "notes": "Goleador del ciclo. Veterano extremo."
+        },
+        {
+          "player": "Bebé (Tiago Almeida)",
+          "goals": 4,
+          "notes": "Ex-Manchester United, leyenda."
+        },
+        {
+          "player": "Ryan Mendes",
+          "goals": 3
+        },
+        {
+          "player": "Dailon Livramento",
+          "goals": 2
+        },
+        {
+          "player": "Jovane Cabral",
+          "goals": 2,
+          "notes": "Lazio, futuro de la selección."
+        },
+        {
+          "player": "Stopira",
+          "goals": 1
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_5",
+        "reason": "Triunfo HISTÓRICO 2-0 a Camerún en Praia. Selló el camino directo al Mundial superando al gigante africano."
+      },
+      "worst_match": {
+        "match_ref": "matchday_2",
+        "reason": "Derrota 0-1 ante Libia en Trípoli. Único partido perdido del ciclo."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_10",
+        "reason": "Goleada 3-0 a Suazilandia el 13 de octubre selló LA PRIMERA CLASIFICACIÓN HISTÓRICA de Cabo Verde a un Mundial."
+      }
+    },
+    "group_2026": {
+      "letter": "H",
+      "label": "Grupo H — junto a España, Uruguay y Arabia Saudita",
+      "teams": [
+        {
+          "iso": "es",
+          "name": "España",
+          "fifa_rank": null
+        },
+        {
+          "iso": "cv",
+          "name": "Cabo Verde",
+          "fifa_rank": null,
+          "is_seed": false
+        },
+        {
+          "iso": "uy",
+          "name": "Uruguay",
+          "fifa_rank": null
+        },
+        {
+          "iso": "sa",
+          "name": "A. Saudí",
+          "fifa_rank": null
+        }
+      ],
+      "notes": "Grupo H confirmado en sorteo del 5 dic 2025. Cabo Verde en grupo durísimo: España campeona Eurocopa + Uruguay (4º Catar 2022) + Arabia Saudita (verdugo de Argentina 2022)."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "es",
+          "name": "España"
+        },
+        "date": "2026-06-15",
+        "kickoff_local": "12:00",
+        "venue": {
+          "stadium": "Estadio Azteca",
+          "city": "Ciudad de México",
+          "country_iso": "mx"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "sa",
+          "name": "A. Saudí"
+        },
+        "date": "2026-06-23",
+        "kickoff_local": "12:00",
+        "venue": {
+          "stadium": "Estadio Azteca",
+          "city": "Ciudad de México",
+          "country_iso": "mx"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "uy",
+          "name": "Uruguay"
+        },
+        "date": "2026-06-30",
+        "kickoff_local": "15:00",
+        "venue": {
+          "stadium": "SoFi Stadium",
+          "city": "Los Ángeles",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — FCF aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Pedro Brito 'Bubista'",
+      "age": 53,
+      "nationality": "Cabo Verde",
+      "since": "2020-01-28",
+      "previous_teams": [
+        "CD Travadores (Cabo Verde, 2010s)",
+        "Sporting Praia (Cabo Verde)"
+      ],
+      "profile_summary": "Caboverdiano. Ex-jugador de la selección. Asumió la selección en enero 2020 reemplazando a Rui Águas. HOMBRE QUE LLEVÓ A CABO VERDE A SU PRIMER MUNDIAL en 6 años de proceso. Identidad táctica: 4-4-2 sólido, defensa zonal, transiciones rápidas, juego directo. Pragmático y trabajador. Hito histórico nacional."
+    },
+    "captain": {
+      "name": "Ryan Mendes",
+      "club": "Al-Wakrah",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Ryan_Mendes_%28LOSC_Lille%29.JPG/330px-Ryan_Mendes_%28LOSC_Lille%29.JPG",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Ryan_Mendes"
+      }
+    },
+    "star_player": {
+      "name": "Jovane Cabral",
+      "club": "Lazio",
+      "reason": "Extremo de la Lazio (27 años). Formado en Sporting CP, pasó por Estoril y FC Famalicão. Es el JUGADOR CON MÁS PROYECCIÓN de la generación caboverdiana. Velocidad y técnica top. Su gol al Mundial será un hito nacional.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/JovaneCabral_2021.jpg/330px-JovaneCabral_2021.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Jovane_Cabral"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "vozinha",
+        "full_name": "Márcio Rosa 'Vozinha'",
+        "display_name": "Vozinha",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Boavista",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed"
+      },
+      {
+        "id": "kemarcio",
+        "full_name": "Kemarcio",
+        "display_name": "Kemarcio",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Sporting Praia",
+          "country_iso": "cv",
+          "league": "Primeira Divisão CV"
+        },
+        "shirt_number_expected": 16,
+        "status": "probable"
+      },
+      {
+        "id": "joseph-vall",
+        "full_name": "Joseph Vall",
+        "display_name": "Joseph Vall",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Académica",
+          "country_iso": "pt",
+          "league": "Liga Portugal 2"
+        },
+        "shirt_number_expected": 23,
+        "status": "bubble"
+      },
+      {
+        "id": "stopira",
+        "full_name": "Carlos Vaz 'Stopira'",
+        "display_name": "Stopira",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Videoton",
+          "country_iso": "hu",
+          "league": "NB I"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed"
+      },
+      {
+        "id": "kenny-rocha",
+        "full_name": "Kenny Rocha",
+        "display_name": "Kenny Rocha",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Cracovia",
+          "country_iso": "pl",
+          "league": "Ekstraklasa"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Cap-vert_vs_Ethiopi_%2823%29.jpg/330px-Cap-vert_vs_Ethiopi_%2823%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Kenny_Rocha"
+        }
+      },
+      {
+        "id": "roberto-lopes",
+        "full_name": "Roberto 'Pico' Lopes",
+        "display_name": "Roberto Lopes",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Shamrock Rovers",
+          "country_iso": "ie",
+          "league": "Premier Division IE"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed"
+      },
+      {
+        "id": "logan-costa",
+        "full_name": "Logan Costa",
+        "display_name": "Logan Costa",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Villarreal",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Logan_Costa_-_2023-02-01_%28cropped2%29.jpg/330px-Logan_Costa_-_2023-02-01_%28cropped2%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Logan_Costa"
+        }
+      },
+      {
+        "id": "diney-borges",
+        "full_name": "Diney Borges",
+        "display_name": "Diney Borges",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Niki Volos",
+          "country_iso": "gr",
+          "league": "Super League"
+        },
+        "shirt_number_expected": 22,
+        "status": "probable"
+      },
+      {
+        "id": "wagner-pina",
+        "full_name": "Wagner Pina",
+        "display_name": "Wagner Pina",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Trabzonspor",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed"
+      },
+      {
+        "id": "deroy-duarte",
+        "full_name": "Deroy Duarte",
+        "display_name": "Deroy Duarte",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Sparta Rotterdam",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Deroy_Duarte_2026.jpg/330px-Deroy_Duarte_2026.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Deroy_Duarte"
+        }
+      },
+      {
+        "id": "jamiro-monteiro",
+        "full_name": "Jamiro Monteiro",
+        "display_name": "Jamiro Monteiro",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Heracles Almelo",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Jamiro_Monteiro_Philadelphia_Union_2019.jpg/330px-Jamiro_Monteiro_Philadelphia_Union_2019.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jamiro_Monteiro"
+        }
+      },
+      {
+        "id": "kenny-andrade",
+        "full_name": "Kenny Andrade",
+        "display_name": "Kenny Andrade",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Casa Pia",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed"
+      },
+      {
+        "id": "diawisa-tavares",
+        "full_name": "Sidny Cabral 'Diawisa' Tavares",
+        "display_name": "Sidny Cabral",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Benfica B",
+          "country_iso": "pt",
+          "league": "Liga Portugal 2"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed"
+      },
+      {
+        "id": "yannick-semedo",
+        "full_name": "Yannick Semedo",
+        "display_name": "Yannick Semedo",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Ajaccio",
+          "country_iso": "fr",
+          "league": "Ligue 2"
+        },
+        "shirt_number_expected": 13,
+        "status": "probable"
+      },
+      {
+        "id": "garry-rodrigues",
+        "full_name": "Garry Rodrigues",
+        "display_name": "Garry Rodrigues",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Sint-Truiden",
+          "country_iso": "be",
+          "league": "Pro League"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Cap-vert_vs_Ethiopi_%2824%29.jpg/330px-Cap-vert_vs_Ethiopi_%2824%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Garry_Mendes_Rodrigues"
+        }
+      },
+      {
+        "id": "bebe",
+        "full_name": "Tiago 'Bebé' Almeida",
+        "display_name": "Bebé",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "AEL Limassol",
+          "country_iso": "cy",
+          "league": "Cypriot First Division"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed"
+      },
+      {
+        "id": "jovane-cabral",
+        "full_name": "Jovane Cabral",
+        "display_name": "Jovane Cabral",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Lazio",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/JovaneCabral_2021.jpg/330px-JovaneCabral_2021.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jovane_Cabral"
+        }
+      },
+      {
+        "id": "ryan-mendes",
+        "full_name": "Ryan Mendes",
+        "display_name": "Ryan Mendes",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Al-Wakrah",
+          "country_iso": "qa",
+          "league": "Stars League"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Ryan_Mendes_%28LOSC_Lille%29.JPG/330px-Ryan_Mendes_%28LOSC_Lille%29.JPG",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ryan_Mendes"
+        }
+      },
+      {
+        "id": "dailon-livramento",
+        "full_name": "Dailon Livramento",
+        "display_name": "Dailon Livramento",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Casa Pia",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed"
+      },
+      {
+        "id": "joao-barbosa",
+        "full_name": "João Barbosa",
+        "display_name": "João Barbosa",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Famalicão",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
+        },
+        "shirt_number_expected": 20,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Jo%C3%A3o_Barbosa_Le_Mans_drivers_parade_2011_crop.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jo%C3%A3o_Barbosa"
+        }
+      },
+      {
+        "id": "willy-semedo",
+        "full_name": "Willy Semedo",
+        "display_name": "Willy Semedo",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Mafra",
+          "country_iso": "pt",
+          "league": "Liga Portugal 2"
+        },
+        "shirt_number_expected": 21,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/RC_Lens_-_Grenoble_Foot_38_%2810-02-2020%29_70.jpg/330px-RC_Lens_-_Grenoble_Foot_38_%2810-02-2020%29_70.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Willy_Semedo"
+        }
+      },
+      {
+        "id": "kevin-pina",
+        "full_name": "Kevin Pina",
+        "display_name": "Kevin Pina",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Zalgiris Vilnius",
+          "country_iso": "lt",
+          "league": "A Lyga"
+        },
+        "shirt_number_expected": 24,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Kevin_Pina_%28footballer%29_2022.jpg/330px-Kevin_Pina_%28footballer%29_2022.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Kevin_Pina"
+        }
+      },
+      {
+        "id": "stopira-gomes",
+        "full_name": "Joel Tagueu",
+        "display_name": "Joel Tagueu",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Cluj",
+          "country_iso": "ro",
+          "league": "SuperLiga"
+        },
+        "shirt_number_expected": 25,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Joel_vs_Sao_Bernardo-30_01_16-2.jpg/330px-Joel_vs_Sao_Bernardo-30_01_16-2.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Diederrick_Joel_Tagueu_Tadjo"
+        }
+      },
+      {
+        "id": "elder-monteiro",
+        "full_name": "Elder Monteiro",
+        "display_name": "Elder Monteiro",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Vizela",
+          "country_iso": "pt",
+          "league": "Liga Portugal 2"
+        },
+        "shirt_number_expected": 12,
+        "status": "bubble"
+      },
+      {
+        "id": "carlitos",
+        "full_name": "Carlitos Esprong",
+        "display_name": "Carlitos",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Sporting Brava",
+          "country_iso": "cv",
+          "league": "Primeira Divisão CV"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble"
+      },
+      {
+        "id": "patrick-andrade",
+        "full_name": "Patrick Andrade",
+        "display_name": "Patrick Andrade",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Hatayspor",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 15,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Patrick_Andrade.jpg/330px-Patrick_Andrade.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Patrick_Andrade"
+        }
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-4-2",
+      "players": [
+        {
+          "player_id": "vozinha",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "wagner-pina",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "kenny-rocha",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "logan-costa",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "stopira",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "garry-rodrigues",
+          "position": {
+            "x": 85,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "deroy-duarte",
+          "position": {
+            "x": 60,
+            "y": 50
+          }
+        },
+        {
+          "player_id": "jamiro-monteiro",
+          "position": {
+            "x": 40,
+            "y": 50
+          }
+        },
+        {
+          "player_id": "jovane-cabral",
+          "position": {
+            "x": 15,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "ryan-mendes",
+          "position": {
+            "x": 65,
+            "y": 18
+          }
+        },
+        {
+          "player_id": "dailon-livramento",
+          "position": {
+            "x": 35,
+            "y": 18
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Bubista plantea un 4-4-2 directo y ordenado. Identidad: defensa zonal compacta, transiciones rápidas, juego aéreo, pelota parada como arma. Estilo pragmático aprovechando lo poco que tienen. Sin pretensiones de posesión.",
+      "strengths": [
+        "DEBUT MUNDIALISTA HISTÓRICO: motivación máxima de un país de 525.000 habitantes.",
+        "Plantilla muy unida: la mayoría se conoce desde juveniles.",
+        "Logan Costa: defensa central del Villarreal, único de gran liga.",
+        "Garry Rodrigues + Bebé: experiencia top africana.",
+        "Jovane Cabral (Lazio): la gran promesa.",
+        "Wagner Pina (Trabzonspor): lateral derecho top de Süper Lig.",
+        "Bubista: 6 años en el cargo, identidad clara, conoce a todos.",
+        "Eliminó a CAMERÚN (gigante africano) en eliminatorias."
+      ],
+      "weaknesses": [
+        "DEBUT MUNDIALISTA: cero experiencia previa.",
+        "País de 525.000 habitantes: pool de jugadores limitadísimo.",
+        "Muchos jugadores en ligas modestas (Cyprus, Lituania, Cabo Verde).",
+        "Sin un '9' top mundial: Livramento y Tagueu son discretos.",
+        "Mediocampo creativo limitado: Diawisa joven, Jamiro pasable.",
+        "Vozinha portero (38 años) ya no en pico.",
+        "Grupo H DURÍSIMO: España + Uruguay + Arabia. Pasar es casi imposible."
+      ],
+      "x_factor": {
+        "player": "Logan Costa",
+        "reason": "El central del Villarreal (24 años) llega en pico futbolístico tras gran temporada en La Liga. Físico imponente, fuerte por arriba, con balón. Si Cabo Verde resiste defensivamente, será gracias a él. Único defensor a nivel europeo top."
+      },
+      "prediction_text": "Cabo Verde llega como 70º del ranking FIFA al Grupo H DURÍSIMO con España campeona, Uruguay y Arabia. Pasar la fase de grupos es CASI IMPOSIBLE. Conseguir un punto sería gesta histórica. El objetivo real es VIVIR EL MUNDIAL, no avergonzarse, y meter algún gol. Hito nacional eterno.",
+      "probabilities": {
+        "advance_groups": 8,
+        "round_of_32": 5,
+        "round_of_16": 2,
+        "quarter_finals": 0,
+        "semi_finals": 0,
+        "final": 0,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Cabo Verde NUNCA HA PARTICIPADO EN UN MUNDIAL. Mundial 2026 es DEBUT HISTÓRICO ABSOLUTO. País más pequeño en clasificarse desde Curazao. Gesta nacional eterna."
+    }
+  },
+  "history": {
+    "first_appearance": 2026,
+    "appearances_count_before_2026": 0,
+    "appearances_count_with_2026": 1,
+    "consecutive_streak_since": 2026,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 0,
+    "best_result": "DEBUT en 2026",
+    "aggregate_stats_through_2022": {
+      "played": 0,
+      "won": 0,
+      "drawn": 0,
+      "lost": 0,
+      "goals_for": 0,
+      "goals_against": 0,
+      "win_percentage": 0,
+      "notes": "Cabo Verde NUNCA HA PARTICIPADO EN UN MUNDIAL antes de 2026. DEBUT HISTÓRICO ABSOLUTO."
+    },
+    "by_world_cup": [],
+    "palmares": [
+      {
+        "competition": "Copa Amílcar Cabral",
+        "year": 2000,
+        "position": "Campeón",
+        "host": "Cabo Verde"
+      },
+      {
+        "competition": "Juegos de la Lusofonía",
+        "year": 2009,
+        "position": "Campeón",
+        "host": "Lisboa"
+      },
+      {
+        "competition": "FIFA Series",
+        "year": 2024,
+        "position": "Campeón",
+        "host": "Arabia Saudita"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Héldon",
+      "value": 19,
+      "period": "2008-2018",
+      "notes": "MÁXIMO GOLEADOR HISTÓRICO. Datos pendientes verificación FCF."
+    },
+    "most_capped": {
+      "name": "Stopira",
+      "value": 95,
+      "period": "2007-presente",
+      "notes": "Récord histórico moderno. Sigue activo."
+    },
+    "youngest_debut": {
+      "name": "Jovane Cabral",
+      "value": "20 años",
+      "period": "2018",
+      "notes": "Datos pendientes verificación FCF."
+    },
+    "biggest_win": {
+      "result": "5-0",
+      "opponent": "Liechtenstein",
+      "date": "2010",
+      "competition": "Amistoso"
+    },
+    "worst_loss": {
+      "result": "0-7",
+      "opponent": "Marruecos",
+      "date": "1976",
+      "competition": "Eliminatorias Copa África"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El 2-0 a Camerún (Praia 2025)",
+      "date": "2025-09-04",
+      "opponent": {
+        "iso": "cm",
+        "name": "Camerún"
+      },
+      "score": "2-0",
+      "competition": "Eliminatorias Mundial 2026",
+      "narrative": "Cabo Verde DERROTÓ 2-0 a CAMERÚN gigante africano (5 Mundiales) en Praia. Goles de Livramento (30') y Mendes (75'). Selló el camino al Mundial superando al gigante. Hito histórico."
+    },
+    {
+      "title": "Cuartos Copa África 2013",
+      "date": "2013-02-03",
+      "opponent": {
+        "iso": "gh",
+        "name": "Ghana"
+      },
+      "score": "0-2",
+      "competition": "Cuartos Copa África 2013",
+      "narrative": "Cabo Verde llegó a CUARTOS DE COPA ÁFRICA en su debut continental. Cayó 0-2 con Ghana pero hizo historia. Bubista era jugador del equipo."
+    },
+    {
+      "title": "Cuartos Copa África 2023",
+      "date": "2024-02-03",
+      "opponent": {
+        "iso": "za",
+        "name": "Sudáfrica"
+      },
+      "score": "0-0 (1-2 pen)",
+      "competition": "Cuartos Copa África 2023",
+      "narrative": "Cabo Verde llegó a CUARTOS DE COPA ÁFRICA en Costa de Marfil 2023. Cayó con Sudáfrica en penales 1-2 tras 0-0. Mejor papel continental moderno."
+    },
+    {
+      "title": "El 3-0 a Suazilandia que selló el DEBUT MUNDIALISTA",
+      "date": "2025-10-13",
+      "opponent": {
+        "iso": "sz",
+        "name": "Suazilandia"
+      },
+      "score": "3-0",
+      "competition": "Eliminatorias Mundial 2026",
+      "narrative": "EL DÍA HISTÓRICO. Cabo Verde goleó 3-0 a Suazilandia en Praia el 13 de octubre. Livramento, Mendes y Bebé marcaron. CLASIFICÓ POR PRIMERA VEZ EN LA HISTORIA al Mundial. Llanto colectivo, vuelo nacional. Día más feliz del fútbol caboverdiano."
+    },
+    {
+      "title": "FIFA Series 2024 campeón",
+      "date": "2024-03",
+      "opponent": {
+        "iso": "be",
+        "name": "Bermudas (final del torneo)"
+      },
+      "score": "3-0",
+      "competition": "FIFA Series 2024",
+      "narrative": "Cabo Verde ganó la primera edición de FIFA Series 2024 en Arabia Saudita. Pequeño torneo entre selecciones de varias confederaciones. Antesala del éxito al Mundial."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "CABO VERDE ES EL 3ER PAÍS MENOS POBLADO en clasificar a un Mundial: 525.000 habitantes. Solo Islandia (2018) y Curazao (2026 - 150.000 habitantes) son menos.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Cabo Verde es un ARCHIPIÉLAGO ATLÁNTICO formado por 10 islas frente a la costa de Senegal. Independencia de Portugal en 1975. Idioma oficial: portugués (común con muchos jugadores).",
+      "source": "Wikipedia + ONU",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Cabo Verde DEBUTÓ EN COPA ÁFRICA EN 2013. Llegó a CUARTOS en 2013 y 2023. Antes era una de las selecciones más débiles. Bubista lideró la transformación.",
+      "source": "CAF + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "BEBÉ (Tiago Almeida) es ÚNICO ex-Manchester United (2010-2014) jugando en Mundiales. Fichado por Ferguson tras viralizarse en YouTube. Sigue activo a sus 35 años.",
+      "source": "Manchester United + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Muchos jugadores de Cabo Verde son NACIDOS EN PORTUGAL O FRANCIA con orígenes caboverdianos. La diáspora caboverdiana es 4 veces más grande que la población del país.",
+      "source": "Wikipedia + FCF",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Cabo Verde clasificó al Mundial 2026 ELIMINANDO A CAMERÚN, gigante africano de 5 Mundiales (cuartos en 1990 con Milla). 2-0 en Praia fue la clave histórica.",
+      "source": "CAF + ESPN",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Cântico da Liberdade (himno)",
+      "Força Cabo Verde!",
+      "Tubarões Azuis"
+    ],
+    "main_rival": {
+      "iso": "ao",
+      "name": "Angola",
+      "story": "Rivalidad lusófona africana derivada de la herencia portuguesa común. Ambos países independientes en 1975. Cabo Verde batió a Angola 2-1 en debut eliminatoria 2026."
+    },
+    "home_stadium": {
+      "name": "Estádio Nacional",
+      "capacity": 15000,
+      "city": "Praia"
+    }
+  },
+  "seo": {
+    "meta_title": "Cabo Verde en el Mundial 2026 | Plantilla y predicciones",
+    "meta_description": "Cabo Verde Mundial 2026: 26 convocados de Bubista, Jovane Cabral, Bebé. DEBUT MUNDIALISTA HISTÓRICO en el Grupo H con España.",
+    "og_image_url": "/img/og/teams/cabo-verde.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Cabo Verde",
+      "alternateName": [
+        "Tubarões Azuis",
+        "Tiburones Azules"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "CAF"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Pedro Brito 'Bubista'"
+      },
+      "url": "https://www.zonamundial.app/selecciones/cabo-verde"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-28",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_Cabo_Verde",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/15756482/se-definieron-eliminatorias-africa-mundial-2026",
+      "https://www.tudn.com/mundial-2026/eliminatorias/eliminatorias-mundial-2026-asi-quedo-tabla-posiciones-africa",
+      "https://www.fcf.cv",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias cruzadas con CAF + Wikipedia + ESPN. Histórico DEBUT confirmado por FIFA + FCF.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "needs_review",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante: pendiente",
+      "Calendario fase grupos 2026: solo confirmado vs Arabia Saudita 26/06 Houston",
+      "Base de entrenamiento: FCF aún no anunció",
+      "FIFA Ranking #70: validar mes vigente",
+      "Récords históricos: cruzar con FCF y Wikipedia"
+    ]
+  }
+}

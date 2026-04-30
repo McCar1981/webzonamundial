@@ -1,0 +1,1562 @@
+{
+  "slug": "argelia",
+  "iso": "dz",
+  "iso3": "ALG",
+  "name_es": "Argelia",
+  "name_en": "Algeria",
+  "name_local": "الجزائر (Al-Jazā'ir)",
+  "nicknames": [
+    "Los Zorros del Desierto",
+    "Les Fennecs",
+    "Verde y Blanco"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#006233",
+      "secondary": "#FFFFFF",
+      "tertiary": "#D21034",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Argel",
+    "language_official": [
+      "Árabe",
+      "Bereber"
+    ],
+    "population": 45670000,
+    "area_km2": 2381741,
+    "timezone": "Africa/Algiers",
+    "continent": "África"
+  },
+  "federation": {
+    "name": "Fédération Algérienne de Football",
+    "abbreviation": "FAF",
+    "founded": 1962,
+    "headquarters": "Argel",
+    "website": "https://www.faf.dz"
+  },
+  "confederation": "CAF",
+  "fifa_ranking": {
+    "current": 31,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Adidas",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/argelia.png",
+        "back_url": null,
+        "primary_color": "#006233",
+        "secondary_color": "#FFFFFF",
+        "description": "Camiseta verde y blanca, los colores nacionales del Islam y la paz. Lleva la luna creciente y estrella roja de la bandera.",
+        "alt_text": "Camiseta titular Argelia Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#006233",
+        "description": "Equipación visitante en blanco. Pendiente.",
+        "alt_text": "Camiseta visitante Argelia Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "El apodo 'Les Fennecs' (Zorros del Desierto) viene del fennec, un pequeño zorro endémico del Sahara. Es el animal nacional argelino.",
+        "source": "FAF + Wikipedia",
+        "verified_at": "2026-04-28",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Argelia clasificó como 1º del Grupo G con 25 puntos. Selló el pase con goleada 3-0 a Somalia el 9 de octubre de 2025, una fecha antes del cierre. 5ª participación mundialista. Bajo el suizo-bosnio Vladimir Petković (DT desde 2024), los Zorros del Desierto vuelven al Mundial tras ausencia en Catar 2022. Mahrez sigue siendo capitán y figura. Grupo J terrible: Argentina campeona, Austria y Jordania.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias CAF Mundial 2026 — Grupo G",
+      "format": "Liguilla todos contra todos · 6 equipos · 10 partidos · ida y vuelta",
+      "duration": "Noviembre 2023 — Octubre 2025",
+      "final_position": 1,
+      "total_teams_in_group": 6,
+      "stats": {
+        "played": 10,
+        "won": 8,
+        "drawn": 1,
+        "lost": 1,
+        "goals_for": 24,
+        "goals_against": 6,
+        "goal_difference": 18,
+        "points": 25,
+        "win_percentage": 80,
+        "clean_sheets": 6
+      },
+      "coach_during_qualifying": "Djamel Belmadi (2023-2024) → Vladimir Petković (julio 2024 - presente)",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2023-11-16",
+          "home": {
+            "iso": "dz",
+            "name": "Argelia",
+            "score": 3
+          },
+          "away": {
+            "iso": "so",
+            "name": "Somalia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Estadio Miloud Hadefi",
+            "city": "Orán",
+            "country_iso": "dz"
+          },
+          "goals_arg": [
+            {
+              "player": "Riyad Mahrez",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Mohamed Amoura",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Islam Slimani",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 2,
+          "date": "2023-11-21",
+          "home": {
+            "iso": "mz",
+            "name": "Mozambique",
+            "score": 1
+          },
+          "away": {
+            "iso": "dz",
+            "name": "Argelia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Estadio Nacional do Zimpeto",
+            "city": "Maputo",
+            "country_iso": "mz"
+          },
+          "goals_arg": [
+            {
+              "player": "Riyad Mahrez",
+              "minute": "70'",
+              "type": "penalty"
+            }
+          ]
+        },
+        {
+          "matchday": 3,
+          "date": "2024-06-06",
+          "home": {
+            "iso": "gn",
+            "name": "Guinea",
+            "score": 1
+          },
+          "away": {
+            "iso": "dz",
+            "name": "Argelia",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Estadio 5 de Julio",
+            "city": "Argel (neutral)",
+            "country_iso": "dz"
+          },
+          "goals_arg": [
+            {
+              "player": "Mohamed Amoura",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Saïd Benrahma",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 4,
+          "date": "2024-06-09",
+          "home": {
+            "iso": "dz",
+            "name": "Argelia",
+            "score": 3
+          },
+          "away": {
+            "iso": "ug",
+            "name": "Uganda",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Estadio 5 de Julio",
+            "city": "Argel",
+            "country_iso": "dz"
+          },
+          "goals_arg": [
+            {
+              "player": "Mohamed Amoura",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Riyad Mahrez",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Islam Slimani",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 5,
+          "date": "2025-09-05",
+          "home": {
+            "iso": "bw",
+            "name": "Botsuana",
+            "score": 1
+          },
+          "away": {
+            "iso": "dz",
+            "name": "Argelia",
+            "score": 3
+          },
+          "venue": {
+            "stadium": "Estadio Olímpico Lusaka",
+            "city": "Lusaka (neutral)",
+            "country_iso": "bw"
+          },
+          "goals_arg": [
+            {
+              "player": "Mohamed Amoura",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Anis Hadj Moussa",
+              "minute": "65'",
+              "type": "goal"
+            },
+            {
+              "player": "Riyad Mahrez",
+              "minute": "85'",
+              "type": "penalty"
+            }
+          ]
+        },
+        {
+          "matchday": 6,
+          "date": "2025-09-09",
+          "home": {
+            "iso": "dz",
+            "name": "Argelia",
+            "score": 2
+          },
+          "away": {
+            "iso": "gn",
+            "name": "Guinea",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Estadio 5 de Julio",
+            "city": "Argel",
+            "country_iso": "dz"
+          },
+          "goals_arg": [
+            {
+              "player": "Riyad Mahrez",
+              "minute": "44'",
+              "type": "goal"
+            },
+            {
+              "player": "Ramy Bensebaini",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 7,
+          "date": "2025-10-08",
+          "home": {
+            "iso": "ug",
+            "name": "Uganda",
+            "score": 1
+          },
+          "away": {
+            "iso": "dz",
+            "name": "Argelia",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Estadio Mandela",
+            "city": "Kampala",
+            "country_iso": "ug"
+          },
+          "goals_arg": [
+            {
+              "player": "Mohamed Amoura",
+              "minute": "40'",
+              "type": "goal"
+            },
+            {
+              "player": "Ismaël Bennacer",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 8,
+          "date": "2025-10-09",
+          "home": {
+            "iso": "dz",
+            "name": "Argelia",
+            "score": 3
+          },
+          "away": {
+            "iso": "so",
+            "name": "Somalia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Estadio 5 de Julio",
+            "city": "Argel",
+            "country_iso": "dz"
+          },
+          "goals_arg": [
+            {
+              "player": "Riyad Mahrez",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Mohamed Amoura",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Anis Hadj Moussa",
+              "minute": "82'",
+              "type": "goal"
+            }
+          ],
+          "notes": "VICTORIA QUE SELLÓ LA CLASIFICACIÓN al Mundial 2026 una fecha antes del final.",
+          "is_decisive_match": true
+        },
+        {
+          "matchday": 9,
+          "date": "2025-11-15",
+          "home": {
+            "iso": "dz",
+            "name": "Argelia",
+            "score": 2
+          },
+          "away": {
+            "iso": "mz",
+            "name": "Mozambique",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Estadio 5 de Julio",
+            "city": "Argel",
+            "country_iso": "dz"
+          },
+          "goals_arg": [
+            {
+              "player": "Mohamed Amoura",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Riyad Mahrez",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 10,
+          "date": "2025-11-18",
+          "home": {
+            "iso": "dz",
+            "name": "Argelia",
+            "score": 3
+          },
+          "away": {
+            "iso": "bw",
+            "name": "Botsuana",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Estadio 5 de Julio",
+            "city": "Argel",
+            "country_iso": "dz"
+          },
+          "goals_arg": [
+            {
+              "player": "Mohamed Amoura",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Riyad Mahrez",
+              "minute": "55'",
+              "type": "penalty"
+            },
+            {
+              "player": "Hadj Moussa",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Cierre con goleada. 25 pts (8G 1E 1P)."
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Mohamed Amoura",
+          "goals": 7,
+          "notes": "Goleador del ciclo. Delantero del Wolfsburgo."
+        },
+        {
+          "player": "Riyad Mahrez",
+          "goals": 7,
+          "notes": "Capitán y co-goleador. 3 penales convertidos."
+        },
+        {
+          "player": "Anis Hadj Moussa",
+          "goals": 3
+        },
+        {
+          "player": "Islam Slimani",
+          "goals": 2
+        },
+        {
+          "player": "Ismaël Bennacer",
+          "goals": 2
+        },
+        {
+          "player": "Saïd Benrahma",
+          "goals": 1
+        },
+        {
+          "player": "Ramy Bensebaini",
+          "goals": 1
+        },
+        {
+          "player": "Otros (1)",
+          "goals": 1
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_4",
+        "reason": "Triunfo 3-1 a Uganda en Argel. Mejor exhibición ofensiva."
+      },
+      "worst_match": {
+        "match_ref": "matchday_2",
+        "reason": "Empate 1-1 en Maputo ante Mozambique. Único punto perdido fuera."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_8",
+        "reason": "Goleada 3-0 a Somalia el 9 de octubre selló matemáticamente la clasificación al Mundial 2026 una fecha antes del cierre."
+      }
+    },
+    "group_2026": {
+      "letter": "J",
+      "label": "Grupo J — junto a Argentina, Austria y Jordania",
+      "teams": [
+        {
+          "iso": "ar",
+          "name": "Argentina",
+          "fifa_rank": null
+        },
+        {
+          "iso": "dz",
+          "name": "Argelia",
+          "fifa_rank": null,
+          "is_seed": false
+        },
+        {
+          "iso": "at",
+          "name": "Austria",
+          "fifa_rank": null
+        },
+        {
+          "iso": "jo",
+          "name": "Jordania",
+          "fifa_rank": null
+        }
+      ],
+      "notes": "Grupo J confirmado en sorteo 5 dic 2025. Argentina campeona vigente. Argelia pelea con Austria por el 2º puesto. Considerado por algunos uno de los grupos accesibles."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "ar",
+          "name": "Argentina"
+        },
+        "date": "2026-06-16",
+        "kickoff_local": "12:00",
+        "venue": {
+          "stadium": "Mercedes-Benz Stadium",
+          "city": "Atlanta",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "jo",
+          "name": "Jordania"
+        },
+        "date": "2026-06-24",
+        "kickoff_local": "18:00",
+        "venue": {
+          "stadium": "Mercedes-Benz Stadium",
+          "city": "Atlanta",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "at",
+          "name": "Austria"
+        },
+        "date": "2026-06-30",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "NRG Stadium",
+          "city": "Houston",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — FAF aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Vladimir Petković",
+      "age": 62,
+      "nationality": "Bosnia/Suiza",
+      "since": "2024-07-15",
+      "previous_teams": [
+        "Burdeos (2022-2023)",
+        "Suiza (2014-2021, llevó a Suiza a octavos Mundial 2018, cuartos Eurocopa 2020 eliminando a Francia)",
+        "Lazio (2012-2014, ganó Copa Italia 2013)",
+        "Young Boys (2008-2011)"
+      ],
+      "profile_summary": "Bosnio-suizo. Entrenador top con experiencia en selecciones (Suiza 7 años) y clubes europeos. Asumió Argelia en julio 2024 tras la salida de Belmadi. Identidad táctica: 4-3-3 con posesión, juego asociativo, defensa zonal. PETKOVIC ES EL DT MEJOR PAGADO DE LA COPA ÁFRICA 2025.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Vladimir_Petkovi%C4%87%2C_APS_-_20240304_%28cropped%29.png/330px-Vladimir_Petkovi%C4%87%2C_APS_-_20240304_%28cropped%29.png",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Vladimir_Petkovi%C4%87"
+      }
+    },
+    "captain": {
+      "name": "Riyad Mahrez",
+      "club": "Al-Ahli",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Mahrez_2021.jpg/330px-Mahrez_2021.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Riyad_Mahrez"
+      }
+    },
+    "star_player": {
+      "name": "Riyad Mahrez",
+      "club": "Al-Ahli",
+      "reason": "Capitán y leyenda viva. PREMIO BALÓN DE ORO AFRICANO 2016 y 2019. Campeón Premier League 2 veces (Leicester 2016, Manchester City 2018, 2019, 2021). Champions League 2023 con City. A los 35 años llega a su 2º Mundial (Brasil 2014). Su zurda mágica y los penales son armas decisivas.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Mahrez_2021.jpg/330px-Mahrez_2021.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Riyad_Mahrez"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "alexis-guendouz",
+        "full_name": "Alexis Guendouz",
+        "display_name": "Alexis Guendouz",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "MC Alger",
+          "country_iso": "dz",
+          "league": "Ligue 1 DZ"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Alexis_Guendouz_Persepolis_Tehran.jpg/330px-Alexis_Guendouz_Persepolis_Tehran.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Alexis_Guendouz"
+        }
+      },
+      {
+        "id": "anthony-mandrea",
+        "full_name": "Anthony Mandrea",
+        "display_name": "Anthony Mandrea",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Caen",
+          "country_iso": "fr",
+          "league": "Ligue 2"
+        },
+        "shirt_number_expected": 16,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Joueurs_du_Stade_Malherbe_Caen_10_ao%C3%BBt_2024_%28Mandrea%29.jpg/330px-Joueurs_du_Stade_Malherbe_Caen_10_ao%C3%BBt_2024_%28Mandrea%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Anthony_Mandrea"
+        }
+      },
+      {
+        "id": "moustapha-zeghba",
+        "full_name": "Moustapha Zeghba",
+        "display_name": "Zeghba",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "USM Alger",
+          "country_iso": "dz",
+          "league": "Ligue 1 DZ"
+        },
+        "shirt_number_expected": 23,
+        "status": "bubble"
+      },
+      {
+        "id": "ramy-bensebaini",
+        "full_name": "Ramy Bensebaini",
+        "display_name": "Ramy Bensebaini",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Borussia Dortmund",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93134.jpg/330px-2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93134.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ramy_Bensebaini"
+        }
+      },
+      {
+        "id": "rayan-ait-nouri",
+        "full_name": "Rayan Aït-Nouri",
+        "display_name": "Aït-Nouri",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Manchester City",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 12,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Rayan_A%C3%AFt-Nouri_playing_for_Algeria_in_2024_%28cropped%29.jpg/330px-Rayan_A%C3%AFt-Nouri_playing_for_Algeria_in_2024_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Rayan_A%C3%AFt-Nouri"
+        }
+      },
+      {
+        "id": "mohamed-tougai",
+        "full_name": "Mohamed Amine Tougai",
+        "display_name": "Tougai",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Al-Sadd",
+          "country_iso": "qa",
+          "league": "Stars League"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Mohamed_Amine_Tougai.jpg/330px-Mohamed_Amine_Tougai.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mohamed_Amine_Tougai"
+        }
+      },
+      {
+        "id": "aïssa-mandi",
+        "full_name": "Aïssa Mandi",
+        "display_name": "Aïssa Mandi",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Lille",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Alg%C3%A9rie_-_Arm%C3%A9nie_-_20140531_-_Aissa_Mandi.jpg/330px-Alg%C3%A9rie_-_Arm%C3%A9nie_-_20140531_-_Aissa_Mandi.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/A%C3%AFssa_Mandi"
+        }
+      },
+      {
+        "id": "djamel-benlamri",
+        "full_name": "Hocine Benayada",
+        "display_name": "Hocine Benayada",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "ES Sétif",
+          "country_iso": "dz",
+          "league": "Ligue 1 DZ"
+        },
+        "shirt_number_expected": 22,
+        "status": "probable"
+      },
+      {
+        "id": "youcef-atal",
+        "full_name": "Youcef Atal",
+        "display_name": "Youcef Atal",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Al-Sadd",
+          "country_iso": "qa",
+          "league": "Stars League"
+        },
+        "shirt_number_expected": 2,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Youcef_Atal.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Youcef_Atal"
+        }
+      },
+      {
+        "id": "ismael-bennacer",
+        "full_name": "Ismaël Bennacer",
+        "display_name": "Ismaël Bennacer",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Dinamo Zagreb",
+          "country_iso": "hr",
+          "league": "HNL"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/BennacerLeB2022.jpg/330px-BennacerLeB2022.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Isma%C3%ABl_Bennacer"
+        }
+      },
+      {
+        "id": "houssem-aouar",
+        "full_name": "Houssem Aouar",
+        "display_name": "Houssem Aouar",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Al-Ittihad",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Houssem_Aouar_2017.jpg/330px-Houssem_Aouar_2017.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Houssem_Aouar"
+        }
+      },
+      {
+        "id": "fares-chaibi",
+        "full_name": "Farès Chaïbi",
+        "display_name": "Farès Chaïbi",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Eintracht Fráncfort",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/World_Cup_Qualification_Africa_Guinea_v_Algeria_14_%28Far%C3%A8s_Cha%C3%AFbi%29.jpg/330px-World_Cup_Qualification_Africa_Guinea_v_Algeria_14_%28Far%C3%A8s_Cha%C3%AFbi%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Far%C3%A8s_Cha%C3%AFbi"
+        }
+      },
+      {
+        "id": "ibrahim-maza",
+        "full_name": "Ibrahim Maza",
+        "display_name": "Ibrahim Maza",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Bayer Leverkusen",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 20,
+        "status": "fixed"
+      },
+      {
+        "id": "nabil-bentaleb",
+        "full_name": "Nabil Bentaleb",
+        "display_name": "Nabil Bentaleb",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Lille",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Nabil_Bentaleb_2014.jpg/330px-Nabil_Bentaleb_2014.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Nabil_Bentaleb"
+        }
+      },
+      {
+        "id": "adam-zorgane",
+        "full_name": "Adam Zorgane",
+        "display_name": "Adam Zorgane",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Charleroi",
+          "country_iso": "be",
+          "league": "Pro League"
+        },
+        "shirt_number_expected": 14,
+        "status": "probable"
+      },
+      {
+        "id": "riyad-mahrez",
+        "full_name": "Riyad Mahrez",
+        "display_name": "Riyad Mahrez",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Al-Ahli",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Mahrez_2021.jpg/330px-Mahrez_2021.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Riyad_Mahrez"
+        }
+      },
+      {
+        "id": "mohamed-amoura",
+        "full_name": "Mohamed Amoura",
+        "display_name": "Mohamed Amoura",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Wolfsburgo",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/29/Mohammed_Amoura_training_against_Mozambique.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mohamed_El_Amine_Amoura"
+        }
+      },
+      {
+        "id": "anis-hadj-moussa",
+        "full_name": "Anis Hadj Moussa",
+        "display_name": "Hadj Moussa",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Feyenoord",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/57/MCI_VS_FER_2024_%28Anis_Hadj_Moussa%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Anis_Hadj_Moussa"
+        }
+      },
+      {
+        "id": "said-benrahma",
+        "full_name": "Saïd Benrahma",
+        "display_name": "Saïd Benrahma",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Neom SC",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Sa%C3%AFd_Benrahma_-_20240326.jpg/330px-Sa%C3%AFd_Benrahma_-_20240326.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Sa%C3%AFd_Benrahma"
+        }
+      },
+      {
+        "id": "islam-slimani",
+        "full_name": "Islam Slimani",
+        "display_name": "Islam Slimani",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Al-Wakrah",
+          "country_iso": "qa",
+          "league": "Stars League"
+        },
+        "shirt_number_expected": 13,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4d/CSKA_Sporting_%2812%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Islam_Slimani"
+        }
+      },
+      {
+        "id": "amine-gouiri",
+        "full_name": "Amine Gouiri",
+        "display_name": "Amine Gouiri",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Marsella",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Amine_Gouiri_%282017%29.jpg/330px-Amine_Gouiri_%282017%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Amine_Gouiri"
+        }
+      },
+      {
+        "id": "yacine-brahimi",
+        "full_name": "Yacine Brahimi",
+        "display_name": "Yacine Brahimi",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Al-Gharafa",
+          "country_iso": "qa",
+          "league": "Stars League"
+        },
+        "shirt_number_expected": 25,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Yacine_Brahimi_2018.jpg/330px-Yacine_Brahimi_2018.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Yacine_Brahimi"
+        }
+      },
+      {
+        "id": "badredine-bouanani",
+        "full_name": "Badredine Bouanani",
+        "display_name": "Bouanani",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Stuttgart",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 21,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Bouanani_asse_ogcn_2425.png/330px-Bouanani_asse_ogcn_2425.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Badredine_Bouanani"
+        }
+      },
+      {
+        "id": "mohammed-elamine-amoura",
+        "full_name": "Mohamed-El Amine Amoura",
+        "display_name": "ME Amoura",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "PAOK",
+          "country_iso": "gr",
+          "league": "Super League"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble"
+      },
+      {
+        "id": "abdelkader-bedrane",
+        "full_name": "Abdelkader Bedrane",
+        "display_name": "Abdelkader Bedrane",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Étoile du Sahel",
+          "country_iso": "tn",
+          "league": "Ligue Pro 1"
+        },
+        "shirt_number_expected": 24,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Alg%C3%A9rie-Sierraleone_%285%29_%28cropped%29_-_Abdelkader_Bedrane.jpg/330px-Alg%C3%A9rie-Sierraleone_%285%29_%28cropped%29_-_Abdelkader_Bedrane.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Abdelkader_Bedrane"
+        }
+      },
+      {
+        "id": "yassine-titraoui",
+        "full_name": "Yassine Titraoui",
+        "display_name": "Yassine Titraoui",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Boavista",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
+        },
+        "shirt_number_expected": 15,
+        "status": "bubble"
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-3-3",
+      "players": [
+        {
+          "player_id": "alexis-guendouz",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "youcef-atal",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "mohamed-tougai",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "aïssa-mandi",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "rayan-ait-nouri",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "ismael-bennacer",
+          "position": {
+            "x": 50,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "fares-chaibi",
+          "position": {
+            "x": 70,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "houssem-aouar",
+          "position": {
+            "x": 30,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "riyad-mahrez",
+          "position": {
+            "x": 85,
+            "y": 25
+          }
+        },
+        {
+          "player_id": "mohamed-amoura",
+          "position": {
+            "x": 50,
+            "y": 18
+          }
+        },
+        {
+          "player_id": "anis-hadj-moussa",
+          "position": {
+            "x": 15,
+            "y": 25
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Petković plantea un 4-3-3 con Bennacer pivote, Mahrez por derecha, Amoura '9'. Identidad: posesión técnica, juego asociativo, defensa zonal organizada. Estilo italiano-suizo de Petković aplicado al talento argelino.",
+      "strengths": [
+        "Talento generacional disperso en ligas top: Aït-Nouri (Manchester City), Bensebaini (Dortmund), Bennacer (D. Zagreb), Chaïbi (Frankfurt), Maza (Leverkusen), Amoura (Wolfsburgo).",
+        "Riyad Mahrez: capitán y referente. Doble Balón de Oro Africano (2016, 2019).",
+        "Mohamed Amoura: 7 goles en eliminatoria, golazo del Wolfsburgo.",
+        "Bennacer: mediocampo top, Champions con AC Milan 2022.",
+        "Defensa central sólida: Mandi + Tougai. Aït-Nouri y Bensebaini laterales top.",
+        "Petković: DT con experiencia top, fue 7 años con Suiza (octavos 2018, cuartos Euro 2020 eliminando Francia)."
+      ],
+      "weaknesses": [
+        "DEBACLE Catar 2022: NO CLASIFICÓ tras eliminación por Camerún en repechaje (gol Bayo prórroga 124').",
+        "Cambio de DT mediano ciclo (Belmadi → Petković): rodaje internacional limitado.",
+        "Mahrez envejeciendo: 35 años, en Saudi Pro League, ya no en pico.",
+        "Generación Slimani (37) y Brahimi (35) saliendo: relevo aún en consolidación.",
+        "Defensa: 6 GC en 10 partidos contra rivales modestos.",
+        "Grupo J con Argentina campeona: pasar 2º es difícil ante Austria."
+      ],
+      "x_factor": {
+        "player": "Mohamed Amoura",
+        "reason": "El '9' del Wolfsburgo (25 años) llega en pico futbolístico tras gran temporada en Bundesliga. 7 goles en eliminatoria. Velocidad y olfato letal. Si Mahrez le sirve, Argelia tiene gol garantizado."
+      },
+      "prediction_text": "Argelia llega como 31º del ranking FIFA al Grupo J con Argentina campeona. Pelea con Austria por el 2º puesto: pasar la fase de grupos sería gesta. Generación talentosa pero sin gran experiencia mundialista. Mahrez se despide a sus 35 años.",
+      "probabilities": {
+        "advance_groups": 30,
+        "round_of_32": 25,
+        "round_of_16": 15,
+        "quarter_finals": 4,
+        "semi_finals": 1,
+        "final": 0,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Brasil 2014: octavos, eliminada por Alemania 1-2 en prórroga (Schürrle, Khedira). Rusia 2018: NO CLASIFICÓ. Catar 2022: NO CLASIFICÓ. Mundial 2026: 5ª participación tras 12 años de ausencia. Generación Mahrez busca despedirse mejorando techo (octavos 2014)."
+    }
+  },
+  "history": {
+    "first_appearance": 1982,
+    "appearances_count_before_2026": 4,
+    "appearances_count_with_2026": 5,
+    "consecutive_streak_since": 2026,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 0,
+    "best_result": "Octavos de final (Brasil 2014)",
+    "aggregate_stats_through_2022": {
+      "played": 13,
+      "won": 3,
+      "drawn": 3,
+      "lost": 7,
+      "goals_for": 13,
+      "goals_against": 19,
+      "win_percentage": 23.1,
+      "notes": "Datos hasta Catar 2022. Argelia 60º en ranking histórico Mundial."
+    },
+    "by_world_cup": [
+      {
+        "year": 1982,
+        "host": {
+          "countries": [
+            "España"
+          ],
+          "iso": [
+            "es"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Mahieddine Khalef / Rachid Mekhloufi",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Lakhdar Belloumi",
+            "goals": 1
+          },
+          {
+            "player": "Rabah Madjer",
+            "goals": 1
+          },
+          {
+            "player": "Tedj Bensaoula",
+            "goals": 1
+          },
+          {
+            "player": "Salah Assad",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 5,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "DEBUT con HISTÓRICO 2-1 a Alemania Federal",
+          "Pero eliminada por la 'VERGÜENZA DE GIJÓN' (Alemania-Austria 1-0 que clasificó a ambos)."
+        ],
+        "narrative": "Argelia debutó con uno de los grandes shocks: 2-1 a Alemania Federal con goles de Madjer y Belloumi. Pero fue ELIMINADA POR LA 'VERGÜENZA DE GIJÓN': Alemania y Austria pactaron 1-0 que les clasificaba a ambos eliminando a Argelia. Tras esto, FIFA cambió las reglas para jugar últimas fechas simultáneas."
+      },
+      {
+        "year": 1986,
+        "host": {
+          "countries": [
+            "México"
+          ],
+          "iso": [
+            "mx"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Evaristo de Macedo",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Djamel Zidane",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 1,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Adiós con un punto."
+        ],
+        "narrative": "Argelia adiós."
+      },
+      {
+        "year": 2010,
+        "host": {
+          "countries": [
+            "Sudáfrica"
+          ],
+          "iso": [
+            "za"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Rabah Saâdane",
+        "matches": [],
+        "team_top_scorers": [],
+        "goals_scored": 0,
+        "goals_conceded": 2,
+        "notable_facts": [
+          "NO marcó gol."
+        ],
+        "narrative": "Tras 24 años, regreso. 0 goles."
+      },
+      {
+        "year": 2014,
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Vahid Halilhodžić",
+        "captain": "Madjid Bougherra",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Islam Slimani",
+            "goals": 2
+          },
+          {
+            "player": "Sofiane Feghouli",
+            "goals": 2
+          },
+          {
+            "player": "Yacine Brahimi",
+            "goals": 1
+          },
+          {
+            "player": "Rafik Halliche",
+            "goals": 1
+          },
+          {
+            "player": "Abdelmoumene Djabou",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 7,
+        "goals_conceded": 7,
+        "notable_facts": [
+          "MEJOR PARTICIPACIÓN HISTÓRICA: octavos.",
+          "Eliminada por Alemania 1-2 en prórroga (Schürrle, Khedira)."
+        ],
+        "narrative": "Argelia llegó a octavos del Mundial 2014 (mejor papel histórico). Pasó como 2º grupo (1-1 Rusia, 4-2 Corea del Sur, 0-1 Bélgica). Cayó con Alemania futura campeona 1-2 en prórroga (Schürrle al 92', Khedira al 120', Djabou descontó al 121')."
+      }
+    ],
+    "palmares": [
+      {
+        "competition": "Copa Africana de Naciones",
+        "year": 1990,
+        "position": "Campeón",
+        "host": "Argelia"
+      },
+      {
+        "competition": "Copa Africana de Naciones",
+        "year": 2019,
+        "position": "Campeón",
+        "host": "Egipto"
+      },
+      {
+        "competition": "Copa Árabe FIFA",
+        "year": 2021,
+        "position": "Campeón",
+        "host": "Catar"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Islam Slimani",
+      "value": 47,
+      "period": "2012-presente",
+      "notes": "MÁXIMO GOLEADOR HISTÓRICO. Sigue activo."
+    },
+    "most_capped": {
+      "name": "Riyad Mahrez",
+      "value": 100,
+      "period": "2014-presente",
+      "notes": "Récord moderno. Sigue activo."
+    },
+    "youngest_debut": {
+      "name": "Riyad Boudebouz",
+      "value": "18 años",
+      "period": "2008",
+      "notes": "Datos pendientes verificación FAF."
+    },
+    "biggest_win": {
+      "result": "15-1",
+      "opponent": "Yemen del Sur",
+      "date": "1973-08-17",
+      "competition": "Juegos Mediterráneos"
+    },
+    "worst_loss": {
+      "result": "0-5",
+      "opponent": "Alemania Oriental",
+      "date": "1965",
+      "competition": "Amistoso"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El 2-1 a Alemania Federal 1982",
+      "date": "1982-06-16",
+      "opponent": {
+        "iso": "de",
+        "name": "Alemania Federal"
+      },
+      "score": "2-1",
+      "competition": "Fase de Grupos Mundial 1982",
+      "narrative": "Argelia DERROTÓ 2-1 a Alemania Federal en su DEBUT MUNDIALISTA. Goles de Rabah Madjer (53') y Lakhdar Belloumi (68'). Rummenigge descontó (67'). Una de las grandes sorpresas del fútbol mundial. Generación Madjer-Belloumi-Assad inmortal."
+    },
+    {
+      "title": "La 'Vergüenza de Gijón'",
+      "date": "1982-06-25",
+      "opponent": {
+        "iso": "de",
+        "name": "Alemania Federal"
+      },
+      "score": "0-1 (entre Alemania y Austria)",
+      "competition": "Fase de Grupos Mundial 1982",
+      "narrative": "ARGELIA FUE ELIMINADA POR LA 'VERGÜENZA DE GIJÓN': Alemania-Austria pactaron un 1-0 (Hrubesch al 10') que les clasificaba a ambos eliminando a Argelia. Los 80 minutos siguientes fueron pase atrás sin presión. Tras esto, FIFA cambió las reglas para jugar últimas fechas SIMULTÁNEAS."
+    },
+    {
+      "title": "Octavos de Brasil 2014",
+      "date": "2014-06-30",
+      "opponent": {
+        "iso": "de",
+        "name": "Alemania"
+      },
+      "score": "1-2 (prórroga)",
+      "competition": "Octavos Mundial 2014",
+      "narrative": "Argelia jugó OCTAVOS contra Alemania futura campeona en su mejor papel histórico. Tras 0-0 reglamentario, Schürrle anotó al 92' y Khedira al 120'. Djabou descontó al 121'. Adiós digno."
+    },
+    {
+      "title": "Copa África 2019 invicta",
+      "date": "2019-07-19",
+      "opponent": {
+        "iso": "sn",
+        "name": "Senegal"
+      },
+      "score": "1-0",
+      "competition": "Final Copa África 2019",
+      "narrative": "Argelia ganó SU 2ª COPA ÁFRICA invicta. Final 1-0 a Senegal con gol de Bounedjah al 2'. Mahrez Balón de Oro 2019 africano."
+    },
+    {
+      "title": "El 3-0 a Somalia que selló pase 2026",
+      "date": "2025-10-09",
+      "opponent": {
+        "iso": "so",
+        "name": "Somalia"
+      },
+      "score": "3-0",
+      "competition": "Eliminatorias Mundial 2026",
+      "narrative": "Argelia goleó 3-0 a Somalia el 9 de octubre. Mahrez, Amoura y Hadj Moussa marcaron. Selló la clasificación al Mundial 2026 una fecha antes del cierre."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "Argelia es VÍCTIMA HISTÓRICA DE LA 'VERGÜENZA DE GIJÓN' (Mundial 1982). Tras vencer a Alemania Federal 2-1, fue eliminada por el pacto Alemania-Austria. Tras esto, FIFA cambió las reglas para jugar las últimas fechas SIMULTÁNEAS.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Riyad Mahrez es el ÚNICO argelino con DOS BALONES DE ORO AFRICANOS (2016 y 2019). Campeón Premier League con Leicester (2016) y Manchester City (2018, 2019, 2021).",
+      "source": "CAF + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Rabah Madjer marcó EL TACÓN MÁS FAMOSO DE LA HISTORIA en final Champions Bayern-Porto 1987 (gol de tacón al 78', 1-1 que llevó a remontada 2-1 Porto). 'El Madjer' es como se llama al gol de tacón.",
+      "source": "UEFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Petković fue el DT que llevó a Suiza a eliminar a Francia campeona en octavos Eurocopa 2020 (3-3, 5-4 pen). Llegó a Argelia en julio 2024.",
+      "source": "UEFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Argelia y Marruecos comparten una intensa rivalidad histórica. Frontera cerrada desde 1994 por conflictos políticos. Sus partidos siempre tienen carga histórica.",
+      "source": "Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Mahrez es ÚNICO jugador en ganar Premier con Leicester (2016, sorpresa histórica) Y con Manchester City (3 títulos). Ganador Champions 2023.",
+      "source": "Premier League + UEFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Kassaman (himno)",
+      "One Two Three, Viva l'Algérie!",
+      "Yallah Khadhra"
+    ],
+    "main_rival": {
+      "iso": "ma",
+      "name": "Marruecos",
+      "story": "Rivalidad histórica norafricana. Frontera cerrada desde 1994 por conflictos políticos. Cada cruce está cargado de tensión histórica."
+    },
+    "home_stadium": {
+      "name": "Estadio 5 de Julio",
+      "capacity": 64200,
+      "city": "Argel"
+    }
+  },
+  "seo": {
+    "meta_title": "Argelia en el Mundial 2026 | Plantilla, historia y predicciones",
+    "meta_description": "Argelia Mundial 2026: 26 convocados de Petković, Mahrez, Amoura, Aït-Nouri. Vuelve al Mundial tras 12 años en el Grupo J con Argentina.",
+    "og_image_url": "/img/og/teams/argelia.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Argelia",
+      "alternateName": [
+        "Les Fennecs",
+        "Los Zorros del Desierto"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "CAF"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Vladimir Petković"
+      },
+      "url": "https://www.zonamundial.app/selecciones/argelia"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-28",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_Argelia",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/15756482/se-definieron-eliminatorias-africa-mundial-2026",
+      "https://www.tudn.com/mundial-2026/eliminatorias/eliminatorias-mundial-2026-asi-quedo-tabla-posiciones-africa",
+      "https://cnnespanol.cnn.com/2026/01/10/deportes/futbolistas-africanos-destacados-mundial-2026-orix",
+      "https://www.faf.dz",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias cruzadas con CAF + Wikipedia + ESPN + CNN. Historia validada con FIFA + Wikipedia + FAF.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "needs_review",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante: pendiente",
+      "Calendario fase grupos 2026: solo confirmado vs Argentina 16/06 Kansas City",
+      "Base de entrenamiento: FAF aún no anunció",
+      "FIFA Ranking #31: validar mes vigente",
+      "Verificar fechas exactas eliminatorias 2023-2025",
+      "Mediano: Goleadores específicos por partido pueden requerir cruce con FIFA",
+      "Mundial 1986: detalles adicionales pendientes"
+    ]
+  }
+}

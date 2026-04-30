@@ -1,0 +1,1515 @@
+{
+  "slug": "ghana",
+  "iso": "gh",
+  "iso3": "GHA",
+  "name_es": "Ghana",
+  "name_en": "Ghana",
+  "name_local": "Ghana",
+  "nicknames": [
+    "Las Estrellas Negras",
+    "Black Stars"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#CE1126",
+      "secondary": "#FCD116",
+      "tertiary": "#006B3F",
+      "contrast_text": "#000000"
+    }
+  },
+  "country": {
+    "capital": "Accra",
+    "language_official": [
+      "Inglés"
+    ],
+    "population": 33480000,
+    "area_km2": 238533,
+    "timezone": "Africa/Accra",
+    "continent": "África"
+  },
+  "federation": {
+    "name": "Ghana Football Association",
+    "abbreviation": "GFA",
+    "founded": 1957,
+    "headquarters": "Accra",
+    "website": "https://www.ghanafa.org"
+  },
+  "confederation": "CAF",
+  "fifa_ranking": {
+    "current": 73,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Puma",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/ghana.png",
+        "back_url": null,
+        "primary_color": "#FCD116",
+        "secondary_color": "#CE1126",
+        "description": "Camiseta blanca con detalles rojos, amarillos y verdes (los colores panafricanos). Estrella negra en el pecho, símbolo de África libre.",
+        "alt_text": "Camiseta titular Ghana Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#CE1126",
+        "secondary_color": "#FCD116",
+        "description": "Equipación visitante en rojo. Pendiente.",
+        "alt_text": "Camiseta visitante Ghana Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "El apodo 'Black Stars' (Estrellas Negras) viene de la línea naviera Black Star Line de Marcus Garvey, símbolo del nacionalismo afro-americano. Ghana fue el primer país subsahariano en independizarse (1957).",
+        "source": "GFA + Wikipedia",
+        "verified_at": "2026-04-28",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Ghana clasificó como 1º del Grupo I tras vencer 1-0 a Comores en última fecha. 5ª PARTICIPACIÓN MUNDIALISTA (5 de las últimas 6 ediciones, ausente solo en 2018). Bajo Otto Addo (regresó al cargo en marzo 2024 tras Catar 2022), las Estrellas Negras llegan al Grupo L del Mundial: Inglaterra favorita, Croacia y Panamá. Generación Kudus-Semenyo-Williams busca repetir las hazañas de 2010 (cuartos).",
+    "qualifying": {
+      "confederation_round": "Eliminatorias CAF Mundial 2026 — Grupo I",
+      "format": "Liguilla todos contra todos · 5 equipos · 8 partidos · ida y vuelta",
+      "duration": "Noviembre 2023 — Octubre 2025",
+      "final_position": 1,
+      "total_teams_in_group": 5,
+      "stats": {
+        "played": 8,
+        "won": 6,
+        "drawn": 1,
+        "lost": 1,
+        "goals_for": 14,
+        "goals_against": 6,
+        "goal_difference": 8,
+        "points": 19,
+        "win_percentage": 75,
+        "clean_sheets": 4,
+        "notes": "Grupo I tuvo solo 5 equipos por la retirada de Eritrea. Madagascar 2º quedó fuera."
+      },
+      "coach_during_qualifying": "Chris Hughton (sept 2022-feb 2024) → Otto Addo (marzo 2024 - presente)",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2023-11-17",
+          "home": {
+            "iso": "gh",
+            "name": "Ghana",
+            "score": 1
+          },
+          "away": {
+            "iso": "mg",
+            "name": "Madagascar",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Baba Yara Stadium",
+            "city": "Kumasi",
+            "country_iso": "gh"
+          },
+          "goals_arg": [
+            {
+              "player": "Mohammed Kudus",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 2,
+          "date": "2023-11-21",
+          "home": {
+            "iso": "km",
+            "name": "Comores",
+            "score": 0
+          },
+          "away": {
+            "iso": "gh",
+            "name": "Ghana",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Stade Saïd Mohamed Cheikh",
+            "city": "Mitsamiouli",
+            "country_iso": "km"
+          },
+          "goals_arg": [
+            {
+              "player": "Jordan Ayew",
+              "minute": "55'",
+              "type": "penalty"
+            }
+          ]
+        },
+        {
+          "matchday": 3,
+          "date": "2024-06-07",
+          "home": {
+            "iso": "gh",
+            "name": "Ghana",
+            "score": 1
+          },
+          "away": {
+            "iso": "ml",
+            "name": "Malí",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Baba Yara Stadium",
+            "city": "Kumasi",
+            "country_iso": "gh"
+          },
+          "goals_arg": [
+            {
+              "player": "Jordan Ayew",
+              "minute": "44'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 4,
+          "date": "2024-06-10",
+          "home": {
+            "iso": "cf",
+            "name": "Rep. Centroafricana",
+            "score": 0
+          },
+          "away": {
+            "iso": "gh",
+            "name": "Ghana",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Estádio Nacional",
+            "city": "Berekum (neutral)",
+            "country_iso": "cf"
+          },
+          "goals_arg": [
+            {
+              "player": "Iñaki Williams",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 5,
+          "date": "2025-09-04",
+          "home": {
+            "iso": "gh",
+            "name": "Ghana",
+            "score": 5
+          },
+          "away": {
+            "iso": "cf",
+            "name": "Rep. Centroafricana",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Baba Yara Stadium",
+            "city": "Kumasi",
+            "country_iso": "gh"
+          },
+          "goals_arg": [
+            {
+              "player": "Antoine Semenyo",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Jordan Ayew",
+              "minute": "30'",
+              "type": "penalty"
+            },
+            {
+              "player": "Iñaki Williams",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Mohammed Kudus",
+              "minute": "70'",
+              "type": "goal"
+            },
+            {
+              "player": "Kamaldeen Sulemana",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 6,
+          "date": "2025-09-09",
+          "home": {
+            "iso": "ml",
+            "name": "Malí",
+            "score": 0
+          },
+          "away": {
+            "iso": "gh",
+            "name": "Ghana",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Stade du 26 Mars",
+            "city": "Bamako",
+            "country_iso": "ml"
+          },
+          "goals_arg": [
+            {
+              "player": "Antoine Semenyo",
+              "minute": "60'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 7,
+          "date": "2025-10-09",
+          "home": {
+            "iso": "mg",
+            "name": "Madagascar",
+            "score": 4
+          },
+          "away": {
+            "iso": "gh",
+            "name": "Ghana",
+            "score": 3
+          },
+          "venue": {
+            "stadium": "Mahamasina Stadium",
+            "city": "Antananarivo",
+            "country_iso": "mg"
+          },
+          "goals_arg": [
+            {
+              "player": "Mohammed Kudus",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Antoine Semenyo",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Jordan Ayew",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ],
+          "notes": "DERROTA SHOCK 4-3 ante Madagascar. Único traspié del ciclo."
+        },
+        {
+          "matchday": 8,
+          "date": "2025-10-14",
+          "home": {
+            "iso": "gh",
+            "name": "Ghana",
+            "score": 1
+          },
+          "away": {
+            "iso": "km",
+            "name": "Comores",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Baba Yara Stadium",
+            "city": "Kumasi",
+            "country_iso": "gh"
+          },
+          "goals_arg": [
+            {
+              "player": "Jordan Ayew",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ],
+          "notes": "VICTORIA QUE SELLÓ LA CLASIFICACIÓN al Mundial 2026 como 1º del Grupo I.",
+          "is_decisive_match": true
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Jordan Ayew",
+          "goals": 4,
+          "notes": "Capitán y referente histórico. Hijo de Abedi Pelé."
+        },
+        {
+          "player": "Mohammed Kudus",
+          "goals": 3,
+          "notes": "Estrella del Tottenham."
+        },
+        {
+          "player": "Antoine Semenyo",
+          "goals": 3,
+          "notes": "Goleador del Bournemouth/Manchester City."
+        },
+        {
+          "player": "Iñaki Williams",
+          "goals": 2
+        },
+        {
+          "player": "Kamaldeen Sulemana",
+          "goals": 1
+        },
+        {
+          "player": "Otros (1)",
+          "goals": 1
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_5",
+        "reason": "Goleada 5-0 a República Centroafricana en Kumasi. 5 goleadores diferentes. Mejor exhibición ofensiva."
+      },
+      "worst_match": {
+        "match_ref": "matchday_7",
+        "reason": "Derrota SHOCK 3-4 ante Madagascar en Antananarivo. Pesadilla defensiva, único traspié del ciclo."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_8",
+        "reason": "Triunfo 1-0 sobre Comores en Kumasi selló la clasificación al Mundial 2026 como 1º del Grupo I."
+      }
+    },
+    "group_2026": {
+      "letter": "L",
+      "label": "Grupo L — junto a Inglaterra, Croacia y Panamá",
+      "teams": [
+        {
+          "iso": "gb-eng",
+          "name": "Inglaterra",
+          "fifa_rank": null
+        },
+        {
+          "iso": "hr",
+          "name": "Croacia",
+          "fifa_rank": null
+        },
+        {
+          "iso": "gh",
+          "name": "Ghana",
+          "fifa_rank": null,
+          "is_seed": false
+        },
+        {
+          "iso": "pa",
+          "name": "Panamá",
+          "fifa_rank": null
+        }
+      ],
+      "notes": "Grupo L confirmado en sorteo del 5 dic 2025. Inglaterra y Croacia (subcampeona 2018, semifinalista 2022) muy superiores. Ghana pelea con Panamá por el 3º."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "pa",
+          "name": "Panamá"
+        },
+        "date": "2026-06-17",
+        "kickoff_local": "15:00",
+        "venue": {
+          "stadium": "Arrowhead Stadium",
+          "city": "Kansas City",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "hr",
+          "name": "Croacia"
+        },
+        "date": "2026-06-25",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "AT&T Stadium",
+          "city": "Dallas",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "gb-eng",
+          "name": "Inglaterra"
+        },
+        "date": "2026-06-30",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "AT&T Stadium",
+          "city": "Dallas",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — GFA aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Otto Addo",
+      "age": 50,
+      "nationality": "Ghana/Alemania",
+      "since": "2024-03-15",
+      "previous_teams": [
+        "Ghana (2022, 1ª etapa, llevó al Mundial Catar 2022 fase de grupos)",
+        "Borussia Dortmund (asistente, 2019-2024)"
+      ],
+      "profile_summary": "Germano-ghanés. Nacido en Hamburgo (Alemania) de padres ghaneses. REGRESÓ AL CARGO en marzo 2024 tras la salida de Chris Hughton (mal Copa África 2023, Ghana eliminada en grupos). Fue DT en Catar 2022 (fase de grupos eliminada). Como asistente del Borussia Dortmund 5 años (2019-2024). Identidad táctica: 4-3-3 con posesión, transiciones rápidas, juego asociativo. Gran formador de jóvenes.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Otto_Addo_%E2%80%93_Tag_der_Legenden_2016_01.jpg/330px-Otto_Addo_%E2%80%93_Tag_der_Legenden_2016_01.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Otto_Addo"
+      }
+    },
+    "captain": {
+      "name": "Jordan Ayew",
+      "club": "Leicester",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Jordan_Ayew_24082024_%282%29.jpg/330px-Jordan_Ayew_24082024_%282%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Jordan_Ayew"
+      }
+    },
+    "star_player": {
+      "name": "Mohammed Kudus",
+      "club": "Tottenham",
+      "reason": "Mediocampista/extremo del Tottenham (25 años). Llegó en verano 2025 desde West Ham por 65M£. Antes en Ajax. Técnica top, regate, gol y asistencia. ESTRELLA GENERACIONAL absoluta de Ghana. Puede jugar de '10', extremo o falso 9. Reemplazo natural del legado Essien-Gyan-Asamoah.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/GAE_-_Ajax_-_52788309814_%28Mohammed_Kudus%29.jpg/330px-GAE_-_Ajax_-_52788309814_%28Mohammed_Kudus%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Mohammed_Kudus"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "lawrence-ati-zigi",
+        "full_name": "Lawrence Ati-Zigi",
+        "display_name": "Ati-Zigi",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "St. Gallen",
+          "country_iso": "ch",
+          "league": "Super League"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/FC_Red_Bull_Salzburg_gegen_SK_Sturm_Graz_%289._April_2017%29_02.jpg/330px-FC_Red_Bull_Salzburg_gegen_SK_Sturm_Graz_%289._April_2017%29_02.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Lawrence_Ati-Zigi"
+        }
+      },
+      {
+        "id": "richard-ofori",
+        "full_name": "Richard Ofori",
+        "display_name": "Richard Ofori",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Orlando Pirates",
+          "country_iso": "za",
+          "league": "Premier Soccer League"
+        },
+        "shirt_number_expected": 16,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Richard_Ofori.jpeg/330px-Richard_Ofori.jpeg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Richard_Ofori_Antwi"
+        }
+      },
+      {
+        "id": "joseph-wollacott",
+        "full_name": "Joseph Wollacott",
+        "display_name": "Joseph Wollacott",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Salford City",
+          "country_iso": "gb-eng",
+          "league": "League Two"
+        },
+        "shirt_number_expected": 23,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Ghana_%281%29_%28cropped_Jojo_Wollacott%29.jpg/330px-Ghana_%281%29_%28cropped_Jojo_Wollacott%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Jojo_Wollacott"
+        }
+      },
+      {
+        "id": "alidu-seidu",
+        "full_name": "Alidu Seidu",
+        "display_name": "Alidu Seidu",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Rennes",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed"
+      },
+      {
+        "id": "mohammed-salisu",
+        "full_name": "Mohammed Salisu",
+        "display_name": "Salisu",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Mónaco",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Salisu_asse_asm_2425.png/330px-Salisu_asse_asm_2425.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mohammed_Salisu"
+        }
+      },
+      {
+        "id": "alexander-djiku",
+        "full_name": "Alexander Djiku",
+        "display_name": "Djiku",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Fenerbahce",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Ghana_%281%29_%28cropped_Alexander_Djiku%29.jpg/330px-Ghana_%281%29_%28cropped_Alexander_Djiku%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Alexander_Djiku"
+        }
+      },
+      {
+        "id": "abdul-mumin",
+        "full_name": "Abdul Mumin",
+        "display_name": "Abdul Mumin",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Rayo Vallecano",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed"
+      },
+      {
+        "id": "gideon-mensah",
+        "full_name": "Gideon Mensah",
+        "display_name": "Gideon Mensah",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Auxerre",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mensah_aja_asse_2425.png/330px-Mensah_aja_asse_2425.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Gideon_Mensah"
+        }
+      },
+      {
+        "id": "baba-rahman",
+        "full_name": "Baba Rahman",
+        "display_name": "Baba Rahman",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "PAOK",
+          "country_iso": "gr",
+          "league": "Super League"
+        },
+        "shirt_number_expected": 12,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/12AbdulRahmanBaba.jpg/330px-12AbdulRahmanBaba.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Baba_Rahman"
+        }
+      },
+      {
+        "id": "thomas-partey",
+        "full_name": "Thomas Partey",
+        "display_name": "Thomas Partey",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Villarreal",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/42/ATL-Madrid-Lokomotiv001-Thomas_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Thomas_Partey"
+        }
+      },
+      {
+        "id": "elisha-owusu",
+        "full_name": "Elisha Owusu",
+        "display_name": "Elisha Owusu",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Auxerre",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Lens_-_Sochaux_%2815-09-2018%29_175_%28cropped%29.jpg/330px-Lens_-_Sochaux_%2815-09-2018%29_175_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Elisha_Owusu"
+        }
+      },
+      {
+        "id": "salis-abdul-samed",
+        "full_name": "Salis Abdul Samed",
+        "display_name": "Abdul Samed",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Lens",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Lens_-_Reims_%2812-05-2023%29_45.jpg/330px-Lens_-_Reims_%2812-05-2023%29_45.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Salis_Abdul_Samed"
+        }
+      },
+      {
+        "id": "mohammed-kudus",
+        "full_name": "Mohammed Kudus",
+        "display_name": "Mohammed Kudus",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Tottenham",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 20,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/GAE_-_Ajax_-_52788309814_%28Mohammed_Kudus%29.jpg/330px-GAE_-_Ajax_-_52788309814_%28Mohammed_Kudus%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mohammed_Kudus"
+        }
+      },
+      {
+        "id": "ernest-nuamah",
+        "full_name": "Ernest Nuamah",
+        "display_name": "Ernest Nuamah",
+        "position": "MID",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Lyon",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Nuamah_vs_FCSB.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ernest_Nuamah"
+        }
+      },
+      {
+        "id": "antoine-semenyo",
+        "full_name": "Antoine Semenyo",
+        "display_name": "Antoine Semenyo",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Manchester City",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Antoine_Semenyo_2026.png/330px-Antoine_Semenyo_2026.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Antoine_Semenyo"
+        }
+      },
+      {
+        "id": "jordan-ayew",
+        "full_name": "Jordan Ayew",
+        "display_name": "Jordan Ayew",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Leicester",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Jordan_Ayew_24082024_%282%29.jpg/330px-Jordan_Ayew_24082024_%282%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jordan_Ayew"
+        }
+      },
+      {
+        "id": "andre-ayew",
+        "full_name": "André Ayew",
+        "display_name": "André Ayew",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Le Havre",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 9,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/20150331_Mali_vs_Ghana_157.jpg/330px-20150331_Mali_vs_Ghana_157.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Andr%C3%A9_Ayew"
+        }
+      },
+      {
+        "id": "inaki-williams",
+        "full_name": "Iñaki Williams",
+        "display_name": "Iñaki Williams",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Athletic Club",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/I%C3%B1aki_Williams.png/330px-I%C3%B1aki_Williams.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/I%C3%B1aki_Williams"
+        }
+      },
+      {
+        "id": "kamaldeen-sulemana",
+        "full_name": "Kamaldeen Sulemana",
+        "display_name": "Kamaldeen Sulemana",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Atalanta",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Kamaldeen_Sulemana_%28cropped%29.jpg/330px-Kamaldeen_Sulemana_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Kamaldeen_Sulemana"
+        }
+      },
+      {
+        "id": "fatawu-issahaku",
+        "full_name": "Fatawu Issahaku",
+        "display_name": "Fatawu Issahaku",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Leicester",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed"
+      },
+      {
+        "id": "felix-afena-gyan",
+        "full_name": "Felix Afena-Gyan",
+        "display_name": "Felix Afena-Gyan",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Ferencvaros",
+          "country_iso": "hu",
+          "league": "NB I"
+        },
+        "shirt_number_expected": 13,
+        "status": "probable"
+      },
+      {
+        "id": "abu-francis",
+        "full_name": "Abu Francis",
+        "display_name": "Abu Francis",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Cercle Brugge",
+          "country_iso": "be",
+          "league": "Pro League"
+        },
+        "shirt_number_expected": 15,
+        "status": "probable"
+      },
+      {
+        "id": "majeed-ashimeru",
+        "full_name": "Majeed Ashimeru",
+        "display_name": "Majeed Ashimeru",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Anderlecht",
+          "country_iso": "be",
+          "league": "Pro League"
+        },
+        "shirt_number_expected": 21,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/FC_RB_Salzburg_versus_CSKA_Sofia_%28Testspiel_3._Juli_2019%29_17.jpg/330px-FC_RB_Salzburg_versus_CSKA_Sofia_%28Testspiel_3._Juli_2019%29_17.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Majeed_Ashimeru"
+        }
+      },
+      {
+        "id": "abdul-mannaf-nurudeen",
+        "full_name": "Abdul Manaf Nurudeen",
+        "display_name": "Manaf Nurudeen",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Eupen",
+          "country_iso": "be",
+          "league": "Pro League"
+        },
+        "shirt_number_expected": 22,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Eupen-cologne_3.jpg/330px-Eupen-cologne_3.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Abdul_Manaf_Nurudeen"
+        }
+      },
+      {
+        "id": "tariq-lamptey",
+        "full_name": "Tariq Lamptey",
+        "display_name": "Tariq Lamptey",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Brighton",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 24,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Tariq_Lamptey_2022.jpg/330px-Tariq_Lamptey_2022.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Tariq_Lamptey"
+        }
+      },
+      {
+        "id": "denis-odoi",
+        "full_name": "Denis Odoi",
+        "display_name": "Denis Odoi",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Brujas",
+          "country_iso": "be",
+          "league": "Pro League"
+        },
+        "shirt_number_expected": 25,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Metall-Lokeren_%285%29.jpg/330px-Metall-Lokeren_%285%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Denis_Odoi"
+        }
+      },
+      {
+        "id": "joseph-paintsil",
+        "full_name": "Joseph Paintsil",
+        "display_name": "Joseph Paintsil",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "LA Galaxy",
+          "country_iso": "us",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Joseph_Paintsil.2020.jpg/330px-Joseph_Paintsil.2020.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Joseph_Paintsil"
+        }
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-3-3",
+      "players": [
+        {
+          "player_id": "lawrence-ati-zigi",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "tariq-lamptey",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "mohammed-salisu",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "alexander-djiku",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "gideon-mensah",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "thomas-partey",
+          "position": {
+            "x": 50,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "mohammed-kudus",
+          "position": {
+            "x": 70,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "salis-abdul-samed",
+          "position": {
+            "x": 30,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "antoine-semenyo",
+          "position": {
+            "x": 85,
+            "y": 25
+          }
+        },
+        {
+          "player_id": "inaki-williams",
+          "position": {
+            "x": 50,
+            "y": 18
+          }
+        },
+        {
+          "player_id": "kamaldeen-sulemana",
+          "position": {
+            "x": 15,
+            "y": 25
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Otto Addo plantea un 4-3-3 con Partey pivote, Kudus '10' libre, Williams '9' y Semenyo/Kamaldeen extremos. Identidad: posesión técnica, transiciones rápidas, juego directo cuando se necesita. Estilo formado en Borussia Dortmund (alemán de presión).",
+      "strengths": [
+        "QUINTA PARTICIPACIÓN MUNDIAL: 5 de las últimas 6 ediciones. Experiencia sólida.",
+        "Mohammed Kudus: estrella generacional. Tottenham 65M£.",
+        "Antoine Semenyo: en pico, fichado por Manchester City desde Bournemouth.",
+        "Thomas Partey: pivote de élite. Champions League con Atlético, Premier con Arsenal.",
+        "Iñaki Williams: '9' del Athletic Club. Goleador prolífico La Liga.",
+        "Defensa central sólida: Salisu (Mónaco), Djiku (Fenerbahce), Mumin (Rayo).",
+        "Mediocampo con calidad: Partey + Salis Abdul Samed (Lens).",
+        "Otto Addo: DT formado en Borussia Dortmund 5 años, formador top."
+      ],
+      "weaknesses": [
+        "INESTABILIDAD INSTITUCIONAL: 3 DTs en 4 años (Hughton → Hughton out → Addo regresa).",
+        "Catar 2022: fase de grupos eliminada.",
+        "Copa África 2023: ELIMINADA EN GRUPOS sin victoria. Vergüenza nacional.",
+        "Generación Ayew (Jordan 33, André 36) saliendo: relevo aún en consolidación.",
+        "Profundidad defensiva limitada: pocos backups de Salisu/Djiku.",
+        "Derrota SHOCK 3-4 con Madagascar en eliminatorias: defensa frágil.",
+        "Grupo L con Inglaterra y Croacia muy superiores."
+      ],
+      "x_factor": {
+        "player": "Antoine Semenyo",
+        "reason": "El extremo del Manchester City (26 años) llega en pico tras gran temporada Premier. Fichado en verano 2025 por City desde Bournemouth (40M£). Velocidad, regate, gol. 3 goles en eliminatoria. Es la nueva carta ofensiva de las Estrellas Negras."
+      },
+      "prediction_text": "Ghana llega como 73º del ranking FIFA al Grupo L con Inglaterra, Croacia y Panamá. Inglaterra y Croacia muy superiores. Pasar la fase de grupos requiere ganar a Panamá y arañar a uno de los dos top. Posibilidades: las 5ª participación con generación Kudus-Semenyo-Williams puede dar sorpresas tipo octavos (como Sudáfrica 2010).",
+      "probabilities": {
+        "advance_groups": 35,
+        "round_of_32": 28,
+        "round_of_16": 15,
+        "quarter_finals": 4,
+        "semi_finals": 1,
+        "final": 0,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Brasil 2014: fase de grupos eliminada (1G 1E 2P). Rusia 2018: NO CLASIFICÓ. Catar 2022: fase de grupos eliminada (1G 0E 2P). Mundial 2026: 5ª participación (5 de 6 últimas). Generación Kudus busca repetir 2010 (cuartos histórico)."
+    }
+  },
+  "history": {
+    "first_appearance": 2006,
+    "appearances_count_before_2026": 4,
+    "appearances_count_with_2026": 5,
+    "consecutive_streak_since": 2026,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 0,
+    "best_result": "Cuartos de final (Sudáfrica 2010)",
+    "aggregate_stats_through_2022": {
+      "played": 13,
+      "won": 4,
+      "drawn": 1,
+      "lost": 8,
+      "goals_for": 13,
+      "goals_against": 19,
+      "win_percentage": 30.8,
+      "notes": "Datos hasta Catar 2022. Ghana 41º en ranking histórico Mundial."
+    },
+    "by_world_cup": [
+      {
+        "year": 2006,
+        "host": {
+          "countries": [
+            "Alemania"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Ratomir Dujković",
+        "captain": "Stephen Appiah",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Asamoah Gyan",
+            "goals": 2
+          },
+          {
+            "player": "Sulley Muntari",
+            "goals": 1
+          },
+          {
+            "player": "Haminu Draman",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "DEBUT MUNDIALISTA con OCTAVOS.",
+          "Pasó como 2º grupo (Italia, Rep. Checa, USA).",
+          "Eliminada por Brasil en octavos 0-3."
+        ],
+        "narrative": "Ghana DEBUTÓ con OCTAVOS. Cayó con Italia 0-2, batió 2-0 a Rep. Checa, batió 2-1 a USA. Eliminada por Brasil 0-3 en octavos."
+      },
+      {
+        "year": 2010,
+        "host": {
+          "countries": [
+            "Sudáfrica"
+          ],
+          "iso": [
+            "za"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Milovan Rajevac",
+        "captain": "John Mensah",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Asamoah Gyan",
+            "goals": 3
+          },
+          {
+            "player": "Kevin-Prince Boateng",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 5,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "MEJOR PARTICIPACIÓN HISTÓRICA: cuartos.",
+          "ÚLTIMA SELECCIÓN AFRICANA EN LLEGAR A CUARTOS hasta Marruecos 2022.",
+          "ELIMINADA POR LA MANO DE SUÁREZ y penal de Gyan al palo."
+        ],
+        "narrative": "Ghana llegó a CUARTOS DE FINAL en su mundial de África 2010. Pasó como 2º grupo (Serbia, Australia, Alemania). Octavos: 2-1 a USA con gol de Boateng al 5'. CUARTOS: 1-1 con URUGUAY al 119', PENAL CLARO POR MANO DE SUÁREZ AL ÚLTIMO MINUTO. ASAMOAH GYAN FALLÓ EL PENAL AL TRAVESAÑO. En tanda de penales, Ghana cayó 2-4. Drama eterno."
+      },
+      {
+        "year": 2014,
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Akwasi Appiah",
+        "captain": "Asamoah Gyan",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Asamoah Gyan",
+            "goals": 2
+          },
+          {
+            "player": "Andre Ayew",
+            "goals": 1
+          },
+          {
+            "player": "Sulley Muntari",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Crisis interna: jugadores exigieron cobro en efectivo.",
+          "Empató 2-2 con Alemania futura campeona."
+        ],
+        "narrative": "Ghana eliminada en grupos pese al 2-2 con Alemania. Crisis interna histórica: jugadores exigieron cobro en EFECTIVO durante el Mundial. Pésima imagen."
+      },
+      {
+        "year": 2022,
+        "host": {
+          "countries": [
+            "Catar"
+          ],
+          "iso": [
+            "qa"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Otto Addo",
+        "captain": "André Ayew",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Mohammed Kudus",
+            "goals": 2
+          },
+          {
+            "player": "Mohammed Salisu",
+            "goals": 1
+          },
+          {
+            "player": "André Ayew",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 5,
+        "goals_conceded": 7,
+        "notable_facts": [
+          "REVANCHA URUGUAY: cayó 0-2 con Suárez en el campo.",
+          "André Ayew falló penal."
+        ],
+        "narrative": "Ghana cayó eliminada en grupos. REVANCHA URUGUAY 12 años después: cayó 0-2 con Suárez expulsado en el campo. André Ayew falló penal al 21'."
+      }
+    ],
+    "palmares": [
+      {
+        "competition": "Copa Africana de Naciones",
+        "year": 1963,
+        "position": "Campeón",
+        "host": "Ghana"
+      },
+      {
+        "competition": "Copa Africana de Naciones",
+        "year": 1965,
+        "position": "Campeón",
+        "host": "Túnez"
+      },
+      {
+        "competition": "Copa Africana de Naciones",
+        "year": 1978,
+        "position": "Campeón",
+        "host": "Ghana"
+      },
+      {
+        "competition": "Copa Africana de Naciones",
+        "year": 1982,
+        "position": "Campeón",
+        "host": "Libia"
+      },
+      {
+        "competition": "Mundial Sub-20",
+        "year": 2009,
+        "position": "Campeón",
+        "host": "Egipto"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Asamoah Gyan",
+      "value": 51,
+      "period": "2003-2019",
+      "notes": "MÁXIMO GOLEADOR HISTÓRICO. Leyenda absoluta. 6 goles en Mundiales (récord africano)."
+    },
+    "most_capped": {
+      "name": "Asamoah Gyan",
+      "value": 109,
+      "period": "2003-2019",
+      "notes": "Récord histórico."
+    },
+    "youngest_debut": {
+      "name": "Mohammed Kudus",
+      "value": "19 años",
+      "period": "2019",
+      "notes": "Récord moderno."
+    },
+    "biggest_win": {
+      "result": "11-0",
+      "opponent": "Kenia",
+      "date": "1965-11-13",
+      "competition": "Eliminatorias Copa África"
+    },
+    "worst_loss": {
+      "result": "0-7",
+      "opponent": "Brasil",
+      "date": "1996",
+      "competition": "Amistoso"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "La mano de Suárez (Sudáfrica 2010)",
+      "date": "2010-07-02",
+      "opponent": {
+        "iso": "uy",
+        "name": "Uruguay"
+      },
+      "score": "1-1 (2-4 pen)",
+      "competition": "Cuartos Mundial 2010",
+      "narrative": "GHANA PUDO SER LA PRIMERA SELECCIÓN AFRICANA EN LA HISTORIA EN LLEGAR A SEMIS DE UN MUNDIAL. 1-1 al minuto 119, mano clarísima de Luis Suárez en la línea (expulsado). Penal en último minuto. ASAMOAH GYAN ESTRELLÓ EL PENAL EN EL TRAVESAÑO. Tanda de penales: Ghana cayó 2-4. DRAMA ETERNO. Suárez, héroe villano. Frases: 'la mano de Dios fue para mí'."
+    },
+    {
+      "title": "El 2-1 a USA (Sudáfrica 2010)",
+      "date": "2010-06-26",
+      "opponent": {
+        "iso": "us",
+        "name": "Estados Unidos"
+      },
+      "score": "2-1",
+      "competition": "Octavos Mundial 2010",
+      "narrative": "Ghana batió a USA 2-1 en octavos del Mundial 2010. Gol de Kevin-Prince Boateng al 5' (después de 60 segundos), gol decisivo de Asamoah Gyan al 93' en prórroga. Ghana llegó a cuartos."
+    },
+    {
+      "title": "El 2-2 con Alemania campeona (Brasil 2014)",
+      "date": "2014-06-21",
+      "opponent": {
+        "iso": "de",
+        "name": "Alemania"
+      },
+      "score": "2-2",
+      "competition": "Fase de Grupos Mundial 2014",
+      "narrative": "Ghana sacó un HISTÓRICO 2-2 con Alemania futura campeona en Brasil 2014. Klose marcó al 71' empatando para Alemania (récord histórico empatando a Ronaldo Brasil). Andre Ayew y Asamoah Gyan habían marcado para Ghana."
+    },
+    {
+      "title": "Revancha Uruguay (Catar 2022)",
+      "date": "2022-12-02",
+      "opponent": {
+        "iso": "uy",
+        "name": "Uruguay"
+      },
+      "score": "0-2",
+      "competition": "Fase de Grupos Mundial 2022",
+      "narrative": "12 años después de la mano, Ghana se reencontró con Uruguay y SUÁREZ EN EL MISMO CAMPO. Cayó 0-2 (De Arrascaeta x2). André Ayew falló PENAL al 21'. Revancha imposible. Suárez fue expulsado tras el partido por insultos a árbitros."
+    },
+    {
+      "title": "El 1-0 a Comores que selló pase 2026",
+      "date": "2025-10-14",
+      "opponent": {
+        "iso": "km",
+        "name": "Comores"
+      },
+      "score": "1-0",
+      "competition": "Eliminatorias Mundial 2026",
+      "narrative": "Ghana batió 1-0 a Comores en Kumasi el 14 de octubre. Jordan Ayew marcó al 78'. Selló la clasificación al Mundial 2026 como 1º del Grupo I."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "GHANA fue la PRIMERA SELECCIÓN AFRICANA en GANAR EL MUNDIAL SUB-20 (Egipto 2009). Generación de Adam Kwarasey, Andre Ayew, Daniel Opare. Misma generación llegó a CUARTOS Mundial 2010.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "LA MANO DE SUÁREZ (Mundial 2010) es UNO DE LOS MOMENTOS MÁS DRAMÁTICOS de la historia de los Mundiales. Asamoah Gyan al palo en penal. Ghana fue la primera selección africana a 1 paso de semis.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Ghana es la 2ª selección africana con MÁS COPAS ÁFRICA: 4 títulos (1963, 1965, 1978, 1982). Solo Egipto (7) tiene más.",
+      "source": "CAF + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "ASAMOAH GYAN tiene EL RÉCORD AFRICANO de goles en Mundiales: 6 goles (3 en 2010, 2 en 2014, 1 en 2006). Roger Milla (Camerún) tiene 5.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Otto Addo nació en HAMBURGO (Alemania) de padres ghaneses. Jugó para Alemania Sub-21 antes de optar por Ghana en absolutos. Hizo carrera en Borussia Dortmund (DT asistente 5 años).",
+      "source": "GFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Iñaki Williams (Athletic Club) nació en Bilbao de padres ghaneses. Eligió Ghana sobre España en 2022. Hermano de Nico Williams (España, campeón Eurocopa 2024).",
+      "source": "Athletic Club + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Crisis 2014: jugadores ghaneses EXIGIERON COBRO EN EFECTIVO durante el Mundial. Avión privado llevó dólares cash al hotel. Pésima imagen y eliminación.",
+      "source": "BBC + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "God Bless Our Homeland (himno)",
+      "Ghana! Ghana! Ghana!",
+      "Black Stars yenkrobi"
+    ],
+    "main_rival": {
+      "iso": "ng",
+      "name": "Nigeria",
+      "story": "RIVALIDAD MÁXIMA AFRICANA. 'Jollof Wars' (rivalidad cultural por arroz jollof). Cada cruce Ghana-Nigeria es batalla. Curiosamente, Nigeria QUEDÓ FUERA del Mundial 2026 (eliminada por Sudáfrica)."
+    },
+    "home_stadium": {
+      "name": "Baba Yara Stadium",
+      "capacity": 40500,
+      "city": "Kumasi"
+    }
+  },
+  "seo": {
+    "meta_title": "Ghana en el Mundial 2026 | Plantilla, historia y predicciones",
+    "meta_description": "Ghana Mundial 2026: 26 convocados de Otto Addo, Kudus, Semenyo, Williams, Partey. 5ª participación en el Grupo L con Inglaterra.",
+    "og_image_url": "/img/og/teams/ghana.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Ghana",
+      "alternateName": [
+        "Black Stars",
+        "Estrellas Negras"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "CAF"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Otto Addo"
+      },
+      "url": "https://www.zonamundial.app/selecciones/ghana"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-28",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_Ghana",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/15756482/se-definieron-eliminatorias-africa-mundial-2026",
+      "https://www.tudn.com/mundial-2026/eliminatorias/eliminatorias-mundial-2026-asi-quedo-tabla-posiciones-africa",
+      "https://cnnespanol.cnn.com/2026/01/10/deportes/futbolistas-africanos-destacados-mundial-2026-orix",
+      "https://www.ghanafa.org",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias cruzadas con CAF + Wikipedia + ESPN + CNN. Historia validada con FIFA + Wikipedia + GFA.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "needs_review",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante: pendiente",
+      "Calendario fase grupos 2026: solo confirmado vs Panamá 27/06 Filadelfia",
+      "Base de entrenamiento: GFA aún no anunció",
+      "FIFA Ranking #73: validar mes vigente",
+      "Goleadores específicos eliminatoria: cruzar con FIFA"
+    ]
+  }
+}

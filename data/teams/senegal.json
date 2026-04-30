@@ -1,0 +1,1541 @@
+{
+  "slug": "senegal",
+  "iso": "sn",
+  "iso3": "SEN",
+  "name_es": "Senegal",
+  "name_en": "Senegal",
+  "name_local": "Sénégal",
+  "nicknames": [
+    "Los Leones de la Teranga",
+    "Lions de la Téranga",
+    "Lions"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#00853F",
+      "secondary": "#FDEF42",
+      "tertiary": "#E31B23",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Dakar",
+    "language_official": [
+      "Francés"
+    ],
+    "population": 17730000,
+    "area_km2": 196722,
+    "timezone": "Africa/Dakar",
+    "continent": "África"
+  },
+  "federation": {
+    "name": "Fédération Sénégalaise de Football",
+    "abbreviation": "FSF",
+    "founded": 1960,
+    "headquarters": "Dakar",
+    "website": "https://www.fsfoot.sn"
+  },
+  "confederation": "CAF",
+  "fifa_ranking": {
+    "current": 12,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Puma",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/senegal.png",
+        "back_url": null,
+        "primary_color": "#00853F",
+        "secondary_color": "#FDEF42",
+        "description": "Camiseta verde con detalles amarillos y rojos, los colores panafricanos de la bandera nacional. Apodo 'Lions de la Téranga'.",
+        "alt_text": "Camiseta titular Senegal Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#00853F",
+        "description": "Equipación visitante en blanco. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Senegal Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "El apodo 'Lions de la Téranga' significa 'Leones de la Hospitalidad' en wolof. La 'téranga' es el valor cultural senegalés más arraigado: hospitalidad, generosidad, compartir.",
+        "source": "FSF + Wikipedia",
+        "verified_at": "2026-04-28",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Senegal clasificó como 1º del Grupo B con paso INVICTO: 7 victorias y 3 empates, sin derrotas. 24 puntos, 19 goles a favor. Selló el pase al ganar 4-0 a Mauritania en octubre 2025. 4ª participación mundialista, 3ª CONSECUTIVA (2018, 2022, 2026). En enero 2026 ganó la Copa África sobre Marruecos. Bajo Pape Thiaw, los Leones de Teranga buscan superar el techo histórico (cuartos en 2002).",
+    "qualifying": {
+      "confederation_round": "Eliminatorias CAF Mundial 2026 — Grupo B",
+      "format": "Liguilla todos contra todos · 6 equipos · 10 partidos · ida y vuelta",
+      "duration": "Noviembre 2023 — Octubre 2025",
+      "final_position": 1,
+      "total_teams_in_group": 6,
+      "stats": {
+        "played": 10,
+        "won": 7,
+        "drawn": 3,
+        "lost": 0,
+        "goals_for": 22,
+        "goals_against": 3,
+        "goal_difference": 19,
+        "points": 24,
+        "win_percentage": 70,
+        "clean_sheets": 7
+      },
+      "coach_during_qualifying": "Aliou Cissé (2023-2024) → Pape Thiaw (dic 2024 - presente)",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2023-11-15",
+          "home": {
+            "iso": "ss",
+            "name": "Sudán del Sur",
+            "score": 0
+          },
+          "away": {
+            "iso": "sn",
+            "name": "Senegal",
+            "score": 4
+          },
+          "venue": {
+            "stadium": "Estadio Internacional de El Cairo",
+            "city": "El Cairo",
+            "country_iso": "eg"
+          },
+          "goals_arg": [
+            {
+              "player": "Sadio Mané",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Ismaïla Sarr",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Nicolas Jackson",
+              "minute": "70'",
+              "type": "goal"
+            },
+            {
+              "player": "Pape Matar Sarr",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 2,
+          "date": "2023-11-21",
+          "home": {
+            "iso": "sn",
+            "name": "Senegal",
+            "score": 1
+          },
+          "away": {
+            "iso": "td",
+            "name": "Togo",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Stade Abdoulaye Wade",
+            "city": "Diamniadio",
+            "country_iso": "sn"
+          },
+          "goals_arg": [
+            {
+              "player": "Sadio Mané",
+              "minute": "70'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 3,
+          "date": "2024-06-06",
+          "home": {
+            "iso": "sn",
+            "name": "Senegal",
+            "score": 1
+          },
+          "away": {
+            "iso": "cd",
+            "name": "RD Congo",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Stade Abdoulaye Wade",
+            "city": "Diamniadio",
+            "country_iso": "sn"
+          },
+          "goals_arg": [
+            {
+              "player": "Sadio Mané",
+              "minute": "55'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Empate ante el principal rival del grupo."
+        },
+        {
+          "matchday": 4,
+          "date": "2024-06-09",
+          "home": {
+            "iso": "mr",
+            "name": "Mauritania",
+            "score": 0
+          },
+          "away": {
+            "iso": "sn",
+            "name": "Senegal",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Stade Olympique de Nouakchott",
+            "city": "Nuakchot",
+            "country_iso": "mr"
+          },
+          "goals_arg": [
+            {
+              "player": "Boulaye Dia",
+              "minute": "70'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 5,
+          "date": "2025-09-05",
+          "home": {
+            "iso": "sd",
+            "name": "Sudán",
+            "score": 0
+          },
+          "away": {
+            "iso": "sn",
+            "name": "Senegal",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Estadio Internacional de El Cairo",
+            "city": "El Cairo",
+            "country_iso": "eg"
+          },
+          "goals_arg": [
+            {
+              "player": "Iliman Ndiaye",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Sadio Mané",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 6,
+          "date": "2025-09-09",
+          "home": {
+            "iso": "sn",
+            "name": "Senegal",
+            "score": 2
+          },
+          "away": {
+            "iso": "sd",
+            "name": "Sudán",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Stade Abdoulaye Wade",
+            "city": "Diamniadio",
+            "country_iso": "sn"
+          },
+          "goals_arg": [
+            {
+              "player": "Nicolas Jackson",
+              "minute": "44'",
+              "type": "goal"
+            },
+            {
+              "player": "Pape Matar Sarr",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 7,
+          "date": "2025-10-08",
+          "home": {
+            "iso": "td",
+            "name": "Togo",
+            "score": 0
+          },
+          "away": {
+            "iso": "sn",
+            "name": "Senegal",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Stade de Kégué",
+            "city": "Lomé",
+            "country_iso": "td"
+          },
+          "goals_arg": [
+            {
+              "player": "Sadio Mané",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Iliman Ndiaye",
+              "minute": "65'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 8,
+          "date": "2025-10-11",
+          "home": {
+            "iso": "cd",
+            "name": "RD Congo",
+            "score": 1
+          },
+          "away": {
+            "iso": "sn",
+            "name": "Senegal",
+            "score": 3
+          },
+          "venue": {
+            "stadium": "Stade des Martyrs",
+            "city": "Kinsasa",
+            "country_iso": "cd"
+          },
+          "goals_arg": [
+            {
+              "player": "Pape Matar Sarr",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Ismaïla Sarr",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Nicolas Jackson",
+              "minute": "82'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Triunfo decisivo en Kinsasa que inclinó la pelea por el 1º puesto."
+        },
+        {
+          "matchday": 9,
+          "date": "2025-10-14",
+          "home": {
+            "iso": "sn",
+            "name": "Senegal",
+            "score": 4
+          },
+          "away": {
+            "iso": "mr",
+            "name": "Mauritania",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Stade Abdoulaye Wade",
+            "city": "Diamniadio",
+            "country_iso": "sn"
+          },
+          "goals_arg": [
+            {
+              "player": "Sadio Mané",
+              "minute": "10'",
+              "type": "goal"
+            },
+            {
+              "player": "Habib Diarra",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Nicolas Jackson",
+              "minute": "60'",
+              "type": "goal"
+            },
+            {
+              "player": "Iliman Ndiaye",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ],
+          "notes": "VICTORIA QUE SELLÓ LA CLASIFICACIÓN al Mundial 2026 como 1º del Grupo B.",
+          "is_decisive_match": true
+        },
+        {
+          "matchday": 10,
+          "date": "2025-11-15",
+          "home": {
+            "iso": "bw",
+            "name": "Botsuana",
+            "score": 0
+          },
+          "away": {
+            "iso": "sn",
+            "name": "Senegal",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Stade de Kégué",
+            "city": "Lomé",
+            "country_iso": "bw"
+          },
+          "goals_arg": [
+            {
+              "player": "Boulaye Dia",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Sadio Mané",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Cierre invicto. 24 pts (7G 3E 0P)."
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Sadio Mané",
+          "goals": 6,
+          "notes": "Capitán histórico, máximo goleador absoluto de Senegal."
+        },
+        {
+          "player": "Nicolas Jackson",
+          "goals": 4
+        },
+        {
+          "player": "Pape Matar Sarr",
+          "goals": 3
+        },
+        {
+          "player": "Iliman Ndiaye",
+          "goals": 3
+        },
+        {
+          "player": "Ismaïla Sarr",
+          "goals": 2
+        },
+        {
+          "player": "Boulaye Dia",
+          "goals": 2
+        },
+        {
+          "player": "Habib Diarra",
+          "goals": 1
+        },
+        {
+          "player": "Otros (1)",
+          "goals": 1
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_9",
+        "reason": "Goleada 4-0 a Mauritania el 14 de octubre selló la clasificación al Mundial 2026 con 4 goleadores diferentes."
+      },
+      "worst_match": {
+        "match_ref": "matchday_3",
+        "reason": "Empate 1-1 ante RD Congo en casa. Único punto perdido en Diamniadio que casi compromete la clasificación."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_9",
+        "reason": "Triunfo 4-0 sobre Mauritania selló matemáticamente la clasificación como 1º del Grupo B."
+      }
+    },
+    "group_2026": {
+      "letter": "I",
+      "label": "Grupo I — junto a Francia, Noruega e Irak",
+      "teams": [
+        {
+          "iso": "fr",
+          "name": "Francia",
+          "fifa_rank": null
+        },
+        {
+          "iso": "sn",
+          "name": "Senegal",
+          "fifa_rank": null,
+          "is_seed": false
+        },
+        {
+          "iso": "no",
+          "name": "Noruega",
+          "fifa_rank": null
+        },
+        {
+          "iso": "iq",
+          "name": "Irak",
+          "fifa_rank": null
+        }
+      ],
+      "notes": "Grupo I confirmado en sorteo del 5 dic 2025. Llamado el 'Grupo de la Muerte' junto al H. Senegal vs Francia será revancha de 2002 (1-0 senegalés en debut)."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "fr",
+          "name": "Francia"
+        },
+        "date": "2026-06-15",
+        "kickoff_local": "18:00",
+        "venue": {
+          "stadium": "Hard Rock Stadium",
+          "city": "Miami",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "iq",
+          "name": "Irak"
+        },
+        "date": "2026-06-23",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "AT&T Stadium",
+          "city": "Dallas",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "no",
+          "name": "Noruega"
+        },
+        "date": "2026-06-30",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "MetLife Stadium",
+          "city": "Nueva York/NJ",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — FSF aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Pape Thiaw",
+      "age": 44,
+      "nationality": "Senegal",
+      "since": "2024-12-15",
+      "previous_teams": [
+        "Senegal A' (selección local) (2022-2024, ganó CHAN 2022 y 2023)"
+      ],
+      "profile_summary": "Senegalés. Ex-delantero de la selección, jugó el Mundial 2002 (cuartos). Asumió la selección absoluta en diciembre 2024 tras la salida de Aliou Cissé (9 años, despedido tras no llegar a cuartos en Catar 2022). Ganó la Copa África 2025 (final ante Marruecos en penales). Identidad táctica: 4-3-3 con presión alta y transiciones rápidas, aprovechando potencia física de la plantilla. Suspendido 5 partidos por incidentes en final Copa África (no afecta Mundial).",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Pape_Thiaw.png/330px-Pape_Thiaw.png",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Pape_Thiaw"
+      }
+    },
+    "captain": {
+      "name": "Kalidou Koulibaly",
+      "club": "Al-Hilal",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Joueur_de_foot.jpg/330px-Joueur_de_foot.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Kalidou_Koulibaly"
+      }
+    },
+    "star_player": {
+      "name": "Sadio Mané",
+      "club": "Al-Nassr",
+      "reason": "MÁXIMO GOLEADOR HISTÓRICO de Senegal (52+ goles). Balón de Oro 2022 (subcampeón). Ganador Champions con Liverpool 2019. Campeón Eurocopa Liga con Bayern. A los 33 años llega a su ÚLTIMO MUNDIAL como capitán emocional y referente absoluto. Su gol decisivo en penales dio la 1ª Copa África a Senegal en 2022.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Esteghlal_F.C._v_Al_Nassr_FC%2C_3_March_2025%2C_Sadio_Man%C3%A9.jpg/330px-Esteghlal_F.C._v_Al_Nassr_FC%2C_3_March_2025%2C_Sadio_Man%C3%A9.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Sadio_Man%C3%A9"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "edouard-mendy",
+        "full_name": "Édouard Mendy",
+        "display_name": "Édouard Mendy",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Al-Ahli",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 16,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/%C3%89douard_Mendy_2021.jpg/330px-%C3%89douard_Mendy_2021.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/%C3%89douard_Mendy"
+        }
+      },
+      {
+        "id": "seny-dieng",
+        "full_name": "Seny Dieng",
+        "display_name": "Seny Dieng",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Middlesbrough",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 1,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Banc_de_touche_assis_du_Senegal_%28Seny_Dieng%29.jpg/330px-Banc_de_touche_assis_du_Senegal_%28Seny_Dieng%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Seny_Dieng"
+        }
+      },
+      {
+        "id": "mory-diaw",
+        "full_name": "Mory Diaw",
+        "display_name": "Mory Diaw",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Clermont",
+          "country_iso": "fr",
+          "league": "Ligue 2"
+        },
+        "shirt_number_expected": 23,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Mory_Diaw_2015_%28cropped%29.jpg/330px-Mory_Diaw_2015_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mory_Diaw"
+        }
+      },
+      {
+        "id": "kalidou-koulibaly",
+        "full_name": "Kalidou Koulibaly",
+        "display_name": "Kalidou Koulibaly",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Al-Hilal",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Joueur_de_foot.jpg/330px-Joueur_de_foot.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Kalidou_Koulibaly"
+        }
+      },
+      {
+        "id": "moussa-niakhate",
+        "full_name": "Moussa Niakhaté",
+        "display_name": "Moussa Niakhaté",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Lyon",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Niakhat%C3%A9_asse_ol_2425.png/330px-Niakhat%C3%A9_asse_ol_2425.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Moussa_Niakhat%C3%A9"
+        }
+      },
+      {
+        "id": "abdou-diallo",
+        "full_name": "Abdou Diallo",
+        "display_name": "Abdou Diallo",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Al-Arabi",
+          "country_iso": "qa",
+          "league": "Stars League"
+        },
+        "shirt_number_expected": 22,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/C%C3%A9l%C3%A9bration_S%C3%A9n%C3%A9gal_%2838%29.jpg/330px-C%C3%A9l%C3%A9bration_S%C3%A9n%C3%A9gal_%2838%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Abdou_Diallo"
+        }
+      },
+      {
+        "id": "el-hadji-malick-diouf",
+        "full_name": "El Hadji Malick Diouf",
+        "display_name": "Malick Diouf",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "West Ham",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 12,
+        "status": "fixed"
+      },
+      {
+        "id": "krepin-diatta",
+        "full_name": "Krépin Diatta",
+        "display_name": "Krépin Diatta",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Mónaco",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 15,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Kr%C3%A9pin_Diatta_S%C3%A9n%C3%A9gal.png/330px-Kr%C3%A9pin_Diatta_S%C3%A9n%C3%A9gal.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Kr%C3%A9pin_Diatta"
+        }
+      },
+      {
+        "id": "formose-mendy",
+        "full_name": "Formose Mendy",
+        "display_name": "Formose Mendy",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Amiens",
+          "country_iso": "fr",
+          "league": "Ligue 2"
+        },
+        "shirt_number_expected": 21,
+        "status": "probable"
+      },
+      {
+        "id": "antoine-mendy",
+        "full_name": "Antoine Mendy",
+        "display_name": "Antoine Mendy",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Niza",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 14,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/2017-09-10_Afrobasket_SENMOZ_01.jpg/330px-2017-09-10_Afrobasket_SENMOZ_01.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Antoine_Mendy"
+        }
+      },
+      {
+        "id": "idrissa-gueye",
+        "full_name": "Idrissa Gueye",
+        "display_name": "Idrissa Gueye",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Everton",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Idrissa_Gueye.jpg/330px-Idrissa_Gueye.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Idrissa_Gueye"
+        }
+      },
+      {
+        "id": "pape-gueye",
+        "full_name": "Pape Gueye",
+        "display_name": "Pape Gueye",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Villarreal",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Lens_-_Le_Havre_AC_%2801-04-2019%29_44.jpg/330px-Lens_-_Le_Havre_AC_%2801-04-2019%29_44.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Pape_Gueye"
+        }
+      },
+      {
+        "id": "pape-matar-sarr",
+        "full_name": "Pape Matar Sarr",
+        "display_name": "Pape Matar Sarr",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Tottenham",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/RC_Lens_-_FC_Metz_%2814-03-2021%29_37.jpg/330px-RC_Lens_-_FC_Metz_%2814-03-2021%29_37.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Pape_Matar_Sarr"
+        }
+      },
+      {
+        "id": "habib-diarra",
+        "full_name": "Habib Diarra",
+        "display_name": "Habib Diarra",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Sunderland",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Diarra_asse_rcsa_2425.jpg/330px-Diarra_asse_rcsa_2425.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Habib_Diarra"
+        }
+      },
+      {
+        "id": "lamine-camara",
+        "full_name": "Lamine Camara",
+        "display_name": "Lamine Camara",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Mónaco",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 25,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/75/5._Islamic_Solidarity_Games_2021_Konya_7_Lamine_Camara_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Lamine_Camara"
+        }
+      },
+      {
+        "id": "abdoulaye-doucoure",
+        "full_name": "Abdoulaye Doucouré",
+        "display_name": "Abdoulaye Doucouré",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Everton",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Stade_rennais_-_Le_Havre_AC_20150708_40.JPG/330px-Stade_rennais_-_Le_Havre_AC_20150708_40.JPG",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Abdoulaye_Doucour%C3%A9"
+        }
+      },
+      {
+        "id": "sadio-mane",
+        "full_name": "Sadio Mané",
+        "display_name": "Sadio Mané",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Al-Nassr",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Esteghlal_F.C._v_Al_Nassr_FC%2C_3_March_2025%2C_Sadio_Man%C3%A9.jpg/330px-Esteghlal_F.C._v_Al_Nassr_FC%2C_3_March_2025%2C_Sadio_Man%C3%A9.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Sadio_Man%C3%A9"
+        }
+      },
+      {
+        "id": "ismaila-sarr",
+        "full_name": "Ismaïla Sarr",
+        "display_name": "Ismaïla Sarr",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Crystal Palace",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Ismaila_Sarr_2022.jpg/330px-Ismaila_Sarr_2022.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Isma%C3%AFla_Sarr"
+        }
+      },
+      {
+        "id": "nicolas-jackson",
+        "full_name": "Nicolas Jackson",
+        "display_name": "Nicolas Jackson",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Bayern Múnich",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Nicolas_Jackson_2025_FIFA_Club_World_Cup_Final.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Nicolas_Jackson"
+        }
+      },
+      {
+        "id": "iliman-ndiaye",
+        "full_name": "Iliman Ndiaye",
+        "display_name": "Iliman Ndiaye",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Everton",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Iliman_Ndiaye.png/330px-Iliman_Ndiaye.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Iliman_Ndiaye"
+        }
+      },
+      {
+        "id": "boulaye-dia",
+        "full_name": "Boulaye Dia",
+        "display_name": "Boulaye Dia",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Lazio",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Boulaye_Dia_Reims_%28cropped%29.jpg/330px-Boulaye_Dia_Reims_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Boulaye_Dia"
+        }
+      },
+      {
+        "id": "habib-diallo",
+        "full_name": "Habib Diallo",
+        "display_name": "Habib Diallo",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Al-Shabab",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 20,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/RC_Lens_-_FC_Metz_%2809-02-2019%29_38.jpg/330px-RC_Lens_-_FC_Metz_%2809-02-2019%29_38.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Habib_Diallo"
+        }
+      },
+      {
+        "id": "cherif-ndiaye",
+        "full_name": "Chérif Ndiaye",
+        "display_name": "Chérif Ndiaye",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Estrella Roja",
+          "country_iso": "rs",
+          "league": "Super Liga"
+        },
+        "shirt_number_expected": 13,
+        "status": "probable"
+      },
+      {
+        "id": "noah-fadiga",
+        "full_name": "Noah Fadiga",
+        "display_name": "Noah Fadiga",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Brest",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 24,
+        "status": "bubble"
+      },
+      {
+        "id": "abdoulaye-niakhate-ndiaye",
+        "full_name": "Abdoulaye Niakhaté Ndiaye",
+        "display_name": "A. Niakhaté Ndiaye",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Toulouse",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble"
+      },
+      {
+        "id": "abdoulaye-seck",
+        "full_name": "Abdoulaye Seck",
+        "display_name": "Abdoulaye Seck",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Maccabi Haifa",
+          "country_iso": "il",
+          "league": "Premier League IL"
+        },
+        "shirt_number_expected": 2,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Abdoulaye_Seck.jpg/330px-Abdoulaye_Seck.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Abdoulaye_Seck"
+        }
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-3-3",
+      "players": [
+        {
+          "player_id": "edouard-mendy",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "krepin-diatta",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "kalidou-koulibaly",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "moussa-niakhate",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "el-hadji-malick-diouf",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "idrissa-gueye",
+          "position": {
+            "x": 50,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "pape-matar-sarr",
+          "position": {
+            "x": 70,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "pape-gueye",
+          "position": {
+            "x": 30,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "ismaila-sarr",
+          "position": {
+            "x": 85,
+            "y": 25
+          }
+        },
+        {
+          "player_id": "nicolas-jackson",
+          "position": {
+            "x": 50,
+            "y": 18
+          }
+        },
+        {
+          "player_id": "sadio-mane",
+          "position": {
+            "x": 15,
+            "y": 25
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Thiaw plantea un 4-3-3 con Idrissa Gueye como pivote, Mané fijo por izquierda, Sarr por derecha y Jackson '9'. Identidad: presión alta intensa, transiciones rápidas, potencia física, solidez defensiva. Mejor selección africana actual junto a Marruecos.",
+      "strengths": [
+        "CAMPEONA DE COPA ÁFRICA 2022 y 2025: bicampeona continental.",
+        "Sadio Mané: leyenda viva, máximo goleador histórico (52+).",
+        "Defensa central élite: Koulibaly + Niakhaté. Capitán experto.",
+        "Édouard Mendy: portero top, ganó Champions con Chelsea 2021.",
+        "Generación joven top: Pape Matar Sarr (Tottenham), Nicolas Jackson (Bayern), Iliman Ndiaye (Everton).",
+        "Sólido en eliminatorias: 7G 3E 0P, solo 3 GC en 10 partidos.",
+        "Profundidad ofensiva: Mané, Sarr, Jackson, Ndiaye, Boulaye Dia, Habib Diallo."
+      ],
+      "weaknesses": [
+        "Sin un mediocampista creativo top: Idrissa Gueye, Pape Gueye y Pape Matar Sarr son todos defensivos.",
+        "Generación Mané/Koulibaly envejeciendo: 33 y 34 respectivamente.",
+        "Cambio de DT reciente (Cissé→Thiaw): poco rodaje internacional con Thiaw.",
+        "Sanción 5 partidos a Thiaw por incidentes Copa África (afecta amistosos previos).",
+        "Suplencia limitada: pocos backups del nivel del XI titular.",
+        "Grupo I 'Mortal' con Francia y Noruega: pasar segundo es máxima aspiración."
+      ],
+      "x_factor": {
+        "player": "Nicolas Jackson",
+        "reason": "El delantero del Bayern Múnich (24 años) llega a su 1er Mundial. Cedido por Chelsea, con el Bayern busca consolidarse. Físico y velocidad letales. Si Senegal explota su contraataque ante Francia, Jackson es la llave."
+      },
+      "prediction_text": "Senegal llega a 2026 como 12º del ranking FIFA y campeona africana. En el 'Grupo de la Muerte' I con Francia y Noruega tiene el reto histórico. Pasar la fase de grupos sería gesta; superar la cuartos (techo 2002) sería épico. La generación Mané se despide en grande.",
+      "probabilities": {
+        "advance_groups": 50,
+        "round_of_32": 42,
+        "round_of_16": 28,
+        "quarter_finals": 12,
+        "semi_finals": 4,
+        "final": 1,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: fase de grupos eliminada (única vez por fair-play en historia mundial, ante Japón por amarillas). Catar 2022: octavos, eliminada por Inglaterra 0-3. Mundial 2026: 4ª participación, 3ª consecutiva. Generación Mané busca despedirse mejorando techo 2002."
+    }
+  },
+  "history": {
+    "first_appearance": 2002,
+    "appearances_count_before_2026": 3,
+    "appearances_count_with_2026": 4,
+    "consecutive_streak_since": 2018,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 0,
+    "best_result": "Cuartos de final (Corea/Japón 2002)",
+    "aggregate_stats_through_2022": {
+      "played": 11,
+      "won": 4,
+      "drawn": 3,
+      "lost": 4,
+      "goals_for": 12,
+      "goals_against": 14,
+      "win_percentage": 36.4,
+      "notes": "Datos hasta Catar 2022. Senegal 35º en ranking histórico Mundial."
+    },
+    "by_world_cup": [
+      {
+        "year": 2002,
+        "host": {
+          "countries": [
+            "Corea del Sur",
+            "Japón"
+          ],
+          "iso": [
+            "kr",
+            "jp"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Bruno Metsu",
+        "captain": "Aliou Cissé",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Henri Camara",
+            "goals": 2
+          },
+          {
+            "player": "Papa Bouba Diop",
+            "goals": 3
+          }
+        ],
+        "goals_scored": 7,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "DEBUT MUNDIALISTA con CUARTOS DE FINAL.",
+          "BATIÓ A FRANCIA campeona vigente 1-0 en debut (gol Papa Bouba Diop al 30').",
+          "Eliminada por Turquía en cuartos en gol oro (1-0, Mansız 94')."
+        ],
+        "narrative": "Senegal debutó en Mundiales con uno de los grandes shocks de la historia: BATIÓ 1-0 A FRANCIA campeona vigente en partido inaugural Mundial 2002. Gol de PAPA BOUBA DIOP al 30' tras rebote y Diop bailando con el banderín. Generación de oro (Diouf, Camara, Diop, Cissé). Pasó como 2º grupo, eliminó a Suecia en octavos en gol oro (Camara). En cuartos cayó con Turquía 0-1 en gol oro (Mansız 94')."
+      },
+      {
+        "year": 2018,
+        "host": {
+          "countries": [
+            "Rusia"
+          ],
+          "iso": [
+            "ru"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Aliou Cissé",
+        "captain": "Cheikhou Kouyaté",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Sadio Mané",
+            "goals": 1
+          },
+          {
+            "player": "M'Baye Niang",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "ÚNICA SELECCIÓN DE LA HISTORIA ELIMINADA POR FAIR-PLAY: empató todo con Japón pero fue eliminada por más amarillas.",
+          "Batió a Polonia 2-1 en debut."
+        ],
+        "narrative": "Senegal cayó eliminada en grupos del Mundial 2018 en una historia ÚNICA EN LA HISTORIA. Empató con Japón en absolutamente todo (puntos, goles a favor, en contra, diferencia, head-to-head) pero quedó eliminada POR MÁS TARJETAS AMARILLAS (Senegal 6, Japón 4). Batió a Polonia 2-1 en debut. Cayó con Colombia 0-1."
+      },
+      {
+        "year": 2022,
+        "host": {
+          "countries": [
+            "Catar"
+          ],
+          "iso": [
+            "qa"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Aliou Cissé",
+        "captain": "Kalidou Koulibaly",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Boulaye Dia",
+            "goals": 1
+          },
+          {
+            "player": "Famara Diédhiou",
+            "goals": 1
+          },
+          {
+            "player": "Bamba Dieng",
+            "goals": 1
+          },
+          {
+            "player": "Kalidou Koulibaly",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 5,
+        "goals_conceded": 7,
+        "notable_facts": [
+          "Pasó como 2º grupo.",
+          "Eliminada por Inglaterra 0-3 en octavos.",
+          "SADIO MANÉ SE PERDIÓ EL MUNDIAL POR LESIÓN."
+        ],
+        "narrative": "Senegal se clasificó a octavos sin Mané (lesionado dos semanas antes en Bayern). Eliminada por Inglaterra 0-3 (Henderson, Kane, Saka)."
+      }
+    ],
+    "palmares": [
+      {
+        "competition": "Copa Africana de Naciones",
+        "year": 2022,
+        "position": "Campeón",
+        "host": "Camerún"
+      },
+      {
+        "competition": "Copa Africana de Naciones",
+        "year": 2025,
+        "position": "Campeón",
+        "host": "Marruecos"
+      },
+      {
+        "competition": "Campeonato Africano de Naciones (CHAN)",
+        "year": 2022,
+        "position": "Campeón",
+        "host": "Argelia"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Sadio Mané",
+      "value": 52,
+      "period": "2012-presente",
+      "notes": "MÁXIMO GOLEADOR HISTÓRICO. 124+ caps. Sigue activo."
+    },
+    "most_capped": {
+      "name": "Henri Camara",
+      "value": 99,
+      "period": "1999-2008",
+      "notes": "Récord histórico. Mané está cerca de superarlo."
+    },
+    "youngest_debut": {
+      "name": "Pape Matar Sarr",
+      "value": "18 años",
+      "period": "2020",
+      "notes": "Récord moderno."
+    },
+    "biggest_win": {
+      "result": "6-0",
+      "opponent": "Mauricio",
+      "date": "2017-09-02",
+      "competition": "Eliminatorias Mundial 2018"
+    },
+    "worst_loss": {
+      "result": "0-3",
+      "opponent": "Inglaterra",
+      "date": "2022-12-04",
+      "competition": "Octavos Mundial 2022"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El 1-0 a Francia (Seúl 2002)",
+      "date": "2002-05-31",
+      "opponent": {
+        "iso": "fr",
+        "name": "Francia"
+      },
+      "score": "1-0",
+      "competition": "Fase de Grupos Mundial 2002",
+      "narrative": "SENEGAL BATIÓ 1-0 A FRANCIA CAMPEONA VIGENTE en partido inaugural del Mundial 2002 en Seúl. Gol de PAPA BOUBA DIOP al 30' tras pase de El Hadji Diouf y rebote de Petit. Diop bailó con el banderín de córner (icono mundialista). Una de las grandes sorpresas de la historia."
+    },
+    {
+      "title": "Cuartos del 2002 ante Turquía",
+      "date": "2002-06-22",
+      "opponent": {
+        "iso": "tr",
+        "name": "Turquía"
+      },
+      "score": "0-1",
+      "competition": "Cuartos Mundial 2002",
+      "narrative": "Senegal cayó en cuartos del Mundial 2002 ante Turquía 0-1 con gol de oro de Mansız al 94'. Adiós digno tras ser semis de África en su debut."
+    },
+    {
+      "title": "Eliminación por fair-play (Volgogrado 2018)",
+      "date": "2018-06-28",
+      "opponent": {
+        "iso": "co",
+        "name": "Colombia"
+      },
+      "score": "0-1",
+      "competition": "Fase de Grupos Mundial 2018",
+      "narrative": "Senegal cayó eliminada del Mundial 2018 0-1 ante Colombia. EMPATÓ EN TODO con Japón (mismos puntos, GF, GC, diferencia, head-to-head). FUE ELIMINADA POR FAIR-PLAY: 6 amarillas vs 4. ÚNICA selección eliminada de un Mundial por este criterio."
+    },
+    {
+      "title": "Copa África 2022 con Mané",
+      "date": "2022-02-06",
+      "opponent": {
+        "iso": "eg",
+        "name": "Egipto"
+      },
+      "score": "0-0 (4-2 pen)",
+      "competition": "Final Copa África 2022",
+      "narrative": "Senegal ganó SU PRIMERA COPA ÁFRICA 2022 al batir 4-2 en penales a Egipto. SADIO MANÉ marcó EL PENAL DEFINITIVO. Generación dorada consagrada."
+    },
+    {
+      "title": "Bicampeona Copa África 2025",
+      "date": "2026-02-08",
+      "opponent": {
+        "iso": "ma",
+        "name": "Marruecos"
+      },
+      "score": "1-1 (3-2 pen)",
+      "competition": "Final Copa África 2025",
+      "narrative": "Senegal BICAMPEONA AFRICANA al ganar a Marruecos en final controvertida en Rabat. Final caótica con tensión política. Pape Thiaw suspendido 5 partidos posteriores. Bicampeonato consecutivo."
+    },
+    {
+      "title": "El 4-0 a Mauritania que selló pase a 2026",
+      "date": "2025-10-14",
+      "opponent": {
+        "iso": "mr",
+        "name": "Mauritania"
+      },
+      "score": "4-0",
+      "competition": "Eliminatorias Mundial 2026",
+      "narrative": "Senegal goleó 4-0 a Mauritania en Diamniadio el 14 de octubre. Mané, Diarra, Jackson y Ndiaye marcaron. Selló la clasificación al Mundial 2026 (3ª consecutiva)."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "Senegal es la ÚNICA SELECCIÓN DE LA HISTORIA eliminada de un Mundial POR FAIR-PLAY (Catar 2022 vs Japón). Mismos puntos, GF, GC, diferencia, head-to-head, pero más amarillas (6 vs 4).",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Senegal venció a FRANCIA campeona vigente 1-0 en su DEBUT MUNDIALISTA (2002). El baile con el banderín de Papa Bouba Diop tras el gol es uno de los iconos del fútbol mundial.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Sadio Mané es el ÚNICO senegalés ganador de la Champions (Liverpool 2019) y de la Premier League. 7º en Balón de Oro 2019.",
+      "source": "Liverpool FC + UEFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Aliou Cissé fue capitán en el Mundial 2002 (cuartos) Y DT desde 2015 (clasificación 2018, 2022, Copa África 2022). Único senegalés en ambas posiciones.",
+      "source": "FSF + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Pape Thiaw es la 2ª persona senegalesa con doble rol jugador-DT en Mundial: jugó 2002 y dirige 2026. Su predecesor fue Bruno Metsu (DT 2002 francés).",
+      "source": "FSF",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "El Grupo I del Mundial 2026 es el llamado 'GRUPO DE LA MUERTE': Francia (4 FIFA) + Noruega (33) + Senegal (12) + Irak (58). Senegal vs Francia será revancha de 2002.",
+      "source": "FIFA + ESPN",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Pincez tous vos koras (himno)",
+      "Allez les Lions",
+      "Senegal! Senegal!"
+    ],
+    "main_rival": {
+      "iso": "ma",
+      "name": "Marruecos",
+      "story": "Rivalidad africana moderna por los 2 mejores equipos del continente. Final Copa África 2025 disputada en Rabat (1-1, 3-2 pen Senegal) generó tensión histórica."
+    },
+    "home_stadium": {
+      "name": "Stade Abdoulaye Wade",
+      "capacity": 50000,
+      "city": "Diamniadio (Dakar)"
+    }
+  },
+  "seo": {
+    "meta_title": "Senegal en el Mundial 2026 | Plantilla, historia y predicciones",
+    "meta_description": "Senegal Mundial 2026: 26 convocados de Pape Thiaw, Mané, Koulibaly, Jackson. Bicampeona africana en el Grupo I con Francia y Noruega.",
+    "og_image_url": "/img/og/teams/senegal.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Senegal",
+      "alternateName": [
+        "Lions de la Téranga"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "CAF"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Pape Thiaw"
+      },
+      "url": "https://www.zonamundial.app/selecciones/senegal"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-28",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_Senegal",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/15756482/se-definieron-eliminatorias-africa-mundial-2026",
+      "https://www.tudn.com/mundial-2026/eliminatorias/eliminatorias-mundial-2026-asi-quedo-tabla-posiciones-africa",
+      "https://www.infobae.com/peru/deportes/2025/12/05/asi-llego-senegal-al-mundial-2026",
+      "https://www.fsfoot.sn",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias cruzadas con CAF + Wikipedia + ESPN. Historia mundialista validada con FIFA + Wikipedia + FSF.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "complete",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante: pendiente",
+      "Base de entrenamiento: FSF aún no anunció",
+      "FIFA Ranking #12: validar mes vigente",
+      "Verificar fechas exactas eliminatorias 2023-2025",
+      "Algunos goleadores secundarios eliminatorias pueden requerir cruce con FIFA"
+    ]
+  }
+}

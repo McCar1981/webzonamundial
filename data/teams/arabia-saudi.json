@@ -1,0 +1,1535 @@
+{
+  "slug": "arabia-saudi",
+  "iso": "sa",
+  "iso3": "KSA",
+  "name_es": "Arabia Saudita",
+  "name_en": "Saudi Arabia",
+  "name_local": "المملكة العربية السعودية",
+  "nicknames": [
+    "Halcones Verdes",
+    "Green Falcons",
+    "Al-Akhdar"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#006C35",
+      "secondary": "#FFFFFF",
+      "tertiary": "#000000",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Riad",
+    "language_official": [
+      "Árabe"
+    ],
+    "population": 36410000,
+    "area_km2": 2149690,
+    "timezone": "Asia/Riyadh",
+    "continent": "Asia"
+  },
+  "federation": {
+    "name": "Saudi Arabian Football Federation",
+    "abbreviation": "SAFF",
+    "founded": 1956,
+    "headquarters": "Riad",
+    "website": "https://www.saff.com.sa"
+  },
+  "confederation": "AFC",
+  "fifa_ranking": {
+    "current": 60,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Adidas",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/arabia-saudi.png",
+        "back_url": null,
+        "primary_color": "#006C35",
+        "secondary_color": "#FFFFFF",
+        "description": "Camiseta verde con detalles blancos, el verde de la bandera nacional saudí.",
+        "alt_text": "Camiseta titular Arabia Saudita Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#006C35",
+        "description": "Equipación visitante en blanco. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Arabia Saudita Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "El verde es el color del Islam y el de la bandera saudí. El sobrenombre 'Halcones Verdes' surgió en los años 80 por el carácter combativo y veloz del equipo.",
+        "source": "SAFF + Wikipedia",
+        "verified_at": "2026-04-29",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Arabia Saudita clasificó por la VÍA LARGA: 3ª del Grupo C de la 3ª ronda AFC con 13 puntos (3G 4E 3P, 9 GF 7 GC), por detrás de Japón y Australia. Pasó a la 4ª ronda. Con Hervé Renard de regreso (marzo 2025 tras la salida de Mancini), lideró el Grupo A de la 4ª ronda venciendo a Indonesia 3-2 y empatando 0-0 con Iraq el 14 de octubre de 2025 (clasificación por desempate de goles convertidos). Es su 7ª participación mundialista (3ª consecutiva). Salem Al-Dawsari, capitán histórico, es la figura. En el Grupo H del Mundial con España, Uruguay y Cabo Verde.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias AFC Mundial 2026 — 3ª ronda Grupo C + 4ª ronda Grupo A",
+      "format": "Liguilla 3ª ronda (10 partidos) + 4ª ronda mini-liguilla (2 partidos)",
+      "duration": "Septiembre 2024 — Octubre 2025",
+      "final_position": 3,
+      "total_teams_in_group": 6,
+      "stats": {
+        "played": 10,
+        "won": 3,
+        "drawn": 4,
+        "lost": 3,
+        "goals_for": 9,
+        "goals_against": 7,
+        "goal_difference": 2,
+        "points": 13,
+        "win_percentage": 30,
+        "clean_sheets": 4,
+        "notes": "Stats de la 3ª ronda Grupo C (10 PJ, 13 pts, 3º). Adicionalmente: 4ª ronda 1G 1E (3-2 Indonesia, 0-0 Iraq). Pase final consolidado el 14 oct 2025."
+      },
+      "coach_during_qualifying": "Hervé Renard (desde marzo 2025). Roberto Mancini dirigió las primeras jornadas hasta su salida en oct 2024.",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2024-09-05",
+          "home": {
+            "iso": "id",
+            "name": "Indonesia",
+            "score": 1
+          },
+          "away": {
+            "iso": "sa",
+            "name": "Arabia Saudita",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Estadio Bung Karno",
+            "city": "Yakarta",
+            "country_iso": "id"
+          },
+          "goals_arg": [
+            {
+              "player": "Abdullah Radif",
+              "minute": "55'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 2,
+          "date": "2024-09-10",
+          "home": {
+            "iso": "sa",
+            "name": "Arabia Saudita",
+            "score": 2
+          },
+          "away": {
+            "iso": "cn",
+            "name": "China",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "King Saud University Stadium",
+            "city": "Riad",
+            "country_iso": "sa"
+          },
+          "goals_arg": [
+            {
+              "player": "Salem Al-Dawsari",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Mohammed Kanno",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 3,
+          "date": "2024-10-10",
+          "home": {
+            "iso": "jp",
+            "name": "Japón",
+            "score": 2
+          },
+          "away": {
+            "iso": "sa",
+            "name": "Arabia Saudita",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Saitama Stadium",
+            "city": "Saitama",
+            "country_iso": "jp"
+          },
+          "goals_arg": [],
+          "notes": "Goleada en Saitama. Detonó cambio de DT (Mancini fuera oct 2024)."
+        },
+        {
+          "matchday": 4,
+          "date": "2024-10-15",
+          "home": {
+            "iso": "sa",
+            "name": "Arabia Saudita",
+            "score": 0
+          },
+          "away": {
+            "iso": "bh",
+            "name": "Baréin",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "King Saud University Stadium",
+            "city": "Riad",
+            "country_iso": "sa"
+          },
+          "goals_arg": []
+        },
+        {
+          "matchday": 5,
+          "date": "2024-11-14",
+          "home": {
+            "iso": "sa",
+            "name": "Arabia Saudita",
+            "score": 0
+          },
+          "away": {
+            "iso": "au",
+            "name": "Australia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "King Abdullah Sports City",
+            "city": "Yeda",
+            "country_iso": "sa"
+          },
+          "goals_arg": []
+        },
+        {
+          "matchday": 6,
+          "date": "2024-11-19",
+          "home": {
+            "iso": "id",
+            "name": "Indonesia",
+            "score": 0
+          },
+          "away": {
+            "iso": "sa",
+            "name": "Arabia Saudita",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Estadio Bung Karno",
+            "city": "Yakarta",
+            "country_iso": "id"
+          },
+          "goals_arg": [
+            {
+              "player": "Salem Al-Dawsari",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Marwan Al-Sahafi",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 7,
+          "date": "2025-03-20",
+          "home": {
+            "iso": "cn",
+            "name": "China",
+            "score": 1
+          },
+          "away": {
+            "iso": "sa",
+            "name": "Arabia Saudita",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Hangzhou Olympic Sports",
+            "city": "Hangzhou",
+            "country_iso": "cn"
+          },
+          "goals_arg": [],
+          "notes": "Derrota inesperada con Renard de regreso."
+        },
+        {
+          "matchday": 8,
+          "date": "2025-03-25",
+          "home": {
+            "iso": "sa",
+            "name": "Arabia Saudita",
+            "score": 0
+          },
+          "away": {
+            "iso": "jp",
+            "name": "Japón",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "King Abdullah Sports City",
+            "city": "Yeda",
+            "country_iso": "sa"
+          },
+          "goals_arg": []
+        },
+        {
+          "matchday": 9,
+          "date": "2025-06-05",
+          "home": {
+            "iso": "sa",
+            "name": "Arabia Saudita",
+            "score": 2
+          },
+          "away": {
+            "iso": "bh",
+            "name": "Baréin",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "King Saud University Stadium",
+            "city": "Riad",
+            "country_iso": "sa"
+          },
+          "goals_arg": [
+            {
+              "player": "Firas Al-Buraikan",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Saleh Al-Shehri",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 10,
+          "date": "2025-06-10",
+          "home": {
+            "iso": "au",
+            "name": "Australia",
+            "score": 2
+          },
+          "away": {
+            "iso": "sa",
+            "name": "Arabia Saudita",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Allianz Stadium",
+            "city": "Sídney",
+            "country_iso": "au"
+          },
+          "goals_arg": [
+            {
+              "player": "Abdulrahman Al-Obud",
+              "minute": "19'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Derrota en la 'final' del grupo C. Ryan le atajó penal a Salem Al-Dawsari. Arabia 3ª y a 4ª ronda. Después en la 4ª ronda lideró el grupo A: 3-2 Indonesia + 0-0 Iraq → CLASIFICÓ AL MUNDIAL 2026 el 14 oct 2025.",
+          "is_decisive_match": true
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Salem Al-Dawsari",
+          "goals": 2,
+          "notes": "Capitán histórico, Al-Hilal."
+        },
+        {
+          "player": "Firas Al-Buraikan",
+          "goals": 1,
+          "notes": "Al-Ahli, '9' titular."
+        },
+        {
+          "player": "Saleh Al-Shehri",
+          "goals": 1
+        },
+        {
+          "player": "Mohammed Kanno",
+          "goals": 1
+        },
+        {
+          "player": "Abdullah Radif",
+          "goals": 1
+        },
+        {
+          "player": "Marwan Al-Sahafi",
+          "goals": 1
+        },
+        {
+          "player": "Abdulrahman Al-Obud",
+          "goals": 1
+        },
+        {
+          "player": "Otros (1)",
+          "goals": 1
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_6",
+        "reason": "Triunfo 2-0 a Indonesia en Yakarta. Goles de Salem y Marwan Al-Sahafi (joven 21 años en Royal Antwerp belga)."
+      },
+      "worst_match": {
+        "match_ref": "matchday_3",
+        "reason": "Goleada 0-2 en Saitama vs Japón. Mancini fuera el siguiente mes."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_10",
+        "reason": "Tras caer 1-2 con Australia y quedar 3ª, Arabia bajó a la 4ª ronda. En la 4ª ronda lideró el Grupo A: 3-2 a Indonesia en sept 2025 + 0-0 con Iraq el 14 oct 2025. Por desempate de goles convertidos selló pase al Mundial 2026."
+      }
+    },
+    "group_2026": {
+      "letter": "H",
+      "label": "Grupo H — España, Cabo Verde, Arabia Saudita y Uruguay",
+      "teams": [
+        {
+          "iso": "es",
+          "name": "España",
+          "fifa_rank": null
+        },
+        {
+          "iso": "cv",
+          "name": "Cabo Verde",
+          "fifa_rank": null
+        },
+        {
+          "iso": "uy",
+          "name": "Uruguay",
+          "fifa_rank": null
+        },
+        {
+          "iso": "sa",
+          "name": "A. Saudí",
+          "fifa_rank": null,
+          "is_seed": false
+        }
+      ],
+      "notes": "Grupo H confirmado en sorteo del 5 dic 2025. Grupo durísimo con 2 campeones del mundo (España y Uruguay)."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "uy",
+          "name": "Uruguay"
+        },
+        "date": "2026-06-15",
+        "kickoff_local": "15:00",
+        "venue": {
+          "stadium": "SoFi Stadium",
+          "city": "Los Ángeles",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "cv",
+          "name": "Cabo Verde"
+        },
+        "date": "2026-06-23",
+        "kickoff_local": "12:00",
+        "venue": {
+          "stadium": "Estadio Azteca",
+          "city": "Ciudad de México",
+          "country_iso": "mx"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "es",
+          "name": "España"
+        },
+        "date": "2026-06-30",
+        "kickoff_local": "15:00",
+        "venue": {
+          "stadium": "Estadio Azteca",
+          "city": "Ciudad de México",
+          "country_iso": "mx"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — SAFF aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Hervé Renard",
+      "age": 57,
+      "nationality": "Francia",
+      "since": "2025-03-15",
+      "previous_teams": [
+        "Arabia Saudita (2019-2023, Mundial 2022 con triunfo histórico vs Argentina)",
+        "Francia femenina (2023-2024, cuartos Mundial femenino)",
+        "Marruecos (2016-2019, Mundial 2018)",
+        "Costa de Marfil (2014-2015, CAMPEÓN Copa África 2015)",
+        "Zambia (2008-2010, 2011-2013, CAMPEÓN Copa África 2012)"
+      ],
+      "profile_summary": "Francés, 57 años. 2º paso al frente de Arabia Saudita. ÚNICO TÉCNICO QUE GANÓ DOS COPAS ÁFRICA CON DOS PAÍSES DIFERENTES (Zambia 2012 + Costa de Marfil 2015). Identidad: 4-3-3 ofensivo, presión alta organizada, mentalidad guerrera. AUTOR DEL MILAGRO DE LUSAIL (Arabia Saudita 2-1 Argentina, Catar 2022). Volvió en marzo 2025 tras la salida de Roberto Mancini. NOTA: Telemundo informó (29 abr 2026) rumores de salida a semanas del Mundial; situación pendiente de actualización.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Herv%C3%A9_Renard.jpg/330px-Herv%C3%A9_Renard.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Herv%C3%A9_Renard"
+      }
+    },
+    "captain": {
+      "name": "Salem Al-Dawsari",
+      "club": "Al-Hilal",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Salem_Al-Dawsari_2018.jpg/330px-Salem_Al-Dawsari_2018.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Salem_Al-Dawsari"
+      }
+    },
+    "star_player": {
+      "name": "Salem Al-Dawsari",
+      "club": "Al-Hilal",
+      "reason": "Capitán histórico, 34 años, EL HÉROE DEL MILAGRO DE LUSAIL (2-1 a Argentina en Catar 2022). Extremo izquierdo, leal al Al-Hilal toda su carrera. 2 veces Jugador del Año AFC (2022, 2024). 50+ caps, 19+ goles internacionales. Mundial 2026 será su 4ª participación (2018, 2022, 2026).",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Salem_Al-Dawsari_2018.jpg/330px-Salem_Al-Dawsari_2018.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Salem_Al-Dawsari"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "nawaf-al-aqidi",
+        "full_name": "Nawaf Al-Aqidi",
+        "display_name": "Nawaf Al-Aqidi",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Al-Nassr",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Nawaf_Al-Aqidi_2023_%28cropped%29.jpg/330px-Nawaf_Al-Aqidi_2023_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Nawaf_Al-Aqidi"
+        }
+      },
+      {
+        "id": "mohammed-al-owais",
+        "full_name": "Mohammed Al-Owais",
+        "display_name": "Mohammed Al-Owais",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Al-Ula",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 12,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Mohammed_Al-Owais_2018.jpg/330px-Mohammed_Al-Owais_2018.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mohammed_Al-Owais"
+        }
+      },
+      {
+        "id": "ahmed-al-kassar",
+        "full_name": "Ahmed Al-Kassar",
+        "display_name": "Ahmed Al-Kassar",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Al-Riyadh",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 23,
+        "status": "probable"
+      },
+      {
+        "id": "saud-abdulhamid",
+        "full_name": "Saud Abdulhamid",
+        "display_name": "Saud Abdulhamid",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "AS Roma",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Saudi_Arabia_v_Oman_%282%29_%28cropped%29.jpg/330px-Saudi_Arabia_v_Oman_%282%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Saud_Abdulhamid"
+        }
+      },
+      {
+        "id": "moteb-al-harbi",
+        "full_name": "Moteb Al-Harbi",
+        "display_name": "Moteb Al-Harbi",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Al-Shabab",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 14,
+        "status": "probable"
+      },
+      {
+        "id": "ali-al-bulayhi",
+        "full_name": "Ali Al-Bulayhi",
+        "display_name": "Ali Al-Bulayhi",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Al-Hilal",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Saudi_Arabia_v_Oman_%2813%29_%28cropped%29.jpg/330px-Saudi_Arabia_v_Oman_%2813%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ali_Al-Bulaihi"
+        }
+      },
+      {
+        "id": "hassan-tambakti",
+        "full_name": "Hassan Tambakti",
+        "display_name": "Hassan Tambakti",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Al-Hilal",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed"
+      },
+      {
+        "id": "abdulelah-al-amri",
+        "full_name": "Abdulelah Al-Amri",
+        "display_name": "Abdulelah Al-Amri",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Al-Nassr",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 15,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/09/Abdulelah_Al-Amri_2023_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Abdulelah_Al-Amri"
+        }
+      },
+      {
+        "id": "jehad-thakri",
+        "full_name": "Jehad Thakri",
+        "display_name": "Jehad Thakri",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Al-Ittihad",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 22,
+        "status": "probable"
+      },
+      {
+        "id": "yasir-al-shahrani",
+        "full_name": "Yasir Al-Shahrani",
+        "display_name": "Yasir Al-Shahrani",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Al-Hilal",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 13,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Yasser_Al-Shahrani_2018.jpg/330px-Yasser_Al-Shahrani_2018.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Yasir_Al-Shahrani"
+        }
+      },
+      {
+        "id": "sultan-al-ghannam",
+        "full_name": "Sultan Al-Ghannam",
+        "display_name": "Sultan Al-Ghannam",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Al-Nassr",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 3,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Sultan_Al-Ghannam_2023_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Sultan_Al-Ghanam"
+        }
+      },
+      {
+        "id": "abdullah-al-khaibari",
+        "full_name": "Abdullah Al-Khaibari",
+        "display_name": "Abdullah Al-Khaibari",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Al-Shabab",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/13/Abdullah_Al-Khaibari_2023_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Abdullah_Al-Khaibari"
+        }
+      },
+      {
+        "id": "mohammed-kanno",
+        "full_name": "Mohammed Kanno",
+        "display_name": "Mohammed Kanno",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Al-Hilal",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Group_photographs_of_Al_Hilal%2C_Al_Hilal_SFC_vs_Chelsea_F.C.%2C_9_February_2022_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mohamed_Kanno"
+        }
+      },
+      {
+        "id": "musab-al-juwayr",
+        "full_name": "Musab Al-Juwayr",
+        "display_name": "Musab Al-Juwayr",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Al-Qadsiah",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 16,
+        "status": "fixed"
+      },
+      {
+        "id": "salman-al-faraj",
+        "full_name": "Salman Al-Faraj",
+        "display_name": "Salman Al-Faraj",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Al-Hilal",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 7,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Salman_Al-Faraj_2018.jpg/330px-Salman_Al-Faraj_2018.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Salman_Al-Faraj"
+        }
+      },
+      {
+        "id": "nasser-al-dawsari",
+        "full_name": "Nasser Al-Dawsari",
+        "display_name": "Nasser Al-Dawsari",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Al-Hilal",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Saudi_Arabia_v_Oman_%289%29_%28cropped%29.jpg/330px-Saudi_Arabia_v_Oman_%289%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Nasser_Al-Dawsari"
+        }
+      },
+      {
+        "id": "mohammed-aboulshamat",
+        "full_name": "Mohammed Aboulshamat",
+        "display_name": "Mohammed Aboulshamat",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Al-Ittihad",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed"
+      },
+      {
+        "id": "abdulrahman-al-obud",
+        "full_name": "Abdulrahman Al-Obud",
+        "display_name": "Abdulrahman Al-Obud",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Al-Shabab",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed"
+      },
+      {
+        "id": "salem-al-dawsari",
+        "full_name": "Salem Al-Dawsari",
+        "display_name": "Salem Al-Dawsari",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Al-Hilal",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Salem_Al-Dawsari_2018.jpg/330px-Salem_Al-Dawsari_2018.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Salem_Al-Dawsari"
+        }
+      },
+      {
+        "id": "firas-al-buraikan",
+        "full_name": "Firas Al-Buraikan",
+        "display_name": "Firas Al-Buraikan",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Al-Ahli",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Feras_Albrikan%2C_2025_CONCACAF_Gold_Cup_%28cropped%29.jpg/330px-Feras_Albrikan%2C_2025_CONCACAF_Gold_Cup_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Firas_Al-Buraikan"
+        }
+      },
+      {
+        "id": "abdullah-radif",
+        "full_name": "Abdullah Radif",
+        "display_name": "Abdullah Radif",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Al-Ittihad",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 20,
+        "status": "fixed"
+      },
+      {
+        "id": "saleh-al-shehri",
+        "full_name": "Saleh Al-Shehri",
+        "display_name": "Saleh Al-Shehri",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Al-Ittihad",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed"
+      },
+      {
+        "id": "marwan-al-sahafi",
+        "full_name": "Marwan Al-Sahafi",
+        "display_name": "Marwan Al-Sahafi",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Royal Antwerp",
+          "country_iso": "be",
+          "league": "Pro League"
+        },
+        "shirt_number_expected": 21,
+        "status": "fixed"
+      },
+      {
+        "id": "haitham-asiri",
+        "full_name": "Haitham Asiri",
+        "display_name": "Haitham Asiri",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Al-Ahli",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 24,
+        "status": "probable"
+      },
+      {
+        "id": "fawaz-al-torais",
+        "full_name": "Fawaz Al-Torais",
+        "display_name": "Fawaz Al-Torais",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Al-Shabab",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 25,
+        "status": "bubble"
+      },
+      {
+        "id": "abdullah-al-malki",
+        "full_name": "Abdullah Al-Malki",
+        "display_name": "Abdullah Al-Malki",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Al-Hilal",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble"
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-2-3-1",
+      "players": [
+        {
+          "player_id": "nawaf-al-aqidi",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "saud-abdulhamid",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "ali-al-bulayhi",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "hassan-tambakti",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "yasir-al-shahrani",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "abdullah-al-khaibari",
+          "position": {
+            "x": 60,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "mohammed-kanno",
+          "position": {
+            "x": 40,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "nasser-al-dawsari",
+          "position": {
+            "x": 80,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "mohammed-aboulshamat",
+          "position": {
+            "x": 50,
+            "y": 32
+          }
+        },
+        {
+          "player_id": "salem-al-dawsari",
+          "position": {
+            "x": 20,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "firas-al-buraikan",
+          "position": {
+            "x": 50,
+            "y": 12
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Renard plantea un 4-2-3-1 sólido: defensa zonal con Al-Bulayhi como referente, doble pivote (Al-Khaibari + Kanno), Salem Al-Dawsari como '10' por izquierda, Al-Buraikan '9' fijo. Identidad: orden defensivo, transiciones por banda izquierda con Salem, juego asociativo con Saudi Pro League como base.",
+      "strengths": [
+        "SALEM AL-DAWSARI: 2 veces Jugador AFC del Año (2022, 2024). Capitán emocional. HÉROE DE LUSAIL.",
+        "ALI AL-BULAYHI: jefe de defensa Al-Hilal, físico imponente.",
+        "FIRAS AL-BURAIKAN: '9' clínico que faltaba históricamente. Al-Ahli.",
+        "COHESIÓN: la mayoría del plantel juega en Al-Hilal, Al-Nassr, Al-Ahli, Al-Ittihad. Conocimiento colectivo.",
+        "Hervé Renard: ÚNICO en ganar 2 Copas África con 2 países diferentes. Mente histórica.",
+        "ANTECEDENTE: VENCIÓ A ARGENTINA campeona en Catar 2022 (Milagro de Lusail).",
+        "Saud Abdulhamid: 1er saudí en Serie A italiana (Roma)."
+      ],
+      "weaknesses": [
+        "RÉCORD MUNDIALISTA POBRE: solo 1 vez octavos (1994). En 5 Mundiales desde, todos eliminados en grupos.",
+        "PLANTEL MAYORITARIAMENTE LOCAL: solo 2-3 fuera de Saudi Pro League. Falta ritmo top.",
+        "GOLEO ESCASO: 9 GF en 10 partidos eliminatoria 3ª ronda.",
+        "AMISTOSOS RECIENTES MARZO 2026: cayó 4-0 vs Egipto y 2-1 vs Serbia. Forma preocupante.",
+        "COPA ÁRABE 2025: eliminada en semis vs Jordania.",
+        "INESTABILIDAD DT: Mancini→Renard en 2024-25, ahora rumores de salida de Renard a meses del Mundial.",
+        "Salem Al-Dawsari 34 años: edad como factor en torneo intenso."
+      ],
+      "x_factor": {
+        "player": "Marwan Al-Sahafi",
+        "reason": "Joven delantero (21 años) del Royal Antwerp belga (Pro League). 1er saudí en mucho tiempo en jugar fútbol europeo top. Velocidad, regate, frescura. Si Renard apuesta por su juventud, Arabia puede sorprender contra España, Uruguay y Cabo Verde."
+      },
+      "prediction_text": "Arabia llega al Grupo H DURÍSIMO con España (#1 mundial), Uruguay y Cabo Verde (debutante). Pasar a octavos sería gesta histórica desde 1994. Mejor objetivo realista: NO ser último del grupo y soñar con sorpresa puntual. Gran reto contra los 'campeones del mundo'.",
+      "probabilities": {
+        "advance_groups": 18,
+        "round_of_32": 15,
+        "round_of_16": 5,
+        "quarter_finals": 1,
+        "semi_finals": 0,
+        "final": 0,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: fase de grupos. Catar 2022: fase de grupos (con MILAGRO DE LUSAIL: 2-1 a Argentina campeona). Mundial 2026: 7ª participación, 3ª CONSECUTIVA."
+    }
+  },
+  "history": {
+    "first_appearance": 1994,
+    "appearances_count_before_2026": 6,
+    "appearances_count_with_2026": 7,
+    "consecutive_streak_since": 2018,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 0,
+    "best_result": "Octavos de final (1994).",
+    "aggregate_stats_through_2022": {
+      "played": 19,
+      "won": 4,
+      "drawn": 2,
+      "lost": 13,
+      "goals_for": 13,
+      "goals_against": 41,
+      "win_percentage": 21.1,
+      "notes": "19 partidos en 6 Mundiales. Octavos: SOLO 1994 (eliminada por Suecia 1-3)."
+    },
+    "by_world_cup": [
+      {
+        "year": 1994,
+        "host": {
+          "countries": [
+            "Estados Unidos"
+          ],
+          "iso": [
+            "us"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Jorge 'el Indio' Solari",
+        "captain": "Majed Abdullah",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Saeed Al-Owairan",
+            "goals": 1
+          },
+          {
+            "player": "Sami Al-Jaber",
+            "goals": 1
+          },
+          {
+            "player": "Fahd Al-Bishi",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 5,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "DEBUT y MEJOR PARTICIPACIÓN HISTÓRICA.",
+          "GOL MARADONIANO de Saeed Al-Owairan vs Bélgica.",
+          "Pasó 2º del grupo (P. Bajos, Bélgica, Marruecos).",
+          "Eliminada por Suecia 1-3 en octavos."
+        ],
+        "narrative": "Mundial debut HISTÓRICO con DT argentino Jorge Solari. SAEED AL-OWAIRAN MARCÓ 'EL GOL MARADONIANO' vs Bélgica al 5': 60 metros con regate sobre 5 belgas, definición. UNO DE LOS GOLES DEL TORNEO. Pasó 2º (1-2 con Holanda, 1-0 a Marruecos, 1-0 a Bélgica). Cayó 1-3 con Suecia."
+      },
+      {
+        "year": 1998,
+        "host": {
+          "countries": [
+            "Francia"
+          ],
+          "iso": [
+            "fr"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Carlos Alberto Parreira",
+        "captain": "Khalid Al-Muwallid",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Sami Al-Jaber",
+            "goals": 1
+          },
+          {
+            "player": "Yousef Al-Thunayan",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 7,
+        "notable_facts": [
+          "Cayó 0-1 con Dinamarca, 0-4 con Francia anfitriona.",
+          "Empate 2-2 con Sudáfrica."
+        ],
+        "narrative": "Mundial decepcionante con Parreira (campeón Brasil 94). 0-4 con Francia, adiós."
+      },
+      {
+        "year": 2002,
+        "host": {
+          "countries": [
+            "Corea del Sur",
+            "Japón"
+          ],
+          "iso": [
+            "kr",
+            "jp"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Nasser Al-Johar",
+        "captain": "Sami Al-Jaber",
+        "matches": [],
+        "team_top_scorers": [],
+        "goals_scored": 0,
+        "goals_conceded": 12,
+        "notable_facts": [
+          "GOLEADA HISTÓRICA: 0-8 vs Alemania.",
+          "Cayó 0-1 con Camerún y 0-3 con Irlanda."
+        ],
+        "narrative": "MUNDIAL HUMILLANTE. ALEMANIA GOLEÓ 8-0 a Arabia con doblete de Klose y goles de Ballack, Jeremies, Bierhoff, Schneider, Linke. 0-12 en 3 partidos. Nunca peor."
+      },
+      {
+        "year": 2006,
+        "host": {
+          "countries": [
+            "Alemania"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Marcos Paquetá",
+        "captain": "Mohamed Al-Khojaly",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Yasser Al-Qahtani",
+            "goals": 1
+          },
+          {
+            "player": "Sami Al-Jaber",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 7,
+        "notable_facts": [
+          "Cayó 1-2 con Túnez, 0-4 con Ucrania, 0-1 con España.",
+          "Sami Al-Jaber se despidió con gol récord (4to Mundial)."
+        ],
+        "narrative": "Mundial flojo. Sami Al-Jaber marcó SU 3ER GOL MUNDIALISTA siendo el ÚNICO ASIÁTICO en marcar en 4 MUNDIALES (1994-1998-2002-2006)."
+      },
+      {
+        "year": 2018,
+        "host": {
+          "countries": [
+            "Rusia"
+          ],
+          "iso": [
+            "ru"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Juan Antonio Pizzi",
+        "captain": "Osama Hawsawi",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Salman Al-Faraj",
+            "goals": 1
+          },
+          {
+            "player": "Salem Al-Dawsari",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 7,
+        "notable_facts": [
+          "Cayó 0-5 con Rusia anfitriona en INAUGURAL.",
+          "0-1 con Uruguay.",
+          "VICTORIA 2-1 a Egipto (gol Salem 95')."
+        ],
+        "narrative": "Mundial dramático. Inauguración 0-5 con Rusia (Putin presente). 0-1 con Uruguay. CIERRE: 2-1 a Egipto con SALEM AL-DAWSARI marcando al 95'. Adiós digno."
+      },
+      {
+        "year": 2022,
+        "host": {
+          "countries": [
+            "Catar"
+          ],
+          "iso": [
+            "qa"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Hervé Renard",
+        "captain": "Salman Al-Faraj",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Saleh Al-Shehri",
+            "goals": 1
+          },
+          {
+            "player": "Salem Al-Dawsari",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 3,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "VICTORIA HISTÓRICA 2-1 A ARGENTINA (Milagro de Lusail).",
+          "Cayó 0-2 con Polonia (Salem falló penal).",
+          "Cayó 1-2 con México."
+        ],
+        "narrative": "MUNDIAL HISTÓRICO con MILAGRO DE LUSAIL. 2-1 A ARGENTINA (debut, 22 nov 2022): Saleh Al-Shehri 48', Salem Al-Dawsari 53' (golazo al ángulo). UNA DE LAS MAYORES SORPRESAS DE LA HISTORIA mundialista. Argentina sería campeona. Después 0-2 con Polonia (Szczęsny atajó penal a Salem) y 1-2 con México."
+      }
+    ],
+    "palmares": [
+      {
+        "competition": "Copa Asia",
+        "year": 1984,
+        "position": "Campeón",
+        "host": "Singapur"
+      },
+      {
+        "competition": "Copa Asia",
+        "year": 1988,
+        "position": "Campeón",
+        "host": "Catar"
+      },
+      {
+        "competition": "Copa Asia",
+        "year": 1996,
+        "position": "Campeón",
+        "host": "UAE"
+      },
+      {
+        "competition": "Copa Asia",
+        "year": 1992,
+        "position": "Subcampeón",
+        "host": "Japón"
+      },
+      {
+        "competition": "Copa Asia",
+        "year": 2000,
+        "position": "Subcampeón",
+        "host": "Líbano"
+      },
+      {
+        "competition": "Copa Asia",
+        "year": 2007,
+        "position": "Subcampeón",
+        "host": "Sureste asiático"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Majed Abdullah",
+      "value": 71,
+      "period": "1978-1994",
+      "notes": "MÁXIMO GOLEADOR HISTÓRICO. Récord vigente. Leyenda 'El Maradona del desierto'."
+    },
+    "most_capped": {
+      "name": "Mohamed Al-Deayea",
+      "value": 178,
+      "period": "1990-2006",
+      "notes": "Récord histórico. Portero, 4 Mundiales (1994-2006). Mayor cantidad de partidos internacionales asiáticos."
+    },
+    "youngest_debut": {
+      "name": "Marwan Al-Sahafi",
+      "value": "20 años",
+      "period": "2024",
+      "notes": "Debutante reciente."
+    },
+    "biggest_win": {
+      "result": "12-0",
+      "opponent": "Bután",
+      "date": "2015-09-08",
+      "competition": "Eliminatorias Mundial 2018"
+    },
+    "worst_loss": {
+      "result": "0-8",
+      "opponent": "Alemania",
+      "date": "2002-06-01",
+      "competition": "Mundial 2002"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El Milagro de Lusail (2-1 a Argentina)",
+      "date": "2022-11-22",
+      "opponent": {
+        "iso": "ar",
+        "name": "Argentina"
+      },
+      "score": "2-1",
+      "competition": "Fase de Grupos Mundial 2022",
+      "narrative": "Arabia VENCIÓ 2-1 a ARGENTINA en el ESTADIO LUSAIL en la 1ª jornada del Mundial 2022. Messi adelantó al 10' (penal). En 2º tiempo, ARABIA REMONTÓ: SALEH AL-SHEHRI al 48' tras error defensivo. 5 minutos después, SALEM AL-DAWSARI marcó GOLAZO al ángulo desde el borde del área (53'). Argentina luego sería CAMPEONA. UNA DE LAS MAYORES SORPRESAS DE LA HISTORIA mundialista."
+    },
+    {
+      "title": "El Gol Maradoniano de Al-Owairan (1994)",
+      "date": "1994-06-29",
+      "opponent": {
+        "iso": "be",
+        "name": "Bélgica"
+      },
+      "score": "1-0",
+      "competition": "Fase de Grupos Mundial 1994",
+      "narrative": "SAEED AL-OWAIRAN marcó UNO DE LOS GOLES DEL SIGLO XX en el Mundial 1994. Tomó el balón en su propio campo, recorrió 60 metros REGATEANDO A 5 BELGAS y definió ante el portero. UN GOL 'MARADONIANO' que llevó a Arabia a octavos. Top 10 goles mundialistas históricos."
+    },
+    {
+      "title": "El 0-8 de Alemania (2002, peor pesadilla)",
+      "date": "2002-06-01",
+      "opponent": {
+        "iso": "de",
+        "name": "Alemania"
+      },
+      "score": "0-8",
+      "competition": "Fase de Grupos Mundial 2002",
+      "narrative": "Alemania goleó 8-0 a Arabia Saudita en Sapporo. KLOSE marcó hat-trick. Ballack, Jancker, Linke, Bierhoff y Schneider sumaron. PEOR DERROTA DE LA HISTORIA SAUDITA. Marcó una crisis del fútbol árabe."
+    },
+    {
+      "title": "El 2-1 a Egipto al 95' (2018)",
+      "date": "2018-06-25",
+      "opponent": {
+        "iso": "eg",
+        "name": "Egipto"
+      },
+      "score": "2-1",
+      "competition": "Fase de Grupos Mundial 2018",
+      "narrative": "Arabia VENCIÓ 2-1 a Egipto. SALEM AL-DAWSARI marcó al MIN 95' (golazo). 1ª victoria mundialista en 24 años (desde 1994). Egipto se fue con Salah brillante pero sin pasar."
+    },
+    {
+      "title": "El 0-0 con Iraq que selló el Mundial 2026",
+      "date": "2025-10-14",
+      "opponent": {
+        "iso": "iq",
+        "name": "Iraq"
+      },
+      "score": "0-0",
+      "competition": "Eliminatoria AFC Mundial 2026 — 4ª ronda",
+      "narrative": "Arabia clasificó al Mundial 2026 tras empatar 0-0 con Iraq en Yeda el 14 oct 2025. Por desempate de goles convertidos (Arabia tenía más goles a favor en el grupo de 3 equipos), selló el pase. 7ª participación, 3ª consecutiva."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "EL GOL MARADONIANO DE SAEED AL-OWAIRAN en 1994 vs Bélgica está considerado UNO DE LOS 5 GOLES MÁS IMPORTANTES DE LA HISTORIA mundialista. Al-Owairan recorrió 60 METROS regateando a 5 belgas.",
+      "source": "FIFA + AS + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "EL MILAGRO DE LUSAIL: Arabia 2-1 Argentina (22 nov 2022) está en el TOP 5 DE LAS MAYORES SORPRESAS de Mundiales. Argentina venía de 36 partidos invicto y sería CAMPEONA. Saleh Al-Shehri y Salem Al-Dawsari fueron los héroes.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Saudi Pro League es la liga MÁS RICA DEL MUNDO no europea: Cristiano Ronaldo, Karim Benzema, Sadio Mané, N'Golo Kanté, Neymar, Aymeric Laporte, Sergej Milinković-Savić, Rubén Neves y otros juegan ahí desde 2023.",
+      "source": "Wikipedia + Forbes",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Arabia Saudita es la ANFITRIONA de la COPA ASIA 2027 (1ª vez). Y SERÁ ANFITRIONA del MUNDIAL 2034 (única candidatura adjudicada por FIFA). Inversión millonaria para infraestructura.",
+      "source": "FIFA + AFC + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Hervé Renard es EL ÚNICO TÉCNICO en GANAR LA COPA ÁFRICA CON 2 PAÍSES DIFERENTES: Zambia 2012 (subió de bote 71 minutos antes del partido) y Costa de Marfil 2015. Récord histórico africano.",
+      "source": "CAF + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Sami Al-Jaber es EL ÚNICO JUGADOR ASIÁTICO con goles en 4 MUNDIALES CONSECUTIVOS (1994, 1998, 2002, 2006). Récord histórico continental.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Saud Abdulhamid (lateral derecho de la Roma) es EL 1ER SAUDÍ en jugar Serie A italiana. Fichado en 2024 desde Al-Hilal. Apertura inédita del fútbol saudí en Europa.",
+      "source": "Serie A + AS Roma",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Al-Akhdar! Al-Akhdar!",
+      "As-Salām al-Malakī (himno)",
+      "Saudia! Saudia!"
+    ],
+    "main_rival": {
+      "iso": "ir",
+      "name": "Irán",
+      "story": "Rivalidad MÁS INTENSA del fútbol asiático. Geopolítica entre Arabia (suní) e Irán (chií). Han jugado más de 30 veces. Tras la guerra fría regional desde 2016, los partidos no se juegan en sus respectivos países (sedes neutrales)."
+    },
+    "home_stadium": {
+      "name": "King Saud University Stadium",
+      "capacity": 25000,
+      "city": "Riad"
+    }
+  },
+  "seo": {
+    "meta_title": "Arabia Saudita Mundial 2026 | Guía Halcones Verdes",
+    "meta_description": "Arabia Saudita Mundial 2026: Renard, Salem Al-Dawsari, Al-Buraikan. Grupo H con España, Uruguay y Cabo Verde. 7ª participación.",
+    "og_image_url": "/img/og/teams/arabia-saudita.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Arabia Saudita",
+      "alternateName": [
+        "Halcones Verdes",
+        "Green Falcons"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "AFC"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Hervé Renard"
+      },
+      "url": "https://www.zonamundial.app/selecciones/arabia-saudita"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-29",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_de_AFC_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://www.tudn.com/mundial-2026/eliminatorias/mundial-2026-catar-es-penultima-clasificada-asia-copa-del-mundo",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/15936349/mundial-2026-arabia-saudita-perfil-figuras-como-juega-historia",
+      "https://www.sofascore.com/es/news/rumbo-al-mundial-2026-arabia-saudi/",
+      "https://www.telemundo.com/deportes/copa-mundial-de-la-fifa-2026/arabia-saudita-entre-la-sorpresa-y-el-desafio-en-el-mundial-2026-rcna342738",
+      "https://www.record.com.mx/futbol/futbol-internacional/internacionales/un-invitado-mas-arabia-saudita-clasifica-al-mundial",
+      "https://www.infobae.com/deportes/2025/12/05/arabia-saudi-busca-repetir-su-mejor-actuacion-en-un-mundial",
+      "https://www.saff.com.sa",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias 3ª y 4ª ronda AFC cruzadas con TUDN + ESPN + Wikipedia + Sofascore + Infobae. Stats: 13 pts (3G 4E 3P), 9 GF, 7 GC en 3ª ronda. Plantel y formación validados.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "complete",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "needs_review",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "DT actual: rumores salida de Renard a meses Mundial (Telemundo 29 abr 2026). Confirmar.",
+      "Camiseta Adidas visitante: pendiente",
+      "Calendario fase grupos 2026: 2 fechas pendientes",
+      "Base de entrenamiento: SAFF aún no anunció",
+      "FIFA Ranking #60: validar mes vigente",
+      "Detalles partidos eliminatoria: cruzar con FIFA"
+    ]
+  }
+}

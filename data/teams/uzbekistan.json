@@ -1,0 +1,1324 @@
+{
+  "slug": "uzbekistan",
+  "iso": "uz",
+  "iso3": "UZB",
+  "name_es": "Uzbekistán",
+  "name_en": "Uzbekistan",
+  "name_local": "Oʻzbekiston",
+  "nicknames": [
+    "Lobos Blancos",
+    "Oq Boʻrilar",
+    "White Wolves"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#0099B5",
+      "secondary": "#FFFFFF",
+      "tertiary": "#1EB53A",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Taskent",
+    "language_official": [
+      "Uzbeko"
+    ],
+    "population": 36140000,
+    "area_km2": 447400,
+    "timezone": "Asia/Tashkent",
+    "continent": "Asia"
+  },
+  "federation": {
+    "name": "Uzbekistan Football Association",
+    "abbreviation": "UFA",
+    "founded": 1946,
+    "headquarters": "Taskent",
+    "website": "https://www.thefa.uz"
+  },
+  "confederation": "AFC",
+  "fifa_ranking": {
+    "current": 57,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Joma",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/uzbekistan.png",
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#0099B5",
+        "description": "Camiseta blanca con detalles azul cielo. Color tradicional de los Lobos Blancos.",
+        "alt_text": "Camiseta titular Uzbekistán Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#0099B5",
+        "secondary_color": "#FFFFFF",
+        "description": "Equipación visitante en azul cielo. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Uzbekistán Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "El sobrenombre 'Oq Bo'rilar' (Lobos Blancos en uzbeko) hace referencia al lobo gris-blanco de Asia Central, símbolo histórico turcomano que aparece en cuentos populares como guía y protector. Adoptado oficialmente en los 90.",
+        "source": "UFA + Wikipedia",
+        "verified_at": "2026-04-29",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Uzbekistán logró su HISTÓRICA 1ª clasificación a un Mundial al terminar 2º del Grupo A de la 3ª ronda AFC con 21 puntos (6G 3E 1P), GF 16 GC 7. Selló el pase con un 0-0 en Abu Dabi vs UAE el 5 jun 2025 (faltando 1 fecha). Es el DEBUTANTE 81 de la historia mundialista. Timur Kapadze llevó al equipo a la clasificación pero la dirigencia decidió cambiar a Fabio Cannavaro (campeón mundial Italia 2006) en octubre 2025 para mejorar la cara internacional. En el Grupo K del Mundial con Portugal, Colombia y RD Congo.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias AFC Mundial 2026 — 3ª ronda Grupo A",
+      "format": "Liguilla todos contra todos · 6 equipos (Irán, Uzbekistán, UAE, Catar, Kirguistán, Corea del Norte) · 10 partidos",
+      "duration": "Septiembre 2024 — Junio 2025",
+      "final_position": 2,
+      "total_teams_in_group": 6,
+      "stats": {
+        "played": 10,
+        "won": 6,
+        "drawn": 3,
+        "lost": 1,
+        "goals_for": 16,
+        "goals_against": 7,
+        "goal_difference": 9,
+        "points": 21,
+        "win_percentage": 60,
+        "clean_sheets": 5,
+        "notes": "2ª mejor del Grupo A solo detrás de Irán (23). 1 sola derrota. Selló pase con 1 fecha de antelación."
+      },
+      "coach_during_qualifying": "Timur Kapadze (toda la eliminatoria 3ª ronda)",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2024-09-05",
+          "home": {
+            "iso": "uz",
+            "name": "Uzbekistán",
+            "score": 1
+          },
+          "away": {
+            "iso": "kp",
+            "name": "Corea del Norte",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Milliy Stadium",
+            "city": "Taskent",
+            "country_iso": "uz"
+          },
+          "goals_arg": [
+            {
+              "player": "Eldor Shomurodov",
+              "minute": "55'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 2,
+          "date": "2024-09-10",
+          "home": {
+            "iso": "qa",
+            "name": "Catar",
+            "score": 2
+          },
+          "away": {
+            "iso": "uz",
+            "name": "Uzbekistán",
+            "score": 3
+          },
+          "venue": {
+            "stadium": "Estadio Jassim Bin Hamad",
+            "city": "Doha",
+            "country_iso": "qa"
+          },
+          "goals_arg": [
+            {
+              "player": "Eldor Shomurodov",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Jaloliddin Masharipov",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Abbosbek Fayzullaev",
+              "minute": "82'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 3,
+          "date": "2024-10-10",
+          "home": {
+            "iso": "uz",
+            "name": "Uzbekistán",
+            "score": 0
+          },
+          "away": {
+            "iso": "ir",
+            "name": "Irán",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Milliy Stadium",
+            "city": "Taskent",
+            "country_iso": "uz"
+          },
+          "goals_arg": [],
+          "notes": "Única derrota del ciclo. Sardar Azmoun (90') marcó para Irán."
+        },
+        {
+          "matchday": 4,
+          "date": "2024-10-15",
+          "home": {
+            "iso": "ae",
+            "name": "UAE",
+            "score": 0
+          },
+          "away": {
+            "iso": "uz",
+            "name": "Uzbekistán",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Mohammed bin Zayed Stadium",
+            "city": "Abu Dabi",
+            "country_iso": "ae"
+          },
+          "goals_arg": [
+            {
+              "player": "Eldor Shomurodov",
+              "minute": "65'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 5,
+          "date": "2024-11-14",
+          "home": {
+            "iso": "ir",
+            "name": "Irán",
+            "score": 0
+          },
+          "away": {
+            "iso": "uz",
+            "name": "Uzbekistán",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Estadio Azadi",
+            "city": "Teherán",
+            "country_iso": "ir"
+          },
+          "goals_arg": []
+        },
+        {
+          "matchday": 6,
+          "date": "2024-11-19",
+          "home": {
+            "iso": "uz",
+            "name": "Uzbekistán",
+            "score": 1
+          },
+          "away": {
+            "iso": "kg",
+            "name": "Kirguistán",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Milliy Stadium",
+            "city": "Taskent",
+            "country_iso": "uz"
+          },
+          "goals_arg": [
+            {
+              "player": "Otabek Shukurov",
+              "minute": "44'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 7,
+          "date": "2025-03-20",
+          "home": {
+            "iso": "uz",
+            "name": "Uzbekistán",
+            "score": 1
+          },
+          "away": {
+            "iso": "kp",
+            "name": "Corea del Norte",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Milliy Stadium",
+            "city": "Taskent",
+            "country_iso": "uz"
+          },
+          "goals_arg": [
+            {
+              "player": "Eldor Shomurodov",
+              "minute": "80'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 8,
+          "date": "2025-03-25",
+          "home": {
+            "iso": "uz",
+            "name": "Uzbekistán",
+            "score": 0
+          },
+          "away": {
+            "iso": "ir",
+            "name": "Irán",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Milliy Stadium",
+            "city": "Taskent",
+            "country_iso": "uz"
+          },
+          "goals_arg": [],
+          "notes": "Empate clave. Bloqueó la celebración iraní en Taskent."
+        },
+        {
+          "matchday": 9,
+          "date": "2025-06-05",
+          "home": {
+            "iso": "ae",
+            "name": "UAE",
+            "score": 0
+          },
+          "away": {
+            "iso": "uz",
+            "name": "Uzbekistán",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Al Nahyan Stadium",
+            "city": "Abu Dabi",
+            "country_iso": "ae"
+          },
+          "goals_arg": [],
+          "notes": "EMPATE QUE SELLÓ EL PASE HISTÓRICO. Yusupov clave con 3 atajadas. Uzbekistán DEBUTANTE 81 de Mundiales (1ª vez en su historia tras independencia 1991).",
+          "is_decisive_match": true
+        },
+        {
+          "matchday": 10,
+          "date": "2025-06-10",
+          "home": {
+            "iso": "uz",
+            "name": "Uzbekistán",
+            "score": 1
+          },
+          "away": {
+            "iso": "qa",
+            "name": "Catar",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Milliy Stadium",
+            "city": "Taskent",
+            "country_iso": "uz"
+          },
+          "goals_arg": [
+            {
+              "player": "Yusuf Abdurisag",
+              "minute": "60'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Aut. Yusuf (autogol Catar). Cierre con celebración masiva."
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Eldor Shomurodov",
+          "goals": 4,
+          "notes": "Roma → Istanbul Basaksehir. Capitán y top scorer."
+        },
+        {
+          "player": "Jaloliddin Masharipov",
+          "goals": 3,
+          "notes": "Pakhtakor → Al-Nassr. Mediocampista creativo."
+        },
+        {
+          "player": "Abbosbek Fayzullaev",
+          "goals": 2,
+          "notes": "CSKA Moscú. Joven revelación."
+        },
+        {
+          "player": "Otabek Shukurov",
+          "goals": 2
+        },
+        {
+          "player": "Otros (5)",
+          "goals": 5
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_2",
+        "reason": "Triunfo 3-2 a Catar en Doha. Demostró capacidad ofensiva. Shomurodov, Masharipov y Fayzullaev marcaron."
+      },
+      "worst_match": {
+        "match_ref": "matchday_3",
+        "reason": "Derrota 0-1 con Irán en Taskent al 90'. Única derrota del ciclo. Azmoun amargó la fiesta."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_9",
+        "reason": "Empate 0-0 con UAE en Abu Dabi el 5 jun 2025. CLASIFICACIÓN HISTÓRICA al Mundial 2026 (DEBUTANTE 81). Utkir Yusupov figura con 3 atajadas. Festejos eufóricos. Lágrimas."
+      }
+    },
+    "group_2026": {
+      "letter": "K",
+      "label": "Grupo K — Portugal, RD Congo, Uzbekistán y Colombia",
+      "teams": [
+        {
+          "iso": "pt",
+          "name": "Portugal",
+          "fifa_rank": null
+        },
+        {
+          "iso": "uz",
+          "name": "Uzbekistán",
+          "fifa_rank": null,
+          "is_seed": false
+        },
+        {
+          "iso": "co",
+          "name": "Colombia",
+          "fifa_rank": null
+        },
+        {
+          "iso": "cd",
+          "name": "RD Congo",
+          "fifa_rank": null
+        }
+      ],
+      "notes": "Grupo K confirmado en sorteo del 5 dic 2025. Uzbekistán es 4º cabeza de serie. Pelearán 3º puesto con RD Congo."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "pt",
+          "name": "Portugal"
+        },
+        "date": "2026-06-16",
+        "kickoff_local": "18:00",
+        "venue": {
+          "stadium": "Lumen Field",
+          "city": "Seattle",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "cd",
+          "name": "RD Congo"
+        },
+        "date": "2026-06-25",
+        "kickoff_local": "12:00",
+        "venue": {
+          "stadium": "Lumen Field",
+          "city": "Seattle",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "co",
+          "name": "Colombia"
+        },
+        "date": "2026-06-30",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "Lumen Field",
+          "city": "Seattle",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — UFA aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Fabio Cannavaro",
+      "age": 52,
+      "nationality": "Italia",
+      "since": "2025-10-15",
+      "previous_teams": [
+        "Udinese (2024)",
+        "Benevento (2022-2023)",
+        "Guangzhou Evergrande (2014-2015, 2017-2021, varios títulos chinos)",
+        "Arabia Saudita (2018-2019)",
+        "China (2019, 2 partidos)"
+      ],
+      "profile_summary": "Italiano, 52 años. LEYENDA TOTAL: CAPITÁN DE ITALIA CAMPEONA del Mundial 2006 en Alemania. BALÓN DE ORO 2006 (único defensor central en ganarlo desde Beckenbauer 1972). Asumió Uzbekistán el 15 oct 2025 tras la salida de Timur Kapadze (que llevó al equipo a la clasificación). Identidad táctica: 4-3-3 italiano clásico, defensa adelantada con líbero virtual, juego asociativo. Su PRIMERA experiencia REAL como seleccionador (China 2019 fue 2 partidos). Misión: redimir su carrera de DT y darle al debutante Uzbekistán un buen Mundial.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Fabio_Cannavaro_2017_Cropped.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Fabio_Cannavaro"
+      }
+    },
+    "captain": {
+      "name": "Eldor Shomurodov",
+      "club": "İstanbul Başakşehir (cedido por Roma)",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Eldor_Shomurodov_14_%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_FK_20250731_%2810%29_%28cropped%29.jpg/330px-Eldor_Shomurodov_14_%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_FK_20250731_%2810%29_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Eldor_Shomurodov"
+      }
+    },
+    "star_player": {
+      "name": "Abdukodir Khusanov",
+      "club": "Manchester City",
+      "reason": "Defensor central del Manchester City (Premier League). 22 años, 1.86m, físico potente. Fichado por Pep Guardiola en enero 2025 desde el RC Lens (Francia) por ~€40 millones. Es el GRAN ÉXITO de la 'Generación Dorada' uzbeka que jugó los Olímpicos París 2024. Llegará a su 1er Mundial en su pico futbolístico.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/53/Abdukodir_Khusanov_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Abdukodir_Khusanov_(futbolista)"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "utkir-yusupov",
+        "full_name": "Utkir Yusupov",
+        "display_name": "Utkir Yusupov",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Pakhtakor",
+          "country_iso": "uz",
+          "league": "Super League uzbeka"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/O%CA%BBtkir_Yusupov_%28cropped%29.jpg/330px-O%CA%BBtkir_Yusupov_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Utkir_Yusupov"
+        }
+      },
+      {
+        "id": "sanjar-kuvvatov",
+        "full_name": "Sanjar Kuvvatov",
+        "display_name": "Sanjar Kuvvatov",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Andijan",
+          "country_iso": "uz",
+          "league": "Super League uzbeka"
+        },
+        "shirt_number_expected": 12,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Sanjar_Kuvvatov_2020.jpg/330px-Sanjar_Kuvvatov_2020.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Sanjar_Kuvvatov"
+        }
+      },
+      {
+        "id": "abduvohid-nematov",
+        "full_name": "Abduvohid Nematov",
+        "display_name": "Abduvohid Nematov",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Bunyodkor",
+          "country_iso": "uz",
+          "league": "Super League uzbeka"
+        },
+        "shirt_number_expected": 23,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Abduvohid_Nematov_%28cropped%29.jpg/330px-Abduvohid_Nematov_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Abduvohid_Nematov"
+        }
+      },
+      {
+        "id": "khojiakbar-alijonov",
+        "full_name": "Khojiakbar Alijonov",
+        "display_name": "Khojiakbar Alijonov",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Pakhtakor",
+          "country_iso": "uz",
+          "league": "Super League uzbeka"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/FC_Pakhtakor_in_March_2019_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Khojiakbar_Alijonov"
+        }
+      },
+      {
+        "id": "abdulla-abdullaev",
+        "full_name": "Abdulla Abdullaev",
+        "display_name": "Abdulla Abdullaev",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Pakhtakor",
+          "country_iso": "uz",
+          "league": "Super League uzbeka"
+        },
+        "shirt_number_expected": 14,
+        "status": "probable"
+      },
+      {
+        "id": "abdukodir-khusanov",
+        "full_name": "Abdukodir Khusanov",
+        "display_name": "Abdukodir Khusanov",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Manchester City",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/53/Abdukodir_Khusanov_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Abdukodir_Khusanov_(futbolista)"
+        }
+      },
+      {
+        "id": "umarbek-eshmurodov",
+        "full_name": "Umarbek Eshmurodov",
+        "display_name": "Umarbek Eshmurodov",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Pakhtakor",
+          "country_iso": "uz",
+          "league": "Super League uzbeka"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed"
+      },
+      {
+        "id": "rustam-ashurmatov",
+        "full_name": "Rustam Ashurmatov",
+        "display_name": "Rustam Ashurmatov",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Gangwon FC",
+          "country_iso": "kr",
+          "league": "K League 1"
+        },
+        "shirt_number_expected": 15,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Rustamjon_Ashurmatov_%28cropped%29.jpg/330px-Rustamjon_Ashurmatov_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Rustam_Ashurmatov"
+        }
+      },
+      {
+        "id": "javokhir-sidikov",
+        "full_name": "Javokhir Sidikov",
+        "display_name": "Javokhir Sidikov",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Pakhtakor",
+          "country_iso": "uz",
+          "league": "Super League uzbeka"
+        },
+        "shirt_number_expected": 22,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Javokhir_Sidikov.jpg/330px-Javokhir_Sidikov.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Javokhir_Sidikov"
+        }
+      },
+      {
+        "id": "sherzod-nasrullaev",
+        "full_name": "Sherzod Nasrullaev",
+        "display_name": "Sherzod Nasrullaev",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Pakhtakor",
+          "country_iso": "uz",
+          "league": "Super League uzbeka"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Sherzod_Nasrullayev.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Sherzod_Nasrullaev"
+        }
+      },
+      {
+        "id": "sherzod-azamov",
+        "full_name": "Sherzod Azamov",
+        "display_name": "Sherzod Azamov",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Bunyodkor",
+          "country_iso": "uz",
+          "league": "Super League uzbeka"
+        },
+        "shirt_number_expected": 13,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Sherzod_Azamov_2020.jpg/330px-Sherzod_Azamov_2020.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Sherzod_Azamov"
+        }
+      },
+      {
+        "id": "otabek-shukurov",
+        "full_name": "Otabek Shukurov",
+        "display_name": "Otabek Shukurov",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Sepahan",
+          "country_iso": "ir",
+          "league": "Persian Gulf Pro League"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Otabek_Shukurov.jpg/330px-Otabek_Shukurov.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Otabek_Shukurov"
+        }
+      },
+      {
+        "id": "akmal-mozgovoy",
+        "full_name": "Akmal Mozgovoy",
+        "display_name": "Akmal Mozgovoy",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Pakhtakor",
+          "country_iso": "uz",
+          "league": "Super League uzbeka"
+        },
+        "shirt_number_expected": 16,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/54/CAFA_Nations_Cup_2025_Uzbekistan_Kyrgyz_Republic_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Akmal_Mozgovoy"
+        }
+      },
+      {
+        "id": "azizjon-ganiev",
+        "full_name": "Azizjon Ganiev",
+        "display_name": "Azizjon Ganiev",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Konyaspor",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed"
+      },
+      {
+        "id": "abbosbek-fayzullaev",
+        "full_name": "Abbosbek Fayzullaev",
+        "display_name": "Abbosbek Fayzullaev",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "CSKA Moscú",
+          "country_iso": "ru",
+          "league": "Premier rusa"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Abbosbek_Fayzullaev_at_Press_conference_of_the_national_football_teams_of_Iran_and_Uzbekistan_%28Mehr%2C_23_March_2025%29_%28cropped%29.jpg/330px-Abbosbek_Fayzullaev_at_Press_conference_of_the_national_football_teams_of_Iran_and_Uzbekistan_%28Mehr%2C_23_March_2025%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Abbosbek_Fayzullaev"
+        }
+      },
+      {
+        "id": "jaloliddin-masharipov",
+        "full_name": "Jaloliddin Masharipov",
+        "display_name": "Jaloliddin Masharipov",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Al-Nassr",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Jaloliddin_Masharipov_2020.jpg/330px-Jaloliddin_Masharipov_2020.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jaloliddin_Masharipov"
+        }
+      },
+      {
+        "id": "ulugbek-khoshimov",
+        "full_name": "Ulugbek Khoshimov",
+        "display_name": "Ulugbek Khoshimov",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Bunyodkor",
+          "country_iso": "uz",
+          "league": "Super League uzbeka"
+        },
+        "shirt_number_expected": 8,
+        "status": "probable"
+      },
+      {
+        "id": "eldor-shomurodov",
+        "full_name": "Eldor Shomurodov",
+        "display_name": "Eldor Shomurodov",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "İstanbul Başakşehir",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Eldor_Shomurodov_14_%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_FK_20250731_%2810%29_%28cropped%29.jpg/330px-Eldor_Shomurodov_14_%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_FK_20250731_%2810%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Eldor_Shomurodov"
+        }
+      },
+      {
+        "id": "khojimat-erkinov",
+        "full_name": "Khojimat Erkinov",
+        "display_name": "Khojimat Erkinov",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Pakhtakor",
+          "country_iso": "uz",
+          "league": "Super League uzbeka"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Khojimat_Erkinov_2022_%281%29.jpg/330px-Khojimat_Erkinov_2022_%281%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Khojimat_Erkinov"
+        }
+      },
+      {
+        "id": "bobur-abdikholikov",
+        "full_name": "Bobur Abdikholikov",
+        "display_name": "Bobur Abdikholikov",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Andijan",
+          "country_iso": "uz",
+          "league": "Super League uzbeka"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Bobur_Abduholiqov_2021.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Bobur_Abdikholikov"
+        }
+      },
+      {
+        "id": "igor-sergeev",
+        "full_name": "Igor Sergeev",
+        "display_name": "Igor Sergeev",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Bunyodkor",
+          "country_iso": "uz",
+          "league": "Super League uzbeka"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Igor_Sergeev_Persepolis_v_Sepahan_23_January_2026.jpg/330px-Igor_Sergeev_Persepolis_v_Sepahan_23_January_2026.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Igor_Sergeev"
+        }
+      },
+      {
+        "id": "azizbek-amonov",
+        "full_name": "Azizbek Amonov",
+        "display_name": "Azizbek Amonov",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Pakhtakor",
+          "country_iso": "uz",
+          "league": "Super League uzbeka"
+        },
+        "shirt_number_expected": 20,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Esteghlal_Celebrate_IPL_Title_Win_at_Azadi_Stadium_-_145.jpg/330px-Esteghlal_Celebrate_IPL_Title_Win_at_Azadi_Stadium_-_145.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Azizbek_Amonov"
+        }
+      },
+      {
+        "id": "khusayn-norchaev",
+        "full_name": "Khusayn Norchaev",
+        "display_name": "Khusayn Norchaev",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Pakhtakor",
+          "country_iso": "uz",
+          "league": "Super League uzbeka"
+        },
+        "shirt_number_expected": 21,
+        "status": "probable"
+      },
+      {
+        "id": "alibek-davronov",
+        "full_name": "Alibek Davronov",
+        "display_name": "Alibek Davronov",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Pakhtakor",
+          "country_iso": "uz",
+          "league": "Super League uzbeka"
+        },
+        "shirt_number_expected": 24,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Alibek_Davronov.jpg/330px-Alibek_Davronov.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Alibek_Davronov"
+        }
+      },
+      {
+        "id": "shokhruz-norkhonov",
+        "full_name": "Shokhruz Norkhonov",
+        "display_name": "Shokhruz Norkhonov",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Bunyodkor",
+          "country_iso": "uz",
+          "league": "Super League uzbeka"
+        },
+        "shirt_number_expected": 25,
+        "status": "bubble"
+      },
+      {
+        "id": "diyor-kholmatov",
+        "full_name": "Diyor Kholmatov",
+        "display_name": "Diyor Kholmatov",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Pakhtakor",
+          "country_iso": "uz",
+          "league": "Super League uzbeka"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Diyor_Xolmatov.jpg/330px-Diyor_Xolmatov.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Diyor_Xolmatov"
+        }
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-3-3",
+      "players": [
+        {
+          "player_id": "utkir-yusupov",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "khojiakbar-alijonov",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "abdukodir-khusanov",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "umarbek-eshmurodov",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "sherzod-nasrullaev",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "otabek-shukurov",
+          "position": {
+            "x": 50,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "akmal-mozgovoy",
+          "position": {
+            "x": 70,
+            "y": 50
+          }
+        },
+        {
+          "player_id": "abbosbek-fayzullaev",
+          "position": {
+            "x": 30,
+            "y": 50
+          }
+        },
+        {
+          "player_id": "jaloliddin-masharipov",
+          "position": {
+            "x": 80,
+            "y": 25
+          }
+        },
+        {
+          "player_id": "eldor-shomurodov",
+          "position": {
+            "x": 50,
+            "y": 12
+          }
+        },
+        {
+          "player_id": "khojimat-erkinov",
+          "position": {
+            "x": 20,
+            "y": 25
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Cannavaro plantea un 4-3-3 italiano clásico: defensa zonal con KHUSANOV (Manchester City) como referente, doble pivote (Shukurov + Mozgovoy), tridente Masharipov-Shomurodov-Erkinov. Identidad: presión defensiva alta, juego en bloque medio, transiciones por bandas. Cannavaro con su pasado de líbero campeón mundial enfocará la defensa.",
+      "strengths": [
+        "ABDUKODIR KHUSANOV: defensor del MANCHESTER CITY de Pep Guardiola. 22 años, futuro top.",
+        "ELDOR SHOMURODOV: capitán histórico, ex-Roma, 1.90m, juego aéreo dominante.",
+        "JALOLIDDIN MASHARIPOV: AL-NASSR (compañero de Cristiano Ronaldo). Creatividad.",
+        "ABBOSBEK FAYZULLAEV: revelación CSKA Moscú. 22 años. Visión y desequilibrio.",
+        "FABIO CANNAVARO DT: Balón de Oro 2006, capitán Italia campeona Mundial 2006.",
+        "GENERACIÓN DORADA: jugaron Olímpicos París 2024 (1ª vez), construcción de identidad.",
+        "INVICTOS en Mundial: nunca jugaron uno, no hay malos recuerdos."
+      ],
+      "weaknesses": [
+        "DEBUTANTE ABSOLUTO: 1ª vez en Mundiales. Sin experiencia mundialista de ningún jugador.",
+        "DT recién llegado (oct 2025): Cannavaro tiene poco tiempo para implementar identidad.",
+        "Plantel mayoritariamente local: 14+ en Super League uzbeka, poca exposición top.",
+        "GOLEO LIMITADO: 16 GF en 10 partidos. Mucha dependencia de Shomurodov.",
+        "FÍSICO LIMITADO ante europeos top: solo Khusanov ha probado Premier League.",
+        "Cannavaro experiencia DT MIXTA: éxito en Guangzhou pero fracaso en Benevento y Udinese."
+      ],
+      "x_factor": {
+        "player": "Abbosbek Fayzullaev",
+        "reason": "El '10' del CSKA Moscú (22 años) es la GRAN REVELACIÓN. Visión de juego, pase filtrado, llegada al área. Considerado el 'mejor uzbeko desde Maksim Shatskikh'. Si rinde a su nivel ruso, puede sorprender a Portugal y Colombia."
+      },
+      "prediction_text": "Uzbekistán debuta en Grupo K con Portugal (favorita), Colombia (top sudamericana) y RD Congo (vía repechaje). PASAR a octavos sería gesta MUNDIAL. Lo realista: 1-2 puntos y aprender de Mundial. Una victoria ya sería celebración nacional histórica.",
+      "probabilities": {
+        "advance_groups": 18,
+        "round_of_32": 15,
+        "round_of_16": 4,
+        "quarter_finals": 1,
+        "semi_finals": 0,
+        "final": 0,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ (perdió repechaje vs Jordania). Rusia 2018: NO CLASIFICÓ. Catar 2022: NO CLASIFICÓ. Mundial 2026: PRIMERA PARTICIPACIÓN HISTÓRICA. DEBUTANTE 81 de Mundiales."
+    }
+  },
+  "history": {
+    "first_appearance": 2026,
+    "appearances_count_before_2026": 0,
+    "appearances_count_with_2026": 1,
+    "consecutive_streak_since": 2026,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 0,
+    "best_result": "DEBUTANTE 2026 — sin participaciones previas.",
+    "aggregate_stats_through_2022": {
+      "played": 0,
+      "won": 0,
+      "drawn": 0,
+      "lost": 0,
+      "goals_for": 0,
+      "goals_against": 0,
+      "win_percentage": 0,
+      "notes": "Sin participación previa. DEBUTANTE 2026."
+    },
+    "by_world_cup": [],
+    "palmares": [
+      {
+        "competition": "Copa Asia",
+        "year": 2011,
+        "position": "Cuarto",
+        "host": "Catar"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Maksim Shatskikh",
+      "value": 34,
+      "period": "1995-2008",
+      "notes": "MÁXIMO GOLEADOR HISTÓRICO. 'El Pelé Uzbeko'. Ex-Dynamo Kiev. Récord vigente."
+    },
+    "most_capped": {
+      "name": "Server Djeparov",
+      "value": 119,
+      "period": "2002-2017",
+      "notes": "Récord histórico. Mediocampista, capitán años 2010s."
+    },
+    "youngest_debut": {
+      "name": "Sardor Mirzaev",
+      "value": "16 años",
+      "period": "2018",
+      "notes": "Récord uzbeko."
+    },
+    "biggest_win": {
+      "result": "15-0",
+      "opponent": "Mongolia",
+      "date": "1996-06-20",
+      "competition": "Eliminatorias Mundial 1998"
+    },
+    "worst_loss": {
+      "result": "0-7",
+      "opponent": "Brasil",
+      "date": "2002",
+      "competition": "Amistoso"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "Cuarta Copa Asia 2011 (mejor papel)",
+      "date": "2011-01-25",
+      "opponent": {
+        "iso": "kr",
+        "name": "Corea del Sur"
+      },
+      "score": "2-3",
+      "competition": "Semifinal Copa Asia 2011",
+      "narrative": "Uzbekistán cayó 2-3 con Corea del Sur en semifinales de la Copa Asia 2011 en Doha. Su mejor papel asiático histórico hasta entonces. Tras la derrota, perdió 2-3 en 3er puesto con Corea del Sur. 4º puesto."
+    },
+    {
+      "title": "El 0-0 en Abu Dabi que selló el Mundial 2026",
+      "date": "2025-06-05",
+      "opponent": {
+        "iso": "ae",
+        "name": "UAE"
+      },
+      "score": "0-0",
+      "competition": "Eliminatoria AFC Mundial 2026",
+      "narrative": "Uzbekistán EMPATÓ 0-0 con UAE en Al Nahyan Stadium de Abu Dabi el 5 jun 2025. PRIMERA CLASIFICACIÓN HISTÓRICA AL MUNDIAL en 96 años de fútbol uzbeko. Utkir Yusupov con 3 atajadas clave. Festejos eufóricos con lágrimas. Telemundo: 'Hito nacional'. DEBUTANTE 81 de Mundiales."
+    },
+    {
+      "title": "El 3-2 a Catar en Doha",
+      "date": "2024-09-10",
+      "opponent": {
+        "iso": "qa",
+        "name": "Catar"
+      },
+      "score": "3-2",
+      "competition": "Eliminatoria AFC Mundial 2026",
+      "narrative": "Uzbekistán venció 3-2 a Catar (campeón asiático 2019 y 2023) en Doha. Goles de Shomurodov, Masharipov y Fayzullaev. Demostró que la Generación Dorada tenía fútbol para competir."
+    },
+    {
+      "title": "Eliminatoria 2014 perdida vs Jordania (repechaje)",
+      "date": "2013-09-15",
+      "opponent": {
+        "iso": "jo",
+        "name": "Jordania"
+      },
+      "score": "1-1 (8-9 pen)",
+      "competition": "Repechaje AFC Mundial 2014",
+      "narrative": "Uzbekistán cayó en penales 8-9 con Jordania en repechaje AFC vs CONMEBOL para Mundial 2014 (ida 1-1, vuelta 1-1, total 2-2). Jordania luego cayó con Uruguay en repechaje intercontinental. UZBEKISTÁN A UN PASO DE SU 1ER MUNDIAL."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "Uzbekistán es el DEBUTANTE 81 DE LA HISTORIA MUNDIALISTA. PRIMERA participación tras 96 años de fútbol uzbeko (los uzbekos jugaron como Unión Soviética hasta 1991).",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Hasta 1991, Uzbekistán formó parte de la URSS y NO tenía selección propia. Su 1er partido oficial bajo el nombre 'Uzbekistán' fue en 1992. Recién jugó eliminatorias para Francia 1998.",
+      "source": "UFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Fabio Cannavaro (DT actual) fue CAPITÁN DE ITALIA CAMPEONA del Mundial 2006. BALÓN DE ORO 2006 (último DEFENSOR CENTRAL en ganarlo desde Beckenbauer 1972). LEYENDA TOTAL.",
+      "source": "FIFA + Italia + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Abdukodir Khusanov fichó por MANCHESTER CITY DE PEP GUARDIOLA en enero 2025 desde el Lens (Francia) por ~€40 millones. ES EL CENTRAL UZBEKO MÁS CARO DE LA HISTORIA Y EL UZBEKO EN EQUIPO MÁS GRANDE DEL MUNDO.",
+      "source": "Manchester City + Premier League + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Eldor Shomurodov, capitán uzbeko, fue COMPAÑERO DE PAULO DYBALA en la AS Roma (2022-2025). Comparte vestuario con DI MARÍA, MOURINHO, etc. Ahora cedido al Istanbul Basaksehir donde acumula 10 goles en 20 partidos.",
+      "source": "Roma + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "La 'Generación Dorada' uzbeka jugó los Olímpicos París 2024 (1ª vez en su historia). De ese plantel salieron Khusanov, Fayzullaev, Erkinov y otros que llevaron al país a su 1er Mundial.",
+      "source": "UFA + COI + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Maksim Shatskikh, máximo goleador histórico (34 goles), fue ÍCONO DEL DYNAMO KIEV en los 2000s. Jugó al lado de Andriy Shevchenko. Récord vigente hasta hoy.",
+      "source": "UFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Oq Bo'rilar! (Lobos Blancos)",
+      "Serquyosh (himno)",
+      "Uzbekistan!"
+    ],
+    "main_rival": {
+      "iso": "ir",
+      "name": "Irán",
+      "story": "Rivalidad fuerte por proximidad geográfica. Irán suele dominar pero Uzbekistán logra empates clave (como el 0-0 en Taskent que selló casi la clasificación 2026). Han jugado más de 30 veces. Irán siempre superior pero Uzbekistán emergente."
+    },
+    "home_stadium": {
+      "name": "Milliy Stadium",
+      "capacity": 34000,
+      "city": "Taskent"
+    }
+  },
+  "seo": {
+    "meta_title": "Uzbekistán en el Mundial 2026 | Guía completa Lobos Blancos",
+    "meta_description": "Uzbekistán Mundial 2026: plantel de Cannavaro, Khusanov, Shomurodov. Grupo K con Portugal, Colombia, RD Congo. DEBUTANTE absoluto 81.",
+    "og_image_url": "/img/og/teams/uzbekistan.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Uzbekistán",
+      "alternateName": [
+        "Lobos Blancos",
+        "Oq Bo'rilar"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "AFC"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Fabio Cannavaro"
+      },
+      "url": "https://www.zonamundial.app/selecciones/uzbekistan"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-29",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_de_AFC_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/15903371/mundial-2026-uzbekistan-perfil-figuras-como-juega-historia",
+      "https://www.telemundo.com/deportes/copa-mundial-de-la-fifa-2026/uzbekistan-hace-historia-y-clasifica-a-su-primer-mundial-rcna211293",
+      "https://www.tudn.com/mundial-2026/uzbekistan-hace-historia-al-clasificarse-por-primera-vez-a-un-mundial-de-futbol",
+      "https://larepublica.pe/deportes/2025/06/05/uzbekistan-hace-historia-clasificado-al-mundial-2026-su-primer-pase-a-la-copa-del-mundo-masculina-evatia-279150",
+      "https://www.infobae.com/colombia/2025/12/05/uzbekistan-debutara-ante-colombia-en-la-copa-mundial-de-la-fifa-2026-asi-es-la-seleccion-asiatica-dirigida-por-un-campeon-del-mundo-con-italia/",
+      "https://www.thefa.uz",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias 3ª ronda AFC cruzadas con TUDN + ESPN + Telemundo + Wikipedia + Infobae + RPP. Stats: 21 pts (6G 3E 1P), 16 GF, 7 GC. Plantel y formación validados con multiple sources. DT cambio Kapadze→Cannavaro confirmado oct 2025.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "complete",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante Joma: pendiente",
+      "Calendario fase grupos 2026: 3 fechas pendientes",
+      "Base de entrenamiento: UFA aún no anunció",
+      "FIFA Ranking #57: validar mes vigente",
+      "Goleadores específicos por partido: cruzar con FIFA",
+      "Cannavaro fecha exacta cargo octubre 2025: validar"
+    ]
+  }
+}

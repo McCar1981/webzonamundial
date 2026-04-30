@@ -1,0 +1,1585 @@
+{
+  "slug": "australia",
+  "iso": "au",
+  "iso3": "AUS",
+  "name_es": "Australia",
+  "name_en": "Australia",
+  "name_local": "Australia",
+  "nicknames": [
+    "Socceroos",
+    "Los Canguros"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#FFCD00",
+      "secondary": "#00843D",
+      "tertiary": "#FFFFFF",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Canberra",
+    "language_official": [
+      "Inglés"
+    ],
+    "population": 26630000,
+    "area_km2": 7692024,
+    "timezone": "Australia/Sydney",
+    "continent": "Oceanía"
+  },
+  "federation": {
+    "name": "Football Australia",
+    "abbreviation": "FA",
+    "founded": 1961,
+    "headquarters": "Sídney",
+    "website": "https://www.footballaustralia.com.au"
+  },
+  "confederation": "AFC",
+  "fifa_ranking": {
+    "current": 26,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Nike",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/australia.png",
+        "back_url": null,
+        "primary_color": "#FFCD00",
+        "secondary_color": "#00843D",
+        "description": "Camiseta amarilla con detalles verdes (los colores nacionales 'green and gold').",
+        "alt_text": "Camiseta titular Australia Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#00843D",
+        "secondary_color": "#FFCD00",
+        "description": "Equipación visitante en verde. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Australia Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "El 'green and gold' (verde y oro) son los colores nacionales deportivos de Australia desde 1908. Inspirados en la flor del wattle dorado (Acacia pycnantha), la flor nacional. Los Socceroos los adoptaron en 1924.",
+        "source": "Football Australia + Wikipedia",
+        "verified_at": "2026-04-29",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Australia clasificó como 2ª del Grupo C de la 3ª ronda AFC con 19 puntos (5G 4E 1P), GF 18 GC 8. El ciclo arrancó con susto: tras un 1-0 a Bahréin en casa el debut, Graham Arnold renunció en septiembre 2024. Tony Popovic (ex-Western Sydney Wanderers, leyenda del fútbol australiano) tomó el cargo y reflotó al equipo. Selló el pase venciendo 2-1 a Arabia Saudita en una FINAL en la jornada 10. Es su 7ª participación mundialista y la 6ª CONSECUTIVA (2006-2010-2014-2018-2022-2026). En el Grupo D del Mundial con USA, Turquía y Paraguay.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias AFC Mundial 2026 — 3ª ronda Grupo C",
+      "format": "Liguilla todos contra todos · 6 equipos (Japón, Australia, Arabia Saudita, Indonesia, Baréin, China) · 10 partidos",
+      "duration": "Septiembre 2024 — Junio 2025",
+      "final_position": 2,
+      "total_teams_in_group": 6,
+      "stats": {
+        "played": 10,
+        "won": 5,
+        "drawn": 4,
+        "lost": 1,
+        "goals_for": 18,
+        "goals_against": 8,
+        "goal_difference": 10,
+        "points": 19,
+        "win_percentage": 50,
+        "clean_sheets": 5,
+        "notes": "Después del cambio de DT (Arnold→Popovic), Australia mejoró notablemente. Empató con Japón en ambas y le ganó al final."
+      },
+      "coach_during_qualifying": "Tony Popovic (desde sept 2024). Graham Arnold dirigió las primeras jornadas.",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2024-09-05",
+          "home": {
+            "iso": "au",
+            "name": "Australia",
+            "score": 0
+          },
+          "away": {
+            "iso": "bh",
+            "name": "Baréin",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Robina Stadium",
+            "city": "Gold Coast",
+            "country_iso": "au"
+          },
+          "goals_arg": [],
+          "notes": "DERROTA SORPRESA EN CASA. Detonó la salida de Arnold tras 7 años."
+        },
+        {
+          "matchday": 2,
+          "date": "2024-09-10",
+          "home": {
+            "iso": "id",
+            "name": "Indonesia",
+            "score": 0
+          },
+          "away": {
+            "iso": "au",
+            "name": "Australia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Estadio Bung Karno",
+            "city": "Yakarta",
+            "country_iso": "id"
+          },
+          "goals_arg": []
+        },
+        {
+          "matchday": 3,
+          "date": "2024-10-10",
+          "home": {
+            "iso": "jp",
+            "name": "Japón",
+            "score": 1
+          },
+          "away": {
+            "iso": "au",
+            "name": "Australia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Saitama Stadium",
+            "city": "Saitama",
+            "country_iso": "jp"
+          },
+          "goals_arg": [
+            {
+              "player": "Lewis Miller",
+              "minute": "76'",
+              "type": "goal"
+            }
+          ],
+          "notes": "1er partido de Popovic. Empate clave en Saitama."
+        },
+        {
+          "matchday": 4,
+          "date": "2024-10-15",
+          "home": {
+            "iso": "au",
+            "name": "Australia",
+            "score": 0
+          },
+          "away": {
+            "iso": "cn",
+            "name": "China",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Adelaide Oval",
+            "city": "Adelaida",
+            "country_iso": "au"
+          },
+          "goals_arg": []
+        },
+        {
+          "matchday": 5,
+          "date": "2024-11-14",
+          "home": {
+            "iso": "sa",
+            "name": "Arabia Saudita",
+            "score": 0
+          },
+          "away": {
+            "iso": "au",
+            "name": "Australia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "King Abdullah Sports City",
+            "city": "Yeda",
+            "country_iso": "sa"
+          },
+          "goals_arg": []
+        },
+        {
+          "matchday": 6,
+          "date": "2024-11-19",
+          "home": {
+            "iso": "au",
+            "name": "Australia",
+            "score": 2
+          },
+          "away": {
+            "iso": "bh",
+            "name": "Baréin",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Allianz Stadium",
+            "city": "Sídney",
+            "country_iso": "au"
+          },
+          "goals_arg": [
+            {
+              "player": "Riley McGree",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Aziz Behich",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Vendetta contra Bahréin tras la derrota inicial."
+        },
+        {
+          "matchday": 7,
+          "date": "2025-03-20",
+          "home": {
+            "iso": "au",
+            "name": "Australia",
+            "score": 5
+          },
+          "away": {
+            "iso": "id",
+            "name": "Indonesia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Allianz Stadium",
+            "city": "Sídney",
+            "country_iso": "au"
+          },
+          "goals_arg": [
+            {
+              "player": "Jackson Irvine",
+              "minute": "10'",
+              "type": "goal"
+            },
+            {
+              "player": "Riley McGree",
+              "minute": "32'",
+              "type": "goal"
+            },
+            {
+              "player": "Mitchell Duke",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Mohamed Toure",
+              "minute": "75'",
+              "type": "goal"
+            },
+            {
+              "player": "Connor Metcalfe",
+              "minute": "88'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 8,
+          "date": "2025-03-25",
+          "home": {
+            "iso": "cn",
+            "name": "China",
+            "score": 0
+          },
+          "away": {
+            "iso": "au",
+            "name": "Australia",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Hangzhou Olympic Sports",
+            "city": "Hangzhou",
+            "country_iso": "cn"
+          },
+          "goals_arg": [
+            {
+              "player": "Riley McGree",
+              "minute": "40'",
+              "type": "goal"
+            },
+            {
+              "player": "Cameron Burgess",
+              "minute": "70'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 9,
+          "date": "2025-06-05",
+          "home": {
+            "iso": "au",
+            "name": "Australia",
+            "score": 1
+          },
+          "away": {
+            "iso": "jp",
+            "name": "Japón",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Perth Stadium",
+            "city": "Perth",
+            "country_iso": "au"
+          },
+          "goals_arg": [
+            {
+              "player": "Aiden O'Neill",
+              "minute": "55'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Triunfo histórico vs Japón (a Japón le restó el invicto)."
+        },
+        {
+          "matchday": 10,
+          "date": "2025-06-10",
+          "home": {
+            "iso": "au",
+            "name": "Australia",
+            "score": 2
+          },
+          "away": {
+            "iso": "sa",
+            "name": "Arabia Saudita",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Allianz Stadium",
+            "city": "Sídney",
+            "country_iso": "au"
+          },
+          "goals_arg": [
+            {
+              "player": "Mitchell Duke",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Jackson Irvine",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ],
+          "notes": "FINAL POR LA CLASIFICACIÓN DIRECTA. Australia ganó 2-1 a Arabia Saudita en una 'final' por el 2º puesto del grupo. Mandó a Arabia a la 4ª ronda y selló el pase al Mundial 2026.",
+          "is_decisive_match": true
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Riley McGree",
+          "goals": 4,
+          "notes": "Middlesbrough. Top scorer del ciclo."
+        },
+        {
+          "player": "Jackson Irvine",
+          "goals": 3,
+          "notes": "St. Pauli (Bundesliga). Vicecapitán."
+        },
+        {
+          "player": "Mitchell Duke",
+          "goals": 3
+        },
+        {
+          "player": "Cameron Burgess",
+          "goals": 2
+        },
+        {
+          "player": "Aziz Behich",
+          "goals": 1
+        },
+        {
+          "player": "Lewis Miller",
+          "goals": 1
+        },
+        {
+          "player": "Mohamed Toure",
+          "goals": 1
+        },
+        {
+          "player": "Connor Metcalfe",
+          "goals": 1
+        },
+        {
+          "player": "Aiden O'Neill",
+          "goals": 1
+        },
+        {
+          "player": "Otros (1)",
+          "goals": 1
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_7",
+        "reason": "Goleada 5-1 a Indonesia en Sídney con 5 goleadores. Mejor exhibición ofensiva del ciclo bajo Popovic."
+      },
+      "worst_match": {
+        "match_ref": "matchday_1",
+        "reason": "Derrota 0-1 con Bahréin en Gold Coast en debut. Detonó la salida de Arnold tras 7 años al frente."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_10",
+        "reason": "Triunfo 2-1 sobre Arabia Saudita en Sídney el 10 jun 2025. Goles de Duke y Irvine. Australia clasificó al Mundial 2026 (6ª consecutiva)."
+      }
+    },
+    "group_2026": {
+      "letter": "D",
+      "label": "Grupo D — USA, Turquía, Paraguay y Australia",
+      "teams": [
+        {
+          "iso": "us",
+          "name": "EE.UU.",
+          "fifa_rank": null
+        },
+        {
+          "iso": "au",
+          "name": "Australia",
+          "fifa_rank": null,
+          "is_seed": false
+        },
+        {
+          "iso": "py",
+          "name": "Paraguay",
+          "fifa_rank": null
+        },
+        {
+          "iso": "tr",
+          "name": "Turquía",
+          "fifa_rank": null
+        }
+      ],
+      "notes": "Grupo D confirmado en sorteo del 5 dic 2025. Pasar a octavos será exigente."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "us",
+          "name": "EE.UU."
+        },
+        "date": "2026-06-13",
+        "kickoff_local": "12:00",
+        "venue": {
+          "stadium": "Lincoln Financial Field",
+          "city": "Filadelfia",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "py",
+          "name": "Paraguay"
+        },
+        "date": "2026-06-20",
+        "kickoff_local": "18:00",
+        "venue": {
+          "stadium": "Lumen Field",
+          "city": "Seattle",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "tr",
+          "name": "Turquía"
+        },
+        "date": "2026-06-28",
+        "kickoff_local": "15:00",
+        "venue": {
+          "stadium": "Lumen Field",
+          "city": "Seattle",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — Football Australia aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Tony Popovic",
+      "age": 52,
+      "nationality": "Australia",
+      "since": "2024-09-22",
+      "previous_teams": [
+        "Melbourne Victory (2022-2024, Australia Cup 2022)",
+        "Karagümrük (2021-2022)",
+        "Perth Glory (2018-2020, Premier 2018-19)",
+        "Western Sydney Wanderers (2012-2017, A-League Premier 2012-13 + AFC Champions League 2014)"
+      ],
+      "profile_summary": "Australiano, 52 años. Ex-defensor con 58 caps y experiencia Premier League (Crystal Palace 2001-2006). Asumió la selección el 22 sept 2024 tras la dimisión de Graham Arnold (después del 0-1 a Bahréin en casa). Identidad táctica: 4-2-3-1 sólido o 3-4-2-1 defensivo, presión coordinada, juego directo con extremos. CAMPEÓN AFC Champions League 2014 con Western Sydney Wanderers (1er club australiano en ganarla). Con 12 partidos al frente: 7G 3E 2P.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Tony_Popovic-2010-08-03.jpg/330px-Tony_Popovic-2010-08-03.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Tony_Popovic"
+      }
+    },
+    "captain": {
+      "name": "Mathew Ryan",
+      "club": "Levante UD",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Ryan_rcl_asse_2425.png/330px-Ryan_rcl_asse_2425.png",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Mathew_Ryan"
+      }
+    },
+    "star_player": {
+      "name": "Jackson Irvine",
+      "club": "FC St. Pauli",
+      "reason": "Mediocampista del St. Pauli (Bundesliga). 32 años, vicecapitán y motor del centro del campo. Llegada al área constante (3 goles en eliminatoria). Llegará a su 3er Mundial. Su impacto en el St. Pauli es tan determinante que sin él el club cae a mitad de tabla.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Chile_VS._Australia_%283%29_%28cropped%29_2.jpg/330px-Chile_VS._Australia_%283%29_%28cropped%29_2.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Jackson_Irvine"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "mathew-ryan",
+        "full_name": "Mathew Ryan",
+        "display_name": "Mat Ryan",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Levante UD",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Ryan_rcl_asse_2425.png/330px-Ryan_rcl_asse_2425.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mathew_Ryan"
+        }
+      },
+      {
+        "id": "joe-gauci",
+        "full_name": "Joseph Gauci",
+        "display_name": "Joe Gauci",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Aston Villa",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 12,
+        "status": "fixed"
+      },
+      {
+        "id": "paul-izzo",
+        "full_name": "Paul Izzo",
+        "display_name": "Paul Izzo",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "FC Randers",
+          "country_iso": "dk",
+          "league": "Superliga danesa"
+        },
+        "shirt_number_expected": 23,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Paul_Izzo_training_for_Melbourne_Victory_December_2022_%28cropped%29.jpg/330px-Paul_Izzo_training_for_Melbourne_Victory_December_2022_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Paul_Izzo"
+        }
+      },
+      {
+        "id": "lewis-miller",
+        "full_name": "Lewis Miller",
+        "display_name": "Lewis Miller",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Stuttgart",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed"
+      },
+      {
+        "id": "harry-souttar",
+        "full_name": "Harry Souttar",
+        "display_name": "Harry Souttar",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Leicester City",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/4822293_AE7I6590_%28cropped%29.jpg/330px-4822293_AE7I6590_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Harry_Souttar"
+        }
+      },
+      {
+        "id": "cameron-burgess",
+        "full_name": "Cameron Burgess",
+        "display_name": "Cameron Burgess",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Aston Villa",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Cameron_Burgess_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Cameron_Burgess"
+        }
+      },
+      {
+        "id": "alessandro-circati",
+        "full_name": "Alessandro Circati",
+        "display_name": "Alessandro Circati",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Parma",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 15,
+        "status": "fixed"
+      },
+      {
+        "id": "kye-rowles",
+        "full_name": "Kye Rowles",
+        "display_name": "Kye Rowles",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Heart of Midlothian",
+          "country_iso": "gb-sct",
+          "league": "Scottish Premiership"
+        },
+        "shirt_number_expected": 22,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Kye_Rowles_NYCFC_vs_DC_United_on_Aug_30_2025-016_%28cropped%29.jpg/330px-Kye_Rowles_NYCFC_vs_DC_United_on_Aug_30_2025-016_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Kye_Rowles"
+        }
+      },
+      {
+        "id": "aziz-behich",
+        "full_name": "Aziz Behich",
+        "display_name": "Aziz Behich",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Melbourne City",
+          "country_iso": "au",
+          "league": "A-League"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/20180601_FIFA_Friendly_Match_Czech_Republic_vs._Australia_Aziz_Behich_850_0277.jpg/330px-20180601_FIFA_Friendly_Match_Czech_Republic_vs._Australia_Aziz_Behich_850_0277.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Aziz_Behich"
+        }
+      },
+      {
+        "id": "jordy-bos",
+        "full_name": "Jordan Bos",
+        "display_name": "Jordy Bos",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "KVC Westerlo",
+          "country_iso": "be",
+          "league": "Pro League"
+        },
+        "shirt_number_expected": 13,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4c/4822286_AE7I6649_-_Jordan_Bos.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jordan_Bos"
+        }
+      },
+      {
+        "id": "jackson-irvine",
+        "full_name": "Jackson Irvine",
+        "display_name": "Jackson Irvine",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "FC St. Pauli",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Chile_VS._Australia_%283%29_%28cropped%29_2.jpg/330px-Chile_VS._Australia_%283%29_%28cropped%29_2.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jackson_Irvine"
+        }
+      },
+      {
+        "id": "patrick-yazbek",
+        "full_name": "Patrick Yazbek",
+        "display_name": "Patrick Yazbek",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Nashville SC",
+          "country_iso": "us",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Patrick_Yazbek_Revolution_Nashville_6.25.25-035_%28cropped%29.jpg/330px-Patrick_Yazbek_Revolution_Nashville_6.25.25-035_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Patrick_Yazbek"
+        }
+      },
+      {
+        "id": "aiden-oneill",
+        "full_name": "Aiden O'Neill",
+        "display_name": "Aiden O'Neill",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Hibernian",
+          "country_iso": "gb-sct",
+          "league": "Scottish Premiership"
+        },
+        "shirt_number_expected": 16,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Aiden_O%27Neill_CF_Montreal_NYCFC_6.28.25-034_%28cropped%29.jpg/330px-Aiden_O%27Neill_CF_Montreal_NYCFC_6.28.25-034_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Aiden_O'Neill"
+        }
+      },
+      {
+        "id": "ryan-teague",
+        "full_name": "Ryan Teague",
+        "display_name": "Ryan Teague",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Anderlecht",
+          "country_iso": "be",
+          "league": "Pro League"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Ryan_Teague_training_December_2023_%28cropped%29.jpg/330px-Ryan_Teague_training_December_2023_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Ryan_Teague"
+        }
+      },
+      {
+        "id": "connor-metcalfe",
+        "full_name": "Connor Metcalfe",
+        "display_name": "Connor Metcalfe",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "AZ Alkmaar",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b2/4822293_AE7I6590_-_Connor_Metcalfe.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Connor_Metcalfe"
+        }
+      },
+      {
+        "id": "ajdin-hrustic",
+        "full_name": "Ajdin Hrustić",
+        "display_name": "Ajdin Hrustić",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Hellas Verona",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/53/2022128170418_2022-05-08_Fussball_Eintracht_Frankfurt_vs_Borussia_M%C3%B6nchengladbach_-_Sven_-_1D_X_MK_II_-_2055_-_B70I8166_%28Ajdin_Hrusti%C4%87_cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ajdin_Hrustic"
+        }
+      },
+      {
+        "id": "riley-mcgree",
+        "full_name": "Riley McGree",
+        "display_name": "Riley McGree",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Middlesbrough",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Riley_McGree.jpg/330px-Riley_McGree.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Riley_McGree"
+        }
+      },
+      {
+        "id": "anthony-caceres",
+        "full_name": "Anthony Cáceres",
+        "display_name": "Anthony Cáceres",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Sydney FC",
+          "country_iso": "au",
+          "league": "A-League"
+        },
+        "shirt_number_expected": 24,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f5/Anthony_Caceres_Al_Wasl.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Anthony_C%C3%A1ceres"
+        }
+      },
+      {
+        "id": "mitchell-duke",
+        "full_name": "Mitchell Duke",
+        "display_name": "Mitch Duke",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Machida Zelvia",
+          "country_iso": "jp",
+          "league": "J1 League"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Mitchell_Duke_2020.png/330px-Mitchell_Duke_2020.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mitchell_Duke"
+        }
+      },
+      {
+        "id": "mohamed-toure",
+        "full_name": "Mohamed Toure",
+        "display_name": "Mohamed Toure",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Norwich City",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 21,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Lens_-_Reims_%2812-05-2023%29_21.jpg/330px-Lens_-_Reims_%2812-05-2023%29_21.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mohamed_Tour%C3%A9"
+        }
+      },
+      {
+        "id": "nestory-irankunda",
+        "full_name": "Nestory Irankunda",
+        "display_name": "Nestory Irankunda",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Watford",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Nestory_Irankunda_and_Kwadwo_Baah_09082025_%281%29_%28cropped%29.jpg/330px-Nestory_Irankunda_and_Kwadwo_Baah_09082025_%281%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Nestory_Irankunda"
+        }
+      },
+      {
+        "id": "martin-boyle",
+        "full_name": "Martin Boyle",
+        "display_name": "Martin Boyle",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Hibernian",
+          "country_iso": "gb-sct",
+          "league": "Scottish Premiership"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/4822273_AE7I7255_-_Martin_Boyle.jpg/330px-4822273_AE7I7255_-_Martin_Boyle.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Martin_Boyle"
+        }
+      },
+      {
+        "id": "kusini-yengi",
+        "full_name": "Kusini Yengi",
+        "display_name": "Kusini Yengi",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Sunderland",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 20,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/KusiniYengi1.png/330px-KusiniYengi1.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Kusini_Yengi"
+        }
+      },
+      {
+        "id": "adam-taggart",
+        "full_name": "Adam Taggart",
+        "display_name": "Adam Taggart",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Sunderland",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 25,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Adam_Taggart_2013.jpg/330px-Adam_Taggart_2013.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Adam_Taggart"
+        }
+      },
+      {
+        "id": "alex-robertson",
+        "full_name": "Alex Robertson",
+        "display_name": "Alex Robertson",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Cardiff City",
+          "country_iso": "gb-wls",
+          "league": "League One"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Alex_Robertson_05042025_%283%29.jpg/330px-Alex_Robertson_05042025_%283%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Alexander_Robertson"
+        }
+      },
+      {
+        "id": "hayden-matthews",
+        "full_name": "Hayden Matthews",
+        "display_name": "Hayden Matthews",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Portsmouth",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 14,
+        "status": "bubble"
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-2-3-1",
+      "players": [
+        {
+          "player_id": "mathew-ryan",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "lewis-miller",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "harry-souttar",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "cameron-burgess",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "jordy-bos",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "jackson-irvine",
+          "position": {
+            "x": 60,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "aiden-oneill",
+          "position": {
+            "x": 40,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "nestory-irankunda",
+          "position": {
+            "x": 80,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "riley-mcgree",
+          "position": {
+            "x": 50,
+            "y": 32
+          }
+        },
+        {
+          "player_id": "ajdin-hrustic",
+          "position": {
+            "x": 20,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "mitchell-duke",
+          "position": {
+            "x": 50,
+            "y": 12
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Popovic plantea un 4-2-3-1 sólido o 3-4-2-1 más defensivo: defensa zonal con centrales fuertes (Souttar 1.98m + Burgess 1.93m), doble pivote físico (Irvine + O'Neill), McGree creativo, Duke '9' fijo. Identidad: orden defensivo, juego aéreo dominante, transiciones largas con extremos.",
+      "strengths": [
+        "DEFENSA FÍSICA: Souttar (1.98m), Burgess (1.93m), Circati (1.91m). Pelota parada letal.",
+        "JACKSON IRVINE: motor mediocampo Bundesliga (St. Pauli).",
+        "MAT RYAN: capitán experimentado, 100+ caps, Levante La Liga.",
+        "Plantel europeo: Bundesliga, Premier, Serie A, Eredivisie.",
+        "Tony Popovic: campeón AFC Champions 2014 con Western Sydney. Identidad clara.",
+        "5 partidos sin recibir gol en eliminatoria.",
+        "Espíritu de equipo: vencieron a Japón 1-0 en Perth con equipo alternativo japonés."
+      ],
+      "weaknesses": [
+        "MITCH DUKE 35 años: única referencia de '9'. Mohamed Toure no tiene experiencia mundialista.",
+        "GOLEO LIMITADO: 18 GF en 10 partidos. Mucha dependencia de centros y pelota parada.",
+        "FALTA CREATIVIDAD TOP: McGree es bueno pero Championship, no Premier.",
+        "INICIO ADVERSO: 0-1 vs Bahréin + 0-0 vs Indonesia generaron cambio de DT.",
+        "Récord moderno: solo 1 vez fase eliminatoria desde 2006 (octavos 2022, 2006).",
+        "JÓVENES VERDES: Irankunda (19), Toure (21), Bos (22) sin experiencia Mundial."
+      ],
+      "x_factor": {
+        "player": "Nestory Irankunda",
+        "reason": "El extremo derecho del Watford (19 años) es el TALENTO BRUTO de la generación. Ex-Adelaide United→Bayern Múnich (2024)→Watford cedido. Velocidad explosiva, regate, capacidad de gol. Si Popovic le da minutos de inicio, puede romper grupos."
+      },
+      "prediction_text": "Australia llega al Grupo D con USA (favorita anfitriona), Turquía y Paraguay (ambos europeos/sudamericanos top). Pasar a octavos es difícil pero posible. PASARÁN si juegan al estilo 2006 (épico) + Catar 2022 (octavos).",
+      "probabilities": {
+        "advance_groups": 35,
+        "round_of_32": 30,
+        "round_of_16": 12,
+        "quarter_finals": 2,
+        "semi_finals": 0,
+        "final": 0,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Brasil 2014: fase de grupos. Rusia 2018: fase de grupos. Catar 2022: OCTAVOS (eliminada 1-2 con Argentina, gol de Goodwin). Mundial 2026: 7ª participación, 6ª CONSECUTIVA (récord histórico)."
+    }
+  },
+  "history": {
+    "first_appearance": 1974,
+    "appearances_count_before_2026": 6,
+    "appearances_count_with_2026": 7,
+    "consecutive_streak_since": 2006,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 0,
+    "best_result": "Octavos de final (2006 y 2022).",
+    "aggregate_stats_through_2022": {
+      "played": 19,
+      "won": 3,
+      "drawn": 5,
+      "lost": 11,
+      "goals_for": 14,
+      "goals_against": 27,
+      "win_percentage": 15.8,
+      "notes": "19 partidos en 6 Mundiales. Octavos: 2006 (Italia 0-1) y 2022 (Argentina 1-2)."
+    },
+    "by_world_cup": [
+      {
+        "year": 1974,
+        "host": {
+          "countries": [
+            "Alemania Federal"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Rale Rasic",
+        "captain": "Peter Wilson",
+        "matches": [],
+        "team_top_scorers": [],
+        "goals_scored": 0,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "DEBUT mundialista absoluto.",
+          "0-2 con Alemania, 0-3 con Alemania Oriental, 0-0 con Chile."
+        ],
+        "narrative": "Australia debutó en Mundiales en 1974. Dirigida por Rale Rasic, ex-yugoslavo. Clavó un empate con Chile (0-0) en su mejor papel. Adiós."
+      },
+      {
+        "year": 2006,
+        "host": {
+          "countries": [
+            "Alemania"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Guus Hiddink",
+        "captain": "Mark Viduka",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Tim Cahill",
+            "goals": 2
+          },
+          {
+            "player": "John Aloisi",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 5,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "1ª clasificación a octavos en Mundial.",
+          "Cahill marcó EL 1ER GOL MUNDIALISTA AUSTRALIANO vs Japón.",
+          "Eliminada por Italia 0-1 (penal Totti 95')."
+        ],
+        "narrative": "MUNDIAL HISTÓRICO con Hiddink. Iban perdiendo 0-1 con Japón al 84' y CAHILL anotó DOBLETE en 9 minutos (84' y 89'), Aloisi cerró 3-1. Empate 1-1 con Croacia, 0-2 con Brasil. Pasó 2º. Octavos: 0-1 con Italia (penal de TOTTI al 95' tras polémica falta sobre Grosso)."
+      },
+      {
+        "year": 2010,
+        "host": {
+          "countries": [
+            "Sudáfrica"
+          ],
+          "iso": [
+            "za"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Pim Verbeek",
+        "captain": "Lucas Neill",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Tim Cahill",
+            "goals": 1
+          },
+          {
+            "player": "Brett Holman",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 3,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Cayó 0-4 con Alemania.",
+          "Empate 1-1 con Ghana.",
+          "Triunfo 2-1 a Serbia (no clasificó por GD)."
+        ],
+        "narrative": "Mundial frustrante. Adiós por diferencia de gol."
+      },
+      {
+        "year": 2014,
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Ange Postecoglou",
+        "captain": "Mile Jedinak",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Tim Cahill",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 3,
+        "goals_conceded": 9,
+        "notable_facts": [
+          "Cayó con Chile, Países Bajos y España.",
+          "Cahill marcó GOLAZO de pierna izquierda vs Holanda."
+        ],
+        "narrative": "Mundial difícil. CAHILL marcó UNO DE LOS GOLES DEL TORNEO con remate de pierna izquierda al ángulo vs Holanda (volea 21'). Pero adiós."
+      },
+      {
+        "year": 2018,
+        "host": {
+          "countries": [
+            "Rusia"
+          ],
+          "iso": [
+            "ru"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Bert van Marwijk",
+        "captain": "Mile Jedinak",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Mile Jedinak",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Cayó 1-2 con Francia (1ER VAR DE LA HISTORIA en Mundiales: Griezmann 58' por penal).",
+          "Empate 1-1 con Dinamarca.",
+          "0-2 con Perú."
+        ],
+        "narrative": "1ER VAR DE LA HISTORIA mundialista: Andres Cunha pidió el VAR para validar penal Griezmann al 58' en Australia 1-2 Francia. Mismo partido: gol de Jedinak (penal). Adiós en grupos."
+      },
+      {
+        "year": 2022,
+        "host": {
+          "countries": [
+            "Catar"
+          ],
+          "iso": [
+            "qa"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Graham Arnold",
+        "captain": "Mathew Ryan",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Mitchell Duke",
+            "goals": 1
+          },
+          {
+            "player": "Mathew Leckie",
+            "goals": 1
+          },
+          {
+            "player": "Craig Goodwin",
+            "goals": 1
+          },
+          {
+            "player": "Jackson Irvine",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "VICTORIA 1-0 a TÚNEZ (Duke).",
+          "VICTORIA 1-0 a DINAMARCA (Leckie).",
+          "Cayó 1-4 con Francia.",
+          "Eliminada 1-2 con Argentina en octavos."
+        ],
+        "narrative": "MUNDIAL HISTÓRICO. 2ª clasificación a octavos. Pasó como 2º del grupo (Francia 1º). En octavos cayó 1-2 con Argentina campeona (Goodwin 77' descontó tras Messi 35' y Álvarez 57')."
+      }
+    ],
+    "palmares": [
+      {
+        "competition": "Copa Asia",
+        "year": 2015,
+        "position": "Campeón",
+        "host": "Australia"
+      },
+      {
+        "competition": "Copa Confederaciones",
+        "year": 1997,
+        "position": "Cuarto",
+        "host": "Arabia Saudita"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Tim Cahill",
+      "value": 50,
+      "period": "2004-2018",
+      "notes": "MÁXIMO GOLEADOR HISTÓRICO. Único australiano con 5 goles mundialistas en 4 ediciones (2006, 2010, 2014). Récord vigente."
+    },
+    "most_capped": {
+      "name": "Mark Schwarzer",
+      "value": 109,
+      "period": "1993-2013",
+      "notes": "Récord histórico portero. Mat Ryan (capitán actual) está cerca de superarlo."
+    },
+    "youngest_debut": {
+      "name": "Garang Kuol",
+      "value": "18 años",
+      "period": "2022",
+      "notes": "JUGADOR MÁS JOVEN AUSTRALIANO en Mundial. Catar 2022."
+    },
+    "biggest_win": {
+      "result": "31-0",
+      "opponent": "Samoa Americana",
+      "date": "2001-04-11",
+      "competition": "Eliminatorias Mundial 2002",
+      "notes": "RÉCORD HISTÓRICO de mayor goleada en partido FIFA oficial. Archie Thompson marcó 13 goles (otro récord)."
+    },
+    "worst_loss": {
+      "result": "0-7",
+      "opponent": "Brasil",
+      "date": "1996-12-18",
+      "competition": "Amistoso"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El doblete de Cahill vs Japón 2006",
+      "date": "2006-06-12",
+      "opponent": {
+        "iso": "jp",
+        "name": "Japón"
+      },
+      "score": "3-1",
+      "competition": "Fase de Grupos Mundial 2006",
+      "narrative": "Australia VENCIÓ 3-1 a JAPÓN en debut con TIM CAHILL anotando los dos primeros goles AUSTRALIANOS DE LA HISTORIA en Mundiales. Iban perdiendo 0-1 (Nakamura 26'). Cahill empató al 84' (golazo desde 25 metros). Cahill 2-1 al 89' (cabezazo). Aloisi cerró 3-1 al 92'. Histórico."
+    },
+    {
+      "title": "El golazo de Cahill vs Holanda 2014",
+      "date": "2014-06-18",
+      "opponent": {
+        "iso": "nl",
+        "name": "Países Bajos"
+      },
+      "score": "2-3",
+      "competition": "Fase de Grupos Mundial 2014",
+      "narrative": "TIM CAHILL marcó UNO DE LOS GOLES DEL TORNEO 2014: VOLEA con la zurda al ángulo desde el borde del área tras pase largo de Bresciano. Australia perdió 2-3 con Holanda pero el gol quedó para la historia."
+    },
+    {
+      "title": "El 1er VAR de la historia (2018 vs Francia)",
+      "date": "2018-06-16",
+      "opponent": {
+        "iso": "fr",
+        "name": "Francia"
+      },
+      "score": "1-2",
+      "competition": "Fase de Grupos Mundial 2018",
+      "narrative": "EL 1ER VAR DE LA HISTORIA mundialista. Australia 1-2 Francia. Andres Cunha (referee uruguayo) pidió el VAR al 58' tras supuesto penal de Griezmann por falta de Risdon. Validó penal y gol. Punto histórico."
+    },
+    {
+      "title": "El triunfo a Dinamarca que clasificó a octavos 2022",
+      "date": "2022-11-30",
+      "opponent": {
+        "iso": "dk",
+        "name": "Dinamarca"
+      },
+      "score": "1-0",
+      "competition": "Fase de Grupos Mundial 2022",
+      "narrative": "Australia VENCIÓ 1-0 a DINAMARCA en Catar 2022 con gol de MATHEW LECKIE al 60'. Pasó a octavos por 1ª vez desde 2006. Histórico."
+    },
+    {
+      "title": "El 2-1 a Arabia Saudita que selló el Mundial 2026",
+      "date": "2025-06-10",
+      "opponent": {
+        "iso": "sa",
+        "name": "Arabia Saudita"
+      },
+      "score": "2-1",
+      "competition": "Eliminatoria AFC Mundial 2026 (final por la clasificación)",
+      "narrative": "Australia VENCIÓ 2-1 a Arabia Saudita en Sídney el 10 jun 2025. Goles de Mitch Duke (30') y Jackson Irvine (75'). Mandó a Arabia a la 4ª ronda y selló el pase al Mundial 2026 (6ª consecutiva)."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "Australia HOSTEÓ 31-0 a SAMOA AMERICANA el 11 abr 2001, EL MAYOR MARCADOR DE LA HISTORIA en partido FIFA oficial. ARCHIE THOMPSON marcó 13 GOLES (también récord histórico).",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Australia se cambió de la confederación de OFC (Oceanía) a AFC (Asia) en 2006. Desde entonces, ha logrado 5 clasificaciones consecutivas a Mundiales (2006-2026).",
+      "source": "FIFA + AFC + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "TIM CAHILL marcó EL 1ER GOL MUNDIALISTA AUSTRALIANO en 2006 vs Japón. Único australiano con goles en 4 Mundiales consecutivos (2006, 2010, 2014, 2018). Total 5 goles mundialistas, récord vigente.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "EL 1ER VAR DE LA HISTORIA en Mundiales fue en Australia vs Francia 2018 (16 jun, Kazán). Andres Cunha pidió el VAR para validar penal de Griezmann al 58'. Gol convalidado.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Tony Popovic, DT actual, fue CAMPEÓN AFC CHAMPIONS LEAGUE 2014 con WESTERN SYDNEY WANDERERS, único club australiano en ganarla. Era su 2º año al mando del club.",
+      "source": "AFC + Football Australia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "AUSTRALIA fue CAMPEÓN COPA ASIA 2015 EN CASA. ANGE POSTECOGLOU dirigió. Final 2-1 a Corea del Sur en Sídney (Troisi gol de oro 105'). Único título mayor de los Socceroos.",
+      "source": "AFC + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Para Rusia 2018, Australia jugó 22 PARTIDOS DE ELIMINATORIAS, MÁS QUE NINGÚN OTRO PAÍS clasificado, antes de obtener el último cupo automático. Un calvario histórico.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Aussie Aussie Aussie! Oi Oi Oi!",
+      "Advance Australia Fair (himno)",
+      "Socceroos! Socceroos!"
+    ],
+    "main_rival": {
+      "iso": "nz",
+      "name": "Nueva Zelanda",
+      "story": "Rivalidad histórica desde la era OFC. Han jugado más de 30 veces. Tras el cambio de Australia a AFC en 2006, los partidos son menos frecuentes pero conservan tensión. Última cita fue 2024."
+    },
+    "home_stadium": {
+      "name": "Stadium Australia",
+      "capacity": 83500,
+      "city": "Sídney"
+    }
+  },
+  "seo": {
+    "meta_title": "Australia en el Mundial 2026 | Guía completa Socceroos",
+    "meta_description": "Australia Mundial 2026: plantel de Popovic, Ryan, Souttar, Irvine, McGree. Grupo D con USA, Turquía y Paraguay. 6ª participación consecutiva.",
+    "og_image_url": "/img/og/teams/australia.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Australia",
+      "alternateName": [
+        "Socceroos",
+        "Los Canguros"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "AFC"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Tony Popovic"
+      },
+      "url": "https://www.zonamundial.app/selecciones/australia"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-29",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_de_AFC_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://www.tudn.com/mundial-2026/eliminatorias/mundial-2026-como-clasifican-selecciones-cada-confederacion",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/12545643/eliminatorias-asiaticas-asia-mundial-202-fechas-cupos-formato-fixture",
+      "https://football360.com.au/socceroos-world-cup-squad-2026-prediction/",
+      "https://www.goal.com/es-mx/listados/convocatoria-de-australia-para-el-mundial-de-2026",
+      "https://www.dawan.africa/dp/australia-national-football-team-world-cup-2026-profile-squad-history-and-more",
+      "https://www.espn.com/soccer/story/_/id/48219602/socceroos-depth-chart-picking-australias-squad-world-cup-looms",
+      "https://www.footballaustralia.com.au",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias 3ª ronda AFC cruzadas con TUDN + ESPN + Wikipedia + Aljazeera. Stats: 19 pts (5G 4E 1P), 18 GF, 8 GC. Plantel y formación validados con multiple sources.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "complete",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante Nike: pendiente",
+      "Calendario fase grupos 2026: 3 fechas pendientes",
+      "Base de entrenamiento: Football Australia aún no anunció",
+      "FIFA Ranking #26: validar mes vigente",
+      "Goleadores específicos por partido: cruzar con FIFA",
+      "Ryan al Levante: confirmar club actual"
+    ]
+  }
+}

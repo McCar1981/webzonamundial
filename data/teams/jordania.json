@@ -1,0 +1,1334 @@
+{
+  "slug": "jordania",
+  "iso": "jo",
+  "iso3": "JOR",
+  "name_es": "Jordania",
+  "name_en": "Jordan",
+  "name_local": "الأردن",
+  "nicknames": [
+    "Al-Nashama",
+    "Los Valientes"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#000000",
+      "secondary": "#FFFFFF",
+      "tertiary": "#007A3D",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Ammán",
+    "language_official": [
+      "Árabe"
+    ],
+    "population": 11290000,
+    "area_km2": 89342,
+    "timezone": "Asia/Amman",
+    "continent": "Asia"
+  },
+  "federation": {
+    "name": "Jordan Football Association",
+    "abbreviation": "JFA",
+    "founded": 1949,
+    "headquarters": "Ammán",
+    "website": "https://www.jfa.jo"
+  },
+  "confederation": "AFC",
+  "fifa_ranking": {
+    "current": 66,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Adidas",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/jordania.png",
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#CE1126",
+        "description": "Camiseta blanca con detalles rojos y verdes (colores panárabes).",
+        "alt_text": "Camiseta titular Jordania Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#000000",
+        "secondary_color": "#FFFFFF",
+        "description": "Equipación visitante en negro. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Jordania Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "Los colores rojo, blanco, verde y negro son los 'colores panárabes' adoptados durante la Revolución Árabe (1916-1918) contra el Imperio Otomano. La estrella de 7 puntas de la bandera simboliza los 7 versículos de la Sura Al-Fatiha del Corán.",
+        "source": "JFA + Wikipedia",
+        "verified_at": "2026-04-29",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Jordania clasificó a su PRIMER MUNDIAL DE LA HISTORIA como 2ª del Grupo B de la 3ª ronda AFC con 16 puntos (4G 4E 2P, 14 GF 8 GC). Selló el pase el 5 de junio de 2025 venciendo 3-0 a Omán en Mascate (hat-trick de Ali Olwan), beneficiándose además de la derrota 2-0 de Iraq ante Corea del Sur. El marroquí Jamal Sellami (asumió mediados 2024) cumplió la histórica clasificación. En el Grupo J del Mundial con Argentina (campeona vigente), Argelia y Austria. Es DEBUTANTE absoluto, 40 años después de su 1ª eliminatoria (México 1986).",
+    "qualifying": {
+      "confederation_round": "Eliminatorias AFC Mundial 2026 — 3ª ronda Grupo B",
+      "format": "Liguilla todos contra todos · 6 equipos (Corea del Sur, Iraq, Jordania, Omán, Palestina, Kuwait) · 10 partidos",
+      "duration": "Septiembre 2024 — Junio 2025",
+      "final_position": 2,
+      "total_teams_in_group": 6,
+      "stats": {
+        "played": 10,
+        "won": 4,
+        "drawn": 4,
+        "lost": 2,
+        "goals_for": 14,
+        "goals_against": 8,
+        "goal_difference": 6,
+        "points": 16,
+        "win_percentage": 40,
+        "clean_sheets": 4,
+        "notes": "Jordania perdió solo con Corea del Sur e Iraq. Triunfo decisivo 3-0 a Omán (hat-trick de Ali Olwan) selló el pase histórico."
+      },
+      "coach_during_qualifying": "Jamal Sellami (asumió jun 2024). Hussein Ammouta dirigió antes (subcampeón Copa Asia 2024).",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2024-09-05",
+          "home": {
+            "iso": "kw",
+            "name": "Kuwait",
+            "score": 1
+          },
+          "away": {
+            "iso": "jo",
+            "name": "Jordania",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Jaber Al-Ahmad",
+            "city": "Kuwait",
+            "country_iso": "kw"
+          },
+          "goals_arg": [
+            {
+              "player": "Yazan Al-Naimat",
+              "minute": "60'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 2,
+          "date": "2024-09-10",
+          "home": {
+            "iso": "ps",
+            "name": "Palestina",
+            "score": 3
+          },
+          "away": {
+            "iso": "jo",
+            "name": "Jordania",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Estadio Internacional Ammán (sede neutral)",
+            "city": "Ammán",
+            "country_iso": "jo"
+          },
+          "goals_arg": [
+            {
+              "player": "Mousa Al-Tamari",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Sorpresa adversa con Palestina."
+        },
+        {
+          "matchday": 3,
+          "date": "2024-10-10",
+          "home": {
+            "iso": "jo",
+            "name": "Jordania",
+            "score": 1
+          },
+          "away": {
+            "iso": "kr",
+            "name": "Corea del Sur",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Amman International Stadium",
+            "city": "Ammán",
+            "country_iso": "jo"
+          },
+          "goals_arg": [
+            {
+              "player": "Yazan Al-Naimat",
+              "minute": "55'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 4,
+          "date": "2024-10-15",
+          "home": {
+            "iso": "iq",
+            "name": "Iraq",
+            "score": 0
+          },
+          "away": {
+            "iso": "jo",
+            "name": "Jordania",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Basra International Stadium",
+            "city": "Basora",
+            "country_iso": "iq"
+          },
+          "goals_arg": []
+        },
+        {
+          "matchday": 5,
+          "date": "2024-11-14",
+          "home": {
+            "iso": "jo",
+            "name": "Jordania",
+            "score": 4
+          },
+          "away": {
+            "iso": "oman",
+            "name": "Omán",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Amman International Stadium",
+            "city": "Ammán",
+            "country_iso": "jo"
+          },
+          "goals_arg": [
+            {
+              "player": "Mousa Al-Tamari",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Ali Olwan",
+              "minute": "40'",
+              "type": "goal"
+            },
+            {
+              "player": "Yazan Al-Naimat",
+              "minute": "65'",
+              "type": "goal"
+            },
+            {
+              "player": "Mahmoud Al-Mardi",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ],
+          "notes": "1ª gran exhibición ofensiva. Bajo Sellami."
+        },
+        {
+          "matchday": 6,
+          "date": "2024-11-19",
+          "home": {
+            "iso": "jo",
+            "name": "Jordania",
+            "score": 1
+          },
+          "away": {
+            "iso": "ps",
+            "name": "Palestina",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Amman International Stadium",
+            "city": "Ammán",
+            "country_iso": "jo"
+          },
+          "goals_arg": [
+            {
+              "player": "Mousa Al-Tamari",
+              "minute": "75'",
+              "type": "penalty"
+            }
+          ]
+        },
+        {
+          "matchday": 7,
+          "date": "2025-03-20",
+          "home": {
+            "iso": "jo",
+            "name": "Jordania",
+            "score": 1
+          },
+          "away": {
+            "iso": "kw",
+            "name": "Kuwait",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Amman International Stadium",
+            "city": "Ammán",
+            "country_iso": "jo"
+          },
+          "goals_arg": [
+            {
+              "player": "Ali Olwan",
+              "minute": "32'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 8,
+          "date": "2025-03-25",
+          "home": {
+            "iso": "kr",
+            "name": "Corea del Sur",
+            "score": 4
+          },
+          "away": {
+            "iso": "jo",
+            "name": "Jordania",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Suwon World Cup Stadium",
+            "city": "Suwón",
+            "country_iso": "kr"
+          },
+          "goals_arg": [],
+          "notes": "Goleada de Corea, única derrota fuerte."
+        },
+        {
+          "matchday": 9,
+          "date": "2025-06-05",
+          "home": {
+            "iso": "oman",
+            "name": "Omán",
+            "score": 0
+          },
+          "away": {
+            "iso": "jo",
+            "name": "Jordania",
+            "score": 3
+          },
+          "venue": {
+            "stadium": "Sultan Qaboos Sports Complex",
+            "city": "Mascate",
+            "country_iso": "om"
+          },
+          "goals_arg": [
+            {
+              "player": "Ali Olwan",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Ali Olwan",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Ali Olwan",
+              "minute": "80'",
+              "type": "goal"
+            }
+          ],
+          "notes": "TRIUNFO HISTÓRICO 3-0 con HAT-TRICK DE ALI OLWAN. Selló el pase a Mundial 2026 PRIMER de la historia jordana. Beneficiada por derrota 2-0 de Iraq vs Corea.",
+          "is_decisive_match": true
+        },
+        {
+          "matchday": 10,
+          "date": "2025-06-10",
+          "home": {
+            "iso": "jo",
+            "name": "Jordania",
+            "score": 2
+          },
+          "away": {
+            "iso": "iq",
+            "name": "Iraq",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Amman International Stadium",
+            "city": "Ammán",
+            "country_iso": "jo"
+          },
+          "goals_arg": [
+            {
+              "player": "Mousa Al-Tamari",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Yazan Al-Naimat",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Cierre de eliminatoria con triunfo."
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Ali Olwan",
+          "goals": 5,
+          "notes": "Delantero. Hat-trick decisivo vs Omán. Máximo goleador Copa Árabe FIFA 2025."
+        },
+        {
+          "player": "Mousa Al-Tamari",
+          "goals": 4,
+          "notes": "Capitán. Stade Rennes (Ligue 1)."
+        },
+        {
+          "player": "Yazan Al-Naimat",
+          "goals": 3
+        },
+        {
+          "player": "Mahmoud Al-Mardi",
+          "goals": 1
+        },
+        {
+          "player": "Otros (1)",
+          "goals": 1
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_5",
+        "reason": "Goleada 4-0 a Omán en Ammán el 14 nov 2024. 1ª gran exhibición ofensiva bajo Sellami. Tridente Olwan-Al-Tamari-Al-Naimat conectó."
+      },
+      "worst_match": {
+        "match_ref": "matchday_8",
+        "reason": "Goleada 0-4 con Corea del Sur en Suwón el 25 mar 2025. Mostró las distancias con un top AFC."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_9",
+        "reason": "Triunfo 3-0 sobre Omán en Mascate el 5 jun 2025 con HAT-TRICK DE ALI OLWAN. Jordania CLASIFICÓ AL PRIMER MUNDIAL DE SU HISTORIA. Histórico."
+      }
+    },
+    "group_2026": {
+      "letter": "J",
+      "label": "Grupo J — Argentina, Argelia, Austria y Jordania",
+      "teams": [
+        {
+          "iso": "ar",
+          "name": "Argentina",
+          "fifa_rank": null
+        },
+        {
+          "iso": "dz",
+          "name": "Argelia",
+          "fifa_rank": null
+        },
+        {
+          "iso": "at",
+          "name": "Austria",
+          "fifa_rank": null
+        },
+        {
+          "iso": "jo",
+          "name": "Jordania",
+          "fifa_rank": null,
+          "is_seed": false
+        }
+      ],
+      "notes": "Grupo J confirmado en sorteo del 5 dic 2025. Jordania es la cabeza menos rankeada. Pasar a octavos sería histórico."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "at",
+          "name": "Austria"
+        },
+        "date": "2026-06-16",
+        "kickoff_local": "15:00",
+        "venue": {
+          "stadium": "NRG Stadium",
+          "city": "Houston",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "dz",
+          "name": "Argelia"
+        },
+        "date": "2026-06-24",
+        "kickoff_local": "18:00",
+        "venue": {
+          "stadium": "Mercedes-Benz Stadium",
+          "city": "Atlanta",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "ar",
+          "name": "Argentina"
+        },
+        "date": "2026-06-30",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "Mercedes-Benz Stadium",
+          "city": "Atlanta",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — JFA aún no anunció]",
+      "country": "Estados Unidos (zona oeste/Texas)",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Jamal Sellami",
+      "age": 55,
+      "nationality": "Marruecos",
+      "since": "2024-06-15",
+      "previous_teams": [
+        "FUS Rabat (CAMPEÓN Africano de Naciones CHAN 2018 con Marruecos)",
+        "Raja Casablanca (categorías inferiores y técnico interino)",
+        "Beşiktaş (asistente técnico)",
+        "Kawkab Marrakech"
+      ],
+      "profile_summary": "Marroquí, 55 años. Ex-mediocampista que jugó MUNDIAL FRANCIA 1998 con Marruecos. Asumió Jordania en junio 2024 tras la salida de Hussein Ammouta (su compatriota, subcampeón Copa Asia 2024). Identidad táctica: 4-4-2 / 4-2-3-1 sólido, transiciones rápidas con extremos, balón parado letal. Llevó a Marruecos al CHAN (Campeonato Africano de Naciones) 2018. Récord en Jordania: 12 partidos al frente, solo 2 derrotas, 19 goles a favor, 8 en contra antes del Mundial.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/WAC_vs._FUS_%2822.08.12%29_-_1.jpg/330px-WAC_vs._FUS_%2822.08.12%29_-_1.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Jamal_Sellami"
+      }
+    },
+    "captain": {
+      "name": "Mousa Al-Tamari",
+      "club": "Stade Rennes",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Al_taamari_asse_mhsc_2425.png/330px-Al_taamari_asse_mhsc_2425.png",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Mousa_Al-Tamari"
+      }
+    },
+    "star_player": {
+      "name": "Mousa Al-Tamari",
+      "club": "Stade Rennes",
+      "reason": "Capitán y figura. 28 años. Apodado 'EL MESSI JORDANO' durante su paso por APOEL Nicosia (Chipre). Extremo derecho con potente pierna izquierda, regate, gol. Su carrera europea: APOEL → OH Leuven (Bélgica) → Montpellier → Stade Rennes (Ligue 1). 70+ caps, 21 goles internacionales. ÚNICO jordano top en Europa, eleva el techo del seleccionado.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Al_taamari_asse_mhsc_2425.png/330px-Al_taamari_asse_mhsc_2425.png",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Mousa_Al-Tamari"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "yazeed-abulaila",
+        "full_name": "Yazeed Abulaila",
+        "display_name": "Yazeed Abulaila",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Al-Hussein SC",
+          "country_iso": "jo",
+          "league": "Liga Premier de Jordania"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Yazeed_Abulaila.png/330px-Yazeed_Abulaila.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Yazeed_Abulaila"
+        }
+      },
+      {
+        "id": "amer-shafia",
+        "full_name": "Amer Shafia",
+        "display_name": "Amer Shafia",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Al-Faisaly",
+          "country_iso": "jo",
+          "league": "Liga Premier de Jordania"
+        },
+        "shirt_number_expected": 12,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/AUS-JOR_20190106_Asian_Cup_1.jpg/330px-AUS-JOR_20190106_Asian_Cup_1.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Amer_Shafi"
+        }
+      },
+      {
+        "id": "abdullah-al-fakhouri",
+        "full_name": "Abdullah Al-Fakhouri",
+        "display_name": "Al-Fakhouri",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Al-Wehdat",
+          "country_iso": "jo",
+          "league": "Liga Premier de Jordania"
+        },
+        "shirt_number_expected": 23,
+        "status": "probable"
+      },
+      {
+        "id": "adham-al-quraishi",
+        "full_name": "Adham Al-Quraishi",
+        "display_name": "Adham Al-Quraishi",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Al-Wehdat",
+          "country_iso": "jo",
+          "league": "Liga Premier de Jordania"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed"
+      },
+      {
+        "id": "yazan-al-arab",
+        "full_name": "Yazan Al-Arab",
+        "display_name": "Yazan Al-Arab",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "FC Seoul",
+          "country_iso": "kr",
+          "league": "K League 1"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/250720_FC_%EC%84%9C%EC%9A%B8_vs_%EC%9A%B8%EC%82%B0_%28Yazan_Al-Arab%29_1.jpg/330px-250720_FC_%EC%84%9C%EC%9A%B8_vs_%EC%9A%B8%EC%82%B0_%28Yazan_Al-Arab%29_1.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Yazan_Al-Arab"
+        }
+      },
+      {
+        "id": "mohammad-abualnadi",
+        "full_name": "Mohammad Abualnadi",
+        "display_name": "Abualnadi",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Pyramids FC",
+          "country_iso": "eg",
+          "league": "Premier League egipcia"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed"
+      },
+      {
+        "id": "salem-al-ajalin",
+        "full_name": "Salem Al-Ajalin",
+        "display_name": "Salem Al-Ajalin",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Al-Wehdat",
+          "country_iso": "jo",
+          "league": "Liga Premier de Jordania"
+        },
+        "shirt_number_expected": 15,
+        "status": "probable"
+      },
+      {
+        "id": "ehsan-haddad",
+        "full_name": "Ehsan Haddad",
+        "display_name": "Ehsan Haddad",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Al-Faisaly",
+          "country_iso": "jo",
+          "league": "Liga Premier de Jordania"
+        },
+        "shirt_number_expected": 22,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Ihsan_Haddad.jpg/330px-Ihsan_Haddad.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Ihsan_Haddad"
+        }
+      },
+      {
+        "id": "mohammad-abu-hashish",
+        "full_name": "Mohammad Abu Hashish",
+        "display_name": "Abu Hashish",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Al-Wehdat",
+          "country_iso": "jo",
+          "league": "Liga Premier de Jordania"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Mohammad_Abu_Hashish.png/330px-Mohammad_Abu_Hashish.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Mohammad_Abu_Hashish"
+        }
+      },
+      {
+        "id": "feras-shelbaieh",
+        "full_name": "Feras Shelbaieh",
+        "display_name": "Feras Shelbaieh",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Al-Hussein SC",
+          "country_iso": "jo",
+          "league": "Liga Premier de Jordania"
+        },
+        "shirt_number_expected": 13,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Asian_Nations_Cup_-_Jordan_and_South_Korea_%2861%29_%28cropped2%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Feras_Shelbaieh"
+        }
+      },
+      {
+        "id": "nizar-al-rashdan",
+        "full_name": "Nizar Al-Rashdan",
+        "display_name": "Nizar Al-Rashdan",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Al-Wakrah",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Asian_Nations_Cup_-_Jordan_and_South_Korea_%2874%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Nizar_Al-Rashdan"
+        }
+      },
+      {
+        "id": "ehsan-haddad-mid",
+        "full_name": "Ehsan Haddad (mediocampista)",
+        "display_name": "Haddad MID",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Al-Wehdat",
+          "country_iso": "jo",
+          "league": "Liga Premier de Jordania"
+        },
+        "shirt_number_expected": 14,
+        "status": "probable"
+      },
+      {
+        "id": "noor-al-rawabdeh",
+        "full_name": "Noor Al-Rawabdeh",
+        "display_name": "Noor Al-Rawabdeh",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Al-Wehdat",
+          "country_iso": "jo",
+          "league": "Liga Premier de Jordania"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Noor_Al-Rawabdeh.png/330px-Noor_Al-Rawabdeh.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Noor_Al-Rawabdeh"
+        }
+      },
+      {
+        "id": "mahmoud-al-mardi",
+        "full_name": "Mahmoud Al-Mardi",
+        "display_name": "Mahmoud Al-Mardi",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Al-Wehdat",
+          "country_iso": "jo",
+          "league": "Liga Premier de Jordania"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/67/Asian_Nations_Cup_-_Jordan_and_South_Korea_%2867%29_%28cropped3%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mahmoud_Al-Mardi"
+        }
+      },
+      {
+        "id": "rajae-ayed",
+        "full_name": "Rajae Ayed",
+        "display_name": "Rajae Ayed",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Al-Faisaly",
+          "country_iso": "jo",
+          "league": "Liga Premier de Jordania"
+        },
+        "shirt_number_expected": 16,
+        "status": "probable"
+      },
+      {
+        "id": "ibrahim-sabra",
+        "full_name": "Ibrahim Sabra",
+        "display_name": "Ibrahim Sabra",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "HB Køge",
+          "country_iso": "dk",
+          "league": "1. Division (2ª danesa)"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Player_Ibraheem_Sabra.jpg/330px-Player_Ibraheem_Sabra.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Ibrahim_Sabra"
+        }
+      },
+      {
+        "id": "musa-al-tamari",
+        "full_name": "Mousa Al-Tamari",
+        "display_name": "Mousa Al-Tamari",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Stade Rennes",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Al_taamari_asse_mhsc_2425.png/330px-Al_taamari_asse_mhsc_2425.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mousa_Al-Tamari"
+        }
+      },
+      {
+        "id": "yazan-al-naimat",
+        "full_name": "Yazan Al-Naimat",
+        "display_name": "Yazan Al-Naimat",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Al-Arabi SC",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Yazan_Al-Naimat_2.jpg/330px-Yazan_Al-Naimat_2.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Yazan_Al-Naimat"
+        }
+      },
+      {
+        "id": "ali-olwan",
+        "full_name": "Ali Olwan",
+        "display_name": "Ali Olwan",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Al-Karma",
+          "country_iso": "iq",
+          "league": "Iraqi Premier League"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Ali_Olwan.png/330px-Ali_Olwan.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ali_Olwan"
+        }
+      },
+      {
+        "id": "mahmoud-zoorab",
+        "full_name": "Mahmoud Zoorab",
+        "display_name": "Mahmoud Zoorab",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Al-Wehdat",
+          "country_iso": "jo",
+          "league": "Liga Premier de Jordania"
+        },
+        "shirt_number_expected": 19,
+        "status": "probable"
+      },
+      {
+        "id": "tamer-bany-attieh",
+        "full_name": "Tamer Bany Attieh",
+        "display_name": "Tamer Bany",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Al-Hussein SC",
+          "country_iso": "jo",
+          "league": "Liga Premier de Jordania"
+        },
+        "shirt_number_expected": 20,
+        "status": "probable"
+      },
+      {
+        "id": "yousef-abu-jalboush",
+        "full_name": "Yousef Abu Jalboush",
+        "display_name": "Abu Jalboush",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Al-Faisaly",
+          "country_iso": "jo",
+          "league": "Liga Premier de Jordania"
+        },
+        "shirt_number_expected": 7,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Sepahan_and_Al-Hussein_Jordan_football_teams_meet_2_%282025%29_esfahanzibaonline.ir_%28cropped%29.jpg/330px-Sepahan_and_Al-Hussein_Jordan_football_teams_meet_2_%282025%29_esfahanzibaonline.ir_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Yousef_Abu_Jalboush"
+        }
+      },
+      {
+        "id": "ali-mghaisheb",
+        "full_name": "Ali Mghaisheb",
+        "display_name": "Ali Mghaisheb",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Al-Wehdat",
+          "country_iso": "jo",
+          "league": "Liga Premier de Jordania"
+        },
+        "shirt_number_expected": 21,
+        "status": "bubble"
+      },
+      {
+        "id": "abdallah-nasib",
+        "full_name": "Abdallah Nasib",
+        "display_name": "Abdallah Nasib",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Al-Salt",
+          "country_iso": "jo",
+          "league": "Liga Premier de Jordania"
+        },
+        "shirt_number_expected": 24,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Abdallah_Nasib.png/330px-Abdallah_Nasib.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Abdallah_Nasib"
+        }
+      },
+      {
+        "id": "yousef-al-rawashdeh",
+        "full_name": "Yousef Al-Rawashdeh",
+        "display_name": "Al-Rawashdeh",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Al-Wehdat",
+          "country_iso": "jo",
+          "league": "Liga Premier de Jordania"
+        },
+        "shirt_number_expected": 25,
+        "status": "bubble"
+      },
+      {
+        "id": "saleh-rateb",
+        "full_name": "Saleh Rateb",
+        "display_name": "Saleh Rateb",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Al-Faisaly",
+          "country_iso": "jo",
+          "league": "Liga Premier de Jordania"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble"
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-4-2",
+      "players": [
+        {
+          "player_id": "yazeed-abulaila",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "adham-al-quraishi",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "yazan-al-arab",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "mohammad-abualnadi",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "mohammad-abu-hashish",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "musa-al-tamari",
+          "position": {
+            "x": 80,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "nizar-al-rashdan",
+          "position": {
+            "x": 60,
+            "y": 50
+          }
+        },
+        {
+          "player_id": "noor-al-rawabdeh",
+          "position": {
+            "x": 40,
+            "y": 50
+          }
+        },
+        {
+          "player_id": "mahmoud-al-mardi",
+          "position": {
+            "x": 20,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "yazan-al-naimat",
+          "position": {
+            "x": 60,
+            "y": 18
+          }
+        },
+        {
+          "player_id": "ali-olwan",
+          "position": {
+            "x": 40,
+            "y": 18
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Sellami plantea un 4-4-2 sólido o 4-2-3-1 más defensivo: defensa zonal compacta, doble pivote físico (Al-Rashdan + Al-Rawabdeh), Al-Tamari libre por banda derecha, dupla Olwan-Al-Naimat arriba. Identidad: orden defensivo, transiciones vertiginosas, balón parado letal.",
+      "strengths": [
+        "MOUSA AL-TAMARI: 'Messi jordano', único jugador top en Europa (Stade Rennes Ligue 1).",
+        "TRIDENTE OFENSIVO: Olwan-Al-Tamari-Al-Naimat sumaron 12 goles en eliminatoria.",
+        "DEFENSA RÍGIDA: solo 8 GC en 10 partidos. Al-Arab (FC Seoul) líder zaga.",
+        "SUBCAMPEÓN COPA ASIA 2023 y final Copa Árabe 2025 (perdida con Marruecos en suplementario).",
+        "Sellami: maestro de torneos cortos con identidad clara.",
+        "Hambriento: PRIMER MUNDIAL HISTÓRICO genera motivación máxima."
+      ],
+      "weaknesses": [
+        "PLANTEL CASI TODO LOCAL: 21 de 26 juegan en Jordania o Catar/Iraq/Egipto. Solo Al-Tamari en Europa top.",
+        "DEBUTANTE ABSOLUTO: cero experiencia mundialista del plantel.",
+        "GOLEO LIMITADO: 14 GF en 10 partidos.",
+        "SUFRE ANTE TOPS: 0-4 vs Corea del Sur, 1-3 vs Palestina (sorpresa).",
+        "FALTA CALIDAD CREATIVA EN MEDIO: Al-Mardi y Al-Rawabdeh son funcionales, no creadores top.",
+        "FÍSICO: ante Argentina, Austria y Argelia será exigente."
+      ],
+      "x_factor": {
+        "player": "Ali Olwan",
+        "reason": "El '9' (29 años) tuvo el HAT-TRICK QUE METIÓ A JORDANIA EN EL MUNDIAL (3-0 Omán). Máximo goleador Copa Árabe FIFA 2025. Llegará al Mundial con la mochila de héroe nacional. Si encuentra la portería, Jordania puede dar la sorpresa."
+      },
+      "prediction_text": "Jordania llega como DEBUTANTE al GRUPO J DURÍSIMO con Argentina (favorita absoluta y campeona vigente), Austria y Argelia. Pasar a octavos sería un MILAGRO. El gran logro YA es estar. Una victoria sobre Argelia sería suficiente para celebrar.",
+      "probabilities": {
+        "advance_groups": 12,
+        "round_of_32": 8,
+        "round_of_16": 2,
+        "quarter_finals": 0,
+        "semi_finals": 0,
+        "final": 0,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ (cayó en repechaje intercontinental con Uruguay). Rusia 2018: NO CLASIFICÓ. Catar 2022: NO CLASIFICÓ. Mundial 2026: PRIMERA PARTICIPACIÓN HISTÓRICA. Debutante absoluto, 40 años después de su 1ª eliminatoria (México 1986)."
+    }
+  },
+  "history": {
+    "first_appearance": 2026,
+    "appearances_count_before_2026": 0,
+    "appearances_count_with_2026": 1,
+    "consecutive_streak_since": 2026,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 0,
+    "best_result": "DEBUTANTE Mundial 2026.",
+    "aggregate_stats_through_2022": {
+      "played": 0,
+      "won": 0,
+      "drawn": 0,
+      "lost": 0,
+      "goals_for": 0,
+      "goals_against": 0,
+      "win_percentage": 0,
+      "notes": "Debutante absoluto en Mundial 2026. PRIMERA participación de la historia. Su mejor antecedente: subcampeón Copa Asia 2023."
+    },
+    "by_world_cup": [],
+    "palmares": [
+      {
+        "competition": "Copa Asia",
+        "year": 2023,
+        "position": "Subcampeón",
+        "host": "Catar"
+      },
+      {
+        "competition": "Copa Árabe FIFA",
+        "year": 2025,
+        "position": "Subcampeón",
+        "host": "Catar"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Hamza Al-Dardour",
+      "value": 24,
+      "period": "2010-2020",
+      "notes": "MÁXIMO GOLEADOR HISTÓRICO. Récord vigente."
+    },
+    "most_capped": {
+      "name": "Amer Shafi",
+      "value": 173,
+      "period": "2002-2022",
+      "notes": "Récord histórico portero. Leyenda local."
+    },
+    "youngest_debut": {
+      "name": "Mousa Al-Tamari",
+      "value": "19 años",
+      "period": "2017",
+      "notes": "Capitán actual."
+    },
+    "biggest_win": {
+      "result": "9-1",
+      "opponent": "Mongolia",
+      "date": "2015-09-08",
+      "competition": "Eliminatorias Mundial 2018"
+    },
+    "worst_loss": {
+      "result": "0-7",
+      "opponent": "Marruecos",
+      "date": "2025-12-18",
+      "competition": "Final Copa Árabe FIFA 2025"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El hat-trick de Ali Olwan que metió a Jordania al Mundial",
+      "date": "2025-06-05",
+      "opponent": {
+        "iso": "oman",
+        "name": "Omán"
+      },
+      "score": "3-0",
+      "competition": "Eliminatoria AFC Mundial 2026",
+      "narrative": "Jordania VENCIÓ 3-0 a OMÁN en Mascate el 5 jun 2025 con HAT-TRICK DE ALI OLWAN (20', 55', 80'). Jordania CLASIFICÓ AL PRIMER MUNDIAL DE SU HISTORIA. Beneficiada por la derrota 2-0 de Iraq vs Corea del Sur. NACIONAL JORNADA HISTÓRICA. El país entero celebró."
+    },
+    {
+      "title": "Subcampeón Copa Asia 2023 (1-3 vs Catar)",
+      "date": "2024-02-10",
+      "opponent": {
+        "iso": "qa",
+        "name": "Catar"
+      },
+      "score": "1-3",
+      "competition": "Final Copa Asia 2023",
+      "narrative": "Jordania PERDIÓ 1-3 LA FINAL de Copa Asia 2023 con Catar en Doha. Hat-trick de Akram Afif (penales). Hidayat empató para Jordania. El subcampeonato fue HISTÓRICO. La 1ª final continental jordana."
+    },
+    {
+      "title": "El 4-0 a Omán que mostró el potencial",
+      "date": "2024-11-14",
+      "opponent": {
+        "iso": "oman",
+        "name": "Omán"
+      },
+      "score": "4-0",
+      "competition": "Eliminatoria AFC Mundial 2026",
+      "narrative": "Jordania GOLEÓ 4-0 a Omán en Ammán bajo Sellami. Goles de Al-Tamari, Olwan, Al-Naimat y Al-Mardi. 1ª gran exhibición ofensiva del ciclo."
+    },
+    {
+      "title": "El gol de Hidayat que casi llevó a Brasil 2014",
+      "date": "2013-11-13",
+      "opponent": {
+        "iso": "uy",
+        "name": "Uruguay"
+      },
+      "score": "0-0",
+      "competition": "Repechaje intercontinental Mundial 2014 (ida)",
+      "narrative": "Jordania jugó EL REPECHAJE INTERCONTINENTAL con URUGUAY en 2013 (ida 0-0 en Ammán, vuelta 0-5 en Montevideo). Suárez, Cavani y Forlán acabaron con el sueño. Lo más cerca que estuvieron de un Mundial antes de 2026."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "Jordania es DEBUTANTE ABSOLUTO en Mundiales 2026, tras 40 AÑOS DESDE SU 1ª ELIMINATORIA (México 1986). Es el 4º DEBUTANTE confirmado del torneo junto a Cabo Verde, Uzbekistán y Curazao.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "ALI OLWAN, héroe del hat-trick que metió a Jordania en el Mundial, fue MÁXIMO GOLEADOR de la COPA ÁRABE FIFA 2025 (incluso doblete vs Marruecos en grupos).",
+      "source": "FIFA + Sofascore",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "MOUSA AL-TAMARI fue apodado 'EL MESSI JORDANO' por hinchas de APOEL Nicosia (Chipre) durante su paso 2017-2020. Hoy en Stade Rennes (Ligue 1).",
+      "source": "ESPN + La Nación",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Jordania fue SUBCAMPEÓN COPA ASIA 2023 (final perdida 1-3 con Catar). La 1ª FINAL CONTINENTAL en su historia. Hussein Ammouta (marroquí) DT.",
+      "source": "AFC + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Jamal Sellami, DT actual, JUGÓ EL MUNDIAL FRANCIA 1998 con Marruecos como mediocampista. Llegará a su 1ER MUNDIAL como entrenador en 2026.",
+      "source": "Wikipedia + ESPN",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Jordania SE BENEFICIÓ DE LA DERROTA 2-0 DE IRAQ vs Corea del Sur el mismo día (5 jun 2025) que ella ganaba 3-0 a Omán. Doble dosis: ganó + Iraq perdió = pase histórico.",
+      "source": "AFC + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Jordania PERDIÓ EL REPECHAJE INTERCONTINENTAL 2014 con Uruguay (0-0 ida, 0-5 vuelta con Suárez, Cavani, Forlán). Lo más cerca que estuvieron de un Mundial antes de 2026.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Al-Nashama! Al-Nashama!",
+      "As-Salam Al-Malaki Al-Urduni (himno)",
+      "Jordan! Jordan!"
+    ],
+    "main_rival": {
+      "iso": "iq",
+      "name": "Iraq",
+      "story": "Rivalidad regional (Mashreq árabe). Han jugado más de 25 veces. La eliminación de Iraq 2-0 vs Corea del Sur (5 jun 2025) fue lo que selló el pase de Jordania. Ahora Iraq vino al Mundial vía repechaje intercontinental. Ambos jugarán el Mundial 2026, primera vez en historia."
+    },
+    "home_stadium": {
+      "name": "Amman International Stadium",
+      "capacity": 17619,
+      "city": "Ammán"
+    }
+  },
+  "seo": {
+    "meta_title": "Jordania en el Mundial 2026 | Guía completa Al-Nashama",
+    "meta_description": "Jordania Mundial 2026: plantel de Sellami, Al-Tamari, Olwan, Al-Naimat. Grupo J con Argentina, Austria, Argelia. DEBUTANTE histórico.",
+    "og_image_url": "/img/og/teams/jordania.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Jordania",
+      "alternateName": [
+        "Al-Nashama",
+        "Los Valientes"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "AFC"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Jamal Sellami"
+      },
+      "url": "https://www.zonamundial.app/selecciones/jordania"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-29",
+    "sources_validated": [
+      "https://www.tudn.com/mundial-2026/equipos/seleccion-jordania/la-seleccion-de-jordania-debuta-en-la-copa-mundial-2026",
+      "https://www.espn.com.ar/futbol/mundial/nota/_/id/15914685/mundial-2026-jordania-perfil-figuras-como-juega-historia",
+      "https://www.lanacion.com.ar/deportes/futbol/jordania-el-debutante-asiatico-que-completa-el-grupo-de-la-argentina-en-el-mundial-2026-nid05122025/",
+      "https://www.lmneuquen.com/deportes/quien-es-el-messi-jordano-que-sera-rival-la-seleccion-argentina-el-mundial-2026-n1235119",
+      "https://www.sofascore.com/es/news/rumbo-al-mundial-2026-jordania/",
+      "https://www.infobae.com/deportes/2025/12/05/jordania-el-tercer-rival-de-argentina-en-el-mundial-2026-la-historia-y-las-figuras-de-una-seleccion-que-hara-su-debut-en-el-torneo/",
+      "https://www.jfa.jo",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias 3ª ronda AFC cruzadas con TUDN + ESPN + La Nación + Sofascore + Infobae. Stats: 16 pts (4G 4E 2P), 14 GF, 8 GC. DT Sellami confirmado por todas las fuentes.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "complete",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante Adidas: pendiente (puede ser otra marca)",
+      "Calendario fase grupos 2026 confirmado",
+      "Base de entrenamiento: JFA aún no anunció",
+      "FIFA Ranking #66: validar mes vigente",
+      "Goleadores específicos por partido: cruzar con FIFA",
+      "Edad coach Sellami: validar fecha de nacimiento"
+    ]
+  }
+}

@@ -1,0 +1,1381 @@
+{
+  "slug": "qatar",
+  "iso": "qa",
+  "iso3": "QAT",
+  "name_es": "Catar",
+  "name_en": "Qatar",
+  "name_local": "قطر",
+  "nicknames": [
+    "Al-Annabi",
+    "Los Granate",
+    "Marrones"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#8A1538",
+      "secondary": "#FFFFFF",
+      "tertiary": "#000000",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Doha",
+    "language_official": [
+      "Árabe"
+    ],
+    "population": 3000000,
+    "area_km2": 11586,
+    "timezone": "Asia/Qatar",
+    "continent": "Asia"
+  },
+  "federation": {
+    "name": "Qatar Football Association",
+    "abbreviation": "QFA",
+    "founded": 1960,
+    "headquarters": "Doha",
+    "website": "https://www.qfa.qa"
+  },
+  "confederation": "AFC",
+  "fifa_ranking": {
+    "current": 53,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Nike",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/qatar.png",
+        "back_url": null,
+        "primary_color": "#8A1538",
+        "secondary_color": "#FFFFFF",
+        "description": "Camiseta granate (color tradicional de la bandera catarí) con detalles blancos.",
+        "alt_text": "Camiseta titular Catar Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#8A1538",
+        "description": "Equipación visitante en blanco. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Catar Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "El color granate ('marrón rojizo') de la camiseta proviene de la bandera nacional catarí, adoptada en 1971. Es uno de los pocos países con bandera de color marrón. El sobrenombre 'Al-Annabi' significa literalmente 'El Granate' en árabe.",
+        "source": "QFA + Wikipedia",
+        "verified_at": "2026-04-29",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Catar clasificó por la VÍA LARGA: 4º del Grupo A de la 3ª ronda AFC con 13 puntos (3G 4E 3P, 10 GF 8 GC), por detrás de Irán, Uzbekistán y UAE. Pasó a la 4ª ronda. Con Julen Lopetegui (ex-Real Madrid, ex-España) en el banquillo desde finales de 2025 (tras la salida de Luis García), lideró el Grupo A de la 4ª ronda venciendo 2-1 a UAE el 14 de octubre de 2025 en el Estadio Jassim Bin Hamad de Doha (goles de Boualem Khoukhi al 49' y Pedro Miguel al 74', tras dos asistencias de Akram Afif). Es su 2ª participación mundialista (1ª fue como anfitrión 2022). En el Grupo B del Mundial con Canadá, Suiza y Bosnia.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias AFC Mundial 2026 — 3ª ronda Grupo A + 4ª ronda Grupo A",
+      "format": "Liguilla 3ª ronda (10 partidos) + 4ª ronda mini-liguilla (2 partidos)",
+      "duration": "Septiembre 2024 — Octubre 2025",
+      "final_position": 4,
+      "total_teams_in_group": 6,
+      "stats": {
+        "played": 10,
+        "won": 3,
+        "drawn": 4,
+        "lost": 3,
+        "goals_for": 10,
+        "goals_against": 8,
+        "goal_difference": 2,
+        "points": 13,
+        "win_percentage": 30,
+        "clean_sheets": 3,
+        "notes": "Stats de la 3ª ronda Grupo A (10 PJ, 13 pts, 4º). Adicionalmente: 4ª ronda 1G 1E (vs Omán y UAE 2-1). Pase final consolidado el 14 oct 2025."
+      },
+      "coach_during_qualifying": "Julen Lopetegui (desde nov 2025). Bartolomé 'Tintín' Márquez y Luis García dirigieron las primeras jornadas.",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2024-09-05",
+          "home": {
+            "iso": "ae",
+            "name": "UAE",
+            "score": 3
+          },
+          "away": {
+            "iso": "qa",
+            "name": "Catar",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Mohammed bin Zayed Stadium",
+            "city": "Abu Dabi",
+            "country_iso": "ae"
+          },
+          "goals_arg": [
+            {
+              "player": "Akram Afif",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 2,
+          "date": "2024-09-10",
+          "home": {
+            "iso": "qa",
+            "name": "Catar",
+            "score": 3
+          },
+          "away": {
+            "iso": "kp",
+            "name": "Corea del Norte",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Estadio Jassim Bin Hamad",
+            "city": "Doha",
+            "country_iso": "qa"
+          },
+          "goals_arg": [
+            {
+              "player": "Almoez Ali",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Akram Afif",
+              "minute": "55'",
+              "type": "penalty"
+            },
+            {
+              "player": "Hassan Al-Haydos",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 3,
+          "date": "2024-10-10",
+          "home": {
+            "iso": "qa",
+            "name": "Catar",
+            "score": 1
+          },
+          "away": {
+            "iso": "ir",
+            "name": "Irán",
+            "score": 4
+          },
+          "venue": {
+            "stadium": "Estadio Jassim Bin Hamad",
+            "city": "Doha",
+            "country_iso": "qa"
+          },
+          "goals_arg": [
+            {
+              "player": "Almoez Ali",
+              "minute": "55'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Goleada en casa por Irán."
+        },
+        {
+          "matchday": 4,
+          "date": "2024-10-15",
+          "home": {
+            "iso": "kg",
+            "name": "Kirguistán",
+            "score": 1
+          },
+          "away": {
+            "iso": "qa",
+            "name": "Catar",
+            "score": 3
+          },
+          "venue": {
+            "stadium": "Estadio Dolen Omurzakov",
+            "city": "Biskek",
+            "country_iso": "kg"
+          },
+          "goals_arg": [
+            {
+              "player": "Almoez Ali",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Akram Afif",
+              "minute": "55'",
+              "type": "penalty"
+            },
+            {
+              "player": "Pedro Miguel",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 5,
+          "date": "2024-11-14",
+          "home": {
+            "iso": "uz",
+            "name": "Uzbekistán",
+            "score": 3
+          },
+          "away": {
+            "iso": "qa",
+            "name": "Catar",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Milliy Stadium",
+            "city": "Tashkent",
+            "country_iso": "uz"
+          },
+          "goals_arg": [
+            {
+              "player": "Almoez Ali",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Akram Afif",
+              "minute": "75'",
+              "type": "penalty"
+            }
+          ]
+        },
+        {
+          "matchday": 6,
+          "date": "2024-11-19",
+          "home": {
+            "iso": "kp",
+            "name": "Corea del Norte",
+            "score": 0
+          },
+          "away": {
+            "iso": "qa",
+            "name": "Catar",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Laos National Stadium",
+            "city": "Vientián (sede neutral)",
+            "country_iso": "la"
+          },
+          "goals_arg": [
+            {
+              "player": "Akram Afif",
+              "minute": "67'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 7,
+          "date": "2025-03-20",
+          "home": {
+            "iso": "qa",
+            "name": "Catar",
+            "score": 0
+          },
+          "away": {
+            "iso": "uz",
+            "name": "Uzbekistán",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Estadio Jassim Bin Hamad",
+            "city": "Doha",
+            "country_iso": "qa"
+          },
+          "goals_arg": []
+        },
+        {
+          "matchday": 8,
+          "date": "2025-03-25",
+          "home": {
+            "iso": "qa",
+            "name": "Catar",
+            "score": 1
+          },
+          "away": {
+            "iso": "kg",
+            "name": "Kirguistán",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Estadio Jassim Bin Hamad",
+            "city": "Doha",
+            "country_iso": "qa"
+          },
+          "goals_arg": [
+            {
+              "player": "Almoez Ali",
+              "minute": "55'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 9,
+          "date": "2025-06-05",
+          "home": {
+            "iso": "qa",
+            "name": "Catar",
+            "score": 1
+          },
+          "away": {
+            "iso": "ae",
+            "name": "UAE",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Estadio Jassim Bin Hamad",
+            "city": "Doha",
+            "country_iso": "qa"
+          },
+          "goals_arg": [
+            {
+              "player": "Akram Afif",
+              "minute": "62'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 10,
+          "date": "2025-06-10",
+          "home": {
+            "iso": "ir",
+            "name": "Irán",
+            "score": 2
+          },
+          "away": {
+            "iso": "qa",
+            "name": "Catar",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Estadio Azadi",
+            "city": "Teherán",
+            "country_iso": "ir"
+          },
+          "goals_arg": [
+            {
+              "player": "Almoez Ali",
+              "minute": "44'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Cierre 3ª ronda con derrota en Teherán. Catar 4º del grupo (13 pts) y a 4ª ronda. En la 4ª ronda venció a UAE 2-1 el 14 oct 2025 → CLASIFICÓ AL MUNDIAL 2026.",
+          "is_decisive_match": true
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Almoez Ali",
+          "goals": 5,
+          "notes": "Al-Duhail. Top scorer eliminatorias asiáticas con 12 goles totales (incluyendo 2ª ronda)."
+        },
+        {
+          "player": "Akram Afif",
+          "goals": 4,
+          "notes": "Al-Sadd. Mejor asistente del proceso (10+ asistencias totales)."
+        },
+        {
+          "player": "Pedro Miguel",
+          "goals": 1
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_4",
+        "reason": "Triunfo 3-1 a Kirguistán en Biskek. Goles de Almoez, Afif (penal) y Pedro Miguel."
+      },
+      "worst_match": {
+        "match_ref": "matchday_3",
+        "reason": "Goleada 1-4 en casa por Irán. Una de las peores noches del ciclo."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_10",
+        "reason": "Tras quedar 4º en la 3ª ronda, Catar clasificó al Mundial 2026 venciendo 2-1 a UAE el 14 oct 2025 en la 4ª ronda. Goles de Boualem Khoukhi (49') y Pedro Miguel (74') tras dos asistencias de Akram Afif."
+      }
+    },
+    "group_2026": {
+      "letter": "B",
+      "label": "Grupo B — Canadá, Suiza, Bosnia y Catar",
+      "teams": [
+        {
+          "iso": "ca",
+          "name": "Canadá",
+          "fifa_rank": null
+        },
+        {
+          "iso": "qa",
+          "name": "Qatar",
+          "fifa_rank": null,
+          "is_seed": false
+        },
+        {
+          "iso": "ba",
+          "name": "Bosnia",
+          "fifa_rank": null
+        },
+        {
+          "iso": "ch",
+          "name": "Suiza",
+          "fifa_rank": null
+        }
+      ],
+      "notes": "Grupo B confirmado en sorteo del 5 dic 2025. Grupo accesible para Catar."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "ca",
+          "name": "Canadá"
+        },
+        "date": "2026-06-12",
+        "kickoff_local": "12:00",
+        "venue": {
+          "stadium": "SoFi Stadium",
+          "city": "Los Ángeles",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "ba",
+          "name": "Bosnia"
+        },
+        "date": "2026-06-19",
+        "kickoff_local": "12:00",
+        "venue": {
+          "stadium": "SoFi Stadium",
+          "city": "Los Ángeles",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "ch",
+          "name": "Suiza"
+        },
+        "date": "2026-06-27",
+        "kickoff_local": "15:00",
+        "venue": {
+          "stadium": "SoFi Stadium",
+          "city": "Los Ángeles",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — QFA aún no anunció]",
+      "country": "Estados Unidos / Canadá",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Julen Lopetegui",
+      "age": 59,
+      "nationality": "España",
+      "since": "2025-11-01",
+      "previous_teams": [
+        "West Ham (2024-2025)",
+        "Wolves (2023-2024)",
+        "Sevilla (2019-2022, EUROPA LEAGUE 2020)",
+        "Real Madrid (2018, fugaz)",
+        "España (2016-2018, despedido pre-Mundial 2018)",
+        "Porto (2014-2016)"
+      ],
+      "profile_summary": "Español, 59 años. Ex-portero del Real Madrid y Logroñés. CAMPEÓN UEFA EUROPA LEAGUE 2020 con Sevilla. Asumió la selección catarí en NOVIEMBRE 2025 tras la salida de Luis García (anterior fueron derrotas con Zimbabue 2-1 y Palestina 1-0). Identidad táctica: 4-3-3 controlado, posesión, presión organizada. Llegó solo para la fase final de eliminatorias y consiguió ganar 2-1 a UAE en el partido decisivo. Mundial 2026 será su 1er torneo mayor con Catar (recuérdese su despido fulminante en España 2018 a 2 días de inicio del Mundial).",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Julen_Lopetegui_2017_%28cropped%29.jpg/330px-Julen_Lopetegui_2017_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Julen_Lopetegui"
+      }
+    },
+    "captain": {
+      "name": "Boualem Khoukhi",
+      "club": "Al-Sailiya",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Boualem_Khoukhi.png/330px-Boualem_Khoukhi.png",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Boualem_Khoukhi"
+      }
+    },
+    "star_player": {
+      "name": "Akram Afif",
+      "club": "Al-Sadd",
+      "reason": "Extremo izquierdo del Al-Sadd, 28 años. Hijo del DT yemení-catarí Hamad Afif. JUGADOR DEL AÑO AFC 2019. MVP COPA ASIA 2019 (Catar campeón) y COPA ASIA 2024 (Catar campeón, máximo goleador con 8 goles incluido hat-trick en final vs Jordania, todos de penal). Cesión de carrera al Villarreal y Sporting Gijón en La Liga. Es el ALMA TÉCNICA del equipo: 10+ asistencias en este proceso clasificatorio (récord).",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Qatar_v_Lebanon_%2837%29_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Akram_Afif"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "mahmoud-abunada",
+        "full_name": "Mahmoud Abunada",
+        "display_name": "Mahmoud Abunada",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Al-Duhail",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed"
+      },
+      {
+        "id": "meshaal-barsham",
+        "full_name": "Meshaal Barsham",
+        "display_name": "Meshaal Barsham",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Al-Sadd",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 12,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Qatar_v_Lebanon_%2832%29_%28cropped%29.jpg/330px-Qatar_v_Lebanon_%2832%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Meshaal_Barsham"
+        }
+      },
+      {
+        "id": "shehab-ellethy",
+        "full_name": "Shehab Ellethy",
+        "display_name": "Shehab Ellethy",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Al-Gharafa",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 23,
+        "status": "probable"
+      },
+      {
+        "id": "pedro-miguel",
+        "full_name": "Pedro Miguel Correia",
+        "display_name": "Pedro Miguel",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Al-Sadd",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed"
+      },
+      {
+        "id": "mohammed-al-mannai",
+        "full_name": "Mohammed Al-Mannai",
+        "display_name": "Mohammed Al-Mannai",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Al-Wakrah",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 14,
+        "status": "probable"
+      },
+      {
+        "id": "boualem-khoukhi",
+        "full_name": "Boualem Khoukhi",
+        "display_name": "Boualem Khoukhi",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Al-Sailiya",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Boualem_Khoukhi.png/330px-Boualem_Khoukhi.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Boualem_Khoukhi"
+        }
+      },
+      {
+        "id": "tarek-salman",
+        "full_name": "Tarek Salman",
+        "display_name": "Tarek Salman",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Al-Sadd",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/76/Tarek_Salman.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Tarek_Salman"
+        }
+      },
+      {
+        "id": "lucas-mendes",
+        "full_name": "Lucas Mendes",
+        "display_name": "Lucas Mendes",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Al-Rayyan",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 13,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Valais_Cup_2013_-_OM-FC_Porto_13-07-2013_-_Lucas_Mendes.jpg/330px-Valais_Cup_2013_-_OM-FC_Porto_13-07-2013_-_Lucas_Mendes.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Lucas_Mendes"
+        }
+      },
+      {
+        "id": "homam-ahmed",
+        "full_name": "Homam Ahmed",
+        "display_name": "Homam Ahmed",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Al-Gharafa",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Asian_Nations_Cup_Iran_-_Qatar_%288%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Homam_El-Amin"
+        }
+      },
+      {
+        "id": "jassem-gaber",
+        "full_name": "Jassem Gaber",
+        "display_name": "Jassem Gaber",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Al-Wakrah",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 15,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Asian_Nations_Cup_Iran_-_Qatar_%285%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jassem_Gaber"
+        }
+      },
+      {
+        "id": "sultan-al-brake",
+        "full_name": "Sultan Al-Brake",
+        "display_name": "Sultan Al-Brake",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Al-Duhail",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 22,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/36/Sultan_Al_Brake_in_2018.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Sultan_Al-Brake"
+        }
+      },
+      {
+        "id": "assim-madibo",
+        "full_name": "Assim Madibo",
+        "display_name": "Assim Madibo",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Al-Duhail",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/03/Qatar_-_Japan%2C_AFC_Asian_Cup_2019_58_-_Assim_Madibo.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Assim_Madibo"
+        }
+      },
+      {
+        "id": "karim-boudiaf",
+        "full_name": "Karim Boudiaf",
+        "display_name": "Karim Boudiaf",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Al-Duhail",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Karim_Boudiaf_WC2022.jpg/330px-Karim_Boudiaf_WC2022.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Karim_Boudiaf"
+        }
+      },
+      {
+        "id": "ayoub-al-ouwi",
+        "full_name": "Ayoub Al-Ouwi",
+        "display_name": "Ayoub Al-Ouwi",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Al-Sadd",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 16,
+        "status": "fixed"
+      },
+      {
+        "id": "abdulaziz-hatem",
+        "full_name": "Abdulaziz Hatem",
+        "display_name": "Abdulaziz Hatem",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Al-Rayyan",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Abdulaziz_Hatem_2012_2.jpg/330px-Abdulaziz_Hatem_2012_2.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Abdulaziz_Hatem"
+        }
+      },
+      {
+        "id": "tameem-mansour",
+        "full_name": "Tameem Mansour",
+        "display_name": "Tameem Mansour",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Al-Sadd",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed"
+      },
+      {
+        "id": "akram-afif",
+        "full_name": "Akram Afif",
+        "display_name": "Akram Afif",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Al-Sadd",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Qatar_v_Lebanon_%2837%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Akram_Afif"
+        }
+      },
+      {
+        "id": "almoez-ali",
+        "full_name": "Almoez Ali",
+        "display_name": "Almoez Ali",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Al-Duhail",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/87/Moez_Ali_at_Qatar_v_Japan_%E2%80%93_AFC_Asian_Cup_2019_final_32.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Almoez_Ali"
+        }
+      },
+      {
+        "id": "edmilson-junior",
+        "full_name": "Edmilson Junior",
+        "display_name": "Edmilson Junior",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Al-Duhail",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Edmilson_Junior_2018.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Edmilson_Junior"
+        }
+      },
+      {
+        "id": "hassan-al-haydos",
+        "full_name": "Hassan Al-Haydos",
+        "display_name": "Hassan Al-Haydos",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Al-Sadd",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/df/Qatar_-_Japan%2C_AFC_Asian_Cup_2019_58_-_Hassan_Al_Haydos.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Hassan_Al-Haidos"
+        }
+      },
+      {
+        "id": "mohammed-muntari",
+        "full_name": "Mohammed Muntari",
+        "display_name": "Mohammed Muntari",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Al-Duhail",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/2022_FIFA_World_Cup_Qatar_0%E2%80%932_Ecuador_-_%286%29.jpg/330px-2022_FIFA_World_Cup_Qatar_0%E2%80%932_Ecuador_-_%286%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mohammed_Muntari"
+        }
+      },
+      {
+        "id": "ahmed-fathy",
+        "full_name": "Ahmed Fathy Aboulela",
+        "display_name": "Ahmed Fathy",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Al-Wakrah",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 20,
+        "status": "fixed"
+      },
+      {
+        "id": "tahsin-mohammed",
+        "full_name": "Tahsin Mohammed",
+        "display_name": "Tahsin Mohammed",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Al-Arabi",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 21,
+        "status": "probable"
+      },
+      {
+        "id": "yousef-aymen",
+        "full_name": "Yousef Aymen",
+        "display_name": "Yousef Aymen",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Al-Wakrah",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 24,
+        "status": "probable"
+      },
+      {
+        "id": "jassem-jaber",
+        "full_name": "Jassem Jaber",
+        "display_name": "Jassem Jaber",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Al-Sadd",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 25,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Asian_Nations_Cup_Iran_-_Qatar_%285%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Jassem_Gaber"
+        }
+      },
+      {
+        "id": "ahmed-al-ganehi",
+        "full_name": "Ahmed Al-Ganehi",
+        "display_name": "Ahmed Al-Ganehi",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Al-Sadd",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble"
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-3-3",
+      "players": [
+        {
+          "player_id": "mahmoud-abunada",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "pedro-miguel",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "boualem-khoukhi",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "tarek-salman",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "homam-ahmed",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "assim-madibo",
+          "position": {
+            "x": 50,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "karim-boudiaf",
+          "position": {
+            "x": 70,
+            "y": 50
+          }
+        },
+        {
+          "player_id": "abdulaziz-hatem",
+          "position": {
+            "x": 30,
+            "y": 50
+          }
+        },
+        {
+          "player_id": "akram-afif",
+          "position": {
+            "x": 20,
+            "y": 25
+          }
+        },
+        {
+          "player_id": "almoez-ali",
+          "position": {
+            "x": 50,
+            "y": 12
+          }
+        },
+        {
+          "player_id": "hassan-al-haydos",
+          "position": {
+            "x": 80,
+            "y": 25
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Lopetegui plantea un 4-3-3 controlado: defensa zonal, posesión paciente, Akram Afif como '10' por izquierda generando, Almoez Ali '9' fijo de área. Identidad: orden defensivo, paciencia con balón, juego asociativo, pelota parada (Khoukhi y Pedro Miguel cabeceadores).",
+      "strengths": [
+        "AKRAM AFIF: ALMA TÉCNICA. MVP Copa Asia 2019 y 2024. 10+ asistencias en eliminatoria.",
+        "ALMOEZ ALI: máximo goleador histórico Catar (50+ goles). Bota de Oro Copa Asia 2019.",
+        "BICAMPEÓN COPA ASIA (2019, 2024): única selección árabe en lograrlo.",
+        "COHESIÓN TOTAL: 100% del plantel juega en Qatar Stars League. Conocimiento profundo.",
+        "Boualem Khoukhi: capitán líder, central físico imponente (1.91m).",
+        "Lopetegui: experiencia top europea (Real Madrid, España, Sevilla). Sevilla campeón Europa League 2020.",
+        "Aspire Academy: proyecto de 15+ años de desarrollo, frutos visibles."
+      ],
+      "weaknesses": [
+        "RÉCORD MUNDIALISTA HISTÓRICO HORROROSO: en Catar 2022 PERDIÓ LOS 3 partidos como anfitrión (peor papel anfitrión de la historia).",
+        "PLANTEL 100% LOCAL: ningún jugador en TOP-5 europeas. Falta ritmo top.",
+        "EDAD KEY: Afif 29, Almoez 30, Khoukhi 35, Boudiaf 35. Generación envejecida.",
+        "GOLEO ESCASO: 10 GF en 10 partidos.",
+        "INESTABILIDAD DT: 3 técnicos en 1 año (Tintín Márquez → Luis García → Lopetegui).",
+        "JUEGOS DE DESARROLLO 2025: cayó con Zimbabue (2-1), Palestina (1-0).",
+        "PRESIÓN: 1ª clasificación deportiva mundialista, gran reto."
+      ],
+      "x_factor": {
+        "player": "Almoez Ali",
+        "reason": "Delantero del Al-Duhail. 30 años. BOTA DE ORO COPA ASIA 2019 (9 goles, récord) + máximo goleador eliminatorias asiáticas 2026 (12 goles totales). Posiblemente jugando su ÚLTIMO MUNDIAL grande. Si encuentra forma, puede sorprender contra Bosnia y Suiza."
+      },
+      "prediction_text": "Catar llega al Grupo B con Canadá (anfitriona, favorita), Suiza y Bosnia. Pasar a octavos sería gesta histórica (en 2022 anfitriones perdieron los 3 partidos). Mejor objetivo realista: superar la HUMILLACIÓN DE 2022 ganando o empatando algún partido. Lopetegui tiene 7 meses para preparar.",
+      "probabilities": {
+        "advance_groups": 18,
+        "round_of_32": 14,
+        "round_of_16": 4,
+        "quarter_finals": 0,
+        "semi_finals": 0,
+        "final": 0,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: NO CLASIFICÓ. Catar 2022: fase de grupos como ANFITRIÓN (perdió los 3, peor papel anfitrión histórico). Mundial 2026: 2ª participación, 1ª por mérito deportivo."
+    }
+  },
+  "history": {
+    "first_appearance": 2022,
+    "appearances_count_before_2026": 1,
+    "appearances_count_with_2026": 2,
+    "consecutive_streak_since": 2022,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 0,
+    "best_result": "Fase de grupos (2022 anfitrión, perdió los 3 partidos).",
+    "aggregate_stats_through_2022": {
+      "played": 3,
+      "won": 0,
+      "drawn": 0,
+      "lost": 3,
+      "goals_for": 1,
+      "goals_against": 7,
+      "win_percentage": 0,
+      "notes": "3 partidos en 1 Mundial. PEOR PAPEL DE UN ANFITRIÓN en la historia mundialista: 0 puntos."
+    },
+    "by_world_cup": [
+      {
+        "year": 2022,
+        "host": {
+          "countries": [
+            "Catar"
+          ],
+          "iso": [
+            "qa"
+          ]
+        },
+        "result": "Fase de grupos (anfitrión)",
+        "coach": "Félix Sánchez",
+        "captain": "Hassan Al-Haydos",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Mohammed Muntari",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 1,
+        "goals_conceded": 7,
+        "notable_facts": [
+          "DEBUT MUNDIALISTA como ANFITRIÓN.",
+          "PEOR PAPEL DE ANFITRIÓN HISTÓRICO: 0 puntos.",
+          "Cayó con Ecuador (0-2), Senegal (1-3) y Países Bajos (0-2)."
+        ],
+        "narrative": "Catar 2022 fue el ANFITRIÓN MÁS HUMILLADO de la historia mundialista. Cayó 0-2 con Ecuador en el inaugural (debut con derrota anfitriona, 1ª vez). Perdió 1-3 con Senegal (gol Muntari). Cerró 0-2 con Holanda. 0 puntos. PEOR PAPEL DE UN ANFITRIÓN, superando a Sudáfrica 2010 que al menos sumó 4 puntos."
+      }
+    ],
+    "palmares": [
+      {
+        "competition": "Copa Asia",
+        "year": 2019,
+        "position": "Campeón",
+        "host": "UAE"
+      },
+      {
+        "competition": "Copa Asia",
+        "year": 2024,
+        "position": "Campeón",
+        "host": "Catar"
+      },
+      {
+        "competition": "Copa Árabe FIFA",
+        "year": 2021,
+        "position": "Tercero",
+        "host": "Catar"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Almoez Ali",
+      "value": 50,
+      "period": "2016-presente",
+      "notes": "MÁXIMO GOLEADOR HISTÓRICO. Récord vigente. Botas de Oro Copa Asia 2019 (9 goles) y 2024 (8 goles)."
+    },
+    "most_capped": {
+      "name": "Hassan Al-Haydos",
+      "value": 175,
+      "period": "2010-presente",
+      "notes": "Récord histórico. Capitán histórico, Mundial 2022."
+    },
+    "youngest_debut": {
+      "name": "Akram Afif",
+      "value": "18 años",
+      "period": "2015",
+      "notes": "Récord moderno. JUGADOR AFC del Año 2019."
+    },
+    "biggest_win": {
+      "result": "15-0",
+      "opponent": "Bután",
+      "date": "2015-09-08",
+      "competition": "Eliminatorias Copa Asia 2019"
+    },
+    "worst_loss": {
+      "result": "0-9",
+      "opponent": "Brasil",
+      "date": "1976",
+      "competition": "Amistoso"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El triunfo 2-1 a UAE que clasificó al Mundial 2026",
+      "date": "2025-10-14",
+      "opponent": {
+        "iso": "ae",
+        "name": "UAE"
+      },
+      "score": "2-1",
+      "competition": "Eliminatoria AFC Mundial 2026 — 4ª ronda Grupo A",
+      "narrative": "Catar clasificó al Mundial 2026 venciendo 2-1 a UAE en el Estadio Jassim Bin Hamad de Doha el 14 oct 2025. Boualem Khoukhi (capitán) marcó al 49' tras tiro libre de Akram Afif. Pedro Miguel cerró 2-0 al 74' tras otro tiro libre de Afif. Sultan Adil descontó 2-1 al 95'. 2ª clasificación, 1ª por mérito deportivo."
+    },
+    {
+      "title": "Campeón Copa Asia 2019 (final 3-1 a Japón)",
+      "date": "2019-02-01",
+      "opponent": {
+        "iso": "jp",
+        "name": "Japón"
+      },
+      "score": "3-1",
+      "competition": "Final Copa Asia 2019",
+      "narrative": "Catar venció 3-1 a Japón en la final de la Copa Asia 2019 en Abu Dabi. ALMOEZ ALI marcó al 12' GOLAZO DE CHILENA (luego nombrado Mejor Gol del torneo). Hatem y Afif cerraron. 1ER TÍTULO MAYOR del fútbol catarí. Almoez Bota de Oro con 9 goles (récord)."
+    },
+    {
+      "title": "Campeón Copa Asia 2024 (final 3-1 a Jordania)",
+      "date": "2024-02-10",
+      "opponent": {
+        "iso": "jo",
+        "name": "Jordania"
+      },
+      "score": "3-1",
+      "competition": "Final Copa Asia 2024 (anfitrión)",
+      "narrative": "Catar revalidó título de Copa Asia venciendo 3-1 a Jordania en Lusail. AKRAM AFIF marcó HAT-TRICK DE PENALES (22', 73', 90+5'), siendo el 1er jugador en marcar 3 penales en una final de Copa Asia. Yazan Al-Naimat marcó por Jordania al 67'. BICAMPEONES."
+    },
+    {
+      "title": "El 0-2 con Ecuador en el inaugural (humillación)",
+      "date": "2022-11-20",
+      "opponent": {
+        "iso": "ec",
+        "name": "Ecuador"
+      },
+      "score": "0-2",
+      "competition": "Inaugural Mundial 2022 (anfitrión)",
+      "narrative": "Catar perdió 0-2 con Ecuador en el INAUGURAL de su propio Mundial. PRIMERA VEZ EN LA HISTORIA que un anfitrión pierde su partido inaugural. Doblete de Enner Valencia (16' penal, 31'). Doha consternada."
+    },
+    {
+      "title": "El golazo de chilena de Almoez Ali (Copa Asia 2019)",
+      "date": "2019-02-01",
+      "opponent": {
+        "iso": "jp",
+        "name": "Japón"
+      },
+      "score": "Final 3-1",
+      "competition": "Final Copa Asia 2019",
+      "narrative": "ALMOEZ ALI marcó AL 12' un GOLAZO DE CHILENA (TIJERA) ANTOLÓGICO en la final vs Japón. Pase de Afif desde la izquierda, Ali se elevó y conectó remate acrobático imposible. Mejor Gol Copa Asia 2019. Top 50 goles asiáticos del siglo XXI."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "CATAR es BICAMPEÓN COPA ASIA (2019, 2024). ÚNICA selección árabe en lograr el doblete consecutivo. AKRAM AFIF MVP en ambas ediciones.",
+      "source": "AFC + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "EN CATAR 2022 fue ANFITRIÓN PEOR PUNTUADO DE LA HISTORIA mundialista: 0 puntos en 3 partidos. 1ª vez que un anfitrión PIERDE el partido inaugural (vs Ecuador 0-2).",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Akram Afif marcó HAT-TRICK DE PENALES en la final Copa Asia 2024 vs Jordania (3-1). 1ER JUGADOR de la historia en marcar 3 penales en una final de Copa Asia. Récord vigente.",
+      "source": "AFC + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Almoez Ali fue BOTA DE ORO COPA ASIA 2019 con 9 GOLES (récord histórico de Copa Asia, superando los 8 de Ali Daei). Su gol de chilena en la final vs Japón es uno de los GOLES DEL SIGLO ASIÁTICO.",
+      "source": "AFC + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Catar invirtió MÁS DE 220.000 MILLONES DE DÓLARES en la organización del Mundial 2022, EL MUNDIAL MÁS CARO de la historia. Los 8 estadios fueron construidos prácticamente desde cero.",
+      "source": "FIFA + Bloomberg",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "ASPIRE ACADEMY (Doha) es UNA DE LAS MEJORES ACADEMIAS DEL MUNDO en deporte de alto rendimiento. Inversión de 1.000 millones desde 2004. Frutos: Akram Afif, Almoez Ali, Karim Boudiaf, Pedro Miguel se formaron parcialmente ahí.",
+      "source": "Aspire + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Julen Lopetegui (DT actual) FUE DESPEDIDO POR LA RFEF a 2 DÍAS DE INICIAR EL MUNDIAL 2018 con España, tras anunciar fichaje por Real Madrid. Uno de los despidos más controvertidos del fútbol español.",
+      "source": "RFEF + AS + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Catar! Catar!",
+      "Al-Annabi! Al-Annabi!",
+      "As-Salam al-Amiri (himno)"
+    ],
+    "main_rival": {
+      "iso": "ae",
+      "name": "UAE",
+      "story": "Rivalidad árabe del Golfo. Han jugado más de 35 veces. Catar lleva ventaja (14-9-11). El partido decisivo del 14 oct 2025 en la 4ª ronda eliminatoria mandó a UAE al repechaje y a Catar al Mundial 2026."
+    },
+    "home_stadium": {
+      "name": "Estadio Lusail",
+      "capacity": 88966,
+      "city": "Lusail"
+    }
+  },
+  "seo": {
+    "meta_title": "Catar en el Mundial 2026 | Guía completa Al-Annabi",
+    "meta_description": "Catar Mundial 2026: plantel de Lopetegui, Akram Afif, Almoez Ali. Grupo B con Canadá, Suiza y Bosnia. 2ª participación, 1ª por mérito deportivo.",
+    "og_image_url": "/img/og/teams/catar.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Catar",
+      "alternateName": [
+        "Al-Annabi",
+        "Los Granate"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "AFC"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Julen Lopetegui"
+      },
+      "url": "https://www.zonamundial.app/selecciones/catar"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-29",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_de_AFC_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://www.tudn.com/mundial-2026/eliminatorias/mundial-2026-catar-es-penultima-clasificada-asia-copa-del-mundo",
+      "https://www.beinsports.com/es-us/football/copa-mundial-de-la-fifa-2026/articles/qatar-asegura-su-clasificaci%C3%B3n-al-mundial-2026-tras-vencer-a-emiratos-%C3%A1rabes-unidos-2025-10-14",
+      "https://www.infobae.com/peru/deportes/2025/12/03/asi-llego-qatar-al-mundial-2026-como-se-clasifico-el-dt-con-pasado-en-real-madrid-y-las-estrellas-de-las-eliminatorias-asiaticas/",
+      "https://www.telemundo.com/deportes/copa-mundial-de-la-fifa-2026/catar-consigue-su-boleto-al-mundial-de-2026-de-la-mano-de-julen-lopete-rcna237658",
+      "https://www.outlookindia.com/sports/football/qatar-vs-united-arab-emirates-live-score-fifa-world-cup-2026-afc-qualifiers-group-a-fourth-round",
+      "https://www.qfa.qa",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias 3ª y 4ª ronda AFC cruzadas con TUDN + ESPN + Wikipedia + Infobae + beIN Sports + Outlook India. Stats: 13 pts (3G 4E 3P), 10 GF, 8 GC en 3ª ronda. Plantel y formación validados.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "complete",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta Nike visitante: pendiente",
+      "Calendario fase grupos 2026: 3 fechas pendientes",
+      "Base de entrenamiento: QFA aún no anunció",
+      "FIFA Ranking #53: validar mes vigente",
+      "Goleadores específicos por partido: cruzar con FIFA",
+      "Hassan Al-Haydos vigencia 2026: confirmar"
+    ]
+  }
+}

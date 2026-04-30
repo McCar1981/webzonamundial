@@ -1,0 +1,1374 @@
+{
+  "slug": "irak",
+  "iso": "iq",
+  "iso3": "IRQ",
+  "name_es": "Irak",
+  "name_en": "Iraq",
+  "name_local": "العراق",
+  "nicknames": [
+    "Los Leones de Mesopotamia",
+    "Lions of Mesopotamia",
+    "Asood Ar-Rafidain"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#CE1126",
+      "secondary": "#000000",
+      "tertiary": "#FFFFFF",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Bagdad",
+    "language_official": [
+      "Árabe",
+      "Kurdo"
+    ],
+    "population": 44500000,
+    "area_km2": 438317,
+    "timezone": "Asia/Baghdad",
+    "continent": "Asia"
+  },
+  "federation": {
+    "name": "Iraq Football Association",
+    "abbreviation": "IFA",
+    "founded": 1948,
+    "headquarters": "Bagdad",
+    "website": "https://www.iraqfa.com"
+  },
+  "confederation": "AFC",
+  "fifa_ranking": {
+    "current": 58,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Capelli Sport",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/irak.png",
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#CE1126",
+        "description": "Camiseta blanca con detalles rojos y verdes (colores de la bandera nacional iraquí).",
+        "alt_text": "Camiseta titular Irak Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#CE1126",
+        "secondary_color": "#FFFFFF",
+        "description": "Equipación visitante en rojo. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Irak Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "El sobrenombre 'Leones de Mesopotamia' (Asood Ar-Rafidain) hace referencia al símbolo cultural de los antiguos mesopotámicos. Los colores de la equipación se inspiran en la bandera nacional adoptada en 2008 (verde, blanco, rojo, negro).",
+        "source": "IFA + Wikipedia",
+        "verified_at": "2026-04-29",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "playoff_intercontinental",
+    "qualifying_summary": "Irak clasificó por la VÍA MÁS LARGA de toda Asia: 3º del Grupo B de la 3ª ronda AFC con 15 puntos, por detrás de Corea y Jordania. Pasó a la 4ª ronda (Grupo B con Arabia Saudita e Indonesia), terminó 2º (3-2 vs Indonesia, 0-0 vs Arabia), y pasó a la 5ª ronda. En la 5ª ronda venció a UAE (1-1 en Abu Dabi + 2-1 en Basora, 3-2 global, gol decisivo de Amir Al-Ammari de penal al 90+5'). En el repechaje intercontinental disputado en marzo 2026 en México, batió 2-1 a Bolivia el 31 de marzo en el Estadio BBVA de Monterrey (gol de Ali Al-Hamadi al 10', Paniagua empató al 38', Aymen Hussein cerró 2-1 al 53'). 1ª clasificación al Mundial desde México 1986 (40 AÑOS DE ESPERA). En el Grupo I del Mundial con Francia, Senegal y Noruega.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias AFC Mundial 2026 — 3ª ronda Grupo B + 4ª ronda + 5ª ronda + Repechaje intercontinental",
+      "format": "Liguilla 3ª ronda (10 partidos) + 4ª ronda mini-liguilla (2 partidos) + 5ª ronda (2 partidos ida/vuelta) + repechaje intercontinental (1 partido)",
+      "duration": "Septiembre 2024 — Marzo 2026",
+      "final_position": 3,
+      "total_teams_in_group": 6,
+      "stats": {
+        "played": 10,
+        "won": 4,
+        "drawn": 3,
+        "lost": 3,
+        "goals_for": 12,
+        "goals_against": 9,
+        "goal_difference": 3,
+        "points": 15,
+        "win_percentage": 40,
+        "clean_sheets": 4,
+        "notes": "Stats de la 3ª ronda Grupo B (10 PJ, 15 pts, 3º). Adicionalmente: 4ª ronda 1G 1E, 5ª ronda 1G 1E vs UAE (3-2 global), repechaje 1-0 vs Bolivia. Total 14 partidos eliminatorios."
+      },
+      "coach_during_qualifying": "Graham Arnold (desde octubre 2024). Jesús Casas (España) dirigió las primeras jornadas hasta su salida.",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2024-09-05",
+          "home": {
+            "iso": "om",
+            "name": "Omán",
+            "score": 0
+          },
+          "away": {
+            "iso": "iq",
+            "name": "Irak",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Sultan Qaboos Sports Complex",
+            "city": "Mascate",
+            "country_iso": "om"
+          },
+          "goals_arg": [
+            {
+              "player": "Aymen Hussein",
+              "minute": "70'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 2,
+          "date": "2024-09-10",
+          "home": {
+            "iso": "iq",
+            "name": "Irak",
+            "score": 1
+          },
+          "away": {
+            "iso": "jo",
+            "name": "Jordania",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Basra International Stadium",
+            "city": "Basora",
+            "country_iso": "iq"
+          },
+          "goals_arg": [
+            {
+              "player": "Ali Jasim",
+              "minute": "55'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 3,
+          "date": "2024-10-10",
+          "home": {
+            "iso": "iq",
+            "name": "Irak",
+            "score": 1
+          },
+          "away": {
+            "iso": "ps",
+            "name": "Palestina",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Basra International Stadium",
+            "city": "Basora",
+            "country_iso": "iq"
+          },
+          "goals_arg": [
+            {
+              "player": "Ali Al-Hamadi",
+              "minute": "30'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 4,
+          "date": "2024-10-15",
+          "home": {
+            "iso": "kr",
+            "name": "Corea del Sur",
+            "score": 3
+          },
+          "away": {
+            "iso": "iq",
+            "name": "Irak",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Yongin Mireu Stadium",
+            "city": "Yongin",
+            "country_iso": "kr"
+          },
+          "goals_arg": [
+            {
+              "player": "Aymen Hussein",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Mohanad Ali",
+              "minute": "70'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Derrota dura ante Corea."
+        },
+        {
+          "matchday": 5,
+          "date": "2024-11-14",
+          "home": {
+            "iso": "kw",
+            "name": "Kuwait",
+            "score": 0
+          },
+          "away": {
+            "iso": "iq",
+            "name": "Irak",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Estadio Jaber Al-Ahmad",
+            "city": "Kuwait",
+            "country_iso": "kw"
+          },
+          "goals_arg": []
+        },
+        {
+          "matchday": 6,
+          "date": "2024-11-19",
+          "home": {
+            "iso": "iq",
+            "name": "Irak",
+            "score": 1
+          },
+          "away": {
+            "iso": "om",
+            "name": "Omán",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Basra International Stadium",
+            "city": "Basora",
+            "country_iso": "iq"
+          },
+          "goals_arg": [
+            {
+              "player": "Aymen Hussein",
+              "minute": "55'",
+              "type": "penalty"
+            }
+          ]
+        },
+        {
+          "matchday": 7,
+          "date": "2025-03-20",
+          "home": {
+            "iso": "jo",
+            "name": "Jordania",
+            "score": 1
+          },
+          "away": {
+            "iso": "iq",
+            "name": "Irak",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Amman International Stadium",
+            "city": "Ammán",
+            "country_iso": "jo"
+          },
+          "goals_arg": [],
+          "notes": "Derrota que abrió crisis con Jesús Casas."
+        },
+        {
+          "matchday": 8,
+          "date": "2025-03-25",
+          "home": {
+            "iso": "ps",
+            "name": "Palestina",
+            "score": 1
+          },
+          "away": {
+            "iso": "iq",
+            "name": "Irak",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "King Abdullah Sports City",
+            "city": "Yeda (sede neutral)",
+            "country_iso": "sa"
+          },
+          "goals_arg": [
+            {
+              "player": "Mohanad Ali",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 9,
+          "date": "2025-06-05",
+          "home": {
+            "iso": "iq",
+            "name": "Irak",
+            "score": 0
+          },
+          "away": {
+            "iso": "kr",
+            "name": "Corea del Sur",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Basra International Stadium",
+            "city": "Basora",
+            "country_iso": "iq"
+          },
+          "goals_arg": [],
+          "notes": "Corea selló pase al Mundial venciendo a Iraq."
+        },
+        {
+          "matchday": 10,
+          "date": "2025-06-10",
+          "home": {
+            "iso": "iq",
+            "name": "Irak",
+            "score": 4
+          },
+          "away": {
+            "iso": "kw",
+            "name": "Kuwait",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Basra International Stadium",
+            "city": "Basora",
+            "country_iso": "iq"
+          },
+          "goals_arg": [
+            {
+              "player": "Ali Al-Hamadi",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Aymen Hussein",
+              "minute": "40'",
+              "type": "goal"
+            },
+            {
+              "player": "Aimar Sher",
+              "minute": "65'",
+              "type": "goal"
+            },
+            {
+              "player": "Amir Al-Ammari",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Goleada que cerró 3ª ronda y mandó a Iraq a la 4ª ronda. Después: 4ª ronda 2º (vs Arabia + Indonesia), 5ª ronda 3-2 vs UAE (gol Al-Ammari penal 90+5'), repechaje 2-1 vs Bolivia (31 mar 2026, BBVA Monterrey). CLASIFICACIÓN HISTÓRICA TRAS 40 AÑOS.",
+          "is_decisive_match": true
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Aymen Hussein",
+          "goals": 4,
+          "notes": "Top scorer del ciclo. Marcó vs Corea, Omán, Kuwait y Bolivia (repechaje)."
+        },
+        {
+          "player": "Ali Al-Hamadi",
+          "goals": 3,
+          "notes": "Luton Town (Inglaterra). 1er gol vs Bolivia en repechaje."
+        },
+        {
+          "player": "Mohanad Ali",
+          "goals": 2
+        },
+        {
+          "player": "Ali Jasim",
+          "goals": 1
+        },
+        {
+          "player": "Aimar Sher",
+          "goals": 1
+        },
+        {
+          "player": "Amir Al-Ammari",
+          "goals": 1,
+          "notes": "Halmstads. GOL DECISIVO 5ª ronda al 90+5' vs UAE."
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_10",
+        "reason": "Goleada 4-1 a Kuwait en Basora. La mejor exhibición ofensiva del ciclo. Al-Hamadi, Hussein, Sher y Al-Ammari."
+      },
+      "worst_match": {
+        "match_ref": "matchday_4",
+        "reason": "Derrota 2-3 con Corea del Sur. Iraq jugó bien pero pagó errores. Inicio de la crisis con Jesús Casas."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_10",
+        "reason": "Tras quedar 3º en la 3ª ronda, Iraq jugó 4ª ronda + 5ª ronda + repechaje intercontinental. Venció 2-1 a Bolivia el 31 mar 2026 en Monterrey (Al-Hamadi 10', Hussein 53'). 1ª clasificación al Mundial en 40 AÑOS."
+      }
+    },
+    "group_2026": {
+      "letter": "I",
+      "label": "Grupo I — Francia, Senegal, Irak y Noruega",
+      "teams": [
+        {
+          "iso": "fr",
+          "name": "Francia",
+          "fifa_rank": null
+        },
+        {
+          "iso": "sn",
+          "name": "Senegal",
+          "fifa_rank": null
+        },
+        {
+          "iso": "no",
+          "name": "Noruega",
+          "fifa_rank": null
+        },
+        {
+          "iso": "iq",
+          "name": "Irak",
+          "fifa_rank": null,
+          "is_seed": false
+        }
+      ],
+      "notes": "Grupo I confirmado en sorteo del 5 dic 2025 (Iraq se sumó vía repechaje 31 mar 2026). Grupo durísimo con Francia subcampeón Catar 2022."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "no",
+          "name": "Noruega"
+        },
+        "date": "2026-06-15",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "Estadio Akron",
+          "city": "Guadalajara",
+          "country_iso": "mx"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "sn",
+          "name": "Senegal"
+        },
+        "date": "2026-06-23",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "AT&T Stadium",
+          "city": "Dallas",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "fr",
+          "name": "Francia"
+        },
+        "date": "2026-06-30",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "AT&T Stadium",
+          "city": "Dallas",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — IFA aún no anunció]",
+      "country": "Estados Unidos / Canadá",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Graham Arnold",
+      "age": 62,
+      "nationality": "Australia",
+      "since": "2024-10-15",
+      "previous_teams": [
+        "Australia (2014-2024, Mundial 2018, Mundial 2022 - octavos)",
+        "Sydney FC (2014-2017, A-League 2014-15)",
+        "Vegalta Sendai (2014, Japón)",
+        "Mariners Central Coast (2010-2013)",
+        "Australia Sub-23 (2008-2010, Olímpicos Pekín)"
+      ],
+      "profile_summary": "Australiano, 62 años. Ex-delantero internacional con Australia. Asumió Iraq en OCTUBRE 2024 tras la salida de Jesús Casas. Identidad táctica: 4-2-3-1 sólido, contraataques rápidos, defensa zonal. Tras dirigir a su Australia natal en 2 Mundiales (2018, 2022 octavos), llega a Iraq con experiencia mundialista probada. CONSIGUIÓ LA HAZAÑA: 1ª clasificación iraquí en 40 AÑOS. Antes del Mundial 2026 vs Bolivia, prohibió a sus jugadores las redes sociales por el conflicto en Medio Oriente.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/4822290_AE7I6542_%28cropped%29.jpg/330px-4822290_AE7I6542_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Graham_Arnold"
+      }
+    },
+    "captain": {
+      "name": "Aymen Hussein",
+      "club": "Al-Quwa Al-Jawiya",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/78/4822953_AE7I9053_%28cropped2%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Aymen_Hussein"
+      }
+    },
+    "star_player": {
+      "name": "Ali Al-Hamadi",
+      "club": "Luton Town",
+      "reason": "Delantero del Luton Town (Championship inglesa). 23 años. NACIDO EN BAGDAD pero crecido en Inglaterra. Jugó AFC Bournemouth juvenil. Goleador del repechaje vs Bolivia (1er gol al 10'). Es el TALENTO EUROPEO de la generación, símbolo del nuevo Iraq.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Ali_Al-Hamadi.jpg/330px-Ali_Al-Hamadi.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Ali_Al-Hamadi"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "ahmed-basil",
+        "full_name": "Ahmed Basil Hamada",
+        "display_name": "Ahmed Basil",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Al-Talaba",
+          "country_iso": "iq",
+          "league": "Iraq Stars League"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed"
+      },
+      {
+        "id": "fahad-talib",
+        "full_name": "Fahad Talib",
+        "display_name": "Fahad Talib",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Al-Quwa Al-Jawiya",
+          "country_iso": "iq",
+          "league": "Iraq Stars League"
+        },
+        "shirt_number_expected": 12,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Fahad_Talib.png/330px-Fahad_Talib.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Fahad_Talib"
+        }
+      },
+      {
+        "id": "jalal-hassan",
+        "full_name": "Jalal Hassan",
+        "display_name": "Jalal Hassan",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Al-Zawraa",
+          "country_iso": "iq",
+          "league": "Iraq Stars League"
+        },
+        "shirt_number_expected": 23,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Jalal12.JPG/330px-Jalal12.JPG",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jalal_Hassan"
+        }
+      },
+      {
+        "id": "hussein-ali",
+        "full_name": "Hussein Ali",
+        "display_name": "Hussein Ali",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Al-Shorta",
+          "country_iso": "iq",
+          "league": "Iraq Stars League"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed"
+      },
+      {
+        "id": "ahmed-yaseen",
+        "full_name": "Ahmed Yaseen",
+        "display_name": "Ahmed Yaseen",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Al-Shorta",
+          "country_iso": "iq",
+          "league": "Iraq Stars League"
+        },
+        "shirt_number_expected": 14,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Military_trial_of_Ahmed_Yassin%2C_March_1990_I_%283x4_cropped%29.jpg/330px-Military_trial_of_Ahmed_Yassin%2C_March_1990_I_%283x4_cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Ahmed_Yassin"
+        }
+      },
+      {
+        "id": "zaid-tahseen",
+        "full_name": "Zaid Tahseen",
+        "display_name": "Zaid Tahseen",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Al-Quwa Al-Jawiya",
+          "country_iso": "iq",
+          "league": "Iraq Stars League"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed"
+      },
+      {
+        "id": "akam-hashim",
+        "full_name": "Akam Hashim",
+        "display_name": "Akam Hashim",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Erbil SC",
+          "country_iso": "iq",
+          "league": "Iraq Stars League"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed"
+      },
+      {
+        "id": "rebin-sulaka",
+        "full_name": "Rebin Sulaka",
+        "display_name": "Rebin Sulaka",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Al-Shorta",
+          "country_iso": "iq",
+          "league": "Iraq Stars League"
+        },
+        "shirt_number_expected": 15,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/240519_FC_%EC%84%9C%EC%9A%B8_%ED%8F%AC%ED%86%A0%ED%83%80%EC%9E%84_%28Rebin_Sulaka%29.jpg/330px-240519_FC_%EC%84%9C%EC%9A%B8_%ED%8F%AC%ED%86%A0%ED%83%80%EC%9E%84_%28Rebin_Sulaka%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Rebin_Sulaka"
+        }
+      },
+      {
+        "id": "merchas-doski",
+        "full_name": "Merchas Doski",
+        "display_name": "Merchas Doski",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "FC Volendam",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Merchas_doski.jpg/330px-Merchas_doski.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Merchas_Doski"
+        }
+      },
+      {
+        "id": "youssef-amyn",
+        "full_name": "Youssef Amyn",
+        "display_name": "Youssef Amyn",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "FC Heidenheim",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 13,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/4822944_AE7I9304_%28cropped%29.jpg/330px-4822944_AE7I9304_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Youssef_Amyn"
+        }
+      },
+      {
+        "id": "ibrahim-bayesh",
+        "full_name": "Ibrahim Bayesh",
+        "display_name": "Ibrahim Bayesh",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Al-Quwa Al-Jawiya",
+          "country_iso": "iq",
+          "league": "Iraq Stars League"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed"
+      },
+      {
+        "id": "amir-al-ammari",
+        "full_name": "Amir Al-Ammari",
+        "display_name": "Amir Al-Ammari",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Halmstads BK",
+          "country_iso": "se",
+          "league": "Allsvenskan"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Amir_Al-Ammari_%28Halmstad_vs_Degerfors%2C_7_October_2023%29.jpg/330px-Amir_Al-Ammari_%28Halmstad_vs_Degerfors%2C_7_October_2023%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Amir_Al-Ammari"
+        }
+      },
+      {
+        "id": "aimar-sher",
+        "full_name": "Aimar Sher",
+        "display_name": "Aimar Sher",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Hammarby IF",
+          "country_iso": "se",
+          "league": "Allsvenskan"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/GAE_-_FC_Groningen_-_52878021366_%28cropped1%29.jpg/330px-GAE_-_FC_Groningen_-_52878021366_%28cropped1%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Aimar_Sher"
+        }
+      },
+      {
+        "id": "zidane-iqbal",
+        "full_name": "Zidane Iqbal",
+        "display_name": "Zidane Iqbal",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "FC Utrecht",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Zidane_Iqbal_debut.jpg/330px-Zidane_Iqbal_debut.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Zidane_Iqbal"
+        }
+      },
+      {
+        "id": "bashar-resan",
+        "full_name": "Bashar Resan",
+        "display_name": "Bashar Resan",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Al-Khor",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 16,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Bashar_Resan%2C_Persepolis-Padideh_20190206.jpg/330px-Bashar_Resan%2C_Persepolis-Padideh_20190206.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Bashar_Resan"
+        }
+      },
+      {
+        "id": "kevin-yakob",
+        "full_name": "Kevin Yakob",
+        "display_name": "Kevin Yakob",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "BK Häcken",
+          "country_iso": "se",
+          "league": "Allsvenskan"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Kevin_Enkido_Yakob2.jpg/330px-Kevin_Enkido_Yakob2.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Kevin_Yakob"
+        }
+      },
+      {
+        "id": "ali-jasim",
+        "full_name": "Ali Jasim",
+        "display_name": "Ali Jasim",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Como 1907",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed"
+      },
+      {
+        "id": "aymen-hussein",
+        "full_name": "Aymen Hussein",
+        "display_name": "Aymen Hussein",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Al-Quwa Al-Jawiya",
+          "country_iso": "iq",
+          "league": "Iraq Stars League"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/78/4822953_AE7I9053_%28cropped2%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Aymen_Hussein"
+        }
+      },
+      {
+        "id": "ali-al-hamadi",
+        "full_name": "Ali Al-Hamadi",
+        "display_name": "Ali Al-Hamadi",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Luton Town",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Ali_Al-Hamadi.jpg/330px-Ali_Al-Hamadi.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ali_Al-Hamadi"
+        }
+      },
+      {
+        "id": "mohanad-ali",
+        "full_name": "Mohanad Ali",
+        "display_name": "Mohanad Ali",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Al-Duhail",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Mohanad_Ali.jpg/330px-Mohanad_Ali.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mohanad_Ali"
+        }
+      },
+      {
+        "id": "marko-farji",
+        "full_name": "Marko Farji",
+        "display_name": "Marko Farji",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Venezia FC",
+          "country_iso": "it",
+          "league": "Serie B"
+        },
+        "shirt_number_expected": 20,
+        "status": "fixed"
+      },
+      {
+        "id": "sherko-kareem",
+        "full_name": "Sherko Kareem",
+        "display_name": "Sherko Kareem",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Al-Najaf",
+          "country_iso": "iq",
+          "league": "Iraq Stars League"
+        },
+        "shirt_number_expected": 22,
+        "status": "probable"
+      },
+      {
+        "id": "amjad-attwan",
+        "full_name": "Amjad Attwan",
+        "display_name": "Amjad Attwan",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Al-Hilal",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 21,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Amjad_Attwan_%28cropped%29.jpg/330px-Amjad_Attwan_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Amjad_Attwan"
+        }
+      },
+      {
+        "id": "zaid-ismail",
+        "full_name": "Zaid Ismail",
+        "display_name": "Zaid Ismail",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Al-Zawraa",
+          "country_iso": "iq",
+          "league": "Iraq Stars League"
+        },
+        "shirt_number_expected": 24,
+        "status": "probable"
+      },
+      {
+        "id": "frans-putros",
+        "full_name": "Frans Putros",
+        "display_name": "Frans Putros",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Al-Wakrah",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 25,
+        "status": "bubble"
+      },
+      {
+        "id": "alaa-abbas",
+        "full_name": "Alaa Abbas",
+        "display_name": "Alaa Abbas",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Al-Najaf",
+          "country_iso": "iq",
+          "league": "Iraq Stars League"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble"
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-2-3-1",
+      "players": [
+        {
+          "player_id": "ahmed-basil",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "hussein-ali",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "zaid-tahseen",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "akam-hashim",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "merchas-doski",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "ibrahim-bayesh",
+          "position": {
+            "x": 60,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "bashar-resan",
+          "position": {
+            "x": 40,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "amir-al-ammari",
+          "position": {
+            "x": 80,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "aimar-sher",
+          "position": {
+            "x": 50,
+            "y": 32
+          }
+        },
+        {
+          "player_id": "zidane-iqbal",
+          "position": {
+            "x": 20,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "ali-al-hamadi",
+          "position": {
+            "x": 50,
+            "y": 12
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Arnold plantea un 4-2-3-1 sólido: defensa zonal con 2 centrales fuertes, doble pivote (Bayesh + Resan), Aimar Sher creativo, Al-Hamadi/Hussein '9' alternables. Identidad: orden defensivo, transiciones rápidas, intensidad guerrera. Los héroes del repechaje (Al-Hamadi y Hussein) son tititulares.",
+      "strengths": [
+        "ALI AL-HAMADI: 1er iraquí top en Premier League (Championship con Luton Town). Joven (23 años).",
+        "ZIDANE IQBAL: ex-Manchester United, ahora FC Utrecht (Eredivisie). Talento técnico.",
+        "GENERACIÓN BINACIONAL: Doski (Volendam), Amyn (Heidenheim), Al-Ammari (Suecia), Sher (Suecia), Yakob (Suecia), Farji (Italia). Plantel con experiencia europea inédita.",
+        "AYMEN HUSSEIN: capitán y goleador histórico. 30+ goles internacionales.",
+        "Graham Arnold: experiencia mundialista probada (Australia 2018, 2022 octavos).",
+        "BASORA INTERNATIONAL STADIUM: fortín en casa, atmósfera única. 65.000 espectadores.",
+        "EXPERIENCIA REPECHAJE: ya superaron 5 rondas. Resistencia mental probada."
+      ],
+      "weaknesses": [
+        "RÉCORD MUNDIALISTA HORROROSO: en 1986 (única participación) PERDIÓ LOS 3 partidos sin marcar gol.",
+        "GOLEO ESCASO: 12 GF en 10 partidos eliminatoria.",
+        "PROFUNDIDAD LIMITADA: 16 de 26 plantel en Iraq Stars League.",
+        "INESTABILIDAD POLÍTICA: conflictos en Medio Oriente afectan preparación.",
+        "GRUPO I MORTAL: Francia (subcampeona Catar 2022) + Senegal + Noruega (Haaland).",
+        "Aymen Hussein 30 años: edad como factor.",
+        "POCA EXPERIENCIA TOP: solo Al-Hamadi y Iqbal en ligas europeas top."
+      ],
+      "x_factor": {
+        "player": "Zidane Iqbal",
+        "reason": "El '10' del FC Utrecht (22 años, ex-Manchester United) es UN TALENTO TOTAL. Manchester United le dio debut en Champions League 2021 con 18 años. Si rinde a su nivel europeo, Iraq tiene un creativo para sorprender contra Senegal y Noruega."
+      },
+      "prediction_text": "Iraq llega al Grupo I MORTAL con Francia (subcampeona), Senegal (campeón África) y Noruega (Haaland top). Pasar a octavos sería gesta histórica (en 1986 perdió todo). Mejor objetivo realista: marcar el 1ER GOL MUNDIALISTA HISTÓRICO de Iraq.",
+      "probabilities": {
+        "advance_groups": 12,
+        "round_of_32": 10,
+        "round_of_16": 3,
+        "quarter_finals": 0,
+        "semi_finals": 0,
+        "final": 0,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: NO CLASIFICÓ. Catar 2022: NO CLASIFICÓ. Mundial 2026: 2ª participación, 1ª desde MÉXICO 1986 (40 AÑOS DE ESPERA)."
+    }
+  },
+  "history": {
+    "first_appearance": 1986,
+    "appearances_count_before_2026": 1,
+    "appearances_count_with_2026": 2,
+    "consecutive_streak_since": 2026,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 0,
+    "best_result": "Fase de grupos (1986).",
+    "aggregate_stats_through_2022": {
+      "played": 3,
+      "won": 0,
+      "drawn": 0,
+      "lost": 3,
+      "goals_for": 1,
+      "goals_against": 4,
+      "win_percentage": 0,
+      "notes": "3 partidos en 1 Mundial (1986). NO ganó ningún partido. Marcó solo 1 gol."
+    },
+    "by_world_cup": [
+      {
+        "year": 1986,
+        "host": {
+          "countries": [
+            "México"
+          ],
+          "iso": [
+            "mx"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Evaristo de Macedo (Brasil)",
+        "captain": "Karim Mohammed Allawi",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Ahmed Radhi",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 1,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "DEBUT mundialista absoluto.",
+          "Cayó 0-1 con Paraguay, 1-2 con Bélgica (gol Ahmed Radhi), 0-1 con México anfitrión."
+        ],
+        "narrative": "Iraq debutó en Mundiales en MÉXICO 1986 bajo Evaristo de Macedo (DT brasileño). Pasó por la guerra Irán-Iraq (1980-1988) clasificando en plena guerra. AHMED RADHI marcó el ÚNICO GOL MUNDIALISTA HISTÓRICO de Iraq vs Bélgica. Cayó los 3 partidos: 0-1 Paraguay, 1-2 Bélgica, 0-1 México (anfitrión). 0 puntos."
+      }
+    ],
+    "palmares": [
+      {
+        "competition": "Copa Asia",
+        "year": 2007,
+        "position": "Campeón",
+        "host": "Sureste asiático"
+      },
+      {
+        "competition": "Copa Asia",
+        "year": 1976,
+        "position": "Cuarto",
+        "host": "Irán"
+      },
+      {
+        "competition": "Copa Asia",
+        "year": 2015,
+        "position": "Cuarto",
+        "host": "Australia"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Hussein Saeed",
+      "value": 78,
+      "period": "1976-1990",
+      "notes": "MÁXIMO GOLEADOR HISTÓRICO. Récord vigente. Capitán Mundial 1986."
+    },
+    "most_capped": {
+      "name": "Younis Mahmoud",
+      "value": 148,
+      "period": "2001-2018",
+      "notes": "Récord histórico. Capitán Copa Asia 2007 (campeón)."
+    },
+    "youngest_debut": {
+      "name": "Zidane Iqbal",
+      "value": "20 años",
+      "period": "2023",
+      "notes": "Récord moderno. Ex-Manchester United, ahora Utrecht."
+    },
+    "biggest_win": {
+      "result": "10-0",
+      "opponent": "Yemen del Sur",
+      "date": "1989",
+      "competition": "Copa del Golfo"
+    },
+    "worst_loss": {
+      "result": "0-7",
+      "opponent": "Turquía",
+      "date": "1959",
+      "competition": "Amistoso"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "Campeón Copa Asia 2007 (final 1-0 a Arabia)",
+      "date": "2007-07-29",
+      "opponent": {
+        "iso": "sa",
+        "name": "Arabia Saudita"
+      },
+      "score": "1-0",
+      "competition": "Final Copa Asia 2007",
+      "narrative": "Iraq fue CAMPEÓN COPA ASIA 2007 en el SUDESTE ASIÁTICO (sin sede fija) en plena guerra civil iraquí. YOUNIS MAHMOUD marcó el GOL DEL TÍTULO al 71' tras córner. La selección unió por unas horas a un país en guerra. Padres y madres iraquíes celebraron en las calles bajo el riesgo del conflicto. UNO DE LOS TÍTULOS MÁS EMOCIONALES DE LA HISTORIA del fútbol mundial."
+    },
+    {
+      "title": "El gol histórico de Ahmed Radhi (1986)",
+      "date": "1986-06-08",
+      "opponent": {
+        "iso": "be",
+        "name": "Bélgica"
+      },
+      "score": "1-2",
+      "competition": "Fase de Grupos Mundial 1986",
+      "narrative": "AHMED RADHI marcó el ÚNICO GOL MUNDIALISTA HISTÓRICO de Iraq vs Bélgica. Cabeza al 60'. Iraq cayó 1-2 pero el gol quedó para la historia. Vinculado al icónico 'Mundial México 1986' de Maradona."
+    },
+    {
+      "title": "El 2-1 a Bolivia que clasificó tras 40 años",
+      "date": "2026-03-31",
+      "opponent": {
+        "iso": "bo",
+        "name": "Bolivia"
+      },
+      "score": "2-1",
+      "competition": "Final Repechaje Intercontinental Mundial 2026",
+      "narrative": "Iraq CLASIFICÓ AL MUNDIAL 2026 tras 40 AÑOS DE ESPERA venciendo 2-1 a Bolivia en el Estadio BBVA de Monterrey el 31 mar 2026. ALI AL-HAMADI marcó al 10' (cabeza, asistencia Al-Ammari). Paniagua empató al 38'. AYMEN HUSSEIN marcó el 2-1 al 53' (anticipación a la defensa boliviana). Histórico en plena guerra de Medio Oriente: Arnold prohibió las redes sociales a sus jugadores la semana anterior.",
+      "is_decisive_match": true
+    },
+    {
+      "title": "El 3-2 vs UAE en la 5ª ronda (Al-Ammari penal 90+5')",
+      "date": "2025-11-18",
+      "opponent": {
+        "iso": "ae",
+        "name": "UAE"
+      },
+      "score": "2-1",
+      "competition": "5ª ronda AFC Mundial 2026",
+      "narrative": "Iraq venció 2-1 a UAE en Basora (3-2 GLOBAL) tras el 1-1 en Abu Dabi. AMIR AL-AMMARI marcó EL PENAL DECISIVO al 90+5' tras una falta señalada por VAR. Salto al repechaje intercontinental. 65.000 fans en Basora."
+    },
+    {
+      "title": "El 4-1 a Kuwait que cerró 3ª ronda",
+      "date": "2025-06-10",
+      "opponent": {
+        "iso": "kw",
+        "name": "Kuwait"
+      },
+      "score": "4-1",
+      "competition": "3ª ronda AFC Mundial 2026",
+      "narrative": "Iraq goleó 4-1 a Kuwait en Basora con goles de Al-Hamadi, Hussein, Sher y Al-Ammari. Cerraba 3ª ronda con 15 pts y bajaba a la 4ª ronda con esperanzas."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "Iraq REGRESA AL MUNDIAL 2026 TRAS 40 AÑOS (desde MÉXICO 1986). Es la 2ª SELECCIÓN ASIÁTICA con MAYOR ESPERA tras Indonesia (1938 como Indias Orientales Holandesas, 88 años sin Mundial).",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "EN EL MUNDIAL 1986 (México), Iraq clasificó EN PLENA GUERRA IRÁN-IRAK (1980-1988). Los jugadores entrenaban con bombas de fondo. El régimen de Saddam Hussein veía al fútbol como herramienta política.",
+      "source": "FIFA + Historia + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "EN 2007 Iraq fue CAMPEÓN COPA ASIA en plena guerra civil iraquí. La final 1-0 vs Arabia Saudita unió por unas horas a un país desgarrado. Ataques con coches bomba ocurrieron tras la celebración. UNO DE LOS TÍTULOS MÁS EMOCIONALES DEL FÚTBOL.",
+      "source": "AFC + BBC + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "ZIDANE IQBAL (mediocampista actual) JUGÓ CHAMPIONS LEAGUE con MANCHESTER UNITED en 2021 con SOLO 18 AÑOS. Nacido en Manchester, eligió Iraq por origen paterno. 1er británico-pakistaní en jugar Champions con club inglés.",
+      "source": "Manchester United + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "ALI AL-HAMADI (delantero actual) NACIÓ EN BAGDAD, fue REFUGIADO en Inglaterra a los 4 años (2002, guerra). Creció en Coventry. Jugó en Wycombe, AFC Bournemouth, Ipswich y Luton. Marcó EL GOL HISTÓRICO al 10' vs Bolivia que clasificó a Iraq.",
+      "source": "Wikipedia + The Athletic",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "GRAHAM ARNOLD (DT actual) PROHIBIÓ A SUS JUGADORES las redes sociales 20 días antes del repechaje vs Bolivia. Razón: el conflicto en Medio Oriente afectaba psicológicamente al equipo. La medida funcionó.",
+      "source": "ESPN + The Athletic",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "EN 2009 Iraq fue ELIMINADO DE LA COPA CONFEDERACIONES tras quedar último de su grupo (Sudáfrica, España, Nueva Zelanda). Siendo CAMPEÓN ASIÁTICO 2007. Decadencia post-éxito.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Iraq! Iraq!",
+      "Asood Ar-Rafidain!",
+      "Mawtini (himno)"
+    ],
+    "main_rival": {
+      "iso": "ir",
+      "name": "Irán",
+      "story": "Rivalidad histórica derivada de la guerra Irán-Iraq (1980-1988, 8 años, 1+ millón de muertos). Cada cruce tiene fuerte carga geopolítica. Han jugado más de 25 veces. Iraq lleva ligera ventaja histórica."
+    },
+    "home_stadium": {
+      "name": "Basra International Stadium",
+      "capacity": 65000,
+      "city": "Basora"
+    }
+  },
+  "seo": {
+    "meta_title": "Irak en el Mundial 2026 | Guía Leones de Mesopotamia",
+    "meta_description": "Iraq Mundial 2026: plantel de Arnold, Al-Hamadi, Hussein, Iqbal. Grupo I con Francia, Senegal y Noruega. 1ª participación tras 40 años desde 1986.",
+    "og_image_url": "/img/og/teams/irak.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Irak",
+      "alternateName": [
+        "Leones de Mesopotamia",
+        "Lions of Mesopotamia"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "AFC"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Graham Arnold"
+      },
+      "url": "https://www.zonamundial.app/selecciones/irak"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-29",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_de_AFC_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://www.tudn.com/mundial-2026/eliminatorias/mundial-2026-como-clasifican-selecciones-cada-confederacion",
+      "https://www.infobae.com/deportes/2026/03/31/bolivia-jugara-el-repechaje-ante-irak-en-buscara-volver-a-jugar-un-mundial-luego-de-32-anos-hora-tv-y-todo-lo-que-hay-que-saber/",
+      "https://www.lanacion.com.ar/deportes/futbol/bolivia-perdio-1-a-2-con-irak-en-el-repechaje-y-se-termino-su-sueno-de-clasificar-al-mundial-2026-nid01042026/",
+      "https://elcomercio.pe/deporte-total/futbol-mundial/irak-vs-bolivia-en-vivo-por-final-del-repechaje-al-mundial-2026-lbposting-noticia/",
+      "https://futbolcentroamerica.com/mundial/bolivia-vs-irak-en-vivo-minuto-a-minuto-de-la-final-del-repechaje-por-el-ultimo-boleto-al-mundial-2026",
+      "https://www.iraqfa.com",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias 3ª/4ª/5ª ronda + repechaje intercontinental cruzados con TUDN + ESPN + La Nación + Infobae + Wikipedia + DSports. Stats: 15 pts (4G 3E 3P), 12 GF, 9 GC en 3ª ronda. Plantel y formación validados.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "complete",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante Capelli Sport: pendiente",
+      "Calendario fase grupos 2026: confirmar fechas oficiales",
+      "Base de entrenamiento: IFA aún no anunció",
+      "FIFA Ranking #58: validar mes vigente",
+      "Goleadores específicos por partido: cruzar con FIFA",
+      "Capitán: Aymen Hussein vs Hussein Ali, validar en próxima convocatoria"
+    ]
+  }
+}

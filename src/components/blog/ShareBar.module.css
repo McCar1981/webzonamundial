@@ -1,0 +1,46 @@
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 0;
+  border-top: 1px solid var(--b-rule);
+  border-bottom: 1px solid var(--b-rule);
+  margin: 24px 0;
+  font-family: var(--b-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--b-text-3);
+}
+.label {
+  margin-right: 6px;
+  font-weight: 700;
+  color: var(--b-gold-2);
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--b-border);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--b-text-2);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 200ms var(--b-ease);
+  font-family: inherit;
+}
+.btn:hover {
+  background: rgba(201, 168, 76, 0.10);
+  border-color: var(--b-border-strong);
+  color: var(--b-gold-3);
+  transform: translateY(-1px);
+}
+.copied {
+  font-size: 11px;
+  color: var(--b-gold-3);
+  margin-left: 4px;
+  font-weight: 700;
+}

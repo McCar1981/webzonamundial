@@ -4,6 +4,7 @@ import { getAllSedeSlugs } from "@/data/sedes";
 import { CREADORES } from "@/data/creadores";
 import { getAllMomentSlugs } from "@/data/momentos-iconicos";
 import { getAllPublicNoticias } from "@/lib/noticias-store";
+import { getAllPosts as getAllBlogPosts } from "@/lib/blog";
 
 const BASE_URL = "https://zonamundial.app";
 
@@ -101,6 +102,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: n.featured ? 0.85 : 0.7,
   }));
 
+  // Rutas dinámicas: blog editorial (publicados por publishedAt <= now)
+  const blogRoutes: MetadataRoute.Sitemap = getAllBlogPosts().map((p) => ({
+    url: `${BASE_URL}/blog/${p.slug}`,
+    lastModified: new Date(p.updatedAt || p.publishedAt),
+    changeFrequency: "weekly",
+    priority: 0.85,
+  }));
+
   return [
     ...staticRoutes,
     ...seleccionRoutes,
@@ -109,5 +118,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...creadorRoutes,
     ...momentoRoutes,
     ...noticiaRoutes,
+    ...blogRoutes,
   ];
 }

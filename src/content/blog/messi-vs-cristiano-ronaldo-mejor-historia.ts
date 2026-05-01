@@ -12,12 +12,13 @@ const post: BlogPost = {
     "Messi vs Cristiano Ronaldo en cifras: goles, asistencias, títulos, Balones de Oro, finales y mundiales. Todos los datos para zanjar el debate antes del Mundial 2026.",
   dek: "Dos genios, dos décadas dominando el fútbol mundial, un Mundial 2026 que será el último para ambos. Cruzamos sus números reales y dejamos que tú decidas.",
   ogImage:
-    "https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Cristiano_Ronaldo_and_Lionel_Messi_-_Portugal_vs_Argentina%2C_9th_February_2011.jpg/1280px-Cristiano_Ronaldo_and_Lionel_Messi_-_Portugal_vs_Argentina%2C_9th_February_2011.jpg",
   ogImageCredit: {
-    author: "Анна Нэсси",
-    license: "CC BY-SA 3.0",
+    author: "Fanny Schertzer",
+    license: "CC BY 3.0",
     source: "Wikimedia Commons",
-    sourceUrl: "https://commons.wikimedia.org/wiki/File:Cristiano_Ronaldo_2018.jpg",
+    sourceUrl:
+      "https://commons.wikimedia.org/wiki/File:Cristiano_Ronaldo_and_Lionel_Messi_-_Portugal_vs_Argentina,_9th_February_2011.jpg",
   },
   category: "analisis",
   keywords: [

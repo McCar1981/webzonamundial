@@ -50,10 +50,10 @@ const post: BlogPost = {
     },
     {
       type: "image",
-      src: "/img/blog/portada-zona-mundial.png",
-      alt: "Vista del módulo Fantasy de ZonaMundial con el partido México 1-0 Sudáfrica en directo",
+      src: "/img/blog/zonamundial-app-fantasy.png",
+      alt: "Pantalla de la app ZonaMundial mostrando el módulo Fantasy con México 1-0 Sudáfrica en directo y el aviso 'Tu predicción va ganando'",
       caption:
-        "El módulo Fantasy en acción durante un partido en directo. La predicción del usuario lleva la ventaja sobre el marcador real.",
+        "Vista del módulo Fantasy durante un partido en directo: México 1-0 Sudáfrica, ranking del usuario en 1.847 puntos y la predicción ganando.",
       credit: {
         author: "ZonaMundial",
         license: "Material de marca propio",

@@ -82,12 +82,35 @@ export default function NoticiasClient({
   const initialCat = searchParams.get("cat") || "all";
   const [cat, setCat] = useState(initialCat);
   const tickerRef = useRef<HTMLDivElement>(null);
+  const tickerLaneRef = useRef<HTMLDivElement>(null);
+  const [tickerDuration, setTickerDuration] = useState<number>(15);
 
   useEffect(() => {
     const c = searchParams.get("cat");
     if (c && c !== cat) setCat(c);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
+
+  // Mantener velocidad de scroll del ticker constante (~140 px/s) sin importar
+  // cuántos items haya o lo largos que sean los titulares. Recalcula al
+  // montar y al cambiar el viewport.
+  useEffect(() => {
+    const PX_PER_SEC = 140;
+    const compute = () => {
+      const lane = tickerLaneRef.current;
+      if (!lane) return;
+      // La lane está duplicada (items × 2) y el keyframe va de 0 → -50%,
+      // así que la distancia recorrida en cada loop es scrollWidth / 2.
+      const distance = lane.scrollWidth / 2;
+      if (distance > 0) {
+        const seconds = Math.max(8, Math.min(30, distance / PX_PER_SEC));
+        setTickerDuration(seconds);
+      }
+    };
+    compute();
+    window.addEventListener("resize", compute);
+    return () => window.removeEventListener("resize", compute);
+  }, [posts]);
 
   const filtered = useMemo(() => {
     if (cat === "all") return posts;
@@ -109,7 +132,11 @@ export default function NoticiasClient({
       <div className={styles.ticker} aria-label="Última hora">
         <span className={styles.tickerLabel}>EN VIVO</span>
         <div className={styles.tickerTrack} ref={tickerRef}>
-          <div className={styles.tickerLane}>
+          <div
+            className={styles.tickerLane}
+            ref={tickerLaneRef}
+            style={{ animationDuration: `${tickerDuration}s` }}
+          >
             {[...tickerItems, ...tickerItems].map((p, i) => (
               <Link key={`${p.id}-${i}`} href={`/noticias/${p.slug}`} className={styles.tickerItem}>
                 <span className={styles.tickerDot} style={{ background: CAT_COLORS[p.cat] }} />

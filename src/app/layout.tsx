@@ -1,7 +1,11 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import "./globals.css";
 import RootLayoutClient from "./RootLayoutClient";
 import { LanguageProvider } from "@/i18n/LanguageContext";
+
+// Google AdSense Publisher ID (NEXT_PUBLIC_* expuesto al cliente).
+const ADSENSE_ID = process.env.NEXT_PUBLIC_ADSENSE_ID;
 
 const SITE_URL = "https://zonamundial.app";
 const SITE_NAME = "ZonaMundial";
@@ -210,6 +214,15 @@ export default function RootLayout({
         />
       </head>
       <body style={{ margin: 0, padding: 0 }}>
+        {ADSENSE_ID ? (
+          <Script
+            id="adsbygoogle-init"
+            async
+            strategy="afterInteractive"
+            crossOrigin="anonymous"
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_ID}`}
+          />
+        ) : null}
         <LanguageProvider>
           <RootLayoutClient>{children}</RootLayoutClient>
         </LanguageProvider>

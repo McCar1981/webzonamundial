@@ -11,6 +11,12 @@ import type { BlogPost } from "./types";
 // Manifiesto / carta de presentación de marca (siempre visible, anclado).
 import queEsZonaMundial from "@/content/blog/que-es-zona-mundial";
 
+// Histórico ya publicado (abril 2026, antes del lanzamiento del calendario M-J-S).
+import formatoMundial from "@/content/blog/formato-mundial-2026-reglas-explicadas";
+import camisetasMundial from "@/content/blog/camisetas-mundial-2026-mejores-kits";
+import historiaMundiales from "@/content/blog/historia-mundiales-todos-los-campeones";
+import messiVsCristiano from "@/content/blog/messi-vs-cristiano-ronaldo-mejor-historia";
+
 // Calendario editorial M-J-S a partir del 3 de mayo de 2026.
 import calendarioMundial from "@/content/blog/calendario-mundial-2026-completo";
 import quienGanaMundial from "@/content/blog/quien-ganara-el-mundial-2026";
@@ -23,6 +29,12 @@ import seleccionesClasificadas from "@/content/blog/selecciones-clasificadas-mun
 
 export const POSTS: BlogPost[] = [
   queEsZonaMundial, // pinned: true → siempre primero
+  // Histórico abril (publicados ya):
+  messiVsCristiano,
+  historiaMundiales,
+  camisetasMundial,
+  formatoMundial,
+  // Programados M-J-S (mayo en adelante):
   calendarioMundial,
   quienGanaMundial,
   mejoresJugadores,

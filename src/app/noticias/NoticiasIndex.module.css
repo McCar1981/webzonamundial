@@ -61,7 +61,7 @@
   white-space: nowrap;
   height: 100%;
   padding: 0 24px;
-  animation: tickerScroll 60s linear infinite;
+  animation: tickerScroll 30s linear infinite;
 }
 @keyframes tickerScroll {
   from { transform: translateX(0); }
@@ -652,14 +652,46 @@
   .listItem { grid-template-columns: 130px minmax(0, 1fr); gap: 14px; }
   .listThumb { aspect-ratio: 1 / 1; }
   .listBody p { -webkit-line-clamp: 2; }
+
+  /* Top story: liberar aspect-ratio en mobile para que el título largo
+     no quede tapado por la imagen. Imagen pasa a ser cabecera proporcional
+     y el body fluye debajo en lugar de absoluto. */
+  .topStory {
+    aspect-ratio: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .topImg {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    transform: none;
+  }
+  .topOverlay {
+    /* sólo cubre la imagen para conservar legibilidad de su pie */
+    bottom: auto;
+    height: var(--zm-top-img-h, 0);
+    background: linear-gradient(180deg, rgba(6, 11, 20, 0) 60%, rgba(6, 11, 20, 0.85) 100%);
+  }
+  .topBody {
+    position: relative;
+    inset: auto;
+    padding: 18px 18px 22px;
+    background: linear-gradient(180deg, rgba(11, 24, 37, 0.95), rgba(6, 11, 20, 0.98));
+    gap: 10px;
+  }
+  .topTitle {
+    text-shadow: none;
+    font-size: clamp(20px, 5.4vw, 26px);
+  }
 }
 @media (max-width: 520px) {
   .listItem { grid-template-columns: 100px minmax(0, 1fr); }
   .listBody p { display: none; }
   .h1 { font-size: clamp(28px, 8vw, 38px); }
-  .topTitle { font-size: clamp(20px, 6vw, 28px); }
+  .topTitle { font-size: clamp(19px, 5.6vw, 24px); }
   .ticker { font-size: 11.5px; }
-  .tickerLane { gap: 22px; padding: 0 16px; animation-duration: 50s; }
+  .tickerLane { gap: 22px; padding: 0 16px; animation-duration: 25s; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -17,6 +17,7 @@ function formatPublishDate(iso: string): string {
 }
 
 export default function ArticleHero({ post }: Props) {
+  const credit = post.ogImageCredit;
   return (
     <header className={styles.hero}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -43,6 +44,19 @@ export default function ArticleHero({ post }: Props) {
           <span>{post.readingTime} min de lectura</span>
         </div>
       </div>
+      {credit && (
+        <div className={styles.heroCredit}>
+          Imagen:{" "}
+          {credit.sourceUrl ? (
+            <a href={credit.sourceUrl} target="_blank" rel="noopener noreferrer">
+              {credit.author}
+            </a>
+          ) : (
+            credit.author
+          )}{" "}
+          / {credit.license} · {credit.source}
+        </div>
+      )}
     </header>
   );
 }

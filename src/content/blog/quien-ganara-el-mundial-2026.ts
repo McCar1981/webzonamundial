@@ -12,7 +12,13 @@ const post: BlogPost = {
     "Análisis profundo de las favoritas para ganar el Mundial 2026: Argentina, Francia, Brasil, España e Inglaterra. Cuotas, plantillas y por qué cada una puede levantar la copa.",
   dek: "Argentina llega como vigente campeona, Francia con la mejor plantilla, España con el momento dulce, Brasil con la espina clavada e Inglaterra con la presión. Esta es la quiniela que importa.",
   ogImage:
-    "https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?w=1200&q=80&auto=format&fit=crop",
+    "https://upload.wikimedia.org/wikipedia/commons/c/c8/Lionel_Messi_WC2022.jpg",
+  ogImageCredit: {
+    author: "Hossein Zohrevand",
+    license: "CC BY 4.0",
+    source: "Wikimedia Commons",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Lionel_Messi_WC2022.jpg",
+  },
   category: "analisis",
   keywords: [
     "quien gana el mundial 2026",

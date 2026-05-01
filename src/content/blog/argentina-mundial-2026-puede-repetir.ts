@@ -12,7 +12,13 @@ const post: BlogPost = {
     "Análisis exhaustivo de Argentina rumbo al Mundial 2026: plantilla, sistema de Scaloni, factor Messi, calendario y por qué puede ser bicampeona consecutiva.",
   dek: "Vigente del mundo, vigente de América, número uno del ranking FIFA. Argentina llega al Mundial 2026 con una mochila distinta: ya no es la cazadora, es la presa.",
   ogImage:
-    "https://images.unsplash.com/photo-1540498-1b1c2c10c0e8?w=1200&q=80&auto=format&fit=crop",
+    "https://upload.wikimedia.org/wikipedia/commons/c/c8/Lionel_Messi_WC2022.jpg",
+  ogImageCredit: {
+    author: "Hossein Zohrevand",
+    license: "CC BY 4.0",
+    source: "Wikimedia Commons",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Lionel_Messi_WC2022.jpg",
+  },
   category: "selecciones",
   keywords: [
     "argentina mundial 2026",

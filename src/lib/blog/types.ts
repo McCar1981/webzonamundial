@@ -56,11 +56,24 @@ export interface BlockQuote {
   text: string;
   cite?: string;
 }
+export interface ImageCredit {
+  /** Nombre del autor / fotógrafo / agencia. */
+  author: string;
+  /** Licencia (ej: "CC BY-SA 4.0", "CC BY 4.0", "Public Domain"). */
+  license: string;
+  /** Plataforma fuente (ej: "Wikimedia Commons", "Flickr", "Unsplash"). */
+  source: string;
+  /** URL exacta a la página de la imagen para verificación. Opcional. */
+  sourceUrl?: string;
+}
+
 export interface BlockImage {
   type: "image";
   src: string;
   alt: string;
   caption?: string;
+  /** Crédito de autoría visible bajo la imagen. */
+  credit?: ImageCredit;
 }
 export interface BlockCta {
   type: "cta";
@@ -99,6 +112,8 @@ export interface BlogPost {
   dek: string;
   /** Imagen principal (og + hero). */
   ogImage: string;
+  /** Crédito de autoría de la imagen del hero. Mostrado bajo el hero. */
+  ogImageCredit?: ImageCredit;
   category: BlogCategory;
   /** Keywords objetivo (1ª = principal). */
   keywords: string[];

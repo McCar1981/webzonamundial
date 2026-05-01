@@ -13,7 +13,13 @@ const post: BlogPost = {
     "ZonaMundial es la plataforma gratuita de predicciones, fantasy, IA Coach y comunidad para el Mundial 2026. 12 módulos, 48 selecciones, 104 partidos, una sola misión: que el Mundial sea tuyo.",
   dek: "Si buscas vivir el Mundial 2026 con todos los sentidos —predicciones, fantasy, datos, comunidad, streaming—, has llegado al sitio correcto. Esta es nuestra carta de presentación, sin clickbait y sin atajos.",
   ogImage:
-    "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=1200&q=80&auto=format&fit=crop",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Estadio_Azteca1706p2.jpg/1280px-Estadio_Azteca1706p2.jpg",
+  ogImageCredit: {
+    author: "Carlos Valenzuela",
+    license: "CC BY-SA 4.0",
+    source: "Wikimedia Commons",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Estadio_Azteca1706p2.jpg",
+  },
   category: "guia",
   keywords: [
     "zonamundial",

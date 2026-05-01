@@ -12,7 +12,14 @@ const post: BlogPost = {
     "Lista completa de las 48 selecciones clasificadas al Mundial 2026, ordenadas por confederación: UEFA, CONMEBOL, CAF, CONCACAF, AFC y OFC.",
   dek: "De Argentina a Curazao, de Inglaterra a Cabo Verde, de Japón a Nueva Zelanda. Estas son las 48 selecciones que disputarán el primer Mundial con plazas ampliadas.",
   ogImage:
-    "https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?w=1200&q=80&auto=format&fit=crop",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/2018_World_Cup_Final_%282018-07-15%29_02.jpg/1280px-2018_World_Cup_Final_%282018-07-15%29_02.jpg",
+  ogImageCredit: {
+    author: "Alexey Nikolsky / Press-service of the President of Russia",
+    license: "CC BY-SA 3.0",
+    source: "Wikimedia Commons",
+    sourceUrl:
+      "https://commons.wikimedia.org/wiki/File:2018_World_Cup_Final_(2018-07-15)_02.jpg",
+  },
   category: "selecciones",
   keywords: [
     "selecciones clasificadas mundial 2026",

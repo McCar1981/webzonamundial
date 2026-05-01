@@ -12,7 +12,14 @@ const post: BlogPost = {
     "Formato Mundial 2026 explicado: 12 grupos de 4 equipos, 32avos, octavos, cuartos, semis y final. Sistema de clasificación, mejores terceros y reglas FIFA actualizadas.",
   dek: "El Mundial 2026 no funciona como Qatar 2022. Hay 12 grupos en lugar de 8, hay 32avos antes de octavos y los terceros también pasan. Te lo explicamos como si nunca hubieras visto un Mundial.",
   ogImage:
-    "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80&auto=format&fit=crop",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/FIFA_World_Cup_Trophy_at_National_Football_Museum%2C_Manchester_02.jpg/1280px-FIFA_World_Cup_Trophy_at_National_Football_Museum%2C_Manchester_02.jpg",
+  ogImageCredit: {
+    author: "Ank Kumar (Infosys Limited)",
+    license: "CC BY-SA 4.0",
+    source: "Wikimedia Commons",
+    sourceUrl:
+      "https://commons.wikimedia.org/wiki/File:FIFA_World_Cup_Trophy_at_National_Football_Museum,_Manchester_02.jpg",
+  },
   category: "guia",
   keywords: [
     "formato mundial 2026",

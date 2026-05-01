@@ -330,6 +330,23 @@
   margin: 10px 20px 0;
   text-align: center;
 }
+.figureCredit {
+  font-family: var(--b-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--b-text-3);
+  margin: 4px 20px 0;
+  text-align: center;
+  opacity: 0.75;
+}
+.figureCredit a {
+  color: rgba(253, 230, 138, 0.7);
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(253, 230, 138, 0.3);
+}
+.figureCredit a:hover {
+  color: var(--b-gold-3);
+}
 
 /* ========== INLINE CTA ========== */
 .cta {

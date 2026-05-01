@@ -12,7 +12,14 @@ const post: BlogPost = {
     "Las 16 sedes del Mundial 2026 explicadas: 11 ciudades en Estados Unidos, 3 en México y 2 en Canadá. Estadios, capacidades, partidos asignados y datos clave.",
   dek: "Once ciudades en Estados Unidos, tres en México, dos en Canadá. El Mundial 2026 se reparte por todo el subcontinente en una organización sin precedentes.",
   ogImage:
-    "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1200&q=80&auto=format&fit=crop",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/SoFi_Stadium_%2851126606022%29.jpg/1280px-SoFi_Stadium_%2851126606022%29.jpg",
+  ogImageCredit: {
+    author: "Thank You (21 Millions+) views",
+    license: "CC BY 2.0",
+    source: "Wikimedia Commons",
+    sourceUrl:
+      "https://commons.wikimedia.org/wiki/File:SoFi_Stadium_(51126606022).jpg",
+  },
   category: "sedes",
   keywords: [
     "sedes mundial 2026",

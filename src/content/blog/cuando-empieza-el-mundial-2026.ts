@@ -12,7 +12,13 @@ const post: BlogPost = {
     "Cuándo empieza el Mundial 2026: 11 de junio en el Estadio Azteca. Cuenta atrás día a día, partido inaugural, hora exacta, dónde verlo y cómo prepararte.",
   dek: "El 11 de junio de 2026, exactamente a las 18:00 hora de Ciudad de México, sonará el silbato del partido más esperado del año. Aquí tienes la cuenta atrás completa.",
   ogImage:
-    "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=1200&q=80&auto=format&fit=crop",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Estadio_Azteca1706p2.jpg/1280px-Estadio_Azteca1706p2.jpg",
+  ogImageCredit: {
+    author: "Carlos Valenzuela",
+    license: "CC BY-SA 4.0",
+    source: "Wikimedia Commons",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Estadio_Azteca1706p2.jpg",
+  },
   category: "guia",
   keywords: [
     "cuando empieza el mundial 2026",

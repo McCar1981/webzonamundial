@@ -184,6 +184,19 @@ export default function BlockRenderer({ blocks }: Props) {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={b.src} alt={b.alt} className={styles.figureImg} loading="lazy" />
                 {b.caption && <figcaption className={styles.figureCaption}>{b.caption}</figcaption>}
+                {b.credit && (
+                  <div className={styles.figureCredit}>
+                    Foto:{" "}
+                    {b.credit.sourceUrl ? (
+                      <a href={b.credit.sourceUrl} target="_blank" rel="noopener noreferrer">
+                        {b.credit.author}
+                      </a>
+                    ) : (
+                      b.credit.author
+                    )}{" "}
+                    / {b.credit.license} · {b.credit.source}
+                  </div>
+                )}
               </figure>
             );
           case "cta": {

@@ -12,7 +12,14 @@ const post: BlogPost = {
     "Ranking completo de los 16 estadios del Mundial 2026: aforo, arquitectura, historia y partidos asignados. Del MetLife al Estadio Akron, así son los coliseos del torneo.",
   dek: "Algunos son joyas modernas con techos retráctiles. Otros son templos del fútbol con 60 años de historia. Estos son los 16 estadios donde se va a decidir el Mundial 2026.",
   ogImage:
-    "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=1200&q=80&auto=format&fit=crop",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Mercedes_Benz_Stadium_time_lapse_capture_2017-08-13.jpg/1280px-Mercedes_Benz_Stadium_time_lapse_capture_2017-08-13.jpg",
+  ogImageCredit: {
+    author: "Atlanta Falcons",
+    license: "CC BY 3.0",
+    source: "Wikimedia Commons",
+    sourceUrl:
+      "https://commons.wikimedia.org/wiki/File:Mercedes_Benz_Stadium_time_lapse_capture_2017-08-13.jpg",
+  },
   category: "sedes",
   keywords: [
     "estadios mundial 2026",

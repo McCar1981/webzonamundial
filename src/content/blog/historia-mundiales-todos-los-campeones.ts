@@ -12,7 +12,14 @@ const post: BlogPost = {
     "Lista completa de los 22 campeones del Mundial desde Uruguay 1930 hasta Argentina 2022. Sedes, finales, máximos goleadores y los datos que marcaron cada Copa del Mundo.",
   dek: "De Uruguay 1930 a Qatar 2022: 22 ediciones, 8 países campeones, miles de goles y millones de historias. Este es el repaso editorial al torneo más grande del deporte.",
   ogImage:
-    "https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?w=1200&q=80&auto=format&fit=crop",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Roman_Weidenfeller_with_the_FIFA_World_Cup_trophy_-_2014.jpg/1280px-Roman_Weidenfeller_with_the_FIFA_World_Cup_trophy_-_2014.jpg",
+  ogImageCredit: {
+    author: "Marcello Casal Jr / Agência Brasil",
+    license: "CC BY 3.0 BR",
+    source: "Wikimedia Commons",
+    sourceUrl:
+      "https://commons.wikimedia.org/wiki/File:Roman_Weidenfeller_with_the_FIFA_World_Cup_trophy_-_2014.jpg",
+  },
   category: "historia",
   keywords: [
     "todos los campeones del mundial",

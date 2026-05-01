@@ -12,7 +12,14 @@ const post: BlogPost = {
     "Calendario oficial del Mundial 2026 con todas las fechas, sedes y horarios. 104 partidos, 16 ciudades, 48 selecciones. Guía día a día actualizada.",
   dek: "Del 11 de junio al 19 de julio de 2026, Estados Unidos, México y Canadá serán testigos del Mundial más largo y más amplio jamás disputado. Lo desglosamos al detalle.",
   ogImage:
-    "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=1200&q=80&auto=format&fit=crop",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Arlington_June_2020_4_%28AT%26T_Stadium%29.jpg/1280px-Arlington_June_2020_4_%28AT%26T_Stadium%29.jpg",
+  ogImageCredit: {
+    author: "Michael Barera",
+    license: "CC BY-SA 4.0",
+    source: "Wikimedia Commons",
+    sourceUrl:
+      "https://commons.wikimedia.org/wiki/File:Arlington_June_2020_4_(AT%26T_Stadium).jpg",
+  },
   category: "guia",
   keywords: [
     "calendario mundial 2026",

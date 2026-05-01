@@ -114,6 +114,34 @@
   color: var(--b-gold-2);
 }
 
+.heroCredit {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  z-index: 3;
+  font-family: var(--b-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.55);
+  background: rgba(6, 11, 20, 0.55);
+  padding: 4px 10px;
+  border-radius: 99px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  max-width: calc(100% - 32px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.heroCredit a {
+  color: rgba(253, 230, 138, 0.8);
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(253, 230, 138, 0.4);
+}
+.heroCredit a:hover {
+  color: var(--b-gold-3);
+}
+
 @media (max-width: 720px) {
   .heroBody {
     padding: 60px 16px 24px;
@@ -124,5 +152,11 @@
   }
   .metaAuthor strong {
     font-size: 13px;
+  }
+  .heroCredit {
+    font-size: 9px;
+    padding: 3px 8px;
+    bottom: 6px;
+    right: 8px;
   }
 }

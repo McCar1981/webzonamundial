@@ -12,7 +12,13 @@ const post: BlogPost = {
     "Las mejores camisetas del Mundial 2026 según diseño, simbolismo y polémicas. Argentina, Brasil, España, Francia, México: ranking editorial de los kits oficiales.",
   dek: "Adidas, Nike y Puma se reparten el 90% de las 48 selecciones. Algunos kits son obras maestras, otros son polémicas instantáneas. Esto es lo que hay que saber.",
   ogImage:
-    "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=1200&q=80&auto=format&fit=crop",
+    "https://upload.wikimedia.org/wikipedia/commons/f/f3/Vinicius_Jr_2021.jpg",
+  ogImageCredit: {
+    author: "Real Madrid CF",
+    license: "CC BY 3.0",
+    source: "Wikimedia Commons",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Vinicius_Jr_2021.jpg",
+  },
   category: "datos",
   keywords: [
     "camisetas mundial 2026",

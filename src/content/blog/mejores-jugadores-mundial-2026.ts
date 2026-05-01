@@ -11,7 +11,14 @@ const post: BlogPost = {
     "Ranking de los 10 mejores jugadores del Mundial 2026: Mbappé, Messi, Bellingham, Yamal, Vinicius… cuotas, posiciones y por qué cada uno entra en la lista.",
   dek: "Cinco generaciones se cruzan en este Mundial: el ocaso de Messi y CR7, el cenit de Mbappé y Bellingham, y la explosión de Yamal y Doué. Estos son los 10 jugadores que pueden decidir el torneo.",
   ogImage:
-    "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1200&q=80&auto=format&fit=crop",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Kylian_Mbapp%C3%A9_%2846369981091%29.jpg/1280px-Kylian_Mbapp%C3%A9_%2846369981091%29.jpg",
+  ogImageCredit: {
+    author: "Balkan Photos",
+    license: "CC BY 2.0",
+    source: "Wikimedia Commons",
+    sourceUrl:
+      "https://commons.wikimedia.org/wiki/File:Kylian_Mbapp%C3%A9_(46369981091).jpg",
+  },
   category: "selecciones",
   keywords: [
     "mejores jugadores mundial 2026",

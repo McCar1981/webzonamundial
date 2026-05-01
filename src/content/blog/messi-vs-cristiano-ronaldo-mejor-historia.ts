@@ -57,6 +57,18 @@ const post: BlogPost = {
       text: "El **Balón de Oro** es el premio individual más prestigioso del fútbol. La cuenta entre ambos es desigual a favor de Messi:",
     },
     {
+      type: "image",
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/FIFA_Ballon_D%E2%80%98OR_Awards%2C_FIFA_Museum%2C_Zurich_07.jpg/1280px-FIFA_Ballon_D%E2%80%98OR_Awards%2C_FIFA_Museum%2C_Zurich_07.jpg",
+      alt: "Trofeos del Balón de Oro expuestos en el FIFA Museum de Zúrich",
+      caption: "El Balón de Oro: 8 para Messi (último 2023), 5 para Cristiano Ronaldo (último 2017).",
+      credit: {
+        author: "Ank Kumar (Infosys Limited)",
+        license: "CC BY-SA 4.0",
+        source: "Wikimedia Commons",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:FIFA_Ballon_D%E2%80%98OR_Awards,_FIFA_Museum,_Zurich_07.jpg",
+      },
+    },
+    {
       type: "table",
       caption: "Premios individuales acumulados a fecha de mayo de 2026.",
       headers: ["Premio", "Messi", "Cristiano"],
@@ -148,6 +160,18 @@ const post: BlogPost = {
       variant: "blue",
       title: "DIFERENCIA CLAVE",
       text: "**Messi tiene un Mundial. Cristiano no**. En la balanza histórica del 'mejor de la historia', haber levantado la copa del mundo pesa más que ninguna Champions. Los aficionados argentinos lo recuerdan cada vez que el debate vuelve.",
+    },
+    {
+      type: "image",
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/FWC_2018_-_Group_D_-_ARG_v_ISL_-_Messi_penalty_kick.jpg/1280px-FWC_2018_-_Group_D_-_ARG_v_ISL_-_Messi_penalty_kick.jpg",
+      alt: "Lionel Messi pateando un penal en el Mundial Rusia 2018",
+      caption: "Lionel Messi en su cuarto Mundial (Rusia 2018) ante Islandia. El sexto será su última oportunidad mundialista.",
+      credit: {
+        author: "Voltmetro",
+        license: "CC BY-SA 4.0",
+        source: "Wikimedia Commons",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:FWC_2018_-_Group_D_-_ARG_v_ISL_-_Messi_penalty_kick.jpg",
+      },
     },
     {
       type: "h2",

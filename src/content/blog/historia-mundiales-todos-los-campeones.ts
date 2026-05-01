@@ -108,6 +108,18 @@ const post: BlogPost = {
       id: "memorables",
     },
     {
+      type: "image",
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Pele_celebrating_1970.jpg/1280px-Pele_celebrating_1970.jpg",
+      alt: "Pelé celebrando un gol en el Mundial México 1970",
+      caption: "Pelé celebra durante el Mundial México 1970, considerado el mejor equipo brasileño de la historia.",
+      credit: {
+        author: "Distributed by the Associated Press",
+        license: "Public domain",
+        source: "Wikimedia Commons",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:Pele_celebrating_1970.jpg",
+      },
+    },
+    {
       type: "h3",
       text: "1. Brasil 1970 — el verdoamarelo perfecto",
       id: "mexico-1970",
@@ -133,6 +145,18 @@ const post: BlogPost = {
     {
       type: "p",
       text: "**La final más emocionante de la historia.** Argentina-Francia: 3-3 tras 120 minutos de fútbol vertiginoso, con Messi marcando dos veces y Mbappé tres. **Penales: 4-2 para Argentina**. Messi ganó por fin **el único trofeo que le faltaba**, completando lo que muchos consideran la mejor carrera futbolística del siglo XXI. Lautaro Martínez, Julián Álvarez, Mac Allister, De Paul, Dibu Martínez: nombres que ya están en la historia.",
+    },
+    {
+      type: "image",
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Maradona-Mundial_86_con_la_copa.JPG/1280px-Maradona-Mundial_86_con_la_copa.JPG",
+      alt: "Diego Maradona levantando la Copa del Mundo en el Mundial México 1986",
+      caption: "Diego Maradona levanta la Copa del Mundo en México 1986 — uno de los Mundiales más recordados de la historia argentina.",
+      credit: {
+        author: "Autor desconocido",
+        license: "Public domain",
+        source: "Wikimedia Commons",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:Maradona-Mundial_86_con_la_copa.JPG",
+      },
     },
     {
       type: "h3",
@@ -192,6 +216,18 @@ const post: BlogPost = {
     {
       type: "p",
       text: "**Messi se quedó a 3 goles del récord absoluto** de Klose. **Mbappé llega al Mundial 2026 a 5 goles del récord** y con 27 años. Es muy probable que durante el torneo se rompa la marca histórica de 16 goles del alemán. La gran candidata: la final del 19 de julio.",
+    },
+    {
+      type: "image",
+      src: "https://upload.wikimedia.org/wikipedia/commons/4/42/Maradona_shilton_mano_dios.jpg",
+      alt: "Maradona supera a Shilton en la Mano de Dios durante el Mundial 1986",
+      caption: "La icónica 'Mano de Dios' de Maradona contra Inglaterra en cuartos del Mundial México 1986.",
+      credit: {
+        author: "Autor desconocido",
+        license: "Public domain",
+        source: "Wikimedia Commons",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:Maradona_shilton_mano_dios.jpg",
+      },
     },
     {
       type: "h2",

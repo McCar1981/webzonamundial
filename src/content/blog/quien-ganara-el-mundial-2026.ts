@@ -66,6 +66,18 @@ const post: BlogPost = {
       text: "La probabilidad implícita combinada de las cuatro grandes (Francia, Argentina, Brasil, España) suma alrededor del **66%**. Es decir, dos de cada tres veces, el campeón saldrá de ahí. Pero ese 33% restante es exactamente lo que hace inolvidables a torneos como Sudáfrica 2010 (España no era favorita) o Qatar 2022 (Argentina venía de perder con Arabia Saudí).",
     },
     {
+      type: "image",
+      src: "https://upload.wikimedia.org/wikipedia/commons/b/b4/Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg",
+      alt: "Lionel Messi con la camiseta de Argentina en el Mundial 2022",
+      caption: "Messi durante el Mundial Qatar 2022, su quinto Mundial y primer trofeo. El sexto y último llegará en USA-México-Canadá 2026.",
+      credit: {
+        author: "Hossein Zohrevand",
+        license: "CC BY 4.0",
+        source: "Wikimedia Commons",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:Lionel-Messi-Argentina-2022-FIFA-World-Cup_(cropped).jpg",
+      },
+    },
+    {
       type: "h2",
       text: "Argentina: la vigente campeona con un Messi de despedida",
       id: "argentina",
@@ -93,6 +105,18 @@ const post: BlogPost = {
       cite: "Jorge Valdano, La Vanguardia",
     },
     {
+      type: "image",
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Kylian_Mbapp%C3%A9_%2846369981091%29.jpg/1280px-Kylian_Mbapp%C3%A9_%2846369981091%29.jpg",
+      alt: "Kylian Mbappé celebrando un gol con la selección francesa",
+      caption: "Mbappé llega al Mundial 2026 con 27 años, en su cenit competitivo, y a 5 goles del récord histórico de Klose en Mundiales.",
+      credit: {
+        author: "Balkan Photos",
+        license: "CC BY 2.0",
+        source: "Wikimedia Commons",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:Kylian_Mbapp%C3%A9_(46369981091).jpg",
+      },
+    },
+    {
       type: "h2",
       text: "Francia: la mejor plantilla del mundo (otra vez)",
       id: "francia",
@@ -117,6 +141,18 @@ const post: BlogPost = {
     {
       type: "p",
       text: "Brasil llegó a Qatar 2022 como favorita y cayó en cuartos contra Croacia. La memoria de aquel fracaso pesa. La hinchada brasileña —la más exigente del planeta— no perdonará otro tropiezo temprano. Cuota: **+550**.",
+    },
+    {
+      type: "image",
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Lamine_Yamal_in_2025.jpg/1280px-Lamine_Yamal_in_2025.jpg",
+      alt: "Lamine Yamal con la camiseta del FC Barcelona",
+      caption: "Lamine Yamal cumplirá 19 años durante el Mundial 2026 y es la mayor figura ofensiva española desde Iniesta.",
+      credit: {
+        author: "Biso",
+        license: "CC BY 4.0",
+        source: "Wikimedia Commons",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:Lamine_Yamal_in_2025.jpg",
+      },
     },
     {
       type: "h2",

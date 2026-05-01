@@ -92,6 +92,18 @@ const post: BlogPost = {
       ],
     },
     {
+      type: "image",
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Cleveland_Browns_17-39_Miami_Dolphins_%28Nov_13%2C_2022%29_-_Hard_Rock_Stadium_-_file_33.jpg/1280px-Cleveland_Browns_17-39_Miami_Dolphins_%28Nov_13%2C_2022%29_-_Hard_Rock_Stadium_-_file_33.jpg",
+      alt: "Hard Rock Stadium en Miami durante un partido de la NFL",
+      caption: "Hard Rock Stadium (Miami), sede del partido por el tercer puesto el 18 de julio de 2026.",
+      credit: {
+        author: "Elbert Hampton",
+        license: "CC0",
+        source: "Wikimedia Commons",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:Cleveland_Browns_17-39_Miami_Dolphins_(Nov_13,_2022)_-_Hard_Rock_Stadium_-_file_33.jpg",
+      },
+    },
+    {
       type: "h2",
       text: "Las 3 sedes de México",
       id: "sedes-mexico",
@@ -119,6 +131,18 @@ const post: BlogPost = {
       variant: "blue",
       title: "DATO HISTÓRICO",
       text: "El Estadio Azteca es el único estadio del mundo que ha visto los tres goles más recordados de la historia: el **gol del siglo** y la **mano de Dios** de Maradona (1986), el **doblete de Pelé** (1970) y el **chilena de Manuel Negrete** (1986). En 2026 sumará nueva historia.",
+    },
+    {
+      type: "image",
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Estadio_BBVA_Bancomer_%281%29.jpg/1280px-Estadio_BBVA_Bancomer_%281%29.jpg",
+      alt: "Estadio BBVA en Monterrey, México",
+      caption: "Estadio BBVA en Monterrey, casa de Rayados y una de las tres sedes mexicanas del Mundial 2026.",
+      credit: {
+        author: "Presidencia de la República Mexicana",
+        license: "CC BY 2.0",
+        source: "Wikimedia Commons",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:Estadio_BBVA_Bancomer_(1).jpg",
+      },
     },
     {
       type: "h2",

@@ -105,6 +105,18 @@ const post: BlogPost = {
       ],
     },
     {
+      type: "image",
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Estadio_Akron_02-07-2022_cabecera_sur_lado_derecho.jpg/1280px-Estadio_Akron_02-07-2022_cabecera_sur_lado_derecho.jpg",
+      alt: "Estadio Akron en Guadalajara, casa del Club Deportivo Guadalajara",
+      caption: "Estadio Akron en Guadalajara, una de las tres sedes mexicanas del Mundial 2026.",
+      credit: {
+        author: "Alejan98",
+        license: "CC0",
+        source: "Wikimedia Commons",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:Estadio_Akron_02-07-2022_cabecera_sur_lado_derecho.jpg",
+      },
+    },
+    {
       type: "h2",
       text: "Cómo verlo: derechos de televisión por país",
       id: "donde-ver",

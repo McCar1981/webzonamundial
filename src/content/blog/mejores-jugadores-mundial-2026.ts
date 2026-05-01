@@ -68,6 +68,18 @@ const post: BlogPost = {
       text: "El factor histórico: Mbappé ya tiene **12 goles en Mundiales** (4 en Rusia 2018, 8 en Qatar 2022 incluyendo hat-trick en la final). Si suma **5 más**, supera a **Miroslav Klose** y se convierte en el máximo goleador histórico de Copas del Mundo. Tiene 27 años. Le quedan dos Mundiales más, pero **2026 es la oportunidad para coronarse**.",
     },
     {
+      type: "image",
+      src: "https://upload.wikimedia.org/wikipedia/commons/c/c8/Lionel_Messi_WC2022.jpg",
+      alt: "Lionel Messi durante el Mundial Qatar 2022",
+      caption: "Lionel Messi en el Mundial 2022 — máximo goleador histórico de Argentina y MVP del torneo en Qatar.",
+      credit: {
+        author: "Hossein Zohrevand",
+        license: "CC BY 4.0",
+        source: "Wikimedia Commons",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:Lionel_Messi_WC2022.jpg",
+      },
+    },
+    {
       type: "h2",
       text: "2. Lionel Messi (Argentina · 39 años)",
       id: "messi",
@@ -84,6 +96,18 @@ const post: BlogPost = {
       type: "quote",
       text: "El último baile de Messi va a ser una experiencia colectiva. No puedes verlo sin emocionarte, da igual de qué selección seas.",
       cite: "Pablo Aimar, segundo entrenador de Argentina",
+    },
+    {
+      type: "image",
+      src: "https://upload.wikimedia.org/wikipedia/commons/3/31/Jude_Bellingham_Birmingham_2019.jpg",
+      alt: "Jude Bellingham con la camiseta del Birmingham City antes de su salto al Real Madrid",
+      caption: "Jude Bellingham, mediocentro completo de Inglaterra y Real Madrid. Una de las grandes esperanzas inglesas.",
+      credit: {
+        author: "Struway2",
+        license: "CC BY-SA 4.0",
+        source: "Wikimedia Commons",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:Jude_Bellingham_Birmingham_2019.jpg",
+      },
     },
     {
       type: "h2",
@@ -139,6 +163,18 @@ const post: BlogPost = {
     {
       type: "p",
       text: "El mediapunta alemán es el cerebro de la Mannschaft de Nagelsmann. Visión, último pase, gol, regate corto: tiene todo. Su pase al Bayern Munich en verano 2025 le dio un escenario más exigente y ha respondido con creces. Para que Alemania pase de cuartos, Wirtz tiene que ser de los 3 mejores del torneo.",
+    },
+    {
+      type: "image",
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Erling_Haaland_2023.jpg/1280px-Erling_Haaland_2023.jpg",
+      alt: "Erling Haaland con la camiseta de Noruega",
+      caption: "Erling Haaland, el mejor delantero centro del mundo, llevará a Noruega a su primer Mundial desde 1998.",
+      credit: {
+        author: "Jacek Stanislawek",
+        license: "CC BY-SA 4.0",
+        source: "Wikimedia Commons",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:Erling_Haaland_2023.jpg",
+      },
     },
     {
       type: "h2",

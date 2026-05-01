@@ -86,6 +86,18 @@ const post: BlogPost = {
       text: "La gran fortaleza de este XI: **edades en su cenit competitivo en posiciones clave**. Sólo Messi y Tagliafico están claramente al final de su trayectoria; el resto tiene entre 25 y 33 años. Y la profundidad del banquillo es enorme: **Garnacho, Foyth, Paredes, Lo Celso, Otamendi, Acuña, Almada, Nico González**. Hay competencia real por casi todos los puestos.",
     },
     {
+      type: "image",
+      src: "https://upload.wikimedia.org/wikipedia/commons/8/83/Lionel_Scaloni_2022_vs_Colombia.jpg",
+      alt: "Lionel Scaloni dirigiendo a Argentina contra Colombia",
+      caption: "Lionel Scaloni, seleccionador argentino. Asumió en 2018 sin experiencia en Primera División y conquistó el Mundial 2022.",
+      credit: {
+        author: "jmmuguerza",
+        license: "CC BY-SA 3.0",
+        source: "Wikimedia Commons",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:Lionel_Scaloni_2022_vs_Colombia.jpg",
+      },
+    },
+    {
       type: "h2",
       text: "El factor Messi: ¿qué versión llega a su quinto Mundial?",
       id: "factor-messi",
@@ -132,6 +144,18 @@ const post: BlogPost = {
     {
       type: "p",
       text: "El **debut de Argentina será el 16 de junio contra Argelia** en el Mercedes-Benz Stadium de Atlanta. Si gana —favorita clara— el camino hasta cuartos se hace mucho más cómodo. Una posible eliminatoria en cuartos sería contra **Países Bajos o Inglaterra**, dependiendo de cómo se reparta el cuadro tras los 32avos.",
+    },
+    {
+      type: "image",
+      src: "https://upload.wikimedia.org/wikipedia/commons/8/80/Lautaro_Martinez_2025.jpg",
+      alt: "Lautaro Martínez con la camiseta del Inter de Milán",
+      caption: "Lautaro Martínez, referencia ofensiva de Argentina y compañero de ataque de Messi en el Mundial 2026.",
+      credit: {
+        author: "Andrea Papaccio",
+        license: "CC0",
+        source: "Wikimedia Commons",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:Lautaro_Martinez_2025.jpg",
+      },
     },
     {
       type: "h2",

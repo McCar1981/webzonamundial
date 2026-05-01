@@ -178,6 +178,18 @@ const post: BlogPost = {
       text: "**Las amarillas se borran al final de los cuartos de final** —pasada esa ronda nadie llega a semifinales con riesgo de suspensión por acumulación—. Es un cambio respecto a la regla de Qatar donde se borraban tras los cuartos también pero generaba debates.",
     },
     {
+      type: "image",
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Baldomero_Toledo_checks_VAR_-_Seattle_Sounders_vs._Sporting_Kansas_City.jpg/1280px-Baldomero_Toledo_checks_VAR_-_Seattle_Sounders_vs._Sporting_Kansas_City.jpg",
+      alt: "Árbitro consultando el VAR durante un partido de fútbol",
+      caption: "El VAR (Video Assistant Referee) sigue activo en el Mundial 2026 para goles dudosos, penales, rojas directas y errores de identidad.",
+      credit: {
+        author: "SounderBruce",
+        license: "CC BY-SA 4.0",
+        source: "Wikimedia Commons",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:Baldomero_Toledo_checks_VAR_-_Seattle_Sounders_vs._Sporting_Kansas_City.jpg",
+      },
+    },
+    {
       type: "h3",
       text: "VAR y sistema semi-automático de fuera de juego",
       id: "var",

@@ -49,6 +49,18 @@ const post: BlogPost = {
       text: "**Top 5 editorial 2026**: 1) **México** (águila bordada y mosaico azteca), 2) **Argentina** (homenaje al 78), 3) **Cabo Verde** (debut histórico con kit propio), 4) **Brasil** (vuelta al amarillo puro), 5) **Países Bajos** (naranja con detalles geométricos). Polémicas: España (texturas excesivas), Inglaterra (rejilla en cuello).",
     },
     {
+      type: "image",
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Adidas_Mexico_national_football_team_home_jersey.JPG/1280px-Adidas_Mexico_national_football_team_home_jersey.JPG",
+      alt: "Camiseta Adidas de la selección mexicana de fútbol",
+      caption: "Camiseta titular de México fabricada por Adidas. Para 2026, el modelo incluye un águila bordada con hilo metálico dorado.",
+      credit: {
+        author: "BrokenSphere",
+        license: "CC BY-SA 3.0",
+        source: "Wikimedia Commons",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:Adidas_Mexico_national_football_team_home_jersey.JPG",
+      },
+    },
+    {
       type: "h2",
       text: "1. México (Adidas) — la más esperada",
       id: "mexico",
@@ -56,6 +68,18 @@ const post: BlogPost = {
     {
       type: "p",
       text: "Adidas y México llevan **8 años renovando licencia tras licencia** y ofrecen una de sus mejores camisetas en décadas para el Mundial 2026. **Verde profundo** (Pantone 357C), **detalles aztecas en relieve** en la zona del pecho, y un **águila bordada con hilo metálico dorado** que se llevó la mayor parte del presupuesto del proyecto. La segunda camiseta es **blanca con el escudo en color rojo desaturado** —una pieza que se va a vender como rosquillas en el área de los Estados Unidos.",
+    },
+    {
+      type: "image",
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Adidas_Argentina_national_football_team_away_jersey.JPG/1280px-Adidas_Argentina_national_football_team_away_jersey.JPG",
+      alt: "Camiseta Adidas de la selección argentina de fútbol",
+      caption: "La camiseta de Argentina con sus tres bandas verticales celestes — clásico inalterable. Para 2026 suma tres estrellas doradas.",
+      credit: {
+        author: "BrokenSphere",
+        license: "CC BY-SA 3.0",
+        source: "Wikimedia Commons",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:Adidas_Argentina_national_football_team_away_jersey.JPG",
+      },
     },
     {
       type: "h2",

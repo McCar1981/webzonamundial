@@ -102,6 +102,18 @@ const post: BlogPost = {
       text: "Italia (de nuevo fuera), Polonia, Serbia y Hungría no se han clasificado. Italia acumula así **tres Mundiales consecutivos sin participar** (2018, 2022 y 2026), una sequía sin precedentes en la historia del fútbol italiano.",
     },
     {
+      type: "image",
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/France_national_football_team_2006.JPG/1280px-France_national_football_team_2006.JPG",
+      alt: "Selección francesa posando antes de un partido del Mundial 2006",
+      caption: "Las 16 selecciones europeas son las potencias clásicas del fútbol mundial. Cualquiera puede ganar el Mundial 2026.",
+      credit: {
+        author: "Kotivalo",
+        license: "CC BY-SA 3.0",
+        source: "Wikimedia Commons",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:France_national_football_team_2006.JPG",
+      },
+    },
+    {
       type: "h2",
       text: "CONMEBOL · 6 selecciones sudamericanas",
       id: "conmebol",
@@ -250,6 +262,18 @@ const post: BlogPost = {
         ["K", "Portugal · Uzbekistán · Colombia · RD Congo"],
         ["L", "Inglaterra · Croacia · Ghana · Panamá"],
       ],
+    },
+    {
+      type: "image",
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Iran-Morocco_by_soccer.ru_14.jpg/1280px-Iran-Morocco_by_soccer.ru_14.jpg",
+      alt: "Selección de Marruecos en un partido contra Irán en Rusia 2018",
+      caption: "Marruecos, semifinalista en Qatar 2022, llega al Mundial 2026 como la principal candidata africana a romper la quiniela.",
+      credit: {
+        author: "Кирилл Венедиктов / soccer.ru",
+        license: "CC BY-SA 3.0",
+        source: "Wikimedia Commons",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:Iran-Morocco_by_soccer.ru_14.jpg",
+      },
     },
     {
       type: "h2",

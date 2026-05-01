@@ -85,6 +85,18 @@ const post: BlogPost = {
       text: "Cada selección juega tres partidos garantizados en la fase de grupos: J1, J2 y J3, separados normalmente por **3 a 5 días** de descanso. Los pasan a la **ronda de 32avos** los dos primeros de cada grupo más los **8 mejores terceros** de los 12 grupos, un sistema de repesca que ya se usó en algunas Eurocopas y que añade tensión hasta el último silbato.",
     },
     {
+      type: "image",
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/AT%26T_Stadium_Aerial.jpeg/1280px-AT%26T_Stadium_Aerial.jpeg",
+      alt: "Vista aérea del AT&T Stadium en Dallas",
+      caption: "AT&T Stadium en Dallas, sede que más partidos acogerá del Mundial 2026 (9 en total).",
+      credit: {
+        author: "Wikimedia Commons (sin autor especificado)",
+        license: "CC BY-SA 4.0",
+        source: "Wikimedia Commons",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:AT%26T_Stadium_Aerial.jpeg",
+      },
+    },
+    {
       type: "h2",
       text: "Las 16 sedes y cómo se reparten los partidos",
       id: "sedes",
@@ -140,6 +152,18 @@ const post: BlogPost = {
     {
       type: "p",
       text: "El otro factor crítico es la **temperatura**. Junio y julio son los meses más calurosos del año en buena parte del hemisferio norte. Dallas, Houston, Atlanta o Miami pueden alcanzar **38–42°C** con humedad alta en las horas centrales. La FIFA ha programado deliberadamente los partidos del mediodía en estadios con techo (AT&T Stadium en Dallas, NRG Stadium en Houston, BC Place en Vancouver) o en latitudes más frescas. Aun así, varios entrenadores ya han pedido pausas de hidratación obligatorias en cualquier partido de fase de grupos, una medida que la FIFA aún no ha confirmado.",
+    },
+    {
+      type: "image",
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Estadio_Azteca1706p2.jpg/1280px-Estadio_Azteca1706p2.jpg",
+      alt: "Estadio Azteca de Ciudad de México",
+      caption: "El Estadio Azteca, primer recinto en abrir tres Mundiales distintos: 1970, 1986 y 2026.",
+      credit: {
+        author: "Carlos Valenzuela",
+        license: "CC BY-SA 4.0",
+        source: "Wikimedia Commons",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:Estadio_Azteca1706p2.jpg",
+      },
     },
     {
       type: "h2",

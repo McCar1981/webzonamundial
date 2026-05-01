@@ -48,6 +48,18 @@ const post: BlogPost = {
       text: "**Top 5**: 1) Estadio Azteca (alma) · 2) MetLife Stadium (final) · 3) AT&T Stadium (techo retráctil + 9 partidos) · 4) SoFi Stadium (joya futurista) · 5) Mercedes-Benz Stadium (semifinal en Atlanta).",
     },
     {
+      type: "image",
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Estadio_Azteca1706p2.jpg/1280px-Estadio_Azteca1706p2.jpg",
+      alt: "Estadio Azteca en Ciudad de México",
+      caption: "Estadio Azteca, el coliseo mexicano que albergará la inauguración del Mundial 2026.",
+      credit: {
+        author: "Carlos Valenzuela",
+        license: "CC BY-SA 4.0",
+        source: "Wikimedia Commons",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:Estadio_Azteca1706p2.jpg",
+      },
+    },
+    {
       type: "h2",
       text: "1. Estadio Azteca · Ciudad de México",
       id: "azteca",
@@ -64,6 +76,18 @@ const post: BlogPost = {
     {
       type: "p",
       text: "82.500 plazas. Inaugurado en 2010 para los New York Giants y New York Jets de la NFL. Albergó la final de la Copa América 2024 (Argentina-Colombia) y será el escenario de la **final del Mundial 2026 el 19 de julio**. Su localización entre dos aeropuertos internacionales (JFK y Newark) lo hace logísticamente perfecto. Polémico por estar fuera del Azteca, pero comercialmente imbatible.",
+    },
+    {
+      type: "image",
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/AT%26T_Stadium_Aerial.jpeg/1280px-AT%26T_Stadium_Aerial.jpeg",
+      alt: "Vista aérea del AT&T Stadium en Arlington, Texas",
+      caption: "AT&T Stadium en Arlington (Dallas), el coliseo con techo retráctil que acogerá una semifinal y 9 partidos del torneo.",
+      credit: {
+        author: "Wikimedia Commons",
+        license: "CC BY-SA 4.0",
+        source: "Wikimedia Commons",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:AT%26T_Stadium_Aerial.jpeg",
+      },
     },
     {
       type: "h2",
@@ -136,6 +160,18 @@ const post: BlogPost = {
     {
       type: "p",
       text: "54.500 plazas, **techo retráctil**. Casa de los BC Lions (CFL) y Vancouver Whitecaps (MLS). El único recinto del Mundial fuera de USA y México con techo. Acogerá 7 partidos, incluyendo cruces de eliminación directa. La altura de Vancouver (sea level) y su clima fresco junio-julio (15-22°C de máxima) lo convierten en el estadio con condiciones más cómodas para los jugadores.",
+    },
+    {
+      type: "image",
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Lumen_Field_north_side_at_dusk.jpg/1280px-Lumen_Field_north_side_at_dusk.jpg",
+      alt: "Lumen Field en Seattle al atardecer",
+      caption: "Lumen Field en Seattle, conocido por tener la afición más ruidosa de la NFL.",
+      credit: {
+        author: "SounderBruce",
+        license: "CC BY-SA 4.0",
+        source: "Wikimedia Commons",
+        sourceUrl: "https://commons.wikimedia.org/wiki/File:Lumen_Field_north_side_at_dusk.jpg",
+      },
     },
     {
       type: "h2",

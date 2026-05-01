@@ -10,12 +10,19 @@ function isPublic(p: BlogPost, now: Date = new Date()): boolean {
   return new Date(p.publishedAt).getTime() <= now.getTime();
 }
 
-/** Todos los posts publicados, ordenados por fecha desc. */
+/** Todos los posts publicados, ordenados:
+ *  1. Posts fijados (pinned) primero, en orden de publishedAt descendente
+ *     entre ellos.
+ *  2. El resto por publishedAt descendente.
+ */
 export function getAllPosts(): BlogPost[] {
   const now = new Date();
-  return POSTS.filter((p) => isPublic(p, now)).sort(
-    (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-  );
+  const visible = POSTS.filter((p) => isPublic(p, now));
+  return visible.sort((a, b) => {
+    if (a.pinned && !b.pinned) return -1;
+    if (!a.pinned && b.pinned) return 1;
+    return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+  });
 }
 
 /** Sólo en build/desarrollo: incluye también los pendientes (para preview interno). */

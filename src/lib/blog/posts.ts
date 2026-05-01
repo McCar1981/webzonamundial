@@ -8,6 +8,10 @@
 
 import type { BlogPost } from "./types";
 
+// Manifiesto / carta de presentación de marca (siempre visible, anclado).
+import queEsZonaMundial from "@/content/blog/que-es-zona-mundial";
+
+// Calendario editorial M-J-S a partir del 3 de mayo de 2026.
 import calendarioMundial from "@/content/blog/calendario-mundial-2026-completo";
 import quienGanaMundial from "@/content/blog/quien-ganara-el-mundial-2026";
 import mejoresJugadores from "@/content/blog/mejores-jugadores-mundial-2026";
@@ -18,6 +22,7 @@ import cuandoEmpieza from "@/content/blog/cuando-empieza-el-mundial-2026";
 import seleccionesClasificadas from "@/content/blog/selecciones-clasificadas-mundial-2026";
 
 export const POSTS: BlogPost[] = [
+  queEsZonaMundial, // pinned: true → siempre primero
   calendarioMundial,
   quienGanaMundial,
   mejoresJugadores,

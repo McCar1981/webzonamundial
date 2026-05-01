@@ -116,6 +116,9 @@ export interface BlogPost {
   faq?: Array<{ q: string; a: string }>;
   /** Slugs de artículos relacionados. */
   related?: string[];
+  /** Si está fijado, aparece SIEMPRE primero como featured. Pensado para
+   * el manifiesto de presentación de marca o piezas atemporales clave. */
+  pinned?: boolean;
 }
 
 export const EDITORIAL_AUTHOR: BlogAuthor = {

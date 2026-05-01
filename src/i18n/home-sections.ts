@@ -367,6 +367,75 @@ export const homeSections = {
       ],
     },
 
+    /* ============ HeroSection ============ */
+    hero: {
+      headlines: {
+        juega: { l1: "El Mundial", l2: "no se mira.", l3: "Se juega." },
+        ia: {
+          l1: "Predice. Compite.",
+          l2: "Gana.",
+          l3a: "Con",
+          em: "IA Coach",
+          l3b: "de tu lado.",
+        },
+        fantasy: {
+          l1: "Arma tu",
+          l2: "selección ideal",
+          l3: "y reta al mundo.",
+        },
+      },
+      sub: {
+        before: "Predice en tiempo real, compite en",
+        bold1: "ligas privadas",
+        middle: ", crea tu fantasy y juega con",
+        chip: "IA Coach",
+        afterChip: "durante los",
+        bold2: "104 partidos",
+        end: "del Mundial 2026.",
+      },
+      pillars: {
+        matches: { label1: "Partidos", label2: "en directo" },
+        ai: { label1: "IA Coach", label2: "personal" },
+        prizes: { label1: "En premios", label2: "y exclusivos" },
+      },
+      ctaPrimary: "Pre-regístrate gratis",
+      ctaGhost: "Ver cómo funciona",
+      ctaNote: {
+        before: "Sin tarjeta ·",
+        bold: "Acceso anticipado",
+        after: "al Founders Pass",
+      },
+      proof: {
+        boldCount: "12.400+ aficionados",
+        afterBold: "ya están en la lista",
+        sub: "Se añaden ~180 cada día",
+        avatarAlt: "Creador",
+      },
+      slider: {
+        a11yLabel: "Elegir titular",
+        labels: { juega: "Juega", ia: "IA Coach", fantasy: "Fantasy" },
+        play: "Reanudar slider",
+        pause: "Pausar slider",
+      },
+      stats: {
+        users: "Usuarios activos",
+        venues: "Sedes oficiales",
+        teams: "Selecciones",
+        groups: "Grupos",
+        purity: "Fútbol puro",
+      },
+      chips: {
+        liveLabel: "En vivo ahora",
+        prediction: "Tu predicción",
+        predictionSub: "+47 puntos · gol min. 23",
+        ranking: "Ranking liga",
+        coachSuggests: "IA Coach sugiere",
+        coachSwap: "Cambia a Mbappé (+12%)",
+      },
+      stadiumAlt: "Estadio del Mundial",
+      phoneAlt: "Pantalla de la app ZonaMundial",
+    },
+
     /* ============ Countdown label shared with Hero ============ */
     countdownLabel: "Copa del Mundo · EE.UU · México · Canadá",
   },
@@ -714,6 +783,75 @@ export const homeSections = {
           desc: "Coming soon to App Store and Google Play.",
         },
       ],
+    },
+
+    /* ============ HeroSection ============ */
+    hero: {
+      headlines: {
+        juega: { l1: "The World Cup", l2: "isn't watched.", l3: "It's played." },
+        ia: {
+          l1: "Predict. Compete.",
+          l2: "Win.",
+          l3a: "With",
+          em: "AI Coach",
+          l3b: "by your side.",
+        },
+        fantasy: {
+          l1: "Build your",
+          l2: "dream squad",
+          l3: "and challenge the world.",
+        },
+      },
+      sub: {
+        before: "Predict in real time, compete in",
+        bold1: "private leagues",
+        middle: ", build your fantasy team and play with",
+        chip: "AI Coach",
+        afterChip: "across the",
+        bold2: "104 matches",
+        end: "of the 2026 World Cup.",
+      },
+      pillars: {
+        matches: { label1: "Live", label2: "matches" },
+        ai: { label1: "Personal", label2: "AI Coach" },
+        prizes: { label1: "In prizes", label2: "and exclusives" },
+      },
+      ctaPrimary: "Pre-register for free",
+      ctaGhost: "See how it works",
+      ctaNote: {
+        before: "No card ·",
+        bold: "Early access",
+        after: "to the Founders Pass",
+      },
+      proof: {
+        boldCount: "12,400+ fans",
+        afterBold: "are already on the list",
+        sub: "~180 join every day",
+        avatarAlt: "Creator",
+      },
+      slider: {
+        a11yLabel: "Choose headline",
+        labels: { juega: "Play", ia: "AI Coach", fantasy: "Fantasy" },
+        play: "Resume slider",
+        pause: "Pause slider",
+      },
+      stats: {
+        users: "Active users",
+        venues: "Official venues",
+        teams: "National teams",
+        groups: "Groups",
+        purity: "Pure football",
+      },
+      chips: {
+        liveLabel: "Live now",
+        prediction: "Your prediction",
+        predictionSub: "+47 points · goal min. 23",
+        ranking: "League rank",
+        coachSuggests: "AI Coach suggests",
+        coachSwap: "Switch to Mbappé (+12%)",
+      },
+      stadiumAlt: "World Cup stadium",
+      phoneAlt: "ZonaMundial app screen",
     },
 
     countdownLabel: "World Cup · USA · Mexico · Canada",

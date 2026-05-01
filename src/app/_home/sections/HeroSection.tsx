@@ -52,13 +52,15 @@ function Icon({ name, size = 18 }: { name: keyof typeof ICON_PATHS; size?: numbe
   );
 }
 
+type HeroT = (typeof homeSections)["es"]["hero"] | (typeof homeSections)["en"]["hero"];
+
 /* ---------- Variants for headlines (single variant renderer) ---------- */
-function HeadlineVariant({ variant }: { variant: Variant }) {
+function HeadlineVariant({ variant, t }: { variant: Variant; t: HeroT }) {
   if (variant === "ia") {
     return (
       <h1 className={styles.zmH1}>
-        <span className={styles.zmH1Line}>Predice. Compite.</span>
-        <span className={`${styles.zmH1Line} ${styles.zmH1Gold}`}>Gana.</span>
+        <span className={styles.zmH1Line}>{t.headlines.ia.l1}</span>
+        <span className={`${styles.zmH1Line} ${styles.zmH1Gold}`}>{t.headlines.ia.l2}</span>
         <span
           className={styles.zmH1Line}
           style={{
@@ -68,7 +70,8 @@ function HeadlineVariant({ variant }: { variant: Variant }) {
             marginTop: 12,
           }}
         >
-          Con <em className={styles.zmH1Em}>IA Coach</em> de tu lado.
+          {t.headlines.ia.l3a} <em className={styles.zmH1Em}>{t.headlines.ia.em}</em>{" "}
+          {t.headlines.ia.l3b}
         </span>
       </h1>
     );
@@ -76,19 +79,19 @@ function HeadlineVariant({ variant }: { variant: Variant }) {
   if (variant === "fantasy") {
     return (
       <h1 className={styles.zmH1}>
-        <span className={styles.zmH1Line}>Arma tu</span>
-        <span className={`${styles.zmH1Line} ${styles.zmH1Gold}`}>selección ideal</span>
-        <span className={styles.zmH1Line}>y reta al mundo.</span>
+        <span className={styles.zmH1Line}>{t.headlines.fantasy.l1}</span>
+        <span className={`${styles.zmH1Line} ${styles.zmH1Gold}`}>{t.headlines.fantasy.l2}</span>
+        <span className={styles.zmH1Line}>{t.headlines.fantasy.l3}</span>
       </h1>
     );
   }
   return (
     <h1 className={styles.zmH1}>
-      <span className={styles.zmH1Line}>El Mundial</span>
+      <span className={styles.zmH1Line}>{t.headlines.juega.l1}</span>
       <span className={styles.zmH1Line}>
-        <span className={styles.zmH1Strike}>no se mira.</span>
+        <span className={styles.zmH1Strike}>{t.headlines.juega.l2}</span>
       </span>
-      <span className={`${styles.zmH1Line} ${styles.zmH1Gold}`}>Se juega.</span>
+      <span className={`${styles.zmH1Line} ${styles.zmH1Gold}`}>{t.headlines.juega.l3}</span>
     </h1>
   );
 }
@@ -97,7 +100,7 @@ function HeadlineVariant({ variant }: { variant: Variant }) {
    wrapper always sizes to the tallest. Only the active one is opaque. */
 const ALL_VARIANTS: Variant[] = ["juega", "ia", "fantasy"];
 
-function Headline({ variant }: { variant: Variant }) {
+function Headline({ variant, t }: { variant: Variant; t: HeroT }) {
   return (
     <>
       {ALL_VARIANTS.map((v) => {
@@ -108,7 +111,7 @@ function Headline({ variant }: { variant: Variant }) {
             className={active ? styles.zmH1VariantActive : styles.zmH1VariantInactive}
             aria-hidden={active ? undefined : true}
           >
-            <HeadlineVariant variant={v} />
+            <HeadlineVariant variant={v} t={t} />
           </div>
         );
       })}
@@ -127,6 +130,7 @@ function HeroLeft({
   showCountdown: boolean;
 }) {
   const { locale } = useLanguage();
+  const t = homeSections[locale].hero;
   const countdownLabel = homeSections[locale].countdownLabel;
   const dd = cd.d;
   const hh = String(cd.h).padStart(2, "0");
@@ -151,13 +155,13 @@ function HeroLeft({
       )}
 
       <div className={styles.zmH1Wrap}>
-        <Headline variant={variant} />
+        <Headline variant={variant} t={t} />
       </div>
 
       <p className={styles.zmSub}>
-        Predice en tiempo real, compite en <b>ligas privadas</b>, crea tu fantasy y juega con{" "}
-        <span className={styles.zmChip}>IA Coach</span> durante los <b>104 partidos</b> del Mundial
-        2026.
+        {t.sub.before} <b>{t.sub.bold1}</b>
+        {t.sub.middle} <span className={styles.zmChip}>{t.sub.chip}</span> {t.sub.afterChip}{" "}
+        <b>{t.sub.bold2}</b> {t.sub.end}
       </p>
 
       <div className={styles.zmPillars}>
@@ -169,9 +173,9 @@ function HeroLeft({
             104<small>×</small>
           </div>
           <div className={styles.zmPillarL}>
-            Partidos
+            {t.pillars.matches.label1}
             <br />
-            en directo
+            {t.pillars.matches.label2}
           </div>
         </div>
         <div className={styles.zmPillar}>
@@ -180,9 +184,9 @@ function HeroLeft({
           </div>
           <div className={styles.zmPillarN}>24/7</div>
           <div className={styles.zmPillarL}>
-            IA Coach
+            {t.pillars.ai.label1}
             <br />
-            personal
+            {t.pillars.ai.label2}
           </div>
         </div>
         <div className={styles.zmPillar}>
@@ -191,15 +195,16 @@ function HeroLeft({
           </div>
           <div className={styles.zmPillarN}>€250k</div>
           <div className={styles.zmPillarL}>
-            En premios
-            <br />y exclusivos
+            {t.pillars.prizes.label1}
+            <br />
+            {t.pillars.prizes.label2}
           </div>
         </div>
       </div>
 
       <div className={styles.zmCtas}>
         <Link href="/registro" className={styles.zmCtaPrimary}>
-          Pre-regístrate gratis
+          {t.ctaPrimary}
           <span className={styles.zmCtaPrimaryArrow}>
             <Icon name="arrow" size={14} />
           </span>
@@ -208,13 +213,13 @@ function HeroLeft({
           <span className={styles.zmCtaGhostPlay}>
             <Icon name="play" size={10} />
           </span>
-          Ver cómo funciona
+          {t.ctaGhost}
         </Link>
       </div>
 
       <div className={styles.zmCtaNote}>
         <Icon name="lock" size={14} />
-        Sin tarjeta · <b>Acceso anticipado</b> al Founders Pass
+        {t.ctaNote.before} <b>{t.ctaNote.bold}</b> {t.ctaNote.after}
       </div>
 
       <div className={styles.zmProof}>
@@ -223,7 +228,7 @@ function HeroLeft({
             <div key={ix} className={styles.zmProofAvatar} title={a.nombre}>
               <img
                 src={a.imagen}
-                alt={`Creator ${a.nombre}`}
+                alt={`${t.proof.avatarAlt} ${a.nombre}`}
                 loading="lazy"
                 decoding="async"
               />
@@ -231,11 +236,9 @@ function HeroLeft({
           ))}
         </div>
         <div className={styles.zmProofText}>
-          <b>12.400+ aficionados</b> ya están en la lista
+          <b>{t.proof.boldCount}</b> {t.proof.afterBold}
           <br />
-          <span style={{ fontSize: 12, color: "rgba(255,255,255,0.4)" }}>
-            Se añaden ~180 cada día
-          </span>
+          <span style={{ fontSize: 12, color: "rgba(255,255,255,0.4)" }}>{t.proof.sub}</span>
         </div>
       </div>
     </div>
@@ -244,6 +247,8 @@ function HeroLeft({
 
 /* ---------- HERO RIGHT (phone stage) ---------- */
 function HeroRight() {
+  const { locale } = useLanguage();
+  const t = homeSections[locale].hero;
   return (
     <div className={styles.zmRight}>
       <div className={styles.zmPhoneStage}>
@@ -255,7 +260,7 @@ function HeroRight() {
             <source srcSet="/img/hero/app-phone.webp" type="image/webp" />
             <img
               src="/img/hero/app-phone.webp"
-              alt="Pantalla de la app ZonaMundial"
+              alt={t.phoneAlt}
               loading="eager"
               fetchPriority="high"
               decoding="async"
@@ -268,7 +273,7 @@ function HeroRight() {
             <Icon name="flame" size={14} />
           </div>
           <div>
-            <div className={styles.zmChipSub}>En vivo ahora</div>
+            <div className={styles.zmChipSub}>{t.chips.liveLabel}</div>
             <div className={styles.zmChipVal}>
               <span className={styles.zmPulseDotRed} />
               MEX 1 – 0 RSA
@@ -281,8 +286,8 @@ function HeroRight() {
             <Icon name="target" size={14} />
           </div>
           <div>
-            <div className={styles.zmChipMain}>Tu predicción</div>
-            <div className={styles.zmChipSub}>+47 puntos · gol min. 23</div>
+            <div className={styles.zmChipMain}>{t.chips.prediction}</div>
+            <div className={styles.zmChipSub}>{t.chips.predictionSub}</div>
           </div>
         </div>
 
@@ -291,7 +296,7 @@ function HeroRight() {
             <Icon name="trophy" size={14} />
           </div>
           <div>
-            <div className={styles.zmChipSub}>Ranking liga</div>
+            <div className={styles.zmChipSub}>{t.chips.ranking}</div>
             <div className={styles.zmChipVal}>
               1.847{" "}
               <small style={{ fontSize: 11, color: "#10B981", fontWeight: 600 }}>▲ 24</small>
@@ -304,8 +309,8 @@ function HeroRight() {
             <Icon name="bot" size={14} />
           </div>
           <div>
-            <div className={styles.zmChipMain}>IA Coach sugiere</div>
-            <div className={styles.zmChipSub}>Cambia a Mbappé (+12%)</div>
+            <div className={styles.zmChipMain}>{t.chips.coachSuggests}</div>
+            <div className={styles.zmChipSub}>{t.chips.coachSwap}</div>
           </div>
         </div>
       </div>
@@ -314,12 +319,6 @@ function HeroRight() {
 }
 
 /* ---------- Slider Dots (bottom center of hero) ---------- */
-const VARIANT_LABELS: Record<Variant, string> = {
-  juega: "Juega",
-  ia: "IA Coach",
-  fantasy: "Fantasy",
-};
-
 function SliderDots({
   variants,
   current,
@@ -333,8 +332,10 @@ function SliderDots({
   paused: boolean;
   setPaused: (b: boolean) => void;
 }) {
+  const { locale } = useLanguage();
+  const t = homeSections[locale].hero.slider;
   return (
-    <div className={styles.zmSliderDots} role="tablist" aria-label="Elegir titular">
+    <div className={styles.zmSliderDots} role="tablist" aria-label={t.a11yLabel}>
       {variants.map((v) => {
         const active = v === current;
         return (
@@ -343,12 +344,12 @@ function SliderDots({
             type="button"
             role="tab"
             aria-selected={active}
-            aria-label={VARIANT_LABELS[v]}
+            aria-label={t.labels[v]}
             className={`${styles.zmSliderDot} ${active ? styles.zmSliderDotActive : ""}`}
             onClick={() => onSelect(v)}
           >
             <span className={styles.zmSliderDotFill} />
-            <span className={styles.zmSliderDotLabel}>{VARIANT_LABELS[v]}</span>
+            <span className={styles.zmSliderDotLabel}>{t.labels[v]}</span>
           </button>
         );
       })}
@@ -356,7 +357,7 @@ function SliderDots({
         type="button"
         className={styles.zmSliderPauseBtn}
         onClick={() => setPaused(!paused)}
-        aria-label={paused ? "Reanudar slider" : "Pausar slider"}
+        aria-label={paused ? t.play : t.pause}
         aria-pressed={paused}
       >
         {paused ? (
@@ -376,12 +377,14 @@ function SliderDots({
 
 /* ---------- STATS BAR (bottom of hero) ---------- */
 function StatsBar() {
+  const { locale } = useLanguage();
+  const t = homeSections[locale].hero.stats;
   const stats: Array<{ ic: keyof typeof ICON_PATHS; n: string; l: string }> = [
-    { ic: "users", n: "+2.5M", l: "Usuarios activos" },
-    { ic: "shield", n: "16", l: "Sedes oficiales" },
-    { ic: "globe", n: "48", l: "Selecciones" },
-    { ic: "target", n: "12", l: "Grupos" },
-    { ic: "soccer", n: "100%", l: "Fútbol puro" },
+    { ic: "users", n: "+2.5M", l: t.users },
+    { ic: "shield", n: "16", l: t.venues },
+    { ic: "globe", n: "48", l: t.teams },
+    { ic: "target", n: "12", l: t.groups },
+    { ic: "soccer", n: "100%", l: t.purity },
   ];
   return (
     <div className={styles.zmStats}>
@@ -405,6 +408,8 @@ const VARIANTS: Variant[] = ["juega", "ia", "fantasy"];
 const AUTO_ROTATE_MS = 5000;
 
 export function HeroSection({ heroRef, titleRef, cd }: Props) {
+  const { locale } = useLanguage();
+  const tHero = homeSections[locale].hero;
   const [variant, setVariant] = useState<Variant>("juega");
   const [paused, setPaused] = useState(false);
   const [showCountdown] = useState(true);
@@ -443,8 +448,7 @@ export function HeroSection({ heroRef, titleRef, cd }: Props) {
           <source srcSet="/img/hero/stadium.webp" type="image/webp" />
           <img
             src="/img/hero/stadium.webp"
-            alt=""
-            role="presentation"
+            alt={tHero.stadiumAlt}
             loading="eager"
             fetchPriority="high"
             decoding="async"

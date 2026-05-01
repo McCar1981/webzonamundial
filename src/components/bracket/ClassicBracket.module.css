@@ -1,0 +1,558 @@
+/* src/components/bracket/ClassicBracket.module.css
+ * Vista clásica del bracket. Los PARTIDOS son protagonistas (cards grandes
+ * con marcador), no la tabla de posiciones (colapsable, secundaria).
+ */
+
+.root {
+  padding: 24px 16px 80px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* Phase nav (sticky tabs) */
+.phaseNav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 28px;
+  padding: 8px 0;
+  position: sticky;
+  top: 64px;
+  z-index: 20;
+  background: linear-gradient(180deg, rgba(6, 11, 20, 0.92) 70%, rgba(6, 11, 20, 0));
+  backdrop-filter: blur(8px);
+}
+.phaseTab {
+  appearance: none;
+  border: 1px solid var(--bb-border);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--bb-text-2);
+  padding: 8px 14px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 200ms var(--bb-ease);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.phaseTab:hover {
+  color: var(--bb-text);
+  border-color: var(--bb-border-strong);
+}
+.phaseTab[data-active="true"] {
+  background: var(--bb-gold-grad);
+  color: #1A1208;
+  border-color: transparent;
+}
+.phaseTab[data-locked="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.phaseTabBadge {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 9px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1px 6px;
+  border-radius: 99px;
+}
+.phaseTab[data-active="true"] .phaseTabBadge {
+  background: rgba(0, 0, 0, 0.18);
+}
+
+/* ===== GROUPS GRID ===== */
+.groupsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 22px;
+}
+.groupCard {
+  border: 1px solid var(--bb-border);
+  background: linear-gradient(180deg, rgba(15, 31, 48, 0.55), rgba(11, 24, 37, 0.35));
+  border-radius: 18px;
+  padding: 18px;
+  transition: all 280ms var(--bb-ease);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.groupCard:hover {
+  border-color: var(--bb-border-strong);
+}
+.groupHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.groupName {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+.groupName b {
+  color: var(--bb-gold-2);
+  font-size: 22px;
+}
+.groupCount {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  color: var(--bb-text-3);
+  letter-spacing: 0.1em;
+}
+
+/* ===== MATCH CARDS (HEADLINE) ===== */
+.groupMatches {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.matchCard {
+  appearance: none;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 10px;
+  align-items: center;
+  border: 1px solid rgba(201, 168, 76, 0.18);
+  background: rgba(255, 255, 255, 0.025);
+  border-radius: 12px;
+  padding: 12px 14px;
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--bb-text);
+  transition: all 220ms var(--bb-ease);
+  position: relative;
+  overflow: hidden;
+}
+.matchCard::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--bb-gold-grad);
+  opacity: 0;
+  transition: opacity 220ms var(--bb-ease);
+}
+.matchCard:hover {
+  border-color: var(--bb-border-strong);
+  background: rgba(201, 168, 76, 0.06);
+  transform: translateX(2px);
+}
+.matchCard:hover::before {
+  opacity: 1;
+}
+.matchCard[data-picked="true"] {
+  background: linear-gradient(90deg, rgba(201, 168, 76, 0.10), rgba(201, 168, 76, 0.02));
+  border-color: var(--bb-border-strong);
+}
+.matchCard[data-picked="true"]::before {
+  opacity: 1;
+}
+
+.matchTeam {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.matchTeamRight {
+  flex-direction: row-reverse;
+}
+.matchTeamFlag {
+  width: 28px;
+  height: 20px;
+  border-radius: 3px;
+  overflow: hidden;
+  background: #1A2434;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+.matchTeamFlag img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.matchTeamName {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.matchTeam[data-winner="true"] .matchTeamName {
+  color: var(--bb-gold-3);
+}
+.matchTeam[data-loser="true"] {
+  opacity: 0.5;
+}
+
+.matchScoreBox {
+  display: grid;
+  grid-template-columns: 28px 10px 28px;
+  gap: 2px;
+  align-items: center;
+  justify-items: center;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-weight: 800;
+  font-size: 16px;
+}
+.matchScoreSlot {
+  width: 28px;
+  height: 32px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed rgba(201, 168, 76, 0.25);
+  color: var(--bb-text-3);
+  transition: all 200ms var(--bb-ease);
+}
+.matchCard[data-picked="true"] .matchScoreSlot {
+  background: rgba(201, 168, 76, 0.15);
+  border: 1px solid var(--bb-gold-2);
+  color: var(--bb-gold-3);
+}
+.matchScoreColon {
+  color: var(--bb-text-3);
+  font-size: 14px;
+}
+.matchCardCta {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--bb-gold-2);
+  text-align: center;
+  padding-top: 4px;
+  text-transform: uppercase;
+  opacity: 0.7;
+  transition: opacity 200ms var(--bb-ease);
+}
+.matchCard:hover .matchCardCta {
+  opacity: 1;
+}
+.matchCard[data-picked="true"] .matchCardCta {
+  opacity: 0.5;
+}
+
+/* ===== STANDINGS (collapsible) ===== */
+.standingsToggle {
+  appearance: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border: none;
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--bb-text-2);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: all 200ms var(--bb-ease);
+}
+.standingsToggle:hover {
+  background: rgba(201, 168, 76, 0.08);
+  color: var(--bb-text);
+}
+.standingsToggle svg {
+  transition: transform 200ms var(--bb-ease);
+}
+.standingsToggle[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+.standings {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.standingRow {
+  display: grid;
+  grid-template-columns: 18px 22px 1fr auto;
+  gap: 8px;
+  align-items: center;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  background: rgba(255, 255, 255, 0.02);
+}
+.standingRow[data-rank="0"],
+.standingRow[data-rank="1"] {
+  background: linear-gradient(90deg, rgba(201, 168, 76, 0.12), transparent);
+  border-left: 2px solid var(--bb-gold-2);
+}
+.standingRow[data-rank="2"] {
+  background: rgba(201, 168, 76, 0.04);
+}
+.standingRow[data-rank="3"] {
+  opacity: 0.45;
+}
+.standingPos {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  color: var(--bb-text-3);
+}
+.standingFlag {
+  width: 22px;
+  height: 16px;
+  border-radius: 2px;
+  overflow: hidden;
+  background: #1A2434;
+}
+.standingFlag img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.standingName {
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.standingStats {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  color: var(--bb-text-2);
+  letter-spacing: 0.05em;
+}
+.standingStats b {
+  color: var(--bb-gold-2);
+}
+
+/* ===== KNOCKOUT BRACKET ===== */
+.knockoutWrap {
+  overflow-x: auto;
+  padding-bottom: 16px;
+  margin: 0 -16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  -webkit-overflow-scrolling: touch;
+}
+.knockoutWrap::-webkit-scrollbar {
+  height: 8px;
+}
+.knockoutWrap::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+}
+.knockoutWrap::-webkit-scrollbar-thumb {
+  background: var(--bb-border);
+  border-radius: 99px;
+}
+
+.knockoutGrid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 16px;
+  align-items: stretch;
+  min-width: max-content;
+}
+
+.bracketColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: space-around;
+  padding: 12px 0;
+  min-width: 220px;
+}
+.bracketColumnHead {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--bb-gold-2);
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.bracketCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 32px 12px;
+  min-width: 240px;
+}
+.bracketTrophy {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: var(--bb-gold-grad);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1A1208;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.18) inset, 0 0 50px rgba(253, 230, 138, 0.5);
+  position: relative;
+}
+.bracketTrophy::before {
+  content: "";
+  position: absolute;
+  inset: -16px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(253, 230, 138, 0.45), transparent 70%);
+  filter: blur(20px);
+  z-index: -1;
+}
+.bracketChampion {
+  text-align: center;
+}
+.bracketChampionLabel {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  color: var(--bb-gold-2);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.bracketChampionName {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  margin-top: 4px;
+  line-height: 1;
+  background: var(--bb-gold-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  min-height: 22px;
+}
+.bracketChampionPending {
+  font-size: 16px;
+  color: var(--bb-text-3);
+  margin-top: 4px;
+}
+
+/* Knockout match card */
+.koCard {
+  appearance: none;
+  background: rgba(15, 31, 48, 0.7);
+  border: 1px solid var(--bb-border);
+  border-radius: 12px;
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: all 220ms var(--bb-ease);
+  font-family: inherit;
+  color: var(--bb-text);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+}
+.koCard:hover:not(:disabled) {
+  border-color: var(--bb-border-strong);
+  background: rgba(20, 37, 54, 0.85);
+  transform: translateY(-1px);
+}
+.koCard:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+.koCard[data-picked="true"] {
+  border-color: var(--bb-gold-2);
+  background: linear-gradient(180deg, rgba(201, 168, 76, 0.10), rgba(20, 37, 54, 0.7));
+  box-shadow: 0 0 24px -8px rgba(253, 230, 138, 0.4);
+}
+.koCardSlot {
+  display: grid;
+  grid-template-columns: 22px 1fr auto;
+  gap: 8px;
+  align-items: center;
+  font-size: 12px;
+  padding: 3px 0;
+}
+.koCardSlot[data-winner="true"] {
+  color: var(--bb-gold-3);
+  font-weight: 700;
+}
+.koCardSlot[data-loser="true"] {
+  opacity: 0.5;
+}
+.koCardSlot[data-empty="true"] {
+  color: var(--bb-text-3);
+  font-style: italic;
+}
+.koCardName {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.koCardGoals {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  color: var(--bb-gold-2);
+}
+
+/* Mobile (< 720): stack vertical */
+@media (max-width: 720px) {
+  .root {
+    padding: 16px 12px 80px;
+  }
+  .phaseNav {
+    top: 0;
+    margin: -16px -12px 16px;
+    padding: 12px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    -webkit-overflow-scrolling: touch;
+  }
+  .phaseNav::-webkit-scrollbar {
+    display: none;
+  }
+  .phaseTab {
+    flex-shrink: 0;
+    font-size: 11px;
+    padding: 7px 11px;
+  }
+  .groupsGrid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .knockoutWrap {
+    margin: 0 -12px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .knockoutGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .bracketColumn {
+    min-width: 0;
+  }
+  .bracketCenter {
+    order: 99;
+    padding: 24px 12px;
+    min-width: 0;
+  }
+  .bracketTrophy {
+    width: 80px;
+    height: 80px;
+  }
+  .matchTeamName {
+    font-size: 12px;
+  }
+  .matchScoreSlot {
+    width: 24px;
+    height: 28px;
+    font-size: 14px;
+  }
+  .matchScoreBox {
+    grid-template-columns: 24px 8px 24px;
+  }
+}

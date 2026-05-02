@@ -120,7 +120,16 @@ export function SiteFooter() {
             <span className={styles.bottomIcon}>
               <IconGlobe />
             </span>
-            {t.copyright}
+            {t.copyrightParts.prefix}
+            <a
+              href="https://sprintmarkt.com/es/"
+              target="_blank"
+              rel="noopener"
+              title="SprintMarkt — Agencia digital en Valencia"
+            >
+              {t.copyrightParts.brand}
+            </a>
+            {t.copyrightParts.suffix}
           </span>
           <span className={styles.bottomItem}>{t.disclaimer}</span>
         </div>

@@ -322,6 +322,11 @@ export const homeSections = {
         },
       },
       copyright: "© 2026 Sprintmarkt · Valencia, España",
+      copyrightParts: {
+        prefix: "© 2026 ",
+        brand: "Sprintmarkt",
+        suffix: " · Valencia, España",
+      },
       disclaimer: "Plataforma de predicciones gratuita. No implica apuesta monetaria.",
     },
 
@@ -742,6 +747,11 @@ export const homeSections = {
         },
       },
       copyright: "© 2026 Sprintmarkt · Valencia, Spain",
+      copyrightParts: {
+        prefix: "© 2026 ",
+        brand: "Sprintmarkt",
+        suffix: " · Valencia, Spain",
+      },
       disclaimer: "Free prediction platform. Does not involve monetary betting.",
     },
 

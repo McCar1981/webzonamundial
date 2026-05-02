@@ -22,3 +22,4 @@ Allow: /manifest.json
 # Disallow: /
 
 Sitemap: https://zonamundial.app/sitemap.xml
+Sitemap: https://zonamundial.app/news-sitemap.xml

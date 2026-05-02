@@ -180,15 +180,63 @@ const jsonLd = {
       eventStatus: "https://schema.org/EventScheduled",
       eventAttendanceMode: "https://schema.org/MixedEventAttendanceMode",
       sport: "Fútbol",
+      // Image — required by Google for Event rich result
+      image: [
+        `${SITE_URL}/og-image.jpg`,
+        `${SITE_URL}/img/zonamundial-images/imagenes/IMG-20260302-WA0016-removebg-preview.webp`,
+      ],
+      // Location with full address per host country (Google requires address inside location)
       location: [
-        { "@type": "Country", name: "Estados Unidos" },
-        { "@type": "Country", name: "México" },
-        { "@type": "Country", name: "Canadá" },
+        {
+          "@type": "Place",
+          name: "Estados Unidos",
+          address: {
+            "@type": "PostalAddress",
+            addressCountry: "US",
+            addressRegion: "Multiple host cities",
+          },
+        },
+        {
+          "@type": "Place",
+          name: "México",
+          address: {
+            "@type": "PostalAddress",
+            addressCountry: "MX",
+            addressRegion: "Multiple host cities",
+          },
+        },
+        {
+          "@type": "Place",
+          name: "Canadá",
+          address: {
+            "@type": "PostalAddress",
+            addressCountry: "CA",
+            addressRegion: "Multiple host cities",
+          },
+        },
       ],
       organizer: {
         "@type": "Organization",
         name: "FIFA",
         url: "https://www.fifa.com",
+      },
+      // Performer — Google requires at least one for SportsEvent rich result.
+      // 48 teams play; we list the 3 host nations as referential performers.
+      performer: [
+        { "@type": "SportsTeam", name: "Selección de Estados Unidos" },
+        { "@type": "SportsTeam", name: "Selección de México" },
+        { "@type": "SportsTeam", name: "Selección de Canadá" },
+      ],
+      // Offers — required field. ZonaMundial doesn't sell tickets but documents
+      // free access to the prediction platform.
+      offers: {
+        "@type": "Offer",
+        url: `${SITE_URL}/registro`,
+        price: "0",
+        priceCurrency: "EUR",
+        availability: "https://schema.org/InStock",
+        validFrom: "2025-10-01",
+        category: "Free prediction platform access",
       },
     },
   ],

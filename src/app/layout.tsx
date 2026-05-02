@@ -1,8 +1,17 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 import RootLayoutClient from "./RootLayoutClient";
 import { LanguageProvider } from "@/i18n/LanguageContext";
+
+// Self-host Outfit via next/font for zero CLS + no render-blocking <link>.
+const outfit = Outfit({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  display: "swap",
+  variable: "--zm-font-outfit",
+});
 
 // Google AdSense Publisher ID (NEXT_PUBLIC_* expuesto al cliente).
 const ADSENSE_ID = process.env.NEXT_PUBLIC_ADSENSE_ID;
@@ -248,20 +257,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="es" className={outfit.variable}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap"
-          rel="stylesheet"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body style={{ margin: 0, padding: 0 }}>
+      <body style={{ margin: 0, padding: 0, fontFamily: "var(--zm-font-outfit), system-ui, sans-serif" }}>
         {ADSENSE_ID ? (
           <Script
             id="adsbygoogle-init"

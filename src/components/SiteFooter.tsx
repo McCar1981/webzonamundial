@@ -72,7 +72,12 @@ export function SiteFooter() {
 
             <p className={styles.poweredBy}>
               {t.poweredBy}{" "}
-              <a href="https://sprintmarkt.com" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://sprintmarkt.com/es/"
+                target="_blank"
+                rel="noopener"
+                title="SprintMarkt — Agencia digital en Valencia"
+              >
                 Sprintmarkt
               </a>
             </p>

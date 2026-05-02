@@ -31,20 +31,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}/tutoriales`, lastModified, changeFrequency: "weekly", priority: 0.6 },
     { url: `${BASE_URL}/blog`, lastModified, changeFrequency: "daily", priority: 0.8 },
     { url: `${BASE_URL}/noticias`, lastModified, changeFrequency: "daily", priority: 0.8 },
-    // Apps internas (alta prioridad UX)
-    { url: `${BASE_URL}/app/predicciones`, lastModified, changeFrequency: "daily", priority: 0.9 },
-    { url: `${BASE_URL}/app/fantasy`, lastModified, changeFrequency: "daily", priority: 0.9 },
-    { url: `${BASE_URL}/app/trivia`, lastModified, changeFrequency: "weekly", priority: 0.7 },
-    { url: `${BASE_URL}/app/ia-coach`, lastModified, changeFrequency: "weekly", priority: 0.7 },
-    { url: `${BASE_URL}/app/ligas`, lastModified, changeFrequency: "weekly", priority: 0.7 },
-    { url: `${BASE_URL}/app/rankings`, lastModified, changeFrequency: "daily", priority: 0.7 },
-    { url: `${BASE_URL}/app/matchcenter`, lastModified, changeFrequency: "daily", priority: 0.7 },
-    { url: `${BASE_URL}/app/streaming`, lastModified, changeFrequency: "weekly", priority: 0.7 },
-    { url: `${BASE_URL}/app/album`, lastModified, changeFrequency: "weekly", priority: 0.6 },
-    { url: `${BASE_URL}/app/chat`, lastModified, changeFrequency: "weekly", priority: 0.6 },
-    { url: `${BASE_URL}/app/micro`, lastModified, changeFrequency: "weekly", priority: 0.6 },
-    { url: `${BASE_URL}/app/modo-carrera`, lastModified, changeFrequency: "weekly", priority: 0.6 },
-    { url: `${BASE_URL}/app/stories`, lastModified, changeFrequency: "weekly", priority: 0.6 },
+    // /app/* (mockups del producto sin contenido sustancial — actualmente
+    // noindex via src/app/app/layout.tsx hasta que cada módulo tenga
+    // contenido real. NO listar en sitemap mientras tanto, así Google no
+    // recibe señales contradictorias).
     // Legales (índice bajo pero deben existir)
     { url: `${BASE_URL}/legal/aviso-legal`, lastModified, changeFrequency: "yearly", priority: 0.3 },
     { url: `${BASE_URL}/legal/cookies`, lastModified, changeFrequency: "yearly", priority: 0.3 },

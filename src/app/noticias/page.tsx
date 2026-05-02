@@ -28,11 +28,11 @@ export const metadata: Metadata = {
   },
 };
 
-// Always re-render. KV reads are cheap (~5ms) and freshness is critical
-// for an autopublishing news hub. ISR cache caused stale content during
-// validation phase.
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+// ISR: render once and serve cached HTML for 60s. Cron tick after publishing
+// calls revalidatePath('/noticias') to invalidate immediately, so freshness
+// stays sub-minute without paying the TTFB tax of force-dynamic on every
+// visit. KV stays as the source of truth.
+export const revalidate = 60;
 
 export default async function NoticiasPage() {
   const posts = await getAllPublicNoticias();

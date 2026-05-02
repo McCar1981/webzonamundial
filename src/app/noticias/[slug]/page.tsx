@@ -146,7 +146,8 @@ export default async function NoticiaPage({ params }: Props) {
   );
 }
 
-// Allow runtime ISR for newly auto-published slugs.
+// Allow runtime ISR for newly auto-published slugs (cron tick adds new
+// articles to KV; first visitor of a fresh slug pays the SSR + render
+// cost, subsequent visits served from ISR cache for 60s).
 export const dynamicParams = true;
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 60;

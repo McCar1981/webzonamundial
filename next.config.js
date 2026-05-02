@@ -44,6 +44,29 @@ const nextConfig = {
   },
   // Headers de seguridad
   async headers() {
+    // Content-Security-Policy permisivo pero seguro:
+    //  - default-src 'self' bloquea cargas inesperadas
+    //  - 'unsafe-inline' en script-src es necesario para Next.js inline JSON-LD
+    //  - 'unsafe-eval' bloqueado (Next prod no lo necesita)
+    //  - img-src https: data: blob: para soportar imágenes de noticias
+    //    desde fuentes externas variables (CNN, FIFA, Wikipedia, etc.)
+    //  - frame-src para Vercel Analytics y posibles embeds
+    const csp = [
+      "default-src 'self'",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://pagead2.googlesyndication.com https://www.googletagmanager.com https://www.google-analytics.com https://va.vercel-scripts.com",
+      "style-src 'self' 'unsafe-inline'",
+      "font-src 'self' data:",
+      "img-src 'self' data: blob: https:",
+      "media-src 'self' https:",
+      "connect-src 'self' https://www.google-analytics.com https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.upstash.io https://api.anthropic.com",
+      "frame-src 'self' https://googleads.g.doubleclick.net",
+      "base-uri 'self'",
+      "form-action 'self'",
+      "frame-ancestors 'none'",
+      "object-src 'none'",
+      "upgrade-insecure-requests",
+    ].join("; ");
+
     return [
       {
         source: "/(.*)",
@@ -62,6 +85,11 @@ const nextConfig = {
             value: "camera=(), microphone=(), geolocation=(self), payment=(), usb=()",
           },
           { key: "X-DNS-Prefetch-Control", value: "on" },
+          // Cross-Origin policies para mitigar Spectre + leaks entre orígenes
+          { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
+          { key: "Cross-Origin-Resource-Policy", value: "same-site" },
+          // Content Security Policy
+          { key: "Content-Security-Policy", value: csp },
         ],
       },
       // Cache agresivo en assets estáticos
@@ -85,6 +113,13 @@ const nextConfig = {
       {
         source: "/sitemap.xml",
         headers: [{ key: "Cache-Control", value: "public, max-age=3600" }],
+      },
+      {
+        source: "/news-sitemap.xml",
+        headers: [
+          // News sitemap should be very fresh (Google News checks frequently)
+          { key: "Cache-Control", value: "public, max-age=300, s-maxage=300" },
+        ],
       },
     ];
   },

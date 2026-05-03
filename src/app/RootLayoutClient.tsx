@@ -281,9 +281,9 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
         boxShadow: scrolled ? "0 10px 40px -10px rgba(0,0,0,0.5)" : "none",
         transition: "background 0.35s ease, backdrop-filter 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease",
       }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 20px", height: 64, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div style={{ maxWidth: 1440, margin: "0 auto", padding: "0 28px", height: 64, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24 }}>
           {/* Logo */}
-          <Link href="/" style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", textDecoration: "none" }} onClick={closeMobile}>
+          <Link href="/" style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", textDecoration: "none", flexShrink: 0 }} onClick={closeMobile}>
             <img
               src="/img/zonamundial-images/imagenes/IMG-20260302-WA0016-removebg-preview.webp"
               alt="ZonaMundial Logo"
@@ -296,7 +296,7 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
           </Link>
 
           {/* Desktop nav */}
-          <nav style={{ display: "flex", alignItems: "center", gap: 28 }} className="desktop-nav">
+          <nav style={{ display: "flex", alignItems: "center", gap: 22 }} className="desktop-nav">
             {NAV.map(item =>
               item.items ? (
                 <NavDropdown key={item.id} label={item.label} items={item.items} />
@@ -304,7 +304,7 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
                 <Link
                   key={item.id}
                   href={item.href || "/"}
-                  style={{ fontSize: 14, fontWeight: 600, color: MID, cursor: "pointer", transition: "color 0.3s", padding: "6px 0", textDecoration: "none" }}
+                  style={{ fontSize: 14, fontWeight: 600, color: MID, cursor: "pointer", transition: "color 0.3s", padding: "6px 0", textDecoration: "none", whiteSpace: "nowrap" }}
                   onMouseEnter={e => e.currentTarget.style.color = GOLD}
                   onMouseLeave={e => e.currentTarget.style.color = MID}
                 >
@@ -315,7 +315,7 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
           </nav>
 
           {/* Right side */}
-          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12, flexShrink: 0 }}>
             {/* Language toggle */}
             <div className="lang-toggle">
               <LanguageToggle />

@@ -148,6 +148,8 @@ export default function HeaderUserMenu({
           letterSpacing: 0.2,
           textDecoration: "none",
           display: "inline-flex",
+          whiteSpace: "nowrap",
+          alignItems: "center",
         }}
       >
         {fallbackCtaLabel}
@@ -158,7 +160,7 @@ export default function HeaderUserMenu({
   // ── Logged out: "Iniciar sesión" + CTA pre-registro
   if (!user) {
     return (
-      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
         <Link
           href="/login"
           style={{
@@ -175,6 +177,7 @@ export default function HeaderUserMenu({
             display: "inline-flex",
             alignItems: "center",
             gap: 6,
+            whiteSpace: "nowrap",
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.background = "rgba(201,168,76,0.08)";

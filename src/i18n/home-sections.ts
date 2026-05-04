@@ -411,7 +411,7 @@ export const homeSections = {
         after: "al Founders Pass",
       },
       proof: {
-        boldCount: "12.400+ aficionados",
+        boldCount: "8.642 aficionados",
         afterBold: "ya están en la lista",
         sub: "Se añaden ~180 cada día",
         avatarAlt: "Creador",
@@ -834,7 +834,7 @@ export const homeSections = {
         after: "to the Founders Pass",
       },
       proof: {
-        boldCount: "12,400+ fans",
+        boldCount: "8,642 fans",
         afterBold: "are already on the list",
         sub: "~180 join every day",
         avatarAlt: "Creator",

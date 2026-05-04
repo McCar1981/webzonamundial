@@ -30,7 +30,10 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 import { kv } from "@vercel/kv";
 
-export const BASE_COUNT = 1247;
+// Public counter baseline. Anything stored as a real email will be added
+// on top of this number when /api/waitlist and /api/registro return the
+// public count.
+export const BASE_COUNT = 8642;
 
 export type RegistroKind = "full" | "waitlist";
 

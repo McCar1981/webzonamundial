@@ -73,7 +73,14 @@ export async function POST(request: NextRequest) {
     const stripe = getStripe();
     const checkoutSession = await stripe.checkout.sessions.create({
       mode: "payment",
-      payment_method_types: ["card"],
+      // Apple Pay y Google Pay van piggybacking en payment_method_types: ["card"]
+      // — Stripe Checkout los detecta automáticamente cuando el navegador
+      // del usuario tiene wallet configurado. Añadimos también métodos
+      // locales según la moneda del precio.
+      payment_method_types:
+        currency === "eur"
+          ? ["card", "link"]
+          : ["card", "link"],
       // Forzamos email para que vaya pre-rellenado y atado a la sesión.
       customer_email: userEmail,
       line_items: [

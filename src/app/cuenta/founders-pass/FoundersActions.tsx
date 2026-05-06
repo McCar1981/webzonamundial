@@ -4,10 +4,38 @@ import { useState } from "react";
 
 interface Props {
   hasFounderPass: boolean;
+  /** Si está disponible, número de orden del Founder (1, 2, 3…). */
+  founderNumber?: number;
+  /** Nombre/email a mostrar en la insignia compartible. */
+  founderName?: string;
 }
 
-export default function FoundersActions({ hasFounderPass }: Props) {
+export default function FoundersActions({ hasFounderPass, founderNumber, founderName }: Props) {
   const [refundState, setRefundState] = useState<{ status: "idle" | "loading" | "ok" | "error"; message?: string }>({ status: "idle" });
+  const [shareCopied, setShareCopied] = useState(false);
+
+  function shareFounderUrl(): string {
+    const params = new URLSearchParams();
+    if (founderNumber) params.set("n", String(founderNumber));
+    if (founderName) params.set("name", founderName);
+    return `/api/og/founder?${params.toString()}`;
+  }
+
+  async function handleShare() {
+    const url = `${window.location.origin}/founders`;
+    const text = `Soy Founder de ZonaMundial 🏆 Apoyando el Mundial 2026 desde el primer día.`;
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: "Soy Founder · ZonaMundial 2026", text, url });
+      } catch {
+        /* user canceled */
+      }
+    } else if (navigator.clipboard) {
+      await navigator.clipboard.writeText(`${text} ${url}`);
+      setShareCopied(true);
+      setTimeout(() => setShareCopied(false), 2000);
+    }
+  }
 
   async function handleRefund() {
     if (!confirm("¿Solicitar reembolso del Founders Pass? Perderás el acceso a las ventajas Founders en cuanto Stripe procese la devolución.")) return;
@@ -29,6 +57,38 @@ export default function FoundersActions({ hasFounderPass }: Props) {
 
   return (
     <div className="mt-6 pt-6 border-t border-white/5">
+      {/* Compartir insignia */}
+      <div className="mb-5 p-4 rounded-xl" style={{ background: "rgba(201,168,76,0.06)", border: "1px solid rgba(201,168,76,0.18)" }}>
+        <div className="flex items-center justify-between gap-3 flex-wrap">
+          <div>
+            <div className="text-sm font-bold text-white mb-1">Comparte tu insignia</div>
+            <div className="text-xs text-gray-400">Imagen 1200×630 lista para X, Instagram y WhatsApp.</div>
+          </div>
+          <div className="flex gap-2 flex-wrap">
+            <a
+              href={shareFounderUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-medium px-4 py-2 rounded-full no-underline"
+              style={{ border: "1px solid rgba(201,168,76,0.35)", color: "#FDE68A" }}
+            >
+              Ver imagen
+            </a>
+            <button
+              type="button"
+              onClick={handleShare}
+              className="text-xs font-bold px-4 py-2 rounded-full"
+              style={{
+                background: "linear-gradient(135deg,#C9A84C,#FDE68A)",
+                color: "#1A1208",
+              }}
+            >
+              {shareCopied ? "Copiado ✓" : "Compartir"}
+            </button>
+          </div>
+        </div>
+      </div>
+
       {refundState.status === "ok" && (
         <div
           className="px-4 py-3 rounded-lg mb-3 text-sm"

@@ -8,7 +8,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { requireUser } from "@/lib/auth-helpers";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { getFounderRecord, isFounder } from "@/lib/founders/store";
+import { getFounderRecord, getFoundersCount, isFounder } from "@/lib/founders/store";
 import FoundersActions from "./FoundersActions";
 import PurchaseSuccessBanner from "./PurchaseSuccessBanner";
 
@@ -44,6 +44,7 @@ export default async function FoundersPassPage() {
   const email = user?.email ?? "";
   const founder = email ? await isFounder(email) : false;
   const record = founder ? await getFounderRecord(email) : null;
+  const totalFounders = founder ? await getFoundersCount() : 0;
 
   return (
     <div>
@@ -59,7 +60,13 @@ export default async function FoundersPassPage() {
       </Suspense>
 
       {founder && record ? (
-        <ActiveFounderCard email={email} record={record} formatDate={formatDate} formatAmount={formatAmount} />
+        <ActiveFounderCard
+          email={email}
+          record={record}
+          totalFounders={totalFounders}
+          formatDate={formatDate}
+          formatAmount={formatAmount}
+        />
       ) : (
         <BuyCard />
       )}
@@ -70,14 +77,18 @@ export default async function FoundersPassPage() {
 function ActiveFounderCard({
   email,
   record,
+  totalFounders,
   formatDate,
   formatAmount,
 }: {
   email: string;
   record: import("@/lib/founders/store").FounderRecord;
+  totalFounders: number;
   formatDate: (iso: string) => string;
   formatAmount: (cents: number, currency: string) => string;
 }) {
+  // El nombre que mostramos en la insignia: parte local del email (antes de @).
+  const displayName = email.split("@")[0];
   return (
     <div
       className="rounded-2xl border p-6 sm:p-8"
@@ -134,7 +145,7 @@ function ActiveFounderCard({
         />
       </div>
 
-      <FoundersActions hasFounderPass={true} />
+      <FoundersActions hasFounderPass={true} founderNumber={totalFounders} founderName={displayName} />
     </div>
   );
 }

@@ -16,6 +16,7 @@ interface Props {
   canUndo: boolean;
   onUndo: () => void;
   onReset: () => void;
+  onSeal?: () => void;
 }
 
 export default function BracketHUD({
@@ -25,6 +26,7 @@ export default function BracketHUD({
   canUndo,
   onUndo,
   onReset,
+  onSeal,
 }: Props) {
   const done = Object.keys(state.picks).length;
   const pct = Math.round((done / TOTAL_MATCHES) * 100);
@@ -105,6 +107,31 @@ export default function BracketHUD({
           </svg>
           Deshacer
         </button>
+        {onSeal && (
+          <button
+            type="button"
+            className={styles.btn}
+            onClick={onSeal}
+            disabled={done < 50}
+            aria-label="Sellar cápsula del tiempo"
+            title={done < 50 ? "Predice al menos 50 partidos para poder sellar" : "Sellar tu cápsula del tiempo"}
+            style={
+              done >= 50
+                ? {
+                    background: "linear-gradient(135deg,#C9A84C,#FDE68A)",
+                    color: "#1A1208",
+                    fontWeight: 700,
+                  }
+                : undefined
+            }
+          >
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+            Sellar
+          </button>
+        )}
         <button
           type="button"
           className={styles.btn}

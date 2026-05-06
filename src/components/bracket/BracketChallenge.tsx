@@ -13,6 +13,7 @@ import CosmicBracket from "./CosmicBracket";
 import CosmosBackground from "./CosmosBackground";
 import PhaseCompleteOverlay from "./PhaseCompleteOverlay";
 import CelebrationOverlay from "./CelebrationOverlay";
+import CapsuleSealModal from "./CapsuleSealModal";
 import ViewErrorBoundary from "./ViewErrorBoundary";
 import styles from "./bracket.module.css";
 
@@ -30,6 +31,7 @@ export default function BracketChallenge() {
   const [activeMatchId, setActiveMatchId] = useState<string | null>(null);
   const [phaseToast, setPhaseToast] = useState<{ title: string; sub: string } | null>(null);
   const [celebShown, setCelebShown] = useState(false);
+  const [capsuleOpen, setCapsuleOpen] = useState(false);
   const [celebDismissed, setCelebDismissed] = useState(false);
 
   // Track previous phase index to detect phase completions
@@ -132,6 +134,7 @@ export default function BracketChallenge() {
           canUndo={canUndo}
           onUndo={undo}
           onReset={handleReset}
+          onSeal={() => setCapsuleOpen(true)}
         />
 
         <ViewErrorBoundary viewName={view}>
@@ -160,6 +163,12 @@ export default function BracketChallenge() {
           setCelebDismissed(true);
         }}
         onShare={handleShare}
+      />
+
+      <CapsuleSealModal
+        open={capsuleOpen}
+        state={state}
+        onClose={() => setCapsuleOpen(false)}
       />
     </div>
   );

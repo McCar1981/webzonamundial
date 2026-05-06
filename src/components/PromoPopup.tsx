@@ -35,10 +35,36 @@ export default function PromoPopup() {
   const { t } = useLanguage();
   const isEs = t.nav.inicio === "Inicio";
 
+  // El popup ya no aparece tapando el hero al entrar. Espera a que el usuario
+  // haya interactuado con la página (scroll past del hero) o lleve al menos
+  // 25 segundos sin scrollar — lo que ocurra primero. Esto respeta el primer
+  // impacto del hero y solo aparece a usuarios que ya están explorando.
   useEffect(() => {
     if (isDismissed()) return;
-    const timer = setTimeout(() => setVisible(true), 1500);
-    return () => clearTimeout(timer);
+
+    let triggered = false;
+    const trigger = () => {
+      if (triggered) return;
+      triggered = true;
+      setVisible(true);
+      window.removeEventListener("scroll", onScroll);
+      clearTimeout(idleTimer);
+    };
+
+    const onScroll = () => {
+      // 60% del viewport ≈ ya pasó el hero principal en la mayoría de pantallas
+      if (window.scrollY > window.innerHeight * 0.6) trigger();
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    // Fallback: si lleva 25s sin scrollar, se muestra igual (puede haber
+    // estado leyendo el hero pero no nos quedamos esperando para siempre).
+    const idleTimer = setTimeout(trigger, 25000);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      clearTimeout(idleTimer);
+    };
   }, []);
 
   const handleClose = () => {

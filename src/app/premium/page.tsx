@@ -81,7 +81,7 @@ export default function PremiumPage() {
           </div>
 
           <Link
-            href="/registro"
+            href="/cuenta/comprar"
             className="inline-block px-10 py-4 rounded-xl font-bold text-lg no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(201,168,76,0.4)]"
             style={{ background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: BG }}
           >
@@ -241,7 +241,7 @@ export default function PremiumPage() {
                 <p className="text-sm mb-8 leading-relaxed" style={{ color: MID }}>{plan.description}</p>
 
                 <Link
-                  href="/registro"
+                  href="/cuenta/comprar"
                   className="block w-full py-4 rounded-xl font-bold text-base no-underline transition-all hover:shadow-[0_8px_32px_rgba(201,168,76,0.4)] hover:-translate-y-0.5"
                   style={{ background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: BG }}
                 >
@@ -303,7 +303,7 @@ export default function PremiumPage() {
                 <h2 className="text-3xl sm:text-4xl font-black text-white mb-4 leading-tight">{pT.cta.title}</h2>
                 <p className="text-gray-300 mb-8 text-lg leading-relaxed">{pT.cta.desc}</p>
                 <Link
-                  href="/registro"
+                  href="/cuenta/comprar"
                   className="inline-block px-10 py-4 rounded-xl font-bold text-lg no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(201,168,76,0.4)]"
                   style={{ background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: BG }}
                 >

@@ -251,11 +251,26 @@ const jsonLd = {
   ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Suprimir AdSense para Founders (cumple la promesa "navegación sin
+  // publicidad"). Cualquier error en lookup → cargamos AdSense por defecto.
+  let isFounderUser = false;
+  try {
+    const { getCurrentUser } = await import("@/lib/auth-helpers");
+    const { isFounder } = await import("@/lib/founders/store");
+    const u = await getCurrentUser();
+    if (u?.email) {
+      isFounderUser = await isFounder(u.email);
+    }
+  } catch {
+    isFounderUser = false;
+  }
+  const showAds = !!ADSENSE_ID && !isFounderUser;
+
   return (
     <html lang="es" className={outfit.variable}>
       <head>
@@ -265,7 +280,7 @@ export default function RootLayout({
         />
       </head>
       <body style={{ margin: 0, padding: 0, fontFamily: "var(--zm-font-outfit), system-ui, sans-serif" }}>
-        {ADSENSE_ID ? (
+        {showAds ? (
           <Script
             id="adsbygoogle-init"
             async

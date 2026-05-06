@@ -61,3 +61,17 @@ export async function getOwnProfile(): Promise<{
     profile: profile as ProfileRow | null,
   };
 }
+
+/**
+ * Versión soft de getOwnProfile pensada para Route Handlers (API).
+ * Devuelve null si no hay sesión activa en lugar de tirar/redirigir.
+ * Usar en endpoints que tienen que responder JSON 401 al cliente.
+ */
+export async function getCurrentUser(): Promise<{ id: string; email: string | null } | null> {
+  const supabase = createSupabaseServerClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return null;
+  return { id: user.id, email: user.email ?? null };
+}

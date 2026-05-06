@@ -1,8 +1,18 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useEffect } from "react";
 
 const BG="#060B14",BG2="#0F1D32",GOLD="#c9a84c",GOLD2="#e8d48b",MID="#8a94b0",DIM="#6a7a9a",DARK="#4a5570";
+
+const QUICK_LINKS = [
+  { href: "/calendario", label: "Calendario" },
+  { href: "/selecciones", label: "Selecciones" },
+  { href: "/sedes", label: "Sedes" },
+  { href: "/bracket", label: "Bracket" },
+  { href: "/blog", label: "Blog editorial" },
+  { href: "/founders", label: "Founders Pass" },
+];
 
 export default function NotFoundPreview(){
   const[cardAngle,setCardAngle]=useState(6);
@@ -90,25 +100,42 @@ export default function NotFoundPreview(){
 
         {/* Buttons */}
         <div style={{display:"flex",flexWrap:"wrap",alignItems:"center",justifyContent:"center",gap:12}}>
-          <button style={{
+          <Link href="/" style={{
+            display:"inline-block",textDecoration:"none",
             padding:"13px 28px",borderRadius:12,border:"none",cursor:"pointer",
             background:`linear-gradient(135deg,${GOLD},${GOLD2})`,
             color:BG,fontWeight:700,fontSize:15,fontFamily:"inherit",
             transition:"all .3s",boxShadow:"0 4px 20px rgba(201,168,76,0.2)",
-          }}
-            onMouseEnter={e=>e.currentTarget.style.boxShadow="0 8px 32px rgba(201,168,76,0.4)"}
-            onMouseLeave={e=>e.currentTarget.style.boxShadow="0 4px 20px rgba(201,168,76,0.2)"}
-          >Volver al inicio</button>
-          <button style={{
+          }}>Volver al inicio</Link>
+          <Link href="/calendario" style={{
+            display:"inline-block",textDecoration:"none",
             padding:"13px 24px",borderRadius:12,cursor:"pointer",
             border:"1px solid rgba(201,168,76,0.3)",background:"transparent",
             color:GOLD,fontWeight:600,fontSize:14,fontFamily:"inherit",
             transition:"all .3s",
-          }}>Ver partidos →</button>
+          }}>Ver partidos →</Link>
+        </div>
+
+        {/* Quick links a páginas populares */}
+        <div style={{marginTop:32,paddingTop:24,borderTop:`1px solid ${BG2}`}}>
+          <p style={{fontSize:11,color:DIM,letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:14,fontFamily:"'JetBrains Mono', monospace"}}>
+            // O explora estas secciones
+          </p>
+          <div style={{display:"flex",flexWrap:"wrap",justifyContent:"center",gap:8}}>
+            {QUICK_LINKS.map(l => (
+              <Link key={l.href} href={l.href} style={{
+                padding:"7px 14px",borderRadius:99,
+                background:"rgba(255,255,255,0.04)",
+                border:"1px solid rgba(255,255,255,0.08)",
+                color:MID,fontSize:12,textDecoration:"none",
+                transition:"all .2s",
+              }}>{l.label}</Link>
+            ))}
+          </div>
         </div>
 
         {/* Fun fact */}
-        <p style={{fontSize:11,color:DARK,marginTop:40}}>
+        <p style={{fontSize:11,color:DARK,marginTop:32}}>
           Dato: en el Mundial 2022 se mostraron 236 tarjetas amarillas y 4 rojas directas.
         </p>
       </div>

@@ -121,6 +121,21 @@ const nextConfig = {
           { key: "Cache-Control", value: "public, max-age=300, s-maxage=300" },
         ],
       },
+      // /embed/* — permitir embedido en cualquier dominio externo. Sobrescribe
+      // el X-Frame-Options DENY y el CSP frame-ancestors 'none' del catch-all
+      // de arriba con valores más permisivos (solo aplicados a /embed/*).
+      {
+        source: "/embed/:path*",
+        headers: [
+          { key: "X-Frame-Options", value: "ALLOWALL" },
+          {
+            key: "Content-Security-Policy",
+            value: "frame-ancestors *",
+          },
+          // Cache 5 min para que un blog que embebe vea cambios pronto.
+          { key: "Cache-Control", value: "public, s-maxage=300, stale-while-revalidate=600" },
+        ],
+      },
     ];
   },
 };

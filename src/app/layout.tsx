@@ -4,6 +4,7 @@ import { Outfit } from "next/font/google";
 import "./globals.css";
 import RootLayoutClient from "./RootLayoutClient";
 import { LanguageProvider } from "@/i18n/LanguageContext";
+import CookieConsent from "@/components/CookieConsent";
 
 // Self-host Outfit via next/font for zero CLS + no render-blocking <link>.
 const outfit = Outfit({
@@ -281,17 +282,25 @@ export default async function RootLayout({
       </head>
       <body style={{ margin: 0, padding: 0, fontFamily: "var(--zm-font-outfit), system-ui, sans-serif" }}>
         {showAds ? (
-          <Script
-            id="adsbygoogle-init"
-            async
-            strategy="afterInteractive"
-            crossOrigin="anonymous"
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_ID}`}
-          />
+          <>
+            {/* Google Consent Mode v2: por defecto todo denied. CookieConsent
+                lo actualiza al elegir el usuario. */}
+            <Script id="consent-mode-v2" strategy="beforeInteractive">
+              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});`}
+            </Script>
+            <Script
+              id="adsbygoogle-init"
+              async
+              strategy="afterInteractive"
+              crossOrigin="anonymous"
+              src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_ID}`}
+            />
+          </>
         ) : null}
         <LanguageProvider>
           <RootLayoutClient>{children}</RootLayoutClient>
         </LanguageProvider>
+        {showAds ? <CookieConsent /> : null}
       </body>
     </html>
   );

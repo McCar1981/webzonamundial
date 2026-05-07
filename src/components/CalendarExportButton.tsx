@@ -12,6 +12,7 @@
 // query string ya construida.
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 interface Props {
   /** Visual: 'panel' (grande) o 'hero' (compacto inline) */
@@ -63,14 +64,17 @@ export default function CalendarExportButton({
     return (
       <>
         <CompactButton onClick={() => setOpen(true)} label={label} />
-        {open ? (
-          <ExportModal
-            onClose={() => setOpen(false)}
-            httpsUrl={httpsUrl}
-            webcalUrl={webcalUrl}
-            googleUrl={googleUrl}
-          />
-        ) : null}
+        {open
+          ? createPortal(
+              <ExportModal
+                onClose={() => setOpen(false)}
+                httpsUrl={httpsUrl}
+                webcalUrl={webcalUrl}
+                googleUrl={googleUrl}
+              />,
+              document.body
+            )
+          : null}
       </>
     );
   }
@@ -78,14 +82,17 @@ export default function CalendarExportButton({
   return (
     <>
       <PanelButton onClick={() => setOpen(true)} label={label} />
-      {open ? (
-        <ExportModal
-          onClose={() => setOpen(false)}
-          httpsUrl={httpsUrl}
-          webcalUrl={webcalUrl}
-          googleUrl={googleUrl}
-        />
-      ) : null}
+      {open
+        ? createPortal(
+            <ExportModal
+              onClose={() => setOpen(false)}
+              httpsUrl={httpsUrl}
+              webcalUrl={webcalUrl}
+              googleUrl={googleUrl}
+            />,
+            document.body
+          )
+        : null}
     </>
   );
 }

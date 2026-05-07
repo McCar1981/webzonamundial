@@ -9,6 +9,19 @@ Disallow: /api/
 Disallow: /studio/
 Disallow: /_next/
 
+# Bloquear OG images dinámicas (no son páginas de contenido — solo se usan
+# cuando alguien comparte un artículo en redes). Search Console las marcaba
+# como "Error de servidor 5xx" pero no aportan valor SEO al rastrearse.
+Disallow: */opengraph-image
+Disallow: */opengraph-image*
+
+# Bloquear áreas privadas / con auth (no deben aparecer en Google)
+Disallow: /cuenta/
+Disallow: /onboarding
+Disallow: /admin/
+Disallow: /login
+Disallow: /embed/
+
 # Permitir explícitamente recursos estáticos importantes
 Allow: /img/
 Allow: /favicon.ico

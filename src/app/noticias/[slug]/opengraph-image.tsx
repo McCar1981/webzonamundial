@@ -40,7 +40,15 @@ const CAT_COLORS: Record<string, string> = {
 };
 
 export default async function Image({ params }: { params: { slug: string } }) {
-  const noticia = await getNoticiaBySlugPublic(params.slug);
+  // Tolerantes a fallos de KV/Supabase: si el lookup falla, generamos una OG
+  // genérica en lugar de devolver 500. Search Console marcaba esta ruta como
+  // "Error de servidor 5xx" cuando la noticia no existía o el store fallaba.
+  let noticia: Awaited<ReturnType<typeof getNoticiaBySlugPublic>> = null;
+  try {
+    noticia = await getNoticiaBySlugPublic(params.slug);
+  } catch (err) {
+    console.warn(`[og noticia] lookup falló para ${params.slug}:`, (err as Error).message);
+  }
   const title = noticia?.title || "Mundial 2026";
   const cat = noticia?.cat || "selecciones";
   const author = noticia ? getAuthor(noticia.authorId) : null;

@@ -21,7 +21,14 @@ interface Props {
 }
 
 export default async function OgImage({ params }: Props) {
-  const team = await loadTeam(params.slug);
+  // Tolerantes a fallos: si loadTeam tira (fs error, JSON malformado, etc.)
+  // devolvemos OG genérica de marca en lugar de 500.
+  let team: Awaited<ReturnType<typeof loadTeam>> = null;
+  try {
+    team = await loadTeam(params.slug);
+  } catch (err) {
+    console.warn(`[og selecciones] loadTeam falló para ${params.slug}:`, (err as Error).message);
+  }
 
   // Si no existe ficha BIBLIA, OG genérica con marca
   if (!team) {

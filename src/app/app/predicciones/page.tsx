@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SvgIcon } from "@/components/icons";
+import ModuleLandingExtras from "@/components/app-modules/ModuleLandingExtras";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -373,6 +374,8 @@ export default function PrediccionesPage() {
           </Link>
         </div>
       </section>
+
+      <ModuleLandingExtras slug="predicciones" />
     </div>
   );
 }

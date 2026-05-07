@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SvgIcon } from "@/components/icons";
+import ModuleLandingExtras from "@/components/app-modules/ModuleLandingExtras";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -207,6 +208,8 @@ export default function MicroPage() {
           </Link>
         </div>
       </section>
+
+      <ModuleLandingExtras slug="micro" />
     </div>
   );
 }

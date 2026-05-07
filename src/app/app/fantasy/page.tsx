@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ICON_V3, ICON_DESCUBRE } from "@/components/icons";
+import ModuleLandingExtras from "@/components/app-modules/ModuleLandingExtras";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -552,6 +553,8 @@ export default function FantasyPage() {
           </p>
         </div>
       </section>
+
+      <ModuleLandingExtras slug="fantasy" />
     </div>
   );
 }

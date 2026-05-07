@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { ICON_V3, ICON_DESCUBRE } from "@/components/icons";
+import ModuleLandingExtras from "@/components/app-modules/ModuleLandingExtras";
 
 const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a";
 
@@ -356,6 +357,8 @@ export default function IACoachPage() {
           </Link>
         </div>
       </section>
+
+      <ModuleLandingExtras slug="ia-coach" />
     </div>
   );
 }

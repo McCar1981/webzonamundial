@@ -69,25 +69,22 @@ export default function PremiumPage() {
     >
       {/* ═══════ HERO ═══════ */}
       <section className="relative overflow-hidden pt-12 pb-16 sm:pt-16 sm:pb-24 px-5">
-        {/* Ambient glows */}
-        <div
-          aria-hidden
-          className="absolute top-[-120px] left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full pointer-events-none"
-          style={{
-            background: "radial-gradient(ellipse, rgba(201,168,76,0.18) 0%, transparent 65%)",
-            filter: "blur(60px)",
-          }}
-        />
-        <div
-          aria-hidden
-          className="absolute bottom-0 right-[-200px] w-[500px] h-[500px] rounded-full pointer-events-none"
-          style={{
-            background: "radial-gradient(circle, rgba(117,170,219,0.10) 0%, transparent 70%)",
-            filter: "blur(50px)",
-          }}
-        />
+        {/* Cinematic background — desktop & mobile variants */}
+        <picture>
+          <source media="(min-width: 768px)" srcSet="/img/premium/bg-desktop.png" />
+          <img
+            src="/img/premium/bg-mobile.png"
+            alt=""
+            role="presentation"
+            className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+            loading="eager"
+            decoding="async"
+          />
+        </picture>
+        {/* Dark overlay to ensure text readability */}
+        <div className="absolute inset-0 pointer-events-none" style={{ background: "rgba(6,11,20,0.35)" }} />
         {/* Top gold line */}
-        <div className="absolute top-0 left-0 w-full h-[2px]" style={{ background: `linear-gradient(90deg, transparent 10%, ${GOLD}80, transparent 90%)` }} />
+        <div className="absolute top-0 left-0 w-full h-[2px]" style={{ background: `linear-gradient(90deg, transparent 5%, ${GOLD}, transparent 95%)` }} />
 
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           {/* Pill */}
@@ -98,7 +95,7 @@ export default function PremiumPage() {
               background: `${GOLD}08`,
             }}
           >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ background: GOLD, boxShadow: `0 0 6px ${GOLD}` }} />
+            <span style={{ color: GOLD, fontSize: 14 }}>&#10022;</span>
             <span className="text-[10px] font-bold uppercase tracking-[0.25em]" style={{ color: GOLD }}>
               {isEN ? "Premium Experience" : "Experiencia Premium"}
             </span>
@@ -167,24 +164,60 @@ export default function PremiumPage() {
       {/* ═══════ STATS BANNER ═══════ */}
       <section className="relative border-y" style={{ borderColor: "rgba(201,168,76,0.12)" }}>
         <div className="max-w-5xl mx-auto px-5 py-8 sm:py-10">
-          <div className="grid grid-cols-3 gap-3 sm:gap-6 text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-5">
             {[
-              { val: 2847, suffix: "", label: isEN ? "Premium users" : "Usuarios Premium" },
-              { val: 98, suffix: "%", label: isEN ? "Would renew" : "Renovarían" },
-              { val: 24, suffix: "h", label: isEN ? "Priority support" : "Soporte prioritario" },
+              {
+                val: 2847, suffix: "", label: isEN ? "Premium users" : "Usuarios Premium",
+                icon: (
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={GOLD} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                ),
+              },
+              {
+                val: 98, suffix: "%", label: isEN ? "Would renew" : "Renovarían",
+                icon: (
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke={GOLD} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5l-8-3z" />
+                    <polygon points="12 8 13.12 10.76 16 11.14 14 13.06 14.54 16 12 14.52 9.46 16 10 13.06 8 11.14 10.88 10.76" fill={GOLD} stroke="none" />
+                  </svg>
+                ),
+              },
+              {
+                val: 24, suffix: "h", label: isEN ? "Priority support" : "Soporte prioritario",
+                icon: (
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke={GOLD} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
+                    <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
+                  </svg>
+                ),
+              },
             ].map((s, i) => (
               <div
                 key={i}
-                className="py-4 sm:py-5 px-3 rounded-2xl border"
+                className="flex items-center gap-4 py-4 sm:py-5 px-5 sm:px-6 rounded-2xl border"
                 style={{
-                  borderColor: "rgba(255,255,255,0.05)",
-                  background: "linear-gradient(135deg, rgba(15,23,42,0.6), rgba(11,24,37,0.4))",
+                  borderColor: `${GOLD}18`,
+                  background: "linear-gradient(135deg, rgba(15,23,42,0.85), rgba(11,24,37,0.7))",
                 }}
               >
-                <div className="text-2xl sm:text-4xl font-black" style={{ color: GOLD }}>
-                  <StatCounter value={s.val} suffix={s.suffix} />
+                <div
+                  className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0"
+                  style={{
+                    border: `1.5px solid ${GOLD}40`,
+                    background: `${GOLD}08`,
+                  }}
+                >
+                  {s.icon}
                 </div>
-                <div className="text-[10px] sm:text-xs mt-1" style={{ color: DIM }}>{s.label}</div>
+                <div>
+                  <div className="text-2xl sm:text-3xl font-black" style={{ color: GOLD }}>
+                    <StatCounter value={s.val} suffix={s.suffix} />
+                  </div>
+                  <div className="text-[10px] sm:text-xs" style={{ color: DIM }}>{s.label}</div>
+                </div>
               </div>
             ))}
           </div>

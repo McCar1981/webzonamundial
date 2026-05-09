@@ -5,8 +5,11 @@
   "name_es": "España",
   "name_en": "Spain",
   "name_local": "España",
-  "nicknames": ["La Roja", "La Furia Roja", "La Selección"],
-
+  "nicknames": [
+    "La Roja",
+    "La Furia Roja",
+    "La Selección"
+  ],
   "flag": {
     "colors": {
       "primary": "#AA151B",
@@ -15,16 +18,16 @@
       "contrast_text": "#FFFFFF"
     }
   },
-
   "country": {
     "capital": "Madrid",
-    "language_official": ["Español"],
+    "language_official": [
+      "Español"
+    ],
     "population": 48592909,
     "area_km2": 505990,
     "timezone": "Europe/Madrid",
     "continent": "Europa"
   },
-
   "federation": {
     "name": "Real Federación Española de Fútbol",
     "abbreviation": "RFEF",
@@ -32,20 +35,17 @@
     "headquarters": "Las Rozas, Madrid",
     "website": "https://www.rfef.es"
   },
-
   "confederation": "UEFA",
-
   "fifa_ranking": {
     "current": 2,
     "last_updated": "2026-04-03"
   },
-
   "kit": {
     "wc_2026": {
       "brand": "Adidas",
       "season": "2025-2026",
       "home": {
-        "front_url": "[PLACEHOLDER: /img/kits/2026/home/espana.svg]",
+        "front_url": "/img/kits/2026/home/espana.png",
         "back_url": null,
         "primary_color": "#AA151B",
         "secondary_color": "#F1BF00",
@@ -76,18 +76,15 @@
       }
     ]
   },
-
   "wc_2026": {
     "qualified_via": "direct",
     "qualifying_summary": "Líder del Grupo E de las eliminatorias UEFA con 16 de 18 puntos posibles (5 victorias y 1 empate). Cinco goleadas consecutivas (3-0, 6-0, 2-0, 4-0, 4-0) y solo el empate 2-2 ante Turquía en la última jornada como única mancha. Sin encajar gol en los primeros 5 partidos hasta el cierre. Mikel Merino terminó como goleador del equipo en el ciclo. España aseguró su 13ª clasificación consecutiva al Mundial.",
-
     "qualifying": {
       "confederation_round": "Eliminatorias UEFA Mundial 2026 — Grupo E",
       "format": "6 partidos · ida y vuelta · todos contra todos",
       "duration": "Septiembre 2025 — Noviembre 2025",
       "final_position": 1,
       "total_teams_in_group": 4,
-
       "stats": {
         "played": 6,
         "won": 5,
@@ -100,230 +97,879 @@
         "win_percentage": 83.3,
         "clean_sheets": 5
       },
-
       "coach_during_qualifying": "Luis de la Fuente",
-
       "matches": [
         {
           "matchday": 1,
           "date": "2025-09-04",
-          "home": { "iso": "bg", "name": "Bulgaria", "score": 0 },
-          "away": { "iso": "es", "name": "España", "score": 3 },
-          "venue": { "stadium": "Vasil Levski", "city": "Sofía", "country_iso": "bg" },
+          "home": {
+            "iso": "bg",
+            "name": "Bulgaria",
+            "score": 0
+          },
+          "away": {
+            "iso": "es",
+            "name": "España",
+            "score": 3
+          },
+          "venue": {
+            "stadium": "Vasil Levski",
+            "city": "Sofía",
+            "country_iso": "bg"
+          },
           "goals_arg": [
-            { "player": "Mikel Oyarzabal", "minute": "5'", "type": "goal" },
-            { "player": "Marc Cucurella", "minute": "30'", "type": "goal" },
-            { "player": "Mikel Merino", "minute": "38'", "type": "goal" }
+            {
+              "player": "Mikel Oyarzabal",
+              "minute": "5'",
+              "type": "goal"
+            },
+            {
+              "player": "Marc Cucurella",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Mikel Merino",
+              "minute": "38'",
+              "type": "goal"
+            }
           ],
           "notes": "Debut sólido. Gran asistencia colectiva en el primer gol: Yamal-Pedri-Zubimendi-Oyarzabal."
         },
         {
           "matchday": 2,
           "date": "2025-09-07",
-          "home": { "iso": "tr", "name": "Turquía", "score": 0 },
-          "away": { "iso": "es", "name": "España", "score": 6 },
-          "venue": { "stadium": "Konya Büyükşehir Arena", "city": "Konya", "country_iso": "tr" },
+          "home": {
+            "iso": "tr",
+            "name": "Turquía",
+            "score": 0
+          },
+          "away": {
+            "iso": "es",
+            "name": "España",
+            "score": 6
+          },
+          "venue": {
+            "stadium": "Konya Büyükşehir Arena",
+            "city": "Konya",
+            "country_iso": "tr"
+          },
           "goals_arg": [
-            { "player": "Pedri", "minute": "6'", "type": "goal" },
-            { "player": "Mikel Merino", "minute": "22'", "type": "goal" },
-            { "player": "Mikel Merino", "minute": "45'", "type": "goal" },
-            { "player": "Ferran Torres", "minute": "53'", "type": "goal" },
-            { "player": "Mikel Merino", "minute": "57'", "type": "goal" },
-            { "player": "Pedri", "minute": "62'", "type": "goal" }
+            {
+              "player": "Pedri",
+              "minute": "6'",
+              "type": "goal"
+            },
+            {
+              "player": "Mikel Merino",
+              "minute": "22'",
+              "type": "goal"
+            },
+            {
+              "player": "Mikel Merino",
+              "minute": "45'",
+              "type": "goal"
+            },
+            {
+              "player": "Ferran Torres",
+              "minute": "53'",
+              "type": "goal"
+            },
+            {
+              "player": "Mikel Merino",
+              "minute": "57'",
+              "type": "goal"
+            },
+            {
+              "player": "Pedri",
+              "minute": "62'",
+              "type": "goal"
+            }
           ],
           "notes": "Hat-trick de Mikel Merino y triplete de asistencias de Oyarzabal en una de las mejores actuaciones de La Roja del ciclo. Lamine Yamal también brilló con asistencias."
         },
         {
           "matchday": 3,
           "date": "2025-10-11",
-          "home": { "iso": "es", "name": "España", "score": 2 },
-          "away": { "iso": "ge", "name": "Georgia", "score": 0 },
-          "venue": { "stadium": "El Sadar", "city": "Pamplona", "country_iso": "es" },
+          "home": {
+            "iso": "es",
+            "name": "España",
+            "score": 2
+          },
+          "away": {
+            "iso": "ge",
+            "name": "Georgia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "El Sadar",
+            "city": "Pamplona",
+            "country_iso": "es"
+          },
           "goals_arg": [
-            { "player": "Mikel Oyarzabal", "minute": "11'", "type": "goal" },
-            { "player": "Ferran Torres", "minute": "63'", "type": "goal" }
+            {
+              "player": "Mikel Oyarzabal",
+              "minute": "11'",
+              "type": "goal"
+            },
+            {
+              "player": "Ferran Torres",
+              "minute": "63'",
+              "type": "goal"
+            }
           ],
           "notes": "Victoria menos vistosa pero efectiva. España manejó el partido con comodidad."
         },
         {
           "matchday": 4,
           "date": "2025-10-15",
-          "home": { "iso": "es", "name": "España", "score": 4 },
-          "away": { "iso": "bg", "name": "Bulgaria", "score": 0 },
-          "venue": { "stadium": "José Zorrilla", "city": "Valladolid", "country_iso": "es" },
+          "home": {
+            "iso": "es",
+            "name": "España",
+            "score": 4
+          },
+          "away": {
+            "iso": "bg",
+            "name": "Bulgaria",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "José Zorrilla",
+            "city": "Valladolid",
+            "country_iso": "es"
+          },
           "goals_arg": [
-            { "player": "Mikel Merino", "minute": "27'", "type": "goal" },
-            { "player": "Mikel Merino", "minute": "53'", "type": "goal" },
-            { "player": "Mikel Merino", "minute": "76'", "type": "goal" },
-            { "player": "Mikel Oyarzabal", "minute": "90+1'", "type": "penalty" }
+            {
+              "player": "Mikel Merino",
+              "minute": "27'",
+              "type": "goal"
+            },
+            {
+              "player": "Mikel Merino",
+              "minute": "53'",
+              "type": "goal"
+            },
+            {
+              "player": "Mikel Merino",
+              "minute": "76'",
+              "type": "goal"
+            },
+            {
+              "player": "Mikel Oyarzabal",
+              "minute": "90+1'",
+              "type": "penalty"
+            }
           ],
           "notes": "Hat-trick de Mikel Merino (su segundo en menos de 5 semanas) y penal final de Oyarzabal. Los goles de Merino vinieron de jugadas aéreas tras córneres y centros de Grimaldo y Yamal."
         },
         {
           "matchday": 5,
           "date": "2025-11-15",
-          "home": { "iso": "ge", "name": "Georgia", "score": 0 },
-          "away": { "iso": "es", "name": "España", "score": 4 },
-          "venue": { "stadium": "Boris Paichadze Dinamo Arena", "city": "Tbilisi", "country_iso": "ge" },
+          "home": {
+            "iso": "ge",
+            "name": "Georgia",
+            "score": 0
+          },
+          "away": {
+            "iso": "es",
+            "name": "España",
+            "score": 4
+          },
+          "venue": {
+            "stadium": "Boris Paichadze Dinamo Arena",
+            "city": "Tbilisi",
+            "country_iso": "ge"
+          },
           "goals_arg": [
-            { "player": "Mikel Oyarzabal", "minute": "11'", "type": "goal" },
-            { "player": "Martín Zubimendi", "minute": "22'", "type": "goal" },
-            { "player": "Ferran Torres", "minute": "35'", "type": "goal" },
-            { "player": "Ferran Torres", "minute": "63'", "type": "goal" }
+            {
+              "player": "Mikel Oyarzabal",
+              "minute": "11'",
+              "type": "goal"
+            },
+            {
+              "player": "Martín Zubimendi",
+              "minute": "22'",
+              "type": "goal"
+            },
+            {
+              "player": "Ferran Torres",
+              "minute": "35'",
+              "type": "goal"
+            },
+            {
+              "player": "Ferran Torres",
+              "minute": "63'",
+              "type": "goal"
+            }
           ],
           "notes": "Doblete de Ferran Torres. Este resultado dejó a España con la clasificación virtualmente sellada."
         },
         {
           "matchday": 6,
           "date": "2025-11-18",
-          "home": { "iso": "es", "name": "España", "score": 2 },
-          "away": { "iso": "tr", "name": "Turquía", "score": 2 },
-          "venue": { "stadium": "Cívitas Metropolitano", "city": "Madrid", "country_iso": "es" },
+          "home": {
+            "iso": "es",
+            "name": "España",
+            "score": 2
+          },
+          "away": {
+            "iso": "tr",
+            "name": "Turquía",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Cívitas Metropolitano",
+            "city": "Madrid",
+            "country_iso": "es"
+          },
           "goals_arg": [
-            { "player": "Dani Olmo", "minute": "4'", "type": "goal" },
-            { "player": "Mikel Oyarzabal", "minute": "62'", "type": "goal" }
+            {
+              "player": "Dani Olmo",
+              "minute": "4'",
+              "type": "goal"
+            },
+            {
+              "player": "Mikel Oyarzabal",
+              "minute": "62'",
+              "type": "goal"
+            }
           ],
           "goals_opponent": [
-            { "player": "Deniz Gül", "minute": "42'", "type": "goal" },
-            { "player": "Salih Özcan", "minute": "54'", "type": "goal" }
+            {
+              "player": "Deniz Gül",
+              "minute": "42'",
+              "type": "goal"
+            },
+            {
+              "player": "Salih Özcan",
+              "minute": "54'",
+              "type": "goal"
+            }
           ],
           "notes": "Empate en el cierre que perdió el pleno pero confirmó la clasificación matemática y la 1ª plaza. Olmo abrió con golazo desde fuera del área de volea. Turquía puso emoción al partido y se aseguró el 2º puesto.",
           "is_decisive_match": true
         }
       ],
-
       "top_scorers": [
-        { "player": "Mikel Merino", "goals": 7, "notes": "Goleador del equipo en el ciclo. Dos hat-tricks (Turquía y Bulgaria). Especialista en juego aéreo desde su rol de mediocentro box-to-box." },
-        { "player": "Mikel Oyarzabal", "goals": 5 },
-        { "player": "Ferran Torres", "goals": 4 },
-        { "player": "Pedri", "goals": 2 },
-        { "player": "Marc Cucurella", "goals": 1 },
-        { "player": "Martín Zubimendi", "goals": 1 },
-        { "player": "Dani Olmo", "goals": 1 }
+        {
+          "player": "Mikel Merino",
+          "goals": 7,
+          "notes": "Goleador del equipo en el ciclo. Dos hat-tricks (Turquía y Bulgaria). Especialista en juego aéreo desde su rol de mediocentro box-to-box."
+        },
+        {
+          "player": "Mikel Oyarzabal",
+          "goals": 5
+        },
+        {
+          "player": "Ferran Torres",
+          "goals": 4
+        },
+        {
+          "player": "Pedri",
+          "goals": 2
+        },
+        {
+          "player": "Marc Cucurella",
+          "goals": 1
+        },
+        {
+          "player": "Martín Zubimendi",
+          "goals": 1
+        },
+        {
+          "player": "Dani Olmo",
+          "goals": 1
+        }
       ],
-
       "best_match": {
         "match_ref": "matchday_2",
         "reason": "El 0-6 a Turquía en Konya el 7 de septiembre de 2025. Hat-trick de Merino, doblete de Pedri, gol de Ferran. Triplete de asistencias de Oyarzabal. Una de las mejores actuaciones colectivas de La Roja del ciclo."
       },
-
       "worst_match": {
         "match_ref": "matchday_6",
         "reason": "Empate 2-2 ante Turquía en el Metropolitano. Único partido en que España no ganó en todo el grupo y único en que encajó goles. Aunque la clasificación ya estaba sellada, perdió el pleno simbólico."
       },
-
       "decisive_match": {
         "match_ref": "matchday_5",
         "reason": "El 4-0 a Georgia en Tbilisi el 15 de noviembre de 2025 dejó a España matemáticamente clasificada antes del último partido."
       }
     },
-
     "group_2026": {
-      "letter": "[POR CONFIRMAR]",
-      "label": "Grupo asignado en sorteo del Mundial 2026",
+      "letter": "H",
+      "label": "Grupo H — Mundial 2026",
       "teams": [
-        { "iso": "es", "name": "España", "fifa_rank": 2, "is_seed": true },
-        { "iso": "[POR CONFIRMAR]", "name": "[POR CONFIRMAR]", "fifa_rank": null },
-        { "iso": "[POR CONFIRMAR]", "name": "[POR CONFIRMAR]", "fifa_rank": null },
-        { "iso": "[POR CONFIRMAR]", "name": "[POR CONFIRMAR]", "fifa_rank": null }
+        {
+          "iso": "es",
+          "name": "España",
+          "fifa_rank": null,
+          "is_seed": true
+        },
+        {
+          "iso": "cv",
+          "name": "Cabo Verde",
+          "fifa_rank": null,
+          "is_seed": false
+        },
+        {
+          "iso": "sa",
+          "name": "Arabia Saudí",
+          "fifa_rank": null,
+          "is_seed": false
+        },
+        {
+          "iso": "uy",
+          "name": "Uruguay",
+          "fifa_rank": null,
+          "is_seed": false
+        }
       ],
       "notes": "Pendiente de cruzar con la página /grupos de zonamundial.app para confirmar grupo y rivales asignados a España en el sorteo final."
     },
-
     "schedule": [
       {
         "matchday": 1,
-        "opponent": { "iso": "[POR CONFIRMAR]", "name": "[POR CONFIRMAR]" },
+        "opponent": {
+          "iso": "[POR CONFIRMAR]",
+          "name": "[POR CONFIRMAR]"
+        },
         "date": "[POR CONFIRMAR — fixture FIFA pendiente]",
-        "venue": { "stadium": "[POR CONFIRMAR]", "city": "", "country_iso": "us" },
+        "venue": {
+          "stadium": "[POR CONFIRMAR]",
+          "city": "",
+          "country_iso": "us"
+        },
         "status": "scheduled"
       },
       {
         "matchday": 2,
-        "opponent": { "iso": "[POR CONFIRMAR]", "name": "[POR CONFIRMAR]" },
+        "opponent": {
+          "iso": "[POR CONFIRMAR]",
+          "name": "[POR CONFIRMAR]"
+        },
         "date": "[POR CONFIRMAR]",
-        "venue": { "stadium": "[POR CONFIRMAR]", "city": "", "country_iso": "us" },
+        "venue": {
+          "stadium": "[POR CONFIRMAR]",
+          "city": "",
+          "country_iso": "us"
+        },
         "status": "scheduled"
       },
       {
         "matchday": 3,
-        "opponent": { "iso": "[POR CONFIRMAR]", "name": "[POR CONFIRMAR]" },
+        "opponent": {
+          "iso": "[POR CONFIRMAR]",
+          "name": "[POR CONFIRMAR]"
+        },
         "date": "[POR CONFIRMAR]",
-        "venue": { "stadium": "[POR CONFIRMAR]", "city": "", "country_iso": "us" },
+        "venue": {
+          "stadium": "[POR CONFIRMAR]",
+          "city": "",
+          "country_iso": "us"
+        },
         "status": "scheduled"
       }
     ],
-
     "base_camp": {
       "city": "[POR CONFIRMAR — RFEF aún no anunció]",
       "country": "Estados Unidos",
       "facility_name": "[POR CONFIRMAR]",
       "status": "pending"
     },
-
     "coach": {
       "name": "Luis de la Fuente",
       "age": 64,
       "nationality": "España",
       "since": "2022-12-08",
-      "previous_teams": ["España sub-21 (2018-2022)", "España sub-19 (2013-2018)", "Athletic Club B (2007-2010)", "Bilbao Athletic / Athletic B (2001-2007)"],
+      "previous_teams": [
+        "España sub-21 (2018-2022)",
+        "España sub-19 (2013-2018)",
+        "Athletic Club B (2007-2010)",
+        "Bilbao Athletic / Athletic B (2001-2007)"
+      ],
       "profile_summary": "Formador histórico de las categorías inferiores de La Roja. Asumió la selección absoluta en diciembre de 2022 tras Luis Enrique. En su primer año conquistó la UEFA Nations League 2023. En 2024 ganó la Eurocopa de Alemania de manera contundente (sin perder ningún partido). Construyó un equipo joven, agresivo y con identidad clara basada en intensidad, presión alta y verticalidad. Su pacto con Pedri y Lamine Yamal es la columna del proyecto."
     },
-
-    "captain": { "name": "Álvaro Morata", "club": "Como" },
-
+    "captain": {
+      "name": "Álvaro Morata",
+      "club": "Como"
+    },
     "star_player": {
       "name": "Lamine Yamal",
       "club": "FC Barcelona",
       "reason": "El extremo del Barcelona, con 18 años a las puertas del Mundial, llega como uno de los 3 mejores jugadores del mundo. Balón de Oro futuro casi seguro. Decisivo en la Eurocopa 2024 con 18 meses de edad récord. Su capacidad de regate, pase y gol desde la banda derecha hace de España una candidata real al título."
     },
-
     "likely_squad": [
-      { "id": "unai-simon", "full_name": "Unai Simón", "display_name": "Unai Simón", "position": "GK", "detailed_position": "GK", "club": { "name": "Athletic Club", "country_iso": "es", "league": "La Liga" }, "shirt_number_expected": 23, "status": "fixed" },
-      { "id": "david-raya", "full_name": "David Raya", "display_name": "David Raya", "position": "GK", "detailed_position": "GK", "club": { "name": "Arsenal", "country_iso": "gb-eng", "league": "Premier League" }, "shirt_number_expected": 13, "status": "fixed" },
-      { "id": "alex-remiro", "full_name": "Álex Remiro", "display_name": "Álex Remiro", "position": "GK", "detailed_position": "GK", "club": { "name": "Real Sociedad", "country_iso": "es", "league": "La Liga" }, "shirt_number_expected": 1, "status": "probable" },
-      { "id": "pedro-porro", "full_name": "Pedro Porro", "display_name": "Pedro Porro", "position": "DEF", "detailed_position": "RB", "club": { "name": "Tottenham", "country_iso": "gb-eng", "league": "Premier League" }, "shirt_number_expected": 2, "status": "fixed" },
-      { "id": "dani-carvajal", "full_name": "Dani Carvajal", "display_name": "Dani Carvajal", "position": "DEF", "detailed_position": "RB", "club": { "name": "Real Madrid", "country_iso": "es", "league": "La Liga" }, "shirt_number_expected": 20, "status": "probable" },
-      { "id": "robin-le-normand", "full_name": "Robin Le Normand", "display_name": "Le Normand", "position": "DEF", "detailed_position": "CB", "club": { "name": "Atlético de Madrid", "country_iso": "es", "league": "La Liga" }, "shirt_number_expected": 4, "status": "fixed" },
-      { "id": "aymeric-laporte", "full_name": "Aymeric Laporte", "display_name": "Aymeric Laporte", "position": "DEF", "detailed_position": "CB", "club": { "name": "Athletic Club", "country_iso": "es", "league": "La Liga" }, "shirt_number_expected": 14, "status": "fixed" },
-      { "id": "pau-cubarsi", "full_name": "Pau Cubarsí", "display_name": "Pau Cubarsí", "position": "DEF", "detailed_position": "CB", "club": { "name": "FC Barcelona", "country_iso": "es", "league": "La Liga" }, "shirt_number_expected": 5, "status": "fixed" },
-      { "id": "dean-huijsen", "full_name": "Dean Huijsen", "display_name": "Dean Huijsen", "position": "DEF", "detailed_position": "CB", "club": { "name": "Real Madrid", "country_iso": "es", "league": "La Liga" }, "shirt_number_expected": 24, "status": "probable" },
-      { "id": "marc-cucurella", "full_name": "Marc Cucurella", "display_name": "Marc Cucurella", "position": "DEF", "detailed_position": "LB", "club": { "name": "Chelsea", "country_iso": "gb-eng", "league": "Premier League" }, "shirt_number_expected": 17, "status": "fixed" },
-      { "id": "alejandro-grimaldo", "full_name": "Alejandro Grimaldo", "display_name": "Grimaldo", "position": "DEF", "detailed_position": "LB", "club": { "name": "Bayer Leverkusen", "country_iso": "de", "league": "Bundesliga" }, "shirt_number_expected": 18, "status": "probable" },
-      { "id": "rodri", "full_name": "Rodri Hernández", "display_name": "Rodri", "position": "MID", "detailed_position": "CDM", "club": { "name": "Manchester City", "country_iso": "gb-eng", "league": "Premier League" }, "shirt_number_expected": 16, "status": "fixed" },
-      { "id": "martin-zubimendi", "full_name": "Martín Zubimendi", "display_name": "Zubimendi", "position": "MID", "detailed_position": "CDM", "club": { "name": "Arsenal", "country_iso": "gb-eng", "league": "Premier League" }, "shirt_number_expected": 6, "status": "fixed" },
-      { "id": "pedri", "full_name": "Pedro González López", "display_name": "Pedri", "position": "MID", "detailed_position": "CM", "club": { "name": "FC Barcelona", "country_iso": "es", "league": "La Liga" }, "shirt_number_expected": 8, "status": "fixed" },
-      { "id": "fabian-ruiz", "full_name": "Fabián Ruiz", "display_name": "Fabián Ruiz", "position": "MID", "detailed_position": "CM", "club": { "name": "Paris Saint-Germain", "country_iso": "fr", "league": "Ligue 1" }, "shirt_number_expected": 12, "status": "fixed" },
-      { "id": "mikel-merino", "full_name": "Mikel Merino", "display_name": "Mikel Merino", "position": "MID", "detailed_position": "CM", "club": { "name": "Arsenal", "country_iso": "gb-eng", "league": "Premier League" }, "shirt_number_expected": 15, "status": "fixed" },
-      { "id": "dani-olmo", "full_name": "Dani Olmo", "display_name": "Dani Olmo", "position": "MID", "detailed_position": "CAM", "club": { "name": "FC Barcelona", "country_iso": "es", "league": "La Liga" }, "shirt_number_expected": 10, "status": "fixed" },
-      { "id": "alex-baena", "full_name": "Álex Baena", "display_name": "Álex Baena", "position": "MID", "detailed_position": "CAM", "club": { "name": "Atlético de Madrid", "country_iso": "es", "league": "La Liga" }, "shirt_number_expected": 22, "status": "probable" },
-      { "id": "lamine-yamal", "full_name": "Lamine Yamal", "display_name": "Lamine Yamal", "position": "FWD", "detailed_position": "RW", "club": { "name": "FC Barcelona", "country_iso": "es", "league": "La Liga" }, "shirt_number_expected": 19, "status": "fixed" },
-      { "id": "nico-williams", "full_name": "Nicholas Williams", "display_name": "Nico Williams", "position": "FWD", "detailed_position": "LW", "club": { "name": "Athletic Club", "country_iso": "es", "league": "La Liga" }, "shirt_number_expected": 11, "status": "fixed" },
-      { "id": "mikel-oyarzabal", "full_name": "Mikel Oyarzabal", "display_name": "Oyarzabal", "position": "FWD", "detailed_position": "LW", "club": { "name": "Real Sociedad", "country_iso": "es", "league": "La Liga" }, "shirt_number_expected": 21, "status": "fixed" },
-      { "id": "ferran-torres", "full_name": "Ferran Torres", "display_name": "Ferran Torres", "position": "FWD", "detailed_position": "ST", "club": { "name": "FC Barcelona", "country_iso": "es", "league": "La Liga" }, "shirt_number_expected": 7, "status": "fixed" },
-      { "id": "alvaro-morata", "full_name": "Álvaro Morata", "display_name": "Morata", "position": "FWD", "detailed_position": "ST", "club": { "name": "Como", "country_iso": "it", "league": "Serie A" }, "shirt_number_expected": 9, "status": "probable" },
-      { "id": "samu-aghehowa", "full_name": "Samu Aghehowa", "display_name": "Samu Aghehowa", "position": "FWD", "detailed_position": "ST", "club": { "name": "Porto", "country_iso": "pt", "league": "Primeira Liga" }, "shirt_number_expected": 25, "status": "probable" },
-      { "id": "yeremy-pino", "full_name": "Yeremy Pino", "display_name": "Yeremy Pino", "position": "FWD", "detailed_position": "RW", "club": { "name": "Crystal Palace", "country_iso": "gb-eng", "league": "Premier League" }, "shirt_number_expected": 26, "status": "bubble" },
-      { "id": "ayoze-perez", "full_name": "Ayoze Pérez", "display_name": "Ayoze Pérez", "position": "FWD", "detailed_position": "ST", "club": { "name": "Villarreal", "country_iso": "es", "league": "La Liga" }, "shirt_number_expected": 3, "status": "bubble" }
+      {
+        "id": "unai-simon",
+        "full_name": "Unai Simón",
+        "display_name": "Unai Simón",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Athletic Club",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 23,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Unai_Sim%C3%B3n_2025_%28cropped%29.jpg/330px-Unai_Sim%C3%B3n_2025_%28cropped%29.jpg"
+      },
+      {
+        "id": "david-raya",
+        "full_name": "David Raya",
+        "display_name": "David Raya",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Arsenal",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 13,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/David_Raya_in_2025.jpg/330px-David_Raya_in_2025.jpg"
+      },
+      {
+        "id": "alex-remiro",
+        "full_name": "Álex Remiro",
+        "display_name": "Álex Remiro",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Real Sociedad",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 1,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/DSC_2448_%2851300097850%29_%28Alex_Remiro%29.jpg/330px-DSC_2448_%2851300097850%29_%28Alex_Remiro%29.jpg"
+      },
+      {
+        "id": "pedro-porro",
+        "full_name": "Pedro Porro",
+        "display_name": "Pedro Porro",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Tottenham",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/85/Pedro_Porro_2021.png"
+      },
+      {
+        "id": "dani-carvajal",
+        "full_name": "Dani Carvajal",
+        "display_name": "Dani Carvajal",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Real Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 20,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Daniel_Carvajal_2015.jpg/330px-Daniel_Carvajal_2015.jpg"
+      },
+      {
+        "id": "robin-le-normand",
+        "full_name": "Robin Le Normand",
+        "display_name": "Le Normand",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Atlético de Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Robin_Le_Normand%2C_FC_Salzburg_vs._Atletico_Madrid_%282025-01-29_UEFA_Championsleague%29_56_%28cropped%29.jpg/330px-Robin_Le_Normand%2C_FC_Salzburg_vs._Atletico_Madrid_%282025-01-29_UEFA_Championsleague%29_56_%28cropped%29.jpg"
+      },
+      {
+        "id": "aymeric-laporte",
+        "full_name": "Aymeric Laporte",
+        "display_name": "Aymeric Laporte",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Athletic Club",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Aymeric_Laporte_2023_%28cropped%29_2.jpg"
+      },
+      {
+        "id": "pau-cubarsi",
+        "full_name": "Pau Cubarsí",
+        "display_name": "Pau Cubarsí",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "FC Barcelona",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Pau_Cubars%C3%AD_%28cropped%29.jpg/330px-Pau_Cubars%C3%AD_%28cropped%29.jpg"
+      },
+      {
+        "id": "dean-huijsen",
+        "full_name": "Dean Huijsen",
+        "display_name": "Dean Huijsen",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Real Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 24,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Dean_Huijsen_2024.jpg/330px-Dean_Huijsen_2024.jpg"
+      },
+      {
+        "id": "marc-cucurella",
+        "full_name": "Marc Cucurella",
+        "display_name": "Marc Cucurella",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Chelsea",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Spain_football_team_in_202_%28Marc_Cucurella%29.jpg/330px-Spain_football_team_in_202_%28Marc_Cucurella%29.jpg"
+      },
+      {
+        "id": "alejandro-grimaldo",
+        "full_name": "Alejandro Grimaldo",
+        "display_name": "Grimaldo",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Bayer Leverkusen",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 18,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Alex_Grimaldo_2020.png/330px-Alex_Grimaldo_2020.png"
+      },
+      {
+        "id": "rodri",
+        "full_name": "Rodri Hernández",
+        "display_name": "Rodri",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Manchester City",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 16,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/RODRI_-_SWE_vs_ESP_-_UEFA_EURO_2020_QUALIFIERS_-_2019.10.15_%28cropped%29.jpg/330px-RODRI_-_SWE_vs_ESP_-_UEFA_EURO_2020_QUALIFIERS_-_2019.10.15_%28cropped%29.jpg"
+      },
+      {
+        "id": "martin-zubimendi",
+        "full_name": "Martín Zubimendi",
+        "display_name": "Zubimendi",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Arsenal",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Mart%C3%ADn_Zubimendi.jpg/330px-Mart%C3%ADn_Zubimendi.jpg"
+      },
+      {
+        "id": "pedri",
+        "full_name": "Pedro González López",
+        "display_name": "Pedri",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "FC Barcelona",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Pedri.jpg/330px-Pedri.jpg"
+      },
+      {
+        "id": "fabian-ruiz",
+        "full_name": "Fabián Ruiz",
+        "display_name": "Fabián Ruiz",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Paris Saint-Germain",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 12,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Ruiz_asse_psg_2425.png/330px-Ruiz_asse_psg_2425.png"
+      },
+      {
+        "id": "mikel-merino",
+        "full_name": "Mikel Merino",
+        "display_name": "Mikel Merino",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Arsenal",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 15,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/1_mikel_merino_arsenal_2025_%28cropped%29.jpg/330px-1_mikel_merino_arsenal_2025_%28cropped%29.jpg"
+      },
+      {
+        "id": "dani-olmo",
+        "full_name": "Dani Olmo",
+        "display_name": "Dani Olmo",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "FC Barcelona",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Dani_Olmo_2022.jpg/330px-Dani_Olmo_2022.jpg"
+      },
+      {
+        "id": "alex-baena",
+        "full_name": "Álex Baena",
+        "display_name": "Álex Baena",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Atlético de Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 22,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/%C3%81lex_Baena_2019.jpg/330px-%C3%81lex_Baena_2019.jpg"
+      },
+      {
+        "id": "lamine-yamal",
+        "full_name": "Lamine Yamal",
+        "display_name": "Lamine Yamal",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "FC Barcelona",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Lamine_Yamal_in_2025.jpg/330px-Lamine_Yamal_in_2025.jpg"
+      },
+      {
+        "id": "nico-williams",
+        "full_name": "Nicholas Williams",
+        "display_name": "Nico Williams",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Athletic Club",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed"
+      },
+      {
+        "id": "mikel-oyarzabal",
+        "full_name": "Mikel Oyarzabal",
+        "display_name": "Oyarzabal",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Real Sociedad",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 21,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_108_%28cropped%29.jpg/330px-UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_108_%28cropped%29.jpg"
+      },
+      {
+        "id": "ferran-torres",
+        "full_name": "Ferran Torres",
+        "display_name": "Ferran Torres",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "FC Barcelona",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Ferran_Torres_2019.png/330px-Ferran_Torres_2019.png"
+      },
+      {
+        "id": "alvaro-morata",
+        "full_name": "Álvaro Morata",
+        "display_name": "Morata",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Como",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 9,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/%C3%81lvaro_Morata_in_2025.jpg/330px-%C3%81lvaro_Morata_in_2025.jpg"
+      },
+      {
+        "id": "samu-aghehowa",
+        "full_name": "Samu Aghehowa",
+        "display_name": "Samu Aghehowa",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Porto",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
+        },
+        "shirt_number_expected": 25,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Uzbekistan_vs._Spain%2C_2024_Summer_Olympic_men%27s_association_football%2C_2024-07-24_%28471%29_-_Samu.jpg/330px-Uzbekistan_vs._Spain%2C_2024_Summer_Olympic_men%27s_association_football%2C_2024-07-24_%28471%29_-_Samu.jpg"
+      },
+      {
+        "id": "yeremy-pino",
+        "full_name": "Yeremy Pino",
+        "display_name": "Yeremy Pino",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Crystal Palace",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/80/Manchester_United_v_Villarreal_CF%2C_29_September_2021_%2807%29_%28cropped%29.jpg"
+      },
+      {
+        "id": "ayoze-perez",
+        "full_name": "Ayoze Pérez",
+        "display_name": "Ayoze Pérez",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Villarreal",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 3,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Ayoze_Perez_20150710.jpg/330px-Ayoze_Perez_20150710.jpg"
+      }
     ],
-
     "starting_xi": {
       "formation": "4-3-3",
       "players": [
-        { "player_id": "unai-simon", "position": { "x": 50, "y": 92 } },
-        { "player_id": "pedro-porro", "position": { "x": 85, "y": 72 } },
-        { "player_id": "robin-le-normand", "position": { "x": 65, "y": 75 } },
-        { "player_id": "aymeric-laporte", "position": { "x": 35, "y": 75 } },
-        { "player_id": "marc-cucurella", "position": { "x": 15, "y": 72 } },
-        { "player_id": "rodri", "position": { "x": 50, "y": 55 } },
-        { "player_id": "pedri", "position": { "x": 30, "y": 45 } },
-        { "player_id": "fabian-ruiz", "position": { "x": 70, "y": 45 } },
-        { "player_id": "lamine-yamal", "position": { "x": 85, "y": 22 } },
-        { "player_id": "mikel-oyarzabal", "position": { "x": 50, "y": 18 } },
-        { "player_id": "nico-williams", "position": { "x": 15, "y": 22 } }
+        {
+          "player_id": "unai-simon",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "pedro-porro",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "robin-le-normand",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "aymeric-laporte",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "marc-cucurella",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "rodri",
+          "position": {
+            "x": 50,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "pedri",
+          "position": {
+            "x": 30,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "fabian-ruiz",
+          "position": {
+            "x": 70,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "lamine-yamal",
+          "position": {
+            "x": 85,
+            "y": 22
+          }
+        },
+        {
+          "player_id": "mikel-oyarzabal",
+          "position": {
+            "x": 50,
+            "y": 18
+          }
+        },
+        {
+          "player_id": "nico-williams",
+          "position": {
+            "x": 15,
+            "y": 22
+          }
+        }
       ]
     },
-
     "analysis": {
       "style": "España juega un 4-3-3 con identidad clara: presión alta sincronizada, posesión asociativa de toques rápidos, y verticalidad por banda con dos extremos puros (Yamal y Nico). Diferencia con la era tiki-taka anterior: menos posesión obsesiva, más juego directo y transiciones rápidas. Rodri es el ancla; Pedri el director; los extremos rompen.",
       "strengths": [
@@ -357,16 +1003,19 @@
       "vs_last_3_wcs": "Sudáfrica 2010: CAMPEONA con final 1-0 ante Países Bajos (gol Iniesta 116'). Brasil 2014: eliminada en fase de grupos, peor papel de la generación dorada. Rusia 2018: octavos eliminada por Rusia en penales tras 1-1. Catar 2022: octavos eliminada por Marruecos en penales tras 0-0. Mundial 2026: tras los dos octavos consecutivos, llega como vigente campeona de Europa con un equipo joven que mezcla talento generacional con experiencia ganadora."
     }
   },
-
   "history": {
     "first_appearance": 1934,
     "appearances_count_before_2026": 16,
     "appearances_count_with_2026": 17,
     "consecutive_streak_since": 1978,
     "titles": 1,
-    "titles_years": [2010],
+    "titles_years": [
+      2010
+    ],
     "finals": 1,
-    "finals_years": [2010],
+    "finals_years": [
+      2010
+    ],
     "semi_finals": 2,
     "best_result": "Campeona (2010)",
     "aggregate_stats_through_2022": {
@@ -382,12 +1031,28 @@
     "by_world_cup": [
       {
         "year": 1934,
-        "host": { "countries": ["Italia"], "iso": ["it"] },
+        "host": {
+          "countries": [
+            "Italia"
+          ],
+          "iso": [
+            "it"
+          ]
+        },
         "result": "Cuartos de final",
         "coach": "Amadeo García Salazar",
         "captain": "Ricardo Zamora",
         "matches": [],
-        "team_top_scorers": [{ "player": "Isidro Lángara", "goals": 1 }, { "player": "Luis Regueiro", "goals": 1 }],
+        "team_top_scorers": [
+          {
+            "player": "Isidro Lángara",
+            "goals": 1
+          },
+          {
+            "player": "Luis Regueiro",
+            "goals": 1
+          }
+        ],
         "goals_scored": 4,
         "goals_conceded": 3,
         "notable_facts": [
@@ -399,11 +1064,27 @@
       },
       {
         "year": 1950,
-        "host": { "countries": ["Brasil"], "iso": ["br"] },
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
         "result": "Cuarto puesto",
         "coach": "Guillermo Eizaguirre",
         "matches": [],
-        "team_top_scorers": [{ "player": "Estanislao Basora", "goals": 5 }, { "player": "Telmo Zarra", "goals": 4 }],
+        "team_top_scorers": [
+          {
+            "player": "Estanislao Basora",
+            "goals": 5
+          },
+          {
+            "player": "Telmo Zarra",
+            "goals": 4
+          }
+        ],
         "goals_scored": 10,
         "goals_conceded": 12,
         "notable_facts": [
@@ -415,12 +1096,28 @@
       },
       {
         "year": 1962,
-        "host": { "countries": ["Chile"], "iso": ["cl"] },
+        "host": {
+          "countries": [
+            "Chile"
+          ],
+          "iso": [
+            "cl"
+          ]
+        },
         "result": "Fase de grupos",
         "coach": "Helenio Herrera",
         "captain": "Joaquín Peiró",
         "matches": [],
-        "team_top_scorers": [{ "player": "Joaquín Peiró", "goals": 1 }, { "player": "Adelardo Rodríguez", "goals": 1 }],
+        "team_top_scorers": [
+          {
+            "player": "Joaquín Peiró",
+            "goals": 1
+          },
+          {
+            "player": "Adelardo Rodríguez",
+            "goals": 1
+          }
+        ],
         "goals_scored": 2,
         "goals_conceded": 3,
         "notable_facts": [
@@ -431,11 +1128,27 @@
       },
       {
         "year": 1966,
-        "host": { "countries": ["Inglaterra"], "iso": ["gb-eng"] },
+        "host": {
+          "countries": [
+            "Inglaterra"
+          ],
+          "iso": [
+            "gb-eng"
+          ]
+        },
         "result": "Fase de grupos",
         "coach": "José Villalonga",
         "matches": [],
-        "team_top_scorers": [{ "player": "Manuel Sanchís", "goals": 1 }, { "player": "Pirri", "goals": 1 }],
+        "team_top_scorers": [
+          {
+            "player": "Manuel Sanchís",
+            "goals": 1
+          },
+          {
+            "player": "Pirri",
+            "goals": 1
+          }
+        ],
         "goals_scored": 4,
         "goals_conceded": 5,
         "notable_facts": [
@@ -446,11 +1159,27 @@
       },
       {
         "year": 1978,
-        "host": { "countries": ["Argentina"], "iso": ["ar"] },
+        "host": {
+          "countries": [
+            "Argentina"
+          ],
+          "iso": [
+            "ar"
+          ]
+        },
         "result": "Fase de grupos",
         "coach": "Ladislao Kubala",
         "matches": [],
-        "team_top_scorers": [{ "player": "Daniel Ruiz", "goals": 1 }, { "player": "Juanito", "goals": 1 }],
+        "team_top_scorers": [
+          {
+            "player": "Daniel Ruiz",
+            "goals": 1
+          },
+          {
+            "player": "Juanito",
+            "goals": 1
+          }
+        ],
         "goals_scored": 2,
         "goals_conceded": 2,
         "notable_facts": [
@@ -461,12 +1190,28 @@
       },
       {
         "year": 1982,
-        "host": { "countries": ["España"], "iso": ["es"] },
+        "host": {
+          "countries": [
+            "España"
+          ],
+          "iso": [
+            "es"
+          ]
+        },
         "result": "Segunda ronda",
         "coach": "José Santamaría",
         "captain": "Juanito",
         "matches": [],
-        "team_top_scorers": [{ "player": "Juanito", "goals": 1 }, { "player": "Roberto López Ufarte", "goals": 1 }],
+        "team_top_scorers": [
+          {
+            "player": "Juanito",
+            "goals": 1
+          },
+          {
+            "player": "Roberto López Ufarte",
+            "goals": 1
+          }
+        ],
         "goals_scored": 4,
         "goals_conceded": 5,
         "notable_facts": [
@@ -478,12 +1223,28 @@
       },
       {
         "year": 1986,
-        "host": { "countries": ["México"], "iso": ["mx"] },
+        "host": {
+          "countries": [
+            "México"
+          ],
+          "iso": [
+            "mx"
+          ]
+        },
         "result": "Cuartos de final",
         "coach": "Miguel Muñoz",
         "captain": "José Antonio Camacho",
         "matches": [],
-        "team_top_scorers": [{ "player": "Emilio Butragueño", "goals": 5 }, { "player": "Julio Salinas", "goals": 1 }],
+        "team_top_scorers": [
+          {
+            "player": "Emilio Butragueño",
+            "goals": 5
+          },
+          {
+            "player": "Julio Salinas",
+            "goals": 1
+          }
+        ],
         "goals_scored": 11,
         "goals_conceded": 4,
         "notable_facts": [
@@ -495,12 +1256,28 @@
       },
       {
         "year": 1990,
-        "host": { "countries": ["Italia"], "iso": ["it"] },
+        "host": {
+          "countries": [
+            "Italia"
+          ],
+          "iso": [
+            "it"
+          ]
+        },
         "result": "Octavos de final",
         "coach": "Luis Suárez",
         "captain": "Andoni Zubizarreta",
         "matches": [],
-        "team_top_scorers": [{ "player": "Míchel", "goals": 3 }, { "player": "Emilio Butragueño", "goals": 1 }],
+        "team_top_scorers": [
+          {
+            "player": "Míchel",
+            "goals": 3
+          },
+          {
+            "player": "Emilio Butragueño",
+            "goals": 1
+          }
+        ],
         "goals_scored": 6,
         "goals_conceded": 4,
         "notable_facts": [
@@ -511,12 +1288,28 @@
       },
       {
         "year": 1994,
-        "host": { "countries": ["Estados Unidos"], "iso": ["us"] },
+        "host": {
+          "countries": [
+            "Estados Unidos"
+          ],
+          "iso": [
+            "us"
+          ]
+        },
         "result": "Cuartos de final",
         "coach": "Javier Clemente",
         "captain": "Andoni Zubizarreta",
         "matches": [],
-        "team_top_scorers": [{ "player": "Julio Salinas", "goals": 2 }, { "player": "Goikoetxea", "goals": 2 }],
+        "team_top_scorers": [
+          {
+            "player": "Julio Salinas",
+            "goals": 2
+          },
+          {
+            "player": "Goikoetxea",
+            "goals": 2
+          }
+        ],
         "goals_scored": 10,
         "goals_conceded": 6,
         "notable_facts": [
@@ -527,12 +1320,28 @@
       },
       {
         "year": 1998,
-        "host": { "countries": ["Francia"], "iso": ["fr"] },
+        "host": {
+          "countries": [
+            "Francia"
+          ],
+          "iso": [
+            "fr"
+          ]
+        },
         "result": "Fase de grupos",
         "coach": "Javier Clemente",
         "captain": "Andoni Zubizarreta",
         "matches": [],
-        "team_top_scorers": [{ "player": "Fernando Hierro", "goals": 2 }, { "player": "Raúl González", "goals": 1 }],
+        "team_top_scorers": [
+          {
+            "player": "Fernando Hierro",
+            "goals": 2
+          },
+          {
+            "player": "Raúl González",
+            "goals": 1
+          }
+        ],
         "goals_scored": 8,
         "goals_conceded": 4,
         "notable_facts": [
@@ -544,12 +1353,30 @@
       },
       {
         "year": 2002,
-        "host": { "countries": ["Corea del Sur", "Japón"], "iso": ["kr", "jp"] },
+        "host": {
+          "countries": [
+            "Corea del Sur",
+            "Japón"
+          ],
+          "iso": [
+            "kr",
+            "jp"
+          ]
+        },
         "result": "Cuartos de final",
         "coach": "José Antonio Camacho",
         "captain": "Fernando Hierro",
         "matches": [],
-        "team_top_scorers": [{ "player": "Raúl González", "goals": 3 }, { "player": "Fernando Morientes", "goals": 3 }],
+        "team_top_scorers": [
+          {
+            "player": "Raúl González",
+            "goals": 3
+          },
+          {
+            "player": "Fernando Morientes",
+            "goals": 3
+          }
+        ],
         "goals_scored": 10,
         "goals_conceded": 5,
         "notable_facts": [
@@ -560,12 +1387,28 @@
       },
       {
         "year": 2006,
-        "host": { "countries": ["Alemania"], "iso": ["de"] },
+        "host": {
+          "countries": [
+            "Alemania"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
         "result": "Octavos de final",
         "coach": "Luis Aragonés",
         "captain": "Raúl González",
         "matches": [],
-        "team_top_scorers": [{ "player": "Fernando Torres", "goals": 3 }, { "player": "David Villa", "goals": 3 }],
+        "team_top_scorers": [
+          {
+            "player": "Fernando Torres",
+            "goals": 3
+          },
+          {
+            "player": "David Villa",
+            "goals": 3
+          }
+        ],
         "goals_scored": 9,
         "goals_conceded": 4,
         "notable_facts": [
@@ -576,12 +1419,28 @@
       },
       {
         "year": 2010,
-        "host": { "countries": ["Sudáfrica"], "iso": ["za"] },
+        "host": {
+          "countries": [
+            "Sudáfrica"
+          ],
+          "iso": [
+            "za"
+          ]
+        },
         "result": "Campeona",
         "coach": "Vicente del Bosque",
         "captain": "Iker Casillas",
         "matches": [],
-        "team_top_scorers": [{ "player": "David Villa", "goals": 5 }, { "player": "Andrés Iniesta", "goals": 2 }],
+        "team_top_scorers": [
+          {
+            "player": "David Villa",
+            "goals": 5
+          },
+          {
+            "player": "Andrés Iniesta",
+            "goals": 2
+          }
+        ],
         "goals_scored": 8,
         "goals_conceded": 2,
         "notable_facts": [
@@ -594,12 +1453,28 @@
       },
       {
         "year": 2014,
-        "host": { "countries": ["Brasil"], "iso": ["br"] },
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
         "result": "Fase de grupos",
         "coach": "Vicente del Bosque",
         "captain": "Iker Casillas",
         "matches": [],
-        "team_top_scorers": [{ "player": "Diego Costa", "goals": 0 }, { "player": "David Silva", "goals": 0 }],
+        "team_top_scorers": [
+          {
+            "player": "Diego Costa",
+            "goals": 0
+          },
+          {
+            "player": "David Silva",
+            "goals": 0
+          }
+        ],
         "goals_scored": 4,
         "goals_conceded": 7,
         "notable_facts": [
@@ -611,12 +1486,28 @@
       },
       {
         "year": 2018,
-        "host": { "countries": ["Rusia"], "iso": ["ru"] },
+        "host": {
+          "countries": [
+            "Rusia"
+          ],
+          "iso": [
+            "ru"
+          ]
+        },
         "result": "Octavos de final",
         "coach": "Fernando Hierro",
         "captain": "Sergio Ramos",
         "matches": [],
-        "team_top_scorers": [{ "player": "Diego Costa", "goals": 3 }, { "player": "Isco Alarcón", "goals": 1 }],
+        "team_top_scorers": [
+          {
+            "player": "Diego Costa",
+            "goals": 3
+          },
+          {
+            "player": "Isco Alarcón",
+            "goals": 1
+          }
+        ],
         "goals_scored": 7,
         "goals_conceded": 6,
         "notable_facts": [
@@ -628,12 +1519,28 @@
       },
       {
         "year": 2022,
-        "host": { "countries": ["Catar"], "iso": ["qa"] },
+        "host": {
+          "countries": [
+            "Catar"
+          ],
+          "iso": [
+            "qa"
+          ]
+        },
         "result": "Octavos de final",
         "coach": "Luis Enrique",
         "captain": "Sergio Busquets",
         "matches": [],
-        "team_top_scorers": [{ "player": "Álvaro Morata", "goals": 3 }, { "player": "Ferran Torres", "goals": 2 }],
+        "team_top_scorers": [
+          {
+            "player": "Álvaro Morata",
+            "goals": 3
+          },
+          {
+            "player": "Ferran Torres",
+            "goals": 2
+          }
+        ],
         "goals_scored": 9,
         "goals_conceded": 3,
         "notable_facts": [
@@ -645,10 +1552,14 @@
       }
     ],
     "palmares": [
-      { "competition": "Copa Mundial de la FIFA", "year": 2010, "position": "Campeón", "host": "Sudáfrica" }
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 2010,
+        "position": "Campeón",
+        "host": "Sudáfrica"
+      }
     ]
   },
-
   "records": {
     "top_scorer_history": {
       "name": "David Villa",
@@ -681,12 +1592,14 @@
       "competition": "Amistoso (Highbury)"
     }
   },
-
   "iconic_matches": [
     {
       "title": "El gol de Zarra a Inglaterra",
       "date": "1950-07-02",
-      "opponent": { "iso": "gb-eng", "name": "Inglaterra" },
+      "opponent": {
+        "iso": "gb-eng",
+        "name": "Inglaterra"
+      },
       "score": "1-0",
       "competition": "Fase de Grupos Mundial 1950",
       "narrative": "El gol de cabeza de Telmo Zarra al 49' eliminó a Inglaterra del Mundial 1950 y se convirtió en uno de los momentos fundacionales del fútbol español. La narración de radio de Matías Prats hijo es referencia histórica del periodismo deportivo. Hizo que España terminara 4ª, su mejor papel en Mundiales hasta 2010."
@@ -694,7 +1607,10 @@
     {
       "title": "El póker de Butragueño",
       "date": "1986-06-18",
-      "opponent": { "iso": "dk", "name": "Dinamarca" },
+      "opponent": {
+        "iso": "dk",
+        "name": "Dinamarca"
+      },
       "score": "5-1",
       "competition": "Octavos Mundial 1986",
       "narrative": "Emilio Butragueño marcó 4 goles a Dinamarca en una de las exhibiciones individuales más recordadas del fútbol español. Único 'póker' de un español en fase eliminatoria de un Mundial. La 'Quinta del Buitre' alcanzaba uno de sus picos. España ganó 5-1 con un sexto gol de Goicoechea anulado."
@@ -702,7 +1618,10 @@
     {
       "title": "El robo de Corea",
       "date": "2002-06-22",
-      "opponent": { "iso": "kr", "name": "Corea del Sur" },
+      "opponent": {
+        "iso": "kr",
+        "name": "Corea del Sur"
+      },
       "score": "0-0 (3-5 pen)",
       "competition": "Cuartos Mundial 2002",
       "narrative": "España quedó eliminada en cuartos del Mundial Corea-Japón 2002 ante el anfitrión Corea del Sur. El partido es recordado por el arbitraje del egipcio Gamal Al-Ghandour, quien anuló dos goles legales a España (uno de Morientes por un offside inexistente y otro por una falta inventada). En la tanda de penales, Corea ganó 5-3. Indignación que persiste como una de las grandes injusticias del fútbol mundial."
@@ -710,7 +1629,10 @@
     {
       "title": "Iniesta de mi vida",
       "date": "2010-07-11",
-      "opponent": { "iso": "nl", "name": "Países Bajos" },
+      "opponent": {
+        "iso": "nl",
+        "name": "Países Bajos"
+      },
       "score": "1-0 (prórroga)",
       "competition": "Final Mundial 2010",
       "narrative": "España conquistó su primer y único Mundial en Sudáfrica. La final en Soccer City (Johannesburgo) fue áspera y violenta (14 amarillas + 1 roja). Tras 0-0 reglamentario, en la prórroga, Andrés Iniesta marcó al 116' tras pase de Cesc Fàbregas. La icónica narración 'Iniesta de mi vida' del comentarista José Ángel de la Casa quedó eterna. Iker Casillas levantó la Copa. Cierre de la triple corona europea (Euro 2008 + Mundial 2010 + Euro 2012).",
@@ -719,7 +1641,10 @@
     {
       "title": "El derrumbe (1-5 vs Países Bajos)",
       "date": "2014-06-13",
-      "opponent": { "iso": "nl", "name": "Países Bajos" },
+      "opponent": {
+        "iso": "nl",
+        "name": "Países Bajos"
+      },
       "score": "1-5",
       "competition": "Fase de Grupos Mundial 2014",
       "narrative": "España defendía título y fue arrasada en su debut por Países Bajos: 1-5 con doblete de Van Persie (cabezazo en plancha icónico) y hat-trick de Robben. Tercer campeón vigente eliminado en primera ronda en la era moderna. Cierre traumático de la generación dorada. Casillas perdió la titularidad."
@@ -727,7 +1652,10 @@
     {
       "title": "La eliminación de Marruecos",
       "date": "2022-12-06",
-      "opponent": { "iso": "ma", "name": "Marruecos" },
+      "opponent": {
+        "iso": "ma",
+        "name": "Marruecos"
+      },
       "score": "0-0 (0-3 pen)",
       "competition": "Octavos Mundial 2022",
       "narrative": "España dominó el balón ante Marruecos pero apenas creó ocasiones claras en los 120 minutos. Sin gol en regulación ni prórroga, en penales el portero marroquí Yassine Bono adivinó los 3 lanzamientos españoles (Sarabia, Soler, Busquets). Marruecos pasó por primera vez a cuartos en su historia. Para España, el segundo octavos consecutivo eliminada en penales."
@@ -735,7 +1663,10 @@
     {
       "title": "La consagración europea (Eurocopa 2024)",
       "date": "2024-07-14",
-      "opponent": { "iso": "gb-eng", "name": "Inglaterra" },
+      "opponent": {
+        "iso": "gb-eng",
+        "name": "Inglaterra"
+      },
       "score": "2-1",
       "competition": "Final Eurocopa 2024 (no Mundial pero contexto)",
       "narrative": "España conquistó su 4ª Eurocopa en Berlín derrotando 2-1 a Inglaterra con goles de Nico Williams y Mikel Oyarzabal. Lamine Yamal, con 17 años, fue revelación del torneo y mejor jugador joven. Generación nueva consolidada de cara al Mundial 2026."
@@ -743,13 +1674,15 @@
     {
       "title": "El 0-6 a Turquía (clasificación 2026)",
       "date": "2025-09-07",
-      "opponent": { "iso": "tr", "name": "Turquía" },
+      "opponent": {
+        "iso": "tr",
+        "name": "Turquía"
+      },
       "score": "6-0",
       "competition": "Eliminatorias Mundial 2026",
       "narrative": "España firmó una de sus mejores actuaciones del ciclo en Konya con un 6-0 ante Turquía. Hat-trick de Mikel Merino, doblete de Pedri y gol de Ferran Torres. Triplete de asistencias de Oyarzabal. Demostración de fuerza colectiva."
     }
   ],
-
   "curiosities": [
     {
       "text": "España disputará en 2026 su 13ª Mundial consecutivo, racha iniciada en 1978.",
@@ -800,7 +1733,6 @@
       "status": "validated"
     }
   ],
-
   "fan_culture": {
     "famous_chants": [
       "Yo soy español, español, español (clásico desde Eurocopa 2008)",
@@ -818,7 +1750,6 @@
       "city": "España (sin estadio fijo: la RFEF rota partidos por las principales ciudades)"
     }
   },
-
   "seo": {
     "meta_title": "España en el Mundial 2026 | Plantilla, historia y predicciones",
     "meta_description": "Selección Española Mundial 2026: 26 convocados de Luis de la Fuente, Yamal, Pedri y la generación europea, Grupo E eliminatorias y análisis táctico.",
@@ -827,7 +1758,10 @@
       "@context": "https://schema.org",
       "@type": "SportsTeam",
       "name": "Selección de España de fútbol",
-      "alternateName": ["La Roja", "La Furia Roja"],
+      "alternateName": [
+        "La Roja",
+        "La Furia Roja"
+      ],
       "sport": "Football",
       "memberOf": {
         "@type": "SportsOrganization",
@@ -840,7 +1774,6 @@
       "url": "https://www.zonamundial.app/selecciones/espana"
     }
   },
-
   "_meta": {
     "schema_version": "1.0.0",
     "last_updated": "2026-04-28",

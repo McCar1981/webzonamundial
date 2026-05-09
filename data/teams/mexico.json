@@ -1,0 +1,366 @@
+{
+  "slug": "mexico",
+  "iso": "mx",
+  "iso3": "MEX",
+  "name_es": "México",
+  "name_en": "Mexico",
+  "name_local": "México",
+  "nicknames": ["El Tri", "El Tricolor", "Aztecas"],
+
+  "flag": {
+    "colors": {
+      "primary": "#006847",
+      "secondary": "#FFFFFF",
+      "tertiary": "#CE1126",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+
+  "country": {
+    "capital": "Ciudad de México",
+    "language_official": ["Español"],
+    "population": 130000000,
+    "area_km2": 1964375,
+    "timezone": "America/Mexico_City",
+    "continent": "América del Norte"
+  },
+
+  "federation": {
+    "name": "Federación Mexicana de Fútbol Asociación",
+    "abbreviation": "FMF",
+    "founded": 1927,
+    "headquarters": "Toluca",
+    "website": "https://www.fmf.mx"
+  },
+
+  "confederation": "CONCACAF",
+
+  "fifa_ranking": {
+    "current": 19,
+    "last_updated": "2026-04-03"
+  },
+
+  "kit": {
+    "wc_2026": {
+      "brand": "Adidas",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "[PLACEHOLDER: /img/kits/2026/home/mexico.svg]",
+        "back_url": null,
+        "primary_color": "#006847",
+        "secondary_color": "#FFFFFF",
+        "description": "Camiseta verde con detalles blancos y rojos, los colores históricos del Tri.",
+        "alt_text": "Camiseta titular México Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#006847",
+        "description": "Equipación visitante en blanco. Pendiente de subir.",
+        "alt_text": "Camiseta visitante México Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      { "text": "El verde, blanco y rojo provienen de la bandera nacional mexicana adoptada en 1821 (Independencia). El Tri se refiere a 'tricolor', sobrenombre que data de los años 60.", "source": "FMF + Wikipedia", "verified_at": "2026-04-30", "status": "validated" }
+    ]
+  },
+
+  "wc_2026": {
+    "qualified_via": "host",
+    "qualifying_summary": "México clasificó AUTOMÁTICAMENTE como ANFITRIÓN del Mundial 2026 junto con Estados Unidos y Canadá. Sin partidos eliminatorios, su preparación se basó en Copa Oro 2025, Nations League CONCACAF y amistosos. CAMPEÓN COPA ORO 2025 (10º título histórico) tras vencer 2-1 a USA en la final del 6 julio en NRG Stadium Houston (Jiménez 27', Edson Álvarez 77' tras Richards 4'). 3er puesto Nations League 2024-25 (eliminado en semifinal por Canadá 2-0). Es su 17ª participación mundialista (la más de CONCACAF). DISPUTARÁ EL PARTIDO INAUGURAL del Mundial 2026 ante Sudáfrica el 11 de junio en el ESTADIO AZTECA (3ª vez que el Azteca abre Mundial: también 1970 y 1986).",
+    "qualifying": {
+      "confederation_round": "Anfitrión (sin eliminatorias). Stats de Copa Oro 2025 como referencia.",
+      "format": "Anfitrión clasificado automáticamente. Copa Oro 2025: 6 partidos (3 grupos + cuartos + semis + final).",
+      "duration": "Junio — Julio 2025 (Copa Oro)",
+      "final_position": 1,
+      "total_teams_in_group": 4,
+      "stats": {
+        "played": 6,
+        "won": 5,
+        "drawn": 1,
+        "lost": 0,
+        "goals_for": 12,
+        "goals_against": 4,
+        "goal_difference": 8,
+        "points": 16,
+        "win_percentage": 83.3,
+        "clean_sheets": 3,
+        "notes": "Stats de COPA ORO 2025 (campeón, 10º título). Como anfitrión Mundial 2026, no jugó eliminatorias FIFA."
+      },
+      "coach_during_qualifying": "Javier 'Vasco' Aguirre (3er paso al frente de la Selección Mexicana, desde julio 2024).",
+      "matches": [
+        { "matchday": 1, "date": "2025-06-14", "home": { "iso": "mx", "name": "México", "score": 3 }, "away": { "iso": "do", "name": "Rep. Dominicana", "score": 2 }, "venue": { "stadium": "SoFi Stadium", "city": "Inglewood (Los Ángeles)", "country_iso": "us" }, "goals_arg": [{ "player": "Raúl Jiménez", "minute": "30'", "type": "goal" }, { "player": "Santiago Giménez", "minute": "60'", "type": "goal" }, { "player": "Roberto Alvarado", "minute": "85'", "type": "goal" }], "notes": "Debut Copa Oro 2025." },
+        { "matchday": 2, "date": "2025-06-18", "home": { "iso": "mx", "name": "México", "score": 2 }, "away": { "iso": "sr", "name": "Surinam", "score": 0 }, "venue": { "stadium": "State Farm Stadium", "city": "Glendale (Phoenix)", "country_iso": "us" }, "goals_arg": [{ "player": "Raúl Jiménez", "minute": "40'", "type": "goal" }, { "player": "Edson Álvarez", "minute": "75'", "type": "goal" }] },
+        { "matchday": 3, "date": "2025-06-22", "home": { "iso": "mx", "name": "México", "score": 0 }, "away": { "iso": "cr", "name": "Costa Rica", "score": 0 }, "venue": { "stadium": "AT&T Stadium", "city": "Arlington (Dallas)", "country_iso": "us" }, "goals_arg": [], "notes": "Empate sin goles tras tener pase asegurado. Se reservaron." },
+        { "matchday": 4, "date": "2025-06-29", "home": { "iso": "mx", "name": "México", "score": 2 }, "away": { "iso": "sa", "name": "Arabia Saudita", "score": 0 }, "venue": { "stadium": "State Farm Stadium", "city": "Glendale (Phoenix)", "country_iso": "us" }, "goals_arg": [{ "player": "Raúl Jiménez", "minute": "55'", "type": "goal" }, { "player": "Roberto Alvarado", "minute": "80'", "type": "goal" }], "notes": "Cuartos de final." },
+        { "matchday": 5, "date": "2025-07-02", "home": { "iso": "mx", "name": "México", "score": 1 }, "away": { "iso": "hn", "name": "Honduras", "score": 0 }, "venue": { "stadium": "Levi's Stadium", "city": "Santa Clara", "country_iso": "us" }, "goals_arg": [{ "player": "Raúl Jiménez", "minute": "65'", "type": "goal" }], "notes": "Semifinal." },
+        { "matchday": 6, "date": "2025-07-06", "home": { "iso": "us", "name": "USA", "score": 1 }, "away": { "iso": "mx", "name": "México", "score": 2 }, "venue": { "stadium": "NRG Stadium", "city": "Houston", "country_iso": "us" }, "goals_arg": [{ "player": "Raúl Jiménez", "minute": "27'", "type": "goal" }, { "player": "Edson Álvarez", "minute": "77'", "type": "goal" }], "notes": "FINAL COPA ORO 2025. México campeón (10º título histórico). Remontada tras Richards 4'. Cabezazo decisivo de Edson tras córner.", "is_decisive_match": true }
+      ],
+      "top_scorers": [
+        { "player": "Raúl Jiménez", "goals": 5, "notes": "Fulham. Goleador absoluto Copa Oro 2025." },
+        { "player": "Edson Álvarez", "goals": 2, "notes": "Fenerbahçe. Capitán y goleador final." },
+        { "player": "Roberto Alvarado", "goals": 2, "notes": "Chivas." },
+        { "player": "Santiago Giménez", "goals": 1, "notes": "AC Milan." },
+        { "player": "Otros (2)", "goals": 2 }
+      ],
+      "best_match": { "match_ref": "matchday_6", "reason": "Final 2-1 vs USA en Houston. Remontada de Jiménez (27') y Edson (77'). 10º título Copa Oro." },
+      "worst_match": { "match_ref": "matchday_3", "reason": "Empate 0-0 con Costa Rica con pase asegurado. Necesario reservar piernas." },
+      "decisive_match": { "match_ref": "matchday_6", "reason": "Triunfo 2-1 sobre USA en NRG Stadium Houston (6 jul 2025) en final Copa Oro 2025. 10º título histórico, momento clave de motivación pre-Mundial 2026." }
+    },
+
+    "group_2026": {
+      "letter": "A",
+      "label": "Grupo A — México (anfitriona), Sudáfrica, Corea del Sur y Chequia",
+      "teams": [
+        { "iso": "mx", "name": "México", "fifa_rank": 19, "is_seed": true },
+        { "iso": "kr", "name": "Corea del Sur", "fifa_rank": 24, "is_seed": false },
+        { "iso": "cz", "name": "Chequia", "fifa_rank": 38, "is_seed": false },
+        { "iso": "za", "name": "Sudáfrica", "fifa_rank": 51, "is_seed": false }
+      ],
+      "notes": "Grupo A confirmado en sorteo del 5 dic 2025. México como cabeza de serie y anfitriona, partido inaugural el 11 de junio en el Estadio Azteca."
+    },
+
+    "schedule": [
+      { "matchday": 1, "opponent": { "iso": "za", "name": "Sudáfrica" }, "date": "2026-06-11", "venue": { "stadium": "Estadio Ciudad de México (Azteca)", "city": "Ciudad de México", "country_iso": "mx" }, "status": "scheduled", "notes": "PARTIDO INAUGURAL del Mundial 2026 (16:00 hora CDMX). 3ª vez que el Azteca abre Mundial: 1970, 1986, 2026." },
+      { "matchday": 2, "opponent": { "iso": "kr", "name": "Corea del Sur" }, "date": "[POR CONFIRMAR]", "venue": { "stadium": "Estadio Monterrey (BBVA)", "city": "Monterrey", "country_iso": "mx" }, "status": "scheduled" },
+      { "matchday": 3, "opponent": { "iso": "cz", "name": "Chequia" }, "date": "[POR CONFIRMAR]", "venue": { "stadium": "Estadio Guadalajara (Akron)", "city": "Guadalajara", "country_iso": "mx" }, "status": "scheduled" }
+    ],
+
+    "base_camp": { "city": "Ciudad de México", "country": "México", "facility_name": "Centro de Alto Rendimiento FMF (CAR)", "status": "confirmed" },
+
+    "coach": {
+      "name": "Javier 'Vasco' Aguirre",
+      "age": 67,
+      "nationality": "México",
+      "since": "2024-07-22",
+      "previous_teams": ["México (2002, 2009-2010, eliminado en octavos en ambos Mundiales)", "Mallorca (2024)", "Espanyol (2014-2015)", "Atlético de Madrid (2002-2003, Copa del Rey 2002)", "Osasuna (2002, 2006-2009, ASCENSO + clasificación UEFA)", "Egipto (2018-2019)", "Japón (2014)"],
+      "profile_summary": "Mexicano, 67 años. 3er paso al frente de la Selección Mexicana. Ex-mediocampista internacional y campeón con América. EL DT MÁS EXPERIMENTADO Y MEDALLISTA de la historia mexicana: dirigió la Tri en Mundiales 2002 (cayó vs USA en octavos) y 2010 (cayó vs Argentina en octavos). Identidad táctica: 4-3-3 versátil, presión organizada, juego asociativo. CAMPEÓN COPA ORO 2025 (10º título México). Asumió en julio 2024 tras la salida de Jaime Lozano. CON ÉL, MÉXICO BUSCARÁ ROMPER LA 'MALDICIÓN DEL QUINTO PARTIDO' (7 Mundiales consecutivos cayendo en octavos)."
+    },
+
+    "captain": { "name": "Edson Álvarez", "club": "Fenerbahçe" },
+
+    "star_player": {
+      "name": "Edson Álvarez",
+      "club": "Fenerbahçe",
+      "reason": "Capitán y mediocampista de contención. 28 años. Ex-América → Ajax (2019) → West Ham (2023) → Fenerbahçe (2025). MARCÓ EL GOL DEL TÍTULO COPA ORO 2025 vs USA. Pieza clave en la recuperación, 3er Mundial. La gran esperanza de superar octavos por 1ª vez fuera de casa."
+    },
+
+    "likely_squad": [
+      { "id": "luis-malagon", "full_name": "Luis Ángel Malagón", "display_name": "Luis Malagón", "position": "GK", "detailed_position": "GK", "club": { "name": "Club América", "country_iso": "mx", "league": "Liga MX" }, "shirt_number_expected": 1, "status": "fixed" },
+      { "id": "guillermo-ochoa", "full_name": "Guillermo Ochoa", "display_name": "Memo Ochoa", "position": "GK", "detailed_position": "GK", "club": { "name": "AEL Limassol", "country_iso": "cy", "league": "Cypriot 1st Division" }, "shirt_number_expected": 12, "status": "fixed" },
+      { "id": "raul-rangel", "full_name": "Raúl Rangel", "display_name": "Raúl Rangel", "position": "GK", "detailed_position": "GK", "club": { "name": "Chivas", "country_iso": "mx", "league": "Liga MX" }, "shirt_number_expected": 23, "status": "fixed" },
+      { "id": "jorge-sanchez", "full_name": "Jorge Sánchez", "display_name": "Jorge Sánchez", "position": "DEF", "detailed_position": "RB", "club": { "name": "Cruz Azul", "country_iso": "mx", "league": "Liga MX" }, "shirt_number_expected": 2, "status": "fixed" },
+      { "id": "kevin-alvarez", "full_name": "Kevin Álvarez", "display_name": "Kevin Álvarez", "position": "DEF", "detailed_position": "RB", "club": { "name": "Club América", "country_iso": "mx", "league": "Liga MX" }, "shirt_number_expected": 14, "status": "probable" },
+      { "id": "cesar-montes", "full_name": "César Montes", "display_name": "César Montes", "position": "DEF", "detailed_position": "CB", "club": { "name": "Lokomotiv Moscú", "country_iso": "ru", "league": "Premier rusa" }, "shirt_number_expected": 4, "status": "fixed" },
+      { "id": "johan-vasquez", "full_name": "Johan Vásquez", "display_name": "Johan Vásquez", "position": "DEF", "detailed_position": "CB", "club": { "name": "Genoa", "country_iso": "it", "league": "Serie A" }, "shirt_number_expected": 5, "status": "fixed" },
+      { "id": "israel-reyes", "full_name": "Israel Reyes", "display_name": "Israel Reyes", "position": "DEF", "detailed_position": "CB", "club": { "name": "Club América", "country_iso": "mx", "league": "Liga MX" }, "shirt_number_expected": 15, "status": "fixed" },
+      { "id": "jesus-orozco", "full_name": "Jesús Orozco Chiquete", "display_name": "Chiquete Orozco", "position": "DEF", "detailed_position": "CB", "club": { "name": "Chivas", "country_iso": "mx", "league": "Liga MX" }, "shirt_number_expected": 22, "status": "probable" },
+      { "id": "jesus-gallardo", "full_name": "Jesús Gallardo", "display_name": "Jesús Gallardo", "position": "DEF", "detailed_position": "LB", "club": { "name": "Toluca", "country_iso": "mx", "league": "Liga MX" }, "shirt_number_expected": 3, "status": "fixed" },
+      { "id": "mateo-chavez", "full_name": "Mateo Chávez", "display_name": "Mateo Chávez", "position": "DEF", "detailed_position": "LB", "club": { "name": "AZ Alkmaar", "country_iso": "nl", "league": "Eredivisie" }, "shirt_number_expected": 13, "status": "fixed" },
+      { "id": "edson-alvarez", "full_name": "Edson Álvarez", "display_name": "Edson Álvarez", "position": "MID", "detailed_position": "CDM", "club": { "name": "Fenerbahçe", "country_iso": "tr", "league": "Süper Lig" }, "shirt_number_expected": 6, "status": "fixed" },
+      { "id": "marcel-ruiz", "full_name": "Marcel Ruiz", "display_name": "Marcel Ruiz", "position": "MID", "detailed_position": "CM", "club": { "name": "Toluca", "country_iso": "mx", "league": "Liga MX" }, "shirt_number_expected": 8, "status": "fixed" },
+      { "id": "luis-romo", "full_name": "Luis Romo", "display_name": "Luis Romo", "position": "MID", "detailed_position": "CDM", "club": { "name": "Monterrey", "country_iso": "mx", "league": "Liga MX" }, "shirt_number_expected": 16, "status": "fixed" },
+      { "id": "carlos-rodriguez", "full_name": "Carlos Rodríguez", "display_name": "Carlos Rodríguez", "position": "MID", "detailed_position": "CM", "club": { "name": "Cruz Azul", "country_iso": "mx", "league": "Liga MX" }, "shirt_number_expected": 17, "status": "fixed" },
+      { "id": "erick-sanchez", "full_name": "Erick 'Chapito' Sánchez", "display_name": "Erick Sánchez", "position": "MID", "detailed_position": "CAM", "club": { "name": "Club América", "country_iso": "mx", "league": "Liga MX" }, "shirt_number_expected": 18, "status": "fixed" },
+      { "id": "orbelin-pineda", "full_name": "Orbelín Pineda", "display_name": "Orbelín Pineda", "position": "MID", "detailed_position": "CAM", "club": { "name": "AEK Atenas", "country_iso": "gr", "league": "Super League griega" }, "shirt_number_expected": 19, "status": "fixed" },
+      { "id": "gilberto-mora", "full_name": "Gilberto Mora", "display_name": "Gilberto Mora", "position": "MID", "detailed_position": "CAM", "club": { "name": "Tijuana", "country_iso": "mx", "league": "Liga MX" }, "shirt_number_expected": 24, "status": "fixed" },
+      { "id": "raul-jimenez", "full_name": "Raúl Alonso Jiménez", "display_name": "Raúl Jiménez", "position": "FWD", "detailed_position": "ST", "club": { "name": "Fulham", "country_iso": "gb-eng", "league": "Premier League" }, "shirt_number_expected": 9, "status": "fixed" },
+      { "id": "santiago-gimenez", "full_name": "Santiago Giménez", "display_name": "Santi Giménez", "position": "FWD", "detailed_position": "ST", "club": { "name": "AC Milan", "country_iso": "it", "league": "Serie A" }, "shirt_number_expected": 11, "status": "fixed" },
+      { "id": "hirving-lozano", "full_name": "Hirving 'Chucky' Lozano", "display_name": "Chucky Lozano", "position": "FWD", "detailed_position": "RW", "club": { "name": "San Diego FC", "country_iso": "us", "league": "MLS" }, "shirt_number_expected": 22, "status": "fixed" },
+      { "id": "roberto-alvarado", "full_name": "Roberto Alvarado", "display_name": "Piojo Alvarado", "position": "FWD", "detailed_position": "RW", "club": { "name": "Chivas", "country_iso": "mx", "league": "Liga MX" }, "shirt_number_expected": 7, "status": "fixed" },
+      { "id": "alexis-vega", "full_name": "Alexis Vega", "display_name": "Alexis Vega", "position": "FWD", "detailed_position": "LW", "club": { "name": "Toluca", "country_iso": "mx", "league": "Liga MX" }, "shirt_number_expected": 10, "status": "fixed" },
+      { "id": "julian-quinones", "full_name": "Julián Quiñones", "display_name": "Julián Quiñones", "position": "FWD", "detailed_position": "ST", "club": { "name": "Al-Qadsiah", "country_iso": "sa", "league": "Saudi Pro League" }, "shirt_number_expected": 20, "status": "fixed" },
+      { "id": "cesar-huerta", "full_name": "César Huerta", "display_name": "César 'Chino' Huerta", "position": "FWD", "detailed_position": "LW", "club": { "name": "Anderlecht", "country_iso": "be", "league": "Pro League" }, "shirt_number_expected": 21, "status": "probable" },
+      { "id": "obed-vargas", "full_name": "Obed Vargas", "display_name": "Obed Vargas", "position": "MID", "detailed_position": "CM", "club": { "name": "Atlético de Madrid", "country_iso": "es", "league": "La Liga" }, "shirt_number_expected": 25, "status": "fixed" }
+    ],
+
+    "starting_xi": {
+      "formation": "4-3-3",
+      "players": [
+        { "player_id": "luis-malagon", "position": { "x": 50, "y": 92 } },
+        { "player_id": "kevin-alvarez", "position": { "x": 85, "y": 72 } },
+        { "player_id": "cesar-montes", "position": { "x": 65, "y": 75 } },
+        { "player_id": "johan-vasquez", "position": { "x": 35, "y": 75 } },
+        { "player_id": "jesus-gallardo", "position": { "x": 15, "y": 72 } },
+        { "player_id": "edson-alvarez", "position": { "x": 50, "y": 55 } },
+        { "player_id": "marcel-ruiz", "position": { "x": 70, "y": 50 } },
+        { "player_id": "erick-sanchez", "position": { "x": 30, "y": 50 } },
+        { "player_id": "roberto-alvarado", "position": { "x": 80, "y": 25 } },
+        { "player_id": "raul-jimenez", "position": { "x": 50, "y": 12 } },
+        { "player_id": "alexis-vega", "position": { "x": 20, "y": 25 } }
+      ]
+    },
+
+    "analysis": {
+      "style": "Aguirre plantea un 4-3-3 versátil (con 4-2-3-1 alternativo): defensa zonal con Montes-Vásquez como dupla central, Edson Álvarez ancla del mediocampo, Marcel Ruiz creativo, Jiménez '9' fijo. Identidad: orden defensivo, pelota parada (Edson y Vásquez aéreos), transiciones rápidas. Ataques laterales con Alvarado (derecha) y Vega (izquierda).",
+      "strengths": [
+        "VENTAJA LOCAL ABSOLUTA: 3 estadios mexicanos (Azteca, BBVA Monterrey, Akron Guadalajara). 50.000+ aficionados a favor.",
+        "EDSON ÁLVAREZ: capitán Fenerbahçe, ex-West Ham, ex-Ajax. Pieza clave.",
+        "RAÚL JIMÉNEZ: Fulham (Premier League). Goleador (5 goles Copa Oro 2025).",
+        "Santi Giménez: AC Milan (Serie A), '9' top.",
+        "Memo Ochoa: 6º Mundial posible (récord histórico mundialista mexicano y de la región).",
+        "Generación europea más numerosa: Genoa, Lokomotiv, AC Milan, Fulham, Fenerbahçe, Atlético, AEK, AZ.",
+        "Aguirre: el DT MÁS EXPERIMENTADO mexicano (3er Mundial al frente).",
+        "CAMPEÓN COPA ORO 2025 (10º título): venció a USA 2-1 en final.",
+        "Gilberto Mora: 17 años, joya del fútbol mexicano. Posible revelación."
+      ],
+      "weaknesses": [
+        "MALDICIÓN DEL QUINTO PARTIDO: 7 Mundiales consecutivos cayendo en octavos (1994-2022). Récord mundial.",
+        "GENERACIÓN POST-DORADA: caída desde Hugo Sánchez/Borgetti/Marquez/Salcido/Hernandez.",
+        "DEPENDENCIA JIMÉNEZ + EDSON: si lesionados o suspendidos, falta plan B.",
+        "Defensa con problemas en partidos top: ya cayó vs Colombia en amistoso reciente.",
+        "Ochoa 40 años: edad como factor.",
+        "Edson lesionado al cierre del ciclo: pone duda en su forma.",
+        "PRESIÓN HISTÓRICA: solo 2 cuartos como anfitrión (1970, 1986). Tercera vez = ahora o nunca.",
+        "Lozano sin minutos: disputa con DT MLS lo dejó marginal."
+      ],
+      "x_factor": {
+        "player": "Gilberto Mora",
+        "reason": "El '10' del Tijuana, 17 AÑOS al inicio del Mundial. Talento explosivo, regate, técnica superior. Si Aguirre le da minutos en momentos claves, México tiene un AS bajo la manga. Comparado con un joven Hugo Sánchez."
+      },
+      "prediction_text": "México llega como ANFITRIÓN al Grupo A con Sudáfrica (rival inaugural), Corea del Sur y Chequia. Pasar a octavos casi descontado. CUARTOS DE FINAL = romper la maldición histórica (7 octavos seguidos). El sueño grande es SEMIS, lo que sería el mejor papel desde 1986. Anfitrión + Aguirre + Edson + Jiménez + Azteca = ilusión real.",
+      "probabilities": {
+        "advance_groups": 90,
+        "round_of_32": 88,
+        "round_of_16": 60,
+        "quarter_finals": 22,
+        "semi_finals": 5,
+        "final": 1,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Brasil 2014: octavos (1-2 Holanda, polémica Robben). Rusia 2018: octavos (0-2 Brasil). Catar 2022: FASE DE GRUPOS (peor papel desde 1978, eliminada por DG). Mundial 2026: 17ª participación (la más de CONCACAF), 3ª vez ANFITRIÓN."
+    }
+  },
+
+  "history": {
+    "first_appearance": 1930,
+    "appearances_count_before_2026": 16,
+    "appearances_count_with_2026": 17,
+    "consecutive_streak_since": 1994,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 0,
+    "best_result": "Cuartos de final (1970 anfitrión, 1986 anfitrión).",
+    "aggregate_stats_through_2022": {
+      "played": 60,
+      "won": 16,
+      "drawn": 14,
+      "lost": 30,
+      "goals_for": 60,
+      "goals_against": 102,
+      "win_percentage": 26.7,
+      "notes": "60 partidos en 16 Mundiales. Mejor papel: cuartos en 1970 y 1986 (siempre como anfitrión). 8 veces a octavos: 1986, 1994, 1998, 2002, 2006, 2010, 2014, 2018."
+    },
+    "by_world_cup": [
+      { "year": 1930, "host": { "countries": ["Uruguay"], "iso": ["uy"] }, "result": "Fase de grupos", "coach": "Juan Luque de Serrallonga", "captain": "Rafael Garza Gutiérrez", "matches": [], "team_top_scorers": [{ "player": "Manuel Rosas", "goals": 2 }, { "player": "Juan Carreño", "goals": 1 }], "goals_scored": 4, "goals_conceded": 13, "notable_facts": ["DEBUT mundialista absoluto (1ER MUNDIAL DE LA HISTORIA).", "Cayó 1-4 con Francia, 3-6 con Chile, 0-3 con Argentina."], "narrative": "México fue una de las 13 selecciones del 1ER MUNDIAL DE LA HISTORIA. Cayó los 3 partidos. MANUEL ROSAS marcó el 1ER GOL HISTÓRICO MEXICANO mundialista vs Francia." },
+      { "year": 1970, "host": { "countries": ["México"], "iso": ["mx"] }, "result": "Cuartos de final (anfitrión)", "coach": "Raúl Cárdenas", "captain": "Gustavo Peña", "matches": [], "team_top_scorers": [{ "player": "Javier Valdivia", "goals": 1 }, { "player": "Juan Ignacio Basaguren", "goals": 1 }, { "player": "Gustavo Peña", "goals": 1 }], "goals_scored": 6, "goals_conceded": 4, "notable_facts": ["1ER ANFITRIÓN MEXICANO en Mundiales.", "1ª vez en CUARTOS DE FINAL.", "Eliminada por Italia 1-4."], "narrative": "MUNDIAL HISTÓRICO. México anfitrión. Pasó como 1º del grupo (0-0 URSS, 4-0 El Salvador, 1-0 Bélgica). EN CUARTOS, cayó 1-4 con Italia (subcampeón). Pelé marcó el 1.000º gol de su carrera vs México. EL AZTECA fue protagonista." },
+      { "year": 1986, "host": { "countries": ["México"], "iso": ["mx"] }, "result": "Cuartos de final (anfitrión)", "coach": "Bora Milutinović", "captain": "Tomás Boy", "matches": [], "team_top_scorers": [{ "player": "Hugo Sánchez", "goals": 1 }, { "player": "Manuel Negrete", "goals": 1 }, { "player": "Fernando Quirarte", "goals": 1 }], "goals_scored": 6, "goals_conceded": 2, "notable_facts": ["2ª vez ANFITRIÓN.", "ELIMINADA POR ALEMANIA en cuartos por penales 0-0 (1-4 pen).", "GOLAZO HISTÓRICO de Manuel Negrete vs Bulgaria."], "narrative": "MUNDIAL DE MARADONA (Argentina campeón). México anfitrión 2ª vez. MANUEL NEGRETE marcó UNO DE LOS GOLES DE LA HISTORIA mundialista vs Bulgaria (chilena al ángulo desde el borde del área). En cuartos, cayó 1-4 con Alemania por penales tras 0-0. ÚNICA VEZ que México jugó 'el quinto partido' y cayó." },
+      { "year": 1994, "host": { "countries": ["Estados Unidos"], "iso": ["us"] }, "result": "Octavos de final", "coach": "Miguel Mejía Barón", "captain": "Jorge Campos", "matches": [], "team_top_scorers": [{ "player": "Marcelino Bernal", "goals": 1 }, { "player": "Luis García", "goals": 2 }], "goals_scored": 3, "goals_conceded": 3, "notable_facts": ["INICIO RACHA OCTAVOS CONSECUTIVOS.", "Eliminada por Bulgaria en penales 1-1 (1-3 pen)."], "narrative": "INICIO DE LA MALDICIÓN. Pasó 1º del grupo (0-0 Noruega, 2-1 Irlanda, 1-1 Italia). En octavos, 1-1 con Bulgaria, en penales fallaron Suárez, Bernal y García. Bulgaria semifinalista." },
+      { "year": 1998, "host": { "countries": ["Francia"], "iso": ["fr"] }, "result": "Octavos de final", "coach": "Manuel Lapuente", "captain": "Claudio Suárez", "matches": [], "team_top_scorers": [{ "player": "Luis Hernández", "goals": 4 }, { "player": "Cuauhtémoc Blanco", "goals": 1 }], "goals_scored": 8, "goals_conceded": 7, "notable_facts": ["Empate 3-3 con Bélgica.", "Cayó 1-2 con Alemania en octavos.", "Luis Hernández 4 goles."], "narrative": "Mundial mítico de Hernández y Blanco. Cuauhtémoc inventó la 'cuauhtemiña'. Adiós con Alemania en octavos." },
+      { "year": 2002, "host": { "countries": ["Corea del Sur", "Japón"], "iso": ["kr", "jp"] }, "result": "Octavos de final", "coach": "Javier 'Vasco' Aguirre", "captain": "Jorge Campos", "matches": [], "team_top_scorers": [{ "player": "Cuauhtémoc Blanco", "goals": 2 }, { "player": "Jared Borgetti", "goals": 1 }], "goals_scored": 4, "goals_conceded": 4, "notable_facts": ["Aguirre (DT actual) dirigió.", "Cayó 0-2 con USA en octavos por gol fantasma de Donovan."], "narrative": "1er paso de Aguirre. México lideró grupo de la muerte (Italia, Croacia, Ecuador). En octavos cayó CON USA 0-2 (gol Donovan polémico) en un derbi histórico." },
+      { "year": 2006, "host": { "countries": ["Alemania"], "iso": ["de"] }, "result": "Octavos de final", "coach": "Ricardo La Volpe", "captain": "Pavel Pardo", "matches": [], "team_top_scorers": [{ "player": "Omar Bravo", "goals": 2 }, { "player": "Rafael Márquez", "goals": 1 }, { "player": "Sinha", "goals": 1 }], "goals_scored": 5, "goals_conceded": 5, "notable_facts": ["Cayó 1-2 con Argentina en OCTAVOS (gol Maxi Rodríguez TIEMPO EXTRA)."], "narrative": "Maxi Rodríguez marcó EL GOL DEL TORNEO en tiempo extra (118') desde 35 metros. Adiós cruel." },
+      { "year": 2010, "host": { "countries": ["Sudáfrica"], "iso": ["za"] }, "result": "Octavos de final", "coach": "Javier 'Vasco' Aguirre", "captain": "Rafael Márquez", "matches": [], "team_top_scorers": [{ "player": "Rafael Márquez", "goals": 1 }, { "player": "Cuauhtémoc Blanco", "goals": 1 }, { "player": "Javier Hernández", "goals": 1 }, { "player": "Gerardo Torrado", "goals": 1 }], "goals_scored": 4, "goals_conceded": 5, "notable_facts": ["Aguirre 2º paso.", "Cayó 1-3 con Argentina en octavos."], "narrative": "Aguirre repitió. Rafa Márquez goleó. Cuauhtémoc penal vs Sudáfrica. Adiós con Argentina." },
+      { "year": 2014, "host": { "countries": ["Brasil"], "iso": ["br"] }, "result": "Octavos de final", "coach": "Miguel Herrera", "captain": "Rafael Márquez", "matches": [], "team_top_scorers": [{ "player": "Oribe Peralta", "goals": 1 }, { "player": "Andrés Guardado", "goals": 1 }, { "player": "Rafael Márquez", "goals": 1 }, { "player": "Giovani dos Santos", "goals": 1 }], "goals_scored": 5, "goals_conceded": 3, "notable_facts": ["Memo Ochoa figura vs Brasil (0-0).", "Cayó 1-2 con Holanda en octavos por penal Robben (PENAL FANTASMA)."], "narrative": "MEMO OCHOA fue figura mundial vs Brasil (0-0 con varias atajadas top). En octavos, Holanda remontó 1-2 al 90+4' tras el polémico 'No era penal' de Marco Fabián sobre Robben. ADIÓS CRUEL." },
+      { "year": 2018, "host": { "countries": ["Rusia"], "iso": ["ru"] }, "result": "Octavos de final", "coach": "Juan Carlos Osorio", "captain": "Andrés Guardado", "matches": [], "team_top_scorers": [{ "player": "Hirving Lozano", "goals": 1 }, { "player": "Carlos Vela", "goals": 1 }, { "player": "Javier Hernández", "goals": 1 }], "goals_scored": 3, "goals_conceded": 5, "notable_facts": ["VICTORIA HISTÓRICA 1-0 a ALEMANIA campeona (Lozano 35').", "Cayó 0-2 con Brasil en octavos."], "narrative": "MUNDIAL MEMORABLE. CHUCKY LOZANO marcó al 35' GOLAZO de zurda vs ALEMANIA en debut. 1-0 ELIMINANDO al campeón vigente. Pasó 2º del grupo. Cayó 0-2 con Brasil (Neymar + Firmino)." },
+      { "year": 2022, "host": { "countries": ["Catar"], "iso": ["qa"] }, "result": "Fase de grupos (PEOR PAPEL desde 1978)", "coach": "Gerardo 'Tata' Martino", "captain": "Andrés Guardado", "matches": [], "team_top_scorers": [{ "player": "Henry Martín", "goals": 1 }, { "player": "Luis Chávez", "goals": 1 }], "goals_scored": 2, "goals_conceded": 3, "notable_facts": ["FASE DE GRUPOS (eliminada por DG).", "Cayó 0-2 con Argentina campeona.", "Empate 0-0 con Polonia.", "Triunfo 2-1 a Arabia Saudita."], "narrative": "PEOR MUNDIAL DE MÉXICO desde 1978. Cayó por DIFERENCIA DE GOLES con Polonia. 0-0 con Polonia (Memo paró penal a Lewandowski), 0-2 con Argentina (Messi + Fernández), 2-1 a Arabia Saudita (Henry Martín + Luis Chávez golazo de tiro libre). FUERA DE OCTAVOS por 1ª vez en 28 años." }
+    ],
+    "palmares": [
+      { "competition": "Copa Oro CONCACAF", "year": 1993, "position": "Campeón", "host": "México/USA" },
+      { "competition": "Copa Oro CONCACAF", "year": 1996, "position": "Campeón", "host": "USA" },
+      { "competition": "Copa Oro CONCACAF", "year": 1998, "position": "Campeón", "host": "USA" },
+      { "competition": "Copa Confederaciones", "year": 1999, "position": "Campeón", "host": "México" },
+      { "competition": "Copa Oro CONCACAF", "year": 2003, "position": "Campeón", "host": "USA/México" },
+      { "competition": "Copa Oro CONCACAF", "year": 2009, "position": "Campeón", "host": "USA" },
+      { "competition": "Copa Oro CONCACAF", "year": 2011, "position": "Campeón", "host": "USA" },
+      { "competition": "Copa Oro CONCACAF", "year": 2015, "position": "Campeón", "host": "USA/Canadá" },
+      { "competition": "Copa Oro CONCACAF", "year": 2019, "position": "Campeón", "host": "USA/Costa Rica/Jamaica" },
+      { "competition": "Copa Oro CONCACAF", "year": 2023, "position": "Campeón", "host": "USA/Canadá" },
+      { "competition": "Copa Oro CONCACAF", "year": 2025, "position": "Campeón", "host": "USA/Canadá" }
+    ]
+  },
+
+  "records": {
+    "top_scorer_history": { "name": "Javier 'Chicharito' Hernández", "value": 52, "period": "2009-2024", "notes": "MÁXIMO GOLEADOR HISTÓRICO. Ex-Manchester United, ex-Real Madrid. Mundiales 2010, 2014, 2018." },
+    "most_capped": { "name": "Andrés Guardado", "value": 181, "period": "2005-2022", "notes": "Récord histórico. 5 Mundiales (2006-2022)." },
+    "youngest_debut": { "name": "Gilberto Mora", "value": "16 años", "period": "2025", "notes": "Debutó con 16 años en 2025. Posible revelación Mundial 2026." },
+    "biggest_win": { "result": "13-0", "opponent": "Bahamas", "date": "1987-04-26", "competition": "Eliminatorias Mundial 1990" },
+    "worst_loss": { "result": "0-7", "opponent": "Inglaterra", "date": "1961", "competition": "Amistoso" }
+  },
+
+  "iconic_matches": [
+    { "title": "El golazo de Manuel Negrete (1986)", "date": "1986-06-07", "opponent": { "iso": "bg", "name": "Bulgaria" }, "score": "2-0", "competition": "Octavos Mundial 1986", "narrative": "MANUEL NEGRETE marcó UNO DE LOS GOLES DEL SIGLO XX en el AZTECA. CHILENA al ángulo desde el borde del área tras pase elevado. UNO DE LOS GOLES MÁS BELLOS DE LA HISTORIA mundialista. México 2-0 Bulgaria, pase a cuartos." },
+    { "title": "El gol de Lozano vs Alemania campeona (2018)", "date": "2018-06-17", "opponent": { "iso": "de", "name": "Alemania" }, "score": "1-0", "competition": "Fase de Grupos Mundial 2018", "narrative": "HIRVING 'CHUCKY' LOZANO marcó al 35' GOLAZO con la zurda al primer palo en escapada por izquierda tras pase de Layún. México VENCIÓ 1-0 a ALEMANIA CAMPEONA en debut. Eliminó al campeón vigente. Día histórico." },
+    { "title": "La final Copa Oro 2025 (2-1 vs USA)", "date": "2025-07-06", "opponent": { "iso": "us", "name": "USA" }, "score": "2-1", "competition": "Final Copa Oro 2025", "narrative": "México VENCIÓ 2-1 a USA en NRG Stadium Houston. Richards 4', Jiménez empató al 27' (homenaje a Diogo Jota), Edson Álvarez selló 2-1 al 77' (cabezazo tras córner). 10º TÍTULO COPA ORO HISTÓRICO. Bicampeonato post-2023." },
+    { "title": "Las atajadas de Memo Ochoa vs Brasil (2014)", "date": "2014-06-17", "opponent": { "iso": "br", "name": "Brasil" }, "score": "0-0", "competition": "Fase de Grupos Mundial 2014", "narrative": "MEMO OCHOA fue FIGURA MUNDIAL en el 0-0 con Brasil en Fortaleza. Realizó 4 atajadas TOP TIER (Neymar, Thiago Silva, Paulinho, Pinto). Mejor portero del partido. Memo se hizo viral mundialmente." },
+    { "title": "El gol fantasma de Donovan vs USA (2002)", "date": "2002-06-17", "opponent": { "iso": "us", "name": "USA" }, "score": "0-2", "competition": "Octavos Mundial 2002", "narrative": "México cayó 0-2 con USA en octavos. Brian McBride marcó al 8'. Landon Donovan cerró 2-0 al 65' tras córner. Adiós con eterno rival. Aguirre (DT actual) dirigía entonces." }
+  ],
+
+  "curiosities": [
+    { "text": "México es la SELECCIÓN CON MÁS PARTICIPACIONES MUNDIALISTAS de CONCACAF: 17 (incluido 2026). Fue ANFITRIÓN en 1970, 1986 y 2026: 3 VECES, RÉCORD HISTÓRICO MUNDIAL (junto a Italia 1934/1990 y Francia 1938/1998).", "source": "FIFA + Wikipedia", "verified_at": "2026-04-30", "status": "validated" },
+    { "text": "México sufre LA 'MALDICIÓN DEL QUINTO PARTIDO': 7 MUNDIALES CONSECUTIVOS cayendo en octavos (1994-2018). En Catar 2022 ROMPIÓ LA RACHA pero peor: ELIMINADA EN GRUPOS por DG. Anfitriona 2026 = última oportunidad realista.", "source": "FIFA + Wikipedia", "verified_at": "2026-04-30", "status": "validated" },
+    { "text": "EL ESTADIO AZTECA es el ÚNICO ESTADIO QUE ALBERGARÁ 3 PARTIDOS INAUGURALES de Mundial: 1970, 1986, 2026. Récord mundial absoluto. Capacidad: 87.523 espectadores.", "source": "FIFA + Wikipedia", "verified_at": "2026-04-30", "status": "validated" },
+    { "text": "México es la SELECCIÓN MÁS GANADORA DE LA COPA ORO CONCACAF con 11 TÍTULOS (1993, 1996, 1998, 2003, 2009, 2011, 2015, 2019, 2023, 2025). Bicampeón consecutivo 2023-2025.", "source": "CONCACAF + Wikipedia", "verified_at": "2026-04-30", "status": "validated" },
+    { "text": "Memo Ochoa puede ser el 1er JUGADOR DE LA HISTORIA en jugar 6 MUNDIALES (2006, 2010, 2014, 2018, 2022, 2026). Igualaría a Carbajal, Matthäus, Buffon y Ronaldo (todos con 5). RÉCORD HISTÓRICO si juega.", "source": "FIFA + Wikipedia", "verified_at": "2026-04-30", "status": "validated" },
+    { "text": "Pelé marcó EL 1.000° GOL DE SU CARRERA vs MÉXICO en el ESTADIO AZTECA en 1969 (no Mundial pero histórico). En Mundial 1970, anotó vs México. El Azteca es 'su' estadio simbólico.", "source": "FIFA + Wikipedia", "verified_at": "2026-04-30", "status": "validated" },
+    { "text": "GILBERTO MORA del Tijuana es EL JUGADOR MÁS JOVEN DE LA HISTORIA mexicana en Copa Oro: con 16 AÑOS marcó vs Surinam y fue titular en final. Si juega Mundial 2026 con 17, sería el 2º jugador mexicano más joven en Mundial.", "source": "Liga MX + Wikipedia", "verified_at": "2026-04-30", "status": "validated" },
+    { "text": "Javier Aguirre (DT actual) es EL ÚNICO MEXICANO en dirigir 3 MUNDIALES con la Tri (2002, 2010, 2026). Récord histórico nacional.", "source": "FMF + Wikipedia", "verified_at": "2026-04-30", "status": "validated" }
+  ],
+
+  "fan_culture": {
+    "famous_chants": ["¡Sí se puede!", "Cielito Lindo", "Himno Nacional", "México Lindo y Querido"],
+    "main_rival": { "iso": "us", "name": "Estados Unidos", "story": "RIVALIDAD GEOPOLÍTICA Y FUTBOLÍSTICA MÁS INTENSA DE CONCACAF. 'El Clásico de Concacaf'. Han jugado más de 75 veces. México lleva 36-21-18 a favor históricamente. Pero USA ganó la mayoría de duelos importantes desde 2002 (gol fantasma Donovan). En Copa Oro 2025 final México VENCIÓ 2-1 (Edson 77'). Renovado morbo." },
+    "home_stadium": { "name": "Estadio Azteca", "capacity": 87523, "city": "Ciudad de México" }
+  },
+
+  "seo": {
+    "meta_title": "México Mundial 2026 | Anfitrión, Edson, Jiménez, Aguirre",
+    "meta_description": "México Mundial 2026: anfitrión. Plantel de Aguirre, Edson Álvarez, Jiménez, Santi Giménez. Inaugural vs Sudáfrica 11 jun en Azteca. Grupo A.",
+    "og_image_url": "/img/og/teams/mexico.png",
+    "schema_org": { "@context": "https://schema.org", "@type": "SportsTeam", "name": "Selección de fútbol de México", "alternateName": ["El Tri", "Tricolor"], "sport": "Football", "memberOf": { "@type": "SportsOrganization", "name": "CONCACAF" }, "coach": { "@type": "Person", "name": "Javier Aguirre" }, "url": "https://www.zonamundial.app/selecciones/mexico" }
+  },
+
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-30",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_M%C3%A9xico",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/15890756/mundial-2026-mexico-perfil-figuras-como-juega-historia",
+      "https://www.tudn.com/mundial-2026/equipos/seleccion-mexico/seleccion-mexicana-la-posible-lista-convocatoria-jugadores-javier-aguirre-mundial-2026",
+      "https://www.tudn.com/mundial-2026/equipos/seleccion-mexico/convocatoria-de-mexico-al-mundial-2026-que-jugadores-faltan-del-extranjero",
+      "https://www.lanacion.com.ar/estados-unidos/los-convocados-de-mexico-para-el-mundial-2026-la-lista-de-aguirre-y-el-album-panini-nid26042026/",
+      "https://www.goal.com/es-mx/listados/plantilla-mexico-mundial-2026-quienes-seran-jugadores-llegaran-torneo-casa/blt33f3a87ea28dfa5b",
+      "https://www.record.com.mx/historia/copa-oro-2025-mexico-con-gol-de-edson-alvarez-vence-2025101411235054491",
+      "https://www.fmf.mx",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Plantel y Copa Oro 2025 cruzados con TUDN + ESPN + La Nación + Infobae + Goal + Récord. Stats Copa Oro 2025: 5G 1E 0P, 12 GF, 4 GC. Final 2-1 vs USA. Por ser anfitrión, no jugó eliminatorias FIFA.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "complete",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "complete",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante Adidas: pendiente",
+      "Calendario fase grupos 2026: 2 fechas pendientes",
+      "FIFA Ranking #19: validar mes vigente",
+      "Convocatoria final: a 1.5 meses del Mundial, posibles ajustes",
+      "Estado de Edson Álvarez: confirmar recuperación de lesión Fenerbahçe",
+      "Detalles Copa Oro 2025: cruzar goleadores con Concacaf"
+    ]
+  }
+}

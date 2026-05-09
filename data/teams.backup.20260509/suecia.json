@@ -1,0 +1,1675 @@
+{
+  "slug": "suecia",
+  "iso": "se",
+  "iso3": "SWE",
+  "name_es": "Suecia",
+  "name_en": "Sweden",
+  "name_local": "Sverige",
+  "nicknames": [
+    "Blågult (Azul y amarillo)",
+    "Tre Kronor",
+    "Los Vikingos"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#006AA7",
+      "secondary": "#FECC00",
+      "tertiary": "#FFFFFF",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Estocolmo",
+    "language_official": [
+      "Sueco"
+    ],
+    "population": 10550000,
+    "area_km2": 450295,
+    "timezone": "Europe/Stockholm",
+    "continent": "Europa"
+  },
+  "federation": {
+    "name": "Svenska Fotbollförbundet",
+    "abbreviation": "SvFF",
+    "founded": 1904,
+    "headquarters": "Estocolmo (Solna)",
+    "website": "https://www.svenskfotboll.se"
+  },
+  "confederation": "UEFA",
+  "fifa_ranking": {
+    "current": 36,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Adidas",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/suecia.png",
+        "back_url": null,
+        "primary_color": "#FECC00",
+        "secondary_color": "#006AA7",
+        "description": "La icónica camiseta amarilla con detalles azules, los colores de la bandera nacional sueca. Apodo 'Blågult' (azul y amarillo).",
+        "alt_text": "Camiseta titular Suecia Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#006AA7",
+        "secondary_color": "#FECC00",
+        "description": "Equipación visitante en azul. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Suecia Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "El apodo 'Tre Kronor' (Tres Coronas) viene del escudo nacional sueco, símbolo de la dinastía Magnus Eriksson del siglo XIV. Es el escudo nacional más antiguo de Europa todavía en uso.",
+        "source": "SvFF + Wikipedia",
+        "verified_at": "2026-04-28",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "playoff_uefa",
+    "qualifying_summary": "Suecia clasificó vía PLAY-OFF tras quedar 2ª del Grupo B detrás de Suiza. Pasó por la Ruta B de play-offs: ganó 3-1 a Ucrania en semifinal y 3-2 a Polonia en la final en Estocolmo. Bajo Graham Potter (DT inglés desde 2025), Suecia regresa al Mundial tras ausencia en Catar 2022. Con figuras como Alexander Isak, Viktor Gyökeres y Anthony Elanga, busca recuperar protagonismo de la Suecia subcampeona 1958.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias UEFA Mundial 2026 — Grupo B + Play-offs Ruta B",
+      "format": "Liguilla todos contra todos · 4 equipos · 6 partidos + 2 partidos play-off (semifinal + final)",
+      "duration": "Septiembre 2025 — Marzo 2026",
+      "final_position": 2,
+      "total_teams_in_group": 4,
+      "stats": {
+        "played": 8,
+        "won": 3,
+        "drawn": 2,
+        "lost": 3,
+        "goals_for": 18,
+        "goals_against": 13,
+        "goal_difference": 5,
+        "points": 11,
+        "win_percentage": 37.5,
+        "clean_sheets": 2,
+        "notes": "Stats acumulados Grupo B (6 partidos: 1G 2E 3P, 8 puntos) + Play-offs (2 partidos: 2G 0E 0P)."
+      },
+      "coach_during_qualifying": "Jon Dahl Tomasson (sept-oct 2025) → Graham Potter (oct 2025 - presente)",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2025-09-05",
+          "home": {
+            "iso": "si",
+            "name": "Eslovenia",
+            "score": 2
+          },
+          "away": {
+            "iso": "se",
+            "name": "Suecia",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Stožice",
+            "city": "Liubliana",
+            "country_iso": "si"
+          },
+          "goals_arg": [
+            {
+              "player": "Alexander Isak",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Viktor Gyökeres",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 2,
+          "date": "2025-09-08",
+          "home": {
+            "iso": "se",
+            "name": "Suecia",
+            "score": 0
+          },
+          "away": {
+            "iso": "xk",
+            "name": "Kosovo",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Strawberry Arena",
+            "city": "Estocolmo",
+            "country_iso": "se"
+          },
+          "goals_arg": [],
+          "notes": "Sorpresiva derrota local que complicó el grupo."
+        },
+        {
+          "matchday": 3,
+          "date": "2025-10-09",
+          "home": {
+            "iso": "se",
+            "name": "Suecia",
+            "score": 0
+          },
+          "away": {
+            "iso": "ch",
+            "name": "Suiza",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Strawberry Arena",
+            "city": "Estocolmo",
+            "country_iso": "se"
+          },
+          "goals_arg": [],
+          "notes": "Derrota local ante Suiza."
+        },
+        {
+          "matchday": 4,
+          "date": "2025-10-12",
+          "home": {
+            "iso": "xk",
+            "name": "Kosovo",
+            "score": 2
+          },
+          "away": {
+            "iso": "se",
+            "name": "Suecia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Fadil Vokrri",
+            "city": "Pristina",
+            "country_iso": "xk"
+          },
+          "goals_arg": [],
+          "notes": "Segunda derrota seguida ante Kosovo. CRISIS."
+        },
+        {
+          "matchday": 5,
+          "date": "2025-11-15",
+          "home": {
+            "iso": "ch",
+            "name": "Suiza",
+            "score": 4
+          },
+          "away": {
+            "iso": "se",
+            "name": "Suecia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Stade de Genève",
+            "city": "Ginebra",
+            "country_iso": "ch"
+          },
+          "goals_arg": [
+            {
+              "player": "Benjamin Nygren",
+              "minute": "33'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 6,
+          "date": "2025-11-18",
+          "home": {
+            "iso": "se",
+            "name": "Suecia",
+            "score": 1
+          },
+          "away": {
+            "iso": "si",
+            "name": "Eslovenia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Strawberry Arena",
+            "city": "Estocolmo",
+            "country_iso": "se"
+          },
+          "goals_arg": [
+            {
+              "player": "Mattias Svanberg",
+              "minute": "28'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Cierre con empate. 2º puesto Grupo B con 8 pts (1G 2E 3P)."
+        },
+        {
+          "matchday": 7,
+          "date": "2026-03-26",
+          "home": {
+            "iso": "ua",
+            "name": "Ucrania",
+            "score": 1
+          },
+          "away": {
+            "iso": "se",
+            "name": "Suecia",
+            "score": 3
+          },
+          "venue": {
+            "stadium": "Tehelné Pole",
+            "city": "Bratislava",
+            "country_iso": "sk"
+          },
+          "goals_arg": [
+            {
+              "player": "Alexander Isak",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Viktor Gyökeres",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Anthony Elanga",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ],
+          "notes": "SEMIFINAL Play-off Ruta B. Suecia ganó como visitante. Ucrania jugó como local en Bratislava."
+        },
+        {
+          "matchday": 8,
+          "date": "2026-03-31",
+          "home": {
+            "iso": "se",
+            "name": "Suecia",
+            "score": 3
+          },
+          "away": {
+            "iso": "pl",
+            "name": "Polonia",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Strawberry Arena",
+            "city": "Estocolmo",
+            "country_iso": "se"
+          },
+          "goals_arg": [
+            {
+              "player": "Anthony Elanga",
+              "minute": "15'",
+              "type": "goal"
+            },
+            {
+              "player": "Carl Starfelt",
+              "minute": "44'",
+              "type": "goal"
+            },
+            {
+              "player": "Viktor Gyökeres",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ],
+          "notes": "FINAL PLAY-OFF en Estocolmo: Suecia clasificada al Mundial 2026. Gyökeres anotó el decisivo 3-2 al 85'.",
+          "is_decisive_match": true
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Viktor Gyökeres",
+          "goals": 3,
+          "notes": "Goleador y figura. Decisivo en final de play-off."
+        },
+        {
+          "player": "Alexander Isak",
+          "goals": 2,
+          "notes": "Goleador top de Liverpool/Newcastle."
+        },
+        {
+          "player": "Anthony Elanga",
+          "goals": 2
+        },
+        {
+          "player": "Mattias Svanberg",
+          "goals": 1
+        },
+        {
+          "player": "Benjamin Nygren",
+          "goals": 1
+        },
+        {
+          "player": "Carl Starfelt",
+          "goals": 1
+        },
+        {
+          "player": "Otros (8)",
+          "goals": 8
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_8",
+        "reason": "Final 3-2 ante Polonia en Estocolmo el 31 de marzo de 2026. Gyökeres marcó el gol decisivo al 85' que clasificó a Suecia al Mundial."
+      },
+      "worst_match": {
+        "match_ref": "matchday_4",
+        "reason": "Derrota 0-2 en Pristina ante Kosovo. Crisis del proyecto Tomasson que llevó a su cese."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_8",
+        "reason": "Triunfo 3-2 sobre Polonia en final play-off Ruta B selló la clasificación al Mundial 2026."
+      }
+    },
+    "group_2026": {
+      "letter": "F",
+      "label": "Grupo F — junto a Túnez (y otros)",
+      "teams": [
+        {
+          "iso": "nl",
+          "name": "P. Bajos",
+          "fifa_rank": null
+        },
+        {
+          "iso": "tn",
+          "name": "Túnez",
+          "fifa_rank": null
+        },
+        {
+          "iso": "jp",
+          "name": "Japón",
+          "fifa_rank": null
+        },
+        {
+          "iso": "se",
+          "name": "Suecia",
+          "fifa_rank": null,
+          "is_seed": false
+        }
+      ],
+      "notes": "Grupo F confirmado con Suecia y Túnez. Pendiente identificar otros 2 rivales del sorteo del 5 dic 2025."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "jp",
+          "name": "Japón"
+        },
+        "date": "2026-06-14",
+        "kickoff_local": "15:00",
+        "venue": {
+          "stadium": "Estadio BBVA",
+          "city": "Monterrey",
+          "country_iso": "mx"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "tn",
+          "name": "Túnez"
+        },
+        "date": "2026-06-21",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "BMO Field",
+          "city": "Toronto",
+          "country_iso": "ca"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "nl",
+          "name": "P. Bajos"
+        },
+        "date": "2026-06-29",
+        "kickoff_local": "15:00",
+        "venue": {
+          "stadium": "BMO Field",
+          "city": "Toronto",
+          "country_iso": "ca"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — SvFF aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Graham Potter",
+      "age": 51,
+      "nationality": "Inglaterra",
+      "since": "2025-10-15",
+      "previous_teams": [
+        "West Ham (2025)",
+        "Chelsea (2022-2023)",
+        "Brighton (2019-2022)",
+        "Östersunds FK Suecia (2011-2018, ascendió de tercera división a Europa League)"
+      ],
+      "profile_summary": "Inglés, primer DT extranjero longevo de Suecia en décadas. Asumió Suecia en octubre 2025 tras el cese de Jon Dahl Tomasson. Identidad táctica: 4-2-3-1 con presión alta y construcción técnica. Su pasado en Suecia (8 años en Östersunds, donde aprendió sueco fluido) facilitó su llegada al cargo. Era el único DT con perfil exigido por la SvFF tras la crisis.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Graham_Potter%2C_Brighton_%26_Hove_Albion_vs_RCD_Espanyol%2C_30_July_2022_%281%29_%28cropped%29.jpg/330px-Graham_Potter%2C_Brighton_%26_Hove_Albion_vs_RCD_Espanyol%2C_30_July_2022_%281%29_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Graham_Potter"
+      }
+    },
+    "captain": {
+      "name": "Viktor Lindelöf",
+      "club": "Aston Villa"
+    },
+    "star_player": {
+      "name": "Alexander Isak",
+      "club": "Liverpool",
+      "reason": "Delantero top mundial. Tras gran temporada con Newcastle (Premier League / Champions), fichó por el Liverpool en verano 2025. A los 26 años llega a su primer Mundial siendo uno de los 5-7 mejores '9' del mundo. Su técnica, finura y olfato son determinantes para Suecia.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Alexander_Isak_56_%28cropped%29.jpg/330px-UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Alexander_Isak_56_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Alexander_Isak"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "robin-olsen",
+        "full_name": "Robin Olsen",
+        "display_name": "Robin Olsen",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Malmö FF",
+          "country_iso": "se",
+          "league": "Allsvenskan"
+        },
+        "shirt_number_expected": 12,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Robin_Olsen_54.jpg/330px-UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Robin_Olsen_54.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Robin_Olsen"
+        }
+      },
+      {
+        "id": "viktor-johansson",
+        "full_name": "Viktor Johansson",
+        "display_name": "Viktor Johansson",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Stoke City",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Viktor_Johansson_20092025_%288%29.jpg/330px-Viktor_Johansson_20092025_%288%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Viktor_Johansson"
+        }
+      },
+      {
+        "id": "kristoffer-nordfeldt",
+        "full_name": "Kristoffer Nordfeldt",
+        "display_name": "Nordfeldt",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "AIK",
+          "country_iso": "se",
+          "league": "Allsvenskan"
+        },
+        "shirt_number_expected": 23,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Kristoffer_Nordfeldt_%28Sweden_starting_XI_vs_Moldova%2C_12_October_2023%29.jpg/330px-Kristoffer_Nordfeldt_%28Sweden_starting_XI_vs_Moldova%2C_12_October_2023%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Kristoffer_Nordfeldt"
+        }
+      },
+      {
+        "id": "viktor-lindelof",
+        "full_name": "Viktor Lindelöf",
+        "display_name": "Viktor Lindelöf",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Aston Villa",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed"
+      },
+      {
+        "id": "isak-hien",
+        "full_name": "Isak Hien",
+        "display_name": "Isak Hien",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Atalanta",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed"
+      },
+      {
+        "id": "carl-starfelt",
+        "full_name": "Carl Starfelt",
+        "display_name": "Carl Starfelt",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Celta Vigo",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/10/Carl_Starfelt.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Carl_Starfelt"
+        }
+      },
+      {
+        "id": "gustaf-lagerbielke",
+        "full_name": "Gustaf Lagerbielke",
+        "display_name": "Lagerbielke",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Twente",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 22,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Gustaf_Lagerbielke_%28Sweden_vs_Moldova%2C_12_October_2023%29.jpg/330px-Gustaf_Lagerbielke_%28Sweden_vs_Moldova%2C_12_October_2023%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Gustaf_Lagerbielke"
+        }
+      },
+      {
+        "id": "emil-holm",
+        "full_name": "Emil Holm",
+        "display_name": "Emil Holm",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Bolonia",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Emil_Holm_%28Sweden_vs_Moldova%2C_12_October_2023%29.jpg/330px-Emil_Holm_%28Sweden_vs_Moldova%2C_12_October_2023%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Emil_Holm"
+        }
+      },
+      {
+        "id": "daniel-svensson",
+        "full_name": "Daniel Svensson",
+        "display_name": "Daniel Svensson",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Borussia Dortmund",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/2015_RiP_In_Flames_-_Daniel_Svensson_by_2eight_-_DSC5848.jpg/330px-2015_RiP_In_Flames_-_Daniel_Svensson_by_2eight_-_DSC5848.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Daniel_Svensson"
+        }
+      },
+      {
+        "id": "victor-nilsson-lindelof",
+        "full_name": "Gabriel Gudmundsson",
+        "display_name": "Gudmundsson",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Leeds",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 6,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Gabriel_Gudmundsson_%28Sweden_vs_Moldova%2C_12_October_2023%29_%28cropped%29.jpg/330px-Gabriel_Gudmundsson_%28Sweden_vs_Moldova%2C_12_October_2023%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Gabriel_Gudmundsson"
+        }
+      },
+      {
+        "id": "jesper-karlstrom",
+        "full_name": "Jesper Karlström",
+        "display_name": "Jesper Karlström",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Lech Poznan",
+          "country_iso": "pl",
+          "league": "Ekstraklasa"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Jesper_Karlstr%C3%B6m_%28Djurg%C3%A5rden%2C_2020%2C_cropped%29.jpg/330px-Jesper_Karlstr%C3%B6m_%28Djurg%C3%A5rden%2C_2020%2C_cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Jesper_Karlstr%C3%B6m"
+        }
+      },
+      {
+        "id": "yasin-ayari",
+        "full_name": "Yasin Ayari",
+        "display_name": "Yasin Ayari",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Brighton",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 16,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Yasin_Ayari_%28Sweden_U21_vs_Moldova_U21%2C_13_October_2023%29.jpg/330px-Yasin_Ayari_%28Sweden_U21_vs_Moldova_U21%2C_13_October_2023%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Yasin_Ayari"
+        }
+      },
+      {
+        "id": "mattias-svanberg",
+        "full_name": "Mattias Svanberg",
+        "display_name": "Svanberg",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Wolfsburgo",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Mattias_Svanberg.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Mattias_Svanberg"
+        }
+      },
+      {
+        "id": "albin-ekdal",
+        "full_name": "Albin Ekdal",
+        "display_name": "Albin Ekdal",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Spezia",
+          "country_iso": "it",
+          "league": "Serie B"
+        },
+        "shirt_number_expected": 18,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Albin_Ekdal.jpg/330px-Albin_Ekdal.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Albin_Ekdal"
+        }
+      },
+      {
+        "id": "lucas-bergvall",
+        "full_name": "Lucas Bergvall",
+        "display_name": "Lucas Bergvall",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Tottenham",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Lucas_Bergvall_%28Sweden_U21_vs_Moldova_U21%2C_13_October_2023%29.jpg/330px-Lucas_Bergvall_%28Sweden_U21_vs_Moldova_U21%2C_13_October_2023%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Lucas_Bergvall"
+        }
+      },
+      {
+        "id": "viktor-gyokeres",
+        "full_name": "Viktor Gyökeres",
+        "display_name": "Viktor Gyökeres",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Arsenal",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Viktor_Gy%C3%B6keres_2018.jpg/330px-Viktor_Gy%C3%B6keres_2018.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Viktor_Gy%C3%B6keres"
+        }
+      },
+      {
+        "id": "alexander-isak",
+        "full_name": "Alexander Isak",
+        "display_name": "Alexander Isak",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Liverpool",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Alexander_Isak_56_%28cropped%29.jpg/330px-UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Alexander_Isak_56_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Alexander_Isak"
+        }
+      },
+      {
+        "id": "anthony-elanga",
+        "full_name": "Anthony Elanga",
+        "display_name": "Anthony Elanga",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Newcastle",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Anthony_Elanga_%28Sweden_vs_Moldova%2C_12_October_2023%29.jpg/330px-Anthony_Elanga_%28Sweden_vs_Moldova%2C_12_October_2023%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Anthony_Elanga"
+        }
+      },
+      {
+        "id": "alexander-bernhardsson",
+        "full_name": "Alexander Bernhardsson",
+        "display_name": "Bernhardsson",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Brentford",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 19,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/2025-02-19_Alexander_Bernhardsson_1.jpg/330px-2025-02-19_Alexander_Bernhardsson_1.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Alexander_Bernhardsson"
+        }
+      },
+      {
+        "id": "benjamin-nygren",
+        "full_name": "Benjamin Nygren",
+        "display_name": "Benjamin Nygren",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Genk",
+          "country_iso": "be",
+          "league": "Pro League"
+        },
+        "shirt_number_expected": 21,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Benjamin_Nygren_%28cropped%29.jpg/330px-Benjamin_Nygren_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Benjamin_Nygren"
+        }
+      },
+      {
+        "id": "dejan-kulusevski",
+        "full_name": "Dejan Kulusevski",
+        "display_name": "Dejan Kulusevski",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Tottenham",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 15,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Sweden-Slovenia_Nations_League_2022-09-27_17_Kulusevski_%28cropped%29.jpg/330px-Sweden-Slovenia_Nations_League_2022-09-27_17_Kulusevski_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Dejan_Kulusevski"
+        }
+      },
+      {
+        "id": "jens-cajuste",
+        "full_name": "Jens Cajuste",
+        "display_name": "Jens Cajuste",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Ipswich",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 13,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Jens_Cajuste%2C_Lens_-_Reims_%2812-05-2023%29_%28cropped%29.jpg/330px-Jens_Cajuste%2C_Lens_-_Reims_%2812-05-2023%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jens_Cajuste"
+        }
+      },
+      {
+        "id": "hugo-larsson",
+        "full_name": "Hugo Larsson",
+        "display_name": "Hugo Larsson",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Eintracht Fráncfort",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 20,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Hugo_Larsson_%282023%29.jpg/330px-Hugo_Larsson_%282023%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Hugo_Larsson"
+        }
+      },
+      {
+        "id": "anton-saletros",
+        "full_name": "Anton Saletros",
+        "display_name": "Anton Saletros",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Hammarby",
+          "country_iso": "se",
+          "league": "Allsvenskan"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Anton_Sal%C3%A9tros_%28IFK_G%C3%B6teborg_vs_AIK%2C_6_November_2023%29.jpg/330px-Anton_Sal%C3%A9tros_%28IFK_G%C3%B6teborg_vs_AIK%2C_6_November_2023%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Anton_Sal%C3%A9tros"
+        }
+      },
+      {
+        "id": "jens-stryger-larsen",
+        "full_name": "Filip Helander",
+        "display_name": "Filip Helander",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Hammarby",
+          "country_iso": "se",
+          "league": "Allsvenskan"
+        },
+        "shirt_number_expected": 24,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/UEFA_EURO_qualifiers_Sweden_vs_Romaina_20190323_Filip_Helander_14_%28cropped%29.jpg/330px-UEFA_EURO_qualifiers_Sweden_vs_Romaina_20190323_Filip_Helander_14_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Filip_Helander"
+        }
+      },
+      {
+        "id": "samuel-armenteros",
+        "full_name": "Samuel Sjölin",
+        "display_name": "Samuel Sjölin",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "BK Häcken",
+          "country_iso": "se",
+          "league": "Allsvenskan"
+        },
+        "shirt_number_expected": 25,
+        "status": "bubble"
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-2-3-1",
+      "players": [
+        {
+          "player_id": "viktor-johansson",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "emil-holm",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "viktor-lindelof",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "isak-hien",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "daniel-svensson",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "jesper-karlstrom",
+          "position": {
+            "x": 60,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "yasin-ayari",
+          "position": {
+            "x": 40,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "anthony-elanga",
+          "position": {
+            "x": 85,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "mattias-svanberg",
+          "position": {
+            "x": 50,
+            "y": 35
+          }
+        },
+        {
+          "player_id": "viktor-gyokeres",
+          "position": {
+            "x": 15,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "alexander-isak",
+          "position": {
+            "x": 50,
+            "y": 18
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Potter plantea un 4-2-3-1 con doble pivote (Karlström + Ayari), Svanberg como '10' libre, Isak fijo arriba con Elanga y Gyökeres en flancos. Identidad: presión coordinada, juego asociativo, libertad creativa para los talentos top. Diferencia con Tomasson: más vertical, con confianza en el bloque ofensivo.",
+      "strengths": [
+        "DUPLA OFENSIVA top mundial: Isak (Liverpool) + Gyökeres (Arsenal). Dos de los mejores '9' del mundo.",
+        "Anthony Elanga: extremo top del Newcastle, asistencias y goles.",
+        "Viktor Lindelöf: capitán experto, 100+ caps internacionales.",
+        "Generación dorada en Premier League: Isak, Gyökeres, Lindelöf, Elanga, Bergvall, Kulusevski.",
+        "Graham Potter: experiencia táctica top, conocimiento del fútbol sueco (8 años en Östersunds).",
+        "Recuperación tras crisis: vino de 1G 2E 3P en grupo, ganó 2 play-offs."
+      ],
+      "weaknesses": [
+        "Crisis del Grupo B: 1 sola victoria en 6 partidos. Defensa central frágil sin Lindelöf en algunos partidos.",
+        "Cambio de DT a mitad de eliminatoria: Tomasson cesado, Potter con poco tiempo de adaptación.",
+        "Sin un mediocampista regista top: Karlström y Ayari son trabajadores pero no creativos.",
+        "Lateral derecho cuestionable: Holm correcto pero sin nivel élite.",
+        "Ausencia mundialista reciente: NO clasificó a Catar 2022.",
+        "Plantilla envejeciendo en posiciones clave: Lindelöf 31, Karlström 30, Ekdal 36."
+      ],
+      "x_factor": {
+        "player": "Viktor Gyökeres",
+        "reason": "El delantero del Arsenal (27 años) llega a su 1er Mundial en pico futbolístico. Tras gozar de récords goleadores en Sporting CP (2 temporadas seguidas con +40 goles) y firmar grandes números con el Arsenal, tiene en la cabeza demostrar nivel mundial. Compañerismo con Isak puede ser letal."
+      },
+      "prediction_text": "Suecia llega vía repechaje al Mundial 2026 tras crisis del grupo. La calidad ofensiva (Isak + Gyökeres + Elanga) es de las mejores del torneo, pero la defensa y el cambio de DT generan dudas. Pasar la fase de grupos es objetivo realista; cualquier cosa más sería bonus. Llegar a octavos sería honra.",
+      "probabilities": {
+        "advance_groups": 60,
+        "round_of_32": 50,
+        "round_of_16": 28,
+        "quarter_finals": 8,
+        "semi_finals": 2,
+        "final": 0,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: cuartos de final, eliminada por Inglaterra 0-2. Catar 2022: NO CLASIFICÓ. Mundial 2026: regreso vía play-off tras 8 años. La generación Isak-Gyökeres es la más prometedora desde la Suecia subcampeona 1958."
+    }
+  },
+  "history": {
+    "first_appearance": 1934,
+    "appearances_count_before_2026": 12,
+    "appearances_count_with_2026": 13,
+    "consecutive_streak_since": 2026,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 1,
+    "finals_years": [
+      1958
+    ],
+    "semi_finals": 3,
+    "best_result": "Subcampeón (Suecia 1958)",
+    "aggregate_stats_through_2022": {
+      "played": 50,
+      "won": 19,
+      "drawn": 13,
+      "lost": 18,
+      "goals_for": 80,
+      "goals_against": 73,
+      "win_percentage": 38,
+      "notes": "Datos hasta Rusia 2018. Suecia 11ª en ranking histórico Mundial."
+    },
+    "by_world_cup": [
+      {
+        "year": 1934,
+        "host": {
+          "countries": [
+            "Italia"
+          ],
+          "iso": [
+            "it"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "John Pettersson",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Sven Jonasson",
+            "goals": 1
+          },
+          {
+            "player": "Knut Kroon",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "DEBUT mundialista. Cayó 1-2 con Alemania en cuartos."
+        ],
+        "narrative": "Suecia debutó pasando octavos a Argentina 3-2 y cayó en cuartos con Alemania 1-2."
+      },
+      {
+        "year": 1938,
+        "host": {
+          "countries": [
+            "Francia"
+          ],
+          "iso": [
+            "fr"
+          ]
+        },
+        "result": "Cuarto puesto",
+        "coach": "József Nagy",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Gustav Wetterström",
+            "goals": 4
+          },
+          {
+            "player": "Tore Keller",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 11,
+        "goals_conceded": 9,
+        "notable_facts": [
+          "Cuarto puesto, mejor papel histórico hasta 1958."
+        ],
+        "narrative": "Suecia goleó 8-0 a Cuba en cuartos. Cayó en semis con Hungría 1-5. Cuarto puesto perdiendo con Brasil 2-4."
+      },
+      {
+        "year": 1950,
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
+        "result": "Tercer puesto",
+        "coach": "George Raynor",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Karl-Erik Palmer",
+            "goals": 5
+          }
+        ],
+        "goals_scored": 11,
+        "goals_conceded": 15,
+        "notable_facts": [
+          "Tercer puesto en Brasil 1950."
+        ],
+        "narrative": "Suecia con la entrenador inglés Raynor logró el bronce. Cayó con Brasil 1-7 en final pool y batió a España 3-1 por bronce."
+      },
+      {
+        "year": 1958,
+        "host": {
+          "countries": [
+            "Suecia"
+          ],
+          "iso": [
+            "se"
+          ]
+        },
+        "result": "Subcampeón",
+        "coach": "George Raynor",
+        "captain": "Nils Liedholm",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Kurt Hamrin",
+            "goals": 4
+          },
+          {
+            "player": "Agne Simonsson",
+            "goals": 4
+          }
+        ],
+        "goals_scored": 12,
+        "goals_conceded": 7,
+        "notable_facts": [
+          "MEJOR PARTICIPACIÓN HISTÓRICA: subcampeón.",
+          "Final 2-5 ante Brasil con HAT-TRICK DE PELÉ (17 años, su primer Mundial).",
+          "Liedholm marcó al 4' de la final, primer gol contra Brasil."
+        ],
+        "narrative": "Suecia anfitriona llegó a la FINAL del Mundial 1958 ante Brasil de Pelé. Nils Liedholm adelantó al 4'. Pero Brasil de Pelé (17 años en su primer Mundial) reaccionó: Vavá empató (9'), Pelé doblete (55', 90') y Vavá (32'). 5-2 Brasil. Subcampeona histórica."
+      },
+      {
+        "year": 1970,
+        "host": {
+          "countries": [
+            "México"
+          ],
+          "iso": [
+            "mx"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Orvar Bergmark",
+        "matches": [],
+        "team_top_scorers": [],
+        "goals_scored": 2,
+        "goals_conceded": 2,
+        "notable_facts": [
+          "Eliminada en primera ronda."
+        ],
+        "narrative": "Adiós."
+      },
+      {
+        "year": 1974,
+        "host": {
+          "countries": [
+            "Alemania Federal"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
+        "result": "Segunda ronda",
+        "coach": "Georg Ericson",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Ralf Edström",
+            "goals": 4
+          },
+          {
+            "player": "Roland Sandberg",
+            "goals": 3
+          }
+        ],
+        "goals_scored": 6,
+        "goals_conceded": 7,
+        "notable_facts": [
+          "Segunda ronda Mundial 1974."
+        ],
+        "narrative": "Suecia avanzó a 2ª ronda donde cayó con Alemania Federal 2-4."
+      },
+      {
+        "year": 1978,
+        "host": {
+          "countries": [
+            "Argentina"
+          ],
+          "iso": [
+            "ar"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Georg Ericson",
+        "matches": [],
+        "team_top_scorers": [],
+        "goals_scored": 1,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Adiós primera ronda."
+        ],
+        "narrative": "Adiós."
+      },
+      {
+        "year": 1990,
+        "host": {
+          "countries": [
+            "Italia"
+          ],
+          "iso": [
+            "it"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Olle Nordin",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Tomas Brolin",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 3,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "3 derrotas en 3 partidos."
+        ],
+        "narrative": "Crisis."
+      },
+      {
+        "year": 1994,
+        "host": {
+          "countries": [
+            "Estados Unidos"
+          ],
+          "iso": [
+            "us"
+          ]
+        },
+        "result": "Tercer puesto",
+        "coach": "Tommy Svensson",
+        "captain": "Jonas Thern",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Tomas Brolin",
+            "goals": 3
+          },
+          {
+            "player": "Kennet Andersson",
+            "goals": 5
+          },
+          {
+            "player": "Martin Dahlin",
+            "goals": 4
+          }
+        ],
+        "goals_scored": 15,
+        "goals_conceded": 8,
+        "notable_facts": [
+          "Tercer puesto USA 1994.",
+          "Eliminada por Brasil en semis 0-1."
+        ],
+        "narrative": "Suecia con Brolin, Andersson, Dahlin y Ravelli portero llegó a semis. Cayó con Brasil 0-1 (gol Romario). Bronce ganado a Bulgaria 4-0. Generación dorada."
+      },
+      {
+        "year": 2002,
+        "host": {
+          "countries": [
+            "Corea del Sur",
+            "Japón"
+          ],
+          "iso": [
+            "kr",
+            "jp"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Tommy Söderberg / Lars Lagerbäck",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Henrik Larsson",
+            "goals": 3
+          }
+        ],
+        "goals_scored": 5,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "Eliminada por Senegal 1-2 en prórroga."
+        ],
+        "narrative": "Suecia con Henrik Larsson cayó en octavos con Senegal 1-2 en prórroga."
+      },
+      {
+        "year": 2006,
+        "host": {
+          "countries": [
+            "Alemania"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Lars Lagerbäck",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Henrik Larsson",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 3,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "Eliminada por Alemania 0-2."
+        ],
+        "narrative": "Adiós ante Alemania anfitriona."
+      },
+      {
+        "year": 2018,
+        "host": {
+          "countries": [
+            "Rusia"
+          ],
+          "iso": [
+            "ru"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Janne Andersson",
+        "captain": "Andreas Granqvist",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Andreas Granqvist",
+            "goals": 2
+          },
+          {
+            "player": "Ola Toivonen",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 6,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "Cuartos de final tras 24 años (último 1994).",
+          "Eliminada por Inglaterra 0-2."
+        ],
+        "narrative": "Suecia eliminó a México 3-0 y Suiza 1-0 antes de caer con Inglaterra 0-2 en cuartos. Mejor papel desde 1994."
+      }
+    ],
+    "palmares": [
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 1958,
+        "position": "Subcampeón",
+        "host": "Suecia"
+      },
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 1950,
+        "position": "Tercero",
+        "host": "Brasil"
+      },
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 1994,
+        "position": "Tercero",
+        "host": "EE.UU."
+      },
+      {
+        "competition": "Juegos Olímpicos",
+        "year": 1948,
+        "position": "Campeón",
+        "host": "Londres"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Sven Rydell",
+      "value": 49,
+      "period": "1923-1932",
+      "notes": "Goleador histórico."
+    },
+    "most_capped": {
+      "name": "Anders Svensson",
+      "value": 148,
+      "period": "1999-2013",
+      "notes": "Récord histórico."
+    },
+    "youngest_debut": {
+      "name": "Tobias Linderoth",
+      "value": "20 años aprox.",
+      "period": "2000",
+      "notes": "Datos pendientes verificación SvFF."
+    },
+    "biggest_win": {
+      "result": "12-0",
+      "opponent": "Letonia",
+      "date": "1927-05-29",
+      "competition": "Amistoso"
+    },
+    "worst_loss": {
+      "result": "1-12",
+      "opponent": "Inglaterra",
+      "date": "1908-06-16",
+      "competition": "Amistoso"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "La final 1958 contra Brasil-Pelé",
+      "date": "1958-06-29",
+      "opponent": {
+        "iso": "br",
+        "name": "Brasil"
+      },
+      "score": "2-5",
+      "competition": "Final Mundial 1958",
+      "narrative": "Suecia anfitriona perdió la final del Mundial 1958 ante Brasil 2-5. Liedholm adelantó al 4'. Brasil reaccionó con HAT-TRICK DE VAVÁ y DOBLETE DE PELÉ (17 años en su primer Mundial). Subcampeona histórica."
+    },
+    {
+      "title": "El bronce de USA 1994",
+      "date": "1994-07-16",
+      "opponent": {
+        "iso": "bg",
+        "name": "Bulgaria"
+      },
+      "score": "4-0",
+      "competition": "Tercer puesto Mundial 1994",
+      "narrative": "Suecia con Brolin, Andersson, Dahlin y Larsson goleó 4-0 a Bulgaria por el tercer puesto. Generación dorada del fútbol sueco."
+    },
+    {
+      "title": "Cuartos de Rusia 2018",
+      "date": "2018-07-07",
+      "opponent": {
+        "iso": "gb-eng",
+        "name": "Inglaterra"
+      },
+      "score": "0-2",
+      "competition": "Cuartos Mundial 2018",
+      "narrative": "Suecia llegó a cuartos del Mundial 2018 donde cayó 0-2 con Inglaterra. Mejor papel desde 1994. Andreas Granqvist capitán."
+    },
+    {
+      "title": "El 3-2 a Polonia (Estocolmo 2026)",
+      "date": "2026-03-31",
+      "opponent": {
+        "iso": "pl",
+        "name": "Polonia"
+      },
+      "score": "3-2",
+      "competition": "Final Play-off UEFA Mundial 2026",
+      "narrative": "Suecia venció 3-2 a Polonia en Estocolmo en la final del play-off UEFA. Elanga 1-0 al 15', Zalewski empató 1-1, Swiderski 1-2 Polonia, Lagerbielke 2-2 (Polonia volvió a empatar) y GYÖKERES 3-2 al 85' que clasificó a Suecia. Adiós para Lewandowski."
+    },
+    {
+      "title": "El 5-1 a México (Yekaterimburgo 2018)",
+      "date": "2018-06-27",
+      "opponent": {
+        "iso": "mx",
+        "name": "México"
+      },
+      "score": "3-0",
+      "competition": "Fase de Grupos Mundial 2018",
+      "narrative": "Suecia goleó 3-0 a México en grupos del Mundial 2018. Granqvist (50' penal), Augustinsson (74'), Álvarez (autogol). Pasaron a octavos."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "La final del Mundial 1958 fue la primera transmitida en TV en VIVO en color. Suecia perdió 2-5 ante Brasil de Pelé (17 años, primer Mundial).",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Suecia tiene 3 podios mundialistas: subcampeón 1958 + 3º 1950 y 1994. Mejor balance que selecciones grandes como España (1 título) y Croacia (1 final).",
+      "source": "FIFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Graham Potter es el primer DT inglés de Suecia. Habla sueco fluido tras 8 años dirigiendo el Östersunds (de tercera división a Europa League).",
+      "source": "SvFF + ESPN",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Suecia y Polonia se enfrentaron 3 veces en eliminatorias mundialistas previas: Suecia ganó las 3 en partidos directos. La final play-off 2026 fue el 4º cruce.",
+      "source": "FIFA + UEFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Alexander Isak fichó por el Liverpool en verano 2025 desde el Newcastle. A los 26 años, llega a su primer Mundial siendo uno de los '9' top mundiales.",
+      "source": "Liverpool FC + ESPN",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Tre Kronor (Tres Coronas) es el escudo nacional sueco más antiguo de Europa todavía en uso, data del rey Magnus Eriksson (siglo XIV).",
+      "source": "SvFF + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Du gamla, du fria (himno)",
+      "Heja Sverige",
+      "Tre Kronor"
+    ],
+    "main_rival": {
+      "iso": "dk",
+      "name": "Dinamarca",
+      "story": "Rivalidad histórica escandinava ('derbi nórdico'). Dinamarca y Suecia se enfrentan en Mundiales y Eurocopas regularmente. Ambas selecciones disputaron play-offs en 2026 (Suecia clasificada, Dinamarca eliminada por Chequia)."
+    },
+    "home_stadium": {
+      "name": "Strawberry Arena (ex Friends Arena)",
+      "capacity": 50653,
+      "city": "Solna (Estocolmo)"
+    }
+  },
+  "seo": {
+    "meta_title": "Suecia en el Mundial 2026 | Plantilla, historia y predicciones",
+    "meta_description": "Suecia Mundial 2026: 26 convocados de Potter, Isak, Gyökeres, Elanga. Regreso al Mundial vía play-off tras 8 años.",
+    "og_image_url": "/img/og/teams/suecia.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Suecia",
+      "alternateName": [
+        "Tre Kronor",
+        "Blågult"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "UEFA"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Graham Potter"
+      },
+      "url": "https://www.zonamundial.app/selecciones/suecia"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-28",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_Suecia",
+      "https://es.uefa.com/european-qualifiers/news/029f-1f3188cfc443-494e0d8af33d-1000--mundial-2026-que-selecciones-europeas-se-han-clasificado/",
+      "https://www.elfinanciero.com.mx/deportes/2026/03/31/finales-de-repechaje-intercontinental-y-uefa-quienes-son-los-ultimos-clasificados-al-mundial-2026/",
+      "https://www.olympics.com/es/noticias/repechaje-uefa-2026-resultados",
+      "https://www.svenskfotboll.se",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias y play-offs cruzados con UEFA + Wikipedia + El Financiero + Olympics. Historia mundialista validada con FIFA + Wikipedia.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "needs_review",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante: pendiente",
+      "Grupo F: confirmar otros 2 rivales",
+      "Calendario fase de grupos 2026: fixture FIFA pendiente",
+      "Base de entrenamiento: SvFF aún no anunció",
+      "FIFA Ranking #36: validar mes vigente",
+      "Verificar trayectoria Tomasson como DT (sept-oct 2025): fechas exactas",
+      "Detalles play-off vs Ucrania: cruzar con FIFA",
+      "Algunas ediciones omitidas (1962/1966/1982/1986/1998/2010/2014): no clasificó"
+    ]
+  }
+}

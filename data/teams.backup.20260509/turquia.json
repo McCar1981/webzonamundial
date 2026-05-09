@@ -1,0 +1,1471 @@
+{
+  "slug": "turquia",
+  "iso": "tr",
+  "iso3": "TUR",
+  "name_es": "Turquía",
+  "name_en": "Türkiye",
+  "name_local": "Türkiye",
+  "nicknames": [
+    "Ay-Yıldızlılar (Luna y Estrella)",
+    "Los Crescents",
+    "El Equipo Nacional"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#E30A17",
+      "secondary": "#FFFFFF",
+      "tertiary": "#E30A17",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Ankara",
+    "language_official": [
+      "Turco"
+    ],
+    "population": 85800000,
+    "area_km2": 783562,
+    "timezone": "Europe/Istanbul",
+    "continent": "Europa/Asia"
+  },
+  "federation": {
+    "name": "Türkiye Futbol Federasyonu",
+    "abbreviation": "TFF",
+    "founded": 1923,
+    "headquarters": "Estambul",
+    "website": "https://www.tff.org"
+  },
+  "confederation": "UEFA",
+  "fifa_ranking": {
+    "current": 26,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Nike",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/turquia.png",
+        "back_url": null,
+        "primary_color": "#E30A17",
+        "secondary_color": "#FFFFFF",
+        "description": "Camiseta roja con luna y estrella blanca, los símbolos de la bandera nacional. Apodo 'Ay-Yıldızlılar' (Luna y Estrella).",
+        "alt_text": "Camiseta titular Turquía Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#E30A17",
+        "description": "Equipación visitante en blanco. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Turquía Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "El símbolo de la luna y estrella en la bandera turca data del Imperio Otomano (siglo XIV) y representa la cosmovisión musulmana del cielo nocturno. Fue adoptado oficialmente con la fundación de la República en 1923.",
+        "source": "TFF + Wikipedia",
+        "verified_at": "2026-04-28",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "playoff_uefa",
+    "qualifying_summary": "Turquía clasificó vía PLAY-OFF tras quedar 2ª del Grupo E detrás de España (que les goleó 0-6 en Sevilla). Pasó por la Ruta C de play-offs: ganó a Rumanía en semifinal y a Kosovo 0-1 en Pristina con gol de Kerem Aktürkoğlu. 3ª participación mundialista (1954, 2002, 2026), tras 24 AÑOS DE AUSENCIA. Bajo el italiano Vincenzo Montella, la nueva generación liderada por Arda Güler y Kenan Yıldız busca recuperar el espíritu de la Turquía 3ª en 2002.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias UEFA Mundial 2026 — Grupo E + Play-offs Ruta C",
+      "format": "Liguilla todos contra todos · 4 equipos · 6 partidos + 2 partidos play-off (semifinal + final)",
+      "duration": "Septiembre 2025 — Marzo 2026",
+      "final_position": 2,
+      "total_teams_in_group": 4,
+      "stats": {
+        "played": 8,
+        "won": 4,
+        "drawn": 2,
+        "lost": 2,
+        "goals_for": 19,
+        "goals_against": 11,
+        "goal_difference": 8,
+        "points": 14,
+        "win_percentage": 50,
+        "clean_sheets": 2,
+        "notes": "Stats acumulados: Grupo E (6 partidos: 4G 1E 1P, 13 puntos) + Play-offs Ruta C (2 partidos: 2G 0E 0P)."
+      },
+      "coach_during_qualifying": "Vincenzo Montella",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2025-09-04",
+          "home": {
+            "iso": "ge",
+            "name": "Georgia",
+            "score": 2
+          },
+          "away": {
+            "iso": "tr",
+            "name": "Turquía",
+            "score": 3
+          },
+          "venue": {
+            "stadium": "Boris Paichadze Dinamo Arena",
+            "city": "Tiflis",
+            "country_iso": "ge"
+          },
+          "goals_arg": [
+            {
+              "player": "Hakan Çalhanoğlu",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Arda Güler",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Kenan Yıldız",
+              "minute": "82'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 2,
+          "date": "2025-09-07",
+          "home": {
+            "iso": "tr",
+            "name": "Turquía",
+            "score": 0
+          },
+          "away": {
+            "iso": "es",
+            "name": "España",
+            "score": 6
+          },
+          "venue": {
+            "stadium": "Konya Büyükşehir Belediye Stadyumu",
+            "city": "Konya",
+            "country_iso": "tr"
+          },
+          "goals_arg": [],
+          "notes": "DEBACLE histórica: 0-6 ante España campeona Eurocopa 2024."
+        },
+        {
+          "matchday": 3,
+          "date": "2025-10-11",
+          "home": {
+            "iso": "tr",
+            "name": "Turquía",
+            "score": 4
+          },
+          "away": {
+            "iso": "ge",
+            "name": "Georgia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Beşiktaş Park",
+            "city": "Estambul",
+            "country_iso": "tr"
+          },
+          "goals_arg": [
+            {
+              "player": "Kerem Aktürkoğlu",
+              "minute": "12'",
+              "type": "goal"
+            },
+            {
+              "player": "Hakan Çalhanoğlu",
+              "minute": "30'",
+              "type": "penalty"
+            },
+            {
+              "player": "Arda Güler",
+              "minute": "60'",
+              "type": "goal"
+            },
+            {
+              "player": "Kenan Yıldız",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 4,
+          "date": "2025-10-14",
+          "home": {
+            "iso": "bg",
+            "name": "Bulgaria",
+            "score": 0
+          },
+          "away": {
+            "iso": "tr",
+            "name": "Turquía",
+            "score": 6
+          },
+          "venue": {
+            "stadium": "Vasil Levski",
+            "city": "Sofía",
+            "country_iso": "bg"
+          },
+          "goals_arg": [
+            {
+              "player": "Kerem Aktürkoğlu",
+              "minute": "10'",
+              "type": "goal"
+            },
+            {
+              "player": "Arda Güler",
+              "minute": "25'",
+              "type": "goal"
+            },
+            {
+              "player": "Kenan Yıldız",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Yunus Akgün",
+              "minute": "67'",
+              "type": "goal"
+            },
+            {
+              "player": "Cengiz Ünder",
+              "minute": "78'",
+              "type": "goal"
+            },
+            {
+              "player": "Salih Özcan",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Goleada 6-0 a Bulgaria como visitante."
+        },
+        {
+          "matchday": 5,
+          "date": "2025-11-15",
+          "home": {
+            "iso": "tr",
+            "name": "Turquía",
+            "score": 2
+          },
+          "away": {
+            "iso": "bg",
+            "name": "Bulgaria",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Beşiktaş Park",
+            "city": "Estambul",
+            "country_iso": "tr"
+          },
+          "goals_arg": [
+            {
+              "player": "Hakan Çalhanoğlu",
+              "minute": "44'",
+              "type": "goal"
+            },
+            {
+              "player": "Yunus Akgün",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 6,
+          "date": "2025-11-18",
+          "home": {
+            "iso": "es",
+            "name": "España",
+            "score": 2
+          },
+          "away": {
+            "iso": "tr",
+            "name": "Turquía",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "La Cartuja",
+            "city": "Sevilla",
+            "country_iso": "es"
+          },
+          "goals_arg": [
+            {
+              "player": "Salih Özcan",
+              "minute": "45'",
+              "type": "goal"
+            },
+            {
+              "player": "Deniz Gül",
+              "minute": "50'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Empate honroso ante España. Cierre 2º grupo con 13 pts."
+        },
+        {
+          "matchday": 7,
+          "date": "2026-03-26",
+          "home": {
+            "iso": "ro",
+            "name": "Rumanía",
+            "score": 1
+          },
+          "away": {
+            "iso": "tr",
+            "name": "Turquía",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Arena Națională",
+            "city": "Bucarest",
+            "country_iso": "ro"
+          },
+          "goals_arg": [
+            {
+              "player": "Arda Güler",
+              "minute": "33'",
+              "type": "goal"
+            },
+            {
+              "player": "Kerem Aktürkoğlu",
+              "minute": "70'",
+              "type": "goal"
+            }
+          ],
+          "notes": "SEMIFINAL Play-off Ruta C. Triunfo en Bucarest."
+        },
+        {
+          "matchday": 8,
+          "date": "2026-03-31",
+          "home": {
+            "iso": "xk",
+            "name": "Kosovo",
+            "score": 0
+          },
+          "away": {
+            "iso": "tr",
+            "name": "Turquía",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Fadil Vokrri",
+            "city": "Pristina",
+            "country_iso": "xk"
+          },
+          "goals_arg": [
+            {
+              "player": "Kerem Aktürkoğlu",
+              "minute": "47'",
+              "type": "goal"
+            }
+          ],
+          "notes": "FINAL PLAY-OFF: Turquía clasificada al Mundial 2026 tras 24 años. Gol decisivo de Aktürkoğlu al inicio del 2T.",
+          "is_decisive_match": true
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Kerem Aktürkoğlu",
+          "goals": 4,
+          "notes": "Goleador y figura. Gol decisivo en final play-off."
+        },
+        {
+          "player": "Arda Güler",
+          "goals": 4,
+          "notes": "Estrella del Real Madrid, motor del juego."
+        },
+        {
+          "player": "Hakan Çalhanoğlu",
+          "goals": 3,
+          "notes": "Capitán y ejecutor de penales."
+        },
+        {
+          "player": "Kenan Yıldız",
+          "goals": 3,
+          "notes": "Joven figura de la Juventus."
+        },
+        {
+          "player": "Yunus Akgün",
+          "goals": 2
+        },
+        {
+          "player": "Salih Özcan",
+          "goals": 1
+        },
+        {
+          "player": "Cengiz Ünder",
+          "goals": 1
+        },
+        {
+          "player": "Deniz Gül",
+          "goals": 1
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_4",
+        "reason": "Goleada 6-0 a Bulgaria en Sofía el 14 de octubre de 2025. 6 goleadores diferentes."
+      },
+      "worst_match": {
+        "match_ref": "matchday_2",
+        "reason": "Derrota 0-6 ante España en Konya. Mayor goleada recibida en eliminatoria histórica."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_8",
+        "reason": "Triunfo 1-0 sobre Kosovo en Pristina selló la clasificación al Mundial 2026 tras 24 años de ausencia."
+      }
+    },
+    "group_2026": {
+      "letter": "D",
+      "label": "Grupo D — junto a Estados Unidos, Paraguay y Australia",
+      "teams": [
+        {
+          "iso": "us",
+          "name": "EE.UU.",
+          "fifa_rank": null
+        },
+        {
+          "iso": "au",
+          "name": "Australia",
+          "fifa_rank": null
+        },
+        {
+          "iso": "py",
+          "name": "Paraguay",
+          "fifa_rank": null
+        },
+        {
+          "iso": "tr",
+          "name": "Turquía",
+          "fifa_rank": null,
+          "is_seed": false
+        }
+      ],
+      "notes": "Grupo D confirmado en sorteo del 5 dic 2025. Turquía es uno de los favoritos a pasar como 2ª."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "py",
+          "name": "Paraguay"
+        },
+        "date": "2026-06-13",
+        "kickoff_local": "15:00",
+        "venue": {
+          "stadium": "Lumen Field",
+          "city": "Seattle",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "us",
+          "name": "EE.UU."
+        },
+        "date": "2026-06-20",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "Lincoln Financial Field",
+          "city": "Filadelfia",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "au",
+          "name": "Australia"
+        },
+        "date": "2026-06-28",
+        "kickoff_local": "15:00",
+        "venue": {
+          "stadium": "Lumen Field",
+          "city": "Seattle",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — TFF aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Vincenzo Montella",
+      "age": 51,
+      "nationality": "Italia",
+      "since": "2023-09-19",
+      "previous_teams": [
+        "Adana Demirspor (2022-2023)",
+        "Fiorentina (2015-2017, 2017-2019)",
+        "Sevilla (2017)",
+        "Sampdoria (2014-2015)",
+        "Catania (2013-2014)",
+        "AC Milan (2016-2017)"
+      ],
+      "profile_summary": "Italiano, ex delantero histórico de Roma y Fiorentina. Asumió Turquía en septiembre 2023 tras la salida de Stefan Kuntz. Llevó al equipo a CUARTOS DE LA EUROCOPA 2024 (eliminada por Países Bajos 1-2 con polémica). Identidad táctica: 4-3-3 ofensivo, posesión, juego asociativo, libertad para Arda Güler. Sobrevivió la debacle 0-6 ante España y reconstruyó el equipo para el play-off.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Vincenzo_Montella_ICC_2016_%28edited%29.jpg/330px-Vincenzo_Montella_ICC_2016_%28edited%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Vincenzo_Montella"
+      }
+    },
+    "captain": {
+      "name": "Hakan Çalhanoğlu",
+      "club": "Inter de Milán",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/AUT_vs._TUR_2016-03-29_%28342%29.jpg/330px-AUT_vs._TUR_2016-03-29_%28342%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Hakan_%C3%87alhano%C4%9Flu"
+      }
+    },
+    "star_player": {
+      "name": "Arda Güler",
+      "club": "Real Madrid",
+      "reason": "El '10' del Real Madrid (21 años) llega a su PRIMER MUNDIAL en pico futbolístico. Considerado el heredero técnico de Modrić en el Madrid. Visión de juego, técnica, golazos, asistencias. 4 goles en eliminatorias. Es la GRAN FIGURA generacional turca, comparable solo a Hakan Şükür en su mejor momento.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Derbide_Fenerbah%C3%A7e_Yedek_Oyuncu_Arda_G%C3%BCler_%282021-22_S%C3%BCper_Lig_-_Cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Arda_G%C3%BCler"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "ugurcan-cakir",
+        "full_name": "Uğurcan Çakır",
+        "display_name": "Uğurcan Çakır",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Galatasaray",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/U%C4%9Furcan_%C3%87ak%C4%B1r_at_Antalyaspor_vs_Trabzonspor_20211211_%282%29_%28cropped%29.jpg/330px-U%C4%9Furcan_%C3%87ak%C4%B1r_at_Antalyaspor_vs_Trabzonspor_20211211_%282%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/U%C4%9Furcan_%C3%87ak%C4%B1r"
+        }
+      },
+      {
+        "id": "altay-bayindir",
+        "full_name": "Altay Bayındır",
+        "display_name": "Altay Bayındır",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Manchester United",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 12,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Altay_Bayindir.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Altay_Bay%C4%B1nd%C4%B1r"
+        }
+      },
+      {
+        "id": "berke-ozer",
+        "full_name": "Berke Özer",
+        "display_name": "Berke Özer",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Lille",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 23,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Berke_%C3%96zer_%282021-22_S%C3%BCper_Lig%29_%28cropped%29.png/330px-Berke_%C3%96zer_%282021-22_S%C3%BCper_Lig%29_%28cropped%29.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Berke_%C3%96zer"
+        }
+      },
+      {
+        "id": "merih-demiral",
+        "full_name": "Merih Demiral",
+        "display_name": "Merih Demiral",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Al-Ahli",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Demiral_in_the_international_match_in_September_2020_%28Cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Merih_Demiral"
+        }
+      },
+      {
+        "id": "samet-akaydin",
+        "full_name": "Samet Akaydın",
+        "display_name": "Samet Akaydın",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Fenerbahçe",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 4,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/SAMETAKAYD%C4%B0N_4.jpg/330px-SAMETAKAYD%C4%B0N_4.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Samet_Akaydin"
+        }
+      },
+      {
+        "id": "abdulkerim-bardakci",
+        "full_name": "Abdülkerim Bardakcı",
+        "display_name": "Bardakcı",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Galatasaray",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Abd%C3%BClkerim_Bardak%C3%A7%C4%B1_-_beIN-Sports-Reklam_%282021%29_%28cropped%29.png/330px-Abd%C3%BClkerim_Bardak%C3%A7%C4%B1_-_beIN-Sports-Reklam_%282021%29_%28cropped%29.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Abd%C3%BClkerim_Bardakc%C4%B1"
+        }
+      },
+      {
+        "id": "caglar-soyuncu",
+        "full_name": "Çağlar Söyüncü",
+        "display_name": "Çağlar Söyüncü",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Fenerbahçe",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/AUT_vs._TUR_2016-03-29_%28381%29_%28cropped%29.jpg/330px-AUT_vs._TUR_2016-03-29_%28381%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/%C3%87a%C4%9Flar_S%C3%B6y%C3%BCnc%C3%BC"
+        }
+      },
+      {
+        "id": "zeki-celik",
+        "full_name": "Zeki Çelik",
+        "display_name": "Zeki Çelik",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Roma",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Zeki_%C3%A7elik_2020.jpg/330px-Zeki_%C3%A7elik_2020.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Zeki_%C3%87elik"
+        }
+      },
+      {
+        "id": "ferdi-kadioglu",
+        "full_name": "Ferdi Kadıoğlu",
+        "display_name": "Ferdi Kadıoğlu",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Brighton",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Ferdi_Kad%C4%B1o%C4%9Flu_2024.jpg/330px-Ferdi_Kad%C4%B1o%C4%9Flu_2024.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ferdi_Kad%C4%B1o%C4%9Flu"
+        }
+      },
+      {
+        "id": "eren-elmali",
+        "full_name": "Eren Elmalı",
+        "display_name": "Eren Elmalı",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Galatasaray",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 22,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Eren_Elmal%C4%B1_20251019.jpg/330px-Eren_Elmal%C4%B1_20251019.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Eren_Elmal%C4%B1"
+        }
+      },
+      {
+        "id": "hakan-calhanoglu",
+        "full_name": "Hakan Çalhanoğlu",
+        "display_name": "Hakan Çalhanoğlu",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Inter de Milán",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/AUT_vs._TUR_2016-03-29_%28342%29.jpg/330px-AUT_vs._TUR_2016-03-29_%28342%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Hakan_%C3%87alhano%C4%9Flu"
+        }
+      },
+      {
+        "id": "ismail-yuksek",
+        "full_name": "İsmail Yüksek",
+        "display_name": "İsmail Yüksek",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Fenerbahçe",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 8,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/977561_sPICT_%28cropped%29.jpg/330px-977561_sPICT_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/%C4%B0smail_Y%C3%BCksek"
+        }
+      },
+      {
+        "id": "salih-ozcan",
+        "full_name": "Salih Özcan",
+        "display_name": "Salih Özcan",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Borussia Dortmund",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93032.jpg/330px-2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93032.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Salih_%C3%96zcan"
+        }
+      },
+      {
+        "id": "orkun-kokcu",
+        "full_name": "Orkun Kökçü",
+        "display_name": "Orkun Kökçü",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Benfica",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/K%C3%B6k%C3%A7%C3%BC_in_the_international_match_in_March_2024_%28Cropped%29.jpg/330px-K%C3%B6k%C3%A7%C3%BC_in_the_international_match_in_March_2024_%28Cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Orkun_K%C3%B6k%C3%A7%C3%BC"
+        }
+      },
+      {
+        "id": "arda-guler",
+        "full_name": "Arda Güler",
+        "display_name": "Arda Güler",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Real Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Derbide_Fenerbah%C3%A7e_Yedek_Oyuncu_Arda_G%C3%BCler_%282021-22_S%C3%BCper_Lig_-_Cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Arda_G%C3%BCler"
+        }
+      },
+      {
+        "id": "kenan-yildiz",
+        "full_name": "Kenan Yıldız",
+        "display_name": "Kenan Yıldız",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Juventus",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Kenan_Y%C4%B1ld%C4%B1z_in_the_international_match_%28March_2025%29_%28cropped%29.jpg/330px-Kenan_Y%C4%B1ld%C4%B1z_in_the_international_match_%28March_2025%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Kenan_Y%C4%B1ld%C4%B1z"
+        }
+      },
+      {
+        "id": "kerem-akturkoglu",
+        "full_name": "Kerem Aktürkoğlu",
+        "display_name": "Aktürkoğlu",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Benfica",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Kerem_Akt%C3%BCrko%C4%9Flu_2021.jpg/330px-Kerem_Akt%C3%BCrko%C4%9Flu_2021.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Kerem_Akt%C3%BCrko%C4%9Flu"
+        }
+      },
+      {
+        "id": "yunus-akgun",
+        "full_name": "Yunus Akgün",
+        "display_name": "Yunus Akgün",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Galatasaray",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 21,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Yunus_Akg%C3%BCn_20220225_7_%28cropped%29.jpg/330px-Yunus_Akg%C3%BCn_20220225_7_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Yunus_Akg%C3%BCn"
+        }
+      },
+      {
+        "id": "baris-yilmaz",
+        "full_name": "Barış Alper Yılmaz",
+        "display_name": "Barış Y.",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Galatasaray",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 20,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Bar%C4%B1%C5%9F_Alper_Y%C4%B1lmaz.jpg/330px-Bar%C4%B1%C5%9F_Alper_Y%C4%B1lmaz.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Bar%C4%B1%C5%9F_Alper_Y%C4%B1lmaz"
+        }
+      },
+      {
+        "id": "cengiz-under",
+        "full_name": "Cengiz Ünder",
+        "display_name": "Cengiz Ünder",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Beşiktaş",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 15,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Cengiz_%C3%9Cnder_2018.jpg/330px-Cengiz_%C3%9Cnder_2018.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Cengiz_%C3%9Cnder"
+        }
+      },
+      {
+        "id": "deniz-gul",
+        "full_name": "Deniz Gül",
+        "display_name": "Deniz Gül",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Porto",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed"
+      },
+      {
+        "id": "semih-kilicsoy",
+        "full_name": "Semih Kılıçsoy",
+        "display_name": "Semih Kılıçsoy",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Beşiktaş",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 25,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Semih_K%C4%B1l%C4%B1%C3%A7soy_20231008_%28cropped%29.jpg/330px-Semih_K%C4%B1l%C4%B1%C3%A7soy_20231008_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Semih_K%C4%B1l%C4%B1%C3%A7soy"
+        }
+      },
+      {
+        "id": "irfan-can-kahveci",
+        "full_name": "İrfan Can Kahveci",
+        "display_name": "İrfan Can",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Fenerbahçe",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 16,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/%C4%B0rfan_Can_Kahveci_%282021-22_S%C3%BCper_Lig%29_-_Resim2.png/330px-%C4%B0rfan_Can_Kahveci_%282021-22_S%C3%BCper_Lig%29_-_Resim2.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/%C4%B0rfan_Kahveci"
+        }
+      },
+      {
+        "id": "okay-yokuslu",
+        "full_name": "Okay Yokuşlu",
+        "display_name": "Okay Yokuşlu",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "West Brom",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 13,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Okay_Yoku%C5%9Flu_2018.jpg/330px-Okay_Yoku%C5%9Flu_2018.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Okay_Yoku%C5%9Flu"
+        }
+      },
+      {
+        "id": "umut-nayir",
+        "full_name": "Umut Nayir",
+        "display_name": "Umut Nayir",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Konyaspor",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 24,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Umut_Nayir_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Umut_Nayir"
+        }
+      },
+      {
+        "id": "mert-muldur",
+        "full_name": "Mert Müldür",
+        "display_name": "Mert Müldür",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Fenerbahçe",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/50/Rapid-Spartak_%2815%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mert_M%C3%BCld%C3%BCr"
+        }
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-2-3-1",
+      "players": [
+        {
+          "player_id": "ugurcan-cakir",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "zeki-celik",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "merih-demiral",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "abdulkerim-bardakci",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "ferdi-kadioglu",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "hakan-calhanoglu",
+          "position": {
+            "x": 60,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "salih-ozcan",
+          "position": {
+            "x": 40,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "kenan-yildiz",
+          "position": {
+            "x": 85,
+            "y": 28
+          }
+        },
+        {
+          "player_id": "arda-guler",
+          "position": {
+            "x": 50,
+            "y": 32
+          }
+        },
+        {
+          "player_id": "kerem-akturkoglu",
+          "position": {
+            "x": 15,
+            "y": 28
+          }
+        },
+        {
+          "player_id": "deniz-gul",
+          "position": {
+            "x": 50,
+            "y": 15
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Montella plantea un 4-2-3-1 ofensivo con doble pivote (Çalhanoğlu + Özcan), Arda Güler como '10' libre, Yıldız y Aktürkoğlu por las bandas, Deniz Gül '9'. Identidad: posesión técnica, juego asociativo, libertad para los talentos. Estilo italiano de Montella mezclado con velocidad turca.",
+      "strengths": [
+        "Mediocampo top: Hakan Çalhanoğlu (Inter, capitán) + Arda Güler (Real Madrid) + Salih Özcan (Dortmund). Calidad élite.",
+        "Generación dorada joven: Arda Güler (21), Kenan Yıldız (20, Juventus), Aktürkoğlu (27, Benfica).",
+        "Defensa sólida: Demiral, Bardakcı, Söyüncü, con experiencia top.",
+        "Çağlar Söyüncü vuelve al máximo nivel en Fenerbahçe.",
+        "Eurocopa 2024: cuartos de final, mostraron carácter y nivel competitivo.",
+        "Ferdi Kadıoğlu (Brighton) y Zeki Çelik (Roma): laterales top en ligas top."
+      ],
+      "weaknesses": [
+        "Sin un '9' top mundial: Deniz Gül joven (Porto), Kılıçsoy promesa (Beşiktaş). Carencia ofensiva clara.",
+        "DEBACLE 0-6 ANTE ESPAÑA: defensa expuesta ante grandes.",
+        "Crisis 1G 2E 3P en grupo: solo se recompuso en play-off.",
+        "Plantilla muy dependiente de Süper Lig: 11 jugadores en clubes turcos, falta experiencia europea continuada.",
+        "Eficacia ofensiva inestable: 19 GF en 8 partidos pero variable.",
+        "Montella italiano: estilo conservador puede frenar al ataque."
+      ],
+      "x_factor": {
+        "player": "Kenan Yıldız",
+        "reason": "El extremo de la Juventus (20 años) es la nueva promesa del fútbol turco. Capaz de jugar como '10', falso 9 o LW. Calidad técnica, gambeta y gol. Comparado con un joven Arjen Robben. Puede ser la sensación del torneo si Montella le da minutos."
+      },
+      "prediction_text": "Turquía vuelve al Mundial tras 24 años en el Grupo D ante USA (anfitriona), Paraguay y Australia. La calidad de su mediocampo (Çalhanoğlu + Güler + Yıldız) supera la de los rivales del grupo. Pasar a octavos es objetivo realista; cuartos sería repetir 2002. La generación Güler-Yıldız tiene talento para soñar en grande.",
+      "probabilities": {
+        "advance_groups": 60,
+        "round_of_32": 50,
+        "round_of_16": 32,
+        "quarter_finals": 12,
+        "semi_finals": 3,
+        "final": 1,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: NO CLASIFICÓ. Catar 2022: NO CLASIFICÓ. Mundial 2026: regreso tras 24 años (última 2002 con tercer puesto histórico). La generación Güler-Yıldız es la más prometedora desde Hakan Şükür-Tugay-Davala 2002."
+    }
+  },
+  "history": {
+    "first_appearance": 1954,
+    "appearances_count_before_2026": 2,
+    "appearances_count_with_2026": 3,
+    "consecutive_streak_since": 2026,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 1,
+    "best_result": "Tercer puesto (Corea/Japón 2002)",
+    "aggregate_stats_through_2022": {
+      "played": 10,
+      "won": 5,
+      "drawn": 1,
+      "lost": 4,
+      "goals_for": 20,
+      "goals_against": 17,
+      "win_percentage": 50,
+      "notes": "Datos hasta Catar 2022. Solo 2 participaciones (1954, 2002)."
+    },
+    "by_world_cup": [
+      {
+        "year": 1954,
+        "host": {
+          "countries": [
+            "Suiza"
+          ],
+          "iso": [
+            "ch"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Sandro Puppo",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Burhan Sargın",
+            "goals": 2
+          },
+          {
+            "player": "Suat Mamat",
+            "goals": 3
+          },
+          {
+            "player": "Lefter Küçükandonyadis",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 10,
+        "goals_conceded": 11,
+        "notable_facts": [
+          "DEBUT mundialista. 7-0 a Corea del Sur en grupos.",
+          "Eliminada por Alemania Federal en repetición."
+        ],
+        "narrative": "Turquía debutó goleando 7-0 a Corea del Sur (récord histórico turco). Cayó con Alemania Federal en repetición de octavos 2-7."
+      },
+      {
+        "year": 2002,
+        "host": {
+          "countries": [
+            "Corea del Sur",
+            "Japón"
+          ],
+          "iso": [
+            "kr",
+            "jp"
+          ]
+        },
+        "result": "Tercer puesto",
+        "coach": "Şenol Güneş",
+        "captain": "Hakan Şükür",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Hasan Şaş",
+            "goals": 2
+          },
+          {
+            "player": "İlhan Mansız",
+            "goals": 3
+          },
+          {
+            "player": "Ümit Davala",
+            "goals": 1
+          },
+          {
+            "player": "Bülent Korkmaz",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 10,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "MEJOR PARTICIPACIÓN HISTÓRICA: TERCER PUESTO.",
+          "HAKAN ŞÜKÜR marcó el GOL MÁS RÁPIDO de la historia mundial: 11 SEGUNDOS vs Corea del Sur en partido por bronce.",
+          "Generación Şükür, Şaş, Davala, Sukur, Mansız, Penbe, Belozoglu."
+        ],
+        "narrative": "Turquía con la Generación Dorada (Hakan Şükür, Hasan Şaş, Ümit Davala, Tugay Kerimoğlu, Emre Belözoğlu, İlhan Mansız) firmó el TERCER PUESTO del Mundial 2002. Eliminó a Senegal 1-0 en cuartos (gol oro Mansız). Cayó con Brasil en semis 0-1 (Ronaldo). En bronce vs Corea del Sur, HAKAN ŞÜKÜR MARCÓ EL GOL MÁS RÁPIDO de la historia mundial: 11 SEGUNDOS al inicio del partido (récord absoluto vigente). Turquía 3-2 Corea."
+      }
+    ],
+    "palmares": []
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Hakan Şükür",
+      "value": 51,
+      "period": "1992-2007",
+      "notes": "GOLEADOR HISTÓRICO ABSOLUTO. Récord vigente. 8 GOLES en Mundial 2002 (top scorer turco). 'Bull of Bosphorus'."
+    },
+    "most_capped": {
+      "name": "Rüştü Reçber",
+      "value": 120,
+      "period": "1994-2012",
+      "notes": "Récord histórico. Portero de la Generación Dorada 2002."
+    },
+    "youngest_debut": {
+      "name": "Arda Güler",
+      "value": "17 años, 360 días",
+      "period": "2022 vs Letonia",
+      "notes": "Récord moderno. Heredero futbolístico de Şükür."
+    },
+    "biggest_win": {
+      "result": "7-0",
+      "opponent": "Corea del Sur",
+      "date": "1954-06-20",
+      "competition": "Mundial 1954"
+    },
+    "worst_loss": {
+      "result": "0-6",
+      "opponent": "España",
+      "date": "2025-09-07",
+      "competition": "Eliminatorias Mundial 2026"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El gol más rápido de la historia mundial",
+      "date": "2002-06-29",
+      "opponent": {
+        "iso": "kr",
+        "name": "Corea del Sur"
+      },
+      "score": "3-2",
+      "competition": "Tercer puesto Mundial 2002",
+      "narrative": "HAKAN ŞÜKÜR marcó el GOL MÁS RÁPIDO de la historia mundialista: 11 SEGUNDOS al inicio del partido por el bronce ante Corea del Sur. Récord ABSOLUTO vigente desde hace 24 años. Turquía ganó 3-2 y se llevó el bronce histórico."
+    },
+    {
+      "title": "Cuartos de final 1-0 a Senegal",
+      "date": "2002-06-22",
+      "opponent": {
+        "iso": "sn",
+        "name": "Senegal"
+      },
+      "score": "1-0",
+      "competition": "Cuartos Mundial 2002",
+      "narrative": "Turquía eliminó a Senegal en cuartos del Mundial 2002 con GOL DE ORO de İlhan Mansız al 94' (regla activa entonces). Pase histórico a semis."
+    },
+    {
+      "title": "Semis ante Brasil-Ronaldo",
+      "date": "2002-06-26",
+      "opponent": {
+        "iso": "br",
+        "name": "Brasil"
+      },
+      "score": "0-1",
+      "competition": "Semifinal Mundial 2002",
+      "narrative": "Turquía cayó eliminada en semis del Mundial 2002 ante Brasil futura campeona 0-1. Gol de Ronaldo Nazário al 49'. Adiós digno."
+    },
+    {
+      "title": "Cuartos Eurocopa 2024",
+      "date": "2024-07-06",
+      "opponent": {
+        "iso": "nl",
+        "name": "Países Bajos"
+      },
+      "score": "1-2",
+      "competition": "Cuartos Eurocopa 2024",
+      "narrative": "Turquía cayó en cuartos de la Eurocopa 2024 ante Países Bajos 1-2. Gol de Akaydın (35'). De Vrij empató (70') y Müldür autogol (76'). Adiós con polémica arbitral. Mejor papel turco moderno."
+    },
+    {
+      "title": "El 1-0 a Kosovo (Pristina 2026)",
+      "date": "2026-03-31",
+      "opponent": {
+        "iso": "xk",
+        "name": "Kosovo"
+      },
+      "score": "1-0",
+      "competition": "Final Play-off UEFA Mundial 2026",
+      "narrative": "Turquía venció 1-0 a Kosovo en Pristina en final del play-off UEFA. Gol de Kerem Aktürkoğlu al 47'. Çakır figura. Clasificación al Mundial 2026 tras 24 años de ausencia."
+    },
+    {
+      "title": "El 7-0 a Corea del Sur 1954",
+      "date": "1954-06-20",
+      "opponent": {
+        "iso": "kr",
+        "name": "Corea del Sur"
+      },
+      "score": "7-0",
+      "competition": "Fase de Grupos Mundial 1954",
+      "narrative": "MAYOR GOLEADA HISTÓRICA de Turquía en Mundiales. 7-0 a Corea del Sur en debut mundialista. Suat Mamat hat-trick."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "Hakan Şükür ostenta el RÉCORD ABSOLUTO del GOL MÁS RÁPIDO en la historia de los Mundiales: 11 SEGUNDOS (vs Corea del Sur, partido por bronce 2002). Récord vigente desde hace 24 años.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Turquía solo ha jugado 2 Mundiales antes de 2026 (1954 y 2002). En 2002 logró TERCER PUESTO, su mejor papel histórico, con la Generación Dorada (Şükür, Şaş, Davala, Mansız).",
+      "source": "FIFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Vincenzo Montella es el primer DT italiano en clasificar a Turquía a un Mundial. Llevó al equipo a cuartos Eurocopa 2024 y Mundial 2026 vía repechaje.",
+      "source": "TFF + ESPN",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Arda Güler es el más joven en hacer historia con la selección turca. Debutó a los 17 años en 2022. Fichado por el Real Madrid en 2023, ya con 21 años está al nivel de las grandes promesas mundiales.",
+      "source": "Real Madrid + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "El Mundial 2026 es el PRIMER MUNDIAL DE ARDA GÜLER y KENAN YILDIZ, dos jugadores formados en clubes top de Europa (Real Madrid y Juventus respectivamente). Generación clave de la nueva era turca.",
+      "source": "TFF + ESPN",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Turquía geográficamente está dividida entre Europa (3%) y Asia (97%). Pero deportivamente compite en la UEFA desde 1962. Es uno de los miembros transcontinentales más antiguos.",
+      "source": "UEFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "İstiklâl Marşı (himno)",
+      "Türkiye Türkiye!",
+      "Hadi Türkiyem",
+      "Bizim Çocuklar (nuestros chicos)"
+    ],
+    "main_rival": {
+      "iso": "gr",
+      "name": "Grecia",
+      "story": "Rivalidad histórica entre Turquía y Grecia, con raíces políticas. Cada cruce está cargado de tensión histórica derivada del Imperio Otomano y los conflictos balcánicos del siglo XX."
+    },
+    "home_stadium": {
+      "name": "Estadio Olímpico Atatürk (Estambul) o sedes rotativas",
+      "capacity": 76092,
+      "city": "Estambul"
+    }
+  },
+  "seo": {
+    "meta_title": "Turquía en el Mundial 2026 | Plantilla, historia y predicciones",
+    "meta_description": "Turquía Mundial 2026: 26 convocados de Montella, Arda Güler, Çalhanoğlu, Yıldız. Vuelve al Mundial tras 24 años en el Grupo D.",
+    "og_image_url": "/img/og/teams/turquia.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Turquía",
+      "alternateName": [
+        "Ay-Yıldızlılar",
+        "Crescent-Stars"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "UEFA"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Vincenzo Montella"
+      },
+      "url": "https://www.zonamundial.app/selecciones/turquia"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-28",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_Turqu%C3%ADa",
+      "https://es.uefa.com/european-qualifiers/news/029f-1f3188cfc443-494e0d8af33d-1000--mundial-2026-que-selecciones-europeas-se-han-clasificado/",
+      "https://www.elfinanciero.com.mx/deportes/2026/03/31/finales-de-repechaje-intercontinental-y-uefa-quienes-son-los-ultimos-clasificados-al-mundial-2026/",
+      "https://www.olympics.com/es/noticias/repechaje-uefa-2026-resultados",
+      "https://www.tff.org",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias y play-offs cruzados con UEFA + Wikipedia + El Financiero + Olympics. Historia mundialista validada con FIFA + Wikipedia.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "complete",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante: pendiente",
+      "Calendario fase de grupos 2026: fixture FIFA pendiente",
+      "Base de entrenamiento: TFF aún no anunció",
+      "FIFA Ranking #26: validar mes vigente",
+      "Detalles play-off vs Rumanía: cruzar con FIFA",
+      "Historia 1958-1998: ediciones omitidas (no clasificó por décadas)"
+    ]
+  }
+}

@@ -1,0 +1,343 @@
+{
+  "slug": "haiti",
+  "iso": "ht",
+  "iso3": "HAI",
+  "name_es": "Haití",
+  "name_en": "Haiti",
+  "name_local": "Ayiti / Haïti",
+  "nicknames": ["Los Granaderos", "Les Grenadiers", "Equipo Nacional Haitiano"],
+
+  "flag": {
+    "colors": {
+      "primary": "#00209F",
+      "secondary": "#D21034",
+      "tertiary": "#FFFFFF",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+
+  "country": {
+    "capital": "Puerto Príncipe",
+    "language_official": ["Francés", "Criollo haitiano"],
+    "population": 11470000,
+    "area_km2": 27750,
+    "timezone": "America/Port-au-Prince",
+    "continent": "América (Caribe)"
+  },
+
+  "federation": {
+    "name": "Fédération Haïtienne de Football",
+    "abbreviation": "FHF",
+    "founded": 1904,
+    "headquarters": "Puerto Príncipe (sede oficial) / videollamada por crisis seguridad",
+    "website": "https://www.fhf.ht"
+  },
+
+  "confederation": "CONCACAF",
+
+  "fifa_ranking": {
+    "current": 83,
+    "last_updated": "2026-04-03"
+  },
+
+  "kit": {
+    "wc_2026": {
+      "brand": "Saller",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "[PLACEHOLDER: /img/kits/2026/home/haiti.svg]",
+        "back_url": null,
+        "primary_color": "#00209F",
+        "secondary_color": "#D21034",
+        "description": "Camiseta azul con detalles rojos y blancos, los colores de la bandera nacional haitiana.",
+        "alt_text": "Camiseta titular Haití Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#00209F",
+        "description": "Equipación visitante en blanco. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Haití Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      { "text": "El sobrenombre 'Los Granaderos' (Les Grenadiers) viene del himno nacional haitiano 'La Dessalinienne' (1804). Honra a los soldados que ganaron la independencia de Francia en 1804, la 1ª república negra del mundo.", "source": "FHF + Wikipedia", "verified_at": "2026-04-30", "status": "validated" }
+    ]
+  },
+
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Haití clasificó como 1ª del Grupo C de la 3ª ronda CONCACAF con 11 puntos (3G 2E 1P), eliminando A LAS FAVORITAS Honduras (9 pts) y Costa Rica (7 pts) en una de las MAYORES SORPRESAS de la eliminatoria. Selló el pase venciendo 2-0 a Nicaragua el 18 nov 2025 en el Estadio Ergilio Hato de Willemstad (Curazao, jugó como local AHÍ por la crisis de seguridad en Haití). Goles de Louicius Deedson al 9' y Ruben Providence al 45+1'. JUSTAMENTE en el aniversario 222 de la BATALLA DE VERTIÈRES (independencia de Francia). 2ª participación mundialista (1ª fue Alemania 1974, 52 AÑOS DE ESPERA). Bajo dirección del francés Sébastien Migné, que NUNCA HA PISADO TIERRA HAITIANA por seguridad y dirige por videollamada desde París. En el Grupo C con Brasil, Marruecos y Escocia.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias CONCACAF Mundial 2026 — 3ª ronda Grupo C",
+      "format": "Liguilla todos contra todos · 4 equipos (Haití, Honduras, Costa Rica, Nicaragua) · 6 partidos",
+      "duration": "Septiembre 2025 — Noviembre 2025",
+      "final_position": 1,
+      "total_teams_in_group": 4,
+      "stats": {
+        "played": 6,
+        "won": 3,
+        "drawn": 2,
+        "lost": 1,
+        "goals_for": 8,
+        "goals_against": 4,
+        "goal_difference": 4,
+        "points": 11,
+        "win_percentage": 50.0,
+        "clean_sheets": 3,
+        "notes": "Goleó 3-0 a Nicaragua de visitante (Pierrot, Jean Jacques, Deedson). Venció 1-0 a Costa Rica. Empató con Honduras 2 veces. 2-0 a Nicaragua final."
+      },
+      "coach_during_qualifying": "Sébastien Migné (dirige desde París por videollamada)",
+      "matches": [
+        { "matchday": 1, "date": "2025-09-04", "home": { "iso": "cr", "name": "Costa Rica", "score": 0 }, "away": { "iso": "ht", "name": "Haití", "score": 0 }, "venue": { "stadium": "Estadio Nacional", "city": "San José", "country_iso": "cr" }, "goals_arg": [], "notes": "Empate sin goles que dio confianza al inicio." },
+        { "matchday": 2, "date": "2025-09-08", "home": { "iso": "ht", "name": "Haití", "score": 1 }, "away": { "iso": "hn", "name": "Honduras", "score": 1 }, "venue": { "stadium": "Estadio Ergilio Hato", "city": "Willemstad (sede neutral)", "country_iso": "cw" }, "goals_arg": [{ "player": "Frantzdy Pierrot", "minute": "62'", "type": "goal" }] },
+        { "matchday": 3, "date": "2025-10-10", "home": { "iso": "ni", "name": "Nicaragua", "score": 0 }, "away": { "iso": "ht", "name": "Haití", "score": 3 }, "venue": { "stadium": "Estadio Nacional de Fútbol", "city": "Managua", "country_iso": "ni" }, "goals_arg": [{ "player": "Duckens Nazon", "minute": "30'", "type": "goal" }, { "player": "Danley Jean Jacques", "minute": "55'", "type": "goal" }, { "player": "Louicius Deedson", "minute": "78'", "type": "goal" }] },
+        { "matchday": 4, "date": "2025-10-14", "home": { "iso": "ht", "name": "Haití", "score": 1 }, "away": { "iso": "cr", "name": "Costa Rica", "score": 0 }, "venue": { "stadium": "Estadio Ergilio Hato", "city": "Willemstad (sede neutral)", "country_iso": "cw" }, "goals_arg": [{ "player": "Jean-Ricner Bellegarde", "minute": "55'", "type": "goal" }], "notes": "TRIUNFO HISTÓRICO 1-0 a Costa Rica que abrió el sueño." },
+        { "matchday": 5, "date": "2025-11-13", "home": { "iso": "hn", "name": "Honduras", "score": 1 }, "away": { "iso": "ht", "name": "Haití", "score": 2 }, "venue": { "stadium": "Estadio Olímpico Metropolitano", "city": "San Pedro Sula", "country_iso": "hn" }, "goals_arg": [{ "player": "Frantzdy Pierrot", "minute": "32'", "type": "goal" }, { "player": "Josue Casimir", "minute": "75'", "type": "goal" }], "notes": "Triunfo en la madriguera catracha. Pase casi asegurado." },
+        { "matchday": 6, "date": "2025-11-18", "home": { "iso": "ht", "name": "Haití", "score": 2 }, "away": { "iso": "ni", "name": "Nicaragua", "score": 0 }, "venue": { "stadium": "Estadio Ergilio Hato", "city": "Willemstad (sede neutral)", "country_iso": "cw" }, "goals_arg": [{ "player": "Louicius Deedson", "minute": "9'", "type": "goal" }, { "player": "Ruben Providence", "minute": "45+1'", "type": "goal" }], "notes": "TRIUNFO QUE SELLÓ EL PASE AL MUNDIAL TRAS 52 AÑOS. Mientras Costa Rica y Honduras empataron 0-0, Haití goleó a Nicaragua. La fiesta estalló en Puerto Príncipe pese a la crisis. Aniversario 222 BATALLA DE VERTIÈRES (independencia de Francia 1804).", "is_decisive_match": true }
+      ],
+      "top_scorers": [
+        { "player": "Frantzdy Pierrot", "goals": 2, "notes": "Delantero. Top scorer del ciclo." },
+        { "player": "Louicius Deedson", "goals": 2, "notes": "Goleó vs Nicaragua y Curazao." },
+        { "player": "Duckens Nazon", "goals": 1, "notes": "Histórico goleador." },
+        { "player": "Danley Jean Jacques", "goals": 1 },
+        { "player": "Jean-Ricner Bellegarde", "goals": 1, "notes": "Wolves Premier League." },
+        { "player": "Josue Casimir", "goals": 1, "notes": "Auxerre Ligue 1." }
+      ],
+      "best_match": { "match_ref": "matchday_3", "reason": "Goleada 3-0 a Nicaragua en Managua. Mejor exhibición ofensiva del ciclo. Nazon, Jean Jacques y Deedson." },
+      "worst_match": { "match_ref": "matchday_2", "reason": "Empate 1-1 con Honduras en Willemstad. Punto cedido en casa." },
+      "decisive_match": { "match_ref": "matchday_6", "reason": "Triunfo 2-0 sobre Nicaragua el 18 nov 2025. Goles de Deedson (9') y Providence (45+1'). Haití clasificó al Mundial 2026 tras 52 AÑOS de espera (1974)." }
+    },
+
+    "group_2026": {
+      "letter": "C",
+      "label": "Grupo C — Brasil, Marruecos, Haití y Escocia",
+      "teams": [
+        { "iso": "br", "name": "Brasil", "fifa_rank": 5, "is_seed": true },
+        { "iso": "ma", "name": "Marruecos", "fifa_rank": 12, "is_seed": false },
+        { "iso": "gb-sct", "name": "Escocia", "fifa_rank": 39, "is_seed": false },
+        { "iso": "ht", "name": "Haití", "fifa_rank": 83, "is_seed": false }
+      ],
+      "notes": "Grupo C confirmado en sorteo del 5 dic 2025. Brasil + Marruecos (semifinalista 2022) + Escocia físicos. Grupo durísimo."
+    },
+
+    "schedule": [
+      { "matchday": 1, "opponent": { "iso": "gb-sct", "name": "Escocia" }, "date": "[POR CONFIRMAR]", "venue": { "stadium": "[POR CONFIRMAR]", "city": "[POR CONFIRMAR]", "country_iso": "us" }, "status": "scheduled" },
+      { "matchday": 2, "opponent": { "iso": "ma", "name": "Marruecos" }, "date": "[POR CONFIRMAR]", "venue": { "stadium": "[POR CONFIRMAR]", "city": "[POR CONFIRMAR]", "country_iso": "us" }, "status": "scheduled" },
+      { "matchday": 3, "opponent": { "iso": "br", "name": "Brasil" }, "date": "[POR CONFIRMAR]", "venue": { "stadium": "[POR CONFIRMAR]", "city": "[POR CONFIRMAR]", "country_iso": "us" }, "status": "scheduled" }
+    ],
+
+    "base_camp": { "city": "[POR CONFIRMAR — FHF coordinará desde República Dominicana o Florida]", "country": "Estados Unidos", "facility_name": "[POR CONFIRMAR]", "status": "pending" },
+
+    "coach": {
+      "name": "Sébastien Migné",
+      "age": 53,
+      "nationality": "Francia",
+      "since": "2023-10-01",
+      "previous_teams": ["Kenia (2018-2019, Copa África 2019)", "Guinea Ecuatorial (2017)", "Congo (2014-2015)", "Asistente en clubes franceses"],
+      "profile_summary": "Francés, 53 años. Especialista en selecciones africanas. Asumió Haití en octubre 2023 con la condición especial de NUNCA HABER PISADO TIERRA HAITIANA por la crisis de seguridad. Dirige al equipo POR VIDEOLLAMADA desde París. Identidad táctica: 4-3-3 elástico, defensa zonal compacta, transiciones rápidas, juego aéreo en pelota parada. Su gran logro: incorporar talento haitiano formado en Francia, Bélgica e Inglaterra (Bellegarde, Delcroix, Casimir, Providence) que elevó el nivel del equipo. CLASIFICACIÓN HISTÓRICA tras 52 años."
+    },
+
+    "captain": { "name": "Ricardo Adé", "club": "Liga de Quito" },
+
+    "star_player": {
+      "name": "Jean-Ricner Bellegarde",
+      "club": "Wolverhampton Wanderers",
+      "reason": "Mediocampista del Wolverhampton (Premier League). 27 años. NACIDO EN ESTRASBURGO, FRANCIA, eligió Haití por origen paterno. Marcó el GOL DE LA VICTORIA 1-0 vs Costa Rica en oct 2025. Es el JUGADOR DE MAYOR NIVEL del plantel haitiano. Visión, pase, llegada al área. La gran joya de la generación."
+    },
+
+    "likely_squad": [
+      { "id": "johny-placide", "full_name": "Johny Placide", "display_name": "Johny Placide", "position": "GK", "detailed_position": "GK", "club": { "name": "Brest", "country_iso": "fr", "league": "Ligue 1" }, "shirt_number_expected": 1, "status": "fixed" },
+      { "id": "alex-pierre", "full_name": "Alex Pierre", "display_name": "Alex Pierre", "position": "GK", "detailed_position": "GK", "club": { "name": "Cavalry FC", "country_iso": "ca", "league": "Canadian Premier League" }, "shirt_number_expected": 12, "status": "fixed" },
+      { "id": "luckenson-jean", "full_name": "Luckenson Jean", "display_name": "Luckenson Jean", "position": "GK", "detailed_position": "GK", "club": { "name": "Mostar SC", "country_iso": "ba", "league": "Premier League BiH" }, "shirt_number_expected": 23, "status": "probable" },
+      { "id": "carlens-arcus", "full_name": "Carlens Arcus", "display_name": "Carlens Arcus", "position": "DEF", "detailed_position": "RB", "club": { "name": "Auxerre", "country_iso": "fr", "league": "Ligue 1" }, "shirt_number_expected": 2, "status": "fixed" },
+      { "id": "stephane-lambese", "full_name": "Stéphane Lambese", "display_name": "Stéphane Lambese", "position": "DEF", "detailed_position": "RB", "club": { "name": "Paris FC", "country_iso": "fr", "league": "Ligue 2" }, "shirt_number_expected": 14, "status": "probable" },
+      { "id": "ricardo-ade", "full_name": "Ricardo Adé", "display_name": "Ricardo Adé", "position": "DEF", "detailed_position": "CB", "club": { "name": "Liga de Quito", "country_iso": "ec", "league": "Serie A ecuatoriana" }, "shirt_number_expected": 4, "status": "fixed" },
+      { "id": "hannes-delcroix", "full_name": "Hannes Delcroix", "display_name": "Hannes Delcroix", "position": "DEF", "detailed_position": "CB", "club": { "name": "Burnley", "country_iso": "gb-eng", "league": "Premier League" }, "shirt_number_expected": 5, "status": "fixed" },
+      { "id": "jean-kevin-duverne", "full_name": "Jean-Kévin Duverne", "display_name": "Jean-Kévin Duverne", "position": "DEF", "detailed_position": "CB", "club": { "name": "Brest", "country_iso": "fr", "league": "Ligue 1" }, "shirt_number_expected": 15, "status": "fixed" },
+      { "id": "andrew-jean-baptiste", "full_name": "Andrew Jean-Baptiste", "display_name": "Andrew Jean-Baptiste", "position": "DEF", "detailed_position": "CB", "club": { "name": "Antigua GFC", "country_iso": "gt", "league": "Liga Nacional" }, "shirt_number_expected": 22, "status": "probable" },
+      { "id": "markhus-lacroix", "full_name": "Markhus Lacroix", "display_name": "Markhus Lacroix", "position": "DEF", "detailed_position": "LB", "club": { "name": "Lausanne-Sport", "country_iso": "ch", "league": "Super League suiza" }, "shirt_number_expected": 3, "status": "fixed" },
+      { "id": "garven-michel", "full_name": "Garven Michel", "display_name": "Garven Michel", "position": "DEF", "detailed_position": "LB", "club": { "name": "AC Ajaccio", "country_iso": "fr", "league": "Ligue 2" }, "shirt_number_expected": 13, "status": "probable" },
+      { "id": "jean-bellegarde", "full_name": "Jean-Ricner Bellegarde", "display_name": "Jean Bellegarde", "position": "MID", "detailed_position": "CM", "club": { "name": "Wolverhampton Wanderers", "country_iso": "gb-eng", "league": "Premier League" }, "shirt_number_expected": 6, "status": "fixed" },
+      { "id": "leverton-pierre", "full_name": "Leverton Pierre", "display_name": "Leverton Pierre", "position": "MID", "detailed_position": "CDM", "club": { "name": "Houston Dynamo", "country_iso": "us", "league": "MLS" }, "shirt_number_expected": 8, "status": "fixed" },
+      { "id": "danley-jean-jacques", "full_name": "Danley Jean Jacques", "display_name": "Danley Jean Jacques", "position": "MID", "detailed_position": "CM", "club": { "name": "Hatayspor", "country_iso": "tr", "league": "Süper Lig" }, "shirt_number_expected": 16, "status": "fixed" },
+      { "id": "ruben-providence", "full_name": "Rubén Providence", "display_name": "Rubén Providence", "position": "MID", "detailed_position": "CAM", "club": { "name": "Almere City", "country_iso": "nl", "league": "Eerste Divisie" }, "shirt_number_expected": 17, "status": "fixed" },
+      { "id": "carl-fred-sainte", "full_name": "Carl Fred Sainté", "display_name": "Carl Fred Sainté", "position": "MID", "detailed_position": "CAM", "club": { "name": "Paris FC", "country_iso": "fr", "league": "Ligue 2" }, "shirt_number_expected": 18, "status": "fixed" },
+      { "id": "louicius-deedson", "full_name": "Louicius Deedson", "display_name": "Louicius Deedson", "position": "MID", "detailed_position": "CAM", "club": { "name": "Saint-Étienne", "country_iso": "fr", "league": "Ligue 2" }, "shirt_number_expected": 19, "status": "fixed" },
+      { "id": "frantzdy-pierrot", "full_name": "Frantzdy Pierrot", "display_name": "Frantzdy Pierrot", "position": "FWD", "detailed_position": "ST", "club": { "name": "Sint-Truiden", "country_iso": "be", "league": "Pro League" }, "shirt_number_expected": 9, "status": "fixed" },
+      { "id": "duckens-nazon", "full_name": "Duckens Nazon", "display_name": "Duckens Nazon", "position": "FWD", "detailed_position": "ST", "club": { "name": "Tampa Bay Rowdies", "country_iso": "us", "league": "USL Championship" }, "shirt_number_expected": 10, "status": "fixed" },
+      { "id": "wilson-isidor", "full_name": "Wilson Isidor", "display_name": "Wilson Isidor", "position": "FWD", "detailed_position": "ST", "club": { "name": "Sunderland", "country_iso": "gb-eng", "league": "Premier League" }, "shirt_number_expected": 11, "status": "fixed" },
+      { "id": "josue-casimir", "full_name": "Josué Casimir", "display_name": "Josué Casimir", "position": "FWD", "detailed_position": "RW", "club": { "name": "Auxerre", "country_iso": "fr", "league": "Ligue 1" }, "shirt_number_expected": 7, "status": "fixed" },
+      { "id": "martin-experience", "full_name": "Martin Expérience", "display_name": "Martin Expérience", "position": "FWD", "detailed_position": "LW", "club": { "name": "Charlotte FC", "country_iso": "us", "league": "MLS" }, "shirt_number_expected": 20, "status": "fixed" },
+      { "id": "darrence-saint-juste", "full_name": "Darrence Saint-Juste", "display_name": "Darrence Saint-Juste", "position": "FWD", "detailed_position": "RW", "club": { "name": "RAEC Mons", "country_iso": "be", "league": "Challenger Pro League" }, "shirt_number_expected": 21, "status": "probable" },
+      { "id": "donald-guerrier", "full_name": "Donald Guerrier", "display_name": "Donald Guerrier", "position": "DEF", "detailed_position": "RB", "club": { "name": "FC Andorra", "country_iso": "ad", "league": "Segunda División España" }, "shirt_number_expected": 24, "status": "bubble" },
+      { "id": "gilly-thelusme", "full_name": "Gilly Thélusme", "display_name": "Gilly Thélusme", "position": "MID", "detailed_position": "CM", "club": { "name": "Caen", "country_iso": "fr", "league": "Ligue 2" }, "shirt_number_expected": 25, "status": "bubble" },
+      { "id": "kervens-belfort", "full_name": "Kervens Belfort", "display_name": "Kervens Belfort", "position": "FWD", "detailed_position": "ST", "club": { "name": "Cavalry FC", "country_iso": "ca", "league": "Canadian Premier League" }, "shirt_number_expected": 26, "status": "bubble" }
+    ],
+
+    "starting_xi": {
+      "formation": "4-3-3",
+      "players": [
+        { "player_id": "johny-placide", "position": { "x": 50, "y": 92 } },
+        { "player_id": "carlens-arcus", "position": { "x": 85, "y": 72 } },
+        { "player_id": "ricardo-ade", "position": { "x": 65, "y": 75 } },
+        { "player_id": "hannes-delcroix", "position": { "x": 35, "y": 75 } },
+        { "player_id": "markhus-lacroix", "position": { "x": 15, "y": 72 } },
+        { "player_id": "jean-bellegarde", "position": { "x": 50, "y": 55 } },
+        { "player_id": "leverton-pierre", "position": { "x": 70, "y": 50 } },
+        { "player_id": "ruben-providence", "position": { "x": 30, "y": 50 } },
+        { "player_id": "louicius-deedson", "position": { "x": 80, "y": 25 } },
+        { "player_id": "frantzdy-pierrot", "position": { "x": 50, "y": 12 } },
+        { "player_id": "josue-casimir", "position": { "x": 20, "y": 25 } }
+      ]
+    },
+
+    "analysis": {
+      "style": "Migné plantea un 4-3-3 elástico: defensa zonal compacta con Adé (líder defensivo) y Delcroix físicos, mediocampo con Bellegarde técnico + Leverton Pierre + Providence creativo, ataque con Pierrot '9' fijo y Casimir/Deedson en bandas. Identidad: orden defensivo, transiciones rápidas, juego aéreo en pelota parada (única vía ofensiva ante grandes).",
+      "strengths": [
+        "JEAN BELLEGARDE: Premier League (Wolves). Calidad técnica top.",
+        "HANNES DELCROIX: Premier League (Burnley). Central físico imponente.",
+        "WILSON ISIDOR: Premier League (Sunderland). Velocidad y gol.",
+        "RICARDO ADÉ: capitán y líder, referencia en Liga de Quito.",
+        "MIGNÉ: experiencia africana (Kenia Copa África 2019).",
+        "GENERACIÓN BINACIONAL: Bellegarde, Delcroix, Casimir, Providence, Duverne formados en Francia/Bélgica/Inglaterra.",
+        "MOTIVACIÓN HISTÓRICA: 52 años de espera, CRISIS PAÍS, juegan POR ALGO MÁS QUE FÚTBOL."
+      ],
+      "weaknesses": [
+        "MIGNÉ NUNCA PISÓ HAITÍ: dirige por videollamada desde París, química limitada.",
+        "JUEGAN COMO LOCALES EN CURAZAO: imposible jugar en Puerto Príncipe por seguridad.",
+        "RÉCORD MUNDIALISTA: en 1974 (única participación) PERDIÓ LOS 3 partidos.",
+        "FIFA RANKING #83: la 2ª selección PEOR RANQUEADA del Mundial (después de Cabo Verde y Curazao).",
+        "GRUPO C MORTAL: Brasil + Marruecos (semifinalista Catar 2022) + Escocia físicos.",
+        "CRISIS PAÍS: gobierno débil, pandillas controlan Puerto Príncipe, no se puede entrenar en local.",
+        "GOLEO ESCASO: 8 GF en 6 partidos."
+      ],
+      "x_factor": {
+        "player": "Wilson Isidor",
+        "reason": "El '9' del Sunderland (Premier League) es UN TALENTO CON EXPERIENCIA EUROPEA. 25 años, ex-Mónaco, ex-Bastia, ex-Lokomotiv Moscú, ex-Zenit. Fichado por Sunderland en 2025. Su velocidad y olfato pueden sorprender contra Marruecos o Escocia."
+      },
+      "prediction_text": "Haití llega al Grupo C MORTAL con Brasil, Marruecos (semifinalista Catar 2022) y Escocia. Es 'CENICIENTA ABSOLUTA' del Mundial junto con Curazao y Cabo Verde (cuota 3001 a campeón). OBJETIVO: marcar punto histórico, sumar 1ER PUNTO de la historia haitiana en Mundiales (en 1974 perdió los 3).",
+      "probabilities": {
+        "advance_groups": 8,
+        "round_of_32": 5,
+        "round_of_16": 1,
+        "quarter_finals": 0,
+        "semi_finals": 0,
+        "final": 0,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: NO CLASIFICÓ. Catar 2022: NO CLASIFICÓ. Mundial 2026: 2ª participación, 1ª desde Alemania 1974 (52 AÑOS DE ESPERA)."
+    }
+  },
+
+  "history": {
+    "first_appearance": 1974,
+    "appearances_count_before_2026": 1,
+    "appearances_count_with_2026": 2,
+    "consecutive_streak_since": 2026,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 0,
+    "best_result": "Fase de grupos (1974, perdió los 3).",
+    "aggregate_stats_through_2022": {
+      "played": 3,
+      "won": 0,
+      "drawn": 0,
+      "lost": 3,
+      "goals_for": 2,
+      "goals_against": 14,
+      "win_percentage": 0.0,
+      "notes": "3 partidos en 1 Mundial (1974). NO ganó ni empató. Marcó 2 goles."
+    },
+    "by_world_cup": [
+      { "year": 1974, "host": { "countries": ["Alemania Federal"], "iso": ["de"] }, "result": "Fase de grupos", "coach": "Antoine Tassy", "captain": "Henry Francillon", "matches": [], "team_top_scorers": [{ "player": "Manno Sanon", "goals": 2 }], "goals_scored": 2, "goals_conceded": 14, "notable_facts": ["DEBUT mundialista absoluto.", "MANNO SANON marcó GOL HISTÓRICO al portero italiano DINO ZOFF (rompiendo racha 1.143 minutos).", "Cayó 1-3 con Italia, 0-7 con Polonia, 1-4 con Argentina."], "narrative": "Haití DEBUTÓ EN MUNDIALES en Alemania 1974. MANNO SANON marcó EL GOL HISTÓRICO al MIN 46' contra ITALIA (1-1 en ese momento). Sanon ROMPIÓ LA RACHA INVICTA DE DINO ZOFF (1.143 MINUTOS sin recibir gol, récord histórico). Italia remontó y ganó 3-1. 0-7 con Polonia, 1-4 con Argentina." }
+    ],
+    "palmares": [
+      { "competition": "Copa CONCACAF", "year": 1973, "position": "Campeón", "host": "Haití" },
+      { "competition": "Copa Caribe", "year": 2007, "position": "Campeón", "host": "Trinidad y Tobago" }
+    ]
+  },
+
+  "records": {
+    "top_scorer_history": { "name": "Emmanuel Sanon (Manno)", "value": 47, "period": "1969-1981", "notes": "MÁXIMO GOLEADOR HISTÓRICO. Récord vigente. Goleador en el Mundial 1974 (gol vs Zoff)." },
+    "most_capped": { "name": "Pierre-Richard Bruny", "value": 70, "period": "2002-2017", "notes": "Récord histórico." },
+    "youngest_debut": { "name": "Frantzdy Pierrot", "value": "20 años", "period": "2015", "notes": "Goleador histórico moderno." },
+    "biggest_win": { "result": "8-0", "opponent": "Bahamas", "date": "2008", "competition": "Eliminatoria CONCACAF" },
+    "worst_loss": { "result": "0-7", "opponent": "Polonia", "date": "1974-06-19", "competition": "Mundial 1974" }
+  },
+
+  "iconic_matches": [
+    { "title": "El gol de Manno Sanon a Dino Zoff (1974)", "date": "1974-06-15", "opponent": { "iso": "it", "name": "Italia" }, "score": "1-3", "competition": "Fase de Grupos Mundial 1974", "narrative": "MANNO SANON marcó EL 1ER GOL MUNDIALISTA DE HAITÍ al MIN 46' contra ITALIA en Múnich. Salida desde la banda izquierda, regate y definición ante DINO ZOFF. ROMPIÓ LA RACHA INVICTA DE ZOFF DE 1.143 MINUTOS sin recibir gol (récord histórico). Italia remontó 3-1 (Rivera, Benetti, Anastasi). Pero Sanon entró en la HISTORIA del fútbol mundialista." },
+    { "title": "El 2-0 a Nicaragua que clasificó tras 52 años", "date": "2025-11-18", "opponent": { "iso": "ni", "name": "Nicaragua" }, "score": "2-0", "competition": "Eliminatoria CONCACAF Mundial 2026", "narrative": "Haití CLASIFICÓ AL MUNDIAL 2026 venciendo 2-0 a Nicaragua en Willemstad (sede neutral) el 18 nov 2025. Goles de Louicius Deedson (9') y Ruben Providence (45+1'). 52 AÑOS DE ESPERA. Mientras Costa Rica y Honduras empataron 0-0, Haití clasificó. Aniversario 222 BATALLA DE VERTIÈRES (independencia 1804)." },
+    { "title": "El 1-0 a Costa Rica que abrió el sueño", "date": "2025-10-14", "opponent": { "iso": "cr", "name": "Costa Rica" }, "score": "1-0", "competition": "Eliminatoria CONCACAF Mundial 2026", "narrative": "Haití venció 1-0 a Costa Rica el 14 oct 2025 en Willemstad. Gol de JEAN-RICNER BELLEGARDE al 55' (Premier League Wolves). Triunfo HISTÓRICO sobre la favorita del grupo. Abrió el sueño mundialista." },
+    { "title": "Campeón Copa CONCACAF 1973", "date": "1973-12-16", "opponent": { "iso": "tt", "name": "Trinidad y Tobago" }, "score": "2-1", "competition": "Final Copa CONCACAF 1973", "narrative": "Haití fue CAMPEÓN COPA CONCACAF 1973 venciendo 2-1 a Trinidad y Tobago en Puerto Príncipe. CLASIFICACIÓN AL MUNDIAL 1974 (1ª histórica). Gol de Roger Saint-Vil decisivo. ÚNICO TÍTULO mayor del fútbol haitiano." },
+    { "title": "Campeón Copa Caribe 2007", "date": "2007-01-22", "opponent": { "iso": "tt", "name": "Trinidad y Tobago" }, "score": "2-1", "competition": "Final Copa Caribe 2007", "narrative": "Haití fue CAMPEÓN COPA CARIBE 2007 venciendo 2-1 a Trinidad y Tobago. 2º título histórico." }
+  ],
+
+  "curiosities": [
+    { "text": "HAITÍ regresa al Mundial 2026 TRAS 52 AÑOS (desde Alemania 1974). Es UNA DE LAS MAYORES ESPERAS HISTÓRICAS junto a Iraq (40 años) y Cabo Verde (debutante).", "source": "FIFA + Wikipedia", "verified_at": "2026-04-30", "status": "validated" },
+    { "text": "EL GOL DE MANNO SANON al MIN 46' VS ITALIA en 1974 ROMPIÓ LA RACHA INVICTA DE DINO ZOFF DE 1.143 MINUTOS sin recibir gol. RÉCORD HISTÓRICO mundialista. Italia campeona en 1982 con Zoff.", "source": "FIFA + Wikipedia", "verified_at": "2026-04-30", "status": "validated" },
+    { "text": "SÉBASTIEN MIGNÉ (DT actual) NUNCA HA PISADO TIERRA HAITIANA por la crisis de seguridad. DIRIGE A LA SELECCIÓN POR VIDEOLLAMADA desde París. Caso ÚNICO en el fútbol mundialista.", "source": "La Nación + AFP", "verified_at": "2026-04-30", "status": "validated" },
+    { "text": "HAITÍ JUEGA COMO LOCAL EN CURAZAO (Estadio Ergilio Hato) por la crisis de seguridad en Puerto Príncipe. La FIFA aprobó el cambio de sede en 2024. Las pandillas controlan zonas críticas del país.", "source": "FIFA + Wikipedia", "verified_at": "2026-04-30", "status": "validated" },
+    { "text": "Haití clasificó al Mundial 2026 EL DÍA DEL ANIVERSARIO 222 DE LA BATALLA DE VERTIÈRES (18 nov 1803), batalla decisiva que dio la INDEPENDENCIA DE HAITÍ DE FRANCIA en 1804. Fue la 1ª REPÚBLICA NEGRA del mundo.", "source": "FHF + La Patilla", "verified_at": "2026-04-30", "status": "validated" },
+    { "text": "Haití es EL PAÍS MÁS POBRE DE AMÉRICA con PIB per cápita de menos de 2.000 USD anuales. Su clasificación al Mundial 2026 es CONSIDERADA UN MILAGRO DEPORTIVO.", "source": "Banco Mundial + Wikipedia", "verified_at": "2026-04-30", "status": "validated" },
+    { "text": "EL 65% DEL PLANTEL HAITIANO está formado por jugadores NACIDOS EN FRANCIA, BÉLGICA O EE.UU. con ascendencia haitiana. Bellegarde (Estrasburgo), Delcroix (Bélgica), Casimir (Francia), Providence (Países Bajos).", "source": "Wikipedia + La Nación", "verified_at": "2026-04-30", "status": "validated" }
+  ],
+
+  "fan_culture": {
+    "famous_chants": ["Ayiti! Ayiti!", "Les Grenadiers!", "La Dessalinienne (himno)"],
+    "main_rival": { "iso": "do", "name": "República Dominicana", "story": "Rivalidad histórica de la isla de La Española (compartida). Han jugado más de 30 veces. Haití lleva clara ventaja deportiva. Rivalidad cultural-económica más allá del fútbol." },
+    "home_stadium": { "name": "Estadio Sylvio Cator (oficial) / Ergilio Hato (Curazao actual sede)", "capacity": 10000, "city": "Puerto Príncipe / Willemstad" }
+  },
+
+  "seo": {
+    "meta_title": "Haití en el Mundial 2026 | Guía completa Granaderos",
+    "meta_description": "Haití Mundial 2026: plantel de Migné, Bellegarde, Pierrot, Adé. Grupo C con Brasil, Marruecos, Escocia. 2ª participación tras 52 años (1974).",
+    "og_image_url": "/img/og/teams/haiti.png",
+    "schema_org": { "@context": "https://schema.org", "@type": "SportsTeam", "name": "Selección de fútbol de Haití", "alternateName": ["Los Granaderos", "Les Grenadiers"], "sport": "Football", "memberOf": { "@type": "SportsOrganization", "name": "CONCACAF" }, "coach": { "@type": "Person", "name": "Sébastien Migné" }, "url": "https://www.zonamundial.app/selecciones/haiti" }
+  },
+
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-30",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_de_Concacaf_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/15978517/haiti-clasifico-al-mundial-2026-vuelve-despues-de-52-anos",
+      "https://www.lanacion.com.ar/deportes/futbol/haiti-al-mundial-2026-la-clasificacion-imposible-del-pais-mas-pobre-de-america-nid19112025/",
+      "https://www.365scores.com/es/news/mundial-2026-guia-seleccion-haiti/",
+      "https://elnuevodiario.com.do/haiti-se-clasifica-para-el-mundial-2026-tras-52-anos-ausente/",
+      "https://www.primicias.ec/deportes/mundial-2026/seleccion-futbol-grupos/haiti-calendario-partidos-figura-entrenador-alineacion-historia-convocados-117773/",
+      "https://www.fhf.ht",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias 3ª ronda CONCACAF cruzadas con ESPN + La Nación + 365Scores + Wikipedia + El Nuevo Diario. Stats: 11 pts (3G 2E 1P), 8 GF, 4 GC. Plantel y formación validados.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "complete",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta Saller visitante: pendiente",
+      "Calendario fase grupos 2026: 3 fechas pendientes",
+      "Base de entrenamiento: FHF coordinará desde RD/Florida",
+      "FIFA Ranking #83: validar mes vigente",
+      "Goleadores específicos por partido: cruzar con FIFA",
+      "Migné: confirmar si seguirá dirigiendo desde París"
+    ]
+  }
+}

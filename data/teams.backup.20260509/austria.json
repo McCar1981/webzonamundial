@@ -1,0 +1,1636 @@
+{
+  "slug": "austria",
+  "iso": "at",
+  "iso3": "AUT",
+  "name_es": "Austria",
+  "name_en": "Austria",
+  "name_local": "Österreich",
+  "nicknames": [
+    "Wunderteam",
+    "Das Team",
+    "Equipo del Maravilla"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#ED2939",
+      "secondary": "#FFFFFF",
+      "tertiary": "#000000",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Viena",
+    "language_official": [
+      "Alemán"
+    ],
+    "population": 9100000,
+    "area_km2": 83879,
+    "timezone": "Europe/Vienna",
+    "continent": "Europa"
+  },
+  "federation": {
+    "name": "Österreichischer Fußball-Bund",
+    "abbreviation": "ÖFB",
+    "founded": 1904,
+    "headquarters": "Viena",
+    "website": "https://www.oefb.at"
+  },
+  "confederation": "UEFA",
+  "fifa_ranking": {
+    "current": 21,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Puma",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/austria.png",
+        "back_url": null,
+        "primary_color": "#ED2939",
+        "secondary_color": "#FFFFFF",
+        "description": "Camiseta roja icónica con detalles blancos. Los colores nacionales austriacos heredan del escudo medieval del Archiducado de Austria.",
+        "alt_text": "Camiseta titular Austria Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#ED2939",
+        "description": "Equipación visitante en blanco. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Austria Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "El apodo histórico 'Wunderteam' (Equipo del Maravilla) viene de la mítica selección austriaca de los años 30, considerada la mejor del mundo en su época. Matthias Sindelar, su estrella, era llamado 'el Mozart del fútbol'.",
+        "source": "ÖFB + Wikipedia",
+        "verified_at": "2026-04-29",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Austria clasificó como 1ª del Grupo H tras 28 AÑOS DE AUSENCIA (último Mundial: Francia 1998). El paso decisivo: 1-1 con Bosnia que le aseguró el primer puesto. Goleó 10-0 a San Marino (RÉCORD HISTÓRICO ABSOLUTO austriaco) con póker de Marko Arnautović. Bajo Ralf Rangnick (alemán, ex DT del Manchester United), Austria desarrolló identidad de presión alta tipo 'Red Bull'. David Alaba lidera la generación del retorno mundialista.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias UEFA Mundial 2026 — Grupo H",
+      "format": "Liguilla todos contra todos · 5 equipos · 8 partidos · ida y vuelta",
+      "duration": "Marzo 2025 — Noviembre 2025",
+      "final_position": 1,
+      "total_teams_in_group": 5,
+      "stats": {
+        "played": 8,
+        "won": 6,
+        "drawn": 1,
+        "lost": 1,
+        "goals_for": 25,
+        "goals_against": 5,
+        "goal_difference": 20,
+        "points": 19,
+        "win_percentage": 75,
+        "clean_sheets": 5
+      },
+      "coach_during_qualifying": "Ralf Rangnick",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2025-03-22",
+          "home": {
+            "iso": "ro",
+            "name": "Rumanía",
+            "score": 1
+          },
+          "away": {
+            "iso": "at",
+            "name": "Austria",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Arena Națională",
+            "city": "Bucarest",
+            "country_iso": "ro"
+          },
+          "goals_arg": [],
+          "notes": "Inicio sorpresivamente con derrota."
+        },
+        {
+          "matchday": 2,
+          "date": "2025-09-06",
+          "home": {
+            "iso": "cy",
+            "name": "Chipre",
+            "score": 0
+          },
+          "away": {
+            "iso": "at",
+            "name": "Austria",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "GSP",
+            "city": "Nicosia",
+            "country_iso": "cy"
+          },
+          "goals_arg": [
+            {
+              "player": "Christoph Baumgartner",
+              "minute": "33'",
+              "type": "goal"
+            },
+            {
+              "player": "Marko Arnautović",
+              "minute": "70'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 3,
+          "date": "2025-09-09",
+          "home": {
+            "iso": "at",
+            "name": "Austria",
+            "score": 1
+          },
+          "away": {
+            "iso": "sm",
+            "name": "San Marino",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Allianz Stadion",
+            "city": "Viena",
+            "country_iso": "at"
+          },
+          "goals_arg": [
+            {
+              "player": "Marcel Sabitzer",
+              "minute": "55'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 4,
+          "date": "2025-10-09",
+          "home": {
+            "iso": "at",
+            "name": "Austria",
+            "score": 10
+          },
+          "away": {
+            "iso": "sm",
+            "name": "San Marino",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Ernst-Happel-Stadion",
+            "city": "Viena",
+            "country_iso": "at"
+          },
+          "goals_arg": [
+            {
+              "player": "Marko Arnautović",
+              "minute": "12'",
+              "type": "goal"
+            },
+            {
+              "player": "Marko Arnautović",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Marko Arnautović",
+              "minute": "44'",
+              "type": "penalty"
+            },
+            {
+              "player": "Marko Arnautović",
+              "minute": "65'",
+              "type": "goal"
+            },
+            {
+              "player": "David Alaba",
+              "minute": "70'",
+              "type": "goal"
+            },
+            {
+              "player": "Konrad Laimer",
+              "minute": "75'",
+              "type": "goal"
+            },
+            {
+              "player": "Christoph Baumgartner",
+              "minute": "80'",
+              "type": "goal"
+            },
+            {
+              "player": "Romano Schmid",
+              "minute": "85'",
+              "type": "goal"
+            },
+            {
+              "player": "Patrick Wimmer",
+              "minute": "88'",
+              "type": "goal"
+            },
+            {
+              "player": "Michael Gregoritsch",
+              "minute": "90'",
+              "type": "goal"
+            }
+          ],
+          "notes": "GOLEADA HISTÓRICA: 10-0, MAYOR VICTORIA en la historia austriaca. PÓKER DE ARNAUTOVIĆ. Capitanea Alaba en el regreso."
+        },
+        {
+          "matchday": 5,
+          "date": "2025-10-12",
+          "home": {
+            "iso": "ba",
+            "name": "Bosnia y Herzegovina",
+            "score": 1
+          },
+          "away": {
+            "iso": "at",
+            "name": "Austria",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Bilino Polje",
+            "city": "Zenica",
+            "country_iso": "ba"
+          },
+          "goals_arg": [
+            {
+              "player": "Marko Arnautović",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Christoph Baumgartner",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 6,
+          "date": "2025-11-15",
+          "home": {
+            "iso": "at",
+            "name": "Austria",
+            "score": 1
+          },
+          "away": {
+            "iso": "ba",
+            "name": "Bosnia y Herzegovina",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Ernst-Happel-Stadion",
+            "city": "Viena",
+            "country_iso": "at"
+          },
+          "goals_arg": [
+            {
+              "player": "Marko Arnautović",
+              "minute": "60'",
+              "type": "goal"
+            }
+          ],
+          "notes": "EMPATE QUE SELLÓ MATEMÁTICAMENTE LA CLASIFICACIÓN al Mundial 2026 como 1º del Grupo H.",
+          "is_decisive_match": true
+        },
+        {
+          "matchday": 7,
+          "date": "2025-11-18",
+          "home": {
+            "iso": "at",
+            "name": "Austria",
+            "score": 2
+          },
+          "away": {
+            "iso": "cy",
+            "name": "Chipre",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Ernst-Happel-Stadion",
+            "city": "Viena",
+            "country_iso": "at"
+          },
+          "goals_arg": [
+            {
+              "player": "Marko Arnautović",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Konrad Laimer",
+              "minute": "65'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 8,
+          "date": "2025-11-19",
+          "home": {
+            "iso": "at",
+            "name": "Austria",
+            "score": 4
+          },
+          "away": {
+            "iso": "ro",
+            "name": "Rumanía",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Ernst-Happel-Stadion",
+            "city": "Viena",
+            "country_iso": "at"
+          },
+          "goals_arg": [
+            {
+              "player": "Marko Arnautović",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Marcel Sabitzer",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "David Alaba",
+              "minute": "70'",
+              "type": "penalty"
+            },
+            {
+              "player": "Christoph Baumgartner",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Cierre con goleada vengativa ante el rival que le ganó en el debut."
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Marko Arnautović",
+          "goals": 8,
+          "notes": "Goleador del ciclo, segundo en eliminatorias UEFA solo detrás de Haaland (16). Capitán a sus 36 años."
+        },
+        {
+          "player": "Christoph Baumgartner",
+          "goals": 4
+        },
+        {
+          "player": "David Alaba",
+          "goals": 2,
+          "notes": "Capitán técnico, goleador de penal."
+        },
+        {
+          "player": "Marcel Sabitzer",
+          "goals": 2
+        },
+        {
+          "player": "Konrad Laimer",
+          "goals": 2
+        },
+        {
+          "player": "Patrick Wimmer",
+          "goals": 1
+        },
+        {
+          "player": "Romano Schmid",
+          "goals": 1
+        },
+        {
+          "player": "Michael Gregoritsch",
+          "goals": 1
+        },
+        {
+          "player": "Otros (4)",
+          "goals": 4
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_4",
+        "reason": "GOLEADA HISTÓRICA 10-0 a San Marino con PÓKER DE ARNAUTOVIĆ el 9 de octubre de 2025. La MAYOR VICTORIA en toda la historia de Austria, que se mantenía desde un 9-1 a Israel en 1958."
+      },
+      "worst_match": {
+        "match_ref": "matchday_1",
+        "reason": "Derrota inicial 0-1 ante Rumanía en Bucarest. Único partido perdido en el ciclo, generó dudas iniciales sobre Rangnick."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_6",
+        "reason": "El 1-1 ante Bosnia el 15 de noviembre selló matemáticamente el primer puesto y la clasificación al Mundial 2026 tras 28 años de ausencia."
+      }
+    },
+    "group_2026": {
+      "letter": "J",
+      "label": "Grupo asignado en sorteo Mundial 2026",
+      "teams": [
+        {
+          "iso": "ar",
+          "name": "Argentina",
+          "fifa_rank": null
+        },
+        {
+          "iso": "dz",
+          "name": "Argelia",
+          "fifa_rank": null
+        },
+        {
+          "iso": "at",
+          "name": "Austria",
+          "fifa_rank": null,
+          "is_seed": false
+        },
+        {
+          "iso": "jo",
+          "name": "Jordania",
+          "fifa_rank": null
+        }
+      ],
+      "notes": "Austria llegó como bombo 2 (no fue cabeza de serie). Pendiente cruce con /grupos zonamundial.app."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "jo",
+          "name": "Jordania"
+        },
+        "date": "2026-06-16",
+        "kickoff_local": "15:00",
+        "venue": {
+          "stadium": "NRG Stadium",
+          "city": "Houston",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "ar",
+          "name": "Argentina"
+        },
+        "date": "2026-06-24",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "NRG Stadium",
+          "city": "Houston",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "dz",
+          "name": "Argelia"
+        },
+        "date": "2026-06-30",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "NRG Stadium",
+          "city": "Houston",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — ÖFB aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Ralf Rangnick",
+      "age": 67,
+      "nationality": "Alemania",
+      "since": "2022-04-29",
+      "previous_teams": [
+        "Manchester United (2021-2022, interino)",
+        "Lokomotiv Moscú (2020-2021)",
+        "RB Leipzig (2018-2019)",
+        "Hoffenheim (2006-2011)",
+        "Schalke 04 (2004-2005, 2011)"
+      ],
+      "profile_summary": "Alemán, considerado uno de los pioneros del 'gegenpressing' (presión alta tras pérdida) que influyó en Klopp y todo el fútbol moderno. DT histórico del proyecto Red Bull (Salzburg, RB Leipzig, etc.). Asumió Austria en abril 2022. Identidad táctica: 4-2-3-1 con presión asfixiante, transiciones rápidas, intensidad física. Llevó a Austria a octavos en Eurocopa 2024 (eliminada por Turquía). Bajo su mando, Austria tiene su mejor balance histórico moderno.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/2022-07-30_Fu%C3%9Fball%2C_M%C3%A4nner%2C_DFL-Supercup%2C_RB_Leipzig_-_FC_Bayern_M%C3%BCnchen_1DX_3148_by_Stepro.jpg/330px-2022-07-30_Fu%C3%9Fball%2C_M%C3%A4nner%2C_DFL-Supercup%2C_RB_Leipzig_-_FC_Bayern_M%C3%BCnchen_1DX_3148_by_Stepro.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Ralf_Rangnick"
+      }
+    },
+    "captain": {
+      "name": "David Alaba",
+      "club": "Real Madrid",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_David_Alaba_850_1632.jpg/330px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_David_Alaba_850_1632.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/David_Alaba"
+      }
+    },
+    "star_player": {
+      "name": "David Alaba",
+      "club": "Real Madrid",
+      "reason": "Capitán histórico, considerado uno de los mejores defensas centrales del último decenio. A los 33 años llega a SU PRIMER MUNDIAL (no estaba en activo en 1998). Madridista desde 2021, ganó 2 Champions con el Real Madrid (2022, 2024). Líder absoluto de la generación del retorno tras 28 años de ausencia.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_David_Alaba_850_1632.jpg/330px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_David_Alaba_850_1632.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/David_Alaba"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "patrick-pentz",
+        "full_name": "Patrick Pentz",
+        "display_name": "Patrick Pentz",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Brøndby",
+          "country_iso": "dk",
+          "league": "Superliga"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/20161203_ADM_AUS_3873.jpg/330px-20161203_ADM_AUS_3873.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Patrick_Pentz"
+        }
+      },
+      {
+        "id": "alexander-schlager",
+        "full_name": "Alexander Schlager",
+        "display_name": "Schlager",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "RB Salzburg",
+          "country_iso": "at",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 12,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Floridsdorfer_AC_2016%E2%80%9317_%E2%80%93_Alexander_Schlager_%2801%29.jpg/330px-Floridsdorfer_AC_2016%E2%80%9317_%E2%80%93_Alexander_Schlager_%2801%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Alexander_Schlager"
+        }
+      },
+      {
+        "id": "heinz-lindner",
+        "full_name": "Heinz Lindner",
+        "display_name": "Heinz Lindner",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Sion",
+          "country_iso": "ch",
+          "league": "Super League"
+        },
+        "shirt_number_expected": 22,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/AUT_vs._MDA_2015-09-05_%28093%29.jpg/330px-AUT_vs._MDA_2015-09-05_%28093%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Heinz_Lindner"
+        }
+      },
+      {
+        "id": "david-alaba",
+        "full_name": "David Alaba",
+        "display_name": "David Alaba",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Real Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_David_Alaba_850_1632.jpg/330px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_David_Alaba_850_1632.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/David_Alaba"
+        }
+      },
+      {
+        "id": "kevin-danso",
+        "full_name": "Kevin Danso",
+        "display_name": "Kevin Danso",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Tottenham",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Austria_national_under-21_football_team_-_Teamcamp_October_2019_%2835%29.jpg/330px-Austria_national_under-21_football_team_-_Teamcamp_October_2019_%2835%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Kevin_Danso"
+        }
+      },
+      {
+        "id": "philipp-lienhart",
+        "full_name": "Philipp Lienhart",
+        "display_name": "Philipp Lienhart",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Friburgo",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Austria_national_under-21_football_team_-_Teamcamp_November_2015_%28106%29.jpg/330px-Austria_national_under-21_football_team_-_Teamcamp_November_2015_%28106%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Philipp_Lienhart"
+        }
+      },
+      {
+        "id": "leopold-querfeld",
+        "full_name": "Leopold Querfeld",
+        "display_name": "Querfeld",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Union Berlin",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 13,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/FC_Liefering_gegen_SK_Rapid_Wien_II_%2812._September_2021%29_09_%28cropped%29.jpg/330px-FC_Liefering_gegen_SK_Rapid_Wien_II_%2812._September_2021%29_09_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Leopold_Querfeld"
+        }
+      },
+      {
+        "id": "stefan-posch",
+        "full_name": "Stefan Posch",
+        "display_name": "Stefan Posch",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Como",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 16,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Austria_national_under-21_football_team_-_Teamcamp_June_2017_%28110%29.jpg/330px-Austria_national_under-21_football_team_-_Teamcamp_June_2017_%28110%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Stefan_Posch"
+        }
+      },
+      {
+        "id": "phillipp-mwene",
+        "full_name": "Phillipp Mwene",
+        "display_name": "Phillipp Mwene",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "PSV Eindhoven",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 21,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/XXIII_Memorial_Quinocho_%28RC_Celta_vs_Mainz_05%29_-_74_%28cropped%29.jpg/330px-XXIII_Memorial_Quinocho_%28RC_Celta_vs_Mainz_05%29_-_74_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Phillipp_Mwene"
+        }
+      },
+      {
+        "id": "maximilian-wober",
+        "full_name": "Maximilian Wöber",
+        "display_name": "Wöber",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Mönchengladbach",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 15,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Maximilian_W%C3%B6ber_%28cropped%29.jpg/330px-Maximilian_W%C3%B6ber_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Maximilian_W%C3%B6ber"
+        }
+      },
+      {
+        "id": "konrad-laimer",
+        "full_name": "Konrad Laimer",
+        "display_name": "Konrad Laimer",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Bayern Múnich",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/2022-07-21_Fu%C3%9Fball%2C_M%C3%A4nner%2CFreundschaftsspiel%2C_RB_Leipzig_-_FC_Liverpool_1DX_2137_by_Stepro_%28cropped%29.jpg/330px-2022-07-21_Fu%C3%9Fball%2C_M%C3%A4nner%2CFreundschaftsspiel%2C_RB_Leipzig_-_FC_Liverpool_1DX_2137_by_Stepro_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Konrad_Laimer"
+        }
+      },
+      {
+        "id": "marcel-sabitzer",
+        "full_name": "Marcel Sabitzer",
+        "display_name": "Marcel Sabitzer",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Borussia Dortmund",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Marcel_Sabitzer_2020_%28cropped%29.jpg/330px-Marcel_Sabitzer_2020_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Marcel_Sabitzer"
+        }
+      },
+      {
+        "id": "nicolas-seiwald",
+        "full_name": "Nicolas Seiwald",
+        "display_name": "Nicolas Seiwald",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "RB Leipzig",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Meisterteller%C3%BCbergabe_Saison_2021-22_%282022-05-21%29_49.jpg/330px-Meisterteller%C3%BCbergabe_Saison_2021-22_%282022-05-21%29_49.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Nicolas_Seiwald"
+        }
+      },
+      {
+        "id": "florian-grillitsch",
+        "full_name": "Florian Grillitsch",
+        "display_name": "Grillitsch",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Hoffenheim",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 6,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/20180602_AUTGER_4687_%28cropped%29_Florian_Grillitsch.jpg/330px-20180602_AUTGER_4687_%28cropped%29_Florian_Grillitsch.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Florian_Grillitsch"
+        }
+      },
+      {
+        "id": "christoph-baumgartner",
+        "full_name": "Christoph Baumgartner",
+        "display_name": "Baumgartner",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "RB Leipzig",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Austria_national_under-21_football_team_-_Teamcamp_October_2019_%2860%29.jpg/330px-Austria_national_under-21_football_team_-_Teamcamp_October_2019_%2860%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Christoph_Baumgartner"
+        }
+      },
+      {
+        "id": "romano-schmid",
+        "full_name": "Romano Schmid",
+        "display_name": "Romano Schmid",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Werder Bremen",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 23,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/FC_Liefering_versus_Blau_Wei%C3%9F_Linz_%2822._September_2017%29_41.jpg/330px-FC_Liefering_versus_Blau_Wei%C3%9F_Linz_%2822._September_2017%29_41.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Romano_Schmid"
+        }
+      },
+      {
+        "id": "marko-arnautovic",
+        "full_name": "Marko Arnautović",
+        "display_name": "Marko Arnautović",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Red Star Belgrado",
+          "country_iso": "rs",
+          "league": "SuperLiga"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Marko_Arnautovi%C4%87_850_1633.jpg/330px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Marko_Arnautovi%C4%87_850_1633.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Marko_Arnautovi%C4%87"
+        }
+      },
+      {
+        "id": "michael-gregoritsch",
+        "full_name": "Michael Gregoritsch",
+        "display_name": "Gregoritsch",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Friburgo",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Austria_national_under-21_football_team_-_Teamcamp_October_2015_%28144%29.jpg/330px-Austria_national_under-21_football_team_-_Teamcamp_October_2015_%28144%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Michael_Gregoritsch"
+        }
+      },
+      {
+        "id": "patrick-wimmer",
+        "full_name": "Patrick Wimmer",
+        "display_name": "Patrick Wimmer",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Wolfsburg",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/UEFA_Euro_2023_Qualifiers_Austria_vs._Finland_%282022-06-03%29_29.jpg/330px-UEFA_Euro_2023_Qualifiers_Austria_vs._Finland_%282022-06-03%29_29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Patrick_Wimmer"
+        }
+      },
+      {
+        "id": "marko-arnautovic-2",
+        "full_name": "Karim Onisiwo",
+        "display_name": "Karim Onisiwo",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Mainz 05",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 24,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/20140905_U21_AUT_BIH_AT13_1020.jpg/330px-20140905_U21_AUT_BIH_AT13_1020.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Karim_Onisiwo"
+        }
+      },
+      {
+        "id": "marko-arnautovic-3",
+        "full_name": "Marco Grüll",
+        "display_name": "Marco Grüll",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Werder Bremen",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 25,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Austria_national_under-21_football_team_-_Teamcamp_October_2019_%2831%29.jpg/330px-Austria_national_under-21_football_team_-_Teamcamp_October_2019_%2831%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Marco_Gr%C3%BCll"
+        }
+      },
+      {
+        "id": "junior-adamu",
+        "full_name": "Junior Adamu",
+        "display_name": "Junior Adamu",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Friburgo",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/FC_RB_Salzburg_gegen_FK_Austria_Wien_%282022-04-24%29_40.jpg/330px-FC_RB_Salzburg_gegen_FK_Austria_Wien_%282022-04-24%29_40.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Junior_Adamu"
+        }
+      },
+      {
+        "id": "andreas-weimann",
+        "full_name": "Andreas Weimann",
+        "display_name": "Andreas Weimann",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Bristol City",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 18,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/FIFA_WC-qualification_2014_-_Austria_vs_Ireland_2013-09-10_-_Andreas_Weimann_02.jpg/330px-FIFA_WC-qualification_2014_-_Austria_vs_Ireland_2013-09-10_-_Andreas_Weimann_02.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Andreas_Weimann"
+        }
+      },
+      {
+        "id": "xaver-schlager",
+        "full_name": "Xaver Schlager",
+        "display_name": "Xaver Schlager",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "RB Leipzig",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 20,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/FC_Salzburg_gegen_Club_Br%C3%BCgge_%28Euroleague_Sechzehntelfinale%29_21.jpg/330px-FC_Salzburg_gegen_Club_Br%C3%BCgge_%28Euroleague_Sechzehntelfinale%29_21.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Xaver_Schlager"
+        }
+      },
+      {
+        "id": "nikola-katic",
+        "full_name": "Flavius Daniliuc",
+        "display_name": "Daniliuc",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Salernitana",
+          "country_iso": "it",
+          "league": "Serie B"
+        },
+        "shirt_number_expected": 3,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/UEFA_Euro_2023_Qualifiers_Austria_vs._Finland_%282022-06-03%29_55_%28cropped%29.jpg/330px-UEFA_Euro_2023_Qualifiers_Austria_vs._Finland_%282022-06-03%29_55_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Flavius_Daniliuc"
+        }
+      },
+      {
+        "id": "florian-kainz",
+        "full_name": "Florian Kainz",
+        "display_name": "Florian Kainz",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "FC Köln",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 2,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/AUT_vs._SUI_2015-11-17_%28044%29.jpg/330px-AUT_vs._SUI_2015-11-17_%28044%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Florian_Kainz"
+        }
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-2-3-1",
+      "players": [
+        {
+          "player_id": "patrick-pentz",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "stefan-posch",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "kevin-danso",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "david-alaba",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "phillipp-mwene",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "konrad-laimer",
+          "position": {
+            "x": 35,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "nicolas-seiwald",
+          "position": {
+            "x": 65,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "patrick-wimmer",
+          "position": {
+            "x": 85,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "christoph-baumgartner",
+          "position": {
+            "x": 50,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "marcel-sabitzer",
+          "position": {
+            "x": 15,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "marko-arnautovic",
+          "position": {
+            "x": 50,
+            "y": 15
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Rangnick aplica el 'gegenpressing' clásico alemán: 4-2-3-1 con presión alta tras pérdida, doble pivote físico (Laimer + Seiwald), Baumgartner como '10' libre, Arnautović como '9' móvil. Identidad: intensidad, agresividad, ritmo alto. Estilo Red Bull aplicado a selección.",
+      "strengths": [
+        "David Alaba: capitán élite mundial. Champions x2 con Real Madrid. Líder técnico y emocional.",
+        "Marko Arnautović: goleador del ciclo (8), segundo solo a Haaland en eliminatorias UEFA.",
+        "Mediocampo top: Laimer (Bayern), Sabitzer (Dortmund), Baumgartner (Leipzig), Seiwald (Leipzig).",
+        "Generación dorada Bundesliga: 18 de 26 jugadores en la liga alemana.",
+        "Ralf Rangnick: pionero del gegenpressing, identidad táctica clara.",
+        "Mejor papel histórico moderno: octavos Eurocopa 2024 + clasificación Mundial tras 28 años.",
+        "Goleada 10-0 a San Marino: MAYOR VICTORIA HISTÓRICA absoluta austriaca."
+      ],
+      "weaknesses": [
+        "28 AÑOS sin Mundial: ausencia de cultura mundialista moderna en el equipo.",
+        "Arnautović a 36 años: dependencia goleadora preocupante.",
+        "Sin un '9' joven consolidado: Gregoritsch, Adamu, Onisiwo no top mundial.",
+        "Lateral derecho cuestionable: Posch (29) único fijo.",
+        "Defensa central dependiente de Alaba (33): si se lesiona, riesgo enorme.",
+        "Convivencia Alaba (Real Madrid) + bloque Bundesliga: estilos distintos.",
+        "Ausencia mundialista hace que la presión psicológica sea alta."
+      ],
+      "x_factor": {
+        "player": "Konrad Laimer",
+        "reason": "El mediocampista del Bayern Múnich (28 años) llega al Mundial en pico futbolístico tras Champions League con Bayern. Capaz de cubrir todo el terreno, recuperar y aparecer en área. Su disciplina táctica + intensidad física es lo que Rangnick necesita."
+      },
+      "prediction_text": "Austria llega al Mundial 2026 con el regreso ilusionante tras 28 años. Identidad táctica clara bajo Rangnick + plantilla Bundesliga sólida. El reto: gestionar la presión del retorno y aprovechar a Arnautović a 36 años. Pasar fase de grupos es objetivo realista. Llegar a octavos sería repetir Italia 1990 + Argentina 1978. Cuartos sería igualar Mundial 1954 (3er puesto, mejor papel histórico).",
+      "probabilities": {
+        "advance_groups": 70,
+        "round_of_32": 60,
+        "round_of_16": 35,
+        "quarter_finals": 12,
+        "semi_finals": 3,
+        "final": 1,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Brasil 2014: NO clasificó. Rusia 2018: NO clasificó. Catar 2022: NO clasificó. Mundial 2026: 8ª participación absoluta, regreso histórico tras 28 años (último Francia 1998: 1er puesto Grupo B → eliminada por Italia). La generación dorada moderna (Alaba, Arnautović, Sabitzer) llegó por fin a Mundial."
+    }
+  },
+  "history": {
+    "first_appearance": 1934,
+    "appearances_count_before_2026": 7,
+    "appearances_count_with_2026": 8,
+    "consecutive_streak_since": 2026,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 1,
+    "best_result": "Tercer puesto (1954)",
+    "aggregate_stats_through_2022": {
+      "played": 29,
+      "won": 12,
+      "drawn": 4,
+      "lost": 13,
+      "goals_for": 43,
+      "goals_against": 47,
+      "win_percentage": 41.4,
+      "notes": "Datos hasta 1998. 28 años de ausencia mundialista (1998-2026)."
+    },
+    "by_world_cup": [
+      {
+        "year": 1934,
+        "host": {
+          "countries": [
+            "Italia"
+          ],
+          "iso": [
+            "it"
+          ]
+        },
+        "result": "Cuarto puesto",
+        "coach": "Hugo Meisl",
+        "captain": "Walter Nausch",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Anton Schall",
+            "goals": 1
+          },
+          {
+            "player": "Matthias Sindelar",
+            "goals": 1
+          },
+          {
+            "player": "Josef Bican",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 7,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "LA WUNDERTEAM en su mejor momento.",
+          "Matthias Sindelar 'el Mozart del fútbol'.",
+          "Eliminada por Italia 0-1 en semis."
+        ],
+        "narrative": "Austria con la mítica 'Wunderteam' (Equipo del Maravilla) era favorita absoluta. Matthias Sindelar (apodado 'el Mozart del fútbol') guio al equipo. Cayó en semis ante Italia anfitriona 0-1 en partido polémico. 4º puesto al perder con Alemania 2-3."
+      },
+      {
+        "year": 1954,
+        "host": {
+          "countries": [
+            "Suiza"
+          ],
+          "iso": [
+            "ch"
+          ]
+        },
+        "result": "Tercer puesto",
+        "coach": "Walter Nausch",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Erich Probst",
+            "goals": 6
+          },
+          {
+            "player": "Theodor Wagner",
+            "goals": 4
+          }
+        ],
+        "goals_scored": 17,
+        "goals_conceded": 12,
+        "notable_facts": [
+          "MEJOR PAPEL HISTÓRICO: TERCER PUESTO.",
+          "Goleó 7-5 a Suiza en cuartos (PARTIDO CON MÁS GOLES de la historia mundial).",
+          "Eliminada por Alemania 1-6 en semis."
+        ],
+        "narrative": "Mejor papel histórico austriaco. 7-5 a Suiza anfitriona en cuartos en el PARTIDO CON MÁS GOLES MUNDIALISTA de la historia. Cayó con Alemania 1-6 en semis (Alemania futura campeona). BRONCE ganado a Uruguay 3-1."
+      },
+      {
+        "year": 1958,
+        "host": {
+          "countries": [
+            "Suecia"
+          ],
+          "iso": [
+            "se"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Josef Argauer",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Alfred Körner",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 7,
+        "notable_facts": [
+          "Eliminada en primera ronda."
+        ],
+        "narrative": "Austria cayó en grupos."
+      },
+      {
+        "year": 1978,
+        "host": {
+          "countries": [
+            "Argentina"
+          ],
+          "iso": [
+            "ar"
+          ]
+        },
+        "result": "Segunda ronda",
+        "coach": "Helmut Senekowitsch",
+        "captain": "Bruno Pezzey",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Hans Krankl",
+            "goals": 4
+          }
+        ],
+        "goals_scored": 7,
+        "goals_conceded": 11,
+        "notable_facts": [
+          "Tras 20 años de ausencia.",
+          "VICTORIA HISTÓRICA 3-2 ANTE ALEMANIA EN CÓRDOBA ('Milagro de Córdoba')."
+        ],
+        "narrative": "Tras 20 años de ausencia, Austria volvió a Mundial. En segunda ronda, VENCIÓ 3-2 A ALEMANIA EN CÓRDOBA con HAT-TRICK DE HANS KRANKL. Conocido como 'el Milagro de Córdoba', sigue siendo el momento más recordado del fútbol austriaco moderno."
+      },
+      {
+        "year": 1982,
+        "host": {
+          "countries": [
+            "España"
+          ],
+          "iso": [
+            "es"
+          ]
+        },
+        "result": "Segunda ronda",
+        "coach": "Felix Latzke",
+        "captain": "Bruno Pezzey",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Walter Schachner",
+            "goals": 2
+          },
+          {
+            "player": "Hans Krankl",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 5,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Empate 1-1 con Alemania, victoria 1-0 ante Chile."
+        ],
+        "narrative": "Austria pasó a 2ª ronda pero quedó eliminada con Francia y Argentina."
+      },
+      {
+        "year": 1990,
+        "host": {
+          "countries": [
+            "Italia"
+          ],
+          "iso": [
+            "it"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Josef Hickersberger",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Toni Polster",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Eliminada en primera ronda."
+        ],
+        "narrative": "Austria cayó en grupos."
+      },
+      {
+        "year": 1998,
+        "host": {
+          "countries": [
+            "Francia"
+          ],
+          "iso": [
+            "fr"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Herbert Prohaska",
+        "captain": "Anton Polster",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Anton Polster",
+            "goals": 1
+          },
+          {
+            "player": "Andreas Herzog",
+            "goals": 1
+          },
+          {
+            "player": "Ivica Vastić",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 3,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "ÚLTIMO MUNDIAL HASTA 2026 (28 años de ausencia).",
+          "Empate 2-2 ante Camerún in extremis (Vastić 90+3')."
+        ],
+        "narrative": "Austria empató 1-1 con Camerún (gol Polster 90'), 0-1 con Chile y 1-2 con Italia. Adiós en grupos. Sin saberlo, sería el ÚLTIMO MUNDIAL EN 28 AÑOS para los 'Das Team'."
+      }
+    ],
+    "palmares": []
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Toni Polster",
+      "value": 44,
+      "period": "1982-2000",
+      "notes": "Goleador histórico absoluto."
+    },
+    "most_capped": {
+      "name": "Andreas Herzog",
+      "value": 103,
+      "period": "1988-2003",
+      "notes": "Récord histórico."
+    },
+    "youngest_debut": {
+      "name": "Marko Arnautović",
+      "value": "19 años",
+      "period": "2008",
+      "notes": "Datos pendientes verificación primaria ÖFB."
+    },
+    "biggest_win": {
+      "result": "10-0",
+      "opponent": "San Marino",
+      "date": "2025-10-09",
+      "competition": "Eliminatorias Mundial 2026 (RÉCORD HISTÓRICO)"
+    },
+    "worst_loss": {
+      "result": "0-9",
+      "opponent": "Inglaterra",
+      "date": "1908-06-08",
+      "competition": "Amistoso (Viena)"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El Milagro de Córdoba",
+      "date": "1978-06-21",
+      "opponent": {
+        "iso": "de",
+        "name": "Alemania Federal"
+      },
+      "score": "3-2",
+      "competition": "Segunda Ronda Mundial 1978",
+      "narrative": "Austria venció 3-2 a Alemania Federal CAMPEONA del Mundial 1974 en Córdoba. HAT-TRICK DE HANS KRANKL (59', 66', 88'). Conocido como 'EL MILAGRO DE CÓRDOBA' (Das Wunder von Córdoba), sigue siendo el momento más recordado del fútbol austriaco moderno. Eric Vasilyevich, comentarista austriaco, dejó la mítica frase 'Tor! Tor! Tor!' en éxtasis."
+    },
+    {
+      "title": "El bronce histórico de 1954",
+      "date": "1954-07-03",
+      "opponent": {
+        "iso": "uy",
+        "name": "Uruguay"
+      },
+      "score": "3-1",
+      "competition": "Tercer puesto Mundial 1954",
+      "narrative": "Austria ganó el TERCER PUESTO HISTÓRICO en el Mundial 1954 batiendo 3-1 a Uruguay (campeón vigente Mundial 1950). Goles de Wagner, Stojaspal y Probst. Mejor papel histórico austriaco."
+    },
+    {
+      "title": "Wunderteam y Sindelar",
+      "date": "1934-06-03",
+      "opponent": {
+        "iso": "fr",
+        "name": "Francia"
+      },
+      "score": "3-2 (prórroga)",
+      "competition": "Octavos Mundial 1934",
+      "narrative": "La 'Wunderteam' austriaca venció a Francia 3-2 en prórroga en octavos del Mundial 1934. Matthias Sindelar ('el Mozart del fútbol') marcó el gol decisivo. Equipo legendario considerado el mejor del mundo en su época."
+    },
+    {
+      "title": "El 7-5 con Suiza",
+      "date": "1954-06-26",
+      "opponent": {
+        "iso": "ch",
+        "name": "Suiza"
+      },
+      "score": "7-5",
+      "competition": "Cuartos Mundial 1954",
+      "narrative": "Austria ganó 7-5 a Suiza anfitriona en cuartos del Mundial 1954, en el PARTIDO CON MÁS GOLES MUNDIALISTA DE LA HISTORIA (12 goles, récord absoluto vigente desde 1954)."
+    },
+    {
+      "title": "El 10-0 a San Marino",
+      "date": "2025-10-09",
+      "opponent": {
+        "iso": "sm",
+        "name": "San Marino"
+      },
+      "score": "10-0",
+      "competition": "Eliminatorias Mundial 2026",
+      "narrative": "Austria goleó 10-0 a San Marino en Viena con PÓKER DE MARKO ARNAUTOVIĆ. La MAYOR VICTORIA EN LA HISTORIA AUSTRIACA, superando el 9-0 a Malta de 1977. Capitán Alaba marcó uno de los 10 goles."
+    },
+    {
+      "title": "El 1-1 que selló el regreso a Mundial",
+      "date": "2025-11-15",
+      "opponent": {
+        "iso": "ba",
+        "name": "Bosnia y Herzegovina"
+      },
+      "score": "1-1",
+      "competition": "Eliminatorias Mundial 2026",
+      "narrative": "Austria empató 1-1 con Bosnia en el Ernst-Happel-Stadion de Viena. Gol de Arnautović al 60'. EL EMPATE SELLÓ MATEMÁTICAMENTE EL REGRESO AL MUNDIAL TRAS 28 AÑOS DE AUSENCIA. Generación Alaba-Arnautović cierra ciclo con clasificación histórica."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "Austria regresa al Mundial tras 28 AÑOS DE AUSENCIA (último Francia 1998). Ausencia más larga del país en la era moderna.",
+      "source": "FIFA + ÖFB",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "El 'MILAGRO DE CÓRDOBA' (3-2 sobre Alemania campeona 1978) sigue siendo considerado el mejor momento del fútbol austriaco moderno. La frase 'Tor! Tor! Tor!' del comentarista vienés es himno nacional.",
+      "source": "ÖFB + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Matthias Sindelar ('el Mozart del fútbol'), capitán de la 'Wunderteam' austriaca de los años 30, era considerado el mejor jugador del mundo. Murió misteriosamente en 1939 (oficialmente accidente, sospechoso suicidio anti-nazi).",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "El 10-0 a San Marino del 9 oct 2025 es la MAYOR VICTORIA en TODA LA HISTORIA AUSTRIACA, superando el 9-0 a Malta de 1977. PÓKER DE ARNAUTOVIĆ.",
+      "source": "ÖFB + UEFA",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Marko Arnautović fue 2º MÁXIMO GOLEADOR DE LAS ELIMINATORIAS UEFA 2026 con 8 goles, solo detrás de Erling Haaland (16). Capitán emergente austriaco a los 36 años.",
+      "source": "UEFA",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Ralf Rangnick es uno de los pioneros del 'gegenpressing' (presión alta tras pérdida) que influyó decisivamente en Klopp y todo el fútbol moderno. Es el primer DT alemán de Austria en la historia.",
+      "source": "ÖFB + ESPN",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "David Alaba ganó 2 Champions League con Real Madrid (2022, 2024). Es el ÚNICO austriaco en ganar la Champions, junto con Andreas Herzog (Werder Bremen 1992 Cup Winners' Cup, no Champions).",
+      "source": "UEFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Austria tiene 18 de 26 jugadores en la BUNDESLIGA ALEMANA. Conexión histórica con Alemania (idioma común) y la 'Bundesliga austriaca' como cantera natural a clubes alemanes.",
+      "source": "ÖFB + Bundesliga",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Land der Berge (himno)",
+      "Heimat großer Söhne",
+      "Hopp Österreich!"
+    ],
+    "main_rival": {
+      "iso": "de",
+      "name": "Alemania",
+      "story": "Rivalidad histórica europea. El 'Milagro de Córdoba' (3-2 austriaco en Mundial 1978 a Alemania campeona vigente) es el momento más recordado. Carga lingüística (mismo idioma) y geopolítica (anschluss 1938)."
+    },
+    "home_stadium": {
+      "name": "Ernst-Happel-Stadion",
+      "capacity": 50865,
+      "city": "Viena"
+    }
+  },
+  "seo": {
+    "meta_title": "Austria en el Mundial 2026 | Plantilla, historia y predicciones",
+    "meta_description": "Austria Mundial 2026: 26 convocados de Rangnick, Alaba, Arnautović, Laimer. Vuelta al Mundial tras 28 años de ausencia.",
+    "og_image_url": "/img/og/teams/austria.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Austria",
+      "alternateName": [
+        "Wunderteam",
+        "Das Team"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "UEFA"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Ralf Rangnick"
+      },
+      "url": "https://www.zonamundial.app/selecciones/austria"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-29",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_Austria",
+      "https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_de_UEFA_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://es.uefa.com/european-qualifiers/news/029f-1f3188cfc443-494e0d8af33d-1000--mundial-2026-que-selecciones-europeas-se-han-clasificado/",
+      "https://www.mundodeportivo.com/futbol/seleccion/clasificacion-mundial-2026/20251009/1002569012/10-0-alaba-capitanea-mayor-goleada-austria-toda-historia-poquer-arnautovic.html",
+      "https://www.oefb.at",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias cruzadas con UEFA + Mundo Deportivo + Wikipedia + ESPN. Historia mundialista validada con FIFA + Wikipedia + ÖFB.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "needs_review",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante: pendiente",
+      "Grupo Mundial 2026 y rivales: cruzar con /grupos zonamundial.app",
+      "Calendario fase de grupos 2026: fixture FIFA pendiente",
+      "Base de entrenamiento: ÖFB aún no anunció",
+      "FIFA Ranking #21: validar mes vigente",
+      "Historia 1962/1966/1970/1974/1986/1994/2002/2006/2010/2014/2018/2022: ediciones omitidas (no clasificó)"
+    ]
+  }
+}

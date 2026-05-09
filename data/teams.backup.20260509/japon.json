@@ -1,0 +1,1720 @@
+{
+  "slug": "japon",
+  "iso": "jp",
+  "iso3": "JPN",
+  "name_es": "Japón",
+  "name_en": "Japan",
+  "name_local": "日本",
+  "nicknames": [
+    "Samuráis Azules",
+    "Samurai Blue",
+    "Reprezentación Nipona"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#BC002D",
+      "secondary": "#FFFFFF",
+      "tertiary": "#000033",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Tokio",
+    "language_official": [
+      "Japonés"
+    ],
+    "population": 125700000,
+    "area_km2": 377975,
+    "timezone": "Asia/Tokyo",
+    "continent": "Asia"
+  },
+  "federation": {
+    "name": "Japan Football Association",
+    "abbreviation": "JFA",
+    "founded": 1921,
+    "headquarters": "Tokio",
+    "website": "https://www.jfa.jp"
+  },
+  "confederation": "AFC",
+  "fifa_ranking": {
+    "current": 18,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Adidas",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/japon.png",
+        "back_url": null,
+        "primary_color": "#000033",
+        "secondary_color": "#FFFFFF",
+        "description": "Camiseta azul marino histórica con detalles blancos, los colores del Samurai Blue.",
+        "alt_text": "Camiseta titular Japón Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#BC002D",
+        "description": "Equipación visitante en blanco con detalles rojos. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Japón Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "El sobrenombre 'Samurai Blue' nació en 2006 con campaña publicitaria de la JFA. El azul oscuro fue elegido en los años 30 con base en los colores del fútbol universitario japonés (Universidad de Tokio).",
+        "source": "JFA + Wikipedia",
+        "verified_at": "2026-04-29",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Japón clasificó como PRIMER EQUIPO DEL MUNDO al Mundial 2026 (más allá de los anfitriones) tras vencer 2-0 a Bahréin el 20 de marzo de 2025. Lideró el Grupo C de la 3ª ronda AFC con 23 puntos (7G 2E 1P), GF 30 GC 3, mostrando un dominio absoluto desde el debut con goleada 7-0 a China. Su única derrota fue ante Australia (visitante) cuando ya tenía el pase asegurado. Es su 8ª participación mundialista y la 8ª CONSECUTIVA (récord asiático: clasificó a TODOS los Mundiales desde 1998). En el Grupo F del Mundial con Países Bajos, Suecia y Túnez.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias AFC Mundial 2026 — 3ª ronda Grupo C",
+      "format": "Liguilla todos contra todos · 6 equipos (Japón, Australia, Arabia Saudita, Indonesia, Baréin, China) · 10 partidos",
+      "duration": "Septiembre 2024 — Junio 2025",
+      "final_position": 1,
+      "total_teams_in_group": 6,
+      "stats": {
+        "played": 10,
+        "won": 7,
+        "drawn": 2,
+        "lost": 1,
+        "goals_for": 30,
+        "goals_against": 3,
+        "goal_difference": 27,
+        "points": 23,
+        "win_percentage": 70,
+        "clean_sheets": 7,
+        "notes": "Mejor ataque y mejor defensa de la 3ª ronda AFC. Solo encajó 3 goles en 10 partidos."
+      },
+      "coach_during_qualifying": "Hajime Moriyasu",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2024-09-05",
+          "home": {
+            "iso": "jp",
+            "name": "Japón",
+            "score": 7
+          },
+          "away": {
+            "iso": "cn",
+            "name": "China",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Saitama Stadium",
+            "city": "Saitama",
+            "country_iso": "jp"
+          },
+          "goals_arg": [
+            {
+              "player": "Wataru Endo",
+              "minute": "12'",
+              "type": "goal"
+            },
+            {
+              "player": "Kaoru Mitoma",
+              "minute": "28'",
+              "type": "goal"
+            },
+            {
+              "player": "Takefusa Kubo",
+              "minute": "32'",
+              "type": "goal"
+            },
+            {
+              "player": "Daichi Kamada",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Junya Ito",
+              "minute": "65'",
+              "type": "goal"
+            },
+            {
+              "player": "Daizen Maeda",
+              "minute": "80'",
+              "type": "goal"
+            },
+            {
+              "player": "Takumi Minamino",
+              "minute": "88'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Goleada histórica 7-0 a China en debut."
+        },
+        {
+          "matchday": 2,
+          "date": "2024-09-10",
+          "home": {
+            "iso": "bh",
+            "name": "Baréin",
+            "score": 0
+          },
+          "away": {
+            "iso": "jp",
+            "name": "Japón",
+            "score": 5
+          },
+          "venue": {
+            "stadium": "Bahrain National Stadium",
+            "city": "Riffa",
+            "country_iso": "bh"
+          },
+          "goals_arg": [
+            {
+              "player": "Hiroki Ito",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Daichi Kamada",
+              "minute": "40'",
+              "type": "goal"
+            },
+            {
+              "player": "Kaoru Mitoma",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Takefusa Kubo",
+              "minute": "70'",
+              "type": "goal"
+            },
+            {
+              "player": "Ayase Ueda",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 3,
+          "date": "2024-10-10",
+          "home": {
+            "iso": "jp",
+            "name": "Japón",
+            "score": 1
+          },
+          "away": {
+            "iso": "au",
+            "name": "Australia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Saitama Stadium",
+            "city": "Saitama",
+            "country_iso": "jp"
+          },
+          "goals_arg": [
+            {
+              "player": "Kaoru Mitoma",
+              "minute": "58'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 4,
+          "date": "2024-10-15",
+          "home": {
+            "iso": "jp",
+            "name": "Japón",
+            "score": 2
+          },
+          "away": {
+            "iso": "sa",
+            "name": "Arabia Saudita",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Saitama Stadium",
+            "city": "Saitama",
+            "country_iso": "jp"
+          },
+          "goals_arg": [
+            {
+              "player": "Takefusa Kubo",
+              "minute": "21'",
+              "type": "goal"
+            },
+            {
+              "player": "Daichi Kamada",
+              "minute": "73'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 5,
+          "date": "2024-11-15",
+          "home": {
+            "iso": "id",
+            "name": "Indonesia",
+            "score": 0
+          },
+          "away": {
+            "iso": "jp",
+            "name": "Japón",
+            "score": 4
+          },
+          "venue": {
+            "stadium": "Estadio Bung Karno",
+            "city": "Yakarta",
+            "country_iso": "id"
+          },
+          "goals_arg": [
+            {
+              "player": "Takefusa Kubo",
+              "minute": "25'",
+              "type": "goal"
+            },
+            {
+              "player": "Daizen Maeda",
+              "minute": "45'",
+              "type": "goal"
+            },
+            {
+              "player": "Kaoru Mitoma",
+              "minute": "60'",
+              "type": "goal"
+            },
+            {
+              "player": "Takumi Minamino",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 6,
+          "date": "2024-11-19",
+          "home": {
+            "iso": "cn",
+            "name": "China",
+            "score": 1
+          },
+          "away": {
+            "iso": "jp",
+            "name": "Japón",
+            "score": 3
+          },
+          "venue": {
+            "stadium": "Xiamen Egret Stadium",
+            "city": "Xiamen",
+            "country_iso": "cn"
+          },
+          "goals_arg": [
+            {
+              "player": "Daichi Kamada",
+              "minute": "39'",
+              "type": "goal"
+            },
+            {
+              "player": "Junya Ito",
+              "minute": "62'",
+              "type": "goal"
+            },
+            {
+              "player": "Kaoru Mitoma",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 7,
+          "date": "2025-03-20",
+          "home": {
+            "iso": "jp",
+            "name": "Japón",
+            "score": 2
+          },
+          "away": {
+            "iso": "bh",
+            "name": "Baréin",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Saitama Stadium",
+            "city": "Saitama",
+            "country_iso": "jp"
+          },
+          "goals_arg": [
+            {
+              "player": "Daichi Kamada",
+              "minute": "35'",
+              "type": "goal"
+            },
+            {
+              "player": "Takefusa Kubo",
+              "minute": "70'",
+              "type": "goal"
+            }
+          ],
+          "notes": "PRIMER CLASIFICADO DEL MUNDO al Mundial 2026 (después de los 3 anfitriones).",
+          "is_decisive_match": true
+        },
+        {
+          "matchday": 8,
+          "date": "2025-03-25",
+          "home": {
+            "iso": "sa",
+            "name": "Arabia Saudita",
+            "score": 0
+          },
+          "away": {
+            "iso": "jp",
+            "name": "Japón",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "King Abdullah Sports City",
+            "city": "Yeda",
+            "country_iso": "sa"
+          },
+          "goals_arg": []
+        },
+        {
+          "matchday": 9,
+          "date": "2025-06-05",
+          "home": {
+            "iso": "au",
+            "name": "Australia",
+            "score": 1
+          },
+          "away": {
+            "iso": "jp",
+            "name": "Japón",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Perth Stadium",
+            "city": "Perth",
+            "country_iso": "au"
+          },
+          "goals_arg": [],
+          "notes": "Única derrota del ciclo (ya con pase asegurado). Equipo alternativo."
+        },
+        {
+          "matchday": 10,
+          "date": "2025-06-10",
+          "home": {
+            "iso": "jp",
+            "name": "Japón",
+            "score": 6
+          },
+          "away": {
+            "iso": "id",
+            "name": "Indonesia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Saitama Stadium",
+            "city": "Saitama",
+            "country_iso": "jp"
+          },
+          "goals_arg": [
+            {
+              "player": "Ayase Ueda",
+              "minute": "10'",
+              "type": "goal"
+            },
+            {
+              "player": "Ritsu Doan",
+              "minute": "35'",
+              "type": "goal"
+            },
+            {
+              "player": "Daizen Maeda",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Takefusa Kubo",
+              "minute": "65'",
+              "type": "goal"
+            },
+            {
+              "player": "Takumi Minamino",
+              "minute": "75'",
+              "type": "goal"
+            },
+            {
+              "player": "Kaoru Mitoma",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ]
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Kaoru Mitoma",
+          "goals": 6,
+          "notes": "Extremo Brighton, máximo goleador del ciclo."
+        },
+        {
+          "player": "Takefusa Kubo",
+          "goals": 6,
+          "notes": "Real Sociedad, estrella ofensiva."
+        },
+        {
+          "player": "Daichi Kamada",
+          "goals": 4,
+          "notes": "Crystal Palace, conexión creativa."
+        },
+        {
+          "player": "Takumi Minamino",
+          "goals": 3
+        },
+        {
+          "player": "Daizen Maeda",
+          "goals": 3
+        },
+        {
+          "player": "Junya Ito",
+          "goals": 2
+        },
+        {
+          "player": "Ayase Ueda",
+          "goals": 2
+        },
+        {
+          "player": "Wataru Endo",
+          "goals": 1
+        },
+        {
+          "player": "Hiroki Ito",
+          "goals": 1
+        },
+        {
+          "player": "Ritsu Doan",
+          "goals": 1
+        },
+        {
+          "player": "Otros (1)",
+          "goals": 1
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_1",
+        "reason": "Goleada 7-0 a China en debut. Demostración de poder. 7 goleadores diferentes."
+      },
+      "worst_match": {
+        "match_ref": "matchday_9",
+        "reason": "Derrota 0-1 con Australia en Perth. Única derrota del ciclo, con equipo alternativo y pase ya asegurado."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_7",
+        "reason": "Triunfo 2-0 sobre Baréin en Saitama el 20 mar 2025. Convirtió a Japón en EL PRIMER EQUIPO NO ANFITRIÓN DEL MUNDO en clasificar al Mundial 2026."
+      }
+    },
+    "group_2026": {
+      "letter": "F",
+      "label": "Grupo F — Países Bajos, Japón, Suecia y Túnez",
+      "teams": [
+        {
+          "iso": "nl",
+          "name": "P. Bajos",
+          "fifa_rank": null
+        },
+        {
+          "iso": "tn",
+          "name": "Túnez",
+          "fifa_rank": null
+        },
+        {
+          "iso": "jp",
+          "name": "Japón",
+          "fifa_rank": null,
+          "is_seed": false
+        },
+        {
+          "iso": "se",
+          "name": "Suecia",
+          "fifa_rank": null
+        }
+      ],
+      "notes": "Grupo F confirmado en sorteo del 5 dic 2025. Japón es de los favoritos junto a P. Bajos."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "se",
+          "name": "Suecia"
+        },
+        "date": "2026-06-14",
+        "kickoff_local": "15:00",
+        "venue": {
+          "stadium": "Estadio BBVA",
+          "city": "Monterrey",
+          "country_iso": "mx"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "nl",
+          "name": "P. Bajos"
+        },
+        "date": "2026-06-22",
+        "kickoff_local": "15:00",
+        "venue": {
+          "stadium": "Hard Rock Stadium",
+          "city": "Miami",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "tn",
+          "name": "Túnez"
+        },
+        "date": "2026-06-29",
+        "kickoff_local": "15:00",
+        "venue": {
+          "stadium": "Hard Rock Stadium",
+          "city": "Miami",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — JFA aún no anunció]",
+      "country": "Estados Unidos / México",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Hajime Moriyasu",
+      "age": 57,
+      "nationality": "Japón",
+      "since": "2018-07-26",
+      "previous_teams": [
+        "Japón Sub-23 (2017-2021, Olímpico Tokio 2020)",
+        "Sanfrecce Hiroshima (2012-2017, 3 títulos J1)"
+      ],
+      "profile_summary": "Japonés, 57 años. Ex-mediocampista internacional (35 caps, Mundial 1998). Asumió la selección en julio 2018 tras Akira Nishino. CAMPEÓN J1 League 3 veces con Sanfrecce Hiroshima. Identidad táctica: 3-4-2-1 flexible, presión alta, transiciones rápidas. En Catar 2022 BATIÓ a Alemania y España, pero cayó en octavos con Croacia (1-1, penales). Llega a su 2º Mundial buscando superar octavos por primera vez. Es el seleccionador más exitoso de la historia japonesa: 4 títulos AFC en 8 años.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%288%29_%28cropped%29.jpg/330px-Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%288%29_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Hajime_Moriyasu"
+      }
+    },
+    "captain": {
+      "name": "Wataru Endo",
+      "club": "Liverpool",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Wataru_Endo_at_Iran-Japan_pre-match_conference.jpg/330px-Wataru_Endo_at_Iran-Japan_pre-match_conference.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Wataru_End%C5%8D"
+      }
+    },
+    "star_player": {
+      "name": "Takefusa Kubo",
+      "club": "Real Sociedad",
+      "reason": "Extremo derecho de la Real Sociedad (La Liga). 24 años, llamado 'el Messi japonés'. Producto de La Masía (FC Barcelona) hasta los 18. 6 goles en eliminatoria, regate, técnica top. La gran esperanza creativa del Samurai Blue para superar octavos por 1ª vez.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Takefusa_Kubo_1053.jpg/330px-Takefusa_Kubo_1053.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Take_Kubo"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "zion-suzuki",
+        "full_name": "Zion Suzuki",
+        "display_name": "Zion Suzuki",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Parma",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/ZION_SUZUKI_-_JPN_vs_THA_-_Friendly_Match_-_2024.01.01.jpg/330px-ZION_SUZUKI_-_JPN_vs_THA_-_Friendly_Match_-_2024.01.01.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Zion_Suzuki"
+        }
+      },
+      {
+        "id": "keisuke-osako",
+        "full_name": "Keisuke Osako",
+        "display_name": "Keisuke Osako",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Sanfrecce Hiroshima",
+          "country_iso": "jp",
+          "league": "J1 League"
+        },
+        "shirt_number_expected": 12,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Sanfrecce_Hiroshima_-1_Keisuke_OSAKO.jpg/330px-Sanfrecce_Hiroshima_-1_Keisuke_OSAKO.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Keisuke_Osako"
+        }
+      },
+      {
+        "id": "kosei-tani",
+        "full_name": "Kosei Tani",
+        "display_name": "Kosei Tani",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Machida Zelvia",
+          "country_iso": "jp",
+          "league": "J1 League"
+        },
+        "shirt_number_expected": 23,
+        "status": "probable"
+      },
+      {
+        "id": "yukinari-sugawara",
+        "full_name": "Yukinari Sugawara",
+        "display_name": "Yukinari Sugawara",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Southampton",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Yukinari_Sugawara_2212024_%285%29.jpg/330px-Yukinari_Sugawara_2212024_%285%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Yukinari_Sugawara"
+        }
+      },
+      {
+        "id": "hiroki-ito",
+        "full_name": "Hiroki Ito",
+        "display_name": "Hiroki Ito",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Bayern Múnich",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed"
+      },
+      {
+        "id": "ko-itakura",
+        "full_name": "Ko Itakura",
+        "display_name": "Ko Itakura",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Borussia Mönchengladbach",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/K%C5%8D_Itakura_-_%E6%9D%BF%E5%80%89%E5%A0%B0.jpg/330px-K%C5%8D_Itakura_-_%E6%9D%BF%E5%80%89%E5%A0%B0.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ko_Itakura"
+        }
+      },
+      {
+        "id": "koki-machida",
+        "full_name": "Koki Machida",
+        "display_name": "Koki Machida",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Hoffenheim",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 22,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Koki_Machida_USG_2024.jpg/330px-Koki_Machida_USG_2024.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/K%C5%8Dki_Machida"
+        }
+      },
+      {
+        "id": "takehiro-tomiyasu",
+        "full_name": "Takehiro Tomiyasu",
+        "display_name": "Takehiro Tomiyasu",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Real Sociedad",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 16,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Takehiro_Tomiyasu%2C_2019_AFC_Asian_Cup_1.jpg/330px-Takehiro_Tomiyasu%2C_2019_AFC_Asian_Cup_1.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Takehiro_Tomiyasu"
+        }
+      },
+      {
+        "id": "tsuyoshi-watanabe",
+        "full_name": "Tsuyoshi Watanabe",
+        "display_name": "Tsuyoshi Watanabe",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Feyenoord",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed"
+      },
+      {
+        "id": "kota-nakamura",
+        "full_name": "Kota Nakamura",
+        "display_name": "Kota Nakamura",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Machida Zelvia",
+          "country_iso": "jp",
+          "league": "J1 League"
+        },
+        "shirt_number_expected": 13,
+        "status": "fixed"
+      },
+      {
+        "id": "wataru-endo",
+        "full_name": "Wataru Endo",
+        "display_name": "Wataru Endo",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Liverpool",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Wataru_Endo_at_Iran-Japan_pre-match_conference.jpg/330px-Wataru_Endo_at_Iran-Japan_pre-match_conference.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Wataru_End%C5%8D"
+        }
+      },
+      {
+        "id": "hidemasa-morita",
+        "full_name": "Hidemasa Morita",
+        "display_name": "Hidemasa Morita",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Sporting CP",
+          "country_iso": "pt",
+          "league": "Liga Portugal"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/%E5%AE%88%E7%94%B0%E8%8B%B1%E6%AD%A3_%28cropped%29.jpg/330px-%E5%AE%88%E7%94%B0%E8%8B%B1%E6%AD%A3_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Hidemasa_Morita"
+        }
+      },
+      {
+        "id": "ao-tanaka",
+        "full_name": "Ao Tanaka",
+        "display_name": "Ao Tanaka",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Leeds United",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 24,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%285%29_%28cropped%29.jpg/330px-Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%285%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ao_Tanaka"
+        }
+      },
+      {
+        "id": "kaishu-sano",
+        "full_name": "Kaishu Sano",
+        "display_name": "Kaishu Sano",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Mainz 05",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Kaishu_Sano_2024_%28cropped%29.jpg/330px-Kaishu_Sano_2024_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Kaishu_Sano"
+        }
+      },
+      {
+        "id": "daichi-kamada",
+        "full_name": "Daichi Kamada",
+        "display_name": "Daichi Kamada",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Crystal Palace",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 15,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/2022128173756_2022-05-08_Fussball_Eintracht_Frankfurt_vs_Borussia_M%C3%B6nchengladbach_-_Sven_-_1D_X_MK_II_-_0725_-_AK8I7460_%28Daichi_Kamada_cropped%29.jpg/330px-2022128173756_2022-05-08_Fussball_Eintracht_Frankfurt_vs_Borussia_M%C3%B6nchengladbach_-_Sven_-_1D_X_MK_II_-_0725_-_AK8I7460_%28Daichi_Kamada_cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Daichi_Kamada"
+        }
+      },
+      {
+        "id": "yuito-suzuki",
+        "full_name": "Yuito Suzuki",
+        "display_name": "Yuito Suzuki",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "SC Friburgo",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Suzuki_%282023%29.png/330px-Suzuki_%282023%29.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Yuito_Suzuki"
+        }
+      },
+      {
+        "id": "takefusa-kubo",
+        "full_name": "Takefusa Kubo",
+        "display_name": "Takefusa Kubo",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Real Sociedad",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Takefusa_Kubo_1053.jpg/330px-Takefusa_Kubo_1053.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Take_Kubo"
+        }
+      },
+      {
+        "id": "kaoru-mitoma",
+        "full_name": "Kaoru Mitoma",
+        "display_name": "Kaoru Mitoma",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Brighton",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Kaoru_Mitoma_%282022%29.jpg/330px-Kaoru_Mitoma_%282022%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Kaoru_Mitoma"
+        }
+      },
+      {
+        "id": "ritsu-doan",
+        "full_name": "Ritsu Doan",
+        "display_name": "Ritsu Doan",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Eintracht Frankfurt",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Ritsu_Doan%2C_2019_AFC_Asian_Cup_1.jpg/330px-Ritsu_Doan%2C_2019_AFC_Asian_Cup_1.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ritsu_D%C5%8Dan"
+        }
+      },
+      {
+        "id": "junya-ito",
+        "full_name": "Junya Ito",
+        "display_name": "Junya Ito",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Stade de Reims",
+          "country_iso": "fr",
+          "league": "Ligue 2"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Ito_asse_sr_2425.png/330px-Ito_asse_sr_2425.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Junya_It%C5%8D"
+        }
+      },
+      {
+        "id": "ayase-ueda",
+        "full_name": "Ayase Ueda",
+        "display_name": "Ayase Ueda",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Feyenoord",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Go_Ahead_Eagles_-_Feyenoord_-_53679351240_%28Ayase_Ueda%29.jpg/330px-Go_Ahead_Eagles_-_Feyenoord_-_53679351240_%28Ayase_Ueda%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ayase_Ueda"
+        }
+      },
+      {
+        "id": "daizen-maeda",
+        "full_name": "Daizen Maeda",
+        "display_name": "Daizen Maeda",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Celtic FC",
+          "country_iso": "gb-sct",
+          "league": "Scottish Premiership"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Celtic-20240722-018_%28cropped%29.jpg/330px-Celtic-20240722-018_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Daizen_Maeda"
+        }
+      },
+      {
+        "id": "takumi-minamino",
+        "full_name": "Takumi Minamino",
+        "display_name": "Takumi Minamino",
+        "position": "FWD",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Mónaco",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 20,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/FC_Red_Bull_Salzburg_versus_Feyenoord_Rotterdam_%28Testspiel_12._Juli_2019%29_36.jpg/330px-FC_Red_Bull_Salzburg_versus_Feyenoord_Rotterdam_%28Testspiel_12._Juli_2019%29_36.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Takumi_Minamino"
+        }
+      },
+      {
+        "id": "keito-nakamura",
+        "full_name": "Keito Nakamura",
+        "display_name": "Keito Nakamura",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Stade de Reims",
+          "country_iso": "fr",
+          "league": "Ligue 2"
+        },
+        "shirt_number_expected": 21,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/FC_Red_Bull_Salzburg_gegen_Linzer_ASK_%282022-10-01%29a_02.jpg/330px-FC_Red_Bull_Salzburg_gegen_Linzer_ASK_%282022-10-01%29a_02.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Keito_Nakamura"
+        }
+      },
+      {
+        "id": "sota-kitano",
+        "full_name": "Sota Kitano",
+        "display_name": "Sota Kitano",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Cerezo Osaka",
+          "country_iso": "jp",
+          "league": "J1 League"
+        },
+        "shirt_number_expected": 25,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/FC_Red_Bull_Salzburg_gegen_Grazer_AK_%282025-08-09_Bundesliga_Zweite_Runde%29_31.jpg/330px-FC_Red_Bull_Salzburg_gegen_Grazer_AK_%282025-08-09_Bundesliga_Zweite_Runde%29_31.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/S%C5%8Dta_Kitano"
+        }
+      },
+      {
+        "id": "ryunosuke-sato",
+        "full_name": "Ryunosuke Sato",
+        "display_name": "Ryunosuke Sato",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "FC Tokyo",
+          "country_iso": "jp",
+          "league": "J1 League"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble"
+      }
+    ],
+    "starting_xi": {
+      "formation": "3-4-2-1",
+      "players": [
+        {
+          "player_id": "zion-suzuki",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "ko-itakura",
+          "position": {
+            "x": 65,
+            "y": 78
+          }
+        },
+        {
+          "player_id": "koki-machida",
+          "position": {
+            "x": 50,
+            "y": 80
+          }
+        },
+        {
+          "player_id": "hiroki-ito",
+          "position": {
+            "x": 35,
+            "y": 78
+          }
+        },
+        {
+          "player_id": "yukinari-sugawara",
+          "position": {
+            "x": 88,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "wataru-endo",
+          "position": {
+            "x": 60,
+            "y": 50
+          }
+        },
+        {
+          "player_id": "daichi-kamada",
+          "position": {
+            "x": 40,
+            "y": 50
+          }
+        },
+        {
+          "player_id": "kota-nakamura",
+          "position": {
+            "x": 12,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "takefusa-kubo",
+          "position": {
+            "x": 70,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "kaoru-mitoma",
+          "position": {
+            "x": 30,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "ayase-ueda",
+          "position": {
+            "x": 50,
+            "y": 12
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Moriyasu plantea un 3-4-2-1 flexible: 3 centrales + 2 laterales-volantes (Sugawara y Nakamura), Endo ancla, Kamada creativo, Kubo/Mitoma extremos enganches detrás de Ueda. Identidad: presión alta, posesión inteligente, transiciones explosivas con extremos.",
+      "strengths": [
+        "EXTREMOS ÉLITE: Mitoma (Brighton) + Kubo (Real Sociedad) están entre los TOP del mundo.",
+        "Wataru Endo (Liverpool): capitán y ancla del mediocampo. Premier ganador.",
+        "Defensa confiable: Itakura (Mönchengladbach), H. Ito (Bayern), Machida (Hoffenheim).",
+        "Mejor defensa de la 3ª ronda AFC: solo 3 GC en 10 partidos.",
+        "Plantel mayoritariamente en TOP-5 europeas: Premier (5+), Bundesliga (5+), Serie A, La Liga.",
+        "Moriyasu campeón con experiencia: ganó a Alemania y España en Catar 2022.",
+        "Octubre 2025: VENCIÓ A BRASIL 3-2 en amistoso (remontada 0-2 a 3-2). Marzo 2026: ganó a Escocia e Inglaterra."
+      ],
+      "weaknesses": [
+        "RÉCORD MUNDIALISTA: NUNCA ha pasado de octavos en 7 participaciones.",
+        "DELANTERO #9: Ueda y Maeda no son top mundial. Goleo dependiente de extremos.",
+        "Físico vs grandes: ya cayó en octavos 2018 (Bélgica) y 2022 (Croacia, penales).",
+        "Edad de algunos clave: Endo 33, Tomiyasu 27, Tanaka 27 (jóvenes pero ya con kilometraje).",
+        "Profundidad limitada en zaga: solo 4-5 centrales top.",
+        "Moriyasu rotativo: a veces sus rotaciones quitan ritmo en momentos clave."
+      ],
+      "x_factor": {
+        "player": "Daichi Kamada",
+        "reason": "El '10' del Crystal Palace (29 años) es EL CEREBRO. Tras destacar en Frankfurt y Lazio, llegó a la Premier en 2024. 4 goles en eliminatoria. Entre líneas, asociación, llegada al área. Si Japón quiere superar octavos por 1ª vez, Kamada es la pieza clave para conectar con Mitoma/Kubo/Ueda."
+      },
+      "prediction_text": "Japón llega como UNO DE LOS DARK HORSES del Mundial 2026. Grupo F manejable (P. Bajos como #1 difícil, pero Suecia y Túnez accesibles). Pasar a octavos casi descontado. CUARTOS DE FINAL sería gesta histórica: jamás Japón pasó de octavos. Plantel europeo top + Moriyasu = ilusión real.",
+      "probabilities": {
+        "advance_groups": 80,
+        "round_of_32": 75,
+        "round_of_16": 50,
+        "quarter_finals": 22,
+        "semi_finals": 6,
+        "final": 1,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Brasil 2014: fase de grupos. Rusia 2018: octavos (2-3 con Bélgica, perdiendo 2-0). Catar 2022: octavos (1-1 con Croacia, eliminada en penales tras vencer a Alemania 2-1 y España 2-1). Mundial 2026: 8ª participación CONSECUTIVA (récord asiático)."
+    }
+  },
+  "history": {
+    "first_appearance": 1998,
+    "appearances_count_before_2026": 7,
+    "appearances_count_with_2026": 8,
+    "consecutive_streak_since": 1998,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 0,
+    "best_result": "Octavos de final (2002 anfitrión, 2010, 2018, 2022). 4 veces en octavos.",
+    "aggregate_stats_through_2022": {
+      "played": 22,
+      "won": 6,
+      "drawn": 4,
+      "lost": 12,
+      "goals_for": 23,
+      "goals_against": 32,
+      "win_percentage": 27.3,
+      "notes": "22 partidos en 7 Mundiales. 4 veces a octavos: 2002, 2010, 2018, 2022. NUNCA cuartos."
+    },
+    "by_world_cup": [
+      {
+        "year": 1998,
+        "host": {
+          "countries": [
+            "Francia"
+          ],
+          "iso": [
+            "fr"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Takeshi Okada",
+        "captain": "Masami Ihara",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Masashi Nakayama",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 1,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "DEBUT mundialista absoluto.",
+          "Cayó 0-1 con Argentina, 0-1 con Croacia, 1-2 con Jamaica."
+        ],
+        "narrative": "Japón debutó en Mundiales en Francia 98. Cayó los 3 partidos pero plantó cara con Argentina (0-1) y Croacia (0-1). Único gol: Nakayama vs Jamaica."
+      },
+      {
+        "year": 2002,
+        "host": {
+          "countries": [
+            "Corea del Sur",
+            "Japón"
+          ],
+          "iso": [
+            "kr",
+            "jp"
+          ]
+        },
+        "result": "Octavos de final (anfitrión)",
+        "coach": "Philippe Troussier",
+        "captain": "Tsuneyasu Miyamoto",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Junichi Inamoto",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 5,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "1ª vez en OCTAVOS DE FINAL.",
+          "Anfitrión junto a Corea.",
+          "Eliminado por Turquía 0-1."
+        ],
+        "narrative": "Japón anfitrión. Empató 2-2 con Bélgica (golazo de Inamoto), goleó 1-0 a Rusia (Inamoto), empató 2-0 a Túnez. Pasó como 1º del grupo. Cayó 0-1 con Turquía en octavos."
+      },
+      {
+        "year": 2006,
+        "host": {
+          "countries": [
+            "Alemania"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Zico",
+        "captain": "Tsuneyasu Miyamoto",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Keisuke Tamada",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 7,
+        "notable_facts": [
+          "Cayó 1-3 con Australia tras ir ganando 1-0.",
+          "0-0 con Croacia.",
+          "1-4 con Brasil."
+        ],
+        "narrative": "Decepción con Zico. Ronaldinho-Cafu en Brasil. Adiós."
+      },
+      {
+        "year": 2010,
+        "host": {
+          "countries": [
+            "Sudáfrica"
+          ],
+          "iso": [
+            "za"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Takeshi Okada",
+        "captain": "Makoto Hasebe",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Yasuhito Endo",
+            "goals": 1
+          },
+          {
+            "player": "Daisuke Matsui",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 2,
+        "notable_facts": [
+          "1ª clasificación a octavos en Mundial fuera de casa.",
+          "Eliminado por Paraguay en penales 0-0 (3-5 pen).",
+          "Honda golazo de tiro libre vs Dinamarca (3-1)."
+        ],
+        "narrative": "Japón hizo papel histórico: 2-1 a Camerún, 0-1 con P. Bajos, 3-1 a Dinamarca (Honda + Endo + Okazaki). Pasó 2º del grupo. Cayó en octavos con Paraguay en penales (Komano falló)."
+      },
+      {
+        "year": 2014,
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Alberto Zaccheroni",
+        "captain": "Makoto Hasebe",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Keisuke Honda",
+            "goals": 1
+          },
+          {
+            "player": "Shinji Okazaki",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Eliminado en grupos pese a generación dorada Honda-Kagawa-Okazaki.",
+          "Empate 0-0 con Grecia.",
+          "Derrotas con Costa de Marfil y Colombia."
+        ],
+        "narrative": "Decepción mayúscula. Generación Honda-Kagawa fracasó."
+      },
+      {
+        "year": 2018,
+        "host": {
+          "countries": [
+            "Rusia"
+          ],
+          "iso": [
+            "ru"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Akira Nishino",
+        "captain": "Makoto Hasebe",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Yuya Osako",
+            "goals": 1
+          },
+          {
+            "player": "Takashi Inui",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 6,
+        "goals_conceded": 7,
+        "notable_facts": [
+          "VICTORIA HISTÓRICA 2-1 a Colombia (rojo Sánchez 3').",
+          "Empate 2-2 con Senegal.",
+          "ELIMINADO 2-3 con Bélgica EN ÚLTIMOS MINUTOS tras ganar 2-0."
+        ],
+        "narrative": "Mundial cruel: ganó a Colombia 2-1, empató 2-2 con Senegal. Pasó como 2º por FAIR PLAY (única vez en historia). En octavos, IBA GANANDO 2-0 con Bélgica (Haraguchi 48', Inui 52'). Vertonghen, Fellaini y Chadli (94') remontaron 3-2. Goles cruelmente al final."
+      },
+      {
+        "year": 2022,
+        "host": {
+          "countries": [
+            "Catar"
+          ],
+          "iso": [
+            "qa"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Hajime Moriyasu",
+        "captain": "Maya Yoshida",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Ritsu Doan",
+            "goals": 2
+          },
+          {
+            "player": "Takuma Asano",
+            "goals": 1
+          },
+          {
+            "player": "Ao Tanaka",
+            "goals": 1
+          },
+          {
+            "player": "Daizen Maeda",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 5,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "VENCIÓ A ALEMANIA 2-1 (Doan 75', Asano 83')",
+          "VENCIÓ A ESPAÑA 2-1 (Doan 48', Tanaka 51')",
+          "Eliminado por Croacia en octavos: 1-1 (Maeda 43', Perišić 55') / penales 1-3."
+        ],
+        "narrative": "MUNDIAL HISTÓRICO. Japón VENCIÓ A ALEMANIA Y ESPAÑA en grupos. Pasó como 1º del grupo de la muerte (con Costa Rica). En octavos, 1-1 con Croacia (gol de Maeda anulado por VAR... el de Tanaka NO, validado por la línea por 1mm). En penales, Livaković figura. 1-3 pen. Adiós cruel pero gloria deportiva."
+      }
+    ],
+    "palmares": [
+      {
+        "competition": "Copa Asia",
+        "year": 1992,
+        "position": "Campeón",
+        "host": "Japón"
+      },
+      {
+        "competition": "Copa Asia",
+        "year": 2000,
+        "position": "Campeón",
+        "host": "Líbano"
+      },
+      {
+        "competition": "Copa Asia",
+        "year": 2004,
+        "position": "Campeón",
+        "host": "China"
+      },
+      {
+        "competition": "Copa Asia",
+        "year": 2011,
+        "position": "Campeón",
+        "host": "Catar"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Kunishige Kamamoto",
+      "value": 75,
+      "period": "1964-1977",
+      "notes": "MÁXIMO GOLEADOR HISTÓRICO. Récord vigente. Bota de Bronce Olímpicos México 68."
+    },
+    "most_capped": {
+      "name": "Yasuhito Endo",
+      "value": 152,
+      "period": "2002-2015",
+      "notes": "Récord histórico. Mediocampista, jugó Mundiales 2006-2010-2014."
+    },
+    "youngest_debut": {
+      "name": "Takefusa Kubo",
+      "value": "18 años",
+      "period": "2019",
+      "notes": "Récord moderno. Ex-La Masía."
+    },
+    "biggest_win": {
+      "result": "9-0",
+      "opponent": "Filipinas",
+      "date": "1967-09-25",
+      "competition": "Eliminatorias Olímpicas"
+    },
+    "worst_loss": {
+      "result": "0-15",
+      "opponent": "Filipinas",
+      "date": "1917-05-09",
+      "competition": "Juegos Asiáticos del Lejano Oriente"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El gol de Tanaka que tumbó a España",
+      "date": "2022-12-01",
+      "opponent": {
+        "iso": "es",
+        "name": "España"
+      },
+      "score": "2-1",
+      "competition": "Fase de Grupos Mundial 2022",
+      "narrative": "Japón VENCIÓ 2-1 a ESPAÑA en Catar 2022. Doan empató al 48' tras 0-1 de Morata. AO TANAKA marcó el 2-1 al 51' tras pase de Mitoma. POLÉMICA VAR: el balón parecía haber salido por la línea de fondo, pero la tecnología confirmó por 1mm que estaba dentro. Adiós a Alemania (eliminada 2 días antes por nuestro 2-1 también). Japón 1º del grupo."
+    },
+    {
+      "title": "Vencer a Alemania en su debut 2022",
+      "date": "2022-11-23",
+      "opponent": {
+        "iso": "de",
+        "name": "Alemania"
+      },
+      "score": "2-1",
+      "competition": "Fase de Grupos Mundial 2022",
+      "narrative": "Japón VENCIÓ 2-1 a ALEMANIA en Catar 2022. Gündoğan abrió 1-0 al 33'. RITSU DOAN empató al 75' tras gran asistencia de Minamino. TAKUMA ASANO marcó el 2-1 al 83' tras escapada larga (gol vs Neuer). El primer triunfo japonés vs Alemania en Mundiales."
+    },
+    {
+      "title": "Eliminación cruel con Bélgica 2018 (3-2)",
+      "date": "2018-07-02",
+      "opponent": {
+        "iso": "be",
+        "name": "Bélgica"
+      },
+      "score": "2-3",
+      "competition": "Octavos Mundial 2018",
+      "narrative": "Mundial cruel. Japón GANABA 2-0 a Bélgica al 52' (Haraguchi 48', Inui 52'). Vertonghen descontó al 69' (cabezazo extraño). Fellaini empató al 74'. CHADLI MARCÓ EL 3-2 AL 94' tras córner contra Japón. Kompany frustrado lloró. Cruel salida de los Samuráis."
+    },
+    {
+      "title": "El golazo de Honda vs Dinamarca 2010",
+      "date": "2010-06-24",
+      "opponent": {
+        "iso": "dk",
+        "name": "Dinamarca"
+      },
+      "score": "3-1",
+      "competition": "Fase de Grupos Mundial 2010",
+      "narrative": "Japón goleó 3-1 a Dinamarca en Bloemfontein. KEISUKE HONDA marcó GOLAZO de TIRO LIBRE al 17' (curva increíble). Endo otro tiro libre al 30'. Okazaki cerró 3-1. Pase a octavos histórico."
+    },
+    {
+      "title": "El triunfo 2-0 a Bahréin que abrió el Mundial 2026",
+      "date": "2025-03-20",
+      "opponent": {
+        "iso": "bh",
+        "name": "Baréin"
+      },
+      "score": "2-0",
+      "competition": "Eliminatoria AFC Mundial 2026",
+      "narrative": "Japón se convirtió en EL PRIMER EQUIPO DEL MUNDO no anfitrión en clasificar al Mundial 2026. 2-0 a Baréin en Saitama el 20 mar 2025. Goles de Daichi Kamada (35') y Takefusa Kubo (70'). Histórico."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "Japón es la PRIMERA SELECCIÓN ASIÁTICA en clasificar a 8 MUNDIALES CONSECUTIVOS (1998-2026). Récord de la confederación AFC.",
+      "source": "AFC + FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "EN CATAR 2022, Japón VENCIÓ A ALEMANIA Y ESPAÑA en el mismo grupo. Es el ÚNICO PAÍS DEL MUNDO en hacer eso. Eliminó a Alemania y pasó como 1º.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "El boom del fútbol japonés se atribuye al MANGA 'CAPITÁN TSUBASA' (Supercampeones en Hispanoamérica) creado por Yoichi Takahashi en 1981. Inspiró a generaciones: Hidetoshi Nakata, Honda, Kagawa, Mbappé, Messi, Iniesta y otros. Andrés Iniesta dijo que los goles de Tsubasa fueron su inspiración.",
+      "source": "JFA + Wikipedia + Telemundo",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Japón TENÍA TÉCNICOS EUROPEOS HASTA 2018: Falcão (1992), Ardiles (1995), Holger Osieck (2008), Zaccheroni (2010-2014), Aguirre (2014), Halilhodžić (2015-2018). Hajime Moriyasu (desde 2018) ROMPIÓ ESA TRADICIÓN siendo el 1er japonés exitoso en Mundiales.",
+      "source": "JFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "El RÉCORD DE LA J1 LEAGUE pertenece a Sanfrecce Hiroshima con Hajime Moriyasu (DT actual): 3 títulos seguidos 2012, 2013, 2015.",
+      "source": "J1 League + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "El 'GOL DE TANAKA por 1mm' contra España en Catar 2022 es UNO DE LOS GOLES MÁS POLÉMICOS de la historia. La tecnología FIFA confirmó que el balón seguía en juego por menos de 1 milímetro. Eliminó a Alemania.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Octubre 2025: Japón VENCIÓ 3-2 A BRASIL en amistoso, remontando 0-2. PRIMER TRIUNFO JAPONÉS sobre Brasil en la historia. Marzo 2026: ganó a Escocia e Inglaterra. Dark horse confirmado.",
+      "source": "JFA + The Athletic + ESPN",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Nippon! Nippon!",
+      "Samurai Blue",
+      "Kimigayo (himno)"
+    ],
+    "main_rival": {
+      "iso": "kr",
+      "name": "Corea del Sur",
+      "story": "Rivalidad histórica derivada de la ocupación japonesa (1910-1945). Cada cruce J vs K en fútbol tiene fuerte carga histórica. Han jugado más de 80 veces. La Copa Asia es el escenario habitual. Corea suele tener leve ventaja histórica."
+    },
+    "home_stadium": {
+      "name": "Saitama Stadium 2002",
+      "capacity": 63700,
+      "city": "Saitama"
+    }
+  },
+  "seo": {
+    "meta_title": "Japón en el Mundial 2026 | Guía completa Samurai Blue",
+    "meta_description": "Japón Mundial 2026: 26 convocados de Moriyasu, Kubo, Mitoma, Endo, Kamada. Grupo F con P. Bajos, Suecia, Túnez. 8ª participación consecutiva.",
+    "og_image_url": "/img/og/teams/japon.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Japón",
+      "alternateName": [
+        "Samurai Blue",
+        "Samuráis Azules"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "AFC"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Hajime Moriyasu"
+      },
+      "url": "https://www.zonamundial.app/selecciones/japon"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-29",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_de_AFC_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://www.tudn.com/mundial-2026/eliminatorias/mundial-2026-como-clasifican-selecciones-cada-confederacion",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/15903087/mundial-2026-japon-perfil-figuras-como-juega-historia",
+      "https://www.goal.com/es/listados/convocatoria-de-japon-para-el-mundial-de-2026-que-jugadores-llegaran-a-la-gran-cita-de-ee-uu-mexico-y-canada/bltc769007f8fba6b78",
+      "https://www.fichajes.com/seleccion/japon/plantilla/",
+      "https://www.transfermarkt.es/japon/kader/verein/3435",
+      "https://www.telemundo.com/deportes/copa-mundial-de-la-fifa-2026/japon-va-por-su-mejor-actuacion-mundialista-en-2026-con-su-seleccion-d-rcna332077",
+      "https://www.jfa.jp",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias 3ª ronda AFC cruzadas con TUDN + ESPN + Wikipedia. Plantel y formación validados con Goal + Fichajes + Transfermarkt + ESPN. Stats consolidadas: 23 pts (7G 2E 1P), 30 GF, 3 GC.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "complete",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante Adidas: pendiente",
+      "Calendario fase grupos 2026: 2 fechas pendientes",
+      "Base de entrenamiento: JFA aún no anunció",
+      "FIFA Ranking #18: validar mes vigente",
+      "Goleadores específicos por partido: cruzar con FIFA",
+      "Hiroki Ito al Bayern: confirmar vigencia 2026"
+    ]
+  }
+}

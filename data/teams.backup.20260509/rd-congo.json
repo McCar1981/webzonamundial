@@ -1,0 +1,1433 @@
+{
+  "slug": "rd-congo",
+  "iso": "cd",
+  "iso3": "COD",
+  "name_es": "República Democrática del Congo",
+  "name_en": "DR Congo",
+  "name_local": "République Démocratique du Congo",
+  "nicknames": [
+    "Los Leopardos",
+    "Léopards",
+    "RDC"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#007FFF",
+      "secondary": "#F7D618",
+      "tertiary": "#CE1021",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Kinshasa",
+    "language_official": [
+      "Francés",
+      "Lingala",
+      "Suajili",
+      "Kikongo",
+      "Tshiluba"
+    ],
+    "population": 105800000,
+    "area_km2": 2344858,
+    "timezone": "Africa/Kinshasa",
+    "continent": "África"
+  },
+  "federation": {
+    "name": "Fédération Congolaise de Football Association",
+    "abbreviation": "FECOFA",
+    "founded": 1919,
+    "headquarters": "Kinshasa",
+    "website": "https://www.fecofa.cd"
+  },
+  "confederation": "CAF",
+  "fifa_ranking": {
+    "current": 56,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "O'Neills",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/rd-congo.png",
+        "back_url": null,
+        "primary_color": "#007FFF",
+        "secondary_color": "#F7D618",
+        "description": "Camiseta azul cielo con detalles dorados, los colores históricos de los Leopardos.",
+        "alt_text": "Camiseta titular RD Congo Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#007FFF",
+        "description": "Equipación visitante en blanco. Pendiente de subir.",
+        "alt_text": "Camiseta visitante RD Congo Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "Como ZAIRE (1971-1997) jugó el Mundial 1974 (Alemania Federal). Tras la caída de Mobutu en 1997, el país recuperó el nombre histórico de República Democrática del Congo (RDC). El Mundial 2026 será su 1ª participación bajo el nombre actual y la 2ª histórica.",
+        "source": "FECOFA + Wikipedia",
+        "verified_at": "2026-04-29",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "playoff_intercontinental",
+    "qualifying_summary": "RD Congo clasificó por la VÍA MÁS LARGA: 2ª del Grupo B CAF (detrás de Senegal con 22 pts) → semifinal play-off africano: 1-0 Camerún (Mbemba 90+1') en Rabat → final play-off africano: 1-1 Nigeria (4-3 penales) → repechaje intercontinental FIFA en marzo 2026 en México → final intercontinental: 1-0 Jamaica (Tuanzebe min 100, Estadio Guadalajara). Es la 2ª participación histórica del país en Mundiales: la 1ª fue como ZAIRE en 1974 (Alemania Federal). Los Leopardos disputarán el Grupo K con Portugal, Colombia y Uzbekistán. Eliminaron a 3 gigantes africanos (Camerún, Nigeria) y vivieron una odisea histórica.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias CAF Mundial 2026 — Grupo B + Play-offs CAF + Repechaje intercontinental",
+      "format": "Liguilla (10 partidos Grupo B) + 2 partidos play-off CAF + 1 partido repechaje intercontinental = 13 partidos totales",
+      "duration": "Noviembre 2023 — Marzo 2026",
+      "final_position": 2,
+      "total_teams_in_group": 6,
+      "stats": {
+        "played": 10,
+        "won": 6,
+        "drawn": 4,
+        "lost": 0,
+        "goals_for": 19,
+        "goals_against": 6,
+        "goal_difference": 13,
+        "points": 22,
+        "win_percentage": 60,
+        "clean_sheets": 6,
+        "notes": "Stats del Grupo B CAF (10 partidos, INVICTOS pero sin ganar suficientes). Adicionalmente: 2 partidos play-off CAF (1G 1E pen) + 1 partido repechaje intercontinental (1G). Total ciclo: 13 partidos, 8G 5E 0P, INVICTO."
+      },
+      "coach_during_qualifying": "Sébastien Desabre",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2023-11-17",
+          "home": {
+            "iso": "cd",
+            "name": "RD Congo",
+            "score": 1
+          },
+          "away": {
+            "iso": "mr",
+            "name": "Mauritania",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Stade des Martyrs",
+            "city": "Kinshasa",
+            "country_iso": "cd"
+          },
+          "goals_arg": [
+            {
+              "player": "Cédric Bakambu",
+              "minute": "55'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 2,
+          "date": "2023-11-21",
+          "home": {
+            "iso": "sd",
+            "name": "Sudán",
+            "score": 0
+          },
+          "away": {
+            "iso": "cd",
+            "name": "RD Congo",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Estadio Benina",
+            "city": "Bengasi (sede neutral)",
+            "country_iso": "ly"
+          },
+          "goals_arg": []
+        },
+        {
+          "matchday": 3,
+          "date": "2024-06-06",
+          "home": {
+            "iso": "cd",
+            "name": "RD Congo",
+            "score": 2
+          },
+          "away": {
+            "iso": "tg",
+            "name": "Togo",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Stade des Martyrs",
+            "city": "Kinshasa",
+            "country_iso": "cd"
+          },
+          "goals_arg": [
+            {
+              "player": "Yoane Wissa",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Cédric Bakambu",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 4,
+          "date": "2024-06-09",
+          "home": {
+            "iso": "ss",
+            "name": "Sudán del Sur",
+            "score": 1
+          },
+          "away": {
+            "iso": "cd",
+            "name": "RD Congo",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Estadio 11 de noviembre",
+            "city": "Yuba",
+            "country_iso": "ss"
+          },
+          "goals_arg": [
+            {
+              "player": "Yoane Wissa",
+              "minute": "44'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 5,
+          "date": "2024-09-09",
+          "home": {
+            "iso": "cd",
+            "name": "RD Congo",
+            "score": 2
+          },
+          "away": {
+            "iso": "ss",
+            "name": "Sudán del Sur",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Stade des Martyrs",
+            "city": "Kinshasa",
+            "country_iso": "cd"
+          },
+          "goals_arg": [
+            {
+              "player": "Cédric Bakambu",
+              "minute": "32'",
+              "type": "goal"
+            },
+            {
+              "player": "Théo Bongonda",
+              "minute": "67'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 6,
+          "date": "2025-03-21",
+          "home": {
+            "iso": "tg",
+            "name": "Togo",
+            "score": 0
+          },
+          "away": {
+            "iso": "cd",
+            "name": "RD Congo",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Stade de Kégué",
+            "city": "Lomé",
+            "country_iso": "tg"
+          },
+          "goals_arg": [
+            {
+              "player": "Yoane Wissa",
+              "minute": "74'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 7,
+          "date": "2025-03-25",
+          "home": {
+            "iso": "sn",
+            "name": "Senegal",
+            "score": 1
+          },
+          "away": {
+            "iso": "cd",
+            "name": "RD Congo",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Stade Abdoulaye Wade",
+            "city": "Diamniadio",
+            "country_iso": "sn"
+          },
+          "goals_arg": [
+            {
+              "player": "Meschack Elia",
+              "minute": "57'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Empate clave del ciclo en Senegal. Mantuvo aspiraciones."
+        },
+        {
+          "matchday": 8,
+          "date": "2025-09-05",
+          "home": {
+            "iso": "cd",
+            "name": "RD Congo",
+            "score": 4
+          },
+          "away": {
+            "iso": "sn",
+            "name": "Senegal",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Stade des Martyrs",
+            "city": "Kinshasa",
+            "country_iso": "cd"
+          },
+          "goals_arg": [
+            {
+              "player": "Cédric Bakambu",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Yoane Wissa",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Théo Bongonda",
+              "minute": "70'",
+              "type": "goal"
+            },
+            {
+              "player": "Meschack Elia",
+              "minute": "84'",
+              "type": "goal"
+            }
+          ],
+          "notes": "PARTIDAZO HISTÓRICO. Sorprendente goleada 4-1 a Senegal (campeón africano) en Kinshasa."
+        },
+        {
+          "matchday": 9,
+          "date": "2025-10-09",
+          "home": {
+            "iso": "cd",
+            "name": "RD Congo",
+            "score": 2
+          },
+          "away": {
+            "iso": "sd",
+            "name": "Sudán",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Stade des Martyrs",
+            "city": "Kinshasa",
+            "country_iso": "cd"
+          },
+          "goals_arg": [
+            {
+              "player": "Yoane Wissa",
+              "minute": "40'",
+              "type": "goal"
+            },
+            {
+              "player": "Cédric Bakambu",
+              "minute": "65'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 10,
+          "date": "2025-10-14",
+          "home": {
+            "iso": "mr",
+            "name": "Mauritania",
+            "score": 1
+          },
+          "away": {
+            "iso": "cd",
+            "name": "RD Congo",
+            "score": 5
+          },
+          "venue": {
+            "stadium": "Stade Olympique de Nouakchott",
+            "city": "Nuakchot",
+            "country_iso": "mr"
+          },
+          "goals_arg": [
+            {
+              "player": "Yoane Wissa",
+              "minute": "10'",
+              "type": "goal"
+            },
+            {
+              "player": "Cédric Bakambu",
+              "minute": "25'",
+              "type": "goal"
+            },
+            {
+              "player": "Yoane Wissa",
+              "minute": "44'",
+              "type": "goal"
+            },
+            {
+              "player": "Théo Bongonda",
+              "minute": "67'",
+              "type": "goal"
+            },
+            {
+              "player": "Meschack Elia",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Goleada 5-1 a Mauritania que cerró el grupo en 2º lugar (22 pts). Senegal terminó 1º con 24, RDC dependía de un tropiezo senegalés que no llegó. Sin embargo, INVICTOS y CON BOLETO AL PLAY-OFF CAF.",
+          "is_decisive_match": true
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Yoane Wissa",
+          "goals": 6,
+          "notes": "MÁXIMO GOLEADOR DEL CICLO. Delantero, ahora en Newcastle (ex-Brentford)."
+        },
+        {
+          "player": "Cédric Bakambu",
+          "goals": 5,
+          "notes": "Goleador histórico, capitán ofensivo."
+        },
+        {
+          "player": "Théo Bongonda",
+          "goals": 3
+        },
+        {
+          "player": "Meschack Elia",
+          "goals": 3
+        },
+        {
+          "player": "Otros (2)",
+          "goals": 2
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_8",
+        "reason": "Triunfo 4-1 a SENEGAL (campeón africano, 1º del grupo) en Kinshasa el 5 sept 2025. La mejor exhibición del ciclo. Wissa, Bakambu, Bongonda y Elia. Ovación en el Stade des Martyrs."
+      },
+      "worst_match": {
+        "match_ref": "matchday_2",
+        "reason": "Empate sin goles 0-0 con Sudán en sede neutral (Bengasi, Libia, por situación política sudanesa). Falta de pegada que costaría el 1er puesto del grupo."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_10",
+        "reason": "Goleada 5-1 a Mauritania en Nuakchot. Aunque Senegal ganó su partido y se llevó el grupo, los Leopardos terminaron INVICTOS, 2º y con boleto al play-off CAF para optar al repechaje intercontinental."
+      }
+    },
+    "group_2026": {
+      "letter": "K",
+      "label": "Grupo K — Portugal, RD Congo, Uzbekistán y Colombia",
+      "teams": [
+        {
+          "iso": "pt",
+          "name": "Portugal",
+          "fifa_rank": null
+        },
+        {
+          "iso": "uz",
+          "name": "Uzbekistán",
+          "fifa_rank": null
+        },
+        {
+          "iso": "co",
+          "name": "Colombia",
+          "fifa_rank": null
+        },
+        {
+          "iso": "cd",
+          "name": "RD Congo",
+          "fifa_rank": null,
+          "is_seed": false
+        }
+      ],
+      "notes": "Grupo K confirmado en sorteo del 5 dic 2025. RD Congo es el único equipo que se sumó después del sorteo (vía repechaje intercontinental marzo 2026)."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "co",
+          "name": "Colombia"
+        },
+        "date": "2026-06-16",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "Lincoln Financial Field",
+          "city": "Filadelfia",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "uz",
+          "name": "Uzbekistán"
+        },
+        "date": "2026-06-25",
+        "kickoff_local": "12:00",
+        "venue": {
+          "stadium": "Lumen Field",
+          "city": "Seattle",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "pt",
+          "name": "Portugal"
+        },
+        "date": "2026-06-30",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "BC Place",
+          "city": "Vancouver",
+          "country_iso": "ca"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — FECOFA aún no anunció]",
+      "country": "Estados Unidos / México",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Sébastien Desabre",
+      "age": 49,
+      "nationality": "Francia",
+      "since": "2022-04-12",
+      "previous_teams": [
+        "Uganda (2017-2019)",
+        "USM Alger (2014-2015)",
+        "Olympique Khouribga (2010-2012)"
+      ],
+      "profile_summary": "Francés, 49 años, 14 años de experiencia en África (Argelia, Marruecos, Uganda). Asumió RDC en abril 2022. Identidad táctica: 4-3-3 vertical, transiciones rápidas, intensidad defensiva. Llevó a Uganda a la Copa África 2019. Logró que RDC clasificara a un Mundial 52 años después del 1974 (como Zaire) tras eliminar a Camerún, Nigeria y Jamaica.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/S%C3%A9bastien_Desabre.JPG/330px-S%C3%A9bastien_Desabre.JPG",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/S%C3%A9bastien_Desabre"
+      }
+    },
+    "captain": {
+      "name": "Chancel Mbemba",
+      "club": "Lille",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/24BBRW_-_53535940590_%28cropped%29.jpg/330px-24BBRW_-_53535940590_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Chancel_Mbemba"
+      }
+    },
+    "star_player": {
+      "name": "Yoane Wissa",
+      "club": "Newcastle United",
+      "reason": "Delantero del Newcastle (Premier League, recién fichado al Brentford en verano 2025). 28 años, 1.78m, llega a su 1er Mundial tras ser MÁXIMO GOLEADOR DE LOS LEOPARDOS en eliminatoria con 6 dianas. Velocidad, regate, definición. Nacido en Francia y nacionalizado RDC en 2019.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/CAN_2023RD_Congo_2-1_Guin%C3%A9e_9939_%28cropped%29.jpg/330px-CAN_2023RD_Congo_2-1_Guin%C3%A9e_9939_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Yoane_Wissa"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "lionel-mpasi",
+        "full_name": "Lionel Mpasi",
+        "display_name": "Lionel Mpasi",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Rodez AF",
+          "country_iso": "fr",
+          "league": "Ligue 2"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed"
+      },
+      {
+        "id": "timothy-fayulu",
+        "full_name": "Timothy Fayulu",
+        "display_name": "Timothy Fayulu",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Sion",
+          "country_iso": "ch",
+          "league": "Super League suiza"
+        },
+        "shirt_number_expected": 12,
+        "status": "probable"
+      },
+      {
+        "id": "joel-kiassumbua",
+        "full_name": "Joël Kiassumbua",
+        "display_name": "Joël Kiassumbua",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Wil 1900",
+          "country_iso": "ch",
+          "league": "Challenge League"
+        },
+        "shirt_number_expected": 23,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Jo%C3%ABl_Kiassumbua_2_%28cropped%29.jpg/330px-Jo%C3%ABl_Kiassumbua_2_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Jo%C3%ABl_Kiassumbua"
+        }
+      },
+      {
+        "id": "aaron-wan-bissaka",
+        "full_name": "Aaron Wan-Bissaka",
+        "display_name": "Aaron Wan-Bissaka",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "West Ham",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Aaron_Wan_Bissaka_2019.jpg/330px-Aaron_Wan_Bissaka_2019.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Aaron_Wan-Bissaka"
+        }
+      },
+      {
+        "id": "arthur-masuaku",
+        "full_name": "Arthur Masuaku",
+        "display_name": "Arthur Masuaku",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Sunderland",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Hertha_BSC_vs._West_Ham_United_20190731_%28184%29.jpg/330px-Hertha_BSC_vs._West_Ham_United_20190731_%28184%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Arthur_Masuaku"
+        }
+      },
+      {
+        "id": "chancel-mbemba",
+        "full_name": "Chancel Mbemba",
+        "display_name": "Chancel Mbemba",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Lille",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/24BBRW_-_53535940590_%28cropped%29.jpg/330px-24BBRW_-_53535940590_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Chancel_Mbemba"
+        }
+      },
+      {
+        "id": "axel-tuanzebe",
+        "full_name": "Axel Tuanzebe",
+        "display_name": "Axel Tuanzebe",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Burnley",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Manchester_United_v_Everton%2C_7_August_2021_%2836%29.jpg/330px-Manchester_United_v_Everton%2C_7_August_2021_%2836%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Axel_Tuanzebe"
+        }
+      },
+      {
+        "id": "gedeon-kalulu",
+        "full_name": "Gédéon Kalulu",
+        "display_name": "Gédéon Kalulu",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Lorient",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 14,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/G%C3%A9d%C3%A9on_Kalulu%29.jpg/330px-G%C3%A9d%C3%A9on_Kalulu%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/G%C3%A9d%C3%A9on_Kalulu"
+        }
+      },
+      {
+        "id": "dylan-batubinsika",
+        "full_name": "Dylan Batubinsika",
+        "display_name": "Dylan Batubinsika",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Saint-Étienne",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 15,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Batubinsika_asse_fcn_2425.png/330px-Batubinsika_asse_fcn_2425.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Dylan_Batubinsika"
+        }
+      },
+      {
+        "id": "henoc-inonga",
+        "full_name": "Hénoc Inonga",
+        "display_name": "Hénoc Inonga",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Stade de Reims",
+          "country_iso": "fr",
+          "league": "Ligue 2"
+        },
+        "shirt_number_expected": 13,
+        "status": "probable"
+      },
+      {
+        "id": "samuel-moutoussamy",
+        "full_name": "Samuel Moutoussamy",
+        "display_name": "Samuel Moutoussamy",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Espanyol",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Samuel_Moutoussamy_2018.jpg/330px-Samuel_Moutoussamy_2018.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Samuel_Moutoussamy"
+        }
+      },
+      {
+        "id": "noah-sadiki",
+        "full_name": "Noah Sadiki",
+        "display_name": "Noah Sadiki",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Sunderland",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Noah_Sadiki_versus_Real_Betis_2nd_August_2025.jpg/330px-Noah_Sadiki_versus_Real_Betis_2nd_August_2025.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Noah_Sadiki"
+        }
+      },
+      {
+        "id": "edo-kayembe",
+        "full_name": "Edo Kayembe",
+        "display_name": "Edo Kayembe",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Watford",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 16,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Edo_Kayembe_2025_%28cropped%29.jpg/330px-Edo_Kayembe_2025_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Edo_Kayembe"
+        }
+      },
+      {
+        "id": "charles-pickel",
+        "full_name": "Charles Pickel",
+        "display_name": "Charles Pickel",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Cremonese",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/RC_Lens_-_Grenoble_Foot_38_%2810-02-2020%29_60.jpg/330px-RC_Lens_-_Grenoble_Foot_38_%2810-02-2020%29_60.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Charles_Pickel"
+        }
+      },
+      {
+        "id": "neeskens-kebano",
+        "full_name": "Neeskens Kebano",
+        "display_name": "Neeskens Kebano",
+        "position": "MID",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Al-Jazira",
+          "country_iso": "ae",
+          "league": "UAE Pro League"
+        },
+        "shirt_number_expected": 11,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Neeskens_Kebano_20110724.jpg/330px-Neeskens_Kebano_20110724.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Neeskens_Kebano"
+        }
+      },
+      {
+        "id": "yoane-wissa",
+        "full_name": "Yoane Wissa",
+        "display_name": "Yoane Wissa",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Newcastle United",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/CAN_2023RD_Congo_2-1_Guin%C3%A9e_9939_%28cropped%29.jpg/330px-CAN_2023RD_Congo_2-1_Guin%C3%A9e_9939_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Yoane_Wissa"
+        }
+      },
+      {
+        "id": "cedric-bakambu",
+        "full_name": "Cédric Bakambu",
+        "display_name": "Cédric Bakambu",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Real Betis",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/C%C3%A9dric_Bakambu_2016_%28cropped%29.jpg/330px-C%C3%A9dric_Bakambu_2016_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/C%C3%A9dric_Bakambu"
+        }
+      },
+      {
+        "id": "theo-bongonda",
+        "full_name": "Théo Bongonda",
+        "display_name": "Théo Bongonda",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Trabzonspor",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Bongonda_in_DR_Congo_national_football_team.jpg/330px-Bongonda_in_DR_Congo_national_football_team.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Th%C3%A9o_Bongonda"
+        }
+      },
+      {
+        "id": "meschack-elia",
+        "full_name": "Meschack Elia",
+        "display_name": "Meschack Elia",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Alanyaspor",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed"
+      },
+      {
+        "id": "silas-katompa",
+        "full_name": "Silas Katompa Mvumpa",
+        "display_name": "Silas Katompa",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "VfB Stuttgart",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 20,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Silas_Katompa_Mvumpa.jpg/330px-Silas_Katompa_Mvumpa.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Silas_(futbolista_nacido_en_1998)"
+        }
+      },
+      {
+        "id": "fiston-mayele",
+        "full_name": "Fiston Mayele",
+        "display_name": "Fiston Mayele",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Pyramids FC",
+          "country_iso": "eg",
+          "league": "Premier League egipcia"
+        },
+        "shirt_number_expected": 21,
+        "status": "fixed"
+      },
+      {
+        "id": "grady-diangana",
+        "full_name": "Grady Diangana",
+        "display_name": "Grady Diangana",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Ipswich Town",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 22,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Hertha_BSC_vs._West_Ham_United_20190731_%28194%29.jpg/330px-Hertha_BSC_vs._West_Ham_United_20190731_%28194%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Grady_Diangana"
+        }
+      },
+      {
+        "id": "guy-mbenza",
+        "full_name": "Guy-Marcelin Mbenza",
+        "display_name": "Guy Mbenza",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "FC Lugano",
+          "country_iso": "ch",
+          "league": "Super League suiza"
+        },
+        "shirt_number_expected": 18,
+        "status": "probable"
+      },
+      {
+        "id": "rocky-bushiri",
+        "full_name": "Rocky Bushiri",
+        "display_name": "Rocky Bushiri",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Hibernian",
+          "country_iso": "gb-sct",
+          "league": "Scottish Premiership"
+        },
+        "shirt_number_expected": 24,
+        "status": "bubble"
+      },
+      {
+        "id": "ngal-ayel-mukau",
+        "full_name": "Ngal'ayel Mukau",
+        "display_name": "Ngal'ayel Mukau",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Lille",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 25,
+        "status": "bubble"
+      },
+      {
+        "id": "joris-kayembe",
+        "full_name": "Joris Kayembe",
+        "display_name": "Joris Kayembe",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Ferencváros",
+          "country_iso": "hu",
+          "league": "NB I"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble"
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-3-3",
+      "players": [
+        {
+          "player_id": "lionel-mpasi",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "aaron-wan-bissaka",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "chancel-mbemba",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "axel-tuanzebe",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "arthur-masuaku",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "noah-sadiki",
+          "position": {
+            "x": 50,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "samuel-moutoussamy",
+          "position": {
+            "x": 70,
+            "y": 50
+          }
+        },
+        {
+          "player_id": "charles-pickel",
+          "position": {
+            "x": 30,
+            "y": 50
+          }
+        },
+        {
+          "player_id": "meschack-elia",
+          "position": {
+            "x": 80,
+            "y": 25
+          }
+        },
+        {
+          "player_id": "yoane-wissa",
+          "position": {
+            "x": 50,
+            "y": 15
+          }
+        },
+        {
+          "player_id": "theo-bongonda",
+          "position": {
+            "x": 20,
+            "y": 25
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Desabre plantea un 4-3-3 vertical: defensa zonal con doble central físico (Mbemba + Tuanzebe), Wan-Bissaka cerrojo derecho, Sadiki pivote, Wissa fijo arriba con Elia y Bongonda en bandas. Identidad: orden defensivo, transiciones explosivas, balones largos a Wissa o Bakambu.",
+      "strengths": [
+        "Yoane Wissa: '9' top del Newcastle (Premier League). 6 goles en eliminatoria.",
+        "Cédric Bakambu: goleador veterano, capacidad de gol. Real Betis (La Liga).",
+        "Defensa con experiencia Premier: Wan-Bissaka, Tuanzebe, Masuaku, Sadiki, Diangana.",
+        "Chancel Mbemba: capitán líder, 80+ caps con RDC. Lille (Ligue 1).",
+        "Equipo VETERANO INVICTO en grupo CAF (10 partidos sin perder).",
+        "Cuerpo técnico francés: Desabre con 14 años en África."
+      ],
+      "weaknesses": [
+        "MUCHOS EMPATES: 4 de 10 en grupo. Falta de pegada en momentos clave.",
+        "Solo 19 GF en 10 partidos: ataque irregular.",
+        "Desabre tradicional, pragmático: estilo conservador puede limitar ofensivamente.",
+        "Mbemba 31 años: lateral envejecido. Wan-Bissaka 28 años: pico físico pero con lesiones recurrentes.",
+        "Plantel con muchos 'binacionales' (RDC + Francia, Bélgica, Inglaterra): química grupal en pruebas.",
+        "0 títulos importantes en 50 años: Copa África 1968 y 1974 son único palmarés (como Zaire)."
+      ],
+      "x_factor": {
+        "player": "Aaron Wan-Bissaka",
+        "reason": "El lateral derecho del West Ham (28 años, ex-Manchester United) es uno de los MEJORES UNO-VS-UNO defensivos del mundo. Nacido en Inglaterra, eligió RDC en 2024 tras no convocatoria por Inglaterra. Su debut con los Leopardos fue clave. Si rinde a su pico Premier, RDC tiene un fortín por la derecha."
+      },
+      "prediction_text": "RDC llega vía repechaje intercontinental al Grupo K con Portugal (gigante), Colombia (sudamericano top) y Uzbekistán (debutante). Pasar a octavos sería gesta histórica. La 1ª victoria mundialista (nunca ha ganado un partido en Mundiales como Zaire o RDC) es el objetivo más realista.",
+      "probabilities": {
+        "advance_groups": 25,
+        "round_of_32": 15,
+        "round_of_16": 8,
+        "quarter_finals": 1,
+        "semi_finals": 0,
+        "final": 0,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: NO CLASIFICÓ. Catar 2022: NO CLASIFICÓ. Mundial 2026: 2ª participación histórica del país. La 1ª fue como ZAIRE en 1974 (Alemania Federal): perdió los 3 partidos (0-2 Escocia, 0-9 Yugoslavia, 0-3 Brasil). Récord aún vigente: NUNCA ganó ni empató un partido en Mundiales."
+    }
+  },
+  "history": {
+    "first_appearance": 1974,
+    "appearances_count_before_2026": 1,
+    "appearances_count_with_2026": 2,
+    "consecutive_streak_since": 2026,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 0,
+    "best_result": "Fase de grupos (1974, como Zaire). 1ª selección del África subsahariana en jugar un Mundial.",
+    "aggregate_stats_through_2022": {
+      "played": 3,
+      "won": 0,
+      "drawn": 0,
+      "lost": 3,
+      "goals_for": 0,
+      "goals_against": 14,
+      "win_percentage": 0,
+      "notes": "3 partidos en 1 Mundial (como Zaire). NUNCA marcó un gol ni ganó. Récord histórico: 0-9 vs Yugoslavia es la mayor goleada en Mundiales junto a Hungría 10-1 vs El Salvador."
+    },
+    "by_world_cup": [
+      {
+        "year": 1974,
+        "host": {
+          "countries": [
+            "Alemania Federal"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
+        "result": "Fase de grupos (como ZAIRE)",
+        "coach": "Blagoje Vidinić (Yugoslavia)",
+        "captain": "Mwepu Ilunga",
+        "matches": [],
+        "team_top_scorers": [],
+        "goals_scored": 0,
+        "goals_conceded": 14,
+        "notable_facts": [
+          "DEBUT MUNDIALISTA del África subsahariana.",
+          "Cayó 0-2 con Escocia, 0-9 con Yugoslavia, 0-3 con Brasil.",
+          "El partido vs Yugoslavia fue 9-0, una de las mayores goleadas Mundiales.",
+          "Famoso 'incidente Mwepu': el defensor pateó el balón intencionalmente cuando Brasil iba a tirar un tiro libre en los últimos minutos."
+        ],
+        "narrative": "ZAIRE (hoy RDC) hizo HISTORIA en 1974: 1ª selección del África subsahariana en jugar un Mundial. Pero la experiencia fue traumática: cayó 0-2 con Escocia, 0-9 con Yugoslavia (mayor goleada de su historia) y 0-3 con Brasil. NUNCA MARCÓ. El defensor Mwepu Ilunga protagonizó UNO DE LOS MOMENTOS MÁS BIZARROS del fútbol: pateó el balón intencionalmente cuando Brasil iba a cobrar un tiro libre, malentendiendo las reglas. Tres partidos, 14 goles encajados, 0 marcados. Récord vigente."
+      }
+    ],
+    "palmares": [
+      {
+        "competition": "Copa Africana de Naciones",
+        "year": 1968,
+        "position": "Campeón",
+        "host": "Etiopía"
+      },
+      {
+        "competition": "Copa Africana de Naciones",
+        "year": 1974,
+        "position": "Campeón",
+        "host": "Egipto"
+      },
+      {
+        "competition": "Copa Africana de Naciones",
+        "year": 2015,
+        "position": "Tercero",
+        "host": "Guinea Ecuatorial"
+      },
+      {
+        "competition": "Copa Africana de Naciones",
+        "year": 2024,
+        "position": "Cuarto",
+        "host": "Costa de Marfil"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Dieumerci Mbokani",
+      "value": 26,
+      "period": "2006-2018",
+      "notes": "MÁXIMO GOLEADOR HISTÓRICO. Récord vigente. Ex-Anderlecht/Wolfsburgo."
+    },
+    "most_capped": {
+      "name": "Youssouf Mulumbu",
+      "value": 90,
+      "period": "2007-2017",
+      "notes": "Récord histórico. Ex-WBA, Norwich."
+    },
+    "youngest_debut": {
+      "name": "Yannick Bolasie",
+      "value": "23 años",
+      "period": "2013",
+      "notes": "Tardío por nacionalización (nacido en Francia, jugó por RDC desde adulto)."
+    },
+    "biggest_win": {
+      "result": "9-0",
+      "opponent": "Mauricio",
+      "date": "2008",
+      "competition": "Eliminatorias Mundial 2010"
+    },
+    "worst_loss": {
+      "result": "0-9",
+      "opponent": "Yugoslavia",
+      "date": "1974-06-18",
+      "competition": "Mundial 1974 (como Zaire)"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El gol de Mbemba al 90+1' que mató Camerún",
+      "date": "2025-11-13",
+      "opponent": {
+        "iso": "cm",
+        "name": "Camerún"
+      },
+      "score": "1-0",
+      "competition": "Semifinal Play-off CAF Mundial 2026",
+      "narrative": "RD CONGO ELIMINÓ A CAMERÚN en la semifinal del play-off CAF en Rabat, Marruecos. CHANCEL MBEMBA (capitán) marcó al MIN 90+1' tras un córner. 1-0. Elimina a uno de los gigantes de África. Avanza a la final."
+    },
+    {
+      "title": "El 4-1 a Senegal (campeón africano)",
+      "date": "2025-09-05",
+      "opponent": {
+        "iso": "sn",
+        "name": "Senegal"
+      },
+      "score": "4-1",
+      "competition": "Eliminatoria Mundial 2026 (Grupo B CAF)",
+      "narrative": "RD Congo VENCIÓ 4-1 a SENEGAL (campeón Copa África 2022 y 2025) en el Stade des Martyrs de Kinshasa. Goles de Bakambu (30'), Wissa (55'), Bongonda (70'), Elia (84'). PARTIDAZO HISTÓRICO."
+    },
+    {
+      "title": "Los penales contra Nigeria (4-3) en Rabat",
+      "date": "2025-11-16",
+      "opponent": {
+        "iso": "ng",
+        "name": "Nigeria"
+      },
+      "score": "1-1 (4-3 pen)",
+      "competition": "Final Play-off CAF Mundial 2026",
+      "narrative": "RD Congo ELIMINÓ a NIGERIA en penales 4-3 tras 1-1 reglamentario en Rabat. Frank Onyeka adelantó a Nigeria al 3'. Meschack Elia empató al 32'. En penales, RDC convirtió todos. ENVIÓ A NIGERIA AL ABISMO. Pase al repechaje intercontinental."
+    },
+    {
+      "title": "El 1-0 a Jamaica que selló el Mundial 2026",
+      "date": "2026-03-31",
+      "opponent": {
+        "iso": "jm",
+        "name": "Jamaica"
+      },
+      "score": "1-0 (prórroga)",
+      "competition": "Final Repechaje Intercontinental FIFA en Guadalajara",
+      "narrative": "RD CONGO clasificó al Mundial 2026 venciendo 1-0 a Jamaica en el Estadio Guadalajara (Akron) en MARZO 2026. Gol de AXEL TUANZEBE (defensor del Burnley) al MIN 100 en tiempo extra. Bakambu tuvo dos goles anulados por fuera de juego antes. PRIMERA CLASIFICACIÓN EN 52 AÑOS (desde Zaire 1974). Histórica.",
+      "is_decisive_match": true
+    },
+    {
+      "title": "0-9 con Yugoslavia (1974)",
+      "date": "1974-06-18",
+      "opponent": {
+        "iso": "rs",
+        "name": "Yugoslavia (hoy Serbia)"
+      },
+      "score": "0-9",
+      "competition": "Fase de Grupos Mundial 1974 (como Zaire)",
+      "narrative": "ZAIRE (hoy RDC) sufrió la MAYOR GOLEADA de su historia: 0-9 con Yugoslavia el 18 jun 1974 en Gelsenkirchen. Una de las mayores goleadas Mundiales. Bajic, Bogićević, Dzajić y Surjak marcaron. Marca de horror que aún pesa en el inconsciente colectivo africano."
+    },
+    {
+      "title": "El incidente Mwepu (1974 vs Brasil)",
+      "date": "1974-06-22",
+      "opponent": {
+        "iso": "br",
+        "name": "Brasil"
+      },
+      "score": "0-3",
+      "competition": "Fase de Grupos Mundial 1974 (como Zaire)",
+      "narrative": "El defensor MWEPU ILUNGA protagonizó UNO DE LOS MOMENTOS MÁS BIZARROS de la historia mundialista: cuando Brasil iba a tirar un tiro libre en los últimos minutos, MWEPU CORRIÓ Y PATEÓ EL BALÓN intencionalmente lejos antes de la falta. Tarjeta amarilla. Años después explicó que era una protesta contra el régimen de Mobutu por el trato a la selección. Inolvidable, viral en YouTube hoy."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "RD CONGO se llamaba ZAIRE entre 1971 y 1997 (régimen del dictador Mobutu). Tras la caída de Mobutu, recuperó el nombre histórico de República Democrática del Congo. El Mundial 2026 será su PRIMERA participación bajo el nombre actual y la 2ª histórica.",
+      "source": "FECOFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "ZAIRE (1974) fue la 1ª selección del ÁFRICA SUBSAHARIANA en jugar un Mundial. Marruecos había debutado en 1970, pero RDC abrió el camino al continente negro. 52 años después, RDC vuelve a un Mundial.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Récord aún vigente: RD Congo (incluyendo era Zaire) NUNCA HA GANADO NI EMPATADO un partido en Mundiales. 3 derrotas, 0 goles marcados, 14 encajados (0-2 Escocia, 0-9 Yugoslavia, 0-3 Brasil en 1974).",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "EL INCIDENTE MWEPU del 22 jun 1974 vs Brasil es UNO DE LOS MOMENTOS MÁS VIRALES del Mundial: el defensor pateó el balón cuando Brasil iba a cobrar un tiro libre. Décadas después, Mwepu explicó que era una protesta política contra el régimen de Mobutu.",
+      "source": "FIFA + AS + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "RDC fue 2 VECES CAMPEÓN AFRICANO como Zaire: 1968 (Etiopía) y 1974 (Egipto). 4ª finalista Copa África 2024 (Costa de Marfil).",
+      "source": "CAF + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Eliminatoria 2026 ÉPICA: RDC eliminó a Camerún (1-0 Mbemba 90+1) Y a Nigeria (penales 4-3) en Marruecos, dos GIGANTES africanos consecutivos. Después batió Jamaica 1-0 en repechaje intercontinental en Guadalajara (gol Tuanzebe min 100). Boleto al Mundial tras vencer 3 grandes en serie.",
+      "source": "FIFA + ESPN + Milenio",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Aaron Wan-Bissaka (West Ham, ex-Manchester United) eligió a RDC en 2024 después de NO ser convocado por Inglaterra. Nació en Croydon (Londres). Otro caso similar es Yoane Wissa, nacido en Francia (Épinay-sur-Seine). El plantel tiene mayoría binacional.",
+      "source": "FECOFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Léopards! Léopards!",
+      "RDC! RDC!",
+      "Indépendance Cha-Cha (canción nacional 1960)"
+    ],
+    "main_rival": {
+      "iso": "cm",
+      "name": "Camerún",
+      "story": "Rivalidad fuerte por ser dos potencias africanas. La eliminación 1-0 (Mbemba 90+1) en el play-off CAF nov 2025 escribió un capítulo histórico: RDC eliminó a uno de los 5 gigantes africanos en Mundiales, llevándolos a quedar fuera del Mundial 2026."
+    },
+    "home_stadium": {
+      "name": "Stade des Martyrs",
+      "capacity": 80000,
+      "city": "Kinshasa"
+    }
+  },
+  "seo": {
+    "meta_title": "RD Congo en el Mundial 2026 | Guía completa Léopards",
+    "meta_description": "RD Congo Mundial 2026: 26 convocados de Desabre, Wissa, Bakambu, Wan-Bissaka. Grupo K con Portugal, Colombia, Uzbekistán. 2ª participación tras Zaire 1974.",
+    "og_image_url": "/img/og/teams/rd-congo.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de la República Democrática del Congo",
+      "alternateName": [
+        "Léopards",
+        "Los Leopardos"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "CAF"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Sébastien Desabre"
+      },
+      "url": "https://www.zonamundial.app/selecciones/rd-congo"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-29",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_de_CAF_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/15955003/nigeria-vs-rd-congo-final-playoffs-repechaje-eliminatorias-africa-mundial-2026",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/15640850/cuando-es-repechaje-mundial-2026-fecha-formato-partidos",
+      "https://www.tudn.com/mundial-2026/eliminatorias/eliminatorias-mundial-2026-cuando-se-define-boleto-repechaje-intercontinental-africa",
+      "https://www.milenio.com/futbol-internacional/mundial/resultado-rd-congo-vs-jamaica-resumen-repechaje-intercontinental-2026",
+      "https://www.record.com.mx/futbol/futbol-internacional/internacionales/como-quedo-el-repechaje-africano-para-el-mundial-2026",
+      "https://www.infobae.com/colombia/deportes/2026/02/20/asi-se-podran-ver-los-partidos-de-repechaje-para-la-copa-del-mundo-de-la-fifa-en-2026-en-colombia-estos-son-los-detalles/",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias y plantel cruzados con ESPN + TUDN + Milenio + Record + Infobae + Wikipedia. Camino histórico (Zaire 1974) y palmares Copa África con FIFA/CAF.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "complete",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante O'Neills: pendiente",
+      "Calendario fase grupos 2026: fechas FIFA pendientes",
+      "Base de entrenamiento: FECOFA aún no anunció",
+      "FIFA Ranking #56: validar mes vigente",
+      "Detalles partidos eliminatoria 1-7: cruzar con FIFA exactos",
+      "Numeración camisetas estimada"
+    ]
+  }
+}

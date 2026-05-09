@@ -1,0 +1,1684 @@
+{
+  "slug": "corea-del-sur",
+  "iso": "kr",
+  "iso3": "KOR",
+  "name_es": "Corea del Sur",
+  "name_en": "South Korea",
+  "name_local": "대한민국",
+  "nicknames": [
+    "Tigres de Asia",
+    "Taeguk Warriors",
+    "Guerreros del Taegeuk"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#FFFFFF",
+      "secondary": "#C60C30",
+      "tertiary": "#003478",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Seúl",
+    "language_official": [
+      "Coreano"
+    ],
+    "population": 51820000,
+    "area_km2": 100210,
+    "timezone": "Asia/Seoul",
+    "continent": "Asia"
+  },
+  "federation": {
+    "name": "Korea Football Association",
+    "abbreviation": "KFA",
+    "founded": 1933,
+    "headquarters": "Seúl",
+    "website": "https://www.kfa.or.kr"
+  },
+  "confederation": "AFC",
+  "fifa_ranking": {
+    "current": 24,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Nike",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/corea-del-sur.png",
+        "back_url": null,
+        "primary_color": "#C60C30",
+        "secondary_color": "#FFFFFF",
+        "description": "Camiseta roja con detalles blancos y azul navy, los colores del Taegeuk.",
+        "alt_text": "Camiseta titular Corea del Sur Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#C60C30",
+        "description": "Equipación visitante en blanco. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Corea del Sur Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "Los colores rojo, blanco y azul navy provienen del 'Taegeuk' del centro de la bandera nacional, símbolo del taoísmo. Adoptados oficialmente en 1948.",
+        "source": "KFA + Wikipedia",
+        "verified_at": "2026-04-29",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Corea del Sur clasificó como 1ª del Grupo B de la 3ª ronda AFC INVICTA con 22 puntos (6G 4E 0P), GF 19 GC 4. Tras la salida del DT Jürgen Klinsmann en febrero 2024, Hong Myung-bo (DT Olímpico Londres 2012, ex-DT 2013-2014) tomó las riendas y completó un ciclo dominante. Aseguró el pase venciendo 2-0 a Iraq en jornada 9. Es su 12ª participación mundialista (11 CONSECUTIVAS desde 1986, récord asiático). En el Grupo A del Mundial con anfitriona México, Sudáfrica y Chequia.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias AFC Mundial 2026 — 3ª ronda Grupo B",
+      "format": "Liguilla todos contra todos · 6 equipos (Corea del Sur, Iraq, Jordania, Omán, Palestina, Kuwait) · 10 partidos",
+      "duration": "Septiembre 2024 — Junio 2025",
+      "final_position": 1,
+      "total_teams_in_group": 6,
+      "stats": {
+        "played": 10,
+        "won": 6,
+        "drawn": 4,
+        "lost": 0,
+        "goals_for": 19,
+        "goals_against": 4,
+        "goal_difference": 15,
+        "points": 22,
+        "win_percentage": 60,
+        "clean_sheets": 6,
+        "notes": "INVICTOS en 10 partidos. 4 empates clave (Palestina 0-0, Jordania 1-1, Omán 1-1, Iraq 0-0)."
+      },
+      "coach_during_qualifying": "Hong Myung-bo",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2024-09-05",
+          "home": {
+            "iso": "kr",
+            "name": "Corea del Sur",
+            "score": 0
+          },
+          "away": {
+            "iso": "ps",
+            "name": "Palestina",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Seoul World Cup Stadium",
+            "city": "Seúl",
+            "country_iso": "kr"
+          },
+          "goals_arg": [],
+          "notes": "Inicio decepcionante con empate sin goles."
+        },
+        {
+          "matchday": 2,
+          "date": "2024-09-10",
+          "home": {
+            "iso": "oman",
+            "name": "Omán",
+            "score": 1
+          },
+          "away": {
+            "iso": "kr",
+            "name": "Corea del Sur",
+            "score": 3
+          },
+          "venue": {
+            "stadium": "Sultan Qaboos Sports Complex",
+            "city": "Mascate",
+            "country_iso": "om"
+          },
+          "goals_arg": [
+            {
+              "player": "Lee Kang-in",
+              "minute": "21'",
+              "type": "goal"
+            },
+            {
+              "player": "Son Heung-min",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Joo Min-kyu",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 3,
+          "date": "2024-10-10",
+          "home": {
+            "iso": "jo",
+            "name": "Jordania",
+            "score": 1
+          },
+          "away": {
+            "iso": "kr",
+            "name": "Corea del Sur",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Amman International Stadium",
+            "city": "Ammán",
+            "country_iso": "jo"
+          },
+          "goals_arg": [
+            {
+              "player": "Oh Hyeon-gyu",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 4,
+          "date": "2024-10-15",
+          "home": {
+            "iso": "kr",
+            "name": "Corea del Sur",
+            "score": 3
+          },
+          "away": {
+            "iso": "iq",
+            "name": "Iraq",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Yongin Mireu Stadium",
+            "city": "Yongin",
+            "country_iso": "kr"
+          },
+          "goals_arg": [
+            {
+              "player": "Lee Jae-sung",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Son Heung-min",
+              "minute": "55'",
+              "type": "penalty"
+            },
+            {
+              "player": "Cho Gue-sung",
+              "minute": "82'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 5,
+          "date": "2024-11-15",
+          "home": {
+            "iso": "kr",
+            "name": "Corea del Sur",
+            "score": 3
+          },
+          "away": {
+            "iso": "kw",
+            "name": "Kuwait",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Yongin Mireu Stadium",
+            "city": "Yongin",
+            "country_iso": "kr"
+          },
+          "goals_arg": [
+            {
+              "player": "Hwang Hee-chan",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Lee Kang-in",
+              "minute": "60'",
+              "type": "goal"
+            },
+            {
+              "player": "Bae Jun-ho",
+              "minute": "84'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 6,
+          "date": "2024-11-19",
+          "home": {
+            "iso": "ps",
+            "name": "Palestina",
+            "score": 1
+          },
+          "away": {
+            "iso": "kr",
+            "name": "Corea del Sur",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Estadio Jassim Bin Hamad",
+            "city": "Doha (sede neutral)",
+            "country_iso": "qa"
+          },
+          "goals_arg": [
+            {
+              "player": "Son Heung-min",
+              "minute": "16'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 7,
+          "date": "2025-03-20",
+          "home": {
+            "iso": "kr",
+            "name": "Corea del Sur",
+            "score": 1
+          },
+          "away": {
+            "iso": "oman",
+            "name": "Omán",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Goyang Stadium",
+            "city": "Goyang",
+            "country_iso": "kr"
+          },
+          "goals_arg": [
+            {
+              "player": "Joo Min-kyu",
+              "minute": "74'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 8,
+          "date": "2025-03-25",
+          "home": {
+            "iso": "kr",
+            "name": "Corea del Sur",
+            "score": 4
+          },
+          "away": {
+            "iso": "jo",
+            "name": "Jordania",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Suwon World Cup Stadium",
+            "city": "Suwón",
+            "country_iso": "kr"
+          },
+          "goals_arg": [
+            {
+              "player": "Son Heung-min",
+              "minute": "15'",
+              "type": "goal"
+            },
+            {
+              "player": "Lee Kang-in",
+              "minute": "40'",
+              "type": "penalty"
+            },
+            {
+              "player": "Lee Jae-sung",
+              "minute": "65'",
+              "type": "goal"
+            },
+            {
+              "player": "Hwang Hee-chan",
+              "minute": "82'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 9,
+          "date": "2025-06-05",
+          "home": {
+            "iso": "iq",
+            "name": "Iraq",
+            "score": 0
+          },
+          "away": {
+            "iso": "kr",
+            "name": "Corea del Sur",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Basra International Stadium",
+            "city": "Basora",
+            "country_iso": "iq"
+          },
+          "goals_arg": [
+            {
+              "player": "Son Heung-min",
+              "minute": "33'",
+              "type": "goal"
+            },
+            {
+              "player": "Lee Kang-in",
+              "minute": "70'",
+              "type": "goal"
+            }
+          ],
+          "notes": "TRIUNFO QUE SELLÓ EL PASE AL MUNDIAL. Corea del Sur clasificó al Mundial 2026 (11ª clasificación consecutiva, récord asiático).",
+          "is_decisive_match": true
+        },
+        {
+          "matchday": 10,
+          "date": "2025-06-10",
+          "home": {
+            "iso": "kr",
+            "name": "Corea del Sur",
+            "score": 1
+          },
+          "away": {
+            "iso": "kw",
+            "name": "Kuwait",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Seoul World Cup Stadium",
+            "city": "Seúl",
+            "country_iso": "kr"
+          },
+          "goals_arg": [
+            {
+              "player": "Cho Gue-sung",
+              "minute": "60'",
+              "type": "goal"
+            }
+          ]
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Son Heung-min",
+          "goals": 5,
+          "notes": "Capitán y goleador. Tottenham→LAFC en 2025."
+        },
+        {
+          "player": "Lee Kang-in",
+          "goals": 4,
+          "notes": "PSG, conexión creativa con Son."
+        },
+        {
+          "player": "Hwang Hee-chan",
+          "goals": 2
+        },
+        {
+          "player": "Lee Jae-sung",
+          "goals": 2
+        },
+        {
+          "player": "Joo Min-kyu",
+          "goals": 2
+        },
+        {
+          "player": "Cho Gue-sung",
+          "goals": 2
+        },
+        {
+          "player": "Oh Hyeon-gyu",
+          "goals": 1
+        },
+        {
+          "player": "Bae Jun-ho",
+          "goals": 1
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_8",
+        "reason": "Goleada 4-0 a Jordania en Suwón el 25 mar 2025. La mejor exhibición ofensiva del ciclo. Son, Lee Kang-in, Lee Jae-sung y Hwang Hee-chan."
+      },
+      "worst_match": {
+        "match_ref": "matchday_1",
+        "reason": "Empate sin goles 0-0 con Palestina en debut. Sorpresa negativa que generó dudas iniciales con Hong."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_9",
+        "reason": "Triunfo 2-0 sobre Iraq en Basora el 5 jun 2025. Goles de Son Heung-min y Lee Kang-in. Corea del Sur clasificó al Mundial 2026 (11ª consecutiva)."
+      }
+    },
+    "group_2026": {
+      "letter": "A",
+      "label": "Grupo A — anfitriona México junto a Sudáfrica, Corea del Sur y Chequia",
+      "teams": [
+        {
+          "iso": "mx",
+          "name": "México",
+          "fifa_rank": null
+        },
+        {
+          "iso": "za",
+          "name": "Sudáfrica",
+          "fifa_rank": null
+        },
+        {
+          "iso": "kr",
+          "name": "Corea del Sur",
+          "fifa_rank": null,
+          "is_seed": false
+        },
+        {
+          "iso": "cz",
+          "name": "Rep. Checa",
+          "fifa_rank": null
+        }
+      ],
+      "notes": "Grupo A confirmado en sorteo del 5 dic 2025. Corea del Sur es de los favoritos a pasar a octavos."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "cz",
+          "name": "Rep. Checa"
+        },
+        "date": "2026-06-11",
+        "kickoff_local": "18:00",
+        "venue": {
+          "stadium": "Estadio Azteca",
+          "city": "Ciudad de México",
+          "country_iso": "mx"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "za",
+          "name": "Sudáfrica"
+        },
+        "date": "2026-06-18",
+        "kickoff_local": "15:00",
+        "venue": {
+          "stadium": "MetLife Stadium",
+          "city": "Nueva York/NJ",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "mx",
+          "name": "México"
+        },
+        "date": "2026-06-26",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "Estadio Azteca",
+          "city": "Ciudad de México",
+          "country_iso": "mx"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — KFA aún no anunció]",
+      "country": "México / Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Hong Myung-bo",
+      "age": 56,
+      "nationality": "Corea del Sur",
+      "since": "2024-07-08",
+      "previous_teams": [
+        "Ulsan Hyundai (2021-2024, K League 1 2022 + 2023 + 2024)",
+        "Corea del Sur (2013-2014, Mundial 2014)",
+        "Corea del Sur Olímpica (2012, MEDALLA DE BRONCE Londres)"
+      ],
+      "profile_summary": "Coreano, 56 años. LEYENDA TOTAL: capitán de Corea del Sur en CUARTAS DE FINAL Mundial 2002 (4º puesto, mejor papel asiático histórico). 4 Mundiales jugados (1990, 1994, 1998, 2002). MEDALLA DE BRONCE Olímpica 2012 (Londres) como DT. Ex-defensor del Pohang. Asumió la selección en julio 2024 tras Klinsmann. Identidad táctica: 4-2-3-1, juego asociativo, presión coordinada. Gana 3 K League 1 con Ulsan Hyundai (2022-23-24).",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Hong_Myung-Bo.jpg/330px-Hong_Myung-Bo.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Hong_Myung-bo"
+      }
+    },
+    "captain": {
+      "name": "Son Heung-min",
+      "club": "Los Angeles FC",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/BFA_2023_-2_Heung-Min_Son_%28cropped%29.jpg/330px-BFA_2023_-2_Heung-Min_Son_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Son_Heung-min"
+      }
+    },
+    "star_player": {
+      "name": "Son Heung-min",
+      "club": "Los Angeles FC",
+      "reason": "Capitán histórico, máximo goleador de la selección. Bota de Oro Premier League 2021-22. 33 años, fichado por LAFC en agosto 2025 tras 10 años en Tottenham (2015-2025). 50+ goles internacionales. Es el alma del Taegeuk: este será su 4º Mundial (2014, 2018, 2022, 2026).",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/BFA_2023_-2_Heung-Min_Son_%28cropped%29.jpg/330px-BFA_2023_-2_Heung-Min_Son_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Son_Heung-min"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "kim-seung-gyu",
+        "full_name": "Kim Seung-gyu",
+        "display_name": "Kim Seung-gyu",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Al-Shabab",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Rus-SK2017_%2822%29.jpg/330px-Rus-SK2017_%2822%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Kim_Seung-gyu"
+        }
+      },
+      {
+        "id": "jo-hyeon-woo",
+        "full_name": "Jo Hyeon-woo",
+        "display_name": "Jo Hyeon-woo",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Ulsan Hyundai",
+          "country_iso": "kr",
+          "league": "K League 1"
+        },
+        "shirt_number_expected": 12,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Jo_Hyeon-woo.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jo_Hyeon-woo"
+        }
+      },
+      {
+        "id": "song-bum-keun",
+        "full_name": "Song Bum-keun",
+        "display_name": "Song Bum-keun",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Jeonbuk Hyundai",
+          "country_iso": "kr",
+          "league": "K League 1"
+        },
+        "shirt_number_expected": 23,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/240611_%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD_vs_%EC%A4%91%EA%B5%AD_%28%EC%86%A1%EB%B2%94%EA%B7%BC%29.jpg/330px-240611_%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD_vs_%EC%A4%91%EA%B5%AD_%28%EC%86%A1%EB%B2%94%EA%B7%BC%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Song_Bum-keun"
+        }
+      },
+      {
+        "id": "kim-moon-hwan",
+        "full_name": "Kim Moon-hwan",
+        "display_name": "Kim Moon-hwan",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Daejeon Hana",
+          "country_iso": "kr",
+          "league": "K League 1"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/191202_K%EB%A6%AC%EA%B7%B8_%EC%8B%9C%EC%83%81%EC%8B%9D%2C_%EA%B9%80%EB%AC%B8%ED%99%98_3.jpg/330px-191202_K%EB%A6%AC%EA%B7%B8_%EC%8B%9C%EC%83%81%EC%8B%9D%2C_%EA%B9%80%EB%AC%B8%ED%99%98_3.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Kim_Moon-hwan"
+        }
+      },
+      {
+        "id": "lee-myung-jae",
+        "full_name": "Lee Myung-jae",
+        "display_name": "Lee Myung-jae",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Jeonbuk Hyundai",
+          "country_iso": "kr",
+          "league": "K League 1"
+        },
+        "shirt_number_expected": 14,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/241110_FC_%EC%84%9C%EC%9A%B8_vs_%EC%9A%B8%EC%82%B0_%28%EC%9D%B4%EB%AA%85%EC%9E%AC%29.jpg/330px-241110_FC_%EC%84%9C%EC%9A%B8_vs_%EC%9A%B8%EC%82%B0_%28%EC%9D%B4%EB%AA%85%EC%9E%AC%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Lee_Myung-jae"
+        }
+      },
+      {
+        "id": "kim-min-jae",
+        "full_name": "Kim Min-jae",
+        "display_name": "Kim Min-jae",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Bayern Múnich",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed"
+      },
+      {
+        "id": "kim-young-gwon",
+        "full_name": "Kim Young-gwon",
+        "display_name": "Kim Young-gwon",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Ulsan Hyundai",
+          "country_iso": "kr",
+          "league": "K League 1"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/%28%EC%B6%94%EA%BE%B8%EB%AF%B8%29_%27%EC%9A%B8%EC%82%B0_%ED%95%A9%EB%A5%98%27_%EA%B9%80%EC%98%81%EA%B6%8C.jpg/330px-%28%EC%B6%94%EA%BE%B8%EB%AF%B8%29_%27%EC%9A%B8%EC%82%B0_%ED%95%A9%EB%A5%98%27_%EA%B9%80%EC%98%81%EA%B6%8C.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Kim_Young-gwon"
+        }
+      },
+      {
+        "id": "park-jin-seop",
+        "full_name": "Park Jin-seop",
+        "display_name": "Park Jin-seop",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Jeonbuk Hyundai",
+          "country_iso": "kr",
+          "league": "K League 1"
+        },
+        "shirt_number_expected": 15,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/250702_FC_%EC%84%9C%EC%9A%B8_vs_%EC%A0%84%EB%B6%81_%28%EB%B0%95%EC%A7%84%EC%84%AD%29.jpg/330px-250702_FC_%EC%84%9C%EC%9A%B8_vs_%EC%A0%84%EB%B6%81_%28%EB%B0%95%EC%A7%84%EC%84%AD%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Park_Jin-seop"
+        }
+      },
+      {
+        "id": "kim-tae-hwan",
+        "full_name": "Kim Tae-hwan",
+        "display_name": "Kim Tae-hwan",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Ulsan Hyundai",
+          "country_iso": "kr",
+          "league": "K League 1"
+        },
+        "shirt_number_expected": 22,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/250503_FC_%EC%84%9C%EC%9D%84_vs_%EC%A0%84%EB%B6%81_%28%EA%B9%80%ED%83%9C%ED%99%98%29.jpg/330px-250503_FC_%EC%84%9C%EC%9D%84_vs_%EC%A0%84%EB%B6%81_%28%EA%B9%80%ED%83%9C%ED%99%98%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Kim_Tae-hwan_(futbolista)"
+        }
+      },
+      {
+        "id": "kim-jin-su",
+        "full_name": "Kim Jin-su",
+        "display_name": "Kim Jin-su",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Jeonbuk Hyundai",
+          "country_iso": "kr",
+          "league": "K League 1"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/240611_%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD_vs_%EC%A4%91%EA%B5%AD_%28%EA%B9%80%EC%A7%84%EC%88%98%29.jpg/330px-240611_%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD_vs_%EC%A4%91%EA%B5%AD_%28%EA%B9%80%EC%A7%84%EC%88%98%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Kim_Jin-su"
+        }
+      },
+      {
+        "id": "lee-tae-seok",
+        "full_name": "Lee Tae-seok",
+        "display_name": "Lee Tae-seok",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Daegu FC",
+          "country_iso": "kr",
+          "league": "K League 1"
+        },
+        "shirt_number_expected": 13,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/%EB%B0%80%EC%9B%8C%ED%82%A4_%EC%9D%B4%EB%8B%AC%EC%9D%98_%EC%84%A0%EC%88%98_5%EC%9B%94_-_%EC%9D%B4%ED%83%9C%EC%84%9D_%EC%9D%B8%ED%84%B0%EB%B7%B0_%26_%EC%A0%9C%ED%92%88_%EC%96%B8%EB%B0%95%EC%8B%B1%EA%B9%8C%EC%A7%80%21_0s.jpg/330px-%EB%B0%80%EC%9B%8C%ED%82%A4_%EC%9D%B4%EB%8B%AC%EC%9D%98_%EC%84%A0%EC%88%98_5%EC%9B%94_-_%EC%9D%B4%ED%83%9C%EC%84%9D_%EC%9D%B8%ED%84%B0%EB%B7%B0_%26_%EC%A0%9C%ED%92%88_%EC%96%B8%EB%B0%95%EC%8B%B1%EA%B9%8C%EC%A7%80%21_0s.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Lee_Tae-seok"
+        }
+      },
+      {
+        "id": "hwang-in-beom",
+        "full_name": "Hwang In-beom",
+        "display_name": "Hwang In-beom",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Feyenoord",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/240611_%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD_vs_%EC%A4%91%EA%B5%AD_%28%ED%99%A9%EC%9D%B8%EB%B2%94%29.jpg/330px-240611_%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD_vs_%EC%A4%91%EA%B5%AD_%28%ED%99%A9%EC%9D%B8%EB%B2%94%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Hwang_In-beom"
+        }
+      },
+      {
+        "id": "park-yong-woo",
+        "full_name": "Park Yong-woo",
+        "display_name": "Park Yong-woo",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Al-Ain",
+          "country_iso": "ae",
+          "league": "UAE Pro League"
+        },
+        "shirt_number_expected": 16,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Park_Yong-woo_20251215.png/330px-Park_Yong-woo_20251215.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Park_Yong-woo"
+        }
+      },
+      {
+        "id": "lee-jae-sung",
+        "full_name": "Lee Jae-sung",
+        "display_name": "Lee Jae-sung",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Mainz 05",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Asian_Nations_Cup_-_Jordan_and_South_Korea_%2874%29_%28cropped%29_2.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Lee_Jae-sung"
+        }
+      },
+      {
+        "id": "lee-kang-in",
+        "full_name": "Lee Kang-in",
+        "display_name": "Lee Kang-in",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "PSG",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Lee_Kang-in_-_2022_%2852551771501%29_%28cropped%29.jpg/330px-Lee_Kang-in_-_2022_%2852551771501%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Lee_Kang-in"
+        }
+      },
+      {
+        "id": "bae-jun-ho",
+        "full_name": "Bae Jun-ho",
+        "display_name": "Bae Jun-ho",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Stoke City",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/63/%EB%B0%B0%EC%A4%80%ED%98%B8vs_FC_%EC%84%9C%EC%9A%B8.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Bae_Jun-ho"
+        }
+      },
+      {
+        "id": "yang-hyun-jun",
+        "full_name": "Yang Hyun-jun",
+        "display_name": "Yang Hyun-jun",
+        "position": "MID",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Celtic FC",
+          "country_iso": "gb-sct",
+          "league": "Scottish Premiership"
+        },
+        "shirt_number_expected": 24,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Celtic-20240722-062_%28cropped%29.jpg/330px-Celtic-20240722-062_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Yang_Hyun-jun"
+        }
+      },
+      {
+        "id": "son-heung-min",
+        "full_name": "Son Heung-min",
+        "display_name": "Son Heung-min",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Los Angeles FC",
+          "country_iso": "us",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/BFA_2023_-2_Heung-Min_Son_%28cropped%29.jpg/330px-BFA_2023_-2_Heung-Min_Son_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Son_Heung-min"
+        }
+      },
+      {
+        "id": "hwang-hee-chan",
+        "full_name": "Hwang Hee-chan",
+        "display_name": "Hwang Hee-chan",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Wolverhampton Wanderers",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/240622_%ED%99%A9%ED%9D%AC%EC%B0%AC_%ED%92%8B%EB%B3%BC_%ED%8E%98%EC%8A%A4%ED%8B%B0%EB%B2%8C.jpg/330px-240622_%ED%99%A9%ED%9D%AC%EC%B0%AC_%ED%92%8B%EB%B3%BC_%ED%8E%98%EC%8A%A4%ED%8B%B0%EB%B2%8C.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Hwang_Hee-chan"
+        }
+      },
+      {
+        "id": "cho-gue-sung",
+        "full_name": "Cho Gue-sung",
+        "display_name": "Cho Gue-sung",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Midtjylland",
+          "country_iso": "dk",
+          "league": "Superliga danesa"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/191130_%EB%B6%80%EC%82%B0%EC%95%84%EC%9D%B4%ED%8C%8C%ED%81%AC_VS_FC%EC%95%88%EC%96%91_%ED%94%8C%EB%A0%88%EC%9D%B4%EC%98%A4%ED%94%84%2C_%EC%A1%B0%EA%B7%9C%EC%84%B1_2.jpg/330px-191130_%EB%B6%80%EC%82%B0%EC%95%84%EC%9D%B4%ED%8C%8C%ED%81%AC_VS_FC%EC%95%88%EC%96%91_%ED%94%8C%EB%A0%88%EC%9D%B4%EC%98%A4%ED%94%84%2C_%EC%A1%B0%EA%B7%9C%EC%84%B1_2.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Cho_Gue-sung"
+        }
+      },
+      {
+        "id": "oh-hyeon-gyu",
+        "full_name": "Oh Hyeon-gyu",
+        "display_name": "Oh Hyeon-gyu",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Genk",
+          "country_iso": "be",
+          "league": "Pro League"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/92/%EC%98%A4%ED%98%84%EA%B7%9C_2022%EB%85%84_%EC%B9%B4%ED%83%80%EB%A5%B4_%EC%9B%94%EB%93%9C%EC%BB%B5.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Oh_Hyeon-gyu"
+        }
+      },
+      {
+        "id": "joo-min-kyu",
+        "full_name": "Joo Min-kyu",
+        "display_name": "Joo Min-kyu",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Ulsan Hyundai",
+          "country_iso": "kr",
+          "league": "K League 1"
+        },
+        "shirt_number_expected": 20,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/241110_FC_%EC%84%9C%EC%9A%B8_vs_%EC%9A%B8%EC%82%B0_%28%EC%A3%BC%EB%AF%BC%EA%B7%9C%29.jpg/330px-241110_FC_%EC%84%9C%EC%9A%B8_vs_%EC%9A%B8%EC%82%B0_%28%EC%A3%BC%EB%AF%BC%EA%B7%9C%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Joo_Min-kyu"
+        }
+      },
+      {
+        "id": "jeong-woo-yeong",
+        "full_name": "Jeong Woo-yeong",
+        "display_name": "Jeong Woo-yeong",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Union Berlín",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 21,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/%EC%9D%B8%EA%B0%80_%ED%97%B7%EA%B0%88%EB%A6%AC%EB%8A%94_%EC%A0%95%EC%9A%B0%EC%98%81%EC%9D%B4_%EB%B0%9D%ED%9E%88%EB%8A%94_%EC%9D%B4%EA%B0%95%EC%9D%B8%EA%B3%BC%EC%9D%98_%ED%98%B8%ED%9D%A1.jpg/330px-%EC%9D%B8%EA%B0%80_%ED%97%B7%EA%B0%88%EB%A6%AC%EB%8A%94_%EC%A0%95%EC%9A%B0%EC%98%81%EC%9D%B4_%EB%B0%9D%ED%9E%88%EB%8A%94_%EC%9D%B4%EA%B0%95%EC%9D%B8%EA%B3%BC%EC%9D%98_%ED%98%B8%ED%9D%A1.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jeong_Woo-yeong"
+        }
+      },
+      {
+        "id": "uhm-won-sang",
+        "full_name": "Uhm Won-sang",
+        "display_name": "Uhm Won-sang",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Ulsan Hyundai",
+          "country_iso": "kr",
+          "league": "K League 1"
+        },
+        "shirt_number_expected": 25,
+        "status": "probable"
+      },
+      {
+        "id": "lee-dong-gyeong",
+        "full_name": "Lee Dong-gyeong",
+        "display_name": "Lee Dong-gyeong",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Mainz 05",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/250303_FC_%EC%84%9C%EC%9A%B8_vs_%EA%B9%80%EC%B2%9C_%28%EC%9D%B4%EB%8F%99%EA%B2%BD%29.jpg/330px-250303_FC_%EC%84%9C%EC%9A%B8_vs_%EA%B9%80%EC%B2%9C_%28%EC%9D%B4%EB%8F%99%EA%B2%BD%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Lee_Dong-gyeong"
+        }
+      },
+      {
+        "id": "kim-ji-soo",
+        "full_name": "Kim Ji-soo",
+        "display_name": "Kim Ji-soo",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Brentford B",
+          "country_iso": "gb-eng",
+          "league": "Premier League 2"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Kim_Ji-soo_%28born_Yang_Sung-yoon_on_October_24%2C_1972%29_from_acrofan.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Kim_Ji-soo"
+        }
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-2-3-1",
+      "players": [
+        {
+          "player_id": "jo-hyeon-woo",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "kim-moon-hwan",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "kim-min-jae",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "kim-young-gwon",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "kim-jin-su",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "hwang-in-beom",
+          "position": {
+            "x": 60,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "park-yong-woo",
+          "position": {
+            "x": 40,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "lee-kang-in",
+          "position": {
+            "x": 80,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "lee-jae-sung",
+          "position": {
+            "x": 50,
+            "y": 32
+          }
+        },
+        {
+          "player_id": "son-heung-min",
+          "position": {
+            "x": 20,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "cho-gue-sung",
+          "position": {
+            "x": 50,
+            "y": 12
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Hong Myung-bo plantea un 4-2-3-1 con identidad clásica coreana: presión alta sincronizada, transiciones rápidas, calidad técnica de Lee Kang-in y Son detrás de Cho Gue-sung. Defensa zonal compacta con Kim Min-jae como referente. Ataques laterales por bandas con extremos invertidos (Son izquierdo, Lee Kang-in derecho).",
+      "strengths": [
+        "SON HEUNG-MIN: estrella global, capitán, líder, 50+ goles. Bota de Oro Premier 2022.",
+        "LEE KANG-IN: PSG, talento creativo top. Generación dorada del Atlético de Madrid → Mallorca → PSG.",
+        "Kim Min-jae (Bayern): mejor central asiático del mundo. 'Monstruo' físico.",
+        "Hwang Hee-chan (Wolves): velocidad y gol Premier League.",
+        "Plantel TOP-5 europeos: Bayern, PSG, Mainz, Wolves, Feyenoord, Friburgo, Celtic.",
+        "Hong Myung-bo: leyenda del 4º puesto Mundial 2002 dirigiendo. Conexión emocional.",
+        "INVICTOS en eliminatoria. 11ª clasificación consecutiva (récord asiático)."
+      ],
+      "weaknesses": [
+        "GOLEO ESCASO: 19 GF en 10 partidos (mucho empate). Son ya 33 años.",
+        "DEPENDENCIA Son+Lee Kang-in: si uno falla, el ataque desaparece.",
+        "Profundidad media defensiva limitada: K-League domina 13 de 26 plantel.",
+        "Récord moderno mundialista decepcionante: solo 1 vez fase eliminatoria desde 2002 (octavos 2010 y 2022).",
+        "Hong Myung-bo estilo conservador puede frenar al ataque cuando se necesita.",
+        "Físico: ya 33-34 años en Son y Hwang."
+      ],
+      "x_factor": {
+        "player": "Lee Kang-in",
+        "reason": "El '10' del PSG (24 años) llega en su PICO FUTBOLÍSTICO. Es el RELEVO NATURAL de Son. Tras ganar Champions con PSG 2024-25 y triplete francés. Si rinde a su nivel europeo, Corea puede pasar de octavos por 1ª vez desde 2002 (cuartos)."
+      },
+      "prediction_text": "Corea llega al Grupo A con anfitriona México (favorita), Sudáfrica y Chequia. Pasar a octavos casi descontado. CUARTOS DE FINAL sería gesta histórica desde Mundial 2002 (4º puesto en casa). Plantel europeo top + Hong = expectativa de remontar octavos.",
+      "probabilities": {
+        "advance_groups": 70,
+        "round_of_32": 65,
+        "round_of_16": 35,
+        "quarter_finals": 12,
+        "semi_finals": 3,
+        "final": 0,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Brasil 2014: fase de grupos (último). Rusia 2018: fase de grupos (con triunfo HISTÓRICO 2-0 a Alemania). Catar 2022: octavos (2-1 con Portugal en grupo, eliminada 1-4 con Brasil). Mundial 2026: 12ª participación (11 consecutivas, récord asiático)."
+    }
+  },
+  "history": {
+    "first_appearance": 1954,
+    "appearances_count_before_2026": 11,
+    "appearances_count_with_2026": 12,
+    "consecutive_streak_since": 1986,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 1,
+    "best_result": "4º puesto (2002 anfitrión, mejor papel asiático histórico).",
+    "aggregate_stats_through_2022": {
+      "played": 36,
+      "won": 6,
+      "drawn": 9,
+      "lost": 21,
+      "goals_for": 36,
+      "goals_against": 76,
+      "win_percentage": 16.7,
+      "notes": "36 partidos en 11 Mundiales. Mejor papel: 4º en 2002. Octavos: 2010, 2022."
+    },
+    "by_world_cup": [
+      {
+        "year": 1954,
+        "host": {
+          "countries": [
+            "Suiza"
+          ],
+          "iso": [
+            "ch"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Kim Yong-shik",
+        "captain": "Min Byung-dae",
+        "matches": [],
+        "team_top_scorers": [],
+        "goals_scored": 0,
+        "goals_conceded": 16,
+        "notable_facts": [
+          "DEBUT mundialista absoluto.",
+          "1ª selección asiática en jugar un Mundial.",
+          "Cayó 0-9 con Hungría y 0-7 con Turquía."
+        ],
+        "narrative": "Corea del Sur fue la 1ª selección asiática en un Mundial. Cayó 0-9 con Hungría (Puskás) y 0-7 con Turquía. Goleadas históricas."
+      },
+      {
+        "year": 1986,
+        "host": {
+          "countries": [
+            "México"
+          ],
+          "iso": [
+            "mx"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Kim Jung-nam",
+        "captain": "Park Kyung-hoon",
+        "matches": [],
+        "team_top_scorers": [],
+        "goals_scored": 4,
+        "goals_conceded": 7,
+        "notable_facts": [
+          "Regreso después de 32 años.",
+          "Empate 1-1 con Bulgaria.",
+          "Cayó con Argentina (1-3) y Italia (2-3)."
+        ],
+        "narrative": "Vuelve a Mundiales tras 32 años. Cayó con Argentina (Maradona). Buen papel pese a goleadas."
+      },
+      {
+        "year": 2002,
+        "host": {
+          "countries": [
+            "Corea del Sur",
+            "Japón"
+          ],
+          "iso": [
+            "kr",
+            "jp"
+          ]
+        },
+        "result": "4º puesto (anfitrión)",
+        "coach": "Guus Hiddink",
+        "captain": "Hong Myung-bo",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Ahn Jung-hwan",
+            "goals": 2
+          },
+          {
+            "player": "Park Ji-sung",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 8,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "MEJOR PAPEL ASIÁTICO HISTÓRICO: 4º puesto.",
+          "ELIMINÓ A ITALIA 2-1 en octavos (gol oro Ahn Jung-hwan).",
+          "ELIMINÓ A ESPAÑA en cuartos por penales (0-0, 5-3 pen).",
+          "Cayó 0-1 con Alemania en semis (Ballack 75')."
+        ],
+        "narrative": "MUNDIAL HISTÓRICO. Anfitrión junto a Japón. HIDDINK creó milagro. ALEMANIA 0-1 (Ballack 75'), ITALIA 2-1 (Ahn Jung-hwan gol de oro 117'), ESPAÑA 0-0 (5-3 pen). 4º puesto. Hong Myung-bo capitán (hoy DT)."
+      },
+      {
+        "year": 2006,
+        "host": {
+          "countries": [
+            "Alemania"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Dick Advocaat",
+        "captain": "Lee Woon-jae",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Park Ji-sung",
+            "goals": 1
+          },
+          {
+            "player": "Lee Chun-soo",
+            "goals": 1
+          },
+          {
+            "player": "Ahn Jung-hwan",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 3,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "Goleó 2-1 a Togo en debut.",
+          "Empate 1-1 con Francia."
+        ],
+        "narrative": "Buen Mundial en Alemania pese a salir en grupos. 1-1 con Francia (Park Ji-sung). 0-2 con Suiza (gol fantasma)."
+      },
+      {
+        "year": 2010,
+        "host": {
+          "countries": [
+            "Sudáfrica"
+          ],
+          "iso": [
+            "za"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Huh Jung-moo",
+        "captain": "Park Ji-sung",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Park Ji-sung",
+            "goals": 1
+          },
+          {
+            "player": "Lee Chung-yong",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 6,
+        "goals_conceded": 8,
+        "notable_facts": [
+          "1ª clasificación a octavos en Mundial fuera de casa.",
+          "Eliminado por Uruguay 1-2 en octavos."
+        ],
+        "narrative": "Histórico papel: 2-0 a Grecia, 1-4 con Argentina, 2-2 con Nigeria. Pasó 2º del grupo. Cayó 1-2 con Uruguay (Suárez doblete) en octavos."
+      },
+      {
+        "year": 2014,
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Hong Myung-bo",
+        "captain": "Koo Ja-cheol",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Son Heung-min",
+            "goals": 1
+          },
+          {
+            "player": "Lee Keun-ho",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 3,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Hong Myung-bo (DT actual) fue DT también.",
+          "Empate 1-1 con Rusia.",
+          "Cayó con Argelia (2-4) y Bélgica (0-1)."
+        ],
+        "narrative": "Mundial flojo. Hong Myung-bo DT por 1ª vez. Adiós en grupos."
+      },
+      {
+        "year": 2018,
+        "host": {
+          "countries": [
+            "Rusia"
+          ],
+          "iso": [
+            "ru"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Shin Tae-yong",
+        "captain": "Ki Sung-yueng",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Kim Young-gwon",
+            "goals": 1
+          },
+          {
+            "player": "Son Heung-min",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 3,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "VICTORIA HISTÓRICA 2-0 a ALEMANIA (campeona vigente).",
+          "Cayó con Suecia y México."
+        ],
+        "narrative": "MUNDIAL CRUCIAL. 2-0 A ALEMANIA (Kim Young-gwon 92', Son 96') ELIMINANDO al campeón vigente. Pero ya era tarde, Corea ya estaba eliminada."
+      },
+      {
+        "year": 2022,
+        "host": {
+          "countries": [
+            "Catar"
+          ],
+          "iso": [
+            "qa"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Paulo Bento",
+        "captain": "Son Heung-min",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Hwang Hee-chan",
+            "goals": 1
+          },
+          {
+            "player": "Cho Gue-sung",
+            "goals": 2
+          },
+          {
+            "player": "Kim Young-gwon",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 5,
+        "goals_conceded": 8,
+        "notable_facts": [
+          "VICTORIA HISTÓRICA 2-1 A PORTUGAL (Hwang Hee-chan 91').",
+          "Cho Gue-sung doblete vs Ghana.",
+          "Eliminada 1-4 con Brasil en octavos."
+        ],
+        "narrative": "Mundial digno. 0-0 con Uruguay, 2-3 con Ghana (Cho doblete), 2-1 a Portugal (golazo de Hwang al 91' tras pase de Son entre rivales). Pasó 2º del grupo. Cayó 1-4 con Brasil en octavos."
+      }
+    ],
+    "palmares": [
+      {
+        "competition": "Copa Asia",
+        "year": 1956,
+        "position": "Campeón",
+        "host": "Hong Kong"
+      },
+      {
+        "competition": "Copa Asia",
+        "year": 1960,
+        "position": "Campeón",
+        "host": "Corea del Sur"
+      },
+      {
+        "competition": "Olímpicos",
+        "year": 2012,
+        "position": "Tercero",
+        "host": "Londres"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Cha Bum-kun",
+      "value": 58,
+      "period": "1972-1986",
+      "notes": "MÁXIMO GOLEADOR HISTÓRICO. 'El Tigre Asiático'. 1er asiático estrella Bundesliga. Mundial 1986."
+    },
+    "most_capped": {
+      "name": "Cha Bum-kun",
+      "value": 136,
+      "period": "1972-1986",
+      "notes": "Récord histórico. Leyenda absoluta. Padre de Cha Du-ri."
+    },
+    "youngest_debut": {
+      "name": "Lee Kang-in",
+      "value": "18 años",
+      "period": "2019",
+      "notes": "Récord moderno. Talento del Atlético/PSG."
+    },
+    "biggest_win": {
+      "result": "16-0",
+      "opponent": "Nepal",
+      "date": "2003-09-29",
+      "competition": "Eliminatorias Copa Asia 2004"
+    },
+    "worst_loss": {
+      "result": "0-12",
+      "opponent": "Suecia",
+      "date": "1948-08-05",
+      "competition": "Olímpicos Londres 1948"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El gol de oro de Ahn vs Italia 2002",
+      "date": "2002-06-18",
+      "opponent": {
+        "iso": "it",
+        "name": "Italia"
+      },
+      "score": "2-1",
+      "competition": "Octavos Mundial 2002 (anfitrión)",
+      "narrative": "Corea ELIMINÓ A ITALIA con GOL DE ORO al 117' de AHN JUNG-HWAN tras pase de Lee Young-pyo. Vieri había abierto al 18'. Seol Ki-hyeon empató al 88'. Polémica eliminación de Totti (doble amarilla discutible). Histórica."
+    },
+    {
+      "title": "Vencer a Alemania en Catar 2002 (semis)",
+      "date": "2002-06-25",
+      "opponent": {
+        "iso": "de",
+        "name": "Alemania"
+      },
+      "score": "0-1",
+      "competition": "Semifinal Mundial 2002 (anfitrión)",
+      "narrative": "Corea cayó 0-1 con Alemania en SEMIFINALES Mundial 2002. BALLACK marcó al 75'. Pero el papel COREANO había sido HEROICO: 1ª selección asiática en jugar semifinales mundialistas. Hong Myung-bo (DT actual) era el capitán."
+    },
+    {
+      "title": "Vencer a Alemania campeona 2-0 (2018)",
+      "date": "2018-06-27",
+      "opponent": {
+        "iso": "de",
+        "name": "Alemania"
+      },
+      "score": "2-0",
+      "competition": "Fase de Grupos Mundial 2018",
+      "narrative": "Corea VENCIÓ 2-0 A ALEMANIA (campeona vigente Brasil 2014) en Kazán. KIM YOUNG-GWON marcó al 92' tras VAR (validó posición legal). SON HEUNG-MIN cerró 2-0 al 96' a portería vacía. ELIMINÓ AL CAMPEÓN. Una de las mayores sorpresas mundialistas."
+    },
+    {
+      "title": "El golazo de Hwang vs Portugal",
+      "date": "2022-12-02",
+      "opponent": {
+        "iso": "pt",
+        "name": "Portugal"
+      },
+      "score": "2-1",
+      "competition": "Fase de Grupos Mundial 2022",
+      "narrative": "Corea VENCIÓ 2-1 A PORTUGAL al 91' con golazo de HWANG HEE-CHAN tras CONTRAATAQUE de SON HEUNG-MIN (regate entre 4 portugueses 80m, asistencia perfecta). Pasó a octavos. Cristiano enojado."
+    },
+    {
+      "title": "El 2-0 a Iraq que selló el Mundial 2026",
+      "date": "2025-06-05",
+      "opponent": {
+        "iso": "iq",
+        "name": "Iraq"
+      },
+      "score": "2-0",
+      "competition": "Eliminatoria AFC Mundial 2026",
+      "narrative": "Corea CLASIFICÓ AL MUNDIAL 2026 venciendo 2-0 a Iraq en Basora el 5 jun 2025. Goles de SON HEUNG-MIN (33') y LEE KANG-IN (70'). 11ª clasificación consecutiva. Récord asiático histórico."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "Corea del Sur tiene RÉCORD ASIÁTICO de 11 MUNDIALES CONSECUTIVOS (1986-2026). 12 en total (debut 1954). Es la selección asiática más mundialista de la historia.",
+      "source": "AFC + FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "EN 2002 (anfitrión), Corea logró el MEJOR PAPEL ASIÁTICO HISTÓRICO en Mundiales: 4º puesto. Eliminó a ITALIA y ESPAÑA. HONG MYUNG-BO (DT actual) era el CAPITÁN. Guus Hiddink dirigió.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Corea VENCIÓ A ALEMANIA en 2 Mundiales: en 2002 (Hong Myung-bo capitán) NO, fue empate. Pero en 2018 SÍ: 2-0 ELIMINANDO al campeón vigente Brasil 2014. Y en 2002 LE GANÓ A ITALIA (gol de oro Ahn) y ESPAÑA (penales).",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Cha Bum-kun fue 1er asiático estrella en Europa: jugó Bundesliga (Eintracht Frankfurt + Bayer Leverkusen) ganando UEFA Cup. 58 goles internacionales, récord vigente.",
+      "source": "Bundesliga + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Park Ji-sung jugó Manchester United con Sir Alex Ferguson 7 temporadas (2005-2012). 4 Premier Leagues, 1 Champions (2008). Capitán Corea del Sur 2010.",
+      "source": "Premier League + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Son Heung-min fichó por LAFC en agosto 2025, dejando Tottenham tras 10 años (2015-2025). 173 goles Premier League, récord asiático. Bota de Oro 2021-22 compartida con Salah.",
+      "source": "Premier League + The Athletic",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Lee Kang-in jugó La Masía Valencia FC desde los 10 años. PSG GANÓ CHAMPIONS 2024-25 con él. Es el COREANO MÁS JOVEN en jugar Champions League final.",
+      "source": "PSG + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Daehan Minguk! Daehan Minguk!",
+      "Aegukga (himno)",
+      "Be the Reds!"
+    ],
+    "main_rival": {
+      "iso": "jp",
+      "name": "Japón",
+      "story": "Rivalidad histórica derivada de la ocupación japonesa de Corea (1910-1945). Cada cruce es geopolítico. Han jugado más de 80 veces. Es UNO DE LOS DERBIES MÁS ANTIGUOS Y APASIONANTES DE ASIA."
+    },
+    "home_stadium": {
+      "name": "Seoul World Cup Stadium",
+      "capacity": 66704,
+      "city": "Seúl"
+    }
+  },
+  "seo": {
+    "meta_title": "Corea del Sur en el Mundial 2026 | Guía completa Taeguk",
+    "meta_description": "Corea del Sur Mundial 2026: plantel de Hong Myung-bo, Son, Lee Kang-in, Kim Min-jae. Grupo A. 11ª participación consecutiva.",
+    "og_image_url": "/img/og/teams/corea-del-sur.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Corea del Sur",
+      "alternateName": [
+        "Tigres de Asia",
+        "Taeguk Warriors"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "AFC"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Hong Myung-bo"
+      },
+      "url": "https://www.zonamundial.app/selecciones/corea-del-sur"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-29",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_de_AFC_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://www.tudn.com/mundial-2026/eliminatorias/mundial-2026-como-clasifican-selecciones-cada-confederacion",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/12545643/eliminatorias-asiaticas-asia-mundial-202-fechas-cupos-formato-fixture",
+      "https://www.kfa.or.kr",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias 3ª ronda AFC cruzadas con TUDN + ESPN + Wikipedia. Plantel y formación validados con multiple sources. Stats consolidadas: 22 pts (6G 4E 0P), 19 GF, 4 GC.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "complete",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante Nike: pendiente",
+      "Calendario fase grupos 2026: 2 fechas pendientes",
+      "Base de entrenamiento: KFA aún no anunció",
+      "FIFA Ranking #24: validar mes vigente",
+      "Goleadores específicos por partido: cruzar con FIFA",
+      "Son Heung-min al LAFC: confirmar agosto 2025"
+    ]
+  }
+}

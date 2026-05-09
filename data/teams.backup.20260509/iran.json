@@ -1,0 +1,1598 @@
+{
+  "slug": "iran",
+  "iso": "ir",
+  "iso3": "IRN",
+  "name_es": "Irán",
+  "name_en": "Iran",
+  "name_local": "ایران",
+  "nicknames": [
+    "Team Melli",
+    "El Equipo Nacional",
+    "Príncipes Persas"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#239F40",
+      "secondary": "#FFFFFF",
+      "tertiary": "#DA0000",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Teherán",
+    "language_official": [
+      "Persa (Farsi)"
+    ],
+    "population": 88550000,
+    "area_km2": 1648195,
+    "timezone": "Asia/Tehran",
+    "continent": "Asia"
+  },
+  "federation": {
+    "name": "Football Federation Islamic Republic of Iran",
+    "abbreviation": "FFIRI",
+    "founded": 1920,
+    "headquarters": "Teherán",
+    "website": "https://www.ffiri.ir"
+  },
+  "confederation": "AFC",
+  "fifa_ranking": {
+    "current": 22,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Adidas",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/iran.png",
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#239F40",
+        "description": "Camiseta blanca con detalles verdes y rojos, los colores del Team Melli.",
+        "alt_text": "Camiseta titular Irán Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#DA0000",
+        "secondary_color": "#FFFFFF",
+        "description": "Equipación visitante en rojo. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Irán Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "Los colores oficiales del Team Melli (blanco principal) datan de 1948. Verde, blanco y rojo son los colores de la bandera persa, símbolo histórico desde la dinastía Qajar.",
+        "source": "FFIRI + Wikipedia",
+        "verified_at": "2026-04-29",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Irán clasificó como 1ª del Grupo A de la 3ª ronda AFC con 23 puntos (7G 2E 1P), GF 17 GC 5. Aseguró el pase faltando 2 jornadas tras empatar 0-0 con Uzbekistán el 25 marzo 2025. Mehdi Taremi (Inter Milán) y Sardar Azmoun (Shabab Al-Ahli) lideraron la ofensiva. Es su 7ª participación mundialista y la 4ª CONSECUTIVA (2014-2018-2022-2026, récord histórico iraní). En el Grupo G del Mundial con Bélgica, Egipto y Nueva Zelanda.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias AFC Mundial 2026 — 3ª ronda Grupo A",
+      "format": "Liguilla todos contra todos · 6 equipos (Irán, Uzbekistán, UAE, Catar, Kirguistán, Corea del Norte) · 10 partidos",
+      "duration": "Septiembre 2024 — Junio 2025",
+      "final_position": 1,
+      "total_teams_in_group": 6,
+      "stats": {
+        "played": 10,
+        "won": 7,
+        "drawn": 2,
+        "lost": 1,
+        "goals_for": 17,
+        "goals_against": 5,
+        "goal_difference": 12,
+        "points": 23,
+        "win_percentage": 70,
+        "clean_sheets": 6,
+        "notes": "Mejor resultado AFC junto a Japón. Solo 1 derrota (vs UAE como visitante) y 5 GC."
+      },
+      "coach_during_qualifying": "Amir Ghalenoei",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2024-09-05",
+          "home": {
+            "iso": "ir",
+            "name": "Irán",
+            "score": 1
+          },
+          "away": {
+            "iso": "kg",
+            "name": "Kirguistán",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Estadio Azadi",
+            "city": "Teherán",
+            "country_iso": "ir"
+          },
+          "goals_arg": [
+            {
+              "player": "Sardar Azmoun",
+              "minute": "62'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 2,
+          "date": "2024-09-10",
+          "home": {
+            "iso": "ae",
+            "name": "UAE",
+            "score": 0
+          },
+          "away": {
+            "iso": "ir",
+            "name": "Irán",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Mohammed bin Zayed Stadium",
+            "city": "Abu Dabi",
+            "country_iso": "ae"
+          },
+          "goals_arg": [
+            {
+              "player": "Mehdi Taremi",
+              "minute": "55'",
+              "type": "penalty"
+            }
+          ]
+        },
+        {
+          "matchday": 3,
+          "date": "2024-10-10",
+          "home": {
+            "iso": "ir",
+            "name": "Irán",
+            "score": 4
+          },
+          "away": {
+            "iso": "kp",
+            "name": "Corea del Norte",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Estadio Azadi",
+            "city": "Teherán",
+            "country_iso": "ir"
+          },
+          "goals_arg": [
+            {
+              "player": "Mehdi Taremi",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Sardar Azmoun",
+              "minute": "44'",
+              "type": "goal"
+            },
+            {
+              "player": "Mehdi Taremi",
+              "minute": "66'",
+              "type": "goal"
+            },
+            {
+              "player": "Mohammad Mohebi",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 4,
+          "date": "2024-10-15",
+          "home": {
+            "iso": "qa",
+            "name": "Catar",
+            "score": 1
+          },
+          "away": {
+            "iso": "ir",
+            "name": "Irán",
+            "score": 4
+          },
+          "venue": {
+            "stadium": "Estadio Jassim Bin Hamad",
+            "city": "Doha",
+            "country_iso": "qa"
+          },
+          "goals_arg": [
+            {
+              "player": "Mehdi Taremi",
+              "minute": "15'",
+              "type": "goal"
+            },
+            {
+              "player": "Mohammad Mohebi",
+              "minute": "33'",
+              "type": "goal"
+            },
+            {
+              "player": "Sardar Azmoun",
+              "minute": "60'",
+              "type": "goal"
+            },
+            {
+              "player": "Alireza Jahanbakhsh",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 5,
+          "date": "2024-11-14",
+          "home": {
+            "iso": "ir",
+            "name": "Irán",
+            "score": 0
+          },
+          "away": {
+            "iso": "uz",
+            "name": "Uzbekistán",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Estadio Azadi",
+            "city": "Teherán",
+            "country_iso": "ir"
+          },
+          "goals_arg": []
+        },
+        {
+          "matchday": 6,
+          "date": "2024-11-19",
+          "home": {
+            "iso": "kg",
+            "name": "Kirguistán",
+            "score": 2
+          },
+          "away": {
+            "iso": "ir",
+            "name": "Irán",
+            "score": 3
+          },
+          "venue": {
+            "stadium": "Estadio Dolen Omurzakov",
+            "city": "Biskek",
+            "country_iso": "kg"
+          },
+          "goals_arg": [
+            {
+              "player": "Mehdi Taremi",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Sardar Azmoun",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Alireza Jahanbakhsh",
+              "minute": "80'",
+              "type": "penalty"
+            }
+          ]
+        },
+        {
+          "matchday": 7,
+          "date": "2025-03-20",
+          "home": {
+            "iso": "ir",
+            "name": "Irán",
+            "score": 2
+          },
+          "away": {
+            "iso": "ae",
+            "name": "UAE",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Estadio Azadi",
+            "city": "Teherán",
+            "country_iso": "ir"
+          },
+          "goals_arg": [
+            {
+              "player": "Mehdi Taremi",
+              "minute": "40'",
+              "type": "goal"
+            },
+            {
+              "player": "Mehdi Ghayedi",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 8,
+          "date": "2025-03-25",
+          "home": {
+            "iso": "uz",
+            "name": "Uzbekistán",
+            "score": 0
+          },
+          "away": {
+            "iso": "ir",
+            "name": "Irán",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Milliy Stadium",
+            "city": "Tashkent",
+            "country_iso": "uz"
+          },
+          "goals_arg": [],
+          "notes": "EMPATE QUE SELLÓ EL PASE AL MUNDIAL. Faltando 2 jornadas, Irán clasificó al Mundial 2026 (7ª participación, 4ª consecutiva).",
+          "is_decisive_match": true
+        },
+        {
+          "matchday": 9,
+          "date": "2025-06-05",
+          "home": {
+            "iso": "ir",
+            "name": "Irán",
+            "score": 2
+          },
+          "away": {
+            "iso": "qa",
+            "name": "Catar",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Estadio Azadi",
+            "city": "Teherán",
+            "country_iso": "ir"
+          },
+          "goals_arg": [
+            {
+              "player": "Sardar Azmoun",
+              "minute": "40'",
+              "type": "goal"
+            },
+            {
+              "player": "Mehdi Taremi",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 10,
+          "date": "2025-06-10",
+          "home": {
+            "iso": "kp",
+            "name": "Corea del Norte",
+            "score": 0
+          },
+          "away": {
+            "iso": "ir",
+            "name": "Irán",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Laos National Stadium",
+            "city": "Vientián (sede neutral)",
+            "country_iso": "la"
+          },
+          "goals_arg": [],
+          "notes": "Empate sin goles. Cierre de eliminatoria con 23 pts."
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Mehdi Taremi",
+          "goals": 6,
+          "notes": "Inter Milán. Capitán ofensivo, máximo goleador del ciclo."
+        },
+        {
+          "player": "Sardar Azmoun",
+          "goals": 4,
+          "notes": "Shabab Al-Ahli (Emiratos)."
+        },
+        {
+          "player": "Mohammad Mohebi",
+          "goals": 2
+        },
+        {
+          "player": "Alireza Jahanbakhsh",
+          "goals": 2
+        },
+        {
+          "player": "Mehdi Ghayedi",
+          "goals": 1
+        },
+        {
+          "player": "Otros (2)",
+          "goals": 2
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_4",
+        "reason": "Goleada 4-1 a Catar en Doha. Mostró el dominio iraní fuera de casa. Doblete de Taremi, Mohebi, Azmoun, Jahanbakhsh."
+      },
+      "worst_match": {
+        "match_ref": "matchday_5",
+        "reason": "Empate 0-0 con Uzbekistán en Teherán. Punto cedido en casa que aplazó la clasificación."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_8",
+        "reason": "Empate 0-0 con Uzbekistán en Tashkent el 25 mar 2025. Selló pase al Mundial 2026 con 2 jornadas pendientes (7ª participación, 4ª consecutiva)."
+      }
+    },
+    "group_2026": {
+      "letter": "G",
+      "label": "Grupo G — Bélgica, Egipto, Irán y Nueva Zelanda",
+      "teams": [
+        {
+          "iso": "be",
+          "name": "Bélgica",
+          "fifa_rank": null
+        },
+        {
+          "iso": "nz",
+          "name": "N. Zelanda",
+          "fifa_rank": null
+        },
+        {
+          "iso": "eg",
+          "name": "Egipto",
+          "fifa_rank": null
+        },
+        {
+          "iso": "ir",
+          "name": "Irán",
+          "fifa_rank": null,
+          "is_seed": false
+        }
+      ],
+      "notes": "Grupo G confirmado en sorteo del 5 dic 2025. Irán es 2º cabeza de serie del bombo después de Bélgica."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "eg",
+          "name": "Egipto"
+        },
+        "date": "2026-06-14",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "BMO Field",
+          "city": "Toronto",
+          "country_iso": "ca"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "be",
+          "name": "Bélgica"
+        },
+        "date": "2026-06-22",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "Levi's Stadium",
+          "city": "Bay Area",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "nz",
+          "name": "N. Zelanda"
+        },
+        "date": "2026-06-29",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "Estadio BBVA",
+          "city": "Monterrey",
+          "country_iso": "mx"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — FFIRI aún no anunció]",
+      "country": "Estados Unidos / México",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Amir Ghalenoei",
+      "age": 62,
+      "nationality": "Irán",
+      "since": "2023-03-13",
+      "previous_teams": [
+        "Sepahan FC (2018-2023, 2 títulos Liga Profesional Iraní)",
+        "Esteghlal (2007-2009, 2014-2017)",
+        "Irán (2006-2007)"
+      ],
+      "profile_summary": "Iraní, 62 años. 2º paso al frente de la selección (1er paso 2006-2007). Ex-volante y campeón con Esteghlal. Asumió en marzo 2023 tras la salida de Carlos Queiroz. Identidad táctica: 4-3-3 ofensivo, presión alta, transiciones con Taremi como referencia. Logró clasificar a Irán 2 jornadas antes del fin con dominio absoluto.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Amir_Ghalenoei_13981122001725637170554617050063.jpg/330px-Amir_Ghalenoei_13981122001725637170554617050063.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Amir_Ghalenoei"
+      }
+    },
+    "captain": {
+      "name": "Ehsan Hajsafi",
+      "club": "AEK Atenas",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/%D9%86%D8%B4%D8%B3%D8%AA_%D8%AE%D8%A8%D8%B1%DB%8C_%D9%BE%DB%8C%D8%B4_%D8%A7%D8%B2_%D8%A8%D8%A7%D8%B2%DB%8C_%D8%A7%DB%8C%D8%B1%D8%A7%D9%86_%D9%88_%D8%A7%D9%86%DA%AF%D9%84%DB%8C%D8%B3_%2826%29_%28cropped%29.jpg/330px-%D9%86%D8%B4%D8%B3%D8%AA_%D8%AE%D8%A8%D8%B1%DB%8C_%D9%BE%DB%8C%D8%B4_%D8%A7%D8%B2_%D8%A8%D8%A7%D8%B2%DB%8C_%D8%A7%DB%8C%D8%B1%D8%A7%D9%86_%D9%88_%D8%A7%D9%86%DA%AF%D9%84%DB%8C%D8%B3_%2826%29_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Ehsan_Hajsafi"
+      }
+    },
+    "star_player": {
+      "name": "Mehdi Taremi",
+      "club": "Inter Milán",
+      "reason": "Delantero del Inter Milán (Serie A). 33 años, llega a su 3er Mundial siendo MÁXIMO GOLEADOR DEL CICLO con 6 dianas. Top scorer histórico de la selección iraní (50+ goles). Potencia, asistencias, juego asociativo. Champions League finalista 2023 con Porto.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Iran_-_Japan%2C_AFC_Asian_Cup_2019_42_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Mehdi_Taremi"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "alireza-beiranvand",
+        "full_name": "Alireza Beiranvand",
+        "display_name": "Alireza Beiranvand",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Tractor SC",
+          "country_iso": "ir",
+          "league": "Persian Gulf Pro League"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/CHN%26IRN_2019_AFC_Asian_Cup_14.jpg/330px-CHN%26IRN_2019_AFC_Asian_Cup_14.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Alireza_Beiranvand"
+        }
+      },
+      {
+        "id": "payam-niazmand",
+        "full_name": "Payam Niazmand",
+        "display_name": "Payam Niazmand",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Sepahan",
+          "country_iso": "ir",
+          "league": "Persian Gulf Pro League"
+        },
+        "shirt_number_expected": 12,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Payam_Niazmand%2C_Esteghlal_vs._Sepahan.jpg/330px-Payam_Niazmand%2C_Esteghlal_vs._Sepahan.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Payam_Niazmand"
+        }
+      },
+      {
+        "id": "amir-abedzadeh",
+        "full_name": "Amir Abedzadeh",
+        "display_name": "Amir Abedzadeh",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Mirandés",
+          "country_iso": "es",
+          "league": "La Liga 2"
+        },
+        "shirt_number_expected": 23,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Amir_Abedzadeh_in_Iran_national_football_team.jpg/330px-Amir_Abedzadeh_in_Iran_national_football_team.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Amir_Abedzadeh"
+        }
+      },
+      {
+        "id": "ramin-rezaeian",
+        "full_name": "Ramin Rezaeian",
+        "display_name": "Ramin Rezaeian",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Sepahan",
+          "country_iso": "ir",
+          "league": "Persian Gulf Pro League"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/IRN-JPN_20190128_Bolourian_3.jpg/330px-IRN-JPN_20190128_Bolourian_3.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ramin_Rezaeian"
+        }
+      },
+      {
+        "id": "sadegh-moharrami",
+        "full_name": "Sadegh Moharrami",
+        "display_name": "Sadegh Moharrami",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Persepolis",
+          "country_iso": "ir",
+          "league": "Persian Gulf Pro League"
+        },
+        "shirt_number_expected": 14,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Sadegh_Moharrami_ACL_2018.jpg/330px-Sadegh_Moharrami_ACL_2018.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Sadegh_Moharrami"
+        }
+      },
+      {
+        "id": "shojae-khalilzadeh",
+        "full_name": "Shojae Khalilzadeh",
+        "display_name": "Shojae Khalilzadeh",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Tractor SC",
+          "country_iso": "ir",
+          "league": "Persian Gulf Pro League"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Iran_football_award_winners_2019_006_%28cropped%29.jpg/330px-Iran_football_award_winners_2019_006_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Shojae_Khalilzadeh"
+        }
+      },
+      {
+        "id": "majid-hosseini",
+        "full_name": "Majid Hosseini",
+        "display_name": "Majid Hosseini",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Esteghlal",
+          "country_iso": "ir",
+          "league": "Persian Gulf Pro League"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Majid_Hosseini_2018.jpg/330px-Majid_Hosseini_2018.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Majid_Hosseini"
+        }
+      },
+      {
+        "id": "morteza-pouraliganji",
+        "full_name": "Morteza Pouraliganji",
+        "display_name": "Morteza Pouraliganji",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Persepolis",
+          "country_iso": "ir",
+          "league": "Persian Gulf Pro League"
+        },
+        "shirt_number_expected": 15,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Iran-Morocco_by_soccer.ru_8.jpg/330px-Iran-Morocco_by_soccer.ru_8.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Morteza_Pouraliganji"
+        }
+      },
+      {
+        "id": "aref-aghasi",
+        "full_name": "Aref Aghasi",
+        "display_name": "Aref Aghasi",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Sepahan",
+          "country_iso": "ir",
+          "league": "Persian Gulf Pro League"
+        },
+        "shirt_number_expected": 22,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Esteghlal_FC_in_training%2C_29_September_2021_-_08.jpg/330px-Esteghlal_FC_in_training%2C_29_September_2021_-_08.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Aref_Aghasi"
+        }
+      },
+      {
+        "id": "milad-mohammadi",
+        "full_name": "Milad Mohammadi",
+        "display_name": "Milad Mohammadi",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Persepolis",
+          "country_iso": "ir",
+          "league": "Persian Gulf Pro League"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Milad_Mohammadi_2017.jpg/330px-Milad_Mohammadi_2017.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Milad_Mohammadi"
+        }
+      },
+      {
+        "id": "ehsan-hajsafi",
+        "full_name": "Ehsan Hajsafi",
+        "display_name": "Ehsan Hajsafi",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "AEK Atenas",
+          "country_iso": "gr",
+          "league": "Super League griega"
+        },
+        "shirt_number_expected": 13,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/%D9%86%D8%B4%D8%B3%D8%AA_%D8%AE%D8%A8%D8%B1%DB%8C_%D9%BE%DB%8C%D8%B4_%D8%A7%D8%B2_%D8%A8%D8%A7%D8%B2%DB%8C_%D8%A7%DB%8C%D8%B1%D8%A7%D9%86_%D9%88_%D8%A7%D9%86%DA%AF%D9%84%DB%8C%D8%B3_%2826%29_%28cropped%29.jpg/330px-%D9%86%D8%B4%D8%B3%D8%AA_%D8%AE%D8%A8%D8%B1%DB%8C_%D9%BE%DB%8C%D8%B4_%D8%A7%D8%B2_%D8%A8%D8%A7%D8%B2%DB%8C_%D8%A7%DB%8C%D8%B1%D8%A7%D9%86_%D9%88_%D8%A7%D9%86%DA%AF%D9%84%DB%8C%D8%B3_%2826%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ehsan_Hajsafi"
+        }
+      },
+      {
+        "id": "saeid-ezatolahi",
+        "full_name": "Saeid Ezatolahi",
+        "display_name": "Saeid Ezatolahi",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Lecce",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Saeid_Ezatolahi_at_Iran_training_2018.jpg/330px-Saeid_Ezatolahi_at_Iran_training_2018.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Saeid_Ezatolahi"
+        }
+      },
+      {
+        "id": "ahmad-nourollahi",
+        "full_name": "Ahmad Nourollahi",
+        "display_name": "Ahmad Nourollahi",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Shabab Al-Ahli",
+          "country_iso": "ae",
+          "league": "UAE Pro League"
+        },
+        "shirt_number_expected": 16,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Tehran_derby_30_03_2019_4.jpg/330px-Tehran_derby_30_03_2019_4.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ahmad_Nourollahi"
+        }
+      },
+      {
+        "id": "alireza-jahanbakhsh",
+        "full_name": "Alireza Jahanbakhsh",
+        "display_name": "Alireza Jahanbakhsh",
+        "position": "MID",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Heerenveen",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2826%29_%28cropped%29.jpg/330px-2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2826%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Alireza_Jahanbakhsh"
+        }
+      },
+      {
+        "id": "saman-ghoddos",
+        "full_name": "Saman Ghoddos",
+        "display_name": "Saman Ghoddos",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Karagümrük",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Saman_Ghoddos_-_2018_FIFA_World_Cup.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Saman_Ghoddos"
+        }
+      },
+      {
+        "id": "omid-noorafkan",
+        "full_name": "Omid Noorafkan",
+        "display_name": "Omid Noorafkan",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Sepahan",
+          "country_iso": "ir",
+          "league": "Persian Gulf Pro League"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Omid_Noorafkan_in_Esteghlal_training_2018-02-28_01.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Omid_Noorafkan"
+        }
+      },
+      {
+        "id": "saeid-sadeghi",
+        "full_name": "Saeid Sadeghi",
+        "display_name": "Saeid Sadeghi",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Sepahan",
+          "country_iso": "ir",
+          "league": "Persian Gulf Pro League"
+        },
+        "shirt_number_expected": 18,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Persepolis_v_Havadar%2C_5_September_2022_12.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Saeid_Sadeghi"
+        }
+      },
+      {
+        "id": "mehdi-taremi",
+        "full_name": "Mehdi Taremi",
+        "display_name": "Mehdi Taremi",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Inter Milán",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Iran_-_Japan%2C_AFC_Asian_Cup_2019_42_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mehdi_Taremi"
+        }
+      },
+      {
+        "id": "sardar-azmoun",
+        "full_name": "Sardar Azmoun",
+        "display_name": "Sardar Azmoun",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Shabab Al-Ahli",
+          "country_iso": "ae",
+          "league": "UAE Pro League"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Sardar_Azmoun_-_IRN_vs_USA_-_FIFA_WC_2022.jpg/330px-Sardar_Azmoun_-_IRN_vs_USA_-_FIFA_WC_2022.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Sardar_Azmoun"
+        }
+      },
+      {
+        "id": "mohammad-mohebi",
+        "full_name": "Mohammad Mohebi",
+        "display_name": "Mohammad Mohebi",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Rostov",
+          "country_iso": "ru",
+          "league": "Premier rusa"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Mohammad_Mohebi.jpg/330px-Mohammad_Mohebi.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mohammad_Mohebi"
+        }
+      },
+      {
+        "id": "mehdi-ghayedi",
+        "full_name": "Mehdi Ghayedi",
+        "display_name": "Mehdi Ghayedi",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Ittihad Kalba",
+          "country_iso": "ae",
+          "league": "UAE Pro League"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Esteghlal_FC_vs_Tractor_FC%2C_18_May_2023_-_04.jpg/330px-Esteghlal_FC_vs_Tractor_FC%2C_18_May_2023_-_04.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mehdi_Ghayedi"
+        }
+      },
+      {
+        "id": "kaveh-rezaei",
+        "full_name": "Kaveh Rezaei",
+        "display_name": "Kaveh Rezaei",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Esteghlal",
+          "country_iso": "ir",
+          "league": "Persian Gulf Pro League"
+        },
+        "shirt_number_expected": 20,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Kaveh_Rezaei_2.jpg/330px-Kaveh_Rezaei_2.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Kaveh_Rezaei"
+        }
+      },
+      {
+        "id": "shahriar-moghanlou",
+        "full_name": "Shahriar Moghanlou",
+        "display_name": "Shahriar Moghanlou",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Sepahan",
+          "country_iso": "ir",
+          "league": "Persian Gulf Pro League"
+        },
+        "shirt_number_expected": 21,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Shahriyar_Moghanlou_14000129000016637543017694769152.jpg/330px-Shahriyar_Moghanlou_14000129000016637543017694769152.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Shahriyar_Moghanlou"
+        }
+      },
+      {
+        "id": "yasin-salmani",
+        "full_name": "Yasin Salmani",
+        "display_name": "Yasin Salmani",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Tractor SC",
+          "country_iso": "ir",
+          "league": "Persian Gulf Pro League"
+        },
+        "shirt_number_expected": 24,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Yasin_Salmani_playing_for_Sepahan_in_2021_%28cropped%29.jpg/330px-Yasin_Salmani_playing_for_Sepahan_in_2021_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Yasin_Salmani"
+        }
+      },
+      {
+        "id": "mohammad-karimi",
+        "full_name": "Mohammad Karimi",
+        "display_name": "Mohammad Karimi",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Sepahan",
+          "country_iso": "ir",
+          "league": "Persian Gulf Pro League"
+        },
+        "shirt_number_expected": 25,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Mohammad_Karimi.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mohammad_Karimi"
+        }
+      },
+      {
+        "id": "abolfazl-jalali",
+        "full_name": "Abolfazl Jalali",
+        "display_name": "Abolfazl Jalali",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Esteghlal",
+          "country_iso": "ir",
+          "league": "Persian Gulf Pro League"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Abolfazl_Jalali%2C_Esteghlal_FC_vs_Shahr_Khodro_FC%2C_9_May_2022.jpg/330px-Abolfazl_Jalali%2C_Esteghlal_FC_vs_Shahr_Khodro_FC%2C_9_May_2022.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Abolfazl_Jalali"
+        }
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-3-3",
+      "players": [
+        {
+          "player_id": "alireza-beiranvand",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "ramin-rezaeian",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "shojae-khalilzadeh",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "majid-hosseini",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "ehsan-hajsafi",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "saeid-ezatolahi",
+          "position": {
+            "x": 50,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "ahmad-nourollahi",
+          "position": {
+            "x": 70,
+            "y": 50
+          }
+        },
+        {
+          "player_id": "saman-ghoddos",
+          "position": {
+            "x": 30,
+            "y": 50
+          }
+        },
+        {
+          "player_id": "alireza-jahanbakhsh",
+          "position": {
+            "x": 80,
+            "y": 25
+          }
+        },
+        {
+          "player_id": "mehdi-taremi",
+          "position": {
+            "x": 50,
+            "y": 12
+          }
+        },
+        {
+          "player_id": "sardar-azmoun",
+          "position": {
+            "x": 20,
+            "y": 25
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Ghalenoei plantea un 4-3-3 vertical: defensa zonal compacta con 2 centrales fuertes, doble pivote (Ezatolahi + Nourollahi), tridente Jahanbakhsh-Taremi-Azmoun. Identidad: presión alta, transiciones rápidas, balones largos a Taremi (referencia ofensiva). Defensa fuerte en casa (estadio Azadi a 1.273m de altura).",
+      "strengths": [
+        "MEHDI TAREMI: '9' top, Inter Milán Serie A. Champions League finalista 2023 con Porto. 50+ goles internacionales.",
+        "SARDAR AZMOUN: ex-Bayer Leverkusen y Roma. Compañero ideal de Taremi. Rapidez y gol.",
+        "JAHANBAKHSH: Heerenveen, ex-Brighton. Velocidad y regate por banda derecha.",
+        "Defensa: experiencia con Hajsafi (AEK), Khalilzadeh (Tractor), centrales de Persepolis.",
+        "Estadio Azadi (Teherán, 78.000): UNO DE LOS MÁS DIFÍCILES del mundo (altura, ambiente).",
+        "Plantel con experiencia europea: Inter, Lecce, AEK, Heerenveen, Karagümrük."
+      ],
+      "weaknesses": [
+        "RÉCORD MUNDIALISTA HISTÓRICO POBRE: nunca pasó de fase de grupos en 6 participaciones.",
+        "EDAD: Taremi 33, Azmoun 31, Hajsafi 35. Generación envejecida.",
+        "Plantel mayoritariamente local (12+ en Persian Gulf League): poca exposición top.",
+        "Política internacional: complicaciones VISADO/SEDES por sanciones a Irán.",
+        "Pegada irregular: 17 GF en 10 partidos (mucho empate).",
+        "Ghalenoei 2º intento al frente: 1er ciclo 2006-2007 fue mediocre."
+      ],
+      "x_factor": {
+        "player": "Mehdi Taremi",
+        "reason": "El '9' del Inter Milán (33 años) llega a su POSIBLE ÚLTIMO MUNDIAL siendo el LÍDER ABSOLUTO ofensivo. 50+ goles internacionales. Si rinde a su nivel Serie A, Irán puede pasar de octavos por 1ª vez en la historia."
+      },
+      "prediction_text": "Irán llega al Grupo G con Bélgica (favorita), Egipto y Nueva Zelanda. Pasar a octavos sería gesta histórica (nunca lo lograron). Plantel sólido + Taremi top + Azmoun = ilusión real. Pelearán 2º puesto con Egipto.",
+      "probabilities": {
+        "advance_groups": 50,
+        "round_of_32": 45,
+        "round_of_16": 20,
+        "quarter_finals": 5,
+        "semi_finals": 1,
+        "final": 0,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Brasil 2014: fase de grupos. Rusia 2018: fase de grupos. Catar 2022: fase de grupos (con triunfo ÉPICO 2-0 a Gales). Mundial 2026: 7ª participación, 4ª CONSECUTIVA (récord histórico iraní). 1978, 1998, 2006, 2014, 2018, 2022, 2026."
+    }
+  },
+  "history": {
+    "first_appearance": 1978,
+    "appearances_count_before_2026": 6,
+    "appearances_count_with_2026": 7,
+    "consecutive_streak_since": 2014,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 0,
+    "best_result": "Fase de grupos (6 participaciones).",
+    "aggregate_stats_through_2022": {
+      "played": 18,
+      "won": 3,
+      "drawn": 4,
+      "lost": 11,
+      "goals_for": 13,
+      "goals_against": 25,
+      "win_percentage": 16.7,
+      "notes": "18 partidos en 6 Mundiales. NUNCA pasó de fase de grupos. Mejor papel: 9 puntos en 2014 (no fue suficiente)."
+    },
+    "by_world_cup": [
+      {
+        "year": 1978,
+        "host": {
+          "countries": [
+            "Argentina"
+          ],
+          "iso": [
+            "ar"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Heshmat Mohajerani",
+        "captain": "Ali Parvin",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Iraj Danaeifard",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 8,
+        "notable_facts": [
+          "DEBUT mundialista absoluto.",
+          "Empate 1-1 con Escocia.",
+          "Cayó 0-3 con Holanda y 1-4 con Perú."
+        ],
+        "narrative": "Irán debutó en Mundiales en Argentina 78. Empate histórico 1-1 con Escocia (gol de Danaeifard). Adiós en grupos."
+      },
+      {
+        "year": 1998,
+        "host": {
+          "countries": [
+            "Francia"
+          ],
+          "iso": [
+            "fr"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Jalal Talebi",
+        "captain": "Ahmad Reza Abedzadeh",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Hamid Estili",
+            "goals": 1
+          },
+          {
+            "player": "Mehdi Mahdavikia",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "VICTORIA HISTÓRICA 2-1 a USA.",
+          "Cayó 0-1 con Yugoslavia y 0-2 con Alemania."
+        ],
+        "narrative": "Mundial cargado de simbolismo. Irán VENCIÓ A USA 2-1 (Estili 40', Mahdavikia 84') por la rivalidad geopolítica. 1ª victoria iraní en Mundiales."
+      },
+      {
+        "year": 2006,
+        "host": {
+          "countries": [
+            "Alemania"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Branko Ivanković",
+        "captain": "Mehdi Mahdavikia",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Ali Karimi",
+            "goals": 1
+          },
+          {
+            "player": "Yahya Golmohammadi",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Cayó 1-3 con México y Portugal.",
+          "Empate 1-1 con Angola."
+        ],
+        "narrative": "Mundial discreto en Alemania. Plantel con Karimi, Mahdavikia, Ali Daei. Adiós."
+      },
+      {
+        "year": 2014,
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Carlos Queiroz",
+        "captain": "Javad Nekounam",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Reza Ghoochannejhad",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 1,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "Empate 0-0 con Nigeria.",
+          "Cayó 0-1 con Argentina (gol Messi 91').",
+          "0-3 con Bosnia."
+        ],
+        "narrative": "Mundial defensivo de Queiroz. Aguantó hasta 91' con Messi (gol de exquisita ejecución). Solo 1 gol en 3 partidos."
+      },
+      {
+        "year": 2018,
+        "host": {
+          "countries": [
+            "Rusia"
+          ],
+          "iso": [
+            "ru"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Carlos Queiroz",
+        "captain": "Masoud Shojaei",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Karim Ansarifard",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 2,
+        "notable_facts": [
+          "VICTORIA 1-0 a MARRUECOS (autogol Bouhaddouz 95').",
+          "Empate 1-1 con Portugal (gol Ansarifard 93').",
+          "Cayó 0-1 con España."
+        ],
+        "narrative": "Mundial cerca de la gloria. 1-0 a Marruecos al 95'. 1-1 con Portugal (Cristiano falló penal). 0-1 con España (autogol). 4 puntos pero NO PASÓ por diferencia."
+      },
+      {
+        "year": 2022,
+        "host": {
+          "countries": [
+            "Catar"
+          ],
+          "iso": [
+            "qa"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Carlos Queiroz",
+        "captain": "Ehsan Hajsafi",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Mehdi Taremi",
+            "goals": 2
+          },
+          {
+            "player": "Roozbeh Cheshmi",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 7,
+        "notable_facts": [
+          "Cayó 2-6 con Inglaterra (Taremi doblete).",
+          "VICTORIA 2-0 A GALES (Cheshmi 98', Rezaeian 101').",
+          "Cayó 0-1 con USA."
+        ],
+        "narrative": "Mundial controvertido. Cayó 2-6 con Inglaterra (Taremi doblete). VENCIÓ 2-0 a Gales con goles al 98' y 101'. 0-1 con USA por gol de Pulisic. Adiós en grupos."
+      }
+    ],
+    "palmares": [
+      {
+        "competition": "Copa Asia",
+        "year": 1968,
+        "position": "Campeón",
+        "host": "Irán"
+      },
+      {
+        "competition": "Copa Asia",
+        "year": 1972,
+        "position": "Campeón",
+        "host": "Tailandia"
+      },
+      {
+        "competition": "Copa Asia",
+        "year": 1976,
+        "position": "Campeón",
+        "host": "Irán"
+      },
+      {
+        "competition": "Copa Asia",
+        "year": 2019,
+        "position": "Tercero",
+        "host": "UAE"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Ali Daei",
+      "value": 109,
+      "period": "1993-2006",
+      "notes": "MÁXIMO GOLEADOR HISTÓRICO. 1er jugador en 100 goles internacionales (record superado por Cristiano)."
+    },
+    "most_capped": {
+      "name": "Javad Nekounam",
+      "value": 151,
+      "period": "2000-2015",
+      "notes": "Récord histórico. Mediocampista, ex-Osasuna."
+    },
+    "youngest_debut": {
+      "name": "Sardar Azmoun",
+      "value": "19 años",
+      "period": "2014",
+      "notes": "Debutó en Mundial 2014."
+    },
+    "biggest_win": {
+      "result": "19-0",
+      "opponent": "Guam",
+      "date": "2000-11-24",
+      "competition": "Eliminatorias Copa Asia 2000"
+    },
+    "worst_loss": {
+      "result": "1-7",
+      "opponent": "Yugoslavia",
+      "date": "1973",
+      "competition": "Amistoso"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El 2-1 a USA en Francia 98",
+      "date": "1998-06-21",
+      "opponent": {
+        "iso": "us",
+        "name": "Estados Unidos"
+      },
+      "score": "2-1",
+      "competition": "Fase de Grupos Mundial 1998",
+      "narrative": "Irán VENCIÓ 2-1 a USA en Lyon en uno de los partidos MÁS POLÍTICAMENTE CARGADOS de la historia mundialista. Los iraníes regalaron flores antes del partido. ESTILI marcó al 40' (cabezazo). MAHDAVIKIA cerró 2-0 al 84'. Mark McBride descontó al 87'. Histórica victoria iraní."
+    },
+    {
+      "title": "El 2-0 a Gales 2022",
+      "date": "2022-11-25",
+      "opponent": {
+        "iso": "gb-wls",
+        "name": "Gales"
+      },
+      "score": "2-0",
+      "competition": "Fase de Grupos Mundial 2022",
+      "narrative": "Irán VENCIÓ 2-0 a GALES en Catar 2022. Cheshmi marcó al 98' (golazo desde fuera del área). RAMIN REZAEIAN cerró 2-0 al 101' (lob sobre Hennessey). Tarde dramática en el cierre del Mundial."
+    },
+    {
+      "title": "El 1-0 a Marruecos al 95'",
+      "date": "2018-06-15",
+      "opponent": {
+        "iso": "ma",
+        "name": "Marruecos"
+      },
+      "score": "1-0",
+      "competition": "Fase de Grupos Mundial 2018",
+      "narrative": "Irán venció 1-0 a Marruecos al MIN 95' con un AUTOGOL de Aziz Bouhaddouz tras córner. La 1ª victoria iraní en Mundiales en 20 años. Polémica inicial: Marruecos dominó el partido."
+    },
+    {
+      "title": "El 0-0 con Uzbekistán que selló el Mundial 2026",
+      "date": "2025-03-25",
+      "opponent": {
+        "iso": "uz",
+        "name": "Uzbekistán"
+      },
+      "score": "0-0",
+      "competition": "Eliminatoria AFC Mundial 2026",
+      "narrative": "Irán EMPATÓ 0-0 con Uzbekistán en Tashkent el 25 mar 2025 y CLASIFICÓ al Mundial 2026 con 2 jornadas pendientes. 7ª participación, 4ª CONSECUTIVA (récord histórico iraní)."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "Irán es la 1ª selección asiática en clasificar a 4 MUNDIALES CONSECUTIVOS (2014-2026). Récord histórico iraní. 7 participaciones totales: 1978, 1998, 2006, 2014, 2018, 2022, 2026.",
+      "source": "AFC + FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "ALI DAEI fue EL 1ER JUGADOR DE LA HISTORIA en marcar 100 GOLES INTERNACIONALES. Récord vigente hasta 2021 (Cristiano lo superó). Daei terminó con 109 goles iraníes.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "EL ESTADIO AZADI (Teherán, 78.116 plazas) está a 1.273 METROS DE ALTITUD. Es UNO DE LOS ESTADIOS MÁS DIFÍCILES del mundo: ambiente, altura y temperatura adversa para visitantes.",
+      "source": "FFIRI + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Irán es 3 veces CAMPEÓN DE LA COPA ASIA (1968, 1972, 1976) consecutivos. Tras 50 años sin levantar el trofeo, lleva décadas como uno de los gigantes históricos asiáticos.",
+      "source": "AFC + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Sardar Azmoun fue llamado 'El Messi Iraní' por su explosión inicial en Rusia (Rubin Kazán). Llegó a Bayer Leverkusen y Roma. Ha jugado más de 60 partidos con la selección.",
+      "source": "FFIRI + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Mehdi Taremi marcó UN HAT-TRICK EN CHAMPIONS LEAGUE con Porto vs Inter (2023, octavos). Fichó por Inter Milán en 2024 a costo cero. Finalista Champions 2023.",
+      "source": "UEFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "EL PARTIDO DE 1998 vs USA fue MÁS QUE FÚTBOL: tras la Revolución Islámica de 1979 (toma de la embajada de USA en Teherán), las tensiones diplomáticas eran máximas. Los iraníes regalaron flores blancas antes del partido como gesto de paz.",
+      "source": "FIFA + AS + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Iran! Iran!",
+      "Sorood-e Melli (himno)",
+      "Team Melli! Team Melli!"
+    ],
+    "main_rival": {
+      "iso": "sa",
+      "name": "Arabia Saudita",
+      "story": "Rivalidad MÁS INTENSA del fútbol asiático moderno. Han jugado más de 30 veces. Geopolítica: choque entre Persia (Irán) y árabes (Arabia). Cada cruce tiene fuerte carga histórica y religiosa (chiitas vs sunitas). Los recientes partidos no se juegan en Irán por sanciones."
+    },
+    "home_stadium": {
+      "name": "Estadio Azadi",
+      "capacity": 78116,
+      "city": "Teherán"
+    }
+  },
+  "seo": {
+    "meta_title": "Irán en el Mundial 2026 | Guía completa Team Melli",
+    "meta_description": "Irán Mundial 2026: plantel de Ghalenoei, Taremi, Azmoun, Hajsafi. Grupo G con Bélgica, Egipto y NZ. 7ª participación, 4ª consecutiva.",
+    "og_image_url": "/img/og/teams/iran.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Irán",
+      "alternateName": [
+        "Team Melli",
+        "Príncipes Persas"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "AFC"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Amir Ghalenoei"
+      },
+      "url": "https://www.zonamundial.app/selecciones/iran"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-29",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_de_AFC_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://www.tudn.com/mundial-2026/eliminatorias/mundial-2026-como-clasifican-selecciones-cada-confederacion",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/12545643/eliminatorias-asiaticas-asia-mundial-202-fechas-cupos-formato-fixture",
+      "https://www.ffiri.ir",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias 3ª ronda AFC cruzadas con TUDN + ESPN + Wikipedia. Stats: 23 pts (7G 2E 1P), 17 GF 5 GC. Plantel y formación validados con multiple sources.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "complete",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante Adidas: pendiente",
+      "Calendario fase grupos 2026: 3 fechas pendientes",
+      "Base de entrenamiento: FFIRI aún no anunció",
+      "FIFA Ranking #22: validar mes vigente",
+      "Goleadores específicos por partido: cruzar con FIFA",
+      "Edad coach Ghalenoei: validar fecha de nacimiento"
+    ]
+  }
+}

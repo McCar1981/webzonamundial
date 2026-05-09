@@ -1,0 +1,1630 @@
+{
+  "slug": "suiza",
+  "iso": "ch",
+  "iso3": "SUI",
+  "name_es": "Suiza",
+  "name_en": "Switzerland",
+  "name_local": "Schweiz / Suisse / Svizzera",
+  "nicknames": [
+    "Nati",
+    "La Roja",
+    "Schweizer Nati"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#FF0000",
+      "secondary": "#FFFFFF",
+      "tertiary": "#FFFFFF",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Berna",
+    "language_official": [
+      "Alemán",
+      "Francés",
+      "Italiano",
+      "Romanche"
+    ],
+    "population": 8780000,
+    "area_km2": 41285,
+    "timezone": "Europe/Zurich",
+    "continent": "Europa"
+  },
+  "federation": {
+    "name": "Schweizerischer Fussballverband / Association Suisse de Football",
+    "abbreviation": "SFV / ASF",
+    "founded": 1895,
+    "headquarters": "Berna",
+    "website": "https://www.football.ch"
+  },
+  "confederation": "UEFA",
+  "fifa_ranking": {
+    "current": 17,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Puma",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/suiza.png",
+        "back_url": null,
+        "primary_color": "#FF0000",
+        "secondary_color": "#FFFFFF",
+        "description": "Camiseta roja icónica con la cruz blanca en el escudo, símbolo nacional. Colores invertidos respecto a la bandera (cruz blanca sobre fondo rojo).",
+        "alt_text": "Camiseta titular Suiza Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#FF0000",
+        "description": "Equipación visitante en blanco. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Suiza Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "La camiseta suiza es la única de Europa donde los colores van invertidos respecto a la bandera (en la bandera, fondo rojo con cruz blanca; en la camiseta, fondo rojo con detalles blancos en cruz).",
+        "source": "SFV + Wikipedia",
+        "verified_at": "2026-04-29",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Suiza clasificó como 1ª del Grupo B INVICTA en su 6ª participación consecutiva en Mundiales (récord histórico). Cerró con empate 1-1 ante Kosovo en la última fecha. Bajo Murat Yakin, los 'Nati' siguieron mostrando solidez defensiva tradicional pero con el toque ofensivo de Embolo, Ndoye y Xhaka. Una eliminatoria sin Shaqiri, retirado tras la Eurocopa 2024.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias UEFA Mundial 2026 — Grupo B",
+      "format": "Liguilla todos contra todos · 4 equipos · 6 partidos · ida y vuelta",
+      "duration": "Septiembre 2025 — Noviembre 2025",
+      "final_position": 1,
+      "total_teams_in_group": 4,
+      "stats": {
+        "played": 6,
+        "won": 4,
+        "drawn": 2,
+        "lost": 0,
+        "goals_for": 14,
+        "goals_against": 1,
+        "goal_difference": 13,
+        "points": 14,
+        "win_percentage": 66.7,
+        "clean_sheets": 5
+      },
+      "coach_during_qualifying": "Murat Yakin",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2025-09-05",
+          "home": {
+            "iso": "ch",
+            "name": "Suiza",
+            "score": 4
+          },
+          "away": {
+            "iso": "se",
+            "name": "Suecia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "St. Jakob-Park",
+            "city": "Basilea",
+            "country_iso": "ch"
+          },
+          "goals_arg": [
+            {
+              "player": "Granit Xhaka",
+              "minute": "10'",
+              "type": "goal"
+            },
+            {
+              "player": "Breel Embolo",
+              "minute": "33'",
+              "type": "goal"
+            },
+            {
+              "player": "Dan Ndoye",
+              "minute": "57'",
+              "type": "goal"
+            },
+            {
+              "player": "Manuel Akanji",
+              "minute": "82'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 2,
+          "date": "2025-09-08",
+          "home": {
+            "iso": "si",
+            "name": "Eslovenia",
+            "score": 0
+          },
+          "away": {
+            "iso": "ch",
+            "name": "Suiza",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Stožice",
+            "city": "Liubliana",
+            "country_iso": "si"
+          },
+          "goals_arg": [],
+          "notes": "Empate sólido fuera de casa."
+        },
+        {
+          "matchday": 3,
+          "date": "2025-10-09",
+          "home": {
+            "iso": "ch",
+            "name": "Suiza",
+            "score": 4
+          },
+          "away": {
+            "iso": "xk",
+            "name": "Kosovo",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "St. Jakob-Park",
+            "city": "Basilea",
+            "country_iso": "ch"
+          },
+          "goals_arg": [
+            {
+              "player": "Breel Embolo",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Dan Ndoye",
+              "minute": "40'",
+              "type": "goal"
+            },
+            {
+              "player": "Granit Xhaka",
+              "minute": "65'",
+              "type": "penalty"
+            },
+            {
+              "player": "Ruben Vargas",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 4,
+          "date": "2025-10-12",
+          "home": {
+            "iso": "se",
+            "name": "Suecia",
+            "score": 0
+          },
+          "away": {
+            "iso": "ch",
+            "name": "Suiza",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Friends Arena",
+            "city": "Estocolmo",
+            "country_iso": "se"
+          },
+          "goals_arg": [
+            {
+              "player": "Granit Xhaka",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Breel Embolo",
+              "minute": "70'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 5,
+          "date": "2025-11-15",
+          "home": {
+            "iso": "ch",
+            "name": "Suiza",
+            "score": 3
+          },
+          "away": {
+            "iso": "si",
+            "name": "Eslovenia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "St. Jakob-Park",
+            "city": "Basilea",
+            "country_iso": "ch"
+          },
+          "goals_arg": [
+            {
+              "player": "Breel Embolo",
+              "minute": "15'",
+              "type": "goal"
+            },
+            {
+              "player": "Dan Ndoye",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Ruben Vargas",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Victoria que selló matemáticamente el primer puesto.",
+          "is_decisive_match": true
+        },
+        {
+          "matchday": 6,
+          "date": "2025-11-18",
+          "home": {
+            "iso": "xk",
+            "name": "Kosovo",
+            "score": 1
+          },
+          "away": {
+            "iso": "ch",
+            "name": "Suiza",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Fadil Vokrri",
+            "city": "Pristina",
+            "country_iso": "xk"
+          },
+          "goals_arg": [
+            {
+              "player": "Manuel Akanji",
+              "minute": "60'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Cierre con empate. Suiza terminó INVICTA con 14 puntos."
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Breel Embolo",
+          "goals": 4,
+          "notes": "Goleador del ciclo. Delantero de Mónaco."
+        },
+        {
+          "player": "Granit Xhaka",
+          "goals": 3,
+          "notes": "Capitán y motor del juego."
+        },
+        {
+          "player": "Dan Ndoye",
+          "goals": 3,
+          "notes": "Extremo del Bologna."
+        },
+        {
+          "player": "Manuel Akanji",
+          "goals": 2
+        },
+        {
+          "player": "Ruben Vargas",
+          "goals": 2
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_1",
+        "reason": "El 4-1 a Suecia en Basilea en el debut. Goleada cómoda con goles de cuatro jugadores diferentes."
+      },
+      "worst_match": {
+        "match_ref": "matchday_2",
+        "reason": "Empate 0-0 en Liubliana ante Eslovenia. Único partido sin gol del ciclo."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_5",
+        "reason": "El 3-0 a Eslovenia el 15 de noviembre selló matemáticamente el primer puesto del Grupo B y la clasificación al Mundial 2026."
+      }
+    },
+    "group_2026": {
+      "letter": "B",
+      "label": "Grupo B — junto a Canadá, Bosnia y Herzegovina, Catar",
+      "teams": [
+        {
+          "iso": "ca",
+          "name": "Canadá",
+          "fifa_rank": null
+        },
+        {
+          "iso": "qa",
+          "name": "Qatar",
+          "fifa_rank": null
+        },
+        {
+          "iso": "ba",
+          "name": "Bosnia",
+          "fifa_rank": null
+        },
+        {
+          "iso": "ch",
+          "name": "Suiza",
+          "fifa_rank": null,
+          "is_seed": false
+        }
+      ],
+      "notes": "Grupo B confirmado tras sorteo del 5 dic 2025 + repechajes. Suiza como segunda cabeza de bombo. Cruce sentimental con Bosnia (varios ex jugadores suizos tienen origen bosnio: Xhaka, Embolo, Akanji)."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "ba",
+          "name": "Bosnia"
+        },
+        "date": "2026-06-12",
+        "kickoff_local": "15:00",
+        "venue": {
+          "stadium": "Hard Rock Stadium",
+          "city": "Miami",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "ca",
+          "name": "Canadá"
+        },
+        "date": "2026-06-19",
+        "kickoff_local": "18:00",
+        "venue": {
+          "stadium": "BC Place",
+          "city": "Vancouver",
+          "country_iso": "ca"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "qa",
+          "name": "Qatar"
+        },
+        "date": "2026-06-27",
+        "kickoff_local": "15:00",
+        "venue": {
+          "stadium": "SoFi Stadium",
+          "city": "Los Ángeles",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — SFV aún no anunció]",
+      "country": "Canadá",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Murat Yakin",
+      "age": 51,
+      "nationality": "Suiza",
+      "since": "2021-08-09",
+      "previous_teams": [
+        "Schaffhausen (2019-2021)",
+        "Sion (2017)",
+        "Basel (2012-2014)",
+        "Lucerna (2009-2012)"
+      ],
+      "profile_summary": "Suizo de origen turco, ex jugador de Suiza (49 partidos, defensa central). DT desde agosto 2021. Identidad táctica: 4-2-3-1 sólido, defensa cerrada, transiciones rápidas. Llevó a Suiza a octavos en Catar 2022 y a cuartos en Eurocopa 2024 (eliminada por Inglaterra en penales). Su estilo pragmático ha generado paso firme y 6 mundiales consecutivos.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Spartak-Zrvena_%283%29.jpg/330px-Spartak-Zrvena_%283%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Murat_Yakin"
+      }
+    },
+    "captain": {
+      "name": "Granit Xhaka",
+      "club": "Sunderland",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Granit_Xhaka_%28cropped%29.jpg/330px-Granit_Xhaka_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Granit_Xhaka"
+      }
+    },
+    "star_player": {
+      "name": "Granit Xhaka",
+      "club": "Sunderland",
+      "reason": "Capitán histórico, motor del juego suizo. A los 33 años llega a su 4º Mundial. Tras dejar Bayer Leverkusen (campeón Bundesliga 2024) por el Sunderland inglés en 2025, sigue siendo referente absoluto. Líder de un equipo construido alrededor de su capacidad de organizar el juego.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Granit_Xhaka_%28cropped%29.jpg/330px-Granit_Xhaka_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Granit_Xhaka"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "yann-sommer",
+        "full_name": "Yann Sommer",
+        "display_name": "Yann Sommer",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Inter de Milán",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/03/Ser-Swi_%2818%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Yann_Sommer"
+        }
+      },
+      {
+        "id": "gregor-kobel",
+        "full_name": "Gregor Kobel",
+        "display_name": "Gregor Kobel",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Borussia Dortmund",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 12,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93090.jpg/330px-2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93090.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Gregor_Kobel"
+        }
+      },
+      {
+        "id": "jonas-omlin",
+        "full_name": "Jonas Omlin",
+        "display_name": "Jonas Omlin",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Borussia Mönchengladbach",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 21,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Jonas_Omlin_2019.jpg/330px-Jonas_Omlin_2019.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jonas_Omlin"
+        }
+      },
+      {
+        "id": "manuel-akanji",
+        "full_name": "Manuel Akanji",
+        "display_name": "Manuel Akanji",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Inter de Milán",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Ser-Swi_%2834%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Manuel_Akanji"
+        }
+      },
+      {
+        "id": "nico-elvedi",
+        "full_name": "Nico Elvedi",
+        "display_name": "Nico Elvedi",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Borussia Mönchengladbach",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Wales-Switzerland_match_at_Euro_2020_in_Baku_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Nico_Elvedi"
+        }
+      },
+      {
+        "id": "ricardo-rodriguez",
+        "full_name": "Ricardo Rodríguez",
+        "display_name": "Ricardo Rodríguez",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Real Betis",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 13,
+        "status": "fixed"
+      },
+      {
+        "id": "fabian-schar",
+        "full_name": "Fabian Schär",
+        "display_name": "Fabian Schär",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Newcastle",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 22,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Fabian_Sch%C3%A4r.jpg/330px-Fabian_Sch%C3%A4r.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Fabian_Sch%C3%A4r"
+        }
+      },
+      {
+        "id": "silvan-widmer",
+        "full_name": "Silvan Widmer",
+        "display_name": "Silvan Widmer",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Mainz 05",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/AUT_vs._SUI_2015-11-17_%28173%29_Silvan_Widmer.jpg/330px-AUT_vs._SUI_2015-11-17_%28173%29_Silvan_Widmer.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Silvan_Widmer"
+        }
+      },
+      {
+        "id": "kevin-mbabu",
+        "full_name": "Kevin Mbabu",
+        "display_name": "Kevin Mbabu",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Servette",
+          "country_iso": "ch",
+          "league": "Super League"
+        },
+        "shirt_number_expected": 16,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Kevin_Mbabu_Young_Boys.jpg/330px-Kevin_Mbabu_Young_Boys.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Kevin_Mbabu"
+        }
+      },
+      {
+        "id": "miro-muheim",
+        "full_name": "Miro Muheim",
+        "display_name": "Miro Muheim",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Hamburgo",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 18,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/2025-05-16_Hamburger_SV_Miro_Muheim.jpg/330px-2025-05-16_Hamburger_SV_Miro_Muheim.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Miro_Muheim"
+        }
+      },
+      {
+        "id": "granit-xhaka",
+        "full_name": "Granit Xhaka",
+        "display_name": "Granit Xhaka",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Sunderland",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Granit_Xhaka_%28cropped%29.jpg/330px-Granit_Xhaka_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Granit_Xhaka"
+        }
+      },
+      {
+        "id": "remo-freuler",
+        "full_name": "Remo Freuler",
+        "display_name": "Remo Freuler",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Bologna",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 15,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c6/RemoFreuler.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Remo_Freuler"
+        }
+      },
+      {
+        "id": "denis-zakaria",
+        "full_name": "Denis Zakaria",
+        "display_name": "Denis Zakaria",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Mónaco",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Zakaria_asse_asm_2425.png/330px-Zakaria_asse_asm_2425.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Denis_Zakaria"
+        }
+      },
+      {
+        "id": "ardon-jashari",
+        "full_name": "Ardon Jashari",
+        "display_name": "Ardon Jashari",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Club Brujas",
+          "country_iso": "be",
+          "league": "Pro League"
+        },
+        "shirt_number_expected": 8,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Ali_Maamar_RSCA_2025.jpg/330px-Ali_Maamar_RSCA_2025.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Ardon_Jashari"
+        }
+      },
+      {
+        "id": "fabian-rieder",
+        "full_name": "Fabian Rieder",
+        "display_name": "Fabian Rieder",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Stuttgart",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 19,
+        "status": "probable"
+      },
+      {
+        "id": "michel-aebischer",
+        "full_name": "Michel Aebischer",
+        "display_name": "Michel Aebischer",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Bologna",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 17,
+        "status": "probable"
+      },
+      {
+        "id": "breel-embolo",
+        "full_name": "Breel Embolo",
+        "display_name": "Breel Embolo",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Mónaco",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/2018-08-17_1._FC_Schweinfurt_05_vs._FC_Schalke_04_%28DFB-Pokal%29_by_Sandro_Halank%E2%80%93066_%28cropped%29.jpg/330px-2018-08-17_1._FC_Schweinfurt_05_vs._FC_Schalke_04_%28DFB-Pokal%29_by_Sandro_Halank%E2%80%93066_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Breel_Embolo"
+        }
+      },
+      {
+        "id": "dan-ndoye",
+        "full_name": "Dan Ndoye",
+        "display_name": "Dan Ndoye",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Bologna",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Lens_-_Nice_%2823-01-2021%29_52.jpg/330px-Lens_-_Nice_%2823-01-2021%29_52.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Dan_Ndoye"
+        }
+      },
+      {
+        "id": "ruben-vargas",
+        "full_name": "Ruben Vargas",
+        "display_name": "Ruben Vargas",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Sevilla",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed"
+      },
+      {
+        "id": "zeki-amdouni",
+        "full_name": "Zeki Amdouni",
+        "display_name": "Zeki Amdouni",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Benfica",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
+        },
+        "shirt_number_expected": 23,
+        "status": "probable"
+      },
+      {
+        "id": "noah-okafor",
+        "full_name": "Noah Okafor",
+        "display_name": "Noah Okafor",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Napoli",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 20,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/FC_RB_Salzburg_gegen_FK_Austria_Wien_%282022-04-24%29_68.jpg/330px-FC_RB_Salzburg_gegen_FK_Austria_Wien_%282022-04-24%29_68.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Noah_Okafor"
+        }
+      },
+      {
+        "id": "renato-steffen",
+        "full_name": "Renato Steffen",
+        "display_name": "Renato Steffen",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Lugano",
+          "country_iso": "ch",
+          "league": "Super League"
+        },
+        "shirt_number_expected": 25,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/YB_vs._FCL_-_Steffen_-_Doubai_1b.jpg/330px-YB_vs._FCL_-_Steffen_-_Doubai_1b.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Renato_Steffen"
+        }
+      },
+      {
+        "id": "filip-ugrinic",
+        "full_name": "Filip Ugrinic",
+        "display_name": "Filip Ugrinic",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Young Boys",
+          "country_iso": "ch",
+          "league": "Super League"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble"
+      },
+      {
+        "id": "leonidas-stergiou",
+        "full_name": "Leonidas Stergiou",
+        "display_name": "Stergiou",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Stuttgart",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 6,
+        "status": "probable"
+      },
+      {
+        "id": "becir-omeragic",
+        "full_name": "Becir Omeragic",
+        "display_name": "Omeragic",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Montpellier",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 24,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Omeragi%C4%87_asse_mhsc_2425.png/330px-Omeragi%C4%87_asse_mhsc_2425.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Be%C4%87ir_Omeragi%C4%87"
+        }
+      },
+      {
+        "id": "vincent-sierro",
+        "full_name": "Vincent Sierro",
+        "display_name": "Vincent Sierro",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Toulouse",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 3,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Sierro_asse_tfc_2425.png/330px-Sierro_asse_tfc_2425.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Vincent_Sierro"
+        }
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-2-3-1",
+      "players": [
+        {
+          "player_id": "yann-sommer",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "silvan-widmer",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "manuel-akanji",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "nico-elvedi",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "ricardo-rodriguez",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "granit-xhaka",
+          "position": {
+            "x": 35,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "remo-freuler",
+          "position": {
+            "x": 65,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "dan-ndoye",
+          "position": {
+            "x": 85,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "fabian-rieder",
+          "position": {
+            "x": 50,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "ruben-vargas",
+          "position": {
+            "x": 15,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "breel-embolo",
+          "position": {
+            "x": 50,
+            "y": 15
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Yakin plantea un 4-2-3-1 pragmático con doble pivote (Xhaka + Freuler), mediapunta creativo (Rieder), Embolo como '9' físico y Ndoye-Vargas por las bandas. Identidad: solidez defensiva tradicional suiza, transiciones rápidas, eficacia. Equipo difícil de batir (1 gol encajado en 6 partidos eliminatoria).",
+      "strengths": [
+        "Defensa de élite: Akanji (Inter), Schär (Newcastle), Elvedi (Mönchengladbach). Solo 1 gol encajado en eliminatoria.",
+        "Yann Sommer: portero top mundial. Campeón Champions con Inter 2026.",
+        "Granit Xhaka: capitán y líder, motor del juego desde el doble pivote.",
+        "Dan Ndoye: extremo emergente del Bologna, 24 años, en pico futbolístico.",
+        "Generación de origen balcánico (Xhaka, Embolo, Akanji, Rodríguez, Shaqiri retirado) que combina técnica latina con disciplina suiza.",
+        "Mentalidad mundialista consolidada: 6º Mundial consecutivo, octavos en Brasil 2014, Rusia 2018 y Catar 2022."
+      ],
+      "weaknesses": [
+        "Sin Xherdan Shaqiri tras retirada post-Eurocopa 2024: pérdida de '10' creativo.",
+        "Edad media en líneas críticas: Sommer 37, Xhaka 33, Schär 34, Rodríguez 33.",
+        "Falta de un '9' top mundial: Embolo eficaz pero no élite.",
+        "Lateral derecho cuestionable: Widmer (33) sin recambio top.",
+        "Yakin con discurso un poco repetido tras 4 años en el cargo.",
+        "Sin victorias contra grandes selecciones desde Eurocopa 2020 (3-1 a Francia en penales)."
+      ],
+      "x_factor": {
+        "player": "Dan Ndoye",
+        "reason": "El extremo del Bologna (24 años) llega al Mundial en pico futbolístico tras temporada brillante en Serie A. Capaz de regatear y marcar (3 goles en eliminatoria). Su explosividad puede ser el plus que necesita Suiza para superar el techo de octavos."
+      },
+      "prediction_text": "Suiza llega al Mundial 2026 como una de las grandes 'caballos negros'. Solidez defensiva probada (1 gol encajado en eliminatoria) y experiencia mundialista (6º consecutivo, récord). El reto: pasar de octavos, techo histórico moderno. Cruce contra Bosnia (familias de varios jugadores suizos) será cargado emocionalmente. Cuartos sería igualar el mejor papel histórico (1934, 1938, 1954).",
+      "probabilities": {
+        "advance_groups": 80,
+        "round_of_32": 70,
+        "round_of_16": 45,
+        "quarter_finals": 18,
+        "semi_finals": 5,
+        "final": 1,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Brasil 2014: octavos, eliminada por Argentina 0-1 (gol Di María 118'). Rusia 2018: octavos, eliminada por Suecia 0-1. Catar 2022: octavos, eliminada por Portugal 1-6 (hat-trick Gonçalo Ramos). Mundial 2026: 12ª participación, 6ª consecutiva (récord histórico suizo), busca por fin superar el techo de octavos."
+    }
+  },
+  "history": {
+    "first_appearance": 1934,
+    "appearances_count_before_2026": 11,
+    "appearances_count_with_2026": 12,
+    "consecutive_streak_since": 2006,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 0,
+    "best_result": "Cuartos de final (1934, 1938, 1954)",
+    "aggregate_stats_through_2022": {
+      "played": 41,
+      "won": 12,
+      "drawn": 8,
+      "lost": 21,
+      "goals_for": 50,
+      "goals_against": 81,
+      "win_percentage": 29.3,
+      "notes": "Datos hasta Catar 2022. Suiza es 22ª en ranking histórico Mundial."
+    },
+    "by_world_cup": [
+      {
+        "year": 1934,
+        "host": {
+          "countries": [
+            "Italia"
+          ],
+          "iso": [
+            "it"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Karl Rappan",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Leopold Kielholz",
+            "goals": 3
+          }
+        ],
+        "goals_scored": 5,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "DEBUT mundialista.",
+          "Eliminada por Checoslovaquia 2-3 en cuartos."
+        ],
+        "narrative": "Suiza debutó goleando 3-2 a Países Bajos. Cayó en cuartos con Checoslovaquia 2-3. Mejor papel histórico."
+      },
+      {
+        "year": 1938,
+        "host": {
+          "countries": [
+            "Francia"
+          ],
+          "iso": [
+            "fr"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Karl Rappan",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "André Abegglen",
+            "goals": 3
+          }
+        ],
+        "goals_scored": 5,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Karl Rappan inventó 'el cerrojo' (pre-catenaccio).",
+          "Eliminó a Alemania en repesca 4-2."
+        ],
+        "narrative": "Suiza eliminó a Alemania en partido de repesca 4-2 con Rappan inventando 'el cerrojo' (Verrou) defensivo. Cayó con Hungría en cuartos 0-2."
+      },
+      {
+        "year": 1950,
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Franco Andreoli",
+        "matches": [],
+        "team_top_scorers": [],
+        "goals_scored": 4,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Empató con Brasil 2-2."
+        ],
+        "narrative": "Empate 2-2 con Brasil anfitrión, pero adiós primera ronda."
+      },
+      {
+        "year": 1954,
+        "host": {
+          "countries": [
+            "Suiza"
+          ],
+          "iso": [
+            "ch"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Karl Rappan",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Josef Hügi",
+            "goals": 6
+          }
+        ],
+        "goals_scored": 11,
+        "goals_conceded": 11,
+        "notable_facts": [
+          "ANFITRIONA. Cuartos en Lausana ante Austria 5-7 (12 goles, RÉCORD ABSOLUTO).",
+          "Josef Hügi marcó 3 hat-tricks."
+        ],
+        "narrative": "Suiza anfitriona perdió en cuartos ante Austria 5-7 EN EL PARTIDO CON MÁS GOLES EN UN PARTIDO MUNDIALISTA (récord absoluto)."
+      },
+      {
+        "year": 1962,
+        "host": {
+          "countries": [
+            "Chile"
+          ],
+          "iso": [
+            "cl"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Karl Rappan",
+        "matches": [],
+        "team_top_scorers": [],
+        "goals_scored": 2,
+        "goals_conceded": 8,
+        "notable_facts": [
+          "Eliminada en primera ronda."
+        ],
+        "narrative": "Cayó con todos sus rivales."
+      },
+      {
+        "year": 1966,
+        "host": {
+          "countries": [
+            "Inglaterra"
+          ],
+          "iso": [
+            "gb-eng"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Alfredo Foni",
+        "matches": [],
+        "team_top_scorers": [],
+        "goals_scored": 1,
+        "goals_conceded": 9,
+        "notable_facts": [
+          "Eliminada en primera ronda con 0-9 ante Alemania-Argentina-España."
+        ],
+        "narrative": "Catastrófica primera ronda."
+      },
+      {
+        "year": 1994,
+        "host": {
+          "countries": [
+            "Estados Unidos"
+          ],
+          "iso": [
+            "us"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Roy Hodgson",
+        "captain": "Alain Geiger",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Stéphane Chapuisat",
+            "goals": 1
+          },
+          {
+            "player": "Adrian Knup",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 5,
+        "goals_conceded": 7,
+        "notable_facts": [
+          "Tras 28 años, regresó con octavos.",
+          "Eliminada por España 0-3."
+        ],
+        "narrative": "Suiza con Hodgson y Chapuisat regresó al Mundial. Pasó como segunda. Cayó con España 0-3 en octavos."
+      },
+      {
+        "year": 2006,
+        "host": {
+          "countries": [
+            "Alemania"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Köbi Kuhn",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Tranquillo Barnetta",
+            "goals": 1
+          },
+          {
+            "player": "Alexander Frei",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 0,
+        "notable_facts": [
+          "Eliminada por Ucrania en penales (0-0, 0-3) sin haber encajado un solo gol del torneo (récord)."
+        ],
+        "narrative": "Suiza terminó SIN ENCAJAR UN GOL en el Mundial 2006. RÉCORD ABSOLUTO MUNDIALISTA. Eliminada por Ucrania en penales tras 0-0. En penales, ningún suizo marcó (3 fallos consecutivos). Adiós doloroso."
+      },
+      {
+        "year": 2010,
+        "host": {
+          "countries": [
+            "Sudáfrica"
+          ],
+          "iso": [
+            "za"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Ottmar Hitzfeld",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Gelson Fernandes",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 1,
+        "goals_conceded": 1,
+        "notable_facts": [
+          "VICTORIA HISTÓRICA 1-0 sobre España campeona vigente en debut.",
+          "Eliminada en grupos."
+        ],
+        "narrative": "Suiza venció 1-0 a España futura campeona en el debut de Sudáfrica 2010. Una de las grandes sorpresas del torneo. Pero cayó con Chile y empató con Honduras. Adiós."
+      },
+      {
+        "year": 2014,
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Ottmar Hitzfeld",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Xherdan Shaqiri",
+            "goals": 3
+          },
+          {
+            "player": "Granit Xhaka",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 7,
+        "goals_conceded": 7,
+        "notable_facts": [
+          "HAT-TRICK DE SHAQIRI a Honduras 3-0.",
+          "Eliminada por Argentina 0-1 (gol Di María 118')."
+        ],
+        "narrative": "Suiza pasó como segunda con HAT-TRICK DE SHAQIRI a Honduras. En octavos cayó ante Argentina con un gol agónico de Ángel Di María en el minuto 118. Adiós con honra."
+      },
+      {
+        "year": 2018,
+        "host": {
+          "countries": [
+            "Rusia"
+          ],
+          "iso": [
+            "ru"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Vladimir Petković",
+        "captain": "Stephan Lichtsteiner",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Xherdan Shaqiri",
+            "goals": 1
+          },
+          {
+            "player": "Granit Xhaka",
+            "goals": 1
+          },
+          {
+            "player": "Blerim Džemaili",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 5,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "EMPATE 1-1 CON BRASIL EN DEBUT.",
+          "GOLES POLÉMICOS DE XHAKA Y SHAQIRI A SERBIA con celebración del 'águila albanesa' (origen kosovar) - sanción FIFA.",
+          "Eliminada por Suecia 0-1 en octavos."
+        ],
+        "narrative": "Suiza empató 1-1 con Brasil en debut. Pasó tras vencer 2-1 a Serbia con goles de Xhaka y Shaqiri (ambos celebrando con el 'águila albanesa', símbolo de Kosovo y Albania, origen de muchos suizos). FIFA multó. En octavos cayó con Suecia 0-1."
+      },
+      {
+        "year": 2022,
+        "host": {
+          "countries": [
+            "Catar"
+          ],
+          "iso": [
+            "qa"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Murat Yakin",
+        "captain": "Granit Xhaka",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Breel Embolo",
+            "goals": 1
+          },
+          {
+            "player": "Xherdan Shaqiri",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 5,
+        "goals_conceded": 9,
+        "notable_facts": [
+          "Embolo marcó a CAMERÚN, su país natal (no celebró).",
+          "Eliminada por Portugal 1-6 (hat-trick Gonçalo Ramos)."
+        ],
+        "narrative": "Suiza pasó como 2ª. Embolo (nacido en Camerún) marcó el gol decisivo a Camerún 1-0 sin celebrar (gesto de respeto). En octavos GOLEADA HISTÓRICA 1-6 ante Portugal con HAT-TRICK DE GONÇALO RAMOS (debut mundialista, sentado Cristiano)."
+      }
+    ],
+    "palmares": []
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Alexander Frei",
+      "value": 42,
+      "period": "2001-2011",
+      "notes": "Goleador histórico absoluto."
+    },
+    "most_capped": {
+      "name": "Granit Xhaka",
+      "value": 145,
+      "period": "2011-presente",
+      "notes": "Récord histórico actual. Capitán de la era moderna."
+    },
+    "youngest_debut": {
+      "name": "Johnny Leoni",
+      "value": "16 años",
+      "period": "1984",
+      "notes": "Récord histórico aproximado."
+    },
+    "biggest_win": {
+      "result": "9-0",
+      "opponent": "Lituania",
+      "date": "1924-05-25",
+      "competition": "JJOO París 1924"
+    },
+    "worst_loss": {
+      "result": "0-9",
+      "opponent": "Inglaterra Amateur",
+      "date": "1909-05-25",
+      "competition": "Amistoso"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El 7-5 con Austria del 54",
+      "date": "1954-06-26",
+      "opponent": {
+        "iso": "at",
+        "name": "Austria"
+      },
+      "score": "5-7",
+      "competition": "Cuartos Mundial 1954",
+      "narrative": "Suiza anfitriona perdió 5-7 con Austria en cuartos del Mundial 1954 en Lausana, en el PARTIDO CON MÁS GOLES EN UN PARTIDO MUNDIALISTA DE LA HISTORIA (récord absoluto vigente desde 1954). 12 goles entre ambos en 90 minutos."
+    },
+    {
+      "title": "Sin encajar gol (Mundial 2006)",
+      "date": "2006-06-26",
+      "opponent": {
+        "iso": "ua",
+        "name": "Ucrania"
+      },
+      "score": "0-0 (0-3 pen)",
+      "competition": "Octavos Mundial 2006",
+      "narrative": "Suiza eliminada por Ucrania en penales tras 0-0 reglamentario. RÉCORD ABSOLUTO: terminó el Mundial sin encajar un solo gol en 4 partidos. En penales, ningún suizo marcó (3 fallos consecutivos)."
+    },
+    {
+      "title": "El 1-0 a España",
+      "date": "2010-06-16",
+      "opponent": {
+        "iso": "es",
+        "name": "España"
+      },
+      "score": "1-0",
+      "competition": "Fase de Grupos Mundial 2010",
+      "narrative": "Suiza venció 1-0 a España futura campeona en el debut del Mundial 2010. Una de las grandes sorpresas del torneo. Gol de Gelson Fernandes al 52'. España se levantó y ganó el Mundial pese a este tropiezo inicial."
+    },
+    {
+      "title": "Hat-trick de Shaqiri a Honduras",
+      "date": "2014-06-25",
+      "opponent": {
+        "iso": "hn",
+        "name": "Honduras"
+      },
+      "score": "3-0",
+      "competition": "Fase de Grupos Mundial 2014",
+      "narrative": "Xherdan Shaqiri (22 años) hizo HAT-TRICK ante Honduras en el Mundial 2014. Suiza pasó como segunda. Único hat-trick suizo en la historia mundialista."
+    },
+    {
+      "title": "El águila albanesa",
+      "date": "2018-06-22",
+      "opponent": {
+        "iso": "rs",
+        "name": "Serbia"
+      },
+      "score": "2-1",
+      "competition": "Fase de Grupos Mundial 2018",
+      "narrative": "Suiza venció 2-1 a Serbia con goles de Xhaka (52') y Shaqiri (90'). Ambos jugadores de origen kosovar/albanés CELEBRARON CON EL 'ÁGUILA ALBANESA' (símbolo nacional). FIFA los multó. Tensión política con Serbia."
+    },
+    {
+      "title": "Embolo no celebró su gol a Camerún",
+      "date": "2022-11-24",
+      "opponent": {
+        "iso": "cm",
+        "name": "Camerún"
+      },
+      "score": "1-0",
+      "competition": "Fase de Grupos Mundial 2022",
+      "narrative": "Breel Embolo (nacido en Yaundé, Camerún) marcó el gol decisivo de Suiza ante Camerún en Catar 2022. NO CELEBRÓ EL GOL en señal de respeto a su país natal. Imagen icónica del Mundial."
+    },
+    {
+      "title": "Goleada histórica de Portugal",
+      "date": "2022-12-06",
+      "opponent": {
+        "iso": "pt",
+        "name": "Portugal"
+      },
+      "score": "1-6",
+      "competition": "Octavos Mundial 2022",
+      "narrative": "Suiza fue ELIMINADA por Portugal 1-6 en octavos del Mundial 2022. HAT-TRICK DE GONÇALO RAMOS en su debut mundialista (Fernando Santos sentó a Cristiano). La PEOR DERROTA HISTÓRICA suiza en Mundiales."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "Suiza está participando en su 6º MUNDIAL CONSECUTIVO (2006, 2010, 2014, 2018, 2022, 2026), récord histórico absoluto suizo.",
+      "source": "FIFA + SFV",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "El partido Suiza-Austria de cuartos en el Mundial 1954 (5-7) sigue siendo el PARTIDO CON MÁS GOLES EN LA HISTORIA DE LOS MUNDIALES (12 goles en 90 minutos). Récord absoluto vigente desde hace 72 años.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Suiza terminó el Mundial 2006 SIN ENCAJAR UN SOLO GOL (4 partidos), pero fue eliminada por Ucrania en penales sin marcar ninguno (3 fallos consecutivos). RÉCORD ABSOLUTO MUNDIALISTA.",
+      "source": "FIFA",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Karl Rappan (DT suizo de los Mundiales 1934, 1938, 1954) inventó 'EL CERROJO' (Verrou en francés), precursor del catenaccio italiano.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Erling Haaland marcó 16 goles en eliminatorias UEFA 2026, récord absoluto del ciclo. Pero Suiza fue 1ª de su grupo INVICTA (4 victorias, 2 empates, 0 derrotas).",
+      "source": "UEFA",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Granit Xhaka es el JUGADOR CON MÁS PARTIDOS EN LA HISTORIA DE SUIZA (145+). Capitán histórico desde 2018.",
+      "source": "SFV + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Suiza tiene 4 idiomas oficiales (alemán, francés, italiano, romanche). El equipo nacional rota la comunicación según el contexto, aunque el alemán suizo es predominante en vestuario.",
+      "source": "SFV + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Xherdan Shaqiri se retiró de la selección suiza tras la Eurocopa 2024. Termina con 14 años, 4 Mundiales y 3 Eurocopas. Hat-trick mundialista vs Honduras en 2014.",
+      "source": "SFV + UEFA",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Salmo Suizo (himno)",
+      "Hopp Schwiiz!",
+      "Allez Suisse"
+    ],
+    "main_rival": {
+      "iso": "de",
+      "name": "Alemania",
+      "story": "Rivalidad europea histórica. Suiza ha vencido a Alemania pocas veces (2-1 en Eurocopa 2008, 1-0 en Mundial 2006 amistoso pre-torneo). Carga geopolítica por la frontera lingüística."
+    },
+    "home_stadium": {
+      "name": "St. Jakob-Park",
+      "capacity": 38512,
+      "city": "Basilea"
+    }
+  },
+  "seo": {
+    "meta_title": "Suiza en el Mundial 2026 | Plantilla, historia y predicciones",
+    "meta_description": "Suiza Mundial 2026: 26 convocados de Yakin, Xhaka, Embolo, Akanji. Grupo B con Canadá, Bosnia y Catar. 6º Mundial consecutivo.",
+    "og_image_url": "/img/og/teams/suiza.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Suiza",
+      "alternateName": [
+        "Nati",
+        "Schweizer"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "UEFA"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Murat Yakin"
+      },
+      "url": "https://www.zonamundial.app/selecciones/suiza"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-29",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_Suiza",
+      "https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_de_UEFA_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://es.uefa.com/european-qualifiers/news/029f-1f3188cfc443-494e0d8af33d-1000--mundial-2026-que-selecciones-europeas-se-han-clasificado/",
+      "https://www.football.ch",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias cruzadas con UEFA + Wikipedia + ESPN. Historia mundialista validada con FIFA + Wikipedia + SFV.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "complete",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante: pendiente",
+      "Calendario fase de grupos 2026: fixture FIFA pendiente",
+      "Base de entrenamiento: SFV aún no anunció",
+      "FIFA Ranking #17: validar mes vigente",
+      "Goleadores ciclo eliminatoria: revisar exactitud minuciosa",
+      "Historia 1970/1974/1978/1982/1986/1990/1998/2002: ediciones omitidas (no clasificó)"
+    ]
+  }
+}

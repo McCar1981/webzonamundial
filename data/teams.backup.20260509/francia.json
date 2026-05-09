@@ -1,0 +1,1893 @@
+{
+  "slug": "francia",
+  "iso": "fr",
+  "iso3": "FRA",
+  "name_es": "Francia",
+  "name_en": "France",
+  "name_local": "France",
+  "nicknames": [
+    "Les Bleus",
+    "Los Galos",
+    "L'Équipe Tricolore"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#0055A4",
+      "secondary": "#FFFFFF",
+      "tertiary": "#EF4135",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "París",
+    "language_official": [
+      "Francés"
+    ],
+    "population": 68170000,
+    "area_km2": 643801,
+    "timezone": "Europe/Paris",
+    "continent": "Europa"
+  },
+  "federation": {
+    "name": "Fédération Française de Football",
+    "abbreviation": "FFF",
+    "founded": 1919,
+    "headquarters": "París",
+    "website": "https://www.fff.fr"
+  },
+  "confederation": "UEFA",
+  "fifa_ranking": {
+    "current": 2,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Nike",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/francia.png",
+        "back_url": null,
+        "primary_color": "#0055A4",
+        "secondary_color": "#FFFFFF",
+        "description": "Camiseta azul oscuro emblemática con detalles blancos y rojos, los colores de la bandera nacional. Lleva las dos estrellas de los títulos mundiales (1998, 2018) y el gallo galo en el escudo.",
+        "alt_text": "Camiseta titular Francia Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#0055A4",
+        "description": "Equipación visitante en blanco con detalles azules. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Francia Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "El gallo galo del escudo de la FFF es uno de los símbolos más antiguos del fútbol mundial: aparece en la equipación desde 1909, antes incluso de la fundación oficial de la federación.",
+        "source": "FFF + ESPN histórico",
+        "verified_at": "2026-04-28",
+        "status": "validated"
+      },
+      {
+        "text": "Francia se convirtió en 1998 en el sexto país anfitrión en ganar el Mundial en casa (tras Uruguay 1930, Italia 1934, Inglaterra 1966, Alemania 1974 y Argentina 1978).",
+        "source": "FIFA",
+        "verified_at": "2026-04-28",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Francia clasificó como 1ª del Grupo D con paso muy sólido. Aseguró el cupo en la penúltima fecha tras golear 4-0 a Ucrania en París el 13 de noviembre de 2025. Cierre invicto del ciclo bajo Didier Deschamps, quien anunció que dejará la selección tras el Mundial 2026 (último torneo de su histórico ciclo iniciado en 2012). 8ª clasificación consecutiva. Mbappé como capitán y figura, generación renovada con Désiré Doué, Bradley Barcola y otros emergentes.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias UEFA Mundial 2026 — Grupo D",
+      "format": "Liguilla todos contra todos · 6 partidos · ida y vuelta · 4 equipos",
+      "duration": "Septiembre 2025 — Noviembre 2025",
+      "final_position": 1,
+      "total_teams_in_group": 4,
+      "stats": {
+        "played": 6,
+        "won": 5,
+        "drawn": 1,
+        "lost": 0,
+        "goals_for": 17,
+        "goals_against": 4,
+        "goal_difference": 13,
+        "points": 16,
+        "win_percentage": 83.3,
+        "clean_sheets": 2
+      },
+      "coach_during_qualifying": "Didier Deschamps",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2025-09-05",
+          "home": {
+            "iso": "ua",
+            "name": "Ucrania",
+            "score": 0
+          },
+          "away": {
+            "iso": "fr",
+            "name": "Francia",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Stadion Tehelné Pole",
+            "city": "Bratislava (sede neutral)",
+            "country_iso": "sk"
+          },
+          "goals_arg": [
+            {
+              "player": "Michael Olise",
+              "minute": "10'",
+              "type": "goal"
+            },
+            {
+              "player": "Kylian Mbappé",
+              "minute": "82'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Ucrania disputa sus 'locales' en sede neutral por la guerra."
+        },
+        {
+          "matchday": 2,
+          "date": "2025-09-09",
+          "home": {
+            "iso": "is",
+            "name": "Islandia",
+            "score": 2
+          },
+          "away": {
+            "iso": "fr",
+            "name": "Francia",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Laugardalsvöllur",
+            "city": "Reikiavik",
+            "country_iso": "is"
+          },
+          "goals_arg": [
+            {
+              "player": "Bradley Barcola",
+              "minute": "21'",
+              "type": "goal"
+            },
+            {
+              "player": "Kylian Mbappé",
+              "minute": "45'",
+              "type": "penalty"
+            }
+          ],
+          "notes": "Único empate del ciclo."
+        },
+        {
+          "matchday": 3,
+          "date": "2025-10-10",
+          "home": {
+            "iso": "az",
+            "name": "Azerbaiyán",
+            "score": 1
+          },
+          "away": {
+            "iso": "fr",
+            "name": "Francia",
+            "score": 3
+          },
+          "venue": {
+            "stadium": "Estadio Nacional",
+            "city": "Bakú",
+            "country_iso": "az"
+          },
+          "goals_arg": [
+            {
+              "player": "Kylian Mbappé",
+              "minute": "33'",
+              "type": "goal"
+            },
+            {
+              "player": "Adrien Rabiot",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Florian Thauvin",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 4,
+          "date": "2025-10-13",
+          "home": {
+            "iso": "fr",
+            "name": "Francia",
+            "score": 2
+          },
+          "away": {
+            "iso": "is",
+            "name": "Islandia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Parc des Princes",
+            "city": "París",
+            "country_iso": "fr"
+          },
+          "goals_arg": [
+            {
+              "player": "Kylian Mbappé",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Kingsley Coman",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 5,
+          "date": "2025-11-13",
+          "home": {
+            "iso": "fr",
+            "name": "Francia",
+            "score": 4
+          },
+          "away": {
+            "iso": "ua",
+            "name": "Ucrania",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Parc des Princes",
+            "city": "París",
+            "country_iso": "fr"
+          },
+          "goals_arg": [
+            {
+              "player": "Kylian Mbappé",
+              "minute": "5'",
+              "type": "penalty"
+            },
+            {
+              "player": "Kylian Mbappé",
+              "minute": "27'",
+              "type": "goal"
+            },
+            {
+              "player": "Bradley Barcola",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Hugo Ekitike",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Goleada que selló la clasificación al Mundial 2026. Doblete de Mbappé.",
+          "is_decisive_match": true
+        },
+        {
+          "matchday": 6,
+          "date": "2025-11-16",
+          "home": {
+            "iso": "az",
+            "name": "Azerbaiyán",
+            "score": 1
+          },
+          "away": {
+            "iso": "fr",
+            "name": "Francia",
+            "score": 3
+          },
+          "venue": {
+            "stadium": "Estadio Nacional",
+            "city": "Bakú",
+            "country_iso": "az"
+          },
+          "goals_arg": [
+            {
+              "player": "Désiré Doué",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Christopher Nkunku",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Kylian Mbappé",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Cierre del ciclo eliminatorio invicto."
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Kylian Mbappé",
+          "goals": 7,
+          "notes": "Capitán y goleador absoluto. Imparable en eliminatorias."
+        },
+        {
+          "player": "Bradley Barcola",
+          "goals": 2
+        },
+        {
+          "player": "Michael Olise",
+          "goals": 1
+        },
+        {
+          "player": "Adrien Rabiot",
+          "goals": 1
+        },
+        {
+          "player": "Florian Thauvin",
+          "goals": 1
+        },
+        {
+          "player": "Kingsley Coman",
+          "goals": 1
+        },
+        {
+          "player": "Hugo Ekitike",
+          "goals": 1
+        },
+        {
+          "player": "Désiré Doué",
+          "goals": 1
+        },
+        {
+          "player": "Christopher Nkunku",
+          "goals": 1
+        },
+        {
+          "player": "Otros (1)",
+          "goals": 1
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_5",
+        "reason": "El 4-0 a Ucrania en París el 13 de noviembre de 2025 selló la clasificación al Mundial 2026. Doblete de Mbappé. Mejor exhibición ofensiva del ciclo."
+      },
+      "worst_match": {
+        "match_ref": "matchday_2",
+        "reason": "Empate 2-2 en Islandia. Único partido sin victoria del ciclo. Defensa floja en visita."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_5",
+        "reason": "El 4-0 a Ucrania selló matemáticamente la clasificación al Mundial 2026, con una fecha de antelación."
+      }
+    },
+    "group_2026": {
+      "letter": "I",
+      "label": "Grupo I — junto a Senegal, Irak y Noruega",
+      "teams": [
+        {
+          "iso": "fr",
+          "name": "Francia",
+          "fifa_rank": null,
+          "is_seed": true
+        },
+        {
+          "iso": "sn",
+          "name": "Senegal",
+          "fifa_rank": null
+        },
+        {
+          "iso": "no",
+          "name": "Noruega",
+          "fifa_rank": null
+        },
+        {
+          "iso": "iq",
+          "name": "Irak",
+          "fifa_rank": null
+        }
+      ],
+      "notes": "Grupo I confirmado en sorteo del 5 dic 2025. Francia cabeza de serie. Cruce reedición vs Senegal (cuartos de Catar 2022 no disputados). Noruega (Haaland) vuelve al Mundial tras 28 años."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "sn",
+          "name": "Senegal"
+        },
+        "date": "2026-06-15",
+        "kickoff_local": "18:00",
+        "venue": {
+          "stadium": "Hard Rock Stadium",
+          "city": "Miami",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "no",
+          "name": "Noruega"
+        },
+        "date": "2026-06-24",
+        "kickoff_local": "15:00",
+        "venue": {
+          "stadium": "MetLife Stadium",
+          "city": "Nueva York/NJ",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "iq",
+          "name": "Irak"
+        },
+        "date": "2026-06-30",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "AT&T Stadium",
+          "city": "Dallas",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — FFF aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Didier Deschamps",
+      "age": 57,
+      "nationality": "Francia",
+      "since": "2012-07-08",
+      "previous_teams": [
+        "Marsella (2009-2012)",
+        "Juventus (2006-2007)",
+        "Mónaco (2001-2005)"
+      ],
+      "profile_summary": "Leyenda absoluta. Jugador campeón del Mundo 1998 (capitán) y Eurocopa 2000. Como DT, lleva 14 años al frente de la Seleção: campeón Mundial 2018, subcampeón 2022, finalista Eurocopa 2016, ganador UEFA Nations League 2021. Anunció que el Mundial 2026 será su ÚLTIMO torneo. Identidad táctica: 4-3-3 pragmático con bloque medio defensivo y transiciones rápidas con Mbappé. Equilibrio entre estructura defensiva y libertad ofensiva para los talentosos.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Didier_Deschamps_in_2018.jpg/330px-Didier_Deschamps_in_2018.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Didier_Deschamps"
+      }
+    },
+    "captain": {
+      "name": "Kylian Mbappé",
+      "club": "Real Madrid",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Picture_with_Mbapp%C3%A9_%28cropped%29_%28cropped%29.jpg/330px-Picture_with_Mbapp%C3%A9_%28cropped%29_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Kylian_Mbapp%C3%A9"
+      }
+    },
+    "star_player": {
+      "name": "Kylian Mbappé",
+      "club": "Real Madrid",
+      "reason": "El capitán del Real Madrid, a sus 27 años, llega a su 3er Mundial siendo el mejor jugador del mundo en este momento. Subcampeón en 2022 con un hat-trick en la final. Goleador histórico de Francia (51+ goles). Su velocidad, técnica y mentalidad son insuperables. La presión: ganar su segundo Mundial.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Picture_with_Mbapp%C3%A9_%28cropped%29_%28cropped%29.jpg/330px-Picture_with_Mbapp%C3%A9_%28cropped%29_%28cropped%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Kylian_Mbapp%C3%A9"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "mike-maignan",
+        "full_name": "Mike Maignan",
+        "display_name": "Mike Maignan",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Chelsea",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 16,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Mike_Maignan_2022_Salzburg_vs_AC_Milan_2022-09-06.jpg/330px-Mike_Maignan_2022_Salzburg_vs_AC_Milan_2022-09-06.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mike_Maignan"
+        }
+      },
+      {
+        "id": "lucas-chevalier",
+        "full_name": "Lucas Chevalier",
+        "display_name": "Lucas Chevalier",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "PSG",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Lucas_Chevalier_ASSE_losc_2425.jpg/330px-Lucas_Chevalier_ASSE_losc_2425.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Lucas_Chevalier"
+        }
+      },
+      {
+        "id": "brice-samba",
+        "full_name": "Brice Samba",
+        "display_name": "Brice Samba",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Rennes",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 23,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Lens_-_Torino_FC_%2802-08-2023%29_6_%28cropped%29.jpg/330px-Lens_-_Torino_FC_%2802-08-2023%29_6_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Brice_Samba"
+        }
+      },
+      {
+        "id": "jules-kounde",
+        "full_name": "Jules Koundé",
+        "display_name": "Koundé",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "FC Barcelona",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Jules_Kound%C3%A9_2020.jpg/330px-Jules_Kound%C3%A9_2020.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jules_Kound%C3%A9"
+        }
+      },
+      {
+        "id": "william-saliba",
+        "full_name": "William Saliba",
+        "display_name": "Saliba",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Arsenal",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/1_william_saliba_arsenal_2025_%28cropped%29.jpg/330px-1_william_saliba_arsenal_2025_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/William_Saliba"
+        }
+      },
+      {
+        "id": "ibrahima-konate",
+        "full_name": "Ibrahima Konaté",
+        "display_name": "Konaté",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Liverpool",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Liverpool_FC_gegen_1._FSV_Mainz_05_%28Testspiel_23._Juli_2021%29_15_%28cropped%29.jpg/330px-Liverpool_FC_gegen_1._FSV_Mainz_05_%28Testspiel_23._Juli_2021%29_15_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ibrahima_Konat%C3%A9"
+        }
+      },
+      {
+        "id": "dayot-upamecano",
+        "full_name": "Dayot Upamecano",
+        "display_name": "Upamecano",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Bayern Múnich",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 18,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/2022-07-30_Fu%C3%9Fball%2C_M%C3%A4nner%2C_DFL-Supercup%2C_RB_Leipzig_-_FC_Bayern_M%C3%BCnchen_1DX_3244_by_Stepro.jpg/330px-2022-07-30_Fu%C3%9Fball%2C_M%C3%A4nner%2C_DFL-Supercup%2C_RB_Leipzig_-_FC_Bayern_M%C3%BCnchen_1DX_3244_by_Stepro.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Dayot_Upamecano"
+        }
+      },
+      {
+        "id": "lucas-hernandez",
+        "full_name": "Lucas Hernández",
+        "display_name": "Lucas Hernández",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "PSG",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 21,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/FC_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%28Championsleague_Achtelfinale_Hinspiel_16._Februar_2022%29_52.jpg/330px-FC_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%28Championsleague_Achtelfinale_Hinspiel_16._Februar_2022%29_52.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Lucas_Hern%C3%A1ndez"
+        }
+      },
+      {
+        "id": "theo-hernandez",
+        "full_name": "Theo Hernández",
+        "display_name": "Theo Hernández",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Al-Hilal",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 22,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/FC_Salzburg_vs._AC_Mailand_%28UEFA_Championsleague_2022-09-06%29_Th%C3%A9o_Hernandez.jpg/330px-FC_Salzburg_vs._AC_Mailand_%28UEFA_Championsleague_2022-09-06%29_Th%C3%A9o_Hernandez.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Th%C3%A9o_Hern%C3%A1ndez"
+        }
+      },
+      {
+        "id": "malo-gusto",
+        "full_name": "Malo Gusto",
+        "display_name": "Malo Gusto",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Chelsea",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 2,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Olympique_lyonnais_-_ES_Troyes_AC_L1_19-08-2022_-_Malo_Gusto.jpg/330px-Olympique_lyonnais_-_ES_Troyes_AC_L1_19-08-2022_-_Malo_Gusto.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Malo_Gusto"
+        }
+      },
+      {
+        "id": "aurelien-tchouameni",
+        "full_name": "Aurélien Tchouaméni",
+        "display_name": "Tchouaméni",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Real Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/2025_04_26_Final_de_la_Copa_del_Rey_-_Aur%C3%A9lien_Tchouam%C3%A9ni.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Aur%C3%A9lien_Tchouam%C3%A9ni"
+        }
+      },
+      {
+        "id": "eduardo-camavinga",
+        "full_name": "Eduardo Camavinga",
+        "display_name": "Camavinga",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Real Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Ofrenda_de_la_Liga_y_la_Champions-13-L.Mill%C3%A1n_%2852109790215%29_%28cropped%29.jpg/330px-Ofrenda_de_la_Liga_y_la_Champions-13-L.Mill%C3%A1n_%2852109790215%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Eduardo_Camavinga"
+        }
+      },
+      {
+        "id": "n-golo-kante",
+        "full_name": "N'Golo Kanté",
+        "display_name": "Kanté",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Al-Ittihad",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 13,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/05/N%27Golo_Kant%C3%A9_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/N'Golo_Kant%C3%A9"
+        }
+      },
+      {
+        "id": "adrien-rabiot",
+        "full_name": "Adrien Rabiot",
+        "display_name": "Rabiot",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Marsella",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Rabiot_asse_om_2425.png/330px-Rabiot_asse_om_2425.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Adrien_Rabiot"
+        }
+      },
+      {
+        "id": "warren-zaire-emery",
+        "full_name": "Warren Zaïre-Emery",
+        "display_name": "Zaïre-Emery",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "PSG",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 12,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/92/Zaire_Emery_vs_MHSC_18_mars_2024.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Warren_Za%C3%AFre-Emery"
+        }
+      },
+      {
+        "id": "manu-kone",
+        "full_name": "Manu Koné",
+        "display_name": "Manu Koné",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Roma",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 25,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Kouadio_Manu_Kon%C3%A9_%282019-08-31%29_%28cropped%29.jpg/330px-Kouadio_Manu_Kon%C3%A9_%282019-08-31%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Manu_Kon%C3%A9"
+        }
+      },
+      {
+        "id": "kylian-mbappe",
+        "full_name": "Kylian Mbappé",
+        "display_name": "Kylian Mbappé",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Real Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Picture_with_Mbapp%C3%A9_%28cropped%29_%28cropped%29.jpg/330px-Picture_with_Mbapp%C3%A9_%28cropped%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Kylian_Mbapp%C3%A9"
+        }
+      },
+      {
+        "id": "ousmane-dembele",
+        "full_name": "Ousmane Dembélé",
+        "display_name": "Dembélé",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "PSG",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Ousmane_Demb%C3%A9l%C3%A9_2018_%28cropped%29.jpg/330px-Ousmane_Demb%C3%A9l%C3%A9_2018_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ousmane_Demb%C3%A9l%C3%A9"
+        }
+      },
+      {
+        "id": "michael-olise",
+        "full_name": "Michael Olise",
+        "display_name": "Olise",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Bayern Múnich",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/FC_RB_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%282026-01-06_Testspiel%29_10.jpg/330px-FC_RB_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%282026-01-06_Testspiel%29_10.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Michael_Olise"
+        }
+      },
+      {
+        "id": "bradley-barcola",
+        "full_name": "Bradley Barcola",
+        "display_name": "Barcola",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "PSG",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 26,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Barcola_asse_psg_2425.png/330px-Barcola_asse_psg_2425.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Bradley_Barcola"
+        }
+      },
+      {
+        "id": "kingsley-coman",
+        "full_name": "Kingsley Coman",
+        "display_name": "Coman",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Al-Nassr",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 20,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Kingsley_Coman_%282019%29_%28cropped%29.jpg/330px-Kingsley_Coman_%282019%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Kingsley_Coman"
+        }
+      },
+      {
+        "id": "marcus-thuram",
+        "full_name": "Marcus Thuram",
+        "display_name": "Marcus Thuram",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Inter de Milán",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 15,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Marcus_Thuram_in_2023.jpg/330px-Marcus_Thuram_in_2023.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Marcus_Thuram"
+        }
+      },
+      {
+        "id": "christopher-nkunku",
+        "full_name": "Christopher Nkunku",
+        "display_name": "Nkunku",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "AC Milan",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 19,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Christopher_Nkunku_2021.jpg/330px-Christopher_Nkunku_2021.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Christopher_Nkunku"
+        }
+      },
+      {
+        "id": "randal-kolo-muani",
+        "full_name": "Randal Kolo Muani",
+        "display_name": "Kolo Muani",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Tottenham",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 9,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/RC_Lens_-_FC_Nantes_%2825-11-2020%29_13.jpg/330px-RC_Lens_-_FC_Nantes_%2825-11-2020%29_13.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Randal_Kolo_Muani"
+        }
+      },
+      {
+        "id": "desire-doue",
+        "full_name": "Désiré Doué",
+        "display_name": "Désiré Doué",
+        "position": "FWD",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "PSG",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 24,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Doue_asse_psg_2425.png/330px-Doue_asse_psg_2425.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/D%C3%A9sir%C3%A9_Dou%C3%A9"
+        }
+      },
+      {
+        "id": "hugo-ekitike",
+        "full_name": "Hugo Ekitiké",
+        "display_name": "Ekitike",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Liverpool",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Hugo_Ekitike_%28PSG_2023%29_%28cropped2%29.jpg/330px-Hugo_Ekitike_%28PSG_2023%29_%28cropped2%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Hugo_Ekitike"
+        }
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-3-3",
+      "players": [
+        {
+          "player_id": "lucas-chevalier",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "jules-kounde",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "william-saliba",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "ibrahima-konate",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "theo-hernandez",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "aurelien-tchouameni",
+          "position": {
+            "x": 50,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "adrien-rabiot",
+          "position": {
+            "x": 70,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "eduardo-camavinga",
+          "position": {
+            "x": 30,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "ousmane-dembele",
+          "position": {
+            "x": 85,
+            "y": 22
+          }
+        },
+        {
+          "player_id": "kylian-mbappe",
+          "position": {
+            "x": 50,
+            "y": 18
+          }
+        },
+        {
+          "player_id": "bradley-barcola",
+          "position": {
+            "x": 15,
+            "y": 22
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Deschamps mantiene su identidad característica: 4-3-3 sólido, bloque medio defensivo, transiciones letales con Mbappé como ariete-extremo, Dembélé y Barcola por bandas. Saliba-Konaté forman una de las parejas centrales más jóvenes y talentosas del torneo. Tchouaméni ancla el medio. Identidad: equilibrio, eficiencia y la velocidad de los talentosos en transición.",
+      "strengths": [
+        "Mbappé al pico de su carrera: 27 años, capitán, máximo goleador histórico francés.",
+        "Cantera top mundial: Saliba (24), Konaté (26), Tchouaméni (26), Camavinga (23) — defensa-medio joven y élite.",
+        "Profundidad ofensiva ABSOLUTA: Mbappé, Dembélé, Barcola, Olise, Thuram, Coman, Nkunku, Doué, Ekitike, Kolo Muani.",
+        "Deschamps en su último Mundial: motivación máxima del cuerpo técnico y plantilla.",
+        "Experiencia mundialista: 14 jugadores con experiencia en Catar 2022 (subcampeón)."
+      ],
+      "weaknesses": [
+        "Lateral derecho: Koundé es central reconvertido, Malo Gusto sin experiencia top.",
+        "Portería en transición: Maignan venía de Milan pero Lucas Chevalier (PSG) emergió fuerte. Decisión Deschamps.",
+        "Theo Hernández en el Al-Hilal: pérdida de ritmo competitivo al saltar a Saudi Pro League.",
+        "Ausencia de un '6' clásico en altura para juegos defensivos (Kanté tiene 34 años).",
+        "Dependencia psicológica de Mbappé: si tiene un mal partido, Francia desconecta."
+      ],
+      "x_factor": {
+        "player": "Désiré Doué",
+        "reason": "El joven extremo del PSG (20 años) explotó en Champions 2024-25 marcando en la final. Capaz de jugar como '10' o por bandas. Su explosividad y desparpajo pueden ser lo que Francia necesite si Mbappé es marcado por dos defensas."
+      },
+      "prediction_text": "Francia llega como uno de los 3 grandes favoritos a ganar el Mundial 2026. Con Deschamps en su último torneo y Mbappé al pico de su carrera, las condiciones son ideales para repetir la final. Pasar el Grupo I como 1ª es objetivo claro. Llegar a semis es lo mínimo razonable. Repetir el título de 1998/2018 sería la coronación de la era Deschamps.",
+      "probabilities": {
+        "advance_groups": 95,
+        "round_of_32": 90,
+        "round_of_16": 80,
+        "quarter_finals": 60,
+        "semi_finals": 38,
+        "final": 22,
+        "champion": 14
+      },
+      "vs_last_3_wcs": "Rusia 2018: CAMPEÓN. Final 4-2 ante Croacia, 2 goles de Pogba/Mbappé. Catar 2022: SUBCAMPEÓN. Final 3-3 con hat-trick de Mbappé, perdió en penales 4-2 con Argentina. Mundial 2026: aspiración real al tercer título. La 'tercera será la vencida' para Mbappé."
+    }
+  },
+  "history": {
+    "first_appearance": 1930,
+    "appearances_count_before_2026": 16,
+    "appearances_count_with_2026": 17,
+    "consecutive_streak_since": 1998,
+    "titles": 2,
+    "titles_years": [
+      1998,
+      2018
+    ],
+    "finals": 4,
+    "finals_years": [
+      1998,
+      2006,
+      2018,
+      2022
+    ],
+    "semi_finals": 7,
+    "best_result": "Campeona (1998, 2018)",
+    "aggregate_stats_through_2022": {
+      "played": 73,
+      "won": 36,
+      "drawn": 14,
+      "lost": 23,
+      "goals_for": 132,
+      "goals_against": 92,
+      "win_percentage": 49.3,
+      "notes": "Datos hasta Qatar 2022."
+    },
+    "by_world_cup": [
+      {
+        "year": 1930,
+        "host": {
+          "countries": [
+            "Uruguay"
+          ],
+          "iso": [
+            "uy"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Caudron",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Lucien Laurent",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Lucien Laurent marcó el PRIMER GOL en la historia de los Mundiales (Francia 4-1 México el 13 jul 1930)."
+        ],
+        "narrative": "Francia disputó el primer Mundial de la historia. Lucien Laurent marcó al 19' del partido inaugural Francia-México (4-1) — el primer gol en la historia de los Mundiales. Francia perdió luego con Argentina (0-1) y Chile (0-1)."
+      },
+      {
+        "year": 1934,
+        "host": {
+          "countries": [
+            "Italia"
+          ],
+          "iso": [
+            "it"
+          ]
+        },
+        "result": "Primera ronda",
+        "coach": "George Kimpton",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Jean Nicolas",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Eliminada por Austria 2-3 en prórroga."
+        ],
+        "narrative": "Francia cayó eliminada en primera ronda ante Austria 2-3 en prórroga."
+      },
+      {
+        "year": 1938,
+        "host": {
+          "countries": [
+            "Francia"
+          ],
+          "iso": [
+            "fr"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Gaston Barreau",
+        "captain": "Étienne Mattler",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Jean Nicolas",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "Anfitriona, eliminada por Italia campeona en cuartos."
+        ],
+        "narrative": "Francia anfitriona venció 3-1 a Bélgica en octavos pero cayó 1-3 con la Italia bicampeona en cuartos."
+      },
+      {
+        "year": 1954,
+        "host": {
+          "countries": [
+            "Suiza"
+          ],
+          "iso": [
+            "ch"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Pierre Pibarot",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Raymond Kopa",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 3,
+        "goals_conceded": 3,
+        "notable_facts": [],
+        "narrative": "Eliminación temprana en grupos ante Yugoslavia 0-1 y México 3-2."
+      },
+      {
+        "year": 1958,
+        "host": {
+          "countries": [
+            "Suecia"
+          ],
+          "iso": [
+            "se"
+          ]
+        },
+        "result": "Tercer puesto",
+        "coach": "Albert Batteux",
+        "captain": "Robert Jonquet",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Just Fontaine",
+            "goals": 13
+          }
+        ],
+        "goals_scored": 23,
+        "goals_conceded": 15,
+        "notable_facts": [
+          "JUST FONTAINE marcó 13 GOLES, RÉCORD ABSOLUTO de un solo Mundial. Bota de Oro.",
+          "Tercer puesto tras vencer 6-3 a Alemania Federal."
+        ],
+        "narrative": "Mundial épico de Just Fontaine: 13 goles en 6 partidos, RÉCORD ABSOLUTO QUE SIGUE INTOCABLE. Francia perdió en semis 2-5 con Brasil de Pelé pero ganó el bronce 6-3 a Alemania con 4 goles del propio Fontaine. Récord histórico."
+      },
+      {
+        "year": 1966,
+        "host": {
+          "countries": [
+            "Inglaterra"
+          ],
+          "iso": [
+            "gb-eng"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Henri Guérin",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Hervé Revelli",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Eliminada por Inglaterra anfitriona y futura campeona."
+        ],
+        "narrative": "Eliminación temprana."
+      },
+      {
+        "year": 1978,
+        "host": {
+          "countries": [
+            "Argentina"
+          ],
+          "iso": [
+            "ar"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Michel Hidalgo",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Bernard Lacombe",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 5,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Bernard Lacombe marcó a los 31 segundos contra Italia, uno de los goles más rápidos del Mundial."
+        ],
+        "narrative": "Francia eliminada en primera ronda pese a buenos partidos."
+      },
+      {
+        "year": 1982,
+        "host": {
+          "countries": [
+            "España"
+          ],
+          "iso": [
+            "es"
+          ]
+        },
+        "result": "Cuarto puesto",
+        "coach": "Michel Hidalgo",
+        "captain": "Michel Platini",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Michel Platini",
+            "goals": 1
+          },
+          {
+            "player": "Alain Giresse",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 16,
+        "goals_conceded": 12,
+        "notable_facts": [
+          "Semifinal ÉPICA contra Alemania Federal: 3-3 reglamentario y derrota 4-5 en penales tras la prórroga.",
+          "Generación Platini-Tigana-Giresse-Genghini."
+        ],
+        "narrative": "Mundial inolvidable. La generación dorada de Platini llegó a semis y disputó una de las semifinales más recordadas de la historia: ante Alemania Federal en Sevilla, 3-3 reglamentario tras prórroga (recordado por la entrada brutal de Schumacher a Battiston, lesión grave). En penales 4-5. Francia ganó luego el bronce."
+      },
+      {
+        "year": 1986,
+        "host": {
+          "countries": [
+            "México"
+          ],
+          "iso": [
+            "mx"
+          ]
+        },
+        "result": "Tercer puesto",
+        "coach": "Henri Michel",
+        "captain": "Michel Platini",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Jean-Pierre Papin",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 12,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Semis ante Alemania de nuevo (0-2). Tercer puesto.",
+          "Eliminó a Brasil 5-4 en penales en cuartos (4-4 en Guadalajara)."
+        ],
+        "narrative": "Cuartos contra Brasil de Sócrates-Zico: 1-1 reglamentario. Zico falló penal en 90'. En tanda, Sócrates y Júlio César fallaron y Francia pasó. Semis perdida con Alemania (la maldición). Bronce ante Bélgica."
+      },
+      {
+        "year": 1998,
+        "host": {
+          "countries": [
+            "Francia"
+          ],
+          "iso": [
+            "fr"
+          ]
+        },
+        "result": "Campeón",
+        "coach": "Aimé Jacquet",
+        "captain": "Didier Deschamps",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Thierry Henry",
+            "goals": 3
+          },
+          {
+            "player": "Christophe Dugarry",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 15,
+        "goals_conceded": 2,
+        "notable_facts": [
+          "PRIMER título mundial.",
+          "Final 3-0 ante Brasil con doblete de Zinédine Zidane.",
+          "Anfitriona campeona del Mundo."
+        ],
+        "narrative": "El primer título mundial. Equipo histórico: Zidane, Henry, Lizarazu, Blanc, Desailly, Vieira, Petit, Deschamps capitán. En octavos batió 1-0 a Paraguay con gol de oro de Blanc al 113'. En cuartos eliminó a Italia en penales (0-0 reglamentario). En semis 2-1 a Croacia con doblete de Lilian Thuram (sus únicos goles con Francia). En la FINAL ANTE BRASIL en el Stade de France, 3-0: Zidane abrió con cabezazo al 27', Zidane el 2-0 al 45', Petit el 3-0 al 90'. Sin Ronaldo Nazário pleno (crisis convulsiva), Brasil no rindió. PRIMER TÍTULO MUNDIAL FRANCÉS."
+      },
+      {
+        "year": 2002,
+        "host": {
+          "countries": [
+            "Corea del Sur",
+            "Japón"
+          ],
+          "iso": [
+            "kr",
+            "jp"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Roger Lemerre",
+        "captain": "Marcel Desailly",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "—",
+            "goals": 0
+          }
+        ],
+        "goals_scored": 0,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "DEFENSORA del título eliminada en primera ronda con 1 punto y 0 goles.",
+          "Lesión de Zidane antes del torneo."
+        ],
+        "narrative": "Una de las mayores decepciones históricas. Francia campeona vigente perdió 0-1 con Senegal en el partido inaugural, empató 0-0 con Uruguay y perdió 0-2 con Dinamarca. Eliminación traumática con cero goles."
+      },
+      {
+        "year": 2006,
+        "host": {
+          "countries": [
+            "Alemania"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
+        "result": "Subcampeón",
+        "coach": "Raymond Domenech",
+        "captain": "Zinédine Zidane",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Thierry Henry",
+            "goals": 3
+          },
+          {
+            "player": "Zinédine Zidane",
+            "goals": 3
+          }
+        ],
+        "goals_scored": 9,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Final 1-1 (5-3 pen) ante Italia.",
+          "EL CABEZAZO DE ZIDANE A MATERAZZI al 110' de la final, expulsado.",
+          "Última actuación de Zidane como profesional."
+        ],
+        "narrative": "Mundial dramático. Francia volvió tras la decepción 2002. Eliminó a España en octavos (3-1), a Brasil en cuartos (1-0 con asistencia mágica de Zidane a Henry), a Portugal en semis (1-0). En la final ante Italia, Zidane abrió de penal panenka al 7'. Materazzi empató al 19'. 1-1 hasta el 110' de prórroga. Y entonces: el cabezazo de Zidane a Materazzi tras provocación, expulsión, despedida del fútbol con tarjeta roja. Italia ganó en penales (Trezeguet falló al palo). Subcampeonato amargo."
+      },
+      {
+        "year": 2010,
+        "host": {
+          "countries": [
+            "Sudáfrica"
+          ],
+          "iso": [
+            "za"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Raymond Domenech",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Florent Malouda",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 1,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "Eliminada con 1 punto.",
+          "ESCÁNDALO Knysna: huelga de jugadores tras expulsión de Anelka."
+        ],
+        "narrative": "El Mundial más oscuro de Francia. Equipo dirigido por Domenech con vestuario fracturado. Tras empate 0-0 con Uruguay y derrota 0-2 con México (con Anelka expulsado y posteriormente sancionado), el equipo se declaró en huelga (no entrenó tras la expulsión). Cayó 1-2 con Sudáfrica en el último partido. Última en grupo."
+      },
+      {
+        "year": 2014,
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Didier Deschamps",
+        "captain": "Hugo Lloris",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Karim Benzema",
+            "goals": 3
+          }
+        ],
+        "goals_scored": 10,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Eliminada por Alemania 0-1 en cuartos."
+        ],
+        "narrative": "Francia con Deschamps en su primer Mundial. Buen Mundial con goleada 5-2 a Suiza, eliminó a Nigeria 2-0 en octavos. En cuartos cayó 0-1 ante Alemania futura campeona, gol de Hummels de cabeza al 13'."
+      },
+      {
+        "year": 2018,
+        "host": {
+          "countries": [
+            "Rusia"
+          ],
+          "iso": [
+            "ru"
+          ]
+        },
+        "result": "Campeón",
+        "coach": "Didier Deschamps",
+        "captain": "Hugo Lloris",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Antoine Griezmann",
+            "goals": 4
+          },
+          {
+            "player": "Kylian Mbappé",
+            "goals": 4
+          }
+        ],
+        "goals_scored": 14,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "SEGUNDO título mundial.",
+          "Final 4-2 ante Croacia.",
+          "Mbappé (19) marcó en la final, segundo adolescente tras Pelé en hacerlo."
+        ],
+        "narrative": "El segundo título. Francia con Mbappé adolescente, Pogba, Griezmann, Kanté, Varane. Eliminó a Argentina en octavos 4-3 (doblete de Mbappé). En semis batió 1-0 a Bélgica con gol de Umtiti. EN LA FINAL ANTE CROACIA en Moscú, 4-2: autogol de Mandzukic (18'), penal de Griezmann (38'), Pogba (59'), Mbappé (65'). Mandzukic descontó al 69'. Mbappé fue Joven Promesa del torneo. Segundo título 20 años después de 1998."
+      },
+      {
+        "year": 2022,
+        "host": {
+          "countries": [
+            "Catar"
+          ],
+          "iso": [
+            "qa"
+          ]
+        },
+        "result": "Subcampeón",
+        "coach": "Didier Deschamps",
+        "captain": "Hugo Lloris",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Kylian Mbappé",
+            "goals": 8
+          }
+        ],
+        "goals_scored": 16,
+        "goals_conceded": 8,
+        "notable_facts": [
+          "Final 3-3 (2-4 pen) ante Argentina.",
+          "MBAPPÉ HAT-TRICK EN LA FINAL — primera vez desde Hurst 1966.",
+          "Bota de Oro: Mbappé (8 goles)."
+        ],
+        "narrative": "Final inolvidable. Francia llegó sin Pogba, Kanté ni Benzema (lesión). Ganó el grupo. Eliminó a Polonia (3-1), Inglaterra (2-1, Mbappé), Marruecos (2-0). EN LA FINAL ANTE ARGENTINA, 3-3 reglamentario y prórroga: Argentina dominaba 2-0 hasta el 80'. Mbappé empató con doblete en 90 segundos (penal 80', goleta acrobática 81'). Argentina hizo 3-2 en prórroga (Messi). Mbappé marcó hat-trick al 118' (penal). En tanda Argentina ganó 4-2. Mbappé Bota de Oro con 8 goles. Subcampeonato amargo."
+      }
+    ],
+    "palmares": [
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 1998,
+        "position": "Campeón",
+        "host": "Francia"
+      },
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 2018,
+        "position": "Campeón",
+        "host": "Rusia"
+      },
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 2006,
+        "position": "Subcampeón",
+        "host": "Alemania"
+      },
+      {
+        "competition": "Copa Mundial de la FIFA",
+        "year": 2022,
+        "position": "Subcampeón",
+        "host": "Catar"
+      },
+      {
+        "competition": "Eurocopa",
+        "year": 1984,
+        "position": "Campeón",
+        "host": "Francia"
+      },
+      {
+        "competition": "Eurocopa",
+        "year": 2000,
+        "position": "Campeón",
+        "host": "Bélgica · Países Bajos"
+      },
+      {
+        "competition": "Eurocopa",
+        "year": 2016,
+        "position": "Subcampeón",
+        "host": "Francia"
+      },
+      {
+        "competition": "UEFA Nations League",
+        "year": 2021,
+        "position": "Campeón",
+        "host": "Italia (final)"
+      },
+      {
+        "competition": "Confederaciones",
+        "year": 2003,
+        "position": "Campeón",
+        "host": "Francia"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Kylian Mbappé",
+      "value": 51,
+      "period": "2017-presente",
+      "notes": "En 2025 superó el récord de Olivier Giroud (57). Goleador histórico absoluto de Francia. Capitán."
+    },
+    "most_capped": {
+      "name": "Hugo Lloris",
+      "value": 145,
+      "period": "2008-2022",
+      "notes": "Récord histórico de presencias. Capitán Mundial 2018 campeón."
+    },
+    "youngest_debut": {
+      "name": "Maurice Gastiger",
+      "value": "17 años aprox.",
+      "period": "1914 vs Bélgica",
+      "notes": "Datos pendientes verificación primaria FFF."
+    },
+    "biggest_win": {
+      "result": "14-0",
+      "opponent": "Gibraltar",
+      "date": "2023-11-18",
+      "competition": "Eliminatorias Eurocopa 2024"
+    },
+    "worst_loss": {
+      "result": "1-17",
+      "opponent": "Inglaterra amateur",
+      "date": "1906-11-01",
+      "competition": "Amistoso (era amateur)"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El primer gol del Mundial (Lucien Laurent)",
+      "date": "1930-07-13",
+      "opponent": {
+        "iso": "mx",
+        "name": "México"
+      },
+      "score": "4-1",
+      "competition": "Fase de Grupos Mundial 1930",
+      "narrative": "Lucien Laurent marcó al 19' del Francia-México (4-1) en el primer Mundial. Es el PRIMER GOL DE LA HISTORIA DE LOS MUNDIALES. Hito eterno del fútbol."
+    },
+    {
+      "title": "Los 13 goles de Just Fontaine",
+      "date": "1958",
+      "opponent": {
+        "iso": "se",
+        "name": "Suecia (todo el torneo)"
+      },
+      "score": "Múltiples",
+      "competition": "Mundial 1958",
+      "narrative": "Just Fontaine marcó 13 goles en 6 partidos del Mundial 1958. RÉCORD ABSOLUTO de un solo Mundial que sigue intocable. Bota de Oro y leyenda."
+    },
+    {
+      "title": "La semifinal de Sevilla",
+      "date": "1982-07-08",
+      "opponent": {
+        "iso": "de",
+        "name": "Alemania Federal"
+      },
+      "score": "3-3 (4-5 pen)",
+      "competition": "Semifinal Mundial 1982",
+      "narrative": "Una de las semifinales más recordadas. 3-3 reglamentario (la primera vez que un partido de Mundial llegaba a 3-3 en prórroga). La entrada criminal de Schumacher a Battiston (lesión grave del francés, sin tarjeta). En penales Francia perdió 4-5."
+    },
+    {
+      "title": "Doblete de Zidane en la final",
+      "date": "1998-07-12",
+      "opponent": {
+        "iso": "br",
+        "name": "Brasil"
+      },
+      "score": "3-0",
+      "competition": "Final Mundial 1998",
+      "narrative": "Francia ganó su primer Mundial 3-0 a Brasil. Zinédine Zidane marcó dos cabezazos (27' y 45'). Petit cerró al 90'. Sin Ronaldo Nazário pleno por su crisis convulsiva matutina, Brasil no rindió. Primer título mundial francés."
+    },
+    {
+      "title": "El cabezazo de Zidane",
+      "date": "2006-07-09",
+      "opponent": {
+        "iso": "it",
+        "name": "Italia"
+      },
+      "score": "1-1 (3-5 pen)",
+      "competition": "Final Mundial 2006",
+      "narrative": "En la final del Mundial 2006, Zidane marcó penal panenka al 7' y cabeceó a Materazzi al 110' tras provocación verbal. Expulsado en su último partido como profesional. Italia ganó 5-3 en penales. Final dramática."
+    },
+    {
+      "title": "La final de Moscú",
+      "date": "2018-07-15",
+      "opponent": {
+        "iso": "hr",
+        "name": "Croacia"
+      },
+      "score": "4-2",
+      "competition": "Final Mundial 2018",
+      "narrative": "Francia ganó su segundo Mundial 4-2 a Croacia. Mbappé (19 años) marcó en la final, segundo adolescente tras Pelé en hacerlo. Goles de Mandzukic (autogol), Griezmann (penal), Pogba y Mbappé. 20 años después del primer título."
+    },
+    {
+      "title": "Hat-trick de Mbappé en la final",
+      "date": "2022-12-18",
+      "opponent": {
+        "iso": "ar",
+        "name": "Argentina"
+      },
+      "score": "3-3 (2-4 pen)",
+      "competition": "Final Mundial 2022",
+      "narrative": "Una de las finales más épicas. Argentina iba 2-0 hasta el 80'. Mbappé empató con doblete en 90 segundos (penal y volea). En prórroga 3-2 (Messi). Mbappé hat-trick al 118' (penal). En penales Argentina ganó 4-2. Mbappé fue el primer jugador en marcar hat-trick en una final desde Hurst 1966. Bota de Oro."
+    },
+    {
+      "title": "El 4-0 a Ucrania (clasificación 2026)",
+      "date": "2025-11-13",
+      "opponent": {
+        "iso": "ua",
+        "name": "Ucrania"
+      },
+      "score": "4-0",
+      "competition": "Eliminatorias Mundial 2026",
+      "narrative": "Francia goleó 4-0 a Ucrania en París para asegurar matemáticamente la clasificación al Mundial 2026. Doblete de Mbappé. Cierre invicto del último ciclo Deschamps."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "Just Fontaine marcó 13 goles en 6 partidos del Mundial 1958 — RÉCORD ABSOLUTO de goles en un solo Mundial que sigue intocable 68 años después.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Lucien Laurent marcó el PRIMER GOL en la historia de los Mundiales (Francia 4-1 México el 13 jul 1930).",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Mbappé es el primer jugador en marcar hat-trick en una final del Mundial desde Geoff Hurst en 1966 (Inglaterra vs Alemania). Lo logró el 18 dic 2022 ante Argentina.",
+      "source": "FIFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Didier Deschamps es uno de los 3 únicos hombres en ganar el Mundial como JUGADOR (1998 capitán) y como ENTRENADOR (2018). Los otros: Mario Zagallo (Brasil) y Franz Beckenbauer (Alemania).",
+      "source": "FIFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "El Mundial 2026 será el ÚLTIMO TORNEO de Didier Deschamps al frente de Francia. Anunciado por la FFF tras el 4-0 a Ucrania.",
+      "source": "FFF + L'Équipe",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Francia es la única selección que ha jugado las TRES últimas finales mundialistas que disputó (1998, 2006, 2018, 2022 — 3 victorias y un subcampeonato en 4 finales).",
+      "source": "FIFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Zidane fue expulsado en su último partido como profesional (final Mundial 2006 ante Italia tras cabezazo a Materazzi). Fue elegido Balón de Oro del torneo de todas formas.",
+      "source": "FIFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Francia perdió Mundial 2002 como defensora del título sin marcar un solo gol en 3 partidos (1 punto). Una de las peores defensas de título en la historia del Mundial.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Allez les Bleus",
+      "Et un, et deux, et trois zéro (referencia final 1998)",
+      "La Marseillaise (himno nacional)"
+    ],
+    "main_rival": {
+      "iso": "de",
+      "name": "Alemania",
+      "story": "La rivalidad más intensa del fútbol europeo. Las semifinales de 1982 (Sevilla, 3-3 con la entrada de Schumacher a Battiston) y 1986 (México) son traumas franceses. Francia ganó cuartos 2014. Total enfrentamientos en Mundiales: 4 (Alemania 3, Francia 1)."
+    },
+    "home_stadium": {
+      "name": "Stade de France",
+      "capacity": 80698,
+      "city": "Saint-Denis (París)"
+    }
+  },
+  "seo": {
+    "meta_title": "Francia en el Mundial 2026 | Plantilla, historia y predicciones",
+    "meta_description": "Francia Mundial 2026: Mbappé y la era final de Deschamps. Grupo I con Senegal, Irak y Noruega. 2 títulos mundiales y subcampeona vigente.",
+    "og_image_url": "/img/og/teams/francia.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Francia",
+      "alternateName": [
+        "Les Bleus",
+        "Galos"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "UEFA"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Didier Deschamps"
+      },
+      "url": "https://www.zonamundial.app/selecciones/francia"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-28",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_de_UEFA_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://es.uefa.com/european-qualifiers/news/02a0-1f5b6ed60d45-6158c7bfa1ce-1000--sorteo-de-la-copa-mundial-2026-todos-los-grupos/",
+      "https://es.uefa.com/european-qualifiers/news/029f-1f3188cfc443-494e0d8af33d-1000--mundial-2026-que-selecciones-europeas-se-han-clasificado/",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/15895830/se-definen-eliminatorias-uefa-europa-mundial-2026-quien-puede-clasificar",
+      "https://www.tudn.com/mundial-2026/eliminatorias/eliminatorias-mundial-2026-asi-quedo-la-tabla-de-posiciones-de-uefa",
+      "https://www.fff.fr",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias UEFA cruzadas con UEFA + Wikipedia + ESPN + TUDN. Historia mundialista validada con FIFA + Wikipedia. Plantilla con FFF + medios franceses.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "complete",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante: pendiente",
+      "Calendario fase de grupos 2026: validar fixture completo",
+      "Base de entrenamiento: FFF aún no anunció",
+      "FIFA Ranking #2: validar mes vigente",
+      "Edad exacta Mbappé al Mundial 2026: 27",
+      "Confirmar récord Mbappé como goleador histórico francés (51+ vs Giroud 57)"
+    ]
+  }
+}

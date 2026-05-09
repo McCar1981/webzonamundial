@@ -1,0 +1,340 @@
+{
+  "slug": "canada",
+  "iso": "ca",
+  "iso3": "CAN",
+  "name_es": "Canadá",
+  "name_en": "Canada",
+  "name_local": "Canada",
+  "nicknames": ["Canucks", "Les Rouges", "Canadian Soccer Men"],
+
+  "flag": {
+    "colors": {
+      "primary": "#FF0000",
+      "secondary": "#FFFFFF",
+      "tertiary": "#000000",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+
+  "country": {
+    "capital": "Ottawa",
+    "language_official": ["Inglés", "Francés"],
+    "population": 40000000,
+    "area_km2": 9984670,
+    "timezone": "America/Toronto",
+    "continent": "América del Norte"
+  },
+
+  "federation": {
+    "name": "Canadian Soccer Association",
+    "abbreviation": "CSA",
+    "founded": 1912,
+    "headquarters": "Ottawa",
+    "website": "https://www.canadasoccer.com"
+  },
+
+  "confederation": "CONCACAF",
+
+  "fifa_ranking": {
+    "current": 27,
+    "last_updated": "2026-04-03"
+  },
+
+  "kit": {
+    "wc_2026": {
+      "brand": "Nike",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "[PLACEHOLDER: /img/kits/2026/home/canada.svg]",
+        "back_url": null,
+        "primary_color": "#FF0000",
+        "secondary_color": "#FFFFFF",
+        "description": "Camiseta roja con detalles blancos, los colores de la bandera nacional canadiense.",
+        "alt_text": "Camiseta titular Canadá Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#FF0000",
+        "description": "Equipación visitante en blanco. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Canadá Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      { "text": "El rojo y blanco son los colores nacionales de Canadá desde 1965 (adopción de la bandera con la hoja de arce). El sobrenombre 'Canucks' proviene del término coloquial para canadiense usado desde el siglo XIX.", "source": "CSA + Wikipedia", "verified_at": "2026-04-30", "status": "validated" }
+    ]
+  },
+
+  "wc_2026": {
+    "qualified_via": "host",
+    "qualifying_summary": "Canadá clasificó AUTOMÁTICAMENTE como ANFITRIÓN del Mundial 2026 junto con USA y México. Sin partidos eliminatorios, su preparación se basó en Copa América 2024 (CUARTOS DE FINAL, mejor papel histórico CONMEBOL invitado), Nations League CONCACAF (subcampeón 2024-25 cayendo 2-3 vs USA en final) y amistosos. Jesse Marsch (USA, ex-Leeds, ex-RB Leipzig) tomó las riendas en mayo 2024. Es su 3ª participación mundialista (1986, 2022, 2026), 2ª CONSECUTIVA. En el Grupo B del Mundial con Suiza, Bosnia y Catar.",
+    "qualifying": {
+      "confederation_round": "Anfitrión (sin eliminatorias). Stats de Copa América 2024 + Nations League 2024-25 como referencia.",
+      "format": "Anfitrión clasificado automáticamente. Copa América 2024: 5 partidos (3 grupos + cuartos + semis).",
+      "duration": "Junio — Julio 2024 (Copa América)",
+      "final_position": 4,
+      "total_teams_in_group": 4,
+      "stats": {
+        "played": 6,
+        "won": 2,
+        "drawn": 2,
+        "lost": 2,
+        "goals_for": 5,
+        "goals_against": 6,
+        "goal_difference": -1,
+        "points": 8,
+        "win_percentage": 33.3,
+        "clean_sheets": 3,
+        "notes": "Stats de COPA AMÉRICA 2024 (4º puesto, mejor papel histórico CONMEBOL como invitado). Como anfitrión Mundial 2026, no jugó eliminatorias FIFA."
+      },
+      "coach_during_qualifying": "Jesse Marsch (desde mayo 2024). En Copa América 2024 dirigió desde el inicio del torneo.",
+      "matches": [
+        { "matchday": 1, "date": "2024-06-20", "home": { "iso": "ar", "name": "Argentina", "score": 2 }, "away": { "iso": "ca", "name": "Canadá", "score": 0 }, "venue": { "stadium": "Mercedes-Benz Stadium", "city": "Atlanta", "country_iso": "us" }, "goals_arg": [], "notes": "Debut Copa América vs Argentina campeona. Cayó 0-2 (Álvarez 49', Messi 88')." },
+        { "matchday": 2, "date": "2024-06-25", "home": { "iso": "ca", "name": "Canadá", "score": 1 }, "away": { "iso": "pe", "name": "Perú", "score": 0 }, "venue": { "stadium": "Children's Mercy Park", "city": "Kansas City", "country_iso": "us" }, "goals_arg": [{ "player": "Jonathan David", "minute": "75'", "type": "goal" }], "notes": "1ª victoria histórica de Canadá en Copa América." },
+        { "matchday": 3, "date": "2024-06-29", "home": { "iso": "ca", "name": "Canadá", "score": 0 }, "away": { "iso": "cl", "name": "Chile", "score": 0 }, "venue": { "stadium": "Inter&Co Stadium", "city": "Orlando", "country_iso": "us" }, "goals_arg": [], "notes": "Empate sin goles que clasificó a Canadá a CUARTOS." },
+        { "matchday": 4, "date": "2024-07-05", "home": { "iso": "ca", "name": "Canadá", "score": 1 }, "away": { "iso": "ve", "name": "Venezuela", "score": 1 }, "venue": { "stadium": "AT&T Stadium", "city": "Arlington (Dallas)", "country_iso": "us" }, "goals_arg": [{ "player": "Jacob Shaffelburg", "minute": "13'", "type": "goal" }], "notes": "CUARTOS. Empate 1-1 (Rondón 64'). Canadá GANÓ POR PENALES 4-3. Pase a SEMIFINAL." },
+        { "matchday": 5, "date": "2024-07-09", "home": { "iso": "ar", "name": "Argentina", "score": 2 }, "away": { "iso": "ca", "name": "Canadá", "score": 0 }, "venue": { "stadium": "MetLife Stadium", "city": "East Rutherford", "country_iso": "us" }, "goals_arg": [], "notes": "SEMIFINAL. Cayó 0-2 con Argentina (Julián Álvarez 22', Messi 51')." },
+        { "matchday": 6, "date": "2024-07-13", "home": { "iso": "ca", "name": "Canadá", "score": 2 }, "away": { "iso": "uy", "name": "Uruguay", "score": 2 }, "venue": { "stadium": "Bank of America Stadium", "city": "Charlotte", "country_iso": "us" }, "goals_arg": [{ "player": "Jonathan David", "minute": "22'", "type": "penalty" }, { "player": "Ismaël Koné", "minute": "80'", "type": "goal" }], "notes": "TERCER PUESTO. Empate 2-2 → Cayó por penales 4-3 (Suárez decisivo). 4º LUGAR HISTÓRICO en Copa América. Mejor papel CONCACAF en torneo CONMEBOL.", "is_decisive_match": true }
+      ],
+      "top_scorers": [
+        { "player": "Jonathan David", "goals": 2, "notes": "Lille. Top scorer Copa América 2024." },
+        { "player": "Jacob Shaffelburg", "goals": 1, "notes": "Nashville SC." },
+        { "player": "Ismaël Koné", "goals": 1, "notes": "Marsella." },
+        { "player": "Otros (1)", "goals": 1 }
+      ],
+      "best_match": { "match_ref": "matchday_4", "reason": "Empate 1-1 vs Venezuela en cuartos (Shaffelburg al 13'). Ganó por penales 4-3 con Maxime Crépeau salvador. 1ª SEMIFINAL HISTÓRICA Canadá en torneo continental." },
+      "worst_match": { "match_ref": "matchday_5", "reason": "Cayó 0-2 con Argentina campeona en semifinales. Buen partido pero diferencia táctica clara." },
+      "decisive_match": { "match_ref": "matchday_6", "reason": "Tercer puesto Copa América 2024: empate 2-2 vs Uruguay (David penal 22', Koné 80'), cayó por penales 4-3 (Suárez decisivo). 4º LUGAR HISTÓRICO. Mejor papel CONCACAF en Copa América." }
+    },
+
+    "group_2026": {
+      "letter": "B",
+      "label": "Grupo B — Canadá (anfitriona), Suiza, Bosnia y Catar",
+      "teams": [
+        { "iso": "ca", "name": "Canadá", "fifa_rank": 27, "is_seed": true },
+        { "iso": "ch", "name": "Suiza", "fifa_rank": 19, "is_seed": false },
+        { "iso": "ba", "name": "Bosnia", "fifa_rank": 75, "is_seed": false },
+        { "iso": "qa", "name": "Catar", "fifa_rank": 53, "is_seed": false }
+      ],
+      "notes": "Grupo B confirmado en sorteo del 5 dic 2025. Canadá cabeza de serie como anfitriona."
+    },
+
+    "schedule": [
+      { "matchday": 1, "opponent": { "iso": "ba", "name": "Bosnia" }, "date": "2026-06-13", "venue": { "stadium": "BMO Field", "city": "Toronto", "country_iso": "ca" }, "status": "scheduled" },
+      { "matchday": 2, "opponent": { "iso": "qa", "name": "Catar" }, "date": "[POR CONFIRMAR]", "venue": { "stadium": "BC Place", "city": "Vancouver", "country_iso": "ca" }, "status": "scheduled" },
+      { "matchday": 3, "opponent": { "iso": "ch", "name": "Suiza" }, "date": "[POR CONFIRMAR]", "venue": { "stadium": "BMO Field", "city": "Toronto", "country_iso": "ca" }, "status": "scheduled" }
+    ],
+
+    "base_camp": { "city": "Toronto", "country": "Canadá", "facility_name": "Canadian Soccer Centre", "status": "confirmed" },
+
+    "coach": {
+      "name": "Jesse Marsch",
+      "age": 52,
+      "nationality": "Estados Unidos",
+      "since": "2024-05-13",
+      "previous_teams": ["Leeds United (2022-2023, Premier League)", "RB Leipzig (2021-2022, Bundesliga, despedido tras 4 meses)", "RB Salzburg (2019-2021, BICAMPEÓN bundesliga + 2 copas)", "New York Red Bulls (2015-2018)", "Toronto FC (asistente, 2010)"],
+      "profile_summary": "Estadounidense, 52 años. Ex-mediocampista internacional USA (1995-2002). Pionero como 1ER ENTRENADOR ESTADOUNIDENSE en dirigir CHAMPIONS LEAGUE (RB Salzburg 2020-21). Identidad táctica: 4-2-3-1 con presión alta intensidad ('gegenpressing' al estilo Klopp). Asumió Canadá en MAYO 2024 tras la salida de Mauro Biello. CON ÉL, CANADÁ logró el MEJOR PAPEL HISTÓRICO en Copa América (4º puesto 2024, ÚNICO PAÍS NO-CONMEBOL en lograr semifinales en formato 16 equipos)."
+    },
+
+    "captain": { "name": "Alphonso Davies", "club": "Bayern Múnich" },
+
+    "star_player": {
+      "name": "Alphonso Davies",
+      "club": "Bayern Múnich",
+      "reason": "Lateral izquierdo del Bayern (Bundesliga). 25 años. Nacido en Buduburam (Ghana, campo de refugiados liberianos), llegó a Canadá con 5 años. Ex-Vancouver Whitecaps → Bayern (2019-presente). CAMPEÓN CHAMPIONS LEAGUE 2020 con Bayern. JUGADOR CONCACAF DEL AÑO 2020. La velocidad pura del fútbol: récord 36.51 km/h. Capitán histórico, 2º Mundial."
+    },
+
+    "likely_squad": [
+      { "id": "dayne-st-clair", "full_name": "Dayne St. Clair", "display_name": "Dayne St. Clair", "position": "GK", "detailed_position": "GK", "club": { "name": "Minnesota United", "country_iso": "us", "league": "MLS" }, "shirt_number_expected": 1, "status": "fixed" },
+      { "id": "maxime-crepeau", "full_name": "Maxime Crépeau", "display_name": "Maxime Crépeau", "position": "GK", "detailed_position": "GK", "club": { "name": "Portland Timbers", "country_iso": "us", "league": "MLS" }, "shirt_number_expected": 12, "status": "fixed" },
+      { "id": "tom-mcgill", "full_name": "Tom McGill", "display_name": "Tom McGill", "position": "GK", "detailed_position": "GK", "club": { "name": "Plymouth Argyle", "country_iso": "gb-eng", "league": "Championship" }, "shirt_number_expected": 23, "status": "probable" },
+      { "id": "alistair-johnston", "full_name": "Alistair Johnston", "display_name": "Alistair Johnston", "position": "DEF", "detailed_position": "RB", "club": { "name": "Celtic FC", "country_iso": "gb-sct", "league": "Scottish Premiership" }, "shirt_number_expected": 2, "status": "fixed" },
+      { "id": "richie-laryea", "full_name": "Richie Laryea", "display_name": "Richie Laryea", "position": "DEF", "detailed_position": "RB", "club": { "name": "Toronto FC", "country_iso": "ca", "league": "MLS" }, "shirt_number_expected": 14, "status": "fixed" },
+      { "id": "moise-bombito", "full_name": "Moïse Bombito", "display_name": "Moïse Bombito", "position": "DEF", "detailed_position": "CB", "club": { "name": "Niza", "country_iso": "fr", "league": "Ligue 1" }, "shirt_number_expected": 4, "status": "fixed" },
+      { "id": "derek-cornelius", "full_name": "Derek Cornelius", "display_name": "Derek Cornelius", "position": "DEF", "detailed_position": "CB", "club": { "name": "Marsella", "country_iso": "fr", "league": "Ligue 1" }, "shirt_number_expected": 5, "status": "fixed" },
+      { "id": "joel-waterman", "full_name": "Joel Waterman", "display_name": "Joel Waterman", "position": "DEF", "detailed_position": "CB", "club": { "name": "CF Montréal", "country_iso": "ca", "league": "MLS" }, "shirt_number_expected": 15, "status": "fixed" },
+      { "id": "luc-de-fougerolles", "full_name": "Luc de Fougerolles", "display_name": "Luc de Fougerolles", "position": "DEF", "detailed_position": "CB", "club": { "name": "Fulham", "country_iso": "gb-eng", "league": "Premier League" }, "shirt_number_expected": 22, "status": "probable" },
+      { "id": "alphonso-davies", "full_name": "Alphonso Davies", "display_name": "Alphonso Davies", "position": "DEF", "detailed_position": "LB", "club": { "name": "Bayern Múnich", "country_iso": "de", "league": "Bundesliga" }, "shirt_number_expected": 19, "status": "fixed" },
+      { "id": "sam-adekugbe", "full_name": "Sam Adekugbe", "display_name": "Sam Adekugbe", "position": "DEF", "detailed_position": "LB", "club": { "name": "Hatayspor", "country_iso": "tr", "league": "Süper Lig" }, "shirt_number_expected": 3, "status": "fixed" },
+      { "id": "stephen-eustaquio", "full_name": "Stephen Eustáquio", "display_name": "Stephen Eustáquio", "position": "MID", "detailed_position": "CDM", "club": { "name": "Porto", "country_iso": "pt", "league": "Liga Portugal" }, "shirt_number_expected": 7, "status": "fixed" },
+      { "id": "ismael-kone", "full_name": "Ismaël Koné", "display_name": "Ismaël Koné", "position": "MID", "detailed_position": "CM", "club": { "name": "Marsella", "country_iso": "fr", "league": "Ligue 1" }, "shirt_number_expected": 8, "status": "fixed" },
+      { "id": "samuel-piette", "full_name": "Samuel Piette", "display_name": "Samuel Piette", "position": "MID", "detailed_position": "CDM", "club": { "name": "CF Montréal", "country_iso": "ca", "league": "MLS" }, "shirt_number_expected": 6, "status": "fixed" },
+      { "id": "mathieu-choiniere", "full_name": "Mathieu Choinière", "display_name": "Mathieu Choinière", "position": "MID", "detailed_position": "CM", "club": { "name": "Grasshopper", "country_iso": "ch", "league": "Super League suiza" }, "shirt_number_expected": 16, "status": "fixed" },
+      { "id": "tajon-buchanan", "full_name": "Tajon Buchanan", "display_name": "Tajon Buchanan", "position": "MID", "detailed_position": "RW", "club": { "name": "Inter Milán", "country_iso": "it", "league": "Serie A" }, "shirt_number_expected": 17, "status": "fixed" },
+      { "id": "liam-millar", "full_name": "Liam Millar", "display_name": "Liam Millar", "position": "MID", "detailed_position": "LW", "club": { "name": "Hull City", "country_iso": "gb-eng", "league": "Championship" }, "shirt_number_expected": 11, "status": "fixed" },
+      { "id": "jacob-shaffelburg", "full_name": "Jacob Shaffelburg", "display_name": "Jacob Shaffelburg", "position": "FWD", "detailed_position": "LW", "club": { "name": "Nashville SC", "country_iso": "us", "league": "MLS" }, "shirt_number_expected": 18, "status": "fixed" },
+      { "id": "jonathan-david", "full_name": "Jonathan David", "display_name": "Jonathan David", "position": "FWD", "detailed_position": "ST", "club": { "name": "Juventus", "country_iso": "it", "league": "Serie A" }, "shirt_number_expected": 9, "status": "fixed" },
+      { "id": "cyle-larin", "full_name": "Cyle Larin", "display_name": "Cyle Larin", "position": "FWD", "detailed_position": "ST", "club": { "name": "Mallorca", "country_iso": "es", "league": "La Liga" }, "shirt_number_expected": 10, "status": "fixed" },
+      { "id": "jonathan-osorio", "full_name": "Jonathan Osorio", "display_name": "Jonathan Osorio", "position": "MID", "detailed_position": "CAM", "club": { "name": "Toronto FC", "country_iso": "ca", "league": "MLS" }, "shirt_number_expected": 21, "status": "fixed" },
+      { "id": "promise-david", "full_name": "Promise David", "display_name": "Promise David", "position": "FWD", "detailed_position": "ST", "club": { "name": "Union Saint-Gilloise", "country_iso": "be", "league": "Pro League" }, "shirt_number_expected": 20, "status": "fixed" },
+      { "id": "junior-hoilett", "full_name": "Junior Hoilett", "display_name": "Junior Hoilett", "position": "FWD", "detailed_position": "RW", "club": { "name": "Hibernian", "country_iso": "gb-sct", "league": "Scottish Premiership" }, "shirt_number_expected": 24, "status": "probable" },
+      { "id": "theo-corbeanu", "full_name": "Theo Corbeanu", "display_name": "Theo Corbeanu", "position": "FWD", "detailed_position": "RW", "club": { "name": "Granada", "country_iso": "es", "league": "La Liga 2" }, "shirt_number_expected": 25, "status": "probable" },
+      { "id": "ali-ahmed", "full_name": "Ali Ahmed", "display_name": "Ali Ahmed", "position": "MID", "detailed_position": "CM", "club": { "name": "Vancouver Whitecaps", "country_iso": "ca", "league": "MLS" }, "shirt_number_expected": 13, "status": "fixed" },
+      { "id": "niko-sigur", "full_name": "Niko Sigur", "display_name": "Niko Sigur", "position": "DEF", "detailed_position": "RB", "club": { "name": "Hajduk Split", "country_iso": "hr", "league": "HNL" }, "shirt_number_expected": 26, "status": "probable" }
+    ],
+
+    "starting_xi": {
+      "formation": "4-2-3-1",
+      "players": [
+        { "player_id": "dayne-st-clair", "position": { "x": 50, "y": 92 } },
+        { "player_id": "alistair-johnston", "position": { "x": 85, "y": 72 } },
+        { "player_id": "moise-bombito", "position": { "x": 65, "y": 75 } },
+        { "player_id": "derek-cornelius", "position": { "x": 35, "y": 75 } },
+        { "player_id": "alphonso-davies", "position": { "x": 15, "y": 72 } },
+        { "player_id": "stephen-eustaquio", "position": { "x": 60, "y": 55 } },
+        { "player_id": "ismael-kone", "position": { "x": 40, "y": 55 } },
+        { "player_id": "tajon-buchanan", "position": { "x": 80, "y": 30 } },
+        { "player_id": "jonathan-osorio", "position": { "x": 50, "y": 32 } },
+        { "player_id": "jacob-shaffelburg", "position": { "x": 20, "y": 30 } },
+        { "player_id": "jonathan-david", "position": { "x": 50, "y": 12 } }
+      ]
+    },
+
+    "analysis": {
+      "style": "Marsch plantea un 4-2-3-1 con 'gegenpressing' al estilo Klopp/Salzburg: defensa zonal alta, doble pivote (Eustáquio + Koné), Davies como lateral-extremo libre por izquierda, David '9' fijo de área. Identidad: presión brutal, transiciones explosivas, ritmo Bundesliga.",
+      "strengths": [
+        "ALPHONSO DAVIES: Bayern Múnich, campeón Champions 2020. JUGADOR MÁS RÁPIDO de Bundesliga. Ícono.",
+        "JONATHAN DAVID: Juventus (Serie A). Top scorer histórico Canadá (25+ goles).",
+        "STEPHEN EUSTÁQUIO: motor del Porto Champions League. Capacidad físico-técnica top.",
+        "Tajon Buchanan: Inter Milán. Velocidad y juego asociativo.",
+        "Defensa europea: Bombito (Niza), Cornelius (Marsella), Johnston (Celtic). Varios europeos top.",
+        "Jesse Marsch: experiencia Champions con Salzburg, Bundesliga con Leipzig. Identidad clara.",
+        "ANTECEDENTE INMEDIATO: 4º puesto Copa América 2024 (mejor papel histórico CONCACAF en CONMEBOL)."
+      ],
+      "weaknesses": [
+        "RÉCORD MUNDIALISTA POBRE: en 1986 PERDIÓ LOS 3 partidos sin marcar. En 2022 PERDIÓ LOS 3 partidos.",
+        "GOLEO MUNDIALISTA HISTÓRICO: 0 goles en 6 partidos mundialistas. RÉCORD HORROROSO.",
+        "PROFUNDIDAD: tras Davies y David, talento limitado en Premier/Champions.",
+        "Jesse Marsch tradición Salzburg/Leipzig: aún adaptándose a CONCACAF.",
+        "Edad: Larin 30, Hoilett 35, Eustáquio 28. Generación pasando pico.",
+        "Rivalidad mexicano-USA: a Canadá le cuesta vencer al Tri y USA.",
+        "ANSIEDAD ANFITRIÓN: 1ª vez como anfitrión Mundial. Toronto + Vancouver presión histórica."
+      ],
+      "x_factor": {
+        "player": "Jonathan David",
+        "reason": "Delantero del Juventus (Serie A) tras dejar Lille en verano 2025. 25 años. 30+ goles internacionales. Top scorer histórico Canadá. Si rinde a su nivel Serie A, Canadá puede ROMPER LA RACHA DE 0 GOLES MUNDIALISTAS y soñar con octavos."
+      },
+      "prediction_text": "Canadá llega como ANFITRIÓN al Grupo B con Suiza (favorita), Bosnia y Catar. Pasar a octavos = ROMPER 40 AÑOS DE HUMILLACIÓN MUNDIALISTA (siempre 0 puntos). 1ER GOL MUNDIALISTA HISTÓRICO sería gesta. Marsch + Davies + David + ventaja local = ilusión real.",
+      "probabilities": {
+        "advance_groups": 60,
+        "round_of_32": 50,
+        "round_of_16": 22,
+        "quarter_finals": 5,
+        "semi_finals": 1,
+        "final": 0,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: NO CLASIFICÓ. Catar 2022: fase de grupos (PERDIÓ LOS 3 partidos sin pasar de grupos en 36 años). Mundial 2026: 3ª participación (1986, 2022, 2026), 2ª CONSECUTIVA."
+    }
+  },
+
+  "history": {
+    "first_appearance": 1986,
+    "appearances_count_before_2026": 2,
+    "appearances_count_with_2026": 3,
+    "consecutive_streak_since": 2022,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 0,
+    "best_result": "Fase de grupos (1986, 2022). NUNCA marcó en sus 6 primeros partidos mundialistas.",
+    "aggregate_stats_through_2022": {
+      "played": 6,
+      "won": 0,
+      "drawn": 0,
+      "lost": 6,
+      "goals_for": 2,
+      "goals_against": 12,
+      "win_percentage": 0.0,
+      "notes": "6 partidos en 2 Mundiales. 0 victorias, 0 empates. Históricamente 0 goles antes de 2022, donde marcó 2."
+    },
+    "by_world_cup": [
+      { "year": 1986, "host": { "countries": ["México"], "iso": ["mx"] }, "result": "Fase de grupos", "coach": "Tony Waiters", "captain": "Bruce Wilson", "matches": [], "team_top_scorers": [], "goals_scored": 0, "goals_conceded": 5, "notable_facts": ["DEBUT mundialista absoluto.", "Cayó 0-1 con Francia, 0-2 con Hungría, 0-2 con URSS.", "0 GOLES en 3 partidos."], "narrative": "Canadá debutó en MÉXICO 86. Cayó los 3 partidos sin marcar gol. NUNCA HABÍA SUMADO un punto mundialista hasta 2022." },
+      { "year": 2022, "host": { "countries": ["Catar"], "iso": ["qa"] }, "result": "Fase de grupos", "coach": "John Herdman", "captain": "Atiba Hutchinson", "matches": [], "team_top_scorers": [{ "player": "Alphonso Davies", "goals": 1 }, { "player": "Jonathan David", "goals": 0 }, { "player": "Junior Hoilett", "goals": 1 }], "goals_scored": 2, "goals_conceded": 7, "notable_facts": ["1ª vez en Mundial tras 36 años.", "Davies marcó EL 1ER GOL HISTÓRICO mundialista canadiense vs Croacia (2'00).", "Cayó los 3 partidos: 0-1 Bélgica, 1-4 Croacia, 1-2 Marruecos."], "narrative": "MUNDIAL HISTÓRICO. Tras 36 AÑOS de ausencia, Canadá regresó. ALPHONSO DAVIES marcó EL 1ER GOL HISTÓRICO MUNDIALISTA canadiense al MIN 2 vs CROACIA (cabezazo en plancha). Pero Croacia remontó 4-1. Cayó los 3 partidos. Hoilett y autogol cerraron." }
+    ],
+    "palmares": [
+      { "competition": "Copa Oro CONCACAF", "year": 1985, "position": "Campeón", "host": "México (1ª edición)" },
+      { "competition": "Copa Oro CONCACAF", "year": 2000, "position": "Campeón", "host": "USA" }
+    ]
+  },
+
+  "records": {
+    "top_scorer_history": { "name": "Cyle Larin", "value": 30, "period": "2014-presente", "notes": "MÁXIMO GOLEADOR HISTÓRICO. Récord vigente. Mallorca (La Liga). Mundial 2022." },
+    "most_capped": { "name": "Atiba Hutchinson", "value": 105, "period": "2003-2022", "notes": "Récord histórico. Capitán Mundial 2022." },
+    "youngest_debut": { "name": "Alphonso Davies", "value": "16 años", "period": "2017", "notes": "Récord moderno. Bayern Múnich, campeón Champions 2020." },
+    "biggest_win": { "result": "8-0", "opponent": "St. Lucia", "date": "2008-09-10", "competition": "Eliminatorias Mundial 2010" },
+    "worst_loss": { "result": "0-8", "opponent": "Honduras", "date": "2012-10-16", "competition": "Eliminatorias Mundial 2014" }
+  },
+
+  "iconic_matches": [
+    { "title": "El 1er gol histórico de Davies (2022 vs Croacia)", "date": "2022-11-27", "opponent": { "iso": "hr", "name": "Croacia" }, "score": "1-4", "competition": "Fase de Grupos Mundial 2022", "narrative": "ALPHONSO DAVIES marcó al MIN 2 EL 1ER GOL HISTÓRICO mundialista canadiense vs CROACIA. Cabezazo en plancha tras centro de Buchanan. Estadio Khalifa estalló. Pero Croacia remontó 4-1 (Kramaric doblete, Livaja, Majer). Aunque cayó, marcó hito." },
+    { "title": "Cuarto puesto Copa América 2024 (semis vs Argentina)", "date": "2024-07-09", "opponent": { "iso": "ar", "name": "Argentina" }, "score": "0-2", "competition": "Semifinal Copa América 2024", "narrative": "Canadá cayó 0-2 con Argentina campeona en semifinal Copa América 2024 (Julián Álvarez 22', Messi 51'). MEJOR PAPEL HISTÓRICO de Canadá en torneo CONMEBOL. 4º LUGAR final tras caer con Uruguay en penales." },
+    { "title": "Penales vs Venezuela (cuartos Copa América)", "date": "2024-07-05", "opponent": { "iso": "ve", "name": "Venezuela" }, "score": "1-1 (4-3 pen)", "competition": "Cuartos Copa América 2024", "narrative": "Canadá clasificó por 1ª vez a SEMIS HISTÓRICAS en Copa América venciendo a Venezuela 4-3 en penales tras 1-1. Shaffelburg al 13', Rondón empató al 64'. MAXIME CRÉPEAU figura por penales." },
+    { "title": "Campeón Copa Oro 2000 (final 2-0 vs Colombia)", "date": "2000-02-27", "opponent": { "iso": "co", "name": "Colombia" }, "score": "2-0", "competition": "Final Copa Oro 2000", "narrative": "Canadá VENCIÓ 2-0 a COLOMBIA en final Copa Oro 2000 en LA Coliseum. Carlo Corazzin y Jason DeVos goleadores. ÚLTIMA VEZ que Canadá ganó torneo continental mayor." },
+    { "title": "El penal de Davies fallado vs Bélgica (2022)", "date": "2022-11-23", "opponent": { "iso": "be", "name": "Bélgica" }, "score": "0-1", "competition": "Fase de Grupos Mundial 2022", "narrative": "ALPHONSO DAVIES falló UN PENAL al 11' vs Bélgica. Atajado por Courtois. Bélgica ganó 1-0 con gol de Batshuayi al 44'. Si Davies hubiera marcado, Canadá habría podido empatar/ganar. Hubiera cambiado historia." }
+  ],
+
+  "curiosities": [
+    { "text": "Canadá CO-ANFITRIONA del Mundial 2026 con USA y México. ES LA 1ª VEZ EN LA HISTORIA que un Mundial tiene 3 PAÍSES ANFITRIONES (formato 48 selecciones). Toronto y Vancouver son las 2 sedes canadienses.", "source": "FIFA + Wikipedia", "verified_at": "2026-04-30", "status": "validated" },
+    { "text": "ALPHONSO DAVIES NACIÓ EN 2000 EN UN CAMPO DE REFUGIADOS LIBERIANOS en Buduburam, Ghana. Sus padres huyeron de la 2ª Guerra Civil de Liberia. Llegó a Canadá con 5 años. Es CIUDADANO CANADIENSE desde 2017.", "source": "Bayern + Wikipedia", "verified_at": "2026-04-30", "status": "validated" },
+    { "text": "Davies marcó EL 1ER GOL MUNDIALISTA DE LA HISTORIA DE CANADÁ el 27 nov 2022 vs Croacia, AL MIN 2. Antes de eso, Canadá había jugado 6 partidos mundialistas SIN MARCAR (0 goles 1986+0 goles vs Bélgica 2022).", "source": "FIFA + Wikipedia", "verified_at": "2026-04-30", "status": "validated" },
+    { "text": "Jesse Marsch (DT actual) es EL 1ER ENTRENADOR ESTADOUNIDENSE en dirigir CHAMPIONS LEAGUE: con RB Salzburg en 2020-21. Récord histórico USA en banquillos europeos.", "source": "UEFA + Wikipedia", "verified_at": "2026-04-30", "status": "validated" },
+    { "text": "Canadá fue 4º LUGAR EN COPA AMÉRICA 2024, MEJOR PAPEL HISTÓRICO DE CONCACAF en torneo CONMEBOL en formato 16 equipos. Solo perdió con Argentina (campeona). En penales perdió 3er puesto vs Uruguay.", "source": "CONMEBOL + Wikipedia", "verified_at": "2026-04-30", "status": "validated" },
+    { "text": "Canadá fue CAMPEÓN COPA ORO 2000 venciendo 2-0 a Colombia en LA Coliseum. ÚLTIMO TÍTULO MAYOR (26 años sin levantar trofeo). En 1985 fue 1er campeón de la 1ª Copa Oro CONCACAF (entonces llamada Campeonato CONCACAF).", "source": "CONCACAF + Wikipedia", "verified_at": "2026-04-30", "status": "validated" },
+    { "text": "Davies tiene RÉCORD VELOCIDAD BUNDESLIGA: 36.51 km/h (medido vs Werder Bremen en 2020). UNO DE LOS JUGADORES MÁS RÁPIDOS DEL MUNDO actualmente.", "source": "Bundesliga + Wikipedia", "verified_at": "2026-04-30", "status": "validated" }
+  ],
+
+  "fan_culture": {
+    "famous_chants": ["Canada! Canada!", "We Are Canadian", "O Canada (himno)", "True North!"],
+    "main_rival": { "iso": "us", "name": "Estados Unidos", "story": "Rivalidad geográfica con USA. En CONCACAF Nations League final 2025, USA venció 3-2 a Canadá. Han jugado más de 50 veces. USA lleva ventaja histórica. Renovado morbo por co-anfitriones del mismo Mundial." },
+    "home_stadium": { "name": "BMO Field", "capacity": 30000, "city": "Toronto" }
+  },
+
+  "seo": {
+    "meta_title": "Canadá Mundial 2026 | Anfitrión, Davies, David, Marsch",
+    "meta_description": "Canadá Mundial 2026: anfitrión. Plantel de Marsch, Davies, Jonathan David, Eustáquio. Grupo B con Suiza, Bosnia, Catar. 3ª participación.",
+    "og_image_url": "/img/og/teams/canada.png",
+    "schema_org": { "@context": "https://schema.org", "@type": "SportsTeam", "name": "Selección de fútbol de Canadá", "alternateName": ["Canucks", "Les Rouges"], "sport": "Football", "memberOf": { "@type": "SportsOrganization", "name": "CONCACAF" }, "coach": { "@type": "Person", "name": "Jesse Marsch" }, "url": "https://www.zonamundial.app/selecciones/canada" }
+  },
+
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-30",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_Canad%C3%A1",
+      "https://www.canadasoccer.com",
+      "https://www.fifa.com/fifa-world-ranking/men",
+      "https://www.theathletic.com/canada",
+      "https://www.cbc.ca/sports/soccer",
+      "https://www.tudn.com/copa-america/copa-america-2024-canada"
+    ],
+    "validation_method": "Plantel y Copa América 2024 cruzados con CSA + The Athletic + CBC + TUDN + Wikipedia. Stats Copa América 2024: 4º puesto (2G 2E 2P, 5 GF 6 GC). Por ser anfitrión, no jugó eliminatorias FIFA.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "complete",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "complete",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante Nike: pendiente",
+      "Calendario fase grupos 2026: 2 fechas pendientes",
+      "FIFA Ranking #27: validar mes vigente",
+      "Jonathan David Juventus: confirmar fichaje verano 2025 desde Lille",
+      "Davies vigencia Bayern: confirmar tras lesión 2025",
+      "Goleador Copa América 2024: cruzar con CONMEBOL"
+    ]
+  }
+}

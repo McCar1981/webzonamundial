@@ -1,0 +1,1506 @@
+{
+  "slug": "egipto",
+  "iso": "eg",
+  "iso3": "EGY",
+  "name_es": "Egipto",
+  "name_en": "Egypt",
+  "name_local": "مصر (Misr)",
+  "nicknames": [
+    "Los Faraones",
+    "The Pharaohs",
+    "Al-Faraina"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#CE1126",
+      "secondary": "#FFFFFF",
+      "tertiary": "#000000",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "El Cairo",
+    "language_official": [
+      "Árabe"
+    ],
+    "population": 110000000,
+    "area_km2": 1010408,
+    "timezone": "Africa/Cairo",
+    "continent": "África"
+  },
+  "federation": {
+    "name": "Egyptian Football Association",
+    "abbreviation": "EFA",
+    "founded": 1921,
+    "headquarters": "El Cairo",
+    "website": "https://efa.com.eg"
+  },
+  "confederation": "CAF",
+  "fifa_ranking": {
+    "current": 35,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Adidas",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/egipto.png",
+        "back_url": null,
+        "primary_color": "#CE1126",
+        "secondary_color": "#FFFFFF",
+        "description": "Camiseta roja icónica de los Faraones, con detalles blancos y negros. Lleva el águila de Saladino en el escudo, símbolo histórico desde el siglo XII.",
+        "alt_text": "Camiseta titular Egipto Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#CE1126",
+        "description": "Equipación visitante en blanco. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Egipto Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "Egipto fue el PRIMER PAÍS AFRICANO Y ÁRABE EN PARTICIPAR EN UN MUNDIAL (Italia 1934). Hito histórico de pioneros del fútbol africano.",
+        "source": "EFA + FIFA",
+        "verified_at": "2026-04-28",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Egipto clasificó como 1º del Grupo A INVICTA: 8 victorias y 2 empates, 26 puntos, sin derrotas. Primera campaña invicta en 91 años de historia. Selló el pase con 3-0 a Yibuti (doblete de Salah, Adel). 4ª participación mundialista (1934, 1990, 2018, 2026), regreso tras 8 años. Bajo Hossam Hassan (asumió 2024), los Faraones llegan al Grupo G con Bélgica como rival principal. Salah lidera la generación dorada en su 2º Mundial.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias CAF Mundial 2026 — Grupo A",
+      "format": "Liguilla todos contra todos · 6 equipos · 10 partidos · ida y vuelta",
+      "duration": "Noviembre 2023 — Octubre 2025",
+      "final_position": 1,
+      "total_teams_in_group": 6,
+      "stats": {
+        "played": 10,
+        "won": 8,
+        "drawn": 2,
+        "lost": 0,
+        "goals_for": 19,
+        "goals_against": 4,
+        "goal_difference": 15,
+        "points": 26,
+        "win_percentage": 80,
+        "clean_sheets": 6
+      },
+      "coach_during_qualifying": "Hossam Hassan (desde febrero 2024)",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2023-11-16",
+          "home": {
+            "iso": "eg",
+            "name": "Egipto",
+            "score": 2
+          },
+          "away": {
+            "iso": "dj",
+            "name": "Yibuti",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Estadio Internacional de El Cairo",
+            "city": "El Cairo",
+            "country_iso": "eg"
+          },
+          "goals_arg": [
+            {
+              "player": "Mohamed Salah",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Trezeguet",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 2,
+          "date": "2023-11-21",
+          "home": {
+            "iso": "bf",
+            "name": "Burkina Faso",
+            "score": 1
+          },
+          "away": {
+            "iso": "eg",
+            "name": "Egipto",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Stade du 4 Août",
+            "city": "Uagadugú",
+            "country_iso": "bf"
+          },
+          "goals_arg": [
+            {
+              "player": "Mohamed Salah",
+              "minute": "70'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 3,
+          "date": "2024-06-06",
+          "home": {
+            "iso": "eg",
+            "name": "Egipto",
+            "score": 2
+          },
+          "away": {
+            "iso": "et",
+            "name": "Etiopía",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Estadio Internacional de El Cairo",
+            "city": "El Cairo",
+            "country_iso": "eg"
+          },
+          "goals_arg": [
+            {
+              "player": "Mohamed Salah",
+              "minute": "44'",
+              "type": "goal"
+            },
+            {
+              "player": "Mostafa Mohamed",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 4,
+          "date": "2024-06-10",
+          "home": {
+            "iso": "gw",
+            "name": "Guinea-Bisáu",
+            "score": 0
+          },
+          "away": {
+            "iso": "eg",
+            "name": "Egipto",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Estadio 24 de Septiembre",
+            "city": "Bissau",
+            "country_iso": "gw"
+          },
+          "goals_arg": [
+            {
+              "player": "Trezeguet",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Mohamed Salah",
+              "minute": "65'",
+              "type": "penalty"
+            }
+          ]
+        },
+        {
+          "matchday": 5,
+          "date": "2025-09-05",
+          "home": {
+            "iso": "eg",
+            "name": "Egipto",
+            "score": 1
+          },
+          "away": {
+            "iso": "sl",
+            "name": "Sierra Leona",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Estadio Internacional de El Cairo",
+            "city": "El Cairo",
+            "country_iso": "eg"
+          },
+          "goals_arg": [
+            {
+              "player": "Mohamed Salah",
+              "minute": "55'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 6,
+          "date": "2025-09-09",
+          "home": {
+            "iso": "eg",
+            "name": "Egipto",
+            "score": 2
+          },
+          "away": {
+            "iso": "bf",
+            "name": "Burkina Faso",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Estadio Internacional de El Cairo",
+            "city": "El Cairo",
+            "country_iso": "eg"
+          },
+          "goals_arg": [
+            {
+              "player": "Mohamed Salah",
+              "minute": "30'",
+              "type": "penalty"
+            },
+            {
+              "player": "Trezeguet",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 7,
+          "date": "2025-10-08",
+          "home": {
+            "iso": "et",
+            "name": "Etiopía",
+            "score": 0
+          },
+          "away": {
+            "iso": "eg",
+            "name": "Egipto",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Estadio Bahir Dar",
+            "city": "Bahir Dar",
+            "country_iso": "et"
+          },
+          "goals_arg": [
+            {
+              "player": "Trezeguet",
+              "minute": "40'",
+              "type": "goal"
+            },
+            {
+              "player": "Mostafa Mohamed",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 8,
+          "date": "2025-10-12",
+          "home": {
+            "iso": "eg",
+            "name": "Egipto",
+            "score": 3
+          },
+          "away": {
+            "iso": "gw",
+            "name": "Guinea-Bisáu",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Estadio Internacional de El Cairo",
+            "city": "El Cairo",
+            "country_iso": "eg"
+          },
+          "goals_arg": [
+            {
+              "player": "Mohamed Salah",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Zizo",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Ibrahim Adel",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 9,
+          "date": "2025-10-12",
+          "home": {
+            "iso": "eg",
+            "name": "Egipto",
+            "score": 3
+          },
+          "away": {
+            "iso": "dj",
+            "name": "Yibuti",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Estadio Internacional de El Cairo",
+            "city": "El Cairo",
+            "country_iso": "eg"
+          },
+          "goals_arg": [
+            {
+              "player": "Mohamed Salah",
+              "minute": "15'",
+              "type": "goal"
+            },
+            {
+              "player": "Mohamed Salah",
+              "minute": "44'",
+              "type": "penalty"
+            },
+            {
+              "player": "Ibrahim Adel",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ],
+          "notes": "VICTORIA QUE SELLÓ LA CLASIFICACIÓN al Mundial 2026 con doblete de Salah.",
+          "is_decisive_match": true
+        },
+        {
+          "matchday": 10,
+          "date": "2025-11-15",
+          "home": {
+            "iso": "sl",
+            "name": "Sierra Leona",
+            "score": 1
+          },
+          "away": {
+            "iso": "eg",
+            "name": "Egipto",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Stade Génération Foot",
+            "city": "Dakar",
+            "country_iso": "sl"
+          },
+          "goals_arg": [
+            {
+              "player": "Zizo",
+              "minute": "60'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Cierre invicto. 26 pts (8G 2E 0P)."
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Mohamed Salah",
+          "goals": 9,
+          "notes": "Goleador del ciclo absoluto. Líder ofensivo."
+        },
+        {
+          "player": "Trezeguet (Mahmoud Hassan)",
+          "goals": 4
+        },
+        {
+          "player": "Mostafa Mohamed",
+          "goals": 2
+        },
+        {
+          "player": "Zizo (Ahmed Sayed)",
+          "goals": 2
+        },
+        {
+          "player": "Ibrahim Adel",
+          "goals": 2
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_8",
+        "reason": "Triunfo 3-0 a Guinea-Bisáu en El Cairo. Mejor exhibición ofensiva tipo."
+      },
+      "worst_match": {
+        "match_ref": "matchday_5",
+        "reason": "Empate 1-1 ante Sierra Leona en El Cairo. Único punto perdido en casa."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_9",
+        "reason": "Triunfo 3-0 sobre Yibuti con doblete de Salah selló la clasificación al Mundial 2026 como 1º del Grupo A invicta."
+      }
+    },
+    "group_2026": {
+      "letter": "G",
+      "label": "Grupo G — junto a Bélgica, Irán y Nueva Zelanda",
+      "teams": [
+        {
+          "iso": "be",
+          "name": "Bélgica",
+          "fifa_rank": null
+        },
+        {
+          "iso": "nz",
+          "name": "N. Zelanda",
+          "fifa_rank": null
+        },
+        {
+          "iso": "eg",
+          "name": "Egipto",
+          "fifa_rank": null,
+          "is_seed": false
+        },
+        {
+          "iso": "ir",
+          "name": "Irán",
+          "fifa_rank": null
+        }
+      ],
+      "notes": "Grupo G confirmado en sorteo del 5 dic 2025. Considerado uno de los más accesibles. Egipto pelea con Irán por el 2º puesto."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "ir",
+          "name": "Irán"
+        },
+        "date": "2026-06-14",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "BMO Field",
+          "city": "Toronto",
+          "country_iso": "ca"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "nz",
+          "name": "N. Zelanda"
+        },
+        "date": "2026-06-22",
+        "kickoff_local": "18:00",
+        "venue": {
+          "stadium": "Estadio BBVA",
+          "city": "Monterrey",
+          "country_iso": "mx"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "be",
+          "name": "Bélgica"
+        },
+        "date": "2026-06-29",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "Levi's Stadium",
+          "city": "Bay Area",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — EFA aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Hossam Hassan",
+      "age": 59,
+      "nationality": "Egipto",
+      "since": "2024-02-01",
+      "previous_teams": [
+        "Smouha (2022-2023)",
+        "Al-Masry (2017-2018, 2020-2022)",
+        "Al-Ittihad Alexandria (2018-2020)",
+        "Zamalek (2010, 2014-2016)"
+      ],
+      "profile_summary": "Leyenda histórica egipcia. Como JUGADOR fue capitán Mundial 1990 (Italia) y máximo goleador histórico de Egipto. Como DT, asumió en febrero 2024 tras la salida de Rui Vitória. Llevó a Egipto a su PRIMERA CAMPAÑA INVICTA en 91 AÑOS DE HISTORIA. Identidad táctica: 4-3-3 sólido con bloque medio, juego asociativo, dependencia ofensiva absoluta de Salah.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Hossam_Hassan.png",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Hossam_Hassan"
+      }
+    },
+    "captain": {
+      "name": "Mohamed Salah",
+      "club": "Liverpool",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Mohamed_Salah_2021_CAN_Final.jpg/330px-Mohamed_Salah_2021_CAN_Final.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Mohamed_Salah"
+      }
+    },
+    "star_player": {
+      "name": "Mohamed Salah",
+      "club": "Liverpool",
+      "reason": "Capitán y referente histórico. UNO DE LOS 5 MEJORES JUGADORES DEL MUNDO en activo. 2 Botas de Oro Premier League, Champions con Liverpool 2019, finalista Champions 2018 y 2022. A los 33 años llega a su SEGUNDO MUNDIAL (Rusia 2018) y posiblemente último. Goleador del ciclo eliminatorio (9 goles).",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Mohamed_Salah_2021_CAN_Final.jpg/330px-Mohamed_Salah_2021_CAN_Final.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Mohamed_Salah"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "mohamed-el-shenawy",
+        "full_name": "Mohamed El-Shenawy",
+        "display_name": "El-Shenawy",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Al-Ahly",
+          "country_iso": "eg",
+          "league": "Premier League EG"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Mohamed_El_Shenawy.jpg/330px-Mohamed_El_Shenawy.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mohamed_El-Shenawy"
+        }
+      },
+      {
+        "id": "mohamed-abou-gabal",
+        "full_name": "Mohamed Abou Gabal",
+        "display_name": "Gabaski",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Zamalek",
+          "country_iso": "eg",
+          "league": "Premier League EG"
+        },
+        "shirt_number_expected": 16,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Gabaski.jpg/330px-Gabaski.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mohamed_Abou_Gabal"
+        }
+      },
+      {
+        "id": "mohamed-sobhi",
+        "full_name": "Mohamed Sobhi",
+        "display_name": "Mohamed Sobhi",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Pyramids",
+          "country_iso": "eg",
+          "league": "Premier League EG"
+        },
+        "shirt_number_expected": 23,
+        "status": "bubble"
+      },
+      {
+        "id": "mohamed-hany",
+        "full_name": "Mohamed Hany",
+        "display_name": "Mohamed Hany",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Al-Ahly",
+          "country_iso": "eg",
+          "league": "Premier League EG"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Mohamed_Hany_in_2021_FIFA_Club_World_Cup.jpg/330px-Mohamed_Hany_in_2021_FIFA_Club_World_Cup.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mohamed_Hany"
+        }
+      },
+      {
+        "id": "mahmoud-hamdi",
+        "full_name": "Mahmoud 'El Wensh' Hamdi",
+        "display_name": "El Wensh",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Zamalek",
+          "country_iso": "eg",
+          "league": "Premier League EG"
+        },
+        "shirt_number_expected": 3,
+        "status": "probable"
+      },
+      {
+        "id": "mohamed-hamdy",
+        "full_name": "Mohamed Hamdy",
+        "display_name": "Mohamed Hamdy",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Pyramids",
+          "country_iso": "eg",
+          "league": "Premier League EG"
+        },
+        "shirt_number_expected": 13,
+        "status": "fixed"
+      },
+      {
+        "id": "ramy-rabia",
+        "full_name": "Rami Rabia",
+        "display_name": "Rami Rabia",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Al-Ahly",
+          "country_iso": "eg",
+          "league": "Premier League EG"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/RamiRabea2020.jpg/330px-RamiRabea2020.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ramy_Rabia"
+        }
+      },
+      {
+        "id": "yasser-ibrahim",
+        "full_name": "Yasser Ibrahim",
+        "display_name": "Yasser Ibrahim",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Al-Ahly",
+          "country_iso": "eg",
+          "league": "Premier League EG"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Yasser_Ibrahim_in_FIFA_Club_World_Cup.jpg/330px-Yasser_Ibrahim_in_FIFA_Club_World_Cup.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Yasser_Ibrahim"
+        }
+      },
+      {
+        "id": "ahmed-fatouh",
+        "full_name": "Ahmed Fatouh",
+        "display_name": "Ahmed Fatouh",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Zamalek",
+          "country_iso": "eg",
+          "league": "Premier League EG"
+        },
+        "shirt_number_expected": 14,
+        "status": "probable"
+      },
+      {
+        "id": "marwan-attia",
+        "full_name": "Marwan Attia",
+        "display_name": "Marwan Attia",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Pyramids",
+          "country_iso": "eg",
+          "league": "Premier League EG"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Marwan_Attia.jpg/330px-Marwan_Attia.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Marwan_Attia"
+        }
+      },
+      {
+        "id": "hamdy-fathy",
+        "full_name": "Hamdy Fathy",
+        "display_name": "Hamdy Fathy",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Al-Ain",
+          "country_iso": "ae",
+          "league": "Pro League UAE"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Hamdy_Fathy.png/330px-Hamdy_Fathy.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Hamdy_Fathy"
+        }
+      },
+      {
+        "id": "mohamed-elneny",
+        "full_name": "Mohamed Elneny",
+        "display_name": "Mohamed Elneny",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Al-Jazira",
+          "country_iso": "ae",
+          "league": "Pro League UAE"
+        },
+        "shirt_number_expected": 5,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Mohamed_Elneny_2018.jpg/330px-Mohamed_Elneny_2018.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mohamed_Elneny"
+        }
+      },
+      {
+        "id": "imam-ashour",
+        "full_name": "Imam Ashour",
+        "display_name": "Imam Ashour",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Al-Ahly",
+          "country_iso": "eg",
+          "league": "Premier League EG"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Emam22.jpg/330px-Emam22.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Emam_Ashour"
+        }
+      },
+      {
+        "id": "ahmed-sayed-zizo",
+        "full_name": "Ahmed 'Zizo' Sayed",
+        "display_name": "Zizo",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Al-Ahly",
+          "country_iso": "eg",
+          "league": "Premier League EG"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed"
+      },
+      {
+        "id": "ibrahim-adel",
+        "full_name": "Ibrahim Adel",
+        "display_name": "Ibrahim Adel",
+        "position": "MID",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Pyramids",
+          "country_iso": "eg",
+          "league": "Premier League EG"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Ibrahim_Adel_2025.jpg/330px-Ibrahim_Adel_2025.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ibrahim_Adel"
+        }
+      },
+      {
+        "id": "mohamed-salah",
+        "full_name": "Mohamed Salah",
+        "display_name": "Mohamed Salah",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Liverpool",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Mohamed_Salah_2021_CAN_Final.jpg/330px-Mohamed_Salah_2021_CAN_Final.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mohamed_Salah"
+        }
+      },
+      {
+        "id": "omar-marmoush",
+        "full_name": "Omar Marmoush",
+        "display_name": "Omar Marmoush",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Manchester City",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/OmarMarmoush.png/330px-OmarMarmoush.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Omar_Marmoush"
+        }
+      },
+      {
+        "id": "trezeguet",
+        "full_name": "Mahmoud 'Trezeguet' Hassan",
+        "display_name": "Trezeguet",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Al-Ahly",
+          "country_iso": "eg",
+          "league": "Premier League EG"
+        },
+        "shirt_number_expected": 21,
+        "status": "fixed"
+      },
+      {
+        "id": "mostafa-mohamed",
+        "full_name": "Mostafa Mohamed",
+        "display_name": "Mostafa Mohamed",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Nantes",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Mostafa_Mohamed_-_beIN-Sports-Reklam_%282021%29_%28cropped%29.png/330px-Mostafa_Mohamed_-_beIN-Sports-Reklam_%282021%29_%28cropped%29.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Mostafa_Mohamed"
+        }
+      },
+      {
+        "id": "ahmed-koka",
+        "full_name": "Ahmed 'Koka' Hassan",
+        "display_name": "Koka",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Al-Wakrah",
+          "country_iso": "qa",
+          "league": "Stars League"
+        },
+        "shirt_number_expected": 20,
+        "status": "probable"
+      },
+      {
+        "id": "mohamed-magdi-afsha",
+        "full_name": "Mohamed Magdi 'Afsha'",
+        "display_name": "Afsha",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Al-Ahly",
+          "country_iso": "eg",
+          "league": "Premier League EG"
+        },
+        "shirt_number_expected": 15,
+        "status": "probable"
+      },
+      {
+        "id": "akram-tawfik",
+        "full_name": "Akram Tawfik",
+        "display_name": "Akram Tawfik",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Al-Ahly",
+          "country_iso": "eg",
+          "league": "Premier League EG"
+        },
+        "shirt_number_expected": 22,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Akram_Tawfik_2024.jpg/330px-Akram_Tawfik_2024.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Akram_Tawfik"
+        }
+      },
+      {
+        "id": "ahmed-hassan-koka",
+        "full_name": "Ahmed Refaat",
+        "display_name": "Ahmed Refaat",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Al-Ahly",
+          "country_iso": "eg",
+          "league": "Premier League EG"
+        },
+        "shirt_number_expected": 25,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/en/f/ff/Ahmed_Refaat.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Ahmed_Refaat"
+        }
+      },
+      {
+        "id": "marwan-hamdy",
+        "full_name": "Mohamed Hamdy 'El Mosaibi'",
+        "display_name": "El Mosaibi",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Pyramids",
+          "country_iso": "eg",
+          "league": "Premier League EG"
+        },
+        "shirt_number_expected": 24,
+        "status": "bubble"
+      },
+      {
+        "id": "ahmed-fattouh",
+        "full_name": "Mahmoud Saber",
+        "display_name": "Mahmoud Saber",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Zamalek",
+          "country_iso": "eg",
+          "league": "Premier League EG"
+        },
+        "shirt_number_expected": 12,
+        "status": "bubble"
+      },
+      {
+        "id": "emam-ashour",
+        "full_name": "Hossam Hassan",
+        "display_name": "Hossam Hassan",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Pyramids",
+          "country_iso": "eg",
+          "league": "Premier League EG"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Hossam_Hassan.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Hossam_Hassan"
+        }
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-3-3",
+      "players": [
+        {
+          "player_id": "mohamed-el-shenawy",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "mohamed-hany",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "ramy-rabia",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "yasser-ibrahim",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "mohamed-hamdy",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "marwan-attia",
+          "position": {
+            "x": 50,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "hamdy-fathy",
+          "position": {
+            "x": 70,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "ahmed-sayed-zizo",
+          "position": {
+            "x": 30,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "mohamed-salah",
+          "position": {
+            "x": 85,
+            "y": 25
+          }
+        },
+        {
+          "player_id": "omar-marmoush",
+          "position": {
+            "x": 50,
+            "y": 18
+          }
+        },
+        {
+          "player_id": "trezeguet",
+          "position": {
+            "x": 15,
+            "y": 25
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Hossam Hassan plantea un 4-3-3 con Salah por derecha (su posición natural), Marmoush '9' o falso 9, Trezeguet por izquierda. Mediocampo con Marwan Attia pivote, Fathy y Zizo creativos. Identidad: bloque medio sólido, transiciones rápidas hacia Salah, defensa zonal compacta.",
+      "strengths": [
+        "MOHAMED SALAH: una de las 3-5 estrellas mundiales. 9 goles eliminatoria.",
+        "Omar Marmoush: '9' top en Manchester City, llegó en enero 2025. Asociación con Salah letal.",
+        "Trezeguet: extremo veterano, 4 goles eliminatoria.",
+        "Defensa central sólida: Rabia, Yasser Ibrahim, Hamdi.",
+        "El Shenawy: portero confiable.",
+        "INVICTA en eliminatoria: 8G 2E 0P, primera campaña invicta en 91 años.",
+        "Hossam Hassan: leyenda como jugador (capitán Mundial 1990) + DT consolidado."
+      ],
+      "weaknesses": [
+        "DEPENDENCIA EXCESIVA DE SALAH: si él no marca, equipo no genera.",
+        "Plantilla muy localista: 18 de 26 jugadores en Premier League EG.",
+        "Mediocampo creativo limitado: sin un '10' top mundial.",
+        "Récord histórico Mundial: NUNCA ganó un partido (3 Mundiales sin victoria).",
+        "Convivencia Salah-Marmoush por primera vez en partidos de alta exigencia.",
+        "Defensa: 4 goles encajados en 10 partidos contra rivales modestos."
+      ],
+      "x_factor": {
+        "player": "Omar Marmoush",
+        "reason": "El delantero del Manchester City (26 años) llega en pico. Tras gran temporada con Frankfurt, fichó por City en enero 2025. Asociación con Salah ya rinde frutos. Si replican la magia en el Mundial, Egipto puede romper el techo histórico (nunca ganó un partido)."
+      },
+      "prediction_text": "Egipto llega como 35º del ranking FIFA al Grupo G accesible. Bélgica favorita; Egipto e Irán pelean por el 2º. Pasar a octavos sería ROMPER EL TECHO HISTÓRICO (nunca ganó partido en Mundial). El reto: Salah debe explotar y Marmoush acompañar.",
+      "probabilities": {
+        "advance_groups": 50,
+        "round_of_32": 42,
+        "round_of_16": 22,
+        "quarter_finals": 5,
+        "semi_finals": 1,
+        "final": 0,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: fase de grupos (Salah lesionado en final Champions, jugó disminuido). Catar 2022: NO CLASIFICÓ. Mundial 2026: 4ª participación, busca ganar SU PRIMER PARTIDO HISTÓRICO mundialista (3 Mundiales sin victoria)."
+    }
+  },
+  "history": {
+    "first_appearance": 1934,
+    "appearances_count_before_2026": 3,
+    "appearances_count_with_2026": 4,
+    "consecutive_streak_since": 2026,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 0,
+    "best_result": "Fase de grupos en sus 3 participaciones (1934, 1990, 2018)",
+    "aggregate_stats_through_2022": {
+      "played": 7,
+      "won": 0,
+      "drawn": 2,
+      "lost": 5,
+      "goals_for": 3,
+      "goals_against": 9,
+      "win_percentage": 0,
+      "notes": "Datos hasta Catar 2022. Egipto NUNCA HA GANADO UN PARTIDO MUNDIALISTA. Récord triste de su historia."
+    },
+    "by_world_cup": [
+      {
+        "year": 1934,
+        "host": {
+          "countries": [
+            "Italia"
+          ],
+          "iso": [
+            "it"
+          ]
+        },
+        "result": "Primera ronda (Octavos)",
+        "coach": "James McCrae",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Abdulrahman Fawzi",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "DEBUT MUNDIALISTA HISTÓRICO: PRIMER PAÍS AFRICANO Y ÁRABE en jugar un Mundial.",
+          "Eliminada por Hungría 2-4 en octavos."
+        ],
+        "narrative": "Egipto hizo historia al ser el PRIMER PAÍS AFRICANO Y ÁRABE en participar en un Mundial. En el formato eliminación directa de 1934, cayó 2-4 ante Hungría en su único partido. Abdulrahman Fawzi anotó 2 goles."
+      },
+      {
+        "year": 1990,
+        "host": {
+          "countries": [
+            "Italia"
+          ],
+          "iso": [
+            "it"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Mahmoud El-Gohary",
+        "captain": "Hossam Hassan",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Magdi Abdelghani",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 1,
+        "goals_conceded": 2,
+        "notable_facts": [
+          "Tras 56 años, regreso a Mundial.",
+          "EMPATÓ CON IRLANDA Y PAÍSES BAJOS.",
+          "HOSSAM HASSAN (DT actual) fue capitán."
+        ],
+        "narrative": "Egipto regresó tras 56 años. Empató 1-1 con Irlanda y 0-0 con Países Bajos. Cayó con Inglaterra 0-1. Adiós sin victoria. HOSSAM HASSAN (actual DT) era el capitán."
+      },
+      {
+        "year": 2018,
+        "host": {
+          "countries": [
+            "Rusia"
+          ],
+          "iso": [
+            "ru"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Héctor Cúper",
+        "captain": "Essam El Hadary",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Mohamed Salah",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Salah jugó disminuido tras lesión hombro en final Champions (Ramos lo derribó).",
+          "Eliminada con 3 derrotas (0-1 Uruguay, 1-3 Rusia, 1-2 Arabia Saudita).",
+          "El Hadary: PORTERO MÁS VIEJO de la historia mundial (45 años) en el último partido."
+        ],
+        "narrative": "Egipto regresó tras 28 años con Salah disminuido por lesión sufrida en final Champions Liverpool-Real Madrid (Ramos lo derribó). Salah marcó 2 (1 a Rusia, 1 a Arabia). 3 derrotas, adiós. ESSAM EL HADARY se convirtió en el PORTERO MÁS VIEJO de la historia (45 años) en jugar un Mundial."
+      }
+    ],
+    "palmares": [
+      {
+        "competition": "Copa Africana de Naciones",
+        "year": 1957,
+        "position": "Campeón",
+        "host": "Sudán"
+      },
+      {
+        "competition": "Copa Africana de Naciones",
+        "year": 1959,
+        "position": "Campeón",
+        "host": "Egipto"
+      },
+      {
+        "competition": "Copa Africana de Naciones",
+        "year": 1986,
+        "position": "Campeón",
+        "host": "Egipto"
+      },
+      {
+        "competition": "Copa Africana de Naciones",
+        "year": 1998,
+        "position": "Campeón",
+        "host": "Burkina Faso"
+      },
+      {
+        "competition": "Copa Africana de Naciones",
+        "year": 2006,
+        "position": "Campeón",
+        "host": "Egipto"
+      },
+      {
+        "competition": "Copa Africana de Naciones",
+        "year": 2008,
+        "position": "Campeón",
+        "host": "Ghana"
+      },
+      {
+        "competition": "Copa Africana de Naciones",
+        "year": 2010,
+        "position": "Campeón",
+        "host": "Angola"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Hossam Hassan",
+      "value": 68,
+      "period": "1985-2006",
+      "notes": "MÁXIMO GOLEADOR HISTÓRICO ABSOLUTO. Actual DT. 175 partidos, récord histórico."
+    },
+    "most_capped": {
+      "name": "Ahmed Hassan",
+      "value": 184,
+      "period": "1995-2012",
+      "notes": "RÉCORD MUNDIAL ABSOLUTO de partidos en selecciones africanas."
+    },
+    "youngest_debut": {
+      "name": "Mohamed Aboutrika",
+      "value": "20 años",
+      "period": "2001",
+      "notes": "Datos pendientes verificación EFA."
+    },
+    "biggest_win": {
+      "result": "9-0",
+      "opponent": "Comoros",
+      "date": "2007-12-26",
+      "competition": "Copa Africana de Naciones 2008 clasificatorias"
+    },
+    "worst_loss": {
+      "result": "0-7",
+      "opponent": "Italia",
+      "date": "1928 Olímpicos",
+      "competition": "JJOO Ámsterdam 1928"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "Debut mundialista 1934",
+      "date": "1934-05-27",
+      "opponent": {
+        "iso": "hu",
+        "name": "Hungría"
+      },
+      "score": "2-4",
+      "competition": "Octavos Mundial 1934",
+      "narrative": "Egipto hizo historia siendo el PRIMER PAÍS AFRICANO Y ÁRABE en jugar un Mundial. Cayó 2-4 con Hungría. Abdulrahman Fawzi anotó 2 goles. Hito histórico continental."
+    },
+    {
+      "title": "Empate con Países Bajos 1990",
+      "date": "1990-06-12",
+      "opponent": {
+        "iso": "nl",
+        "name": "Países Bajos"
+      },
+      "score": "0-0",
+      "competition": "Fase de Grupos Mundial 1990",
+      "narrative": "Egipto sacó un valioso 0-0 ante Países Bajos en el Mundial 1990. HOSSAM HASSAN (actual DT) era capitán. Resultado histórico ante una de las grandes."
+    },
+    {
+      "title": "Salah lesionado debutó en 2018",
+      "date": "2018-06-19",
+      "opponent": {
+        "iso": "ru",
+        "name": "Rusia"
+      },
+      "score": "1-3",
+      "competition": "Fase de Grupos Mundial 2018",
+      "narrative": "Mohamed Salah debutó en Mundiales aún convaleciente de lesión en hombro en final Champions (Ramos lo derribó). Marcó penal vs Rusia (1-3) y vs Arabia Saudita (1-2). Egipto cayó eliminado."
+    },
+    {
+      "title": "El Hadary récord histórico",
+      "date": "2018-06-25",
+      "opponent": {
+        "iso": "sa",
+        "name": "Arabia Saudita"
+      },
+      "score": "1-2",
+      "competition": "Fase de Grupos Mundial 2018",
+      "narrative": "ESSAM EL HADARY se convirtió en el PORTERO MÁS VIEJO de la historia de los Mundiales: 45 años, 161 días. Atajó penal a Salman. Récord absoluto vigente."
+    },
+    {
+      "title": "Copa África 2010 (3ª consecutiva)",
+      "date": "2010-01-31",
+      "opponent": {
+        "iso": "gh",
+        "name": "Ghana"
+      },
+      "score": "1-0",
+      "competition": "Final Copa Africa 2010",
+      "narrative": "Egipto ganó SU 7ª COPA ÁFRICA (RÉCORD ABSOLUTO) y la 3ª consecutiva (2006, 2008, 2010), récord absoluto. Mohamed Naji 'Gedo' marcó al 85'. Gloria histórica.",
+      "site_link": "/historia/momentos-iconicos/egipto-2010"
+    },
+    {
+      "title": "El 3-0 a Yibuti que selló pase",
+      "date": "2025-10-12",
+      "opponent": {
+        "iso": "dj",
+        "name": "Yibuti"
+      },
+      "score": "3-0",
+      "competition": "Eliminatorias Mundial 2026",
+      "narrative": "Egipto goleó 3-0 a Yibuti en El Cairo el 12 de octubre con DOBLETE de Salah y gol de Adel. Selló la clasificación al Mundial 2026 tras 8 años de ausencia. Primera campaña invicta en 91 años."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "EGIPTO ES LA SELECCIÓN AFRICANA MÁS GANADORA DE LA COPA ÁFRICA: 7 títulos (1957, 1959, 1986, 1998, 2006, 2008, 2010). Récord absoluto continental.",
+      "source": "CAF + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Egipto es el ÚNICO PAÍS en ganar 3 COPAS ÁFRICA CONSECUTIVAS (2006, 2008, 2010). Récord histórico continental.",
+      "source": "CAF + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Egipto fue el PRIMER PAÍS AFRICANO Y ÁRABE en jugar un Mundial (Italia 1934). Hito histórico de pioneros.",
+      "source": "FIFA + EFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Essam El Hadary es el PORTERO MÁS VIEJO en jugar un Mundial: 45 años, 161 días en Egipto-Arabia 2018. Récord absoluto vigente.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Hossam Hassan, actual DT, es el MÁXIMO GOLEADOR HISTÓRICO de Egipto (68 goles). Como JUGADOR fue capitán en Mundial 1990. Como DT clasificó al Mundial 2026.",
+      "source": "EFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Ahmed Hassan es el JUGADOR CON MÁS PARTIDOS EN UNA SELECCIÓN AFRICANA: 184 caps. Récord absoluto continental.",
+      "source": "EFA + CAF",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Egipto NUNCA HA GANADO UN PARTIDO EN UN MUNDIAL: 3 participaciones (1934, 1990, 2018) sin victoria. 2026 es la oportunidad para romper el techo.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Mohamed Salah recibió el premio CAF JUGADOR DEL AÑO 2017, 2018 y 2024. Junto con Yaya Touré (4) y Eto'o (4) son los más laureados.",
+      "source": "CAF",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Bilady Bilady Bilady (himno)",
+      "Misr! Misr!",
+      "Yalla Faraina"
+    ],
+    "main_rival": {
+      "iso": "ma",
+      "name": "Marruecos",
+      "story": "Rivalidad árabe-norafricana. Tradicional rivalidad por el dominio del fútbol árabe y norafricano."
+    },
+    "home_stadium": {
+      "name": "Estadio Internacional de El Cairo",
+      "capacity": 75000,
+      "city": "El Cairo"
+    }
+  },
+  "seo": {
+    "meta_title": "Egipto en el Mundial 2026 | Plantilla, historia y predicciones",
+    "meta_description": "Egipto Mundial 2026: 26 convocados de Hossam Hassan, Mohamed Salah, Marmoush, Trezeguet. Grupo G con Bélgica, Irán y Nueva Zelanda.",
+    "og_image_url": "/img/og/teams/egipto.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Egipto",
+      "alternateName": [
+        "Los Faraones",
+        "The Pharaohs"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "CAF"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Hossam Hassan"
+      },
+      "url": "https://www.zonamundial.app/selecciones/egipto"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-28",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_Egipto",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/15756482/se-definieron-eliminatorias-africa-mundial-2026",
+      "https://www.tudn.com/mundial-2026/eliminatorias/eliminatorias-mundial-2026-asi-quedo-tabla-posiciones-africa",
+      "https://www.infobae.com/peru/deportes/2025/12/05/asi-llego-egipto-al-mundial-2026",
+      "https://efa.com.eg",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias cruzadas con CAF + Wikipedia + ESPN. Historia mundialista validada con FIFA + Wikipedia + EFA.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "complete",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante: pendiente",
+      "Base de entrenamiento: EFA aún no anunció",
+      "FIFA Ranking #35: validar mes vigente",
+      "Verificar fechas exactas eliminatorias 2023-2025",
+      "Revisar match vs Yibuti: hubo 2 partidos en El Cairo, fechas pueden diferir",
+      "Goleador top: Salah 9 goles confirmado por Infobae"
+    ]
+  }
+}

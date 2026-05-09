@@ -1,0 +1,1567 @@
+{
+  "slug": "escocia",
+  "iso": "gb-sct",
+  "iso3": "SCO",
+  "name_es": "Escocia",
+  "name_en": "Scotland",
+  "name_local": "Scotland / Alba",
+  "nicknames": [
+    "The Tartan Army (la afición)",
+    "The Bravehearts",
+    "Los Escoceses"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#0065BD",
+      "secondary": "#FFFFFF",
+      "tertiary": "#000000",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Edimburgo",
+    "language_official": [
+      "Inglés",
+      "Gaélico escocés"
+    ],
+    "population": 5480000,
+    "area_km2": 77933,
+    "timezone": "Europe/London",
+    "continent": "Europa"
+  },
+  "federation": {
+    "name": "Scottish Football Association",
+    "abbreviation": "SFA",
+    "founded": 1873,
+    "headquarters": "Hampden Park (Glasgow)",
+    "website": "https://www.scottishfa.co.uk"
+  },
+  "confederation": "UEFA",
+  "fifa_ranking": {
+    "current": 36,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Adidas",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/escocia.png",
+        "back_url": null,
+        "primary_color": "#0065BD",
+        "secondary_color": "#FFFFFF",
+        "description": "Camiseta azul oscura icónica con detalles blancos. La cruz de San Andrés (Saltire) es el escudo nacional. Una de las camisetas más antiguas del fútbol mundial.",
+        "alt_text": "Camiseta titular Escocia Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#0065BD",
+        "description": "Equipación visitante en blanco. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Escocia Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "Escocia jugó el PRIMER PARTIDO INTERNACIONAL DE LA HISTORIA del fútbol contra Inglaterra el 30 de noviembre de 1872 (0-0). Es la selección más antigua del mundo junto con Inglaterra.",
+        "source": "SFA + FIFA",
+        "verified_at": "2026-04-29",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Escocia clasificó como 1ª del Grupo C tras una victoria ÉPICA 4-2 sobre Dinamarca en la última jornada en Hampden Park. Primera clasificación al Mundial DEL SIGLO XXI (última: Francia 1998 — 28 años de espera). Bajo Steve Clarke, los escoceses combinan disciplina táctica, intensidad escocesa y la nueva generación de jugadores en clubes europeos top.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias UEFA Mundial 2026 — Grupo C",
+      "format": "Liguilla todos contra todos · 4 equipos · 6 partidos · ida y vuelta",
+      "duration": "Septiembre 2025 — Noviembre 2025",
+      "final_position": 1,
+      "total_teams_in_group": 4,
+      "stats": {
+        "played": 6,
+        "won": 4,
+        "drawn": 1,
+        "lost": 1,
+        "goals_for": 11,
+        "goals_against": 7,
+        "goal_difference": 4,
+        "points": 13,
+        "win_percentage": 66.7,
+        "clean_sheets": 1
+      },
+      "coach_during_qualifying": "Steve Clarke",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2025-09-05",
+          "home": {
+            "iso": "dk",
+            "name": "Dinamarca",
+            "score": 0
+          },
+          "away": {
+            "iso": "gb-sct",
+            "name": "Escocia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Parken",
+            "city": "Copenhague",
+            "country_iso": "dk"
+          },
+          "goals_arg": [],
+          "notes": "Empate sólido en el debut."
+        },
+        {
+          "matchday": 2,
+          "date": "2025-09-08",
+          "home": {
+            "iso": "by",
+            "name": "Bielorrusia",
+            "score": 0
+          },
+          "away": {
+            "iso": "gb-sct",
+            "name": "Escocia",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Stadion ZTE",
+            "city": "Zalaegerszeg",
+            "country_iso": "hu"
+          },
+          "goals_arg": [
+            {
+              "player": "Che Adams",
+              "minute": "33'",
+              "type": "goal"
+            },
+            {
+              "player": "Ben Doak",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Bielorrusia jugó como local en Hungría por sanciones UEFA."
+        },
+        {
+          "matchday": 3,
+          "date": "2025-10-09",
+          "home": {
+            "iso": "gr",
+            "name": "Grecia",
+            "score": 3
+          },
+          "away": {
+            "iso": "gb-sct",
+            "name": "Escocia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "OAKA",
+            "city": "Atenas",
+            "country_iso": "gr"
+          },
+          "goals_arg": [
+            {
+              "player": "Lewis Ferguson",
+              "minute": "65'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Única derrota del ciclo."
+        },
+        {
+          "matchday": 4,
+          "date": "2025-10-12",
+          "home": {
+            "iso": "gb-sct",
+            "name": "Escocia",
+            "score": 2
+          },
+          "away": {
+            "iso": "by",
+            "name": "Bielorrusia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Hampden Park",
+            "city": "Glasgow",
+            "country_iso": "gb-sct"
+          },
+          "goals_arg": [
+            {
+              "player": "John McGinn",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Lyndon Dykes",
+              "minute": "70'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 5,
+          "date": "2025-11-13",
+          "home": {
+            "iso": "gb-sct",
+            "name": "Escocia",
+            "score": 3
+          },
+          "away": {
+            "iso": "gr",
+            "name": "Grecia",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Hampden Park",
+            "city": "Glasgow",
+            "country_iso": "gb-sct"
+          },
+          "goals_arg": [
+            {
+              "player": "Scott McTominay",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Ben Gannon-Doak",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "John McGinn",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Revancha exitosa contra Grecia."
+        },
+        {
+          "matchday": 6,
+          "date": "2025-11-16",
+          "home": {
+            "iso": "gb-sct",
+            "name": "Escocia",
+            "score": 4
+          },
+          "away": {
+            "iso": "dk",
+            "name": "Dinamarca",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "Hampden Park",
+            "city": "Glasgow",
+            "country_iso": "gb-sct"
+          },
+          "goals_arg": [
+            {
+              "player": "Scott McTominay",
+              "minute": "5'",
+              "type": "goal"
+            },
+            {
+              "player": "John McGinn",
+              "minute": "40'",
+              "type": "goal"
+            },
+            {
+              "player": "Lawrence Shankland",
+              "minute": "78'",
+              "type": "goal"
+            },
+            {
+              "player": "Kieran Tierney",
+              "minute": "92'",
+              "type": "goal"
+            }
+          ],
+          "notes": "VICTORIA ÉPICA 4-2 ANTE DINAMARCA en la última jornada selló la clasificación directa. Hampden Park en éxtasis. Escocia regresa al Mundial tras 28 años.",
+          "is_decisive_match": true
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Scott McTominay",
+          "goals": 2,
+          "notes": "Mediocampista del Napoli, líder ofensivo del ciclo."
+        },
+        {
+          "player": "John McGinn",
+          "goals": 2,
+          "notes": "Capitán y referente del Aston Villa."
+        },
+        {
+          "player": "Ben Doak",
+          "goals": 2
+        },
+        {
+          "player": "Che Adams",
+          "goals": 1
+        },
+        {
+          "player": "Lewis Ferguson",
+          "goals": 1
+        },
+        {
+          "player": "Lyndon Dykes",
+          "goals": 1
+        },
+        {
+          "player": "Lawrence Shankland",
+          "goals": 1
+        },
+        {
+          "player": "Kieran Tierney",
+          "goals": 1
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_6",
+        "reason": "El 4-2 a Dinamarca en Hampden Park el 16 de noviembre de 2025. Victoria épica que selló la clasificación directa al Mundial 2026 tras 28 años de ausencia. Tierney marcó al 92' para confirmar el delirio."
+      },
+      "worst_match": {
+        "match_ref": "matchday_3",
+        "reason": "Derrota 1-3 en Atenas ante Grecia. Único partido perdido del ciclo. Defensa frágil ante el ataque griego."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_6",
+        "reason": "Triunfo 4-2 a Dinamarca aseguró el primer puesto del Grupo C y la clasificación directa al Mundial 2026 (sin necesidad de play-off). Primera vez del siglo XXI."
+      }
+    },
+    "group_2026": {
+      "letter": "C",
+      "label": "Grupo asignado en sorteo Mundial 2026",
+      "teams": [
+        {
+          "iso": "br",
+          "name": "Brasil",
+          "fifa_rank": null
+        },
+        {
+          "iso": "ht",
+          "name": "Haití",
+          "fifa_rank": null
+        },
+        {
+          "iso": "ma",
+          "name": "Marruecos",
+          "fifa_rank": null
+        },
+        {
+          "iso": "gb-sct",
+          "name": "Escocia",
+          "fifa_rank": null,
+          "is_seed": false
+        }
+      ],
+      "notes": "Escocia llegó como bombo 3 (no fue cabeza de serie). Pendiente cruce con /grupos zonamundial.app. Confirmado: Grupo C con Brasil + Marruecos."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "ma",
+          "name": "Marruecos"
+        },
+        "date": "2026-06-12",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "Mercedes-Benz Stadium",
+          "city": "Atlanta",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "br",
+          "name": "Brasil"
+        },
+        "date": "2026-06-20",
+        "kickoff_local": "15:00",
+        "venue": {
+          "stadium": "NRG Stadium",
+          "city": "Houston",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "ht",
+          "name": "Haití"
+        },
+        "date": "2026-06-27",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "NRG Stadium",
+          "city": "Houston",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — SFA aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Steve Clarke",
+      "age": 62,
+      "nationality": "Escocia",
+      "since": "2019-05-21",
+      "previous_teams": [
+        "Kilmarnock (2017-2019)",
+        "Reading (2014-2015)",
+        "West Bromwich Albion (2012-2013)",
+        "Asistente Chelsea con Mourinho/Di Matteo (2008-2012)"
+      ],
+      "profile_summary": "Escocés, ex internacional con 6 caps. DT de Escocia desde mayo 2019, récord histórico moderno de longevidad escocesa. Identidad táctica: 3-5-2 / 3-4-3 muy disciplinado, defensa de 5, intensidad mediocampista, transiciones rápidas con McGinn-McTominay como motores. Llevó a Escocia a Eurocopas 2020 y 2024 + AHORA al Mundial 2026, hito histórico moderno.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Steve_Clarke_2019.jpg/330px-Steve_Clarke_2019.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Steve_Clarke"
+      }
+    },
+    "captain": {
+      "name": "John McGinn",
+      "club": "Aston Villa",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/John_McGinn_2019.jpg/330px-John_McGinn_2019.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/John_McGinn"
+      }
+    },
+    "star_player": {
+      "name": "Scott McTominay",
+      "club": "Napoli",
+      "reason": "Mediocampista del Napoli (Scudetto 2024-25 con Conte), llegada en agosto 2024 desde Manchester United. Dimensión goleadora desde segunda línea. 2 goles en eliminatorias, líder ofensivo. A los 29 años llega a su primer Mundial siendo uno de los mediocampistas mixtos más completos de Europa.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Scott_McTominay_2021.jpg/330px-Scott_McTominay_2021.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Scott_McTominay"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "angus-gunn",
+        "full_name": "Angus Gunn",
+        "display_name": "Angus Gunn",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Norwich",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/70/Angus.gunn.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Angus_Gunn"
+        }
+      },
+      {
+        "id": "craig-gordon",
+        "full_name": "Craig Gordon",
+        "display_name": "Craig Gordon",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Hearts",
+          "country_iso": "gb-sct",
+          "league": "Scottish Premiership"
+        },
+        "shirt_number_expected": 12,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Craig_S_Gordon.jpg/330px-Craig_S_Gordon.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Craig_Gordon"
+        }
+      },
+      {
+        "id": "liam-kelly",
+        "full_name": "Liam Kelly",
+        "display_name": "Liam Kelly",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Rangers",
+          "country_iso": "gb-sct",
+          "league": "Scottish Premiership"
+        },
+        "shirt_number_expected": 23,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Liam_Kelly.jpg/330px-Liam_Kelly.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Liam_Kelly"
+        }
+      },
+      {
+        "id": "aaron-hickey",
+        "full_name": "Aaron Hickey",
+        "display_name": "Aaron Hickey",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Brentford",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Aaron_Hickey_02082025_%281%29.jpg/330px-Aaron_Hickey_02082025_%281%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Aaron_Hickey"
+        }
+      },
+      {
+        "id": "anthony-ralston",
+        "full_name": "Anthony Ralston",
+        "display_name": "Anthony Ralston",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Celtic",
+          "country_iso": "gb-sct",
+          "league": "Scottish Premiership"
+        },
+        "shirt_number_expected": 17,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Celtic-20240722-034.jpg/330px-Celtic-20240722-034.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Anthony_Ralston"
+        }
+      },
+      {
+        "id": "kieran-tierney",
+        "full_name": "Kieran Tierney",
+        "display_name": "Kieran Tierney",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Celtic",
+          "country_iso": "gb-sct",
+          "league": "Scottish Premiership"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/55/Kieran_Tierney_%2826938128442%29_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Kieran_Tierney"
+        }
+      },
+      {
+        "id": "andrew-robertson",
+        "full_name": "Andrew Robertson",
+        "display_name": "Andrew Robertson",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Liverpool",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/LFC_Parade_2019_01_Andy_Robertson.jpg/330px-LFC_Parade_2019_01_Andy_Robertson.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Andrew_Robertson"
+        }
+      },
+      {
+        "id": "jack-hendry",
+        "full_name": "Jack Hendry",
+        "display_name": "Jack Hendry",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Al-Ettifaq",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed"
+      },
+      {
+        "id": "grant-hanley",
+        "full_name": "Grant Hanley",
+        "display_name": "Grant Hanley",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Hull City",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 5,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Grant_Hanley_2018.jpg/330px-Grant_Hanley_2018.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Grant_Hanley"
+        }
+      },
+      {
+        "id": "ryan-porteous",
+        "full_name": "Ryan Porteous",
+        "display_name": "Ryan Porteous",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Watford",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 22,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Ryan_Porteous_12072025_%282%29.jpg/330px-Ryan_Porteous_12072025_%282%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ryan_Porteous"
+        }
+      },
+      {
+        "id": "scott-mctominay",
+        "full_name": "Scott McTominay",
+        "display_name": "Scott McTominay",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Napoli",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Scott_McTominay_2021.jpg/330px-Scott_McTominay_2021.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Scott_McTominay"
+        }
+      },
+      {
+        "id": "billy-gilmour",
+        "full_name": "Billy Gilmour",
+        "display_name": "Billy Gilmour",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Napoli",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Billy_Gilmour%2C_2018.jpg/330px-Billy_Gilmour%2C_2018.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Billy_Gilmour"
+        }
+      },
+      {
+        "id": "callum-mcgregor",
+        "full_name": "Callum McGregor",
+        "display_name": "Callum McGregor",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Celtic",
+          "country_iso": "gb-sct",
+          "league": "Scottish Premiership"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Callum_McGregor_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Callum_McGregor"
+        }
+      },
+      {
+        "id": "john-mcginn",
+        "full_name": "John McGinn",
+        "display_name": "John McGinn",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Aston Villa",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/John_McGinn_2019.jpg/330px-John_McGinn_2019.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/John_McGinn"
+        }
+      },
+      {
+        "id": "lewis-ferguson",
+        "full_name": "Lewis Ferguson",
+        "display_name": "Lewis Ferguson",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Bologna",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 16,
+        "status": "fixed"
+      },
+      {
+        "id": "kenny-mclean",
+        "full_name": "Kenny McLean",
+        "display_name": "Kenny McLean",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Norwich",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 19,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/KennyMcLean.jpg/330px-KennyMcLean.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Kenny_McLean"
+        }
+      },
+      {
+        "id": "ben-doak",
+        "full_name": "Ben Doak",
+        "display_name": "Ben Doak",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Bournemouth",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Ben_Doak_2025.jpg/330px-Ben_Doak_2025.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ben_Doak"
+        }
+      },
+      {
+        "id": "che-adams",
+        "full_name": "Che Adams",
+        "display_name": "Che Adams",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Torino",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Che_Adams.jpg/330px-Che_Adams.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ch%C3%A9_Adams"
+        }
+      },
+      {
+        "id": "lyndon-dykes",
+        "full_name": "Lyndon Dykes",
+        "display_name": "Lyndon Dykes",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Birmingham City",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 21,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/89/First_Minister_meets_with_Scottish_National_Football_Team_-_55168603663_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://en.wikipedia.org/wiki/Lyndon_Dykes"
+        }
+      },
+      {
+        "id": "lawrence-shankland",
+        "full_name": "Lawrence Shankland",
+        "display_name": "Shankland",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Hearts",
+          "country_iso": "gb-sct",
+          "league": "Scottish Premiership"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Lawrence_Shankland_2019.jpg/330px-Lawrence_Shankland_2019.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Lawrence_Shankland"
+        }
+      },
+      {
+        "id": "tommy-conway",
+        "full_name": "Tommy Conway",
+        "display_name": "Tommy Conway",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Middlesbrough",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 25,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tommy_Conway_16082025_%281%29.jpg/330px-Tommy_Conway_16082025_%281%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Tommy_Conway"
+        }
+      },
+      {
+        "id": "george-hirst",
+        "full_name": "George Hirst",
+        "display_name": "George Hirst",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Ipswich",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/GeorgeHirst.jpg/330px-GeorgeHirst.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/George_Hirst"
+        }
+      },
+      {
+        "id": "ryan-christie",
+        "full_name": "Ryan Christie",
+        "display_name": "Ryan Christie",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Bournemouth",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 13,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Ryan_Christie.jpg/330px-Ryan_Christie.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Ryan_Christie"
+        }
+      },
+      {
+        "id": "stuart-armstrong",
+        "full_name": "Stuart Armstrong",
+        "display_name": "Stuart Armstrong",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Sheffield Wednesday",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 15,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Stuart_Armstrong_2019.jpg/330px-Stuart_Armstrong_2019.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Stuart_Armstrong"
+        }
+      },
+      {
+        "id": "scott-mckenna",
+        "full_name": "Scott McKenna",
+        "display_name": "Scott McKenna",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Las Palmas",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 24,
+        "status": "probable"
+      },
+      {
+        "id": "max-johnston",
+        "full_name": "Max Johnston",
+        "display_name": "Max Johnston",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Sturm Graz",
+          "country_iso": "at",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 20,
+        "status": "bubble"
+      }
+    ],
+    "starting_xi": {
+      "formation": "3-4-2-1",
+      "players": [
+        {
+          "player_id": "angus-gunn",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "jack-hendry",
+          "position": {
+            "x": 75,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "grant-hanley",
+          "position": {
+            "x": 50,
+            "y": 78
+          }
+        },
+        {
+          "player_id": "kieran-tierney",
+          "position": {
+            "x": 25,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "aaron-hickey",
+          "position": {
+            "x": 88,
+            "y": 50
+          }
+        },
+        {
+          "player_id": "callum-mcgregor",
+          "position": {
+            "x": 60,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "billy-gilmour",
+          "position": {
+            "x": 40,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "andrew-robertson",
+          "position": {
+            "x": 12,
+            "y": 50
+          }
+        },
+        {
+          "player_id": "scott-mctominay",
+          "position": {
+            "x": 65,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "john-mcginn",
+          "position": {
+            "x": 35,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "che-adams",
+          "position": {
+            "x": 50,
+            "y": 15
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Steve Clarke plantea un 3-4-2-1 disciplinado con 3 centrales, carrileros agresivos (Hickey-Robertson), doble pivote técnico (McGregor-Gilmour) y dos mediapuntas (McTominay-McGinn) detrás del '9'. Identidad: defensa de 5 sólida, transiciones rápidas, balones largos para Adams o Doak, eficacia en jugadas a balón parado. Estilo escocés clásico modernizado.",
+      "strengths": [
+        "Mediocampo del Napoli campeón: McTominay + Gilmour. Calidad élite mundial.",
+        "John McGinn: capitán carismático y goleador de 2ª línea. Líder absoluto.",
+        "Andrew Robertson: lateral izquierdo top mundial (Liverpool). 110+ caps.",
+        "Defensa de 5 sólida y experimentada: Hendry, Hanley, Tierney, Hickey.",
+        "Generación nueva en Premier: Doak (Bournemouth), Hickey (Brentford), Ferguson (Bologna).",
+        "Identidad táctica clara y estable: 7 años de Steve Clarke.",
+        "Hampden Park aglutina al 'Tartan Army' como uno de los estadios más ruidosos de Europa."
+      ],
+      "weaknesses": [
+        "28 AÑOS SIN MUNDIAL: presión psicológica histórica enorme.",
+        "Falta de un '9' top mundial: Che Adams, Dykes, Shankland son sólidos pero no élite.",
+        "Defensa central sin nombres en clubes Top-5 europeos (Hendry está en Saudi Pro League).",
+        "Plantilla con muchos jugadores en Championship inglesa (2ª división): Norwich, Hull, Watford.",
+        "Steve Clarke debutante en Mundial.",
+        "Eurocopas 2020 y 2024: ELIMINADA EN GRUPOS las dos veces. Patrón a romper en 2026."
+      ],
+      "x_factor": {
+        "player": "Ben Doak",
+        "reason": "El extremo del Bournemouth (20 años, ex Liverpool) llega al Mundial en su primera gran cita absoluta. Capaz de regatear a cualquier lateral del mundo. Su explosividad por la derecha puede ser el plus que Escocia necesita para por fin pasar la fase de grupos en torneo grande."
+      },
+      "prediction_text": "Escocia llega a 2026 con la mayor ilusión del fútbol nacional desde 1998. La calidad del mediocampo (McTominay + Gilmour del Napoli campeón + McGinn) y la solidez defensiva pueden permitir pasar la fase de grupos por primera vez de la historia mundialista. Cualquier punto extra es bonus. Octavos de final sería hito histórico absoluto.",
+      "probabilities": {
+        "advance_groups": 32,
+        "round_of_32": 25,
+        "round_of_16": 10,
+        "quarter_finals": 3,
+        "semi_finals": 1,
+        "final": 0,
+        "champion": 0
+      },
+      "vs_last_3_wcs": "Brasil 2014: NO clasificó. Rusia 2018: NO clasificó. Catar 2022: NO clasificó. Mundial 2026: regreso al Mundial tras 28 AÑOS de ausencia (última: Francia 1998). Primer Mundial del siglo XXI escocés. 9ª participación absoluta."
+    }
+  },
+  "history": {
+    "first_appearance": 1954,
+    "appearances_count_before_2026": 8,
+    "appearances_count_with_2026": 9,
+    "consecutive_streak_since": 2026,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 0,
+    "best_result": "Fase de grupos (todas sus participaciones)",
+    "aggregate_stats_through_2022": {
+      "played": 23,
+      "won": 4,
+      "drawn": 7,
+      "lost": 12,
+      "goals_for": 25,
+      "goals_against": 41,
+      "win_percentage": 17.4,
+      "notes": "Datos hasta Francia 1998. Escocia es la SELECCIÓN CON MÁS PARTICIPACIONES SIN PASAR DE FASE DE GRUPOS (8 ediciones, 0 superadas)."
+    },
+    "by_world_cup": [
+      {
+        "year": 1954,
+        "host": {
+          "countries": [
+            "Suiza"
+          ],
+          "iso": [
+            "ch"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Andy Beattie",
+        "matches": [],
+        "team_top_scorers": [],
+        "goals_scored": 0,
+        "goals_conceded": 8,
+        "notable_facts": [
+          "DEBUT mundialista.",
+          "Eliminada con 0-1 ante Austria y 0-7 ante Uruguay."
+        ],
+        "narrative": "Escocia debutó en Mundiales en 1954. Cayó 0-1 con Austria y 0-7 con Uruguay. Adiós doloroso."
+      },
+      {
+        "year": 1958,
+        "host": {
+          "countries": [
+            "Suecia"
+          ],
+          "iso": [
+            "se"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Dawson Walker",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Jimmy Murray",
+            "goals": 1
+          },
+          {
+            "player": "Sammy Baird",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Eliminada en primera ronda."
+        ],
+        "narrative": "Escocia cayó en grupos."
+      },
+      {
+        "year": 1974,
+        "host": {
+          "countries": [
+            "Alemania Federal"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Willie Ormond",
+        "captain": "Billy Bremner",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Joe Jordan",
+            "goals": 1
+          },
+          {
+            "player": "Peter Lorimer",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 3,
+        "goals_conceded": 1,
+        "notable_facts": [
+          "INVICTA pero ELIMINADA por diferencia de goles.",
+          "Empate 0-0 con Brasil futura tercera puesto."
+        ],
+        "narrative": "Escocia tuvo Mundial digno. Empate 0-0 con Brasil, ganó 2-0 a Zaire y empató 1-1 con Yugoslavia. INVICTA pero eliminada por diferencia de goles ante Brasil. Adiós con honra."
+      },
+      {
+        "year": 1978,
+        "host": {
+          "countries": [
+            "Argentina"
+          ],
+          "iso": [
+            "ar"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Ally MacLeod",
+        "captain": "Bruce Rioch",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Kenny Dalglish",
+            "goals": 1
+          },
+          {
+            "player": "Archie Gemmill",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 5,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "EL GOLAZO DE ARCHIE GEMMILL ANTE PAÍSES BAJOS (3-2): considerado uno de los mejores goles individuales de la historia.",
+          "Eliminada por diferencia de goles."
+        ],
+        "narrative": "Escocia llegó como favorita europea pero cayó 1-3 con Perú y empató 1-1 con Irán. EN EL ÚLTIMO PARTIDO contra Países Bajos (subcampeona), GANÓ 3-2 con el GOLAZO HISTÓRICO DE ARCHIE GEMMILL al 68' (regateando 4 holandeses y picando sobre el portero). Aún con la victoria, eliminada por diferencia de goles. Adiós doloroso."
+      },
+      {
+        "year": 1982,
+        "host": {
+          "countries": [
+            "España"
+          ],
+          "iso": [
+            "es"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Jock Stein",
+        "captain": "Danny McGrain",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "John Wark",
+            "goals": 2
+          },
+          {
+            "player": "Joe Jordan",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 8,
+        "goals_conceded": 8,
+        "notable_facts": [
+          "Goleó 5-2 a Nueva Zelanda en debut.",
+          "Eliminada por diferencia de goles tras empate 2-2 con URSS."
+        ],
+        "narrative": "Escocia goleó 5-2 a Nueva Zelanda, cayó 1-4 con Brasil (Zico golazo) y empató 2-2 con URSS. Adiós por diferencia de goles."
+      },
+      {
+        "year": 1986,
+        "host": {
+          "countries": [
+            "México"
+          ],
+          "iso": [
+            "mx"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Alex Ferguson",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Gordon Strachan",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 1,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Sir Alex Ferguson como DT TRAS LA MUERTE INESPERADA DE JOCK STEIN.",
+          "Eliminada en grupos."
+        ],
+        "narrative": "Tras el infarto fatal de Jock Stein en eliminatorias (10 sept 1985 vs Gales), Sir Alex Ferguson tomó la selección. Escocia cayó 0-1 con Dinamarca, 1-2 con Alemania Federal y 0-0 con Uruguay. Adiós."
+      },
+      {
+        "year": 1990,
+        "host": {
+          "countries": [
+            "Italia"
+          ],
+          "iso": [
+            "it"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Andy Roxburgh",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Stuart McCall",
+            "goals": 1
+          },
+          {
+            "player": "Mo Johnston",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Cayó 0-1 con Costa Rica (sorpresa absoluta)."
+        ],
+        "narrative": "Escocia cayó 0-1 con Costa Rica (sorpresa mayúscula), batió 2-1 a Suecia y cayó 0-1 con Brasil. Adiós."
+      },
+      {
+        "year": 1998,
+        "host": {
+          "countries": [
+            "Francia"
+          ],
+          "iso": [
+            "fr"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Craig Brown",
+        "captain": "Colin Hendry",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "John Collins",
+            "goals": 1
+          },
+          {
+            "player": "Craig Burley",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Inauguró el Mundial perdiendo 1-2 con Brasil campeona vigente.",
+          "Última participación hasta 2026 (28 años)."
+        ],
+        "narrative": "Escocia inauguró el Mundial Francia 1998 cayendo 1-2 ante Brasil de Ronaldo (gol de John Collins de penal y autogol de Tom Boyd). Empate 1-1 con Noruega y derrota 0-3 con Marruecos. Adiós doloroso. Última participación durante 28 años."
+      }
+    ],
+    "palmares": [
+      {
+        "competition": "British Home Championship",
+        "year": 1976,
+        "position": "Campeón",
+        "host": "Reino Unido (compartido)"
+      },
+      {
+        "competition": "British Home Championship",
+        "year": 1977,
+        "position": "Campeón",
+        "host": "Reino Unido"
+      },
+      {
+        "competition": "British Home Championship",
+        "year": 1981,
+        "position": "Campeón",
+        "host": "Reino Unido"
+      },
+      {
+        "competition": "British Home Championship",
+        "year": 1984,
+        "position": "Campeón",
+        "host": "Reino Unido"
+      }
+    ]
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Kenny Dalglish + Denis Law",
+      "value": 30,
+      "period": "Dalglish 1971-1986 + Law 1958-1974",
+      "notes": "EMPATADOS. Las dos leyendas del fútbol escocés con 30 goles cada uno."
+    },
+    "most_capped": {
+      "name": "Kenny Dalglish",
+      "value": 102,
+      "period": "1971-1986",
+      "notes": "Récord histórico, primer escocés en 100 caps."
+    },
+    "youngest_debut": {
+      "name": "Johnny Lambie",
+      "value": "17 años, 92 días",
+      "period": "1886 vs Irlanda",
+      "notes": "Récord histórico (datos siglo XIX)."
+    },
+    "biggest_win": {
+      "result": "11-0",
+      "opponent": "Irlanda del Norte",
+      "date": "1901-02-23",
+      "competition": "British Home Championship 1901"
+    },
+    "worst_loss": {
+      "result": "0-7",
+      "opponent": "Uruguay",
+      "date": "1954-06-19",
+      "competition": "Fase de grupos Mundial 1954"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El golazo de Gemmill",
+      "date": "1978-06-11",
+      "opponent": {
+        "iso": "nl",
+        "name": "Países Bajos"
+      },
+      "score": "3-2",
+      "competition": "Fase de Grupos Mundial 1978",
+      "narrative": "ARCHIE GEMMILL marcó al 68' UN GOL HISTÓRICO regateando a 4 holandeses y picando sobre Jongbloed. Considerado uno de los mejores goles individuales en Mundiales. La película 'Trainspotting' (1996) lo mencionó como momento icónico escocés. Escocia ganó 3-2 a Países Bajos pero quedó eliminada por diferencia de goles."
+    },
+    {
+      "title": "El primer partido internacional",
+      "date": "1872-11-30",
+      "opponent": {
+        "iso": "gb-eng",
+        "name": "Inglaterra"
+      },
+      "score": "0-0",
+      "competition": "Amistoso (primer internacional de la historia)",
+      "narrative": "Escocia 0-0 Inglaterra en Hamilton Crescent (Glasgow), 30 noviembre 1872. PRIMER PARTIDO INTERNACIONAL DE LA HISTORIA del fútbol. Asistencia: 4.000 espectadores. Hito fundacional del fútbol moderno."
+    },
+    {
+      "title": "El 4-2 a Dinamarca de la clasificación",
+      "date": "2025-11-16",
+      "opponent": {
+        "iso": "dk",
+        "name": "Dinamarca"
+      },
+      "score": "4-2",
+      "competition": "Eliminatorias Mundial 2026",
+      "narrative": "Escocia batió 4-2 a Dinamarca en Hampden Park y selló la clasificación al Mundial 2026. Goles de McTominay (5'), McGinn (40'), Shankland (78') y TIERNEY al 92' tras un córner que lo cerró todo. Glasgow celebró por horas. Primer Mundial escocés del siglo XXI."
+    },
+    {
+      "title": "El infarto de Jock Stein",
+      "date": "1985-09-10",
+      "opponent": {
+        "iso": "gb-wls",
+        "name": "Gales"
+      },
+      "score": "1-1",
+      "competition": "Eliminatorias Mundial 1986",
+      "narrative": "Escocia empató 1-1 con Gales en Cardiff y se clasificó al play-off del Mundial 1986. PERO EL DT JOCK STEIN sufrió un infarto fatal en el banquillo en los últimos minutos del partido. La leyenda del fútbol escocés murió. Sir Alex Ferguson tomó el equipo y lo llevó al Mundial México 86."
+    },
+    {
+      "title": "La inauguración Mundial 1998",
+      "date": "1998-06-10",
+      "opponent": {
+        "iso": "br",
+        "name": "Brasil"
+      },
+      "score": "1-2",
+      "competition": "Inauguración Mundial 1998",
+      "narrative": "Escocia inauguró el Mundial Francia 1998 ante Brasil futura campeona vigente. 1-2 con goles de Cesar Sampaio y autogol de Tom Boyd; gol de John Collins de penal. Adiós con honra. Última participación mundialista hasta 2026."
+    },
+    {
+      "title": "El triunfo a la URSS",
+      "date": "1982-06-22",
+      "opponent": {
+        "iso": "su",
+        "name": "URSS"
+      },
+      "score": "2-2",
+      "competition": "Fase de Grupos Mundial 1982",
+      "narrative": "Empate 2-2 con URSS en el Mundial España 82 con goles de Joe Jordan (15') y Graeme Souness (87'). Adiós por diferencia de goles tras una caza dramática del clasificatorio. Generación de oro escocesa: Dalglish, Souness, Jordan, Strachan."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "Escocia es la SELECCIÓN CON MÁS PARTICIPACIONES MUNDIALISTAS SIN HABER PASADO DE FASE DE GRUPOS. 8 ediciones (1954-1998), 0 superadas. Antes de Catar/Estados Unidos 2026 puede romper esa marca.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Escocia jugó EL PRIMER PARTIDO INTERNACIONAL DE LA HISTORIA del fútbol vs Inglaterra el 30 noviembre 1872 (0-0). Es la SFA la 2ª federación más antigua del mundo (1873) tras la FA inglesa.",
+      "source": "FIFA + SFA",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Sir Alex Ferguson DT de Escocia 1985-1986 tras la muerte súbita de Jock Stein por infarto durante el partido vs Gales (10 sept 1985). Fergie llevó a Escocia al Mundial México 86.",
+      "source": "Wikipedia + BBC",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "El golazo de Archie Gemmill ante Países Bajos 1978 fue mencionado en la película 'Trainspotting' (1996) en una de sus escenas más icónicas. Considerado uno de los 10 mejores goles individuales en Mundiales.",
+      "source": "Wikipedia + IMDb",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Escocia regresa al Mundial tras 28 AÑOS de ausencia. Primer Mundial del siglo XXI. Tartan Army (afición escocesa) considerada una de las más fieles del fútbol mundial.",
+      "source": "FIFA + SFA",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Kenny Dalglish y Denis Law comparten el récord de máximos goleadores históricos escoceses con 30 goles cada uno. Ambos miembros del Salón de la Fama del fútbol escocés.",
+      "source": "SFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Hampden Park (Glasgow) es UNO DE LOS ESTADIOS MÁS RUIDOSOS DE EUROPA. El 'Tartan Army' canta sin parar 90 minutos. La Hampden Roar es famosa en el fútbol mundial.",
+      "source": "SFA + Wikipedia",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    },
+    {
+      "text": "Escocia y los demás países británicos (Inglaterra, Gales, Irlanda del Norte) tienen ESCUDO ISO PROPIO en eventos FIFA: 'gb-sct', 'gb-eng', 'gb-wls', 'gb-nir'. Reflejan la singularidad histórica del fútbol británico.",
+      "source": "FIFA + IFAB",
+      "verified_at": "2026-04-29",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "Flower of Scotland (himno)",
+      "Yes Sir, I Can Boogie (himno popular post-Eurocopa 2020)",
+      "We'll Be Coming Down the Road"
+    ],
+    "main_rival": {
+      "iso": "gb-eng",
+      "name": "Inglaterra",
+      "story": "RIVALIDAD MÁS ANTIGUA DEL FÚTBOL MUNDIAL desde 1872. Cada cruce está cargado de historia política y deportiva (Independencia escocesa, Juegos Olímpicos, etc.). El último partido oficial fue Eurocopa 2020 (0-0 en Wembley)."
+    },
+    "home_stadium": {
+      "name": "Hampden Park",
+      "capacity": 51866,
+      "city": "Glasgow"
+    }
+  },
+  "seo": {
+    "meta_title": "Escocia en el Mundial 2026 | Plantilla, historia y predicciones",
+    "meta_description": "Escocia Mundial 2026: 26 convocados de Steve Clarke, McTominay, McGinn, Doak. Regreso al Mundial tras 28 años, primer Mundial del siglo XXI.",
+    "og_image_url": "/img/og/teams/escocia.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Escocia",
+      "alternateName": [
+        "Tartan Army",
+        "Bravehearts"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "UEFA"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Steve Clarke"
+      },
+      "url": "https://www.zonamundial.app/selecciones/escocia"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-29",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_Escocia",
+      "https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_de_UEFA_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://es.uefa.com/european-qualifiers/news/029f-1f3188cfc443-494e0d8af33d-1000--mundial-2026-que-selecciones-europeas-se-han-clasificado/",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/15895830/se-definen-eliminatorias-uefa-europa-mundial-2026-quien-puede-clasificar",
+      "https://www.scottishfa.co.uk",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias cruzadas con UEFA + Wikipedia + ESPN. Historia mundialista validada con FIFA + SFA + Wikipedia + BBC.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "needs_review",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante: pendiente",
+      "Grupo Mundial 2026 confirmado: cruzar con /grupos zonamundial.app (Brasil + Marruecos + Haití + Escocia)",
+      "Calendario fase de grupos 2026: fixture FIFA pendiente",
+      "Base de entrenamiento: SFA aún no anunció",
+      "FIFA Ranking #36: validar mes vigente",
+      "Goles secundarios eliminatoria (Doak / Tierney): cruzar autorías exactas",
+      "Historia 1962/1966/1970: ediciones omitidas (no clasificó)"
+    ]
+  }
+}

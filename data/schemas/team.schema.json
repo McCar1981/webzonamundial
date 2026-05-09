@@ -1,0 +1,682 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ZonaMundial Team Schema",
+  "description": "Schema oficial para fichas de selección del Mundial 2026 — BIBLIA Mundial 2026",
+  "version": "1.0.0",
+  "type": "object",
+  "required": [
+    "slug",
+    "iso",
+    "iso3",
+    "name_es",
+    "confederation",
+    "_meta"
+  ],
+  "properties": {
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z]+(-[a-z]+)*$",
+      "description": "Slug único en kebab-case"
+    },
+    "iso": {
+      "type": "string",
+      "description": "Código ISO de 2 letras para flagcdn"
+    },
+    "iso3": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 3,
+      "description": "Código ISO de 3 letras (FIFA)"
+    },
+    "name_es": { "type": "string" },
+    "name_en": { "type": "string" },
+    "name_local": { "type": "string" },
+    "nicknames": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "flag": {
+      "type": "object",
+      "properties": {
+        "colors": {
+          "type": "object",
+          "properties": {
+            "primary": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+            "secondary": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+            "tertiary": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+            "contrast_text": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" }
+          }
+        }
+      }
+    },
+    "country": {
+      "type": "object",
+      "properties": {
+        "capital": { "type": "string" },
+        "language_official": { "type": "array", "items": { "type": "string" } },
+        "population": { "type": "integer" },
+        "area_km2": { "type": "integer" },
+        "timezone": { "type": "string" },
+        "continent": { "type": "string" }
+      }
+    },
+    "federation": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "abbreviation": { "type": "string" },
+        "founded": { "type": "integer" },
+        "headquarters": { "type": "string" },
+        "website": { "type": "string", "format": "uri" }
+      }
+    },
+    "confederation": {
+      "type": "string",
+      "enum": ["UEFA", "CONMEBOL", "CAF", "AFC", "CONCACAF", "OFC"]
+    },
+    "fifa_ranking": {
+      "type": "object",
+      "properties": {
+        "current": { "type": "integer" },
+        "last_updated": { "type": "string", "format": "date" }
+      }
+    },
+    "kit": {
+      "type": "object",
+      "properties": {
+        "wc_2026": {
+          "type": "object",
+          "properties": {
+            "brand": { "type": "string" },
+            "season": { "type": "string" },
+            "home": { "$ref": "#/definitions/KitVariant" },
+            "away": { "$ref": "#/definitions/KitVariant" },
+            "third": { "$ref": "#/definitions/KitVariant" }
+          }
+        },
+        "trivia": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Trivia" }
+        }
+      }
+    },
+    "wc_2026": {
+      "type": "object",
+      "properties": {
+        "qualified_via": {
+          "type": "string",
+          "enum": ["host", "direct", "playoff_intercontinental", "playoff_uefa"]
+        },
+        "qualifying_summary": { "type": "string" },
+        "qualifying": { "$ref": "#/definitions/QualifyingData" },
+        "group_2026": { "$ref": "#/definitions/Group2026" },
+        "schedule": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/WCMatch2026" }
+        },
+        "base_camp": { "$ref": "#/definitions/BaseCamp" },
+        "coach": { "$ref": "#/definitions/Coach" },
+        "captain": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "club": { "type": "string" }
+          }
+        },
+        "star_player": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "club": { "type": "string" },
+            "reason": { "type": "string" }
+          }
+        },
+        "likely_squad": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Player" }
+        },
+        "starting_xi": { "$ref": "#/definitions/StartingXI" },
+        "analysis": { "$ref": "#/definitions/Analysis" }
+      }
+    },
+    "history": {
+      "type": "object",
+      "properties": {
+        "first_appearance": { "type": "integer" },
+        "appearances_count_before_2026": { "type": "integer" },
+        "appearances_count_with_2026": { "type": "integer" },
+        "consecutive_streak_since": { "type": ["integer", "null"] },
+        "titles": { "type": "integer" },
+        "titles_years": { "type": "array", "items": { "type": "integer" } },
+        "finals": { "type": "integer" },
+        "finals_years": { "type": "array", "items": { "type": "integer" } },
+        "semi_finals": { "type": "integer" },
+        "best_result": { "type": "string" },
+        "aggregate_stats_through_2022": { "$ref": "#/definitions/AggregateStats" },
+        "by_world_cup": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/WorldCupParticipation" }
+        },
+        "palmares": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Trophy" }
+        }
+      }
+    },
+    "records": {
+      "type": "object",
+      "properties": {
+        "top_scorer_history": { "$ref": "#/definitions/PlayerRecord" },
+        "most_capped": { "$ref": "#/definitions/PlayerRecord" },
+        "youngest_debut": { "$ref": "#/definitions/PlayerRecord" },
+        "biggest_win": { "$ref": "#/definitions/MatchRecord" },
+        "worst_loss": { "$ref": "#/definitions/MatchRecord" }
+      }
+    },
+    "iconic_matches": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/IconicMatch" }
+    },
+    "curiosities": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/Trivia" }
+    },
+    "fan_culture": {
+      "type": "object",
+      "properties": {
+        "famous_chants": { "type": "array", "items": { "type": "string" } },
+        "main_rival": {
+          "type": "object",
+          "properties": {
+            "iso": { "type": "string" },
+            "name": { "type": "string" },
+            "story": { "type": "string" }
+          }
+        },
+        "home_stadium": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "capacity": { "type": "integer" },
+            "city": { "type": "string" }
+          }
+        }
+      }
+    },
+    "seo": {
+      "type": "object",
+      "properties": {
+        "meta_title": { "type": "string", "maxLength": 70 },
+        "meta_description": { "type": "string", "maxLength": 160 },
+        "og_image_url": { "type": "string" },
+        "schema_org": { "type": "object" }
+      }
+    },
+    "_meta": {
+      "type": "object",
+      "required": ["schema_version", "last_updated", "review_status"],
+      "properties": {
+        "schema_version": { "type": "string" },
+        "last_updated": { "type": "string", "format": "date" },
+        "sources_validated": {
+          "type": "array",
+          "items": { "type": "string", "format": "uri" }
+        },
+        "validation_method": { "type": "string" },
+        "review_status": {
+          "type": "string",
+          "enum": ["draft", "validated", "published"]
+        },
+        "completion_status": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "enum": ["complete", "partial", "needs_review", "pending"]
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "KitVariant": {
+      "type": "object",
+      "properties": {
+        "front_url": { "type": ["string", "null"] },
+        "back_url": { "type": ["string", "null"] },
+        "primary_color": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+        "secondary_color": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+        "description": { "type": "string" },
+        "alt_text": { "type": "string" }
+      }
+    },
+    "Trivia": {
+      "type": "object",
+      "required": ["text", "source", "verified_at", "status"],
+      "properties": {
+        "text": { "type": "string" },
+        "source": { "type": "string" },
+        "verified_at": { "type": "string", "format": "date" },
+        "status": {
+          "type": "string",
+          "enum": ["validated", "needs_review", "single_source", "pending", "discarded"]
+        }
+      }
+    },
+    "QualifyingData": {
+      "type": "object",
+      "properties": {
+        "confederation_round": { "type": "string" },
+        "format": { "type": "string" },
+        "duration": { "type": "string" },
+        "final_position": { "type": "integer" },
+        "total_teams_in_group": { "type": "integer" },
+        "stats": { "$ref": "#/definitions/MatchStats" },
+        "coach_during_qualifying": { "type": "string" },
+        "matches": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/QualifyingMatch" }
+        },
+        "top_scorers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "player": { "type": "string" },
+              "goals": { "type": "integer" },
+              "notes": { "type": "string" }
+            }
+          }
+        },
+        "best_match": {
+          "type": "object",
+          "properties": {
+            "match_ref": { "type": "string" },
+            "reason": { "type": "string" }
+          }
+        },
+        "worst_match": {
+          "type": "object",
+          "properties": {
+            "match_ref": { "type": "string" },
+            "reason": { "type": "string" }
+          }
+        },
+        "decisive_match": {
+          "type": "object",
+          "properties": {
+            "match_ref": { "type": "string" },
+            "reason": { "type": "string" }
+          }
+        }
+      }
+    },
+    "MatchStats": {
+      "type": "object",
+      "properties": {
+        "played": { "type": "integer" },
+        "won": { "type": "integer" },
+        "drawn": { "type": "integer" },
+        "lost": { "type": "integer" },
+        "goals_for": { "type": "integer" },
+        "goals_against": { "type": "integer" },
+        "goal_difference": { "type": "integer" },
+        "points": { "type": "integer" },
+        "win_percentage": { "type": "number" },
+        "clean_sheets": { "type": "integer" }
+      }
+    },
+    "QualifyingMatch": {
+      "type": "object",
+      "required": ["matchday", "date", "home", "away", "venue"],
+      "properties": {
+        "matchday": { "type": "integer" },
+        "date": { "type": "string", "format": "date" },
+        "home": { "$ref": "#/definitions/MatchTeam" },
+        "away": { "$ref": "#/definitions/MatchTeam" },
+        "venue": { "$ref": "#/definitions/Venue" },
+        "goals_arg": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Goal" }
+        },
+        "goals_opponent": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Goal" }
+        },
+        "notes": { "type": "string" },
+        "is_decisive_match": { "type": "boolean" }
+      }
+    },
+    "MatchTeam": {
+      "type": "object",
+      "required": ["iso", "name", "score"],
+      "properties": {
+        "iso": { "type": "string" },
+        "name": { "type": "string" },
+        "score": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "Venue": {
+      "type": "object",
+      "required": ["stadium", "city"],
+      "properties": {
+        "stadium": { "type": "string" },
+        "city": { "type": "string" },
+        "country_iso": { "type": "string" }
+      }
+    },
+    "Goal": {
+      "type": "object",
+      "required": ["player", "minute"],
+      "properties": {
+        "player": { "type": "string" },
+        "minute": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["goal", "penalty", "og", "freekick"]
+        }
+      }
+    },
+    "Group2026": {
+      "type": "object",
+      "properties": {
+        "letter": { "type": "string" },
+        "label": { "type": "string" },
+        "teams": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "iso": { "type": "string" },
+              "name": { "type": "string" },
+              "fifa_rank": { "type": ["integer", "null"] },
+              "is_seed": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    },
+    "WCMatch2026": {
+      "type": "object",
+      "properties": {
+        "matchday": { "type": "integer", "enum": [1, 2, 3] },
+        "opponent": {
+          "type": "object",
+          "properties": {
+            "iso": { "type": "string" },
+            "name": { "type": "string" }
+          }
+        },
+        "date": { "type": "string" },
+        "kickoff_local": { "type": "string" },
+        "kickoff_madrid": { "type": "string" },
+        "venue": {
+          "type": "object",
+          "properties": {
+            "stadium": { "type": "string" },
+            "city": { "type": "string" },
+            "country_iso": { "type": "string" }
+          }
+        },
+        "status": {
+          "type": "string",
+          "enum": ["scheduled", "live", "finished"]
+        }
+      }
+    },
+    "BaseCamp": {
+      "type": "object",
+      "properties": {
+        "city": { "type": "string" },
+        "country": { "type": "string" },
+        "facility_name": { "type": "string" },
+        "coordinates": {
+          "type": "array",
+          "items": { "type": "number" },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "status": {
+          "type": "string",
+          "enum": ["confirmed", "needs_review", "pending"]
+        }
+      }
+    },
+    "Coach": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "age": { "type": "integer" },
+        "nationality": { "type": "string" },
+        "since": { "type": "string", "format": "date" },
+        "previous_teams": { "type": "array", "items": { "type": "string" } },
+        "profile_summary": { "type": "string" }
+      }
+    },
+    "Player": {
+      "type": "object",
+      "required": ["full_name", "position", "club", "status"],
+      "properties": {
+        "id": { "type": "string" },
+        "full_name": { "type": "string" },
+        "display_name": { "type": "string" },
+        "birthdate": { "type": "string", "format": "date" },
+        "age": { "type": "integer" },
+        "position": {
+          "type": "string",
+          "enum": ["GK", "DEF", "MID", "FWD"]
+        },
+        "detailed_position": { "type": "string" },
+        "club": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "country_iso": { "type": "string" },
+            "league": { "type": "string" }
+          }
+        },
+        "shirt_number_expected": { "type": "integer" },
+        "caps": { "type": "integer" },
+        "goals_national": { "type": "integer" },
+        "market_value_eur": { "type": "integer" },
+        "status": {
+          "type": "string",
+          "enum": ["fixed", "probable", "bubble"]
+        },
+        "photo_url": { "type": "string" }
+      }
+    },
+    "StartingXI": {
+      "type": "object",
+      "properties": {
+        "formation": { "type": "string" },
+        "players": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "player_id": { "type": "string" },
+              "position": {
+                "type": "object",
+                "properties": {
+                  "x": { "type": "number", "minimum": 0, "maximum": 100 },
+                  "y": { "type": "number", "minimum": 0, "maximum": 100 }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Analysis": {
+      "type": "object",
+      "properties": {
+        "style": { "type": "string" },
+        "strengths": { "type": "array", "items": { "type": "string" } },
+        "weaknesses": { "type": "array", "items": { "type": "string" } },
+        "x_factor": {
+          "type": "object",
+          "properties": {
+            "player": { "type": "string" },
+            "reason": { "type": "string" }
+          }
+        },
+        "prediction_text": { "type": "string" },
+        "probabilities": {
+          "type": "object",
+          "properties": {
+            "advance_groups": { "type": "number" },
+            "round_of_32": { "type": "number" },
+            "round_of_16": { "type": "number" },
+            "quarter_finals": { "type": "number" },
+            "semi_finals": { "type": "number" },
+            "final": { "type": "number" },
+            "champion": { "type": "number" }
+          }
+        },
+        "vs_last_3_wcs": { "type": "string" }
+      }
+    },
+    "AggregateStats": {
+      "type": "object",
+      "properties": {
+        "played": { "type": "integer" },
+        "won": { "type": "integer" },
+        "drawn": { "type": "integer" },
+        "lost": { "type": "integer" },
+        "goals_for": { "type": "integer" },
+        "goals_against": { "type": "integer" },
+        "win_percentage": { "type": "number" },
+        "notes": { "type": "string" }
+      }
+    },
+    "WorldCupParticipation": {
+      "type": "object",
+      "required": ["year", "result"],
+      "properties": {
+        "year": { "type": "integer" },
+        "host": {
+          "type": "object",
+          "properties": {
+            "countries": { "type": "array", "items": { "type": "string" } },
+            "iso": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "result": { "type": "string" },
+        "group": { "type": "string" },
+        "coach": { "type": "string" },
+        "captain": { "type": "string" },
+        "squad_size": { "type": "integer" },
+        "matches": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/WorldCupMatch" }
+        },
+        "team_top_scorers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "player": { "type": "string" },
+              "goals": { "type": "integer" }
+            }
+          }
+        },
+        "goals_scored": { "type": "integer" },
+        "goals_conceded": { "type": "integer" },
+        "notable_facts": { "type": "array", "items": { "type": "string" } },
+        "narrative": { "type": "string" },
+        "hero_image_url": { "type": "string" }
+      }
+    },
+    "WorldCupMatch": {
+      "type": "object",
+      "properties": {
+        "date": { "type": "string", "format": "date" },
+        "stage": { "type": "string" },
+        "opponent": {
+          "type": "object",
+          "properties": {
+            "iso": { "type": "string" },
+            "name": { "type": "string" }
+          }
+        },
+        "result": {
+          "type": "object",
+          "properties": {
+            "our": { "type": "integer" },
+            "them": { "type": "integer" },
+            "ot": { "type": "boolean" },
+            "pen": {
+              "type": "object",
+              "properties": {
+                "our": { "type": "integer" },
+                "them": { "type": "integer" }
+              }
+            }
+          }
+        },
+        "venue": { "$ref": "#/definitions/Venue" },
+        "goals_for": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Goal" }
+        },
+        "goals_against": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Goal" }
+        },
+        "attendance": { "type": "integer" }
+      }
+    },
+    "Trophy": {
+      "type": "object",
+      "properties": {
+        "competition": { "type": "string" },
+        "year": { "type": "integer" },
+        "position": {
+          "type": "string",
+          "enum": ["Campeón", "Subcampeón", "Tercero", "Cuarto"]
+        },
+        "host": { "type": "string" }
+      }
+    },
+    "PlayerRecord": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "value": { "type": ["integer", "string"] },
+        "period": { "type": "string" },
+        "notes": { "type": "string" }
+      }
+    },
+    "MatchRecord": {
+      "type": "object",
+      "properties": {
+        "result": { "type": "string" },
+        "opponent": { "type": "string" },
+        "date": { "type": "string", "format": "date" },
+        "competition": { "type": "string" }
+      }
+    },
+    "IconicMatch": {
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "date": { "type": "string", "format": "date" },
+        "opponent": {
+          "type": "object",
+          "properties": {
+            "iso": { "type": "string" },
+            "name": { "type": "string" }
+          }
+        },
+        "score": { "type": "string" },
+        "competition": { "type": "string" },
+        "narrative": { "type": "string" },
+        "image_url": { "type": "string" },
+        "site_link": {
+          "type": "string",
+          "description": "Si existe en /historia/momentos-iconicos/X, link interno"
+        }
+      }
+    }
+  }
+}

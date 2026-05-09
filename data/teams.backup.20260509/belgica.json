@@ -1,0 +1,1833 @@
+{
+  "slug": "belgica",
+  "iso": "be",
+  "iso3": "BEL",
+  "name_es": "Bélgica",
+  "name_en": "Belgium",
+  "name_local": "België / Belgique",
+  "nicknames": [
+    "Los Diablos Rojos",
+    "Red Devils",
+    "Rode Duivels",
+    "Diables Rouges"
+  ],
+  "flag": {
+    "colors": {
+      "primary": "#000000",
+      "secondary": "#FAE042",
+      "tertiary": "#ED2939",
+      "contrast_text": "#FFFFFF"
+    }
+  },
+  "country": {
+    "capital": "Bruselas",
+    "language_official": [
+      "Neerlandés",
+      "Francés",
+      "Alemán"
+    ],
+    "population": 11700000,
+    "area_km2": 30528,
+    "timezone": "Europe/Brussels",
+    "continent": "Europa"
+  },
+  "federation": {
+    "name": "Royal Belgian Football Association",
+    "abbreviation": "RBFA",
+    "founded": 1895,
+    "headquarters": "Bruselas (Tubize)",
+    "website": "https://www.rbfa.be"
+  },
+  "confederation": "UEFA",
+  "fifa_ranking": {
+    "current": 9,
+    "last_updated": "2026-04-03"
+  },
+  "kit": {
+    "wc_2026": {
+      "brand": "Adidas",
+      "season": "2025-2026",
+      "home": {
+        "front_url": "/img/kits/2026/home/belgica.png",
+        "back_url": null,
+        "primary_color": "#ED2939",
+        "secondary_color": "#000000",
+        "description": "Camiseta roja icónica de los Diablos Rojos con detalles negros y amarillos, los tres colores de la bandera belga.",
+        "alt_text": "Camiseta titular Bélgica Mundial 2026"
+      },
+      "away": {
+        "front_url": null,
+        "back_url": null,
+        "primary_color": "#FFFFFF",
+        "secondary_color": "#ED2939",
+        "description": "Equipación visitante en blanco. Pendiente de subir.",
+        "alt_text": "Camiseta visitante Bélgica Mundial 2026 — próximamente"
+      }
+    },
+    "trivia": [
+      {
+        "text": "El apodo 'Diablos Rojos' (Red Devils / Rode Duivels) data de 1906. Es uno de los apodos más antiguos del fútbol mundial. La camiseta roja se convirtió en señal de identidad nacional.",
+        "source": "RBFA + Wikipedia",
+        "verified_at": "2026-04-28",
+        "status": "validated"
+      }
+    ]
+  },
+  "wc_2026": {
+    "qualified_via": "direct",
+    "qualifying_summary": "Bélgica clasificó como 1º del Grupo J invicta tras una eliminatoria sólida. Goleó 6-0 a Liechtenstein en partido decisivo y aseguró su pase al Mundial 2026. Bajo el francés Rudi Garcia (DT desde enero 2025), los Diablos Rojos buscan recuperar el nivel post-generación dorada (Hazard, Lukaku) que llegó al 3er puesto en Rusia 2018. Kevin De Bruyne sigue siendo el motor con 34 años. 14ª participación mundialista.",
+    "qualifying": {
+      "confederation_round": "Eliminatorias UEFA Mundial 2026 — Grupo J",
+      "format": "Liguilla todos contra todos · 5 equipos · 8 partidos · ida y vuelta",
+      "duration": "Marzo 2025 — Noviembre 2025",
+      "final_position": 1,
+      "total_teams_in_group": 5,
+      "stats": {
+        "played": 8,
+        "won": 6,
+        "drawn": 2,
+        "lost": 0,
+        "goals_for": 26,
+        "goals_against": 6,
+        "goal_difference": 20,
+        "points": 20,
+        "win_percentage": 75,
+        "clean_sheets": 4
+      },
+      "coach_during_qualifying": "Rudi Garcia (desde enero 2025)",
+      "matches": [
+        {
+          "matchday": 1,
+          "date": "2025-03-22",
+          "home": {
+            "iso": "li",
+            "name": "Liechtenstein",
+            "score": 0
+          },
+          "away": {
+            "iso": "be",
+            "name": "Bélgica",
+            "score": 6
+          },
+          "venue": {
+            "stadium": "Rheinpark",
+            "city": "Vaduz",
+            "country_iso": "li"
+          },
+          "goals_arg": [
+            {
+              "player": "Romelu Lukaku",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Kevin De Bruyne",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Romelu Lukaku",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Charles De Ketelaere",
+              "minute": "70'",
+              "type": "goal"
+            },
+            {
+              "player": "Jérémy Doku",
+              "minute": "82'",
+              "type": "goal"
+            },
+            {
+              "player": "Youri Tielemans",
+              "minute": "90'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 2,
+          "date": "2025-09-04",
+          "home": {
+            "iso": "be",
+            "name": "Bélgica",
+            "score": 4
+          },
+          "away": {
+            "iso": "kz",
+            "name": "Kazajistán",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Rey Balduino",
+            "city": "Bruselas",
+            "country_iso": "be"
+          },
+          "goals_arg": [
+            {
+              "player": "Kevin De Bruyne",
+              "minute": "12'",
+              "type": "penalty"
+            },
+            {
+              "player": "Romelu Lukaku",
+              "minute": "44'",
+              "type": "goal"
+            },
+            {
+              "player": "Hans Vanaken",
+              "minute": "60'",
+              "type": "goal"
+            },
+            {
+              "player": "Jérémy Doku",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 3,
+          "date": "2025-09-08",
+          "home": {
+            "iso": "kz",
+            "name": "Kazajistán",
+            "score": 1
+          },
+          "away": {
+            "iso": "be",
+            "name": "Bélgica",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Astana Arena",
+            "city": "Astana",
+            "country_iso": "kz"
+          },
+          "goals_arg": [
+            {
+              "player": "Hans Vanaken",
+              "minute": "65'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Empate sorpresivo en Astana."
+        },
+        {
+          "matchday": 4,
+          "date": "2025-10-09",
+          "home": {
+            "iso": "be",
+            "name": "Bélgica",
+            "score": 4
+          },
+          "away": {
+            "iso": "wls",
+            "name": "Gales",
+            "score": 3
+          },
+          "venue": {
+            "stadium": "Rey Balduino",
+            "city": "Bruselas",
+            "country_iso": "be"
+          },
+          "goals_arg": [
+            {
+              "player": "Kevin De Bruyne",
+              "minute": "21'",
+              "type": "goal"
+            },
+            {
+              "player": "Romelu Lukaku",
+              "minute": "33'",
+              "type": "goal"
+            },
+            {
+              "player": "Jérémy Doku",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Romelu Lukaku",
+              "minute": "70'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Partido vibrante."
+        },
+        {
+          "matchday": 5,
+          "date": "2025-10-12",
+          "home": {
+            "iso": "wls",
+            "name": "Gales",
+            "score": 2
+          },
+          "away": {
+            "iso": "be",
+            "name": "Bélgica",
+            "score": 4
+          },
+          "venue": {
+            "stadium": "Cardiff City Stadium",
+            "city": "Cardiff",
+            "country_iso": "gb-wls"
+          },
+          "goals_arg": [
+            {
+              "player": "Kevin De Bruyne",
+              "minute": "10'",
+              "type": "goal"
+            },
+            {
+              "player": "Romelu Lukaku",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Jérémy Doku",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Hans Vanaken",
+              "minute": "78'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 6,
+          "date": "2025-11-13",
+          "home": {
+            "iso": "be",
+            "name": "Bélgica",
+            "score": 6
+          },
+          "away": {
+            "iso": "li",
+            "name": "Liechtenstein",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Rey Balduino",
+            "city": "Bruselas",
+            "country_iso": "be"
+          },
+          "goals_arg": [
+            {
+              "player": "Romelu Lukaku",
+              "minute": "10'",
+              "type": "goal"
+            },
+            {
+              "player": "Kevin De Bruyne",
+              "minute": "22'",
+              "type": "penalty"
+            },
+            {
+              "player": "Romelu Lukaku",
+              "minute": "33'",
+              "type": "goal"
+            },
+            {
+              "player": "Jérémy Doku",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Charles De Ketelaere",
+              "minute": "75'",
+              "type": "goal"
+            },
+            {
+              "player": "Loïs Openda",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ],
+          "notes": "GOLEADA QUE SELLÓ LA CLASIFICACIÓN al Mundial 2026 como 1º del Grupo J.",
+          "is_decisive_match": true
+        },
+        {
+          "matchday": 7,
+          "date": "2025-11-16",
+          "home": {
+            "iso": "be",
+            "name": "Bélgica",
+            "score": 1
+          },
+          "away": {
+            "iso": "mk",
+            "name": "Macedonia del Norte",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Rey Balduino",
+            "city": "Bruselas",
+            "country_iso": "be"
+          },
+          "goals_arg": [
+            {
+              "player": "Kevin De Bruyne",
+              "minute": "60'",
+              "type": "penalty"
+            }
+          ]
+        },
+        {
+          "matchday": 8,
+          "date": "2025-11-19",
+          "home": {
+            "iso": "mk",
+            "name": "Macedonia del Norte",
+            "score": 0
+          },
+          "away": {
+            "iso": "be",
+            "name": "Bélgica",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Toše Proeski",
+            "city": "Skopie",
+            "country_iso": "mk"
+          },
+          "goals_arg": [
+            {
+              "player": "Loïs Openda",
+              "minute": "70'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Cierre con victoria. Bélgica terminó 1º invicta."
+        }
+      ],
+      "top_scorers": [
+        {
+          "player": "Romelu Lukaku",
+          "goals": 6,
+          "notes": "Goleador histórico de Bélgica. 33 años en el Mundial 2026."
+        },
+        {
+          "player": "Kevin De Bruyne",
+          "goals": 5,
+          "notes": "Capitán y motor del juego."
+        },
+        {
+          "player": "Jérémy Doku",
+          "goals": 4
+        },
+        {
+          "player": "Hans Vanaken",
+          "goals": 3
+        },
+        {
+          "player": "Charles De Ketelaere",
+          "goals": 2
+        },
+        {
+          "player": "Loïs Openda",
+          "goals": 2
+        },
+        {
+          "player": "Youri Tielemans",
+          "goals": 1
+        },
+        {
+          "player": "Otros (3)",
+          "goals": 3
+        }
+      ],
+      "best_match": {
+        "match_ref": "matchday_5",
+        "reason": "El 4-2 a Gales en Cardiff el 12 de octubre de 2025. Doblete de Lukaku, gol de De Bruyne y Doku. Demostración del estilo Garcia."
+      },
+      "worst_match": {
+        "match_ref": "matchday_3",
+        "reason": "Empate 1-1 en Astana ante Kazajistán. Bélgica falló en consolidar superioridad y casi cae."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_6",
+        "reason": "El 6-0 a Liechtenstein en Bruselas el 13 de noviembre selló matemáticamente la clasificación al Mundial 2026 como 1º invicta del Grupo J."
+      }
+    },
+    "group_2026": {
+      "letter": "G",
+      "label": "Grupo asignado en sorteo Mundial 2026",
+      "teams": [
+        {
+          "iso": "be",
+          "name": "Bélgica",
+          "fifa_rank": null,
+          "is_seed": true
+        },
+        {
+          "iso": "nz",
+          "name": "N. Zelanda",
+          "fifa_rank": null
+        },
+        {
+          "iso": "eg",
+          "name": "Egipto",
+          "fifa_rank": null
+        },
+        {
+          "iso": "ir",
+          "name": "Irán",
+          "fifa_rank": null
+        }
+      ],
+      "notes": "Bélgica cabeza de serie (Bombo 1). Pendiente cruce con /grupos zonamundial.app."
+    },
+    "schedule": [
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "nz",
+          "name": "N. Zelanda"
+        },
+        "date": "2026-06-14",
+        "kickoff_local": "18:00",
+        "venue": {
+          "stadium": "Levi's Stadium",
+          "city": "Bay Area",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "ir",
+          "name": "Irán"
+        },
+        "date": "2026-06-22",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "Levi's Stadium",
+          "city": "Bay Area",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "eg",
+          "name": "Egipto"
+        },
+        "date": "2026-06-29",
+        "kickoff_local": "21:00",
+        "venue": {
+          "stadium": "Levi's Stadium",
+          "city": "Bay Area",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
+    ],
+    "base_camp": {
+      "city": "[POR CONFIRMAR — RBFA aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
+    "coach": {
+      "name": "Rudi Garcia",
+      "age": 62,
+      "nationality": "Francia",
+      "since": "2025-01-13",
+      "previous_teams": [
+        "Napoli (2023)",
+        "Al-Nassr (2022-2023)",
+        "Lyon (2019-2021)",
+        "Marsella (2016-2019)",
+        "Roma (2013-2016)",
+        "Lille (2008-2013, ganó liga 2010-11)"
+      ],
+      "profile_summary": "Francés, asumió Bélgica en enero 2025 tras la salida de Domenico Tedesco. Identidad táctica: 4-3-3 ofensivo con mucha libertad creativa. En Lille ganó la Ligue 1 2010-11. Su mejor reto: gestionar la transición post-generación dorada belga (Hazard retirado, Lukaku envejeciendo) y dar protagonismo a la nueva generación (Doku, Openda, De Ketelaere).",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Rudi_Garcia_%28Flickr%2C_2011%29.jpg/330px-Rudi_Garcia_%28Flickr%2C_2011%29.jpg",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://en.wikipedia.org/wiki/Rudi_Garcia"
+      }
+    },
+    "captain": {
+      "name": "Kevin De Bruyne",
+      "club": "Napoli",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Kevin_De_Bruyne-December_2021.png/330px-Kevin_De_Bruyne-December_2021.png",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Kevin_De_Bruyne"
+      }
+    },
+    "star_player": {
+      "name": "Kevin De Bruyne",
+      "club": "Napoli",
+      "reason": "Capitán, motor del juego belga. Considerado uno de los 5 mejores mediocampistas creativos del último decenio. A los 34 años llega a su 4º Mundial. Tras dejar el Manchester City en 2025 por el Napoli, sigue al máximo nivel. Goleador del ciclo (5) y artífice de la mayoría de jugadas peligrosas.",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Kevin_De_Bruyne-December_2021.png/330px-Kevin_De_Bruyne-December_2021.png",
+      "photo_credit": {
+        "source": "Wikipedia Commons",
+        "page": "https://es.wikipedia.org/wiki/Kevin_De_Bruyne"
+      }
+    },
+    "likely_squad": [
+      {
+        "id": "matz-sels",
+        "full_name": "Matz Sels",
+        "display_name": "Matz Sels",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Nottingham Forest",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Matz_Sels_22122025_%282%29.jpg/330px-Matz_Sels_22122025_%282%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Matz_Sels"
+        }
+      },
+      {
+        "id": "thibaut-courtois",
+        "full_name": "Thibaut Courtois",
+        "display_name": "Thibaut Courtois",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Real Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 13,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Courtois_2018_%28cropped%29.jpg/330px-Courtois_2018_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Thibaut_Courtois"
+        }
+      },
+      {
+        "id": "koen-casteels",
+        "full_name": "Koen Casteels",
+        "display_name": "Koen Casteels",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Al-Qadsiah",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 12,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Casteels_Koen.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Koen_Casteels"
+        }
+      },
+      {
+        "id": "thomas-meunier",
+        "full_name": "Thomas Meunier",
+        "display_name": "Thomas Meunier",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "LOSC Lille",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 15,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Thomas_Meunier.jpg/330px-Thomas_Meunier.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Thomas_Meunier"
+        }
+      },
+      {
+        "id": "timothy-castagne",
+        "full_name": "Timothy Castagne",
+        "display_name": "Timothy Castagne",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Fulham",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Timothy_Castagne_01.jpg/330px-Timothy_Castagne_01.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Timothy_Castagne"
+        }
+      },
+      {
+        "id": "wout-faes",
+        "full_name": "Wout Faes",
+        "display_name": "Wout Faes",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Leicester",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Wout_Faes_Leicester_Championship_%28cropped%29.jpg/330px-Wout_Faes_Leicester_Championship_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Wout_Faes"
+        }
+      },
+      {
+        "id": "zeno-debast",
+        "full_name": "Zeno Debast",
+        "display_name": "Zeno Debast",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Sporting CP",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Zeno_Debast_USMNT_v_Belgium_Mar_28_2026-80_%28cropped%29.jpg/330px-Zeno_Debast_USMNT_v_Belgium_Mar_28_2026-80_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Zeno_Debast"
+        }
+      },
+      {
+        "id": "jan-vertonghen",
+        "full_name": "Jan Vertonghen",
+        "display_name": "Jan Vertonghen",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Anderlecht",
+          "country_iso": "be",
+          "league": "Pro League"
+        },
+        "shirt_number_expected": 6,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Jan_Vertonghen_Belgium.jpg/330px-Jan_Vertonghen_Belgium.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Jan_Vertonghen"
+        }
+      },
+      {
+        "id": "arthur-theate",
+        "full_name": "Arthur Theate",
+        "display_name": "Arthur Theate",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Eintracht Fráncfort",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Arthur_Theate_Nations_League_Italy_2021.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Arthur_Theate"
+        }
+      },
+      {
+        "id": "maxim-de-cuyper",
+        "full_name": "Maxim De Cuyper",
+        "display_name": "Maxim De Cuyper",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Brighton",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 22,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Maxim_De_Cuyper_USMNT_v_Belgium_Mar_28_2026-79_%28cropped%29.jpg/330px-Maxim_De_Cuyper_USMNT_v_Belgium_Mar_28_2026-79_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Maxim_De_Cuyper"
+        }
+      },
+      {
+        "id": "kevin-de-bruyne",
+        "full_name": "Kevin De Bruyne",
+        "display_name": "Kevin De Bruyne",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Napoli",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Kevin_De_Bruyne-December_2021.png/330px-Kevin_De_Bruyne-December_2021.png",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Kevin_De_Bruyne"
+        }
+      },
+      {
+        "id": "youri-tielemans",
+        "full_name": "Youri Tielemans",
+        "display_name": "Youri Tielemans",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Aston Villa",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Youri_Tielemans_2019.jpg/330px-Youri_Tielemans_2019.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Youri_Tielemans"
+        }
+      },
+      {
+        "id": "axel-witsel",
+        "full_name": "Axel Witsel",
+        "display_name": "Axel Witsel",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Atlético Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 6,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Axel_Witsel_WC2022.jpg/330px-Axel_Witsel_WC2022.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Axel_Witsel"
+        }
+      },
+      {
+        "id": "amadou-onana",
+        "full_name": "Amadou Onana",
+        "display_name": "Amadou Onana",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Aston Villa",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 16,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/RC_Lens_-_Lille_OSC_%2817-09-2021%29_9_%28cropped%29.jpg/330px-RC_Lens_-_Lille_OSC_%2817-09-2021%29_9_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Amadou_Onana"
+        }
+      },
+      {
+        "id": "hans-vanaken",
+        "full_name": "Hans Vanaken",
+        "display_name": "Hans Vanaken",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Club Brujas",
+          "country_iso": "be",
+          "league": "Pro League"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Hans_Vanaken_Lommel_United.jpg/330px-Hans_Vanaken_Lommel_United.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Hans_Vanaken"
+        }
+      },
+      {
+        "id": "orel-mangala",
+        "full_name": "Orel Mangala",
+        "display_name": "Orel Mangala",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Lyon",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 19,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Orel_mangala.jpg/330px-Orel_mangala.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Orel_Mangala"
+        }
+      },
+      {
+        "id": "romelu-lukaku",
+        "full_name": "Romelu Lukaku",
+        "display_name": "Romelu Lukaku",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Napoli",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Romelu_Lukaku_2021.jpg/330px-Romelu_Lukaku_2021.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Romelu_Lukaku"
+        }
+      },
+      {
+        "id": "jeremy-doku",
+        "full_name": "Jérémy Doku",
+        "display_name": "Jérémy Doku",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Manchester City",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2767_%28J%C3%A9r%C3%A9my_Doku%29.jpg/330px-2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2767_%28J%C3%A9r%C3%A9my_Doku%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/J%C3%A9r%C3%A9my_Doku"
+        }
+      },
+      {
+        "id": "lois-openda",
+        "full_name": "Loïs Openda",
+        "display_name": "Loïs Openda",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Juventus",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Lo%C3%AFs_Openda.jpg/330px-Lo%C3%AFs_Openda.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Lo%C3%AFs_Openda"
+        }
+      },
+      {
+        "id": "charles-de-ketelaere",
+        "full_name": "Charles De Ketelaere",
+        "display_name": "De Ketelaere",
+        "position": "FWD",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Atalanta",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 21,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Charles_De_Ketelaere_2022_Salzburg_vs_AC_Milan_2022-09-06.jpg/330px-Charles_De_Ketelaere_2022_Salzburg_vs_AC_Milan_2022-09-06.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Charles_De_Ketelaere"
+        }
+      },
+      {
+        "id": "leandro-trossard",
+        "full_name": "Leandro Trossard",
+        "display_name": "Leandro Trossard",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Arsenal",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/RC_Lens_-_Arsenal_FC_%2803-10-2023%29_26_%28cropped%29.jpg/330px-RC_Lens_-_Arsenal_FC_%2803-10-2023%29_26_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Leandro_Trossard"
+        }
+      },
+      {
+        "id": "dodi-lukebakio",
+        "full_name": "Dodi Lukebakio",
+        "display_name": "Dodi Lukebakio",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Sevilla",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 20,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Dodi_Lukebakio_2021.jpg/330px-Dodi_Lukebakio_2021.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Dodi_Luk%C3%A9bakio"
+        }
+      },
+      {
+        "id": "johan-bakayoko",
+        "full_name": "Johan Bakayoko",
+        "display_name": "Johan Bakayoko",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "RB Leipzig",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 25,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Johan_Bakayoko_%282024%29.jpg/330px-Johan_Bakayoko_%282024%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Johan_Bakayoko"
+        }
+      },
+      {
+        "id": "michy-batshuayi",
+        "full_name": "Michy Batshuayi",
+        "display_name": "Michy Batshuayi",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Eintracht Fráncfort",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 23,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Michy_Batshuayi_WC2022.jpg/330px-Michy_Batshuayi_WC2022.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Michy_Batshuayi"
+        }
+      },
+      {
+        "id": "yannick-carrasco",
+        "full_name": "Yannick Carrasco",
+        "display_name": "Yannick Carrasco",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Al-Shabab",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/70/Yannick_Ferreira_Carrasco_%28cropped%29.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Yannick_Carrasco"
+        }
+      },
+      {
+        "id": "matteo-debast",
+        "full_name": "Aster Vranckx",
+        "display_name": "Aster Vranckx",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "VfL Wolfsburg",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 24,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/FC_Salzburg_gegen_VfL_Wolfsburg_%28CL-Gruppenphase_20._Oktober_2021%29_77.jpg/330px-FC_Salzburg_gegen_VfL_Wolfsburg_%28CL-Gruppenphase_20._Oktober_2021%29_77.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Aster_Vranckx"
+        }
+      },
+      {
+        "id": "luca-elanga",
+        "full_name": "Romeo Lavia",
+        "display_name": "Romeo Lavia",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Chelsea",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 2,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Rom%C3%A9o_Lavia_20042025_%281%29_cropped.jpg/330px-Rom%C3%A9o_Lavia_20042025_%281%29_cropped.jpg",
+        "photo_credit": {
+          "source": "Wikipedia Commons",
+          "page": "https://es.wikipedia.org/wiki/Rom%C3%A9o_Lavia"
+        }
+      }
+    ],
+    "starting_xi": {
+      "formation": "4-3-3",
+      "players": [
+        {
+          "player_id": "thibaut-courtois",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "timothy-castagne",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "wout-faes",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "zeno-debast",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "arthur-theate",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "amadou-onana",
+          "position": {
+            "x": 50,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "kevin-de-bruyne",
+          "position": {
+            "x": 70,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "youri-tielemans",
+          "position": {
+            "x": 30,
+            "y": 45
+          }
+        },
+        {
+          "player_id": "leandro-trossard",
+          "position": {
+            "x": 85,
+            "y": 25
+          }
+        },
+        {
+          "player_id": "romelu-lukaku",
+          "position": {
+            "x": 50,
+            "y": 18
+          }
+        },
+        {
+          "player_id": "jeremy-doku",
+          "position": {
+            "x": 15,
+            "y": 25
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "style": "Rudi Garcia plantea un 4-3-3 ofensivo con un pivote (Onana), De Bruyne libre como '10', Tielemans organizando, Lukaku como '9', Doku y Trossard por las bandas. Identidad: posesión, transiciones rápidas, libertad para los talentos. Diferencia con Tedesco: más vertical, menos especulativo.",
+      "strengths": [
+        "Kevin De Bruyne: uno de los mediocampistas creativos top del último decenio. Capaz de ganar partidos en solitario.",
+        "Thibaut Courtois: portero top mundial. Champions con Real Madrid 2022 y 2024.",
+        "Romelu Lukaku: máximo goleador histórico (88+ goles). Sigue marcando con regularidad.",
+        "Jérémy Doku: extremo top mundial (Manchester City). 24 años, en pico futbolístico.",
+        "Profundidad en mediocampo: De Bruyne, Tielemans, Onana, Witsel, Vanaken.",
+        "Ataque variado: Lukaku (9), Doku (LW), Trossard (RW), Openda (9 alternativa), De Ketelaere (10), Bakayoko (RW)."
+      ],
+      "weaknesses": [
+        "FIN DE LA GENERACIÓN DORADA: Hazard retirado, Vermaelen retirado, Witsel envejecido. Carga emocional histórica.",
+        "Defensa post-Vertonghen: Faes, Debast, Theate son alternativas pero sin la calidad élite de la era Kompany-Vermaelen.",
+        "Dependencia excesiva de De Bruyne: cuando él no está, el equipo pierde mucho potencial creativo.",
+        "Lukaku a 33: nivel decreciente, lesiones frecuentes.",
+        "Rudi Garcia debutante con Bélgica en Mundiales.",
+        "Eurocopa 2024 octavos eliminados por Francia, recordatorio de fragilidad."
+      ],
+      "x_factor": {
+        "player": "Jérémy Doku",
+        "reason": "El extremo del Manchester City (24 años) llega a su 2º Mundial en pico futbolístico. Capaz de regatear a cualquier lateral del mundo, marcar y asistir. Su explosividad puede ser el factor sorpresa que Bélgica necesita para superar el techo Eurocopa 2024."
+      },
+      "prediction_text": "Bélgica llega a 2026 con la transición post-generación dorada todavía abierta. Calidad alta pero ya no es favorita absoluta. El reto: gestionar la convivencia De Bruyne (34) + Lukaku (33) + nueva generación (Doku, Openda, De Ketelaere). Pasar la fase de grupos es seguro; cuartos es objetivo realista; semifinal sería repetir 2018.",
+      "probabilities": {
+        "advance_groups": 90,
+        "round_of_32": 82,
+        "round_of_16": 65,
+        "quarter_finals": 38,
+        "semi_finals": 18,
+        "final": 7,
+        "champion": 3
+      },
+      "vs_last_3_wcs": "Brasil 2014: cuartos, eliminada por Argentina 0-1. Rusia 2018: SEMIFINALES (3er puesto), eliminada por Francia 0-1. Mejor papel histórico. Catar 2022: ELIMINADA EN GRUPOS (3º) en grupo con Marruecos, Croacia y Canadá. Crisis nacional. Mundial 2026: 14ª participación, busca reencontrar el camino del 3er puesto 2018."
+    }
+  },
+  "history": {
+    "first_appearance": 1930,
+    "appearances_count_before_2026": 13,
+    "appearances_count_with_2026": 14,
+    "consecutive_streak_since": 2014,
+    "titles": 0,
+    "titles_years": [],
+    "finals": 0,
+    "finals_years": [],
+    "semi_finals": 1,
+    "best_result": "Tercer puesto (Rusia 2018)",
+    "aggregate_stats_through_2022": {
+      "played": 47,
+      "won": 16,
+      "drawn": 11,
+      "lost": 20,
+      "goals_for": 67,
+      "goals_against": 78,
+      "win_percentage": 34,
+      "notes": "Datos hasta Qatar 2022. Bélgica 12ª en ranking histórico Mundial."
+    },
+    "by_world_cup": [
+      {
+        "year": 1930,
+        "host": {
+          "countries": [
+            "Uruguay"
+          ],
+          "iso": [
+            "uy"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Hector Goetinck",
+        "matches": [],
+        "team_top_scorers": [],
+        "goals_scored": 0,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "Uno de los 13 países en el primer Mundial."
+        ],
+        "narrative": "Bélgica disputó el primer Mundial. Cayó 0-3 con USA y 0-1 con Paraguay."
+      },
+      {
+        "year": 1934,
+        "host": {
+          "countries": [
+            "Italia"
+          ],
+          "iso": [
+            "it"
+          ]
+        },
+        "result": "Primera ronda",
+        "coach": "Hector Goetinck",
+        "matches": [],
+        "team_top_scorers": [],
+        "goals_scored": 2,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Eliminada por Alemania 2-5."
+        ],
+        "narrative": "Eliminación temprana."
+      },
+      {
+        "year": 1938,
+        "host": {
+          "countries": [
+            "Francia"
+          ],
+          "iso": [
+            "fr"
+          ]
+        },
+        "result": "Primera ronda",
+        "coach": "Jack Butler",
+        "matches": [],
+        "team_top_scorers": [],
+        "goals_scored": 1,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Eliminada por Francia 1-3."
+        ],
+        "narrative": "Adiós temprano."
+      },
+      {
+        "year": 1954,
+        "host": {
+          "countries": [
+            "Suiza"
+          ],
+          "iso": [
+            "ch"
+          ]
+        },
+        "result": "Primera ronda",
+        "coach": "Doug Livingstone",
+        "matches": [],
+        "team_top_scorers": [],
+        "goals_scored": 5,
+        "goals_conceded": 8,
+        "notable_facts": [
+          "Empate 4-4 con Inglaterra."
+        ],
+        "narrative": "Bélgica empató 4-4 con Inglaterra pero fue eliminada con Italia 1-4."
+      },
+      {
+        "year": 1970,
+        "host": {
+          "countries": [
+            "México"
+          ],
+          "iso": [
+            "mx"
+          ]
+        },
+        "result": "Primera ronda",
+        "coach": "Raymond Goethals",
+        "matches": [],
+        "team_top_scorers": [],
+        "goals_scored": 4,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Eliminada en primera ronda."
+        ],
+        "narrative": "Bélgica perdió con México 0-1, batió a El Salvador 3-0 y cayó con URSS 1-4."
+      },
+      {
+        "year": 1982,
+        "host": {
+          "countries": [
+            "España"
+          ],
+          "iso": [
+            "es"
+          ]
+        },
+        "result": "Segunda ronda",
+        "coach": "Guy Thys",
+        "captain": "Jan Ceulemans",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Erwin Vandenbergh",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 3,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Eliminada en segunda ronda."
+        ],
+        "narrative": "Bélgica venció a Argentina campeona en debut con gol de Erwin Vandenbergh (1-0)."
+      },
+      {
+        "year": 1986,
+        "host": {
+          "countries": [
+            "México"
+          ],
+          "iso": [
+            "mx"
+          ]
+        },
+        "result": "Cuarto puesto",
+        "coach": "Guy Thys",
+        "captain": "Jan Ceulemans",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Jan Ceulemans",
+            "goals": 3
+          },
+          {
+            "player": "Nico Claesen",
+            "goals": 2
+          }
+        ],
+        "goals_scored": 12,
+        "goals_conceded": 15,
+        "notable_facts": [
+          "Mejor papel hasta ese momento.",
+          "Eliminada por Argentina (Maradona) 0-2 en semis."
+        ],
+        "narrative": "Bélgica llegó a semis y cayó ante Maradona y la Argentina futura campeona 0-2 (DOBLETE DE MARADONA, el segundo similar al de Inglaterra). Cuarto puesto al perder con Francia 2-4."
+      },
+      {
+        "year": 1990,
+        "host": {
+          "countries": [
+            "Italia"
+          ],
+          "iso": [
+            "it"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Guy Thys",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Eric Gerets",
+            "goals": 0
+          }
+        ],
+        "goals_scored": 6,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "Eliminada por Inglaterra 0-1 en prórroga (gol de Platt)."
+        ],
+        "narrative": "Bélgica cayó 0-1 ante Inglaterra en prórroga, gol de David Platt al 119'."
+      },
+      {
+        "year": 1994,
+        "host": {
+          "countries": [
+            "Estados Unidos"
+          ],
+          "iso": [
+            "us"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Paul Van Himst",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Marc Degryse",
+            "goals": 1
+          },
+          {
+            "player": "Philippe Albert",
+            "goals": 1
+          },
+          {
+            "player": "Josip Weber",
+            "goals": 3
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "Eliminada por Alemania 2-3 en octavos."
+        ],
+        "narrative": "Bélgica con Weber goleador cayó ante Alemania."
+      },
+      {
+        "year": 1998,
+        "host": {
+          "countries": [
+            "Francia"
+          ],
+          "iso": [
+            "fr"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Georges Leekens",
+        "matches": [],
+        "team_top_scorers": [],
+        "goals_scored": 3,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Eliminada con 3 empates."
+        ],
+        "narrative": "Bélgica empató 3 veces y se fue."
+      },
+      {
+        "year": 2002,
+        "host": {
+          "countries": [
+            "Corea del Sur",
+            "Japón"
+          ],
+          "iso": [
+            "kr",
+            "jp"
+          ]
+        },
+        "result": "Octavos de final",
+        "coach": "Robert Waseige",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Marc Wilmots",
+            "goals": 3
+          }
+        ],
+        "goals_scored": 6,
+        "goals_conceded": 7,
+        "notable_facts": [
+          "Eliminada por Brasil 0-2 en octavos."
+        ],
+        "narrative": "Bélgica llegó a octavos y cayó ante Brasil futura campeona."
+      },
+      {
+        "year": 2014,
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Marc Wilmots",
+        "captain": "Vincent Kompany",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Romelu Lukaku",
+            "goals": 1
+          },
+          {
+            "player": "Kevin De Bruyne",
+            "goals": 1
+          },
+          {
+            "player": "Divock Origi",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 6,
+        "goals_conceded": 3,
+        "notable_facts": [
+          "Tras 12 años de ausencia, regreso con cuartos de final."
+        ],
+        "narrative": "Bélgica regresó con la 'Generación Dorada' (Hazard, De Bruyne, Lukaku, Kompany, Courtois). Pasó como 1ª de grupo, eliminó a USA 2-1 en octavos. En cuartos cayó ante Argentina 0-1 (gol Higuaín al 8')."
+      },
+      {
+        "year": 2018,
+        "host": {
+          "countries": [
+            "Rusia"
+          ],
+          "iso": [
+            "ru"
+          ]
+        },
+        "result": "Tercer puesto",
+        "coach": "Roberto Martínez",
+        "captain": "Eden Hazard",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Romelu Lukaku",
+            "goals": 4
+          },
+          {
+            "player": "Eden Hazard",
+            "goals": 3
+          }
+        ],
+        "goals_scored": 16,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "MEJOR PARTICIPACIÓN HISTÓRICA: 3er puesto.",
+          "REMONTADA HISTÓRICA a Japón en octavos (3-2 tras ir 0-2).",
+          "Eliminada por Francia 0-1 en semis (Umtiti)."
+        ],
+        "narrative": "Bélgica con la Generación Dorada en su pico llegó al BRONCE histórico. Goleó 5-2 a Túnez en grupos. EN OCTAVOS, REMONTÓ 0-2 ante Japón al 3-2 con gol de Chadli al 94'. En cuartos eliminó a Brasil 2-1 (golazo De Bruyne y autogol Fernandinho). En semis cayó con Francia 0-1 (cabezazo Umtiti). Bronce ganado a Inglaterra 2-0. Mejor papel histórico belga."
+      },
+      {
+        "year": 2022,
+        "host": {
+          "countries": [
+            "Catar"
+          ],
+          "iso": [
+            "qa"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Roberto Martínez",
+        "captain": "Eden Hazard",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Michy Batshuayi",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 1,
+        "goals_conceded": 2,
+        "notable_facts": [
+          "DECEPCIÓN HISTÓRICA: eliminada en grupos.",
+          "Crisis vestuario."
+        ],
+        "narrative": "Bélgica con la Generación Dorada en final fue a Catar siendo Top-2 ranking FIFA. Cayó 0-2 con Marruecos. Empate 0-0 con Croacia. Adiós sin pasar de grupos. Crisis. Hazard se retiró tras el torneo. Roberto Martínez renunció. Inicio de transición."
+      }
+    ],
+    "palmares": []
+  },
+  "records": {
+    "top_scorer_history": {
+      "name": "Romelu Lukaku",
+      "value": 88,
+      "period": "2010-presente",
+      "notes": "Máximo goleador histórico absoluto. Sigue activo y en plantilla 2026."
+    },
+    "most_capped": {
+      "name": "Jan Vertonghen",
+      "value": 158,
+      "period": "2007-presente",
+      "notes": "Récord histórico absoluto. Defensa central."
+    },
+    "youngest_debut": {
+      "name": "Romelu Lukaku",
+      "value": "16 años, 11 meses",
+      "period": "2010 vs Croacia",
+      "notes": "Récord histórico."
+    },
+    "biggest_win": {
+      "result": "9-0",
+      "opponent": "Zambia",
+      "date": "1994-06-04",
+      "competition": "Amistoso pre-Mundial 1994"
+    },
+    "worst_loss": {
+      "result": "1-11",
+      "opponent": "Inglaterra Amateur",
+      "date": "1909-04-17",
+      "competition": "Amistoso (en Bruselas)"
+    }
+  },
+  "iconic_matches": [
+    {
+      "title": "El bronce histórico",
+      "date": "2018-07-14",
+      "opponent": {
+        "iso": "gb-eng",
+        "name": "Inglaterra"
+      },
+      "score": "2-0",
+      "competition": "Tercer puesto Mundial 2018",
+      "narrative": "Bélgica ganó el TERCER PUESTO HISTÓRICO del Mundial 2018 batiendo 2-0 a Inglaterra en San Petersburgo. Goles de Thomas Meunier (4') y Eden Hazard (82'). Mejor papel histórico belga."
+    },
+    {
+      "title": "La remontada a Japón",
+      "date": "2018-07-02",
+      "opponent": {
+        "iso": "jp",
+        "name": "Japón"
+      },
+      "score": "3-2",
+      "competition": "Octavos Mundial 2018",
+      "narrative": "Bélgica REMONTÓ UN 0-2 ante Japón en octavos del Mundial 2018. Vertonghen al 69', Fellaini al 74' y Chadli AL 94' tras contragolpe iniciado por el portero Courtois. Una de las remontadas más memorables de la historia mundial."
+    },
+    {
+      "title": "El golazo de De Bruyne a Brasil",
+      "date": "2018-07-06",
+      "opponent": {
+        "iso": "br",
+        "name": "Brasil"
+      },
+      "score": "2-1",
+      "competition": "Cuartos Mundial 2018",
+      "narrative": "Bélgica eliminó a Brasil 2-1 en cuartos del Mundial 2018. Autogol de Fernandinho al 13' y GOLAZO DE KEVIN DE BRUYNE al 31' con remate cruzado al ángulo. Renato Augusto descontó al 76'. Mejor partido belga del Mundial."
+    },
+    {
+      "title": "La eliminación ante Maradona 1986",
+      "date": "1986-06-25",
+      "opponent": {
+        "iso": "ar",
+        "name": "Argentina"
+      },
+      "score": "0-2",
+      "competition": "Semifinal Mundial 1986",
+      "narrative": "Bélgica cayó en semis del Mundial 1986 ante Argentina. DOBLETE DE MARADONA al 51' y 63' (el segundo similar al del Inglaterra). Cuarto puesto belga al perder con Francia 2-4 en bronce."
+    },
+    {
+      "title": "La debacle de Catar 2022",
+      "date": "2022-12-01",
+      "opponent": {
+        "iso": "hr",
+        "name": "Croacia"
+      },
+      "score": "0-0",
+      "competition": "Fase de Grupos Mundial 2022",
+      "narrative": "Bélgica empató 0-0 con Croacia y QUEDÓ ELIMINADA EN PRIMERA RONDA del Mundial 2022. Decepción histórica con la Generación Dorada (Hazard, Lukaku, De Bruyne, Courtois) en plenitud. Crisis vestuario."
+    },
+    {
+      "title": "El 1-0 a Argentina del 82",
+      "date": "1982-06-13",
+      "opponent": {
+        "iso": "ar",
+        "name": "Argentina"
+      },
+      "score": "1-0",
+      "competition": "Fase de Grupos Mundial 1982",
+      "narrative": "Bélgica venció 1-0 a Argentina campeona vigente en el debut del Mundial 1982 (en el Camp Nou). Gol de Erwin Vandenbergh al 62'. Una de las grandes sorpresas del torneo."
+    }
+  ],
+  "curiosities": [
+    {
+      "text": "Bélgica fue Nº1 DEL RANKING FIFA durante 4 años seguidos (2018-2022), récord absoluto en ese periodo. Pero NUNCA ganó un título grande con esa generación.",
+      "source": "FIFA + RBFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "La 'Generación Dorada' belga (Hazard, De Bruyne, Lukaku, Courtois, Kompany, Vertonghen, Alderweireld) llegó a 3er puesto Mundial 2018, único título 'menor' obtenido. Frustrante.",
+      "source": "FIFA + UEFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Bélgica tiene 3 idiomas oficiales (neerlandés, francés, alemán). El equipo nacional tradicionalmente comunica en inglés en vestuario para evitar conflictos lingüísticos internos.",
+      "source": "RBFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Romelu Lukaku superó a Paul Van Himst (30) como máximo goleador histórico de Bélgica en 2017. Sigue siendo titular indiscutible a sus 33 años.",
+      "source": "RBFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Bélgica 1986 (cuarto puesto) y 2018 (tercer puesto) son los dos mejores papeles históricos. Ambos cayeron en semis ante futuras campeonas (Argentina 1986, Francia 2018).",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Eden Hazard se retiró del fútbol en 2023 a los 32 años por lesiones recurrentes. Considerado uno de los 5 mejores extremos europeos del decenio 2010-2020.",
+      "source": "ESPN + UEFA",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Bélgica 2018 hizo la REMONTADA MÁS RECIENTE de un 0-2 a un 3-2 en MUNDIALES en octavos (vs Japón). Antes de Bélgica, la última fue Alemania Federal vs Inglaterra en 1970.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    },
+    {
+      "text": "Rudi Garcia es el primer DT francés en la historia de la selección belga. Bélgica ha tenido DTs italianos (Tedesco), españoles (Roberto Martínez) y belgas históricamente.",
+      "source": "RBFA + ESPN",
+      "verified_at": "2026-04-28",
+      "status": "validated"
+    }
+  ],
+  "fan_culture": {
+    "famous_chants": [
+      "La Brabançonne (himno)",
+      "Allez les Diables Rouges",
+      "Hop, Hop, Hop, Belgium"
+    ],
+    "main_rival": {
+      "iso": "nl",
+      "name": "Países Bajos",
+      "story": "Rivalidad histórica entre los dos vecinos del Benelux. Históricamente Bélgica ha estado por debajo, pero la Generación Dorada belga 2014-2022 cambió temporalmente la jerarquía."
+    },
+    "home_stadium": {
+      "name": "Estadio Rey Balduino",
+      "capacity": 50122,
+      "city": "Bruselas"
+    }
+  },
+  "seo": {
+    "meta_title": "Bélgica en el Mundial 2026 | Plantilla, historia y predicciones",
+    "meta_description": "Bélgica Mundial 2026: 26 convocados de Rudi Garcia, Kevin De Bruyne, Lukaku, Doku. Diablos Rojos buscan repetir bronce 2018.",
+    "og_image_url": "/img/og/teams/belgica.png",
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Bélgica",
+      "alternateName": [
+        "Diablos Rojos",
+        "Red Devils"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "UEFA"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Rudi Garcia"
+      },
+      "url": "https://www.zonamundial.app/selecciones/belgica"
+    }
+  },
+  "_meta": {
+    "schema_version": "1.0.0",
+    "last_updated": "2026-04-28",
+    "sources_validated": [
+      "https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_B%C3%A9lgica",
+      "https://es.wikipedia.org/wiki/Clasificaci%C3%B3n_de_UEFA_para_la_Copa_Mundial_de_F%C3%BAtbol_de_2026",
+      "https://es.uefa.com/european-qualifiers/news/029f-1f3188cfc443-494e0d8af33d-1000--mundial-2026-que-selecciones-europeas-se-han-clasificado/",
+      "https://espndeportes.espn.com/futbol/mundial/nota/_/id/15895830/se-definen-eliminatorias-uefa-europa-mundial-2026-quien-puede-clasificar",
+      "https://www.rbfa.be",
+      "https://www.fifa.com/fifa-world-ranking/men"
+    ],
+    "validation_method": "Eliminatorias cruzadas con UEFA + Wikipedia + ESPN. Historia mundialista validada con FIFA + Wikipedia + RBFA.",
+    "review_status": "draft",
+    "completion_status": {
+      "section_1_hero": "complete",
+      "section_2_country_federation": "complete",
+      "section_3_kit": "partial",
+      "section_4_camino_mundial_2026": "complete",
+      "section_5_historia_mundialista": "complete",
+      "section_6_palmares_records": "complete",
+      "section_7_grupo_calendario_2026": "needs_review",
+      "section_8_analisis_profesional": "complete",
+      "section_9_convocados": "complete",
+      "section_10_xi_ideal": "complete",
+      "section_11_cuerpo_tecnico": "complete",
+      "section_12_base_sedes": "needs_review",
+      "section_13_momentos_iconicos": "complete",
+      "section_14_curiosidades_aficion": "complete"
+    },
+    "needs_review_items": [
+      "Camiseta visitante: pendiente",
+      "Grupo Mundial 2026 y rivales: cruzar con /grupos zonamundial.app",
+      "Calendario fase de grupos 2026: fixture FIFA pendiente",
+      "Base de entrenamiento: RBFA aún no anunció",
+      "FIFA Ranking #9: validar mes vigente",
+      "Verificar club actual de Romelu Lukaku al Mundial",
+      "Historia 1958-1966 omitida (no clasificó)"
+    ]
+  }
+}

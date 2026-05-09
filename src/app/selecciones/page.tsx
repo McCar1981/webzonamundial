@@ -71,6 +71,8 @@ export default function SeleccionesIndex() {
           mejor: sT.cardLabelMejor,
           powerIndex: sT.cardLabelPowerIndex,
           twelveMonth: sT.cardLabelTwelveMonth,
+          titlesSingular: sT.cardLabelTitleSingular,
+          titlesPlural: sT.cardLabelTitlePlural,
         }}
       />
 

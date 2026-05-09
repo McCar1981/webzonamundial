@@ -21,6 +21,8 @@ interface FavoritosSectionProps {
     mejor: string;
     powerIndex: string;
     twelveMonth: string;
+    titlesSingular: string;
+    titlesPlural: string;
   };
 }
 
@@ -55,6 +57,8 @@ export default function FavoritosSection({ labels }: FavoritosSectionProps) {
     mejor: labels.mejor,
     powerIndex: labels.powerIndex,
     twelveMonth: labels.twelveMonth,
+    titlesSingular: labels.titlesSingular,
+    titlesPlural: labels.titlesPlural,
   };
 
   return (

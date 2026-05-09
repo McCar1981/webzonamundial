@@ -22,6 +22,8 @@ interface FavCardProps {
     mejor: string;
     powerIndex: string;
     twelveMonth: string;
+    titlesSingular: string;
+    titlesPlural: string;
   };
 }
 
@@ -71,11 +73,11 @@ export default function FavCard({ team, isHero = false, onClick, labels }: FavCa
         <div className={styles.name}>{team.nombre}</div>
         <div className={styles.bigstat}>
           <span className={styles.hash}>#</span>
-          {team.rankingFIFA ?? "—"}
+          <span className={styles.fifaNum}>{team.rankingFIFA ?? "—"}</span>
           {titles > 0 && (
-            <sup>
-              x{titles} {titles > 1 ? "mundiales" : "mundial"}
-            </sup>
+            <span className={styles.titleBadge}>
+              {titles}× {titles > 1 ? labels.titlesPlural : labels.titlesSingular}
+            </span>
           )}
         </div>
 

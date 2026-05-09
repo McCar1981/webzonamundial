@@ -7,9 +7,16 @@ import type { Seleccion } from "@/data/selecciones";
 // LISTAS DE SLUGS (producción)
 // ============================================================
 
+// Orden explícito definido por producto (no es FIFA pura — refleja
+// fuerza percibida + contexto editorial). El rotator cicla en este orden.
 export const FAVORITES = [
-  "argentina", "francia", "brasil", "espana",
-  "inglaterra", "portugal", "belgica",
+  "argentina",     // 1
+  "francia",       // 2
+  "espana",        // 3
+  "inglaterra",    // 4
+  "portugal",      // 5
+  "brasil",        // 6
+  "paises-bajos",  // 7
 ] as const;
 
 export const HOSTS = ["estados-unidos", "mexico", "canada"] as const;
@@ -96,7 +103,7 @@ export const POWER_INDEX: Record<string, number> = {
   espana: 10.5,
   inglaterra: 9.2,
   portugal: 7.1,
-  belgica: 5.8,
+  "paises-bajos": 6.4,
 };
 
 // ============================================================
@@ -110,7 +117,7 @@ export interface TeamQuote {
 
 export const QUOTES: Record<string, TeamQuote> = {
   argentina: {
-    text: "Llega como vigente con la generación más madura. Messi todavía dicta, Mac Allister manda.",
+    text: "Llega como la vigente campeona, con la generación más madura. Messi todavía dicta, Mac Allister manda.",
     source: "Olé · sept 2025",
   },
   brasil: {
@@ -125,17 +132,17 @@ export const QUOTES: Record<string, TeamQuote> = {
     text: "Tras la final de Wembley 2024, sin excusas. La generación dorada debe entregar de una vez.",
     source: "The Athletic · sept 2025",
   },
-  belgica: {
-    text: "Última bala para los nombres viejos. Doku y Lukaku tienen que aparecer cuando importa.",
-    source: "DH Les Sports · ago 2025",
-  },
   portugal: {
     text: "Cristiano a sus 41 jugando su sexto Mundial. Última oportunidad antes del relevo definitivo.",
     source: "A Bola · oct 2025",
   },
   espana: {
-    text: "Vigente Eurocopa con la generación de Yamal y Pedri. Llega como nadie esperaba.",
+    text: "Vigente campeona de la Eurocopa con la generación de Yamal y Pedri. Llega como nadie esperaba.",
     source: "Marca · oct 2025",
+  },
+  "paises-bajos": {
+    text: "Generación que aún no ha rematado. De Jong, Gakpo y Reijnders deben dar el salto definitivo en suelo americano.",
+    source: "De Telegraaf · oct 2025",
   },
 };
 
@@ -228,14 +235,11 @@ export function getCoords(slug: string): { lat: number; lon: number } | null {
   return TEAM_COORDS[slug] ?? null;
 }
 
-// Devuelve los favoritos ordenados por FIFA (con Brasil destacado primero).
+// Devuelve los favoritos en el orden explícito de FAVORITES.
 export function getFavoritosOrdered(seleccionesAll: Seleccion[]): Seleccion[] {
-  const favs = seleccionesAll.filter((s) => isFavorite(s.slug));
-  const brasil = favs.find((s) => s.slug === "brasil");
-  const rest = favs
-    .filter((s) => s.slug !== "brasil")
-    .sort((a, b) => (a.rankingFIFA ?? 999) - (b.rankingFIFA ?? 999));
-  return brasil ? [brasil, ...rest] : rest;
+  return (FAVORITES as readonly string[])
+    .map((slug) => seleccionesAll.find((s) => s.slug === slug))
+    .filter((s): s is Seleccion => Boolean(s));
 }
 
 // Extrae el número de títulos del string `mejorResultado` (p.ej. "Campeón (5)" → 5).

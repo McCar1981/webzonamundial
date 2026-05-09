@@ -629,3 +629,337 @@
   color: var(--fg-2); font-size: 15px;
   max-width: 480px; margin: 0 auto;
 }
+
+/* ============================================================
+   FASE 2 — CARRUSELES POR CONFEDERACIÓN
+   ============================================================ */
+.confedRow {
+  margin-bottom: 64px;
+}
+.confedRow:last-child { margin-bottom: 0; }
+
+.confedHead {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 0;
+  border-top: 2px solid var(--border);
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.confedHeadLeft {
+  display: flex; align-items: center; gap: 20px;
+}
+.confedSwatch {
+  width: 16px; height: 16px;
+  border-radius: 2px;
+  background: var(--c, var(--gold));
+}
+.confedHead h3 {
+  font-family: var(--display); font-weight: 800;
+  font-size: clamp(28px, 3vw, 42px);
+  letter-spacing: -0.03em; line-height: 1;
+  color: var(--fg-1);
+  margin: 0;
+}
+.confedFull {
+  font-family: var(--mono); font-size: 11px; color: var(--fg-3);
+  letter-spacing: 0.15em; text-transform: uppercase;
+}
+.confedHeadRight {
+  display: flex; align-items: center; gap: 28px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+  color: var(--fg-3); text-transform: uppercase;
+}
+.bigNum {
+  font-family: var(--display); font-weight: 800; font-size: 40px;
+  color: var(--c, var(--gold));
+  line-height: 1; letter-spacing: -0.02em;
+  margin-right: 4px;
+  vertical-align: -3px;
+}
+.navBtns { display: flex; gap: 6px; }
+.navBtns button {
+  width: 32px; height: 32px;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  display: grid; place-items: center;
+  color: var(--fg-2);
+  background: transparent;
+  cursor: pointer;
+  transition: all 200ms var(--ease);
+}
+.navBtns button:hover {
+  background: var(--c, var(--gold));
+  color: #0A0A14;
+  border-color: var(--c, var(--gold));
+}
+@media (max-width: 640px) {
+  .confedHead { padding: 16px 0; }
+  .confedHeadLeft { gap: 12px; }
+  .confedHeadRight { gap: 16px; font-size: 10px; }
+  .bigNum { font-size: 28px; }
+  .confedFull { display: none; }
+}
+
+.scrollRail {
+  display: flex; gap: 16px;
+  overflow-x: auto; overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  padding: 4px 0 24px;
+  scroll-padding: 32px;
+  scrollbar-color: var(--c, var(--gold)) transparent;
+}
+.scrollRail::-webkit-scrollbar { height: 4px; }
+.scrollRail::-webkit-scrollbar-thumb { background: var(--c, var(--gold)); border-radius: 2px; }
+
+/* TeamCard usado en los rails */
+.teamCard {
+  scroll-snap-align: start;
+  flex: 0 0 280px;
+  background: var(--bg-1);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--c, var(--gold));
+  padding: 22px 22px 18px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 300ms var(--ease), background 300ms var(--ease);
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+.teamCard:hover { transform: translateY(-4px); background: var(--bg-2); }
+.teamCard .flagLarge {
+  width: 100%; aspect-ratio: 3/2;
+  object-fit: cover;
+  border-radius: 2px;
+  margin-bottom: 16px;
+  filter: saturate(0.9);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.teamCard .nameRow {
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.teamCard .nameRow .nm {
+  font-family: var(--display); font-weight: 700;
+  font-size: 22px; line-height: 1.05; letter-spacing: -0.02em;
+  color: var(--fg-1);
+}
+.teamCard .nameRow .rnk {
+  font-family: var(--mono); font-size: 11px; color: var(--c, var(--gold));
+  font-weight: 600; letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+.teamCard .statsRow {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-family: var(--mono); font-size: 10px; color: var(--fg-3);
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+.teamCard .statsRow .v {
+  font-family: var(--display); font-size: 16px; color: var(--fg-1);
+  font-weight: 700; letter-spacing: -0.01em; margin-top: 2px;
+  text-transform: none;
+}
+.teamCard .badges {
+  position: absolute; top: 14px; right: 14px;
+  display: flex; gap: 4px;
+  z-index: 2;
+}
+.teamCard .badge {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 3px 6px; border-radius: 2px;
+  background: rgba(212,168,83,0.18); color: var(--gold);
+  border: 1px solid rgba(212,168,83,0.35);
+}
+.teamCard .badgeHost { background: rgba(212,168,83,0.18); color: var(--gold); border-color: rgba(212,168,83,0.35); }
+.teamCard .badgeDebut { background: rgba(155,81,224,0.18); color: #b57ee8; border-color: rgba(155,81,224,0.35); }
+
+@media (max-width: 640px) {
+  .teamCard { flex: 0 0 240px; padding: 18px 18px 16px; }
+}
+
+/* ============================================================
+   FASE 2 — DEBUTANTES Y ANFITRIONES (split editorial)
+   ============================================================ */
+.debutSplit {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+.debutSide {
+  background: var(--bg-1);
+  padding: 56px 44px;
+  position: relative;
+  overflow: hidden;
+}
+.debutKicker {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.18em;
+  color: var(--gold); margin-bottom: 18px; text-transform: uppercase;
+}
+.debutKickerGold { color: var(--gold); }
+.debutSide h3 {
+  font-family: var(--display); font-weight: 800;
+  font-size: clamp(40px, 4.5vw, 64px);
+  line-height: 0.95; letter-spacing: -0.035em;
+  margin: 0 0 16px;
+  color: var(--fg-1);
+}
+.debutSide p {
+  font-size: 16px; color: var(--fg-2); line-height: 1.55;
+  margin-bottom: 36px; max-width: 420px;
+}
+.debutList { display: flex; flex-direction: column; }
+.debutRow {
+  display: grid;
+  grid-template-columns: 60px 50px 1fr 80px;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 0;
+  border-top: 1px solid var(--border);
+  position: relative;
+  transition: padding-left 300ms var(--ease);
+  text-decoration: none;
+  color: inherit;
+}
+.debutRow:hover { padding-left: 12px; }
+.debutRow:hover::before {
+  content: ""; position: absolute; left: 0; top: 50%;
+  width: 3px; height: 70%; background: var(--gold);
+  transform: translateY(-50%);
+}
+.debutIdx {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+  color: var(--fg-3);
+}
+.debutFlag {
+  width: 50px; height: 34px; object-fit: cover;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 2px;
+}
+.debutNmBlock {
+  display: flex; flex-direction: column;
+  min-width: 0;
+}
+.debutNm {
+  font-family: var(--display); font-weight: 700; font-size: 22px;
+  letter-spacing: -0.02em; line-height: 1.05;
+  color: var(--fg-1);
+}
+.debutConf {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em;
+  color: var(--fg-3); text-transform: uppercase; margin-top: 4px;
+}
+.debutTagEnd {
+  font-family: var(--mono); font-size: 10px;
+  color: var(--fg-3); letter-spacing: 0.12em;
+  text-align: right; text-transform: uppercase;
+}
+.debutTagEndGold { color: var(--gold); }
+@media (max-width: 900px) {
+  .debutSplit { grid-template-columns: 1fr; }
+  .debutSide { padding: 40px 28px; }
+}
+@media (max-width: 540px) {
+  .debutRow { grid-template-columns: 50px 44px 1fr auto; gap: 14px; }
+  .debutNm { font-size: 18px; }
+  .debutSide h3 { font-size: 36px; }
+}
+
+/* ============================================================
+   FASE 2 — CURIOSIDADES data viz
+   ============================================================ */
+.curioGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+.curioCard {
+  background: var(--bg-1);
+  padding: 36px 32px 32px;
+  position: relative;
+  overflow: hidden;
+  min-height: 320px;
+  display: flex; flex-direction: column;
+}
+.curioCard::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--c);
+}
+.curioCard::after {
+  content: ""; position: absolute; bottom: 0; left: 0; width: 60%; height: 1px;
+  background: linear-gradient(90deg, var(--c), transparent);
+  opacity: 0.5;
+}
+.curioConfRow {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 28px;
+}
+.curioConfNm {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.18em; color: var(--c);
+  text-transform: uppercase; font-weight: 600;
+}
+.curioConfFull {
+  color: var(--fg-3); font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+}
+.curioBigfig {
+  font-family: var(--display); font-weight: 800;
+  font-size: clamp(70px, 9vw, 120px);
+  line-height: 0.85; letter-spacing: -0.06em;
+  color: var(--fg-1);
+  margin-bottom: 16px;
+  display: flex; align-items: baseline;
+}
+.curioPlus { color: var(--c); margin-left: 4px; font-size: 0.6em; }
+.curioUnit {
+  font-size: 0.28em; color: var(--fg-3); margin-left: 12px;
+  letter-spacing: 0; font-family: var(--mono); font-weight: 500;
+  text-transform: uppercase;
+}
+.curioHead {
+  font-family: var(--display); font-weight: 700;
+  font-size: 20px; line-height: 1.2; letter-spacing: -0.02em;
+  margin: 0 0 10px;
+  color: var(--fg-1);
+}
+.curioBlurb {
+  font-size: 14px; color: var(--fg-2); line-height: 1.55;
+  margin: 0 0 auto;
+}
+.curioBars {
+  display: flex; align-items: flex-end; gap: 4px;
+  height: 48px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+.curioBar {
+  flex: 1;
+  border-radius: 1px 1px 0 0;
+  position: relative;
+  background: rgba(255,255,255,0.06);
+  transition: filter 200ms;
+}
+.curioBarActive { background: var(--c); }
+.curioBarLbl {
+  position: absolute; bottom: -16px; left: 50%; transform: translateX(-50%);
+  font-family: var(--mono); font-size: 8px; color: var(--fg-3); letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+.curioBarActive .curioBarLbl { color: var(--c); }
+@media (max-width: 1024px) {
+  .curioGrid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .curioGrid { grid-template-columns: 1fr; }
+  .curioCard { padding: 28px 22px 24px; min-height: 280px; }
+  .curioBigfig { font-size: 64px; }
+}

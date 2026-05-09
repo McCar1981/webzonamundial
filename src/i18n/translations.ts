@@ -478,9 +478,69 @@ const translations = {
       fixtureTitle: "Fixture del grupo",
       fixtureSub: "Los 6 partidos de la fase de grupos",
 
-      // Placeholder fase 2/3
+      // FASE 2 — Carruseles por confederación
+      railsNumTag: "02 · Por confederación",
+      railsTitle: "Seis continentes, un trofeo.",
+      railsDeck: "UEFA mantiene la corona en plazas (16). CONMEBOL llega entera. CAF y AFC marcan récord. OFC entra por la puerta grande.",
+      railsRightMeta: "Desliza →",
+      railsPlazasLabel: "plazas",
+      railsTeamsLabel: "equipos",
+      railsBadgeHost: "Anfitrión",
+      railsBadgeDebut: "Debut",
+      railsPrev: "Anterior",
+      railsNext: "Siguiente",
+
+      // FASE 2 — Debutantes & Anfitriones
+      debutNumTag: "03 · Debut & Anfitriones",
+      debutSplitTitle: "Los nuevos. Los locales.",
+      debutSplitDeck: "Cuatro selecciones pisarán Mundial por primera vez en su historia. Tres montan el torneo en casa.",
+      debutKicker: "Primera vez",
+      debutTitle: "4 banderas estrenan Copa del Mundo.",
+      debutBlurb: "De Cabo Verde a Uzbekistán, una generación entera lo verá por primera vez con su selección dentro.",
+      debutTagEnd: "Debut 2026",
+      debutPrefix: "DEB",
+      hostsKicker: "Anfitriones",
+      hostsTitle: "3 países. 16 sedes. 1 final.",
+      hostsBlurb: "El primer Mundial compartido por tres anfitriones. EE.UU. organiza 78 partidos; Canadá y México 13 cada uno.",
+      hostsPrefix: "HOST",
+      hostsMatchesUsa: "78 partidos",
+      hostsMatchesOther: "13 partidos",
+
+      // FASE 2 — Curiosidades data viz
+      curioNumTag: "04 · Datos de la clasificación",
+      curioTitle: "El Mundial de los récords.",
+      curioDeck: "Cómo se reparten las 48 plazas por continente — y por qué este torneo marca un antes y un después.",
+      curioPlazasUnit: "plazas",
+      curiosidades: {
+        UEFA: {
+          headline: "16 plazas, el mayor contingente",
+          blurb: "Europa mantiene su dominio histórico con 16 representantes — el mayor número en la historia del torneo.",
+        },
+        CONMEBOL: {
+          headline: "6 directos + 1 repechaje",
+          blurb: "Sudamérica aporta 6 equipos directos más 1 repechante, dando al continente una presencia histórica.",
+        },
+        CONCACAF: {
+          headline: "6 plazas, 3 anfitriones",
+          blurb: "La región acoge el torneo: México, EE.UU. y Canadá entran como anfitriones, sumando 6 plazas en total.",
+        },
+        CAF: {
+          headline: "9 plazas, récord africano",
+          blurb: "África estará representada por 9 selecciones, consolidando el crecimiento del fútbol del continente.",
+        },
+        AFC: {
+          headline: "8 plazas, mayor delegación asiática",
+          blurb: "Asia aporta 8 selecciones, el mayor contingente asiático hasta la fecha en una Copa del Mundo.",
+        },
+        OFC: {
+          headline: "1 plaza directa, primera vez",
+          blurb: "OFC tendrá una plaza garantizada por primera vez en la historia. Nueva Zelanda hace historia.",
+        },
+      },
+
+      // Placeholder fase 3
       morePending: "Más secciones próximamente",
-      morePendingDesc: "Carruseles por confederación, debutantes & anfitriones, curiosidades data-viz, dark horses y tabla completa están en construcción.",
+      morePendingDesc: "Dark horses y tabla completa con buscador y filtros están en construcción.",
     },
 
     // ── Selección [slug] ───────────────────────────────────────────────────
@@ -2265,9 +2325,69 @@ const translations = {
       fixtureTitle: "Group fixtures",
       fixtureSub: "The 6 group stage matches",
 
-      // Placeholder phase 2/3
+      // PHASE 2 — Confederation rails
+      railsNumTag: "02 · By confederation",
+      railsTitle: "Six continents, one trophy.",
+      railsDeck: "UEFA holds the crown in spots (16). CONMEBOL comes whole. CAF and AFC set records. OFC walks through the front door.",
+      railsRightMeta: "Swipe →",
+      railsPlazasLabel: "spots",
+      railsTeamsLabel: "teams",
+      railsBadgeHost: "Host",
+      railsBadgeDebut: "Debut",
+      railsPrev: "Previous",
+      railsNext: "Next",
+
+      // PHASE 2 — Debutants & Hosts
+      debutNumTag: "03 · Debutants & Hosts",
+      debutSplitTitle: "The newcomers. The hosts.",
+      debutSplitDeck: "Four teams will play their first ever World Cup. Three run the tournament at home.",
+      debutKicker: "First time",
+      debutTitle: "4 flags start their World Cup story.",
+      debutBlurb: "From Cape Verde to Uzbekistan, an entire generation will see their team play for the first time.",
+      debutTagEnd: "2026 debut",
+      debutPrefix: "DEB",
+      hostsKicker: "Hosts",
+      hostsTitle: "3 countries. 16 venues. 1 final.",
+      hostsBlurb: "The first World Cup shared by three hosts. The U.S. hosts 78 matches; Canada and Mexico 13 each.",
+      hostsPrefix: "HOST",
+      hostsMatchesUsa: "78 matches",
+      hostsMatchesOther: "13 matches",
+
+      // PHASE 2 — Curiosities data viz
+      curioNumTag: "04 · Qualifying data",
+      curioTitle: "The World Cup of records.",
+      curioDeck: "How the 48 spots are split by continent — and why this tournament marks a turning point.",
+      curioPlazasUnit: "spots",
+      curiosidades: {
+        UEFA: {
+          headline: "16 spots, the largest delegation",
+          blurb: "Europe maintains its historic dominance with 16 representatives — the largest number in the tournament's history.",
+        },
+        CONMEBOL: {
+          headline: "6 direct + 1 playoff",
+          blurb: "South America brings 6 direct teams plus 1 playoff entrant, giving the continent a historic presence.",
+        },
+        CONCACAF: {
+          headline: "6 spots, 3 hosts",
+          blurb: "The region hosts the tournament: Mexico, the US and Canada enter as hosts, adding up to 6 spots in total.",
+        },
+        CAF: {
+          headline: "9 spots, African record",
+          blurb: "Africa will be represented by 9 teams, consolidating the growth of football on the continent.",
+        },
+        AFC: {
+          headline: "8 spots, biggest Asian contingent",
+          blurb: "Asia brings 8 teams, the largest Asian delegation ever at a World Cup.",
+        },
+        OFC: {
+          headline: "1 direct spot, first time",
+          blurb: "OFC has a guaranteed spot for the first time in history. New Zealand makes history.",
+        },
+      },
+
+      // Placeholder phase 3
       morePending: "More sections coming soon",
-      morePendingDesc: "Confederation rails, debutants & hosts, curiosity data-viz, dark horses and full table are under construction.",
+      morePendingDesc: "Dark horses and the full searchable table are under construction.",
     },
 
     // ── Team [slug] ────────────────────────────────────────────────────────

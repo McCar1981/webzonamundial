@@ -642,7 +642,8 @@
           "league": "Saudi Pro League"
         },
         "shirt_number_expected": 12,
-        "status": "probable"
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Bento_box_from_a_grocery_store.jpg/330px-Bento_box_from_a_grocery_store.jpg"
       },
       {
         "id": "danilo",
@@ -761,7 +762,8 @@
           "league": "Ligue 1"
         },
         "shirt_number_expected": 16,
-        "status": "probable"
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Biblia_Pauperum_Cpg438.jpg/330px-Biblia_Pauperum_Cpg438.jpg"
       },
       {
         "id": "casemiro",

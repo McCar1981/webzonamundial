@@ -950,7 +950,8 @@
           "league": "Eliteserien"
         },
         "shirt_number_expected": 25,
-        "status": "bubble"
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Sondre_Lang%C3%A5s_25042026_%281%29.jpg/330px-Sondre_Lang%C3%A5s_25042026_%281%29.jpg"
       },
       {
         "id": "kristian-thorstvedt",

@@ -559,7 +559,8 @@
           "league": "Premier League"
         },
         "shirt_number_expected": 12,
-        "status": "fixed"
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Joe_Gauci_%28cropped%29.jpg/330px-Joe_Gauci_%28cropped%29.jpg"
       },
       {
         "id": "paul-izzo",

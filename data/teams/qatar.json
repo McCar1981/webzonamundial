@@ -567,7 +567,8 @@
           "league": "Qatar Stars League"
         },
         "shirt_number_expected": 2,
-        "status": "fixed"
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Pedro_Miguel%2C_Concelho_da_Horta%2C_ilha_do_Faial%2C_A%C3%A7ores%2C_Portugal.JPG/330px-Pedro_Miguel%2C_Concelho_da_Horta%2C_ilha_do_Faial%2C_A%C3%A7ores%2C_Portugal.JPG"
       },
       {
         "id": "mohammed-al-mannai",
@@ -833,7 +834,8 @@
           "league": "Qatar Stars League"
         },
         "shirt_number_expected": 20,
-        "status": "fixed"
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Ahmed_Fathy.jpg/330px-Ahmed_Fathy.jpg"
       },
       {
         "id": "tahsin-mohammed",

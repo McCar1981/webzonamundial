@@ -745,7 +745,8 @@
           "league": "Premier League EG"
         },
         "shirt_number_expected": 7,
-        "status": "fixed"
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Ahmed_Sayed_%28Zizo%29.jpg/330px-Ahmed_Sayed_%28Zizo%29.jpg"
       },
       {
         "id": "ibrahim-adel",
@@ -847,7 +848,8 @@
           "league": "Premier League EG"
         },
         "shirt_number_expected": 15,
-        "status": "probable"
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Mohamed_Magdy2.jpg/330px-Mohamed_Magdy2.jpg"
       },
       {
         "id": "akram-tawfik",

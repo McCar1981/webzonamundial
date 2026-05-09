@@ -585,7 +585,8 @@
           "league": "NB I"
         },
         "shirt_number_expected": 3,
-        "status": "fixed"
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Cap-vert_vs_Ethiopi_%2825%29.jpg/330px-Cap-vert_vs_Ethiopi_%2825%29.jpg"
       },
       {
         "id": "kenny-rocha",
@@ -758,7 +759,8 @@
           "league": "Cypriot First Division"
         },
         "shirt_number_expected": 11,
-        "status": "fixed"
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Baby.jpg/330px-Baby.jpg"
       },
       {
         "id": "jovane-cabral",

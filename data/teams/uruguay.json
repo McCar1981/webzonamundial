@@ -949,7 +949,8 @@
           "league": "Primera División Uruguay"
         },
         "shirt_number_expected": 25,
-        "status": "probable"
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Areso_01.jpg/330px-Areso_01.jpg"
       },
       {
         "id": "federico-vinas",

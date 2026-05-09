@@ -419,13 +419,13 @@
       {
         "matchday": 1,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "br",
+          "name": "Brasil"
         },
-        "date": "[POR CONFIRMAR — fixture FIFA pendiente con fecha/hora/sede]",
+        "date": "2026-06-12T19:00:00Z",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "SoFi Stadium",
+          "city": "Los Ángeles",
           "country_iso": "us"
         },
         "status": "scheduled"
@@ -433,13 +433,13 @@
       {
         "matchday": 2,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "gb-sct",
+          "name": "Escocia"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-17T19:00:00Z",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "Lumen Field",
+          "city": "Seattle",
           "country_iso": "us"
         },
         "status": "scheduled"
@@ -447,13 +447,13 @@
       {
         "matchday": 3,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "ht",
+          "name": "Haití"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-25T19:00:00Z",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "Lincoln Financial Field",
+          "city": "Filadelfia",
           "country_iso": "us"
         },
         "status": "scheduled"

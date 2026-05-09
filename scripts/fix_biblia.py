@@ -289,8 +289,107 @@ def fix_group(slug):
     return True
 
 
+def slug_to_country_iso(slug):
+    """ISO country code (different from team iso for England/Scotland)."""
+    iso = slug_to_iso(slug)
+    if iso and "-" in iso:
+        # gb-eng → gb (country), gb-sct → gb
+        return iso.split("-")[0]
+    return iso
+
+
 # ============================================================================
-# 5. Fix kit front_url placeholders
+# 5. Fix schedule (3 group-stage matches per team) using data/calendario.ts
+# ============================================================================
+def parse_calendario():
+    """Parse `src/data/calendario.ts` and return a list of matches."""
+    cal_path = REPO / "src" / "data" / "calendario.ts"
+    if not cal_path.exists():
+        return []
+    text = cal_path.read_text(encoding="utf-8")
+    # Each match line:
+    # { id: "I1", grupo: "I", jornada: 1, fecha: "2026-06-12T19:00:00Z", estadio: "...", ciudad: "...", homeSlug: "francia", awaySlug: "senegal" },
+    pattern = re.compile(
+        r'\{\s*id:\s*"([^"]+)",\s*grupo:\s*"([^"]+)",\s*jornada:\s*(\d+),'
+        r'\s*fecha:\s*"([^"]+)",\s*estadio:\s*"([^"]+)",\s*ciudad:\s*"([^"]+)",'
+        r'\s*homeSlug:\s*"([^"]+)",\s*awaySlug:\s*"([^"]+)"\s*\},?'
+    )
+    matches = []
+    for m in pattern.finditer(text):
+        matches.append({
+            "id": m.group(1),
+            "grupo": m.group(2),
+            "jornada": int(m.group(3)),
+            "fecha": m.group(4),
+            "estadio": m.group(5),
+            "ciudad": m.group(6),
+            "homeSlug": m.group(7),
+            "awaySlug": m.group(8),
+        })
+    return matches
+
+
+def fix_schedule(slug, all_matches):
+    """Replace POR CONFIRMAR opponents in schedule with the real opponent
+    using the canonical calendario.ts roster."""
+    new_path = TEAMS_DIR / f"{slug}.json"
+    if not new_path.exists():
+        return "skip"
+    with new_path.open("r", encoding="utf-8") as f:
+        team = json.load(f)
+    schedule = team.get("wc_2026", {}).get("schedule")
+    if not schedule:
+        return "no-schedule"
+
+    # Build the team's match list ordered by jornada
+    own_matches = []
+    for m in all_matches:
+        if m["homeSlug"] == slug or m["awaySlug"] == slug:
+            opponent_slug = m["awaySlug"] if m["homeSlug"] == slug else m["homeSlug"]
+            own_matches.append({
+                "matchday": m["jornada"],
+                "opponent_slug": opponent_slug,
+                "fecha": m["fecha"],
+                "estadio": m["estadio"],
+                "ciudad": m["ciudad"],
+            })
+    own_matches.sort(key=lambda x: x["matchday"])
+
+    if len(own_matches) != 3:
+        return f"unexpected-{len(own_matches)}-matches"
+
+    # Patch each entry in the schedule
+    patched_count = 0
+    for entry in schedule:
+        md = entry.get("matchday")
+        match = next((m for m in own_matches if m["matchday"] == md), None)
+        if not match:
+            continue
+        # Only patch if currently POR CONFIRMAR
+        if entry.get("opponent", {}).get("name") != "[POR CONFIRMAR]":
+            continue
+        opp_slug = match["opponent_slug"]
+        entry["opponent"] = {
+            "iso": slug_to_iso(opp_slug),
+            "name": slug_to_name(opp_slug),
+        }
+        entry["date"] = match["fecha"]
+        entry["venue"] = {
+            "stadium": match["estadio"],
+            "city": match["ciudad"],
+            "country_iso": entry.get("venue", {}).get("country_iso", "us"),
+        }
+        patched_count += 1
+
+    if patched_count > 0:
+        with new_path.open("w", encoding="utf-8") as f:
+            json.dump(team, f, ensure_ascii=False, indent=2)
+        return f"patched-{patched_count}"
+    return "ok"
+
+
+# ============================================================================
+# 6. Fix kit front_url placeholders
 # ============================================================================
 KITS_DIR = REPO / "public" / "img" / "kits" / "2026" / "home"
 
@@ -375,7 +474,22 @@ def main():
     for s in patched:
         print(f"    - {s} -> Grupo {SLUG_TO_GROUP[s]}")
 
-    print("\n[3/3] Arreglando kit.front_url (placeholders -> PNG real)...")
+    print("\n[3/4] Arreglando schedule (POR CONFIRMAR -> partidos reales)...")
+    all_matches = parse_calendario()
+    print(f"  {len(all_matches)} partidos parseados de calendario.ts")
+    sched_patched = []
+    for f in sorted(os.listdir(TEAMS_DIR)):
+        if not f.endswith(".json") or f.startswith("_"):
+            continue
+        slug = f.replace(".json", "")
+        result = fix_schedule(slug, all_matches)
+        if result.startswith("patched"):
+            sched_patched.append((slug, result))
+    print(f"  Schedules arreglados: {len(sched_patched)}")
+    for s, r in sched_patched[:50]:
+        print(f"    - {s}: {r}")
+
+    print("\n[4/4] Arreglando kit.front_url (placeholders -> PNG real)...")
     fixed_kit = []
     no_png = []
     for f in sorted(os.listdir(TEAMS_DIR)):

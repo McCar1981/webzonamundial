@@ -409,13 +409,13 @@
       {
         "matchday": 2,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "jp",
+          "name": "Japón"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-18T22:00:00Z",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "Lumen Field",
+          "city": "Seattle",
           "country_iso": "us"
         },
         "status": "scheduled"
@@ -423,13 +423,13 @@
       {
         "matchday": 3,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "nl",
+          "name": "Países Bajos"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-26T19:00:00Z",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "Levi's Stadium",
+          "city": "San Francisco",
           "country_iso": "us"
         },
         "status": "scheduled"

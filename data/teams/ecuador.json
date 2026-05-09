@@ -631,13 +631,13 @@
       {
         "matchday": 1,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "ci",
+          "name": "Costa de Marfil"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-13T19:00:00Z",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "NRG Stadium",
+          "city": "Houston",
           "country_iso": "us"
         },
         "status": "scheduled"
@@ -645,13 +645,13 @@
       {
         "matchday": 2,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "cw",
+          "name": "Curazao"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-18T19:00:00Z",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "Estadio BBVA",
+          "city": "Monterrey",
           "country_iso": "us"
         },
         "status": "scheduled"
@@ -659,13 +659,13 @@
       {
         "matchday": 3,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "de",
+          "name": "Alemania"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-26T16:00:00Z",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "Gillette Stadium",
+          "city": "Boston",
           "country_iso": "us"
         },
         "status": "scheduled"

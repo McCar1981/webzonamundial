@@ -516,13 +516,13 @@
       {
         "matchday": 1,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "sa",
+          "name": "Arabia Saudí"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-14T22:00:00Z",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "Estadio Akron",
+          "city": "Guadalajara",
           "country_iso": "us"
         },
         "status": "scheduled"

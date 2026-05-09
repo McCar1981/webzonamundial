@@ -454,13 +454,13 @@
       {
         "matchday": 1,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "py",
+          "name": "Paraguay"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-12T16:00:00Z",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "AT&T Stadium",
+          "city": "Dallas",
           "country_iso": "us"
         },
         "status": "scheduled"
@@ -468,13 +468,13 @@
       {
         "matchday": 2,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "au",
+          "name": "Australia"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-17T22:00:00Z",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "Levi's Stadium",
+          "city": "San Francisco",
           "country_iso": "us"
         },
         "status": "scheduled"
@@ -482,13 +482,13 @@
       {
         "matchday": 3,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "us",
+          "name": "Estados Unidos"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-25T22:00:00Z",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "Mercedes-Benz Stadium",
+          "city": "Atlanta",
           "country_iso": "us"
         },
         "status": "scheduled"

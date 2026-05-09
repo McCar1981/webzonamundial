@@ -426,13 +426,13 @@
       {
         "matchday": 2,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "gb-eng",
+          "name": "Inglaterra"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-20T16:00:00Z",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "MetLife Stadium",
+          "city": "Nueva York/Nueva Jersey",
           "country_iso": "us"
         },
         "status": "scheduled"
@@ -440,13 +440,13 @@
       {
         "matchday": 3,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "hr",
+          "name": "Croacia"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-28T19:00:00Z",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "Estadio Azteca",
+          "city": "Ciudad de México",
           "country_iso": "us"
         },
         "status": "scheduled"

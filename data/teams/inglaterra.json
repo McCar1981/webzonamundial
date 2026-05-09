@@ -473,13 +473,13 @@
       {
         "matchday": 1,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "hr",
+          "name": "Croacia"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-14T19:00:00Z",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "Levi's Stadium",
+          "city": "San Francisco",
           "country_iso": "us"
         },
         "status": "scheduled"
@@ -487,13 +487,13 @@
       {
         "matchday": 2,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "gh",
+          "name": "Ghana"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-20T16:00:00Z",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "MetLife Stadium",
+          "city": "Nueva York/Nueva Jersey",
           "country_iso": "us"
         },
         "status": "scheduled"
@@ -501,13 +501,13 @@
       {
         "matchday": 3,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "pa",
+          "name": "Panamá"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-28T19:00:00Z",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "MetLife Stadium",
+          "city": "Nueva York/Nueva Jersey",
           "country_iso": "us"
         },
         "status": "scheduled"

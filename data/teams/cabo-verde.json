@@ -478,13 +478,13 @@
       {
         "matchday": 2,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "uy",
+          "name": "Uruguay"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-19T22:00:00Z",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "Estadio BBVA",
+          "city": "Monterrey",
           "country_iso": "us"
         },
         "status": "scheduled"
@@ -492,13 +492,13 @@
       {
         "matchday": 3,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "sa",
+          "name": "Arabia Saudí"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-27T19:00:00Z",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "Estadio Akron",
+          "city": "Guadalajara",
           "country_iso": "us"
         },
         "status": "scheduled"

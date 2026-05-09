@@ -464,13 +464,13 @@
       {
         "matchday": 1,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "qa",
+          "name": "Qatar"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-11T16:00:00Z",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "NRG Stadium",
+          "city": "Houston",
           "country_iso": "ca"
         },
         "status": "scheduled"
@@ -478,13 +478,13 @@
       {
         "matchday": 2,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "ch",
+          "name": "Suiza"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-16T22:00:00Z",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "Hard Rock Stadium",
+          "city": "Miami",
           "country_iso": "us"
         },
         "status": "scheduled"
@@ -492,13 +492,13 @@
       {
         "matchday": 3,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "ca",
+          "name": "Canadá"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-24T16:00:00Z",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "BMO Field",
+          "city": "Toronto",
           "country_iso": "us"
         },
         "status": "scheduled"

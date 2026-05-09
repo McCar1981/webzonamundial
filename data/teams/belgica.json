@@ -489,13 +489,13 @@
       {
         "matchday": 1,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "eg",
+          "name": "Egipto"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-14T16:00:00Z",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "Lincoln Financial Field",
+          "city": "Filadelfia",
           "country_iso": "us"
         },
         "status": "scheduled"
@@ -503,13 +503,13 @@
       {
         "matchday": 2,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "ir",
+          "name": "Irán"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-19T16:00:00Z",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "Arrowhead Stadium",
+          "city": "Kansas City",
           "country_iso": "us"
         },
         "status": "scheduled"
@@ -517,13 +517,13 @@
       {
         "matchday": 3,
         "opponent": {
-          "iso": "[POR CONFIRMAR]",
-          "name": "[POR CONFIRMAR]"
+          "iso": "nz",
+          "name": "Nueva Zelanda"
         },
-        "date": "[POR CONFIRMAR]",
+        "date": "2026-06-27T16:00:00Z",
         "venue": {
-          "stadium": "[POR CONFIRMAR]",
-          "city": "",
+          "stadium": "Lincoln Financial Field",
+          "city": "Filadelfia",
           "country_iso": "us"
         },
         "status": "scheduled"

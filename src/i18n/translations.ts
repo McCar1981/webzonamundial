@@ -407,10 +407,51 @@ const translations = {
 
     // ── Selecciones ────────────────────────────────────────────────────────
     selecciones: {
+      // Hero
       badge: "Mundial 2026",
       title: "Las 48 Selecciones",
       subtitle: "Por primera vez en la historia, 48 equipos competirán por la gloria mundialista en la edición más grande jamás disputada.",
+      breadcrumbHome: "Inicio",
+      breadcrumbCurrent: "Selecciones",
+      heroEyebrow: "Mundial 2026",
+      heroEyebrowHosts: "Estados Unidos · Canadá · México",
+      heroTitleLine1: "Las",
+      heroTitleLine2: "48",
+      heroTitleLine3: "Selecciones",
+      heroDeckBefore: "Por primera vez en la historia,",
+      heroDeckTeams: "48 equipos",
+      heroDeckMid: "compiten por la gloria mundialista.",
+      heroDeckMatches: "104 partidos",
+      heroDeckSep1: ", ",
+      heroDeckVenues: "16 sedes",
+      heroDeckSep2: ", ",
+      heroDeckHosts: "3 países anfitriones",
+      heroDeckAfter: " — y un solo trofeo en juego.",
       stats: { selecciones: "Selecciones", grupos: "Grupos", confederaciones: "Confederaciones", partidos: "Partidos" },
+
+      // World map
+      mapFifaWc: "FIFA WORLD CUP 26™",
+      mapHostsBadge: "3 anfitriones · 16 sedes",
+      mapCoords: "Latitud · Longitud · Equirectangular",
+      mapTeamsBadge: "48 selecciones",
+      mapTooltipFifa: "FIFA",
+      mapTooltipGrupo: "Grupo",
+      mapTooltipMundiales: "Mundiales",
+      mapTooltipMejor: "Mejor",
+
+      // Favoritos
+      favNumTag: "01 · Favoritos al título",
+      favTitle: "Los 7 que pueden levantarla.",
+      favDeck: "Power Index propio + trayectoria FIFA últimos 12 meses + lectura editorial. Si no salen de aquí, hay sorpresón.",
+      rotatorPaused: "Pausado",
+      rotatorLive: "En rotación",
+      cardLabelGrupo: "Grupo",
+      cardLabelMundiales: "Mundiales",
+      cardLabelMejor: "Mejor",
+      cardLabelPowerIndex: "prob. campeón",
+      cardLabelTwelveMonth: "12m FIFA",
+
+      // Existentes (legacy — no removidas para fase 2)
       favoritos: "Favoritos al título",
       favoritosSub: "Los candidatos con mayor poder de fuego",
       aSeguir: "Equipos a seguir",
@@ -436,6 +477,10 @@ const translations = {
       },
       fixtureTitle: "Fixture del grupo",
       fixtureSub: "Los 6 partidos de la fase de grupos",
+
+      // Placeholder fase 2/3
+      morePending: "Más secciones próximamente",
+      morePendingDesc: "Carruseles por confederación, debutantes & anfitriones, curiosidades data-viz, dark horses y tabla completa están en construcción.",
     },
 
     // ── Selección [slug] ───────────────────────────────────────────────────
@@ -2149,10 +2194,51 @@ const translations = {
 
     // ── Teams ──────────────────────────────────────────────────────────────
     selecciones: {
+      // Hero
       badge: "World Cup 2026",
       title: "The 48 Teams",
       subtitle: "For the first time in history, 48 teams will compete for World Cup glory in the biggest edition ever held.",
+      breadcrumbHome: "Home",
+      breadcrumbCurrent: "Teams",
+      heroEyebrow: "World Cup 2026",
+      heroEyebrowHosts: "United States · Canada · Mexico",
+      heroTitleLine1: "The",
+      heroTitleLine2: "48",
+      heroTitleLine3: "Teams",
+      heroDeckBefore: "For the first time in history,",
+      heroDeckTeams: "48 teams",
+      heroDeckMid: "will compete for World Cup glory.",
+      heroDeckMatches: "104 matches",
+      heroDeckSep1: ", ",
+      heroDeckVenues: "16 venues",
+      heroDeckSep2: ", ",
+      heroDeckHosts: "3 host countries",
+      heroDeckAfter: " — and a single trophy on the line.",
       stats: { selecciones: "Teams", grupos: "Groups", confederaciones: "Confederations", partidos: "Matches" },
+
+      // World map
+      mapFifaWc: "FIFA WORLD CUP 26™",
+      mapHostsBadge: "3 hosts · 16 venues",
+      mapCoords: "Latitude · Longitude · Equirectangular",
+      mapTeamsBadge: "48 teams",
+      mapTooltipFifa: "FIFA",
+      mapTooltipGrupo: "Group",
+      mapTooltipMundiales: "World Cups",
+      mapTooltipMejor: "Best",
+
+      // Favoritos
+      favNumTag: "01 · Title favorites",
+      favTitle: "The 7 who can lift it.",
+      favDeck: "Custom Power Index + last 12-month FIFA trajectory + editorial read. If the winner doesn't come from here, expect a major upset.",
+      rotatorPaused: "Paused",
+      rotatorLive: "Rotating",
+      cardLabelGrupo: "Group",
+      cardLabelMundiales: "World Cups",
+      cardLabelMejor: "Best",
+      cardLabelPowerIndex: "champion prob.",
+      cardLabelTwelveMonth: "12m FIFA",
+
+      // Existing (legacy — kept for phase 2)
       favoritos: "Title favorites",
       favoritosSub: "The candidates with the most firepower",
       aSeguir: "Teams to watch",
@@ -2178,6 +2264,10 @@ const translations = {
       },
       fixtureTitle: "Group fixtures",
       fixtureSub: "The 6 group stage matches",
+
+      // Placeholder phase 2/3
+      morePending: "More sections coming soon",
+      morePendingDesc: "Confederation rails, debutants & hosts, curiosity data-viz, dark horses and full table are under construction.",
     },
 
     // ── Team [slug] ────────────────────────────────────────────────────────

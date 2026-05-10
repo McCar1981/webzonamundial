@@ -483,7 +483,7 @@ const translations = {
 
       // FASE 2 — Carruseles por confederación
       railsNumTag: "02 · Por confederación",
-      railsTitle: "Seis continentes, un trofeo.",
+      railsTitle: "Seis confederaciones, un trofeo.",
       railsDeck: "UEFA mantiene la corona en plazas (16). CONMEBOL llega entera. CAF y AFC marcan récord. OFC entra por la puerta grande.",
       railsRightMeta: "Desliza →",
       railsPlazasLabel: "plazas",
@@ -541,9 +541,38 @@ const translations = {
         },
       },
 
-      // Placeholder fase 3
-      morePending: "Más secciones próximamente",
-      morePendingDesc: "Dark horses y tabla completa con buscador y filtros están en construcción.",
+      // FASE 3 — Dark horses
+      dhNumTag: "05 · Dark horses",
+      dhTitle: "Los 5 que pueden romperla.",
+      dhDeck: "Selecciones con momento, generación y un techo más alto del que dice el ranking. Ojo con estas.",
+      dhHostTag: "Anfitrión",
+
+      // FASE 3 — Clasificados
+      clasifNumTag: "06 · Clasificados",
+      clasifTitle: "48 plazas, así se reparten.",
+      clasifDeck: "El Mundial 2026 expande el torneo de 32 a 48. Estas son las plazas garantizadas por confederación.",
+      clasifRightMeta: "Total: 48 · 47 directas + 1 repechaje",
+      clasifPlazasOf: "de 48 plazas",
+
+      // FASE 3 — Browse
+      browseNumTag: "07 · Las 48 al completo",
+      browseTitle: "Todas las selecciones.",
+      browseDeck: "Filtra por confederación, busca por nombre, ordena por FIFA. La lista completa del Mundial 2026.",
+      browseSearchPlaceholder: "Buscar selección…",
+      browseTodas: "Todas",
+      browseSoloAnfitriones: "Anfitriones",
+      browseMetaSeleccion: "selección",
+      browseMetaSelecciones: "selecciones",
+      browseMetaFilter: "filtro:",
+      browseMetaQuery: "búsqueda:",
+      browseColSeleccion: "Selección",
+      browseColConf: "Confed.",
+      browseColGrupo: "Grupo",
+      browseColMundiales: "Mundiales",
+      browseColMejor: "Mejor resultado",
+      browseColFifa: "FIFA",
+      browseBadgeHost: "HOST",
+      browseBadgeDebut: "DEBUT",
     },
 
     // ── Selección [slug] ───────────────────────────────────────────────────
@@ -2333,7 +2362,7 @@ const translations = {
 
       // PHASE 2 — Confederation rails
       railsNumTag: "02 · By confederation",
-      railsTitle: "Six continents, one trophy.",
+      railsTitle: "Six confederations, one trophy.",
       railsDeck: "UEFA holds the crown in spots (16). CONMEBOL comes whole. CAF and AFC set records. OFC walks through the front door.",
       railsRightMeta: "Swipe →",
       railsPlazasLabel: "spots",
@@ -2391,9 +2420,38 @@ const translations = {
         },
       },
 
-      // Placeholder phase 3
-      morePending: "More sections coming soon",
-      morePendingDesc: "Dark horses and the full searchable table are under construction.",
+      // PHASE 3 — Dark horses
+      dhNumTag: "05 · Dark horses",
+      dhTitle: "The 5 who can break the bracket.",
+      dhDeck: "Teams with momentum, a great generation and a ceiling higher than what the ranking suggests. Watch these closely.",
+      dhHostTag: "Host",
+
+      // PHASE 3 — Qualified spots
+      clasifNumTag: "06 · Qualified spots",
+      clasifTitle: "48 spots, this is how they split.",
+      clasifDeck: "The 2026 World Cup expands the tournament from 32 to 48. These are the guaranteed spots by confederation.",
+      clasifRightMeta: "Total: 48 · 47 direct + 1 playoff",
+      clasifPlazasOf: "of 48 spots",
+
+      // PHASE 3 — Browse
+      browseNumTag: "07 · All 48 teams",
+      browseTitle: "Every team.",
+      browseDeck: "Filter by confederation, search by name, sort by FIFA. The full 2026 World Cup list.",
+      browseSearchPlaceholder: "Search team…",
+      browseTodas: "All",
+      browseSoloAnfitriones: "Hosts",
+      browseMetaSeleccion: "team",
+      browseMetaSelecciones: "teams",
+      browseMetaFilter: "filter:",
+      browseMetaQuery: "search:",
+      browseColSeleccion: "Team",
+      browseColConf: "Conf.",
+      browseColGrupo: "Group",
+      browseColMundiales: "World Cups",
+      browseColMejor: "Best result",
+      browseColFifa: "FIFA",
+      browseBadgeHost: "HOST",
+      browseBadgeDebut: "DEBUT",
     },
 
     // ── Team [slug] ────────────────────────────────────────────────────────

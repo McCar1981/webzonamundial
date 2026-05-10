@@ -3,7 +3,7 @@
 // /selecciones — Rediseño cinematográfico + data-rich.
 // FASE 1: Hero + WorldMap + Favoritos (rotator + Power Index + sparkline + pull-quote). ✓
 // FASE 2: carruseles por confederación + debutantes split + curiosidades data-viz. ✓
-// FASE 3 (próximo commit): dark horses, browse table, polish.
+// FASE 3: dark horses + clasificados + browse table. ✓
 
 import { useState } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -12,6 +12,9 @@ import FavoritosSection from "./_components/FavoritosSection";
 import ConfedRailsSection from "./_components/ConfedRailsSection";
 import DebutSplit from "./_components/DebutSplit";
 import CurioGrid from "./_components/CurioGrid";
+import DarkHorsesSection from "./_components/DarkHorsesSection";
+import ClasificadosSection from "./_components/ClasificadosSection";
+import BrowseSection from "./_components/BrowseSection";
 import type { ConfedKey } from "./_components/confed-config";
 import styles from "./selecciones.module.css";
 
@@ -133,14 +136,51 @@ export default function SeleccionesIndex() {
 
       <div className={styles.sectionDivider} />
 
-      {/* Placeholder fase 3 */}
-      <section className={styles.placeholderSection}>
-        <div className={styles.container}>
-          <span className={styles.badge}>v2.5 · {sT.morePending}</span>
-          <h3>{sT.morePending}</h3>
-          <p>{sT.morePendingDesc}</p>
-        </div>
-      </section>
+      <DarkHorsesSection
+        labels={{
+          numTag: sT.dhNumTag,
+          title: sT.dhTitle,
+          deck: sT.dhDeck,
+          hostTag: sT.dhHostTag,
+        }}
+      />
+
+      <div className={styles.sectionDivider} />
+
+      <ClasificadosSection
+        labels={{
+          numTag: sT.clasifNumTag,
+          title: sT.clasifTitle,
+          deck: sT.clasifDeck,
+          rightMeta: sT.clasifRightMeta,
+          plazasOf: sT.clasifPlazasOf,
+        }}
+      />
+
+      <div className={styles.sectionDivider} />
+
+      <BrowseSection
+        labels={{
+          numTag: sT.browseNumTag,
+          title: sT.browseTitle,
+          deck: sT.browseDeck,
+          searchPlaceholder: sT.browseSearchPlaceholder,
+          todas: sT.browseTodas,
+          soloAnfitriones: sT.browseSoloAnfitriones,
+          metaSeleccion: sT.browseMetaSeleccion,
+          metaSelecciones: sT.browseMetaSelecciones,
+          metaFilter: sT.browseMetaFilter,
+          metaQuery: sT.browseMetaQuery,
+          colSeleccion: sT.browseColSeleccion,
+          colConf: sT.browseColConf,
+          colGrupo: sT.browseColGrupo,
+          colMundiales: sT.browseColMundiales,
+          colMejor: sT.browseColMejor,
+          colFifa: sT.browseColFifa,
+          badgeHost: sT.browseBadgeHost,
+          badgeDebut: sT.browseBadgeDebut,
+        }}
+      />
     </div>
   );
 }

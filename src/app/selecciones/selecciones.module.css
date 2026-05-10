@@ -1005,3 +1005,341 @@
   .curioCard { padding: 28px 22px 24px; min-height: 280px; }
   .curioBigfig { font-size: 64px; }
 }
+
+/* ============================================================
+   FASE 3 — DARK HORSES
+   ============================================================ */
+.darkhorseGrid {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+.dhCard {
+  background: var(--bg-1);
+  padding: 28px 24px 24px;
+  position: relative;
+  min-height: 380px;
+  display: flex; flex-direction: column;
+  cursor: pointer;
+  transition: background 300ms var(--ease);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+}
+.dhCard:hover { background: var(--bg-2); }
+.dhCard::before {
+  content: attr(data-rank);
+  position: absolute;
+  top: 12px; right: 18px;
+  font-family: var(--display); font-weight: 800;
+  font-size: 100px;
+  line-height: 1; letter-spacing: -0.08em;
+  color: rgba(255,255,255,0.05);
+  pointer-events: none;
+}
+.dhFlag {
+  width: 64px; height: 44px; object-fit: cover;
+  border-radius: 2px; border: 1px solid rgba(255,255,255,0.12);
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+.dhName {
+  font-family: var(--display); font-weight: 800;
+  font-size: 26px; line-height: 1; letter-spacing: -0.03em;
+  margin-bottom: 8px;
+  color: var(--fg-1);
+  position: relative;
+  z-index: 1;
+}
+.dhConfPill {
+  display: inline-block;
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em;
+  padding: 3px 8px; border-radius: 2px;
+  margin-bottom: 16px; align-self: flex-start;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+}
+.dhWhy {
+  font-size: 13px; color: var(--fg-2); line-height: 1.5;
+  margin: auto 0 0;
+  border-top: 1px solid var(--border); padding-top: 14px;
+  position: relative;
+  z-index: 1;
+}
+.dhHostTag {
+  position: absolute; top: 16px; left: 16px;
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em;
+  color: var(--gold);
+  text-transform: uppercase;
+  padding: 2px 6px;
+  background: rgba(212,168,83,0.12);
+  border: 1px solid rgba(212,168,83,0.35);
+  border-radius: 2px;
+  z-index: 2;
+}
+@media (max-width: 1024px) {
+  .darkhorseGrid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 540px) {
+  .darkhorseGrid { grid-template-columns: 1fr; }
+  .dhCard { min-height: 260px; padding: 22px 20px 20px; }
+  .dhCard::before { font-size: 70px; top: 8px; right: 14px; }
+}
+
+/* ============================================================
+   FASE 3 — CLASIFICADOS (números brutos por confederación)
+   ============================================================ */
+.clasifBar {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+  border: 1px solid var(--border);
+}
+.clasifCell {
+  position: relative;
+  padding: 36px 24px 28px;
+  border-right: 1px solid var(--border);
+  background: var(--bg-1);
+  overflow: hidden;
+  cursor: default;
+  transition: background 300ms var(--ease);
+  min-height: 200px;
+}
+.clasifCell:last-child { border-right: 0; }
+.clasifCell:hover { background: var(--bg-2); }
+.clasifCell::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: var(--c);
+}
+.clasifTop {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--c);
+  margin-bottom: 12px;
+}
+.clasifBig {
+  font-family: var(--display); font-weight: 800;
+  font-size: clamp(60px, 7vw, 96px);
+  line-height: 0.85; letter-spacing: -0.05em;
+  color: var(--fg-1);
+}
+.clasifPlus {
+  font-size: 0.5em;
+  vertical-align: super;
+  margin-left: 4px;
+}
+.clasifFull {
+  font-family: var(--mono); font-size: 11px; color: var(--fg-3);
+  margin-top: 8px; letter-spacing: 0.12em; text-transform: uppercase;
+}
+.clasifBarFill {
+  position: absolute; bottom: 0; left: 0;
+  height: 6px;
+  background: var(--c);
+  opacity: 0.6;
+  transition: opacity 300ms;
+}
+.clasifCell:hover .clasifBarFill { opacity: 1; }
+@media (max-width: 900px) {
+  .clasifBar { grid-template-columns: repeat(3, 1fr); }
+  .clasifCell:nth-child(3) { border-right: 0; }
+  .clasifCell:nth-child(-n+3) { border-bottom: 1px solid var(--border); }
+}
+@media (max-width: 540px) {
+  .clasifBar { grid-template-columns: repeat(2, 1fr); }
+  .clasifCell { padding: 24px 18px 22px; min-height: 160px; }
+  .clasifBig { font-size: 56px; }
+  .clasifCell:nth-child(2n) { border-right: 0; }
+  .clasifCell:nth-child(2n+1) { border-right: 1px solid var(--border); }
+  .clasifCell:nth-child(-n+4) { border-bottom: 1px solid var(--border); }
+}
+
+/* ============================================================
+   FASE 3 — BROWSE (tabla densa con filtros)
+   ============================================================ */
+.browseToolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0;
+}
+.browseSearch {
+  flex: 1; min-width: 240px;
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px;
+  background: var(--bg-1);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+.browseSearch input {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  color: var(--fg-1);
+  font-size: 14px;
+  font-family: var(--body);
+}
+.browseSearch input::placeholder { color: var(--fg-3); }
+.browseSearch svg { color: var(--fg-3); flex-shrink: 0; }
+
+.filterChips { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+  padding: 9px 14px;
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  color: var(--fg-2);
+  text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 7px;
+  transition: all 200ms var(--ease);
+  cursor: pointer;
+}
+.chip:hover { color: var(--fg-1); border-color: var(--fg-3); }
+.chipOn { background: var(--fg-1); color: #0A0A14; border-color: var(--fg-1); }
+.chipSwatch { width: 8px; height: 8px; border-radius: 50%; }
+
+@media (max-width: 768px) {
+  .browseToolbar { padding: 12px 0; gap: 10px; }
+  .filterChips { gap: 5px; }
+  .chip { padding: 7px 11px; font-size: 10px; }
+  .browseSearch { padding: 9px 12px; min-width: 100%; }
+}
+
+.browseMeta {
+  font-family: var(--mono); font-size: 12px; color: var(--fg-3);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 18px 0 12px;
+}
+.browseMeta strong { color: var(--gold); font-weight: 600; }
+
+.browseTableWrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.browseTable {
+  width: 100%;
+  border-collapse: collapse;
+  border-top: 1px solid var(--border);
+}
+.browseTable thead th {
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--fg-3);
+  text-align: left;
+  padding: 14px 12px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-1);
+}
+.browseTable thead th.numRight,
+.browseTable td.numRight { text-align: right; }
+.browseRow {
+  transition: background 200ms var(--ease);
+  cursor: pointer;
+}
+.browseRow:hover { background: var(--bg-1); }
+.browseTable tbody td {
+  padding: 14px 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--fg-1);
+}
+.browseTable tbody td.numRight {
+  font-family: var(--mono);
+  color: var(--fg-2);
+}
+.flagCell { width: 56px; }
+.flagCell a { display: block; }
+.flagCell img {
+  width: 36px; height: 24px; object-fit: cover;
+  border: 1px solid rgba(255,255,255,0.08); border-radius: 2px;
+}
+.nmCell {
+  font-family: var(--display); font-weight: 700; font-size: 17px;
+  letter-spacing: -0.01em;
+}
+.nmCell a { color: inherit; text-decoration: none; }
+.nmCell a:hover { color: var(--gold); }
+.confCell .confPillSm,
+.confPillSm {
+  display: inline-block;
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em;
+  padding: 2px 8px; border-radius: 2px;
+  text-transform: uppercase;
+}
+.groupCell { font-family: var(--display); font-weight: 700; font-size: 16px; color: var(--gold); }
+.bestCell { color: var(--fg-2); font-size: 13px; }
+.browseHostBadge {
+  margin-left: 8px;
+  font-family: var(--mono); font-size: 10px;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.browseDebutBadge {
+  margin-left: 8px;
+  font-family: var(--mono); font-size: 10px;
+  color: #b57ee8;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* fifa rank with mini bar */
+.rnkCell {
+  display: flex; align-items: center; gap: 10px;
+  justify-content: flex-end;
+}
+.rnkNum {
+  font-family: var(--mono); font-weight: 600;
+  color: var(--fg-1);
+  min-width: 38px;
+  text-align: right;
+}
+.rnkBar {
+  width: 60px; height: 4px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+.rnkFill {
+  position: absolute; top: 0; left: 0; bottom: 0;
+  border-radius: 2px;
+}
+
+/* Mobile: tabla → cards */
+@media (max-width: 720px) {
+  .browseTable { display: block; }
+  .browseTable thead { display: none; }
+  .browseTable tbody { display: block; }
+  .browseTable tbody tr.browseRow {
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 4px 14px;
+    padding: 14px 4px;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+  }
+  .browseTable tbody tr.browseRow:hover { background: var(--bg-1); }
+  .browseTable tbody td {
+    padding: 0;
+    border: 0;
+  }
+  .flagCell { grid-row: 1 / span 2; width: 56px; }
+  .flagCell img { width: 48px; height: 32px; }
+  .nmCell { grid-column: 2; grid-row: 1; font-size: 16px; }
+  .confCell { grid-column: 2; grid-row: 2; }
+  .groupCell, .bestCell { display: none; }
+  .browseTable tbody td:nth-child(5) { display: none; } /* mundiales */
+  .browseTable tbody td.numRight {
+    grid-column: 3; grid-row: 1 / span 2;
+    text-align: right;
+  }
+  .rnkCell { flex-direction: column; align-items: flex-end; gap: 4px; }
+  .rnkBar { width: 50px; }
+}

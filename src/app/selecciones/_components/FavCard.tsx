@@ -15,6 +15,8 @@ import styles from "../selecciones.module.css";
 interface FavCardProps {
   team: Seleccion;
   isHero?: boolean;
+  /** Posición en la lista de favoritos (1..7), se muestra como #N grande */
+  favRank: number;
   onClick?: () => void;
   labels: {
     grupo: string;
@@ -24,12 +26,13 @@ interface FavCardProps {
     twelveMonth: string;
     titlesSingular: string;
     titlesPlural: string;
+    fifaShort: string;
   };
 }
 
 const FLAG_LARGE = (code: string, sz: number) => `https://flagcdn.com/w${sz}/${code}.png`;
 
-export default function FavCard({ team, isHero = false, onClick, labels }: FavCardProps) {
+export default function FavCard({ team, isHero = false, favRank, onClick, labels }: FavCardProps) {
   const cf = getConfedConfig(team.confederacion);
   const power = POWER_INDEX[team.slug] ?? 0;
   const quote = QUOTES[team.slug];
@@ -73,13 +76,18 @@ export default function FavCard({ team, isHero = false, onClick, labels }: FavCa
         <div className={styles.name}>{team.nombre}</div>
         <div className={styles.bigstat}>
           <span className={styles.hash}>#</span>
-          <span className={styles.fifaNum}>{team.rankingFIFA ?? "—"}</span>
+          <span className={styles.fifaNum}>{favRank}</span>
           {titles > 0 && (
             <span className={styles.titleBadge}>
               {titles}× {titles > 1 ? labels.titlesPlural : labels.titlesSingular}
             </span>
           )}
         </div>
+        {team.rankingFIFA != null && (
+          <div className={styles.fifaInfo}>
+            {labels.fifaShort} #{team.rankingFIFA}
+          </div>
+        )}
 
         {power > 0 && (
           <PowerBar pct={power} color={cf.color} label={labels.powerIndex} />

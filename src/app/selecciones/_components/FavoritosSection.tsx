@@ -23,6 +23,7 @@ interface FavoritosSectionProps {
     twelveMonth: string;
     titlesSingular: string;
     titlesPlural: string;
+    fifaShort: string;
   };
 }
 
@@ -59,7 +60,13 @@ export default function FavoritosSection({ labels }: FavoritosSectionProps) {
     twelveMonth: labels.twelveMonth,
     titlesSingular: labels.titlesSingular,
     titlesPlural: labels.titlesPlural,
+    fifaShort: labels.fifaShort,
   };
+
+  // Mapa slug → posición en la lista (1..7)
+  const favRankBySlug = new Map<string, number>(
+    ordered.map((s, i) => [s.slug, i + 1]),
+  );
 
   return (
     <section className={styles.section}>
@@ -89,11 +96,18 @@ export default function FavoritosSection({ labels }: FavoritosSectionProps) {
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
-          <FavCard key={heroSlug} team={heroTeam} isHero labels={cardLabels} />
+          <FavCard
+            key={heroSlug}
+            team={heroTeam}
+            isHero
+            favRank={favRankBySlug.get(heroSlug) ?? 1}
+            labels={cardLabels}
+          />
           {others.map((s) => (
             <FavCard
               key={s.slug}
               team={s}
+              favRank={favRankBySlug.get(s.slug) ?? 0}
               labels={cardLabels}
               onClick={() => setHeroSlug(s.slug)}
             />

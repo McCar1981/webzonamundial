@@ -452,6 +452,7 @@ const translations = {
       cardLabelTwelveMonth: "12m FIFA",
       cardLabelTitleSingular: "título",
       cardLabelTitlePlural: "títulos",
+      cardLabelFifaShort: "FIFA",
 
       // Existentes (legacy — no removidas para fase 2)
       favoritos: "Favoritos al título",
@@ -2301,6 +2302,7 @@ const translations = {
       cardLabelTwelveMonth: "12m FIFA",
       cardLabelTitleSingular: "title",
       cardLabelTitlePlural: "titles",
+      cardLabelFifaShort: "FIFA",
 
       // Existing (legacy — kept for phase 2)
       favoritos: "Title favorites",

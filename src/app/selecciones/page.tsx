@@ -73,6 +73,7 @@ export default function SeleccionesIndex() {
           twelveMonth: sT.cardLabelTwelveMonth,
           titlesSingular: sT.cardLabelTitleSingular,
           titlesPlural: sT.cardLabelTitlePlural,
+          fifaShort: sT.cardLabelFifaShort,
         }}
       />
 

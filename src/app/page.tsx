@@ -73,7 +73,6 @@ export default function HomePage() {
         cd={cd}
         IMGS={IMGS}
       />
-      <EditorialIntro />
       <StatsHowSection />
       <CalendarBanner />
       <BracketBanner />
@@ -86,6 +85,15 @@ export default function HomePage() {
       <AppRevealSection />
       <WaitlistSection />
       <SocialProofTicker items={h.testimonials} />
+      {/*
+        EditorialIntro va aquí, casi al final del home: el usuario ya ha
+        visto el producto completo (módulos, creadores, álbum, app reveal,
+        testimonios) y este bloque refuerza la propuesta editorial antes
+        del CTA final. SEO/AdSense indexan el HTML completo
+        independientemente de la posición — no afecta a la valoración de
+        contenido.
+      */}
+      <EditorialIntro />
       <FinalCTASection />
     </div>
   );

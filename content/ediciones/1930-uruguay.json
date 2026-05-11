@@ -1,0 +1,138 @@
+{
+  "meta": {
+    "edicion": 1,
+    "anio": 1930,
+    "slug": "1930-uruguay",
+    "tituloOficial": "Copa Mundial de Fútbol 1930",
+    "nombreCorto": "Uruguay 1930",
+    "era": "pionera"
+  },
+  "sede": {
+    "paises": [
+      { "nombre": "Uruguay", "iso2": "uy", "iso3": "URY", "banderaUrl": "https://flagcdn.com/w160/uy.png" }
+    ],
+    "ciudades": ["Montevideo"],
+    "estadios": ["Estadio Centenario", "Estadio Pocitos", "Estadio Parque Central"]
+  },
+  "fechas": { "inicio": "1930-07-13", "final": "1930-07-30", "duracionDias": 18 },
+  "formato": {
+    "numEquipos": 13,
+    "numPartidos": 18,
+    "sistemaEliminatoria": "liguilla",
+    "numGrupos": 4
+  },
+  "resultados": {
+    "campeon": { "pais": "Uruguay", "iso2": "uy", "iso3": "URY", "banderaUrl": "https://flagcdn.com/w160/uy.png" },
+    "subcampeon": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG", "banderaUrl": "https://flagcdn.com/w160/ar.png" },
+    "tercero": { "pais": "Estados Unidos", "iso2": "us", "iso3": "USA", "banderaUrl": "https://flagcdn.com/w160/us.png" },
+    "cuarto": { "pais": "Yugoslavia", "iso2": "rs", "iso3": "SRB", "banderaUrl": "https://flagcdn.com/w160/rs.png" }
+  },
+  "estadisticas": {
+    "totalGoles": 70,
+    "promedioGolesPartido": 3.89,
+    "asistenciaTotal": 590549,
+    "asistenciaPromedio": 32808
+  },
+  "identidadVisual": {
+    "eslogan": "El primer Mundial",
+    "balon": "Tiento / T-Model (uno por tiempo)",
+    "colorPrincipal": "#5CBFEB"
+  },
+  "partidoInaugural": {
+    "fecha": "1930-07-13",
+    "ciudad": "Montevideo",
+    "estadio": "Estadio Pocitos",
+    "local": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" },
+    "visitante": { "pais": "México", "iso2": "mx", "iso3": "MEX" },
+    "marcador": "4-1",
+    "asistencia": 4444,
+    "goleadores": [
+      { "jugador": "Lucien Laurent", "minuto": "19'", "tipo": "normal" }
+    ]
+  },
+  "partidoFinal": {
+    "fecha": "1930-07-30",
+    "ciudad": "Montevideo",
+    "estadio": "Estadio Centenario",
+    "local": { "pais": "Uruguay", "iso2": "uy", "iso3": "URY" },
+    "visitante": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" },
+    "marcador": "4-2",
+    "asistencia": 68346,
+    "arbitro": "John Langenus (Bélgica)"
+  },
+  "topGoleadores": [
+    {
+      "nombre": "Guillermo Stábile",
+      "seleccion": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" },
+      "goles": 8,
+      "botaOro": true
+    },
+    {
+      "nombre": "Pedro Cea",
+      "seleccion": { "pais": "Uruguay", "iso2": "uy", "iso3": "URY" },
+      "goles": 5
+    },
+    {
+      "nombre": "Guillermo Subiabre",
+      "seleccion": { "pais": "Chile", "iso2": "cl", "iso3": "CHL" },
+      "goles": 4
+    }
+  ],
+  "contextoHistorico": {
+    "resumen": "Primer Mundial de la historia. 13 selecciones invitadas tras la negativa europea por el viaje en barco. Uruguay, anfitrión y campeón olímpico en 1924 y 1928, conquistó el primer trofeo con final ante Argentina en el recién construido Estadio Centenario, declarado Monumento Histórico FIFA en 1983.",
+    "eventos": [
+      "Único Mundial sin clasificatorias previas y sin partido por el tercer puesto.",
+      "Lucien Laurent (Francia) anota el primer gol oficial del Mundial.",
+      "Cada tiempo de la final se jugó con un balón distinto: el de Argentina al primer tiempo, el de Uruguay al segundo."
+    ]
+  },
+  "fasesKO": {
+    "semifinales": [
+      { "fecha": "1930-07-26", "ciudad": "Montevideo", "estadio": "Estadio Centenario", "local": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "visitante": { "pais": "Estados Unidos", "iso2": "us", "iso3": "USA" }, "marcador": "6-1" },
+      { "fecha": "1930-07-27", "ciudad": "Montevideo", "estadio": "Estadio Centenario", "local": { "pais": "Uruguay", "iso2": "uy", "iso3": "URY" }, "visitante": { "pais": "Yugoslavia", "iso2": "rs", "iso3": "SRB" }, "marcador": "6-1" }
+    ]
+  },
+  "hatTricks": [
+    { "jugador": "Bert Patenaude", "seleccion": { "pais": "Estados Unidos", "iso2": "us", "iso3": "USA" }, "fase": "Grupos", "rival": { "pais": "Paraguay", "iso2": "py", "iso3": "PRY" }, "goles": 3, "marcador": "3-0" },
+    { "jugador": "Guillermo Stábile", "seleccion": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "fase": "Grupos", "rival": { "pais": "México", "iso2": "mx", "iso3": "MEX" }, "goles": 3, "marcador": "6-3" },
+    { "jugador": "Pedro Cea", "seleccion": { "pais": "Uruguay", "iso2": "uy", "iso3": "URY" }, "fase": "Semifinal", "rival": { "pais": "Yugoslavia", "iso2": "rs", "iso3": "SRB" }, "goles": 3, "marcador": "6-1" }
+  ],
+  "recordsEdicion": [
+    { "categoria": "hito", "descripcion": "Primer Mundial de fútbol de la historia, organizado por Uruguay en su centenario como nación independiente", "valor": "I edición" },
+    { "categoria": "estadio", "descripcion": "Estadio Centenario construido en solo 6 meses específicamente para el Mundial; Monumento Histórico FIFA desde 1983", "valor": "100.000 cap." },
+    { "categoria": "entrenador", "descripcion": "Alberto Suppici, técnico campeón del Mundo más joven de la historia con apenas 31 años", "valor": "31 años" },
+    { "categoria": "jugador", "descripcion": "Lucien Laurent (Francia) anota el primer gol oficial del Mundial al minuto 19 vs México", "valor": "Gol #1" },
+    { "categoria": "tactica", "descripcion": "Único Mundial sin clasificatorias previas, sin partido por el tercer puesto y sin grupos asignados por sorteo", "valor": "Excepción histórica" }
+  ],
+  "curiosidades": [
+    {
+      "categoria": "hito",
+      "texto": "Alberto Suppici dirigió a Uruguay con apenas 31 años, convirtiéndose en el técnico campeón del Mundo más joven de la historia."
+    },
+    {
+      "categoria": "jugador",
+      "texto": "Bert Patenaude (EE.UU.) anotó el primer hat-trick oficial del Mundial vs Paraguay; FIFA reconoció el récord en 2006 tras décadas de disputa con Stábile."
+    },
+    {
+      "categoria": "politica",
+      "texto": "Las selecciones europeas estuvieron a punto de no participar por la duración del viaje en barco (3 semanas). Solo 4 europeas viajaron: Francia, Bélgica, Yugoslavia y Rumania, esta última a petición personal del rey Carol II."
+    },
+    {
+      "categoria": "estadio",
+      "texto": "La final se disputó con DOS balones distintos: el de Argentina en el primer tiempo (terminado 2-1 favorable a los albicelestes) y el de Uruguay en el segundo, cuando los locales remontaron a 4-2."
+    },
+    {
+      "categoria": "misc",
+      "texto": "Lluvia torrencial en el partido inaugural (Francia-México). El árbitro belga Domingos Lombardi pitó el final 6 minutos antes por error: Argentina lideraba 1-0 y un asistente avisó del fallo. Los franceses, frustrados, perdieron por penalti antes del tiempo correcto."
+    },
+    {
+      "categoria": "jugador",
+      "texto": "Francisco Varallo, delantero argentino subcampeón en 1930, fue el último superviviente de aquel Mundial: vivió hasta los 100 años (falleció en 2010, semanas antes del Mundial de Sudáfrica)."
+    }
+  ],
+  "fuentes": [
+    { "nombre": "FIFA Archive — World Cup 1930", "url": "https://www.fifa.com/tournaments/mens/worldcup/1930uruguay" },
+    { "nombre": "RSSSF — World Cup 1930 Full Details", "url": "https://www.rsssf.org/tables/30full.html" },
+    { "nombre": "Wikipedia — Copa Mundial de Fútbol de 1930", "url": "https://es.wikipedia.org/wiki/Copa_Mundial_de_F%C3%BAtbol_de_1930" }
+  ]
+}

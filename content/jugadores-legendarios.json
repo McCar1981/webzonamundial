@@ -1,0 +1,748 @@
+{
+  "jugadores": [
+    {
+      "slug": "pele",
+      "nombre": "Pelé",
+      "nombreCompleto": "Edson Arantes do Nascimento",
+      "seleccion": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" },
+      "posicion": "FWD",
+      "anios": "1958–1970",
+      "mundialesJugados": [1958, 1962, 1966, 1970],
+      "titulos": 3,
+      "anioTitulos": [1958, 1962, 1970],
+      "partidos": 14,
+      "goles": 12,
+      "subtitulo": "Único tricampeón del Mundo de la historia",
+      "biografia": "Nacido en Três Corações el 23 de octubre de 1940, Pelé revolucionó el fútbol con apenas 17 años en Suecia 1958: hat-trick en semis a Francia, doblete en la final, gol más joven en una final mundialista (récord vigente). Único futbolista en ganar tres Copas del Mundo (1958, 1962 y 1970), aunque en 1962 se lesionó tras el segundo partido y en 1966 fue masacrado a patadas por Bulgaria y Portugal. En México 1970 alcanzó la cima absoluta con un Brasil considerado el mejor equipo de la historia.",
+      "logros": [
+        "Goleador más joven en una final mundialista: 17 años, 249 días (1958)",
+        "Hat-trick en semifinales con 17 años (vs Francia, 1958)",
+        "Único tricampeón del Mundo (1958, 1962, 1970)",
+        "Asistencia al gol de Carlos Alberto en la final 1970, considerado el mejor gol de la historia",
+        "12 goles en 14 partidos mundialistas"
+      ],
+      "anecdotas": [
+        "Su gol de la final 1958 (control de pecho con espalda al portero, sombrero al defensa y volea) fue elegido por la prensa como uno de los mejores goles de la historia mundialista.",
+        "En el Mundial 1966 fue tan masacrado por las defensas que juró no volver a jugar otro Mundial. Volvió cuatro años después y ganó el tricampeonato.",
+        "Pelé y Garrincha jugaron juntos 60 partidos para Brasil sin perder NUNCA. La estadística sigue intacta más de medio siglo después.",
+        "Falleció el 29 de diciembre de 2022, días después del Mundial de Catar. Brasil decretó tres días de luto nacional."
+      ],
+      "fuentes": [
+        { "nombre": "FIFA Pelé Profile", "url": "https://www.fifa.com/about-fifa/news/pele-1940-2022" }
+      ]
+    },
+    {
+      "slug": "diego-maradona",
+      "nombre": "Diego Maradona",
+      "nombreCompleto": "Diego Armando Maradona",
+      "seleccion": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" },
+      "posicion": "MID",
+      "anios": "1982–1994",
+      "mundialesJugados": [1982, 1986, 1990, 1994],
+      "titulos": 1,
+      "anioTitulos": [1986],
+      "partidos": 21,
+      "goles": 8,
+      "subtitulo": "El genio absoluto: Mano de Dios + Gol del Siglo",
+      "biografia": "Nacido en Lanús el 30 de octubre de 1960, Maradona dominó México 1986 como ningún jugador haya dominado un Mundial individualmente: 5 goles, 5 asistencias, capitán y autor en cuartos vs Inglaterra de los dos goles antagónicos icónicos: la Mano de Dios y el Gol del Siglo, con apenas 4 minutos de diferencia. En 1990 llevó a Argentina a la final pese a estar lesionado. En 1994 fue expulsado del torneo por dopaje (efedrina, 5 sustancias), cerrando su ciclo mundialista en tragedia.",
+      "logros": [
+        "Balón de Oro Mundial 1986 (campeón + 5 goles + 5 asistencias)",
+        "Capitán de Argentina campeón en 1986",
+        "Subcampeón en 1990",
+        "Su 'Gol del Siglo' vs Inglaterra (1986) fue votado por FIFA en 2002 como el mejor gol mundialista de la historia",
+        "21 partidos mundialistas, 8 goles, 8 asistencias documentadas"
+      ],
+      "anecdotas": [
+        "Mano de Dios + Gol del Siglo: ambos goles vs Inglaterra (cuartos 1986) en apenas 4 minutos. La Mano de Dios fue admitida por Maradona décadas después: 'fue con la mano de Dios y un poco con la cabeza de Maradona'.",
+        "El balón de la 'Mano de Dios' fue subastado en Christie's en noviembre de 2022 por £2,4 millones, el balón más caro jamás vendido.",
+        "En 1994 dio positivo por efedrina tras anotar contra Grecia. Su salida del Mundial fue una de las imágenes más tristes del fútbol: nunca volvió a un Mundial.",
+        "Falleció el 25 de noviembre de 2020. Argentina decretó tres días de luto nacional. Se estima que 1 millón de personas pasó por el velatorio en la Casa Rosada."
+      ],
+      "fuentes": [
+        { "nombre": "FIFA Maradona Profile", "url": "https://www.fifa.com/about-fifa/news/diego-maradona-1960-2020" }
+      ]
+    },
+    {
+      "slug": "lionel-messi",
+      "nombre": "Lionel Messi",
+      "nombreCompleto": "Lionel Andrés Messi",
+      "seleccion": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" },
+      "posicion": "FWD",
+      "anios": "2006–2022",
+      "mundialesJugados": [2006, 2010, 2014, 2018, 2022],
+      "titulos": 1,
+      "anioTitulos": [2022],
+      "partidos": 26,
+      "goles": 13,
+      "subtitulo": "Récord absoluto de partidos disputados (26)",
+      "biografia": "Nacido en Rosario el 24 de junio de 1987, Messi disputó cinco Mundiales consecutivos (2006-2022) y se consagró en Catar 2022 con su tercer título argentino, completando el palmarés legendario con la única estrella que faltaba en su carrera. En la final 3-3 vs Francia con hat-trick de Mbappé, Messi anotó 2 goles y se llevó el segundo Balón de Oro Mundial (también lo había ganado en 2014). Récord absoluto de 26 partidos disputados en Mundiales.",
+      "logros": [
+        "Campeón del Mundo 2022 (capitán)",
+        "Subcampeón en 2014 (Balón de Oro pese a perder la final)",
+        "Récord absoluto: 26 partidos disputados en Mundiales (vigente)",
+        "Único futbolista con 2 Balones de Oro Mundiales (2014 y 2022)",
+        "13 goles en Mundiales: empate con Just Fontaine, primer histórico hasta 1958"
+      ],
+      "anecdotas": [
+        "El bisht ceremonial colocado por el Emir tras la final 2022 fue la primera vez que un capitán recibe el trofeo cubierto con vestimenta árabe. Generó debate global sobre simbolismo cultural.",
+        "Su grito de gol vs Países Bajos en cuartos 2022 ('andá pa' allá, bobo' al banquillo neerlandés) se viralizó como meme global.",
+        "Saudíes 2-1 Argentina en debut 2022 fue una de las mayores sorpresas del torneo: Messi marcó de penal pero Argentina perdió.",
+        "Eligió retirarse de la selección argentina tras la final 2016 (Copa América), cambiando de opinión semanas después tras presión popular. Esa decisión cambió la historia: en 2022 sería campeón."
+      ],
+      "fuentes": [
+        { "nombre": "FIFA Messi Profile", "url": "https://www.fifa.com/tournaments/mens/worldcup/qatar2022/news/2024-fifa-world-cup-qatar-2022-messi" }
+      ]
+    },
+    {
+      "slug": "miroslav-klose",
+      "nombre": "Miroslav Klose",
+      "nombreCompleto": "Miroslav Klose",
+      "seleccion": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" },
+      "posicion": "FWD",
+      "anios": "2002–2014",
+      "mundialesJugados": [2002, 2006, 2010, 2014],
+      "titulos": 1,
+      "anioTitulos": [2014],
+      "partidos": 24,
+      "goles": 16,
+      "subtitulo": "Máximo goleador histórico del Mundial: 16 goles",
+      "biografia": "Nacido en Polonia el 9 de junio de 1978, naturalizado alemán a los 8 años. Disputó cuatro Mundiales consecutivos marcando en TODOS, hazaña irrepetible. En 2002 debutó con hat-trick a Arabia Saudí. En 2014, contra Brasil en el Mineirazo, anotó su gol número 16 superando a Ronaldo (15) como máximo goleador histórico mundialista. Récord vigente, considerado inalcanzable a corto plazo (Messi llegó a 13 en su quinto Mundial).",
+      "logros": [
+        "Máximo goleador histórico del Mundial: 16 goles (récord vigente)",
+        "Bota de Oro 2006",
+        "Único jugador en marcar en 4 Mundiales consecutivos (2002, 2006, 2010, 2014)",
+        "Campeón del Mundo 2014",
+        "5 goles en cada uno de sus cuatro primeros Mundiales: 5-5-4-2 = 16"
+      ],
+      "anecdotas": [
+        "Su salto del Salto Mortal celebrando goles era marca registrada. Lo abandonó en 2014 tras la lesión de espalda de Olivier Giroud que le dio susto.",
+        "Era conocido por su honestidad: en varias ocasiones se sinceró con árbitros admitiendo que la pelota había golpeado su mano para que se anulara el gol.",
+        "El Mineirazo fue casi una venganza simbólica: 7-1 Alemania-Brasil con Klose alcanzando los 16 goles en el estadio donde Brasil había perdido el Maracanazo simbólicamente recreado.",
+        "Tras retirarse fue asistente de Joachim Löw. En 2024 dirigió al Rapid Viena."
+      ],
+      "fuentes": [
+        { "nombre": "FIFA Klose Profile", "url": "https://www.fifa.com/tournaments/mens/worldcup/news/klose-record" }
+      ]
+    },
+    {
+      "slug": "ronaldo-nazario",
+      "nombre": "Ronaldo Nazário",
+      "nombreCompleto": "Ronaldo Luís Nazário de Lima",
+      "seleccion": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" },
+      "posicion": "FWD",
+      "anios": "1994–2006",
+      "mundialesJugados": [1994, 1998, 2002, 2006],
+      "titulos": 2,
+      "anioTitulos": [1994, 2002],
+      "partidos": 19,
+      "goles": 15,
+      "subtitulo": "El Fenómeno: redención en Corea-Japón 2002",
+      "biografia": "Nacido en Río de Janeiro el 22 de septiembre de 1976, considerado uno de los mejores delanteros de la historia. Campeón en 1994 sin jugar (era reserva con 17 años), protagonizó la misteriosa convulsión horas antes de la final 1998. En Corea-Japón 2002 redimió aquella tragedia con 8 goles (Bota de Oro), siendo decisivo en la final 2-0 vs Alemania con doblete. En 2006 superó a Gerd Müller con su gol número 15 vs Ghana, récord que mantendría hasta que Klose lo superara en 2014.",
+      "logros": [
+        "Bota de Oro 2002 con 8 goles",
+        "Bicampeón del Mundo (1994, 2002)",
+        "Récord histórico de goleador mundialista entre 2006 y 2014 (15 goles)",
+        "Tres veces FIFA World Player (1996, 1997, 2002)",
+        "Doblete en la final 2002 ante Alemania de Kahn"
+      ],
+      "anecdotas": [
+        "La convulsión del 12 jul 1998 sigue sin esclarecerse: hipótesis incluyen sobredosis de calmantes (estaba con dolor de tobillo), presión psicológica y conspiración de Nike (sponsor que habría exigido su titularidad).",
+        "Su corte de pelo triangular para el Mundial 2002 fue tan icónico que se imitó masivamente: él lo justificó diciendo que 'distraería' a la prensa de su lesión de rodilla.",
+        "Pese a 4 lesiones graves de rodilla (1999, 2000, 2008), volvió tras cada una al máximo nivel. Es considerado el mayor caso de superación física de la era moderna.",
+        "Tras retirarse compró el Real Valladolid (España) en 2018. Vendió el club en 2024 tras descenso a Segunda División."
+      ],
+      "fuentes": [
+        { "nombre": "FIFA Ronaldo Profile", "url": "https://www.fifa.com/about-fifa/news/ronaldo-fenomeno" }
+      ]
+    },
+    {
+      "slug": "gerd-muller",
+      "nombre": "Gerd Müller",
+      "nombreCompleto": "Gerhard Müller",
+      "seleccion": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" },
+      "posicion": "FWD",
+      "anios": "1970–1974",
+      "mundialesJugados": [1970, 1974],
+      "titulos": 1,
+      "anioTitulos": [1974],
+      "partidos": 13,
+      "goles": 14,
+      "subtitulo": "Der Bomber: 14 goles en solo 13 partidos",
+      "biografia": "Nacido en Nördlingen el 3 de noviembre de 1945, fallecido el 15 de agosto de 2021. Apodado 'Der Bomber', es considerado uno de los delanteros más letales de la historia. En México 1970 ganó la Bota de Oro con 10 goles incluyendo dos hat-tricks consecutivos. En 1974 anotó el gol del título de Alemania Federal vs Países Bajos. Mantuvo el récord de máximo goleador mundialista (14) durante 32 años hasta que Ronaldo lo superara en 2006.",
+      "logros": [
+        "Bota de Oro 1970 (10 goles)",
+        "Campeón del Mundo 1974 (gol del título en final vs Países Bajos)",
+        "Máximo goleador histórico mundialista entre 1974 y 2006 (14 goles)",
+        "Dos hat-tricks consecutivos en México 1970 (vs Bulgaria 5-2 y vs Perú 3-1)",
+        "Promedio mundialista: 1,07 goles por partido (récord histórico para >10 partidos)"
+      ],
+      "anecdotas": [
+        "Tras retirarse cayó en el alcoholismo. El Bayern Múnich le ofreció trabajo como entrenador de juveniles para sacarle adelante; permaneció vinculado al club hasta su muerte.",
+        "Su gol de la final 1974 lo marcó tras un mal control que en realidad le sirvió: el balón se le escapó hacia adelante y le permitió girar de espalda con el cuerpo entre el portero y el balón.",
+        "Sufrió Alzheimer en sus últimos años. Murió a los 75 sin poder reconocer a sus compañeros del 74 en visitas.",
+        "Su récord de goles en la Bundesliga (365 en 427 partidos) duró 49 años hasta que Lewandowski lo superó en mayo 2021, semanas antes de la muerte de Müller."
+      ],
+      "fuentes": [
+        { "nombre": "FIFA Müller Tribute", "url": "https://www.fifa.com/about-fifa/news/gerd-muller-1945-2021" }
+      ]
+    },
+    {
+      "slug": "just-fontaine",
+      "nombre": "Just Fontaine",
+      "nombreCompleto": "Just Louis Fontaine",
+      "seleccion": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" },
+      "posicion": "FWD",
+      "anios": "1958",
+      "mundialesJugados": [1958],
+      "titulos": 0,
+      "anioTitulos": [],
+      "partidos": 6,
+      "goles": 13,
+      "subtitulo": "13 goles en una edición: récord absoluto inalcanzable",
+      "biografia": "Nacido en Marrakech el 18 de agosto de 1933, fallecido el 1 de marzo de 2023. Marroquí de origen francés, disputó UN solo Mundial (Suecia 1958) y anotó 13 goles en 6 partidos: récord absoluto histórico que sigue siendo inalcanzable. La FIFA lo reconoce como el mejor goleador en una sola edición de la historia. Lo más sorprendente: jugó con botas prestadas porque las suyas se habían roto en el primer entrenamiento.",
+      "logros": [
+        "13 goles en Suecia 1958: récord histórico absoluto",
+        "Bota de Oro 1958",
+        "4 goles en el partido por el tercer puesto vs Alemania Federal (6-3)",
+        "Hat-tricks vs Paraguay y vs Alemania Federal (3er puesto)",
+        "Promedio: 2,17 goles por partido en su único Mundial"
+      ],
+      "anecdotas": [
+        "Sus botas se rompieron en el primer entrenamiento. Tuvo que jugar todo el Mundial con las botas de Stéphane Bruey, suplente del Angers, dos números más pequeñas.",
+        "El día de su muerte (1 marzo 2023), Pelé había fallecido apenas dos meses antes. La prensa francesa habló del 'final de una era goleadora'.",
+        "Sufrió una doble fractura de tibia y peroné en 1960, dos años después del Mundial. Solo jugó 5 años profesionalmente: récord goleador con la carrera más corta entre los grandes.",
+        "Durante años su récord de 13 goles fue cuestionado por contadores que decían que algunos goles le fueron mal atribuidos. La FIFA confirmó oficialmente la cifra en 2014."
+      ],
+      "fuentes": [
+        { "nombre": "FIFA Fontaine Tribute", "url": "https://www.fifa.com/about-fifa/news/just-fontaine-1933-2023" }
+      ]
+    },
+    {
+      "slug": "garrincha",
+      "nombre": "Garrincha",
+      "nombreCompleto": "Manuel Francisco dos Santos",
+      "seleccion": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" },
+      "posicion": "FWD",
+      "anios": "1958–1966",
+      "mundialesJugados": [1958, 1962, 1966],
+      "titulos": 2,
+      "anioTitulos": [1958, 1962],
+      "partidos": 12,
+      "goles": 5,
+      "subtitulo": "El Pajarito Solitario: bicampeón con piernas asimétricas",
+      "biografia": "Nacido en Pau Grande el 28 de octubre de 1933, fallecido el 20 de enero de 1983. Tenía la pierna izquierda 6 cm más larga que la derecha como secuela de polio infantil. Pese a su deformidad, fue considerado el mejor regateador de la historia. Bicampeón con Brasil (1958, 1962). En Chile 62 fue el mejor jugador del torneo (Bota+Balón de Oro compartido) llevando a Brasil al título sin Pelé (lesionado en el segundo partido).",
+      "logros": [
+        "Balón de Oro Mundial 1962 (compartido con Sívori)",
+        "Bicampeón del Mundo (1958, 1962)",
+        "Hat-trick vs España y doblete vs Inglaterra en cuartos (1962)",
+        "Récord histórico: Brasil NUNCA perdió con Pelé+Garrincha juntos (60 partidos)",
+        "5 goles, 12 partidos mundialistas"
+      ],
+      "anecdotas": [
+        "Su deformidad de piernas se debió a polio infantil sin tratamiento. Aprendió a caminar a los 5 años. Médicos predijeron que nunca podría correr.",
+        "Falleció a los 49 años por cirrosis. Su entierro tuvo más asistencia que el de Carmen Miranda. Brasil decretó luto nacional.",
+        "Brasil ganó los dos Mundiales con él. Cuando él faltó (lesionado en Inglaterra 66), Brasil cayó en fase de grupos: confirmando su importancia.",
+        "Tuvo 14 hijos reconocidos con varias mujeres distintas. Su biografía sigue siendo material de estudio sobre la fragilidad de los héroes deportivos."
+      ],
+      "fuentes": [
+        { "nombre": "RSSSF Garrincha", "url": "https://www.rsssf.org/players/garrincha.html" }
+      ]
+    },
+    {
+      "slug": "johan-cruyff",
+      "nombre": "Johan Cruyff",
+      "nombreCompleto": "Hendrik Johannes Cruijff",
+      "seleccion": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD" },
+      "posicion": "MID",
+      "anios": "1974",
+      "mundialesJugados": [1974],
+      "titulos": 0,
+      "anioTitulos": [],
+      "partidos": 7,
+      "goles": 3,
+      "subtitulo": "El profeta del fútbol total: subcampeón eterno",
+      "biografia": "Nacido en Ámsterdam el 25 de abril de 1947, fallecido el 24 de marzo de 2016. Disputó SOLO un Mundial (1974) y se llevó el Balón de Oro pese a perder la final ante Alemania. Su 'Cruyff Turn' (regate hacia adentro tras amago) revolucionó el fútbol y se enseña hoy en escuelas de todo el mundo. Renunció al Mundial 78 (oficialmente por dictadura argentina, en 2008 admitió que fue por intento de secuestro contra su familia en 1977).",
+      "logros": [
+        "Balón de Oro Mundial 1974 (subcampeón)",
+        "El 'Cruyff Turn' nació el 19 jun 1974 vs Suecia, ante el defensa Jan Olsson",
+        "Capitán de la Naranja Mecánica de Rinus Michels",
+        "Tres veces Balón de Oro europeo (1971, 1973, 1974)",
+        "Como técnico: revolucionó al Barcelona con el Dream Team y predicó la filosofía que originó al Barça moderno"
+      ],
+      "anecdotas": [
+        "Ausente del Mundial 1978: durante años se atribuyó a su rechazo a la dictadura argentina. En 2008 admitió que la verdadera razón fue un intento de secuestro contra su familia en Barcelona en 1977.",
+        "Era fumador empedernido. Sufrió cáncer de pulmón en 1991. Tras superarlo cambió las cigarrillas por chicles: en 2016 falleció de cáncer de pulmón pese a llevar 25 años sin fumar.",
+        "Su filosofía 'jugar bonito' moldeó tres generaciones del fútbol: del Ajax a Barcelona, de Guardiola a Xavi e Iniesta.",
+        "Convenció al Barcelona en 1988 (cuando lo entrevistaban como entrenador) de fichar a Romário, Stoichkov y Koeman pese al veto de la directiva. El Dream Team que ganó la primera Champions del Barça (1992) nació de esa cena."
+      ],
+      "fuentes": [
+        { "nombre": "FIFA Cruyff Tribute", "url": "https://www.fifa.com/about-fifa/news/johan-cruyff-1947-2016" }
+      ]
+    },
+    {
+      "slug": "franz-beckenbauer",
+      "nombre": "Franz Beckenbauer",
+      "nombreCompleto": "Franz Anton Beckenbauer",
+      "seleccion": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" },
+      "posicion": "DEF",
+      "anios": "1966–1974",
+      "mundialesJugados": [1966, 1970, 1974],
+      "titulos": 1,
+      "anioTitulos": [1974],
+      "partidos": 18,
+      "goles": 5,
+      "subtitulo": "Der Kaiser: campeón como jugador y DT",
+      "biografia": "Nacido en Múnich el 11 de septiembre de 1945, fallecido el 7 de enero de 2024. Inventó la posición moderna del 'líbero' (defensor que sale jugando). Capitán y campeón en 1974, levantó el primer trofeo FIFA actual. En 1990, como entrenador, ganó otro Mundial: uno de los tres únicos hombres campeones como jugador y DT (con Zagallo y Deschamps). Subcampeón en 1966, tercer puesto en 1970.",
+      "logros": [
+        "Campeón del Mundo 1974 (capitán)",
+        "Campeón del Mundo 1990 como DT",
+        "Único alemán en los tres podios consecutivos: 2°, 3°, 1° (1966, 1970, 1974)",
+        "Inventor del 'líbero' moderno",
+        "Dos veces Balón de Oro europeo (1972, 1976)"
+      ],
+      "anecdotas": [
+        "En la semifinal Italia-RFA de 1970 jugó con el brazo dislocado tras un golpe en el primer tiempo. Sin sustituciones disponibles, terminó el partido con un cabestrillo improvisado.",
+        "Como organizador del Mundial 2006 fue investigado por presunta compra de votos para la elección de Alemania como sede. Murió sin que el caso se resolviera judicialmente.",
+        "Le diagnosticaron Parkinson en sus últimos años. En 2019 dejó de aparecer en público; falleció a los 78 años.",
+        "Levantó el primer trofeo FIFA actual (Gazzaniga) en 1974. La copa Jules Rimet había sido 'jubilada' tras Brasil quedárselo en 1970."
+      ],
+      "fuentes": [
+        { "nombre": "FIFA Beckenbauer Tribute", "url": "https://www.fifa.com/about-fifa/news/franz-beckenbauer-1945-2024" }
+      ]
+    },
+    {
+      "slug": "kylian-mbappe",
+      "nombre": "Kylian Mbappé",
+      "nombreCompleto": "Kylian Mbappé Lottin",
+      "seleccion": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" },
+      "posicion": "FWD",
+      "anios": "2018–presente",
+      "mundialesJugados": [2018, 2022],
+      "titulos": 1,
+      "anioTitulos": [2018],
+      "partidos": 14,
+      "goles": 12,
+      "subtitulo": "Hat-trick en final desde Geoff Hurst (1966)",
+      "biografia": "Nacido en Bondy el 20 de diciembre de 1998. A los 19 años fue campeón del Mundo en Rusia 2018, segundo adolescente en marcar en una final mundialista (tras Pelé en 1958). En Catar 2022 anotó hat-trick en la final perdida 3-3 contra Argentina (penales 4-2): primer hat-trick en una final mundialista desde Geoff Hurst en 1966 (56 años). Bota de Oro 2022 con 8 goles. Récord absoluto si juega 2026.",
+      "logros": [
+        "Campeón del Mundo 2018 (a los 19 años)",
+        "Bota de Oro 2022 (8 goles)",
+        "Hat-trick en una final mundialista (segundo en la historia tras Hurst 1966)",
+        "Mejor Jugador Joven 2018",
+        "12 goles en 2 Mundiales consecutivos: ya cuarto goleador histórico empate con Pelé"
+      ],
+      "anecdotas": [
+        "Su hat-trick en la final 2022 fue por penal (80'), volea (81') y penal (118'). Marcó el cuarto en la tanda pero su equipo perdió 4-2.",
+        "Fue el primer francés en marcar en dos finales mundialistas (2018 y 2022). Solo Pelé, Vavá y Zidane lo habían logrado antes.",
+        "En 2024 fichó por el Real Madrid tras 7 años en el PSG. Su clausula de fichaje ascendió a 250M€ en bonos de fidelidad.",
+        "Su madre Fayza Lamari es de origen argelino, su padre Wilfried es camerunés. Defendió Francia en categorías inferiores pese a tener pasaporte para Argelia o Camerún."
+      ],
+      "fuentes": [
+        { "nombre": "FIFA Mbappé Profile", "url": "https://www.fifa.com/players/mbappe" }
+      ]
+    },
+    {
+      "slug": "cristiano-ronaldo",
+      "nombre": "Cristiano Ronaldo",
+      "nombreCompleto": "Cristiano Ronaldo dos Santos Aveiro",
+      "seleccion": { "pais": "Portugal", "iso2": "pt", "iso3": "PRT" },
+      "posicion": "FWD",
+      "anios": "2006–presente",
+      "mundialesJugados": [2006, 2010, 2014, 2018, 2022],
+      "titulos": 0,
+      "anioTitulos": [],
+      "partidos": 22,
+      "goles": 8,
+      "subtitulo": "5 Mundiales jugados, posible 6° en 2026",
+      "biografia": "Nacido en Madeira el 5 de febrero de 1985. Disputó cinco Mundiales consecutivos (2006-2022) sin ganar ninguno. Mejor actuación: cuartos en 2006. Si participa en 2026 sería el primer jugador con SEIS Mundiales en la historia, récord absoluto. En Rusia 2018 hizo hat-trick a España (3-3) en su mejor partido mundialista. Pese a 5 ediciones es el portugués con menos goles (8) entre los goleadores históricos del top-10 con plenas eliminatorias.",
+      "logros": [
+        "5 Mundiales consecutivos (2006-2022): empata con Carbajal, Matthäus, Márquez, Guardado y Messi",
+        "Hat-trick a España en debut Mundial 2018 (3-3)",
+        "Capitán de Portugal en cuatro Mundiales seguidos",
+        "8 goles en 22 partidos mundialistas",
+        "Récord histórico de goles en selección absoluta (130+)"
+      ],
+      "anecdotas": [
+        "En el Mundial 2022 fue suplente en cuartos vs Marruecos: lloró visiblemente al ser sustituido. Portugal fue eliminado.",
+        "Si juega 2026 con 41 años sería el primer hexa-mundialista de la historia. Récord absoluto si lo logra.",
+        "Tras retirarse del PSG, Saudi Arabia ofreció 200M€ anuales para su fichaje al Al-Nassr (2022). Aceptó por ser parte de la candidatura saudí al Mundial 2034.",
+        "Su rivalidad con Messi marcó el fútbol mundial 2008-2022. Ambos ganaron 8 Balones de Oro entre los dos. Messi consiguió el Mundial; Ronaldo nunca."
+      ],
+      "fuentes": [
+        { "nombre": "FIFA Ronaldo Profile", "url": "https://www.fifa.com/players/cristiano-ronaldo" }
+      ]
+    },
+    {
+      "slug": "zinedine-zidane",
+      "nombre": "Zinedine Zidane",
+      "nombreCompleto": "Zinedine Yazid Zidane",
+      "seleccion": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" },
+      "posicion": "MID",
+      "anios": "1998–2006",
+      "mundialesJugados": [1998, 2002, 2006],
+      "titulos": 1,
+      "anioTitulos": [1998],
+      "partidos": 12,
+      "goles": 5,
+      "subtitulo": "Doblete en la final 1998 + cabezazo a Materazzi 2006",
+      "biografia": "Nacido en Marsella el 23 de junio de 1972, de origen argelino. Doblete de cabeza en la final 1998 vs Brasil (3-0) que dio el primer Mundial a Francia. Balón de Oro Mundial 2006 pese a perder la final (penales) contra Italia con uno de los gestos más icónicos del fútbol: cabezazo a Marco Materazzi tras un insulto. Roja directa, último partido de su carrera. Como entrenador del Real Madrid ganó tres Champions consecutivas (2016, 2017, 2018).",
+      "logros": [
+        "Campeón del Mundo 1998 (doblete en final)",
+        "Subcampeón 2006 (Balón de Oro pese a la roja en final)",
+        "Doblete de cabeza vs Brasil en final 1998 (3-0)",
+        "Tres Balones de Oro europeos (1998, 2000, 2003)",
+        "FIFA World Player tres veces (1998, 2000, 2003)"
+      ],
+      "anecdotas": [
+        "El cabezazo a Materazzi en la final 2006 fue el último acto de su carrera. Las palabras exactas de Materazzi (reveladas en 2010): 'preferiría la c**** ramera de tu hermana'.",
+        "El cuarto árbitro Cantalejo (España) sopló por radio a Elizondo (árbitro principal) la jugada: primera vez en la historia que una roja se muestra por intervención del cuarto árbitro vía radio.",
+        "Zidane en 2010 dijo: 'volvería a hacerlo, no soy un héroe'. Materazzi se disculpó parcialmente.",
+        "Su gol de la final 2006 (penal de panenka) fue el primer Panenka anotado en una final mundialista. Roberto Baggio había fallado un penal central en 1994."
+      ],
+      "fuentes": [
+        { "nombre": "FIFA Zidane Profile", "url": "https://www.fifa.com/players/zidane" }
+      ]
+    },
+    {
+      "slug": "eusebio",
+      "nombre": "Eusébio",
+      "nombreCompleto": "Eusébio da Silva Ferreira",
+      "seleccion": { "pais": "Portugal", "iso2": "pt", "iso3": "PRT" },
+      "posicion": "FWD",
+      "anios": "1966",
+      "mundialesJugados": [1966],
+      "titulos": 0,
+      "anioTitulos": [],
+      "partidos": 6,
+      "goles": 9,
+      "subtitulo": "La Pantera Negra: 9 goles en su único Mundial",
+      "biografia": "Nacido en Mozambique (entonces colonia portuguesa) el 25 de enero de 1942, fallecido el 5 de enero de 2014. Disputó UN solo Mundial (Inglaterra 1966) y anotó 9 goles, llevando a Portugal a un sorprendente tercer puesto en su debut histórico. Su hat-trick en cuartos vs Corea del Norte (5-3 tras ir 0-3) es uno de los más legendarios. Ganó la Bota de Oro y se enfrentó a Pelé como rival a lo largo de los 60s.",
+      "logros": [
+        "Bota de Oro 1966 (9 goles)",
+        "Tercer puesto Mundial 1966 con Portugal en su debut",
+        "Hat-trick en cuartos vs Corea del Norte (5-3 tras ir 0-3)",
+        "Balón de Oro europeo 1965",
+        "9 goles en 6 partidos mundialistas: 1,5 goles/partido"
+      ],
+      "anecdotas": [
+        "Mozambicano de origen, fue 'reclamado' por colonias portuguesas y por Brasil cuando emigró a Lisboa en 1961. Eligió Portugal porque le ofrecieron incorporarse al Benfica.",
+        "En el partido por el tercer puesto (Portugal-URSS) lloró al sustituir el 0-1 al 1-1 con un penal: estaba consciente de que su único Mundial estaba acabando.",
+        "Falleció a los 71 años de un paro cardíaco. Portugal decretó tres días de luto nacional.",
+        "Su estatua se encuentra en la entrada del Estadio da Luz de Lisboa, casa del Benfica del que fue máximo goleador (473 en 440 partidos)."
+      ],
+      "fuentes": [
+        { "nombre": "FIFA Eusébio Tribute", "url": "https://www.fifa.com/about-fifa/news/eusebio-1942-2014" }
+      ]
+    },
+    {
+      "slug": "thomas-muller",
+      "nombre": "Thomas Müller",
+      "nombreCompleto": "Thomas Müller",
+      "seleccion": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" },
+      "posicion": "FWD",
+      "anios": "2010–2022",
+      "mundialesJugados": [2010, 2014, 2018, 2022],
+      "titulos": 1,
+      "anioTitulos": [2014],
+      "partidos": 17,
+      "goles": 10,
+      "subtitulo": "Bota de Oro 2010 con apenas 20 años",
+      "biografia": "Nacido en Weilheim el 13 de septiembre de 1989. Bota de Oro 2010 con 20 años en su Mundial debut. Mejor Jugador Joven 2010. Campeón en 2014. Sus 10 goles le sitúan entre los top goleadores históricos. Especialista en 'Raumdeuter' (interpretador de espacios), una posición posicional única que él mismo definió.",
+      "logros": [
+        "Bota de Oro 2010 (5 goles a los 20 años)",
+        "Mejor Jugador Joven 2010",
+        "Campeón del Mundo 2014",
+        "Cuatro Mundiales (2010, 2014, 2018, 2022)",
+        "10 goles en 17 partidos mundialistas"
+      ],
+      "anecdotas": [
+        "Inventó el término 'Raumdeuter' (interpretador de espacios) para definir su rol híbrido entre delantero y mediapunta.",
+        "Hijo de granjeros, en su contrato con el Bayern Múnich (donde lleva toda su carrera) hay cláusulas que le permiten ausentarse para temporadas de cosecha en la granja familiar.",
+        "Sin parentesco con Gerd Müller pese al apellido. Cuando lo bromean dice 'el otro Müller marcó más, pero yo asisto más'.",
+        "En 2024 fichó por el Vancouver Whitecaps (MLS) a los 35 años, anunciando posible última participación en el Mundial 2026 como veterano."
+      ],
+      "fuentes": [
+        { "nombre": "FIFA Müller Profile", "url": "https://www.fifa.com/players/thomas-muller" }
+      ]
+    },
+    {
+      "slug": "lev-yashin",
+      "nombre": "Lev Yashin",
+      "nombreCompleto": "Lev Ivanovich Yashin",
+      "seleccion": { "pais": "Unión Soviética", "iso2": "ru", "iso3": "RUS" },
+      "posicion": "GK",
+      "anios": "1958–1970",
+      "mundialesJugados": [1958, 1962, 1966, 1970],
+      "titulos": 0,
+      "anioTitulos": [],
+      "partidos": 13,
+      "goles": 0,
+      "subtitulo": "La Araña Negra: único portero Balón de Oro europeo (1963)",
+      "biografia": "Nacido en Moscú el 22 de octubre de 1929, fallecido el 20 de marzo de 1990. Considerado el mejor portero de la historia. ÚNICO portero en ganar un Balón de Oro europeo (1963). Disputó 4 Mundiales. Apodado 'la Araña Negra' por jugar siempre vestido de negro. Inventó el portero moderno (saltar a interceptar centros, comandar la defensa, salir jugando con los pies).",
+      "logros": [
+        "ÚNICO portero Balón de Oro europeo (1963)",
+        "4 Mundiales disputados (1958, 1962, 1966, 1970)",
+        "150 penales atajados a lo largo de su carrera (récord histórico)",
+        "270 vallas invictas en 326 partidos profesionales",
+        "Cuarto puesto Mundial 1966 con URSS"
+      ],
+      "anecdotas": [
+        "Vestía siempre de negro porque su madre le decía que el color le 'protegía la espalda'. La leyenda hizo que se le bautizara 'la Araña Negra'.",
+        "FIFA creó el premio 'Lev Yashin' al mejor portero del Mundial en 1994 en su honor (tras su muerte). En 2010 fue rebautizado como Guante de Oro.",
+        "Disputó las eliminatorias del Mundial 1970 con CINCUENTA años de edad y tubo que pesar de un cáncer de pulmón. Era fumador empedernido.",
+        "Falleció a los 60 años de cáncer de estómago tras múltiples operaciones. La URSS le hizo funeral de Estado."
+      ],
+      "fuentes": [
+        { "nombre": "FIFA Yashin Tribute", "url": "https://www.fifa.com/about-fifa/news/lev-yashin" }
+      ]
+    },
+    {
+      "slug": "gianluigi-buffon",
+      "nombre": "Gianluigi Buffon",
+      "nombreCompleto": "Gianluigi Buffon",
+      "seleccion": { "pais": "Italia", "iso2": "it", "iso3": "ITA" },
+      "posicion": "GK",
+      "anios": "1998–2014",
+      "mundialesJugados": [1998, 2002, 2006, 2010, 2014],
+      "titulos": 1,
+      "anioTitulos": [2006],
+      "partidos": 17,
+      "goles": 0,
+      "subtitulo": "Guante de Oro 2006: solo 2 goles encajados en 7 partidos",
+      "biografia": "Nacido en Carrara el 28 de enero de 1978. Cinco Mundiales disputados, campeón en 2006 con Italia. En aquel torneo solo encajó 2 goles en 7 partidos: un autogol de Zaccardo y el penal de Zidane en la final. Récord absoluto de imbatibilidad en un Mundial campeón. Su Guante de Oro 2006 sigue siendo el más merecido de la historia.",
+      "logros": [
+        "Campeón del Mundo 2006",
+        "Guante de Oro 2006 (2 goles encajados en 7 partidos)",
+        "5 Mundiales disputados (1998-2014)",
+        "Récord italiano de partidos en selección (176)",
+        "Capitán del Italia campeón en 2006"
+      ],
+      "anecdotas": [
+        "Cuando Italia clasificó por última vez con él (2014) tenía 36 años. Italia no clasificó al 2018 ni 2022, dejando a Buffon como uno de los pocos italianos con 5 Mundiales seguidos.",
+        "Buffon se retiró oficialmente del PSG en 2019 a los 41 años, pero volvió al Parma en 2021 y siguió hasta 2023 (con 45 años): el portero profesional más longevo de Italia.",
+        "Se hizo internacional con apenas 19 años. En su segundo partido con la selección (1998), suplió a un Pagliuca lesionado e Italia ganó 1-0.",
+        "En 2017 se quedó sin el Mundial 2018 tras la derrota vs Suecia en repechaje. La imagen llorando con la camiseta italiana es una de las más tristes del fútbol moderno."
+      ],
+      "fuentes": [
+        { "nombre": "FIFA Buffon Profile", "url": "https://www.fifa.com/players/buffon" }
+      ]
+    },
+    {
+      "slug": "fabio-cannavaro",
+      "nombre": "Fabio Cannavaro",
+      "nombreCompleto": "Fabio Cannavaro",
+      "seleccion": { "pais": "Italia", "iso2": "it", "iso3": "ITA" },
+      "posicion": "DEF",
+      "anios": "1998–2010",
+      "mundialesJugados": [1998, 2002, 2006, 2010],
+      "titulos": 1,
+      "anioTitulos": [2006],
+      "partidos": 18,
+      "goles": 2,
+      "subtitulo": "Capitán campeón 2006: último Balón de Oro a un defensor",
+      "biografia": "Nacido en Nápoles el 13 de septiembre de 1973. Capitán de Italia campeón en 2006. Ganó el Balón de Oro europeo 2006 (último para un defensor). Pese a medir solo 1,76 m, fue uno de los mejores defensores del fútbol mundial. Conocido por su salto vertical extraordinario que le permitía ganar duelos aéreos a delanteros mucho más altos.",
+      "logros": [
+        "Campeón del Mundo 2006 (capitán)",
+        "Balón de Oro europeo 2006 (último a un defensor)",
+        "FIFA World Player 2006",
+        "4 Mundiales (1998-2010)",
+        "Levantó el trofeo del Mundial en Berlín pese al cabezazo de Zidane"
+      ],
+      "anecdotas": [
+        "Es nieto de un humilde portero del Hotel Excelsior de Nápoles. Su padre era cocinero, no pudo seguir su sueño futbolístico por circunstancias económicas.",
+        "Ganó el Balón de Oro 2006 con 33 años: es uno de los pocos defensores en obtenerlo. Tras él, FIFA reformuló el premio en 2010 fusionándolo con el FIFA World Player.",
+        "Sufrió cáncer de tiroides en 2014. Tras superarlo se dedicó al entrenamiento profesional, dirigiendo en China y Arabia Saudí.",
+        "Sus duelos aéreos vs Materazzi (2,03 m) en entrenamientos italianos son legendarios: le ganaba el 90% pese a 27 cm menos de altura."
+      ],
+      "fuentes": [
+        { "nombre": "FIFA Cannavaro Profile", "url": "https://www.fifa.com/players/cannavaro" }
+      ]
+    },
+    {
+      "slug": "ronaldinho",
+      "nombre": "Ronaldinho",
+      "nombreCompleto": "Ronaldo de Assis Moreira",
+      "seleccion": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" },
+      "posicion": "MID",
+      "anios": "2002–2010",
+      "mundialesJugados": [2002, 2006, 2010],
+      "titulos": 1,
+      "anioTitulos": [2002],
+      "partidos": 11,
+      "goles": 2,
+      "subtitulo": "El gol vaselina a Seaman desde 35 metros (2002)",
+      "biografia": "Nacido en Porto Alegre el 21 de marzo de 1980. Campeón en 2002 con apenas 22 años, anotó el inolvidable gol vaselina a David Seaman desde 35 metros en cuartos vs Inglaterra. Forma parte de 'Las Tres R' brasileñas (Ronaldo, Rivaldo, Ronaldinho) que dominaron Corea-Japón 2002. Aunque solo disputó 3 Mundiales y marcó 2 goles, su impacto cultural y técnico es enorme.",
+      "logros": [
+        "Campeón del Mundo 2002",
+        "FIFA World Player 2004 y 2005",
+        "Balón de Oro europeo 2005",
+        "Gol legendario a Inglaterra (2002): vaselina desde 35m",
+        "Parte de 'Las Tres R' brasileñas (Ronaldo, Rivaldo, Ronaldinho)"
+      ],
+      "anecdotas": [
+        "Su gol a Inglaterra (2002) fue durante años motivo de debate: ¿fue intencional o centro fallido? En 2017 Ronaldinho admitió: 'Quería marcar, pero también quería darle a Rivaldo. Salió como tiro'.",
+        "Anunció su retirada en 2018 a los 38 años. Su hermano Roberto Assis fue su agente toda la carrera y todavía maneja sus negocios.",
+        "Pasó 6 meses en una cárcel paraguaya en 2020 por entrar al país con un pasaporte falso. La causa fue por la apertura de un casino vinculado a empresarios brasileños fraudulentos.",
+        "Su sonrisa permanente y dientes prominentes son tan icónicos como su talento. Nunca usó braquets pese a recomendaciones de FIFA para 'mejorar imagen'."
+      ],
+      "fuentes": [
+        { "nombre": "FIFA Ronaldinho Profile", "url": "https://www.fifa.com/players/ronaldinho" }
+      ]
+    },
+    {
+      "slug": "andres-iniesta",
+      "nombre": "Andrés Iniesta",
+      "nombreCompleto": "Andrés Iniesta Luján",
+      "seleccion": { "pais": "España", "iso2": "es", "iso3": "ESP" },
+      "posicion": "MID",
+      "anios": "2006–2018",
+      "mundialesJugados": [2006, 2010, 2014, 2018],
+      "titulos": 1,
+      "anioTitulos": [2010],
+      "partidos": 16,
+      "goles": 2,
+      "subtitulo": "El gol del título: minuto 116 vs Países Bajos",
+      "biografia": "Nacido en Fuentealbilla el 11 de mayo de 1984. Anotó EL gol más importante de la historia del fútbol español: el 1-0 al 116' de la final 2010 vs Países Bajos. Tras anotar levantó la camiseta dejando ver una camiseta interior con el mensaje 'Dani Jarque siempre con nosotros' en homenaje a su amigo y capitán del Espanyol fallecido en 2009. Recibió tarjeta amarilla por la celebración.",
+      "logros": [
+        "Campeón del Mundo 2010 (autor del gol del título)",
+        "4 Mundiales (2006-2018)",
+        "Capitán del FC Barcelona 2015-2018",
+        "Considerado el mejor mediocampista español de la historia",
+        "Mejor Jugador del Mundial 2010 según muchos análisis post-partido"
+      ],
+      "anecdotas": [
+        "Su mensaje 'Dani Jarque siempre con nosotros' fue improvisado: lo había llevado a varios partidos antes pero nunca lo había mostrado. Aquel sería el único.",
+        "Sufrió depresión severa entre 2009 y 2010 tras la muerte de Dani Jarque y la lesión que le mantuvo fuera 6 meses. El Mundial fue su redención psicológica.",
+        "Conoció a su esposa Anna Ortiz en una boda en Albacete cuando ambos tenían 18 años. Han estado juntos desde entonces.",
+        "Tras retirarse en 2024 a los 40 años, abrió una bodega de vinos con su nombre en Albacete: 'Bodega Iniesta'. Es ahora una de las principales del país."
+      ],
+      "fuentes": [
+        { "nombre": "FIFA Iniesta Profile", "url": "https://www.fifa.com/players/iniesta" }
+      ]
+    },
+    {
+      "slug": "xavi-hernandez",
+      "nombre": "Xavi Hernández",
+      "nombreCompleto": "Xavier Hernández Creus",
+      "seleccion": { "pais": "España", "iso2": "es", "iso3": "ESP" },
+      "posicion": "MID",
+      "anios": "2002–2014",
+      "mundialesJugados": [2002, 2006, 2010, 2014],
+      "titulos": 1,
+      "anioTitulos": [2010],
+      "partidos": 14,
+      "goles": 2,
+      "subtitulo": "El cerebro del tiki-taka campeón 2010",
+      "biografia": "Nacido en Terrassa el 25 de enero de 1980. Cerebro de la España campeona 2010 y del Barcelona del Pep Guardiola que dominó Europa. Récord absoluto de pases por partido (más de 100 pases con 95% de acierto era habitual). Campeón europeo 2008 y 2012, campeón del Mundo 2010. Jugó 4 Mundiales, alcanzando solo el éxito en Sudáfrica.",
+      "logros": [
+        "Campeón del Mundo 2010",
+        "Bicampeón europeo (2008, 2012)",
+        "8 Ligas españolas con el FC Barcelona",
+        "4 Champions League",
+        "Récord español de internacionalidades (133, hasta Sergio Ramos)"
+      ],
+      "anecdotas": [
+        "En el partido inaugural España-Suiza 2010 (perdido 0-1), Xavi tenía un 100% de acierto en pases hasta el descanso. Ganaba el balón pero España no marcaba: 'la frustración del fútbol total'.",
+        "Tras retirarse jugó 4 años en Catar (Al Sadd). Llegó a Catar antes que el Mundial 2022, cuando aún se cuestionaba la sede. Su presencia legitimó el proyecto qatarí.",
+        "Es el único futbolista en alcanzar 1.000 pases acertados en un único partido de selección (vs Australia, 2010). El récord se mantiene como dato curioso.",
+        "Tras dirigir al Barcelona 2021-2024, anunció que se dedicaría a documentales de fútbol. Su primera producción es 'El cerebro del juego' (2025)."
+      ],
+      "fuentes": [
+        { "nombre": "FIFA Xavi Profile", "url": "https://www.fifa.com/players/xavi" }
+      ]
+    },
+    {
+      "slug": "luka-modric",
+      "nombre": "Luka Modrić",
+      "nombreCompleto": "Luka Modrić",
+      "seleccion": { "pais": "Croacia", "iso2": "hr", "iso3": "HRV" },
+      "posicion": "MID",
+      "anios": "2006–2022",
+      "mundialesJugados": [2006, 2014, 2018, 2022],
+      "titulos": 0,
+      "anioTitulos": [],
+      "partidos": 19,
+      "goles": 2,
+      "subtitulo": "Balón de Oro Mundial 2018 (subcampeón)",
+      "biografia": "Nacido en Zadar el 9 de septiembre de 1985. Su infancia fue marcada por la guerra de los Balcanes: su abuelo fue ejecutado por soldados serbios cuando él tenía 6 años y vivió en un hotel de refugiados. Pese a esto, se convirtió en uno de los mejores mediocampistas de la historia. Balón de Oro Mundial 2018 (subcampeón). Balón de Oro europeo 2018 (rompiendo el monopolio Messi-Cristiano de 10 años seguidos).",
+      "logros": [
+        "Balón de Oro Mundial 2018",
+        "Balón de Oro europeo 2018 (rompió 10 años Messi-Cristiano)",
+        "Subcampeón del Mundo 2018",
+        "Tercer puesto Mundial 2022",
+        "5 Champions League con el Real Madrid"
+      ],
+      "anecdotas": [
+        "Su abuelo Luka Modrić (homónimo) fue ejecutado en 1991 por la guerra. Luka tenía 6 años y vivía en un hotel de refugiados en Zadar mientras Croacia se independizaba.",
+        "El Tottenham lo fichó en 2008 por 16,5 millones de libras. En 2012 lo vendió al Real Madrid por 30M€. En el Madrid jugó 12 años y ganó 6 Champions.",
+        "El Mundial 2018 lo jugó casi sin descanso: tres prórrogas en KO + dos tandas de penales. Disputó 590 minutos en KO, récord absoluto de minutos en fase eliminatoria.",
+        "En 2024 con 39 años renovó su contrato del Real Madrid: el mediocampista más longevo del club en la era moderna."
+      ],
+      "fuentes": [
+        { "nombre": "FIFA Modrić Profile", "url": "https://www.fifa.com/players/modric" }
+      ]
+    },
+    {
+      "slug": "salvatore-schillaci",
+      "nombre": "Salvatore Schillaci",
+      "nombreCompleto": "Salvatore Schillaci",
+      "seleccion": { "pais": "Italia", "iso2": "it", "iso3": "ITA" },
+      "posicion": "FWD",
+      "anios": "1990",
+      "mundialesJugados": [1990],
+      "titulos": 0,
+      "anioTitulos": [],
+      "partidos": 7,
+      "goles": 6,
+      "subtitulo": "Notti Magiche: del banco al héroe nacional",
+      "biografia": "Nacido en Palermo el 1 de diciembre de 1964, fallecido el 18 de septiembre de 2024. Disputó UN solo Mundial (Italia 1990) y se convirtió en héroe nacional. Empezó como suplente y terminó con Bota+Balón de Oro pese al tercer puesto italiano. Sus 6 goles incluyeron uno vs Argentina en semifinales (Italia perdió por penales). El himno 'Notti Magiche' (Edoardo Bennato + Gianna Nannini) le bautizó como icono cultural.",
+      "logros": [
+        "Bota de Oro Mundial 1990 (6 goles)",
+        "Balón de Oro Mundial 1990",
+        "Tercer puesto con Italia (1990)",
+        "Goleó en el partido por el tercer puesto vs Inglaterra",
+        "Único caso italiano: Balón Oro + Bota Oro en mismo torneo"
+      ],
+      "anecdotas": [
+        "Empezó el Mundial como suplente (Vialli era titular). Vicini lo metió en el segundo partido vs Austria y marcó al minuto 78. A partir de ahí, titular indiscutido.",
+        "Su mirada de ojos brillantes (resultado de su tiroides hiperactiva) se convirtió en marca registrada. La prensa italiana lo bautizó 'Totò degli occhi spiritati' (Totó de los ojos posesos).",
+        "Tras Italia 1990 nunca volvió a ser convocado: jugó 16 partidos con la Azzurra, todos en 1990. Solo Mateu Alemany (2026) tendrá un caso similar de ser convocado solo para un torneo.",
+        "Falleció el 18 de septiembre de 2024 a los 59 años de cáncer de colon. Italia decretó luto nacional."
+      ],
+      "fuentes": [
+        { "nombre": "FIFA Schillaci Tribute", "url": "https://www.fifa.com/about-fifa/news/schillaci-1964-2024" }
+      ]
+    },
+    {
+      "slug": "gordon-banks",
+      "nombre": "Gordon Banks",
+      "nombreCompleto": "Gordon Banks",
+      "seleccion": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG" },
+      "posicion": "GK",
+      "anios": "1966–1970",
+      "mundialesJugados": [1966, 1970],
+      "titulos": 1,
+      "anioTitulos": [1966],
+      "partidos": 10,
+      "goles": 0,
+      "subtitulo": "El Banks-azo: la mejor parada de la historia",
+      "biografia": "Nacido en Sheffield el 30 de diciembre de 1937, fallecido el 12 de febrero de 2019. Campeón con Inglaterra 1966 (sin encajar gol en cuartos vs Argentina). En México 1970 protagonizó la 'parada del siglo': salvó un cabezazo a quemarropa de Pelé en Inglaterra-Brasil de fase de grupos. La parada es considerada la mejor de la historia mundialista por la combinación de reflejo, posición y elasticidad.",
+      "logros": [
+        "Campeón del Mundo 1966 con Inglaterra",
+        "FIFA Goalkeeper of the Year (creado posteriormente, ganado 6 veces)",
+        "Considerado uno de los 10 mejores porteros de la historia",
+        "73 partidos con la selección inglesa",
+        "Líder de imbatibilidad Mundial 1966 (3 goles encajados en 6 partidos)"
+      ],
+      "anecdotas": [
+        "El 'Banks-azo' del Mundial 1970 fue tras un cabezazo letal de Pelé. La pelota iba dirigida al ángulo derecho a 1m del suelo. Banks saltó desde el palo izquierdo y la sacó con la palma. Pelé dijo: 'Yo grité gol. Banks respondió'.",
+        "Perdió el ojo derecho en un accidente de tráfico en 1972, dos años después de su 'parada del siglo'. Volvió a jugar en EE.UU. (NASL) con un ojo, hecho único en el fútbol profesional moderno.",
+        "Falleció a los 81 años de cáncer de hígado. Pelé asistió a su funeral en Sheffield: 'Era mi rival más respetado en el campo'.",
+        "Su parada vs Pelé es la única jugada futbolística que tiene su propia entrada en Wikipedia: 'Banks' save from Pelé'."
+      ],
+      "fuentes": [
+        { "nombre": "FIFA Banks Tribute", "url": "https://www.fifa.com/about-fifa/news/gordon-banks-1937-2019" }
+      ]
+    }
+  ]
+}

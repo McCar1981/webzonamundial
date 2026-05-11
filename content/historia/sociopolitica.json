@@ -1,0 +1,156 @@
+{
+  "eventos": [
+    {
+      "anio": 1934,
+      "edicionSlug": "1934-italia",
+      "categoria": "propaganda",
+      "titulo": "Mundial fascista de Mussolini",
+      "subtitulo": "El primer Mundial usado como propaganda política",
+      "descripcion": "Italia 1934 fue el primer Mundial usado deliberadamente como escaparate político por una dictadura. Mussolini diseñó el torneo como continuación propagandística del fascismo. La prensa italiana lo bautizó 'la Coppa del Duce'. El árbitro sueco Ivan Eklind cenó con Mussolini la noche previa a la semifinal Italia-Austria. Italia naturalizó a 4 jugadores argentinos ('oriundos') con la complicidad del régimen, modificando la ley de ciudadanía para acelerar las naturalizaciones."
+    },
+    {
+      "anio": 1938,
+      "edicionSlug": "1938-francia",
+      "categoria": "guerra",
+      "titulo": "Anschluss: Austria expulsada del Mundial",
+      "subtitulo": "El nacismo elimina a una selección entera",
+      "descripcion": "Tras la anexión nazi de Austria (Anschluss, marzo 1938), Austria — clasificada para Francia 38 — fue obligada a retirarse del torneo. Varios de sus jugadores acabaron en la selección alemana. Fue la primera vez en la historia que una selección clasificada se retira por geopolítica. La Coppa Jules Rimet sería escondida durante WWII en una caja de zapatos bajo la cama del italiano Ottorino Barassi."
+    },
+    {
+      "anio": 1942,
+      "edicionSlug": null,
+      "categoria": "guerra",
+      "titulo": "Mundial 1942 cancelado",
+      "subtitulo": "Hitler quería organizarlo en Berlín",
+      "descripcion": "Adolf Hitler había planificado el Mundial 1942 en Berlín como continuación propagandística de los Juegos Olímpicos 1936. La invasión de Polonia (1 sept 1939) hizo imposible cualquier organización deportiva. Brasil había hecho candidatura formal alternativa. FIFA aplazó la designación de sede en 1939. Tras la guerra, esperaron 12 años para la siguiente edición (Brasil 1950)."
+    },
+    {
+      "anio": 1946,
+      "edicionSlug": null,
+      "categoria": "guerra",
+      "titulo": "Mundial 1946 cancelado",
+      "subtitulo": "Reconstrucción post-WWII",
+      "descripcion": "Tras la rendición japonesa (sept 1945), FIFA consideró organizar el Mundial 1946 pero Europa estaba devastada. Se decidió esperar y otorgar la sede a Brasil para 1950. Brasil, no afectado por bombardeos, fue elegido sede del primer Mundial post-guerra. La construcción del Maracaná fue la mayor obra civil sudamericana de los años 40."
+    },
+    {
+      "anio": 1950,
+      "edicionSlug": "1950-brasil",
+      "categoria": "boicot",
+      "titulo": "India rechaza el Mundial por jugar descalza",
+      "subtitulo": "FIFA prohíbe descalzos, India se va",
+      "descripcion": "India se clasificó al Mundial 1950 pero rechazó participar porque FIFA había prohibido jugar descalzos (la India de la época jugaba siempre sin botas). El equipo lo consideró una falta de respeto a su tradición y declinó. Nunca volverían a clasificarse a un Mundial. Es el caso más curioso de boicot por motivos no políticos."
+    },
+    {
+      "anio": 1962,
+      "edicionSlug": "1962-chile",
+      "categoria": "tragedia",
+      "titulo": "Mundial post-terremoto Valdivia 9.5",
+      "subtitulo": "El sismo más fuerte de la historia",
+      "descripcion": "Chile organizó el Mundial 1962 dos años después del terremoto de Valdivia (mayo 1960, magnitud 9.5 — sigue siendo el sismo más fuerte registrado en la historia). Carlos Dittborn, presidente del comité organizador, pronunció la frase histórica 'porque no tenemos nada, queremos hacerlo todo'. Falleció apenas un mes antes del Mundial. Una sede recibió su nombre en homenaje."
+    },
+    {
+      "anio": 1966,
+      "edicionSlug": "1966-inglaterra",
+      "categoria": "boicot",
+      "titulo": "Boicot total de África al Mundial",
+      "subtitulo": "15 federaciones africanas se retiran",
+      "descripcion": "FIFA otorgaba apenas 1 plaza al continente africano (compartida con Asia y Oceanía: 0,33). Las 15 federaciones africanas afiliadas a CAF se retiraron en bloque del Mundial inglés en protesta. Tras esta crisis, FIFA cedió y desde 1970 África tendría plaza directa garantizada. El boicot acelera la descolonización futbolística mundial."
+    },
+    {
+      "anio": 1970,
+      "edicionSlug": "1970-mexico",
+      "categoria": "guerra",
+      "titulo": "Guerra del Fútbol Honduras-El Salvador",
+      "subtitulo": "Una guerra real desencadenada por las eliminatorias",
+      "descripcion": "Las eliminatorias para el Mundial 1970 entre Honduras y El Salvador (junio-julio 1969) coincidieron con tensiones migratorias y desencadenaron una guerra real conocida como 'Guerra del Fútbol' o 'Guerra de las 100 horas'. Murieron miles de personas. Es el caso más grave en que un Mundial está vinculado a un conflicto bélico real."
+    },
+    {
+      "anio": 1974,
+      "edicionSlug": "1974-alemania",
+      "categoria": "politica",
+      "titulo": "Único cruce RDA-RFA en un Mundial",
+      "subtitulo": "Las dos Alemanias se enfrentan",
+      "descripcion": "RDA 1-0 RFA en fase de grupos: el ÚNICO cruce de las dos Alemanias en un Mundial. Alemania Federal acabó campeona pese a perder ante su 'hermano' comunista. La RDA jugó solo este Mundial: en 1990 se reunificaron las dos Alemanias y la RDA dejó de existir como selección. La camiseta del partido es objeto de coleccionismo arqueológico-político."
+    },
+    {
+      "anio": 1974,
+      "edicionSlug": "1974-alemania",
+      "categoria": "dictadura",
+      "titulo": "Chile clasifica con partido fantasma",
+      "subtitulo": "URSS rehúsa jugar en estadio post-Pinochet",
+      "descripcion": "Chile clasificó al Mundial 1974 tras un repechaje absurdo: la URSS rehusó jugar la vuelta en el Estadio Nacional de Santiago tras saber que había sido usado como centro de detención y tortura post-golpe de Pinochet (sept 1973). Chile sacó del centro y empujó la pelota a portería vacía: 1-0 oficial. Clasificación absurda pero válida en libros FIFA."
+    },
+    {
+      "anio": 1978,
+      "edicionSlug": "1978-argentina",
+      "categoria": "dictadura",
+      "titulo": "Mundial bajo dictadura Videla",
+      "subtitulo": "ESMA a 300 metros del Estadio Monumental",
+      "descripcion": "Mundial bajo dictadura militar argentina con la ESMA (centro clandestino de detención y tortura) a apenas 300 metros del Estadio Monumental donde se jugó la final. Argentina ganó pero el contexto político ensombreció el título. La 'lluvia de papelitos' del Monumental fue contraste irónico de la represión que ocurría a metros del estadio. Las Madres de Plaza de Mayo iniciaron sus marchas durante el Mundial."
+    },
+    {
+      "anio": 1982,
+      "edicionSlug": "1982-espana",
+      "categoria": "guerra",
+      "titulo": "Malvinas + Mundial",
+      "subtitulo": "Argentina jugó Mundial días después de la guerra",
+      "descripcion": "La Guerra de las Malvinas terminó el 14 de junio de 1982. Argentina debutó en el Mundial el 15 de junio de 1982: UN día después. Los jugadores argentinos llegaron al torneo con cuestionamientos políticos y morales. Argentina fue eliminada en segunda fase tras hat-trick de Rossi vs Brasil. La derrota deportiva sumó al trauma nacional post-bélico."
+    },
+    {
+      "anio": 1990,
+      "edicionSlug": "1990-italia",
+      "categoria": "politica",
+      "titulo": "Última vez de URSS, RFA, Yugoslavia y Checoslovaquia",
+      "subtitulo": "El último Mundial del bloque socialista",
+      "descripcion": "Italia 1990 fue la última vez que jugaron URSS, Alemania Federal, Yugoslavia y Checoslovaquia. En el siguiente Mundial (1994), las cuatro habrían dejado de existir como tales: la URSS se disolvió en 1991, las dos Alemanias se reunificaron en 1990, Yugoslavia se desintegró en 1991-92 y Checoslovaquia se separó en 1993. El deporte registró la caída del bloque socialista."
+    },
+    {
+      "anio": 2002,
+      "edicionSlug": "2002-corea-japon",
+      "categoria": "diplomacia",
+      "titulo": "Co-organización Corea del Sur + Japón",
+      "subtitulo": "Dos países con tensiones históricas",
+      "descripcion": "Primera vez que un Mundial es co-organizado. Corea del Sur y Japón aún tenían tensiones históricas no resueltas (período colonial 1910-1945). FIFA forzó la cooperación como ejercicio diplomático. La diplomacia deportiva tuvo éxito relativo: Corea llegó al 4° puesto, Japón a octavos. Las relaciones entre ambos países mejoraron notablemente tras el Mundial."
+    },
+    {
+      "anio": 2018,
+      "edicionSlug": "2018-rusia",
+      "categoria": "protesta",
+      "titulo": "Pussy Riot interrumpe la final",
+      "subtitulo": "Protesta política durante la transmisión global",
+      "descripcion": "En la final FRA-CRO al minuto 52, cuatro mujeres del colectivo activista Pussy Riot invadieron el campo del Luzhnikí (Moscú) vestidas como policías. Protestaban por presos políticos en Rusia. La transmisión global mostró el incidente durante 2 minutos. Tras la invasión rusa de Ucrania (2022), las miembros de Pussy Riot huyeron de Rusia."
+    },
+    {
+      "anio": 2018,
+      "edicionSlug": "2018-rusia",
+      "categoria": "politica",
+      "titulo": "Mundial bajo Putin pre-Ucrania",
+      "subtitulo": "Diplomacia deportiva pre-invasión",
+      "descripcion": "Rusia organizó su primer Mundial 4 años antes de la invasión de Ucrania (2022). Putin recibió a Macron y otros líderes en la final. La 'diplomacia del fútbol' fue criticada por activistas por ignorar la anexión de Crimea (2014). En 2022 FIFA expulsó a Rusia de eliminatorias para el Mundial 2026 tras la invasión completa."
+    },
+    {
+      "anio": 2022,
+      "edicionSlug": "2022-qatar",
+      "categoria": "ddhh",
+      "titulo": "Mundial bajo escrutinio por DDHH",
+      "subtitulo": "Trabajadores migrantes muertos",
+      "descripcion": "Catar 2022 fue el Mundial más cuestionado de la historia por organizaciones de derechos humanos. Catar admitió 400-500 muertes de trabajadores migrantes durante la construcción; HRW estima 6.500 desde 2010. Las condiciones laborales (kafala) fueron denunciadas como esclavitud moderna. FIFA defendió el Mundial argumentando que 'transformaría' la región."
+    },
+    {
+      "anio": 2022,
+      "edicionSlug": "2022-qatar",
+      "categoria": "lgtb",
+      "titulo": "Brazaletes 'OneLove' prohibidos",
+      "subtitulo": "Censura del activismo LGTBQ+",
+      "descripcion": "FIFA prohibió los brazaletes 'OneLove' (pro-diversidad) bajo amenaza de tarjeta amarilla. Inglaterra, Alemania, Países Bajos y otros que pensaban llevarlo retiraron la idea. Los jugadores alemanes se taparon la boca en la foto previa al partido inaugural en señal de protesta silenciosa. Catar criminaliza la homosexualidad: contexto que FIFA aceptó al otorgar la sede en 2010."
+    },
+    {
+      "anio": 2022,
+      "edicionSlug": "2022-qatar",
+      "categoria": "protesta",
+      "titulo": "Irán: 11 titulares en silencio",
+      "subtitulo": "Por Mahsa Amini durante el himno",
+      "descripcion": "Los 11 titulares iraníes permanecieron en silencio durante el himno nacional en su debut Mundial 2022. Era una protesta silenciosa contra el régimen tras la muerte de Mahsa Amini bajo custodia de la 'policía moralidad' iraní (sept 2022). FIFA no sancionó: gesto histórico de protesta política dentro del deporte."
+    }
+  ]
+}

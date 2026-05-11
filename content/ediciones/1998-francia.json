@@ -1,0 +1,163 @@
+{
+  "meta": {
+    "edicion": 16,
+    "anio": 1998,
+    "slug": "1998-francia",
+    "tituloOficial": "Copa Mundial de Fútbol 1998",
+    "nombreCorto": "Francia 1998",
+    "era": "global"
+  },
+  "sede": {
+    "paises": [
+      { "nombre": "Francia", "iso2": "fr", "iso3": "FRA", "banderaUrl": "https://flagcdn.com/w160/fr.png" }
+    ],
+    "ciudades": ["Saint-Denis", "París", "Marsella", "Lyon", "Lens", "Burdeos", "Nantes", "Toulouse", "Saint-Étienne", "Montpellier"],
+    "estadios": ["Stade de France", "Parc des Princes", "Stade Vélodrome", "Stade Gerland", "Stade Bollaert"]
+  },
+  "fechas": { "inicio": "1998-06-10", "final": "1998-07-12", "duracionDias": 33 },
+  "formato": {
+    "numEquipos": 32,
+    "numPartidos": 64,
+    "sistemaEliminatoria": "octavos",
+    "numGrupos": 8
+  },
+  "resultados": {
+    "campeon": { "pais": "Francia", "iso2": "fr", "iso3": "FRA", "banderaUrl": "https://flagcdn.com/w160/fr.png" },
+    "subcampeon": { "pais": "Brasil", "iso2": "br", "iso3": "BRA", "banderaUrl": "https://flagcdn.com/w160/br.png" },
+    "tercero": { "pais": "Croacia", "iso2": "hr", "iso3": "HRV", "banderaUrl": "https://flagcdn.com/w160/hr.png" },
+    "cuarto": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD", "banderaUrl": "https://flagcdn.com/w160/nl.png" }
+  },
+  "estadisticas": {
+    "totalGoles": 171,
+    "promedioGolesPartido": 2.67,
+    "asistenciaTotal": 2785100,
+    "asistenciaPromedio": 43517
+  },
+  "identidadVisual": {
+    "eslogan": "Footix, le coq",
+    "mascota": "Footix",
+    "balon": "Tricolore",
+    "colorPrincipal": "#0055A4"
+  },
+  "partidoFinal": {
+    "fecha": "1998-07-12",
+    "ciudad": "Saint-Denis",
+    "estadio": "Stade de France",
+    "local": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" },
+    "visitante": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" },
+    "marcador": "3-0",
+    "asistencia": 75000,
+    "arbitro": "Said Belqola (Marruecos)",
+    "goleadores": [
+      { "jugador": "Zinedine Zidane", "minuto": "27'", "tipo": "cabeza" },
+      { "jugador": "Zinedine Zidane", "minuto": "45+1'", "tipo": "cabeza" },
+      { "jugador": "Emmanuel Petit", "minuto": "90+3'" }
+    ]
+  },
+  "topGoleadores": [
+    {
+      "nombre": "Davor Šuker",
+      "seleccion": { "pais": "Croacia", "iso2": "hr", "iso3": "HRV" },
+      "goles": 6,
+      "botaOro": true
+    },
+    {
+      "nombre": "Gabriel Batistuta",
+      "seleccion": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" },
+      "goles": 5
+    },
+    {
+      "nombre": "Christian Vieri",
+      "seleccion": { "pais": "Italia", "iso2": "it", "iso3": "ITA" },
+      "goles": 5
+    }
+  ],
+  "premios": {
+    "balonOro": "Ronaldo (Brasil)"
+  },
+  "contextoHistorico": {
+    "resumen": "Primer Mundial con 32 equipos. Inauguración del Stade de France, construido específicamente para el torneo. Francia conquistó su primer título con Zinedine Zidane autor de doblete de cabeza en la final ante Brasil. Croacia debutó en un Mundial con un sorprendente tercer puesto. Misteriosa convulsión de Ronaldo horas antes de la final, cuyas circunstancias siguen siendo objeto de teorías.",
+    "eventos": [
+      "Laurent Blanc anota el primer gol de oro (golden goal) de la historia del Mundial en octavos vs Paraguay.",
+      "David Beckham expulsado por patear a Diego Simeone en octavos: Inglaterra eliminada por Argentina por penales.",
+      "Dennis Bergkamp anota gol icónico vs Argentina en cuartos tras pase larguísimo de Frank de Boer."
+    ]
+  },
+  "plantillaCampeon": [
+    { "dorsal": 16, "nombre": "Fabien Barthez", "posicion": "GK", "clubOrigen": "Mónaco", "edad": 27 },
+    { "dorsal": 15, "nombre": "Lilian Thuram", "posicion": "DEF", "clubOrigen": "Parma", "edad": 26, "goles": 2 },
+    { "dorsal": 18, "nombre": "Frank Lebœuf", "posicion": "DEF", "clubOrigen": "Chelsea", "edad": 30 },
+    { "dorsal": 8, "nombre": "Marcel Desailly", "posicion": "DEF", "clubOrigen": "Milan", "edad": 29 },
+    { "dorsal": 3, "nombre": "Bixente Lizarazu", "posicion": "DEF", "clubOrigen": "Bayern Múnich", "edad": 28 },
+    { "dorsal": 7, "nombre": "Didier Deschamps", "posicion": "MID", "clubOrigen": "Juventus", "edad": 29, "capitan": true },
+    { "dorsal": 4, "nombre": "Patrick Vieira", "posicion": "MID", "clubOrigen": "Arsenal", "edad": 22 },
+    { "dorsal": 17, "nombre": "Emmanuel Petit", "posicion": "MID", "clubOrigen": "Arsenal", "edad": 27, "goles": 1 },
+    { "dorsal": 14, "nombre": "Christian Karembeu", "posicion": "MID", "clubOrigen": "Real Madrid", "edad": 27 },
+    { "dorsal": 10, "nombre": "Zinedine Zidane", "posicion": "MID", "clubOrigen": "Juventus", "edad": 26, "goles": 2 },
+    { "dorsal": 9, "nombre": "Stéphane Guivarc'h", "posicion": "FWD", "clubOrigen": "Auxerre", "edad": 27 },
+    { "dorsal": 21, "nombre": "Christophe Dugarry", "posicion": "FWD", "clubOrigen": "Marsella", "edad": 26, "goles": 1 },
+    { "dorsal": 12, "nombre": "Thierry Henry", "posicion": "FWD", "clubOrigen": "Mónaco", "edad": 20, "goles": 3 }
+  ],
+  "fasesKO": {
+    "octavos": [
+      { "fecha": "1998-06-27", "ciudad": "Marsella", "estadio": "Stade Vélodrome", "local": { "pais": "Italia", "iso2": "it", "iso3": "ITA" }, "visitante": { "pais": "Noruega", "iso2": "no", "iso3": "NOR" }, "marcador": "1-0" },
+      { "fecha": "1998-06-27", "ciudad": "París", "estadio": "Parc des Princes", "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "visitante": { "pais": "Chile", "iso2": "cl", "iso3": "CHL" }, "marcador": "4-1" },
+      { "fecha": "1998-06-28", "ciudad": "Lens", "estadio": "Bollaert", "local": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" }, "visitante": { "pais": "Paraguay", "iso2": "py", "iso3": "PRY" }, "marcador": "1-0 (gol de oro)" },
+      { "fecha": "1998-06-28", "ciudad": "Saint-Denis", "estadio": "Stade de France", "local": { "pais": "Nigeria", "iso2": "ng", "iso3": "NGA" }, "visitante": { "pais": "Dinamarca", "iso2": "dk", "iso3": "DNK" }, "marcador": "1-4" },
+      { "fecha": "1998-06-29", "ciudad": "Toulouse", "estadio": "Stadium", "local": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD" }, "visitante": { "pais": "Yugoslavia", "iso2": "rs", "iso3": "SRB" }, "marcador": "2-1" },
+      { "fecha": "1998-06-29", "ciudad": "Saint-Étienne", "estadio": "Geoffroy-Guichard", "local": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "visitante": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG" }, "marcador": "2-2 (penales 4-3)" },
+      { "fecha": "1998-06-30", "ciudad": "Burdeos", "estadio": "Parc Lescure", "local": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" }, "visitante": { "pais": "México", "iso2": "mx", "iso3": "MEX" }, "marcador": "2-1" },
+      { "fecha": "1998-06-30", "ciudad": "Montpellier", "estadio": "La Mosson", "local": { "pais": "Croacia", "iso2": "hr", "iso3": "HRV" }, "visitante": { "pais": "Rumania", "iso2": "ro", "iso3": "ROU" }, "marcador": "1-0" }
+    ],
+    "cuartos": [
+      { "fecha": "1998-07-03", "ciudad": "Nantes", "estadio": "Beaujoire", "local": { "pais": "Italia", "iso2": "it", "iso3": "ITA" }, "visitante": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" }, "marcador": "0-0 (penales 3-4)" },
+      { "fecha": "1998-07-03", "ciudad": "Marsella", "estadio": "Stade Vélodrome", "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "visitante": { "pais": "Dinamarca", "iso2": "dk", "iso3": "DNK" }, "marcador": "3-2" },
+      { "fecha": "1998-07-04", "ciudad": "Lyon", "estadio": "Stade Gerland", "local": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD" }, "visitante": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "marcador": "2-1" },
+      { "fecha": "1998-07-04", "ciudad": "Lens", "estadio": "Bollaert", "local": { "pais": "Croacia", "iso2": "hr", "iso3": "HRV" }, "visitante": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" }, "marcador": "3-0" }
+    ],
+    "semifinales": [
+      { "fecha": "1998-07-07", "ciudad": "Marsella", "estadio": "Stade Vélodrome", "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "visitante": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD" }, "marcador": "1-1 (penales 4-2)" },
+      { "fecha": "1998-07-08", "ciudad": "Saint-Denis", "estadio": "Stade de France", "local": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" }, "visitante": { "pais": "Croacia", "iso2": "hr", "iso3": "HRV" }, "marcador": "2-1" }
+    ]
+  },
+  "hatTricks": [
+    { "jugador": "Gabriel Batistuta", "seleccion": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "fase": "Grupos", "rival": { "pais": "Jamaica", "iso2": "jm", "iso3": "JAM" }, "goles": 3, "marcador": "5-0" }
+  ],
+  "recordsEdicion": [
+    { "categoria": "tactica", "descripcion": "Primer Mundial con 32 selecciones (antes 24): formato vigente hasta 2022", "valor": "32 equipos" },
+    { "categoria": "tactica", "descripcion": "Laurent Blanc anota el primer 'Gol de Oro' (golden goal) de la historia mundialista vs Paraguay en octavos", "valor": "Gol de Oro #1" },
+    { "categoria": "estadio", "descripcion": "Stade de France inaugurado específicamente para el Mundial: hoy estadio nacional francés", "valor": "Estadio nuevo" },
+    { "categoria": "arbitro", "descripcion": "Said Belqola: primer árbitro africano (Marruecos) en dirigir una final mundialista", "valor": "Árbitro CAF #1" },
+    { "categoria": "jugador", "descripcion": "David Beckham expulsado por patear a Diego Simeone en octavos: foto icónica de la juventud futbolística inglesa de los 90", "valor": "Roja Beckham" }
+  ],
+  "curiosidades": [
+    {
+      "categoria": "arbitro",
+      "texto": "Said Belqola fue el primer árbitro africano (marroquí) en dirigir una final de Mundial. Falleció prematuramente de cáncer en 2002 a los 45 años."
+    },
+    {
+      "categoria": "balon",
+      "texto": "El Adidas Tricolore fue el primer balón mundialista multicolor (azul, blanco y rojo, los colores de Francia). Marcó el fin de la estética blanca con paneles negros heredada del Telstar 1970."
+    },
+    {
+      "categoria": "tragedia",
+      "texto": "Misteriosa convulsión de Ronaldo horas antes de la final 1998. La alineación inicial de Brasil se anunció sin él; minutos después, fue restituido. Las circunstancias exactas siguen sin esclarecerse: hipótesis incluyen sobredosis de calmantes, presión psicológica y conspiración de Nike (patrocinador)."
+    },
+    {
+      "categoria": "jugador",
+      "texto": "Croacia, en su primera participación como nación independiente, alcanzó un sorprendente tercer puesto. Davor Šuker se llevó la Bota de Oro con 6 goles. La camiseta a cuadros rojos y blancos se convertiría en una de las más reconocibles del fútbol mundial."
+    },
+    {
+      "categoria": "estadio",
+      "texto": "Dennis Bergkamp marcó vs Argentina en cuartos uno de los goles más bellos de la historia del Mundial: control orientado con la zurda tras pase larguísimo de Frank de Boer, regate a Ayala y definición. Considerado por la prensa el mejor gol del torneo."
+    },
+    {
+      "categoria": "mascota",
+      "texto": "Footix, el gallo galo, popularizó el término 'footixage' para referirse a fans recién llegados al fútbol. La palabra se mantiene en el francés actual con tono peyorativo."
+    }
+  ],
+  "fuentes": [
+    { "nombre": "FIFA Archive — World Cup 1998", "url": "https://www.fifa.com/tournaments/mens/worldcup/1998france" },
+    { "nombre": "RSSSF — World Cup 1998", "url": "https://www.rsssf.org/tables/98full.html" }
+  ]
+}

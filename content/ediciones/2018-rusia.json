@@ -1,0 +1,176 @@
+{
+  "meta": {
+    "edicion": 21,
+    "anio": 2018,
+    "slug": "2018-rusia",
+    "tituloOficial": "Copa Mundial de Fútbol 2018",
+    "nombreCorto": "Rusia 2018",
+    "era": "contemporanea"
+  },
+  "sede": {
+    "paises": [
+      { "nombre": "Rusia", "iso2": "ru", "iso3": "RUS", "banderaUrl": "https://flagcdn.com/w160/ru.png" }
+    ],
+    "ciudades": ["Moscú", "San Petersburgo", "Sochi", "Kazán", "Nizhni Nóvgorod", "Rostov del Don", "Ekaterimburgo", "Samara", "Saransk", "Volgogrado", "Kaliningrado"],
+    "estadios": ["Luzhnikí", "San Petersburgo", "Fisht", "Kazán Arena", "Spartak", "Nizhni Nóvgorod"]
+  },
+  "fechas": { "inicio": "2018-06-14", "final": "2018-07-15", "duracionDias": 32 },
+  "formato": {
+    "numEquipos": 32,
+    "numPartidos": 64,
+    "sistemaEliminatoria": "octavos",
+    "numGrupos": 8
+  },
+  "resultados": {
+    "campeon": { "pais": "Francia", "iso2": "fr", "iso3": "FRA", "banderaUrl": "https://flagcdn.com/w160/fr.png" },
+    "subcampeon": { "pais": "Croacia", "iso2": "hr", "iso3": "HRV", "banderaUrl": "https://flagcdn.com/w160/hr.png" },
+    "tercero": { "pais": "Bélgica", "iso2": "be", "iso3": "BEL", "banderaUrl": "https://flagcdn.com/w160/be.png" },
+    "cuarto": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG", "banderaUrl": "https://flagcdn.com/w160/gb-eng.png" }
+  },
+  "estadisticas": {
+    "totalGoles": 169,
+    "promedioGolesPartido": 2.64,
+    "asistenciaTotal": 3031768,
+    "asistenciaPromedio": 47371
+  },
+  "identidadVisual": {
+    "eslogan": "Zabivaka",
+    "mascota": "Zabivaka",
+    "balon": "Telstar 18",
+    "colorPrincipal": "#0033A0"
+  },
+  "partidoFinal": {
+    "fecha": "2018-07-15",
+    "ciudad": "Moscú",
+    "estadio": "Luzhnikí",
+    "local": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" },
+    "visitante": { "pais": "Croacia", "iso2": "hr", "iso3": "HRV" },
+    "marcador": "4-2",
+    "asistencia": 78011,
+    "arbitro": "Néstor Pitana (Argentina)"
+  },
+  "topGoleadores": [
+    {
+      "nombre": "Harry Kane",
+      "seleccion": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG" },
+      "goles": 6,
+      "botaOro": true
+    },
+    {
+      "nombre": "Antoine Griezmann",
+      "seleccion": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" },
+      "goles": 4
+    },
+    {
+      "nombre": "Romelu Lukaku",
+      "seleccion": { "pais": "Bélgica", "iso2": "be", "iso3": "BEL" },
+      "goles": 4
+    },
+    {
+      "nombre": "Cristiano Ronaldo",
+      "seleccion": { "pais": "Portugal", "iso2": "pt", "iso3": "PRT" },
+      "goles": 4
+    },
+    {
+      "nombre": "Denis Cheryshev",
+      "seleccion": { "pais": "Rusia", "iso2": "ru", "iso3": "RUS" },
+      "goles": 4
+    },
+    {
+      "nombre": "Kylian Mbappé",
+      "seleccion": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" },
+      "goles": 4
+    }
+  ],
+  "premios": {
+    "balonOro": "Luka Modrić (Croacia)",
+    "guanteOro": "Thibaut Courtois (Bélgica)",
+    "mejorJoven": "Kylian Mbappé (Francia)"
+  },
+  "contextoHistorico": {
+    "resumen": "Estreno del VAR (Video Assistant Referee) en un Mundial. Francia conquistó su segunda estrella en una final que rompió la sequía goleadora desde 1966. Kylian Mbappé, con 19 años, se convirtió en el segundo adolescente en marcar en una final mundialista (tras Pelé). Alemania, campeona vigente, fue eliminada en fase de grupos por primera vez desde 1938. Croacia alcanzó su primera final en una historia de cuarto de siglo como nación.",
+    "eventos": [
+      "Pussy Riot interrumpe la final en el minuto 52 invadiendo el campo, en protesta política.",
+      "Pavard anota volea contra Argentina en octavos: el gol del torneo según FIFA.",
+      "Essam El-Hadary (Egipto, 45 años y 161 días) se convierte en el jugador más viejo en disputar un Mundial."
+    ]
+  },
+  "plantillaCampeon": [
+    { "dorsal": 1, "nombre": "Hugo Lloris", "posicion": "GK", "clubOrigen": "Tottenham", "edad": 31, "capitan": true },
+    { "dorsal": 2, "nombre": "Benjamin Pavard", "posicion": "DEF", "clubOrigen": "Stuttgart", "edad": 22, "goles": 1 },
+    { "dorsal": 4, "nombre": "Raphaël Varane", "posicion": "DEF", "clubOrigen": "Real Madrid", "edad": 25, "goles": 1 },
+    { "dorsal": 5, "nombre": "Samuel Umtiti", "posicion": "DEF", "clubOrigen": "Barcelona", "edad": 24, "goles": 1 },
+    { "dorsal": 21, "nombre": "Lucas Hernández", "posicion": "DEF", "clubOrigen": "Atlético Madrid", "edad": 22 },
+    { "dorsal": 6, "nombre": "Paul Pogba", "posicion": "MID", "clubOrigen": "Manchester United", "edad": 25, "goles": 1 },
+    { "dorsal": 13, "nombre": "N'Golo Kanté", "posicion": "MID", "clubOrigen": "Chelsea", "edad": 27 },
+    { "dorsal": 14, "nombre": "Blaise Matuidi", "posicion": "MID", "clubOrigen": "Juventus", "edad": 31 },
+    { "dorsal": 7, "nombre": "Antoine Griezmann", "posicion": "FWD", "clubOrigen": "Atlético Madrid", "edad": 27, "goles": 4 },
+    { "dorsal": 9, "nombre": "Olivier Giroud", "posicion": "FWD", "clubOrigen": "Chelsea", "edad": 31 },
+    { "dorsal": 10, "nombre": "Kylian Mbappé", "posicion": "FWD", "clubOrigen": "PSG", "edad": 19, "goles": 4 },
+    { "dorsal": 12, "nombre": "Corentin Tolisso", "posicion": "MID", "clubOrigen": "Bayern Múnich", "edad": 23 },
+    { "dorsal": 15, "nombre": "Steven N'Zonzi", "posicion": "MID", "clubOrigen": "Sevilla", "edad": 29 }
+  ],
+  "fasesKO": {
+    "octavos": [
+      { "fecha": "2018-06-30", "ciudad": "Kazán", "estadio": "Kazán Arena", "local": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" }, "visitante": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "marcador": "4-3" },
+      { "fecha": "2018-06-30", "ciudad": "Sochi", "estadio": "Fisht", "local": { "pais": "Uruguay", "iso2": "uy", "iso3": "URY" }, "visitante": { "pais": "Portugal", "iso2": "pt", "iso3": "PRT" }, "marcador": "2-1" },
+      { "fecha": "2018-07-01", "ciudad": "Moscú", "estadio": "Luzhnikí", "local": { "pais": "España", "iso2": "es", "iso3": "ESP" }, "visitante": { "pais": "Rusia", "iso2": "ru", "iso3": "RUS" }, "marcador": "1-1 (penales 3-4)" },
+      { "fecha": "2018-07-01", "ciudad": "Nizhni Nóvgorod", "estadio": "Nizhni Nóvgorod", "local": { "pais": "Croacia", "iso2": "hr", "iso3": "HRV" }, "visitante": { "pais": "Dinamarca", "iso2": "dk", "iso3": "DNK" }, "marcador": "1-1 (penales 3-2)" },
+      { "fecha": "2018-07-02", "ciudad": "Samara", "estadio": "Samara Arena", "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "visitante": { "pais": "México", "iso2": "mx", "iso3": "MEX" }, "marcador": "2-0" },
+      { "fecha": "2018-07-02", "ciudad": "Rostov del Don", "estadio": "Rostov Arena", "local": { "pais": "Bélgica", "iso2": "be", "iso3": "BEL" }, "visitante": { "pais": "Japón", "iso2": "jp", "iso3": "JPN" }, "marcador": "3-2" },
+      { "fecha": "2018-07-03", "ciudad": "San Petersburgo", "estadio": "San Petersburgo", "local": { "pais": "Suecia", "iso2": "se", "iso3": "SWE" }, "visitante": { "pais": "Suiza", "iso2": "ch", "iso3": "CHE" }, "marcador": "1-0" },
+      { "fecha": "2018-07-03", "ciudad": "Moscú", "estadio": "Spartak", "local": { "pais": "Colombia", "iso2": "co", "iso3": "COL" }, "visitante": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG" }, "marcador": "1-1 (penales 3-4)" }
+    ],
+    "cuartos": [
+      { "fecha": "2018-07-06", "ciudad": "Nizhni Nóvgorod", "estadio": "Nizhni Nóvgorod", "local": { "pais": "Uruguay", "iso2": "uy", "iso3": "URY" }, "visitante": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" }, "marcador": "0-2" },
+      { "fecha": "2018-07-06", "ciudad": "Kazán", "estadio": "Kazán Arena", "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "visitante": { "pais": "Bélgica", "iso2": "be", "iso3": "BEL" }, "marcador": "1-2" },
+      { "fecha": "2018-07-07", "ciudad": "Samara", "estadio": "Samara Arena", "local": { "pais": "Suecia", "iso2": "se", "iso3": "SWE" }, "visitante": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG" }, "marcador": "0-2" },
+      { "fecha": "2018-07-07", "ciudad": "Sochi", "estadio": "Fisht", "local": { "pais": "Rusia", "iso2": "ru", "iso3": "RUS" }, "visitante": { "pais": "Croacia", "iso2": "hr", "iso3": "HRV" }, "marcador": "2-2 (penales 3-4)" }
+    ],
+    "semifinales": [
+      { "fecha": "2018-07-10", "ciudad": "San Petersburgo", "estadio": "San Petersburgo", "local": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" }, "visitante": { "pais": "Bélgica", "iso2": "be", "iso3": "BEL" }, "marcador": "1-0" },
+      { "fecha": "2018-07-11", "ciudad": "Moscú", "estadio": "Luzhnikí", "local": { "pais": "Croacia", "iso2": "hr", "iso3": "HRV" }, "visitante": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG" }, "marcador": "2-1 (prórroga)" }
+    ]
+  },
+  "hatTricks": [
+    { "jugador": "Cristiano Ronaldo", "seleccion": { "pais": "Portugal", "iso2": "pt", "iso3": "PRT" }, "fase": "Grupos", "rival": { "pais": "España", "iso2": "es", "iso3": "ESP" }, "goles": 3, "marcador": "3-3" },
+    { "jugador": "Harry Kane", "seleccion": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG" }, "fase": "Grupos", "rival": { "pais": "Panamá", "iso2": "pa", "iso3": "PAN" }, "goles": 3, "marcador": "6-1" }
+  ],
+  "recordsEdicion": [
+    { "categoria": "tecnologia", "descripcion": "Estreno del VAR (Video Assistant Referee) tras 4 años de pruebas en ligas locales", "valor": "VAR debut" },
+    { "categoria": "jugador", "descripcion": "Mbappé (19 años): segundo adolescente en marcar en una final mundialista (tras Pelé en 1958)", "valor": "Mbappé 19a" },
+    { "categoria": "jugador", "descripcion": "Essam El-Hadary (Egipto, 45 años y 161 días): jugador más viejo en disputar un Mundial (récord vigente)", "valor": "45a 161d" },
+    { "categoria": "seleccion", "descripcion": "Alemania (campeón vigente) eliminada en fase de grupos: primera vez desde 1938", "valor": "Campeón KO" },
+    { "categoria": "racha", "descripcion": "Final más goleada desde 1966: 6 goles entre las dos selecciones", "valor": "6 goles final" }
+  ],
+  "curiosidades": [
+    {
+      "categoria": "hito",
+      "texto": "El VAR debutó en el Mundial 2018 tras 4 años de pruebas en ligas locales. La FIFA confirmó que el torneo tuvo el menor número de errores arbitrales de la historia gracias a su uso."
+    },
+    {
+      "categoria": "balon",
+      "texto": "El Telstar 18 fue homenaje pixelado al Telstar original de 1970 y el primer balón mundialista con chip NFC. Para la fase de eliminación se usó la versión Mechta (Sueño), de color rojo."
+    },
+    {
+      "categoria": "politica",
+      "texto": "Pussy Riot interrumpió la final invadiendo el campo en el minuto 52, vestidas de policías. Protestaban por presos políticos en Rusia. Fueron arrestadas 15 días. La invasión fue retransmitida globalmente y se convirtió en imagen icónica del activismo."
+    },
+    {
+      "categoria": "jugador",
+      "texto": "Pavard anota la volea con su zurda contra Argentina (octavos) tras pase de Lucas Hernández: el gol fue elegido por FIFA como el mejor del torneo, superando incluso al hat-trick de Ronaldo a España."
+    },
+    {
+      "categoria": "estadio",
+      "texto": "El Luzhnikí (Moscú) pasó de pista de atletismo soviética a estadio mundialista. Su capacidad bajó de 78.000 a 81.000 tras remodelación. Es el cuarto estadio en hospedar una final mundialista en suelo soviético/ruso después de la URSS."
+    },
+    {
+      "categoria": "tragedia",
+      "texto": "Croacia llegó a la final en su primer torneo unitario tras la disolución yugoslava. Sus tres victorias anteriores en KO fueron por penales o prórroga: jugaron 30 minutos extra cada vez. Llegaron a la final exhaustos, perdiendo 4-2 ante Francia."
+    }
+  ],
+  "fuentes": [
+    { "nombre": "FIFA Archive — World Cup 2018", "url": "https://www.fifa.com/tournaments/mens/worldcup/2018russia" },
+    { "nombre": "RSSSF — World Cup 2018", "url": "https://www.rsssf.org/tables/18full.html" }
+  ]
+}

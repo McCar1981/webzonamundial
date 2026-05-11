@@ -1,0 +1,169 @@
+{
+  "meta": {
+    "edicion": 20,
+    "anio": 2014,
+    "slug": "2014-brasil",
+    "tituloOficial": "Copa Mundial de Fútbol 2014",
+    "nombreCorto": "Brasil 2014",
+    "era": "contemporanea"
+  },
+  "sede": {
+    "paises": [
+      { "nombre": "Brasil", "iso2": "br", "iso3": "BRA", "banderaUrl": "https://flagcdn.com/w160/br.png" }
+    ],
+    "ciudades": ["Río de Janeiro", "São Paulo", "Brasilia", "Belo Horizonte", "Salvador", "Fortaleza", "Recife", "Manaus", "Cuiabá", "Porto Alegre", "Curitiba", "Natal"],
+    "estadios": ["Maracanã", "Arena Corinthians", "Estádio Nacional Mané Garrincha", "Mineirão", "Arena Fonte Nova", "Castelão"]
+  },
+  "fechas": { "inicio": "2014-06-12", "final": "2014-07-13", "duracionDias": 32 },
+  "formato": {
+    "numEquipos": 32,
+    "numPartidos": 64,
+    "sistemaEliminatoria": "octavos",
+    "numGrupos": 8
+  },
+  "resultados": {
+    "campeon": { "pais": "Alemania", "iso2": "de", "iso3": "DEU", "banderaUrl": "https://flagcdn.com/w160/de.png" },
+    "subcampeon": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG", "banderaUrl": "https://flagcdn.com/w160/ar.png" },
+    "tercero": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD", "banderaUrl": "https://flagcdn.com/w160/nl.png" },
+    "cuarto": { "pais": "Brasil", "iso2": "br", "iso3": "BRA", "banderaUrl": "https://flagcdn.com/w160/br.png" }
+  },
+  "estadisticas": {
+    "totalGoles": 171,
+    "promedioGolesPartido": 2.67,
+    "asistenciaTotal": 3429873,
+    "asistenciaPromedio": 53592
+  },
+  "identidadVisual": {
+    "eslogan": "Juntos num só ritmo",
+    "mascota": "Fuleco",
+    "balon": "Brazuca",
+    "colorPrincipal": "#FFDF00"
+  },
+  "partidoFinal": {
+    "fecha": "2014-07-13",
+    "ciudad": "Río de Janeiro",
+    "estadio": "Maracanã",
+    "local": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" },
+    "visitante": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" },
+    "marcador": "1-0 (prórroga)",
+    "asistencia": 74738,
+    "arbitro": "Nicola Rizzoli (Italia)",
+    "goleadores": [
+      { "jugador": "Mario Götze", "minuto": "113'" }
+    ]
+  },
+  "topGoleadores": [
+    {
+      "nombre": "James Rodríguez",
+      "seleccion": { "pais": "Colombia", "iso2": "co", "iso3": "COL" },
+      "goles": 6,
+      "botaOro": true
+    },
+    {
+      "nombre": "Thomas Müller",
+      "seleccion": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" },
+      "goles": 5
+    },
+    {
+      "nombre": "Neymar",
+      "seleccion": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" },
+      "goles": 4
+    },
+    {
+      "nombre": "Lionel Messi",
+      "seleccion": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" },
+      "goles": 4
+    }
+  ],
+  "premios": {
+    "balonOro": "Lionel Messi (Argentina)",
+    "guanteOro": "Manuel Neuer (Alemania)",
+    "mejorJoven": "Paul Pogba (Francia)"
+  },
+  "contextoHistorico": {
+    "resumen": "Mundial brasileño marcado por el 'Mineirazo': Brasil 1-7 Alemania en semifinales, con 5 goles alemanes en 6 minutos, una de las mayores humillaciones de la historia del fútbol. Alemania conquistó su cuarto título con gol de Mario Götze en la prórroga ante Argentina. Miroslav Klose anotó su gol número 16, superando a Ronaldo y convirtiéndose en el máximo goleador histórico del Mundial. Estreno de la goal-line technology.",
+    "eventos": [
+      "Mineirazo: Alemania 7-1 Brasil con cinco goles entre los minutos 23 y 29 — el desastre futbolístico que marcó una generación.",
+      "Luis Suárez muerde a Giorgio Chiellini en partido de fase de grupos: suspendido 9 partidos internacionales y 4 meses por cualquier actividad futbolística.",
+      "James Rodríguez marca el Premio Puskás vs Uruguay con volea de pecho desde la frontal."
+    ]
+  },
+  "plantillaCampeon": [
+    { "dorsal": 1, "nombre": "Manuel Neuer", "posicion": "GK", "clubOrigen": "Bayern Múnich", "edad": 28 },
+    { "dorsal": 4, "nombre": "Benedikt Höwedes", "posicion": "DEF", "clubOrigen": "Schalke 04", "edad": 26 },
+    { "dorsal": 5, "nombre": "Mats Hummels", "posicion": "DEF", "clubOrigen": "Borussia Dortmund", "edad": 25, "goles": 2 },
+    { "dorsal": 17, "nombre": "Per Mertesacker", "posicion": "DEF", "clubOrigen": "Arsenal", "edad": 29 },
+    { "dorsal": 16, "nombre": "Philipp Lahm", "posicion": "DEF", "clubOrigen": "Bayern Múnich", "edad": 30, "capitan": true },
+    { "dorsal": 6, "nombre": "Sami Khedira", "posicion": "MID", "clubOrigen": "Real Madrid", "edad": 27, "goles": 1 },
+    { "dorsal": 7, "nombre": "Bastian Schweinsteiger", "posicion": "MID", "clubOrigen": "Bayern Múnich", "edad": 29 },
+    { "dorsal": 8, "nombre": "Mesut Özil", "posicion": "MID", "clubOrigen": "Arsenal", "edad": 25, "goles": 1 },
+    { "dorsal": 13, "nombre": "Thomas Müller", "posicion": "FWD", "clubOrigen": "Bayern Múnich", "edad": 24, "goles": 5 },
+    { "dorsal": 11, "nombre": "Miroslav Klose", "posicion": "FWD", "clubOrigen": "Lazio", "edad": 36, "goles": 2 },
+    { "dorsal": 9, "nombre": "André Schürrle", "posicion": "FWD", "clubOrigen": "Chelsea", "edad": 23, "goles": 3 },
+    { "dorsal": 19, "nombre": "Mario Götze", "posicion": "FWD", "clubOrigen": "Bayern Múnich", "edad": 22, "goles": 1 },
+    { "dorsal": 18, "nombre": "Toni Kroos", "posicion": "MID", "clubOrigen": "Bayern Múnich", "edad": 24, "goles": 2 }
+  ],
+  "fasesKO": {
+    "octavos": [
+      { "fecha": "2014-06-28", "ciudad": "Belo Horizonte", "estadio": "Mineirão", "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "visitante": { "pais": "Chile", "iso2": "cl", "iso3": "CHL" }, "marcador": "1-1 (penales 3-2)" },
+      { "fecha": "2014-06-28", "ciudad": "Río de Janeiro", "estadio": "Maracanã", "local": { "pais": "Colombia", "iso2": "co", "iso3": "COL" }, "visitante": { "pais": "Uruguay", "iso2": "uy", "iso3": "URY" }, "marcador": "2-0" },
+      { "fecha": "2014-06-29", "ciudad": "Fortaleza", "estadio": "Castelão", "local": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD" }, "visitante": { "pais": "México", "iso2": "mx", "iso3": "MEX" }, "marcador": "2-1" },
+      { "fecha": "2014-06-29", "ciudad": "Recife", "estadio": "Arena Pernambuco", "local": { "pais": "Costa Rica", "iso2": "cr", "iso3": "CRI" }, "visitante": { "pais": "Grecia", "iso2": "gr", "iso3": "GRC" }, "marcador": "1-1 (penales 5-3)" },
+      { "fecha": "2014-06-30", "ciudad": "Brasilia", "estadio": "Mané Garrincha", "local": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" }, "visitante": { "pais": "Nigeria", "iso2": "ng", "iso3": "NGA" }, "marcador": "2-0" },
+      { "fecha": "2014-06-30", "ciudad": "Porto Alegre", "estadio": "Beira-Rio", "local": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" }, "visitante": { "pais": "Argelia", "iso2": "dz", "iso3": "DZA" }, "marcador": "2-1 (prórroga)" },
+      { "fecha": "2014-07-01", "ciudad": "São Paulo", "estadio": "Arena Corinthians", "local": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "visitante": { "pais": "Suiza", "iso2": "ch", "iso3": "CHE" }, "marcador": "1-0 (prórroga)" },
+      { "fecha": "2014-07-01", "ciudad": "Salvador", "estadio": "Arena Fonte Nova", "local": { "pais": "Bélgica", "iso2": "be", "iso3": "BEL" }, "visitante": { "pais": "Estados Unidos", "iso2": "us", "iso3": "USA" }, "marcador": "2-1 (prórroga)" }
+    ],
+    "cuartos": [
+      { "fecha": "2014-07-04", "ciudad": "Fortaleza", "estadio": "Castelão", "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "visitante": { "pais": "Colombia", "iso2": "co", "iso3": "COL" }, "marcador": "2-1" },
+      { "fecha": "2014-07-04", "ciudad": "Río de Janeiro", "estadio": "Maracanã", "local": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" }, "visitante": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" }, "marcador": "0-1" },
+      { "fecha": "2014-07-05", "ciudad": "Salvador", "estadio": "Arena Fonte Nova", "local": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD" }, "visitante": { "pais": "Costa Rica", "iso2": "cr", "iso3": "CRI" }, "marcador": "0-0 (penales 4-3)" },
+      { "fecha": "2014-07-05", "ciudad": "Brasilia", "estadio": "Mané Garrincha", "local": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "visitante": { "pais": "Bélgica", "iso2": "be", "iso3": "BEL" }, "marcador": "1-0" }
+    ],
+    "semifinales": [
+      { "fecha": "2014-07-08", "ciudad": "Belo Horizonte", "estadio": "Mineirão", "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "visitante": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" }, "marcador": "1-7" },
+      { "fecha": "2014-07-09", "ciudad": "São Paulo", "estadio": "Arena Corinthians", "local": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD" }, "visitante": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "marcador": "0-0 (penales 2-4)" }
+    ]
+  },
+  "hatTricks": [
+    { "jugador": "Thomas Müller", "seleccion": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" }, "fase": "Grupos", "rival": { "pais": "Portugal", "iso2": "pt", "iso3": "PRT" }, "goles": 3, "marcador": "4-0" },
+    { "jugador": "Xherdan Shaqiri", "seleccion": { "pais": "Suiza", "iso2": "ch", "iso3": "CHE" }, "fase": "Grupos", "rival": { "pais": "Honduras", "iso2": "hn", "iso3": "HND" }, "goles": 3, "marcador": "3-0" }
+  ],
+  "recordsEdicion": [
+    { "categoria": "jugador", "descripcion": "Mineirazo: Brasil 1-7 Alemania en semifinales con 5 goles alemanes en 6 minutos. Récord histórico de goleada en semifinales", "valor": "1-7 en casa" },
+    { "categoria": "jugador", "descripcion": "Klose llega a 16 goles, supera a Ronaldo (15) y se convierte en máximo goleador histórico del Mundial", "valor": "Klose 16" },
+    { "categoria": "tecnologia", "descripcion": "Estreno de la goal-line technology (GoalControl): debutó vs Honduras-Francia, gol confirmado por la cámara", "valor": "GLT debut" },
+    { "categoria": "balon", "descripcion": "Brazuca: primer balón mundialista con nombre elegido por voto popular brasileño (más de 1M votos)", "valor": "Voto popular" },
+    { "categoria": "jugador", "descripcion": "James Rodríguez gana el Premio Puskás con su volea de pecho vs Uruguay: voto popular FIFA al mejor gol del año", "valor": "Puskás 2014" }
+  ],
+  "curiosidades": [
+    {
+      "categoria": "balon",
+      "texto": "El Adidas Brazuca fue el primer balón cuyo nombre se decidió por voto popular, con más de un millón de votos en Brasil. Su diseño con 6 paneles y colores vibrantes lo convirtió en uno de los balones mejor valorados por los jugadores."
+    },
+    {
+      "categoria": "jugador",
+      "texto": "Faryd Mondragón (Colombia, 43 años y 3 días) se convirtió en el jugador más viejo en disputar un Mundial hasta ese momento, batiendo a Roger Milla (1994). El-Hadary lo superaría en 2018."
+    },
+    {
+      "categoria": "tragedia",
+      "texto": "Luis Suárez mordió a Giorgio Chiellini en el partido Uruguay-Italia. FIFA lo suspendió por 9 partidos internacionales y 4 meses por cualquier actividad futbolística. Es la sanción disciplinaria más larga jamás impuesta en un Mundial."
+    },
+    {
+      "categoria": "jugador",
+      "texto": "El Mineirazo dejó imágenes icónicas: aficionados brasileños llorando, niños ocultando rostros, banderas con el nombre de Neymar (lesionado tras patada de Zúñiga en cuartos). Fue tan traumático que se acuñó la frase 'Brasil ya no perderá tanto'."
+    },
+    {
+      "categoria": "estadio",
+      "texto": "El Maracaná hospedó la final pero NO el debut brasileño: Brasil jugó la apertura en Arena Corinthians (São Paulo). Decisión política para 'repartir' el simbolismo de las sedes y diluir el peso del recuerdo del Maracanazo de 1950."
+    },
+    {
+      "categoria": "politica",
+      "texto": "Mundial polémico por las protestas masivas en Brasil contra el coste (~13.000 millones USD) en plena crisis social. La presidenta Dilma Rousseff fue abucheada en la inauguración. Dos años después fue destituida por impeachment."
+    }
+  ],
+  "fuentes": [
+    { "nombre": "FIFA Archive — World Cup 2014", "url": "https://www.fifa.com/tournaments/mens/worldcup/2014brazil" },
+    { "nombre": "RSSSF — World Cup 2014", "url": "https://www.rsssf.org/tables/14full.html" }
+  ]
+}

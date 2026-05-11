@@ -1,0 +1,167 @@
+{
+  "meta": {
+    "edicion": 17,
+    "anio": 2002,
+    "slug": "2002-corea-japon",
+    "tituloOficial": "Copa Mundial de Fútbol 2002",
+    "nombreCorto": "Corea / Japón 2002",
+    "era": "global"
+  },
+  "sede": {
+    "paises": [
+      { "nombre": "Corea del Sur", "iso2": "kr", "iso3": "KOR", "banderaUrl": "https://flagcdn.com/w160/kr.png" },
+      { "nombre": "Japón", "iso2": "jp", "iso3": "JPN", "banderaUrl": "https://flagcdn.com/w160/jp.png" }
+    ],
+    "ciudades": ["Yokohama", "Seúl", "Saitama", "Osaka", "Tokio", "Daegu", "Pusan", "Suwon", "Sapporo", "Niigata"],
+    "estadios": ["International Stadium Yokohama", "Seoul World Cup Stadium", "Saitama Stadium 2002", "Big Swan", "Sapporo Dome"]
+  },
+  "fechas": { "inicio": "2002-05-31", "final": "2002-06-30", "duracionDias": 31 },
+  "formato": {
+    "numEquipos": 32,
+    "numPartidos": 64,
+    "sistemaEliminatoria": "octavos",
+    "numGrupos": 8
+  },
+  "resultados": {
+    "campeon": { "pais": "Brasil", "iso2": "br", "iso3": "BRA", "banderaUrl": "https://flagcdn.com/w160/br.png" },
+    "subcampeon": { "pais": "Alemania", "iso2": "de", "iso3": "DEU", "banderaUrl": "https://flagcdn.com/w160/de.png" },
+    "tercero": { "pais": "Turquía", "iso2": "tr", "iso3": "TUR", "banderaUrl": "https://flagcdn.com/w160/tr.png" },
+    "cuarto": { "pais": "Corea del Sur", "iso2": "kr", "iso3": "KOR", "banderaUrl": "https://flagcdn.com/w160/kr.png" }
+  },
+  "estadisticas": {
+    "totalGoles": 161,
+    "promedioGolesPartido": 2.52,
+    "asistenciaTotal": 2705197,
+    "asistenciaPromedio": 42269
+  },
+  "identidadVisual": {
+    "eslogan": "Spheriks: Ato, Kaz y Nik",
+    "mascota": "Ato, Kaz y Nik",
+    "balon": "Fevernova",
+    "colorPrincipal": "#BC002D"
+  },
+  "partidoFinal": {
+    "fecha": "2002-06-30",
+    "ciudad": "Yokohama",
+    "estadio": "International Stadium Yokohama",
+    "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" },
+    "visitante": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" },
+    "marcador": "2-0",
+    "asistencia": 69029,
+    "arbitro": "Pierluigi Collina (Italia)",
+    "goleadores": [
+      { "jugador": "Ronaldo", "minuto": "67'" },
+      { "jugador": "Ronaldo", "minuto": "79'" }
+    ]
+  },
+  "topGoleadores": [
+    {
+      "nombre": "Ronaldo",
+      "seleccion": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" },
+      "goles": 8,
+      "botaOro": true
+    },
+    {
+      "nombre": "Rivaldo",
+      "seleccion": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" },
+      "goles": 5
+    },
+    {
+      "nombre": "Miroslav Klose",
+      "seleccion": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" },
+      "goles": 5
+    },
+    {
+      "nombre": "Jon Dahl Tomasson",
+      "seleccion": { "pais": "Dinamarca", "iso2": "dk", "iso3": "DNK" },
+      "goles": 5
+    }
+  ],
+  "premios": {
+    "balonOro": "Oliver Kahn (Alemania)"
+  },
+  "contextoHistorico": {
+    "resumen": "Primer Mundial en Asia y primero compartido entre dos países. Brasil ganó su quinta estrella con un Ronaldo redentor que marcó 8 goles tras su tragedia personal de 1998. Oliver Kahn se convirtió en el primer (y único hasta hoy) portero en ganar el Balón de Oro del torneo. Corea del Sur sorprendió al mundo con un cuarto puesto histórico, no exento de polémicas arbitrales que persisten en la memoria.",
+    "eventos": [
+      "Senegal 1-0 Francia (debut, partido inaugural): el campeón vigente derrotado por un debutante africano.",
+      "Hakan Şükür (Turquía) anota el gol más rápido de la historia del Mundial: 10,8 segundos vs Corea del Sur en el partido por el tercer puesto.",
+      "Cafu se convierte en el único futbolista en jugar tres finales mundialistas consecutivas (1994, 1998, 2002)."
+    ]
+  },
+  "plantillaCampeon": [
+    { "dorsal": 1, "nombre": "Marcos", "posicion": "GK", "clubOrigen": "Palmeiras", "edad": 28 },
+    { "dorsal": 2, "nombre": "Cafu", "posicion": "DEF", "clubOrigen": "Roma", "edad": 32, "capitan": true },
+    { "dorsal": 3, "nombre": "Lúcio", "posicion": "DEF", "clubOrigen": "Bayer Leverkusen", "edad": 24 },
+    { "dorsal": 4, "nombre": "Roque Júnior", "posicion": "DEF", "clubOrigen": "Milan", "edad": 26 },
+    { "dorsal": 6, "nombre": "Roberto Carlos", "posicion": "DEF", "clubOrigen": "Real Madrid", "edad": 29 },
+    { "dorsal": 5, "nombre": "Edmílson", "posicion": "MID", "clubOrigen": "Lyon", "edad": 26, "goles": 1 },
+    { "dorsal": 8, "nombre": "Gilberto Silva", "posicion": "MID", "clubOrigen": "Atlético Mineiro", "edad": 25 },
+    { "dorsal": 10, "nombre": "Rivaldo", "posicion": "MID", "clubOrigen": "Barcelona", "edad": 30, "goles": 5 },
+    { "dorsal": 11, "nombre": "Ronaldinho", "posicion": "MID", "clubOrigen": "PSG", "edad": 22, "goles": 2 },
+    { "dorsal": 9, "nombre": "Ronaldo", "posicion": "FWD", "clubOrigen": "Inter de Milán", "edad": 25, "goles": 8 },
+    { "dorsal": 7, "nombre": "Kléberson", "posicion": "MID", "clubOrigen": "Atlético Paranaense", "edad": 23 }
+  ],
+  "fasesKO": {
+    "octavos": [
+      { "fecha": "2002-06-15", "ciudad": "Seogwipo", "estadio": "Jeju", "local": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" }, "visitante": { "pais": "Paraguay", "iso2": "py", "iso3": "PRY" }, "marcador": "1-0" },
+      { "fecha": "2002-06-15", "ciudad": "Niigata", "estadio": "Big Swan", "local": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG" }, "visitante": { "pais": "Dinamarca", "iso2": "dk", "iso3": "DNK" }, "marcador": "3-0" },
+      { "fecha": "2002-06-16", "ciudad": "Suwon", "estadio": "World Cup", "local": { "pais": "Suecia", "iso2": "se", "iso3": "SWE" }, "visitante": { "pais": "Senegal", "iso2": "sn", "iso3": "SEN" }, "marcador": "1-2 (gol de oro)" },
+      { "fecha": "2002-06-16", "ciudad": "Oita", "estadio": "Big Eye", "local": { "pais": "España", "iso2": "es", "iso3": "ESP" }, "visitante": { "pais": "República de Irlanda", "iso2": "ie", "iso3": "IRL" }, "marcador": "1-1 (penales 3-2)" },
+      { "fecha": "2002-06-17", "ciudad": "Jeonju", "estadio": "World Cup", "local": { "pais": "México", "iso2": "mx", "iso3": "MEX" }, "visitante": { "pais": "Estados Unidos", "iso2": "us", "iso3": "USA" }, "marcador": "0-2" },
+      { "fecha": "2002-06-17", "ciudad": "Daejeon", "estadio": "World Cup", "local": { "pais": "Corea del Sur", "iso2": "kr", "iso3": "KOR" }, "visitante": { "pais": "Italia", "iso2": "it", "iso3": "ITA" }, "marcador": "2-1 (gol de oro)" },
+      { "fecha": "2002-06-18", "ciudad": "Kobe", "estadio": "Wing", "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "visitante": { "pais": "Bélgica", "iso2": "be", "iso3": "BEL" }, "marcador": "2-0" },
+      { "fecha": "2002-06-18", "ciudad": "Miyagi", "estadio": "Stadium", "local": { "pais": "Japón", "iso2": "jp", "iso3": "JPN" }, "visitante": { "pais": "Turquía", "iso2": "tr", "iso3": "TUR" }, "marcador": "0-1" }
+    ],
+    "cuartos": [
+      { "fecha": "2002-06-21", "ciudad": "Shizuoka", "estadio": "Ecopa", "local": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG" }, "visitante": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "marcador": "1-2" },
+      { "fecha": "2002-06-21", "ciudad": "Ulsan", "estadio": "Munsu", "local": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" }, "visitante": { "pais": "Estados Unidos", "iso2": "us", "iso3": "USA" }, "marcador": "1-0" },
+      { "fecha": "2002-06-22", "ciudad": "Gwangju", "estadio": "World Cup", "local": { "pais": "España", "iso2": "es", "iso3": "ESP" }, "visitante": { "pais": "Corea del Sur", "iso2": "kr", "iso3": "KOR" }, "marcador": "0-0 (penales 3-5)" },
+      { "fecha": "2002-06-22", "ciudad": "Osaka", "estadio": "Nagai", "local": { "pais": "Senegal", "iso2": "sn", "iso3": "SEN" }, "visitante": { "pais": "Turquía", "iso2": "tr", "iso3": "TUR" }, "marcador": "0-1 (gol de oro)" }
+    ],
+    "semifinales": [
+      { "fecha": "2002-06-25", "ciudad": "Seúl", "estadio": "World Cup Stadium", "local": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" }, "visitante": { "pais": "Corea del Sur", "iso2": "kr", "iso3": "KOR" }, "marcador": "1-0" },
+      { "fecha": "2002-06-26", "ciudad": "Saitama", "estadio": "Saitama 2002", "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "visitante": { "pais": "Turquía", "iso2": "tr", "iso3": "TUR" }, "marcador": "1-0" }
+    ]
+  },
+  "hatTricks": [
+    { "jugador": "Pauleta", "seleccion": { "pais": "Portugal", "iso2": "pt", "iso3": "PRT" }, "fase": "Grupos", "rival": { "pais": "Polonia", "iso2": "pl", "iso3": "POL" }, "goles": 3, "marcador": "4-0" },
+    { "jugador": "Miroslav Klose", "seleccion": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" }, "fase": "Grupos", "rival": { "pais": "Arabia Saudí", "iso2": "sa", "iso3": "SAU" }, "goles": 3, "marcador": "8-0" }
+  ],
+  "recordsEdicion": [
+    { "categoria": "jugador", "descripcion": "Hakan Şükür anota a los 10,8 segundos vs Corea del Sur (3er puesto): gol más rápido de la historia del Mundial", "valor": "10,8 seg" },
+    { "categoria": "jugador", "descripcion": "Oliver Kahn: ÚNICO portero en ganar el Balón de Oro del Mundial", "valor": "Único Balón Oro GK" },
+    { "categoria": "jugador", "descripcion": "Cafu: ÚNICO jugador en disputar 3 finales mundialistas consecutivas (1994, 1998, 2002)", "valor": "3 finales seguidas" },
+    { "categoria": "seleccion", "descripcion": "Brasil 7/7 victorias: única era moderna con récord perfecto de victorias en un Mundial", "valor": "7 de 7" },
+    { "categoria": "seleccion", "descripcion": "Senegal 1-0 Francia (campeón vigente) en partido inaugural: tercera vez en historia que se elimina al campeón en su primer partido", "valor": "Senegal sorpresa" }
+  ],
+  "curiosidades": [
+    {
+      "categoria": "arbitro",
+      "texto": "Pierluigi Collina, considerado el mejor árbitro de la historia, se encerró 36 horas viendo VHS de la final 2002 antes de pitarla. Ganó el premio IFFHS al mejor árbitro del mundo seis años seguidos."
+    },
+    {
+      "categoria": "hito",
+      "texto": "Brasil ganó los 7 partidos disputados, único equipo en la era moderna con récord perfecto de victorias en un Mundial."
+    },
+    {
+      "categoria": "politica",
+      "texto": "Primera vez que un Mundial es co-organizado por dos países. Corea del Sur y Japón aún tenían tensiones históricas no resueltas (período colonial 1910-1945). FIFA forzó la cooperación como ejercicio diplomático."
+    },
+    {
+      "categoria": "arbitro",
+      "texto": "Las polémicas arbitrales en los partidos de Corea del Sur (vs Italia, vs España) siguen vigentes 23 años después. Byron Moreno (ECU) y Gamal Al-Ghandour (EGY) fueron los árbitros señalados; Moreno acabó preso en 2010 por intento de tráfico de heroína."
+    },
+    {
+      "categoria": "balon",
+      "texto": "El Adidas Fevernova rompió radicalmente con la estética Tango (24 años de continuidad). Su superficie de paneles triangulares en colores asiáticos fue criticada por jugadores como 'errática'. Pase final del Mundial al diseño minimalista del Teamgeist 2006."
+    },
+    {
+      "categoria": "jugador",
+      "texto": "Ronaldo redimió la convulsión de 1998 con sus 8 goles y la dupla con Rivaldo y Ronaldinho ('Las Tres R'). Marcó los dos goles de la final ante Alemania y consagró su corte de pelo triangular como icónico de la era."
+    }
+  ],
+  "fuentes": [
+    { "nombre": "FIFA Archive — World Cup 2002", "url": "https://www.fifa.com/tournaments/mens/worldcup/2002koreajapan" },
+    { "nombre": "RSSSF — World Cup 2002", "url": "https://www.rsssf.org/tables/02full.html" }
+  ]
+}

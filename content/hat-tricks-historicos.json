@@ -1,0 +1,32 @@
+{
+  "datoIntroductorio": "57 hat-tricks oficiales en la historia del Mundial. Récord absoluto: Salenko 5 goles vs Camerún (1994). 'Hat-trick' = 3 o más goles del mismo jugador en un partido.",
+  "destacados": [
+    { "anio": 2022, "edicionSlug": "2022-qatar", "jugador": "Kylian Mbappé", "iso2": "fr", "rival": "Argentina", "fase": "Final", "marcador": "3-3 (pen 4-2)", "goles": 3, "datoClave": "PRIMER hat-trick en una final desde Geoff Hurst en 1966 (56 años). Tres goles incluyendo dos penales." },
+    { "anio": 1966, "edicionSlug": "1966-inglaterra", "jugador": "Geoff Hurst", "iso2": "gb-eng", "rival": "Alemania Federal", "fase": "Final", "marcador": "4-2 (prórroga)", "goles": 3, "datoClave": "ÚNICO hat-trick en una final hasta Mbappé 2022. El segundo gol (Wembley-Tor) sigue siendo el más controvertido de la historia." },
+    { "anio": 1994, "edicionSlug": "1994-eeuu", "jugador": "Oleg Salenko", "iso2": "ru", "rival": "Camerún", "fase": "Grupos", "marcador": "6-1", "goles": 5, "datoClave": "RÉCORD ABSOLUTO: 5 goles en un partido del Mundial. Salenko nunca volvió a marcar para Rusia tras este Mundial. Despareció del fútbol profesional poco después." },
+    { "anio": 1958, "edicionSlug": "1958-suecia", "jugador": "Just Fontaine", "iso2": "fr", "rival": "Alemania Federal", "fase": "Tercer puesto", "marcador": "6-3", "goles": 4, "datoClave": "El segundo de los dos hat-tricks de Fontaine en 1958. Cerró su Mundial con 13 goles (récord histórico)." },
+    { "anio": 1958, "edicionSlug": "1958-suecia", "jugador": "Pelé", "iso2": "br", "rival": "Francia", "fase": "Semifinal", "marcador": "5-2", "goles": 3, "datoClave": "Hat-trick más joven en la historia mundialista: Pelé tenía 17 años, 244 días. Récord vigente." },
+    { "anio": 1938, "edicionSlug": "1938-francia", "jugador": "Leônidas", "iso2": "br", "rival": "Polonia", "fase": "Octavos", "marcador": "6-5 (prórroga)", "goles": 4, "datoClave": "Leônidas se descalzó por la lluvia y el barro: el árbitro le obligó a calzarse pero ya había marcado el hat-trick legendario." },
+    { "anio": 1938, "edicionSlug": "1938-francia", "jugador": "Ernest Wilimowski", "iso2": "pl", "rival": "Brasil", "fase": "Octavos", "marcador": "5-6 (prórroga)", "goles": 4, "datoClave": "ÚNICO jugador con 4 goles en un partido y AÚN PERDER. El partido tiene 8 goles entre dos jugadores." },
+    { "anio": 1954, "edicionSlug": "1954-suiza", "jugador": "Sándor Kocsis", "iso2": "hu", "rival": "Alemania Federal", "fase": "Grupos", "marcador": "8-3", "goles": 4, "datoClave": "Kocsis fue Bota de Oro 1954 con 11 goles. Su 4 vs RFA en grupos sería irónica antesala: Hungría perdería la final 2-3 vs RFA." },
+    { "anio": 1986, "edicionSlug": "1986-mexico", "jugador": "Igor Belanov", "iso2": "ru", "rival": "Bélgica", "fase": "Octavos", "marcador": "3-4 (prórroga)", "goles": 3, "datoClave": "Otro caso de hat-trick en derrota. Bélgica avanzaría a semifinales eliminando a la URSS de Belanov." },
+    { "anio": 1962, "edicionSlug": "1962-chile", "jugador": "Florian Albert", "iso2": "hu", "rival": "Bulgaria", "fase": "Grupos", "marcador": "6-1", "goles": 3, "datoClave": "Albert fue Bota de Oro 1962 compartida (4 goles). Su hat-trick vs Bulgaria fue el más rápido del Mundial: 19 minutos." },
+    { "anio": 1970, "edicionSlug": "1970-mexico", "jugador": "Gerd Müller", "iso2": "de", "rival": "Bulgaria", "fase": "Grupos", "marcador": "5-2", "goles": 3, "datoClave": "Müller fue Bota de Oro 1970 con 10 goles incluyendo DOS hat-tricks consecutivos: vs Bulgaria y vs Perú. Único caso histórico." },
+    { "anio": 1970, "edicionSlug": "1970-mexico", "jugador": "Gerd Müller", "iso2": "de", "rival": "Perú", "fase": "Grupos", "marcador": "3-1", "goles": 3, "datoClave": "Segundo hat-trick consecutivo de Müller. Récord vigente de hat-tricks consecutivos por mismo jugador." },
+    { "anio": 1982, "edicionSlug": "1982-espana", "jugador": "László Kiss", "iso2": "hu", "rival": "El Salvador", "fase": "Grupos", "marcador": "10-1", "goles": 3, "datoClave": "ÚNICO hat-trick desde el banquillo en la historia mundialista. Marcó tres goles en 8 minutos tras entrar como suplente." },
+    { "anio": 2002, "edicionSlug": "2002-corea-japon", "jugador": "Pauleta", "iso2": "pt", "rival": "Polonia", "fase": "Grupos", "marcador": "4-0", "goles": 3, "datoClave": "Único hat-trick portugués en la historia mundialista. Pauleta fue máximo goleador histórico de Portugal hasta CR7." },
+    { "anio": 2018, "edicionSlug": "2018-rusia", "jugador": "Cristiano Ronaldo", "iso2": "pt", "rival": "España", "fase": "Grupos", "marcador": "3-3", "goles": 3, "datoClave": "El mejor partido individual de CR7 en un Mundial. Tiro libre del 3-3 al 88'. Sería el último gran momento mundialista de CR7." },
+    { "anio": 2018, "edicionSlug": "2018-rusia", "jugador": "Harry Kane", "iso2": "gb-eng", "rival": "Panamá", "fase": "Grupos", "marcador": "6-1", "goles": 3, "datoClave": "Kane fue Bota de Oro 2018 con 6 goles, 3 de penales en su hat-trick a Panamá. Mucho criticado por la 'facilidad' del récord." },
+    { "anio": 2022, "edicionSlug": "2022-qatar", "jugador": "Gonçalo Ramos", "iso2": "pt", "rival": "Suiza", "fase": "Octavos", "marcador": "6-1", "goles": 3, "datoClave": "Ramos hizo su DEBUT como titular en un Mundial. Hat-trick. Cristiano Ronaldo, relegado al banco, lloró visiblemente al ser sustituido." },
+    { "anio": 2014, "edicionSlug": "2014-brasil", "jugador": "Thomas Müller", "iso2": "de", "rival": "Portugal", "fase": "Grupos", "marcador": "4-0", "goles": 3, "datoClave": "Müller fue clave en el tetracampeonato alemán 2014. Su hat-trick a Portugal fue un anticipo del Mineirazo en semis." },
+    { "anio": 2014, "edicionSlug": "2014-brasil", "jugador": "Xherdan Shaqiri", "iso2": "ch", "rival": "Honduras", "fase": "Grupos", "marcador": "3-0", "goles": 3, "datoClave": "Shaqiri jugaba en el Bayern Múnich. Suiza clasificó a octavos y cayó 0-1 vs Argentina con gol de Di María." },
+    { "anio": 2010, "edicionSlug": "2010-sudafrica", "jugador": "Gonzalo Higuaín", "iso2": "ar", "rival": "Corea del Sur", "fase": "Grupos", "marcador": "4-1", "goles": 3, "datoClave": "El último hat-trick de Argentina en un Mundial. Higuaín en su debut mundialista con 22 años." }
+  ],
+  "estadisticas": {
+    "total": 57,
+    "mas4Goles": 9,
+    "5Goles": 1,
+    "enFinal": 2,
+    "primerHistorico": "Bert Patenaude (USA) vs Paraguay 1930"
+  }
+}

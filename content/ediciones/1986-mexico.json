@@ -1,0 +1,154 @@
+{
+  "meta": {
+    "edicion": 13,
+    "anio": 1986,
+    "slug": "1986-mexico",
+    "tituloOficial": "Copa Mundial de Fútbol 1986",
+    "nombreCorto": "México 1986",
+    "era": "moderna"
+  },
+  "sede": {
+    "paises": [
+      { "nombre": "México", "iso2": "mx", "iso3": "MEX", "banderaUrl": "https://flagcdn.com/w160/mx.png" }
+    ],
+    "ciudades": ["Ciudad de México", "Guadalajara", "Monterrey", "Puebla", "Querétaro", "Toluca", "Irapuato", "León", "Nezahualcóyotl"],
+    "estadios": ["Estadio Azteca", "Jalisco", "Tecnológico", "Cuauhtémoc", "Universitario", "Nemesio Diez"]
+  },
+  "fechas": { "inicio": "1986-05-31", "final": "1986-06-29", "duracionDias": 30 },
+  "formato": {
+    "numEquipos": 24,
+    "numPartidos": 52,
+    "sistemaEliminatoria": "octavos",
+    "numGrupos": 6
+  },
+  "resultados": {
+    "campeon": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG", "banderaUrl": "https://flagcdn.com/w160/ar.png" },
+    "subcampeon": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU", "banderaUrl": "https://flagcdn.com/w160/de.png" },
+    "tercero": { "pais": "Francia", "iso2": "fr", "iso3": "FRA", "banderaUrl": "https://flagcdn.com/w160/fr.png" },
+    "cuarto": { "pais": "Bélgica", "iso2": "be", "iso3": "BEL", "banderaUrl": "https://flagcdn.com/w160/be.png" }
+  },
+  "estadisticas": {
+    "totalGoles": 132,
+    "promedioGolesPartido": 2.54,
+    "asistenciaTotal": 2407431,
+    "asistenciaPromedio": 46297
+  },
+  "identidadVisual": {
+    "eslogan": "Pique",
+    "mascota": "Pique",
+    "balon": "Azteca (primer balón sintético)",
+    "colorPrincipal": "#006847"
+  },
+  "partidoFinal": {
+    "fecha": "1986-06-29",
+    "ciudad": "Ciudad de México",
+    "estadio": "Azteca",
+    "local": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" },
+    "visitante": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" },
+    "marcador": "3-2",
+    "asistencia": 114600,
+    "arbitro": "Romualdo Arppi Filho (Brasil)"
+  },
+  "topGoleadores": [
+    {
+      "nombre": "Gary Lineker",
+      "seleccion": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG" },
+      "goles": 6,
+      "botaOro": true
+    },
+    {
+      "nombre": "Diego Armando Maradona",
+      "seleccion": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" },
+      "goles": 5
+    },
+    {
+      "nombre": "Emilio Butragueño",
+      "seleccion": { "pais": "España", "iso2": "es", "iso3": "ESP" },
+      "goles": 5
+    },
+    {
+      "nombre": "Careca",
+      "seleccion": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" },
+      "goles": 5
+    }
+  ],
+  "premios": {
+    "balonOro": "Diego Armando Maradona (Argentina)"
+  },
+  "contextoHistorico": {
+    "resumen": "México sustituyó in extremis a Colombia, originalmente designada, y se convirtió en el primer país anfitrión de dos Mundiales. El torneo quedará marcado por la consagración absoluta de Diego Armando Maradona, que en cuartos vs Inglaterra anotó en cuatro minutos los dos goles antagónicos: la 'Mano de Dios' y el 'Gol del Siglo' (votado el mejor gol de la historia del Mundial por FIFA en 2002). Argentina se proclamó campeón con un Maradona inalcanzable en la final ante Alemania Federal.",
+    "eventos": [
+      "Mano de Dios y Gol del Siglo: Maradona los marcó con apenas 4 minutos de diferencia ante Inglaterra, en lo que para muchos sigue siendo la cumbre absoluta del talento individual mundialista.",
+      "Manuel Negrete anota tijera vs Bulgaria, votado posteriormente como uno de los mejores goles de la historia del Mundial.",
+      "La 'ola mexicana' del Azteca se globalizó: aunque ya existía en Universidad de Washington (1981), México 86 la difundió mundialmente."
+    ]
+  },
+  "plantillaCampeon": [
+    { "dorsal": 1, "nombre": "Nery Pumpido", "posicion": "GK", "clubOrigen": "River Plate", "edad": 28 },
+    { "dorsal": 12, "nombre": "Héctor Zelada", "posicion": "GK", "clubOrigen": "América", "edad": 28 },
+    { "dorsal": 13, "nombre": "Luis Islas", "posicion": "GK", "clubOrigen": "Estudiantes", "edad": 25 },
+    { "dorsal": 2, "nombre": "Sergio Batista", "posicion": "MID", "clubOrigen": "Argentinos Juniors", "edad": 23 },
+    { "dorsal": 3, "nombre": "José Luis Brown", "posicion": "DEF", "clubOrigen": "Estudiantes", "edad": 30 },
+    { "dorsal": 4, "nombre": "Néstor Clausen", "posicion": "DEF", "clubOrigen": "Independiente", "edad": 24 },
+    { "dorsal": 5, "nombre": "José Luis Cuciuffo", "posicion": "DEF", "clubOrigen": "Vélez Sarsfield", "edad": 25 },
+    { "dorsal": 6, "nombre": "Daniel Passarella", "posicion": "DEF", "clubOrigen": "Fiorentina", "edad": 33 },
+    { "dorsal": 7, "nombre": "Jorge Burruchaga", "posicion": "FWD", "clubOrigen": "Nantes", "edad": 23, "goles": 2 },
+    { "dorsal": 8, "nombre": "Claudio Borghi", "posicion": "FWD", "clubOrigen": "Argentinos Juniors", "edad": 22 },
+    { "dorsal": 9, "nombre": "Jorge Valdano", "posicion": "FWD", "clubOrigen": "Real Madrid", "edad": 30, "goles": 4 },
+    { "dorsal": 10, "nombre": "Diego Armando Maradona", "posicion": "MID", "clubOrigen": "Napoli", "edad": 25, "capitan": true, "goles": 5 },
+    { "dorsal": 11, "nombre": "Jorge Valdano (rep.)", "posicion": "FWD", "clubOrigen": "Real Madrid", "edad": 30 },
+    { "dorsal": 14, "nombre": "Ricardo Giusti", "posicion": "MID", "clubOrigen": "Independiente", "edad": 30 },
+    { "dorsal": 15, "nombre": "Marcelo Trobbiani", "posicion": "MID", "clubOrigen": "Boca Juniors", "edad": 31 },
+    { "dorsal": 16, "nombre": "Julio Olarticoechea", "posicion": "DEF", "clubOrigen": "Boca Juniors", "edad": 27 },
+    { "dorsal": 17, "nombre": "Pedro Pasculli", "posicion": "FWD", "clubOrigen": "Lecce", "edad": 26, "goles": 1 },
+    { "dorsal": 18, "nombre": "Daniel Garré", "posicion": "MID", "clubOrigen": "Boca Juniors", "edad": 30 },
+    { "dorsal": 19, "nombre": "Oscar Ruggeri", "posicion": "DEF", "clubOrigen": "River Plate", "edad": 24 },
+    { "dorsal": 20, "nombre": "Carlos Tapia", "posicion": "MID", "clubOrigen": "Boca Juniors", "edad": 24 },
+    { "dorsal": 21, "nombre": "Pedro Troglio", "posicion": "MID", "clubOrigen": "River Plate", "edad": 21 },
+    { "dorsal": 22, "nombre": "Héctor Enrique", "posicion": "MID", "clubOrigen": "River Plate", "edad": 23 }
+  ],
+  "fasesKO": {
+    "octavos": [
+      { "fecha": "1986-06-15", "ciudad": "Ciudad de México", "estadio": "Azteca", "local": { "pais": "México", "iso2": "mx", "iso3": "MEX" }, "visitante": { "pais": "Bulgaria", "iso2": "bg", "iso3": "BGR" }, "marcador": "2-0" },
+      { "fecha": "1986-06-15", "ciudad": "Querétaro", "estadio": "Corregidora", "local": { "pais": "Bélgica", "iso2": "be", "iso3": "BEL" }, "visitante": { "pais": "Unión Soviética", "iso2": "ru", "iso3": "RUS" }, "marcador": "4-3 (prórroga)" },
+      { "fecha": "1986-06-16", "ciudad": "Ciudad de México", "estadio": "Olímpico Universitario", "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "visitante": { "pais": "Polonia", "iso2": "pl", "iso3": "POL" }, "marcador": "4-0" },
+      { "fecha": "1986-06-16", "ciudad": "Guadalajara", "estadio": "Jalisco", "local": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "visitante": { "pais": "Uruguay", "iso2": "uy", "iso3": "URY" }, "marcador": "1-0" },
+      { "fecha": "1986-06-17", "ciudad": "Ciudad de México", "estadio": "Azteca", "local": { "pais": "Italia", "iso2": "it", "iso3": "ITA" }, "visitante": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" }, "marcador": "0-2" },
+      { "fecha": "1986-06-17", "ciudad": "León", "estadio": "Nou Camp", "local": { "pais": "Marruecos", "iso2": "ma", "iso3": "MAR" }, "visitante": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" }, "marcador": "0-1" },
+      { "fecha": "1986-06-18", "ciudad": "Querétaro", "estadio": "Corregidora", "local": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG" }, "visitante": { "pais": "Paraguay", "iso2": "py", "iso3": "PRY" }, "marcador": "3-0" },
+      { "fecha": "1986-06-18", "ciudad": "Puebla", "estadio": "Cuauhtémoc", "local": { "pais": "Dinamarca", "iso2": "dk", "iso3": "DNK" }, "visitante": { "pais": "España", "iso2": "es", "iso3": "ESP" }, "marcador": "1-5" }
+    ],
+    "cuartos": [
+      { "fecha": "1986-06-21", "ciudad": "Guadalajara", "estadio": "Jalisco", "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "visitante": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" }, "marcador": "1-1 (penales 3-4)" },
+      { "fecha": "1986-06-21", "ciudad": "Monterrey", "estadio": "Tecnológico", "local": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" }, "visitante": { "pais": "México", "iso2": "mx", "iso3": "MEX" }, "marcador": "0-0 (penales 4-1)" },
+      { "fecha": "1986-06-22", "ciudad": "Ciudad de México", "estadio": "Azteca", "local": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "visitante": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG" }, "marcador": "2-1" },
+      { "fecha": "1986-06-22", "ciudad": "Puebla", "estadio": "Cuauhtémoc", "local": { "pais": "España", "iso2": "es", "iso3": "ESP" }, "visitante": { "pais": "Bélgica", "iso2": "be", "iso3": "BEL" }, "marcador": "1-1 (penales 4-5)" }
+    ],
+    "semifinales": [
+      { "fecha": "1986-06-25", "ciudad": "Guadalajara", "estadio": "Jalisco", "local": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" }, "visitante": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" }, "marcador": "0-2" },
+      { "fecha": "1986-06-25", "ciudad": "Ciudad de México", "estadio": "Azteca", "local": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "visitante": { "pais": "Bélgica", "iso2": "be", "iso3": "BEL" }, "marcador": "2-0" }
+    ]
+  },
+  "hatTricks": [
+    { "jugador": "Igor Belanov", "seleccion": { "pais": "Unión Soviética", "iso2": "ru", "iso3": "RUS" }, "fase": "Octavos", "rival": { "pais": "Bélgica", "iso2": "be", "iso3": "BEL" }, "goles": 3, "marcador": "3-4 (prórroga)" }
+  ],
+  "recordsEdicion": [
+    { "categoria": "jugador", "descripcion": "Maradona marca la 'Mano de Dios' y el 'Gol del Siglo' con apenas 4 minutos de diferencia vs Inglaterra", "valor": "Cuartos · 22 jun" },
+    { "categoria": "balon", "descripcion": "Adidas Azteca: primer balón completamente sintético (sin cuero) en la historia del Mundial", "valor": "100% sintético" },
+    { "categoria": "estadio", "descripcion": "El Azteca se convierte en el primer y único estadio en albergar dos finales mundialistas", "valor": "1970 + 1986" }
+  ],
+  "curiosidades": [
+    {
+      "categoria": "estadio",
+      "texto": "El Estadio Azteca se convirtió en el primer y único estadio en albergar dos finales mundialistas (1970 y 1986). En 2026 será también el primero en hospedar tres ediciones del torneo."
+    },
+    {
+      "categoria": "balon",
+      "texto": "El Adidas Azteca fue el primer balón completamente sintético de la historia mundialista, abandonando el cuero tradicional usado desde 1930. Su diseño homenajeaba el arte azteca y maya."
+    }
+  ],
+  "fuentes": [
+    { "nombre": "FIFA Archive — World Cup 1986", "url": "https://www.fifa.com/tournaments/mens/worldcup/1986mexico" },
+    { "nombre": "RSSSF — World Cup 1986", "url": "https://www.rsssf.org/tables/86full.html" }
+  ]
+}

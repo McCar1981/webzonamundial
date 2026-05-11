@@ -1,0 +1,146 @@
+{
+  "meta": {
+    "edicion": 8,
+    "anio": 1966,
+    "slug": "1966-inglaterra",
+    "tituloOficial": "Copa Mundial de Fútbol 1966",
+    "nombreCorto": "Inglaterra 1966",
+    "era": "clasica"
+  },
+  "sede": {
+    "paises": [
+      { "nombre": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG", "banderaUrl": "https://flagcdn.com/w160/gb-eng.png" }
+    ],
+    "ciudades": ["Londres", "Liverpool", "Mánchester", "Sheffield", "Sunderland", "Birmingham", "Middlesbrough"],
+    "estadios": ["Wembley", "Anfield", "Old Trafford", "Goodison Park", "Hillsborough", "Roker Park"]
+  },
+  "fechas": { "inicio": "1966-07-11", "final": "1966-07-30", "duracionDias": 20 },
+  "formato": {
+    "numEquipos": 16,
+    "numPartidos": 32,
+    "sistemaEliminatoria": "cuartos",
+    "numGrupos": 4
+  },
+  "resultados": {
+    "campeon": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG", "banderaUrl": "https://flagcdn.com/w160/gb-eng.png" },
+    "subcampeon": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU", "banderaUrl": "https://flagcdn.com/w160/de.png" },
+    "tercero": { "pais": "Portugal", "iso2": "pt", "iso3": "PRT", "banderaUrl": "https://flagcdn.com/w160/pt.png" },
+    "cuarto": { "pais": "Unión Soviética", "iso2": "ru", "iso3": "RUS", "banderaUrl": "https://flagcdn.com/w160/ru.png" }
+  },
+  "estadisticas": {
+    "totalGoles": 89,
+    "promedioGolesPartido": 2.78,
+    "asistenciaTotal": 1563135,
+    "asistenciaPromedio": 48848
+  },
+  "identidadVisual": {
+    "eslogan": "World Cup Willie",
+    "mascota": "Willie",
+    "balon": "Slazenger Challenge 4-Star",
+    "colorPrincipal": "#CE1124"
+  },
+  "partidoFinal": {
+    "fecha": "1966-07-30",
+    "ciudad": "Londres",
+    "estadio": "Wembley",
+    "local": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG" },
+    "visitante": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" },
+    "marcador": "4-2 (prórroga)",
+    "asistencia": 96924,
+    "arbitro": "Gottfried Dienst (Suiza)"
+  },
+  "topGoleadores": [
+    {
+      "nombre": "Eusébio",
+      "seleccion": { "pais": "Portugal", "iso2": "pt", "iso3": "PRT" },
+      "goles": 9,
+      "botaOro": true
+    },
+    {
+      "nombre": "Helmut Haller",
+      "seleccion": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" },
+      "goles": 6
+    },
+    {
+      "nombre": "Geoff Hurst",
+      "seleccion": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG" },
+      "goles": 4
+    }
+  ],
+  "premios": {
+    "balonOro": "Bobby Charlton (Inglaterra)"
+  },
+  "contextoHistorico": {
+    "resumen": "Primer Mundial inglés con la primera mascota de la historia, Willie. Boicot total de las federaciones africanas (15 selecciones CAF retiradas) por el reparto desigual de plazas. Inglaterra se proclamó campeón en su Wembley con un Geoff Hurst histórico autor del único hat-trick en una final hasta 2022. La final incluyó el famoso 'gol fantasma' del Wembley, validado por el árbitro tras la indicación del juez de línea Bahramov.",
+    "eventos": [
+      "Robo de la Coppa Jules Rimet en Westminster: la encontró Pickles, un perro collie, bajo un seto en Beulah Hill (Londres).",
+      "Eusébio comanda la primera presencia portuguesa con un cuarto puesto histórico y hat-trick parcial vs Corea del Norte (cuartos).",
+      "Pelé y Brasil eliminados en fase de grupos tras durísimas faltas no sancionadas a 'O Rei'."
+    ]
+  },
+  "plantillaCampeon": [
+    { "dorsal": 1, "nombre": "Gordon Banks", "posicion": "GK", "clubOrigen": "Leicester City", "edad": 28 },
+    { "dorsal": 2, "nombre": "George Cohen", "posicion": "DEF", "clubOrigen": "Fulham", "edad": 26 },
+    { "dorsal": 3, "nombre": "Ray Wilson", "posicion": "DEF", "clubOrigen": "Everton", "edad": 31 },
+    { "dorsal": 4, "nombre": "Nobby Stiles", "posicion": "MID", "clubOrigen": "Manchester United", "edad": 24 },
+    { "dorsal": 5, "nombre": "Jack Charlton", "posicion": "DEF", "clubOrigen": "Leeds United", "edad": 31 },
+    { "dorsal": 6, "nombre": "Bobby Moore", "posicion": "DEF", "clubOrigen": "West Ham United", "edad": 25, "capitan": true },
+    { "dorsal": 7, "nombre": "Alan Ball", "posicion": "MID", "clubOrigen": "Blackpool", "edad": 21 },
+    { "dorsal": 8, "nombre": "Jimmy Greaves", "posicion": "FWD", "clubOrigen": "Tottenham", "edad": 26 },
+    { "dorsal": 9, "nombre": "Bobby Charlton", "posicion": "MID", "clubOrigen": "Manchester United", "edad": 28, "goles": 3 },
+    { "dorsal": 10, "nombre": "Geoff Hurst", "posicion": "FWD", "clubOrigen": "West Ham United", "edad": 24, "goles": 4 },
+    { "dorsal": 11, "nombre": "Roger Hunt", "posicion": "FWD", "clubOrigen": "Liverpool", "edad": 27, "goles": 3 },
+    { "dorsal": 12, "nombre": "Ron Springett", "posicion": "GK", "clubOrigen": "Sheffield Wednesday", "edad": 30 },
+    { "dorsal": 13, "nombre": "Peter Bonetti", "posicion": "GK", "clubOrigen": "Chelsea", "edad": 24 },
+    { "dorsal": 16, "nombre": "Martin Peters", "posicion": "MID", "clubOrigen": "West Ham United", "edad": 22, "goles": 1 }
+  ],
+  "fasesKO": {
+    "cuartos": [
+      { "fecha": "1966-07-23", "ciudad": "Londres", "estadio": "Wembley", "local": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG" }, "visitante": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "marcador": "1-0" },
+      { "fecha": "1966-07-23", "ciudad": "Liverpool", "estadio": "Goodison Park", "local": { "pais": "Portugal", "iso2": "pt", "iso3": "PRT" }, "visitante": { "pais": "Corea del Norte", "iso2": "kp", "iso3": "PRK" }, "marcador": "5-3" },
+      { "fecha": "1966-07-23", "ciudad": "Sheffield", "estadio": "Hillsborough", "local": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" }, "visitante": { "pais": "Uruguay", "iso2": "uy", "iso3": "URY" }, "marcador": "4-0" },
+      { "fecha": "1966-07-23", "ciudad": "Sunderland", "estadio": "Roker Park", "local": { "pais": "Unión Soviética", "iso2": "ru", "iso3": "RUS" }, "visitante": { "pais": "Hungría", "iso2": "hu", "iso3": "HUN" }, "marcador": "2-1" }
+    ],
+    "semifinales": [
+      { "fecha": "1966-07-25", "ciudad": "Liverpool", "estadio": "Goodison Park", "local": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" }, "visitante": { "pais": "Unión Soviética", "iso2": "ru", "iso3": "RUS" }, "marcador": "2-1" },
+      { "fecha": "1966-07-26", "ciudad": "Londres", "estadio": "Wembley", "local": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG" }, "visitante": { "pais": "Portugal", "iso2": "pt", "iso3": "PRT" }, "marcador": "2-1" }
+    ]
+  },
+  "hatTricks": [
+    { "jugador": "Eusébio", "seleccion": { "pais": "Portugal", "iso2": "pt", "iso3": "PRT" }, "fase": "Cuartos", "rival": { "pais": "Corea del Norte", "iso2": "kp", "iso3": "PRK" }, "goles": 4, "marcador": "5-3" },
+    { "jugador": "Geoff Hurst", "seleccion": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG" }, "fase": "Final", "rival": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" }, "goles": 3, "marcador": "4-2 (prórroga)" }
+  ],
+  "recordsEdicion": [
+    { "categoria": "jugador", "descripcion": "Geoff Hurst: único hat-trick en una final mundialista hasta Mbappé en 2022 (56 años después)", "valor": "Único hasta 2022" },
+    { "categoria": "mascota", "descripcion": "Willie: primera mascota oficial de un Mundial, diseñada por Reg Hoye", "valor": "Mascota #1" },
+    { "categoria": "politica", "descripcion": "Boicot total de las federaciones africanas: 15 selecciones CAF se retiraron por el reparto desigual de plazas", "valor": "Boicot CAF" },
+    { "categoria": "tv", "descripcion": "Primer Mundial transmitido a todo el planeta vía satélite", "valor": "Cobertura global" },
+    { "categoria": "estadio", "descripcion": "Brasil cae en fase de grupos por primera vez desde 1934: Pelé sufre patadas brutales sin sanción y se va lesionado", "valor": "Brasil eliminado" }
+  ],
+  "curiosidades": [
+    {
+      "categoria": "misc",
+      "texto": "Pickles, el perro que encontró el trofeo robado, fue invitado al banquete oficial de Inglaterra tras la final con una medalla, y su dueño recibió 6.000 libras. Pickles murió un año después estrangulado por su correa al perseguir un gato."
+    },
+    {
+      "categoria": "arbitro",
+      "texto": "Tofik Bahramov, el linier soviético del 'gol fantasma' del Wembley, da nombre al estadio nacional de Bakú desde 1993, primer árbitro de la historia con un estadio bautizado en su honor."
+    },
+    {
+      "categoria": "jugador",
+      "texto": "Cuando Bobby Moore subió a recibir el trofeo de la reina Isabel II, se limpió las manos en el mantel del palco real para no manchar los guantes blancos de la monarca. El gesto se convirtió en un símbolo de la elegancia inglesa."
+    },
+    {
+      "categoria": "tragedia",
+      "texto": "Corea del Norte sorprendió eliminando a Italia (1-0) y llegando a cuartos. La derrota italiana fue tan humillante que el avión de regreso fue recibido en Génova con tomatazos. Italia no volvió a clasificar a 1970, pero ese 1970 sería su mejor Mundial."
+    },
+    {
+      "categoria": "balon",
+      "texto": "El Slazenger Challenge fue el último balón fabricado en cuero clásico amarillo: la final se jugó con un balón naranja específico (hoy expuesto en el National Football Museum de Preston). Cambiaba de color al mojarse, complicando la visión a los porteros."
+    }
+  ],
+  "fuentes": [
+    { "nombre": "FIFA Archive — World Cup 1966", "url": "https://www.fifa.com/tournaments/mens/worldcup/1966england" },
+    { "nombre": "RSSSF — World Cup 1966", "url": "https://www.rsssf.org/tables/66full.html" }
+  ]
+}

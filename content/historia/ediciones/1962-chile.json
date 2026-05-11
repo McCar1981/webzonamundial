@@ -1,0 +1,140 @@
+{
+  "meta": {
+    "edicion": 7,
+    "anio": 1962,
+    "slug": "1962-chile",
+    "tituloOficial": "Copa Mundial de Fútbol 1962",
+    "nombreCorto": "Chile 1962",
+    "era": "clasica"
+  },
+  "sede": {
+    "paises": [
+      { "nombre": "Chile", "iso2": "cl", "iso3": "CHL", "banderaUrl": "https://flagcdn.com/w160/cl.png" }
+    ],
+    "ciudades": ["Santiago", "Viña del Mar", "Arica", "Rancagua"],
+    "estadios": ["Estadio Nacional", "Estadio Sausalito", "Estadio Carlos Dittborn", "Estadio El Teniente"]
+  },
+  "fechas": { "inicio": "1962-05-30", "final": "1962-06-17", "duracionDias": 19 },
+  "formato": {
+    "numEquipos": 16,
+    "numPartidos": 32,
+    "sistemaEliminatoria": "cuartos",
+    "numGrupos": 4
+  },
+  "resultados": {
+    "campeon": { "pais": "Brasil", "iso2": "br", "iso3": "BRA", "banderaUrl": "https://flagcdn.com/w160/br.png" },
+    "subcampeon": { "pais": "Checoslovaquia", "iso2": "cz", "iso3": "CZE", "banderaUrl": "https://flagcdn.com/w160/cz.png" },
+    "tercero": { "pais": "Chile", "iso2": "cl", "iso3": "CHL", "banderaUrl": "https://flagcdn.com/w160/cl.png" },
+    "cuarto": { "pais": "Yugoslavia", "iso2": "rs", "iso3": "SRB", "banderaUrl": "https://flagcdn.com/w160/rs.png" }
+  },
+  "estadisticas": {
+    "totalGoles": 89,
+    "promedioGolesPartido": 2.78,
+    "asistenciaTotal": 893172,
+    "asistenciaPromedio": 27912
+  },
+  "identidadVisual": {
+    "eslogan": "Porque no tenemos nada, queremos hacerlo todo",
+    "balon": "Crack",
+    "colorPrincipal": "#D52B1E"
+  },
+  "partidoFinal": {
+    "fecha": "1962-06-17",
+    "ciudad": "Santiago",
+    "estadio": "Estadio Nacional",
+    "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" },
+    "visitante": { "pais": "Checoslovaquia", "iso2": "cz", "iso3": "CZE" },
+    "marcador": "3-1",
+    "asistencia": 68679,
+    "arbitro": "Nikolai Latyshev (URSS)"
+  },
+  "topGoleadores": [
+    {
+      "nombre": "Garrincha",
+      "seleccion": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" },
+      "goles": 4,
+      "botaOro": true
+    },
+    {
+      "nombre": "Vavá",
+      "seleccion": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" },
+      "goles": 4
+    },
+    {
+      "nombre": "Leonel Sánchez",
+      "seleccion": { "pais": "Chile", "iso2": "cl", "iso3": "CHL" },
+      "goles": 4
+    },
+    {
+      "nombre": "Flórián Albert",
+      "seleccion": { "pais": "Hungría", "iso2": "hu", "iso3": "HUN" },
+      "goles": 4
+    },
+    {
+      "nombre": "Valentin Ivanov",
+      "seleccion": { "pais": "Unión Soviética", "iso2": "ru", "iso3": "RUS" },
+      "goles": 4
+    },
+    {
+      "nombre": "Dražan Jerković",
+      "seleccion": { "pais": "Yugoslavia", "iso2": "rs", "iso3": "SRB" },
+      "goles": 4
+    }
+  ],
+  "premios": {
+    "balonOro": "Garrincha (Brasil)"
+  },
+  "contextoHistorico": {
+    "resumen": "Chile organizó el Mundial pese al devastador terremoto de Valdivia (mayo 1960, 9.5 magnitud). Carlos Dittborn pronunció la frase histórica 'porque no tenemos nada, queremos hacerlo todo'. Brasil revalidó título sin Pelé, lesionado en el segundo partido, gracias a un Garrincha sublime que se llevó Bota y Balón de Oro.",
+    "eventos": [
+      "Batalla de Santiago (Chile 2-0 Italia): Ken Aston pita el partido más violento del Mundial, dos italianos expulsados. La experiencia inspiraría las tarjetas amarilla y roja.",
+      "Marcos Coll (Colombia) marca el único gol olímpico (córner directo) en la historia del Mundial vs URSS de Yashin.",
+      "Hat-trick más rápido del Mundial hasta entonces, con seis goleadores empatados a 4 — la primera vez con tantos co-líderes."
+    ]
+  },
+  "fasesKO": {
+    "cuartos": [
+      { "fecha": "1962-06-10", "ciudad": "Viña del Mar", "estadio": "Sausalito", "local": { "pais": "Yugoslavia", "iso2": "rs", "iso3": "SRB" }, "visitante": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" }, "marcador": "1-0" },
+      { "fecha": "1962-06-10", "ciudad": "Santiago", "estadio": "Estadio Nacional", "local": { "pais": "Chile", "iso2": "cl", "iso3": "CHL" }, "visitante": { "pais": "Unión Soviética", "iso2": "ru", "iso3": "RUS" }, "marcador": "2-1" },
+      { "fecha": "1962-06-10", "ciudad": "Viña del Mar", "estadio": "Sausalito", "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "visitante": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG" }, "marcador": "3-1" },
+      { "fecha": "1962-06-10", "ciudad": "Rancagua", "estadio": "El Teniente", "local": { "pais": "Checoslovaquia", "iso2": "cz", "iso3": "CZE" }, "visitante": { "pais": "Hungría", "iso2": "hu", "iso3": "HUN" }, "marcador": "1-0" }
+    ],
+    "semifinales": [
+      { "fecha": "1962-06-13", "ciudad": "Viña del Mar", "estadio": "Sausalito", "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "visitante": { "pais": "Chile", "iso2": "cl", "iso3": "CHL" }, "marcador": "4-2" },
+      { "fecha": "1962-06-13", "ciudad": "Santiago", "estadio": "Estadio Nacional", "local": { "pais": "Checoslovaquia", "iso2": "cz", "iso3": "CZE" }, "visitante": { "pais": "Yugoslavia", "iso2": "rs", "iso3": "SRB" }, "marcador": "3-1" }
+    ]
+  },
+  "recordsEdicion": [
+    { "categoria": "arbitro", "descripcion": "La Batalla de Santiago (Chile-Italia) inspira a Ken Aston a inventar las tarjetas amarilla y roja, debut posterior en México 1970", "valor": "Origen tarjetas" },
+    { "categoria": "jugador", "descripcion": "Marcos Coll (Colombia) anota el ÚNICO gol olímpico (córner directo) de la historia del Mundial vs URSS de Yashin", "valor": "Único gol olímpico" },
+    { "categoria": "jugador", "descripcion": "6 jugadores empatados con 4 goles cada uno: récord de la Bota de Oro más repartida de la historia", "valor": "6 botas de oro" },
+    { "categoria": "tragedia", "descripcion": "Pelé se lesionó en el segundo partido y no volvió a jugar; Brasil ganó sin él gracias a un Garrincha sublime", "valor": "Pelé fuera" },
+    { "categoria": "estadio", "descripcion": "Mundial post-terremoto Valdivia 1960 (9.5 magnitud, sigue siendo el más fuerte registrado): Chile lo organizó como gesto de resiliencia nacional", "valor": "Tras Valdivia 1960" }
+  ],
+  "curiosidades": [
+    {
+      "categoria": "arbitro",
+      "texto": "Tras pitar la Batalla de Santiago, Ken Aston tuvo años después la idea de las tarjetas al ver un semáforo en Kensington High Street. Su esposa Hilda recortó las primeras tarjetas en cartulina amarilla y roja."
+    },
+    {
+      "categoria": "tragedia",
+      "texto": "Carlos Dittborn, presidente del comité organizador y autor de la frase 'porque no tenemos nada...', falleció apenas un mes antes del Mundial. Una sede recibió su nombre en homenaje."
+    },
+    {
+      "categoria": "jugador",
+      "texto": "Garrincha tenía la pierna izquierda 6 cm más larga que la derecha (secuela de polio infantil). Brasil nunca perdió cuando él y Pelé jugaron juntos: 60 partidos, 60 victorias o empates."
+    },
+    {
+      "categoria": "balon",
+      "texto": "El Crack, balón oficial chileno fabricado por Custodio Zamora, fue muy criticado por jugadores europeos por su rebote impredecible. FIFA cambió el balón oficial en plena fase de grupos por presión de las selecciones, único caso histórico."
+    },
+    {
+      "categoria": "politica",
+      "texto": "El partido inaugural Chile 3-1 Suiza tuvo asistencia de solo 7.000 espectadores en un estadio para 70.000. La prensa chilena se quejó de poco interés popular: el país aún se reconstruía tras el terremoto y la entrada era cara."
+    }
+  ],
+  "fuentes": [
+    { "nombre": "FIFA Archive — World Cup 1962", "url": "https://www.fifa.com/tournaments/mens/worldcup/1962chile" },
+    { "nombre": "RSSSF — World Cup 1962", "url": "https://www.rsssf.org/tables/62full.html" }
+  ]
+}

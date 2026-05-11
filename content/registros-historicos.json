@@ -1,0 +1,194 @@
+{
+  "actualizadoEn": "2026-05-09",
+  "topGoleadoresAllTime": [
+    { "nombre": "Miroslav Klose", "seleccion": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" }, "goles": 16, "mundiales": [2002, 2006, 2010, 2014] },
+    { "nombre": "Ronaldo", "seleccion": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "goles": 15, "mundiales": [1994, 1998, 2002, 2006] },
+    { "nombre": "Gerd Müller", "seleccion": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" }, "goles": 14, "mundiales": [1970, 1974] },
+    { "nombre": "Just Fontaine", "seleccion": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" }, "goles": 13, "mundiales": [1958] },
+    { "nombre": "Lionel Messi", "seleccion": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "goles": 13, "mundiales": [2006, 2010, 2014, 2018, 2022] },
+    { "nombre": "Pelé", "seleccion": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "goles": 12, "mundiales": [1958, 1962, 1966, 1970] },
+    { "nombre": "Kylian Mbappé", "seleccion": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" }, "goles": 12, "mundiales": [2018, 2022] },
+    { "nombre": "Sándor Kocsis", "seleccion": { "pais": "Hungría", "iso2": "hu", "iso3": "HUN" }, "goles": 11, "mundiales": [1954] },
+    { "nombre": "Jürgen Klinsmann", "seleccion": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" }, "goles": 11, "mundiales": [1990, 1994, 1998] },
+    { "nombre": "Helmut Rahn", "seleccion": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" }, "goles": 10, "mundiales": [1954, 1958] }
+  ],
+  "masMundialesJugados": [
+    { "nombre": "Antonio Carbajal", "seleccion": { "pais": "México", "iso2": "mx", "iso3": "MEX" }, "mundiales": 5, "anios": [1950, 1954, 1958, 1962, 1966] },
+    { "nombre": "Lothar Matthäus", "seleccion": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" }, "mundiales": 5, "anios": [1982, 1986, 1990, 1994, 1998] },
+    { "nombre": "Rafael Márquez", "seleccion": { "pais": "México", "iso2": "mx", "iso3": "MEX" }, "mundiales": 5, "anios": [2002, 2006, 2010, 2014, 2018] },
+    { "nombre": "Andrés Guardado", "seleccion": { "pais": "México", "iso2": "mx", "iso3": "MEX" }, "mundiales": 5, "anios": [2006, 2010, 2014, 2018, 2022] },
+    { "nombre": "Lionel Messi", "seleccion": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "mundiales": 5, "anios": [2006, 2010, 2014, 2018, 2022] },
+    { "nombre": "Cristiano Ronaldo", "seleccion": { "pais": "Portugal", "iso2": "pt", "iso3": "PRT" }, "mundiales": 5, "anios": [2006, 2010, 2014, 2018, 2022] }
+  ],
+  "masPartidosJugados": [
+    { "nombre": "Lionel Messi", "seleccion": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "partidos": 26 },
+    { "nombre": "Lothar Matthäus", "seleccion": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" }, "partidos": 25 },
+    { "nombre": "Miroslav Klose", "seleccion": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" }, "partidos": 24 },
+    { "nombre": "Paolo Maldini", "seleccion": { "pais": "Italia", "iso2": "it", "iso3": "ITA" }, "partidos": 23 },
+    { "nombre": "Cristiano Ronaldo", "seleccion": { "pais": "Portugal", "iso2": "pt", "iso3": "PRT" }, "partidos": 22 },
+    { "nombre": "Diego Maradona", "seleccion": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "partidos": 21 },
+    { "nombre": "Uwe Seeler", "seleccion": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" }, "partidos": 21 },
+    { "nombre": "Wladyslaw Zmuda", "seleccion": { "pais": "Polonia", "iso2": "pl", "iso3": "POL" }, "partidos": 21 }
+  ],
+  "tablaHistoricaSelecciones": [
+    { "pais": "Brasil", "iso2": "br", "iso3": "BRA", "participaciones": 22, "campeonatos": 5, "subcampeonatos": 2, "podios": 11, "puntos": 248, "anios": [1958, 1962, 1970, 1994, 2002] },
+    { "pais": "Alemania", "iso2": "de", "iso3": "DEU", "participaciones": 20, "campeonatos": 4, "subcampeonatos": 4, "podios": 13, "puntos": 234, "anios": [1954, 1974, 1990, 2014] },
+    { "pais": "Italia", "iso2": "it", "iso3": "ITA", "participaciones": 18, "campeonatos": 4, "subcampeonatos": 2, "podios": 8, "puntos": 156, "anios": [1934, 1938, 1982, 2006] },
+    { "pais": "Argentina", "iso2": "ar", "iso3": "ARG", "participaciones": 18, "campeonatos": 3, "subcampeonatos": 3, "podios": 6, "puntos": 152, "anios": [1978, 1986, 2022] },
+    { "pais": "Francia", "iso2": "fr", "iso3": "FRA", "participaciones": 16, "campeonatos": 2, "subcampeonatos": 2, "podios": 7, "puntos": 134, "anios": [1998, 2018] },
+    { "pais": "Uruguay", "iso2": "uy", "iso3": "URY", "participaciones": 14, "campeonatos": 2, "subcampeonatos": 0, "podios": 4, "puntos": 80, "anios": [1930, 1950] },
+    { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG", "participaciones": 16, "campeonatos": 1, "subcampeonatos": 0, "podios": 1, "puntos": 102, "anios": [1966] },
+    { "pais": "España", "iso2": "es", "iso3": "ESP", "participaciones": 16, "campeonatos": 1, "subcampeonatos": 0, "podios": 1, "puntos": 99, "anios": [2010] }
+  ],
+  "dtMasMundiales": [
+    { "nombre": "Bora Milutinović", "mundiales": 5, "selecciones": ["México 1986", "Costa Rica 1990", "EE.UU. 1994", "Nigeria 1998", "China 2002"] },
+    { "nombre": "Carlos Alberto Parreira", "mundiales": 6, "selecciones": ["Kuwait 1982", "EAU 1990", "Brasil 1994 (CAMPEÓN)", "Arabia Saudí 1998", "Brasil 2006", "Sudáfrica 2010"] },
+    { "nombre": "Helmut Schön", "mundiales": 4, "selecciones": ["RFA 1966", "RFA 1970", "RFA 1974 (CAMPEÓN)", "RFA 1978"] }
+  ],
+  "campeonesComoJugadorYDT": [
+    { "nombre": "Mario Zagallo", "campeonJugador": [1958, 1962], "campeonDT": [1970], "seleccion": "Brasil" },
+    { "nombre": "Franz Beckenbauer", "campeonJugador": [1974], "campeonDT": [1990], "seleccion": "Alemania Federal" },
+    { "nombre": "Didier Deschamps", "campeonJugador": [1998], "campeonDT": [2018], "seleccion": "Francia" }
+  ],
+  "recordsAbsolutos": [
+    {
+      "categoria": "goleador",
+      "titulo": "Goleador histórico del Mundial",
+      "valor": "Miroslav Klose · 16 goles",
+      "detalle": "Acumulados en 4 Mundiales (2002–2014). Superó a Ronaldo en el Mineirazo.",
+      "vigente": true
+    },
+    {
+      "categoria": "goleador-edicion",
+      "titulo": "Más goles en una edición",
+      "valor": "Just Fontaine · 13 goles (1958)",
+      "detalle": "Récord histórico inalcanzable: ningún jugador desde 1958 ha superado los 11 goles en un mismo Mundial.",
+      "vigente": true
+    },
+    {
+      "categoria": "goleador-partido",
+      "titulo": "Más goles en un partido",
+      "valor": "Oleg Salenko · 5 goles (1994)",
+      "detalle": "Rusia 6-1 Camerún. Ningún otro jugador ha marcado 5 goles en un partido del Mundial.",
+      "vigente": true
+    },
+    {
+      "categoria": "partidos",
+      "titulo": "Más partidos disputados",
+      "valor": "Lionel Messi · 26 partidos",
+      "detalle": "Cinco Mundiales (2006–2022). Superó a Lothar Matthäus en Catar.",
+      "vigente": true
+    },
+    {
+      "categoria": "asistencia-partido",
+      "titulo": "Mayor asistencia en un partido",
+      "valor": "173.850 espectadores · 1950",
+      "detalle": "Maracanazo, Brasil 1-2 Uruguay en el Maracaná. Asistencia oficial; estimaciones extraoficiales superan los 200.000.",
+      "vigente": true
+    },
+    {
+      "categoria": "promedio-goles",
+      "titulo": "Mayor promedio de goles por partido",
+      "valor": "5,38 goles/partido (1954)",
+      "detalle": "Suiza 1954: 140 goles en 26 partidos. Récord histórico inalcanzable en la era moderna.",
+      "vigente": true
+    },
+    {
+      "categoria": "menor-promedio",
+      "titulo": "Menor promedio de goles por partido",
+      "valor": "2,21 goles/partido (1990)",
+      "detalle": "Italia 1990: 115 goles en 52 partidos. Reflejo del fútbol más defensivo de la historia mundialista.",
+      "vigente": true
+    },
+    {
+      "categoria": "gol-rapido",
+      "titulo": "Gol más rápido del Mundial",
+      "valor": "Hakan Şükür · 10,8 segundos",
+      "detalle": "Turquía-Corea del Sur, partido por el tercer puesto, 2002.",
+      "vigente": true
+    },
+    {
+      "categoria": "gol-rapido-final",
+      "titulo": "Gol más rápido en una final",
+      "valor": "Johan Neeskens · 1m25s",
+      "detalle": "Penal a los 80 segundos en Países Bajos-RFA, final 1974.",
+      "vigente": true
+    },
+    {
+      "categoria": "joven-debut",
+      "titulo": "Jugador más joven en disputar un Mundial",
+      "valor": "Norman Whiteside · 17 años, 41 días",
+      "detalle": "Irlanda del Norte, debut vs Yugoslavia, España 1982.",
+      "vigente": true
+    },
+    {
+      "categoria": "joven-gol",
+      "titulo": "Goleador más joven del Mundial",
+      "valor": "Pelé · 17 años, 239 días",
+      "detalle": "Brasil-Gales, cuartos, Suecia 1958.",
+      "vigente": true
+    },
+    {
+      "categoria": "veterano-jugar",
+      "titulo": "Jugador más veterano en disputar un Mundial",
+      "valor": "Essam El-Hadary · 45 años, 161 días",
+      "detalle": "Portero egipcio, Rusia 2018.",
+      "vigente": true
+    },
+    {
+      "categoria": "veterano-gol",
+      "titulo": "Goleador más veterano del Mundial",
+      "valor": "Roger Milla · 42 años, 39 días",
+      "detalle": "Camerún 1-6 Rusia, EE.UU. 1994.",
+      "vigente": true
+    },
+    {
+      "categoria": "veterano-final",
+      "titulo": "Goleador más veterano en una final",
+      "valor": "Nils Liedholm · 35 años, 264 días",
+      "detalle": "Suecia 2-5 Brasil, final 1958. Anotó al minuto 4.",
+      "vigente": true
+    },
+    {
+      "categoria": "campeon-veterano",
+      "titulo": "Campeón del Mundo más veterano",
+      "valor": "Dino Zoff · 40 años, 133 días",
+      "detalle": "Capitán de Italia, España 1982.",
+      "vigente": true
+    },
+    {
+      "categoria": "presencia-total",
+      "titulo": "Única selección con presencia en todas las ediciones",
+      "valor": "Brasil · 22/22",
+      "detalle": "Único equipo presente desde Uruguay 1930 hasta Catar 2022 sin faltar ni una vez.",
+      "vigente": true
+    },
+    {
+      "categoria": "goleada",
+      "titulo": "Mayor goleada del Mundial",
+      "valor": "Hungría 10-1 El Salvador",
+      "detalle": "España 1982. Laszlo Kiss anotó tres goles desde el banquillo en 8 minutos: único hat-trick desde el banco en la historia.",
+      "vigente": true
+    },
+    {
+      "categoria": "goles-partido",
+      "titulo": "Más goles en un partido del Mundial",
+      "valor": "Austria 7-5 Suiza · 12 goles",
+      "detalle": "Cuartos de final de Suiza 1954. Récord histórico vigente.",
+      "vigente": true
+    },
+    {
+      "categoria": "tarjetas-final",
+      "titulo": "Más tarjetas amarillas en una final",
+      "valor": "14 amarillas · 2010",
+      "detalle": "Países Bajos-España, final del Mundial Sudáfrica 2010 arbitrada por Howard Webb.",
+      "vigente": true
+    }
+  ],
+  "fuentes": [
+    { "nombre": "FIFA Statistics", "url": "https://www.fifa.com/tournaments/mens/worldcup/qatar2022/statistics" },
+    { "nombre": "RSSSF — World Cup Records", "url": "https://www.rsssf.org/tablesw/wc-records.html" },
+    { "nombre": "Guinness World Records — Football", "url": "https://www.guinnessworldrecords.com/world-records/football" },
+    { "nombre": "Wikipedia — Anexo: Récords de la Copa Mundial de Fútbol", "url": "https://es.wikipedia.org/wiki/Anexo:R%C3%A9cords_de_la_Copa_Mundial_de_F%C3%BAtbol" }
+  ]
+}

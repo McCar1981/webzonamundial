@@ -1,0 +1,146 @@
+{
+  "meta": {
+    "edicion": 5,
+    "anio": 1954,
+    "slug": "1954-suiza",
+    "tituloOficial": "Copa Mundial de Fútbol 1954",
+    "nombreCorto": "Suiza 1954",
+    "era": "posguerra"
+  },
+  "sede": {
+    "paises": [
+      { "nombre": "Suiza", "iso2": "ch", "iso3": "CHE", "banderaUrl": "https://flagcdn.com/w160/ch.png" }
+    ],
+    "ciudades": ["Berna", "Basilea", "Zúrich", "Lausana", "Ginebra", "Lugano"],
+    "estadios": ["Wankdorf", "St. Jakob", "Hardturm", "Estadio La Pontaise"]
+  },
+  "fechas": { "inicio": "1954-06-16", "final": "1954-07-04", "duracionDias": 19 },
+  "formato": {
+    "numEquipos": 16,
+    "numPartidos": 26,
+    "sistemaEliminatoria": "cuartos",
+    "numGrupos": 4
+  },
+  "resultados": {
+    "campeon": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU", "banderaUrl": "https://flagcdn.com/w160/de.png" },
+    "subcampeon": { "pais": "Hungría", "iso2": "hu", "iso3": "HUN", "banderaUrl": "https://flagcdn.com/w160/hu.png" },
+    "tercero": { "pais": "Austria", "iso2": "at", "iso3": "AUT", "banderaUrl": "https://flagcdn.com/w160/at.png" },
+    "cuarto": { "pais": "Uruguay", "iso2": "uy", "iso3": "URY", "banderaUrl": "https://flagcdn.com/w160/uy.png" }
+  },
+  "estadisticas": {
+    "totalGoles": 140,
+    "promedioGolesPartido": 5.38,
+    "asistenciaTotal": 768607,
+    "asistenciaPromedio": 29562
+  },
+  "identidadVisual": {
+    "eslogan": "Das Wunder von Bern",
+    "balon": "Swiss World Champion (18 paneles)",
+    "colorPrincipal": "#FF0000"
+  },
+  "partidoFinal": {
+    "fecha": "1954-07-04",
+    "ciudad": "Berna",
+    "estadio": "Wankdorf",
+    "local": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" },
+    "visitante": { "pais": "Hungría", "iso2": "hu", "iso3": "HUN" },
+    "marcador": "3-2",
+    "asistencia": 62500,
+    "arbitro": "William Ling (Inglaterra)"
+  },
+  "topGoleadores": [
+    {
+      "nombre": "Sándor Kocsis",
+      "seleccion": { "pais": "Hungría", "iso2": "hu", "iso3": "HUN" },
+      "goles": 11,
+      "botaOro": true
+    },
+    {
+      "nombre": "Max Morlock",
+      "seleccion": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" },
+      "goles": 6
+    },
+    {
+      "nombre": "Erich Probst",
+      "seleccion": { "pais": "Austria", "iso2": "at", "iso3": "AUT" },
+      "goles": 6
+    }
+  ],
+  "contextoHistorico": {
+    "resumen": "El 'Milagro de Berna': Alemania Occidental remontó un 0-2 inicial ante la favorita Hungría de Puskás (invicta desde mayo 1950) para conquistar su primer Mundial. El torneo registró el promedio histórico de goles más alto: 5,38 por partido, récord aún vigente. Marcó la consagración de los tacos atornillables de Adidas en el barro de Berna.",
+    "eventos": [
+      "Austria 7-5 Suiza (cuartos): los 12 goles en un partido siguen siendo récord histórico del Mundial.",
+      "Primera transmisión televisiva en directo de un Mundial.",
+      "Hungría llegaba como ampliamente favorita tras vencer 8-3 a la propia Alemania Occidental en fase de grupos."
+    ]
+  },
+  "plantillaCampeon": [
+    { "dorsal": 1, "nombre": "Toni Turek", "posicion": "GK", "clubOrigen": "Fortuna Düsseldorf", "edad": 35 },
+    { "dorsal": 2, "nombre": "Josef Posipal", "posicion": "DEF", "clubOrigen": "Hamburger SV", "edad": 27 },
+    { "dorsal": 3, "nombre": "Werner Kohlmeyer", "posicion": "DEF", "clubOrigen": "Kaiserslautern", "edad": 29 },
+    { "dorsal": 4, "nombre": "Werner Liebrich", "posicion": "DEF", "clubOrigen": "Kaiserslautern", "edad": 27 },
+    { "dorsal": 5, "nombre": "Horst Eckel", "posicion": "MID", "clubOrigen": "Kaiserslautern", "edad": 22 },
+    { "dorsal": 6, "nombre": "Karl Mai", "posicion": "MID", "clubOrigen": "Spvgg Fürth", "edad": 25 },
+    { "dorsal": 7, "nombre": "Helmut Rahn", "posicion": "FWD", "clubOrigen": "Rot-Weiss Essen", "edad": 24, "goles": 4 },
+    { "dorsal": 8, "nombre": "Max Morlock", "posicion": "FWD", "clubOrigen": "1. FC Nürnberg", "edad": 29, "goles": 6 },
+    { "dorsal": 9, "nombre": "Ottmar Walter", "posicion": "FWD", "clubOrigen": "Kaiserslautern", "edad": 30 },
+    { "dorsal": 10, "nombre": "Fritz Walter", "posicion": "MID", "clubOrigen": "Kaiserslautern", "edad": 33, "capitan": true, "goles": 3 },
+    { "dorsal": 11, "nombre": "Hans Schäfer", "posicion": "FWD", "clubOrigen": "1. FC Köln", "edad": 26, "goles": 4 }
+  ],
+  "fasesKO": {
+    "cuartos": [
+      { "fecha": "1954-06-26", "ciudad": "Lausana", "estadio": "Pontaise", "local": { "pais": "Austria", "iso2": "at", "iso3": "AUT" }, "visitante": { "pais": "Suiza", "iso2": "ch", "iso3": "CHE" }, "marcador": "7-5" },
+      { "fecha": "1954-06-26", "ciudad": "Ginebra", "estadio": "Charmilles", "local": { "pais": "Uruguay", "iso2": "uy", "iso3": "URY" }, "visitante": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG" }, "marcador": "4-2" },
+      { "fecha": "1954-06-27", "ciudad": "Berna", "estadio": "Wankdorf", "local": { "pais": "Hungría", "iso2": "hu", "iso3": "HUN" }, "visitante": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "marcador": "4-2" },
+      { "fecha": "1954-06-27", "ciudad": "Basilea", "estadio": "St. Jakob", "local": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" }, "visitante": { "pais": "Yugoslavia", "iso2": "rs", "iso3": "SRB" }, "marcador": "2-0" }
+    ],
+    "semifinales": [
+      { "fecha": "1954-06-30", "ciudad": "Basilea", "estadio": "St. Jakob", "local": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" }, "visitante": { "pais": "Austria", "iso2": "at", "iso3": "AUT" }, "marcador": "6-1" },
+      { "fecha": "1954-06-30", "ciudad": "Lausana", "estadio": "Pontaise", "local": { "pais": "Hungría", "iso2": "hu", "iso3": "HUN" }, "visitante": { "pais": "Uruguay", "iso2": "uy", "iso3": "URY" }, "marcador": "4-2 (prórroga)" }
+    ]
+  },
+  "hatTricks": [
+    { "jugador": "Sándor Kocsis", "seleccion": { "pais": "Hungría", "iso2": "hu", "iso3": "HUN" }, "fase": "Grupos", "rival": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" }, "goles": 4, "marcador": "8-3" },
+    { "jugador": "Sándor Kocsis", "seleccion": { "pais": "Hungría", "iso2": "hu", "iso3": "HUN" }, "fase": "Grupos", "rival": { "pais": "Corea del Sur", "iso2": "kr", "iso3": "KOR" }, "goles": 3, "marcador": "9-0" },
+    { "jugador": "Erich Probst", "seleccion": { "pais": "Austria", "iso2": "at", "iso3": "AUT" }, "fase": "Grupos", "rival": { "pais": "Checoslovaquia", "iso2": "cz", "iso3": "CZE" }, "goles": 3, "marcador": "5-0" },
+    { "jugador": "Theodor Wagner", "seleccion": { "pais": "Austria", "iso2": "at", "iso3": "AUT" }, "fase": "Cuartos", "rival": { "pais": "Suiza", "iso2": "ch", "iso3": "CHE" }, "goles": 3, "marcador": "7-5" },
+    { "jugador": "Carlos Borges", "seleccion": { "pais": "Uruguay", "iso2": "uy", "iso3": "URY" }, "fase": "Grupos", "rival": { "pais": "Escocia", "iso2": "gb-sct", "iso3": "SCT" }, "goles": 3, "marcador": "7-0" }
+  ],
+  "recordsEdicion": [
+    { "categoria": "racha", "descripcion": "Promedio histórico de goles más alto de la historia mundialista: 5,38 goles por partido", "valor": "5,38 g/p" },
+    { "categoria": "racha", "descripcion": "Austria 7-5 Suiza: récord absoluto de goles en un partido del Mundial (12 goles)", "valor": "12 goles" },
+    { "categoria": "tv", "descripcion": "Primera transmisión televisiva en directo de un Mundial (8 partidos retransmitidos en Eurovisión)", "valor": "TV en vivo" },
+    { "categoria": "balon", "descripcion": "Botas Adidas con tacos atornillables debutan: ventaja decisiva en el barro de Berna", "valor": "Tacos intercambiables" },
+    { "categoria": "tactica", "descripcion": "Hungría llegaba invicta desde mayo de 1950 (32 partidos) y había vencido 8-3 a la propia Alemania en grupos", "valor": "Favorita aplastante" }
+  ],
+  "curiosidades": [
+    {
+      "categoria": "balon",
+      "texto": "Las botas Adidas con tacos intercambiables de Adi Dassler debutaron en la final: con la lluvia y el barro, los alemanes pudieron cambiar sus tacos al medio tiempo, ventaja decisiva atribuida por la prensa a la victoria."
+    },
+    {
+      "categoria": "hito",
+      "texto": "El Milagro de Berna es considerado un punto de inflexión psicológico de la posguerra alemana: la victoria reactivó el orgullo nacional tras la devastación de 1945."
+    },
+    {
+      "categoria": "tragedia",
+      "texto": "El comentario radial 'Aus, aus, aus, das Spiel ist aus! Deutschland ist Weltmeister!' (Acabó, acabó, Alemania es campeona del Mundo) de Herbert Zimmermann es uno de los audios deportivos más famosos del siglo XX."
+    },
+    {
+      "categoria": "jugador",
+      "texto": "La leyenda dice que Hungría perdió porque sus jugadores tenían 'doping' a base de anfetaminas y los efectos se les pasaron en el segundo tiempo. La teoría sigue siendo objeto de debate académico, sin pruebas concluyentes."
+    },
+    {
+      "categoria": "politica",
+      "texto": "Tras la derrota, Hungría sufrió disturbios masivos en Budapest. El gobierno comunista los tomó como pretexto para reprimir la disidencia. Algunos historiadores trazan una línea entre esa frustración y la Revolución Húngara de 1956."
+    },
+    {
+      "categoria": "arbitro",
+      "texto": "Mervyn Griffiths, árbitro galés de la final, fue el primer árbitro que dirigió una final mundialista NO siendo de un país anfitrión ni neutral en la región: marcaría tendencia hacia el arbitraje internacional moderno."
+    }
+  ],
+  "fuentes": [
+    { "nombre": "FIFA Archive — World Cup 1954", "url": "https://www.fifa.com/tournaments/mens/worldcup/1954switzerland" },
+    { "nombre": "RSSSF — World Cup 1954", "url": "https://www.rsssf.org/tables/54full.html" }
+  ]
+}

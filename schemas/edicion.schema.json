@@ -1,0 +1,348 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://zonamundial.app/schemas/edicion.schema.json",
+  "title": "Edicion Mundial",
+  "description": "Esquema de una edición del Mundial de Fútbol masculino (1930-2026)",
+  "type": "object",
+  "required": [
+    "meta",
+    "sede",
+    "fechas",
+    "formato",
+    "estadisticas",
+    "identidadVisual",
+    "fuentes"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["edicion", "anio", "slug", "tituloOficial", "nombreCorto", "era"],
+      "additionalProperties": false,
+      "properties": {
+        "edicion": { "type": "integer", "minimum": 1, "maximum": 30 },
+        "anio": { "type": "integer", "minimum": 1930, "maximum": 2030 },
+        "slug": { "type": "string", "pattern": "^[0-9]{4}-[a-z0-9-]+$" },
+        "tituloOficial": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "nombreCorto": { "type": "string", "minLength": 1, "maxLength": 60 },
+        "era": {
+          "type": "string",
+          "enum": ["pionera", "entreguerras", "posguerra", "clasica", "moderna", "global", "contemporanea"]
+        },
+        "cancelado": { "type": "boolean" }
+      }
+    },
+    "sede": {
+      "type": "object",
+      "required": ["paises", "ciudades"],
+      "additionalProperties": false,
+      "properties": {
+        "paises": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 5,
+          "items": {
+            "type": "object",
+            "required": ["nombre", "iso2", "iso3", "banderaUrl"],
+            "additionalProperties": false,
+            "properties": {
+              "nombre": { "type": "string" },
+              "iso2": { "type": "string", "pattern": "^[a-z]{2}(-[a-z]{3})?$" },
+              "iso3": { "type": "string", "pattern": "^[A-Z]{3}$" },
+              "banderaUrl": {
+                "type": "string",
+                "pattern": "^https://flagcdn\\.com/(w\\d{2,4}|h\\d{2,3}|\\d{2,3}x\\d{2,3})/[a-z]{2}(-[a-z]{3})?\\.(png|webp|jpg)$|^https://flagcdn\\.com/[a-z]{2}(-[a-z]{3})?\\.svg$"
+              }
+            }
+          }
+        },
+        "ciudades": {
+          "type": "array",
+          "minItems": 0,
+          "items": { "type": "string" }
+        },
+        "estadios": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "fechas": {
+      "type": "object",
+      "required": ["inicio", "final"],
+      "additionalProperties": false,
+      "properties": {
+        "inicio": { "type": "string", "format": "date" },
+        "final": { "type": "string", "format": "date" },
+        "duracionDias": { "type": "integer", "minimum": 1, "maximum": 60 }
+      }
+    },
+    "formato": {
+      "type": "object",
+      "required": ["numEquipos", "numPartidos", "sistemaEliminatoria"],
+      "additionalProperties": false,
+      "properties": {
+        "numEquipos": { "type": "integer", "enum": [13, 15, 16, 24, 32, 48] },
+        "numPartidos": { "type": "integer", "minimum": 17, "maximum": 104 },
+        "sistemaEliminatoria": {
+          "type": "string",
+          "enum": ["liguilla", "16vos", "octavos", "cuartos", "liguilla-final", "grupo-final"]
+        },
+        "numGrupos": { "type": "integer", "minimum": 0, "maximum": 16 },
+        "equiposPorGrupo": { "type": "integer", "minimum": 3, "maximum": 4 }
+      }
+    },
+    "proximo": { "type": "boolean", "description": "true si la edición no se ha celebrado aún" },
+    "resultados": {
+      "type": "object",
+      "required": ["campeon", "subcampeon"],
+      "additionalProperties": false,
+      "properties": {
+        "campeon": { "$ref": "#/definitions/seleccionRef" },
+        "subcampeon": { "$ref": "#/definitions/seleccionRef" },
+        "tercero": { "$ref": "#/definitions/seleccionRef" },
+        "cuarto": { "$ref": "#/definitions/seleccionRef" }
+      }
+    },
+    "estadisticas": {
+      "type": "object",
+      "required": ["totalGoles", "promedioGolesPartido"],
+      "additionalProperties": false,
+      "properties": {
+        "totalGoles": { "type": "integer", "minimum": 0, "maximum": 500 },
+        "promedioGolesPartido": { "type": "number", "minimum": 0, "maximum": 10 },
+        "asistenciaTotal": { "type": "integer", "minimum": 0 },
+        "asistenciaPromedio": { "type": "integer", "minimum": 0 },
+        "golesFaseGrupos": { "type": "integer", "minimum": 0 },
+        "golesFaseKO": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "identidadVisual": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "logoUrl": { "type": "string" },
+        "mascota": { "type": "string" },
+        "balon": { "type": "string" },
+        "eslogan": { "type": "string" },
+        "colorPrincipal": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" }
+      }
+    },
+    "partidoInaugural": { "$ref": "#/definitions/partido" },
+    "partidoFinal": { "$ref": "#/definitions/partido" },
+    "partido3": { "$ref": "#/definitions/partido" },
+    "topGoleadores": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "required": ["nombre", "seleccion", "goles"],
+        "additionalProperties": false,
+        "properties": {
+          "nombre": { "type": "string" },
+          "seleccion": { "$ref": "#/definitions/seleccionRef" },
+          "goles": { "type": "integer", "minimum": 0, "maximum": 20 },
+          "botaOro": { "type": "boolean" }
+        }
+      }
+    },
+    "premios": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "balonOro": { "type": "string" },
+        "guanteOro": { "type": "string" },
+        "mejorJoven": { "type": "string" },
+        "fairPlay": { "$ref": "#/definitions/seleccionRef" }
+      }
+    },
+    "plantillaCampeon": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 30,
+      "items": { "$ref": "#/definitions/jugadorPlantilla" }
+    },
+    "plantillaSubcampeon": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 30,
+      "items": { "$ref": "#/definitions/jugadorPlantilla" }
+    },
+    "fasesKO": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "octavos": { "type": "array", "items": { "$ref": "#/definitions/partido" }, "maxItems": 8 },
+        "cuartos": { "type": "array", "items": { "$ref": "#/definitions/partido" }, "maxItems": 4 },
+        "semifinales": { "type": "array", "items": { "$ref": "#/definitions/partido" }, "maxItems": 2 }
+      }
+    },
+    "hatTricks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["jugador", "seleccion", "fase", "rival"],
+        "additionalProperties": false,
+        "properties": {
+          "jugador": { "type": "string" },
+          "seleccion": { "$ref": "#/definitions/seleccionRef" },
+          "fase": { "type": "string" },
+          "rival": { "$ref": "#/definitions/seleccionRef" },
+          "goles": { "type": "integer", "minimum": 3, "maximum": 5 },
+          "marcador": { "type": "string" }
+        }
+      }
+    },
+    "recordsEdicion": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["categoria", "descripcion"],
+        "additionalProperties": false,
+        "properties": {
+          "categoria": {
+            "type": "string",
+            "enum": ["seleccion", "jugador", "arbitro", "entrenador", "asistencia", "disciplinario", "racha", "balon", "tecnologia", "tactica", "estadio", "mascota", "tv", "hito", "politica", "tragedia", "misc"]
+          },
+          "descripcion": { "type": "string", "maxLength": 280 },
+          "valor": { "type": "string" }
+        }
+      }
+    },
+    "contextoHistorico": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "resumen": { "type": "string", "maxLength": 1200 },
+        "eventos": {
+          "type": "array",
+          "items": { "type": "string", "maxLength": 280 }
+        }
+      }
+    },
+    "curiosidades": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["categoria", "texto"],
+        "additionalProperties": false,
+        "properties": {
+          "categoria": {
+            "type": "string",
+            "enum": ["politica", "tragedia", "hito", "balon", "mascota", "estadio", "arbitro", "jugador", "misc"]
+          },
+          "texto": { "type": "string", "minLength": 30, "maxLength": 500 }
+        }
+      }
+    },
+    "fuentes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["nombre", "url"],
+        "additionalProperties": false,
+        "properties": {
+          "nombre": { "type": "string" },
+          "url": { "type": "string", "format": "uri" },
+          "fechaConsulta": { "type": "string", "format": "date" }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "seleccionRef": {
+      "type": "object",
+      "required": ["pais", "iso2", "iso3"],
+      "additionalProperties": false,
+      "properties": {
+        "pais": { "type": "string" },
+        "iso2": { "type": "string", "pattern": "^[a-z]{2}(-[a-z]{3})?$" },
+        "iso3": { "type": "string", "pattern": "^[A-Z]{3}$" },
+        "banderaUrl": {
+          "type": "string",
+          "pattern": "^https://flagcdn\\.com/(w\\d{2,4}|h\\d{2,3}|\\d{2,3}x\\d{2,3})/[a-z]{2}(-[a-z]{3})?\\.(png|webp|jpg)$|^https://flagcdn\\.com/[a-z]{2}(-[a-z]{3})?\\.svg$"
+        }
+      }
+    },
+    "partido": {
+      "type": "object",
+      "required": ["fecha", "local", "visitante", "marcador"],
+      "additionalProperties": false,
+      "properties": {
+        "fecha": { "type": "string", "format": "date" },
+        "ciudad": { "type": "string" },
+        "estadio": { "type": "string" },
+        "local": { "$ref": "#/definitions/seleccionRef" },
+        "visitante": { "$ref": "#/definitions/seleccionRef" },
+        "marcador": { "type": "string", "pattern": "^[0-9]{1,2}-[0-9]{1,2}( \\((prórroga|penales [0-9]{1,2}-[0-9]{1,2}|tiempo extra|gol de oro|gol de plata)\\))?$" },
+        "asistencia": { "type": "integer", "minimum": 0 },
+        "arbitro": { "type": "string" },
+        "goleadores": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["jugador", "minuto"],
+            "additionalProperties": false,
+            "properties": {
+              "jugador": { "type": "string" },
+              "minuto": { "type": "string" },
+              "tipo": { "type": "string", "enum": ["normal", "penal", "autogol", "cabeza", "tiro-libre"] }
+            }
+          }
+        },
+        "tarjetas": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["jugador", "minuto", "tipo"],
+            "additionalProperties": false,
+            "properties": {
+              "jugador": { "type": "string" },
+              "seleccion": { "type": "string" },
+              "minuto": { "type": "string" },
+              "tipo": { "type": "string", "enum": ["amarilla", "roja", "doble-amarilla"] }
+            }
+          }
+        },
+        "penales": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "resultado": { "type": "string" },
+            "secuencia": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["jugador", "resultado"],
+                "additionalProperties": false,
+                "properties": {
+                  "jugador": { "type": "string" },
+                  "seleccion": { "type": "string" },
+                  "resultado": { "type": "string", "enum": ["gol", "fallado", "atajado"] }
+                }
+              }
+            }
+          }
+        },
+        "VAR": { "type": "boolean" }
+      }
+    },
+    "jugadorPlantilla": {
+      "type": "object",
+      "required": ["nombre", "posicion"],
+      "additionalProperties": false,
+      "properties": {
+        "dorsal": { "type": "integer", "minimum": 1, "maximum": 99 },
+        "nombre": { "type": "string" },
+        "posicion": { "type": "string", "enum": ["GK", "DEF", "MID", "FWD"] },
+        "clubOrigen": { "type": "string" },
+        "edad": { "type": "integer", "minimum": 15, "maximum": 50 },
+        "capitan": { "type": "boolean" },
+        "partidosJugados": { "type": "integer", "minimum": 0, "maximum": 10 },
+        "goles": { "type": "integer", "minimum": 0, "maximum": 20 }
+      }
+    }
+  }
+}

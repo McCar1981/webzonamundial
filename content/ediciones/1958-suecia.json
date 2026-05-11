@@ -1,0 +1,147 @@
+{
+  "meta": {
+    "edicion": 6,
+    "anio": 1958,
+    "slug": "1958-suecia",
+    "tituloOficial": "Copa Mundial de Fútbol 1958",
+    "nombreCorto": "Suecia 1958",
+    "era": "posguerra"
+  },
+  "sede": {
+    "paises": [
+      { "nombre": "Suecia", "iso2": "se", "iso3": "SWE", "banderaUrl": "https://flagcdn.com/w160/se.png" }
+    ],
+    "ciudades": ["Estocolmo", "Gotemburgo", "Malmö", "Norrköping", "Helsingborg", "Eskilstuna"],
+    "estadios": ["Råsunda", "Ullevi", "Malmö Stadion"]
+  },
+  "fechas": { "inicio": "1958-06-08", "final": "1958-06-29", "duracionDias": 22 },
+  "formato": {
+    "numEquipos": 16,
+    "numPartidos": 35,
+    "sistemaEliminatoria": "cuartos",
+    "numGrupos": 4
+  },
+  "resultados": {
+    "campeon": { "pais": "Brasil", "iso2": "br", "iso3": "BRA", "banderaUrl": "https://flagcdn.com/w160/br.png" },
+    "subcampeon": { "pais": "Suecia", "iso2": "se", "iso3": "SWE", "banderaUrl": "https://flagcdn.com/w160/se.png" },
+    "tercero": { "pais": "Francia", "iso2": "fr", "iso3": "FRA", "banderaUrl": "https://flagcdn.com/w160/fr.png" },
+    "cuarto": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU", "banderaUrl": "https://flagcdn.com/w160/de.png" }
+  },
+  "estadisticas": {
+    "totalGoles": 126,
+    "promedioGolesPartido": 3.6,
+    "asistenciaTotal": 819810,
+    "asistenciaPromedio": 23423
+  },
+  "identidadVisual": {
+    "eslogan": "El nacimiento de Pelé",
+    "balon": "Top Star (24 paneles)",
+    "colorPrincipal": "#FCD116"
+  },
+  "partidoFinal": {
+    "fecha": "1958-06-29",
+    "ciudad": "Solna",
+    "estadio": "Råsunda",
+    "local": { "pais": "Suecia", "iso2": "se", "iso3": "SWE" },
+    "visitante": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" },
+    "marcador": "2-5",
+    "asistencia": 49737,
+    "arbitro": "Maurice Guigue (Francia)"
+  },
+  "topGoleadores": [
+    {
+      "nombre": "Just Fontaine",
+      "seleccion": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" },
+      "goles": 13,
+      "botaOro": true
+    },
+    {
+      "nombre": "Pelé",
+      "seleccion": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" },
+      "goles": 6
+    },
+    {
+      "nombre": "Helmut Rahn",
+      "seleccion": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" },
+      "goles": 6
+    }
+  ],
+  "premios": {
+    "balonOro": "Didi (Brasil)"
+  },
+  "contextoHistorico": {
+    "resumen": "Brasil se convierte en el primer campeón fuera de su continente, inaugurando el fútbol moderno con su 4-2-4. Pelé debuta a los 17 años, marcando uno de los mayores hitos del Mundial: el gol más joven en una final. Just Fontaine impone con 13 goles un récord absoluto que sigue siendo inalcanzable. Bellini fue el primer capitán que alzó la copa por encima de la cabeza, gesto que se haría tradición.",
+    "eventos": [
+      "Pelé hace hat-trick a Francia en semifinales con solo 17 años, hasta hoy el más joven en hacerlo en un Mundial.",
+      "Liedholm (Suecia) marca a los 4 minutos de la final: con 35 años, sigue siendo el goleador más viejo en una final mundialista.",
+      "El uniforme verdeamarela de Brasil se estrenó tras el trauma del Maracanazo, sustituyendo al blanco original."
+    ]
+  },
+  "plantillaCampeon": [
+    { "dorsal": 1, "nombre": "Gilmar", "posicion": "GK", "clubOrigen": "Santos", "edad": 27 },
+    { "dorsal": 2, "nombre": "Djalma Santos", "posicion": "DEF", "clubOrigen": "Portuguesa", "edad": 29 },
+    { "dorsal": 3, "nombre": "Bellini", "posicion": "DEF", "clubOrigen": "Vasco da Gama", "edad": 27, "capitan": true },
+    { "dorsal": 4, "nombre": "Orlando", "posicion": "DEF", "clubOrigen": "Vasco da Gama", "edad": 22 },
+    { "dorsal": 5, "nombre": "Nilton Santos", "posicion": "DEF", "clubOrigen": "Botafogo", "edad": 33 },
+    { "dorsal": 6, "nombre": "Zito", "posicion": "MID", "clubOrigen": "Santos", "edad": 26 },
+    { "dorsal": 7, "nombre": "Didi", "posicion": "MID", "clubOrigen": "Botafogo", "edad": 30, "goles": 1 },
+    { "dorsal": 8, "nombre": "Garrincha", "posicion": "FWD", "clubOrigen": "Botafogo", "edad": 24 },
+    { "dorsal": 9, "nombre": "Vavá", "posicion": "FWD", "clubOrigen": "Vasco da Gama", "edad": 24, "goles": 5 },
+    { "dorsal": 10, "nombre": "Pelé", "posicion": "FWD", "clubOrigen": "Santos", "edad": 17, "goles": 6 },
+    { "dorsal": 11, "nombre": "Mário Zagallo", "posicion": "FWD", "clubOrigen": "Botafogo", "edad": 26, "goles": 1 }
+  ],
+  "fasesKO": {
+    "cuartos": [
+      { "fecha": "1958-06-19", "ciudad": "Norrköping", "estadio": "Idrottsparken", "local": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" }, "visitante": { "pais": "Irlanda del Norte", "iso2": "gb-nir", "iso3": "NIR" }, "marcador": "4-0" },
+      { "fecha": "1958-06-19", "ciudad": "Estocolmo", "estadio": "Råsunda", "local": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" }, "visitante": { "pais": "Yugoslavia", "iso2": "rs", "iso3": "SRB" }, "marcador": "1-0" },
+      { "fecha": "1958-06-19", "ciudad": "Gotemburgo", "estadio": "Ullevi", "local": { "pais": "Suecia", "iso2": "se", "iso3": "SWE" }, "visitante": { "pais": "Unión Soviética", "iso2": "ru", "iso3": "RUS" }, "marcador": "2-0" },
+      { "fecha": "1958-06-19", "ciudad": "Malmö", "estadio": "Malmö Stadion", "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "visitante": { "pais": "Gales", "iso2": "gb-wls", "iso3": "WAL" }, "marcador": "1-0" }
+    ],
+    "semifinales": [
+      { "fecha": "1958-06-24", "ciudad": "Estocolmo", "estadio": "Råsunda", "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "visitante": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" }, "marcador": "5-2" },
+      { "fecha": "1958-06-24", "ciudad": "Gotemburgo", "estadio": "Ullevi", "local": { "pais": "Suecia", "iso2": "se", "iso3": "SWE" }, "visitante": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" }, "marcador": "3-1" }
+    ]
+  },
+  "hatTricks": [
+    { "jugador": "Just Fontaine", "seleccion": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" }, "fase": "Grupos", "rival": { "pais": "Paraguay", "iso2": "py", "iso3": "PRY" }, "goles": 3, "marcador": "7-3" },
+    { "jugador": "Pelé", "seleccion": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "fase": "Semifinal", "rival": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" }, "goles": 3, "marcador": "5-2" },
+    { "jugador": "Just Fontaine", "seleccion": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" }, "fase": "Tercer puesto", "rival": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" }, "goles": 4, "marcador": "6-3" }
+  ],
+  "recordsEdicion": [
+    { "categoria": "jugador", "descripcion": "Just Fontaine: 13 goles en una edición, récord histórico absoluto inalcanzable", "valor": "13 goles" },
+    { "categoria": "jugador", "descripcion": "Pelé debuta a los 17 años y 239 días: goleador más joven en una final mundialista (récord vigente)", "valor": "17a 239d" },
+    { "categoria": "tactica", "descripcion": "Brasil estrena el 4-2-4 que revolucionaría el fútbol moderno", "valor": "4-2-4" },
+    { "categoria": "seleccion", "descripcion": "Brasil primer campeón fuera de su continente; las 4 selecciones británicas (ENG, SCO, WAL, NIR) clasifican simultáneamente, hecho irrepetible", "valor": "4 británicas" },
+    { "categoria": "jugador", "descripcion": "Nils Liedholm anota a los 4 minutos de la final: goleador más viejo en una final con 35 años, 264 días (récord vigente)", "valor": "35a 264d" }
+  ],
+  "curiosidades": [
+    {
+      "categoria": "jugador",
+      "texto": "Just Fontaine marcó sus 13 goles con botas prestadas: las suyas se rompieron en el primer entrenamiento y tuvo que jugar todo el torneo con las de Stéphane Bruey, suplente del Angers."
+    },
+    {
+      "categoria": "hito",
+      "texto": "Bellini, capitán brasileño, inventó la imagen del trofeo levantado por encima de la cabeza al alzar la Jules Rimet en Råsunda. Hoy es la postura icónica obligatoria en cualquier celebración."
+    },
+    {
+      "categoria": "jugador",
+      "texto": "Pelé jugó la final con 17 años y marcó el primer gol de un adolescente en una final: control de pecho con espalda, sombrero al defensa y volea. Considerado uno de los mejores goles de la historia del Mundial."
+    },
+    {
+      "categoria": "balon",
+      "texto": "El balón Top Star de Sydsvenska Läder fue elegido en una prueba a ciegas FIFA entre 102 candidatos: árbitros y oficiales evaluaron sin ver el logo, técnica que se mantiene hasta hoy en concursos oficiales."
+    },
+    {
+      "categoria": "tragedia",
+      "texto": "Sándor Kocsis y Ferenc Puskás, estrellas húngaras de 1954, no pudieron jugar 1958: tras la Revolución Húngara de 1956 huyeron del país y FIFA los suspendió por 'desafección'. Puskás estrenaría camiseta española en 1962."
+    },
+    {
+      "categoria": "arbitro",
+      "texto": "Maurice Guigue, árbitro francés, fue el primero en sustituir su silbato deportivo por uno de policía a sugerencia de FIFA: el sonido más agudo se escuchaba mejor en los grandes estadios. Marcaría tendencia universal."
+    }
+  ],
+  "fuentes": [
+    { "nombre": "FIFA Archive — World Cup 1958", "url": "https://www.fifa.com/tournaments/mens/worldcup/1958sweden" },
+    { "nombre": "RSSSF — World Cup 1958", "url": "https://www.rsssf.org/tables/58full.html" }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "bestXIAllTime": {
+    "titulo": "Best XI Mundialista All-Time",
+    "subtitulo": "Once ideal de la historia del Mundial (consenso experto)",
+    "formacion": "4-3-3",
+    "jugadores": [
+      { "posicion": "GK", "nombre": "Lev Yashin", "seleccion": { "pais": "Unión Soviética", "iso2": "ru" }, "mundiales": [1958, 1962, 1966, 1970], "datoClave": "Único portero Balón de Oro europeo de la historia (1963). FIFA bautizó el Guante de Oro en su honor." },
+      { "posicion": "DEF", "nombre": "Cafu", "seleccion": { "pais": "Brasil", "iso2": "br" }, "mundiales": [1994, 1998, 2002], "datoClave": "Único futbolista en disputar 3 finales mundialistas consecutivas (1994, 1998, 2002). Bicampeón." },
+      { "posicion": "DEF", "nombre": "Franz Beckenbauer", "seleccion": { "pais": "Alemania Federal", "iso2": "de" }, "mundiales": [1966, 1970, 1974], "datoClave": "Inventor del 'líbero' moderno. Campeón como jugador (1974) y DT (1990). Capitán que levantó el primer trofeo FIFA actual." },
+      { "posicion": "DEF", "nombre": "Paolo Maldini", "seleccion": { "pais": "Italia", "iso2": "it" }, "mundiales": [1990, 1994, 1998, 2002], "datoClave": "23 partidos en 4 Mundiales sin ganar ninguno: el mejor defensor que nunca fue campeón mundial." },
+      { "posicion": "DEF", "nombre": "Roberto Carlos", "seleccion": { "pais": "Brasil", "iso2": "br" }, "mundiales": [1998, 2002, 2006], "datoClave": "Lateral izquierdo de la era moderna. Campeón en 2002. Su tiro libre vs Francia 1997 sigue siendo objeto de estudio físico." },
+      { "posicion": "MID", "nombre": "Lothar Matthäus", "seleccion": { "pais": "Alemania", "iso2": "de" }, "mundiales": [1982, 1986, 1990, 1994, 1998], "datoClave": "Cinco Mundiales jugados (récord empate). 25 partidos. Capitán RFA campeón 1990. Único alemán con esa longevidad mundialista." },
+      { "posicion": "MID", "nombre": "Diego Maradona", "seleccion": { "pais": "Argentina", "iso2": "ar" }, "mundiales": [1982, 1986, 1990, 1994], "datoClave": "Balón de Oro 1986 con la actuación individual más dominante de la historia. Mano de Dios + Gol del Siglo en cuatro minutos." },
+      { "posicion": "MID", "nombre": "Lionel Messi", "seleccion": { "pais": "Argentina", "iso2": "ar" }, "mundiales": [2006, 2010, 2014, 2018, 2022], "datoClave": "Récord absoluto de 26 partidos disputados. Único con 2 Balones de Oro Mundiales. Campeón en 2022 consagrado." },
+      { "posicion": "FWD", "nombre": "Pelé", "seleccion": { "pais": "Brasil", "iso2": "br" }, "mundiales": [1958, 1962, 1966, 1970], "datoClave": "Único tricampeón de la historia (1958, 1962, 1970). 12 goles. Goleador más joven en una final con 17 años." },
+      { "posicion": "FWD", "nombre": "Ronaldo Nazário", "seleccion": { "pais": "Brasil", "iso2": "br" }, "mundiales": [1994, 1998, 2002, 2006], "datoClave": "Bota de Oro 2002 con 8 goles. Bicampeón (1994, 2002). 15 goles all-time, segundo histórico tras Klose." },
+      { "posicion": "FWD", "nombre": "Just Fontaine", "seleccion": { "pais": "Francia", "iso2": "fr" }, "mundiales": [1958], "datoClave": "13 goles en 6 partidos en su único Mundial. Récord histórico inalcanzable. Todo con botas prestadas." }
+    ]
+  },
+  "bestXIPorEpoca": [
+    {
+      "epoca": "Era Clásica (1958-1970)",
+      "subtitulo": "Pelé, Garrincha y la edad dorada brasileña",
+      "jugadores": ["Yashin (URS)", "Djalma Santos (BRA)", "Bobby Moore (ENG)", "Beckenbauer (RFA)", "Nilton Santos (BRA)", "Didi (BRA)", "Bobby Charlton (ENG)", "Garrincha (BRA)", "Pelé (BRA)", "Eusébio (POR)", "Just Fontaine (FRA)"]
+    },
+    {
+      "epoca": "Era Moderna (1974-1990)",
+      "subtitulo": "Cruyff y Maradona dividen una época",
+      "jugadores": ["Schumacher (RFA)", "Cafu antes de su tiempo (BRA)", "Passarella (ARG)", "Beckenbauer (RFA)", "Junior (BRA)", "Platini (FRA)", "Sócrates (BRA)", "Maradona (ARG)", "Cruyff (NED)", "Rossi (ITA)", "Rummenigge (RFA)"]
+    },
+    {
+      "epoca": "Era Global (1994-2010)",
+      "subtitulo": "Brasil 5x, España campeona en África",
+      "jugadores": ["Buffon (ITA)", "Cafu (BRA)", "Cannavaro (ITA)", "Roberto Carlos (BRA)", "Maldini (ITA)", "Zidane (FRA)", "Xavi (ESP)", "Iniesta (ESP)", "Ronaldo (BRA)", "Romário (BRA)", "Ronaldinho (BRA)"]
+    },
+    {
+      "epoca": "Era Contemporánea (2014-2022)",
+      "subtitulo": "Klose 16, Mbappé hat-trick en final",
+      "jugadores": ["Neuer (GER)", "Pavard (FRA)", "Varane (FRA)", "Hummels (GER)", "Marcelo (BRA)", "Modrić (CRO)", "Kroos (GER)", "Iniesta (ESP)", "Messi (ARG)", "Mbappé (FRA)", "Klose (GER)"]
+    }
+  ]
+}

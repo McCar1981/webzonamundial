@@ -1,0 +1,136 @@
+{
+  "polemicas": [
+    {
+      "anio": 1966,
+      "edicionSlug": "1966-inglaterra",
+      "titulo": "El Wembley-Tor (gol fantasma)",
+      "partido": "Inglaterra 4-2 Alemania Federal (final)",
+      "minuto": "101'",
+      "subtitulo": "El gol más controvertido de la historia del Mundial",
+      "descripcion": "Geoff Hurst remató desde dentro del área, la pelota golpeó el larguero, picó en la línea y salió. El árbitro suizo Gottfried Dienst dudó; el juez de línea soviético Tofik Bahramov le confirmó GOL. Décadas de análisis frame-by-frame nunca pudieron demostrar que la pelota cruzó completamente la línea.",
+      "consecuencia": "El término 'Wembley-Tor' entró al alemán cotidiano como sinónimo de 'gol injusto'. Inglaterra ganó su único Mundial.",
+      "vigencia": "Sigue siendo objeto de análisis tecnológico. La goal-line technology que se introdujo en 2014 fue indirectamente impulsada por este episodio."
+    },
+    {
+      "anio": 1986,
+      "edicionSlug": "1986-mexico",
+      "titulo": "La Mano de Dios",
+      "partido": "Argentina 2-1 Inglaterra (cuartos)",
+      "minuto": "51'",
+      "subtitulo": "Maradona empujó el balón con la mano izquierda al ángulo",
+      "descripcion": "Diego Maradona, en disputa aérea con el portero Peter Shilton, empujó el balón con la mano izquierda dentro del área inglesa. El árbitro tunecino Ali Bin Nasser no vio la mano (a pesar de las protestas inglesas) y validó el gol. Cuatro minutos después Maradona marcaría el 'Gol del Siglo'.",
+      "consecuencia": "Argentina avanzó a semifinales y luego ganó el Mundial. Maradona admitió la mano décadas después con la frase: 'fue con la mano de Dios y un poco con la cabeza de Maradona'.",
+      "vigencia": "El balón de la jugada se subastó en Christie's en noviembre 2022 por £2,4M, el balón más caro jamás vendido."
+    },
+    {
+      "anio": 1982,
+      "edicionSlug": "1982-espana",
+      "titulo": "La Vergüenza de Gijón",
+      "partido": "Alemania Federal 1-0 Austria (grupos)",
+      "minuto": "Toda la segunda mitad",
+      "subtitulo": "Pacto tácito que eliminó a Argelia",
+      "descripcion": "Alemania marcó al minuto 10 y luego ambas selecciones acordaron tácitamente no atacar más. El 1-0 clasificaba a las dos a costa de Argelia (que ya había completado sus 3 partidos). La selección argelina lloró en el banco.",
+      "consecuencia": "FIFA cambió la regla: desde México 1986 todos los partidos de la última jornada de grupos se juegan SIMULTÁNEAMENTE para evitar pactos tácticos. Regla vigente.",
+      "vigencia": "El cambio reglamentario de 1986 es uno de los más impactantes de la historia mundialista. Argelia clasificó al siguiente Mundial (2010)."
+    },
+    {
+      "anio": 2010,
+      "edicionSlug": "2010-sudafrica",
+      "titulo": "El gol fantasma de Lampard",
+      "partido": "Alemania 4-1 Inglaterra (octavos)",
+      "minuto": "39'",
+      "subtitulo": "Pelota cruzó la línea por 60 cm pero no fue dada como gol",
+      "descripcion": "Frank Lampard remató desde 25 metros, la pelota golpeó el larguero, picó UN METRO dentro de la portería y rebotó hacia fuera. El árbitro uruguayo Larrionda no lo dio. La cámara de TV mostró claramente el balón dentro. Decisión inversa al 'Wembley-Tor' de 1966.",
+      "consecuencia": "Inglaterra cayó 4-1. La presión mediática post-partido aceleró la decisión FIFA de implementar la goal-line technology, debutaría en Brasil 2014.",
+      "vigencia": "Es el gol fantasma más documentado tecnológicamente de la historia. Existen 7 ángulos distintos que muestran el balón claramente dentro."
+    },
+    {
+      "anio": 2002,
+      "edicionSlug": "2002-corea-japon",
+      "titulo": "Las polémicas Corea-Italia y Corea-España",
+      "partido": "Corea del Sur 2-1 Italia (octavos) + 0-0 (3-5p) España (cuartos)",
+      "minuto": "Múltiples",
+      "subtitulo": "Dos partidos arbitrales que siguen dolíendo",
+      "descripcion": "En octavos vs Italia: árbitro ecuatoriano Byron Moreno anuló dos goles legítimos italianos, expulsó a Totti por simulación discutible, y Corea del Sur ganó 2-1 con gol de oro de Ahn. En cuartos vs España: el árbitro egipcio Gamal Al-Ghandour anuló dos goles españoles legítimos.",
+      "consecuencia": "Corea del Sur llegó a semifinales (4° puesto, mejor desempeño asiático histórico). Byron Moreno acabó preso en 2010 por intento de tráfico de heroína. Al-Ghandour fue retirado de FIFA tras el Mundial.",
+      "vigencia": "Cada vez que Italia o España juegan vs Corea del Sur, los recuerdos de 2002 reaparecen en redes sociales. Sigue considerándose el escándalo arbitral más grave de la historia mundialista."
+    },
+    {
+      "anio": 1990,
+      "edicionSlug": "1990-italia",
+      "titulo": "El penal de Codesal en la final",
+      "partido": "Alemania Federal 1-0 Argentina (final)",
+      "minuto": "85'",
+      "subtitulo": "Penal dudoso que decidió el título",
+      "descripcion": "Roberto Sensini disputó la pelota con Rudi Völler dentro del área. El alemán cayó. El árbitro mexicano Edgardo Codesal pitó penal. Andreas Brehme transformó el 1-0 que dio el título a Alemania Federal.",
+      "consecuencia": "Argentina perdió su segunda final consecutiva. Maradona lloró desconsoladamente al recibir la medalla. La final tuvo además dos rojas argentinas (Pedro Monzón y Gustavo Dezotti), récord absoluto en una final.",
+      "vigencia": "Codesal nunca volvió a arbitrar partidos importantes. Maradona lo acusó públicamente de 'cobardía' durante años."
+    },
+    {
+      "anio": 2010,
+      "edicionSlug": "2010-sudafrica",
+      "titulo": "La mano de Suárez vs Ghana",
+      "partido": "Uruguay 1-1 (4-2p) Ghana (cuartos)",
+      "minuto": "120+1'",
+      "subtitulo": "Suárez tapó con la mano un gol dentro del área",
+      "descripcion": "En el último minuto de la prórroga, Dominic Adiyiah cabeceó a la portería vacía. Luis Suárez, que ya estaba detrás de Muslera, saltó y desvió la pelota CON LA MANO. Roja directa a Suárez. Asamoah Gyan tomó el penal y lo ESTRELLÓ EN EL LARGUERO. Uruguay ganó por penales.",
+      "consecuencia": "Suárez celebró desde la banca su 'salvada'. Los hinchas africanos lo abuchearon en cualquier estadio sudafricano años después. Ghana habría sido la primera selección africana en alcanzar semifinales, hito que cumpliría Marruecos en 2022.",
+      "vigencia": "Suárez nunca se arrepintió: 'Volvería a hacerlo. Era la única manera de salvar a mi selección'."
+    },
+    {
+      "anio": 2006,
+      "edicionSlug": "2006-alemania",
+      "titulo": "El cabezazo de Zidane a Materazzi",
+      "partido": "Italia 1-1 (5-3p) Francia (final)",
+      "minuto": "110'",
+      "subtitulo": "Última imagen de un genio en su último partido",
+      "descripcion": "Zinedine Zidane, en su último partido como profesional, cabeceó el pecho de Marco Materazzi tras un supuesto insulto. El árbitro Elizondo no vio la jugada; el cuarto árbitro español Cantalejo le avisó por radio. Roja directa a Zidane.",
+      "consecuencia": "Italia ganó la final por penales. Zidane se retiró sin levantar el trofeo. En 2010, Materazzi reveló las palabras exactas: 'Preferiría la c**** ramera de tu hermana'.",
+      "vigencia": "Es la primera roja en la historia mostrada por intervención del cuarto árbitro vía radio. Zidane en 2010 dijo: 'Volvería a hacerlo, no soy un héroe'."
+    },
+    {
+      "anio": 1994,
+      "edicionSlug": "1994-eeuu",
+      "titulo": "El positivo por efedrina de Maradona",
+      "partido": "N/A",
+      "minuto": "N/A",
+      "subtitulo": "Expulsión del Mundial por dopaje",
+      "descripcion": "Tras anotar a Grecia (3-0), Maradona dio positivo por efedrina (combinación de 5 sustancias prohibidas). FIFA lo suspendió 15 meses y lo expulsó del Mundial. Argentina, sin él, cayó eliminada por Rumania en octavos.",
+      "consecuencia": "Maradona nunca volvió a jugar un Mundial (terminó su carrera mundialista a los 33 años). Es el caso de dopaje más mediático de la historia mundialista.",
+      "vigencia": "Maradona admitió años después haber usado un suplemento de su preparador físico sin saber el contenido. Sigue siendo controvertido si fue dopaje deliberado o error."
+    },
+    {
+      "anio": 1962,
+      "edicionSlug": "1962-chile",
+      "titulo": "La Batalla de Santiago",
+      "partido": "Chile 2-0 Italia (grupos)",
+      "minuto": "Todo el partido",
+      "subtitulo": "Partido más violento de la historia mundialista",
+      "descripcion": "Tras artículos italianos despectivos sobre Chile, los jugadores chilenos atacaron desde el inicio. 4 expulsados (uno con la nariz rota), múltiples peleas, intervención policial. El árbitro inglés Ken Aston tuvo que ser escoltado.",
+      "consecuencia": "La experiencia inspiró a Aston a inventar las tarjetas amarilla y roja años después. Chile ganó 2-0 y avanzó al cuarto puesto histórico de la nación.",
+      "vigencia": "Sigue siendo el partido mundialista con más expulsiones (4) y más intervenciones policiales. La grabación televisiva está expuesta en el National Football Museum."
+    },
+    {
+      "anio": 2018,
+      "edicionSlug": "2018-rusia",
+      "titulo": "La invasión de Pussy Riot",
+      "partido": "Francia 4-2 Croacia (final)",
+      "minuto": "52'",
+      "subtitulo": "Cuatro mujeres saltaron al campo vestidas de policías",
+      "descripcion": "En el minuto 52 de la final, cuatro miembros del colectivo activista Pussy Riot invadieron el campo de juego del Luzhnikí (Moscú) vestidas como policías. Protestaban por presos políticos en Rusia. La transmisión global mostró el incidente durante 2 minutos.",
+      "consecuencia": "Las activistas fueron arrestadas y condenadas a 15 días de prisión. La acción se convirtió en imagen icónica del activismo deportivo.",
+      "vigencia": "Tras la invasión rusa de Ucrania (2022), las miembros de Pussy Riot huyeron de Rusia y siguen activas en el exilio."
+    },
+    {
+      "anio": 1978,
+      "edicionSlug": "1978-argentina",
+      "titulo": "Argentina 6-0 Perú: el 'partido sospechoso'",
+      "partido": "Argentina 6-0 Perú (segunda fase)",
+      "minuto": "N/A",
+      "subtitulo": "Resultado eternamente sospechoso de pacto político",
+      "descripcion": "Argentina necesitaba ganar por 4 goles a Perú para clasificar a la final por encima de Brasil. El resultado: 6-0. Décadas después emergieron testimonios sobre presunta presión del gobierno argentino (dictadura militar de Videla) a Perú: condonación de deudas, envío de granos, etc.",
+      "consecuencia": "Argentina llegó a la final y ganó SU PRIMER Mundial. Las acusaciones de pacto nunca pudieron probarse judicialmente.",
+      "vigencia": "Sigue siendo objeto de investigación periodística. En 2012, un ex-senador peruano testificó sobre el supuesto pacto, sin presentar pruebas documentales."
+    }
+  ]
+}

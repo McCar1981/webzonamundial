@@ -1,0 +1,157 @@
+{
+  "meta": {
+    "edicion": 18,
+    "anio": 2006,
+    "slug": "2006-alemania",
+    "tituloOficial": "Copa Mundial de Fútbol 2006",
+    "nombreCorto": "Alemania 2006",
+    "era": "global"
+  },
+  "sede": {
+    "paises": [
+      { "nombre": "Alemania", "iso2": "de", "iso3": "DEU", "banderaUrl": "https://flagcdn.com/w160/de.png" }
+    ],
+    "ciudades": ["Berlín", "Múnich", "Dortmund", "Hamburgo", "Stuttgart", "Fráncfort", "Gelsenkirchen", "Colonia", "Hannover", "Núremberg", "Leipzig", "Kaiserslautern"],
+    "estadios": ["Olympiastadion (Berlín)", "Allianz Arena", "Westfalenstadion", "Volksparkstadion", "AufSchalke Arena", "Commerzbank Arena", "RheinEnergieStadion"]
+  },
+  "fechas": { "inicio": "2006-06-09", "final": "2006-07-09", "duracionDias": 31 },
+  "formato": {
+    "numEquipos": 32,
+    "numPartidos": 64,
+    "sistemaEliminatoria": "octavos",
+    "numGrupos": 8
+  },
+  "resultados": {
+    "campeon": { "pais": "Italia", "iso2": "it", "iso3": "ITA", "banderaUrl": "https://flagcdn.com/w160/it.png" },
+    "subcampeon": { "pais": "Francia", "iso2": "fr", "iso3": "FRA", "banderaUrl": "https://flagcdn.com/w160/fr.png" },
+    "tercero": { "pais": "Alemania", "iso2": "de", "iso3": "DEU", "banderaUrl": "https://flagcdn.com/w160/de.png" },
+    "cuarto": { "pais": "Portugal", "iso2": "pt", "iso3": "PRT", "banderaUrl": "https://flagcdn.com/w160/pt.png" }
+  },
+  "estadisticas": {
+    "totalGoles": 147,
+    "promedioGolesPartido": 2.30,
+    "asistenciaTotal": 3359439,
+    "asistenciaPromedio": 52491
+  },
+  "identidadVisual": {
+    "eslogan": "Die Welt zu Gast bei Freunden",
+    "mascota": "Goleo VI y Pille",
+    "balon": "+Teamgeist",
+    "colorPrincipal": "#FFCC00"
+  },
+  "partidoFinal": {
+    "fecha": "2006-07-09",
+    "ciudad": "Berlín",
+    "estadio": "Olympiastadion",
+    "local": { "pais": "Italia", "iso2": "it", "iso3": "ITA" },
+    "visitante": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" },
+    "marcador": "1-1 (penales 5-3)",
+    "asistencia": 69000,
+    "arbitro": "Horacio Elizondo (Argentina)"
+  },
+  "topGoleadores": [
+    {
+      "nombre": "Miroslav Klose",
+      "seleccion": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" },
+      "goles": 5,
+      "botaOro": true
+    },
+    {
+      "nombre": "Hernán Crespo",
+      "seleccion": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" },
+      "goles": 3
+    },
+    {
+      "nombre": "Ronaldo",
+      "seleccion": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" },
+      "goles": 3
+    }
+  ],
+  "premios": {
+    "balonOro": "Zinedine Zidane (Francia)",
+    "mejorJoven": "Lukas Podolski (Alemania)"
+  },
+  "contextoHistorico": {
+    "resumen": "El 'Sommermärchen' (cuento de verano) alemán reconcilió al país con la fiesta del fútbol. Italia conquistó su cuarto título por penales en una final marcada por el cabezazo de Zinedine Zidane a Marco Materazzi en su último partido como profesional. Ronaldo superó a Gerd Müller (15 goles) como máximo goleador histórico del Mundial al anotar contra Ghana. Estreno del premio oficial al Mejor Jugador Joven, que ganó Lukas Podolski.",
+    "eventos": [
+      "Cabezazo de Zidane a Materazzi en la final tras supuesto insulto: Cantalejo le sopló la jugada a Elizondo, expulsión polémica.",
+      "Italia 2-0 Alemania en semifinales con prórroga: Grosso y Del Piero anotan en los últimos minutos.",
+      "Klose Bota de Oro con 5 goles: el porcentaje goleador más bajo para un campeón goleador del torneo en la historia."
+    ]
+  },
+  "plantillaCampeon": [
+    { "dorsal": 1, "nombre": "Gianluigi Buffon", "posicion": "GK", "clubOrigen": "Juventus", "edad": 28 },
+    { "dorsal": 3, "nombre": "Fabio Grosso", "posicion": "DEF", "clubOrigen": "Palermo", "edad": 28, "goles": 1 },
+    { "dorsal": 23, "nombre": "Marco Materazzi", "posicion": "DEF", "clubOrigen": "Inter de Milán", "edad": 32, "goles": 2 },
+    { "dorsal": 5, "nombre": "Fabio Cannavaro", "posicion": "DEF", "clubOrigen": "Juventus", "edad": 32, "capitan": true },
+    { "dorsal": 6, "nombre": "Andrea Barzagli", "posicion": "DEF", "clubOrigen": "Palermo", "edad": 25 },
+    { "dorsal": 8, "nombre": "Gennaro Gattuso", "posicion": "MID", "clubOrigen": "Milan", "edad": 28 },
+    { "dorsal": 21, "nombre": "Andrea Pirlo", "posicion": "MID", "clubOrigen": "Milan", "edad": 27, "goles": 1 },
+    { "dorsal": 16, "nombre": "Mauro Camoranesi", "posicion": "MID", "clubOrigen": "Juventus", "edad": 29 },
+    { "dorsal": 20, "nombre": "Simone Perrotta", "posicion": "MID", "clubOrigen": "Roma", "edad": 28 },
+    { "dorsal": 7, "nombre": "Alessandro Del Piero", "posicion": "FWD", "clubOrigen": "Juventus", "edad": 31, "goles": 1 },
+    { "dorsal": 9, "nombre": "Luca Toni", "posicion": "FWD", "clubOrigen": "Fiorentina", "edad": 29, "goles": 2 },
+    { "dorsal": 11, "nombre": "Alberto Gilardino", "posicion": "FWD", "clubOrigen": "Milan", "edad": 23, "goles": 1 },
+    { "dorsal": 18, "nombre": "Filippo Inzaghi", "posicion": "FWD", "clubOrigen": "Milan", "edad": 32 }
+  ],
+  "fasesKO": {
+    "octavos": [
+      { "fecha": "2006-06-24", "ciudad": "Múnich", "estadio": "Allianz Arena", "local": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" }, "visitante": { "pais": "Suecia", "iso2": "se", "iso3": "SWE" }, "marcador": "2-0" },
+      { "fecha": "2006-06-24", "ciudad": "Leipzig", "estadio": "Zentralstadion", "local": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "visitante": { "pais": "México", "iso2": "mx", "iso3": "MEX" }, "marcador": "2-1 (prórroga)" },
+      { "fecha": "2006-06-25", "ciudad": "Stuttgart", "estadio": "Mercedes-Benz Arena", "local": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG" }, "visitante": { "pais": "Ecuador", "iso2": "ec", "iso3": "ECU" }, "marcador": "1-0" },
+      { "fecha": "2006-06-25", "ciudad": "Núremberg", "estadio": "Frankenstadion", "local": { "pais": "Portugal", "iso2": "pt", "iso3": "PRT" }, "visitante": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD" }, "marcador": "1-0" },
+      { "fecha": "2006-06-26", "ciudad": "Kaiserslautern", "estadio": "Fritz-Walter", "local": { "pais": "Italia", "iso2": "it", "iso3": "ITA" }, "visitante": { "pais": "Australia", "iso2": "au", "iso3": "AUS" }, "marcador": "1-0" },
+      { "fecha": "2006-06-26", "ciudad": "Colonia", "estadio": "RheinEnergieStadion", "local": { "pais": "Suiza", "iso2": "ch", "iso3": "CHE" }, "visitante": { "pais": "Ucrania", "iso2": "ua", "iso3": "UKR" }, "marcador": "0-0 (penales 0-3)" },
+      { "fecha": "2006-06-27", "ciudad": "Dortmund", "estadio": "Westfalenstadion", "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "visitante": { "pais": "Ghana", "iso2": "gh", "iso3": "GHA" }, "marcador": "3-0" },
+      { "fecha": "2006-06-27", "ciudad": "Hannover", "estadio": "AWD-Arena", "local": { "pais": "España", "iso2": "es", "iso3": "ESP" }, "visitante": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" }, "marcador": "1-3" }
+    ],
+    "cuartos": [
+      { "fecha": "2006-06-30", "ciudad": "Berlín", "estadio": "Olympiastadion", "local": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" }, "visitante": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "marcador": "1-1 (penales 4-2)" },
+      { "fecha": "2006-06-30", "ciudad": "Hamburgo", "estadio": "Volksparkstadion", "local": { "pais": "Italia", "iso2": "it", "iso3": "ITA" }, "visitante": { "pais": "Ucrania", "iso2": "ua", "iso3": "UKR" }, "marcador": "3-0" },
+      { "fecha": "2006-07-01", "ciudad": "Gelsenkirchen", "estadio": "AufSchalke", "local": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG" }, "visitante": { "pais": "Portugal", "iso2": "pt", "iso3": "PRT" }, "marcador": "0-0 (penales 1-3)" },
+      { "fecha": "2006-07-01", "ciudad": "Fráncfort", "estadio": "Commerzbank Arena", "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "visitante": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" }, "marcador": "0-1" }
+    ],
+    "semifinales": [
+      { "fecha": "2006-07-04", "ciudad": "Dortmund", "estadio": "Westfalenstadion", "local": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" }, "visitante": { "pais": "Italia", "iso2": "it", "iso3": "ITA" }, "marcador": "0-2 (prórroga)" },
+      { "fecha": "2006-07-05", "ciudad": "Múnich", "estadio": "Allianz Arena", "local": { "pais": "Portugal", "iso2": "pt", "iso3": "PRT" }, "visitante": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" }, "marcador": "0-1" }
+    ]
+  },
+  "hatTricks": [],
+  "recordsEdicion": [
+    { "categoria": "jugador", "descripcion": "Cabezazo de Zinedine Zidane a Marco Materazzi en el último partido de su carrera: roja en la final, leyenda eterna", "valor": "Roja final" },
+    { "categoria": "jugador", "descripcion": "Klose supera a Gerd Müller (15 goles) y se convierte en el segundo máximo goleador histórico del Mundial al anotar vs Ghana", "valor": "Klose 15+" },
+    { "categoria": "balon", "descripcion": "+Teamgeist: primer balón sin costuras (paneles termo-soldados). Reducción de 32 a 14 paneles", "valor": "14 paneles" },
+    { "categoria": "jugador", "descripcion": "Premio Mejor Jugador Joven oficial estrenado: Lukas Podolski (Alemania, 21 años) lo gana", "valor": "Mejor Joven #1" },
+    { "categoria": "racha", "descripcion": "28 tarjetas amarillas en Portugal-Países Bajos (octavos): récord histórico de tarjetas en un partido del Mundial", "valor": "28 amarillas" }
+  ],
+  "curiosidades": [
+    {
+      "categoria": "balon",
+      "texto": "El Adidas +Teamgeist fue el primer balón con paneles termo-soldados (sin costuras visibles), reduciendo de 32 a 14 paneles. Para la final se fabricó una versión dorada exclusiva."
+    },
+    {
+      "categoria": "hito",
+      "texto": "Lukas Podolski recibió el primer premio oficial al Mejor Jugador Joven del Mundial, con 21 años, abriendo una categoría que se mantiene hasta hoy."
+    },
+    {
+      "categoria": "jugador",
+      "texto": "El cabezazo de Zidane ocurrió tras un supuesto insulto de Materazzi: en 2010 Materazzi reveló las palabras exactas ('preferiría la c**** ramera de tu hermana'). Zidane no se arrepintió: en 2010 dijo 'volvería a hacerlo, no soy un héroe'."
+    },
+    {
+      "categoria": "arbitro",
+      "texto": "El cuarto árbitro Luis Medina Cantalejo (España) avisó por radio al árbitro Horacio Elizondo (Argentina) del cabezazo de Zidane que el árbitro no había visto. Es la primera roja directa de la historia mostrada por intervención del cuarto árbitro vía comunicación interna."
+    },
+    {
+      "categoria": "politica",
+      "texto": "El Mundial fue bautizado 'Sommermärchen' (cuento de verano alemán). Se considera el momento de reconciliación de Alemania con su nacionalismo deportivo, eliminando vergüenza heredada de la Segunda Guerra. Las banderas alemanas reaparecieron masivamente en ventanas tras décadas de tabú."
+    },
+    {
+      "categoria": "estadio",
+      "texto": "El Olympiastadion de Berlín, sede de la final, fue construido en 1936 para los Juegos Olímpicos de Hitler. Su selección como sede de la final mundialista fue elemento clave del 'cierre de heridas históricas' que se buscaba."
+    }
+  ],
+  "fuentes": [
+    { "nombre": "FIFA Archive — World Cup 2006", "url": "https://www.fifa.com/tournaments/mens/worldcup/2006germany" },
+    { "nombre": "RSSSF — World Cup 2006", "url": "https://www.rsssf.org/tables/06full.html" }
+  ]
+}

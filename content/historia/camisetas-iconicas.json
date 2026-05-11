@@ -1,0 +1,229 @@
+{
+  "camisetas": [
+    {
+      "ranking": 1,
+      "anio": 1970,
+      "edicionSlug": "1970-mexico",
+      "seleccion": { "pais": "Brasil", "iso2": "br" },
+      "titulo": "Brasil Verdeamarela 1970",
+      "subtitulo": "La camiseta del tricampeonato",
+      "descripcion": "El uniforme amarillo con cuello en V verde de Brasil 1970, vestido por Pelé, Carlos Alberto y Jairzinho durante el tricampeonato. Considerada la camiseta más icónica del fútbol mundial. Su origen: fue elegida tras el Maracanazo de 1950, cuando Brasil cambió la camiseta blanca por la verdeamarela tras un concurso público."
+    },
+    {
+      "ranking": 2,
+      "anio": 1986,
+      "edicionSlug": "1986-mexico",
+      "seleccion": { "pais": "Argentina", "iso2": "ar" },
+      "titulo": "Argentina Maradona 1986",
+      "subtitulo": "La 10 azul de Maradona en Le Coq Sportif",
+      "descripcion": "La camiseta azul oscura suplente que Argentina vistió en cuartos vs Inglaterra: la de la Mano de Dios y el Gol del Siglo. Le Coq Sportif fue el patrocinador. Subastada en 2022 por más de 9 millones de dólares: la camiseta de fútbol más cara jamás vendida."
+    },
+    {
+      "ranking": 3,
+      "anio": 1958,
+      "edicionSlug": "1958-suecia",
+      "seleccion": { "pais": "Brasil", "iso2": "br" },
+      "titulo": "Brasil 1958: la primera azul",
+      "subtitulo": "Pelé adolescente con la suplente improvisada",
+      "descripcion": "En la final 1958 (Brasil-Suecia), ambas selecciones llevaban amarillo. FIFA obligó a Brasil a usar suplente. Como no tenía azul, le tuvieron que coser parches azules sobre la camiseta blanca y emergió un uniforme histórico que Pelé y Garrincha vestirían triunfantes."
+    },
+    {
+      "ranking": 4,
+      "anio": 1974,
+      "edicionSlug": "1974-alemania",
+      "seleccion": { "pais": "Países Bajos", "iso2": "nl" },
+      "titulo": "Países Bajos Naranja Mecánica 1974",
+      "subtitulo": "El naranja revolucionario de Cruyff",
+      "descripcion": "Camiseta naranja brillante con detalles negros, vestida durante la Naranja Mecánica de Rinus Michels. El '14' de Cruyff es el dorsal más icónico del fútbol europeo. Cruyff exigió cambiar las dos rayas Adidas por tres en su camiseta — su contrato era con Puma."
+    },
+    {
+      "ranking": 5,
+      "anio": 1998,
+      "edicionSlug": "1998-francia",
+      "seleccion": { "pais": "Francia", "iso2": "fr" },
+      "titulo": "Francia 1998: el azul real campeón",
+      "subtitulo": "Adidas + Zidane + estrella inicial",
+      "descripcion": "Camiseta azul real con cuello en V tricolor (azul, blanco, rojo). Diseño Adidas con el escudo galo. Zidane vistió la 10 al doblete de cabeza en la final 3-0 vs Brasil. Estrenó el sistema 'estrellas en el escudo' que se mantendría con la generación de 2018."
+    },
+    {
+      "ranking": 6,
+      "anio": 2010,
+      "edicionSlug": "2010-sudafrica",
+      "seleccion": { "pais": "España", "iso2": "es" },
+      "titulo": "España 2010: la roja monocromática",
+      "subtitulo": "El primer (y único) Mundial español",
+      "descripcion": "Camiseta roja con detalles dorados y amarillos en el cuello. Iniesta vistió la 6 al gol del título al 116'. Tras anotar levantó la camiseta dejando ver una camiseta interior con el mensaje 'Dani Jarque siempre con nosotros'. Recibió tarjeta amarilla por la celebración."
+    },
+    {
+      "ranking": 7,
+      "anio": 2022,
+      "edicionSlug": "2022-qatar",
+      "seleccion": { "pais": "Argentina", "iso2": "ar" },
+      "titulo": "Argentina 2022: la celeste tricampeona",
+      "subtitulo": "Messi consagrado con tres estrellas",
+      "descripcion": "La icónica celeste con líneas blancas y violetas (Adidas), el escudo bordado con tres estrellas (la tercera añadida tras Catar). Messi llevó la 10 a la final 3-3 vs Francia. La selección la actualizó posteriormente en 2024 con detalles dorados conmemorativos."
+    },
+    {
+      "ranking": 8,
+      "anio": 1966,
+      "edicionSlug": "1966-inglaterra",
+      "seleccion": { "pais": "Inglaterra", "iso2": "gb-eng" },
+      "titulo": "Inglaterra 1966: la roja del único título",
+      "subtitulo": "Hurst hat-trick + tres leones",
+      "descripcion": "Camiseta roja suplente en la final vs Alemania Federal (jugaron de rojo porque los locales tenían el blanco original demasiado parecido al alemán). Hurst hat-trick + Bobby Moore capitán. Es la única camiseta inglesa con un Mundial."
+    },
+    {
+      "ranking": 9,
+      "anio": 1982,
+      "edicionSlug": "1982-espana",
+      "seleccion": { "pais": "Italia", "iso2": "it" },
+      "titulo": "Italia 1982 Azzurra de Rossi",
+      "subtitulo": "El tercer título italiano post-Totonero",
+      "descripcion": "La famosa Azzurra Le Coq Sportif. Paolo Rossi vistió la 20 (improvisado dorsal) en su redención post-Totonero. Es la camiseta del partido del siglo: Italia 3-2 Brasil en el Sarrià. Dino Zoff alzó el trofeo siendo el campeón más viejo de la historia (40)."
+    },
+    {
+      "ranking": 10,
+      "anio": 2014,
+      "edicionSlug": "2014-brasil",
+      "seleccion": { "pais": "Alemania", "iso2": "de" },
+      "titulo": "Alemania 2014 del Mineirazo",
+      "subtitulo": "La camiseta del 7-1 a Brasil + tetracampeonato",
+      "descripcion": "Camiseta blanca con detalles rojo-negro-dorado de Adidas. Götze vistió la 19 al gol del título prórroga vs Argentina. Antes hubo Mineirazo (Brasil 1-7 Alemania) en semis: 5 goles alemanes en 6 minutos en suelo brasileño. La camiseta entera está expuesta en el Allianz Arena."
+    },
+    {
+      "ranking": 11,
+      "anio": 2002,
+      "edicionSlug": "2002-corea-japon",
+      "seleccion": { "pais": "Brasil", "iso2": "br" },
+      "titulo": "Brasil 2002 pentacampeona",
+      "subtitulo": "El uniforme con Las Tres R",
+      "descripcion": "La amarilla 2002 con cuello chino verde, fabricada por Nike (primer Mundial con Nike como patrocinador de Brasil). Ronaldo, Rivaldo y Ronaldinho la vistieron en el quinto título. Cafu la usó como capitán: tercer Mundial consecutivo en final."
+    },
+    {
+      "ranking": 12,
+      "anio": 1990,
+      "edicionSlug": "1990-italia",
+      "seleccion": { "pais": "Camerún", "iso2": "cm" },
+      "titulo": "Camerún 1990: África revoluciona",
+      "subtitulo": "El verde de Roger Milla y el baile",
+      "descripcion": "Camiseta verde con franjas rojas y amarillas (los colores del país). Vista por Roger Milla con su baile de córner que cambió la celebración mundial. Camerún 1-0 Argentina en partido inaugural fue una de las mayores sorpresas del Mundial. Milla con 38 años fue ícono."
+    },
+    {
+      "ranking": 13,
+      "anio": 1994,
+      "edicionSlug": "1994-eeuu",
+      "seleccion": { "pais": "Estados Unidos", "iso2": "us" },
+      "titulo": "EE.UU. 1994: la 'denim'",
+      "subtitulo": "La camiseta más controvertida de la historia",
+      "descripcion": "Diseño emulando jeans: estrellas blancas sobre fondo azul vaquero. Vestida en partido vs Suiza. Criticada como 'demasiado casual'. Sin embargo, se ha vuelto culto: en subastas de 2024 se vende por 5.000+ dólares. Reediciones agotaron en una semana."
+    },
+    {
+      "ranking": 14,
+      "anio": 1990,
+      "edicionSlug": "1990-italia",
+      "seleccion": { "pais": "Yugoslavia", "iso2": "rs" },
+      "titulo": "Yugoslavia 1990: la última vez",
+      "subtitulo": "La camiseta de un país que ya no existe",
+      "descripcion": "El último uniforme yugoslavo en un Mundial: azul oscuro con franjas blanca-roja y el escudo socialista. En 1991-1992 Yugoslavia se desintegró en 6 países. La camiseta es objeto de coleccionismo arqueológico-deportivo."
+    },
+    {
+      "ranking": 15,
+      "anio": 2018,
+      "edicionSlug": "2018-rusia",
+      "seleccion": { "pais": "Croacia", "iso2": "hr" },
+      "titulo": "Croacia 2018 a cuadros",
+      "subtitulo": "El uniforme subcampeón",
+      "descripcion": "La icónica camiseta a cuadros rojos y blancos. Modrić vistió la 10 al Balón de Oro. Croacia perdió 4-2 vs Francia en la final pero se llevó el corazón mundial. La camiseta es la única con 'cuadros perfectos' geométricos en el fútbol moderno."
+    },
+    {
+      "ranking": 16,
+      "anio": 1986,
+      "edicionSlug": "1986-mexico",
+      "seleccion": { "pais": "Dinamarca", "iso2": "dk" },
+      "titulo": "Dinamarca 1986 Hummel",
+      "subtitulo": "La 'estrella roja' del fútbol total",
+      "descripcion": "Camiseta blanca con franjas rojas, vista durante el debut histórico de Dinamarca en un Mundial. Dieron exhibición pero cayeron 1-5 vs España en octavos. La camiseta Hummel sigue siendo objeto de culto entre coleccionistas: cumple lo retro y deportivo."
+    },
+    {
+      "ranking": 17,
+      "anio": 2002,
+      "edicionSlug": "2002-corea-japon",
+      "seleccion": { "pais": "Japón", "iso2": "jp" },
+      "titulo": "Japón 2002: la primera local",
+      "subtitulo": "El azul cobalto de Nakata",
+      "descripcion": "Camiseta azul cobalto con detalles dorados. Hidetoshi Nakata vistió la 7. Primera vez que Japón jugaba un Mundial en casa (compartido con Corea del Sur). Avanzó hasta octavos: la camiseta es coleccionada por nostalgia generacional."
+    },
+    {
+      "ranking": 18,
+      "anio": 2014,
+      "edicionSlug": "2014-brasil",
+      "seleccion": { "pais": "Colombia", "iso2": "co" },
+      "titulo": "Colombia 2014 amarilla de James",
+      "subtitulo": "El '10' de la volea Puskás",
+      "descripcion": "Camiseta amarilla con detalles rojos y azules de Adidas. James Rodríguez (10) anotó el Premio Puskás vs Uruguay con volea de pecho. Colombia llegó a cuartos por primera vez en su historia. La camiseta agotó en horas en Bogotá."
+    },
+    {
+      "ranking": 19,
+      "anio": 1978,
+      "edicionSlug": "1978-argentina",
+      "seleccion": { "pais": "Argentina", "iso2": "ar" },
+      "titulo": "Argentina 1978: el primer título",
+      "subtitulo": "Kempes con la 10 en casa",
+      "descripcion": "Camiseta celeste con franjas blancas verticales más anchas que las modernas. Adidas. Mario Kempes (10) fue Bota+Balón+Mundial. La final ARG 3-1 NED se jugó bajo la dictadura militar de Videla con 'lluvia de papelitos' del Monumental como imagen icónica."
+    },
+    {
+      "ranking": 20,
+      "anio": 1934,
+      "edicionSlug": "1934-italia",
+      "seleccion": { "pais": "Italia", "iso2": "it" },
+      "titulo": "Italia 1934: la primera Azzurra",
+      "subtitulo": "El uniforme de Pozzo",
+      "descripcion": "La primera Azzurra italiana en un Mundial: azul cielo con cuello blanco. Sería el inicio de una identidad cromática italiana que dura 90+ años. Mussolini quería que la Azzurra fuera 'el escudo del fascismo' pero la camiseta sobrevivió la caída del régimen y la guerra."
+    },
+    {
+      "ranking": 21,
+      "anio": 1970,
+      "edicionSlug": "1970-mexico",
+      "seleccion": { "pais": "Italia", "iso2": "it" },
+      "titulo": "Italia 1970: el subcampeón Azzurro",
+      "subtitulo": "La camiseta de la 'partita del secolo'",
+      "descripcion": "La Azzurra del partido del siglo (Italia 4-3 Alemania Federal en semis, 5 goles en prórroga). Burgnich, Riva, Rivera vistieron la histórica camiseta. La placa en el Azteca recuerda 'Stadio Azteca, Città del Messico, 17 giugno 1970'."
+    },
+    {
+      "ranking": 22,
+      "anio": 1998,
+      "edicionSlug": "1998-francia",
+      "seleccion": { "pais": "Croacia", "iso2": "hr" },
+      "titulo": "Croacia 1998: debut histórico",
+      "subtitulo": "La primera vez del checkerboard",
+      "descripcion": "El icónico patrón a cuadros rojos y blancos en su debut como nación independiente (post-Yugoslavia). Davor Šuker (Bota de Oro) vistió el 9 en el tercer puesto histórico. Marcaría tradición: en 2018 volverían a la final."
+    },
+    {
+      "ranking": 23,
+      "anio": 2018,
+      "edicionSlug": "2018-rusia",
+      "seleccion": { "pais": "Nigeria", "iso2": "ng" },
+      "titulo": "Nigeria 2018 Naija",
+      "subtitulo": "La camiseta más vendida del Mundial",
+      "descripcion": "Diseño Nike con patrón verde-blanco con elementos hipnóticos. Vendió más de 3 MILLONES de unidades antes del Mundial — récord absoluto. Nigeria fue eliminada en grupos pero su camiseta se hizo icónica del estilismo fashion."
+    },
+    {
+      "ranking": 24,
+      "anio": 1962,
+      "edicionSlug": "1962-chile",
+      "seleccion": { "pais": "Chile", "iso2": "cl" },
+      "titulo": "Chile 1962 'la roja' del 3er puesto",
+      "subtitulo": "El mejor desempeño chileno",
+      "descripcion": "Camiseta roja con detalles azules y blancos (los colores patrios). Vestida en el tercer puesto post-terremoto Valdivia. Leonel Sánchez compartió la Bota de Oro con 4 goles. Sigue siendo el mejor desempeño chileno mundialista."
+    },
+    {
+      "ranking": 25,
+      "anio": 2022,
+      "edicionSlug": "2022-qatar",
+      "seleccion": { "pais": "Marruecos", "iso2": "ma" },
+      "titulo": "Marruecos 2022: histórico semifinalista",
+      "subtitulo": "La roja Atlas Lions",
+      "descripcion": "Camiseta roja con detalles verdes y dorados de Puma. Hakim Ziyech (7), Achraf Hakimi (2), Sofyan Amrabat (4) y Yassine Bono fueron iconos. Marruecos primera africana en semis. La camiseta agotó en Casablanca y se reeditó tres veces."
+    }
+  ]
+}

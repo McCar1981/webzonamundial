@@ -1,0 +1,149 @@
+{
+  "meta": {
+    "edicion": 2,
+    "anio": 1934,
+    "slug": "1934-italia",
+    "tituloOficial": "Copa Mundial de Fútbol 1934",
+    "nombreCorto": "Italia 1934",
+    "era": "entreguerras"
+  },
+  "sede": {
+    "paises": [
+      { "nombre": "Italia", "iso2": "it", "iso3": "ITA", "banderaUrl": "https://flagcdn.com/w160/it.png" }
+    ],
+    "ciudades": ["Roma", "Milán", "Turín", "Florencia", "Bolonia", "Génova", "Nápoles", "Trieste"],
+    "estadios": ["Stadio Nazionale del PNF", "San Siro", "Stadio Mussolini"]
+  },
+  "fechas": { "inicio": "1934-05-27", "final": "1934-06-10", "duracionDias": 15 },
+  "formato": {
+    "numEquipos": 16,
+    "numPartidos": 17,
+    "sistemaEliminatoria": "octavos"
+  },
+  "resultados": {
+    "campeon": { "pais": "Italia", "iso2": "it", "iso3": "ITA", "banderaUrl": "https://flagcdn.com/w160/it.png" },
+    "subcampeon": { "pais": "Checoslovaquia", "iso2": "cz", "iso3": "CZE", "banderaUrl": "https://flagcdn.com/w160/cz.png" },
+    "tercero": { "pais": "Alemania", "iso2": "de", "iso3": "DEU", "banderaUrl": "https://flagcdn.com/w160/de.png" },
+    "cuarto": { "pais": "Austria", "iso2": "at", "iso3": "AUT", "banderaUrl": "https://flagcdn.com/w160/at.png" }
+  },
+  "estadisticas": {
+    "totalGoles": 70,
+    "promedioGolesPartido": 4.12,
+    "asistenciaTotal": 358000,
+    "asistenciaPromedio": 21059
+  },
+  "identidadVisual": {
+    "eslogan": "Coppa del Mondo",
+    "balon": "Federale 102",
+    "colorPrincipal": "#0066CC"
+  },
+  "partidoFinal": {
+    "fecha": "1934-06-10",
+    "ciudad": "Roma",
+    "estadio": "Stadio Nazionale del PNF",
+    "local": { "pais": "Italia", "iso2": "it", "iso3": "ITA" },
+    "visitante": { "pais": "Checoslovaquia", "iso2": "cz", "iso3": "CZE" },
+    "marcador": "2-1 (prórroga)",
+    "asistencia": 55000,
+    "arbitro": "Ivan Eklind (Suecia)"
+  },
+  "partido3": {
+    "fecha": "1934-06-07",
+    "ciudad": "Nápoles",
+    "estadio": "Stadio Giorgio Ascarelli",
+    "local": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" },
+    "visitante": { "pais": "Austria", "iso2": "at", "iso3": "AUT" },
+    "marcador": "3-2"
+  },
+  "topGoleadores": [
+    {
+      "nombre": "Oldřich Nejedlý",
+      "seleccion": { "pais": "Checoslovaquia", "iso2": "cz", "iso3": "CZE" },
+      "goles": 5,
+      "botaOro": true
+    },
+    {
+      "nombre": "Edmund Conen",
+      "seleccion": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" },
+      "goles": 4
+    },
+    {
+      "nombre": "Angelo Schiavio",
+      "seleccion": { "pais": "Italia", "iso2": "it", "iso3": "ITA" },
+      "goles": 4
+    }
+  ],
+  "contextoHistorico": {
+    "resumen": "Mundial bajo el régimen fascista de Mussolini, utilizado como escaparate político. Primer torneo con eliminatorias previas. Uruguay, campeón vigente, no participó como represalia por el escaso interés europeo en 1930. Italia, dirigida por Vittorio Pozzo, conquistó su primer título con prórroga.",
+    "eventos": [
+      "Primera vez con clasificatorias previas (32 selecciones compitieron por 16 plazas).",
+      "Estreno del partido por el tercer puesto en la historia mundialista.",
+      "Vittorio Pozzo se convertiría en el único técnico bicampeón del Mundo (1934 + 1938)."
+    ]
+  },
+  "fasesKO": {
+    "octavos": [
+      { "fecha": "1934-05-27", "ciudad": "Roma", "estadio": "Stadio Nazionale del PNF", "local": { "pais": "Italia", "iso2": "it", "iso3": "ITA" }, "visitante": { "pais": "Estados Unidos", "iso2": "us", "iso3": "USA" }, "marcador": "7-1" },
+      { "fecha": "1934-05-27", "ciudad": "Génova", "estadio": "Luigi Ferraris", "local": { "pais": "Checoslovaquia", "iso2": "cz", "iso3": "CZE" }, "visitante": { "pais": "Rumania", "iso2": "ro", "iso3": "ROU" }, "marcador": "2-1" },
+      { "fecha": "1934-05-27", "ciudad": "Florencia", "estadio": "Giovanni Berta", "local": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" }, "visitante": { "pais": "Bélgica", "iso2": "be", "iso3": "BEL" }, "marcador": "5-2" },
+      { "fecha": "1934-05-27", "ciudad": "Trieste", "estadio": "Littorio", "local": { "pais": "Austria", "iso2": "at", "iso3": "AUT" }, "visitante": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" }, "marcador": "3-2 (prórroga)" },
+      { "fecha": "1934-05-27", "ciudad": "Turín", "estadio": "Benito Mussolini", "local": { "pais": "España", "iso2": "es", "iso3": "ESP" }, "visitante": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "marcador": "3-1" },
+      { "fecha": "1934-05-27", "ciudad": "Milán", "estadio": "San Siro", "local": { "pais": "Suiza", "iso2": "ch", "iso3": "CHE" }, "visitante": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD" }, "marcador": "3-2" },
+      { "fecha": "1934-05-27", "ciudad": "Bolonia", "estadio": "Littoriale", "local": { "pais": "Suecia", "iso2": "se", "iso3": "SWE" }, "visitante": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "marcador": "3-2" },
+      { "fecha": "1934-05-27", "ciudad": "Nápoles", "estadio": "Giorgio Ascarelli", "local": { "pais": "Hungría", "iso2": "hu", "iso3": "HUN" }, "visitante": { "pais": "Egipto", "iso2": "eg", "iso3": "EGY" }, "marcador": "4-2" }
+    ],
+    "cuartos": [
+      { "fecha": "1934-05-31", "ciudad": "Florencia", "estadio": "Giovanni Berta", "local": { "pais": "Italia", "iso2": "it", "iso3": "ITA" }, "visitante": { "pais": "España", "iso2": "es", "iso3": "ESP" }, "marcador": "1-1 (prórroga)" },
+      { "fecha": "1934-05-31", "ciudad": "Turín", "estadio": "Benito Mussolini", "local": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" }, "visitante": { "pais": "Suecia", "iso2": "se", "iso3": "SWE" }, "marcador": "2-1" },
+      { "fecha": "1934-05-31", "ciudad": "Milán", "estadio": "San Siro", "local": { "pais": "Austria", "iso2": "at", "iso3": "AUT" }, "visitante": { "pais": "Hungría", "iso2": "hu", "iso3": "HUN" }, "marcador": "2-1" },
+      { "fecha": "1934-05-31", "ciudad": "Roma", "estadio": "Stadio Nazionale del PNF", "local": { "pais": "Checoslovaquia", "iso2": "cz", "iso3": "CZE" }, "visitante": { "pais": "Suiza", "iso2": "ch", "iso3": "CHE" }, "marcador": "3-2" }
+    ],
+    "semifinales": [
+      { "fecha": "1934-06-03", "ciudad": "Milán", "estadio": "San Siro", "local": { "pais": "Italia", "iso2": "it", "iso3": "ITA" }, "visitante": { "pais": "Austria", "iso2": "at", "iso3": "AUT" }, "marcador": "1-0" },
+      { "fecha": "1934-06-03", "ciudad": "Roma", "estadio": "Stadio Nazionale del PNF", "local": { "pais": "Checoslovaquia", "iso2": "cz", "iso3": "CZE" }, "visitante": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" }, "marcador": "3-1" }
+    ]
+  },
+  "hatTricks": [
+    { "jugador": "Edmund Conen", "seleccion": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" }, "fase": "Octavos", "rival": { "pais": "Bélgica", "iso2": "be", "iso3": "BEL" }, "goles": 3, "marcador": "5-2" },
+    { "jugador": "Angelo Schiavio", "seleccion": { "pais": "Italia", "iso2": "it", "iso3": "ITA" }, "fase": "Octavos", "rival": { "pais": "Estados Unidos", "iso2": "us", "iso3": "USA" }, "goles": 3, "marcador": "7-1" },
+    { "jugador": "Oldřich Nejedlý", "seleccion": { "pais": "Checoslovaquia", "iso2": "cz", "iso3": "CZE" }, "fase": "Semifinal", "rival": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" }, "goles": 3, "marcador": "3-1" }
+  ],
+  "recordsEdicion": [
+    { "categoria": "hito", "descripcion": "Primer Mundial con eliminatorias previas: 32 selecciones compitieron por 16 plazas", "valor": "Sistema clasificatorio" },
+    { "categoria": "tactica", "descripcion": "Estreno del partido por el tercer puesto: Alemania 3-2 Austria en Nápoles", "valor": "Bronze final" },
+    { "categoria": "politica", "descripcion": "Uruguay, campeón vigente, no participó: única vez que un campeón defensor renuncia voluntariamente", "valor": "Boicot URU" },
+    { "categoria": "entrenador", "descripcion": "Vittorio Pozzo se convertiría en el único técnico bicampeón del Mundo (1934 + 1938)", "valor": "Único bicampeón" },
+    { "categoria": "asistencia", "descripcion": "Final disputada bajo calor extremo (40°C en Roma)", "valor": "Récord de calor" }
+  ],
+  "curiosidades": [
+    {
+      "categoria": "politica",
+      "texto": "Italia 1934 fue el primer Mundial usado como propaganda política: Mussolini diseñó el torneo como escaparate del fascismo y la prensa italiana lo bautizó 'la Coppa del Duce'."
+    },
+    {
+      "categoria": "hito",
+      "texto": "Angelo Schiavio anotó el gol número 100 de la historia del Mundial durante el partido inaugural de Italia ante EE.UU."
+    },
+    {
+      "categoria": "arbitro",
+      "texto": "El árbitro sueco Ivan Eklind cenó con Mussolini la noche previa a la semifinal Italia-Austria. Pitó tres faltas favorables a Italia consideradas irregulares por la prensa neutral, generando el primer escándalo arbitral mundialista."
+    },
+    {
+      "categoria": "jugador",
+      "texto": "Italia disputó la final con cuatro 'oriundos' (jugadores argentinos nacionalizados): Monti, Orsi, Guaita y Demaría. Mussolini quería un equipo invencible y modificó la ley de ciudadanía para acelerar las naturalizaciones."
+    },
+    {
+      "categoria": "tragedia",
+      "texto": "Egipto, primera nación africana en jugar un Mundial, fue eliminada en su único partido. No volvería al torneo hasta Italia 1990, 56 años después."
+    },
+    {
+      "categoria": "misc",
+      "texto": "Italia 1934 sigue siendo el único Mundial cuyo campeón fue clasificado a través de eliminatorias previas Y a la vez anfitrión. Inglaterra 1966 sería la siguiente y única excepción."
+    }
+  ],
+  "fuentes": [
+    { "nombre": "FIFA Archive — World Cup 1934", "url": "https://www.fifa.com/tournaments/mens/worldcup/1934italy" },
+    { "nombre": "RSSSF — World Cup 1934", "url": "https://www.rsssf.org/tables/34full.html" },
+    { "nombre": "Wikipedia — Copa Mundial de Fútbol de 1934", "url": "https://es.wikipedia.org/wiki/Copa_Mundial_de_F%C3%BAtbol_de_1934" }
+  ]
+}

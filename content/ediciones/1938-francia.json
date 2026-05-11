@@ -1,0 +1,136 @@
+{
+  "meta": {
+    "edicion": 3,
+    "anio": 1938,
+    "slug": "1938-francia",
+    "tituloOficial": "Copa Mundial de Fútbol 1938",
+    "nombreCorto": "Francia 1938",
+    "era": "entreguerras"
+  },
+  "sede": {
+    "paises": [
+      { "nombre": "Francia", "iso2": "fr", "iso3": "FRA", "banderaUrl": "https://flagcdn.com/w160/fr.png" }
+    ],
+    "ciudades": ["París", "Marsella", "Lyon", "Burdeos", "Estrasburgo", "Le Havre", "Antibes", "Reims", "Toulouse"],
+    "estadios": ["Stade Olympique de Colombes", "Stade Vélodrome"]
+  },
+  "fechas": { "inicio": "1938-06-04", "final": "1938-06-19", "duracionDias": 16 },
+  "formato": {
+    "numEquipos": 15,
+    "numPartidos": 18,
+    "sistemaEliminatoria": "octavos"
+  },
+  "resultados": {
+    "campeon": { "pais": "Italia", "iso2": "it", "iso3": "ITA", "banderaUrl": "https://flagcdn.com/w160/it.png" },
+    "subcampeon": { "pais": "Hungría", "iso2": "hu", "iso3": "HUN", "banderaUrl": "https://flagcdn.com/w160/hu.png" },
+    "tercero": { "pais": "Brasil", "iso2": "br", "iso3": "BRA", "banderaUrl": "https://flagcdn.com/w160/br.png" },
+    "cuarto": { "pais": "Suecia", "iso2": "se", "iso3": "SWE", "banderaUrl": "https://flagcdn.com/w160/se.png" }
+  },
+  "estadisticas": {
+    "totalGoles": 84,
+    "promedioGolesPartido": 4.67,
+    "asistenciaTotal": 374835,
+    "asistenciaPromedio": 20824
+  },
+  "identidadVisual": {
+    "eslogan": "Coupe du Monde",
+    "balon": "Allen (13 paneles)",
+    "colorPrincipal": "#0055A4"
+  },
+  "partidoFinal": {
+    "fecha": "1938-06-19",
+    "ciudad": "París",
+    "estadio": "Stade Olympique de Colombes",
+    "local": { "pais": "Italia", "iso2": "it", "iso3": "ITA" },
+    "visitante": { "pais": "Hungría", "iso2": "hu", "iso3": "HUN" },
+    "marcador": "4-2",
+    "asistencia": 45000,
+    "arbitro": "Georges Capdeville (Francia)"
+  },
+  "topGoleadores": [
+    {
+      "nombre": "Leônidas",
+      "seleccion": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" },
+      "goles": 7,
+      "botaOro": true
+    },
+    {
+      "nombre": "Gyula Zsengellér",
+      "seleccion": { "pais": "Hungría", "iso2": "hu", "iso3": "HUN" },
+      "goles": 5
+    },
+    {
+      "nombre": "Silvio Piola",
+      "seleccion": { "pais": "Italia", "iso2": "it", "iso3": "ITA" },
+      "goles": 5
+    }
+  ],
+  "contextoHistorico": {
+    "resumen": "Italia se convierte en el primer bicampeón mundial. Boicot de Argentina y Uruguay por la elección europea sede. Austria, ya anexionada por la Alemania nazi, no pudo participar. Vittorio Pozzo se consagra como único técnico bicampeón del Mundo. Sería el último Mundial antes del paréntesis de la Segunda Guerra Mundial (12 años hasta Brasil 1950).",
+    "eventos": [
+      "Brasil 6-5 Polonia en octavos: Leônidas hace hat-trick descalzo en el barro de Estrasburgo; Wilimowski marca 4 goles y aún pierde.",
+      "Cuba debuta y elimina a Rumania en partido de desempate (única participación cubana de la historia).",
+      "La Coppa Jules Rimet sería escondida durante la guerra en una caja de zapatos bajo la cama de Ottorino Barassi para evitar su requisa por los nazis."
+    ]
+  },
+  "fasesKO": {
+    "octavos": [
+      { "fecha": "1938-06-04", "ciudad": "Estrasburgo", "estadio": "Meinau", "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "visitante": { "pais": "Polonia", "iso2": "pl", "iso3": "POL" }, "marcador": "6-5 (prórroga)" },
+      { "fecha": "1938-06-04", "ciudad": "París", "estadio": "Parc des Princes", "local": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" }, "visitante": { "pais": "Bélgica", "iso2": "be", "iso3": "BEL" }, "marcador": "3-1" },
+      { "fecha": "1938-06-04", "ciudad": "Reims", "estadio": "Auguste Delaune", "local": { "pais": "Hungría", "iso2": "hu", "iso3": "HUN" }, "visitante": { "pais": "Indias Orientales Neerlandesas", "iso2": "id", "iso3": "IDN" }, "marcador": "6-0" },
+      { "fecha": "1938-06-05", "ciudad": "París", "estadio": "Stade Olympique", "local": { "pais": "Italia", "iso2": "it", "iso3": "ITA" }, "visitante": { "pais": "Noruega", "iso2": "no", "iso3": "NOR" }, "marcador": "2-1 (prórroga)" }
+    ],
+    "cuartos": [
+      { "fecha": "1938-06-12", "ciudad": "Burdeos", "estadio": "Parc Lescure", "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "visitante": { "pais": "Checoslovaquia", "iso2": "cz", "iso3": "CZE" }, "marcador": "1-1 (prórroga)" },
+      { "fecha": "1938-06-12", "ciudad": "París", "estadio": "Stade Olympique", "local": { "pais": "Italia", "iso2": "it", "iso3": "ITA" }, "visitante": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" }, "marcador": "3-1" },
+      { "fecha": "1938-06-12", "ciudad": "Lille", "estadio": "Victor Boucquey", "local": { "pais": "Hungría", "iso2": "hu", "iso3": "HUN" }, "visitante": { "pais": "Suiza", "iso2": "ch", "iso3": "CHE" }, "marcador": "2-0" },
+      { "fecha": "1938-06-12", "ciudad": "Marsella", "estadio": "Vélodrome", "local": { "pais": "Suecia", "iso2": "se", "iso3": "SWE" }, "visitante": { "pais": "Cuba", "iso2": "cu", "iso3": "CUB" }, "marcador": "8-0" }
+    ],
+    "semifinales": [
+      { "fecha": "1938-06-16", "ciudad": "Marsella", "estadio": "Vélodrome", "local": { "pais": "Italia", "iso2": "it", "iso3": "ITA" }, "visitante": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "marcador": "2-1" },
+      { "fecha": "1938-06-16", "ciudad": "París", "estadio": "Parc des Princes", "local": { "pais": "Hungría", "iso2": "hu", "iso3": "HUN" }, "visitante": { "pais": "Suecia", "iso2": "se", "iso3": "SWE" }, "marcador": "5-1" }
+    ]
+  },
+  "hatTricks": [
+    { "jugador": "Leônidas", "seleccion": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "fase": "Octavos", "rival": { "pais": "Polonia", "iso2": "pl", "iso3": "POL" }, "goles": 4, "marcador": "6-5 (prórroga)" },
+    { "jugador": "Ernest Wilimowski", "seleccion": { "pais": "Polonia", "iso2": "pl", "iso3": "POL" }, "fase": "Octavos", "rival": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "goles": 4, "marcador": "5-6 (prórroga)" },
+    { "jugador": "Gyula Zsengellér", "seleccion": { "pais": "Hungría", "iso2": "hu", "iso3": "HUN" }, "fase": "Semifinal", "rival": { "pais": "Suecia", "iso2": "se", "iso3": "SWE" }, "goles": 3, "marcador": "5-1" }
+  ],
+  "recordsEdicion": [
+    { "categoria": "jugador", "descripcion": "Brasil 6-5 Polonia (octavos): único partido del Mundial con dos jugadores marcando 4 goles cada uno (Leônidas y Wilimowski)", "valor": "8 goles entre 2" },
+    { "categoria": "entrenador", "descripcion": "Vittorio Pozzo se convierte en el ÚNICO técnico bicampeón del Mundo (1934 + 1938), récord vigente más de 85 años después", "valor": "Único de la historia" },
+    { "categoria": "politica", "descripcion": "Argentina y Uruguay boicotean el torneo en protesta porque la sede no fue otorgada a Sudamérica como esperaban", "valor": "Doble boicot" },
+    { "categoria": "asistencia", "descripcion": "Indias Orientales Neerlandesas (hoy Indonesia) jugó su único Mundial: nación más al este en participar hasta el debut surcoreano", "valor": "Única participación" },
+    { "categoria": "tactica", "descripcion": "Último Mundial con prórroga inmediata en octavos sin replay: 4 de 8 partidos requirieron alargue", "valor": "50% prórrogas" }
+  ],
+  "curiosidades": [
+    {
+      "categoria": "jugador",
+      "texto": "Leônidas, llamado 'el Diamante Negro', se descalzó en el partido vs Polonia por la lluvia y el barro: el árbitro le obligó a calzarse de nuevo, pero ya había marcado uno de los hat-tricks más legendarios del Mundial."
+    },
+    {
+      "categoria": "politica",
+      "texto": "Austria fue obligada a retirarse del torneo tras el Anschluss; varios de sus jugadores acabaron jugando para Alemania en este Mundial."
+    },
+    {
+      "categoria": "tragedia",
+      "texto": "La Copa Jules Rimet pasaría los próximos 12 años escondida en una caja de zapatos bajo la cama del vicepresidente FIFA Ottorino Barassi para evitar que los nazis la requisaran. Volvería a verse en Brasil 1950."
+    },
+    {
+      "categoria": "jugador",
+      "texto": "Brasil llegó a la semifinal con tanta confianza que dejó descansando a Leônidas para 'reservarlo para la final'. Italia los venció 2-1: la decisión es considerada el primer error táctico catastrófico de un Mundial."
+    },
+    {
+      "categoria": "misc",
+      "texto": "Cuba debutó eliminando a Rumania en partido de desempate. No volvería a un Mundial hasta... nunca: 1938 sigue siendo su única participación 87 años después."
+    },
+    {
+      "categoria": "balon",
+      "texto": "El balón Allen tenía 13 paneles formando una cruz oculta. Era el primero en tener válvula con cordón oculto, eliminando los antiestéticos cordones del cuero que llevaban los balones desde 1900."
+    }
+  ],
+  "fuentes": [
+    { "nombre": "FIFA Archive — World Cup 1938", "url": "https://www.fifa.com/tournaments/mens/worldcup/1938france" },
+    { "nombre": "RSSSF — World Cup 1938", "url": "https://www.rsssf.org/tables/38full.html" }
+  ]
+}

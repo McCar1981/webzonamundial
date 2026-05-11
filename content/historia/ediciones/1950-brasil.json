@@ -1,0 +1,144 @@
+{
+  "meta": {
+    "edicion": 4,
+    "anio": 1950,
+    "slug": "1950-brasil",
+    "tituloOficial": "Copa Mundial de Fútbol 1950",
+    "nombreCorto": "Brasil 1950",
+    "era": "posguerra"
+  },
+  "sede": {
+    "paises": [
+      { "nombre": "Brasil", "iso2": "br", "iso3": "BRA", "banderaUrl": "https://flagcdn.com/w160/br.png" }
+    ],
+    "ciudades": ["Río de Janeiro", "São Paulo", "Belo Horizonte", "Porto Alegre", "Recife", "Curitiba"],
+    "estadios": ["Estadio Maracanã", "Estadio Pacaembu", "Estadio Independência", "Estadio Sete de Setembro"]
+  },
+  "fechas": { "inicio": "1950-06-24", "final": "1950-07-16", "duracionDias": 23 },
+  "formato": {
+    "numEquipos": 13,
+    "numPartidos": 22,
+    "sistemaEliminatoria": "liguilla-final",
+    "numGrupos": 4
+  },
+  "resultados": {
+    "campeon": { "pais": "Uruguay", "iso2": "uy", "iso3": "URY", "banderaUrl": "https://flagcdn.com/w160/uy.png" },
+    "subcampeon": { "pais": "Brasil", "iso2": "br", "iso3": "BRA", "banderaUrl": "https://flagcdn.com/w160/br.png" },
+    "tercero": { "pais": "Suecia", "iso2": "se", "iso3": "SWE", "banderaUrl": "https://flagcdn.com/w160/se.png" },
+    "cuarto": { "pais": "España", "iso2": "es", "iso3": "ESP", "banderaUrl": "https://flagcdn.com/w160/es.png" }
+  },
+  "estadisticas": {
+    "totalGoles": 88,
+    "promedioGolesPartido": 4.0,
+    "asistenciaTotal": 1045246,
+    "asistenciaPromedio": 47511
+  },
+  "identidadVisual": {
+    "eslogan": "El Maracanazo",
+    "balon": "Superball Duplo T",
+    "colorPrincipal": "#009C3B"
+  },
+  "partidoFinal": {
+    "fecha": "1950-07-16",
+    "ciudad": "Río de Janeiro",
+    "estadio": "Maracanã",
+    "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" },
+    "visitante": { "pais": "Uruguay", "iso2": "uy", "iso3": "URY" },
+    "marcador": "1-2",
+    "asistencia": 173850,
+    "arbitro": "George Reader (Inglaterra)"
+  },
+  "topGoleadores": [
+    {
+      "nombre": "Ademir",
+      "seleccion": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" },
+      "goles": 9,
+      "botaOro": true
+    },
+    {
+      "nombre": "Estanislao Basora",
+      "seleccion": { "pais": "España", "iso2": "es", "iso3": "ESP" },
+      "goles": 5
+    },
+    {
+      "nombre": "Óscar Míguez",
+      "seleccion": { "pais": "Uruguay", "iso2": "uy", "iso3": "URY" },
+      "goles": 5
+    },
+    {
+      "nombre": "Alcides Ghiggia",
+      "seleccion": { "pais": "Uruguay", "iso2": "uy", "iso3": "URY" },
+      "goles": 4
+    }
+  ],
+  "contextoHistorico": {
+    "resumen": "Único Mundial sin final formal: el campeón se decidió en una liguilla cuadrangular. Uruguay venció a Brasil 2-1 en el Maracaná ante una asistencia récord de más de 173.000 espectadores oficiales (estimada en 200.000), en lo que pasaría a la historia como 'el Maracanazo'. Brasil cambió su camiseta blanca por la verdeamarela tras la derrota, considerada un trauma nacional.",
+    "eventos": [
+      "EE.UU. 1-0 Inglaterra (Belo Horizonte): una de las mayores sorpresas de la historia del Mundial; gol de Joe Gaetjens, ítalo-haitiano-estadounidense.",
+      "La tragedia del Superga (mayo 1949) había aniquilado al Torino, espina dorsal de la selección italiana, debilitando al campeón vigente.",
+      "La Coppa Jules Rimet salió de su escondite tras 12 años para ser entregada a Uruguay."
+    ]
+  },
+  "plantillaCampeon": [
+    { "dorsal": 1, "nombre": "Roque Máspoli", "posicion": "GK", "clubOrigen": "Peñarol", "edad": 32 },
+    { "dorsal": 2, "nombre": "Matías González", "posicion": "DEF", "clubOrigen": "Cerro", "edad": 25 },
+    { "dorsal": 3, "nombre": "Eusebio Tejera", "posicion": "DEF", "clubOrigen": "Nacional", "edad": 28 },
+    { "dorsal": 4, "nombre": "Schubert Gambetta", "posicion": "DEF", "clubOrigen": "Nacional", "edad": 30 },
+    { "dorsal": 5, "nombre": "Obdulio Varela", "posicion": "MID", "clubOrigen": "Peñarol", "edad": 32, "capitan": true, "goles": 1 },
+    { "dorsal": 6, "nombre": "Víctor Rodríguez Andrade", "posicion": "MID", "clubOrigen": "Central", "edad": 22 },
+    { "dorsal": 7, "nombre": "Alcides Ghiggia", "posicion": "FWD", "clubOrigen": "Peñarol", "edad": 23, "goles": 4 },
+    { "dorsal": 8, "nombre": "Julio Pérez", "posicion": "MID", "clubOrigen": "Nacional", "edad": 23, "goles": 1 },
+    { "dorsal": 9, "nombre": "Óscar Míguez", "posicion": "FWD", "clubOrigen": "Peñarol", "edad": 22, "goles": 5 },
+    { "dorsal": 10, "nombre": "Juan Alberto Schiaffino", "posicion": "FWD", "clubOrigen": "Peñarol", "edad": 25, "goles": 4 },
+    { "dorsal": 11, "nombre": "Rubén Morán", "posicion": "FWD", "clubOrigen": "Cerro", "edad": 30 },
+    { "dorsal": 12, "nombre": "Aníbal Paz", "posicion": "GK", "clubOrigen": "Peñarol", "edad": 32 }
+  ],
+  "fasesKO": {
+    "semifinales": [
+      { "fecha": "1950-07-13", "ciudad": "São Paulo", "estadio": "Pacaembu", "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "visitante": { "pais": "España", "iso2": "es", "iso3": "ESP" }, "marcador": "6-1" },
+      { "fecha": "1950-07-13", "ciudad": "Río de Janeiro", "estadio": "Maracanã", "local": { "pais": "Uruguay", "iso2": "uy", "iso3": "URY" }, "visitante": { "pais": "Suecia", "iso2": "se", "iso3": "SWE" }, "marcador": "3-2" }
+    ]
+  },
+  "hatTricks": [
+    { "jugador": "Ademir", "seleccion": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "fase": "Final group", "rival": { "pais": "Suecia", "iso2": "se", "iso3": "SWE" }, "goles": 4, "marcador": "7-1" },
+    { "jugador": "Estanislao Basora", "seleccion": { "pais": "España", "iso2": "es", "iso3": "ESP" }, "fase": "Grupos", "rival": { "pais": "Estados Unidos", "iso2": "us", "iso3": "USA" }, "goles": 3, "marcador": "3-1" }
+  ],
+  "recordsEdicion": [
+    { "categoria": "asistencia", "descripcion": "Maracanazo: 173.850 espectadores oficiales (estimada >200.000), récord absoluto histórico de asistencia a un evento futbolístico", "valor": "173.850" },
+    { "categoria": "tactica", "descripcion": "Único Mundial decidido en cuadrangular final sin partido de gala, sin final formal", "valor": "Sistema único" },
+    { "categoria": "estadio", "descripcion": "Maracaná inaugurado específicamente para el Mundial con capacidad oficial para 200.000 espectadores", "valor": "Maracaná 1950" },
+    { "categoria": "seleccion", "descripcion": "EE.UU. 1-0 Inglaterra (Belo Horizonte): considerada la mayor sorpresa del Mundial hasta el Saudíes 2-1 Argentina (2022)", "valor": "Upset histórico" },
+    { "categoria": "tragedia", "descripcion": "Tragedia del Superga (1949) había aniquilado al Torino, espina dorsal de la selección italiana", "valor": "Italia debilitada" }
+  ],
+  "curiosidades": [
+    {
+      "categoria": "tragedia",
+      "texto": "Tras el Maracanazo, Alcides Ghiggia diría: 'Solo tres personas han logrado, con una sola acción, callar al Maracaná: Frank Sinatra, el Papa Juan Pablo II y yo.'"
+    },
+    {
+      "categoria": "estadio",
+      "texto": "El Maracaná se construyó específicamente para este Mundial con capacidad oficial para 200.000 espectadores. La asistencia oficial al partido decisivo es la mayor jamás registrada en un evento futbolístico."
+    },
+    {
+      "categoria": "jugador",
+      "texto": "Joe Gaetjens, autor del 1-0 estadounidense ante Inglaterra, era haitiano-belga estudiante de contabilidad en Nueva York. Volvería a Haití y desaparecería en 1964 secuestrado por el régimen Duvalier; nunca se encontró su cuerpo."
+    },
+    {
+      "categoria": "politica",
+      "texto": "India se clasificó pero rechazó ir porque FIFA prohibió jugar descalzos. La India de la época jugaba siempre sin botas y consideró la prohibición una falta de respeto. Nunca volverían a clasificar."
+    },
+    {
+      "categoria": "balon",
+      "texto": "Estreno del Superball Duplo T: primer balón sin cordones visibles, con válvula y bombín. Fue además el primero certificado oficialmente por FIFA, iniciando la regulación moderna del balón mundialista."
+    },
+    {
+      "categoria": "misc",
+      "texto": "Brasil había celebrado tanto el título antes del partido decisivo que las autoridades acuñaron 22 medallas de oro con los nombres de los jugadores grabados antes del partido. Tras el Maracanazo, fueron destruidas y refundidas. Algunos jugadores brasileños llegaron a recibir su 'medalla' por correo días después, en burla."
+    }
+  ],
+  "fuentes": [
+    { "nombre": "FIFA Archive — World Cup 1950", "url": "https://www.fifa.com/tournaments/mens/worldcup/1950brazil" },
+    { "nombre": "RSSSF — World Cup 1950", "url": "https://www.rsssf.org/tables/50full.html" },
+    { "nombre": "Wikipedia — Maracanazo", "url": "https://es.wikipedia.org/wiki/Maracanazo" }
+  ]
+}

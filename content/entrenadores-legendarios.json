@@ -1,0 +1,244 @@
+{
+  "entrenadores": [
+    {
+      "slug": "vittorio-pozzo",
+      "nombre": "Vittorio Pozzo",
+      "pais": "Italia",
+      "iso2": "it",
+      "anios": "1929–1948",
+      "mundialesDirigidos": [1934, 1938],
+      "titulos": [1934, 1938],
+      "subtitulo": "ÚNICO técnico bicampeón consecutivo de la historia",
+      "datoClave": "Único entrenador en ganar dos Mundiales consecutivos (1934 + 1938). Récord vigente más de 87 años después. Italia sigue siendo la única selección además de Brasil con bicampeonato consecutivo, y bajo el mismo técnico.",
+      "anecdotas": [
+        "Era profesor universitario y trabajó como ingeniero antes de dedicarse al fútbol. Considerado el primer entrenador 'académico' de la historia.",
+        "Naturalizó a 4 jugadores argentinos ('oriundos') con la complicidad de Mussolini, que cambió la ley de ciudadanía para acelerar las naturalizaciones.",
+        "Falleció en 1968 a los 82 años. Italia decretó luto nacional deportivo: el primer entrenador con tal honor."
+      ]
+    },
+    {
+      "slug": "mario-zagallo",
+      "nombre": "Mario Zagallo",
+      "pais": "Brasil",
+      "iso2": "br",
+      "anios": "1960–2006",
+      "mundialesDirigidos": [1970, 1974, 1998],
+      "titulos": [1970],
+      "subtitulo": "Primer hombre campeón como JUGADOR + DT",
+      "datoClave": "Único técnico hasta 1990 que ganó el Mundial como jugador (1958, 1962) y como DT (1970). Beckenbauer y Deschamps lo igualarían después.",
+      "anecdotas": [
+        "Asistente técnico en Brasil 1994 (Parreira fue el principal). Su rol como guardián táctico fue clave.",
+        "Volvió como técnico jefe en 1998 con Brasil. Cayó en la final por la convulsión de Ronaldo.",
+        "Falleció el 5 de enero de 2024 a los 92 años. Brasil decretó tres días de luto nacional."
+      ]
+    },
+    {
+      "slug": "franz-beckenbauer",
+      "nombre": "Franz Beckenbauer",
+      "pais": "Alemania",
+      "iso2": "de",
+      "anios": "1984–1990",
+      "mundialesDirigidos": [1986, 1990],
+      "titulos": [1990],
+      "subtitulo": "Campeón como jugador (1974) y DT (1990)",
+      "datoClave": "Segundo hombre en la historia campeón del Mundo como jugador (1974) y como DT (1990). El único alemán en hacerlo.",
+      "anecdotas": [
+        "Sin licencia de entrenador profesional cuando asumió el cargo en 1984. La DFB le dio una excepción especial.",
+        "Subcampeón en México 1986 antes de ganar 1990 en Italia. Sería su único Mundial como ganador.",
+        "Acusado de presunta compra de votos para la elección de Alemania como sede 2006. Investigación abierta cuando falleció en 2024."
+      ]
+    },
+    {
+      "slug": "didier-deschamps",
+      "nombre": "Didier Deschamps",
+      "pais": "Francia",
+      "iso2": "fr",
+      "anios": "2012–presente",
+      "mundialesDirigidos": [2014, 2018, 2022],
+      "titulos": [2018],
+      "subtitulo": "Campeón como jugador (1998) y DT (2018)",
+      "datoClave": "Tercer hombre en la historia campeón del Mundo como jugador (1998) y como DT (2018). Subcampeón también en 2022. Lleva 12 años al frente de Francia, récord de continuidad.",
+      "anecdotas": [
+        "Francia ganó tres Mundiales bajo su mando como jugador (1998), DT (2018) y subcampeón (2022). Ningún otro francés ha estado en cuatro finales mundialistas.",
+        "En 2022 se renovó hasta el Mundial 2026. Si participa será su cuarto Mundial como DT, igualando a Helmut Schön y Carlos Bilardo.",
+        "Como capitán de la final 1998 levantó la copa con guantes blancos para 'no manchar el oro con sudor'. Leyenda que él mismo desmiente: estaba lloviendo."
+      ]
+    },
+    {
+      "slug": "cesar-luis-menotti",
+      "nombre": "César Luis Menotti",
+      "pais": "Argentina",
+      "iso2": "ar",
+      "anios": "1974–1983",
+      "mundialesDirigidos": [1978, 1982],
+      "titulos": [1978],
+      "subtitulo": "El Flaco: campeón en 1978 con Argentina",
+      "datoClave": "Filósofo del 'fútbol bonito', se opuso al pragmatismo de Bilardo. Campeón en 1978 bajo dictadura Videla, dilema moral que le persiguió toda la vida.",
+      "anecdotas": [
+        "Excluyó a Maradona (17 años) del plantel campeón 1978 considerándolo 'demasiado joven'. Decisión cuestionada hasta su muerte.",
+        "Falleció el 5 de mayo de 2024 a los 85 años. Argentina decretó tres días de luto futbolístico.",
+        "Su frase 'el fútbol es la representación más pura del juego' es citada en libros de filosofía del deporte."
+      ]
+    },
+    {
+      "slug": "carlos-bilardo",
+      "nombre": "Carlos Bilardo",
+      "pais": "Argentina",
+      "iso2": "ar",
+      "anios": "1983–1990",
+      "mundialesDirigidos": [1986, 1990],
+      "titulos": [1986],
+      "subtitulo": "El Doctor: campeón con Maradona en 1986",
+      "datoClave": "Filósofo del 'resultadismo' opuesto a Menotti. Campeón con Argentina y Maradona en 1986. Subcampeón en 1990. Considerado uno de los entrenadores más obsesivos del fútbol mundial.",
+      "anecdotas": [
+        "Era ginecólogo de profesión antes del fútbol profesional. Atendía partos en su pueblo cuando ya dirigía a Estudiantes.",
+        "Su obsesión con detalles incluía estudiar las dietas individuales de cada rival. Sus dossiers eran 100+ páginas por equipo.",
+        "Sufrió Hakim-Adams (demencia degenerativa) desde 2011. Falleció el 4 de marzo de 2024 a los 85 años."
+      ]
+    },
+    {
+      "slug": "vicente-del-bosque",
+      "nombre": "Vicente del Bosque",
+      "pais": "España",
+      "iso2": "es",
+      "anios": "2008–2016",
+      "mundialesDirigidos": [2010, 2014],
+      "titulos": [2010],
+      "subtitulo": "Campeón con España 2010 (único título español)",
+      "datoClave": "Único entrenador español campeón del Mundo. Ganó también la Eurocopa 2012. Es uno de los pocos técnicos con triple corona consecutiva (Champions Madrid 2002 + Euro 08 + Mundial 2010 + Euro 2012).",
+      "anecdotas": [
+        "Antes de la selección dirigió al Real Madrid (2 Champions). Fue despedido en 2003 pese a campeón de Liga: caso emblemático de injusticia.",
+        "Es Marqués de Del Bosque desde 2010 por concesión real tras el título mundialista.",
+        "Su característico bigote es uno de los más reconocibles del fútbol español. Lo lleva igual desde 1979."
+      ]
+    },
+    {
+      "slug": "joachim-loew",
+      "nombre": "Joachim Löw",
+      "pais": "Alemania",
+      "iso2": "de",
+      "anios": "2006–2021",
+      "mundialesDirigidos": [2010, 2014, 2018],
+      "titulos": [2014],
+      "subtitulo": "Campeón con el Mineirazo (Brasil 1-7 Alemania, 2014)",
+      "datoClave": "Dirigió a Alemania 15 años. Campeón en Brasil 2014 con el Mineirazo (7-1 Brasil en semis). Caída humillante en Rusia 2018: campeón vigente eliminado en grupos.",
+      "anecdotas": [
+        "Asistente de Klinsmann en 2006. Asumió como jefe en 2007. Alemania llegó a semifinales 2010, ganó 2014 y eliminada en grupos 2018.",
+        "Su gesto de tocar partes íntimas en directo en partido vs Argentina (2009) y luego oler los dedos se convirtió en meme global.",
+        "Tras el desastre 2018 siguió dirigiendo hasta la Eurocopa 2020. Eliminados por Inglaterra en octavos. Renunció en 2021."
+      ]
+    },
+    {
+      "slug": "lionel-scaloni",
+      "nombre": "Lionel Scaloni",
+      "pais": "Argentina",
+      "iso2": "ar",
+      "anios": "2018–presente",
+      "mundialesDirigidos": [2022],
+      "titulos": [2022],
+      "subtitulo": "Campeón con Messi en su debut como DT",
+      "datoClave": "Asumió Argentina sin experiencia profesional como DT en 2018. Campeón en 2022 EN SU DEBUT como entrenador en un Mundial. Ningún otro DT lo había logrado en su primer Mundial al mando desde Bora Milutinović en México 86 (no campeón).",
+      "anecdotas": [
+        "Ex-jugador del Deportivo La Coruña, jugó 7 partidos con Argentina (2003-2006). Sin currículum como DT cuando asumió Argentina en 2018.",
+        "Renovó hasta 2026. Si gana o llega lejos en CAN/MEX/USA, sería el primer DT argentino con dos finales mundialistas seguidas.",
+        "Vive en Mallorca (España). Es residente fiscal español pese a dirigir a Argentina."
+      ]
+    },
+    {
+      "slug": "carlos-alberto-parreira",
+      "nombre": "Carlos Alberto Parreira",
+      "pais": "Brasil",
+      "iso2": "br",
+      "anios": "1982–2010",
+      "mundialesDirigidos": [1982, 1990, 1994, 1998, 2006, 2010],
+      "titulos": [1994],
+      "subtitulo": "SEIS Mundiales dirigidos con SEIS selecciones distintas",
+      "datoClave": "RÉCORD ABSOLUTO: dirigió SEIS Mundiales con SEIS selecciones distintas (Kuwait 1982, Emiratos Árabes 1990, Brasil 1994 [campeón], Arabia Saudí 1998, Brasil 2006, Sudáfrica 2010). Ningún otro DT ha dirigido tantas selecciones distintas.",
+      "anecdotas": [
+        "Asistente técnico en Brasil 1970 con Mario Zagallo. Recibió medalla de oro pese a no estar en banco principal.",
+        "Su carrera nacional combina con DT con: Fluminense, Internacional, Corinthians, Santos.",
+        "Como DT campeón en 1994 levantó la copa pese a depresión personal: su esposa había sido diagnosticada con cáncer terminal semanas antes."
+      ]
+    },
+    {
+      "slug": "bora-milutinovic",
+      "nombre": "Bora Milutinović",
+      "pais": "Serbia (Yugoslavia)",
+      "iso2": "rs",
+      "anios": "1983–2002",
+      "mundialesDirigidos": [1986, 1990, 1994, 1998, 2002],
+      "titulos": [],
+      "subtitulo": "CINCO Mundiales con CINCO selecciones distintas",
+      "datoClave": "Récord histórico de versatilidad: clasificó a octavos a CINCO selecciones distintas en sus CINCO Mundiales (México 86, Costa Rica 90, EE.UU. 94, Nigeria 98, China 2002). Único caso histórico.",
+      "anecdotas": [
+        "Es el único DT que ha clasificado a tres selecciones consecutivas a octavos por primera vez en sus historias (Costa Rica, EE.UU., Nigeria).",
+        "Tiene ciudadanía de 4 países: Serbia, México, EE.UU. y China. La obtuvo trabajando en cada uno.",
+        "Vive en Querétaro (México) desde 2010. En 2022 fue contratado como asesor de FIFA para temas de desarrollo en CONCACAF."
+      ]
+    },
+    {
+      "slug": "luiz-felipe-scolari",
+      "nombre": "Luiz Felipe Scolari",
+      "pais": "Brasil",
+      "iso2": "br",
+      "anios": "1984–presente",
+      "mundialesDirigidos": [2002, 2006, 2014],
+      "titulos": [2002],
+      "subtitulo": "Felipão: campeón con Brasil 2002 + Mineirazo 2014",
+      "datoClave": "Campeón con Brasil 2002 (las Tres R: Ronaldo+Rivaldo+Ronaldinho). Volvió en 2014 y sufrió el Mineirazo (Brasil 1-7 Alemania): el contraste más extremo en la carrera de un DT mundialista.",
+      "anecdotas": [
+        "Era jugador defensor antes de DT. Su apodo 'Felipão' (Felipe el Grande) viene de su físico: 1,87m, 95 kg.",
+        "Tras el Mineirazo se exilió a China (Guangzhou Evergrande). Ganó la Champions League asiática y volvió a Brasil en 2017.",
+        "Es de origen italiano. Brasileño nacido en Passo Fundo. En 2017 obtuvo nacionalidad italiana."
+      ]
+    },
+    {
+      "slug": "rinus-michels",
+      "nombre": "Rinus Michels",
+      "pais": "Países Bajos",
+      "iso2": "nl",
+      "anios": "1974",
+      "mundialesDirigidos": [1974],
+      "titulos": [],
+      "subtitulo": "Padre del fútbol total (totaalvoetbal)",
+      "datoClave": "Inventor del 'totaalvoetbal' (fútbol total). Subcampeón con Países Bajos 1974 con Cruyff. Nunca ganó un Mundial pero su filosofía influenció a Pep Guardiola, Cruyff (entrenador), Klopp y Bielsa.",
+      "anecdotas": [
+        "Fue el primer DT en hacer correr defensores a presionar a la mitad del campo. Convirtió a Cruyff en líbero adelantado.",
+        "Falleció en 2005 a los 77 años. Está enterrado en Ámsterdam con un monumento que dice: 'Aquí descansa el padre del fútbol moderno'.",
+        "FIFA lo nombró 'Entrenador del Siglo XX' en 1999 superando a Sir Alex Ferguson y Helmut Schön."
+      ]
+    },
+    {
+      "slug": "marcello-lippi",
+      "nombre": "Marcello Lippi",
+      "pais": "Italia",
+      "iso2": "it",
+      "anios": "2004–2010",
+      "mundialesDirigidos": [2006, 2010],
+      "titulos": [2006],
+      "subtitulo": "Campeón con Italia 2006 (cabezazo Zidane)",
+      "datoClave": "Cuarto título italiano en 2006 con Buffon en portería y Cannavaro como capitán. Italia ganó 1-1 (5-3 penales) vs Francia con cabezazo Zidane a Materazzi.",
+      "anecdotas": [
+        "Antes de la selección dirigió a la Juventus (5 títulos italianos). Volvió a la Juve después del Mundial 2010.",
+        "En 2010 falló estrepitosamente: Italia (campeón vigente) eliminada en fase de grupos sin ganar ningún partido. Renunció.",
+        "Es ferviente fumador de cigarros cubanos. Cualquier foto suya en banca incluye uno entre los dedos."
+      ]
+    },
+    {
+      "slug": "alf-ramsey",
+      "nombre": "Alf Ramsey",
+      "pais": "Inglaterra",
+      "iso2": "gb-eng",
+      "anios": "1963–1974",
+      "mundialesDirigidos": [1966, 1970],
+      "titulos": [1966],
+      "subtitulo": "El único DT inglés campeón del Mundo",
+      "datoClave": "Inventó el sistema 'Wingless Wonders' (sin extremos) para el Mundial 1966 que Inglaterra ganó en casa. Único DT inglés campeón del Mundo. Sería caballero (Sir) tras el título.",
+      "anecdotas": [
+        "Su frase 'no aceptaremos perder' antes de la final 1966 vs Alemania Federal está bordada en el centro del Wembley desde 2007.",
+        "Fue jugador internacional inglés. En el Mundial 1950 (USA 1-0 Inglaterra, mayor sorpresa hasta entonces) era titular.",
+        "Falleció en 1999 sin que la federación inglesa le hubiera dado homenaje formal: solo tras su muerte le dedicaron una estatua en Wembley."
+      ]
+    }
+  ]
+}

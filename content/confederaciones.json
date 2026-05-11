@@ -1,0 +1,82 @@
+{
+  "confederaciones": [
+    {
+      "slug": "uefa",
+      "codigo": "UEFA",
+      "nombre": "Union of European Football Associations",
+      "fundacion": 1954,
+      "selecciones": 55,
+      "titulosMundiales": 12,
+      "selccionesCampeonas": ["Italia (4)", "Alemania (4)", "Francia (2)", "Inglaterra (1)", "España (1)"],
+      "subtitulo": "Confederación más exitosa con 12 títulos mundialistas",
+      "biografia": "UEFA es la confederación europea, fundada en 1954. Domina el fútbol mundial moderno con 12 de los 22 Mundiales jugados (54.5%). 5 selecciones europeas han ganado el Mundial. La paradoja histórica: pese a su dominio, ninguna selección europea ganó un Mundial en América hasta España 2010 (en Sudáfrica), rompiendo la 'maldición continental' que duraba 80 años.",
+      "datoClave": "Maldición continental rota: hasta España 2010, ninguna selección europea había ganado un Mundial fuera de Europa. La maldición duraba 80 años (1930-2010).",
+      "color": "#003C71"
+    },
+    {
+      "slug": "conmebol",
+      "codigo": "CONMEBOL",
+      "nombre": "Confederación Sudamericana de Fútbol",
+      "fundacion": 1916,
+      "selecciones": 10,
+      "titulosMundiales": 10,
+      "selccionesCampeonas": ["Brasil (5)", "Argentina (3)", "Uruguay (2)"],
+      "subtitulo": "10 títulos con solo 10 selecciones afiliadas",
+      "biografia": "CONMEBOL es la confederación sudamericana, la MÁS ANTIGUA del mundo (1916). Solo 10 federaciones afiliadas pero 10 títulos mundiales: ratio 1:1. Brasil único país con presencia en TODAS las ediciones (22). Sudamérica produjo a los tres mayores genios del fútbol mundialista: Pelé, Maradona y Messi. Argentina y Brasil llegaron a 12 finales de las 22 disputadas.",
+      "datoClave": "Pese a tener solo 10 selecciones afiliadas, CONMEBOL tiene MÁS títulos per cápita federativa que cualquier otra confederación: 10 títulos / 10 federaciones = 1.0",
+      "color": "#FFE60D"
+    },
+    {
+      "slug": "concacaf",
+      "codigo": "CONCACAF",
+      "nombre": "Confederation of North, Central American and Caribbean Association Football",
+      "fundacion": 1961,
+      "selecciones": 41,
+      "titulosMundiales": 0,
+      "selccionesCampeonas": [],
+      "subtitulo": "Sin títulos pero anfitrión de 4 Mundiales",
+      "biografia": "CONCACAF agrupa Norteamérica, Centroamérica y el Caribe. Sin títulos mundiales pero anfitrión de 4 Mundiales: México 1970, México 1986, EE.UU. 1994 y CAN/MEX/USA 2026. Mejor desempeño: México cuartos de final 1970 y 1986 (ambos en casa). Costa Rica 2014 fue cuartofinalista con sede brasileña: mejor desempeño centroamericano. EE.UU. 1-0 Inglaterra (1950) sigue siendo una de las mayores sorpresas de la historia mundialista.",
+      "datoClave": "México es la única selección con dos cuartos de final mundialistas (1970 y 1986), siempre como anfitriona. Su mejor desempeño fuera de México: octavos de final.",
+      "color": "#1E40AF"
+    },
+    {
+      "slug": "caf",
+      "codigo": "CAF",
+      "nombre": "Confederation Africaine de Football",
+      "fundacion": 1957,
+      "selecciones": 54,
+      "titulosMundiales": 0,
+      "selccionesCampeonas": [],
+      "subtitulo": "Marruecos primera africana en semifinales (2022)",
+      "biografia": "CAF agrupa las 54 federaciones africanas. Sin títulos mundiales pero crecimiento sostenido. Camerún 1990 fue la primera africana en cuartos. Senegal 2002 y Ghana 2010 igualaron. Marruecos 2022 fue la primera africana en semifinales, hito histórico tras 92 años de Mundial. Sudáfrica 2010 fue la primera sede africana en la historia.",
+      "datoClave": "Marruecos 2022 (4° puesto) es el mejor desempeño africano de la historia. Hito tras décadas de boicots y subrepresentación: en 1966, todo el continente africano se retiró del Mundial inglés.",
+      "color": "#22C55E"
+    },
+    {
+      "slug": "afc",
+      "codigo": "AFC",
+      "nombre": "Asian Football Confederation",
+      "fundacion": 1954,
+      "selecciones": 47,
+      "titulosMundiales": 0,
+      "selccionesCampeonas": [],
+      "subtitulo": "Corea del Sur 4° puesto (2002) en casa",
+      "biografia": "AFC agrupa las 47 federaciones asiáticas. Mejor desempeño: Corea del Sur 4° puesto en 2002 (en casa, con polémicas arbitrales notorias). Corea-Japón 2002 fue el primer Mundial asiático y compartido. Catar 2022 fue el primer Mundial árabe. Las selecciones asiáticas más exitosas son Corea del Sur, Japón, Australia (desde 2006) y Arabia Saudí.",
+      "datoClave": "Saudíes 2-1 Argentina en debut 2022 fue una de las mayores sorpresas mundialistas. Anotó hat-trick Salem Al-Dawsari incluido.",
+      "color": "#DC2626"
+    },
+    {
+      "slug": "ofc",
+      "codigo": "OFC",
+      "nombre": "Oceania Football Confederation",
+      "fundacion": 1966,
+      "selecciones": 13,
+      "titulosMundiales": 0,
+      "selccionesCampeonas": [],
+      "subtitulo": "La confederación más pequeña del mundo",
+      "biografia": "OFC agrupa solo 13 federaciones de Oceanía: la confederación más pequeña del mundo. Australia se afilió a OFC hasta 2006, cuando se cambió a AFC para tener más oportunidades de clasificar. La confederación tiene apenas 0,5 plazas mundialistas (repechaje intercontinental). Solo Nueva Zelanda 1982 y 2010 + Australia (desde 2006) representan a la región.",
+      "datoClave": "Australia se cambió de OFC a AFC en 2006 para clasificar más fácilmente. Desde entonces ha disputado 4 Mundiales consecutivos. Nueva Zelanda solo ha ido a 2 Mundiales en su historia.",
+      "color": "#0066CC"
+    }
+  ]
+}

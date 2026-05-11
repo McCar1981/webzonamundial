@@ -1,0 +1,254 @@
+{
+  "partidos": [
+    {
+      "ranking": 1,
+      "anio": 1986,
+      "edicionSlug": "1986-mexico",
+      "titulo": "Argentina 2-1 Inglaterra (cuartos)",
+      "subtitulo": "La Mano de Dios + el Gol del Siglo en 4 minutos",
+      "estadio": "Azteca, Ciudad de México",
+      "fecha": "1986-06-22",
+      "datoClave": "El partido más famoso de la historia mundialista: Maradona marcó los dos goles antagónicos icónicos en cuatro minutos. La política (Malvinas) cargaba el partido."
+    },
+    {
+      "ranking": 2,
+      "anio": 1950,
+      "edicionSlug": "1950-brasil",
+      "titulo": "Brasil 1-2 Uruguay (final)",
+      "subtitulo": "El Maracanazo: 173.850 espectadores",
+      "estadio": "Maracanã, Río de Janeiro",
+      "fecha": "1950-07-16",
+      "datoClave": "Asistencia oficial 173.850, estimada >200.000. Récord absoluto de asistencia jamás registrado en un evento futbolístico. Brasil cambió la camiseta blanca por la verdeamarela tras este trauma."
+    },
+    {
+      "ranking": 3,
+      "anio": 2014,
+      "edicionSlug": "2014-brasil",
+      "titulo": "Brasil 1-7 Alemania (semifinal)",
+      "subtitulo": "El Mineirazo: 5 goles alemanes en 6 minutos",
+      "estadio": "Mineirão, Belo Horizonte",
+      "fecha": "2014-07-08",
+      "datoClave": "Récord histórico de goleada en semifinales. Klose alcanza los 16 goles all-time. Brasil sin Neymar y Thiago Silva tras lesión y suspensión. Trauma nacional."
+    },
+    {
+      "ranking": 4,
+      "anio": 2022,
+      "edicionSlug": "2022-qatar",
+      "titulo": "Argentina 3-3 Francia (final, penales 4-2)",
+      "subtitulo": "Hat-trick Mbappé + consagración Messi",
+      "estadio": "Lusail, Doha",
+      "fecha": "2022-12-18",
+      "datoClave": "Considerada la mejor final de la historia mundialista. Primer hat-trick en una final desde Hurst 1966 (56 años). Mbappé marcó tres + uno en penales."
+    },
+    {
+      "ranking": 5,
+      "anio": 1954,
+      "edicionSlug": "1954-suiza",
+      "titulo": "Alemania Federal 3-2 Hungría (final)",
+      "subtitulo": "Milagro de Berna: 0-2 a 3-2",
+      "estadio": "Wankdorf, Berna",
+      "fecha": "1954-07-04",
+      "datoClave": "Hungría llegaba invicta desde 1950 (32 partidos). RFA remontó y consagró el primer 'milagro' deportivo de la posguerra alemana. Audio de Zimmermann ('das Spiel ist aus') es uno de los más famosos del siglo XX."
+    },
+    {
+      "ranking": 6,
+      "anio": 1970,
+      "edicionSlug": "1970-mexico",
+      "titulo": "Italia 4-3 Alemania Federal (semifinal)",
+      "subtitulo": "El partido del siglo: 5 goles en prórroga",
+      "estadio": "Azteca, Ciudad de México",
+      "fecha": "1970-06-17",
+      "datoClave": "5 goles en los 30 minutos de prórroga (3 italianos, 2 alemanes). Beckenbauer jugó con el brazo dislocado. Carrera literaria: una placa en el Azteca lo recuerda como 'Partita del secolo'."
+    },
+    {
+      "ranking": 7,
+      "anio": 1990,
+      "edicionSlug": "1990-italia",
+      "titulo": "Camerún 1-0 Argentina (inaugural)",
+      "subtitulo": "9 contra 11 vencen al campeón vigente",
+      "estadio": "San Siro, Milán",
+      "fecha": "1990-06-08",
+      "datoClave": "Camerún acabó con 9 hombres tras dos rojas y derrotó al campeón vigente. Primera victoria africana ante un campeón mundial vigente. Roger Milla aparecería después como héroe."
+    },
+    {
+      "ranking": 8,
+      "anio": 1962,
+      "edicionSlug": "1962-chile",
+      "titulo": "Chile 2-0 Italia (grupos)",
+      "subtitulo": "La Batalla de Santiago",
+      "estadio": "Estadio Nacional, Santiago",
+      "fecha": "1962-06-02",
+      "datoClave": "El partido más violento de la historia mundialista. 4 expulsados, peleas, intervención policial. Inspiró a Ken Aston a inventar las tarjetas amarilla y roja años después."
+    },
+    {
+      "ranking": 9,
+      "anio": 1958,
+      "edicionSlug": "1958-suecia",
+      "titulo": "Brasil 5-2 Suecia (final)",
+      "subtitulo": "Pelé adolescente: doblete y nacimiento de una leyenda",
+      "estadio": "Råsunda, Solna",
+      "fecha": "1958-06-29",
+      "datoClave": "Pelé con 17 años marca dos goles. Su primer gol (control orientado, sombrero al defensa, volea) es considerado uno de los mejores de la historia. Bellini inventó la imagen del trofeo levantado."
+    },
+    {
+      "ranking": 10,
+      "anio": 1982,
+      "edicionSlug": "1982-espana",
+      "titulo": "Italia 3-2 Brasil (segunda fase)",
+      "subtitulo": "El partido del Sarrià: hat-trick de Rossi",
+      "estadio": "Sarrià, Barcelona",
+      "fecha": "1982-07-05",
+      "datoClave": "Considerado uno de los mejores partidos de la historia. Brasil 1982 (Sócrates, Zico, Falcão) eliminado por hat-trick de Rossi. Italia ganaría el Mundial. Filas de 5 km para entrar."
+    },
+    {
+      "ranking": 11,
+      "anio": 1998,
+      "edicionSlug": "1998-francia",
+      "titulo": "Francia 3-0 Brasil (final)",
+      "subtitulo": "Doblete de cabeza Zidane + convulsión Ronaldo",
+      "estadio": "Stade de France, Saint-Denis",
+      "fecha": "1998-07-12",
+      "datoClave": "Zidane dos cabezazos en la final. Ronaldo sufrió misteriosa convulsión horas antes. Francia primer Mundial en casa. Stade de France inaugurado para el evento."
+    },
+    {
+      "ranking": 12,
+      "anio": 2010,
+      "edicionSlug": "2010-sudafrica",
+      "titulo": "España 1-0 Países Bajos (final, prórroga)",
+      "subtitulo": "Iniesta al 116' + 'Dani Jarque siempre con nosotros'",
+      "estadio": "Soccer City, Johannesburgo",
+      "fecha": "2010-07-11",
+      "datoClave": "España primer Mundial. Iniesta levantó camiseta interior con homenaje a Dani Jarque. Howard Webb mostró 14 amarillas + 1 roja: récord absoluto de tarjetas en una final."
+    },
+    {
+      "ranking": 13,
+      "anio": 1974,
+      "edicionSlug": "1974-alemania",
+      "titulo": "Alemania Federal 2-1 Países Bajos (final)",
+      "subtitulo": "Penal de Neeskens al minuto 1m25s",
+      "estadio": "Olympiastadion, Múnich",
+      "fecha": "1974-07-07",
+      "datoClave": "Gol más rápido de la historia en una final mundialista. Naranja Mecánica de Cruyff cae ante el pragmatismo alemán. Beckenbauer levanta el primer trofeo FIFA actual."
+    },
+    {
+      "ranking": 14,
+      "anio": 1966,
+      "edicionSlug": "1966-inglaterra",
+      "titulo": "Inglaterra 4-2 Alemania Federal (final, prórroga)",
+      "subtitulo": "Hat-trick Hurst + el Wembley-Tor",
+      "estadio": "Wembley, Londres",
+      "fecha": "1966-07-30",
+      "datoClave": "Hat-trick único en final hasta Mbappé 2022. El segundo gol (Wembley-Tor) sigue siendo el más controvertido de la historia: 'They think it's all over... it is now!'"
+    },
+    {
+      "ranking": 15,
+      "anio": 1994,
+      "edicionSlug": "1994-eeuu",
+      "titulo": "Brasil 0-0 Italia (final, penales 3-2)",
+      "subtitulo": "Baggio falla el último penal con su moñito",
+      "estadio": "Rose Bowl, Pasadena",
+      "fecha": "1994-07-17",
+      "datoClave": "Primera final decidida por penales. Roberto Baggio remató al cielo con moñito icónico. Brasil tetracampeón tras 24 años. Asistencia 94.194."
+    },
+    {
+      "ranking": 16,
+      "anio": 1938,
+      "edicionSlug": "1938-francia",
+      "titulo": "Brasil 6-5 Polonia (octavos, prórroga)",
+      "subtitulo": "Leônidas hat-trick descalzo + Wilimowski 4 goles",
+      "estadio": "Meinau, Estrasburgo",
+      "fecha": "1938-06-04",
+      "datoClave": "Único partido mundialista con DOS jugadores marcando 4 goles cada uno. Leônidas se descalzó por la lluvia y el barro: el árbitro le obligó a calzarse pero ya había marcado el hat-trick."
+    },
+    {
+      "ranking": 17,
+      "anio": 2002,
+      "edicionSlug": "2002-corea-japon",
+      "titulo": "Senegal 1-0 Francia (inaugural)",
+      "subtitulo": "El campeón vigente cae en su debut",
+      "estadio": "Seoul World Cup Stadium",
+      "fecha": "2002-05-31",
+      "datoClave": "Senegal en su primera participación derrota al campeón del Mundo en partido inaugural. Solo el tercer ejemplo histórico de eliminación del campeón en su debut. Bouba Diop autor del gol."
+    },
+    {
+      "ranking": 18,
+      "anio": 2006,
+      "edicionSlug": "2006-alemania",
+      "titulo": "Italia 2-0 Alemania (semifinal, prórroga)",
+      "subtitulo": "Grosso y Del Piero al 119' y 121'",
+      "estadio": "Westfalenstadion, Dortmund",
+      "fecha": "2006-07-04",
+      "datoClave": "Italia anotó dos goles en los últimos minutos de prórroga eliminando a Alemania anfitriona. Grosso al 119' y Del Piero al 121'. Alemania no perdía en casa hace 20 años."
+    },
+    {
+      "ranking": 19,
+      "anio": 2018,
+      "edicionSlug": "2018-rusia",
+      "titulo": "Francia 4-3 Argentina (octavos)",
+      "subtitulo": "Mbappé adolescente exhibe a Argentina",
+      "estadio": "Kazán Arena",
+      "fecha": "2018-06-30",
+      "datoClave": "Mbappé con 19 años marcó dos goles y forzó un penal. Pavard anotó el gol del torneo (volea zurda). Argentina eliminada con Messi viéndola desde fuera del área en goles cruciales."
+    },
+    {
+      "ranking": 20,
+      "anio": 2010,
+      "edicionSlug": "2010-sudafrica",
+      "titulo": "Uruguay 1-1 (4-2p) Ghana (cuartos)",
+      "subtitulo": "Mano de Suárez + Gyan al larguero",
+      "estadio": "Soccer City, Johannesburgo",
+      "fecha": "2010-07-02",
+      "datoClave": "Suárez tapó con la mano un cabezazo en el área al 120+1'. Penal pitado y roja. Asamoah Gyan estrelló el penal en el larguero. Uruguay ganó por penales."
+    },
+    {
+      "ranking": 21,
+      "anio": 1978,
+      "edicionSlug": "1978-argentina",
+      "titulo": "Argentina 6-0 Perú (segunda fase)",
+      "subtitulo": "El resultado eternamente sospechoso",
+      "estadio": "Gigante de Arroyito, Rosario",
+      "fecha": "1978-06-21",
+      "datoClave": "Argentina necesitaba ganar por 4 goles para clasificar a la final. Resultado: 6-0. Décadas de teorías conspirativas sobre presión política, condonación de deudas, etc."
+    },
+    {
+      "ranking": 22,
+      "anio": 1990,
+      "edicionSlug": "1990-italia",
+      "titulo": "Argentina 1-0 Brasil (octavos)",
+      "subtitulo": "Cabezazo de Caniggia tras pase de Maradona",
+      "estadio": "Stadio delle Alpi, Turín",
+      "fecha": "1990-06-24",
+      "datoClave": "Maradona dio asistencia legendaria pese a estar 'cojeando'. Caniggia anotó solo a portero. Brasil eliminado: el campeón eternamente lloraba ese partido."
+    },
+    {
+      "ranking": 23,
+      "anio": 2002,
+      "edicionSlug": "2002-corea-japon",
+      "titulo": "Corea del Sur 2-1 Italia (octavos, gol de oro)",
+      "subtitulo": "Polémico arbitraje de Byron Moreno",
+      "estadio": "Daejeon World Cup Stadium",
+      "fecha": "2002-06-18",
+      "datoClave": "El árbitro ecuatoriano Moreno anuló dos goles legítimos italianos y expulsó a Totti por simulación. Corea del Sur eliminó a Italia con gol de oro de Ahn. Moreno acabó preso en 2010."
+    },
+    {
+      "ranking": 24,
+      "anio": 2014,
+      "edicionSlug": "2014-brasil",
+      "titulo": "Países Bajos 5-1 España (grupos)",
+      "subtitulo": "Van Persie volador + caída del campeón",
+      "estadio": "Arena Fonte Nova, Salvador",
+      "fecha": "2014-06-13",
+      "datoClave": "Van Persie cabezazo volador legendario. España, campeón vigente, humillada en su debut. Eliminada en grupos por primera vez desde 1962."
+    },
+    {
+      "ranking": 25,
+      "anio": 2022,
+      "edicionSlug": "2022-qatar",
+      "titulo": "Marruecos 0-0 (3-0p) España (octavos)",
+      "subtitulo": "Marruecos camino a las semifinales",
+      "estadio": "Education City, Al Rayyan",
+      "fecha": "2022-12-06",
+      "datoClave": "Bono atajó dos penales españoles. Marruecos sería luego primera selección africana en semifinales de un Mundial, hito histórico."
+    }
+  ]
+}

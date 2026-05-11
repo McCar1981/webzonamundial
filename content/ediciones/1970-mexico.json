@@ -1,0 +1,149 @@
+{
+  "meta": {
+    "edicion": 9,
+    "anio": 1970,
+    "slug": "1970-mexico",
+    "tituloOficial": "Copa Mundial de Fútbol 1970",
+    "nombreCorto": "México 1970",
+    "era": "clasica"
+  },
+  "sede": {
+    "paises": [
+      { "nombre": "México", "iso2": "mx", "iso3": "MEX", "banderaUrl": "https://flagcdn.com/w160/mx.png" }
+    ],
+    "ciudades": ["Ciudad de México", "Guadalajara", "Puebla", "Toluca", "León"],
+    "estadios": ["Estadio Azteca", "Jalisco", "Cuauhtémoc", "Nou Camp"]
+  },
+  "fechas": { "inicio": "1970-05-31", "final": "1970-06-21", "duracionDias": 22 },
+  "formato": {
+    "numEquipos": 16,
+    "numPartidos": 32,
+    "sistemaEliminatoria": "cuartos",
+    "numGrupos": 4
+  },
+  "resultados": {
+    "campeon": { "pais": "Brasil", "iso2": "br", "iso3": "BRA", "banderaUrl": "https://flagcdn.com/w160/br.png" },
+    "subcampeon": { "pais": "Italia", "iso2": "it", "iso3": "ITA", "banderaUrl": "https://flagcdn.com/w160/it.png" },
+    "tercero": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU", "banderaUrl": "https://flagcdn.com/w160/de.png" },
+    "cuarto": { "pais": "Uruguay", "iso2": "uy", "iso3": "URY", "banderaUrl": "https://flagcdn.com/w160/uy.png" }
+  },
+  "estadisticas": {
+    "totalGoles": 95,
+    "promedioGolesPartido": 2.97,
+    "asistenciaTotal": 1603975,
+    "asistenciaPromedio": 50124
+  },
+  "identidadVisual": {
+    "eslogan": "Juanito",
+    "mascota": "Juanito",
+    "balon": "Telstar (32 paneles)",
+    "colorPrincipal": "#006847"
+  },
+  "partidoFinal": {
+    "fecha": "1970-06-21",
+    "ciudad": "Ciudad de México",
+    "estadio": "Azteca",
+    "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" },
+    "visitante": { "pais": "Italia", "iso2": "it", "iso3": "ITA" },
+    "marcador": "4-1",
+    "asistencia": 107412,
+    "arbitro": "Rudi Glöckner (RDA)",
+    "goleadores": [
+      { "jugador": "Pelé", "minuto": "18'", "tipo": "cabeza" },
+      { "jugador": "Roberto Boninsegna", "minuto": "37'" },
+      { "jugador": "Gérson", "minuto": "66'" },
+      { "jugador": "Jairzinho", "minuto": "71'" },
+      { "jugador": "Carlos Alberto", "minuto": "86'" }
+    ]
+  },
+  "topGoleadores": [
+    {
+      "nombre": "Gerd Müller",
+      "seleccion": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" },
+      "goles": 10,
+      "botaOro": true
+    },
+    {
+      "nombre": "Jairzinho",
+      "seleccion": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" },
+      "goles": 7
+    },
+    {
+      "nombre": "Teófilo Cubillas",
+      "seleccion": { "pais": "Perú", "iso2": "pe", "iso3": "PER" },
+      "goles": 5
+    }
+  ],
+  "premios": {
+    "balonOro": "Pelé (Brasil)"
+  },
+  "contextoHistorico": {
+    "resumen": "Primer Mundial fuera de Europa o Sudamérica y primero íntegramente televisado a color. Considerado por muchos el mejor Mundial de la historia. Brasil se quedó con la Coppa Jules Rimet en propiedad tras su tercer título. La final 4-1 ante Italia es recordada como la cumbre del fútbol-arte: el gol final de Carlos Alberto, tras 9 pases, el más bello jamás visto en un Mundial.",
+    "eventos": [
+      "Estreno de las tarjetas amarilla y roja, así como del balón Telstar (blanco y negro para TV).",
+      "Banks-azo: Gordon Banks salva un cabezazo de Pelé considerado la mejor parada de la historia (Inglaterra-Brasil, fase de grupos).",
+      "Mario Zagallo se convierte en el primer hombre en ganar el Mundial como jugador (1958, 1962) y como entrenador (1970)."
+    ]
+  },
+  "plantillaCampeon": [
+    { "dorsal": 1, "nombre": "Félix", "posicion": "GK", "clubOrigen": "Fluminense", "edad": 32 },
+    { "dorsal": 2, "nombre": "Carlos Alberto", "posicion": "DEF", "clubOrigen": "Santos", "edad": 25, "capitan": true, "goles": 1 },
+    { "dorsal": 3, "nombre": "Brito", "posicion": "DEF", "clubOrigen": "Vasco da Gama", "edad": 30 },
+    { "dorsal": 4, "nombre": "Piazza", "posicion": "DEF", "clubOrigen": "Cruzeiro", "edad": 27 },
+    { "dorsal": 5, "nombre": "Clodoaldo", "posicion": "MID", "clubOrigen": "Santos", "edad": 20 },
+    { "dorsal": 6, "nombre": "Everaldo", "posicion": "DEF", "clubOrigen": "Grêmio", "edad": 25 },
+    { "dorsal": 7, "nombre": "Jairzinho", "posicion": "FWD", "clubOrigen": "Botafogo", "edad": 25, "goles": 7 },
+    { "dorsal": 8, "nombre": "Gérson", "posicion": "MID", "clubOrigen": "São Paulo", "edad": 28, "goles": 1 },
+    { "dorsal": 9, "nombre": "Tostão", "posicion": "FWD", "clubOrigen": "Cruzeiro", "edad": 23, "goles": 2 },
+    { "dorsal": 10, "nombre": "Pelé", "posicion": "FWD", "clubOrigen": "Santos", "edad": 29, "goles": 4 },
+    { "dorsal": 11, "nombre": "Rivellino", "posicion": "MID", "clubOrigen": "Corinthians", "edad": 24, "goles": 3 },
+    { "dorsal": 12, "nombre": "Ado", "posicion": "GK", "clubOrigen": "Corinthians", "edad": 23 },
+    { "dorsal": 13, "nombre": "Joel Camargo", "posicion": "DEF", "clubOrigen": "Santos", "edad": 23 },
+    { "dorsal": 14, "nombre": "Marco Antônio", "posicion": "DEF", "clubOrigen": "Fluminense", "edad": 19 },
+    { "dorsal": 15, "nombre": "Baldocchi", "posicion": "DEF", "clubOrigen": "Palmeiras", "edad": 24 },
+    { "dorsal": 16, "nombre": "Zé Maria", "posicion": "DEF", "clubOrigen": "Portuguesa", "edad": 21 },
+    { "dorsal": 17, "nombre": "Fontana", "posicion": "DEF", "clubOrigen": "Cruzeiro", "edad": 30 },
+    { "dorsal": 18, "nombre": "Paulo César Caju", "posicion": "FWD", "clubOrigen": "Botafogo", "edad": 21 },
+    { "dorsal": 19, "nombre": "Roberto Miranda", "posicion": "FWD", "clubOrigen": "Botafogo", "edad": 25, "goles": 1 },
+    { "dorsal": 20, "nombre": "Edu", "posicion": "FWD", "clubOrigen": "Santos", "edad": 20 },
+    { "dorsal": 21, "nombre": "Dario", "posicion": "FWD", "clubOrigen": "Atlético Mineiro", "edad": 23 },
+    { "dorsal": 22, "nombre": "Leão", "posicion": "GK", "clubOrigen": "Palmeiras", "edad": 20 }
+  ],
+  "fasesKO": {
+    "cuartos": [
+      { "fecha": "1970-06-14", "ciudad": "León", "estadio": "Nou Camp", "local": { "pais": "Unión Soviética", "iso2": "ru", "iso3": "RUS" }, "visitante": { "pais": "Uruguay", "iso2": "uy", "iso3": "URY" }, "marcador": "0-1 (prórroga)" },
+      { "fecha": "1970-06-14", "ciudad": "Toluca", "estadio": "La Bombonera", "local": { "pais": "México", "iso2": "mx", "iso3": "MEX" }, "visitante": { "pais": "Italia", "iso2": "it", "iso3": "ITA" }, "marcador": "1-4" },
+      { "fecha": "1970-06-14", "ciudad": "Guadalajara", "estadio": "Jalisco", "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "visitante": { "pais": "Perú", "iso2": "pe", "iso3": "PER" }, "marcador": "4-2" },
+      { "fecha": "1970-06-14", "ciudad": "Ciudad de México", "estadio": "Azteca", "local": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG" }, "visitante": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" }, "marcador": "2-3 (prórroga)" }
+    ],
+    "semifinales": [
+      { "fecha": "1970-06-17", "ciudad": "Ciudad de México", "estadio": "Azteca", "local": { "pais": "Italia", "iso2": "it", "iso3": "ITA" }, "visitante": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" }, "marcador": "4-3 (prórroga)" },
+      { "fecha": "1970-06-17", "ciudad": "Guadalajara", "estadio": "Jalisco", "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "visitante": { "pais": "Uruguay", "iso2": "uy", "iso3": "URY" }, "marcador": "3-1" }
+    ]
+  },
+  "hatTricks": [
+    { "jugador": "Gerd Müller", "seleccion": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" }, "fase": "Grupos", "rival": { "pais": "Bulgaria", "iso2": "bg", "iso3": "BGR" }, "goles": 3, "marcador": "5-2" },
+    { "jugador": "Gerd Müller", "seleccion": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" }, "fase": "Grupos", "rival": { "pais": "Perú", "iso2": "pe", "iso3": "PER" }, "goles": 3, "marcador": "3-1" }
+  ],
+  "recordsEdicion": [
+    { "categoria": "tecnologia", "descripcion": "Primer Mundial transmitido a color y vía satélite a todo el mundo", "valor": "TV color global" },
+    { "categoria": "balon", "descripcion": "Adidas Telstar: primer balón blanco con paneles negros para optimizar TV en blanco y negro", "valor": "32 paneles" },
+    { "categoria": "disciplinario", "descripcion": "Estreno de las tarjetas amarilla y roja en el Mundial (idea de Ken Aston tras la Batalla de Santiago 1962)", "valor": "Sistema vigente" },
+    { "categoria": "jugador", "descripcion": "Mario Zagallo se convierte en el primer hombre campeón del Mundo como jugador y como DT", "valor": "Jugador 1958 + DT 1970" },
+    { "categoria": "seleccion", "descripcion": "Brasil tricampeón se queda en propiedad con la Copa Jules Rimet", "valor": "Tercer título" }
+  ],
+  "curiosidades": [
+    {
+      "categoria": "balon",
+      "texto": "El Adidas Telstar, blanco con paneles negros, se diseñó para destacar en televisores en blanco y negro. Su nombre venía del satélite Telstar de la NASA, y cambió para siempre la imagen del balón de fútbol."
+    },
+    {
+      "categoria": "jugador",
+      "texto": "Jairzinho marcó en cada uno de los 6 partidos disputados por Brasil en el Mundial: hat-trick imposible que ningún otro jugador ha logrado en torneos posteriores."
+    }
+  ],
+  "fuentes": [
+    { "nombre": "FIFA Archive — World Cup 1970", "url": "https://www.fifa.com/tournaments/mens/worldcup/1970mexico" },
+    { "nombre": "RSSSF — World Cup 1970", "url": "https://www.rsssf.org/tables/70full.html" }
+  ]
+}

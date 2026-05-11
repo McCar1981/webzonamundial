@@ -1,0 +1,172 @@
+{
+  "meta": {
+    "edicion": 19,
+    "anio": 2010,
+    "slug": "2010-sudafrica",
+    "tituloOficial": "Copa Mundial de Fútbol 2010",
+    "nombreCorto": "Sudáfrica 2010",
+    "era": "global"
+  },
+  "sede": {
+    "paises": [
+      { "nombre": "Sudáfrica", "iso2": "za", "iso3": "ZAF", "banderaUrl": "https://flagcdn.com/w160/za.png" }
+    ],
+    "ciudades": ["Johannesburgo", "Ciudad del Cabo", "Durban", "Pretoria", "Puerto Elizabeth", "Bloemfontein", "Polokwane", "Rustenburg", "Nelspruit"],
+    "estadios": ["Soccer City", "Cape Town Stadium", "Moses Mabhida", "Loftus Versfeld", "Nelson Mandela Bay", "Free State", "Peter Mokaba", "Royal Bafokeng", "Mbombela"]
+  },
+  "fechas": { "inicio": "2010-06-11", "final": "2010-07-11", "duracionDias": 31 },
+  "formato": {
+    "numEquipos": 32,
+    "numPartidos": 64,
+    "sistemaEliminatoria": "octavos",
+    "numGrupos": 8
+  },
+  "resultados": {
+    "campeon": { "pais": "España", "iso2": "es", "iso3": "ESP", "banderaUrl": "https://flagcdn.com/w160/es.png" },
+    "subcampeon": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD", "banderaUrl": "https://flagcdn.com/w160/nl.png" },
+    "tercero": { "pais": "Alemania", "iso2": "de", "iso3": "DEU", "banderaUrl": "https://flagcdn.com/w160/de.png" },
+    "cuarto": { "pais": "Uruguay", "iso2": "uy", "iso3": "URY", "banderaUrl": "https://flagcdn.com/w160/uy.png" }
+  },
+  "estadisticas": {
+    "totalGoles": 145,
+    "promedioGolesPartido": 2.27,
+    "asistenciaTotal": 3178856,
+    "asistenciaPromedio": 49670
+  },
+  "identidadVisual": {
+    "eslogan": "Ke Nako (Es la hora)",
+    "mascota": "Zakumi",
+    "balon": "Jabulani",
+    "colorPrincipal": "#007749"
+  },
+  "partidoFinal": {
+    "fecha": "2010-07-11",
+    "ciudad": "Johannesburgo",
+    "estadio": "Soccer City",
+    "local": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD" },
+    "visitante": { "pais": "España", "iso2": "es", "iso3": "ESP" },
+    "marcador": "0-1 (prórroga)",
+    "asistencia": 84490,
+    "arbitro": "Howard Webb (Inglaterra)",
+    "goleadores": [
+      { "jugador": "Andrés Iniesta", "minuto": "116'" }
+    ]
+  },
+  "topGoleadores": [
+    {
+      "nombre": "Thomas Müller",
+      "seleccion": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" },
+      "goles": 5,
+      "botaOro": true
+    },
+    {
+      "nombre": "David Villa",
+      "seleccion": { "pais": "España", "iso2": "es", "iso3": "ESP" },
+      "goles": 5
+    },
+    {
+      "nombre": "Wesley Sneijder",
+      "seleccion": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD" },
+      "goles": 5
+    },
+    {
+      "nombre": "Diego Forlán",
+      "seleccion": { "pais": "Uruguay", "iso2": "uy", "iso3": "URY" },
+      "goles": 5
+    }
+  ],
+  "premios": {
+    "balonOro": "Diego Forlán (Uruguay)",
+    "guanteOro": "Iker Casillas (España)",
+    "mejorJoven": "Thomas Müller (Alemania)"
+  },
+  "contextoHistorico": {
+    "resumen": "Primer Mundial en África. España conquistó su único título hasta hoy con un gol legendario de Andrés Iniesta en el minuto 116 de la final, convirtiéndose en la primera selección en ganar el Mundial siendo campeón europeo vigente y fuera de su continente. La final acumuló 14 tarjetas amarillas, récord absoluto. El Pulpo Paul predijo correctamente 12 de 14 partidos, incluyendo todos los de Alemania y la final.",
+    "eventos": [
+      "Vuvuzelas de 131 dB acompañan todo el torneo, generando debate global sobre su prohibición.",
+      "Frank Lampard marca un gol fantasma vs Alemania en octavos que el árbitro no ve: el incidente impulsa la goal-line technology.",
+      "Sudáfrica se convierte en el primer país anfitrión eliminado en fase de grupos."
+    ]
+  },
+  "plantillaCampeon": [
+    { "dorsal": 1, "nombre": "Iker Casillas", "posicion": "GK", "clubOrigen": "Real Madrid", "edad": 29, "capitan": true },
+    { "dorsal": 15, "nombre": "Sergio Ramos", "posicion": "DEF", "clubOrigen": "Real Madrid", "edad": 24 },
+    { "dorsal": 3, "nombre": "Gerard Piqué", "posicion": "DEF", "clubOrigen": "Barcelona", "edad": 23 },
+    { "dorsal": 5, "nombre": "Carles Puyol", "posicion": "DEF", "clubOrigen": "Barcelona", "edad": 32, "goles": 1 },
+    { "dorsal": 11, "nombre": "Joan Capdevila", "posicion": "DEF", "clubOrigen": "Villarreal", "edad": 32 },
+    { "dorsal": 14, "nombre": "Xabi Alonso", "posicion": "MID", "clubOrigen": "Real Madrid", "edad": 28 },
+    { "dorsal": 16, "nombre": "Sergio Busquets", "posicion": "MID", "clubOrigen": "Barcelona", "edad": 21 },
+    { "dorsal": 8, "nombre": "Xavi Hernández", "posicion": "MID", "clubOrigen": "Barcelona", "edad": 30 },
+    { "dorsal": 6, "nombre": "Andrés Iniesta", "posicion": "MID", "clubOrigen": "Barcelona", "edad": 26, "goles": 2 },
+    { "dorsal": 7, "nombre": "David Villa", "posicion": "FWD", "clubOrigen": "Valencia", "edad": 28, "goles": 5 },
+    { "dorsal": 9, "nombre": "Fernando Torres", "posicion": "FWD", "clubOrigen": "Liverpool", "edad": 26 },
+    { "dorsal": 21, "nombre": "David Silva", "posicion": "MID", "clubOrigen": "Valencia", "edad": 24 },
+    { "dorsal": 22, "nombre": "Jesús Navas", "posicion": "MID", "clubOrigen": "Sevilla", "edad": 24 },
+    { "dorsal": 18, "nombre": "Pedro Rodríguez", "posicion": "FWD", "clubOrigen": "Barcelona", "edad": 23 },
+    { "dorsal": 17, "nombre": "Álvaro Arbeloa", "posicion": "DEF", "clubOrigen": "Real Madrid", "edad": 27 },
+    { "dorsal": 4, "nombre": "Carlos Marchena", "posicion": "DEF", "clubOrigen": "Valencia", "edad": 30 },
+    { "dorsal": 19, "nombre": "Fernando Llorente", "posicion": "FWD", "clubOrigen": "Athletic Club", "edad": 25 }
+  ],
+  "fasesKO": {
+    "octavos": [
+      { "fecha": "2010-06-26", "ciudad": "Puerto Elizabeth", "estadio": "Nelson Mandela Bay", "local": { "pais": "Uruguay", "iso2": "uy", "iso3": "URY" }, "visitante": { "pais": "Corea del Sur", "iso2": "kr", "iso3": "KOR" }, "marcador": "2-1" },
+      { "fecha": "2010-06-26", "ciudad": "Rustenburg", "estadio": "Royal Bafokeng", "local": { "pais": "Estados Unidos", "iso2": "us", "iso3": "USA" }, "visitante": { "pais": "Ghana", "iso2": "gh", "iso3": "GHA" }, "marcador": "1-2 (prórroga)" },
+      { "fecha": "2010-06-27", "ciudad": "Bloemfontein", "estadio": "Free State", "local": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" }, "visitante": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG" }, "marcador": "4-1" },
+      { "fecha": "2010-06-27", "ciudad": "Johannesburgo", "estadio": "Soccer City", "local": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "visitante": { "pais": "México", "iso2": "mx", "iso3": "MEX" }, "marcador": "3-1" },
+      { "fecha": "2010-06-28", "ciudad": "Durban", "estadio": "Moses Mabhida", "local": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD" }, "visitante": { "pais": "Eslovaquia", "iso2": "sk", "iso3": "SVK" }, "marcador": "2-1" },
+      { "fecha": "2010-06-28", "ciudad": "Johannesburgo", "estadio": "Ellis Park", "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "visitante": { "pais": "Chile", "iso2": "cl", "iso3": "CHL" }, "marcador": "3-0" },
+      { "fecha": "2010-06-29", "ciudad": "Pretoria", "estadio": "Loftus Versfeld", "local": { "pais": "Paraguay", "iso2": "py", "iso3": "PRY" }, "visitante": { "pais": "Japón", "iso2": "jp", "iso3": "JPN" }, "marcador": "0-0 (penales 5-3)" },
+      { "fecha": "2010-06-29", "ciudad": "Ciudad del Cabo", "estadio": "Cape Town Stadium", "local": { "pais": "España", "iso2": "es", "iso3": "ESP" }, "visitante": { "pais": "Portugal", "iso2": "pt", "iso3": "PRT" }, "marcador": "1-0" }
+    ],
+    "cuartos": [
+      { "fecha": "2010-07-02", "ciudad": "Puerto Elizabeth", "estadio": "Nelson Mandela Bay", "local": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD" }, "visitante": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "marcador": "2-1" },
+      { "fecha": "2010-07-02", "ciudad": "Johannesburgo", "estadio": "Soccer City", "local": { "pais": "Uruguay", "iso2": "uy", "iso3": "URY" }, "visitante": { "pais": "Ghana", "iso2": "gh", "iso3": "GHA" }, "marcador": "1-1 (penales 4-2)" },
+      { "fecha": "2010-07-03", "ciudad": "Ciudad del Cabo", "estadio": "Cape Town Stadium", "local": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "visitante": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" }, "marcador": "0-4" },
+      { "fecha": "2010-07-03", "ciudad": "Johannesburgo", "estadio": "Ellis Park", "local": { "pais": "Paraguay", "iso2": "py", "iso3": "PRY" }, "visitante": { "pais": "España", "iso2": "es", "iso3": "ESP" }, "marcador": "0-1" }
+    ],
+    "semifinales": [
+      { "fecha": "2010-07-06", "ciudad": "Ciudad del Cabo", "estadio": "Cape Town Stadium", "local": { "pais": "Uruguay", "iso2": "uy", "iso3": "URY" }, "visitante": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD" }, "marcador": "2-3" },
+      { "fecha": "2010-07-07", "ciudad": "Durban", "estadio": "Moses Mabhida", "local": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" }, "visitante": { "pais": "España", "iso2": "es", "iso3": "ESP" }, "marcador": "0-1" }
+    ]
+  },
+  "hatTricks": [
+    { "jugador": "Gonzalo Higuaín", "seleccion": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "fase": "Grupos", "rival": { "pais": "Corea del Sur", "iso2": "kr", "iso3": "KOR" }, "goles": 3, "marcador": "4-1" }
+  ],
+  "recordsEdicion": [
+    { "categoria": "tactica", "descripcion": "España campeón europeo fuera de Europa: primera vez que un equipo europeo gana fuera de su continente", "valor": "Hito UEFA" },
+    { "categoria": "disciplinario", "descripcion": "14 amarillas + 1 roja en la final: récord histórico de tarjetas en una final mundialista", "valor": "14+1" },
+    { "categoria": "tecnologia", "descripcion": "Gol fantasma de Lampard vs Alemania impulsa la goal-line technology, debutaría en 2014", "valor": "Detonante GLT" },
+    { "categoria": "seleccion", "descripcion": "Sudáfrica: primer país anfitrión eliminado en fase de grupos en la historia mundialista", "valor": "Anfitrión KO grupos" },
+    { "categoria": "estadio", "descripcion": "Soccer City (Johannesburgo): estadio diseñado como calabaza africana tradicional, sede de la final", "valor": "Calabaza africana" }
+  ],
+  "curiosidades": [
+    {
+      "categoria": "misc",
+      "texto": "El Pulpo Paul, en el oceanario de Oberhausen, predijo correctamente 12 de 14 partidos eligiendo entre dos cajas con banderas. Mahmoud Ahmadinejad, presidente iraní, lo declaró 'símbolo de decadencia occidental'."
+    },
+    {
+      "categoria": "balon",
+      "texto": "El Adidas Jabulani, criticado por su trayectoria errática, tenía 8 paneles y 11 colores que representaban a los 11 jugadores, los 11 idiomas oficiales y las 11 comunidades sudafricanas. La versión final dorada se llamó Jo'bulani."
+    },
+    {
+      "categoria": "tragedia",
+      "texto": "Luis Suárez tapó con la mano un remate de Dominic Adiyiah en el último minuto del Uruguay-Ghana en cuartos. Recibió roja directa pero Asamoah Gyan estrelló el penal en el larguero. Uruguay ganó por penales y Suárez celebró desde la banca su 'salvada'. Los hinchas africanos lo abuchearon en Sudáfrica años después."
+    },
+    {
+      "categoria": "jugador",
+      "texto": "Andrés Iniesta levantó el camiseta tras anotar el gol del título dejando ver una camiseta interior con el mensaje 'Dani Jarque siempre con nosotros', en homenaje a su amigo y capitán del Espanyol fallecido en 2009. Recibió tarjeta amarilla por la celebración."
+    },
+    {
+      "categoria": "estadio",
+      "texto": "Vuvuzelas: trompetas plásticas sudafricanas que generaban 131 dB en estadios, equivalente al despegue de un avión. FIFA debatió prohibirlas pero se mantuvieron por respeto cultural. Posteriormente fueron prohibidas en estadios europeos."
+    },
+    {
+      "categoria": "politica",
+      "texto": "Nelson Mandela, con 91 años y delicado de salud, fue al estadio para la final tras la muerte de su biznieta Zenani el día previo en accidente de tráfico. Su aparición en silla de ruedas y manta polar es una de las últimas imágenes públicas del líder antes de su fallecimiento en 2013."
+    }
+  ],
+  "fuentes": [
+    { "nombre": "FIFA Archive — World Cup 2010", "url": "https://www.fifa.com/tournaments/mens/worldcup/2010southafrica" },
+    { "nombre": "RSSSF — World Cup 2010", "url": "https://www.rsssf.org/tables/10full.html" }
+  ]
+}

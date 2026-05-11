@@ -1,0 +1,150 @@
+{
+  "meta": {
+    "edicion": 12,
+    "anio": 1982,
+    "slug": "1982-espana",
+    "tituloOficial": "Copa Mundial de Fútbol 1982",
+    "nombreCorto": "España 1982",
+    "era": "moderna"
+  },
+  "sede": {
+    "paises": [
+      { "nombre": "España", "iso2": "es", "iso3": "ESP", "banderaUrl": "https://flagcdn.com/w160/es.png" }
+    ],
+    "ciudades": ["Madrid", "Barcelona", "Sevilla", "Valencia", "Bilbao", "Zaragoza", "Vigo", "Gijón", "La Coruña", "Málaga", "Alicante", "Valladolid", "Oviedo", "Elche"],
+    "estadios": ["Santiago Bernabéu", "Camp Nou", "Sánchez Pizjuán", "Sarrià", "Mestalla", "San Mamés", "La Romareda"]
+  },
+  "fechas": { "inicio": "1982-06-13", "final": "1982-07-11", "duracionDias": 29 },
+  "formato": {
+    "numEquipos": 24,
+    "numPartidos": 52,
+    "sistemaEliminatoria": "grupo-final",
+    "numGrupos": 6
+  },
+  "resultados": {
+    "campeon": { "pais": "Italia", "iso2": "it", "iso3": "ITA", "banderaUrl": "https://flagcdn.com/w160/it.png" },
+    "subcampeon": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU", "banderaUrl": "https://flagcdn.com/w160/de.png" },
+    "tercero": { "pais": "Polonia", "iso2": "pl", "iso3": "POL", "banderaUrl": "https://flagcdn.com/w160/pl.png" },
+    "cuarto": { "pais": "Francia", "iso2": "fr", "iso3": "FRA", "banderaUrl": "https://flagcdn.com/w160/fr.png" }
+  },
+  "estadisticas": {
+    "totalGoles": 146,
+    "promedioGolesPartido": 2.81,
+    "asistenciaTotal": 2109723,
+    "asistenciaPromedio": 40572
+  },
+  "identidadVisual": {
+    "eslogan": "Naranjito",
+    "mascota": "Naranjito",
+    "balon": "Tango España",
+    "colorPrincipal": "#FF6B00"
+  },
+  "partidoFinal": {
+    "fecha": "1982-07-11",
+    "ciudad": "Madrid",
+    "estadio": "Santiago Bernabéu",
+    "local": { "pais": "Italia", "iso2": "it", "iso3": "ITA" },
+    "visitante": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" },
+    "marcador": "3-1",
+    "asistencia": 90000,
+    "arbitro": "Arnaldo Cézar Coelho (Brasil)"
+  },
+  "topGoleadores": [
+    {
+      "nombre": "Paolo Rossi",
+      "seleccion": { "pais": "Italia", "iso2": "it", "iso3": "ITA" },
+      "goles": 6,
+      "botaOro": true
+    },
+    {
+      "nombre": "Karl-Heinz Rummenigge",
+      "seleccion": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" },
+      "goles": 5
+    },
+    {
+      "nombre": "Zbigniew Boniek",
+      "seleccion": { "pais": "Polonia", "iso2": "pl", "iso3": "POL" },
+      "goles": 4
+    }
+  ],
+  "premios": {
+    "balonOro": "Paolo Rossi (Italia)"
+  },
+  "contextoHistorico": {
+    "resumen": "Primer Mundial con 24 selecciones y representación de las seis confederaciones (no se repetiría hasta 2006). Italia conquistó su tercer título con un Paolo Rossi recién amnistiado tras 2 años de suspensión por el escándalo Totonero, autor de un hat-trick antológico contra Brasil en Sarrià, considerado uno de los mejores partidos de la historia. Naranjito, mascota oficial, se convirtió en el primer ícono pop con serie animada propia.",
+    "eventos": [
+      "Vergüenza de Gijón: Alemania Federal y Austria pactan tácitamente un 1-0 que elimina a Argelia. FIFA cambiaría la regla obligando a la simultaneidad de la última jornada (vigente desde 1986).",
+      "Primera tanda de penales en un Mundial: semifinal RFA-Francia (3-3 tras prórroga, ganan los alemanes 5-4).",
+      "Norman Whiteside (Irlanda del Norte, 17 años y 41 días) se convierte en el jugador más joven en la historia del Mundial."
+    ]
+  },
+  "plantillaCampeon": [
+    { "dorsal": 1, "nombre": "Dino Zoff", "posicion": "GK", "clubOrigen": "Juventus", "edad": 40, "capitan": true },
+    { "dorsal": 2, "nombre": "Giuseppe Bergomi", "posicion": "DEF", "clubOrigen": "Inter de Milán", "edad": 18 },
+    { "dorsal": 4, "nombre": "Antonio Cabrini", "posicion": "DEF", "clubOrigen": "Juventus", "edad": 24 },
+    { "dorsal": 5, "nombre": "Fulvio Collovati", "posicion": "DEF", "clubOrigen": "Milan", "edad": 25 },
+    { "dorsal": 6, "nombre": "Claudio Gentile", "posicion": "DEF", "clubOrigen": "Juventus", "edad": 28 },
+    { "dorsal": 8, "nombre": "Antonio Cabrini", "posicion": "DEF", "clubOrigen": "Juventus", "edad": 24 },
+    { "dorsal": 13, "nombre": "Gaetano Scirea", "posicion": "DEF", "clubOrigen": "Juventus", "edad": 28 },
+    { "dorsal": 10, "nombre": "Giancarlo Antognoni", "posicion": "MID", "clubOrigen": "Fiorentina", "edad": 28 },
+    { "dorsal": 14, "nombre": "Marco Tardelli", "posicion": "MID", "clubOrigen": "Juventus", "edad": 27, "goles": 1 },
+    { "dorsal": 15, "nombre": "Bruno Conti", "posicion": "MID", "clubOrigen": "Roma", "edad": 27 },
+    { "dorsal": 19, "nombre": "Francesco Graziani", "posicion": "FWD", "clubOrigen": "Fiorentina", "edad": 29 },
+    { "dorsal": 20, "nombre": "Paolo Rossi", "posicion": "FWD", "clubOrigen": "Juventus", "edad": 25, "goles": 6 },
+    { "dorsal": 16, "nombre": "Alessandro Altobelli", "posicion": "FWD", "clubOrigen": "Inter de Milán", "edad": 26, "goles": 1 }
+  ],
+  "fasesKO": {
+    "cuartos": [
+      { "fecha": "1982-06-29", "ciudad": "Madrid", "estadio": "Bernabéu", "local": { "pais": "Polonia", "iso2": "pl", "iso3": "POL" }, "visitante": { "pais": "Bélgica", "iso2": "be", "iso3": "BEL" }, "marcador": "3-0" },
+      { "fecha": "1982-06-28", "ciudad": "Sevilla", "estadio": "Sánchez Pizjuán", "local": { "pais": "Italia", "iso2": "it", "iso3": "ITA" }, "visitante": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "marcador": "2-1" }
+    ],
+    "semifinales": [
+      { "fecha": "1982-07-08", "ciudad": "Sevilla", "estadio": "Sánchez Pizjuán", "local": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" }, "visitante": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" }, "marcador": "3-3 (penales 5-4)" },
+      { "fecha": "1982-07-08", "ciudad": "Barcelona", "estadio": "Camp Nou", "local": { "pais": "Italia", "iso2": "it", "iso3": "ITA" }, "visitante": { "pais": "Polonia", "iso2": "pl", "iso3": "POL" }, "marcador": "2-0" }
+    ]
+  },
+  "hatTricks": [
+    { "jugador": "László Kiss", "seleccion": { "pais": "Hungría", "iso2": "hu", "iso3": "HUN" }, "fase": "Grupos", "rival": { "pais": "El Salvador", "iso2": "sv", "iso3": "SLV" }, "goles": 3, "marcador": "10-1" },
+    { "jugador": "Karl-Heinz Rummenigge", "seleccion": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" }, "fase": "Grupos", "rival": { "pais": "Chile", "iso2": "cl", "iso3": "CHL" }, "goles": 3, "marcador": "4-1" },
+    { "jugador": "Paolo Rossi", "seleccion": { "pais": "Italia", "iso2": "it", "iso3": "ITA" }, "fase": "Segunda fase", "rival": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "goles": 3, "marcador": "3-2" },
+    { "jugador": "Zbigniew Boniek", "seleccion": { "pais": "Polonia", "iso2": "pl", "iso3": "POL" }, "fase": "Segunda fase", "rival": { "pais": "Bélgica", "iso2": "be", "iso3": "BEL" }, "goles": 3, "marcador": "3-0" }
+  ],
+  "recordsEdicion": [
+    { "categoria": "tactica", "descripcion": "Vergüenza de Gijón (Alemania-Austria 1-0): pacto tácito que clasifica a ambos eliminando a Argelia. FIFA cambió la regla: simultaneidad obligatoria de la última jornada de grupos desde 1986", "valor": "Cambio de regla" },
+    { "categoria": "tactica", "descripcion": "Primera tanda de penales en un Mundial (semifinal RFA-Francia)", "valor": "Penales en mundial" },
+    { "categoria": "jugador", "descripcion": "Norman Whiteside (Irlanda del Norte): 17 años y 41 días, jugador más joven en disputar un Mundial (récord vigente)", "valor": "17a 41d" },
+    { "categoria": "jugador", "descripcion": "Dino Zoff alza la copa con 40 años: campeón del Mundo más viejo de la historia (récord vigente)", "valor": "40 años" },
+    { "categoria": "jugador", "descripcion": "Kiss (HUN): único hat-trick desde el banco en la historia mundialista (vs El Salvador, en 8 minutos)", "valor": "Hat-trick suplente" },
+    { "categoria": "mascota", "descripcion": "Naranjito: primera mascota mundialista con serie animada propia ('Fútbol en Acción'), ícono pop de los 80", "valor": "Pop cultural" }
+  ],
+  "curiosidades": [
+    {
+      "categoria": "arbitro",
+      "texto": "Dino Zoff alzó la copa con 40 años, convirtiéndose en el campeón del Mundo más viejo de la historia, récord que sigue intacto."
+    },
+    {
+      "categoria": "jugador",
+      "texto": "El portero alemán Harald Schumacher embistió brutalmente al francés Patrick Battiston en semifinales dejándolo inconsciente. El árbitro no solo no señaló falta sino que sacó saque de meta."
+    },
+    {
+      "categoria": "jugador",
+      "texto": "Paolo Rossi llegó al Mundial recién amnistiado tras 2 años de suspensión por el escándalo Totonero (apuestas amañadas). Pasó del banquillo y descreído por la prensa a Bota+Balón de Oro: el mayor giro de carrera en la historia mundialista."
+    },
+    {
+      "categoria": "estadio",
+      "texto": "Italia 3-2 Brasil en el Sarrià de Barcelona (estadio del Espanyol, demolido en 1997) es considerado por la prensa especializada uno de los mejores partidos de la historia del Mundial. La fila para entrar fue de 5 km."
+    },
+    {
+      "categoria": "tragedia",
+      "texto": "Brasil 1982 (Sócrates, Zico, Falcão, Cerezo, Júnior) es considerado el mejor equipo de la historia que NO ganó un Mundial. Falleció Sócrates en 2011 sin volver a jugar otra final mundialista."
+    },
+    {
+      "categoria": "balon",
+      "texto": "El Tango España fue el ÚLTIMO balón mundialista hecho de cuero genuino. Desde México 1986, todos los balones serían sintéticos. La transición fue impulsada por la imposibilidad de mantener el cuero seco bajo lluvia."
+    }
+  ],
+  "fuentes": [
+    { "nombre": "FIFA Archive — World Cup 1982", "url": "https://www.fifa.com/tournaments/mens/worldcup/1982spain" },
+    { "nombre": "RSSSF — World Cup 1982", "url": "https://www.rsssf.org/tables/82full.html" }
+  ]
+}

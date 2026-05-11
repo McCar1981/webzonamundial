@@ -1,0 +1,20 @@
+{
+  "mascotas": [
+    { "anio": 1966, "edicionSlug": "1966-inglaterra", "nombre": "World Cup Willie", "tipo": "León", "diseñador": "Reg Hoye", "datoClave": "PRIMERA mascota oficial de un Mundial en la historia. León con bandera del Reino Unido" },
+    { "anio": 1970, "edicionSlug": "1970-mexico", "nombre": "Juanito", "tipo": "Niño con sombrero charro", "diseñador": "Lance Wyman + González Martínez", "datoClave": "Primera mascota humana. Sombrero charro y camiseta con el número 70" },
+    { "anio": 1974, "edicionSlug": "1974-alemania", "nombre": "Tip y Tap", "tipo": "Dos niños futbolistas", "diseñador": "Schäfer", "datoClave": "Primera pareja de mascotas. WM (World Meisterschaft) escrito en sus camisetas" },
+    { "anio": 1978, "edicionSlug": "1978-argentina", "nombre": "Gauchito", "tipo": "Niño gaucho", "diseñador": "Néstor Córdoba / García Ferré", "datoClave": "Niño con pañuelo gaucho, sombrero, fusta y la pelota. Incluía la bandera argentina al cuello" },
+    { "anio": 1982, "edicionSlug": "1982-espana", "nombre": "Naranjito", "tipo": "Naranja antropomorfa", "diseñador": "Salto + Pacheco", "datoClave": "PRIMERA mascota mundialista con SERIE ANIMADA propia ('Fútbol en Acción'). Ícono pop de los 80" },
+    { "anio": 1986, "edicionSlug": "1986-mexico", "nombre": "Pique", "tipo": "Chile jalapeño", "diseñador": "Comité Organizador México", "datoClave": "Primera mascota basada en una hortaliza. Su nombre viene del adjetivo 'picante'" },
+    { "anio": 1990, "edicionSlug": "1990-italia", "nombre": "Ciao", "tipo": "Figura humanoide tricolor", "diseñador": "Lucio Boscardin", "datoClave": "Mascota más abstracta de la historia: solo bloques en colores de la bandera italiana formando un palo" },
+    { "anio": 1994, "edicionSlug": "1994-eeuu", "nombre": "Striker", "tipo": "Perro futbolista", "diseñador": "Warner Bros.", "datoClave": "Primera mascota mundialista diseñada por una compañía de Hollywood (Warner Bros)" },
+    { "anio": 1998, "edicionSlug": "1998-francia", "nombre": "Footix", "tipo": "Gallo galo", "diseñador": "Fabrice Pialot", "datoClave": "Popularizó el término francés 'footixage' (despectivo: aficionado recién llegado al fútbol)" },
+    { "anio": 2002, "edicionSlug": "2002-corea-japon", "nombre": "Ato, Kaz y Nik (Spheriks)", "tipo": "Personajes CGI futuristas", "diseñador": "Interbrand", "datoClave": "PRIMERA trinidad de mascotas. Primeras 100% computer-generated (CGI). Representan jugadores y entrenador del 'fútbol del futuro'" },
+    { "anio": 2006, "edicionSlug": "2006-alemania", "nombre": "Goleo VI + Pille", "tipo": "León y balón parlante", "diseñador": "Jim Henson Company", "datoClave": "Hechas por la compañía de The Muppets. La empresa licenciataria quebró antes del Mundial: caso comercial fallido más recordado" },
+    { "anio": 2010, "edicionSlug": "2010-sudafrica", "nombre": "Zakumi", "tipo": "Leopardo verde", "diseñador": "Andries Odendaal", "datoClave": "ZA = código país Sudáfrica + KUMI (10 en lenguas africanas). Pelo verde representa la esperanza" },
+    { "anio": 2014, "edicionSlug": "2014-brasil", "nombre": "Fuleco", "tipo": "Armadillo de tres bandas", "diseñador": "Maurício de Sousa", "datoClave": "Especie vulnerable. FUtebol+ECOlogia. Crítica conservacionista: el armadillo sigue en peligro pese al uso comercial" },
+    { "anio": 2018, "edicionSlug": "2018-rusia", "nombre": "Zabivaka", "tipo": "Lobo con gafas", "diseñador": "Ekaterina Bocharova", "datoClave": "Su nombre significa 'el que anota'. Elegida por voto popular ruso entre 3 finalistas (gato, tigre y lobo)" },
+    { "anio": 2022, "edicionSlug": "2022-qatar", "nombre": "La'eeb", "tipo": "Ghutra (pañuelo árabe) animada", "diseñador": "FIFA + Catar Org", "datoClave": "Primera mascota basada en una vestimenta tradicional. La'eeb significa 'jugador súper hábil' en árabe" },
+    { "anio": 2026, "edicionSlug": "2026-norteamerica", "nombre": "Maple, Zayu y Clutch", "tipo": "Alce, jaguar y águila", "diseñador": "FIFA", "datoClave": "Trinidad por los 3 países: Maple (alce, Canadá), Zayu (jaguar, México), Clutch (águila, EE.UU.). Serán personajes jugables del videojuego oficial FIFA Heroes" }
+  ]
+}

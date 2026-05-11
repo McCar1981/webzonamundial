@@ -1,0 +1,140 @@
+{
+  "meta": {
+    "edicion": 11,
+    "anio": 1978,
+    "slug": "1978-argentina",
+    "tituloOficial": "Copa Mundial de Fútbol 1978",
+    "nombreCorto": "Argentina 1978",
+    "era": "moderna"
+  },
+  "sede": {
+    "paises": [
+      { "nombre": "Argentina", "iso2": "ar", "iso3": "ARG", "banderaUrl": "https://flagcdn.com/w160/ar.png" }
+    ],
+    "ciudades": ["Buenos Aires", "Mar del Plata", "Rosario", "Córdoba", "Mendoza"],
+    "estadios": ["Estadio Monumental", "José Amalfitani", "Gigante de Arroyito", "Mario Kempes", "Mundialista de Mar del Plata"]
+  },
+  "fechas": { "inicio": "1978-06-01", "final": "1978-06-25", "duracionDias": 25 },
+  "formato": {
+    "numEquipos": 16,
+    "numPartidos": 38,
+    "sistemaEliminatoria": "grupo-final",
+    "numGrupos": 4
+  },
+  "resultados": {
+    "campeon": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG", "banderaUrl": "https://flagcdn.com/w160/ar.png" },
+    "subcampeon": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD", "banderaUrl": "https://flagcdn.com/w160/nl.png" },
+    "tercero": { "pais": "Brasil", "iso2": "br", "iso3": "BRA", "banderaUrl": "https://flagcdn.com/w160/br.png" },
+    "cuarto": { "pais": "Italia", "iso2": "it", "iso3": "ITA", "banderaUrl": "https://flagcdn.com/w160/it.png" }
+  },
+  "estadisticas": {
+    "totalGoles": 102,
+    "promedioGolesPartido": 2.68,
+    "asistenciaTotal": 1545791,
+    "asistenciaPromedio": 40679
+  },
+  "identidadVisual": {
+    "eslogan": "Gauchito",
+    "mascota": "Gauchito",
+    "balon": "Tango (Adidas)",
+    "colorPrincipal": "#75AADB"
+  },
+  "partidoFinal": {
+    "fecha": "1978-06-25",
+    "ciudad": "Buenos Aires",
+    "estadio": "Estadio Monumental",
+    "local": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" },
+    "visitante": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD" },
+    "marcador": "3-1 (prórroga)",
+    "asistencia": 71483,
+    "arbitro": "Sergio Gonella (Italia)"
+  },
+  "topGoleadores": [
+    {
+      "nombre": "Mario Kempes",
+      "seleccion": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" },
+      "goles": 6,
+      "botaOro": true
+    },
+    {
+      "nombre": "Rob Rensenbrink",
+      "seleccion": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD" },
+      "goles": 5
+    },
+    {
+      "nombre": "Teófilo Cubillas",
+      "seleccion": { "pais": "Perú", "iso2": "pe", "iso3": "PER" },
+      "goles": 5
+    }
+  ],
+  "premios": {
+    "balonOro": "Mario Kempes (Argentina)"
+  },
+  "contextoHistorico": {
+    "resumen": "Mundial bajo la dictadura militar de Jorge Rafael Videla, con la ESMA, centro clandestino de detención y tortura, a apenas 300 metros del Estadio Monumental. César Luis Menotti dirigió a Argentina al primer título mundialista en su casa. Mario Kempes se llevó Bota y Balón de Oro. La 'lluvia de papelitos' del Monumental se convirtió en imagen icónica del torneo.",
+    "eventos": [
+      "Argentina 6-0 Perú: resultado eternamente sospechoso de pacto político, jamás probado, que clasificó a Argentina a la final.",
+      "El Tango fue el primer balón Adidas con tríadas estéticas, paneles que evocan los anteriores diseños y se mantendrían como código visual de Adidas hasta 2002.",
+      "Diego Armando Maradona, con 17 años, fue convocado pero finalmente excluido del plantel por Menotti."
+    ]
+  },
+  "plantillaCampeon": [
+    { "dorsal": 5, "nombre": "Ubaldo Fillol", "posicion": "GK", "clubOrigen": "River Plate", "edad": 27 },
+    { "dorsal": 4, "nombre": "Jorge Olguín", "posicion": "DEF", "clubOrigen": "San Lorenzo", "edad": 26 },
+    { "dorsal": 19, "nombre": "Luis Galván", "posicion": "DEF", "clubOrigen": "Talleres", "edad": 30 },
+    { "dorsal": 17, "nombre": "Daniel Passarella", "posicion": "DEF", "clubOrigen": "River Plate", "edad": 25, "capitan": true, "goles": 1 },
+    { "dorsal": 20, "nombre": "Alberto Tarantini", "posicion": "DEF", "clubOrigen": "Boca Juniors", "edad": 22 },
+    { "dorsal": 2, "nombre": "Américo Gallego", "posicion": "MID", "clubOrigen": "Newell's", "edad": 22 },
+    { "dorsal": 14, "nombre": "Daniel Bertoni", "posicion": "FWD", "clubOrigen": "Independiente", "edad": 23, "goles": 2 },
+    { "dorsal": 3, "nombre": "Osvaldo Ardiles", "posicion": "MID", "clubOrigen": "Huracán", "edad": 25 },
+    { "dorsal": 7, "nombre": "Mario Kempes", "posicion": "FWD", "clubOrigen": "Valencia", "edad": 23, "goles": 6 },
+    { "dorsal": 11, "nombre": "Leopoldo Luque", "posicion": "FWD", "clubOrigen": "River Plate", "edad": 29, "goles": 4 },
+    { "dorsal": 18, "nombre": "Oscar Ortiz", "posicion": "FWD", "clubOrigen": "River Plate", "edad": 25 },
+    { "dorsal": 6, "nombre": "Daniel Killer", "posicion": "DEF", "clubOrigen": "Racing Club", "edad": 28 },
+    { "dorsal": 9, "nombre": "René Houseman", "posicion": "FWD", "clubOrigen": "Huracán", "edad": 24, "goles": 1 },
+    { "dorsal": 10, "nombre": "Norberto Alonso", "posicion": "MID", "clubOrigen": "River Plate", "edad": 24 }
+  ],
+  "fasesKO": {
+    "semifinales": [
+      { "fecha": "1978-06-21", "ciudad": "Mendoza", "estadio": "Mundialista", "local": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD" }, "visitante": { "pais": "Italia", "iso2": "it", "iso3": "ITA" }, "marcador": "2-1" },
+      { "fecha": "1978-06-21", "ciudad": "Rosario", "estadio": "Gigante de Arroyito", "local": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "visitante": { "pais": "Perú", "iso2": "pe", "iso3": "PER" }, "marcador": "6-0" }
+    ]
+  },
+  "hatTricks": [
+    { "jugador": "Robbie Rensenbrink", "seleccion": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD" }, "fase": "Grupos", "rival": { "pais": "Irán", "iso2": "ir", "iso3": "IRN" }, "goles": 3, "marcador": "3-0" },
+    { "jugador": "Teófilo Cubillas", "seleccion": { "pais": "Perú", "iso2": "pe", "iso3": "PER" }, "fase": "Grupos", "rival": { "pais": "Irán", "iso2": "ir", "iso3": "IRN" }, "goles": 3, "marcador": "4-1" }
+  ],
+  "recordsEdicion": [
+    { "categoria": "balon", "descripcion": "Estreno del Adidas Tango con tríadas estéticas: primer balón con identidad gráfica reutilizada en futuros Mundiales", "valor": "Tango original" },
+    { "categoria": "politica", "descripcion": "Mundial bajo dictadura militar argentina con la ESMA (centro clandestino de detención y tortura) a 300 metros del Estadio Monumental", "valor": "ESMA cercana" },
+    { "categoria": "jugador", "descripcion": "Argentina 6-0 Perú en última fase de grupos: resultado eternamente sospechoso de pacto político, jamás probado", "valor": "Sospecha eterna" },
+    { "categoria": "tactica", "descripcion": "Lluvia de papelitos del Monumental se convierte en imagen icónica del Mundial y modelo para futuros estadios", "valor": "Papelitos icónicos" },
+    { "categoria": "asistencia", "descripcion": "Maradona, con 17 años, fue convocado pero excluido del plantel definitivo por Menotti: dijo en privado 'me cortaron las piernas'", "valor": "Maradona fuera" }
+  ],
+  "curiosidades": [
+    {
+      "categoria": "politica",
+      "texto": "Johan Cruyff renunció al Mundial: durante años se atribuyó a su rechazo a la dictadura argentina, pero en 2008 él mismo confesó que la verdadera razón fue un intento de secuestro contra su familia en Barcelona en 1977."
+    },
+    {
+      "categoria": "balon",
+      "texto": "El balón Tango fue tan icónico que Adidas lo reutilizaría como base estética para los Mundiales de 1982 (Tango España) y 1986 (Azteca), creando la primera 'familia' de balones de la historia mundialista."
+    },
+    {
+      "categoria": "tragedia",
+      "texto": "Países Bajos perdió por segunda vez consecutiva una final como anfitriona implícita del fútbol total (1974, 1978). Recién en 2010 alcanzaría una tercera final, también perdida. La maldición naranja sigue sin romperse."
+    },
+    {
+      "categoria": "jugador",
+      "texto": "Mario Kempes ganó Bota de Oro, Balón de Oro y el Mundial en su tierra. Era además el único jugador argentino que jugaba en Europa (Valencia): el dictador Videla pidió personalmente que se le permitiera jugar pese a no estar en la liga local."
+    },
+    {
+      "categoria": "tragedia",
+      "texto": "El penal de Rensenbrink en el último minuto del tiempo reglamentario golpeó el poste con Argentina ganando 1-1 en la final. Si hubiera entrado, Países Bajos habría sido campeón. Es considerado uno de los penales más históricos jamás fallados."
+    }
+  ],
+  "fuentes": [
+    { "nombre": "FIFA Archive — World Cup 1978", "url": "https://www.fifa.com/tournaments/mens/worldcup/1978argentina" },
+    { "nombre": "RSSSF — World Cup 1978", "url": "https://www.rsssf.org/tables/78full.html" }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "sedes": [
+    { "ciudad": "Ciudad de México", "pais": "México", "iso2": "mx", "estadio": "Estadio Banorte (Azteca)", "capacidad": 87523, "partidosAlbergados": 5, "rolEspecial": "Partido inaugural · 11 jun 2026", "datoClave": "PRIMER estadio del mundo en albergar TRES Mundiales (1970, 1986, 2026). Rebautizado temporalmente Estadio Banorte por patrocinio." },
+    { "ciudad": "Guadalajara", "pais": "México", "iso2": "mx", "estadio": "Estadio Akron", "capacidad": 49850, "partidosAlbergados": 4, "datoClave": "Casa del Chivas. Primer Mundial en este estadio inaugurado en 2010." },
+    { "ciudad": "Monterrey", "pais": "México", "iso2": "mx", "estadio": "Estadio BBVA", "capacidad": 53500, "partidosAlbergados": 4, "datoClave": "Casa de Rayados. Primer Mundial en este estadio inaugurado en 2015." },
+    { "ciudad": "Toronto", "pais": "Canadá", "iso2": "ca", "estadio": "BMO Field (Toronto Stadium)", "capacidad": 45500, "partidosAlbergados": 6, "datoClave": "Primera vez que Toronto hospeda un Mundial. Capacidad ampliada con gradas temporales." },
+    { "ciudad": "Vancouver", "pais": "Canadá", "iso2": "ca", "estadio": "BC Place", "capacidad": 54500, "partidosAlbergados": 7, "datoClave": "Primera vez que Vancouver hospeda un Mundial. Estadio con techo retráctil." },
+    { "ciudad": "East Rutherford", "pais": "Estados Unidos", "iso2": "us", "estadio": "MetLife Stadium", "capacidad": 82500, "partidosAlbergados": 8, "rolEspecial": "GRAN FINAL · 19 jul 2026", "datoClave": "Casa de NY Giants y NY Jets de la NFL. Hospedará la final del Mundial 2026 con capacidad ampliada a ~87.000." },
+    { "ciudad": "Los Ángeles", "pais": "Estados Unidos", "iso2": "us", "estadio": "SoFi Stadium", "capacidad": 70240, "partidosAlbergados": 8, "datoClave": "Estadio de US$5.500M (el más caro del mundo). Casa de LA Rams y LA Chargers de la NFL. Inaugurado en 2020." },
+    { "ciudad": "Dallas", "pais": "Estados Unidos", "iso2": "us", "estadio": "AT&T Stadium", "capacidad": 80000, "partidosAlbergados": 9, "datoClave": "Casa de los Dallas Cowboys. Estadio con la pantalla central más grande del mundo." },
+    { "ciudad": "Atlanta", "pais": "Estados Unidos", "iso2": "us", "estadio": "Mercedes-Benz Stadium", "capacidad": 71000, "partidosAlbergados": 8, "datoClave": "Casa de Atlanta Falcons NFL y Atlanta United MLS. Inaugurado en 2017." },
+    { "ciudad": "Miami", "pais": "Estados Unidos", "iso2": "us", "estadio": "Hard Rock Stadium", "capacidad": 64767, "partidosAlbergados": 7, "datoClave": "Casa de Miami Dolphins NFL. Hospedó el Open de Tenis Miami por años." },
+    { "ciudad": "Boston", "pais": "Estados Unidos", "iso2": "us", "estadio": "Gillette Stadium", "capacidad": 65878, "partidosAlbergados": 7, "datoClave": "Casa de New England Patriots NFL y New England Revolution MLS." },
+    { "ciudad": "Filadelfia", "pais": "Estados Unidos", "iso2": "us", "estadio": "Lincoln Financial Field", "capacidad": 67594, "partidosAlbergados": 6, "datoClave": "Casa de Philadelphia Eagles NFL." },
+    { "ciudad": "Houston", "pais": "Estados Unidos", "iso2": "us", "estadio": "NRG Stadium", "capacidad": 72220, "partidosAlbergados": 7, "datoClave": "Casa de Houston Texans NFL. Estadio con techo retráctil." },
+    { "ciudad": "Kansas City", "pais": "Estados Unidos", "iso2": "us", "estadio": "Arrowhead Stadium", "capacidad": 76416, "partidosAlbergados": 6, "datoClave": "Casa de Kansas City Chiefs NFL. Conocido por la 'fan base más ruidosa' de la NFL." },
+    { "ciudad": "Seattle", "pais": "Estados Unidos", "iso2": "us", "estadio": "Lumen Field", "capacidad": 68740, "partidosAlbergados": 6, "datoClave": "Casa de Seattle Seahawks NFL y Seattle Sounders MLS." },
+    { "ciudad": "San Francisco", "pais": "Estados Unidos", "iso2": "us", "estadio": "Levi's Stadium", "capacidad": 68500, "partidosAlbergados": 6, "datoClave": "Casa de San Francisco 49ers NFL. Construido en 2014, considerado el más 'verde' (sustainable) de la NFL." }
+  ],
+  "datoCierre": "16 sedes en 3 países: 11 en EE.UU., 3 en México y 2 en Canadá. La final será en MetLife (East Rutherford, NY metro) el 19 jul 2026."
+}

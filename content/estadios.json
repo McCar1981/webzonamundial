@@ -1,0 +1,213 @@
+{
+  "estadios": [
+    {
+      "nombre": "Estadio Centenario",
+      "ciudad": "Montevideo",
+      "pais": "Uruguay",
+      "iso2": "uy",
+      "capacidad": 60235,
+      "inauguracion": 1930,
+      "mundiales": [1930],
+      "datoClave": "Construido en SOLO 6 MESES específicamente para el Mundial inaugural. Monumento Histórico FIFA desde 1983, único estadio con esa distinción en el mundo.",
+      "momentoEpico": "Final URU 4-2 ARG (30 jul 1930) con dos balones distintos por tiempo: Argentina y Uruguay imponen el suyo en cada parte"
+    },
+    {
+      "nombre": "Estadio Maracanã",
+      "ciudad": "Río de Janeiro",
+      "pais": "Brasil",
+      "iso2": "br",
+      "capacidad": 78838,
+      "inauguracion": 1950,
+      "mundiales": [1950, 2014],
+      "datoClave": "Construido para el Mundial 1950 con capacidad oficial para 200.000 espectadores. Hospedó la asistencia récord histórica jamás registrada (173.850 oficiales el 16 jul 1950).",
+      "momentoEpico": "Maracanazo: BRA 1-2 URU. Ghiggia diría: 'Solo tres callaron al Maracaná: Sinatra, el Papa y yo'"
+    },
+    {
+      "nombre": "Wankdorf",
+      "ciudad": "Berna",
+      "pais": "Suiza",
+      "iso2": "ch",
+      "capacidad": 64000,
+      "inauguracion": 1925,
+      "mundiales": [1954],
+      "datoClave": "Lugar del Milagro de Berna. Demolido en 2001 y reconstruido como Stade de Suisse. Las columnas originales están conservadas como monumento.",
+      "momentoEpico": "Final RFA 3-2 HUN (1954): Alemania remonta 0-2 a la Hungría de Puskás. El comentario radial 'das Spiel ist aus' es uno de los audios más famosos del siglo XX"
+    },
+    {
+      "nombre": "Råsunda",
+      "ciudad": "Solna",
+      "pais": "Suecia",
+      "iso2": "se",
+      "capacidad": 36000,
+      "inauguracion": 1937,
+      "mundiales": [1958],
+      "datoClave": "Demolido en 2013 tras 76 años de uso. El estadio donde Pelé debutó a los 17 años y Bellini inventó la imagen del trofeo levantado por encima de la cabeza.",
+      "momentoEpico": "Final SUE 2-5 BRA: Pelé hat-trick en semis y dos goles en la final, Brasil primer campeón fuera de su continente"
+    },
+    {
+      "nombre": "Wembley (original)",
+      "ciudad": "Londres",
+      "pais": "Inglaterra",
+      "iso2": "gb-eng",
+      "capacidad": 98600,
+      "inauguracion": 1923,
+      "mundiales": [1966],
+      "datoClave": "Las icónicas Twin Towers fueron demolidas en 2003. El nuevo Wembley se inauguró en 2007. La pelota del 'gol fantasma' está en el National Football Museum de Preston.",
+      "momentoEpico": "Final ING 4-2 RFA prórroga: Hurst hat-trick (único en final hasta Mbappé 2022) y el Wembley-Tor que entró al alemán cotidiano"
+    },
+    {
+      "nombre": "Estadio Azteca",
+      "ciudad": "Ciudad de México",
+      "pais": "México",
+      "iso2": "mx",
+      "capacidad": 87523,
+      "inauguracion": 1966,
+      "mundiales": [1970, 1986, 2026],
+      "datoClave": "ÚNICO estadio del mundo en albergar TRES ediciones del Mundial. Único con dos finales mundialistas (1970 y 1986). Para 2026 será rebautizado temporalmente Estadio Banorte.",
+      "momentoEpico": "Mano de Dios + Gol del Siglo de Maradona vs Inglaterra (1986) en apenas 4 minutos: cumbre absoluta del talento individual"
+    },
+    {
+      "nombre": "Olympiastadion",
+      "ciudad": "Múnich",
+      "pais": "Alemania",
+      "iso2": "de",
+      "capacidad": 75200,
+      "inauguracion": 1972,
+      "mundiales": [1974],
+      "datoClave": "Estrenó el techo de membrana acrílica más grande del mundo en su época. Hospedó la tragedia de Múnich 1972 (atentado de Septiembre Negro) y dos años después la final mundialista.",
+      "momentoEpico": "Final RFA 2-1 NED: penal de Neeskens al minuto 1m25s, gol más rápido en una final mundialista"
+    },
+    {
+      "nombre": "Estadio Monumental",
+      "ciudad": "Buenos Aires",
+      "pais": "Argentina",
+      "iso2": "ar",
+      "capacidad": 72054,
+      "inauguracion": 1938,
+      "mundiales": [1978],
+      "datoClave": "A 300 metros de la ESMA, centro clandestino de detención y tortura de la dictadura militar. La 'lluvia de papelitos' del Monumental se globalizaría como imagen mundialista.",
+      "momentoEpico": "Final ARG 3-1 NED prórroga: Kempes Bota+Balón+Mundial. Penal de Rensenbrink al poste en el último minuto del tiempo reglamentario"
+    },
+    {
+      "nombre": "Santiago Bernabéu",
+      "ciudad": "Madrid",
+      "pais": "España",
+      "iso2": "es",
+      "capacidad": 90000,
+      "inauguracion": 1947,
+      "mundiales": [1982],
+      "datoClave": "Hospedó la final 1982 con asistencia oficial de 90.000. Naranjito (mascota oficial) fue tan popular que tuvo serie animada propia, primera vez en historia mundialista.",
+      "momentoEpico": "Final ITA 3-1 RFA: Paolo Rossi remata su redención tras 2 años de suspensión por el Totonero. Pertegaz cantó el himno con el pelo morado"
+    },
+    {
+      "nombre": "Stadio Olimpico",
+      "ciudad": "Roma",
+      "pais": "Italia",
+      "iso2": "it",
+      "capacidad": 73603,
+      "inauguracion": 1953,
+      "mundiales": [1934, 1990],
+      "datoClave": "Sede de dos finales mundialistas (1934 y 1990). Hospedó las 'Notti Magiche' italianas de 1990 y la final más polémica con doble roja y penal de Brehme.",
+      "momentoEpico": "Final RFA 1-0 ARG (1990): primera roja en una final (Pedro Monzón), segunda roja (Dezotti), Maradona llora desconsoladamente"
+    },
+    {
+      "nombre": "Rose Bowl",
+      "ciudad": "Pasadena",
+      "pais": "Estados Unidos",
+      "iso2": "us",
+      "capacidad": 92542,
+      "inauguracion": 1922,
+      "mundiales": [1994],
+      "datoClave": "Estadio de fútbol americano universitario reconvertido para soccer. Hospedó la primera final mundialista decidida por penales con la asistencia récord histórica promedio del Mundial 94.",
+      "momentoEpico": "Final BRA 0-0 ITA (penales 3-2): Roberto Baggio falla el último penal con su moñito icónico. Brasil tetracampeón tras 24 años"
+    },
+    {
+      "nombre": "Stade de France",
+      "ciudad": "Saint-Denis",
+      "pais": "Francia",
+      "iso2": "fr",
+      "capacidad": 80000,
+      "inauguracion": 1998,
+      "mundiales": [1998],
+      "datoClave": "Construido específicamente para el Mundial 1998 e inaugurado pocas semanas antes. Hoy estadio nacional francés. Said Belqola fue el primer árbitro africano en la final.",
+      "momentoEpico": "Final FRA 3-0 BRA: Zidane doblete de cabeza tras misteriosa convulsión de Ronaldo horas antes. Petit cierra el 3-0 al minuto 90+3"
+    },
+    {
+      "nombre": "International Stadium Yokohama",
+      "ciudad": "Yokohama",
+      "pais": "Japón",
+      "iso2": "jp",
+      "capacidad": 72327,
+      "inauguracion": 1998,
+      "mundiales": [2002],
+      "datoClave": "Hospedó la final 2002 (primer Mundial asiático y primero compartido entre dos países). Ronaldo redimió la convulsión de 1998 con sus dos goles a Alemania.",
+      "momentoEpico": "Final BRA 2-0 ALE: doblete de Ronaldo, Cafu único futbolista con 3 finales seguidas, Kahn único portero Balón de Oro"
+    },
+    {
+      "nombre": "Olympiastadion",
+      "ciudad": "Berlín",
+      "pais": "Alemania",
+      "iso2": "de",
+      "capacidad": 74649,
+      "inauguracion": 1936,
+      "mundiales": [2006],
+      "datoClave": "Construido para los Juegos Olímpicos de Hitler en 1936. Su selección como sede de la final 2006 fue elemento clave del 'Sommermärchen': cierre de heridas históricas alemanas.",
+      "momentoEpico": "Final ITA 1-1 FRA (penales 5-3): cabezazo de Zidane a Materazzi en su último partido como profesional, expulsión vía cuarto árbitro Cantalejo"
+    },
+    {
+      "nombre": "Soccer City",
+      "ciudad": "Johannesburgo",
+      "pais": "Sudáfrica",
+      "iso2": "za",
+      "capacidad": 84490,
+      "inauguracion": 1989,
+      "mundiales": [2010],
+      "datoClave": "Diseñado como calabaza africana tradicional ('calabash'). Sede de la final 2010 con 14 amarillas (récord). Mandela apareció en el césped antes del partido a sus 91 años.",
+      "momentoEpico": "Final NED 0-1 ESP prórroga: Iniesta marca al 116 con la zurda y deja ver una camiseta interior con 'Dani Jarque siempre con nosotros'"
+    },
+    {
+      "nombre": "Maracanã (remodelado)",
+      "ciudad": "Río de Janeiro",
+      "pais": "Brasil",
+      "iso2": "br",
+      "capacidad": 78838,
+      "inauguracion": 1950,
+      "mundiales": [1950, 2014],
+      "datoClave": "Tras remodelación 2010-2013 (US$500M, capacidad bajada para asientos individuales). Hospedó las dos finales brasileñas (1950 y 2014) con resultado distinto del esperado las dos veces.",
+      "momentoEpico": "Final ALE 1-0 ARG prórroga: Götze al 113 desde el banco, único final ganada en el Maracaná por equipo no brasileño"
+    },
+    {
+      "nombre": "Luzhnikí",
+      "ciudad": "Moscú",
+      "pais": "Rusia",
+      "iso2": "ru",
+      "capacidad": 81000,
+      "inauguracion": 1956,
+      "mundiales": [2018],
+      "datoClave": "De pista de atletismo soviética a estadio mundialista. Tragedia 1982 con 66 fallecidos en una avalancha. Pussy Riot invadió el campo en la final 2018.",
+      "momentoEpico": "Final FRA 4-2 CRO: Mbappé adolescente marca en final (segundo desde Pelé 1958), Pussy Riot interrumpe al minuto 52"
+    },
+    {
+      "nombre": "Lusail Iconic Stadium",
+      "ciudad": "Lusail",
+      "pais": "Catar",
+      "iso2": "qa",
+      "capacidad": 88966,
+      "inauguracion": 2021,
+      "mundiales": [2022],
+      "datoClave": "Inspirado en linternas tradicionales árabes (fanar). Construido para el Mundial con tecnología de aire acondicionado en gradas. Hospedó la final más espectacular de la historia.",
+      "momentoEpico": "Final ARG 3-3 FRA (penales 4-2): Mbappé hat-trick en final desde Hurst 1966, Messi consagra los 26 partidos récord, bisht ceremonial polémico"
+    },
+    {
+      "nombre": "MetLife Stadium",
+      "ciudad": "East Rutherford",
+      "pais": "Estados Unidos",
+      "iso2": "us",
+      "capacidad": 82500,
+      "inauguracion": 2010,
+      "mundiales": [2026],
+      "datoClave": "Casa compartida de NY Giants y NY Jets de la NFL. Hospedará la final del Mundial 2026: el primer Mundial tripartito y con 48 selecciones. Capacidad ampliable a 87.000 para el evento.",
+      "momentoEpico": "19 jul 2026: final del primer Mundial CAN/MEX/USA con 48 equipos, 104 partidos en 39 días"
+    }
+  ]
+}

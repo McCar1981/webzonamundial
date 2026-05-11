@@ -1,0 +1,28 @@
+{
+  "datoIntroductorio": "FIFA reparte premios millonarios a las selecciones participantes. La cifra ha crecido exponencialmente: de 138.000 USD en 1982 a 440 millones en 2022.",
+  "premiosPorEdicion": [
+    { "anio": 1982, "edicionSlug": "1982-espana", "premioCampeon": 138000, "premioTotal": 6000000, "moneda": "USD", "datoClave": "Italia recibió 138.000 USD por ganar (~430.000 USD en 2024). Bolsa total: 6M USD." },
+    { "anio": 1986, "edicionSlug": "1986-mexico", "premioCampeon": 1700000, "premioTotal": 18000000, "moneda": "USD", "datoClave": "Argentina recibió 1.7M USD. Mayor crecimiento porcentual de la historia: +1.131%." },
+    { "anio": 1990, "edicionSlug": "1990-italia", "premioCampeon": 4500000, "premioTotal": 26000000, "moneda": "USD", "datoClave": "Alemania Federal recibió 4.5M USD por ganar." },
+    { "anio": 1994, "edicionSlug": "1994-eeuu", "premioCampeon": 3500000, "premioTotal": 71000000, "moneda": "USD", "datoClave": "Brasil recibió 3.5M USD: el primer caso de DECRECIMIENTO en premio del campeón. Mayor bolsa total." },
+    { "anio": 1998, "edicionSlug": "1998-francia", "premioCampeon": 6000000, "premioTotal": 103000000, "moneda": "USD", "datoClave": "Francia recibió 6M USD. Bolsa total cruza por primera vez los 100M USD." },
+    { "anio": 2002, "edicionSlug": "2002-corea-japon", "premioCampeon": 8000000, "premioTotal": 156600000, "moneda": "USD", "datoClave": "Brasil recibió 8M USD por la quinta estrella." },
+    { "anio": 2006, "edicionSlug": "2006-alemania", "premioCampeon": 20000000, "premioTotal": 264700000, "moneda": "USD", "datoClave": "Italia recibió 20M USD: salto cualitativo enorme. Mayor crecimiento histórico desde 1986." },
+    { "anio": 2010, "edicionSlug": "2010-sudafrica", "premioCampeon": 30000000, "premioTotal": 348800000, "moneda": "USD", "datoClave": "España recibió 30M USD por su único Mundial. Bolsa total cruza los 300M." },
+    { "anio": 2014, "edicionSlug": "2014-brasil", "premioCampeon": 35000000, "premioTotal": 358000000, "moneda": "USD", "datoClave": "Alemania recibió 35M USD por el tetracampeonato. Götze cobró extra por su gol decisivo." },
+    { "anio": 2018, "edicionSlug": "2018-rusia", "premioCampeon": 38000000, "premioTotal": 400000000, "moneda": "USD", "datoClave": "Francia recibió 38M USD. Bolsa cruza los 400M." },
+    { "anio": 2022, "edicionSlug": "2022-qatar", "premioCampeon": 42000000, "premioTotal": 440000000, "moneda": "USD", "datoClave": "Argentina recibió 42M USD. Récord histórico de bolsa total." },
+    { "anio": 2026, "edicionSlug": "2026-norteamerica", "premioCampeon": 50000000, "premioTotal": 600000000, "moneda": "USD", "datoClave": "FIFA anunció bolsa de 600M USD. Premio campeón estimado en 50M USD por el formato 48-equipos." }
+  ],
+  "datosGenerales": {
+    "premioCampeonOriginal1930": "Trofeo y reconocimiento (sin pago monetario individual)",
+    "primeraEdicionConPremioFijo": 1982,
+    "evolucionPorcentual1982_2026": "+434.683% en 44 años",
+    "selccionPremioPorParticipar2022": 9000000,
+    "selccionPremioFaseGrupos2022": 13000000,
+    "premioCadaJugador2022Argentina": "FIFA paga a la federación, que distribuye. Argentina dio bonos de 600.000 USD por jugador del plantel campeón.",
+    "patrocinadoresPrincipales2026": ["Adidas", "Coca-Cola", "Hyundai/Kia", "Wanda Group", "Visa", "Mengniu", "Lay's", "McDonald's"],
+    "ingresosFIFA2022": "FIFA reportó 7.500 millones USD en ingresos del ciclo 2019-2022 (Catar 2022 generó la mayor parte)",
+    "tvDeals2022": "Telemundo (USA-Hispanos) pagó 600M USD por derechos exclusivos hispanos USA. Globo (Brasil) 400M USD."
+  }
+}

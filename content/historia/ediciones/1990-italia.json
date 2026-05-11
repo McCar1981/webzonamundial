@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "edicion": 14,
+    "anio": 1990,
+    "slug": "1990-italia",
+    "tituloOficial": "Copa Mundial de Fútbol 1990",
+    "nombreCorto": "Italia 1990",
+    "era": "moderna"
+  },
+  "sede": {
+    "paises": [
+      { "nombre": "Italia", "iso2": "it", "iso3": "ITA", "banderaUrl": "https://flagcdn.com/w160/it.png" }
+    ],
+    "ciudades": ["Roma", "Milán", "Nápoles", "Turín", "Florencia", "Bolonia", "Bari", "Verona", "Cagliari", "Génova", "Palermo", "Udine"],
+    "estadios": ["Olímpico (Roma)", "Giuseppe Meazza", "San Paolo", "Stadio delle Alpi", "Artemio Franchi", "Renato Dall'Ara", "San Nicola"]
+  },
+  "fechas": { "inicio": "1990-06-08", "final": "1990-07-08", "duracionDias": 31 },
+  "formato": {
+    "numEquipos": 24,
+    "numPartidos": 52,
+    "sistemaEliminatoria": "octavos",
+    "numGrupos": 6
+  },
+  "resultados": {
+    "campeon": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU", "banderaUrl": "https://flagcdn.com/w160/de.png" },
+    "subcampeon": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG", "banderaUrl": "https://flagcdn.com/w160/ar.png" },
+    "tercero": { "pais": "Italia", "iso2": "it", "iso3": "ITA", "banderaUrl": "https://flagcdn.com/w160/it.png" },
+    "cuarto": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG", "banderaUrl": "https://flagcdn.com/w160/gb-eng.png" }
+  },
+  "estadisticas": {
+    "totalGoles": 115,
+    "promedioGolesPartido": 2.21,
+    "asistenciaTotal": 2516348,
+    "asistenciaPromedio": 48391
+  },
+  "identidadVisual": {
+    "eslogan": "Notti Magiche",
+    "mascota": "Ciao",
+    "balon": "Etrusco Unico",
+    "colorPrincipal": "#008C45"
+  },
+  "partidoFinal": {
+    "fecha": "1990-07-08",
+    "ciudad": "Roma",
+    "estadio": "Stadio Olimpico",
+    "local": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" },
+    "visitante": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" },
+    "marcador": "1-0",
+    "asistencia": 73603,
+    "arbitro": "Edgardo Codesal (México)"
+  },
+  "topGoleadores": [
+    {
+      "nombre": "Salvatore Schillaci",
+      "seleccion": { "pais": "Italia", "iso2": "it", "iso3": "ITA" },
+      "goles": 6,
+      "botaOro": true
+    },
+    {
+      "nombre": "Tomáš Skuhravý",
+      "seleccion": { "pais": "Checoslovaquia", "iso2": "cz", "iso3": "CZE" },
+      "goles": 5
+    },
+    {
+      "nombre": "Roger Milla",
+      "seleccion": { "pais": "Camerún", "iso2": "cm", "iso3": "CMR" },
+      "goles": 4
+    }
+  ],
+  "premios": {
+    "balonOro": "Salvatore Schillaci (Italia)"
+  },
+  "contextoHistorico": {
+    "resumen": "Última participación de Alemania Federal, URSS, Yugoslavia y Checoslovaquia antes de su disolución. El torneo registró el promedio histórico de goles más bajo (2,21 g/p), reflejo de un fútbol cada vez más defensivo. Camerún se convirtió en la primera selección africana en alcanzar cuartos, con un Roger Milla de 38 años bailando en cada córner. La final, marcada por el penal de Brehme y las lágrimas de Maradona, fue la primera con expulsión: Pedro Monzón (Argentina) y Gustavo Dezotti.",
+    "eventos": [
+      "Camerún 1-0 Argentina en partido inaugural: con dos jugadores expulsados, derrotaron al campeón vigente.",
+      "Maradona-Caniggia eliminan a Brasil con un cabezazo legendario en Turín.",
+      "El '¡Notti Magiche!' compuesto por Edoardo Bennato y Gianna Nannini se convirtió en uno de los himnos mundialistas más recordados."
+    ]
+  },
+  "plantillaCampeon": [
+    { "dorsal": 1, "nombre": "Bodo Illgner", "posicion": "GK", "clubOrigen": "1. FC Köln", "edad": 23 },
+    { "dorsal": 2, "nombre": "Stefan Reuter", "posicion": "DEF", "clubOrigen": "Bayern Múnich", "edad": 24 },
+    { "dorsal": 3, "nombre": "Andreas Brehme", "posicion": "DEF", "clubOrigen": "Inter de Milán", "edad": 29, "goles": 1 },
+    { "dorsal": 4, "nombre": "Jürgen Kohler", "posicion": "DEF", "clubOrigen": "Bayern Múnich", "edad": 24 },
+    { "dorsal": 5, "nombre": "Klaus Augenthaler", "posicion": "DEF", "clubOrigen": "Bayern Múnich", "edad": 32 },
+    { "dorsal": 7, "nombre": "Pierre Littbarski", "posicion": "MID", "clubOrigen": "1. FC Köln", "edad": 30, "goles": 1 },
+    { "dorsal": 8, "nombre": "Thomas Häßler", "posicion": "MID", "clubOrigen": "1. FC Köln", "edad": 24 },
+    { "dorsal": 10, "nombre": "Lothar Matthäus", "posicion": "MID", "clubOrigen": "Inter de Milán", "edad": 29, "capitan": true, "goles": 4 },
+    { "dorsal": 14, "nombre": "Thomas Berthold", "posicion": "DEF", "clubOrigen": "Roma", "edad": 25 },
+    { "dorsal": 18, "nombre": "Jürgen Klinsmann", "posicion": "FWD", "clubOrigen": "Inter de Milán", "edad": 25, "goles": 3 },
+    { "dorsal": 9, "nombre": "Rudi Völler", "posicion": "FWD", "clubOrigen": "Roma", "edad": 30, "goles": 3 }
+  ],
+  "fasesKO": {
+    "octavos": [
+      { "fecha": "1990-06-23", "ciudad": "Nápoles", "estadio": "San Paolo", "local": { "pais": "Camerún", "iso2": "cm", "iso3": "CMR" }, "visitante": { "pais": "Colombia", "iso2": "co", "iso3": "COL" }, "marcador": "2-1 (prórroga)" },
+      { "fecha": "1990-06-23", "ciudad": "Bari", "estadio": "San Nicola", "local": { "pais": "Checoslovaquia", "iso2": "cz", "iso3": "CZE" }, "visitante": { "pais": "Costa Rica", "iso2": "cr", "iso3": "CRI" }, "marcador": "4-1" },
+      { "fecha": "1990-06-24", "ciudad": "Turín", "estadio": "Stadio delle Alpi", "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "visitante": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "marcador": "0-1" },
+      { "fecha": "1990-06-24", "ciudad": "Milán", "estadio": "Giuseppe Meazza", "local": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" }, "visitante": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD" }, "marcador": "2-1" },
+      { "fecha": "1990-06-25", "ciudad": "Roma", "estadio": "Olímpico", "local": { "pais": "Italia", "iso2": "it", "iso3": "ITA" }, "visitante": { "pais": "Uruguay", "iso2": "uy", "iso3": "URY" }, "marcador": "2-0" },
+      { "fecha": "1990-06-25", "ciudad": "Verona", "estadio": "Marc'Antonio Bentegodi", "local": { "pais": "Yugoslavia", "iso2": "rs", "iso3": "SRB" }, "visitante": { "pais": "España", "iso2": "es", "iso3": "ESP" }, "marcador": "2-1 (prórroga)" },
+      { "fecha": "1990-06-26", "ciudad": "Génova", "estadio": "Luigi Ferraris", "local": { "pais": "República de Irlanda", "iso2": "ie", "iso3": "IRL" }, "visitante": { "pais": "Rumania", "iso2": "ro", "iso3": "ROU" }, "marcador": "0-0 (penales 5-4)" },
+      { "fecha": "1990-06-26", "ciudad": "Bolonia", "estadio": "Renato Dall'Ara", "local": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG" }, "visitante": { "pais": "Bélgica", "iso2": "be", "iso3": "BEL" }, "marcador": "1-0 (prórroga)" }
+    ],
+    "cuartos": [
+      { "fecha": "1990-06-30", "ciudad": "Florencia", "estadio": "Artemio Franchi", "local": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "visitante": { "pais": "Yugoslavia", "iso2": "rs", "iso3": "SRB" }, "marcador": "0-0 (penales 3-2)" },
+      { "fecha": "1990-06-30", "ciudad": "Roma", "estadio": "Olímpico", "local": { "pais": "Italia", "iso2": "it", "iso3": "ITA" }, "visitante": { "pais": "República de Irlanda", "iso2": "ie", "iso3": "IRL" }, "marcador": "1-0" },
+      { "fecha": "1990-07-01", "ciudad": "Nápoles", "estadio": "San Paolo", "local": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" }, "visitante": { "pais": "Checoslovaquia", "iso2": "cz", "iso3": "CZE" }, "marcador": "1-0" },
+      { "fecha": "1990-07-01", "ciudad": "Nápoles", "estadio": "San Paolo", "local": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG" }, "visitante": { "pais": "Camerún", "iso2": "cm", "iso3": "CMR" }, "marcador": "3-2 (prórroga)" }
+    ],
+    "semifinales": [
+      { "fecha": "1990-07-03", "ciudad": "Nápoles", "estadio": "San Paolo", "local": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "visitante": { "pais": "Italia", "iso2": "it", "iso3": "ITA" }, "marcador": "1-1 (penales 4-3)" },
+      { "fecha": "1990-07-04", "ciudad": "Turín", "estadio": "Stadio delle Alpi", "local": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" }, "visitante": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG" }, "marcador": "1-1 (penales 4-3)" }
+    ]
+  },
+  "recordsEdicion": [
+    { "categoria": "racha", "descripcion": "Promedio histórico más bajo de goles por partido: 2,21 g/p. Reflejo del fútbol más defensivo de la historia mundialista", "valor": "2,21 g/p" },
+    { "categoria": "seleccion", "descripcion": "Camerún 1-0 Argentina (campeón vigente) en partido inaugural con 9 hombres: primera victoria africana ante un campeón mundial vigente", "valor": "Camerún sorpresa" },
+    { "categoria": "disciplinario", "descripcion": "Pedro Monzón (ARG): primera roja en una final mundialista. Gustavo Dezotti la siguió: 2 rojas en una sola final, récord vigente", "valor": "2 rojas en final" },
+    { "categoria": "jugador", "descripcion": "Roger Milla, con 38 años, popularizó el baile de córner: la celebración más imitada del fútbol moderno", "valor": "Baile Milla" },
+    { "categoria": "tactica", "descripcion": "FIFA reformó las reglas tras este Mundial: prohibió ceder al portero con el pie (1992), cambio motivado por el aburrimiento del torneo italiano", "valor": "Reforma reglas" }
+  ],
+  "curiosidades": [
+    {
+      "categoria": "jugador",
+      "texto": "Roger Milla, con 38 años, popularizó el baile de córner como celebración: una coreografía espontánea que se convertiría en parte del lenguaje futbolístico universal."
+    },
+    {
+      "categoria": "hito",
+      "texto": "Tras la final, Maradona lloró desconsoladamente acusando a la prensa italiana de haberle silbado el himno. Sería su última gran imagen mundialista antes de la suspensión por dopaje en 1991."
+    },
+    {
+      "categoria": "politica",
+      "texto": "Última participación de Alemania Federal, URSS, Yugoslavia y Checoslovaquia. En el Mundial siguiente (1994) las cuatro habrían dejado de existir como tales: el deporte registró la caída del bloque socialista."
+    },
+    {
+      "categoria": "tragedia",
+      "texto": "Salvatore 'Totò' Schillaci pasó de jugador casi desconocido del Juventus a héroe nacional con sus 6 goles. Apodado 'Notti Magiche' por la canción del Mundial. Falleció de cáncer de colon en 2024 con apenas 59 años."
+    },
+    {
+      "categoria": "balon",
+      "texto": "El Adidas Etrusco Unico fue el primer balón con cubierta de espuma interna entre paneles, mejorando el rebote y la dureza. Su nombre homenajea a la civilización etrusca italiana."
+    },
+    {
+      "categoria": "arbitro",
+      "texto": "Edgardo Codesal (México) pitó la final RFA-Argentina con dos rojas y un penal polémico a 5 minutos del final. Maradona lo acusó de cobardía. Codesal nunca volvió a arbitrar partidos importantes."
+    }
+  ],
+  "fuentes": [
+    { "nombre": "FIFA Archive — World Cup 1990", "url": "https://www.fifa.com/tournaments/mens/worldcup/1990italy" },
+    { "nombre": "RSSSF — World Cup 1990", "url": "https://www.rsssf.org/tables/90full.html" }
+  ]
+}

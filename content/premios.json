@@ -1,0 +1,70 @@
+{
+  "premiosPorEdicion": [
+    { "anio": 1930, "edicionSlug": "1930-uruguay", "balonOro": "José Nasazzi (Uruguay)", "botaOro": "Guillermo Stábile (Argentina, 8)", "datoClave": "El Balón de Oro retrospectivo se otorgó en 2002. Stábile recibió Bota retrospectiva FIFA." },
+    { "anio": 1934, "edicionSlug": "1934-italia", "balonOro": "Giuseppe Meazza (Italia)", "botaOro": "Oldřich Nejedlý (Checoslovaquia, 5)", "datoClave": "Premios retrospectivos. Meazza fue el referente ofensivo del bicampeonato italiano." },
+    { "anio": 1938, "edicionSlug": "1938-francia", "balonOro": "Leônidas (Brasil)", "botaOro": "Leônidas (Brasil, 7)", "datoClave": "Leônidas ganó Balón y Bota pese a ser solo tercer puesto. Italia bicampeón sin estrella destacada." },
+    { "anio": 1950, "edicionSlug": "1950-brasil", "balonOro": "Zizinho (Brasil)", "botaOro": "Ademir (Brasil, 9)", "datoClave": "Ademir lideró goleadores pese al Maracanazo. Zizinho considerado el mejor jugador del torneo retrospectivamente." },
+    { "anio": 1954, "edicionSlug": "1954-suiza", "balonOro": "Ferenc Puskás (Hungría)", "botaOro": "Sándor Kocsis (Hungría, 11)", "datoClave": "Hungría se llevó Balón y Bota pese a perder el Milagro de Berna. Récord goleador húngaro mantuvo intacto 4 años." },
+    { "anio": 1958, "edicionSlug": "1958-suecia", "balonOro": "Didi (Brasil)", "botaOro": "Just Fontaine (Francia, 13)", "datoClave": "Fontaine impuso el récord histórico inalcanzable. Didi como motor del Brasil tetracampeón." },
+    { "anio": 1962, "edicionSlug": "1962-chile", "balonOro": "Garrincha (Brasil)", "botaOro": "6 jugadores empatados con 4", "datoClave": "Bota más repartida de la historia: Garrincha, Vavá, Sánchez, Albert, Ivanov y Jerković." },
+    { "anio": 1966, "edicionSlug": "1966-inglaterra", "balonOro": "Bobby Charlton (Inglaterra)", "botaOro": "Eusébio (Portugal, 9)", "datoClave": "Eusébio cuarto puesto pero Bota; Charlton Balón con campeón inglés." },
+    { "anio": 1970, "edicionSlug": "1970-mexico", "balonOro": "Pelé (Brasil)", "botaOro": "Gerd Müller (RFA, 10)", "datoClave": "Müller con 10 goles en su primer Mundial. Pelé Balón con tricampeón." },
+    { "anio": 1974, "edicionSlug": "1974-alemania", "balonOro": "Johan Cruyff (Países Bajos)", "botaOro": "Grzegorz Lato (Polonia, 7)", "datoClave": "Cruyff Balón pese a perder final. Lato Bota con Polonia tercer puesto." },
+    { "anio": 1978, "edicionSlug": "1978-argentina", "balonOro": "Mario Kempes (Argentina)", "botaOro": "Mario Kempes (Argentina, 6)", "datoClave": "Kempes triplete: Balón + Bota + Mundial. Único caso hasta Maradona 86." },
+    { "anio": 1982, "edicionSlug": "1982-espana", "balonOro": "Paolo Rossi (Italia)", "botaOro": "Paolo Rossi (Italia, 6)", "datoClave": "Rossi triplete: redención total tras 2 años suspendido por Totonero. Único caso en Italia." },
+    { "anio": 1986, "edicionSlug": "1986-mexico", "balonOro": "Diego Maradona (Argentina)", "botaOro": "Gary Lineker (Inglaterra, 6)", "datoClave": "Maradona Balón pero no Bota: 5 goles + 5 asistencias documentadas. Lineker Bota con Inglaterra eliminada en cuartos." },
+    { "anio": 1990, "edicionSlug": "1990-italia", "balonOro": "Salvatore Schillaci (Italia)", "botaOro": "Salvatore Schillaci (Italia, 6)", "datoClave": "Triplete italiano (Balón + Bota + 3er puesto local). Schillaci pasó del banco al héroe nacional." },
+    { "anio": 1994, "edicionSlug": "1994-eeuu", "balonOro": "Romário (Brasil)", "botaOro": "Salenko + Stoichkov (6)", "datoClave": "Romário Balón con tetracampeón. Salenko (5 goles vs Camerún) y Stoichkov empatados en Bota." },
+    { "anio": 1998, "edicionSlug": "1998-francia", "balonOro": "Ronaldo (Brasil)", "botaOro": "Davor Šuker (Croacia, 6)", "datoClave": "Ronaldo Balón pese a la convulsión. Šuker Bota con Croacia tercer puesto histórico." },
+    { "anio": 2002, "edicionSlug": "2002-corea-japon", "balonOro": "Oliver Kahn (Alemania)", "botaOro": "Ronaldo (Brasil, 8)", "guanteOro": "Oliver Kahn (Alemania)", "mejorJoven": "Landon Donovan (EE.UU.)", "datoClave": "Kahn ÚNICO portero Balón Oro de la historia. Ronaldo redención perfecta. Mejor Joven debutó como categoría informal." },
+    { "anio": 2006, "edicionSlug": "2006-alemania", "balonOro": "Zinedine Zidane (Francia)", "botaOro": "Miroslav Klose (Alemania, 5)", "guanteOro": "Gianluigi Buffon (Italia)", "mejorJoven": "Lukas Podolski (Alemania)", "fairPlay": "Brasil + España", "datoClave": "Zidane Balón pese al cabezazo y la roja. Mejor Joven oficial estrenado: Podolski." },
+    { "anio": 2010, "edicionSlug": "2010-sudafrica", "balonOro": "Diego Forlán (Uruguay)", "botaOro": "Thomas Müller (Alemania, 5)", "guanteOro": "Iker Casillas (España)", "mejorJoven": "Thomas Müller (Alemania)", "fairPlay": "España", "datoClave": "Forlán Balón pese a Uruguay 4° puesto. Müller doble: Bota + Mejor Joven (único hasta hoy)." },
+    { "anio": 2014, "edicionSlug": "2014-brasil", "balonOro": "Lionel Messi (Argentina)", "botaOro": "James Rodríguez (Colombia, 6)", "guanteOro": "Manuel Neuer (Alemania)", "mejorJoven": "Paul Pogba (Francia)", "fairPlay": "Colombia", "datoClave": "Messi Balón pese a perder final: criticado por la prensa. James Bota con Colombia eliminada en cuartos." },
+    { "anio": 2018, "edicionSlug": "2018-rusia", "balonOro": "Luka Modrić (Croacia)", "botaOro": "Harry Kane (Inglaterra, 6)", "guanteOro": "Thibaut Courtois (Bélgica)", "mejorJoven": "Kylian Mbappé (Francia)", "fairPlay": "España", "datoClave": "Modrić Balón con Croacia subcampeón histórico. Kane Bota con 3 penales (criticado). Mbappé Mejor Joven a los 19 con título." },
+    { "anio": 2022, "edicionSlug": "2022-qatar", "balonOro": "Lionel Messi (Argentina)", "botaOro": "Kylian Mbappé (Francia, 8)", "guanteOro": "Emiliano Martínez (Argentina)", "mejorJoven": "Enzo Fernández (Argentina)", "fairPlay": "Inglaterra", "datoClave": "Messi 2° Balón Oro Mundial (único en hacerlo). Mbappé Bota Oro pese a perder. Argentina premio cuádruple Balón+Guante+Mejor Joven+Mundial." }
+  ],
+  "rankingsAllTime": {
+    "balonesOro": [
+      { "jugador": "Lionel Messi", "veces": 2, "anios": [2014, 2022], "seleccion": { "pais": "Argentina", "iso2": "ar" } },
+      { "jugador": "Mario Kempes", "veces": 1, "anios": [1978], "seleccion": { "pais": "Argentina", "iso2": "ar" } },
+      { "jugador": "Paolo Rossi", "veces": 1, "anios": [1982], "seleccion": { "pais": "Italia", "iso2": "it" } },
+      { "jugador": "Diego Maradona", "veces": 1, "anios": [1986], "seleccion": { "pais": "Argentina", "iso2": "ar" } },
+      { "jugador": "Salvatore Schillaci", "veces": 1, "anios": [1990], "seleccion": { "pais": "Italia", "iso2": "it" } },
+      { "jugador": "Romário", "veces": 1, "anios": [1994], "seleccion": { "pais": "Brasil", "iso2": "br" } },
+      { "jugador": "Ronaldo", "veces": 1, "anios": [1998], "seleccion": { "pais": "Brasil", "iso2": "br" } },
+      { "jugador": "Oliver Kahn", "veces": 1, "anios": [2002], "seleccion": { "pais": "Alemania", "iso2": "de" } },
+      { "jugador": "Zinedine Zidane", "veces": 1, "anios": [2006], "seleccion": { "pais": "Francia", "iso2": "fr" } },
+      { "jugador": "Diego Forlán", "veces": 1, "anios": [2010], "seleccion": { "pais": "Uruguay", "iso2": "uy" } },
+      { "jugador": "Luka Modrić", "veces": 1, "anios": [2018], "seleccion": { "pais": "Croacia", "iso2": "hr" } }
+    ],
+    "botasOro": [
+      { "jugador": "Just Fontaine", "veces": 1, "anios": [1958], "goles": 13, "seleccion": { "pais": "Francia", "iso2": "fr" } },
+      { "jugador": "Sándor Kocsis", "veces": 1, "anios": [1954], "goles": 11, "seleccion": { "pais": "Hungría", "iso2": "hu" } },
+      { "jugador": "Gerd Müller", "veces": 1, "anios": [1970], "goles": 10, "seleccion": { "pais": "Alemania Federal", "iso2": "de" } },
+      { "jugador": "Ademir", "veces": 1, "anios": [1950], "goles": 9, "seleccion": { "pais": "Brasil", "iso2": "br" } },
+      { "jugador": "Eusébio", "veces": 1, "anios": [1966], "goles": 9, "seleccion": { "pais": "Portugal", "iso2": "pt" } },
+      { "jugador": "Ronaldo", "veces": 1, "anios": [2002], "goles": 8, "seleccion": { "pais": "Brasil", "iso2": "br" } },
+      { "jugador": "Kylian Mbappé", "veces": 1, "anios": [2022], "goles": 8, "seleccion": { "pais": "Francia", "iso2": "fr" } },
+      { "jugador": "Guillermo Stábile", "veces": 1, "anios": [1930], "goles": 8, "seleccion": { "pais": "Argentina", "iso2": "ar" } },
+      { "jugador": "Leônidas", "veces": 1, "anios": [1938], "goles": 7, "seleccion": { "pais": "Brasil", "iso2": "br" } },
+      { "jugador": "Grzegorz Lato", "veces": 1, "anios": [1974], "goles": 7, "seleccion": { "pais": "Polonia", "iso2": "pl" } },
+      { "jugador": "Mario Kempes", "veces": 1, "anios": [1978], "goles": 6, "seleccion": { "pais": "Argentina", "iso2": "ar" } },
+      { "jugador": "Paolo Rossi", "veces": 1, "anios": [1982], "goles": 6, "seleccion": { "pais": "Italia", "iso2": "it" } },
+      { "jugador": "Gary Lineker", "veces": 1, "anios": [1986], "goles": 6, "seleccion": { "pais": "Inglaterra", "iso2": "gb-eng" } },
+      { "jugador": "Salvatore Schillaci", "veces": 1, "anios": [1990], "goles": 6, "seleccion": { "pais": "Italia", "iso2": "it" } },
+      { "jugador": "Davor Šuker", "veces": 1, "anios": [1998], "goles": 6, "seleccion": { "pais": "Croacia", "iso2": "hr" } },
+      { "jugador": "Miroslav Klose", "veces": 1, "anios": [2006], "goles": 5, "seleccion": { "pais": "Alemania", "iso2": "de" } },
+      { "jugador": "Thomas Müller", "veces": 1, "anios": [2010], "goles": 5, "seleccion": { "pais": "Alemania", "iso2": "de" } },
+      { "jugador": "James Rodríguez", "veces": 1, "anios": [2014], "goles": 6, "seleccion": { "pais": "Colombia", "iso2": "co" } },
+      { "jugador": "Harry Kane", "veces": 1, "anios": [2018], "goles": 6, "seleccion": { "pais": "Inglaterra", "iso2": "gb-eng" } }
+    ],
+    "guantesOro": [
+      { "jugador": "Oliver Kahn", "anio": 2002, "seleccion": { "pais": "Alemania", "iso2": "de" }, "datoClave": "ÚNICO portero Balón Oro Mundial" },
+      { "jugador": "Gianluigi Buffon", "anio": 2006, "seleccion": { "pais": "Italia", "iso2": "it" }, "datoClave": "2 goles encajados en 7 partidos (autogol + penal)" },
+      { "jugador": "Iker Casillas", "anio": 2010, "seleccion": { "pais": "España", "iso2": "es" }, "datoClave": "España campeona con solo 2 goles encajados" },
+      { "jugador": "Manuel Neuer", "anio": 2014, "seleccion": { "pais": "Alemania", "iso2": "de" }, "datoClave": "El portero-líbero que revolucionó la posición" },
+      { "jugador": "Thibaut Courtois", "anio": 2018, "seleccion": { "pais": "Bélgica", "iso2": "be" }, "datoClave": "27 paradas en el torneo con Bélgica 3er puesto" },
+      { "jugador": "Emiliano Martínez", "anio": 2022, "seleccion": { "pais": "Argentina", "iso2": "ar" }, "datoClave": "El parado decisivo a Kolo Muani al 123' de la final" }
+    ]
+  }
+}

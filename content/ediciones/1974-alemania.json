@@ -1,0 +1,140 @@
+{
+  "meta": {
+    "edicion": 10,
+    "anio": 1974,
+    "slug": "1974-alemania",
+    "tituloOficial": "Copa Mundial de Fútbol 1974",
+    "nombreCorto": "Alemania Federal 1974",
+    "era": "clasica"
+  },
+  "sede": {
+    "paises": [
+      { "nombre": "Alemania Federal", "iso2": "de", "iso3": "DEU", "banderaUrl": "https://flagcdn.com/w160/de.png" }
+    ],
+    "ciudades": ["Múnich", "Berlín Oeste", "Hamburgo", "Düsseldorf", "Fráncfort", "Stuttgart", "Dortmund", "Hannover", "Gelsenkirchen"],
+    "estadios": ["Olympiastadion (Múnich)", "Olympiastadion (Berlín)", "Volksparkstadion", "Westfalenstadion", "Waldstadion"]
+  },
+  "fechas": { "inicio": "1974-06-13", "final": "1974-07-07", "duracionDias": 25 },
+  "formato": {
+    "numEquipos": 16,
+    "numPartidos": 38,
+    "sistemaEliminatoria": "grupo-final",
+    "numGrupos": 4
+  },
+  "resultados": {
+    "campeon": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU", "banderaUrl": "https://flagcdn.com/w160/de.png" },
+    "subcampeon": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD", "banderaUrl": "https://flagcdn.com/w160/nl.png" },
+    "tercero": { "pais": "Polonia", "iso2": "pl", "iso3": "POL", "banderaUrl": "https://flagcdn.com/w160/pl.png" },
+    "cuarto": { "pais": "Brasil", "iso2": "br", "iso3": "BRA", "banderaUrl": "https://flagcdn.com/w160/br.png" }
+  },
+  "estadisticas": {
+    "totalGoles": 97,
+    "promedioGolesPartido": 2.55,
+    "asistenciaTotal": 1865762,
+    "asistenciaPromedio": 49099
+  },
+  "identidadVisual": {
+    "eslogan": "Tip & Tap",
+    "mascota": "Tip y Tap",
+    "balon": "Telstar Durlast",
+    "colorPrincipal": "#000000"
+  },
+  "partidoFinal": {
+    "fecha": "1974-07-07",
+    "ciudad": "Múnich",
+    "estadio": "Olympiastadion",
+    "local": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" },
+    "visitante": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD" },
+    "marcador": "2-1",
+    "asistencia": 75200,
+    "arbitro": "Jack Taylor (Inglaterra)"
+  },
+  "topGoleadores": [
+    {
+      "nombre": "Grzegorz Lato",
+      "seleccion": { "pais": "Polonia", "iso2": "pl", "iso3": "POL" },
+      "goles": 7,
+      "botaOro": true
+    },
+    {
+      "nombre": "Andrzej Szarmach",
+      "seleccion": { "pais": "Polonia", "iso2": "pl", "iso3": "POL" },
+      "goles": 5
+    },
+    {
+      "nombre": "Johan Neeskens",
+      "seleccion": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD" },
+      "goles": 5
+    }
+  ],
+  "premios": {
+    "balonOro": "Johan Cruyff (Países Bajos)"
+  },
+  "contextoHistorico": {
+    "resumen": "Estreno del nuevo trofeo FIFA, diseñado por Silvio Gazzaniga, tras el retiro de la Jules Rimet. La 'Naranja Mecánica' de Rinus Michels y Johan Cruyff revolucionó el fútbol con el 'totaalvoetbal', pero cayó en la final ante una Alemania Occidental dirigida por Helmut Schön. Único cruce entre las dos Alemanias en un Mundial: la RDA venció 1-0 a la RFA en fase de grupos.",
+    "eventos": [
+      "Cruyff Turn vs Suecia: el regate más célebre de la historia, copiado por generaciones.",
+      "Penal de Neeskens al minuto 1m25s: gol más rápido jamás anotado en una final mundialista.",
+      "Yugoslavia 9-0 Zaire: una de las mayores goleadas en fase de grupos de un Mundial."
+    ]
+  },
+  "plantillaCampeon": [
+    { "dorsal": 1, "nombre": "Sepp Maier", "posicion": "GK", "clubOrigen": "Bayern Múnich", "edad": 30 },
+    { "dorsal": 2, "nombre": "Berti Vogts", "posicion": "DEF", "clubOrigen": "Borussia Mönchengladbach", "edad": 27 },
+    { "dorsal": 3, "nombre": "Paul Breitner", "posicion": "DEF", "clubOrigen": "Bayern Múnich", "edad": 22, "goles": 3 },
+    { "dorsal": 4, "nombre": "Hans-Georg Schwarzenbeck", "posicion": "DEF", "clubOrigen": "Bayern Múnich", "edad": 26 },
+    { "dorsal": 5, "nombre": "Franz Beckenbauer", "posicion": "DEF", "clubOrigen": "Bayern Múnich", "edad": 28, "capitan": true },
+    { "dorsal": 6, "nombre": "Wolfgang Overath", "posicion": "MID", "clubOrigen": "1. FC Köln", "edad": 30, "goles": 1 },
+    { "dorsal": 8, "nombre": "Bernhard Cullmann", "posicion": "MID", "clubOrigen": "1. FC Köln", "edad": 24, "goles": 1 },
+    { "dorsal": 11, "nombre": "Jürgen Grabowski", "posicion": "FWD", "clubOrigen": "Eintracht Frankfurt", "edad": 30, "goles": 1 },
+    { "dorsal": 13, "nombre": "Gerd Müller", "posicion": "FWD", "clubOrigen": "Bayern Múnich", "edad": 28, "goles": 4 },
+    { "dorsal": 16, "nombre": "Rainer Bonhof", "posicion": "MID", "clubOrigen": "Borussia Mönchengladbach", "edad": 22 },
+    { "dorsal": 17, "nombre": "Uli Hoeneß", "posicion": "FWD", "clubOrigen": "Bayern Múnich", "edad": 22, "goles": 1 }
+  ],
+  "fasesKO": {
+    "semifinales": [
+      { "fecha": "1974-07-03", "ciudad": "Múnich", "estadio": "Olympiastadion", "local": { "pais": "Alemania Federal", "iso2": "de", "iso3": "DEU" }, "visitante": { "pais": "Polonia", "iso2": "pl", "iso3": "POL" }, "marcador": "1-0" },
+      { "fecha": "1974-07-03", "ciudad": "Dortmund", "estadio": "Westfalenstadion", "local": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD" }, "visitante": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "marcador": "2-0" }
+    ]
+  },
+  "hatTricks": [
+    { "jugador": "Andrzej Szarmach", "seleccion": { "pais": "Polonia", "iso2": "pl", "iso3": "POL" }, "fase": "Grupos", "rival": { "pais": "Haití", "iso2": "ht", "iso3": "HTI" }, "goles": 3, "marcador": "7-0" }
+  ],
+  "recordsEdicion": [
+    { "categoria": "jugador", "descripcion": "Penal de Johan Neeskens al minuto 1m25s: gol más rápido de la historia en una final mundialista", "valor": "1m25s" },
+    { "categoria": "balon", "descripcion": "Estreno del nuevo trofeo FIFA actual diseñado por Silvio Gazzaniga (oro macizo de 18 quilates, 6,1 kg)", "valor": "Trofeo FIFA #2" },
+    { "categoria": "tactica", "descripcion": "Países Bajos populariza el 'totaalvoetbal' (fútbol total) de Rinus Michels y Johan Cruyff", "valor": "Totaalvoetbal" },
+    { "categoria": "politica", "descripcion": "Único cruce mundialista entre las dos Alemanias (RDA 1-0 RFA en grupos): los alemanes occidentales perdieron pero acabaron campeones", "valor": "RDA-RFA" },
+    { "categoria": "estadio", "descripcion": "Olympiastadion de Múnich estrenó el techo de membrana acrílica más grande del mundo en su época, símbolo de la modernidad alemana posbélica", "valor": "Techo histórico" }
+  ],
+  "curiosidades": [
+    {
+      "categoria": "jugador",
+      "texto": "Mwepu Ilunga (Zaire) pateó deliberadamente la pelota a la grada en un tiro libre brasileño buscando expulsión: el dictador Mobutu había amenazado al equipo si perdían por 4 o más goles."
+    },
+    {
+      "categoria": "hito",
+      "texto": "Franz Beckenbauer levantó el primer trofeo FIFA actual, una pieza de oro macizo de 6 kg diseñada por el escultor italiano Gazzaniga sobre 53 propuestas presentadas."
+    },
+    {
+      "categoria": "jugador",
+      "texto": "El 'Cruyff Turn' (regate hacia adentro tras amago) nació el 19 de junio de 1974 vs Suecia, ante el defensa Jan Olsson. La jugada se enseña hoy como técnica básica en academias de todo el mundo."
+    },
+    {
+      "categoria": "politica",
+      "texto": "Chile clasificó tras un repechaje fantasma vs URSS: los soviéticos rehusaron jugar la vuelta en el Estadio Nacional de Santiago tras saber que había sido usado como centro de detención y tortura post-golpe de Pinochet. Chile sacó del centro y empujó la pelota a portería vacía: clasificación absurda pero oficial."
+    },
+    {
+      "categoria": "balon",
+      "texto": "El Telstar Durlast fue el primer balón mundialista con superficie de poliuretano (Durlast). Adidas patentó el material y dominaría el Mundial sin interrupción desde entonces hasta hoy: 56 años de monopolio."
+    },
+    {
+      "categoria": "misc",
+      "texto": "Australia debutó en un Mundial. Su entrenador Rale Rasic les hizo viajar 28.000 km con escalas y avión de hélice. Australia volvió a clasificarse 32 años después (2006)."
+    }
+  ],
+  "fuentes": [
+    { "nombre": "FIFA Archive — World Cup 1974", "url": "https://www.fifa.com/tournaments/mens/worldcup/1974germany" },
+    { "nombre": "RSSSF — World Cup 1974", "url": "https://www.rsssf.org/tables/74full.html" }
+  ]
+}

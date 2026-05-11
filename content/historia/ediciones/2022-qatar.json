@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "edicion": 22,
+    "anio": 2022,
+    "slug": "2022-qatar",
+    "tituloOficial": "Copa Mundial de Fútbol 2022",
+    "nombreCorto": "Catar 2022",
+    "era": "contemporanea"
+  },
+  "sede": {
+    "paises": [
+      { "nombre": "Catar", "iso2": "qa", "iso3": "QAT", "banderaUrl": "https://flagcdn.com/w160/qa.png" }
+    ],
+    "ciudades": ["Doha", "Lusail", "Al Khor", "Al Rayyan", "Al Wakrah"],
+    "estadios": ["Lusail Iconic Stadium", "Stadium 974", "Al Bayt", "Education City", "Khalifa International", "Al Janoub", "Ahmad bin Ali", "Al Thumama"]
+  },
+  "fechas": { "inicio": "2022-11-20", "final": "2022-12-18", "duracionDias": 29 },
+  "formato": {
+    "numEquipos": 32,
+    "numPartidos": 64,
+    "sistemaEliminatoria": "octavos",
+    "numGrupos": 8
+  },
+  "resultados": {
+    "campeon": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG", "banderaUrl": "https://flagcdn.com/w160/ar.png" },
+    "subcampeon": { "pais": "Francia", "iso2": "fr", "iso3": "FRA", "banderaUrl": "https://flagcdn.com/w160/fr.png" },
+    "tercero": { "pais": "Croacia", "iso2": "hr", "iso3": "HRV", "banderaUrl": "https://flagcdn.com/w160/hr.png" },
+    "cuarto": { "pais": "Marruecos", "iso2": "ma", "iso3": "MAR", "banderaUrl": "https://flagcdn.com/w160/ma.png" }
+  },
+  "estadisticas": {
+    "totalGoles": 172,
+    "promedioGolesPartido": 2.69,
+    "asistenciaTotal": 3404252,
+    "asistenciaPromedio": 53191
+  },
+  "identidadVisual": {
+    "eslogan": "Now is All",
+    "mascota": "La'eeb",
+    "balon": "Al Rihla",
+    "colorPrincipal": "#8A1538"
+  },
+  "partidoFinal": {
+    "fecha": "2022-12-18",
+    "ciudad": "Lusail",
+    "estadio": "Lusail Iconic Stadium",
+    "local": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" },
+    "visitante": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" },
+    "marcador": "3-3 (penales 4-2)",
+    "asistencia": 88966,
+    "arbitro": "Szymon Marciniak (Polonia)",
+    "goleadores": [
+      { "jugador": "Lionel Messi", "minuto": "23'", "tipo": "penal" },
+      { "jugador": "Ángel Di María", "minuto": "36'" },
+      { "jugador": "Kylian Mbappé", "minuto": "80'", "tipo": "penal" },
+      { "jugador": "Kylian Mbappé", "minuto": "81'" },
+      { "jugador": "Lionel Messi", "minuto": "108'" },
+      { "jugador": "Kylian Mbappé", "minuto": "118'", "tipo": "penal" }
+    ]
+  },
+  "topGoleadores": [
+    {
+      "nombre": "Kylian Mbappé",
+      "seleccion": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" },
+      "goles": 8,
+      "botaOro": true
+    },
+    {
+      "nombre": "Lionel Messi",
+      "seleccion": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" },
+      "goles": 7
+    },
+    {
+      "nombre": "Olivier Giroud",
+      "seleccion": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" },
+      "goles": 4
+    },
+    {
+      "nombre": "Julián Álvarez",
+      "seleccion": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" },
+      "goles": 4
+    }
+  ],
+  "premios": {
+    "balonOro": "Lionel Messi (Argentina)",
+    "guanteOro": "Emiliano Martínez (Argentina)",
+    "mejorJoven": "Enzo Fernández (Argentina)"
+  },
+  "contextoHistorico": {
+    "resumen": "Primer Mundial invernal y primero en el mundo árabe. Argentina conquistó su tercer título en lo que muchos consideran la mejor final de la historia: 3-3 con hat-trick de Mbappé (el primero en una final desde Hurst en 1966) decidida en penales. Lionel Messi, en su quinto Mundial, alcanzó el récord absoluto de 26 partidos disputados y se consagró con el Balón de Oro. Marruecos se convirtió en la primera selección africana en alcanzar semifinales. El torneo estuvo marcado por las controversias sobre derechos humanos y trabajadores migrantes.",
+    "eventos": [
+      "Arabia Saudí 2-1 Argentina en debut: una de las mayores sorpresas del torneo.",
+      "Plantillas amplían a 26 jugadores (de 23) por primera vez para mitigar el calendario apretado tras COVID.",
+      "Tecnología semi-automática de fuera de juego (SAOT) con sensor IMU en el balón Al Rihla."
+    ]
+  },
+  "plantillaCampeon": [
+    { "dorsal": 23, "nombre": "Emiliano Martínez", "posicion": "GK", "clubOrigen": "Aston Villa", "edad": 30 },
+    { "dorsal": 12, "nombre": "Gerónimo Rulli", "posicion": "GK", "clubOrigen": "Villarreal", "edad": 30 },
+    { "dorsal": 1, "nombre": "Franco Armani", "posicion": "GK", "clubOrigen": "River Plate", "edad": 35 },
+    { "dorsal": 4, "nombre": "Gonzalo Montiel", "posicion": "DEF", "clubOrigen": "Sevilla", "edad": 25 },
+    { "dorsal": 26, "nombre": "Nahuel Molina", "posicion": "DEF", "clubOrigen": "Atlético Madrid", "edad": 24 },
+    { "dorsal": 13, "nombre": "Cristian Romero", "posicion": "DEF", "clubOrigen": "Tottenham", "edad": 24 },
+    { "dorsal": 19, "nombre": "Nicolás Otamendi", "posicion": "DEF", "clubOrigen": "Benfica", "edad": 34 },
+    { "dorsal": 6, "nombre": "Germán Pezzella", "posicion": "DEF", "clubOrigen": "Real Betis", "edad": 31 },
+    { "dorsal": 25, "nombre": "Lisandro Martínez", "posicion": "DEF", "clubOrigen": "Manchester United", "edad": 24 },
+    { "dorsal": 8, "nombre": "Marcos Acuña", "posicion": "DEF", "clubOrigen": "Sevilla", "edad": 31 },
+    { "dorsal": 3, "nombre": "Nicolás Tagliafico", "posicion": "DEF", "clubOrigen": "Olympique Lyon", "edad": 30 },
+    { "dorsal": 2, "nombre": "Juan Foyth", "posicion": "DEF", "clubOrigen": "Villarreal", "edad": 24 },
+    { "dorsal": 5, "nombre": "Leandro Paredes", "posicion": "MID", "clubOrigen": "Juventus", "edad": 28 },
+    { "dorsal": 7, "nombre": "Rodrigo de Paul", "posicion": "MID", "clubOrigen": "Atlético Madrid", "edad": 28 },
+    { "dorsal": 14, "nombre": "Exequiel Palacios", "posicion": "MID", "clubOrigen": "Bayer Leverkusen", "edad": 24 },
+    { "dorsal": 17, "nombre": "Alejandro Gómez", "posicion": "MID", "clubOrigen": "Sevilla", "edad": 34 },
+    { "dorsal": 18, "nombre": "Guido Rodríguez", "posicion": "MID", "clubOrigen": "Real Betis", "edad": 28 },
+    { "dorsal": 20, "nombre": "Alexis Mac Allister", "posicion": "MID", "clubOrigen": "Brighton", "edad": 23 },
+    { "dorsal": 24, "nombre": "Enzo Fernández", "posicion": "MID", "clubOrigen": "Benfica", "edad": 21 },
+    { "dorsal": 9, "nombre": "Julián Álvarez", "posicion": "FWD", "clubOrigen": "Manchester City", "edad": 22, "goles": 4 },
+    { "dorsal": 10, "nombre": "Lionel Messi", "posicion": "FWD", "clubOrigen": "PSG", "edad": 35, "capitan": true, "goles": 7 },
+    { "dorsal": 11, "nombre": "Ángel Di María", "posicion": "FWD", "clubOrigen": "Juventus", "edad": 34, "goles": 1 },
+    { "dorsal": 15, "nombre": "Ángel Correa", "posicion": "FWD", "clubOrigen": "Atlético Madrid", "edad": 27 },
+    { "dorsal": 16, "nombre": "Thiago Almada", "posicion": "FWD", "clubOrigen": "Atlanta United", "edad": 21 },
+    { "dorsal": 21, "nombre": "Paulo Dybala", "posicion": "FWD", "clubOrigen": "AS Roma", "edad": 29 },
+    { "dorsal": 22, "nombre": "Lautaro Martínez", "posicion": "FWD", "clubOrigen": "Inter de Milán", "edad": 25 }
+  ],
+  "fasesKO": {
+    "octavos": [
+      { "fecha": "2022-12-03", "ciudad": "Al Rayyan", "estadio": "Ahmad bin Ali", "local": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD" }, "visitante": { "pais": "Estados Unidos", "iso2": "us", "iso3": "USA" }, "marcador": "3-1" },
+      { "fecha": "2022-12-03", "ciudad": "Al Khor", "estadio": "Al Bayt", "local": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "visitante": { "pais": "Australia", "iso2": "au", "iso3": "AUS" }, "marcador": "2-1" },
+      { "fecha": "2022-12-04", "ciudad": "Doha", "estadio": "Al Thumama", "local": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" }, "visitante": { "pais": "Polonia", "iso2": "pl", "iso3": "POL" }, "marcador": "3-1" },
+      { "fecha": "2022-12-04", "ciudad": "Al Rayyan", "estadio": "Education City", "local": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG" }, "visitante": { "pais": "Senegal", "iso2": "sn", "iso3": "SEN" }, "marcador": "3-0" },
+      { "fecha": "2022-12-05", "ciudad": "Doha", "estadio": "Stadium 974", "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "visitante": { "pais": "Corea del Sur", "iso2": "kr", "iso3": "KOR" }, "marcador": "4-1" },
+      { "fecha": "2022-12-05", "ciudad": "Al Wakrah", "estadio": "Al Janoub", "local": { "pais": "Japón", "iso2": "jp", "iso3": "JPN" }, "visitante": { "pais": "Croacia", "iso2": "hr", "iso3": "HRV" }, "marcador": "1-1 (penales 1-3)" },
+      { "fecha": "2022-12-06", "ciudad": "Al Rayyan", "estadio": "Education City", "local": { "pais": "Marruecos", "iso2": "ma", "iso3": "MAR" }, "visitante": { "pais": "España", "iso2": "es", "iso3": "ESP" }, "marcador": "0-0 (penales 3-0)" },
+      { "fecha": "2022-12-06", "ciudad": "Lusail", "estadio": "Lusail Iconic Stadium", "local": { "pais": "Portugal", "iso2": "pt", "iso3": "PRT" }, "visitante": { "pais": "Suiza", "iso2": "ch", "iso3": "CHE" }, "marcador": "6-1" }
+    ],
+    "cuartos": [
+      { "fecha": "2022-12-09", "ciudad": "Lusail", "estadio": "Lusail Iconic Stadium", "local": { "pais": "Croacia", "iso2": "hr", "iso3": "HRV" }, "visitante": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "marcador": "1-1 (penales 4-2)" },
+      { "fecha": "2022-12-09", "ciudad": "Lusail", "estadio": "Lusail Iconic Stadium", "local": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD" }, "visitante": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "marcador": "2-2 (penales 3-4)" },
+      { "fecha": "2022-12-10", "ciudad": "Al Rayyan", "estadio": "Education City", "local": { "pais": "Marruecos", "iso2": "ma", "iso3": "MAR" }, "visitante": { "pais": "Portugal", "iso2": "pt", "iso3": "PRT" }, "marcador": "1-0" },
+      { "fecha": "2022-12-10", "ciudad": "Al Khor", "estadio": "Al Bayt", "local": { "pais": "Inglaterra", "iso2": "gb-eng", "iso3": "ENG" }, "visitante": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" }, "marcador": "1-2" }
+    ],
+    "semifinales": [
+      { "fecha": "2022-12-13", "ciudad": "Lusail", "estadio": "Lusail Iconic Stadium", "local": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "visitante": { "pais": "Croacia", "iso2": "hr", "iso3": "HRV" }, "marcador": "3-0" },
+      { "fecha": "2022-12-14", "ciudad": "Al Khor", "estadio": "Al Bayt", "local": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" }, "visitante": { "pais": "Marruecos", "iso2": "ma", "iso3": "MAR" }, "marcador": "2-0" }
+    ]
+  },
+  "hatTricks": [
+    { "jugador": "Gonçalo Ramos", "seleccion": { "pais": "Portugal", "iso2": "pt", "iso3": "PRT" }, "fase": "Octavos", "rival": { "pais": "Suiza", "iso2": "ch", "iso3": "CHE" }, "goles": 3, "marcador": "6-1" },
+    { "jugador": "Kylian Mbappé", "seleccion": { "pais": "Francia", "iso2": "fr", "iso3": "FRA" }, "fase": "Final", "rival": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "goles": 3, "marcador": "3-3 (pen. 4-2)" }
+  ],
+  "recordsEdicion": [
+    { "categoria": "jugador", "descripcion": "Lionel Messi alcanza el récord absoluto de partidos disputados en Mundiales", "valor": "26 partidos" },
+    { "categoria": "jugador", "descripcion": "Mbappé hace el primer hat-trick en una final desde Geoff Hurst (1966)", "valor": "3 goles" },
+    { "categoria": "tecnologia", "descripcion": "Estreno del SAOT (Semi-Automated Offside Technology) con sensor IMU en el balón a 500 Hz", "valor": "SAOT" },
+    { "categoria": "seleccion", "descripcion": "Marruecos primera selección africana en alcanzar semifinales de un Mundial", "valor": "4° puesto" },
+    { "categoria": "tactica", "descripcion": "Plantillas ampliadas a 26 jugadores por primera vez en la historia (antes 23)", "valor": "+3 jugadores" }
+  ],
+  "curiosidades": [
+    {
+      "categoria": "politica",
+      "texto": "Brazaletes 'OneLove' por la diversidad fueron prohibidos por FIFA bajo amenaza de tarjeta amarilla; los jugadores alemanes se taparon la boca en la foto previa al partido inaugural en señal de protesta."
+    },
+    {
+      "categoria": "hito",
+      "texto": "El bisht ceremonial colocado a Messi tras la final por el Emir es la primera vez que un capitán recibe el trofeo cubierto con vestimenta tradicional árabe. Generó debate global sobre el simbolismo cultural."
+    }
+  ],
+  "fuentes": [
+    { "nombre": "FIFA Archive — World Cup 2022", "url": "https://www.fifa.com/tournaments/mens/worldcup/2022qatar" },
+    { "nombre": "RSSSF — World Cup 2022", "url": "https://www.rsssf.org/tables/22full.html" }
+  ]
+}

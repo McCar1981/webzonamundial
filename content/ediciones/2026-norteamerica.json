@@ -1,0 +1,76 @@
+{
+  "meta": {
+    "edicion": 23,
+    "anio": 2026,
+    "slug": "2026-norteamerica",
+    "tituloOficial": "Copa Mundial de Fútbol 2026",
+    "nombreCorto": "Norteamérica 2026",
+    "era": "contemporanea"
+  },
+  "proximo": true,
+  "sede": {
+    "paises": [
+      { "nombre": "Canadá", "iso2": "ca", "iso3": "CAN", "banderaUrl": "https://flagcdn.com/w160/ca.png" },
+      { "nombre": "México", "iso2": "mx", "iso3": "MEX", "banderaUrl": "https://flagcdn.com/w160/mx.png" },
+      { "nombre": "Estados Unidos", "iso2": "us", "iso3": "USA", "banderaUrl": "https://flagcdn.com/w160/us.png" }
+    ],
+    "ciudades": [
+      "Ciudad de México", "Guadalajara", "Monterrey",
+      "Toronto", "Vancouver",
+      "East Rutherford", "Los Ángeles", "Dallas", "Atlanta", "Miami", "Boston", "Filadelfia", "Houston", "Kansas City", "Seattle", "San Francisco"
+    ],
+    "estadios": [
+      "Estadio Banorte (Azteca)", "Estadio Akron", "Estadio BBVA",
+      "BMO Field", "BC Place",
+      "MetLife Stadium", "SoFi Stadium", "AT&T Stadium", "Mercedes-Benz Stadium", "Hard Rock Stadium", "Gillette Stadium", "Lincoln Financial Field", "NRG Stadium", "Arrowhead Stadium", "Lumen Field", "Levi's Stadium"
+    ]
+  },
+  "fechas": { "inicio": "2026-06-11", "final": "2026-07-19", "duracionDias": 39 },
+  "formato": {
+    "numEquipos": 48,
+    "numPartidos": 104,
+    "sistemaEliminatoria": "16vos",
+    "numGrupos": 12,
+    "equiposPorGrupo": 4
+  },
+  "estadisticas": {
+    "totalGoles": 0,
+    "promedioGolesPartido": 0
+  },
+  "identidadVisual": {
+    "eslogan": "We are 26",
+    "mascota": "Maple, Zayu y Clutch",
+    "balon": "Trionda",
+    "colorPrincipal": "#c9a84c"
+  },
+  "partidoInaugural": {
+    "fecha": "2026-06-11",
+    "ciudad": "Ciudad de México",
+    "estadio": "Estadio Banorte (Azteca)",
+    "local": { "pais": "México", "iso2": "mx", "iso3": "MEX" },
+    "visitante": { "pais": "Por confirmar", "iso2": "un", "iso3": "UNO" },
+    "marcador": "0-0"
+  },
+  "contextoHistorico": {
+    "resumen": "Primer Mundial tripartito y primero con 48 selecciones, 12 grupos y 104 partidos en 39 días, el más largo y grande de la historia. Inaugural en el Estadio Azteca, primer estadio en albergar tres ediciones mundialistas. Final en MetLife Stadium (East Rutherford). Debutarán Cabo Verde, Curazao (la nación más pequeña por población en clasificar), Jordania y Uzbekistán. Italia ausente por tercera vez consecutiva. Cristiano Ronaldo podría convertirse en el primer jugador con seis Mundiales si participa.",
+    "eventos": [
+      "El Estadio Azteca acogerá su tercera apertura mundialista, récord absoluto.",
+      "Mascotas trío: Maple (alce, Canadá), Zayu (jaguar, México) y Clutch (águila, EE.UU.) — serán personajes jugables del videojuego oficial FIFA Heroes.",
+      "Adidas alcanzará 56 años consecutivos como fabricante oficial del balón mundialista, monopolio ininterrumpido desde 1970."
+    ]
+  },
+  "curiosidades": [
+    {
+      "categoria": "balon",
+      "texto": "El balón Trionda tendrá 4 paneles, mínimo histórico (frente a los 32 del Telstar original). Su nombre se inspira en las 'tres olas' que representan Canadá, México y Estados Unidos."
+    },
+    {
+      "categoria": "estadio",
+      "texto": "El Estadio Azteca, rebautizado temporalmente Estadio Banorte para 2026, será el primer estadio del mundo en albergar tres aperturas mundialistas (1970, 1986 y 2026)."
+    }
+  ],
+  "fuentes": [
+    { "nombre": "FIFA — World Cup 2026", "url": "https://www.fifa.com/tournaments/mens/worldcup/canadamexicousa2026" },
+    { "nombre": "Wikipedia — Copa Mundial de Fútbol de 2026", "url": "https://es.wikipedia.org/wiki/Copa_Mundial_de_F%C3%BAtbol_de_2026" }
+  ]
+}

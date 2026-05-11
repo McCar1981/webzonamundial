@@ -1,0 +1,45 @@
+{
+  "trofeos": [
+    {
+      "nombre": "Copa Jules Rimet",
+      "vigencia": "1930–1970",
+      "diseñador": "Abel Lafleur (Francia)",
+      "material": "Plata maciza con figura alada (Niké) en chapa de oro y base de lapislázuli",
+      "altura": "35 cm",
+      "peso": "3,8 kg",
+      "valor": "10.000 USD (1930) / N/A actualmente (perdida)",
+      "subtitulo": "El primer trofeo del Mundial: perdido en 1983",
+      "descripcion": "Diseñada en 1930 por el escultor francés Abel Lafleur. Representaba a la diosa Niké de la Victoria sosteniendo una copa octogonal. Fue entregada por primera vez a Uruguay 1930. Tras 5 ediciones (con paréntesis de WWII), se quedaría en propiedad del primer país que ganara 3 Mundiales. Brasil lo logró en 1970.",
+      "anecdotas": [
+        "Durante la Segunda Guerra Mundial (1938-1950), el vicepresidente FIFA italiano Ottorino Barassi la escondió en una caja de zapatos bajo su cama en Roma para evitar que los nazis la requisaran. Salió de su escondite en 1950.",
+        "Fue robada en marzo 1966 antes del Mundial de Inglaterra. Apareció una semana después en un seto de Beulah Hill (Londres) gracias al perro collie Pickles. Su dueño recibió 6.000 libras como recompensa.",
+        "Brasil se la quedó en propiedad tras su tercer título (1970). Estuvo expuesta en la sede de la CBF (Confederación Brasileña de Fútbol) en Río de Janeiro.",
+        "Robada definitivamente en diciembre 1983. La policía sospechó que fue fundida en lingotes de oro. Nunca recuperada. Brasil mandó fabricar una réplica que está expuesta en la sede de la CBF."
+      ]
+    },
+    {
+      "nombre": "Trofeo FIFA",
+      "vigencia": "1974–presente",
+      "diseñador": "Silvio Gazzaniga (Italia)",
+      "material": "Oro macizo de 18 quilates con malachita en la base",
+      "altura": "36,5 cm",
+      "peso": "6,142 kg (5 kg de oro)",
+      "valor": "Aproximadamente 175.000 USD (solo material)",
+      "subtitulo": "Trofeo actual: dos figuras humanas sosteniendo el mundo",
+      "descripcion": "Diseñada en 1971 por Silvio Gazzaniga, escultor italiano de Bertoni Milán. Ganó un concurso entre 53 propuestas. Representa a dos figuras humanas levantando el mundo en un movimiento dinámico. Fue entregado por primera vez a Alemania Federal 1974 (Beckenbauer fue el primero en levantarlo).",
+      "anecdotas": [
+        "El trofeo es PROPIEDAD permanente de FIFA: el campeón se queda con una réplica (idéntica visualmente pero hueca y de baja aleación de oro). El original se guarda en la Casa FIFA de Zúrich.",
+        "Cada Mundial se graban los nombres de los campeones en la base. Hay espacio para 17 placas: la última será 2038. Después FIFA tendrá que reemplazar el trofeo.",
+        "El trofeo ha sido tocado por: Beckenbauer (1974), Passarella (1978), Rossi (1982), Maradona (1986), Matthäus (1990), Dunga (1994), Deschamps (1998, 2018), Cafu (2002), Cannavaro (2006), Casillas (2010), Lahm (2014), Messi (2022).",
+        "FIFA lo transporta con escolta armada en avión privado. En 2014 fue brevemente 'detenido' por aduanas brasileñas: la organización olvidó declararlo correctamente.",
+        "El trofeo más caro de la historia: en 2018 fue tasado en 175.000 USD por su contenido de oro puro (5 kg de oro de 18 quilates). Su valor histórico-emocional es incalculable."
+      ]
+    }
+  ],
+  "comparativa": {
+    "diferenciaPrincipal": "La Jules Rimet era propiedad del campeón consecutivo (transferible); el FIFA es propiedad permanente de FIFA (campeón solo recibe réplica)",
+    "duracion": "Jules Rimet: 40 años (1930-1970, con paréntesis WWII). FIFA: 52+ años (1974-presente)",
+    "diseñoSimbolico": "Jules Rimet: Niké, diosa de la victoria (figurativa). FIFA: dos hombres sosteniendo el mundo (abstracta universal)",
+    "robos": "Jules Rimet robada DOS veces (1966 recuperada, 1983 perdida). FIFA jamás robada (solo escoltada con seguridad armada)"
+  }
+}

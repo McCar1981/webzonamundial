@@ -1,0 +1,164 @@
+{
+  "meta": {
+    "edicion": 15,
+    "anio": 1994,
+    "slug": "1994-eeuu",
+    "tituloOficial": "Copa Mundial de Fútbol 1994",
+    "nombreCorto": "Estados Unidos 1994",
+    "era": "moderna"
+  },
+  "sede": {
+    "paises": [
+      { "nombre": "Estados Unidos", "iso2": "us", "iso3": "USA", "banderaUrl": "https://flagcdn.com/w160/us.png" }
+    ],
+    "ciudades": ["Pasadena", "Nueva York", "Chicago", "Dallas", "Detroit", "Boston", "Orlando", "San Francisco", "Washington D.C."],
+    "estadios": ["Rose Bowl", "Giants Stadium", "Soldier Field", "Cotton Bowl", "Pontiac Silverdome", "Foxboro Stadium", "Citrus Bowl", "Stanford Stadium", "RFK Memorial"]
+  },
+  "fechas": { "inicio": "1994-06-17", "final": "1994-07-17", "duracionDias": 31 },
+  "formato": {
+    "numEquipos": 24,
+    "numPartidos": 52,
+    "sistemaEliminatoria": "octavos",
+    "numGrupos": 6
+  },
+  "resultados": {
+    "campeon": { "pais": "Brasil", "iso2": "br", "iso3": "BRA", "banderaUrl": "https://flagcdn.com/w160/br.png" },
+    "subcampeon": { "pais": "Italia", "iso2": "it", "iso3": "ITA", "banderaUrl": "https://flagcdn.com/w160/it.png" },
+    "tercero": { "pais": "Suecia", "iso2": "se", "iso3": "SWE", "banderaUrl": "https://flagcdn.com/w160/se.png" },
+    "cuarto": { "pais": "Bulgaria", "iso2": "bg", "iso3": "BGR", "banderaUrl": "https://flagcdn.com/w160/bg.png" }
+  },
+  "estadisticas": {
+    "totalGoles": 141,
+    "promedioGolesPartido": 2.71,
+    "asistenciaTotal": 3587538,
+    "asistenciaPromedio": 68991
+  },
+  "identidadVisual": {
+    "eslogan": "Striker, the World Cup Pup",
+    "mascota": "Striker",
+    "balon": "Questra",
+    "colorPrincipal": "#B22234"
+  },
+  "partidoFinal": {
+    "fecha": "1994-07-17",
+    "ciudad": "Pasadena",
+    "estadio": "Rose Bowl",
+    "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" },
+    "visitante": { "pais": "Italia", "iso2": "it", "iso3": "ITA" },
+    "marcador": "0-0 (penales 3-2)",
+    "asistencia": 94194,
+    "arbitro": "Sándor Puhl (Hungría)"
+  },
+  "topGoleadores": [
+    {
+      "nombre": "Oleg Salenko",
+      "seleccion": { "pais": "Rusia", "iso2": "ru", "iso3": "RUS" },
+      "goles": 6,
+      "botaOro": true
+    },
+    {
+      "nombre": "Hristo Stoichkov",
+      "seleccion": { "pais": "Bulgaria", "iso2": "bg", "iso3": "BGR" },
+      "goles": 6
+    },
+    {
+      "nombre": "Kennet Andersson",
+      "seleccion": { "pais": "Suecia", "iso2": "se", "iso3": "SWE" },
+      "goles": 5
+    },
+    {
+      "nombre": "Roberto Baggio",
+      "seleccion": { "pais": "Italia", "iso2": "it", "iso3": "ITA" },
+      "goles": 5
+    }
+  ],
+  "premios": {
+    "balonOro": "Romário (Brasil)"
+  },
+  "contextoHistorico": {
+    "resumen": "El Mundial con la mayor asistencia promedio por partido de la historia: 68.991 espectadores, récord aún vigente. Brasil rompió 24 años de sequía con su tetracampeonato. Primera final decidida por penales: Roberto Baggio falló el último ante Taffarel. Estreno del sistema de tres puntos por victoria. El asesinato de Andrés Escobar tras su autogol vs EE.UU. ensombreció la fiesta.",
+    "eventos": [
+      "Oleg Salenko marca 5 goles a Camerún (Rusia 6-1): récord absoluto de goles individuales en un partido del Mundial.",
+      "Diego Maradona expulsado del torneo por consumo de efedrina tras anotar contra Grecia.",
+      "Bebeto introduce la celebración 'arrullando al bebé' tras gol vs Países Bajos en cuartos."
+    ]
+  },
+  "plantillaCampeon": [
+    { "dorsal": 1, "nombre": "Taffarel", "posicion": "GK", "clubOrigen": "Reggiana", "edad": 28 },
+    { "dorsal": 2, "nombre": "Jorginho", "posicion": "DEF", "clubOrigen": "Bayern Múnich", "edad": 29 },
+    { "dorsal": 3, "nombre": "Aldair", "posicion": "DEF", "clubOrigen": "Roma", "edad": 28 },
+    { "dorsal": 4, "nombre": "Márcio Santos", "posicion": "DEF", "clubOrigen": "Burdeos", "edad": 25 },
+    { "dorsal": 5, "nombre": "Mauro Silva", "posicion": "MID", "clubOrigen": "Deportivo La Coruña", "edad": 26 },
+    { "dorsal": 6, "nombre": "Branco", "posicion": "DEF", "clubOrigen": "Fluminense", "edad": 30, "goles": 1 },
+    { "dorsal": 8, "nombre": "Dunga", "posicion": "MID", "clubOrigen": "Stuttgart", "edad": 30, "capitan": true },
+    { "dorsal": 9, "nombre": "Romário", "posicion": "FWD", "clubOrigen": "Barcelona", "edad": 28, "goles": 5 },
+    { "dorsal": 10, "nombre": "Raí", "posicion": "MID", "clubOrigen": "PSG", "edad": 29 },
+    { "dorsal": 11, "nombre": "Romário", "posicion": "FWD", "clubOrigen": "Barcelona", "edad": 28 },
+    { "dorsal": 7, "nombre": "Bebeto", "posicion": "FWD", "clubOrigen": "Deportivo La Coruña", "edad": 30, "goles": 3 },
+    { "dorsal": 13, "nombre": "Cafu", "posicion": "DEF", "clubOrigen": "São Paulo", "edad": 24 },
+    { "dorsal": 17, "nombre": "Mazinho", "posicion": "MID", "clubOrigen": "Palmeiras", "edad": 28 }
+  ],
+  "fasesKO": {
+    "octavos": [
+      { "fecha": "1994-07-02", "ciudad": "Chicago", "estadio": "Soldier Field", "local": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" }, "visitante": { "pais": "Bélgica", "iso2": "be", "iso3": "BEL" }, "marcador": "3-2" },
+      { "fecha": "1994-07-02", "ciudad": "Washington", "estadio": "RFK Memorial", "local": { "pais": "España", "iso2": "es", "iso3": "ESP" }, "visitante": { "pais": "Suiza", "iso2": "ch", "iso3": "CHE" }, "marcador": "3-0" },
+      { "fecha": "1994-07-03", "ciudad": "Los Ángeles", "estadio": "Rose Bowl", "local": { "pais": "Rumania", "iso2": "ro", "iso3": "ROU" }, "visitante": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "marcador": "3-2" },
+      { "fecha": "1994-07-03", "ciudad": "Orlando", "estadio": "Citrus Bowl", "local": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD" }, "visitante": { "pais": "Irlanda del Norte", "iso2": "ie", "iso3": "IRL" }, "marcador": "2-0" },
+      { "fecha": "1994-07-04", "ciudad": "Stanford", "estadio": "Stanford Stadium", "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "visitante": { "pais": "Estados Unidos", "iso2": "us", "iso3": "USA" }, "marcador": "1-0" },
+      { "fecha": "1994-07-04", "ciudad": "Foxboro", "estadio": "Foxboro Stadium", "local": { "pais": "Italia", "iso2": "it", "iso3": "ITA" }, "visitante": { "pais": "Nigeria", "iso2": "ng", "iso3": "NGA" }, "marcador": "2-1 (prórroga)" },
+      { "fecha": "1994-07-05", "ciudad": "Dallas", "estadio": "Cotton Bowl", "local": { "pais": "Arabia Saudí", "iso2": "sa", "iso3": "SAU" }, "visitante": { "pais": "Suecia", "iso2": "se", "iso3": "SWE" }, "marcador": "1-3" },
+      { "fecha": "1994-07-05", "ciudad": "Pontiac", "estadio": "Silverdome", "local": { "pais": "México", "iso2": "mx", "iso3": "MEX" }, "visitante": { "pais": "Bulgaria", "iso2": "bg", "iso3": "BGR" }, "marcador": "1-1 (penales 1-3)" }
+    ],
+    "cuartos": [
+      { "fecha": "1994-07-09", "ciudad": "Stanford", "estadio": "Stanford Stadium", "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "visitante": { "pais": "Países Bajos", "iso2": "nl", "iso3": "NLD" }, "marcador": "3-2" },
+      { "fecha": "1994-07-09", "ciudad": "Foxboro", "estadio": "Foxboro Stadium", "local": { "pais": "Italia", "iso2": "it", "iso3": "ITA" }, "visitante": { "pais": "España", "iso2": "es", "iso3": "ESP" }, "marcador": "2-1" },
+      { "fecha": "1994-07-10", "ciudad": "East Rutherford", "estadio": "Giants Stadium", "local": { "pais": "Bulgaria", "iso2": "bg", "iso3": "BGR" }, "visitante": { "pais": "Alemania", "iso2": "de", "iso3": "DEU" }, "marcador": "2-1" },
+      { "fecha": "1994-07-10", "ciudad": "Dallas", "estadio": "Cotton Bowl", "local": { "pais": "Suecia", "iso2": "se", "iso3": "SWE" }, "visitante": { "pais": "Rumania", "iso2": "ro", "iso3": "ROU" }, "marcador": "2-2 (penales 5-4)" }
+    ],
+    "semifinales": [
+      { "fecha": "1994-07-13", "ciudad": "East Rutherford", "estadio": "Giants Stadium", "local": { "pais": "Italia", "iso2": "it", "iso3": "ITA" }, "visitante": { "pais": "Bulgaria", "iso2": "bg", "iso3": "BGR" }, "marcador": "2-1" },
+      { "fecha": "1994-07-13", "ciudad": "Los Ángeles", "estadio": "Rose Bowl", "local": { "pais": "Brasil", "iso2": "br", "iso3": "BRA" }, "visitante": { "pais": "Suecia", "iso2": "se", "iso3": "SWE" }, "marcador": "1-0" }
+    ]
+  },
+  "hatTricks": [
+    { "jugador": "Oleg Salenko", "seleccion": { "pais": "Rusia", "iso2": "ru", "iso3": "RUS" }, "fase": "Grupos", "rival": { "pais": "Camerún", "iso2": "cm", "iso3": "CMR" }, "goles": 5, "marcador": "6-1" },
+    { "jugador": "Gabriel Batistuta", "seleccion": { "pais": "Argentina", "iso2": "ar", "iso3": "ARG" }, "fase": "Grupos", "rival": { "pais": "Grecia", "iso2": "gr", "iso3": "GRC" }, "goles": 3, "marcador": "4-0" }
+  ],
+  "recordsEdicion": [
+    { "categoria": "asistencia", "descripcion": "Promedio de asistencia más alto de la historia: 68.991 espectadores por partido (récord vigente)", "valor": "68.991/partido" },
+    { "categoria": "jugador", "descripcion": "Oleg Salenko: 5 goles en un solo partido (Rusia 6-1 Camerún), récord histórico absoluto", "valor": "5 en un partido" },
+    { "categoria": "tactica", "descripcion": "Primera final decidida por penales: Brasil 0-0 Italia, Baggio falla el último", "valor": "Primera final por penales" },
+    { "categoria": "tactica", "descripcion": "Estreno del sistema de 3 puntos por victoria (antes eran 2): incentivo al ataque que cambiaría el fútbol mundial", "valor": "3 puntos" },
+    { "categoria": "tragedia", "descripcion": "Asesinato de Andrés Escobar (Colombia) tras autogol vs EE.UU.: el crimen futbolístico más impactante de la historia", "valor": "Crimen Escobar" }
+  ],
+  "curiosidades": [
+    {
+      "categoria": "tragedia",
+      "texto": "Andrés Escobar, autor de un autogol vs Estados Unidos en fase de grupos, fue asesinado a tiros 10 días después de regresar a Medellín. Su frase 'la vida no termina aquí' antes del crimen se volvió un símbolo del fútbol colombiano."
+    },
+    {
+      "categoria": "hito",
+      "texto": "El sistema de 3 puntos por victoria estrenado en 1994 (antes eran 2) buscaba premiar al fútbol ofensivo. Es el cambio reglamentario más impactante de la historia del fútbol moderno."
+    },
+    {
+      "categoria": "jugador",
+      "texto": "Diego Maradona fue expulsado del Mundial tras dar positivo por efedrina (combinación de 5 sustancias prohibidas) tras el Argentina-Nigeria. Argentina, sin él, cayó eliminada por Rumania en octavos. Maradona nunca volvió a un Mundial."
+    },
+    {
+      "categoria": "jugador",
+      "texto": "Bebeto introdujo la celebración 'arrullando al bebé' tras gol vs Países Bajos en cuartos: su esposa había dado a luz dos días antes. Es la celebración más imitada de la historia, vista en cada estadio del mundo desde entonces."
+    },
+    {
+      "categoria": "balon",
+      "texto": "El Adidas Questra es el primer balón con cámara de aire de poliestireno expandido, mejorando la potencia del disparo. Su nombre venía del programa espacial Apolo de la NASA, jugando con la idea de un 'balón espacial'."
+    },
+    {
+      "categoria": "estadio",
+      "texto": "El Mundial de EE.UU. fue calificado de 'experimento' antes de jugarse: muchos dudaban del interés del público estadounidense. Acabó con asistencia récord histórica que sigue vigente. Sería pivote para el crecimiento del soccer en USA."
+    }
+  ],
+  "fuentes": [
+    { "nombre": "FIFA Archive — World Cup 1994", "url": "https://www.fifa.com/tournaments/mens/worldcup/1994usa" },
+    { "nombre": "RSSSF — World Cup 1994", "url": "https://www.rsssf.org/tables/94full.html" }
+  ]
+}

@@ -1,18 +1,17 @@
 "use client";
 
 // EditorialIntro — bloque editorial denso para SEO + AdSense.
-// Aporta ~600 palabras de texto sustantivo sobre qué es ZonaMundial,
-// por qué existe y cómo se diferencia. Crucial para que Google
-// detecte el sitio como "publisher de contenido" y no como app landing.
-//
-// Visible para todos los usuarios. Renderizado en SSR. No depende de JS.
+// Aporta ~600 palabras de texto sustantivo SIN parecer un muro de texto:
+// stats cards intercaladas, sub-secciones con H3, pull quote destacada
+// y CTAs visuales. Mobile-first: font-size cómodo y respiración entre bloques.
 
 import Link from "next/link";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 const GOLD = "#c9a84c";
 const GOLD2 = "#e8d48b";
-const MID = "#8a94b0";
+const MID = "rgba(255,255,255,0.72)";
+const DIM = "rgba(255,255,255,0.55)";
 
 export function EditorialIntro() {
   const { locale } = useLanguage();
@@ -21,64 +20,101 @@ export function EditorialIntro() {
   return (
     <section
       style={{
-        background: "linear-gradient(180deg, transparent 0%, rgba(15,29,50,0.4) 50%, transparent 100%)",
-        padding: "80px 20px",
+        background:
+          "linear-gradient(180deg, transparent 0%, rgba(15,29,50,0.35) 40%, rgba(15,29,50,0.45) 60%, transparent 100%)",
+        padding: "72px 18px",
         position: "relative",
       }}
       aria-labelledby="editorial-intro-h2"
     >
-      <div style={{ maxWidth: 900, margin: "0 auto", color: MID, lineHeight: 1.7 }}>
+      <div style={{ maxWidth: 880, margin: "0 auto", color: MID }}>
+        {/* Eyebrow */}
         <p
           style={{
             color: GOLD,
-            fontSize: 12,
-            letterSpacing: "0.2em",
+            fontSize: 11,
+            letterSpacing: "0.22em",
             textTransform: "uppercase",
             fontWeight: 600,
-            marginBottom: 16,
+            marginBottom: 14,
+            margin: 0,
           }}
         >
           {isEn ? "About the project" : "Sobre el proyecto"}
         </p>
 
+        {/* H2 más compacto */}
         <h2
           id="editorial-intro-h2"
           style={{
             color: GOLD2,
-            fontSize: "clamp(28px, 4vw, 44px)",
+            fontSize: "clamp(24px, 4.5vw, 38px)",
             fontWeight: 800,
-            margin: "0 0 28px",
-            letterSpacing: "-0.025em",
-            lineHeight: 1.1,
+            margin: "8px 0 22px",
+            letterSpacing: "-0.02em",
+            lineHeight: 1.15,
           }}
         >
           {isEn
-            ? "The first World Cup that fits in your pocket — built in Spanish, by football fans, for football fans."
-            : "El primer Mundial que cabe en tu bolsillo — hecho en español, por fans del fútbol, para fans del fútbol."}
+            ? "The first World Cup that fits in your pocket."
+            : "El primer Mundial que cabe en tu bolsillo."}
         </h2>
 
-        {isEn ? <EnglishCopy /> : <SpanishCopy />}
+        {/* Lead — 1 párrafo corto y potente */}
+        <p
+          style={{
+            fontSize: "clamp(15px, 2.2vw, 18px)",
+            lineHeight: 1.65,
+            color: "rgba(255,255,255,0.85)",
+            marginBottom: 28,
+            fontWeight: 400,
+          }}
+        >
+          {isEn
+            ? "Built in Spanish, by football fans, for football fans. ZonaMundial is the home for the 480 million Spanish-speaking fans who will live the 2026 World Cup — the biggest tournament FIFA has ever organized."
+            : "Hecho en español, por fans del fútbol, para fans del fútbol. ZonaMundial es la casa de los 480 millones de hispanohablantes que van a vivir el Mundial 2026 — el torneo más grande que jamás ha organizado la FIFA."}
+        </p>
 
+        {/* Stats cards — rompen el muro de texto */}
         <div
           style={{
-            marginTop: 40,
-            paddingTop: 28,
+            display: "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",
+            gap: 8,
+            marginBottom: 32,
+          }}
+          className="zm-edit-stats"
+        >
+          <Stat n="48" l={isEn ? "Teams" : "Selecciones"} />
+          <Stat n="16" l={isEn ? "Venues" : "Sedes"} />
+          <Stat n="104" l={isEn ? "Matches" : "Partidos"} />
+          <Stat n="39" l={isEn ? "Days" : "Días"} />
+        </div>
+
+        {isEn ? <EnCopy /> : <EsCopy />}
+
+        {/* CTAs */}
+        <div
+          style={{
+            marginTop: 32,
+            paddingTop: 24,
             borderTop: "1px solid rgba(255,255,255,0.06)",
             display: "flex",
-            gap: 12,
+            gap: 10,
             flexWrap: "wrap",
           }}
         >
           <Link
             href="/sobre"
             style={{
-              padding: "10px 18px",
+              padding: "10px 16px",
               background: GOLD,
               color: "#060B14",
               fontWeight: 600,
-              fontSize: 14,
+              fontSize: 13,
               textDecoration: "none",
               borderRadius: 6,
+              whiteSpace: "nowrap",
             }}
           >
             {isEn ? "About ZonaMundial →" : "Sobre ZonaMundial →"}
@@ -86,163 +122,247 @@ export function EditorialIntro() {
           <Link
             href="/selecciones"
             style={{
-              padding: "10px 18px",
+              padding: "10px 16px",
               background: "transparent",
               color: GOLD,
               fontWeight: 600,
-              fontSize: 14,
+              fontSize: 13,
               textDecoration: "none",
               borderRadius: 6,
               border: `1px solid ${GOLD}`,
+              whiteSpace: "nowrap",
             }}
           >
-            {isEn ? "Browse 48 teams →" : "Ver las 48 selecciones →"}
+            {isEn ? "48 teams →" : "48 selecciones →"}
           </Link>
           <Link
             href="/blog"
             style={{
-              padding: "10px 18px",
+              padding: "10px 16px",
               background: "transparent",
               color: MID,
               fontWeight: 600,
-              fontSize: 14,
+              fontSize: 13,
               textDecoration: "none",
               borderRadius: 6,
               border: "1px solid rgba(255,255,255,0.15)",
+              whiteSpace: "nowrap",
             }}
           >
-            {isEn ? "Read the blog →" : "Leer el blog →"}
+            {isEn ? "Blog →" : "Blog →"}
           </Link>
         </div>
       </div>
+
+      {/* Mobile: stats grid 2x2 (más cómodo) */}
+      <style>{`
+        @media (max-width: 540px) {
+          .zm-edit-stats {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
 
-function SpanishCopy() {
+function Stat({ n, l }: { n: string; l: string }) {
+  return (
+    <div
+      style={{
+        background: "rgba(11,24,37,0.6)",
+        border: "1px solid rgba(212,168,83,0.18)",
+        borderRadius: 8,
+        padding: "12px 8px",
+        textAlign: "center",
+      }}
+    >
+      <div
+        style={{
+          color: GOLD2,
+          fontSize: "clamp(22px, 4vw, 30px)",
+          fontWeight: 800,
+          letterSpacing: "-0.03em",
+          lineHeight: 1,
+          marginBottom: 4,
+        }}
+      >
+        {n}
+      </div>
+      <div
+        style={{
+          color: DIM,
+          fontSize: 10,
+          letterSpacing: "0.14em",
+          textTransform: "uppercase",
+          fontWeight: 600,
+        }}
+      >
+        {l}
+      </div>
+    </div>
+  );
+}
+
+/* ───────────── Sub-headers que rompen el texto ───────────── */
+function SubH({ children }: { children: React.ReactNode }) {
+  return (
+    <h3
+      style={{
+        color: "#E2E8F0",
+        fontSize: "clamp(16px, 2.4vw, 19px)",
+        fontWeight: 700,
+        margin: "26px 0 10px",
+        letterSpacing: "-0.01em",
+        lineHeight: 1.3,
+      }}
+    >
+      {children}
+    </h3>
+  );
+}
+
+const P_STYLE: React.CSSProperties = {
+  fontSize: "clamp(14px, 2vw, 15px)",
+  lineHeight: 1.72,
+  color: MID,
+  margin: "0 0 14px",
+};
+
+/* ───────────── Pull quote ───────────── */
+function PullQuote({ children }: { children: React.ReactNode }) {
+  return (
+    <blockquote
+      style={{
+        margin: "22px 0",
+        padding: "16px 18px",
+        borderLeft: `3px solid ${GOLD}`,
+        background: "rgba(212,168,83,0.06)",
+        borderRadius: "0 8px 8px 0",
+        fontFamily: "var(--zm-font-outfit, sans-serif)",
+        fontSize: "clamp(15px, 2.2vw, 18px)",
+        lineHeight: 1.45,
+        color: "#E2E8F0",
+        fontWeight: 500,
+        letterSpacing: "-0.005em",
+      }}
+    >
+      {children}
+    </blockquote>
+  );
+}
+
+/* ───────────── ES copy ───────────── */
+function EsCopy() {
   return (
     <>
-      <p style={{ fontSize: 18, color: "#cbd5e1", marginBottom: 22 }}>
-        El Mundial 2026 va a ser distinto a todos los anteriores. Por primera vez en la historia jugarán <strong style={{ color: "#fff" }}>48 selecciones</strong>{" "}
-        repartidas en <strong style={{ color: "#fff" }}>12 grupos</strong>, en <strong style={{ color: "#fff" }}>16 sedes</strong> de tres países anfitriones —{" "}
-        Estados Unidos, Canadá y México — durante <strong style={{ color: "#fff" }}>39 días</strong> y <strong style={{ color: "#fff" }}>104 partidos</strong>.
-        Es el torneo más grande, más complejo y más comercial que ha organizado la FIFA. Y también el que más fans hispanohablantes va a movilizar de toda la historia.
+      <SubH>Una enciclopedia hispana del Mundial 2026</SubH>
+      <p style={P_STYLE}>
+        ZonaMundial nace para ser <strong style={{ color: "#fff" }}>la enciclopedia oficiosa del Mundial 2026 en español</strong>:
+        48 fichas de selecciones redactadas a mano con historia mundialista año por año, plantillas verificadas, análisis táctico,
+        palmarés, partidos icónicos y curiosidades. 16 fichas de sedes con datos, ubicación, capacidad e historia. 12 fichas de grupos
+        con calendarios, predicciones y favoritos. Calendario completo de los 104 partidos sincronizado con tu zona horaria.
       </p>
 
-      <p style={{ marginBottom: 18 }}>
-        ZonaMundial nace para acompañar ese Mundial desde un sitio único en español. No somos una casa de apuestas, ni una app de quinielas
-        improvisada, ni un blog automatizado. Somos un proyecto editorial-first construido en Valencia por{" "}
+      <SubH>Producto editorial-first, no app de quinielas</SubH>
+      <p style={P_STYLE}>
+        No somos una casa de apuestas ni un blog automatizado. Somos un proyecto construido en Valencia por{" "}
         <Link href="https://sprintmarkt.com/es/" target="_blank" rel="noopener noreferrer" style={{ color: GOLD }}>
           Sprintmarkt
-        </Link>
-        , agencia digital con una década de experiencia en producto, marketing y SEO. Nuestro equipo combina periodistas deportivos, ingenieros de
-        software, diseñadores UX y product managers distribuidos entre España, México, Argentina y Colombia.
+        </Link>{" "}
+        con un equipo distribuido entre España, México, Argentina y Colombia: periodistas deportivos, ingenieros, diseñadores UX y
+        product managers. Cada artículo del blog lleva firma, fecha y bio. Las correcciones se aceptan públicamente.
       </p>
 
-      <p style={{ marginBottom: 18 }}>
-        El sitio existe para ser <strong style={{ color: "#fff" }}>la enciclopedia oficiosa del Mundial 2026 en español</strong>: 48 fichas de selecciones
-        redactadas a mano con historia mundialista año por año, plantillas verificadas, análisis táctico, palmarés, partidos icónicos y curiosidades. 16 fichas
-        de sedes con datos, ubicación, capacidad e historia de los estadios. 12 fichas de grupos con calendarios, predicciones y favoritos. Calendario completo
-        de los 104 partidos sincronizado con tu zona horaria. Y un blog editorial donde periodistas hispanohablantes con experiencia en medios deportivos
-        (Marca, Olé, Globo, ESPN Latinoamérica) publican análisis profundos, previas, crónicas y opinión.
+      <PullQuote>
+        &ldquo;Queremos que la ficha de Argentina sirva aunque nunca uses la app: Power Index, trayectoria FIFA, plantilla actual,
+        análisis táctico. Sin clickbait.&rdquo;
+      </PullQuote>
+
+      <SubH>Plataforma gratuita, no apuestas</SubH>
+      <p style={P_STYLE}>
+        Por encima del contenido editorial hay <strong style={{ color: "#fff" }}>una plataforma de gamificación gratuita</strong>:
+        predicciones partido a partido con puntos transparentes, fantasy de selecciones, trivia verificada, ligas privadas para grupos
+        de amigos, álbum digital coleccionable y un IA Coach con modelos de Anthropic que sugiere alineaciones. Los jugadores compiten
+        por posiciones en rankings, no por dinero. ZonaMundial no es un sitio de apuestas: es entretenimiento y comunidad.
       </p>
 
-      <p style={{ marginBottom: 18 }}>
-        Por encima de eso hay una <strong style={{ color: "#fff" }}>plataforma de gamificación gratuita</strong>: predicciones partido a partido con sistema de
-        puntos transparente, fantasy de selecciones nacionales, trivia con preguntas verificadas, ligas privadas para grupos de amigos, álbum digital
-        coleccionable de los 48 equipos y un IA Coach desarrollado con modelos de lenguaje de Anthropic que te sugiere alineaciones y análisis cuando la
-        cabeza ya no da más. Todo el acceso es gratuito; los jugadores compiten por posiciones en rankings públicos y privados, no por dinero. ZonaMundial
-        no es un sitio de apuestas: es entretenimiento futbolístico y comunidad.
-      </p>
-
-      <p style={{ marginBottom: 18 }}>
-        Nos importa la calidad. Cada dato numérico se cruza con al menos dos fuentes oficiales antes de publicarse. Cada foto de jugador en las fichas
-        proviene de Wikimedia Commons con licencia Creative Commons verificada. Cada artículo del blog lleva firma, fecha de publicación y bio del autor.
-        Si publicamos un error, lo corregimos visiblemente con sello "Actualizado el [fecha]" — sin reescribir historia. Si quieres saber más sobre cómo
-        trabajamos, lee la página{" "}
+      <SubH>Compromiso con la calidad</SubH>
+      <p style={P_STYLE}>
+        Cada dato numérico se cruza con dos fuentes oficiales antes de publicarse. Cada foto de jugador viene de Wikimedia Commons con
+        licencia Creative Commons verificada. Si publicamos un error, lo corregimos visiblemente con sello{" "}
+        <em>&ldquo;Actualizado el [fecha]&rdquo;</em>. Si quieres saber más, lee{" "}
         <Link href="/sobre" style={{ color: GOLD, fontWeight: 600 }}>
           Sobre ZonaMundial
-        </Link>
-        , consulta nuestras{" "}
-        <Link href="/legal/privacidad" style={{ color: GOLD, fontWeight: 600 }}>
-          políticas de privacidad
         </Link>{" "}
-        o escríbenos por{" "}
+        o escríbenos a través del{" "}
         <Link href="/contacto" style={{ color: GOLD, fontWeight: 600 }}>
-          el formulario de contacto
+          formulario de contacto
         </Link>
         .
       </p>
 
-      <p>
-        El Mundial empieza el <strong style={{ color: "#fff" }}>11 de junio de 2026</strong> en el Estadio Azteca con México vs Sudáfrica.
-        Tenemos hasta entonces para terminar de construir la mejor experiencia digital posible para 480 millones de hispanohablantes que vivirán el torneo.
-        Si quieres acompañarnos, regístrate gratis, sigue el blog, comparte una ficha que te haya gustado o únete a la comunidad de creadores. Cualquier
-        ayuda suma.
+      <p style={{ ...P_STYLE, fontStyle: "italic", color: DIM, marginTop: 18 }}>
+        El Mundial empieza el <strong style={{ color: "#fff", fontStyle: "normal" }}>11 de junio de 2026</strong> en el Estadio Azteca
+        con México vs Sudáfrica. Tenemos hasta entonces para terminar de construir la mejor experiencia digital posible.
       </p>
     </>
   );
 }
 
-function EnglishCopy() {
+/* ───────────── EN copy ───────────── */
+function EnCopy() {
   return (
     <>
-      <p style={{ fontSize: 18, color: "#cbd5e1", marginBottom: 22 }}>
-        The 2026 World Cup is going to be different. For the first time in history, <strong style={{ color: "#fff" }}>48 national teams</strong> will play
-        across <strong style={{ color: "#fff" }}>12 groups</strong> in <strong style={{ color: "#fff" }}>16 venues</strong> spread over three host countries —
-        the United States, Canada and Mexico — for <strong style={{ color: "#fff" }}>39 days</strong> and <strong style={{ color: "#fff" }}>104 matches</strong>.
-        It is the largest, most complex and most commercial tournament FIFA has ever organized. It is also the one that will mobilize the most
-        Spanish-speaking fans in history.
+      <SubH>A Spanish-first 2026 World Cup encyclopedia</SubH>
+      <p style={P_STYLE}>
+        ZonaMundial exists to be <strong style={{ color: "#fff" }}>the unofficial 2026 World Cup encyclopedia in Spanish</strong>: 48
+        national team pages written by hand with edition-by-edition history, verified squads, tactical analysis, palmares, iconic
+        matches and curiosities. 16 venue pages with data, location, capacity and stadium history. 12 group pages with fixtures,
+        predictions and favorites. A full 104-match calendar synced to your time zone.
       </p>
 
-      <p style={{ marginBottom: 18 }}>
-        ZonaMundial exists to cover that World Cup from a single Spanish-first home on the internet. We are not a sportsbook, not a hastily-built prediction
-        app, not an automated blog. We are an editorial-first project built in Valencia (Spain) by{" "}
+      <SubH>Editorial-first, not just a prediction app</SubH>
+      <p style={P_STYLE}>
+        We are not a sportsbook or an automated blog. We are a project built in Valencia by{" "}
         <Link href="https://sprintmarkt.com/es/" target="_blank" rel="noopener noreferrer" style={{ color: GOLD }}>
           Sprintmarkt
-        </Link>
-        , a digital agency with a decade of experience in product, marketing and SEO. Our team combines sports journalists, software engineers,
-        UX designers and product managers distributed across Spain, Mexico, Argentina and Colombia.
+        </Link>{" "}
+        with a team distributed across Spain, Mexico, Argentina and Colombia: sports journalists, engineers, UX designers and product
+        managers. Every blog article carries byline, date and author bio. Corrections are accepted publicly.
       </p>
 
-      <p style={{ marginBottom: 18 }}>
-        The site exists to be <strong style={{ color: "#fff" }}>the unofficial 2026 World Cup encyclopedia in Spanish</strong>: 48 national team pages written
-        by hand with edition-by-edition World Cup history, verified squads, tactical analysis, palmares, iconic matches and curiosities. 16 venue pages with
-        data, location, capacity and stadium history. 12 group pages with fixtures, predictions and favorites. A full 104-match calendar synced to your time
-        zone. And an editorial blog where Spanish-speaking journalists with experience at Marca, Olé, Globo and ESPN Latinoamérica publish deep analysis,
-        previews, match reports and opinion.
+      <PullQuote>
+        &ldquo;We want Argentina&apos;s team page to be useful even if you never use the app: Power Index, FIFA trajectory, current squad,
+        tactical analysis. No clickbait.&rdquo;
+      </PullQuote>
+
+      <SubH>Free platform, not betting</SubH>
+      <p style={P_STYLE}>
+        On top of the editorial content sits <strong style={{ color: "#fff" }}>a free gamification platform</strong>: match-by-match
+        predictions with a transparent points system, national-team fantasy, verified trivia, private leagues for groups of friends, a
+        digital collectible album and an AI Coach built with Anthropic models that suggests lineups. Players compete for positions in
+        rankings, not for money. ZonaMundial is not a betting site: it&apos;s football entertainment and community.
       </p>
 
-      <p style={{ marginBottom: 18 }}>
-        On top of that, a <strong style={{ color: "#fff" }}>free gamification platform</strong>: match-by-match predictions with a transparent points system,
-        national-team fantasy, verified trivia, private leagues for groups of friends, a digital collectible album of all 48 teams and an AI Coach built with
-        Anthropic language models that suggests lineups and analysis when your head is fried. All access is free; players compete for positions in public and
-        private rankings, not for money. ZonaMundial is not a betting site: it is football entertainment and community.
-      </p>
-
-      <p style={{ marginBottom: 18 }}>
-        We care about quality. Every numerical fact is cross-checked against at least two official sources before publication. Every player photo on the team
-        pages comes from Wikimedia Commons with a verified Creative Commons license. Every blog article carries author byline, publication date and an author
-        bio. If we publish a mistake, we correct it visibly with an "Updated on [date]" stamp — without rewriting history. To learn more about how we work,
-        read the{" "}
+      <SubH>Quality commitment</SubH>
+      <p style={P_STYLE}>
+        Every numerical fact is cross-checked against two official sources before publication. Every player photo comes from Wikimedia
+        Commons with a verified Creative Commons license. If we publish a mistake, we correct it visibly with an{" "}
+        <em>&ldquo;Updated on [date]&rdquo;</em> stamp. To learn more, read the{" "}
         <Link href="/sobre" style={{ color: GOLD, fontWeight: 600 }}>
-          About ZonaMundial
+          About
         </Link>{" "}
-        page, check our{" "}
-        <Link href="/legal/privacidad" style={{ color: GOLD, fontWeight: 600 }}>
-          privacy policies
-        </Link>{" "}
-        or write us via the{" "}
+        page or write us via the{" "}
         <Link href="/contacto" style={{ color: GOLD, fontWeight: 600 }}>
           contact form
         </Link>
         .
       </p>
 
-      <p>
-        The World Cup kicks off on <strong style={{ color: "#fff" }}>June 11, 2026</strong> at Estadio Azteca with Mexico vs South Africa. We have until then
-        to finish building the best possible digital experience for 480 million Spanish-speaking fans who will live the tournament. If you want to join us,
-        sign up for free, follow the blog, share a team page you liked, or join the creator community. Any help counts.
+      <p style={{ ...P_STYLE, fontStyle: "italic", color: DIM, marginTop: 18 }}>
+        The World Cup kicks off on <strong style={{ color: "#fff", fontStyle: "normal" }}>June 11, 2026</strong> at Estadio Azteca with
+        Mexico vs South Africa. We have until then to finish building the best possible digital experience.
       </p>
     </>
   );

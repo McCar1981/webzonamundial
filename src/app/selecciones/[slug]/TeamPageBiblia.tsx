@@ -17,6 +17,7 @@ import DeepTabs from "@/components/biblia/DeepTabs";
 import CoachAndBase from "@/components/biblia/CoachAndBase";
 import TeamCTA from "@/components/biblia/TeamCTA";
 import TeamPager from "@/components/biblia/TeamPager";
+import EditorialMeta from "@/components/biblia/EditorialMeta";
 import { getTeamNavigation } from "@/lib/biblia";
 
 const SECTIONS = [
@@ -69,6 +70,9 @@ export default async function TeamPageBiblia({ team }: { team: NationalTeam }) {
         <DeepTabs team={team} />
         <CoachAndBase team={team} />
         <TeamCTA team={team} />
+
+        {/* Bloque editorial: autoría, fecha de revisión, fuentes verificadas */}
+        <EditorialMeta team={team} />
 
         {/* Navegación anterior/siguiente entre fichas BIBLIA */}
         <TeamPager prev={prev} next={next} />

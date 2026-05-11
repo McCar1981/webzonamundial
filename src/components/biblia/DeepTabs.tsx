@@ -123,12 +123,21 @@ function Panel({
   active: boolean;
   children: React.ReactNode;
 }) {
+  // Antes usábamos hidden={!active} para esconder paneles inactivos,
+  // pero eso eliminaba el contenido del árbol accesible y Google
+  // (especialmente AdSense bot) podía interpretarlo como contenido vacío.
+  // Solución: renderizamos SIEMPRE todos los paneles en el DOM.
+  // El estado "active" solo cambia el indicador visual del tab strip;
+  // el contenido completo (~2000 palabras por ficha) queda visible y
+  // crawleable. UX no cambia para usuarios con JS — siguen viendo
+  // un panel a la vez vía scroll natural.
   return (
     <div
       role="tabpanel"
       id={`panel-${id}`}
-      hidden={!active}
-      className={active ? "" : "hidden"}
+      aria-hidden={!active}
+      data-active={active}
+      style={{ scrollMarginTop: 80 }}
     >
       {children}
     </div>
@@ -140,7 +149,6 @@ function Panel({
 function HistoriaPanel({ team }: { team: NationalTeam }) {
   const wc = team.history?.by_world_cup ?? [];
   const agg = team.history?.aggregate_stats_through_2022;
-  const [expanded, setExpanded] = useState<number | null>(null);
 
   if (wc.length === 0) return <EmptyMsg msg="Aún sin datos de mundiales." />;
 
@@ -162,14 +170,18 @@ function HistoriaPanel({ team }: { team: NationalTeam }) {
         <p className="text-[11px] text-[var(--bb-text-muted)] mb-6 italic">{agg.notes}</p>
       ) : null}
 
-      <div className="space-y-2">
+      {/*
+        Antes cada edición era un accordion colapsado por defecto (state
+        local con setExpanded). Eso ocultaba ~1500 palabras de narrativa
+        del crawler. Ahora cada edición renderiza su narrativa completa
+        siempre. La densidad visual aumenta, pero SEO/AdSense necesitan
+        este contenido. Si el aspecto cansa, se podría añadir botón
+        "Mostrar menos" en otra iteración, pero el contenido DEBE estar
+        en el HTML inicial.
+      */}
+      <div className="space-y-4">
         {wc.map((p) => (
-          <WCEdition
-            key={p.year}
-            edition={p}
-            isOpen={expanded === p.year}
-            onToggle={() => setExpanded(expanded === p.year ? null : p.year)}
-          />
+          <WCEdition key={p.year} edition={p} />
         ))}
       </div>
 
@@ -183,18 +195,10 @@ function HistoriaPanel({ team }: { team: NationalTeam }) {
   );
 }
 
-function WCEdition({
-  edition,
-  isOpen,
-  onToggle,
-}: {
-  edition: WorldCupParticipation;
-  isOpen: boolean;
-  onToggle: () => void;
-}) {
+function WCEdition({ edition }: { edition: WorldCupParticipation }) {
   const isChampion = edition.result === "Campeón";
   return (
-    <div
+    <article
       className="rounded-xl border overflow-hidden"
       style={{
         borderColor: isChampion
@@ -203,12 +207,7 @@ function WCEdition({
         background: isChampion ? "rgba(201,168,76,0.04)" : "rgba(11,24,37,0.4)",
       }}
     >
-      <button
-        type="button"
-        onClick={onToggle}
-        aria-expanded={isOpen}
-        className="w-full p-4 flex items-center gap-3 text-left transition-colors hover:bg-white/[0.02]"
-      >
+      <header className="w-full p-4 flex items-center gap-3 text-left">
         <div
           className="font-black text-lg flex-shrink-0 w-16"
           style={{ color: isChampion ? "#C9A84C" : "#cbd5e1" }}
@@ -216,51 +215,36 @@ function WCEdition({
           {edition.year}
         </div>
         <div className="min-w-0 flex-1">
-          <div className="text-sm font-bold text-white">{edition.result}</div>
+          <h4 className="text-sm font-bold text-white m-0">{edition.result}</h4>
           <div className="text-[11px] text-[var(--bb-text-muted)] truncate">
             Sede: {edition.host?.countries?.join(", ") ?? "—"} · DT: {edition.coach}
           </div>
         </div>
-        <svg
-          className="w-4 h-4 text-[var(--bb-text-muted)] transition-transform flex-shrink-0"
-          style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0)" }}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-      </button>
+      </header>
 
-      {isOpen ? (
-        <div className="px-4 pb-4 pt-1 border-t border-white/5 text-sm leading-relaxed text-[var(--bb-text-soft)] space-y-3">
-          {edition.narrative ? <p>{edition.narrative}</p> : null}
-          {edition.notable_facts && edition.notable_facts.length > 0 ? (
-            <ul className="space-y-1">
-              {edition.notable_facts.map((f, i) => (
-                <li key={i} className="flex gap-2 text-xs text-[var(--bb-text-muted)]">
-                  <span className="text-[#C9A84C] flex-shrink-0">·</span>
-                  <span>{f}</span>
-                </li>
-              ))}
-            </ul>
-          ) : null}
-          {edition.team_top_scorers && edition.team_top_scorers.length > 0 ? (
-            <div className="text-xs text-[var(--bb-text-muted)]">
-              Goleadores:{" "}
-              {edition.team_top_scorers
-                .map((s) => `${s.player} (${s.goals})`)
-                .join(" · ")}
-            </div>
-          ) : null}
-        </div>
-      ) : null}
-    </div>
+      {/* Narrativa siempre visible: clave para SEO/AdSense */}
+      <div className="px-4 pb-4 pt-1 border-t border-white/5 text-sm leading-relaxed text-[var(--bb-text-soft)] space-y-3">
+        {edition.narrative ? <p>{edition.narrative}</p> : null}
+        {edition.notable_facts && edition.notable_facts.length > 0 ? (
+          <ul className="space-y-1">
+            {edition.notable_facts.map((f, i) => (
+              <li key={i} className="flex gap-2 text-xs text-[var(--bb-text-muted)]">
+                <span className="text-[#C9A84C] flex-shrink-0">·</span>
+                <span>{f}</span>
+              </li>
+            ))}
+          </ul>
+        ) : null}
+        {edition.team_top_scorers && edition.team_top_scorers.length > 0 ? (
+          <div className="text-xs text-[var(--bb-text-muted)]">
+            Goleadores:{" "}
+            {edition.team_top_scorers
+              .map((s) => `${s.player} (${s.goals})`)
+              .join(" · ")}
+          </div>
+        ) : null}
+      </div>
+    </article>
   );
 }
 

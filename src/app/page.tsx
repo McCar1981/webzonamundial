@@ -13,6 +13,7 @@ import { MODULES_BASE } from "./_home/data";
 
 import { ScrollProgressBar } from "./_home/components/ScrollProgressBar";
 import { HeroSection } from "./_home/sections/HeroSection";
+import { EditorialIntro } from "./_home/sections/EditorialIntro";
 import { StatsHowSection } from "./_home/sections/StatsHowSection";
 import { PlatformShowcaseSection } from "./_home/sections/PlatformShowcaseSection";
 import { ModulesGridSection } from "./_home/sections/ModulesGridSection";
@@ -72,6 +73,7 @@ export default function HomePage() {
         cd={cd}
         IMGS={IMGS}
       />
+      <EditorialIntro />
       <StatsHowSection />
       <CalendarBanner />
       <BracketBanner />

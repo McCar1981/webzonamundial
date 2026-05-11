@@ -35,6 +35,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // noindex via src/app/app/layout.tsx hasta que cada módulo tenga
     // contenido real. NO listar en sitemap mientras tanto, así Google no
     // recibe señales contradictorias).
+    // Páginas corporativas (alta prioridad para AdSense / trust)
+    { url: `${BASE_URL}/sobre`, lastModified, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE_URL}/contacto`, lastModified, changeFrequency: "monthly", priority: 0.7 },
     // Legales (índice bajo pero deben existir)
     { url: `${BASE_URL}/legal/aviso-legal`, lastModified, changeFrequency: "yearly", priority: 0.3 },
     { url: `${BASE_URL}/legal/cookies`, lastModified, changeFrequency: "yearly", priority: 0.3 },

@@ -80,7 +80,7 @@ export default function CookiesPage() {
         </Section>
 
         <Section title="6. Contacto">
-          <p>Para cualquier consulta sobre el uso de cookies: <a href="mailto:privacidad@zonamundial.app" style={{ color: GOLD }}>privacidad@zonamundial.app</a></p>
+          <p>Para cualquier consulta sobre el uso de cookies: <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a></p>
         </Section>
       </div>
     </main>

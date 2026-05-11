@@ -490,10 +490,6 @@ export default function SeleccionClient({ team, companeros }: Props) {
               </AnimatedSection>
             )}
 
-            {/* Sponsor */}
-            <div className="h-32 rounded-3xl bg-white/[0.02] border border-white/10 flex items-center justify-center">
-              <span className="text-gray-600">{sT.espacio}</span>
-            </div>
           </div>
 
           {/* Sidebar - 1/3 */}

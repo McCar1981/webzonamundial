@@ -173,9 +173,10 @@ const jsonLd = {
       ],
       contactPoint: {
         "@type": "ContactPoint",
-        contactType: "business",
-        email: "business.dev@sprintmarkt.com",
+        contactType: "customer support",
+        email: "gol@zonamundial.app",
         availableLanguage: ["Spanish", "English"],
+        url: `${SITE_URL}/contacto`,
       },
     },
     {

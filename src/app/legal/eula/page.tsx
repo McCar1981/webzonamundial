@@ -103,9 +103,9 @@ export default function EulaPage() {
 
         <Section title="14. Contacto">
           <ul>
-            <li>Soporte: <a href="mailto:soporte@zonamundial.app" style={{ color: GOLD }}>soporte@zonamundial.app</a></li>
-            <li>Legal: <a href="mailto:legal@zonamundial.app" style={{ color: GOLD }}>legal@zonamundial.app</a></li>
-            <li>Comercial: <a href="mailto:business.dev@sprintmarkt.com" style={{ color: GOLD }}>business.dev@sprintmarkt.com</a></li>
+            <li>Soporte: <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a></li>
+            <li>Legal: <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a></li>
+            <li>Comercial: <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a></li>
           </ul>
         </Section>
       </div>

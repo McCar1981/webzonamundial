@@ -19,11 +19,11 @@ export default function PrivacidadPage() {
           Última actualización: Abril 2026 · Conforme al RGPD (UE) 2016/679 y LOPDGDD 3/2018
         </p>
         <p style={{ fontSize: 14, lineHeight: 1.7, marginBottom: 32, padding: "16px", background: "rgba(201,168,76,0.08)", borderLeft: "3px solid " + GOLD, borderRadius: 4 }}>
-          <strong>Resumen:</strong> Recogemos tu email, nombre de usuario y actividad en la app para ofrecerte el servicio. No vendemos tus datos. Usamos proveedores de confianza (AWS, Stripe, Firebase). Tienes derecho a acceder, rectificar y eliminar tus datos escribiendo a <a href="mailto:privacidad@zonamundial.app" style={{ color: GOLD }}>privacidad@zonamundial.app</a>.
+          <strong>Resumen:</strong> Recogemos tu email, nombre de usuario y actividad en la app para ofrecerte el servicio. No vendemos tus datos. Usamos proveedores de confianza (AWS, Stripe, Firebase). Tienes derecho a acceder, rectificar y eliminar tus datos escribiendo a <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a>.
         </p>
 
         <Section title="1. Responsable del tratamiento">
-          <p>Carlos Manuel Zamudio Corral (SprintMarkt), con domicilio en Valencia, España. Contacto de privacidad: <a href="mailto:privacidad@zonamundial.app" style={{ color: GOLD }}>privacidad@zonamundial.app</a>.</p>
+          <p>Carlos Manuel Zamudio Corral (SprintMarkt), con domicilio en Valencia, España. Contacto de privacidad: <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a>.</p>
         </Section>
 
         <Section title="2. Qué datos recogemos y cómo">
@@ -63,7 +63,7 @@ export default function PrivacidadPage() {
 
         <Section title="6. Transferencias internacionales de datos">
           <p>Algunos proveedores procesan datos fuera del Espacio Económico Europeo. Las garantías adoptadas son: Cláusulas Contractuales Tipo (SCCs) adoptadas por la Comisión Europea, Marco UE-EE.UU. de Privacidad de Datos (DPF) cuando el proveedor está certificado, y Evaluaciones de impacto de transferencia (TIA) para los proveedores principales.</p>
-          <p>Puedes solicitar información sobre las garantías específicas escribiendo a <a href="mailto:privacidad@zonamundial.app" style={{ color: GOLD }}>privacidad@zonamundial.app</a>.</p>
+          <p>Puedes solicitar información sobre las garantías específicas escribiendo a <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a>.</p>
         </Section>
 
         <Section title="7. Conservación de los datos">
@@ -85,7 +85,7 @@ export default function PrivacidadPage() {
           <h4 style={{ color: GOLD, marginTop: 16, marginBottom: 8 }}>Cómo ejercerlos</h4>
           <ul>
             <li>Desde la app: Ajustes &gt; Cuenta &gt; Privacidad y datos.</li>
-            <li>Por email: <a href="mailto:privacidad@zonamundial.app" style={{ color: GOLD }}>privacidad@zonamundial.app</a> — indicando nombre de usuario, email de registro y el derecho que deseas ejercer.</li>
+            <li>Por email: <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a> — indicando nombre de usuario, email de registro y el derecho que deseas ejercer.</li>
             <li>Plazo de respuesta: máximo 30 días naturales (prorrogables a 60 en casos complejos).</li>
           </ul>
           <h4 style={{ color: GOLD, marginTop: 16, marginBottom: 8 }}>Reclamación ante la AEPD</h4>
@@ -94,7 +94,7 @@ export default function PrivacidadPage() {
 
         <Section title="9. Menores de edad">
           <p>ZonaMundial está dirigida a usuarios mayores de 14 años, que es la edad mínima de consentimiento digital en España conforme al artículo 8 del RGPD y el artículo 7 de la LOPDGDD. Para usuarios residentes en otros países, se aplica la edad mínima de su legislación nacional si es superior.</p>
-          <p>Si se detecta o recibe notificación de que un usuario es menor de 14 años, se procederá a la eliminación inmediata de su cuenta y todos los datos asociados. Los progenitores o tutores que tengan conocimiento de un registro indebido pueden solicitar la eliminación en <a href="mailto:privacidad@zonamundial.app" style={{ color: GOLD }}>privacidad@zonamundial.app</a>.</p>
+          <p>Si se detecta o recibe notificación de que un usuario es menor de 14 años, se procederá a la eliminación inmediata de su cuenta y todos los datos asociados. Los progenitores o tutores que tengan conocimiento de un registro indebido pueden solicitar la eliminación en <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a>.</p>
           <p>Publicidad: para usuarios identificados como menores de edad (entre 14 y 18 años), se mostrará exclusivamente publicidad contextual no dirigida, desactivando el uso de IDFA/GAID para AdMob.</p>
         </Section>
 
@@ -119,10 +119,10 @@ export default function PrivacidadPage() {
 
         <Section title="13. Contacto">
           <ul>
-            <li>Email de privacidad: <a href="mailto:privacidad@zonamundial.app" style={{ color: GOLD }}>privacidad@zonamundial.app</a></li>
-            <li>Email general: <a href="mailto:legal@zonamundial.app" style={{ color: GOLD }}>legal@zonamundial.app</a></li>
+            <li>Email de privacidad: <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a></li>
+            <li>Email general: <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a></li>
           </ul>
-          <p style={{ fontSize: 13, color: DIM }}>Carlos Manuel Zamudio Corral, como empresario individual en etapa de inicio, no está obligado a designar un Delegado de Protección de Datos (DPO) formal según el Art. 37 RGPD. El punto de contacto para privacidad es privacidad@zonamundial.app.</p>
+          <p style={{ fontSize: 13, color: DIM }}>Carlos Manuel Zamudio Corral, como empresario individual en etapa de inicio, no está obligado a designar un Delegado de Protección de Datos (DPO) formal según el Art. 37 RGPD. El punto de contacto para privacidad es gol@zonamundial.app.</p>
         </Section>
       </div>
     </main>

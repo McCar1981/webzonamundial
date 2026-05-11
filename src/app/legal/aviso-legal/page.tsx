@@ -101,8 +101,8 @@ export default function AvisoLegalPage() {
 
         <Section title="8. Contacto">
           <ul>
-            <li>Email legal: <a href="mailto:legal@zonamundial.app" style={{ color: GOLD }}>legal@zonamundial.app</a></li>
-            <li>Email comercial: <a href="mailto:business.dev@sprintmarkt.com" style={{ color: GOLD }}>business.dev@sprintmarkt.com</a></li>
+            <li>Email legal: <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a></li>
+            <li>Email comercial: <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a></li>
             <li>Formulario web: <Link href="/contacto" style={{ color: GOLD }}>zonamundial.app/contacto</Link></li>
           </ul>
           <p>El titular se compromete a responder en un plazo máximo de 10 días hábiles.</p>

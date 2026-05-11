@@ -36,7 +36,7 @@ export default function TerminosPage() {
           <ul>
             <li>Cada usuario puede tener una única cuenta. La creación de cuentas múltiples para obtener ventajas constituye una infracción grave.</li>
             <li>El usuario es responsable de mantener la confidencialidad de sus credenciales y de todas las actividades realizadas desde su cuenta.</li>
-            <li>Ante cualquier uso no autorizado, el usuario debe notificarlo inmediatamente a <a href="mailto:soporte@zonamundial.app" style={{ color: GOLD }}>soporte@zonamundial.app</a>.</li>
+            <li>Ante cualquier uso no autorizado, el usuario debe notificarlo inmediatamente a <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a>.</li>
           </ul>
           <h4 style={{ color: GOLD, marginTop: 16, marginBottom: 8 }}>2.4 Canal de acceso</h4>
           <p>ZonaMundial distribuye el servicio a través de creadores de contenido asociados. El usuario accede a través del enlace o código de su creador de referencia, lo que personaliza su experiencia. Esta asociación es voluntaria y no limita el acceso a ninguna funcionalidad del plan gratuito.</p>
@@ -68,7 +68,7 @@ export default function TerminosPage() {
             <li>Usuarios de la UE: derecho de desistimiento de 14 días naturales desde la compra, salvo que se haya solicitado el inicio de la prestación antes del vencimiento del plazo.</li>
             <li>Disfunción técnica grave: si el servicio no está disponible durante más del 30% del período contratado por causas imputables al titular, el usuario puede solicitar un reembolso proporcional.</li>
             <li>Compras en App Store o Google Play: se rigen por la política de reembolsos de Apple o Google respectivamente.</li>
-            <li>Solicitudes de reembolso: <a href="mailto:soporte@zonamundial.app" style={{ color: GOLD }}>soporte@zonamundial.app</a></li>
+            <li>Solicitudes de reembolso: <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a></li>
           </ul>
           <h4 style={{ color: GOLD, marginTop: 16, marginBottom: 8 }}>5.4 Compras in-app</h4>
           <p>La Plataforma puede ofrecer compras in-app adicionales (contenido cosmético, badges, funciones puntuales). Las compras in-app no son reembolsables salvo error técnico demostrable o requisito legal aplicable.</p>
@@ -107,7 +107,7 @@ export default function TerminosPage() {
             <li>Intentar acceder a partes restringidas del sistema o a cuentas ajenas.</li>
             <li>Reproducir, distribuir o comercializar el contenido de la Plataforma sin autorización.</li>
           </ul>
-          <p>Los usuarios pueden reportar infracciones a través de la función &quot;Reportar&quot; de la app o escribiendo a <a href="mailto:soporte@zonamundial.app" style={{ color: GOLD }}>soporte@zonamundial.app</a>.</p>
+          <p>Los usuarios pueden reportar infracciones a través de la función &quot;Reportar&quot; de la app o escribiendo a <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a>.</p>
         </Section>
 
         <Section title="9. Propiedad intelectual">
@@ -139,14 +139,14 @@ export default function TerminosPage() {
         </Section>
 
         <Section title="14. Legislación aplicable y resolución de disputas">
-          <p>Estos Términos se rigen por la legislación española. Las partes se someten a los Juzgados y Tribunales de Valencia (España). Los usuarios de la UE pueden acudir a la plataforma de resolución de litigios en línea de la Comisión Europea. Con carácter previo, el titular atiende reclamaciones en <a href="mailto:soporte@zonamundial.app" style={{ color: GOLD }}>soporte@zonamundial.app</a> con compromiso de respuesta en 10 días hábiles.</p>
+          <p>Estos Términos se rigen por la legislación española. Las partes se someten a los Juzgados y Tribunales de Valencia (España). Los usuarios de la UE pueden acudir a la plataforma de resolución de litigios en línea de la Comisión Europea. Con carácter previo, el titular atiende reclamaciones en <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a> con compromiso de respuesta en 10 días hábiles.</p>
         </Section>
 
         <Section title="15. Contacto">
           <ul>
-            <li>Soporte técnico y cuenta: <a href="mailto:soporte@zonamundial.app" style={{ color: GOLD }}>soporte@zonamundial.app</a></li>
-            <li>Legal y privacidad: <a href="mailto:legal@zonamundial.app" style={{ color: GOLD }}>legal@zonamundial.app</a></li>
-            <li>Comercial: <a href="mailto:business.dev@sprintmarkt.com" style={{ color: GOLD }}>business.dev@sprintmarkt.com</a></li>
+            <li>Soporte técnico y cuenta: <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a></li>
+            <li>Legal y privacidad: <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a></li>
+            <li>Comercial: <a href="mailto:gol@zonamundial.app" style={{ color: GOLD }}>gol@zonamundial.app</a></li>
           </ul>
         </Section>
       </div>

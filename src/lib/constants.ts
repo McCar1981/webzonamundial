@@ -8,7 +8,7 @@ export const BRAND = {
   name: "ZonaMundial",
   slogan: "Your World Cup. Your rules.",
   domain: "zonamundial.app",
-  email: "business.dev@sprintmarkt.com",
+  email: "gol@zonamundial.app",
   company: "Sprintmarkt",
   location: "Valencia, España",
 } as const;

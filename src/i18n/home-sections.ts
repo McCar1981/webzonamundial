@@ -314,6 +314,7 @@ export const homeSections = {
           links: [
             { label: "Sobre nosotros", href: "/sobre" },
             { label: "Contacto", href: "/contacto" },
+            { label: "Accesibilidad", href: "/accesibilidad" },
             { label: "Aviso Legal", href: "/legal/aviso-legal" },
             { label: "Términos de uso", href: "/legal/terminos" },
             { label: "Privacidad", href: "/legal/privacidad" },
@@ -740,6 +741,7 @@ export const homeSections = {
           links: [
             { label: "About", href: "/sobre" },
             { label: "Contact", href: "/contacto" },
+            { label: "Accessibility", href: "/accesibilidad" },
             { label: "Legal Notice", href: "/legal/aviso-legal" },
             { label: "Terms of Use", href: "/legal/terminos" },
             { label: "Privacy", href: "/legal/privacidad" },

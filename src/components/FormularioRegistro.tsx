@@ -152,21 +152,52 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
       (typeof window !== 'undefined' ? window.location.origin : '');
     const callbackUrl = `${siteUrl}/auth/callback?next=${encodeURIComponent('/onboarding')}`;
 
-    const { error: signUpError } = await supabase.auth.signInWithOtp({
-      email: cleanEmail,
-      options: {
-        emailRedirectTo: callbackUrl,
-        shouldCreateUser: true,
-        data: {
-          username: cleanNombre,
-          fav_creator: cleanCreador,
-          locale: isEN ? 'en' : 'es',
+    let signUpError: { message: string } | null = null;
+    try {
+      const { error } = await supabase.auth.signInWithOtp({
+        email: cleanEmail,
+        options: {
+          emailRedirectTo: callbackUrl,
+          shouldCreateUser: true,
+          data: {
+            username: cleanNombre,
+            fav_creator: cleanCreador,
+            locale: isEN ? 'en' : 'es',
+          },
         },
-      },
-    });
+      });
+      signUpError = error;
+    } catch (networkErr) {
+      // signInWithOtp lanza (no devuelve error en .error) cuando hay un
+      // problema de red puro, p.ej. Supabase pausado, CORS, DNS, etc.
+      // El mensaje raw "Failed to fetch" es opaco para el usuario;
+      // lo traducimos a algo accionable.
+      const raw = networkErr instanceof Error ? networkErr.message : '';
+      console.error('[registro] signInWithOtp threw:', raw);
+      setError(isEN
+        ? 'We could not reach the sign-in service. Check your connection or try again in a minute. If this persists, write to gol@zonamundial.app.'
+        : 'No pudimos contactar con el servicio de registro. Revisa tu conexión o inténtalo en un minuto. Si persiste, escríbenos a gol@zonamundial.app.');
+      setLoading(false);
+      return;
+    }
 
     if (signUpError) {
-      setError(signUpError.message);
+      // Errores funcionales que vuelven en .error (provider deshabilitado,
+      // email mal formateado server-side, rate limit…). El mensaje raw
+      // de Supabase suele ser útil aquí, lo dejamos pero humanizamos los
+      // típicos.
+      const m = signUpError.message || '';
+      let human = m;
+      if (/over_email_send_rate_limit|rate.?limit/i.test(m)) {
+        human = isEN
+          ? 'Too many sign-up attempts. Wait a minute and try again.'
+          : 'Demasiados intentos de registro. Espera un minuto y vuelve a intentarlo.';
+      } else if (/signups not allowed|disable_signup/i.test(m)) {
+        human = isEN
+          ? 'New sign-ups are temporarily paused. Try again later or contact gol@zonamundial.app.'
+          : 'Los nuevos registros están pausados temporalmente. Inténtalo más tarde o escríbenos a gol@zonamundial.app.';
+      }
+      setError(human);
       setLoading(false);
       return;
     }

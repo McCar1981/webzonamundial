@@ -8,11 +8,17 @@ export const dynamic = 'force-dynamic';
 interface RegistroBody {
   email: string;
   nombre: string;
+  // Nombre real y apellido(s) — ahora obligatorios desde el form para
+  // que la tabla auth.users de Supabase tenga `display_name` real en
+  // vez de "-". Los recibe el endpoint pero no rompe si vienen vacíos
+  // (registros viejos / fuente externa).
+  first_name?: string;
+  last_name?: string;
+  full_name?: string;
   creador?: string;
-  // País del usuario (ISO-3166 alpha-2 lowercase). Opcional.
-  // Sirve para segmentación geográfica de push, idioma e idioma por defecto.
+  // País del usuario (ISO-3166 alpha-2 lowercase).
   country?: string | null;
-  // Slug de la selección favorita (argentina, espana, brasil…). Opcional.
+  // Slug de la selección favorita (argentina, espana, brasil…).
   // Crítico para producto: la app móvil consume este campo via
   // /api/users/me/profile y activa notificaciones push exclusivas
   // de ese equipo cuando juega, anota, se publica plantilla, etc.
@@ -35,7 +41,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Cuerpo inválido' }, { status: 400 });
   }
 
-  const { email, nombre, creador, country, fav_team } = body || ({} as RegistroBody);
+  const { email, nombre, first_name, last_name, full_name, creador, country, fav_team } = body || ({} as RegistroBody);
 
   if (!email || !nombre) {
     return NextResponse.json(
@@ -77,9 +83,30 @@ export async function POST(request: NextRequest) {
     cleanFavTeam = fav_team.trim().toLowerCase();
   }
 
+  // Sanitización de nombres: letras Unicode + espacios, apóstrofes y guiones.
+  // Si llegan vacíos (clientes antiguos), no falla — los guarda como null.
+  const nameRegex = /^[\p{L}][\p{L}\s'\-.]{1,49}$/u;
+  const cleanFirstName =
+    typeof first_name === 'string' && nameRegex.test(first_name.trim())
+      ? first_name.trim().replace(/\s+/g, ' ')
+      : null;
+  const cleanLastName =
+    typeof last_name === 'string' && nameRegex.test(last_name.trim())
+      ? last_name.trim().replace(/\s+/g, ' ')
+      : null;
+  const cleanFullName =
+    typeof full_name === 'string' && full_name.trim().length > 0
+      ? full_name.trim().replace(/\s+/g, ' ').slice(0, 120)
+      : cleanFirstName && cleanLastName
+        ? `${cleanFirstName} ${cleanLastName}`
+        : null;
+
   const result = await addRegistro({
     email,
     nombre,
+    first_name: cleanFirstName,
+    last_name: cleanLastName,
+    full_name: cleanFullName,
     creador,
     country: cleanCountry,
     fav_team: cleanFavTeam,
@@ -87,7 +114,7 @@ export async function POST(request: NextRequest) {
     kind: 'full',
   });
 
-  if ('error' in result) {
+  if (result.ok === false) {
     if (result.error === 'email_taken') {
       return NextResponse.json(
         { error: 'Este email ya está registrado' },

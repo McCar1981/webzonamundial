@@ -25,7 +25,9 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     email: '',
-    nombre: '',
+    firstName: '',    // Nombre real, e.g. "Juan Carlos"
+    lastName: '',     // Apellido(s), e.g. "Pérez García"
+    nombre: '',       // Username público (alias), e.g. "juancho21"
     country: '',      // ISO-3166 alpha-2 (ar, es, mx, …)
     fav_team: '',     // slug de SELECCIONES (argentina, espana, …)
     creador: creadorPreseleccionado || '',
@@ -67,6 +69,12 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
     step2: 'Choose creator',
     email: 'Email',
     emailPlaceholder: 'your@email.com',
+    firstName: 'First name',
+    firstNamePlaceholder: 'Your first name',
+    firstNameHint: 'As shown on official documents',
+    lastName: 'Last name',
+    lastNamePlaceholder: 'Your last name',
+    lastNameHint: 'One or two last names',
     username: 'Username',
     usernamePlaceholder: 'Your username',
     usernameHint: '3-30 characters, no spaces',
@@ -100,6 +108,12 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
     step2: 'Elige creador',
     email: 'Email',
     emailPlaceholder: 'tu@email.com',
+    firstName: 'Nombre',
+    firstNamePlaceholder: 'Tu nombre',
+    firstNameHint: 'Tal como figura en documentos oficiales',
+    lastName: 'Apellido',
+    lastNamePlaceholder: 'Tu apellido',
+    lastNameHint: 'Uno o dos apellidos',
     username: 'Nombre de usuario',
     usernamePlaceholder: 'Tu nombre de usuario',
     usernameHint: '3-30 caracteres, sin espacios',
@@ -132,16 +146,47 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
 
   const validateStep1 = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // Nombre/apellido: letras (incl. acentos, ñ), espacios, apóstrofes, guiones.
+    const nameRegex = /^[\p{L}][\p{L}\s'\-.]{1,49}$/u;
+
     if (!emailRegex.test(formData.email)) {
       setError(isEN ? 'Please enter a valid email' : 'Introduce un email válido');
       return false;
     }
+    if (formData.firstName.trim().length < 2) {
+      setError(isEN ? 'First name must be at least 2 characters' : 'El nombre debe tener al menos 2 caracteres');
+      return false;
+    }
+    if (!nameRegex.test(formData.firstName.trim())) {
+      setError(isEN ? 'First name has invalid characters' : 'El nombre contiene caracteres no válidos');
+      return false;
+    }
+    if (formData.lastName.trim().length < 2) {
+      setError(isEN ? 'Last name must be at least 2 characters' : 'El apellido debe tener al menos 2 caracteres');
+      return false;
+    }
+    if (!nameRegex.test(formData.lastName.trim())) {
+      setError(isEN ? 'Last name has invalid characters' : 'El apellido contiene caracteres no válidos');
+      return false;
+    }
     if (formData.nombre.length < 3 || formData.nombre.length > 30) {
-      setError(isEN ? 'Username must be 3-30 characters' : 'El nombre debe tener entre 3 y 30 caracteres');
+      setError(isEN ? 'Username must be 3-30 characters' : 'El usuario debe tener entre 3 y 30 caracteres');
       return false;
     }
     if (/\s/.test(formData.nombre)) {
-      setError(isEN ? 'Username cannot contain spaces' : 'El nombre no puede contener espacios');
+      setError(isEN ? 'Username cannot contain spaces' : 'El usuario no puede contener espacios');
+      return false;
+    }
+    if (!/^[a-zA-Z0-9_.-]+$/.test(formData.nombre)) {
+      setError(isEN ? 'Username can only contain letters, numbers, dots, dashes and underscores' : 'El usuario solo puede tener letras, números, puntos, guiones y guiones bajos');
+      return false;
+    }
+    if (!formData.country) {
+      setError(isEN ? 'Please choose your country' : 'Elige tu país');
+      return false;
+    }
+    if (!formData.fav_team) {
+      setError(isEN ? 'Please pick your favorite team' : 'Elige tu selección favorita');
       return false;
     }
     if (!formData.acceptTerms) {
@@ -162,6 +207,9 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
     setError('');
 
     const cleanEmail = formData.email.trim().toLowerCase();
+    const cleanFirstName = formData.firstName.trim().replace(/\s+/g, ' ');
+    const cleanLastName = formData.lastName.trim().replace(/\s+/g, ' ');
+    const cleanFullName = `${cleanFirstName} ${cleanLastName}`.trim();
     const cleanNombre = formData.nombre.trim();
     const cleanCreador = formData.creador?.trim() || '';
     // Country: ISO-3166 alpha-2 lowercase (ar, es, mx…). null si vacío.
@@ -178,6 +226,9 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
         body: JSON.stringify({
           email: cleanEmail,
           nombre: cleanNombre,
+          first_name: cleanFirstName,
+          last_name: cleanLastName,
+          full_name: cleanFullName,
           creador: cleanCreador,
           country: cleanCountry,
           fav_team: cleanFavTeam,
@@ -220,6 +271,13 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
           // Así los datos del pre-registro se conservan aunque el user
           // nunca complete el wizard de onboarding posterior.
           data: {
+            // Supabase usa `display_name` / `full_name` para mostrar en la
+            // tabla de Users del dashboard y en OAuth provider info.
+            display_name: cleanFullName,
+            full_name: cleanFullName,
+            name: cleanFullName,
+            first_name: cleanFirstName,
+            last_name: cleanLastName,
             username: cleanNombre,
             fav_creator: cleanCreador,
             country: cleanCountry,
@@ -346,13 +404,57 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
             </div>
           </div>
 
-          {/* Username */}
+          {/* Nombre + Apellido en grid 2 col en desktop, 1 col en mobile */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider">{labels.firstName}</label>
+              <div className="relative">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                </div>
+                <input
+                  type="text"
+                  required
+                  value={formData.firstName}
+                  onChange={(e) => { setFormData({ ...formData, firstName: e.target.value }); setError(''); }}
+                  className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-[#0B1825] border border-[#1E293B] text-white text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/50 transition-all placeholder:text-gray-600"
+                  placeholder={labels.firstNamePlaceholder}
+                  maxLength={50}
+                  autoComplete="given-name"
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider">{labels.lastName}</label>
+              <div className="relative">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                </div>
+                <input
+                  type="text"
+                  required
+                  value={formData.lastName}
+                  onChange={(e) => { setFormData({ ...formData, lastName: e.target.value }); setError(''); }}
+                  className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-[#0B1825] border border-[#1E293B] text-white text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/50 transition-all placeholder:text-gray-600"
+                  placeholder={labels.lastNamePlaceholder}
+                  maxLength={50}
+                  autoComplete="family-name"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Username público */}
           <div className="space-y-2">
             <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider">{labels.username}</label>
             <div className="relative">
               <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
               <input
@@ -363,15 +465,16 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
                 className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-[#0B1825] border border-[#1E293B] text-white text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/50 transition-all placeholder:text-gray-600"
                 placeholder={labels.usernamePlaceholder}
                 maxLength={30}
+                autoComplete="username"
               />
             </div>
             <p className="text-[11px] text-gray-600">{labels.usernameHint}</p>
           </div>
 
-          {/* País */}
+          {/* País — obligatorio */}
           <div className="space-y-2">
             <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider">
-              {labels.country} <span className="text-gray-600 normal-case font-medium">({isEN ? 'optional' : 'opcional'})</span>
+              {labels.country}
             </label>
             <FlagSelect
               value={formData.country}
@@ -390,10 +493,10 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
             <p className="text-[11px] text-gray-600">{labels.countryHint}</p>
           </div>
 
-          {/* Selección favorita */}
+          {/* Selección favorita — obligatorio */}
           <div className="space-y-2">
             <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider">
-              {labels.favTeam} <span className="text-gray-600 normal-case font-medium">({isEN ? 'optional' : 'opcional'})</span>
+              {labels.favTeam}
             </label>
             <FlagSelect
               value={formData.fav_team}
@@ -444,7 +547,15 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
           <button
             type="button"
             onClick={handleContinue}
-            disabled={!formData.email || !formData.nombre || !formData.acceptTerms}
+            disabled={
+              !formData.email ||
+              !formData.firstName.trim() ||
+              !formData.lastName.trim() ||
+              !formData.nombre ||
+              !formData.country ||
+              !formData.fav_team ||
+              !formData.acceptTerms
+            }
             className="w-full py-4 rounded-xl text-[#030712] font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:shadow-lg hover:shadow-[#C9A84C]/25 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer"
             style={{ background: 'linear-gradient(135deg, #C9A84C, #A8893D)' }}
           >

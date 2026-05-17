@@ -41,6 +41,12 @@ export interface Registro {
   id: string;
   email: string;
   nombre: string | null;
+  // Nombre real y apellido. Antes no estaban → todos los registros viejos
+  // los tienen null. A partir del cambio de mayo 2026 son obligatorios en
+  // el form, así que vienen rellenos para los nuevos.
+  first_name: string | null;
+  last_name: string | null;
+  full_name: string | null;
   creador: string | null;
   // ISO-3166 alpha-2 lowercase (ar, es, mx, …). Opcional.
   country: string | null;
@@ -114,6 +120,9 @@ async function writeFs(store: FsStore): Promise<void> {
 export type AddRegistroInput = {
   email: string;
   nombre?: string | null;
+  first_name?: string | null;
+  last_name?: string | null;
+  full_name?: string | null;
   creador?: string | null;
   country?: string | null;
   fav_team?: string | null;
@@ -158,6 +167,9 @@ export async function addRegistro(input: AddRegistroInput): Promise<AddRegistroR
         id: genId(),
         email,
         nombre,
+        first_name: input.first_name?.trim() || null,
+        last_name: input.last_name?.trim() || null,
+        full_name: input.full_name?.trim() || null,
         creador: input.creador?.trim() || null,
         country: input.country?.trim().toLowerCase() || null,
         fav_team: input.fav_team?.trim().toLowerCase() || null,
@@ -193,6 +205,9 @@ export async function addRegistro(input: AddRegistroInput): Promise<AddRegistroR
       id: genId(),
       email,
       nombre,
+      first_name: input.first_name?.trim() || null,
+      last_name: input.last_name?.trim() || null,
+      full_name: input.full_name?.trim() || null,
       creador: input.creador?.trim() || null,
       country: input.country?.trim().toLowerCase() || null,
       fav_team: input.fav_team?.trim().toLowerCase() || null,

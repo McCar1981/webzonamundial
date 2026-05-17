@@ -42,6 +42,11 @@ export interface Registro {
   email: string;
   nombre: string | null;
   creador: string | null;
+  // ISO-3166 alpha-2 lowercase (ar, es, mx, …). Opcional.
+  country: string | null;
+  // Slug de SELECCIONES (argentina, espana, …). Opcional.
+  // Crítico para producto: alimenta segmentación de push de la app móvil.
+  fav_team: string | null;
   kind: RegistroKind;
   fecha: string; // ISO timestamp
   ip: string | null;
@@ -110,6 +115,8 @@ export type AddRegistroInput = {
   email: string;
   nombre?: string | null;
   creador?: string | null;
+  country?: string | null;
+  fav_team?: string | null;
   ip?: string | null;
   kind: RegistroKind;
 };
@@ -152,6 +159,8 @@ export async function addRegistro(input: AddRegistroInput): Promise<AddRegistroR
         email,
         nombre,
         creador: input.creador?.trim() || null,
+        country: input.country?.trim().toLowerCase() || null,
+        fav_team: input.fav_team?.trim().toLowerCase() || null,
         kind: input.kind,
         fecha: new Date().toISOString(),
         ip: input.ip || null,
@@ -185,6 +194,8 @@ export async function addRegistro(input: AddRegistroInput): Promise<AddRegistroR
       email,
       nombre,
       creador: input.creador?.trim() || null,
+      country: input.country?.trim().toLowerCase() || null,
+      fav_team: input.fav_team?.trim().toLowerCase() || null,
       kind: input.kind,
       fecha: new Date().toISOString(),
       ip: input.ip || null,

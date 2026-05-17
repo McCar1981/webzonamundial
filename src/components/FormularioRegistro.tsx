@@ -1,11 +1,21 @@
 // src/components/FormularioRegistro.tsx
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { getCreadoresActivos } from '@/data/creadores';
+import { SELECCIONES } from '@/data/selecciones';
+import { COUNTRIES } from '@/lib/countries';
 import { useLanguage } from '@/i18n/LanguageContext';
 import { createSupabaseBrowserClient } from '@/lib/supabase/client';
+
+// País y selección favorita son datos críticos para producto:
+//   - country alimenta segmentación geográfica (push, idioma, husos horarios)
+//   - fav_team activa notificaciones push exclusivas de esa selección
+//     en la app móvil cuando el equipo de la app los consuma vía
+//     /api/users/me/profile.
+// Por eso los pedimos en el pre-registro web, antes incluso del magic link,
+// para no perderlos si el usuario nunca completa onboarding.
 
 export default function FormularioRegistro({ creadorPreseleccionado }: { creadorPreseleccionado?: string }) {
   const { t } = useLanguage();
@@ -15,9 +25,18 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
   const [formData, setFormData] = useState({
     email: '',
     nombre: '',
+    country: '',      // ISO-3166 alpha-2 (ar, es, mx, …)
+    fav_team: '',     // slug de SELECCIONES (argentina, espana, …)
     creador: creadorPreseleccionado || '',
     acceptTerms: false,
   });
+
+  // Lista de selecciones precomputada — ordenada alfabéticamente por nombre.
+  // El emoji bandera lo añadimos en runtime desde COUNTRIES si hay match
+  // por ISO (flagCode coincide casi siempre); si no, fallback a "🏳️".
+  const seleccionesOrdenadas = useMemo(() => {
+    return [...SELECCIONES].sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
+  }, []);
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
@@ -32,6 +51,12 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
     username: 'Username',
     usernamePlaceholder: 'Your username',
     usernameHint: '3-30 characters, no spaces',
+    country: 'Country',
+    countryPlaceholder: 'Pick your country',
+    countryHint: 'For language and time zone',
+    favTeam: 'Your favorite team',
+    favTeamPlaceholder: 'Pick the team you support',
+    favTeamHint: 'You\'ll get exclusive push notifications about this team in the app',
     terms: 'I accept the',
     termsLink: 'terms of use',
     and: 'and the',
@@ -59,6 +84,12 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
     username: 'Nombre de usuario',
     usernamePlaceholder: 'Tu nombre de usuario',
     usernameHint: '3-30 caracteres, sin espacios',
+    country: 'País',
+    countryPlaceholder: 'Elige tu país',
+    countryHint: 'Para idioma y zona horaria',
+    favTeam: 'Tu selección favorita',
+    favTeamPlaceholder: 'Elige la selección que apoyas',
+    favTeamHint: 'Recibirás notificaciones push exclusivas de esta selección en la app',
     terms: 'Acepto los',
     termsLink: 'términos de uso',
     and: 'y la',
@@ -114,6 +145,10 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
     const cleanEmail = formData.email.trim().toLowerCase();
     const cleanNombre = formData.nombre.trim();
     const cleanCreador = formData.creador?.trim() || '';
+    // Country: ISO-3166 alpha-2 lowercase (ar, es, mx…). null si vacío.
+    const cleanCountry = formData.country?.trim().toLowerCase() || null;
+    // Fav team: slug de SELECCIONES (argentina, espana…). null si vacío.
+    const cleanFavTeam = formData.fav_team?.trim().toLowerCase() || null;
 
     // 1) Snapshot a Vercel KV (waitlist) — mantiene el CSV de leads.
     //    No bloquea: si falla, seguimos con el magic link.
@@ -125,6 +160,8 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
           email: cleanEmail,
           nombre: cleanNombre,
           creador: cleanCreador,
+          country: cleanCountry,
+          fav_team: cleanFavTeam,
         }),
       });
     } catch {
@@ -159,9 +196,15 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
         options: {
           emailRedirectTo: callbackUrl,
           shouldCreateUser: true,
+          // raw_user_meta_data → el trigger handle_new_user en SQL lee
+          // estos campos y los copia a public.profiles en el INSERT.
+          // Así los datos del pre-registro se conservan aunque el user
+          // nunca complete el wizard de onboarding posterior.
           data: {
             username: cleanNombre,
             fav_creator: cleanCreador,
+            country: cleanCountry,
+            fav_team: cleanFavTeam,
             locale: isEN ? 'en' : 'es',
           },
         },
@@ -304,6 +347,67 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
               />
             </div>
             <p className="text-[11px] text-gray-600">{labels.usernameHint}</p>
+          </div>
+
+          {/* País */}
+          <div className="space-y-2">
+            <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider">
+              {labels.country} <span className="text-gray-600 normal-case font-medium">({isEN ? 'optional' : 'opcional'})</span>
+            </label>
+            <div className="relative">
+              <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <select
+                value={formData.country}
+                onChange={(e) => { setFormData({ ...formData, country: e.target.value }); setError(''); }}
+                className="w-full pl-12 pr-10 py-3.5 rounded-xl bg-[#0B1825] border border-[#1E293B] text-white text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/50 transition-all appearance-none cursor-pointer"
+              >
+                <option value="">{labels.countryPlaceholder}</option>
+                {COUNTRIES.map((c) => (
+                  <option key={c.code} value={c.code}>{c.name}</option>
+                ))}
+              </select>
+              <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+            <p className="text-[11px] text-gray-600">{labels.countryHint}</p>
+          </div>
+
+          {/* Selección favorita */}
+          <div className="space-y-2">
+            <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider">
+              {labels.favTeam} <span className="text-gray-600 normal-case font-medium">({isEN ? 'optional' : 'opcional'})</span>
+            </label>
+            <div className="relative">
+              <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 21l1.65-3.8a9 9 0 113.4 2.9L3 21zM12 7v5l3 3" />
+                </svg>
+              </div>
+              <select
+                value={formData.fav_team}
+                onChange={(e) => { setFormData({ ...formData, fav_team: e.target.value }); setError(''); }}
+                className="w-full pl-12 pr-10 py-3.5 rounded-xl bg-[#0B1825] border border-[#1E293B] text-white text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/50 transition-all appearance-none cursor-pointer"
+              >
+                <option value="">{labels.favTeamPlaceholder}</option>
+                {seleccionesOrdenadas.map((s) => (
+                  <option key={s.slug} value={s.slug}>
+                    {s.nombre} {s.grupo ? `· Grupo ${s.grupo}` : ''}
+                  </option>
+                ))}
+              </select>
+              <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+            <p className="text-[11px] text-[#C9A84C]/80">
+              <span aria-hidden="true">⭐ </span>
+              {labels.favTeamHint}
+            </p>
           </div>
 
           {/* Terms */}

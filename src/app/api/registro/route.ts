@@ -9,6 +9,14 @@ interface RegistroBody {
   email: string;
   nombre: string;
   creador?: string;
+  // País del usuario (ISO-3166 alpha-2 lowercase). Opcional.
+  // Sirve para segmentación geográfica de push, idioma e idioma por defecto.
+  country?: string | null;
+  // Slug de la selección favorita (argentina, espana, brasil…). Opcional.
+  // Crítico para producto: la app móvil consume este campo via
+  // /api/users/me/profile y activa notificaciones push exclusivas
+  // de ese equipo cuando juega, anota, se publica plantilla, etc.
+  fav_team?: string | null;
 }
 
 function getClientIp(request: NextRequest): string {
@@ -27,7 +35,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Cuerpo inválido' }, { status: 400 });
   }
 
-  const { email, nombre, creador } = body || ({} as RegistroBody);
+  const { email, nombre, creador, country, fav_team } = body || ({} as RegistroBody);
 
   if (!email || !nombre) {
     return NextResponse.json(
@@ -55,10 +63,26 @@ export async function POST(request: NextRequest) {
     );
   }
 
+  // Validación country: ISO-3166 alpha-2 lowercase. Si viene mal, lo
+  // tiramos sin error 400 (mejor pre-registro sin país que rechazado).
+  let cleanCountry: string | null = null;
+  if (typeof country === 'string' && /^[a-z]{2}$/.test(country.trim().toLowerCase())) {
+    cleanCountry = country.trim().toLowerCase();
+  }
+
+  // Validación fav_team: solo letras, números, guiones (slug). Si viene
+  // algo raro lo descartamos silenciosamente.
+  let cleanFavTeam: string | null = null;
+  if (typeof fav_team === 'string' && /^[a-z0-9-]{2,40}$/.test(fav_team.trim().toLowerCase())) {
+    cleanFavTeam = fav_team.trim().toLowerCase();
+  }
+
   const result = await addRegistro({
     email,
     nombre,
     creador,
+    country: cleanCountry,
+    fav_team: cleanFavTeam,
     ip: getClientIp(request),
     kind: 'full',
   });

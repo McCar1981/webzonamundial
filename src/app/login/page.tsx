@@ -159,10 +159,52 @@ function LoginForm() {
           </svg>
         </div>
         <h2 className="text-2xl font-bold text-white mb-2">Revisa tu email</h2>
-        <p className="text-gray-400 text-sm mb-6">
+        <p className="text-gray-400 text-sm mb-4">
           Te hemos enviado un enlace de acceso a{" "}
           <span className="text-[#C9A84C]">{email}</span>. Haz clic en el enlace para iniciar sesión.
         </p>
+
+        {/* Aviso spam — dominio en warmup. Mismo aviso que en /registro. */}
+        <div
+          className="max-w-md mx-auto mb-6 p-4 rounded-xl border text-left"
+          style={{
+            background: "rgba(201,168,76,0.08)",
+            borderColor: "rgba(201,168,76,0.3)",
+          }}
+        >
+          <div className="flex items-start gap-3">
+            <svg
+              className="w-5 h-5 flex-shrink-0 mt-0.5 text-[#C9A84C]"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+              />
+            </svg>
+            <div className="text-xs leading-relaxed">
+              <p className="font-bold text-[#C9A84C] mb-1">
+                ¿No lo ves en la bandeja? Revisa SPAM
+              </p>
+              <p className="text-gray-300">
+                Como somos un dominio nuevo, algunos proveedores (sobre todo
+                Hotmail y Outlook) pueden marcar nuestros mensajes como spam
+                temporalmente. Si lo encuentras ahí, márcalo como{" "}
+                <strong className="text-white">&quot;No es spam&quot;</strong>{" "}
+                para que los próximos lleguen bien. El remitente es{" "}
+                <strong className="text-[#C9A84C]">
+                  noreply@zonamundial.app
+                </strong>
+                .
+              </p>
+            </div>
+          </div>
+        </div>
+
         <button
           onClick={() => {
             setSent(false);

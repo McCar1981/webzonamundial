@@ -1,19 +1,55 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import type { EmailOtpType } from "@supabase/supabase-js";
 
 export const dynamic = "force-dynamic";
 
 /*
   OAuth + magic-link callback handler.
 
-  Supabase redirects users here after they click the magic-link email or
-  complete the Google/Apple OAuth flow. We exchange the `code` for a
-  session and bounce them to `next` (or "/").
+  Soporta DOS modos según el parámetro recibido:
+
+  1) PKCE OAuth (?code=xxx)
+     Usado por Google y Apple Sign-In, donde el código requiere ser
+     intercambiado por una sesión usando el "code verifier" guardado
+     en el navegador del usuario (que inició el flow).
+     Funciona porque OAuth se completa en el MISMO navegador.
+
+  2) OTP magic-link (?token_hash=xxx&type=magiclink)
+     Usado para emails de confirmación/login enviados por Supabase.
+     verifyOtp NO necesita PKCE verifier — el token_hash es validable
+     server-side directamente. Esto permite que el usuario abra el
+     email en cualquier dispositivo/navegador y siga funcionando.
+
+  IMPORTANTE: el template de email DEBE enlazar a este endpoint con
+  token_hash en vez de usar la ConfirmationURL nativa de Supabase
+  (que lleva ?code=... y rompe cross-device).
+
+  Ejemplo de URL en el botón del email:
+    {{ .SiteURL }}/auth/callback?token_hash={{ .TokenHash }}&type=magiclink&next=/onboarding
 */
+
+const OTP_TYPES: ReadonlyArray<EmailOtpType> = [
+  "signup",
+  "invite",
+  "magiclink",
+  "recovery",
+  "email_change",
+  "email",
+];
+
+function parseOtpType(raw: string | null): EmailOtpType | null {
+  if (!raw) return null;
+  return (OTP_TYPES as ReadonlyArray<string>).includes(raw)
+    ? (raw as EmailOtpType)
+    : null;
+}
 
 export async function GET(request: NextRequest) {
   const { searchParams, origin } = request.nextUrl;
   const code = searchParams.get("code");
+  const tokenHash = searchParams.get("token_hash") || searchParams.get("token");
+  const otpType = parseOtpType(searchParams.get("type"));
   const next = searchParams.get("next") || "/";
 
   // El proveedor (Google/Apple/Supabase) puede devolver un error en la URL
@@ -25,23 +61,38 @@ export async function GET(request: NextRequest) {
     searchParams.get("error_description") ||
     searchParams.get("error") ||
     searchParams.get("error_code");
-  if (providerError && !code) {
+  if (providerError && !code && !tokenHash) {
     return NextResponse.redirect(
       `${origin}/login?error=${encodeURIComponent(providerError)}`,
     );
   }
 
-  if (!code) {
-    return NextResponse.redirect(`${origin}/login?error=missing_code`);
-  }
-
   const supabase = createSupabaseServerClient();
-  const { error } = await supabase.auth.exchangeCodeForSession(code);
 
-  if (error) {
-    return NextResponse.redirect(
-      `${origin}/login?error=${encodeURIComponent(error.message)}`,
-    );
+  // --- Caso 1: token_hash → verifyOtp (cross-device, magic link) ---
+  if (tokenHash && otpType) {
+    const { error } = await supabase.auth.verifyOtp({
+      type: otpType,
+      token_hash: tokenHash,
+    });
+    if (error) {
+      return NextResponse.redirect(
+        `${origin}/login?error=${encodeURIComponent(error.message)}`,
+      );
+    }
+  }
+  // --- Caso 2: code → exchangeCodeForSession (PKCE OAuth) ---
+  else if (code) {
+    const { error } = await supabase.auth.exchangeCodeForSession(code);
+    if (error) {
+      return NextResponse.redirect(
+        `${origin}/login?error=${encodeURIComponent(error.message)}`,
+      );
+    }
+  }
+  // --- Sin ninguno: error ---
+  else {
+    return NextResponse.redirect(`${origin}/login?error=missing_code`);
   }
 
   // Same-origin only — never honor an open-redirect.

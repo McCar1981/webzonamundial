@@ -7,7 +7,7 @@
   Compatible con Gmail, Outlook 2007+, Apple Mail, Hotmail, Yahoo.
 
   Variables Supabase:
-    {{ .ConfirmationURL }}   → URL de confirmación firmada
+    {{ .SiteURL }}/auth/callback?token_hash={{ .TokenHash }}&type=signup&next=/onboarding   → URL de confirmación firmada
     {{ .Email }}             → email del destinatario
     {{ .SiteURL }}           → https://zonamundial.app
     {{ .Data.username }}     → nombre de usuario (raw_user_meta_data)
@@ -104,7 +104,7 @@
           <tr>
             <td align="center" style="padding:28px 32px 18px 32px;">
               <!--[if mso]>
-              <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ .ConfirmationURL }}" style="height:52px;v-text-anchor:middle;width:280px;" arcsize="20%" stroke="f" fillcolor="#C9A84C">
+              <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ .SiteURL }}/auth/callback?token_hash={{ .TokenHash }}&type=signup&next=/onboarding" style="height:52px;v-text-anchor:middle;width:280px;" arcsize="20%" stroke="f" fillcolor="#C9A84C">
                 <w:anchorlock/>
                 <center style="color:#FFFFFF;font-family:Arial,sans-serif;font-size:15px;font-weight:bold;">Confirmar mi cuenta →</center>
               </v:roundrect>
@@ -113,7 +113,7 @@
               <table role="presentation" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td style="background:linear-gradient(135deg,#C9A84C 0%,#8C7437 100%);border-radius:10px;box-shadow:0 4px 14px rgba(140,116,55,0.35);">
-                    <a href="{{ .ConfirmationURL }}" target="_blank" style="display:inline-block;padding:16px 38px;font-family:'Outfit','Segoe UI',Helvetica,Arial,sans-serif;font-weight:700;font-size:15px;color:#FFFFFF;text-decoration:none;border-radius:10px;letter-spacing:0.02em;">
+                    <a href="{{ .SiteURL }}/auth/callback?token_hash={{ .TokenHash }}&type=signup&next=/onboarding" target="_blank" style="display:inline-block;padding:16px 38px;font-family:'Outfit','Segoe UI',Helvetica,Arial,sans-serif;font-weight:700;font-size:15px;color:#FFFFFF;text-decoration:none;border-radius:10px;letter-spacing:0.02em;">
                       Confirmar mi cuenta →
                     </a>
                   </td>
@@ -226,7 +226,7 @@
             <td style="padding:8px 48px 36px 48px;">
               <p style="margin:0;font-family:Helvetica,Arial,sans-serif;font-size:11px;color:#8C8FA3;text-align:center;">
                 ¿No funciona el botón? Copia este enlace en tu navegador:<br>
-                <span style="word-break:break-all;color:#3D3D5C;">{{ .ConfirmationURL }}</span>
+                <span style="word-break:break-all;color:#3D3D5C;">{{ .SiteURL }}/auth/callback?token_hash={{ .TokenHash }}&type=signup&next=/onboarding</span>
               </p>
             </td>
           </tr>

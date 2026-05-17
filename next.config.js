@@ -51,17 +51,35 @@ const nextConfig = {
     //  - img-src https: data: blob: para soportar imágenes de noticias
     //    desde fuentes externas variables (CNN, FIFA, Wikipedia, etc.)
     //  - frame-src para Vercel Analytics y posibles embeds
+    // Content-Security-Policy permisivo pero seguro:
+    //  - default-src 'self' bloquea cargas inesperadas
+    //  - 'unsafe-inline' en script-src es necesario para Next.js inline JSON-LD
+    //  - 'unsafe-eval' bloqueado (Next prod no lo necesita)
+    //  - img-src https: data: blob: para soportar imágenes de noticias
+    //    desde fuentes externas variables (CNN, FIFA, Wikipedia, etc.)
+    //  - frame-src para Vercel Analytics y posibles embeds
+    //  - connect-src DEBE incluir explícitamente Supabase (sin él los
+    //    fetches del navegador a Auth/PostgREST/Realtime los bloquea el
+    //    propio browser antes de salir y se ve como "Failed to fetch").
+    //  - Apple (appleid.apple.com) y Google (accounts.google.com) son los
+    //    endpoints OAuth donde Supabase redirige al user; sin permitirlos
+    //    aquí, los flows social fallan.
+    //  - frame-src añade appleid.apple.com y accounts.google.com porque
+    //    algunos providers usan iframes para el popup de login.
     const csp = [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://pagead2.googlesyndication.com https://www.googletagmanager.com https://www.google-analytics.com https://va.vercel-scripts.com",
-      "style-src 'self' 'unsafe-inline'",
-      "font-src 'self' data:",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://pagead2.googlesyndication.com https://www.googletagmanager.com https://www.google-analytics.com https://va.vercel-scripts.com https://accounts.google.com https://appleid.cdn-apple.com",
+      "style-src 'self' 'unsafe-inline' https://appleid.cdn-apple.com",
+      "font-src 'self' data: https://appleid.cdn-apple.com",
       "img-src 'self' data: blob: https:",
       "media-src 'self' https:",
-      "connect-src 'self' https://www.google-analytics.com https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.upstash.io https://api.anthropic.com",
-      "frame-src 'self' https://googleads.g.doubleclick.net",
+      // ⚠️ Si cambia el project_ref de Supabase, actualizar este host.
+      //    Usamos wildcard *.supabase.co para cubrir cualquier subdominio
+      //    del proyecto (auth, realtime, storage) sin tener que listarlo.
+      "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://appleid.apple.com https://accounts.google.com https://www.google-analytics.com https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.upstash.io https://api.anthropic.com",
+      "frame-src 'self' https://googleads.g.doubleclick.net https://appleid.apple.com https://accounts.google.com",
       "base-uri 'self'",
-      "form-action 'self'",
+      "form-action 'self' https://appleid.apple.com https://accounts.google.com",
       "frame-ancestors 'none'",
       "object-src 'none'",
       "upgrade-insecure-requests",

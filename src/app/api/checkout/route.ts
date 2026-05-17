@@ -124,9 +124,37 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ url: checkoutSession.url, sessionId: checkoutSession.id });
   } catch (err) {
-    console.error("[checkout] failed", (err as Error).message);
+    // Log detallado en Vercel para diagnosticar la causa real.
+    // Errores típicos:
+    //   - "Invalid API Key provided" → STRIPE_SECRET_KEY mal o ausente
+    //   - "Stripe API version X not enabled on this account" → apiVersion pin
+    //   - "Cannot create live mode session in test mode" → mezcla de keys
+    //   - "Your account cannot accept payments" → cuenta sin activar
+    const e = err as Error & {
+      type?: string;
+      code?: string;
+      statusCode?: number;
+      raw?: unknown;
+    };
+    console.error("[checkout] failed", {
+      message: e.message,
+      type: e.type,
+      code: e.code,
+      statusCode: e.statusCode,
+      currency,
+      userEmail,
+      hasSecretKey: !!process.env.STRIPE_SECRET_KEY,
+      secretKeyPrefix: process.env.STRIPE_SECRET_KEY?.slice(0, 8),
+    });
     return NextResponse.json(
-      { error: "No pudimos iniciar el pago. Inténtalo de nuevo en un momento." },
+      {
+        error: "No pudimos iniciar el pago. Inténtalo de nuevo en un momento.",
+        // En producción mantenemos opaco para no filtrar config. El log
+        // de Vercel tiene el detalle.
+        ...(process.env.NODE_ENV !== "production"
+          ? { debug: e.message, code: e.code, type: e.type }
+          : {}),
+      },
       { status: 500 }
     );
   }

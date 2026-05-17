@@ -13,9 +13,10 @@ export function getStripe(): Stripe {
       "STRIPE_SECRET_KEY no está definido. Añádelo en Vercel → Environment Variables."
     );
   }
+  // No pineamos apiVersion: dejamos que el SDK use la versión por defecto
+  // de la cuenta. Pinear a una versión específica (p.ej. 2026-04-22.dahlia)
+  // rompe si la cuenta no ha aceptado el upgrade en el Dashboard.
   _stripe = new Stripe(key, {
-    // Pin a una API version para evitar sorpresas con cambios de Stripe.
-    apiVersion: "2026-04-22.dahlia",
     typescript: true,
     appInfo: {
       name: "ZonaMundial",

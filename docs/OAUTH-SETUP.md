@@ -260,7 +260,140 @@ HTTPS y sin barra final).
 
 ---
 
-## 7. Resumen de URLs
+## 7. Extender a la app móvil (iOS / Android) cuando llegue
+
+El mismo usuario que se registra hoy en `zonamundial.app` desde la web va a
+poder loguearse en la app iOS/Android cuando salga, **sin perder su data**.
+Razón: Supabase guarda al usuario por su `sub` (identificador estable que
+da Apple/Google), y ese `sub` es el mismo en cualquier plataforma para la
+misma cuenta. La app no crea un user nuevo — encuentra el preexistente.
+
+Lo que SÍ hay que añadir cuando se desarrolle la app:
+
+### iOS — Apple Sign In nativo
+
+iOS no usa el `app.zonamundial.web` (Services ID, para web), usa el
+**Bundle ID** `app.zonamundial.ios` (App ID). En Supabase hay que añadir
+ambos como Client IDs aceptados:
+
+1. Supabase Dashboard → Authentication → Providers → Apple → Client IDs.
+2. Cambiar valor actual:
+   ```
+   app.zonamundial.web
+   ```
+   a (separado por coma, sin espacios):
+   ```
+   app.zonamundial.web,app.zonamundial.ios
+   ```
+3. Save.
+
+El JWT `client_secret` que generaste con `scripts/generate-apple-client-secret.js`
+**vale para los dos**: la firma usa el Team ID y la Key, no depende del
+Services ID concreto. No hay que regenerar.
+
+En el código nativo iOS, usar `AuthenticationServices.framework` (SDK
+oficial de Apple) en lugar de OAuth web. El SDK devuelve un `identityToken`
+que se pasa a Supabase con `supabase.auth.signInWithIdToken({ provider:
+"apple", token: identityToken })`.
+
+### iOS — Google Sign In nativo
+
+Google requiere un **OAuth Client ID separado para iOS** (distinto del de
+web). Crearlo en:
+
+- https://console.cloud.google.com → Credentials → Create Credentials → OAuth
+  client ID → Application type: **iOS**
+- Bundle ID: `app.zonamundial.ios`
+
+Luego añadirlo a Supabase → Auth → Providers → Google → Client IDs como
+segundo valor separado por coma. La librería oficial Google Sign In iOS
+devuelve un `idToken` que se pasa con `signInWithIdToken({ provider:
+"google", token: idToken })`.
+
+### Android — Google Sign In nativo
+
+Lo mismo que iOS pero con tipo **Android** en Google Cloud Console:
+
+- Package name: `app.zonamundial.android`
+- SHA-1 fingerprint del certificado de firma del APK/AAB.
+
+Añadirlo a Supabase como tercer Client ID.
+
+### Android — Apple Sign In
+
+Android no tiene SDK nativo de Apple. Hay que abrir el flow OAuth web
+desde la app Android usando un `WebView` o Custom Tabs apuntando a
+`https://appleid.apple.com/auth/authorize?...` con el mismo `app.zonamundial.web`
+como client_id. El return URL acaba en `app.zonamundial://callback` (deep
+link de la app), y Supabase Auth Helpers para Android se encarga del
+exchange.
+
+### Cómo se ata todo
+
+Cuando un user de la web abre la app por primera vez y hace login con
+Apple/Google:
+
+1. La app obtiene el `idToken` del SDK nativo.
+2. Llama a `supabase.auth.signInWithIdToken()` con ese token.
+3. Supabase compara el `sub` del token con la columna `apple_sub` /
+   `google_sub` de `auth.users`.
+4. Si coincide → carga la misma sesión que en web. **Todo el historial,
+   predicciones y perfil del usuario están ahí**.
+5. Si no coincide (es la primera vez en cualquier sitio) → crea user nuevo
+   y dispara onboarding.
+
+No hace falta sincronizar nada manualmente. La única condición es que
+todos los Client IDs (web + iOS + Android) estén configurados bajo el
+**mismo proyecto Supabase** y compartan provider.
+
+### Server-to-Server Notifications de Apple
+
+El endpoint `/api/auth/apple/notifications` que ya tenemos desplegado
+acepta webhooks de Apple para cualquier plataforma. Cuando un user borre
+su Apple ID o revoque permisos desde el menú de su iPhone, Apple manda el
+webhook → nuestro endpoint borra la cuenta también de la web y la app.
+**Es obligatorio para aprobar la app en App Store** (sin esto, Apple
+rechaza la app en revisión).
+
+Documentación de App Store sobre el requisito:
+https://developer.apple.com/app-store/review/guidelines/#4.8
+
+---
+
+## 8. Regenerar el client_secret JWT cada 6 meses
+
+Apple obliga a que el JWT que Supabase usa como `Secret Key (for OAuth)`
+caduque cada 6 meses como máximo. Sin un JWT vigente, todos los logins de
+Apple fallan en producción.
+
+El JWT actual caduca el **13 de noviembre de 2026**. Pon una alerta en
+tu calendario para el **6 de noviembre de 2026** (7 días antes).
+
+Para regenerarlo:
+
+```bash
+node scripts/generate-apple-client-secret.js \
+  "C:/Users/Neo-PC/Downloads/AuthKey_648779U73X.p8"
+```
+
+(o la ruta donde tengas el `.p8` guardado).
+
+El script imprime el JWT nuevo. Pega el resultado en:
+
+```
+Supabase Dashboard → Auth → Providers → Apple → Secret Key (for OAuth)
+```
+
+Save. Verifica con `/auth/debug` que Apple sigue verde.
+
+Si has perdido el `.p8` original: hay que generar una Key nueva en Apple
+Developer (Keys → + → Sign in with Apple → Configure → Save → Download
+`.p8`). Anota el nuevo Key ID y actualiza la constante `KEY_ID` en
+`scripts/generate-apple-client-secret.js`.
+
+---
+
+## 9. Resumen de URLs
 
 | Donde la pegas | URL |
 |---|---|

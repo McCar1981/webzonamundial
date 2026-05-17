@@ -51,8 +51,11 @@ function LoginForm() {
   const next = searchParams.get("next") || "/";
   // Si el callback redirigió aquí con ?error=..., lo mostramos.
   const initialError = searchParams.get("error");
+  // Pre-rellenamos email si viene en query (redirect desde /registro
+  // cuando el email ya estaba dado de alta).
+  const initialEmail = searchParams.get("email") || "";
 
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(initialEmail);
   const [loading, setLoading] = useState<"email" | "google" | "apple" | null>(null);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState(initialError ? humanizeCallbackError(initialError) : "");

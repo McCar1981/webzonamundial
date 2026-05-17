@@ -217,6 +217,48 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
     // Fav team: slug de SELECCIONES (argentina, espana…). null si vacío.
     const cleanFavTeam = formData.fav_team?.trim().toLowerCase() || null;
 
+    // 0) Pre-check: si el email ya está registrado, redirigimos a /login.
+    //    Sin esto, signInWithOtp con shouldCreateUser:true envía un magic
+    //    link "vacío" (sin actualizar metadata) y el usuario se confunde
+    //    porque ve un correo distinto al que esperaba ("¿no me registró?").
+    try {
+      const checkResp = await fetch('/api/auth/check-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: cleanEmail }),
+      });
+      if (checkResp.ok) {
+        const checkData = (await checkResp.json()) as {
+          exists?: boolean;
+          provider?: string;
+        };
+        if (checkData.exists) {
+          const providerLabel =
+            checkData.provider === 'google'
+              ? ' Google'
+              : checkData.provider === 'apple'
+                ? ' Apple'
+                : '';
+          setError(
+            isEN
+              ? `This email is already registered${providerLabel ? ' with' + providerLabel : ''}. Go to login instead.`
+              : `Este email ya está registrado${providerLabel ? ' con' + providerLabel : ''}. Inicia sesión en su lugar.`,
+          );
+          setLoading(false);
+          // Redirige a /login tras 2.5s para que el usuario lea el mensaje.
+          setTimeout(() => {
+            const next = `/login?email=${encodeURIComponent(cleanEmail)}`;
+            window.location.href = next;
+          }, 2500);
+          return;
+        }
+      }
+      // Si el endpoint devuelve 429 (rate limit) o falla, seguimos
+      // adelante — el flujo de Supabase manejará el caso igual.
+    } catch {
+      // Network error en el check: no bloqueamos al usuario, seguimos.
+    }
+
     // 1) Snapshot a Vercel KV (waitlist) — mantiene el CSV de leads.
     //    No bloquea: si falla, seguimos con el magic link.
     try {

@@ -663,8 +663,9 @@ Antes de la primera demo:
 - [ ] Implementar el middleware de verificación de JWT en vuestro backend.
 - [ ] Decidir esquema de la tabla `users` en Postgres B (UUID PK + columnas mínimas).
 - [ ] Decidir qué campos del perfil replicáis al primer login (mínimo: username, country, locale, fav_team).
-- [ ] Pedirnos crear el endpoint `GET /api/users/me/profile` (2 semanas de antelación).
-- [ ] Pedirnos el webhook para `account-delete` cuando esté lista vuestra API de limpieza.
+- [x] ~~Pedirnos crear el endpoint `GET /api/users/me/profile`~~ **Ya desplegado en producción** (ver sección 9).
+- [x] ~~Pedirnos el endpoint de descubrimiento~~ **Ya desplegado**: `GET /api/auth/jwks-info` (ver sección 9).
+- [ ] Pedirnos el webhook para `account-delete` cuando esté lista vuestra API de limpieza en Postgres B.
 
 ---
 

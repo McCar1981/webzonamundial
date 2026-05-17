@@ -535,7 +535,53 @@ Authorization: Bearer <supabase_jwt>
 
 En ese caso, lanzad el flujo de onboarding propio de la app (pedid los mismos campos y guardadlos en Postgres B y devolvédnoslos en otro endpoint complementario que documentamos abajo).
 
-> ⚠️ **Importante**: este endpoint aún hay que crearlo en la web. Avisadnos con 2 semanas de antelación antes de empezar la integración y lo dejamos listo + documentado.
+### Test rápido con curl
+
+Una vez tengáis un access_token de Supabase de pruebas (logueándoos en una
+build local de la app, o desde la web abriendo DevTools → Application →
+Cookies → `sb-okpcqywuyharinzntaxy-auth-token`):
+
+```bash
+curl -s https://zonamundial.app/api/users/me/profile \
+  -H "Authorization: Bearer <TU_ACCESS_TOKEN>" | jq
+```
+
+Códigos de respuesta:
+
+| Status | Significado |
+|---|---|
+| `200` | Perfil devuelto |
+| `401` | JWT inválido, caducado o ausente |
+| `404` | User existe en Auth pero no completó onboarding en web → flujo onboarding propio |
+| `500` | Misconfigured backend (ping `gol@zonamundial.app`) |
+
+### Endpoint de descubrimiento (no requiere auth)
+
+Para que vuestro pipeline CI/scripts puedan leer la config Auth sin
+preguntarnos por chat:
+
+```
+GET https://zonamundial.app/api/auth/jwks-info
+```
+
+Devuelve un JSON con:
+
+- `issuer` y `jwks_uri` para configurar el middleware de verificación de JWT.
+- `audience` (`authenticated`).
+- `algorithm` (`ES256`).
+- `endpoints.user_profile`, `endpoints.apple_s2s_notifications`.
+- `apple.team_id`, `apple.app_id_ios`, `apple.services_id_web`.
+- `providers` habilitados.
+
+Cacheado 1 h en CDN. Si actualizamos la config, lo notificamos y vosotros
+purgáis cache de vuestro lado.
+
+```bash
+curl -s https://zonamundial.app/api/auth/jwks-info | jq
+```
+
+Estos dos endpoints están **ya desplegados en producción**. Podéis empezar
+a integrar contra ellos cuando queráis.
 
 ---
 

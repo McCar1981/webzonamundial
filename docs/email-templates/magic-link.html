@@ -1,20 +1,17 @@
 <!--
-  MAGIC LINK — Email transaccional usado para:
-    A) Pre-registro (signInWithOtp con options.data) — primer email
-    B) Login posterior (signInWithOtp sin data) — solo enlace
-
+  MAGIC LINK — Email de bienvenida tras pre-registro (signInWithOtp con metadata).
   Subject: Tu enlace de acceso a ZonaMundial 🔗
 
-  Variables Supabase disponibles:
+  Variables Supabase usadas:
     {{ .ConfirmationURL }}   → URL firmada de magic link
     {{ .Email }}             → email del destinatario
-    {{ .SiteURL }}           → https://zonamundial.app
-    {{ .Data.username }}     → nombre de usuario (raw_user_meta_data)
+    {{ .Data.username }}     → username (de raw_user_meta_data)
     {{ .Data.country }}      → ISO-2 país
     {{ .Data.fav_team }}     → slug selección favorita
     {{ .Data.fav_creator }}  → slug creador
 
-  Forzamos modo claro para evitar inversión automática de Outlook/Hotmail.
+  Decisión: SIN condicionales {{ if }}. Si una variable no llega, sale vacía
+  (preferible a que el template entero falle silenciosamente).
 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
@@ -28,10 +25,8 @@
   <style type="text/css">
     :root { color-scheme: light only; supported-color-schemes: light only; }
     html, body { background-color: #EFE9D9 !important; color: #1A1A2E !important; }
-    /* Forzar modo claro en Outlook.com / Hotmail */
     [data-ogsb] { background-color: #EFE9D9 !important; }
     [data-ogsc] { color: #1A1A2E !important; }
-    /* iOS/Apple Mail dark mode */
     @media (prefers-color-scheme: dark) {
       .zm-bg-cream { background-color: #EFE9D9 !important; }
       .zm-bg-white { background-color: #FFFFFF !important; }
@@ -54,7 +49,7 @@
 
   <!-- Preheader -->
   <div style="display:none;max-height:0;overflow:hidden;font-size:1px;line-height:1px;color:#EFE9D9;opacity:0;">
-    {{ if .Data.username }}Hola {{ .Data.username }}, tu enlace para entrar en ZonaMundial. Caduca en 1 hora.{{ else }}Tu enlace seguro de acceso a ZonaMundial. Caduca en 1 hora.{{ end }}
+    Tu cuenta en ZonaMundial está casi lista. Confirma para empezar a vivir el Mundial 2026.
   </div>
 
   <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" bgcolor="#EFE9D9" class="zm-bg-cream" style="background-color:#EFE9D9;">
@@ -84,14 +79,14 @@
             </td>
           </tr>
 
-          <!-- Hero title -->
+          <!-- Hero title — SIEMPRE saluda con username -->
           <tr>
             <td bgcolor="#FFFFFF" class="zm-bg-white" style="background-color:#FFFFFF;padding:28px 48px 16px 48px;text-align:center;">
               <h1 class="zm-text-dark" style="margin:0;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:34px;line-height:1.15;letter-spacing:-0.01em;color:#1A1A2E !important;font-weight:400;">
-                {{ if .Data.username }}Hola, {{ .Data.username }}.{{ else }}Tu enlace está aquí.{{ end }}
+                Hola, {{ .Data.username }}.
               </h1>
               <p class="zm-text-muted" style="margin:14px 0 0 0;font-family:'Outfit','Segoe UI',Helvetica,Arial,sans-serif;font-size:18px;line-height:1.4;color:#3D3D5C !important;font-weight:500;">
-                {{ if .Data.username }}Tu cuenta está casi lista.{{ else }}Un solo clic y dentro.{{ end }}
+                Tu cuenta está casi lista.
               </p>
             </td>
           </tr>
@@ -113,7 +108,7 @@
           <tr>
             <td bgcolor="#FFFFFF" class="zm-bg-white" style="background-color:#FFFFFF;padding:14px 48px 8px 48px;">
               <p class="zm-text-muted" style="margin:0;font-family:Helvetica,Arial,sans-serif;font-size:15px;line-height:1.65;color:#3D3D5C !important;text-align:center;">
-                {{ if .Data.username }}Recibimos tu pre-registro en ZonaMundial. Pulsa el botón para activar tu cuenta y empezar a vivir el Mundial 2026:{{ else }}Solicitaste un acceso sin contraseña a ZonaMundial. Pulsa el botón para entrar de forma segura:{{ end }}
+                Recibimos tu pre-registro en ZonaMundial. Para activar tu cuenta y empezar a vivir el Mundial 2026 con predicciones, fantasy y notificaciones exclusivas de tu selección favorita, pulsa el botón:
               </p>
             </td>
           </tr>
@@ -122,9 +117,9 @@
           <tr>
             <td align="center" bgcolor="#FFFFFF" class="zm-bg-white" style="background-color:#FFFFFF;padding:28px 32px 18px 32px;">
               <!--[if mso]>
-              <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ .ConfirmationURL }}" style="height:52px;v-text-anchor:middle;width:300px;" arcsize="20%" stroke="f" fillcolor="#C9A84C">
+              <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ .ConfirmationURL }}" style="height:52px;v-text-anchor:middle;width:280px;" arcsize="20%" stroke="f" fillcolor="#C9A84C">
                 <w:anchorlock/>
-                <center style="color:#FFFFFF;font-family:Arial,sans-serif;font-size:15px;font-weight:bold;">Entrar a ZonaMundial →</center>
+                <center style="color:#FFFFFF;font-family:Arial,sans-serif;font-size:15px;font-weight:bold;">Confirmar mi cuenta →</center>
               </v:roundrect>
               <![endif]-->
               <!--[if !mso]><!-->
@@ -132,7 +127,7 @@
                 <tr>
                   <td bgcolor="#C9A84C" style="background:linear-gradient(135deg,#C9A84C 0%,#8C7437 100%);background-color:#C9A84C;border-radius:10px;box-shadow:0 4px 14px rgba(140,116,55,0.35);">
                     <a href="{{ .ConfirmationURL }}" target="_blank" style="display:inline-block;padding:16px 38px;font-family:'Outfit','Segoe UI',Helvetica,Arial,sans-serif;font-weight:700;font-size:15px;color:#FFFFFF !important;text-decoration:none;border-radius:10px;letter-spacing:0.02em;">
-                      {{ if .Data.username }}Confirmar mi cuenta →{{ else }}Entrar a ZonaMundial →{{ end }}
+                      Confirmar mi cuenta →
                     </a>
                   </td>
                 </tr>
@@ -144,8 +139,7 @@
             </td>
           </tr>
 
-          <!-- Datos del registro card (solo si hay metadata) -->
-          {{ if .Data.username }}
+          <!-- Datos del registro card — SIN condicionales -->
           <tr>
             <td bgcolor="#FFFFFF" class="zm-bg-white" style="background-color:#FFFFFF;padding:14px 48px 8px 48px;">
               <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" bgcolor="#FAF7F0" class="zm-bg-paper" style="background-color:#FAF7F0;border:1px solid #E8DFC4;border-radius:12px;">
@@ -166,7 +160,6 @@
                         <td style="padding:8px 0;font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#8C8FA3 !important;">Usuario</td>
                         <td class="zm-text-dark" style="padding:8px 0;font-family:Helvetica,Arial,sans-serif;font-size:14px;color:#1A1A2E !important;font-weight:600;text-align:right;">{{ .Data.username }}</td>
                       </tr>
-                      {{ if .Data.country }}
                       <tr>
                         <td colspan="2" bgcolor="#EDE3CC" style="border-top:1px solid #EDE3CC;height:1px;line-height:1px;font-size:0;">&nbsp;</td>
                       </tr>
@@ -174,8 +167,6 @@
                         <td style="padding:8px 0;font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#8C8FA3 !important;">País</td>
                         <td class="zm-text-dark" style="padding:8px 0;font-family:Helvetica,Arial,sans-serif;font-size:14px;color:#1A1A2E !important;font-weight:600;text-align:right;text-transform:uppercase;">{{ .Data.country }}</td>
                       </tr>
-                      {{ end }}
-                      {{ if .Data.fav_team }}
                       <tr>
                         <td colspan="2" bgcolor="#EDE3CC" style="border-top:1px solid #EDE3CC;height:1px;line-height:1px;font-size:0;">&nbsp;</td>
                       </tr>
@@ -183,8 +174,6 @@
                         <td style="padding:8px 0;font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#8C8FA3 !important;">Selección favorita</td>
                         <td style="padding:8px 0;font-family:Helvetica,Arial,sans-serif;font-size:14px;color:#8C7437 !important;font-weight:700;text-align:right;text-transform:capitalize;">★ {{ .Data.fav_team }}</td>
                       </tr>
-                      {{ end }}
-                      {{ if .Data.fav_creator }}
                       <tr>
                         <td colspan="2" bgcolor="#EDE3CC" style="border-top:1px solid #EDE3CC;height:1px;line-height:1px;font-size:0;">&nbsp;</td>
                       </tr>
@@ -192,11 +181,13 @@
                         <td style="padding:8px 0;font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#8C8FA3 !important;">Creador</td>
                         <td class="zm-text-dark" style="padding:8px 0;font-family:Helvetica,Arial,sans-serif;font-size:14px;color:#1A1A2E !important;font-weight:600;text-align:right;text-transform:capitalize;">{{ .Data.fav_creator }}</td>
                       </tr>
-                      {{ end }}
                     </table>
                   </td>
                 </tr>
               </table>
+              <p style="margin:10px 0 0 0;font-family:Helvetica,Arial,sans-serif;font-size:11px;color:#8C8FA3 !important;text-align:center;">
+                Podrás editar todos estos datos desde tu perfil tras activar la cuenta.
+              </p>
             </td>
           </tr>
 
@@ -233,34 +224,12 @@
               </table>
             </td>
           </tr>
-          {{ else }}
-          <!-- Returning user — solo cuenta -->
-          <tr>
-            <td bgcolor="#FFFFFF" class="zm-bg-white" style="background-color:#FFFFFF;padding:14px 48px 8px 48px;">
-              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" bgcolor="#FAF7F0" class="zm-bg-paper" style="background-color:#FAF7F0;border:1px solid #E8DFC4;border-radius:12px;">
-                <tr>
-                  <td bgcolor="#FAF7F0" class="zm-bg-paper" style="background-color:#FAF7F0;padding:22px 26px;">
-                    <p class="zm-text-gold" style="margin:0 0 12px 0;font-family:Georgia,serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#8C7437 !important;font-weight:700;text-align:center;">
-                      · Solicitud de acceso ·
-                    </p>
-                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                      <tr>
-                        <td style="padding:8px 0;font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#8C8FA3 !important;width:38%;">Cuenta</td>
-                        <td class="zm-text-dark" style="padding:8px 0;font-family:Helvetica,Arial,sans-serif;font-size:14px;color:#1A1A2E !important;font-weight:600;text-align:right;">{{ .Email }}</td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-          {{ end }}
 
           <!-- Aviso seguridad -->
           <tr>
             <td bgcolor="#FFFFFF" class="zm-bg-white" style="background-color:#FFFFFF;padding:24px 48px 8px 48px;">
               <p style="margin:0;font-family:Helvetica,Arial,sans-serif;font-size:12px;line-height:1.55;color:#8C8FA3 !important;text-align:center;font-style:italic;">
-                Si no fuiste tú quien {{ if .Data.username }}se registró{{ else }}solicitó este acceso{{ end }}, ignora este email. La cuenta no se activará sin pulsar el botón.
+                Si no fuiste tú quien se registró en ZonaMundial, ignora este email. La cuenta no se activará sin pulsar el botón.
               </p>
             </td>
           </tr>

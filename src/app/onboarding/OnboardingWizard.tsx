@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { completeOnboardingAction, skipOnboardingAction } from "./actions";
 
 interface CountryOption {
@@ -45,6 +45,11 @@ export default function OnboardingWizard({
   creadores: CreadorOption[];
 }) {
   const router = useRouter();
+  const searchParamsHook = useSearchParams();
+  // Destino al terminar onboarding (lo pasamos desde el callback OAuth si
+  // el usuario venía de pedir una ruta específica antes de loguearse).
+  const nextParam = searchParamsHook.get("next");
+  const finishDestination = nextParam && nextParam.startsWith("/") ? nextParam : "/";
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [pending, startTransition] = useTransition();
   const [error, setError] = useState("");
@@ -88,7 +93,7 @@ export default function OnboardingWizard({
     startTransition(async () => {
       const res = await completeOnboardingAction(fd);
       if (res.ok) {
-        router.push("/");
+        router.push(finishDestination);
         router.refresh();
       } else {
         setError(res.error ?? "Error completando onboarding");

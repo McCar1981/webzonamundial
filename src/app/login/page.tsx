@@ -29,14 +29,33 @@ import { createSupabaseBrowserClient } from "@/lib/supabase/client";
       - Apple: enabled with Apple Service ID + private key
 */
 
+function humanizeCallbackError(raw: string): string {
+  const m = decodeURIComponent(raw);
+  if (/missing_code/i.test(m)) {
+    return "El proveedor canceló el inicio de sesión antes de devolverte. Vuelve a intentarlo.";
+  }
+  if (/invalid_grant|expired/i.test(m)) {
+    return "El enlace o código de acceso expiró. Pídelo de nuevo.";
+  }
+  if (/provider is not enabled/i.test(m)) {
+    return "Ese método de inicio de sesión no está activado todavía. Estamos terminando la configuración con el proveedor.";
+  }
+  if (/redirect_uri/i.test(m)) {
+    return "La URL de retorno no está autorizada todavía en el proveedor. Reintenta en unos minutos.";
+  }
+  return m;
+}
+
 function LoginForm() {
   const searchParams = useSearchParams();
   const next = searchParams.get("next") || "/";
+  // Si el callback redirigió aquí con ?error=..., lo mostramos.
+  const initialError = searchParams.get("error");
 
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState<"email" | "google" | "apple" | null>(null);
   const [sent, setSent] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState(initialError ? humanizeCallbackError(initialError) : "");
 
   const supabase = (() => {
     try {
@@ -81,11 +100,42 @@ function LoginForm() {
     setLoading(provider);
     const { error } = await supabase.auth.signInWithOAuth({
       provider,
-      options: { redirectTo: callbackUrl },
+      options: {
+        redirectTo: callbackUrl,
+        // Apple requiere scopes name+email explícitos para que el
+        // primer login devuelva el nombre y email reales.
+        // Google los pide por defecto.
+        scopes: provider === "apple" ? "name email" : undefined,
+        // Hint para Apple: en web, la "popup" oficial es el form_post.
+        // Supabase lo configura solo si el provider está bien habilitado.
+        queryParams:
+          provider === "google"
+            ? { access_type: "offline", prompt: "consent" }
+            : undefined,
+      },
     });
     if (error) {
       setLoading(null);
-      setError(error.message);
+      // Mensajes más claros para los errores típicos de mal-config.
+      const m = error.message || "";
+      let human = m;
+      if (/provider is not enabled/i.test(m)) {
+        human =
+          provider === "apple"
+            ? "Sign In with Apple no está activado todavía en el servidor. Estamos terminando la configuración con Apple — usa el enlace por email o Google de momento."
+            : "Google Sign In no está activado todavía en el servidor. Estamos terminando la configuración — usa el enlace por email de momento.";
+      } else if (/redirect_uri/i.test(m)) {
+        human =
+          "La URL de retorno no está autorizada todavía. Reintenta en unos minutos o usa el enlace por email.";
+      } else if (/invalid_client/i.test(m)) {
+        human =
+          provider === "apple"
+            ? "Las credenciales de Apple Sign In están en revisión. Mientras tanto puedes usar Google o el enlace por email."
+            : "Las credenciales de Google están siendo verificadas. Mientras tanto puedes usar el enlace por email.";
+      }
+      setError(human);
+      // También dejamos el original en consola para debug.
+      console.error(`[login/oauth/${provider}]`, m);
     }
     // On success the browser is redirected to the provider; no further code runs.
   };

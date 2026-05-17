@@ -1,0 +1,269 @@
+<!--
+  CHANGE EMAIL — Confirmar cambio de dirección de email.
+  Subject: Confirma tu nuevo email — ZonaMundial ✉️
+
+  Diseño: claro premium, estilo invitación de evento deportivo.
+  Fondo crema (#EFE9D9). Headers Outfit con dorado (#C9A84C / #8C7437).
+  Compatible con Gmail, Outlook 2007+, Apple Mail, Hotmail, Yahoo.
+
+  Variables Supabase:
+    {{ .ConfirmationURL }}   → URL firmada para confirmar el cambio
+    {{ .Email }}             → email anterior
+    {{ .NewEmail }}          → email nuevo (solo disponible en este template)
+    {{ .SiteURL }}           → https://zonamundial.app
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
+  <title>Confirma tu nuevo email — ZonaMundial</title>
+  <!--[if mso]>
+  <style type="text/css">
+    table {border-collapse: collapse; border-spacing: 0; margin: 0;}
+    div, td {padding: 0;}
+    div {margin: 0 !important;}
+    .mso-fallback {font-family: Arial, sans-serif !important;}
+  </style>
+  <![endif]-->
+</head>
+<body style="margin:0;padding:0;background-color:#EFE9D9;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1A1A2E;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%;width:100%;">
+
+  <!-- Preheader -->
+  <div style="display:none;max-height:0;overflow:hidden;font-size:1px;line-height:1px;color:#EFE9D9;opacity:0;">
+    Confirma el cambio de dirección de email para tu cuenta de ZonaMundial. Caduca en 1 hora.
+  </div>
+
+  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color:#EFE9D9;">
+    <tr>
+      <td align="center" style="padding:40px 16px;">
+
+        <!-- Top accent gold band -->
+        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="max-width:600px;width:100%;">
+          <tr>
+            <td style="background:linear-gradient(90deg,#C9A84C 0%,#E8D48B 50%,#C9A84C 100%);height:4px;line-height:4px;font-size:0;border-radius:16px 16px 0 0;">&nbsp;</td>
+          </tr>
+        </table>
+
+        <!-- Container -->
+        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="max-width:600px;width:100%;background-color:#FFFFFF;border-radius:0 0 16px 16px;box-shadow:0 4px 24px rgba(26,26,46,0.08);overflow:hidden;">
+
+          <!-- Logo + brand -->
+          <tr>
+            <td align="center" style="padding:40px 32px 16px 32px;">
+              <img src="https://zonamundial.app/img/email/logo-zonamundial.png" width="120" height="120" alt="ZonaMundial" style="display:block;width:120px;height:120px;border:0;outline:none;">
+              <p style="margin:14px 0 0 0;font-family:Georgia,'Times New Roman',serif;font-size:11px;letter-spacing:0.32em;text-transform:uppercase;color:#8C7437;font-weight:600;">
+                · Cambio de dirección ·
+              </p>
+              <p style="margin:4px 0 0 0;font-family:'Outfit','Segoe UI',Helvetica,Arial,sans-serif;font-weight:800;font-size:22px;letter-spacing:0.04em;color:#1A1A2E;">
+                ZONA<span style="color:#8C7437;">MUNDIAL</span>
+              </p>
+            </td>
+          </tr>
+
+          <!-- Hero title -->
+          <tr>
+            <td style="padding:28px 48px 16px 48px;text-align:center;">
+              <h1 style="margin:0;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:34px;line-height:1.15;letter-spacing:-0.01em;color:#1A1A2E;font-weight:400;">
+                Confirma tu nuevo email.
+              </h1>
+              <p style="margin:14px 0 0 0;font-family:'Outfit','Segoe UI',Helvetica,Arial,sans-serif;font-size:18px;line-height:1.4;color:#3D3D5C;font-weight:500;">
+                Un paso más para actualizar tu cuenta.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Divider -->
+          <tr>
+            <td align="center" style="padding:18px 32px 6px 32px;">
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td style="width:32px;height:1px;background-color:#D4B86A;line-height:1px;font-size:0;">&nbsp;</td>
+                  <td style="padding:0 12px;color:#C9A84C;font-family:Georgia,serif;font-size:14px;">✦</td>
+                  <td style="width:32px;height:1px;background-color:#D4B86A;line-height:1px;font-size:0;">&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Body intro -->
+          <tr>
+            <td style="padding:14px 48px 8px 48px;">
+              <p style="margin:0;font-family:Helvetica,Arial,sans-serif;font-size:15px;line-height:1.65;color:#3D3D5C;text-align:center;">
+                Solicitaste cambiar la dirección de email asociada a tu cuenta de ZonaMundial. Para completar el cambio, pulsa el botón:
+              </p>
+            </td>
+          </tr>
+
+          <!-- CTA Button -->
+          <tr>
+            <td align="center" style="padding:28px 32px 18px 32px;">
+              <!--[if mso]>
+              <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ .ConfirmationURL }}" style="height:52px;v-text-anchor:middle;width:280px;" arcsize="20%" stroke="f" fillcolor="#C9A84C">
+                <w:anchorlock/>
+                <center style="color:#FFFFFF;font-family:Arial,sans-serif;font-size:15px;font-weight:bold;">Confirmar cambio de email →</center>
+              </v:roundrect>
+              <![endif]-->
+              <!--[if !mso]><!-->
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td style="background:linear-gradient(135deg,#C9A84C 0%,#8C7437 100%);border-radius:10px;box-shadow:0 4px 14px rgba(140,116,55,0.35);">
+                    <a href="{{ .ConfirmationURL }}" target="_blank" style="display:inline-block;padding:16px 38px;font-family:'Outfit','Segoe UI',Helvetica,Arial,sans-serif;font-weight:700;font-size:15px;color:#FFFFFF;text-decoration:none;border-radius:10px;letter-spacing:0.02em;">
+                      Confirmar cambio de email →
+                    </a>
+                  </td>
+                </tr>
+              </table>
+              <!--<![endif]-->
+              <p style="margin:16px 0 0 0;font-family:Helvetica,Arial,sans-serif;font-size:12px;color:#8C8FA3;text-align:center;">
+                Este enlace caduca en 1 hora y solo puede usarse una vez.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Datos del cambio card -->
+          <tr>
+            <td style="padding:14px 48px 8px 48px;">
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color:#FAF7F0;border:1px solid #E8DFC4;border-radius:12px;">
+                <tr>
+                  <td style="padding:24px 26px;">
+                    <p style="margin:0 0 16px 0;font-family:Georgia,serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#8C7437;font-weight:700;text-align:center;">
+                      · Resumen del cambio ·
+                    </p>
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td style="padding:8px 0;font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#8C8FA3;width:38%;">Email actual</td>
+                        <td style="padding:8px 0;font-family:Helvetica,Arial,sans-serif;font-size:14px;color:#1A1A2E;font-weight:600;text-align:right;">{{ .Email }}</td>
+                      </tr>
+                      <tr>
+                        <td colspan="2" style="border-top:1px solid #EDE3CC;height:1px;line-height:1px;font-size:0;">&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:8px 0;font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#8C8FA3;">Nuevo email</td>
+                        <td style="padding:8px 0;font-family:Helvetica,Arial,sans-serif;font-size:14px;color:#8C7437;font-weight:700;text-align:right;">{{ .NewEmail }}</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Aviso importante -->
+          <tr>
+            <td style="padding:30px 48px 8px 48px;">
+              <p style="margin:0 0 6px 0;font-family:Georgia,serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#8C7437;font-weight:700;text-align:center;">
+                · Importante ·
+              </p>
+              <h3 style="margin:8px 0 14px 0;font-family:'Outfit','Segoe UI',Helvetica,Arial,sans-serif;font-size:18px;line-height:1.3;color:#1A1A2E;font-weight:700;text-align:center;letter-spacing:-0.01em;">
+                ¿Qué sucede tras confirmar?
+              </h3>
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                  <td style="padding:10px 0;border-top:1px solid #EDE3CC;font-family:Helvetica,Arial,sans-serif;font-size:14px;line-height:1.5;color:#3D3D5C;">
+                    <strong style="color:#1A1A2E;">Inicia sesión con el nuevo email</strong> a partir de ese momento.
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:10px 0;border-top:1px solid #EDE3CC;font-family:Helvetica,Arial,sans-serif;font-size:14px;line-height:1.5;color:#3D3D5C;">
+                    <strong style="color:#1A1A2E;">Tus predicciones, fantasy y datos</strong> se mantienen intactos.
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:10px 0;border-top:1px solid #EDE3CC;border-bottom:1px solid #EDE3CC;font-family:Helvetica,Arial,sans-serif;font-size:14px;line-height:1.5;color:#3D3D5C;">
+                    <strong style="color:#8C7437;">Recibirás notificaciones</strong> en la nueva dirección.
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Aviso seguridad -->
+          <tr>
+            <td style="padding:24px 48px 8px 48px;">
+              <p style="margin:0;font-family:Helvetica,Arial,sans-serif;font-size:12px;line-height:1.55;color:#8C8FA3;text-align:center;font-style:italic;">
+                Si no fuiste tú quien solicitó este cambio, ignora este email y considera <a href="https://zonamundial.app/cuenta/seguridad" style="color:#8C7437;text-decoration:underline;">cambiar tu contraseña</a> por precaución.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Fallback URL -->
+          <tr>
+            <td style="padding:8px 48px 36px 48px;">
+              <p style="margin:0;font-family:Helvetica,Arial,sans-serif;font-size:11px;color:#8C8FA3;text-align:center;">
+                ¿No funciona el botón? Copia este enlace en tu navegador:<br>
+                <span style="word-break:break-all;color:#3D3D5C;">{{ .ConfirmationURL }}</span>
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer dark band -->
+          <tr>
+            <td style="background-color:#1A1A2E;padding:32px 48px 24px 48px;">
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                  <td align="center" style="padding-bottom:18px;">
+                    <p style="margin:0;font-family:'Outfit','Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;font-weight:800;color:#FFFFFF;letter-spacing:0.04em;">
+                      ZONA<span style="color:#C9A84C;">MUNDIAL</span>
+                    </p>
+                    <p style="margin:6px 0 0 0;font-family:Helvetica,Arial,sans-serif;font-size:11px;color:#94A3B8;">
+                      Plataforma del Mundial 2026 · Hecha en Valencia
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" style="padding:8px 0 16px 0;">
+                    <a href="https://www.instagram.com/zona.mundial" target="_blank" style="display:inline-block;margin:0 8px;font-family:Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:0.15em;color:#C9A84C;text-decoration:none;text-transform:uppercase;font-weight:600;">Instagram</a>
+                    <span style="color:#3D3D5C;">·</span>
+                    <a href="https://www.tiktok.com/@zonamundialfutbol" target="_blank" style="display:inline-block;margin:0 8px;font-family:Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:0.15em;color:#C9A84C;text-decoration:none;text-transform:uppercase;font-weight:600;">TikTok</a>
+                    <span style="color:#3D3D5C;">·</span>
+                    <a href="https://www.facebook.com/share/1Ay733gLRU/" target="_blank" style="display:inline-block;margin:0 8px;font-family:Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:0.15em;color:#C9A84C;text-decoration:none;text-transform:uppercase;font-weight:600;">Facebook</a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- LOPD/RGPD -->
+          <tr>
+            <td style="background-color:#0F0F1F;padding:24px 48px 28px 48px;">
+              <p style="margin:0 0 8px 0;font-family:Helvetica,Arial,sans-serif;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#C9A84C;font-weight:700;">
+                Protección de datos
+              </p>
+              <p style="margin:0 0 10px 0;font-family:Helvetica,Arial,sans-serif;font-size:11px;line-height:1.7;color:#94A3B8;">
+                <strong style="color:#E2E8F0;">Responsable:</strong> Sprintmarkt S.L. · Valencia, España.
+                <strong style="color:#E2E8F0;">Finalidad:</strong> actualizar la dirección de email de tu cuenta.
+                <strong style="color:#E2E8F0;">Legitimación:</strong> tu solicitud expresa de cambio.
+                <strong style="color:#E2E8F0;">Destinatarios:</strong> ningún dato se cederá a terceros salvo obligación legal.
+                <strong style="color:#E2E8F0;">Derechos:</strong> acceder, rectificar, suprimir, oponerte y portar tus datos escribiendo a
+                <a href="mailto:gol@zonamundial.app" style="color:#C9A84C;text-decoration:none;">gol@zonamundial.app</a>.
+              </p>
+              <p style="margin:0;font-family:Helvetica,Arial,sans-serif;font-size:11px;line-height:1.6;color:#94A3B8;">
+                Información completa:
+                <a href="https://zonamundial.app/legal/privacidad" style="color:#C9A84C;text-decoration:underline;">Privacidad</a> ·
+                <a href="https://zonamundial.app/legal/cookies" style="color:#C9A84C;text-decoration:underline;">Cookies</a> ·
+                <a href="https://zonamundial.app/legal/terminos" style="color:#C9A84C;text-decoration:underline;">Términos</a> ·
+                <a href="https://zonamundial.app/legal/aviso-legal" style="color:#C9A84C;text-decoration:underline;">Aviso legal</a> ·
+                <a href="https://zonamundial.app/contacto" style="color:#C9A84C;text-decoration:underline;">Contacto</a>
+              </p>
+            </td>
+          </tr>
+
+          <!-- Copyright -->
+          <tr>
+            <td style="background-color:#0F0F1F;padding:0 48px 24px 48px;border-top:1px solid #2A2A3F;">
+              <p style="margin:18px 0 0 0;font-family:Helvetica,Arial,sans-serif;font-size:11px;color:#6A7A9A;text-align:center;">
+                © 2026 Sprintmarkt S.L. · Todos los derechos reservados · <a href="https://zonamundial.app" style="color:#94A3B8;text-decoration:none;">zonamundial.app</a>
+              </p>
+            </td>
+          </tr>
+
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>

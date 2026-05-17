@@ -8,6 +8,7 @@ import { SELECCIONES } from '@/data/selecciones';
 import { COUNTRIES } from '@/lib/countries';
 import { useLanguage } from '@/i18n/LanguageContext';
 import { createSupabaseBrowserClient } from '@/lib/supabase/client';
+import FlagSelect, { type FlagSelectOption } from '@/components/FlagSelect';
 
 // País y selección favorita son datos críticos para producto:
 //   - country alimenta segmentación geográfica (push, idioma, husos horarios)
@@ -31,11 +32,29 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
     acceptTerms: false,
   });
 
-  // Lista de selecciones precomputada — ordenada alfabéticamente por nombre.
-  // El emoji bandera lo añadimos en runtime desde COUNTRIES si hay match
-  // por ISO (flagCode coincide casi siempre); si no, fallback a "🏳️".
-  const seleccionesOrdenadas = useMemo(() => {
-    return [...SELECCIONES].sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
+  // Listas precomputadas para los selectores con bandera.
+  // Las banderas se sirven desde flagcdn.com (CC0). Los slugs de
+  // SELECCIONES usan flagCode con códigos especiales para Inglaterra/
+  // Escocia (gb-eng, gb-sct).
+  const countryOptions = useMemo<FlagSelectOption[]>(
+    () =>
+      COUNTRIES.map((c) => ({
+        value: c.code,
+        label: c.name,
+        flagCode: c.code,
+      })),
+    [],
+  );
+
+  const teamOptions = useMemo<FlagSelectOption[]>(() => {
+    return [...SELECCIONES]
+      .sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'))
+      .map((s) => ({
+        value: s.slug,
+        label: s.nombre,
+        sublabel: s.grupo ? `Grupo ${s.grupo}` : undefined,
+        flagCode: s.flagCode || s.slug,
+      }));
   }, []);
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -354,26 +373,20 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
             <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider">
               {labels.country} <span className="text-gray-600 normal-case font-medium">({isEN ? 'optional' : 'opcional'})</span>
             </label>
-            <div className="relative">
-              <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none">
+            <FlagSelect
+              value={formData.country}
+              onChange={(v) => { setFormData({ ...formData, country: v }); setError(''); }}
+              options={countryOptions}
+              placeholder={labels.countryPlaceholder}
+              searchPlaceholder={isEN ? 'Type to search…' : 'Escribe para buscar…'}
+              emptyMessage={isEN ? 'No countries found' : 'Sin coincidencias'}
+              ariaLabel={labels.country}
+              iconLeftSlot={(
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-              </div>
-              <select
-                value={formData.country}
-                onChange={(e) => { setFormData({ ...formData, country: e.target.value }); setError(''); }}
-                className="w-full pl-12 pr-10 py-3.5 rounded-xl bg-[#0B1825] border border-[#1E293B] text-white text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/50 transition-all appearance-none cursor-pointer"
-              >
-                <option value="">{labels.countryPlaceholder}</option>
-                {COUNTRIES.map((c) => (
-                  <option key={c.code} value={c.code}>{c.name}</option>
-                ))}
-              </select>
-              <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </div>
+              )}
+            />
             <p className="text-[11px] text-gray-600">{labels.countryHint}</p>
           </div>
 
@@ -382,28 +395,20 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
             <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider">
               {labels.favTeam} <span className="text-gray-600 normal-case font-medium">({isEN ? 'optional' : 'opcional'})</span>
             </label>
-            <div className="relative">
-              <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none">
+            <FlagSelect
+              value={formData.fav_team}
+              onChange={(v) => { setFormData({ ...formData, fav_team: v }); setError(''); }}
+              options={teamOptions}
+              placeholder={labels.favTeamPlaceholder}
+              searchPlaceholder={isEN ? 'Type to search…' : 'Escribe para buscar…'}
+              emptyMessage={isEN ? 'No teams found' : 'Sin coincidencias'}
+              ariaLabel={labels.favTeam}
+              iconLeftSlot={(
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 21l1.65-3.8a9 9 0 113.4 2.9L3 21zM12 7v5l3 3" />
                 </svg>
-              </div>
-              <select
-                value={formData.fav_team}
-                onChange={(e) => { setFormData({ ...formData, fav_team: e.target.value }); setError(''); }}
-                className="w-full pl-12 pr-10 py-3.5 rounded-xl bg-[#0B1825] border border-[#1E293B] text-white text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/50 transition-all appearance-none cursor-pointer"
-              >
-                <option value="">{labels.favTeamPlaceholder}</option>
-                {seleccionesOrdenadas.map((s) => (
-                  <option key={s.slug} value={s.slug}>
-                    {s.nombre} {s.grupo ? `· Grupo ${s.grupo}` : ''}
-                  </option>
-                ))}
-              </select>
-              <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </div>
+              )}
+            />
             <p className="text-[11px] text-[#C9A84C]/80">
               <span aria-hidden="true">⭐ </span>
               {labels.favTeamHint}

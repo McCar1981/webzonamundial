@@ -1,14 +1,23 @@
 "use client";
 
 /**
- * Noticias hub — ESPN-style editorial layout.
+ * Noticias hub — ESPN-style editorial layout con filtros y paginación.
+ *
+ * Mejoras MVP UX (mayo 2026):
+ *  - Buscador por título / excerpt / tags / país
+ *  - Paginación "Cargar más" (12 inicial, +12 cada click)
+ *  - Filtro por selección (banderas clickables → filtra por país)
+ *  - Click en tags individuales → filtra por tag
+ *  - URL persistente: ?q=&cat=&pais=&tag= todas sincronizadas
+ *  - Limpiar todos los filtros con un solo botón
+ *
  * Top story (full-bleed) + 3 secondary cards + tag bar + dense article list
  * + sidebar with "Lo más leído" + app CTA.
  */
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import type { Noticia } from "@/data/noticias";
 import styles from "./NoticiasIndex.module.css";
 
@@ -31,6 +40,8 @@ const CAT_COLORS: Record<string, string> = {
   plataforma: "#06b6d4",
 };
 
+const PAGE_SIZE = 12;
+
 const flagUrl = (c: string) => `https://flagcdn.com/w40/${c}.png`;
 const MONTHS = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
 const fmtDate = (d: string) => {
@@ -47,28 +58,85 @@ function relTime(date: string): string {
   return fmtDate(date);
 }
 
-function CatPill({ cat, big = false }: { cat: string; big?: boolean }) {
+function CatPill({
+  cat,
+  big = false,
+  onClick,
+}: {
+  cat: string;
+  big?: boolean;
+  onClick?: (e: React.MouseEvent) => void;
+}) {
   const color = CAT_COLORS[cat] || "#c9a84c";
   const label = CAT_LABELS[cat] || cat;
   return (
     <span
+      role={onClick ? "button" : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      onClick={onClick}
+      onKeyDown={
+        onClick
+          ? (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                onClick(e as unknown as React.MouseEvent);
+              }
+            }
+          : undefined
+      }
       className={`${styles.catPill} ${big ? styles.catPillBig : ""}`}
-      style={{ background: `${color}1a`, borderColor: `${color}55`, color }}
+      style={{
+        background: `${color}1a`,
+        borderColor: `${color}55`,
+        color,
+        cursor: onClick ? "pointer" : undefined,
+      }}
     >
       {label}
     </span>
   );
 }
 
-function FlagsRow({ flags, max = 3 }: { flags: string[]; max?: number }) {
+function FlagsRow({
+  flags,
+  max = 3,
+  onFlagClick,
+}: {
+  flags: string[];
+  max?: number;
+  onFlagClick?: (flag: string, e: React.MouseEvent) => void;
+}) {
   if (!flags?.length) return null;
   return (
     <span className={styles.flagsRow}>
       {flags.slice(0, max).map((f) => (
-        <img key={f} src={flagUrl(f)} alt="" />
+        <img
+          key={f}
+          src={flagUrl(f)}
+          alt={f}
+          title={onFlagClick ? `Filtrar por ${f.toUpperCase()}` : undefined}
+          onClick={
+            onFlagClick
+              ? (e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  onFlagClick(f, e);
+                }
+              : undefined
+          }
+          style={onFlagClick ? { cursor: "pointer" } : undefined}
+        />
       ))}
     </span>
   );
+}
+
+/** Normaliza string para búsqueda case-insensitive y sin acentos. */
+function normalize(s: string): string {
+  return s
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
 }
 
 export default function NoticiasClient({
@@ -78,29 +146,51 @@ export default function NoticiasClient({
   posts: Noticia[];
   totalCount: number;
 }) {
+  const router = useRouter();
   const searchParams = useSearchParams();
+
+  // Estado leído desde URL al montar y sincronizado con cambios.
+  const initialQ = searchParams.get("q") || "";
   const initialCat = searchParams.get("cat") || "all";
+  const initialPais = searchParams.get("pais") || "";
+  const initialTag = searchParams.get("tag") || "";
+
+  const [q, setQ] = useState(initialQ);
   const [cat, setCat] = useState(initialCat);
+  const [pais, setPais] = useState(initialPais);
+  const [tag, setTag] = useState(initialTag);
+  const [visible, setVisible] = useState(PAGE_SIZE);
+
   const tickerRef = useRef<HTMLDivElement>(null);
   const tickerLaneRef = useRef<HTMLDivElement>(null);
   const [tickerDuration, setTickerDuration] = useState<number>(15);
 
+  // Sync URL whenever any filter changes. Usa replace para no spammear history.
   useEffect(() => {
-    const c = searchParams.get("cat");
-    if (c && c !== cat) setCat(c);
+    const params = new URLSearchParams();
+    if (q.trim()) params.set("q", q.trim());
+    if (cat && cat !== "all") params.set("cat", cat);
+    if (pais) params.set("pais", pais);
+    if (tag) params.set("tag", tag);
+    const next = params.toString();
+    const current = searchParams.toString();
+    if (next !== current) {
+      router.replace(next ? `/noticias?${next}` : "/noticias", { scroll: false });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchParams]);
+  }, [q, cat, pais, tag]);
 
-  // Mantener velocidad de scroll del ticker constante (~140 px/s) sin importar
-  // cuántos items haya o lo largos que sean los titulares. Recalcula al
-  // montar y al cambiar el viewport.
+  // Reset visible al cambiar filtros para no quedar paginado al fondo.
+  useEffect(() => {
+    setVisible(PAGE_SIZE);
+  }, [q, cat, pais, tag]);
+
+  // Ticker speed constant (~140px/s)
   useEffect(() => {
     const PX_PER_SEC = 140;
     const compute = () => {
       const lane = tickerLaneRef.current;
       if (!lane) return;
-      // La lane está duplicada (items × 2) y el keyframe va de 0 → -50%,
-      // así que la distancia recorrida en cada loop es scrollWidth / 2.
       const distance = lane.scrollWidth / 2;
       if (distance > 0) {
         const seconds = Math.max(8, Math.min(30, distance / PX_PER_SEC));
@@ -112,19 +202,69 @@ export default function NoticiasClient({
     return () => window.removeEventListener("resize", compute);
   }, [posts]);
 
+  // Aplica TODOS los filtros en orden: cat → pais → tag → q
   const filtered = useMemo(() => {
-    if (cat === "all") return posts;
-    return posts.filter((p) => p.cat === cat);
-  }, [cat, posts]);
+    let list = posts;
+    if (cat !== "all") {
+      list = list.filter((p) => p.cat === cat);
+    }
+    if (pais) {
+      list = list.filter((p) => p.flags?.includes(pais));
+    }
+    if (tag) {
+      const tagNorm = normalize(tag);
+      list = list.filter((p) =>
+        (p.tags || []).some((t) => normalize(t) === tagNorm),
+      );
+    }
+    const qTrim = q.trim();
+    if (qTrim.length >= 2) {
+      const qn = normalize(qTrim);
+      list = list.filter((p) => {
+        const haystack = normalize(
+          `${p.title} ${p.excerpt} ${(p.tags || []).join(" ")}`,
+        );
+        return haystack.includes(qn);
+      });
+    }
+    return list;
+  }, [posts, cat, pais, tag, q]);
 
+  // Paginación: solo el primer 'visible' artículos se renderizan.
+  // Pero el top story + secundarias siempre vienen del filtered.
   const top = filtered[0];
   const secondary = filtered.slice(1, 4);
-  const list = filtered.slice(4);
+  const listAll = filtered.slice(4);
+  const list = listAll.slice(0, visible);
+  const hasMore = listAll.length > visible;
 
   const trending = useMemo(() => posts.slice(0, 5), [posts]);
-
-  // Breaking ticker copy (reuse latest 5 headlines)
   const tickerItems = useMemo(() => posts.slice(0, 6), [posts]);
+
+  const hasActiveFilters =
+    q.trim().length > 0 || cat !== "all" || pais !== "" || tag !== "";
+
+  // Lista única de banderas presentes en los posts actuales (para sugerir
+  // filtros rápidos de país más comunes).
+  const topFlags = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const p of posts) {
+      for (const f of p.flags || []) {
+        counts.set(f, (counts.get(f) ?? 0) + 1);
+      }
+    }
+    return Array.from(counts.entries())
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 8)
+      .map(([flag]) => flag);
+  }, [posts]);
+
+  const clearAll = useCallback(() => {
+    setQ("");
+    setCat("all");
+    setPais("");
+    setTag("");
+  }, []);
 
   return (
     <div className={styles.page}>
@@ -167,8 +307,8 @@ export default function NoticiasClient({
         </div>
       </header>
 
-      {/* Category bar */}
-      <nav className={styles.catBar} aria-label="Categorías">
+      {/* Category + Search bar */}
+      <nav className={styles.catBar} aria-label="Filtros y búsqueda">
         <div className={styles.catBarInner}>
           {(["all","selecciones","analisis","datos","sedes","historia","plataforma"] as const).map((id) => {
             const active = cat === id;
@@ -189,13 +329,121 @@ export default function NoticiasClient({
               </button>
             );
           })}
+
+          {/* Separador visual y buscador */}
+          <div className={styles.catBarSpacer} />
+
+          <div className={styles.searchWrap}>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden
+              className={styles.searchIcon}
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path d="M21 21l-4.35-4.35" />
+            </svg>
+            <input
+              type="search"
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              placeholder="Buscar título, jugador, equipo, tag…"
+              className={styles.searchInput}
+              aria-label="Buscar noticias"
+            />
+            {q && (
+              <button
+                type="button"
+                onClick={() => setQ("")}
+                className={styles.searchClear}
+                aria-label="Limpiar búsqueda"
+              >
+                ✕
+              </button>
+            )}
+          </div>
         </div>
       </nav>
+
+      {/* Active filters chips + flag suggestions */}
+      {(hasActiveFilters || topFlags.length > 0) && (
+        <div className={styles.filterBar}>
+          <div className={styles.filterBarInner}>
+            {hasActiveFilters && (
+              <>
+                <span className={styles.filterBarLabel}>Filtros activos:</span>
+                {q.trim() && (
+                  <span className={styles.filterChip}>
+                    🔍 “{q.trim()}”
+                    <button onClick={() => setQ("")} aria-label="Quitar búsqueda">✕</button>
+                  </span>
+                )}
+                {cat !== "all" && (
+                  <span className={styles.filterChip}>
+                    {CAT_LABELS[cat] || cat}
+                    <button onClick={() => setCat("all")} aria-label="Quitar categoría">✕</button>
+                  </span>
+                )}
+                {pais && (
+                  <span className={styles.filterChip}>
+                    <img src={flagUrl(pais)} alt="" width={16} height={12} style={{ borderRadius: 2, verticalAlign: "middle", marginRight: 6 }} />
+                    {pais.toUpperCase()}
+                    <button onClick={() => setPais("")} aria-label="Quitar país">✕</button>
+                  </span>
+                )}
+                {tag && (
+                  <span className={styles.filterChip}>
+                    #{tag}
+                    <button onClick={() => setTag("")} aria-label="Quitar tag">✕</button>
+                  </span>
+                )}
+                <button
+                  type="button"
+                  onClick={clearAll}
+                  className={styles.filterClearAll}
+                >
+                  Limpiar todo
+                </button>
+              </>
+            )}
+            {!hasActiveFilters && topFlags.length > 0 && (
+              <>
+                <span className={styles.filterBarLabel}>Selecciones populares:</span>
+                {topFlags.map((f) => (
+                  <button
+                    key={f}
+                    type="button"
+                    onClick={() => setPais(f)}
+                    className={styles.flagChip}
+                    aria-label={`Filtrar por ${f.toUpperCase()}`}
+                  >
+                    <img src={flagUrl(f)} alt="" />
+                    <span>{f.toUpperCase()}</span>
+                  </button>
+                ))}
+              </>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* MAIN GRID */}
       <main className={styles.main}>
         {filtered.length === 0 ? (
-          <div className={styles.empty}>No hay artículos en esta categoría aún.</div>
+          <div className={styles.empty}>
+            <p>No encontramos artículos con esos filtros.</p>
+            {hasActiveFilters && (
+              <button type="button" onClick={clearAll} className={styles.emptyClear}>
+                Limpiar filtros y ver todo
+              </button>
+            )}
+          </div>
         ) : (
           <>
             {/* TOP STORY ROW */}
@@ -209,8 +457,11 @@ export default function NoticiasClient({
                   <div className={styles.topOverlay} />
                   <div className={styles.topBody}>
                     <div className={styles.topMeta}>
-                      <CatPill cat={top.cat} big />
-                      <FlagsRow flags={top.flags} />
+                      <CatPill cat={top.cat} big onClick={(e) => { e.preventDefault(); setCat(top.cat); }} />
+                      <FlagsRow
+                        flags={top.flags}
+                        onFlagClick={(f) => setPais(f)}
+                      />
                       <span className={styles.timeRel}>{relTime(top.date)}</span>
                     </div>
                     <h2 className={styles.topTitle}>{top.title}</h2>
@@ -233,7 +484,7 @@ export default function NoticiasClient({
                       <img src={p.realImage} alt="" className={styles.secImg} />
                     )}
                     <div className={styles.secBody}>
-                      <CatPill cat={p.cat} />
+                      <CatPill cat={p.cat} onClick={(e) => { e.preventDefault(); setCat(p.cat); }} />
                       <h3>{p.title}</h3>
                       <span className={styles.secMeta}>
                         {fmtDate(p.date)} · {p.readTime} min
@@ -247,32 +498,76 @@ export default function NoticiasClient({
             {/* CONTENT + SIDEBAR */}
             <section className={styles.bottomRow}>
               <div className={styles.listColumn}>
-                <h2 className={styles.sectionH}>Más artículos</h2>
+                <div className={styles.listHeader}>
+                  <h2 className={styles.sectionH}>
+                    Más artículos
+                    <span className={styles.listCount}>{listAll.length}</span>
+                  </h2>
+                </div>
                 {list.length === 0 ? (
                   <p className={styles.muted}>Pronto añadiremos más historias en esta categoría.</p>
                 ) : (
-                  <ul className={styles.articleList}>
-                    {list.map((p) => (
-                      <li key={p.id}>
-                        <Link href={`/noticias/${p.slug}`} className={styles.listItem}>
-                          {p.realImage && (
-                            // eslint-disable-next-line @next/next/no-img-element
-                            <img src={p.realImage} alt="" className={styles.listThumb} />
-                          )}
-                          <div className={styles.listBody}>
-                            <div className={styles.listMeta}>
-                              <CatPill cat={p.cat} />
-                              <FlagsRow flags={p.flags} max={2} />
-                              <span className={styles.listDate}>{fmtDate(p.date)}</span>
+                  <>
+                    <ul className={styles.articleList}>
+                      {list.map((p) => (
+                        <li key={p.id}>
+                          <Link href={`/noticias/${p.slug}`} className={styles.listItem}>
+                            {p.realImage && (
+                              // eslint-disable-next-line @next/next/no-img-element
+                              <img src={p.realImage} alt="" className={styles.listThumb} loading="lazy" />
+                            )}
+                            <div className={styles.listBody}>
+                              <div className={styles.listMeta}>
+                                <CatPill cat={p.cat} onClick={(e) => { e.preventDefault(); setCat(p.cat); }} />
+                                <FlagsRow flags={p.flags} max={2} onFlagClick={(f) => setPais(f)} />
+                                <span className={styles.listDate}>{fmtDate(p.date)}</span>
+                              </div>
+                              <h3>{p.title}</h3>
+                              <p>{p.excerpt}</p>
+                              <div className={styles.listFooter}>
+                                <span className={styles.listRead}>{p.readTime} min de lectura</span>
+                                {p.tags && p.tags.length > 0 && (
+                                  <span className={styles.listTags}>
+                                    {p.tags.slice(0, 3).map((t) => (
+                                      <button
+                                        key={t}
+                                        type="button"
+                                        onClick={(e) => {
+                                          e.preventDefault();
+                                          e.stopPropagation();
+                                          setTag(t);
+                                        }}
+                                        className={styles.tagBtn}
+                                      >
+                                        #{t}
+                                      </button>
+                                    ))}
+                                  </span>
+                                )}
+                              </div>
                             </div>
-                            <h3>{p.title}</h3>
-                            <p>{p.excerpt}</p>
-                            <span className={styles.listRead}>{p.readTime} min de lectura</span>
-                          </div>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                    {hasMore && (
+                      <div className={styles.loadMoreWrap}>
+                        <button
+                          type="button"
+                          onClick={() => setVisible((v) => v + PAGE_SIZE)}
+                          className={styles.loadMoreBtn}
+                        >
+                          Cargar {Math.min(PAGE_SIZE, listAll.length - visible)} más
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                            <path d="M6 9l6 6 6-6" />
+                          </svg>
+                        </button>
+                        <p className={styles.loadMoreMeta}>
+                          Mostrando {Math.min(visible, listAll.length)} de {listAll.length} resultados
+                        </p>
+                      </div>
+                    )}
+                  </>
                 )}
               </div>
 

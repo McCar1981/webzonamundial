@@ -1,7 +1,11 @@
-// /cuenta/notificaciones — gestión de preferencias de email/push.
+// /cuenta/notificaciones \u2014 panel granular de preferencias (FASE 3).
 //
-// FASE 1: solo daily-digest de noticias. En FASE 3 añadiremos toggles
-// por categoría, fav-team alerts, push web, etc.
+// Carga SSR:
+//   - email (auth.users)
+//   - estado legacy de email_subscriptions.daily-digest (compat)
+//   - filas de notification_preferences (granular)
+//
+// El panel del cliente fusiona los 3 estados.
 
 import type { Metadata } from "next";
 import { requireUser } from "@/lib/auth-helpers";
@@ -33,7 +37,8 @@ export default async function NotificacionesPage({
   } = await supabase.auth.getUser();
   const email = user?.email ?? "";
 
-  // Leemos suscripción al daily-digest. RLS permite solo ver las propias.
+  // Estado legacy email_subscriptions (FASE 1) \u2014 sirve para fallback
+  // visual cuando el user no tiene fila en notification_preferences.
   let isSubscribed = false;
   if (user?.id) {
     const { data } = await supabase
@@ -45,7 +50,6 @@ export default async function NotificacionesPage({
     if (data) {
       isSubscribed = !data.unsubscribed_at;
     } else {
-      // También buscamos por email (caso registros sin user_id linkeado).
       const { data: byEmail } = await supabase
         .from("email_subscriptions")
         .select("unsubscribed_at")
@@ -58,12 +62,27 @@ export default async function NotificacionesPage({
     }
   }
 
+  // Preferencias granulares (FASE 3).
+  let initialPrefs: Array<{
+    category: string;
+    channel: string;
+    enabled: boolean;
+  }> = [];
+  if (user?.id) {
+    const { data: prefs } = await supabase
+      .from("notification_preferences")
+      .select("category, channel, enabled")
+      .eq("user_id", user.id);
+    initialPrefs = (prefs ?? []) as typeof initialPrefs;
+  }
+
   return (
     <NotificacionesPanel
       email={email}
       initialSubscribed={isSubscribed}
       unsubscribedFlag={searchParams.unsubscribed === "1"}
       errorFlag={searchParams.error ?? null}
+      initialPrefs={initialPrefs}
     />
   );
 }

@@ -116,6 +116,13 @@ export async function deletePushSubscription(
 
 /**
  * Devuelve todas las subscriptions suscritas a un kind dado.
+ *
+ * Implementaci\u00f3n h\u00edbrida durante la transici\u00f3n a FASE 3:
+ *  1. Lee notification_preferences (category, channel='push', enabled=true)
+ *     \u2192 source of truth nueva.
+ *  2. Filtra push_subscriptions a los user_ids resultantes.
+ *  3. Adem\u00e1s incluye legacy: subs con kind en kinds[] cuyo user a\u00fan no
+ *     migr\u00f3 a preferences (compat retro).
  */
 export async function listSubscriptionsForKind(kind: string): Promise<
   Array<{
@@ -128,15 +135,60 @@ export async function listSubscriptionsForKind(kind: string): Promise<
 > {
   try {
     const admin = getAdmin();
-    const { data, error } = await admin
+
+    // 1) Users con preferencia activa: category=kind, channel=push.
+    const { data: prefRows } = await admin
+      .from("notification_preferences")
+      .select("user_id")
+      .eq("category", kind)
+      .eq("channel", "push")
+      .eq("enabled", true);
+
+    const allowedUserIds = new Set<string>(
+      (prefRows ?? []).map((r) => r.user_id as string),
+    );
+
+    // 2) Users que tambi\u00e9n tienen preferencia EXPL\u00cdCITAMENTE deshabilitada.
+    //    Estos los excluimos del fallback legacy.
+    const { data: optOutRows } = await admin
+      .from("notification_preferences")
+      .select("user_id")
+      .eq("category", kind)
+      .eq("channel", "push")
+      .eq("enabled", false);
+    const optedOutUserIds = new Set<string>(
+      (optOutRows ?? []).map((r) => r.user_id as string),
+    );
+
+    // 3) Trae todas las subs del kind legacy (compat con kinds[] array).
+    const { data: subs, error } = await admin
       .from("push_subscriptions")
-      .select("id, endpoint, p256dh, auth, failure_count")
+      .select("id, endpoint, p256dh, auth, failure_count, user_id")
       .contains("kinds", [kind]);
     if (error) {
       console.error("[push] listSubscriptionsForKind failed:", error.message);
       return [];
     }
-    return data ?? [];
+
+    // 4) Filtra: incluye si est\u00e1 en allowedUserIds, o si NO tiene fila
+    //    de preferencia (legacy compat). Excluye si tiene opt-out expl\u00edcito.
+    const result = (subs ?? []).filter((s) => {
+      const uid = s.user_id as string | null;
+      if (!uid) return true; // an\u00f3nimas: no podemos filtrar, las incluimos
+      if (optedOutUserIds.has(uid)) return false;
+      if (allowedUserIds.has(uid)) return true;
+      // Sin preferencia expl\u00edcita: legacy compat (los users de FASE 2
+      // que se suscribieron antes de FASE 3 siguen recibiendo).
+      return true;
+    });
+
+    return result.map((r) => ({
+      id: r.id,
+      endpoint: r.endpoint,
+      p256dh: r.p256dh,
+      auth: r.auth,
+      failure_count: r.failure_count,
+    }));
   } catch (err) {
     console.error("[push] listSubscriptionsForKind threw:", (err as Error).message);
     return [];

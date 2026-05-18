@@ -25,6 +25,7 @@ import {
   buildUnsubscribeToken,
 } from "@/lib/email-subscriptions";
 import { sendDailyDigest } from "@/lib/email";
+import { createClient } from "@supabase/supabase-js";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -71,7 +72,7 @@ export async function GET(req: NextRequest) {
     });
   }
 
-  // 2. Lista de suscriptores activos.
+  // 2. Lista de suscriptores activos (legacy email_subscriptions).
   const { rows, error } = await listActiveSubscribers({
     kind: "daily-digest",
     limit: 1000,
@@ -88,13 +89,55 @@ export async function GET(req: NextRequest) {
     });
   }
 
+  // 2b. Filtro por FASE 3 \u2014 respetar preferencias granulares.
+  //
+  // Si un user tiene una fila expl\u00edcita en notification_preferences con
+  //   category='news', channel='email', enabled=false
+  // entonces NO le enviamos, aunque siga en email_subscriptions.
+  //
+  // Si tiene enabled=true o no tiene fila (legacy), s\u00ed le enviamos.
+  // Esto preserva compat con FASE 1 mientras los users no opten out.
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const optedOutUserIds = new Set<string>();
+  if (supabaseUrl && serviceKey) {
+    try {
+      const admin = createClient(supabaseUrl, serviceKey, {
+        auth: { autoRefreshToken: false, persistSession: false },
+      });
+      const { data: optOut } = await admin
+        .from("notification_preferences")
+        .select("user_id")
+        .eq("category", "news")
+        .eq("channel", "email")
+        .eq("enabled", false);
+      for (const r of optOut ?? []) {
+        if (r.user_id) optedOutUserIds.add(r.user_id as string);
+      }
+    } catch (err) {
+      console.error("[digest-cron] preferences fetch failed:", (err as Error).message);
+    }
+  }
+  const filteredRows = rows.filter((r) => {
+    if (!r.user_id) return true; // sin user_id no filtramos
+    return !optedOutUserIds.has(r.user_id);
+  });
+  if (filteredRows.length === 0) {
+    return NextResponse.json({
+      ok: true,
+      skipped: "all_subscribers_opted_out",
+      sent: 0,
+      filtered_out: rows.length,
+    });
+  }
+
   // 3. Enviar a cada uno (secuencial). Logueamos fallos pero no
   //    interrumpimos: queremos enviarle al máximo posible.
   let sent = 0;
   let failed = 0;
   const sentIds: string[] = [];
 
-  for (const row of rows) {
+  for (const row of filteredRows) {
     try {
       const token = buildUnsubscribeToken({
         email: row.email,

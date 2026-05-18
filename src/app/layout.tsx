@@ -86,15 +86,11 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "ZonaMundial — Predicciones y Fantasy del Mundial 2026",
-        type: "image/jpeg",
-      },
-    ],
+    // images se inyecta autom\u00e1ticamente por src/app/opengraph-image.tsx
+    // (Next.js File Convention). Esa imagen es generada din\u00e1micamente
+    // con el logo + branding dorado de ZonaMundial. Si en el futuro
+    // quieres volver a una imagen est\u00e1tica, borra el archivo
+    // opengraph-image.tsx y descomenta el bloque images de abajo.
   },
   twitter: {
     card: "summary_large_image",
@@ -102,7 +98,8 @@ export const metadata: Metadata = {
     creator: "@zonamundial",
     title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,
-    images: ["/og-image.jpg"],
+    // images: idem \u2014 lo inyecta twitter-image.tsx si existe, o cae
+    // al opengraph-image.tsx como fallback.
   },
   manifest: "/manifest.json",
   icons: {
@@ -191,10 +188,12 @@ const jsonLd = {
       eventStatus: "https://schema.org/EventScheduled",
       eventAttendanceMode: "https://schema.org/MixedEventAttendanceMode",
       sport: "Fútbol",
-      // Image — required by Google for Event rich result
+      // Image — required by Google for Event rich result.
+      // El opengraph-image.tsx en root se sirve en /opengraph-image (Next
+      // resuelve el endpoint dinámico). Como fallback, el logo branded.
       image: [
-        `${SITE_URL}/og-image.jpg`,
-        `${SITE_URL}/img/zonamundial-images/imagenes/IMG-20260302-WA0016-removebg-preview.webp`,
+        `${SITE_URL}/opengraph-image`,
+        `${SITE_URL}/img/email/logo-zonamundial.png`,
       ],
       // Location with full address per host country (Google requires address inside location)
       location: [

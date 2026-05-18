@@ -18,6 +18,8 @@ import {
   type FoundersCurrency,
 } from "@/lib/stripe/client";
 import { isFounder } from "@/lib/founders/store";
+import { currencyForCountry } from "@/lib/founders/currency-by-country";
+import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -27,15 +29,6 @@ function getOrigin(request: NextRequest): string {
   const host = request.headers.get("host") || "zonamundial.app";
   const finalProto = host.startsWith("localhost") || host.startsWith("127.0.0.1") ? "http" : proto;
   return `${finalProto}://${host}`;
-}
-
-/** Si el cliente no especifica moneda, intentamos inferir por idioma. */
-function inferCurrency(request: NextRequest): FoundersCurrency {
-  const lang = (request.headers.get("accept-language") || "").toLowerCase();
-  // ES, FR, DE, IT, NL... → EUR. EN-US, ES-MX, ES-AR, ES-CO... → USD.
-  if (/^es-(mx|ar|co|cl|pe|uy|ec|ve|bo|py|do|gt|hn|ni|pa|sv)/.test(lang)) return "usd";
-  if (/^en-us/.test(lang)) return "usd";
-  return "eur";
 }
 
 export async function POST(request: NextRequest) {
@@ -56,15 +49,41 @@ export async function POST(request: NextRequest) {
     );
   }
 
+  // SEGURIDAD: la moneda NO la elige el cliente. Se determina por el
+  // campo `country` del profile del usuario. Si el cliente envía una
+  // moneda distinta, la ignoramos (anti-arbitraje: alguien de España
+  // no puede pagar 6 USD haciendo POST manual al endpoint).
+  const supabase = createSupabaseServerClient();
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("country")
+    .eq("id", user.id)
+    .maybeSingle();
+  const userCountry = profile?.country ?? null;
+  const currency: FoundersCurrency = currencyForCountry(userCountry);
+
+  // Si el body trae currency, validamos que coincide con la asignada.
+  // Si no coincide, rechazamos (señal de manipulación del cliente).
   let body: { currency?: string } = {};
   try {
     body = await request.json();
   } catch {
     /* body vacío es OK */
   }
-
-  const currency: FoundersCurrency =
-    body.currency && isValidCurrency(body.currency) ? body.currency : inferCurrency(request);
+  if (
+    typeof body.currency === "string" &&
+    isValidCurrency(body.currency) &&
+    body.currency !== currency
+  ) {
+    return NextResponse.json(
+      {
+        error:
+          "La moneda solicitada no corresponde a tu país. Recarga la página para usar el precio correcto.",
+        code: "currency_mismatch",
+      },
+      { status: 400 }
+    );
+  }
 
   const price = FOUNDERS_PASS_PRICES[currency];
   const origin = getOrigin(request);

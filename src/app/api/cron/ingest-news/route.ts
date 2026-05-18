@@ -19,10 +19,16 @@ import { readIngestStore, writeIngestStore, getStorePath } from "@/lib/noticias-
 
 export async function GET(req: Request) {
   // Auth: Vercel Cron sends Authorization: Bearer ${CRON_SECRET}
+  // También aceptamos ?secret=XXX como query param para poder
+  // invocar el cron manualmente desde el navegador (debug). El
+  // secret nunca se logea ni se devuelve en la respuesta.
   const expected = process.env.CRON_SECRET;
   if (expected) {
     const auth = req.headers.get("authorization");
-    if (auth !== `Bearer ${expected}`) {
+    const headerOk = auth === `Bearer ${expected}`;
+    const querySecret = new URL(req.url).searchParams.get("secret");
+    const queryOk = querySecret === expected;
+    if (!headerOk && !queryOk) {
       return NextResponse.json({ error: "unauthorized" }, { status: 401 });
     }
   }

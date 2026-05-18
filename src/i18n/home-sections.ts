@@ -341,19 +341,19 @@ export const homeSections = {
 
     /* ============ AppRevealSection — coming-soon teaser ============ */
     appReveal: {
-      pill: "MUY PRONTO",
-      title: "Algo grande",
-      titleGold: "se viene.",
+      pill: "LANZAMIENTO EN DÍAS",
+      title: "La app está",
+      titleGold: "a días de salir.",
       subtitle:
-        "Estamos preparando la mejor experiencia para los verdaderos fanáticos del fútbol.",
+        "Cuenta atrás final. Reserva tu acceso prioritario y entra en la primera oleada el día del lanzamiento.",
       notify: {
-        title: "Sé el primero en enterarte.",
-        desc: "Descarga la app en cuanto esté disponible.",
+        title: "Acceso prioritario al lanzamiento.",
+        desc: "Los pre-registrados entran el primer día.",
       },
       stores: {
-        appStoreSoon: "Próximamente en",
+        appStoreSoon: "En días en",
         appStoreName: "App Store",
-        playStoreSoon: "Próximamente en",
+        playStoreSoon: "En días en",
         playStoreName: "Google Play",
       },
       phoneLabel: "Zona Mundial",
@@ -766,19 +766,19 @@ export const homeSections = {
     },
 
     appReveal: {
-      pill: "COMING SOON",
-      title: "Something big",
-      titleGold: "is coming.",
+      pill: "LAUNCHING IN DAYS",
+      title: "The app is",
+      titleGold: "days away.",
       subtitle:
-        "We're crafting the ultimate experience for true football fanatics.",
+        "Final countdown. Reserve your priority access and join the first wave on launch day.",
       notify: {
-        title: "Be the first to know.",
-        desc: "Download the app the moment it's available.",
+        title: "Priority access at launch.",
+        desc: "Pre-registered users get in on day one.",
       },
       stores: {
-        appStoreSoon: "Coming soon to",
+        appStoreSoon: "Days away on",
         appStoreName: "App Store",
-        playStoreSoon: "Coming soon to",
+        playStoreSoon: "Days away on",
         playStoreName: "Google Play",
       },
       phoneLabel: "Zona Mundial",

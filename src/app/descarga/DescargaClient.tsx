@@ -215,19 +215,37 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
       }}
     >
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-        {/* Eyebrow */}
-        <div
-          style={{
-            fontFamily: "var(--zm-font-mono, 'JetBrains Mono', monospace)",
-            fontSize: 11,
-            letterSpacing: "0.22em",
-            color: "#C9A84C",
-            fontWeight: 700,
-            marginBottom: 12,
-            textAlign: "center",
-          }}
-        >
-          // ZONAMUNDIAL APP
+        {/* Badge inminencia */}
+        <div style={{ display: "flex", justifyContent: "center", marginBottom: 16 }}>
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 10,
+              padding: "8px 16px",
+              borderRadius: 999,
+              background: "linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05))",
+              border: "1px solid rgba(201,168,76,0.4)",
+              fontFamily: "var(--zm-font-mono, 'JetBrains Mono', monospace)",
+              fontSize: 11,
+              letterSpacing: "0.18em",
+              color: "#FDE68A",
+              fontWeight: 700,
+              textTransform: "uppercase",
+            }}
+          >
+            <span
+              style={{
+                width: 8,
+                height: 8,
+                borderRadius: "50%",
+                background: "#FDE68A",
+                boxShadow: "0 0 12px #FDE68A",
+                animation: "zm-pulse 1.6s ease-in-out infinite",
+              }}
+            />
+            Lanzamiento en pocos días
+          </div>
         </div>
 
         <h1
@@ -240,7 +258,7 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
             letterSpacing: "-0.02em",
           }}
         >
-          Llévatela{" "}
+          La app está{" "}
           <span
             style={{
               backgroundImage: "linear-gradient(135deg, #C9A84C, #E8C76B 50%, #FDE68A)",
@@ -249,10 +267,10 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
               backgroundClip: "text",
             }}
           >
-            al móvil
+            a días
           </span>
           <br />
-          en 3 segundos.
+          de salir.
         </h1>
         <p
           style={{
@@ -264,9 +282,9 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
             lineHeight: 1.5,
           }}
         >
-          Escanea el QR con la cámara de tu móvil o autoenvíate el enlace al
-          email o WhatsApp. Así no pierdes tiempo buscando &quot;ZonaMundial&quot; en
-          la tienda.
+          Estamos en la cuenta atrás final. Guarda el QR o autoenvíate el link
+          al móvil — en cuanto esté en App Store y Google Play, eres de los
+          primeros en tenerla.
         </p>
 
         {/* Hero card: QR + envío */}
@@ -592,24 +610,49 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
 
         {/* Footer */}
         <div style={{ marginTop: 64, textAlign: "center" }}>
-          <p style={{ color: "#94A3B8", fontSize: 13, marginBottom: 12 }}>
-            ¿Quieres ser de los primeros en probarla?
+          <p
+            style={{
+              color: "#FDE68A",
+              fontSize: 12,
+              fontFamily: "var(--zm-font-mono, monospace)",
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              fontWeight: 700,
+              margin: "0 0 8px",
+            }}
+          >
+            Cuenta atrás final
+          </p>
+          <p
+            style={{
+              color: "#fff",
+              fontSize: "clamp(18px, 2.4vw, 22px)",
+              fontWeight: 800,
+              letterSpacing: "-0.01em",
+              maxWidth: 540,
+              margin: "0 auto 20px",
+              lineHeight: 1.3,
+            }}
+          >
+            Los pre-registrados entran <span style={{ color: "#FDE68A" }}>el primer día</span>.
+            <br />
+            El resto, cuando podamos asignar plazas.
           </p>
           <Link
             href="/registro"
             style={{
               display: "inline-block",
-              padding: "14px 28px",
+              padding: "16px 32px",
               borderRadius: 999,
               background: "linear-gradient(135deg, #C9A84C, #E8C76B 50%, #FDE68A)",
               color: "#1A1208",
               fontWeight: 700,
               fontSize: 14,
               textDecoration: "none",
-              boxShadow: "0 0 30px -8px rgba(201,168,76,0.55)",
+              boxShadow: "0 0 40px -8px rgba(201,168,76,0.7)",
             }}
           >
-            Pre-regístrate →
+            Reservar mi acceso prioritario →
           </Link>
         </div>
       </div>
@@ -624,6 +667,10 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
         .feature-card:hover {
           background: rgba(201, 168, 76, 0.04) !important;
           border-color: rgba(201, 168, 76, 0.2) !important;
+        }
+        @keyframes zm-pulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.5; transform: scale(0.85); }
         }
         @media (max-width: 720px) {
           .hero-card {
@@ -642,23 +689,36 @@ function MobileCTA({ platform }: { platform: "ios" | "android" }) {
     <div style={{ textAlign: "center" }}>
       <div
         style={{
+          display: "inline-flex",
+          alignItems: "center",
+          gap: 8,
           fontFamily: "var(--zm-font-mono, monospace)",
           fontSize: 10,
           letterSpacing: "0.22em",
-          color: "#C9A84C",
+          color: "#FDE68A",
           fontWeight: 700,
           marginBottom: 14,
           textTransform: "uppercase",
         }}
       >
-        // Dispositivo {isIos ? "iOS" : "Android"} detectado
+        <span
+          style={{
+            width: 7,
+            height: 7,
+            borderRadius: "50%",
+            background: "#FDE68A",
+            boxShadow: "0 0 8px #FDE68A",
+            animation: "zm-pulse 1.6s ease-in-out infinite",
+          }}
+        />
+        Lanzamiento en pocos días
       </div>
       <h2 style={{ fontSize: 22, fontWeight: 800, margin: "0 0 8px", letterSpacing: "-0.01em" }}>
-        Pronto en {storeName}
+        Llegamos a {storeName}
       </h2>
       <p style={{ color: "#94A3B8", fontSize: 14, margin: "0 0 24px", lineHeight: 1.5 }}>
-        Estamos terminando los últimos detalles. Pre-regístrate y te avisamos
-        cuando esté disponible para descarga.
+        Estamos en la última recta. Pre-regístrate ahora y entrarás en
+        la primera oleada con acceso prioritario el día del lanzamiento.
       </p>
       <Link
         href="/registro"
@@ -674,7 +734,7 @@ function MobileCTA({ platform }: { platform: "ios" | "android" }) {
           boxShadow: "0 0 30px -8px rgba(201,168,76,0.55)",
         }}
       >
-        Avisarme cuando esté lista →
+        Reservar mi acceso prioritario →
       </Link>
     </div>
   );

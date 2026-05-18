@@ -21,13 +21,49 @@ export function getNotificationPermission(): NotificationPermission | "unsupport
   return Notification.permission;
 }
 
-/** Registra el Service Worker (idempotente). */
+/**
+ * Registra el Service Worker (idempotente) Y espera a que esté "active".
+ *
+ * Esto es crítico: PushManager.subscribe() falla con AbortError si el SW
+ * está aún en "installing" o "waiting". El navegador necesita un SW
+ * activo y controlando el origin antes de que la suscripción sea válida.
+ */
 export async function ensureServiceWorker(): Promise<ServiceWorkerRegistration | null> {
   if (!isPushSupported()) return null;
   try {
-    const existing = await navigator.serviceWorker.getRegistration("/sw.js");
-    if (existing) return existing;
-    return await navigator.serviceWorker.register("/sw.js", { scope: "/" });
+    let reg = await navigator.serviceWorker.getRegistration("/sw.js");
+    if (!reg) {
+      reg = await navigator.serviceWorker.register("/sw.js", { scope: "/" });
+    }
+
+    // Espera a que el SW esté activo. Hay 3 casos según el estado:
+    //  - reg.active existe ya → listo
+    //  - reg.installing/waiting → escuchamos su transición a 'activated'
+    //  - ninguno → fallback al ready (resuelve cuando hay SW activo)
+    if (reg.active && reg.active.state === "activated") {
+      return reg;
+    }
+
+    const sw = reg.installing ?? reg.waiting ?? reg.active;
+    if (sw && sw.state !== "activated") {
+      await new Promise<void>((resolve) => {
+        const onStateChange = () => {
+          if (sw.state === "activated") {
+            sw.removeEventListener("statechange", onStateChange);
+            resolve();
+          }
+        };
+        sw.addEventListener("statechange", onStateChange);
+        // Safety timeout: 8s. Si no llega a activated, dejamos seguir
+        // y el subscribe se reintentará externamente si falla.
+        setTimeout(resolve, 8000);
+      });
+    }
+
+    // serviceWorker.ready resuelve cuando hay un SW activo controlando
+    // el scope — es la garantía oficial del navegador.
+    await navigator.serviceWorker.ready;
+    return reg;
   } catch (err) {
     console.error("[push-client] SW register failed:", err);
     return null;
@@ -67,12 +103,26 @@ export async function subscribeToPush(opts?: {
   // Reusa subscription si ya existe.
   let sub = await reg.pushManager.getSubscription();
   if (!sub) {
-    sub = await reg.pushManager.subscribe({
+    // Retry una vez si AbortError (SW aún transitando a activated).
+    const subscribeOpts = {
       userVisibleOnly: true,
       // Cast a BufferSource: el tipado DOM de TS5 estrecha SharedArrayBuffer
       // fuera, pero el Uint8Array que devolvemos es una ArrayBuffer normal.
       applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY) as BufferSource,
-    });
+    };
+    try {
+      sub = await reg.pushManager.subscribe(subscribeOpts);
+    } catch (err) {
+      const name = (err as Error)?.name;
+      if (name === "AbortError" || name === "InvalidStateError") {
+        // SW transitando: esperar ready oficial y reintentar.
+        await navigator.serviceWorker.ready;
+        await new Promise((r) => setTimeout(r, 500));
+        sub = await reg.pushManager.subscribe(subscribeOpts);
+      } else {
+        throw err;
+      }
+    }
   }
 
   // Envía la subscription al backend para persistirla.

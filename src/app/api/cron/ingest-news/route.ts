@@ -70,10 +70,13 @@ export async function GET(req: Request) {
   let rewritten = 0;
   let rewriteFailed = 0;
   let abortedByTimeout = false;
+  let pendingDraftsRetried = 0;
   // Soft deadline: stop the rewrite loop ~50s into the request to leave
   // ~10s of headroom under Vercel Hobby's 60s function cap. Any drafts not
   // rewritten remain status: "draft" and will be picked up on the next tick.
   const deadlineMs = Date.now() + 50_000;
+
+  // FASE 1: Reescribir drafts NUEVOS (recién ingestados de GNews).
   if (rewriteEnabled) {
     const cap = rewriteLimit > 0 ? Math.min(rewriteLimit, result.drafts.length) : result.drafts.length;
     for (let i = 0; i < cap; i++) {
@@ -86,12 +89,48 @@ export async function GET(req: Request) {
         if (result.drafts[i].status === "published") rewritten += 1;
       } catch (err) {
         rewriteFailed += 1;
-        console.error("[cron] rewrite failed", (err as Error).message);
+        console.error("[cron] rewrite failed (new)", (err as Error).message);
       }
     }
   }
 
   store.drafts.push(...result.drafts);
+
+  // FASE 2: Reescribir drafts ANTIGUOS que quedaron en status:"draft"
+  // (p.ej. por fallos transitorios de Claude). Sin esto, los drafts
+  // huérfanos nunca se publican. Tomamos los más recientes primero
+  // para que la página de noticias quede fresca.
+  if (rewriteEnabled && !abortedByTimeout) {
+    const pendingDrafts = store.drafts.filter((d) => d.status === "draft");
+    // Iteramos sobre los más recientes (final del array, recién pusheados
+    // al inicio + drafts pendientes viejos).
+    const slotsLeft =
+      rewriteLimit > 0 ? Math.max(0, rewriteLimit - rewritten - rewriteFailed) : pendingDrafts.length;
+    const retryCap = Math.min(slotsLeft, pendingDrafts.length);
+    // Los más nuevos primero (mayor probabilidad de relevancia).
+    pendingDrafts.sort((a, b) => (b.date ?? "").localeCompare(a.date ?? ""));
+    for (let i = 0; i < retryCap; i++) {
+      if (Date.now() > deadlineMs) {
+        abortedByTimeout = true;
+        break;
+      }
+      try {
+        const updated = await applyRewrite(pendingDrafts[i]);
+        // Reemplazar el draft viejo en store.drafts (match por sourceUrlHash).
+        const idx = store.drafts.findIndex((d) => d.sourceUrlHash === pendingDrafts[i].sourceUrlHash);
+        if (idx >= 0) {
+          store.drafts[idx] = updated;
+          if (updated.status === "published") {
+            rewritten += 1;
+            pendingDraftsRetried += 1;
+          }
+        }
+      } catch (err) {
+        rewriteFailed += 1;
+        console.error("[cron] rewrite failed (retry)", (err as Error).message);
+      }
+    }
+  }
   // Keep only the last 300 drafts so the file does not balloon
   if (store.drafts.length > 300) {
     store.drafts = store.drafts.slice(-300);
@@ -120,6 +159,7 @@ export async function GET(req: Request) {
     new: result.drafts.length,
     duplicates: result.duplicates,
     rewritten,
+    pendingDraftsRetried,
     rewriteFailed,
     rewriteEnabled,
     abortedByTimeout,

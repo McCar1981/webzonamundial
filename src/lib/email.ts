@@ -243,6 +243,98 @@ export async function sendNewRegistrationNotification(opts: {
 }
 
 /**
+ * Email digest diario de noticias.
+ *
+ * Lo envía el cron /api/cron/send-daily-digest a las 07:00 UTC (09:00 Madrid)
+ * a cada suscriptor activo. Incluye los TOP titulares publicados en las
+ * últimas 24h con imagen + excerpt + link y un footer RGPD con link de
+ * unsubscribe firmado HMAC.
+ */
+export async function sendDailyDigest(opts: {
+  to: string;
+  unsubscribeUrl: string;
+  articles: Array<{
+    title: string;
+    slug: string;
+    excerpt: string;
+    image?: string | null;
+    date: string;
+    cat: string;
+  }>;
+}): Promise<boolean> {
+  if (opts.articles.length === 0) return false;
+  const today = new Date().toLocaleDateString("es-ES", {
+    timeZone: "Europe/Madrid",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
+  const articlesHtml = opts.articles
+    .map((a, idx) => {
+      const url = `https://zonamundial.app/noticias/${a.slug}`;
+      const img = a.image
+        ? `<img src="${escapeHtml(a.image)}" alt="" width="100%" style="display:block;width:100%;max-width:520px;height:auto;border-radius:10px;margin-bottom:12px;">`
+        : "";
+      const isLast = idx === opts.articles.length - 1;
+      return `
+        <tr><td style="padding:${idx === 0 ? "0" : "24px 0 0"};">
+          ${img}
+          <p style="margin:0 0 6px;font-family:Georgia,serif;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:#8C7437;font-weight:700;">
+            ${escapeHtml(a.cat)}
+          </p>
+          <h3 style="margin:0 0 8px;font-size:18px;line-height:1.3;color:#111827;font-weight:700;letter-spacing:-0.01em;">
+            <a href="${url}" style="color:#111827;text-decoration:none;">${escapeHtml(a.title)}</a>
+          </h3>
+          <p style="margin:0 0 10px;font-size:14px;line-height:1.55;color:#3D3D5C;">
+            ${escapeHtml(a.excerpt)}
+          </p>
+          <p style="margin:0;">
+            <a href="${url}" style="font-size:13px;color:#C9A84C;text-decoration:none;font-weight:600;letter-spacing:0.02em;">
+              Leer artículo completo →
+            </a>
+          </p>
+          ${isLast ? "" : '<hr style="border:none;border-top:1px solid #EDE3CC;margin:24px 0 0;">'}
+        </td></tr>
+      `;
+    })
+    .join("");
+
+  const articleCount = opts.articles.length;
+  const subject = articleCount === 1
+    ? "Tu resumen del Mundial 2026"
+    : `Tu resumen del Mundial 2026 · ${articleCount} novedades`;
+
+  return sendEmail({
+    to: opts.to,
+    subject,
+    html: brandedEmail({
+      preheader: `${articleCount} ${articleCount === 1 ? "novedad hoy" : "novedades hoy"} en ZonaMundial`,
+      heading: `Buenos días, esto es lo más importante de hoy`,
+      bodyHtml: `
+        <p style="margin:0 0 24px;color:#6b7280;font-size:13px;letter-spacing:0.01em;">
+          ${escapeHtml(today)}
+        </p>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+          ${articlesHtml}
+        </table>
+        <p style="margin:36px 0 0;padding-top:24px;border-top:1px solid #e5e7eb;font-size:12px;color:#6b7280;text-align:center;line-height:1.6;">
+          Recibes este email porque te suscribiste al resumen diario de ZonaMundial.<br>
+          <a href="${escapeHtml(opts.unsubscribeUrl)}" style="color:#C9A84C;text-decoration:underline;">
+            Darse de baja
+          </a> ·
+          <a href="https://zonamundial.app/cuenta/notificaciones" style="color:#C9A84C;text-decoration:underline;">
+            Gestionar notificaciones
+          </a>
+        </p>
+      `,
+      ctaLabel: "Ver todas las noticias",
+      ctaHref: "https://zonamundial.app/noticias",
+    }),
+  });
+}
+
+/**
  * Confirmación de compra del Founders Pass.
  */
 export async function sendFounderConfirmationEmail(opts: {

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { addRegistro, getCount } from '@/lib/registros-store';
 import { sendWelcomeEmail, sendNewRegistrationNotification } from '@/lib/email';
+import { subscribe } from '@/lib/email-subscriptions';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -146,6 +147,17 @@ export async function POST(request: NextRequest) {
     country: cleanCountry,
     favTeam: cleanFavTeam,
     favCreator: creador?.trim() || null,
+  });
+
+  // Auto-suscribir al digest diario de noticias. RGPD-compliant porque:
+  //  1. Se menciona en el email de bienvenida y en /legal/privacidad.
+  //  2. Cada digest lleva link visible de "Darse de baja" en el footer.
+  //  3. El usuario puede gestionarlo en /cuenta/notificaciones.
+  // Si subscribe() falla (KV down, DB pausada, etc.) no bloquea el registro.
+  void subscribe({
+    email: email.toLowerCase().trim(),
+    kind: 'daily-digest',
+    source: 'registro-auto',
   });
 
   return NextResponse.json(

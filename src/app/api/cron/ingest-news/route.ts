@@ -16,6 +16,8 @@ import { ingestNews } from "@/lib/noticias-ingest";
 import { applyRewrite } from "@/lib/noticias-rewriter";
 import { WORLD_CUP_QUERIES } from "@/lib/gnews";
 import { readIngestStore, writeIngestStore, getStorePath } from "@/lib/noticias-store";
+import { broadcastPush } from "@/lib/push-notifications";
+import type { DraftNoticia } from "@/lib/noticias-ingest";
 
 export async function GET(req: Request) {
   // Auth: Vercel Cron sends Authorization: Bearer ${CRON_SECRET}
@@ -71,6 +73,9 @@ export async function GET(req: Request) {
   let rewriteFailed = 0;
   let abortedByTimeout = false;
   let pendingDraftsRetried = 0;
+  // Tracking de drafts que pasan a "published" en este tick.
+  // Los usamos para disparar web push tras la revalidación.
+  const newlyPublished: DraftNoticia[] = [];
   // Soft deadline: stop the rewrite loop ~50s into the request to leave
   // ~10s of headroom under Vercel Hobby's 60s function cap. Any drafts not
   // rewritten remain status: "draft" and will be picked up on the next tick.
@@ -86,7 +91,10 @@ export async function GET(req: Request) {
       }
       try {
         result.drafts[i] = await applyRewrite(result.drafts[i]);
-        if (result.drafts[i].status === "published") rewritten += 1;
+        if (result.drafts[i].status === "published") {
+          rewritten += 1;
+          newlyPublished.push(result.drafts[i]);
+        }
       } catch (err) {
         rewriteFailed += 1;
         console.error("[cron] rewrite failed (new)", (err as Error).message);
@@ -123,6 +131,7 @@ export async function GET(req: Request) {
           if (updated.status === "published") {
             rewritten += 1;
             pendingDraftsRetried += 1;
+            newlyPublished.push(updated);
           }
         }
       } catch (err) {
@@ -149,6 +158,42 @@ export async function GET(req: Request) {
     console.error("[cron] revalidate failed", (err as Error).message);
   }
 
+  // Broadcast Web Push: enviar notificación a todos los suscriptores
+  // por cada noticia publicada en este tick.
+  // - Si publicamos varias en el mismo tick, mandamos una sola push
+  //   (la más reciente) para no abrumar al user.
+  // - Si no hay nuevas o no hay VAPID configurado, no hace nada.
+  let pushTotal = 0;
+  let pushSent = 0;
+  let pushGone = 0;
+  let pushFailed = 0;
+  if (newlyPublished.length > 0) {
+    // Tomamos la última publicada (la más relevante del tick).
+    const featured = newlyPublished[newlyPublished.length - 1];
+    try {
+      const result = await broadcastPush({
+        kind: "news",
+        payload: {
+          title:
+            newlyPublished.length === 1
+              ? "📰 Nueva noticia en ZonaMundial"
+              : `📰 ${newlyPublished.length} nuevas noticias`,
+          body: featured.title,
+          url: `/noticias/${featured.slug}`,
+          tag: "news",
+          icon: "/img/email/logo-zonamundial.png",
+          image: featured.realImage ?? undefined,
+        },
+      });
+      pushTotal = result.total;
+      pushSent = result.sent;
+      pushGone = result.gone;
+      pushFailed = result.failed;
+    } catch (err) {
+      console.error("[cron] push broadcast failed", (err as Error).message);
+    }
+  }
+
   const published = store.drafts.filter((d) => d.status === "published").length;
 
   return NextResponse.json({
@@ -166,6 +211,13 @@ export async function GET(req: Request) {
     errors: result.errors,
     totalStored: store.drafts.length,
     publishedCount: published,
+    push: {
+      newlyPublished: newlyPublished.length,
+      total: pushTotal,
+      sent: pushSent,
+      gone: pushGone,
+      failed: pushFailed,
+    },
     storePath: getStorePath(),
   });
 }

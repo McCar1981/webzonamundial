@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { getAllPublicNoticias } from "@/lib/noticias-store";
 import NoticiasClient from "./NoticiasClient";
+import PushOptInBanner from "@/components/PushOptInBanner";
 
 const SITE_URL = "https://zonamundial.app";
 
@@ -71,6 +72,8 @@ export default async function NoticiasPage() {
       <Suspense fallback={null}>
         <NoticiasClient posts={posts} totalCount={posts.length} />
       </Suspense>
+      {/* Banner discreto pidiendo opt-in de Web Push tras 3 visitas. */}
+      <PushOptInBanner />
     </>
   );
 }

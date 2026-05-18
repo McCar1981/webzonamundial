@@ -1,7 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import {
+  isPushSupported,
+  getNotificationPermission,
+  subscribeToPush,
+  unsubscribeFromPush,
+  getCurrentSubscription,
+} from "@/lib/push-client";
 
 interface Props {
   email: string;
@@ -25,6 +32,76 @@ export default function NotificacionesPanel({
         ? "No pudimos procesar tu solicitud. Inténtalo de nuevo."
         : null,
   );
+
+  // Estado del Web Push del browser actual.
+  const [pushSupported, setPushSupported] = useState(false);
+  const [pushPermission, setPushPermission] = useState<NotificationPermission | "unsupported">(
+    "unsupported",
+  );
+  const [pushSubscribed, setPushSubscribed] = useState(false);
+  const [pushLoading, setPushLoading] = useState(false);
+  const [pushFeedback, setPushFeedback] = useState<string | null>(null);
+  const [pushTesting, setPushTesting] = useState(false);
+
+  useEffect(() => {
+    setPushSupported(isPushSupported());
+    setPushPermission(getNotificationPermission());
+    void getCurrentSubscription().then((sub) => {
+      setPushSubscribed(!!sub);
+    });
+  }, []);
+
+  async function togglePush() {
+    setPushLoading(true);
+    setPushFeedback(null);
+    try {
+      if (pushSubscribed) {
+        await unsubscribeFromPush();
+        setPushSubscribed(false);
+        setPushFeedback("Notificaciones push desactivadas en este navegador.");
+      } else {
+        const sub = await subscribeToPush({ kinds: ["news"] });
+        if (sub) {
+          setPushSubscribed(true);
+          setPushPermission("granted");
+          setPushFeedback(
+            "Notificaciones push activadas. Te avisaremos cuando publiquemos algo importante.",
+          );
+        } else {
+          setPushFeedback(
+            "No se pudieron activar. Comprueba que has aceptado el permiso del navegador.",
+          );
+        }
+      }
+    } catch (err) {
+      setPushFeedback("Error inesperado. Inténtalo de nuevo.");
+      console.error(err);
+    } finally {
+      setPushLoading(false);
+    }
+  }
+
+  async function sendTestPush() {
+    setPushTesting(true);
+    setPushFeedback(null);
+    try {
+      const r = await fetch("/api/notifications/push/test", { method: "POST" });
+      const data = await r.json();
+      if (r.ok && data.sent > 0) {
+        setPushFeedback(
+          `Push de prueba enviado a ${data.sent} dispositivo(s). Debería aparecer en unos segundos.`,
+        );
+      } else if (data.error === "no_subscriptions_found_for_user") {
+        setPushFeedback("Activa primero las notificaciones en este navegador.");
+      } else {
+        setPushFeedback("No se pudo enviar la prueba. Inténtalo más tarde.");
+      }
+    } catch {
+      setPushFeedback("Error de red al enviar prueba.");
+    } finally {
+      setPushTesting(false);
+    }
+  }
 
   async function toggleDigest() {
     setLoading(true);
@@ -152,28 +229,91 @@ export default function NotificacionesPanel({
           </div>
         </div>
 
-        {/* Placeholder para FASE 2 y FASE 3 */}
+        {/* Web Push notifications */}
         <div
-          className="rounded-2xl border p-6 sm:p-8 mb-5 opacity-50"
+          className="rounded-2xl border p-6 sm:p-8 mb-5"
           style={{
-            borderColor: "rgba(255,255,255,0.08)",
-            background: "rgba(15,31,48,0.4)",
+            borderColor: "rgba(201,168,76,0.25)",
+            background:
+              "linear-gradient(180deg, rgba(15,31,48,0.7), rgba(11,24,37,0.4))",
           }}
         >
           <div className="flex items-start justify-between gap-4">
             <div>
-              <h3 className="text-lg font-bold text-gray-300 mb-1 flex items-center gap-2">
+              <h3 className="text-lg font-bold text-white mb-1">
                 Notificaciones push en el navegador
-                <span className="text-[10px] tracking-widest uppercase font-mono text-[#C9A84C] bg-[#C9A84C]/10 px-2 py-0.5 rounded">
-                  Próximamente
-                </span>
               </h3>
-              <p className="text-sm text-gray-500 leading-relaxed">
-                Recibe avisos en tu navegador cuando publiquemos noticias
-                importantes. Compatible con Chrome, Edge, Firefox y Safari
-                (con la web añadida a tu pantalla de inicio en iOS).
+              <p className="text-sm text-gray-400 leading-relaxed">
+                Recibe avisos en tiempo real en este navegador cuando publiquemos
+                noticias importantes. La activación se guarda{" "}
+                <strong className="text-gray-300">solo en este dispositivo</strong>.
+                Para activarlas también en otros, repite el proceso desde allí.
               </p>
+              {!pushSupported && (
+                <p className="text-xs text-amber-400 mt-2">
+                  Tu navegador no soporta Web Push. En iOS necesitas{" "}
+                  <strong>añadir esta web a la pantalla de inicio</strong> primero.
+                </p>
+              )}
+              {pushSupported && pushPermission === "denied" && (
+                <p className="text-xs text-amber-400 mt-2">
+                  Has denegado el permiso. Reactívalo desde la configuración del
+                  navegador (icono de candado junto a la URL) y vuelve a intentarlo.
+                </p>
+              )}
+              {pushFeedback && (
+                <p className="text-xs text-[#C9A84C] mt-2">{pushFeedback}</p>
+              )}
+              {pushSupported && pushSubscribed && (
+                <button
+                  type="button"
+                  onClick={sendTestPush}
+                  disabled={pushTesting}
+                  className="mt-3 text-xs px-3 py-1.5 rounded-lg border border-[#C9A84C]/30 text-[#C9A84C] hover:bg-[#C9A84C]/10 disabled:opacity-50"
+                >
+                  {pushTesting ? "Enviando…" : "Enviar prueba"}
+                </button>
+              )}
             </div>
+            <button
+              type="button"
+              onClick={togglePush}
+              disabled={pushLoading || !pushSupported || pushPermission === "denied"}
+              role="switch"
+              aria-checked={pushSubscribed}
+              className="flex-shrink-0 disabled:opacity-30 disabled:cursor-not-allowed"
+              style={{
+                width: 52,
+                height: 30,
+                borderRadius: 15,
+                background: pushSubscribed
+                  ? "linear-gradient(135deg, #C9A84C, #E8C76B)"
+                  : "rgba(255,255,255,0.1)",
+                position: "relative",
+                cursor:
+                  pushLoading || !pushSupported || pushPermission === "denied"
+                    ? "not-allowed"
+                    : "pointer",
+                transition: "background 0.2s",
+                border: pushSubscribed
+                  ? "1px solid rgba(255,255,255,0.2)"
+                  : "1px solid rgba(255,255,255,0.1)",
+              }}
+            >
+              <span
+                style={{
+                  position: "absolute",
+                  top: 2,
+                  left: pushSubscribed ? 24 : 2,
+                  width: 24,
+                  height: 24,
+                  borderRadius: "50%",
+                  background: "#fff",
+                  transition: "left 0.2s",
+                  boxShadow: "0 1px 4px rgba(0,0,0,0.3)",
+                }}
+              />
+            </button>
           </div>
         </div>
 

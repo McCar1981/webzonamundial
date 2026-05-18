@@ -1,9 +1,133 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import Link from "next/link";
 
 type Platform = "ios" | "android" | "desktop" | "other";
+
+/**
+ * Iconos SVG monocromáticos estilo Lucide (https://lucide.dev).
+ * Reemplazan a los emojis del primer draft — más profesionales, vectoriales,
+ * y consistentes con el resto del sistema de marca dorado.
+ */
+function Icon({ children }: { children: ReactNode }) {
+  return (
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      {children}
+    </svg>
+  );
+}
+
+const FEATURES: Array<{ icon: ReactNode; title: string; desc: string }> = [
+  {
+    // Target — Predicciones
+    icon: (
+      <Icon>
+        <circle cx="12" cy="12" r="10" />
+        <circle cx="12" cy="12" r="6" />
+        <circle cx="12" cy="12" r="2" />
+      </Icon>
+    ),
+    title: "Predicciones",
+    desc: "Acierta resultados y compite por premios.",
+  },
+  {
+    // Star — Fantasy
+    icon: (
+      <Icon>
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+      </Icon>
+    ),
+    title: "Fantasy",
+    desc: "Crea tu equipo ideal y lidéralo.",
+  },
+  {
+    // Sparkles — IA Coach
+    icon: (
+      <Icon>
+        <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z" />
+        <path d="M5 3v4" />
+        <path d="M3 5h4" />
+        <path d="M19 17v4" />
+        <path d="M17 19h4" />
+      </Icon>
+    ),
+    title: "IA Coach",
+    desc: "Tu asistente personal de análisis.",
+  },
+  {
+    // Bar chart — Estadísticas
+    icon: (
+      <Icon>
+        <line x1="12" y1="20" x2="12" y2="10" />
+        <line x1="18" y1="20" x2="18" y2="4" />
+        <line x1="6" y1="20" x2="6" y2="14" />
+      </Icon>
+    ),
+    title: "Estadísticas",
+    desc: "Datos avanzados de cada partido.",
+  },
+  {
+    // Play (TV) — Streaming
+    icon: (
+      <Icon>
+        <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+        <line x1="8" y1="21" x2="16" y2="21" />
+        <line x1="12" y1="17" x2="12" y2="21" />
+        <polygon points="10 8 16 10 10 12 10 8" fill="currentColor" stroke="none" />
+      </Icon>
+    ),
+    title: "Streaming",
+    desc: "Sigue partidos con tus creators favoritos.",
+  },
+  {
+    // Trophy — Ligas privadas
+    icon: (
+      <Icon>
+        <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+        <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+        <path d="M4 22h16" />
+        <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
+        <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
+        <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
+      </Icon>
+    ),
+    title: "Ligas privadas",
+    desc: "Compite con amigos y familia.",
+  },
+  {
+    // Brain — Trivia
+    icon: (
+      <Icon>
+        <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
+        <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" />
+        <path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4" />
+      </Icon>
+    ),
+    title: "Trivia",
+    desc: "Demuestra tu conocimiento futbolero.",
+  },
+  {
+    // Book — Álbum digital
+    icon: (
+      <Icon>
+        <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
+      </Icon>
+    ),
+    title: "Álbum digital",
+    desc: "Colecciona y comparte cromos.",
+  },
+];
 
 function detectPlatform(): Platform {
   if (typeof window === "undefined") return "desktop";
@@ -232,6 +356,9 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
                 <div>
                   <div
                     style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 8,
                       fontFamily: "var(--zm-font-mono, monospace)",
                       fontSize: 10,
                       letterSpacing: "0.22em",
@@ -241,7 +368,11 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
                       textTransform: "uppercase",
                     }}
                   >
-                    📧 Envíame el link al email
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                      <rect x="2" y="4" width="20" height="16" rx="2" />
+                      <path d="m22 7-10 5L2 7" />
+                    </svg>
+                    Envíame el link al email
                   </div>
                   <form onSubmit={sendEmail} style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                     <input
@@ -325,6 +456,9 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
                 <div>
                   <div
                     style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 8,
                       fontFamily: "var(--zm-font-mono, monospace)",
                       fontSize: 10,
                       letterSpacing: "0.22em",
@@ -334,7 +468,10 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
                       textTransform: "uppercase",
                     }}
                   >
-                    💬 Envíalo a tu WhatsApp
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                      <path d="M20.5 3.5A11.85 11.85 0 0 0 12.04 0C5.5 0 .19 5.31.18 11.85a11.8 11.8 0 0 0 1.6 5.94L0 24l6.36-1.66a11.84 11.84 0 0 0 5.67 1.44h.01c6.54 0 11.85-5.31 11.86-11.84a11.78 11.78 0 0 0-3.4-8.44Zm-8.46 18.27h-.01a9.84 9.84 0 0 1-5.02-1.37l-.36-.21-3.77.98 1-3.67-.23-.38a9.83 9.83 0 0 1-1.51-5.27c0-5.43 4.42-9.85 9.86-9.85a9.79 9.79 0 0 1 6.97 2.89 9.79 9.79 0 0 1 2.89 6.97c0 5.43-4.43 9.85-9.86 9.85Z" />
+                    </svg>
+                    Envíalo a tu WhatsApp
                   </div>
                   <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                     <input
@@ -406,16 +543,7 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
               gap: 16,
             }}
           >
-            {[
-              { icon: "🎯", title: "Predicciones", desc: "Acierta resultados y compite por premios." },
-              { icon: "⭐", title: "Fantasy", desc: "Crea tu equipo ideal y lidéralo." },
-              { icon: "🤖", title: "IA Coach", desc: "Tu asistente personal de análisis." },
-              { icon: "📊", title: "Estadísticas", desc: "Datos avanzados de cada partido." },
-              { icon: "📺", title: "Streaming", desc: "Sigue partidos con tus creators favoritos." },
-              { icon: "🏆", title: "Ligas privadas", desc: "Compite con amigos y familia." },
-              { icon: "🎲", title: "Trivia", desc: "Demuestra tu conocimiento futbolero." },
-              { icon: "📖", title: "Álbum digital", desc: "Colecciona y comparte cromos." },
-            ].map((f) => (
+            {FEATURES.map((f) => (
               <div
                 key={f.title}
                 style={{
@@ -423,15 +551,33 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
                   borderRadius: 14,
                   background: "rgba(255,255,255,0.03)",
                   border: "1px solid rgba(255,255,255,0.06)",
+                  transition: "border-color 0.25s, background 0.25s",
                 }}
+                className="feature-card"
               >
-                <div style={{ fontSize: 28, marginBottom: 8 }}>{f.icon}</div>
+                <div
+                  style={{
+                    width: 42,
+                    height: 42,
+                    borderRadius: 10,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    background: "linear-gradient(135deg, rgba(201,168,76,0.18), rgba(201,168,76,0.04))",
+                    border: "1px solid rgba(201,168,76,0.25)",
+                    color: "#FDE68A",
+                    marginBottom: 14,
+                  }}
+                >
+                  {f.icon}
+                </div>
                 <h3
                   style={{
                     margin: "0 0 4px",
                     fontSize: 15,
                     fontWeight: 700,
                     letterSpacing: "-0.01em",
+                    color: "#fff",
                   }}
                 >
                   {f.title}
@@ -475,6 +621,10 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
           height: 100% !important;
           display: block;
         }
+        .feature-card:hover {
+          background: rgba(201, 168, 76, 0.04) !important;
+          border-color: rgba(201, 168, 76, 0.2) !important;
+        }
         @media (max-width: 720px) {
           .hero-card {
             grid-template-columns: 1fr !important;
@@ -501,7 +651,7 @@ function MobileCTA({ platform }: { platform: "ios" | "android" }) {
           textTransform: "uppercase",
         }}
       >
-        Estamos en tu dispositivo {isIos ? "iOS" : "Android"} ✨
+        // Dispositivo {isIos ? "iOS" : "Android"} detectado
       </div>
       <h2 style={{ fontSize: 22, fontWeight: 800, margin: "0 0 8px", letterSpacing: "-0.01em" }}>
         Pronto en {storeName}

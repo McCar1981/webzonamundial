@@ -83,7 +83,7 @@ export async function POST(request: NextRequest) {
         instalar ZonaMundial en tu móvil.
       </p>
       <p style="margin:0 0 18px;font-size:15px;line-height:1.6;color:#3D3D5C;">
-        👇 Abre este email <strong>desde tu móvil</strong> y pulsa el botón
+        Abre este email <strong>desde tu móvil</strong> y pulsa el botón
         de abajo. Te llevará a la página de descarga adaptada a tu
         dispositivo (iOS o Android).
       </p>
@@ -98,7 +98,7 @@ export async function POST(request: NextRequest) {
 
   const ok = await sendEmail({
     to: email,
-    subject: "📱 Tu enlace para descargar ZonaMundial",
+    subject: "Tu enlace para descargar ZonaMundial",
     html,
   });
 

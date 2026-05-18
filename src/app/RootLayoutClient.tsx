@@ -38,6 +38,7 @@ function buildNav(t: Translations) {
     { id: "blog",       label: t.nav.blog,        href: "/blog" },
     { id: "tutoriales", label: t.nav.tutoriales,  href: "/tutoriales" },
     { id: "creadores",  label: t.nav.creadores,   href: "/creadores" },
+    { id: "descarga",   label: t.nav.descarga,    href: "/descarga" },
     { id: "premium",    label: t.nav.premium,     href: "/premium" },
   ];
 }

@@ -24,6 +24,7 @@ const translations = {
       blog: "Blog",
       tutoriales: "Tutoriales",
       creadores: "Creadores",
+      descarga: "Descarga",
       premium: "Premium",
     },
     footer: {
@@ -1903,6 +1904,7 @@ const translations = {
       blog: "Blog",
       tutoriales: "Tutorials",
       creadores: "Creators",
+      descarga: "Download",
       premium: "Premium",
     },
     footer: {

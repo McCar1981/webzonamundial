@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { BG2, IMGS } from "../constants";
 
 export function AppBannerSection({ h }: { h: any }) {
@@ -61,6 +62,18 @@ export function AppBannerSection({ h }: { h: any }) {
             {!submitted && (
               <p className="text-gray-400 text-sm mb-6">{h.waitlist.hint}</p>
             )}
+
+            {/* CTA secundario: link a la p\u00e1gina /descarga con QR para
+                quienes est\u00e9n en PC y quieran enviarse el link al m\u00f3vil. */}
+            <Link
+              href="/descarga"
+              className="inline-flex items-center gap-2 text-sm text-[#C9A84C] hover:text-[#FDE68A] mb-6 transition-colors"
+            >
+              <span aria-hidden="true">\ud83d\udcbb</span>
+              <span>
+                <strong>\u00bfNavegando desde el PC?</strong> Env\u00edate el link al m\u00f3vil con QR \u2192
+              </span>
+            </Link>
 
             <div className="flex items-center justify-center gap-3">
               <div className="flex -space-x-2">

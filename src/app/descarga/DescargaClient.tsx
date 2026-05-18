@@ -10,7 +10,6 @@ function detectPlatform(): Platform {
   const ua = navigator.userAgent || "";
   if (/iPhone|iPad|iPod/i.test(ua)) return "ios";
   if (/Android/i.test(ua)) return "android";
-  // Tabletas grandes / desktop / otros
   return "desktop";
 }
 
@@ -34,13 +33,13 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
   const waMessage = useMemo(
     () =>
       encodeURIComponent(
-        `\u00a1Mira ZonaMundial! La app del Mundial 2026 con predicciones, fantasy y mucho m\u00e1s.\n\nDescarga: ${qrTarget}`,
+        `¡Mira ZonaMundial! La app del Mundial 2026 con predicciones, fantasy y mucho más.\n\nDescarga: ${qrTarget}`,
       ),
     [qrTarget],
   );
 
-  // Si el user introduce un n\u00famero (opcional), abre WhatsApp directo
-  // a ese n\u00famero con el mensaje. Si no, abre el selector de chat.
+  // Si el user introduce un número (opcional), abre WhatsApp directo
+  // a ese número con el mensaje. Si no, abre el selector de chat.
   const waHref = useMemo(() => {
     const cleanPhone = phone.replace(/\D/g, "");
     if (cleanPhone.length >= 6) {
@@ -53,7 +52,7 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
     e.preventDefault();
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       setEmailStatus("error");
-      setEmailMsg("Introduce un email v\u00e1lido");
+      setEmailMsg("Introduce un email válido");
       return;
     }
     setEmailStatus("loading");
@@ -67,17 +66,17 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
       const data = await r.json();
       if (r.ok && data.ok) {
         setEmailStatus("sent");
-        setEmailMsg("\u00a1Listo! Revisa tu email (puede tardar 1-2 minutos).");
+        setEmailMsg("¡Listo! Revisa tu email (puede tardar 1-2 minutos).");
       } else if (r.status === 429) {
         setEmailStatus("error");
-        setEmailMsg("Demasiados env\u00edos. Espera 1 minuto e int\u00e9ntalo de nuevo.");
+        setEmailMsg("Demasiados envíos. Espera 1 minuto e inténtalo de nuevo.");
       } else {
         setEmailStatus("error");
-        setEmailMsg("No pudimos enviar el email. Int\u00e9ntalo en un momento.");
+        setEmailMsg("No pudimos enviar el email. Inténtalo en un momento.");
       }
     } catch {
       setEmailStatus("error");
-      setEmailMsg("Error de red. Comprueba tu conexi\u00f3n.");
+      setEmailMsg("Error de red. Comprueba tu conexión.");
     }
   }
 
@@ -117,7 +116,7 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
             letterSpacing: "-0.02em",
           }}
         >
-          Llev\u00e1tela{" "}
+          Llévatela{" "}
           <span
             style={{
               backgroundImage: "linear-gradient(135deg, #C9A84C, #E8C76B 50%, #FDE68A)",
@@ -126,7 +125,7 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
               backgroundClip: "text",
             }}
           >
-            al m\u00f3vil
+            al móvil
           </span>
           <br />
           en 3 segundos.
@@ -141,8 +140,8 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
             lineHeight: 1.5,
           }}
         >
-          Escanea el QR con la c\u00e1mara de tu m\u00f3vil o aut\u00f3enviarte el enlace al
-          email o WhatsApp. As\u00ed no pierdes tiempo buscando &quot;ZonaMundial&quot; en
+          Escanea el QR con la cámara de tu móvil o autoenvíate el enlace al
+          email o WhatsApp. Así no pierdes tiempo buscando &quot;ZonaMundial&quot; en
           la tienda.
         </p>
 
@@ -151,13 +150,13 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
           style={{
             marginTop: 48,
             display: "grid",
-            gridTemplateColumns: "minmax(260px, 320px) 1fr",
+            gridTemplateColumns: "minmax(280px, 340px) 1fr",
             gap: 40,
-            alignItems: "stretch",
+            alignItems: "center",
             background: "linear-gradient(180deg, rgba(15,31,48,0.7), rgba(11,24,37,0.4))",
             border: "1px solid rgba(201,168,76,0.25)",
             borderRadius: 24,
-            padding: "clamp(20px, 4vw, 40px)",
+            padding: "clamp(24px, 4vw, 40px)",
           }}
           className="hero-card"
         >
@@ -167,18 +166,23 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              justifyContent: "center",
-              gap: 14,
+              gap: 16,
             }}
           >
             <div
               style={{
                 background: "#fff",
-                padding: 16,
+                padding: 18,
                 borderRadius: 20,
                 boxShadow: "0 8px 28px rgba(0,0,0,0.35), 0 0 0 1px rgba(201,168,76,0.25)",
                 position: "relative",
+                width: 260,
+                height: 260,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
               }}
+              className="qr-frame"
             >
               {/* Marco dorado decorativo */}
               <div
@@ -193,33 +197,34 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
                   opacity: 0.5,
                 }}
               />
-              {/* SVG inline (server-rendered) */}
+              {/* SVG inline (server-rendered) — el wrapper le da tamaño */}
               <div
                 aria-label="QR de descarga de ZonaMundial"
                 dangerouslySetInnerHTML={{ __html: qrSvg }}
-                style={{ width: 240, height: 240, display: "block" }}
+                style={{ width: 224, height: 224, display: "block" }}
+                className="qr-svg-wrap"
               />
             </div>
             <p
               style={{
-                fontSize: 12,
+                fontSize: 13,
                 color: "#94A3B8",
-                letterSpacing: "0.04em",
+                letterSpacing: "0.02em",
                 margin: 0,
                 textAlign: "center",
                 maxWidth: 240,
+                lineHeight: 1.5,
               }}
             >
-              Apunta tu c\u00e1mara aqu\u00ed
+              Apunta tu cámara aquí
               <br />
-              <strong style={{ color: "#C9A84C" }}>desde el m\u00f3vil</strong>
+              <strong style={{ color: "#C9A84C" }}>desde el móvil</strong>
             </p>
           </div>
 
           {/* Email + WhatsApp side */}
           <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 20 }}>
             {platform === "ios" || platform === "android" ? (
-              // Mobile users: ofrecemos directo el pre-registro
               <MobileCTA platform={platform} />
             ) : (
               <>
@@ -236,7 +241,7 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
                       textTransform: "uppercase",
                     }}
                   >
-                    \ud83d\udce7 Env\u00edame el link al email
+                    📧 Envíame el link al email
                   </div>
                   <form onSubmit={sendEmail} style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                     <input
@@ -283,8 +288,8 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
                       {emailStatus === "loading"
                         ? "Enviando..."
                         : emailStatus === "sent"
-                          ? "\u2713 Enviado"
-                          : "Env\u00edame"}
+                          ? "✓ Enviado"
+                          : "Envíame"}
                     </button>
                   </form>
                   {emailMsg && (
@@ -329,7 +334,7 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
                       textTransform: "uppercase",
                     }}
                   >
-                    \ud83d\udcac Env\u00edalo a tu WhatsApp
+                    💬 Envíalo a tu WhatsApp
                   </div>
                   <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                     <input
@@ -365,11 +370,11 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
                         gap: 8,
                       }}
                     >
-                      Abrir WhatsApp \u2192
+                      Abrir WhatsApp →
                     </a>
                   </div>
                   <p style={{ margin: "8px 0 0", fontSize: 11, color: "rgba(255,255,255,0.45)" }}>
-                    Si dejas vac\u00edo el n\u00famero, abrir\u00e1 WhatsApp y eliges a qui\u00e9n
+                    Si dejas vacío el número, abrirá WhatsApp y eliges a quién
                     enviar el link (a ti mismo o a un amigo).
                   </p>
                 </div>
@@ -386,13 +391,13 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
               fontWeight: 800,
               textAlign: "center",
               letterSpacing: "-0.02em",
-              marginBottom: 8,
+              margin: "0 0 8px",
             }}
           >
-            Qu\u00e9 vas a tener en la app
+            Qué vas a tener en la app
           </h2>
-          <p style={{ textAlign: "center", color: "#94A3B8", marginBottom: 36 }}>
-            12 m\u00f3dulos integrados para vivir el Mundial 2026 al m\u00e1ximo.
+          <p style={{ textAlign: "center", color: "#94A3B8", margin: "0 0 36px" }}>
+            12 módulos integrados para vivir el Mundial 2026 al máximo.
           </p>
           <div
             style={{
@@ -402,14 +407,14 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
             }}
           >
             {[
-              { icon: "\ud83c\udfaf", title: "Predicciones", desc: "Acierta resultados y compite por premios." },
-              { icon: "\u2b50", title: "Fantasy", desc: "Crea tu equipo ideal y l\u00edderalo." },
-              { icon: "\ud83e\udd16", title: "IA Coach", desc: "Tu asistente personal de an\u00e1lisis." },
-              { icon: "\ud83d\udcca", title: "Estad\u00edsticas", desc: "Datos avanzados de cada partido." },
-              { icon: "\ud83d\udcfa", title: "Streaming", desc: "Sigue partidos con tus creators favoritos." },
-              { icon: "\ud83c\udfc6", title: "Ligas privadas", desc: "Compite con amigos y familia." },
-              { icon: "\ud83c\udfb2", title: "Trivia", desc: "Demuestra tu conocimiento futbolero." },
-              { icon: "\ud83d\udcd6", title: "\u00c1lbum digital", desc: "Colecciona y comparte cromos." },
+              { icon: "🎯", title: "Predicciones", desc: "Acierta resultados y compite por premios." },
+              { icon: "⭐", title: "Fantasy", desc: "Crea tu equipo ideal y lidéralo." },
+              { icon: "🤖", title: "IA Coach", desc: "Tu asistente personal de análisis." },
+              { icon: "📊", title: "Estadísticas", desc: "Datos avanzados de cada partido." },
+              { icon: "📺", title: "Streaming", desc: "Sigue partidos con tus creators favoritos." },
+              { icon: "🏆", title: "Ligas privadas", desc: "Compite con amigos y familia." },
+              { icon: "🎲", title: "Trivia", desc: "Demuestra tu conocimiento futbolero." },
+              { icon: "📖", title: "Álbum digital", desc: "Colecciona y comparte cromos." },
             ].map((f) => (
               <div
                 key={f.title}
@@ -442,7 +447,7 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
         {/* Footer */}
         <div style={{ marginTop: 64, textAlign: "center" }}>
           <p style={{ color: "#94A3B8", fontSize: 13, marginBottom: 12 }}>
-            \u00bfQuieres ser de los primeros en probarla?
+            ¿Quieres ser de los primeros en probarla?
           </p>
           <Link
             href="/registro"
@@ -458,13 +463,18 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
               boxShadow: "0 0 30px -8px rgba(201,168,76,0.55)",
             }}
           >
-            Pre-reg\u00edstrate \u2192
+            Pre-regístrate →
           </Link>
         </div>
       </div>
 
-      {/* Responsive */}
+      {/* Asegura que el SVG del QR se ajusta al wrapper */}
       <style>{`
+        .qr-svg-wrap svg {
+          width: 100% !important;
+          height: 100% !important;
+          display: block;
+        }
         @media (max-width: 720px) {
           .hero-card {
             grid-template-columns: 1fr !important;
@@ -491,14 +501,14 @@ function MobileCTA({ platform }: { platform: "ios" | "android" }) {
           textTransform: "uppercase",
         }}
       >
-        Estamos en tu dispositivo {isIos ? "iOS" : "Android"} \u2728
+        Estamos en tu dispositivo {isIos ? "iOS" : "Android"} ✨
       </div>
       <h2 style={{ fontSize: 22, fontWeight: 800, margin: "0 0 8px", letterSpacing: "-0.01em" }}>
         Pronto en {storeName}
       </h2>
       <p style={{ color: "#94A3B8", fontSize: 14, margin: "0 0 24px", lineHeight: 1.5 }}>
-        Estamos terminando los \u00faltimos detalles. Pre-reg\u00edstrate y te avisamos
-        cuando est\u00e9 disponible para descarga.
+        Estamos terminando los últimos detalles. Pre-regístrate y te avisamos
+        cuando esté disponible para descarga.
       </p>
       <Link
         href="/registro"
@@ -514,7 +524,7 @@ function MobileCTA({ platform }: { platform: "ios" | "android" }) {
           boxShadow: "0 0 30px -8px rgba(201,168,76,0.55)",
         }}
       >
-        Avisarme cuando est\u00e9 lista \u2192
+        Avisarme cuando esté lista →
       </Link>
     </div>
   );

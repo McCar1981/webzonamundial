@@ -63,15 +63,15 @@ export function AppBannerSection({ h }: { h: any }) {
               <p className="text-gray-400 text-sm mb-6">{h.waitlist.hint}</p>
             )}
 
-            {/* CTA secundario: link a la p\u00e1gina /descarga con QR para
-                quienes est\u00e9n en PC y quieran enviarse el link al m\u00f3vil. */}
+            {/* CTA secundario: link a la página /descarga con QR para
+                quienes estén en PC y quieran enviarse el link al móvil. */}
             <Link
               href="/descarga"
               className="inline-flex items-center gap-2 text-sm text-[#C9A84C] hover:text-[#FDE68A] mb-6 transition-colors"
             >
-              <span aria-hidden="true">\ud83d\udcbb</span>
+              <span aria-hidden="true">💻</span>
               <span>
-                <strong>\u00bfNavegando desde el PC?</strong> Env\u00edate el link al m\u00f3vil con QR \u2192
+                <strong>¿Navegando desde el PC?</strong> Envíate el link al móvil con QR →
               </span>
             </Link>
 

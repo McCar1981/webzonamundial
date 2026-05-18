@@ -75,21 +75,21 @@ export async function POST(request: NextRequest) {
   const downloadUrl = `${SITE}/descarga?utm_source=email&utm_medium=app-link&utm_campaign=self-send`;
 
   const html = brandedEmail({
-    preheader: "Tu enlace para descargar ZonaMundial en el m\u00f3vil",
-    heading: "Aqu\u00ed tienes el enlace para tu m\u00f3vil",
+    preheader: "Tu enlace para descargar ZonaMundial en el móvil",
+    heading: "Aquí tienes el enlace para tu móvil",
     bodyHtml: `
       <p style="margin:0 0 16px;font-size:15px;line-height:1.6;color:#3D3D5C;">
-        Ped\u00edste que te env\u00ediemos el enlace de descarga al email para
-        instalar ZonaMundial en tu m\u00f3vil.
+        Pediste que te enviáramos el enlace de descarga al email para
+        instalar ZonaMundial en tu móvil.
       </p>
       <p style="margin:0 0 18px;font-size:15px;line-height:1.6;color:#3D3D5C;">
-        \ud83d\udc47 Abre este email <strong>desde tu m\u00f3vil</strong> y pulsa el bot\u00f3n
-        de abajo. Te llevar\u00e1 a la p\u00e1gina de descarga adaptada a tu
+        👇 Abre este email <strong>desde tu móvil</strong> y pulsa el botón
+        de abajo. Te llevará a la página de descarga adaptada a tu
         dispositivo (iOS o Android).
       </p>
       <p style="margin:18px 0 0;font-size:12px;color:#94A3B8;line-height:1.5;text-align:center;">
-        Si abriste este email en el PC: el bot\u00f3n te lleva a la misma p\u00e1gina
-        con el QR y otras opciones de env\u00edo.
+        Si abriste este email en el PC: el botón te lleva a la misma página
+        con el QR y otras opciones de envío.
       </p>
     `,
     ctaLabel: "Descargar ZonaMundial",
@@ -98,7 +98,7 @@ export async function POST(request: NextRequest) {
 
   const ok = await sendEmail({
     to: email,
-    subject: "\ud83d\udcf1 Tu enlace para descargar ZonaMundial",
+    subject: "📱 Tu enlace para descargar ZonaMundial",
     html,
   });
 

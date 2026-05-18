@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { addRegistro, getCount } from '@/lib/registros-store';
-import { sendWelcomeEmail } from '@/lib/email';
+import { sendWelcomeEmail, sendNewRegistrationNotification } from '@/lib/email';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -133,8 +133,20 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // Success: send welcome email without blocking the response.
+  // Success: send welcome email + internal notification without blocking
+  // the response. Ambos son fire-and-forget — si Resend falla logueamos
+  // y seguimos. NUNCA bloquear el flujo de registro al user por culpa
+  // de emails secundarios.
   void sendWelcomeEmail(email.toLowerCase().trim(), nombre.trim());
+  void sendNewRegistrationNotification({
+    email: email.toLowerCase().trim(),
+    username: nombre.trim(),
+    firstName: cleanFirstName,
+    lastName: cleanLastName,
+    country: cleanCountry,
+    favTeam: cleanFavTeam,
+    favCreator: creador?.trim() || null,
+  });
 
   return NextResponse.json(
     {

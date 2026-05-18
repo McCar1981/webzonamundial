@@ -159,6 +159,90 @@ ${preheader}
 }
 
 /**
+ * Notificación interna: nos avisa cada vez que alguien completa el
+ * registro en /registro. Destinatario fijo gol@zonamundial.app.
+ *
+ * Es fire-and-forget: si Resend falla no rompemos la respuesta al
+ * usuario que se acaba de registrar.
+ *
+ * Por privacidad NO incluye IP ni User Agent — solo los datos que el
+ * propio usuario nos dio voluntariamente y que ya tienen en perfil.
+ */
+export async function sendNewRegistrationNotification(opts: {
+  email: string;
+  username: string;
+  firstName?: string | null;
+  lastName?: string | null;
+  country?: string | null;
+  favTeam?: string | null;
+  favCreator?: string | null;
+}): Promise<boolean> {
+  const fullName = [opts.firstName, opts.lastName].filter(Boolean).join(' ') || '—';
+  const country = opts.country ? opts.country.toUpperCase() : '—';
+  const favTeam = opts.favTeam || '—';
+  const favCreator = opts.favCreator || '—';
+  const fechaIso = new Date().toISOString();
+  // Render legible europeo: 18/05/2026 14:32 (Madrid).
+  const fechaLegible = new Date().toLocaleString('es-ES', {
+    timeZone: 'Europe/Madrid',
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+
+  return sendEmail({
+    to: 'gol@zonamundial.app',
+    subject: `Nuevo registro: ${opts.username} (${opts.email})`,
+    html: brandedEmail({
+      preheader: `Nuevo registro: ${opts.username} desde ${country}`,
+      heading: '🎉 Nuevo registro en ZonaMundial',
+      bodyHtml: `
+        <p style="margin:0 0 16px;">Una persona acaba de completar el pre-registro:</p>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;background:#f9fafb;border-radius:10px;padding:4px;">
+          <tr>
+            <td style="padding:10px 14px;font-size:13px;color:#6b7280;width:40%;">Nombre</td>
+            <td style="padding:10px 14px;font-size:14px;color:#111827;font-weight:600;text-align:right;">${escapeHtml(fullName)}</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 14px;font-size:13px;color:#6b7280;border-top:1px solid #e5e7eb;">Usuario</td>
+            <td style="padding:10px 14px;font-size:14px;color:#111827;font-weight:600;text-align:right;border-top:1px solid #e5e7eb;">@${escapeHtml(opts.username)}</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 14px;font-size:13px;color:#6b7280;border-top:1px solid #e5e7eb;">Email</td>
+            <td style="padding:10px 14px;font-size:14px;color:#111827;font-weight:600;text-align:right;border-top:1px solid #e5e7eb;">
+              <a href="mailto:${escapeHtml(opts.email)}" style="color:#C9A84C;text-decoration:none;">${escapeHtml(opts.email)}</a>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:10px 14px;font-size:13px;color:#6b7280;border-top:1px solid #e5e7eb;">País</td>
+            <td style="padding:10px 14px;font-size:14px;color:#111827;font-weight:600;text-align:right;border-top:1px solid #e5e7eb;">${escapeHtml(country)}</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 14px;font-size:13px;color:#6b7280;border-top:1px solid #e5e7eb;">Selección favorita</td>
+            <td style="padding:10px 14px;font-size:14px;color:#C9A84C;font-weight:700;text-align:right;border-top:1px solid #e5e7eb;text-transform:capitalize;">★ ${escapeHtml(favTeam)}</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 14px;font-size:13px;color:#6b7280;border-top:1px solid #e5e7eb;">Creador elegido</td>
+            <td style="padding:10px 14px;font-size:14px;color:#111827;font-weight:600;text-align:right;border-top:1px solid #e5e7eb;text-transform:capitalize;">${escapeHtml(favCreator)}</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 14px;font-size:13px;color:#6b7280;border-top:1px solid #e5e7eb;">Fecha</td>
+            <td style="padding:10px 14px;font-size:14px;color:#111827;font-weight:600;text-align:right;border-top:1px solid #e5e7eb;">${escapeHtml(fechaLegible)} <span style="color:#9ca3af;font-weight:400;font-size:11px;">(Madrid)</span></td>
+          </tr>
+        </table>
+        <p style="margin:18px 0 0;font-size:12px;color:#6b7280;">
+          ISO timestamp: <code style="background:#f3f4f6;padding:2px 6px;border-radius:4px;font-size:11px;">${escapeHtml(fechaIso)}</code>
+        </p>
+      `,
+      ctaLabel: 'Ver lista de registros',
+      ctaHref: 'https://zonamundial.app/admin/registros',
+    }),
+  });
+}
+
+/**
  * Confirmación de compra del Founders Pass.
  */
 export async function sendFounderConfirmationEmail(opts: {

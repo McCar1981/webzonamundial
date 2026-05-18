@@ -49,19 +49,24 @@ export async function GET(req: NextRequest) {
     }
   }
 
-  // 1. Cargar noticias publicadas en últimas 24h.
+  // 1. Cargar las 5 noticias más recientes.
+  //
+  // Antes filtrábamos por "publicadas en últimas 24h" pero el campo n.date
+  // viene de GNews (publishedAt del artículo original), no de cuándo lo
+  // reescribimos en ZonaMundial. Eso hacía que el digest no enviara nada
+  // si las noticias de la fuente eran de hace 2-3 días.
+  //
+  // Mejor enfoque: getAllPublicNoticias ya devuelve ordenado por fecha
+  // descendente. Tomamos los primeros 5, que son los más recientes.
+  // Garantía contra spam: si la lista NO ha cambiado desde ayer, el user
+  // recibirá los mismos titulares — aceptable porque son los del momento.
   const all = await getAllPublicNoticias();
-  const cutoff = new Date();
-  cutoff.setUTCHours(cutoff.getUTCHours() - 24);
-  const cutoffISO = cutoff.toISOString().slice(0, 10);
-  const recent = all
-    .filter((n) => n.date >= cutoffISO)
-    .slice(0, 5);
+  const recent = all.slice(0, 5);
 
   if (recent.length === 0) {
     return NextResponse.json({
       ok: true,
-      skipped: "no_news_in_last_24h",
+      skipped: "no_articles_published",
       sent: 0,
     });
   }

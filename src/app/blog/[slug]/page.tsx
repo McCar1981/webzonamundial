@@ -26,7 +26,8 @@ import styles from "@/components/blog/blog.module.css";
 export const revalidate = 300;
 
 export async function generateStaticParams() {
-  return getAllSlugs().map((slug) => ({ slug }));
+  const slugs = await getAllSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 interface Params {
@@ -34,7 +35,7 @@ interface Params {
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
-  const post = getPostBySlug(params.slug);
+  const post = await getPostBySlug(params.slug);
   if (!post) return { title: "Artículo no encontrado" };
   const url = `/blog/${post.slug}`;
   return {
@@ -62,11 +63,11 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   };
 }
 
-export default function BlogPostPage({ params }: Params) {
-  const post = getPostBySlug(params.slug);
+export default async function BlogPostPage({ params }: Params) {
+  const post = await getPostBySlug(params.slug);
   if (!post) notFound();
 
-  const related = getRelatedPosts(post, 3);
+  const related = await getRelatedPosts(post, 3);
   const articleLd = buildArticleJsonLd(post);
   const breadcrumbLd = buildBreadcrumbJsonLd(post);
   const faqLd = post.faq && post.faq.length > 0 ? buildFaqJsonLd(post.faq) : null;

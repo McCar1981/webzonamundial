@@ -159,7 +159,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // Rutas dinámicas: blog editorial (publicados por publishedAt <= now)
-  const blogRoutes: MetadataRoute.Sitemap = getAllBlogPosts().map((p) => ({
+  const allBlogPosts = await getAllBlogPosts();
+  const blogRoutes: MetadataRoute.Sitemap = allBlogPosts.map((p) => ({
     url: `${BASE_URL}/blog/${p.slug}`,
     lastModified: new Date(p.updatedAt || p.publishedAt),
     changeFrequency: "weekly",

@@ -61,9 +61,9 @@ export async function GET(request: NextRequest) {
 
   const eventsToday = events.filter((e) => e.ts.startsWith(today)).length;
 
-  const blogPosts = (() => {
+  const blogPosts = await (async () => {
     try {
-      return getAllPosts().length;
+      return (await getAllPosts()).length;
     } catch {
       return 0;
     }

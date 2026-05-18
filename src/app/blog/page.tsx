@@ -10,7 +10,7 @@ import BlogHub from "@/components/blog/BlogHub";
 export const revalidate = 300;
 
 export default async function BlogPage() {
-  const posts = getAllPosts();
+  const posts = await getAllPosts();
 
   const itemListLd = {
     "@context": "https://schema.org",

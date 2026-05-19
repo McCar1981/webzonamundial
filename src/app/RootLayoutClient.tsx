@@ -11,6 +11,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { SocialDock } from "@/components/SocialDock";
 import HeaderUserMenu from "@/components/HeaderUserMenu";
 import MobileUserMenu from "@/components/MobileUserMenu";
+import LiveCreatorsBanner from "@/components/LiveCreatorsBanner";
 
 const BG="#060B14",BG2="#0F1D32",BG3="#0B1825",GOLD="#c9a84c",GOLD2="#e8d48b",MID="#8a94b0",DIM="#6a7a9a",DARK="#4a5570";
 
@@ -335,6 +336,12 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
           </div>
         </div>
       </header>
+
+      {/* ═══ LIVE CREATORS BANNER ═══
+          Solo se monta si hay alg\u00fan creator de ZonaMundial transmitiendo
+          ahora mismo. El componente hace fetch a /api/creators/live cada
+          60s y se oculta autom\u00e1ticamente si nadie est\u00e1 en directo. */}
+      <LiveCreatorsBanner />
 
       {/* ═══ MOBILE OVERLAY ═══ */}
       <div style={{

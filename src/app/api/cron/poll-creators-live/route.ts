@@ -16,6 +16,7 @@ import {
   writeLiveStore,
   type LiveCreator,
 } from "@/lib/creators-live/store";
+import { notifyLiveCreators } from "@/lib/creators-live/notifications";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -97,10 +98,27 @@ export async function GET(req: NextRequest) {
     live,
   });
 
+  // 5. Notificaciones push: por cada creator live, manda push a los
+  //    suscritos a category="creators" (channel=push) si NO está en
+  //    cooldown de 4h. El helper gestiona el cooldown vía KV.
+  //    Si falla, NO debe romper la respuesta del cron.
+  let notifStats: Awaited<ReturnType<typeof notifyLiveCreators>> | null = null;
+  if (live.length > 0) {
+    try {
+      notifStats = await notifyLiveCreators(live);
+    } catch (err) {
+      console.error(
+        "[creators-live] notifyLiveCreators threw:",
+        (err as Error).message,
+      );
+    }
+  }
+
   return NextResponse.json({
     ok: true,
     tracked: usernames.length,
     live: live.length,
     creators: live.map((l) => ({ slug: l.slug, viewerCount: l.viewerCount })),
+    notifs: notifStats,
   });
 }

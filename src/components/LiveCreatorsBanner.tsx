@@ -1,21 +1,21 @@
 "use client";
 
 /**
- * Banner social-proof: muestra qu\u00e9 creators de ZonaMundial est\u00e1n EN
+ * Banner social-proof: muestra qué creators de ZonaMundial están EN
  * DIRECTO en Twitch ahora mismo.
  *
  * Estilo: urbano streamer.
- *  - Gradient violeta \u2192 rosa neon estilo Twitch
+ *  - Gradient violeta → rosa neon estilo Twitch
  *  - LIVE dot rojo pulsante + ruido sutil
  *  - Avatar circular del creator con borde glow
  *  - Typography mono punky
- *  - Marquee horizontal si hay m\u00e1s de 1 creator
- *  - Click \u2192 va a /creadores/[slug] (mantiene al user dentro de ZM)
+ *  - Marquee horizontal si hay más de 1 creator
+ *  - Click → va a /creadores/[slug] (mantiene al user dentro de ZM)
  *
- * Datos: hace fetch a /api/creators/live cada 60s. Si vac\u00edo, el
+ * Datos: hace fetch a /api/creators/live cada 60s. Si vacío, el
  * componente NO se renderiza (no ocupa espacio si nadie en live).
  *
- * Solo se monta en client \u2014 para no bloquear el SSR del layout root.
+ * Solo se monta en client — para no bloquear el SSR del layout root.
  */
 
 import { useEffect, useRef, useState } from "react";
@@ -73,7 +73,7 @@ function markDismissed(): void {
 export default function LiveCreatorsBanner() {
   const [creators, setCreators] = useState<LiveCreator[]>([]);
   const [dismissed, setDismissed] = useState(false);
-  const [idx, setIdx] = useState(0); // \u00edndice para rotar el highlight
+  const [idx, setIdx] = useState(0); // índice para rotar el highlight
   const rotateRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Initial dismissed check
@@ -106,7 +106,7 @@ export default function LiveCreatorsBanner() {
     };
   }, [dismissed]);
 
-  // Rotar highlight cada 6s si hay m\u00e1s de 1.
+  // Rotar highlight cada 6s si hay más de 1.
   useEffect(() => {
     if (creators.length <= 1) {
       if (rotateRef.current) clearInterval(rotateRef.current);
@@ -154,13 +154,10 @@ export default function LiveCreatorsBanner() {
         }}
       />
 
-      {/* Por ahora linkea directo a Twitch (nueva pesta\u00f1a) porque
-          /creadores/[slug] no existe a\u00fan. Cuando lo creemos, cambiamos a
-          Link interno con href={current.perfilUrl}. */}
+      {/* Linkea a la página interna del creador (con Twitch player
+          embebido) para mantener al user dentro de ZonaMundial. */}
       <a
-        href={current.twitchUrl}
-        target="_blank"
-        rel="noopener noreferrer"
+        href={current.perfilUrl}
         style={{
           position: "relative",
           display: "flex",
@@ -249,7 +246,7 @@ export default function LiveCreatorsBanner() {
           >
             <span style={{ color: "#FDE68A" }}>{current.nombre}</span>{" "}
             <span style={{ color: "#fff", fontWeight: 500 }}>
-              est\u00e1 en directo ahora mismo
+              está en directo ahora mismo
             </span>
           </div>
           <div
@@ -263,7 +260,7 @@ export default function LiveCreatorsBanner() {
             }}
             className="zm-live-subtitle"
           >
-            \u201c{truncatedTitle}\u201d
+            “{truncatedTitle}”
           </div>
         </div>
 
@@ -340,7 +337,7 @@ export default function LiveCreatorsBanner() {
             </svg>
           </span>
 
-          {/* Counter si hay m\u00e1s de 1 */}
+          {/* Counter si hay más de 1 */}
           {creators.length > 1 && (
             <span
               style={{
@@ -384,7 +381,7 @@ export default function LiveCreatorsBanner() {
         }}
         className="zm-live-close"
       >
-        \u00d7
+        ×
       </button>
 
       <style>{`

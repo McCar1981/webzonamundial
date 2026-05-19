@@ -119,6 +119,17 @@ const CATEGORIES: CategoryDef[] = [
     emailSupported: true,
     pushSupported: true,
   },
+  {
+    id: "creators",
+    label: "Creadores en directo",
+    description: "Cuando un creador de ZonaMundial empieza a transmitir en Twitch",
+    icon: "\ud83d\udd34", // 🔴
+    status: "active",
+    defaultEmail: false,
+    defaultPush: false,
+    emailSupported: false,
+    pushSupported: true,
+  },
 ];
 
 function prefValue(

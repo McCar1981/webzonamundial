@@ -91,9 +91,8 @@ export async function notifyLiveCreators(liveNow: LiveCreator[]): Promise<{
       payload: {
         title,
         body,
-        // Linkea a Twitch directo. Cuando exista /creadores/[slug] con
-        // stream embebido, cambiar a c.perfilUrl.
-        url: c.twitchUrl,
+        // Linkea a /creadores/[slug] interno (con Twitch player embed).
+        url: c.perfilUrl,
         // tag por creator → si por error se enviaran dos pushes seguidas
         // del mismo creator, el navegador reemplaza la primera.
         tag: `creator-live-${c.slug}`,

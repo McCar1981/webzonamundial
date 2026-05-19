@@ -87,7 +87,7 @@
         "goals_against": 4,
         "goal_difference": 17,
         "points": 26,
-        "win_percentage": 80.0,
+        "win_percentage": 80,
         "clean_sheets": 7
       },
       "coach_during_qualifying": "Émerse Faé (desde febrero 2024)",
@@ -557,7 +557,7 @@
       "status": "pending"
     },
     "coach": {
-      "name": "Émerse Faé",
+      "name": "Emerse Faé",
       "age": 41,
       "nationality": "Costa de Marfil",
       "since": "2024-02-01",
@@ -577,65 +577,6 @@
     },
     "likely_squad": [
       {
-        "id": "yahia-fofana",
-        "full_name": "Yahia Fofana",
-        "display_name": "Yahia Fofana",
-        "position": "GK",
-        "detailed_position": "GK",
-        "club": {
-          "name": "Angers",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 1,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Fofana_asse_sco_2425.png/330px-Fofana_asse_sco_2425.png"
-      },
-      {
-        "id": "ali-badra-sangare",
-        "full_name": "Ali Badra Sangaré",
-        "display_name": "Sangaré",
-        "position": "GK",
-        "detailed_position": "GK",
-        "club": {
-          "name": "ASEC Mimosas",
-          "country_iso": "ci",
-          "league": "Ligue 1 CI"
-        },
-        "shirt_number_expected": 16,
-        "status": "probable"
-      },
-      {
-        "id": "abdoul-cisse",
-        "full_name": "Abdoul Karim Cissé",
-        "display_name": "Cissé",
-        "position": "GK",
-        "detailed_position": "GK",
-        "club": {
-          "name": "Lokomotiv Moscú",
-          "country_iso": "ru",
-          "league": "Premier League RU"
-        },
-        "shirt_number_expected": 23,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Match_cote_d%27ivoir_%2836%29.jpg/330px-Match_cote_d%27ivoir_%2836%29.jpg"
-      },
-      {
-        "id": "evan-ndicka",
-        "full_name": "Evan N'Dicka",
-        "display_name": "Evan N'Dicka",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Roma",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 4,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Evan_N%E2%80%99Dicka_2020.jpg/330px-Evan_N%E2%80%99Dicka_2020.jpg"
-      },
-      {
         "id": "emmanuel-agbadou",
         "full_name": "Emmanuel Agbadou",
         "display_name": "Agbadou",
@@ -651,19 +592,15 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Emmanuel_Agbadou.jpg/330px-Emmanuel_Agbadou.jpg"
       },
       {
-        "id": "odilon-kossounou",
-        "full_name": "Odilon Kossounou",
-        "display_name": "Kossounou",
+        "id": "clement-akpa",
+        "full_name": "Clément Akpa",
+        "display_name": "Clément Akpa",
         "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Atalanta",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 22,
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Odilon_Kossounou%2C_2022-07-31%2C_Saisoner%C3%B6ffnung_Bayer_04%2C_Leverkusen_%281%29.jpg/330px-Odilon_Kossounou%2C_2022-07-31%2C_Saisoner%C3%B6ffnung_Bayer_04%2C_Leverkusen_%281%29.jpg"
+        "photo_url": null
       },
       {
         "id": "ousmane-diomande",
@@ -681,19 +618,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/%C3%89quipe_football_ivoirien_03_%28Ousmane_Diomande%29.jpg/330px-%C3%89quipe_football_ivoirien_03_%28Ousmane_Diomande%29.jpg"
       },
       {
-        "id": "willy-boly",
-        "full_name": "Willy Boly",
-        "display_name": "Willy Boly",
+        "id": "guela-doue",
+        "full_name": "Guéla Doué",
+        "display_name": "Guéla Doué",
         "position": "DEF",
-        "detailed_position": "CB",
+        "detailed_position": "RB",
         "club": {
-          "name": "Nottingham Forest",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
+          "name": "Strasbourg",
+          "country_iso": "fr",
+          "league": "Ligue 1"
         },
-        "shirt_number_expected": 3,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Shahter-Braga_%287%29.jpg/330px-Shahter-Braga_%287%29.jpg"
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Doue_asse_rcsa_2425.jpg/330px-Doue_asse_rcsa_2425.jpg"
       },
       {
         "id": "ghislain-konan",
@@ -711,19 +648,78 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Joueur_ivoirien_02.jpg/330px-Joueur_ivoirien_02.jpg"
       },
       {
-        "id": "guela-doue",
-        "full_name": "Guéla Doué",
-        "display_name": "Guéla Doué",
+        "id": "odilon-kossounou",
+        "full_name": "Odilon Kossounou",
+        "display_name": "Kossounou",
         "position": "DEF",
-        "detailed_position": "RB",
+        "detailed_position": "CB",
         "club": {
-          "name": "Strasbourg",
-          "country_iso": "fr",
-          "league": "Ligue 1"
+          "name": "Atalanta",
+          "country_iso": "it",
+          "league": "Serie A"
         },
-        "shirt_number_expected": 2,
+        "shirt_number_expected": 22,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Doue_asse_rcsa_2425.jpg/330px-Doue_asse_rcsa_2425.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Odilon_Kossounou%2C_2022-07-31%2C_Saisoner%C3%B6ffnung_Bayer_04%2C_Leverkusen_%281%29.jpg/330px-Odilon_Kossounou%2C_2022-07-31%2C_Saisoner%C3%B6ffnung_Bayer_04%2C_Leverkusen_%281%29.jpg"
+      },
+      {
+        "id": "evan-ndicka",
+        "full_name": "Evan N'Dicka",
+        "display_name": "Evan N'Dicka",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Roma",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Evan_N%E2%80%99Dicka_2020.jpg/330px-Evan_N%E2%80%99Dicka_2020.jpg"
+      },
+      {
+        "id": "wilfried-singo",
+        "full_name": "Wilfried Singo",
+        "display_name": "Wilfried Singo",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "seko-fofana",
+        "full_name": "Seko Fofana",
+        "display_name": "Seko Fofana",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "parfait-guiagon",
+        "full_name": "Parfait Guiagon",
+        "display_name": "Parfait Guiagon",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "christiano-oulai",
+        "full_name": "Christiano Oulaï",
+        "display_name": "Christiano Oulaï",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "franck-kessie",
@@ -741,19 +737,18 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Franck_Yannick_Kessi%C3%A9.jpg/330px-Franck_Yannick_Kessi%C3%A9.jpg"
       },
       {
-        "id": "ibrahim-sangare",
-        "full_name": "Ibrahim Sangaré",
-        "display_name": "Ibrahim Sangaré",
-        "position": "MID",
-        "detailed_position": "CDM",
+        "id": "ali-badra-sangare",
+        "full_name": "Ali Badra Sangaré",
+        "display_name": "Sangaré",
+        "position": "GK",
+        "detailed_position": "GK",
         "club": {
-          "name": "Nottingham Forest",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
+          "name": "ASEC Mimosas",
+          "country_iso": "ci",
+          "league": "Ligue 1 CI"
         },
-        "shirt_number_expected": 6,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Ibrahim_Sangar%C3%A9_%282018-05-09%29.jpg/330px-Ibrahim_Sangar%C3%A9_%282018-05-09%29.jpg"
+        "shirt_number_expected": 16,
+        "status": "fixed"
       },
       {
         "id": "jean-michael-seri",
@@ -767,23 +762,8 @@
           "league": "Championship"
         },
         "shirt_number_expected": 8,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Jean_Seri.jpg/330px-Jean_Seri.jpg"
-      },
-      {
-        "id": "amad-diallo",
-        "full_name": "Amad Diallo",
-        "display_name": "Amad Diallo",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Manchester United",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 11,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Manchester_United_v_BSC_Young_Boys%2C_8_December_2021_%2817%29_%28cropped%29.jpg/330px-Manchester_United_v_BSC_Young_Boys%2C_8_December_2021_%2817%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Jean_Seri.jpg/330px-Jean_Seri.jpg"
       },
       {
         "id": "simon-adingra",
@@ -801,19 +781,55 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Simon_Adingra_USG_2023.jpg/330px-Simon_Adingra_USG_2023.jpg"
       },
       {
-        "id": "nicolas-pepe",
-        "full_name": "Nicolas Pépé",
-        "display_name": "Nicolas Pépé",
+        "id": "ange-yoan-bonny",
+        "full_name": "Ange-Yoan Bonny",
+        "display_name": "Ange-Yoan Bonny",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "amad-diallo",
+        "full_name": "Amad Diallo",
+        "display_name": "Amad Diallo",
         "position": "FWD",
         "detailed_position": "RW",
         "club": {
-          "name": "Villarreal",
-          "country_iso": "es",
-          "league": "La Liga"
+          "name": "Manchester United",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
         },
-        "shirt_number_expected": 20,
+        "shirt_number_expected": 11,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Nicolas_Pepe_LOSC_%28cropped2%29.jpg/330px-Nicolas_Pepe_LOSC_%28cropped2%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Manchester_United_v_BSC_Young_Boys%2C_8_December_2021_%2817%29_%28cropped%29.jpg/330px-Manchester_United_v_BSC_Young_Boys%2C_8_December_2021_%2817%29_%28cropped%29.jpg"
+      },
+      {
+        "id": "oumar-diakite",
+        "full_name": "Oumar Diakité",
+        "display_name": "Oumar Diakité",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "yan-diomande",
+        "full_name": "Yan Diomande",
+        "display_name": "Yan Diomande",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "RB Leipzig",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 21,
+        "status": "fixed"
       },
       {
         "id": "evan-guessand",
@@ -831,136 +847,41 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Guessand_asse_ogcn_2425.png/330px-Guessand_asse_ogcn_2425.png"
       },
       {
-        "id": "sebastien-haller",
-        "full_name": "Sébastien Haller",
-        "display_name": "Sébastien Haller",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Borussia Dortmund",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 9,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/S%C3%A9bastien_Haller_2.jpg/330px-S%C3%A9bastien_Haller_2.jpg"
-      },
-      {
-        "id": "wilfried-zaha",
-        "full_name": "Wilfried Zaha",
-        "display_name": "Wilfried Zaha",
-        "position": "FWD",
-        "detailed_position": "LW",
-        "club": {
-          "name": "Charlotte FC",
-          "country_iso": "us",
-          "league": "MLS"
-        },
-        "shirt_number_expected": 7,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Wilfried_Zaha_NYCFC_v_Charlotte_20_Sep_2025-022_%28cropped%29.jpg/330px-Wilfried_Zaha_NYCFC_v_Charlotte_20_Sep_2025-022_%28cropped%29.jpg"
-      },
-      {
-        "id": "jonathan-bamba",
-        "full_name": "Jonathan Bamba",
-        "display_name": "Jonathan Bamba",
-        "position": "FWD",
-        "detailed_position": "LW",
-        "club": {
-          "name": "Celta de Vigo",
-          "country_iso": "es",
-          "league": "La Liga"
-        },
-        "shirt_number_expected": 10,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Jonathan_Bamba_Philadelphia_Chicago_10.26.25-002_%28cropped%29.jpg/330px-Jonathan_Bamba_Philadelphia_Chicago_10.26.25-002_%28cropped%29.jpg"
-      },
-      {
-        "id": "yan-diomande",
-        "full_name": "Yan Diomande",
-        "display_name": "Yan Diomande",
+        "id": "nicolas-pepe",
+        "full_name": "Nicolas Pépé",
+        "display_name": "Nicolas Pépé",
         "position": "FWD",
         "detailed_position": "RW",
         "club": {
-          "name": "RB Leipzig",
-          "country_iso": "de",
-          "league": "Bundesliga"
+          "name": "Villarreal",
+          "country_iso": "es",
+          "league": "La Liga"
         },
-        "shirt_number_expected": 21,
-        "status": "fixed"
+        "shirt_number_expected": 20,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Nicolas_Pepe_LOSC_%28cropped2%29.jpg/330px-Nicolas_Pepe_LOSC_%28cropped2%29.jpg"
       },
       {
-        "id": "max-gradel",
-        "full_name": "Max-Alain Gradel",
-        "display_name": "Max Gradel",
+        "id": "bazoumana-toure",
+        "full_name": "Bazoumana Touré",
+        "display_name": "Bazoumana Touré",
         "position": "FWD",
-        "detailed_position": "LW",
-        "club": {
-          "name": "Sivasspor",
-          "country_iso": "tr",
-          "league": "Süper Lig"
-        },
-        "shirt_number_expected": 13,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Max_Gradel_9292.JPG/330px-Max_Gradel_9292.JPG"
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
-        "id": "lassina-traore",
-        "full_name": "Lassina Traoré",
-        "display_name": "Lassina Traoré",
+        "id": "elye-wahi",
+        "full_name": "Elye Wahi",
+        "display_name": "Elye Wahi",
         "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Shakhtar Donetsk",
-          "country_iso": "ua",
-          "league": "Premier League UA"
-        },
-        "shirt_number_expected": 25,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Lassina_Traor%C3%A9.jpg/330px-Lassina_Traor%C3%A9.jpg"
-      },
-      {
-        "id": "mohamed-diomande",
-        "full_name": "Mohamed Diomandé",
-        "display_name": "Mohamed Diomandé",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Rangers",
-          "country_iso": "gb-sct",
-          "league": "Premiership"
-        },
-        "shirt_number_expected": 26,
-        "status": "probable"
-      },
-      {
-        "id": "bouly-sambou",
-        "full_name": "Bouly Junior Sambou",
-        "display_name": "Bouly Sambou",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Charleroi",
-          "country_iso": "be",
-          "league": "Pro League"
-        },
-        "shirt_number_expected": 24,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/6d/5._Islamic_Solidarity_Games_2021_Konya_7_Bouly_Sambou_%28cropped%29.jpg"
-      },
-      {
-        "id": "ahoua-keita",
-        "full_name": "Ahoua Keita",
-        "display_name": "Ahoua Keita",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Lille",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 15,
-        "status": "bubble"
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       }
     ],
     "starting_xi": {
@@ -1079,7 +1000,10 @@
         "champion": 0
       },
       "vs_last_3_wcs": "Brasil 2014: fase de grupos eliminada (1G 1E 1P). Rusia 2018: NO CLASIFICÓ. Catar 2022: NO CLASIFICÓ. Mundial 2026: 4ª participación tras 12 años. Generación Amad-Adingra-Sangaré busca romper techo histórico (1ª ronda en sus 3 Mundiales)."
-    }
+    },
+    "squad_announced": true,
+    "squad_announced_date": "2026-05-19",
+    "squad_source": "Convocatoria oficial federación"
   },
   "history": {
     "first_appearance": 2006,

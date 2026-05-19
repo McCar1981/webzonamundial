@@ -5,8 +5,11 @@
   "name_es": "Nueva Zelanda",
   "name_en": "New Zealand",
   "name_local": "New Zealand",
-  "nicknames": ["All Whites", "Los Todos Blancos", "Kiwis"],
-
+  "nicknames": [
+    "All Whites",
+    "Los Todos Blancos",
+    "Kiwis"
+  ],
   "flag": {
     "colors": {
       "primary": "#FFFFFF",
@@ -15,16 +18,17 @@
       "contrast_text": "#000000"
     }
   },
-
   "country": {
     "capital": "Wellington",
-    "language_official": ["Inglés", "Maorí"],
+    "language_official": [
+      "Inglés",
+      "Maorí"
+    ],
     "population": 5200000,
     "area_km2": 268838,
     "timezone": "Pacific/Auckland",
     "continent": "Oceanía"
   },
-
   "federation": {
     "name": "New Zealand Football",
     "abbreviation": "NZF",
@@ -32,14 +36,11 @@
     "headquarters": "Auckland",
     "website": "https://www.nzfootball.co.nz"
   },
-
   "confederation": "OFC",
-
   "fifa_ranking": {
     "current": 87,
     "last_updated": "2026-04-03"
   },
-
   "kit": {
     "wc_2026": {
       "brand": "Nike",
@@ -62,10 +63,14 @@
       }
     },
     "trivia": [
-      { "text": "El sobrenombre 'All Whites' se acuñó durante la clasificación para España 1982, en oposición a los 'All Blacks' (selección de rugby). El blanco simbolizaba diferenciación visual y referencia a la blancura del país.", "source": "NZF + Wikipedia", "verified_at": "2026-04-30", "status": "validated" }
+      {
+        "text": "El sobrenombre 'All Whites' se acuñó durante la clasificación para España 1982, en oposición a los 'All Blacks' (selección de rugby). El blanco simbolizaba diferenciación visual y referencia a la blancura del país.",
+        "source": "NZF + Wikipedia",
+        "verified_at": "2026-04-30",
+        "status": "validated"
+      }
     ]
   },
-
   "wc_2026": {
     "qualified_via": "direct",
     "qualifying_summary": "Nueva Zelanda clasificó como CAMPEÓN OFC 2024-25, aprovechando que la OFC obtuvo POR 1ª VEZ EN LA HISTORIA una plaza directa al Mundial 2026 (gracias a la expansión a 48 selecciones). Bajo Darren Bazeley, los All Whites dominaron la fase de grupos OFC 2024 (goleadas a Tahití, Vanuatu y Samoa), batieron a Tahití 1-0 en semifinal y a Nueva Caledonia 3-0 en la final disputada el 24 marzo 2025 en Auckland (goles de Boxall 60', Barbarouses 70' y Just 80' tras lesión de capitán Chris Wood al inicio del 2º tiempo). Es su 3ª participación mundialista (1982, 2010, 2026), retornando tras 16 años de ausencia. En el Grupo G del Mundial con Bélgica, Egipto e Irán.",
@@ -84,117 +89,816 @@
         "goals_against": 1,
         "goal_difference": 22,
         "points": 18,
-        "win_percentage": 100.0,
+        "win_percentage": 100,
         "clean_sheets": 5,
         "notes": "Stats consolidadas eliminatorias OFC 2024-25 (incluye fase grupos + 2 amistosos clasificatorios + final). 6G 0E 0P, dominio absoluto."
       },
       "coach_during_qualifying": "Darren Bazeley (DT desde noviembre 2022).",
       "matches": [
-        { "matchday": 1, "date": "2024-03-19", "home": { "iso": "nz", "name": "Nueva Zelanda", "score": 2 }, "away": { "iso": "vu", "name": "Vanuatu", "score": 0 }, "venue": { "stadium": "North Harbour Stadium", "city": "Auckland", "country_iso": "nz" }, "goals_arg": [{ "player": "Chris Wood", "minute": "30'", "type": "goal" }, { "player": "Marko Stamenic", "minute": "75'", "type": "goal" }] },
-        { "matchday": 2, "date": "2024-03-22", "home": { "iso": "nz", "name": "Nueva Zelanda", "score": 8 }, "away": { "iso": "ws", "name": "Samoa", "score": 0 }, "venue": { "stadium": "North Harbour Stadium", "city": "Auckland", "country_iso": "nz" }, "goals_arg": [{ "player": "Chris Wood", "minute": "10'", "type": "goal" }, { "player": "Chris Wood", "minute": "20'", "type": "goal" }, { "player": "Chris Wood", "minute": "35'", "type": "goal" }, { "player": "Sarpreet Singh", "minute": "45'", "type": "goal" }, { "player": "Elijah Just", "minute": "60'", "type": "goal" }, { "player": "Liberato Cacace", "minute": "70'", "type": "goal" }, { "player": "Ben Old", "minute": "82'", "type": "goal" }, { "player": "Kosta Barbarouses", "minute": "88'", "type": "goal" }] },
-        { "matchday": 3, "date": "2024-03-26", "home": { "iso": "nz", "name": "Nueva Zelanda", "score": 3 }, "away": { "iso": "pf", "name": "Tahití", "score": 0 }, "venue": { "stadium": "North Harbour Stadium", "city": "Auckland", "country_iso": "nz" }, "goals_arg": [{ "player": "Chris Wood", "minute": "25'", "type": "goal" }, { "player": "Marko Stamenic", "minute": "55'", "type": "goal" }, { "player": "Sarpreet Singh", "minute": "85'", "type": "goal" }] },
-        { "matchday": 4, "date": "2024-11-15", "home": { "iso": "nz", "name": "Nueva Zelanda", "score": 5 }, "away": { "iso": "fj", "name": "Fiyi", "score": 0 }, "venue": { "stadium": "North Harbour Stadium", "city": "Auckland", "country_iso": "nz" }, "goals_arg": [{ "player": "Chris Wood", "minute": "15'", "type": "goal" }, { "player": "Chris Wood", "minute": "40'", "type": "goal" }, { "player": "Liberato Cacace", "minute": "55'", "type": "goal" }, { "player": "Elijah Just", "minute": "70'", "type": "goal" }, { "player": "Ben Old", "minute": "85'", "type": "goal" }] },
-        { "matchday": 5, "date": "2025-03-21", "home": { "iso": "nz", "name": "Nueva Zelanda", "score": 2 }, "away": { "iso": "pf", "name": "Tahití", "score": 1 }, "venue": { "stadium": "North Harbour Stadium", "city": "Auckland", "country_iso": "nz" }, "goals_arg": [{ "player": "Chris Wood", "minute": "30'", "type": "goal" }, { "player": "Marko Stamenic", "minute": "70'", "type": "goal" }], "notes": "SEMIFINAL OFC. Pase a final." },
-        { "matchday": 6, "date": "2025-03-24", "home": { "iso": "nz", "name": "Nueva Zelanda", "score": 3 }, "away": { "iso": "nc", "name": "Nueva Caledonia", "score": 0 }, "venue": { "stadium": "North Harbour Stadium", "city": "Auckland", "country_iso": "nz" }, "goals_arg": [{ "player": "Michael Boxall", "minute": "60'", "type": "goal" }, { "player": "Kosta Barbarouses", "minute": "70'", "type": "goal" }, { "player": "Elijah Just", "minute": "80'", "type": "goal" }], "notes": "FINAL OFC 2025. Wood lesionado al inicio del 2º tiempo. CLASIFICACIÓN HISTÓRICA al Mundial 2026 — 1ª PLAZA DIRECTA OFC en la historia.", "is_decisive_match": true }
+        {
+          "matchday": 1,
+          "date": "2024-03-19",
+          "home": {
+            "iso": "nz",
+            "name": "Nueva Zelanda",
+            "score": 2
+          },
+          "away": {
+            "iso": "vu",
+            "name": "Vanuatu",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "North Harbour Stadium",
+            "city": "Auckland",
+            "country_iso": "nz"
+          },
+          "goals_arg": [
+            {
+              "player": "Chris Wood",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Marko Stamenic",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 2,
+          "date": "2024-03-22",
+          "home": {
+            "iso": "nz",
+            "name": "Nueva Zelanda",
+            "score": 8
+          },
+          "away": {
+            "iso": "ws",
+            "name": "Samoa",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "North Harbour Stadium",
+            "city": "Auckland",
+            "country_iso": "nz"
+          },
+          "goals_arg": [
+            {
+              "player": "Chris Wood",
+              "minute": "10'",
+              "type": "goal"
+            },
+            {
+              "player": "Chris Wood",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Chris Wood",
+              "minute": "35'",
+              "type": "goal"
+            },
+            {
+              "player": "Sarpreet Singh",
+              "minute": "45'",
+              "type": "goal"
+            },
+            {
+              "player": "Elijah Just",
+              "minute": "60'",
+              "type": "goal"
+            },
+            {
+              "player": "Liberato Cacace",
+              "minute": "70'",
+              "type": "goal"
+            },
+            {
+              "player": "Ben Old",
+              "minute": "82'",
+              "type": "goal"
+            },
+            {
+              "player": "Kosta Barbarouses",
+              "minute": "88'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 3,
+          "date": "2024-03-26",
+          "home": {
+            "iso": "nz",
+            "name": "Nueva Zelanda",
+            "score": 3
+          },
+          "away": {
+            "iso": "pf",
+            "name": "Tahití",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "North Harbour Stadium",
+            "city": "Auckland",
+            "country_iso": "nz"
+          },
+          "goals_arg": [
+            {
+              "player": "Chris Wood",
+              "minute": "25'",
+              "type": "goal"
+            },
+            {
+              "player": "Marko Stamenic",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Sarpreet Singh",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 4,
+          "date": "2024-11-15",
+          "home": {
+            "iso": "nz",
+            "name": "Nueva Zelanda",
+            "score": 5
+          },
+          "away": {
+            "iso": "fj",
+            "name": "Fiyi",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "North Harbour Stadium",
+            "city": "Auckland",
+            "country_iso": "nz"
+          },
+          "goals_arg": [
+            {
+              "player": "Chris Wood",
+              "minute": "15'",
+              "type": "goal"
+            },
+            {
+              "player": "Chris Wood",
+              "minute": "40'",
+              "type": "goal"
+            },
+            {
+              "player": "Liberato Cacace",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Elijah Just",
+              "minute": "70'",
+              "type": "goal"
+            },
+            {
+              "player": "Ben Old",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 5,
+          "date": "2025-03-21",
+          "home": {
+            "iso": "nz",
+            "name": "Nueva Zelanda",
+            "score": 2
+          },
+          "away": {
+            "iso": "pf",
+            "name": "Tahití",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "North Harbour Stadium",
+            "city": "Auckland",
+            "country_iso": "nz"
+          },
+          "goals_arg": [
+            {
+              "player": "Chris Wood",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Marko Stamenic",
+              "minute": "70'",
+              "type": "goal"
+            }
+          ],
+          "notes": "SEMIFINAL OFC. Pase a final."
+        },
+        {
+          "matchday": 6,
+          "date": "2025-03-24",
+          "home": {
+            "iso": "nz",
+            "name": "Nueva Zelanda",
+            "score": 3
+          },
+          "away": {
+            "iso": "nc",
+            "name": "Nueva Caledonia",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "North Harbour Stadium",
+            "city": "Auckland",
+            "country_iso": "nz"
+          },
+          "goals_arg": [
+            {
+              "player": "Michael Boxall",
+              "minute": "60'",
+              "type": "goal"
+            },
+            {
+              "player": "Kosta Barbarouses",
+              "minute": "70'",
+              "type": "goal"
+            },
+            {
+              "player": "Elijah Just",
+              "minute": "80'",
+              "type": "goal"
+            }
+          ],
+          "notes": "FINAL OFC 2025. Wood lesionado al inicio del 2º tiempo. CLASIFICACIÓN HISTÓRICA al Mundial 2026 — 1ª PLAZA DIRECTA OFC en la historia.",
+          "is_decisive_match": true
+        }
       ],
       "top_scorers": [
-        { "player": "Chris Wood", "goals": 8, "notes": "Nottingham Forest. Capitán y máximo goleador eliminatoria + histórico de Nueva Zelanda." },
-        { "player": "Marko Stamenic", "goals": 3, "notes": "Olympiacos. Centro creativo." },
-        { "player": "Elijah Just", "goals": 3, "notes": "Fredrikstad (Noruega)." },
-        { "player": "Sarpreet Singh", "goals": 2 },
-        { "player": "Liberato Cacace", "goals": 2 },
-        { "player": "Ben Old", "goals": 2 },
-        { "player": "Kosta Barbarouses", "goals": 2 },
-        { "player": "Michael Boxall", "goals": 1 }
+        {
+          "player": "Chris Wood",
+          "goals": 8,
+          "notes": "Nottingham Forest. Capitán y máximo goleador eliminatoria + histórico de Nueva Zelanda."
+        },
+        {
+          "player": "Marko Stamenic",
+          "goals": 3,
+          "notes": "Olympiacos. Centro creativo."
+        },
+        {
+          "player": "Elijah Just",
+          "goals": 3,
+          "notes": "Fredrikstad (Noruega)."
+        },
+        {
+          "player": "Sarpreet Singh",
+          "goals": 2
+        },
+        {
+          "player": "Liberato Cacace",
+          "goals": 2
+        },
+        {
+          "player": "Ben Old",
+          "goals": 2
+        },
+        {
+          "player": "Kosta Barbarouses",
+          "goals": 2
+        },
+        {
+          "player": "Michael Boxall",
+          "goals": 1
+        }
       ],
-      "best_match": { "match_ref": "matchday_2", "reason": "Goleada 8-0 a Samoa con HAT-TRICK de CHRIS WOOD en 35 minutos. La mayor exhibición ofensiva eliminatoria." },
-      "worst_match": { "match_ref": "matchday_5", "reason": "Triunfo 2-1 sobre Tahití en semifinal. Único partido en eliminatoria donde recibieron gol. Tahití hizo buen papel." },
-      "decisive_match": { "match_ref": "matchday_6", "reason": "Triunfo 3-0 sobre Nueva Caledonia en final OFC 2025 el 24 mar 2025 en Auckland. Goles de Boxall, Barbarouses y Just. PRIMERA PLAZA DIRECTA OFC en la historia. Nueva Zelanda al Mundial 2026 tras 16 años." }
+      "best_match": {
+        "match_ref": "matchday_2",
+        "reason": "Goleada 8-0 a Samoa con HAT-TRICK de CHRIS WOOD en 35 minutos. La mayor exhibición ofensiva eliminatoria."
+      },
+      "worst_match": {
+        "match_ref": "matchday_5",
+        "reason": "Triunfo 2-1 sobre Tahití en semifinal. Único partido en eliminatoria donde recibieron gol. Tahití hizo buen papel."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_6",
+        "reason": "Triunfo 3-0 sobre Nueva Caledonia en final OFC 2025 el 24 mar 2025 en Auckland. Goles de Boxall, Barbarouses y Just. PRIMERA PLAZA DIRECTA OFC en la historia. Nueva Zelanda al Mundial 2026 tras 16 años."
+      }
     },
-
     "group_2026": {
       "letter": "G",
       "label": "Grupo G — Bélgica, Egipto, Irán y Nueva Zelanda",
       "teams": [
-        { "iso": "be", "name": "Bélgica", "fifa_rank": 8, "is_seed": true },
-        { "iso": "eg", "name": "Egipto", "fifa_rank": 36, "is_seed": false },
-        { "iso": "ir", "name": "Irán", "fifa_rank": 22, "is_seed": false },
-        { "iso": "nz", "name": "Nueva Zelanda", "fifa_rank": 87, "is_seed": false }
+        {
+          "iso": "be",
+          "name": "Bélgica",
+          "fifa_rank": 8,
+          "is_seed": true
+        },
+        {
+          "iso": "eg",
+          "name": "Egipto",
+          "fifa_rank": 36,
+          "is_seed": false
+        },
+        {
+          "iso": "ir",
+          "name": "Irán",
+          "fifa_rank": 22,
+          "is_seed": false
+        },
+        {
+          "iso": "nz",
+          "name": "Nueva Zelanda",
+          "fifa_rank": 87,
+          "is_seed": false
+        }
       ],
       "notes": "Grupo G confirmado en sorteo del 5 dic 2025. Nueva Zelanda llega como el 4º cabeza de serie, sin presión de favorita."
     },
-
     "schedule": [
-      { "matchday": 1, "opponent": { "iso": "ir", "name": "Irán" }, "date": "[POR CONFIRMAR]", "venue": { "stadium": "[POR CONFIRMAR]", "city": "[POR CONFIRMAR]", "country_iso": "us" }, "status": "scheduled" },
-      { "matchday": 2, "opponent": { "iso": "be", "name": "Bélgica" }, "date": "[POR CONFIRMAR]", "venue": { "stadium": "[POR CONFIRMAR]", "city": "[POR CONFIRMAR]", "country_iso": "us" }, "status": "scheduled" },
-      { "matchday": 3, "opponent": { "iso": "eg", "name": "Egipto" }, "date": "[POR CONFIRMAR]", "venue": { "stadium": "[POR CONFIRMAR]", "city": "[POR CONFIRMAR]", "country_iso": "us" }, "status": "scheduled" }
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "ir",
+          "name": "Irán"
+        },
+        "date": "[POR CONFIRMAR]",
+        "venue": {
+          "stadium": "[POR CONFIRMAR]",
+          "city": "[POR CONFIRMAR]",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "be",
+          "name": "Bélgica"
+        },
+        "date": "[POR CONFIRMAR]",
+        "venue": {
+          "stadium": "[POR CONFIRMAR]",
+          "city": "[POR CONFIRMAR]",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "eg",
+          "name": "Egipto"
+        },
+        "date": "[POR CONFIRMAR]",
+        "venue": {
+          "stadium": "[POR CONFIRMAR]",
+          "city": "[POR CONFIRMAR]",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
     ],
-
-    "base_camp": { "city": "[POR CONFIRMAR — NZF aún no anunció]", "country": "Estados Unidos", "facility_name": "[POR CONFIRMAR]", "status": "pending" },
-
+    "base_camp": {
+      "city": "[POR CONFIRMAR — NZF aún no anunció]",
+      "country": "Estados Unidos",
+      "facility_name": "[POR CONFIRMAR]",
+      "status": "pending"
+    },
     "coach": {
       "name": "Darren Bazeley",
       "age": 53,
       "nationality": "Inglaterra",
       "since": "2022-11-01",
-      "previous_teams": ["Nueva Zelanda Sub-20 (2018-2022)", "Nueva Zelanda Sub-17 (2014-2018)", "Wellington Phoenix (asistente, 2010-2013)"],
+      "previous_teams": [
+        "Nueva Zelanda Sub-20 (2018-2022)",
+        "Nueva Zelanda Sub-17 (2014-2018)",
+        "Wellington Phoenix (asistente, 2010-2013)"
+      ],
       "profile_summary": "Inglés, 53 años. Ex-defensor de Watford y Wolves (Premier League años 90). Cerró su carrera como jugador en Auckland City (Nueva Zelanda) y se quedó en el país. Asumió la selección Sub-17, luego Sub-20 (2014-2022), y la Mayor en NOVIEMBRE 2022. Identidad táctica: 4-2-3-1 tradicional, defensa zonal compacta, presión intensa, ataque directo con Wood referencia. CONSIGUIÓ LA 1ª PLAZA DIRECTA OFC EN LA HISTORIA: clasificó a Nueva Zelanda al Mundial 2026 sin necesidad de repechaje (gracias a expansión 48 selecciones)."
     },
-
-    "captain": { "name": "Chris Wood", "club": "Nottingham Forest" },
-
+    "captain": {
+      "name": "Chris Wood",
+      "club": "Nottingham Forest"
+    },
     "star_player": {
       "name": "Chris Wood",
       "club": "Nottingham Forest",
       "reason": "Delantero del Nottingham Forest (Premier League). 33 años. CAPITÁN ABSOLUTO y MÁXIMO GOLEADOR HISTÓRICO de Nueva Zelanda (45+ goles internacionales). Ex-West Brom, Leicester, Burnley, Newcastle, Leeds. POTENCIA aérea 1.91m. 3 veces máximo goleador eliminatorias OFC (2016/17, 2021/22, 2024/25). Mundial 2026 será su 2º Mundial (tras 2010 con 17 años)."
     },
-
     "likely_squad": [
-      { "id": "max-crocombe", "full_name": "Max Crocombe", "display_name": "Max Crocombe", "position": "GK", "detailed_position": "GK", "club": { "name": "Burton Albion", "country_iso": "gb-eng", "league": "League One" }, "shirt_number_expected": 1, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Max_Crocombe_14122024_%281%29.jpg/330px-Max_Crocombe_14122024_%281%29.jpg" },
-      { "id": "alex-paulsen", "full_name": "Alex Paulsen", "display_name": "Alex Paulsen", "position": "GK", "detailed_position": "GK", "club": { "name": "Bournemouth", "country_iso": "gb-eng", "league": "Premier League" }, "shirt_number_expected": 12, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Alex_Paulsen.jpg/330px-Alex_Paulsen.jpg" },
-      { "id": "michael-woud", "full_name": "Michael Woud", "display_name": "Michael Woud", "position": "GK", "detailed_position": "GK", "club": { "name": "Almere City", "country_iso": "nl", "league": "Eredivisie" }, "shirt_number_expected": 23, "status": "probable", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Michael_Woud.jpg/330px-Michael_Woud.jpg" },
-      { "id": "tim-payne", "full_name": "Tim Payne", "display_name": "Tim Payne", "position": "DEF", "detailed_position": "RB", "club": { "name": "Auckland FC", "country_iso": "nz", "league": "A-League" }, "shirt_number_expected": 2, "status": "fixed" },
-      { "id": "joe-bell", "full_name": "Joe Bell", "display_name": "Joe Bell", "position": "DEF", "detailed_position": "RB", "club": { "name": "Hibernian", "country_iso": "gb-sct", "league": "Scottish Premiership" }, "shirt_number_expected": 14, "status": "probable" },
-      { "id": "tyler-bindon", "full_name": "Tyler Bindon", "display_name": "Tyler Bindon", "position": "DEF", "detailed_position": "CB", "club": { "name": "Reading", "country_iso": "gb-eng", "league": "League One" }, "shirt_number_expected": 4, "status": "fixed" },
-      { "id": "michael-boxall", "full_name": "Michael Boxall", "display_name": "Michael Boxall", "position": "DEF", "detailed_position": "CB", "club": { "name": "Minnesota United", "country_iso": "us", "league": "MLS" }, "shirt_number_expected": 5, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/New_Zealand-Portugal_%282%29_%28cropped%29.jpg/330px-New_Zealand-Portugal_%282%29_%28cropped%29.jpg" },
-      { "id": "finn-surman", "full_name": "Finn Surman", "display_name": "Finn Surman", "position": "DEF", "detailed_position": "CB", "club": { "name": "Portland Timbers", "country_iso": "us", "league": "MLS" }, "shirt_number_expected": 15, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Finn_Surman.jpg/330px-Finn_Surman.jpg" },
-      { "id": "nando-pijnaker", "full_name": "Nando Pijnaker", "display_name": "Nando Pijnaker", "position": "DEF", "detailed_position": "CB", "club": { "name": "Sligo Rovers", "country_iso": "ie", "league": "Premier irlandesa" }, "shirt_number_expected": 22, "status": "probable" },
-      { "id": "liberato-cacace", "full_name": "Liberato Cacace", "display_name": "Liberato Cacace", "position": "DEF", "detailed_position": "LB", "club": { "name": "Empoli", "country_iso": "it", "league": "Serie A" }, "shirt_number_expected": 3, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Liberato_Cacace_30082025_%281%29.jpg/330px-Liberato_Cacace_30082025_%281%29.jpg" },
-      { "id": "francis-de-vries", "full_name": "Francis de Vries", "display_name": "Francis de Vries", "position": "DEF", "detailed_position": "LB", "club": { "name": "Auckland FC", "country_iso": "nz", "league": "A-League" }, "shirt_number_expected": 13, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Francis_de_Vries.jpg/330px-Francis_de_Vries.jpg" },
-      { "id": "marko-stamenic", "full_name": "Marko Stamenic", "display_name": "Marko Stamenic", "position": "MID", "detailed_position": "CM", "club": { "name": "Olympiacos", "country_iso": "gr", "league": "Super League griega" }, "shirt_number_expected": 6, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/FC_Zenit_Saint_Petersburg_vs._Red_Star_Belgrade%2C_4_July_2023_%2850%29.jpg/330px-FC_Zenit_Saint_Petersburg_vs._Red_Star_Belgrade%2C_4_July_2023_%2850%29.jpg" },
-      { "id": "ryan-thomas", "full_name": "Ryan Thomas", "display_name": "Ryan Thomas", "position": "MID", "detailed_position": "CDM", "club": { "name": "Auckland FC", "country_iso": "nz", "league": "A-League" }, "shirt_number_expected": 8, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Ryan_Thomas_2.jpg/330px-Ryan_Thomas_2.jpg" },
-      { "id": "matthew-garbett", "full_name": "Matthew Garbett", "display_name": "Matthew Garbett", "position": "MID", "detailed_position": "CM", "club": { "name": "Como 1907", "country_iso": "it", "league": "Serie A" }, "shirt_number_expected": 16, "status": "fixed" },
-      { "id": "alex-rufer", "full_name": "Alex Rufer", "display_name": "Alex Rufer", "position": "MID", "detailed_position": "CDM", "club": { "name": "Wellington Phoenix", "country_iso": "nz", "league": "A-League" }, "shirt_number_expected": 17, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Alex_Rufer.jpg/330px-Alex_Rufer.jpg" },
-      { "id": "sarpreet-singh", "full_name": "Sarpreet Singh", "display_name": "Sarpreet Singh", "position": "MID", "detailed_position": "CAM", "club": { "name": "FC St. Pauli", "country_iso": "de", "league": "Bundesliga" }, "shirt_number_expected": 10, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Sarpreet_Singh_Training_2019-07-28_FC_Bayern_Munich.png/330px-Sarpreet_Singh_Training_2019-07-28_FC_Bayern_Munich.png" },
-      { "id": "ben-old", "full_name": "Ben Old", "display_name": "Ben Old", "position": "MID", "detailed_position": "LW", "club": { "name": "St. Mirren", "country_iso": "gb-sct", "league": "Scottish Premiership" }, "shirt_number_expected": 18, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Ben_Old_playing_for_Wellington_v_Perth%2C_March_2022.jpg/330px-Ben_Old_playing_for_Wellington_v_Perth%2C_March_2022.jpg" },
-      { "id": "elijah-just", "full_name": "Elijah Just", "display_name": "Elijah Just", "position": "MID", "detailed_position": "CAM", "club": { "name": "Fredrikstad", "country_iso": "no", "league": "Eliteserien" }, "shirt_number_expected": 19, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Elijah_Just.jpg/330px-Elijah_Just.jpg" },
-      { "id": "chris-wood", "full_name": "Chris Wood", "display_name": "Chris Wood", "position": "FWD", "detailed_position": "ST", "club": { "name": "Nottingham Forest", "country_iso": "gb-eng", "league": "Premier League" }, "shirt_number_expected": 9, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Russia-New_Zeland_%2817%29.jpg/330px-Russia-New_Zeland_%2817%29.jpg" },
-      { "id": "kosta-barbarouses", "full_name": "Kosta Barbarouses", "display_name": "Kosta Barbarouses", "position": "FWD", "detailed_position": "LW", "club": { "name": "Auckland FC", "country_iso": "nz", "league": "A-League" }, "shirt_number_expected": 11, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/New_Zealand-Portugal_%2824%29_%28cropped%29.jpg/330px-New_Zealand-Portugal_%2824%29_%28cropped%29.jpg" },
-      { "id": "logan-rogerson", "full_name": "Logan Rogerson", "display_name": "Logan Rogerson", "position": "FWD", "detailed_position": "RW", "club": { "name": "Auckland FC", "country_iso": "nz", "league": "A-League" }, "shirt_number_expected": 7, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Logan_Rogerson.jpg/330px-Logan_Rogerson.jpg" },
-      { "id": "eli-just", "full_name": "Eli Just", "display_name": "Eli Just", "position": "FWD", "detailed_position": "ST", "club": { "name": "Auckland City", "country_iso": "nz", "league": "Northern League" }, "shirt_number_expected": 20, "status": "probable", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Elijah_Just.jpg/330px-Elijah_Just.jpg" },
-      { "id": "tommy-smith", "full_name": "Tommy Smith", "display_name": "Tommy Smith", "position": "DEF", "detailed_position": "CB", "club": { "name": "Wellington Phoenix", "country_iso": "nz", "league": "A-League" }, "shirt_number_expected": 21, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Tommy_Smith_-_It_8.jpg/330px-Tommy_Smith_-_It_8.jpg" },
-      { "id": "fin-conchie", "full_name": "Fin Conchie", "display_name": "Fin Conchie", "position": "MID", "detailed_position": "CM", "club": { "name": "Wellington Phoenix", "country_iso": "nz", "league": "A-League" }, "shirt_number_expected": 24, "status": "probable", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Fin_Roa_Conchie.jpg/330px-Fin_Roa_Conchie.jpg" },
-      { "id": "jesse-randall", "full_name": "Jesse Randall", "display_name": "Jesse Randall", "position": "MID", "detailed_position": "CM", "club": { "name": "Wellington Phoenix", "country_iso": "nz", "league": "A-League" }, "shirt_number_expected": 25, "status": "bubble" },
-      { "id": "luca-brooke-smith", "full_name": "Luca Brooke-Smith", "display_name": "Luca Brooke-Smith", "position": "MID", "detailed_position": "RW", "club": { "name": "Wellington Phoenix", "country_iso": "nz", "league": "A-League" }, "shirt_number_expected": 26, "status": "bubble" }
+      {
+        "id": "tyler-bindon",
+        "full_name": "Tyler Bindon",
+        "display_name": "Tyler Bindon",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Reading",
+          "country_iso": "gb-eng",
+          "league": "League One"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed"
+      },
+      {
+        "id": "michael-boxall",
+        "full_name": "Michael Boxall",
+        "display_name": "Michael Boxall",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Minnesota United",
+          "country_iso": "us",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/New_Zealand-Portugal_%282%29_%28cropped%29.jpg/330px-New_Zealand-Portugal_%282%29_%28cropped%29.jpg"
+      },
+      {
+        "id": "liberato-cacace",
+        "full_name": "Liberato Cacace",
+        "display_name": "Liberato Cacace",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Empoli",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Liberato_Cacace_30082025_%281%29.jpg/330px-Liberato_Cacace_30082025_%281%29.jpg"
+      },
+      {
+        "id": "francis-de-vries",
+        "full_name": "Francis de Vries",
+        "display_name": "Francis de Vries",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Auckland FC",
+          "country_iso": "nz",
+          "league": "A-League"
+        },
+        "shirt_number_expected": 13,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Francis_de_Vries.jpg/330px-Francis_de_Vries.jpg"
+      },
+      {
+        "id": "callan-elliot",
+        "full_name": "Callan Elliot",
+        "display_name": "Callan Elliot",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "tim-payne",
+        "full_name": "Tim Payne",
+        "display_name": "Tim Payne",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Auckland FC",
+          "country_iso": "nz",
+          "league": "A-League"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed"
+      },
+      {
+        "id": "nando-pijnaker",
+        "full_name": "Nando Pijnaker",
+        "display_name": "Nando Pijnaker",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Sligo Rovers",
+          "country_iso": "ie",
+          "league": "Premier irlandesa"
+        },
+        "shirt_number_expected": 22,
+        "status": "fixed"
+      },
+      {
+        "id": "tommy-smith",
+        "full_name": "Tommy Smith",
+        "display_name": "Tommy Smith",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Wellington Phoenix",
+          "country_iso": "nz",
+          "league": "A-League"
+        },
+        "shirt_number_expected": 21,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Tommy_Smith_-_It_8.jpg/330px-Tommy_Smith_-_It_8.jpg"
+      },
+      {
+        "id": "finn-surman",
+        "full_name": "Finn Surman",
+        "display_name": "Finn Surman",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Portland Timbers",
+          "country_iso": "us",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 15,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Finn_Surman.jpg/330px-Finn_Surman.jpg"
+      },
+      {
+        "id": "lachlan-bayliss",
+        "full_name": "Lachlan Bayliss",
+        "display_name": "Lachlan Bayliss",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "joe-bell",
+        "full_name": "Joe Bell",
+        "display_name": "Joe Bell",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Hibernian",
+          "country_iso": "gb-sct",
+          "league": "Scottish Premiership"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed"
+      },
+      {
+        "id": "alex-rufer",
+        "full_name": "Alex Rufer",
+        "display_name": "Alex Rufer",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Wellington Phoenix",
+          "country_iso": "nz",
+          "league": "A-League"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Alex_Rufer.jpg/330px-Alex_Rufer.jpg"
+      },
+      {
+        "id": "marko-stamenic",
+        "full_name": "Marko Stamenic",
+        "display_name": "Marko Stamenic",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Olympiacos",
+          "country_iso": "gr",
+          "league": "Super League griega"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/FC_Zenit_Saint_Petersburg_vs._Red_Star_Belgrade%2C_4_July_2023_%2850%29.jpg/330px-FC_Zenit_Saint_Petersburg_vs._Red_Star_Belgrade%2C_4_July_2023_%2850%29.jpg"
+      },
+      {
+        "id": "ryan-thomas",
+        "full_name": "Ryan Thomas",
+        "display_name": "Ryan Thomas",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Auckland FC",
+          "country_iso": "nz",
+          "league": "A-League"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Ryan_Thomas_2.jpg/330px-Ryan_Thomas_2.jpg"
+      },
+      {
+        "id": "kosta-barbarouses",
+        "full_name": "Kosta Barbarouses",
+        "display_name": "Kosta Barbarouses",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Auckland FC",
+          "country_iso": "nz",
+          "league": "A-League"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/New_Zealand-Portugal_%2824%29_%28cropped%29.jpg/330px-New_Zealand-Portugal_%2824%29_%28cropped%29.jpg"
+      },
+      {
+        "id": "matthew-garbett",
+        "full_name": "Matthew Garbett",
+        "display_name": "Matthew Garbett",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Como 1907",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 16,
+        "status": "fixed"
+      },
+      {
+        "id": "elijah-just",
+        "full_name": "Elijah Just",
+        "display_name": "Elijah Just",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Fredrikstad",
+          "country_iso": "no",
+          "league": "Eliteserien"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Elijah_Just.jpg/330px-Elijah_Just.jpg"
+      },
+      {
+        "id": "callum-mccowatt",
+        "full_name": "Callum McCowatt",
+        "display_name": "Callum McCowatt",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "ben-old",
+        "full_name": "Ben Old",
+        "display_name": "Ben Old",
+        "position": "MID",
+        "detailed_position": "LW",
+        "club": {
+          "name": "St. Mirren",
+          "country_iso": "gb-sct",
+          "league": "Scottish Premiership"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Ben_Old_playing_for_Wellington_v_Perth%2C_March_2022.jpg/330px-Ben_Old_playing_for_Wellington_v_Perth%2C_March_2022.jpg"
+      },
+      {
+        "id": "jesse-randall",
+        "full_name": "Jesse Randall",
+        "display_name": "Jesse Randall",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Wellington Phoenix",
+          "country_iso": "nz",
+          "league": "A-League"
+        },
+        "shirt_number_expected": 25,
+        "status": "fixed"
+      },
+      {
+        "id": "sarpreet-singh",
+        "full_name": "Sarpreet Singh",
+        "display_name": "Sarpreet Singh",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "FC St. Pauli",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Sarpreet_Singh_Training_2019-07-28_FC_Bayern_Munich.png/330px-Sarpreet_Singh_Training_2019-07-28_FC_Bayern_Munich.png"
+      },
+      {
+        "id": "ben-waine",
+        "full_name": "Ben Waine",
+        "display_name": "Ben Waine",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "chris-wood",
+        "full_name": "Chris Wood",
+        "display_name": "Chris Wood",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Nottingham Forest",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Russia-New_Zeland_%2817%29.jpg/330px-Russia-New_Zeland_%2817%29.jpg"
+      }
     ],
-
     "starting_xi": {
       "formation": "4-2-3-1",
       "players": [
-        { "player_id": "max-crocombe", "position": { "x": 50, "y": 92 } },
-        { "player_id": "tim-payne", "position": { "x": 85, "y": 72 } },
-        { "player_id": "tyler-bindon", "position": { "x": 65, "y": 75 } },
-        { "player_id": "finn-surman", "position": { "x": 35, "y": 75 } },
-        { "player_id": "francis-de-vries", "position": { "x": 15, "y": 72 } },
-        { "player_id": "marko-stamenic", "position": { "x": 60, "y": 55 } },
-        { "player_id": "ryan-thomas", "position": { "x": 40, "y": 55 } },
-        { "player_id": "elijah-just", "position": { "x": 80, "y": 30 } },
-        { "player_id": "sarpreet-singh", "position": { "x": 50, "y": 32 } },
-        { "player_id": "ben-old", "position": { "x": 20, "y": 30 } },
-        { "player_id": "chris-wood", "position": { "x": 50, "y": 12 } }
+        {
+          "player_id": "max-crocombe",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "tim-payne",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "tyler-bindon",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "finn-surman",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "francis-de-vries",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "marko-stamenic",
+          "position": {
+            "x": 60,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "ryan-thomas",
+          "position": {
+            "x": 40,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "elijah-just",
+          "position": {
+            "x": 80,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "sarpreet-singh",
+          "position": {
+            "x": 50,
+            "y": 32
+          }
+        },
+        {
+          "player_id": "ben-old",
+          "position": {
+            "x": 20,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "chris-wood",
+          "position": {
+            "x": 50,
+            "y": 12
+          }
+        }
       ]
     },
-
     "analysis": {
       "style": "Bazeley plantea un 4-2-3-1 tradicional: defensa zonal compacta con 2 centrales fuertes (Bindon 1.93m + Surman 1.92m), doble pivote (Stamenic + Thomas), Sarpreet Singh creativo, Wood '9' fijo de área. Identidad: orden defensivo, juego aéreo dominante, transiciones rápidas, balones largos a Wood. Su mejor versión está en pelota parada y centros laterales.",
       "strengths": [
@@ -230,9 +934,11 @@
         "champion": 0
       },
       "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: NO CLASIFICÓ (cayó vs Perú repechaje 0-2 global). Catar 2022: NO CLASIFICÓ (cayó vs Costa Rica 0-1 repechaje). Mundial 2026: 3ª participación tras 16 AÑOS sin Mundial."
-    }
+    },
+    "squad_announced": true,
+    "squad_announced_date": "2026-05-19",
+    "squad_source": "Convocatoria oficial federación"
   },
-
   "history": {
     "first_appearance": 1982,
     "appearances_count_before_2026": 2,
@@ -251,61 +957,284 @@
       "lost": 3,
       "goals_for": 4,
       "goals_against": 14,
-      "win_percentage": 0.0,
+      "win_percentage": 0,
       "notes": "6 partidos en 2 Mundiales. NUNCA HAN GANADO. Mejor papel: 3 empates seguidos en Sudáfrica 2010."
     },
     "by_world_cup": [
-      { "year": 1982, "host": { "countries": ["España"], "iso": ["es"] }, "result": "Fase de grupos", "coach": "John Adshead", "captain": "Steve Sumner", "matches": [], "team_top_scorers": [{ "player": "Steve Sumner", "goals": 1 }, { "player": "Steve Wooddin", "goals": 1 }], "goals_scored": 2, "goals_conceded": 12, "notable_facts": ["DEBUT mundialista absoluto.", "STEVE SUMNER marcó EL 1ER GOL OFC HISTÓRICO en Mundiales.", "Cayó 2-5 con Escocia, 0-3 con URSS, 0-4 con Brasil."], "narrative": "Nueva Zelanda debutó en ESPAÑA 82 tras eliminatoria épica de 14 meses (15 partidos). STEVE SUMNER marcó EL 1ER GOL OFC HISTÓRICO mundialista vs Escocia (29'). 10 minutos después Wooddin marcó el 2º. Pero cayó 2-5. Adiós con 3 derrotas." },
-      { "year": 2010, "host": { "countries": ["Sudáfrica"], "iso": ["za"] }, "result": "Fase de grupos (INVICTA)", "coach": "Ricki Herbert", "captain": "Ryan Nelsen", "matches": [], "team_top_scorers": [{ "player": "Winston Reid", "goals": 1 }, { "player": "Shane Smeltz", "goals": 1 }], "goals_scored": 2, "goals_conceded": 2, "notable_facts": ["ÚNICO EQUIPO INVICTO del Mundial 2010.", "Empate HISTÓRICO 1-1 con ITALIA (campeona vigente).", "3 empates: Eslovaquia 1-1, Italia 1-1, Paraguay 0-0."], "narrative": "MUNDIAL HISTÓRICO. Nueva Zelanda fue EL ÚNICO EQUIPO INVICTO del Mundial 2010. Empate 1-1 con Eslovaquia (Reid 93'), 1-1 CON ITALIA CAMPEONA (Smeltz 7'), 0-0 con Paraguay. Italia (campeona vigente Brasil 2006) fue eliminada en grupos. Nueva Zelanda quedó 3ª. Hito: invicta sin pasar." }
+      {
+        "year": 1982,
+        "host": {
+          "countries": [
+            "España"
+          ],
+          "iso": [
+            "es"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "John Adshead",
+        "captain": "Steve Sumner",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Steve Sumner",
+            "goals": 1
+          },
+          {
+            "player": "Steve Wooddin",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 12,
+        "notable_facts": [
+          "DEBUT mundialista absoluto.",
+          "STEVE SUMNER marcó EL 1ER GOL OFC HISTÓRICO en Mundiales.",
+          "Cayó 2-5 con Escocia, 0-3 con URSS, 0-4 con Brasil."
+        ],
+        "narrative": "Nueva Zelanda debutó en ESPAÑA 82 tras eliminatoria épica de 14 meses (15 partidos). STEVE SUMNER marcó EL 1ER GOL OFC HISTÓRICO mundialista vs Escocia (29'). 10 minutos después Wooddin marcó el 2º. Pero cayó 2-5. Adiós con 3 derrotas."
+      },
+      {
+        "year": 2010,
+        "host": {
+          "countries": [
+            "Sudáfrica"
+          ],
+          "iso": [
+            "za"
+          ]
+        },
+        "result": "Fase de grupos (INVICTA)",
+        "coach": "Ricki Herbert",
+        "captain": "Ryan Nelsen",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Winston Reid",
+            "goals": 1
+          },
+          {
+            "player": "Shane Smeltz",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 2,
+        "notable_facts": [
+          "ÚNICO EQUIPO INVICTO del Mundial 2010.",
+          "Empate HISTÓRICO 1-1 con ITALIA (campeona vigente).",
+          "3 empates: Eslovaquia 1-1, Italia 1-1, Paraguay 0-0."
+        ],
+        "narrative": "MUNDIAL HISTÓRICO. Nueva Zelanda fue EL ÚNICO EQUIPO INVICTO del Mundial 2010. Empate 1-1 con Eslovaquia (Reid 93'), 1-1 CON ITALIA CAMPEONA (Smeltz 7'), 0-0 con Paraguay. Italia (campeona vigente Brasil 2006) fue eliminada en grupos. Nueva Zelanda quedó 3ª. Hito: invicta sin pasar."
+      }
     ],
     "palmares": [
-      { "competition": "Copa de las Naciones OFC", "year": 1973, "position": "Campeón", "host": "Nueva Zelanda" },
-      { "competition": "Copa de las Naciones OFC", "year": 1998, "position": "Campeón", "host": "Australia" },
-      { "competition": "Copa de las Naciones OFC", "year": 2002, "position": "Campeón", "host": "Nueva Zelanda" },
-      { "competition": "Copa de las Naciones OFC", "year": 2008, "position": "Campeón", "host": "varios" },
-      { "competition": "Copa de las Naciones OFC", "year": 2016, "position": "Campeón", "host": "Papúa Nueva Guinea" }
+      {
+        "competition": "Copa de las Naciones OFC",
+        "year": 1973,
+        "position": "Campeón",
+        "host": "Nueva Zelanda"
+      },
+      {
+        "competition": "Copa de las Naciones OFC",
+        "year": 1998,
+        "position": "Campeón",
+        "host": "Australia"
+      },
+      {
+        "competition": "Copa de las Naciones OFC",
+        "year": 2002,
+        "position": "Campeón",
+        "host": "Nueva Zelanda"
+      },
+      {
+        "competition": "Copa de las Naciones OFC",
+        "year": 2008,
+        "position": "Campeón",
+        "host": "varios"
+      },
+      {
+        "competition": "Copa de las Naciones OFC",
+        "year": 2016,
+        "position": "Campeón",
+        "host": "Papúa Nueva Guinea"
+      }
     ]
   },
-
   "records": {
-    "top_scorer_history": { "name": "Chris Wood", "value": 45, "period": "2009-presente", "notes": "MÁXIMO GOLEADOR HISTÓRICO. Récord vigente. Premier League con Burnley, Newcastle, Nottingham Forest." },
-    "most_capped": { "name": "Ivan Vicelich", "value": 88, "period": "1995-2014", "notes": "Récord histórico. Mundialista 2010." },
-    "youngest_debut": { "name": "Chris Wood", "value": "17 años", "period": "2009", "notes": "Debutó con 17 años, llegó al Mundial 2010 con 18." },
-    "biggest_win": { "result": "10-0", "opponent": "Tahití", "date": "2008-09-08", "competition": "Eliminatorias Mundial 2010" },
-    "worst_loss": { "result": "0-10", "opponent": "Australia", "date": "1936", "competition": "Amistoso" }
+    "top_scorer_history": {
+      "name": "Chris Wood",
+      "value": 45,
+      "period": "2009-presente",
+      "notes": "MÁXIMO GOLEADOR HISTÓRICO. Récord vigente. Premier League con Burnley, Newcastle, Nottingham Forest."
+    },
+    "most_capped": {
+      "name": "Ivan Vicelich",
+      "value": 88,
+      "period": "1995-2014",
+      "notes": "Récord histórico. Mundialista 2010."
+    },
+    "youngest_debut": {
+      "name": "Chris Wood",
+      "value": "17 años",
+      "period": "2009",
+      "notes": "Debutó con 17 años, llegó al Mundial 2010 con 18."
+    },
+    "biggest_win": {
+      "result": "10-0",
+      "opponent": "Tahití",
+      "date": "2008-09-08",
+      "competition": "Eliminatorias Mundial 2010"
+    },
+    "worst_loss": {
+      "result": "0-10",
+      "opponent": "Australia",
+      "date": "1936",
+      "competition": "Amistoso"
+    }
   },
-
   "iconic_matches": [
-    { "title": "El empate histórico con Italia (2010)", "date": "2010-06-20", "opponent": { "iso": "it", "name": "Italia" }, "score": "1-1", "competition": "Fase de Grupos Mundial 2010", "narrative": "Nueva Zelanda EMPATÓ 1-1 con ITALIA CAMPEONA VIGENTE en Mbombela. SHANE SMELTZ marcó al 7' tras saque de banda largo + cabezazo Reid (gol viral por simplicidad). Iaquinta empató al 29' (penal). Italia campeona vigente Brasil 2006 quedaría ELIMINADA en grupos. Nueva Zelanda invicta." },
-    { "title": "El 1er gol OFC histórico (Sumner 1982)", "date": "1982-06-15", "opponent": { "iso": "gb-sct", "name": "Escocia" }, "score": "2-5", "competition": "Fase de Grupos Mundial 1982", "narrative": "STEVE SUMNER marcó al 29' EL 1ER GOL OFC HISTÓRICO en Mundiales. NZ cayó 2-5 con Escocia pero el gol quedó para la historia oceánica. 10 minutos después Wooddin marcó el 2º." },
-    { "title": "El 1-1 con Eslovaquia al 93' (2010)", "date": "2010-06-15", "opponent": { "iso": "sk", "name": "Eslovaquia" }, "score": "1-1", "competition": "Fase de Grupos Mundial 2010", "narrative": "WINSTON REID marcó al MIN 93' (cabezazo) tras córner para EMPATAR 1-1 con Eslovaquia. NZ rescató punto histórico tras ir perdiendo 0-1 (Vittek 50'). Inicio del invicto histórico." },
-    { "title": "Final OFC 2025 (3-0 vs Nueva Caledonia)", "date": "2025-03-24", "opponent": { "iso": "nc", "name": "Nueva Caledonia" }, "score": "3-0", "competition": "Final OFC Mundial 2026", "narrative": "Nueva Zelanda CLASIFICÓ AL MUNDIAL 2026 venciendo 3-0 a Nueva Caledonia en final OFC en Auckland. Wood lesionado en cadera salió al inicio del 2º tiempo. Boxall (60'), Barbarouses (70') y Just (80') goleadores. PRIMERA PLAZA DIRECTA OFC en la historia." },
-    { "title": "El hat-trick de Wood vs Samoa (2024)", "date": "2024-03-22", "opponent": { "iso": "ws", "name": "Samoa" }, "score": "8-0", "competition": "Fase grupos OFC Mundial 2026", "narrative": "CHRIS WOOD marcó HAT-TRICK vs Samoa en 35 minutos (10', 20', 35'). Goleada 8-0 con 8 goleadores diferentes. Wood top scorer eliminatoria con 8 goles totales." }
+    {
+      "title": "El empate histórico con Italia (2010)",
+      "date": "2010-06-20",
+      "opponent": {
+        "iso": "it",
+        "name": "Italia"
+      },
+      "score": "1-1",
+      "competition": "Fase de Grupos Mundial 2010",
+      "narrative": "Nueva Zelanda EMPATÓ 1-1 con ITALIA CAMPEONA VIGENTE en Mbombela. SHANE SMELTZ marcó al 7' tras saque de banda largo + cabezazo Reid (gol viral por simplicidad). Iaquinta empató al 29' (penal). Italia campeona vigente Brasil 2006 quedaría ELIMINADA en grupos. Nueva Zelanda invicta."
+    },
+    {
+      "title": "El 1er gol OFC histórico (Sumner 1982)",
+      "date": "1982-06-15",
+      "opponent": {
+        "iso": "gb-sct",
+        "name": "Escocia"
+      },
+      "score": "2-5",
+      "competition": "Fase de Grupos Mundial 1982",
+      "narrative": "STEVE SUMNER marcó al 29' EL 1ER GOL OFC HISTÓRICO en Mundiales. NZ cayó 2-5 con Escocia pero el gol quedó para la historia oceánica. 10 minutos después Wooddin marcó el 2º."
+    },
+    {
+      "title": "El 1-1 con Eslovaquia al 93' (2010)",
+      "date": "2010-06-15",
+      "opponent": {
+        "iso": "sk",
+        "name": "Eslovaquia"
+      },
+      "score": "1-1",
+      "competition": "Fase de Grupos Mundial 2010",
+      "narrative": "WINSTON REID marcó al MIN 93' (cabezazo) tras córner para EMPATAR 1-1 con Eslovaquia. NZ rescató punto histórico tras ir perdiendo 0-1 (Vittek 50'). Inicio del invicto histórico."
+    },
+    {
+      "title": "Final OFC 2025 (3-0 vs Nueva Caledonia)",
+      "date": "2025-03-24",
+      "opponent": {
+        "iso": "nc",
+        "name": "Nueva Caledonia"
+      },
+      "score": "3-0",
+      "competition": "Final OFC Mundial 2026",
+      "narrative": "Nueva Zelanda CLASIFICÓ AL MUNDIAL 2026 venciendo 3-0 a Nueva Caledonia en final OFC en Auckland. Wood lesionado en cadera salió al inicio del 2º tiempo. Boxall (60'), Barbarouses (70') y Just (80') goleadores. PRIMERA PLAZA DIRECTA OFC en la historia."
+    },
+    {
+      "title": "El hat-trick de Wood vs Samoa (2024)",
+      "date": "2024-03-22",
+      "opponent": {
+        "iso": "ws",
+        "name": "Samoa"
+      },
+      "score": "8-0",
+      "competition": "Fase grupos OFC Mundial 2026",
+      "narrative": "CHRIS WOOD marcó HAT-TRICK vs Samoa en 35 minutos (10', 20', 35'). Goleada 8-0 con 8 goleadores diferentes. Wood top scorer eliminatoria con 8 goles totales."
+    }
   ],
-
   "curiosities": [
-    { "text": "Nueva Zelanda OBTUVO LA 1ª PLAZA DIRECTA OFC EN LA HISTORIA mundialista (Mundial 2026). Antes de 2026, OFC siempre tuvo que jugar repechaje intercontinental. La expansión a 48 selecciones cambió el formato.", "source": "FIFA + OFC + Wikipedia", "verified_at": "2026-04-30", "status": "validated" },
-    { "text": "EN SUDÁFRICA 2010, Nueva Zelanda fue EL ÚNICO EQUIPO INVICTO del Mundial: 3 empates seguidos (Eslovaquia 1-1, Italia 1-1 campeón vigente, Paraguay 0-0). ELIMINÓ A ITALIA del torneo. Récord histórico oceánico.", "source": "FIFA + Wikipedia", "verified_at": "2026-04-30", "status": "validated" },
-    { "text": "STEVE SUMNER marcó EL 1ER GOL OFC HISTÓRICO en Mundiales el 15 jun 1982 vs ESCOCIA al 29' (España 1982). RÉCORD HISTÓRICO ABSOLUTO de la Confederación de Oceanía.", "source": "FIFA + Wikipedia", "verified_at": "2026-04-30", "status": "validated" },
-    { "text": "El sobrenombre 'ALL WHITES' fue acuñado durante la clasificación a España 1982 en oposición a 'ALL BLACKS' (selección de rugby). El blanco simbolizaba diferenciación visual y era el color tradicional del fútbol neozelandés.", "source": "NZF + Wikipedia", "verified_at": "2026-04-30", "status": "validated" },
-    { "text": "CHRIS WOOD nació en Auckland en 1991. Hijo de un futbolista profesional inglés. Con 17 años fichó por West Bromwich Albion. Desde entonces ha jugado en Premier League continuamente: WBA, Leicester, Burnley, Newcastle, Nottingham Forest. Top scorer histórico Premier de jugadores OFC.", "source": "Premier League + Wikipedia", "verified_at": "2026-04-30", "status": "validated" },
-    { "text": "Nueva Zelanda jugó eliminatorias OFC HASTA 2025 prácticamente sin rival serio. Los 6 partidos de la fase final 2024-25 los GANÓ TODOS con 23 GF y 1 GC (vs Tahití). Dominio absoluto.", "source": "OFC + Wikipedia", "verified_at": "2026-04-30", "status": "validated" },
-    { "text": "Para Mundial 2018 cayó vs PERÚ en repechaje (2-0 global). Para Mundial 2022 cayó vs COSTA RICA 0-1 en repechaje (Joel Campbell). 2 ELIMINACIONES CONSECUTIVAS antes de la histórica plaza directa 2026.", "source": "FIFA + Wikipedia", "verified_at": "2026-04-30", "status": "validated" }
+    {
+      "text": "Nueva Zelanda OBTUVO LA 1ª PLAZA DIRECTA OFC EN LA HISTORIA mundialista (Mundial 2026). Antes de 2026, OFC siempre tuvo que jugar repechaje intercontinental. La expansión a 48 selecciones cambió el formato.",
+      "source": "FIFA + OFC + Wikipedia",
+      "verified_at": "2026-04-30",
+      "status": "validated"
+    },
+    {
+      "text": "EN SUDÁFRICA 2010, Nueva Zelanda fue EL ÚNICO EQUIPO INVICTO del Mundial: 3 empates seguidos (Eslovaquia 1-1, Italia 1-1 campeón vigente, Paraguay 0-0). ELIMINÓ A ITALIA del torneo. Récord histórico oceánico.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-30",
+      "status": "validated"
+    },
+    {
+      "text": "STEVE SUMNER marcó EL 1ER GOL OFC HISTÓRICO en Mundiales el 15 jun 1982 vs ESCOCIA al 29' (España 1982). RÉCORD HISTÓRICO ABSOLUTO de la Confederación de Oceanía.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-30",
+      "status": "validated"
+    },
+    {
+      "text": "El sobrenombre 'ALL WHITES' fue acuñado durante la clasificación a España 1982 en oposición a 'ALL BLACKS' (selección de rugby). El blanco simbolizaba diferenciación visual y era el color tradicional del fútbol neozelandés.",
+      "source": "NZF + Wikipedia",
+      "verified_at": "2026-04-30",
+      "status": "validated"
+    },
+    {
+      "text": "CHRIS WOOD nació en Auckland en 1991. Hijo de un futbolista profesional inglés. Con 17 años fichó por West Bromwich Albion. Desde entonces ha jugado en Premier League continuamente: WBA, Leicester, Burnley, Newcastle, Nottingham Forest. Top scorer histórico Premier de jugadores OFC.",
+      "source": "Premier League + Wikipedia",
+      "verified_at": "2026-04-30",
+      "status": "validated"
+    },
+    {
+      "text": "Nueva Zelanda jugó eliminatorias OFC HASTA 2025 prácticamente sin rival serio. Los 6 partidos de la fase final 2024-25 los GANÓ TODOS con 23 GF y 1 GC (vs Tahití). Dominio absoluto.",
+      "source": "OFC + Wikipedia",
+      "verified_at": "2026-04-30",
+      "status": "validated"
+    },
+    {
+      "text": "Para Mundial 2018 cayó vs PERÚ en repechaje (2-0 global). Para Mundial 2022 cayó vs COSTA RICA 0-1 en repechaje (Joel Campbell). 2 ELIMINACIONES CONSECUTIVAS antes de la histórica plaza directa 2026.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-30",
+      "status": "validated"
+    }
   ],
-
   "fan_culture": {
-    "famous_chants": ["Kia kaha! Kia kaha!", "All Whites!", "God Defend New Zealand (himno)"],
-    "main_rival": { "iso": "au", "name": "Australia", "story": "Rivalidad histórica oceánica derivada de la cercanía geográfica. 'Trans-Tasman Trophy'. Tras el cambio de Australia a AFC en 2006, los partidos son menos frecuentes pero conservan tensión. Australia lidera el balance histórico (30+ partidos)." },
-    "home_stadium": { "name": "North Harbour Stadium", "capacity": 25000, "city": "Auckland" }
+    "famous_chants": [
+      "Kia kaha! Kia kaha!",
+      "All Whites!",
+      "God Defend New Zealand (himno)"
+    ],
+    "main_rival": {
+      "iso": "au",
+      "name": "Australia",
+      "story": "Rivalidad histórica oceánica derivada de la cercanía geográfica. 'Trans-Tasman Trophy'. Tras el cambio de Australia a AFC en 2006, los partidos son menos frecuentes pero conservan tensión. Australia lidera el balance histórico (30+ partidos)."
+    },
+    "home_stadium": {
+      "name": "North Harbour Stadium",
+      "capacity": 25000,
+      "city": "Auckland"
+    }
   },
-
   "seo": {
     "meta_title": "Nueva Zelanda Mundial 2026 | Guía completa All Whites",
     "meta_description": "Nueva Zelanda Mundial 2026: plantel de Bazeley, Chris Wood, Stamenic, Cacace. Grupo G con Bélgica, Egipto e Irán. 3ª participación tras 16 años.",
     "og_image_url": "/img/og/teams/nueva-zelanda.png",
-    "schema_org": { "@context": "https://schema.org", "@type": "SportsTeam", "name": "Selección de fútbol de Nueva Zelanda", "alternateName": ["All Whites", "Kiwis"], "sport": "Football", "memberOf": { "@type": "SportsOrganization", "name": "OFC" }, "coach": { "@type": "Person", "name": "Darren Bazeley" }, "url": "https://www.zonamundial.app/selecciones/nueva-zelanda" }
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Nueva Zelanda",
+      "alternateName": [
+        "All Whites",
+        "Kiwis"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "OFC"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Darren Bazeley"
+      },
+      "url": "https://www.zonamundial.app/selecciones/nueva-zelanda"
+    }
   },
-
   "_meta": {
     "schema_version": "1.0.0",
     "last_updated": "2026-04-30",

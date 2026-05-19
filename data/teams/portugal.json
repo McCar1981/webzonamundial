@@ -505,34 +505,41 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Portugal_national_football_team_0866_%28Diogo_Costa%29.jpg/330px-Portugal_national_football_team_0866_%28Diogo_Costa%29.jpg"
       },
       {
-        "id": "rui-patricio",
-        "full_name": "Rui Patrício",
-        "display_name": "Rui Patrício",
-        "position": "GK",
-        "detailed_position": "GK",
-        "club": {
-          "name": "Atalanta",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 1,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Rui_Patr%C3%ADcio_2018.jpg/330px-Rui_Patr%C3%ADcio_2018.jpg"
-      },
-      {
         "id": "jose-sa",
         "full_name": "José Sá",
         "display_name": "José Sá",
         "position": "GK",
         "detailed_position": "GK",
         "club": {
-          "name": "Wolves",
+          "name": "Wolverhampton",
           "country_iso": "gb-eng",
           "league": "Premier League"
         },
         "shirt_number_expected": 12,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Jos%C3%A9_S%C3%A1_2019.jpg/330px-Jos%C3%A9_S%C3%A1_2019.jpg"
+      },
+      {
+        "id": "ricardo-velho",
+        "full_name": "Ricardo Velho",
+        "display_name": "Ricardo Velho",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "rui-silva",
+        "full_name": "Rui Silva",
+        "display_name": "Rui Silva",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "ruben-dias",
@@ -550,21 +557,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Portugal_national_football_team_0866_%28R%C3%BAben_Dias%29.jpg"
       },
       {
-        "id": "antonio-silva",
-        "full_name": "António Silva",
-        "display_name": "António Silva",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Benfica",
-          "country_iso": "pt",
-          "league": "Primeira Liga"
-        },
-        "shirt_number_expected": 3,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Ant%C3%B3nioSilva22.jpg/330px-Ant%C3%B3nioSilva22.jpg"
-      },
-      {
         "id": "goncalo-inacio",
         "full_name": "Gonçalo Inácio",
         "display_name": "Gonçalo Inácio",
@@ -576,23 +568,8 @@
           "league": "Primeira Liga"
         },
         "shirt_number_expected": 14,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Portugal_national_football_team_0866_%28Gon%C3%A7alo_In%C3%A1cio%29.jpg"
-      },
-      {
-        "id": "renato-veiga",
-        "full_name": "Renato Veiga",
-        "display_name": "Renato Veiga",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Villarreal",
-          "country_iso": "es",
-          "league": "La Liga"
-        },
-        "shirt_number_expected": 5,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Renato_Veiga_USMNT_v_Portugal_Mar_31_2026-20.jpg/330px-Renato_Veiga_USMNT_v_Portugal_Mar_31_2026-20.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Portugal_national_football_team_0866_%28Gon%C3%A7alo_In%C3%A1cio%29.jpg"
       },
       {
         "id": "joao-cancelo",
@@ -610,6 +587,35 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Portugal_national_football_team_0866_%28Jo%C3%A3o_Cancelo%29.jpg/330px-Portugal_national_football_team_0866_%28Jo%C3%A3o_Cancelo%29.jpg"
       },
       {
+        "id": "diogo-dalot",
+        "full_name": "Diogo Dalot",
+        "display_name": "Diogo Dalot",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Manchester United",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Diogo_Dalot_2022_%28cropped%29.jpg/330px-Diogo_Dalot_2022_%28cropped%29.jpg"
+      },
+      {
+        "id": "nuno-mendes",
+        "full_name": "Nuno Mendes",
+        "display_name": "Nuno Mendes",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "PSG",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 23,
+        "status": "fixed"
+      },
+      {
         "id": "nelson-semedo",
         "full_name": "Nélson Semedo",
         "display_name": "Nélson Semedo",
@@ -621,52 +627,49 @@
           "league": "Süper Lig"
         },
         "shirt_number_expected": 19,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Mex-por-14_%28cropped%29.jpg/330px-Mex-por-14_%28cropped%29.jpg"
       },
       {
-        "id": "nuno-mendes",
-        "full_name": "Nuno Mendes",
-        "display_name": "Nuno Mendes",
+        "id": "renato-veiga",
+        "full_name": "Renato Veiga",
+        "display_name": "Renato Veiga",
         "position": "DEF",
-        "detailed_position": "LB",
+        "detailed_position": "CB",
         "club": {
-          "name": "Paris Saint-Germain",
-          "country_iso": "fr",
-          "league": "Ligue 1"
+          "name": "Villarreal",
+          "country_iso": "es",
+          "league": "La Liga"
         },
-        "shirt_number_expected": 23,
-        "status": "fixed"
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Renato_Veiga_USMNT_v_Portugal_Mar_31_2026-20.jpg/330px-Renato_Veiga_USMNT_v_Portugal_Mar_31_2026-20.jpg"
       },
       {
-        "id": "vitinha",
-        "full_name": "Vítor Ferreira",
-        "display_name": "Vitinha",
+        "id": "tomas-araujo",
+        "full_name": "Tomás Araújo",
+        "display_name": "Tomás Araújo",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "matheus-nunes",
+        "full_name": "Matheus Nunes",
+        "display_name": "Matheus Nunes",
         "position": "MID",
         "detailed_position": "CM",
         "club": {
-          "name": "Paris Saint-Germain",
-          "country_iso": "fr",
-          "league": "Ligue 1"
+          "name": "Manchester City",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
         },
-        "shirt_number_expected": 8,
+        "shirt_number_expected": 16,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Vitinha_USMNT_v_Portugal_Mar_31_2026-50.jpg/330px-Vitinha_USMNT_v_Portugal_Mar_31_2026-50.jpg"
-      },
-      {
-        "id": "joao-neves",
-        "full_name": "João Neves",
-        "display_name": "João Neves",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Paris Saint-Germain",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 18,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Neves_asse_psg_2425.png/330px-Neves_asse_psg_2425.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/be/Matheus_Nunes.2jpg.jpg"
       },
       {
         "id": "bruno-fernandes",
@@ -699,6 +702,36 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Bernardo_Silva_%28Isto_%C3%89_Gozar_Com_Quem_Trabalha%2C_2024%29.png/330px-Bernardo_Silva_%28Isto_%C3%89_Gozar_Com_Quem_Trabalha%2C_2024%29.png"
       },
       {
+        "id": "vitinha",
+        "full_name": "Vítor Ferreira",
+        "display_name": "Vitinha",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "PSG",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Vitinha_USMNT_v_Portugal_Mar_31_2026-50.jpg/330px-Vitinha_USMNT_v_Portugal_Mar_31_2026-50.jpg"
+      },
+      {
+        "id": "joao-neves",
+        "full_name": "João Neves",
+        "display_name": "João Neves",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "PSG",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Neves_asse_psg_2425.png/330px-Neves_asse_psg_2425.png"
+      },
+      {
         "id": "ruben-neves",
         "full_name": "Rúben Neves",
         "display_name": "Rúben Neves",
@@ -710,23 +743,23 @@
           "league": "Saudi Pro League"
         },
         "shirt_number_expected": 6,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/97/R%C3%BAben_Neves_WC2022.jpg"
       },
       {
-        "id": "matheus-nunes",
-        "full_name": "Matheus Nunes",
-        "display_name": "Matheus Nunes",
-        "position": "MID",
-        "detailed_position": "CM",
+        "id": "joao-felix",
+        "full_name": "João Félix",
+        "display_name": "João Félix",
+        "position": "FWD",
+        "detailed_position": "CAM",
         "club": {
-          "name": "Manchester City",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
+          "name": "Al-Nassr",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
         },
-        "shirt_number_expected": 16,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/be/Matheus_Nunes.2jpg.jpg"
+        "shirt_number_expected": 21,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Portugal_national_football_team_0866_%28Jo%C3%A3o_F%C3%A9lix%29.jpg/330px-Portugal_national_football_team_0866_%28Jo%C3%A3o_F%C3%A9lix%29.jpg"
       },
       {
         "id": "cristiano-ronaldo",
@@ -759,36 +792,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Rafael_Le%C3%A3o_WC2022.jpg"
       },
       {
-        "id": "pedro-neto",
-        "full_name": "Pedro Neto",
-        "display_name": "Pedro Neto",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Chelsea",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 11,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Portugal_national_football_team_0866_%28Pedro_Neto%29.jpg/330px-Portugal_national_football_team_0866_%28Pedro_Neto%29.jpg"
-      },
-      {
-        "id": "joao-felix",
-        "full_name": "João Félix",
-        "display_name": "João Félix",
-        "position": "FWD",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Al-Nassr",
-          "country_iso": "sa",
-          "league": "Saudi Pro League"
-        },
-        "shirt_number_expected": 21,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Portugal_national_football_team_0866_%28Jo%C3%A3o_F%C3%A9lix%29.jpg/330px-Portugal_national_football_team_0866_%28Jo%C3%A3o_F%C3%A9lix%29.jpg"
-      },
-      {
         "id": "francisco-conceicao",
         "full_name": "Francisco Conceição",
         "display_name": "Francisco Conceição",
@@ -802,95 +805,6 @@
         "shirt_number_expected": 25,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/GAE_-_Ajax_-_52788521318_%28cropped%29.jpg/330px-GAE_-_Ajax_-_52788521318_%28cropped%29.jpg"
-      },
-      {
-        "id": "goncalo-ramos",
-        "full_name": "Gonçalo Ramos",
-        "display_name": "Gonçalo Ramos",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Paris Saint-Germain",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 9,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Goncalo_Ramos_2020.png/330px-Goncalo_Ramos_2020.png"
-      },
-      {
-        "id": "francisco-trincao",
-        "full_name": "Francisco Trincão",
-        "display_name": "Francisco Trincão",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Sporting CP",
-          "country_iso": "pt",
-          "league": "Primeira Liga"
-        },
-        "shirt_number_expected": 26,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Francisco_Trinc%C3%A3o_2019_%28cropped%29.jpg"
-      },
-      {
-        "id": "diogo-jota",
-        "full_name": "Diogo Jota",
-        "display_name": "Diogo Jota",
-        "position": "FWD",
-        "detailed_position": "LW",
-        "club": {
-          "name": "Liverpool",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 15,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Diogo_Jota_2025.jpg/330px-Diogo_Jota_2025.jpg"
-      },
-      {
-        "id": "rafael-rodrigues",
-        "full_name": "Geovany Quenda",
-        "display_name": "Geovany Quenda",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Sporting CP",
-          "country_iso": "pt",
-          "league": "Primeira Liga"
-        },
-        "shirt_number_expected": 24,
-        "status": "bubble"
-      },
-      {
-        "id": "joao-palhinha",
-        "full_name": "João Palhinha",
-        "display_name": "João Palhinha",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Tottenham",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 13,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Jo%C3%A3o_Palhinha_2019.jpg/330px-Jo%C3%A3o_Palhinha_2019.jpg"
-      },
-      {
-        "id": "diogo-dalot",
-        "full_name": "Diogo Dalot",
-        "display_name": "Diogo Dalot",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Manchester United",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 2,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Diogo_Dalot_2022_%28cropped%29.jpg/330px-Diogo_Dalot_2022_%28cropped%29.jpg"
       }
     ],
     "starting_xi": {
@@ -1008,7 +922,10 @@
         "champion": 4
       },
       "vs_last_3_wcs": "Rusia 2018: octavos, eliminada por Uruguay 1-2 (doblete Cavani). Catar 2022: cuartos, eliminada por Marruecos 0-1 (En-Nesyri). Mundial 2026: 9ª participación, último Mundial de la era Cristiano. La generación Vitinha-Neves-Leão-Conceição busca consolidarse y abrir la post-Cristiano."
-    }
+    },
+    "squad_announced": true,
+    "squad_announced_date": "2026-05-19",
+    "squad_source": "Convocatoria oficial federación"
   },
   "history": {
     "first_appearance": 1966,
@@ -1028,7 +945,7 @@
       "lost": 10,
       "goals_for": 51,
       "goals_against": 35,
-      "win_percentage": 50.0,
+      "win_percentage": 50,
       "notes": "Datos hasta Qatar 2022. Portugal nunca ganó un Mundial pese a tener generaciones legendarias (Eusébio, Figo, Cristiano)."
     },
     "by_world_cup": [

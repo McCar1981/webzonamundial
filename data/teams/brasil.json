@@ -622,7 +622,7 @@
         "position": "GK",
         "detailed_position": "GK",
         "club": {
-          "name": "Manchester City",
+          "name": "Fenerbahçe",
           "country_iso": "gb-eng",
           "league": "Premier League"
         },
@@ -631,49 +631,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/73/Ederson_%28cropped%29.png"
       },
       {
-        "id": "bento",
-        "full_name": "Bento Krepski",
-        "display_name": "Bento",
+        "id": "weverton",
+        "full_name": "Weverton",
+        "display_name": "Weverton",
         "position": "GK",
         "detailed_position": "GK",
         "club": {
-          "name": "Al-Nassr",
-          "country_iso": "sa",
-          "league": "Saudi Pro League"
+          "name": "Grêmio",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 12,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Bento_box_from_a_grocery_store.jpg/330px-Bento_box_from_a_grocery_store.jpg"
-      },
-      {
-        "id": "danilo",
-        "full_name": "Danilo Luiz da Silva",
-        "display_name": "Danilo",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Flamengo",
-          "country_iso": "br",
-          "league": "Brasileirão"
-        },
-        "shirt_number_expected": 2,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Danilo_Luiz_850_1591.jpg/330px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Danilo_Luiz_850_1591.jpg"
-      },
-      {
-        "id": "vanderson",
-        "full_name": "Vanderson",
-        "display_name": "Vanderson",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Mónaco",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 14,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Vanderson_asse_asm_2425.png/330px-Vanderson_asse_asm_2425.png"
+        "photo_url": null
       },
       {
         "id": "marquinhos",
@@ -682,7 +652,7 @@
         "position": "DEF",
         "detailed_position": "CB",
         "club": {
-          "name": "Paris Saint-Germain",
+          "name": "PSG",
           "country_iso": "fr",
           "league": "Ligue 1"
         },
@@ -706,34 +676,34 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/GabrielLille2019.png/330px-GabrielLille2019.png"
       },
       {
-        "id": "eder-militao",
-        "full_name": "Éder Militão",
-        "display_name": "Militão",
+        "id": "gleison-bremer",
+        "full_name": "Gleison Bremer",
+        "display_name": "Gleison Bremer",
         "position": "DEF",
-        "detailed_position": "CB",
+        "detailed_position": "DEF",
         "club": {
-          "name": "Real Madrid",
-          "country_iso": "es",
-          "league": "La Liga"
+          "name": "Juventus",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 3,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Eder_Militao_2021.jpg/330px-Eder_Militao_2021.jpg"
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
-        "id": "lucas-beraldo",
-        "full_name": "Lucas Beraldo",
-        "display_name": "Beraldo",
+        "id": "danilo",
+        "full_name": "Danilo Luiz da Silva",
+        "display_name": "Danilo",
         "position": "DEF",
-        "detailed_position": "CB",
+        "detailed_position": "RB",
         "club": {
-          "name": "Paris Saint-Germain",
-          "country_iso": "fr",
-          "league": "Ligue 1"
+          "name": "Flamengo",
+          "country_iso": "br",
+          "league": "Brasileirão"
         },
-        "shirt_number_expected": 24,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Beraldo_asse_psg_2425.png/330px-Beraldo_asse_psg_2425.png"
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Danilo_Luiz_850_1591.jpg/330px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Danilo_Luiz_850_1591.jpg"
       },
       {
         "id": "alex-sandro",
@@ -747,38 +717,68 @@
           "league": "Brasileirão"
         },
         "shirt_number_expected": 6,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/62/AlexSandroCopaAmerica2019.jpg"
       },
       {
-        "id": "abner",
-        "full_name": "Abner Vinicius",
-        "display_name": "Abner",
+        "id": "douglas-santos",
+        "full_name": "Douglas Santos",
+        "display_name": "Douglas Santos",
         "position": "DEF",
-        "detailed_position": "LB",
+        "detailed_position": "DEF",
         "club": {
-          "name": "Lyon",
-          "country_iso": "fr",
-          "league": "Ligue 1"
+          "name": "Zenit",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 16,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Biblia_Pauperum_Cpg438.jpg/330px-Biblia_Pauperum_Cpg438.jpg"
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
-        "id": "casemiro",
-        "full_name": "Carlos Henrique Casimiro",
-        "display_name": "Casemiro",
-        "position": "MID",
-        "detailed_position": "CDM",
+        "id": "roger-ibanez",
+        "full_name": "Roger Ibáñez",
+        "display_name": "Roger Ibáñez",
+        "position": "DEF",
+        "detailed_position": "DEF",
         "club": {
-          "name": "Manchester United",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
+          "name": "Al-Ahli",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 5,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Casemiro_850_1575.jpg/330px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Casemiro_850_1575.jpg"
+        "photo_url": null
+      },
+      {
+        "id": "leo-pereira",
+        "full_name": "Léo Pereira",
+        "display_name": "Léo Pereira",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Flamengo",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "wesley",
+        "full_name": "Wesley",
+        "display_name": "Wesley",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Roma",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "bruno-guimaraes",
@@ -796,19 +796,49 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Brunoguimaraes.jpg/330px-Brunoguimaraes.jpg"
       },
       {
-        "id": "andre-trindade",
-        "full_name": "André Trindade",
-        "display_name": "André",
+        "id": "casemiro",
+        "full_name": "Carlos Henrique Casimiro",
+        "display_name": "Casemiro",
         "position": "MID",
         "detailed_position": "CDM",
         "club": {
-          "name": "Wolverhampton",
+          "name": "Manchester United",
           "country_iso": "gb-eng",
           "league": "Premier League"
         },
-        "shirt_number_expected": 17,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Andre_Fluminense_vs_Vila_Nova_2022.png"
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Casemiro_850_1575.jpg/330px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Casemiro_850_1575.jpg"
+      },
+      {
+        "id": "danilo-s",
+        "full_name": "Danilo S.",
+        "display_name": "Danilo S.",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": {
+          "name": "Botafogo",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "fabinho",
+        "full_name": "Fabinho",
+        "display_name": "Fabinho",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": {
+          "name": "Al-Ittihad",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "lucas-paqueta",
@@ -817,41 +847,13 @@
         "position": "MID",
         "detailed_position": "CAM",
         "club": {
-          "name": "West Ham",
+          "name": "Flamengo",
           "country_iso": "gb-eng",
           "league": "Premier League"
         },
         "shirt_number_expected": 7,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Lucas_Paquet%C3%A1_of_West_Ham.jpeg/330px-Lucas_Paquet%C3%A1_of_West_Ham.jpeg"
-      },
-      {
-        "id": "joao-gomes",
-        "full_name": "João Gomes",
-        "display_name": "João Gomes",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Wolverhampton",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 15,
-        "status": "probable"
-      },
-      {
-        "id": "ederson-jose",
-        "full_name": "Éderson José dos Santos",
-        "display_name": "Éderson",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Atalanta",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 18,
-        "status": "probable"
       },
       {
         "id": "vinicius-jr",
@@ -869,28 +871,13 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/2023_05_06_Final_de_la_Copa_del_Rey_-_52879242230_%28cropped%29.jpg/330px-2023_05_06_Final_de_la_Copa_del_Rey_-_52879242230_%28cropped%29.jpg"
       },
       {
-        "id": "rodrygo",
-        "full_name": "Rodrygo Goes",
-        "display_name": "Rodrygo",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Real Madrid",
-          "country_iso": "es",
-          "league": "La Liga"
-        },
-        "shirt_number_expected": 11,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Rodrygo_2023_%28cropped%29.jpg/330px-Rodrygo_2023_%28cropped%29.jpg"
-      },
-      {
         "id": "raphinha",
         "full_name": "Raphael Dias Belloli",
         "display_name": "Raphinha",
         "position": "FWD",
         "detailed_position": "RW",
         "club": {
-          "name": "FC Barcelona",
+          "name": "Barcelona",
           "country_iso": "es",
           "league": "La Liga"
         },
@@ -899,19 +886,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Raphael_Dias_Belloli_2023.jpg/330px-Raphael_Dias_Belloli_2023.jpg"
       },
       {
-        "id": "estevao",
-        "full_name": "Estêvão Willian",
-        "display_name": "Estêvão",
+        "id": "neymar",
+        "full_name": "Neymar da Silva Santos Júnior",
+        "display_name": "Neymar",
         "position": "FWD",
-        "detailed_position": "RW",
+        "detailed_position": "LW",
         "club": {
-          "name": "Chelsea",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
+          "name": "Santos",
+          "country_iso": "br",
+          "league": "Brasileirão"
         },
-        "shirt_number_expected": 20,
+        "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Estevao-Palmeiras-Liverpool-abr24_%28cropped%29.jpg/330px-Estevao-Palmeiras-Liverpool-abr24_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Neymar_Jr._with_Al_Hilal%2C_3_October_2023_-_03_%28cropped%29_version_2.jpg/330px-Neymar_Jr._with_Al_Hilal%2C_3_October_2023_-_03_%28cropped%29_version_2.jpg"
       },
       {
         "id": "endrick",
@@ -920,13 +907,28 @@
         "position": "FWD",
         "detailed_position": "ST",
         "club": {
-          "name": "Real Madrid",
+          "name": "Olympique de Lyon",
           "country_iso": "es",
           "league": "La Liga"
         },
         "shirt_number_expected": 9,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Endrick-Palmeiras-Liverpool-abr24.jpg/330px-Endrick-Palmeiras-Liverpool-abr24.jpg"
+      },
+      {
+        "id": "gabriel-martinelli",
+        "full_name": "Gabriel Martinelli",
+        "display_name": "Gabriel Martinelli",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": {
+          "name": "Arsenal",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "matheus-cunha",
@@ -944,48 +946,49 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Matheus_Cunha_%28cropped%29_20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_7968_%28cropped%29.jpg/330px-Matheus_Cunha_%28cropped%29_20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_7968_%28cropped%29.jpg"
       },
       {
-        "id": "joao-pedro",
-        "full_name": "João Pedro",
-        "display_name": "João Pedro",
+        "id": "rayan",
+        "full_name": "Rayan",
+        "display_name": "Rayan",
         "position": "FWD",
-        "detailed_position": "ST",
+        "detailed_position": "FWD",
         "club": {
-          "name": "Chelsea",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
+          "name": "Bournemouth",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 21,
-        "status": "probable"
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
-        "id": "neymar",
-        "full_name": "Neymar da Silva Santos Júnior",
-        "display_name": "Neymar",
+        "id": "igor-thiago",
+        "full_name": "Igor Thiago",
+        "display_name": "Igor Thiago",
         "position": "FWD",
-        "detailed_position": "LW",
+        "detailed_position": "FWD",
         "club": {
-          "name": "Santos",
-          "country_iso": "br",
-          "league": "Brasileirão"
+          "name": "Brentford",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 10,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Neymar_Jr._with_Al_Hilal%2C_3_October_2023_-_03_%28cropped%29_version_2.jpg/330px-Neymar_Jr._with_Al_Hilal%2C_3_October_2023_-_03_%28cropped%29_version_2.jpg"
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
-        "id": "richarlison",
-        "full_name": "Richarlison",
-        "display_name": "Richarlison",
+        "id": "luiz-henrique",
+        "full_name": "Luiz Henrique",
+        "display_name": "Luiz Henrique",
         "position": "FWD",
-        "detailed_position": "ST",
+        "detailed_position": "FWD",
         "club": {
-          "name": "Tottenham",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
+          "name": "Zenit",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 25,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/5b/07_07_2019_Final_da_Copa_Am%C3%A9rica_2019_%2848226557731%29_%28cropped%29.jpg"
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       }
     ],
     "starting_xi": {
@@ -1102,7 +1105,10 @@
         "champion": 7
       },
       "vs_last_3_wcs": "Russia 2018: cuartos eliminado por Bélgica 1-2. Qatar 2022: cuartos eliminado por Croacia en penales tras 1-1 (gol de Neymar en prórroga). Mundial 2026: tercer cuartos consecutivo sería repetir techo; superarlo requiere identidad nueva con Ancelotti. Lleva 24 años sin Mundial (desde 2002), la mayor sequía de un pentacampeón."
-    }
+    },
+    "squad_announced": true,
+    "squad_announced_date": "2026-05-19",
+    "squad_source": "Convocatoria oficial federación"
   },
   "history": {
     "first_appearance": 1930,

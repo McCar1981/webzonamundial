@@ -88,7 +88,7 @@
         "goals_against": 4,
         "goal_difference": 15,
         "points": 22,
-        "win_percentage": 60.0,
+        "win_percentage": 60,
         "clean_sheets": 6,
         "notes": "INVICTOS en 10 partidos. 4 empates clave (Palestina 0-0, Jordania 1-1, Omán 1-1, Iraq 0-0)."
       },
@@ -555,21 +555,6 @@
     },
     "likely_squad": [
       {
-        "id": "kim-seung-gyu",
-        "full_name": "Kim Seung-gyu",
-        "display_name": "Kim Seung-gyu",
-        "position": "GK",
-        "detailed_position": "GK",
-        "club": {
-          "name": "Al-Shabab",
-          "country_iso": "sa",
-          "league": "Saudi Pro League"
-        },
-        "shirt_number_expected": 1,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Rus-SK2017_%2822%29.jpg/330px-Rus-SK2017_%2822%29.jpg"
-      },
-      {
         "id": "jo-hyeon-woo",
         "full_name": "Jo Hyeon-woo",
         "display_name": "Jo Hyeon-woo",
@@ -596,8 +581,23 @@
           "league": "K League 1"
         },
         "shirt_number_expected": 23,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/240611_%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD_vs_%EC%A4%91%EA%B5%AD_%28%EC%86%A1%EB%B2%94%EA%B7%BC%29.jpg/330px-240611_%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD_vs_%EC%A4%91%EA%B5%AD_%28%EC%86%A1%EB%B2%94%EA%B7%BC%29.jpg"
+      },
+      {
+        "id": "kim-seung-gyu",
+        "full_name": "Kim Seung-gyu",
+        "display_name": "Kim Seung-gyu",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Al-Shabab",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Rus-SK2017_%2822%29.jpg/330px-Rus-SK2017_%2822%29.jpg"
       },
       {
         "id": "kim-moon-hwan",
@@ -615,21 +615,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/191202_K%EB%A6%AC%EA%B7%B8_%EC%8B%9C%EC%83%81%EC%8B%9D%2C_%EA%B9%80%EB%AC%B8%ED%99%98_3.jpg/330px-191202_K%EB%A6%AC%EA%B7%B8_%EC%8B%9C%EC%83%81%EC%8B%9D%2C_%EA%B9%80%EB%AC%B8%ED%99%98_3.jpg"
       },
       {
-        "id": "lee-myung-jae",
-        "full_name": "Lee Myung-jae",
-        "display_name": "Lee Myung-jae",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Jeonbuk Hyundai",
-          "country_iso": "kr",
-          "league": "K League 1"
-        },
-        "shirt_number_expected": 14,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/241110_FC_%EC%84%9C%EC%9A%B8_vs_%EC%9A%B8%EC%82%B0_%28%EC%9D%B4%EB%AA%85%EC%9E%AC%29.jpg/330px-241110_FC_%EC%84%9C%EC%9A%B8_vs_%EC%9A%B8%EC%82%B0_%28%EC%9D%B4%EB%AA%85%EC%9E%AC%29.jpg"
-      },
-      {
         "id": "kim-min-jae",
         "full_name": "Kim Min-jae",
         "display_name": "Kim Min-jae",
@@ -644,64 +629,79 @@
         "status": "fixed"
       },
       {
-        "id": "kim-young-gwon",
-        "full_name": "Kim Young-gwon",
-        "display_name": "Kim Young-gwon",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Ulsan Hyundai",
-          "country_iso": "kr",
-          "league": "K League 1"
-        },
-        "shirt_number_expected": 5,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/%28%EC%B6%94%EA%BE%B8%EB%AF%B8%29_%27%EC%9A%B8%EC%82%B0_%ED%95%A9%EB%A5%98%27_%EA%B9%80%EC%98%81%EA%B6%8C.jpg/330px-%28%EC%B6%94%EA%BE%B8%EB%AF%B8%29_%27%EC%9A%B8%EC%82%B0_%ED%95%A9%EB%A5%98%27_%EA%B9%80%EC%98%81%EA%B6%8C.jpg"
-      },
-      {
-        "id": "park-jin-seop",
-        "full_name": "Park Jin-seop",
-        "display_name": "Park Jin-seop",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Jeonbuk Hyundai",
-          "country_iso": "kr",
-          "league": "K League 1"
-        },
-        "shirt_number_expected": 15,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/250702_FC_%EC%84%9C%EC%9A%B8_vs_%EC%A0%84%EB%B6%81_%28%EB%B0%95%EC%A7%84%EC%84%AD%29.jpg/330px-250702_FC_%EC%84%9C%EC%9A%B8_vs_%EC%A0%84%EB%B6%81_%28%EB%B0%95%EC%A7%84%EC%84%AD%29.jpg"
-      },
-      {
         "id": "kim-tae-hwan",
         "full_name": "Kim Tae-hwan",
         "display_name": "Kim Tae-hwan",
         "position": "DEF",
         "detailed_position": "RB",
         "club": {
-          "name": "Ulsan Hyundai",
+          "name": "Kashima Antlers",
           "country_iso": "kr",
           "league": "K League 1"
         },
         "shirt_number_expected": 22,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/250503_FC_%EC%84%9C%EC%9D%84_vs_%EC%A0%84%EB%B6%81_%28%EA%B9%80%ED%83%9C%ED%99%98%29.jpg/330px-250503_FC_%EC%84%9C%EC%9D%84_vs_%EC%A0%84%EB%B6%81_%28%EA%B9%80%ED%83%9C%ED%99%98%29.jpg"
       },
       {
-        "id": "kim-jin-su",
-        "full_name": "Kim Jin-su",
-        "display_name": "Kim Jin-su",
+        "id": "park-jin-seob",
+        "full_name": "Park Jin-Seob",
+        "display_name": "Park Jin-Seob",
         "position": "DEF",
-        "detailed_position": "LB",
+        "detailed_position": "DEF",
         "club": {
           "name": "Jeonbuk Hyundai",
-          "country_iso": "kr",
-          "league": "K League 1"
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 3,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/240611_%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD_vs_%EC%A4%91%EA%B5%AD_%28%EA%B9%80%EC%A7%84%EC%88%98%29.jpg/330px-240611_%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD_vs_%EC%A4%91%EA%B5%AD_%28%EA%B9%80%EC%A7%84%EC%88%98%29.jpg"
+        "photo_url": null
+      },
+      {
+        "id": "seol-young-woo",
+        "full_name": "Seol Young-Woo",
+        "display_name": "Seol Young-Woo",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Estrella Roja",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "jens-castrop",
+        "full_name": "Jens Castrop",
+        "display_name": "Jens Castrop",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Borussia M'gladbach",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "lee-ki-hyuk",
+        "full_name": "Lee Ki-Hyuk",
+        "display_name": "Lee Ki-Hyuk",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Gangwon FC",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "lee-tae-seok",
@@ -710,73 +710,58 @@
         "position": "DEF",
         "detailed_position": "LB",
         "club": {
-          "name": "Daegu FC",
+          "name": "Austria Viena",
           "country_iso": "kr",
           "league": "K League 1"
         },
         "shirt_number_expected": 13,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/%EB%B0%80%EC%9B%8C%ED%82%A4_%EC%9D%B4%EB%8B%AC%EC%9D%98_%EC%84%A0%EC%88%98_5%EC%9B%94_-_%EC%9D%B4%ED%83%9C%EC%84%9D_%EC%9D%B8%ED%84%B0%EB%B7%B0_%26_%EC%A0%9C%ED%92%88_%EC%96%B8%EB%B0%95%EC%8B%B1%EA%B9%8C%EC%A7%80%21_0s.jpg/330px-%EB%B0%80%EC%9B%8C%ED%82%A4_%EC%9D%B4%EB%8B%AC%EC%9D%98_%EC%84%A0%EC%88%98_5%EC%9B%94_-_%EC%9D%B4%ED%83%9C%EC%84%9D_%EC%9D%B8%ED%84%B0%EB%B7%B0_%26_%EC%A0%9C%ED%92%88_%EC%96%B8%EB%B0%95%EC%8B%B1%EA%B9%8C%EC%A7%80%21_0s.jpg"
       },
       {
-        "id": "hwang-in-beom",
-        "full_name": "Hwang In-beom",
-        "display_name": "Hwang In-beom",
-        "position": "MID",
-        "detailed_position": "CDM",
+        "id": "lee-han-beom",
+        "full_name": "Lee Han-Beom",
+        "display_name": "Lee Han-Beom",
+        "position": "DEF",
+        "detailed_position": "DEF",
         "club": {
-          "name": "Feyenoord",
-          "country_iso": "nl",
-          "league": "Eredivisie"
+          "name": "Midtjylland",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 6,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/240611_%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD_vs_%EC%A4%91%EA%B5%AD_%28%ED%99%A9%EC%9D%B8%EB%B2%94%29.jpg/330px-240611_%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD_vs_%EC%A4%91%EA%B5%AD_%28%ED%99%A9%EC%9D%B8%EB%B2%94%29.jpg"
+        "photo_url": null
       },
       {
-        "id": "park-yong-woo",
-        "full_name": "Park Yong-woo",
-        "display_name": "Park Yong-woo",
-        "position": "MID",
-        "detailed_position": "CDM",
+        "id": "cho-yu-min",
+        "full_name": "Cho Yu-Min",
+        "display_name": "Cho Yu-Min",
+        "position": "DEF",
+        "detailed_position": "DEF",
         "club": {
-          "name": "Al-Ain",
-          "country_iso": "ae",
-          "league": "UAE Pro League"
+          "name": "Sharjah FC",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 16,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Park_Yong-woo_20251215.png/330px-Park_Yong-woo_20251215.png"
+        "photo_url": null
       },
       {
-        "id": "lee-jae-sung",
-        "full_name": "Lee Jae-sung",
-        "display_name": "Lee Jae-sung",
+        "id": "kim-jin-gyu",
+        "full_name": "Kim Jin-Gyu",
+        "display_name": "Kim Jin-Gyu",
         "position": "MID",
-        "detailed_position": "CAM",
+        "detailed_position": "MID",
         "club": {
-          "name": "Mainz 05",
-          "country_iso": "de",
-          "league": "Bundesliga"
+          "name": "Jeonbuk Hyundai",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 17,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Asian_Nations_Cup_-_Jordan_and_South_Korea_%2874%29_%28cropped%29_2.jpg"
-      },
-      {
-        "id": "lee-kang-in",
-        "full_name": "Lee Kang-in",
-        "display_name": "Lee Kang-in",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "PSG",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 18,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Lee_Kang-in_-_2022_%2852551771501%29_%28cropped%29.jpg/330px-Lee_Kang-in_-_2022_%2852551771501%29_%28cropped%29.jpg"
+        "photo_url": null
       },
       {
         "id": "bae-jun-ho",
@@ -794,34 +779,109 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/63/%EB%B0%B0%EC%A4%80%ED%98%B8vs_FC_%EC%84%9C%EC%9A%B8.jpg"
       },
       {
+        "id": "paik-seung-ho",
+        "full_name": "Paik Seung-Ho",
+        "display_name": "Paik Seung-Ho",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": {
+          "name": "Birmingham City",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
         "id": "yang-hyun-jun",
         "full_name": "Yang Hyun-jun",
         "display_name": "Yang Hyun-jun",
         "position": "MID",
         "detailed_position": "RW",
         "club": {
-          "name": "Celtic FC",
+          "name": "Celtic",
           "country_iso": "gb-sct",
           "league": "Scottish Premiership"
         },
         "shirt_number_expected": 24,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Celtic-20240722-062_%28cropped%29.jpg/330px-Celtic-20240722-062_%28cropped%29.jpg"
       },
       {
-        "id": "son-heung-min",
-        "full_name": "Son Heung-min",
-        "display_name": "Son Heung-min",
-        "position": "FWD",
-        "detailed_position": "LW",
+        "id": "eom-ji-sung",
+        "full_name": "Eom Ji-Sung",
+        "display_name": "Eom Ji-Sung",
+        "position": "MID",
+        "detailed_position": "MID",
         "club": {
-          "name": "Los Angeles FC",
-          "country_iso": "us",
-          "league": "MLS"
+          "name": "Swansea City",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 7,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/BFA_2023_-2_Heung-Min_Son_%28cropped%29.jpg/330px-BFA_2023_-2_Heung-Min_Son_%28cropped%29.jpg"
+        "photo_url": null
+      },
+      {
+        "id": "lee-kang-in",
+        "full_name": "Lee Kang-in",
+        "display_name": "Lee Kang-in",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "PSG",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Lee_Kang-in_-_2022_%2852551771501%29_%28cropped%29.jpg/330px-Lee_Kang-in_-_2022_%2852551771501%29_%28cropped%29.jpg"
+      },
+      {
+        "id": "lee-dong-gyeong",
+        "full_name": "Lee Dong-gyeong",
+        "display_name": "Lee Dong-gyeong",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Ulsan HD",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/250303_FC_%EC%84%9C%EC%9A%B8_vs_%EA%B9%80%EC%B2%9C_%28%EC%9D%B4%EB%8F%99%EA%B2%BD%29.jpg/330px-250303_FC_%EC%84%9C%EC%9A%B8_vs_%EA%B9%80%EC%B2%9C_%28%EC%9D%B4%EB%8F%99%EA%B2%BD%29.jpg"
+      },
+      {
+        "id": "lee-jae-sung",
+        "full_name": "Lee Jae-sung",
+        "display_name": "Lee Jae-sung",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Mainz 05",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Asian_Nations_Cup_-_Jordan_and_South_Korea_%2874%29_%28cropped%29_2.jpg"
+      },
+      {
+        "id": "hwang-in-beom",
+        "full_name": "Hwang In-beom",
+        "display_name": "Hwang In-beom",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Feyenoord",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/240611_%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD_vs_%EC%A4%91%EA%B5%AD_%28%ED%99%A9%EC%9D%B8%EB%B2%94%29.jpg/330px-240611_%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD_vs_%EC%A4%91%EA%B5%AD_%28%ED%99%A9%EC%9D%B8%EB%B2%94%29.jpg"
       },
       {
         "id": "hwang-hee-chan",
@@ -830,13 +890,43 @@
         "position": "FWD",
         "detailed_position": "LW",
         "club": {
-          "name": "Wolverhampton Wanderers",
+          "name": "Wolverhampton",
           "country_iso": "gb-eng",
           "league": "Premier League"
         },
         "shirt_number_expected": 11,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/240622_%ED%99%A9%ED%9D%AC%EC%B0%AC_%ED%92%8B%EB%B3%BC_%ED%8E%98%EC%8A%A4%ED%8B%B0%EB%B2%8C.jpg/330px-240622_%ED%99%A9%ED%9D%AC%EC%B0%AC_%ED%92%8B%EB%B3%BC_%ED%8E%98%EC%8A%A4%ED%8B%B0%EB%B2%8C.jpg"
+      },
+      {
+        "id": "son-heung-min",
+        "full_name": "Son Heung-min",
+        "display_name": "Son Heung-min",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "LA FC",
+          "country_iso": "us",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/BFA_2023_-2_Heung-Min_Son_%28cropped%29.jpg/330px-BFA_2023_-2_Heung-Min_Son_%28cropped%29.jpg"
+      },
+      {
+        "id": "oh-hyeon-gyu",
+        "full_name": "Oh Hyeon-gyu",
+        "display_name": "Oh Hyeon-gyu",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Beşiktaş",
+          "country_iso": "be",
+          "league": "Pro League"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/92/%EC%98%A4%ED%98%84%EA%B7%9C_2022%EB%85%84_%EC%B9%B4%ED%83%80%EB%A5%B4_%EC%9B%94%EB%93%9C%EC%BB%B5.jpg"
       },
       {
         "id": "cho-gue-sung",
@@ -852,95 +942,6 @@
         "shirt_number_expected": 9,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/191130_%EB%B6%80%EC%82%B0%EC%95%84%EC%9D%B4%ED%8C%8C%ED%81%AC_VS_FC%EC%95%88%EC%96%91_%ED%94%8C%EB%A0%88%EC%9D%B4%EC%98%A4%ED%94%84%2C_%EC%A1%B0%EA%B7%9C%EC%84%B1_2.jpg/330px-191130_%EB%B6%80%EC%82%B0%EC%95%84%EC%9D%B4%ED%8C%8C%ED%81%AC_VS_FC%EC%95%88%EC%96%91_%ED%94%8C%EB%A0%88%EC%9D%B4%EC%98%A4%ED%94%84%2C_%EC%A1%B0%EA%B7%9C%EC%84%B1_2.jpg"
-      },
-      {
-        "id": "oh-hyeon-gyu",
-        "full_name": "Oh Hyeon-gyu",
-        "display_name": "Oh Hyeon-gyu",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Genk",
-          "country_iso": "be",
-          "league": "Pro League"
-        },
-        "shirt_number_expected": 10,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/92/%EC%98%A4%ED%98%84%EA%B7%9C_2022%EB%85%84_%EC%B9%B4%ED%83%80%EB%A5%B4_%EC%9B%94%EB%93%9C%EC%BB%B5.jpg"
-      },
-      {
-        "id": "joo-min-kyu",
-        "full_name": "Joo Min-kyu",
-        "display_name": "Joo Min-kyu",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Ulsan Hyundai",
-          "country_iso": "kr",
-          "league": "K League 1"
-        },
-        "shirt_number_expected": 20,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/241110_FC_%EC%84%9C%EC%9A%B8_vs_%EC%9A%B8%EC%82%B0_%28%EC%A3%BC%EB%AF%BC%EA%B7%9C%29.jpg/330px-241110_FC_%EC%84%9C%EC%9A%B8_vs_%EC%9A%B8%EC%82%B0_%28%EC%A3%BC%EB%AF%BC%EA%B7%9C%29.jpg"
-      },
-      {
-        "id": "jeong-woo-yeong",
-        "full_name": "Jeong Woo-yeong",
-        "display_name": "Jeong Woo-yeong",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Union Berlín",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 21,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/%EC%9D%B8%EA%B0%80_%ED%97%B7%EA%B0%88%EB%A6%AC%EB%8A%94_%EC%A0%95%EC%9A%B0%EC%98%81%EC%9D%B4_%EB%B0%9D%ED%9E%88%EB%8A%94_%EC%9D%B4%EA%B0%95%EC%9D%B8%EA%B3%BC%EC%9D%98_%ED%98%B8%ED%9D%A1.jpg/330px-%EC%9D%B8%EA%B0%80_%ED%97%B7%EA%B0%88%EB%A6%AC%EB%8A%94_%EC%A0%95%EC%9A%B0%EC%98%81%EC%9D%B4_%EB%B0%9D%ED%9E%88%EB%8A%94_%EC%9D%B4%EA%B0%95%EC%9D%B8%EA%B3%BC%EC%9D%98_%ED%98%B8%ED%9D%A1.jpg"
-      },
-      {
-        "id": "uhm-won-sang",
-        "full_name": "Uhm Won-sang",
-        "display_name": "Uhm Won-sang",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Ulsan Hyundai",
-          "country_iso": "kr",
-          "league": "K League 1"
-        },
-        "shirt_number_expected": 25,
-        "status": "probable"
-      },
-      {
-        "id": "lee-dong-gyeong",
-        "full_name": "Lee Dong-gyeong",
-        "display_name": "Lee Dong-gyeong",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Mainz 05",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 8,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/250303_FC_%EC%84%9C%EC%9A%B8_vs_%EA%B9%80%EC%B2%9C_%28%EC%9D%B4%EB%8F%99%EA%B2%BD%29.jpg/330px-250303_FC_%EC%84%9C%EC%9A%B8_vs_%EA%B9%80%EC%B2%9C_%28%EC%9D%B4%EB%8F%99%EA%B2%BD%29.jpg"
-      },
-      {
-        "id": "kim-ji-soo",
-        "full_name": "Kim Ji-soo",
-        "display_name": "Kim Ji-soo",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Brentford B",
-          "country_iso": "gb-eng",
-          "league": "Premier League 2"
-        },
-        "shirt_number_expected": 26,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Kim_Ji-soo_%28born_Yang_Sung-yoon_on_October_24%2C_1972%29_from_acrofan.jpg"
       }
     ],
     "starting_xi": {
@@ -1059,7 +1060,10 @@
         "champion": 0
       },
       "vs_last_3_wcs": "Brasil 2014: fase de grupos (último). Rusia 2018: fase de grupos (con triunfo HISTÓRICO 2-0 a Alemania). Catar 2022: octavos (2-1 con Portugal en grupo, eliminada 1-4 con Brasil). Mundial 2026: 12ª participación (11 consecutivas, récord asiático)."
-    }
+    },
+    "squad_announced": true,
+    "squad_announced_date": "2026-05-19",
+    "squad_source": "Convocatoria oficial federación"
   },
   "history": {
     "first_appearance": 1954,

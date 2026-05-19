@@ -561,7 +561,7 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Callan_Elliot.jpg"
       },
       {
         "id": "tim-payne",
@@ -630,7 +630,7 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Lachlan_Bayliss.jpg"
       },
       {
         "id": "joe-bell",
@@ -644,7 +644,8 @@
           "league": "Scottish Premiership"
         },
         "shirt_number_expected": 14,
-        "status": "fixed"
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Joe_Bell_2023.jpg"
       },
       {
         "id": "alex-rufer",
@@ -744,7 +745,7 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Callum_McCowatt_playing_for_New_Zealand%2C_26_March_2023_%282%29_%28cropped%29.jpg"
       },
       {
         "id": "ben-old",
@@ -799,7 +800,7 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Ben_Waine.jpg"
       },
       {
         "id": "chris-wood",

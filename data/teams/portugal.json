@@ -528,7 +528,7 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/28/Ricardo_Velho_USMNT_v_Portugal_Mar_31_2026-9.jpg"
       },
       {
         "id": "rui-silva",
@@ -539,7 +539,7 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Rui_Silva_USMNT_v_Portugal_Mar_31_2026-14_%28cropped%29.jpg"
       },
       {
         "id": "ruben-dias",
@@ -613,7 +613,8 @@
           "league": "Ligue 1"
         },
         "shirt_number_expected": 23,
-        "status": "fixed"
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Nuno_Mendes.jpg"
       },
       {
         "id": "nelson-semedo",
@@ -654,7 +655,7 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/16/Tom%C3%A1s_Ara%C3%BAjo_USMNT_v_Portugal_Mar_31_2026-40.jpg"
       },
       {
         "id": "matheus-nunes",

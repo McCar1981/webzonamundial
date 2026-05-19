@@ -513,7 +513,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Montpellier-Strasbourg_18-08-24%2C_Robin_Risser.jpg"
       },
       {
         "id": "william-saliba",
@@ -573,7 +573,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Lens_-_Sochaux_%2823-11-2019%29_73.jpg"
       },
       {
         "id": "jules-kounde",
@@ -618,7 +618,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/18/Lucas_Digne_Everton.jpg"
       },
       {
         "id": "lucas-hernandez",
@@ -783,7 +783,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Rayan_Cherki_2019.jpg"
       },
       {
         "id": "desire-doue",
@@ -839,7 +839,7 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Jean-Philippe_Mateta_%28cropped%29.jpg"
       },
       {
         "id": "maghnes-akliouche",
@@ -850,7 +850,7 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/00/Akliouche2_asse_asm_2425.png"
       }
     ],
     "starting_xi": {

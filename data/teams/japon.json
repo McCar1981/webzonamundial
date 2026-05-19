@@ -675,7 +675,7 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Yuto_Nagatomo_in_2018.jpg"
       },
       {
         "id": "shogo-taniguchi",
@@ -686,7 +686,7 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Shogo_Taniguchi.jpg"
       },
       {
         "id": "ko-itakura",
@@ -744,7 +744,8 @@
           "league": "Bundesliga"
         },
         "shirt_number_expected": 3,
-        "status": "fixed"
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/93/Hiroki_Ito_VfB_Stuttgart.jpg"
       },
       {
         "id": "ayumu-seko",
@@ -934,7 +935,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/47/GAE_-_NEC_-_53493888105_%28Koki_Ogawa%29.jpg"
       },
       {
         "id": "daizen-maeda",

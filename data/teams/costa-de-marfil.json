@@ -600,7 +600,7 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Akpro_aja_asse_2425.png"
       },
       {
         "id": "ousmane-diomande",
@@ -686,7 +686,7 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/21/Singo_asse_asm_2425.png"
       },
       {
         "id": "seko-fofana",
@@ -697,7 +697,7 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Seko_Fofana.jpg"
       },
       {
         "id": "parfait-guiagon",
@@ -708,7 +708,7 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f1/%D7%A4%D7%90%D7%A8%D7%A4%D7%94_%D7%92%D7%95%D7%99%D7%90%D7%92%D7%95%D7%9F_-_Parfait_Guiagon.jpg"
       },
       {
         "id": "christiano-oulai",
@@ -748,7 +748,8 @@
           "league": "Ligue 1 CI"
         },
         "shirt_number_expected": 16,
-        "status": "fixed"
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Badra_Ali_Sangar%C3%A9_Equipe_de_la_Cote_d%27Ivoire_%28cropped%29.jpg"
       },
       {
         "id": "jean-michael-seri",
@@ -815,7 +816,7 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f4/FC_Liefering_gegen_Grazer_AK_%282022-04-29%29_43.jpg"
       },
       {
         "id": "yan-diomande",
@@ -881,7 +882,7 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Elye_Wahi_2022.jpg"
       }
     ],
     "starting_xi": {

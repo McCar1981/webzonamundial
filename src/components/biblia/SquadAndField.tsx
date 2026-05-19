@@ -52,12 +52,26 @@ export default function SquadAndField({ team }: { team: NationalTeam }) {
 
   if (squad.length === 0) return null;
 
+  const isOfficial = team.wc_2026?.squad_announced === true;
+  const announcedDate = team.wc_2026?.squad_announced_date;
+  const formattedDate = announcedDate
+    ? new Date(announcedDate + "T00:00:00").toLocaleDateString("es-ES", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      })
+    : null;
+
   return (
     <SectionCard id="plantilla">
       <SectionHeader
-        eyebrow="Posibles convocados"
+        eyebrow={isOfficial ? "Convocatoria definitiva" : "Posibles convocados"}
         title={`Plantilla ${team.name_es}`}
-        subtitle="Proyección de los 26 convocados al Mundial 2026."
+        subtitle={
+          isOfficial
+            ? `Lista oficial de ${squad.length} jugadores convocados al Mundial 2026${formattedDate ? ` · publicada el ${formattedDate}` : ""}.`
+            : "Proyección de los 26 convocados al Mundial 2026."
+        }
         action={
           <div
             className="inline-flex rounded-xl border p-1"
@@ -88,7 +102,9 @@ export default function SquadAndField({ team }: { team: NationalTeam }) {
           hashchange activa setView("xi") en paralelo. */}
       <span id="once" className="sr-only" aria-hidden />
 
-      {view === "squad" ? <SquadGrid squad={squad} /> : null}
+      {view === "squad" ? (
+        <SquadGrid squad={squad} isOfficial={isOfficial} />
+      ) : null}
       {view === "xi" && xi ? (
         <DigitalField xi={xi} squad={squad} teamName={team.name_es} />
       ) : null}
@@ -127,7 +143,13 @@ function ToggleButton({
 
 /* ─────── 26 convocados ─────── */
 
-function SquadGrid({ squad }: { squad: Player[] }) {
+function SquadGrid({
+  squad,
+  isOfficial = false,
+}: {
+  squad: Player[];
+  isOfficial?: boolean;
+}) {
   const [filter, setFilter] = useState<PosFilter>("ALL");
 
   const counts = useMemo(() => {
@@ -162,7 +184,11 @@ function SquadGrid({ squad }: { squad: Player[] }) {
       {/* Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {filtered.map((p) => (
-          <PlayerCard key={p.id ?? p.full_name} player={p} />
+          <PlayerCard
+            key={p.id ?? p.full_name}
+            player={p}
+            hideStatus={isOfficial}
+          />
         ))}
       </div>
 
@@ -223,7 +249,13 @@ function FilterChip({
   );
 }
 
-function PlayerCard({ player }: { player: Player }) {
+function PlayerCard({
+  player,
+  hideStatus = false,
+}: {
+  player: Player;
+  hideStatus?: boolean;
+}) {
   const status = STATUS_COLORS[player.status];
   return (
     <article
@@ -278,12 +310,14 @@ function PlayerCard({ player }: { player: Player }) {
               : ""}
           </div>
         </div>
-        <span
-          className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md flex-shrink-0"
-          style={{ background: status.bg, color: status.text }}
-        >
-          {STATUS_LABELS[player.status]}
-        </span>
+        {hideStatus ? null : (
+          <span
+            className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md flex-shrink-0"
+            style={{ background: status.bg, color: status.text }}
+          >
+            {STATUS_LABELS[player.status]}
+          </span>
+        )}
       </div>
       <div className="flex items-center gap-2 text-[11px] text-[var(--bb-text-muted)]">
         {player.club?.country_iso ? (

@@ -151,6 +151,14 @@ export interface WorldCup2026 {
   likely_squad?: Player[];
   starting_xi?: StartingXI;
   analysis?: Analysis;
+  /** Indica si la convocatoria ha sido publicada oficialmente por la
+   *  federación (vs. proyección estimada). Se setea en true tras el
+   *  cruce con la lista oficial. */
+  squad_announced?: boolean;
+  /** ISO date YYYY-MM-DD del día que la federación publicó la lista. */
+  squad_announced_date?: string;
+  /** Texto descriptivo de la fuente (p.ej. "Convocatoria oficial federación"). */
+  squad_source?: string;
 }
 
 export interface QualifyingData {

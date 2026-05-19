@@ -142,7 +142,7 @@ export const CREADORES: Creador[] = [
     colorPrimario: '#38BDF8',
     colorSecundario: '#7DD3FC',
     emoji: '',
-    plataformaPrincipal: 'YouTube',
+    plataformaPrincipal: 'Twitch',
     bio: 'Creador de contenido especializado en fichajes y mercado de futbolistas sudamericanos.',
     contenido: 'Fichajes, rumores y análisis de mercado',
     paisFlag: 'es',
@@ -150,6 +150,7 @@ export const CREADORES: Creador[] = [
     imagen: CREADORES_IMGS.elopi23,
     handle: '@elopi23',
     redes: [
+      { plataforma: 'twitch', url: 'https://twitch.tv/elopi23', usuario: 'elopi23' },
       { plataforma: 'youtube', url: 'https://youtube.com/@elopi23', usuario: '@elopi23' },
       { plataforma: 'twitter', url: 'https://x.com/elopi23', usuario: '@elopi23' },
       { plataforma: 'instagram', url: 'https://instagram.com/elopi23', usuario: '@elopi23' },

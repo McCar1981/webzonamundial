@@ -1,17 +1,18 @@
 // src/components/bracket/CelebrationOverlay.tsx
 //
-// Victory Screen — escena final del Mundial 2026.
+// Victory Screen — replica del key visual de referencia.
 //
-// FILOSOFÍA DE DIRECCIÓN DE ARTE:
-//   85% oscuro / 15% color emocional.
-//   El color del team ACENTÚA, NO domina.
-//   La atmósfera (humo, luces ambientales, depth) ES el contenido.
-//   El texto está al servicio de la escena, no al revés.
+// COMPOSICIÓN (de arriba abajo, centrada):
+//   1. Logo ZonaMundial (top-left) + eyebrow "MUNDIAL 2026 · BRACKET SELLADO" (top-right)
+//   2. Trofeo FIFA realista (hero, centrado, ocupa parte superior)
+//   3. Titular brush "TU MUNDIAL / ESTÁ COMPLETO." (Anton)
+//   4. Card "CAMPEÓN — [PAÍS]" con bandera + corona, borde dorado
+//   5. Stats card (104 PARTIDOS · N GOLES PREDICHOS · v1.0)
+//   6. CTAs: "REVISAR BRACKET" (outline) + "COMPARTIR MI MUNDIAL" (brush gold)
+//   7. Sign-off script "Tú lo predijiste. Tú eres el DT." (Mr Dafoe)
 //
-// REFERENCIAS:
-//   UEFA Champions League intros · FIFA World Cup graphics
-//   Apple TV Sports · EA Sports FC reveal trailers.
-//   NO gaming UI, NO esports, NO dribbble.
+// FONDO: estadio + confeti masivo dorado + glow del país detrás de la copa.
+// El color del team es ACENTO; el dorado/blanco domina.
 
 "use client";
 
@@ -20,6 +21,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { TEAM_BY_ID } from "@/lib/bracket/teams";
 import { buildTeamTheme } from "@/lib/bracket/team-theme";
 import type { BracketState } from "@/lib/bracket/types";
+import { anton, mrDafoe } from "./celebration-fonts";
 
 interface Props {
   state: BracketState;
@@ -31,11 +33,9 @@ interface Props {
 const STADIUM_BG_DESKTOP = "/img/bracket-celebration/stadium-celebration.webp";
 const STADIUM_BG_MOBILE =
   "/img/bracket-celebration/stadium-celebration-mobile.webp";
-const SUBTITLES = [
-  "Predijiste la historia.",
-  "104 partidos. Un solo campeón.",
-  "Tu Mundial quedó sellado.",
-];
+const TROPHY_IMG = "/img/bracket-celebration/trophy.webp";
+const ZM_LOGO =
+  "/img/zonamundial-images/imagenes/IMG-20260302-WA0016-removebg-preview.webp";
 
 export default function CelebrationOverlay({
   state,
@@ -59,11 +59,6 @@ export default function CelebrationOverlay({
     [state.picks],
   );
 
-  const subtitle = useMemo(
-    () => SUBTITLES[Math.floor(Math.random() * SUBTITLES.length)],
-    [],
-  );
-
   if (!team || !theme) return null;
 
   return (
@@ -73,173 +68,249 @@ export default function CelebrationOverlay({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           aria-modal="true"
           role="dialog"
+          className={`${anton.variable} ${mrDafoe.variable}`}
           style={{
             position: "fixed",
             inset: 0,
             zIndex: 1000,
             overflow: "auto",
-            display: "grid",
-            gridTemplateColumns: "1fr",
             background: "#04060c",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            padding: "clamp(20px, 4vw, 56px) clamp(20px, 5vw, 80px)",
           }}
         >
+          {/* ═════════ SCENE LAYERS ═════════ */}
           <SceneLayers theme={theme} />
 
-          {/* Composición asimétrica: contenido un poco a la izquierda en desktop,
-              respira con generoso espacio. */}
-          <div
+          {/* ═════════ HEADER (logo izq + eyebrow der) ═════════ */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             style={{
               position: "relative",
               zIndex: 30,
               width: "100%",
-              minHeight: "100vh",
-              padding: "clamp(20px, 4vw, 64px) clamp(20px, 5vw, 80px)",
+              maxWidth: 1280,
               display: "flex",
               alignItems: "center",
+              justifyContent: "space-between",
+              gap: 16,
+              marginBottom: "clamp(8px, 2vw, 20px)",
             }}
           >
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={{
-                hidden: {},
-                visible: { transition: { staggerChildren: 0.18 } },
-              }}
+            {/* Logo ZM */}
+            <div
               style={{
-                width: "100%",
-                maxWidth: 640,
-                marginLeft: "max(0px, calc((100vw - 1280px) / 2))",
                 display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-start",
-                textAlign: "left",
-                gap: "clamp(22px, 3vw, 30px)",
+                alignItems: "center",
+                gap: 10,
+                flexShrink: 0,
               }}
-              className="zm-celeb-content"
             >
-              {/* Eyebrow */}
-              <FadeUp>
-                <div
+              <div
+                style={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: 8,
+                  background: "linear-gradient(135deg, #FFE9A8, #C9A84C)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  boxShadow: "0 4px 14px rgba(201,168,76,0.45)",
+                  overflow: "hidden",
+                }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={ZM_LOGO}
+                  alt="ZonaMundial"
+                  width={32}
+                  height={32}
                   style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: 14,
-                    fontFamily: "JetBrains Mono, ui-monospace, monospace",
-                    fontSize: 10,
-                    letterSpacing: "0.42em",
-                    color: "rgba(255,255,255,0.65)",
-                    textTransform: "uppercase",
-                    fontWeight: 700,
+                    width: 32,
+                    height: 32,
+                    objectFit: "contain",
                   }}
-                >
-                  <Bar />
-                  <span>Mundial 2026 · Final · Bracket Sellado</span>
-                </div>
-              </FadeUp>
+                />
+              </div>
+              <span
+                style={{
+                  fontFamily:
+                    "var(--zm-font-outfit, 'Outfit', system-ui, sans-serif)",
+                  fontSize: 16,
+                  fontWeight: 800,
+                  color: "#fff",
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                zona<span style={{ fontWeight: 500, opacity: 0.85 }}>mundial</span>
+              </span>
+            </div>
 
-              {/* Title */}
-              <FadeUp delay={0.08}>
-                <h2
+            {/* Eyebrow */}
+            <div
+              style={{
+                fontFamily: "JetBrains Mono, ui-monospace, monospace",
+                fontSize: 10,
+                letterSpacing: "0.4em",
+                color: "rgba(255,235,180,0.7)",
+                fontWeight: 600,
+                textTransform: "uppercase",
+                textAlign: "right",
+                whiteSpace: "nowrap",
+              }}
+              className="zm-celeb-eyebrow"
+            >
+              {"// Mundial 2026 · Bracket Sellado"}
+            </div>
+          </motion.div>
+
+          {/* ═════════ MAIN CONTENT (centrado) ═════════ */}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.18, delayChildren: 0.4 } },
+            }}
+            style={{
+              position: "relative",
+              zIndex: 30,
+              width: "100%",
+              maxWidth: 880,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              textAlign: "center",
+              gap: "clamp(18px, 2.5vw, 28px)",
+              flex: 1,
+              justifyContent: "center",
+              paddingTop: "clamp(8px, 2vw, 16px)",
+            }}
+          >
+            {/* TROFEO HERO */}
+            <FadeUp>
+              <TrophyHero theme={theme} />
+            </FadeUp>
+
+            {/* HEADLINE BRUSH */}
+            <FadeUp delay={0.05}>
+              <h2
+                style={{
+                  margin: 0,
+                  fontFamily:
+                    "var(--zm-font-anton, 'Anton', 'Bebas Neue', sans-serif)",
+                  fontSize: "clamp(48px, 9vw, 108px)",
+                  fontWeight: 400,
+                  letterSpacing: "0.005em",
+                  lineHeight: 0.9,
+                  color: "#fff",
+                  textTransform: "uppercase",
+                  textShadow:
+                    "0 4px 40px rgba(0,0,0,0.7), 0 0 80px rgba(0,0,0,0.4)",
+                }}
+              >
+                <span
                   style={{
-                    margin: 0,
-                    fontFamily:
-                      "var(--zm-font-outfit, 'Outfit', system-ui, sans-serif)",
-                    fontSize: "clamp(44px, 8.5vw, 96px)",
-                    fontWeight: 900,
-                    letterSpacing: "-0.035em",
-                    lineHeight: 0.92,
+                    display: "block",
                     color: "#fff",
-                    textTransform: "uppercase",
-                    textShadow:
-                      "0 4px 60px rgba(0,0,0,0.8), 0 0 120px rgba(0,0,0,0.5)",
                   }}
                 >
                   Tu Mundial
-                  <br />
-                  <span
-                    style={{
-                      fontWeight: 200,
-                      fontStyle: "italic",
-                      letterSpacing: "-0.04em",
-                      color: "rgba(255,255,255,0.55)",
-                    }}
-                  >
-                    está
-                  </span>{" "}
-                  <span
-                    style={{
-                      background: `linear-gradient(165deg, #fff 0%, #fff 55%, ${theme.secondary} 100%)`,
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text",
-                    }}
-                  >
-                    completo.
-                  </span>
-                </h2>
-              </FadeUp>
-
-              {/* Subtitle */}
-              <FadeUp delay={0.18}>
-                <p
+                </span>
+                <span
                   style={{
-                    margin: 0,
-                    fontSize: "clamp(14px, 1.5vw, 17px)",
-                    color: "rgba(255,255,255,0.55)",
-                    fontWeight: 400,
-                    letterSpacing: "0.01em",
-                    lineHeight: 1.5,
-                    maxWidth: 460,
+                    display: "block",
+                    background:
+                      "linear-gradient(180deg, #FFF4D3 0%, #FFD479 35%, #C9923E 80%, #8a6420 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                    filter:
+                      "drop-shadow(0 6px 20px rgba(201,146,62,0.45)) drop-shadow(0 0 40px rgba(255,212,121,0.25))",
                   }}
                 >
-                  {subtitle}
-                </p>
-              </FadeUp>
+                  está completo.
+                </span>
+              </h2>
+            </FadeUp>
 
-              {/* Champion strip — editorial, no card */}
-              <FadeUp delay={0.28}>
-                <ChampionStrip team={team} theme={theme} />
-              </FadeUp>
+            {/* CHAMPION CARD */}
+            <FadeUp delay={0.12}>
+              <ChampionCard team={team} theme={theme} />
+            </FadeUp>
 
-              {/* Stats — typography editorial, sin card */}
-              <FadeUp delay={0.36}>
-                <Stats totalGoals={totalGoals} theme={theme} />
-              </FadeUp>
+            {/* STATS CARD */}
+            <FadeUp delay={0.2}>
+              <StatsCard totalGoals={totalGoals} />
+            </FadeUp>
 
-              {/* CTAs */}
-              <FadeUp delay={0.46}>
-                <div
-                  style={{
-                    display: "flex",
-                    gap: 14,
-                    flexWrap: "wrap",
-                    alignItems: "center",
-                    marginTop: 4,
-                  }}
-                >
-                  <PrimaryButton onClick={onShare} theme={theme}>
-                    Compartir mi Mundial
-                  </PrimaryButton>
-                  <SecondaryButton onClick={onEdit}>
-                    Revisar bracket
-                  </SecondaryButton>
-                </div>
-              </FadeUp>
-            </motion.div>
+            {/* CTAs */}
+            <FadeUp delay={0.28}>
+              <div
+                style={{
+                  display: "flex",
+                  gap: 14,
+                  flexWrap: "wrap",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "100%",
+                  maxWidth: 720,
+                }}
+              >
+                <SecondaryButton onClick={onEdit} />
+                <PrimaryButton onClick={onShare} />
+              </div>
+            </FadeUp>
 
-            {/* Trophy hero — posicionada a la derecha, asimétrica.
-                En mobile: oculta (la escena del fondo es protagonista). */}
-            <TrophyHero theme={theme} />
-          </div>
+            {/* SIGN-OFF */}
+            <FadeUp delay={0.4}>
+              <div
+                style={{
+                  display: "inline-block",
+                  padding: "10px 0 4px",
+                  fontFamily:
+                    "var(--zm-font-dafoe, 'Mr Dafoe', 'Brush Script MT', cursive)",
+                  fontSize: "clamp(20px, 2.4vw, 26px)",
+                  color: "#FFE9A8",
+                  letterSpacing: "0.01em",
+                  borderBottom: "1px solid rgba(255,212,121,0.55)",
+                  paddingBottom: 4,
+                  lineHeight: 1.2,
+                  textShadow: "0 0 18px rgba(255,212,121,0.35)",
+                }}
+              >
+                Tú lo predijiste. Tú eres el DT.
+              </div>
+            </FadeUp>
+          </motion.div>
 
-          {/* CSS responsive helper */}
+          {/* Decorative gold border frame (interior) */}
+          <div
+            aria-hidden
+            style={{
+              position: "fixed",
+              inset: "clamp(10px, 1.5vw, 22px)",
+              borderRadius: "clamp(14px, 1.5vw, 22px)",
+              border: "1px solid rgba(255,212,121,0.32)",
+              pointerEvents: "none",
+              zIndex: 25,
+              boxShadow: "inset 0 0 60px rgba(0,0,0,0.4)",
+            }}
+          />
+
           <style>{`
-            @media (max-width: 900px) {
-              .zm-celeb-content { text-align: left; max-width: 100%; }
-              .zm-celeb-trophy { display: none !important; }
+            @media (max-width: 640px) {
+              .zm-celeb-eyebrow {
+                font-size: 8px !important;
+                letter-spacing: 0.28em !important;
+              }
             }
           `}</style>
         </motion.div>
@@ -249,7 +320,7 @@ export default function CelebrationOverlay({
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   SCENE — 13 capas atmosféricas. Mayoría oscuras.
+   SCENE LAYERS — fondo atmosférico (sin dominar)
    ═══════════════════════════════════════════════════════════════════ */
 
 function SceneLayers({
@@ -259,7 +330,7 @@ function SceneLayers({
 }) {
   return (
     <>
-      {/* z=1 STADIUM — más oscuro, más contraste, con ligero zoom */}
+      {/* z=1 STADIUM */}
       <picture>
         <source
           media="(max-width: 720px) and (orientation: portrait)"
@@ -279,14 +350,14 @@ function SceneLayers({
             height: "100%",
             objectFit: "cover",
             objectPosition: "center 35%",
-            filter: "saturate(0.55) brightness(0.32) contrast(1.15)",
+            filter: "saturate(0.6) brightness(0.35) contrast(1.12)",
             zIndex: 1,
-            transform: "scale(1.08)",
+            transform: "scale(1.06)",
           }}
         />
       </picture>
 
-      {/* z=2 atmospheric blue-black wash — domina la escena (85% dark) */}
+      {/* z=2 dark wash with warm gold center (no team color dominante) */}
       <div
         aria-hidden
         style={{
@@ -294,74 +365,52 @@ function SceneLayers({
           inset: 0,
           zIndex: 2,
           background: `
-            radial-gradient(ellipse 90% 70% at 50% 0%, rgba(8,16,32,0.55) 0%, transparent 60%),
-            radial-gradient(ellipse 100% 60% at 50% 100%, rgba(0,0,0,0.92) 0%, transparent 65%),
-            linear-gradient(180deg, rgba(4,6,12,0.6) 0%, rgba(4,6,12,0.35) 40%, rgba(4,6,12,0.7) 80%, rgba(0,0,0,1) 100%)
+            radial-gradient(ellipse 70% 60% at 50% 30%, rgba(180,130,40,0.18) 0%, transparent 65%),
+            radial-gradient(ellipse 100% 60% at 50% 100%, rgba(0,0,0,0.9) 0%, transparent 70%),
+            linear-gradient(180deg, rgba(4,6,12,0.45) 0%, rgba(4,6,12,0.3) 35%, rgba(4,6,12,0.6) 75%, rgba(0,0,0,1) 100%)
           `,
         }}
       />
 
-      {/* z=3 stadium volumetric fog — niebla densa en la base, simula crowd haze */}
-      <CrowdFog />
-
-      {/* z=4 light beams — focos volumétricos descendentes desde el roof */}
-      <LightBeams />
-
-      {/* z=5 atmospheric depth fog (medio) — añade profundidad sin color del team */}
-      <AtmosphericFog />
-
-      {/* z=6 team color ACENTO — un solo glow muy localizado y sutil arriba-derecha */}
+      {/* z=3 team color accent (sutil, detrás del trofeo) */}
       <motion.div
         aria-hidden
-        initial={{ opacity: 0 }}
         animate={{ opacity: [0.4, 0.7, 0.4] }}
-        transition={{ duration: 6, ease: "easeInOut", repeat: Infinity }}
+        transition={{ duration: 5.5, ease: "easeInOut", repeat: Infinity }}
         style={{
           position: "fixed",
-          top: "12%",
-          right: "8%",
-          width: "min(700px, 65vw)",
-          height: "min(700px, 65vw)",
-          zIndex: 6,
+          top: "18%",
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: "min(700px, 70vw)",
+          height: "min(700px, 70vw)",
+          zIndex: 3,
           background: `radial-gradient(circle, ${theme.glowSoft} 0%, transparent 55%)`,
-          filter: "blur(40px)",
+          filter: "blur(45px)",
           mixBlendMode: "screen",
           pointerEvents: "none",
         }}
       />
 
-      {/* z=7 depth particles back — distantes, lentas */}
-      <DepthParticles count={22} layer="back" />
+      {/* z=4 light beams */}
+      <LightBeams />
 
-      {/* z=8 confetti — MÁS sutil, menos cantidad, blanco/dorado + acento team */}
-      <ConfettiLayer
-        colors={[
-          "rgba(255,255,255,0.85)",
-          "#FFE9A8",
-          theme.primary,
-        ]}
-      />
+      {/* z=5 confetti dorado masivo */}
+      <ConfettiLayer />
 
-      {/* z=9 depth particles front — bokeh blur, sensación de cámara */}
-      <DepthParticles count={11} layer="front" />
-
-      {/* z=10 flash bursts — fotógrafos del estadio (sutil, rare) */}
-      <FlashBursts />
-
-      {/* z=11 noise/film grain */}
+      {/* z=6 noise grain */}
       <NoiseTexture />
 
-      {/* z=12 cinematic letterbox vignette */}
+      {/* z=7 cinematic vignette */}
       <div
         aria-hidden
         style={{
           position: "fixed",
           inset: 0,
-          zIndex: 12,
+          zIndex: 7,
           pointerEvents: "none",
           background: `
-            radial-gradient(ellipse 110% 100% at 50% 50%, transparent 45%, rgba(0,0,0,0.5) 88%, rgba(0,0,0,0.95) 100%),
-            linear-gradient(0deg, rgba(0,0,0,0.6) 0%, transparent 12%, transparent 88%, rgba(0,0,0,0.45) 100%)
+            radial-gradient(ellipse 110% 110% at 50% 50%, transparent 50%, rgba(0,0,0,0.55) 92%, rgba(0,0,0,0.95) 100%)
           `,
         }}
       />
@@ -369,80 +418,12 @@ function SceneLayers({
   );
 }
 
-/* ═══════════════════════════════════════════════════════════════════
-   CROWD FOG — niebla densa de público, base del frame
-   ═══════════════════════════════════════════════════════════════════ */
-
-function CrowdFog() {
-  const wisps = useMemo(
-    () =>
-      Array.from({ length: 6 }, (_, i) => ({
-        id: i,
-        x: 5 + i * 18 + Math.random() * 8,
-        size: 380 + Math.random() * 200,
-        delay: Math.random() * 5,
-        duration: 18 + Math.random() * 8,
-        drift: (Math.random() - 0.5) * 80,
-      })),
-    [],
-  );
-  return (
-    <div
-      aria-hidden
-      style={{
-        position: "fixed",
-        bottom: "-15%",
-        left: 0,
-        right: 0,
-        height: "70%",
-        zIndex: 3,
-        pointerEvents: "none",
-        overflow: "hidden",
-      }}
-    >
-      {wisps.map((w) => (
-        <motion.div
-          key={w.id}
-          animate={{
-            x: [0, w.drift, 0],
-            y: [0, -20, 0],
-            opacity: [0, 0.22, 0],
-          }}
-          transition={{
-            duration: w.duration,
-            delay: w.delay,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          style={{
-            position: "absolute",
-            left: `${w.x}%`,
-            bottom: "10%",
-            width: w.size,
-            height: w.size * 0.7,
-            borderRadius: "50%",
-            background:
-              "radial-gradient(ellipse, rgba(140,160,200,0.18) 0%, transparent 65%)",
-            filter: "blur(50px)",
-            mixBlendMode: "screen",
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════════════
-   LIGHT BEAMS — focos del estadio (BLANCOS, no del color del team)
-   ═══════════════════════════════════════════════════════════════════ */
-
 function LightBeams() {
   const beams = useMemo(
     () => [
-      { x: 18, width: 320, angle: -18, delay: 0, duration: 9, intensity: 0.18 },
-      { x: 42, width: 380, angle: -6, delay: 1.4, duration: 11, intensity: 0.22 },
-      { x: 68, width: 360, angle: 8, delay: 0.6, duration: 10, intensity: 0.2 },
-      { x: 88, width: 300, angle: 22, delay: 2, duration: 9.5, intensity: 0.16 },
+      { x: 22, width: 320, angle: -18, delay: 0, duration: 9, intensity: 0.22 },
+      { x: 50, width: 400, angle: 0, delay: 1, duration: 10, intensity: 0.3 },
+      { x: 78, width: 320, angle: 18, delay: 0.5, duration: 9.5, intensity: 0.22 },
     ],
     [],
   );
@@ -462,7 +443,7 @@ function LightBeams() {
         <motion.div
           key={i}
           animate={{
-            opacity: [0, b.intensity, b.intensity * 0.5, b.intensity],
+            opacity: [b.intensity * 0.5, b.intensity, b.intensity * 0.5],
           }}
           transition={{
             duration: b.duration,
@@ -472,15 +453,15 @@ function LightBeams() {
           }}
           style={{
             position: "absolute",
-            top: "-20%",
+            top: "-15%",
             left: `${b.x}%`,
             width: b.width,
-            height: "140%",
+            height: "130%",
             transformOrigin: "top center",
             transform: `translateX(-50%) rotate(${b.angle}deg)`,
             background:
-              "linear-gradient(180deg, rgba(255,240,210,0.65) 0%, rgba(255,235,200,0.2) 30%, transparent 75%)",
-            filter: "blur(36px)",
+              "linear-gradient(180deg, rgba(255,240,210,0.6) 0%, rgba(255,225,170,0.2) 35%, transparent 75%)",
+            filter: "blur(34px)",
           }}
         />
       ))}
@@ -489,201 +470,7 @@ function LightBeams() {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   ATMOSPHERIC FOG — niebla mid-depth
-   ═══════════════════════════════════════════════════════════════════ */
-
-function AtmosphericFog() {
-  const blobs = useMemo(
-    () =>
-      Array.from({ length: 4 }, (_, i) => ({
-        id: i,
-        x: 15 + Math.random() * 70,
-        y: 25 + Math.random() * 50,
-        size: 400 + Math.random() * 200,
-        delay: Math.random() * 6,
-        duration: 22 + Math.random() * 10,
-        drift: (Math.random() - 0.5) * 60,
-      })),
-    [],
-  );
-  return (
-    <div
-      aria-hidden
-      style={{
-        position: "fixed",
-        inset: 0,
-        zIndex: 5,
-        pointerEvents: "none",
-        overflow: "hidden",
-      }}
-    >
-      {blobs.map((b) => (
-        <motion.div
-          key={b.id}
-          animate={{
-            x: [0, b.drift, 0],
-            y: [0, -40, 0],
-            opacity: [0, 0.08, 0],
-          }}
-          transition={{
-            duration: b.duration,
-            delay: b.delay,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          style={{
-            position: "absolute",
-            left: `${b.x}vw`,
-            top: `${b.y}vh`,
-            width: b.size,
-            height: b.size,
-            borderRadius: "50%",
-            background:
-              "radial-gradient(circle, rgba(180,200,240,0.4) 0%, transparent 60%)",
-            filter: "blur(70px)",
-            mixBlendMode: "screen",
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════════════
-   DEPTH PARTICLES — z-depth real
-   ═══════════════════════════════════════════════════════════════════ */
-
-function DepthParticles({
-  count,
-  layer,
-}: {
-  count: number;
-  layer: "back" | "front";
-}) {
-  const particles = useMemo(
-    () =>
-      Array.from({ length: count }, (_, i) => ({
-        id: i,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: layer === "back" ? 1.8 + Math.random() * 3 : 5 + Math.random() * 10,
-        delay: Math.random() * 8,
-        duration:
-          layer === "back" ? 14 + Math.random() * 10 : 9 + Math.random() * 7,
-        drift: (Math.random() - 0.5) * 30,
-      })),
-    [count, layer],
-  );
-
-  const blur = layer === "back" ? 0.5 : 5;
-  const opacityMax = layer === "back" ? 0.6 : 0.4;
-  const zIndex = layer === "back" ? 7 : 9;
-
-  return (
-    <div
-      aria-hidden
-      style={{
-        position: "fixed",
-        inset: 0,
-        zIndex,
-        pointerEvents: "none",
-        overflow: "hidden",
-      }}
-    >
-      {particles.map((p) => (
-        <motion.div
-          key={p.id}
-          initial={{ y: `${p.y}vh`, x: `${p.x}vw`, opacity: 0 }}
-          animate={{
-            y: [`${p.y}vh`, `${p.y - 30}vh`, `${p.y - 60}vh`],
-            x: [`${p.x}vw`, `${p.x + p.drift / 4}vw`, `${p.x + p.drift / 2}vw`],
-            opacity: [0, opacityMax, 0],
-          }}
-          transition={{
-            duration: p.duration,
-            delay: p.delay,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          style={{
-            position: "absolute",
-            width: p.size,
-            height: p.size,
-            borderRadius: "50%",
-            background:
-              layer === "back"
-                ? "rgba(255,240,210,0.9)"
-                : "radial-gradient(circle, rgba(255,240,210,0.5) 0%, transparent 70%)",
-            filter: `blur(${blur}px)`,
-            boxShadow:
-              layer === "back"
-                ? `0 0 ${p.size * 4}px rgba(255,235,200,0.45)`
-                : "none",
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════════════
-   FLASH BURSTS — fotógrafos del estadio (sutiles, raros)
-   ═══════════════════════════════════════════════════════════════════ */
-
-function FlashBursts() {
-  const flashes = useMemo(
-    () =>
-      Array.from({ length: 8 }, (_, i) => ({
-        id: i,
-        x: 5 + Math.random() * 90,
-        y: 35 + Math.random() * 30,
-        delay: i * 3.5 + Math.random() * 5,
-      })),
-    [],
-  );
-  return (
-    <div
-      aria-hidden
-      style={{
-        position: "fixed",
-        inset: 0,
-        zIndex: 8,
-        pointerEvents: "none",
-        overflow: "hidden",
-        mixBlendMode: "screen",
-      }}
-    >
-      {flashes.map((f) => (
-        <motion.div
-          key={f.id}
-          animate={{ opacity: [0, 0.9, 0], scale: [0.5, 1.2, 0.5] }}
-          transition={{
-            duration: 0.4,
-            delay: f.delay,
-            repeat: Infinity,
-            repeatDelay: 16 + Math.random() * 12,
-            ease: "easeOut",
-          }}
-          style={{
-            position: "absolute",
-            left: `${f.x}vw`,
-            top: `${f.y}vh`,
-            width: 14,
-            height: 14,
-            borderRadius: "50%",
-            background:
-              "radial-gradient(circle, #fff 0%, rgba(255,255,255,0.6) 30%, transparent 70%)",
-            filter: "blur(2px)",
-            boxShadow: "0 0 28px rgba(255,255,255,0.8)",
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════════════
-   CONFETTI — más sutil, mayoría blanco/dorado, acento del team
+   CONFETTI — dorado dominante (matching la referencia)
    ═══════════════════════════════════════════════════════════════════ */
 
 interface Piece {
@@ -698,25 +485,35 @@ interface Piece {
   drift: number;
 }
 
-function ConfettiLayer({ colors }: { colors: readonly string[] }) {
+function ConfettiLayer() {
   const pieces = useMemo<Piece[]>(() => {
+    // Paleta dorada: variaciones de gold + acentos blancos
+    const colors = [
+      "#FFE9A8",
+      "#FFD479",
+      "#C9A84C",
+      "#FFF4D3",
+      "#E8C76B",
+      "rgba(255,255,255,0.92)",
+      "#A87E2A",
+      "#FFD479",
+    ];
     const arr: Piece[] = [];
-    // 28 piezas — menos cantidad, mejor sensación cinematográfica
-    for (let i = 0; i < 28; i++) {
+    for (let i = 0; i < 56; i++) {
       arr.push({
         id: i,
         x: Math.random() * 100,
-        delay: Math.random() * 6,
-        duration: 7 + Math.random() * 6,
+        delay: Math.random() * 7,
+        duration: 6 + Math.random() * 6,
         rotate: Math.random() * 360,
-        size: 4 + Math.random() * 7,
+        size: 5 + Math.random() * 10,
         color: colors[i % colors.length],
         shape: (["rect", "circle"] as const)[i % 2],
-        drift: (Math.random() - 0.5) * 30,
+        drift: (Math.random() - 0.5) * 35,
       });
     }
     return arr;
-  }, [colors]);
+  }, []);
 
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -728,7 +525,7 @@ function ConfettiLayer({ colors }: { colors: readonly string[] }) {
       style={{
         position: "fixed",
         inset: 0,
-        zIndex: 8,
+        zIndex: 5,
         pointerEvents: "none",
         overflow: "hidden",
       }}
@@ -740,8 +537,8 @@ function ConfettiLayer({ colors }: { colors: readonly string[] }) {
           animate={{
             y: "115vh",
             x: `${p.x + p.drift}vw`,
-            rotate: p.rotate + 540,
-            opacity: [0, 0.85, 0.85, 0],
+            rotate: p.rotate + 720,
+            opacity: [0, 1, 1, 0],
           }}
           transition={{
             duration: p.duration,
@@ -750,7 +547,7 @@ function ConfettiLayer({ colors }: { colors: readonly string[] }) {
             ease: "linear",
             opacity: {
               duration: p.duration,
-              times: [0, 0.08, 0.85, 1],
+              times: [0, 0.05, 0.85, 1],
               repeat: Infinity,
             },
           }}
@@ -759,8 +556,8 @@ function ConfettiLayer({ colors }: { colors: readonly string[] }) {
             width: p.size,
             height: p.shape === "rect" ? p.size * 0.4 : p.size,
             background: p.color,
-            borderRadius: p.shape === "circle" ? "50%" : 1,
-            boxShadow: `0 0 8px ${p.color}`,
+            borderRadius: p.shape === "circle" ? "50%" : 1.5,
+            boxShadow: `0 0 10px ${p.color}, 0 0 4px ${p.color}`,
           }}
         />
       ))}
@@ -769,12 +566,12 @@ function ConfettiLayer({ colors }: { colors: readonly string[] }) {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   NOISE / FILM GRAIN
+   NOISE
    ═══════════════════════════════════════════════════════════════════ */
 
 function NoiseTexture() {
   const noiseDataUri = useMemo(() => {
-    const svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.4 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>`;
+    const svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.35 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>`;
     return `data:image/svg+xml;utf8,${svg}`;
   }, []);
 
@@ -784,11 +581,11 @@ function NoiseTexture() {
       style={{
         position: "fixed",
         inset: 0,
-        zIndex: 11,
+        zIndex: 6,
         pointerEvents: "none",
         backgroundImage: `url("${noiseDataUri}")`,
         backgroundSize: "180px 180px",
-        opacity: 0.22,
+        opacity: 0.18,
         mixBlendMode: "overlay",
       }}
     />
@@ -796,7 +593,7 @@ function NoiseTexture() {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   STAGGER REVEAL HELPER
+   STAGGER REVEAL
    ═══════════════════════════════════════════════════════════════════ */
 
 function FadeUp({
@@ -809,13 +606,13 @@ function FadeUp({
   return (
     <motion.div
       variants={{
-        hidden: { opacity: 0, y: 36, filter: "blur(14px)" },
+        hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
         visible: {
           opacity: 1,
           y: 0,
           filter: "blur(0px)",
           transition: {
-            duration: 1.0,
+            duration: 0.95,
             ease: [0.16, 1, 0.3, 1],
             delay,
           },
@@ -827,24 +624,8 @@ function FadeUp({
   );
 }
 
-function Bar() {
-  return (
-    <span
-      aria-hidden
-      style={{
-        display: "inline-block",
-        width: 42,
-        height: 1,
-        background:
-          "linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)",
-      }}
-    />
-  );
-}
-
 /* ═══════════════════════════════════════════════════════════════════
-   TROPHY HERO — copa metálica cinematográfica
-   Posicionada a la derecha (composición asimétrica)
+   TROPHY HERO — imagen PNG real, centrada
    ═══════════════════════════════════════════════════════════════════ */
 
 function TrophyHero({
@@ -853,41 +634,43 @@ function TrophyHero({
   theme: ReturnType<typeof buildTeamTheme>;
 }) {
   return (
-    <motion.div
-      className="zm-celeb-trophy"
-      initial={{ opacity: 0, scale: 0.9, y: 30 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+    <div
       style={{
-        position: "absolute",
-        right: "min(8vw, 110px)",
-        top: "50%",
-        transform: "translateY(-50%)",
-        zIndex: 25,
-        pointerEvents: "none",
-        width: "min(440px, 38vw)",
-        height: "min(440px, 38vw)",
+        position: "relative",
+        width: "min(360px, 56vw)",
+        height: "min(360px, 56vw)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
       }}
     >
-      {/* Ambient bloom enorme detrás (cálido neutro, no del team) */}
+      {/* Bloom dorado breathing */}
       <motion.div
-        animate={{ opacity: [0.55, 0.85, 0.55], scale: [0.95, 1.1, 0.95] }}
-        transition={{ duration: 6, ease: "easeInOut", repeat: Infinity }}
+        animate={{
+          opacity: [0.55, 0.9, 0.55],
+          scale: [0.95, 1.1, 0.95],
+        }}
+        transition={{ duration: 5, ease: "easeInOut", repeat: Infinity }}
         aria-hidden
         style={{
           position: "absolute",
-          inset: "-30%",
+          inset: "-25%",
           background:
-            "radial-gradient(circle at center, rgba(255,225,170,0.4) 0%, rgba(255,200,140,0.18) 35%, transparent 65%)",
+            "radial-gradient(circle at 50% 45%, rgba(255,228,166,0.45) 0%, rgba(201,168,76,0.2) 35%, transparent 65%)",
           filter: "blur(40px)",
           mixBlendMode: "screen",
         }}
       />
 
-      {/* Subtle team accent ring (15% color) */}
+      {/* Team accent halo (sutil) */}
       <motion.div
-        animate={{ opacity: [0.3, 0.55, 0.3] }}
-        transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, delay: 1 }}
+        animate={{ opacity: [0.25, 0.5, 0.25] }}
+        transition={{
+          duration: 6,
+          ease: "easeInOut",
+          repeat: Infinity,
+          delay: 1.2,
+        }}
         aria-hidden
         style={{
           position: "absolute",
@@ -899,189 +682,37 @@ function TrophyHero({
         }}
       />
 
-      {/* Floating motion */}
-      <motion.div
-        animate={{ y: [0, -10, 0] }}
+      {/* Trophy float */}
+      <motion.img
+        src={TROPHY_IMG}
+        alt="Trofeo Mundial 2026"
+        width={400}
+        height={600}
+        decoding="async"
+        loading="eager"
+        animate={{ y: [0, -8, 0] }}
         transition={{ duration: 6, ease: "easeInOut", repeat: Infinity }}
         style={{
-          position: "absolute",
-          inset: 0,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          position: "relative",
+          maxWidth: "100%",
+          maxHeight: "100%",
+          width: "auto",
+          height: "100%",
+          objectFit: "contain",
+          filter:
+            "drop-shadow(0 30px 60px rgba(0,0,0,0.7)) drop-shadow(0 0 40px rgba(255,210,140,0.35)) drop-shadow(0 0 80px rgba(255,210,140,0.2))",
+          zIndex: 1,
         }}
-      >
-        <CinematicTrophy />
-      </motion.div>
-    </motion.div>
-  );
-}
-
-/* Copa metálica con múltiples capas — silueta FIFA-esque */
-function CinematicTrophy() {
-  return (
-    <svg
-      width="100%"
-      height="100%"
-      viewBox="0 0 200 280"
-      fill="none"
-      style={{
-        filter:
-          "drop-shadow(0 30px 60px rgba(0,0,0,0.75)) drop-shadow(0 0 40px rgba(255,210,140,0.35))",
-      }}
-      aria-hidden
-    >
-      <defs>
-        {/* Gold body gradient — múltiples stops para parecer metálico */}
-        <linearGradient id="cup-body" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#fff4d3" />
-          <stop offset="12%" stopColor="#FFE9A8" />
-          <stop offset="28%" stopColor="#D4A84C" />
-          <stop offset="48%" stopColor="#8a6420" />
-          <stop offset="62%" stopColor="#C9923E" />
-          <stop offset="78%" stopColor="#FFD479" />
-          <stop offset="100%" stopColor="#8a6420" />
-        </linearGradient>
-
-        {/* Edge rim highlight */}
-        <linearGradient id="cup-rim" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#704818" />
-          <stop offset="35%" stopColor="#fff4d3" />
-          <stop offset="55%" stopColor="#fff" />
-          <stop offset="75%" stopColor="#FFD479" />
-          <stop offset="100%" stopColor="#5a3812" />
-        </linearGradient>
-
-        {/* Specular reflection — left side bright */}
-        <linearGradient id="cup-spec" x1="0.2" y1="0" x2="0.5" y2="1">
-          <stop offset="0%" stopColor="#fff" stopOpacity="0.8" />
-          <stop offset="40%" stopColor="#fff" stopOpacity="0.25" />
-          <stop offset="100%" stopColor="#fff" stopOpacity="0" />
-        </linearGradient>
-
-        {/* Inner shadow gradient — adds depth */}
-        <linearGradient id="cup-shadow" x1="0.5" y1="0" x2="0.5" y2="1">
-          <stop offset="0%" stopColor="#000" stopOpacity="0.3" />
-          <stop offset="60%" stopColor="#000" stopOpacity="0" />
-          <stop offset="100%" stopColor="#000" stopOpacity="0.4" />
-        </linearGradient>
-
-        {/* Base gold — más oscuro */}
-        <linearGradient id="cup-base" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#FFD479" />
-          <stop offset="40%" stopColor="#a07520" />
-          <stop offset="100%" stopColor="#3d2810" />
-        </linearGradient>
-      </defs>
-
-      {/* Cup top globe — silueta FIFA-style ondulada */}
-      <path
-        d="M 60 60
-           C 60 75, 65 88, 78 96
-           L 78 130
-           C 78 142, 86 150, 100 150
-           C 114 150, 122 142, 122 130
-           L 122 96
-           C 135 88, 140 75, 140 60
-           C 140 48, 135 40, 122 38
-           L 78 38
-           C 65 40, 60 48, 60 60 Z"
-        fill="url(#cup-body)"
-        stroke="#3d2810"
-        strokeWidth="0.8"
       />
-
-      {/* Globe specular highlight (left side) */}
-      <path
-        d="M 64 56
-           C 64 72, 70 84, 80 92
-           L 80 95
-           C 73 86, 68 74, 68 60
-           C 68 53, 70 47, 76 44
-           Z"
-        fill="url(#cup-spec)"
-      />
-
-      {/* Inner shadow contour */}
-      <path
-        d="M 78 96 L 78 130 C 78 142, 86 150, 100 150 C 114 150, 122 142, 122 130 L 122 96 Z"
-        fill="url(#cup-shadow)"
-        opacity="0.5"
-      />
-
-      {/* Rim band at the top */}
-      <ellipse cx="100" cy="38" rx="22" ry="3.5" fill="url(#cup-rim)" />
-
-      {/* Decorative band mid-cup */}
-      <path
-        d="M 78 110 Q 100 116, 122 110 L 122 116 Q 100 122, 78 116 Z"
-        fill="#5a3812"
-        opacity="0.55"
-      />
-
-      {/* Stem */}
-      <path
-        d="M 92 150
-           L 92 178
-           Q 92 184, 100 184
-           Q 108 184, 108 178
-           L 108 150 Z"
-        fill="url(#cup-body)"
-      />
-      <rect x="93" y="152" width="3" height="30" fill="url(#cup-spec)" opacity="0.55" />
-
-      {/* Base — multiple tiers like real FIFA trophy */}
-      {/* Upper plate */}
-      <path
-        d="M 75 184 L 125 184 L 130 196 L 70 196 Z"
-        fill="url(#cup-base)"
-      />
-      {/* Plate top highlight */}
-      <path d="M 78 184 L 122 184 L 122 187 L 78 187 Z" fill="#FFE9A8" opacity="0.6" />
-
-      {/* Middle ring */}
-      <rect x="65" y="196" width="70" height="6" fill="#2a1a08" />
-      <rect x="65" y="196" width="70" height="1.5" fill="#FFD479" opacity="0.7" />
-
-      {/* Lower plate (wider) */}
-      <path
-        d="M 58 202 L 142 202 L 148 218 L 52 218 Z"
-        fill="url(#cup-base)"
-      />
-      {/* Bottom plate highlight */}
-      <path
-        d="M 60 202 L 140 202 L 140 206 L 60 206 Z"
-        fill="#FFE9A8"
-        opacity="0.55"
-      />
-
-      {/* Engraving line decorative */}
-      <line
-        x1="68"
-        y1="210"
-        x2="132"
-        y2="210"
-        stroke="#2a1a08"
-        strokeWidth="0.8"
-        opacity="0.7"
-      />
-
-      {/* Base shadow */}
-      <ellipse cx="100" cy="222" rx="55" ry="4" fill="#000" opacity="0.55" />
-
-      {/* Final tiny specular flashes — adds CGI feel */}
-      <circle cx="83" cy="48" r="2.5" fill="#fff" opacity="0.7" />
-      <circle cx="78" cy="56" r="1.2" fill="#fff" opacity="0.4" />
-      <circle cx="100" cy="187" r="1.5" fill="#fff" opacity="0.6" />
-    </svg>
+    </div>
   );
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   CHAMPION STRIP — editorial, sin card
+   CHAMPION CARD — borde dorado, bandera, corona
    ═══════════════════════════════════════════════════════════════════ */
 
-function ChampionStrip({
+function ChampionCard({
   team,
   theme,
 }: {
@@ -1091,201 +722,294 @@ function ChampionStrip({
   return (
     <div
       style={{
+        width: "100%",
+        maxWidth: 680,
+        padding: "20px 28px",
+        background:
+          "linear-gradient(180deg, rgba(10,12,20,0.85) 0%, rgba(8,10,16,0.75) 100%)",
+        border: "1px solid rgba(255,212,121,0.5)",
+        borderRadius: 16,
+        boxShadow: `
+          0 24px 50px rgba(0,0,0,0.55),
+          inset 0 1px 0 rgba(255,235,180,0.18),
+          0 0 60px rgba(255,212,121,0.12),
+          0 0 40px ${theme.glowFaint}
+        `,
         display: "flex",
-        alignItems: "center",
-        gap: 18,
-        paddingTop: 6,
-        paddingBottom: 6,
+        flexDirection: "column",
+        gap: 8,
+        position: "relative",
       }}
     >
-      {/* Vertical accent line en color del team — 15% color, MUY tight */}
-      <span
-        aria-hidden
-        style={{
-          width: 3,
-          alignSelf: "stretch",
-          background: `linear-gradient(180deg, transparent, ${theme.primary}, transparent)`,
-          boxShadow: `0 0 12px ${theme.glow}`,
-          borderRadius: 2,
-        }}
-      />
-
-      {/* Flag — pequeña, integrada */}
+      {/* Top label */}
       <div
         style={{
-          width: 52,
-          height: 36,
-          borderRadius: 3,
-          overflow: "hidden",
-          flexShrink: 0,
-          boxShadow: `
-            0 6px 18px rgba(0,0,0,0.6),
-            inset 0 0 0 1px rgba(255,255,255,0.12)
-          `,
+          fontFamily: "JetBrains Mono, ui-monospace, monospace",
+          fontSize: 11,
+          letterSpacing: "0.4em",
+          color: "#FFE9A8",
+          fontWeight: 700,
+          textTransform: "uppercase",
+          textAlign: "center",
         }}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={`https://flagcdn.com/${team.iso}.svg`}
-          alt={team.name}
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
-        />
+        Campeón
       </div>
 
+      {/* Flag + name + crown row */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 20,
+          flexWrap: "wrap",
+        }}
+      >
+        {/* Flag */}
+        <div
+          style={{
+            width: 60,
+            height: 42,
+            borderRadius: 4,
+            overflow: "hidden",
+            flexShrink: 0,
+            boxShadow: `
+              0 6px 18px rgba(0,0,0,0.55),
+              inset 0 0 0 1px rgba(255,255,255,0.15)
+            `,
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`https://flagcdn.com/${team.iso}.svg`}
+            alt={team.name}
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
+        </div>
+
+        {/* Name */}
+        <h3
+          style={{
+            margin: 0,
+            fontFamily:
+              "var(--zm-font-anton, 'Anton', sans-serif)",
+            fontSize: "clamp(32px, 5vw, 48px)",
+            fontWeight: 400,
+            letterSpacing: "0.02em",
+            color: "#fff",
+            textTransform: "uppercase",
+            lineHeight: 1,
+          }}
+        >
+          {team.name}
+        </h3>
+
+        {/* Crown */}
+        <CrownIcon />
+      </div>
+    </div>
+  );
+}
+
+function CrownIcon() {
+  return (
+    <svg
+      width="42"
+      height="34"
+      viewBox="0 0 42 34"
+      fill="none"
+      style={{
+        flexShrink: 0,
+        filter: "drop-shadow(0 0 10px rgba(255,212,121,0.55))",
+      }}
+      aria-hidden
+    >
+      <defs>
+        <linearGradient id="crown-grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#FFE9A8" />
+          <stop offset="50%" stopColor="#FFD479" />
+          <stop offset="100%" stopColor="#C9923E" />
+        </linearGradient>
+      </defs>
+      <path
+        d="M2 10 L9 24 L33 24 L40 10 L31 16 L21 4 L11 16 Z"
+        fill="url(#crown-grad)"
+        stroke="#A87E2A"
+        strokeWidth="0.8"
+        strokeLinejoin="round"
+      />
+      <circle cx="2.5" cy="9" r="1.6" fill="url(#crown-grad)" />
+      <circle cx="21" cy="3" r="1.8" fill="url(#crown-grad)" />
+      <circle cx="39.5" cy="9" r="1.6" fill="url(#crown-grad)" />
+      <rect x="8" y="27" width="26" height="2.5" rx="0.5" fill="url(#crown-grad)" />
+    </svg>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   STATS CARD — 3 columnas con iconos y separadores
+   ═══════════════════════════════════════════════════════════════════ */
+
+function StatsCard({ totalGoals }: { totalGoals: number }) {
+  return (
+    <div
+      style={{
+        width: "100%",
+        maxWidth: 680,
+        padding: "18px 24px",
+        background: "rgba(10,12,20,0.65)",
+        border: "1px solid rgba(255,212,121,0.22)",
+        borderRadius: 14,
+        backdropFilter: "blur(14px) saturate(160%)",
+        WebkitBackdropFilter: "blur(14px) saturate(160%)",
+        boxShadow: "0 14px 36px rgba(0,0,0,0.4)",
+        display: "grid",
+        gridTemplateColumns: "1fr auto 1fr auto 1fr",
+        alignItems: "center",
+        gap: 8,
+      }}
+    >
+      <StatItem icon="ball" value="104" label="Partidos" />
+      <Divider />
+      <StatItem icon="target" value={String(totalGoals)} label="Goles predichos" />
+      <Divider />
+      <StatItem icon="orb" value="v1.0" label="Predicción única" />
+    </div>
+  );
+}
+
+function Divider() {
+  return (
+    <span
+      aria-hidden
+      style={{
+        width: 1,
+        height: 32,
+        background:
+          "linear-gradient(180deg, transparent, rgba(255,212,121,0.35), transparent)",
+        alignSelf: "center",
+      }}
+    />
+  );
+}
+
+function StatItem({
+  icon,
+  value,
+  label,
+}: {
+  icon: "ball" | "target" | "orb";
+  value: string;
+  label: string;
+}) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: 12,
+        justifyContent: "center",
+        padding: "4px 0",
+      }}
+    >
+      <StatIcon variant={icon} />
       <div
         style={{
           display: "flex",
           flexDirection: "column",
           alignItems: "flex-start",
-          gap: 2,
+          lineHeight: 1,
         }}
       >
         <span
           style={{
-            fontFamily: "JetBrains Mono, ui-monospace, monospace",
-            fontSize: 9.5,
-            letterSpacing: "0.38em",
-            color: "rgba(255,255,255,0.5)",
-            fontWeight: 700,
-            textTransform: "uppercase",
+            fontFamily:
+              "var(--zm-font-outfit, 'Outfit', system-ui, sans-serif)",
+            fontSize: "clamp(20px, 2.6vw, 26px)",
+            fontWeight: 900,
+            color: "#fff",
+            letterSpacing: "-0.01em",
           }}
         >
-          Campeón Mundial
+          {value}
         </span>
         <span
           style={{
-            fontFamily:
-              "var(--zm-font-outfit, 'Outfit', system-ui, sans-serif)",
-            fontSize: "clamp(26px, 3.6vw, 36px)",
-            fontWeight: 800,
-            color: "#fff",
-            letterSpacing: "-0.02em",
-            lineHeight: 1,
+            fontFamily: "JetBrains Mono, ui-monospace, monospace",
+            fontSize: 9,
+            letterSpacing: "0.24em",
+            color: "rgba(255,235,180,0.55)",
             textTransform: "uppercase",
+            fontWeight: 600,
+            marginTop: 2,
           }}
         >
-          {team.name}
+          {label}
         </span>
       </div>
     </div>
   );
 }
 
-/* ═══════════════════════════════════════════════════════════════════
-   STATS — editorial inline, sin card
-   ═══════════════════════════════════════════════════════════════════ */
-
-function Stats({
-  totalGoals,
-}: {
-  totalGoals: number;
-  theme: ReturnType<typeof buildTeamTheme>;
-}) {
+function StatIcon({ variant }: { variant: "ball" | "target" | "orb" }) {
+  const common = {
+    width: 22,
+    height: 22,
+    fill: "none",
+    stroke: "#FFD479",
+    strokeWidth: 1.5,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+  };
+  if (variant === "ball") {
+    return (
+      <svg viewBox="0 0 24 24" {...common} aria-hidden>
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 3l3 5-3 4-3-4z M3 12l5 3 4-3-3-3z M21 12l-5 3-4-3 3-3z M12 21l-3-5 3-4 3 4z" />
+      </svg>
+    );
+  }
+  if (variant === "target") {
+    return (
+      <svg viewBox="0 0 24 24" {...common} aria-hidden>
+        <circle cx="12" cy="12" r="9" />
+        <circle cx="12" cy="12" r="5" />
+        <circle cx="12" cy="12" r="1.5" fill="#FFD479" stroke="none" />
+        <path d="M12 1v3M12 20v3M1 12h3M20 12h3" />
+      </svg>
+    );
+  }
+  // orb / crystal ball
   return (
-    <div
-      style={{
-        display: "flex",
-        gap: "clamp(28px, 4vw, 56px)",
-        flexWrap: "wrap",
-        alignItems: "flex-end",
-        paddingTop: 8,
-        borderTop: "1px solid rgba(255,255,255,0.08)",
-        width: "100%",
-        maxWidth: 480,
-      }}
-    >
-      <StatItem value="104" label="Partidos" />
-      <StatItem value={String(totalGoals)} label="Goles predichos" />
-      <StatItem value="v1.0" label="Predicción única" />
-    </div>
-  );
-}
-
-function StatItem({ value, label }: { value: string; label: string }) {
-  return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        gap: 2,
-        paddingTop: 12,
-      }}
-    >
-      <span
-        style={{
-          fontFamily:
-            "var(--zm-font-outfit, 'Outfit', system-ui, sans-serif)",
-          fontSize: "clamp(24px, 3vw, 30px)",
-          fontWeight: 800,
-          color: "#fff",
-          lineHeight: 1,
-          letterSpacing: "-0.02em",
-        }}
-      >
-        {value}
-      </span>
-      <span
-        style={{
-          fontFamily: "JetBrains Mono, ui-monospace, monospace",
-          fontSize: 9,
-          letterSpacing: "0.28em",
-          color: "rgba(255,255,255,0.45)",
-          textTransform: "uppercase",
-          fontWeight: 600,
-        }}
-      >
-        {label}
-      </span>
-    </div>
+    <svg viewBox="0 0 24 24" {...common} aria-hidden>
+      <circle cx="12" cy="10" r="7" />
+      <path d="M9 8c0-1.5 1.5-3 3-3" opacity="0.6" />
+      <path d="M5 19h14" />
+      <path d="M7 17l-1 3M17 17l1 3" />
+    </svg>
   );
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   PRIMARY BUTTON — Campaign Launch Button
-   6 capas físicas: base dark, inner highlight, reflection sweep,
-   bottom glow, shadow spread, glass top reflection.
+   BUTTONS — primary brushstroke gold, secondary outline
    ═══════════════════════════════════════════════════════════════════ */
 
-function PrimaryButton({
-  children,
-  onClick,
-  theme,
-}: {
-  children: React.ReactNode;
-  onClick: () => void;
-  theme: ReturnType<typeof buildTeamTheme>;
-}) {
+function PrimaryButton({ onClick }: { onClick: () => void }) {
   return (
-    <div style={{ position: "relative", display: "inline-block" }}>
-      {/* CAPA 5: shadow spread procedural (offset abajo, color cálido) */}
-      <div
-        aria-hidden
-        style={{
-          position: "absolute",
-          inset: -14,
-          top: -2,
-          bottom: -22,
-          borderRadius: 22,
-          background: `radial-gradient(ellipse at 50% 60%, ${theme.glowSoft} 0%, transparent 65%)`,
-          filter: "blur(20px)",
-          opacity: 0.85,
-          zIndex: 0,
-        }}
-      />
-      {/* CAPA 4: bottom glow concentrado */}
+    <div style={{ position: "relative", flex: "1 1 280px", maxWidth: 380 }}>
+      {/* Glow detrás */}
       <motion.div
         aria-hidden
         animate={{ opacity: [0.5, 0.85, 0.5] }}
-        transition={{ duration: 3.6, ease: "easeInOut", repeat: Infinity }}
+        transition={{ duration: 4, ease: "easeInOut", repeat: Infinity }}
         style={{
           position: "absolute",
-          left: "12%",
-          right: "12%",
-          bottom: -16,
-          height: 24,
-          background: `linear-gradient(180deg, ${theme.glow} 0%, transparent 100%)`,
-          filter: "blur(14px)",
+          inset: -16,
+          borderRadius: 24,
+          background:
+            "radial-gradient(ellipse at center, rgba(255,212,121,0.55) 0%, transparent 70%)",
+          filter: "blur(22px)",
           zIndex: 0,
         }}
       />
@@ -1293,74 +1017,62 @@ function PrimaryButton({
       <motion.button
         type="button"
         onClick={onClick}
-        whileHover={{ scale: 1.04, y: -3 }}
-        whileTap={{ scale: 0.96, y: 0 }}
-        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+        whileHover={{ scale: 1.04, y: -2 }}
+        whileTap={{ scale: 0.97 }}
+        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
         style={{
           position: "relative",
           overflow: "hidden",
           border: "none",
           cursor: "pointer",
-          padding: "20px 36px",
-          borderRadius: 14,
-          /* CAPA 1: base dark + 15% color */
-          background: `
-            linear-gradient(180deg, rgba(28,22,12,1) 0%, rgba(14,10,6,1) 100%)
-          `,
-          color: "#FFE9A8",
+          width: "100%",
+          padding: "20px 28px",
+          /* Brushstroke gold — gradient + radial blob + irregular shadow */
+          background:
+            "linear-gradient(120deg, #C9923E 0%, #FFD479 30%, #FFE9A8 50%, #FFD479 70%, #A87E2A 100%)",
+          color: "#1a0f02",
           fontFamily:
             "var(--zm-font-outfit, 'Outfit', system-ui, sans-serif)",
           fontSize: 13,
           fontWeight: 900,
           letterSpacing: "0.14em",
           textTransform: "uppercase",
+          /* Brushstroke shape — bordes irregulares */
+          clipPath:
+            "polygon(2% 35%, 6% 12%, 18% 5%, 38% 12%, 58% 4%, 78% 14%, 92% 6%, 98% 30%, 96% 60%, 99% 85%, 88% 96%, 64% 92%, 42% 98%, 22% 90%, 8% 96%, 1% 70%)",
           boxShadow: `
-            0 28px 50px rgba(0,0,0,0.6),
-            0 12px 24px rgba(0,0,0,0.4),
-            inset 0 1px 0 rgba(255,230,180,0.35),
-            inset 0 -2px 0 rgba(0,0,0,0.6),
-            inset 0 0 0 1px rgba(255,210,140,0.18)
+            0 18px 40px rgba(0,0,0,0.5),
+            0 8px 20px rgba(201,146,62,0.45)
           `,
           zIndex: 1,
         }}
       >
-        {/* CAPA 6: glass reflection top (curva sutil) */}
+        {/* Inner highlight */}
         <span
           aria-hidden
           style={{
             position: "absolute",
-            top: 1,
-            left: 1,
-            right: 1,
-            height: "48%",
-            borderRadius: "13px 13px 50% 50% / 13px 13px 28px 28px",
+            top: "8%",
+            left: "10%",
+            right: "10%",
+            height: "30%",
             background:
-              "linear-gradient(180deg, rgba(255,230,180,0.18) 0%, rgba(255,230,180,0.04) 50%, transparent 100%)",
+              "linear-gradient(180deg, rgba(255,255,255,0.5) 0%, transparent 100%)",
             pointerEvents: "none",
-          }}
-        />
-
-        {/* CAPA 2: inner highlight color del team (sutil, 15%) */}
-        <span
-          aria-hidden
-          style={{
-            position: "absolute",
-            inset: 0,
-            background: `radial-gradient(ellipse 90% 50% at 50% 100%, ${theme.glowSoft} 0%, transparent 70%)`,
+            filter: "blur(4px)",
             opacity: 0.7,
-            pointerEvents: "none",
           }}
         />
 
-        {/* CAPA 3: reflection sweep */}
+        {/* Sweep light */}
         <motion.span
           aria-hidden
-          animate={{ x: ["-160%", "260%"] }}
+          animate={{ x: ["-130%", "230%"] }}
           transition={{
-            duration: 3.2,
+            duration: 2.8,
             ease: "easeInOut",
             repeat: Infinity,
-            repeatDelay: 2.2,
+            repeatDelay: 1.6,
           }}
           style={{
             position: "absolute",
@@ -1369,20 +1081,8 @@ function PrimaryButton({
             width: "55%",
             height: "100%",
             background:
-              "linear-gradient(110deg, transparent, rgba(255,235,200,0.4) 50%, transparent)",
+              "linear-gradient(110deg, transparent, rgba(255,255,255,0.6) 50%, transparent)",
             mixBlendMode: "screen",
-            pointerEvents: "none",
-          }}
-        />
-
-        {/* Edge inner stroke gold */}
-        <span
-          aria-hidden
-          style={{
-            position: "absolute",
-            inset: 2,
-            borderRadius: 11,
-            border: "1px solid rgba(255,225,170,0.12)",
             pointerEvents: "none",
           }}
         />
@@ -1392,48 +1092,53 @@ function PrimaryButton({
             position: "relative",
             display: "inline-flex",
             alignItems: "center",
-            gap: 12,
+            gap: 10,
             zIndex: 2,
           }}
         >
           <ShareIcon />
-          {children}
+          Compartir mi Mundial
         </span>
       </motion.button>
     </div>
   );
 }
 
-function SecondaryButton({
-  children,
-  onClick,
-}: {
-  children: React.ReactNode;
-  onClick: () => void;
-}) {
+function SecondaryButton({ onClick }: { onClick: () => void }) {
   return (
     <motion.button
       type="button"
       onClick={onClick}
-      whileHover={{ borderColor: "rgba(255,255,255,0.45)", y: -1 }}
+      whileHover={{ borderColor: "rgba(255,212,121,0.7)", y: -2 }}
       whileTap={{ scale: 0.97 }}
       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
       style={{
-        border: "1px solid rgba(255,255,255,0.22)",
-        cursor: "pointer",
-        padding: "20px 28px",
-        borderRadius: 14,
-        background: "transparent",
-        color: "rgba(255,255,255,0.85)",
+        position: "relative",
+        flex: "1 1 240px",
+        maxWidth: 320,
+        padding: "20px 24px",
+        background: "rgba(10,12,20,0.7)",
+        border: "1px solid rgba(255,212,121,0.4)",
+        borderRadius: 12,
+        color: "#FFE9A8",
         fontFamily:
           "var(--zm-font-outfit, 'Outfit', system-ui, sans-serif)",
         fontSize: 13,
-        fontWeight: 700,
-        letterSpacing: "0.12em",
+        fontWeight: 800,
+        letterSpacing: "0.14em",
         textTransform: "uppercase",
+        cursor: "pointer",
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 12,
+        backdropFilter: "blur(10px)",
+        WebkitBackdropFilter: "blur(10px)",
+        boxShadow: "inset 0 1px 0 rgba(255,235,180,0.1)",
       }}
     >
-      {children}
+      Revisar bracket
+      <PlayIcon />
     </motion.button>
   );
 }
@@ -1441,17 +1146,38 @@ function SecondaryButton({
 function ShareIcon() {
   return (
     <svg
-      width="13"
-      height="13"
+      width="14"
+      height="14"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="2.6"
+      strokeWidth="2.8"
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden
     >
       <path d="M12 16V4M7 9l5-5 5 5M5 20h14" />
+    </svg>
+  );
+}
+
+function PlayIcon() {
+  // Icono táctico tipo "X-O" de la referencia (tactic play)
+  return (
+    <svg
+      width="22"
+      height="18"
+      viewBox="0 0 22 18"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <circle cx="4" cy="14" r="2.2" />
+      <path d="M14 4l4 4M14 8l4-4" />
+      <path d="M5.5 12.5L14 6" strokeDasharray="2 2" />
     </svg>
   );
 }

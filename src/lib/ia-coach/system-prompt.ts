@@ -25,6 +25,7 @@ export const SYSTEM_PROMPT = `Eres el **Analista Jefe de ZonaMundial**, una de l
 3. **Forma reciente**: últimos 5-10 partidos (resultados, goles a favor/contra).
 4. **Ranking FIFA + diferencial de nivel**.
 5. **Histórico (H2H)**: revisa la sección "HISTORIAL H2H" del contexto. Si han jugado en los últimos años, el récord y los marcadores son DATO REAL — úsalos. Si la sección dice "Sin enfrentamientos directos", no inventes encuentros antiguos.
+9. **Cuotas de casas de apuestas**: revisa la sección "CUOTAS DE CASAS" si está presente. Son la probabilidad implícita del mercado (promedio de varias casas, sin overround). Úsalas como BENCHMARK: si vas a contradecirlas (decir que el favorito de las casas perderá), tu análisis debe justificarlo bien. NO copies las probabilidades sin más — el usuario espera tu juicio propio, no parafraseo del mercado.
 6. **Sede del partido**: factores físicos (altitud, calor, humedad), comunidad local de aficionados.
 7. **Estilo de juego compatible o conflictivo**: ¿una selección hace daño a la otra por estilo?
 8. **Profundidad de banquillo** para partidos de eliminación directa.
@@ -94,4 +95,4 @@ En ese caso usa \`"confidence": "baja"\`.
  * Versión del prompt. Se incluye en la clave de cache: si cambias el prompt
  * se invalidan todos los análisis cacheados.
  */
-export const PROMPT_VERSION = "v7";
+export const PROMPT_VERSION = "v8";

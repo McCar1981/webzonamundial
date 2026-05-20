@@ -27,6 +27,8 @@ import {
   type TeamInjuries,
 } from "./team-injuries";
 import { getH2H, formatH2HForPrompt } from "./team-h2h";
+import { getOddsForMatch, formatOddsForPrompt } from "./team-odds";
+import { API_FOOTBALL_TEAM_IDS } from "./team-form";
 
 const TEAM_DATA_DIR = path.join(process.cwd(), "data", "teams");
 
@@ -235,7 +237,17 @@ export async function buildContext(
   const away = TEAM_BY_ID[match.b];
   if (!home || !away) return null;
 
-  const [homeDeep, awayDeep, homeForm, awayForm, homeInj, awayInj, h2h] =
+  // Info del partido (necesaria antes del Promise.all para construir dateISO).
+  const matchData = findMatchData(match);
+
+  // FASE 3.A: cuotas — solo intentamos si tenemos fecha + IDs api-football
+  const apiHomeId = API_FOOTBALL_TEAM_IDS[home.id];
+  const apiAwayId = API_FOOTBALL_TEAM_IDS[away.id];
+  const dateISO = matchData?.d
+    ? `${matchData.d}T${matchData.t || "12:00"}:00Z`
+    : undefined;
+
+  const [homeDeep, awayDeep, homeForm, awayForm, homeInj, awayInj, h2h, odds] =
     await Promise.all([
       loadTeamDeep(home.slug),
       loadTeamDeep(away.slug),
@@ -245,10 +257,17 @@ export async function buildContext(
       readTeamInjuries(away.id),
       // FASE 2.C: H2H histórico (on-demand, cacheado 30 días en KV)
       getH2H(home.id, away.id),
+      // FASE 3.A: cuotas pre-match promedio de varias casas (cache 12h)
+      apiHomeId && apiAwayId && dateISO
+        ? getOddsForMatch(match.id, {
+            apiHomeId,
+            apiAwayId,
+            dateISO,
+          })
+        : Promise.resolve(null),
     ]);
 
-  // Info del partido (sede, hora, fase)
-  const matchData = findMatchData(match);
+  // Info del partido (matchData ya cargado arriba para Promise.all)
   const phaseLabels: Record<string, string> = {
     GROUP: "Fase de Grupos",
     R32: "Dieciseisavos de Final",
@@ -286,6 +305,9 @@ export async function buildContext(
   parts.push("");
   // FASE 2.C: bloque H2H histórico
   parts.push(formatH2HForPrompt(h2h, home.name, away.name));
+  parts.push("");
+  // FASE 3.A: cuotas pre-match (benchmark del análisis IA)
+  parts.push(formatOddsForPrompt(odds, home.name, away.name));
   parts.push("");
   parts.push("---");
   parts.push("");
@@ -328,6 +350,10 @@ export async function buildContext(
   // FASE 2.C: H2H stable hash — solo cambia si llega nueva data del API.
   versionParts.push(h2h?.recordText || "no-h2h");
   versionParts.push(String(h2h?.matches.length ?? 0));
+  // FASE 3.A: odds — cambian cada 12h aprox. Día del fetchedAt + impH para
+  // invalidar caché cuando las cuotas se mueven significativamente.
+  versionParts.push(odds?.fetchedAt?.slice(0, 10) || "no-odds");
+  versionParts.push(String(odds?.impliedHome ?? ""));
   const dataVersion = simpleHash(versionParts.join("|"));
 
   return {

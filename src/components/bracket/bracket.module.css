@@ -215,6 +215,12 @@
   pointer-events: none;
   transition: opacity 320ms var(--bb-ease);
   padding: 16px;
+  /* Permite que el modal entero scrollee si en mobile no cabe */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  /* Reserva el ancho del scrollbar en AMBOS lados para no descentrar el modal */
+  scrollbar-gutter: stable both-edges;
 }
 .modalShroud[data-open="true"] {
   opacity: 1;
@@ -222,14 +228,35 @@
 }
 .modal {
   width: min(560px, 100%);
+  /* Centrado horizontal robusto (no depender solo del flex del shroud) */
+  margin-inline: auto;
+  /* Limita altura para que el contenido pueda scrollear dentro */
+  max-height: calc(100dvh - 32px);
   border-radius: 22px;
   background: linear-gradient(180deg, rgba(20, 37, 54, 0.95), rgba(11, 24, 37, 0.95));
   border: 1px solid var(--bb-border-strong);
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 60px -10px rgba(201, 168, 76, 0.4);
   position: relative;
-  overflow: hidden;
+  /* Scroll interno cuando el contenido (Análisis IA) excede el alto */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
   transform: scale(0.92) translateY(20px);
   transition: transform 420ms var(--bb-spring);
+}
+/* Scrollbar discreta */
+.modal::-webkit-scrollbar {
+  width: 6px;
+}
+.modal::-webkit-scrollbar-track {
+  background: transparent;
+}
+.modal::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+}
+.modal::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.16);
 }
 .modalShroud[data-open="true"] .modal {
   transform: scale(1) translateY(0);

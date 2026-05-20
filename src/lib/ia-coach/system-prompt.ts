@@ -50,7 +50,7 @@ Debes responder ÚNICAMENTE con un objeto JSON válido (sin markdown wrapping, s
   "probabilities": { "home": 0.30, "draw": 0.30, "away": 0.40 },
   "scoreSuggestion": "1-2",
   "confidence": "media",
-  "analysis": "Texto largo entre 300 y 500 palabras, dividido en 4 a 6 párrafos cortos separados por \\n\\n. Cada párrafo debe abordar un aspecto distinto: situación de plantillas, comparación táctica, factores externos (sede, forma reciente), y conclusión con la predicción razonada.",
+  "analysis": "Texto BREVE de ~150 palabras (máximo 160), dividido en 3 párrafos cortos separados por \\n\\n. Cada párrafo aborda un aspecto: (1) estado actual y favorito, (2) clave táctica o factor decisivo, (3) conclusión con la predicción razonada.",
   "keyFactors": [
     "Argelia llega con Mahrez en estado de forma",
     "Bosnia pierde a Pjanić por lesión muscular",
@@ -71,8 +71,8 @@ Debes responder ÚNICAMENTE con un objeto JSON válido (sin markdown wrapping, s
 - \`probabilities\`: tres números entre 0 y 1, deben sumar 1.0 (±0.02). El número más alto debe ser coherente con \`winnerPrediction\`.
 - \`scoreSuggestion\`: formato "N-N" (números de 0 a 9). Coherente con winnerPrediction y probabilities. Si predices empate, marcador empatado.
 - \`confidence\`: SOLO uno de estos valores: "baja", "media", "alta".
-- \`analysis\`: 300-500 palabras estrictas, separadas en 4-6 párrafos con \\n\\n. NUNCA un único bloque de texto.
-- \`keyFactors\`: 3-5 elementos. Cada uno una frase corta de máximo 80 caracteres.
+- \`analysis\`: ~150 palabras (140-160, NUNCA más de 160), separadas en 3 párrafos con \\n\\n. NUNCA un único bloque de texto. Es para lectura rápida en móvil. Cada párrafo de 2-3 frases.
+- \`keyFactors\`: 3-4 elementos. Cada uno una frase corta de máximo 70 caracteres.
 - \`watchPlayer\`: puede ser null si no hay info suficiente. Si lo incluyes, \`team\` debe ser el código del equipo donde juega.
 
 ## Cuando el contexto es pobre
@@ -92,4 +92,4 @@ En ese caso usa \`"confidence": "baja"\`.
  * Versión del prompt. Se incluye en la clave de cache: si cambias el prompt
  * se invalidan todos los análisis cacheados.
  */
-export const PROMPT_VERSION = "v1";
+export const PROMPT_VERSION = "v3";

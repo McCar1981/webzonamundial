@@ -102,6 +102,34 @@
   color: rgba(255, 255, 255, 0.4);
   font-size: 11px;
 }
+/* Fun-fact rotativo: fade-in suave cada vez que cambia el dato. */
+.funFact {
+  display: inline-block;
+  max-width: 92%;
+  margin: 8px auto 0;
+  padding: 8px 12px;
+  background: rgba(253, 230, 138, 0.05);
+  border: 1px solid rgba(253, 230, 138, 0.14);
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 12px;
+  line-height: 1.45;
+  text-align: left;
+  animation: funFactFade 320ms ease-out both;
+}
+.funFact strong {
+  display: block;
+  margin-bottom: 3px;
+  color: #FDE68A;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+@keyframes funFactFade {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 .spinner {
   width: 28px;
   height: 28px;

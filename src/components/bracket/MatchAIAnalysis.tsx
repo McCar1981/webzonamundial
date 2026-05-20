@@ -150,7 +150,7 @@ export default function MatchAIAnalysis({
 
 /* ─────────── SUBCOMPONENTES ─────────── */
 
-// 30 curiosidades del Mundial — rotan cada 2.8s mientras el coach piensa.
+// 30 curiosidades del Mundial — rotan cada 5s mientras el coach piensa.
 // Cubre rangos: historia (1930-2026), récords, anécdotas, datos técnicos.
 const FUN_FACTS = [
   "¿Sabías que el primer Mundial fue en 1930 en Uruguay y solo participaron 13 selecciones?",
@@ -192,7 +192,7 @@ function LoadingState() {
   useEffect(() => {
     const id = setInterval(() => {
       setFactIdx((i) => (i + 1) % FUN_FACTS.length);
-    }, 2800);
+    }, 5000);
     return () => clearInterval(id);
   }, []);
   return (

@@ -89,28 +89,38 @@ export function findMatchData(bracketMatch: BracketMatch): Match | null {
 /* -------------------------------------------------------------------------- */
 
 /** Construye un Date absoluto a partir de "YYYY-MM-DD" + "HH:MM" en ET.
- *  Itera ajustando offset porque JS no permite parsear con TZ arbitrario. */
+ *
+ *  JS no permite parsear con TZ arbitrario. Estrategia:
+ *  1. Construye un timestamp ASUMIENDO que las componentes son UTC.
+ *  2. Pregunta a Intl qué hora muestra ese timestamp en SOURCE_TZ.
+ *  3. La diferencia entre lo que muestra y lo que QUEREMOS que muestre es
+ *     el offset que hay que aplicar (en una sola pasada — el offset de TZ
+ *     no depende del momento exacto en escalas de horas).
+ */
 export function etToDate(isoDate: string, isoTime: string): Date | null {
   const [y, mo, da] = isoDate.split("-").map((n) => parseInt(n, 10));
   const [h, mi] = isoTime.split(":").map((n) => parseInt(n, 10));
   if ([y, mo, da, h, mi].some((v) => Number.isNaN(v))) return null;
 
-  let utcGuess = Date.UTC(y, mo - 1, da, h, mi, 0);
-  for (let i = 0; i < 3; i++) {
-    const parts = getTzParts(new Date(utcGuess), SOURCE_TZ);
-    const tzAsUtc = Date.UTC(
-      parts.y,
-      parts.mo - 1,
-      parts.da,
-      parts.h,
-      parts.mi,
-      0,
-    );
-    const diff = tzAsUtc - utcGuess;
-    if (diff === 0) break;
-    utcGuess -= diff;
-  }
-  return new Date(utcGuess);
+  // Asume primero que (y, mo, da, h, mi) son UTC.
+  const asUTC = Date.UTC(y, mo - 1, da, h, mi, 0);
+  // ¿Qué muestra Intl en la TZ source para ese instante UTC?
+  const partsInTz = getTzParts(new Date(asUTC), SOURCE_TZ);
+  // Reconstruye el "wall clock" que muestra Intl como UTC ms.
+  const wallClockAsUTC = Date.UTC(
+    partsInTz.y,
+    partsInTz.mo - 1,
+    partsInTz.da,
+    partsInTz.h,
+    partsInTz.mi,
+    0,
+  );
+  // El offset de SOURCE_TZ respecto a UTC en ESE momento.
+  // En ET en verano (EDT): wallClock = UTC - 4h → offset = -4h ms.
+  const offsetMs = wallClockAsUTC - asUTC;
+  // Para que el "wall clock en SOURCE_TZ" muestre (y,mo,da,h,mi), el
+  // instante UTC real debe ser asUTC - offsetMs.
+  return new Date(asUTC - offsetMs);
 }
 
 function getTzParts(d: Date, tz: string) {

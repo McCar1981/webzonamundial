@@ -24,6 +24,7 @@ import type {
   IACoachErrorResponse,
 } from "@/lib/ia-coach/types";
 import styles from "./MatchAIAnalysis.module.css";
+import { FUN_FACTS } from "@/lib/ia-coach/fun-facts";
 
 interface Props {
   match: BracketMatch;
@@ -150,42 +151,9 @@ export default function MatchAIAnalysis({
 
 /* ─────────── SUBCOMPONENTES ─────────── */
 
-// 30 curiosidades del Mundial — rotan cada 5s mientras el coach piensa.
-// Cubre rangos: historia (1930-2026), récords, anécdotas, datos técnicos.
-const FUN_FACTS = [
-  "¿Sabías que el primer Mundial fue en 1930 en Uruguay y solo participaron 13 selecciones?",
-  "Brasil es la única selección que ha jugado los 22 Mundiales disputados hasta 2022.",
-  "El Mundial 2026 será el primero con 48 selecciones y 104 partidos.",
-  "Estados Unidos, Canadá y México coorganizan el Mundial 2026 — 3 países por primera vez.",
-  "Estadio Azteca albergará su 3ª Final Mundial: 1970, 1986 y 2026.",
-  "Pelé es el único futbolista que ha ganado 3 Mundiales (1958, 1962 y 1970).",
-  "El gol más rápido en un Mundial: Hakan Şükür (Turquía) en 10,8 segundos vs Corea del Sur, 2002.",
-  "Miroslav Klose es el máximo goleador histórico del Mundial con 16 goles.",
-  "Argentina ganó su tercera estrella en Qatar 2022 venciendo a Francia en penaltis.",
-  "El Mundial 1950 en Brasil tuvo la final más triste para los locales: Maracanazo de Uruguay.",
-  "Lionel Messi disputó su quinto Mundial en 2022 y lo ganó a los 35 años.",
-  "El Mundial 2026 inaugura en Estadio Azteca, México el 11 de junio.",
-  "La FIFA registró su primer 'Joven Promesa' en 2006: ganó Lukas Podolski (Alemania).",
-  "Cabo Verde y Curazao debutan en Mundial en 2026, son los países más pequeños jamás clasificados.",
-  "El partido más goleado: Hungría 10 - El Salvador 1, Mundial 1982.",
-  "MetLife Stadium, Nueva York/NJ, albergará la Final del Mundial 2026.",
-  "España ganó su primer Mundial en Sudáfrica 2010 con gol de Iniesta en la prórroga.",
-  "Mundial 2026: 16 sedes — 11 en EE.UU., 3 en México, 2 en Canadá.",
-  "La final de 1950 (Brasil-Uruguay) tuvo 173.850 espectadores: récord absoluto.",
-  "Marcelo Bielsa, DT de Uruguay, ya dirigió a Argentina (1998-2004) y Chile (2007-2011).",
-  "Croacia ha jugado dos finales consecutivas: subcampeón 2018, 3º en 2022.",
-  "El balón oficial del Mundial 2026 se llama 'Trionda' (Adidas).",
-  "Italia (4) y Brasil (5) son las dos selecciones con más Mundiales ganados solo en Europa y Sudamérica respectivamente.",
-  "Estados Unidos jugará su 12º Mundial en 2026, su mejor resultado fue 3º en 1930.",
-  "Marruecos hizo historia en Qatar 2022: primer país africano semifinalista.",
-  "El sistema de 48 selecciones repartirá 12 grupos de 4 equipos cada uno.",
-  "Hugo Broos, DT belga de Sudáfrica, ganó la Copa Africana de Naciones con Camerún en 2017.",
-  "Mbappé es el segundo jugador en marcar hat-trick en una final (2022), tras Geoff Hurst en 1966.",
-  "El Mundial 2026 será el último con 48 selecciones antes de evaluar volver a 32 en 2030.",
-  "Diego Maradona protagonizó la 'Mano de Dios' y el 'Gol del Siglo' contra Inglaterra en 1986.",
-];
-
 function LoadingState() {
+  // Empieza en un índice aleatorio para que distintos usuarios vean distintos
+  // datos al inicio del loading. Luego rota cada 5s en orden secuencial.
   const [factIdx, setFactIdx] = useState(() =>
     Math.floor(Math.random() * FUN_FACTS.length),
   );
@@ -201,7 +169,7 @@ function LoadingState() {
       <p>
         Analizando el partido… <br />
         <small className={styles.funFact} key={factIdx}>
-          <strong>¿Sabías que…?</strong> {FUN_FACTS[factIdx].replace(/^¿Sabías que /, "")}
+          <strong>¿Sabías que…?</strong> {FUN_FACTS[factIdx]}
         </small>
       </p>
     </div>

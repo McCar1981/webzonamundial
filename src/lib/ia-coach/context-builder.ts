@@ -21,6 +21,11 @@ import { TEAM_BY_ID, type BracketTeam } from "@/lib/bracket/teams";
 import { findMatchData } from "@/lib/bracket/match-time";
 import type { BracketMatch } from "@/lib/bracket/types";
 import { readTeamForm, formatTeamFormForPrompt, type TeamForm } from "./team-form";
+import {
+  readTeamInjuries,
+  formatInjuriesForPrompt,
+  type TeamInjuries,
+} from "./team-injuries";
 
 const TEAM_DATA_DIR = path.join(process.cwd(), "data", "teams");
 
@@ -93,6 +98,7 @@ function formatTeamBlock(
   bracketTeam: BracketTeam,
   deep: TeamDeep | null,
   form: TeamForm | null,
+  injuries: TeamInjuries | null,
 ): string {
   const lines: string[] = [];
   lines.push(`### ${bracketTeam.name} (código: ${bracketTeam.id})`);
@@ -191,6 +197,10 @@ function formatTeamBlock(
     lines.push(formatTeamFormForPrompt(form));
   }
 
+  // FASE 2.B: lesiones reales del KV (poblado por update-team-injuries).
+  // Esto resuelve el bug donde la IA inventaba lesiones (Lamine Yamal, Ferran, etc).
+  lines.push(formatInjuriesForPrompt(injuries));
+
   return lines.join("\n");
 }
 
@@ -222,11 +232,13 @@ export async function buildContext(
   const away = TEAM_BY_ID[match.b];
   if (!home || !away) return null;
 
-  const [homeDeep, awayDeep, homeForm, awayForm] = await Promise.all([
+  const [homeDeep, awayDeep, homeForm, awayForm, homeInj, awayInj] = await Promise.all([
     loadTeamDeep(home.slug),
     loadTeamDeep(away.slug),
     readTeamForm(home.id),
     readTeamForm(away.id),
+    readTeamInjuries(home.id),
+    readTeamInjuries(away.id),
   ]);
 
   // Info del partido (sede, hora, fase)
@@ -260,11 +272,11 @@ export async function buildContext(
   parts.push("");
   parts.push("## SELECCIÓN LOCAL");
   parts.push("");
-  parts.push(formatTeamBlock(home, homeDeep, homeForm));
+  parts.push(formatTeamBlock(home, homeDeep, homeForm, homeInj));
   parts.push("");
   parts.push("## SELECCIÓN VISITANTE");
   parts.push("");
-  parts.push(formatTeamBlock(away, awayDeep, awayForm));
+  parts.push(formatTeamBlock(away, awayDeep, awayForm, awayInj));
   parts.push("");
   parts.push("---");
   parts.push("");
@@ -298,6 +310,12 @@ export async function buildContext(
   versionParts.push(awayForm?.fetchedAt?.slice(0, 10) || "no-form");
   versionParts.push(homeForm?.summary || "");
   versionParts.push(awayForm?.summary || "");
+  // FASE 2.B: incluye lesiones. El summary cambia cuando entra/sale un jugador
+  // de la lista, así la caché se invalida y se regenera el análisis.
+  versionParts.push(homeInj?.fetchedAt?.slice(0, 10) || "no-inj");
+  versionParts.push(awayInj?.fetchedAt?.slice(0, 10) || "no-inj");
+  versionParts.push(homeInj?.summary || "");
+  versionParts.push(awayInj?.summary || "");
   const dataVersion = simpleHash(versionParts.join("|"));
 
   return {

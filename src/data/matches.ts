@@ -48,8 +48,8 @@ export const MATCHES: Match[] = [
   { "i": 14, "g": "G", "p": "Fase de grupos", "j": 1, "h": "Egipto", "hf": "eg", "a": "Irán", "af": "ir", "d": "2026-06-14", "t": "12:00", "vn": "BMO Field", "vc": "Toronto", "vf": "ca" },
 
   // GRUPO H (Jornada 1 - 15 Junio)
-  { "i": 15, "g": "H", "p": "Fase de grupos", "j": 1, "h": "España", "hf": "es", "a": "Cabo Verde", "af": "cv", "d": "2026-06-15", "t": "21:00", "vn": "Estadio Azteca", "vc": "Ciudad de México", "vf": "mx" },
-  { "i": 16, "g": "H", "p": "Fase de grupos", "j": 1, "h": "Uruguay", "hf": "uy", "a": "A. Saudí", "af": "sa", "d": "2026-06-15", "t": "15:00", "vn": "SoFi Stadium", "vc": "Los Ángeles", "vf": "us" },
+  { "i": 15, "g": "H", "p": "Fase de grupos", "j": 1, "h": "España", "hf": "es", "a": "Cabo Verde", "af": "cv", "d": "2026-06-15", "t": "12:00", "vn": "Mercedes-Benz Stadium", "vc": "Atlanta", "vf": "us" },
+  { "i": 16, "g": "H", "p": "Fase de grupos", "j": 1, "h": "A. Saudí", "hf": "sa", "a": "Uruguay", "af": "uy", "d": "2026-06-15", "t": "18:00", "vn": "Hard Rock Stadium", "vc": "Miami", "vf": "us" },
 
   // GRUPO I (Jornada 1 - 15 Junio)
   { "i": 17, "g": "I", "p": "Fase de grupos", "j": 1, "h": "Francia", "hf": "fr", "a": "Senegal", "af": "sn", "d": "2026-06-15", "t": "15:00", "vn": "Hard Rock Stadium", "vc": "Miami", "vf": "us" },
@@ -89,8 +89,8 @@ export const MATCHES: Match[] = [
   { "i": 37, "g": "G", "p": "Fase de grupos", "j": 2, "h": "N. Zelanda", "hf": "nz", "a": "Egipto", "af": "eg", "d": "2026-06-22", "t": "18:00", "vn": "Estadio BBVA", "vc": "Monterrey", "vf": "mx" },
   { "i": 38, "g": "G", "p": "Fase de grupos", "j": 2, "h": "Bélgica", "hf": "be", "a": "Irán", "af": "ir", "d": "2026-06-22", "t": "12:00", "vn": "Levi's Stadium", "vc": "Bay Area", "vf": "us" },
 
-  { "i": 39, "g": "H", "p": "Fase de grupos", "j": 2, "h": "Cabo Verde", "hf": "cv", "a": "A. Saudí", "af": "sa", "d": "2026-06-23", "t": "15:00", "vn": "Estadio Azteca", "vc": "Ciudad de México", "vf": "mx" },
-  { "i": 40, "g": "H", "p": "Fase de grupos", "j": 2, "h": "España", "hf": "es", "a": "Uruguay", "af": "uy", "d": "2026-06-23", "t": "21:00", "vn": "SoFi Stadium", "vc": "Los Ángeles", "vf": "us" },
+  { "i": 39, "g": "H", "p": "Fase de grupos", "j": 2, "h": "España", "hf": "es", "a": "A. Saudí", "af": "sa", "d": "2026-06-21", "t": "12:00", "vn": "Mercedes-Benz Stadium", "vc": "Atlanta", "vf": "us" },
+  { "i": 40, "g": "H", "p": "Fase de grupos", "j": 2, "h": "Uruguay", "hf": "uy", "a": "Cabo Verde", "af": "cv", "d": "2026-06-21", "t": "18:00", "vn": "Hard Rock Stadium", "vc": "Miami", "vf": "us" },
 
   { "i": 41, "g": "I", "p": "Fase de grupos", "j": 2, "h": "Senegal", "hf": "sn", "a": "Irak", "af": "iq", "d": "2026-06-23", "t": "20:00", "vn": "AT&T Stadium", "vc": "Dallas", "vf": "us" },
   { "i": 42, "g": "I", "p": "Fase de grupos", "j": 2, "h": "Francia", "hf": "fr", "a": "Noruega", "af": "no", "d": "2026-06-24", "t": "17:00", "vn": "MetLife Stadium", "vc": "Nueva York/NJ", "vf": "us" },
@@ -126,8 +126,8 @@ export const MATCHES: Match[] = [
   { "i": 61, "g": "G", "p": "Fase de grupos", "j": 3, "h": "Irán", "hf": "ir", "a": "N. Zelanda", "af": "nz", "d": "2026-06-29", "t": "15:00", "vn": "Estadio BBVA", "vc": "Monterrey", "vf": "mx" },
   { "i": 62, "g": "G", "p": "Fase de grupos", "j": 3, "h": "Egipto", "hf": "eg", "a": "Bélgica", "af": "be", "d": "2026-06-29", "t": "15:00", "vn": "Levi's Stadium", "vc": "Bay Area", "vf": "us" },
 
-  { "i": 63, "g": "H", "p": "Fase de grupos", "j": 3, "h": "A. Saudí", "hf": "sa", "a": "España", "af": "es", "d": "2026-06-30", "t": "23:00", "vn": "Estadio Azteca", "vc": "Ciudad de México", "vf": "mx" },
-  { "i": 64, "g": "H", "p": "Fase de grupos", "j": 3, "h": "Uruguay", "hf": "uy", "a": "Cabo Verde", "af": "cv", "d": "2026-06-30", "t": "23:00", "vn": "SoFi Stadium", "vc": "Los Ángeles", "vf": "us" },
+  { "i": 63, "g": "H", "p": "Fase de grupos", "j": 3, "h": "Cabo Verde", "hf": "cv", "a": "A. Saudí", "af": "sa", "d": "2026-06-26", "t": "20:00", "vn": "NRG Stadium", "vc": "Houston", "vf": "us" },
+  { "i": 64, "g": "H", "p": "Fase de grupos", "j": 3, "h": "Uruguay", "hf": "uy", "a": "España", "af": "es", "d": "2026-06-26", "t": "21:00", "vn": "Estadio Akron", "vc": "Guadalajara", "vf": "mx" },
 
   { "i": 65, "g": "I", "p": "Fase de grupos", "j": 3, "h": "Irak", "hf": "iq", "a": "Francia", "af": "fr", "d": "2026-06-30", "t": "20:00", "vn": "AT&T Stadium", "vc": "Dallas", "vf": "us" },
   { "i": 66, "g": "I", "p": "Fase de grupos", "j": 3, "h": "Senegal", "hf": "sn", "a": "Noruega", "af": "no", "d": "2026-06-30", "t": "20:00", "vn": "MetLife Stadium", "vc": "Nueva York/NJ", "vf": "us" },

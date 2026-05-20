@@ -20,6 +20,7 @@ import path from "node:path";
 import { TEAM_BY_ID, type BracketTeam } from "@/lib/bracket/teams";
 import { findMatchData } from "@/lib/bracket/match-time";
 import type { BracketMatch } from "@/lib/bracket/types";
+import { readTeamForm, formatTeamFormForPrompt, type TeamForm } from "./team-form";
 
 const TEAM_DATA_DIR = path.join(process.cwd(), "data", "teams");
 
@@ -91,6 +92,7 @@ async function loadTeamDeep(slug: string): Promise<TeamDeep | null> {
 function formatTeamBlock(
   bracketTeam: BracketTeam,
   deep: TeamDeep | null,
+  form: TeamForm | null,
 ): string {
   const lines: string[] = [];
   lines.push(`### ${bracketTeam.name} (código: ${bracketTeam.id})`);
@@ -184,6 +186,11 @@ function formatTeamBlock(
     lines.push(`- Clasificatoria 2026: ${wc.qualifying_summary.slice(0, 250)}`);
   }
 
+  // FASE 2: forma reciente del KV (poblado por el cron update-team-form)
+  if (form) {
+    lines.push(formatTeamFormForPrompt(form));
+  }
+
   return lines.join("\n");
 }
 
@@ -215,9 +222,11 @@ export async function buildContext(
   const away = TEAM_BY_ID[match.b];
   if (!home || !away) return null;
 
-  const [homeDeep, awayDeep] = await Promise.all([
+  const [homeDeep, awayDeep, homeForm, awayForm] = await Promise.all([
     loadTeamDeep(home.slug),
     loadTeamDeep(away.slug),
+    readTeamForm(home.id),
+    readTeamForm(away.id),
   ]);
 
   // Info del partido (sede, hora, fase)
@@ -251,11 +260,11 @@ export async function buildContext(
   parts.push("");
   parts.push("## SELECCIÓN LOCAL");
   parts.push("");
-  parts.push(formatTeamBlock(home, homeDeep));
+  parts.push(formatTeamBlock(home, homeDeep, homeForm));
   parts.push("");
   parts.push("## SELECCIÓN VISITANTE");
   parts.push("");
-  parts.push(formatTeamBlock(away, awayDeep));
+  parts.push(formatTeamBlock(away, awayDeep, awayForm));
   parts.push("");
   parts.push("---");
   parts.push("");
@@ -274,14 +283,21 @@ export async function buildContext(
       "- Si necesitas referirte a un jugador y no estás seguro de su estado actual, usa lenguaje neutro ('si está al 100%', 'puede ser clave') en vez de afirmaciones.",
   );
 
-  // dataVersion = hash simple basado en (squad_announced status + nombres de DT).
-  // En Fase 2 sumaremos versión de lesiones del KV.
+  // dataVersion = hash simple basado en (squad_announced + DT + forma reciente).
+  // FASE 2: incluye fetchedAt y resumen de forma para invalidar caché cuando
+  // el cron diario actualice la forma de los equipos.
   const versionParts: string[] = [];
   versionParts.push(home.id, away.id);
   versionParts.push(homeDeep?.wc_2026?.coach?.name || "");
   versionParts.push(awayDeep?.wc_2026?.coach?.name || "");
   versionParts.push(homeDeep?.wc_2026?.squad_announced ? "1" : "0");
   versionParts.push(awayDeep?.wc_2026?.squad_announced ? "1" : "0");
+  // Forma reciente: usamos el día del fetchedAt (no el ISO completo) para que
+  // el dataVersion sea estable durante 24h y se invalide cuando llega data nueva.
+  versionParts.push(homeForm?.fetchedAt?.slice(0, 10) || "no-form");
+  versionParts.push(awayForm?.fetchedAt?.slice(0, 10) || "no-form");
+  versionParts.push(homeForm?.summary || "");
+  versionParts.push(awayForm?.summary || "");
   const dataVersion = simpleHash(versionParts.join("|"));
 
   return {

@@ -12,6 +12,7 @@ import {
   getUserTimezone,
   type FormattedMatchTime,
 } from "@/lib/bracket/match-time";
+import MatchAIAnalysis from "./MatchAIAnalysis";
 import styles from "./bracket.module.css";
 
 interface Props {
@@ -237,6 +238,17 @@ export default function MatchModal({ match, initialPick, onClose, onConfirm }: P
             ? "Empates permitidos en fase de grupos"
             : "Empate ⇒ ganador por penales (elige país)"}
         </p>
+
+        <MatchAIAnalysis
+          match={match}
+          teamA={teamA}
+          teamB={teamB}
+          onApplyPrediction={({ winner, scoreA: sa, scoreB: sb }) => {
+            setPicked(winner);
+            setScoreA(Math.max(0, Math.min(MAX_GOALS, sa)));
+            setScoreB(Math.max(0, Math.min(MAX_GOALS, sb)));
+          }}
+        />
 
         <div className={styles.modalActions}>
           <button type="button" className={styles.btn} onClick={onClose}>

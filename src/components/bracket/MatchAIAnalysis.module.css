@@ -1,0 +1,378 @@
+/* MatchAIAnalysis.module.css
+   Sección "Análisis IA" embebida dentro del MatchModal. */
+
+.requestButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin: 14px 22px;
+  padding: 12px 18px;
+  background: linear-gradient(
+    135deg,
+    rgba(201, 168, 76, 0.16) 0%,
+    rgba(253, 230, 138, 0.08) 50%,
+    rgba(201, 168, 76, 0.12) 100%
+  );
+  border: 1px solid rgba(253, 230, 138, 0.38);
+  border-radius: 12px;
+  color: #FDE68A;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+.requestButton:hover:not(:disabled) {
+  border-color: rgba(253, 230, 138, 0.7);
+  background: linear-gradient(
+    135deg,
+    rgba(201, 168, 76, 0.22) 0%,
+    rgba(253, 230, 138, 0.14) 100%
+  );
+  transform: translateY(-1px);
+}
+.requestButton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.wrap {
+  margin: 14px 22px;
+  padding: 16px 18px;
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.55) 0%,
+    rgba(8, 12, 22, 0.45) 100%
+  );
+  border: 1px solid rgba(253, 230, 138, 0.22);
+  border-radius: 14px;
+  position: relative;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: #FDE68A;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.cachedTag {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 9px;
+  padding: 3px 7px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Loading */
+.loadingBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+}
+.loadingBox small {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 11px;
+}
+.spinner {
+  width: 28px;
+  height: 28px;
+  border: 2px solid rgba(253, 230, 138, 0.18);
+  border-top-color: #FDE68A;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Error */
+.errorBox {
+  padding: 14px 16px;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.32);
+  border-radius: 10px;
+  color: #FCA5A5;
+  font-size: 13px;
+}
+.retryBtn {
+  margin-top: 8px;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* Verdict + prediction header */
+.verdict {
+  margin: 4px 0 14px;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #fff;
+  line-height: 1.3;
+}
+
+.predictionRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.scoreSuggestion {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.scoreLabel {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
+}
+.scoreValue {
+  font-size: 22px;
+  font-weight: 900;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+.confidenceTag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 9px;
+  border-radius: 999px;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  border: 1px solid currentColor;
+}
+.confidenceTag[data-level="baja"] {
+  color: #94a3b8;
+}
+.confidenceTag[data-level="media"] {
+  color: #FDE68A;
+}
+.confidenceTag[data-level="alta"] {
+  color: #4ade80;
+}
+
+/* Probability bars */
+.probBars {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 14px 0;
+}
+.probRow {
+  display: grid;
+  grid-template-columns: 1fr 2fr auto;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+}
+.probRow[data-highlight="true"] .probLabel {
+  color: #fff;
+  font-weight: 700;
+}
+.probLabel {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.probTrack {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.probFill {
+  display: block;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.probPct {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+  font-variant-numeric: tabular-nums;
+  min-width: 32px;
+  text-align: right;
+}
+
+/* Analysis editorial text */
+.analysisText {
+  margin: 14px 0 6px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.84);
+}
+.analysisText p {
+  margin: 0 0 10px;
+}
+.analysisText p:last-child {
+  margin-bottom: 0;
+}
+
+/* Key factors */
+.keyFactors {
+  margin-top: 14px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+}
+.keyFactorsTitle {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: #FDE68A;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+.keyFactors ul {
+  margin: 0;
+  padding: 0 0 0 14px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.keyFactors li {
+  position: relative;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.4;
+  padding-left: 12px;
+}
+.keyFactors li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: #FDE68A;
+  font-size: 10px;
+}
+
+/* Watch player */
+.watchPlayer {
+  margin-top: 14px;
+  padding: 12px 14px;
+  background: linear-gradient(
+    180deg,
+    rgba(253, 230, 138, 0.06) 0%,
+    rgba(253, 230, 138, 0.02) 100%
+  );
+  border: 1px solid rgba(253, 230, 138, 0.18);
+  border-radius: 10px;
+}
+.watchPlayerLabel {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: #FDE68A;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+.watchPlayerName {
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.watchPlayerTeam {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 9px;
+  padding: 2px 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.14em;
+  font-weight: 600;
+}
+.watchPlayerReason {
+  margin: 0;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.4;
+}
+
+/* Apply button */
+.applyBtn {
+  width: 100%;
+  margin-top: 14px;
+  padding: 12px 18px;
+  background: linear-gradient(135deg, #C9A84C 0%, #FDE68A 50%, #C9A84C 100%);
+  color: #0a0a0a;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow:
+    0 10px 22px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+.applyBtn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+.applyBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.disclaimer {
+  margin-top: 12px;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.38);
+  text-align: center;
+  font-style: italic;
+}

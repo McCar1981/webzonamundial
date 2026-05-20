@@ -36,13 +36,25 @@ function getApiKey(): string | undefined {
   return process.env.API_SPORTS_KEY || process.env.RAPIDAPI_KEY;
 }
 
-// IDs de api-football para las 5 ligas top. Constantes (no cambian por temporada).
+// IDs de api-football para ligas de cobertura. Constantes (no cambian por temporada).
+// Las 5 ligas TOP capturan ~80% de selecciones europeas/sudamericanas.
+// Las 6 extra cubren el resto: africanas (Liga Portugal, Bélgica), asiáticas
+// (Saudi), americanas (MLS, Liga MX, Brasileirão).
 export const TOP_LEAGUE_IDS: Record<string, number> = {
+  // Big 5 europeas
   "Premier League": 39,
   "La Liga": 140,
   "Serie A": 135,
   "Bundesliga": 78,
   "Ligue 1": 61,
+  // Cobertura extendida
+  "Eredivisie": 88,           // NL — clave para selecciones africanas
+  "Primeira Liga": 94,         // PT — clave para Brasil, África lusófona
+  "Belgian Pro League": 144,   // BE — selecciones africanas
+  "Saudi Pro League": 307,     // KSA — fichajes top recientes
+  "MLS": 253,                  // USA — selecciones CONCACAF
+  "Brasileirão Serie A": 71,   // BR — Argentina, Brasil, Uruguay, Paraguay
+  "Liga MX": 262,              // MX — selecciones CONCACAF
 };
 
 // Mapeo team ID api-football ↔ selección Mundial 2026 (compartido con team-form).
@@ -172,8 +184,9 @@ export async function fetchAllTopLeaguesInjuries(
         }
       }
     }
-    // Pausa pequeña entre ligas
-    await new Promise((r) => setTimeout(r, 1500));
+    // Pausa pequeña entre ligas. Plan basic permite 30 req/min sobrado,
+    // así que 600ms entre llamadas (≈100 req/min) sigue siendo seguro.
+    await new Promise((r) => setTimeout(r, 600));
   }
   return all;
 }

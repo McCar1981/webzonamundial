@@ -26,6 +26,7 @@ import {
   formatInjuriesForPrompt,
   type TeamInjuries,
 } from "./team-injuries";
+import { getH2H, formatH2HForPrompt } from "./team-h2h";
 
 const TEAM_DATA_DIR = path.join(process.cwd(), "data", "teams");
 
@@ -234,14 +235,17 @@ export async function buildContext(
   const away = TEAM_BY_ID[match.b];
   if (!home || !away) return null;
 
-  const [homeDeep, awayDeep, homeForm, awayForm, homeInj, awayInj] = await Promise.all([
-    loadTeamDeep(home.slug),
-    loadTeamDeep(away.slug),
-    readTeamForm(home.id),
-    readTeamForm(away.id),
-    readTeamInjuries(home.id),
-    readTeamInjuries(away.id),
-  ]);
+  const [homeDeep, awayDeep, homeForm, awayForm, homeInj, awayInj, h2h] =
+    await Promise.all([
+      loadTeamDeep(home.slug),
+      loadTeamDeep(away.slug),
+      readTeamForm(home.id),
+      readTeamForm(away.id),
+      readTeamInjuries(home.id),
+      readTeamInjuries(away.id),
+      // FASE 2.C: H2H histórico (on-demand, cacheado 30 días en KV)
+      getH2H(home.id, away.id),
+    ]);
 
   // Info del partido (sede, hora, fase)
   const matchData = findMatchData(match);
@@ -279,6 +283,9 @@ export async function buildContext(
   parts.push("## SELECCIÓN VISITANTE");
   parts.push("");
   parts.push(formatTeamBlock(away, awayDeep, awayForm, awayInj));
+  parts.push("");
+  // FASE 2.C: bloque H2H histórico
+  parts.push(formatH2HForPrompt(h2h, home.name, away.name));
   parts.push("");
   parts.push("---");
   parts.push("");
@@ -318,6 +325,9 @@ export async function buildContext(
   versionParts.push(awayInj?.fetchedAt?.slice(0, 10) || "no-inj");
   versionParts.push(homeInj?.summary || "");
   versionParts.push(awayInj?.summary || "");
+  // FASE 2.C: H2H stable hash — solo cambia si llega nueva data del API.
+  versionParts.push(h2h?.recordText || "no-h2h");
+  versionParts.push(String(h2h?.matches.length ?? 0));
   const dataVersion = simpleHash(versionParts.join("|"));
 
   return {

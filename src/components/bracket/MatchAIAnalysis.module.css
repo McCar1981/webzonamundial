@@ -2,13 +2,16 @@
    Sección "Análisis IA" embebida dentro del MatchModal. */
 
 .requestButton {
-  display: inline-flex;
+  /* flex con margin auto NO centra inline elements: lo hacemos bloque-flex */
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  width: 100%;
-  margin: 14px 22px;
-  padding: 12px 18px;
+  gap: 6px;
+  /* Ancho automático ajustado al contenido, centrado horizontal con margin auto */
+  width: fit-content;
+  max-width: calc(100% - 32px);
+  margin: 12px auto;
+  padding: 9px 16px;
   background: linear-gradient(
     135deg,
     rgba(201, 168, 76, 0.16) 0%,
@@ -16,12 +19,13 @@
     rgba(201, 168, 76, 0.12) 100%
   );
   border: 1px solid rgba(253, 230, 138, 0.38);
-  border-radius: 12px;
+  border-radius: 999px;
   color: #FDE68A;
   font-family: inherit;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.04em;
+  white-space: nowrap;
   cursor: pointer;
   transition: all 0.25s ease;
   position: relative;
@@ -379,7 +383,12 @@
 
 /* === Mobile: tarjeta de análisis IA compacta, sin scroll interno innecesario === */
 @media (max-width: 480px) {
-  .requestButton { margin: 10px 16px; padding: 10px 14px; font-size: 12px; }
+  .requestButton {
+    margin: 10px auto;
+    padding: 8px 14px;
+    font-size: 11px;
+    max-width: calc(100% - 24px);
+  }
   .wrap { margin: 10px 16px; padding: 12px 14px; }
   .verdict { font-size: 15px; margin: 2px 0 10px; }
   .analysisText { font-size: 13px; line-height: 1.45; margin: 10px 0 4px; }

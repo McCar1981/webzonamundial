@@ -90,7 +90,7 @@ export default function MatchAIAnalysis({
         aria-label="Pedir análisis al Coach IA"
       >
         <SparkleIcon />
-        <span>{loading ? "Analizando…" : "Pedir análisis al Coach IA"}</span>
+        <span>{loading ? "Analizando…" : "Análisis Coach IA"}</span>
       </button>
     );
   }

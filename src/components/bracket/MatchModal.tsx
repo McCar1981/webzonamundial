@@ -4,9 +4,14 @@
 
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { TEAM_BY_ID } from "@/lib/bracket/teams";
 import { PHASE_BY_ID, type BracketMatch } from "@/lib/bracket/types";
+import {
+  formatMatchTime,
+  getUserTimezone,
+  type FormattedMatchTime,
+} from "@/lib/bracket/match-time";
 import styles from "./bracket.module.css";
 
 interface Props {
@@ -23,6 +28,19 @@ export default function MatchModal({ match, initialPick, onClose, onConfirm }: P
   const [picked, setPicked] = useState<string | null>(null);
   const [scoreA, setScoreA] = useState(0);
   const [scoreB, setScoreB] = useState(0);
+  // userTz se inicializa "UTC" en SSR y se actualiza tras hidratación
+  // con la zona horaria real del navegador. Esto evita flash visible
+  // porque el modal está cerrado al primer render.
+  const [userTz, setUserTz] = useState<string>("UTC");
+  useEffect(() => {
+    setUserTz(getUserTimezone());
+  }, []);
+
+  // Calcula formato kickoff cuando hay match + userTz disponible
+  const kickoff: FormattedMatchTime | null = useMemo(() => {
+    if (!match) return null;
+    return formatMatchTime(match, userTz);
+  }, [match, userTz]);
 
   // Sincroniza estado al abrir
   useEffect(() => {
@@ -98,11 +116,38 @@ export default function MatchModal({ match, initialPick, onClose, onConfirm }: P
     >
       <div className={styles.modal}>
         <div className={styles.modalHead}>
-          <span className={styles.modalPhaseTag}>// {phase.short}</span>
+          <span className={styles.modalPhaseTag}>{`// ${phase.short}`}</span>
           <button className={styles.modalClose} onClick={onClose} aria-label="Cerrar">
             ×
           </button>
         </div>
+
+        {kickoff ? (
+          <div className={styles.modalKickoff} aria-label="Información del partido">
+            <div className={styles.modalKickoffMain}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+                <path d="M16 2v4M8 2v4M3 10h18" />
+              </svg>
+              <span className={styles.modalKickoffDate}>{kickoff.dateLine}</span>
+              <span aria-hidden>·</span>
+              <span className={styles.modalKickoffTime}>{kickoff.timeLine}</span>
+              <span className={styles.modalKickoffTzLabel}>{kickoff.tzLabel}</span>
+            </div>
+            <div className={styles.modalKickoffMeta}>
+              <span className={styles.modalKickoffVenue}>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                  <path d="M20 10c0 7-8 12-8 12s-8-5-8-12a8 8 0 0 1 16 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                {kickoff.venueLine}
+              </span>
+              {userTz !== "America/New_York" ? (
+                <span className={styles.modalKickoffEt}>({kickoff.sourceTimeLine})</span>
+              ) : null}
+            </div>
+          </div>
+        ) : null}
 
         <div className={styles.modalVs} id="bracket-modal-title">
           <button

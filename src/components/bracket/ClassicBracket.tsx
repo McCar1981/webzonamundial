@@ -229,27 +229,81 @@ function KnockoutView({
   phase: PhaseId | "GROUPS_TAB";
   onOpenMatch: (id: string) => void;
 }) {
-  // Para QF, SF y FINAL preferimos mostrar el mirror (todas las rondas hasta esa).
-  // Para R32 / R16 mostramos solo esa ronda en columnas.
-  const showMirror = phase === "QF" || phase === "SF" || phase === "FINAL";
-
-  if (showMirror) return <ChampionsMirror state={state} highlight={phase as PhaseId} onOpenMatch={onOpenMatch} />;
+  // Cada fase decisiva tiene su pantalla propia con su presencia editorial.
+  // R32 / R16 / QF / SF → grid con header de fase.
+  // FINAL → pantalla hero con copa, final centro y 3er puesto debajo.
+  if (phase === "FINAL") {
+    return <FinalShowcase state={state} onOpenMatch={onOpenMatch} />;
+  }
   return <SingleRoundList state={state} phase={phase as PhaseId} onOpenMatch={onOpenMatch} />;
 }
 
-function ChampionsMirror({
+/* ─────────── PHASE INTRO HEADER ───────────
+   Header editorial encima de cada ronda decisiva. Le da peso visual
+   a las eliminatorias para que NO se sientan como "una pantalla más". */
+
+const PHASE_INTRO: Record<
+  PhaseId,
+  { eyebrow: string; title: string; tagline: string }
+> = {
+  GROUP: { eyebrow: "FASE DE GRUPOS", title: "Fase de Grupos", tagline: "" },
+  R32: {
+    eyebrow: "RONDA DE 32avos",
+    title: "32avos de Final",
+    tagline: "Comienza la eliminación directa.",
+  },
+  R16: {
+    eyebrow: "OCTAVOS DE FINAL",
+    title: "Octavos",
+    tagline: "16 selecciones. La mitad ya está fuera.",
+  },
+  QF: {
+    eyebrow: "CUARTOS DE FINAL",
+    title: "Cuartos",
+    tagline: "Los 8 mejores. Una derrota y se acaba el sueño.",
+  },
+  SF: {
+    eyebrow: "SEMIFINALES",
+    title: "Semis",
+    tagline: "A un paso de la final del Mundial.",
+  },
+  THIRD: {
+    eyebrow: "TERCER PUESTO",
+    title: "3er Puesto",
+    tagline: "El último partido del Mundial.",
+  },
+  FINAL: {
+    eyebrow: "LA FINAL",
+    title: "Final",
+    tagline: "El partido más importante del fútbol.",
+  },
+};
+
+function PhaseHeader({ phase }: { phase: PhaseId }) {
+  const info = PHASE_INTRO[phase];
+  if (!info) return null;
+  return (
+    <header className={styles.phaseHeader}>
+      <div className={styles.phaseHeaderEyebrow}>{`// ${info.eyebrow}`}</div>
+      <h2 className={styles.phaseHeaderTitle}>{info.title}</h2>
+      {info.tagline ? (
+        <p className={styles.phaseHeaderTagline}>{info.tagline}</p>
+      ) : null}
+    </header>
+  );
+}
+
+/* ─────────── FINAL SHOWCASE ───────────
+   Pantalla hero exclusiva para la final + 3er puesto. La copa al centro,
+   partido final ENORME arriba, tercer puesto como nota secundaria abajo. */
+
+function FinalShowcase({
   state,
-  highlight,
   onOpenMatch,
 }: {
   state: BracketState;
-  highlight: PhaseId;
   onOpenMatch: (id: string) => void;
 }) {
-  const qfL = state.matches.filter((m) => m.phase === "QF" && m.slotIdx < 2).sort((a, b) => a.slotIdx - b.slotIdx);
-  const qfR = state.matches.filter((m) => m.phase === "QF" && m.slotIdx >= 2).sort((a, b) => a.slotIdx - b.slotIdx);
-  const sfL = state.matches.find((m) => m.phase === "SF" && m.slotIdx === 0);
-  const sfR = state.matches.find((m) => m.phase === "SF" && m.slotIdx === 1);
   const finalM = state.matches.find((m) => m.phase === "FINAL");
   const thirdM = state.matches.find((m) => m.phase === "THIRD");
 
@@ -258,51 +312,73 @@ function ChampionsMirror({
 
   return (
     <div className={styles.knockoutWrap}>
-      <div className={styles.knockoutGrid}>
-        <div className={styles.bracketColumn}>
-          <div className={styles.bracketColumnHead}>// CUARTOS</div>
-          {qfL.map((m) => (
-            <KnockoutCard key={m.id} match={m} state={state} onOpenMatch={onOpenMatch} highlight={highlight === "QF"} />
-          ))}
-          <div className={styles.bracketColumnHead}>// SEMIS</div>
-          {sfL && <KnockoutCard match={sfL} state={state} onOpenMatch={onOpenMatch} highlight={highlight === "SF"} />}
+      <div className={styles.finalShowcase}>
+        <header className={styles.phaseHeader}>
+          <div className={styles.phaseHeaderEyebrow}>{"// LA FINAL"}</div>
+          <h2 className={styles.phaseHeaderTitle}>Final del Mundial 2026</h2>
+          <p className={styles.phaseHeaderTagline}>
+            El partido más importante del fútbol.
+          </p>
+        </header>
+
+        <div className={styles.finalTrophyWrap} aria-hidden>
+          <div className={styles.finalTrophyGlow} />
+          <svg
+            className={styles.finalTrophySvg}
+            width="96"
+            height="96"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.7"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4Z" />
+            <path d="M5 4H3v3a3 3 0 0 0 3 3M19 4h2v3a3 3 0 0 1-3 3" />
+          </svg>
         </div>
 
-        <div className={styles.bracketCenter}>
-          <div className={styles.bracketColumnHead}>// FINAL</div>
-          {finalM && <KnockoutCard match={finalM} state={state} onOpenMatch={onOpenMatch} highlight={highlight === "FINAL"} />}
-          <div className={styles.bracketTrophy} aria-hidden>
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4Z" />
-              <path d="M5 4H3v3a3 3 0 0 0 3 3M19 4h2v3a3 3 0 0 1-3 3" />
-            </svg>
-          </div>
-          <div className={styles.bracketChampion}>
-            <div className={styles.bracketChampionLabel}>// CAMPEÓN PREDICHO</div>
-            {champion ? (
-              <div className={styles.bracketChampionName}>{champion.name}</div>
-            ) : (
-              <div className={styles.bracketChampionPending}>—</div>
-            )}
-          </div>
-          <div className={styles.bracketColumnHead} style={{ marginTop: 8 }}>
-            // 3ER PUESTO
-          </div>
-          {thirdM && <KnockoutCard match={thirdM} state={state} onOpenMatch={onOpenMatch} highlight={false} />}
+        <div className={styles.finalMatchCard}>
+          {finalM ? (
+            <KnockoutCard
+              match={finalM}
+              state={state}
+              onOpenMatch={onOpenMatch}
+              highlight
+            />
+          ) : null}
         </div>
 
-        <div className={styles.bracketColumn}>
-          <div className={styles.bracketColumnHead}>// CUARTOS</div>
-          {qfR.map((m) => (
-            <KnockoutCard key={m.id} match={m} state={state} onOpenMatch={onOpenMatch} highlight={highlight === "QF"} />
-          ))}
-          <div className={styles.bracketColumnHead}>// SEMIS</div>
-          {sfR && <KnockoutCard match={sfR} state={state} onOpenMatch={onOpenMatch} highlight={highlight === "SF"} />}
+        <div className={styles.bracketChampion}>
+          <div className={styles.bracketChampionLabel}>{"// CAMPEÓN PREDICHO"}</div>
+          {champion ? (
+            <div className={styles.bracketChampionName}>{champion.name}</div>
+          ) : (
+            <div className={styles.bracketChampionPending}>—</div>
+          )}
+        </div>
+
+        <div className={styles.thirdPlaceBlock}>
+          <div className={styles.thirdPlaceLabel}>{"// 3er Puesto"}</div>
+          {thirdM ? (
+            <KnockoutCard
+              match={thirdM}
+              state={state}
+              onOpenMatch={onOpenMatch}
+              highlight={false}
+            />
+          ) : null}
         </div>
       </div>
     </div>
   );
 }
+
+/* ─────────── SINGLE ROUND LIST ───────────
+   Usado para R32, R16, QF y SF. Renderiza header de fase + grid
+   responsive con los partidos. La diferencia de QF y SF respecto a
+   R32/R16 es el ancho mínimo del card (más generoso para fases altas). */
 
 function SingleRoundList({
   state,
@@ -313,25 +389,38 @@ function SingleRoundList({
   phase: PhaseId;
   onOpenMatch: (id: string) => void;
 }) {
-  const matches = state.matches.filter((m) => m.phase === phase).sort((a, b) => a.slotIdx - b.slotIdx);
-  const phaseLabel = PHASES.find((p) => p.id === phase)?.short ?? "RONDA";
+  const matches = state.matches
+    .filter((m) => m.phase === phase)
+    .sort((a, b) => a.slotIdx - b.slotIdx);
+
+  // Ancho mínimo creciente para fases más decisivas → cards más grandes.
+  const minCard =
+    phase === "SF" ? 320 : phase === "QF" ? 280 : 240;
+  // Máximo de columnas: SF=2, QF=4, otros: auto
+  const maxCols =
+    phase === "SF" ? 2 : phase === "QF" ? 4 : undefined;
 
   return (
     <div className={styles.knockoutWrap}>
+      <PhaseHeader phase={phase} />
       <div
+        className={styles.roundGrid}
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
-          gap: 14,
-          maxWidth: 1200,
-          margin: "0 auto",
+          gridTemplateColumns: maxCols
+            ? `repeat(auto-fit, minmax(${minCard}px, 1fr))`
+            : `repeat(auto-fill, minmax(${minCard}px, 1fr))`,
+          maxWidth:
+            phase === "SF" ? 760 : phase === "QF" ? 1200 : 1200,
         }}
       >
-        <div className={styles.bracketColumnHead} style={{ gridColumn: "1 / -1", fontSize: 11, marginBottom: 6 }}>
-          // {phaseLabel}
-        </div>
         {matches.map((m) => (
-          <KnockoutCard key={m.id} match={m} state={state} onOpenMatch={onOpenMatch} highlight={false} />
+          <KnockoutCard
+            key={m.id}
+            match={m}
+            state={state}
+            onOpenMatch={onOpenMatch}
+            highlight={phase === "QF" || phase === "SF"}
+          />
         ))}
       </div>
     </div>

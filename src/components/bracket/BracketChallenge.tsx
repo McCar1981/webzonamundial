@@ -34,6 +34,10 @@ export default function BracketChallenge() {
   const [capsuleOpen, setCapsuleOpen] = useState(false);
   const [celebDismissed, setCelebDismissed] = useState(false);
 
+  // Refs DOM para auto-scroll al avanzar de fase (mobile UX)
+  const rootRef = useRef<HTMLDivElement>(null);
+  const hudRef = useRef<HTMLDivElement>(null);
+
   // Track previous phase index to detect phase completions
   const prevPhaseIdxRef = useRef<number>(0);
   const prevChampionRef = useRef<string | null>(null);
@@ -69,6 +73,27 @@ export default function BracketChallenge() {
           title: completedPhase.name,
           sub: nextPhase ? `Avance a ${nextPhase.name}` : "Mundial completo",
         });
+      }
+
+      // Auto-scroll al HUD del bracket para que el usuario vea la nueva
+      // fase sin tener que hacer scroll manual (problema especialmente
+      // notorio en mobile). Esperamos 250ms para que la transición de
+      // entrada del overlay PhaseComplete (~200ms) ya esté visible
+      // antes de iniciar el scroll, así no compiten visualmente.
+      if (typeof window !== "undefined") {
+        window.setTimeout(() => {
+          const target = hudRef.current || rootRef.current;
+          if (!target) return;
+          // Calcula el offset considerando el sticky header del site
+          // (~64px) para no quedar tapado.
+          const HEADER_OFFSET = 72;
+          const rect = target.getBoundingClientRect();
+          const absoluteY = rect.top + window.scrollY - HEADER_OFFSET;
+          window.scrollTo({
+            top: Math.max(0, absoluteY),
+            behavior: "smooth",
+          });
+        }, 250);
       }
     }
     prevPhaseIdxRef.current = state.currentPhaseIdx;
@@ -123,10 +148,10 @@ export default function BracketChallenge() {
   };
 
   return (
-    <div className={styles.scope}>
+    <div className={styles.scope} ref={rootRef}>
       {view === "cosmic" && <CosmosBackground />}
 
-      <div style={{ position: "relative", zIndex: 10 }}>
+      <div ref={hudRef} style={{ position: "relative", zIndex: 10 }}>
         <BracketHUD
           state={state}
           view={view}

@@ -43,9 +43,9 @@ export async function GET(req: Request) {
     }
   }
 
-  if (!process.env.RAPIDAPI_KEY) {
+  if (!process.env.API_SPORTS_KEY && !process.env.RAPIDAPI_KEY) {
     return NextResponse.json(
-      { error: "RAPIDAPI_KEY missing in env" },
+      { error: "API_SPORTS_KEY missing in env" },
       { status: 500 },
     );
   }

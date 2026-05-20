@@ -9,9 +9,14 @@
 //   - Si no hay datos (KV vacío, fallo de red), el system-prompt ya cubre el caso
 //     con "Análisis con datos limitados".
 //
-// API: https://www.api-football.com/documentation-v3
+// API: https://www.api-football.com/documentation-v3 (api-sports directo)
 // Endpoint: GET /fixtures?team={id}&last={n}
-// Free tier: 100 req/día. Con 48 selecciones, una pasada diaria gasta 48/100.
+// Plan basic: 7500 req/día. Más que de sobra para 48 selecciones + reintentos.
+//
+// IMPORTANTE: usamos api-sports DIRECTO (dashboard.api-football.com),
+// NO el wrapper de RapidAPI. Header es `x-apisports-key`, host es
+// `v3.football.api-sports.io`. Env var: API_SPORTS_KEY (con fallback a
+// RAPIDAPI_KEY para retrocompatibilidad).
 //
 // Mapeo team ID api-football ↔ selección Mundial 2026: en API_FOOTBALL_TEAM_IDS.
 
@@ -20,8 +25,13 @@ import { kv } from "@vercel/kv";
 const KV_PREFIX = "ia-coach:form:v1:";
 const KV_TTL_SECONDS = 36 * 60 * 60; // 36 h (margen sobre el cron diario)
 
-const RAPIDAPI_HOST = "api-football-v1.p.rapidapi.com";
-const RAPIDAPI_BASE = `https://${RAPIDAPI_HOST}/v3`;
+const API_SPORTS_HOST = "v3.football.api-sports.io";
+const API_SPORTS_BASE = `https://${API_SPORTS_HOST}`;
+
+/** Lee la key de API_SPORTS_KEY, con fallback a RAPIDAPI_KEY (legacy). */
+function getApiKey(): string | undefined {
+  return process.env.API_SPORTS_KEY || process.env.RAPIDAPI_KEY;
+}
 
 // IDs de api-football.com para las 48 selecciones del Mundial 2026.
 // Mapeo manual: keys son los `id` de BRACKET_TEAMS (ISO3 upper).
@@ -126,18 +136,17 @@ export async function fetchTeamRecentMatches(
     console.warn(`[team-form] No api-football ID for ${teamId}`);
     return null;
   }
-  const key = process.env.RAPIDAPI_KEY;
+  const key = getApiKey();
   if (!key) {
-    console.warn("[team-form] RAPIDAPI_KEY missing");
+    console.warn("[team-form] API_SPORTS_KEY missing");
     return null;
   }
 
-  const url = `${RAPIDAPI_BASE}/fixtures?team=${apiId}&last=${last}`;
+  const url = `${API_SPORTS_BASE}/fixtures?team=${apiId}&last=${last}`;
   try {
     const r = await fetch(url, {
       headers: {
-        "x-rapidapi-host": RAPIDAPI_HOST,
-        "x-rapidapi-key": key,
+        "x-apisports-key": key,
       },
       // Sin cache: lo cacheamos NOSOTROS en KV vía el cron.
       cache: "no-store",

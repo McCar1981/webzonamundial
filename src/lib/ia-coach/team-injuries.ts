@@ -11,15 +11,20 @@
 //   - Resuelve el bug donde la IA inventaba lesiones (Lamine Yamal, Ferran, etc).
 //
 // API: GET /injuries?team={id}&season=2026
-// Free tier: 100 req/día. 48 form + 48 injuries = 96/100. Justo dentro.
+// Plan basic api-sports: 7500 req/día. 48 form + 48 injuries = 96/día (~1.3%).
+// Usamos api-sports DIRECTO, no el wrapper de RapidAPI.
 
 import { kv } from "@vercel/kv";
 
 const KV_PREFIX = "ia-coach:injuries:v1:";
 const KV_TTL_SECONDS = 48 * 60 * 60;
 
-const RAPIDAPI_HOST = "api-football-v1.p.rapidapi.com";
-const RAPIDAPI_BASE = `https://${RAPIDAPI_HOST}/v3`;
+const API_SPORTS_HOST = "v3.football.api-sports.io";
+const API_SPORTS_BASE = `https://${API_SPORTS_HOST}`;
+
+function getApiKey(): string | undefined {
+  return process.env.API_SPORTS_KEY || process.env.RAPIDAPI_KEY;
+}
 
 // Reutilizamos el mapeo de team-form.ts para mantener una sola fuente de verdad.
 import { API_FOOTBALL_TEAM_IDS } from "./team-form";
@@ -102,18 +107,17 @@ export async function fetchTeamInjuries(
     console.warn(`[team-injuries] No api-football ID for ${teamId}`);
     return null;
   }
-  const key = process.env.RAPIDAPI_KEY;
+  const key = getApiKey();
   if (!key) {
-    console.warn("[team-injuries] RAPIDAPI_KEY missing");
+    console.warn("[team-injuries] API_SPORTS_KEY missing");
     return null;
   }
 
-  const url = `${RAPIDAPI_BASE}/injuries?team=${apiId}&season=${season}`;
+  const url = `${API_SPORTS_BASE}/injuries?team=${apiId}&season=${season}`;
   try {
     const r = await fetch(url, {
       headers: {
-        "x-rapidapi-host": RAPIDAPI_HOST,
-        "x-rapidapi-key": key,
+        "x-apisports-key": key,
       },
       cache: "no-store",
     });

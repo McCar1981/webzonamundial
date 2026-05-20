@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: { params: { creador: string }
       description: `${c.seguidores} fans ya siguen a ${c.nombre}. Únete y compite durante el Mundial 2026.`,
       url: `/registro/${c.slug}`,
       type: 'profile',
-      images: ['/og-image.jpg'],
+      // images se hereda del root opengraph-image.tsx (dinámico, dorado).
     },
     twitter: {
       card: 'summary_large_image',

@@ -15,7 +15,8 @@ export const metadata: Metadata = {
     title: "Regístrate gratis en ZonaMundial",
     description: "Crea tu cuenta y empieza a jugar el Mundial 2026. Sin coste.",
     url: "/registro",
-    images: ["/og-image.jpg"],
+    // images se hereda del root opengraph-image.tsx (dinámico, dorado).
+    // Antes apuntaba a /og-image.jpg estática (23-abril, versión vieja).
   },
   twitter: {
     title: "Regístrate gratis — ZonaMundial",

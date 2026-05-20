@@ -4,16 +4,33 @@
 //   - matchId
 //   - dataVersion (cambia si cambian datos: lesiones, DT, etc.)
 //   - PROMPT_VERSION (cambia si cambiamos el system prompt)
+//   - rotationSlot (rota cada N horas para refrescar el análisis)
 //
-// TTL: 7 días (estaremos al inicio del Mundial revisándolo a menudo).
-// Si el dataVersion cambia, igualmente se invalida (otra key).
+// ESTRATEGIA "freshness": para que diferentes usuarios no vean siempre
+// EXACTAMENTE el mismo análisis, la key incluye un "rotation slot" que
+// cambia cada 2 horas. Combinado con temperature 0.7 en la generación,
+// cada slot produce un análisis ligeramente distinto. Para un partido,
+// en 24h hay ~12 análisis distintos.
+//
+// Coste: para 10k usuarios/día y 100 partidos visitados/día →
+// 100 × 12 = 1.200 generaciones/día × $0.06 = $72/día máximo (peor caso).
+// En la práctica mucho menor porque la mayoría visitan los mismos partidos.
 
 import { kv } from "@vercel/kv";
 import { PROMPT_VERSION } from "./system-prompt";
 import type { IACoachAnalysis } from "./types";
 
 const PREFIX = "ia-coach:analysis:";
-const TTL_SECONDS = 7 * 24 * 60 * 60;
+// TTL = 2h (alineado con la rotación). El KV expira automáticamente.
+const TTL_SECONDS = 2 * 60 * 60;
+// Rotación: cada 2h. Para producir variabilidad, no para invalidar.
+const ROTATION_HOURS = 2;
+
+/** Slot de tiempo actual: número entero que cambia cada ROTATION_HOURS.
+ *  Ej: 2026-05-20 18:30 UTC → slot 24036 (480721 horas / 2). */
+function getCurrentSlot(): number {
+  return Math.floor(Date.now() / (ROTATION_HOURS * 3600 * 1000));
+}
 
 interface CacheEntry {
   analysis: IACoachAnalysis;
@@ -26,7 +43,8 @@ function isKvEnabled(): boolean {
 }
 
 function buildKey(matchId: string, dataVersion: string): string {
-  return `${PREFIX}${PROMPT_VERSION}:${matchId}:${dataVersion}`;
+  const slot = getCurrentSlot();
+  return `${PREFIX}${PROMPT_VERSION}:${matchId}:${dataVersion}:s${slot}`;
 }
 
 export async function readCache(

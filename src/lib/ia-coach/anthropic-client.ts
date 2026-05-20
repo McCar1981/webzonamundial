@@ -45,6 +45,10 @@ export async function generateAnalysis(
   const response = await client.messages.create({
     model: MODEL,
     max_tokens: MAX_TOKENS,
+    // temperature 1.0 — requerido por Anthropic cuando thinking está activado.
+    // La variabilidad aleatoria entre análisis viene del thinking interno +
+    // del cache slot (rotación cada 2h), no de la temperature.
+    temperature: 1,
     // Extended thinking activado: el modelo razona internamente antes de
     // producir el JSON final. Resultado: mejor calibración de probabilidades,
     // keyFactors más punzantes y verdict más agudo.

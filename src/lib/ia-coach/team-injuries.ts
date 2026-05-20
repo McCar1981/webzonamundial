@@ -185,7 +185,8 @@ export async function fetchAllTopLeaguesInjuries(
  *   - colapsa espacios
  *   - quita puntos
  */
-function normalizeName(name: string): string {
+function normalizeName(name: string | null | undefined): string {
+  if (!name || typeof name !== "string") return "";
   return name
     .toLowerCase()
     .normalize("NFD")
@@ -246,6 +247,8 @@ export async function buildAllTeamInjuriesFromLeaguePool(
   const maxT = now.getTime() + 120 * 24 * 3600 * 1000;
 
   const relevant = pool.filter((inj) => {
+    // Defensive: algunos registros del API vienen incompletos
+    if (!inj?.fixture?.date || !inj?.player?.name) return false;
     const t = new Date(inj.fixture.date).getTime();
     return !Number.isNaN(t) && t >= minT && t <= maxT;
   });
@@ -254,6 +257,7 @@ export async function buildAllTeamInjuriesFromLeaguePool(
   const byNormalized = new Map<string, ApiFootballInjury>();
   for (const inj of relevant) {
     const norm = normalizeName(inj.player.name);
+    if (!norm) continue;
     const existing = byNormalized.get(norm);
     if (
       !existing ||
@@ -274,13 +278,13 @@ export async function buildAllTeamInjuriesFromLeaguePool(
     for (const [norm, inj] of byNormalized) {
       if (squad.has(norm)) {
         matched.push({
-          playerName: squad.get(norm) || inj.player.name,
-          playerPhoto: inj.player.photo || null,
-          type: inj.type,
-          reason: inj.reason,
-          fixtureDate: inj.fixture.date,
-          league: inj.league.name,
-          clubName: inj.team.name,
+          playerName: squad.get(norm) || inj.player?.name || "Desconocido",
+          playerPhoto: inj.player?.photo || null,
+          type: typeof inj.type === "string" ? inj.type : "",
+          reason: typeof inj.reason === "string" ? inj.reason : "",
+          fixtureDate: inj.fixture?.date || "",
+          league: inj.league?.name || "",
+          clubName: inj.team?.name || "",
         });
       }
     }
@@ -300,8 +304,10 @@ export async function buildAllTeamInjuriesFromLeaguePool(
 export function buildInjuriesSummary(injuries: TeamInjury[]): string {
   if (injuries.length === 0) return "Sin bajas confirmadas en datos recientes";
   const top = injuries.slice(0, 5).map((i) => {
-    const motive = (i.reason || i.type || "baja").toLowerCase();
-    return `${i.playerName} (${motive})`;
+    const motiveRaw = i.reason || i.type || "baja";
+    const motive =
+      typeof motiveRaw === "string" ? motiveRaw.toLowerCase() : "baja";
+    return `${i.playerName || "Desconocido"} (${motive})`;
   });
   return `${injuries.length} baja${injuries.length === 1 ? "" : "s"}: ${top.join(", ")}${injuries.length > 5 ? "…" : ""}`;
 }

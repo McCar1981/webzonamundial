@@ -23,6 +23,7 @@
 import { kv } from "@vercel/kv";
 import fs from "node:fs/promises";
 import path from "node:path";
+import { BRACKET_TEAMS } from "@/lib/bracket/teams";
 
 const KV_PREFIX = "ia-coach:injuries:v2:";
 const KV_TTL_SECONDS = 48 * 60 * 60;
@@ -224,8 +225,6 @@ async function loadTeamSquadNames(slug: string): Promise<Map<string, string>> {
 }
 
 /** Bracket team → slug del JSON (consistencia con context-builder). */
-import { BRACKET_TEAMS } from "@/lib/bracket/teams";
-
 const TEAM_SLUG_BY_ID = new Map<string, string>(
   BRACKET_TEAMS.map((t) => [t.id, t.slug]),
 );

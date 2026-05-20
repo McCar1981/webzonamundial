@@ -22,6 +22,7 @@ export const maxDuration = 60;
 export const dynamic = "force-dynamic";
 
 export async function GET(req: Request) {
+  try {
   const expected = process.env.CRON_SECRET;
   if (expected) {
     const auth = req.headers.get("authorization");
@@ -103,4 +104,13 @@ export async function GET(req: Request) {
         .map(([id, inj]) => ({ id, summary: inj.summary })),
     },
   });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    const stack = err instanceof Error ? err.stack : undefined;
+    console.error("[update-team-injuries] FATAL:", message, stack);
+    return NextResponse.json(
+      { error: "internal", message, stack: stack?.slice(0, 1500) },
+      { status: 500 },
+    );
+  }
 }

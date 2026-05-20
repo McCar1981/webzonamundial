@@ -695,7 +695,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .tickerLane { animation: none !important; }
+  /* Ticker: en vez de detener (peor UX para un "live ticker"), lo ralentizamos
+   * mucho para no agredir a usuarios sensibles a movimiento pero mantenemos
+   * la sensación de "noticias en vivo". 60s = tan lento como un trailer. */
+  .tickerLane { animation-duration: 60s !important; }
   .topImg, .topStory, .secCard, .listItem, .topCta { transition: none !important; }
 }
 

@@ -208,9 +208,10 @@
   background: rgba(6, 11, 20, 0.78);
   backdrop-filter: blur(18px);
   z-index: 50;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  /* Grid + place-items centra de forma determinista en ambos ejes,
+     sin depender de width auto del flex item */
+  display: grid;
+  place-items: center;
   opacity: 0;
   pointer-events: none;
   transition: opacity 320ms var(--bb-ease);
@@ -227,11 +228,15 @@
   pointer-events: auto;
 }
 .modal {
-  width: min(560px, 100%);
-  /* Centrado horizontal robusto (no depender solo del flex del shroud) */
+  /* Ancho basado en viewport directo (no en el padding del shroud) — evita
+     desfase si el shroud tiene scrollbar o algún ancestro mete padding */
+  width: min(560px, calc(100vw - 32px));
+  /* Centrado horizontal robusto: redundante con place-items del shroud,
+     pero garantiza el resultado en cualquier modo de layout */
   margin-inline: auto;
   /* Limita altura para que el contenido pueda scrollear dentro */
   max-height: calc(100dvh - 32px);
+  box-sizing: border-box;
   border-radius: 22px;
   background: linear-gradient(180deg, rgba(20, 37, 54, 0.95), rgba(11, 24, 37, 0.95));
   border: 1px solid var(--bb-border-strong);
@@ -241,10 +246,13 @@
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
-  /* Reserva el scrollbar interno en ambos lados para mantener el contenido centrado */
-  scrollbar-gutter: stable both-edges;
+  /* Oculta el scrollbar interno para que NO descentre el contenido del modal */
+  scrollbar-width: none;
   transform: scale(0.92) translateY(20px);
   transition: transform 420ms var(--bb-spring);
+}
+.modal::-webkit-scrollbar {
+  display: none;
 }
 
 /* === Mobile: modal más compacto, sin scroll lateral, contenido centrado === */
@@ -267,20 +275,6 @@
   .scoreNum { font-size: 26px; min-width: 36px; }
   .modalTip { padding: 0 16px; font-size: 11px; }
   .modalActions { padding: 14px 16px 16px; gap: 8px; }
-}
-/* Scrollbar discreta */
-.modal::-webkit-scrollbar {
-  width: 6px;
-}
-.modal::-webkit-scrollbar-track {
-  background: transparent;
-}
-.modal::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 999px;
-}
-.modal::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.16);
 }
 .modalShroud[data-open="true"] .modal {
   transform: scale(1) translateY(0);

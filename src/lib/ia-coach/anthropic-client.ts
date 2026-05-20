@@ -14,9 +14,10 @@ import type { IACoachAnalysis } from "./types";
 
 const MODEL = "claude-sonnet-4-5-20250929";
 // Extended thinking: el modelo razona internamente antes de devolver el JSON.
-// Mejora notable de calidad en análisis matizados sin contaminar el output.
-// max_tokens debe ser > thinking.budget_tokens + tokens de la respuesta final.
-const THINKING_BUDGET = 4000;
+// Budget moderado (2500 tokens) para mantener latencia <30s y caber dentro
+// del maxDuration de 60s de Vercel Hobby. La calidad del análisis no cambia
+// notablemente entre 2500 y 4000 tokens de thinking para este caso de uso.
+const THINKING_BUDGET = 2500;
 const MAX_TOKENS = THINKING_BUDGET + 2200;
 
 let _client: Anthropic | null = null;

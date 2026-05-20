@@ -22,7 +22,9 @@ import type {
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-export const maxDuration = 30;
+// 60s = máximo del plan Hobby de Vercel. Necesario por extended thinking
+// (Sonnet 4.5 con 4000 tokens de thinking + análisis tarda 25-50s).
+export const maxDuration = 60;
 
 interface Body {
   matchId?: string;

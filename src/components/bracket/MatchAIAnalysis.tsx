@@ -57,11 +57,16 @@ export default function MatchAIAnalysis({
     setLoading(true);
     setError(null);
     setOpen(true);
+    // AbortController para timeout en cliente (65s, un poco más que el
+    // maxDuration del endpoint para que el server gane si está cerca del límite).
+    const ac = new AbortController();
+    const timeoutId = setTimeout(() => ac.abort(), 65_000);
     try {
       const r = await fetch("/api/ia-coach/analyze", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ matchId: match.id, match }),
+        signal: ac.signal,
       });
       const data = (await r.json()) as IACoachResponse | IACoachErrorResponse;
       if (data.ok === false) {
@@ -72,9 +77,15 @@ export default function MatchAIAnalysis({
       } else {
         setError("Respuesta inválida del servidor.");
       }
-    } catch {
-      setError("Error de red. Inténtalo de nuevo.");
+    } catch (err) {
+      const e = err as Error;
+      if (e.name === "AbortError") {
+        setError("El análisis está tardando más de lo normal. Vuelve a intentarlo.");
+      } else {
+        setError("No se pudo conectar con el coach. Inténtalo de nuevo.");
+      }
     } finally {
+      clearTimeout(timeoutId);
       setLoading(false);
     }
   }

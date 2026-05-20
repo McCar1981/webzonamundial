@@ -563,12 +563,19 @@
       "status": "pending"
     },
     "coach": {
-      "name": "[POR CONFIRMAR — sucesor de Bielsa]",
-      "age": 0,
-      "nationality": "Uruguay",
-      "since": "[POR CONFIRMAR]",
-      "previous_teams": [],
-      "profile_summary": "Marcelo Bielsa fue cesado tras tensiones internas con la AUF en septiembre de 2025. Pendiente confirmación oficial del sucesor para el Mundial 2026."
+      "name": "Marcelo Bielsa",
+      "age": 70,
+      "nationality": "Argentina",
+      "since": "2023-05-15",
+      "previous_teams": [
+        "Leeds United (2018-2022)",
+        "Lille (2017)",
+        "Olympique Marsella (2014-2015)",
+        "Athletic Club (2011-2013)",
+        "Selección de Chile (2007-2011)",
+        "Selección de Argentina (1998-2004)"
+      ],
+      "profile_summary": "Marcelo Bielsa, 'el Loco', dirige a Uruguay desde mayo de 2023 y continúa al frente del equipo durante el Mundial 2026. La AUF ha confirmado que su ciclo terminará tras el torneo (no continuará después). Bielsa clasificó a Uruguay a la cita mundialista con un fútbol intenso, presión alta y verticalidad. Pese a tensiones puntuales con la AUF a lo largo del proceso, mantiene el control deportivo y la confianza de la plantilla. Su 4-3-3 con Valverde de eje, Núñez como referencia y Pellistri en banda derecha es la idea fija."
     },
     "captain": {
       "name": "Federico Valverde",

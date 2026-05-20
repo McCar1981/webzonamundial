@@ -1002,7 +1002,16 @@
         "champion": 13
       },
       "vs_last_3_wcs": "Sudáfrica 2010: CAMPEONA con final 1-0 ante Países Bajos (gol Iniesta 116'). Brasil 2014: eliminada en fase de grupos, peor papel de la generación dorada. Rusia 2018: octavos eliminada por Rusia en penales tras 1-1. Catar 2022: octavos eliminada por Marruecos en penales tras 0-0. Mundial 2026: tras los dos octavos consecutivos, llega como vigente campeona de Europa con un equipo joven que mezcla talento generacional con experiencia ganadora."
-    }
+    },
+    "manual_injuries": [
+      {
+        "player": "Lamine Yamal",
+        "type": "lesión muscular",
+        "detail": "Bíceps femoral pierna izquierda (sufrida el 22 abril 2026 vs Celta). Se perdería el debut vs Cabo Verde (15 jun) y es duda vs Arabia Saudí (21 jun). Proyección oficial: vuelve para 3ª jornada vs Uruguay (26 jun).",
+        "available_from_match": "España vs Uruguay - 26 jun 2026",
+        "as_of": "2026-05-18"
+      }
+    ]
   },
   "history": {
     "first_appearance": 1934,

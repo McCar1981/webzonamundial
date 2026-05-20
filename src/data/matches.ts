@@ -127,7 +127,7 @@ export const MATCHES: Match[] = [
   { "i": 62, "g": "G", "p": "Fase de grupos", "j": 3, "h": "Egipto", "hf": "eg", "a": "Bélgica", "af": "be", "d": "2026-06-29", "t": "15:00", "vn": "Levi's Stadium", "vc": "Bay Area", "vf": "us" },
 
   { "i": 63, "g": "H", "p": "Fase de grupos", "j": 3, "h": "Cabo Verde", "hf": "cv", "a": "A. Saudí", "af": "sa", "d": "2026-06-26", "t": "20:00", "vn": "NRG Stadium", "vc": "Houston", "vf": "us" },
-  { "i": 64, "g": "H", "p": "Fase de grupos", "j": 3, "h": "Uruguay", "hf": "uy", "a": "España", "af": "es", "d": "2026-06-26", "t": "21:00", "vn": "Estadio Akron", "vc": "Guadalajara", "vf": "mx" },
+  { "i": 64, "g": "H", "p": "Fase de grupos", "j": 3, "h": "Uruguay", "hf": "uy", "a": "España", "af": "es", "d": "2026-06-26", "t": "20:00", "vn": "Estadio Akron", "vc": "Guadalajara", "vf": "mx" },
 
   { "i": 65, "g": "I", "p": "Fase de grupos", "j": 3, "h": "Irak", "hf": "iq", "a": "Francia", "af": "fr", "d": "2026-06-30", "t": "20:00", "vn": "AT&T Stadium", "vc": "Dallas", "vf": "us" },
   { "i": 66, "g": "I", "p": "Fase de grupos", "j": 3, "h": "Senegal", "hf": "sn", "a": "Noruega", "af": "no", "d": "2026-06-30", "t": "20:00", "vn": "MetLife Stadium", "vc": "Nueva York/NJ", "vf": "us" },

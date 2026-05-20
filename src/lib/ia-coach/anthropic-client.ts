@@ -13,7 +13,11 @@ import { SYSTEM_PROMPT } from "./system-prompt";
 import type { IACoachAnalysis } from "./types";
 
 const MODEL = "claude-sonnet-4-5-20250929";
-const MAX_TOKENS = 2200;
+// Extended thinking: el modelo razona internamente antes de devolver el JSON.
+// Mejora notable de calidad en análisis matizados sin contaminar el output.
+// max_tokens debe ser > thinking.budget_tokens + tokens de la respuesta final.
+const THINKING_BUDGET = 4000;
+const MAX_TOKENS = THINKING_BUDGET + 2200;
 
 let _client: Anthropic | null = null;
 function getClient(): Anthropic {
@@ -41,11 +45,19 @@ export async function generateAnalysis(
   const response = await client.messages.create({
     model: MODEL,
     max_tokens: MAX_TOKENS,
+    // Extended thinking activado: el modelo razona internamente antes de
+    // producir el JSON final. Resultado: mejor calibración de probabilidades,
+    // keyFactors más punzantes y verdict más agudo.
+    thinking: {
+      type: "enabled",
+      budget_tokens: THINKING_BUDGET,
+    },
     system: SYSTEM_PROMPT,
     messages: [{ role: "user", content: contextMarkdown }],
   });
 
-  // Extrae el texto de la respuesta
+  // Extrae el texto de la respuesta (ignora los bloques "thinking" — son
+  // internos del modelo, no parte de la respuesta).
   const block = response.content.find((b) => b.type === "text");
   if (!block || block.type !== "text") {
     throw new Error("No text block in Anthropic response");

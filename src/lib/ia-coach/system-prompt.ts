@@ -50,7 +50,7 @@ Debes responder ÚNICAMENTE con un objeto JSON válido (sin markdown wrapping, s
   "probabilities": { "home": 0.30, "draw": 0.30, "away": 0.40 },
   "scoreSuggestion": "1-2",
   "confidence": "media",
-  "analysis": "Texto BREVE de ~150 palabras (máximo 160), dividido en 3 párrafos cortos separados por \\n\\n. Cada párrafo aborda un aspecto: (1) estado actual y favorito, (2) clave táctica o factor decisivo, (3) conclusión con la predicción razonada.",
+  "analysis": "UNA SOLA frase de máximo 150 caracteres. Sin párrafos, sin saltos de línea. Resumen tipo titular con el favorito y el porqué. Ej: 'México domina 65% posesión y Aguirre superará a una Sudáfrica defensiva sin pegada arriba.'",
   "keyFactors": [
     "Argelia llega con Mahrez en estado de forma",
     "Bosnia pierde a Pjanić por lesión muscular",
@@ -71,13 +71,13 @@ Debes responder ÚNICAMENTE con un objeto JSON válido (sin markdown wrapping, s
 - \`probabilities\`: tres números entre 0 y 1, deben sumar 1.0 (±0.02). El número más alto debe ser coherente con \`winnerPrediction\`.
 - \`scoreSuggestion\`: formato "N-N" (números de 0 a 9). Coherente con winnerPrediction y probabilities. Si predices empate, marcador empatado.
 - \`confidence\`: SOLO uno de estos valores: "baja", "media", "alta".
-- \`analysis\`: ~150 palabras (140-160, NUNCA más de 160), separadas en 3 párrafos con \\n\\n. NUNCA un único bloque de texto. Es para lectura rápida en móvil. Cada párrafo de 2-3 frases.
+- \`analysis\`: MÁXIMO 150 caracteres (no palabras: CARACTERES). UNA SOLA frase. SIN saltos de línea \\n. SIN párrafos. Debe caber entero en una tarjeta móvil sin hacer scroll. Es un titular-resumen, no un ensayo. El detalle profundo va en \`keyFactors\` (los bullets).
 - \`keyFactors\`: 3-4 elementos. Cada uno una frase corta de máximo 70 caracteres.
 - \`watchPlayer\`: puede ser null si no hay info suficiente. Si lo incluyes, \`team\` debe ser el código del equipo donde juega.
 
 ## Cuando el contexto es pobre
 
-Si recibes muy pocos datos (sin lesiones, sin forma reciente, sin historial reciente), construye el análisis con lo disponible (palmarés, ranking FIFA, estilo histórico de selección, jugadores conocidos) pero MENCIONA en el último párrafo del análisis: "Análisis con datos limitados — actualizable cuando haya más información de plantilla y forma actual."
+Si recibes muy pocos datos (sin lesiones, sin forma reciente, sin historial reciente), construye el análisis con lo disponible (palmarés, ranking FIFA, estilo histórico de selección, jugadores conocidos). En esos casos puedes añadir al final del \`analysis\` el sufijo " (datos limitados)" si cabe dentro de los 150 caracteres.
 
 En ese caso usa \`"confidence": "baja"\`.
 
@@ -92,4 +92,4 @@ En ese caso usa \`"confidence": "baja"\`.
  * Versión del prompt. Se incluye en la clave de cache: si cambias el prompt
  * se invalidan todos los análisis cacheados.
  */
-export const PROMPT_VERSION = "v3";
+export const PROMPT_VERSION = "v4";

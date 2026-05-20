@@ -376,3 +376,16 @@
   text-align: center;
   font-style: italic;
 }
+
+/* === Mobile: tarjeta de análisis IA compacta, sin scroll interno innecesario === */
+@media (max-width: 480px) {
+  .requestButton { margin: 10px 16px; padding: 10px 14px; font-size: 12px; }
+  .wrap { margin: 10px 16px; padding: 12px 14px; }
+  .verdict { font-size: 15px; margin: 2px 0 10px; }
+  .analysisText { font-size: 13px; line-height: 1.45; margin: 10px 0 4px; }
+  .keyFactors { padding: 10px 12px; }
+  .keyFactors li { font-size: 12px; }
+  .watchPlayer { padding: 10px 12px; }
+  .watchPlayerName { font-size: 14px; }
+  .applyBtn { padding: 11px 16px; font-size: 11px; }
+}

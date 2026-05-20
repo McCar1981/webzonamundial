@@ -110,7 +110,8 @@ function validateAnalysis(raw: unknown): IACoachAnalysis {
   const winnerPrediction = requireString("winnerPrediction").toUpperCase();
   const scoreSuggestion = requireString("scoreSuggestion");
   const confidenceRaw = requireString("confidence").toLowerCase();
-  const analysis = requireString("analysis");
+  // Hard cap a 150 caracteres + colapsa saltos de línea por si el modelo aún devuelve párrafos
+  const analysis = requireString("analysis", 150).replace(/\s*\n+\s*/g, " ").trim();
 
   // Probabilities
   const probs = obj.probabilities;

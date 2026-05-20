@@ -241,8 +241,32 @@
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
+  /* Reserva el scrollbar interno en ambos lados para mantener el contenido centrado */
+  scrollbar-gutter: stable both-edges;
   transform: scale(0.92) translateY(20px);
   transition: transform 420ms var(--bb-spring);
+}
+
+/* === Mobile: modal más compacto, sin scroll lateral, contenido centrado === */
+@media (max-width: 480px) {
+  .modalShroud {
+    padding: 10px;
+  }
+  .modal {
+    max-height: calc(100dvh - 20px);
+    border-radius: 18px;
+  }
+  .modalHead { padding: 14px 16px 0; }
+  .modalKickoff { margin: 10px 16px 0; padding: 10px 12px; }
+  .modalVs { padding: 18px 14px 6px; gap: 8px; }
+  .teamCol { padding: 10px 6px; gap: 8px; }
+  .teamFlag { width: 64px; height: 44px; }
+  .teamName { font-size: 14px; }
+  .modalScore { padding: 8px 14px; gap: 10px; }
+  .scoreBtn { width: 34px; height: 34px; font-size: 16px; }
+  .scoreNum { font-size: 26px; min-width: 36px; }
+  .modalTip { padding: 0 16px; font-size: 11px; }
+  .modalActions { padding: 14px 16px 16px; gap: 8px; }
 }
 /* Scrollbar discreta */
 .modal::-webkit-scrollbar {

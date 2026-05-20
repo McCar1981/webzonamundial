@@ -15,6 +15,7 @@
 //   "d + t" es un instante en ET sin reinterpretar.
 
 import { MATCHES, type Match } from "@/data/matches";
+import { TEAM_BY_ID } from "./teams";
 import type { BracketMatch, PhaseId } from "./types";
 
 /** Zona horaria base de los datos de partidos. */
@@ -48,9 +49,32 @@ function indexByPhase(): Map<string, Match[]> {
   return m;
 }
 
-/** Encuentra el Match de matches.ts correspondiente a un BracketMatch
- *  usando phase + slotIdx (orden cronológico dentro de la fase). */
+/** Encuentra el Match de matches.ts correspondiente a un BracketMatch.
+ *
+ *  Para fase de grupos: matchea por IDs de equipo (más robusto, no depende
+ *  del orden del array). Esto evita el bug de slotIdx donde el orden del
+ *  bracket (pi=0..5) no coincide con el orden cronológico del Mundial real.
+ *
+ *  Para fases de eliminación (R32, R16, etc.) los equipos pueden ser TBD,
+ *  así que caemos al fallback por phase + slotIdx.
+ */
 export function findMatchData(bracketMatch: BracketMatch): Match | null {
+  // Match por equipos (robusto, cuando ya conocemos a y b)
+  if (bracketMatch.a && bracketMatch.b) {
+    const teamA = TEAM_BY_ID[bracketMatch.a];
+    const teamB = TEAM_BY_ID[bracketMatch.b];
+    if (teamA && teamB) {
+      const isoA = teamA.iso;
+      const isoB = teamB.iso;
+      const found = MATCHES.find(
+        (m) =>
+          (m.hf === isoA && m.af === isoB) ||
+          (m.hf === isoB && m.af === isoA),
+      );
+      if (found) return found;
+    }
+  }
+  // Fallback por phase + slotIdx (para knockouts con equipos TBD)
   const idx = indexByPhase();
   const phaseLabel = PHASE_MAP[bracketMatch.phase];
   const arr = idx.get(phaseLabel);

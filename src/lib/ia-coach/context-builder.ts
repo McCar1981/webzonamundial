@@ -263,7 +263,15 @@ export async function buildContext(
     `**Tarea:** Analiza este enfrentamiento siguiendo TU metodología. ` +
       `Devuelve el JSON con verdict, winnerPrediction (usa los códigos "${home.id}", "${away.id}" o "DRAW"), ` +
       `probabilities (home=${home.id}, away=${away.id}), scoreSuggestion, confidence, ` +
-      `analysis (300-500 palabras, 4-6 párrafos), keyFactors (3-5) y watchPlayer.`,
+      `analysis (UNA FRASE, máximo 150 caracteres, sin saltos de línea), keyFactors (3-4 bullets cortos) y watchPlayer.`,
+  );
+  parts.push("");
+  parts.push(
+    "**Reglas de fidelidad al contexto (CRÍTICO):**\n" +
+      "- NO afirmes lesiones, sanciones o ausencias de jugadores si NO aparecen explícitamente arriba.\n" +
+      "- Si el campo 'DT actual' dice 'POR CONFIRMAR' o similar, di literalmente 'DT por confirmar' — NO inventes un nombre.\n" +
+      "- NO digas frases como 'Lamine Yamal en duda por lesión' o 'sin Ferran' si esa info no está en el bloque del equipo.\n" +
+      "- Si necesitas referirte a un jugador y no estás seguro de su estado actual, usa lenguaje neutro ('si está al 100%', 'puede ser clave') en vez de afirmaciones.",
   );
 
   // dataVersion = hash simple basado en (squad_announced status + nombres de DT).

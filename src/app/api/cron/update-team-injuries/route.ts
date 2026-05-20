@@ -1,37 +1,27 @@
 // src/app/api/cron/update-team-injuries/route.ts
 //
-// Cron diario que actualiza lesiones/bajas de cada selección del Mundial 2026
-// en Vercel KV. Lo lee api-football.com (endpoint /injuries).
+// Cron diario que actualiza lesiones de cada selección DERIVADAS de las
+// lesiones de club en las 5 ligas top (Premier, La Liga, Serie A, Bundesliga,
+// Ligue 1).
 //
-// Free tier: 100 req/día. Junto con update-team-form (48 reqs), gasta 96/100.
-// Programado a las 04:00 UTC (1h después del cron de forma reciente).
+// 100% automático: matchea por nombre normalizado entre /injuries de cada
+// liga y la `likely_squad` del JSON de cada selección.
 //
-// Auth: Authorization: Bearer ${CRON_SECRET} o ?secret=XXX.
+// Coste: 5 calls api-sports en total (1 por liga top) en vez de 48.
+// Programado: 04:00 UTC diariamente.
 
 import { NextResponse } from "next/server";
 import { BRACKET_TEAMS } from "@/lib/bracket/teams";
 import {
-  buildInjuriesSummary,
-  fetchTeamInjuries,
+  fetchAllTopLeaguesInjuries,
+  buildAllTeamInjuriesFromLeaguePool,
   writeTeamInjuries,
-  API_FOOTBALL_TEAM_IDS,
-  type TeamInjuries,
 } from "@/lib/ia-coach/team-injuries";
 
 export const maxDuration = 60;
 export const dynamic = "force-dynamic";
 
-interface Summary {
-  ok: number;
-  failed: number;
-  skipped: number;
-  withInjuries: number;
-  totalInjuries: number;
-  errors: Array<{ teamId: string; reason: string }>;
-}
-
 export async function GET(req: Request) {
-  // Auth
   const expected = process.env.CRON_SECRET;
   if (expected) {
     const auth = req.headers.get("authorization");
@@ -54,8 +44,14 @@ export async function GET(req: Request) {
   }
 
   const url = new URL(req.url);
+  // En clubes la temporada en curso suele ser year-1 (2025 hasta jun, 2026 desde ago).
+  // Mayo 2026 → temporada 2025 (que termina jun). Por defecto usamos year-1 hasta
+  // junio; desde julio en adelante, year actual.
+  const now = new Date();
+  const defaultSeason =
+    now.getUTCMonth() < 7 ? now.getUTCFullYear() - 1 : now.getUTCFullYear();
   const season = parseInt(
-    url.searchParams.get("season") || String(new Date().getFullYear()),
+    url.searchParams.get("season") || String(defaultSeason),
     10,
   );
   const onlyParam = url.searchParams.get("only");
@@ -63,59 +59,48 @@ export async function GET(req: Request) {
     ? new Set(onlyParam.split(",").map((s) => s.trim().toUpperCase()))
     : null;
 
-  const summary: Summary = {
-    ok: 0,
-    failed: 0,
-    skipped: 0,
-    withInjuries: 0,
-    totalInjuries: 0,
-    errors: [],
-  };
-
   const startMs = Date.now();
-  const HARD_BUDGET_MS = 55_000;
 
-  for (const team of BRACKET_TEAMS) {
-    if (onlyList && !onlyList.has(team.id)) continue;
-    if (!API_FOOTBALL_TEAM_IDS[team.id]) {
-      summary.skipped++;
-      summary.errors.push({ teamId: team.id, reason: "no api-football ID" });
-      continue;
-    }
-    if (Date.now() - startMs > HARD_BUDGET_MS) {
-      summary.skipped++;
-      summary.errors.push({ teamId: team.id, reason: "time budget exhausted" });
-      continue;
-    }
+  // 1) Pull las 5 ligas top
+  const pool = await fetchAllTopLeaguesInjuries(season);
+  const fetchedMs = Date.now() - startMs;
 
-    const list = await fetchTeamInjuries(team.id, season);
-    if (list === null) {
-      summary.failed++;
-      summary.errors.push({ teamId: team.id, reason: "fetch failed" });
-      continue;
-    }
-    const record: TeamInjuries = {
-      teamId: team.id,
-      apiTeamId: API_FOOTBALL_TEAM_IDS[team.id],
-      fetchedAt: new Date().toISOString(),
-      active: list,
-      summary: buildInjuriesSummary(list),
-    };
-    await writeTeamInjuries(record);
-    summary.ok++;
-    if (list.length > 0) {
-      summary.withInjuries++;
-      summary.totalInjuries += list.length;
-    }
+  // 2) Lista de teamIds a procesar
+  const teamIds = (onlyList
+    ? BRACKET_TEAMS.filter((t) => onlyList.has(t.id))
+    : BRACKET_TEAMS
+  ).map((t) => t.id);
 
-    // Rate limit free tier: 10 req/min
-    await new Promise((r) => setTimeout(r, 6500));
+  // 3) Match por likely_squad de cada JSON
+  const built = await buildAllTeamInjuriesFromLeaguePool(pool, teamIds);
+
+  // 4) Write all to KV
+  let writeOk = 0;
+  let withInjuries = 0;
+  let totalInjuries = 0;
+  for (const [, injuries] of built) {
+    await writeTeamInjuries(injuries);
+    writeOk++;
+    if (injuries.active.length > 0) {
+      withInjuries++;
+      totalInjuries += injuries.active.length;
+    }
   }
 
   return NextResponse.json({
     ok: true,
     season,
+    poolSize: pool.length,
+    fetchedMs,
     durationMs: Date.now() - startMs,
-    summary,
+    summary: {
+      teamsProcessed: writeOk,
+      withInjuries,
+      totalInjuries,
+      sampleTeamsWithInjuries: Array.from(built.entries())
+        .filter(([, inj]) => inj.active.length > 0)
+        .slice(0, 5)
+        .map(([id, inj]) => ({ id, summary: inj.summary })),
+    },
   });
 }

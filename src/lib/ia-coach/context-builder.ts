@@ -60,15 +60,6 @@ interface TeamDeep {
       tactical_style?: string;
     };
     squad_announced?: boolean;
-    /** Lesiones añadidas manualmente cuando api-sports no las tiene
-     *  (típico en selecciones fuera de ventana FIFA). */
-    manual_injuries?: Array<{
-      player: string;
-      type: string;
-      detail: string;
-      available_from_match?: string;
-      as_of?: string;
-    }>;
   };
   history?: {
     appearances_count_before_2026?: number;
@@ -207,23 +198,10 @@ function formatTeamBlock(
     lines.push(formatTeamFormForPrompt(form));
   }
 
-  // FASE 2.B: lesiones reales del KV (poblado por update-team-injuries).
-  // Esto resuelve el bug donde la IA inventaba lesiones (Lamine Yamal, Ferran, etc).
+  // FASE 2.B v2: lesiones AUTOMÁTICAS derivadas de las /injuries de las 5
+  // ligas top, matcheadas por nombre con likely_squad del JSON del equipo.
+  // Poblado por el cron update-team-injuries (04:00 UTC diario).
   lines.push(formatInjuriesForPrompt(injuries));
-
-  // FASE 2.B (override manual): cuando api-sports no tiene datos (típico en
-  // selecciones fuera de ventana FIFA), permitimos añadir lesiones a mano
-  // en wc_2026.manual_injuries del JSON del equipo.
-  const manual = deep.wc_2026?.manual_injuries;
-  if (Array.isArray(manual) && manual.length > 0) {
-    lines.push("- Lesiones/dudas confirmadas (datos manuales editoriales):");
-    for (const inj of manual.slice(0, 10)) {
-      const parts = [`${inj.player} — ${inj.type}`];
-      if (inj.detail) parts.push(`(${inj.detail})`);
-      if (inj.as_of) parts.push(`[a ${inj.as_of}]`);
-      lines.push(`  ${parts.join(" ")}`);
-    }
-  }
 
   return lines.join("\n");
 }

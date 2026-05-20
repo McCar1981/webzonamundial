@@ -1,23 +1,32 @@
 // src/lib/ia-coach/team-injuries.ts
 //
-// FASE 2.B: Lesiones y bajas reales de selecciones desde api-football.com.
+// FASE 2.B v2 (100% automático): Lesiones de selección DERIVADAS de lesiones
+// de club.
 //
-// Estrategia:
-//   - Pull diario via cron del endpoint /injuries para cada selección.
-//   - Filtramos a partidos recientes (últimos 60 días) o futuros (próximos 60 días)
-//     para evitar bajas históricas irrelevantes.
-//   - Persistido en Vercel KV con TTL de 48 h.
-//   - El context-builder lo lee y lo añade al prompt user.
-//   - Resuelve el bug donde la IA inventaba lesiones (Lamine Yamal, Ferran, etc).
+// Problema con v1: api-sports /injuries?team={nt_id} devuelve 0 lesiones para
+// selecciones fuera de ventana FIFA. Inútil entre torneos.
 //
-// API: GET /injuries?team={id}&season=2026
-// Plan basic api-sports: 7500 req/día. 48 form + 48 injuries = 96/día (~1.3%).
-// Usamos api-sports DIRECTO, no el wrapper de RapidAPI.
+// Solución v2: pullear /injuries?league={X}&season={Y} para las 5 ligas top
+// (La Liga, Premier, Serie A, Bundesliga, Ligue 1) — eso devuelve todas las
+// lesiones de jugadores de club. Después matcheamos por NOMBRE del jugador
+// con la `likely_squad` de cada selección del JSON.
+//
+// Resultado: si Lamine Yamal (Barcelona) tiene lesión en La Liga, y aparece
+// en la `likely_squad` de España, automáticamente queda registrado como baja
+// de España. 100% automático, sin intervención editorial.
+//
+// Plan basic api-sports: 7500 req/día. Esto gasta 5 calls (1 por liga) en
+// vez de 48 (1 por selección). Ahorro masivo + datos mejores.
+//
+// Programado: cron /api/cron/update-team-injuries a las 04:00 UTC.
 
 import { kv } from "@vercel/kv";
+import fs from "node:fs/promises";
+import path from "node:path";
 
-const KV_PREFIX = "ia-coach:injuries:v1:";
+const KV_PREFIX = "ia-coach:injuries:v2:";
 const KV_TTL_SECONDS = 48 * 60 * 60;
+const KV_RAW_KEY = "ia-coach:injuries-raw:v2:league:";
 
 const API_SPORTS_HOST = "v3.football.api-sports.io";
 const API_SPORTS_BASE = `https://${API_SPORTS_HOST}`;
@@ -26,33 +35,43 @@ function getApiKey(): string | undefined {
   return process.env.API_SPORTS_KEY || process.env.RAPIDAPI_KEY;
 }
 
-// Reutilizamos el mapeo de team-form.ts para mantener una sola fuente de verdad.
+// IDs de api-football para las 5 ligas top. Constantes (no cambian por temporada).
+export const TOP_LEAGUE_IDS: Record<string, number> = {
+  "Premier League": 39,
+  "La Liga": 140,
+  "Serie A": 135,
+  "Bundesliga": 78,
+  "Ligue 1": 61,
+};
+
+// Mapeo team ID api-football ↔ selección Mundial 2026 (compartido con team-form).
 import { API_FOOTBALL_TEAM_IDS } from "./team-form";
 export { API_FOOTBALL_TEAM_IDS };
+
+const TEAM_DATA_DIR = path.join(process.cwd(), "data", "teams");
 
 export interface TeamInjury {
   playerName: string;
   playerPhoto?: string | null;
   type: string; // "Missing Fixture" | "Questionable" | "Injured" | ...
-  reason: string; // texto libre del API
-  fixtureDate: string; // ISO date del partido afectado
+  reason: string;
+  fixtureDate: string;
   league: string;
+  clubName: string; // club donde sucedió la lesión (Barcelona, Real Madrid…)
 }
 
 export interface TeamInjuries {
   teamId: string;
   apiTeamId: number;
   fetchedAt: string;
-  /** Bajas/dudas en fixtures recientes o futuros cercanos. */
   active: TeamInjury[];
-  /** Resumen una línea: "Sin bajas confirmadas" | "3 bajas: A (rodilla), B (suspensión)..." */
   summary: string;
 }
 
 interface ApiFootballInjury {
   player: { id: number; name: string; photo?: string };
   team: { id: number; name: string };
-  fixture: { id: number; date: string; timezone: string };
+  fixture: { id: number; date: string };
   league: { id: number; season: number; name: string };
   type: string;
   reason: string;
@@ -95,81 +114,190 @@ export async function writeTeamInjuries(
 }
 
 /**
- * Llama a api-football y devuelve las lesiones de una selección.
- * Por defecto filtra a la temporada actual.
+ * Fetch /injuries?league={id}&season={year}. Devuelve TODAS las lesiones
+ * activas en esa liga durante esa temporada.
  */
-export async function fetchTeamInjuries(
-  teamId: string,
-  season: number = new Date().getFullYear(),
-): Promise<TeamInjury[] | null> {
-  const apiId = API_FOOTBALL_TEAM_IDS[teamId];
-  if (!apiId) {
-    console.warn(`[team-injuries] No api-football ID for ${teamId}`);
-    return null;
-  }
+export async function fetchLeagueInjuries(
+  leagueId: number,
+  season: number,
+): Promise<ApiFootballInjury[] | null> {
   const key = getApiKey();
   if (!key) {
     console.warn("[team-injuries] API_SPORTS_KEY missing");
     return null;
   }
-
-  const url = `${API_SPORTS_BASE}/injuries?team=${apiId}&season=${season}`;
+  const url = `${API_SPORTS_BASE}/injuries?league=${leagueId}&season=${season}`;
   try {
     const r = await fetch(url, {
-      headers: {
-        "x-apisports-key": key,
-      },
+      headers: { "x-apisports-key": key },
       cache: "no-store",
     });
     if (!r.ok) {
-      console.error(`[team-injuries] ${teamId} HTTP ${r.status}`);
+      console.error(`[team-injuries] league ${leagueId} HTTP ${r.status}`);
       return null;
     }
     const data = (await r.json()) as ApiFootballInjuriesResponse;
-    if (!Array.isArray(data.response)) return null;
-
-    // Filtra a un ventana de [-60d, +90d] respecto a hoy para evitar bajas
-    // muy antiguas o partidos lejanos irrelevantes.
-    const now = Date.now();
-    const minDate = now - 60 * 24 * 3600 * 1000;
-    const maxDate = now + 90 * 24 * 3600 * 1000;
-
-    const filtered = data.response.filter((inj) => {
-      const t = new Date(inj.fixture.date).getTime();
-      return !Number.isNaN(t) && t >= minDate && t <= maxDate;
-    });
-
-    // Dedup por jugador (un mismo jugador puede aparecer en varios fixtures).
-    // Nos quedamos con el más reciente.
-    const byPlayer = new Map<string, ApiFootballInjury>();
-    for (const inj of filtered) {
-      const existing = byPlayer.get(inj.player.name);
-      if (
-        !existing ||
-        new Date(inj.fixture.date).getTime() >
-          new Date(existing.fixture.date).getTime()
-      ) {
-        byPlayer.set(inj.player.name, inj);
-      }
-    }
-
-    return Array.from(byPlayer.values()).map(
-      (inj): TeamInjury => ({
-        playerName: inj.player.name,
-        playerPhoto: inj.player.photo || null,
-        type: inj.type,
-        reason: inj.reason,
-        fixtureDate: inj.fixture.date,
-        league: inj.league.name,
-      }),
-    );
+    return Array.isArray(data.response) ? data.response : null;
   } catch (err) {
-    console.error(`[team-injuries] fetch failed ${teamId}:`, (err as Error).message);
+    console.error(
+      `[team-injuries] fetch failed league ${leagueId}:`,
+      (err as Error).message,
+    );
     return null;
   }
 }
 
-/** Construye resumen una línea para el prompt. */
+/**
+ * Pulla las 5 ligas top y consolida en un solo array de lesiones.
+ * Cachea cada liga en KV como respaldo (KV_RAW_KEY).
+ */
+export async function fetchAllTopLeaguesInjuries(
+  season: number,
+): Promise<ApiFootballInjury[]> {
+  const all: ApiFootballInjury[] = [];
+  for (const [name, id] of Object.entries(TOP_LEAGUE_IDS)) {
+    const list = await fetchLeagueInjuries(id, season);
+    if (list) {
+      all.push(...list);
+      console.log(`[team-injuries] ${name}: ${list.length} injuries`);
+      // Cachea el raw por si necesitamos debug
+      if (isKvEnabled()) {
+        try {
+          await kv.set(`${KV_RAW_KEY}${id}:${season}`, list, {
+            ex: KV_TTL_SECONDS,
+          });
+        } catch {
+          /* noop */
+        }
+      }
+    }
+    // Pausa pequeña entre ligas
+    await new Promise((r) => setTimeout(r, 1500));
+  }
+  return all;
+}
+
+/**
+ * Normaliza un nombre para matching robusto:
+ *   - lowercase
+ *   - strip diacritics (Á → A)
+ *   - colapsa espacios
+ *   - quita puntos
+ */
+function normalizeName(name: string): string {
+  return name
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[.,]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/** Carga la likely_squad del JSON del equipo. Devuelve nombres normalizados. */
+async function loadTeamSquadNames(slug: string): Promise<Map<string, string>> {
+  // Map<normalized, original>
+  const map = new Map<string, string>();
+  try {
+    const filepath = path.join(TEAM_DATA_DIR, `${slug}.json`);
+    const txt = await fs.readFile(filepath, "utf8");
+    const data = JSON.parse(txt);
+    const squad = data?.wc_2026?.likely_squad;
+    if (Array.isArray(squad)) {
+      for (const p of squad) {
+        const name = p.full_name || p.display_name;
+        if (typeof name === "string" && name.trim()) {
+          map.set(normalizeName(name), name);
+          // También indexar solo apellido para fallback (Yamal, no Lamine Yamal)
+          const parts = name.split(/\s+/);
+          if (parts.length >= 2) {
+            const lastTwo = parts.slice(-2).join(" ");
+            map.set(normalizeName(lastTwo), name);
+          }
+        }
+      }
+    }
+  } catch {
+    /* ignore — equipo sin JSON o sin squad */
+  }
+  return map;
+}
+
+/** Bracket team → slug del JSON (consistencia con context-builder). */
+import { BRACKET_TEAMS } from "@/lib/bracket/teams";
+
+const TEAM_SLUG_BY_ID = new Map<string, string>(
+  BRACKET_TEAMS.map((t) => [t.id, t.slug]),
+);
+
+/**
+ * Construye TeamInjuries para cada selección a partir del pool de lesiones
+ * de las 5 ligas top.
+ */
+export async function buildAllTeamInjuriesFromLeaguePool(
+  pool: ApiFootballInjury[],
+  teamIds: string[],
+): Promise<Map<string, TeamInjuries>> {
+  const out = new Map<string, TeamInjuries>();
+  const now = new Date();
+
+  // Filtra a fixtures recientes/futuros (-30d, +120d) para descartar bajas
+  // muy antiguas que el endpoint a veces retorna.
+  const minT = now.getTime() - 30 * 24 * 3600 * 1000;
+  const maxT = now.getTime() + 120 * 24 * 3600 * 1000;
+
+  const relevant = pool.filter((inj) => {
+    const t = new Date(inj.fixture.date).getTime();
+    return !Number.isNaN(t) && t >= minT && t <= maxT;
+  });
+
+  // Pre-índice por nombre normalizado, dedup quedándose con la más reciente.
+  const byNormalized = new Map<string, ApiFootballInjury>();
+  for (const inj of relevant) {
+    const norm = normalizeName(inj.player.name);
+    const existing = byNormalized.get(norm);
+    if (
+      !existing ||
+      new Date(inj.fixture.date).getTime() >
+        new Date(existing.fixture.date).getTime()
+    ) {
+      byNormalized.set(norm, inj);
+    }
+  }
+
+  for (const teamId of teamIds) {
+    const slug = TEAM_SLUG_BY_ID.get(teamId);
+    if (!slug) continue;
+    const squad = await loadTeamSquadNames(slug);
+    if (squad.size === 0) continue;
+
+    const matched: TeamInjury[] = [];
+    for (const [norm, inj] of byNormalized) {
+      if (squad.has(norm)) {
+        matched.push({
+          playerName: squad.get(norm) || inj.player.name,
+          playerPhoto: inj.player.photo || null,
+          type: inj.type,
+          reason: inj.reason,
+          fixtureDate: inj.fixture.date,
+          league: inj.league.name,
+          clubName: inj.team.name,
+        });
+      }
+    }
+
+    out.set(teamId, {
+      teamId,
+      apiTeamId: API_FOOTBALL_TEAM_IDS[teamId] || 0,
+      fetchedAt: now.toISOString(),
+      active: matched,
+      summary: buildInjuriesSummary(matched),
+    });
+  }
+
+  return out;
+}
+
 export function buildInjuriesSummary(injuries: TeamInjury[]): string {
   if (injuries.length === 0) return "Sin bajas confirmadas en datos recientes";
   const top = injuries.slice(0, 5).map((i) => {
@@ -179,7 +307,6 @@ export function buildInjuriesSummary(injuries: TeamInjury[]): string {
   return `${injuries.length} baja${injuries.length === 1 ? "" : "s"}: ${top.join(", ")}${injuries.length > 5 ? "…" : ""}`;
 }
 
-/** Formatea las lesiones para el prompt del context-builder. */
 export function formatInjuriesForPrompt(
   injuries: TeamInjuries | null,
 ): string {
@@ -194,7 +321,9 @@ export function formatInjuriesForPrompt(
   lines.push("- Detalle:");
   for (const inj of injuries.active.slice(0, 8)) {
     const motive = inj.reason || inj.type;
-    lines.push(`  ${inj.playerName} — ${motive} [${inj.fixtureDate.slice(0, 10)}, ${inj.league}]`);
+    lines.push(
+      `  ${inj.playerName} (${inj.clubName}) — ${motive} [${inj.fixtureDate.slice(0, 10)}, ${inj.league}]`,
+    );
   }
   return lines.join("\n");
 }

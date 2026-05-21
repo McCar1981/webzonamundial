@@ -127,6 +127,13 @@ export async function GET(req: Request) {
         // Reemplazar el draft viejo en store.drafts (match por sourceUrlHash).
         const idx = store.drafts.findIndex((d) => d.sourceUrlHash === pendingDrafts[i].sourceUrlHash);
         if (idx >= 0) {
+          // Si se publica AHORA, refrescar ingestedAt para que aparezca arriba
+          // del feed (tiebreaker cuando comparte `date` con otras). Sin esto,
+          // los drafts viejos retried mantenían su ingestedAt original y se
+          // quedaban hundidos detrás de noticias estáticas del mismo día.
+          if (updated.status === "published") {
+            updated.ingestedAt = new Date().toISOString();
+          }
           store.drafts[idx] = updated;
           if (updated.status === "published") {
             rewritten += 1;

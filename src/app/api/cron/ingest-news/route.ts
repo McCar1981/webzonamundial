@@ -54,13 +54,11 @@ export async function GET(req: Request) {
   // is achieved over 24h since we have 15 queries × ~10 results = 150 articles
   // per full rotation.
   const ALL_QUERIES = Object.keys(WORLD_CUP_QUERIES) as (keyof typeof WORLD_CUP_QUERIES)[];
-  // Antes 3 queries/tick = 72 req/día de GNews (free tier es 100/día).
-  // Subido a 4 = 96 req/día, justo dentro del límite con 4 reqs de margen
-  // de seguridad. +33% más cobertura → más probabilidad de noticias frescas
-  // en cada tick → más push reales para usuarios.
-  // Si se sobre-pasa el límite por error (>100), GNews devuelve 429 y el
-  // cron registra el error en `errors[]` pero no rompe nada.
-  const QUERIES_PER_TICK = parseInt(process.env.NEWS_QUERIES_PER_TICK || "4", 10);
+  // Cron cada 2h × 5 queries/tick = 12 × 5 = 60 req/día de GNews
+  // (free tier 100/día, holgura cómoda). 5 queries cubren más ángulos
+  // por ejecución (general, fixtures, injuries_wc, stars, squad...)
+  // → mayor probabilidad de pillar noticias frescas en cada tick.
+  const QUERIES_PER_TICK = parseInt(process.env.NEWS_QUERIES_PER_TICK || "5", 10);
   const hourSeed = new Date().getUTCHours();
   const queries: (keyof typeof WORLD_CUP_QUERIES)[] = [];
   for (let i = 0; i < QUERIES_PER_TICK; i++) {

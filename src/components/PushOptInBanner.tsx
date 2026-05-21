@@ -117,14 +117,14 @@ export default function PushOptInBanner() {
         <div
           style={{
             flexShrink: 0,
-            width: 40,
-            height: 40,
+            width: 44,
+            height: 44,
             borderRadius: 12,
             background: "linear-gradient(135deg,#C9A84C,#E8C76B)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            fontSize: 22,
+            fontSize: 24,
           }}
           aria-hidden="true"
         >
@@ -135,21 +135,90 @@ export default function PushOptInBanner() {
             style={{
               margin: "0 0 4px",
               fontFamily: "'Outfit','Segoe UI',sans-serif",
-              fontSize: 15,
-              fontWeight: 700,
+              fontSize: 16,
+              fontWeight: 800,
               color: "#fff",
               letterSpacing: "-0.01em",
             }}
           >
-            Noticias del Mundial 2026 al instante
+            No te pierdas nada del Mundial 2026
           </p>
-          <p style={{ margin: 0, fontSize: 12.5, color: "#94A3B8", lineHeight: 1.45 }}>
-            Activa las notificaciones y no te pierdas convocatorias,
-            lesiones, alineaciones y resultados. Máx. 1-2 alertas al día.
+          <p
+            style={{
+              margin: 0,
+              fontSize: 12.5,
+              color: "#94A3B8",
+              lineHeight: 1.45,
+            }}
+          >
+            Activa las alertas y recibe en el momento:
           </p>
         </div>
       </div>
-      <div style={{ display: "flex", gap: 10, marginTop: 14, justifyContent: "flex-end" }}>
+
+      {/* Lista de beneficios concretos — pre-prompt con valor */}
+      <ul
+        style={{
+          margin: "12px 0 0",
+          padding: "0 0 0 8px",
+          listStyle: "none",
+          display: "flex",
+          flexDirection: "column",
+          gap: 6,
+        }}
+      >
+        {[
+          "Convocatorias oficiales y bajas de última hora",
+          "Lesiones de cracks (Yamal, Vinicius, Mbappé...)",
+          "Resultados y goles minuto a minuto",
+          "Análisis del Coach IA antes de cada partido",
+        ].map((b) => (
+          <li
+            key={b}
+            style={{
+              fontSize: 12.5,
+              color: "#CBD5E1",
+              display: "flex",
+              gap: 8,
+              alignItems: "flex-start",
+              lineHeight: 1.45,
+            }}
+          >
+            <span
+              aria-hidden
+              style={{
+                color: "#FDE68A",
+                fontSize: 13,
+                lineHeight: 1.3,
+                flexShrink: 0,
+              }}
+            >
+              ✓
+            </span>
+            <span>{b}</span>
+          </li>
+        ))}
+      </ul>
+
+      <p
+        style={{
+          margin: "12px 0 0",
+          fontSize: 11,
+          color: "#64748B",
+          textAlign: "center",
+        }}
+      >
+        Máximo 1-2 alertas al día · Cancelas cuando quieras
+      </p>
+
+      <div
+        style={{
+          display: "flex",
+          gap: 10,
+          marginTop: 12,
+          justifyContent: "flex-end",
+        }}
+      >
         <button
           type="button"
           onClick={dismiss}
@@ -174,14 +243,15 @@ export default function PushOptInBanner() {
             color: "#1A1208",
             border: "none",
             borderRadius: 10,
-            padding: "9px 16px",
+            padding: "10px 18px",
             fontSize: 13,
-            fontWeight: 700,
+            fontWeight: 800,
             cursor: loading ? "wait" : "pointer",
             letterSpacing: "0.01em",
+            boxShadow: "0 4px 14px rgba(201,168,76,0.35)",
           }}
         >
-          {loading ? "Activando…" : "Activar"}
+          {loading ? "Activando…" : "Sí, activar alertas"}
         </button>
       </div>
     </div>

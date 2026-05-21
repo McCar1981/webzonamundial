@@ -12,6 +12,11 @@ export const metadata: Metadata = {
     "aprender fantasy fútbol",
   ],
   alternates: { canonical: "/tutoriales" },
+  // Tutoriales son guías paso a paso con poca prosa editorial (~905
+  // palabras). Útiles para usuarios, pero no aportan al criterio AdSense
+  // de contenido editorial. noindex para evitar que Google las cuente
+  // como thin en la evaluación del sitio.
+  robots: { index: false, follow: true },
   openGraph: {
     title: "Tutoriales ZonaMundial — Mundial 2026",
     description: "Guías paso a paso para dominar predicciones, fantasy, IA Coach y más.",

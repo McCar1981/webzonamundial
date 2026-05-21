@@ -12,6 +12,11 @@ export const metadata: Metadata = {
     "app fútbol gratis",
   ],
   alternates: { canonical: "/la-app" },
+  // /la-app es una demo interactiva con poca prosa: SEO y AdSense la
+  // pueden ver como "thin content" (646 palabras renderizadas). Pedimos
+  // noindex para que Google no la considere en la evaluación editorial
+  // del sitio. El follow sí queda activo para el linking interno.
+  robots: { index: false, follow: true },
   openGraph: {
     title: "La App del Mundial 2026 — ZonaMundial",
     description:

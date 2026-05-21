@@ -4,6 +4,7 @@
 import { Metadata } from 'next';
 import { getCreadoresActivos, getTotalSeguidores } from '@/data/creadores';
 import CreadoresClient from './CreadoresClient';
+import CreadoresEditorial from '@/components/CreadoresEditorial';
 
 export const metadata: Metadata = {
   title: 'Nuestros Creadores — El Equipo de ZonaMundial 2026',
@@ -16,5 +17,12 @@ export default function CreadoresPage() {
   const creadores = getCreadoresActivos();
   const total = getTotalSeguidores();
 
-  return <CreadoresClient creadores={creadores} total={total} />;
+  return (
+    <>
+      <CreadoresClient creadores={creadores} total={total} />
+      {/* Editorial al pie (~700 palabras) — sube /creadores de ~850 a ~1.500
+          palabras de contenido editorial. Refuerza E-E-A-T del sitio. */}
+      <CreadoresEditorial />
+    </>
+  );
 }

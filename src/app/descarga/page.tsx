@@ -24,6 +24,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: DOWNLOAD_URL,
   },
+  // Landing de descarga con QR + form (~1.010 palabras). Poca prosa
+  // editorial. noindex para evitar que cuente como thin en evaluación AdSense.
+  robots: { index: false, follow: true },
   openGraph: {
     type: "website",
     url: DOWNLOAD_URL,

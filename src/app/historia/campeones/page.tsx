@@ -1,6 +1,7 @@
 // src/app/historia/campeones/page.tsx
 import { Metadata } from 'next';
 import CampeonesClient from './CampeonesClient';
+import CampeonesEditorial from '@/components/historia/CampeonesEditorial';
 
 export const metadata: Metadata = {
   title: 'Todos los Campeones del Mundial (1930–2022): historia completa',
@@ -29,5 +30,13 @@ export const metadata: Metadata = {
 };
 
 export default function CampeonesPage() {
-  return <CampeonesClient />;
+  return (
+    <>
+      <CampeonesClient />
+      {/* Editorial extenso al pie (~900 palabras). Sube /historia/campeones
+          de ~1.000 a ~1.900 palabras. Cubre análisis estadístico de los 22
+          Mundiales, récords individuales, patrones geográficos. */}
+      <CampeonesEditorial />
+    </>
+  );
 }

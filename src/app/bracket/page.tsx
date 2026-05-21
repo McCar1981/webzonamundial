@@ -4,6 +4,7 @@
 
 import type { Metadata } from "next";
 import BracketChallenge from "@/components/bracket/BracketChallenge";
+import BracketEditorialIntro from "@/components/bracket/BracketEditorialIntro";
 
 export const metadata: Metadata = {
   title: "Bracket Challenge Mundial 2026 — Predice los 104 partidos",
@@ -28,5 +29,16 @@ export const metadata: Metadata = {
 };
 
 export default function BracketPage() {
-  return <BracketChallenge />;
+  return (
+    <>
+      <BracketChallenge />
+      {/*
+        Bloque editorial al pie de la página (~900 palabras) que enriquece
+        /bracket de cara a SEO + AdSense. Demuestra que la página no es solo
+        un widget interactivo: tiene contenido sustancial sobre cómo
+        construir un bracket ganador, estrategias y guía de uso.
+      */}
+      <BracketEditorialIntro />
+    </>
+  );
 }

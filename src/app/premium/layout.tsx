@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     "predicciones ilimitadas",
   ],
   alternates: { canonical: "/premium" },
+  // Página comercial con poca prosa editorial (~809 palabras). noindex
+  // para que Google no la cuente como thin content en su evaluación AdSense.
+  robots: { index: false, follow: true },
   openGraph: {
     title: "ZonaMundial Premium — Todo el Mundial 2026 sin límites",
     description:

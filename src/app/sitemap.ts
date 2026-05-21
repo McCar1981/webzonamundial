@@ -17,10 +17,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = new Date();
 
   // Rutas estáticas principales
+  // NOTA AdSense: /la-app, /premium, /tutoriales, /descarga, /formato y
+  // /herramientas tienen contenido funcional con poca prosa editorial.
+  // Están marcadas robots:noindex,follow y EXCLUIDAS del sitemap para no
+  // dar señales contradictorias a Google. Cuando el contenido editorial
+  // de esas páginas sea sustancial, reactivar aquí + quitar el noindex.
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${BASE_URL}/`, lastModified, changeFrequency: "daily", priority: 1.0 },
-    { url: `${BASE_URL}/la-app`, lastModified, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${BASE_URL}/premium`, lastModified, changeFrequency: "weekly", priority: 0.9 },
     { url: `${BASE_URL}/registro`, lastModified, changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE_URL}/creadores`, lastModified, changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/calendario`, lastModified, changeFrequency: "daily", priority: 0.9 },
@@ -63,10 +66,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}/historia/sociopolitica`, lastModified, changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE_URL}/historia/trofeos`, lastModified, changeFrequency: "yearly", priority: 0.5 },
     { url: `${BASE_URL}/historia/visualizaciones`, lastModified, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${BASE_URL}/formato`, lastModified, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE_URL}/datos/formato-2026`, lastModified, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE_URL}/herramientas`, lastModified, changeFrequency: "weekly", priority: 0.7 },
-    { url: `${BASE_URL}/tutoriales`, lastModified, changeFrequency: "weekly", priority: 0.6 },
+    // /formato, /datos/formato-2026, /herramientas, /tutoriales: excluidos.
+    // Las dos primeras son páginas funcionales con poca prosa; las dos últimas
+    // están marcadas noindex. Reactivar cuando se enriquezcan editorialmente.
     { url: `${BASE_URL}/blog`, lastModified, changeFrequency: "daily", priority: 0.8 },
     { url: `${BASE_URL}/noticias`, lastModified, changeFrequency: "daily", priority: 0.8 },
     // /app/* (mockups del producto sin contenido sustancial — actualmente

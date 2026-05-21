@@ -4,6 +4,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getSedeBySlug, getAllSedeSlugs } from '@/data/sedes';
 import SedeSlugClient from './SedeSlugClient';
+import SedeEditorial from '@/components/sedes/SedeEditorial';
 
 export async function generateStaticParams() {
   return getAllSedeSlugs().map(slug => ({ slug }));
@@ -43,5 +44,14 @@ export default function SedePage({ params }: { params: { slug: string } }) {
   const sede = getSedeBySlug(params.slug);
   if (!sede) notFound();
 
-  return <SedeSlugClient sede={sede} />;
+  return (
+    <>
+      <SedeSlugClient sede={sede} />
+      {/* Editorial al pie (~800 palabras) que aprovecha todos los campos
+          ricos del JSON (historia, clima, transporte, guiaViaje,
+          partidosDestacados...) y los expande con prosa contextual.
+          Sube cada página de sede de ~900 → ~1.700 palabras. */}
+      <SedeEditorial sede={sede} />
+    </>
+  );
 }

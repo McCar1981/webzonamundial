@@ -12,6 +12,8 @@ export const metadata: Metadata = {
     "generador quiniela mundial",
   ],
   alternates: { canonical: "/herramientas" },
+  // ~521 palabras, mucho UI interactivo: noindex hasta enriquecer.
+  robots: { index: false, follow: true },
   openGraph: {
     title: "Herramientas Mundial 2026 — Simuladores y predictores",
     description: "Simulador de grupos, predictor, comparador, generador de quinielas. Gratis.",

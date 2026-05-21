@@ -5,6 +5,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getSeleccionesByGrupo } from '@/data/selecciones';
 import GrupoSlugClient from './GrupoSlugClient';
+import GrupoEditorial from '@/components/grupos/GrupoEditorial';
 
 const VALID_GROUPS = ['a','b','c','d','e','f','g','h','i','j','k','l'];
 
@@ -83,6 +84,10 @@ export default function GrupoPage({ params }: { params: { slug: string } }) {
         ],
       })}} />
       <GrupoSlugClient letter={letter} selecciones={selecciones} />
+      {/* Editorial al pie (~600 palabras): contexto, favoritos, sorpresa,
+          partido estrella, pronóstico, curiosidad. Sube la página de
+          ~1.260 → ~1.900 palabras. Lee de src/data/grupos-editorial.ts */}
+      <GrupoEditorial letter={letter} />
     </>
   );
 }

@@ -143,15 +143,32 @@ export async function getAllPublicNoticias(): Promise<Noticia[]> {
     merged.push(n);
   }
 
-  // Sort by date desc, con ingestedAt como tiebreaker.
+  // Sort por "freshness desde el punto de vista del lector":
+  //  - Primario: ingestedAt (cuándo entró al sistema). Refleja el orden en
+  //    que el lector vio aparecer la noticia. Las que no tienen ingestedAt
+  //    (drafts viejos sin el campo + STATIC_NOTICIAS) van al final del bloque
+  //    de su date.
+  //  - Si ambos comparten ingestedAt o ninguno lo tiene, usa `date` desc.
+  //  - Última desambiguación: orden alfabético por slug para estabilidad.
+  //
+  // Antes el sort era date-first con ingestedAt como tiebreaker, pero GNews
+  // devuelve `date = publishedAt del medio` (no la fecha real de ingesta), así
+  // que múltiples ingest ticks del mismo día empataban en `date` y el primero
+  // se quedaba arriba durante horas.
   merged.sort((a, b) => {
+    const aIng = ingestedAtBySlug.get(a.slug);
+    const bIng = ingestedAtBySlug.get(b.slug);
+    // Las que tienen ingestedAt van SIEMPRE antes que las que no.
+    if (aIng && !bIng) return -1;
+    if (!aIng && bIng) return 1;
+    if (aIng && bIng) {
+      const cmp = bIng.localeCompare(aIng);
+      if (cmp !== 0) return cmp;
+    }
+    // Tiebreaker: date
     const dateDiff = new Date(b.date).getTime() - new Date(a.date).getTime();
     if (dateDiff !== 0) return dateDiff;
-    // Tiebreaker: ingestedAt (más reciente arriba). Las STATIC_NOTICIAS no
-    // tienen ingestedAt en el map, se quedan al final del empate.
-    const aIng = ingestedAtBySlug.get(a.slug) || "";
-    const bIng = ingestedAtBySlug.get(b.slug) || "";
-    return bIng.localeCompare(aIng);
+    return a.slug.localeCompare(b.slug);
   });
   return merged;
 }

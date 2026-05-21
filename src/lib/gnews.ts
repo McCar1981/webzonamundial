@@ -119,32 +119,44 @@ export const WORLD_CUP_QUERIES = {
   general: '"Mundial 2026" AND (fútbol OR FIFA OR selección)',
   // Match-day, fixtures, lineups
   fixtures: '"Mundial 2026" AND (convocatoria OR calendario OR alineación OR partido)',
-  // Injuries beat
-  injuries: '"Mundial 2026" AND (lesión OR baja OR operación OR injury) AND (jugador OR selección)',
+  // Injuries beat — flexibilizado: ya no requiere "Mundial 2026" en el texto.
+  // Muchas noticias de lesiones de cracks (Neymar, Yamal, Mbappé...) no usan
+  // ese tag pero implican impacto en el Mundial.
+  injuries: '(lesión OR baja) AND (Neymar OR Vinicius OR Yamal OR Mbappé OR Cristiano OR Messi OR Bellingham OR Haaland OR Pedri OR Rodrygo OR Endrick OR "Julián Álvarez")',
+  // Injuries genérico CON anchor mundial (red secundaria)
+  injuries_wc: '"Mundial 2026" AND (lesión OR baja OR duda OR operación)',
   // Coach / DT / staff
-  coaches: '"Mundial 2026" AND (seleccionador OR DT OR técnico OR coach)',
-  // Player profiles + stars
-  stars: '"Mundial 2026" AND (Messi OR Mbappé OR Vinicius OR Yamal OR Bellingham OR Cristiano)',
+  coaches: '"Mundial 2026" AND (seleccionador OR DT OR técnico OR coach OR Bielsa OR Scaloni OR Aguirre OR Ancelotti OR Tite)',
+  // Player profiles + stars — ampliado
+  stars: '(Messi OR Mbappé OR Vinicius OR Yamal OR Bellingham OR Cristiano OR Neymar OR Haaland) AND (selección OR "Mundial 2026" OR clasifica OR convocatoria)',
+  // Convocatorias y plantillas (caliente en mayo-junio 2026)
+  squad: '("lista de 26" OR convocatoria OR plantilla OR "26 jugadores" OR squad) AND "Mundial 2026"',
   // Venues + stadiums
-  venues: '"Mundial 2026" AND (sede OR estadio OR MetLife OR Azteca)',
+  venues: '"Mundial 2026" AND (sede OR estadio OR MetLife OR Azteca OR Akron OR Guadalajara)',
   // Tickets / fan experience
   tickets: '"Mundial 2026" AND (entrada OR boleto OR ticket OR hotel)',
   // FIFA institutional
   fifa: '"FIFA" AND "Mundial 2026" AND (decisión OR anuncio OR reglamento)',
-  // Eliminatorias / qualifiers
+  // Eliminatorias / qualifiers (residual: ya hay todos clasificados)
   qualifiers: '"Mundial 2026" AND (eliminatoria OR clasificación OR qualifier OR repechaje)',
   // Historical context
   history: '"Copa del Mundo" AND fútbol AND (historia OR histórico OR retrospectiva)',
   // Argentina beat
-  argentina: '"Mundial 2026" AND (Argentina OR Albiceleste OR Scaloni)',
+  argentina: '(Argentina OR Albiceleste OR Scaloni OR Messi) AND ("Mundial 2026" OR convocatoria OR selección)',
   // Brazil beat
-  brazil: '"Mundial 2026" AND (Brasil OR Canarinha OR Ancelotti)',
+  brazil: '(Brasil OR Canarinha OR Ancelotti OR Neymar OR Vinicius) AND ("Mundial 2026" OR convocatoria)',
   // Spain beat
-  spain: '"Mundial 2026" AND (España OR "La Roja" OR "De la Fuente")',
+  spain: '(España OR "La Roja" OR "De la Fuente" OR Yamal OR Pedri) AND ("Mundial 2026" OR selección)',
   // Mexico beat (host country)
-  mexico: '"Mundial 2026" AND (México OR Tri OR Aguirre)',
+  mexico: '(México OR Tri OR Aguirre OR "Edson Álvarez") AND ("Mundial 2026" OR selección)',
   // USA beat (host country)
-  usa: '"World Cup 2026" AND (USMNT OR "United States" OR Pulisic)',
+  usa: '"World Cup 2026" AND (USMNT OR "United States" OR Pulisic OR Pochettino)',
+  // Portugal
+  portugal: '(Portugal OR "Cristiano Ronaldo" OR Bernardo) AND ("Mundial 2026" OR selección)',
+  // Francia
+  france: '(Francia OR "Les Bleus" OR Mbappé OR Deschamps) AND ("Mundial 2026" OR convocatoria)',
+  // Inglaterra
+  england: '("England" OR Inglaterra OR Bellingham OR Kane OR Tuchel) AND "Mundial 2026"',
 };
 
 export type WorldCupQueryKey = keyof typeof WORLD_CUP_QUERIES;

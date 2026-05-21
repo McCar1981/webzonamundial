@@ -125,6 +125,15 @@ export async function getAllPublicNoticias(): Promise<Noticia[]> {
     .filter((d) => d.status === "published")
     .map(draftToNoticia);
 
+  // Mapeo slug → ingestedAt para tiebreaker. GNews trunca a YYYY-MM-DD así
+  // que muchas noticias del mismo día comparten `date` — usamos ingestedAt
+  // (timestamp ISO de cuándo entraron al sistema) para que las más recientes
+  // queden arriba aunque compartan fecha de publicación con otras.
+  const ingestedAtBySlug = new Map<string, string>();
+  for (const d of store.drafts) {
+    if (d.ingestedAt) ingestedAtBySlug.set(d.slug, d.ingestedAt);
+  }
+
   // Dedup by slug (static wins over auto)
   const seen = new Set<string>(STATIC_NOTICIAS.map((n) => n.slug));
   const merged: Noticia[] = [...STATIC_NOTICIAS];
@@ -134,10 +143,16 @@ export async function getAllPublicNoticias(): Promise<Noticia[]> {
     merged.push(n);
   }
 
-  // Sort by date desc
-  merged.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
-  );
+  // Sort by date desc, con ingestedAt como tiebreaker.
+  merged.sort((a, b) => {
+    const dateDiff = new Date(b.date).getTime() - new Date(a.date).getTime();
+    if (dateDiff !== 0) return dateDiff;
+    // Tiebreaker: ingestedAt (más reciente arriba). Las STATIC_NOTICIAS no
+    // tienen ingestedAt en el map, se quedan al final del empate.
+    const aIng = ingestedAtBySlug.get(a.slug) || "";
+    const bIng = ingestedAtBySlug.get(b.slug) || "";
+    return bIng.localeCompare(aIng);
+  });
   return merged;
 }
 

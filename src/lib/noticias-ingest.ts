@@ -87,6 +87,10 @@ export interface DraftNoticia extends Omit<Noticia, "id" | "body"> {
   status: "draft" | "review" | "published";
   body: NoticiaBlock[];
   sourceUrlHash: string;
+  /** Timestamp ISO de cuándo entró al sistema. Se usa como tiebreaker
+   *  cuando dos noticias comparten `date` (es común con GNews porque trunca
+   *  a YYYY-MM-DD). Las más recientes deben aparecer arriba. */
+  ingestedAt?: string;
 }
 
 /** Convert a raw GNews article into a draft Noticia (stub rewrite). */
@@ -136,6 +140,7 @@ export function buildDraftFromGNews(article: GNewsArticle, seed = 0): DraftNotic
     sourceName: article.source.name,
     status: "draft",
     sourceUrlHash: hashUrl(article.url),
+    ingestedAt: new Date().toISOString(),
   };
 }
 

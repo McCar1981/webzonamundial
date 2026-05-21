@@ -115,6 +115,7 @@ function draftToNoticia(d: DraftNoticia, idx: number): Noticia {
     body: d.body,
     sourceUrl: d.sourceUrl,
     sourceName: d.sourceName,
+    ingestedAt: d.ingestedAt,
   };
 }
 

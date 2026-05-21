@@ -300,7 +300,11 @@ export default function NoticiasClient({
           <div className={styles.headerStats}>
             <span><strong>{totalCount}</strong> artículos</span>
             <span aria-hidden>·</span>
-            <span>Actualizado <strong>{posts[0] ? relTime(posts[0].date) : "hoy"}</strong></span>
+            {/* Usa ingestedAt (ISO timestamp real de entrada al sistema)
+                cuando existe; fallback a date (YYYY-MM-DD del medio). Esto
+                evita el bug de "Hace 3d" cuando GNews trunca la fecha al
+                día anterior. */}
+            <span>Actualizado <strong>{posts[0] ? relTime(posts[0].ingestedAt || posts[0].date) : "hoy"}</strong></span>
             <span aria-hidden>·</span>
             <span>6 categorías</span>
           </div>
@@ -462,7 +466,7 @@ export default function NoticiasClient({
                         flags={top.flags}
                         onFlagClick={(f) => setPais(f)}
                       />
-                      <span className={styles.timeRel}>{relTime(top.date)}</span>
+                      <span className={styles.timeRel}>{relTime(top.ingestedAt || top.date)}</span>
                     </div>
                     <h2 className={styles.topTitle}>{top.title}</h2>
                     <p className={styles.topExcerpt}>{top.excerpt}</p>

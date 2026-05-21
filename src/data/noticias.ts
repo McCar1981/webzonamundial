@@ -60,6 +60,10 @@ export interface Noticia {
   /** Optional canonical attribution URL (when article rewrites a source) */
   sourceUrl?: string;
   sourceName?: string;
+  /** ISO timestamp de cuándo entró al sistema (drafts auto-ingeridos).
+   *  Útil para mostrar "Hace X horas" con precisión real, sin depender
+   *  de la fecha del medio (GNews trunca a YYYY-MM-DD). */
+  ingestedAt?: string;
 }
 
 export type NoticiaBlock =

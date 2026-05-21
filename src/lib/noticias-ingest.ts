@@ -153,15 +153,58 @@ export interface IngestResult {
   errors: string[];
 }
 
+/**
+ * Genera una "huella" del título para detectar artículos que cuentan la
+ * MISMA noticia con redacción distinta (diferentes medios suelen titular
+ * casi igual: "Portugal convoca a Cristiano para el Mundial 2026" vs
+ * "Cristiano Ronaldo en la convocatoria de Portugal").
+ *
+ * Estrategia: normaliza (lowercase, sin tildes, sin signos), descarta stop-
+ * words muy comunes y devuelve un set ordenado de tokens significativos
+ * concatenados. Comparte huella ⇒ misma noticia.
+ */
+const STOP_WORDS = new Set([
+  "el", "la", "los", "las", "un", "una", "unos", "unas", "de", "del", "al",
+  "a", "en", "por", "para", "con", "sin", "sobre", "tras", "ante", "bajo",
+  "y", "o", "u", "e", "ni", "que", "se", "su", "sus", "lo", "le", "les",
+  "es", "son", "ser", "fue", "fueron", "ha", "han", "hay", "como", "mas",
+  "ya", "este", "esta", "estos", "estas", "ese", "esa", "esos", "esas",
+  "the", "of", "to", "and", "in", "for", "on", "at", "with",
+]);
+
+export function titleFingerprint(title: string): string {
+  if (!title) return "";
+  const cleaned = title
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "") // strip diacritics
+    .replace(/[^a-z0-9\s]/g, " ") // strip punctuation/quotes
+    .replace(/\s+/g, " ")
+    .trim();
+  const tokens = cleaned
+    .split(" ")
+    .filter((t) => t.length >= 3 && !STOP_WORDS.has(t))
+    .sort();
+  // Reduce a max 8 tokens — suficiente firma sin ser frágil a una sola palabra
+  return Array.from(new Set(tokens)).slice(0, 8).join("|");
+}
+
 export async function ingestNews(opts: {
   /** Already-known URL hashes (to skip duplicates) */
   knownHashes: Set<string>;
+  /** Already-known title fingerprints (to skip same-story-different-source) */
+  knownFingerprints?: Set<string>;
   /** Which queries to run (defaults to general) */
   queries?: (keyof typeof WORLD_CUP_QUERIES)[];
   /** Max articles per query (1-10 on free tier) */
   maxPerQuery?: number;
 }): Promise<IngestResult> {
-  const { knownHashes, queries = ["general"], maxPerQuery = 10 } = opts;
+  const {
+    knownHashes,
+    knownFingerprints = new Set<string>(),
+    queries = ["general"],
+    maxPerQuery = 10,
+  } = opts;
   const result: IngestResult = { fetched: 0, drafts: [], duplicates: 0, errors: [] };
 
   for (let q_i = 0; q_i < queries.length; q_i++) {
@@ -186,7 +229,14 @@ export async function ingestNews(opts: {
           result.duplicates += 1;
           return;
         }
+        // Dedup por título (misma noticia, distinta fuente).
+        const fp = titleFingerprint(a.title);
+        if (fp && knownFingerprints.has(fp)) {
+          result.duplicates += 1;
+          return;
+        }
         knownHashes.add(hash);
+        if (fp) knownFingerprints.add(fp);
         result.drafts.push(buildDraftFromGNews(a, i));
       });
     } catch (err) {

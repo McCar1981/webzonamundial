@@ -1,20 +1,26 @@
 "use client";
 
 // Banner discreto que pregunta al usuario si quiere activar notificaciones
-// push del navegador. Aparece tras 3 visitas (rastreado en localStorage)
+// push del navegador. Aparece tras 1 visita (rastreado en localStorage)
 // y solo si:
 //   - El navegador soporta Web Push
 //   - El permiso aún es "default" (no granted, no denied)
 //   - El user no lo ha descartado antes (rastreado en localStorage)
 //
 // Usar en layout root o en /noticias para captar a los más interesados.
+//
+// FASE Mundial 2026: el banner se incluye en home + noticias para
+// maximizar tasa de suscripción (la base original era ~1 suscriptor con
+// MIN_VISITS=3 y banner solo en /noticias).
 
 import { useEffect, useState } from "react";
 import { isPushSupported, getNotificationPermission, subscribeToPush } from "@/lib/push-client";
 
 const VISIT_KEY = "zm.push.visits";
 const DISMISS_KEY = "zm.push.dismissedAt";
-const MIN_VISITS = 3;
+// Antes 3; bajado a 1 para que aparezca en la primera visita real, no
+// tras un mes de uso ocasional. La FOMO del Mundial juega a favor del CTA.
+const MIN_VISITS = 1;
 const REASK_DAYS = 14;
 
 function shouldShowBanner(): boolean {
@@ -50,9 +56,10 @@ export default function PushOptInBanner() {
   useEffect(() => {
     incrementVisits();
     // Pequeño delay para no asustar al user nada más cargar la página.
+    // 7s en vez de 4s — da tiempo a que el usuario lea algo antes del CTA.
     const t = setTimeout(() => {
       if (shouldShowBanner()) setVisible(true);
-    }, 4000);
+    }, 7000);
     return () => clearTimeout(t);
   }, []);
 
@@ -134,11 +141,11 @@ export default function PushOptInBanner() {
               letterSpacing: "-0.01em",
             }}
           >
-            ¿Recibir noticias del Mundial?
+            Noticias del Mundial 2026 al instante
           </p>
           <p style={{ margin: 0, fontSize: 12.5, color: "#94A3B8", lineHeight: 1.45 }}>
-            Te avisamos en tiempo real cuando publiquemos algo importante. Sin
-            spam, máximo 1-2 al día.
+            Activa las notificaciones y no te pierdas convocatorias,
+            lesiones, alineaciones y resultados. Máx. 1-2 alertas al día.
           </p>
         </div>
       </div>

@@ -15,6 +15,7 @@ import { ScrollProgressBar } from "./_home/components/ScrollProgressBar";
 import { HeroSection } from "./_home/sections/HeroSection";
 import { EditorialIntro } from "./_home/sections/EditorialIntro";
 import { GuiaMundial2026Section } from "./_home/sections/GuiaMundial2026Section";
+import PushOptInBanner from "@/components/PushOptInBanner";
 import { StatsHowSection } from "./_home/sections/StatsHowSection";
 import { PlatformShowcaseSection } from "./_home/sections/PlatformShowcaseSection";
 import { ModulesGridSection } from "./_home/sections/ModulesGridSection";
@@ -104,6 +105,10 @@ export default function HomePage() {
       */}
       <GuiaMundial2026Section />
       <FinalCTASection />
+      {/* Push banner: aparece tras 7s en la primera visita (config interno).
+          Antes solo estaba en /noticias y resultaba que tenía 1 suscriptor.
+          La home recibe ~10× más tráfico → multiplicador de captación. */}
+      <PushOptInBanner />
     </div>
   );
 }

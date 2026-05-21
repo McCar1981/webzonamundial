@@ -7,6 +7,7 @@ import { createPortal } from "react-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
 import type { Translations } from "@/i18n/translations";
 import PromoPopup from "@/components/PromoPopup";
+import PushAutoResync from "@/components/PushAutoResync";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SocialDock } from "@/components/SocialDock";
 import HeaderUserMenu from "@/components/HeaderUserMenu";
@@ -392,6 +393,12 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
 
       {/* ═══ PROMO POPUP (global) ═══ */}
       <PromoPopup />
+
+      {/* Resincroniza la suscripción push del navegador con el backend
+          una vez cada 24h por dispositivo. Útil porque Chrome móvil rota
+          el endpoint sin avisar al servidor → sin esto el backend cree
+          que tiene un suscriptor pero el browser escucha en otro endpoint. */}
+      <PushAutoResync />
 
       {/* ═══ PAGE CONTENT ═══ */}
       <main>{children}</main>

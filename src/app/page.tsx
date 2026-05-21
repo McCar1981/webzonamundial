@@ -14,6 +14,7 @@ import { MODULES_BASE } from "./_home/data";
 import { ScrollProgressBar } from "./_home/components/ScrollProgressBar";
 import { HeroSection } from "./_home/sections/HeroSection";
 import { EditorialIntro } from "./_home/sections/EditorialIntro";
+import { GuiaMundial2026Section } from "./_home/sections/GuiaMundial2026Section";
 import { StatsHowSection } from "./_home/sections/StatsHowSection";
 import { PlatformShowcaseSection } from "./_home/sections/PlatformShowcaseSection";
 import { ModulesGridSection } from "./_home/sections/ModulesGridSection";
@@ -94,6 +95,14 @@ export default function HomePage() {
         contenido.
       */}
       <EditorialIntro />
+      {/*
+        FRENTE 1 AdSense: bloque editorial extenso (~1.800 palabras) que sube
+        la home de 2.272 a ~4.000 palabras de contenido real. Demuestra a
+        Google que la home NO es marketing puro: tiene guía editorial,
+        autoría, fecha y referencias verificables (FIFA, sedes, DTs,
+        jugadores). Pieza con autoridad SEO y E-E-A-T.
+      */}
+      <GuiaMundial2026Section />
       <FinalCTASection />
     </div>
   );

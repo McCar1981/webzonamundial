@@ -79,6 +79,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}/sobre`, lastModified, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE_URL}/contacto`, lastModified, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE_URL}/accesibilidad`, lastModified, changeFrequency: "monthly", priority: 0.5 },
+    { url: `${BASE_URL}/eliminar-cuenta`, lastModified, changeFrequency: "yearly", priority: 0.3 },
     // Legales (índice bajo pero deben existir)
     { url: `${BASE_URL}/legal/aviso-legal`, lastModified, changeFrequency: "yearly", priority: 0.3 },
     { url: `${BASE_URL}/legal/cookies`, lastModified, changeFrequency: "yearly", priority: 0.3 },

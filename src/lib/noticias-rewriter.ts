@@ -14,6 +14,7 @@
 
 import Anthropic from "@anthropic-ai/sdk";
 import type { DraftNoticia } from "./noticias-ingest";
+import { makeSlug } from "./noticias-ingest";
 import type { NoticiaBlock, NoticiaCategory } from "@/data/noticias";
 
 const DEFAULT_MODEL = "claude-haiku-4-5-20251001";
@@ -168,7 +169,12 @@ export async function applyRewrite(draft: DraftNoticia): Promise<DraftNoticia> {
     title: out.title,
     excerpt: out.excerpt,
     seoDescription: out.seoDescription,
-    slug: out.slug || draft.slug,
+    // Re-normalizamos SIEMPRE el slug devuelto por la IA: hubo casos en
+    // que Claude devolvía slugs con "ñ" o tildes literales (ej: "españa-…")
+    // y como Next.js rutea por el string exacto, esos urls daban 404
+    // cuando alguien los compartía con la URL normalizada. makeSlug se
+    // ocupa de NFD + strip diacritics + ñ → n + lowercase + guiones.
+    slug: makeSlug(out.slug || draft.slug || out.title || draft.title),
     tags: out.tags || [],
     body: out.body,
     cat: (out.cat as NoticiaCategory) || draft.cat,

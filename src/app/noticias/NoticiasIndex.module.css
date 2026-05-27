@@ -158,6 +158,8 @@
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  /* Necesario para el indicador ::after de scroll horizontal en mobile. */
+  isolation: isolate;
 }
 .catBarInner {
   max-width: 1280px;
@@ -167,8 +169,32 @@
   gap: 8px;
   overflow-x: auto;
   scrollbar-width: none;
+  /* Scroll horizontal con snap suave — patrón estándar de apps de noticias
+     (BBC, NYT, Twitter). Mejor que un wrap a 3 filas en mobile. */
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
 }
 .catBarInner::-webkit-scrollbar { display: none; }
+.catBarInner > * {
+  scroll-snap-align: start;
+}
+/* Indicador visual sutil de que se puede scrollear en mobile: gradiente
+   en el borde derecho que sugiere "hay más a la derecha". */
+.catBar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 28px;
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    rgba(6, 11, 20, 0),
+    rgba(6, 11, 20, 0.92)
+  );
+}
 .catBtn {
   flex-shrink: 0;
   padding: 9px 18px;
@@ -988,6 +1014,17 @@
     display: none;
   }
   .catBarInner {
-    flex-wrap: wrap;
+    /* En mobile mantenemos scroll horizontal (no wrap a 3 filas).
+       El usuario desliza con el dedo, patrón estándar BBC/NYT/Twitter. */
+    flex-wrap: nowrap;
+    /* Padding-right extra para que el último botón no quede pegado al
+       gradiente de borde derecho que indica "hay más". */
+    padding-right: 32px;
+  }
+  .catBtn {
+    /* Botones ligeramente más compactos en mobile para que se vean más
+       a la vez en la fila scrolleable. */
+    padding: 8px 14px;
+    font-size: 12.5px;
   }
 }

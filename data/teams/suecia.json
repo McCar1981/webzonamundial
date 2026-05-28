@@ -500,7 +500,9 @@
         "display_name": "Jacob Widell Zetterström",
         "position": "GK",
         "detailed_position": "GK",
-        "club": null,
+        "club": {
+          "name": "Derby"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/ce/FC_RB_Salzburg_gegen_Derby_County_%282025-07-18_Testspiel%29_24_%28cropped%29.jpg"
@@ -511,7 +513,9 @@
         "display_name": "Hjalmar Ekdal",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "Burnley"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Hjalmar_Ekdal_%28Sirius%2C_2020%2C_cropped%29.jpg"
@@ -523,7 +527,7 @@
         "position": "DEF",
         "detailed_position": "LB",
         "club": {
-          "name": "Leeds",
+          "name": "Leeds United",
           "country_iso": "gb-eng",
           "league": "Premier League"
         },
@@ -552,7 +556,7 @@
         "position": "DEF",
         "detailed_position": "RB",
         "club": {
-          "name": "Bolonia",
+          "name": "Juventus",
           "country_iso": "it",
           "league": "Serie A"
         },
@@ -567,7 +571,7 @@
         "position": "DEF",
         "detailed_position": "CB",
         "club": {
-          "name": "Twente",
+          "name": "SC Braga",
           "country_iso": "nl",
           "league": "Eredivisie"
         },
@@ -595,7 +599,9 @@
         "display_name": "Erick Smith",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "St. Pauli"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -607,7 +613,7 @@
         "position": "DEF",
         "detailed_position": "CB",
         "club": {
-          "name": "Celta Vigo",
+          "name": "Celta de Vigo",
           "country_iso": "es",
           "league": "La Liga"
         },
@@ -621,7 +627,9 @@
         "display_name": "Elliot Stroud",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "Mjällby"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -640,17 +648,6 @@
         "shirt_number_expected": 14,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/2015_RiP_In_Flames_-_Daniel_Svensson_by_2eight_-_DSC5848.jpg/330px-2015_RiP_In_Flames_-_Daniel_Svensson_by_2eight_-_DSC5848.jpg"
-      },
-      {
-        "id": "taha-ali",
-        "full_name": "Taha Ali",
-        "display_name": "Taha Ali",
-        "position": "MID",
-        "detailed_position": "MID",
-        "club": null,
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": null
       },
       {
         "id": "yasin-ayari",
@@ -683,13 +680,28 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Lucas_Bergvall_%28Sweden_U21_vs_Moldova_U21%2C_13_October_2023%29.jpg/330px-Lucas_Bergvall_%28Sweden_U21_vs_Moldova_U21%2C_13_October_2023%29.jpg"
       },
       {
+        "id": "alexander-bernhardsson",
+        "full_name": "Alexander Bernhardsson",
+        "display_name": "Bernhardsson",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Kiel",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/2025-02-19_Alexander_Bernhardsson_1.jpg/330px-2025-02-19_Alexander_Bernhardsson_1.jpg"
+      },
+      {
         "id": "jesper-karlstrom",
         "full_name": "Jesper Karlström",
         "display_name": "Jesper Karlström",
         "position": "MID",
         "detailed_position": "CDM",
         "club": {
-          "name": "Lech Poznan",
+          "name": "Udinese",
           "country_iso": "pl",
           "league": "Ekstraklasa"
         },
@@ -698,38 +710,14 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Jesper_Karlstr%C3%B6m_%28Djurg%C3%A5rden%2C_2020%2C_cropped%29.jpg/330px-Jesper_Karlstr%C3%B6m_%28Djurg%C3%A5rden%2C_2020%2C_cropped%29.jpg"
       },
       {
-        "id": "gustaf-nilsson",
-        "full_name": "Gustaf Nilsson",
-        "display_name": "Gustaf Nilsson",
-        "position": "MID",
-        "detailed_position": "MID",
-        "club": null,
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Gustaf_Nilsson_USG_2023.jpg"
-      },
-      {
-        "id": "benjamin-nygren",
-        "full_name": "Benjamin Nygren",
-        "display_name": "Benjamin Nygren",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Genk",
-          "country_iso": "be",
-          "league": "Pro League"
-        },
-        "shirt_number_expected": 21,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Benjamin_Nygren_%28cropped%29.jpg/330px-Benjamin_Nygren_%28cropped%29.jpg"
-      },
-      {
         "id": "ken-sema",
         "full_name": "Ken Sema",
         "display_name": "Ken Sema",
         "position": "MID",
         "detailed_position": "MID",
-        "club": null,
+        "club": {
+          "name": "Pafos"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_52_%28Ken_Sema%29.jpg"
@@ -755,10 +743,40 @@
         "display_name": "Besfort Zeneli",
         "position": "MID",
         "detailed_position": "MID",
-        "club": null,
+        "club": {
+          "name": "Union SG"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Besfort_Zeneli_Union_Saint-Gilloise_2026.jpg"
+      },
+      {
+        "id": "taha-ali",
+        "full_name": "Taha Ali",
+        "display_name": "Taha Ali",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": {
+          "name": "Malmö"
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "anthony-elanga",
+        "full_name": "Anthony Elanga",
+        "display_name": "Anthony Elanga",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Newcastle",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Anthony_Elanga_%28Sweden_vs_Moldova%2C_12_October_2023%29.jpg/330px-Anthony_Elanga_%28Sweden_vs_Moldova%2C_12_October_2023%29.jpg"
       },
       {
         "id": "viktor-gyokeres",
@@ -782,7 +800,7 @@
         "position": "FWD",
         "detailed_position": "ST",
         "club": {
-          "name": "Newcastle",
+          "name": "Liverpool",
           "country_iso": "gb-eng",
           "league": "Premier League"
         },
@@ -791,34 +809,32 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Alexander_Isak_56_%28cropped%29.jpg/330px-UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Alexander_Isak_56_%28cropped%29.jpg"
       },
       {
-        "id": "anthony-elanga",
-        "full_name": "Anthony Elanga",
-        "display_name": "Anthony Elanga",
-        "position": "FWD",
-        "detailed_position": "RW",
+        "id": "gustaf-nilsson",
+        "full_name": "Gustaf Nilsson",
+        "display_name": "Gustaf Nilsson",
+        "position": "MID",
+        "detailed_position": "MID",
         "club": {
-          "name": "Newcastle",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
+          "name": "Brujas"
         },
-        "shirt_number_expected": 7,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Anthony_Elanga_%28Sweden_vs_Moldova%2C_12_October_2023%29.jpg/330px-Anthony_Elanga_%28Sweden_vs_Moldova%2C_12_October_2023%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Gustaf_Nilsson_USG_2023.jpg"
       },
       {
-        "id": "alexander-bernhardsson",
-        "full_name": "Alexander Bernhardsson",
-        "display_name": "Bernhardsson",
+        "id": "benjamin-nygren",
+        "full_name": "Benjamin Nygren",
+        "display_name": "Benjamin Nygren",
         "position": "FWD",
-        "detailed_position": "LW",
+        "detailed_position": "ST",
         "club": {
-          "name": "Brentford",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
+          "name": "Celtic",
+          "country_iso": "be",
+          "league": "Pro League"
         },
-        "shirt_number_expected": 19,
+        "shirt_number_expected": 21,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/2025-02-19_Alexander_Bernhardsson_1.jpg/330px-2025-02-19_Alexander_Bernhardsson_1.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Benjamin_Nygren_%28cropped%29.jpg/330px-Benjamin_Nygren_%28cropped%29.jpg"
       }
     ],
     "starting_xi": {
@@ -938,8 +954,8 @@
       "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: cuartos de final, eliminada por Inglaterra 0-2. Catar 2022: NO CLASIFICÓ. Mundial 2026: regreso vía play-off tras 8 años. La generación Isak-Gyökeres es la más prometedora desde la Suecia subcampeona 1958."
     },
     "squad_announced": true,
-    "squad_announced_date": "2026-05-19",
-    "squad_source": "Convocatoria oficial federación"
+    "squad_announced_date": "2026-05-26",
+    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
   },
   "history": {
     "first_appearance": 1934,

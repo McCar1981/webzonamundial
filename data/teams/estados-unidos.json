@@ -5,8 +5,11 @@
   "name_es": "Estados Unidos",
   "name_en": "United States",
   "name_local": "United States",
-  "nicknames": ["Stars and Stripes", "USMNT", "The Yanks"],
-
+  "nicknames": [
+    "Stars and Stripes",
+    "USMNT",
+    "The Yanks"
+  ],
   "flag": {
     "colors": {
       "primary": "#3C3B6E",
@@ -15,16 +18,16 @@
       "contrast_text": "#FFFFFF"
     }
   },
-
   "country": {
     "capital": "Washington D.C.",
-    "language_official": ["Inglés"],
+    "language_official": [
+      "Inglés"
+    ],
     "population": 333000000,
     "area_km2": 9833520,
     "timezone": "America/New_York",
     "continent": "América del Norte"
   },
-
   "federation": {
     "name": "United States Soccer Federation",
     "abbreviation": "U.S. Soccer",
@@ -32,14 +35,11 @@
     "headquarters": "Chicago",
     "website": "https://www.ussoccer.com"
   },
-
   "confederation": "CONCACAF",
-
   "fifa_ranking": {
     "current": 16,
     "last_updated": "2026-04-03"
   },
-
   "kit": {
     "wc_2026": {
       "brand": "Nike",
@@ -62,10 +62,14 @@
       }
     },
     "trivia": [
-      { "text": "El blanco como color principal de la equipación titular es tradición desde los años 90. El azul navy y rojo provienen de la bandera nacional. El sobrenombre USMNT (US Men's National Team) es ampliamente usado.", "source": "U.S. Soccer + Wikipedia", "verified_at": "2026-04-30", "status": "validated" }
+      {
+        "text": "El blanco como color principal de la equipación titular es tradición desde los años 90. El azul navy y rojo provienen de la bandera nacional. El sobrenombre USMNT (US Men's National Team) es ampliamente usado.",
+        "source": "U.S. Soccer + Wikipedia",
+        "verified_at": "2026-04-30",
+        "status": "validated"
+      }
     ]
   },
-
   "wc_2026": {
     "qualified_via": "host",
     "qualifying_summary": "Estados Unidos clasificó AUTOMÁTICAMENTE como ANFITRIÓN del Mundial 2026 junto con México y Canadá. Sin partidos eliminatorios, su preparación se basó en Copa Oro 2025, Nations League CONCACAF y amistosos. Mauricio Pochettino (ex-Tottenham, ex-PSG, ex-Chelsea) tomó las riendas en septiembre 2024. SUBCAMPEÓN COPA ORO 2025 (final 1-2 vs México el 6 julio en NRG Stadium Houston, gol Richards 4', remontada de Jiménez y Edson). Es su 12ª participación mundialista (6ª consecutiva desde 1990, salvo 2018). En el Grupo D del Mundial con Turquía, Paraguay y Australia.",
@@ -90,109 +94,821 @@
       },
       "coach_during_qualifying": "Mauricio Pochettino (desde septiembre 2024, sucesor de Gregg Berhalter).",
       "matches": [
-        { "matchday": 1, "date": "2025-06-15", "home": { "iso": "us", "name": "USA", "score": 5 }, "away": { "iso": "tt", "name": "Trinidad y Tobago", "score": 0 }, "venue": { "stadium": "Q2 Stadium", "city": "Austin", "country_iso": "us" }, "goals_arg": [{ "player": "Patrick Agyemang", "minute": "20'", "type": "goal" }, { "player": "Diego Luna", "minute": "35'", "type": "goal" }, { "player": "Malik Tillman", "minute": "55'", "type": "goal" }, { "player": "Brenden Aaronson", "minute": "75'", "type": "goal" }, { "player": "Damion Downs", "minute": "85'", "type": "goal" }] },
-        { "matchday": 2, "date": "2025-06-19", "home": { "iso": "us", "name": "USA", "score": 1 }, "away": { "iso": "sa", "name": "Arabia Saudita", "score": 0 }, "venue": { "stadium": "Q2 Stadium", "city": "Austin", "country_iso": "us" }, "goals_arg": [{ "player": "Diego Luna", "minute": "55'", "type": "goal" }] },
-        { "matchday": 3, "date": "2025-06-22", "home": { "iso": "us", "name": "USA", "score": 2 }, "away": { "iso": "ht", "name": "Haití", "score": 1 }, "venue": { "stadium": "AT&T Stadium", "city": "Arlington (Dallas)", "country_iso": "us" }, "goals_arg": [{ "player": "Patrick Agyemang", "minute": "30'", "type": "goal" }, { "player": "Malik Tillman", "minute": "70'", "type": "goal" }] },
-        { "matchday": 4, "date": "2025-06-29", "home": { "iso": "us", "name": "USA", "score": 2 }, "away": { "iso": "cr", "name": "Costa Rica", "score": 2 }, "venue": { "stadium": "U.S. Bank Stadium", "city": "Minneapolis", "country_iso": "us" }, "goals_arg": [{ "player": "Max Arfsten", "minute": "12'", "type": "goal" }, { "player": "Damion Downs", "minute": "70'", "type": "goal" }], "notes": "Cuartos. Empate 2-2 → ganó por penales 4-3." },
-        { "matchday": 5, "date": "2025-07-02", "home": { "iso": "us", "name": "USA", "score": 2 }, "away": { "iso": "gt", "name": "Guatemala", "score": 1 }, "venue": { "stadium": "Energizer Park", "city": "St. Louis", "country_iso": "us" }, "goals_arg": [{ "player": "Diego Luna", "minute": "35'", "type": "goal" }, { "player": "Diego Luna", "minute": "75'", "type": "goal" }], "notes": "Semifinal. Doblete de Diego Luna." },
-        { "matchday": 6, "date": "2025-07-06", "home": { "iso": "us", "name": "USA", "score": 1 }, "away": { "iso": "mx", "name": "México", "score": 2 }, "venue": { "stadium": "NRG Stadium", "city": "Houston", "country_iso": "us" }, "goals_arg": [{ "player": "Chris Richards", "minute": "4'", "type": "goal" }], "notes": "FINAL COPA ORO 2025. USA cayó 1-2 ante México. Richards adelantó 1-0 al 4', pero Jiménez (27') y Edson Álvarez (77') remontaron. Subcampeones.", "is_decisive_match": true }
+        {
+          "matchday": 1,
+          "date": "2025-06-15",
+          "home": {
+            "iso": "us",
+            "name": "USA",
+            "score": 5
+          },
+          "away": {
+            "iso": "tt",
+            "name": "Trinidad y Tobago",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Q2 Stadium",
+            "city": "Austin",
+            "country_iso": "us"
+          },
+          "goals_arg": [
+            {
+              "player": "Patrick Agyemang",
+              "minute": "20'",
+              "type": "goal"
+            },
+            {
+              "player": "Diego Luna",
+              "minute": "35'",
+              "type": "goal"
+            },
+            {
+              "player": "Malik Tillman",
+              "minute": "55'",
+              "type": "goal"
+            },
+            {
+              "player": "Brenden Aaronson",
+              "minute": "75'",
+              "type": "goal"
+            },
+            {
+              "player": "Damion Downs",
+              "minute": "85'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 2,
+          "date": "2025-06-19",
+          "home": {
+            "iso": "us",
+            "name": "USA",
+            "score": 1
+          },
+          "away": {
+            "iso": "sa",
+            "name": "Arabia Saudita",
+            "score": 0
+          },
+          "venue": {
+            "stadium": "Q2 Stadium",
+            "city": "Austin",
+            "country_iso": "us"
+          },
+          "goals_arg": [
+            {
+              "player": "Diego Luna",
+              "minute": "55'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 3,
+          "date": "2025-06-22",
+          "home": {
+            "iso": "us",
+            "name": "USA",
+            "score": 2
+          },
+          "away": {
+            "iso": "ht",
+            "name": "Haití",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "AT&T Stadium",
+            "city": "Arlington (Dallas)",
+            "country_iso": "us"
+          },
+          "goals_arg": [
+            {
+              "player": "Patrick Agyemang",
+              "minute": "30'",
+              "type": "goal"
+            },
+            {
+              "player": "Malik Tillman",
+              "minute": "70'",
+              "type": "goal"
+            }
+          ]
+        },
+        {
+          "matchday": 4,
+          "date": "2025-06-29",
+          "home": {
+            "iso": "us",
+            "name": "USA",
+            "score": 2
+          },
+          "away": {
+            "iso": "cr",
+            "name": "Costa Rica",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "U.S. Bank Stadium",
+            "city": "Minneapolis",
+            "country_iso": "us"
+          },
+          "goals_arg": [
+            {
+              "player": "Max Arfsten",
+              "minute": "12'",
+              "type": "goal"
+            },
+            {
+              "player": "Damion Downs",
+              "minute": "70'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Cuartos. Empate 2-2 → ganó por penales 4-3."
+        },
+        {
+          "matchday": 5,
+          "date": "2025-07-02",
+          "home": {
+            "iso": "us",
+            "name": "USA",
+            "score": 2
+          },
+          "away": {
+            "iso": "gt",
+            "name": "Guatemala",
+            "score": 1
+          },
+          "venue": {
+            "stadium": "Energizer Park",
+            "city": "St. Louis",
+            "country_iso": "us"
+          },
+          "goals_arg": [
+            {
+              "player": "Diego Luna",
+              "minute": "35'",
+              "type": "goal"
+            },
+            {
+              "player": "Diego Luna",
+              "minute": "75'",
+              "type": "goal"
+            }
+          ],
+          "notes": "Semifinal. Doblete de Diego Luna."
+        },
+        {
+          "matchday": 6,
+          "date": "2025-07-06",
+          "home": {
+            "iso": "us",
+            "name": "USA",
+            "score": 1
+          },
+          "away": {
+            "iso": "mx",
+            "name": "México",
+            "score": 2
+          },
+          "venue": {
+            "stadium": "NRG Stadium",
+            "city": "Houston",
+            "country_iso": "us"
+          },
+          "goals_arg": [
+            {
+              "player": "Chris Richards",
+              "minute": "4'",
+              "type": "goal"
+            }
+          ],
+          "notes": "FINAL COPA ORO 2025. USA cayó 1-2 ante México. Richards adelantó 1-0 al 4', pero Jiménez (27') y Edson Álvarez (77') remontaron. Subcampeones.",
+          "is_decisive_match": true
+        }
       ],
       "top_scorers": [
-        { "player": "Diego Luna", "goals": 4, "notes": "Real Salt Lake. Top scorer Copa Oro 2025." },
-        { "player": "Patrick Agyemang", "goals": 2, "notes": "Charlotte FC." },
-        { "player": "Malik Tillman", "goals": 2, "notes": "Bayer Leverkusen." },
-        { "player": "Damion Downs", "goals": 1 },
-        { "player": "Brenden Aaronson", "goals": 1 },
-        { "player": "Max Arfsten", "goals": 1 }
+        {
+          "player": "Diego Luna",
+          "goals": 4,
+          "notes": "Real Salt Lake. Top scorer Copa Oro 2025."
+        },
+        {
+          "player": "Patrick Agyemang",
+          "goals": 2,
+          "notes": "Charlotte FC."
+        },
+        {
+          "player": "Malik Tillman",
+          "goals": 2,
+          "notes": "Bayer Leverkusen."
+        },
+        {
+          "player": "Damion Downs",
+          "goals": 1
+        },
+        {
+          "player": "Brenden Aaronson",
+          "goals": 1
+        },
+        {
+          "player": "Max Arfsten",
+          "goals": 1
+        }
       ],
-      "best_match": { "match_ref": "matchday_1", "reason": "Goleada 5-0 a Trinidad y Tobago en debut Copa Oro. 5 goleadores diferentes mostrando profundidad." },
-      "worst_match": { "match_ref": "matchday_6", "reason": "Derrota 1-2 ante México en final Copa Oro 2025. Richards adelantó al 4', pero México remontó. Subcampeón con sabor amargo." },
-      "decisive_match": { "match_ref": "matchday_6", "reason": "Pese a la derrota 1-2 con México en final Copa Oro, USA llegó como SUBCAMPEÓN al ciclo Mundial 2026. Pochettino consolidó su proyecto." }
+      "best_match": {
+        "match_ref": "matchday_1",
+        "reason": "Goleada 5-0 a Trinidad y Tobago en debut Copa Oro. 5 goleadores diferentes mostrando profundidad."
+      },
+      "worst_match": {
+        "match_ref": "matchday_6",
+        "reason": "Derrota 1-2 ante México en final Copa Oro 2025. Richards adelantó al 4', pero México remontó. Subcampeón con sabor amargo."
+      },
+      "decisive_match": {
+        "match_ref": "matchday_6",
+        "reason": "Pese a la derrota 1-2 con México en final Copa Oro, USA llegó como SUBCAMPEÓN al ciclo Mundial 2026. Pochettino consolidó su proyecto."
+      }
     },
-
     "group_2026": {
       "letter": "D",
       "label": "Grupo D — USA (anfitriona), Turquía, Paraguay y Australia",
       "teams": [
-        { "iso": "us", "name": "USA", "fifa_rank": 16, "is_seed": true },
-        { "iso": "tr", "name": "Turquía", "fifa_rank": 30, "is_seed": false },
-        { "iso": "py", "name": "Paraguay", "fifa_rank": 33, "is_seed": false },
-        { "iso": "au", "name": "Australia", "fifa_rank": 26, "is_seed": false }
+        {
+          "iso": "us",
+          "name": "USA",
+          "fifa_rank": 16,
+          "is_seed": true
+        },
+        {
+          "iso": "tr",
+          "name": "Turquía",
+          "fifa_rank": 30,
+          "is_seed": false
+        },
+        {
+          "iso": "py",
+          "name": "Paraguay",
+          "fifa_rank": 33,
+          "is_seed": false
+        },
+        {
+          "iso": "au",
+          "name": "Australia",
+          "fifa_rank": 26,
+          "is_seed": false
+        }
       ],
       "notes": "Grupo D confirmado en sorteo del 5 dic 2025. USA cabeza de serie como anfitriona."
     },
-
     "schedule": [
-      { "matchday": 1, "opponent": { "iso": "tr", "name": "Turquía" }, "date": "2026-06-12", "venue": { "stadium": "SoFi Stadium", "city": "Inglewood (Los Ángeles)", "country_iso": "us" }, "status": "scheduled", "notes": "Debut anfitriona en SoFi Stadium." },
-      { "matchday": 2, "opponent": { "iso": "py", "name": "Paraguay" }, "date": "[POR CONFIRMAR]", "venue": { "stadium": "Lincoln Financial Field", "city": "Filadelfia", "country_iso": "us" }, "status": "scheduled" },
-      { "matchday": 3, "opponent": { "iso": "au", "name": "Australia" }, "date": "[POR CONFIRMAR]", "venue": { "stadium": "Lumen Field", "city": "Seattle", "country_iso": "us" }, "status": "scheduled" }
+      {
+        "matchday": 1,
+        "opponent": {
+          "iso": "tr",
+          "name": "Turquía"
+        },
+        "date": "2026-06-12",
+        "venue": {
+          "stadium": "SoFi Stadium",
+          "city": "Inglewood (Los Ángeles)",
+          "country_iso": "us"
+        },
+        "status": "scheduled",
+        "notes": "Debut anfitriona en SoFi Stadium."
+      },
+      {
+        "matchday": 2,
+        "opponent": {
+          "iso": "py",
+          "name": "Paraguay"
+        },
+        "date": "[POR CONFIRMAR]",
+        "venue": {
+          "stadium": "Lincoln Financial Field",
+          "city": "Filadelfia",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      },
+      {
+        "matchday": 3,
+        "opponent": {
+          "iso": "au",
+          "name": "Australia"
+        },
+        "date": "[POR CONFIRMAR]",
+        "venue": {
+          "stadium": "Lumen Field",
+          "city": "Seattle",
+          "country_iso": "us"
+        },
+        "status": "scheduled"
+      }
     ],
-
-    "base_camp": { "city": "Atlanta", "country": "Estados Unidos", "facility_name": "Mercedes-Benz Stadium Training Complex", "status": "confirmed" },
-
+    "base_camp": {
+      "city": "Atlanta",
+      "country": "Estados Unidos",
+      "facility_name": "Mercedes-Benz Stadium Training Complex",
+      "status": "confirmed"
+    },
     "coach": {
       "name": "Mauricio Pochettino",
       "age": 54,
       "nationality": "Argentina",
       "since": "2024-09-15",
-      "previous_teams": ["Chelsea (2023-2024, FA Cup final)", "PSG (2021-2022, Ligue 1 2022)", "Tottenham (2014-2019, FINAL CHAMPIONS LEAGUE 2019)", "Southampton (2013-2014)", "Espanyol (2009-2012)"],
+      "previous_teams": [
+        "Chelsea (2023-2024, FA Cup final)",
+        "PSG (2021-2022, Ligue 1 2022)",
+        "Tottenham (2014-2019, FINAL CHAMPIONS LEAGUE 2019)",
+        "Southampton (2013-2014)",
+        "Espanyol (2009-2012)"
+      ],
       "profile_summary": "Argentino, 54 años. Ex-defensor de Newell's, Espanyol, PSG. UNO DE LOS DT MÁS PRESTIGIOSOS DEL MUNDO: FINALISTA CHAMPIONS LEAGUE 2019 con TOTTENHAM (cayó 0-2 con Liverpool en Madrid). Ganador Ligue 1 2022 con PSG. Asumió USMNT en sept 2024 tras Gregg Berhalter (despedido tras Copa América 2024). Identidad táctica: 4-2-3-1 ofensivo, presión ALTA INTENSIDAD ('pressing alto'), juego asociativo. RETO: convertir USA en una potencia mundialista anfitriona. SUBCAMPEÓN COPA ORO 2025 (cayó vs México)."
     },
-
-    "captain": { "name": "Christian Pulisic", "club": "AC Milan" },
-
+    "captain": {
+      "name": "Christian Pulisic",
+      "club": "AC Milan"
+    },
     "star_player": {
       "name": "Christian Pulisic",
       "club": "AC Milan",
       "reason": "Capitán y estrella absoluta. 27 años. Conocido como 'Captain America'. Ex-Borussia Dortmund (2016-2019, debutó con 17 años) → Chelsea (2019-2023, CAMPEÓN UEFA CHAMPIONS LEAGUE 2021) → AC Milan (2023-presente). MÁXIMO GOLEADOR HISTÓRICO de Estados Unidos. Top scorer USMNT con 30+ goles internacionales. 3er Mundial (2022, 2026). LA GRAN ESPERANZA AMERICANA."
     },
-
     "likely_squad": [
-      { "id": "matt-turner", "full_name": "Matt Turner", "display_name": "Matt Turner", "position": "GK", "detailed_position": "GK", "club": { "name": "Crystal Palace", "country_iso": "gb-eng", "league": "Premier League" }, "shirt_number_expected": 1, "status": "fixed" },
-      { "id": "matt-freese", "full_name": "Matt Freese", "display_name": "Matt Freese", "position": "GK", "detailed_position": "GK", "club": { "name": "New York City FC", "country_iso": "us", "league": "MLS" }, "shirt_number_expected": 12, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Matt_Freese_NYCFC_vs_DC_United_on_Aug_30_2025-019_%28cropped%29.jpg/330px-Matt_Freese_NYCFC_vs_DC_United_on_Aug_30_2025-019_%28cropped%29.jpg" },
-      { "id": "patrick-schulte", "full_name": "Patrick Schulte", "display_name": "Patrick Schulte", "position": "GK", "detailed_position": "GK", "club": { "name": "Columbus Crew", "country_iso": "us", "league": "MLS" }, "shirt_number_expected": 23, "status": "probable", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/P_Schulte.jpg/330px-P_Schulte.jpg" },
-      { "id": "sergino-dest", "full_name": "Sergiño Dest", "display_name": "Sergiño Dest", "position": "DEF", "detailed_position": "RB", "club": { "name": "PSV Eindhoven", "country_iso": "nl", "league": "Eredivisie" }, "shirt_number_expected": 2, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Sergino_Dest.jpg/330px-Sergino_Dest.jpg" },
-      { "id": "joe-scally", "full_name": "Joe Scally", "display_name": "Joe Scally", "position": "DEF", "detailed_position": "RB", "club": { "name": "Borussia Mönchengladbach", "country_iso": "de", "league": "Bundesliga" }, "shirt_number_expected": 14, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Joe_Scally_USMNT_v_Belgium_Mar_28_2026-51_%28cropped%29.jpg/330px-Joe_Scally_USMNT_v_Belgium_Mar_28_2026-51_%28cropped%29.jpg" },
-      { "id": "chris-richards", "full_name": "Chris Richards", "display_name": "Chris Richards", "position": "DEF", "detailed_position": "CB", "club": { "name": "Crystal Palace", "country_iso": "gb-eng", "league": "Premier League" }, "shirt_number_expected": 4, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Chris_Richards%2C_2025_CONCACAF_Gold_Cup%2C_02_%28cropped%29.jpg/330px-Chris_Richards%2C_2025_CONCACAF_Gold_Cup%2C_02_%28cropped%29.jpg" },
-      { "id": "tim-ream", "full_name": "Tim Ream", "display_name": "Tim Ream", "position": "DEF", "detailed_position": "CB", "club": { "name": "Charlotte FC", "country_iso": "us", "league": "MLS" }, "shirt_number_expected": 5, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Tim_Ream_NYCFC_v_Charlotte_20_Sep_2025-021_%28cropped%29.jpg/330px-Tim_Ream_NYCFC_v_Charlotte_20_Sep_2025-021_%28cropped%29.jpg" },
-      { "id": "miles-robinson", "full_name": "Miles Robinson", "display_name": "Miles Robinson", "position": "DEF", "detailed_position": "CB", "club": { "name": "FC Cincinnati", "country_iso": "us", "league": "MLS" }, "shirt_number_expected": 15, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Miles_Robinson%2C_2025_CONCACAF_Gold_Cup.jpg/330px-Miles_Robinson%2C_2025_CONCACAF_Gold_Cup.jpg" },
-      { "id": "mark-mckenzie", "full_name": "Mark McKenzie", "display_name": "Mark McKenzie", "position": "DEF", "detailed_position": "CB", "club": { "name": "Toulouse", "country_iso": "fr", "league": "Ligue 1" }, "shirt_number_expected": 22, "status": "probable", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/McKenzie_asse_tfc_2425.png/330px-McKenzie_asse_tfc_2425.png" },
-      { "id": "antonee-robinson", "full_name": "Antonee Robinson", "display_name": "Antonee Robinson", "position": "DEF", "detailed_position": "LB", "club": { "name": "Fulham", "country_iso": "gb-eng", "league": "Premier League" }, "shirt_number_expected": 3, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/05/Antonee_Robinson_WC2022_%28cropped%29.jpg" },
-      { "id": "max-arfsten", "full_name": "Max Arfsten", "display_name": "Max Arfsten", "position": "DEF", "detailed_position": "LB", "club": { "name": "Columbus Crew", "country_iso": "us", "league": "MLS" }, "shirt_number_expected": 13, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Maximilian_Arfsten%2C_2025_CONCACAF_Gold_Cup%2C_03_%28cropped%29.jpg/330px-Maximilian_Arfsten%2C_2025_CONCACAF_Gold_Cup%2C_03_%28cropped%29.jpg" },
-      { "id": "tyler-adams", "full_name": "Tyler Adams", "display_name": "Tyler Adams", "position": "MID", "detailed_position": "CDM", "club": { "name": "AFC Bournemouth", "country_iso": "gb-eng", "league": "Premier League" }, "shirt_number_expected": 6, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/2021-11-06_Fu%C3%9Fball%2C_M%C3%A4nner%2C_1._Bundesliga%2C_RB_Leipzig_-_Borussia_Dortmund_1DX_1527_by_Stepro_%28cropped%29.jpg/330px-2021-11-06_Fu%C3%9Fball%2C_M%C3%A4nner%2C_1._Bundesliga%2C_RB_Leipzig_-_Borussia_Dortmund_1DX_1527_by_Stepro_%28cropped%29.jpg" },
-      { "id": "weston-mckennie", "full_name": "Weston McKennie", "display_name": "Weston McKennie", "position": "MID", "detailed_position": "CM", "club": { "name": "Juventus", "country_iso": "it", "league": "Serie A" }, "shirt_number_expected": 8, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/USAvVEN_2019-06-09_-_Weston_McKennie_%2851170534993%29_%28close-up%29.jpg/330px-USAvVEN_2019-06-09_-_Weston_McKennie_%2851170534993%29_%28close-up%29.jpg" },
-      { "id": "yunus-musah", "full_name": "Yunus Musah", "display_name": "Yunus Musah", "position": "MID", "detailed_position": "CM", "club": { "name": "AC Milan", "country_iso": "it", "league": "Serie A" }, "shirt_number_expected": 17, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/dc/2022_FIFA_World_Cup_United_States_1%E2%80%931_Wales_-_%2813%29_%28cropped%29.jpg" },
-      { "id": "luca-de-la-torre", "full_name": "Luca de la Torre", "display_name": "Luca de la Torre", "position": "MID", "detailed_position": "CM", "club": { "name": "San Diego FC", "country_iso": "us", "league": "MLS" }, "shirt_number_expected": 16, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Luca_de_la_Torre%2C_2025_CONCACAF_Gold_Cup%2C_01_%28cropped%29.jpg/330px-Luca_de_la_Torre%2C_2025_CONCACAF_Gold_Cup%2C_01_%28cropped%29.jpg" },
-      { "id": "tanner-tessmann", "full_name": "Tanner Tessmann", "display_name": "Tanner Tessmann", "position": "MID", "detailed_position": "CDM", "club": { "name": "Lyon", "country_iso": "fr", "league": "Ligue 1" }, "shirt_number_expected": 18, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Tessmann_asse_ol_2425.png/330px-Tessmann_asse_ol_2425.png" },
-      { "id": "diego-luna", "full_name": "Diego Luna", "display_name": "Diego Luna", "position": "MID", "detailed_position": "CAM", "club": { "name": "Real Salt Lake", "country_iso": "us", "league": "MLS" }, "shirt_number_expected": 19, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Diego_Luna_Berlinale_2017.jpg/330px-Diego_Luna_Berlinale_2017.jpg" },
-      { "id": "malik-tillman", "full_name": "Malik Tillman", "display_name": "Malik Tillman", "position": "MID", "detailed_position": "CAM", "club": { "name": "Bayer Leverkusen", "country_iso": "de", "league": "Bundesliga" }, "shirt_number_expected": 24, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Malik_Tillman_2025_CONCACAF_Gold_Cup_final_%28cropped%29.jpg/330px-Malik_Tillman_2025_CONCACAF_Gold_Cup_final_%28cropped%29.jpg" },
-      { "id": "christian-pulisic", "full_name": "Christian Pulisic", "display_name": "Christian Pulisic", "position": "FWD", "detailed_position": "RW", "club": { "name": "AC Milan", "country_iso": "it", "league": "Serie A" }, "shirt_number_expected": 10, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/USMNT_vs._Trinidad_and_Tobago_%2848125059622%29_%28cropped%29.jpg/330px-USMNT_vs._Trinidad_and_Tobago_%2848125059622%29_%28cropped%29.jpg" },
-      { "id": "timothy-weah", "full_name": "Timothy Weah", "display_name": "Tim Weah", "position": "FWD", "detailed_position": "RW", "club": { "name": "Marsella", "country_iso": "fr", "league": "Ligue 1" }, "shirt_number_expected": 21, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/9e/2022_FIFA_World_Cup_United_States_1%E2%80%931_Wales_-_%2817%29_%28cropped%29.jpg" },
-      { "id": "ricardo-pepi", "full_name": "Ricardo Pepi", "display_name": "Ricardo Pepi", "position": "FWD", "detailed_position": "ST", "club": { "name": "PSV Eindhoven", "country_iso": "nl", "league": "Eredivisie" }, "shirt_number_expected": 9, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/GAE_-_FC_Groningen_-_52877441697_%28Ricardo_Pepi%29.jpg/330px-GAE_-_FC_Groningen_-_52877441697_%28Ricardo_Pepi%29.jpg" },
-      { "id": "folarin-balogun", "full_name": "Folarin Balogun", "display_name": "Folarin Balogun", "position": "FWD", "detailed_position": "ST", "club": { "name": "Mónaco", "country_iso": "fr", "league": "Ligue 1" }, "shirt_number_expected": 20, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Balogun_asse_asm_2425.png/330px-Balogun_asse_asm_2425.png" },
-      { "id": "patrick-agyemang", "full_name": "Patrick Agyemang", "display_name": "Patrick Agyemang", "position": "FWD", "detailed_position": "ST", "club": { "name": "Charlotte FC", "country_iso": "us", "league": "MLS" }, "shirt_number_expected": 11, "status": "fixed" },
-      { "id": "brenden-aaronson", "full_name": "Brenden Aaronson", "display_name": "Brenden Aaronson", "position": "FWD", "detailed_position": "LW", "club": { "name": "Leeds United", "country_iso": "gb-eng", "league": "Premier League" }, "shirt_number_expected": 7, "status": "fixed", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/FC_RB_Salzburg_gegen_WSG_Tirol_%28_mit_Meisterteller%C3%BCbergabe_22._Mai_2021%29_15.jpg/330px-FC_RB_Salzburg_gegen_WSG_Tirol_%28_mit_Meisterteller%C3%BCbergabe_22._Mai_2021%29_15.jpg" },
-      { "id": "damion-downs", "full_name": "Damion Downs", "display_name": "Damion Downs", "position": "FWD", "detailed_position": "ST", "club": { "name": "1. FC Köln", "country_iso": "de", "league": "Bundesliga" }, "shirt_number_expected": 25, "status": "probable", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Damion_Downs%2C_2025_CONCACAF_Gold_Cup%2C_02_%28cropped%29.jpg/330px-Damion_Downs%2C_2025_CONCACAF_Gold_Cup%2C_02_%28cropped%29.jpg" },
-      { "id": "haji-wright", "full_name": "Haji Wright", "display_name": "Haji Wright", "position": "FWD", "detailed_position": "ST", "club": { "name": "Coventry City", "country_iso": "gb-eng", "league": "Championship" }, "shirt_number_expected": 26, "status": "bubble", "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Haji_Wright_at_Antalyaspor_vs_Trabzonspor_20211211_%282%29_%28cropped%29_%28cropped%29.jpg/330px-Haji_Wright_at_Antalyaspor_vs_Trabzonspor_20211211_%282%29_%28cropped%29_%28cropped%29.jpg" }
+      {
+        "id": "matt-turner",
+        "full_name": "Matt Turner",
+        "display_name": "Matt Turner",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Crystal Palace",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed"
+      },
+      {
+        "id": "matt-freese",
+        "full_name": "Matt Freese",
+        "display_name": "Matt Freese",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "New York City FC",
+          "country_iso": "us",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 12,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Matt_Freese_NYCFC_vs_DC_United_on_Aug_30_2025-019_%28cropped%29.jpg/330px-Matt_Freese_NYCFC_vs_DC_United_on_Aug_30_2025-019_%28cropped%29.jpg"
+      },
+      {
+        "id": "patrick-schulte",
+        "full_name": "Patrick Schulte",
+        "display_name": "Patrick Schulte",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Columbus Crew",
+          "country_iso": "us",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 23,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/P_Schulte.jpg/330px-P_Schulte.jpg"
+      },
+      {
+        "id": "sergino-dest",
+        "full_name": "Sergiño Dest",
+        "display_name": "Sergiño Dest",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "PSV Eindhoven",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Sergino_Dest.jpg/330px-Sergino_Dest.jpg"
+      },
+      {
+        "id": "joe-scally",
+        "full_name": "Joe Scally",
+        "display_name": "Joe Scally",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Borussia Mönchengladbach",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Joe_Scally_USMNT_v_Belgium_Mar_28_2026-51_%28cropped%29.jpg/330px-Joe_Scally_USMNT_v_Belgium_Mar_28_2026-51_%28cropped%29.jpg"
+      },
+      {
+        "id": "chris-richards",
+        "full_name": "Chris Richards",
+        "display_name": "Chris Richards",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Crystal Palace",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Chris_Richards%2C_2025_CONCACAF_Gold_Cup%2C_02_%28cropped%29.jpg/330px-Chris_Richards%2C_2025_CONCACAF_Gold_Cup%2C_02_%28cropped%29.jpg"
+      },
+      {
+        "id": "tim-ream",
+        "full_name": "Tim Ream",
+        "display_name": "Tim Ream",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Charlotte FC",
+          "country_iso": "us",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Tim_Ream_NYCFC_v_Charlotte_20_Sep_2025-021_%28cropped%29.jpg/330px-Tim_Ream_NYCFC_v_Charlotte_20_Sep_2025-021_%28cropped%29.jpg"
+      },
+      {
+        "id": "miles-robinson",
+        "full_name": "Miles Robinson",
+        "display_name": "Miles Robinson",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "FC Cincinnati",
+          "country_iso": "us",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 15,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Miles_Robinson%2C_2025_CONCACAF_Gold_Cup.jpg/330px-Miles_Robinson%2C_2025_CONCACAF_Gold_Cup.jpg"
+      },
+      {
+        "id": "mark-mckenzie",
+        "full_name": "Mark McKenzie",
+        "display_name": "Mark McKenzie",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Toulouse",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 22,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/McKenzie_asse_tfc_2425.png/330px-McKenzie_asse_tfc_2425.png"
+      },
+      {
+        "id": "antonee-robinson",
+        "full_name": "Antonee Robinson",
+        "display_name": "Antonee Robinson",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Fulham",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/05/Antonee_Robinson_WC2022_%28cropped%29.jpg"
+      },
+      {
+        "id": "max-arfsten",
+        "full_name": "Max Arfsten",
+        "display_name": "Max Arfsten",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Columbus Crew",
+          "country_iso": "us",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 13,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Maximilian_Arfsten%2C_2025_CONCACAF_Gold_Cup%2C_03_%28cropped%29.jpg/330px-Maximilian_Arfsten%2C_2025_CONCACAF_Gold_Cup%2C_03_%28cropped%29.jpg"
+      },
+      {
+        "id": "tyler-adams",
+        "full_name": "Tyler Adams",
+        "display_name": "Tyler Adams",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "AFC Bournemouth",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/2021-11-06_Fu%C3%9Fball%2C_M%C3%A4nner%2C_1._Bundesliga%2C_RB_Leipzig_-_Borussia_Dortmund_1DX_1527_by_Stepro_%28cropped%29.jpg/330px-2021-11-06_Fu%C3%9Fball%2C_M%C3%A4nner%2C_1._Bundesliga%2C_RB_Leipzig_-_Borussia_Dortmund_1DX_1527_by_Stepro_%28cropped%29.jpg"
+      },
+      {
+        "id": "weston-mckennie",
+        "full_name": "Weston McKennie",
+        "display_name": "Weston McKennie",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Juventus",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/USAvVEN_2019-06-09_-_Weston_McKennie_%2851170534993%29_%28close-up%29.jpg/330px-USAvVEN_2019-06-09_-_Weston_McKennie_%2851170534993%29_%28close-up%29.jpg"
+      },
+      {
+        "id": "yunus-musah",
+        "full_name": "Yunus Musah",
+        "display_name": "Yunus Musah",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "AC Milan",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/dc/2022_FIFA_World_Cup_United_States_1%E2%80%931_Wales_-_%2813%29_%28cropped%29.jpg"
+      },
+      {
+        "id": "luca-de-la-torre",
+        "full_name": "Luca de la Torre",
+        "display_name": "Luca de la Torre",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "San Diego FC",
+          "country_iso": "us",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 16,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Luca_de_la_Torre%2C_2025_CONCACAF_Gold_Cup%2C_01_%28cropped%29.jpg/330px-Luca_de_la_Torre%2C_2025_CONCACAF_Gold_Cup%2C_01_%28cropped%29.jpg"
+      },
+      {
+        "id": "tanner-tessmann",
+        "full_name": "Tanner Tessmann",
+        "display_name": "Tanner Tessmann",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Lyon",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Tessmann_asse_ol_2425.png/330px-Tessmann_asse_ol_2425.png"
+      },
+      {
+        "id": "diego-luna",
+        "full_name": "Diego Luna",
+        "display_name": "Diego Luna",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Real Salt Lake",
+          "country_iso": "us",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Diego_Luna_Berlinale_2017.jpg/330px-Diego_Luna_Berlinale_2017.jpg"
+      },
+      {
+        "id": "malik-tillman",
+        "full_name": "Malik Tillman",
+        "display_name": "Malik Tillman",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Bayer Leverkusen",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 24,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Malik_Tillman_2025_CONCACAF_Gold_Cup_final_%28cropped%29.jpg/330px-Malik_Tillman_2025_CONCACAF_Gold_Cup_final_%28cropped%29.jpg"
+      },
+      {
+        "id": "christian-pulisic",
+        "full_name": "Christian Pulisic",
+        "display_name": "Christian Pulisic",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "AC Milan",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/USMNT_vs._Trinidad_and_Tobago_%2848125059622%29_%28cropped%29.jpg/330px-USMNT_vs._Trinidad_and_Tobago_%2848125059622%29_%28cropped%29.jpg"
+      },
+      {
+        "id": "timothy-weah",
+        "full_name": "Timothy Weah",
+        "display_name": "Tim Weah",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Marsella",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 21,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/9e/2022_FIFA_World_Cup_United_States_1%E2%80%931_Wales_-_%2817%29_%28cropped%29.jpg"
+      },
+      {
+        "id": "ricardo-pepi",
+        "full_name": "Ricardo Pepi",
+        "display_name": "Ricardo Pepi",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "PSV Eindhoven",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/GAE_-_FC_Groningen_-_52877441697_%28Ricardo_Pepi%29.jpg/330px-GAE_-_FC_Groningen_-_52877441697_%28Ricardo_Pepi%29.jpg"
+      },
+      {
+        "id": "folarin-balogun",
+        "full_name": "Folarin Balogun",
+        "display_name": "Folarin Balogun",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Mónaco",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 20,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Balogun_asse_asm_2425.png/330px-Balogun_asse_asm_2425.png"
+      },
+      {
+        "id": "patrick-agyemang",
+        "full_name": "Patrick Agyemang",
+        "display_name": "Patrick Agyemang",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Charlotte FC",
+          "country_iso": "us",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed"
+      },
+      {
+        "id": "brenden-aaronson",
+        "full_name": "Brenden Aaronson",
+        "display_name": "Brenden Aaronson",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Leeds United",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/FC_RB_Salzburg_gegen_WSG_Tirol_%28_mit_Meisterteller%C3%BCbergabe_22._Mai_2021%29_15.jpg/330px-FC_RB_Salzburg_gegen_WSG_Tirol_%28_mit_Meisterteller%C3%BCbergabe_22._Mai_2021%29_15.jpg"
+      },
+      {
+        "id": "damion-downs",
+        "full_name": "Damion Downs",
+        "display_name": "Damion Downs",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "1. FC Köln",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 25,
+        "status": "probable",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Damion_Downs%2C_2025_CONCACAF_Gold_Cup%2C_02_%28cropped%29.jpg/330px-Damion_Downs%2C_2025_CONCACAF_Gold_Cup%2C_02_%28cropped%29.jpg"
+      },
+      {
+        "id": "haji-wright",
+        "full_name": "Haji Wright",
+        "display_name": "Haji Wright",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Coventry City",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 26,
+        "status": "bubble",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Haji_Wright_at_Antalyaspor_vs_Trabzonspor_20211211_%282%29_%28cropped%29_%28cropped%29.jpg/330px-Haji_Wright_at_Antalyaspor_vs_Trabzonspor_20211211_%282%29_%28cropped%29_%28cropped%29.jpg"
+      }
     ],
-
     "starting_xi": {
       "formation": "4-2-3-1",
       "players": [
-        { "player_id": "matt-turner", "position": { "x": 50, "y": 92 } },
-        { "player_id": "sergino-dest", "position": { "x": 85, "y": 72 } },
-        { "player_id": "chris-richards", "position": { "x": 65, "y": 75 } },
-        { "player_id": "tim-ream", "position": { "x": 35, "y": 75 } },
-        { "player_id": "antonee-robinson", "position": { "x": 15, "y": 72 } },
-        { "player_id": "tyler-adams", "position": { "x": 60, "y": 55 } },
-        { "player_id": "weston-mckennie", "position": { "x": 40, "y": 55 } },
-        { "player_id": "christian-pulisic", "position": { "x": 80, "y": 30 } },
-        { "player_id": "yunus-musah", "position": { "x": 50, "y": 32 } },
-        { "player_id": "timothy-weah", "position": { "x": 20, "y": 30 } },
-        { "player_id": "ricardo-pepi", "position": { "x": 50, "y": 12 } }
+        {
+          "player_id": "matt-turner",
+          "position": {
+            "x": 50,
+            "y": 92
+          }
+        },
+        {
+          "player_id": "sergino-dest",
+          "position": {
+            "x": 85,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "chris-richards",
+          "position": {
+            "x": 65,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "tim-ream",
+          "position": {
+            "x": 35,
+            "y": 75
+          }
+        },
+        {
+          "player_id": "antonee-robinson",
+          "position": {
+            "x": 15,
+            "y": 72
+          }
+        },
+        {
+          "player_id": "tyler-adams",
+          "position": {
+            "x": 60,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "weston-mckennie",
+          "position": {
+            "x": 40,
+            "y": 55
+          }
+        },
+        {
+          "player_id": "christian-pulisic",
+          "position": {
+            "x": 80,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "yunus-musah",
+          "position": {
+            "x": 50,
+            "y": 32
+          }
+        },
+        {
+          "player_id": "timothy-weah",
+          "position": {
+            "x": 20,
+            "y": 30
+          }
+        },
+        {
+          "player_id": "ricardo-pepi",
+          "position": {
+            "x": 50,
+            "y": 12
+          }
+        }
       ]
     },
-
     "analysis": {
       "style": "Pochettino plantea un 4-2-3-1 ofensivo agresivo: defensa zonal con 'pressing alto' característico, doble pivote (Adams + McKennie), Pulisic '10' por derecha, Tim Weah o Aaronson izquierda, Pepi '9' fijo. Identidad: presión brutal, transiciones explosivas, ritmo Premier League.",
       "strengths": [
@@ -228,9 +944,10 @@
         "champion": 0
       },
       "vs_last_3_wcs": "Brasil 2014: octavos (1-2 Bélgica). Rusia 2018: NO CLASIFICÓ (debacle histórica vs Trinidad y Tobago). Catar 2022: octavos (1-3 Holanda). Mundial 2026: 12ª participación, 6ª consecutiva (interrumpida solo en 2018)."
-    }
+    },
+    "squad_announced": false,
+    "squad_announced_status": "pending_official"
   },
-
   "history": {
     "first_appearance": 1930,
     "appearances_count_before_2026": 11,
@@ -253,68 +970,594 @@
       "notes": "36 partidos en 11 Mundiales. Mejor papel: 3º en 1930. Octavos: 1934, 1994, 2002 (cuartos), 2010, 2014, 2022."
     },
     "by_world_cup": [
-      { "year": 1930, "host": { "countries": ["Uruguay"], "iso": ["uy"] }, "result": "Tercer puesto", "coach": "Robert Millar", "captain": "Tom Florie", "matches": [], "team_top_scorers": [{ "player": "Bert Patenaude", "goals": 4 }, { "player": "Bart McGhee", "goals": 1 }, { "player": "Tom Florie", "goals": 1 }], "goals_scored": 7, "goals_conceded": 6, "notable_facts": ["1ER MUNDIAL DE LA HISTORIA.", "BERT PATENAUDE marcó EL 1ER HAT-TRICK MUNDIALISTA HISTÓRICO vs Paraguay (3 goles).", "Eliminada por Argentina 1-6 en semis."], "narrative": "USA fue una de las 13 selecciones del 1ER MUNDIAL HISTÓRICO. Goleó a Bélgica (3-0) y Paraguay (3-0, hat-trick Patenaude). Cayó 1-6 con Argentina en semis. 3er PUESTO HISTÓRICO." },
-      { "year": 1934, "host": { "countries": ["Italia"], "iso": ["it"] }, "result": "Octavos", "coach": "David Gould", "captain": "Tom Florie", "matches": [], "team_top_scorers": [{ "player": "Buff Donelli", "goals": 1 }], "goals_scored": 1, "goals_conceded": 7, "notable_facts": ["Cayó 1-7 con Italia (campeona)."], "narrative": "Mundial Italia. Cayó eliminada en 1ª ronda por la futura campeona." },
-      { "year": 1950, "host": { "countries": ["Brasil"], "iso": ["br"] }, "result": "Fase de grupos", "coach": "Bill Jeffrey", "captain": "Walter Bahr", "matches": [], "team_top_scorers": [{ "player": "Joe Gaetjens", "goals": 1 }, { "player": "Frank Wallace", "goals": 1 }], "goals_scored": 4, "goals_conceded": 8, "notable_facts": ["VICTORIA HISTÓRICA 1-0 a INGLATERRA (gol Joe Gaetjens 38').", "Cayó con España y Chile."], "narrative": "MUNDIAL ICÓNICO con LA SORPRESA DE BELO HORIZONTE: USA 1-0 INGLATERRA el 29 jun 1950 con gol de JOE GAETJENS al 38'. UNA DE LAS MAYORES SORPRESAS DE LA HISTORIA mundialista. Inglaterra venía de inventores del fútbol." },
-      { "year": 1990, "host": { "countries": ["Italia"], "iso": ["it"] }, "result": "Fase de grupos", "coach": "Bob Gansler", "captain": "Mike Windischmann", "matches": [], "team_top_scorers": [{ "player": "Paul Caligiuri", "goals": 1 }, { "player": "Bruce Murray", "goals": 1 }], "goals_scored": 2, "goals_conceded": 8, "notable_facts": ["Regresó tras 40 años.", "Cayó con Checoslovaquia, Italia y Austria."], "narrative": "1er Mundial moderno tras 40 años. Marcó EL RENACER DEL SOCCER en USA pre-Mundial 1994 anfitrión." },
-      { "year": 1994, "host": { "countries": ["Estados Unidos"], "iso": ["us"] }, "result": "Octavos (anfitrión)", "coach": "Bora Milutinović", "captain": "Tony Meola", "matches": [], "team_top_scorers": [{ "player": "Eric Wynalda", "goals": 1 }, { "player": "Earnie Stewart", "goals": 1 }], "goals_scored": 3, "goals_conceded": 4, "notable_facts": ["1ª vez ANFITRIÓN.", "Eliminada por Brasil 0-1 en octavos."], "narrative": "Mundial USA 1994. Pasó a octavos como anfitrión. Cayó con Brasil 0-1 (gol Bebeto). Marcó el INICIO DE LA EXPLOSIÓN DEL SOCCER en USA (creación MLS)." },
-      { "year": 1998, "host": { "countries": ["Francia"], "iso": ["fr"] }, "result": "Fase de grupos", "coach": "Steve Sampson", "captain": "Thomas Dooley", "matches": [], "team_top_scorers": [{ "player": "Brian McBride", "goals": 1 }], "goals_scored": 1, "goals_conceded": 5, "notable_facts": ["Cayó los 3 partidos.", "Mundial decepcionante."], "narrative": "Mundial Francia 98. USA cayó los 3 partidos. PEOR PAPEL MODERNO." },
-      { "year": 2002, "host": { "countries": ["Corea del Sur", "Japón"], "iso": ["kr", "jp"] }, "result": "Cuartos de final", "coach": "Bruce Arena", "captain": "Claudio Reyna", "matches": [], "team_top_scorers": [{ "player": "Brian McBride", "goals": 2 }, { "player": "Landon Donovan", "goals": 1 }, { "player": "Clint Mathis", "goals": 1 }, { "player": "John O'Brien", "goals": 1 }], "goals_scored": 7, "goals_conceded": 7, "notable_facts": ["MEJOR PAPEL MODERNO: CUARTOS DE FINAL.", "VENCIÓ A MÉXICO 2-0 en octavos (Donovan + McBride).", "Cayó 0-1 con Alemania en cuartos (gol Ballack)."], "narrative": "MUNDIAL HISTÓRICO. Pasó como 1º del grupo (3-2 a Portugal en debut). VENCIÓ A MÉXICO 2-0 en octavos (gol Donovan polémico). Cayó 0-1 con Alemania en cuartos (Ballack 39'). Mejor papel moderno." },
-      { "year": 2006, "host": { "countries": ["Alemania"], "iso": ["de"] }, "result": "Fase de grupos", "coach": "Bruce Arena", "captain": "Claudio Reyna", "matches": [], "team_top_scorers": [{ "player": "Clint Dempsey", "goals": 1 }], "goals_scored": 2, "goals_conceded": 6, "notable_facts": ["Empate 1-1 con Italia campeona.", "Cayó con Chequia y Ghana."], "narrative": "Mundial flojo. 1-1 con Italia (que sería campeón). Adiós." },
-      { "year": 2010, "host": { "countries": ["Sudáfrica"], "iso": ["za"] }, "result": "Octavos", "coach": "Bob Bradley", "captain": "Carlos Bocanegra", "matches": [], "team_top_scorers": [{ "player": "Landon Donovan", "goals": 3 }, { "player": "Clint Dempsey", "goals": 1 }, { "player": "Michael Bradley", "goals": 1 }], "goals_scored": 5, "goals_conceded": 5, "notable_facts": ["GOL HISTÓRICO de Donovan al 90+1' vs Argelia.", "Cayó 1-2 con Ghana en octavos."], "narrative": "DONOVAN MARCÓ AL 90+1' GOL HISTÓRICO vs Argelia que metió a USA 1º del grupo. Cayó 1-2 con Ghana en octavos." },
-      { "year": 2014, "host": { "countries": ["Brasil"], "iso": ["br"] }, "result": "Octavos", "coach": "Jürgen Klinsmann", "captain": "Clint Dempsey", "matches": [], "team_top_scorers": [{ "player": "Clint Dempsey", "goals": 2 }, { "player": "Jermaine Jones", "goals": 1 }, { "player": "John Brooks", "goals": 1 }], "goals_scored": 5, "goals_conceded": 6, "notable_facts": ["Cayó 1-2 con Bélgica en octavos."], "narrative": "Pasó del 'grupo de la muerte' (Alemania, Portugal, Ghana). Cayó 1-2 con Bélgica en octavos en tiempo extra." },
-      { "year": 2022, "host": { "countries": ["Catar"], "iso": ["qa"] }, "result": "Octavos", "coach": "Gregg Berhalter", "captain": "Tyler Adams", "matches": [], "team_top_scorers": [{ "player": "Christian Pulisic", "goals": 1 }, { "player": "Timothy Weah", "goals": 1 }, { "player": "Haji Wright", "goals": 1 }], "goals_scored": 3, "goals_conceded": 4, "notable_facts": ["Empate 1-1 con Inglaterra.", "Triunfo 1-0 a Irán (Pulisic 38').", "Cayó 1-3 con Holanda en octavos."], "narrative": "Mundial Catar. Pasó 2º del grupo. PULISIC marcó al 38' vs Irán para clasificar. En octavos cayó 1-3 con Holanda." }
+      {
+        "year": 1930,
+        "host": {
+          "countries": [
+            "Uruguay"
+          ],
+          "iso": [
+            "uy"
+          ]
+        },
+        "result": "Tercer puesto",
+        "coach": "Robert Millar",
+        "captain": "Tom Florie",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Bert Patenaude",
+            "goals": 4
+          },
+          {
+            "player": "Bart McGhee",
+            "goals": 1
+          },
+          {
+            "player": "Tom Florie",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 7,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "1ER MUNDIAL DE LA HISTORIA.",
+          "BERT PATENAUDE marcó EL 1ER HAT-TRICK MUNDIALISTA HISTÓRICO vs Paraguay (3 goles).",
+          "Eliminada por Argentina 1-6 en semis."
+        ],
+        "narrative": "USA fue una de las 13 selecciones del 1ER MUNDIAL HISTÓRICO. Goleó a Bélgica (3-0) y Paraguay (3-0, hat-trick Patenaude). Cayó 1-6 con Argentina en semis. 3er PUESTO HISTÓRICO."
+      },
+      {
+        "year": 1934,
+        "host": {
+          "countries": [
+            "Italia"
+          ],
+          "iso": [
+            "it"
+          ]
+        },
+        "result": "Octavos",
+        "coach": "David Gould",
+        "captain": "Tom Florie",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Buff Donelli",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 1,
+        "goals_conceded": 7,
+        "notable_facts": [
+          "Cayó 1-7 con Italia (campeona)."
+        ],
+        "narrative": "Mundial Italia. Cayó eliminada en 1ª ronda por la futura campeona."
+      },
+      {
+        "year": 1950,
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Bill Jeffrey",
+        "captain": "Walter Bahr",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Joe Gaetjens",
+            "goals": 1
+          },
+          {
+            "player": "Frank Wallace",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 4,
+        "goals_conceded": 8,
+        "notable_facts": [
+          "VICTORIA HISTÓRICA 1-0 a INGLATERRA (gol Joe Gaetjens 38').",
+          "Cayó con España y Chile."
+        ],
+        "narrative": "MUNDIAL ICÓNICO con LA SORPRESA DE BELO HORIZONTE: USA 1-0 INGLATERRA el 29 jun 1950 con gol de JOE GAETJENS al 38'. UNA DE LAS MAYORES SORPRESAS DE LA HISTORIA mundialista. Inglaterra venía de inventores del fútbol."
+      },
+      {
+        "year": 1990,
+        "host": {
+          "countries": [
+            "Italia"
+          ],
+          "iso": [
+            "it"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Bob Gansler",
+        "captain": "Mike Windischmann",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Paul Caligiuri",
+            "goals": 1
+          },
+          {
+            "player": "Bruce Murray",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 8,
+        "notable_facts": [
+          "Regresó tras 40 años.",
+          "Cayó con Checoslovaquia, Italia y Austria."
+        ],
+        "narrative": "1er Mundial moderno tras 40 años. Marcó EL RENACER DEL SOCCER en USA pre-Mundial 1994 anfitrión."
+      },
+      {
+        "year": 1994,
+        "host": {
+          "countries": [
+            "Estados Unidos"
+          ],
+          "iso": [
+            "us"
+          ]
+        },
+        "result": "Octavos (anfitrión)",
+        "coach": "Bora Milutinović",
+        "captain": "Tony Meola",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Eric Wynalda",
+            "goals": 1
+          },
+          {
+            "player": "Earnie Stewart",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 3,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "1ª vez ANFITRIÓN.",
+          "Eliminada por Brasil 0-1 en octavos."
+        ],
+        "narrative": "Mundial USA 1994. Pasó a octavos como anfitrión. Cayó con Brasil 0-1 (gol Bebeto). Marcó el INICIO DE LA EXPLOSIÓN DEL SOCCER en USA (creación MLS)."
+      },
+      {
+        "year": 1998,
+        "host": {
+          "countries": [
+            "Francia"
+          ],
+          "iso": [
+            "fr"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Steve Sampson",
+        "captain": "Thomas Dooley",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Brian McBride",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 1,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "Cayó los 3 partidos.",
+          "Mundial decepcionante."
+        ],
+        "narrative": "Mundial Francia 98. USA cayó los 3 partidos. PEOR PAPEL MODERNO."
+      },
+      {
+        "year": 2002,
+        "host": {
+          "countries": [
+            "Corea del Sur",
+            "Japón"
+          ],
+          "iso": [
+            "kr",
+            "jp"
+          ]
+        },
+        "result": "Cuartos de final",
+        "coach": "Bruce Arena",
+        "captain": "Claudio Reyna",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Brian McBride",
+            "goals": 2
+          },
+          {
+            "player": "Landon Donovan",
+            "goals": 1
+          },
+          {
+            "player": "Clint Mathis",
+            "goals": 1
+          },
+          {
+            "player": "John O'Brien",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 7,
+        "goals_conceded": 7,
+        "notable_facts": [
+          "MEJOR PAPEL MODERNO: CUARTOS DE FINAL.",
+          "VENCIÓ A MÉXICO 2-0 en octavos (Donovan + McBride).",
+          "Cayó 0-1 con Alemania en cuartos (gol Ballack)."
+        ],
+        "narrative": "MUNDIAL HISTÓRICO. Pasó como 1º del grupo (3-2 a Portugal en debut). VENCIÓ A MÉXICO 2-0 en octavos (gol Donovan polémico). Cayó 0-1 con Alemania en cuartos (Ballack 39'). Mejor papel moderno."
+      },
+      {
+        "year": 2006,
+        "host": {
+          "countries": [
+            "Alemania"
+          ],
+          "iso": [
+            "de"
+          ]
+        },
+        "result": "Fase de grupos",
+        "coach": "Bruce Arena",
+        "captain": "Claudio Reyna",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Clint Dempsey",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 2,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Empate 1-1 con Italia campeona.",
+          "Cayó con Chequia y Ghana."
+        ],
+        "narrative": "Mundial flojo. 1-1 con Italia (que sería campeón). Adiós."
+      },
+      {
+        "year": 2010,
+        "host": {
+          "countries": [
+            "Sudáfrica"
+          ],
+          "iso": [
+            "za"
+          ]
+        },
+        "result": "Octavos",
+        "coach": "Bob Bradley",
+        "captain": "Carlos Bocanegra",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Landon Donovan",
+            "goals": 3
+          },
+          {
+            "player": "Clint Dempsey",
+            "goals": 1
+          },
+          {
+            "player": "Michael Bradley",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 5,
+        "goals_conceded": 5,
+        "notable_facts": [
+          "GOL HISTÓRICO de Donovan al 90+1' vs Argelia.",
+          "Cayó 1-2 con Ghana en octavos."
+        ],
+        "narrative": "DONOVAN MARCÓ AL 90+1' GOL HISTÓRICO vs Argelia que metió a USA 1º del grupo. Cayó 1-2 con Ghana en octavos."
+      },
+      {
+        "year": 2014,
+        "host": {
+          "countries": [
+            "Brasil"
+          ],
+          "iso": [
+            "br"
+          ]
+        },
+        "result": "Octavos",
+        "coach": "Jürgen Klinsmann",
+        "captain": "Clint Dempsey",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Clint Dempsey",
+            "goals": 2
+          },
+          {
+            "player": "Jermaine Jones",
+            "goals": 1
+          },
+          {
+            "player": "John Brooks",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 5,
+        "goals_conceded": 6,
+        "notable_facts": [
+          "Cayó 1-2 con Bélgica en octavos."
+        ],
+        "narrative": "Pasó del 'grupo de la muerte' (Alemania, Portugal, Ghana). Cayó 1-2 con Bélgica en octavos en tiempo extra."
+      },
+      {
+        "year": 2022,
+        "host": {
+          "countries": [
+            "Catar"
+          ],
+          "iso": [
+            "qa"
+          ]
+        },
+        "result": "Octavos",
+        "coach": "Gregg Berhalter",
+        "captain": "Tyler Adams",
+        "matches": [],
+        "team_top_scorers": [
+          {
+            "player": "Christian Pulisic",
+            "goals": 1
+          },
+          {
+            "player": "Timothy Weah",
+            "goals": 1
+          },
+          {
+            "player": "Haji Wright",
+            "goals": 1
+          }
+        ],
+        "goals_scored": 3,
+        "goals_conceded": 4,
+        "notable_facts": [
+          "Empate 1-1 con Inglaterra.",
+          "Triunfo 1-0 a Irán (Pulisic 38').",
+          "Cayó 1-3 con Holanda en octavos."
+        ],
+        "narrative": "Mundial Catar. Pasó 2º del grupo. PULISIC marcó al 38' vs Irán para clasificar. En octavos cayó 1-3 con Holanda."
+      }
     ],
     "palmares": [
-      { "competition": "Copa Oro CONCACAF", "year": 1991, "position": "Campeón", "host": "USA" },
-      { "competition": "Copa Oro CONCACAF", "year": 2002, "position": "Campeón", "host": "USA" },
-      { "competition": "Copa Oro CONCACAF", "year": 2005, "position": "Campeón", "host": "USA" },
-      { "competition": "Copa Oro CONCACAF", "year": 2007, "position": "Campeón", "host": "USA" },
-      { "competition": "Copa Oro CONCACAF", "year": 2013, "position": "Campeón", "host": "USA" },
-      { "competition": "Copa Oro CONCACAF", "year": 2017, "position": "Campeón", "host": "USA" },
-      { "competition": "Copa Oro CONCACAF", "year": 2021, "position": "Campeón", "host": "USA" }
+      {
+        "competition": "Copa Oro CONCACAF",
+        "year": 1991,
+        "position": "Campeón",
+        "host": "USA"
+      },
+      {
+        "competition": "Copa Oro CONCACAF",
+        "year": 2002,
+        "position": "Campeón",
+        "host": "USA"
+      },
+      {
+        "competition": "Copa Oro CONCACAF",
+        "year": 2005,
+        "position": "Campeón",
+        "host": "USA"
+      },
+      {
+        "competition": "Copa Oro CONCACAF",
+        "year": 2007,
+        "position": "Campeón",
+        "host": "USA"
+      },
+      {
+        "competition": "Copa Oro CONCACAF",
+        "year": 2013,
+        "position": "Campeón",
+        "host": "USA"
+      },
+      {
+        "competition": "Copa Oro CONCACAF",
+        "year": 2017,
+        "position": "Campeón",
+        "host": "USA"
+      },
+      {
+        "competition": "Copa Oro CONCACAF",
+        "year": 2021,
+        "position": "Campeón",
+        "host": "USA"
+      }
     ]
   },
-
   "records": {
-    "top_scorer_history": { "name": "Clint Dempsey", "value": 57, "period": "2004-2017", "notes": "EMPATADO con Landon Donovan en 57. Récord vigente. Mundialista 2006, 2010, 2014. Pulisic está cerca con 30+." },
-    "most_capped": { "name": "Cobi Jones", "value": 164, "period": "1992-2004", "notes": "Récord histórico de presencias." },
-    "youngest_debut": { "name": "Christian Pulisic", "value": "17 años", "period": "2016", "notes": "Récord moderno. Ex-Borussia Dortmund." },
-    "biggest_win": { "result": "8-0", "opponent": "Barbados", "date": "2008-06-15", "competition": "Eliminatorias Mundial 2010" },
-    "worst_loss": { "result": "1-11", "opponent": "Noruega", "date": "1948-08-13", "competition": "Olímpicos Londres" }
+    "top_scorer_history": {
+      "name": "Clint Dempsey",
+      "value": 57,
+      "period": "2004-2017",
+      "notes": "EMPATADO con Landon Donovan en 57. Récord vigente. Mundialista 2006, 2010, 2014. Pulisic está cerca con 30+."
+    },
+    "most_capped": {
+      "name": "Cobi Jones",
+      "value": 164,
+      "period": "1992-2004",
+      "notes": "Récord histórico de presencias."
+    },
+    "youngest_debut": {
+      "name": "Christian Pulisic",
+      "value": "17 años",
+      "period": "2016",
+      "notes": "Récord moderno. Ex-Borussia Dortmund."
+    },
+    "biggest_win": {
+      "result": "8-0",
+      "opponent": "Barbados",
+      "date": "2008-06-15",
+      "competition": "Eliminatorias Mundial 2010"
+    },
+    "worst_loss": {
+      "result": "1-11",
+      "opponent": "Noruega",
+      "date": "1948-08-13",
+      "competition": "Olímpicos Londres"
+    }
   },
-
   "iconic_matches": [
-    { "title": "La Sorpresa de Belo Horizonte (1-0 a Inglaterra 1950)", "date": "1950-06-29", "opponent": { "iso": "gb-eng", "name": "Inglaterra" }, "score": "1-0", "competition": "Fase de Grupos Mundial 1950", "narrative": "USA VENCIÓ 1-0 a INGLATERRA en Belo Horizonte el 29 jun 1950. JOE GAETJENS marcó al 38' (cabezazo histórico). UNA DE LAS MAYORES SORPRESAS DE LA HISTORIA mundialista. Inglaterra venía de inventora del fútbol. USA con jugadores semi-profesionales." },
-    { "title": "El gol de Donovan al 90+1' vs Argelia (2010)", "date": "2010-06-23", "opponent": { "iso": "dz", "name": "Argelia" }, "score": "1-0", "competition": "Fase de Grupos Mundial 2010", "narrative": "LANDON DONOVAN marcó al 90+1' EL GOL MÁS DRAMÁTICO de USMNT. Tras contraataque, Dempsey definió y rebotó, Donovan acertó. USA pasó 1º del grupo. Uno de los goles más eufóricos del Soccer americano." },
-    { "title": "Vencer a México 2-0 en octavos (2002)", "date": "2002-06-17", "opponent": { "iso": "mx", "name": "México" }, "score": "2-0", "competition": "Octavos Mundial 2002", "narrative": "USA venció 2-0 a MÉXICO en octavos del Mundial 2002 en Jeonju. Brian McBride al 8' y LANDON DONOVAN cerró 2-0 al 65' tras córner. Aguirre (DT actual mexicano) dirigía. Mejor papel mundialista USA moderno." },
-    { "title": "El gol de Pulisic vs Irán (2022)", "date": "2022-11-29", "opponent": { "iso": "ir", "name": "Irán" }, "score": "1-0", "competition": "Fase de Grupos Mundial 2022", "narrative": "CHRISTIAN PULISIC marcó al 38' vs Irán y CLASIFICÓ a USA a octavos. El capitán terminó lesionado (lesión pélvica) tras chocar con el portero iraní. Pasó como 2º del grupo." },
-    { "title": "Final Copa Oro 2025 (1-2 vs México)", "date": "2025-07-06", "opponent": { "iso": "mx", "name": "México" }, "score": "1-2", "competition": "Final Copa Oro 2025", "narrative": "USA cayó 1-2 con México en final Copa Oro 2025 en NRG Stadium Houston. Chris Richards adelantó al 4', pero Jiménez (27') y Edson Álvarez (77') remontaron. Subcampeón con sabor amargo." }
+    {
+      "title": "La Sorpresa de Belo Horizonte (1-0 a Inglaterra 1950)",
+      "date": "1950-06-29",
+      "opponent": {
+        "iso": "gb-eng",
+        "name": "Inglaterra"
+      },
+      "score": "1-0",
+      "competition": "Fase de Grupos Mundial 1950",
+      "narrative": "USA VENCIÓ 1-0 a INGLATERRA en Belo Horizonte el 29 jun 1950. JOE GAETJENS marcó al 38' (cabezazo histórico). UNA DE LAS MAYORES SORPRESAS DE LA HISTORIA mundialista. Inglaterra venía de inventora del fútbol. USA con jugadores semi-profesionales."
+    },
+    {
+      "title": "El gol de Donovan al 90+1' vs Argelia (2010)",
+      "date": "2010-06-23",
+      "opponent": {
+        "iso": "dz",
+        "name": "Argelia"
+      },
+      "score": "1-0",
+      "competition": "Fase de Grupos Mundial 2010",
+      "narrative": "LANDON DONOVAN marcó al 90+1' EL GOL MÁS DRAMÁTICO de USMNT. Tras contraataque, Dempsey definió y rebotó, Donovan acertó. USA pasó 1º del grupo. Uno de los goles más eufóricos del Soccer americano."
+    },
+    {
+      "title": "Vencer a México 2-0 en octavos (2002)",
+      "date": "2002-06-17",
+      "opponent": {
+        "iso": "mx",
+        "name": "México"
+      },
+      "score": "2-0",
+      "competition": "Octavos Mundial 2002",
+      "narrative": "USA venció 2-0 a MÉXICO en octavos del Mundial 2002 en Jeonju. Brian McBride al 8' y LANDON DONOVAN cerró 2-0 al 65' tras córner. Aguirre (DT actual mexicano) dirigía. Mejor papel mundialista USA moderno."
+    },
+    {
+      "title": "El gol de Pulisic vs Irán (2022)",
+      "date": "2022-11-29",
+      "opponent": {
+        "iso": "ir",
+        "name": "Irán"
+      },
+      "score": "1-0",
+      "competition": "Fase de Grupos Mundial 2022",
+      "narrative": "CHRISTIAN PULISIC marcó al 38' vs Irán y CLASIFICÓ a USA a octavos. El capitán terminó lesionado (lesión pélvica) tras chocar con el portero iraní. Pasó como 2º del grupo."
+    },
+    {
+      "title": "Final Copa Oro 2025 (1-2 vs México)",
+      "date": "2025-07-06",
+      "opponent": {
+        "iso": "mx",
+        "name": "México"
+      },
+      "score": "1-2",
+      "competition": "Final Copa Oro 2025",
+      "narrative": "USA cayó 1-2 con México en final Copa Oro 2025 en NRG Stadium Houston. Chris Richards adelantó al 4', pero Jiménez (27') y Edson Álvarez (77') remontaron. Subcampeón con sabor amargo."
+    }
   ],
-
   "curiosities": [
-    { "text": "USA fue 3er PUESTO en el 1ER MUNDIAL DE LA HISTORIA (Uruguay 1930). UNO DE LOS PAÍSES PIONEROS del fútbol mundialista pese al menor desarrollo del soccer en USA.", "source": "FIFA + Wikipedia", "verified_at": "2026-04-30", "status": "validated" },
-    { "text": "BERT PATENAUDE marcó EL 1ER HAT-TRICK MUNDIALISTA DE LA HISTORIA: 3 goles vs Paraguay el 17 jul 1930 (USA 3-0). Confirmado oficialmente por FIFA en 2006 (76 años después). Récord histórico.", "source": "FIFA + Wikipedia", "verified_at": "2026-04-30", "status": "validated" },
-    { "text": "USA es ANFITRIÓN POR 2ª VEZ del Mundial (1994 + 2026). Y por 1ª vez como CO-ANFITRIÓN con México y Canadá. RÉCORD ABSOLUTO en organización mundialista.", "source": "FIFA + Wikipedia", "verified_at": "2026-04-30", "status": "validated" },
-    { "text": "EN MUNDIAL 2018, USA NO CLASIFICÓ por 1ª vez desde 1986 tras la DEBACLE de Trinidad y Tobago (cayó 1-2 fuera el 10 oct 2017 con grupo accesible). Marcó cambio total estructural.", "source": "FIFA + Wikipedia", "verified_at": "2026-04-30", "status": "validated" },
-    { "text": "LA SORPRESA DE BELO HORIZONTE (USA 1-0 Inglaterra 1950) está considerada UNA DE LAS 5 MAYORES SORPRESAS de Mundiales. Película 'The Game of Their Lives' (2005) cuenta la historia.", "source": "FIFA + Wikipedia", "verified_at": "2026-04-30", "status": "validated" },
-    { "text": "Mauricio Pochettino (DT actual) es el 1er DT NO-AMERICANO con experiencia en CHAMPIONS LEAGUE FINAL (Tottenham 2019) en dirigir USMNT. Salario reportado: 6 millones de dólares anuales.", "source": "U.S. Soccer + The Athletic", "verified_at": "2026-04-30", "status": "validated" },
-    { "text": "CHRISTIAN PULISIC fue el 1er americano en GANAR LA UEFA CHAMPIONS LEAGUE: con Chelsea 2021 (final 1-0 vs Manchester City). Récord histórico USMNT.", "source": "UEFA + Wikipedia", "verified_at": "2026-04-30", "status": "validated" }
+    {
+      "text": "USA fue 3er PUESTO en el 1ER MUNDIAL DE LA HISTORIA (Uruguay 1930). UNO DE LOS PAÍSES PIONEROS del fútbol mundialista pese al menor desarrollo del soccer en USA.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-30",
+      "status": "validated"
+    },
+    {
+      "text": "BERT PATENAUDE marcó EL 1ER HAT-TRICK MUNDIALISTA DE LA HISTORIA: 3 goles vs Paraguay el 17 jul 1930 (USA 3-0). Confirmado oficialmente por FIFA en 2006 (76 años después). Récord histórico.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-30",
+      "status": "validated"
+    },
+    {
+      "text": "USA es ANFITRIÓN POR 2ª VEZ del Mundial (1994 + 2026). Y por 1ª vez como CO-ANFITRIÓN con México y Canadá. RÉCORD ABSOLUTO en organización mundialista.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-30",
+      "status": "validated"
+    },
+    {
+      "text": "EN MUNDIAL 2018, USA NO CLASIFICÓ por 1ª vez desde 1986 tras la DEBACLE de Trinidad y Tobago (cayó 1-2 fuera el 10 oct 2017 con grupo accesible). Marcó cambio total estructural.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-30",
+      "status": "validated"
+    },
+    {
+      "text": "LA SORPRESA DE BELO HORIZONTE (USA 1-0 Inglaterra 1950) está considerada UNA DE LAS 5 MAYORES SORPRESAS de Mundiales. Película 'The Game of Their Lives' (2005) cuenta la historia.",
+      "source": "FIFA + Wikipedia",
+      "verified_at": "2026-04-30",
+      "status": "validated"
+    },
+    {
+      "text": "Mauricio Pochettino (DT actual) es el 1er DT NO-AMERICANO con experiencia en CHAMPIONS LEAGUE FINAL (Tottenham 2019) en dirigir USMNT. Salario reportado: 6 millones de dólares anuales.",
+      "source": "U.S. Soccer + The Athletic",
+      "verified_at": "2026-04-30",
+      "status": "validated"
+    },
+    {
+      "text": "CHRISTIAN PULISIC fue el 1er americano en GANAR LA UEFA CHAMPIONS LEAGUE: con Chelsea 2021 (final 1-0 vs Manchester City). Récord histórico USMNT.",
+      "source": "UEFA + Wikipedia",
+      "verified_at": "2026-04-30",
+      "status": "validated"
+    }
   ],
-
   "fan_culture": {
-    "famous_chants": ["U-S-A! U-S-A!", "I Believe That We Will Win!", "Star-Spangled Banner (himno)", "American Outlaws"],
-    "main_rival": { "iso": "mx", "name": "México", "story": "RIVALIDAD MÁS INTENSA DE CONCACAF. 'El Clásico de la Concacaf'. Han jugado más de 75 veces. México lleva ventaja histórica (36-21-18). USA lleva ventaja desde 2002 (gol fantasma Donovan). Final Copa Oro 2025 México 2-1 USA. Renovado morbo." },
-    "home_stadium": { "name": "Estadio AT&T", "capacity": 80000, "city": "Arlington (Dallas)" }
+    "famous_chants": [
+      "U-S-A! U-S-A!",
+      "I Believe That We Will Win!",
+      "Star-Spangled Banner (himno)",
+      "American Outlaws"
+    ],
+    "main_rival": {
+      "iso": "mx",
+      "name": "México",
+      "story": "RIVALIDAD MÁS INTENSA DE CONCACAF. 'El Clásico de la Concacaf'. Han jugado más de 75 veces. México lleva ventaja histórica (36-21-18). USA lleva ventaja desde 2002 (gol fantasma Donovan). Final Copa Oro 2025 México 2-1 USA. Renovado morbo."
+    },
+    "home_stadium": {
+      "name": "Estadio AT&T",
+      "capacity": 80000,
+      "city": "Arlington (Dallas)"
+    }
   },
-
   "seo": {
     "meta_title": "Estados Unidos Mundial 2026 | Anfitrión, Pulisic, Pochettino",
     "meta_description": "USA Mundial 2026: anfitrión. Plantel de Pochettino, Pulisic, Adams, Balogun. Grupo D con Turquía, Paraguay, Australia. 12ª participación.",
     "og_image_url": "/img/og/teams/usa.png",
-    "schema_org": { "@context": "https://schema.org", "@type": "SportsTeam", "name": "Selección de fútbol de Estados Unidos", "alternateName": ["USMNT", "Stars and Stripes"], "sport": "Football", "memberOf": { "@type": "SportsOrganization", "name": "CONCACAF" }, "coach": { "@type": "Person", "name": "Mauricio Pochettino" }, "url": "https://www.zonamundial.app/selecciones/usa" }
+    "schema_org": {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "Selección de fútbol de Estados Unidos",
+      "alternateName": [
+        "USMNT",
+        "Stars and Stripes"
+      ],
+      "sport": "Football",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "CONCACAF"
+      },
+      "coach": {
+        "@type": "Person",
+        "name": "Mauricio Pochettino"
+      },
+      "url": "https://www.zonamundial.app/selecciones/usa"
+    }
   },
-
   "_meta": {
     "schema_version": "1.0.0",
     "last_updated": "2026-04-30",

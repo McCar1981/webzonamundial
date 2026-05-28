@@ -559,7 +559,7 @@
         "position": "GK",
         "detailed_position": "GK",
         "club": {
-          "name": "Fenerbahçe",
+          "name": "Dinamo",
           "country_iso": "tr",
           "league": "Süper Lig"
         },
@@ -568,63 +568,34 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Dominik_Livakovi%C4%87_2021.jpg/330px-Dominik_Livakovi%C4%87_2021.jpg"
       },
       {
-        "id": "ivica-ivusic",
-        "full_name": "Ivica Ivušić",
-        "display_name": "Ivica Ivušić",
+        "id": "dominik-kotarski",
+        "full_name": "Dominik Kotarski",
+        "display_name": "Dominik Kotarski",
         "position": "GK",
         "detailed_position": "GK",
         "club": {
-          "name": "Pafos",
-          "country_iso": "cy",
-          "league": "First Division Cyprus"
+          "name": "København",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 12,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Ivica_Ivu%C5%A1i%C4%87_2022.jpg/330px-Ivica_Ivu%C5%A1i%C4%87_2022.jpg"
-      },
-      {
-        "id": "nediljko-labrovic",
-        "full_name": "Nediljko Labrović",
-        "display_name": "Labrović",
-        "position": "GK",
-        "detailed_position": "GK",
-        "club": {
-          "name": "HNK Rijeka",
-          "country_iso": "hr",
-          "league": "1. HNL"
-        },
-        "shirt_number_expected": 23,
-        "status": "bubble"
-      },
-      {
-        "id": "josip-stanisic",
-        "full_name": "Josip Stanišić",
-        "display_name": "Josip Stanišić",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Bayern Múnich",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 22,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/64/Josip_Stani%C5%A1i%C4%87_during_an_Interview_in_2023.png"
+        "photo_url": null
       },
       {
-        "id": "domagoj-vida",
-        "full_name": "Domagoj Vida",
-        "display_name": "Domagoj Vida",
-        "position": "DEF",
-        "detailed_position": "CB",
+        "id": "ivor-pandur",
+        "full_name": "Ivor Pandur",
+        "display_name": "Ivor Pandur",
+        "position": "GK",
+        "detailed_position": "GK",
         "club": {
-          "name": "AEK Athens",
-          "country_iso": "gr",
-          "league": "Super League"
+          "name": "Hull City",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 21,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Vida_2018_%28cropped%29.jpg/330px-Vida_2018_%28cropped%29.jpg"
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "josko-gvardiol",
@@ -657,34 +628,79 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/FC_Admira_Wacker_M%C3%B6dling_vs._FC_Red_Bull_Salzburg_%28Cup%29_2017-04-26_%28063%29_%28cropped%29.jpg/330px-FC_Admira_Wacker_M%C3%B6dling_vs._FC_Red_Bull_Salzburg_%28Cup%29_2017-04-26_%28063%29_%28cropped%29.jpg"
       },
       {
+        "id": "josip-sutalo",
+        "full_name": "Josip Šutalo",
+        "display_name": "Josip Šutalo",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Ajax",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "josip-stanisic",
+        "full_name": "Josip Stanišić",
+        "display_name": "Josip Stanišić",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Bayern Múnich",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 22,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/64/Josip_Stani%C5%A1i%C4%87_during_an_Interview_in_2023.png"
+      },
+      {
+        "id": "marin-pongracic",
+        "full_name": "Marin Pongračić",
+        "display_name": "Marin Pongračić",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Fiorentina",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/FC_Admira_Wacker_M%C3%B6dling_vs._FC_Red_Bull_Salzburg_2018-04-15_%28071%29.jpg/330px-FC_Admira_Wacker_M%C3%B6dling_vs._FC_Red_Bull_Salzburg_2018-04-15_%28071%29.jpg"
+      },
+      {
         "id": "martin-erlic",
         "full_name": "Martin Erlić",
         "display_name": "Martin Erlić",
         "position": "DEF",
         "detailed_position": "CB",
         "club": {
-          "name": "Sassuolo",
+          "name": "Midtjylland",
           "country_iso": "it",
           "league": "Serie A"
         },
         "shirt_number_expected": 6,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Martin-Erlic.png/330px-Martin-Erlic.png"
       },
       {
-        "id": "borna-sosa",
-        "full_name": "Borna Sosa",
-        "display_name": "Borna Sosa",
+        "id": "luka-vuskovic",
+        "full_name": "Luka Vušković",
+        "display_name": "Luka Vušković",
         "position": "DEF",
-        "detailed_position": "LB",
+        "detailed_position": "DEF",
         "club": {
-          "name": "Cremonese",
-          "country_iso": "it",
-          "league": "Serie A"
+          "name": "HSV",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 19,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Borna_sosa.jpg/330px-Borna_sosa.jpg"
+        "photo_url": null
       },
       {
         "id": "luka-modric",
@@ -693,7 +709,7 @@
         "position": "MID",
         "detailed_position": "CM",
         "club": {
-          "name": "AC Milan",
+          "name": "Milan",
           "country_iso": "it",
           "league": "Serie A"
         },
@@ -717,34 +733,34 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Yokohama_F._Marinos_-_Manchester_City_%283-5%29_-_53075077396_%28cropped%29_%28cropped%29.jpg/330px-Yokohama_F._Marinos_-_Manchester_City_%283-5%29_-_53075077396_%28cropped%29_%28cropped%29.jpg"
       },
       {
-        "id": "marcelo-brozovic",
-        "full_name": "Marcelo Brozović",
-        "display_name": "Marcelo Brozović",
+        "id": "mario-pasalic",
+        "full_name": "Mario Pašalić",
+        "display_name": "Mario Pašalić",
         "position": "MID",
-        "detailed_position": "CDM",
+        "detailed_position": "CAM",
         "club": {
-          "name": "Al-Nassr",
-          "country_iso": "sa",
-          "league": "Saudi Pro League"
-        },
-        "shirt_number_expected": 11,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Marcelo_Brozovi%C4%87_2021.jpg/330px-Marcelo_Brozovi%C4%87_2021.jpg"
-      },
-      {
-        "id": "petar-sucic",
-        "full_name": "Petar Sučić",
-        "display_name": "Petar Sučić",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Inter de Milán",
+          "name": "Atalanta",
           "country_iso": "it",
           "league": "Serie A"
         },
-        "shirt_number_expected": 14,
+        "shirt_number_expected": 15,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Petar_Su%C4%8Di%C4%87.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Mario_Pa%C5%A1ali%C4%87_2017.jpg/330px-Mario_Pa%C5%A1ali%C4%87_2017.jpg"
+      },
+      {
+        "id": "nikola-vlasic",
+        "full_name": "Nikola Vlašić",
+        "display_name": "Nikola Vlašić",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": {
+          "name": "Torino",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "luka-sucic",
@@ -762,34 +778,94 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/FC_Red_Bull_Salzburg_gegen_Wolfsberger_AC_%282022-02-20%29_32.jpg/330px-FC_Red_Bull_Salzburg_gegen_Wolfsberger_AC_%282022-02-20%29_32.jpg"
       },
       {
-        "id": "lovro-majer",
-        "full_name": "Lovro Majer",
-        "display_name": "Lovro Majer",
+        "id": "martin-baturina",
+        "full_name": "Martin Baturina",
+        "display_name": "Martin Baturina",
         "position": "MID",
-        "detailed_position": "CAM",
+        "detailed_position": "MID",
         "club": {
-          "name": "Wolfsburgo",
+          "name": "Como",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "kristijan-jakic",
+        "full_name": "Kristijan Jakić",
+        "display_name": "Kristijan Jakić",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Augsburgo",
           "country_iso": "de",
           "league": "Bundesliga"
         },
-        "shirt_number_expected": 16,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Lovro-Majer.png/330px-Lovro-Majer.png"
+        "shirt_number_expected": 26,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Kristijan-Jakic.png/330px-Kristijan-Jakic.png"
       },
       {
-        "id": "mario-pasalic",
-        "full_name": "Mario Pašalić",
-        "display_name": "Mario Pašalić",
+        "id": "petar-sucic",
+        "full_name": "Petar Sučić",
+        "display_name": "Petar Sučić",
         "position": "MID",
-        "detailed_position": "CAM",
+        "detailed_position": "CM",
         "club": {
-          "name": "Atalanta",
+          "name": "Inter",
           "country_iso": "it",
           "league": "Serie A"
         },
-        "shirt_number_expected": 15,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Mario_Pa%C5%A1ali%C4%87_2017.jpg/330px-Mario_Pa%C5%A1ali%C4%87_2017.jpg"
+        "shirt_number_expected": 14,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Petar_Su%C4%8Di%C4%87.png"
+      },
+      {
+        "id": "nikola-moro",
+        "full_name": "Nikola Moro",
+        "display_name": "Nikola Moro",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": {
+          "name": "Bologna",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "toni-fruk",
+        "full_name": "Toni Fruk",
+        "display_name": "Toni Fruk",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": {
+          "name": "Rijeka",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "ivan-perisic",
+        "full_name": "Ivan Perišić",
+        "display_name": "Ivan Perišić",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "PSV",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/85/Ivan_Peri%C5%A1i%C4%87_%28cropped%29.jpg"
       },
       {
         "id": "andrej-kramaric",
@@ -807,21 +883,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Andrej_Kramari%C4%87_2018.jpg/330px-Andrej_Kramari%C4%87_2018.jpg"
       },
       {
-        "id": "ivan-perisic",
-        "full_name": "Ivan Perišić",
-        "display_name": "Ivan Perišić",
-        "position": "FWD",
-        "detailed_position": "LW",
-        "club": {
-          "name": "PSV Eindhoven",
-          "country_iso": "nl",
-          "league": "Eredivisie"
-        },
-        "shirt_number_expected": 4,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/85/Ivan_Peri%C5%A1i%C4%87_%28cropped%29.jpg"
-      },
-      {
         "id": "ante-budimir",
         "full_name": "Ante Budimir",
         "display_name": "Ante Budimir",
@@ -837,34 +898,34 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Budimir%2C_Ante_FCSP_15-16_WP_%28cropped%29.jpg/330px-Budimir%2C_Ante_FCSP_15-16_WP_%28cropped%29.jpg"
       },
       {
-        "id": "marko-livaja",
-        "full_name": "Marko Livaja",
-        "display_name": "Marko Livaja",
+        "id": "marco-pasalic",
+        "full_name": "Marco Pašalić",
+        "display_name": "Marco Pašalić",
         "position": "FWD",
-        "detailed_position": "ST",
+        "detailed_position": "FWD",
         "club": {
-          "name": "Hajduk Split",
-          "country_iso": "hr",
-          "league": "1. HNL"
+          "name": "Orlando City",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 7,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Loc-Rub_%283%29.jpg/330px-Loc-Rub_%283%29.jpg"
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
-        "id": "marko-pjaca",
-        "full_name": "Marko Pjaca",
-        "display_name": "Marko Pjaca",
+        "id": "petar-musa",
+        "full_name": "Petar Musa",
+        "display_name": "Petar Musa",
         "position": "FWD",
-        "detailed_position": "RW",
+        "detailed_position": "FWD",
         "club": {
-          "name": "Rijeka",
-          "country_iso": "hr",
-          "league": "1. HNL"
+          "name": "Dallas",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 13,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/ISL-HRV_%2820%29.jpg/330px-ISL-HRV_%2820%29.jpg"
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "igor-matanovic",
@@ -873,71 +934,12 @@
         "position": "FWD",
         "detailed_position": "ST",
         "club": {
-          "name": "Eintracht Fráncfort",
+          "name": "Friburgo",
           "country_iso": "de",
           "league": "Bundesliga"
         },
         "shirt_number_expected": 24,
-        "status": "probable"
-      },
-      {
-        "id": "luka-ivanusec",
-        "full_name": "Luka Ivanušec",
-        "display_name": "Luka Ivanušec",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Feyenoord",
-          "country_iso": "nl",
-          "league": "Eredivisie"
-        },
-        "shirt_number_expected": 25,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Luka_Ivanu%C5%A1ec_2021.jpg/330px-Luka_Ivanu%C5%A1ec_2021.jpg"
-      },
-      {
-        "id": "kristijan-jakic",
-        "full_name": "Kristijan Jakić",
-        "display_name": "Kristijan Jakić",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Eintracht Fráncfort",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 26,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Kristijan-Jakic.png/330px-Kristijan-Jakic.png"
-      },
-      {
-        "id": "marin-pongracic",
-        "full_name": "Marin Pongračić",
-        "display_name": "Marin Pongračić",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Fiorentina",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 3,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/FC_Admira_Wacker_M%C3%B6dling_vs._FC_Red_Bull_Salzburg_2018-04-15_%28071%29.jpg/330px-FC_Admira_Wacker_M%C3%B6dling_vs._FC_Red_Bull_Salzburg_2018-04-15_%28071%29.jpg"
-      },
-      {
-        "id": "ivan-smolcic",
-        "full_name": "Ivan Smolčić",
-        "display_name": "Ivan Smolčić",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Westerlo",
-          "country_iso": "be",
-          "league": "Pro League"
-        },
-        "shirt_number_expected": 2,
-        "status": "bubble"
+        "status": "fixed"
       }
     ],
     "starting_xi": {
@@ -1056,7 +1058,10 @@
         "champion": 3
       },
       "vs_last_3_wcs": "Brasil 2014: fase de grupos eliminada. Rusia 2018: SUBCAMPEONA. Final perdida 4-2 ante Francia. Mejor papel histórico. Catar 2022: TERCER PUESTO. Eliminada por Argentina 0-3 en semis. Mundial 2026: 7ª participación, último Mundial de Modrić. La generación dorada busca despedirse en lo más alto."
-    }
+    },
+    "squad_announced": true,
+    "squad_announced_date": "2026-05-26",
+    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
   },
   "history": {
     "first_appearance": 1998,

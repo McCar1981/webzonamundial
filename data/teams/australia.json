@@ -1036,7 +1036,9 @@
         "champion": 0
       },
       "vs_last_3_wcs": "Brasil 2014: fase de grupos. Rusia 2018: fase de grupos. Catar 2022: OCTAVOS (eliminada 1-2 con Argentina, gol de Goodwin). Mundial 2026: 7ª participación, 6ª CONSECUTIVA (récord histórico)."
-    }
+    },
+    "squad_announced": false,
+    "squad_announced_status": "pending_official"
   },
   "history": {
     "first_appearance": 1974,

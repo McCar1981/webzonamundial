@@ -998,7 +998,9 @@
         "champion": 0
       },
       "vs_last_3_wcs": "Brasil 2014: fase de grupos eliminada (1G 1E 2P). Rusia 2018: NO CLASIFICÓ. Catar 2022: fase de grupos eliminada (1G 0E 2P). Mundial 2026: 5ª participación (5 de 6 últimas). Generación Kudus busca repetir 2010 (cuartos histórico)."
-    }
+    },
+    "squad_announced": false,
+    "squad_announced_status": "pending_official"
   },
   "history": {
     "first_appearance": 2006,

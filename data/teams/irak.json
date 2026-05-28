@@ -1008,7 +1008,9 @@
         "champion": 0
       },
       "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: NO CLASIFICÓ. Catar 2022: NO CLASIFICÓ. Mundial 2026: 2ª participación, 1ª desde MÉXICO 1986 (40 AÑOS DE ESPERA)."
-    }
+    },
+    "squad_announced": false,
+    "squad_announced_status": "pending_official"
   },
   "history": {
     "first_appearance": 1986,

@@ -574,7 +574,7 @@
         "position": "GK",
         "detailed_position": "GK",
         "club": {
-          "name": "Stoke City",
+          "name": "CS Sfaxien",
           "country_iso": "gb-eng",
           "league": "Championship"
         },
@@ -582,47 +582,64 @@
         "status": "fixed"
       },
       {
-        "id": "bechir-ben-said",
-        "full_name": "Béchir Ben Said",
-        "display_name": "Béchir Ben Said",
+        "id": "a-chamakh",
+        "full_name": "A. Chamakh",
+        "display_name": "A. Chamakh",
         "position": "GK",
         "detailed_position": "GK",
         "club": {
-          "name": "US Monastir",
-          "country_iso": "tn",
-          "league": "Ligue Pro 1"
+          "name": "Club Africain",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 16,
-        "status": "probable"
-      },
-      {
-        "id": "noureddine-farhati",
-        "full_name": "Noureddine Farhati",
-        "display_name": "Noureddine Farhati",
-        "position": "GK",
-        "detailed_position": "GK",
-        "club": {
-          "name": "CS Sfaxien",
-          "country_iso": "tn",
-          "league": "Ligue Pro 1"
-        },
-        "shirt_number_expected": 23,
-        "status": "bubble"
-      },
-      {
-        "id": "yan-valery",
-        "full_name": "Yan Valery",
-        "display_name": "Yan Valery",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Angers",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 2,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Sheffield_Wednesday%27s_Starting_Eleven_18102025_%281%29_%28cropped%29.jpg/330px-Sheffield_Wednesday%27s_Starting_Eleven_18102025_%281%29_%28cropped%29.jpg"
+        "photo_url": null
+      },
+      {
+        "id": "sabri-ben-hassen",
+        "full_name": "Sabri Ben Hassen",
+        "display_name": "Sabri Ben Hassen",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Étoile du Sahel",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "van-valery",
+        "full_name": "Van Valery",
+        "display_name": "Van Valery",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Young Boys",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "moutaz-neffati",
+        "full_name": "Moutaz Neffati",
+        "display_name": "Moutaz Neffati",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Norrköping",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "dylan-bronn",
@@ -631,7 +648,7 @@
         "position": "DEF",
         "detailed_position": "CB",
         "club": {
-          "name": "Salernitana",
+          "name": "Servette",
           "country_iso": "it",
           "league": "Serie B"
         },
@@ -655,13 +672,58 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Montassar_Talbi_2021.jpg/330px-Montassar_Talbi_2021.jpg"
       },
       {
+        "id": "omar-rekik",
+        "full_name": "Omar Rekik",
+        "display_name": "Omar Rekik",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Maribor",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "adem-arous",
+        "full_name": "Adem Arous",
+        "display_name": "Adem Arous",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Kasimpasa",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "raed-chikhaoui",
+        "full_name": "Raed Chikhaoui",
+        "display_name": "Raed Chikhaoui",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Monastir",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
         "id": "ali-abdi",
         "full_name": "Ali Abdi",
         "display_name": "Ali Abdi",
         "position": "DEF",
         "detailed_position": "LB",
         "club": {
-          "name": "Caen",
+          "name": "Niza",
           "country_iso": "fr",
           "league": "Ligue 2"
         },
@@ -670,48 +732,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Lens_-_Paris_FC_%2805-08-2020%29_23.jpg/330px-Lens_-_Paris_FC_%2805-08-2020%29_23.jpg"
       },
       {
-        "id": "mortadha-ben-ouanes",
-        "full_name": "Mortadha Ben Ouanes",
-        "display_name": "Ben Ouanes",
+        "id": "m-a-ben-hmida",
+        "full_name": "M. A. Ben Hmida",
+        "display_name": "M. A. Ben Hmida",
         "position": "DEF",
-        "detailed_position": "RB",
+        "detailed_position": "DEF",
         "club": {
-          "name": "Esperance Tunis",
-          "country_iso": "tn",
-          "league": "Ligue Pro 1"
+          "name": "Espérance de Tunis",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 14,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Mortadha_Ben_Ouanes.jpg/330px-Mortadha_Ben_Ouanes.jpg"
-      },
-      {
-        "id": "wajdi-kechrida",
-        "full_name": "Wajdi Kechrida",
-        "display_name": "Wajdi Kechrida",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Hatayspor",
-          "country_iso": "tr",
-          "league": "Süper Lig"
-        },
-        "shirt_number_expected": 22,
-        "status": "probable"
-      },
-      {
-        "id": "aissa-laidouni",
-        "full_name": "Aïssa Laïdouni",
-        "display_name": "Aïssa Laïdouni",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Nantes",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 6,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Attaque_de_football_%28cropped%29.jpg/330px-Attaque_de_football_%28cropped%29.jpg"
+        "photo_url": null
       },
       {
         "id": "ellyes-skhiri",
@@ -720,13 +753,88 @@
         "position": "MID",
         "detailed_position": "CDM",
         "club": {
-          "name": "Eintracht Fráncfort",
+          "name": "Eintracht Frankfurt",
           "country_iso": "de",
           "league": "Bundesliga"
         },
         "shirt_number_expected": 8,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/2021-08-08_FC_Carl_Zeiss_Jena_gegen_1._FC_K%C3%B6ln_%28DFB-Pokal%29_by_Sandro_Halank%E2%80%93182.jpg/330px-2021-08-08_FC_Carl_Zeiss_Jena_gegen_1._FC_K%C3%B6ln_%28DFB-Pokal%29_by_Sandro_Halank%E2%80%93182.jpg"
+      },
+      {
+        "id": "m-hadj-mahmoud",
+        "full_name": "M. Hadj Mahmoud",
+        "display_name": "M. Hadj Mahmoud",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": {
+          "name": "Lugano",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "rani-khedira",
+        "full_name": "Rani Khedira",
+        "display_name": "Rani Khedira",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": {
+          "name": "Union Berlín",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "anis-ben-slimane",
+        "full_name": "Anis Ben Slimane",
+        "display_name": "Ben Slimane",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Norwich",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 21,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/FC_Salzburg_gegen_Br%C3%B8ndby_IF_%28Championsleague_Play_off_Hinspiel_17._August_2021%29_12.jpg/330px-FC_Salzburg_gegen_Br%C3%B8ndby_IF_%28Championsleague_Play_off_Hinspiel_17._August_2021%29_12.jpg"
+      },
+      {
+        "id": "mortadha-ben-ouanes",
+        "full_name": "Mortadha Ben Ouanes",
+        "display_name": "Ben Ouanes",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Kasimpasa",
+          "country_iso": "tn",
+          "league": "Ligue Pro 1"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Mortadha_Ben_Ouanes.jpg/330px-Mortadha_Ben_Ouanes.jpg"
+      },
+      {
+        "id": "ismael-gharbi",
+        "full_name": "Ismaël Gharbi",
+        "display_name": "Ismaël Gharbi",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Augsburgo",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Isma%C3%ABl_Gharbi_at_the_PSG-VAFC_game_%28cropped%29.jpg/330px-Isma%C3%ABl_Gharbi_at_the_PSG-VAFC_game_%28cropped%29.jpg"
       },
       {
         "id": "hannibal-mejbri",
@@ -744,78 +852,18 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Manchester_United_v_Norwich_City%2C_16_April_2022_%2802%29.jpg/330px-Manchester_United_v_Norwich_City%2C_16_April_2022_%2802%29.jpg"
       },
       {
-        "id": "ismael-gharbi",
-        "full_name": "Ismaël Gharbi",
-        "display_name": "Ismaël Gharbi",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Augsburg",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 18,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Isma%C3%ABl_Gharbi_at_the_PSG-VAFC_game_%28cropped%29.jpg/330px-Isma%C3%ABl_Gharbi_at_the_PSG-VAFC_game_%28cropped%29.jpg"
-      },
-      {
-        "id": "sebastian-tounekti",
-        "full_name": "Sebastian Tounekti",
-        "display_name": "Tounekti",
+        "id": "khalil-ayari",
+        "full_name": "Khalil Ayari",
+        "display_name": "Khalil Ayari",
         "position": "FWD",
         "detailed_position": "RW",
         "club": {
-          "name": "Hammarby",
-          "country_iso": "se",
-          "league": "Allsvenskan"
+          "name": "PSG",
+          "country_iso": "fr",
+          "league": "Championnat National"
         },
-        "shirt_number_expected": 11,
+        "shirt_number_expected": 25,
         "status": "fixed"
-      },
-      {
-        "id": "ferjani-sassi",
-        "full_name": "Ferjani Sassi",
-        "display_name": "Ferjani Sassi",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Al-Duhail",
-          "country_iso": "qa",
-          "league": "Stars League"
-        },
-        "shirt_number_expected": 13,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/49/Ferjani_Sassi_2.jpg"
-      },
-      {
-        "id": "naim-sliti",
-        "full_name": "Naïm Sliti",
-        "display_name": "Naïm Sliti",
-        "position": "MID",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Damac",
-          "country_iso": "sa",
-          "league": "Saudi Pro League"
-        },
-        "shirt_number_expected": 17,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/PAN-TUN_%2831%29.jpg/330px-PAN-TUN_%2831%29.jpg"
-      },
-      {
-        "id": "elias-saad",
-        "full_name": "Elias Saad",
-        "display_name": "Elias Saad",
-        "position": "FWD",
-        "detailed_position": "LW",
-        "club": {
-          "name": "Augsburg",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 19,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/2025-04-23_-_FC_St_Pauli_-_Elias_Saad.jpg/330px-2025-04-23_-_FC_St_Pauli_-_Elias_Saad.jpg"
       },
       {
         "id": "elias-achouri",
@@ -833,13 +881,43 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Elias_Achouri%2C_Vejle_Boldklub_-_FC_K%C3%B8benhavn%2C_29._July_2023_-_opvarmning_FCK%27s_1._hold_%28cropped%29.jpg/330px-Elias_Achouri%2C_Vejle_Boldklub_-_FC_K%C3%B8benhavn%2C_29._July_2023_-_opvarmning_FCK%27s_1._hold_%28cropped%29.jpg"
       },
       {
+        "id": "elias-saad",
+        "full_name": "Elias Saad",
+        "display_name": "Elias Saad",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Hannover 96",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/2025-04-23_-_FC_St_Pauli_-_Elias_Saad.jpg/330px-2025-04-23_-_FC_St_Pauli_-_Elias_Saad.jpg"
+      },
+      {
+        "id": "firas-chaouat",
+        "full_name": "Firas Chaouat",
+        "display_name": "Firas Chaouat",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": {
+          "name": "Club Africain",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
         "id": "hazem-mastouri",
         "full_name": "Hazem Mastouri",
         "display_name": "Hazem Mastouri",
         "position": "FWD",
         "detailed_position": "ST",
         "club": {
-          "name": "El Gouna",
+          "name": "Dynamo Makhachkala",
           "country_iso": "eg",
           "league": "Premier League EG"
         },
@@ -848,105 +926,33 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Hazem_Mastouri_2026.jpg/330px-Hazem_Mastouri_2026.jpg"
       },
       {
-        "id": "issam-jebali",
-        "full_name": "Issam Jebali",
-        "display_name": "Issam Jebali",
+        "id": "rayan-elloumi",
+        "full_name": "Rayan Elloumi",
+        "display_name": "Rayan Elloumi",
         "position": "FWD",
-        "detailed_position": "ST",
+        "detailed_position": "FWD",
         "club": {
-          "name": "Odense BK",
-          "country_iso": "dk",
-          "league": "Superliga"
+          "name": "Vancouver Whitecaps",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 20,
-        "status": "probable"
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
-        "id": "seifeddine-jaziri",
-        "full_name": "Seifeddine Jaziri",
-        "display_name": "Seifeddine Jaziri",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Zamalek",
-          "country_iso": "eg",
-          "league": "Premier League EG"
-        },
-        "shirt_number_expected": 15,
-        "status": "probable"
-      },
-      {
-        "id": "khalil-ayari",
-        "full_name": "Khalil Ayari",
-        "display_name": "Khalil Ayari",
+        "id": "sebastian-tounekti",
+        "full_name": "Sebastian Tounekti",
+        "display_name": "Tounekti",
         "position": "FWD",
         "detailed_position": "RW",
         "club": {
-          "name": "PSG B",
-          "country_iso": "fr",
-          "league": "Championnat National"
+          "name": "Celtic",
+          "country_iso": "se",
+          "league": "Allsvenskan"
         },
-        "shirt_number_expected": 25,
-        "status": "bubble"
-      },
-      {
-        "id": "anis-ben-slimane",
-        "full_name": "Anis Ben Slimane",
-        "display_name": "Ben Slimane",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Sheffield United",
-          "country_iso": "gb-eng",
-          "league": "Championship"
-        },
-        "shirt_number_expected": 21,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/FC_Salzburg_gegen_Br%C3%B8ndby_IF_%28Championsleague_Play_off_Hinspiel_17._August_2021%29_12.jpg/330px-FC_Salzburg_gegen_Br%C3%B8ndby_IF_%28Championsleague_Play_off_Hinspiel_17._August_2021%29_12.jpg"
-      },
-      {
-        "id": "mohamed-ali-ben-romdhane",
-        "full_name": "Mohamed Ali Ben Romdhane",
-        "display_name": "Ben Romdhane",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Ferencvaros",
-          "country_iso": "hu",
-          "league": "NB I"
-        },
-        "shirt_number_expected": 24,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Mohamed_Ali_Ben_Romdhane.jpg/330px-Mohamed_Ali_Ben_Romdhane.jpg"
-      },
-      {
-        "id": "yassine-meriah",
-        "full_name": "Yassine Meriah",
-        "display_name": "Yassine Meriah",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Esperance Tunis",
-          "country_iso": "tn",
-          "league": "Ligue Pro 1"
-        },
-        "shirt_number_expected": 12,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Yassine_Meriah.jpg"
-      },
-      {
-        "id": "alaeddine-marzouki",
-        "full_name": "Alaeddine Marzouki",
-        "display_name": "Marzouki",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Esperance Tunis",
-          "country_iso": "tn",
-          "league": "Ligue Pro 1"
-        },
-        "shirt_number_expected": 26,
-        "status": "bubble"
+        "shirt_number_expected": 11,
+        "status": "fixed"
       }
     ],
     "starting_xi": {
@@ -1064,7 +1070,10 @@
         "champion": 0
       },
       "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: fase de grupos eliminada (1G 0E 2P). Catar 2022: fase de grupos eliminada PESE A BATIR A FRANCIA 1-0 (Wahbi Khazri 58'). Mundial 2026: 7ª participación, 3ª consecutiva. Generación Mejbri busca romper la maldición."
-    }
+    },
+    "squad_announced": true,
+    "squad_announced_date": "2026-05-26",
+    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
   },
   "history": {
     "first_appearance": 1978,

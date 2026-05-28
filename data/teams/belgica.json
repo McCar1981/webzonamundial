@@ -597,7 +597,7 @@
         "position": "GK",
         "detailed_position": "GK",
         "club": {
-          "name": "Racing Estrasburgo",
+          "name": "Estrasburgo",
           "country_iso": null,
           "league": null
         },
@@ -606,28 +606,13 @@
         "photo_url": null
       },
       {
-        "id": "timothy-castagne",
-        "full_name": "Timothy Castagne",
-        "display_name": "Timothy Castagne",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Fulham",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 5,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Timothy_Castagne_01.jpg/330px-Timothy_Castagne_01.jpg"
-      },
-      {
         "id": "zeno-debast",
         "full_name": "Zeno Debast",
         "display_name": "Zeno Debast",
         "position": "DEF",
         "detailed_position": "CB",
         "club": {
-          "name": "Sporting CP",
+          "name": "Sporting",
           "country_iso": "pt",
           "league": "Primeira Liga"
         },
@@ -636,19 +621,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Zeno_Debast_USMNT_v_Belgium_Mar_28_2026-80_%28cropped%29.jpg/330px-Zeno_Debast_USMNT_v_Belgium_Mar_28_2026-80_%28cropped%29.jpg"
       },
       {
-        "id": "maxim-de-cuyper",
-        "full_name": "Maxim De Cuyper",
-        "display_name": "Maxim De Cuyper",
+        "id": "arthur-theate",
+        "full_name": "Arthur Theate",
+        "display_name": "Arthur Theate",
         "position": "DEF",
         "detailed_position": "LB",
         "club": {
-          "name": "Brighton",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
+          "name": "Eintracht",
+          "country_iso": "de",
+          "league": "Bundesliga"
         },
-        "shirt_number_expected": 22,
+        "shirt_number_expected": 14,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Maxim_De_Cuyper_USMNT_v_Belgium_Mar_28_2026-79_%28cropped%29.jpg/330px-Maxim_De_Cuyper_USMNT_v_Belgium_Mar_28_2026-79_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Arthur_Theate_Nations_League_Italy_2021.jpg"
       },
       {
         "id": "koni-de-winter",
@@ -657,7 +642,7 @@
         "position": "DEF",
         "detailed_position": "DEF",
         "club": {
-          "name": "AC Milán",
+          "name": "Milan",
           "country_iso": null,
           "league": null
         },
@@ -672,28 +657,13 @@
         "position": "DEF",
         "detailed_position": "DEF",
         "club": {
-          "name": "Club Brujas",
+          "name": "Brujas",
           "country_iso": null,
           "league": null
         },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/FC_Salzburg_vs._Club_Br%C3%BCgge_%28Euroleague_Sechzehntelfinale%29_02.jpg"
-      },
-      {
-        "id": "thomas-meunier",
-        "full_name": "Thomas Meunier",
-        "display_name": "Thomas Meunier",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Lille",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 15,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Thomas_Meunier.jpg/330px-Thomas_Meunier.jpg"
       },
       {
         "id": "nathan-ngoy",
@@ -711,34 +681,64 @@
         "photo_url": null
       },
       {
+        "id": "thomas-meunier",
+        "full_name": "Thomas Meunier",
+        "display_name": "Thomas Meunier",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Lille",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 15,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Thomas_Meunier.jpg/330px-Thomas_Meunier.jpg"
+      },
+      {
+        "id": "timothy-castagne",
+        "full_name": "Timothy Castagne",
+        "display_name": "Timothy Castagne",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Fulham",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Timothy_Castagne_01.jpg/330px-Timothy_Castagne_01.jpg"
+      },
+      {
+        "id": "maxim-de-cuyper",
+        "full_name": "Maxim De Cuyper",
+        "display_name": "Maxim De Cuyper",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Brighton",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 22,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Maxim_De_Cuyper_USMNT_v_Belgium_Mar_28_2026-79_%28cropped%29.jpg/330px-Maxim_De_Cuyper_USMNT_v_Belgium_Mar_28_2026-79_%28cropped%29.jpg"
+      },
+      {
         "id": "joaquin-seys",
         "full_name": "Joaquin Seys",
         "display_name": "Joaquin Seys",
         "position": "DEF",
         "detailed_position": "DEF",
         "club": {
-          "name": "Club Brujas",
+          "name": "Brujas",
           "country_iso": null,
           "league": null
         },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/38/FC_Salzburg_gegen_Club_Br%C3%BCgge_%282025-08-06_Championsleague_Qualifikation_Dritte_Runde%29_63_%28Joaquin_Seys%29.jpg"
-      },
-      {
-        "id": "arthur-theate",
-        "full_name": "Arthur Theate",
-        "display_name": "Arthur Theate",
-        "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "Eintracht Frankfurt",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 14,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Arthur_Theate_Nations_League_Italy_2021.jpg"
       },
       {
         "id": "kevin-de-bruyne",
@@ -771,21 +771,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/RC_Lens_-_Lille_OSC_%2817-09-2021%29_9_%28cropped%29.jpg/330px-RC_Lens_-_Lille_OSC_%2817-09-2021%29_9_%28cropped%29.jpg"
       },
       {
-        "id": "nicolas-raskin",
-        "full_name": "Nicolas Raskin",
-        "display_name": "Nicolas Raskin",
-        "position": "MID",
-        "detailed_position": "MID",
-        "club": {
-          "name": "Rangers",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/31/Nicolas_Raskin_2023.jpg"
-      },
-      {
         "id": "youri-tielemans",
         "full_name": "Youri Tielemans",
         "display_name": "Youri Tielemans",
@@ -807,13 +792,28 @@
         "position": "MID",
         "detailed_position": "CAM",
         "club": {
-          "name": "Club Brujas",
+          "name": "Brujas",
           "country_iso": "be",
           "league": "Pro League"
         },
         "shirt_number_expected": 17,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Hans_Vanaken_Lommel_United.jpg/330px-Hans_Vanaken_Lommel_United.jpg"
+      },
+      {
+        "id": "nicolas-raskin",
+        "full_name": "Nicolas Raskin",
+        "display_name": "Nicolas Raskin",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": {
+          "name": "Rangers",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/31/Nicolas_Raskin_2023.jpg"
       },
       {
         "id": "axel-witsel",
@@ -829,21 +829,6 @@
         "shirt_number_expected": 6,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Axel_Witsel_WC2022.jpg/330px-Axel_Witsel_WC2022.jpg"
-      },
-      {
-        "id": "romelu-lukaku",
-        "full_name": "Romelu Lukaku",
-        "display_name": "Romelu Lukaku",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Nápoles",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 10,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Romelu_Lukaku_2021.jpg/330px-Romelu_Lukaku_2021.jpg"
       },
       {
         "id": "jeremy-doku",
@@ -876,49 +861,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/RC_Lens_-_Arsenal_FC_%2803-10-2023%29_26_%28cropped%29.jpg/330px-RC_Lens_-_Arsenal_FC_%2803-10-2023%29_26_%28cropped%29.jpg"
       },
       {
-        "id": "charles-de-ketelaere",
-        "full_name": "Charles De Ketelaere",
-        "display_name": "De Ketelaere",
-        "position": "FWD",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Atalanta",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 21,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Charles_De_Ketelaere_2022_Salzburg_vs_AC_Milan_2022-09-06.jpg/330px-Charles_De_Ketelaere_2022_Salzburg_vs_AC_Milan_2022-09-06.jpg"
-      },
-      {
-        "id": "diego-moreira",
-        "full_name": "Diego Moreira",
-        "display_name": "Diego Moreira",
+        "id": "alexis-saelemaekers",
+        "full_name": "Alexis Saelemaekers",
+        "display_name": "Alexis Saelemaekers",
         "position": "FWD",
         "detailed_position": "FWD",
         "club": {
-          "name": "Racing Estrasburgo",
+          "name": "Milan",
           "country_iso": null,
           "league": null
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/18/Diego_Moreira.jpg"
-      },
-      {
-        "id": "matias-fernandez-pardo",
-        "full_name": "Matías Fernández-Pardo",
-        "display_name": "Matías Fernández-Pardo",
-        "position": "FWD",
-        "detailed_position": "FWD",
-        "club": {
-          "name": "Lille",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Pardo_asselosc_2425_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Alexis_Saelemaekers_USMNT_v_Belgium_Mar_28_2026-13_%28cropped%29.jpg"
       },
       {
         "id": "dodi-lukebakio",
@@ -936,19 +891,64 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Dodi_Lukebakio_2021.jpg/330px-Dodi_Lukebakio_2021.jpg"
       },
       {
-        "id": "alexis-saelemaekers",
-        "full_name": "Alexis Saelemaekers",
-        "display_name": "Alexis Saelemaekers",
+        "id": "romelu-lukaku",
+        "full_name": "Romelu Lukaku",
+        "display_name": "Romelu Lukaku",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Nápoles",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Romelu_Lukaku_2021.jpg/330px-Romelu_Lukaku_2021.jpg"
+      },
+      {
+        "id": "charles-de-ketelaere",
+        "full_name": "Charles De Ketelaere",
+        "display_name": "De Ketelaere",
+        "position": "FWD",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Atalanta",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 21,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Charles_De_Ketelaere_2022_Salzburg_vs_AC_Milan_2022-09-06.jpg/330px-Charles_De_Ketelaere_2022_Salzburg_vs_AC_Milan_2022-09-06.jpg"
+      },
+      {
+        "id": "matias-fernandez-pardo",
+        "full_name": "Matías Fernández-Pardo",
+        "display_name": "Matías Fernández-Pardo",
         "position": "FWD",
         "detailed_position": "FWD",
         "club": {
-          "name": "AC Milán",
+          "name": "Lille",
           "country_iso": null,
           "league": null
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Alexis_Saelemaekers_USMNT_v_Belgium_Mar_28_2026-13_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Pardo_asselosc_2425_%28cropped%29.jpg"
+      },
+      {
+        "id": "diego-moreira",
+        "full_name": "Diego Moreira",
+        "display_name": "Diego Moreira",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": {
+          "name": "Estrasburgo",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/18/Diego_Moreira.jpg"
       }
     ],
     "starting_xi": {
@@ -1068,8 +1068,8 @@
       "vs_last_3_wcs": "Brasil 2014: cuartos, eliminada por Argentina 0-1. Rusia 2018: SEMIFINALES (3er puesto), eliminada por Francia 0-1. Mejor papel histórico. Catar 2022: ELIMINADA EN GRUPOS (3º) en grupo con Marruecos, Croacia y Canadá. Crisis nacional. Mundial 2026: 14ª participación, busca reencontrar el camino del 3er puesto 2018."
     },
     "squad_announced": true,
-    "squad_announced_date": "2026-05-19",
-    "squad_source": "Convocatoria oficial federación"
+    "squad_announced_date": "2026-05-26",
+    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
   },
   "history": {
     "first_appearance": 1930,

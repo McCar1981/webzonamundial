@@ -577,13 +577,58 @@
     },
     "likely_squad": [
       {
+        "id": "yahia-fofana",
+        "full_name": "Yahia Fofana",
+        "display_name": "Yahia Fofana",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Çaykur Rizespor",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "mohamed-kone",
+        "full_name": "Mohamed Koné",
+        "display_name": "Mohamed Koné",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Charleroi",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "alban-lafont",
+        "full_name": "Alban Lafont",
+        "display_name": "Alban Lafont",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Panathinaikos",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
         "id": "emmanuel-agbadou",
         "full_name": "Emmanuel Agbadou",
         "display_name": "Agbadou",
         "position": "DEF",
         "detailed_position": "CB",
         "club": {
-          "name": "Wolverhampton",
+          "name": "Besiktas",
           "country_iso": "gb-eng",
           "league": "Premier League"
         },
@@ -597,7 +642,9 @@
         "display_name": "Clément Akpa",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "Auxerre"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Akpro_aja_asse_2425.png"
@@ -609,7 +656,7 @@
         "position": "DEF",
         "detailed_position": "CB",
         "club": {
-          "name": "Sporting CP",
+          "name": "Sporting",
           "country_iso": "pt",
           "league": "Primeira Liga"
         },
@@ -624,7 +671,7 @@
         "position": "DEF",
         "detailed_position": "RB",
         "club": {
-          "name": "Strasbourg",
+          "name": "Estrasburgo",
           "country_iso": "fr",
           "league": "Ligue 1"
         },
@@ -639,7 +686,7 @@
         "position": "DEF",
         "detailed_position": "LB",
         "club": {
-          "name": "Reims",
+          "name": "Gil Vicente",
           "country_iso": "fr",
           "league": "Ligue 2"
         },
@@ -683,7 +730,9 @@
         "display_name": "Wilfried Singo",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "Mónaco"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/21/Singo_asse_asm_2425.png"
@@ -694,7 +743,9 @@
         "display_name": "Seko Fofana",
         "position": "MID",
         "detailed_position": "MID",
-        "club": null,
+        "club": {
+          "name": "Oporto"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Seko_Fofana.jpg"
@@ -705,7 +756,9 @@
         "display_name": "Parfait Guiagon",
         "position": "MID",
         "detailed_position": "MID",
-        "club": null,
+        "club": {
+          "name": "Charleroi"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f1/%D7%A4%D7%90%D7%A8%D7%A4%D7%94_%D7%92%D7%95%D7%99%D7%90%D7%92%D7%95%D7%9F_-_Parfait_Guiagon.jpg"
@@ -716,7 +769,9 @@
         "display_name": "Christiano Oulaï",
         "position": "MID",
         "detailed_position": "MID",
-        "club": null,
+        "club": {
+          "name": "Trabzonspor"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -743,7 +798,7 @@
         "position": "GK",
         "detailed_position": "GK",
         "club": {
-          "name": "ASEC Mimosas",
+          "name": "Nottingham Forest",
           "country_iso": "ci",
           "league": "Ligue 1 CI"
         },
@@ -758,7 +813,7 @@
         "position": "MID",
         "detailed_position": "CM",
         "club": {
-          "name": "Hull City",
+          "name": "Maribor",
           "country_iso": "gb-eng",
           "league": "Championship"
         },
@@ -773,7 +828,7 @@
         "position": "FWD",
         "detailed_position": "LW",
         "club": {
-          "name": "Brighton",
+          "name": "Mónaco",
           "country_iso": "gb-eng",
           "league": "Premier League"
         },
@@ -787,7 +842,9 @@
         "display_name": "Ange-Yoan Bonny",
         "position": "FWD",
         "detailed_position": "FWD",
-        "club": null,
+        "club": {
+          "name": "Inter"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -813,7 +870,9 @@
         "display_name": "Oumar Diakité",
         "position": "FWD",
         "detailed_position": "FWD",
-        "club": null,
+        "club": {
+          "name": "Círculo Brujas"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f4/FC_Liefering_gegen_Grazer_AK_%282022-04-29%29_43.jpg"
@@ -825,7 +884,7 @@
         "position": "FWD",
         "detailed_position": "RW",
         "club": {
-          "name": "RB Leipzig",
+          "name": "Leipzig",
           "country_iso": "de",
           "league": "Bundesliga"
         },
@@ -839,7 +898,7 @@
         "position": "FWD",
         "detailed_position": "ST",
         "club": {
-          "name": "Aston Villa",
+          "name": "Crystal Palace",
           "country_iso": "gb-eng",
           "league": "Premier League"
         },
@@ -868,7 +927,9 @@
         "display_name": "Bazoumana Touré",
         "position": "FWD",
         "detailed_position": "FWD",
-        "club": null,
+        "club": {
+          "name": "Hoffenheim"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -879,7 +940,9 @@
         "display_name": "Elye Wahi",
         "position": "FWD",
         "detailed_position": "FWD",
-        "club": null,
+        "club": {
+          "name": "Niza"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Elye_Wahi_2022.jpg"
@@ -1003,8 +1066,8 @@
       "vs_last_3_wcs": "Brasil 2014: fase de grupos eliminada (1G 1E 1P). Rusia 2018: NO CLASIFICÓ. Catar 2022: NO CLASIFICÓ. Mundial 2026: 4ª participación tras 12 años. Generación Amad-Adingra-Sangaré busca romper techo histórico (1ª ronda en sus 3 Mundiales)."
     },
     "squad_announced": true,
-    "squad_announced_date": "2026-05-19",
-    "squad_source": "Convocatoria oficial federación"
+    "squad_announced_date": "2026-05-26",
+    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
   },
   "history": {
     "first_appearance": 2006,

@@ -529,19 +529,49 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/David_Raya_in_2025.jpg/330px-David_Raya_in_2025.jpg"
       },
       {
-        "id": "alex-remiro",
-        "full_name": "Álex Remiro",
-        "display_name": "Álex Remiro",
+        "id": "joan-garcia",
+        "full_name": "Joan García",
+        "display_name": "Joan García",
         "position": "GK",
         "detailed_position": "GK",
         "club": {
-          "name": "Real Sociedad",
-          "country_iso": "es",
-          "league": "La Liga"
+          "name": "Barcelona",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 1,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/DSC_2448_%2851300097850%29_%28Alex_Remiro%29.jpg/330px-DSC_2448_%2851300097850%29_%28Alex_Remiro%29.jpg"
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "marcos-llorente",
+        "full_name": "Marcos Llorente",
+        "display_name": "Marcos Llorente",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Atlético de Madrid",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "marc-pubill",
+        "full_name": "Marc Pubill",
+        "display_name": "Marc Pubill",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Atlético de Madrid",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "pedro-porro",
@@ -559,34 +589,34 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/85/Pedro_Porro_2021.png"
       },
       {
-        "id": "dani-carvajal",
-        "full_name": "Dani Carvajal",
-        "display_name": "Dani Carvajal",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Real Madrid",
-          "country_iso": "es",
-          "league": "La Liga"
-        },
-        "shirt_number_expected": 20,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Daniel_Carvajal_2015.jpg/330px-Daniel_Carvajal_2015.jpg"
-      },
-      {
-        "id": "robin-le-normand",
-        "full_name": "Robin Le Normand",
-        "display_name": "Le Normand",
+        "id": "pau-cubarsi",
+        "full_name": "Pau Cubarsí",
+        "display_name": "Pau Cubarsí",
         "position": "DEF",
         "detailed_position": "CB",
         "club": {
-          "name": "Atlético de Madrid",
+          "name": "Barcelona",
           "country_iso": "es",
           "league": "La Liga"
         },
-        "shirt_number_expected": 4,
+        "shirt_number_expected": 5,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Robin_Le_Normand%2C_FC_Salzburg_vs._Atletico_Madrid_%282025-01-29_UEFA_Championsleague%29_56_%28cropped%29.jpg/330px-Robin_Le_Normand%2C_FC_Salzburg_vs._Atletico_Madrid_%282025-01-29_UEFA_Championsleague%29_56_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Pau_Cubars%C3%AD_%28cropped%29.jpg/330px-Pau_Cubars%C3%AD_%28cropped%29.jpg"
+      },
+      {
+        "id": "eric-garcia",
+        "full_name": "Eric García",
+        "display_name": "Eric García",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Barcelona",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "aymeric-laporte",
@@ -602,36 +632,6 @@
         "shirt_number_expected": 14,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Aymeric_Laporte_2023_%28cropped%29_2.jpg"
-      },
-      {
-        "id": "pau-cubarsi",
-        "full_name": "Pau Cubarsí",
-        "display_name": "Pau Cubarsí",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "FC Barcelona",
-          "country_iso": "es",
-          "league": "La Liga"
-        },
-        "shirt_number_expected": 5,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Pau_Cubars%C3%AD_%28cropped%29.jpg/330px-Pau_Cubars%C3%AD_%28cropped%29.jpg"
-      },
-      {
-        "id": "dean-huijsen",
-        "full_name": "Dean Huijsen",
-        "display_name": "Dean Huijsen",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Real Madrid",
-          "country_iso": "es",
-          "league": "La Liga"
-        },
-        "shirt_number_expected": 24,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Dean_Huijsen_2024.jpg/330px-Dean_Huijsen_2024.jpg"
       },
       {
         "id": "marc-cucurella",
@@ -660,7 +660,7 @@
           "league": "Bundesliga"
         },
         "shirt_number_expected": 18,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Alex_Grimaldo_2020.png/330px-Alex_Grimaldo_2020.png"
       },
       {
@@ -694,36 +694,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Mart%C3%ADn_Zubimendi.jpg/330px-Mart%C3%ADn_Zubimendi.jpg"
       },
       {
-        "id": "pedri",
-        "full_name": "Pedro González López",
-        "display_name": "Pedri",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "FC Barcelona",
-          "country_iso": "es",
-          "league": "La Liga"
-        },
-        "shirt_number_expected": 8,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Pedri.jpg/330px-Pedri.jpg"
-      },
-      {
-        "id": "fabian-ruiz",
-        "full_name": "Fabián Ruiz",
-        "display_name": "Fabián Ruiz",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Paris Saint-Germain",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 12,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Ruiz_asse_psg_2425.png/330px-Ruiz_asse_psg_2425.png"
-      },
-      {
         "id": "mikel-merino",
         "full_name": "Mikel Merino",
         "display_name": "Mikel Merino",
@@ -739,19 +709,49 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/1_mikel_merino_arsenal_2025_%28cropped%29.jpg/330px-1_mikel_merino_arsenal_2025_%28cropped%29.jpg"
       },
       {
-        "id": "dani-olmo",
-        "full_name": "Dani Olmo",
-        "display_name": "Dani Olmo",
+        "id": "fabian-ruiz",
+        "full_name": "Fabián Ruiz",
+        "display_name": "Fabián Ruiz",
         "position": "MID",
-        "detailed_position": "CAM",
+        "detailed_position": "CM",
         "club": {
-          "name": "FC Barcelona",
+          "name": "PSG",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 12,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Ruiz_asse_psg_2425.png/330px-Ruiz_asse_psg_2425.png"
+      },
+      {
+        "id": "pedri",
+        "full_name": "Pedro González López",
+        "display_name": "Pedri",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Barcelona",
           "country_iso": "es",
           "league": "La Liga"
         },
-        "shirt_number_expected": 10,
+        "shirt_number_expected": 8,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Dani_Olmo_2022.jpg/330px-Dani_Olmo_2022.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Pedri.jpg/330px-Pedri.jpg"
+      },
+      {
+        "id": "gavi",
+        "full_name": "Gavi",
+        "display_name": "Gavi",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": {
+          "name": "Barcelona",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "alex-baena",
@@ -765,7 +765,7 @@
           "league": "La Liga"
         },
         "shirt_number_expected": 22,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/%C3%81lex_Baena_2019.jpg/330px-%C3%81lex_Baena_2019.jpg"
       },
       {
@@ -775,13 +775,58 @@
         "position": "FWD",
         "detailed_position": "RW",
         "club": {
-          "name": "FC Barcelona",
+          "name": "Barcelona",
           "country_iso": "es",
           "league": "La Liga"
         },
         "shirt_number_expected": 19,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Lamine_Yamal_in_2025.jpg/330px-Lamine_Yamal_in_2025.jpg"
+      },
+      {
+        "id": "ferran-torres",
+        "full_name": "Ferran Torres",
+        "display_name": "Ferran Torres",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Barcelona",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Ferran_Torres_2019.png/330px-Ferran_Torres_2019.png"
+      },
+      {
+        "id": "dani-olmo",
+        "full_name": "Dani Olmo",
+        "display_name": "Dani Olmo",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Barcelona",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Dani_Olmo_2022.jpg/330px-Dani_Olmo_2022.jpg"
+      },
+      {
+        "id": "yeremy-pino",
+        "full_name": "Yeremy Pino",
+        "display_name": "Yeremy Pino",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Crystal Palace",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 26,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/80/Manchester_United_v_Villarreal_CF%2C_29_September_2021_%2807%29_%28cropped%29.jpg"
       },
       {
         "id": "nico-williams",
@@ -799,6 +844,21 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/ATHLETIC-OSASUNA_SEMIFINAL._MAIDER_GOIKOETXEA_%28168%29_%28cropped%29.jpg/330px-ATHLETIC-OSASUNA_SEMIFINAL._MAIDER_GOIKOETXEA_%28168%29_%28cropped%29.jpg"
       },
       {
+        "id": "victor-munoz",
+        "full_name": "Víctor Muñoz",
+        "display_name": "Víctor Muñoz",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": {
+          "name": "Osasuna",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
         "id": "mikel-oyarzabal",
         "full_name": "Mikel Oyarzabal",
         "display_name": "Oyarzabal",
@@ -814,79 +874,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_108_%28cropped%29.jpg/330px-UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_108_%28cropped%29.jpg"
       },
       {
-        "id": "ferran-torres",
-        "full_name": "Ferran Torres",
-        "display_name": "Ferran Torres",
+        "id": "borja-iglesias",
+        "full_name": "Borja Iglesias",
+        "display_name": "Borja Iglesias",
         "position": "FWD",
-        "detailed_position": "ST",
+        "detailed_position": "FWD",
         "club": {
-          "name": "FC Barcelona",
-          "country_iso": "es",
-          "league": "La Liga"
+          "name": "Celta",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 7,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Ferran_Torres_2019.png/330px-Ferran_Torres_2019.png"
-      },
-      {
-        "id": "alvaro-morata",
-        "full_name": "Álvaro Morata",
-        "display_name": "Morata",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Como",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 9,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/%C3%81lvaro_Morata_in_2025.jpg/330px-%C3%81lvaro_Morata_in_2025.jpg"
-      },
-      {
-        "id": "samu-aghehowa",
-        "full_name": "Samu Aghehowa",
-        "display_name": "Samu Aghehowa",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Porto",
-          "country_iso": "pt",
-          "league": "Primeira Liga"
-        },
-        "shirt_number_expected": 25,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Uzbekistan_vs._Spain%2C_2024_Summer_Olympic_men%27s_association_football%2C_2024-07-24_%28471%29_-_Samu.jpg/330px-Uzbekistan_vs._Spain%2C_2024_Summer_Olympic_men%27s_association_football%2C_2024-07-24_%28471%29_-_Samu.jpg"
-      },
-      {
-        "id": "yeremy-pino",
-        "full_name": "Yeremy Pino",
-        "display_name": "Yeremy Pino",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Crystal Palace",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 26,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/80/Manchester_United_v_Villarreal_CF%2C_29_September_2021_%2807%29_%28cropped%29.jpg"
-      },
-      {
-        "id": "ayoze-perez",
-        "full_name": "Ayoze Pérez",
-        "display_name": "Ayoze Pérez",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Villarreal",
-          "country_iso": "es",
-          "league": "La Liga"
-        },
-        "shirt_number_expected": 3,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Ayoze_Perez_20150710.jpg/330px-Ayoze_Perez_20150710.jpg"
+        "photo_url": null
       }
     ],
     "starting_xi": {
@@ -1002,7 +1002,10 @@
         "champion": 13
       },
       "vs_last_3_wcs": "Sudáfrica 2010: CAMPEONA con final 1-0 ante Países Bajos (gol Iniesta 116'). Brasil 2014: eliminada en fase de grupos, peor papel de la generación dorada. Rusia 2018: octavos eliminada por Rusia en penales tras 1-1. Catar 2022: octavos eliminada por Marruecos en penales tras 0-0. Mundial 2026: tras los dos octavos consecutivos, llega como vigente campeona de Europa con un equipo joven que mezcla talento generacional con experiencia ganadora."
-    }
+    },
+    "squad_announced": true,
+    "squad_announced_date": "2026-05-26",
+    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
   },
   "history": {
     "first_appearance": 1934,

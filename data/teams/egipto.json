@@ -543,48 +543,64 @@
     },
     "likely_squad": [
       {
-        "id": "mohamed-el-shenawy",
-        "full_name": "Mohamed El-Shenawy",
-        "display_name": "El-Shenawy",
+        "id": "mohamed-el-shennawy",
+        "full_name": "Mohamed El Shennawy",
+        "display_name": "Mohamed El Shennawy",
         "position": "GK",
         "detailed_position": "GK",
         "club": {
           "name": "Al-Ahly",
-          "country_iso": "eg",
-          "league": "Premier League EG"
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 1,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Mohamed_El_Shenawy.jpg/330px-Mohamed_El_Shenawy.jpg"
+        "photo_url": null
       },
       {
-        "id": "mohamed-abou-gabal",
-        "full_name": "Mohamed Abou Gabal",
-        "display_name": "Gabaski",
+        "id": "mostafa-shobeir",
+        "full_name": "Mostafa Shobeir",
+        "display_name": "Mostafa Shobeir",
         "position": "GK",
         "detailed_position": "GK",
         "club": {
-          "name": "Zamalek",
-          "country_iso": "eg",
-          "league": "Premier League EG"
+          "name": "Al-Ahly",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 16,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Gabaski.jpg/330px-Gabaski.jpg"
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
-        "id": "mohamed-sobhi",
-        "full_name": "Mohamed Sobhi",
-        "display_name": "Mohamed Sobhi",
+        "id": "el-mahdy-soliman",
+        "full_name": "El Mahdy Soliman",
+        "display_name": "El Mahdy Soliman",
         "position": "GK",
         "detailed_position": "GK",
         "club": {
-          "name": "Pyramids",
-          "country_iso": "eg",
-          "league": "Premier League EG"
+          "name": "Ittihad Alexandria",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 23,
-        "status": "bubble"
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "mohamed-alaa",
+        "full_name": "Mohamed Alaa",
+        "display_name": "Mohamed Alaa",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "ZED FC",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "mohamed-hany",
@@ -602,32 +618,34 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Mohamed_Hany_in_2021_FIFA_Club_World_Cup.jpg/330px-Mohamed_Hany_in_2021_FIFA_Club_World_Cup.jpg"
       },
       {
-        "id": "mahmoud-hamdi",
-        "full_name": "Mahmoud 'El Wensh' Hamdi",
-        "display_name": "El Wensh",
+        "id": "tarek-alaa",
+        "full_name": "Tarek Alaa",
+        "display_name": "Tarek Alaa",
         "position": "DEF",
-        "detailed_position": "CB",
+        "detailed_position": "DEF",
         "club": {
-          "name": "Zamalek",
-          "country_iso": "eg",
-          "league": "Premier League EG"
+          "name": "Smouha SC",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 3,
-        "status": "probable"
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
-        "id": "mohamed-hamdy",
-        "full_name": "Mohamed Hamdy",
-        "display_name": "Mohamed Hamdy",
+        "id": "hamdi-fathi",
+        "full_name": "Hamdi Fathi",
+        "display_name": "Hamdi Fathi",
         "position": "DEF",
-        "detailed_position": "LB",
+        "detailed_position": "DEF",
         "club": {
-          "name": "Pyramids",
-          "country_iso": "eg",
-          "league": "Premier League EG"
+          "name": "Al-Wakrah",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 13,
-        "status": "fixed"
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "ramy-rabia",
@@ -660,18 +678,63 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Yasser_Ibrahim_in_FIFA_Club_World_Cup.jpg/330px-Yasser_Ibrahim_in_FIFA_Club_World_Cup.jpg"
       },
       {
-        "id": "ahmed-fatouh",
-        "full_name": "Ahmed Fatouh",
-        "display_name": "Ahmed Fatouh",
+        "id": "hossam-abdelmaguid",
+        "full_name": "Hossam Abdelmaguid",
+        "display_name": "Hossam Abdelmaguid",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Zamalek SC",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "mohamed-abdelmonem",
+        "full_name": "Mohamed Abdelmonem",
+        "display_name": "Mohamed Abdelmonem",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "OGC Niza",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "ahmed-fattouh",
+        "full_name": "Mahmoud Saber",
+        "display_name": "Mahmoud Saber",
         "position": "DEF",
         "detailed_position": "LB",
         "club": {
-          "name": "Zamalek",
+          "name": "Zamalek SC",
           "country_iso": "eg",
           "league": "Premier League EG"
         },
-        "shirt_number_expected": 14,
-        "status": "probable"
+        "shirt_number_expected": 12,
+        "status": "fixed"
+      },
+      {
+        "id": "karim-hafez",
+        "full_name": "Karim Hafez",
+        "display_name": "Karim Hafez",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Pyramids FC",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "marwan-attia",
@@ -680,7 +743,7 @@
         "position": "MID",
         "detailed_position": "CDM",
         "club": {
-          "name": "Pyramids",
+          "name": "Al-Ahly",
           "country_iso": "eg",
           "league": "Premier League EG"
         },
@@ -689,49 +752,49 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Marwan_Attia.jpg/330px-Marwan_Attia.jpg"
       },
       {
-        "id": "hamdy-fathy",
-        "full_name": "Hamdy Fathy",
-        "display_name": "Hamdy Fathy",
+        "id": "mohannad-lasheen",
+        "full_name": "Mohannad Lasheen",
+        "display_name": "Mohannad Lasheen",
         "position": "MID",
-        "detailed_position": "CM",
+        "detailed_position": "MID",
         "club": {
-          "name": "Al-Ain",
-          "country_iso": "ae",
-          "league": "Pro League UAE"
+          "name": "Pyramids FC",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 17,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Hamdy_Fathy.png/330px-Hamdy_Fathy.png"
+        "photo_url": null
       },
       {
-        "id": "mohamed-elneny",
-        "full_name": "Mohamed Elneny",
-        "display_name": "Mohamed Elneny",
+        "id": "nabil-emad-dunga",
+        "full_name": "Nabil Emad Dunga",
+        "display_name": "Nabil Emad Dunga",
         "position": "MID",
-        "detailed_position": "CDM",
+        "detailed_position": "MID",
         "club": {
-          "name": "Al-Jazira",
-          "country_iso": "ae",
-          "league": "Pro League UAE"
+          "name": "Zamalek SC",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 5,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Mohamed_Elneny_2018.jpg/330px-Mohamed_Elneny_2018.jpg"
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
-        "id": "imam-ashour",
-        "full_name": "Imam Ashour",
-        "display_name": "Imam Ashour",
+        "id": "mahmoud-saber",
+        "full_name": "Mahmoud Saber",
+        "display_name": "Mahmoud Saber",
         "position": "MID",
-        "detailed_position": "CAM",
+        "detailed_position": "MID",
         "club": {
-          "name": "Al-Ahly",
-          "country_iso": "eg",
-          "league": "Premier League EG"
+          "name": "Pyramids FC",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 18,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Emam22.jpg/330px-Emam22.jpg"
+        "photo_url": null
       },
       {
         "id": "ahmed-sayed-zizo",
@@ -740,7 +803,7 @@
         "position": "MID",
         "detailed_position": "CAM",
         "club": {
-          "name": "Al-Ahly",
+          "name": "Zamalek SC",
           "country_iso": "eg",
           "league": "Premier League EG"
         },
@@ -749,19 +812,78 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Ahmed_Sayed_%28Zizo%29.jpg/330px-Ahmed_Sayed_%28Zizo%29.jpg"
       },
       {
+        "id": "trezeguet",
+        "full_name": "Mahmoud 'Trezeguet' Hassan",
+        "display_name": "Trezeguet",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Al-Rayyan SC",
+          "country_iso": "eg",
+          "league": "Premier League EG"
+        },
+        "shirt_number_expected": 21,
+        "status": "fixed"
+      },
+      {
+        "id": "emam-ashour",
+        "full_name": "Hossam Hassan",
+        "display_name": "Hossam Hassan",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Al-Ahly",
+          "country_iso": "eg",
+          "league": "Premier League EG"
+        },
+        "shirt_number_expected": 26,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Hossam_Hassan.png"
+      },
+      {
+        "id": "mostafa-ziko",
+        "full_name": "Mostafa Ziko",
+        "display_name": "Mostafa Ziko",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": {
+          "name": "ZED FC",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
         "id": "ibrahim-adel",
         "full_name": "Ibrahim Adel",
         "display_name": "Ibrahim Adel",
         "position": "MID",
         "detailed_position": "RW",
         "club": {
-          "name": "Pyramids",
+          "name": "Pyramids FC",
           "country_iso": "eg",
           "league": "Premier League EG"
         },
         "shirt_number_expected": 19,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Ibrahim_Adel_2025.jpg/330px-Ibrahim_Adel_2025.jpg"
+      },
+      {
+        "id": "haitham-hassan",
+        "full_name": "Haitham Hassan",
+        "display_name": "Haitham Hassan",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": {
+          "name": "ZED FC",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "mohamed-salah",
@@ -785,7 +907,7 @@
         "position": "FWD",
         "detailed_position": "ST",
         "club": {
-          "name": "Manchester City",
+          "name": "Eintracht Frankfurt",
           "country_iso": "gb-eng",
           "league": "Premier League"
         },
@@ -794,135 +916,34 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/OmarMarmoush.png/330px-OmarMarmoush.png"
       },
       {
-        "id": "trezeguet",
-        "full_name": "Mahmoud 'Trezeguet' Hassan",
-        "display_name": "Trezeguet",
+        "id": "aktay-abdullah",
+        "full_name": "Aktay Abdullah",
+        "display_name": "Aktay Abdullah",
         "position": "FWD",
-        "detailed_position": "LW",
+        "detailed_position": "FWD",
         "club": {
-          "name": "Al-Ahly",
-          "country_iso": "eg",
-          "league": "Premier League EG"
+          "name": "ZED FC",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 21,
-        "status": "fixed"
-      },
-      {
-        "id": "mostafa-mohamed",
-        "full_name": "Mostafa Mohamed",
-        "display_name": "Mostafa Mohamed",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Nantes",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 9,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Mostafa_Mohamed_-_beIN-Sports-Reklam_%282021%29_%28cropped%29.png/330px-Mostafa_Mohamed_-_beIN-Sports-Reklam_%282021%29_%28cropped%29.png"
+        "photo_url": null
       },
       {
-        "id": "ahmed-koka",
-        "full_name": "Ahmed 'Koka' Hassan",
-        "display_name": "Koka",
+        "id": "hamza-abdel-karim",
+        "full_name": "Hamza Abdel Karim",
+        "display_name": "Hamza Abdel Karim",
         "position": "FWD",
-        "detailed_position": "ST",
+        "detailed_position": "FWD",
         "club": {
-          "name": "Al-Wakrah",
-          "country_iso": "qa",
-          "league": "Stars League"
+          "name": "Ismaily SC",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 20,
-        "status": "probable"
-      },
-      {
-        "id": "mohamed-magdi-afsha",
-        "full_name": "Mohamed Magdi 'Afsha'",
-        "display_name": "Afsha",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Al-Ahly",
-          "country_iso": "eg",
-          "league": "Premier League EG"
-        },
-        "shirt_number_expected": 15,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Mohamed_Magdy2.jpg/330px-Mohamed_Magdy2.jpg"
-      },
-      {
-        "id": "akram-tawfik",
-        "full_name": "Akram Tawfik",
-        "display_name": "Akram Tawfik",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Al-Ahly",
-          "country_iso": "eg",
-          "league": "Premier League EG"
-        },
-        "shirt_number_expected": 22,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Akram_Tawfik_2024.jpg/330px-Akram_Tawfik_2024.jpg"
-      },
-      {
-        "id": "ahmed-hassan-koka",
-        "full_name": "Ahmed Refaat",
-        "display_name": "Ahmed Refaat",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Al-Ahly",
-          "country_iso": "eg",
-          "league": "Premier League EG"
-        },
-        "shirt_number_expected": 25,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/en/f/ff/Ahmed_Refaat.png"
-      },
-      {
-        "id": "marwan-hamdy",
-        "full_name": "Mohamed Hamdy 'El Mosaibi'",
-        "display_name": "El Mosaibi",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Pyramids",
-          "country_iso": "eg",
-          "league": "Premier League EG"
-        },
-        "shirt_number_expected": 24,
-        "status": "bubble"
-      },
-      {
-        "id": "ahmed-fattouh",
-        "full_name": "Mahmoud Saber",
-        "display_name": "Mahmoud Saber",
-        "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "Zamalek",
-          "country_iso": "eg",
-          "league": "Premier League EG"
-        },
-        "shirt_number_expected": 12,
-        "status": "bubble"
-      },
-      {
-        "id": "emam-ashour",
-        "full_name": "Hossam Hassan",
-        "display_name": "Hossam Hassan",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Pyramids",
-          "country_iso": "eg",
-          "league": "Premier League EG"
-        },
-        "shirt_number_expected": 26,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Hossam_Hassan.png"
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       }
     ],
     "starting_xi": {
@@ -1041,7 +1062,10 @@
         "champion": 0
       },
       "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: fase de grupos (Salah lesionado en final Champions, jugó disminuido). Catar 2022: NO CLASIFICÓ. Mundial 2026: 4ª participación, busca ganar SU PRIMER PARTIDO HISTÓRICO mundialista (3 Mundiales sin victoria)."
-    }
+    },
+    "squad_announced": true,
+    "squad_announced_date": "2026-05-26",
+    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
   },
   "history": {
     "first_appearance": 1934,

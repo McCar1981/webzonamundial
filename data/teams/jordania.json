@@ -1015,7 +1015,9 @@
         "champion": 0
       },
       "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ (cayó en repechaje intercontinental con Uruguay). Rusia 2018: NO CLASIFICÓ. Catar 2022: NO CLASIFICÓ. Mundial 2026: PRIMERA PARTICIPACIÓN HISTÓRICA. Debutante absoluto, 40 años después de su 1ª eliminatoria (México 1986)."
-    }
+    },
+    "squad_announced": false,
+    "squad_announced_status": "pending_official"
   },
   "history": {
     "first_appearance": 2026,

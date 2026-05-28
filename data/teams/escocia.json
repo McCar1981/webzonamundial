@@ -440,21 +440,6 @@
     },
     "likely_squad": [
       {
-        "id": "angus-gunn",
-        "full_name": "Angus Gunn",
-        "display_name": "Angus Gunn",
-        "position": "GK",
-        "detailed_position": "GK",
-        "club": {
-          "name": "Norwich",
-          "country_iso": "gb-eng",
-          "league": "Championship"
-        },
-        "shirt_number_expected": 1,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/70/Angus.gunn.jpg"
-      },
-      {
         "id": "craig-gordon",
         "full_name": "Craig Gordon",
         "display_name": "Craig Gordon",
@@ -466,8 +451,23 @@
           "league": "Scottish Premiership"
         },
         "shirt_number_expected": 12,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Craig_S_Gordon.jpg/330px-Craig_S_Gordon.jpg"
+      },
+      {
+        "id": "angus-gunn",
+        "full_name": "Angus Gunn",
+        "display_name": "Angus Gunn",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Nottingham Forest",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/70/Angus.gunn.jpg"
       },
       {
         "id": "liam-kelly",
@@ -481,8 +481,37 @@
           "league": "Scottish Premiership"
         },
         "shirt_number_expected": 23,
-        "status": "bubble",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Liam_Kelly.jpg/330px-Liam_Kelly.jpg"
+      },
+      {
+        "id": "grant-hanley",
+        "full_name": "Grant Hanley",
+        "display_name": "Grant Hanley",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Hibernian",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Grant_Hanley_2018.jpg/330px-Grant_Hanley_2018.jpg"
+      },
+      {
+        "id": "jack-hendry",
+        "full_name": "Jack Hendry",
+        "display_name": "Jack Hendry",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Al-Ettifaq",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed"
       },
       {
         "id": "aaron-hickey",
@@ -500,6 +529,50 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Aaron_Hickey_02082025_%281%29.jpg/330px-Aaron_Hickey_02082025_%281%29.jpg"
       },
       {
+        "id": "dom-hyam",
+        "full_name": "Dom Hyam",
+        "display_name": "Dom Hyam",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Wrexham",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "scott-mckenna",
+        "full_name": "Scott McKenna",
+        "display_name": "Scott McKenna",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Dinamo Zagreb",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 24,
+        "status": "fixed"
+      },
+      {
+        "id": "nathan-patterson",
+        "full_name": "Nathan Patterson",
+        "display_name": "Nathan Patterson",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Everton",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
         "id": "anthony-ralston",
         "full_name": "Anthony Ralston",
         "display_name": "Anthony Ralston",
@@ -511,23 +584,8 @@
           "league": "Scottish Premiership"
         },
         "shirt_number_expected": 17,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Celtic-20240722-034.jpg/330px-Celtic-20240722-034.jpg"
-      },
-      {
-        "id": "kieran-tierney",
-        "full_name": "Kieran Tierney",
-        "display_name": "Kieran Tierney",
-        "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "Celtic",
-          "country_iso": "gb-sct",
-          "league": "Scottish Premiership"
-        },
-        "shirt_number_expected": 3,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/55/Kieran_Tierney_%2826938128442%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Celtic-20240722-034.jpg/330px-Celtic-20240722-034.jpg"
       },
       {
         "id": "andrew-robertson",
@@ -545,63 +603,93 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/LFC_Parade_2019_01_Andy_Robertson.jpg/330px-LFC_Parade_2019_01_Andy_Robertson.jpg"
       },
       {
-        "id": "jack-hendry",
-        "full_name": "Jack Hendry",
-        "display_name": "Jack Hendry",
+        "id": "john-souttar",
+        "full_name": "John Souttar",
+        "display_name": "John Souttar",
         "position": "DEF",
-        "detailed_position": "CB",
+        "detailed_position": "DEF",
         "club": {
-          "name": "Al-Ettifaq",
-          "country_iso": "sa",
-          "league": "Saudi Pro League"
+          "name": "Rangers",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 4,
-        "status": "fixed"
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
-        "id": "grant-hanley",
-        "full_name": "Grant Hanley",
-        "display_name": "Grant Hanley",
+        "id": "kieran-tierney",
+        "full_name": "Kieran Tierney",
+        "display_name": "Kieran Tierney",
         "position": "DEF",
-        "detailed_position": "CB",
+        "detailed_position": "LB",
         "club": {
-          "name": "Hull City",
+          "name": "Celtic",
+          "country_iso": "gb-sct",
+          "league": "Scottish Premiership"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/55/Kieran_Tierney_%2826938128442%29_%28cropped%29.jpg"
+      },
+      {
+        "id": "ryan-christie",
+        "full_name": "Ryan Christie",
+        "display_name": "Ryan Christie",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Bournemouth",
           "country_iso": "gb-eng",
-          "league": "Championship"
+          "league": "Premier League"
         },
-        "shirt_number_expected": 5,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Grant_Hanley_2018.jpg/330px-Grant_Hanley_2018.jpg"
+        "shirt_number_expected": 13,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Ryan_Christie.jpg/330px-Ryan_Christie.jpg"
       },
       {
-        "id": "ryan-porteous",
-        "full_name": "Ryan Porteous",
-        "display_name": "Ryan Porteous",
-        "position": "DEF",
-        "detailed_position": "CB",
+        "id": "findlay-curtis",
+        "full_name": "Findlay Curtis",
+        "display_name": "Findlay Curtis",
+        "position": "MID",
+        "detailed_position": "MID",
         "club": {
-          "name": "Watford",
-          "country_iso": "gb-eng",
-          "league": "Championship"
+          "name": "Kilmarnock",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 22,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Ryan_Porteous_12072025_%282%29.jpg/330px-Ryan_Porteous_12072025_%282%29.jpg"
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
-        "id": "scott-mctominay",
-        "full_name": "Scott McTominay",
-        "display_name": "Scott McTominay",
+        "id": "lewis-ferguson",
+        "full_name": "Lewis Ferguson",
+        "display_name": "Lewis Ferguson",
         "position": "MID",
         "detailed_position": "CM",
         "club": {
-          "name": "Napoli",
+          "name": "Bologna",
           "country_iso": "it",
           "league": "Serie A"
         },
-        "shirt_number_expected": 8,
+        "shirt_number_expected": 16,
+        "status": "fixed"
+      },
+      {
+        "id": "ben-doak",
+        "full_name": "Ben Doak",
+        "display_name": "Ben Doak",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Bournemouth",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 11,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Scott_McTominay_2021.jpg/330px-Scott_McTominay_2021.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Ben_Doak_2025.jpg/330px-Ben_Doak_2025.jpg"
       },
       {
         "id": "billy-gilmour",
@@ -619,21 +707,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Billy_Gilmour%2C_2018.jpg/330px-Billy_Gilmour%2C_2018.jpg"
       },
       {
-        "id": "callum-mcgregor",
-        "full_name": "Callum McGregor",
-        "display_name": "Callum McGregor",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Celtic",
-          "country_iso": "gb-sct",
-          "league": "Scottish Premiership"
-        },
-        "shirt_number_expected": 14,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Callum_McGregor_%28cropped%29.jpg"
-      },
-      {
         "id": "john-mcginn",
         "full_name": "John McGinn",
         "display_name": "John McGinn",
@@ -649,48 +722,34 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/John_McGinn_2019.jpg/330px-John_McGinn_2019.jpg"
       },
       {
-        "id": "lewis-ferguson",
-        "full_name": "Lewis Ferguson",
-        "display_name": "Lewis Ferguson",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Bologna",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 16,
-        "status": "fixed"
-      },
-      {
         "id": "kenny-mclean",
         "full_name": "Kenny McLean",
         "display_name": "Kenny McLean",
         "position": "MID",
         "detailed_position": "CM",
         "club": {
-          "name": "Norwich",
+          "name": "Norwich City",
           "country_iso": "gb-eng",
           "league": "Championship"
         },
         "shirt_number_expected": 19,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/KennyMcLean.jpg/330px-KennyMcLean.jpg"
       },
       {
-        "id": "ben-doak",
-        "full_name": "Ben Doak",
-        "display_name": "Ben Doak",
-        "position": "FWD",
-        "detailed_position": "RW",
+        "id": "scott-mctominay",
+        "full_name": "Scott McTominay",
+        "display_name": "Scott McTominay",
+        "position": "MID",
+        "detailed_position": "CM",
         "club": {
-          "name": "Bournemouth",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
+          "name": "Napoli",
+          "country_iso": "it",
+          "league": "Serie A"
         },
-        "shirt_number_expected": 11,
+        "shirt_number_expected": 8,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Ben_Doak_2025.jpg/330px-Ben_Doak_2025.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Scott_McTominay_2021.jpg/330px-Scott_McTominay_2021.jpg"
       },
       {
         "id": "che-adams",
@@ -714,13 +773,28 @@
         "position": "FWD",
         "detailed_position": "ST",
         "club": {
-          "name": "Birmingham City",
+          "name": "Charlton Athletic",
           "country_iso": "gb-eng",
           "league": "Championship"
         },
         "shirt_number_expected": 21,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/89/First_Minister_meets_with_Scottish_National_Football_Team_-_55168603663_%28cropped%29.jpg"
+      },
+      {
+        "id": "george-hirst",
+        "full_name": "George Hirst",
+        "display_name": "George Hirst",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Ipswich Town",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 26,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/GeorgeHirst.jpg/330px-GeorgeHirst.jpg"
       },
       {
         "id": "lawrence-shankland",
@@ -738,92 +812,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Lawrence_Shankland_2019.jpg/330px-Lawrence_Shankland_2019.jpg"
       },
       {
-        "id": "tommy-conway",
-        "full_name": "Tommy Conway",
-        "display_name": "Tommy Conway",
+        "id": "ross-stewart",
+        "full_name": "Ross Stewart",
+        "display_name": "Ross Stewart",
         "position": "FWD",
-        "detailed_position": "ST",
+        "detailed_position": "FWD",
         "club": {
-          "name": "Middlesbrough",
-          "country_iso": "gb-eng",
-          "league": "Championship"
+          "name": "Southampton",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 25,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tommy_Conway_16082025_%281%29.jpg/330px-Tommy_Conway_16082025_%281%29.jpg"
-      },
-      {
-        "id": "george-hirst",
-        "full_name": "George Hirst",
-        "display_name": "George Hirst",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Ipswich",
-          "country_iso": "gb-eng",
-          "league": "Championship"
-        },
-        "shirt_number_expected": 26,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/GeorgeHirst.jpg/330px-GeorgeHirst.jpg"
-      },
-      {
-        "id": "ryan-christie",
-        "full_name": "Ryan Christie",
-        "display_name": "Ryan Christie",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Bournemouth",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 13,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Ryan_Christie.jpg/330px-Ryan_Christie.jpg"
-      },
-      {
-        "id": "stuart-armstrong",
-        "full_name": "Stuart Armstrong",
-        "display_name": "Stuart Armstrong",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Sheffield Wednesday",
-          "country_iso": "gb-eng",
-          "league": "Championship"
-        },
-        "shirt_number_expected": 15,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Stuart_Armstrong_2019.jpg/330px-Stuart_Armstrong_2019.jpg"
-      },
-      {
-        "id": "scott-mckenna",
-        "full_name": "Scott McKenna",
-        "display_name": "Scott McKenna",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Las Palmas",
-          "country_iso": "es",
-          "league": "La Liga"
-        },
-        "shirt_number_expected": 24,
-        "status": "probable"
-      },
-      {
-        "id": "max-johnston",
-        "full_name": "Max Johnston",
-        "display_name": "Max Johnston",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Sturm Graz",
-          "country_iso": "at",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 20,
-        "status": "bubble"
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       }
     ],
     "starting_xi": {
@@ -942,7 +943,10 @@
         "champion": 0
       },
       "vs_last_3_wcs": "Brasil 2014: NO clasificó. Rusia 2018: NO clasificó. Catar 2022: NO clasificó. Mundial 2026: regreso al Mundial tras 28 AÑOS de ausencia (última: Francia 1998). Primer Mundial del siglo XXI escocés. 9ª participación absoluta."
-    }
+    },
+    "squad_announced": true,
+    "squad_announced_date": "2026-05-26",
+    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
   },
   "history": {
     "first_appearance": 1954,

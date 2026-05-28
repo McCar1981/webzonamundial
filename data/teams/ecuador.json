@@ -1197,7 +1197,9 @@
         "champion": 0
       },
       "vs_last_3_wcs": "Brasil 2014: fase de grupos eliminada por diferencia de goles. Catar 2022: fase de grupos, eliminada con 4 puntos. Mundial 2026: 5ª participación histórica, segunda consecutiva. Llega como 2º clasificado CONMEBOL, mejor papel desde 1998."
-    }
+    },
+    "squad_announced": false,
+    "squad_announced_status": "pending_official"
   },
   "history": {
     "first_appearance": 2002,

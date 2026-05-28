@@ -511,7 +511,7 @@
       "status": "pending"
     },
     "coach": {
-      "name": "Pedro Brito 'Bubista'",
+      "name": "Pedro Leitão Brito \"Bubista\"",
       "age": 53,
       "nationality": "Cabo Verde",
       "since": "2020-01-28",
@@ -532,89 +532,106 @@
     },
     "likely_squad": [
       {
-        "id": "vozinha",
-        "full_name": "Márcio Rosa 'Vozinha'",
-        "display_name": "Vozinha",
+        "id": "josimar-dias",
+        "full_name": "Josimar Dias",
+        "display_name": "Josimar Dias",
         "position": "GK",
         "detailed_position": "GK",
         "club": {
-          "name": "Boavista",
-          "country_iso": "pt",
-          "league": "Primeira Liga"
+          "name": "Chaves",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 1,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "marcio-da-rosa",
+        "full_name": "Márcio da Rosa",
+        "display_name": "Márcio da Rosa",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Montana",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "carlos-santos",
+        "full_name": "Carlos Santos",
+        "display_name": "Carlos Santos",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "San Diego",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "steven-moreira",
+        "full_name": "Steven Moreira",
+        "display_name": "Steven Moreira",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Columbus Crew",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "wagner-pina",
+        "full_name": "Wagner Pina",
+        "display_name": "Wagner Pina",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Trabzonspor",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 2,
         "status": "fixed"
       },
       {
-        "id": "kemarcio",
-        "full_name": "Kemarcio",
-        "display_name": "Kemarcio",
-        "position": "GK",
-        "detailed_position": "GK",
+        "id": "joao-paulo-fernandes",
+        "full_name": "João Paulo Fernandes",
+        "display_name": "João Paulo Fernandes",
+        "position": "DEF",
+        "detailed_position": "DEF",
         "club": {
-          "name": "Sporting Praia",
-          "country_iso": "cv",
-          "league": "Primeira Divisão CV"
+          "name": "FCSB",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 16,
-        "status": "probable"
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
-        "id": "joseph-vall",
-        "full_name": "Joseph Vall",
-        "display_name": "Joseph Vall",
-        "position": "GK",
-        "detailed_position": "GK",
+        "id": "diawisa-tavares",
+        "full_name": "Sidny Cabral 'Diawisa' Tavares",
+        "display_name": "Sidny Cabral",
+        "position": "MID",
+        "detailed_position": "CAM",
         "club": {
-          "name": "Académica",
+          "name": "Benfica",
           "country_iso": "pt",
           "league": "Liga Portugal 2"
         },
-        "shirt_number_expected": 23,
-        "status": "bubble"
-      },
-      {
-        "id": "stopira",
-        "full_name": "Carlos Vaz 'Stopira'",
-        "display_name": "Stopira",
-        "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "Videoton",
-          "country_iso": "hu",
-          "league": "NB I"
-        },
-        "shirt_number_expected": 3,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Cap-vert_vs_Ethiopi_%2825%29.jpg/330px-Cap-vert_vs_Ethiopi_%2825%29.jpg"
-      },
-      {
-        "id": "kenny-rocha",
-        "full_name": "Kenny Rocha",
-        "display_name": "Kenny Rocha",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Cracovia",
-          "country_iso": "pl",
-          "league": "Ekstraklasa"
-        },
-        "shirt_number_expected": 4,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Cap-vert_vs_Ethiopi_%2823%29.jpg/330px-Cap-vert_vs_Ethiopi_%2823%29.jpg"
-      },
-      {
-        "id": "roberto-lopes",
-        "full_name": "Roberto 'Pico' Lopes",
-        "display_name": "Roberto Lopes",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Shamrock Rovers",
-          "country_iso": "ie",
-          "league": "Premier Division IE"
-        },
-        "shirt_number_expected": 5,
+        "shirt_number_expected": 17,
         "status": "fixed"
       },
       {
@@ -633,47 +650,63 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Logan_Costa_-_2023-02-01_%28cropped2%29.jpg/330px-Logan_Costa_-_2023-02-01_%28cropped2%29.jpg"
       },
       {
-        "id": "diney-borges",
-        "full_name": "Diney Borges",
-        "display_name": "Diney Borges",
+        "id": "roberto-lopes",
+        "full_name": "Roberto 'Pico' Lopes",
+        "display_name": "Roberto Lopes",
         "position": "DEF",
         "detailed_position": "CB",
         "club": {
-          "name": "Niki Volos",
-          "country_iso": "gr",
-          "league": "Super League"
+          "name": "Shamrock Rovers",
+          "country_iso": "ie",
+          "league": "Premier Division IE"
         },
-        "shirt_number_expected": 22,
-        "status": "probable"
-      },
-      {
-        "id": "wagner-pina",
-        "full_name": "Wagner Pina",
-        "display_name": "Wagner Pina",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Trabzonspor",
-          "country_iso": "tr",
-          "league": "Süper Lig"
-        },
-        "shirt_number_expected": 2,
+        "shirt_number_expected": 5,
         "status": "fixed"
       },
       {
-        "id": "deroy-duarte",
-        "full_name": "Deroy Duarte",
-        "display_name": "Deroy Duarte",
-        "position": "MID",
-        "detailed_position": "CDM",
+        "id": "kelvin-pires",
+        "full_name": "Kelvin Pires",
+        "display_name": "Kelvin Pires",
+        "position": "DEF",
+        "detailed_position": "DEF",
         "club": {
-          "name": "Sparta Rotterdam",
-          "country_iso": "nl",
-          "league": "Eredivisie"
+          "name": "SJK Seinäjoki",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 6,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Deroy_Duarte_2026.jpg/330px-Deroy_Duarte_2026.jpg"
+        "photo_url": null
+      },
+      {
+        "id": "ianique-tavares",
+        "full_name": "Ianique Tavares",
+        "display_name": "Ianique Tavares",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Torreense",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "edilson-borges",
+        "full_name": "Edilson Borges",
+        "display_name": "Edilson Borges",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Al-Bataeh",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "jamiro-monteiro",
@@ -682,7 +715,7 @@
         "position": "MID",
         "detailed_position": "CM",
         "club": {
-          "name": "Heracles Almelo",
+          "name": "Zwolle",
           "country_iso": "nl",
           "league": "Eredivisie"
         },
@@ -691,32 +724,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Jamiro_Monteiro_Philadelphia_Union_2019.jpg/330px-Jamiro_Monteiro_Philadelphia_Union_2019.jpg"
       },
       {
-        "id": "kenny-andrade",
-        "full_name": "Kenny Andrade",
-        "display_name": "Kenny Andrade",
+        "id": "telmo-arcanjo",
+        "full_name": "Telmo Arcanjo",
+        "display_name": "Telmo Arcanjo",
         "position": "MID",
-        "detailed_position": "CM",
+        "detailed_position": "MID",
         "club": {
-          "name": "Casa Pia",
-          "country_iso": "pt",
-          "league": "Primeira Liga"
+          "name": "Vitória Guimarães",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 18,
-        "status": "fixed"
-      },
-      {
-        "id": "diawisa-tavares",
-        "full_name": "Sidny Cabral 'Diawisa' Tavares",
-        "display_name": "Sidny Cabral",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Benfica B",
-          "country_iso": "pt",
-          "league": "Liga Portugal 2"
-        },
-        "shirt_number_expected": 17,
-        "status": "fixed"
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "yannick-semedo",
@@ -725,57 +745,57 @@
         "position": "MID",
         "detailed_position": "CM",
         "club": {
-          "name": "Ajaccio",
+          "name": "Farense",
           "country_iso": "fr",
           "league": "Ligue 2"
         },
         "shirt_number_expected": 13,
-        "status": "probable"
+        "status": "fixed"
       },
       {
-        "id": "garry-rodrigues",
-        "full_name": "Garry Rodrigues",
-        "display_name": "Garry Rodrigues",
+        "id": "laros-duarte",
+        "full_name": "Laros Duarte",
+        "display_name": "Laros Duarte",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": {
+          "name": "Puskás AFC",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "deroy-duarte",
+        "full_name": "Deroy Duarte",
+        "display_name": "Deroy Duarte",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Ludogorets",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Deroy_Duarte_2026.jpg/330px-Deroy_Duarte_2026.jpg"
+      },
+      {
+        "id": "kevin-pina",
+        "full_name": "Kevin Pina",
+        "display_name": "Kevin Pina",
         "position": "FWD",
         "detailed_position": "RW",
         "club": {
-          "name": "Sint-Truiden",
-          "country_iso": "be",
-          "league": "Pro League"
+          "name": "Krasnodar",
+          "country_iso": "lt",
+          "league": "A Lyga"
         },
-        "shirt_number_expected": 7,
+        "shirt_number_expected": 24,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Cap-vert_vs_Ethiopi_%2824%29.jpg/330px-Cap-vert_vs_Ethiopi_%2824%29.jpg"
-      },
-      {
-        "id": "bebe",
-        "full_name": "Tiago 'Bebé' Almeida",
-        "display_name": "Bebé",
-        "position": "FWD",
-        "detailed_position": "LW",
-        "club": {
-          "name": "AEL Limassol",
-          "country_iso": "cy",
-          "league": "Cypriot First Division"
-        },
-        "shirt_number_expected": 11,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Baby.jpg/330px-Baby.jpg"
-      },
-      {
-        "id": "jovane-cabral",
-        "full_name": "Jovane Cabral",
-        "display_name": "Jovane Cabral",
-        "position": "FWD",
-        "detailed_position": "LW",
-        "club": {
-          "name": "Lazio",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 19,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/JovaneCabral_2021.jpg/330px-JovaneCabral_2021.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Kevin_Pina_%28footballer%29_2022.jpg/330px-Kevin_Pina_%28footballer%29_2022.jpg"
       },
       {
         "id": "ryan-mendes",
@@ -784,13 +804,73 @@
         "position": "FWD",
         "detailed_position": "RW",
         "club": {
-          "name": "Al-Wakrah",
+          "name": "Iğdır FK",
           "country_iso": "qa",
           "league": "Stars League"
         },
         "shirt_number_expected": 9,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Ryan_Mendes_%28LOSC_Lille%29.JPG/330px-Ryan_Mendes_%28LOSC_Lille%29.JPG"
+      },
+      {
+        "id": "willy-semedo",
+        "full_name": "Willy Semedo",
+        "display_name": "Willy Semedo",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Omonia Nicosia",
+          "country_iso": "pt",
+          "league": "Liga Portugal 2"
+        },
+        "shirt_number_expected": 21,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/RC_Lens_-_Grenoble_Foot_38_%2810-02-2020%29_70.jpg/330px-RC_Lens_-_Grenoble_Foot_38_%2810-02-2020%29_70.jpg"
+      },
+      {
+        "id": "garry-rodrigues",
+        "full_name": "Garry Rodrigues",
+        "display_name": "Garry Rodrigues",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Apollon Limassol",
+          "country_iso": "be",
+          "league": "Pro League"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Cap-vert_vs_Ethiopi_%2824%29.jpg/330px-Cap-vert_vs_Ethiopi_%2824%29.jpg"
+      },
+      {
+        "id": "jovane-cabral",
+        "full_name": "Jovane Cabral",
+        "display_name": "Jovane Cabral",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Estrela Amadora",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/JovaneCabral_2021.jpg/330px-JovaneCabral_2021.jpg"
+      },
+      {
+        "id": "nuno-da-costa",
+        "full_name": "Nuno da Costa",
+        "display_name": "Nuno da Costa",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": {
+          "name": "Basaksehir",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "dailon-livramento",
@@ -807,107 +887,34 @@
         "status": "fixed"
       },
       {
-        "id": "joao-barbosa",
-        "full_name": "João Barbosa",
-        "display_name": "João Barbosa",
+        "id": "gilson-benchimol",
+        "full_name": "Gilson Benchimol",
+        "display_name": "Gilson Benchimol",
         "position": "FWD",
-        "detailed_position": "ST",
+        "detailed_position": "FWD",
         "club": {
-          "name": "Famalicão",
-          "country_iso": "pt",
-          "league": "Primeira Liga"
+          "name": "Akron Togliatti",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 20,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Jo%C3%A3o_Barbosa_Le_Mans_drivers_parade_2011_crop.jpg"
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
-        "id": "willy-semedo",
-        "full_name": "Willy Semedo",
-        "display_name": "Willy Semedo",
+        "id": "helio-varela",
+        "full_name": "Hélio Varela",
+        "display_name": "Hélio Varela",
         "position": "FWD",
-        "detailed_position": "ST",
+        "detailed_position": "FWD",
         "club": {
-          "name": "Mafra",
-          "country_iso": "pt",
-          "league": "Liga Portugal 2"
+          "name": "Maccabi Tel Aviv",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 21,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/RC_Lens_-_Grenoble_Foot_38_%2810-02-2020%29_70.jpg/330px-RC_Lens_-_Grenoble_Foot_38_%2810-02-2020%29_70.jpg"
-      },
-      {
-        "id": "kevin-pina",
-        "full_name": "Kevin Pina",
-        "display_name": "Kevin Pina",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Zalgiris Vilnius",
-          "country_iso": "lt",
-          "league": "A Lyga"
-        },
-        "shirt_number_expected": 24,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Kevin_Pina_%28footballer%29_2022.jpg/330px-Kevin_Pina_%28footballer%29_2022.jpg"
-      },
-      {
-        "id": "stopira-gomes",
-        "full_name": "Joel Tagueu",
-        "display_name": "Joel Tagueu",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Cluj",
-          "country_iso": "ro",
-          "league": "SuperLiga"
-        },
-        "shirt_number_expected": 25,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Joel_vs_Sao_Bernardo-30_01_16-2.jpg/330px-Joel_vs_Sao_Bernardo-30_01_16-2.jpg"
-      },
-      {
-        "id": "elder-monteiro",
-        "full_name": "Elder Monteiro",
-        "display_name": "Elder Monteiro",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Vizela",
-          "country_iso": "pt",
-          "league": "Liga Portugal 2"
-        },
-        "shirt_number_expected": 12,
-        "status": "bubble"
-      },
-      {
-        "id": "carlitos",
-        "full_name": "Carlitos Esprong",
-        "display_name": "Carlitos",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Sporting Brava",
-          "country_iso": "cv",
-          "league": "Primeira Divisão CV"
-        },
-        "shirt_number_expected": 26,
-        "status": "bubble"
-      },
-      {
-        "id": "patrick-andrade",
-        "full_name": "Patrick Andrade",
-        "display_name": "Patrick Andrade",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Hatayspor",
-          "country_iso": "tr",
-          "league": "Süper Lig"
-        },
-        "shirt_number_expected": 15,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Patrick_Andrade.jpg/330px-Patrick_Andrade.jpg"
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       }
     ],
     "starting_xi": {
@@ -1028,7 +1035,10 @@
         "champion": 0
       },
       "vs_last_3_wcs": "Cabo Verde NUNCA HA PARTICIPADO EN UN MUNDIAL. Mundial 2026 es DEBUT HISTÓRICO ABSOLUTO. País más pequeño en clasificarse desde Curazao. Gesta nacional eterna."
-    }
+    },
+    "squad_announced": true,
+    "squad_announced_date": "2026-05-26",
+    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
   },
   "history": {
     "first_appearance": 2026,

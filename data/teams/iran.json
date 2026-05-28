@@ -1040,7 +1040,9 @@
         "champion": 0
       },
       "vs_last_3_wcs": "Brasil 2014: fase de grupos. Rusia 2018: fase de grupos. Catar 2022: fase de grupos (con triunfo ÉPICO 2-0 a Gales). Mundial 2026: 7ª participación, 4ª CONSECUTIVA (récord histórico iraní). 1978, 1998, 2006, 2014, 2018, 2022, 2026."
-    }
+    },
+    "squad_announced": false,
+    "squad_announced_status": "pending_official"
   },
   "history": {
     "first_appearance": 1978,

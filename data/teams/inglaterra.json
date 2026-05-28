@@ -570,7 +570,7 @@
           "league": "Premier League"
         },
         "shirt_number_expected": 13,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/DeanHenderson2018.jpg/330px-DeanHenderson2018.jpg"
       },
       {
@@ -585,7 +585,7 @@
           "league": "Premier League"
         },
         "shirt_number_expected": 23,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Queen_Park_Rangers_v_Burnley_26042025_%2825%29_%28James_Trafford%29.jpg/330px-Queen_Park_Rangers_v_Burnley_26042025_%2825%29_%28James_Trafford%29.jpg"
       },
       {
@@ -604,34 +604,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Reece_James_2018.jpg/330px-Reece_James_2018.jpg"
       },
       {
-        "id": "trent-alexander-arnold",
-        "full_name": "Trent Alexander-Arnold",
-        "display_name": "Trent Alexander-Arnold",
+        "id": "tino-livramento",
+        "full_name": "Tino Livramento",
+        "display_name": "Tino Livramento",
         "position": "DEF",
-        "detailed_position": "RB",
+        "detailed_position": "DEF",
         "club": {
-          "name": "Real Madrid",
-          "country_iso": "es",
-          "league": "La Liga"
+          "name": "Newcastle",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 12,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Trent_Alexander-Arnold_2018.jpg/330px-Trent_Alexander-Arnold_2018.jpg"
-      },
-      {
-        "id": "marc-guehi",
-        "full_name": "Marc Guéhi",
-        "display_name": "Marc Guéhi",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Liverpool",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 5,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Marc_Guehi_December_2018.jpg/330px-Marc_Guehi_December_2018.jpg"
+        "photo_url": null
       },
       {
         "id": "john-stones",
@@ -649,6 +634,21 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/John_Stones_2018-06-24_1.jpg/330px-John_Stones_2018-06-24_1.jpg"
       },
       {
+        "id": "marc-guehi",
+        "full_name": "Marc Guéhi",
+        "display_name": "Marc Guéhi",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Manchester City",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Marc_Guehi_December_2018.jpg/330px-Marc_Guehi_December_2018.jpg"
+      },
+      {
         "id": "ezri-konsa",
         "full_name": "Ezri Konsa",
         "display_name": "Ezri Konsa",
@@ -660,38 +660,97 @@
           "league": "Premier League"
         },
         "shirt_number_expected": 3,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Ezri_Konsa.jpg/330px-Ezri_Konsa.jpg"
       },
       {
-        "id": "myles-lewis-skelly",
-        "full_name": "Myles Lewis-Skelly",
-        "display_name": "Lewis-Skelly",
+        "id": "dan-burn",
+        "full_name": "Dan Burn",
+        "display_name": "Dan Burn",
         "position": "DEF",
-        "detailed_position": "LB",
+        "detailed_position": "DEF",
         "club": {
-          "name": "Arsenal",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
+          "name": "Newcastle",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 14,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/1_Myles_Lewis-Skelly_arsenal_2025.jpg/330px-1_Myles_Lewis-Skelly_arsenal_2025.jpg"
+        "photo_url": null
       },
       {
-        "id": "luke-shaw",
-        "full_name": "Luke Shaw",
-        "display_name": "Luke Shaw",
+        "id": "jarell-quansah",
+        "full_name": "Jarell Quansah",
+        "display_name": "Jarell Quansah",
         "position": "DEF",
-        "detailed_position": "LB",
+        "detailed_position": "DEF",
         "club": {
-          "name": "Manchester United",
+          "name": "Bayer Leverkusen",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "nico-oreilly",
+        "full_name": "Nico O'Reilly",
+        "display_name": "Nico O'Reilly",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Manchester City",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "djed-spence",
+        "full_name": "Djed Spence",
+        "display_name": "Djed Spence",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Tottenham",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "jordan-henderson",
+        "full_name": "Jordan Henderson",
+        "display_name": "Jordan Henderson",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": {
+          "name": "Brentford",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "elliot-anderson",
+        "full_name": "Elliot Anderson",
+        "display_name": "Elliot Anderson",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Nottingham Forest",
           "country_iso": "gb-eng",
           "league": "Premier League"
         },
-        "shirt_number_expected": 22,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Luke_Shaw%2C_Manchester_United_v_Newcastle_United%2C_11_September_2021_%2844%29_%28cropped%29.jpg/330px-Luke_Shaw%2C_Manchester_United_v_Newcastle_United%2C_11_September_2021_%2844%29_%28cropped%29.jpg"
+        "shirt_number_expected": 8,
+        "status": "fixed"
       },
       {
         "id": "declan-rice",
@@ -709,18 +768,33 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%288%29_%28Declan_Rice%29.jpg"
       },
       {
-        "id": "elliot-anderson",
-        "full_name": "Elliot Anderson",
-        "display_name": "Elliot Anderson",
+        "id": "kobbie-mainoo",
+        "full_name": "Kobbie Mainoo",
+        "display_name": "Kobbie Mainoo",
         "position": "MID",
         "detailed_position": "CM",
         "club": {
-          "name": "Nottingham Forest",
+          "name": "Manchester United",
           "country_iso": "gb-eng",
           "league": "Premier League"
         },
-        "shirt_number_expected": 8,
+        "shirt_number_expected": 16,
         "status": "fixed"
+      },
+      {
+        "id": "eberechi-eze",
+        "full_name": "Eberechi Eze",
+        "display_name": "Eberechi Eze",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Arsenal",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Qpr2018eberechieeze001.jpg/330px-Qpr2018eberechieeze001.jpg"
       },
       {
         "id": "jude-bellingham",
@@ -753,51 +827,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/St._Louis_City_vs_Aston_Villa_%28Jul_2025%29_18.jpg/330px-St._Louis_City_vs_Aston_Villa_%28Jul_2025%29_18.jpg"
       },
       {
-        "id": "phil-foden",
-        "full_name": "Phil Foden",
-        "display_name": "Phil Foden",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Manchester City",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 20,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2613%2C_Phil_Foden.jpg/330px-2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2613%2C_Phil_Foden.jpg"
-      },
-      {
-        "id": "cole-palmer",
-        "full_name": "Cole Palmer",
-        "display_name": "Cole Palmer",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Chelsea",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 24,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Cole_Palmer_2025_FIFA_Club_World_Cup_Final.jpg"
-      },
-      {
-        "id": "harry-kane",
-        "full_name": "Harry Kane",
-        "display_name": "Harry Kane",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Bayern Múnich",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 9,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Harry_Kane_on_October_10%2C_2023.jpg/330px-Harry_Kane_on_October_10%2C_2023.jpg"
-      },
-      {
         "id": "bukayo-saka",
         "full_name": "Bukayo Saka",
         "display_name": "Bukayo Saka",
@@ -811,21 +840,6 @@
         "shirt_number_expected": 7,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/1_bukayo_saka_arsenal_2025_%28cropped%29.jpg/330px-1_bukayo_saka_arsenal_2025_%28cropped%29.jpg"
-      },
-      {
-        "id": "anthony-gordon",
-        "full_name": "Anthony Gordon",
-        "display_name": "Anthony Gordon",
-        "position": "FWD",
-        "detailed_position": "LW",
-        "club": {
-          "name": "Newcastle",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 11,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Anthony_Gordon_%28cropped%29.jpg"
       },
       {
         "id": "noni-madueke",
@@ -843,34 +857,49 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Fulham_v_Chelsea_20042025_%287%29_%28Noni_Madueke%29.jpg"
       },
       {
-        "id": "eberechi-eze",
-        "full_name": "Eberechi Eze",
-        "display_name": "Eberechi Eze",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Arsenal",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 19,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Qpr2018eberechieeze001.jpg/330px-Qpr2018eberechieeze001.jpg"
-      },
-      {
         "id": "marcus-rashford",
         "full_name": "Marcus Rashford",
         "display_name": "Marcus Rashford",
         "position": "FWD",
         "detailed_position": "LW",
         "club": {
-          "name": "FC Barcelona",
+          "name": "Barcelona",
           "country_iso": "es",
           "league": "La Liga"
         },
         "shirt_number_expected": 21,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Marcus_Rashford_2022-11-21_1.jpg"
+      },
+      {
+        "id": "anthony-gordon",
+        "full_name": "Anthony Gordon",
+        "display_name": "Anthony Gordon",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Newcastle",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Anthony_Gordon_%28cropped%29.jpg"
+      },
+      {
+        "id": "harry-kane",
+        "full_name": "Harry Kane",
+        "display_name": "Harry Kane",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Bayern Múnich",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Harry_Kane_on_October_10%2C_2023.jpg/330px-Harry_Kane_on_October_10%2C_2023.jpg"
       },
       {
         "id": "ollie-watkins",
@@ -888,47 +917,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Manchester_United_v_Aston_Villa%2C_25_September_2021_%2817%29_%28cropped%29.jpg/330px-Manchester_United_v_Aston_Villa%2C_25_September_2021_%2817%29_%28cropped%29.jpg"
       },
       {
-        "id": "dominic-solanke",
-        "full_name": "Dominic Solanke",
-        "display_name": "Solanke",
+        "id": "ivan-toney",
+        "full_name": "Ivan Toney",
+        "display_name": "Ivan Toney",
         "position": "FWD",
-        "detailed_position": "ST",
+        "detailed_position": "FWD",
         "club": {
-          "name": "Tottenham",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
+          "name": "Al-Ahli",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 25,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Dominic_Solanke_YouTube_2024.png/330px-Dominic_Solanke_YouTube_2024.png"
-      },
-      {
-        "id": "kobbie-mainoo",
-        "full_name": "Kobbie Mainoo",
-        "display_name": "Kobbie Mainoo",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Manchester United",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 16,
-        "status": "probable"
-      },
-      {
-        "id": "adam-wharton",
-        "full_name": "Adam Wharton",
-        "display_name": "Adam Wharton",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Crystal Palace",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 26,
-        "status": "bubble"
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       }
     ],
     "starting_xi": {
@@ -1046,7 +1047,10 @@
         "champion": 13
       },
       "vs_last_3_wcs": "Rusia 2018: SEMIFINALES (4º puesto) tras eliminar a Suecia y caer ante Croacia 1-2 en prórroga. Catar 2022: cuartos de final, eliminada por Francia 1-2 (Kane falló penal). Mundial 2026: primer torneo bajo Tuchel, busca acabar la sequía de 60 años desde 1966 (única estrella mundial sigue siendo Wembley)."
-    }
+    },
+    "squad_announced": true,
+    "squad_announced_date": "2026-05-26",
+    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
   },
   "history": {
     "first_appearance": 1950,

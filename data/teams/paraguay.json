@@ -1188,7 +1188,9 @@
         "champion": 0
       },
       "vs_last_3_wcs": "Sudáfrica 2010: cuartos de final, eliminada por España futura campeona (1-0 con gol de Villa). Brasil 2014: NO clasificó. Rusia 2018: NO clasificó. Catar 2022: NO clasificó. Mundial 2026: regreso histórico tras 16 años de ausencia (3 ediciones consecutivas sin Paraguay)."
-    }
+    },
+    "squad_announced": false,
+    "squad_announced_status": "pending_official"
   },
   "history": {
     "first_appearance": 1930,

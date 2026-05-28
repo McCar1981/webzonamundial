@@ -1312,7 +1312,9 @@
         "champion": 11
       },
       "vs_last_3_wcs": "Russia 2018: octavos eliminado por Francia 3-4. Qatar 2022: CAMPEÓN tras vencer en final 3-3 (4-2 pen) a Francia. Mundial 2026: parte como vigente campeón con un equipo más maduro pero con 4 años más en sus piernas. La continuidad táctica de Scaloni (8 años en el cargo) es valor único entre los favoritos."
-    }
+    },
+    "squad_announced": false,
+    "squad_announced_status": "pending_official"
   },
   "history": {
     "first_appearance": 1930,

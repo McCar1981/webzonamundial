@@ -466,7 +466,7 @@
       "status": "pending"
     },
     "coach": {
-      "name": "Walid Regragui",
+      "name": "Mohamed Ouahbi",
       "age": 50,
       "nationality": "Marruecos",
       "since": "2022-08-31",
@@ -475,7 +475,7 @@
         "Al-Duhail (2020-2021)",
         "FUS Rabat (2014-2020)"
       ],
-      "profile_summary": "Asumió la selección apenas 3 meses antes del Mundial Qatar 2022 y firmó el mejor papel de la historia africana en una Copa del Mundo (4º puesto). Hijo de inmigrantes marroquíes en Francia, exjugador de Racing de Santander y Grenoble. Ganó la Liga de Campeones de la CAF con Wydad en 2022 antes de la selección. Identidad táctica clara: bloque medio-bajo bien estructurado, transiciones rápidas, capacidad para neutralizar a equipos superiores. Tras la final perdida de la CAN 2025 ante Senegal en casa (primera derrota local desde 2009), llega a 2026 con la presión de capitalizar el ciclo."
+      "profile_summary": "Mohamed Ouahbi sustituyó a Walid Regragui al frente de la selección marroquí en 2026. Asumió la selección apenas 3 meses antes del Mundial Qatar 2022 y firmó el mejor papel de la historia africana en una Copa del Mundo (4º puesto). Hijo de inmigrantes marroquíes en Francia, exjugador de Racing de Santander y Grenoble. Ganó la Liga de Campeones de la CAF con Wydad en 2022 antes de la selección. Identidad táctica clara: bloque medio-bajo bien estructurado, transiciones rápidas, capacidad para neutralizar a equipos superiores. Tras la final perdida de la CAN 2025 ante Senegal en casa (primera derrota local desde 2009), llega a 2026 con la presión de capitalizar el ciclo."
     },
     "captain": {
       "name": "Achraf Hakimi",
@@ -991,7 +991,9 @@
         "champion": 1
       },
       "vs_last_3_wcs": "Rusia 2018: fase de grupos, último con 1 punto. Catar 2022: 4º PUESTO HISTÓRICO. Eliminó a Bélgica en grupos, a España en octavos (penales), a Portugal en cuartos. Cayó ante Francia en semis (2-0) y ante Croacia (2-1) en el partido por el bronce. Mundial 2026: llega como semifinalista vigente del Mundial, subcampeón Africano 2025 (CAN), con la mayoría del bloque vigente más nuevos talentos de élite (Brahim Díaz, El Khannouss, Saibari)."
-    }
+    },
+    "squad_announced": false,
+    "squad_announced_status": "pending_official"
   },
   "history": {
     "first_appearance": 1970,

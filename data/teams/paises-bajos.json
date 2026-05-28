@@ -1107,7 +1107,9 @@
         "champion": 7
       },
       "vs_last_3_wcs": "Brasil 2014: SEMIFINALES (3er puesto), eliminada por Argentina en penales tras 0-0. Rusia 2018: NO CLASIFICÓ (crisis nacional). Catar 2022: cuartos, eliminada por Argentina en penales 4-3 tras empate 2-2. Mundial 2026: 12ª participación, busca por fin levantar la Copa que se les ha resistido en 3 finales."
-    }
+    },
+    "squad_announced": false,
+    "squad_announced_status": "pending_official"
   },
   "history": {
     "first_appearance": 1934,

@@ -993,7 +993,9 @@
         "champion": 0
       },
       "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: fase de grupos. Catar 2022: fase de grupos (con MILAGRO DE LUSAIL: 2-1 a Argentina campeona). Mundial 2026: 7ª participación, 3ª CONSECUTIVA."
-    }
+    },
+    "squad_announced": false,
+    "squad_announced_status": "pending_official"
   },
   "history": {
     "first_appearance": 1994,

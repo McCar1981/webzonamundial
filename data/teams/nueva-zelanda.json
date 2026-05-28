@@ -494,13 +494,58 @@
     },
     "likely_squad": [
       {
+        "id": "max-crocombe",
+        "full_name": "Max Crocombe",
+        "display_name": "Max Crocombe",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Millwall",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "alex-paulsen",
+        "full_name": "Alex Paulsen",
+        "display_name": "Alex Paulsen",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Lechia",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "michael-woud",
+        "full_name": "Michael Woud",
+        "display_name": "Michael Woud",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Auckland FC",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
         "id": "tyler-bindon",
         "full_name": "Tyler Bindon",
         "display_name": "Tyler Bindon",
         "position": "DEF",
         "detailed_position": "CB",
         "club": {
-          "name": "Reading",
+          "name": "Sheffield United",
           "country_iso": "gb-eng",
           "league": "League One"
         },
@@ -529,7 +574,7 @@
         "position": "DEF",
         "detailed_position": "LB",
         "club": {
-          "name": "Empoli",
+          "name": "Wrexham",
           "country_iso": "it",
           "league": "Serie A"
         },
@@ -558,7 +603,9 @@
         "display_name": "Callan Elliot",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "Auckland FC"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Callan_Elliot.jpg"
@@ -570,7 +617,7 @@
         "position": "DEF",
         "detailed_position": "RB",
         "club": {
-          "name": "Auckland FC",
+          "name": "Wellington",
           "country_iso": "nz",
           "league": "A-League"
         },
@@ -584,7 +631,7 @@
         "position": "DEF",
         "detailed_position": "CB",
         "club": {
-          "name": "Sligo Rovers",
+          "name": "Auckland FC",
           "country_iso": "ie",
           "league": "Premier irlandesa"
         },
@@ -598,7 +645,7 @@
         "position": "DEF",
         "detailed_position": "CB",
         "club": {
-          "name": "Wellington Phoenix",
+          "name": "Braintree",
           "country_iso": "nz",
           "league": "A-League"
         },
@@ -627,7 +674,9 @@
         "display_name": "Lachlan Bayliss",
         "position": "MID",
         "detailed_position": "MID",
-        "club": null,
+        "club": {
+          "name": "Newcastle"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Lachlan_Bayliss.jpg"
@@ -639,7 +688,7 @@
         "position": "DEF",
         "detailed_position": "RB",
         "club": {
-          "name": "Hibernian",
+          "name": "Viking",
           "country_iso": "gb-sct",
           "league": "Scottish Premiership"
         },
@@ -654,7 +703,7 @@
         "position": "MID",
         "detailed_position": "CDM",
         "club": {
-          "name": "Wellington Phoenix",
+          "name": "Wellington",
           "country_iso": "nz",
           "league": "A-League"
         },
@@ -669,7 +718,7 @@
         "position": "MID",
         "detailed_position": "CM",
         "club": {
-          "name": "Olympiacos",
+          "name": "Swansea",
           "country_iso": "gr",
           "league": "Super League griega"
         },
@@ -684,7 +733,7 @@
         "position": "MID",
         "detailed_position": "CDM",
         "club": {
-          "name": "Auckland FC",
+          "name": "PEC Zwolle",
           "country_iso": "nz",
           "league": "A-League"
         },
@@ -699,7 +748,7 @@
         "position": "FWD",
         "detailed_position": "LW",
         "club": {
-          "name": "Auckland FC",
+          "name": "Western Sydney",
           "country_iso": "nz",
           "league": "A-League"
         },
@@ -714,7 +763,7 @@
         "position": "MID",
         "detailed_position": "CM",
         "club": {
-          "name": "Como 1907",
+          "name": "Peterborough",
           "country_iso": "it",
           "league": "Serie A"
         },
@@ -728,7 +777,7 @@
         "position": "MID",
         "detailed_position": "CAM",
         "club": {
-          "name": "Fredrikstad",
+          "name": "Motherwell",
           "country_iso": "no",
           "league": "Eliteserien"
         },
@@ -742,7 +791,9 @@
         "display_name": "Callum McCowatt",
         "position": "FWD",
         "detailed_position": "FWD",
-        "club": null,
+        "club": {
+          "name": "Silkeborg"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Callum_McCowatt_playing_for_New_Zealand%2C_26_March_2023_%282%29_%28cropped%29.jpg"
@@ -754,7 +805,7 @@
         "position": "MID",
         "detailed_position": "LW",
         "club": {
-          "name": "St. Mirren",
+          "name": "Saint-Étienne",
           "country_iso": "gb-sct",
           "league": "Scottish Premiership"
         },
@@ -769,7 +820,7 @@
         "position": "MID",
         "detailed_position": "CM",
         "club": {
-          "name": "Wellington Phoenix",
+          "name": "Auckland FC",
           "country_iso": "nz",
           "league": "A-League"
         },
@@ -783,7 +834,7 @@
         "position": "MID",
         "detailed_position": "CAM",
         "club": {
-          "name": "FC St. Pauli",
+          "name": "Wellington",
           "country_iso": "de",
           "league": "Bundesliga"
         },
@@ -797,7 +848,9 @@
         "display_name": "Ben Waine",
         "position": "FWD",
         "detailed_position": "FWD",
-        "club": null,
+        "club": {
+          "name": "Port Vale"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Ben_Waine.jpg"
@@ -937,8 +990,8 @@
       "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: NO CLASIFICÓ (cayó vs Perú repechaje 0-2 global). Catar 2022: NO CLASIFICÓ (cayó vs Costa Rica 0-1 repechaje). Mundial 2026: 3ª participación tras 16 AÑOS sin Mundial."
     },
     "squad_announced": true,
-    "squad_announced_date": "2026-05-19",
-    "squad_source": "Convocatoria oficial federación"
+    "squad_announced_date": "2026-05-26",
+    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
   },
   "history": {
     "first_appearance": 1982,

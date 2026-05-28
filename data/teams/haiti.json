@@ -426,7 +426,7 @@
         "position": "GK",
         "detailed_position": "GK",
         "club": {
-          "name": "Brest",
+          "name": "SC Bastia",
           "country_iso": "fr",
           "league": "Ligue 1"
         },
@@ -441,7 +441,7 @@
         "position": "GK",
         "detailed_position": "GK",
         "club": {
-          "name": "Cavalry FC",
+          "name": "FC Sochaux",
           "country_iso": "ca",
           "league": "Canadian Premier League"
         },
@@ -454,7 +454,9 @@
         "display_name": "Josué Duverger",
         "position": "GK",
         "detailed_position": "GK",
-        "club": null,
+        "club": {
+          "name": "Cosmos Koblenz"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -466,7 +468,7 @@
         "position": "DEF",
         "detailed_position": "RB",
         "club": {
-          "name": "Auxerre",
+          "name": "Angers SCO",
           "country_iso": "fr",
           "league": "Ligue 1"
         },
@@ -480,7 +482,9 @@
         "display_name": "Wilguens Paugain",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "Zulte Waregem"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -491,7 +495,9 @@
         "display_name": "Duke Lacroix",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "Colorado Springs"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -503,7 +509,7 @@
         "position": "FWD",
         "detailed_position": "LW",
         "club": {
-          "name": "Charlotte FC",
+          "name": "AS Nancy-Lorraine",
           "country_iso": "us",
           "league": "MLS"
         },
@@ -517,7 +523,7 @@
         "position": "DEF",
         "detailed_position": "CB",
         "club": {
-          "name": "Brest",
+          "name": "KAA Gent",
           "country_iso": "fr",
           "league": "Ligue 1"
         },
@@ -532,7 +538,7 @@
         "position": "DEF",
         "detailed_position": "CB",
         "club": {
-          "name": "Liga de Quito",
+          "name": "LDU Quito",
           "country_iso": "ec",
           "league": "Serie A ecuatoriana"
         },
@@ -546,7 +552,7 @@
         "position": "DEF",
         "detailed_position": "CB",
         "club": {
-          "name": "Burnley",
+          "name": "FC Lugano",
           "country_iso": "gb-eng",
           "league": "Premier League"
         },
@@ -560,7 +566,9 @@
         "display_name": "Keeto Thermoncy",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "Young Boys II"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -572,7 +580,7 @@
         "position": "MID",
         "detailed_position": "CDM",
         "club": {
-          "name": "Houston Dynamo",
+          "name": "FC Vizela",
           "country_iso": "us",
           "league": "MLS"
         },
@@ -585,7 +593,9 @@
         "display_name": "Carl-Fred Sainthe",
         "position": "MID",
         "detailed_position": "MID",
-        "club": null,
+        "club": {
+          "name": "El Paso Locomotive"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -596,7 +606,9 @@
         "display_name": "Jean-Jacques Danley",
         "position": "MID",
         "detailed_position": "MID",
-        "club": null,
+        "club": {
+          "name": "Philadelphia Union"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -608,7 +620,7 @@
         "position": "MID",
         "detailed_position": "CM",
         "club": {
-          "name": "Wolverhampton Wanderers",
+          "name": "Wolverhampton",
           "country_iso": "gb-eng",
           "league": "Premier League"
         },
@@ -622,7 +634,9 @@
         "display_name": "Pierre Woodenski",
         "position": "MID",
         "detailed_position": "MID",
-        "club": null,
+        "club": {
+          "name": "Violette AC"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -633,7 +647,9 @@
         "display_name": "Dominique Simon",
         "position": "MID",
         "detailed_position": "MID",
-        "club": null,
+        "club": {
+          "name": "Tatran Prešov"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -645,7 +661,7 @@
         "position": "MID",
         "detailed_position": "CAM",
         "club": {
-          "name": "Saint-Étienne",
+          "name": "FC Dallas",
           "country_iso": "fr",
           "league": "Ligue 2"
         },
@@ -673,7 +689,7 @@
         "position": "FWD",
         "detailed_position": "RW",
         "club": {
-          "name": "Auxerre",
+          "name": "AJ Auxerre",
           "country_iso": "fr",
           "league": "Ligue 1"
         },
@@ -686,7 +702,9 @@
         "display_name": "Derrick Etienne",
         "position": "FWD",
         "detailed_position": "FWD",
-        "club": null,
+        "club": {
+          "name": "Toronto FC"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/00/Derrick_Etienne_%2828411015376%29_%28cropped2%29.jpg"
@@ -713,7 +731,7 @@
         "position": "FWD",
         "detailed_position": "ST",
         "club": {
-          "name": "Tampa Bay Rowdies",
+          "name": "Esteghlal",
           "country_iso": "us",
           "league": "USL Championship"
         },
@@ -728,7 +746,7 @@
         "position": "FWD",
         "detailed_position": "ST",
         "club": {
-          "name": "Sint-Truiden",
+          "name": "Çaykur Rizespor",
           "country_iso": "be",
           "league": "Pro League"
         },
@@ -741,7 +759,9 @@
         "display_name": "Yassin Fortune",
         "position": "FWD",
         "detailed_position": "FWD",
-        "club": null,
+        "club": {
+          "name": "FC Vizela"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -752,7 +772,9 @@
         "display_name": "Lenny Joseph",
         "position": "FWD",
         "detailed_position": "FWD",
-        "club": null,
+        "club": {
+          "name": "Ferencváros"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -877,8 +899,8 @@
       "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: NO CLASIFICÓ. Catar 2022: NO CLASIFICÓ. Mundial 2026: 2ª participación, 1ª desde Alemania 1974 (52 AÑOS DE ESPERA)."
     },
     "squad_announced": true,
-    "squad_announced_date": "2026-05-19",
-    "squad_source": "Convocatoria oficial federación"
+    "squad_announced_date": "2026-05-26",
+    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
   },
   "history": {
     "first_appearance": 1974,

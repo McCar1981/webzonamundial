@@ -1089,7 +1089,9 @@
         "champion": 1
       },
       "vs_last_3_wcs": "Russia 2018: cuartos eliminado por Francia 0-2. Qatar 2022: fase de grupos eliminado pese a 2-0 a Ghana en última jornada (eliminado por diferencia de goles). Mundial 2026: tras la decepción de 2022, Uruguay busca volver a los cuartos al menos."
-    }
+    },
+    "squad_announced": false,
+    "squad_announced_status": "pending_official"
   },
   "history": {
     "first_appearance": 1930,

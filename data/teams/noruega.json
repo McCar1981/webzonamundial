@@ -611,49 +611,34 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Norway_Italy_-_June_2025_A_10_%28cropped%29.jpg/330px-Norway_Italy_-_June_2025_A_10_%28cropped%29.jpg"
       },
       {
+        "id": "sander-tangvik",
+        "full_name": "Sander Tangvik",
+        "display_name": "Sander Tangvik",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Hamburgo",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
         "id": "egil-selvik",
         "full_name": "Egil Selvik",
         "display_name": "Egil Selvik",
         "position": "GK",
         "detailed_position": "GK",
         "club": {
-          "name": "Sarpsborg 08",
+          "name": "Watford",
           "country_iso": "no",
           "league": "Eliteserien"
         },
         "shirt_number_expected": 12,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Norway_Italy_-_June_2025_A_07_%28cropped%29.jpg/330px-Norway_Italy_-_June_2025_A_07_%28cropped%29.jpg"
-      },
-      {
-        "id": "nikita-haikin",
-        "full_name": "Nikita Haikin",
-        "display_name": "Nikita Haikin",
-        "position": "GK",
-        "detailed_position": "GK",
-        "club": {
-          "name": "Bodø/Glimt",
-          "country_iso": "no",
-          "league": "Eliteserien"
-        },
-        "shirt_number_expected": 22,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Nikita_Haikin.jpg/330px-Nikita_Haikin.jpg"
-      },
-      {
-        "id": "julian-ryerson",
-        "full_name": "Julian Ryerson",
-        "display_name": "Julian Ryerson",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Borussia Dortmund",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 5,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93157.jpg/330px-2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93157.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Norway_Italy_-_June_2025_A_07_%28cropped%29.jpg/330px-Norway_Italy_-_June_2025_A_07_%28cropped%29.jpg"
       },
       {
         "id": "kristoffer-ajer",
@@ -671,49 +656,34 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Cel-Zen_%285%29_%28cropped%29.jpg/330px-Cel-Zen_%285%29_%28cropped%29.jpg"
       },
       {
+        "id": "david-møller-wolfe",
+        "full_name": "David Møller Wolfe",
+        "display_name": "David Møller Wolfe",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Wolverhampton",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
         "id": "leo-ostigard",
         "full_name": "Leo Østigård",
         "display_name": "Leo Østigård",
         "position": "DEF",
         "detailed_position": "CB",
         "club": {
-          "name": "Stade Rennais",
+          "name": "Génova",
           "country_iso": "fr",
           "league": "Ligue 1"
         },
         "shirt_number_expected": 6,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Norway_Italy_-_June_2025_A_06_%28cropped%29.jpg/330px-Norway_Italy_-_June_2025_A_06_%28cropped%29.jpg"
-      },
-      {
-        "id": "andreas-hanche-olsen",
-        "full_name": "Andreas Hanche-Olsen",
-        "display_name": "Hanche-Olsen",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Mainz 05",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 3,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Andreas_Hanche-Olsen_%28cropped%29.jpg/330px-Andreas_Hanche-Olsen_%28cropped%29.jpg"
-      },
-      {
-        "id": "marcus-pedersen",
-        "full_name": "Marcus Pedersen",
-        "display_name": "Marcus Pedersen",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Feyenoord",
-          "country_iso": "nl",
-          "league": "Eredivisie"
-        },
-        "shirt_number_expected": 14,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Marcus_Holmgren_Pedersen_2022_FC_RB_Salzburg_gegen_Feyenoord_Rotterdam_%28cropped%29.jpg/330px-Marcus_Holmgren_Pedersen_2022_FC_RB_Salzburg_gegen_Feyenoord_Rotterdam_%28cropped%29.jpg"
       },
       {
         "id": "fredrik-bjorkan",
@@ -727,38 +697,83 @@
           "league": "Eliteserien"
         },
         "shirt_number_expected": 13,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/F_Bj%C3%B8rkan.jpg/330px-F_Bj%C3%B8rkan.jpg"
       },
       {
-        "id": "stefan-strandberg",
-        "full_name": "Stefan Strandberg",
-        "display_name": "Stefan Strandberg",
+        "id": "marcus-pedersen",
+        "full_name": "Marcus Pedersen",
+        "display_name": "Marcus Pedersen",
         "position": "DEF",
-        "detailed_position": "CB",
+        "detailed_position": "RB",
         "club": {
-          "name": "Salernitana",
-          "country_iso": "it",
-          "league": "Serie B"
+          "name": "Torino",
+          "country_iso": "nl",
+          "league": "Eredivisie"
         },
-        "shirt_number_expected": 21,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Stefan_Strandberg_2019.jpg/330px-Stefan_Strandberg_2019.jpg"
+        "shirt_number_expected": 14,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Marcus_Holmgren_Pedersen_2022_FC_RB_Salzburg_gegen_Feyenoord_Rotterdam_%28cropped%29.jpg/330px-Marcus_Holmgren_Pedersen_2022_FC_RB_Salzburg_gegen_Feyenoord_Rotterdam_%28cropped%29.jpg"
       },
       {
-        "id": "martin-odegaard",
-        "full_name": "Martin Ødegaard",
-        "display_name": "Martin Ødegaard",
-        "position": "MID",
-        "detailed_position": "CAM",
+        "id": "torbjørn-heggem",
+        "full_name": "Torbjørn Heggem",
+        "display_name": "Torbjørn Heggem",
+        "position": "DEF",
+        "detailed_position": "DEF",
         "club": {
-          "name": "Arsenal",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
+          "name": "Bologna",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 10,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Norway_Italy_-_June_2025_E_04.jpg/330px-Norway_Italy_-_June_2025_E_04.jpg"
+        "photo_url": null
+      },
+      {
+        "id": "alexander-fett-sorloth",
+        "full_name": "Sondre Langås",
+        "display_name": "Sondre Langås",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Derby County",
+          "country_iso": "no",
+          "league": "Eliteserien"
+        },
+        "shirt_number_expected": 25,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Sondre_Lang%C3%A5s_25042026_%281%29.jpg/330px-Sondre_Lang%C3%A5s_25042026_%281%29.jpg"
+      },
+      {
+        "id": "henrik-falchener",
+        "full_name": "Henrik Falchener",
+        "display_name": "Henrik Falchener",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Viking FK",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "julian-ryerson",
+        "full_name": "Julian Ryerson",
+        "display_name": "Julian Ryerson",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Borussia Dortmund",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93157.jpg/330px-2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93157.jpg"
       },
       {
         "id": "morten-thorsby",
@@ -767,7 +782,7 @@
         "position": "MID",
         "detailed_position": "CDM",
         "club": {
-          "name": "Genoa",
+          "name": "Cremonese",
           "country_iso": "it",
           "league": "Serie A"
         },
@@ -791,20 +806,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Norway_Italy_-_June_2025_A_14_%28cropped%29.jpg/330px-Norway_Italy_-_June_2025_A_14_%28cropped%29.jpg"
       },
       {
-        "id": "thelo-aasgaard",
-        "full_name": "Thelo Aasgaard",
-        "display_name": "Thelo Aasgaard",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Rangers",
-          "country_iso": "gb-sct",
-          "league": "Scottish Premiership"
-        },
-        "shirt_number_expected": 19,
-        "status": "fixed"
-      },
-      {
         "id": "sander-berge",
         "full_name": "Sander Berge",
         "display_name": "Sander Berge",
@@ -820,6 +821,21 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Norway_Italy_-_June_2025_E_25_%28cropped%29.jpg/330px-Norway_Italy_-_June_2025_E_25_%28cropped%29.jpg"
       },
       {
+        "id": "martin-odegaard",
+        "full_name": "Martin Ødegaard",
+        "display_name": "Martin Ødegaard",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Arsenal",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Norway_Italy_-_June_2025_E_04.jpg/330px-Norway_Italy_-_June_2025_E_04.jpg"
+      },
+      {
         "id": "fredrik-aursnes",
         "full_name": "Fredrik Aursnes",
         "display_name": "Fredrik Aursnes",
@@ -831,38 +847,36 @@
           "league": "Primeira Liga"
         },
         "shirt_number_expected": 18,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Zenit-Mo%3Bde_%286%29_%28cropped%29.jpg/330px-Zenit-Mo%3Bde_%286%29_%28cropped%29.jpg"
       },
       {
-        "id": "erling-haaland",
-        "full_name": "Erling Haaland",
-        "display_name": "Erling Haaland",
-        "position": "FWD",
-        "detailed_position": "ST",
+        "id": "kristian-thorstvedt",
+        "full_name": "Kristian Thorstvedt",
+        "display_name": "Kristian Thorstvedt",
+        "position": "MID",
+        "detailed_position": "CAM",
         "club": {
-          "name": "Manchester City",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
+          "name": "Sassuolo",
+          "country_iso": "it",
+          "league": "Serie A"
         },
-        "shirt_number_expected": 9,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Erling_Haaland_June_2025.jpg/330px-Erling_Haaland_June_2025.jpg"
+        "shirt_number_expected": 2,
+        "status": "fixed"
       },
       {
-        "id": "alexander-sorloth",
-        "full_name": "Alexander Sørloth",
-        "display_name": "Alexander Sørloth",
-        "position": "FWD",
-        "detailed_position": "ST",
+        "id": "thelo-aasgaard",
+        "full_name": "Thelo Aasgaard",
+        "display_name": "Thelo Aasgaard",
+        "position": "MID",
+        "detailed_position": "CAM",
         "club": {
-          "name": "Atlético Madrid",
-          "country_iso": "es",
-          "league": "La Liga"
+          "name": "Rangers",
+          "country_iso": "gb-sct",
+          "league": "Scottish Premiership"
         },
-        "shirt_number_expected": 11,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Norway_Italy_-_June_2025_E_10.jpg/330px-Norway_Italy_-_June_2025_E_10.jpg"
+        "shirt_number_expected": 19,
+        "status": "fixed"
       },
       {
         "id": "antonio-nusa",
@@ -880,51 +894,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Norway_Italy_-_June_2025_C_24.jpg/330px-Norway_Italy_-_June_2025_C_24.jpg"
       },
       {
-        "id": "oscar-bobb",
-        "full_name": "Oscar Bobb",
-        "display_name": "Oscar Bobb",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Manchester City",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 20,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Yokohama_F._Marinos_-_Manchester_City_%283-5%29_-_53075274094_%28Oscar_Bobb%29.jpg/330px-Yokohama_F._Marinos_-_Manchester_City_%283-5%29_-_53075274094_%28Oscar_Bobb%29.jpg"
-      },
-      {
-        "id": "mohamed-elyounoussi",
-        "full_name": "Mohamed Elyounoussi",
-        "display_name": "Elyounoussi",
-        "position": "FWD",
-        "detailed_position": "LW",
-        "club": {
-          "name": "Newcastle",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 15,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/CSKA_Moscow_v_Basel_%283%29.jpg/330px-CSKA_Moscow_v_Basel_%283%29.jpg"
-      },
-      {
-        "id": "jorgen-strand-larsen",
-        "full_name": "Jørgen Strand Larsen",
-        "display_name": "Strand Larsen",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Wolves",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 23,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Norway_Italy_-_June_2025_A_15_%28cropped%29.jpg/330px-Norway_Italy_-_June_2025_A_15_%28cropped%29.jpg"
-      },
-      {
         "id": "andreas-schjelderup",
         "full_name": "Andreas Schjelderup",
         "display_name": "Schjelderup",
@@ -936,50 +905,82 @@
           "league": "Primeira Liga"
         },
         "shirt_number_expected": 24,
-        "status": "probable"
+        "status": "fixed"
       },
       {
-        "id": "alexander-fett-sorloth",
-        "full_name": "Sondre Langås",
-        "display_name": "Sondre Langås",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Brann",
-          "country_iso": "no",
-          "league": "Eliteserien"
-        },
-        "shirt_number_expected": 25,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Sondre_Lang%C3%A5s_25042026_%281%29.jpg/330px-Sondre_Lang%C3%A5s_25042026_%281%29.jpg"
-      },
-      {
-        "id": "kristian-thorstvedt",
-        "full_name": "Kristian Thorstvedt",
-        "display_name": "Kristian Thorstvedt",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Sassuolo",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 2,
-        "status": "probable"
-      },
-      {
-        "id": "marius-broholm",
-        "full_name": "Marius Broholm",
-        "display_name": "Marius Broholm",
+        "id": "oscar-bobb",
+        "full_name": "Oscar Bobb",
+        "display_name": "Oscar Bobb",
         "position": "FWD",
         "detailed_position": "RW",
         "club": {
-          "name": "Brann",
-          "country_iso": "no",
-          "league": "Eliteserien"
+          "name": "Fulham",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
         },
-        "shirt_number_expected": 26,
-        "status": "bubble"
+        "shirt_number_expected": 20,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Yokohama_F._Marinos_-_Manchester_City_%283-5%29_-_53075274094_%28Oscar_Bobb%29.jpg/330px-Yokohama_F._Marinos_-_Manchester_City_%283-5%29_-_53075274094_%28Oscar_Bobb%29.jpg"
+      },
+      {
+        "id": "jens-petter-hauge",
+        "full_name": "Jens Petter Hauge",
+        "display_name": "Jens Petter Hauge",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": {
+          "name": "Bodø/Glimt",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "alexander-sorloth",
+        "full_name": "Alexander Sørloth",
+        "display_name": "Alexander Sørloth",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Atlético de Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Norway_Italy_-_June_2025_E_10.jpg/330px-Norway_Italy_-_June_2025_E_10.jpg"
+      },
+      {
+        "id": "erling-haaland",
+        "full_name": "Erling Haaland",
+        "display_name": "Erling Haaland",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Manchester City",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Erling_Haaland_June_2025.jpg/330px-Erling_Haaland_June_2025.jpg"
+      },
+      {
+        "id": "jorgen-strand-larsen",
+        "full_name": "Jørgen Strand Larsen",
+        "display_name": "Strand Larsen",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Crystal Palace",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 23,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Norway_Italy_-_June_2025_A_15_%28cropped%29.jpg/330px-Norway_Italy_-_June_2025_A_15_%28cropped%29.jpg"
       }
     ],
     "starting_xi": {
@@ -1099,7 +1100,10 @@
         "champion": 0
       },
       "vs_last_3_wcs": "Brasil 2014: NO clasificó. Rusia 2018: NO clasificó. Catar 2022: NO clasificó. Mundial 2026: 4ª participación absoluta (1938, 1994, 1998, 2026). Regreso histórico tras 28 años con la generación más talentosa de la historia."
-    }
+    },
+    "squad_announced": true,
+    "squad_announced_date": "2026-05-26",
+    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
   },
   "history": {
     "first_appearance": 1938,

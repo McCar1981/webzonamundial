@@ -556,7 +556,7 @@
         "position": "GK",
         "detailed_position": "GK",
         "club": {
-          "name": "Red Bull Salzburg",
+          "name": "RB Salzburg",
           "country_iso": "at",
           "league": "Bundesliga"
         },
@@ -578,6 +578,21 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
+      },
+      {
+        "id": "david-affengruber",
+        "full_name": "David Affengruber",
+        "display_name": "David Affengruber",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Elche",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/FC_Liefering_versus_Young_Violets_Austria_Wien_%2830._August_2019%29_28.jpg"
       },
       {
         "id": "david-alaba",
@@ -700,21 +715,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/35/FC_RB_Salzburg_gegen_WSG_Swarowski_Tirol_%287._Dezember_2019%29_62_%28Michael_Svoboda%29.jpg"
       },
       {
-        "id": "david-affengruber",
-        "full_name": "David Affengruber",
-        "display_name": "David Affengruber",
-        "position": "DEF",
-        "detailed_position": "DEF",
-        "club": {
-          "name": "Elche",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/FC_Liefering_versus_Young_Violets_Austria_Wien_%2830._August_2019%29_28.jpg"
-      },
-      {
         "id": "christoph-baumgartner",
         "full_name": "Christoph Baumgartner",
         "display_name": "Baumgartner",
@@ -826,7 +826,7 @@
         "position": "MID",
         "detailed_position": "MID",
         "club": {
-          "name": "Wolfsberger AC",
+          "name": "RZ Pellets",
           "country_iso": null,
           "league": null
         },
@@ -856,7 +856,7 @@
         "position": "MID",
         "detailed_position": "MID",
         "club": {
-          "name": "PSV Eindhoven",
+          "name": "PSV",
           "country_iso": null,
           "league": null
         },
@@ -865,19 +865,64 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/41/Paul_wanner-1772636856_%28cropped%29.JPG"
       },
       {
+        "id": "patrick-wimmer",
+        "full_name": "Patrick Wimmer",
+        "display_name": "Patrick Wimmer",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": {
+          "name": "Wolfsburgo",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
         "id": "marko-arnautovic",
         "full_name": "Marko Arnautović",
         "display_name": "Marko Arnautović",
         "position": "FWD",
         "detailed_position": "ST",
         "club": {
-          "name": "Red Star Belgrado",
+          "name": "Estrella Roja",
           "country_iso": "rs",
           "league": "SuperLiga"
         },
         "shirt_number_expected": 7,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Marko_Arnautovi%C4%87_850_1633.jpg/330px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Marko_Arnautovi%C4%87_850_1633.jpg"
+      },
+      {
+        "id": "michael-gregoritsch",
+        "full_name": "Michael Gregoritsch",
+        "display_name": "Michael Gregoritsch",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": {
+          "name": "Augsburgo",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "sasa-kalajdzic",
+        "full_name": "Sasa Kalajdžić",
+        "display_name": "Sasa Kalajdžić",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": {
+          "name": "LASK Linz",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       }
     ],
     "starting_xi": {
@@ -999,8 +1044,8 @@
       "vs_last_3_wcs": "Brasil 2014: NO clasificó. Rusia 2018: NO clasificó. Catar 2022: NO clasificó. Mundial 2026: 8ª participación absoluta, regreso histórico tras 28 años (último Francia 1998: 1er puesto Grupo B → eliminada por Italia). La generación dorada moderna (Alaba, Arnautović, Sabitzer) llegó por fin a Mundial."
     },
     "squad_announced": true,
-    "squad_announced_date": "2026-05-19",
-    "squad_source": "Convocatoria oficial federación"
+    "squad_announced_date": "2026-05-26",
+    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
   },
   "history": {
     "first_appearance": 1934,

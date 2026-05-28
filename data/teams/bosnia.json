@@ -538,7 +538,7 @@
         "position": "GK",
         "detailed_position": "GK",
         "club": {
-          "name": "FC St. Pauli",
+          "name": "St. Pauli",
           "country_iso": "de",
           "league": "Bundesliga"
         },
@@ -553,7 +553,7 @@
         "position": "GK",
         "detailed_position": "GK",
         "club": {
-          "name": "HNK Rijeka",
+          "name": "Rijeka",
           "country_iso": null,
           "league": null
         },
@@ -568,7 +568,7 @@
         "position": "GK",
         "detailed_position": "GK",
         "club": {
-          "name": "NK Slaven Belupo",
+          "name": "Slaven Belupo",
           "country_iso": null,
           "league": null
         },
@@ -658,7 +658,7 @@
         "position": "DEF",
         "detailed_position": "DEF",
         "club": {
-          "name": "HNK Rijeka",
+          "name": "Rijeka",
           "country_iso": null,
           "league": null
         },
@@ -748,7 +748,7 @@
         "position": "MID",
         "detailed_position": "MID",
         "club": {
-          "name": "Karlsruher",
+          "name": "Karlsruher SC",
           "country_iso": null,
           "league": null
         },
@@ -778,7 +778,7 @@
         "position": "MID",
         "detailed_position": "MID",
         "club": {
-          "name": "Brøndby IF",
+          "name": "Brøndby",
           "country_iso": null,
           "league": null
         },
@@ -822,7 +822,7 @@
         "position": "FWD",
         "detailed_position": "RW",
         "club": {
-          "name": "Red Bull Salzburg",
+          "name": "RB Salzburg",
           "country_iso": "de",
           "league": "3. Liga"
         },
@@ -837,7 +837,7 @@
         "position": "MID",
         "detailed_position": "MID",
         "club": {
-          "name": "PSV",
+          "name": "PSV Eindhoven",
           "country_iso": null,
           "league": null
         },
@@ -865,7 +865,9 @@
         "display_name": "Jovo Lukić",
         "position": "FWD",
         "detailed_position": "FWD",
-        "club": null,
+        "club": {
+          "name": "Universitatea Cluj"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -876,7 +878,9 @@
         "display_name": "Samed Baždar",
         "position": "FWD",
         "detailed_position": "FWD",
-        "club": null,
+        "club": {
+          "name": "Jagiellonia Białystok"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -888,7 +892,7 @@
         "position": "FWD",
         "detailed_position": "ST",
         "club": {
-          "name": "Eintracht Fráncfort",
+          "name": "Borussia Mönchengladbach",
           "country_iso": "de",
           "league": "Bundesliga"
         },
@@ -903,7 +907,7 @@
         "position": "FWD",
         "detailed_position": "ST",
         "club": {
-          "name": "Fenerbahçe",
+          "name": "Schalke 04",
           "country_iso": "tr",
           "league": "Süper Lig"
         },
@@ -1029,8 +1033,8 @@
       "vs_last_3_wcs": "Brasil 2014: 1ª y única participación, eliminada en grupos. Rusia 2018: NO clasificó. Catar 2022: NO clasificó. Mundial 2026: 2ª participación absoluta vía play-off histórico ante Italia."
     },
     "squad_announced": true,
-    "squad_announced_date": "2026-05-19",
-    "squad_source": "Convocatoria oficial federación"
+    "squad_announced_date": "2026-05-26",
+    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
   },
   "history": {
     "first_appearance": 2014,

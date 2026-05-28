@@ -646,34 +646,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Weverton-Palmeiras-Liverpool-abr24.jpg"
       },
       {
-        "id": "marquinhos",
-        "full_name": "Marcos Aoás Corrêa",
-        "display_name": "Marquinhos",
+        "id": "alex-sandro",
+        "full_name": "Alex Sandro",
+        "display_name": "Alex Sandro",
         "position": "DEF",
-        "detailed_position": "CB",
+        "detailed_position": "LB",
         "club": {
-          "name": "PSG",
-          "country_iso": "fr",
-          "league": "Ligue 1"
+          "name": "Flamengo",
+          "country_iso": "br",
+          "league": "Brasileirão"
         },
-        "shirt_number_expected": 4,
+        "shirt_number_expected": 6,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/FC_Salzburg_gegen_Paris_Saint-Germain_UEFA_Champions_League_49_%28cropped%29.jpg/330px-FC_Salzburg_gegen_Paris_Saint-Germain_UEFA_Champions_League_49_%28cropped%29.jpg"
-      },
-      {
-        "id": "gabriel-magalhaes",
-        "full_name": "Gabriel Magalhães",
-        "display_name": "Gabriel",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Arsenal",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 13,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/GabrielLille2019.png/330px-GabrielLille2019.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/62/AlexSandroCopaAmerica2019.jpg"
       },
       {
         "id": "gleison-bremer",
@@ -706,21 +691,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Danilo_Luiz_850_1591.jpg/330px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Danilo_Luiz_850_1591.jpg"
       },
       {
-        "id": "alex-sandro",
-        "full_name": "Alex Sandro",
-        "display_name": "Alex Sandro",
-        "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "Flamengo",
-          "country_iso": "br",
-          "league": "Brasileirão"
-        },
-        "shirt_number_expected": 6,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/62/AlexSandroCopaAmerica2019.jpg"
-      },
-      {
         "id": "douglas-santos",
         "full_name": "Douglas Santos",
         "display_name": "Douglas Santos",
@@ -734,6 +704,21 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/09/Douglas_dos_Santos_2024.jpg"
+      },
+      {
+        "id": "gabriel-magalhaes",
+        "full_name": "Gabriel Magalhães",
+        "display_name": "Gabriel",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Arsenal",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 13,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/GabrielLille2019.png/330px-GabrielLille2019.png"
       },
       {
         "id": "roger-ibanez",
@@ -764,6 +749,21 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b0/L%C3%A9o_Pereira_Atl%C3%A9tico_GO_2022.png"
+      },
+      {
+        "id": "marquinhos",
+        "full_name": "Marcos Aoás Corrêa",
+        "display_name": "Marquinhos",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "PSG",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/FC_Salzburg_gegen_Paris_Saint-Germain_UEFA_Champions_League_49_%28cropped%29.jpg/330px-FC_Salzburg_gegen_Paris_Saint-Germain_UEFA_Champions_League_49_%28cropped%29.jpg"
       },
       {
         "id": "wesley",
@@ -856,58 +856,13 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Lucas_Paquet%C3%A1_of_West_Ham.jpeg/330px-Lucas_Paquet%C3%A1_of_West_Ham.jpeg"
       },
       {
-        "id": "vinicius-jr",
-        "full_name": "Vinícius José Paixão de Oliveira Júnior",
-        "display_name": "Vinícius Jr.",
-        "position": "FWD",
-        "detailed_position": "LW",
-        "club": {
-          "name": "Real Madrid",
-          "country_iso": "es",
-          "league": "La Liga"
-        },
-        "shirt_number_expected": 7,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/2023_05_06_Final_de_la_Copa_del_Rey_-_52879242230_%28cropped%29.jpg/330px-2023_05_06_Final_de_la_Copa_del_Rey_-_52879242230_%28cropped%29.jpg"
-      },
-      {
-        "id": "raphinha",
-        "full_name": "Raphael Dias Belloli",
-        "display_name": "Raphinha",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Barcelona",
-          "country_iso": "es",
-          "league": "La Liga"
-        },
-        "shirt_number_expected": 19,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Raphael_Dias_Belloli_2023.jpg/330px-Raphael_Dias_Belloli_2023.jpg"
-      },
-      {
-        "id": "neymar",
-        "full_name": "Neymar da Silva Santos Júnior",
-        "display_name": "Neymar",
-        "position": "FWD",
-        "detailed_position": "LW",
-        "club": {
-          "name": "Santos",
-          "country_iso": "br",
-          "league": "Brasileirão"
-        },
-        "shirt_number_expected": 10,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Neymar_Jr._with_Al_Hilal%2C_3_October_2023_-_03_%28cropped%29_version_2.jpg/330px-Neymar_Jr._with_Al_Hilal%2C_3_October_2023_-_03_%28cropped%29_version_2.jpg"
-      },
-      {
         "id": "endrick",
         "full_name": "Endrick Felipe",
         "display_name": "Endrick",
         "position": "FWD",
         "detailed_position": "ST",
         "club": {
-          "name": "Olympique de Lyon",
+          "name": "Lyon",
           "country_iso": "es",
           "league": "La Liga"
         },
@@ -929,36 +884,6 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Gabriel_Martinelli_2020.jpg"
-      },
-      {
-        "id": "matheus-cunha",
-        "full_name": "Matheus Cunha",
-        "display_name": "Matheus Cunha",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Manchester United",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 22,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Matheus_Cunha_%28cropped%29_20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_7968_%28cropped%29.jpg/330px-Matheus_Cunha_%28cropped%29_20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_7968_%28cropped%29.jpg"
-      },
-      {
-        "id": "rayan",
-        "full_name": "Rayan",
-        "display_name": "Rayan",
-        "position": "FWD",
-        "detailed_position": "FWD",
-        "club": {
-          "name": "Bournemouth",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Rayan_2026.png"
       },
       {
         "id": "igor-thiago",
@@ -989,6 +914,81 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Luiz_Henrique_in_Zenit_2025.jpg"
+      },
+      {
+        "id": "matheus-cunha",
+        "full_name": "Matheus Cunha",
+        "display_name": "Matheus Cunha",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Manchester United",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 22,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Matheus_Cunha_%28cropped%29_20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_7968_%28cropped%29.jpg/330px-Matheus_Cunha_%28cropped%29_20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_7968_%28cropped%29.jpg"
+      },
+      {
+        "id": "neymar",
+        "full_name": "Neymar da Silva Santos Júnior",
+        "display_name": "Neymar",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Santos",
+          "country_iso": "br",
+          "league": "Brasileirão"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Neymar_Jr._with_Al_Hilal%2C_3_October_2023_-_03_%28cropped%29_version_2.jpg/330px-Neymar_Jr._with_Al_Hilal%2C_3_October_2023_-_03_%28cropped%29_version_2.jpg"
+      },
+      {
+        "id": "raphinha",
+        "full_name": "Raphael Dias Belloli",
+        "display_name": "Raphinha",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Barcelona",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Raphael_Dias_Belloli_2023.jpg/330px-Raphael_Dias_Belloli_2023.jpg"
+      },
+      {
+        "id": "vinicius-jr",
+        "full_name": "Vinícius José Paixão de Oliveira Júnior",
+        "display_name": "Vinícius Jr.",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Real Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/2023_05_06_Final_de_la_Copa_del_Rey_-_52879242230_%28cropped%29.jpg/330px-2023_05_06_Final_de_la_Copa_del_Rey_-_52879242230_%28cropped%29.jpg"
+      },
+      {
+        "id": "rayan",
+        "full_name": "Rayan",
+        "display_name": "Rayan",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": {
+          "name": "Bournemouth",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Rayan_2026.png"
       }
     ],
     "starting_xi": {
@@ -1107,8 +1107,8 @@
       "vs_last_3_wcs": "Russia 2018: cuartos eliminado por Bélgica 1-2. Qatar 2022: cuartos eliminado por Croacia en penales tras 1-1 (gol de Neymar en prórroga). Mundial 2026: tercer cuartos consecutivo sería repetir techo; superarlo requiere identidad nueva con Ancelotti. Lleva 24 años sin Mundial (desde 2002), la mayor sequía de un pentacampeón."
     },
     "squad_announced": true,
-    "squad_announced_date": "2026-05-19",
-    "squad_source": "Convocatoria oficial federación"
+    "squad_announced_date": "2026-05-26",
+    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
   },
   "history": {
     "first_appearance": 1930,

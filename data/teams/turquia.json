@@ -1030,7 +1030,9 @@
         "champion": 0
       },
       "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: NO CLASIFICÓ. Catar 2022: NO CLASIFICÓ. Mundial 2026: regreso tras 24 años (última 2002 con tercer puesto histórico). La generación Güler-Yıldız es la más prometedora desde Hakan Şükür-Tugay-Davala 2002."
-    }
+    },
+    "squad_announced": false,
+    "squad_announced_status": "pending_official"
   },
   "history": {
     "first_appearance": 1954,

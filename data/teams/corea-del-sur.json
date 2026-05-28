@@ -555,19 +555,19 @@
     },
     "likely_squad": [
       {
-        "id": "jo-hyeon-woo",
-        "full_name": "Jo Hyeon-woo",
-        "display_name": "Jo Hyeon-woo",
+        "id": "kim-seung-gyu",
+        "full_name": "Kim Seung-gyu",
+        "display_name": "Kim Seung-gyu",
         "position": "GK",
         "detailed_position": "GK",
         "club": {
-          "name": "Ulsan Hyundai",
-          "country_iso": "kr",
-          "league": "K League 1"
+          "name": "FC Tokyo",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
         },
-        "shirt_number_expected": 12,
+        "shirt_number_expected": 1,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Jo_Hyeon-woo.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Rus-SK2017_%2822%29.jpg/330px-Rus-SK2017_%2822%29.jpg"
       },
       {
         "id": "song-bum-keun",
@@ -585,19 +585,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/240611_%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD_vs_%EC%A4%91%EA%B5%AD_%28%EC%86%A1%EB%B2%94%EA%B7%BC%29.jpg/330px-240611_%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD_vs_%EC%A4%91%EA%B5%AD_%28%EC%86%A1%EB%B2%94%EA%B7%BC%29.jpg"
       },
       {
-        "id": "kim-seung-gyu",
-        "full_name": "Kim Seung-gyu",
-        "display_name": "Kim Seung-gyu",
+        "id": "jo-hyeon-woo",
+        "full_name": "Jo Hyeon-woo",
+        "display_name": "Jo Hyeon-woo",
         "position": "GK",
         "detailed_position": "GK",
         "club": {
-          "name": "Al-Shabab",
-          "country_iso": "sa",
-          "league": "Saudi Pro League"
+          "name": "Ulsan HD",
+          "country_iso": "kr",
+          "league": "K League 1"
         },
-        "shirt_number_expected": 1,
+        "shirt_number_expected": 12,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Rus-SK2017_%2822%29.jpg/330px-Rus-SK2017_%2822%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Jo_Hyeon-woo.jpg"
       },
       {
         "id": "kim-moon-hwan",
@@ -681,7 +681,7 @@
         "position": "DEF",
         "detailed_position": "DEF",
         "club": {
-          "name": "Borussia M'gladbach",
+          "name": "Borussia Mönchengladbach",
           "country_iso": null,
           "league": null
         },
@@ -711,7 +711,7 @@
         "position": "DEF",
         "detailed_position": "LB",
         "club": {
-          "name": "Austria Viena",
+          "name": "Austria de Viena",
           "country_iso": "kr",
           "league": "K League 1"
         },
@@ -906,7 +906,7 @@
         "position": "FWD",
         "detailed_position": "LW",
         "club": {
-          "name": "LA FC",
+          "name": "LAFC",
           "country_iso": "us",
           "league": "MLS"
         },
@@ -1063,8 +1063,8 @@
       "vs_last_3_wcs": "Brasil 2014: fase de grupos (último). Rusia 2018: fase de grupos (con triunfo HISTÓRICO 2-0 a Alemania). Catar 2022: octavos (2-1 con Portugal en grupo, eliminada 1-4 con Brasil). Mundial 2026: 12ª participación (11 consecutivas, récord asiático)."
     },
     "squad_announced": true,
-    "squad_announced_date": "2026-05-19",
-    "squad_source": "Convocatoria oficial federación"
+    "squad_announced_date": "2026-05-26",
+    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
   },
   "history": {
     "first_appearance": 1954,

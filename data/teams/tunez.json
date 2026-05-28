@@ -88,7 +88,7 @@
         "goals_against": 0,
         "goal_difference": 22,
         "points": 28,
-        "win_percentage": 90.0,
+        "win_percentage": 90,
         "clean_sheets": 10,
         "notes": "RÉCORD HISTÓRICO: PRIMERA SELECCIÓN EN CLASIFICAR A UN MUNDIAL SIN ENCAJAR UN SOLO GOL en la eliminatoria. 22-0 GD."
       },
@@ -594,7 +594,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Chamakh_Emirates_Cup_cropped.jpg"
       },
       {
         "id": "sabri-ben-hassen",
@@ -789,7 +789,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Rani_Khedira_2023.jpg"
       },
       {
         "id": "anis-ben-slimane",

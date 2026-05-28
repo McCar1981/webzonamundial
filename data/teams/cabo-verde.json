@@ -88,7 +88,7 @@
         "goals_against": 8,
         "goal_difference": 8,
         "points": 23,
-        "win_percentage": 70.0,
+        "win_percentage": 70,
         "clean_sheets": 5
       },
       "coach_during_qualifying": "Pedro 'Bubista' Brito",
@@ -559,7 +559,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Phase_de_match_Ethiopie_-_Cape_verde_%28cropped%29.jpg"
       },
       {
         "id": "carlos-santos",
@@ -574,7 +574,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/PhraeUtdCarlosSantosdeJesusAWAZNavyApril30CAP.jpg"
       },
       {
         "id": "steven-moreira",
@@ -589,7 +589,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Steven_Moreira_NYCFC_v_Columbus_10_May_2026-67_%28cropped%29.jpg"
       },
       {
         "id": "wagner-pina",
@@ -618,7 +618,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Paulinho_2021.png"
       },
       {
         "id": "diawisa-tavares",
@@ -870,7 +870,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Valenciennes_-_UNFP_FC_%2802-07-2016%29_40_%28cropped%29.jpg"
       },
       {
         "id": "dailon-livramento",
@@ -899,7 +899,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Benchimol_2024.jpg"
       },
       {
         "id": "helio-varela",

@@ -478,7 +478,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/OliverBaumann_%28cropped%29.jpg"
       },
       {
         "id": "manuel-neuer",
@@ -628,7 +628,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/66/Milan_Lecce_2023_Thiaw.jpg"
       },
       {
         "id": "nadiem-amiri",
@@ -703,7 +703,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Jamie_leweling.jpg"
       },
       {
         "id": "jamal-musiala",
@@ -748,7 +748,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/90/FC_RB_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%282026-01-06_Testspiel%29_34.jpg"
       },
       {
         "id": "angelo-stiller",
@@ -763,7 +763,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Angelo_Stiller_2023.jpg"
       },
       {
         "id": "maximilian-beier",
@@ -778,7 +778,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Maximilian_Beier_training_with_Borussia_Dortmund_%282026%29.jpg"
       },
       {
         "id": "kai-havertz",
@@ -793,7 +793,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/59/Kai_Havertz_2020.jpg"
       },
       {
         "id": "leroy-sane",

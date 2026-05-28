@@ -92,7 +92,7 @@
         "goals_against": 6,
         "goal_difference": 13,
         "points": 22,
-        "win_percentage": 60.0,
+        "win_percentage": 60,
         "clean_sheets": 6,
         "notes": "Stats del Grupo B CAF (10 partidos, INVICTOS pero sin ganar suficientes). Adicionalmente: 2 partidos play-off CAF (1G 1E pen) + 1 partido repechaje intercontinental (1G). Total ciclo: 13 partidos, 8G 5E 0P, INVICTO."
       },
@@ -559,7 +559,8 @@
           "league": "Ligue 2"
         },
         "shirt_number_expected": 1,
-        "status": "fixed"
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Lionel_Mpasi_%28cropped%29.jpg"
       },
       {
         "id": "timothy-fayulu",
@@ -839,7 +840,8 @@
           "league": "Süper Lig"
         },
         "shirt_number_expected": 19,
-        "status": "fixed"
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/db/Meschack_Elia_%28cropped%29.jpg"
       },
       {
         "id": "gael-kakuta",
@@ -854,7 +856,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Entra%C3%AEnement_du_RC_Lens_-_15_juillet_2020_24.jpg"
       },
       {
         "id": "theo-bongonda",
@@ -913,7 +915,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/78/Lens_-_Sochaux_%2823-11-2019%29_99_%28cropped%29.jpg"
       },
       {
         "id": "yoane-wissa",
@@ -1069,7 +1071,7 @@
       "lost": 3,
       "goals_for": 0,
       "goals_against": 14,
-      "win_percentage": 0.0,
+      "win_percentage": 0,
       "notes": "3 partidos en 1 Mundial (como Zaire). NUNCA marcó un gol ni ganó. Récord histórico: 0-9 vs Yugoslavia es la mayor goleada en Mundiales junto a Hungría 10-1 vs El Salvador."
     },
     "by_world_cup": [

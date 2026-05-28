@@ -506,7 +506,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Max_Crocombe_14122024_%281%29.jpg"
       },
       {
         "id": "alex-paulsen",
@@ -521,7 +521,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/af/Alex_Paulsen.jpg"
       },
       {
         "id": "michael-woud",
@@ -536,7 +536,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/33/Michael_Woud.jpg"
       },
       {
         "id": "tyler-bindon",

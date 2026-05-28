@@ -88,7 +88,7 @@
         "goals_against": 4,
         "goal_difference": 15,
         "points": 26,
-        "win_percentage": 80.0,
+        "win_percentage": 80,
         "clean_sheets": 6
       },
       "coach_during_qualifying": "Hossam Hassan (desde febrero 2024)",
@@ -690,7 +690,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/63/Hossam_Abdel_Maguid.jpg"
       },
       {
         "id": "mohamed-abdelmonem",
@@ -705,7 +705,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/13/Abdelmonem_asse_ogcn_2425.png"
       },
       {
         "id": "ahmed-fattouh",
@@ -734,7 +734,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Karim_Hafez_%28RC_Lens%29.jpg"
       },
       {
         "id": "marwan-attia",
@@ -1085,7 +1085,7 @@
       "lost": 5,
       "goals_for": 3,
       "goals_against": 9,
-      "win_percentage": 0.0,
+      "win_percentage": 0,
       "notes": "Datos hasta Catar 2022. Egipto NUNCA HA GANADO UN PARTIDO MUNDIALISTA. Récord triste de su historia."
     },
     "by_world_cup": [

@@ -481,7 +481,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/95/20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8056.jpg"
       },
       {
         "id": "manuel-akanji",
@@ -526,7 +526,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/85/Eray_C%C3%B6mert_2019.jpg"
       },
       {
         "id": "nico-elvedi",
@@ -585,7 +585,8 @@
           "league": "La Liga"
         },
         "shirt_number_expected": 13,
-        "status": "fixed"
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Ricardo_Rodr%C3%ADguez_2018.jpg"
       },
       {
         "id": "silvan-widmer",
@@ -659,7 +660,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/77/Christian_Fassnacht_%28cropped%29.jpg"
       },
       {
         "id": "remo-freuler",
@@ -733,7 +734,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/2c/DjibrilSow.jpg"
       },
       {
         "id": "zeki-amdouni",

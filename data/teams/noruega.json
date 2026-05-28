@@ -668,7 +668,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/David_M%C3%B8ller_Wolfe.jpg"
       },
       {
         "id": "leo-ostigard",
@@ -728,7 +728,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Norway_Italy_-_June_2025_D_05_%28cropped%29.jpg"
       },
       {
         "id": "alexander-fett-sorloth",
@@ -758,7 +758,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Henrik_Falchener_25_Viking_FK_UECL_20250813_%285%29.jpg"
       },
       {
         "id": "julian-ryerson",
@@ -1123,7 +1123,7 @@
       "lost": 3,
       "goals_for": 7,
       "goals_against": 8,
-      "win_percentage": 25.0,
+      "win_percentage": 25,
       "notes": "Datos hasta Francia 1998 (último Mundial). 28 años de ausencia mundialista (1998-2026)."
     },
     "by_world_cup": [

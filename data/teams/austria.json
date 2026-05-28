@@ -877,7 +877,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/5f/UEFA_Euro_2023_Qualifiers_Austria_vs._Finland_%282022-06-03%29_29.jpg"
       },
       {
         "id": "marko-arnautovic",
@@ -907,7 +907,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Michael_Gregoritsch_U21_Austria_vs._Albania_2014-03-05_01.jpg"
       },
       {
         "id": "sasa-kalajdzic",
@@ -922,7 +922,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Sasa_kalajdzic.jpg"
       }
     ],
     "starting_xi": {

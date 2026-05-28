@@ -90,7 +90,7 @@
         "goals_against": 3,
         "goal_difference": 10,
         "points": 12,
-        "win_percentage": 50.0,
+        "win_percentage": 50,
         "clean_sheets": 4,
         "notes": "INVICTOS en la 3ª ronda. Goleó 7-0 a Bermudas. Antes había dominado la 2ª ronda con 4G 0E 0P (10G 1GC, +9 GD)."
       },
@@ -500,7 +500,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/21/Dnepr-Ajax_%282%29.jpg"
       },
       {
         "id": "joshua-brenet",
@@ -515,7 +515,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8b/PSV_Eindhoven%2C_Teamcamp_Bad_Erlach%2C_July_2014_%28076%29.jpg"
       },
       {
         "id": "roshon-van-eijma",
@@ -662,7 +662,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Kevin_felida-1571753982.jpg"
       },
       {
         "id": "arjany-martha",
@@ -677,7 +677,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/58/Ar%27jany_Martha_18042026_%283%29.jpg"
       },
       {
         "id": "tyrese-noslin",
@@ -692,7 +692,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Tyrese_Noslin.jpg"
       },
       {
         "id": "godfried-roemeratoe",
@@ -796,7 +796,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Brandley_Kuwas.png"
       },
       {
         "id": "jurgen-locadia",
@@ -811,7 +811,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/PSV_Eindhoven%2C_Teamcamp_Bad_Erlach%2C_July_2014_%28094%29.jpg"
       },
       {
         "id": "jearl-margaritha",
@@ -969,7 +969,7 @@
       "lost": 0,
       "goals_for": 0,
       "goals_against": 0,
-      "win_percentage": 0.0,
+      "win_percentage": 0,
       "notes": "Nunca antes participó en un Mundial. Curazao se separó de las Antillas Neerlandesas en 2010 y se afilió a la FIFA en 2011."
     },
     "by_world_cup": [],

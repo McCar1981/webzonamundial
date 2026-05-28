@@ -511,7 +511,8 @@
           "league": "Saudi Pro League"
         },
         "shirt_number_expected": 4,
-        "status": "fixed"
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/ac/FC_Salzburg_versus_Celtic_FC_%284._Oktober_2918_Gruppe_B%2C_Zweiter_Spieltag%29_20_%28cropped%29.jpg"
       },
       {
         "id": "aaron-hickey",
@@ -541,7 +542,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/%D0%A3%D0%BA%D1%80%D0%B0%D0%B8%D0%BD%D0%B0_U-21_-_%D0%A8%D0%BE%D1%82%D0%BB%D0%B0%D0%BD%D0%B4%D0%B8%D1%8F_U-21_4-0._6_%D1%81%D0%B5%D0%BD%D1%82%D1%8F%D0%B1%D1%80%D1%8F_2016_%D0%B3%D0%BE%D0%B4%D0%B0_%E2%80%94_708271_%28cropped%29.jpg"
       },
       {
         "id": "scott-mckenna",
@@ -570,7 +571,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d5/SPFL_Reserve_League_Winners_2018_19_-_Rangers_%2833913865528%29_%28KP%29.jpg"
       },
       {
         "id": "anthony-ralston",
@@ -615,7 +616,7 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/22/John_Souttar_2023.jpg"
       },
       {
         "id": "kieran-tierney",

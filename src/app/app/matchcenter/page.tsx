@@ -6,6 +6,9 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SvgIcon } from "@/components/icons";
 import ModuleLandingExtras from "@/components/app-modules/ModuleLandingExtras";
+import { MATCHES } from "@/data/matches";
+
+const J1 = MATCHES.filter((m) => m.j === 1).slice(0, 12);
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -99,13 +102,13 @@ export default function MatchCenterPage() {
             Todo lo que pasa en el partido, en un solo lugar. Stats, alineaciones, timeline y análisis en tiempo real.
           </p>
           <div style={{ marginTop: 40, display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-            <Link href="/registro" data-hero-cta data-hover-btn style={{
+            <Link href="/app/matchcenter/1?sim=1" data-hero-cta data-hover-btn style={{
               padding: "16px 36px", borderRadius: 14,
               background: `linear-gradient(135deg,${GOLD},${GOLD2})`,
               color: BG, fontWeight: 800, fontSize: 16, textDecoration: "none", display: "inline-block",
               boxShadow: "0 8px 32px rgba(201,168,76,0.3)"
             }}>
-              Probar ahora
+              ▶ Ver demo en vivo
             </Link>
             <span data-hero-cta style={{
               padding: "16px 28px", borderRadius: 14,
@@ -114,6 +117,40 @@ export default function MatchCenterPage() {
             }}>
               104 partidos
             </span>
+          </div>
+        </div>
+      </section>
+
+      {/* Hub de partidos */}
+      <section style={{ padding: "20px 20px 60px", background: BG }}>
+        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
+          <h2 style={{ fontSize: "clamp(22px,4vw,32px)", fontWeight: 800, marginBottom: 6, textAlign: "center" }}>
+            Entra a un <span style={{ color: "#10b981" }}>partido</span>
+          </h2>
+          <p style={{ color: MID, textAlign: "center", fontSize: 14, marginBottom: 28 }}>
+            Jornada 1 · toca un partido para abrir el Match Center en vivo.
+          </p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(220px,1fr))", gap: 12 }}>
+            {J1.map((m) => (
+              <Link key={m.i} href={`/app/matchcenter/${m.i}?sim=1`} style={{
+                display: "block", padding: 14, borderRadius: 14, background: BG2,
+                border: "1px solid rgba(255,255,255,0.07)", textDecoration: "none", color: "#fff",
+              }}>
+                <div style={{ fontSize: 11, color: DIM, marginBottom: 8 }}>{m.d} · {m.t} ET · Grupo {m.g}</div>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, flex: 1, minWidth: 0 }}>
+                    <img src={`https://flagcdn.com/w40/${m.hf}.png`} alt="" style={{ width: 24, height: 16, borderRadius: 3, objectFit: "cover" }} />
+                    <span style={{ fontSize: 13, fontWeight: 700, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{m.h}</span>
+                  </div>
+                  <span style={{ fontSize: 11, color: GOLD, fontWeight: 800 }}>VS</span>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, flex: 1, minWidth: 0, justifyContent: "flex-end" }}>
+                    <span style={{ fontSize: 13, fontWeight: 700, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{m.a}</span>
+                    <img src={`https://flagcdn.com/w40/${m.af}.png`} alt="" style={{ width: 24, height: 16, borderRadius: 3, objectFit: "cover" }} />
+                  </div>
+                </div>
+                <div style={{ marginTop: 10, fontSize: 11, color: "#10b981", fontWeight: 700 }}>▶ Abrir Match Center</div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

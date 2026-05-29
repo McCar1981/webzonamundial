@@ -477,9 +477,11 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
               </span>
             </div>
 
-            {/* Cancha: contenedor con ángulo de cámara (3D) + overlay de FX plano */}
-            <div style={{ position: "relative", marginBottom: 14, borderRadius: 16, perspective: 1300, perspectiveOrigin: "50% 30%" }}>
-              <div style={{ transform: "rotateX(15deg) scale(1.02)", transformOrigin: "50% 42%", borderRadius: 16, boxShadow: "0 26px 60px rgba(0,0,0,0.55)" }}>
+            {/* Cancha: contenedor con ángulo de cámara (3D) + overlay de FX plano.
+                La inclinación se ancla al borde INFERIOR para no invadir los
+                paneles de abajo. */}
+            <div style={{ position: "relative", marginBottom: 26, borderRadius: 16, perspective: 1400, perspectiveOrigin: "50% 100%" }}>
+              <div style={{ transform: "rotateX(11deg)", transformOrigin: "50% 100%", borderRadius: 16, boxShadow: "0 26px 60px rgba(0,0,0,0.55)" }}>
                 <Pitch
                   meta={meta}
                   homeLineup={lineups.home}

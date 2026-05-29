@@ -297,6 +297,16 @@ export default async function RootLayout({
             />
           </>
         ) : null}
+        {/* Google Analytics 4 */}
+        <Script
+          id="ga4-gtag"
+          async
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-J9NMM9GNRK"
+        />
+        <Script id="ga4-config" strategy="afterInteractive">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-J9NMM9GNRK');`}
+        </Script>
         <LanguageProvider>
           <RootLayoutClient>{children}</RootLayoutClient>
         </LanguageProvider>

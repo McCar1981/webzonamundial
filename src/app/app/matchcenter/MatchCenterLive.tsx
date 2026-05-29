@@ -19,6 +19,7 @@ import {
   type MatchMeta,
   type Pair,
   type StatKeyframe,
+  type TeamLineup,
 } from "@/lib/match-center/types";
 
 const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a", GREEN = "#22c55e", RED = "#ef4444";
@@ -604,6 +605,8 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
             <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 14, marginTop: 14 }}>
               <StatsPanel stats={stats} meta={meta} />
               <Timeline log={log} meta={meta} onRelive={relive} />
+              <Lineups lineups={lineups} meta={meta} />
+              <MatchInfo meta={meta} lineups={lineups} />
             </div>
 
             {/* Modo destacados al final */}
@@ -824,6 +827,84 @@ function Timeline({ log, meta, onRelive }: { log: MatchEvent[]; meta: MatchMeta;
             </div>
           );
         })}
+      </div>
+    </div>
+  );
+}
+
+const POS_GROUPS: { key: string; label: string }[] = [
+  { key: "GK", label: "Portero" },
+  { key: "DF", label: "Defensa" },
+  { key: "MF", label: "Medio" },
+  { key: "FW", label: "Ataque" },
+];
+
+function TeamLineupCol({ team, lineup, right }: { team: MatchMeta["home"]; lineup: TeamLineup; right?: boolean }) {
+  return (
+    <div>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10, flexDirection: right ? "row-reverse" : "row", textAlign: right ? "right" : "left" }}>
+        <img src={flagUrl(team.flag)} alt={team.name} style={{ width: 30, height: 20, borderRadius: 4, objectFit: "cover", border: `1px solid ${team.color}` }} />
+        <div>
+          <div className="mc-condensed" style={{ fontWeight: 700, fontSize: 14, textTransform: "uppercase", lineHeight: 1 }}>{team.name}</div>
+          <div className="mc-num" style={{ fontSize: 11, color: GOLD2, fontWeight: 700 }}>{lineup.formation}</div>
+        </div>
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        {POS_GROUPS.map((g) => {
+          const rows = lineup.starters.filter((p) => p.pos === g.key);
+          if (rows.length === 0) return null;
+          return (
+            <div key={g.key}>
+              <div style={{ fontSize: 9, fontWeight: 800, color: DIM, textTransform: "uppercase", letterSpacing: 1, marginBottom: 4, textAlign: right ? "right" : "left" }}>{g.label}</div>
+              {rows.map((p) => (
+                <div key={p.num} style={{ display: "flex", alignItems: "center", gap: 7, padding: "2px 0", flexDirection: right ? "row-reverse" : "row" }}>
+                  <span className="mc-num" style={{ flex: "0 0 auto", width: 22, height: 22, borderRadius: 6, background: team.color, color: "#fff", fontWeight: 700, fontSize: 11, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 1px 3px rgba(0,0,0,0.4)" }}>{p.num}</span>
+                  <span style={{ fontSize: 12, fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                    {p.name ? lastNameShort(p.name) : `Dorsal ${p.num}`}
+                  </span>
+                </div>
+              ))}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function Lineups({ lineups, meta }: { lineups: { home: TeamLineup; away: TeamLineup }; meta: MatchMeta }) {
+  return (
+    <div style={{ background: BG2, borderRadius: 16, border: "1px solid rgba(255,255,255,0.08)", padding: 18 }}>
+      <h3 style={{ fontSize: 13, fontWeight: 800, color: MID, textTransform: "uppercase", letterSpacing: 1, marginBottom: 14 }}>Alineaciones</h3>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+        <TeamLineupCol team={meta.home} lineup={lineups.home} />
+        <TeamLineupCol team={meta.away} lineup={lineups.away} right />
+      </div>
+    </div>
+  );
+}
+
+function MatchInfo({ meta, lineups }: { meta: MatchMeta; lineups: { home: TeamLineup; away: TeamLineup } }) {
+  const rows: [string, string][] = [
+    ["Estadio", meta.venue],
+    ["Ciudad", meta.city],
+    ["Fecha", meta.date],
+    ["Hora", meta.time],
+    ["Fase", meta.phase],
+    ["Grupo", meta.group],
+    [`Formación ${meta.home.name}`, lineups.home.formation],
+    [`Formación ${meta.away.name}`, lineups.away.formation],
+  ].filter(([, v]) => v) as [string, string][];
+  return (
+    <div style={{ background: BG2, borderRadius: 16, border: "1px solid rgba(255,255,255,0.08)", padding: 18 }}>
+      <h3 style={{ fontSize: 13, fontWeight: 800, color: MID, textTransform: "uppercase", letterSpacing: 1, marginBottom: 14 }}>Ficha del partido</h3>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: 10 }}>
+        {rows.map(([k, v]) => (
+          <div key={k} style={{ background: "rgba(255,255,255,0.04)", borderRadius: 10, padding: "8px 12px" }}>
+            <div style={{ fontSize: 9, fontWeight: 800, color: DIM, textTransform: "uppercase", letterSpacing: 1, marginBottom: 3 }}>{k}</div>
+            <div style={{ fontSize: 13, fontWeight: 700 }}>{v}</div>
+          </div>
+        ))}
       </div>
     </div>
   );

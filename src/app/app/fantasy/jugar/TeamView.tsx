@@ -52,42 +52,52 @@ export default function TeamView({ team, validation, onSlotClickEmpty, onRemove,
 
       <div style={{ fontSize: 11, color: DIM, fontWeight: 700, marginBottom: 6 }}>Arrastra un jugador sobre otro para intercambiarlos · toca para capitán/quitar.</div>
 
-      {/* Campo de fútbol realista (vertical), césped + líneas reglamentarias en SVG */}
-      <div style={{ maxWidth: 440, margin: "0 auto", aspectRatio: "68 / 105", display: "flex", flexDirection: "column", borderRadius: 18, padding: "26px 10px 20px", background: "linear-gradient(180deg,#11703f 0%,#0c5a35 45%,#0a4a2c 100%)", border: "1px solid rgba(255,255,255,0.08)", boxShadow: "inset 0 0 70px rgba(0,0,0,0.45), 0 8px 30px rgba(0,0,0,0.35)", position: "relative", overflow: "hidden" }}>
-        {/* Franjas de corte de césped */}
-        <div style={{ position: "absolute", inset: 0, backgroundImage: "repeating-linear-gradient(180deg, rgba(255,255,255,0.055) 0 46px, rgba(0,0,0,0.04) 46px 92px)", pointerEvents: "none" }} />
-        {/* Viñeta para dar profundidad */}
-        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 50% 35%, transparent 55%, rgba(0,0,0,0.28) 100%)", pointerEvents: "none" }} />
-        {/* Líneas del campo */}
-        <svg viewBox="0 0 100 150" preserveAspectRatio="none" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none", opacity: 0.5 }}>
-          {(() => {
-            const L = { fill: "none", stroke: "#ffffff", strokeWidth: 0.5, vectorEffect: "non-scaling-stroke" as const };
-            return (
-              <>
-                <rect x="3" y="3" width="94" height="144" {...L} />
-                <line x1="3" y1="75" x2="97" y2="75" {...L} />
-                <circle cx="50" cy="75" r="13" {...L} />
-                <circle cx="50" cy="75" r="0.8" fill="#ffffff" stroke="none" />
-                {/* Área superior */}
-                <rect x="22" y="3" width="56" height="22" {...L} />
-                <rect x="37" y="3" width="26" height="9" {...L} />
-                <path d="M 38 25 A 13 13 0 0 0 62 25" {...L} />
-                {/* Área inferior */}
-                <rect x="22" y="125" width="56" height="22" {...L} />
-                <rect x="37" y="138" width="26" height="9" {...L} />
-                <path d="M 38 125 A 13 13 0 0 1 62 125" {...L} />
-              </>
-            );
-          })()}
-        </svg>
-        <div style={{ position: "relative", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-          {(["FWD", "MID", "DEF", "GK"] as const).map((pref) => (
-            <div key={pref} style={{ display: "flex", justifyContent: "center", gap: 8, flexWrap: "wrap" }}>
-              {lineSlots(pref).map((s) => (
-                <SlotCard key={s.slot} slot={s} team={team} menu={menu} setMenu={setMenu} onSlotClickEmpty={onSlotClickEmpty} onRemove={onRemove} onCaptain={onCaptain} onVice={onVice} onSwap={onSwap} />
-              ))}
-            </div>
-          ))}
+      {/* Campo de fútbol 3D estilo estadio (perspectiva inclinada como FIFA):
+          una superficie de césped inclinada hacia el fondo + jugadores planos encima. */}
+      <div style={{ maxWidth: 480, margin: "0 auto", perspective: 1150, perspectiveOrigin: "50% 30%" }}>
+        <div style={{ position: "relative", aspectRatio: "68 / 92" }}>
+          {/* Superficie del césped inclinada en 3D */}
+          <div style={{ position: "absolute", inset: 0, transform: "rotateX(36deg)", transformOrigin: "50% 100%", borderRadius: "10px 10px 16px 16px", background: "linear-gradient(180deg,#1c8f51 0%,#127443 44%,#0a5230 100%)", border: "1px solid rgba(255,255,255,0.12)", boxShadow: "inset 0 0 90px rgba(0,0,0,0.5), 0 44px 70px rgba(0,0,0,0.55)", overflow: "hidden" }}>
+            {/* Franjas de corte de césped */}
+            <div style={{ position: "absolute", inset: 0, backgroundImage: "repeating-linear-gradient(180deg, rgba(255,255,255,0.06) 0 7%, rgba(0,0,0,0.05) 7% 14%)", pointerEvents: "none" }} />
+            {/* Brillo de focos en el fondo del campo */}
+            <div style={{ position: "absolute", inset: 0, background: "radial-gradient(120% 55% at 50% 0%, rgba(255,255,255,0.22), transparent 55%)", pointerEvents: "none" }} />
+            {/* Viñeta para dar profundidad */}
+            <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 50% 30%, transparent 50%, rgba(0,0,0,0.4) 100%)", pointerEvents: "none" }} />
+            {/* Líneas del campo */}
+            <svg viewBox="0 0 100 150" preserveAspectRatio="none" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none", opacity: 0.55 }}>
+              {(() => {
+                const L = { fill: "none", stroke: "#ffffff", strokeWidth: 0.5, vectorEffect: "non-scaling-stroke" as const };
+                return (
+                  <>
+                    <rect x="3" y="3" width="94" height="144" {...L} />
+                    <line x1="3" y1="75" x2="97" y2="75" {...L} />
+                    <circle cx="50" cy="75" r="13" {...L} />
+                    <circle cx="50" cy="75" r="0.8" fill="#ffffff" stroke="none" />
+                    {/* Área superior */}
+                    <rect x="22" y="3" width="56" height="22" {...L} />
+                    <rect x="37" y="3" width="26" height="9" {...L} />
+                    <path d="M 38 25 A 13 13 0 0 0 62 25" {...L} />
+                    {/* Área inferior */}
+                    <rect x="22" y="125" width="56" height="22" {...L} />
+                    <rect x="37" y="138" width="26" height="9" {...L} />
+                    <path d="M 38 125 A 13 13 0 0 1 62 125" {...L} />
+                  </>
+                );
+              })()}
+            </svg>
+          </div>
+
+          {/* Capa de jugadores: planos sobre el césped inclinado (billboard, como FIFA) */}
+          <div style={{ position: "absolute", inset: 0, padding: "9% 3% 3%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+            {(["FWD", "MID", "DEF", "GK"] as const).map((pref) => (
+              <div key={pref} style={{ display: "flex", justifyContent: "center", gap: 8, flexWrap: "wrap" }}>
+                {lineSlots(pref).map((s) => (
+                  <SlotCard key={s.slot} slot={s} team={team} menu={menu} setMenu={setMenu} onSlotClickEmpty={onSlotClickEmpty} onRemove={onRemove} onCaptain={onCaptain} onVice={onVice} onSwap={onSwap} />
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -152,7 +162,7 @@ function SlotCard({ slot, team, menu, setMenu, onSlotClickEmpty, onRemove, onCap
 
   return (
     <div style={{ position: "relative" }} {...dropProps}>
-      <button draggable onDragStart={(e) => { e.dataTransfer.setData("text/plain", slot.slot); e.dataTransfer.effectAllowed = "move"; }} onClick={() => setMenu(open ? null : slot.slot)} style={{ width: 78, borderRadius: 12, border: "1px solid " + (overRing ?? (isCap ? GOLD : "rgba(255,255,255,0.12)")), background: BG3, color: "#fff", cursor: "grab", padding: "6px 4px", display: "flex", flexDirection: "column", alignItems: "center", gap: 3 }}>
+      <button draggable onDragStart={(e) => { e.dataTransfer.setData("text/plain", slot.slot); e.dataTransfer.effectAllowed = "move"; }} onClick={() => setMenu(open ? null : slot.slot)} style={{ width: 78, borderRadius: 12, border: "1px solid " + (overRing ?? (isCap ? GOLD : "rgba(255,255,255,0.16)")), background: `linear-gradient(180deg, ${BG2} 0%, ${BG} 100%)`, color: "#fff", cursor: "grab", padding: "6px 4px", display: "flex", flexDirection: "column", alignItems: "center", gap: 3, boxShadow: (isCap ? `0 0 0 1px ${GOLD}55, ` : "") + "0 8px 14px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.06)" }}>
         <div style={{ position: "relative" }}>
           <img src={kitUrl(p.teamSlug)} alt={p.teamName} style={{ width: 46, height: 46, objectFit: "contain", filter: p.available ? "drop-shadow(0 2px 3px rgba(0,0,0,0.45))" : "grayscale(0.7) opacity(0.55)" }} />
           <img src={flagUrl(p.flag)} alt={p.teamName} style={{ position: "absolute", bottom: -2, left: -4, width: 18, height: 12, borderRadius: 2, objectFit: "cover", border: `1px solid ${p.color}`, boxShadow: "0 1px 2px rgba(0,0,0,0.5)" }} />

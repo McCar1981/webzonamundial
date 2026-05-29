@@ -22,14 +22,15 @@ import Onboarding from "./Onboarding";
 
 const ONBOARDED_KEY = "zm-fantasy-onboarded:v1";
 
-// Fondo propio del Fantasy: noche de estadio. Dos focos dorados arriba (la marca),
-// un halo verde césped al pie del campo y un degradado azul profundo de base.
-// Da una atmósfera distinta al resto de Zona Mundial sin romper la paleta.
+// Fondo propio del Fantasy: estadio de noche bajo focos. Dos conos de luz cruzados
+// desde lo alto (como reflectores), un halo verde césped al pie y una textura sutil
+// de "gradas" para diferenciar el Fantasy del resto de Zona Mundial.
 const FANTASY_BG =
-  "radial-gradient(1000px 520px at 10% -6%, rgba(201,168,76,0.22), transparent 56%)," +
-  "radial-gradient(950px 500px at 90% -2%, rgba(232,212,139,0.16), transparent 54%)," +
-  "radial-gradient(1300px 820px at 50% 118%, rgba(20,128,72,0.24), transparent 62%)," +
-  "linear-gradient(180deg, #0b1626 0%, #070d18 44%, #04080f 100%)";
+  "conic-gradient(from 200deg at 18% -8%, rgba(255,245,210,0.20), transparent 22%)," + // reflector superior izq.
+  "conic-gradient(from 160deg at 82% -8%, rgba(255,245,210,0.20), transparent 22%)," + // reflector superior der.
+  "radial-gradient(1000px 520px at 50% -6%, rgba(201,168,76,0.22), transparent 62%)," + // resplandor dorado del marcador
+  "radial-gradient(1400px 760px at 50% 110%, rgba(20,150,86,0.34), transparent 60%)," + // verde césped al pie
+  "linear-gradient(180deg, #0b1a30 0%, #091324 50%, #060c18 100%)"; // base azul noche
 
 type Tab = "equipo" | "mercado" | "vivo" | "ligas" | "coach";
 

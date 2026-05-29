@@ -337,6 +337,15 @@ export default function Pitch({
   const shot = useRef<{ active: boolean; t: number; dur: number; sx: number; sy: number; ex: number; ey: number; lift: number; bow: number } | null>(null);
 
   const [shakeKey, setShakeKey] = useState(0);
+  // En móvil ocultamos las gradas y recortamos al campo para ganar superficie.
+  const [compact, setCompact] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 640px)");
+    const on = () => setCompact(mq.matches);
+    on();
+    mq.addEventListener("change", on);
+    return () => mq.removeEventListener("change", on);
+  }, []);
 
   useEffect(() => { biasRef.current = attackBias; }, [attackBias]);
   useEffect(() => { flipRef.current = flip; }, [flip]);
@@ -543,7 +552,7 @@ export default function Pitch({
 
   return (
     <svg
-      viewBox={`0 0 ${W} ${H}`}
+      viewBox={compact ? `${PAD - 14} ${PAD - 14} ${FW + 28} ${FH + 28}` : `0 0 ${W} ${H}`}
       width="100%"
       style={{ display: "block", borderRadius: 16, willChange: "transform" }}
       preserveAspectRatio="xMidYMid meet"
@@ -617,31 +626,35 @@ export default function Pitch({
       {/* Estadio: base oscura */}
       <rect x={0} y={0} width={W} height={H} fill="#0a0e15" />
 
-      {/* Gradas con textura de asientos */}
-      <path d={STANDS_PATH} fillRule="evenodd" fill="url(#seats)" />
-      {/* Público: resplandor según intensidad */}
-      <path d={STANDS_PATH} fillRule="evenodd" fill="#ffd27a" opacity={crowdGlow} style={{ transition: "opacity .8s ease" }} />
-      {/* Ola del público (banda que recorre la grada superior) */}
-      {intensity > 0.45 && (
-        <rect className="mc-wave" x={0} y={0} width={W * 0.35} height={PAD} fill="url(#waveGrad)" opacity={0.6} style={{ pointerEvents: "none" }} />
-      )}
-      {/* Destello del público al marcar */}
-      {shakeKey > 0 && (
-        <path key={`cf-${shakeKey}`} className="mc-crowd-flash" d={STANDS_PATH} fillRule="evenodd" fill="#fff7d6" />
-      )}
-      {/* Muro perimetral del campo */}
-      <rect x={PAD - 8} y={PAD - 8} width={FW + 16} height={FH + 16} rx={6} fill="#0c1118" stroke="rgba(255,255,255,0.06)" strokeWidth={2} />
-
-      {/* Focos de las esquinas (intensidad según hora) */}
-      {lights.map((l, i) => (
-        <g key={`fl-${i}`}>
-          <circle cx={l.x} cy={l.y} r={120} fill="url(#flood)" opacity={floodOp} />
-          <rect x={l.x - 12} y={l.y - 7} width={24} height={14} rx={3} fill="#1a2230" stroke="rgba(255,255,255,0.15)" />
-          {[-7, 0, 7].map((o) => (
-            <circle key={o} cx={l.x + o} cy={l.y} r={2.4} fill={night || dusk ? "#fff7d6" : "#cdd6e2"} />
+      {/* Gradas + público + focos: solo en escritorio (en móvil se recorta al campo) */}
+      {!compact && (
+        <>
+          {/* Gradas con textura de asientos */}
+          <path d={STANDS_PATH} fillRule="evenodd" fill="url(#seats)" />
+          {/* Público: resplandor según intensidad */}
+          <path d={STANDS_PATH} fillRule="evenodd" fill="#ffd27a" opacity={crowdGlow} style={{ transition: "opacity .8s ease" }} />
+          {/* Ola del público (banda que recorre la grada superior) */}
+          {intensity > 0.45 && (
+            <rect className="mc-wave" x={0} y={0} width={W * 0.35} height={PAD} fill="url(#waveGrad)" opacity={0.6} style={{ pointerEvents: "none" }} />
+          )}
+          {/* Destello del público al marcar */}
+          {shakeKey > 0 && (
+            <path key={`cf-${shakeKey}`} className="mc-crowd-flash" d={STANDS_PATH} fillRule="evenodd" fill="#fff7d6" />
+          )}
+          {/* Muro perimetral del campo */}
+          <rect x={PAD - 8} y={PAD - 8} width={FW + 16} height={FH + 16} rx={6} fill="#0c1118" stroke="rgba(255,255,255,0.06)" strokeWidth={2} />
+          {/* Focos de las esquinas (intensidad según hora) */}
+          {lights.map((l, i) => (
+            <g key={`fl-${i}`}>
+              <circle cx={l.x} cy={l.y} r={120} fill="url(#flood)" opacity={floodOp} />
+              <rect x={l.x - 12} y={l.y - 7} width={24} height={14} rx={3} fill="#1a2230" stroke="rgba(255,255,255,0.15)" />
+              {[-7, 0, 7].map((o) => (
+                <circle key={o} cx={l.x + o} cy={l.y} r={2.4} fill={night || dusk ? "#fff7d6" : "#cdd6e2"} />
+              ))}
+            </g>
           ))}
-        </g>
-      ))}
+        </>
+      )}
 
       {/* === CAPA DE CÁMARA (campo + acción), recortada al campo === */}
       <g clipPath="url(#fieldClip)">
@@ -753,7 +766,7 @@ export default function Pitch({
       </g>
 
       {/* Lluvia (delante de todo, sutil) */}
-      {weather.rain && (
+      {weather.rain && !compact && (
         <g className="mc-rain" opacity={0.5} style={{ pointerEvents: "none" }}>
           {Array.from({ length: 60 }).map((_, i) => {
             const x = frac(i + 0.3) * W;

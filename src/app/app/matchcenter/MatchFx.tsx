@@ -182,7 +182,8 @@ const CSS = `
 .fx-goal-word::after{content:attr(data-text);position:absolute;inset:0;-webkit-text-fill-color:transparent;color:transparent;-webkit-text-stroke:2px rgba(0,0,0,.35);z-index:-1}
 @keyframes fxWordIn{0%{transform:scale(.3) rotate(-7deg);opacity:0}60%{transform:scale(1.14) rotate(2deg);opacity:1}100%{transform:scale(1) rotate(0)}}
 @keyframes fxShine{0%{background-position:0% 0}100%{background-position:280% 0}}
-.fx-lower{display:flex;align-items:center;gap:0;background:linear-gradient(90deg, rgba(11,24,37,.96), rgba(11,24,37,.82));border:1px solid rgba(255,255,255,.14);border-radius:12px;overflow:hidden;backdrop-filter:blur(4px);box-shadow:0 14px 36px rgba(0,0,0,.5);animation:fxLowerIn .5s .25s cubic-bezier(.2,1,.3,1) both}
+.fx-lower{display:flex;align-items:center;gap:0;max-width:94vw;background:linear-gradient(90deg, rgba(11,24,37,.96), rgba(11,24,37,.82));border:1px solid rgba(255,255,255,.14);border-radius:12px;overflow:hidden;backdrop-filter:blur(4px);box-shadow:0 14px 36px rgba(0,0,0,.5);animation:fxLowerIn .5s .25s cubic-bezier(.2,1,.3,1) both}
+.fx-lower-name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 @keyframes fxLowerIn{0%{transform:translateY(34px) scale(.92);opacity:0}100%{transform:translateY(0) scale(1);opacity:1}}
 .fx-lower-bar{width:8px;align-self:stretch;background:var(--team)}
 .fx-lower-name{padding:10px 14px;font-size:clamp(18px,3.4vw,30px);font-weight:900;color:#fff}
@@ -197,7 +198,7 @@ const CSS = `
 @keyframes fxCardFloat{0%,100%{transform:rotateY(0) rotateZ(-8deg) translateY(0)}50%{transform:rotateY(10deg) rotateZ(-8deg) translateY(-6px)}}
 .fx-card-sheen{position:absolute;inset:0;border-radius:12px;background:linear-gradient(120deg, rgba(255,255,255,0) 35%, rgba(255,255,255,.55) 50%, rgba(255,255,255,0) 65%);background-size:250% 100%;animation:fxSheen 1.6s ease .4s 2}
 @keyframes fxSheen{0%{background-position:160% 0}100%{background-position:-60% 0}}
-.fx-card-lower{position:absolute;left:50%;bottom:14%;transform:translateX(-50%);display:flex;align-items:center;gap:12px;background:rgba(11,24,37,.95);border:1px solid rgba(255,255,255,.14);border-left:6px solid var(--team);border-radius:10px;padding:8px 14px;backdrop-filter:blur(4px);box-shadow:0 12px 30px rgba(0,0,0,.5);animation:fxLowerIn .5s .3s cubic-bezier(.2,1,.3,1) both, fxDim 2.6s ease forwards}
+.fx-card-lower{position:absolute;left:50%;bottom:14%;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px 12px;max-width:92vw;text-align:center;background:rgba(11,24,37,.95);border:1px solid rgba(255,255,255,.14);border-left:6px solid var(--team);border-radius:10px;padding:8px 14px;backdrop-filter:blur(4px);box-shadow:0 12px 30px rgba(0,0,0,.5);animation:fxLowerIn .5s .3s cubic-bezier(.2,1,.3,1) both, fxDim 2.6s ease forwards}
 .fx-card-kind{font-size:clamp(10px,1.7vw,13px);font-weight:900;letter-spacing:1px;padding:4px 9px;border-radius:6px;white-space:nowrap}
 .fx-card-name{font-size:clamp(16px,3vw,26px);font-weight:900;color:#fff}
 .fx-card-team{font-size:clamp(11px,1.8vw,14px);font-weight:800;color:var(--team);text-transform:uppercase;letter-spacing:1px}
@@ -216,5 +217,17 @@ const CSS = `
 
 @media (prefers-reduced-motion: reduce){
   .fx-beams,.fx-card,.fx-card-sheen{animation-duration:.01s!important}
+}
+@media (max-width:640px){
+  .fx-card-stage{top:32%}
+  .fx-card{width:clamp(72px,22vw,96px)}
+  .fx-card-lower{bottom:10%;padding:7px 10px;gap:5px 8px}
+  .fx-card-kind{font-size:11px;padding:3px 7px}
+  .fx-card-name{font-size:18px}
+  .fx-card-team{font-size:11px}
+  .fx-lower{max-width:96vw}
+  .fx-lower-name{font-size:20px;padding:8px 10px}
+  .fx-lower-team{font-size:12px;padding:8px 10px 8px 4px}
+  .fx-sub-card{min-width:88vw}
 }
 `;

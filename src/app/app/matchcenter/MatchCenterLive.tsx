@@ -650,7 +650,7 @@ function PlayerCard({ player, meta }: { player: { num: number; label: string; si
   return (
     <div style={{
       position: "absolute", top: 12, left: "50%", transform: "translateX(-50%)", zIndex: 8,
-      display: "flex", alignItems: "center", gap: 12, background: "rgba(11,24,37,0.96)",
+      maxWidth: "92%", display: "flex", alignItems: "center", gap: 12, background: "rgba(11,24,37,0.96)",
       border: `1px solid rgba(255,255,255,0.14)`, borderLeft: `5px solid ${team.color}`,
       borderRadius: 12, padding: "10px 16px", backdropFilter: "blur(6px)", boxShadow: "0 12px 30px rgba(0,0,0,0.5)",
       animation: "mcSlide .25s ease", pointerEvents: "none",

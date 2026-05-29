@@ -5,6 +5,7 @@
 
 import { getPlayerById, getPlayerPool } from "./players";
 import { buildSlots, getFormation } from "./rules";
+import { longevityFactor } from "./tournament";
 import { BUDGET, MAX_PER_NATION, type FantasyPlayer, type FantasyPos, type SquadSlot } from "./types";
 
 export interface CoachTip {
@@ -15,9 +16,10 @@ export interface CoachTip {
 }
 
 function value(p: FantasyPlayer): number {
-  // Relación puntos-precio ponderada por forma, multiplicador del partido y
-  // probabilidad de ser titular (un suplente puntúa poco aunque sea barato).
-  return (p.totalPoints / p.price) * (0.7 + p.form / 20) * p.next.tier.multiplier * (0.55 + p.startProb / 222);
+  // Relación puntos-precio ponderada por forma, multiplicador del partido,
+  // probabilidad de ser titular (un suplente puntúa poco aunque sea barato) y
+  // la ruta proyectada de su selección (avanzar = más partidos = más puntos).
+  return (p.totalPoints / p.price) * (0.7 + p.form / 20) * p.next.tier.multiplier * (0.55 + p.startProb / 222) * longevityFactor(p.teamSlug);
 }
 
 export function suggestCaptain(slots: SquadSlot[]): { player: FantasyPlayer; why: string } | null {

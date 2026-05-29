@@ -6,6 +6,7 @@
 
 import { useMemo, useState } from "react";
 import { getPlayerPool } from "@/lib/fantasy/players";
+import { getTeamRun, STAGE_SHORT } from "@/lib/fantasy/tournament";
 import type { FantasyPos, FantasyPlayer, PlayerStatus, SquadSlot } from "@/lib/fantasy/types";
 import { BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED, money, flagUrl, lastName, POS_LABEL, POS_COLOR } from "./fx";
 
@@ -171,9 +172,15 @@ export default function MarketView({ ownedIds, nationCounts, budgetRemaining, se
                 <Pill label="Prop." value={`${p.ownership}%`} color={MID} />
               </div>
 
-              <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 11, color: MID }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 11, color: MID, flexWrap: "wrap" }}>
                 <span title="Próximo partido (Modo Underdog)" style={{ fontWeight: 800, color: p.next.tier.color }}>{p.next.tier.emoji} {p.next.tier.label} ×{p.next.tier.multiplier}</span>
                 <span style={{ color: DIM }}>vs {p.next.opponentName}</span>
+                {(() => {
+                  const run = getTeamRun(p.teamSlug);
+                  if (!run) return null;
+                  const deep = run.stageRound >= 3;
+                  return <span title="Ruta proyectada en el torneo" style={{ fontWeight: 800, color: deep ? GOLD2 : DIM }}>{run.stageRound === 6 ? "🏆" : "🗺️"} proy. {STAGE_SHORT[run.stage]}</span>;
+                })()}
               </div>
 
               <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap", fontSize: 11 }}>

@@ -5,8 +5,9 @@
 // proyectada de su selección y estadísticas). Se usa desde el Mercado.
 
 import { getTeamRun, STAGE_LABEL } from "@/lib/fantasy/tournament";
+import { getPlayerSeasonStats, type PlayerFixture } from "@/lib/fantasy/player-stats";
 import type { FantasyPlayer, PlayerStatus } from "@/lib/fantasy/types";
-import { BG, BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED, money, marketValueLabel, flagUrl, POS_LABEL, POS_COLOR } from "./fx";
+import { BG, BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED, money, marketValueLabel, flagUrl, kitUrl, POS_LABEL, POS_COLOR } from "./fx";
 
 const STATUS_LABEL: Record<PlayerStatus, { label: string; color: string }> = {
   apto: { label: "Apto", color: GREEN },
@@ -54,6 +55,16 @@ export default function PlayerModal({ players, onClose }: Props) {
             const st = STATUS_LABEL[p.status];
             return (
               <div key={p.id} style={{ background: BG2, borderRadius: 14, padding: 14, border: "1px solid rgba(255,255,255,0.06)" }}>
+                {/* Camiseta (no usamos fotos por protección de marca). */}
+                {!compare && (
+                  <div style={{ display: "flex", justifyContent: "center", marginBottom: 8 }}>
+                    <img
+                      src={kitUrl(p.teamSlug)}
+                      alt={`Camiseta ${p.teamName}`}
+                      style={{ width: 96, height: 96, objectFit: "contain", filter: "drop-shadow(0 6px 14px rgba(0,0,0,0.5))" }}
+                    />
+                  </div>
+                )}
                 <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                   <img src={flagUrl(p.flag)} alt={p.teamName} style={{ width: 40, height: 27, borderRadius: 4, objectFit: "cover", border: `1px solid ${p.color}` }} />
                   <div style={{ minWidth: 0, flex: 1 }}>
@@ -111,7 +122,124 @@ export default function PlayerModal({ players, onClose }: Props) {
             })}
           </div>
         </div>
+
+        {/* Análisis por partido — solo en ficha individual */}
+        {!compare && <PlayerAnalysis player={players[0]} />}
       </div>
     </div>
   );
 }
+
+// Fecha corta "dd/mm" y hora local "hh:mm".
+function shortDate(iso: string): string {
+  const d = new Date(iso);
+  return `${String(d.getDate()).padStart(2, "0")}/${String(d.getMonth() + 1).padStart(2, "0")}`;
+}
+function shortTime(iso: string): string {
+  const d = new Date(iso);
+  return `${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`;
+}
+
+// Bloque de análisis: próximos partidos (CALENDARIO real) + desglose por partido
+// con puntos fantasy y métricas clave. Sustituye al "data-indices" gigante de la
+// referencia: se calcula en el cliente bajo demanda al abrir la ficha.
+function PlayerAnalysis({ player }: { player: FantasyPlayer }) {
+  const data = getPlayerSeasonStats(player);
+  const next5 = data.upcoming.slice(0, 5);
+  const maxPts = Math.max(4, ...data.fixtures.map((f) => Math.abs(f.points)));
+  const t = data.totals;
+  const projected = data.played.length === 0;
+
+  return (
+    <div style={{ padding: "0 16px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
+      {/* Resumen del torneo */}
+      <div>
+        <div style={secTitle}>📊 {projected ? "Proyección Mundial 2026" : "Mundial 2026"}</div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 6 }}>
+          {[
+            ["Pts", t.puntos],
+            ["Media", t.media],
+            ["Goles", t.goles],
+            ["Asist.", t.asistencias],
+          ].map(([label, val]) => (
+            <div key={String(label)} style={{ background: BG2, borderRadius: 10, padding: "9px 6px", textAlign: "center", border: "1px solid rgba(255,255,255,0.06)" }}>
+              <div style={{ fontSize: 18, fontWeight: 900, color: GOLD2, fontVariantNumeric: "tabular-nums" }}>{val}</div>
+              <div style={{ fontSize: 9, fontWeight: 800, color: DIM, textTransform: "uppercase", letterSpacing: 0.5 }}>{String(label)}</div>
+            </div>
+          ))}
+        </div>
+        {projected && <div style={{ fontSize: 10, color: DIM, marginTop: 5 }}>Cifras proyectadas hasta el pitido inicial · {t.partidos} partidos estimados</div>}
+      </div>
+
+      {/* Próximos partidos (calendario real) */}
+      {next5.length > 0 && (
+        <div>
+          <div style={secTitle}>📅 Próximos partidos</div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+            {next5.map((f) => (
+              <FixtureRow key={f.matchId} f={f} />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Desglose por partido: barra de puntos + métricas clave */}
+      <div>
+        <div style={secTitle}>📈 {projected ? "Puntos proyectados por partido" : "Puntos por partido"}</div>
+        <div style={{ background: BG2, borderRadius: 12, border: "1px solid rgba(255,255,255,0.06)", padding: 10, display: "flex", flexDirection: "column", gap: 8 }}>
+          {data.fixtures.map((f) => (
+            <div key={f.matchId} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <span style={{ fontSize: 10, fontWeight: 800, color: DIM, width: 42 }}>{f.jornada ? `J${f.jornada}` : f.stageLabel.slice(0, 3)}</span>
+              <img src={flagUrl(f.opponentFlag)} alt="" style={{ width: 18, height: 12, borderRadius: 2, objectFit: "cover", opacity: f.projected ? 0.5 : 1 }} />
+              <div style={{ flex: 1, height: 16, background: BG3, borderRadius: 4, overflow: "hidden", position: "relative" }}>
+                <div style={{ height: "100%", width: `${(Math.max(0, f.points) / maxPts) * 100}%`, background: f.points >= 0 ? `linear-gradient(90deg,${GOLD},${GOLD2})` : RED, transition: "width .3s" }} />
+              </div>
+              <span style={{ fontSize: 13, fontWeight: 900, color: f.points >= 0 ? "#fff" : RED, width: 28, textAlign: "right", fontVariantNumeric: "tabular-nums" }}>{f.points}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Tabla de métricas acumuladas */}
+      <div>
+        <div style={secTitle}>🔬 Métricas {projected ? "(proyección)" : ""}</div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 6 }}>
+          {[
+            ["T. a puerta", t.tirosPuerta],
+            ["Pases clave", t.pasesClave],
+            ["Regates", t.regatesExito],
+            ["Entradas", t.tackles],
+            ["Paradas", t.paradas],
+            ["Amarillas", t.amarillas],
+          ].map(([label, val]) => (
+            <div key={String(label)} style={{ background: BG2, borderRadius: 8, padding: "7px 8px", border: "1px solid rgba(255,255,255,0.05)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <span style={{ fontSize: 10, fontWeight: 700, color: DIM }}>{String(label)}</span>
+              <span style={{ fontSize: 13, fontWeight: 900, color: "#fff" }}>{val}</span>
+            </div>
+          ))}
+        </div>
+        <div style={{ fontSize: 10, color: DIM, marginTop: 6 }}>Datos del torneo · se actualizarán con los partidos reales desde el 11 jun.</div>
+      </div>
+    </div>
+  );
+}
+
+function FixtureRow({ f }: { f: PlayerFixture }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 8, background: BG2, borderRadius: 10, border: "1px solid rgba(255,255,255,0.05)", padding: "8px 10px" }}>
+      <div style={{ textAlign: "center", width: 40 }}>
+        <div style={{ fontSize: 12, fontWeight: 900, color: GOLD2 }}>{shortDate(f.date)}</div>
+        <div style={{ fontSize: 9, color: DIM }}>{f.jornada ? `J${f.jornada}` : "KO"}</div>
+      </div>
+      <img src={flagUrl(f.opponentFlag)} alt="" style={{ width: 26, height: 18, borderRadius: 3, objectFit: "cover", opacity: f.projected ? 0.5 : 1 }} />
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ fontSize: 13, fontWeight: 700, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+          {f.home ? "vs " : "@ "}{f.opponentName}
+        </div>
+        <div style={{ fontSize: 10, color: DIM }}>{f.projected ? f.stageLabel : `${f.venue ?? ""} · ${shortTime(f.date)}`}</div>
+      </div>
+    </div>
+  );
+}
+
+const secTitle: React.CSSProperties = { fontSize: 11, fontWeight: 800, color: DIM, textTransform: "uppercase", letterSpacing: 1, marginBottom: 8 };

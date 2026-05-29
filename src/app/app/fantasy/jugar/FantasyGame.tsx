@@ -32,6 +32,12 @@ const FANTASY_BG =
   "radial-gradient(1400px 760px at 50% 110%, rgba(20,150,86,0.34), transparent 60%)," + // verde césped al pie
   "linear-gradient(180deg, #0b1a30 0%, #091324 50%, #060c18 100%)"; // base azul noche
 
+// Variante clara para escritorio (en prueba): fondo blanco/limpio que hace
+// resaltar el campo neón. Se aplica solo en pantallas anchas.
+const FANTASY_BG_LIGHT =
+  "radial-gradient(1100px 560px at 50% -4%, rgba(201,168,76,0.12), transparent 60%)," +
+  "linear-gradient(180deg, #ffffff 0%, #eef2f7 60%, #e6ebf2 100%)";
+
 type Tab = "equipo" | "mercado" | "vivo" | "ligas" | "coach";
 
 const TABS: { id: Tab; label: string; icon: string }[] = [
@@ -49,6 +55,7 @@ export default function FantasyGame() {
   const [selectingSlot, setSelectingSlot] = useState<string | null>(null);
   const [toast, setToast] = useState<string | null>(null);
   const [showOnboarding, setShowOnboarding] = useState(false);
+  const [isWide, setIsWide] = useState(false); // ≥1024px → fondo claro (en prueba)
 
   useEffect(() => {
     setTeam(loadTeam() ?? defaultTeam());
@@ -56,6 +63,10 @@ export default function FantasyGame() {
     try {
       if (!window.localStorage.getItem(ONBOARDED_KEY)) setShowOnboarding(true);
     } catch { /* ignore */ }
+    const onResize = () => setIsWide(window.innerWidth >= 1024);
+    onResize();
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
   }, []);
 
   const dismissOnboarding = useCallback(() => {
@@ -242,7 +253,7 @@ export default function FantasyGame() {
   const pct = Math.min(100, (spent / BUDGET) * 100);
 
   return (
-    <div style={{ background: FANTASY_BG, backgroundAttachment: "fixed", color: "#fff", fontFamily: "'Outfit',sans-serif", minHeight: "100vh", position: "relative" }}>
+    <div style={{ background: isWide ? FANTASY_BG_LIGHT : FANTASY_BG, backgroundAttachment: "fixed", color: isWide ? "#0b1a30" : "#fff", fontFamily: "'Outfit',sans-serif", minHeight: "100vh", position: "relative" }}>
       {/* Ambiente de noche de estadio: focos dorados, halo de césped y degradado profundo */}
       {/* Header */}
       <div style={{ position: "sticky", top: 0, zIndex: 20, background: `${BG}f2`, backdropFilter: "blur(10px)", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
@@ -298,6 +309,7 @@ export default function FantasyGame() {
             onAutoDraft={doAutoDraft}
             onReset={resetTeam}
             formations={FORMATIONS}
+            wide={isWide}
           />
         )}
         {tab === "mercado" && (

@@ -20,9 +20,10 @@ interface Props {
   onAutoDraft: () => void;
   onReset: () => void;
   formations: FormationRule[];
+  wide?: boolean;
 }
 
-export default function TeamView({ team, validation, onSlotClickEmpty, onRemove, onCaptain, onVice, onSwap, onSetFormation, onSetPowerUp, onAutoDraft, onReset, formations }: Props) {
+export default function TeamView({ team, validation, onSlotClickEmpty, onRemove, onCaptain, onVice, onSwap, onSetFormation, onSetPowerUp, onAutoDraft, onReset, formations, wide }: Props) {
   const [menu, setMenu] = useState<string | null>(null);
 
   const lineSlots = (prefix: string) => team.slots.filter((s) => !s.bench && s.slot.startsWith(prefix));
@@ -52,22 +53,42 @@ export default function TeamView({ team, validation, onSlotClickEmpty, onRemove,
 
       <div style={{ fontSize: 11, color: DIM, fontWeight: 700, marginBottom: 6 }}>Arrastra un jugador sobre otro para intercambiarlos · toca para capitán/quitar.</div>
 
-      {/* Campo: imagen real de estadio (césped vertical) con los jugadores encima. */}
-      <div style={{ maxWidth: 470, margin: "0 auto", position: "relative", aspectRatio: "1882 / 2116", borderRadius: 16, overflow: "hidden", backgroundImage: "url('/img/fantasy/campo-mobile.png')", backgroundSize: "cover", backgroundPosition: "center", boxShadow: "0 18px 50px rgba(0,0,0,0.5)" }}>
-        {/* Leve oscurecido arriba/abajo para que resalten las fichas */}
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0.04) 38%, rgba(0,0,0,0.04) 62%, rgba(0,0,0,0.28) 100%)", pointerEvents: "none" }} />
+      {/* Campo: imagen real de estadio con los jugadores encima.
+          Escritorio (wide) → campo horizontal (porterías a los lados).
+          Móvil → campo vertical (porterías arriba/abajo). */}
+      {wide ? (
+        <div style={{ maxWidth: 920, margin: "0 auto", position: "relative", aspectRatio: "3247 / 1465", borderRadius: 16, overflow: "hidden", backgroundImage: "url('/img/fantasy/campo-desktop.png')", backgroundSize: "cover", backgroundPosition: "center", boxShadow: "0 18px 50px rgba(0,0,0,0.5)" }}>
+          {/* Leve oscurecido en los laterales para que resalten las fichas */}
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(0,0,0,0.26) 0%, rgba(0,0,0,0.03) 22%, rgba(0,0,0,0.03) 78%, rgba(0,0,0,0.26) 100%)", pointerEvents: "none" }} />
 
-        {/* Capa de jugadores: delanteros arriba (portería rival) → portero abajo (la nuestra). */}
-        <div style={{ position: "absolute", inset: 0, padding: "11% 4% 9%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-          {(["FWD", "MID", "DEF", "GK"] as const).map((pref) => (
-            <div key={pref} style={{ display: "flex", justifyContent: "center", gap: 8, flexWrap: "wrap" }}>
-              {lineSlots(pref).map((s) => (
-                <SlotCard key={s.slot} slot={s} team={team} menu={menu} setMenu={setMenu} onSlotClickEmpty={onSlotClickEmpty} onRemove={onRemove} onCaptain={onCaptain} onVice={onVice} onSwap={onSwap} />
-              ))}
-            </div>
-          ))}
+          {/* Capa de jugadores: portero a la izquierda (nuestra portería) → delanteros a la derecha. */}
+          <div style={{ position: "absolute", inset: 0, padding: "5% 5%", display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+            {(["GK", "DEF", "MID", "FWD"] as const).map((pref) => (
+              <div key={pref} style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 10 }}>
+                {lineSlots(pref).map((s) => (
+                  <SlotCard key={s.slot} slot={s} team={team} menu={menu} setMenu={setMenu} onSlotClickEmpty={onSlotClickEmpty} onRemove={onRemove} onCaptain={onCaptain} onVice={onVice} onSwap={onSwap} />
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div style={{ maxWidth: 470, margin: "0 auto", position: "relative", aspectRatio: "1882 / 2116", borderRadius: 16, overflow: "hidden", backgroundImage: "url('/img/fantasy/campo-mobile.png')", backgroundSize: "cover", backgroundPosition: "center", boxShadow: "0 18px 50px rgba(0,0,0,0.5)" }}>
+          {/* Leve oscurecido arriba/abajo para que resalten las fichas */}
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0.04) 38%, rgba(0,0,0,0.04) 62%, rgba(0,0,0,0.28) 100%)", pointerEvents: "none" }} />
+
+          {/* Capa de jugadores: delanteros arriba (portería rival) → portero abajo (la nuestra). */}
+          <div style={{ position: "absolute", inset: 0, padding: "11% 4% 9%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+            {(["FWD", "MID", "DEF", "GK"] as const).map((pref) => (
+              <div key={pref} style={{ display: "flex", justifyContent: "center", gap: 8, flexWrap: "wrap" }}>
+                {lineSlots(pref).map((s) => (
+                  <SlotCard key={s.slot} slot={s} team={team} menu={menu} setMenu={setMenu} onSlotClickEmpty={onSlotClickEmpty} onRemove={onRemove} onCaptain={onCaptain} onVice={onVice} onSwap={onSwap} />
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Banquillo */}
       <div style={{ marginTop: 14 }}>

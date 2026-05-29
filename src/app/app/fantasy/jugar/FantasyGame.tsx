@@ -133,6 +133,28 @@ export default function FantasyGame() {
     [update],
   );
 
+  // Intercambia (o mueve) los jugadores de dos huecos respetando posiciones.
+  const swapSlots = useCallback(
+    (a: string, b: string) => {
+      if (a === b) return;
+      const sa = team.slots.find((s) => s.slot === a);
+      const sb = team.slots.find((s) => s.slot === b);
+      if (!sa || !sb) return;
+      const pa = sa.playerId ? getPlayerById(sa.playerId) : null;
+      const pb = sb.playerId ? getPlayerById(sb.playerId) : null;
+      if ((pa && !slotAccepts(sb, pa.pos)) || (pb && !slotAccepts(sa, pb.pos))) {
+        flash("Ese intercambio no respeta las posiciones.");
+        return;
+      }
+      update((t) => {
+        const slots = t.slots.map((s) => (s.slot === a ? { ...s, playerId: sb.playerId } : s.slot === b ? { ...s, playerId: sa.playerId } : s));
+        const starterIds = new Set(slots.filter((s) => !s.bench && s.playerId).map((s) => s.playerId!));
+        return { ...t, slots, captainId: t.captainId && starterIds.has(t.captainId) ? t.captainId : null, viceId: t.viceId && starterIds.has(t.viceId) ? t.viceId : null };
+      });
+    },
+    [team.slots, update, flash],
+  );
+
   const setCaptain = useCallback(
     (id: string) => update((t) => ({ ...t, captainId: id, viceId: t.viceId === id ? null : t.viceId })),
     [update],
@@ -247,6 +269,7 @@ export default function FantasyGame() {
             onRemove={removePlayer}
             onCaptain={setCaptain}
             onVice={setVice}
+            onSwap={swapSlots}
             onSetFormation={setFormation}
             onSetPowerUp={setPowerUp}
             onAutoDraft={doAutoDraft}

@@ -99,9 +99,10 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
   const [log, setLog] = useState<MatchEvent[]>([]);
   const [narration, setNarration] = useState<string>("");
   const [ball, setBall] = useState({ x: 0.5, y: 0.5 });
-  const [goalPulse, setGoalPulse] = useState<{ side: "home" | "away"; key: number } | null>(null);
-  const [cardFx, setCardFx] = useState<{ side: "home" | "away"; color: string; key: number } | null>(null);
-  const [subFx, setSubFx] = useState<{ side: "home" | "away"; key: number } | null>(null);
+  const [goalPulse, setGoalPulse] = useState<{ side: "home" | "away"; key: number; player?: string } | null>(null);
+  const [cardFx, setCardFx] = useState<{ side: "home" | "away"; color: string; key: number; player?: string } | null>(null);
+  const [subFx, setSubFx] = useState<{ side: "home" | "away"; key: number; playerOut?: string; playerIn?: string } | null>(null);
+  const [secondHalf, setSecondHalf] = useState(false);
   const [finished, setFinished] = useState(false);
   const [paused, setPaused] = useState(false);
   const [speed, setSpeed] = useState(12);
@@ -156,22 +157,27 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
           return next;
         });
         if (animate) {
-          setGoalPulse({ side: e.side, key: Date.now() });
+          setGoalPulse({ side: e.side, key: Date.now(), player: e.player });
+          snd?.whistle(false); // el árbitro pita el gol
           snd?.goal();
         }
       }
       if (animate && e.side !== "neutral") {
         if (e.type === "yellow" || e.type === "second_yellow") {
-          setCardFx({ side: e.side, color: "#eab308", key: Date.now() });
+          setCardFx({ side: e.side, color: "#eab308", key: Date.now(), player: e.player });
+          snd?.whistle(false); // falta sancionada
           snd?.card();
         } else if (e.type === "red") {
-          setCardFx({ side: e.side, color: "#ef4444", key: Date.now() });
+          setCardFx({ side: e.side, color: "#ef4444", key: Date.now(), player: e.player });
+          snd?.whistle(false);
           snd?.card();
         } else if (e.type === "sub") {
-          setSubFx({ side: e.side, key: Date.now() });
+          setSubFx({ side: e.side, key: Date.now(), playerOut: e.player, playerIn: e.playerIn });
           snd?.sub();
         } else if (e.type === "save") {
           snd?.save();
+        } else if (e.type === "offside" || e.type === "penalty_miss") {
+          snd?.whistle(false); // jugada interrumpida
         }
       }
       if (animate) {
@@ -186,7 +192,7 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
         setNarration(text);
         if (animate && SPEAK_TYPES.has(e.type)) speak(text, isGoal || e.type === "red");
       }
-      if (e.type === "half_time") { /* descanso */ }
+      if (e.type === "half_time") setSecondHalf(true);
       if (e.type === "full_time") setFinished(true);
       setLog((l) => [e, ...l].slice(0, 60));
     },
@@ -212,6 +218,7 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
         setStats(statAt(data.statKeyframes, 0));
         setLog([]);
         setFinished(false);
+        setSecondHalf(false);
         setBall({ x: 0.5, y: 0.5 });
       } else {
         // live: marcar lo ya ocurrido sin animar
@@ -221,6 +228,7 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
         setScore(data.score);
         setStats(data.stats);
         setLog([...data.events].reverse().slice(0, 60));
+        setSecondHalf(data.elapsed >= 45 || data.status === "2H" || data.status === "ET");
         setFinished(data.status === "FT" || data.status === "AET" || data.status === "PEN");
       }
       setFeed(data);
@@ -293,19 +301,19 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
   // Limpia el pulso de gol
   useEffect(() => {
     if (!goalPulse) return;
-    const t = setTimeout(() => setGoalPulse(null), 1000);
+    const t = setTimeout(() => setGoalPulse(null), 3400);
     return () => clearTimeout(t);
   }, [goalPulse]);
 
   // Limpia FX de tarjeta y cambio
   useEffect(() => {
     if (!cardFx) return;
-    const t = setTimeout(() => setCardFx(null), 1500);
+    const t = setTimeout(() => setCardFx(null), 2700);
     return () => clearTimeout(t);
   }, [cardFx]);
   useEffect(() => {
     if (!subFx) return;
-    const t = setTimeout(() => setSubFx(null), 1900);
+    const t = setTimeout(() => setSubFx(null), 3100);
     return () => clearTimeout(t);
   }, [subFx]);
 
@@ -480,17 +488,8 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
                 subFx={subFx}
                 attackBias={(stats.possession[0] || 50) / 100}
                 active={!finished && !(feed.mode === "sim" && paused)}
+                flip={secondHalf}
               />
-              {goalPulse && (
-                <div style={{
-                  position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center",
-                  pointerEvents: "none",
-                }}>
-                  <div style={{ fontSize: "clamp(40px,9vw,84px)", fontWeight: 900, color: GOLD2, textShadow: "0 4px 24px rgba(0,0,0,.6)", animation: "mcPop .4s ease" }}>
-                    ¡GOL!
-                  </div>
-                </div>
-              )}
             </div>
 
             {/* Pulso / momentum + reacción del público */}

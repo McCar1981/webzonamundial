@@ -21,7 +21,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 30;
 
-const SIMNARR_PREFIX = "mc:simnarr:v1:";
+const SIMNARR_PREFIX = "mc:simnarr:v2:"; // v2: nombres de jugador (no dorsales)
 const SIMNARR_TTL = 24 * 60 * 60;
 
 function kvEnabled(): boolean {

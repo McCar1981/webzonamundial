@@ -7,6 +7,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { simulateGameweek, POWER_UPS, type GameweekResult } from "@/lib/fantasy/scoring";
+import { isFantasyLive, countdownToKickoff } from "@/lib/fantasy/season";
 import type { FantasyTeamState } from "@/lib/fantasy/types";
 import { BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED, flagUrl, lastName, POS_LABEL, POS_COLOR } from "./fx";
 
@@ -20,6 +21,20 @@ type Phase = "idle" | "playing" | "done";
 export default function LiveView({ team, onCommit }: Props) {
   const filled = team.slots.filter((s) => s.playerId).length;
   const ready = filled === 15;
+
+  // Puerta temporal: hasta la inauguración (11 jun 2026) el modo En Vivo está
+  // en pretemporada. Se evalúa en cliente para reflejar el paso del tiempo.
+  const [live, setLive] = useState<boolean | null>(null);
+  const [cd, setCd] = useState(countdownToKickoff());
+  useEffect(() => {
+    const tick = () => {
+      setLive(isFantasyLive());
+      setCd(countdownToKickoff());
+    };
+    tick();
+    const id = window.setInterval(tick, 1000);
+    return () => window.clearInterval(id);
+  }, []);
 
   const result = useMemo<GameweekResult | null>(() => {
     if (!ready) return null;
@@ -66,6 +81,12 @@ export default function LiveView({ team, onCommit }: Props) {
     setFeed(result.timeline);
     setPhase("done");
   };
+
+  // Puerta temporal: hasta el pitido inicial (11 jun 2026) el modo En Vivo está
+  // en pretemporada. El early-return va DESPUÉS de todos los hooks.
+  if (live === false) {
+    return <PreSeason ready={ready} filled={filled} cd={cd} />;
+  }
 
   if (!ready) {
     return (
@@ -178,6 +199,42 @@ function feedRunning(result: GameweekResult, minute: number): number {
   let total = 0;
   for (const e of result.timeline) if (e.minute <= minute) total += e.finalDelta;
   return Math.round(total);
+}
+
+// Pantalla de pretemporada: el modo En Vivo se desbloquea con el pitido inicial
+// del Mundial (11 jun 2026). Mientras tanto el usuario YA puede preparar equipo,
+// alineación, coach y ligas; aquí solo se muestra la cuenta atrás.
+function PreSeason({ ready, filled, cd }: { ready: boolean; filled: number; cd: { d: number; h: number; m: number; s: number } }) {
+  return (
+    <div style={{ textAlign: "center", padding: "30px 16px" }}>
+      <div style={{ fontSize: 44, marginBottom: 6 }}>⏳</div>
+      <div style={{ fontSize: 18, fontWeight: 900, color: "#fff" }}>El modo En Vivo arranca con el Mundial</div>
+      <div style={{ fontSize: 13, color: MID, marginTop: 6, maxWidth: 440, marginInline: "auto", lineHeight: 1.5 }}>
+        Puntuará a <b style={{ color: GOLD2 }}>tiempo real</b> con los partidos reales a partir del pitido inicial.
+        Hasta entonces, prepara tu equipo: mercado, alineación, capitán, power-ups, coach y ligas.
+      </div>
+
+      <div style={{ display: "flex", gap: 8, justifyContent: "center", marginTop: 22, flexWrap: "wrap" }}>
+        {([["d", "días"], ["h", "horas"], ["m", "min"], ["s", "seg"]] as const).map(([k, label]) => (
+          <div key={k} style={{ background: "linear-gradient(135deg,#0c1f3a,#0a1525)", border: `1px solid ${GOLD}33`, borderRadius: 12, padding: "12px 14px", minWidth: 64 }}>
+            <div style={{ fontSize: 30, fontWeight: 900, color: GOLD2, lineHeight: 1, fontVariantNumeric: "tabular-nums" }}>{String(cd[k]).padStart(2, "0")}</div>
+            <div style={{ fontSize: 10, fontWeight: 800, color: DIM, textTransform: "uppercase", letterSpacing: 1, marginTop: 4 }}>{label}</div>
+          </div>
+        ))}
+      </div>
+
+      <div style={{ fontSize: 12, color: DIM, marginTop: 18 }}>
+        Pitido inicial: <b style={{ color: "#fff" }}>11 de junio de 2026</b>
+      </div>
+
+      <div style={{ display: "inline-flex", alignItems: "center", gap: 8, marginTop: 16, background: BG2, borderRadius: 10, border: "1px solid rgba(255,255,255,0.06)", padding: "9px 14px" }}>
+        <span style={{ fontSize: 16 }}>{ready ? "✅" : "📋"}</span>
+        <span style={{ fontSize: 13, fontWeight: 700, color: ready ? GREEN : MID }}>
+          {ready ? "Plantilla lista (15/15) — todo a punto para el debut" : `Plantilla ${filled}/15 — complétala en Mercado o con el Auto-draft IA`}
+        </span>
+      </div>
+    </div>
+  );
 }
 
 const sectionTitle: React.CSSProperties = { fontSize: 11, fontWeight: 800, color: DIM, textTransform: "uppercase", letterSpacing: 1, marginBottom: 8 };

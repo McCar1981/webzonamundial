@@ -28,6 +28,7 @@ export const SCORING_TABLE: ScoringRow[] = [
   { accion: "3+ tiros a puerta", puntos: "+1" },
   { accion: "MVP del partido", puntos: "+5", nota: "Calculado por IA" },
   { accion: "Hat-trick", puntos: "+5", nota: "Bonus extra" },
+  { accion: "Puntos de bonificación (BPS)", puntos: "+3 / +2 / +1", nota: "Los 3 mejores de cada partido" },
   { accion: "Tarjeta amarilla", puntos: "-1", neg: true },
   { accion: "Tarjeta roja", puntos: "-3", neg: true },
   { accion: "Gol en propia", puntos: "-3", neg: true },
@@ -65,6 +66,7 @@ export interface PlayerScore {
   captainFactor: number; // 1 | 1.5 | 2 | 3
   muro: boolean;
   basePoints: number;
+  bonus: number; // puntos de bonificación (BPS) ya escalados por capitán
   finalPoints: number;
   events: PlayerEvent[];
 }
@@ -188,6 +190,67 @@ function gameweekBest(gw: number): number {
   return Math.round(best);
 }
 
+type Perf = ReturnType<typeof simulatePerformance>;
+
+/**
+ * BPS (Bonus Points System): puntúa la "calidad" de la actuación a partir de los
+ * eventos. Se usa solo para repartir la bonificación de cada partido, no es el
+ * punto fantasy en sí.
+ */
+function bpsFromPerf(p: FantasyPlayer, perf: Perf): number {
+  if (!perf.played) return 0;
+  let bps = perf.minutes >= 60 ? 6 : 3;
+  for (const e of perf.events) {
+    switch (e.type) {
+      case "goal": bps += p.pos === "GK" ? 40 : p.pos === "DEF" ? 36 : p.pos === "MID" ? 30 : 24; break;
+      case "assist": bps += 18; break;
+      case "cleansheet": bps += 12; break;
+      case "penalty_save": bps += 15; break;
+      case "mvp": bps += 20; break;
+      case "hattrick": bps += 10; break;
+      case "recover": bps += 6; break;
+      case "shots": bps += 4; break;
+      case "yellow": bps -= 3; break;
+      case "red": bps -= 9; break;
+    }
+  }
+  return bps;
+}
+
+// Caché del reparto de bonus por jornada (mismo gw ⇒ mismo mapa).
+const _bonusCache = new Map<number, Map<string, number>>();
+
+/**
+ * Reparte la bonificación de cada partido: agrupa el pool por enfrentamiento
+ * (selección vs rival del "próximo partido") y da +3/+2/+1 a los tres mejores
+ * BPS de cada partido. Devuelve un mapa playerId → bonus (sin escalar).
+ */
+function gameweekBonusMap(gw: number): Map<string, number> {
+  const cached = _bonusCache.get(gw);
+  if (cached) return cached;
+
+  const matches = new Map<string, FantasyPlayer[]>();
+  for (const p of getPlayerPool()) {
+    const key = [p.flag, p.next.opponentCode].sort().join("|");
+    const arr = matches.get(key);
+    if (arr) arr.push(p);
+    else matches.set(key, [p]);
+  }
+
+  const bonus = new Map<string, number>();
+  const awards = [3, 2, 1];
+  for (const group of matches.values()) {
+    const ranked = group
+      .map((p) => ({ id: p.id, bps: bpsFromPerf(p, simulatePerformance(p, gw)) }))
+      .filter((x) => x.bps > 0)
+      .sort((a, b) => b.bps - a.bps);
+    for (let i = 0; i < ranked.length && i < 3; i++) bonus.set(ranked[i].id, awards[i]);
+  }
+
+  _bonusCache.set(gw, bonus);
+  return bonus;
+}
+
 export function simulateGameweek(slots: SquadSlot[], captainId: string | null, viceId: string | null, powerUp: PowerUp | null, gw: number): GameweekResult {
   const starters = slots.filter((s) => !s.bench && s.playerId);
   const bench = slots.filter((s) => s.bench && s.playerId);
@@ -238,6 +301,7 @@ export function simulateGameweek(slots: SquadSlot[], captainId: string | null, v
   const captainScoredGoal = (id: string) => rows.find((r) => r.p.id === id)?.perf.events.some((e) => e.type === "goal") ?? false;
   const captainPlayed = rows.some((r) => r.p.id === captainId && r.perf.played);
   const effectiveCaptain = captainPlayed ? captainId : viceId;
+  const bonusMap = gameweekBonusMap(gw);
 
   const players: PlayerScore[] = rows.map((r) => {
     const mult = r.p.next.tier.multiplier;
@@ -253,7 +317,10 @@ export function simulateGameweek(slots: SquadSlot[], captainId: string | null, v
       }
     }
     const muroFactor = muro ? 2 : 1;
-    const finalPoints = Math.round(r.perf.base * mult * muroFactor * captainFactor);
+    // Bonus (BPS): solo si jugó; se escala por capitán/vice como el resto.
+    const rawBonus = r.perf.played ? bonusMap.get(r.p.id) ?? 0 : 0;
+    const bonus = Math.round(rawBonus * captainFactor);
+    const finalPoints = Math.round(r.perf.base * mult * muroFactor * captainFactor) + bonus;
     return {
       id: r.p.id,
       name: r.p.name,
@@ -269,6 +336,7 @@ export function simulateGameweek(slots: SquadSlot[], captainId: string | null, v
       captainFactor,
       muro,
       basePoints: r.perf.base,
+      bonus,
       finalPoints,
       events: r.perf.events,
     };
@@ -296,6 +364,10 @@ export function simulateGameweek(slots: SquadSlot[], captainId: string | null, v
     const factor = p.multiplier * (p.muro ? 2 : 1) * (p.captainFactor || 1);
     for (const e of p.events) {
       timeline.push({ ...e, player: p.name, flag: p.flag, finalDelta: Math.round(e.points * factor) });
+    }
+    // El bonus se reparte al cierre del partido (no se multiplica por el evento).
+    if (p.bonus > 0) {
+      timeline.push({ minute: 95, type: "bonus", emoji: "🎖️", points: p.bonus, label: "Puntos de bonificación", player: p.name, flag: p.flag, finalDelta: p.bonus });
     }
   }
   timeline.sort((a, b) => a.minute - b.minute);

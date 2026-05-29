@@ -160,6 +160,7 @@ export default function LiveView({ team, onCommit }: Props) {
                     {p.multiplier > 1 && <span style={{ color: GOLD2 }}> ·×{p.multiplier}</span>}
                     {p.muro && <span style={{ color: "#38bdf8" }}> ·muro×2</span>}
                     {p.captainFactor > 1 && <span style={{ color: GOLD }}> ·©×{p.captainFactor}</span>}
+                    {p.bonus > 0 && <span style={{ color: GREEN }}> ·🎖️+{p.bonus}</span>}
                   </div>
                 </div>
                 <span style={{ fontSize: 16, fontWeight: 900, color: p.finalPoints >= 0 ? "#fff" : RED, fontVariantNumeric: "tabular-nums" }}>{p.finalPoints}</span>

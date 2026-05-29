@@ -1,0 +1,82 @@
+// src/lib/fantasy/types.ts
+//
+// Modelo de datos del Fantasy Mundial. El módulo es una experiencia
+// interactiva client-side: el pool de jugadores se genera de forma
+// DETERMINISTA a partir de las selecciones reales (con las estrellas reales
+// incluidas). No hay base de datos; el equipo del usuario vive en localStorage.
+
+export type FantasyPos = "GK" | "DEF" | "MID" | "FWD";
+
+export type PowerUp = "tridente" | "muro" | "francotirador" | "comodin" | "joker";
+
+/** Tier del multiplicador "Modo Underdog" de un partido. */
+export interface MatchTier {
+  multiplier: number; // 1.0 | 1.25 | 1.5 | 2.0
+  label: string; // "Estelar" | "Bronce" | "Oro" | "Diamante"
+  emoji: string; // 🟢 🟡 💎
+  color: string;
+}
+
+/** Próximo partido de una selección dentro del fantasy. */
+export interface NextMatch {
+  opponentCode: string; // flagCode rival
+  opponentName: string;
+  tier: MatchTier;
+  difficulty: "easy" | "medium" | "hard";
+}
+
+export interface FantasyPlayer {
+  id: string; // slug-pos-idx
+  name: string;
+  teamSlug: string;
+  teamName: string;
+  flag: string; // flagCode
+  color: string;
+  pos: FantasyPos;
+  price: number; // millones €
+  totalPoints: number;
+  avgPoints: number;
+  form: number; // 0..10
+  ownership: number; // %
+  available: boolean;
+  /** true si es un jugador real (estrella de la selección). */
+  real: boolean;
+  stats: { goals: number; assists: number; minutes: number; cleanSheets: number };
+  next: NextMatch;
+}
+
+/** Un hueco de la alineación con el jugador asignado (o vacío). */
+export interface SquadSlot {
+  slot: string; // GK1, DEF1.. MID1.. FWD1.. BENCH1..BENCH4
+  pos: FantasyPos;
+  bench: boolean;
+  playerId: string | null;
+}
+
+export interface FantasyTeamState {
+  teamName: string;
+  formation: string; // "4-3-3"
+  slots: SquadSlot[];
+  captainId: string | null;
+  viceId: string | null;
+  powerUp: PowerUp | null; // power-up armado para la jornada
+  powerUpsUsed: PowerUp[]; // usados en el torneo
+  wildcardUsed: boolean;
+  gameweek: number;
+  totalPoints: number;
+  history: { gw: number; points: number; powerUp: PowerUp | null }[];
+}
+
+/** Reglas de una formación: cuántos por línea (sin contar banquillo). */
+export interface FormationRule {
+  code: string;
+  def: number;
+  mid: number;
+  fwd: number;
+  estilo: string;
+}
+
+export const BUDGET = 100; // €100M
+export const SQUAD_SIZE = 15; // 11 titulares + 4 banquillo
+export const MAX_PER_NATION = 3;
+export const FREE_TRANSFERS = 2;

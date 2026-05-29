@@ -494,19 +494,19 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
         {feed && lineups && (
           <>
             {/* Marcador */}
-            <div style={{ background: BG2, borderRadius: 20, border: "1px solid rgba(255,255,255,0.08)", padding: "18px 20px", marginBottom: 14 }}>
+            <div style={{ background: BG2, borderRadius: 20, border: "1px solid rgba(255,255,255,0.08)", padding: "16px clamp(10px,4vw,20px)", marginBottom: 14 }}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginBottom: 12 }}>
                 {feed.mode === "live" && !finished && <span className="mc-live-dot" />}
                 <span style={{ fontSize: 12, fontWeight: 800, letterSpacing: 1.5, color: finished ? MID : GREEN, textTransform: "uppercase" }}>
                   {feed.mode === "sim" ? `Simulación · ${phase}` : phase}
                 </span>
               </div>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
                 <TeamBlock name={meta.home.name} flag={meta.home.flag} color={meta.home.color} scorer={lastScorer?.side === "home" ? lastScorer : null} />
-                <div style={{ textAlign: "center", minWidth: 150 }}>
-                  <div className="mc-num" style={{ fontSize: 56, fontWeight: 700, lineHeight: 1, display: "flex", justifyContent: "center", alignItems: "center", gap: 14 }}>
+                <div style={{ textAlign: "center", flex: "0 0 auto", minWidth: 88 }}>
+                  <div className="mc-num" style={{ fontSize: "clamp(34px,11vw,56px)", fontWeight: 700, lineHeight: 1, display: "flex", justifyContent: "center", alignItems: "center", gap: "clamp(6px,3vw,14px)" }}>
                     <span key={`hs-${score[0]}`} style={{ color: GOLD2, animation: "mcPop .4s ease" }}>{score[0]}</span>
-                    <span style={{ color: DIM, fontSize: 36 }}>:</span>
+                    <span style={{ color: DIM, fontSize: "clamp(22px,7vw,36px)" }}>:</span>
                     <span key={`as-${score[1]}`} style={{ color: GOLD2, animation: "mcPop .4s ease" }}>{score[1]}</span>
                   </div>
                   <div className="mc-num" style={{ marginTop: 6, fontSize: 15, fontWeight: 700, color: finished ? MID : GREEN, animation: finished ? undefined : "mcClock 1.6s ease infinite" }}>
@@ -625,11 +625,11 @@ function Centered({ children }: { children: React.ReactNode }) {
 
 function TeamBlock({ name, flag, color, right, scorer }: { name: string; flag: string; color: string; right?: boolean; scorer?: { player?: string; minute: number } | null }) {
   return (
-    <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
-      <img src={flagUrl(flag)} alt={name} style={{ width: 56, height: 38, borderRadius: 6, objectFit: "cover", border: `2px solid ${color}`, boxShadow: `0 0 0 1px rgba(0,0,0,0.4)` }} />
-      <div className="mc-condensed" style={{ fontWeight: 700, fontSize: 16, textAlign: "center", textTransform: "uppercase" }}>{name}</div>
+    <div style={{ flex: "1 1 0", minWidth: 0, display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
+      <img src={flagUrl(flag)} alt={name} style={{ width: "clamp(40px,12vw,56px)", height: "auto", aspectRatio: "3 / 2", borderRadius: 6, objectFit: "cover", border: `2px solid ${color}`, boxShadow: `0 0 0 1px rgba(0,0,0,0.4)` }} />
+      <div className="mc-condensed" style={{ fontWeight: 700, fontSize: "clamp(11px,3.4vw,16px)", textAlign: "center", textTransform: "uppercase", lineHeight: 1.1, maxWidth: "100%" }}>{name}</div>
       {scorer && (
-        <div key={`sc-${scorer.minute}-${scorer.player}`} style={{ display: "flex", alignItems: "center", gap: 6, background: "rgba(201,168,76,0.14)", border: `1px solid ${GOLD}55`, borderRadius: 20, padding: "3px 10px", animation: "mcChip .4s ease" }}>
+        <div key={`sc-${scorer.minute}-${scorer.player}`} style={{ display: "flex", alignItems: "center", gap: 6, maxWidth: "100%", background: "rgba(201,168,76,0.14)", border: `1px solid ${GOLD}55`, borderRadius: 20, padding: "3px 10px", animation: "mcChip .4s ease" }}>
           <span style={{ fontSize: 12 }}>⚽</span>
           <span style={{ fontSize: 12, fontWeight: 700 }}>{scorer.player ? lastNameShort(scorer.player) : "Gol"}</span>
           <span className="mc-num" style={{ fontSize: 11, color: GOLD2, fontWeight: 700 }}>{scorer.minute}{"'"}</span>

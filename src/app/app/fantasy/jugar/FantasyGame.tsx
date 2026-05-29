@@ -18,6 +18,9 @@ import MarketView from "./MarketView";
 import LiveView from "./LiveView";
 import LeaguesView from "./LeaguesView";
 import CoachView from "./CoachView";
+import Onboarding from "./Onboarding";
+
+const ONBOARDED_KEY = "zm-fantasy-onboarded:v1";
 
 type Tab = "equipo" | "mercado" | "vivo" | "ligas" | "coach";
 
@@ -35,10 +38,19 @@ export default function FantasyGame() {
   const [tab, setTab] = useState<Tab>("equipo");
   const [selectingSlot, setSelectingSlot] = useState<string | null>(null);
   const [toast, setToast] = useState<string | null>(null);
+  const [showOnboarding, setShowOnboarding] = useState(false);
 
   useEffect(() => {
     setTeam(loadTeam() ?? defaultTeam());
     setLoaded(true);
+    try {
+      if (!window.localStorage.getItem(ONBOARDED_KEY)) setShowOnboarding(true);
+    } catch { /* ignore */ }
+  }, []);
+
+  const dismissOnboarding = useCallback(() => {
+    setShowOnboarding(false);
+    try { window.localStorage.setItem(ONBOARDED_KEY, "1"); } catch { /* ignore */ }
   }, []);
 
   useEffect(() => {
@@ -294,6 +306,8 @@ export default function FantasyGame() {
       {toast && (
         <div style={{ position: "fixed", left: "50%", bottom: 24, transform: "translateX(-50%)", zIndex: 50, background: BG3, border: `1px solid ${GOLD}55`, borderRadius: 12, padding: "10px 18px", fontSize: 13, fontWeight: 700, boxShadow: "0 12px 30px rgba(0,0,0,0.5)" }}>{toast}</div>
       )}
+
+      {showOnboarding && <Onboarding onClose={dismissOnboarding} onAutoDraft={doAutoDraft} />}
 
       <div style={{ textAlign: "center", padding: "30px 16px", color: DIM, fontSize: 12 }}>
         Jugadores reales de las {ROSTERED_COUNT} selecciones con convocatoria confirmada (act. 29 may 2026). Precios, puntos, forma, probabilidad de titularidad y estado físico son una simulación interactiva para previsualizar el Fantasy. Las {48 - ROSTERED_COUNT} selecciones restantes se añadirán al confirmarse sus listas.

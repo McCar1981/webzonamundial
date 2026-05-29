@@ -17,6 +17,12 @@ export function flagUrl(code: string): string {
   return `https://flagcdn.com/w80/${code}.png`;
 }
 
+// Camiseta (kit local) de la selección. Hay 48 kits "home" nombrados por slug
+// en public/img/kits/2026/home/. Ej: kitUrl("argentina") => /img/kits/2026/home/argentina.png
+export function kitUrl(slug: string): string {
+  return `/img/kits/2026/home/${slug}.png`;
+}
+
 export const POS_LABEL: Record<FantasyPos, string> = {
   GK: "POR",
   DEF: "DEF",

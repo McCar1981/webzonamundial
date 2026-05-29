@@ -108,11 +108,14 @@ function buildTeamPlayers(team: Seleccion, next: NextMatch): FantasyPlayer[] {
     const topness = posCount[pos] > 1 ? 1 - within / posCount[pos] : 1;
 
     const rating = clamp(strength * 0.6 + topness * 0.18 + rng() * 0.22, 0.05, 1);
+    // Precio (SIMULADO). Base baja + más peso al jugador (rating/topness) que a
+    // la fuerza del equipo => existen enablers baratos (~4M) y las estrellas
+    // destacan (~13M). Pensado para que un 11 válido entre en los €100M.
     const price = round1(
       clamp(
-        4 + strength * 5.2 + POS_PREMIUM[pos] + topness * 1.6 + rating * 2.6 + (rng() - 0.4) * 1.2,
-        3.8,
-        14.5,
+        3.5 + strength * 3.2 + POS_PREMIUM[pos] + topness * 1.5 + rating * 3.0 + (rng() - 0.45) * 1.1,
+        3.5,
+        13.5,
       ),
     );
     const totalPoints = Math.round(rating * 58 + rng() * 16);

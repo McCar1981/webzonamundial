@@ -83,6 +83,19 @@ const EVENT_ICON: Record<string, string> = {
   chance: "❗", injury: "➕", kickoff: "▶", half_time: "⏸", full_time: "🏁",
 };
 
+interface H2HMatch {
+  date: string;
+  homeTeam: string;
+  awayTeam: string;
+  goalsHome: number | null;
+  goalsAway: number | null;
+  competition: string;
+}
+interface H2HData {
+  matches: H2HMatch[];
+  recordText: string;
+}
+
 interface Props {
   matchId: number;
   meta: MatchMeta;
@@ -123,6 +136,7 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
   const firedRef = useRef<Set<string>>(new Set());
   const lastGoalRef = useRef<MatchEvent | null>(null);
   const [replayTag, setReplayTag] = useState(false);
+  const [h2h, setH2h] = useState<H2HData | null>(null);
   const speakerRef = useRef<Speaker | null>(null);
   const soundRef = useRef<MatchSound | null>(null);
 
@@ -141,6 +155,20 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
     setSoundAvailable(snd.available());
     return () => snd.stopAmbient();
   }, []);
+
+  // Historial head-to-head entre las dos selecciones (datos reales; vacío si no hay)
+  useEffect(() => {
+    let alive = true;
+    fetch(`/api/match-center/h2h/${matchId}`, { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d: H2HData | null) => {
+        if (alive && d && Array.isArray(d.matches) && d.matches.length > 0) setH2h(d);
+      })
+      .catch(() => {});
+    return () => {
+      alive = false;
+    };
+  }, [matchId]);
 
   const speak = useCallback((text: string, priority = false) => {
     speakerRef.current?.speak(text, { priority });
@@ -605,7 +633,9 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
             <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 14, marginTop: 14 }}>
               <StatsPanel stats={stats} meta={meta} />
               <Timeline log={log} meta={meta} onRelive={relive} />
+              <MatchSummary log={log} meta={meta} />
               <Lineups lineups={lineups} meta={meta} />
+              {h2h && <H2HPanel h2h={h2h} meta={meta} />}
               <MatchInfo meta={meta} lineups={lineups} />
             </div>
 
@@ -864,6 +894,117 @@ function TeamLineupCol({ team, lineup, right }: { team: MatchMeta["home"]; lineu
                   </span>
                 </div>
               ))}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// Resumen del partido derivado del log real: goleadores (con asistencias) y
+// tarjetas por equipo. No inventa datos: solo agrega lo ya ocurrido.
+const GOAL_TYPES = new Set(["goal", "penalty_goal", "own_goal"]);
+function minuteLabel(e: MatchEvent): string {
+  return `${e.minute}${e.extra ? `+${e.extra}` : ""}'`;
+}
+function MatchSummary({ log, meta }: { log: MatchEvent[]; meta: MatchMeta }) {
+  const data = useMemo(() => {
+    const ev = [...log].sort((a, b) => a.t - b.t);
+    const side = (s: MatchEvent["side"]) => (s === "home" ? "home" : s === "away" ? "away" : null);
+    const scorers: Record<"home" | "away", MatchEvent[]> = { home: [], away: [] };
+    const cards: Record<"home" | "away", { y: number; r: number }> = { home: { y: 0, r: 0 }, away: { y: 0, r: 0 } };
+    const assists: Record<"home" | "away", { name: string; minute: string }[]> = { home: [], away: [] };
+    for (const e of ev) {
+      const sd = side(e.side);
+      if (!sd) continue;
+      if (GOAL_TYPES.has(e.type)) {
+        // gol en propia: cuenta para el rival
+        const benef = e.type === "own_goal" ? (sd === "home" ? "away" : "home") : sd;
+        scorers[benef].push(e);
+        if (e.assist) assists[sd].push({ name: lastNameShort(e.assist), minute: minuteLabel(e) });
+      } else if (e.type === "yellow" || e.type === "second_yellow") {
+        cards[sd].y++;
+      } else if (e.type === "red") {
+        cards[sd].r++;
+      }
+    }
+    return { scorers, cards, assists };
+  }, [log]);
+
+  const hasAny =
+    data.scorers.home.length || data.scorers.away.length ||
+    data.cards.home.y || data.cards.home.r || data.cards.away.y || data.cards.away.r;
+  if (!hasAny) return null;
+
+  const col = (team: MatchMeta["home"], sd: "home" | "away", right?: boolean) => {
+    const goals = data.scorers[sd];
+    const cards = data.cards[sd];
+    const assists = data.assists[sd];
+    return (
+      <div style={{ textAlign: right ? "right" : "left" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10, flexDirection: right ? "row-reverse" : "row" }}>
+          <img src={flagUrl(team.flag)} alt={team.name} style={{ width: 30, height: 20, borderRadius: 4, objectFit: "cover", border: `1px solid ${team.color}` }} />
+          <div className="mc-condensed" style={{ fontWeight: 700, fontSize: 14, textTransform: "uppercase", lineHeight: 1 }}>{team.name}</div>
+        </div>
+        <div style={{ fontSize: 9, fontWeight: 800, color: DIM, textTransform: "uppercase", letterSpacing: 1, marginBottom: 4 }}>Goleadores</div>
+        {goals.length === 0 ? (
+          <div style={{ fontSize: 12, color: DIM, marginBottom: 8 }}>—</div>
+        ) : (
+          <div style={{ display: "flex", flexDirection: "column", gap: 3, marginBottom: 8 }}>
+            {goals.map((e) => (
+              <div key={e.id} style={{ fontSize: 12, fontWeight: 600 }}>
+                ⚽ {e.player ? lastNameShort(e.player) : "Gol"}{e.type === "penalty_goal" ? " (p)" : e.type === "own_goal" ? " (p.p.)" : ""}{" "}
+                <span className="mc-num" style={{ color: GOLD2, fontWeight: 700 }}>{minuteLabel(e)}</span>
+              </div>
+            ))}
+          </div>
+        )}
+        {assists.length > 0 && (
+          <>
+            <div style={{ fontSize: 9, fontWeight: 800, color: DIM, textTransform: "uppercase", letterSpacing: 1, marginBottom: 4 }}>Asistencias</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 3, marginBottom: 8 }}>
+              {assists.map((a, i) => (
+                <div key={i} style={{ fontSize: 12, fontWeight: 600, color: MID }}>👟 {a.name} <span className="mc-num" style={{ color: GOLD2 }}>{a.minute}</span></div>
+              ))}
+            </div>
+          </>
+        )}
+        <div style={{ fontSize: 9, fontWeight: 800, color: DIM, textTransform: "uppercase", letterSpacing: 1, marginBottom: 4 }}>Tarjetas</div>
+        <div style={{ display: "flex", gap: 12, justifyContent: right ? "flex-end" : "flex-start" }}>
+          <span style={{ fontSize: 12, fontWeight: 700 }}>🟨 <span className="mc-num">{cards.y}</span></span>
+          <span style={{ fontSize: 12, fontWeight: 700 }}>🟥 <span className="mc-num">{cards.r}</span></span>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div style={{ background: BG2, borderRadius: 16, border: "1px solid rgba(255,255,255,0.08)", padding: 18 }}>
+      <h3 style={{ fontSize: 13, fontWeight: 800, color: MID, textTransform: "uppercase", letterSpacing: 1, marginBottom: 14 }}>Resumen del partido</h3>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+        {col(meta.home, "home")}
+        {col(meta.away, "away", true)}
+      </div>
+    </div>
+  );
+}
+
+function H2HPanel({ h2h, meta }: { h2h: H2HData; meta: MatchMeta }) {
+  return (
+    <div style={{ background: BG2, borderRadius: 16, border: "1px solid rgba(255,255,255,0.08)", padding: 18 }}>
+      <h3 style={{ fontSize: 13, fontWeight: 800, color: MID, textTransform: "uppercase", letterSpacing: 1, marginBottom: 6 }}>Historial · {meta.home.name} vs {meta.away.name}</h3>
+      {h2h.recordText && <div style={{ fontSize: 12, color: GOLD2, fontWeight: 700, marginBottom: 12 }}>{h2h.recordText}</div>}
+      <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+        {h2h.matches.slice(0, 8).map((m, i) => {
+          const score = m.goalsHome !== null && m.goalsAway !== null ? `${m.goalsHome} - ${m.goalsAway}` : "—";
+          return (
+            <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, background: "rgba(255,255,255,0.04)", borderRadius: 10, padding: "8px 12px" }}>
+              <span className="mc-num" style={{ flex: "0 0 auto", fontSize: 10, color: DIM, width: 64 }}>{m.date.slice(0, 10)}</span>
+              <span style={{ flex: 1, fontSize: 12, fontWeight: 600, textAlign: "right", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{m.homeTeam}</span>
+              <span className="mc-num" style={{ flex: "0 0 auto", fontSize: 13, fontWeight: 700, color: GOLD2 }}>{score}</span>
+              <span style={{ flex: 1, fontSize: 12, fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{m.awayTeam}</span>
+              {m.competition && <span style={{ flex: "0 0 auto", fontSize: 9, color: DIM, textTransform: "uppercase", maxWidth: 90, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{m.competition}</span>}
             </div>
           );
         })}

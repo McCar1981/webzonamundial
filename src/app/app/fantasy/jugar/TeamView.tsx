@@ -52,52 +52,20 @@ export default function TeamView({ team, validation, onSlotClickEmpty, onRemove,
 
       <div style={{ fontSize: 11, color: DIM, fontWeight: 700, marginBottom: 6 }}>Arrastra un jugador sobre otro para intercambiarlos · toca para capitán/quitar.</div>
 
-      {/* Campo de fútbol 3D estilo estadio (perspectiva inclinada como FIFA):
-          una superficie de césped inclinada hacia el fondo + jugadores planos encima. */}
-      <div style={{ maxWidth: 480, margin: "0 auto", perspective: 1150, perspectiveOrigin: "50% 30%" }}>
-        <div style={{ position: "relative", aspectRatio: "68 / 92" }}>
-          {/* Superficie del césped inclinada en 3D */}
-          <div style={{ position: "absolute", inset: 0, transform: "rotateX(36deg)", transformOrigin: "50% 100%", borderRadius: "10px 10px 16px 16px", background: "linear-gradient(180deg,#1c8f51 0%,#127443 44%,#0a5230 100%)", border: "1px solid rgba(255,255,255,0.12)", boxShadow: "inset 0 0 90px rgba(0,0,0,0.5), 0 44px 70px rgba(0,0,0,0.55)", overflow: "hidden" }}>
-            {/* Franjas de corte de césped */}
-            <div style={{ position: "absolute", inset: 0, backgroundImage: "repeating-linear-gradient(180deg, rgba(255,255,255,0.06) 0 7%, rgba(0,0,0,0.05) 7% 14%)", pointerEvents: "none" }} />
-            {/* Brillo de focos en el fondo del campo */}
-            <div style={{ position: "absolute", inset: 0, background: "radial-gradient(120% 55% at 50% 0%, rgba(255,255,255,0.22), transparent 55%)", pointerEvents: "none" }} />
-            {/* Viñeta para dar profundidad */}
-            <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 50% 30%, transparent 50%, rgba(0,0,0,0.4) 100%)", pointerEvents: "none" }} />
-            {/* Líneas del campo */}
-            <svg viewBox="0 0 100 150" preserveAspectRatio="none" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none", opacity: 0.55 }}>
-              {(() => {
-                const L = { fill: "none", stroke: "#ffffff", strokeWidth: 0.5, vectorEffect: "non-scaling-stroke" as const };
-                return (
-                  <>
-                    <rect x="3" y="3" width="94" height="144" {...L} />
-                    <line x1="3" y1="75" x2="97" y2="75" {...L} />
-                    <circle cx="50" cy="75" r="13" {...L} />
-                    <circle cx="50" cy="75" r="0.8" fill="#ffffff" stroke="none" />
-                    {/* Área superior */}
-                    <rect x="22" y="3" width="56" height="22" {...L} />
-                    <rect x="37" y="3" width="26" height="9" {...L} />
-                    <path d="M 38 25 A 13 13 0 0 0 62 25" {...L} />
-                    {/* Área inferior */}
-                    <rect x="22" y="125" width="56" height="22" {...L} />
-                    <rect x="37" y="138" width="26" height="9" {...L} />
-                    <path d="M 38 125 A 13 13 0 0 1 62 125" {...L} />
-                  </>
-                );
-              })()}
-            </svg>
-          </div>
+      {/* Campo: imagen real de estadio (césped vertical) con los jugadores encima. */}
+      <div style={{ maxWidth: 460, margin: "0 auto", position: "relative", aspectRatio: "941 / 1371", borderRadius: 16, overflow: "hidden", backgroundImage: "url('/img/fantasy/campo-mobile.png')", backgroundSize: "cover", backgroundPosition: "center", boxShadow: "0 18px 50px rgba(0,0,0,0.5)" }}>
+        {/* Leve oscurecido arriba/abajo para que resalten las fichas */}
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0.04) 38%, rgba(0,0,0,0.04) 62%, rgba(0,0,0,0.28) 100%)", pointerEvents: "none" }} />
 
-          {/* Capa de jugadores: planos sobre el césped inclinado (billboard, como FIFA) */}
-          <div style={{ position: "absolute", inset: 0, padding: "9% 3% 3%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-            {(["FWD", "MID", "DEF", "GK"] as const).map((pref) => (
-              <div key={pref} style={{ display: "flex", justifyContent: "center", gap: 8, flexWrap: "wrap" }}>
-                {lineSlots(pref).map((s) => (
-                  <SlotCard key={s.slot} slot={s} team={team} menu={menu} setMenu={setMenu} onSlotClickEmpty={onSlotClickEmpty} onRemove={onRemove} onCaptain={onCaptain} onVice={onVice} onSwap={onSwap} />
-                ))}
-              </div>
-            ))}
-          </div>
+        {/* Capa de jugadores: delanteros arriba (portería rival) → portero abajo (la nuestra). */}
+        <div style={{ position: "absolute", inset: 0, padding: "11% 4% 9%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+          {(["FWD", "MID", "DEF", "GK"] as const).map((pref) => (
+            <div key={pref} style={{ display: "flex", justifyContent: "center", gap: 8, flexWrap: "wrap" }}>
+              {lineSlots(pref).map((s) => (
+                <SlotCard key={s.slot} slot={s} team={team} menu={menu} setMenu={setMenu} onSlotClickEmpty={onSlotClickEmpty} onRemove={onRemove} onCaptain={onCaptain} onVice={onVice} onSwap={onSwap} />
+              ))}
+            </div>
+          ))}
         </div>
       </div>
 

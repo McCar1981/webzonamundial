@@ -9,6 +9,7 @@ import { getPlayerPool } from "@/lib/fantasy/players";
 import { getTeamRun, STAGE_SHORT } from "@/lib/fantasy/tournament";
 import type { FantasyPos, FantasyPlayer, PlayerStatus, SquadSlot } from "@/lib/fantasy/types";
 import { BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED, money, flagUrl, lastName, POS_LABEL, POS_COLOR } from "./fx";
+import PlayerModal from "./PlayerModal";
 
 const STATUS_META: Record<PlayerStatus, { label: string; color: string } | null> = {
   apto: null,
@@ -74,6 +75,16 @@ export default function MarketView({ ownedIds, nationCounts, budgetRemaining, se
   const [onlyAffordable, setOnlyAffordable] = useState(false);
   const [onlyStarters, setOnlyStarters] = useState(false);
 
+  // Ficha / comparador.
+  const [detail, setDetail] = useState<FantasyPlayer | null>(null);
+  const [compareMode, setCompareMode] = useState(false);
+  const [compareSel, setCompareSel] = useState<FantasyPlayer[]>([]);
+
+  const onInfo = (p: FantasyPlayer) => {
+    if (!compareMode) { setDetail(p); return; }
+    setCompareSel((sel) => (sel.find((x) => x.id === p.id) ? sel.filter((x) => x.id !== p.id) : [...sel, p].slice(-2)));
+  };
+
   // Para huecos de banquillo no-GK, sólo se admiten jugadores de campo.
   const benchNonGk = !!(selectingSlot?.bench && selectingSlot.pos !== "GK");
 
@@ -136,7 +147,14 @@ export default function MarketView({ ownedIds, nationCounts, budgetRemaining, se
         </label>
         <button onClick={() => setOnlyAffordable((v) => !v)} style={{ padding: "8px 12px", borderRadius: 8, border: "1px solid " + (onlyAffordable ? GREEN : "rgba(255,255,255,0.12)"), background: onlyAffordable ? `${GREEN}22` : BG2, color: onlyAffordable ? GREEN : "#fff", fontWeight: 700, fontSize: 12, cursor: "pointer" }}>Dentro de presupuesto</button>
         <button onClick={() => setOnlyStarters((v) => !v)} style={{ padding: "8px 12px", borderRadius: 8, border: "1px solid " + (onlyStarters ? GREEN : "rgba(255,255,255,0.12)"), background: onlyStarters ? `${GREEN}22` : BG2, color: onlyStarters ? GREEN : "#fff", fontWeight: 700, fontSize: 12, cursor: "pointer" }}>Solo titulares probables</button>
+        <button onClick={() => { setCompareMode((v) => !v); setCompareSel([]); }} style={{ padding: "8px 12px", borderRadius: 8, border: "1px solid " + (compareMode ? GOLD : "rgba(255,255,255,0.12)"), background: compareMode ? `${GOLD}22` : BG2, color: compareMode ? GOLD2 : "#fff", fontWeight: 700, fontSize: 12, cursor: "pointer" }}>⚖️ Comparar</button>
       </div>
+
+      {compareMode && (
+        <div style={{ background: `${GOLD}14`, border: `1px solid ${GOLD}33`, borderRadius: 10, padding: "8px 12px", marginBottom: 12, fontSize: 12, fontWeight: 700, color: GOLD2 }}>
+          Modo comparar: toca la ficha de dos jugadores ({compareSel.length}/2 seleccionados).
+        </div>
+      )}
 
       <div style={{ fontSize: 11, color: DIM, fontWeight: 700, marginBottom: 8 }}>{list.length} jugadores · Presupuesto libre {money(budgetRemaining)}</div>
 
@@ -147,13 +165,14 @@ export default function MarketView({ ownedIds, nationCounts, budgetRemaining, se
           const tooPricey = p.price > budgetRemaining + 1e-6;
           const nationFull = (nationCounts[p.teamSlug] ?? 0) >= 3 && !owned;
           const disabled = owned || tooPricey || nationFull || !p.available;
+          const picked = compareMode && !!compareSel.find((x) => x.id === p.id);
           return (
-            <div key={p.id} style={{ background: BG2, border: "1px solid rgba(255,255,255,0.07)", borderRadius: 12, padding: 12, display: "flex", flexDirection: "column", gap: 8 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <div key={p.id} style={{ background: BG2, border: "1px solid " + (picked ? GOLD : "rgba(255,255,255,0.07)"), borderRadius: 12, padding: 12, display: "flex", flexDirection: "column", gap: 8 }}>
+              <div onClick={() => onInfo(p)} title={compareMode ? "Seleccionar para comparar" : "Ver ficha"} style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer" }}>
                 <img src={flagUrl(p.flag)} alt={p.teamName} style={{ width: 34, height: 23, borderRadius: 3, objectFit: "cover", border: `1px solid ${p.color}` }} />
                 <div style={{ minWidth: 0, flex: 1 }}>
                   <div style={{ fontSize: 14, fontWeight: 800, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                    {lastName(p.name)}
+                    {lastName(p.name)} <span style={{ fontSize: 11, color: DIM }}>ⓘ</span>
                   </div>
                   <div style={{ fontSize: 11, color: MID, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{p.teamName} · {p.club}</div>
                 </div>
@@ -201,6 +220,9 @@ export default function MarketView({ ownedIds, nationCounts, budgetRemaining, se
       </div>
 
       {list.length === 0 && <div style={{ textAlign: "center", padding: 40, color: DIM, fontSize: 14 }}>Sin jugadores para esos filtros.</div>}
+
+      {detail && <PlayerModal players={[detail]} onClose={() => setDetail(null)} />}
+      {compareSel.length === 2 && <PlayerModal players={compareSel} onClose={() => setCompareSel([])} />}
     </div>
   );
 }

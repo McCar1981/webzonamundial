@@ -52,8 +52,8 @@ export default function TeamView({ team, validation, onSlotClickEmpty, onRemove,
 
       <div style={{ fontSize: 11, color: DIM, fontWeight: 700, marginBottom: 6 }}>Arrastra un jugador sobre otro para intercambiarlos · toca para capitán/quitar.</div>
 
-      {/* Campo de fútbol realista (césped + líneas reglamentarias en SVG) */}
-      <div style={{ borderRadius: 18, padding: "22px 8px 16px", background: "linear-gradient(180deg,#11703f 0%,#0c5a35 45%,#0a4a2c 100%)", border: "1px solid rgba(255,255,255,0.08)", boxShadow: "inset 0 0 70px rgba(0,0,0,0.45), 0 8px 30px rgba(0,0,0,0.35)", position: "relative", overflow: "hidden" }}>
+      {/* Campo de fútbol realista (vertical), césped + líneas reglamentarias en SVG */}
+      <div style={{ maxWidth: 440, margin: "0 auto", aspectRatio: "68 / 105", display: "flex", flexDirection: "column", borderRadius: 18, padding: "26px 10px 20px", background: "linear-gradient(180deg,#11703f 0%,#0c5a35 45%,#0a4a2c 100%)", border: "1px solid rgba(255,255,255,0.08)", boxShadow: "inset 0 0 70px rgba(0,0,0,0.45), 0 8px 30px rgba(0,0,0,0.35)", position: "relative", overflow: "hidden" }}>
         {/* Franjas de corte de césped */}
         <div style={{ position: "absolute", inset: 0, backgroundImage: "repeating-linear-gradient(180deg, rgba(255,255,255,0.055) 0 46px, rgba(0,0,0,0.04) 46px 92px)", pointerEvents: "none" }} />
         {/* Viñeta para dar profundidad */}
@@ -80,7 +80,7 @@ export default function TeamView({ team, validation, onSlotClickEmpty, onRemove,
             );
           })()}
         </svg>
-        <div style={{ position: "relative", display: "flex", flexDirection: "column", gap: 14 }}>
+        <div style={{ position: "relative", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
           {(["FWD", "MID", "DEF", "GK"] as const).map((pref) => (
             <div key={pref} style={{ display: "flex", justifyContent: "center", gap: 8, flexWrap: "wrap" }}>
               {lineSlots(pref).map((s) => (

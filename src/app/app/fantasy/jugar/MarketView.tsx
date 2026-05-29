@@ -8,7 +8,7 @@ import { useMemo, useState } from "react";
 import { getPlayerPool } from "@/lib/fantasy/players";
 import { getTeamRun, STAGE_SHORT } from "@/lib/fantasy/tournament";
 import type { FantasyPos, FantasyPlayer, PlayerStatus, SquadSlot } from "@/lib/fantasy/types";
-import { BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED, money, flagUrl, lastName, POS_LABEL, POS_COLOR } from "./fx";
+import { BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED, money, marketValueLabel, flagUrl, lastName, POS_LABEL, POS_COLOR } from "./fx";
 import PlayerModal from "./PlayerModal";
 
 const STATUS_META: Record<PlayerStatus, { label: string; color: string } | null> = {
@@ -189,6 +189,11 @@ export default function MarketView({ ownedIds, nationCounts, budgetRemaining, se
                 <Pill label="Pts" value={String(p.totalPoints)} />
                 <Pill label="Forma" value={`${p.form}`} color={p.form >= 7 ? GREEN : p.form <= 4 ? RED : "#fff"} />
                 <Pill label="Prop." value={`${p.ownership}%`} color={MID} />
+                {p.marketValue != null && (
+                  <span title="Valor de mercado real (Transfermarkt)" style={{ fontWeight: 800, color: DIM }}>
+                    💶 {marketValueLabel(p.marketValue)}
+                  </span>
+                )}
               </div>
 
               <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 11, color: MID, flexWrap: "wrap" }}>

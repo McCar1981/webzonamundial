@@ -57,23 +57,25 @@ export default function TeamView({ team, validation, onSlotClickEmpty, onRemove,
           Escritorio (wide) → campo horizontal (porterías a los lados).
           Móvil → campo vertical (porterías arriba/abajo). */}
       {wide ? (
-        <div style={{ maxWidth: 920, margin: "0 auto", position: "relative", aspectRatio: "3247 / 1465", borderRadius: 16, overflow: "hidden", backgroundImage: "url('/img/fantasy/campo-desktop.png')", backgroundSize: "cover", backgroundPosition: "center", boxShadow: "0 18px 50px rgba(0,0,0,0.5)" }}>
+        <div style={{ maxWidth: 980, margin: "0 auto", position: "relative", aspectRatio: "3247 / 1465", borderRadius: 16, overflow: "hidden", backgroundImage: "url('/img/fantasy/campo-desktop.png?v=2')", backgroundSize: "cover", backgroundPosition: "center", boxShadow: "0 18px 50px rgba(0,0,0,0.5)" }}>
           {/* Leve oscurecido en los laterales para que resalten las fichas */}
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(0,0,0,0.26) 0%, rgba(0,0,0,0.03) 22%, rgba(0,0,0,0.03) 78%, rgba(0,0,0,0.26) 100%)", pointerEvents: "none" }} />
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.04) 24%, rgba(0,0,0,0.04) 76%, rgba(0,0,0,0.28) 100%)", pointerEvents: "none" }} />
 
-          {/* Capa de jugadores: portero a la izquierda (nuestra portería) → delanteros a la derecha. */}
-          <div style={{ position: "absolute", inset: 0, padding: "5% 5%", display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+          {/* Capa de jugadores DENTRO del césped: portero a la izquierda (nuestra portería)
+              → delanteros a la derecha. El padding lateral mete las columnas dentro del verde
+              y cada línea se centra en vertical (soporta 1–5 jugadores según la formación). */}
+          <div style={{ position: "absolute", inset: 0, padding: "9% 11%", display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "stretch" }}>
             {(["GK", "DEF", "MID", "FWD"] as const).map((pref) => (
-              <div key={pref} style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 10 }}>
+              <div key={pref} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: 6 }}>
                 {lineSlots(pref).map((s) => (
-                  <SlotCard key={s.slot} slot={s} team={team} menu={menu} setMenu={setMenu} onSlotClickEmpty={onSlotClickEmpty} onRemove={onRemove} onCaptain={onCaptain} onVice={onVice} onSwap={onSwap} />
+                  <SlotCard key={s.slot} slot={s} team={team} menu={menu} setMenu={setMenu} onSlotClickEmpty={onSlotClickEmpty} onRemove={onRemove} onCaptain={onCaptain} onVice={onVice} onSwap={onSwap} compact />
                 ))}
               </div>
             ))}
           </div>
         </div>
       ) : (
-        <div style={{ maxWidth: 470, margin: "0 auto", position: "relative", aspectRatio: "1882 / 2116", borderRadius: 16, overflow: "hidden", backgroundImage: "url('/img/fantasy/campo-mobile.png')", backgroundSize: "cover", backgroundPosition: "center", boxShadow: "0 18px 50px rgba(0,0,0,0.5)" }}>
+        <div style={{ maxWidth: 470, margin: "0 auto", position: "relative", aspectRatio: "1882 / 2116", borderRadius: 16, overflow: "hidden", backgroundImage: "url('/img/fantasy/campo-mobile.png?v=2')", backgroundSize: "cover", backgroundPosition: "center", boxShadow: "0 18px 50px rgba(0,0,0,0.5)" }}>
           {/* Leve oscurecido arriba/abajo para que resalten las fichas */}
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0.04) 38%, rgba(0,0,0,0.04) 62%, rgba(0,0,0,0.28) 100%)", pointerEvents: "none" }} />
 
@@ -120,7 +122,7 @@ export default function TeamView({ team, validation, onSlotClickEmpty, onRemove,
   );
 }
 
-function SlotCard({ slot, team, menu, setMenu, onSlotClickEmpty, onRemove, onCaptain, onVice, onSwap, bench }: { slot: SquadSlot; team: FantasyTeamState; menu: string | null; setMenu: (s: string | null) => void; onSlotClickEmpty: (id: string) => void; onRemove: (id: string) => void; onCaptain: (id: string) => void; onVice: (id: string) => void; onSwap: (a: string, b: string) => void; bench?: boolean }) {
+function SlotCard({ slot, team, menu, setMenu, onSlotClickEmpty, onRemove, onCaptain, onVice, onSwap, bench, compact }: { slot: SquadSlot; team: FantasyTeamState; menu: string | null; setMenu: (s: string | null) => void; onSlotClickEmpty: (id: string) => void; onRemove: (id: string) => void; onCaptain: (id: string) => void; onVice: (id: string) => void; onSwap: (a: string, b: string) => void; bench?: boolean; compact?: boolean }) {
   const p = slot.playerId ? getPlayerById(slot.playerId) : null;
   const isCap = p && team.captainId === p.id;
   const isVice = p && team.viceId === p.id;
@@ -140,27 +142,33 @@ function SlotCard({ slot, team, menu, setMenu, onSlotClickEmpty, onRemove, onCap
   };
   const overRing = over ? GREEN : null;
 
+  // Tamaños: normal (móvil/banquillo) vs compacto (campo horizontal de escritorio).
+  const W = compact ? 60 : 78;
+  const K = compact ? 34 : 46;
+  const nameFs = compact ? 9.5 : 11;
+  const priceFs = compact ? 8 : 9;
+
   if (!p) {
     return (
-      <button {...dropProps} onClick={() => onSlotClickEmpty(slot.slot)} style={{ width: 78, height: 92, borderRadius: 12, border: "2px dashed " + (overRing ?? "rgba(255,255,255,0.25)"), background: over ? `${GREEN}1a` : "rgba(0,0,0,0.18)", color: "#fff", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 4 }}>
-        <span style={{ fontSize: 22, color: GOLD2 }}>+</span>
-        <span style={{ fontSize: 10, fontWeight: 800, color: POS_COLOR[slot.pos] }}>{bench ? (slot.pos === "GK" ? "POR" : "SUP") : POS_LABEL[slot.pos]}</span>
+      <button {...dropProps} onClick={() => onSlotClickEmpty(slot.slot)} style={{ width: W, height: compact ? 70 : 92, borderRadius: compact ? 10 : 12, border: "2px dashed " + (overRing ?? "rgba(255,255,255,0.3)"), background: over ? `${GREEN}1a` : "rgba(0,0,0,0.22)", color: "#fff", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 4 }}>
+        <span style={{ fontSize: compact ? 18 : 22, color: GOLD2 }}>+</span>
+        <span style={{ fontSize: compact ? 9 : 10, fontWeight: 800, color: POS_COLOR[slot.pos] }}>{bench ? (slot.pos === "GK" ? "POR" : "SUP") : POS_LABEL[slot.pos]}</span>
       </button>
     );
   }
 
   return (
     <div style={{ position: "relative" }} {...dropProps}>
-      <button draggable onDragStart={(e) => { e.dataTransfer.setData("text/plain", slot.slot); e.dataTransfer.effectAllowed = "move"; }} onClick={() => setMenu(open ? null : slot.slot)} style={{ width: 78, borderRadius: 12, border: "1px solid " + (overRing ?? (isCap ? GOLD : "rgba(255,255,255,0.16)")), background: `linear-gradient(180deg, ${BG2} 0%, ${BG} 100%)`, color: "#fff", cursor: "grab", padding: "6px 4px", display: "flex", flexDirection: "column", alignItems: "center", gap: 3, boxShadow: (isCap ? `0 0 0 1px ${GOLD}55, ` : "") + "0 8px 14px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.06)" }}>
+      <button draggable onDragStart={(e) => { e.dataTransfer.setData("text/plain", slot.slot); e.dataTransfer.effectAllowed = "move"; }} onClick={() => setMenu(open ? null : slot.slot)} style={{ width: W, borderRadius: compact ? 10 : 12, border: "1px solid " + (overRing ?? (isCap ? GOLD : "rgba(255,255,255,0.16)")), background: `linear-gradient(180deg, ${BG2} 0%, ${BG} 100%)`, color: "#fff", cursor: "grab", padding: compact ? "4px 3px" : "6px 4px", display: "flex", flexDirection: "column", alignItems: "center", gap: compact ? 2 : 3, boxShadow: (isCap ? `0 0 0 1px ${GOLD}55, ` : "") + "0 8px 14px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.06)" }}>
         <div style={{ position: "relative" }}>
-          <img src={kitUrl(p.teamSlug)} alt={p.teamName} style={{ width: 46, height: 46, objectFit: "contain", filter: p.available ? "drop-shadow(0 2px 3px rgba(0,0,0,0.45))" : "grayscale(0.7) opacity(0.55)" }} />
-          <img src={flagUrl(p.flag)} alt={p.teamName} style={{ position: "absolute", bottom: -2, left: -4, width: 18, height: 12, borderRadius: 2, objectFit: "cover", border: `1px solid ${p.color}`, boxShadow: "0 1px 2px rgba(0,0,0,0.5)" }} />
-          {(isCap || isVice) && <span style={{ position: "absolute", top: -6, right: -6, width: 16, height: 16, borderRadius: "50%", background: isCap ? GOLD : "#94a3b8", color: BG, fontSize: 9, fontWeight: 900, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 1px 3px rgba(0,0,0,0.5)" }}>{isCap ? "C" : "V"}</span>}
+          <img src={kitUrl(p.teamSlug)} alt={p.teamName} style={{ width: K, height: K, objectFit: "contain", filter: p.available ? "drop-shadow(0 2px 3px rgba(0,0,0,0.45))" : "grayscale(0.7) opacity(0.55)" }} />
+          <img src={flagUrl(p.flag)} alt={p.teamName} style={{ position: "absolute", bottom: -2, left: -4, width: compact ? 15 : 18, height: compact ? 10 : 12, borderRadius: 2, objectFit: "cover", border: `1px solid ${p.color}`, boxShadow: "0 1px 2px rgba(0,0,0,0.5)" }} />
+          {(isCap || isVice) && <span style={{ position: "absolute", top: -6, right: -6, width: compact ? 14 : 16, height: compact ? 14 : 16, borderRadius: "50%", background: isCap ? GOLD : "#94a3b8", color: BG, fontSize: 9, fontWeight: 900, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 1px 3px rgba(0,0,0,0.5)" }}>{isCap ? "C" : "V"}</span>}
         </div>
-        <div style={{ fontSize: 11, fontWeight: 700, lineHeight: 1.05, textAlign: "center", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: 70 }}>{lastName(p.name)}</div>
+        <div style={{ fontSize: nameFs, fontWeight: 700, lineHeight: 1.05, textAlign: "center", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: W - 8 }}>{lastName(p.name)}</div>
         <div style={{ display: "flex", gap: 4, alignItems: "center" }}>
-          <span style={{ fontSize: 9, fontWeight: 800, color: GOLD2 }}>{money(p.price)}</span>
-          {p.next.tier.multiplier > 1 && <span title={`Partido ${p.next.tier.label}`} style={{ fontSize: 9 }}>{p.next.tier.emoji}{p.next.tier.multiplier}</span>}
+          <span style={{ fontSize: priceFs, fontWeight: 800, color: GOLD2 }}>{money(p.price)}</span>
+          {p.next.tier.multiplier > 1 && <span title={`Partido ${p.next.tier.label}`} style={{ fontSize: priceFs }}>{p.next.tier.emoji}{p.next.tier.multiplier}</span>}
         </div>
         {!p.available && <span style={{ fontSize: 8, color: RED, fontWeight: 800 }}>BAJA</span>}
       </button>

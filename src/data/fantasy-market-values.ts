@@ -458,12 +458,13 @@ export function getMarketValue(teamSlug: string, name: string): number | undefin
 }
 
 /**
- * Convierte el valor de mercado real (millones €) en el precio fantasy (3.8–13.5M)
- * mediante una curva logarítmica: un crack de ~180M € roza 13.5M y un jugador de
- * ~0.3M € cae al mínimo de 3.8M, manteniendo todo dentro del presupuesto de €100M.
+ * Convierte el valor de mercado real (millones €) en el precio fantasy (1.5–13.5M)
+ * mediante una curva logarítmica: un crack de ~200M € roza 13.5M y los jugadores
+ * más modestos bajan hasta 1.5M. El suelo bajo y un punto base más contenido dejan
+ * margen para construir un 11 dentro del presupuesto de €100M sin agobios.
  */
 export function priceFromMarketValue(mvMillions: number): number {
   const v = Math.max(0.01, mvMillions);
-  const price = 5.0 + 3.5 * Math.log10(v);
-  return Math.round(Math.max(3.8, Math.min(13.5, price)) * 10) / 10;
+  const price = 4.5 + 3.5 * Math.log10(v);
+  return Math.round(Math.max(1.5, Math.min(13.5, price)) * 10) / 10;
 }

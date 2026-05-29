@@ -117,8 +117,8 @@ function buildTeamPlayers(team: Seleccion, next: NextMatch): FantasyPlayer[] {
     const marketValue = getMarketValue(team.slug, rp.name);
     const simPrice = round1(
       clamp(
-        3.5 + strength * 3.2 + POS_PREMIUM[pos] + topness * 1.5 + rating * 3.0 + (rng() - 0.45) * 1.1,
-        3.5,
+        2.5 + strength * 3.2 + POS_PREMIUM[pos] + topness * 1.5 + rating * 3.0 + (rng() - 0.45) * 1.1,
+        1.5,
         13.5,
       ),
     );

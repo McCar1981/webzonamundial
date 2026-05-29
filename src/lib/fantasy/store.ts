@@ -6,7 +6,7 @@
 import { buildSlots } from "./rules";
 import type { FantasyTeamState } from "./types";
 
-const KEY = "zm-fantasy:v1";
+const KEY = "zm-fantasy:v2";
 
 export function defaultTeam(): FantasyTeamState {
   return {

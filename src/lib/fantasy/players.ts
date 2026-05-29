@@ -1,14 +1,15 @@
 // src/lib/fantasy/players.ts
 //
-// Generación DETERMINISTA del pool de jugadores del Fantasy a partir de las 48
-// selecciones reales. Las estrellas reales (jugadoresClave de cada selección)
-// se insertan como los jugadores más valiosos de su posición; el resto de la
-// plantilla se completa con jugadores simulados de forma estable (misma semilla
-// => mismos datos siempre). Calcula también el multiplicador "Modo Underdog"
-// (Estelar/Oro/Diamante) del próximo partido de cada selección.
+// Pool de jugadores del Fantasy construido a partir de las convocatorias REALES
+// del Mundial 2026 (src/data/fantasy-rosters.ts). Solo se incluyen las
+// selecciones con lista oficial confirmada; las pendientes quedan fuera del pool
+// hasta que publiquen su lista. Precios, puntos y forma son SIMULADOS de forma
+// DETERMINISTA (misma semilla => mismos datos siempre) a partir del ranking FIFA
+// de la selección. Calcula también el multiplicador "Modo Underdog"
+// (Estelar/Bronce/Oro/Diamante) del próximo partido de cada selección.
 
 import { SELECCIONES, type Seleccion } from "@/data/selecciones";
-import { getExtendedSeleccion } from "@/data/selecciones-extended";
+import { FANTASY_ROSTERS } from "@/data/fantasy-rosters";
 import type { FantasyPlayer, FantasyPos, MatchTier, NextMatch } from "./types";
 
 // ---- RNG determinista ----
@@ -31,23 +32,6 @@ function mulberry32(seed: number): () => number {
   };
 }
 
-const FIRST = [
-  "Mateo", "Luca", "Adam", "Noah", "Hugo", "Liam", "Ethan", "Diego", "Iván", "Marc",
-  "Youssef", "Kai", "Leo", "Nico", "Aaron", "Omar", "Felix", "Bruno", "Theo", "Aziz",
-  "Mohamed", "Daniel", "Samuel", "Jonas", "Pavel", "Tariq", "Eric", "Andrés", "Ola", "Kenji",
-  "Viktor", "Ali", "Sven", "Mati", "Rafa", "Luan", "Sami", "Dário", "Koji", "Bilal",
-];
-const LAST = [
-  "Silva", "Kovač", "Hansen", "Müller", "Rossi", "Nguyen", "Okafor", "Torres", "Lindqvist", "Haidar",
-  "Petrov", "Vargas", "Schmidt", "Adeyemi", "Costa", "Yilmaz", "Berg", "Moreau", "Tanaka", "Bauer",
-  "Novak", "Marín", "Diallo", "Andersen", "Suzuki", "Romano", "Fernández", "Khan", "Larsson", "Mensah",
-  "Reyes", "Janssen", "Sørensen", "Ferreira", "Beqiri", "Ortega", "Walsh", "Kone", "Park", "Castillo",
-];
-
-function genName(rng: () => number): string {
-  return `${FIRST[Math.floor(rng() * FIRST.length)]} ${LAST[Math.floor(rng() * LAST.length)]}`;
-}
-
 function teamColor(slug: string): string {
   const h = hashStr(slug) % 360;
   return `hsl(${h} 62% 52%)`;
@@ -59,8 +43,7 @@ function strengthFromRank(rank: number | undefined): number {
   return Math.max(0.3, Math.min(0.99, 1 - (r - 1) / 150));
 }
 
-const POS_MAP: Record<string, FantasyPos> = { POR: "GK", DEF: "DEF", MED: "MID", DEL: "FWD" };
-const GROUP_SIZE: Record<FantasyPos, number> = { GK: 2, DEF: 5, MID: 5, FWD: 3 };
+const POS_ORDER: FantasyPos[] = ["GK", "DEF", "MID", "FWD"];
 const POS_PREMIUM: Record<FantasyPos, number> = { GK: -0.4, DEF: 0, MID: 0.8, FWD: 1.6 };
 
 function round1(n: number): number {
@@ -101,62 +84,60 @@ function buildNextMatches(): Record<string, NextMatch> {
 }
 
 function buildTeamPlayers(team: Seleccion, next: NextMatch): FantasyPlayer[] {
+  const roster = FANTASY_ROSTERS[team.slug];
+  if (!roster || roster.length === 0) return [];
+
   const rng = mulberry32(hashStr(team.slug));
   const strength = strengthFromRank(team.rankingFIFA);
   const color = teamColor(team.slug);
 
-  // Estrellas reales agrupadas por posición fantasy.
-  const ext = getExtendedSeleccion(team.slug);
-  const realByPos: Record<FantasyPos, { name: string }[]> = { GK: [], DEF: [], MID: [], FWD: [] };
-  for (const j of ext?.jugadoresClave ?? []) {
-    const p = POS_MAP[j.posicion];
-    if (p) realByPos[p].push({ name: j.nombre });
-  }
+  // Contadores por posición para calcular el "topness" (los primeros listados de
+  // cada posición tienden a ser titulares => ligero plus de valoración/precio).
+  const posCount: Record<FantasyPos, number> = { GK: 0, DEF: 0, MID: 0, FWD: 0 };
+  for (const rp of roster) posCount[rp.pos]++;
+  const posSeen: Record<FantasyPos, number> = { GK: 0, DEF: 0, MID: 0, FWD: 0 };
 
-  const players: FantasyPlayer[] = [];
-  (Object.keys(GROUP_SIZE) as FantasyPos[]).forEach((pos) => {
-    const size = GROUP_SIZE[pos];
-    const reals = realByPos[pos];
-    for (let i = 0; i < size; i++) {
-      const isReal = i < reals.length;
-      const name = isReal ? reals[i].name : genName(rng);
-      // "topness": 1 para el mejor del grupo, baja hacia 0.
-      const topness = 1 - i / size;
-      const rating = clamp(strength * 0.65 + topness * 0.3 + (rng() - 0.5) * 0.12, 0.05, 1);
+  // Orden estable: por posición (GK, DEF, MID, FWD) respetando el orden de lista.
+  const ordered = [...roster].sort((a, b) => POS_ORDER.indexOf(a.pos) - POS_ORDER.indexOf(b.pos));
 
-      const price = round1(
-        clamp(
-          4 + strength * 5.5 + POS_PREMIUM[pos] + topness * 2.4 + (isReal ? 2.6 : 0) + (rng() - 0.4) * 1.4,
-          3.8,
-          14.5,
-        ),
-      );
-      const totalPoints = Math.round(rating * 58 + rng() * 16);
-      const goals = pos === "FWD" ? Math.round(rating * 5 + rng() * 2) : pos === "MID" ? Math.round(rating * 3 + rng()) : Math.round(rng() * (pos === "DEF" ? 1 : 0));
-      const assists = Math.round(rating * (pos === "MID" ? 4 : pos === "FWD" ? 2 : 1) + rng());
-      const cleanSheets = pos === "GK" || pos === "DEF" ? Math.round(rating * 2 + rng()) : 0;
+  return ordered.map((rp, idx) => {
+    const pos = rp.pos;
+    const within = posSeen[pos]++;
+    const topness = posCount[pos] > 1 ? 1 - within / posCount[pos] : 1;
 
-      players.push({
-        id: `${team.slug}-${pos}-${i}`,
-        name,
-        teamSlug: team.slug,
-        teamName: team.nombre,
-        flag: team.flagCode,
-        color,
-        pos,
-        price,
-        totalPoints,
-        avgPoints: round1(totalPoints / 3),
-        form: round1(clamp(rating * 8 + (rng() - 0.4) * 3, 1, 10)),
-        ownership: round1(clamp((price / 15) * 38 + rating * 14 + (rng() - 0.5) * 12, 0.4, 88)),
-        available: isReal ? rng() > 0.04 : rng() > 0.1,
-        real: isReal,
-        stats: { goals, assists, minutes: 180 + Math.round(rng() * 90), cleanSheets },
-        next,
-      });
-    }
+    const rating = clamp(strength * 0.6 + topness * 0.18 + rng() * 0.22, 0.05, 1);
+    const price = round1(
+      clamp(
+        4 + strength * 5.2 + POS_PREMIUM[pos] + topness * 1.6 + rating * 2.6 + (rng() - 0.4) * 1.2,
+        3.8,
+        14.5,
+      ),
+    );
+    const totalPoints = Math.round(rating * 58 + rng() * 16);
+    const goals = pos === "FWD" ? Math.round(rating * 5 + rng() * 2) : pos === "MID" ? Math.round(rating * 3 + rng()) : Math.round(rng() * (pos === "DEF" ? 1 : 0));
+    const assists = Math.round(rating * (pos === "MID" ? 4 : pos === "FWD" ? 2 : 1) + rng());
+    const cleanSheets = pos === "GK" || pos === "DEF" ? Math.round(rating * 2 + rng()) : 0;
+
+    return {
+      id: `${team.slug}-p${idx}`,
+      name: rp.name,
+      club: rp.club,
+      teamSlug: team.slug,
+      teamName: team.nombre,
+      flag: team.flagCode,
+      color,
+      pos,
+      price,
+      totalPoints,
+      avgPoints: round1(totalPoints / 3),
+      form: round1(clamp(rating * 8 + (rng() - 0.4) * 3, 1, 10)),
+      ownership: round1(clamp((price / 15) * 38 + rating * 14 + (rng() - 0.5) * 12, 0.4, 88)),
+      available: rng() > 0.05,
+      real: true,
+      stats: { goals, assists, minutes: 180 + Math.round(rng() * 90), cleanSheets },
+      next,
+    } satisfies FantasyPlayer;
   });
-  return players;
 }
 
 let _pool: FantasyPlayer[] | null = null;
@@ -167,6 +148,8 @@ export function getPlayerPool(): FantasyPlayer[] {
   const next = buildNextMatches();
   const all: FantasyPlayer[] = [];
   for (const team of SELECCIONES) {
+    // Solo selecciones con convocatoria real confirmada entran al pool.
+    if (!FANTASY_ROSTERS[team.slug]) continue;
     const nm = next[team.slug] ?? {
       opponentCode: "un",
       opponentName: "Por definir",
@@ -188,3 +171,7 @@ export function getPlayerById(id: string): FantasyPlayer | undefined {
 export function getPlayersByIds(ids: (string | null)[]): (FantasyPlayer | null)[] {
   return ids.map((id) => (id ? getPlayerById(id) ?? null : null));
 }
+
+// Selecciones con convocatoria real disponible (para mensajes informativos).
+export const ROSTERED_SLUGS = new Set(Object.keys(FANTASY_ROSTERS));
+export const ROSTERED_COUNT = ROSTERED_SLUGS.size;

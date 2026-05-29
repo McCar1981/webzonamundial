@@ -64,7 +64,7 @@ export default function MarketView({ ownedIds, nationCounts, budgetRemaining, se
       if (team !== "ALL" && p.teamSlug !== team) return false;
       if (p.price > maxPrice) return false;
       if (onlyAffordable && p.price > budgetRemaining + 1e-6) return false;
-      if (term && !p.name.toLowerCase().includes(term) && !p.teamName.toLowerCase().includes(term)) return false;
+      if (term && !p.name.toLowerCase().includes(term) && !p.teamName.toLowerCase().includes(term) && !p.club.toLowerCase().includes(term)) return false;
       return true;
     });
     arr = arr.sort((a, b) => {
@@ -128,9 +128,9 @@ export default function MarketView({ ownedIds, nationCounts, budgetRemaining, se
                 <img src={flagUrl(p.flag)} alt={p.teamName} style={{ width: 34, height: 23, borderRadius: 3, objectFit: "cover", border: `1px solid ${p.color}` }} />
                 <div style={{ minWidth: 0, flex: 1 }}>
                   <div style={{ fontSize: 14, fontWeight: 800, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                    {lastName(p.name)} {p.real && <span title="Jugador real" style={{ fontSize: 10, color: GOLD2 }}>★</span>}
+                    {lastName(p.name)}
                   </div>
-                  <div style={{ fontSize: 11, color: MID, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{p.teamName}</div>
+                  <div style={{ fontSize: 11, color: MID, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{p.teamName} · {p.club}</div>
                 </div>
                 <span style={{ fontSize: 10, fontWeight: 900, color: POS_COLOR[p.pos], background: `${POS_COLOR[p.pos]}1e`, borderRadius: 6, padding: "3px 7px" }}>{POS_LABEL[p.pos]}</span>
               </div>

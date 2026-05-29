@@ -6,7 +6,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { getPlayerById } from "@/lib/fantasy/players";
+import { getPlayerById, ROSTERED_COUNT } from "@/lib/fantasy/players";
 import { remapFormation, validateTeam } from "@/lib/fantasy/rules";
 import { autoDraft } from "@/lib/fantasy/coach";
 import { defaultTeam, loadTeam, saveTeam, clearTeam } from "@/lib/fantasy/store";
@@ -273,7 +273,7 @@ export default function FantasyGame() {
       )}
 
       <div style={{ textAlign: "center", padding: "30px 16px", color: DIM, fontSize: 12 }}>
-        Plantillas y datos son una simulación interactiva para previsualizar el Fantasy. Los rosters oficiales se cargarán en el torneo.
+        Jugadores reales de las {ROSTERED_COUNT} selecciones con convocatoria confirmada (act. 29 may 2026). Precios, puntos y forma son una simulación interactiva para previsualizar el Fantasy. Las {48 - ROSTERED_COUNT} selecciones restantes se añadirán al confirmarse sus listas.
       </div>
     </div>
   );

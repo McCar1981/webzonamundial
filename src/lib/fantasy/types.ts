@@ -28,6 +28,7 @@ export interface NextMatch {
 export interface FantasyPlayer {
   id: string; // slug-pos-idx
   name: string;
+  club: string; // club real del jugador
   teamSlug: string;
   teamName: string;
   flag: string; // flagCode

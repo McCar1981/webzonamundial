@@ -53,7 +53,7 @@ export default function TeamView({ team, validation, onSlotClickEmpty, onRemove,
       <div style={{ fontSize: 11, color: DIM, fontWeight: 700, marginBottom: 6 }}>Arrastra un jugador sobre otro para intercambiarlos · toca para capitán/quitar.</div>
 
       {/* Campo: imagen real de estadio (césped vertical) con los jugadores encima. */}
-      <div style={{ maxWidth: 460, margin: "0 auto", position: "relative", aspectRatio: "941 / 1371", borderRadius: 16, overflow: "hidden", backgroundImage: "url('/img/fantasy/campo-mobile.png')", backgroundSize: "cover", backgroundPosition: "center", boxShadow: "0 18px 50px rgba(0,0,0,0.5)" }}>
+      <div style={{ maxWidth: 470, margin: "0 auto", position: "relative", aspectRatio: "1882 / 2116", borderRadius: 16, overflow: "hidden", backgroundImage: "url('/img/fantasy/campo-mobile.png')", backgroundSize: "cover", backgroundPosition: "center", boxShadow: "0 18px 50px rgba(0,0,0,0.5)" }}>
         {/* Leve oscurecido arriba/abajo para que resalten las fichas */}
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0.04) 38%, rgba(0,0,0,0.04) 62%, rgba(0,0,0,0.28) 100%)", pointerEvents: "none" }} />
 

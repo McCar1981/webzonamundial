@@ -31,7 +31,7 @@ interface Props {
   onPick: (playerId: string, slotId?: string) => void;
 }
 
-type SortKey = "value" | "price" | "points" | "form" | "mult";
+type SortKey = "value" | "price" | "points" | "form" | "mult" | "trend";
 
 const POS_FILTERS: { id: FantasyPos | "ALL"; label: string }[] = [
   { id: "ALL", label: "Todas" },
@@ -46,8 +46,14 @@ const SORTS: { id: SortKey; label: string }[] = [
   { id: "points", label: "Más puntos" },
   { id: "form", label: "Mejor forma" },
   { id: "mult", label: "Multiplicador" },
+  { id: "trend", label: "En alza" },
   { id: "price", label: "Precio ↓" },
 ];
+
+// Valor del movimiento de precio con signo (para ordenar por tendencia).
+function signedDelta(p: FantasyPlayer): number {
+  return p.priceTrend === "up" ? p.priceDelta : p.priceTrend === "down" ? -p.priceDelta : 0;
+}
 
 export default function MarketView({ ownedIds, nationCounts, budgetRemaining, selectingSlot, onPick }: Props) {
   const pool = useMemo(() => getPlayerPool(), []);
@@ -89,6 +95,7 @@ export default function MarketView({ ownedIds, nationCounts, budgetRemaining, se
         case "points": return b.totalPoints - a.totalPoints;
         case "form": return b.form - a.form;
         case "mult": return b.next.tier.multiplier - a.next.tier.multiplier || value(b) - value(a);
+        case "trend": return signedDelta(b) - signedDelta(a) || value(b) - value(a);
         default: return value(b) - value(a);
       }
     });
@@ -152,8 +159,13 @@ export default function MarketView({ ownedIds, nationCounts, budgetRemaining, se
                 <span style={{ fontSize: 10, fontWeight: 900, color: POS_COLOR[p.pos], background: `${POS_COLOR[p.pos]}1e`, borderRadius: 6, padding: "3px 7px" }}>{POS_LABEL[p.pos]}</span>
               </div>
 
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 6, fontSize: 11 }}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 6, fontSize: 11, alignItems: "center" }}>
                 <Pill label="Precio" value={money(p.price)} color={GOLD2} />
+                {p.priceTrend !== "flat" && (
+                  <span title="Movimiento de precio de la semana" style={{ fontWeight: 800, color: p.priceTrend === "up" ? GREEN : RED }}>
+                    {p.priceTrend === "up" ? "▲" : "▼"} {money(p.priceDelta)}
+                  </span>
+                )}
                 <Pill label="Pts" value={String(p.totalPoints)} />
                 <Pill label="Forma" value={`${p.form}`} color={p.form >= 7 ? GREEN : p.form <= 4 ? RED : "#fff"} />
                 <Pill label="Prop." value={`${p.ownership}%`} color={MID} />

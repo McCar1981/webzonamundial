@@ -141,6 +141,21 @@ function buildTeamPlayers(team: Seleccion, next: NextMatch): FantasyPlayer[] {
     }
     if (status === "duda") startProb = Math.round(startProb * 0.7);
 
+    const form = round1(clamp(rating * 8 + (rng() - 0.4) * 3, 1, 10));
+    const ownership = round1(clamp((price / 15) * 38 + rating * 14 + (rng() - 0.5) * 12, 0.4, 88));
+
+    // Mercado dinámico: "momentum" de precio de la semana. Sube con forma alta,
+    // titularidad asegurada y partido atractivo; baja con bajas/dudas.
+    const momentum =
+      (form - 5) * 0.45 +
+      (startProb - 55) / 28 +
+      (next.tier.multiplier - 1) * 1.4 +
+      (status === "duda" ? -1.6 : 0) +
+      (!available ? -2.4 : 0) +
+      (rng() - 0.5) * 1.1;
+    const priceTrend: "up" | "down" | "flat" = momentum > 0.8 ? "up" : momentum < -0.8 ? "down" : "flat";
+    const priceDelta = priceTrend === "flat" ? 0 : round1(clamp(Math.abs(momentum) * 0.12, 0.1, 0.3));
+
     return {
       id: `${team.slug}-p${idx}`,
       name: rp.name,
@@ -151,10 +166,12 @@ function buildTeamPlayers(team: Seleccion, next: NextMatch): FantasyPlayer[] {
       color,
       pos,
       price,
+      priceTrend,
+      priceDelta,
       totalPoints,
       avgPoints: round1(totalPoints / 3),
-      form: round1(clamp(rating * 8 + (rng() - 0.4) * 3, 1, 10)),
-      ownership: round1(clamp((price / 15) * 38 + rating * 14 + (rng() - 0.5) * 12, 0.4, 88)),
+      form,
+      ownership,
       available,
       startProb,
       xiProbable: isXI,

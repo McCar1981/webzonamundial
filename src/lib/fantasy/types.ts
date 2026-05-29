@@ -38,6 +38,9 @@ export interface FantasyPlayer {
   color: string;
   pos: FantasyPos;
   price: number; // millones €
+  /** Movimiento de precio de la semana (mercado dinámico, simulado). */
+  priceTrend: "up" | "down" | "flat";
+  priceDelta: number; // variación en millones (≥ 0; signo lo da priceTrend)
   totalPoints: number;
   avgPoints: number;
   form: number; // 0..10

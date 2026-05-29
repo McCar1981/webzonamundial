@@ -6,7 +6,7 @@
 
 import { getTeamRun, STAGE_LABEL } from "@/lib/fantasy/tournament";
 import type { FantasyPlayer, PlayerStatus } from "@/lib/fantasy/types";
-import { BG, BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED, money, flagUrl, POS_LABEL, POS_COLOR } from "./fx";
+import { BG, BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED, money, marketValueLabel, flagUrl, POS_LABEL, POS_COLOR } from "./fx";
 
 const STATUS_LABEL: Record<PlayerStatus, { label: string; color: string }> = {
   apto: { label: "Apto", color: GREEN },
@@ -71,6 +71,11 @@ export default function PlayerModal({ players, onClose }: Props) {
                   <span style={{ fontWeight: 800, color: st.color }}>● {st.label}</span>
                   {run && <span style={{ fontWeight: 800, color: run.stageRound >= 3 ? GOLD2 : DIM }}>{run.stageRound === 6 ? "🏆" : "🗺️"} {STAGE_LABEL[run.stage]}</span>}
                 </div>
+                {p.marketValue != null && (
+                  <div style={{ marginTop: 8, fontSize: 11, color: DIM }}>
+                    Valor de mercado <b style={{ color: "#fff" }}>{marketValueLabel(p.marketValue)}</b> <span style={{ color: MID }}>· Transfermarkt</span>
+                  </div>
+                )}
               </div>
             );
           })}

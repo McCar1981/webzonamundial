@@ -41,6 +41,12 @@ export function money(n: number): string {
   return `${n.toFixed(1)}M`;
 }
 
+// Valor de mercado real (Transfermarkt), en millones €. <1M se muestra en "mil €".
+export function marketValueLabel(mvMillions: number): string {
+  if (mvMillions < 1) return `${Math.round(mvMillions * 1000)} mil €`;
+  return `${mvMillions % 1 === 0 ? mvMillions : mvMillions.toFixed(1)} mill. €`;
+}
+
 export function lastName(name: string): string {
   const parts = name.trim().split(/\s+/);
   return parts.length > 1 ? parts.slice(1).join(" ") : parts[0];

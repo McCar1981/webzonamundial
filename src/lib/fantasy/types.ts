@@ -37,7 +37,9 @@ export interface FantasyPlayer {
   flag: string; // flagCode
   color: string;
   pos: FantasyPos;
-  price: number; // millones €
+  price: number; // millones € (coste fantasy; deriva del valor de mercado real cuando existe)
+  /** Valor de mercado REAL (Transfermarkt) en millones €, si se dispone del dato. */
+  marketValue?: number;
   /** Movimiento de precio de la semana (mercado dinámico, simulado). */
   priceTrend: "up" | "down" | "flat";
   priceDelta: number; // variación en millones (≥ 0; signo lo da priceTrend)

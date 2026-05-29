@@ -10,6 +10,7 @@
 
 import { SELECCIONES, type Seleccion } from "@/data/selecciones";
 import { FANTASY_ROSTERS } from "@/data/fantasy-rosters";
+import { getMarketValue, priceFromMarketValue } from "@/data/fantasy-market-values";
 import type { FantasyPlayer, FantasyPos, MatchTier, NextMatch, PlayerStatus } from "./types";
 
 // ---- RNG determinista ----
@@ -108,16 +109,20 @@ function buildTeamPlayers(team: Seleccion, next: NextMatch): FantasyPlayer[] {
     const topness = posCount[pos] > 1 ? 1 - within / posCount[pos] : 1;
 
     const rating = clamp(strength * 0.6 + topness * 0.18 + rng() * 0.22, 0.05, 1);
-    // Precio (SIMULADO). Base baja + más peso al jugador (rating/topness) que a
-    // la fuerza del equipo => existen enablers baratos (~4M) y las estrellas
-    // destacan (~13M). Pensado para que un 11 válido entre en los €100M.
-    const price = round1(
+    // Precio fantasy. Si hay VALOR DE MERCADO real (Transfermarkt) se deriva de
+    // él (curva logarítmica → 3.8–13.5M). Si no, precio SIMULADO determinista:
+    // base baja + más peso al jugador (rating/topness) que a la fuerza del equipo
+    // => existen enablers baratos (~4M) y las estrellas destacan (~13M). En ambos
+    // casos un 11 válido entra en los €100M.
+    const marketValue = getMarketValue(team.slug, rp.name);
+    const simPrice = round1(
       clamp(
         3.5 + strength * 3.2 + POS_PREMIUM[pos] + topness * 1.5 + rating * 3.0 + (rng() - 0.45) * 1.1,
         3.5,
         13.5,
       ),
     );
+    const price = marketValue != null ? priceFromMarketValue(marketValue) : simPrice;
     const totalPoints = Math.round(rating * 58 + rng() * 16);
     const goals = pos === "FWD" ? Math.round(rating * 5 + rng() * 2) : pos === "MID" ? Math.round(rating * 3 + rng()) : Math.round(rng() * (pos === "DEF" ? 1 : 0));
     const assists = Math.round(rating * (pos === "MID" ? 4 : pos === "FWD" ? 2 : 1) + rng());
@@ -169,6 +174,7 @@ function buildTeamPlayers(team: Seleccion, next: NextMatch): FantasyPlayer[] {
       color,
       pos,
       price,
+      marketValue,
       priceTrend,
       priceDelta,
       totalPoints,

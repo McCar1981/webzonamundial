@@ -22,6 +22,15 @@ import Onboarding from "./Onboarding";
 
 const ONBOARDED_KEY = "zm-fantasy-onboarded:v1";
 
+// Fondo propio del Fantasy: noche de estadio. Dos focos dorados arriba (la marca),
+// un halo verde césped al pie del campo y un degradado azul profundo de base.
+// Da una atmósfera distinta al resto de Zona Mundial sin romper la paleta.
+const FANTASY_BG =
+  "radial-gradient(1000px 520px at 10% -6%, rgba(201,168,76,0.22), transparent 56%)," +
+  "radial-gradient(950px 500px at 90% -2%, rgba(232,212,139,0.16), transparent 54%)," +
+  "radial-gradient(1300px 820px at 50% 118%, rgba(20,128,72,0.24), transparent 62%)," +
+  "linear-gradient(180deg, #0b1626 0%, #070d18 44%, #04080f 100%)";
+
 type Tab = "equipo" | "mercado" | "vivo" | "ligas" | "coach";
 
 const TABS: { id: Tab; label: string; icon: string }[] = [
@@ -232,7 +241,8 @@ export default function FantasyGame() {
   const pct = Math.min(100, (spent / BUDGET) * 100);
 
   return (
-    <div style={{ background: BG, color: "#fff", fontFamily: "'Outfit',sans-serif", minHeight: "100vh" }}>
+    <div style={{ background: FANTASY_BG, backgroundAttachment: "fixed", color: "#fff", fontFamily: "'Outfit',sans-serif", minHeight: "100vh", position: "relative" }}>
+      {/* Ambiente de noche de estadio: focos dorados, halo de césped y degradado profundo */}
       {/* Header */}
       <div style={{ position: "sticky", top: 0, zIndex: 20, background: `${BG}f2`, backdropFilter: "blur(10px)", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "12px 16px" }}>

@@ -9,6 +9,9 @@ export type FantasyPos = "GK" | "DEF" | "MID" | "FWD";
 
 export type PowerUp = "tridente" | "muro" | "francotirador" | "comodin" | "joker";
 
+/** Estado físico/disciplinario del jugador para el próximo partido. */
+export type PlayerStatus = "apto" | "duda" | "lesionado" | "sancionado";
+
 /** Tier del multiplicador "Modo Underdog" de un partido. */
 export interface MatchTier {
   multiplier: number; // 1.0 | 1.25 | 1.5 | 2.0
@@ -40,6 +43,12 @@ export interface FantasyPlayer {
   form: number; // 0..10
   ownership: number; // %
   available: boolean;
+  /** Probabilidad simulada de ser titular en el próximo partido (0..100). */
+  startProb: number;
+  /** true si entra en el once probable de su selección. */
+  xiProbable: boolean;
+  /** Estado físico/disciplinario simulado. */
+  status: PlayerStatus;
   /** true si es un jugador real (estrella de la selección). */
   real: boolean;
   stats: { goals: number; assists: number; minutes: number; cleanSheets: number };

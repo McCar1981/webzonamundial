@@ -15,8 +15,9 @@ export interface CoachTip {
 }
 
 function value(p: FantasyPlayer): number {
-  // Relación puntos-precio ponderada por forma y multiplicador del partido.
-  return (p.totalPoints / p.price) * (0.7 + p.form / 20) * p.next.tier.multiplier;
+  // Relación puntos-precio ponderada por forma, multiplicador del partido y
+  // probabilidad de ser titular (un suplente puntúa poco aunque sea barato).
+  return (p.totalPoints / p.price) * (0.7 + p.form / 20) * p.next.tier.multiplier * (0.55 + p.startProb / 222);
 }
 
 export function suggestCaptain(slots: SquadSlot[]): { player: FantasyPlayer; why: string } | null {
@@ -26,13 +27,14 @@ export function suggestCaptain(slots: SquadSlot[]): { player: FantasyPlayer; why
     .filter((p): p is FantasyPlayer => !!p && p.available);
   if (starters.length === 0) return null;
   const ranked = starters
-    .map((p) => ({ p, score: p.form * p.next.tier.multiplier + p.avgPoints * 0.4 }))
+    .map((p) => ({ p, score: (p.form * p.next.tier.multiplier + p.avgPoints * 0.4) * (p.startProb / 100) }))
     .sort((a, b) => b.score - a.score);
   const best = ranked[0].p;
   const tierTxt = best.next.tier.multiplier > 1 ? ` y juega en partido ${best.next.tier.label} ${best.next.tier.emoji} (×${best.next.tier.multiplier})` : "";
+  const probTxt = best.startProb >= 80 ? " Es titular fijo" : best.startProb >= 60 ? " Tiene minutos casi asegurados" : "";
   return {
     player: best,
-    why: `${best.name} llega con forma ${best.form}/10${tierTxt}. Su capitanía rinde mejor que el resto de tu once.`,
+    why: `${best.name} llega con forma ${best.form}/10${tierTxt}.${probTxt ? probTxt + " (" + best.startProb + "% de ser titular)." : ""} Su capitanía rinde mejor que el resto de tu once.`,
   };
 }
 
@@ -59,13 +61,17 @@ export function analyzeSquad(slots: SquadSlot[]): CoachTip[] {
   else tips.push({ icon: "💎", title: `${inDiamond} titulares en Oro/Diamante`, body: "Aprovecha el multiplicador moviendo la capitanía a uno de ellos.", tone: "good" });
 
   const injured = players.filter((p) => !p.available);
-  if (injured.length) tips.push({ icon: "➕", title: "Bajas en tu plantilla", body: `${injured.map((p) => p.name).join(", ")} no está${injured.length > 1 ? "n" : ""} disponible${injured.length > 1 ? "s" : ""}. Revisa transfers.`, tone: "warn" });
+  if (injured.length) tips.push({ icon: "➕", title: "Bajas en tu plantilla", body: `${injured.map((p) => p.name).join(", ")} no está${injured.length > 1 ? "n" : ""} disponible${injured.length > 1 ? "s" : ""} (lesión/sanción). Revisa transfers.`, tone: "warn" });
+
+  // Titulares tuyos con baja probabilidad de jugar (riesgo de suplencia).
+  const benchRisk = starters.filter((p) => p.available && p.startProb < 55);
+  if (benchRisk.length) tips.push({ icon: "🪑", title: "Riesgo de suplencia", body: `${benchRisk.map((p) => `${p.name} (${p.startProb}%)`).join(", ")} en tu once tiene${benchRisk.length > 1 ? "n" : ""} pocas opciones de ser titular. Plantéate alternativas más fijas.`, tone: "warn" });
   return tips;
 }
 
 export function diamondOpportunities(ownedIds: Set<string>, limit = 6): FantasyPlayer[] {
   return getPlayerPool()
-    .filter((p) => !ownedIds.has(p.id) && p.available && p.price <= 7.5 && p.next.tier.multiplier >= 1.5)
+    .filter((p) => !ownedIds.has(p.id) && p.available && p.startProb >= 60 && p.price <= 7.5 && p.next.tier.multiplier >= 1.5)
     .sort((a, b) => value(b) - value(a))
     .slice(0, limit);
 }

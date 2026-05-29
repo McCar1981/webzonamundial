@@ -273,7 +273,7 @@ export default function FantasyGame() {
       )}
 
       <div style={{ textAlign: "center", padding: "30px 16px", color: DIM, fontSize: 12 }}>
-        Jugadores reales de las {ROSTERED_COUNT} selecciones con convocatoria confirmada (act. 29 may 2026). Precios, puntos y forma son una simulación interactiva para previsualizar el Fantasy. Las {48 - ROSTERED_COUNT} selecciones restantes se añadirán al confirmarse sus listas.
+        Jugadores reales de las {ROSTERED_COUNT} selecciones con convocatoria confirmada (act. 29 may 2026). Precios, puntos, forma, probabilidad de titularidad y estado físico son una simulación interactiva para previsualizar el Fantasy. Las {48 - ROSTERED_COUNT} selecciones restantes se añadirán al confirmarse sus listas.
       </div>
     </div>
   );

@@ -10,7 +10,7 @@
 
 import { SELECCIONES, type Seleccion } from "@/data/selecciones";
 import { FANTASY_ROSTERS } from "@/data/fantasy-rosters";
-import type { FantasyPlayer, FantasyPos, MatchTier, NextMatch } from "./types";
+import type { FantasyPlayer, FantasyPos, MatchTier, NextMatch, PlayerStatus } from "./types";
 
 // ---- RNG determinista ----
 function hashStr(s: string): number {
@@ -45,6 +45,8 @@ function strengthFromRank(rank: number | undefined): number {
 
 const POS_ORDER: FantasyPos[] = ["GK", "DEF", "MID", "FWD"];
 const POS_PREMIUM: Record<FantasyPos, number> = { GK: -0.4, DEF: 0, MID: 0.8, FWD: 1.6 };
+// Cupos del once probable (base 4-3-3): los primeros de cada posición son titulares.
+const XI_QUOTA: Record<FantasyPos, number> = { GK: 1, DEF: 4, MID: 3, FWD: 3 };
 
 function round1(n: number): number {
   return Math.round(n * 10) / 10;
@@ -118,6 +120,27 @@ function buildTeamPlayers(team: Seleccion, next: NextMatch): FantasyPlayer[] {
     const assists = Math.round(rating * (pos === "MID" ? 4 : pos === "FWD" ? 2 : 1) + rng());
     const cleanSheets = pos === "GK" || pos === "DEF" ? Math.round(rating * 2 + rng()) : 0;
 
+    // Estado físico/disciplinario (simulado, determinista).
+    const sRoll = rng();
+    const status: PlayerStatus = sRoll < 0.035 ? "lesionado" : sRoll < 0.06 ? "sancionado" : sRoll < 0.14 ? "duda" : "apto";
+    const out = status === "lesionado" || status === "sancionado";
+    const available = !out;
+
+    // Probabilidad de titularidad y once probable (cupos por posición).
+    const quota = XI_QUOTA[pos];
+    const isXI = within < quota && available;
+    let startProb: number;
+    if (out) {
+      startProb = 0;
+    } else if (within < quota) {
+      // Titular: del más fijo (~97%) al menos fijo del once (~58%).
+      startProb = Math.round(clamp(72 + ((quota - 1 - within) / quota) * 22 + (rng() - 0.5) * 6, 58, 97));
+    } else {
+      const depth = within - quota; // 0,1,2…
+      startProb = Math.round(clamp(52 - depth * 13 + (rng() - 0.5) * 8, 4, 58));
+    }
+    if (status === "duda") startProb = Math.round(startProb * 0.7);
+
     return {
       id: `${team.slug}-p${idx}`,
       name: rp.name,
@@ -132,7 +155,10 @@ function buildTeamPlayers(team: Seleccion, next: NextMatch): FantasyPlayer[] {
       avgPoints: round1(totalPoints / 3),
       form: round1(clamp(rating * 8 + (rng() - 0.4) * 3, 1, 10)),
       ownership: round1(clamp((price / 15) * 38 + rating * 14 + (rng() - 0.5) * 12, 0.4, 88)),
-      available: rng() > 0.05,
+      available,
+      startProb,
+      xiProbable: isXI,
+      status,
       real: true,
       stats: { goals, assists, minutes: 180 + Math.round(rng() * 90), cleanSheets },
       next,

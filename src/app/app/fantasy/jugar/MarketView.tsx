@@ -6,8 +6,22 @@
 
 import { useMemo, useState } from "react";
 import { getPlayerPool } from "@/lib/fantasy/players";
-import type { FantasyPos, FantasyPlayer, SquadSlot } from "@/lib/fantasy/types";
+import type { FantasyPos, FantasyPlayer, PlayerStatus, SquadSlot } from "@/lib/fantasy/types";
 import { BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED, money, flagUrl, lastName, POS_LABEL, POS_COLOR } from "./fx";
+
+const STATUS_META: Record<PlayerStatus, { label: string; color: string } | null> = {
+  apto: null,
+  duda: { label: "Duda", color: "#fbbf24" },
+  lesionado: { label: "Lesionado", color: RED },
+  sancionado: { label: "Sancionado", color: "#fb923c" },
+};
+
+// Badge de probabilidad de titularidad / once probable.
+function startMeta(p: FantasyPlayer): { label: string; color: string } {
+  if (p.xiProbable) return { label: `XI ${p.startProb}%`, color: GREEN };
+  if (p.startProb >= 35) return { label: `Rot. ${p.startProb}%`, color: "#fbbf24" };
+  return { label: `Supl. ${p.startProb}%`, color: DIM };
+}
 
 interface Props {
   ownedIds: Set<string>;
@@ -51,6 +65,7 @@ export default function MarketView({ ownedIds, nationCounts, budgetRemaining, se
   const [q, setQ] = useState("");
   const [sort, setSort] = useState<SortKey>("value");
   const [onlyAffordable, setOnlyAffordable] = useState(false);
+  const [onlyStarters, setOnlyStarters] = useState(false);
 
   // Para huecos de banquillo no-GK, sólo se admiten jugadores de campo.
   const benchNonGk = !!(selectingSlot?.bench && selectingSlot.pos !== "GK");
@@ -64,6 +79,7 @@ export default function MarketView({ ownedIds, nationCounts, budgetRemaining, se
       if (team !== "ALL" && p.teamSlug !== team) return false;
       if (p.price > maxPrice) return false;
       if (onlyAffordable && p.price > budgetRemaining + 1e-6) return false;
+      if (onlyStarters && !p.xiProbable) return false;
       if (term && !p.name.toLowerCase().includes(term) && !p.teamName.toLowerCase().includes(term) && !p.club.toLowerCase().includes(term)) return false;
       return true;
     });
@@ -77,7 +93,7 @@ export default function MarketView({ ownedIds, nationCounts, budgetRemaining, se
       }
     });
     return arr.slice(0, 80);
-  }, [pool, pos, team, maxPrice, q, sort, onlyAffordable, budgetRemaining, benchNonGk]);
+  }, [pool, pos, team, maxPrice, q, sort, onlyAffordable, onlyStarters, budgetRemaining, benchNonGk]);
 
   const inputStyle: React.CSSProperties = { background: BG3, border: "1px solid rgba(255,255,255,0.12)", borderRadius: 8, color: "#fff", padding: "8px 10px", fontSize: 13, fontWeight: 600, outline: "none" };
 
@@ -111,6 +127,7 @@ export default function MarketView({ ownedIds, nationCounts, budgetRemaining, se
           <input type="range" min={3.8} max={15} step={0.1} value={maxPrice} onChange={(e) => setMaxPrice(parseFloat(e.target.value))} style={{ accentColor: GOLD }} />
         </label>
         <button onClick={() => setOnlyAffordable((v) => !v)} style={{ padding: "8px 12px", borderRadius: 8, border: "1px solid " + (onlyAffordable ? GREEN : "rgba(255,255,255,0.12)"), background: onlyAffordable ? `${GREEN}22` : BG2, color: onlyAffordable ? GREEN : "#fff", fontWeight: 700, fontSize: 12, cursor: "pointer" }}>Dentro de presupuesto</button>
+        <button onClick={() => setOnlyStarters((v) => !v)} style={{ padding: "8px 12px", borderRadius: 8, border: "1px solid " + (onlyStarters ? GREEN : "rgba(255,255,255,0.12)"), background: onlyStarters ? `${GREEN}22` : BG2, color: onlyStarters ? GREEN : "#fff", fontWeight: 700, fontSize: 12, cursor: "pointer" }}>Solo titulares probables</button>
       </div>
 
       <div style={{ fontSize: 11, color: DIM, fontWeight: 700, marginBottom: 8 }}>{list.length} jugadores · Presupuesto libre {money(budgetRemaining)}</div>
@@ -147,7 +164,10 @@ export default function MarketView({ ownedIds, nationCounts, budgetRemaining, se
                 <span style={{ color: DIM }}>vs {p.next.opponentName}</span>
               </div>
 
-              {!p.available && <div style={{ fontSize: 11, color: RED, fontWeight: 800 }}>⛔ Baja / no disponible</div>}
+              <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap", fontSize: 11 }}>
+                {(() => { const sm = startMeta(p); return <span title="Probabilidad de ser titular (simulada)" style={{ fontWeight: 800, color: sm.color, background: `${sm.color}1e`, borderRadius: 6, padding: "3px 7px" }}>{sm.label}</span>; })()}
+                {STATUS_META[p.status] && <span style={{ fontWeight: 800, color: STATUS_META[p.status]!.color }}>⛔ {STATUS_META[p.status]!.label}</span>}
+              </div>
 
               <button
                 onClick={() => onPick(p.id, selectingSlot?.slot)}

@@ -8,7 +8,9 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import Pitch from "./Pitch";
+import Heatmap from "./Heatmap";
 import { createSpeaker, type Speaker } from "@/lib/match-center/voice";
+import { createSound, type MatchSound } from "@/lib/match-center/sound";
 import {
   EMPTY_STATS,
   type LiveStats,
@@ -98,16 +100,21 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
   const [narration, setNarration] = useState<string>("");
   const [ball, setBall] = useState({ x: 0.5, y: 0.5 });
   const [goalPulse, setGoalPulse] = useState<{ side: "home" | "away"; key: number } | null>(null);
+  const [cardFx, setCardFx] = useState<{ side: "home" | "away"; color: string; key: number } | null>(null);
+  const [subFx, setSubFx] = useState<{ side: "home" | "away"; key: number } | null>(null);
   const [finished, setFinished] = useState(false);
   const [paused, setPaused] = useState(false);
   const [speed, setSpeed] = useState(12);
   const [voiceOn, setVoiceOn] = useState(false);
   const [voiceAvailable, setVoiceAvailable] = useState(false);
+  const [soundOn, setSoundOn] = useState(false);
+  const [soundAvailable, setSoundAvailable] = useState(false);
 
   const feedRef = useRef<MatchFeed | null>(null);
   const secRef = useRef(0);
   const firedRef = useRef<Set<string>>(new Set());
   const speakerRef = useRef<Speaker | null>(null);
+  const soundRef = useRef<MatchSound | null>(null);
 
   // Inicializa el speaker (solo en cliente)
   useEffect(() => {
@@ -115,6 +122,14 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
     speakerRef.current = s;
     setVoiceAvailable(s.available());
     return () => s.cancel();
+  }, []);
+
+  // Inicializa el motor de sonido (solo en cliente)
+  useEffect(() => {
+    const snd = createSound();
+    soundRef.current = snd;
+    setSoundAvailable(snd.available());
+    return () => snd.stopAmbient();
   }, []);
 
   const speak = useCallback((text: string, priority = false) => {
@@ -131,6 +146,7 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
       if (firedRef.current.has(e.id)) return;
       firedRef.current.add(e.id);
 
+      const snd = soundRef.current;
       const isGoal = e.type === "goal" || e.type === "penalty_goal" || e.type === "own_goal";
       if (isGoal && e.side !== "neutral") {
         setScore((s) => {
@@ -139,7 +155,28 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
           else next[1] += 1;
           return next;
         });
-        if (animate) setGoalPulse({ side: e.side, key: Date.now() });
+        if (animate) {
+          setGoalPulse({ side: e.side, key: Date.now() });
+          snd?.goal();
+        }
+      }
+      if (animate && e.side !== "neutral") {
+        if (e.type === "yellow" || e.type === "second_yellow") {
+          setCardFx({ side: e.side, color: "#eab308", key: Date.now() });
+          snd?.card();
+        } else if (e.type === "red") {
+          setCardFx({ side: e.side, color: "#ef4444", key: Date.now() });
+          snd?.card();
+        } else if (e.type === "sub") {
+          setSubFx({ side: e.side, key: Date.now() });
+          snd?.sub();
+        } else if (e.type === "save") {
+          snd?.save();
+        }
+      }
+      if (animate) {
+        if (e.type === "kickoff") snd?.whistle(false);
+        else if (e.type === "half_time" || e.type === "full_time") snd?.whistle(true);
       }
       if (typeof e.x === "number" && typeof e.y === "number") {
         setBall({ x: e.x, y: e.y });
@@ -260,6 +297,18 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
     return () => clearTimeout(t);
   }, [goalPulse]);
 
+  // Limpia FX de tarjeta y cambio
+  useEffect(() => {
+    if (!cardFx) return;
+    const t = setTimeout(() => setCardFx(null), 1500);
+    return () => clearTimeout(t);
+  }, [cardFx]);
+  useEffect(() => {
+    if (!subFx) return;
+    const t = setTimeout(() => setSubFx(null), 1900);
+    return () => clearTimeout(t);
+  }, [subFx]);
+
   function toggleVoice() {
     const s = speakerRef.current;
     if (!s) return;
@@ -267,6 +316,21 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
     s.setEnabled(next);
     setVoiceOn(next);
     if (next) speak(narration || `Bienvenidos al ${meta.home.name} contra ${meta.away.name}.`, true);
+  }
+
+  function toggleSound() {
+    const snd = soundRef.current;
+    if (!snd) return;
+    const next = !soundOn;
+    snd.setEnabled(next); // resume() interno desbloquea el audio con este gesto
+    setSoundOn(next);
+    if (next) {
+      snd.startAmbient();
+      snd.setAmbient(Math.min(1, Math.abs(momentum) * 0.85 + 0.15));
+      snd.whistle(false);
+    } else {
+      snd.stopAmbient();
+    }
   }
 
   function replay() {
@@ -283,6 +347,35 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
     if (mm >= 45 && !htFired) return "Descanso";
     return "1º tiempo";
   }, [sec, finished, log]);
+
+  // Momentum: ventaja instantánea de un equipo (-1 visitante .. +1 local).
+  // Combina los eventos recientes (peso por tipo y por frescura) con la
+  // desviación de posesión. Alimenta el medidor de ambiente y el sonido.
+  const momentum = useMemo(() => {
+    const WT: Record<string, number> = {
+      goal: 1, penalty_goal: 1, chance: 0.6, shot_on: 0.5, shot: 0.3, corner: 0.22,
+    };
+    let acc = 0;
+    let wsum = 0;
+    log.slice(0, 14).forEach((e, idx) => {
+      const recency = 1 - idx / 18;
+      let w = WT[e.type] ?? 0;
+      let side = e.side;
+      if (e.type === "save") { w = 0.4; side = e.side === "home" ? "away" : "home"; } // parada => atacó el rival
+      if (w === 0 || side === "neutral") return;
+      acc += (side === "home" ? 1 : -1) * w * recency;
+      wsum += w * recency;
+    });
+    const evMom = wsum > 0 ? acc / wsum : 0;
+    const possMom = ((stats.possession[0] || 50) - 50) / 50;
+    return Math.max(-1, Math.min(1, evMom * 0.7 + possMom * 0.3));
+  }, [log, stats]);
+
+  // Empuja la intensidad del ambiente al motor de sonido.
+  useEffect(() => {
+    if (!soundOn) return;
+    soundRef.current?.setAmbient(Math.min(1, Math.abs(momentum) * 0.85 + 0.15));
+  }, [momentum, soundOn]);
 
   const lineups = feed
     ? feed.mode === "sim"
@@ -342,7 +435,10 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
             {/* Controles */}
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 14, alignItems: "center" }}>
               <button onClick={toggleVoice} disabled={!voiceAvailable} style={voiceOn ? btnGold : btnGhost}>
-                {voiceOn ? "🔊 Locución ON" : "🔇 Locución OFF"}
+                {voiceOn ? "🎙️ Locución ON" : "🎙️ Locución OFF"}
+              </button>
+              <button onClick={toggleSound} disabled={!soundAvailable} style={soundOn ? btnGold : btnGhost}>
+                {soundOn ? "🔊 Sonido ON" : "🔇 Sonido OFF"}
               </button>
               {feed.mode === "sim" && (
                 <>
@@ -374,7 +470,17 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
 
             {/* Cancha */}
             <div style={{ position: "relative", marginBottom: 14, boxShadow: "0 12px 40px rgba(0,0,0,0.4)", borderRadius: 16 }}>
-              <Pitch meta={meta} homeLineup={lineups.home} awayLineup={lineups.away} ball={ball} goalPulse={goalPulse} />
+              <Pitch
+                meta={meta}
+                homeLineup={lineups.home}
+                awayLineup={lineups.away}
+                ball={ball}
+                goalPulse={goalPulse}
+                cardFx={cardFx}
+                subFx={subFx}
+                attackBias={(stats.possession[0] || 50) / 100}
+                active={!finished && !(feed.mode === "sim" && paused)}
+              />
               {goalPulse && (
                 <div style={{
                   position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center",
@@ -387,8 +493,13 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
               )}
             </div>
 
-            {/* Pulso / momentum */}
-            <Momentum stats={stats} meta={meta} />
+            {/* Pulso / momentum + reacción del público */}
+            <Momentum stats={stats} meta={meta} momentum={momentum} soundOn={soundOn} />
+
+            {/* Mapa de calor */}
+            <div style={{ marginTop: 14 }}>
+              <Heatmap log={log} meta={meta} />
+            </div>
 
             {/* Stats + Timeline */}
             <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 14, marginTop: 14 }}>
@@ -417,8 +528,20 @@ function TeamBlock({ name, flag, color, right }: { name: string; flag: string; c
   );
 }
 
-function Momentum({ stats, meta }: { stats: LiveStats; meta: MatchMeta }) {
+function crowdMood(intensity: number): { label: string; icon: string; color: string } {
+  if (intensity >= 0.75) return { label: "Estadio en llamas", icon: "🔥", color: "#ef4444" };
+  if (intensity >= 0.5) return { label: "Afición encendida", icon: "📣", color: "#f59e0b" };
+  if (intensity >= 0.28) return { label: "Ambiente vibrante", icon: "👏", color: GOLD };
+  return { label: "Partido de tanteo", icon: "🎵", color: MID };
+}
+
+function Momentum({ stats, meta, momentum, soundOn }: { stats: LiveStats; meta: MatchMeta; momentum: number; soundOn: boolean }) {
   const [ph, pa] = stats.possession;
+  const intensity = Math.min(1, Math.abs(momentum) * 0.85 + 0.15);
+  const mood = crowdMood(intensity);
+  // Posición de la aguja de momentum: 0% = visitante, 100% = local.
+  const needle = ((momentum + 1) / 2) * 100;
+  const leader = momentum > 0.08 ? meta.home : momentum < -0.08 ? meta.away : null;
   return (
     <div style={{ background: BG2, borderRadius: 14, border: "1px solid rgba(255,255,255,0.08)", padding: "12px 16px" }}>
       <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, color: DIM, marginBottom: 6, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1 }}>
@@ -428,6 +551,33 @@ function Momentum({ stats, meta }: { stats: LiveStats; meta: MatchMeta }) {
       <div style={{ display: "flex", height: 14, borderRadius: 7, overflow: "hidden" }}>
         <div style={{ width: `${ph}%`, background: meta.home.color, transition: "width .5s ease", display: "flex", alignItems: "center", justifyContent: "flex-start", paddingLeft: 8, fontSize: 10, fontWeight: 800 }}>{ph}%</div>
         <div style={{ width: `${pa}%`, background: meta.away.color, transition: "width .5s ease", display: "flex", alignItems: "center", justifyContent: "flex-end", paddingRight: 8, fontSize: 10, fontWeight: 800 }}>{pa}%</div>
+      </div>
+
+      {/* Momentum: aguja que se inclina hacia quien presiona */}
+      <div style={{ marginTop: 14, display: "flex", justifyContent: "space-between", fontSize: 11, color: DIM, marginBottom: 6, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1 }}>
+        <span>Momentum</span>
+        <span style={{ color: leader ? leader.color : MID }}>{leader ? `${leader.name} empuja` : "Equilibrado"}</span>
+      </div>
+      <div style={{ position: "relative", height: 10, borderRadius: 5, background: `linear-gradient(90deg, ${meta.away.color}, rgba(255,255,255,0.15) 50%, ${meta.home.color})`, overflow: "visible" }}>
+        <div style={{
+          position: "absolute", top: -3, left: `calc(${needle}% - 8px)`, width: 16, height: 16, borderRadius: "50%",
+          background: "#fff", border: `3px solid ${leader ? leader.color : MID}`, transition: "left .6s cubic-bezier(.22,1,.36,1)",
+          boxShadow: "0 2px 8px rgba(0,0,0,0.5)",
+        }} />
+      </div>
+
+      {/* Reacción del público */}
+      <div style={{ marginTop: 14, display: "flex", alignItems: "center", gap: 12 }}>
+        <span style={{ fontSize: 22, animation: intensity >= 0.5 ? "mcPulse 0.9s infinite" : undefined }}>{mood.icon}</span>
+        <div style={{ flex: 1 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, color: DIM, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1, marginBottom: 4 }}>
+            <span>Ambiente · {mood.label}</span>
+            <span style={{ color: soundOn ? GREEN : DIM }}>{soundOn ? "🔊" : "🔇"}</span>
+          </div>
+          <div style={{ height: 8, borderRadius: 4, background: "rgba(255,255,255,0.06)", overflow: "hidden" }}>
+            <div style={{ width: `${intensity * 100}%`, height: "100%", background: mood.color, transition: "width .6s ease, background .6s ease" }} />
+          </div>
+        </div>
       </div>
     </div>
   );

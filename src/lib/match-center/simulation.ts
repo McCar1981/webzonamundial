@@ -10,6 +10,7 @@
 // se siente "en vivo" sin depender del servidor entre tics.
 
 import { buildLineup, FORMATION_NAMES } from "./formations";
+import { pickRoster } from "./names";
 import { templateNarration } from "./narrator";
 import type {
   LiveStats,
@@ -57,7 +58,7 @@ function pickPlayer(
   if (bias === "def") pool = lineup.starters.filter((p) => p.pos === "DF" || p.pos === "MF");
   if (pool.length === 0) pool = lineup.starters;
   const p = pool[Math.floor(rng() * pool.length)];
-  return `#${p.num}`;
+  return p.name || `#${p.num}`;
 }
 
 /** Coordenadas de un evento ofensivo según el lado que ataca. */
@@ -114,6 +115,12 @@ export function buildSimulation(meta: MatchMeta, seedInput?: number): MatchScrip
   const awayFormation = pickFormation(rng);
   const homeLineup = buildLineup(homeFormation);
   const awayLineup = buildLineup(awayFormation);
+
+  // Plantillas con nombres por selección (17 = 11 titulares + suplentes).
+  const homeRoster = pickRoster(rng, 17, meta.home.flag);
+  const awayRoster = pickRoster(rng, 17, meta.away.flag);
+  homeLineup.starters.forEach((p, i) => { p.name = homeRoster[i]; });
+  awayLineup.starters.forEach((p, i) => { p.name = awayRoster[i]; });
 
   const goals = planGoals(rng);
   const events: MatchEvent[] = [];
@@ -206,6 +213,7 @@ export function buildSimulation(meta: MatchMeta, seedInput?: number): MatchScrip
   // Cambios (2-3 por equipo en la segunda mitad)
   for (const side of ["home", "away"] as const) {
     const lineup = side === "home" ? homeLineup : awayLineup;
+    const roster = side === "home" ? homeRoster : awayRoster;
     const subs = 2 + Math.floor(rng() * 2);
     for (let i = 0; i < subs; i++) {
       const t = (58 + Math.floor(rng() * 32)) * 60;
@@ -218,7 +226,7 @@ export function buildSimulation(meta: MatchMeta, seedInput?: number): MatchScrip
         type: "sub",
         side,
         player: pickPlayer(rng, lineup, "any"),
-        playerIn: `#${12 + i + (side === "home" ? 0 : 3)}`,
+        playerIn: roster[11 + i] || `#${12 + i}`,
       });
     }
   }

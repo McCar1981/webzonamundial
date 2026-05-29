@@ -23,9 +23,38 @@ export function normalizeName(name: string): string {
 }
 
 // valorEnMillones de € (Transfermarkt). Ej: 0.3 = 300 mil €.
+// Las claves usan los nombres de la convocatoria (data/fantasy-rosters.ts); el
+// emparejamiento es por nombre normalizado, así que los acentos dan igual.
 export const MARKET_VALUES: Record<string, Record<string, number>> = {
   haiti: {
-    "ricardo ade": 0.3, // Transfermarkt: 300 mil € (rev. 22/12/2025)
+    "Ricardo Adé": 0.3, // 300 mil €
+  },
+  // Transfermarkt — convocatoria Argentina (rev. nov. 2025).
+  argentina: {
+    "Gerónimo Rulli": 5,
+    "Emiliano Martínez": 25,
+    "Leonardo Balerdi": 20,
+    "Nicolás Tagliafico": 7,
+    "Gonzalo Montiel": 5,
+    "Cristian Romero": 65,
+    "Nicolás Otamendi": 1,
+    "Facundo Medina": 25,
+    "Nahuel Molina": 25,
+    "Leandro Paredes": 5,
+    "Rodrigo De Paul": 25,
+    "Valentín Barco": 6,
+    "Giovani Lo Celso": 20,
+    "Exequiel Palacios": 40,
+    "Alexis Mac Allister": 80,
+    "Enzo Fernández": 75,
+    "Julián Álvarez": 80,
+    "Lionel Messi": 20,
+    "Nicolás González": 35,
+    "Thiago Almada": 27,
+    "Giuliano Simeone": 12,
+    "Nico Paz": 20,
+    "José Manuel López": 9,
+    "Lautaro Martínez": 100,
   },
 };
 

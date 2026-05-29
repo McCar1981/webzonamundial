@@ -2,9 +2,11 @@
 
 // Cancha de fútbol en SVG con motor de animación propio (requestAnimationFrame).
 // El balón (dibujado como un balón real con pentágonos) fluye de forma CONTINUA
-// por el campo, los jugadores se desplazan en bloque siguiendo la pelota y los
-// eventos (gol, tarjeta, cambio) disparan efectos visuales con el nombre del
-// jugador. En la segunda mitad los equipos cambian de lado (prop `flip`).
+// por el campo. Cada jugador tiene MOVIMIENTO INDIVIDUAL (deambular propio +
+// reacción al balón), así no se desplazan en bloque. Los eventos (gol, tarjeta,
+// cambio) disparan efectos visuales con animaciones CSS (que arrancan al
+// insertarse el elemento, a diferencia de SMIL que se mide contra el reloj del
+// documento). En la segunda mitad los equipos cambian de lado (prop `flip`).
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { lastName } from "@/lib/match-center/names";
@@ -24,6 +26,12 @@ function py(ny: number): number {
 }
 function clamp(v: number, a: number, b: number): number {
   return Math.max(a, Math.min(b, v));
+}
+// Pseudoaleatorio determinista 0..1 a partir de un índice (para parámetros de
+// movimiento únicos por jugador, sin re-render).
+function frac(n: number): number {
+  const x = Math.sin(n * 12.9898) * 43758.5453;
+  return x - Math.floor(x);
 }
 
 // --- Geometría del balón (pentágono central + costuras) ---
@@ -51,6 +59,13 @@ interface PlayerNode {
   label: string;
   color: string;
   gk: boolean;
+  // Parámetros de movimiento individual.
+  ph: number;
+  perX: number;
+  perY: number;
+  ampX: number;
+  ampY: number;
+  react: number;
 }
 
 interface GoalPulse { side: "home" | "away"; key: number; player?: string }
@@ -83,21 +98,24 @@ function Player({
 }) {
   return (
     <g ref={innerRef} transform={`translate(${node.bx},${node.by})`} style={{ willChange: "transform" }}>
-      <ellipse cx={0} cy={20} rx={13} ry={4} fill="rgba(0,0,0,0.28)" />
+      <ellipse cx={0} cy={21} rx={14} ry={4.5} fill="rgba(0,0,0,0.30)" />
       <circle cx={0} cy={0} r={17} fill={node.color} stroke="#fff" strokeWidth={2.5} />
-      <text x={0} y={5} textAnchor="middle" fontSize={15} fontWeight={800} fill="#fff" style={{ pointerEvents: "none" }}>
+      {/* Relieve: sombra interior abajo + brillo arriba */}
+      <circle cx={0} cy={0} r={17} fill="url(#chipShade)" />
+      <ellipse cx={-5} cy={-6} rx={6.5} ry={4} fill="rgba(255,255,255,0.28)" />
+      <text x={0} y={5} textAnchor="middle" fontSize={15} fontWeight={800} fill="#fff" stroke="rgba(0,0,0,0.25)" strokeWidth={0.6} style={{ pointerEvents: "none" }}>
         {node.num}
       </text>
       {node.label && (
         <text
           x={0}
-          y={34}
+          y={35}
           textAnchor="middle"
-          fontSize={11}
+          fontSize={11.5}
           fontWeight={700}
           fill="#fff"
           stroke="#0b1825"
-          strokeWidth={2.6}
+          strokeWidth={2.8}
           paintOrder="stroke"
           style={{ pointerEvents: "none" }}
         >
@@ -125,11 +143,31 @@ export default function Pitch({
 
   const players = useMemo<PlayerNode[]>(() => {
     const arr: PlayerNode[] = [];
+    let idx = 0;
+    const make = (key: string, sx: number, p: { x: number; y: number; num: number; name?: string; pos: string }, color: string): PlayerNode => {
+      const k = idx++;
+      const gk = p.pos === "GK";
+      return {
+        key,
+        bx: px(sx),
+        by: py(p.y),
+        num: p.num,
+        label: p.name ? lastName(p.name) : "",
+        color,
+        gk,
+        ph: frac(k + 1.1) * Math.PI * 2,
+        perX: 520 + frac(k + 2.7) * 760,
+        perY: 540 + frac(k + 3.9) * 760,
+        ampX: gk ? 4 : 6 + frac(k + 4.3) * 9,
+        ampY: gk ? 5 : 6 + frac(k + 5.6) * 9,
+        react: gk ? 0.05 : 0.1 + frac(k + 6.1) * 0.12,
+      };
+    };
     homeLineup.starters.forEach((p, i) =>
-      arr.push({ key: `h${i}`, bx: px(flip ? 1 - p.x : p.x), by: py(p.y), num: p.num, label: p.name ? lastName(p.name) : "", color: meta.home.color, gk: p.pos === "GK" }),
+      arr.push(make(`h${i}`, flip ? 1 - p.x : p.x, p, meta.home.color)),
     );
     awayLineup.starters.forEach((p, i) =>
-      arr.push({ key: `a${i}`, bx: px(flip ? p.x : 1 - p.x), by: py(p.y), num: p.num, label: p.name ? lastName(p.name) : "", color: meta.away.color, gk: p.pos === "GK" }),
+      arr.push(make(`a${i}`, flip ? p.x : 1 - p.x, p, meta.away.color)),
     );
     return arr;
   }, [homeLineup, awayLineup, meta.home.color, meta.away.color, flip]);
@@ -227,15 +265,19 @@ export default function Pitch({
         }
       }
 
+      // Cada jugador: deambular individual (fase/frecuencia/amplitud propias) +
+      // reacción al balón. Así nadie se mueve en bloque.
+      const idleK = activeRef.current ? 1 : 0.3;
       const list = playersRef.current;
       for (let i = 0; i < list.length; i++) {
         const g = groupRefs.current[i];
         const pl = list[i];
         if (!g || !pl) continue;
-        const kp = pl.gk ? 0.05 : 0.15;
-        const maxS = pl.gk ? 24 : 70;
-        const ox = clamp((bxp - pl.bx) * kp, -maxS, maxS);
-        const oy = clamp((byp - pl.by) * kp, -maxS, maxS);
+        const maxS = pl.gk ? 26 : 74;
+        const wx = Math.sin(now / pl.perX + pl.ph) * pl.ampX * idleK;
+        const wy = Math.cos(now / pl.perY + pl.ph * 1.3) * pl.ampY * idleK;
+        const ox = clamp((bxp - pl.bx) * pl.react + wx, -maxS, maxS);
+        const oy = clamp((byp - pl.by) * pl.react + wy, -maxS, maxS);
         g.setAttribute("transform", `translate(${pl.bx + ox},${pl.by + oy})`);
       }
 
@@ -245,38 +287,25 @@ export default function Pitch({
     return () => cancelAnimationFrame(raf);
   }, []);
 
-  // Confeti de gol.
+  // Confeti de gol (estalla desde el centro). Animado con CSS.
   const confetti = useMemo(() => {
     if (!goalPulse) return [];
-    const goalNorm = goalPulse.side === "home" ? 1 : 0;
-    const cx = px(fx(goalNorm));
-    const cy = H / 2;
     const palette = ["#ffd34d", "#ffffff", meta.home.color, meta.away.color, "#22c55e", "#ff5a8a", "#3b82f6"];
-    return Array.from({ length: 60 }).map((_, i) => {
+    return Array.from({ length: 70 }).map((_, i) => {
       const ang = Math.random() * Math.PI * 2;
-      const dist = 140 + Math.random() * 340;
+      const dist = 150 + Math.random() * 360;
       return {
         id: i,
-        cx,
-        cy,
         ex: Math.cos(ang) * dist,
-        ey: Math.sin(ang) * dist + 120,
+        ey: Math.sin(ang) * dist + 130,
         color: palette[i % palette.length],
-        dur: 1.6 + Math.random() * 1.2,
+        dur: 1.7 + Math.random() * 1.3,
         w: 6 + Math.random() * 7,
         h: 4 + Math.random() * 5,
       };
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [goalPulse, meta.home.color, meta.away.color, flip]);
+  }, [goalPulse, meta.home.color, meta.away.color]);
 
-  // Posición en pantalla de cada lado (depende del cambio de campo).
-  const sideScreenX = (side: "home" | "away") => {
-    const homeOnLeft = !flip;
-    if (side === "home") return homeOnLeft ? W * 0.32 : W * 0.68;
-    return homeOnLeft ? W * 0.68 : W * 0.32;
-  };
-  const cardX = cardFx ? sideScreenX(cardFx.side) : 0;
   const goalX = goalPulse ? px(fx(goalPulse.side === "home" ? 1 : 0)) : 0;
   const goalTeam = goalPulse ? (goalPulse.side === "home" ? meta.home : meta.away) : null;
 
@@ -291,16 +320,36 @@ export default function Pitch({
       <style>{`
         @keyframes mcShakeKf{0%,100%{transform:translate(0,0)}15%{transform:translate(-6px,3px)}30%{transform:translate(6px,-3px)}45%{transform:translate(-5px,-2px)}60%{transform:translate(4px,3px)}75%{transform:translate(-3px,2px)}}
         .mc-shake{animation:mcShakeKf .55s ease}
+        @keyframes mcFlash{0%{opacity:.55}35%{opacity:0}55%{opacity:.3}100%{opacity:0}}
+        @keyframes mcRing{from{transform:scale(1);opacity:.9}to{transform:scale(11);opacity:0}}
+        @keyframes mcConfetti{0%{transform:translate(0,0) rotate(0)}85%{opacity:1}100%{transform:translate(var(--tx),var(--ty)) rotate(540deg);opacity:0}}
+        @keyframes mcPop{0%{transform:scale(.4);opacity:0}10%{transform:scale(1.12);opacity:1}20%{transform:scale(1)}82%{opacity:1}100%{transform:scale(1);opacity:0}}
+        .mc-ring{transform-box:fill-box;transform-origin:center;animation:mcRing 1.2s ease-out forwards}
+        .mc-confetti{animation-name:mcConfetti;animation-timing-function:ease-out;animation-fill-mode:forwards}
+        .mc-pop{transform-origin:0 0;animation-name:mcPop;animation-timing-function:ease;animation-fill-mode:forwards}
       `}</style>
       <defs>
         <linearGradient id="turf" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#0e7a3e" />
+          <stop offset="0%" stopColor="#119247" />
           <stop offset="100%" stopColor="#0a5e30" />
         </linearGradient>
+        <radialGradient id="light" cx="50%" cy="36%" r="62%">
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.12" />
+          <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
+        </radialGradient>
+        <radialGradient id="vig" cx="50%" cy="44%" r="72%">
+          <stop offset="0%" stopColor="#000000" stopOpacity="0" />
+          <stop offset="68%" stopColor="#000000" stopOpacity="0" />
+          <stop offset="100%" stopColor="#000000" stopOpacity="0.42" />
+        </radialGradient>
         <radialGradient id="ballG" cx="36%" cy="30%" r="78%">
           <stop offset="0%" stopColor="#ffffff" />
           <stop offset="70%" stopColor="#f2f5f8" />
           <stop offset="100%" stopColor="#c3ccd4" />
+        </radialGradient>
+        <radialGradient id="chipShade" cx="50%" cy="64%" r="60%">
+          <stop offset="0%" stopColor="#000000" stopOpacity="0" />
+          <stop offset="100%" stopColor="#000000" stopOpacity="0.28" />
         </radialGradient>
       </defs>
 
@@ -313,9 +362,11 @@ export default function Pitch({
           y={PAD}
           width={(W - PAD * 2) / 10}
           height={H - PAD * 2}
-          fill={i % 2 === 0 ? "rgba(255,255,255,0.03)" : "transparent"}
+          fill={i % 2 === 0 ? "rgba(255,255,255,0.035)" : "rgba(0,0,0,0.05)"}
         />
       ))}
+      {/* Luz de estadio */}
+      <rect x={0} y={0} width={W} height={H} fill="url(#light)" />
 
       {/* Líneas */}
       <g stroke="rgba(255,255,255,0.55)" strokeWidth={2} fill="none">
@@ -331,6 +382,9 @@ export default function Pitch({
         <rect x={W - PAD} y={H / 2 - 34} width={10} height={68} stroke="rgba(255,255,255,0.8)" />
       </g>
 
+      {/* Viñeta (oscurece bordes, da profundidad) */}
+      <rect x={0} y={0} width={W} height={H} fill="url(#vig)" style={{ pointerEvents: "none" }} />
+
       {/* Jugadores */}
       {players.map((node, i) => (
         <Player key={node.key} node={node} innerRef={(el) => { groupRefs.current[i] = el; }} />
@@ -341,29 +395,29 @@ export default function Pitch({
         <circle key={`tr-${i}`} ref={(el) => { trailRefs.current[i] = el; }} r={6 - (i * 3) / TRAIL} fill="#fff" opacity={0} />
       ))}
 
-      {/* Celebración de gol: flash + anillos + confeti + nombre del goleador */}
+      {/* Celebración de gol: flash + anillos + confeti + nombre del goleador (CSS) */}
       {goalPulse && (
         <g key={`gp-${goalPulse.key}`}>
-          <rect x={0} y={0} width={W} height={H} fill="#ffd34d" opacity={0}>
-            <animate attributeName="opacity" values="0.5;0;0.3;0" dur="0.9s" fill="freeze" />
-          </rect>
+          <rect x={0} y={0} width={W} height={H} fill="#ffd34d" style={{ animation: "mcFlash 0.9s ease forwards" }} />
           {[0, 0.15, 0.3].map((d, k) => (
-            <circle key={k} cx={goalX} cy={H / 2} r={20} fill="none" stroke="#ffd34d" strokeWidth={5} opacity={0.9}>
-              <animate attributeName="r" from="20" to="240" dur="1.2s" begin={`${d}s`} fill="freeze" />
-              <animate attributeName="opacity" from="0.9" to="0" dur="1.2s" begin={`${d}s`} fill="freeze" />
-            </circle>
+            <circle key={k} className="mc-ring" cx={goalX} cy={H / 2} r={20} fill="none" stroke="#ffd34d" strokeWidth={5} style={{ animationDelay: `${d}s` }} />
           ))}
           {confetti.map((c) => (
-            <rect key={c.id} x={c.cx} y={c.cy} width={c.w} height={c.h} fill={c.color} rx={1}>
-              <animateTransform attributeName="transform" type="translate" from="0 0" to={`${c.ex} ${c.ey}`} dur={`${c.dur}s`} fill="freeze" />
-              <animate attributeName="opacity" values="1;1;0" dur={`${c.dur}s`} fill="freeze" />
-            </rect>
+            <rect
+              key={c.id}
+              className="mc-confetti"
+              x={W / 2}
+              y={H / 2}
+              width={c.w}
+              height={c.h}
+              fill={c.color}
+              rx={1}
+              style={{ ["--tx" as string]: `${c.ex}px`, ["--ty" as string]: `${c.ey}px`, animationDuration: `${c.dur}s` }}
+            />
           ))}
           {/* Banner del goleador */}
           <g transform={`translate(${W / 2},${H / 2})`}>
-            <g>
-              <animateTransform attributeName="transform" type="scale" values="0.4;1.12;1" dur="0.5s" fill="freeze" />
-              <animate attributeName="opacity" values="0;1;1;1;0" keyTimes="0;0.1;0.4;0.85;1" dur="3.2s" fill="freeze" />
+            <g className="mc-pop" style={{ animationDuration: "3.2s" }}>
               <text x={0} y={-18} textAnchor="middle" fontSize={84} fontWeight={900} fill="#ffd34d" stroke="#0b1825" strokeWidth={3} paintOrder="stroke">
                 ¡GOL!
               </text>
@@ -382,15 +436,13 @@ export default function Pitch({
         </g>
       )}
 
-      {/* Tarjeta con nombre del jugador */}
+      {/* Tarjeta con nombre del jugador (centro del campo, CSS) */}
       {cardFx && (
-        <g key={`cf-${cardFx.key}`} transform={`translate(${cardX},${H / 2 - 30})`}>
-          <g>
-            <animateTransform attributeName="transform" type="scale" values="0.2;1.18;1" dur="0.45s" fill="freeze" />
-            <animate attributeName="opacity" values="0;1;1;1;0" keyTimes="0;0.12;0.4;0.8;1" dur="2.6s" fill="freeze" />
-            <rect x={-22} y={-34} width={44} height={62} rx={6} fill={cardFx.color} stroke="#0b1825" strokeWidth={2.5} transform="rotate(-8)" />
+        <g key={`cf-${cardFx.key}`} transform={`translate(${W / 2},${H / 2 - 20})`}>
+          <g className="mc-pop" style={{ animationDuration: "2.6s" }}>
+            <rect x={-22} y={-44} width={44} height={62} rx={6} fill={cardFx.color} stroke="#0b1825" strokeWidth={2.5} transform="rotate(-8)" />
             {cardFx.player && (
-              <text x={0} y={56} textAnchor="middle" fontSize={26} fontWeight={900} fill="#fff" stroke="#0b1825" strokeWidth={3} paintOrder="stroke">
+              <text x={0} y={52} textAnchor="middle" fontSize={28} fontWeight={900} fill="#fff" stroke="#0b1825" strokeWidth={3} paintOrder="stroke">
                 {lastName(cardFx.player)}
               </text>
             )}
@@ -398,12 +450,10 @@ export default function Pitch({
         </g>
       )}
 
-      {/* Cambio de jugadores con nombres */}
+      {/* Cambio de jugadores con nombres (CSS) */}
       {subFx && (
         <g key={`sf-${subFx.key}`} transform={`translate(${W / 2},${H / 2})`}>
-          <g>
-            <animateTransform attributeName="transform" type="scale" values="0.4;1.1;1" dur="0.45s" fill="freeze" />
-            <animate attributeName="opacity" values="0;1;1;1;0" keyTimes="0;0.1;0.4;0.82;1" dur="3s" fill="freeze" />
+          <g className="mc-pop" style={{ animationDuration: "3s" }}>
             <rect x={-150} y={-46} width={300} height={92} rx={14} fill="#0b1825" stroke="#c9a84c" strokeWidth={2} opacity={0.96} />
             <text x={0} y={-22} textAnchor="middle" fontSize={15} fontWeight={800} fill="#8a94b0" letterSpacing="1.5">CAMBIO</text>
             <g>
@@ -421,6 +471,7 @@ export default function Pitch({
       {/* Balón realista (pentágonos que rotan con el balón) */}
       <g ref={ballRef} transform={`translate(${px(0.5)},${py(0.5)})`} style={{ willChange: "transform" }}>
         <ellipse cx={0} cy={BALL_R + 4} rx={BALL_R - 1} ry={3.5} fill="rgba(0,0,0,0.32)" />
+        <circle r={BALL_R + 5} fill="#fff" opacity={0.14} />
         <circle r={BALL_R} fill="url(#ballG)" stroke="#0b1825" strokeWidth={1.4} />
         {/* Costuras hacia los pentágonos exteriores */}
         <g stroke="#1a2733" strokeWidth={1} fill="none" opacity={0.85}>

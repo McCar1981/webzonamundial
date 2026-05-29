@@ -47,6 +47,20 @@ function pickFormation(rng: () => number): string {
   return FORMATION_NAMES[Math.floor(rng() * FORMATION_NAMES.length)];
 }
 
+/** Asigna dorsales realistas (portero #1, resto repartidos del 2 al 23). */
+function assignNumbers(rng: () => number, lineup: TeamLineup): void {
+  const pool: number[] = [];
+  for (let n = 2; n <= 23; n++) pool.push(n);
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  let pi = 0;
+  for (const p of lineup.starters) {
+    p.num = p.pos === "GK" ? 1 : pool[pi++];
+  }
+}
+
 /** Devuelve el dorsal de un jugador del once con sesgo por zona. */
 function pickPlayer(
   rng: () => number,
@@ -121,6 +135,8 @@ export function buildSimulation(meta: MatchMeta, seedInput?: number): MatchScrip
   const awayRoster = pickRoster(rng, 17, meta.away.flag);
   homeLineup.starters.forEach((p, i) => { p.name = homeRoster[i]; });
   awayLineup.starters.forEach((p, i) => { p.name = awayRoster[i]; });
+  assignNumbers(rng, homeLineup);
+  assignNumbers(rng, awayLineup);
 
   const goals = planGoals(rng);
   const events: MatchEvent[] = [];

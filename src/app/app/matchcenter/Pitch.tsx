@@ -69,8 +69,6 @@ interface PlayerNode {
 }
 
 interface GoalPulse { side: "home" | "away"; key: number; player?: string }
-interface CardFx { side: "home" | "away"; color: string; key: number; player?: string }
-interface SubFx { side: "home" | "away"; key: number; playerOut?: string; playerIn?: string }
 
 interface PitchProps {
   meta: MatchMeta;
@@ -78,11 +76,10 @@ interface PitchProps {
   awayLineup: TeamLineup;
   /** Posición objetivo del balón en coords normalizadas (home ataca hacia x=1). */
   ball: { x: number; y: number };
+  /** Solo se usa para la sacudida de cámara al marcar (los FX van en overlay). */
   goalPulse?: GoalPulse | null;
   /** Probabilidad de que el juego fluya hacia la portería visitante. 0..1 */
   attackBias?: number;
-  subFx?: SubFx | null;
-  cardFx?: CardFx | null;
   /** El balón deambula solo cuando está activo (sim corriendo / en vivo). */
   active?: boolean;
   /** Segunda mitad: los equipos cambian de lado. */
@@ -133,8 +130,6 @@ export default function Pitch({
   ball,
   goalPulse,
   attackBias = 0.5,
-  subFx,
-  cardFx,
   active = true,
   flip = false,
 }: PitchProps) {
@@ -287,28 +282,6 @@ export default function Pitch({
     return () => cancelAnimationFrame(raf);
   }, []);
 
-  // Confeti de gol (estalla desde el centro). Animado con CSS.
-  const confetti = useMemo(() => {
-    if (!goalPulse) return [];
-    const palette = ["#ffd34d", "#ffffff", meta.home.color, meta.away.color, "#22c55e", "#ff5a8a", "#3b82f6"];
-    return Array.from({ length: 70 }).map((_, i) => {
-      const ang = Math.random() * Math.PI * 2;
-      const dist = 150 + Math.random() * 360;
-      return {
-        id: i,
-        ex: Math.cos(ang) * dist,
-        ey: Math.sin(ang) * dist + 130,
-        color: palette[i % palette.length],
-        dur: 1.7 + Math.random() * 1.3,
-        w: 6 + Math.random() * 7,
-        h: 4 + Math.random() * 5,
-      };
-    });
-  }, [goalPulse, meta.home.color, meta.away.color]);
-
-  const goalX = goalPulse ? px(fx(goalPulse.side === "home" ? 1 : 0)) : 0;
-  const goalTeam = goalPulse ? (goalPulse.side === "home" ? meta.home : meta.away) : null;
-
   return (
     <svg
       viewBox={`0 0 ${W} ${H}`}
@@ -320,13 +293,6 @@ export default function Pitch({
       <style>{`
         @keyframes mcShakeKf{0%,100%{transform:translate(0,0)}15%{transform:translate(-6px,3px)}30%{transform:translate(6px,-3px)}45%{transform:translate(-5px,-2px)}60%{transform:translate(4px,3px)}75%{transform:translate(-3px,2px)}}
         .mc-shake{animation:mcShakeKf .55s ease}
-        @keyframes mcFlash{0%{opacity:.55}35%{opacity:0}55%{opacity:.3}100%{opacity:0}}
-        @keyframes mcRing{from{transform:scale(1);opacity:.9}to{transform:scale(11);opacity:0}}
-        @keyframes mcConfetti{0%{transform:translate(0,0) rotate(0)}85%{opacity:1}100%{transform:translate(var(--tx),var(--ty)) rotate(540deg);opacity:0}}
-        @keyframes mcPop{0%{transform:scale(.4);opacity:0}10%{transform:scale(1.12);opacity:1}20%{transform:scale(1)}82%{opacity:1}100%{transform:scale(1);opacity:0}}
-        .mc-ring{transform-box:fill-box;transform-origin:center;animation:mcRing 1.2s ease-out forwards}
-        .mc-confetti{animation-name:mcConfetti;animation-timing-function:ease-out;animation-fill-mode:forwards}
-        .mc-pop{transform-origin:0 0;animation-name:mcPop;animation-timing-function:ease;animation-fill-mode:forwards}
       `}</style>
       <defs>
         <linearGradient id="turf" x1="0" y1="0" x2="0" y2="1">
@@ -394,79 +360,6 @@ export default function Pitch({
       {Array.from({ length: TRAIL }).map((_, i) => (
         <circle key={`tr-${i}`} ref={(el) => { trailRefs.current[i] = el; }} r={6 - (i * 3) / TRAIL} fill="#fff" opacity={0} />
       ))}
-
-      {/* Celebración de gol: flash + anillos + confeti + nombre del goleador (CSS) */}
-      {goalPulse && (
-        <g key={`gp-${goalPulse.key}`}>
-          <rect x={0} y={0} width={W} height={H} fill="#ffd34d" style={{ animation: "mcFlash 0.9s ease forwards" }} />
-          {[0, 0.15, 0.3].map((d, k) => (
-            <circle key={k} className="mc-ring" cx={goalX} cy={H / 2} r={20} fill="none" stroke="#ffd34d" strokeWidth={5} style={{ animationDelay: `${d}s` }} />
-          ))}
-          {confetti.map((c) => (
-            <rect
-              key={c.id}
-              className="mc-confetti"
-              x={W / 2}
-              y={H / 2}
-              width={c.w}
-              height={c.h}
-              fill={c.color}
-              rx={1}
-              style={{ ["--tx" as string]: `${c.ex}px`, ["--ty" as string]: `${c.ey}px`, animationDuration: `${c.dur}s` }}
-            />
-          ))}
-          {/* Banner del goleador */}
-          <g transform={`translate(${W / 2},${H / 2})`}>
-            <g className="mc-pop" style={{ animationDuration: "3.2s" }}>
-              <text x={0} y={-18} textAnchor="middle" fontSize={84} fontWeight={900} fill="#ffd34d" stroke="#0b1825" strokeWidth={3} paintOrder="stroke">
-                ¡GOL!
-              </text>
-              {goalPulse.player && (
-                <text x={0} y={36} textAnchor="middle" fontSize={34} fontWeight={900} fill="#fff" stroke="#0b1825" strokeWidth={3} paintOrder="stroke">
-                  {goalPulse.player}
-                </text>
-              )}
-              {goalTeam && (
-                <text x={0} y={70} textAnchor="middle" fontSize={20} fontWeight={800} fill={goalTeam.color} stroke="#0b1825" strokeWidth={2.5} paintOrder="stroke">
-                  {goalTeam.name}
-                </text>
-              )}
-            </g>
-          </g>
-        </g>
-      )}
-
-      {/* Tarjeta con nombre del jugador (centro del campo, CSS) */}
-      {cardFx && (
-        <g key={`cf-${cardFx.key}`} transform={`translate(${W / 2},${H / 2 - 20})`}>
-          <g className="mc-pop" style={{ animationDuration: "2.6s" }}>
-            <rect x={-22} y={-44} width={44} height={62} rx={6} fill={cardFx.color} stroke="#0b1825" strokeWidth={2.5} transform="rotate(-8)" />
-            {cardFx.player && (
-              <text x={0} y={52} textAnchor="middle" fontSize={28} fontWeight={900} fill="#fff" stroke="#0b1825" strokeWidth={3} paintOrder="stroke">
-                {lastName(cardFx.player)}
-              </text>
-            )}
-          </g>
-        </g>
-      )}
-
-      {/* Cambio de jugadores con nombres (CSS) */}
-      {subFx && (
-        <g key={`sf-${subFx.key}`} transform={`translate(${W / 2},${H / 2})`}>
-          <g className="mc-pop" style={{ animationDuration: "3s" }}>
-            <rect x={-150} y={-46} width={300} height={92} rx={14} fill="#0b1825" stroke="#c9a84c" strokeWidth={2} opacity={0.96} />
-            <text x={0} y={-22} textAnchor="middle" fontSize={15} fontWeight={800} fill="#8a94b0" letterSpacing="1.5">CAMBIO</text>
-            <g>
-              <text x={-128} y={6} fontSize={22} fontWeight={900} fill="#22c55e">▲</text>
-              <text x={-104} y={5} fontSize={18} fontWeight={800} fill="#fff">{subFx.playerIn ? lastName(subFx.playerIn) : "Entra"}</text>
-            </g>
-            <g>
-              <text x={-128} y={36} fontSize={22} fontWeight={900} fill="#ef4444">▼</text>
-              <text x={-104} y={35} fontSize={18} fontWeight={800} fill="#8a94b0">{subFx.playerOut ? lastName(subFx.playerOut) : "Sale"}</text>
-            </g>
-          </g>
-        </g>
-      )}
 
       {/* Balón realista (pentágonos que rotan con el balón) */}
       <g ref={ballRef} transform={`translate(${px(0.5)},${py(0.5)})`} style={{ willChange: "transform" }}>

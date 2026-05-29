@@ -8,6 +8,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import Pitch from "./Pitch";
+import MatchFx from "./MatchFx";
 import Heatmap from "./Heatmap";
 import { createSpeaker, type Speaker } from "@/lib/match-center/voice";
 import { createSound, type MatchSound } from "@/lib/match-center/sound";
@@ -476,20 +477,21 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
               </span>
             </div>
 
-            {/* Cancha */}
-            <div style={{ position: "relative", marginBottom: 14, boxShadow: "0 12px 40px rgba(0,0,0,0.4)", borderRadius: 16 }}>
-              <Pitch
-                meta={meta}
-                homeLineup={lineups.home}
-                awayLineup={lineups.away}
-                ball={ball}
-                goalPulse={goalPulse}
-                cardFx={cardFx}
-                subFx={subFx}
-                attackBias={(stats.possession[0] || 50) / 100}
-                active={!finished && !(feed.mode === "sim" && paused)}
-                flip={secondHalf}
-              />
+            {/* Cancha: contenedor con ángulo de cámara (3D) + overlay de FX plano */}
+            <div style={{ position: "relative", marginBottom: 14, borderRadius: 16, perspective: 1300, perspectiveOrigin: "50% 30%" }}>
+              <div style={{ transform: "rotateX(15deg) scale(1.02)", transformOrigin: "50% 42%", borderRadius: 16, boxShadow: "0 26px 60px rgba(0,0,0,0.55)" }}>
+                <Pitch
+                  meta={meta}
+                  homeLineup={lineups.home}
+                  awayLineup={lineups.away}
+                  ball={ball}
+                  goalPulse={goalPulse}
+                  attackBias={(stats.possession[0] || 50) / 100}
+                  active={!finished && !(feed.mode === "sim" && paused)}
+                  flip={secondHalf}
+                />
+              </div>
+              <MatchFx meta={meta} goalPulse={goalPulse} cardFx={cardFx} subFx={subFx} />
             </div>
 
             {/* Pulso / momentum + reacción del público */}

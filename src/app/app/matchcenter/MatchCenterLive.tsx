@@ -9,7 +9,6 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import Pitch from "./Pitch";
 import MatchFx from "./MatchFx";
-import Heatmap from "./Heatmap";
 import { createSpeaker, type Speaker } from "@/lib/match-center/voice";
 import { createSound, type MatchSound } from "@/lib/match-center/sound";
 import {
@@ -103,10 +102,16 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
   const [goalPulse, setGoalPulse] = useState<{ side: "home" | "away"; key: number; player?: string } | null>(null);
   const [cardFx, setCardFx] = useState<{ side: "home" | "away"; color: string; key: number; player?: string } | null>(null);
   const [subFx, setSubFx] = useState<{ side: "home" | "away"; key: number; playerOut?: string; playerIn?: string } | null>(null);
+  const [shotFx, setShotFx] = useState<{ key: number; x: number; y: number; raised: boolean; slow?: boolean } | null>(null);
+  const [lastScorer, setLastScorer] = useState<{ side: "home" | "away"; player?: string; minute: number } | null>(null);
   const [secondHalf, setSecondHalf] = useState(false);
   const [finished, setFinished] = useState(false);
   const [paused, setPaused] = useState(false);
   const [speed, setSpeed] = useState(12);
+  const [showHeat, setShowHeat] = useState(false);
+  const [tactical, setTactical] = useState(false);
+  const [hoverPlayer, setHoverPlayer] = useState<{ num: number; label: string; side: "home" | "away"; pos: string } | null>(null);
+  const [showHighlights, setShowHighlights] = useState(false);
   const [voiceOn, setVoiceOn] = useState(false);
   const [voiceAvailable, setVoiceAvailable] = useState(false);
   const [soundOn, setSoundOn] = useState(false);
@@ -115,6 +120,8 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
   const feedRef = useRef<MatchFeed | null>(null);
   const secRef = useRef(0);
   const firedRef = useRef<Set<string>>(new Set());
+  const lastGoalRef = useRef<MatchEvent | null>(null);
+  const [replayTag, setReplayTag] = useState(false);
   const speakerRef = useRef<Speaker | null>(null);
   const soundRef = useRef<MatchSound | null>(null);
 
@@ -157,11 +164,20 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
           else next[1] += 1;
           return next;
         });
+        setLastScorer({ side: e.side, player: e.player, minute: e.minute });
+        lastGoalRef.current = e;
         if (animate) {
           setGoalPulse({ side: e.side, key: Date.now(), player: e.player });
+          if (typeof e.x === "number" && typeof e.y === "number") {
+            setShotFx({ key: Date.now(), x: e.x, y: e.y, raised: true });
+          }
           snd?.whistle(false); // el árbitro pita el gol
           snd?.goal();
         }
+      }
+      // Disparos: el balón viaja en arco hacia el destino.
+      if (animate && (e.type === "shot" || e.type === "shot_on" || e.type === "chance" || e.type === "penalty_miss") && typeof e.x === "number" && typeof e.y === "number") {
+        setShotFx({ key: Date.now(), x: e.x, y: e.y, raised: e.type !== "shot" });
       }
       if (animate && e.side !== "neutral") {
         if (e.type === "yellow" || e.type === "second_yellow") {
@@ -221,6 +237,8 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
         setFinished(false);
         setSecondHalf(false);
         setBall({ x: 0.5, y: 0.5 });
+        setLastScorer(null);
+        setShowHighlights(false);
       } else {
         // live: marcar lo ya ocurrido sin animar
         for (const e of data.events) firedRef.current.add(e.id);
@@ -306,6 +324,20 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
     return () => clearTimeout(t);
   }, [goalPulse]);
 
+  // Repetición instantánea del gol: al apagarse la celebración, recrea la
+  // jugada en cámara lenta con la etiqueta "REPETICIÓN".
+  useEffect(() => {
+    if (!goalPulse) return;
+    const e = lastGoalRef.current;
+    if (!e || typeof e.x !== "number" || typeof e.y !== "number") return;
+    const start = setTimeout(() => {
+      setReplayTag(true);
+      setShotFx({ key: Date.now(), x: e.x!, y: e.y!, raised: true, slow: true });
+    }, 3500);
+    const end = setTimeout(() => setReplayTag(false), 3500 + 2600);
+    return () => { clearTimeout(start); clearTimeout(end); };
+  }, [goalPulse]);
+
   // Limpia FX de tarjeta y cambio
   useEffect(() => {
     if (!cardFx) return;
@@ -317,6 +349,20 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
     const t = setTimeout(() => setSubFx(null), 3100);
     return () => clearTimeout(t);
   }, [subFx]);
+  useEffect(() => {
+    if (!shotFx) return;
+    const t = setTimeout(() => setShotFx(null), 800);
+    return () => clearTimeout(t);
+  }, [shotFx]);
+
+  // Resumen automático al terminar el partido.
+  useEffect(() => {
+    if (finished) {
+      const t = setTimeout(() => setShowHighlights(true), 1200);
+      return () => clearTimeout(t);
+    }
+    setShowHighlights(false);
+  }, [finished]);
 
   function toggleVoice() {
     const s = speakerRef.current;
@@ -346,6 +392,31 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
     speakerRef.current?.cancel();
     load();
   }
+
+  // Revive un evento pasado: recoloca el balón, relanza sus FX y su locución
+  // (sin alterar el marcador). Usado por la línea de tiempo y los destacados.
+  const relive = useCallback((e: MatchEvent) => {
+    const snd = soundRef.current;
+    if (typeof e.x === "number" && typeof e.y === "number") {
+      setBall({ x: e.x, y: e.y });
+      setShotFx({ key: Date.now(), x: e.x, y: e.y, raised: e.type !== "shot" });
+    }
+    const isGoal = e.type === "goal" || e.type === "penalty_goal" || e.type === "own_goal";
+    if (isGoal && e.side !== "neutral") {
+      setGoalPulse({ side: e.side, key: Date.now(), player: e.player });
+      snd?.goal();
+    } else if ((e.type === "yellow" || e.type === "second_yellow" || e.type === "red") && e.side !== "neutral") {
+      setCardFx({ side: e.side, color: e.type === "red" ? "#ef4444" : "#eab308", key: Date.now(), player: e.player });
+      snd?.card();
+    } else if (e.type === "sub" && e.side !== "neutral") {
+      setSubFx({ side: e.side, key: Date.now(), playerOut: e.player, playerIn: e.playerIn });
+    }
+    const text = feedRef.current?.narration[e.id];
+    if (text) {
+      setNarration(text);
+      if (voiceOn) speakerRef.current?.speak(text, { priority: true });
+    }
+  }, [voiceOn]);
 
   const phase = useMemo(() => {
     if (finished) return "Final";
@@ -395,10 +466,15 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
   return (
     <div style={{ background: BG, color: "#fff", minHeight: "100vh", fontFamily: "'Outfit',sans-serif" }}>
       <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Oswald:wght@600;700&display=swap');
         @keyframes mcPulse{0%{opacity:.4}50%{opacity:1}100%{opacity:.4}}
         @keyframes mcPop{0%{transform:scale(.7);opacity:0}100%{transform:scale(1);opacity:1}}
         @keyframes mcSlide{from{transform:translateY(-8px);opacity:0}to{transform:translateY(0);opacity:1}}
+        @keyframes mcClock{0%,100%{opacity:1}50%{opacity:.45}}
+        @keyframes mcChip{0%{transform:translateY(8px) scale(.9);opacity:0}100%{transform:translateY(0) scale(1);opacity:1}}
         .mc-live-dot{width:8px;height:8px;border-radius:50%;background:${RED};display:inline-block;animation:mcPulse 1.2s infinite}
+        .mc-num{font-family:'Oswald','Outfit',sans-serif;font-feature-settings:"tnum"}
+        .mc-condensed{font-family:'Rajdhani','Outfit',sans-serif;letter-spacing:.5px}
       `}</style>
 
       <div style={{ maxWidth: 1080, margin: "0 auto", padding: "16px 16px 80px" }}>
@@ -426,18 +502,18 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
                 </span>
               </div>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                <TeamBlock name={meta.home.name} flag={meta.home.flag} color={meta.home.color} />
-                <div style={{ textAlign: "center", minWidth: 130 }}>
-                  <div style={{ fontSize: 46, fontWeight: 900, lineHeight: 1 }}>
-                    <span style={{ color: GOLD2 }}>{score[0]}</span>
-                    <span style={{ color: DIM, margin: "0 10px" }}>-</span>
-                    <span style={{ color: GOLD2 }}>{score[1]}</span>
+                <TeamBlock name={meta.home.name} flag={meta.home.flag} color={meta.home.color} scorer={lastScorer?.side === "home" ? lastScorer : null} />
+                <div style={{ textAlign: "center", minWidth: 150 }}>
+                  <div className="mc-num" style={{ fontSize: 56, fontWeight: 700, lineHeight: 1, display: "flex", justifyContent: "center", alignItems: "center", gap: 14 }}>
+                    <span key={`hs-${score[0]}`} style={{ color: GOLD2, animation: "mcPop .4s ease" }}>{score[0]}</span>
+                    <span style={{ color: DIM, fontSize: 36 }}>:</span>
+                    <span key={`as-${score[1]}`} style={{ color: GOLD2, animation: "mcPop .4s ease" }}>{score[1]}</span>
                   </div>
-                  <div style={{ marginTop: 6, fontSize: 13, fontWeight: 800, color: finished ? MID : GREEN }}>
+                  <div className="mc-num" style={{ marginTop: 6, fontSize: 15, fontWeight: 700, color: finished ? MID : GREEN, animation: finished ? undefined : "mcClock 1.6s ease infinite" }}>
                     {clockLabel(sec, finished)}
                   </div>
                 </div>
-                <TeamBlock name={meta.away.name} flag={meta.away.flag} color={meta.away.color} right />
+                <TeamBlock name={meta.away.name} flag={meta.away.flag} color={meta.away.color} right scorer={lastScorer?.side === "away" ? lastScorer : null} />
               </div>
             </div>
 
@@ -480,35 +556,60 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
             {/* Cancha: contenedor con ángulo de cámara (3D) + overlay de FX plano.
                 La inclinación se ancla al borde INFERIOR para no invadir los
                 paneles de abajo. */}
+            {/* Controles de cámara/capas de la cancha */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 10, alignItems: "center" }}>
+              <button onClick={() => setTactical((t) => !t)} style={tactical ? btnGoldSm : btnGhostSm}>
+                {tactical ? "📋 Vista táctica 2D" : "🎥 Vista cámara 3D"}
+              </button>
+              <button onClick={() => setShowHeat((h) => !h)} style={showHeat ? btnGoldSm : btnGhostSm}>
+                {showHeat ? "🔥 Mapa de calor ON" : "🔥 Mapa de calor"}
+              </button>
+            </div>
+
             <div style={{ position: "relative", marginBottom: 26, borderRadius: 16, perspective: 1400, perspectiveOrigin: "50% 100%" }}>
-              <div style={{ transform: "rotateX(11deg)", transformOrigin: "50% 100%", borderRadius: 16, boxShadow: "0 26px 60px rgba(0,0,0,0.55)" }}>
+              <div style={{ transform: tactical ? "rotateX(0deg)" : "rotateX(11deg)", transformOrigin: "50% 100%", borderRadius: 16, boxShadow: "0 26px 60px rgba(0,0,0,0.55)", transition: "transform .7s cubic-bezier(.22,1,.36,1)" }}>
                 <Pitch
                   meta={meta}
                   homeLineup={lineups.home}
                   awayLineup={lineups.away}
                   ball={ball}
                   goalPulse={goalPulse}
+                  shotFx={shotFx}
                   attackBias={(stats.possession[0] || 50) / 100}
                   active={!finished && !(feed.mode === "sim" && paused)}
                   flip={secondHalf}
+                  intensity={Math.min(1, Math.abs(momentum) * 0.85 + 0.15)}
+                  showHeat={showHeat}
+                  log={log}
+                  tactical={tactical}
+                  onHoverPlayer={setHoverPlayer}
                 />
               </div>
               <MatchFx meta={meta} goalPulse={goalPulse} cardFx={cardFx} subFx={subFx} />
+              {hoverPlayer && (
+                <PlayerCard player={hoverPlayer} meta={meta} />
+              )}
+              {replayTag && (
+                <div style={{ position: "absolute", top: 12, left: 12, zIndex: 8, display: "flex", alignItems: "center", gap: 8, background: "rgba(11,24,37,0.9)", border: `1px solid ${RED}88`, borderRadius: 8, padding: "5px 12px", pointerEvents: "none" }}>
+                  <span className="mc-live-dot" style={{ background: RED }} />
+                  <span className="mc-condensed" style={{ fontSize: 13, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#fff" }}>Repetición · Cámara lenta</span>
+                </div>
+              )}
             </div>
 
             {/* Pulso / momentum + reacción del público */}
             <Momentum stats={stats} meta={meta} momentum={momentum} soundOn={soundOn} />
 
-            {/* Mapa de calor */}
-            <div style={{ marginTop: 14 }}>
-              <Heatmap log={log} meta={meta} />
-            </div>
-
             {/* Stats + Timeline */}
             <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 14, marginTop: 14 }}>
               <StatsPanel stats={stats} meta={meta} />
-              <Timeline log={log} meta={meta} />
+              <Timeline log={log} meta={meta} onRelive={relive} />
             </div>
+
+            {/* Modo destacados al final */}
+            {showHighlights && (
+              <Highlights log={log} meta={meta} score={score} onRelive={relive} onClose={() => setShowHighlights(false)} />
+            )}
           </>
         )}
       </div>
@@ -522,11 +623,46 @@ function Centered({ children }: { children: React.ReactNode }) {
   );
 }
 
-function TeamBlock({ name, flag, color, right }: { name: string; flag: string; color: string; right?: boolean }) {
+function TeamBlock({ name, flag, color, right, scorer }: { name: string; flag: string; color: string; right?: boolean; scorer?: { player?: string; minute: number } | null }) {
   return (
     <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
-      <img src={flagUrl(flag)} alt={name} style={{ width: 56, height: 38, borderRadius: 6, objectFit: "cover", border: `2px solid ${color}` }} />
-      <div style={{ fontWeight: 800, fontSize: 15, textAlign: "center" }}>{name}</div>
+      <img src={flagUrl(flag)} alt={name} style={{ width: 56, height: 38, borderRadius: 6, objectFit: "cover", border: `2px solid ${color}`, boxShadow: `0 0 0 1px rgba(0,0,0,0.4)` }} />
+      <div className="mc-condensed" style={{ fontWeight: 700, fontSize: 16, textAlign: "center", textTransform: "uppercase" }}>{name}</div>
+      {scorer && (
+        <div key={`sc-${scorer.minute}-${scorer.player}`} style={{ display: "flex", alignItems: "center", gap: 6, background: "rgba(201,168,76,0.14)", border: `1px solid ${GOLD}55`, borderRadius: 20, padding: "3px 10px", animation: "mcChip .4s ease" }}>
+          <span style={{ fontSize: 12 }}>⚽</span>
+          <span style={{ fontSize: 12, fontWeight: 700 }}>{scorer.player ? lastNameShort(scorer.player) : "Gol"}</span>
+          <span className="mc-num" style={{ fontSize: 11, color: GOLD2, fontWeight: 700 }}>{scorer.minute}{"'"}</span>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function lastNameShort(name: string): string {
+  const parts = name.trim().split(/\s+/);
+  return parts[parts.length - 1];
+}
+
+const POS_LABEL: Record<string, string> = { GK: "Portero", DF: "Defensa", MF: "Centrocampista", FW: "Delantero" };
+function PlayerCard({ player, meta }: { player: { num: number; label: string; side: "home" | "away"; pos: string }; meta: MatchMeta }) {
+  const team = player.side === "home" ? meta.home : meta.away;
+  return (
+    <div style={{
+      position: "absolute", top: 12, left: "50%", transform: "translateX(-50%)", zIndex: 8,
+      display: "flex", alignItems: "center", gap: 12, background: "rgba(11,24,37,0.96)",
+      border: `1px solid rgba(255,255,255,0.14)`, borderLeft: `5px solid ${team.color}`,
+      borderRadius: 12, padding: "10px 16px", backdropFilter: "blur(6px)", boxShadow: "0 12px 30px rgba(0,0,0,0.5)",
+      animation: "mcSlide .25s ease", pointerEvents: "none",
+    }}>
+      <div className="mc-num" style={{ fontSize: 30, fontWeight: 700, color: GOLD2, minWidth: 38, textAlign: "center" }}>{player.num}</div>
+      <div>
+        <div className="mc-condensed" style={{ fontSize: 18, fontWeight: 700, textTransform: "uppercase" }}>{player.label || `Dorsal ${player.num}`}</div>
+        <div style={{ fontSize: 11, color: MID, fontWeight: 600 }}>
+          {POS_LABEL[player.pos] || player.pos} · <span style={{ color: team.color }}>{team.name}</span>
+        </div>
+      </div>
+      <img src={flagUrl(team.flag)} alt={team.name} style={{ width: 34, height: 23, borderRadius: 4, objectFit: "cover", marginLeft: 4 }} />
     </div>
   );
 }
@@ -630,22 +766,52 @@ function StatsPanel({ stats, meta }: { stats: LiveStats; meta: MatchMeta }) {
   );
 }
 
-function Timeline({ log, meta }: { log: MatchEvent[]; meta: MatchMeta }) {
+const RELIVE_TYPES = new Set([
+  "goal", "penalty_goal", "own_goal", "yellow", "second_yellow", "red", "sub",
+  "shot", "shot_on", "chance", "save", "penalty_miss",
+]);
+
+function Timeline({ log, meta, onRelive }: { log: MatchEvent[]; meta: MatchMeta; onRelive: (e: MatchEvent) => void }) {
+  // Mini-tira visual de momentos clave (gol/tarjeta) para "scrub" rápido.
+  const keyMoments = log.filter((e) => RELIVE_TYPES.has(e.type)).slice(0, 24).reverse();
   return (
     <div style={{ background: BG2, borderRadius: 16, border: "1px solid rgba(255,255,255,0.08)", padding: 18 }}>
       <h3 style={{ fontSize: 13, fontWeight: 800, color: MID, textTransform: "uppercase", letterSpacing: 1, marginBottom: 14 }}>Minuto a minuto</h3>
+
+      {keyMoments.length > 0 && (
+        <div style={{ display: "flex", gap: 6, overflowX: "auto", paddingBottom: 12, marginBottom: 12, borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+          {keyMoments.map((e) => {
+            const side = e.side === "home" ? meta.home : e.side === "away" ? meta.away : null;
+            const isGoal = e.type === "goal" || e.type === "penalty_goal" || e.type === "own_goal";
+            return (
+              <button key={e.id} onClick={() => onRelive(e)} title="Revivir jugada"
+                style={{
+                  flex: "0 0 auto", display: "flex", flexDirection: "column", alignItems: "center", gap: 2,
+                  width: 50, padding: "6px 2px", borderRadius: 10, cursor: "pointer",
+                  background: isGoal ? "rgba(201,168,76,0.16)" : "rgba(255,255,255,0.04)",
+                  border: `1px solid ${side ? side.color + "55" : "rgba(255,255,255,0.1)"}`,
+                }}>
+                <span style={{ fontSize: isGoal ? 22 : 18 }}>{EVENT_ICON[e.type] || "•"}</span>
+                <span className="mc-num" style={{ fontSize: 10, fontWeight: 700, color: DIM }}>{e.minute}{"'"}</span>
+              </button>
+            );
+          })}
+        </div>
+      )}
+
       {log.length === 0 && <div style={{ color: DIM, fontSize: 13 }}>Aún sin eventos…</div>}
       <div style={{ display: "flex", flexDirection: "column", gap: 8, maxHeight: 360, overflowY: "auto" }}>
         {log.map((e) => {
           const side = e.side === "home" ? meta.home : e.side === "away" ? meta.away : null;
           const isGoal = e.type === "goal" || e.type === "penalty_goal" || e.type === "own_goal";
+          const can = RELIVE_TYPES.has(e.type);
           return (
-            <div key={e.id} style={{
+            <div key={e.id} onClick={can ? () => onRelive(e) : undefined} style={{
               display: "flex", alignItems: "center", gap: 10, padding: "6px 8px", borderRadius: 8,
               background: isGoal ? "rgba(201,168,76,0.1)" : "transparent",
-              animation: "mcSlide .3s ease",
+              animation: "mcSlide .3s ease", cursor: can ? "pointer" : "default",
             }}>
-              <span style={{ fontSize: 11, fontWeight: 800, color: DIM, minWidth: 34 }}>
+              <span className="mc-num" style={{ fontSize: 11, fontWeight: 700, color: DIM, minWidth: 34 }}>
                 {e.minute}{e.extra ? `+${e.extra}` : ""}{"'"}
               </span>
               <span style={{ fontSize: 16, minWidth: 22, textAlign: "center" }}>{EVENT_ICON[e.type] || "•"}</span>
@@ -654,9 +820,58 @@ function Timeline({ log, meta }: { log: MatchEvent[]; meta: MatchMeta }) {
                 <span style={{ color: side ? side.color : MID, fontWeight: 700 }}>{side ? side.name : ""}</span>
                 {e.detail ? <span style={{ color: DIM }}> · {e.detail}</span> : ""}
               </span>
+              {can && <span style={{ fontSize: 11, color: GOLD }}>↻</span>}
             </div>
           );
         })}
+      </div>
+    </div>
+  );
+}
+
+// Resumen animado de goles y tarjetas al final del partido.
+function Highlights({ log, meta, score, onRelive, onClose }: { log: MatchEvent[]; meta: MatchMeta; score: Pair; onRelive: (e: MatchEvent) => void; onClose: () => void }) {
+  const moments = useMemo(
+    () => [...log].filter((e) => ["goal", "penalty_goal", "own_goal", "red", "yellow", "second_yellow"].includes(e.type))
+      .sort((a, b) => a.t - b.t),
+    [log],
+  );
+  return (
+    <div style={{ position: "fixed", inset: 0, zIndex: 40, background: "rgba(4,8,16,0.82)", backdropFilter: "blur(6px)", display: "flex", alignItems: "center", justifyContent: "center", padding: 20, animation: "mcSlide .3s ease" }}>
+      <div style={{ width: "min(560px,100%)", maxHeight: "86vh", overflowY: "auto", background: BG2, borderRadius: 20, border: `1px solid ${GOLD}44`, padding: 22, boxShadow: "0 30px 80px rgba(0,0,0,0.7)" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
+          <h3 className="mc-condensed" style={{ fontSize: 22, fontWeight: 700, color: GOLD2, textTransform: "uppercase", margin: 0 }}>Destacados</h3>
+          <button onClick={onClose} style={btnGhostSm}>✕ Cerrar</button>
+        </div>
+        <div style={{ textAlign: "center", marginBottom: 18 }}>
+          <div className="mc-condensed" style={{ fontSize: 14, color: MID, textTransform: "uppercase", marginBottom: 6 }}>{meta.home.name} vs {meta.away.name}</div>
+          <div className="mc-num" style={{ fontSize: 48, fontWeight: 700, color: "#fff" }}>{score[0]} : {score[1]}</div>
+        </div>
+        {moments.length === 0 && <div style={{ color: DIM, fontSize: 14, textAlign: "center", padding: 20 }}>Sin goles ni tarjetas para destacar.</div>}
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          {moments.map((e, i) => {
+            const side = e.side === "home" ? meta.home : e.side === "away" ? meta.away : null;
+            const isGoal = e.type === "goal" || e.type === "penalty_goal" || e.type === "own_goal";
+            return (
+              <button key={e.id} onClick={() => onRelive(e)} style={{
+                display: "flex", alignItems: "center", gap: 12, textAlign: "left",
+                padding: "10px 14px", borderRadius: 12, cursor: "pointer",
+                background: isGoal ? "rgba(201,168,76,0.12)" : "rgba(255,255,255,0.04)",
+                border: `1px solid ${side ? side.color + "44" : "rgba(255,255,255,0.1)"}`,
+                animation: "mcSlide .3s ease", animationDelay: `${i * 0.05}s`, animationFillMode: "backwards",
+                color: "#fff",
+              }}>
+                <span style={{ fontSize: 24 }}>{EVENT_ICON[e.type] || "•"}</span>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontWeight: 800, fontSize: 14 }}>{e.player || (isGoal ? "Gol" : "Jugada")}</div>
+                  <div style={{ fontSize: 11, color: side ? side.color : MID, fontWeight: 700 }}>{side ? side.name : ""}{e.detail ? ` · ${e.detail}` : ""}</div>
+                </div>
+                <span className="mc-num" style={{ fontSize: 14, fontWeight: 700, color: GOLD2 }}>{e.minute}{e.extra ? `+${e.extra}` : ""}{"'"}</span>
+                <span style={{ fontSize: 12, color: GOLD }}>▶ Revivir</span>
+              </button>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

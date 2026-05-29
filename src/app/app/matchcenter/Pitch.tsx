@@ -765,6 +765,16 @@ export default function Pitch({
         </g>
       </g>
 
+      {/* Reacción del público en móvil (sin gradas): destello del borde al marcar */}
+      {compact && shakeKey > 0 && (
+        <g key={`cmf-${shakeKey}`} style={{ pointerEvents: "none" }}>
+          {/* Anillo exterior (la franja visible alrededor del campo) */}
+          <path className="mc-crowd-flash" d={STANDS_PATH} fillRule="evenodd" fill="#fff7d6" />
+          {/* Glow del borde del terreno */}
+          <rect className="mc-crowd-flash" x={PAD} y={PAD} width={FW} height={FH} rx={8} fill="none" stroke="#fff7d6" strokeWidth={10} />
+        </g>
+      )}
+
       {/* Lluvia (delante de todo, sutil) */}
       {weather.rain && !compact && (
         <g className="mc-rain" opacity={0.5} style={{ pointerEvents: "none" }}>

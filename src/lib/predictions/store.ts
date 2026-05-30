@@ -255,6 +255,18 @@ export async function resolveMatch(matchId: string, result: MatchResultReal): Pr
   };
 }
 
+/** IDs de partidos con al menos una predicción sin resolver (para el worker). */
+export async function getUnresolvedMatchIds(): Promise<string[]> {
+  const admin = adminClient();
+  const { data } = await admin
+    .from("predictions")
+    .select("match_id")
+    .is("resolved_at", null);
+  const set = new Set<string>();
+  for (const r of (data ?? []) as { match_id: string }[]) set.add(r.match_id);
+  return [...set];
+}
+
 // ─── Stats personales ────────────────────────────────────────────────────────
 export interface MyStats {
   total_points: number;

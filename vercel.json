@@ -24,6 +24,10 @@
     {
       "path": "/api/cron/generate-trivia",
       "schedule": "0 5 * * *"
+    },
+    {
+      "path": "/api/cron/resolve-predictions",
+      "schedule": "*/30 * * * *"
     }
   ]
 }

@@ -236,10 +236,8 @@ export default function PrediccionesGame() {
         </div>
       </section>
 
-      {/* Panel del partido seleccionado */}
-      {!selectedMatch && (
-        <p style={{ textAlign: "center", color: DIM, padding: "40px 20px" }}>Selecciona un partido para empezar a predecir.</p>
-      )}
+      {/* Estado vacío: showcase de los 8 tipos + leyenda de multiplicadores */}
+      {!selectedMatch && <EmptyShowcase />}
 
       {selectedMatch && (
         <section style={{ maxWidth: 1100, margin: "0 auto", padding: "8px 16px 60px" }}>
@@ -292,6 +290,81 @@ function Shell({ children }: { children: React.ReactNode }) {
     <div style={{ background: BG, color: "#fff", fontFamily: "'Outfit',sans-serif", minHeight: "100vh", paddingBottom: 40 }}>
       {children}
     </div>
+  );
+}
+
+// ─── Estado vacío: showcase de los 8 tipos + Modo Underdog ───────────────────
+function EmptyShowcase() {
+  const tiers = [
+    { emoji: "🟢", label: "Estelar", mult: "×1.0", desc: "Favorito claro", color: GREEN },
+    { emoji: "🟠", label: "Bronce", mult: "×1.25", desc: "Brecha media", color: "#cd7f32" },
+    { emoji: "🟡", label: "Oro", mult: "×1.5", desc: "Sorpresa probable", color: GOLD },
+    { emoji: "💎", label: "Diamante", mult: "×2.0", desc: "Batacazo histórico", color: "#38bdf8" },
+  ];
+  return (
+    <section style={{ maxWidth: 1100, margin: "0 auto", padding: "16px 16px 60px" }}>
+      <div style={{
+        background: `linear-gradient(135deg, ${BG2} 0%, ${BG3} 100%)`,
+        border: CARD_BORDER, borderRadius: 20, padding: "28px 24px", textAlign: "center", marginBottom: 24,
+      }}>
+        <div style={{ fontSize: 13, fontWeight: 700, color: GOLD, letterSpacing: 1, textTransform: "uppercase" }}>
+          Predicciones ZonaMundial
+        </div>
+        <h2 style={{ fontSize: 26, fontWeight: 900, margin: "8px 0 6px", color: "#fff" }}>
+          Elige un partido y demuestra que sabes de fútbol
+        </h2>
+        <p style={{ fontSize: 15, color: MID, maxWidth: 620, margin: "0 auto", lineHeight: 1.5 }}>
+          8 formas distintas de predecir cada partido. Acumula puntos, sube en el ranking y desbloquea
+          el multiplicador <strong style={{ color: GOLD }}>Modo Underdog</strong> cuando apuestes por el menos favorito.
+        </p>
+      </div>
+
+      <h3 style={{ fontSize: 14, fontWeight: 700, color: MID, marginBottom: 12 }}>Los 8 tipos de predicción</h3>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(240px,1fr))", gap: 14, marginBottom: 32 }}>
+        {PREDICTION_TYPES.map((type) => {
+          const meta = TYPE_META[type];
+          return (
+            <div key={type} style={{
+              background: BG2, border: CARD_BORDER, borderRadius: 14, padding: 16,
+              borderTop: `2px solid ${meta.color}`,
+            }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+                <span style={{ fontSize: 22 }}>{meta.emoji}</span>
+                <span style={{ fontSize: 15, fontWeight: 700, color: "#fff" }}>{meta.label}</span>
+              </div>
+              <p style={{ fontSize: 12.5, color: MID, lineHeight: 1.45, margin: "0 0 10px", minHeight: 36 }}>{meta.blurb}</p>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <span style={{ fontSize: 11, fontWeight: 700, color: meta.color }}>
+                  {meta.minPoints} a {meta.maxPoints} pts
+                </span>
+                <span style={{ fontSize: 10, fontWeight: 600, color: DIM, background: "rgba(255,255,255,0.05)", padding: "3px 8px", borderRadius: 99 }}>
+                  {meta.difficulty}
+                </span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <h3 style={{ fontSize: 14, fontWeight: 700, color: MID, marginBottom: 4 }}>Modo Underdog 💎</h3>
+      <p style={{ fontSize: 12.5, color: DIM, marginBottom: 12 }}>
+        Cuanto mayor sea la diferencia de ranking FIFA entre los equipos, mayor el multiplicador de puntos por acertar.
+      </p>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(180px,1fr))", gap: 12 }}>
+        {tiers.map((t) => (
+          <div key={t.label} style={{
+            background: BG2, border: CARD_BORDER, borderRadius: 14, padding: "14px 16px",
+            display: "flex", alignItems: "center", gap: 12,
+          }}>
+            <span style={{ fontSize: 26 }}>{t.emoji}</span>
+            <div>
+              <div style={{ fontSize: 15, fontWeight: 800, color: t.color }}>{t.label} <span style={{ color: "#fff" }}>{t.mult}</span></div>
+              <div style={{ fontSize: 11.5, color: MID }}>{t.desc}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }
 

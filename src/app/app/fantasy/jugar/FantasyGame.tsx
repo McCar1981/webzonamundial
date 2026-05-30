@@ -260,15 +260,21 @@ export default function FantasyGame() {
               onChange={(e) => update((t) => ({ ...t, teamName: e.target.value.slice(0, 40) }))}
               style={{ flex: "1 1 160px", minWidth: 120, background: "transparent", border: "none", borderBottom: "1px dashed rgba(255,255,255,0.22)", color: "#fff", fontSize: 17, fontWeight: 800, padding: "3px 2px", outline: "none" }}
             />
-            <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: 1, color: GOLD, textTransform: "uppercase" }}>Jornada {team.gameweek}/7</span>
+            <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+              <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: 1, color: GOLD, textTransform: "uppercase" }}>Jornada {team.gameweek}/7</span>
+              {/* Capitán como chip compacto → libera la fila de stats y sube el campo */}
+              <span title="Capitán" style={{ display: "inline-flex", alignItems: "center", gap: 5, fontSize: 11, fontWeight: 800, padding: "4px 9px", borderRadius: 999, border: "1px solid " + (team.captainId ? GOLD : "rgba(255,255,255,0.14)"), background: team.captainId ? `${GOLD}1f` : "rgba(255,255,255,0.04)", color: team.captainId ? GOLD2 : MID, whiteSpace: "nowrap" }}>
+                ⭐ {team.captainId ? short(getPlayerById(team.captainId)?.name) : "Sin capitán"}
+                {team.captainId && team.viceId && <span style={{ color: MID, fontWeight: 700 }}>· V: {short(getPlayerById(team.viceId)?.name)}</span>}
+              </span>
+            </div>
           </div>
 
-          {/* Stats — tira compacta para dejar el campo más arriba */}
+          {/* Stats — tira compacta de 3 (capitán vive en la cabecera) para subir el campo */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(112px,1fr))", gap: 8, marginTop: 9 }}>
             <Stat label="Presupuesto" value={money(budgetRemaining)} sub={`Coste ${money(spent)}`} bar={pct} barColor={budgetRemaining < 0 ? RED : GOLD} />
             <Stat label="Puntos totales" value={String(team.totalPoints)} sub={`${team.history.length} jornadas`} />
             <Stat label="Plantilla" value={`${ownedIds.size}/15`} sub={validation.ok ? "Válida ✓" : "Incompleta"} valueColor={validation.ok ? GREEN : RED} />
-            <Stat label="Capitán" value={team.captainId ? short(getPlayerById(team.captainId)?.name) : "—"} sub={team.captainId ? (team.viceId ? `V: ${short(getPlayerById(team.viceId)?.name)}` : "sin vice") : "Toca ⭐ en un jugador"} valueColor={team.captainId ? undefined : GOLD2} />
           </div>
 
           {/* Tabs — fundido a la derecha en móvil para insinuar que hay más */}

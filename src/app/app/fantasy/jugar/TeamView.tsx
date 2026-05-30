@@ -110,8 +110,9 @@ export default function TeamView({ team, validation, onSlotClickEmpty, onRemove,
           <div style={{ position: "relative", aspectRatio: "400 / 600", borderRadius: 15, overflow: "hidden", boxShadow: "inset 0 0 0 1px rgba(125,255,206,0.14)" }}>
             <PitchSVG orientation="v" />
 
-            {/* Capa de jugadores: delanteros arriba (portería rival) → portero abajo (la nuestra). */}
-            <div style={{ position: "absolute", inset: 0, padding: "7% 4%", display: "flex", flexDirection: "column", justifyContent: "space-between", zIndex: 2 }}>
+            {/* Capa de jugadores: delanteros arriba (portería rival) → portero abajo (la nuestra).
+                Padding vertical reducido + campo más alto → todas las líneas (incl. el portero) caben sin recortes. */}
+            <div style={{ position: "absolute", inset: 0, padding: "3.5% 3%", display: "flex", flexDirection: "column", justifyContent: "space-between", zIndex: 2 }}>
               {(["FWD", "MID", "DEF", "GK"] as const).map((pref, li) => (
                 <div key={pref} style={{ display: "flex", justifyContent: "center", gap: 6, flexWrap: "wrap" }}>
                   {lineSlots(pref).map((s, i) => (

@@ -9,6 +9,7 @@ import { MATCHES, type Match } from "@/data/matches";
 import { SELECCIONES } from "@/data/selecciones";
 import { etToDate } from "@/lib/bracket/match-time";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
+import GamificationHUD from "./GamificationHUD";
 import {
   MINUTE_RANGES,
   PREDICTION_TYPES,
@@ -225,10 +226,13 @@ export default function PrediccionesGame() {
           </div>
           <div style={{ display: "flex", gap: 8 }}>
             <Link href="/app/predicciones/jugar/ranking" style={pillLink}>🏆 Ranking</Link>
+            <Link href="/app/predicciones/jugar/ligas" style={pillLink}>👥 Ligas</Link>
             <Link href="/app/predicciones/jugar/stats" style={pillLink}>📈 Mis stats</Link>
           </div>
         </div>
       </header>
+
+      <GamificationHUD />
 
       {/* Vista tablero: partidos agrupados por grupo (no slider) */}
       {!selectedMatch && (

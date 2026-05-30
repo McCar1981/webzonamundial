@@ -1,0 +1,468 @@
+// src/lib/predictions/gamification-store.ts
+//
+// Capa de datos (Supabase) de la gamificación. Usa el cliente admin (service
+// role) porque cruza usuarios y escribe progresión que el usuario no puede
+// auto-otorgar. Las APIs autentican primero y pasan el userId verificado.
+//
+// NO importa store.ts (evita ciclo): store.ts → gamification-store.ts → admin/.
+
+import { adminClient } from "./admin";
+import {
+  ACHIEVEMENT_MAP,
+  BOOST_CATALOG,
+  boostDef,
+  coinsForResolved,
+  computeStreak,
+  dailyChallenge,
+  dailyCheckinReward,
+  flashMultiplier,
+  leagueCode,
+  levelInfo,
+  newlyUnlocked,
+  openChest,
+  resolveDuelScore,
+  utcDayKey,
+  weekStart,
+  xpForResolved,
+  type AchievementStats,
+  type BoostId,
+} from "./gamification";
+
+interface ProfileGam {
+  xp: number;
+  coins: number;
+  current_streak: number;
+  best_streak: number;
+  last_checkin: string | null;
+  checkin_days: number;
+  username: string | null;
+  avatar_url: string | null;
+}
+
+async function readProfile(uid: string): Promise<ProfileGam> {
+  const admin = adminClient();
+  const { data } = await admin
+    .from("profiles")
+    .select("xp,coins,current_streak,best_streak,last_checkin,checkin_days,username,avatar_url")
+    .eq("id", uid).maybeSingle();
+  const p = (data ?? {}) as Partial<ProfileGam>;
+  return {
+    xp: p.xp ?? 0,
+    coins: p.coins ?? 0,
+    current_streak: p.current_streak ?? 0,
+    best_streak: p.best_streak ?? 0,
+    last_checkin: p.last_checkin ?? null,
+    checkin_days: p.checkin_days ?? 0,
+    username: p.username ?? null,
+    avatar_url: p.avatar_url ?? null,
+  };
+}
+
+interface ResolvedRow {
+  prediction_type: string;
+  points_earned: number | null;
+  is_correct: boolean | null;
+  is_contrarian: boolean;
+  match_multiplier: number;
+  match_id: string;
+}
+
+function buildStats(rows: ResolvedRow[], xp: number): AchievementStats {
+  let totalPoints = 0, correct = 0, contrarianHits = 0, exactHits = 0, chainJackpots = 0, diamondHits = 0;
+  const chrono: boolean[] = [];
+  const byMatch = new Map<string, { total: number; correct: number }>();
+  for (const r of rows) {
+    const ok = Boolean(r.is_correct);
+    chrono.push(ok);
+    totalPoints += r.points_earned ?? 0;
+    if (ok) correct++;
+    if (ok && r.is_contrarian) contrarianHits++;
+    if (ok && r.prediction_type === "exact_score") exactHits++;
+    if (ok && r.prediction_type === "chain") chainJackpots++;
+    if (ok && Number(r.match_multiplier) >= 2) diamondHits++;
+    const m = byMatch.get(r.match_id) ?? { total: 0, correct: 0 };
+    m.total++; if (ok) m.correct++;
+    byMatch.set(r.match_id, m);
+  }
+  let perfect = 0;
+  for (const m of byMatch.values()) if (m.total === 8 && m.correct === 8) perfect++;
+  const { best } = computeStreak(chrono);
+  return {
+    totalPredictions: rows.length,
+    correctPredictions: correct,
+    totalPoints,
+    bestStreak: best,
+    perfectMatches: perfect,
+    contrarianHits,
+    exactScoreHits: exactHits,
+    chainJackpots,
+    diamondHits,
+    level: levelInfo(xp).level,
+  };
+}
+
+// ─── Otorgar progresión tras resolver un partido (lo llama resolveMatch) ─────
+export async function grantMatchRewards(matchId: string, userIds: string[]): Promise<void> {
+  const admin = adminClient();
+  for (const uid of userIds) {
+    const { data } = await admin
+      .from("predictions")
+      .select("prediction_type,points_earned,is_correct,is_contrarian,match_multiplier,match_id,resolved_at")
+      .eq("user_id", uid)
+      .not("resolved_at", "is", null)
+      .order("resolved_at", { ascending: true });
+    const rows = (data ?? []) as (ResolvedRow & { resolved_at: string })[];
+
+    // XP/monedas SOLO de las predicciones de ESTE partido (rewarded una vez).
+    let gainedXp = 0, gainedCoins = 0;
+    for (const r of rows) {
+      if (r.match_id !== matchId) continue;
+      gainedXp += xpForResolved(r.points_earned ?? 0, Boolean(r.is_correct));
+      gainedCoins += coinsForResolved(r.points_earned ?? 0, Boolean(r.is_correct));
+    }
+
+    const prof = await readProfile(uid);
+    let newXp = prof.xp + gainedXp;
+    let newCoins = prof.coins + gainedCoins;
+
+    // Racha acumulada (aciertos consecutivos al final).
+    const { current, best } = computeStreak(rows.map((r) => Boolean(r.is_correct)));
+
+    // Logros: evaluar con el XP nuevo (para el logro de nivel).
+    const stats = buildStats(rows, newXp);
+    const { data: ach } = await admin.from("prediction_achievements").select("achievement_id").eq("user_id", uid);
+    const unlocked = new Set((ach ?? []).map((a) => (a as { achievement_id: string }).achievement_id));
+    const fresh = newlyUnlocked(stats, unlocked);
+    for (const a of fresh) {
+      await admin.from("prediction_achievements").insert({ user_id: uid, achievement_id: a.id }).then(() => {}, () => {});
+      newCoins += a.rewardCoins;
+      newXp += a.rewardXp;
+    }
+
+    await admin.from("profiles").update({
+      xp: newXp,
+      coins: newCoins,
+      current_streak: current,
+      best_streak: Math.max(best, prof.best_streak),
+    }).eq("id", uid);
+  }
+
+  // Resolver duelos 1v1 de este partido.
+  await resolveDuelsForMatch(matchId);
+}
+
+async function resolveDuelsForMatch(matchId: string): Promise<void> {
+  const admin = adminClient();
+  const { data: duels } = await admin
+    .from("prediction_duels")
+    .select("id,challenger_id,opponent_id")
+    .eq("match_id", matchId)
+    .eq("status", "active");
+  for (const d of (duels ?? []) as { id: string; challenger_id: string; opponent_id: string }[]) {
+    const cp = await sumMatchPoints(d.challenger_id, matchId);
+    const op = await sumMatchPoints(d.opponent_id, matchId);
+    const outcome = resolveDuelScore(cp, op);
+    const winner = outcome === "challenger" ? d.challenger_id : outcome === "opponent" ? d.opponent_id : null;
+    await admin.from("prediction_duels").update({
+      status: "resolved",
+      challenger_points: cp,
+      opponent_points: op,
+      winner_id: winner,
+      resolved_at: new Date().toISOString(),
+    }).eq("id", d.id);
+    if (winner) {
+      const prof = await readProfile(winner);
+      await admin.from("profiles").update({ coins: prof.coins + 50 }).eq("id", winner);
+    }
+  }
+}
+
+async function sumMatchPoints(uid: string, matchId: string): Promise<number> {
+  const admin = adminClient();
+  const { data } = await admin
+    .from("predictions")
+    .select("points_earned")
+    .eq("user_id", uid).eq("match_id", matchId)
+    .not("resolved_at", "is", null);
+  return ((data ?? []) as { points_earned: number | null }[]).reduce((s, r) => s + (r.points_earned ?? 0), 0);
+}
+
+// ─── Resumen /me ─────────────────────────────────────────────────────────────
+export interface GamificationSummary {
+  level: ReturnType<typeof levelInfo>;
+  coins: number;
+  coin_name: string;
+  streak: { current: number; best: number; active: boolean };
+  achievements: { id: string; name: string; emoji: string; description: string; unlocked: boolean; unlocked_at: string | null }[];
+  daily: {
+    challenge: ReturnType<typeof dailyChallenge>;
+    can_claim: boolean;
+    checkin_days: number;
+    next_reward: ReturnType<typeof dailyCheckinReward>;
+  };
+  flash: ReturnType<typeof flashMultiplier>;
+  boosts: { id: string; name: string; emoji: string; count: number }[];
+}
+
+export async function getGamificationSummary(uid: string): Promise<GamificationSummary> {
+  const admin = adminClient();
+  const prof = await readProfile(uid);
+
+  const { data: achRows } = await admin
+    .from("prediction_achievements").select("achievement_id,unlocked_at").eq("user_id", uid);
+  const unlockedMap = new Map((achRows ?? []).map((a) => {
+    const r = a as { achievement_id: string; unlocked_at: string };
+    return [r.achievement_id, r.unlocked_at];
+  }));
+  const achievements = Object.values(ACHIEVEMENT_MAP).map((a) => ({
+    id: a.id, name: a.name, emoji: a.emoji, description: a.description,
+    unlocked: unlockedMap.has(a.id), unlocked_at: unlockedMap.get(a.id) ?? null,
+  }));
+
+  const { data: boostRows } = await admin
+    .from("prediction_boosts").select("boost_id").eq("user_id", uid).is("consumed_at", null);
+  const boostCounts = new Map<string, number>();
+  for (const b of (boostRows ?? []) as { boost_id: string }[]) {
+    boostCounts.set(b.boost_id, (boostCounts.get(b.boost_id) ?? 0) + 1);
+  }
+  const boosts = [...boostCounts.entries()].map(([id, count]) => {
+    const def = boostDef(id);
+    return { id, name: def?.name ?? id, emoji: def?.emoji ?? "🎁", count };
+  });
+
+  const today = utcDayKey();
+  const canClaim = prof.last_checkin !== today;
+
+  return {
+    level: levelInfo(prof.xp),
+    coins: prof.coins,
+    coin_name: "Fútcoins",
+    streak: { current: prof.current_streak, best: prof.best_streak, active: prof.current_streak >= 3 },
+    achievements,
+    daily: {
+      challenge: dailyChallenge(),
+      can_claim: canClaim,
+      checkin_days: prof.checkin_days,
+      next_reward: dailyCheckinReward(canClaim ? prof.checkin_days + 1 : prof.checkin_days),
+    },
+    flash: flashMultiplier(),
+    boosts,
+  };
+}
+
+// ─── Bucle diario: check-in ──────────────────────────────────────────────────
+export interface CheckinResult {
+  already: boolean;
+  reward?: { day: number; coins: number; xp: number; chest: boolean };
+  chest?: ReturnType<typeof openChest>;
+  checkin_days: number;
+  coins: number;
+}
+export async function claimDaily(uid: string): Promise<CheckinResult> {
+  const admin = adminClient();
+  const prof = await readProfile(uid);
+  const today = utcDayKey();
+  if (prof.last_checkin === today) {
+    return { already: true, checkin_days: prof.checkin_days, coins: prof.coins };
+  }
+  // ¿Día consecutivo? (ayer = last_checkin) si no, reinicia la cadena.
+  const yesterday = utcDayKey(new Date(Date.now() - 86_400_000));
+  const newDays = prof.last_checkin === yesterday ? prof.checkin_days + 1 : 1;
+  const reward = dailyCheckinReward(newDays);
+
+  let coins = prof.coins + reward.coins;
+  let xp = prof.xp + reward.xp;
+  let chest: ReturnType<typeof openChest> | undefined;
+  if (reward.chest) {
+    chest = openChest(`${uid}:${today}`);
+    coins += chest.coins; xp += chest.xp;
+    if (chest.boost) {
+      await admin.from("prediction_boosts").insert({ user_id: uid, boost_id: chest.boost });
+    }
+  }
+
+  await admin.from("profiles").update({
+    coins, xp, last_checkin: today, checkin_days: newDays,
+  }).eq("id", uid);
+  await admin.from("prediction_daily_claims").upsert({
+    user_id: uid, day_key: today, reward_coins: reward.coins, reward_xp: reward.xp,
+  }, { onConflict: "user_id,day_key" });
+
+  return { already: false, reward, chest, checkin_days: newDays, coins };
+}
+
+// ─── Economía: comprar boost ─────────────────────────────────────────────────
+export interface BuyResult { ok: boolean; error?: string; coins?: number }
+export async function buyBoost(uid: string, boostId: string): Promise<BuyResult> {
+  const def = boostDef(boostId);
+  if (!def) return { ok: false, error: "boost_not_found" };
+  const admin = adminClient();
+  const prof = await readProfile(uid);
+  if (prof.coins < def.cost) return { ok: false, error: "insufficient_coins", coins: prof.coins };
+  const coins = prof.coins - def.cost;
+  await admin.from("profiles").update({ coins }).eq("id", uid);
+  await admin.from("prediction_boosts").insert({ user_id: uid, boost_id: boostId });
+  return { ok: true, coins };
+}
+
+export function boostCatalog() {
+  return Object.values(BOOST_CATALOG).map((b) => ({
+    id: b.id, name: b.name, emoji: b.emoji, description: b.description, cost: b.cost,
+  }));
+}
+
+// ─── Competencia social: ligas ───────────────────────────────────────────────
+export interface LeagueOut {
+  id: string; name: string; code: string; owner_id: string; member_count: number;
+}
+export async function createLeague(uid: string, name: string): Promise<LeagueOut> {
+  const admin = adminClient();
+  let code = leagueCode(`${uid}:${Date.now()}`);
+  // Garantizar unicidad del código.
+  for (let i = 0; i < 5; i++) {
+    const { data: exists } = await admin.from("prediction_leagues").select("id").eq("code", code).maybeSingle();
+    if (!exists) break;
+    code = leagueCode(`${uid}:${Date.now()}:${i}`);
+  }
+  const { data, error } = await admin.from("prediction_leagues")
+    .insert({ name: name.slice(0, 60), code, owner_id: uid }).select("*").single();
+  if (error) throw error;
+  const league = data as { id: string; name: string; code: string; owner_id: string };
+  await admin.from("prediction_league_members").insert({ league_id: league.id, user_id: uid });
+  return { ...league, member_count: 1 };
+}
+
+export async function joinLeague(uid: string, code: string): Promise<{ ok: boolean; error?: string; league?: LeagueOut }> {
+  const admin = adminClient();
+  const { data: league } = await admin.from("prediction_leagues")
+    .select("id,name,code,owner_id").eq("code", code.toUpperCase()).maybeSingle();
+  if (!league) return { ok: false, error: "league_not_found" };
+  const l = league as { id: string; name: string; code: string; owner_id: string };
+  await admin.from("prediction_league_members")
+    .upsert({ league_id: l.id, user_id: uid }, { onConflict: "league_id,user_id" });
+  const { count } = await admin.from("prediction_league_members")
+    .select("user_id", { count: "exact", head: true }).eq("league_id", l.id);
+  return { ok: true, league: { ...l, member_count: count ?? 1 } };
+}
+
+export async function leaveLeague(uid: string, leagueId: string): Promise<void> {
+  const admin = adminClient();
+  await admin.from("prediction_league_members").delete().eq("league_id", leagueId).eq("user_id", uid);
+}
+
+export async function myLeagues(uid: string): Promise<LeagueOut[]> {
+  const admin = adminClient();
+  const { data: mem } = await admin.from("prediction_league_members").select("league_id").eq("user_id", uid);
+  const ids = (mem ?? []).map((m) => (m as { league_id: string }).league_id);
+  if (!ids.length) return [];
+  const { data: leagues } = await admin.from("prediction_leagues").select("id,name,code,owner_id").in("id", ids);
+  const out: LeagueOut[] = [];
+  for (const l of (leagues ?? []) as { id: string; name: string; code: string; owner_id: string }[]) {
+    const { count } = await admin.from("prediction_league_members")
+      .select("user_id", { count: "exact", head: true }).eq("league_id", l.id);
+    out.push({ ...l, member_count: count ?? 0 });
+  }
+  return out;
+}
+
+export interface LeagueStanding { position: number; user_id: string; display_name: string; avatar_url: string | null; points: number; }
+export async function leagueLeaderboard(leagueId: string): Promise<LeagueStanding[]> {
+  const admin = adminClient();
+  const { data: mem } = await admin.from("prediction_league_members").select("user_id").eq("league_id", leagueId);
+  const ids = (mem ?? []).map((m) => (m as { user_id: string }).user_id);
+  if (!ids.length) return [];
+  const { data: preds } = await admin.from("predictions")
+    .select("user_id,points_earned").in("user_id", ids).not("resolved_at", "is", null);
+  const agg = new Map<string, number>();
+  for (const r of (preds ?? []) as { user_id: string; points_earned: number | null }[]) {
+    agg.set(r.user_id, (agg.get(r.user_id) ?? 0) + (r.points_earned ?? 0));
+  }
+  const { data: profs } = await admin.from("profiles").select("id,username,avatar_url").in("id", ids);
+  const pmap = new Map((profs ?? []).map((p) => {
+    const r = p as { id: string; username: string | null; avatar_url: string | null };
+    return [r.id, r];
+  }));
+  return ids
+    .map((id) => ({ user_id: id, points: agg.get(id) ?? 0 }))
+    .sort((a, b) => b.points - a.points)
+    .map((e, i) => ({
+      position: i + 1, user_id: e.user_id,
+      display_name: pmap.get(e.user_id)?.username ?? "Anónimo",
+      avatar_url: pmap.get(e.user_id)?.avatar_url ?? null,
+      points: e.points,
+    }));
+}
+
+// ─── Competencia social: duelos 1v1 ──────────────────────────────────────────
+export interface DuelOut {
+  id: string; match_id: string; status: string;
+  challenger_id: string; opponent_id: string;
+  challenger_points: number | null; opponent_points: number | null;
+  winner_id: string | null;
+}
+export async function createDuel(challengerId: string, opponentUsername: string, matchId: string): Promise<{ ok: boolean; error?: string; duel?: DuelOut }> {
+  const admin = adminClient();
+  const { data: opp } = await admin.from("profiles").select("id").eq("username", opponentUsername).maybeSingle();
+  if (!opp) return { ok: false, error: "opponent_not_found" };
+  const opponentId = (opp as { id: string }).id;
+  if (opponentId === challengerId) return { ok: false, error: "cannot_duel_self" };
+  const { data, error } = await admin.from("prediction_duels")
+    .insert({ challenger_id: challengerId, opponent_id: opponentId, match_id: matchId, status: "pending" })
+    .select("*").single();
+  if (error) throw error;
+  return { ok: true, duel: data as DuelOut };
+}
+
+export async function respondDuel(uid: string, duelId: string, accept: boolean): Promise<{ ok: boolean; error?: string }> {
+  const admin = adminClient();
+  const { data: duel } = await admin.from("prediction_duels").select("opponent_id,status").eq("id", duelId).maybeSingle();
+  if (!duel) return { ok: false, error: "duel_not_found" };
+  const d = duel as { opponent_id: string; status: string };
+  if (d.opponent_id !== uid) return { ok: false, error: "not_your_duel" };
+  if (d.status !== "pending") return { ok: false, error: "duel_not_pending" };
+  await admin.from("prediction_duels").update({ status: accept ? "active" : "declined" }).eq("id", duelId);
+  return { ok: true };
+}
+
+export async function myDuels(uid: string): Promise<DuelOut[]> {
+  const admin = adminClient();
+  const { data } = await admin.from("prediction_duels")
+    .select("id,match_id,status,challenger_id,opponent_id,challenger_points,opponent_points,winner_id")
+    .or(`challenger_id.eq.${uid},opponent_id.eq.${uid}`)
+    .order("created_at", { ascending: false });
+  return (data ?? []) as DuelOut[];
+}
+
+// ─── Leaderboard semanal ─────────────────────────────────────────────────────
+export interface WeeklyEntry {
+  position: number; user_id: string; display_name: string; avatar_url: string | null; points: number; predictions: number;
+}
+export async function getWeeklyLeaderboard(limit = 50): Promise<WeeklyEntry[]> {
+  const admin = adminClient();
+  const since = weekStart().toISOString();
+  const { data } = await admin.from("predictions")
+    .select("user_id,points_earned,resolved_at").gte("resolved_at", since).not("resolved_at", "is", null);
+  const agg = new Map<string, { pts: number; n: number }>();
+  for (const r of (data ?? []) as { user_id: string; points_earned: number | null }[]) {
+    const a = agg.get(r.user_id) ?? { pts: 0, n: 0 };
+    a.pts += r.points_earned ?? 0; a.n++;
+    agg.set(r.user_id, a);
+  }
+  const sorted = [...agg.entries()].sort((a, b) => b[1].pts - a[1].pts).slice(0, limit);
+  const ids = sorted.map(([id]) => id);
+  const { data: profs } = ids.length
+    ? await admin.from("profiles").select("id,username,avatar_url").in("id", ids)
+    : { data: [] };
+  const pmap = new Map((profs ?? []).map((p) => {
+    const r = p as { id: string; username: string | null; avatar_url: string | null };
+    return [r.id, r];
+  }));
+  return sorted.map(([id, a], i) => ({
+    position: i + 1, user_id: id,
+    display_name: pmap.get(id)?.username ?? "Anónimo",
+    avatar_url: pmap.get(id)?.avatar_url ?? null,
+    points: a.pts, predictions: a.n,
+  }));
+}
+
+export type { BoostId };

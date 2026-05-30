@@ -5,7 +5,6 @@
 // partidos, el agregado social y el leaderboard cruzan usuarios y usan el
 // cliente admin (service role) que bypassa RLS.
 
-import { createClient } from "@supabase/supabase-js";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import {
   type PredictionData,
@@ -23,13 +22,9 @@ import {
 import { scoreBase, applyBonuses } from "./scoring";
 import { isEarlyBird } from "./rules";
 import { matchMultiplier } from "./match-data";
-
-function adminClient() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!url || !key) throw new Error("SUPABASE_SERVICE_ROLE_KEY missing — predictions admin ops require server-only admin");
-  return createClient(url, key, { auth: { autoRefreshToken: false, persistSession: false } });
-}
+import { adminClient } from "./admin";
+import { grantMatchRewards } from "./gamification-store";
+import { STREAK_THRESHOLD, boostDef } from "./gamification";
 
 // ─── Premium ─────────────────────────────────────────────────────────────────
 export async function isPremium(userId: string): Promise<boolean> {
@@ -240,27 +235,69 @@ export async function resolveMatch(matchId: string, result: MatchResultReal): Pr
     .is("resolved_at", null);
   const list = (rows ?? []) as PredictionRow[];
 
+  // Racha vigente de cada usuario (aciertos consecutivos ya resueltos).
+  const usersInMatch = [...new Set(list.map((p) => p.user_id))];
+  const streakByUser = await getActiveStreaks(usersInMatch);
+  // Boosts disponibles por usuario (se consume a lo sumo uno por predicción).
+  const boostsByUser = await getAvailableBoostsByUser(usersInMatch);
+
   let sum = 0;
   const correctByUser = new Map<string, number>();
   const totalByUser = new Map<string, number>();
+  const pointsByUser = new Map<string, number>();
 
   for (const p of list) {
     const base = scoreBase(p.prediction_type, p.prediction_data, p.confidence_multiplier, result);
+
+    // Consumir un boost aplicable (orden de prioridad simple).
+    const inv = boostsByUser.get(p.user_id) ?? [];
+    let boostNote = "";
+    let consumedBoostId: string | null = null;
+    if (base.points > 0) {
+      const dbl = inv.find((b) => boostDef(b.boost_id)?.scoreMultiplier);
+      if (dbl) {
+        base.points = Math.round(base.points * (boostDef(dbl.boost_id)!.scoreMultiplier ?? 1));
+        boostNote = ` · ${boostDef(dbl.boost_id)!.emoji} ${boostDef(dbl.boost_id)!.name}`;
+        consumedBoostId = dbl.id;
+        inv.splice(inv.indexOf(dbl), 1);
+      }
+    } else if (base.points < 0) {
+      const shield = inv.find((b) => boostDef(b.boost_id)?.shieldsNegative);
+      if (shield) {
+        base.points = 0;
+        base.detail += " (escudo: 0 pts)";
+        consumedBoostId = shield.id;
+        inv.splice(inv.indexOf(shield), 1);
+      }
+    }
+
+    const streakActive = (streakByUser.get(p.user_id) ?? 0) >= STREAK_THRESHOLD;
     const ctx = {
       matchMultiplier: Number(p.match_multiplier) || 1,
       isEarlyBird: isEarlyBird(matchId, new Date(p.created_at)),
-      streakActive: false, // la racha se evalúa fuera del MVP de resolución
+      streakActive,
     };
     const final = applyBonuses(base, ctx);
     await admin.from("predictions").update({
       points_before_multiplier: final.pointsBeforeMatchMultiplier,
       points_earned: final.points,
       is_correct: final.correct,
-      resolution_breakdown: final.breakdown,
+      resolution_breakdown: final.breakdown + boostNote,
       resolved_at: new Date().toISOString(),
     }).eq("id", p.id);
+
+    if (consumedBoostId) {
+      await admin.from("prediction_boosts")
+        .update({ consumed_at: new Date().toISOString(), applied_to: p.id })
+        .eq("id", consumedBoostId);
+    }
+
+    // Actualizar racha en curso para las siguientes predicciones del usuario.
+    streakByUser.set(p.user_id, final.correct ? (streakByUser.get(p.user_id) ?? 0) + 1 : 0);
+
     sum += final.points;
     totalByUser.set(p.user_id, (totalByUser.get(p.user_id) ?? 0) + 1);
+    pointsByUser.set(p.user_id, (pointsByUser.get(p.user_id) ?? 0) + final.points);
     if (final.correct) correctByUser.set(p.user_id, (correctByUser.get(p.user_id) ?? 0) + 1);
   }
 
@@ -270,6 +307,9 @@ export async function resolveMatch(matchId: string, result: MatchResultReal): Pr
     if (correct >= 8 && totalByUser.get(uid) === 8) perfect++;
   }
 
+  // Otorgar progresión (XP/monedas/rachas/logros) y resolver duelos del partido.
+  await grantMatchRewards(matchId, usersInMatch);
+
   return {
     match_id: matchId,
     predictions_resolved: list.length,
@@ -277,6 +317,45 @@ export async function resolveMatch(matchId: string, result: MatchResultReal): Pr
     perfect_predictions: perfect,
     processing_time_ms: Date.now() - t0,
   };
+}
+
+// Aciertos consecutivos ya resueltos (antes de este partido) por usuario.
+async function getActiveStreaks(userIds: string[]): Promise<Map<string, number>> {
+  const out = new Map<string, number>();
+  if (!userIds.length) return out;
+  const admin = adminClient();
+  const { data } = await admin
+    .from("predictions")
+    .select("user_id,is_correct,resolved_at")
+    .in("user_id", userIds)
+    .not("resolved_at", "is", null)
+    .order("resolved_at", { ascending: true });
+  const byUser = new Map<string, boolean[]>();
+  for (const r of (data ?? []) as { user_id: string; is_correct: boolean | null }[]) {
+    (byUser.get(r.user_id) ?? byUser.set(r.user_id, []).get(r.user_id)!).push(Boolean(r.is_correct));
+  }
+  for (const [uid, results] of byUser) {
+    let run = 0;
+    for (let i = results.length - 1; i >= 0; i--) { if (results[i]) run++; else break; }
+    out.set(uid, run);
+  }
+  return out;
+}
+
+interface BoostRow { id: string; boost_id: string }
+async function getAvailableBoostsByUser(userIds: string[]): Promise<Map<string, BoostRow[]>> {
+  const out = new Map<string, BoostRow[]>();
+  if (!userIds.length) return out;
+  const admin = adminClient();
+  const { data } = await admin
+    .from("prediction_boosts")
+    .select("id,user_id,boost_id")
+    .in("user_id", userIds)
+    .is("consumed_at", null);
+  for (const r of (data ?? []) as { id: string; user_id: string; boost_id: string }[]) {
+    (out.get(r.user_id) ?? out.set(r.user_id, []).get(r.user_id)!).push({ id: r.id, boost_id: r.boost_id });
+  }
+  return out;
 }
 
 /** IDs de partidos con al menos una predicción sin resolver (para el worker). */

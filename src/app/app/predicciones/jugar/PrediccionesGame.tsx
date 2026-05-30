@@ -103,7 +103,10 @@ export default function PrediccionesGame() {
   const [duels, setDuels] = useState<DuelOut[]>([]);
   const [ouLines, setOuLines] = useState<OverUnderLineOut[]>([]);
   const [social, setSocial] = useState<SocialStatsOut | null>(null);
+  const [editing, setEditing] = useState<Set<PredictionType>>(new Set());
   const latestLoad = useRef<string | null>(null);
+  const stateRef = useRef<MatchState | null>(null);
+  stateRef.current = state;
 
   // Partidos seleccionables (fase de grupos, en orden de calendario).
   const groupMatches = useMemo(
@@ -164,6 +167,7 @@ export default function PrediccionesGame() {
     setDuels([]);
     setOuLines([]);
     setSocial(null);
+    setEditing(new Set());
     void loadMatch(id);
   }, [loadMatch]);
 
@@ -173,14 +177,23 @@ export default function PrediccionesGame() {
     confidence?: number,
   ) => {
     if (!matchId) return;
-    const res = await fetch("/api/predictions", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ match_id: matchId, prediction_type: type, prediction_data: data, confidence_multiplier: confidence }),
-    });
+    // Si ya existe una predicción de este tipo, editamos (PATCH); si no, creamos (POST).
+    const existing = stateRef.current?.predictions.find((p) => p.prediction_type === type) ?? null;
+    const res = existing
+      ? await fetch(`/api/predictions/${existing.id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ prediction_data: data, confidence_multiplier: confidence }),
+        })
+      : await fetch("/api/predictions", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ match_id: matchId, prediction_type: type, prediction_data: data, confidence_multiplier: confidence }),
+        });
     const json = await res.json().catch(() => ({}));
     if (res.ok) {
-      setToast({ kind: "ok", msg: `¡Predicción guardada! ${TYPE_META[type].emoji} ${TYPE_META[type].label}` });
+      setEditing((prev) => { const next = new Set(prev); next.delete(type); return next; });
+      setToast({ kind: "ok", msg: `${existing ? "Predicción actualizada" : "¡Predicción guardada!"} ${TYPE_META[type].emoji} ${TYPE_META[type].label}` });
       await loadMatch(matchId);
     } else {
       setToast({ kind: "err", msg: json.message || json.error || "No se pudo guardar la predicción" });
@@ -244,20 +257,40 @@ export default function PrediccionesGame() {
             {PREDICTION_TYPES.map((type) => {
               const existing = state?.predictions.find((p) => p.prediction_type === type) ?? null;
               const mult = state?.match_multiplier ?? tierOf(selectedMatch).multiplier;
+              const isEditing = editing.has(type);
+              const locked = existing ? existing.status === "resolved" : false;
+              const showForm = !existing || isEditing;
               return (
                 <TypeCard key={type} type={type} mult={mult}>
-                  {existing ? (
-                    <CompletedView p={existing} type={type} scorers={scorers} duels={duels} />
+                  {showForm ? (
+                    <>
+                      {isEditing && (
+                        <button
+                          onClick={() => setEditing((prev) => { const n = new Set(prev); n.delete(type); return n; })}
+                          style={{ background: "none", border: "none", color: DIM, cursor: "pointer", fontSize: 12, marginBottom: 8, padding: 0 }}
+                        >
+                          ✕ Cancelar edición
+                        </button>
+                      )}
+                      <TypeForm
+                        type={type}
+                        match={selectedMatch}
+                        scorers={scorers}
+                        pendingTeams={pendingTeams}
+                        duels={duels}
+                        ouLines={ouLines}
+                        social={social}
+                        initial={isEditing ? existing : null}
+                        onSubmit={submit}
+                      />
+                    </>
                   ) : (
-                    <TypeForm
+                    <CompletedView
+                      p={existing}
                       type={type}
-                      match={selectedMatch}
                       scorers={scorers}
-                      pendingTeams={pendingTeams}
                       duels={duels}
-                      ouLines={ouLines}
-                      social={social}
-                      onSubmit={submit}
+                      onEdit={locked ? undefined : () => setEditing((prev) => new Set(prev).add(type))}
                     />
                   )}
                 </TypeCard>
@@ -485,7 +518,7 @@ function TypeCard({ type, mult, children }: { type: PredictionType; mult: number
 }
 
 // ─── Vista de predicción ya enviada ──────────────────────────────────────────
-function CompletedView({ p, type, scorers, duels }: { p: MatchPrediction; type: PredictionType; scorers: ScorerCandidate[]; duels: DuelOut[] }) {
+function CompletedView({ p, type, scorers, duels, onEdit }: { p: MatchPrediction; type: PredictionType; scorers: ScorerCandidate[]; duels: DuelOut[]; onEdit?: () => void }) {
   const summary = summarize(type, p, scorers, duels);
   const resolved = p.status === "resolved";
   const color = resolved ? (p.is_correct ? GREEN : RED) : GOLD;
@@ -496,6 +529,17 @@ function CompletedView({ p, type, scorers, duels }: { p: MatchPrediction; type: 
         {resolved && <span style={{ marginLeft: "auto", fontWeight: 800, color }}>{(p.points_earned ?? 0) > 0 ? "+" : ""}{p.points_earned ?? 0} pts</span>}
       </div>
       <div style={{ fontSize: 13, color: MID, marginTop: 6 }}>{summary}</div>
+      {onEdit && (
+        <button
+          onClick={onEdit}
+          style={{
+            marginTop: 10, width: "100%", padding: "8px", borderRadius: 8, cursor: "pointer",
+            background: "rgba(201,168,76,0.12)", border: `1px solid ${GOLD}55`, color: GOLD2, fontWeight: 700, fontSize: 13,
+          }}
+        >
+          ✏️ Editar predicción
+        </button>
+      )}
     </div>
   );
 }
@@ -530,17 +574,20 @@ function TypeForm(props: {
   duels: DuelOut[];
   ouLines: OverUnderLineOut[];
   social: SocialStatsOut | null;
+  initial: MatchPrediction | null;
   onSubmit: SubmitFn;
 }) {
+  const d = (props.initial?.prediction_data ?? null) as unknown as Record<string, unknown> | null;
+  const editLabel = props.initial ? "Actualizar" : null;
   switch (props.type) {
-    case "exact_score": return <ExactScoreForm {...props} />;
-    case "winner": return <WinnerForm {...props} />;
-    case "first_scorer": return <FirstScorerForm {...props} />;
-    case "chain": return <ChainForm {...props} />;
-    case "duel": return <DuelForm {...props} />;
-    case "over_under": return <OverUnderForm {...props} />;
-    case "minute_drama": return <MinuteDramaForm {...props} />;
-    case "social": return <SocialForm {...props} />;
+    case "exact_score": return <ExactScoreForm {...props} init={d} editLabel={editLabel} />;
+    case "winner": return <WinnerForm {...props} init={d} initConf={props.initial?.confidence_multiplier ?? 1} editLabel={editLabel} />;
+    case "first_scorer": return <FirstScorerForm {...props} init={d} editLabel={editLabel} />;
+    case "chain": return <ChainForm {...props} init={d} editLabel={editLabel} />;
+    case "duel": return <DuelForm {...props} init={d} editLabel={editLabel} />;
+    case "over_under": return <OverUnderForm {...props} init={d} editLabel={editLabel} />;
+    case "minute_drama": return <MinuteDramaForm {...props} init={d} editLabel={editLabel} />;
+    case "social": return <SocialForm {...props} init={d} editLabel={editLabel} />;
   }
 }
 
@@ -559,9 +606,9 @@ function optBtn(active: boolean): React.CSSProperties {
   };
 }
 
-function ExactScoreForm({ match, onSubmit }: { match: Match; onSubmit: SubmitFn }) {
-  const [h, setH] = useState(1);
-  const [a, setA] = useState(1);
+function ExactScoreForm({ match, init, editLabel, onSubmit }: { match: Match; init: Record<string, unknown> | null; editLabel: string | null; onSubmit: SubmitFn }) {
+  const [h, setH] = useState(typeof init?.home_goals === "number" ? init.home_goals : 1);
+  const [a, setA] = useState(typeof init?.away_goals === "number" ? init.away_goals : 1);
   const [busy, setBusy] = useState(false);
   return (
     <div>
@@ -571,7 +618,7 @@ function ExactScoreForm({ match, onSubmit }: { match: Match; onSubmit: SubmitFn 
         <Stepper label={match.a} value={a} onChange={setA} />
       </div>
       <button disabled={busy} style={btnPrimary} onClick={async () => { setBusy(true); await onSubmit("exact_score", { home_goals: h, away_goals: a }); setBusy(false); }}>
-        Guardar marcador
+        {editLabel ?? "Guardar"} marcador
       </button>
     </div>
   );
@@ -591,9 +638,9 @@ function Stepper({ label, value, onChange }: { label: string; value: number; onC
 }
 const stepBtn: React.CSSProperties = { width: 28, height: 28, borderRadius: 8, border: CARD_BORDER, background: BG, color: GOLD, fontSize: 18, fontWeight: 800, cursor: "pointer" };
 
-function WinnerForm({ match, onSubmit }: { match: Match; onSubmit: SubmitFn }) {
-  const [result, setResult] = useState<WinnerResult | null>(null);
-  const [conf, setConf] = useState(1);
+function WinnerForm({ match, init, initConf, editLabel, onSubmit }: { match: Match; init: Record<string, unknown> | null; initConf: number; editLabel: string | null; onSubmit: SubmitFn }) {
+  const [result, setResult] = useState<WinnerResult | null>((init?.result as WinnerResult) ?? null);
+  const [conf, setConf] = useState(initConf || 1);
   const [busy, setBusy] = useState(false);
   return (
     <div>
@@ -608,15 +655,15 @@ function WinnerForm({ match, onSubmit }: { match: Match; onSubmit: SubmitFn }) {
       </div>
       <button disabled={busy || !result} style={{ ...btnPrimary, opacity: result ? 1 : 0.5 }}
         onClick={async () => { if (!result) return; setBusy(true); await onSubmit("winner", { result }, conf); setBusy(false); }}>
-        Guardar ganador
+        {editLabel ?? "Guardar"} ganador
       </button>
     </div>
   );
 }
 
-function FirstScorerForm({ scorers, pendingTeams, onSubmit }: { scorers: ScorerCandidate[]; pendingTeams: string[]; onSubmit: SubmitFn }) {
-  const [playerId, setPlayerId] = useState<string>("");
-  const [noGoals, setNoGoals] = useState(false);
+function FirstScorerForm({ scorers, pendingTeams, init, editLabel, onSubmit }: { scorers: ScorerCandidate[]; pendingTeams: string[]; init: Record<string, unknown> | null; editLabel: string | null; onSubmit: SubmitFn }) {
+  const [playerId, setPlayerId] = useState<string>(typeof init?.player_id === "string" ? init.player_id : "");
+  const [noGoals, setNoGoals] = useState(init?.no_goals === true);
   const [busy, setBusy] = useState(false);
   return (
     <div>
@@ -635,14 +682,18 @@ function FirstScorerForm({ scorers, pendingTeams, onSubmit }: { scorers: ScorerC
       </label>
       <button disabled={busy || (!noGoals && !playerId)} style={{ ...btnPrimary, opacity: noGoals || playerId ? 1 : 0.5 }}
         onClick={async () => { setBusy(true); await onSubmit("first_scorer", { player_id: noGoals ? null : playerId, no_goals: noGoals }); setBusy(false); }}>
-        Guardar goleador
+        {editLabel ?? "Guardar"} goleador
       </button>
     </div>
   );
 }
 
-function ChainForm({ onSubmit }: { onSubmit: SubmitFn }) {
-  const [steps, setSteps] = useState<{ event_type: ChainEventType; description: string }[]>([
+function ChainForm({ init, editLabel, onSubmit }: { init: Record<string, unknown> | null; editLabel: string | null; onSubmit: SubmitFn }) {
+  const initSteps = Array.isArray(init?.chain)
+    ? (init!.chain as { event_type: ChainEventType; event_data?: { description?: string } }[])
+        .map((s) => ({ event_type: s.event_type, description: s.event_data?.description ?? "" }))
+    : null;
+  const [steps, setSteps] = useState<{ event_type: ChainEventType; description: string }[]>(initSteps ?? [
     { event_type: "goal", description: "" },
     { event_type: "card", description: "" },
     { event_type: "winner", description: "" },
@@ -666,14 +717,18 @@ function ChainForm({ onSubmit }: { onSubmit: SubmitFn }) {
         await onSubmit("chain", { chain: steps.map((s, i) => ({ step: i + 1, event_type: s.event_type, event_data: { description: s.description } })) });
         setBusy(false);
       }}>
-        Guardar cadena (3 eslabones)
+        {editLabel ?? "Guardar"} cadena (3 eslabones)
       </button>
     </div>
   );
 }
 
-function DuelForm({ duels, onSubmit }: { duels: DuelOut[]; onSubmit: SubmitFn }) {
-  const [pick, setPick] = useState<{ duelId: string; playerId: string } | null>(null);
+function DuelForm({ duels, init, editLabel, onSubmit }: { duels: DuelOut[]; init: Record<string, unknown> | null; editLabel: string | null; onSubmit: SubmitFn }) {
+  const [pick, setPick] = useState<{ duelId: string; playerId: string } | null>(
+    typeof init?.duel_id === "string" && typeof init?.winner_player_id === "string"
+      ? { duelId: init.duel_id, playerId: init.winner_player_id }
+      : null,
+  );
   const [busy, setBusy] = useState(false);
   if (!duels.length) return <p style={{ fontSize: 12, color: DIM }}>No hay duelos disponibles para este partido.</p>;
   return (
@@ -696,16 +751,16 @@ function DuelForm({ duels, onSubmit }: { duels: DuelOut[]; onSubmit: SubmitFn })
       ))}
       <button disabled={busy || !pick} style={{ ...btnPrimary, opacity: pick ? 1 : 0.5 }}
         onClick={async () => { if (!pick) return; setBusy(true); await onSubmit("duel", { duel_id: pick.duelId, winner_player_id: pick.playerId }); setBusy(false); }}>
-        Guardar duelo
+        {editLabel ?? "Guardar"} duelo
       </button>
     </div>
   );
 }
 
-function OverUnderForm({ ouLines, onSubmit }: { ouLines: OverUnderLineOut[]; onSubmit: SubmitFn }) {
-  const [category, setCategory] = useState<OverUnderCategory>("goals");
-  const [difficulty, setDifficulty] = useState<OverUnderDifficulty>("medium");
-  const [choice, setChoice] = useState<"over" | "under" | null>(null);
+function OverUnderForm({ ouLines, init, editLabel, onSubmit }: { ouLines: OverUnderLineOut[]; init: Record<string, unknown> | null; editLabel: string | null; onSubmit: SubmitFn }) {
+  const [category, setCategory] = useState<OverUnderCategory>((init?.category as OverUnderCategory) ?? "goals");
+  const [difficulty, setDifficulty] = useState<OverUnderDifficulty>((init?.difficulty as OverUnderDifficulty) ?? "medium");
+  const [choice, setChoice] = useState<"over" | "under" | null>((init?.choice as "over" | "under") ?? null);
   const [busy, setBusy] = useState(false);
   const line = ouLines.find((l) => l.category === category);
   const sel = line ? line[difficulty] : null;
@@ -730,16 +785,16 @@ function OverUnderForm({ ouLines, onSubmit }: { ouLines: OverUnderLineOut[]; onS
       )}
       <button disabled={busy || !choice || !sel} style={{ ...btnPrimary, opacity: choice && sel ? 1 : 0.5 }}
         onClick={async () => { if (!choice || !sel) return; setBusy(true); await onSubmit("over_under", { category, line: sel.line, choice, difficulty }); setBusy(false); }}>
-        Guardar over/under
+        {editLabel ?? "Guardar"} over/under
       </button>
     </div>
   );
 }
 
-function MinuteDramaForm({ onSubmit }: { onSubmit: SubmitFn }) {
-  const [event, setEvent] = useState<DramaEvent>("first_goal");
-  const [range, setRange] = useState<MinuteRange>("0-10");
-  const [noEvent, setNoEvent] = useState(false);
+function MinuteDramaForm({ init, editLabel, onSubmit }: { init: Record<string, unknown> | null; editLabel: string | null; onSubmit: SubmitFn }) {
+  const [event, setEvent] = useState<DramaEvent>((init?.event as DramaEvent) ?? "first_goal");
+  const [range, setRange] = useState<MinuteRange>((init?.minute_range as MinuteRange) ?? "0-10");
+  const [noEvent, setNoEvent] = useState(init?.no_event === true);
   const [busy, setBusy] = useState(false);
   return (
     <div>
@@ -755,14 +810,14 @@ function MinuteDramaForm({ onSubmit }: { onSubmit: SubmitFn }) {
       </label>
       <button disabled={busy} style={btnPrimary}
         onClick={async () => { setBusy(true); await onSubmit("minute_drama", noEvent ? { event, no_event: true } : { event, minute_range: range }); setBusy(false); }}>
-        Guardar minuto
+        {editLabel ?? "Guardar"} minuto
       </button>
     </div>
   );
 }
 
-function SocialForm({ match, social, onSubmit }: { match: Match; social: SocialStatsOut | null; onSubmit: SubmitFn }) {
-  const [choice, setChoice] = useState<WinnerResult | null>(null);
+function SocialForm({ match, social, init, editLabel, onSubmit }: { match: Match; social: SocialStatsOut | null; init: Record<string, unknown> | null; editLabel: string | null; onSubmit: SubmitFn }) {
+  const [choice, setChoice] = useState<WinnerResult | null>((init?.choice as WinnerResult) ?? null);
   const [busy, setBusy] = useState(false);
   const winnerStats = social?.stats?.winner ?? [];
   const pctOf = (r: WinnerResult): number => winnerStats.find((s) => s.option_key === `winner:${r}`)?.pct ?? 0;
@@ -796,7 +851,7 @@ function SocialForm({ match, social, onSubmit }: { match: Match; social: SocialS
       )}
       <button disabled={busy || !choice} style={{ ...btnPrimary, opacity: choice ? 1 : 0.5 }}
         onClick={async () => { if (!choice) return; setBusy(true); await onSubmit("social", { question_key: "winner", choice, community_pct_at_time: chosenPct }); setBusy(false); }}>
-        Guardar en Modo Manada
+        {editLabel ?? "Guardar en"} Modo Manada
       </button>
     </div>
   );

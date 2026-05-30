@@ -111,15 +111,39 @@ export async function changesUsedToday(userId: string): Promise<number> {
   return count ?? 0;
 }
 
-export async function updatePredictionData(id: string, data: PredictionData): Promise<PredictionRow> {
+export async function updatePredictionData(
+  id: string,
+  type: PredictionType,
+  data: PredictionData,
+  confidence: number,
+  isContrarian: boolean,
+): Promise<PredictionRow> {
   const supa = createSupabaseServerClient();
   const { data: row, error } = await supa
     .from("predictions")
-    .update({ prediction_data: data, changed_at: new Date().toISOString() })
+    .update({
+      prediction_data: data,
+      confidence_multiplier: confidence,
+      is_contrarian: isContrarian,
+      changed_at: new Date().toISOString(),
+    })
     .eq("id", id)
     .select("*")
     .single();
   if (error) throw error;
+  // Cadena: re-sincronizar eslabones (borra los previos y reinserta).
+  if (type === "chain") {
+    await supa.from("prediction_chains").delete().eq("prediction_id", id);
+    const steps = (data as { chain: { step: number; event_type: string; event_data: unknown }[] }).chain;
+    await supa.from("prediction_chains").insert(
+      steps.map((s) => ({
+        prediction_id: id,
+        step_number: s.step,
+        event_type: s.event_type,
+        event_data: s.event_data as object,
+      })),
+    );
+  }
   return row as PredictionRow;
 }
 

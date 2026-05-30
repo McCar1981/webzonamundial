@@ -202,8 +202,7 @@ export default function PrediccionesGame() {
       <section style={{ padding: "8px 0 4px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 16px" }}>
           <h2 style={{ fontSize: 14, fontWeight: 700, color: MID, marginBottom: 8 }}>Elige un partido</h2>
-        </div>
-        <div style={{ display: "flex", gap: 10, overflowX: "auto", padding: "4px 16px 12px", scrollSnapType: "x mandatory" }}>
+          <div style={{ display: "flex", gap: 10, overflowX: "auto", paddingBottom: 12, scrollSnapType: "x mandatory" }}>
           {groupMatches.map((m) => {
             const t = tierOf(m);
             const active = String(m.i) === matchId;
@@ -233,6 +232,7 @@ export default function PrediccionesGame() {
               </button>
             );
           })}
+          </div>
         </div>
       </section>
 

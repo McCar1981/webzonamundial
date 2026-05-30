@@ -53,18 +53,16 @@ export default function TeamView({ team, validation, onSlotClickEmpty, onRemove,
 
       <div style={{ fontSize: 11, color: DIM, fontWeight: 700, marginBottom: 6 }}>Arrastra un jugador sobre otro para intercambiarlos · toca para capitán/quitar.</div>
 
-      {/* Campo: imagen real de estadio con los jugadores encima.
-          Escritorio (wide) → campo horizontal (porterías a los lados).
-          Móvil → campo vertical (porterías arriba/abajo). */}
+      {/* Campo SVG moderno y futurista (líneas vectoriales con resplandor neón).
+          Escritorio (wide) → horizontal (porterías a los lados).
+          Móvil → vertical (porterías arriba/abajo).
+          Las columnas/filas usan flex, así que soportan cualquier formación (1–5 por línea). */}
       {wide ? (
-        <div style={{ maxWidth: 980, margin: "0 auto", position: "relative", aspectRatio: "3247 / 1465", borderRadius: 16, overflow: "hidden", backgroundImage: "url('/img/fantasy/campo-desktop.png?v=2')", backgroundSize: "cover", backgroundPosition: "center", boxShadow: "0 18px 50px rgba(0,0,0,0.5)" }}>
-          {/* Leve oscurecido en los laterales para que resalten las fichas */}
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.04) 24%, rgba(0,0,0,0.04) 76%, rgba(0,0,0,0.28) 100%)", pointerEvents: "none" }} />
+        <div style={{ maxWidth: 980, margin: "0 auto", position: "relative", aspectRatio: "900 / 560", borderRadius: 18, overflow: "hidden", boxShadow: "0 18px 50px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(125,255,206,0.12)" }}>
+          <PitchSVG orientation="h" />
 
-          {/* Capa de jugadores DENTRO del césped: portero a la izquierda (nuestra portería)
-              → delanteros a la derecha. El padding lateral mete las columnas dentro del verde
-              y cada línea se centra en vertical (soporta 1–5 jugadores según la formación). */}
-          <div style={{ position: "absolute", inset: 0, padding: "9% 11%", display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "stretch" }}>
+          {/* Capa de jugadores DENTRO del césped: portero a la izquierda → delanteros a la derecha. */}
+          <div style={{ position: "absolute", inset: 0, padding: "6% 8%", display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "stretch", zIndex: 2 }}>
             {(["GK", "DEF", "MID", "FWD"] as const).map((pref) => (
               <div key={pref} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: 6 }}>
                 {lineSlots(pref).map((s) => (
@@ -75,12 +73,11 @@ export default function TeamView({ team, validation, onSlotClickEmpty, onRemove,
           </div>
         </div>
       ) : (
-        <div style={{ maxWidth: 470, margin: "0 auto", position: "relative", aspectRatio: "1882 / 2116", borderRadius: 16, overflow: "hidden", backgroundImage: "url('/img/fantasy/campo-mobile.png?v=2')", backgroundSize: "cover", backgroundPosition: "center", boxShadow: "0 18px 50px rgba(0,0,0,0.5)" }}>
-          {/* Leve oscurecido arriba/abajo para que resalten las fichas */}
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0.04) 38%, rgba(0,0,0,0.04) 62%, rgba(0,0,0,0.28) 100%)", pointerEvents: "none" }} />
+        <div style={{ maxWidth: 470, margin: "0 auto", position: "relative", aspectRatio: "400 / 600", borderRadius: 18, overflow: "hidden", boxShadow: "0 18px 50px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(125,255,206,0.12)" }}>
+          <PitchSVG orientation="v" />
 
           {/* Capa de jugadores: delanteros arriba (portería rival) → portero abajo (la nuestra). */}
-          <div style={{ position: "absolute", inset: 0, padding: "11% 4% 9%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+          <div style={{ position: "absolute", inset: 0, padding: "7% 4%", display: "flex", flexDirection: "column", justifyContent: "space-between", zIndex: 2 }}>
             {(["FWD", "MID", "DEF", "GK"] as const).map((pref) => (
               <div key={pref} style={{ display: "flex", justifyContent: "center", gap: 8, flexWrap: "wrap" }}>
                 {lineSlots(pref).map((s) => (
@@ -119,6 +116,129 @@ export default function TeamView({ team, validation, onSlotClickEmpty, onRemove,
         </div>
       </div>
     </div>
+  );
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Campo de fútbol dibujado en SVG: césped con degradado + franjas de corte,
+   rejilla tecnológica tenue, viñeta de estadio y líneas con resplandor neón.
+   Vectorial → nítido a cualquier tamaño y sin distorsión (el contenedor mantiene
+   el mismo aspect-ratio que el viewBox).
+─────────────────────────────────────────────────────────────────────────── */
+function PitchSVG({ orientation }: { orientation: "v" | "h" }) {
+  const NEON = "#cdfff0";
+  const lineProps = { fill: "none" as const, stroke: NEON, strokeWidth: 2, strokeOpacity: 0.92, strokeLinecap: "round" as const };
+
+  if (orientation === "h") {
+    return (
+      <svg viewBox="0 0 900 560" preserveAspectRatio="none" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", display: "block" }} aria-hidden>
+        <defs>
+          <linearGradient id="turfH" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#0c241b" />
+            <stop offset="0.5" stopColor="#10402e" />
+            <stop offset="1" stopColor="#0a2a1f" />
+          </linearGradient>
+          <radialGradient id="spotH" cx="0.5" cy="0.5" r="0.65">
+            <stop offset="0" stopColor="#1f7a51" stopOpacity="0.5" />
+            <stop offset="1" stopColor="#000" stopOpacity="0" />
+          </radialGradient>
+          <radialGradient id="vigH" cx="0.5" cy="0.5" r="0.75">
+            <stop offset="0.55" stopColor="#000" stopOpacity="0" />
+            <stop offset="1" stopColor="#000" stopOpacity="0.45" />
+          </radialGradient>
+          <pattern id="gridH" width="30" height="30" patternUnits="userSpaceOnUse">
+            <path d="M30 0H0V30" fill="none" stroke="#7dffce" strokeWidth="0.5" strokeOpacity="0.05" />
+          </pattern>
+          <filter id="glowH" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="2.2" result="b" />
+            <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+        </defs>
+
+        <rect x="0" y="0" width="900" height="560" fill="url(#turfH)" />
+        {Array.from({ length: 12 }).map((_, i) => (i % 2 === 0 ? <rect key={i} x={i * 75} y="0" width="75" height="560" fill="#ffffff" opacity="0.022" /> : null))}
+        <rect x="0" y="0" width="900" height="560" fill="url(#spotH)" />
+        <rect x="0" y="0" width="900" height="560" fill="url(#gridH)" />
+
+        <g filter="url(#glowH)" {...lineProps}>
+          <rect x="14" y="14" width="872" height="532" rx="10" />
+          <line x1="450" y1="14" x2="450" y2="546" />
+          <circle cx="450" cy="280" r="46" />
+          <circle cx="450" cy="280" r="3" fill={NEON} stroke="none" />
+          {/* portería izquierda */}
+          <rect x="14" y="170" width="90" height="220" />
+          <rect x="14" y="220" width="40" height="120" />
+          <circle cx="78" cy="280" r="2.5" fill={NEON} stroke="none" />
+          <path d="M104 242 A46 46 0 0 1 104 318" />
+          {/* portería derecha */}
+          <rect x="796" y="170" width="90" height="220" />
+          <rect x="846" y="220" width="40" height="120" />
+          <circle cx="822" cy="280" r="2.5" fill={NEON} stroke="none" />
+          <path d="M796 242 A46 46 0 0 0 796 318" />
+          {/* córneres */}
+          <path d="M14 24 A10 10 0 0 0 24 14" />
+          <path d="M876 14 A10 10 0 0 0 886 24" />
+          <path d="M14 536 A10 10 0 0 1 24 546" />
+          <path d="M876 546 A10 10 0 0 1 886 536" />
+        </g>
+        <rect x="0" y="0" width="900" height="560" fill="url(#vigH)" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 400 600" preserveAspectRatio="none" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", display: "block" }} aria-hidden>
+      <defs>
+        <linearGradient id="turfV" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#0c241b" />
+          <stop offset="0.5" stopColor="#10402e" />
+          <stop offset="1" stopColor="#0a2a1f" />
+        </linearGradient>
+        <radialGradient id="spotV" cx="0.5" cy="0.5" r="0.65">
+          <stop offset="0" stopColor="#1f7a51" stopOpacity="0.5" />
+          <stop offset="1" stopColor="#000" stopOpacity="0" />
+        </radialGradient>
+        <radialGradient id="vigV" cx="0.5" cy="0.5" r="0.75">
+          <stop offset="0.55" stopColor="#000" stopOpacity="0" />
+          <stop offset="1" stopColor="#000" stopOpacity="0.45" />
+        </radialGradient>
+        <pattern id="gridV" width="30" height="30" patternUnits="userSpaceOnUse">
+          <path d="M30 0H0V30" fill="none" stroke="#7dffce" strokeWidth="0.5" strokeOpacity="0.05" />
+        </pattern>
+        <filter id="glowV" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="2.2" result="b" />
+          <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+        </filter>
+      </defs>
+
+      <rect x="0" y="0" width="400" height="600" fill="url(#turfV)" />
+      {Array.from({ length: 12 }).map((_, i) => (i % 2 === 0 ? <rect key={i} x="0" y={i * 50} width="400" height="50" fill="#ffffff" opacity="0.022" /> : null))}
+      <rect x="0" y="0" width="400" height="600" fill="url(#spotV)" />
+      <rect x="0" y="0" width="400" height="600" fill="url(#gridV)" />
+
+      <g filter="url(#glowV)" {...lineProps}>
+        <rect x="14" y="14" width="372" height="572" rx="10" />
+        <line x1="14" y1="300" x2="386" y2="300" />
+        <circle cx="200" cy="300" r="46" />
+        <circle cx="200" cy="300" r="3" fill={NEON} stroke="none" />
+        {/* portería superior */}
+        <rect x="90" y="14" width="220" height="90" />
+        <rect x="140" y="14" width="120" height="40" />
+        <circle cx="200" cy="78" r="2.5" fill={NEON} stroke="none" />
+        <path d="M162 104 A46 46 0 0 0 238 104" />
+        {/* portería inferior */}
+        <rect x="90" y="496" width="220" height="90" />
+        <rect x="140" y="546" width="120" height="40" />
+        <circle cx="200" cy="522" r="2.5" fill={NEON} stroke="none" />
+        <path d="M162 496 A46 46 0 0 1 238 496" />
+        {/* córneres */}
+        <path d="M14 24 A10 10 0 0 0 24 14" />
+        <path d="M376 14 A10 10 0 0 0 386 24" />
+        <path d="M14 576 A10 10 0 0 1 24 586" />
+        <path d="M376 586 A10 10 0 0 1 386 576" />
+      </g>
+      <rect x="0" y="0" width="400" height="600" fill="url(#vigV)" />
+    </svg>
   );
 }
 

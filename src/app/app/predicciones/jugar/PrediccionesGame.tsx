@@ -198,49 +198,26 @@ export default function PrediccionesGame() {
         </div>
       </header>
 
-      {/* Selector de partido */}
-      <section style={{ padding: "8px 0 4px" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 16px" }}>
-          <h2 style={{ fontSize: 14, fontWeight: 700, color: MID, marginBottom: 8 }}>Elige un partido</h2>
-          <div style={{ display: "flex", gap: 10, overflowX: "auto", paddingBottom: 12, scrollSnapType: "x mandatory" }}>
-          {groupMatches.map((m) => {
-            const t = tierOf(m);
-            const active = String(m.i) === matchId;
-            return (
-              <button key={m.i} onClick={() => selectMatch(String(m.i))} style={{
-                flex: "0 0 auto", width: 190, scrollSnapAlign: "start", textAlign: "left", cursor: "pointer",
-                background: active ? "rgba(201,168,76,0.12)" : BG2,
-                border: active ? `1px solid ${GOLD}` : CARD_BORDER, borderRadius: 14, padding: 12, color: "#fff",
-              }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
-                  <span style={{ fontSize: 10, color: DIM }}>Grupo {m.g} · {fmtKickoff(m)}</span>
-                  <span title={t.label} style={{ fontSize: 13 }}>{t.emoji}</span>
-                </div>
-                <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 4 }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={flagUrl(m.hf)} alt="" style={{ width: 22, height: 15, borderRadius: 2, objectFit: "cover" }} />
-                  <span style={{ fontSize: 13, fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{m.h}</span>
-                </div>
-                <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={flagUrl(m.af)} alt="" style={{ width: 22, height: 15, borderRadius: 2, objectFit: "cover" }} />
-                  <span style={{ fontSize: 13, fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{m.a}</span>
-                </div>
-                {t.multiplier > 1 && (
-                  <div style={{ marginTop: 6, fontSize: 10, fontWeight: 700, color: GOLD }}>×{t.multiplier.toFixed(2)} {t.label}</div>
-                )}
-              </button>
-            );
-          })}
-          </div>
-        </div>
-      </section>
-
-      {/* Estado vacío: showcase de los 8 tipos + leyenda de multiplicadores */}
-      {!selectedMatch && <EmptyShowcase />}
+      {/* Vista tablero: partidos agrupados por grupo (no slider) */}
+      {!selectedMatch && (
+        <>
+          <MatchBoard matches={groupMatches} onPick={selectMatch} />
+          <EmptyShowcase />
+        </>
+      )}
 
       {selectedMatch && (
-        <section style={{ maxWidth: 1100, margin: "0 auto", padding: "8px 16px 60px" }}>
+        <section style={{ maxWidth: 1100, margin: "0 auto", padding: "12px 16px 60px" }}>
+          <button
+            onClick={() => { setMatchId(null); setState(null); }}
+            style={{
+              display: "inline-flex", alignItems: "center", gap: 8, cursor: "pointer",
+              background: BG2, border: CARD_BORDER, borderRadius: 99, color: GOLD2,
+              fontWeight: 700, fontSize: 14, padding: "9px 16px", marginBottom: 14,
+            }}
+          >
+            ← Volver a los partidos
+          </button>
           <MatchHeader m={selectedMatch} state={state} />
           {loading && !state && <p style={{ color: DIM, textAlign: "center", padding: 24 }}>Cargando predicciones…</p>}
 
@@ -290,6 +267,60 @@ function Shell({ children }: { children: React.ReactNode }) {
     <div style={{ background: BG, color: "#fff", fontFamily: "'Outfit',sans-serif", minHeight: "100vh", paddingBottom: 40 }}>
       {children}
     </div>
+  );
+}
+
+// ─── Tablero de partidos agrupado por grupo ──────────────────────────────────
+function MatchBoard({ matches, onPick }: { matches: Match[]; onPick: (id: string) => void }) {
+  const groups = useMemo(() => {
+    const map = new Map<string, Match[]>();
+    for (const m of matches) {
+      const arr = map.get(m.g) ?? [];
+      arr.push(m);
+      map.set(m.g, arr);
+    }
+    return [...map.entries()].sort((a, b) => a[0].localeCompare(b[0]));
+  }, [matches]);
+
+  return (
+    <section style={{ maxWidth: 1100, margin: "0 auto", padding: "8px 16px 4px" }}>
+      <h2 style={{ fontSize: 14, fontWeight: 700, color: MID, marginBottom: 12 }}>Elige un partido</h2>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(260px,1fr))", gap: 16 }}>
+        {groups.map(([g, ms]) => (
+          <div key={g} style={{ background: BG3, border: CARD_BORDER, borderRadius: 16, padding: 14 }}>
+            <div style={{ fontSize: 13, fontWeight: 800, color: GOLD, marginBottom: 10, letterSpacing: 0.5 }}>Grupo {g}</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              {ms.map((m) => {
+                const t = tierOf(m);
+                return (
+                  <button key={m.i} onClick={() => onPick(String(m.i))} style={{
+                    width: "100%", textAlign: "left", cursor: "pointer",
+                    background: BG2, border: CARD_BORDER, borderRadius: 12, padding: 11, color: "#fff",
+                  }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 7 }}>
+                      <span style={{ fontSize: 10, color: DIM }}>{fmtKickoff(m)}</span>
+                      {t.multiplier > 1
+                        ? <span style={{ fontSize: 10, fontWeight: 700, color: GOLD }}>{t.emoji} ×{t.multiplier.toFixed(2)}</span>
+                        : <span title={t.label} style={{ fontSize: 12 }}>{t.emoji}</span>}
+                    </div>
+                    <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 5 }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={flagUrl(m.hf)} alt="" style={{ width: 22, height: 15, borderRadius: 2, objectFit: "cover" }} />
+                      <span style={{ fontSize: 13.5, fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{m.h}</span>
+                    </div>
+                    <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={flagUrl(m.af)} alt="" style={{ width: 22, height: 15, borderRadius: 2, objectFit: "cover" }} />
+                      <span style={{ fontSize: 13.5, fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{m.a}</span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }
 

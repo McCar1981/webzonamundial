@@ -115,11 +115,12 @@ export const CHAIN_MIN_STEPS = 3;
 export const CHAIN_MAX_STEPS_FREE = 3;
 export const CHAIN_MAX_STEPS_PREMIUM = 7;
 
-// Cierres (minutos antes del kickoff).
-export const CLOSE_MIN_FREE = 30;
-export const CLOSE_MIN_PREMIUM = 5;
-export const CHAIN_CLOSE_MIN = 120;        // las cadenas cierran 2h antes
-export const FIRST_SCORER_CLOSE_MIN = 90;  // primer goleador cierra con alineaciones
+// Cierres (minutos antes del kickoff). Todas las predicciones se pueden
+// crear/editar hasta 15 minutos antes del inicio, sin importar tipo ni plan.
+export const CLOSE_MIN_FREE = 15;
+export const CLOSE_MIN_PREMIUM = 15;
+export const CHAIN_CLOSE_MIN = 15;
+export const FIRST_SCORER_CLOSE_MIN = 15;
 
 // ─── Filas de base de datos ──────────────────────────────────────────────────
 export interface PredictionRow {

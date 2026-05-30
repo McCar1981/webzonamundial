@@ -3,7 +3,7 @@
 // Módulo jugable de Predicciones: selector de partido + las 8 cards de tipos de
 // predicción, cada una con su formulario. Persiste contra /api/predictions.
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { MATCHES, type Match } from "@/data/matches";
 import { SELECCIONES } from "@/data/selecciones";
@@ -99,9 +99,11 @@ export default function PrediccionesGame() {
   const [toast, setToast] = useState<{ kind: "ok" | "err"; msg: string } | null>(null);
 
   const [scorers, setScorers] = useState<ScorerCandidate[]>([]);
+  const [pendingTeams, setPendingTeams] = useState<string[]>([]);
   const [duels, setDuels] = useState<DuelOut[]>([]);
   const [ouLines, setOuLines] = useState<OverUnderLineOut[]>([]);
   const [social, setSocial] = useState<SocialStatsOut | null>(null);
+  const latestLoad = useRef<string | null>(null);
 
   // Partidos seleccionables (fase de grupos, en orden de calendario).
   const groupMatches = useMemo(
@@ -123,6 +125,7 @@ export default function PrediccionesGame() {
   }, [toast]);
 
   const loadMatch = useCallback(async (id: string) => {
+    latestLoad.current = id;
     setLoading(true);
     try {
       const [mRes, sRes, dRes, oRes, socRes] = await Promise.all([
@@ -132,19 +135,35 @@ export default function PrediccionesGame() {
         fetch(`/api/predictions/match/${id}/over-under-lines`),
         fetch(`/api/predictions/match/${id}/social-stats`),
       ]);
-      if (mRes.ok) setState(await mRes.json());
-      setScorers(sRes.ok ? (await sRes.json()).candidates ?? [] : []);
-      setDuels(dRes.ok ? (await dRes.json()).duels ?? [] : []);
-      setOuLines(oRes.ok ? (await oRes.json()).lines ?? [] : []);
-      setSocial(socRes.ok ? await socRes.json() : null);
+      const [mJson, sJson, dJson, oJson, socJson] = await Promise.all([
+        mRes.ok ? mRes.json() : null,
+        sRes.ok ? sRes.json() : null,
+        dRes.ok ? dRes.json() : null,
+        oRes.ok ? oRes.json() : null,
+        socRes.ok ? socRes.json() : null,
+      ]);
+      // Ignora respuestas obsoletas: si el usuario ya cambió de partido, una
+      // petición lenta de un partido anterior no debe pisar los datos actuales.
+      if (latestLoad.current !== id) return;
+      if (mJson) setState(mJson);
+      setScorers(sJson?.candidates ?? []);
+      setPendingTeams(sJson?.pending_teams ?? []);
+      setDuels(dJson?.duels ?? []);
+      setOuLines(oJson?.lines ?? []);
+      setSocial(socJson ?? null);
     } finally {
-      setLoading(false);
+      if (latestLoad.current === id) setLoading(false);
     }
   }, []);
 
   const selectMatch = useCallback((id: string) => {
     setMatchId(id);
     setState(null);
+    setScorers([]);
+    setPendingTeams([]);
+    setDuels([]);
+    setOuLines([]);
+    setSocial(null);
     void loadMatch(id);
   }, [loadMatch]);
 
@@ -234,6 +253,7 @@ export default function PrediccionesGame() {
                       type={type}
                       match={selectedMatch}
                       scorers={scorers}
+                      pendingTeams={pendingTeams}
                       duels={duels}
                       ouLines={ouLines}
                       social={social}
@@ -506,6 +526,7 @@ function TypeForm(props: {
   type: PredictionType;
   match: Match;
   scorers: ScorerCandidate[];
+  pendingTeams: string[];
   duels: DuelOut[];
   ouLines: OverUnderLineOut[];
   social: SocialStatsOut | null;
@@ -593,14 +614,19 @@ function WinnerForm({ match, onSubmit }: { match: Match; onSubmit: SubmitFn }) {
   );
 }
 
-function FirstScorerForm({ scorers, onSubmit }: { scorers: ScorerCandidate[]; onSubmit: SubmitFn }) {
+function FirstScorerForm({ scorers, pendingTeams, onSubmit }: { scorers: ScorerCandidate[]; pendingTeams: string[]; onSubmit: SubmitFn }) {
   const [playerId, setPlayerId] = useState<string>("");
   const [noGoals, setNoGoals] = useState(false);
   const [busy, setBusy] = useState(false);
   return (
     <div>
-      <select value={noGoals ? "" : playerId} disabled={noGoals} onChange={(e) => setPlayerId(e.target.value)} style={inputStyle}>
-        <option value="">Elige goleador…</option>
+      {pendingTeams.length > 0 && (
+        <p style={{ fontSize: 11.5, color: GOLD, background: "rgba(201,168,76,0.10)", border: `1px solid ${GOLD}40`, borderRadius: 8, padding: "7px 10px", marginBottom: 8, lineHeight: 1.4 }}>
+          ⏳ {pendingTeams.join(" y ")} {pendingTeams.length > 1 ? "aún no han" : "aún no ha"} anunciado convocatoria definitiva. Sus jugadores aparecerán cuando se confirme la lista.
+        </p>
+      )}
+      <select value={noGoals ? "" : playerId} disabled={noGoals || scorers.length === 0} onChange={(e) => setPlayerId(e.target.value)} style={inputStyle}>
+        <option value="">{scorers.length === 0 ? "Sin convocatorias disponibles" : "Elige goleador…"}</option>
         {scorers.map((s) => <option key={s.id} value={s.id}>{s.name} · {s.team} ({s.pos})</option>)}
       </select>
       <label style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 10, fontSize: 13, color: MID, cursor: "pointer" }}>

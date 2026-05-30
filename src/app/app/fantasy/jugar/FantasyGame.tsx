@@ -257,19 +257,19 @@ export default function FantasyGame() {
       {/* Ambiente de noche de estadio: focos dorados, halo de césped y degradado profundo */}
       {/* Header */}
       <div style={{ position: "sticky", top: 0, zIndex: 20, background: `${BG}f2`, backdropFilter: "blur(10px)", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "12px 16px" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "9px 16px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
             <Link href="/app/fantasy" style={{ color: MID, textDecoration: "none", fontSize: 13, fontWeight: 700 }}>← Fantasy</Link>
             <input
               value={team.teamName}
               onChange={(e) => update((t) => ({ ...t, teamName: e.target.value.slice(0, 40) }))}
-              style={{ flex: "1 1 160px", minWidth: 120, background: "transparent", border: "none", borderBottom: "1px dashed rgba(255,255,255,0.15)", color: "#fff", fontSize: 18, fontWeight: 800, padding: "4px 2px", outline: "none" }}
+              style={{ flex: "1 1 160px", minWidth: 120, background: "transparent", border: "none", borderBottom: "1px dashed rgba(255,255,255,0.15)", color: "#fff", fontSize: 17, fontWeight: 800, padding: "3px 2px", outline: "none" }}
             />
             <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: 1, color: GOLD, textTransform: "uppercase" }}>Jornada {team.gameweek}/7</span>
           </div>
 
-          {/* Stats */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(120px,1fr))", gap: 10, marginTop: 12 }}>
+          {/* Stats — tira compacta para dejar el campo más arriba */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(112px,1fr))", gap: 8, marginTop: 9 }}>
             <Stat label="Presupuesto" value={money(budgetRemaining)} sub={`Coste ${money(spent)}`} bar={pct} barColor={budgetRemaining < 0 ? RED : GOLD} />
             <Stat label="Puntos totales" value={String(team.totalPoints)} sub={`${team.history.length} jornadas`} />
             <Stat label="Plantilla" value={`${ownedIds.size}/15`} sub={validation.ok ? "Válida ✓" : "Incompleta"} valueColor={validation.ok ? GREEN : RED} />
@@ -277,7 +277,7 @@ export default function FantasyGame() {
           </div>
 
           {/* Tabs */}
-          <div style={{ display: "flex", gap: 6, marginTop: 12, overflowX: "auto", paddingBottom: 2 }}>
+          <div style={{ display: "flex", gap: 6, marginTop: 9, overflowX: "auto", paddingBottom: 2 }}>
             {TABS.map((tb) => (
               <button key={tb.id} onClick={() => setTab(tb.id)} style={{ flex: "0 0 auto", padding: "8px 14px", borderRadius: 10, border: "1px solid " + (tab === tb.id ? GOLD : "rgba(255,255,255,0.1)"), background: tab === tb.id ? `linear-gradient(135deg,${GOLD},${GOLD2})` : BG2, color: tab === tb.id ? BG : "#fff", fontWeight: 800, fontSize: 13, cursor: "pointer", whiteSpace: "nowrap" }}>
                 <span style={{ marginRight: 6 }}>{tb.icon}</span>{tb.label}
@@ -356,15 +356,15 @@ function structuredCloneSafe<T>(o: T): T {
 
 function Stat({ label, value, sub, bar, barColor, valueColor }: { label: string; value: string; sub?: string; bar?: number; barColor?: string; valueColor?: string }) {
   return (
-    <div style={{ background: BG2, borderRadius: 12, border: "1px solid rgba(255,255,255,0.06)", padding: "8px 12px" }}>
+    <div style={{ background: BG2, borderRadius: 12, border: "1px solid rgba(255,255,255,0.06)", padding: "6px 11px" }}>
       <div style={{ fontSize: 9, fontWeight: 800, color: DIM, textTransform: "uppercase", letterSpacing: 1 }}>{label}</div>
-      <div style={{ fontSize: 18, fontWeight: 800, color: valueColor ?? "#fff", lineHeight: 1.2 }}>{value}</div>
+      <div style={{ fontSize: 16, fontWeight: 800, color: valueColor ?? "#fff", lineHeight: 1.15 }}>{value}</div>
       {typeof bar === "number" && (
         <div style={{ height: 4, borderRadius: 4, background: "rgba(255,255,255,0.1)", marginTop: 4, overflow: "hidden" }}>
           <div style={{ height: "100%", width: `${bar}%`, background: barColor ?? GOLD, transition: "width .3s" }} />
         </div>
       )}
-      {sub && <div style={{ fontSize: 10, color: MID, marginTop: 3 }}>{sub}</div>}
+      {sub && <div style={{ fontSize: 9.5, color: MID, marginTop: 2 }}>{sub}</div>}
     </div>
   );
 }

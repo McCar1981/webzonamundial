@@ -174,7 +174,7 @@ export default function PrediccionesPage() {
           </p>
 
           <div style={{marginTop:40,display:"flex",gap:16,justifyContent:"center",flexWrap:"wrap"}}>
-            <Link href="/registro" data-hero-cta data-hover-btn style={{
+            <Link href="/app/predicciones/jugar" data-hero-cta data-hover-btn style={{
               padding:"16px 36px",borderRadius:14,
               background:`linear-gradient(135deg,${GOLD},${GOLD2})`,
               color:BG,fontWeight:800,fontSize:16,textDecoration:"none",display:"inline-block",
@@ -364,7 +364,7 @@ export default function PrediccionesPage() {
           <p data-cta-content style={{color:MID,marginBottom:32,fontSize:16}}>
             {pT.ctaDesc}
           </p>
-          <Link href="/registro" data-cta-content data-hover-btn style={{
+          <Link href="/app/predicciones/jugar" data-cta-content data-hover-btn style={{
             padding:"16px 40px",borderRadius:14,
             background:`linear-gradient(135deg,${GOLD},${GOLD2})`,
             color:BG,fontWeight:800,fontSize:16,textDecoration:"none",display:"inline-block",

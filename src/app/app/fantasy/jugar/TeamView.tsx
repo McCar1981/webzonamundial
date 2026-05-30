@@ -3,9 +3,10 @@
 import { useState } from "react";
 import { getPlayerById } from "@/lib/fantasy/players";
 import { POWER_UPS } from "@/lib/fantasy/scoring";
-import type { FantasyTeamState, FormationRule, PowerUp, SquadSlot } from "@/lib/fantasy/types";
+import type { FantasyPlayer, FantasyTeamState, FormationRule, PowerUp, SquadSlot } from "@/lib/fantasy/types";
 import type { TeamValidation } from "@/lib/fantasy/rules";
 import { BG, BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED, money, flagUrl, kitUrl, lastName, POS_COLOR, POS_LABEL } from "./fx";
+import PlayerModal from "./PlayerModal";
 
 interface Props {
   team: FantasyTeamState;
@@ -25,6 +26,7 @@ interface Props {
 
 export default function TeamView({ team, validation, onSlotClickEmpty, onRemove, onCaptain, onVice, onSwap, onSetFormation, onSetPowerUp, onAutoDraft, onReset, formations, wide }: Props) {
   const [menu, setMenu] = useState<string | null>(null);
+  const [detail, setDetail] = useState<FantasyPlayer | null>(null);
 
   const lineSlots = (prefix: string) => team.slots.filter((s) => !s.bench && s.slot.startsWith(prefix));
   const benchSlots = team.slots.filter((s) => s.bench);
@@ -66,7 +68,7 @@ export default function TeamView({ team, validation, onSlotClickEmpty, onRemove,
             {(["GK", "DEF", "MID", "FWD"] as const).map((pref) => (
               <div key={pref} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: 6 }}>
                 {lineSlots(pref).map((s) => (
-                  <SlotCard key={s.slot} slot={s} team={team} menu={menu} setMenu={setMenu} onSlotClickEmpty={onSlotClickEmpty} onRemove={onRemove} onCaptain={onCaptain} onVice={onVice} onSwap={onSwap} compact />
+                  <SlotCard key={s.slot} slot={s} team={team} menu={menu} setMenu={setMenu} onSlotClickEmpty={onSlotClickEmpty} onRemove={onRemove} onCaptain={onCaptain} onVice={onVice} onSwap={onSwap} onProfile={setDetail} compact />
                 ))}
               </div>
             ))}
@@ -79,9 +81,9 @@ export default function TeamView({ team, validation, onSlotClickEmpty, onRemove,
           {/* Capa de jugadores: delanteros arriba (portería rival) → portero abajo (la nuestra). */}
           <div style={{ position: "absolute", inset: 0, padding: "7% 4%", display: "flex", flexDirection: "column", justifyContent: "space-between", zIndex: 2 }}>
             {(["FWD", "MID", "DEF", "GK"] as const).map((pref) => (
-              <div key={pref} style={{ display: "flex", justifyContent: "center", gap: 8, flexWrap: "wrap" }}>
+              <div key={pref} style={{ display: "flex", justifyContent: "center", gap: 6, flexWrap: "wrap" }}>
                 {lineSlots(pref).map((s) => (
-                  <SlotCard key={s.slot} slot={s} team={team} menu={menu} setMenu={setMenu} onSlotClickEmpty={onSlotClickEmpty} onRemove={onRemove} onCaptain={onCaptain} onVice={onVice} onSwap={onSwap} />
+                  <SlotCard key={s.slot} slot={s} team={team} menu={menu} setMenu={setMenu} onSlotClickEmpty={onSlotClickEmpty} onRemove={onRemove} onCaptain={onCaptain} onVice={onVice} onSwap={onSwap} onProfile={setDetail} />
                 ))}
               </div>
             ))}
@@ -94,7 +96,7 @@ export default function TeamView({ team, validation, onSlotClickEmpty, onRemove,
         <div style={{ fontSize: 11, fontWeight: 800, color: DIM, textTransform: "uppercase", letterSpacing: 1, marginBottom: 8 }}>Banquillo</div>
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "center" }}>
           {benchSlots.map((s) => (
-            <SlotCard key={s.slot} slot={s} team={team} menu={menu} setMenu={setMenu} onSlotClickEmpty={onSlotClickEmpty} onRemove={onRemove} onCaptain={onCaptain} onVice={onVice} onSwap={onSwap} bench />
+            <SlotCard key={s.slot} slot={s} team={team} menu={menu} setMenu={setMenu} onSlotClickEmpty={onSlotClickEmpty} onRemove={onRemove} onCaptain={onCaptain} onVice={onVice} onSwap={onSwap} onProfile={setDetail} bench />
           ))}
         </div>
       </div>
@@ -115,6 +117,9 @@ export default function TeamView({ team, validation, onSlotClickEmpty, onRemove,
           })}
         </div>
       </div>
+
+      {/* Ficha del jugador (reutiliza el modal del Mercado). */}
+      {detail && <PlayerModal players={[detail]} onClose={() => setDetail(null)} />}
     </div>
   );
 }
@@ -242,7 +247,7 @@ function PitchSVG({ orientation }: { orientation: "v" | "h" }) {
   );
 }
 
-function SlotCard({ slot, team, menu, setMenu, onSlotClickEmpty, onRemove, onCaptain, onVice, onSwap, bench, compact }: { slot: SquadSlot; team: FantasyTeamState; menu: string | null; setMenu: (s: string | null) => void; onSlotClickEmpty: (id: string) => void; onRemove: (id: string) => void; onCaptain: (id: string) => void; onVice: (id: string) => void; onSwap: (a: string, b: string) => void; bench?: boolean; compact?: boolean }) {
+function SlotCard({ slot, team, menu, setMenu, onSlotClickEmpty, onRemove, onCaptain, onVice, onSwap, onProfile, bench, compact }: { slot: SquadSlot; team: FantasyTeamState; menu: string | null; setMenu: (s: string | null) => void; onSlotClickEmpty: (id: string) => void; onRemove: (id: string) => void; onCaptain: (id: string) => void; onVice: (id: string) => void; onSwap: (a: string, b: string) => void; onProfile: (p: FantasyPlayer) => void; bench?: boolean; compact?: boolean }) {
   const p = slot.playerId ? getPlayerById(slot.playerId) : null;
   const isCap = p && team.captainId === p.id;
   const isVice = p && team.viceId === p.id;
@@ -263,14 +268,14 @@ function SlotCard({ slot, team, menu, setMenu, onSlotClickEmpty, onRemove, onCap
   const overRing = over ? GREEN : null;
 
   // Tamaños: normal (móvil/banquillo) vs compacto (campo horizontal de escritorio).
-  const W = compact ? 60 : 78;
-  const K = compact ? 34 : 46;
-  const nameFs = compact ? 9.5 : 11;
-  const priceFs = compact ? 8 : 9;
+  const W = compact ? 78 : 86;
+  const K = compact ? 48 : 52;
+  const nameFs = compact ? 11 : 12;
+  const priceFs = compact ? 9.5 : 10.5;
 
   if (!p) {
     return (
-      <button {...dropProps} onClick={() => onSlotClickEmpty(slot.slot)} style={{ width: W, height: compact ? 70 : 92, borderRadius: compact ? 10 : 12, border: "2px dashed " + (overRing ?? "rgba(255,255,255,0.3)"), background: over ? `${GREEN}1a` : "rgba(0,0,0,0.22)", color: "#fff", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 4 }}>
+      <button {...dropProps} onClick={() => onSlotClickEmpty(slot.slot)} style={{ width: W, height: compact ? 88 : 112, borderRadius: compact ? 10 : 12, border: "2px dashed " + (overRing ?? "rgba(255,255,255,0.3)"), background: over ? `${GREEN}1a` : "rgba(0,0,0,0.22)", color: "#fff", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 4 }}>
         <span style={{ fontSize: compact ? 18 : 22, color: GOLD2 }}>+</span>
         <span style={{ fontSize: compact ? 9 : 10, fontWeight: 800, color: POS_COLOR[slot.pos] }}>{bench ? (slot.pos === "GK" ? "POR" : "SUP") : POS_LABEL[slot.pos]}</span>
       </button>
@@ -295,6 +300,7 @@ function SlotCard({ slot, team, menu, setMenu, onSlotClickEmpty, onRemove, onCap
 
       {open && (
         <div style={{ position: "absolute", top: "calc(100% + 4px)", left: "50%", transform: "translateX(-50%)", zIndex: 10, background: BG2, border: "1px solid rgba(255,255,255,0.14)", borderRadius: 10, padding: 6, display: "flex", flexDirection: "column", gap: 4, minWidth: 110, boxShadow: "0 10px 24px rgba(0,0,0,0.5)" }}>
+          <MenuBtn label="📋 Ver ficha" onClick={() => { onProfile(p); setMenu(null); }} />
           {!bench && <MenuBtn label="⭐ Capitán" onClick={() => { onCaptain(p.id); setMenu(null); }} />}
           {!bench && <MenuBtn label="🅥 Vice-capitán" onClick={() => { onVice(p.id); setMenu(null); }} />}
           <MenuBtn label="🗑️ Quitar" danger onClick={() => { onRemove(slot.slot); setMenu(null); }} />

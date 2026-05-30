@@ -32,12 +32,6 @@ const FANTASY_BG =
   "radial-gradient(1400px 760px at 50% 110%, rgba(20,150,86,0.34), transparent 60%)," + // verde césped al pie
   "linear-gradient(180deg, #0b1a30 0%, #091324 50%, #060c18 100%)"; // base azul noche
 
-// Variante clara para escritorio (en prueba): fondo blanco/limpio que hace
-// resaltar el campo neón. Se aplica solo en pantallas anchas.
-const FANTASY_BG_LIGHT =
-  "radial-gradient(1100px 560px at 50% -4%, rgba(201,168,76,0.12), transparent 60%)," +
-  "linear-gradient(180deg, #ffffff 0%, #eef2f7 60%, #e6ebf2 100%)";
-
 type Tab = "equipo" | "mercado" | "vivo" | "ligas" | "coach";
 
 const TABS: { id: Tab; label: string; icon: string }[] = [
@@ -253,7 +247,7 @@ export default function FantasyGame() {
   const pct = Math.min(100, (spent / BUDGET) * 100);
 
   return (
-    <div style={{ background: isWide ? FANTASY_BG_LIGHT : FANTASY_BG, backgroundAttachment: "fixed", color: isWide ? "#0b1a30" : "#fff", fontFamily: "'Outfit',sans-serif", minHeight: "100vh", position: "relative" }}>
+    <div style={{ background: FANTASY_BG, backgroundAttachment: "fixed", color: "#fff", fontFamily: "'Outfit',sans-serif", minHeight: "100vh", position: "relative" }}>
       {/* Ambiente de noche de estadio: focos dorados, halo de césped y degradado profundo */}
       {/* Header */}
       <div style={{ position: "sticky", top: 0, zIndex: 20, background: `${BG}f2`, backdropFilter: "blur(10px)", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
@@ -262,8 +256,9 @@ export default function FantasyGame() {
             <Link href="/app/fantasy" style={{ color: MID, textDecoration: "none", fontSize: 13, fontWeight: 700 }}>← Fantasy</Link>
             <input
               value={team.teamName}
+              placeholder="Nombra tu equipo ✏️"
               onChange={(e) => update((t) => ({ ...t, teamName: e.target.value.slice(0, 40) }))}
-              style={{ flex: "1 1 160px", minWidth: 120, background: "transparent", border: "none", borderBottom: "1px dashed rgba(255,255,255,0.15)", color: "#fff", fontSize: 17, fontWeight: 800, padding: "3px 2px", outline: "none" }}
+              style={{ flex: "1 1 160px", minWidth: 120, background: "transparent", border: "none", borderBottom: "1px dashed rgba(255,255,255,0.22)", color: "#fff", fontSize: 17, fontWeight: 800, padding: "3px 2px", outline: "none" }}
             />
             <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: 1, color: GOLD, textTransform: "uppercase" }}>Jornada {team.gameweek}/7</span>
           </div>
@@ -273,13 +268,13 @@ export default function FantasyGame() {
             <Stat label="Presupuesto" value={money(budgetRemaining)} sub={`Coste ${money(spent)}`} bar={pct} barColor={budgetRemaining < 0 ? RED : GOLD} />
             <Stat label="Puntos totales" value={String(team.totalPoints)} sub={`${team.history.length} jornadas`} />
             <Stat label="Plantilla" value={`${ownedIds.size}/15`} sub={validation.ok ? "Válida ✓" : "Incompleta"} valueColor={validation.ok ? GREEN : RED} />
-            <Stat label="Capitán" value={team.captainId ? short(getPlayerById(team.captainId)?.name) : "—"} sub={team.viceId ? `V: ${short(getPlayerById(team.viceId)?.name)}` : "sin vice"} />
+            <Stat label="Capitán" value={team.captainId ? short(getPlayerById(team.captainId)?.name) : "—"} sub={team.captainId ? (team.viceId ? `V: ${short(getPlayerById(team.viceId)?.name)}` : "sin vice") : "Toca ⭐ en un jugador"} valueColor={team.captainId ? undefined : GOLD2} />
           </div>
 
-          {/* Tabs */}
-          <div style={{ display: "flex", gap: 6, marginTop: 9, overflowX: "auto", paddingBottom: 2 }}>
+          {/* Tabs — fundido a la derecha en móvil para insinuar que hay más */}
+          <div style={{ display: "flex", gap: 6, marginTop: 9, overflowX: "auto", paddingBottom: 2, WebkitMaskImage: isWide ? undefined : "linear-gradient(90deg,#000 90%,transparent)", maskImage: isWide ? undefined : "linear-gradient(90deg,#000 90%,transparent)" }}>
             {TABS.map((tb) => (
-              <button key={tb.id} onClick={() => setTab(tb.id)} style={{ flex: "0 0 auto", padding: "8px 14px", borderRadius: 10, border: "1px solid " + (tab === tb.id ? GOLD : "rgba(255,255,255,0.1)"), background: tab === tb.id ? `linear-gradient(135deg,${GOLD},${GOLD2})` : BG2, color: tab === tb.id ? BG : "#fff", fontWeight: 800, fontSize: 13, cursor: "pointer", whiteSpace: "nowrap" }}>
+              <button key={tb.id} onClick={() => setTab(tb.id)} style={{ flex: "0 0 auto", padding: "9px 14px", borderRadius: 10, border: "1px solid " + (tab === tb.id ? GOLD : "rgba(255,255,255,0.1)"), background: tab === tb.id ? `linear-gradient(135deg,${GOLD},${GOLD2})` : BG2, color: tab === tb.id ? BG : "#fff", fontWeight: 800, fontSize: 13, cursor: "pointer", whiteSpace: "nowrap" }}>
                 <span style={{ marginRight: 6 }}>{tb.icon}</span>{tb.label}
               </button>
             ))}

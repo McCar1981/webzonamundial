@@ -8,8 +8,8 @@ export const BG2 = "#0F1D32";
 export const BG3 = "#0B1825";
 export const GOLD = "#c9a84c";
 export const GOLD2 = "#e8d48b";
-export const MID = "#8a94b0";
-export const DIM = "#6a7a9a";
+export const MID = "#9aa4be";
+export const DIM = "#7f8cac"; // aclarado para cumplir contraste AA sobre el fondo oscuro
 export const GREEN = "#22c55e";
 export const RED = "#ef4444";
 

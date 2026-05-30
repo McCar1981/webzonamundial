@@ -33,7 +33,7 @@ export default function TeamView({ team, validation, onSlotClickEmpty, onRemove,
 
   // Botón de formación (reutilizado en escritorio y móvil).
   const fButton = (f: FormationRule) => (
-    <button key={f.code} onClick={() => onSetFormation(f.code)} title={f.estilo} style={{ flex: "0 0 auto", padding: "6px 10px", borderRadius: 8, border: "1px solid " + (team.formation === f.code ? GOLD : "rgba(255,255,255,0.12)"), background: team.formation === f.code ? `${GOLD}22` : BG2, color: team.formation === f.code ? GOLD2 : "#fff", fontWeight: 800, fontSize: 12, cursor: "pointer", whiteSpace: "nowrap" }}>{f.code}</button>
+    <button key={f.code} onClick={() => onSetFormation(f.code)} title={f.estilo} style={{ flex: "0 0 auto", minHeight: 40, padding: "8px 13px", borderRadius: 8, border: "1px solid " + (team.formation === f.code ? GOLD : "rgba(255,255,255,0.12)"), background: team.formation === f.code ? `${GOLD}22` : BG2, color: team.formation === f.code ? GOLD2 : "#fff", fontWeight: 800, fontSize: 12, cursor: "pointer", whiteSpace: "nowrap" }}>{f.code}</button>
   );
   const lblStyle: React.CSSProperties = { flex: "0 0 auto", fontSize: 11, fontWeight: 800, color: DIM, textTransform: "uppercase", letterSpacing: 1 };
 
@@ -87,18 +87,21 @@ export default function TeamView({ team, validation, onSlotClickEmpty, onRemove,
           Móvil → vertical (porterías arriba/abajo).
           Las columnas/filas usan flex, así que soportan cualquier formación (1–5 por línea). */}
       {wide ? (
-        <div style={{ maxWidth: 980, margin: "0 auto", position: "relative", aspectRatio: "900 / 560", borderRadius: 18, overflow: "hidden", boxShadow: "0 18px 50px rgba(0,0,0,0.45), inset 0 0 0 1px rgba(125,255,206,0.12)", animation: "zmRise .5s ease both" }}>
-          <PitchSVG orientation="h" />
+        // Panel blanco bajo el campo → mismo "héroe" que en móvil, máximo contraste.
+        <div style={{ maxWidth: 1000, margin: "0 auto", padding: 12, borderRadius: 20, background: "linear-gradient(180deg,#ffffff 0%,#e9eff7 100%)", animation: "zmRise .5s ease both, zmFieldGlow 6s ease-in-out infinite .6s" }}>
+          <div style={{ position: "relative", aspectRatio: "900 / 560", borderRadius: 14, overflow: "hidden", boxShadow: "inset 0 0 0 1px rgba(125,255,206,0.14)" }}>
+            <PitchSVG orientation="h" />
 
-          {/* Capa de jugadores DENTRO del césped: portero a la izquierda → delanteros a la derecha. */}
-          <div style={{ position: "absolute", inset: 0, padding: "6% 8%", display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "stretch", zIndex: 2 }}>
-            {(["GK", "DEF", "MID", "FWD"] as const).map((pref, li) => (
-              <div key={pref} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: 6 }}>
-                {lineSlots(pref).map((s, i) => (
-                  <SlotCard key={s.slot} slot={s} team={team} menu={menu} setMenu={setMenu} onSlotClickEmpty={onSlotClickEmpty} onRemove={onRemove} onCaptain={onCaptain} onVice={onVice} onSwap={onSwap} onProfile={setDetail} delay={(li * 3 + i) * 40} compact />
-                ))}
-              </div>
-            ))}
+            {/* Capa de jugadores DENTRO del césped: portero a la izquierda → delanteros a la derecha. */}
+            <div style={{ position: "absolute", inset: 0, padding: "6% 8%", display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "stretch", zIndex: 2 }}>
+              {(["GK", "DEF", "MID", "FWD"] as const).map((pref, li) => (
+                <div key={pref} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: 6 }}>
+                  {lineSlots(pref).map((s, i) => (
+                    <SlotCard key={s.slot} slot={s} team={team} menu={menu} setMenu={setMenu} onSlotClickEmpty={onSlotClickEmpty} onRemove={onRemove} onCaptain={onCaptain} onVice={onVice} onSwap={onSwap} onProfile={setDetail} delay={(li * 3 + i) * 40} compact />
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       ) : (

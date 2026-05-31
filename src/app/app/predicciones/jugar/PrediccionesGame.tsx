@@ -11,6 +11,10 @@ import { etToDate } from "@/lib/bracket/match-time";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import GamificationHUD from "./GamificationHUD";
 import {
+  TYPE_ICON, TIER_ICON,
+  ArrowLeft, Check, Clock, Flame, Gem, Pencil, Sparkles, TrendingUp, Trophy, Users, X,
+} from "./icons";
+import {
   MINUTE_RANGES,
   PREDICTION_TYPES,
   TYPE_META,
@@ -33,14 +37,19 @@ const flagUrl = (code: string) => `https://flagcdn.com/w40/${code}.png`;
 
 // ─── Multiplicador "Modo Underdog" (mismo criterio que el backend) ───────────
 const byFlag = new Map(SELECCIONES.map((s) => [s.flagCode, s]));
-function tierOf(m: Match): { multiplier: number; label: string; emoji: string } {
+const TIER_COLOR: Record<string, string> = { Estelar: GREEN, Bronce: "#cd7f32", Oro: GOLD, Diamante: "#38bdf8" };
+function tierOf(m: Match): { multiplier: number; label: string } {
   const a = byFlag.get(m.hf)?.rankingFIFA ?? 90;
   const b = byFlag.get(m.af)?.rankingFIFA ?? 90;
   const gap = Math.abs(a - b);
-  if (gap >= 75) return { multiplier: 2.0, label: "Diamante", emoji: "💎" };
-  if (gap >= 40) return { multiplier: 1.5, label: "Oro", emoji: "🟡" };
-  if (gap >= 15) return { multiplier: 1.25, label: "Bronce", emoji: "🟠" };
-  return { multiplier: 1.0, label: "Estelar", emoji: "🟢" };
+  if (gap >= 75) return { multiplier: 2.0, label: "Diamante" };
+  if (gap >= 40) return { multiplier: 1.5, label: "Oro" };
+  if (gap >= 15) return { multiplier: 1.25, label: "Bronce" };
+  return { multiplier: 1.0, label: "Estelar" };
+}
+function TierIcon({ label, size = 16 }: { label: string; size?: number }) {
+  const Icon = TIER_ICON[label] ?? TIER_ICON.Estelar;
+  return <Icon size={size} color={TIER_COLOR[label]} fill={label === "Estelar" ? TIER_COLOR[label] : "none"} />;
 }
 
 const fmtKickoff = (m: Match): string => {
@@ -194,7 +203,7 @@ export default function PrediccionesGame() {
     const json = await res.json().catch(() => ({}));
     if (res.ok) {
       setEditing((prev) => { const next = new Set(prev); next.delete(type); return next; });
-      setToast({ kind: "ok", msg: `${existing ? "Predicción actualizada" : "¡Predicción guardada!"} ${TYPE_META[type].emoji} ${TYPE_META[type].label}` });
+      setToast({ kind: "ok", msg: `${existing ? "Predicción actualizada" : "¡Predicción guardada!"} · ${TYPE_META[type].label}` });
       await loadMatch(matchId);
     } else {
       setToast({ kind: "err", msg: json.message || json.error || "No se pudo guardar la predicción" });
@@ -205,7 +214,7 @@ export default function PrediccionesGame() {
     return (
       <Shell>
         <div style={{ textAlign: "center", padding: "80px 20px", maxWidth: 520, margin: "0 auto" }}>
-          <div style={{ fontSize: 56 }}>🔮</div>
+          <Sparkles size={56} color={GOLD} style={{ display: "inline-block" }} />
           <h1 style={{ fontSize: 28, fontWeight: 900, marginTop: 12 }}>Predicciones del Mundial</h1>
           <p style={{ color: MID, marginTop: 12, lineHeight: 1.6 }}>
             Inicia sesión para predecir resultados, goleadores, duelos y mucho más. Acumula puntos y escala en el ranking.
@@ -222,12 +231,14 @@ export default function PrediccionesGame() {
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 8 }}>
           <div>
             <span style={{ color: GOLD, fontSize: 11, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase" }}>ZonaMundial</span>
-            <h1 style={{ fontSize: 26, fontWeight: 900, lineHeight: 1.1 }}>🔮 Predicciones</h1>
+            <h1 style={{ fontSize: 26, fontWeight: 900, lineHeight: 1.1, display: "flex", alignItems: "center", gap: 8 }}>
+              <Sparkles size={24} color={GOLD2} /> Predicciones
+            </h1>
           </div>
           <div style={{ display: "flex", gap: 8 }}>
-            <Link href="/app/predicciones/jugar/ranking" style={pillLink}>🏆 Ranking</Link>
-            <Link href="/app/predicciones/jugar/ligas" style={pillLink}>👥 Ligas</Link>
-            <Link href="/app/predicciones/jugar/stats" style={pillLink}>📈 Mis stats</Link>
+            <Link href="/app/predicciones/jugar/ranking" style={pillLink}><Trophy size={14} /> Ranking</Link>
+            <Link href="/app/predicciones/jugar/ligas" style={pillLink}><Users size={14} /> Ligas</Link>
+            <Link href="/app/predicciones/jugar/stats" style={pillLink}><TrendingUp size={14} /> Mis stats</Link>
           </div>
         </div>
       </header>
@@ -252,7 +263,7 @@ export default function PrediccionesGame() {
               fontWeight: 700, fontSize: 14, padding: "9px 16px", marginBottom: 14,
             }}
           >
-            ← Volver a los partidos
+            <ArrowLeft size={16} /> Volver a los partidos
           </button>
           <MatchHeader m={selectedMatch} state={state} />
           {loading && !state && <p style={{ color: DIM, textAlign: "center", padding: 24 }}>Cargando predicciones…</p>}
@@ -271,9 +282,9 @@ export default function PrediccionesGame() {
                       {isEditing && (
                         <button
                           onClick={() => setEditing((prev) => { const n = new Set(prev); n.delete(type); return n; })}
-                          style={{ background: "none", border: "none", color: DIM, cursor: "pointer", fontSize: 12, marginBottom: 8, padding: 0 }}
+                          style={{ background: "none", border: "none", color: DIM, cursor: "pointer", fontSize: 12, marginBottom: 8, padding: 0, display: "inline-flex", alignItems: "center", gap: 4 }}
                         >
-                          ✕ Cancelar edición
+                          <X size={13} /> Cancelar edición
                         </button>
                       )}
                       <TypeForm
@@ -357,8 +368,8 @@ function MatchBoard({ matches, onPick }: { matches: Match[]; onPick: (id: string
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 7 }}>
                       <span style={{ fontSize: 10, color: DIM }}>{fmtKickoff(m)}</span>
                       {t.multiplier > 1
-                        ? <span style={{ fontSize: 10, fontWeight: 700, color: GOLD }}>{t.emoji} ×{t.multiplier.toFixed(2)}</span>
-                        : <span title={t.label} style={{ fontSize: 12 }}>{t.emoji}</span>}
+                        ? <span style={{ fontSize: 10, fontWeight: 700, color: GOLD, display: "inline-flex", alignItems: "center", gap: 3 }}><TierIcon label={t.label} size={13} /> ×{t.multiplier.toFixed(2)}</span>
+                        : <span title={t.label} style={{ display: "inline-flex" }}><TierIcon label={t.label} size={14} /></span>}
                     </div>
                     <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 5 }}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -384,10 +395,10 @@ function MatchBoard({ matches, onPick }: { matches: Match[]; onPick: (id: string
 // ─── Estado vacío: showcase de los 8 tipos + Modo Underdog ───────────────────
 function EmptyShowcase() {
   const tiers = [
-    { emoji: "🟢", label: "Estelar", mult: "×1.0", desc: "Favorito claro", color: GREEN },
-    { emoji: "🟠", label: "Bronce", mult: "×1.25", desc: "Brecha media", color: "#cd7f32" },
-    { emoji: "🟡", label: "Oro", mult: "×1.5", desc: "Sorpresa probable", color: GOLD },
-    { emoji: "💎", label: "Diamante", mult: "×2.0", desc: "Batacazo histórico", color: "#38bdf8" },
+    { label: "Estelar", mult: "×1.0", desc: "Favorito claro", color: GREEN },
+    { label: "Bronce", mult: "×1.25", desc: "Brecha media", color: "#cd7f32" },
+    { label: "Oro", mult: "×1.5", desc: "Sorpresa probable", color: GOLD },
+    { label: "Diamante", mult: "×2.0", desc: "Batacazo histórico", color: "#38bdf8" },
   ];
   return (
     <section style={{ maxWidth: 1100, margin: "0 auto", padding: "16px 16px 60px" }}>
@@ -411,13 +422,14 @@ function EmptyShowcase() {
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(240px,1fr))", gap: 14, marginBottom: 32 }}>
         {PREDICTION_TYPES.map((type) => {
           const meta = TYPE_META[type];
+          const TypeIcon = TYPE_ICON[type];
           return (
             <div key={type} style={{
               background: BG2, border: CARD_BORDER, borderRadius: 14, padding: 16,
               borderTop: `2px solid ${meta.color}`,
             }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
-                <span style={{ fontSize: 22 }}>{meta.emoji}</span>
+                <TypeIcon size={22} color={meta.color} />
                 <span style={{ fontSize: 15, fontWeight: 700, color: "#fff" }}>{meta.label}</span>
               </div>
               <p style={{ fontSize: 12.5, color: MID, lineHeight: 1.45, margin: "0 0 10px", minHeight: 36 }}>{meta.blurb}</p>
@@ -434,7 +446,9 @@ function EmptyShowcase() {
         })}
       </div>
 
-      <h3 style={{ fontSize: 14, fontWeight: 700, color: MID, marginBottom: 4 }}>Modo Underdog 💎</h3>
+      <h3 style={{ fontSize: 14, fontWeight: 700, color: MID, marginBottom: 4, display: "flex", alignItems: "center", gap: 6 }}>
+        Modo Underdog <Gem size={15} color="#38bdf8" />
+      </h3>
       <p style={{ fontSize: 12.5, color: DIM, marginBottom: 12 }}>
         Cuanto mayor sea la diferencia de ranking FIFA entre los equipos, mayor el multiplicador de puntos por acertar.
       </p>
@@ -444,7 +458,7 @@ function EmptyShowcase() {
             background: BG2, border: CARD_BORDER, borderRadius: 14, padding: "14px 16px",
             display: "flex", alignItems: "center", gap: 12,
           }}>
-            <span style={{ fontSize: 26 }}>{t.emoji}</span>
+            <TierIcon label={t.label} size={26} />
             <div>
               <div style={{ fontSize: 15, fontWeight: 800, color: t.color }}>{t.label} <span style={{ color: "#fff" }}>{t.mult}</span></div>
               <div style={{ fontSize: 11.5, color: MID }}>{t.desc}</div>
@@ -470,7 +484,7 @@ function MatchHeader({ m, state }: { m: Match; state: MatchState | null }) {
       </div>
       <div style={{ display: "flex", justifyContent: "center", gap: 8, marginTop: 10, flexWrap: "wrap" }}>
         <Badge>{m.vc} · {fmtKickoff(m)}</Badge>
-        <Badge>{t.emoji} {t.label} ×{t.multiplier.toFixed(2)}</Badge>
+        <Badge><TierIcon label={t.label} size={13} /> {t.label} ×{t.multiplier.toFixed(2)}</Badge>
         {close && <Badge>Cierra {close.toLocaleString("es", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" })}</Badge>}
       </div>
       <div style={{ marginTop: 12 }}>
@@ -497,16 +511,17 @@ function TeamTag({ flag, name, right }: { flag: string; name: string; right?: bo
 }
 
 function Badge({ children }: { children: React.ReactNode }) {
-  return <span style={{ fontSize: 11, fontWeight: 600, color: MID, background: "rgba(255,255,255,0.05)", border: CARD_BORDER, borderRadius: 20, padding: "4px 10px" }}>{children}</span>;
+  return <span style={{ fontSize: 11, fontWeight: 600, color: MID, background: "rgba(255,255,255,0.05)", border: CARD_BORDER, borderRadius: 20, padding: "4px 10px", display: "inline-flex", alignItems: "center", gap: 4 }}>{children}</span>;
 }
 
 function TypeCard({ type, mult, children }: { type: PredictionType; mult: number; children: React.ReactNode }) {
   const meta = TYPE_META[type];
+  const TypeIcon = TYPE_ICON[type];
   const maxPts = Math.round(meta.maxPoints * mult);
   return (
     <div style={{ background: BG3, border: CARD_BORDER, borderRadius: 16, padding: 16, borderTop: `3px solid ${meta.color}` }}>
       <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6 }}>
-        <span style={{ fontSize: 22 }}>{meta.emoji}</span>
+        <TypeIcon size={22} color={meta.color} />
         <div style={{ flex: 1 }}>
           <h3 style={{ fontWeight: 800, fontSize: 15 }}>{meta.label}</h3>
           <span style={{ fontSize: 11, color: DIM }}>Dificultad: {meta.difficulty}</span>
@@ -529,7 +544,10 @@ function CompletedView({ p, type, scorers, duels, onEdit }: { p: MatchPrediction
   return (
     <div style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${color}40`, borderRadius: 12, padding: 12 }}>
       <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-        <span style={{ color, fontWeight: 800, fontSize: 13 }}>{resolved ? (p.is_correct ? "✓ Acertaste" : "✗ Fallaste") : "✓ Enviada"}</span>
+        <span style={{ color, fontWeight: 800, fontSize: 13, display: "inline-flex", alignItems: "center", gap: 4 }}>
+          {resolved && !p.is_correct ? <X size={14} /> : <Check size={14} />}
+          {resolved ? (p.is_correct ? "Acertaste" : "Fallaste") : "Enviada"}
+        </span>
         {resolved && <span style={{ marginLeft: "auto", fontWeight: 800, color }}>{(p.points_earned ?? 0) > 0 ? "+" : ""}{p.points_earned ?? 0} pts</span>}
       </div>
       <div style={{ fontSize: 13, color: MID, marginTop: 6 }}>{summary}</div>
@@ -539,9 +557,10 @@ function CompletedView({ p, type, scorers, duels, onEdit }: { p: MatchPrediction
           style={{
             marginTop: 10, width: "100%", padding: "8px", borderRadius: 8, cursor: "pointer",
             background: "rgba(201,168,76,0.12)", border: `1px solid ${GOLD}55`, color: GOLD2, fontWeight: 700, fontSize: 13,
+            display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 6,
           }}
         >
-          ✏️ Editar predicción
+          <Pencil size={13} /> Editar predicción
         </button>
       )}
     </div>
@@ -562,7 +581,7 @@ function summarize(type: PredictionType, p: MatchPrediction, scorers: ScorerCand
     }
     case "over_under": return `${CATEGORY_LABEL[d.category as OverUnderCategory]}: ${d.choice === "over" ? "Más de" : "Menos de"} ${d.line}`;
     case "minute_drama": return d.no_event ? `${DRAMA_LABEL[d.event as DramaEvent]}: no ocurre` : `${DRAMA_LABEL[d.event as DramaEvent]}: ${d.minute_range}'`;
-    case "social": return `${d.choice} ${p.is_contrarian ? "(contrarian 🔥)" : "(con la manada)"}`;
+    case "social": return `${d.choice} ${p.is_contrarian ? "(contrarian)" : "(con la manada)"}`;
     default: return "Predicción enviada";
   }
 }
@@ -672,8 +691,8 @@ function FirstScorerForm({ scorers, pendingTeams, init, editLabel, onSubmit }: {
   return (
     <div>
       {pendingTeams.length > 0 && (
-        <p style={{ fontSize: 11.5, color: GOLD, background: "rgba(201,168,76,0.10)", border: `1px solid ${GOLD}40`, borderRadius: 8, padding: "7px 10px", marginBottom: 8, lineHeight: 1.4 }}>
-          ⏳ {pendingTeams.join(" y ")} {pendingTeams.length > 1 ? "aún no han" : "aún no ha"} anunciado convocatoria definitiva. Sus jugadores aparecerán cuando se confirme la lista.
+        <p style={{ fontSize: 11.5, color: GOLD, background: "rgba(201,168,76,0.10)", border: `1px solid ${GOLD}40`, borderRadius: 8, padding: "7px 10px", marginBottom: 8, lineHeight: 1.4, display: "flex", gap: 6 }}>
+          <Clock size={14} style={{ flexShrink: 0, marginTop: 1 }} /> <span>{pendingTeams.join(" y ")} {pendingTeams.length > 1 ? "aún no han" : "aún no ha"} anunciado convocatoria definitiva. Sus jugadores aparecerán cuando se confirme la lista.</span>
         </p>
       )}
       <select value={noGoals ? "" : playerId} disabled={noGoals || scorers.length === 0} onChange={(e) => setPlayerId(e.target.value)} style={inputStyle}>
@@ -849,8 +868,8 @@ function SocialForm({ match, social, init, editLabel, onSubmit }: { match: Match
         );
       })}
       {choice && (
-        <div style={{ fontSize: 11, color: chosenPct < 50 ? GOLD : MID, marginTop: 4 }}>
-          {chosenPct < 50 ? "🔥 Vas contra la manada: más puntos si aciertas" : "Vas con la mayoría"}
+        <div style={{ fontSize: 11, color: chosenPct < 50 ? GOLD : MID, marginTop: 4, display: "flex", alignItems: "center", gap: 4 }}>
+          {chosenPct < 50 ? <><Flame size={13} /> Vas contra la manada: más puntos si aciertas</> : "Vas con la mayoría"}
         </div>
       )}
       <button disabled={busy || !choice} style={{ ...btnPrimary, opacity: choice ? 1 : 0.5 }}
@@ -867,5 +886,5 @@ const ctaStyle: React.CSSProperties = {
 };
 const pillLink: React.CSSProperties = {
   fontSize: 12, fontWeight: 700, color: MID, textDecoration: "none", background: BG2, border: CARD_BORDER,
-  borderRadius: 20, padding: "6px 12px",
+  borderRadius: 20, padding: "6px 12px", display: "inline-flex", alignItems: "center", gap: 5,
 };

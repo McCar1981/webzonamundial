@@ -4,6 +4,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
+import { ArrowLeft, Swords, Users } from "../icons";
 
 const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825";
 const GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a", GREEN = "#22c55e";
@@ -42,7 +43,7 @@ export default function LigasPage() {
     setBusy(true);
     try {
       const r = await fetch("/api/predictions/leagues", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name }) });
-      if (r.ok) { setName(""); setToast("✅ Liga creada"); await loadLeagues(); } else setToast("No se pudo crear");
+      if (r.ok) { setName(""); setToast("Liga creada"); await loadLeagues(); } else setToast("No se pudo crear");
     } finally { setBusy(false); }
   }, [name, loadLeagues]);
 
@@ -52,7 +53,7 @@ export default function LigasPage() {
     try {
       const r = await fetch("/api/predictions/leagues", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ code }) });
       const j = await r.json().catch(() => ({}));
-      if (r.ok) { setCode(""); setToast("✅ Te uniste a la liga"); await loadLeagues(); } else setToast(j.error === "league_not_found" ? "Código no encontrado" : "No se pudo unir");
+      if (r.ok) { setCode(""); setToast("Te uniste a la liga"); await loadLeagues(); } else setToast(j.error === "league_not_found" ? "Código no encontrado" : "No se pudo unir");
     } finally { setBusy(false); }
   }, [code, loadLeagues]);
 
@@ -71,7 +72,7 @@ export default function LigasPage() {
     try {
       const r = await fetch("/api/predictions/duels", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ opponent: oppName, match_id: duelMatch }) });
       const j = await r.json().catch(() => ({}));
-      if (r.ok) { setOppName(""); setDuelMatch(""); setToast("⚔️ Reto enviado"); await loadDuels(); } else setToast(j.error === "opponent_not_found" ? "Usuario no encontrado" : "No se pudo retar");
+      if (r.ok) { setOppName(""); setDuelMatch(""); setToast("Reto enviado"); await loadDuels(); } else setToast(j.error === "opponent_not_found" ? "Usuario no encontrado" : "No se pudo retar");
     } finally { setBusy(false); }
   }, [oppName, duelMatch, loadDuels]);
 
@@ -79,7 +80,7 @@ export default function LigasPage() {
     setBusy(true);
     try {
       const r = await fetch("/api/predictions/duels", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ duel_id: duelId, accept }) });
-      if (r.ok) { setToast(accept ? "✅ Duelo aceptado" : "Duelo rechazado"); await loadDuels(); }
+      if (r.ok) { setToast(accept ? "Duelo aceptado" : "Duelo rechazado"); await loadDuels(); }
     } finally { setBusy(false); }
   }, [loadDuels]);
 
@@ -89,8 +90,8 @@ export default function LigasPage() {
   return (
     <div style={{ background: BG, color: "#fff", fontFamily: "'Outfit',sans-serif", minHeight: "100vh", padding: "20px 16px 60px" }}>
       <div style={{ maxWidth: 720, margin: "0 auto" }}>
-        <Link href="/app/predicciones/jugar" style={{ color: MID, fontSize: 13, textDecoration: "none" }}>← Volver</Link>
-        <h1 style={{ fontSize: 26, fontWeight: 900, marginTop: 8 }}>👥 Ligas y Duelos</h1>
+        <Link href="/app/predicciones/jugar" style={{ color: MID, fontSize: 13, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 4 }}><ArrowLeft size={14} /> Volver</Link>
+        <h1 style={{ fontSize: 26, fontWeight: 900, marginTop: 8, display: "flex", alignItems: "center", gap: 8 }}><Users size={24} color={GOLD2} /> Ligas y Duelos</h1>
 
         {/* Crear / unirse */}
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 16 }}>
@@ -145,7 +146,7 @@ export default function LigasPage() {
         )}
 
         {/* Duelos 1v1 */}
-        <h2 style={{ fontSize: 18, fontWeight: 900, marginTop: 28 }}>⚔️ Duelos 1v1</h2>
+        <h2 style={{ fontSize: 18, fontWeight: 900, marginTop: 28, display: "flex", alignItems: "center", gap: 8 }}><Swords size={20} color={GOLD2} /> Duelos 1v1</h2>
         <div style={{ background: BG2, border: CARD_BORDER, borderRadius: 12, padding: 14, marginTop: 10 }}>
           <div style={{ fontWeight: 800, marginBottom: 8 }}>Retar a alguien</div>
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>

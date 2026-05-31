@@ -5,6 +5,11 @@
 // Self-contained: se monta en la cabecera del módulo y consume /api/predictions/me.
 
 import { useCallback, useEffect, useState } from "react";
+import type { LucideIcon } from "lucide-react";
+import {
+  ACHIEVEMENT_ICON, BOOST_ICON, CHALLENGE_ICON,
+  CheckCircle2, Coins, Flame, Gift, Medal, ShoppingCart,
+} from "./icons";
 
 const BG2 = "#0F1D32", BG3 = "#0B1825";
 const GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a";
@@ -54,8 +59,8 @@ export default function GamificationHUD() {
       const res = await fetch("/api/predictions/daily", { method: "POST" });
       const j = await res.json().catch(() => ({}));
       if (res.ok) {
-        const chest = j.chest ? ` + ${j.chest.label} (🪙${j.chest.coins})` : "";
-        setFlash(`✅ Check-in día ${j.reward?.day}: +🪙${j.reward?.coins} +${j.reward?.xp}XP${chest}`);
+        const chest = j.chest ? ` + ${j.chest.label} (${j.chest.coins} monedas)` : "";
+        setFlash(`Check-in día ${j.reward?.day}: +${j.reward?.coins} monedas +${j.reward?.xp} XP${chest}`);
         await load();
       } else {
         setFlash(j.message || "Ya reclamaste hoy");
@@ -70,7 +75,7 @@ export default function GamificationHUD() {
         method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ boost_id: id }),
       });
       const j = await res.json().catch(() => ({}));
-      setFlash(res.ok ? "✅ Boost comprado" : (j.error === "insufficient_coins" ? "Monedas insuficientes" : (j.message || "No se pudo comprar")));
+      setFlash(res.ok ? "Boost comprado" : (j.error === "insufficient_coins" ? "Monedas insuficientes" : (j.message || "No se pudo comprar")));
       if (res.ok) await load();
     } finally { setBusy(false); }
   }, [load]);
@@ -100,12 +105,13 @@ export default function GamificationHUD() {
 
         {/* Racha */}
         <Stat
-          big={`🔥 ${streak.current}`}
+          icon={Flame}
+          value={streak.current}
           label={streak.active ? "Racha activa ×1.5" : `Racha · récord ${streak.best}`}
           glow={streak.active}
         />
         {/* Monedas */}
-        <Stat big={`🪙 ${coins}`} label={data.coin_name} />
+        <Stat icon={Coins} value={coins} label={data.coin_name} />
       </div>
 
       {/* Hora Feliz (flash) */}
@@ -119,9 +125,14 @@ export default function GamificationHUD() {
       <div style={{ marginTop: 10, display: "flex", gap: 10, flexWrap: "wrap" }}>
         <div style={{ flex: "1 1 300px", background: BG2, border: CARD_BORDER, borderRadius: 12, padding: "11px 14px" }}>
           <div style={{ fontSize: 11, color: DIM, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase" }}>Reto de hoy</div>
-          <div style={{ fontWeight: 800, marginTop: 3 }}>{daily.challenge.emoji} {daily.challenge.title}</div>
+          <div style={{ fontWeight: 800, marginTop: 3, display: "flex", alignItems: "center", gap: 7 }}>
+            {challengeIcon(daily.challenge.key)}
+            {daily.challenge.title}
+          </div>
           <div style={{ color: MID, fontSize: 12.5, marginTop: 2 }}>{daily.challenge.description}</div>
-          <div style={{ color: GOLD2, fontSize: 11.5, marginTop: 5, fontWeight: 700 }}>Recompensa: 🪙{daily.challenge.rewardCoins} · +{daily.challenge.rewardXp} XP</div>
+          <div style={{ color: GOLD2, fontSize: 11.5, marginTop: 5, fontWeight: 700, display: "flex", alignItems: "center", gap: 4 }}>
+            Recompensa: <Coins size={13} /> {daily.challenge.rewardCoins} · +{daily.challenge.rewardXp} XP
+          </div>
         </div>
         <button
           onClick={claimDaily}
@@ -134,20 +145,27 @@ export default function GamificationHUD() {
           }}
         >
           {daily.can_claim
-            ? <>🎁 Check-in<br /><span style={{ fontSize: 11, fontWeight: 700 }}>+🪙{daily.next_reward.coins} día {daily.next_reward.day}{daily.next_reward.chest ? " + cofre" : ""}</span></>
-            : <>✅ Reclamado<br /><span style={{ fontSize: 11, fontWeight: 700 }}>{daily.checkin_days} días seguidos</span></>}
+            ? <><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><Gift size={16} /> Check-in</span><br /><span style={{ fontSize: 11, fontWeight: 700, display: "inline-flex", alignItems: "center", gap: 3 }}>+<Coins size={12} />{daily.next_reward.coins} día {daily.next_reward.day}{daily.next_reward.chest ? " + cofre" : ""}</span></>
+            : <><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><CheckCircle2 size={16} /> Reclamado</span><br /><span style={{ fontSize: 11, fontWeight: 700 }}>{daily.checkin_days} días seguidos</span></>}
         </button>
       </div>
 
       {/* Tabs: logros / tienda + inventario */}
       <div style={{ marginTop: 10, display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
         <TabBtn active={tab === "achievements"} onClick={() => setTab(tab === "achievements" ? null : "achievements")}>
-          🏅 Logros {unlockedCount}/{data.achievements.length}
+          <Medal size={15} /> Logros {unlockedCount}/{data.achievements.length}
         </TabBtn>
-        <TabBtn active={tab === "shop"} onClick={() => setTab(tab === "shop" ? null : "shop")}>🛒 Tienda de boosts</TabBtn>
+        <TabBtn active={tab === "shop"} onClick={() => setTab(tab === "shop" ? null : "shop")}>
+          <ShoppingCart size={15} /> Tienda de boosts
+        </TabBtn>
         {boosts.length > 0 && (
-          <span style={{ color: MID, fontSize: 12 }}>
-            Inventario: {boosts.map((b) => `${b.emoji}${b.count}`).join("  ")}
+          <span style={{ color: MID, fontSize: 12, display: "inline-flex", alignItems: "center", gap: 10 }}>
+            Inventario:
+            {boosts.map((b) => (
+              <span key={b.id} style={{ display: "inline-flex", alignItems: "center", gap: 3 }}>
+                {boostIcon(b.id)}{b.count}
+              </span>
+            ))}
           </span>
         )}
       </div>
@@ -156,7 +174,11 @@ export default function GamificationHUD() {
         <div style={{ marginTop: 10, display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(220px,1fr))", gap: 10 }}>
           {data.achievements.map((a) => (
             <div key={a.id} style={{ background: BG2, border: a.unlocked ? `1px solid ${GREEN}` : CARD_BORDER, borderRadius: 12, padding: "10px 12px", opacity: a.unlocked ? 1 : 0.55 }}>
-              <div style={{ fontWeight: 800, fontSize: 13.5 }}>{a.emoji} {a.name} {a.unlocked && "✅"}</div>
+              <div style={{ fontWeight: 800, fontSize: 13.5, display: "flex", alignItems: "center", gap: 7 }}>
+                {achievementIcon(a.id)}
+                {a.name}
+                {a.unlocked && <CheckCircle2 size={14} color={GREEN} />}
+              </div>
               <div style={{ color: MID, fontSize: 12, marginTop: 2 }}>{a.description}</div>
             </div>
           ))}
@@ -167,7 +189,10 @@ export default function GamificationHUD() {
         <div style={{ marginTop: 10, display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(240px,1fr))", gap: 10 }}>
           {catalog.map((c) => (
             <div key={c.id} style={{ background: BG2, border: CARD_BORDER, borderRadius: 12, padding: "11px 13px" }}>
-              <div style={{ fontWeight: 800 }}>{c.emoji} {c.name}</div>
+              <div style={{ fontWeight: 800, display: "flex", alignItems: "center", gap: 7 }}>
+                {boostIcon(c.id)}
+                {c.name}
+              </div>
               <div style={{ color: MID, fontSize: 12, marginTop: 3, minHeight: 32 }}>{c.description}</div>
               <button
                 onClick={() => buyBoost(c.id)}
@@ -179,7 +204,7 @@ export default function GamificationHUD() {
                   fontWeight: 800, fontSize: 13, padding: "8px 10px",
                 }}
               >
-                Comprar · 🪙{c.cost}
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 4, justifyContent: "center" }}>Comprar · <Coins size={13} /> {c.cost}</span>
               </button>
             </div>
           ))}
@@ -195,10 +220,26 @@ export default function GamificationHUD() {
   );
 }
 
-function Stat({ big, label, glow }: { big: string; label: string; glow?: boolean }) {
+function challengeIcon(key: string) {
+  const Icon = CHALLENGE_ICON[key] ?? Gift;
+  return <Icon size={16} color={GOLD2} />;
+}
+function boostIcon(id: string) {
+  const Icon = BOOST_ICON[id] ?? Gift;
+  return <Icon size={15} color={GOLD2} />;
+}
+function achievementIcon(id: string) {
+  const Icon = ACHIEVEMENT_ICON[id] ?? Medal;
+  return <Icon size={16} color={GOLD2} />;
+}
+
+function Stat({ icon: Icon, value, label, glow }: { icon: LucideIcon; value: number; label: string; glow?: boolean }) {
   return (
     <div style={{ flex: "0 1 150px", background: BG2, border: glow ? `1px solid ${GOLD}` : CARD_BORDER, borderRadius: 14, padding: "12px 14px", display: "flex", flexDirection: "column", justifyContent: "center", boxShadow: glow ? "0 0 18px rgba(201,168,76,0.25)" : "none" }}>
-      <div style={{ fontWeight: 900, fontSize: 20 }}>{big}</div>
+      <div style={{ fontWeight: 900, fontSize: 20, display: "flex", alignItems: "center", gap: 8 }}>
+        <Icon size={20} color={GOLD2} strokeWidth={2.2} />
+        {value}
+      </div>
       <div style={{ color: MID, fontSize: 11, marginTop: 2 }}>{label}</div>
     </div>
   );
@@ -212,6 +253,7 @@ function TabBtn({ active, onClick, children }: { active: boolean; onClick: () =>
         cursor: "pointer", background: active ? "rgba(201,168,76,0.15)" : BG2,
         border: active ? `1px solid ${GOLD}` : CARD_BORDER, borderRadius: 99,
         color: active ? GOLD2 : MID, fontWeight: 700, fontSize: 13, padding: "8px 14px",
+        display: "inline-flex", alignItems: "center", gap: 6,
       }}
     >
       {children}

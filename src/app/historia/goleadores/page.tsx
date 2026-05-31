@@ -1,6 +1,7 @@
 // src/app/historia/goleadores/page.tsx
 // ZonaMundial — Goleadores históricos del Mundial
 
+import EditorialBlock from "@/components/historia/EditorialBlock";
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -213,6 +214,7 @@ export default function GoleadoresPage() {
           <div className="text-xs text-gray-500">Cronología completa</div>
         </Link>
       </section>
+      <EditorialBlock slug="goleadores" />
     </>
   );
 }

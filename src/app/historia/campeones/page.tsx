@@ -1,4 +1,5 @@
 // src/app/historia/campeones/page.tsx
+import EditorialBlock from "@/components/historia/EditorialBlock";
 import { Metadata } from 'next';
 import CampeonesClient from './CampeonesClient';
 import CampeonesEditorial from '@/components/historia/CampeonesEditorial';
@@ -37,6 +38,7 @@ export default function CampeonesPage() {
           de ~1.000 a ~1.900 palabras. Cubre análisis estadístico de los 22
           Mundiales, récords individuales, patrones geográficos. */}
       <CampeonesEditorial />
+      <EditorialBlock slug="campeones" />
     </>
   );
 }

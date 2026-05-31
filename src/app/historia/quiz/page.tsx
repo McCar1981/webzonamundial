@@ -1,3 +1,4 @@
+import EditorialBlock from "@/components/historia/EditorialBlock";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Quiz from "@/components/historia/Quiz";
@@ -52,6 +53,7 @@ export default function QuizPage() {
           <Quiz preguntas={preguntas} />
         </div>
       </section>
+      <EditorialBlock slug="quiz" />
     </>
   );
 }

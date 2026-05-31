@@ -1,6 +1,7 @@
 // src/app/historia/comparar/page.tsx
 // ZonaMundial — Comparativa entre dos ediciones del Mundial
 
+import EditorialBlock from "@/components/historia/EditorialBlock";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllEdiciones, getEdicionBySlug } from "@/lib/content/ediciones";
@@ -180,6 +181,7 @@ export default async function CompararPage({
           </div>
         </section>
       )}
+      <EditorialBlock slug="comparar" />
     </>
   );
 }

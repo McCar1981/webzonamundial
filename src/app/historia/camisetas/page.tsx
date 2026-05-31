@@ -1,3 +1,4 @@
+import EditorialBlock from "@/components/historia/EditorialBlock";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllCamisetas } from "@/lib/content/ediciones";
@@ -76,6 +77,7 @@ export default function CamisetasPage() {
           ))}
         </div>
       </section>
+      <EditorialBlock slug="camisetas" />
     </>
   );
 }

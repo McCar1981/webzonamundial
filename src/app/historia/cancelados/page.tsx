@@ -1,3 +1,4 @@
+import EditorialBlock from "@/components/historia/EditorialBlock";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getCancelados } from "@/lib/content/ediciones";
@@ -101,6 +102,7 @@ export default function CanceladosPage() {
           )}
         </div>
       </section>
+      <EditorialBlock slug="cancelados" />
     </>
   );
 }

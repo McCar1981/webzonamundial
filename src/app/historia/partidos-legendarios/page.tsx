@@ -1,3 +1,4 @@
+import EditorialBlock from "@/components/historia/EditorialBlock";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllPartidosLegendarios } from "@/lib/content/ediciones";
@@ -76,6 +77,7 @@ export default function PartidosPage() {
           ))}
         </div>
       </section>
+      <EditorialBlock slug="partidos-legendarios" />
     </>
   );
 }

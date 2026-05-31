@@ -1,3 +1,4 @@
+import EditorialBlock from "@/components/historia/EditorialBlock";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllArbitros } from "@/lib/content/ediciones";
@@ -101,6 +102,7 @@ export default function ArbitrosPage() {
           ))}
         </div>
       </section>
+      <EditorialBlock slug="arbitros" />
     </>
   );
 }

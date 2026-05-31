@@ -1,6 +1,7 @@
 // src/app/historia/mascotas/page.tsx
 // ZonaMundial — Cronología de mascotas oficiales del Mundial 1966-2026
 
+import EditorialBlock from "@/components/historia/EditorialBlock";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllMascotas } from "@/lib/content/ediciones";
@@ -101,6 +102,7 @@ export default function MascotasPage() {
           ))}
         </div>
       </section>
+      <EditorialBlock slug="mascotas" />
     </>
   );
 }

@@ -1,3 +1,4 @@
+import EditorialBlock from "@/components/historia/EditorialBlock";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getEconomia } from "@/lib/content/ediciones";
@@ -139,6 +140,7 @@ export default function EconomiaPage() {
           ))}
         </div>
       </section>
+      <EditorialBlock slug="economia" />
     </>
   );
 }

@@ -1,6 +1,7 @@
 // src/app/historia/buscar/page.tsx
 // ZonaMundial — Búsqueda global
 
+import EditorialBlock from "@/components/historia/EditorialBlock";
 import type { Metadata } from "next";
 import Link from "next/link";
 import BuscadorGlobal, { type SearchItem } from "@/components/historia/BuscadorGlobal";
@@ -301,6 +302,7 @@ export default function BuscarPage() {
       </header>
 
       <BuscadorGlobal items={items} />
+      <EditorialBlock slug="buscar" />
     </>
   );
 }

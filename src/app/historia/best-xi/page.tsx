@@ -1,3 +1,4 @@
+import EditorialBlock from "@/components/historia/EditorialBlock";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getBestXI } from "@/lib/content/ediciones";
@@ -126,6 +127,7 @@ export default function BestXIPage() {
           ))}
         </div>
       </section>
+      <EditorialBlock slug="best-xi" />
     </>
   );
 }

@@ -1,6 +1,7 @@
 // src/app/historia/curiosidades/page.tsx
 // ZonaMundial — Catálogo de curiosidades y anécdotas del Mundial 1930-2026
 
+import EditorialBlock from "@/components/historia/EditorialBlock";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllCuriosidades } from "@/lib/content/ediciones";
@@ -158,6 +159,7 @@ export default function CuriosidadesPage() {
           </section>
         );
       })}
+      <EditorialBlock slug="curiosidades" />
     </>
   );
 }

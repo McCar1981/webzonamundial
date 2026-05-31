@@ -1,3 +1,4 @@
+import EditorialBlock from "@/components/historia/EditorialBlock";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllSeleccionesNotables } from "@/lib/content/ediciones";
@@ -124,6 +125,7 @@ export default function NotablesPage() {
           ))}
         </div>
       </section>
+      <EditorialBlock slug="notables" />
     </>
   );
 }

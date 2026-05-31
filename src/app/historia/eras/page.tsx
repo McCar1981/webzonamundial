@@ -1,6 +1,7 @@
 // src/app/historia/eras/page.tsx
 // ZonaMundial — Las 7 eras del Mundial
 
+import EditorialBlock from "@/components/historia/EditorialBlock";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllEras, getEdicionBySlug } from "@/lib/content/ediciones";
@@ -122,6 +123,7 @@ export default function ErasPage() {
           ))}
         </div>
       </section>
+      <EditorialBlock slug="eras" />
     </>
   );
 }

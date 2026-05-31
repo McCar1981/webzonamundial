@@ -1,6 +1,7 @@
 // src/app/historia/records/page.tsx
 // ZonaMundial — Récords absolutos del Mundial 1930-2022
 
+import EditorialBlock from "@/components/historia/EditorialBlock";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getRegistrosHistoricos } from "@/lib/content/ediciones";
@@ -404,6 +405,7 @@ export default function RecordsPage() {
           Última actualización: {r.actualizadoEn}
         </div>
       </section>
+      <EditorialBlock slug="records" />
     </>
   );
 }

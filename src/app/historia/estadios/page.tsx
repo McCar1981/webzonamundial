@@ -1,6 +1,7 @@
 // src/app/historia/estadios/page.tsx
 // ZonaMundial — Estadios míticos del Mundial 1930-2026
 
+import EditorialBlock from "@/components/historia/EditorialBlock";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllEstadios } from "@/lib/content/ediciones";
@@ -167,6 +168,7 @@ export default function EstadiosPage() {
           })}
         </div>
       </section>
+      <EditorialBlock slug="estadios" />
     </>
   );
 }

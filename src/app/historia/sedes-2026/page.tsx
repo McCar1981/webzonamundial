@@ -1,3 +1,4 @@
+import EditorialBlock from "@/components/historia/EditorialBlock";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getSedes2026 } from "@/lib/content/ediciones";
@@ -130,6 +131,7 @@ export default function Sedes2026Page() {
           <p className="text-sm text-gray-200 leading-relaxed italic">«{data.datoCierre}»</p>
         </div>
       </section>
+      <EditorialBlock slug="sedes-2026" />
     </>
   );
 }

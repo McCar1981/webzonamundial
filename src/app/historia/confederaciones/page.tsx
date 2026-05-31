@@ -1,3 +1,4 @@
+import EditorialBlock from "@/components/historia/EditorialBlock";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllConfederaciones } from "@/lib/content/ediciones";
@@ -167,6 +168,7 @@ export default function ConfederacionesPage() {
           ))}
         </div>
       </section>
+      <EditorialBlock slug="confederaciones" />
     </>
   );
 }

@@ -1,3 +1,4 @@
+import EditorialBlock from "@/components/historia/EditorialBlock";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getHatTricks } from "@/lib/content/ediciones";
@@ -86,6 +87,7 @@ export default function HatTricksPage() {
           ))}
         </div>
       </section>
+      <EditorialBlock slug="hat-tricks" />
     </>
   );
 }

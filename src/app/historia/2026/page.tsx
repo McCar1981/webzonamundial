@@ -1,6 +1,7 @@
 // src/app/historia/2026/page.tsx
 // ZonaMundial — Preview dedicado al Mundial 2026
 
+import EditorialBlock from "@/components/historia/EditorialBlock";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getEdicionBySlug } from "@/lib/content/ediciones";
@@ -245,6 +246,7 @@ export default function Mundial2026Page() {
           </div>
         </div>
       </section>
+      <EditorialBlock slug="2026" />
     </>
   );
 }

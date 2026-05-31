@@ -1,3 +1,4 @@
+import EditorialBlock from "@/components/historia/EditorialBlock";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllTrofeos } from "@/lib/content/ediciones";
@@ -86,6 +87,7 @@ export default function TrofeosPage() {
           ))}
         </div>
       </section>
+      <EditorialBlock slug="trofeos" />
     </>
   );
 }

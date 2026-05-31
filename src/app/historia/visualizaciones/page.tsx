@@ -1,6 +1,7 @@
 // src/app/historia/visualizaciones/page.tsx
 // ZonaMundial — Visualizaciones de datos (CSS-only)
 
+import EditorialBlock from "@/components/historia/EditorialBlock";
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -161,6 +162,7 @@ export default function VisualizacionesPage() {
           </div>
         </Link>
       </section>
+      <EditorialBlock slug="visualizaciones" />
     </>
   );
 }

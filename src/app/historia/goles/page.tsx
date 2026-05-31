@@ -1,3 +1,4 @@
+import EditorialBlock from "@/components/historia/EditorialBlock";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllGolesLegendarios } from "@/lib/content/ediciones";
@@ -96,6 +97,7 @@ export default function GolesPage() {
           ))}
         </div>
       </section>
+      <EditorialBlock slug="goles" />
     </>
   );
 }

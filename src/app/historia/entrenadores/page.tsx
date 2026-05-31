@@ -1,3 +1,4 @@
+import EditorialBlock from "@/components/historia/EditorialBlock";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllEntrenadores } from "@/lib/content/ediciones";
@@ -102,6 +103,7 @@ export default function EntrenadoresPage() {
           ))}
         </div>
       </section>
+      <EditorialBlock slug="entrenadores" />
     </>
   );
 }

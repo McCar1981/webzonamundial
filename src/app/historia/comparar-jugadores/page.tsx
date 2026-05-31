@@ -1,6 +1,7 @@
 // src/app/historia/comparar-jugadores/page.tsx
 // ZonaMundial — Comparativa entre dos jugadores legendarios
 
+import EditorialBlock from "@/components/historia/EditorialBlock";
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -145,6 +146,7 @@ export default async function CompararJugadoresPage({
         <LogrosBox j={a} />
         <LogrosBox j={b} />
       </section>
+      <EditorialBlock slug="comparar-jugadores" />
     </>
   );
 }

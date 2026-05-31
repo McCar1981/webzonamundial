@@ -1,6 +1,7 @@
 // src/app/historia/balones/page.tsx
 // ZonaMundial — Cronología de los 23 balones oficiales del Mundial 1930-2026
 
+import EditorialBlock from "@/components/historia/EditorialBlock";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllBalones } from "@/lib/content/ediciones";
@@ -158,6 +159,7 @@ export default function BalonesPage() {
           })}
         </div>
       </section>
+      <EditorialBlock slug="balones" />
     </>
   );
 }

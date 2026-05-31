@@ -1,6 +1,7 @@
 // src/app/historia/premios/page.tsx
 // ZonaMundial — Premios individuales del Mundial
 
+import EditorialBlock from "@/components/historia/EditorialBlock";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getPremios } from "@/lib/content/ediciones";
@@ -234,6 +235,7 @@ export default function PremiosPage() {
           ))}
         </div>
       </section>
+      <EditorialBlock slug="premios" />
     </>
   );
 }

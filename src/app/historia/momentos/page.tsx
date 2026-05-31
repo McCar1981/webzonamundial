@@ -1,3 +1,4 @@
+import EditorialBlock from "@/components/historia/EditorialBlock";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllMomentos } from "@/lib/content/ediciones";
@@ -90,6 +91,7 @@ export default function MomentosPage() {
           })}
         </div>
       </section>
+      <EditorialBlock slug="momentos" />
     </>
   );
 }

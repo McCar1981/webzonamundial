@@ -1,5 +1,6 @@
 // src/app/historia/selecciones/page.tsx
 
+import EditorialBlock from "@/components/historia/EditorialBlock";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllSeleccionesHistoricas } from "@/lib/content/ediciones";
@@ -92,6 +93,7 @@ export default function SeleccionesIndex() {
           ))}
         </div>
       </section>
+      <EditorialBlock slug="selecciones" />
     </>
   );
 }

@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import MomentosIconicosClient from './MomentosIconicosClient';
+import EditorialBlock from '@/components/historia/EditorialBlock';
 
 export const metadata: Metadata = {
   title: 'Momentos Icónicos de los Mundiales de Fútbol',
@@ -30,5 +31,12 @@ export const metadata: Metadata = {
 };
 
 export default function MomentosIconicosPage() {
-  return <MomentosIconicosClient />;
+  return (
+    <>
+      <MomentosIconicosClient />
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+        <EditorialBlock slug="momentos-iconicos" />
+      </div>
+    </>
+  );
 }

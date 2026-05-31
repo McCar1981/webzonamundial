@@ -114,11 +114,12 @@ function playersOfSlug(slug: string | null): FantasyPlayer[] {
 export function scorerCandidates(matchId: string): { id: string; name: string; team: string; pos: string }[] {
   const meta = getMatchMeta(matchId);
   if (!meta) return [];
+  // Cualquier jugador de campo puede marcar el primer gol: incluimos todos
+  // menos los porteros, ordenados por forma.
   const pick = (slug: string | null) =>
     playersOfSlug(slug)
-      .filter((p) => p.pos === "FWD" || p.pos === "MID")
+      .filter((p) => p.pos !== "GK")
       .sort((a, b) => b.form - a.form)
-      .slice(0, 6)
       .map((p) => ({ id: p.id, name: p.name, team: p.teamName, pos: p.pos }));
   return [...pick(meta.home_slug), ...pick(meta.away_slug)];
 }

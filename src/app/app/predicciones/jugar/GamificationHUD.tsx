@@ -85,11 +85,11 @@ export default function GamificationHUD() {
   const unlockedCount = data.achievements.filter((a) => a.unlocked).length;
 
   return (
-    <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 16px 4px" }}>
-      {/* Strip principal */}
+    <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 16px 4px", display: "flex", flexDirection: "column", gap: 10 }}>
+      {/* Fila de stats: Nivel + Racha + Fútcoins */}
       <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "stretch" }}>
         {/* Nivel + XP */}
-        <div style={{ flex: "1 1 260px", background: BG2, border: CARD_BORDER, borderRadius: 14, padding: "12px 14px" }}>
+        <div style={{ flex: "3 1 280px", background: BG2, border: CARD_BORDER, borderRadius: 14, padding: "12px 14px" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
             <span style={{ fontWeight: 900, fontSize: 15 }}>
               <span style={{ color: GOLD2 }}>Nivel {level.level}</span>{" "}
@@ -116,14 +116,14 @@ export default function GamificationHUD() {
 
       {/* Hora Feliz (flash) */}
       {fl.active && (
-        <div style={{ marginTop: 10, background: "rgba(232,212,139,0.12)", border: `1px solid ${GOLD}`, borderRadius: 12, padding: "9px 14px", color: GOLD2, fontWeight: 800, fontSize: 13.5, textAlign: "center" }}>
+        <div style={{ background: "rgba(232,212,139,0.12)", border: `1px solid ${GOLD}`, borderRadius: 14, padding: "9px 14px", color: GOLD2, fontWeight: 800, fontSize: 13.5, textAlign: "center" }}>
           {fl.label} — termina a las {new Date(fl.endsAt).toLocaleTimeString("es", { hour: "2-digit", minute: "2-digit" })}
         </div>
       )}
 
-      {/* Reto diario + check-in */}
-      <div style={{ marginTop: 10, display: "flex", gap: 10, flexWrap: "wrap" }}>
-        <div style={{ flex: "1 1 300px", background: BG2, border: CARD_BORDER, borderRadius: 12, padding: "11px 14px" }}>
+      {/* Reto diario + check-in (una sola tarjeta) */}
+      <div style={{ background: BG2, border: CARD_BORDER, borderRadius: 14, padding: "12px 14px", display: "flex", gap: 14, flexWrap: "wrap", alignItems: "center", justifyContent: "space-between" }}>
+        <div style={{ flex: "1 1 220px", minWidth: 0 }}>
           <div style={{ fontSize: 11, color: DIM, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase" }}>Reto de hoy</div>
           <div style={{ fontWeight: 800, marginTop: 3, display: "flex", alignItems: "center", gap: 7 }}>
             {challengeIcon(daily.challenge.key)}
@@ -138,10 +138,10 @@ export default function GamificationHUD() {
           onClick={claimDaily}
           disabled={!daily.can_claim || busy}
           style={{
-            flex: "0 0 auto", minWidth: 150, cursor: daily.can_claim ? "pointer" : "default",
+            flex: "1 1 170px", maxWidth: 240, cursor: daily.can_claim ? "pointer" : "default",
             background: daily.can_claim ? `linear-gradient(135deg,${GOLD},${GOLD2})` : BG3,
             color: daily.can_claim ? "#1a1206" : DIM, border: CARD_BORDER, borderRadius: 12,
-            fontWeight: 900, fontSize: 14, padding: "12px 16px",
+            fontWeight: 900, fontSize: 14, padding: "12px 16px", textAlign: "center",
           }}
         >
           {daily.can_claim
@@ -151,7 +151,7 @@ export default function GamificationHUD() {
       </div>
 
       {/* Tabs: logros / tienda + inventario */}
-      <div style={{ marginTop: 10, display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
+      <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
         <TabBtn active={tab === "achievements"} onClick={() => setTab(tab === "achievements" ? null : "achievements")}>
           <Medal size={15} /> Logros {unlockedCount}/{data.achievements.length}
         </TabBtn>
@@ -171,7 +171,7 @@ export default function GamificationHUD() {
       </div>
 
       {tab === "achievements" && (
-        <div style={{ marginTop: 10, display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(220px,1fr))", gap: 10 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(220px,1fr))", gap: 10 }}>
           {data.achievements.map((a) => (
             <div key={a.id} style={{ background: BG2, border: a.unlocked ? `1px solid ${GREEN}` : CARD_BORDER, borderRadius: 12, padding: "10px 12px", opacity: a.unlocked ? 1 : 0.55 }}>
               <div style={{ fontWeight: 800, fontSize: 13.5, display: "flex", alignItems: "center", gap: 7 }}>
@@ -186,7 +186,7 @@ export default function GamificationHUD() {
       )}
 
       {tab === "shop" && (
-        <div style={{ marginTop: 10, display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(240px,1fr))", gap: 10 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(240px,1fr))", gap: 10 }}>
           {catalog.map((c) => (
             <div key={c.id} style={{ background: BG2, border: CARD_BORDER, borderRadius: 12, padding: "11px 13px" }}>
               <div style={{ fontWeight: 800, display: "flex", alignItems: "center", gap: 7 }}>
@@ -235,7 +235,7 @@ function achievementIcon(id: string) {
 
 function Stat({ icon: Icon, value, label, glow }: { icon: LucideIcon; value: number; label: string; glow?: boolean }) {
   return (
-    <div style={{ flex: "0 1 150px", background: BG2, border: glow ? `1px solid ${GOLD}` : CARD_BORDER, borderRadius: 14, padding: "12px 14px", display: "flex", flexDirection: "column", justifyContent: "center", boxShadow: glow ? "0 0 18px rgba(201,168,76,0.25)" : "none" }}>
+    <div style={{ flex: "1 1 130px", background: BG2, border: glow ? `1px solid ${GOLD}` : CARD_BORDER, borderRadius: 14, padding: "12px 14px", display: "flex", flexDirection: "column", justifyContent: "center", boxShadow: glow ? "0 0 18px rgba(201,168,76,0.25)" : "none" }}>
       <div style={{ fontWeight: 900, fontSize: 20, display: "flex", alignItems: "center", gap: 8 }}>
         <Icon size={20} color={GOLD2} strokeWidth={2.2} />
         {value}

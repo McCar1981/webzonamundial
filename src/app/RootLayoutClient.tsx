@@ -404,9 +404,10 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
       <main>{children}</main>
 
       {/* ═══ FLOATING SOCIAL DOCK ═══
-          Se oculta en el juego Fantasy: su barra fija inferior tapaba las
-          tarjetas del campo en móvil. */}
-      {!pathname?.startsWith("/app/fantasy/jugar") && <SocialDock />}
+          Se oculta en los juegos Fantasy y Predicciones: su barra fija inferior
+          tapaba las tarjetas del campo en móvil. */}
+      {!pathname?.startsWith("/app/fantasy/jugar") &&
+        !pathname?.startsWith("/app/predicciones/jugar") && <SocialDock />}
 
       {/* ═══ FOOTER ═══ */}
       <SiteFooter />

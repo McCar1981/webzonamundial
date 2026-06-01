@@ -158,7 +158,7 @@ export function HomeTriviaPlaySection() {
           </div>
 
           {/* ── Cuerpo: juego ── */}
-          <div className="relative p-6 sm:p-9">
+          <div className="relative px-6 pt-4 pb-6 sm:px-9 sm:pt-5 sm:pb-9">
             {/* Glow decorativo */}
             <div
               aria-hidden
@@ -175,9 +175,9 @@ export function HomeTriviaPlaySection() {
               <button
                 onClick={start}
                 style={primaryBtn}
-                aria-label="Jugar una pregunta de trivia"
+                aria-label="Jugar ahora"
               >
-                Jugar una pregunta →
+                Jugar ahora →
               </button>
             )}
 

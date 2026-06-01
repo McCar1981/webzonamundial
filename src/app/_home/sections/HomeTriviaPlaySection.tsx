@@ -113,7 +113,7 @@ export function HomeTriviaPlaySection() {
               <img
                 src="/img/trivia/banner-mobile.webp"
                 alt="Leyendas del Mundial"
-                className="block w-full h-[340px] sm:h-[280px] object-cover object-top sm:object-right"
+                className="block w-full h-[460px] sm:h-[280px] object-cover object-top sm:object-right"
               />
             </picture>
             {/* Degradado móvil: oscurece abajo (texto al pie) */}
@@ -153,19 +153,19 @@ export function HomeTriviaPlaySection() {
                 <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.80)", maxWidth: 460 }}>
                   Responde una pregunta aquí mismo —sin registro— y mide tu nivel.
                 </p>
+                {/* CTA: en móvil fluye bajo el texto; en escritorio flota abajo-derecha */}
+                {phase === "idle" && (
+                  <button
+                    onClick={start}
+                    style={primaryBtn}
+                    aria-label="Jugar ahora"
+                    className="mt-5 self-start sm:mt-0 sm:absolute sm:bottom-7 sm:right-9 z-10"
+                  >
+                    Jugar ahora →
+                  </button>
+                )}
               </div>
             </div>
-            {/* CTA inicial: sobre la base del banner, a la derecha */}
-            {phase === "idle" && (
-              <button
-                onClick={start}
-                style={primaryBtn}
-                aria-label="Jugar ahora"
-                className="absolute bottom-5 right-6 sm:bottom-7 sm:right-9 z-10"
-              >
-                Jugar ahora →
-              </button>
-            )}
           </div>
 
           {/* ── Cuerpo: juego (solo al jugar) ── */}

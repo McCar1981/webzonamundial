@@ -86,6 +86,15 @@ export function GuiaMundial2026Section() {
           confusos.
         </p>
 
+        {/*
+          Guía completa plegada en <details>: la home queda ligera (solo
+          titular + entradilla a la vista), pero las ~1.800 palabras siguen en
+          el HTML servido para SEO/AdSense. Componente de servidor → funciona
+          sin JS. No es cloaking: el usuario la despliega cuando quiere.
+        */}
+        <details className="zm-guia-more">
+          <summary className="zm-guia-summary">Leer la guía completa del Mundial 2026</summary>
+
         {/* ─── Bloque 1: Fechas y sedes ─── */}
         <h3 style={h3}>Cuándo y dónde se juega el Mundial 2026</h3>
 
@@ -356,7 +365,31 @@ export function GuiaMundial2026Section() {
             verificado por la redacción.
           </p>
         </div>
+        </details>
       </article>
+
+      <style>{`
+        .zm-guia-more > summary {
+          list-style: none;
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          color: ${GOLD};
+          font-size: 15px;
+          font-weight: 700;
+          padding: 12px 0;
+          user-select: none;
+        }
+        .zm-guia-more > summary::-webkit-details-marker { display: none; }
+        .zm-guia-more > summary::after {
+          content: "+";
+          font-size: 20px;
+          line-height: 1;
+          opacity: 0.8;
+        }
+        .zm-guia-more[open] > summary::after { content: "−"; }
+      `}</style>
     </section>
   );
 }

@@ -91,7 +91,17 @@ export function EditorialIntro() {
           <Stat n="39" l={isEn ? "Days" : "Días"} />
         </div>
 
-        {isEn ? <EnCopy /> : <EsCopy />}
+        {/*
+          Cuerpo editorial largo plegado en <details>: el visitante ve una home
+          limpia, pero el texto sigue en el HTML servido (el crawler de AdSense
+          lo lee igual). No es cloaking: es contenido expandible por el usuario.
+        */}
+        <details className="zm-edit-more">
+          <summary className="zm-edit-summary">
+            {isEn ? "Read more about the project" : "Seguir leyendo sobre el proyecto"}
+          </summary>
+          <div style={{ marginTop: 18 }}>{isEn ? <EnCopy /> : <EsCopy />}</div>
+        </details>
 
         {/* CTAs */}
         <div
@@ -161,6 +171,27 @@ export function EditorialIntro() {
             grid-template-columns: repeat(2, 1fr) !important;
           }
         }
+        .zm-edit-more > summary {
+          list-style: none;
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          color: ${GOLD};
+          font-size: 14px;
+          font-weight: 600;
+          padding: 10px 0;
+          user-select: none;
+        }
+        .zm-edit-more > summary::-webkit-details-marker { display: none; }
+        .zm-edit-more > summary::after {
+          content: "+";
+          font-size: 18px;
+          line-height: 1;
+          opacity: 0.8;
+        }
+        .zm-edit-more[open] > summary::after { content: "−"; }
+        .zm-edit-more[open] > summary { margin-bottom: 4px; }
       `}</style>
     </section>
   );

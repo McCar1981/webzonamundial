@@ -99,47 +99,77 @@ export function HomeTriviaPlaySection() {
     <section className="relative px-4 py-12 sm:py-16">
       <div className="mx-auto max-w-3xl">
         <div
-          className="relative overflow-hidden rounded-3xl border p-6 sm:p-9"
+          className="relative overflow-hidden rounded-3xl border"
           style={{
             borderColor: "rgba(201,168,76,0.25)",
             background: "linear-gradient(135deg, rgba(15,23,42,0.95), rgba(11,24,37,0.85))",
           }}
         >
-          {/* Glow decorativo */}
-          <div
-            aria-hidden
-            className="absolute -top-24 -right-16 w-60 h-60 rounded-full"
-            style={{
-              background: "radial-gradient(circle, rgba(201,168,76,0.22), transparent 70%)",
-              filter: "blur(45px)",
-            }}
-          />
-
-          <div className="relative z-10">
-            <div className="text-[10px] font-bold uppercase tracking-[0.25em] mb-3" style={{ color: GOLD }}>
-              ⚡ Trivia · Juega ya
+          {/* ── Banner hero: leyendas del Mundial ── */}
+          <div className="relative">
+            <picture>
+              <source media="(min-width: 640px)" srcSet="/img/trivia/banner-desktop.webp" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/img/trivia/banner-mobile.webp"
+                alt="Leyendas del Mundial"
+                className="block w-full h-[340px] sm:h-[280px] object-cover object-top sm:object-right"
+              />
+            </picture>
+            {/* Degradado móvil: oscurece abajo (texto al pie) */}
+            <div
+              aria-hidden
+              className="absolute inset-0 sm:hidden"
+              style={{ background: "linear-gradient(to top, rgba(7,12,20,0.97) 0%, rgba(7,12,20,0.55) 42%, rgba(7,12,20,0.12) 72%, transparent 100%)" }}
+            />
+            {/* Degradado escritorio: oscurece la izquierda (texto a la izq.) */}
+            <div
+              aria-hidden
+              className="absolute inset-0 hidden sm:block"
+              style={{ background: "linear-gradient(to right, rgba(7,12,20,0.97) 0%, rgba(7,12,20,0.82) 32%, rgba(7,12,20,0.25) 60%, transparent 82%)" }}
+            />
+            {/* Texto sobre la zona oscura */}
+            <div className="absolute inset-0 flex flex-col justify-end sm:justify-center px-6 pb-6 sm:px-9 sm:pb-0">
+              <div className="sm:max-w-[58%]">
+                <div className="text-[10px] font-bold uppercase tracking-[0.25em] mb-3" style={{ color: GOLD }}>
+                  ⚡ Trivia · Juega ya
+                </div>
+                <h2
+                  className="font-black text-white mb-2 leading-tight"
+                  style={{ fontSize: "clamp(22px, 3.6vw, 34px)", letterSpacing: "-0.02em" }}
+                >
+                  ¿Cuánto sabes del{" "}
+                  <span
+                    style={{
+                      background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                    }}
+                  >
+                    Mundial
+                  </span>
+                  ?
+                </h2>
+                <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.80)", maxWidth: 460 }}>
+                  Responde una pregunta aquí mismo —sin registro— y mide tu nivel.
+                </p>
+              </div>
             </div>
-            <h2
-              className="font-black text-white mb-2 leading-tight"
-              style={{ fontSize: "clamp(22px, 3.6vw, 34px)", letterSpacing: "-0.02em" }}
-            >
-              ¿Cuánto sabes del{" "}
-              <span
-                style={{
-                  background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                }}
-              >
-                Mundial
-              </span>
-              ?
-            </h2>
-            <p className="text-sm leading-relaxed mb-6" style={{ color: MID, maxWidth: 520 }}>
-              Responde una pregunta aquí mismo —sin registro— y mide tu nivel.
-              La trivia ya está activa: historia, sedes, reglas y datos.
-            </p>
+          </div>
 
+          {/* ── Cuerpo: juego ── */}
+          <div className="relative p-6 sm:p-9">
+            {/* Glow decorativo */}
+            <div
+              aria-hidden
+              className="absolute -top-24 -right-16 w-60 h-60 rounded-full"
+              style={{
+                background: "radial-gradient(circle, rgba(201,168,76,0.22), transparent 70%)",
+                filter: "blur(45px)",
+              }}
+            />
+
+            <div className="relative z-10">
             {/* ── IDLE ── */}
             {phase === "idle" && (
               <button
@@ -273,6 +303,7 @@ export function HomeTriviaPlaySection() {
                 )}
               </div>
             )}
+            </div>
           </div>
         </div>
       </div>

@@ -105,10 +105,18 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
-      { url: "/img/zonamundial-images/imagenes/IMG-20260302-WA0016-removebg-preview.webp", type: "image/webp" },
+      { url: "/icons/favicon-16.png", type: "image/png", sizes: "16x16" },
+      { url: "/icons/favicon-32.png", type: "image/png", sizes: "32x32" },
+      { url: "/icons/icon-192.png", type: "image/png", sizes: "192x192" },
+      { url: "/icons/icon-512.png", type: "image/png", sizes: "512x512" },
     ],
     shortcut: "/favicon.ico",
-    apple: "/img/zonamundial-images/imagenes/IMG-20260302-WA0016-removebg-preview.webp",
+    apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+  },
+  appleWebApp: {
+    capable: true,
+    title: "ZonaMundial",
+    statusBarStyle: "black-translucent",
   },
   formatDetection: {
     email: false,

@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import Link from "next/link";
+import InstallPWAButton from "@/components/InstallPWAButton";
 
 type Platform = "ios" | "android" | "desktop" | "other";
 
@@ -244,7 +245,7 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
                 animation: "zm-pulse 1.6s ease-in-out infinite",
               }}
             />
-            Lanzamiento en pocos días
+            Instálala en segundos
           </div>
         </div>
 
@@ -258,7 +259,7 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
             letterSpacing: "-0.02em",
           }}
         >
-          La app está{" "}
+          Instala{" "}
           <span
             style={{
               backgroundImage: "linear-gradient(135deg, #C9A84C, #E8C76B 50%, #FDE68A)",
@@ -267,10 +268,10 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
               backgroundClip: "text",
             }}
           >
-            a días
+            ZonaMundial
           </span>
           <br />
-          de salir.
+          en tu móvil.
         </h1>
         <p
           style={{
@@ -282,10 +283,16 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
             lineHeight: 1.5,
           }}
         >
-          Estamos en la cuenta atrás final. Guarda el QR o autoenvíate el link
-          al móvil — en cuanto esté en App Store y Google Play, eres de los
-          primeros en tenerla.
+          Sin tiendas ni descargas pesadas. Añade la webapp a tu pantalla de
+          inicio y ábrela como una app más — funciona al instante en iPhone y
+          Android.
         </p>
+
+        {/* Botón de instalación PWA (Android/desktop: prompt nativo; iOS:
+            instrucciones Compartir → Añadir a inicio). */}
+        <div style={{ display: "flex", justifyContent: "center", marginTop: 28 }}>
+          <InstallPWAButton />
+        </div>
 
         {/* Hero card: QR + envío */}
         <div
@@ -684,7 +691,6 @@ export default function DescargaClient({ qrSvg, qrTarget }: Props) {
 
 function MobileCTA({ platform }: { platform: "ios" | "android" }) {
   const isIos = platform === "ios";
-  const storeName = isIos ? "App Store" : "Google Play";
   return (
     <div style={{ textAlign: "center" }}>
       <div
@@ -711,30 +717,34 @@ function MobileCTA({ platform }: { platform: "ios" | "android" }) {
             animation: "zm-pulse 1.6s ease-in-out infinite",
           }}
         />
-        Lanzamiento en pocos días
+        Instálala en segundos
       </div>
       <h2 style={{ fontSize: 22, fontWeight: 800, margin: "0 0 8px", letterSpacing: "-0.01em" }}>
-        Llegamos a {storeName}
+        Añádela a tu pantalla de inicio
       </h2>
       <p style={{ color: "#94A3B8", fontSize: 14, margin: "0 0 24px", lineHeight: 1.5 }}>
-        Estamos en la última recta. Pre-regístrate ahora y entrarás en
-        la primera oleada con acceso prioritario el día del lanzamiento.
+        {isIos
+          ? "En Safari, toca Compartir y elige «Añadir a pantalla de inicio». La abrirás como una app, a pantalla completa."
+          : "Toca el botón y confirma la instalación. La tendrás en tu pantalla de inicio, lista para abrir como una app más."}
       </p>
+      <div style={{ display: "flex", justifyContent: "center", marginBottom: 18 }}>
+        <InstallPWAButton />
+      </div>
       <Link
         href="/registro"
         style={{
           display: "inline-block",
-          padding: "14px 28px",
+          padding: "12px 24px",
           borderRadius: 12,
-          background: "linear-gradient(135deg, #C9A84C, #E8C76B 50%, #FDE68A)",
-          color: "#1A1208",
+          background: "transparent",
+          color: "#FDE68A",
           fontWeight: 700,
-          fontSize: 14,
+          fontSize: 13,
           textDecoration: "none",
-          boxShadow: "0 0 30px -8px rgba(201,168,76,0.55)",
+          border: "1px solid rgba(201,168,76,0.4)",
         }}
       >
-        Reservar mi acceso prioritario →
+        Crear mi cuenta gratis →
       </Link>
     </div>
   );

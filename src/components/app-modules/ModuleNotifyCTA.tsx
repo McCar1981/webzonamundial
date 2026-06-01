@@ -2,8 +2,8 @@
 // CTA universal para las landings de cada módulo /app/[slug].
 //
 // Modos:
-//   "notify"   → Captura email "Avísame cuando lance" (cuando la app aún no existe).
-//   "download" → Botones App Store + Google Play (cuando la app esté publicada).
+//   "notify"   → Captura email "Avísame cuando lance" (cuando la webapp aún no existe).
+//   "download" → CTA para abrir el módulo en la webapp (cuando esté publicada).
 //
 // El modo se decide globalmente con la env var NEXT_PUBLIC_APP_AVAILABILITY:
 //   - undefined o "waitlist" → "notify"
@@ -14,6 +14,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 type Mode = "notify" | "download";
 
@@ -24,21 +25,14 @@ interface Props {
   label: string;
   /** Forzar un modo manualmente (override de la env var) */
   modeOverride?: Mode;
-  /** URLs de las apps. Solo se usan en modo "download". */
-  appStoreUrl?: string;
-  playStoreUrl?: string;
 }
 
 const APP_AVAILABILITY = process.env.NEXT_PUBLIC_APP_AVAILABILITY || "waitlist";
-const APP_STORE_DEFAULT = process.env.NEXT_PUBLIC_APP_STORE_URL || "";
-const PLAY_STORE_DEFAULT = process.env.NEXT_PUBLIC_PLAY_STORE_URL || "";
 
 export default function ModuleNotifyCTA({
   slug,
   label,
   modeOverride,
-  appStoreUrl,
-  playStoreUrl,
 }: Props) {
   const mode: Mode = modeOverride ?? (APP_AVAILABILITY === "live" ? "download" : "notify");
 
@@ -87,10 +81,8 @@ export default function ModuleNotifyCTA({
     }
   }
 
-  // ===== Modo DOWNLOAD =====
+  // ===== Modo DOWNLOAD (webapp en vivo) =====
   if (mode === "download") {
-    const appUrl = appStoreUrl || APP_STORE_DEFAULT;
-    const playUrl = playStoreUrl || PLAY_STORE_DEFAULT;
     return (
       <div
         style={{
@@ -113,56 +105,48 @@ export default function ModuleNotifyCTA({
             marginBottom: 12,
           }}
         >
-          // DESCARGA LA APP
+          // YA DISPONIBLE
         </div>
         <h3 style={{ fontSize: 22, fontWeight: 800, color: "#fff", marginBottom: 18, letterSpacing: "-0.02em" }}>
           {label} ya está disponible
         </h3>
         <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-          {appUrl && (
-            <a
-              href={appUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                padding: "13px 22px",
-                borderRadius: 12,
-                background: "linear-gradient(135deg, #C9A84C, #FDE68A)",
-                color: "#1A1208",
-                fontWeight: 700,
-                fontSize: 14,
-                textDecoration: "none",
-                boxShadow: "0 0 30px -8px rgba(201,168,76,0.55)",
-              }}
-            >
-               App Store
-            </a>
-          )}
-          {playUrl && (
-            <a
-              href={playUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                padding: "13px 22px",
-                borderRadius: 12,
-                background: "rgba(255,255,255,0.05)",
-                color: "#fff",
-                fontWeight: 700,
-                fontSize: 14,
-                textDecoration: "none",
-                border: "1px solid rgba(255,255,255,0.12)",
-              }}
-            >
-              ▶ Google Play
-            </a>
-          )}
+          <Link
+            href={`/app/${slug}`}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              padding: "13px 22px",
+              borderRadius: 12,
+              background: "linear-gradient(135deg, #C9A84C, #FDE68A)",
+              color: "#1A1208",
+              fontWeight: 700,
+              fontSize: 14,
+              textDecoration: "none",
+              boxShadow: "0 0 30px -8px rgba(201,168,76,0.55)",
+            }}
+          >
+            Abrir {label} →
+          </Link>
+          <Link
+            href="/descarga"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              padding: "13px 22px",
+              borderRadius: 12,
+              background: "rgba(255,255,255,0.05)",
+              color: "#fff",
+              fontWeight: 700,
+              fontSize: 14,
+              textDecoration: "none",
+              border: "1px solid rgba(255,255,255,0.12)",
+            }}
+          >
+            Instalar la webapp
+          </Link>
         </div>
       </div>
     );

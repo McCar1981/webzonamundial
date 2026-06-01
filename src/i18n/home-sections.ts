@@ -341,35 +341,33 @@ export const homeSections = {
 
     /* ============ AppRevealSection — coming-soon teaser ============ */
     appReveal: {
-      pill: "LANZAMIENTO EN DÍAS",
-      title: "La app está",
-      titleGold: "a días de salir.",
+      pill: "WEBAPP INSTALABLE",
+      title: "Llévatela",
+      titleGold: "en el móvil.",
       subtitle:
-        "Cuenta atrás final. Reserva tu acceso prioritario y entra en la primera oleada el día del lanzamiento.",
+        "Añade ZonaMundial a tu pantalla de inicio y ábrela como una app. Sin tiendas, sin descargas pesadas: funciona al instante.",
       notify: {
-        title: "Acceso prioritario al lanzamiento.",
-        desc: "Los pre-registrados entran el primer día.",
+        title: "Instálala en segundos.",
+        desc: "Funciona en iPhone, Android y ordenador.",
       },
-      stores: {
-        appStoreSoon: "En días en",
-        appStoreName: "App Store",
-        playStoreSoon: "En días en",
-        playStoreName: "Google Play",
+      cta: {
+        label: "Instalar la webapp",
+        href: "/descarga",
       },
       phoneLabel: "Zona Mundial",
       phoneLoading: "Loading / Cargando...",
       features: [
         {
-          title: "Sé el primero",
-          desc: "Accede antes que nadie a la mejor app de fútbol.",
+          title: "Acceso directo",
+          desc: "Un toque desde tu pantalla de inicio.",
         },
         {
           title: "Experiencia única",
           desc: "Todo el fútbol mundial en tus manos.",
         },
         {
-          title: "Disponible pronto",
-          desc: "Muy pronto en App Store y Google Play.",
+          title: "Sin instalar nada",
+          desc: "Funciona en cualquier navegador moderno.",
         },
       ],
     },
@@ -766,35 +764,33 @@ export const homeSections = {
     },
 
     appReveal: {
-      pill: "LAUNCHING IN DAYS",
-      title: "The app is",
-      titleGold: "days away.",
+      pill: "INSTALLABLE WEBAPP",
+      title: "Take it",
+      titleGold: "on your phone.",
       subtitle:
-        "Final countdown. Reserve your priority access and join the first wave on launch day.",
+        "Add ZonaMundial to your home screen and open it like an app. No stores, no heavy downloads: it works instantly.",
       notify: {
-        title: "Priority access at launch.",
-        desc: "Pre-registered users get in on day one.",
+        title: "Install it in seconds.",
+        desc: "Works on iPhone, Android and desktop.",
       },
-      stores: {
-        appStoreSoon: "Days away on",
-        appStoreName: "App Store",
-        playStoreSoon: "Days away on",
-        playStoreName: "Google Play",
+      cta: {
+        label: "Install the webapp",
+        href: "/descarga",
       },
       phoneLabel: "Zona Mundial",
       phoneLoading: "Loading / Cargando...",
       features: [
         {
-          title: "Be first",
-          desc: "Get early access to the best football app.",
+          title: "Direct access",
+          desc: "One tap from your home screen.",
         },
         {
           title: "Unique experience",
           desc: "All world football in your hands.",
         },
         {
-          title: "Available soon",
-          desc: "Coming soon to App Store and Google Play.",
+          title: "Nothing to install",
+          desc: "Works in any modern browser.",
         },
       ],
     },

@@ -233,7 +233,7 @@ const post: BlogPost = {
         },
         {
           q: "¿En qué dispositivos funciona ZonaMundial?",
-          a: "**Funciona en cualquier dispositivo con navegador moderno** (móvil, tablet, ordenador). App nativa muy pronto en App Store y Google Play. Soporte multilingüe ES/EN ya activo.",
+          a: "**Funciona en cualquier dispositivo con navegador moderno** (móvil, tablet, ordenador). Además es una **webapp instalable**: añádela a tu pantalla de inicio y ábrela como una app, sin pasar por ninguna tienda. Soporte multilingüe ES/EN ya activo.",
         },
         {
           q: "¿Qué es BIBLIA Mundial 2026?",

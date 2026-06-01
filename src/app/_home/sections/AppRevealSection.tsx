@@ -13,6 +13,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { homeSections } from "@/i18n/home-sections";
 import styles from "./AppRevealSection.module.css";
@@ -54,42 +55,6 @@ function PhoneIcon() {
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
       <rect x="6" y="2.5" width="12" height="19" rx="2.5" />
       <path d="M11 18.5h2" />
-    </svg>
-  );
-}
-function AppleLogo() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <path d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.7-1.8-3.3-1.8-1.4-.1-2.7.8-3.4.8-.7 0-1.8-.8-3-.8-1.5 0-2.9.9-3.7 2.3-1.6 2.7-.4 6.7 1.1 8.9.7 1.1 1.6 2.3 2.8 2.2 1.1 0 1.6-.7 2.9-.7 1.4 0 1.8.7 3 .7 1.2 0 2-1.1 2.8-2.1.8-1.2 1.2-2.4 1.2-2.4s-2.4-.9-2.4-3.6Zm-2.3-6.6c.6-.7 1-1.7 1-2.7-.9 0-1.9.6-2.5 1.3-.6.7-1 1.6-.9 2.6 1 .1 2-.5 2.4-1.2Z" />
-    </svg>
-  );
-}
-function PlayLogo() {
-  // Stylized Google Play triangle in gold
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden>
-      <defs>
-        <linearGradient id="zmPlayG1" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stopColor="#FFF1C4" />
-          <stop offset="1" stopColor="#D4A853" />
-        </linearGradient>
-        <linearGradient id="zmPlayG2" x1="0" x2="1" y1="1" y2="0">
-          <stop offset="0" stopColor="#F5D07A" />
-          <stop offset="1" stopColor="#B8913F" />
-        </linearGradient>
-        <linearGradient id="zmPlayG3" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stopColor="#E9D5FF" />
-          <stop offset="1" stopColor="#C084FC" />
-        </linearGradient>
-        <linearGradient id="zmPlayG4" x1="1" x2="0" y1="0" y2="1">
-          <stop offset="0" stopColor="#FFF1C4" />
-          <stop offset="1" stopColor="#9b51e0" />
-        </linearGradient>
-      </defs>
-      <path d="M4.5 2.6 14 12 4.5 21.4c-.3-.2-.5-.6-.5-1V3.6c0-.4.2-.8.5-1Z" fill="url(#zmPlayG3)" />
-      <path d="m14 12 3.4-3.4 4 2.3c.7.4.7 1.3 0 1.7l-4 2.3L14 12Z" fill="url(#zmPlayG2)" />
-      <path d="M4.5 2.6c.3-.2.7-.2 1 0l8 4.6L11 9.7 4.5 2.6Z" fill="url(#zmPlayG1)" />
-      <path d="M4.5 21.4 11 14.3l2.5 2.5-8 4.6c-.3.2-.7.2-1 0Z" fill="url(#zmPlayG4)" />
     </svg>
   );
 }
@@ -204,22 +169,12 @@ export function AppRevealSection() {
           </div>
 
           <div className={styles.stores}>
-            <button type="button" className={styles.storeBtn} aria-label={`${t.stores.appStoreSoon} ${t.stores.appStoreName}`}>
-              <span className={styles.storeLogo}><AppleLogo /></span>
-              <span className={styles.storeText}>
-                <span className={styles.storeSoon}>{t.stores.appStoreSoon}</span>
-                <span className={styles.storeName}>{t.stores.appStoreName}</span>
-              </span>
+            <Link href={t.cta.href} className={styles.installBtn} aria-label={t.cta.label}>
+              <span className={styles.storeLogo}><PhoneIcon /></span>
+              <span className={styles.installText}>{t.cta.label}</span>
+              <span className={styles.installArrow}><ArrowIcon /></span>
               <span className={styles.storeShine} aria-hidden />
-            </button>
-            <button type="button" className={styles.storeBtn} aria-label={`${t.stores.playStoreSoon} ${t.stores.playStoreName}`}>
-              <span className={styles.storeLogo}><PlayLogo /></span>
-              <span className={styles.storeText}>
-                <span className={styles.storeSoon}>{t.stores.playStoreSoon}</span>
-                <span className={styles.storeName}>{t.stores.playStoreName}</span>
-              </span>
-              <span className={styles.storeShine} aria-hidden />
-            </button>
+            </Link>
           </div>
         </div>
 

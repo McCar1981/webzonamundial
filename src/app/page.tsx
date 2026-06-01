@@ -78,22 +78,12 @@ export default function HomePage() {
       <StatsHowSection />
       <CalendarBanner />
       <BracketBanner />
-      <ModulesGridSection />
-      <PlatformShowcaseSection />
-      <ModulesBentoSection />
-      <GuaranteesBar items={h.guarantees} />
-      <CommunityCreatorsSection />
-      <AlbumDominaSection />
-      <AppRevealSection />
-      <WaitlistSection />
-      <SocialProofTicker items={h.testimonials} />
       {/*
-        EditorialIntro va aquí, casi al final del home: el usuario ya ha
-        visto el producto completo (módulos, creadores, álbum, app reveal,
-        testimonios) y este bloque refuerza la propuesta editorial antes
-        del CTA final. SEO/AdSense indexan el HTML completo
-        independientemente de la posición — no afecta a la valoración de
-        contenido.
+        Contenido editorial PRIMERO (tras el hero y los banners contextuales
+        del Mundial). Antes estaba al final del home, lo que hacía que un
+        revisor de AdSense viera primero la vitrina de producto. Subirlo deja
+        la prosa de calidad en el primer tercio del scroll y del HTML, dejando
+        claro que la home tiene contenido editorial real, no solo marketing.
       */}
       <EditorialIntro />
       {/*
@@ -104,6 +94,16 @@ export default function HomePage() {
         jugadores). Pieza con autoridad SEO y E-E-A-T.
       */}
       <GuiaMundial2026Section />
+      {/* Vitrina de producto: debajo del contenido editorial. */}
+      <ModulesGridSection />
+      <PlatformShowcaseSection />
+      <ModulesBentoSection />
+      <GuaranteesBar items={h.guarantees} />
+      <CommunityCreatorsSection />
+      <AlbumDominaSection />
+      <AppRevealSection />
+      <WaitlistSection />
+      <SocialProofTicker items={h.testimonials} />
       <FinalCTASection />
       {/* Push banner: aparece tras 7s en la primera visita (config interno).
           Antes solo estaba en /noticias y resultaba que tenía 1 suscriptor.

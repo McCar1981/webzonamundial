@@ -1,10 +1,39 @@
-import type { NationalTeam, WCMatch2026 } from "@/types/team";
+import type { NationalTeam } from "@/types/team";
 import SectionCard, { SectionHeader } from "./SectionCard";
 import KickoffDisplay from "./KickoffDisplay";
+import { MATCHES, type Match } from "@/data/matches";
+import { buildKickoffDate, resolveVenueTimezone } from "@/lib/timezone";
+import { SOURCE_TZ } from "@/lib/bracket/match-time";
+
+// Convierte un instante UTC a la hora de pared (YYYY-MM-DD / HH:MM) en una
+// zona dada. KickoffDisplay reconstruye el UTC a partir de estos valores.
+function wallClock(utc: Date, tz: string): { date: string; time: string } {
+  const date = new Intl.DateTimeFormat("en-CA", {
+    timeZone: tz,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(utc);
+  const time = new Intl.DateTimeFormat("en-GB", {
+    timeZone: tz,
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).format(utc);
+  return { date, time };
+}
 
 export default function ScheduleSection({ team }: { team: NationalTeam }) {
-  const matches = team.wc_2026?.schedule;
-  if (!matches?.length) return null;
+  // Fuente única de verdad: el calendario oficial FIFA (src/data/matches.ts).
+  // Derivamos los 3 partidos de fase de grupos por el ISO de la selección,
+  // así evitamos depender de los datos (a veces incompletos) del JSON de la
+  // ficha y mostramos siempre fecha, hora y sede reales.
+  const groupMatches = MATCHES.filter(
+    (m) =>
+      m.p === "Fase de grupos" && (m.hf === team.iso || m.af === team.iso),
+  ).sort((a, b) => a.j - b.j);
+
+  if (!groupMatches.length) return null;
 
   return (
     <SectionCard id="schedule">
@@ -15,8 +44,8 @@ export default function ScheduleSection({ team }: { team: NationalTeam }) {
       />
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-        {matches.map((m, i) => (
-          <MatchCard key={i} match={m} ourIso={team.iso} />
+        {groupMatches.map((m) => (
+          <MatchCard key={m.i} match={m} ourIso={team.iso} />
         ))}
       </div>
 
@@ -29,23 +58,15 @@ export default function ScheduleSection({ team }: { team: NationalTeam }) {
   );
 }
 
-function MatchCard({
-  match,
-  ourIso,
-}: {
-  match: WCMatch2026;
-  ourIso: string;
-}) {
-  const venueLabel =
-    match.venue?.stadium && !match.venue.stadium.startsWith("[")
-      ? `${match.venue.stadium}${match.venue.city ? ` · ${match.venue.city}` : ""}`
-      : "Sede por confirmar";
+function MatchCard({ match, ourIso }: { match: Match; ourIso: string }) {
+  const weAreHome = match.hf === ourIso;
+  const opponentIso = weAreHome ? match.af : match.hf;
+  const opponentName = weAreHome ? match.a : match.h;
 
-  const hasKickoff =
-    match.date &&
-    !match.date.startsWith("[") &&
-    match.kickoff_local &&
-    !match.kickoff_local.startsWith("[");
+  const venueTz = resolveVenueTimezone(match.vc, match.vf);
+  const utc = buildKickoffDate(match.d, match.t, SOURCE_TZ);
+  const kickoff = utc ? wallClock(utc, venueTz) : null;
+  const venueLabel = `${match.vn}${match.vc ? ` · ${match.vc}` : ""}`;
 
   return (
     <article
@@ -56,22 +77,8 @@ function MatchCard({
       }}
     >
       <div className="flex items-center justify-between text-[10px] font-bold text-[var(--bb-text-muted)] uppercase tracking-widest mb-4">
-        <span>Jornada {match.matchday}</span>
-        <span
-          className={
-            match.status === "live"
-              ? "text-green-400"
-              : match.status === "finished"
-              ? "text-[var(--bb-text-muted)]"
-              : "text-[var(--bb-gold)]"
-          }
-        >
-          {match.status === "live"
-            ? "● En vivo"
-            : match.status === "finished"
-            ? "Finalizado"
-            : "Por jugar"}
-        </span>
+        <span>Jornada {match.j}</span>
+        <span className="text-[var(--bb-gold)]">Por jugar</span>
       </div>
 
       <div className="flex items-center justify-between gap-2 mb-4">
@@ -82,17 +89,17 @@ function MatchCard({
         >
           vs
         </span>
-        <TeamCell iso={match.opponent.iso} name={match.opponent.name} />
+        <TeamCell iso={opponentIso} name={opponentName} />
       </div>
 
       {/* Hora multi-zona */}
       <div className="mb-3">
-        {hasKickoff && match.kickoff_local && match.date ? (
+        {kickoff ? (
           <KickoffDisplay
-            localDate={match.date}
-            localTime={match.kickoff_local}
-            city={match.venue?.city}
-            countryIso={match.venue?.country_iso}
+            localDate={kickoff.date}
+            localTime={kickoff.time}
+            city={match.vc}
+            countryIso={match.vf}
           />
         ) : (
           <div className="text-center text-sm text-white font-semibold">

@@ -158,7 +158,7 @@ export function HomeTriviaPlaySection() {
           </div>
 
           {/* ── Cuerpo: juego ── */}
-          <div className="relative px-6 pt-4 pb-6 sm:px-9 sm:pt-5 sm:pb-9">
+          <div className="relative z-10 -mt-14 sm:-mt-16 px-6 pb-6 sm:px-9 sm:pb-9">
             {/* Glow decorativo */}
             <div
               aria-hidden

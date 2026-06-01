@@ -257,10 +257,17 @@ export default function TriviaPage() {
             {trT.subtitle}
           </p>
           <div data-hero-cta style={{marginTop:32,display:"flex",gap:12,justifyContent:"center",flexWrap:"wrap"}}>
-            <Link href="/registro" data-hover-btn style={{
+            <Link href="/trivia" data-hover-btn style={{
               padding:"14px 32px",borderRadius:12,
               background:`linear-gradient(135deg,${GOLD},${GOLD2})`,
               color:BG,fontWeight:700,fontSize:15,textDecoration:"none",display:"inline-block"
+            }}>
+              Jugar ahora →
+            </Link>
+            <Link href="/registro" data-hover-btn style={{
+              padding:"14px 32px",borderRadius:12,
+              background:"rgba(255,255,255,0.05)",border:"1px solid rgba(255,255,255,0.12)",
+              color:"#fff",fontWeight:700,fontSize:15,textDecoration:"none",display:"inline-block"
             }}>
               {trT.ctaBtn}
             </Link>
@@ -557,17 +564,24 @@ export default function TriviaPage() {
           <p data-cta-content style={{color:MID,marginBottom:32,fontSize:17,lineHeight:1.7}}>
             {trT.ctaFinalDesc}
           </p>
-          <Link href="/registro" data-cta-content data-hover-btn style={{
-            padding:"18px 48px",borderRadius:12,
-            background:`linear-gradient(135deg,${GOLD},${GOLD2})`,
-            color:BG,fontWeight:800,fontSize:17,textDecoration:"none",display:"inline-block"
-          }}>
-            {trT.ctaBtn}
-          </Link>
+          <div data-cta-content style={{display:"flex",gap:12,justifyContent:"center",flexWrap:"wrap"}}>
+            <Link href="/trivia" data-hover-btn style={{
+              padding:"18px 48px",borderRadius:12,
+              background:`linear-gradient(135deg,${GOLD},${GOLD2})`,
+              color:BG,fontWeight:800,fontSize:17,textDecoration:"none",display:"inline-block"
+            }}>
+              Jugar ahora →
+            </Link>
+            <Link href="/registro" data-hover-btn style={{
+              padding:"18px 40px",borderRadius:12,
+              background:"rgba(255,255,255,0.05)",border:"1px solid rgba(255,255,255,0.12)",
+              color:"#fff",fontWeight:700,fontSize:17,textDecoration:"none",display:"inline-block"
+            }}>
+              {trT.ctaBtn}
+            </Link>
+          </div>
         </div>
       </section>
-
-      <ModuleLandingExtras slug="trivia" />
     </div>
   );
 }

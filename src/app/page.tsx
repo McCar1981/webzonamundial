@@ -30,6 +30,8 @@ import { AppRevealSection } from "./_home/sections/AppRevealSection";
 import { CinematicDivider } from "./_home/sections/CinematicDivider";
 import { CalendarBanner } from "./_home/sections/CalendarBanner";
 import { BracketBanner } from "./_home/sections/BracketBanner";
+import { HomeTriviaPlaySection } from "./_home/sections/HomeTriviaPlaySection";
+import { HomeMatchPredictSection } from "./_home/sections/HomeMatchPredictSection";
 
 export default function HomePage() {
   const { t } = useLanguage();
@@ -76,6 +78,12 @@ export default function HomePage() {
         IMGS={IMGS}
       />
       <StatsHowSection />
+      {/*
+        Trivia JUGABLE inline: el único módulo que ya está activo (no requiere
+        que el Mundial haya comenzado). Interactividad aditiva — va alta en el
+        scroll para enganchar, pero SIN desplazar el contenido editorial.
+      */}
+      <HomeTriviaPlaySection />
       <CalendarBanner />
       <BracketBanner />
       {/*
@@ -94,6 +102,12 @@ export default function HomePage() {
         jugadores). Pieza con autoridad SEO y E-E-A-T.
       */}
       <GuiaMundial2026Section />
+      {/*
+        Match Center + Predicciones (teaser interactivo): debajo del editorial.
+        Próximo partido jugable "¿quién gana?" + tira de próximos partidos que
+        enlazan a su Match Center. Aditivo, no reemplaza prosa.
+      */}
+      <HomeMatchPredictSection />
       {/* Vitrina de producto: debajo del contenido editorial. */}
       <ModulesGridSection />
       <PlatformShowcaseSection />

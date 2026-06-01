@@ -155,10 +155,22 @@ export function HomeTriviaPlaySection() {
                 </p>
               </div>
             </div>
+            {/* CTA inicial: sobre la base del banner, a la derecha */}
+            {phase === "idle" && (
+              <button
+                onClick={start}
+                style={primaryBtn}
+                aria-label="Jugar ahora"
+                className="absolute bottom-5 right-6 sm:bottom-7 sm:right-9 z-10"
+              >
+                Jugar ahora →
+              </button>
+            )}
           </div>
 
-          {/* ── Cuerpo: juego ── */}
-          <div className="relative z-10 -mt-14 sm:-mt-16 px-6 pb-6 sm:px-9 sm:pb-9">
+          {/* ── Cuerpo: juego (solo al jugar) ── */}
+          {phase !== "idle" && (
+          <div className="relative z-10 px-6 pt-6 pb-6 sm:px-9 sm:pt-7 sm:pb-9">
             {/* Glow decorativo */}
             <div
               aria-hidden
@@ -170,17 +182,6 @@ export function HomeTriviaPlaySection() {
             />
 
             <div className="relative z-10">
-            {/* ── IDLE ── */}
-            {phase === "idle" && (
-              <button
-                onClick={start}
-                style={primaryBtn}
-                aria-label="Jugar ahora"
-              >
-                Jugar ahora →
-              </button>
-            )}
-
             {/* ── LOADING ── */}
             {phase === "loading" && (
               <div style={{ color: DIM, fontSize: 14, padding: "14px 0" }}>Cargando pregunta…</div>
@@ -305,6 +306,7 @@ export function HomeTriviaPlaySection() {
             )}
             </div>
           </div>
+          )}
         </div>
       </div>
     </section>

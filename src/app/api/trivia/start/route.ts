@@ -7,6 +7,7 @@ import { NextResponse } from "next/server";
 import { generateQuestions } from "@/lib/trivia/generator";
 import { getDailySet, saveDailySet, saveSession, todayUTC } from "@/lib/trivia/store";
 import { newSessionId, pickQuestions, toClientQuestion } from "@/lib/trivia/play";
+import { FALLBACK_QUESTIONS } from "@/data/trivia-fallback";
 import type { DailyTriviaSet, ServerSession, TriviaMode } from "@/lib/trivia/types";
 
 export const runtime = "nodejs";
@@ -32,14 +33,20 @@ export async function POST(req: Request) {
   // (la primera visita del día lo dispara). Idempotente para el resto.
   if (!set || set.questions.length < 10) {
     const questions = await generateQuestions(18);
-    if (questions.length < 5) {
-      return NextResponse.json(
-        { error: "trivia_unavailable", message: "No hay preguntas disponibles ahora." },
-        { status: 503 },
-      );
+    if (questions.length >= 5) {
+      set = { date, generatedAt: new Date().toISOString(), questions } as DailyTriviaSet;
+      await saveDailySet(set);
+    } else {
+      // Red de seguridad: si la generación con IA no está disponible (falta de
+      // API key, error del modelo, etc.) servimos el banco estático para que la
+      // trivia nunca se quede sin preguntas. NO lo persistimos en KV, así el
+      // cron diario podrá generar el set real más tarde.
+      set = {
+        date,
+        generatedAt: new Date().toISOString(),
+        questions: FALLBACK_QUESTIONS,
+      } as DailyTriviaSet;
     }
-    set = { date, generatedAt: new Date().toISOString(), questions } as DailyTriviaSet;
-    await saveDailySet(set);
   }
 
   const questions = pickQuestions(set, mode);

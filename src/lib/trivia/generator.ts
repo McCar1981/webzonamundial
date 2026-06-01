@@ -85,13 +85,13 @@ interface RawQuestion {
 
 /** Genera `count` preguntas frescas. Devuelve solo las que pasan validación. */
 export async function generateQuestions(count = 18): Promise<TriviaQuestion[]> {
-  const client = getClient();
   const model = process.env.ANTHROPIC_MODEL_TRIVIA || DEFAULT_MODEL;
 
   const userMessage = `Genera ${count} preguntas de trivia nuevas y variadas para hoy. Mezcla categorías y dificultades según las proporciones indicadas. Evita preguntas obvias repetidas (no preguntes solo "cuántos mundiales ganó Brasil"). Devuelve SOLO el JSON.`;
 
   let resp;
   try {
+    const client = getClient();
     resp = await client.messages.create({
       model,
       max_tokens: 4500,

@@ -39,6 +39,20 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
+/**
+ * Baraja las OPCIONES de una pregunta y reubica correctIndex.
+ *
+ * El modelo (y el banco de fallback) tienden a poner la respuesta correcta
+ * en la primera posición, así que sin esto todas las respuestas serían "A".
+ * Aleatorizamos la posición de la correcta en cada partida.
+ */
+function shuffleOptions(q: TriviaQuestion): TriviaQuestion {
+  const correct = q.options[q.correctIndex];
+  const options = shuffle(q.options);
+  const correctIndex = options.indexOf(correct);
+  return { ...q, options, correctIndex };
+}
+
 /** Repite el pool hasta alcanzar `n` preguntas, re-asignando ids únicos. */
 function repeatToLength(pool: TriviaQuestion[], n: number): TriviaQuestion[] {
   const out: TriviaQuestion[] = [];
@@ -54,18 +68,21 @@ function repeatToLength(pool: TriviaQuestion[], n: number): TriviaQuestion[] {
 /** Selecciona las preguntas de la partida según el modo. */
 export function pickQuestions(set: DailyTriviaSet, mode: TriviaMode): TriviaQuestion[] {
   const pool = set.questions;
+  let picked: TriviaQuestion[];
   if (mode === "relampago") {
-    return repeatToLength(shuffle(pool), 10);
-  }
-  if (mode === "muerte-subita") {
+    picked = repeatToLength(shuffle(pool), 10);
+  } else if (mode === "muerte-subita") {
     // Dificultad creciente: el juego se vuelve más difícil cuanto más aguantas.
     const ordered = [...pool].sort(
       (a, b) => (DIFF_ORDER[a.difficulty] ?? 1) - (DIFF_ORDER[b.difficulty] ?? 1),
     );
-    return repeatToLength(ordered, 40);
+    picked = repeatToLength(ordered, 40);
+  } else {
+    // diaria: hasta 10 preguntas barajadas
+    picked = shuffle(pool).slice(0, Math.min(10, pool.length));
   }
-  // diaria: hasta 10 preguntas barajadas
-  return shuffle(pool).slice(0, Math.min(10, pool.length));
+  // Aleatoriza la posición de la respuesta correcta en cada pregunta.
+  return picked.map(shuffleOptions);
 }
 
 export function newSessionId(): string {

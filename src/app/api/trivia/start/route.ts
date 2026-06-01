@@ -32,7 +32,7 @@ export async function POST(req: Request) {
   // Fallback: si el cron aún no generó el set de hoy, lo generamos al vuelo
   // (la primera visita del día lo dispara). Idempotente para el resto.
   if (!set || set.questions.length < 10) {
-    const questions = await generateQuestions(18);
+    const questions = await generateQuestions(30);
     if (questions.length >= 5) {
       set = { date, generatedAt: new Date().toISOString(), questions } as DailyTriviaSet;
       await saveDailySet(set);

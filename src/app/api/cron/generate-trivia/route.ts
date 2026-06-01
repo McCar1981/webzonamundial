@@ -30,7 +30,7 @@ export async function GET(req: Request) {
   const force = url.searchParams.get("force") === "1";
   const count = Math.min(
     30,
-    Math.max(8, Number(url.searchParams.get("count")) || 18),
+    Math.max(8, Number(url.searchParams.get("count")) || 30),
   );
   const date = todayUTC();
 

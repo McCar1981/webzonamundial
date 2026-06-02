@@ -57,7 +57,8 @@ function Flag({ code, size = 28 }: { code: string; size?: number }) {
 }
 
 export function HomeMatchPredictSection() {
-  const matches = useMemo(() => upcomingMatches(6), []);
+  // 1 partido destacado + 8 tarjetas en "Próximos partidos".
+  const matches = useMemo(() => upcomingMatches(9), []);
   const featured = matches[0];
   const rest = matches.slice(1);
   const [pick, setPick] = useState<Pick | null>(null);

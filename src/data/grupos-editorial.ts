@@ -101,9 +101,9 @@ export const GRUPOS_EDITORIAL: Record<string, GrupoEditorial> = {
   },
   F: {
     intro:
-      "El Grupo F es el grupo de los discretos europeos y asiáticos en plenitud: Países Bajos (siempre candidatos), Japón (la potencia asiática actual), Suecia (regreso tras 8 años) y Túnez (cuarta participación). Grupo con cuatro selecciones competitivas y ningún favorito claro.",
+      "El Grupo F es el grupo de los discretos europeos y asiáticos en plenitud: Países Bajos (siempre candidatos), Japón (la potencia asiática actual), Suecia (regreso tras 8 años) y Túnez (asiduo africano del Mundial). Grupo con cuatro selecciones competitivas y ningún favorito claro.",
     contexto:
-      "Países Bajos llega con Ronald Koeman repitiendo ciclo. Memphis Depay y Frenkie de Jong lideran, con Cody Gakpo (Liverpool) y Xavi Simons (RB Leipzig) como nuevos referentes. Japón, dirigido por Hajime Moriyasu, tiene a Takefusa Kubo (Sociedad), Takumi Minamino y Wataru Endo (Liverpool). Suecia, ya sin Ibrahimović, regresa con Alexander Isak (Liverpool) y Viktor Gyökeres (Arsenal) en racha goleadora. Túnez vuelve por cuarta vez consecutiva, con Wahbi Khazri y Aïssa Laïdouni como referencias.",
+      "Países Bajos llega con Ronald Koeman repitiendo ciclo. Memphis Depay y Frenkie de Jong lideran, con Cody Gakpo (Liverpool) y Xavi Simons (RB Leipzig) como nuevos referentes. Japón, dirigido por Hajime Moriyasu, tiene a Takefusa Kubo (Sociedad), Takumi Minamino y Wataru Endo (Liverpool). Suecia, ya sin Ibrahimović, regresa con Alexander Isak (Liverpool) y Viktor Gyökeres (Arsenal) en racha goleadora. Túnez vuelve a la cita mundialista con Wahbi Khazri y Aïssa Laïdouni como referencias.",
     favoritos:
       "Países Bajos parte como primera por jerarquía. Japón es el segundo natural por la solidez de su generación europea. Suecia y Túnez pelearán por el tercer puesto.",
     debutante_o_sorpresa:
@@ -151,7 +151,7 @@ export const GRUPOS_EDITORIAL: Record<string, GrupoEditorial> = {
     intro:
       "El Grupo I junta a Francia (subcampeona 2022 con Mbappé), Senegal (potencia africana), Irak (debut tras 40 años) y Noruega (Haaland y Ødegaard al Mundial). Grupo desequilibrado pero con dos estrellas individuales del top mundial.",
     contexto:
-      "Francia, con Didier Deschamps en su tercer Mundial al mando, llega con Kylian Mbappé (27), Aurélien Tchouaméni, William Saliba, Jules Koundé y Ousmane Dembélé. Senegal, dirigido por Pape Thiaw, mantiene a Sadio Mané, Krepin Diatta e Idrissa Gueye como columna. Irak regresa al Mundial 40 años después de México 1986 con Aymen Hussein como referencia. Noruega vuelve al Mundial 28 años después de Francia 1998 con Haaland y Martin Ødegaard como núcleo: una generación que merece la cita.",
+      "Francia, con Didier Deschamps en su tercer Mundial al mando, llega con Kylian Mbappé (27), Aurélien Tchouaméni, William Saliba, Jules Koundé y Ousmane Dembélé. Senegal, dirigido por Pape Thiaw, se apoya en un bloque de jugadores con experiencia en las grandes ligas europeas como Idrissa Gueye y Krepin Diatta. Irak regresa al Mundial 40 años después de México 1986 con Aymen Hussein como referencia. Noruega vuelve al Mundial 28 años después de Francia 1998 con Haaland y Martin Ødegaard como núcleo: una generación que merece la cita.",
     favoritos:
       "Francia primera, sin debate. Senegal y Noruega pelearán por la segunda plaza. Irak con el reto de sumar puntos por primera vez en su historia.",
     debutante_o_sorpresa:
@@ -161,7 +161,7 @@ export const GRUPOS_EDITORIAL: Record<string, GrupoEditorial> = {
     pronostico:
       "1º Francia, 2º Noruega por margen estrecho con Senegal. Irak con foco en hacer historia con un punto.",
     curiosidad:
-      "Es la primera vez que Haaland disputa un Mundial. Hasta ahora, su única participación en torneo internacional con Noruega fue la Eurocopa Sub-21 de 2019. A sus 25 años, llega con 110 goles internacionales en menos de 110 partidos.",
+      "Es la primera vez que Haaland disputa un Mundial: Noruega llevaba 28 años sin clasificarse, así que su generación nunca había tenido la cita. Llega en plena madurez goleadora tras varias temporadas de récord en el Manchester City.",
   },
   J: {
     intro:

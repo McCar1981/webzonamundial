@@ -29,7 +29,7 @@ export const GRUPOS_EDITORIAL: Record<string, GrupoEditorial> = {
     debutante_o_sorpresa:
       "El factor sorpresa es Chequia: nadie la espera en octavos pero su bloque defensivo (Souček, Pavlenka) puede frustrar a México. Sudáfrica también puede dar la sorpresa si Hugo Broos repite la versión que ganó la Copa Africana con Camerún.",
     partido_estrella:
-      "México vs Corea del Sur, miércoles 24 de junio en el Estadio BBVA de Monterrey, decidirá probablemente el primer puesto del grupo. Será el examen real para Aguirre con casa llena.",
+      "México vs Corea del Sur, jueves 18 de junio en el Estadio Akron de Guadalajara, decidirá probablemente el primer puesto del grupo. Será el examen real para Aguirre con casa llena.",
     pronostico:
       "Clasificación esperada: 1º México, 2º Corea del Sur. Chequia y Sudáfrica pelearán el tercer puesto, que vale para colarse en dieciseisavos si suma 3-4 puntos.",
     curiosidad:
@@ -45,7 +45,7 @@ export const GRUPOS_EDITORIAL: Record<string, GrupoEditorial> = {
     debutante_o_sorpresa:
       "Bosnia es el gran debutante. Su clasificación tras vencer a Italia en repechaje fue una de las grandes historias de la temporada. Si Pjanić mantiene la forma y Džeko se reserva para los partidos clave, pueden colarse en dieciseisavos.",
     partido_estrella:
-      "Canadá vs Suiza, viernes 19 de junio en BC Place Vancouver, será el examen real para los locales contra una potencia consolidada de UEFA.",
+      "Suiza vs Canadá, miércoles 24 de junio en BC Place Vancouver, será el examen real para los locales contra una potencia consolidada de UEFA.",
     pronostico:
       "1º Suiza, 2º Canadá por el plus de afición. Bosnia y Qatar luchan por el tercer puesto, con Bosnia ligero favorito por experiencia europea.",
     curiosidad:
@@ -61,7 +61,7 @@ export const GRUPOS_EDITORIAL: Record<string, GrupoEditorial> = {
     debutante_o_sorpresa:
       "Haití es la gran historia del grupo. Sin haber jugado un Mundial en 52 años, llega con una generación criada en clubes franceses y belgas. No esperamos clasificación pero pueden incomodar a Escocia o Marruecos.",
     partido_estrella:
-      "Brasil vs Marruecos, sábado 13 de junio en NRG Stadium Houston, repetirá el amistoso de marzo 2023 (victoria marroquí 2-1) que sacudió al fútbol brasileño.",
+      "Brasil vs Marruecos, sábado 13 de junio en MetLife Stadium (Nueva York/NJ), repetirá el amistoso de marzo 2023 (victoria marroquí 2-1) que sacudió al fútbol brasileño.",
     pronostico:
       "1º Brasil, 2º Marruecos. Escocia entre 1-3 puntos peleando tercer puesto. Haití con foco en disfrutar la cita histórica.",
     curiosidad:
@@ -77,7 +77,7 @@ export const GRUPOS_EDITORIAL: Record<string, GrupoEditorial> = {
     debutante_o_sorpresa:
       "Turquía vuelve al Mundial 24 años después. Si Çalhanoğlu y Müldür están en buena forma, pueden romper pronósticos. Paraguay es el comodín sudamericano: si Sanabria está enchufado, complican al rival más débil del rival.",
     partido_estrella:
-      "Estados Unidos vs Turquía, domingo 21 de junio en Lincoln Financial Field Filadelfia, decidirá la primera plaza con Pulisic vs Çalhanoğlu como duelo de capitanes.",
+      "Turquía vs Estados Unidos, jueves 25 de junio en el SoFi Stadium de Los Ángeles, decidirá la primera plaza con Pulisic vs Çalhanoğlu como duelo de capitanes.",
     pronostico:
       "1º Estados Unidos, 2º Turquía. Paraguay y Australia pelean tercer puesto: Paraguay por experiencia, Australia por físico.",
     curiosidad:
@@ -93,7 +93,7 @@ export const GRUPOS_EDITORIAL: Record<string, GrupoEditorial> = {
     debutante_o_sorpresa:
       "Curazao. Con 150 mil habitantes, es estadísticamente la mayor sorpresa de clasificación de la historia. No esperamos puntos pero ya es leyenda solo por estar.",
     partido_estrella:
-      "Alemania vs Costa de Marfil, miércoles 24 de junio en MetLife Stadium NY/NJ, repite el cruce que ya hubo en Brasil 2014 (victoria alemana 0-2).",
+      "Alemania vs Costa de Marfil, sábado 20 de junio en el BMO Field de Toronto, enfrenta a la potencia europea contra la campeona africana 2024 y debería decidir la primera plaza.",
     pronostico:
       "1º Alemania, 2º Ecuador. Costa de Marfil entre 3-4 puntos peleando mejor tercero. Curazao con la satisfacción de competir.",
     curiosidad:
@@ -109,7 +109,7 @@ export const GRUPOS_EDITORIAL: Record<string, GrupoEditorial> = {
     debutante_o_sorpresa:
       "Japón puede dar la sorpresa de quedar primero. En Qatar 2022 ya venció a Alemania y España en fase de grupos. Tiene base europea y ritmo intenso.",
     partido_estrella:
-      "Países Bajos vs Japón, jueves 18 de junio en Estadio BBVA Monterrey (altitud 540m), es el partido que decidirá el primer puesto.",
+      "Países Bajos vs Japón, domingo 14 de junio en el AT&T Stadium de Dallas, es el partido que decidirá el primer puesto.",
     pronostico:
       "1º Países Bajos, 2º Japón. Suecia por calidad técnica reciente, Túnez por experiencia: tercer puesto disputado al detalle.",
     curiosidad:
@@ -125,7 +125,7 @@ export const GRUPOS_EDITORIAL: Record<string, GrupoEditorial> = {
     debutante_o_sorpresa:
       "Egipto puede ser la sorpresa: en 5 Mundiales nunca ha pasado de fase de grupos. Si Salah aparece, este grupo es la oportunidad histórica.",
     partido_estrella:
-      "Bélgica vs Egipto, viernes 19 de junio en Levi's Stadium Bay Area, será el duelo entre De Bruyne y Salah, dos compañeros de Liverpool durante 5 años.",
+      "Bélgica vs Egipto, lunes 15 de junio en el Lumen Field de Seattle, será el duelo entre De Bruyne y Salah, dos viejos conocidos de la Premier League.",
     pronostico:
       "1º Bélgica, 2º Egipto. Irán por experiencia 3º (mejor tercero posible). Nueva Zelanda con foco en disfrutar.",
     curiosidad:
@@ -157,7 +157,7 @@ export const GRUPOS_EDITORIAL: Record<string, GrupoEditorial> = {
     debutante_o_sorpresa:
       "Noruega es la gran historia. 28 años sin Mundial y llega con Haaland (Manchester City) y Ødegaard (Arsenal) en su mejor edad. Pueden quedar segundos del grupo.",
     partido_estrella:
-      "Francia vs Noruega, martes 23 de junio en MetLife Stadium NY/NJ, enfrenta a Mbappé contra Haaland: el duelo de delanteros del Mundial.",
+      "Noruega vs Francia, viernes 26 de junio en el Gillette Stadium de Boston, enfrenta a Haaland contra Mbappé: el duelo de delanteros del Mundial.",
     pronostico:
       "1º Francia, 2º Noruega por margen estrecho con Senegal. Irak con foco en hacer historia con un punto.",
     curiosidad:
@@ -173,7 +173,7 @@ export const GRUPOS_EDITORIAL: Record<string, GrupoEditorial> = {
     debutante_o_sorpresa:
       "Jordania es la sorpresa absoluta. Llegó al Mundial tras vencer a Corea del Sur en semifinal de la Copa Asiática 2024 (resultado 2-0). Pueden incomodar a Argelia o Austria.",
     partido_estrella:
-      "Argentina vs Austria, miércoles 24 de junio en NRG Stadium Houston, es el partido bisagra. Si Argentina gana cómodo, certifica primera plaza; si Austria saca el empate, todo abierto.",
+      "Argentina vs Austria, lunes 22 de junio en el AT&T Stadium de Dallas, es el partido bisagra. Si Argentina gana cómodo, certifica primera plaza; si Austria saca el empate, todo abierto.",
     pronostico:
       "1º Argentina, 2º Austria. Argelia tercera con opciones de pasar como mejor tercero. Jordania con la ilusión.",
     curiosidad:
@@ -205,7 +205,7 @@ export const GRUPOS_EDITORIAL: Record<string, GrupoEditorial> = {
     debutante_o_sorpresa:
       "Ghana puede dar la sorpresa de pasar segunda si Kudus mantiene la racha goleadora con Tottenham. Croacia ya no es la potencia de 2018.",
     partido_estrella:
-      "Inglaterra vs Croacia, viernes 19 de junio en AT&T Stadium Dallas, repite el cruce de semifinal 2018 (victoria croata 2-1 en prórroga) y de fase de grupos de Euro 2024 (victoria inglesa 2-0).",
+      "Inglaterra vs Croacia, miércoles 17 de junio en AT&T Stadium Dallas, repite el cruce de semifinal 2018 (victoria croata 2-1 en prórroga) y de fase de grupos de Euro 2024 (victoria inglesa 2-0).",
     pronostico:
       "1º Inglaterra, 2º Croacia. Ghana tercera con opciones de mejor tercero si suma 4 puntos. Panamá con foco en sumar el primer punto.",
     curiosidad:

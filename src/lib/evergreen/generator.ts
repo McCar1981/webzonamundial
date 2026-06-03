@@ -86,9 +86,23 @@ export async function buildEvergreenPost(args: {
   category: BlogCategory;
   ogImage?: string;
 }): Promise<BlogPost | null> {
+  const angle =
+    args.category === "selecciones"
+      ? `ÁNGULO — GUÍA MONOGRÁFICA DE UNA SELECCIÓN (NO es una previa de grupo):
+- El foco es el RETRATO PROFUNDO de ESTA única selección, no su grupo. PROHIBIDO estructurarla como previa de grupo: NADA de "los favoritos del grupo", "el partido estrella del grupo", ni comparar/repasar a los otros 3 rivales del grupo. Si mencionas el grupo, que sea de pasada para situar.
+- Construye la pieza con la SUSTANCIA ÚNICA del dossier que una previa de grupo NO tiene: su recorrido Mundial a Mundial (historia), sus récords históricos, sus partidos icónicos, su palmarés, el camino a la clasificación 2026, el plantel y XI probables, el estilo de juego y fortalezas/debilidades, el jugador clave (factor X), y la cultura de afición (estadio, rival histórico, cánticos, curiosidades).
+- Estructura sugerida (adáptala): historia y palmarés → momentos que marcaron a la selección → cómo llega a 2026 (clasificación, estado de forma) → plantel, entrenador y XI probable → estilo, fortalezas y debilidades → qué esperar / factor X → identidad y afición. El calendario va al final y breve.
+- Aprovecha tablas para el recorrido Mundial a Mundial y la convocatoria probable.`
+      : `ÁNGULO — PREVIA DE GRUPO:
+- Repasa las 4 selecciones del grupo, el calendario completo, los favoritos, el debutante/sorpresa, el partido estrella y un pronóstico razonado.
+- Las sedes/estadios deben copiarse LITERALMENTE del calendario del dossier (no los pongas de memoria).`;
+
   const userPrompt = `DOSSIER (única fuente de datos permitida):
 
 ${args.dossier.dossier}
+
+---
+${angle}
 
 ---
 Título orientativo: "${args.dossier.title}"

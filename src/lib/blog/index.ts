@@ -14,6 +14,7 @@
 
 import { POSTS } from "./posts";
 import { readAutoPosts } from "./store";
+import { readEvergreenPosts } from "./evergreen-store";
 import type { BlogPost, BlogCategory } from "./types";
 
 function isPublic(p: BlogPost, now: Date = new Date()): boolean {
@@ -21,14 +22,22 @@ function isPublic(p: BlogPost, now: Date = new Date()): boolean {
 }
 
 /**
- * Combina los posts estáticos del repo con los auto-generados en KV.
- * Estáticos ganan en conflicto de slug.
+ * Combina los posts estáticos del repo con los auto-generados y los perennes
+ * (Track B), ambos en KV. Estáticos ganan en conflicto de slug; entre KV, el
+ * evergreen tiene prioridad sobre el auto (es contenido fundamentado en datos).
  */
 async function getCombinedPosts(): Promise<BlogPost[]> {
-  const auto = await readAutoPosts();
+  const [auto, evergreen] = await Promise.all([
+    readAutoPosts(),
+    readEvergreenPosts(),
+  ]);
   const staticSlugs = new Set(POSTS.map((p) => p.slug));
-  const filteredAuto = auto.filter((p) => !staticSlugs.has(p.slug));
-  return [...POSTS, ...filteredAuto];
+  const evergreenSlugs = new Set(evergreen.map((p) => p.slug));
+  const filteredEvergreen = evergreen.filter((p) => !staticSlugs.has(p.slug));
+  const filteredAuto = auto.filter(
+    (p) => !staticSlugs.has(p.slug) && !evergreenSlugs.has(p.slug),
+  );
+  return [...POSTS, ...filteredEvergreen, ...filteredAuto];
 }
 
 /** Todos los posts publicados, ordenados:
@@ -60,6 +69,11 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   const staticPost = POSTS.find((x) => x.slug === slug);
   if (staticPost) {
     return isPublic(staticPost) ? staticPost : null;
+  }
+  const evergreen = await readEvergreenPosts();
+  const evergreenPost = evergreen.find((x) => x.slug === slug);
+  if (evergreenPost) {
+    return isPublic(evergreenPost) ? evergreenPost : null;
   }
   const auto = await readAutoPosts();
   const autoPost = auto.find((x) => x.slug === slug);

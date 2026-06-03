@@ -134,6 +134,15 @@ export interface BlogPost {
   /** Si está fijado, aparece SIEMPRE primero como featured. Pensado para
    * el manifiesto de presentación de marca o piezas atemporales clave. */
   pinned?: boolean;
+  /** Si true, la página se sirve con robots noindex y se EXCLUYE del sitemap.
+   * El post sigue siendo accesible por URL; solo se retira de la indexación.
+   * Lo activa la auditoría de calidad (audit-blog) para piezas que no pasan
+   * el listón del crítico, sin borrarlas. */
+  noindex?: boolean;
+  /** Marca de contenido perenne generado por datos (Track B). Permite
+   * distinguir las piezas evergreen (previas de grupo, guías de selección)
+   * de los posts auto del blog diario. */
+  evergreen?: boolean;
 }
 
 export const EDITORIAL_AUTHOR: BlogAuthor = {

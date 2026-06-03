@@ -43,6 +43,9 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     description: post.description,
     keywords: post.keywords,
     alternates: { canonical: url },
+    // Despublicado por la auditoría de calidad: accesible por URL pero fuera
+    // del índice de Google (y del sitemap). El resto hereda el index:true raíz.
+    ...(post.noindex ? { robots: { index: false, follow: true } } : {}),
     openGraph: {
       type: "article",
       url,

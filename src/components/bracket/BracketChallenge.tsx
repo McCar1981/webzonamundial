@@ -14,6 +14,7 @@ import CosmosBackground from "./CosmosBackground";
 import PhaseCompleteOverlay from "./PhaseCompleteOverlay";
 import CelebrationOverlay from "./CelebrationOverlay";
 import CapsuleSealModal from "./CapsuleSealModal";
+import BracketCoachPanel from "./BracketCoachPanel";
 import ViewErrorBoundary from "./ViewErrorBoundary";
 import styles from "./bracket.module.css";
 
@@ -169,6 +170,8 @@ export default function BracketChallenge() {
             <CosmicBracket key="cosmic" state={state} onOpenMatch={setActiveMatchId} />
           )}
         </ViewErrorBoundary>
+
+        {hydrated && <BracketCoachPanel state={state} />}
       </div>
 
       <MatchModal

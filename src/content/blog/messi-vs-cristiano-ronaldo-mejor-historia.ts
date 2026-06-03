@@ -8,8 +8,9 @@ const post: BlogPost = {
   slug: "messi-vs-cristiano-ronaldo-mejor-historia",
   title:
     "Messi vs Cristiano Ronaldo: ¿quién es el mejor de la historia? Datos definitivos antes del Mundial 2026",
+  seoTitle: "Messi vs Cristiano: ¿quién es el mejor de la historia?",
   description:
-    "Messi vs Cristiano Ronaldo en cifras: goles, asistencias, títulos, Balones de Oro, finales y mundiales. Todos los datos para zanjar el debate antes del Mundial 2026.",
+    "Goles, títulos, Balones de Oro y Mundiales: comparamos a Messi y Cristiano Ronaldo cara a cara para decidir quién manda. El debate definitivo.",
   dek: "Dos genios, dos décadas dominando el fútbol mundial, un Mundial 2026 que será el último para ambos. Cruzamos sus números reales y dejamos que tú decidas.",
   ogImage:
     "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Cristiano_Ronaldo_and_Lionel_Messi_-_Portugal_vs_Argentina%2C_9th_February_2011.jpg/1280px-Cristiano_Ronaldo_and_Lionel_Messi_-_Portugal_vs_Argentina%2C_9th_February_2011.jpg",
@@ -245,7 +246,7 @@ const post: BlogPost = {
     },
     {
       type: "p",
-      text: "Pero Cristiano nunca se rinde. **Tiene la motivación última**: si Portugal levanta la copa, no habrá ningún 'pero' en su carrera —el único título que le falta. Roberto Martínez ya ha dejado claro que CR7 será **suplente de impacto** en partidos clave, una fórmula que en estadios estadounidenses puede funcionar bien (calor extremo, cambios cada 30 minutos).",
+      text: "Pero Cristiano nunca se rinde. **Tiene la motivación última**: si Portugal levanta la copa, no habrá ningún 'pero' en su carrera —el único título que le falta. Roberto Martínez ya ha dejado claro que CR7 será **suplente de impacto** en partidos clave, una fórmula que en estadios estadounidenses puede funcionar bien (calor extremo, cambios cada 30 minutos). Y si quieres vivir su último duelo desde dentro, ficha a Messi o a Cristiano en el [Fantasy del Mundial 2026](/app/fantasy) y compite por puntos partido a partido.",
     },
     {
       type: "cta",

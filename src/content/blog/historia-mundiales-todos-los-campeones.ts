@@ -8,8 +8,9 @@ const post: BlogPost = {
   slug: "historia-mundiales-todos-los-campeones",
   title:
     "Todos los campeones del Mundial de fútbol desde 1930: historia completa de la Copa del Mundo",
+  seoTitle: "Todos los campeones del Mundial: lista completa",
   description:
-    "Lista completa de los 22 campeones del Mundial desde Uruguay 1930 hasta Argentina 2022. Sedes, finales, máximos goleadores y los datos que marcaron cada Copa del Mundo.",
+    "La lista completa de campeones del Mundial de fútbol desde 1930: quién ganó cada edición, sedes y palmarés por selección. Historia en un vistazo.",
   dek: "De Uruguay 1930 a Qatar 2022: 22 ediciones, 8 países campeones, miles de goles y millones de historias. Este es el repaso editorial al torneo más grande del deporte.",
   ogImage:
     "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Roman_Weidenfeller_with_the_FIFA_World_Cup_trophy_-_2014.jpg/1280px-Roman_Weidenfeller_with_the_FIFA_World_Cup_trophy_-_2014.jpg",

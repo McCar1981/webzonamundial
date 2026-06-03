@@ -1,0 +1,117 @@
+// src/app/api/ia-coach/debate/route.ts
+//
+// POST /api/ia-coach/debate — IA Coach MODO 5: Debate / Reto IA vs Humanos.
+//
+// Body: { champion?: string, messages: DebateMessage[] }
+//
+// MULTI-TURN + GATED:
+//   1. Requiere cuenta (getCurrentUser).
+//   2. Requiere Founders Pass (isFounder) — es una feature premium.
+//   3. Reenvía el historial al Retador (Claude) y devuelve su turno.
+//
+// No cacheamos: cada conversación es única. Limitamos el nº de turnos para
+// acotar el coste por sesión.
+
+import { NextResponse } from "next/server";
+import { getCurrentUser } from "@/lib/auth-helpers";
+import { isFounder } from "@/lib/founders/store";
+import { TEAM_BY_ID } from "@/lib/bracket/teams";
+import { generateDebateReply } from "@/lib/ia-coach/debate-client";
+import type {
+  DebateMessage,
+  DebateRequest,
+  DebateResponse,
+  DebateTurn,
+  DebateErrorResponse,
+} from "@/lib/ia-coach/debate-types";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+export const maxDuration = 30;
+
+// Tope de mensajes del usuario por sesión de debate (acota coste y abuso).
+const MAX_USER_TURNS = 10;
+const MAX_MESSAGE_LEN = 1200;
+const MAX_HISTORY = MAX_USER_TURNS * 2; // user + assistant alternados
+
+export async function POST(req: Request) {
+  // ── 1. Cuenta ──
+  const user = await getCurrentUser();
+  if (!user?.email) {
+    return errorResponse("auth_required", 401);
+  }
+
+  // ── 2. Premium (Founders Pass) ──
+  let founder = false;
+  try {
+    founder = await isFounder(user.email);
+  } catch {
+    return errorResponse("premium_check_failed", 503);
+  }
+  if (!founder) {
+    return errorResponse("premium_required", 402);
+  }
+
+  // ── 3. Body ──
+  let body: DebateRequest;
+  try {
+    body = (await req.json()) as DebateRequest;
+  } catch {
+    return errorResponse("bad_request", 400);
+  }
+
+  const messages = sanitizeMessages(body.messages);
+  if (messages.length === 0 || messages[messages.length - 1].role !== "user") {
+    return errorResponse("invalid_messages", 400);
+  }
+
+  const turnsUsed = messages.filter((m) => m.role === "user").length;
+  if (turnsUsed > MAX_USER_TURNS) {
+    return errorResponse("turn_limit", 429);
+  }
+
+  const championId =
+    typeof body.champion === "string" && TEAM_BY_ID[body.champion.toUpperCase()]
+      ? body.champion.toUpperCase()
+      : null;
+
+  // ── 4. Turno del Retador ──
+  let turn: DebateTurn;
+  try {
+    turn = await generateDebateReply(messages, championId);
+  } catch (err) {
+    console.error("[ia-coach/debate] reply failed:", (err as Error).message);
+    return errorResponse("anthropic_failed", 502);
+  }
+
+  const resp: DebateResponse = {
+    ok: true,
+    generatedAt: new Date().toISOString(),
+    turnsUsed,
+    turn,
+  };
+  return NextResponse.json(resp, {
+    headers: { "Cache-Control": "private, no-store" },
+  });
+}
+
+/** Normaliza el historial: roles válidos, texto no vacío, longitudes acotadas
+ *  y recorte a los últimos MAX_HISTORY mensajes. */
+function sanitizeMessages(raw: unknown): DebateMessage[] {
+  if (!Array.isArray(raw)) return [];
+  const cleaned: DebateMessage[] = [];
+  for (const m of raw) {
+    if (typeof m !== "object" || m === null) continue;
+    const o = m as Record<string, unknown>;
+    const role = o.role === "user" || o.role === "assistant" ? o.role : null;
+    const content = typeof o.content === "string" ? o.content.trim() : "";
+    if (!role || !content) continue;
+    cleaned.push({ role, content: content.slice(0, MAX_MESSAGE_LEN) });
+  }
+  return cleaned.slice(-MAX_HISTORY);
+}
+
+function errorResponse(error: string, status: number): NextResponse {
+  const body: DebateErrorResponse = { ok: false, error };
+  return NextResponse.json(body, { status });
+}

@@ -92,7 +92,8 @@ export async function buildEvergreenPost(args: {
 - El foco es el RETRATO PROFUNDO de ESTA única selección, no su grupo. PROHIBIDO estructurarla como previa de grupo: NADA de "los favoritos del grupo", "el partido estrella del grupo", ni comparar/repasar a los otros 3 rivales del grupo. Si mencionas el grupo, que sea de pasada para situar.
 - Construye la pieza con la SUSTANCIA ÚNICA del dossier que una previa de grupo NO tiene: su recorrido Mundial a Mundial (historia), sus récords históricos, sus partidos icónicos, su palmarés, el camino a la clasificación 2026, el plantel y XI probables, el estilo de juego y fortalezas/debilidades, el jugador clave (factor X), y la cultura de afición (estadio, rival histórico, cánticos, curiosidades).
 - Estructura sugerida (adáptala): historia y palmarés → momentos que marcaron a la selección → cómo llega a 2026 (clasificación, estado de forma) → plantel, entrenador y XI probable → estilo, fortalezas y debilidades → qué esperar / factor X → identidad y afición. El calendario va al final y breve.
-- Aprovecha tablas para el recorrido Mundial a Mundial y la convocatoria probable.`
+- Aprovecha tablas para el recorrido Mundial a Mundial y la convocatoria probable.
+- SÉ SELECTIVO: NO tienes que mencionar todos los datos del dossier. Elige los más relevantes y cuéntalos con criterio. Prioriza calidad y densidad sobre exhaustividad; no listes por listar.`
       : `ÁNGULO — PREVIA DE GRUPO:
 - Repasa las 4 selecciones del grupo, el calendario completo, los favoritos, el debutante/sorpresa, el partido estrella y un pronóstico razonado.
 - Las sedes/estadios deben copiarse LITERALMENTE del calendario del dossier (no los pongas de memoria).`;
@@ -116,7 +117,7 @@ Escribe la pieza siguiendo el esquema JSON del system prompt, usando SOLO los da
     const client = getClient();
     const resp = await client.messages.create({
       model: process.env.BLOG_GENERATOR_MODEL || DEFAULT_MODEL,
-      max_tokens: 6000,
+      max_tokens: 8000,
       temperature: 0.2,
       system: SYSTEM_PROMPT,
       messages: [{ role: "user", content: userPrompt }],

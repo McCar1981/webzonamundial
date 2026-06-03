@@ -28,6 +28,8 @@ const SYSTEM_PROMPT = `Eres redactor analítico del blog de ZonaMundial (platafo
 REGLAS INVIOLABLES:
 1. NO inventes NADA: ni cifras, ni fechas, ni nombres, ni resultados que no estén en el dossier. El conocimiento general de historia del fútbol (campeones pasados, formato) sí es válido si es incontrovertible.
 2. Si el dossier no trae un dato, NO lo afirmes. Mejor omitir que inventar.
+2b. SEDES Y ESTADIOS: usa EXCLUSIVAMENTE la sede/estadio/ciudad que aparece en el CALENDARIO del dossier para cada partido. NUNCA asignes un estadio de memoria (p. ej. NO escribas "MetLife", "Azteca", etc. salvo que el dossier lo diga literalmente para ESE partido). Si el calendario no da sede, NO menciones estadio.
+2c. PARTICIPACIONES / Nº DE MUNDIALES / PALMARÉS: usa el número exacto del dossier. No deduzcas "primera/segunda participación", "regreso tras X años" ni rachas históricas que no estén escritas en el dossier.
 3. Reescribe con tu estilo; NO copies literal el "análisis editorial de referencia" del dossier (evita contenido duplicado con otras páginas del sitio).
 4. Tono: directo, informado, serio (estilo The Athletic / Marca / ESPN en español de España).
 5. MARCA Y LEGAL: no uses marcas registradas de FIFA ("FIFA World Cup", "Copa Mundial de la FIFA"); di "Mundial 2026". Nada de lenguaje de apuestas (cuotas, casas) — usa "pronóstico", "predicción" o "favoritos".
@@ -93,7 +95,7 @@ Título orientativo: "${args.dossier.title}"
 Slug sugerido: "${args.dossier.slug}"
 Categoría: "${args.category}"
 
-Escribe la pieza siguiendo el esquema JSON del system prompt, usando SOLO los datos del dossier. Devuelve solo el JSON.`;
+Escribe la pieza siguiendo el esquema JSON del system prompt, usando SOLO los datos del dossier. Recuerda: las sedes/estadios deben copiarse LITERALMENTE del calendario del dossier (no los pongas de memoria) y las participaciones/cifras deben coincidir EXACTAMENTE con el dossier. Devuelve solo el JSON.`;
 
   let raw = "";
   try {
@@ -101,7 +103,7 @@ Escribe la pieza siguiendo el esquema JSON del system prompt, usando SOLO los da
     const resp = await client.messages.create({
       model: process.env.BLOG_GENERATOR_MODEL || DEFAULT_MODEL,
       max_tokens: 6000,
-      temperature: 0.4,
+      temperature: 0.2,
       system: SYSTEM_PROMPT,
       messages: [{ role: "user", content: userPrompt }],
     });

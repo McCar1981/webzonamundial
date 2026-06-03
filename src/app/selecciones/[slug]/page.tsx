@@ -19,59 +19,38 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  // Prefer SEO BIBLIA si está disponible
+  // Plantilla SEO consistente para TODAS las selecciones. El nombre del país
+  // sale de la BIBLIA (name_es) o, en su defecto, del sistema extendido.
   const biblia = await loadTeam(params.slug);
-  if (biblia?.seo) {
-    return {
-      title: biblia.seo.meta_title,
-      description: biblia.seo.meta_description,
-      alternates: { canonical: `/selecciones/${params.slug}` },
-      openGraph: {
-        title: biblia.seo.meta_title,
-        description: biblia.seo.meta_description,
-        url: `/selecciones/${params.slug}`,
-        type: 'article',
-        images: biblia.seo.og_image_url ? [biblia.seo.og_image_url] : ['/og-image.jpg'],
-      },
-      twitter: {
-        card: 'summary_large_image',
-        title: biblia.seo.meta_title,
-        description: biblia.seo.meta_description,
-      },
-    };
-  }
-
-  // Fallback al sistema viejo
   const team = getExtendedSeleccion(params.slug);
-  if (!team) {
+  const pais = biblia?.name_es ?? team?.nombre;
+
+  if (!pais) {
     return {
       title: 'Selección no encontrada',
       robots: { index: false, follow: false },
     };
   }
-  const title = `${team.nombre} en el Mundial 2026: plantilla, historia y predicciones`;
-  const description = `Todo sobre ${team.nombre} en el Mundial 2026: plantilla, calendario de partidos, historia, estadísticas y predicciones. Grupo ${team.grupo}.`;
+
+  const title = `${pais}: plantilla y calendario del Mundial 2026`;
+  const description = `Plantilla de ${pais} para el Mundial 2026, calendario de partidos, grupo y análisis. Sigue a ${pais} en ZonaMundial.`;
+  const ogImage = biblia?.seo?.og_image_url || '/og-image.jpg';
+
   return {
-    title,
+    // `absolute` evita que la plantilla de marca duplique el sufijo.
+    title: { absolute: title },
     description,
-    keywords: [
-      `${team.nombre} mundial 2026`,
-      `selección ${team.nombre}`,
-      `${team.nombre} plantilla`,
-      `${team.nombre} partidos mundial`,
-      'mundial 2026 selecciones',
-    ],
     alternates: { canonical: `/selecciones/${params.slug}` },
     openGraph: {
-      title: `${team.nombre} en el Mundial 2026`,
+      title,
       description,
       url: `/selecciones/${params.slug}`,
       type: 'article',
-      images: ['/og-image.jpg'],
+      images: [ogImage],
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${team.nombre} en el Mundial 2026`,
+      title,
       description,
     },
   };

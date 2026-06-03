@@ -149,7 +149,7 @@ export const GRUPOS_EDITORIAL: Record<string, GrupoEditorial> = {
   },
   I: {
     intro:
-      "El Grupo I junta a Francia (subcampeona 2022 con Mbappé), Senegal (potencia africana), Irak (debut tras 40 años) y Noruega (Haaland y Ødegaard al Mundial). Grupo desequilibrado pero con dos estrellas individuales del top mundial.",
+      "El Grupo I junta a Francia (subcampeona 2022 con Mbappé), Senegal (potencia africana), Irak (regreso tras 40 años) y Noruega (Haaland y Ødegaard al Mundial). Grupo desequilibrado pero con dos estrellas individuales del top mundial.",
     contexto:
       "Francia, con Didier Deschamps en su tercer Mundial al mando, llega con Kylian Mbappé (27), Aurélien Tchouaméni, William Saliba, Jules Koundé y Ousmane Dembélé. Senegal, dirigido por Pape Thiaw, se apoya en un bloque de jugadores con experiencia en las grandes ligas europeas como Idrissa Gueye y Krepin Diatta. Irak regresa al Mundial 40 años después de México 1986 con Aymen Hussein como referencia. Noruega vuelve al Mundial 28 años después de Francia 1998 con Haaland y Martin Ødegaard como núcleo: una generación que merece la cita.",
     favoritos:

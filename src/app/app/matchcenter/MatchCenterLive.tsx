@@ -21,6 +21,12 @@ import {
   type StatKeyframe,
   type TeamLineup,
 } from "@/lib/match-center/types";
+import type {
+  IACoachLiveAnalysis,
+  IACoachLiveResponse,
+  IACoachLiveErrorResponse,
+  LiveEventInput,
+} from "@/lib/ia-coach/live-types";
 
 const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a", GREEN = "#22c55e", RED = "#ef4444";
 
@@ -130,6 +136,13 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
   const [voiceAvailable, setVoiceAvailable] = useState(false);
   const [soundOn, setSoundOn] = useState(false);
   const [soundAvailable, setSoundAvailable] = useState(false);
+
+  // Coach IA en vivo (Modo 2)
+  const [coachOpen, setCoachOpen] = useState(false);
+  const [coachLoading, setCoachLoading] = useState(false);
+  const [coachError, setCoachError] = useState<string | null>(null);
+  const [coachAnalysis, setCoachAnalysis] = useState<IACoachLiveAnalysis | null>(null);
+  const [coachCached, setCoachCached] = useState(false);
 
   const feedRef = useRef<MatchFeed | null>(null);
   const secRef = useRef(0);
@@ -486,6 +499,59 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
     soundRef.current?.setAmbient(Math.min(1, Math.abs(momentum) * 0.85 + 0.15));
   }, [momentum, soundOn]);
 
+  // Pide al Coach IA una lectura del estado ACTUAL del partido. Reenvía lo que
+  // el cliente ya tiene en pantalla (marcador, stats, eventos, momentum).
+  const askLiveCoach = useCallback(async () => {
+    setCoachOpen(true);
+    setCoachLoading(true);
+    setCoachError(null);
+    const minute = Math.max(1, Math.floor(secRef.current / 60));
+    // log está en orden inverso (más reciente primero): lo invertimos a cronológico.
+    const events: LiveEventInput[] = [...log]
+      .reverse()
+      .slice(-20)
+      .map((e) => ({
+        minute: e.minute,
+        extra: e.extra,
+        type: e.type,
+        side: e.side,
+        player: e.player,
+        detail: e.detail,
+      }));
+    const ac = new AbortController();
+    const timeoutId = setTimeout(() => ac.abort(), 32_000);
+    try {
+      const r = await fetch("/api/ia-coach/live", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          matchId,
+          state: { minute, phase, finished, score, stats, events, momentum },
+        }),
+        signal: ac.signal,
+      });
+      const data = (await r.json()) as IACoachLiveResponse | IACoachLiveErrorResponse;
+      if (data.ok === false) {
+        setCoachError(liveCoachError(data.error));
+      } else if (data.ok === true) {
+        setCoachAnalysis(data.analysis);
+        setCoachCached(data.cached);
+      } else {
+        setCoachError("Respuesta inválida del servidor.");
+      }
+    } catch (err) {
+      const e = err as Error;
+      setCoachError(
+        e.name === "AbortError"
+          ? "El análisis tardó demasiado. Vuelve a intentarlo."
+          : "No se pudo conectar con el coach.",
+      );
+    } finally {
+      clearTimeout(timeoutId);
+      setCoachLoading(false);
+    }
+  }, [log, matchId, phase, finished, score, stats, momentum]);
+
   const lineups = feed
     ? feed.mode === "sim"
       ? { home: feed.homeLineup, away: feed.awayLineup }
@@ -628,6 +694,20 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
 
             {/* Pulso / momentum + reacción del público */}
             <Momentum stats={stats} meta={meta} momentum={momentum} soundOn={soundOn} />
+
+            {/* Coach IA en vivo (Modo 2) */}
+            <div style={{ marginTop: 14 }}>
+              <CoachLivePanel
+                open={coachOpen}
+                loading={coachLoading}
+                error={coachError}
+                analysis={coachAnalysis}
+                cached={coachCached}
+                meta={meta}
+                finished={finished}
+                onAsk={askLiveCoach}
+              />
+            </div>
 
             {/* Stats + Timeline */}
             <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 14, marginTop: 14 }}>
@@ -1103,3 +1183,180 @@ const btnGhost: React.CSSProperties = { padding: "9px 14px", borderRadius: 10, b
 const btnGold: React.CSSProperties = { padding: "9px 14px", borderRadius: 10, background: `linear-gradient(135deg,${GOLD},${GOLD2})`, border: "none", color: BG, fontWeight: 800, fontSize: 13, cursor: "pointer" };
 const btnGhostSm: React.CSSProperties = { padding: "6px 10px", borderRadius: 8, background: BG2, border: "1px solid rgba(255,255,255,0.12)", color: MID, fontWeight: 700, fontSize: 12, cursor: "pointer" };
 const btnGoldSm: React.CSSProperties = { padding: "6px 10px", borderRadius: 8, background: `linear-gradient(135deg,${GOLD},${GOLD2})`, border: "none", color: BG, fontWeight: 800, fontSize: 12, cursor: "pointer" };
+
+function liveCoachError(code: string): string {
+  switch (code) {
+    case "match_not_found":
+      return "No encontramos este partido.";
+    case "context_build_failed":
+      return "No pudimos preparar los datos del análisis.";
+    case "anthropic_failed":
+      return "El Coach IA no respondió. Inténtalo en unos segundos.";
+    default:
+      return "Algo falló. Inténtalo de nuevo.";
+  }
+}
+
+// Panel del Coach IA en vivo: botón para pedir la lectura del momento + render
+// del análisis (titular, situación, momentum, probabilidades de resultado final,
+// observaciones, ajustes por equipo y qué esperar).
+function CoachLivePanel({
+  open,
+  loading,
+  error,
+  analysis,
+  cached,
+  meta,
+  finished,
+  onAsk,
+}: {
+  open: boolean;
+  loading: boolean;
+  error: string | null;
+  analysis: IACoachLiveAnalysis | null;
+  cached: boolean;
+  meta: MatchMeta;
+  finished: boolean;
+  onAsk: () => void;
+}) {
+  const momentumName =
+    analysis?.momentumTeam === "home"
+      ? meta.home.name
+      : analysis?.momentumTeam === "away"
+        ? meta.away.name
+        : "Equilibrado";
+  const momentumColor =
+    analysis?.momentumTeam === "home"
+      ? meta.home.color
+      : analysis?.momentumTeam === "away"
+        ? meta.away.color
+        : MID;
+
+  return (
+    <div style={{ background: BG2, borderRadius: 16, border: `1px solid ${GOLD}33`, padding: 18 }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, marginBottom: analysis || loading || error ? 14 : 0 }}>
+        <h3 style={{ fontSize: 13, fontWeight: 800, color: GOLD2, textTransform: "uppercase", letterSpacing: 1, margin: 0, display: "flex", alignItems: "center", gap: 8 }}>
+          <span>✨</span> Coach IA en vivo
+        </h3>
+        <button onClick={onAsk} disabled={loading} style={loading ? { ...btnGhostSm, opacity: 0.6 } : btnGoldSm}>
+          {loading ? "Analizando…" : analysis ? "↻ Actualizar lectura" : finished ? "Lectura del partido" : "Pedir lectura del momento"}
+        </button>
+      </div>
+
+      {!open && (
+        <p style={{ fontSize: 12, color: DIM, margin: "8px 0 0" }}>
+          Pide al analista una lectura táctica del estado actual: quién manda, probabilidades de resultado y qué esperar.
+        </p>
+      )}
+
+      {loading && (
+        <div style={{ display: "flex", alignItems: "center", gap: 10, color: MID, fontSize: 13 }}>
+          <span style={{ width: 14, height: 14, borderRadius: "50%", border: `2px solid ${GOLD}`, borderTopColor: "transparent", display: "inline-block", animation: "mcPulse 0.9s linear infinite" }} />
+          El analista está leyendo el partido…
+        </div>
+      )}
+
+      {error && !loading && (
+        <div style={{ fontSize: 13, color: RED }}>
+          {error}{" "}
+          <button onClick={onAsk} style={{ ...btnGhostSm, marginLeft: 6 }}>Reintentar</button>
+        </div>
+      )}
+
+      {analysis && !loading && (
+        <div>
+          <div style={{ fontSize: 17, fontWeight: 800, color: "#fff", lineHeight: 1.25, marginBottom: 6 }}>
+            {analysis.headline}
+          </div>
+          <p style={{ fontSize: 13, color: "rgba(255,255,255,0.84)", lineHeight: 1.55, margin: "0 0 14px" }}>
+            {analysis.situation}
+          </p>
+
+          {/* Momentum + confianza */}
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 14 }}>
+            <span style={{ fontSize: 11, fontWeight: 700, padding: "4px 10px", borderRadius: 20, background: "rgba(255,255,255,0.05)", border: `1px solid ${momentumColor}66`, color: momentumColor }}>
+              Momentum: {momentumName}
+            </span>
+            <span style={{ fontSize: 11, fontWeight: 700, padding: "4px 10px", borderRadius: 20, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)", color: MID }}>
+              Confianza {analysis.confidence}
+            </span>
+            <span style={{ fontSize: 11, fontWeight: 700, padding: "4px 10px", borderRadius: 20, background: "rgba(201,168,76,0.14)", border: `1px solid ${GOLD}55`, color: GOLD2 }}>
+              Marcador proyectado {analysis.projectedScore}
+            </span>
+            {cached && (
+              <span style={{ fontSize: 10, fontWeight: 700, padding: "4px 10px", borderRadius: 20, background: "rgba(255,255,255,0.04)", color: DIM }}>
+                Cache
+              </span>
+            )}
+          </div>
+
+          {/* Probabilidades de resultado final */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 14 }}>
+            <LiveProb label={meta.home.name} value={analysis.winProbabilities.home} color={meta.home.color} />
+            <LiveProb label="Empate" value={analysis.winProbabilities.draw} color={MID} />
+            <LiveProb label={meta.away.name} value={analysis.winProbabilities.away} color={meta.away.color} />
+          </div>
+
+          {/* Observaciones */}
+          {analysis.keyObservations.length > 0 && (
+            <div style={{ marginBottom: 14 }}>
+              <div style={{ fontSize: 10, fontWeight: 800, color: GOLD2, textTransform: "uppercase", letterSpacing: 1.5, marginBottom: 8 }}>Lo que dicen los datos</div>
+              <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 6 }}>
+                {analysis.keyObservations.map((o, i) => (
+                  <li key={i} style={{ fontSize: 12.5, color: "rgba(255,255,255,0.8)", paddingLeft: 14, position: "relative", lineHeight: 1.4 }}>
+                    <span style={{ position: "absolute", left: 0, color: GOLD }}>▸</span>
+                    {o}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Ajustes tácticos por equipo */}
+          {analysis.adjustments && (analysis.adjustments.home || analysis.adjustments.away) && (
+            <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 8, marginBottom: 14 }}>
+              {analysis.adjustments.home && (
+                <LiveAdjustment team={meta.home} text={analysis.adjustments.home} />
+              )}
+              {analysis.adjustments.away && (
+                <LiveAdjustment team={meta.away} text={analysis.adjustments.away} />
+              )}
+            </div>
+          )}
+
+          {/* Qué esperar */}
+          <div style={{ background: BG3, border: `1px solid ${GOLD}22`, borderRadius: 12, padding: "10px 14px" }}>
+            <div style={{ fontSize: 10, fontWeight: 800, color: GOLD2, textTransform: "uppercase", letterSpacing: 1.5, marginBottom: 4 }}>Qué esperar</div>
+            <div style={{ fontSize: 13, color: "rgba(255,255,255,0.85)", lineHeight: 1.45 }}>{analysis.watchNext}</div>
+          </div>
+
+          <p style={{ marginTop: 12, fontSize: 10, color: DIM, fontStyle: "italic", textAlign: "center" }}>
+            Lectura generada por IA a partir del estado del partido.
+          </p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function LiveProb({ label, value, color }: { label: string; value: number; color: string }) {
+  const pct = Math.round(value * 100);
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+      <span style={{ flex: "0 0 auto", width: 96, fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.8)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{label}</span>
+      <div style={{ flex: 1, height: 8, background: "rgba(255,255,255,0.06)", borderRadius: 999, overflow: "hidden" }}>
+        <div style={{ width: `${Math.max(2, pct)}%`, height: "100%", background: color, borderRadius: 999, transition: "width .5s ease" }} />
+      </div>
+      <span className="mc-num" style={{ flex: "0 0 auto", width: 36, textAlign: "right", fontSize: 12, fontWeight: 700, color: GOLD2 }}>{pct}%</span>
+    </div>
+  );
+}
+
+function LiveAdjustment({ team, text }: { team: MatchMeta["home"]; text: string }) {
+  return (
+    <div style={{ background: "rgba(255,255,255,0.03)", borderLeft: `4px solid ${team.color}`, borderRadius: 10, padding: "8px 12px" }}>
+      <div style={{ fontSize: 10, fontWeight: 800, color: team.color, textTransform: "uppercase", letterSpacing: 1, marginBottom: 3 }}>Ajuste · {team.name}</div>
+      <div style={{ fontSize: 12.5, color: "rgba(255,255,255,0.82)", lineHeight: 1.4 }}>{text}</div>
+    </div>
+  );
+}

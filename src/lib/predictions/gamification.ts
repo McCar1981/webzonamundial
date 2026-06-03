@@ -178,10 +178,27 @@ export function boostDef(id: string): BoostDef | null {
 
 export const STREAK_THRESHOLD = 3;
 
+// Una racha ACTIVA caduca si el usuario no vuelve a predecir dentro de esta
+// ventana. Crea la urgencia de "vuelve hoy o pierdes tu racha".
+export const STREAK_WINDOW_HOURS = 24;
+export const STREAK_WINDOW_MS = STREAK_WINDOW_HOURS * 3_600_000;
+
 export interface StreakState {
   current: number;
   best: number;
   active: boolean; // current >= STREAK_THRESHOLD → bonus en la próxima
+}
+
+/** ¿La racha activa ya caducó por inactividad? */
+export function streakExpired(expiresAt: string | null, current: number, now = new Date()): boolean {
+  return current >= STREAK_THRESHOLD && !!expiresAt && now.getTime() >= new Date(expiresAt).getTime();
+}
+
+/** Horas (decimal) que faltan hasta un instante ISO; null si no hay fecha. */
+export function hoursUntil(iso: string | null, now = new Date()): number | null {
+  if (!iso) return null;
+  const diff = new Date(iso).getTime() - now.getTime();
+  return diff <= 0 ? 0 : diff / 3_600_000;
 }
 
 /**
@@ -332,6 +349,42 @@ export function dailyChallenge(now = new Date()): DailyChallenge {
   const rng = mulberry32(hashStr(`challenge:${utcDayKey(now)}`));
   const pick = CHALLENGE_POOL[Math.floor(rng() * CHALLENGE_POOL.length)];
   return { ...pick, rewardCoins: 50, rewardXp: 40 };
+}
+
+/** Señales de una predicción recién creada que pueden avanzar el reto del día. */
+export interface ChallengeSignals {
+  predictionType: string;
+  isContrarian: boolean;
+  confidence: number;
+  matchMult: number;
+  isEarlyBird: boolean;
+}
+
+/** Cuántos "pasos" pide cada reto para considerarse completo. */
+export function challengeTarget(key: string): number {
+  return key === "make_3" ? 3 : 1;
+}
+
+/** Cuánto avanza el reto `key` con esta predicción (0 = no cuenta). */
+export function challengeIncrement(key: string, s: ChallengeSignals): number {
+  switch (key) {
+    case "make_3":
+      return 1;
+    case "exact_score":
+      return s.predictionType === "exact_score" ? 1 : 0;
+    case "contrarian":
+      return s.isContrarian ? 1 : 0;
+    case "high_conf":
+      return s.predictionType === "winner" && s.confidence >= 3 ? 1 : 0;
+    case "chain":
+      return s.predictionType === "chain" ? 1 : 0;
+    case "diamond":
+      return s.matchMult >= 2 ? 1 : 0;
+    case "early":
+      return s.isEarlyBird ? 1 : 0;
+    default:
+      return 0;
+  }
 }
 
 // ═══════════════════════════════════════════════════════════════════════════

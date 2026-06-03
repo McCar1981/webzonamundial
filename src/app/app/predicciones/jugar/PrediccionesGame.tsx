@@ -10,6 +10,7 @@ import { SELECCIONES } from "@/data/selecciones";
 import { etToDate } from "@/lib/bracket/match-time";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import GamificationHUD from "./GamificationHUD";
+import LiveMicroPicks from "./LiveMicroPicks";
 import {
   TYPE_ICON, TIER_ICON,
   ArrowLeft, Check, Clock, Flame, Gem, Pencil, Sparkles, TrendingUp, Trophy, Users, X,
@@ -266,6 +267,7 @@ export default function PrediccionesGame() {
             <ArrowLeft size={16} /> Volver a los partidos
           </button>
           <MatchHeader m={selectedMatch} state={state} />
+          <LiveMicroPicks matchId={String(selectedMatch.i)} />
           {loading && !state && <p style={{ color: DIM, textAlign: "center", padding: 24 }}>Cargando predicciones…</p>}
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(300px,1fr))", gap: 16, marginTop: 16 }}>
@@ -629,6 +631,28 @@ function optBtn(active: boolean): React.CSSProperties {
   };
 }
 
+// ─── Comparación social en el momento de decidir (Modo Manada en todo form) ──
+/** % de la comunidad para una opción concreta de un grupo, y total del grupo. */
+function communityPct(social: SocialStatsOut | null, group: string, optionKey: string): { pct: number; total: number } | null {
+  const rows = social?.stats?.[group];
+  if (!rows || rows.length === 0) return null;
+  const total = rows.reduce((s, r) => s + r.count, 0);
+  if (total === 0) return null;
+  return { pct: rows.find((r) => r.option_key === optionKey)?.pct ?? 0, total };
+}
+
+/** Aviso "vas con/contra la manada" reutilizable bajo cualquier opción elegida. */
+function ManadaHint({ pct, total }: { pct: number; total: number }) {
+  const minority = pct < 50;
+  return (
+    <div style={{ fontSize: 11, color: minority ? GOLD : MID, marginTop: 8, display: "flex", alignItems: "center", gap: 4, lineHeight: 1.4 }}>
+      {minority
+        ? <><Flame size={13} style={{ flexShrink: 0 }} /> Solo el {pct}% piensa como tú · vas contra la manada (más puntos si aciertas)</>
+        : <><Users size={13} style={{ flexShrink: 0 }} /> El {pct}% de {total} predicciones coincide contigo</>}
+    </div>
+  );
+}
+
 function ExactScoreForm({ match, init, editLabel, onSubmit }: { match: Match; init: Record<string, unknown> | null; editLabel: string | null; onSubmit: SubmitFn }) {
   const [h, setH] = useState(typeof init?.home_goals === "number" ? init.home_goals : 1);
   const [a, setA] = useState(typeof init?.away_goals === "number" ? init.away_goals : 1);
@@ -661,17 +685,40 @@ function Stepper({ label, value, onChange }: { label: string; value: number; onC
 }
 const stepBtn: React.CSSProperties = { width: 28, height: 28, borderRadius: 8, border: CARD_BORDER, background: BG, color: GOLD, fontSize: 18, fontWeight: 800, cursor: "pointer" };
 
-function WinnerForm({ match, init, initConf, editLabel, onSubmit }: { match: Match; init: Record<string, unknown> | null; initConf: number; editLabel: string | null; onSubmit: SubmitFn }) {
+function WinnerForm({ match, social, init, initConf, editLabel, onSubmit }: { match: Match; social: SocialStatsOut | null; init: Record<string, unknown> | null; initConf: number; editLabel: string | null; onSubmit: SubmitFn }) {
   const [result, setResult] = useState<WinnerResult | null>((init?.result as WinnerResult) ?? null);
   const [conf, setConf] = useState(initConf || 1);
   const [busy, setBusy] = useState(false);
+  const winnerStats = social?.stats?.winner ?? [];
+  const winnerTotal = winnerStats.reduce((s, r) => s + r.count, 0);
+  const pctOf = (r: WinnerResult): number => winnerStats.find((s) => s.option_key === `winner:${r}`)?.pct ?? 0;
+  const options: { key: WinnerResult; label: string }[] = [
+    { key: "home", label: match.h }, { key: "draw", label: "Empate" }, { key: "away", label: match.a },
+  ];
   return (
     <div>
-      <div style={{ display: "flex", gap: 6 }}>
-        <button onClick={() => setResult("home")} style={optBtn(result === "home")}>{match.h}</button>
-        <button onClick={() => setResult("draw")} style={optBtn(result === "draw")}>Empate</button>
-        <button onClick={() => setResult("away")} style={optBtn(result === "away")}>{match.a}</button>
+      {winnerTotal > 0 && (
+        <div style={{ fontSize: 11, color: DIM, marginBottom: 6 }}>Qué predice la comunidad ({winnerTotal})</div>
+      )}
+      <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+        {options.map((o) => {
+          const active = result === o.key;
+          const pct = pctOf(o.key);
+          return (
+            <button key={o.key} onClick={() => setResult(o.key)} style={{
+              width: "100%", padding: "8px 10px", borderRadius: 8, cursor: "pointer", textAlign: "left",
+              position: "relative", overflow: "hidden", border: active ? `1px solid ${GOLD}` : CARD_BORDER, background: BG, color: "#fff",
+            }}>
+              {winnerTotal > 0 && <span style={{ position: "absolute", inset: 0, width: `${pct}%`, background: "rgba(201,168,76,0.16)" }} />}
+              <span style={{ position: "relative", display: "flex", justifyContent: "space-between", fontSize: 13, fontWeight: 700, color: active ? GOLD : "#fff" }}>
+                <span>{o.label}</span>
+                {winnerTotal > 0 && <span style={{ color: MID }}>{pct}%</span>}
+              </span>
+            </button>
+          );
+        })}
       </div>
+      {result && winnerTotal > 0 && <ManadaHint pct={pctOf(result)} total={winnerTotal} />}
       <div style={{ fontSize: 11, color: DIM, margin: "10px 0 4px" }}>Confianza (multiplica puntos y riesgo):</div>
       <div style={{ display: "flex", gap: 6 }}>
         {[1, 2, 3].map((c) => <button key={c} onClick={() => setConf(c)} style={optBtn(conf === c)}>×{c}</button>)}
@@ -780,13 +827,14 @@ function DuelForm({ duels, init, editLabel, onSubmit }: { duels: DuelOut[]; init
   );
 }
 
-function OverUnderForm({ ouLines, init, editLabel, onSubmit }: { ouLines: OverUnderLineOut[]; init: Record<string, unknown> | null; editLabel: string | null; onSubmit: SubmitFn }) {
+function OverUnderForm({ ouLines, social, init, editLabel, onSubmit }: { ouLines: OverUnderLineOut[]; social: SocialStatsOut | null; init: Record<string, unknown> | null; editLabel: string | null; onSubmit: SubmitFn }) {
   const [category, setCategory] = useState<OverUnderCategory>((init?.category as OverUnderCategory) ?? "goals");
   const [difficulty, setDifficulty] = useState<OverUnderDifficulty>((init?.difficulty as OverUnderDifficulty) ?? "medium");
   const [choice, setChoice] = useState<"over" | "under" | null>((init?.choice as "over" | "under") ?? null);
   const [busy, setBusy] = useState(false);
   const line = ouLines.find((l) => l.category === category);
   const sel = line ? line[difficulty] : null;
+  const community = choice ? communityPct(social, "over_under", `over_under:${category}:${choice}`) : null;
   return (
     <div>
       <select value={category} onChange={(e) => setCategory(e.target.value as OverUnderCategory)} style={inputStyle}>
@@ -806,6 +854,7 @@ function OverUnderForm({ ouLines, init, editLabel, onSubmit }: { ouLines: OverUn
           <button onClick={() => setChoice("under")} style={optBtn(choice === "under")}>Menos de {sel.line}</button>
         </div>
       )}
+      {community && <ManadaHint pct={community.pct} total={community.total} />}
       <button disabled={busy || !choice || !sel} style={{ ...btnPrimary, opacity: choice && sel ? 1 : 0.5 }}
         onClick={async () => { if (!choice || !sel) return; setBusy(true); await onSubmit("over_under", { category, line: sel.line, choice, difficulty }); setBusy(false); }}>
         {editLabel ?? "Guardar"} over/under
@@ -814,11 +863,12 @@ function OverUnderForm({ ouLines, init, editLabel, onSubmit }: { ouLines: OverUn
   );
 }
 
-function MinuteDramaForm({ init, editLabel, onSubmit }: { init: Record<string, unknown> | null; editLabel: string | null; onSubmit: SubmitFn }) {
+function MinuteDramaForm({ social, init, editLabel, onSubmit }: { social: SocialStatsOut | null; init: Record<string, unknown> | null; editLabel: string | null; onSubmit: SubmitFn }) {
   const [event, setEvent] = useState<DramaEvent>((init?.event as DramaEvent) ?? "first_goal");
   const [range, setRange] = useState<MinuteRange>((init?.minute_range as MinuteRange) ?? "0-10");
   const [noEvent, setNoEvent] = useState(init?.no_event === true);
   const [busy, setBusy] = useState(false);
+  const community = communityPct(social, "minute_drama", `minute_drama:${event}:${noEvent ? "none" : range}`);
   return (
     <div>
       <select value={event} onChange={(e) => setEvent(e.target.value as DramaEvent)} style={inputStyle}>
@@ -831,6 +881,7 @@ function MinuteDramaForm({ init, editLabel, onSubmit }: { init: Record<string, u
         <input type="checkbox" checked={noEvent} onChange={(e) => setNoEvent(e.target.checked)} />
         El evento no ocurre
       </label>
+      {community && <ManadaHint pct={community.pct} total={community.total} />}
       <button disabled={busy} style={btnPrimary}
         onClick={async () => { setBusy(true); await onSubmit("minute_drama", noEvent ? { event, no_event: true } : { event, minute_range: range }); setBusy(false); }}>
         {editLabel ?? "Guardar"} minuto

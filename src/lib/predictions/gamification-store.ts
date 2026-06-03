@@ -11,21 +11,28 @@ import {
   ACHIEVEMENT_MAP,
   BOOST_CATALOG,
   boostDef,
+  challengeIncrement,
+  challengeTarget,
   coinsForResolved,
   computeStreak,
   dailyChallenge,
   dailyCheckinReward,
   flashMultiplier,
+  hoursUntil,
   leagueCode,
   levelInfo,
   newlyUnlocked,
   openChest,
   resolveDuelScore,
+  streakExpired,
+  STREAK_THRESHOLD,
+  STREAK_WINDOW_MS,
   utcDayKey,
   weekStart,
   xpForResolved,
   type AchievementStats,
   type BoostId,
+  type ChallengeSignals,
 } from "./gamification";
 
 interface ProfileGam {
@@ -37,13 +44,15 @@ interface ProfileGam {
   checkin_days: number;
   username: string | null;
   avatar_url: string | null;
+  streak_expires_at: string | null;
+  streak_anchor: string | null;
 }
 
 async function readProfile(uid: string): Promise<ProfileGam> {
   const admin = adminClient();
   const { data } = await admin
     .from("profiles")
-    .select("xp,coins,current_streak,best_streak,last_checkin,checkin_days,username,avatar_url")
+    .select("xp,coins,current_streak,best_streak,last_checkin,checkin_days,username,avatar_url,streak_expires_at,streak_anchor")
     .eq("id", uid).maybeSingle();
   const p = (data ?? {}) as Partial<ProfileGam>;
   return {
@@ -55,7 +64,33 @@ async function readProfile(uid: string): Promise<ProfileGam> {
     checkin_days: p.checkin_days ?? 0,
     username: p.username ?? null,
     avatar_url: p.avatar_url ?? null,
+    streak_expires_at: p.streak_expires_at ?? null,
+    streak_anchor: p.streak_anchor ?? null,
   };
+}
+
+/**
+ * Resuelve la caducidad de la racha de forma perezosa: si la racha activa ya
+ * caducó por inactividad, la reinicia a 0 y fija un "ancla" temporal para que
+ * solo las predicciones resueltas DESPUÉS de la caducidad cuenten para la
+ * racha nueva. Devuelve el estado vigente de la racha.
+ */
+async function settleStreakExpiry(uid: string, prof: ProfileGam): Promise<{ current: number; expiresAt: string | null }> {
+  if (!streakExpired(prof.streak_expires_at, prof.current_streak)) {
+    return { current: prof.current_streak, expiresAt: prof.streak_expires_at };
+  }
+  const admin = adminClient();
+  const anchor = prof.streak_expires_at; // a partir de aquí arranca la racha nueva
+  await admin.from("profiles").update({
+    current_streak: 0,
+    streak_anchor: anchor,
+    streak_expires_at: null,
+  }).eq("id", uid);
+  // refleja el cambio en el objeto en memoria por si el caller lo reutiliza
+  prof.current_streak = 0;
+  prof.streak_anchor = anchor;
+  prof.streak_expires_at = null;
+  return { current: 0, expiresAt: null };
 }
 
 interface ResolvedRow {
@@ -125,8 +160,18 @@ export async function grantMatchRewards(matchId: string, userIds: string[]): Pro
     let newXp = prof.xp + gainedXp;
     let newCoins = prof.coins + gainedCoins;
 
-    // Racha acumulada (aciertos consecutivos al final).
-    const { current, best } = computeStreak(rows.map((r) => Boolean(r.is_correct)));
+    // Racha: el récord se mide sobre TODO el historial; la racha "actual" solo
+    // cuenta aciertos resueltos DESPUÉS del ancla (caducidad previa por inactividad).
+    const { best } = computeStreak(rows.map((r) => Boolean(r.is_correct)));
+    const anchorMs = prof.streak_anchor ? new Date(prof.streak_anchor).getTime() : 0;
+    const sinceAnchor = anchorMs
+      ? rows.filter((r) => new Date(r.resolved_at).getTime() >= anchorMs)
+      : rows;
+    const { current } = computeStreak(sinceAnchor.map((r) => Boolean(r.is_correct)));
+    // Si la racha sigue activa, (re)arma la ventana de caducidad por engagement.
+    const streakExpiresAt = current >= STREAK_THRESHOLD
+      ? new Date(Date.now() + STREAK_WINDOW_MS).toISOString()
+      : null;
 
     // Logros: evaluar con el XP nuevo (para el logro de nivel).
     const stats = buildStats(rows, newXp);
@@ -144,6 +189,7 @@ export async function grantMatchRewards(matchId: string, userIds: string[]): Pro
       coins: newCoins,
       current_streak: current,
       best_streak: Math.max(best, prof.best_streak),
+      streak_expires_at: streakExpiresAt,
     }).eq("id", uid);
   }
 
@@ -192,10 +238,13 @@ export interface GamificationSummary {
   level: ReturnType<typeof levelInfo>;
   coins: number;
   coin_name: string;
-  streak: { current: number; best: number; active: boolean };
+  streak: { current: number; best: number; active: boolean; expires_at: string | null; hours_left: number | null };
   achievements: { id: string; name: string; emoji: string; description: string; unlocked: boolean; unlocked_at: string | null }[];
   daily: {
     challenge: ReturnType<typeof dailyChallenge>;
+    challenge_progress: number;
+    challenge_target: number;
+    challenge_completed: boolean;
     can_claim: boolean;
     checkin_days: number;
     next_reward: ReturnType<typeof dailyCheckinReward>;
@@ -233,14 +282,34 @@ export async function getGamificationSummary(uid: string): Promise<GamificationS
   const today = utcDayKey();
   const canClaim = prof.last_checkin !== today;
 
+  // Racha: aplica caducidad por inactividad de forma perezosa.
+  const { current: streakCurrent, expiresAt: streakExpiresAt } = await settleStreakExpiry(uid, prof);
+
+  const challenge = dailyChallenge();
+  const { data: chRow } = await admin
+    .from("prediction_challenge_progress")
+    .select("progress,completed_at,challenge_key")
+    .eq("user_id", uid).eq("day_key", today).maybeSingle();
+  const chr = chRow as { progress: number; completed_at: string | null; challenge_key: string } | null;
+  const sameChallenge = Boolean(chr && chr.challenge_key === challenge.key);
+
   return {
     level: levelInfo(prof.xp),
     coins: prof.coins,
     coin_name: "Fútcoins",
-    streak: { current: prof.current_streak, best: prof.best_streak, active: prof.current_streak >= 3 },
+    streak: {
+      current: streakCurrent,
+      best: prof.best_streak,
+      active: streakCurrent >= STREAK_THRESHOLD,
+      expires_at: streakExpiresAt,
+      hours_left: hoursUntil(streakExpiresAt),
+    },
     achievements,
     daily: {
-      challenge: dailyChallenge(),
+      challenge,
+      challenge_progress: sameChallenge ? chr!.progress : 0,
+      challenge_target: challengeTarget(challenge.key),
+      challenge_completed: Boolean(sameChallenge && chr!.completed_at),
       can_claim: canClaim,
       checkin_days: prof.checkin_days,
       next_reward: dailyCheckinReward(canClaim ? prof.checkin_days + 1 : prof.checkin_days),
@@ -248,6 +317,65 @@ export async function getGamificationSummary(uid: string): Promise<GamificationS
     flash: flashMultiplier(),
     boosts,
   };
+}
+
+// ─── Bucle diario: progreso del reto (lo llama la creación de predicciones) ───
+/**
+ * Avanza el reto del día con la predicción recién creada y, al completarse,
+ * paga la recompensa UNA sola vez (idempotente vía completed_at).
+ */
+export async function bumpChallengeProgress(uid: string, signals: ChallengeSignals): Promise<void> {
+  const admin = adminClient();
+  const challenge = dailyChallenge();
+  const inc = challengeIncrement(challenge.key, signals);
+  if (inc <= 0) return;
+
+  const today = utcDayKey();
+  const { data } = await admin
+    .from("prediction_challenge_progress")
+    .select("progress,completed_at,challenge_key")
+    .eq("user_id", uid).eq("day_key", today).maybeSingle();
+  const row = data as { progress: number; completed_at: string | null; challenge_key: string } | null;
+
+  // Ya completado y pagado hoy → nada que hacer.
+  if (row?.completed_at && row.challenge_key === challenge.key) return;
+
+  // Si la fila es de un reto anterior (no debería pasar: el reto es determinista
+  // por día), se reinicia el progreso para el reto vigente.
+  const base = row && row.challenge_key === challenge.key ? row.progress : 0;
+  const target = challengeTarget(challenge.key);
+  const progress = Math.min(target, base + inc);
+  const completed = progress >= target;
+
+  await admin.from("prediction_challenge_progress").upsert({
+    user_id: uid,
+    day_key: today,
+    challenge_key: challenge.key,
+    progress,
+    completed_at: completed ? new Date().toISOString() : null,
+  }, { onConflict: "user_id,day_key" });
+
+  if (completed) {
+    const prof = await readProfile(uid);
+    await admin.from("profiles").update({
+      coins: prof.coins + challenge.rewardCoins,
+      xp: prof.xp + challenge.rewardXp,
+    }).eq("id", uid);
+  }
+}
+
+/**
+ * Renueva la ventana de caducidad de la racha cuando el usuario predice. Si la
+ * racha ya había caducado, la asienta (reset) en vez de revivirla.
+ */
+export async function extendStreakWindow(uid: string): Promise<void> {
+  const admin = adminClient();
+  const prof = await readProfile(uid);
+  const { current } = await settleStreakExpiry(uid, prof);
+  if (current < STREAK_THRESHOLD) return;
+  await admin.from("profiles").update({
+    streak_expires_at: new Date(Date.now() + STREAK_WINDOW_MS).toISOString(),
+  }).eq("id", uid);
 }
 
 // ─── Bucle diario: check-in ──────────────────────────────────────────────────

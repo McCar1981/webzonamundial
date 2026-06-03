@@ -16,12 +16,15 @@
 
 -- --- Columnas de gamificación en profiles ------------------------------------
 ALTER TABLE public.profiles
-  ADD COLUMN IF NOT EXISTS xp             INTEGER NOT NULL DEFAULT 0,
-  ADD COLUMN IF NOT EXISTS coins          INTEGER NOT NULL DEFAULT 0,
-  ADD COLUMN IF NOT EXISTS current_streak INTEGER NOT NULL DEFAULT 0,
-  ADD COLUMN IF NOT EXISTS best_streak    INTEGER NOT NULL DEFAULT 0,
-  ADD COLUMN IF NOT EXISTS last_checkin   DATE,
-  ADD COLUMN IF NOT EXISTS checkin_days   INTEGER NOT NULL DEFAULT 0;
+  ADD COLUMN IF NOT EXISTS xp                INTEGER NOT NULL DEFAULT 0,
+  ADD COLUMN IF NOT EXISTS coins             INTEGER NOT NULL DEFAULT 0,
+  ADD COLUMN IF NOT EXISTS current_streak    INTEGER NOT NULL DEFAULT 0,
+  ADD COLUMN IF NOT EXISTS best_streak       INTEGER NOT NULL DEFAULT 0,
+  ADD COLUMN IF NOT EXISTS last_checkin      DATE,
+  ADD COLUMN IF NOT EXISTS checkin_days      INTEGER NOT NULL DEFAULT 0,
+  -- Caducidad de racha por inactividad (cuenta atrás "vuelve o pierdes tu racha").
+  ADD COLUMN IF NOT EXISTS streak_expires_at TIMESTAMPTZ,
+  ADD COLUMN IF NOT EXISTS streak_anchor     TIMESTAMPTZ;
 
 -- ============================================================================
 -- 3) Logros desbloqueados

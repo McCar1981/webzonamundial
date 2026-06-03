@@ -13,8 +13,14 @@ import {
 
 const BG2 = "#0F1D32", BG3 = "#0B1825";
 const GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a";
-const GREEN = "#22c55e";
+const GREEN = "#22c55e", RED = "#e5604d";
 const CARD_BORDER = "1px solid rgba(255,255,255,0.07)";
+
+/** "18h", "45m" o "5h" para la cuenta atrás de la racha. */
+function formatHoursLeft(hours: number): string {
+  if (hours < 1) return `${Math.max(1, Math.round(hours * 60))}m`;
+  return `${Math.round(hours)}h`;
+}
 
 interface LevelInfo { level: number; xp: number; xpIntoLevel: number; xpForLevel: number; xpToNext: number; progress: number; title: string }
 interface Achievement { id: string; name: string; emoji: string; description: string; unlocked: boolean; unlocked_at: string | null }
@@ -25,9 +31,9 @@ interface Summary {
   level: LevelInfo;
   coins: number;
   coin_name: string;
-  streak: { current: number; best: number; active: boolean };
+  streak: { current: number; best: number; active: boolean; expires_at: string | null; hours_left: number | null };
   achievements: Achievement[];
-  daily: { challenge: DailyChallenge; can_claim: boolean; checkin_days: number; next_reward: { day: number; coins: number; xp: number; chest: boolean } };
+  daily: { challenge: DailyChallenge; challenge_progress: number; challenge_target: number; challenge_completed: boolean; can_claim: boolean; checkin_days: number; next_reward: { day: number; coins: number; xp: number; chest: boolean } };
   flash: Flash;
   boosts: BoostInv[];
 }
@@ -103,12 +109,19 @@ export default function GamificationHUD() {
           <div style={{ color: DIM, fontSize: 10.5, marginTop: 5 }}>Faltan {level.xpToNext} XP para subir</div>
         </div>
 
-        {/* Racha */}
+        {/* Racha (con cuenta atrás de caducidad) */}
         <Stat
           icon={Flame}
           value={streak.current}
-          label={streak.active ? "Racha activa ×1.5" : `Racha · récord ${streak.best}`}
+          label={
+            streak.active && streak.hours_left != null
+              ? `Expira en ${formatHoursLeft(streak.hours_left)} · ×1.5`
+              : streak.active
+                ? "Racha activa ×1.5"
+                : `Racha · récord ${streak.best}`
+          }
           glow={streak.active}
+          urgent={streak.active && streak.hours_left != null && streak.hours_left <= 6}
         />
         {/* Monedas */}
         <Stat icon={Coins} value={coins} label={data.coin_name} />
@@ -124,12 +137,26 @@ export default function GamificationHUD() {
       {/* Reto diario + check-in (una sola tarjeta) */}
       <div style={{ background: BG2, border: CARD_BORDER, borderRadius: 14, padding: "12px 14px", display: "flex", gap: 14, flexWrap: "wrap", alignItems: "center", justifyContent: "space-between" }}>
         <div style={{ flex: "1 1 220px", minWidth: 0 }}>
-          <div style={{ fontSize: 11, color: DIM, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase" }}>Reto de hoy</div>
+          <div style={{ fontSize: 11, color: DIM, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", display: "flex", alignItems: "center", gap: 6 }}>
+            Reto de hoy
+            {daily.challenge_completed && <CheckCircle2 size={13} color={GREEN} />}
+          </div>
           <div style={{ fontWeight: 800, marginTop: 3, display: "flex", alignItems: "center", gap: 7 }}>
             {challengeIcon(daily.challenge.key)}
             {daily.challenge.title}
           </div>
           <div style={{ color: MID, fontSize: 12.5, marginTop: 2 }}>{daily.challenge.description}</div>
+          {/* Progreso del reto */}
+          <div style={{ marginTop: 7 }}>
+            <div style={{ height: 7, background: BG3, borderRadius: 99, overflow: "hidden", border: CARD_BORDER }}>
+              <div style={{ width: `${Math.round((Math.min(daily.challenge_progress, daily.challenge_target) / daily.challenge_target) * 100)}%`, height: "100%", background: daily.challenge_completed ? GREEN : `linear-gradient(90deg,${GOLD},${GOLD2})`, transition: "width .4s" }} />
+            </div>
+            <div style={{ color: daily.challenge_completed ? GREEN : DIM, fontSize: 11, marginTop: 4, fontWeight: 700 }}>
+              {daily.challenge_completed
+                ? "Reto completado · recompensa entregada"
+                : `Progreso ${Math.min(daily.challenge_progress, daily.challenge_target)}/${daily.challenge_target}`}
+            </div>
+          </div>
           <div style={{ color: GOLD2, fontSize: 11.5, marginTop: 5, fontWeight: 700, display: "flex", alignItems: "center", gap: 4 }}>
             Recompensa: <Coins size={13} /> {daily.challenge.rewardCoins} · +{daily.challenge.rewardXp} XP
           </div>
@@ -233,14 +260,16 @@ function achievementIcon(id: string) {
   return <Icon size={16} color={GOLD2} />;
 }
 
-function Stat({ icon: Icon, value, label, glow }: { icon: LucideIcon; value: number; label: string; glow?: boolean }) {
+function Stat({ icon: Icon, value, label, glow, urgent }: { icon: LucideIcon; value: number; label: string; glow?: boolean; urgent?: boolean }) {
+  const border = urgent ? `1px solid ${RED}` : glow ? `1px solid ${GOLD}` : CARD_BORDER;
+  const shadow = urgent ? "0 0 18px rgba(229,96,77,0.3)" : glow ? "0 0 18px rgba(201,168,76,0.25)" : "none";
   return (
-    <div style={{ flex: "1 1 130px", background: BG2, border: glow ? `1px solid ${GOLD}` : CARD_BORDER, borderRadius: 14, padding: "12px 14px", display: "flex", flexDirection: "column", justifyContent: "center", boxShadow: glow ? "0 0 18px rgba(201,168,76,0.25)" : "none" }}>
+    <div style={{ flex: "1 1 130px", background: BG2, border, borderRadius: 14, padding: "12px 14px", display: "flex", flexDirection: "column", justifyContent: "center", boxShadow: shadow }}>
       <div style={{ fontWeight: 900, fontSize: 20, display: "flex", alignItems: "center", gap: 8 }}>
-        <Icon size={20} color={GOLD2} strokeWidth={2.2} />
+        <Icon size={20} color={urgent ? RED : GOLD2} strokeWidth={2.2} />
         {value}
       </div>
-      <div style={{ color: MID, fontSize: 11, marginTop: 2 }}>{label}</div>
+      <div style={{ color: urgent ? RED : MID, fontSize: 11, marginTop: 2 }}>{label}</div>
     </div>
   );
 }

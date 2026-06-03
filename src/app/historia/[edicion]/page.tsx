@@ -18,6 +18,51 @@ export const revalidate = 86400; // 24h ISR
 
 const GOLD = '#c9a84c';
 
+// Títulos/descripciones SEO afinados por edición (CTR). Verificados contra los
+// datos de la página (campeón/sede/año). Solo metadatos: no alteran el body.
+const SEO_OVERRIDES: Record<string, { title: string; description: string }> = {
+  '2006-alemania': {
+    title: 'Mundial 2006 Alemania: Italia campeón, resumen y datos',
+    description:
+      'Italia conquistó el Mundial 2006 de Alemania en la final ante Francia. Revive el torneo: goleadores, resultados y los momentos clave.',
+  },
+  '1982-espana': {
+    title: 'Mundial 1982 España: Italia campeón, sedes y resumen',
+    description:
+      'España acogió el Mundial 1982 e Italia se proclamó campeona. Revive el torneo: formato, sedes, goleadores y los partidos que marcaron época.',
+  },
+  '2014-brasil': {
+    title: 'Mundial 2014 Brasil: Alemania campeón y el 7-1 histórico',
+    description:
+      'Alemania ganó el Mundial 2014 de Brasil tras el inolvidable 7-1 al anfitrión. Resumen del torneo, goleadores y momentos clave.',
+  },
+  '1998-francia': {
+    title: 'Mundial 1998 Francia: la anfitriona, campeona',
+    description:
+      'Francia conquistó su primer Mundial como anfitriona en 1998 ante Brasil. Revive el torneo: Zidane, goleadores, sedes y resultados.',
+  },
+  '1994-eeuu': {
+    title: 'Mundial 1994 EE. UU.: Brasil campeón en los penaltis',
+    description:
+      'Brasil ganó el Mundial 1994 de Estados Unidos en la tanda de penaltis ante Italia. Revive el torneo, goleadores y los momentos decisivos.',
+  },
+  '2002-corea-japon': {
+    title: 'Mundial 2002 Corea-Japón: Brasil, pentacampeón',
+    description:
+      'Brasil ganó el Mundial 2002 de Corea y Japón, su quinto título, con un Ronaldo estelar. Revive el torneo, goleadores y resultados.',
+  },
+  '1950-brasil': {
+    title: 'Mundial 1950 Brasil: Uruguay y el Maracanazo',
+    description:
+      'Uruguay sorprendió a Brasil en el Maracaná y ganó el Mundial 1950: el legendario Maracanazo. Revive uno de los torneos más recordados.',
+  },
+  '1958-suecia': {
+    title: 'Mundial 1958 Suecia: Brasil campeón y el debut de Pelé',
+    description:
+      'Brasil ganó su primer Mundial en Suecia 1958 con un joven Pelé. Revive el torneo, sus goleadores y los protagonistas que hicieron historia.',
+  },
+};
+
 export async function generateStaticParams() {
   return getAllSlugs().map((edicion) => ({ edicion }));
 }
@@ -35,18 +80,25 @@ export async function generateMetadata({
   const titleParts: string[] = [];
   titleParts.push(`Mundial ${e.meta.nombreCorto}`);
   if (champ) titleParts.push(`Campeón: ${champ.pais}`);
-  const title = `${titleParts.join(' · ')} | ZonaMundial`;
 
-  const desc = e.contextoHistorico?.resumen
-    ? e.contextoHistorico.resumen.slice(0, 158) + '…'
-    : `${e.meta.tituloOficial} — ${e.formato.numEquipos} equipos, ${e.formato.numPartidos} partidos en ${e.sede.paises.map((p) => p.nombre).join(', ')}.`;
+  const override = SEO_OVERRIDES[slug];
+  const titleMeta: Metadata['title'] = override
+    ? { absolute: override.title }
+    : `${titleParts.join(' · ')} | ZonaMundial`;
+  const ogTitle = override ? override.title : `${titleParts.join(' · ')} | ZonaMundial`;
+
+  const desc = override
+    ? override.description
+    : e.contextoHistorico?.resumen
+      ? e.contextoHistorico.resumen.slice(0, 158) + '…'
+      : `${e.meta.tituloOficial} — ${e.formato.numEquipos} equipos, ${e.formato.numPartidos} partidos en ${e.sede.paises.map((p) => p.nombre).join(', ')}.`;
 
   return {
-    title,
+    title: titleMeta,
     description: desc,
     alternates: { canonical: `https://zonamundial.app/historia/${slug}` },
     openGraph: {
-      title,
+      title: ogTitle,
       description: desc,
       url: `https://zonamundial.app/historia/${slug}`,
       siteName: 'ZonaMundial',

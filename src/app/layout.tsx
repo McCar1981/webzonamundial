@@ -14,8 +14,12 @@ const outfit = Outfit({
   variable: "--zm-font-outfit",
 });
 
-// Google AdSense Publisher ID (NEXT_PUBLIC_* expuesto al cliente).
-const ADSENSE_ID = process.env.NEXT_PUBLIC_ADSENSE_ID;
+// Google AdSense Publisher ID. El ID es público (aparece en /ads.txt), así que
+// usamos un fallback hardcodeado para garantizar que el cargador se emita en
+// producción aunque la env var no esté definida en Vercel. Si se define
+// NEXT_PUBLIC_ADSENSE_ID, esta tiene prioridad.
+const ADSENSE_ID =
+  process.env.NEXT_PUBLIC_ADSENSE_ID ?? "ca-pub-1977548438117778";
 
 const SITE_URL = "https://zonamundial.app";
 const SITE_NAME = "ZonaMundial";

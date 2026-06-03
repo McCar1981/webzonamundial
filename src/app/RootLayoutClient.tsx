@@ -13,6 +13,7 @@ import { SocialDock } from "@/components/SocialDock";
 import HeaderUserMenu from "@/components/HeaderUserMenu";
 import MobileUserMenu from "@/components/MobileUserMenu";
 import LiveCreatorsBanner from "@/components/LiveCreatorsBanner";
+import IACoachWidget from "@/components/ia-coach/IACoachWidget";
 
 const BG="#060B14",BG2="#0F1D32",BG3="#0B1825",GOLD="#c9a84c",GOLD2="#e8d48b",MID="#8a94b0",DIM="#6a7a9a",DARK="#4a5570";
 
@@ -408,6 +409,9 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
           tapaba las tarjetas del campo en móvil. */}
       {!pathname?.startsWith("/app/fantasy/jugar") &&
         !pathname?.startsWith("/app/predicciones/jugar") && <SocialDock />}
+
+      {/* ═══ IA COACH — módulo independiente, ventana flotante global ═══ */}
+      <IACoachWidget />
 
       {/* ═══ FOOTER ═══ */}
       <SiteFooter />

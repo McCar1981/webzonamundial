@@ -7,11 +7,14 @@
 // max_tokens ajustado. Construye el contexto a partir de la tabla de odds.
 
 import Anthropic from "@anthropic-ai/sdk";
-import { ORACLE_SYSTEM_PROMPT } from "./oracle-system-prompt";
+import {
+  ORACLE_SYSTEM_PROMPT,
+  ORACLE_FOLLOWUP_SYSTEM_PROMPT,
+} from "./oracle-system-prompt";
 import { TEAM_BY_ID } from "@/lib/bracket/teams";
 import type { Confidence } from "./types";
 import type { TeamOdds } from "./oracle-sim";
-import type { OracleNarration } from "./oracle-types";
+import type { OracleNarration, OracleFollowupMessage } from "./oracle-types";
 
 const MODEL = "claude-sonnet-4-5-20250929";
 const MAX_TOKENS = 900;
@@ -73,6 +76,66 @@ export function buildOracleContext(
       "del usuario arriba) y confidence. Cita SIEMPRE las probabilidades reales de la tabla.",
   );
   return lines.join("\n");
+}
+
+/** Construye SOLO la tabla de odds (sin "Tarea" de JSON) para anclar el chat de
+ *  seguimiento del Oráculo. El usuario ya vio la narración; aquí solo necesitamos
+ *  las probabilidades como fuente de verdad. */
+export function buildOracleOddsTable(
+  teams: TeamOdds[],
+  iterations: number,
+  userChampionId: string | null,
+): string {
+  const top = teams.slice(0, 16);
+  const lines: string[] = [];
+  lines.push("# TABLA DE PROBABILIDADES — SIMULACIÓN MONTE CARLO MUNDIAL 2026");
+  lines.push(`Torneos simulados: ${iterations.toLocaleString("es")}.`);
+  lines.push("Formato: Selección (ranking FIFA) — Campeón | Final | Semis | Cuartos");
+  for (const t of top) {
+    lines.push(
+      `- ${t.name} (#${t.rank}) — ${pct(t.champion)} | ${pct(t.finalist)} | ${pct(t.semifinalist)} | ${pct(t.quarterfinalist)}`,
+    );
+  }
+  if (userChampionId) {
+    const u = teams.find((t) => t.id === userChampionId);
+    if (u) {
+      const rankPos = teams.findIndex((t) => t.id === userChampionId) + 1;
+      lines.push("");
+      lines.push(
+        `Campeón elegido por el usuario: ${u.name} (#${u.rank}) — campeón en ${pct(u.champion)} ` +
+          `de las simulaciones (posición #${rankPos} de 48 en el ranking del Oráculo).`,
+      );
+    }
+  }
+  return lines.join("\n");
+}
+
+/** Responde una pregunta de seguimiento del usuario, anclada en la tabla de odds.
+ *  El último mensaje de `messages` debe ser del usuario. Devuelve texto plano. */
+export async function generateOracleFollowup(
+  oddsTable: string,
+  messages: OracleFollowupMessage[],
+): Promise<string> {
+  if (messages.length === 0 || messages[messages.length - 1].role !== "user") {
+    throw new Error("Last message must be from the user");
+  }
+  const client = getClient();
+
+  const response = await client.messages.create({
+    model: MODEL,
+    max_tokens: 500,
+    temperature: 0.7,
+    system: `${ORACLE_FOLLOWUP_SYSTEM_PROMPT}\n\n## Tabla de probabilidades (tu única fuente)\n\n${oddsTable}`,
+    messages: messages.map((m) => ({ role: m.role, content: m.content })),
+  });
+
+  const block = response.content.find((b) => b.type === "text");
+  if (!block || block.type !== "text") {
+    throw new Error("No text block in Anthropic response");
+  }
+  const reply = block.text.replace(/\s*\n+\s*/g, " ").trim().slice(0, 600);
+  if (!reply) throw new Error("Empty oracle follow-up reply");
+  return reply;
 }
 
 export async function generateOracleNarration(

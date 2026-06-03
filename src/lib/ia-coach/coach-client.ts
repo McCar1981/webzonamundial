@@ -114,6 +114,7 @@ function validate(raw: unknown): IACoachBracketAnalysis {
   const strengths = strArray("strengths", 90, 4);
   const biases = strArray("biases", 90, 4);
   const suggestions = strArray("suggestions", 110, 3);
+  const missingData = strArray("missingData", 100, 3);
 
   const risksRaw = obj.risks;
   const risks: IACoachBracketAnalysis["risks"] = Array.isArray(risksRaw)
@@ -145,6 +146,7 @@ function validate(raw: unknown): IACoachBracketAnalysis {
     risks,
     biases,
     suggestions,
+    missingData,
     grade,
     confidence,
   };

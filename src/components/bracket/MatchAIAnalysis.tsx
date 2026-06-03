@@ -366,6 +366,17 @@ function AnalysisBody({
         </div>
       ) : null}
 
+      {analysis.missingData && analysis.missingData.length > 0 ? (
+        <div className={styles.missingData}>
+          <div className={styles.missingDataLabel}>{"// Datos que afinarían el pronóstico"}</div>
+          <ul>
+            {analysis.missingData.map((m, i) => (
+              <li key={i}>{m}</li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+
       {onApply ? (
         <button
           type="button"

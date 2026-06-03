@@ -16,13 +16,17 @@ import { TEAM_BY_ID } from "@/lib/bracket/teams";
 import { runOracleSim, ORACLE_SIM_VERSION, type OracleSimResult } from "@/lib/ia-coach/oracle-sim";
 import {
   buildOracleContext,
+  buildOracleOddsTable,
   generateOracleNarration,
+  generateOracleFollowup,
 } from "@/lib/ia-coach/oracle-client";
 import { ORACLE_PROMPT_VERSION } from "@/lib/ia-coach/oracle-system-prompt";
 import type {
   OracleNarration,
+  OracleFollowupMessage,
   OracleRequest,
   OracleResponse,
+  OracleFollowupResponse,
   OracleErrorResponse,
 } from "@/lib/ia-coach/oracle-types";
 
@@ -34,6 +38,11 @@ const SIM_CACHE_KEY = `iacoach:oracle:sim:${ORACLE_SIM_VERSION}`;
 const SIM_TTL = 24 * 60 * 60; // la simulación es determinista; refresca cada día
 const NARRATION_PREFIX = "iacoach:oracle:nar:";
 const NARRATION_TTL = 12 * 60 * 60;
+
+// Seguimiento (multi-turn): topes para acotar coste/abuso del chat.
+const MAX_FOLLOWUP_TURNS = 8;
+const MAX_FOLLOWUP_MSG_LEN = 600;
+const MAX_FOLLOWUP_HISTORY = MAX_FOLLOWUP_TURNS * 2;
 
 interface NarrationCache {
   generatedAt: string;
@@ -83,6 +92,35 @@ export async function POST(req: Request) {
   } catch (err) {
     console.error("[ia-coach/oracle] sim failed:", (err as Error).message);
     return errorResponse("sim_failed", 500);
+  }
+
+  // ── Rama SEGUIMIENTO (multi-turn): si el body trae messages, el usuario
+  //    está conversando con el Oráculo sobre las odds. Respuesta libre y sin
+  //    cachear, anclada en la misma tabla de probabilidades. ──
+  if (Array.isArray(body.messages) && body.messages.length > 0) {
+    const messages = sanitizeFollowup(body.messages);
+    if (messages.length === 0 || messages[messages.length - 1].role !== "user") {
+      return errorResponse("invalid_messages", 400);
+    }
+    const userTurns = messages.filter((m) => m.role === "user").length;
+    if (userTurns > MAX_FOLLOWUP_TURNS) {
+      return errorResponse("turn_limit", 429);
+    }
+    try {
+      const oddsTable = buildOracleOddsTable(sim.teams, sim.iterations, championId);
+      const reply = await generateOracleFollowup(oddsTable, messages);
+      const followup: OracleFollowupResponse = {
+        ok: true,
+        generatedAt: new Date().toISOString(),
+        reply,
+      };
+      return NextResponse.json(followup, {
+        headers: { "Cache-Control": "private, no-store" },
+      });
+    } catch (err) {
+      console.error("[ia-coach/oracle] followup failed:", (err as Error).message);
+      return errorResponse("anthropic_failed", 502);
+    }
   }
 
   const top = sim.teams.slice(0, 12);
@@ -140,6 +178,22 @@ export async function POST(req: Request) {
     userChampion,
     narration,
   });
+}
+
+/** Normaliza el historial del chat de seguimiento: roles válidos, texto no vacío,
+ *  longitudes acotadas y recorte a los últimos MAX_FOLLOWUP_HISTORY mensajes. */
+function sanitizeFollowup(raw: unknown): OracleFollowupMessage[] {
+  if (!Array.isArray(raw)) return [];
+  const cleaned: OracleFollowupMessage[] = [];
+  for (const m of raw) {
+    if (typeof m !== "object" || m === null) continue;
+    const o = m as Record<string, unknown>;
+    const role = o.role === "user" || o.role === "assistant" ? o.role : null;
+    const content = typeof o.content === "string" ? o.content.trim() : "";
+    if (!role || !content) continue;
+    cleaned.push({ role, content: content.slice(0, MAX_FOLLOWUP_MSG_LEN) });
+  }
+  return cleaned.slice(-MAX_FOLLOWUP_HISTORY);
 }
 
 function json(resp: OracleResponse): NextResponse {

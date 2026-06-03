@@ -13,9 +13,13 @@ import { IconCrystalBall } from "@/components/ia-coach/icons";
 import type {
   OracleNarration,
   OracleResponse,
+  OracleFollowupResponse,
+  OracleFollowupMessage,
   OracleErrorResponse,
 } from "@/lib/ia-coach/oracle-types";
 import type { TeamOdds } from "@/lib/ia-coach/oracle-sim";
+
+const MAX_FOLLOWUP_TURNS = 8;
 
 // Paleta alineada con el resto del bracket (dorado ZonaMundial).
 const BG2 = "#12161D";
@@ -41,6 +45,10 @@ function oracleError(code: string): string {
       return "El Oráculo no pudo correr la simulación. Inténtalo en un momento.";
     case "anthropic_failed":
       return "El Oráculo enmudeció. Inténtalo de nuevo en un momento.";
+    case "turn_limit":
+      return "Has agotado tus preguntas al Oráculo en esta consulta.";
+    case "invalid_messages":
+      return "No se entendió la pregunta. Reformúlala.";
     default:
       return "El Oráculo no respondió. Inténtalo de nuevo.";
   }
@@ -54,6 +62,12 @@ export default function OraclePanel({ state }: { state: BracketState }) {
   const [userChampion, setUserChampion] = useState<TeamOdds | null>(null);
   const [iterations, setIterations] = useState(0);
   const [cached, setCached] = useState(false);
+
+  // Seguimiento (multi-turn): conversación con el Oráculo sobre las odds.
+  const [chat, setChat] = useState<OracleFollowupMessage[]>([]);
+  const [draft, setDraft] = useState("");
+  const [chatLoading, setChatLoading] = useState(false);
+  const [chatError, setChatError] = useState<string | null>(null);
 
   const consult = useCallback(async () => {
     setLoading(true);
@@ -75,6 +89,9 @@ export default function OraclePanel({ state }: { state: BracketState }) {
         setUserChampion(data.userChampion);
         setIterations(data.iterations);
         setCached(data.cached);
+        // Reset del chat al reconsultar: las odds pueden haber cambiado.
+        setChat([]);
+        setChatError(null);
       } else {
         setError(oracleError("error" in data ? data.error : "unknown"));
         setNarration(null);
@@ -91,6 +108,45 @@ export default function OraclePanel({ state }: { state: BracketState }) {
       setLoading(false);
     }
   }, [state.champion]);
+
+  const userTurns = chat.filter((m) => m.role === "user").length;
+  const turnsLeft = MAX_FOLLOWUP_TURNS - userTurns;
+
+  const askFollowup = useCallback(async () => {
+    const q = draft.trim();
+    if (!q || chatLoading || turnsLeft <= 0) return;
+    const nextChat: OracleFollowupMessage[] = [...chat, { role: "user", content: q }];
+    setChat(nextChat);
+    setDraft("");
+    setChatLoading(true);
+    setChatError(null);
+
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 32_000);
+    try {
+      const res = await fetch("/api/ia-coach/oracle", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ champion: state.champion ?? null, messages: nextChat }),
+        signal: controller.signal,
+      });
+      const data = (await res.json()) as OracleFollowupResponse | OracleErrorResponse;
+      if (data.ok) {
+        setChat((c) => [...c, { role: "assistant", content: data.reply }]);
+      } else {
+        setChatError(oracleError("error" in data ? data.error : "unknown"));
+      }
+    } catch (err) {
+      setChatError(
+        (err as Error).name === "AbortError"
+          ? "El Oráculo tardó demasiado. Inténtalo de nuevo."
+          : "Error de red al consultar al Oráculo.",
+      );
+    } finally {
+      clearTimeout(timeout);
+      setChatLoading(false);
+    }
+  }, [draft, chat, chatLoading, turnsLeft, state.champion]);
 
   const maxChampion = top.length > 0 ? top[0].champion : 1;
 
@@ -239,6 +295,119 @@ export default function OraclePanel({ state }: { state: BracketState }) {
               simulaciones (ranking FIFA #{userChampion.rank}).
             </div>
           )}
+
+          {/* Seguimiento: pregúntale al Oráculo sobre las odds */}
+          <div
+            style={{
+              borderTop: `1px solid ${GOLD}22`,
+              paddingTop: 12,
+              display: "flex",
+              flexDirection: "column",
+              gap: 10,
+            }}
+          >
+            <div
+              style={{
+                color: GOLD,
+                fontSize: 12,
+                fontWeight: 700,
+                textTransform: "uppercase",
+                letterSpacing: 0.5,
+              }}
+            >
+              Interroga al Oráculo
+            </div>
+
+            {chat.length > 0 && (
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {chat.map((m, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      alignSelf: m.role === "user" ? "flex-end" : "flex-start",
+                      maxWidth: "88%",
+                      background: m.role === "user" ? `${GOLD}1A` : BG3,
+                      border: m.role === "user" ? `1px solid ${GOLD}44` : `1px solid ${GOLD}22`,
+                      borderRadius: 10,
+                      padding: "8px 11px",
+                      color: m.role === "user" ? GOLD2 : MID,
+                      fontSize: 13,
+                      lineHeight: 1.45,
+                    }}
+                  >
+                    {m.content}
+                  </div>
+                ))}
+                {chatLoading && (
+                  <div style={{ color: DIM, fontSize: 12.5, alignSelf: "flex-start" }}>
+                    El Oráculo medita…
+                  </div>
+                )}
+              </div>
+            )}
+
+            {chatError && (
+              <div style={{ color: RED, fontSize: 12.5 }}>{chatError}</div>
+            )}
+
+            {turnsLeft > 0 ? (
+              <div style={{ display: "flex", gap: 8, alignItems: "flex-end" }}>
+                <textarea
+                  value={draft}
+                  onChange={(e) => setDraft(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && !e.shiftKey) {
+                      e.preventDefault();
+                      void askFollowup();
+                    }
+                  }}
+                  rows={2}
+                  placeholder="¿Y si me voy a por otro campeón? ¿Por qué ese tapado?"
+                  disabled={chatLoading}
+                  style={{
+                    flex: 1,
+                    resize: "none",
+                    background: BG3,
+                    border: `1px solid ${GOLD}33`,
+                    borderRadius: 9,
+                    padding: "9px 11px",
+                    color: MID,
+                    fontSize: 13,
+                    fontFamily: "inherit",
+                    outline: "none",
+                  }}
+                />
+                <button
+                  onClick={askFollowup}
+                  disabled={chatLoading || draft.trim().length === 0}
+                  style={{
+                    background: GOLD,
+                    color: "#0C0F14",
+                    border: "none",
+                    borderRadius: 9,
+                    padding: "10px 14px",
+                    fontWeight: 700,
+                    fontSize: 13,
+                    cursor: chatLoading || draft.trim().length === 0 ? "default" : "pointer",
+                    opacity: chatLoading || draft.trim().length === 0 ? 0.6 : 1,
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  Preguntar
+                </button>
+              </div>
+            ) : (
+              <div style={{ color: DIM, fontSize: 12.5 }}>
+                Has agotado tus preguntas al Oráculo en esta consulta. Vuelve a
+                consultar para reabrir el diálogo.
+              </div>
+            )}
+            {turnsLeft > 0 && turnsLeft <= 3 && chat.length > 0 && (
+              <div style={{ color: DIM, fontSize: 11, textAlign: "right" }}>
+                Te quedan {turnsLeft} {turnsLeft === 1 ? "pregunta" : "preguntas"}.
+              </div>
+            )}
+          </div>
 
           <div style={{ color: DIM, fontSize: 11, textAlign: "right" }}>
             {iterations.toLocaleString("es")} torneos simulados · Confianza:{" "}

@@ -67,6 +67,7 @@ Responde ÚNICAMENTE con un objeto JSON válido (sin markdown, sin texto antes/d
     "away": "Buscar el desborde por fuera; por dentro no encuentra espacios."
   },
   "watchNext": "Si Marruecos no marca antes del 75', Brasil cerrará con cambios defensivos.",
+  "missingData": [],
   "confidence": "media"
 }
 \`\`\`
@@ -79,8 +80,9 @@ Responde ÚNICAMENTE con un objeto JSON válido (sin markdown, sin texto antes/d
 - \`winProbabilities\`: tres números 0-1, suman ~1.0.
 - \`projectedScore\`: "N-N". Coherente con el marcador actual (NUNCA por debajo de los goles ya marcados por cada equipo) y con las probabilidades.
 - \`keyObservations\`: 3-4 elementos, cada uno máx 80 caracteres, basados en datos reales del contexto.
-- \`adjustments\`: objeto con \`home\` y/o \`away\` (máx 120 chars c/u). Puedes omitir un lado o el objeto entero si no procede.
+- \`adjustments\`: objeto con \`home\` y/o \`away\` (máx 120 chars c/u). Puedes omitir un lado o el objeto entero si no procede. Cuando propongas un cambio, nombra a un recambio CONCRETO de la lista "Recambios disponibles (banquillo)" de ese equipo si encaja con la necesidad (p. ej. "Mete a [nombre] para dar profundidad"). NUNCA inventes un jugador que no esté en esa lista; si el banquillo no aparece en el contexto, describe el perfil de cambio sin nombre.
 - \`watchNext\`: máx 160 caracteres.
+- \`missingData\`: 0-3 elementos, máx 90 caracteres c/u. Datos que te habrían afinado la lectura y que NO venían en el contexto (p. ej. stats aún no disponibles, sin alineaciones, sin banquillo). Array VACÍO \`[]\` si tenías todo lo necesario. No es una excusa: solo huecos reales.
 - \`confidence\`: SOLO "baja", "media" o "alta".
 
 ## Importante
@@ -94,4 +96,4 @@ Responde ÚNICAMENTE con un objeto JSON válido (sin markdown, sin texto antes/d
  * Versión del prompt en vivo. Se incluye en la clave de cache: si cambias el
  * prompt, se invalidan las lecturas cacheadas.
  */
-export const LIVE_PROMPT_VERSION = "v1";
+export const LIVE_PROMPT_VERSION = "v2";

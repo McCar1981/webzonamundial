@@ -42,7 +42,15 @@ function debateError(code: string): string {
   }
 }
 
-export default function DebatePanel({ state }: { state: BracketState }) {
+export default function DebatePanel({
+  state,
+  userName = null,
+}: {
+  state: BracketState;
+  /** Nombre de registro del usuario (presentación). El saludo dentro del prompt
+   *  del Retador se resuelve server-side; esto es solo para el copy del panel. */
+  userName?: string | null;
+}) {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<DebateMessage[]>([]);
   const [stance, setStance] = useState<string | null>(null);
@@ -229,7 +237,7 @@ export default function DebatePanel({ state }: { state: BracketState }) {
 
           {messages.length === 0 && gate === "none" && (
             <div style={{ color: DIM, fontSize: 12.5, marginBottom: 12, lineHeight: 1.5 }}>
-              Defiende tu campeón y tus pronósticos. El Retador los pondrá a prueba con
+              {userName ? `${userName}, defiende` : "Defiende"} tu campeón y tus pronósticos. El Retador los pondrá a prueba con
               argumentos. {state.champion ? "Empieza explicando por qué tu campeón levantará la copa." : "Empieza lanzando tu predicción más atrevida."}
             </div>
           )}

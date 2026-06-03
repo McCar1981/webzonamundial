@@ -56,7 +56,14 @@ function coachError(code: string): string {
   }
 }
 
-export default function BracketCoachPanel({ state }: { state: BracketState }) {
+export default function BracketCoachPanel({
+  state,
+  userName = null,
+}: {
+  state: BracketState;
+  /** Nombre de registro del usuario, para personalizar el copy del panel. */
+  userName?: string | null;
+}) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [analysis, setAnalysis] = useState<IACoachBracketAnalysis | null>(null);
@@ -137,7 +144,9 @@ export default function BracketCoachPanel({ state }: { state: BracketState }) {
             Entrenador Personal
           </div>
           <div style={{ color: DIM, fontSize: 12 }}>
-            Análisis IA de tu quiniela completa
+            {userName
+              ? `Análisis IA de la quiniela de ${userName}`
+              : "Análisis IA de tu quiniela completa"}
           </div>
         </div>
         <button
@@ -290,6 +299,15 @@ export default function BracketCoachPanel({ state }: { state: BracketState }) {
             <Section title="Consejos del entrenador" color={GOLD}>
               {analysis.suggestions.map((s, i) => (
                 <Bullet key={i} color={GOLD}>{s}</Bullet>
+              ))}
+            </Section>
+          )}
+
+          {/* Datos que faltaban (transparencia) */}
+          {analysis.missingData.length > 0 && (
+            <Section title="Lo que me faltó para afinar" color={DIM}>
+              {analysis.missingData.map((m, i) => (
+                <Bullet key={i} color={DIM}>{m}</Bullet>
               ))}
             </Section>
           )}

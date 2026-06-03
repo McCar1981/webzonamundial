@@ -73,6 +73,10 @@ export interface IACoachLiveAnalysis {
   /** Qué esperar en los próximos minutos (máx 160 chars). */
   watchNext: string;
 
+  /** Datos ausentes del contexto que habrían afinado la lectura (stats, alineaciones,
+   *  banquillo...). Vacío si el contexto era suficiente. 0-3 (máx 90 chars c/u). */
+  missingData: string[];
+
   confidence: Confidence;
 }
 

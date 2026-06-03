@@ -82,6 +82,11 @@ export interface IACoachAnalysis {
     /** Análisis del duelo (máx 200 chars). */
     analysis: string;
   };
+
+  /** Datos que habrían afinado el pronóstico y que NO venían en el contexto
+   *  (forma reciente, bajas/lesiones, cuotas...). Opcional y vacío si no aplica.
+   *  0-3 elementos (máx 90 chars c/u). */
+  missingData?: string[];
 }
 
 /** Respuesta del endpoint /api/ia-coach/analyze. */

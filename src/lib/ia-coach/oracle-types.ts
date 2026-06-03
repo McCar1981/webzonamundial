@@ -14,6 +14,16 @@ export interface OracleRequest {
   /** Campeón elegido por el usuario (id ISO3), opcional. Si se envía, el Oráculo
    *  contrasta su pick con la simulación. */
   champion?: string | null;
+  /** Si viene presente, es una pregunta de seguimiento (multi-turn): el usuario
+   *  ya vio la narración inicial y ahora interroga al Oráculo sobre las odds.
+   *  El último mensaje debe ser del usuario. */
+  messages?: OracleFollowupMessage[];
+}
+
+/** Turno del chat de seguimiento del Oráculo. */
+export interface OracleFollowupMessage {
+  role: "user" | "assistant";
+  content: string;
 }
 
 /* ─────────────── Narración del Oráculo (Claude) ─────────────── */
@@ -44,6 +54,15 @@ export interface OracleResponse {
   /** Entrada del campeón del usuario (si lo envió y no está ya en el top). */
   userChampion: TeamOdds | null;
   narration: OracleNarration;
+}
+
+/* ─────────────── Respuesta del seguimiento (multi-turn) ─────────────── */
+
+export interface OracleFollowupResponse {
+  ok: true;
+  generatedAt: string;
+  /** Respuesta libre del Oráculo a la pregunta del usuario, anclada en las odds. */
+  reply: string;
 }
 
 export interface OracleErrorResponse {

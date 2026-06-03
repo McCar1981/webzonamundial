@@ -20,6 +20,7 @@ import { useBracketStore } from "@/lib/bracket/useBracketStore";
 import BracketCoachPanel from "@/components/bracket/BracketCoachPanel";
 import OraclePanel from "@/components/bracket/OraclePanel";
 import DebatePanel from "@/components/bracket/DebatePanel";
+import { useCoachIdentity } from "./useCoachIdentity";
 import { IconRobot, IconWhistle, IconCrystalBall, IconDebate } from "./icons";
 
 // Paleta alineada con el resto de la web (dorado ZonaMundial).
@@ -42,6 +43,7 @@ export default function IACoachWidget() {
   const [open, setOpen] = useState(false);
   const [mode, setMode] = useState<ModeId>("coach");
   const { state, hydrated } = useBracketStore();
+  const { name, ready: identityReady } = useCoachIdentity();
 
   return (
     <>
@@ -109,7 +111,11 @@ export default function IACoachWidget() {
             </span>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontWeight: 800, color: GOLD2, fontSize: 14 }}>IA Coach</div>
-              <div style={{ color: DIM, fontSize: 11 }}>Tu asistente del Mundial 2026</div>
+              <div style={{ color: DIM, fontSize: 11 }}>
+                {identityReady && name
+                  ? `Hola, ${name} · Mundial 2026`
+                  : "Tu asistente del Mundial 2026"}
+              </div>
             </div>
             <button
               onClick={() => setOpen(false)}
@@ -170,9 +176,9 @@ export default function IACoachWidget() {
 
           {/* Cuerpo (scrollable) */}
           <div style={{ overflowY: "auto", padding: "4px 14px 16px", flex: 1 }}>
-            {hydrated && mode === "coach" && <BracketCoachPanel state={state} />}
+            {hydrated && mode === "coach" && <BracketCoachPanel state={state} userName={name} />}
             {hydrated && mode === "oracle" && <OraclePanel state={state} />}
-            {hydrated && mode === "debate" && <DebatePanel state={state} />}
+            {hydrated && mode === "debate" && <DebatePanel state={state} userName={name} />}
           </div>
         </div>
       )}

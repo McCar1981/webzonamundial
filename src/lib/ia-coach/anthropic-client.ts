@@ -177,6 +177,15 @@ function validateAnalysis(raw: unknown): IACoachAnalysis {
     }
   }
 
+  // missingData (opcional): huecos del contexto que el modelo declara.
+  const missingRaw = obj.missingData;
+  const missingData: string[] | undefined = Array.isArray(missingRaw)
+    ? missingRaw
+        .filter((x): x is string => typeof x === "string" && x.trim().length > 0)
+        .map((s) => s.slice(0, 90))
+        .slice(0, 3)
+    : undefined;
+
   return {
     verdict,
     winnerPrediction,
@@ -190,5 +199,6 @@ function validateAnalysis(raw: unknown): IACoachAnalysis {
     analysis,
     keyFactors,
     watchPlayer,
+    ...(missingData && missingData.length > 0 ? { missingData } : {}),
   };
 }

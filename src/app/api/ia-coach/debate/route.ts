@@ -13,10 +13,11 @@
 // acotar el coste por sesión.
 
 import { NextResponse } from "next/server";
-import { getCurrentUser } from "@/lib/auth-helpers";
+import { getCurrentUserWithName } from "@/lib/auth-helpers";
 import { isFounder } from "@/lib/founders/store";
 import { TEAM_BY_ID } from "@/lib/bracket/teams";
 import { generateDebateReply } from "@/lib/ia-coach/debate-client";
+import { readDebateMemory, writeDebateMemory } from "@/lib/ia-coach/debate-memory";
 import type {
   DebateMessage,
   DebateRequest,
@@ -36,7 +37,7 @@ const MAX_HISTORY = MAX_USER_TURNS * 2; // user + assistant alternados
 
 export async function POST(req: Request) {
   // ── 1. Cuenta ──
-  const user = await getCurrentUser();
+  const user = await getCurrentUserWithName();
   if (!user?.email) {
     return errorResponse("auth_required", 401);
   }
@@ -75,14 +76,33 @@ export async function POST(req: Request) {
       ? body.champion.toUpperCase()
       : null;
 
-  // ── 4. Turno del Retador ──
+  // ── 4. Memoria cross-session (best-effort): solo al ARRANCAR una sesión
+  //    nueva (un único turno de usuario en el historial). En mitad del debate
+  //    el propio historial ya da el contexto. ──
+  const isNewSession = turnsUsed === 1;
+  const priorMemory = isNewSession ? await readDebateMemory(user.id) : null;
+
+  // ── 5. Turno del Retador ──
   let turn: DebateTurn;
   try {
-    turn = await generateDebateReply(messages, championId);
+    turn = await generateDebateReply(messages, {
+      championId,
+      userName: user.name,
+      turnsUsed,
+      maxTurns: MAX_USER_TURNS,
+      priorMemory,
+    });
   } catch (err) {
     console.error("[ia-coach/debate] reply failed:", (err as Error).message);
     return errorResponse("anthropic_failed", 502);
   }
+
+  // ── 6. Persiste la memoria tras el turno (no bloquea la respuesta si falla). ──
+  await writeDebateMemory(
+    user.id,
+    { championId, stance: turn.stance, isNewSession },
+    priorMemory,
+  );
 
   const resp: DebateResponse = {
     ok: true,

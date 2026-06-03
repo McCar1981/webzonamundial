@@ -1330,6 +1330,20 @@ function CoachLivePanel({
             <div style={{ fontSize: 13, color: "rgba(255,255,255,0.85)", lineHeight: 1.45 }}>{analysis.watchNext}</div>
           </div>
 
+          {/* Datos no disponibles (transparencia) */}
+          {analysis.missingData && analysis.missingData.length > 0 && (
+            <div style={{ marginTop: 10, border: "1px dashed rgba(255,255,255,0.14)", borderRadius: 12, padding: "9px 14px" }}>
+              <div style={{ fontSize: 10, fontWeight: 800, color: DIM, textTransform: "uppercase", letterSpacing: 1.5, marginBottom: 4 }}>
+                Sin datos para
+              </div>
+              <ul style={{ margin: 0, padding: "0 0 0 16px", color: "rgba(255,255,255,0.6)", fontSize: 12, lineHeight: 1.5 }}>
+                {analysis.missingData.map((m, i) => (
+                  <li key={i}>{m}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           <p style={{ marginTop: 12, fontSize: 10, color: DIM, fontStyle: "italic", textAlign: "center" }}>
             Lectura generada por IA a partir del estado del partido.
           </p>

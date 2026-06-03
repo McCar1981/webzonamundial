@@ -87,6 +87,10 @@ export interface IACoachBracketAnalysis {
   /** Consejos accionables para afinar la quiniela. 2-3 (máx 110 chars c/u). */
   suggestions: string[];
 
+  /** Huecos del bracket que limitaron la lectura (eliminatorias sin completar,
+   *  campeón sin definir...). Vacío si la quiniela venía completa. 0-3 (máx 100 chars c/u). */
+  missingData: string[];
+
   /** Nota global corta. Ej: "B+", "Notable", "7.5/10". (máx 12 chars) */
   grade: string;
 

@@ -118,6 +118,11 @@ function validate(raw: unknown): IACoachLiveAnalysis {
     if (ho || aw) adjustments = { home: ho, away: aw };
   }
 
+  const missingRaw = obj.missingData;
+  const missingData: string[] = Array.isArray(missingRaw)
+    ? missingRaw.filter((x): x is string => typeof x === "string").map((s) => s.slice(0, 90)).slice(0, 3)
+    : [];
+
   const confRaw = String(obj.confidence || "media").toLowerCase();
   const confidence: Confidence =
     confRaw === "baja" || confRaw === "media" || confRaw === "alta" ? confRaw : "media";
@@ -135,6 +140,7 @@ function validate(raw: unknown): IACoachLiveAnalysis {
     keyObservations,
     adjustments,
     watchNext,
+    missingData,
     confidence,
   };
 }

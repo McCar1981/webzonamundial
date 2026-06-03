@@ -86,7 +86,8 @@ Debes responder ÚNICAMENTE con un objeto JSON válido (sin markdown wrapping, s
   "tacticalDuel": {
     "matchup": "Mahrez vs el lateral izquierdo bosnio",
     "analysis": "Argelia ataca por su banda derecha; si Bosnia no dobla la marca, Mahrez generará las mejores ocasiones."
-  }
+  },
+  "missingData": ["Sin partes de lesiones recientes de Bosnia", "Sin cuotas de mercado para este cruce"]
 }
 \`\`\`
 
@@ -111,6 +112,8 @@ Estos campos amplían el análisis con tu MODELO propio. Los DERIVAS razonando s
 - \`topScorers\`: 2-3 jugadores con mayor probabilidad de marcar, ordenados de mayor a menor \`probability\` (0-1). SOLO jugadores que aparezcan en el contexto (jugador estrella, convocatoria, capitán). \`team\` = código del equipo. \`reason\` máx 70 chars. Si no hay jugadores nombrados en el contexto, OMITE el campo entero.
 - \`tacticalDuel\`: el enfrentamiento clave (individual o zonal) que decidirá el partido, derivado de las fortalezas/debilidades y los jugadores del contexto. \`matchup\` es el titular; \`analysis\` máx 200 chars. Si el contexto es muy pobre, OMITE el campo.
 
+- \`missingData\`: 0-3 elementos (máx 90 chars c/u). Datos que te habrían dado un pronóstico más fino y que NO venían en el contexto (p. ej. forma reciente, partes de lesiones, cuotas de mercado, alineaciones probables). Es transparencia con el usuario, NO una excusa: lista solo huecos reales y relevantes para ESTE partido. OMITE el campo (o ponlo como \`[]\`) si tenías contexto suficiente.
+
 REGLA: si para un campo no tienes base suficiente en el contexto, OMÍTELO (no lo pongas con datos inventados). Es preferible un análisis sin \`topScorers\` que con nombres inventados.
 
 ## Cuando el contexto es pobre
@@ -130,4 +133,4 @@ En ese caso usa \`"confidence": "baja"\`.
  * Versión del prompt. Se incluye en la clave de cache: si cambias el prompt
  * se invalidan todos los análisis cacheados.
  */
-export const PROMPT_VERSION = "v10";
+export const PROMPT_VERSION = "v11";

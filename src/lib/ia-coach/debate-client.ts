@@ -12,6 +12,7 @@ import { DEBATE_SYSTEM_PROMPT } from "./debate-system-prompt";
 import { TEAM_BY_ID } from "@/lib/bracket/teams";
 import type { Confidence } from "./types";
 import type { DebateMessage, DebateTurn } from "./debate-types";
+import type { DebateMemory } from "./debate-memory";
 
 const MODEL = "claude-sonnet-4-5-20250929";
 const MAX_TOKENS = 700;
@@ -25,20 +26,67 @@ function getClient(): Anthropic {
   return _client;
 }
 
-/** Añade al system prompt el campeón del usuario como ancla del debate. */
-function systemFor(championId: string | null): string {
-  if (!championId) return DEBATE_SYSTEM_PROMPT;
-  const team = TEAM_BY_ID[championId];
-  if (!team) return DEBATE_SYSTEM_PROMPT;
-  return (
-    DEBATE_SYSTEM_PROMPT +
-    `\n\n## Contexto de esta sesión\n\nEl usuario ha elegido a **${team.name}** como su campeón del Mundial 2026. Ese es el pronóstico central que debes poner a prueba a lo largo del debate.`
-  );
+export interface DebateContext {
+  championId: string | null;
+  /** Nombre de registro del usuario (server-side, no falseable). null si no hay. */
+  userName?: string | null;
+  /** Turnos de usuario consumidos en esta sesión (1-based, incluye el actual). */
+  turnsUsed?: number;
+  /** Máximo de turnos de usuario por sesión. */
+  maxTurns?: number;
+  /** Memoria de sesiones anteriores (cross-session), si existe. */
+  priorMemory?: DebateMemory | null;
+}
+
+/** Construye el bloque "Contexto de esta sesión" que se anexa al system prompt. */
+function systemFor(ctx: DebateContext): string {
+  const lines: string[] = [];
+
+  const team = ctx.championId ? TEAM_BY_ID[ctx.championId] : undefined;
+  if (team) {
+    lines.push(
+      `El usuario ha elegido a **${team.name}** como su campeón del Mundial 2026. Ese es el pronóstico central que debes poner a prueba a lo largo del debate.`,
+    );
+  }
+
+  if (ctx.userName) {
+    lines.push(`Nombre del usuario: **${ctx.userName}**.`);
+  }
+
+  if (typeof ctx.turnsUsed === "number" && typeof ctx.maxTurns === "number") {
+    lines.push(`Vas por el turno ${ctx.turnsUsed} de ${ctx.maxTurns} del usuario en esta sesión.`);
+  }
+
+  // Memoria cross-session: solo tiene sentido al ARRANCAR una sesión nueva
+  // (turno 1); en mitad del debate el historial ya da el contexto.
+  const mem = ctx.priorMemory;
+  if (mem && ctx.turnsUsed === 1 && mem.sessions > 0) {
+    const memTeam = mem.lastChampionId ? TEAM_BY_ID[mem.lastChampionId] : undefined;
+    const parts: string[] = [];
+    if (memTeam) {
+      const switched =
+        ctx.championId && ctx.championId !== mem.lastChampionId
+          ? ` Ahora viene con ${team?.name ?? "otro campeón"}: si ha cambiado de favorito, sácaselo.`
+          : "";
+      parts.push(`En una sesión anterior defendía a ${memTeam.name}.${switched}`);
+    }
+    if (mem.lastStance) {
+      parts.push(`Tu última tesis con él fue: "${mem.lastStance}".`);
+    }
+    if (parts.length) {
+      lines.push(
+        `Ya habéis debatido antes (${mem.sessions} ${mem.sessions === 1 ? "sesión" : "sesiones"}). ${parts.join(" ")} Puedes hacer un guiño a ese pasado al saludar, sin obsesionarte con él.`,
+      );
+    }
+  }
+
+  if (lines.length === 0) return DEBATE_SYSTEM_PROMPT;
+  return `${DEBATE_SYSTEM_PROMPT}\n\n## Contexto de esta sesión\n\n${lines.map((l) => `- ${l}`).join("\n")}`;
 }
 
 export async function generateDebateReply(
   messages: DebateMessage[],
-  championId: string | null,
+  ctx: DebateContext,
 ): Promise<DebateTurn> {
   if (messages.length === 0 || messages[messages.length - 1].role !== "user") {
     throw new Error("Last message must be from the user");
@@ -50,7 +98,7 @@ export async function generateDebateReply(
     model: MODEL,
     max_tokens: MAX_TOKENS,
     temperature: 0.8,
-    system: systemFor(championId),
+    system: systemFor(ctx),
     messages: messages.map((m) => ({ role: m.role, content: m.content })),
   });
 

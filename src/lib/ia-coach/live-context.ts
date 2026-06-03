@@ -16,18 +16,57 @@ import type { LiveEventInput, LiveStateInput } from "./live-types";
 
 const TEAM_DATA_DIR = path.join(process.cwd(), "data", "teams");
 
+interface SquadPlayerLite {
+  id?: string;
+  display_name?: string;
+  full_name?: string;
+  position?: string;
+  club?: { name?: string };
+}
+
 interface TeamDeepLite {
   fifa_ranking?: { current?: number };
   wc_2026?: {
     coach?: { name?: string; nationality?: string };
     captain?: { name?: string };
     star_player?: { name?: string; club?: string };
+    likely_squad?: SquadPlayerLite[];
+    starting_xi?: {
+      formation?: string;
+      players?: Array<{ player_id?: string }>;
+    };
     analysis?: {
       strengths?: string[];
       weaknesses?: string[];
       tactical_style?: string;
     };
   };
+}
+
+/** Orden táctico aproximado para listar el banquillo (porteros y defensas al final). */
+const POS_ORDER: Record<string, number> = { FW: 0, MF: 1, DF: 2, GK: 3 };
+
+/** Deriva el banquillo (likely_squad menos el XI) y devuelve hasta `max` opciones
+ *  de recambio, priorizando ataque/medio (lo más útil para sugerir cambios). */
+function benchOptions(wc: TeamDeepLite["wc_2026"], max = 7): string[] {
+  const squad = wc?.likely_squad;
+  if (!Array.isArray(squad) || squad.length === 0) return [];
+  const xiIds = new Set(
+    (wc?.starting_xi?.players ?? [])
+      .map((p) => p?.player_id)
+      .filter((id): id is string => typeof id === "string"),
+  );
+  return squad
+    .filter((p) => p?.id && !xiIds.has(p.id))
+    .map((p) => ({
+      name: p.display_name || p.full_name || "",
+      pos: (p.position || "").toUpperCase(),
+      club: p.club?.name || "",
+    }))
+    .filter((p) => p.name.length > 0)
+    .sort((a, b) => (POS_ORDER[a.pos] ?? 9) - (POS_ORDER[b.pos] ?? 9))
+    .slice(0, max)
+    .map((p) => `${p.name}${p.pos ? ` (${p.pos}` : ""}${p.club ? `${p.pos ? ", " : " ("}${p.club})` : p.pos ? ")" : ""}`);
 }
 
 const deepCache = new Map<string, TeamDeepLite | null>();
@@ -88,12 +127,17 @@ function teamProfileBlock(
   if (wc?.star_player?.name) {
     lines.push(`- Estrella: ${wc.star_player.name}${wc.star_player.club ? ` (${wc.star_player.club})` : ""}`);
   }
+  if (wc?.starting_xi?.formation) lines.push(`- Formación prevista: ${wc.starting_xi.formation}`);
   if (wc?.analysis?.tactical_style) lines.push(`- Estilo: ${wc.analysis.tactical_style}`);
   if (wc?.analysis?.strengths?.length) {
     lines.push(`- Fortalezas: ${wc.analysis.strengths.slice(0, 3).join("; ")}`);
   }
   if (wc?.analysis?.weaknesses?.length) {
     lines.push(`- Debilidades: ${wc.analysis.weaknesses.slice(0, 3).join("; ")}`);
+  }
+  const bench = benchOptions(wc);
+  if (bench.length) {
+    lines.push(`- Recambios disponibles (banquillo): ${bench.join("; ")}`);
   }
   return lines.join("\n");
 }
@@ -196,7 +240,9 @@ export async function buildLiveContext(
       `momentumTeam ("home"=${homeName}, "away"=${awayName} o "none"), winProbabilities ` +
       `(resultado FINAL), projectedScore (nunca por debajo del marcador actual), ` +
       `keyObservations (3-4 bullets basados SOLO en las stats/eventos de arriba), ` +
-      `adjustments para cada equipo y watchNext. NO inventes datos que no estén arriba.`,
+      `adjustments para cada equipo (cuando propongas un cambio, nombra a un recambio CONCRETO ` +
+      `de la lista de banquillo de ese equipo si encaja; nunca inventes jugadores que no estén arriba) ` +
+      `y watchNext. NO inventes datos que no estén arriba.`,
   );
 
   // stateVersion: cambia con marcador, minuto (bucket de 5'), nº de eventos y rojas.

@@ -541,6 +541,47 @@
   cursor: not-allowed;
 }
 
+/* Datos no disponibles (transparencia del modelo) */
+.missingData {
+  margin-top: 14px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+}
+.missingDataLabel {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: rgba(199, 206, 218, 0.7);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+.missingData ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.missingData li {
+  position: relative;
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.4;
+  padding-left: 14px;
+}
+.missingData li::before {
+  content: "?";
+  position: absolute;
+  left: 0;
+  color: rgba(199, 206, 218, 0.6);
+  font-weight: 700;
+  font-size: 11px;
+}
+
 .disclaimer {
   margin-top: 12px;
   font-size: 10px;

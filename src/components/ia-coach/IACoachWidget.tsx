@@ -15,10 +15,12 @@
 "use client";
 
 import { useState } from "react";
+import type { ReactNode } from "react";
 import { useBracketStore } from "@/lib/bracket/useBracketStore";
 import BracketCoachPanel from "@/components/bracket/BracketCoachPanel";
 import OraclePanel from "@/components/bracket/OraclePanel";
 import DebatePanel from "@/components/bracket/DebatePanel";
+import { IconRobot, IconWhistle, IconCrystalBall, IconDebate } from "./icons";
 
 // Paleta alineada con el resto de la web (dorado ZonaMundial).
 const BG = "#0A0E15";
@@ -30,10 +32,10 @@ const DIM = "#8A93A3";
 
 type ModeId = "coach" | "oracle" | "debate";
 
-const MODES: Array<{ id: ModeId; label: string; icon: string }> = [
-  { id: "coach", label: "Entrenador", icon: "✨" },
-  { id: "oracle", label: "Oráculo", icon: "🔮" },
-  { id: "debate", label: "Debate", icon: "🥊" },
+const MODES: Array<{ id: ModeId; label: string; icon: ReactNode }> = [
+  { id: "coach", label: "Entrenador", icon: <IconWhistle size={17} /> },
+  { id: "oracle", label: "Oráculo", icon: <IconCrystalBall size={17} /> },
+  { id: "debate", label: "Debate", icon: <IconDebate size={17} /> },
 ];
 
 export default function IACoachWidget() {
@@ -67,7 +69,7 @@ export default function IACoachWidget() {
             justifyContent: "center",
           }}
         >
-          🤖
+          <IconRobot size={28} />
         </button>
       )}
 
@@ -102,7 +104,9 @@ export default function IACoachWidget() {
               flexShrink: 0,
             }}
           >
-            <span style={{ fontSize: 20 }}>🤖</span>
+            <span style={{ color: GOLD2, display: "inline-flex" }}>
+              <IconRobot size={20} />
+            </span>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontWeight: 800, color: GOLD2, fontSize: 14 }}>IA Coach</div>
               <div style={{ color: DIM, fontSize: 11 }}>Tu asistente del Mundial 2026</div>
@@ -157,7 +161,7 @@ export default function IACoachWidget() {
                     gap: 3,
                   }}
                 >
-                  <span style={{ fontSize: 15 }}>{m.icon}</span>
+                  <span style={{ display: "inline-flex" }}>{m.icon}</span>
                   {m.label}
                 </button>
               );

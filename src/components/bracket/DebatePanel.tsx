@@ -9,6 +9,7 @@
 import { useCallback, useRef, useState } from "react";
 import Link from "next/link";
 import type { BracketState } from "@/lib/bracket/types";
+import { IconDebate } from "@/components/ia-coach/icons";
 import type {
   DebateMessage,
   DebateResponse,
@@ -125,7 +126,9 @@ export default function DebatePanel({ state }: { state: BracketState }) {
       }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
-        <span style={{ fontSize: 20 }}>🥊</span>
+        <span style={{ color: GOLD2, display: "inline-flex" }}>
+          <IconDebate size={20} />
+        </span>
         <div style={{ flex: 1, minWidth: 180 }}>
           <div style={{ fontWeight: 700, color: GOLD2, fontSize: 15 }}>
             Reta al Retador

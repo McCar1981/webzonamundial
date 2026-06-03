@@ -9,6 +9,7 @@
 import { useCallback, useState } from "react";
 import type { BracketState } from "@/lib/bracket/types";
 import { TEAM_BY_ID } from "@/lib/bracket/teams";
+import { IconCrystalBall } from "@/components/ia-coach/icons";
 import type {
   OracleNarration,
   OracleResponse,
@@ -104,7 +105,9 @@ export default function OraclePanel({ state }: { state: BracketState }) {
       }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
-        <span style={{ fontSize: 20 }}>🔮</span>
+        <span style={{ color: GOLD2, display: "inline-flex" }}>
+          <IconCrystalBall size={20} />
+        </span>
         <div style={{ flex: 1, minWidth: 180 }}>
           <div style={{ fontWeight: 700, color: GOLD2, fontSize: 15 }}>El Oráculo</div>
           <div style={{ color: DIM, fontSize: 12 }}>

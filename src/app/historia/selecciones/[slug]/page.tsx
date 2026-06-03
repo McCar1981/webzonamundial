@@ -14,6 +14,20 @@ export const revalidate = 86400;
 
 const GOLD = "#c9a84c";
 
+// Overrides SEO por selección histórica (CTR). Solo metadatos.
+const SEO_OVERRIDES: Record<string, { title: string; description: string }> = {
+  italia: {
+    title: "Italia en los Mundiales: títulos, historia y palmarés",
+    description:
+      "La historia de Italia en los Mundiales: títulos conquistados, finales, leyendas y todas sus participaciones. El palmarés de la Azzurra.",
+  },
+  alemania: {
+    title: "Alemania en los Mundiales: títulos, historia y palmarés",
+    description:
+      "La historia de Alemania en los Mundiales: títulos, finales y leyendas. Todas las participaciones y el palmarés de una potencia mundial.",
+  },
+};
+
 export async function generateStaticParams() {
   return getAllSeleccionesHistoricas().map((s) => ({ slug: s.slug }));
 }
@@ -27,15 +41,21 @@ export async function generateMetadata({
   const s = getSeleccionHistBySlug(slug);
   if (!s) return { title: "Selección no encontrada · ZonaMundial" };
 
-  const title = `${s.pais} en los Mundiales — ${s.titulos} títulos | ZonaMundial`;
-  const desc = s.biografia.slice(0, 158) + "…";
+  const override = SEO_OVERRIDES[slug];
+  const titleMeta: Metadata["title"] = override
+    ? { absolute: override.title }
+    : `${s.pais} en los Mundiales — ${s.titulos} títulos | ZonaMundial`;
+  const ogTitle = override
+    ? override.title
+    : `${s.pais} en los Mundiales — ${s.titulos} títulos | ZonaMundial`;
+  const desc = override ? override.description : s.biografia.slice(0, 158) + "…";
 
   return {
-    title,
+    title: titleMeta,
     description: desc,
     alternates: { canonical: `https://zonamundial.app/historia/selecciones/${slug}` },
     openGraph: {
-      title,
+      title: ogTitle,
       description: desc,
       url: `https://zonamundial.app/historia/selecciones/${slug}`,
       siteName: "ZonaMundial",

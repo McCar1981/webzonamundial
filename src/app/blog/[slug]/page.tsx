@@ -38,8 +38,14 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const post = await getPostBySlug(params.slug);
   if (!post) return { title: "Artículo no encontrado" };
   const url = `/blog/${post.slug}`;
+  // Si el post define un seoTitle, se usa tal cual (absolute) para controlar
+  // exactamente el <title> mostrado; si no, se mantiene el patrón de marca.
+  const titleMeta: Metadata["title"] = post.seoTitle
+    ? { absolute: post.seoTitle }
+    : `${post.title} | ZonaMundial`;
+  const ogTitle = post.seoTitle ?? post.title;
   return {
-    title: `${post.title} | ZonaMundial`,
+    title: titleMeta,
     description: post.description,
     keywords: post.keywords,
     alternates: { canonical: url },
@@ -49,7 +55,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     openGraph: {
       type: "article",
       url,
-      title: post.title,
+      title: ogTitle,
       description: post.description,
       images: [{ url: post.ogImage, width: 1200, height: 630, alt: post.title }],
       publishedTime: post.publishedAt,
@@ -59,7 +65,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title,
+      title: ogTitle,
       description: post.description,
       images: [post.ogImage],
     },

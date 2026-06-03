@@ -106,6 +106,9 @@ export type BlogBlock =
 export interface BlogPost {
   slug: string;
   title: string;
+  /** Título SEO opcional (solo `<title>`/OG). Si se define, se usa en los
+   * metadatos sin alterar el título visible (`title`) del artículo. */
+  seoTitle?: string;
   /** Meta description para SEO + tarjetas (máx 160 chars). */
   description: string;
   /** Subtítulo / dek mostrado bajo el título en hero. */

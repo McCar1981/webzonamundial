@@ -7,10 +7,9 @@ import Link from "next/link";
 import { getRegistrosHistoricos } from "@/lib/content/ediciones";
 
 export const metadata: Metadata = {
-  title:
-    "Récords del Mundial — Goleadores, partidos, asistencias y datos absolutos | ZonaMundial",
+  title: { absolute: "Récords del Mundial: máximos goleadores, títulos y más" },
   description:
-    "Récords absolutos del Mundial de Fútbol: Klose 16 goles, Messi 26 partidos, Fontaine 13 goles en una edición, Maracanazo 173.850 asistentes. Todos los récords históricos verificados.",
+    "Todos los récords históricos del Mundial: máximo goleador de la historia, más títulos, mayores goleadas y marcas que aún resisten.",
   keywords: [
     "records mundial futbol",
     "goleador historico mundial",
@@ -20,9 +19,9 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "https://zonamundial.app/historia/records" },
   openGraph: {
-    title: "Récords del Mundial 1930-2022 | ZonaMundial",
+    title: "Récords del Mundial: máximos goleadores, títulos y más",
     description:
-      "Todos los récords históricos del Mundial: goleadores, partidos, asistencias, jugadores más jóvenes y veteranos.",
+      "Todos los récords históricos del Mundial: máximo goleador de la historia, más títulos, mayores goleadas y marcas que aún resisten.",
     url: "https://zonamundial.app/historia/records",
     siteName: "ZonaMundial",
     locale: "es_ES",

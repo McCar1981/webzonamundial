@@ -15,6 +15,15 @@ export const revalidate = 86400;
 
 const GOLD = "#c9a84c";
 
+// Overrides SEO por jugador (CTR). Solo metadatos.
+const SEO_OVERRIDES: Record<string, { title: string; description: string }> = {
+  "lionel-messi": {
+    title: "Lionel Messi en los Mundiales: partidos, goles y palmarés",
+    description:
+      "El recorrido de Lionel Messi en los Mundiales: ediciones jugadas, goles, récords y el título logrado con Argentina. Toda su trayectoria.",
+  },
+};
+
 export async function generateStaticParams() {
   return getAllJugadoresLegendarios().map((j) => ({ slug: j.slug }));
 }
@@ -28,15 +37,21 @@ export async function generateMetadata({
   const j = getJugadorBySlug(slug);
   if (!j) return { title: "Jugador no encontrado · ZonaMundial" };
 
-  const title = `${j.nombre} en los Mundiales — ${j.subtitulo} | ZonaMundial`;
-  const desc = j.biografia.slice(0, 158) + "…";
+  const override = SEO_OVERRIDES[slug];
+  const titleMeta: Metadata["title"] = override
+    ? { absolute: override.title }
+    : `${j.nombre} en los Mundiales — ${j.subtitulo} | ZonaMundial`;
+  const ogTitle = override
+    ? override.title
+    : `${j.nombre} en los Mundiales — ${j.subtitulo} | ZonaMundial`;
+  const desc = override ? override.description : j.biografia.slice(0, 158) + "…";
 
   return {
-    title,
+    title: titleMeta,
     description: desc,
     alternates: { canonical: `https://zonamundial.app/historia/jugadores/${slug}` },
     openGraph: {
-      title,
+      title: ogTitle,
       description: desc,
       url: `https://zonamundial.app/historia/jugadores/${slug}`,
       siteName: "ZonaMundial",

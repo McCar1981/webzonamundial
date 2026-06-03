@@ -4,14 +4,14 @@ import Link from "next/link";
 import { getAllConfederaciones } from "@/lib/content/ediciones";
 
 export const metadata: Metadata = {
-  title:
-    "Confederaciones del Mundial — UEFA, CONMEBOL, CAF, AFC, CONCACAF, OFC | ZonaMundial",
+  title: { absolute: "Confederaciones del fútbol: UEFA, CONMEBOL y más" },
   description:
-    "Las 6 confederaciones FIFA: UEFA (12 títulos), CONMEBOL (10 títulos), CONCACAF, CAF, AFC, OFC. Estadísticas, hitos históricos y palmarés por región.",
+    "Las seis confederaciones del fútbol mundial: UEFA, CONMEBOL, CAF, AFC, CONCACAF y OFC. Títulos, hitos históricos y palmarés por región.",
   alternates: { canonical: "https://zonamundial.app/historia/confederaciones" },
   openGraph: {
-    title: "Confederaciones del Mundial | ZonaMundial",
-    description: "Las 6 confederaciones FIFA con su historia mundialista.",
+    title: "Confederaciones del fútbol: UEFA, CONMEBOL y más",
+    description:
+      "Las seis confederaciones del fútbol mundial: UEFA, CONMEBOL, CAF, AFC, CONCACAF y OFC. Títulos, hitos históricos y palmarés por región.",
     url: "https://zonamundial.app/historia/confederaciones",
     siteName: "ZonaMundial",
     locale: "es_ES",

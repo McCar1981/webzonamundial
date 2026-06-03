@@ -37,10 +37,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       robots: { index: false, follow: false },
     };
   }
-  const title = `${meta.title} Mundial 2026: equipos, calendario y predicciones`;
+  const title = `${meta.title} del Mundial 2026: calendario y clasificación`;
   const description = `${meta.desc} Consulta el calendario, clasificación y predicciones del ${meta.title} del Mundial 2026 en ZonaMundial.`;
   return {
-    title,
+    // `absolute` evita que la plantilla de marca duplique el sufijo.
+    title: { absolute: title },
     description,
     keywords: [
       `grupo ${letter.toLowerCase()} mundial 2026`,

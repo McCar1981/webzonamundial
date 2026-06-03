@@ -36,7 +36,8 @@ export default function CookiesPage() {
           <p>Permiten entender cómo los usuarios interactúan con la Plataforma (páginas visitadas, módulos usados, errores técnicos). Los datos son agregados o pseudonimizados. Requieren consentimiento.</p>
 
           <h4 style={{ color: GOLD, marginTop: 16, marginBottom: 8 }}>Cookies de publicidad / seguimiento</h4>
-          <p>Utilizadas por Google AdMob para mostrar anuncios adaptados en el plan gratuito. Pueden implicar el uso de identificadores de dispositivo para el seguimiento entre aplicaciones. Requieren consentimiento. Solo activas para usuarios del plan gratuito.</p>
+          <p>En el sitio web, ZonaMundial utiliza <strong>Google AdSense</strong> para mostrar anuncios. Google, como proveedor de publicidad y tercero, puede instalar cookies propias y de terceros en tu navegador para mostrar anuncios, medir su rendimiento y, si lo consientes, personalizarlos en función de tus intereses. En la aplicación móvil se utiliza Google AdMob con identificadores de dispositivo. En ambos casos estas cookies y tecnologías requieren consentimiento y solo se activan en el plan gratuito.</p>
+          <p>Si no prestas tu consentimiento, Google solo podrá mostrar <strong>anuncios no personalizados</strong> (basados en el contenido de la página y datos no personales como tu ubicación aproximada), no <strong>anuncios personalizados</strong> (basados en tu comportamiento e intereses).</p>
         </Section>
 
         <Section title="3. Detalle de cookies por proveedor">
@@ -46,10 +47,13 @@ export default function CookiesPage() {
           <h4 style={{ color: GOLD, marginTop: 16, marginBottom: 8 }}>3.2 Firebase Analytics (Google)</h4>
           <p>Responsable: Google LLC. Más información en policies.google.com/privacy.</p>
 
-          <h4 style={{ color: GOLD, marginTop: 16, marginBottom: 8 }}>3.3 Google AdMob (solo plan gratuito)</h4>
+          <h4 style={{ color: GOLD, marginTop: 16, marginBottom: 8 }}>3.3 Google AdSense (web, solo plan gratuito)</h4>
+          <p>Responsable: Google LLC / Google Ireland Ltd. En el sitio web, Google AdSense utiliza cookies propias y de terceros para mostrar anuncios, limitar la frecuencia, medir su eficacia y, con tu consentimiento, personalizarlos según tus intereses. ZonaMundial aplica el <strong>Modo de Consentimiento v2 de Google</strong>: por defecto las señales de publicidad están denegadas y solo se activan tras tu aceptación en el banner de cookies. Puedes consultar cómo usa Google los datos en <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer" style={{ color: GOLD }}>policies.google.com/technologies/ads</a> y la política de privacidad de Google en <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" style={{ color: GOLD }}>policies.google.com/privacy</a>.</p>
+
+          <h4 style={{ color: GOLD, marginTop: 16, marginBottom: 8 }}>3.4 Google AdMob (app móvil, solo plan gratuito)</h4>
           <p>App Tracking Transparency (iOS): en dispositivos iOS 14.5+, ZonaMundial solicita permiso explícito mediante el diálogo ATT antes de acceder al IDFA. Si denegas el permiso, se mostrará publicidad contextual no personalizada.</p>
 
-          <h4 style={{ color: GOLD, marginTop: 16, marginBottom: 8 }}>3.4 Stripe</h4>
+          <h4 style={{ color: GOLD, marginTop: 16, marginBottom: 8 }}>3.5 Stripe</h4>
           <p>Cookies necesarias para el procesamiento seguro de pagos de la suscripción Premium.</p>
         </Section>
 

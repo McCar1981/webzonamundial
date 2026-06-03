@@ -13,6 +13,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { buildBlogPost } from "@/lib/blog/generator";
 import { appendAutoPost, getAllUsedSlugs, getRecentTitles } from "@/lib/blog/store";
+import { evaluateBlogPost, shouldPublish } from "@/lib/blog/critic-adapter";
 import { broadcastPush } from "@/lib/push-notifications";
 import { listActiveSubscribers, buildUnsubscribeToken } from "@/lib/email-subscriptions";
 import { sendEmail, brandedEmail } from "@/lib/email";
@@ -52,6 +53,25 @@ export async function GET(req: NextRequest) {
       { ok: false, error: "generation_failed" },
       { status: 500 },
     );
+  }
+
+  // 1.b GATE de calidad: el MISMO crítico que filtra las noticias. Solo se
+  // publica si supera el listón. Si no, NO se persiste (no inflamos el blog
+  // con piezas de bajo valor durante la revisión de AdSense).
+  const verdict = await evaluateBlogPost({
+    title: post.title,
+    body: post.body,
+    faq: post.faq,
+    recentTitles,
+  });
+  if (!shouldPublish(verdict)) {
+    return NextResponse.json({
+      ok: true,
+      skipped: "rejected_by_critic",
+      slug: post.slug,
+      title: post.title,
+      verdict,
+    });
   }
 
   // 2. Persistir.

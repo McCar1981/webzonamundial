@@ -38,16 +38,35 @@ export async function GET(req: Request) {
   const store = await readIngestStore();
   const knownHashes = new Set(store.drafts.map((d) => d.sourceUrlHash));
 
-  // Vercel Hobby plan caps serverless functions at 60s. Each Claude Haiku
-  // rewrite takes 2-4s, so we can safely do ~10 rewrites + the GNews fetches
-  // within the budget. The cron runs hourly, so over 24h we accumulate
-  // 240 published articles/day rotating through all topics.
+  // ----- Cap diario de publicación (alto valor, no a escala) -----
+  // Solo publicamos como MÁXIMO NEWS_DAILY_CAP noticias por día natural (UTC),
+  // y solo las que pasen el crítico de calidad. Algunos días saldrán menos, o
+  // ninguna: es lo correcto durante la revisión de AdSense.
+  const DAILY_PUBLISH_CAP = parseInt(process.env.NEWS_DAILY_CAP || "3", 10);
+  const todayUTC = new Date().toISOString().slice(0, 10);
+  const publishedToday = store.drafts.filter(
+    (d) => d.status === "published" && (d.ingestedAt ?? "").slice(0, 10) === todayUTC,
+  ).length;
+  let publishedThisRun = 0;
+  const capReached = () => publishedToday + publishedThisRun >= DAILY_PUBLISH_CAP;
+
+  // Títulos ya publicados (para que el crítico detecte duplicados de ángulo).
+  const recentTitles = store.drafts
+    .filter((d) => d.status === "published")
+    .sort((a, b) => (b.ingestedAt ?? "").localeCompare(a.ingestedAt ?? ""))
+    .slice(0, 40)
+    .map((d) => d.title);
+
+  // Candidatos a evaluar por tick. Cada candidato = 1 reescritura + 1 llamada
+  // al crítico. El número que finalmente se PUBLICA lo limita el crítico y el
+  // cap diario (NEWS_DAILY_CAP), no este valor. Evaluamos algunos de más para
+  // que el crítico tenga de dónde elegir, ya que rechaza la mayoría.
   const url = new URL(req.url);
   const skipRewrite = url.searchParams.get("rewrite") === "0";
   const rewriteLimit = parseInt(
     url.searchParams.get("rewriteLimit") ||
       process.env.NEWS_REWRITE_LIMIT ||
-      "3", // articles are now longer (600-800 words) so each rewrite takes ~10s
+      "5",
     10,
   );
   // Pick a small subset of queries per tick (rotate by hour). Full coverage
@@ -93,10 +112,16 @@ export async function GET(req: Request) {
         abortedByTimeout = true;
         break;
       }
+      // Cap diario: si ya alcanzamos el máximo de publicaciones del día, no
+      // seguimos reescribiendo (ahorra llamadas al modelo). Los drafts quedan
+      // en "draft" y se reintentarán otro día con cupo.
+      if (capReached()) break;
       try {
-        result.drafts[i] = await applyRewrite(result.drafts[i]);
+        result.drafts[i] = await applyRewrite(result.drafts[i], { recentTitles });
         if (result.drafts[i].status === "published") {
           rewritten += 1;
+          publishedThisRun += 1;
+          recentTitles.unshift(result.drafts[i].title);
           newlyPublished.push(result.drafts[i]);
         }
       } catch (err) {
@@ -126,8 +151,9 @@ export async function GET(req: Request) {
         abortedByTimeout = true;
         break;
       }
+      if (capReached()) break;
       try {
-        const updated = await applyRewrite(pendingDrafts[i]);
+        const updated = await applyRewrite(pendingDrafts[i], { recentTitles });
         // Reemplazar el draft viejo en store.drafts (match por sourceUrlHash).
         const idx = store.drafts.findIndex((d) => d.sourceUrlHash === pendingDrafts[i].sourceUrlHash);
         if (idx >= 0) {
@@ -142,6 +168,8 @@ export async function GET(req: Request) {
           if (updated.status === "published") {
             rewritten += 1;
             pendingDraftsRetried += 1;
+            publishedThisRun += 1;
+            recentTitles.unshift(updated.title);
             newlyPublished.push(updated);
           }
         }
@@ -219,6 +247,10 @@ export async function GET(req: Request) {
     rewriteFailed,
     rewriteEnabled,
     abortedByTimeout,
+    dailyCap: DAILY_PUBLISH_CAP,
+    publishedTodayBefore: publishedToday,
+    publishedThisRun,
+    capReached: capReached(),
     errors: result.errors,
     totalStored: store.drafts.length,
     publishedCount: published,

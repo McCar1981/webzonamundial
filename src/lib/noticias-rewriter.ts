@@ -15,6 +15,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import type { DraftNoticia } from "./noticias-ingest";
 import { makeSlug } from "./noticias-ingest";
+import { evaluateArticle, shouldPublish } from "./noticias-critic";
 import type { NoticiaBlock, NoticiaCategory } from "@/data/noticias";
 
 const DEFAULT_MODEL = "claude-haiku-4-5-20251001";
@@ -38,7 +39,7 @@ interface RewriteOutput {
   cat?: NoticiaCategory;
 }
 
-const SYSTEM_PROMPT = `Eres editor de la sección de noticias de fútbol de ZonaMundial, una plataforma sobre el Mundial 2026. Tu trabajo es reescribir noticias provenientes de fuentes externas en un estilo editorial propio, NUNCA copiando frases literales.
+const SYSTEM_PROMPT = `Eres editor de la sección de noticias de fútbol de ZonaMundial, una plataforma sobre el Mundial 2026. Tu trabajo es reescribir noticias provenientes de fuentes externas en un estilo editorial propio, NUNCA copiando frases literales. El sitio está bajo revisión de Google AdSense: solo publicamos contenido de ALTO VALOR.
 
 REGLAS INVIOLABLES:
 1. NO inventar datos: nombres, fechas, cifras, lesiones, fichajes, declaraciones que no estén en el material fuente. Si un dato no está en la fuente, no lo escribas.
@@ -46,49 +47,40 @@ REGLAS INVIOLABLES:
 3. Tono: directo, claro, informado. Estilo The Athletic / ESPN en español.
 4. Idioma: español neutro / España.
 5. NUNCA inventar quotes (citas textuales). Si no hay quote en la fuente, no inventes una.
-6. Devuelve SOLO un JSON válido, sin texto adicional, sin markdown, sin backticks.
+6. Marca/legal: prohibido usar marcas tipo FIFA; di "Mundial 2026" o "el torneo". Nada de lenguaje de apuestas ("apostar", "apuestas"); usa "pronóstico", "predicción", "favoritos".
+7. Devuelve SOLO un JSON válido, sin texto adicional, sin markdown, sin backticks.
 
-EXTENSIÓN OBLIGATORIA DEL ARTÍCULO (NO NEGOCIABLE):
-- Mínimo 700 palabras en total el body. Ideal: 800-1100.
-- Mínimo 8 párrafos sustanciosos (cada uno 80-140 palabras).
-- Mínimo 3 subtítulos H2 que organicen la lectura.
-- Mínimo 1 lista con 4-6 puntos.
-- Mínimo 1 callout de cierre.
-- Cada párrafo debe aportar contexto adicional, análisis, comparación o consecuencia, no resumir lo mismo varias veces.
-- Si el material fuente es escaso, profundiza con contexto histórico, formato del torneo, palmarés del jugador, comparación con otros mundiales, panorama de las federaciones implicadas. Pero SIN inventar datos concretos (cifras, fechas, declaraciones).
+LONGITUD = PROPORCIONAL A LA SUSTANCIA (ANTI-INFLADO, CRÍTICO):
+- NO hay mínimo de palabras. La extensión la marca cuánta información REAL y verificable hay en la fuente.
+- Si la fuente da poco, escribe una pieza CORTA y DENSA (puede ser de 3-5 párrafos). Es mejor breve y preciso que largo y relleno.
+- PROHIBIDO rellenar: nada de paja para "alcanzar" una longitud, nada de repetir la misma idea, nada de añadir párrafos genéricos sobre "qué es el Mundial 2026" o "cómo funciona la fase de grupos" solo para ocupar espacio.
+- Cada párrafo debe aportar información o análisis NUEVO. Si no tienes nada nuevo y verificable que decir, no añadas el párrafo.
+- Un editor jefe exigente evaluará la pieza después y RECHAZARÁ el relleno y lo que no aporte valor. Escribe para pasar ese filtro, no para llenar.
 
-CÓMO AÑADIR PROFUNDIDAD SIN INVENTAR DATOS:
-- Contextualiza con conocimiento general verificable: explica qué es el Mundial 2026, cómo funciona la fase de grupos, quiénes son los rivales del grupo, qué es el formato 48 selecciones.
-- Compara con ediciones anteriores del Mundial cuando sea relevante (1986, 1994, 2002, 2010, 2014, 2018, 2022).
-- Análisis táctico: si la fuente menciona un jugador, contextualiza su posición, su rol en el equipo, palmarés general.
-- Implicaciones: qué pasa después, cuándo es el siguiente partido/decisión/anuncio, qué se puede esperar.
-- Reacciones del entorno: aunque no haya quote textual, puedes describir el ambiente o expectativas (sin atribuir frases inventadas a personas).
+PROFUNDIDAD HONESTA (sin inventar):
+- Puedes contextualizar con conocimiento general verificable (rol/posición de un jugador, su selección, el grupo) SOLO si es relevante y aporta, no como relleno.
+- Implicaciones: qué pasa después, qué se puede esperar, sin afirmar fechas o cifras que no estén en la fuente.
 
 Categorías permitidas (campo "cat"): "selecciones" | "analisis" | "datos" | "sedes" | "historia" | "plataforma".
 
-ESTRUCTURA DEL JSON DE SALIDA:
+ESTRUCTURA DEL JSON DE SALIDA (la longitud del body es flexible: usa solo los bloques que aporten):
 {
-  "title": "Titular SEO 50-90 chars, sin clickbait barato pero potente",
-  "excerpt": "Resumen 200-280 chars que enganche y resuma la noticia",
-  "seoDescription": "Meta description 155-160 chars optimizada para Google",
+  "title": "Titular SEO <=60 chars, entidad/keyword al inicio, gancho (pregunta o lo que está en juego), nunca clickbait barato ni titular plano",
+  "excerpt": "Resumen 160-280 chars que enganche y resuma la noticia",
+  "seoDescription": "Meta description 120-155 chars, voz activa, con la entidad y 'Mundial 2026', un motivo para hacer clic. Sin 'hoy/ayer'.",
   "slug": "slug-en-minusculas-con-guiones-sin-acentos-max-70-chars",
-  "tags": ["Tag1", "Tag2", "Tag3", "Tag4"],
+  "tags": ["Tag1", "Tag2", "Tag3"],
   "cat": "selecciones",
   "body": [
-    { "type": "p", "text": "LEDE: 2-3 frases que respondan qué pasa, quién, cuándo, dónde. ~70 palabras." },
-    { "type": "p", "text": "Segundo párrafo: amplía el contexto inmediato. ~90 palabras." },
-    { "type": "h2", "text": "Subtítulo de la primera sección de desarrollo" },
-    { "type": "p", "text": "Párrafo de análisis o desarrollo. ~100 palabras." },
-    { "type": "p", "text": "Otro párrafo con datos o comparación histórica. ~90 palabras." },
-    { "type": "list", "items": ["Punto 1 con contexto concreto", "Punto 2 con dato", "Punto 3 con consecuencia", "Punto 4"] },
-    { "type": "h2", "text": "Subtítulo de la segunda sección" },
-    { "type": "p", "text": "Párrafo sobre implicaciones o reacciones. ~100 palabras." },
-    { "type": "p", "text": "Cierre del análisis con perspectiva a futuro. ~80 palabras." },
-    { "type": "callout", "title": "Lo que viene", "text": "Cierre con próximo paso o consecuencia. 2-3 frases." }
+    { "type": "p", "text": "LEDE: responde qué pasa, quién, cuándo, dónde." },
+    { "type": "p", "text": "Desarrollo con el contexto inmediato relevante." },
+    { "type": "h2", "text": "Subtítulo solo si el artículo tiene secciones que lo justifiquen" },
+    { "type": "p", "text": "Análisis o implicación, con información nueva." },
+    { "type": "callout", "title": "Lo que viene", "text": "Cierre con la consecuencia o el próximo paso." }
   ]
 }
 
-REQUISITO MÍNIMO DEL BODY: 10 bloques (no menos). Idealmente 11-14 bloques. La estructura mínima es: lede(p) + p contexto + h2 + 2p + h2 + 2p + list + h2 + 2p + callout. Cuenta los bloques antes de devolver el JSON.`;
+Usa h2/list/callout solo cuando aporten estructura real. Body mínimo: lede + al menos 2 párrafos de desarrollo. Sin techo de bloques, pero cada bloque debe ganarse su sitio.`;
 
 function buildUserMessage(draft: DraftNoticia): string {
   const sourceText = draft.body
@@ -141,30 +133,39 @@ export async function rewriteDraft(draft: DraftNoticia): Promise<RewriteOutput |
     return null;
   }
 
-  // Defensive: must have at least the required fields and a substantive body.
-  // Reject any rewrite shorter than 10 blocks or 600 words — those are stubs.
-  if (!parsed.title || !parsed.body || !Array.isArray(parsed.body) || parsed.body.length < 10) {
-    console.error("[rewriter] output too short", parsed.body?.length, "blocks");
-    return null;
-  }
-  const wordCount = parsed.body
-    .filter((b) => b.type === "p" || b.type === "h2" || b.type === "h3")
-    .reduce((sum, b) => sum + ((b as { text: string }).text || "").split(/\s+/).length, 0);
-  if (wordCount < 600) {
-    console.error("[rewriter] body too short:", wordCount, "words");
+  // Sanity floor (anti-inflado: ya NO exigimos un mínimo de palabras; el
+  // crítico de calidad es el gate). Solo descartamos salidas vacías o stubs
+  // degenerados (sin título o con menos de 3 bloques = ni lede + 2 párrafos).
+  if (!parsed.title || !parsed.body || !Array.isArray(parsed.body) || parsed.body.length < 3) {
+    console.error("[rewriter] output degenerate", parsed.body?.length, "blocks");
     return null;
   }
   return parsed;
 }
 
-/** Apply LLM rewrite on top of a draft, mutating the draft fields. */
-export async function applyRewrite(draft: DraftNoticia): Promise<DraftNoticia> {
+export interface ApplyRewriteOpts {
+  /** Texto fuente original (para el crítico: juzgar precisión/anclaje). */
+  sourceText?: string;
+  /** Títulos ya publicados (para que el crítico detecte duplicados). */
+  recentTitles?: string[];
+}
+
+/**
+ * Apply LLM rewrite on top of a draft, then run the quality critic.
+ * Solo se marca como "published" si el crítico aprueba (shouldPublish).
+ * En caso contrario queda en "review" (no aparece en el sitio ni el sitemap).
+ */
+export async function applyRewrite(
+  draft: DraftNoticia,
+  opts: ApplyRewriteOpts = {},
+): Promise<DraftNoticia> {
   const out = await rewriteDraft(draft);
   if (!out) {
     // Fallback: rewrite failed → keep stub but flag for review (NOT published)
     return { ...draft, status: "review" };
   }
-  return {
+
+  const rewritten: DraftNoticia = {
     ...draft,
     title: out.title,
     excerpt: out.excerpt,
@@ -178,18 +179,43 @@ export async function applyRewrite(draft: DraftNoticia): Promise<DraftNoticia> {
     tags: out.tags || [],
     body: out.body,
     cat: (out.cat as NoticiaCategory) || draft.cat,
-    // Auto-publish: a successful rewrite is editorial-ready and goes live
-    // immediately. Failed rewrites stay at "review" and never appear in the
-    // public site (filtered out in the data layer).
-    status: "published",
     // Estimate reading time from word count (180 wpm average)
     readTime: Math.max(
-      3,
+      2,
       Math.ceil(
         out.body
           .filter((b) => b.type === "p" || b.type === "h2" || b.type === "h3")
           .reduce((sum, b) => sum + ((b as { text: string }).text || "").split(/\s+/).length, 0) / 180,
       ),
     ),
+    status: "review", // por defecto NO publicado; el crítico decide
   };
+
+  // GATE de calidad: segunda llamada al modelo como editor jefe exigente.
+  const verdict = await evaluateArticle({
+    title: rewritten.title,
+    body: rewritten.body,
+    sourceText: opts.sourceText ?? sourceTextFromDraft(draft),
+    recentTitles: opts.recentTitles,
+  });
+  rewritten.critic = verdict ?? undefined;
+
+  if (shouldPublish(verdict)) {
+    rewritten.status = "published";
+  } else {
+    console.warn(
+      "[rewriter] critic rejected:",
+      rewritten.title,
+      verdict ? `(${verdict.motivos})` : "(sin veredicto)",
+    );
+  }
+  return rewritten;
+}
+
+/** Reconstruye el texto fuente a partir de los párrafos del draft original. */
+function sourceTextFromDraft(draft: DraftNoticia): string {
+  return draft.body
+    .filter((b) => b.type === "p")
+    .map((b) => (b as { text: string }).text)
+    .join("\n\n");
 }

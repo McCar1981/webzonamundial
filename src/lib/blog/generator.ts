@@ -45,13 +45,13 @@ REGLAS INVIOLABLES:
 5. Idioma: espa\u00f1ol neutro / Espa\u00f1a.
 6. NUNCA inventes quotes (citas textuales).
 7. Devuelve SOLO un JSON v\u00e1lido, sin markdown, sin backticks, sin texto adicional.
+8. MARCA Y LEGAL: no uses marcas registradas de FIFA ("FIFA World Cup", "Copa Mundial de la FIFA", logos/mascotas oficiales); di "Mundial 2026". Nada de lenguaje de apuestas (cuotas, "apuesta", casas) \u2014 usa "pron\u00f3stico", "predicci\u00f3n" o "favoritos".
 
-EXTENSI\u00d3N OBLIGATORIA:
-- M\u00ednimo 900 palabras totales, ideal 1100-1400.
-- M\u00ednimo 10 bloques en el body.
-- M\u00ednimo 3 subt\u00edtulos h2 y 1-2 h3.
-- Incluye al menos 1 lista (ul) y 1 callout.
-- Si aplica, 1 tabla o stat card.
+LONGITUD = PROPORCIONAL A LA SUSTANCIA (ANTI-INFLADO):
+- NO hay m\u00ednimo de palabras. La longitud la marca cu\u00e1nto tienes REALMENTE que decir.
+- Si el tema da para una pieza corta y densa, hazla corta. PROHIBIDO rellenar con paja, generalidades, contexto obvio repetido o frases de transici\u00f3n vac\u00edas para "alcanzar" una extensi\u00f3n.
+- Cada bloque debe aportar informaci\u00f3n o an\u00e1lisis nuevo. Un texto corto y denso es MEJOR que uno largo y aguado.
+- Estructura libre (h2/h3, listas, callouts, tablas, stats) seg\u00fan lo pida el contenido, sin cuotas obligatorias de cada tipo.
 
 CATEGOR\u00cdAS PERMITIDAS (campo "category"):
 "analisis" | "selecciones" | "sedes" | "datos" | "historia" | "guia"
@@ -202,9 +202,9 @@ Genera un BlogPost completo siguiendo estrictamente el esquema JSON del system p
     !Array.isArray(parsed.keywords) ||
     !Array.isArray(parsed.tags) ||
     !Array.isArray(parsed.body) ||
-    parsed.body.length < 6
+    parsed.body.length < 3
   ) {
-    console.error("[blog/generator] missing required fields or short body");
+    console.error("[blog/generator] missing required fields or empty body");
     return null;
   }
 

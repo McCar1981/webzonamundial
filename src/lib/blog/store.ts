@@ -69,6 +69,31 @@ export async function appendAutoPost(post: BlogPost): Promise<{
 }
 
 /**
+ * Sobrescribe el array completo de posts auto en KV. Lo usa la auditoría de
+ * calidad (audit-blog) para persistir flags `noindex` sin duplicar entradas.
+ * Respeta el tope MAX_AUTO_POSTS por publishedAt descendente.
+ */
+export async function writeAutoPosts(posts: BlogPost[]): Promise<boolean> {
+  if (!isKvEnabled()) {
+    console.warn("[blog/store] KV not configured, writeAutoPosts skipped");
+    return false;
+  }
+  try {
+    const sorted = [...posts]
+      .sort(
+        (a, b) =>
+          new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+      )
+      .slice(0, MAX_AUTO_POSTS);
+    await kv.set(KV_KEY, sorted);
+    return true;
+  } catch (err) {
+    console.error("[blog/store] writeAutoPosts failed:", (err as Error).message);
+    return false;
+  }
+}
+
+/**
  * Devuelve los slugs ya usados (estáticos + auto) — el generador lo usa
  * para no proponer temas duplicados.
  */

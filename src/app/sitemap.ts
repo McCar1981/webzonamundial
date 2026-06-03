@@ -161,8 +161,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: n.featured ? 0.85 : 0.7,
   }));
 
-  // Rutas dinámicas: blog editorial (publicados por publishedAt <= now)
-  const allBlogPosts = await getAllBlogPosts();
+  // Rutas dinámicas: blog editorial (publicados por publishedAt <= now).
+  // Se EXCLUYEN los marcados noindex (despublicados por la auditoría de
+  // calidad): no deben aparecer en el sitemap si no se indexan.
+  const allBlogPosts = (await getAllBlogPosts()).filter((p) => !p.noindex);
   const blogRoutes: MetadataRoute.Sitemap = allBlogPosts.map((p) => ({
     url: `${BASE_URL}/blog/${p.slug}`,
     lastModified: new Date(p.updatedAt || p.publishedAt),

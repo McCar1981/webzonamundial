@@ -38,6 +38,50 @@ export interface IACoachAnalysis {
     team: string; // ID equipo (home o away)
     reason: string;
   } | null;
+
+  /* ─────────── MODELO PREDICTIVO (Modo 1 ampliado) ───────────
+   * Todos OPCIONALES: análisis cacheados con versión de prompt anterior no
+   * los traen, y la UI los renderiza solo si están presentes. Son DERIVADOS
+   * por el modelo a partir del contexto (forma, cuotas, plantilla) — no datos
+   * granulares inventados.
+   */
+
+  /** Línea Over/Under de goles totales estimada por el modelo. */
+  overUnder?: {
+    /** Línea de goles, típicamente .5 (ej. 2.5). */
+    line: number;
+    /** Lado recomendado. */
+    pick: "over" | "under";
+    /** Justificación breve (máx 90 chars). */
+    reason: string;
+  };
+
+  /** Goles esperados (xG) estimados pre-partido para cada equipo. Cualitativo. */
+  xgEstimate?: {
+    home: number;
+    away: number;
+  };
+
+  /** Ventana más probable del primer gol (ej. "entre el 20' y el 35'"). */
+  firstGoalWindow?: string;
+
+  /** Jugadores con mayor probabilidad de marcar (2-3), ordenados desc. */
+  topScorers?: Array<{
+    name: string;
+    team: string; // ID equipo (home o away)
+    /** Probabilidad de marcar en el partido, 0-1. */
+    probability: number;
+    /** Motivo breve (máx 70 chars). */
+    reason: string;
+  }>;
+
+  /** Duelo táctico clave del partido (enfrentamiento individual o zonal). */
+  tacticalDuel?: {
+    /** Titular del duelo (ej. "Mbappé vs el lateral derecho alemán"). */
+    matchup: string;
+    /** Análisis del duelo (máx 200 chars). */
+    analysis: string;
+  };
 }
 
 /** Respuesta del endpoint /api/ia-coach/analyze. */

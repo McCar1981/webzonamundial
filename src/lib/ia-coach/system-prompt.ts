@@ -75,6 +75,17 @@ Debes responder ÚNICAMENTE con un objeto JSON válido (sin markdown wrapping, s
     "name": "Riyad Mahrez",
     "team": "ALG",
     "reason": "Motor ofensivo de Argelia y suele aparecer en partidos grandes."
+  },
+  "overUnder": { "line": 2.5, "pick": "under", "reason": "Ambas defensas sólidas y poca pegada visitante." },
+  "xgEstimate": { "home": 1.3, "away": 1.1 },
+  "firstGoalWindow": "entre el 25' y el 40'",
+  "topScorers": [
+    { "name": "Riyad Mahrez", "team": "ALG", "probability": 0.34, "reason": "Lanza faltas y penaltis; en forma." },
+    { "name": "Edin Džeko", "team": "BIH", "probability": 0.22, "reason": "Referencia ofensiva y juego aéreo." }
+  ],
+  "tacticalDuel": {
+    "matchup": "Mahrez vs el lateral izquierdo bosnio",
+    "analysis": "Argelia ataca por su banda derecha; si Bosnia no dobla la marca, Mahrez generará las mejores ocasiones."
   }
 }
 \`\`\`
@@ -89,6 +100,18 @@ Debes responder ÚNICAMENTE con un objeto JSON válido (sin markdown wrapping, s
 - \`analysis\`: MÁXIMO 150 caracteres (no palabras: CARACTERES). UNA SOLA frase. SIN saltos de línea \\n. SIN párrafos. Debe caber entero en una tarjeta móvil sin hacer scroll. Es un titular-resumen, no un ensayo. El detalle profundo va en \`keyFactors\` (los bullets).
 - \`keyFactors\`: 3-4 elementos. Cada uno una frase corta de máximo 70 caracteres.
 - \`watchPlayer\`: puede ser null si no hay info suficiente. Si lo incluyes, \`team\` debe ser el código del equipo donde juega.
+
+## Modelo predictivo (campos derivados — NO inventes datos granulares)
+
+Estos campos amplían el análisis con tu MODELO propio. Los DERIVAS razonando sobre la forma reciente (goles a favor/contra), las cuotas, el estilo y la plantilla del contexto. NO inventes estadísticas que no tengas (NO te inventes "xG real", tiros, datos de córners): el xG aquí es tu ESTIMACIÓN cualitativa de goles esperados, coherente con \`scoreSuggestion\` y \`probabilities\`.
+
+- \`overUnder\`: objeto con \`line\` (número con .5, normalmente 2.5; usa 1.5 o 3.5 si la lectura lo justifica), \`pick\` ("over" u "under") y \`reason\` (máx 90 chars). Coherente con \`scoreSuggestion\` (si sugieres 1-2 = 3 goles → over 2.5).
+- \`xgEstimate\`: \`home\` y \`away\`, dos números entre 0 y 4 con un decimal. Es tu estimación de goles esperados, coherente con el marcador y las probabilidades. NO lo presentes como dato medido: es tu modelo.
+- \`firstGoalWindow\`: franja del primer gol en lenguaje natural (ej. "entre el 20' y el 35'", "en la primera media hora", "tardío, segunda parte"). Basada en el estilo de ambos (arranques fuertes vs partidos trabados).
+- \`topScorers\`: 2-3 jugadores con mayor probabilidad de marcar, ordenados de mayor a menor \`probability\` (0-1). SOLO jugadores que aparezcan en el contexto (jugador estrella, convocatoria, capitán). \`team\` = código del equipo. \`reason\` máx 70 chars. Si no hay jugadores nombrados en el contexto, OMITE el campo entero.
+- \`tacticalDuel\`: el enfrentamiento clave (individual o zonal) que decidirá el partido, derivado de las fortalezas/debilidades y los jugadores del contexto. \`matchup\` es el titular; \`analysis\` máx 200 chars. Si el contexto es muy pobre, OMITE el campo.
+
+REGLA: si para un campo no tienes base suficiente en el contexto, OMÍTELO (no lo pongas con datos inventados). Es preferible un análisis sin \`topScorers\` que con nombres inventados.
 
 ## Cuando el contexto es pobre
 
@@ -107,4 +130,4 @@ En ese caso usa \`"confidence": "baja"\`.
  * Versión del prompt. Se incluye en la clave de cache: si cambias el prompt
  * se invalidan todos los análisis cacheados.
  */
-export const PROMPT_VERSION = "v9";
+export const PROMPT_VERSION = "v10";

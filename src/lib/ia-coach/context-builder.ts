@@ -315,7 +315,10 @@ export async function buildContext(
     `**Tarea:** Analiza este enfrentamiento siguiendo TU metodología. ` +
       `Devuelve el JSON con verdict, winnerPrediction (usa los códigos "${home.id}", "${away.id}" o "DRAW"), ` +
       `probabilities (home=${home.id}, away=${away.id}), scoreSuggestion, confidence, ` +
-      `analysis (UNA FRASE, máximo 150 caracteres, sin saltos de línea), keyFactors (3-4 bullets cortos) y watchPlayer.`,
+      `analysis (UNA FRASE, máximo 150 caracteres, sin saltos de línea), keyFactors (3-4 bullets cortos) y watchPlayer. ` +
+      `Añade además tu MODELO PREDICTIVO: overUnder, xgEstimate, firstGoalWindow, topScorers ` +
+      `(solo jugadores nombrados arriba; team = "${home.id}" o "${away.id}") y tacticalDuel. ` +
+      `Omite cualquiera de esos campos si el contexto no te da base suficiente — NO inventes.`,
   );
   parts.push("");
   parts.push(

@@ -211,6 +211,14 @@ function AnalysisBody({
     alta: "Confianza alta",
   };
 
+  // Resuelve un código de equipo (3 letras) al nombre legible.
+  const teamName = (code: string): string => {
+    const c = code.toUpperCase();
+    if (c === teamA.id) return teamA.name;
+    if (c === teamB.id) return teamB.name;
+    return code;
+  };
+
   return (
     <div>
       <p className={styles.verdict}>{analysis.verdict}</p>
@@ -273,11 +281,87 @@ function AnalysisBody({
           <div className={styles.watchPlayerName}>
             {analysis.watchPlayer.name}
             <span className={styles.watchPlayerTeam}>
-              {analysis.watchPlayer.team}
+              {teamName(analysis.watchPlayer.team)}
             </span>
           </div>
           <p className={styles.watchPlayerReason}>
             {analysis.watchPlayer.reason}
+          </p>
+        </div>
+      ) : null}
+
+      {/* ─────────── MODELO PREDICTIVO ─────────── */}
+      {analysis.xgEstimate ||
+      analysis.overUnder ||
+      analysis.firstGoalWindow ? (
+        <div className={styles.modelGrid}>
+          {analysis.xgEstimate ? (
+            <div className={styles.modelCard}>
+              <span className={styles.modelCardLabel}>Goles esperados (xG)</span>
+              <span className={styles.modelCardValue}>
+                {analysis.xgEstimate.home.toFixed(1)} –{" "}
+                {analysis.xgEstimate.away.toFixed(1)}
+              </span>
+              <span className={styles.modelCardSub}>
+                {teamA.name} / {teamB.name}
+              </span>
+            </div>
+          ) : null}
+
+          {analysis.overUnder ? (
+            <div className={styles.modelCard}>
+              <span className={styles.modelCardLabel}>Línea de goles</span>
+              <span className={styles.modelCardValue}>
+                {analysis.overUnder.pick === "over" ? "Over" : "Under"}{" "}
+                {analysis.overUnder.line.toFixed(1)}
+              </span>
+              <span className={styles.modelCardSub}>
+                {analysis.overUnder.reason}
+              </span>
+            </div>
+          ) : null}
+
+          {analysis.firstGoalWindow ? (
+            <div className={styles.modelCard}>
+              <span className={styles.modelCardLabel}>Primer gol</span>
+              <span className={styles.modelCardValue}>
+                {analysis.firstGoalWindow}
+              </span>
+            </div>
+          ) : null}
+        </div>
+      ) : null}
+
+      {analysis.topScorers && analysis.topScorers.length > 0 ? (
+        <div className={styles.topScorers}>
+          <div className={styles.topScorersTitle}>
+            {"// Candidatos a marcar"}
+          </div>
+          <ul>
+            {analysis.topScorers.map((s, i) => (
+              <li key={i} className={styles.scorerRow}>
+                <span className={styles.scorerName}>
+                  {s.name}
+                  <span className={styles.scorerTeam}>{teamName(s.team)}</span>
+                </span>
+                <span className={styles.scorerReason}>{s.reason}</span>
+                <span className={styles.scorerPct}>
+                  {Math.round(s.probability * 100)}%
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+
+      {analysis.tacticalDuel ? (
+        <div className={styles.tacticalDuel}>
+          <div className={styles.tacticalDuelLabel}>{"// Duelo táctico"}</div>
+          <div className={styles.tacticalDuelMatchup}>
+            {analysis.tacticalDuel.matchup}
+          </div>
+          <p className={styles.tacticalDuelAnalysis}>
+            {analysis.tacticalDuel.analysis}
           </p>
         </div>
       ) : null}

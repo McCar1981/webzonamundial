@@ -18,6 +18,7 @@ import { createHash } from "node:crypto";
 import { gnewsSearch, WORLD_CUP_QUERIES, isNonFootballArticle, type GNewsArticle } from "./gnews";
 import { pickAuthorForArticle } from "@/data/noticias-authors";
 import type { Noticia, NoticiaBlock, NoticiaCategory } from "@/data/noticias";
+import type { CriticVerdict } from "./noticias-critic";
 
 /* ---------- Helpers ---------- */
 
@@ -91,6 +92,9 @@ export interface DraftNoticia extends Omit<Noticia, "id" | "body"> {
    *  cuando dos noticias comparten `date` (es común con GNews porque trunca
    *  a YYYY-MM-DD). Las más recientes deben aparecer arriba. */
   ingestedAt?: string;
+  /** Veredicto del crítico de calidad (Fase 1). Se guarda para auditoría
+   *  y para poder re-evaluar/limpiar drafts existentes. */
+  critic?: CriticVerdict;
 }
 
 /** Convert a raw GNews article into a draft Noticia (stub rewrite). */

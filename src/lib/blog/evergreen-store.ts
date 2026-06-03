@@ -10,6 +10,7 @@
 //  - Se fusiona en src/lib/blog/index.ts junto a los static + auto posts.
 
 import { kv } from "@vercel/kv";
+import { unstable_noStore as noStore } from "next/cache";
 import type { BlogPost } from "./types";
 
 const KV_KEY = "blog:evergreen:v1";
@@ -21,6 +22,10 @@ function isKvEnabled(): boolean {
 /** Lee todas las piezas perennes de KV. Sin KV (dev local) devuelve []. Nunca lanza. */
 export async function readEvergreenPosts(): Promise<BlogPost[]> {
   if (!isKvEnabled()) return [];
+  // KV lee vía fetch; sin esto Next cachea la respuesta (Data Cache) y devuelve
+  // un snapshot rancio, lo que rompe el read-modify-write del upsert (lost
+  // updates) y hace que las piezas recién escritas den 404 en sus páginas.
+  noStore();
   try {
     const raw = await kv.get<BlogPost[]>(KV_KEY);
     if (!Array.isArray(raw)) return [];

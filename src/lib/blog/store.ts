@@ -12,6 +12,7 @@
 //    transparentemente.
 
 import { kv } from "@vercel/kv";
+import { unstable_noStore as noStore } from "next/cache";
 import type { BlogPost } from "./types";
 
 const KV_KEY = "blog:auto-posts:v1";
@@ -27,6 +28,9 @@ function isKvEnabled(): boolean {
  */
 export async function readAutoPosts(): Promise<BlogPost[]> {
   if (!isKvEnabled()) return [];
+  // Evita que Next cachee la lectura de KV (Data Cache) y sirva un snapshot
+  // rancio: causaría lost updates en append/write y 404 en posts recién creados.
+  noStore();
   try {
     const raw = await kv.get<BlogPost[]>(KV_KEY);
     if (!Array.isArray(raw)) return [];

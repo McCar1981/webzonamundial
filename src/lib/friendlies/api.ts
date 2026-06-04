@@ -11,6 +11,7 @@ import type {
   FriendlyFixture,
   FriendlyLineup,
   FriendlySnapshot,
+  FriendlyStat,
   Score,
 } from "./types";
 
@@ -61,6 +62,7 @@ interface RawFixtureRow {
     date: string;
     status: { short: string; elapsed: number | null };
     venue: { name: string | null; city: string | null };
+    referee: string | null;
   };
   league: { id: number; name: string; season: number };
   teams: { home: RawTeam; away: RawTeam };
@@ -82,6 +84,11 @@ interface RawLineup {
   formation: string | null;
   coach: { name: string | null } | null;
   startXI: RawLineupPlayer[];
+  substitutes: RawLineupPlayer[];
+}
+interface RawStatRow {
+  team: { id: number };
+  statistics: Array<{ type: string; value: number | string | null }>;
 }
 
 function toFixture(row: RawFixtureRow): FriendlyFixture {
@@ -96,6 +103,7 @@ function toFixture(row: RawFixtureRow): FriendlyFixture {
     goals: [row.goals.home, row.goals.away] as Score,
     venue: row.fixture.venue.name ?? undefined,
     city: row.fixture.venue.city ?? undefined,
+    referee: row.fixture.referee ?? undefined,
   };
 }
 
@@ -186,15 +194,84 @@ async function fetchEvents(fixtureId: number, homeId: number, awayId: number): P
 
 function toLineup(raw: RawLineup | undefined): FriendlyLineup | null {
   if (!raw) return null;
+  const mapPlayer = (p: RawLineupPlayer) => ({
+    num: p.player.number,
+    pos: p.player.pos,
+    name: p.player.name,
+  });
   return {
     formation: raw.formation,
     coach: raw.coach?.name ?? null,
-    starters: raw.startXI.map((p) => ({
-      num: p.player.number,
-      pos: p.player.pos,
-      name: p.player.name,
-    })),
+    starters: raw.startXI.map(mapPlayer),
+    substitutes: (raw.substitutes ?? []).map(mapPlayer),
   };
+}
+
+// Etiquetas legibles (ES) para los tipos de estadística de api-football.
+const STAT_LABELS: Record<string, string> = {
+  "Ball Possession": "Posesión",
+  "Total Shots": "Tiros totales",
+  "Shots on Goal": "Tiros a puerta",
+  "Shots off Goal": "Tiros fuera",
+  "Blocked Shots": "Tiros bloqueados",
+  "Shots insidebox": "Tiros dentro del área",
+  "Shots outsidebox": "Tiros fuera del área",
+  "Corner Kicks": "Córners",
+  Offsides: "Fueras de juego",
+  Fouls: "Faltas",
+  "Yellow Cards": "Tarjetas amarillas",
+  "Red Cards": "Tarjetas rojas",
+  "Goalkeeper Saves": "Paradas",
+  "Total passes": "Pases totales",
+  "Passes accurate": "Pases acertados",
+  "Passes %": "Precisión de pases",
+  expected_goals: "Goles esperados (xG)",
+};
+
+// Orden de presentación: las más relevantes primero.
+const STAT_ORDER = [
+  "Ball Possession",
+  "Total Shots",
+  "Shots on Goal",
+  "expected_goals",
+  "Corner Kicks",
+  "Fouls",
+  "Offsides",
+  "Yellow Cards",
+  "Red Cards",
+  "Goalkeeper Saves",
+  "Total passes",
+  "Passes %",
+];
+
+async function fetchStats(
+  fixtureId: number,
+  homeId: number,
+  awayId: number,
+): Promise<FriendlyStat[]> {
+  const raw = await apiGet<RawStatRow[]>(
+    `/fixtures/statistics?fixture=${fixtureId}`,
+  );
+  if (!raw || raw.length === 0) return [];
+  const home = raw.find((r) => r.team.id === homeId);
+  const away = raw.find((r) => r.team.id === awayId);
+  const valueOf = (row: RawStatRow | undefined, type: string) =>
+    row?.statistics.find((s) => s.type === type)?.value ?? null;
+
+  const types = new Set<string>();
+  for (const r of raw) for (const s of r.statistics) types.add(s.type);
+  const ordered = [
+    ...STAT_ORDER.filter((t) => types.has(t)),
+    ...[...types].filter((t) => !STAT_ORDER.includes(t)),
+  ];
+
+  return ordered
+    .map((type) => ({
+      label: STAT_LABELS[type] ?? type,
+      home: valueOf(home, type),
+      away: valueOf(away, type),
+    }))
+    .filter((s) => s.home != null || s.away != null);
 }
 
 /** Solo las alineaciones de un fixture (para el push previo al partido). */
@@ -216,15 +293,17 @@ export async function fetchFriendlySnapshot(fixtureId: number): Promise<Friendly
   const rows = await apiGet<RawFixtureRow[]>(`/fixtures?id=${fixtureId}`);
   if (!rows || rows.length === 0) return null;
   const fixture = toFixture(rows[0]);
-  const [events, lineups] = await Promise.all([
+  const [events, lineups, stats] = await Promise.all([
     fetchEvents(fixtureId, fixture.home.id, fixture.away.id),
     fetchLineups(fixtureId, fixture.home.id, fixture.away.id),
+    fetchStats(fixtureId, fixture.home.id, fixture.away.id),
   ]);
   return {
     ...fixture,
     events,
     homeLineup: lineups.home,
     awayLineup: lineups.away,
+    stats,
     updatedAt: Date.now(),
   };
 }

@@ -15,7 +15,9 @@ import type {
   FriendlyEvent,
   FriendlyFixture,
   FriendlyLineup,
+  FriendlyLineupPlayer,
   FriendlySnapshot,
+  FriendlyStat,
 } from "@/lib/friendlies/types";
 import { isFinishedStatus, isLiveStatus } from "@/lib/friendlies/types";
 
@@ -197,6 +199,16 @@ function FixtureCard({
 
 // ───────────────────────── detalle (eventos + alineaciones) ─────────────────────────
 
+function PlayerRow({ p }: { p: FriendlyLineupPlayer }) {
+  return (
+    <li style={{ color: OFF, fontSize: 13, display: "flex", gap: 8 }}>
+      <span style={{ color: GRAY, width: 22, textAlign: "right", flexShrink: 0 }}>{p.num ?? "·"}</span>
+      <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{p.name ?? "—"}</span>
+      {p.pos && <span style={{ color: GRAY, fontSize: 11, marginLeft: "auto" }}>{p.pos}</span>}
+    </li>
+  );
+}
+
 function LineupCol({ title, lineup }: { title: string; lineup: FriendlyLineup | null }) {
   return (
     <div style={{ flex: 1, minWidth: 0 }}>
@@ -207,18 +219,65 @@ function LineupCol({ title, lineup }: { title: string; lineup: FriendlyLineup | 
       {!lineup ? (
         <p style={{ color: GRAY, fontSize: 13 }}>Sin alineación todavía.</p>
       ) : (
-        <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: 4 }}>
-          {lineup.starters.map((p, i) => (
-            <li key={i} style={{ color: OFF, fontSize: 13, display: "flex", gap: 8 }}>
-              <span style={{ color: GRAY, width: 22, textAlign: "right", flexShrink: 0 }}>{p.num ?? "·"}</span>
-              <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{p.name ?? "—"}</span>
-            </li>
-          ))}
-          {lineup.coach && (
-            <li style={{ color: GRAY, fontSize: 12, marginTop: 4 }}>DT: {lineup.coach}</li>
+        <>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: 4 }}>
+            {lineup.starters.map((p, i) => (
+              <PlayerRow key={i} p={p} />
+            ))}
+          </ul>
+          {lineup.substitutes.length > 0 && (
+            <>
+              <div style={{ color: GRAY, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.08em", margin: "10px 0 6px" }}>
+                Suplentes
+              </div>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: 4 }}>
+                {lineup.substitutes.map((p, i) => (
+                  <PlayerRow key={i} p={p} />
+                ))}
+              </ul>
+            </>
           )}
-        </ul>
+          {lineup.coach && (
+            <div style={{ color: GRAY, fontSize: 12, marginTop: 8 }}>DT: {lineup.coach}</div>
+          )}
+        </>
       )}
+    </div>
+  );
+}
+
+/** Una fila de estadística con barra comparativa local vs visitante. */
+function StatRow({ s }: { s: FriendlyStat }) {
+  const toNum = (v: number | string | null): number => {
+    if (v == null) return 0;
+    if (typeof v === "number") return v;
+    const n = parseFloat(v.replace("%", ""));
+    return Number.isFinite(n) ? n : 0;
+  };
+  const h = toNum(s.home);
+  const a = toNum(s.away);
+  const total = h + a;
+  const hPct = total > 0 ? (h / total) * 100 : 50;
+  return (
+    <div style={{ marginBottom: 12 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", fontSize: 13, marginBottom: 4 }}>
+        <span style={{ color: OFF, fontWeight: 600 }}>{s.home ?? "-"}</span>
+        <span style={{ color: GRAY }}>{s.label}</span>
+        <span style={{ color: OFF, fontWeight: 600 }}>{s.away ?? "-"}</span>
+      </div>
+      <div style={{ display: "flex", height: 6, borderRadius: 3, overflow: "hidden", background: "rgba(255,255,255,0.08)" }}>
+        <div style={{ width: `${hPct}%`, background: BLUE }} />
+        <div style={{ width: `${100 - hPct}%`, background: GOLD }} />
+      </div>
+    </div>
+  );
+}
+
+function InfoLine({ label, value }: { label: string; value: string }) {
+  return (
+    <div style={{ display: "flex", gap: 8, fontSize: 12 }}>
+      <span style={{ color: GRAY, minWidth: 78 }}>{label}</span>
+      <span style={{ color: OFF, overflow: "hidden", textOverflow: "ellipsis" }}>{value}</span>
     </div>
   );
 }
@@ -280,6 +339,25 @@ function DetailView({ id, onBack }: { id: number; onBack: () => void }) {
               </div>
             </div>
           </div>
+
+          <section style={{ background: PANEL, borderRadius: 14, padding: 16, marginBottom: 18, border: "1px solid rgba(255,255,255,0.06)", display: "grid", gap: 6 }}>
+            <InfoLine label="Competición" value={snap.league.name} />
+            <InfoLine label="Fecha" value={kickoffLabel(snap.date)} />
+            {snap.venue && <InfoLine label="Estadio" value={snap.venue} />}
+            {snap.city && <InfoLine label="Ciudad" value={snap.city} />}
+            {snap.referee && <InfoLine label="Árbitro" value={snap.referee} />}
+          </section>
+
+          {snap.stats.length > 0 && (
+            <section style={{ marginBottom: 18 }}>
+              <h3 style={{ color: OFF, fontSize: 16, marginBottom: 12 }}>Estadísticas</h3>
+              <div style={{ background: PANEL, borderRadius: 14, padding: 16, border: "1px solid rgba(255,255,255,0.06)" }}>
+                {snap.stats.map((s) => (
+                  <StatRow key={s.label} s={s} />
+                ))}
+              </div>
+            </section>
+          )}
 
           {snap.events.length > 0 && (
             <section style={{ marginBottom: 18 }}>

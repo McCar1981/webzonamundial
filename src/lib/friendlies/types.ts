@@ -29,6 +29,7 @@ export interface FriendlyFixture {
   goals: Score;
   venue?: string;
   city?: string;
+  referee?: string;
 }
 
 export type FriendlyEventType =
@@ -64,7 +65,15 @@ export interface FriendlyLineupPlayer {
 export interface FriendlyLineup {
   formation: string | null;
   starters: FriendlyLineupPlayer[];
+  substitutes: FriendlyLineupPlayer[];
   coach?: string | null;
+}
+
+/** Una fila de estadística comparada (posesión, tiros, faltas...). */
+export interface FriendlyStat {
+  label: string;
+  home: number | string | null;
+  away: number | string | null;
 }
 
 /** Snapshot completo de un amistoso para la vista de detalle. */
@@ -72,6 +81,7 @@ export interface FriendlySnapshot extends FriendlyFixture {
   events: FriendlyEvent[];
   homeLineup: FriendlyLineup | null;
   awayLineup: FriendlyLineup | null;
+  stats: FriendlyStat[];
   updatedAt: number;
 }
 

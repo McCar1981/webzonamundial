@@ -1030,6 +1030,17 @@ const POS_GROUPS: { key: string; label: string }[] = [
   { key: "FW", label: "Ataque" },
 ];
 
+// Normaliza la posición a una de las 4 líneas. La simulación usa "GK/DF/MF/FW"
+// pero api-football (datos reales) las da en una sola letra "G/D/M/F". Sin esto
+// el agrupado fallaba y la lista de alineación salía vacía (solo la formación).
+function posGroup(pos: string): string {
+  const p = (pos || "").toUpperCase();
+  if (p === "GK" || p === "G") return "GK";
+  if (p === "DF" || p === "D") return "DF";
+  if (p === "FW" || p === "F") return "FW";
+  return "MF";
+}
+
 function TeamLineupCol({ team, lineup, right, allowPending }: { team: MatchMeta["home"]; lineup: TeamLineup; right?: boolean; allowPending?: boolean }) {
   // Alineación "por confirmar": en datos reales (live), api-football aún no ha
   // publicado el once oficial, así que los nombres vienen vacíos. En vez de
@@ -1051,7 +1062,7 @@ function TeamLineupCol({ team, lineup, right, allowPending }: { team: MatchMeta[
       ) : (
       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
         {POS_GROUPS.map((g) => {
-          const rows = lineup.starters.filter((p) => p.pos === g.key);
+          const rows = lineup.starters.filter((p) => posGroup(p.pos) === g.key);
           if (rows.length === 0) return null;
           return (
             <div key={g.key}>

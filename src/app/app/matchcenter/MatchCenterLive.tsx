@@ -9,6 +9,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import Pitch from "./Pitch";
 import MatchFx from "./MatchFx";
+import PreMatchHero from "./PreMatchHero";
 import { createSpeaker, type Speaker } from "@/lib/match-center/voice";
 import { createSound, type MatchSound } from "@/lib/match-center/sound";
 import {
@@ -614,6 +615,11 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
 
         {feed && lineups && (
           <>
+            {/* Previa: cabecera con cuenta atrás al saque antes de empezar. */}
+            {feed.mode === "live" && !finished && !isInPlay(status) && status !== "HT" && (
+              <PreMatchHero meta={meta} kickoff={kickoff} />
+            )}
+
             {/* Marcador */}
             <div style={{ background: BG2, borderRadius: 20, border: "1px solid rgba(255,255,255,0.08)", padding: "16px clamp(10px,4vw,20px)", marginBottom: 14 }}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginBottom: 12 }}>

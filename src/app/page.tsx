@@ -16,6 +16,7 @@ import { HeroSection } from "./_home/sections/HeroSection";
 import { EditorialIntro } from "./_home/sections/EditorialIntro";
 import { GuiaMundial2026Section } from "./_home/sections/GuiaMundial2026Section";
 import PushOptInBanner from "@/components/PushOptInBanner";
+import HomeInstallBanner from "@/components/HomeInstallBanner";
 import { StatsHowSection } from "./_home/sections/StatsHowSection";
 import { PlatformShowcaseSection } from "./_home/sections/PlatformShowcaseSection";
 import { ModulesGridSection } from "./_home/sections/ModulesGridSection";
@@ -78,6 +79,10 @@ export default function HomePage() {
         cd={cd}
         IMGS={IMGS}
       />
+      {/* Banner de instalación PWA: justo bajo el hero, máxima visibilidad.
+          Se autooculta si la app ya está instalada o si el navegador no es
+          instalable; en iOS muestra las instrucciones de Safari. */}
+      <HomeInstallBanner />
       {/*
         Banner del Match Center (amistoso real España-Irak, id 9001) justo
         debajo del hero: máxima visibilidad para el público en España. Se

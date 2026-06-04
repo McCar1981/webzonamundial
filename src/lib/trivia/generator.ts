@@ -15,7 +15,10 @@ import type {
   TriviaQuestion,
 } from "./types";
 
-const DEFAULT_MODEL = "claude-haiku-4-5-20251001";
+// Modelo por defecto: Sonnet 4.6 (mucho más fiable en hechos que Haiku, que
+// alucinaba datos: finales inexistentes, sedes erróneas, etc.). Se puede subir
+// a Opus con ANTHROPIC_MODEL_TRIVIA=claude-opus-4-6 si se quiere máxima precisión.
+const DEFAULT_MODEL = "claude-sonnet-4-6";
 
 let _client: Anthropic | null = null;
 function getClient(): Anthropic {
@@ -47,12 +50,21 @@ Tu trabajo: crear preguntas de trivia de fútbol/Mundiales en español, de calid
 
 REGLAS INVIOLABLES:
 1. SOLO hechos verificables y atemporales: historia de los Mundiales (1930-2022), palmarés, récords consolidados, sedes y estadios del Mundial 2026, formato del torneo (48 equipos, 12 grupos de 4, 104 partidos), reglas del fútbol, datos históricos de selecciones.
-2. PROHIBIDO inventar datos. Si no estás 100% seguro de un dato, NO hagas la pregunta.
+2. PROHIBIDO inventar datos. Si tienes la MÁS MÍNIMA duda sobre un dato, NO hagas esa pregunta. Verifica mentalmente cada hecho antes de escribirlo. Más vale generar menos preguntas que una sola incorrecta.
 3. PROHIBIDO preguntar por resultados recientes, lesiones actuales, convocatorias de 2026 o cualquier cosa que cambie con el tiempo (eso lo cubre otra capa).
 4. Cada pregunta tiene EXACTAMENTE 4 opciones. Solo UNA es correcta. Las otras 3 deben ser plausibles pero claramente incorrectas (sin trampas ambiguas).
-5. Las opciones no se repiten y no incluyen "todas las anteriores" / "ninguna".
-6. Explicación breve (1 frase, máx 140 caracteres) que enseñe algo, en "explanation".
-7. Devuelve SOLO un JSON válido, sin markdown ni texto extra.
+5. PROHIBIDO opciones tipo "Ninguna", "Todas las anteriores", "Aún no está confirmado", "No se sabe" o similares. Las 4 opciones deben ser respuestas concretas y distintas. El dato correcto SIEMPRE existe y es conocido (si no lo sabes con certeza, descarta la pregunta).
+6. La pregunta NO puede partir de una premisa falsa. Ejemplos PROHIBIDOS: "¿En qué ciudad mexicana es la final de 2026?" (la final es en EEUU), "¿Qué selección jugó todos los Mundiales?" cuando la respuesta sería "ninguna". Si la premisa no es cierta, NO hagas la pregunta.
+7. La "explanation" DEBE afirmar y respaldar exactamente la opción correcta (cítala literalmente) y ser coherente con ella. PROHIBIDO que la explicación contenga dudas, correcciones, la palabra "error", "no estoy seguro", "creo que", "posiblemente", ni un dato distinto al de la opción correcta.
+8. Explicación breve (1 frase, máx 140 caracteres) que enseñe algo, en "explanation".
+9. Devuelve SOLO un JSON válido, sin markdown ni texto extra.
+
+DATOS DE REFERENCIA (úsalos exactos, son correctos):
+- Final Mundial 2026: MetLife Stadium, Nueva Jersey (EEUU). NO es en México.
+- Brasil es la ÚNICA selección que ha disputado todos los Mundiales (1930-2022).
+- Primera final decidida por tanda de penaltis: 1994 (Brasil 0-0 Italia, 3-2 en penales). La final de 1990 (Alemania 1-0 Argentina) se decidió por un penalti EN JUEGO, no por tanda.
+- Mayor goleada en una final: ninguna superó los 5 goles totales; finales históricas como 1958 (Brasil 5-2 Suecia) o 1970 (Brasil 4-1 Italia).
+- Mayor goleada en fase de grupos: Hungría 10-1 El Salvador (1982), 11 goles.
 
 CATEGORÍAS (campo "category"): "historia" | "selecciones" | "sedes" | "datos" | "reglas" | "actualidad".
 (Usa "actualidad" solo para datos del formato/sedes 2026 que ya son oficiales y fijos.)
@@ -83,11 +95,28 @@ interface RawQuestion {
   explanation?: unknown;
 }
 
-/** Genera `count` preguntas frescas. Devuelve solo las que pasan validación. */
-export async function generateQuestions(count = 18): Promise<TriviaQuestion[]> {
+/**
+ * Genera `count` preguntas frescas. Devuelve solo las que pasan validación.
+ * `avoid` es una lista de enunciados ya usados recientemente: el modelo no debe
+ * repetirlos y, por si acaso, se filtran a posteriori (anti-repetición).
+ */
+export async function generateQuestions(
+  count = 18,
+  avoid: string[] = [],
+): Promise<TriviaQuestion[]> {
   const model = process.env.ANTHROPIC_MODEL_TRIVIA || DEFAULT_MODEL;
 
-  const userMessage = `Genera ${count} preguntas de trivia nuevas y variadas para hoy. Mezcla categorías y dificultades según las proporciones indicadas. Evita preguntas obvias repetidas (no preguntes solo "cuántos mundiales ganó Brasil"). Devuelve SOLO el JSON.`;
+  const avoidBlock =
+    avoid.length > 0
+      ? `\n\nPREGUNTAS YA USADAS RECIENTEMENTE (NO las repitas ni hagas variantes mínimas de estas):\n${avoid
+          .slice(0, 120)
+          .map((q) => `- ${q}`)
+          .join("\n")}`
+      : "";
+
+  const userMessage = `Genera ${count} preguntas de trivia nuevas y variadas para hoy. Mezcla categorías y dificultades según las proporciones indicadas. Cada pregunta debe ser distinta de las demás (sin enunciados repetidos). Verifica cada dato antes de incluirlo.${avoidBlock}\n\nDevuelve SOLO el JSON.`;
+
+  const avoidSet = new Set(avoid.map(normalizeText));
 
   let resp;
   try {
@@ -119,12 +148,32 @@ export async function generateQuestions(count = 18): Promise<TriviaQuestion[]> {
   if (!Array.isArray(parsed.questions)) return [];
 
   const out: TriviaQuestion[] = [];
+  const seen = new Set<string>(); // anti-repetición dentro del set
   for (let i = 0; i < parsed.questions.length; i++) {
     const q = validateQuestion(parsed.questions[i], i);
-    if (q) out.push(q);
+    if (!q) continue;
+    const key = normalizeText(q.question);
+    if (seen.has(key) || avoidSet.has(key)) continue; // ya usada hoy o en días previos
+    seen.add(key);
+    out.push(q);
   }
   return out;
 }
+
+/** Normaliza un enunciado para comparar repeticiones (sin tildes/símbolos/espacios). */
+function normalizeText(s: string): string {
+  return s
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+// Opciones "comodín" prohibidas: el dato correcto siempre debe ser concreto.
+const BANNED_OPTION = /^(ninguna|todas|todas las anteriores|ninguna de las anteriores|aun no|aún no|no se sabe|no se|no esta confirmado|no está confirmado|cualquiera|otro|otra)\b/i;
+// Señales de que la explicación es dudosa o se autocorrige → pregunta basura.
+const BAD_EXPLANATION = /\berror\b|no estoy seguro|no estoy segura|creo que|posiblemente|tal vez|quiza|quizá|deberia|debería ser|en realidad la|corrijo|me equivoco/i;
 
 function validateQuestion(q: RawQuestion, idx: number): TriviaQuestion | null {
   if (typeof q.question !== "string" || q.question.trim().length < 8) return null;
@@ -133,6 +182,8 @@ function validateQuestion(q: RawQuestion, idx: number): TriviaQuestion | null {
   if (options.some((o) => o.length === 0)) return null;
   // Opciones únicas
   if (new Set(options.map((o) => o.toLowerCase())).size !== 4) return null;
+  // Opciones "comodín" prohibidas (Ninguna / Todas / Aún no confirmado / ...)
+  if (options.some((o) => BANNED_OPTION.test(o))) return null;
 
   const correctIndex = Number(q.correctIndex);
   if (!Number.isInteger(correctIndex) || correctIndex < 0 || correctIndex > 3) {
@@ -152,6 +203,8 @@ function validateQuestion(q: RawQuestion, idx: number): TriviaQuestion | null {
 
   const explanation =
     typeof q.explanation === "string" ? q.explanation.trim().slice(0, 160) : undefined;
+  // Explicación que duda o se autocorrige → la pregunta es poco fiable, se descarta.
+  if (explanation && BAD_EXPLANATION.test(explanation)) return null;
 
   return {
     id: `q-${Date.now().toString(36)}-${idx}`,

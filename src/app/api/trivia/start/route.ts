@@ -5,7 +5,7 @@
 
 import { NextResponse } from "next/server";
 import { generateQuestions } from "@/lib/trivia/generator";
-import { getDailySet, saveDailySet, saveSession, todayUTC } from "@/lib/trivia/store";
+import { getDailySet, getRecentQuestionTexts, saveDailySet, saveSession, todayUTC } from "@/lib/trivia/store";
 import { newSessionId, pickQuestions, toClientQuestion } from "@/lib/trivia/play";
 import { FALLBACK_QUESTIONS } from "@/data/trivia-fallback";
 import type { DailyTriviaSet, ServerSession, TriviaMode } from "@/lib/trivia/types";
@@ -32,7 +32,8 @@ export async function POST(req: Request) {
   // Fallback: si el cron aún no generó el set de hoy, lo generamos al vuelo
   // (la primera visita del día lo dispara). Idempotente para el resto.
   if (!set || set.questions.length < 10) {
-    const questions = await generateQuestions(30);
+    const avoid = await getRecentQuestionTexts(7);
+    const questions = await generateQuestions(30, avoid);
     if (questions.length >= 5) {
       set = { date, generatedAt: new Date().toISOString(), questions } as DailyTriviaSet;
       await saveDailySet(set);

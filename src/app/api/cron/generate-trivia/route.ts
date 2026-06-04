@@ -7,7 +7,7 @@
 
 import { NextResponse } from "next/server";
 import { generateQuestions } from "@/lib/trivia/generator";
-import { getDailySet, saveDailySet, todayUTC } from "@/lib/trivia/store";
+import { getDailySet, getRecentQuestionTexts, saveDailySet, todayUTC } from "@/lib/trivia/store";
 import type { DailyTriviaSet } from "@/lib/trivia/types";
 import { revalidatePath } from "next/cache";
 
@@ -45,7 +45,8 @@ export async function GET(req: Request) {
     });
   }
 
-  const questions = await generateQuestions(count);
+  const avoid = await getRecentQuestionTexts(7);
+  const questions = await generateQuestions(count, avoid);
   if (questions.length < 5) {
     return NextResponse.json(
       { ok: false, error: "generación insuficiente", got: questions.length },

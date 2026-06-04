@@ -18,7 +18,11 @@ import type {
 } from "./types";
 
 const V = "v1";
-const DAILY_KEY = (date: string) => `trivia:daily:${V}:${date}`;
+// Versión propia para los sets diarios: subirla invalida los sets cacheados
+// (p.ej. los generados por el modelo antiguo que contenían datos erróneos) sin
+// afectar a rankings, stats ni sesiones, que siguen usando V.
+const DAILY_V = "v2";
+const DAILY_KEY = (date: string) => `trivia:daily:${DAILY_V}:${date}`;
 const LB_GLOBAL_KEY = `trivia:lb:global:${V}`;
 const LB_DAILY_KEY = (date: string) => `trivia:lb:daily:${V}:${date}`;
 const USER_KEY = (userId: string) => `trivia:user:${V}:${userId}`;
@@ -91,6 +95,23 @@ export async function saveDailySet(set: DailyTriviaSet): Promise<void> {
   const store = await readFs();
   store.dailySets[set.date] = set;
   await writeFs(store);
+}
+
+/**
+ * Enunciados de los sets de los últimos `days` días (excluyendo hoy).
+ * Se pasan al generador para que NO repita preguntas recientes.
+ */
+export async function getRecentQuestionTexts(days = 7): Promise<string[]> {
+  const texts: string[] = [];
+  const today = new Date();
+  for (let i = 1; i <= days; i++) {
+    const d = new Date(today);
+    d.setUTCDate(d.getUTCDate() - i);
+    const date = d.toISOString().slice(0, 10);
+    const set = await getDailySet(date);
+    if (set) for (const q of set.questions) texts.push(q.question);
+  }
+  return texts;
 }
 
 // ───────────────────────── stats + leaderboard ─────────────────────────

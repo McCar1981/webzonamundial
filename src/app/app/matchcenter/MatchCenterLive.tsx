@@ -10,6 +10,7 @@ import Link from "next/link";
 import Pitch from "./Pitch";
 import MatchFx from "./MatchFx";
 import PreMatchHero from "./PreMatchHero";
+import PreMatchPreview from "./PreMatchPreview";
 import { createSpeaker, type Speaker } from "@/lib/match-center/voice";
 import { createSound, type MatchSound } from "@/lib/match-center/sound";
 import {
@@ -615,9 +616,18 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
 
         {feed && lineups && (
           <>
-            {/* Previa: cabecera con cuenta atrás al saque antes de empezar. */}
+            {/* Previa: cabecera con cuenta atrás + análisis editorial antes de
+                empezar. La foto del estadio y la previa son específicas del
+                amistoso España-Irak (Riazor, id 9001). */}
             {feed.mode === "live" && !finished && !isInPlay(status) && status !== "HT" && (
-              <PreMatchHero meta={meta} kickoff={kickoff} />
+              <>
+                <PreMatchHero
+                  meta={meta}
+                  kickoff={kickoff}
+                  image={matchId === 9001 ? "/img/matchcenter/riazor.jpg" : undefined}
+                />
+                {matchId === 9001 && <PreMatchPreview />}
+              </>
             )}
 
             {/* Marcador */}

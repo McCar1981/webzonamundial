@@ -38,9 +38,11 @@ function fmtKickoff(iso?: string): { date: string; time: string } | null {
 interface Props {
   meta: MatchMeta;
   kickoff?: string;
+  /** Foto de fondo (p.ej. el estadio). Opcional. */
+  image?: string;
 }
 
-export default function PreMatchHero({ meta, kickoff }: Props) {
+export default function PreMatchHero({ meta, kickoff, image }: Props) {
   const [now, setNow] = useState<number>(() => Date.now());
   useEffect(() => {
     const t = setInterval(() => setNow(Date.now()), 1000);
@@ -76,6 +78,35 @@ export default function PreMatchHero({ meta, kickoff }: Props) {
         background: "#0B1825",
       }}
     >
+      {/* Foto de fondo (estadio) con velo oscuro para legibilidad */}
+      {image && (
+        <>
+          <img
+            src={image}
+            alt={[meta.venue, meta.city].filter(Boolean).join(", ")}
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              opacity: 0.5,
+              pointerEvents: "none",
+            }}
+          />
+          <span
+            aria-hidden
+            style={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "linear-gradient(180deg, rgba(11,24,37,0.55) 0%, rgba(11,24,37,0.82) 100%)",
+              pointerEvents: "none",
+            }}
+          />
+        </>
+      )}
+
       {/* Tintes de color por selección a cada lado */}
       <span
         aria-hidden

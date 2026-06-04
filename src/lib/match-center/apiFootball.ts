@@ -110,13 +110,14 @@ function findStat(block: RawStatBlock | undefined, type: string): number {
   return s ? statNum(s.value) : 0;
 }
 
-function lineupFromRaw(raw: RawLineup | undefined): TeamLineup | null {
-  if (!raw) return null;
-  const formation = raw.formation || "4-3-3";
+function lineupFromRaw(raw: RawLineup | undefined): TeamLineup {
+  // Si la API aún no publicó alineaciones (típico antes del saque), generamos
+  // un 4-3-3 por defecto para que la cancha y la ficha rendericen sin romper.
+  const formation = raw?.formation || "4-3-3";
   const base = buildLineup(formation);
   // Superponemos nombres y dorsales reales por orden (GK, DF, MF, FW).
   const starters: LineupPlayer[] = base.starters.map((p, i) => {
-    const real = raw.startXI[i]?.player;
+    const real = raw?.startXI[i]?.player;
     return {
       num: real?.number ?? p.num,
       pos: real?.pos ?? p.pos,

@@ -15,7 +15,7 @@ import Cosmetics from "./Cosmetics";
 import LiveMicroPicks from "./LiveMicroPicks";
 import {
   TYPE_ICON, TIER_ICON,
-  ArrowLeft, Check, Clock, Flame, Gem, Pencil, Sparkles, TrendingUp, Trophy, Users, X,
+  ArrowLeft, Calendar, Check, Clock, Flame, Gem, Globe, Pencil, Sparkles, TrendingUp, Trophy, Users, X,
 } from "./icons";
 import {
   MINUTE_RANGES,
@@ -60,6 +60,24 @@ const fmtKickoff = (m: Match): string => {
   if (!d) return "Por confirmar";
   return d.toLocaleString("es", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" });
 };
+
+const flagUrlLg = (code: string) => `https://flagcdn.com/w80/${code}.png`;
+
+// Texto emocional según el multiplicador de la rivalidad.
+function tierMood(mult: number): string {
+  if (mult >= 2) return "Batacazo histórico";
+  if (mult >= 1.5) return "Sorpresa posible";
+  if (mult >= 1.25) return "Partido abierto";
+  return "Favorito claro";
+}
+
+// ¿El partido se juega hoy? (solo presentación, para el filtro "Hoy").
+function isMatchToday(m: Match): boolean {
+  const d = etToDate(m.d, m.t);
+  if (!d) return false;
+  const now = new Date();
+  return d.getFullYear() === now.getFullYear() && d.getMonth() === now.getMonth() && d.getDate() === now.getDate();
+}
 
 // ─── Tipos de respuesta de la API ────────────────────────────────────────────
 interface MatchPrediction {
@@ -252,13 +270,8 @@ export default function PrediccionesGame() {
       <div style={{ height: 10 }} />
       <Cosmetics />
 
-      {/* Vista tablero: partidos agrupados por grupo (no slider) */}
-      {!selectedMatch && (
-        <>
-          <MatchBoard matches={groupMatches} onPick={selectMatch} />
-          <EmptyShowcase />
-        </>
-      )}
+      {/* Vista tablero: hero + partido destacado + filtros + grupos + showcase */}
+      {!selectedMatch && <LandingView matches={groupMatches} onPick={selectMatch} />}
 
       {selectedMatch && (
         <section style={{ maxWidth: 1100, margin: "0 auto", padding: "12px 16px 60px" }}>
@@ -338,16 +351,268 @@ export default function PrediccionesGame() {
 }
 
 // ─── Layout base ─────────────────────────────────────────────────────────────
+const PJ_CSS = `
+.pj-wrap { max-width: 1180px; margin: 0 auto; padding-left: 16px; padding-right: 16px; }
+
+/* Hero */
+.pj-hero { display: flex; flex-direction: column; gap: 22px; }
+.pj-hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+@media (min-width: 1024px) {
+  .pj-hero { flex-direction: row; align-items: center; justify-content: space-between; }
+  .pj-hero-text { flex: 1; }
+  .pj-hero-stats { width: 380px; flex-shrink: 0; }
+}
+
+/* Filtros */
+.pj-filter-head { display: flex; flex-direction: column; gap: 12px; margin-bottom: 14px; }
+.pj-search-input { width: 100%; box-sizing: border-box; }
+@media (min-width: 560px) {
+  .pj-filter-head { flex-direction: row; align-items: center; justify-content: space-between; }
+  .pj-search-input { width: 240px; }
+}
+.pj-filters { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: none; }
+.pj-filters::-webkit-scrollbar { height: 0; display: none; }
+
+/* Featured */
+.pj-featured-teams { display: flex; align-items: center; justify-content: center; gap: 16px; }
+
+/* Grupos */
+.pj-group-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 768px) { .pj-group-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1280px) { .pj-group-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.pj-match-card { transition: transform .15s ease, border-color .15s ease, background .15s ease; }
+.pj-match-card:hover { transform: translateY(-2px); border-color: rgba(201,168,76,0.45); background: #12233b; }
+.pj-predict-btn { transition: background .15s ease, color .15s ease; }
+.pj-predict-btn:hover { background: rgba(201,168,76,0.22); color: #fff; }
+.pj-cta { transition: filter .15s ease, transform .15s ease; }
+.pj-cta:hover { filter: brightness(1.06); transform: translateY(-1px); }
+
+/* 8 tipos */
+.pj-types-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 560px) { .pj-types-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .pj-types-grid { grid-template-columns: repeat(4, 1fr); } }
+.pj-type-card { transition: transform .15s ease, border-color .15s ease; }
+.pj-type-card:hover { transform: translateY(-2px); border-color: rgba(201,168,76,0.35); }
+
+/* Underdog */
+.pj-underdog-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+@media (min-width: 768px) { .pj-underdog-grid { grid-template-columns: repeat(4, 1fr); } }
+`;
+
 function Shell({ children }: { children: React.ReactNode }) {
   return (
     <div style={{ background: BG, color: "#fff", fontFamily: "'Outfit',sans-serif", minHeight: "100vh", paddingBottom: 40 }}>
+      <style>{PJ_CSS}</style>
       {children}
     </div>
   );
 }
 
-// ─── Tablero de partidos agrupado por grupo ──────────────────────────────────
-function MatchBoard({ matches, onPick }: { matches: Match[]; onPick: (id: string) => void }) {
+// ─── Vista de aterrizaje: hero + destacado + filtros + grupos + showcase ─────
+const sectionTitle: React.CSSProperties = { fontSize: 19, fontWeight: 900, color: "#fff", margin: "0 0 14px", letterSpacing: 0.2 };
+const pillTag: React.CSSProperties = { fontSize: 11.5, fontWeight: 700, color: MID, background: "rgba(255,255,255,0.05)", border: CARD_BORDER, borderRadius: 99, padding: "5px 11px", display: "inline-flex", alignItems: "center", gap: 5 };
+
+function LandingView({ matches, onPick }: { matches: Match[]; onPick: (id: string) => void }) {
+  const [filter, setFilter] = useState<string>("all");
+  const [query, setQuery] = useState("");
+
+  const featured = matches[0] ?? null;
+
+  const groupLetters = useMemo(() => {
+    const set = new Set(matches.map((m) => m.g));
+    return [...set].sort();
+  }, [matches]);
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return matches.filter((m) => {
+      if (q && !`${m.h} ${m.a}`.toLowerCase().includes(q)) return false;
+      switch (filter) {
+        case "all": return true;
+        case "today": return isMatchToday(m);
+        case "underdog": return tierOf(m).multiplier > 1;
+        case "x1.25": return tierOf(m).multiplier === 1.25;
+        case "x1.50": return tierOf(m).multiplier === 1.5;
+        case "x2.00": return tierOf(m).multiplier === 2;
+        default: return filter.startsWith("group:") ? m.g === filter.slice(6) : true;
+      }
+    });
+  }, [matches, filter, query]);
+
+  return (
+    <>
+      <Hero />
+      {featured && <FeaturedMatch m={featured} onPick={onPick} />}
+      <Filters filter={filter} setFilter={setFilter} query={query} setQuery={setQuery} groups={groupLetters} />
+      <GroupGrid matches={filtered} onPick={onPick} />
+      <TypesShowcase />
+      <UnderdogBand />
+    </>
+  );
+}
+
+function Hero() {
+  const stats: { icon: typeof Globe; value: string; label: string }[] = [
+    { icon: Globe, value: "48", label: "selecciones" },
+    { icon: Sparkles, value: "8", label: "predicciones" },
+    { icon: Trophy, value: "Global", label: "ranking" },
+  ];
+  return (
+    <section className="pj-wrap" style={{ paddingTop: 14, paddingBottom: 6 }}>
+      <div className="pj-hero" style={{
+        background: `radial-gradient(120% 150% at 0% 0%, ${BG2} 0%, ${BG3} 55%, ${BG} 100%)`,
+        border: CARD_BORDER, borderRadius: 22, padding: "28px 24px", position: "relative", overflow: "hidden",
+      }}>
+        <div aria-hidden style={{ position: "absolute", top: -90, right: -50, width: 280, height: 280, borderRadius: "50%", background: "radial-gradient(circle, rgba(201,168,76,0.16), transparent 70%)", pointerEvents: "none" }} />
+        <div className="pj-hero-text" style={{ position: "relative", zIndex: 1 }}>
+          <span style={{ color: GOLD, fontSize: 11, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase" }}>Mundial 2026 · Predicciones</span>
+          <h2 style={{ fontSize: 30, fontWeight: 900, lineHeight: 1.08, margin: "10px 0 10px", maxWidth: 560 }}>
+            Predice el Mundial antes que todos
+          </h2>
+          <p style={{ fontSize: 14.5, color: MID, lineHeight: 1.55, maxWidth: 520, margin: 0 }}>
+            Ocho formas de leer cada partido. Acumula puntos, escala el ranking global y gana más cuando ves la sorpresa.
+          </p>
+        </div>
+        <div className="pj-hero-stats" style={{ position: "relative", zIndex: 1 }}>
+          {stats.map((s) => {
+            const Icon = s.icon;
+            return (
+              <div key={s.label} style={{ background: "rgba(255,255,255,0.04)", border: CARD_BORDER, borderRadius: 14, padding: "16px 8px", textAlign: "center" }}>
+                <Icon size={20} color={GOLD2} />
+                <div style={{ fontSize: 21, fontWeight: 900, color: "#fff", lineHeight: 1, marginTop: 8 }}>{s.value}</div>
+                <div style={{ fontSize: 11, color: MID, marginTop: 4, textTransform: "capitalize" }}>{s.label}</div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FeaturedTeam({ flag, name }: { flag: string; name: string }) {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 9, flex: 1, minWidth: 0 }}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={flagUrlLg(flag)} alt="" style={{ width: 56, height: 38, borderRadius: 6, objectFit: "cover", boxShadow: "0 4px 14px rgba(0,0,0,0.45)" }} />
+      <span style={{ fontSize: 16, fontWeight: 800, textAlign: "center", lineHeight: 1.15 }}>{name}</span>
+    </div>
+  );
+}
+
+function FeaturedMatch({ m, onPick }: { m: Match; onPick: (id: string) => void }) {
+  const t = tierOf(m);
+  return (
+    <section className="pj-wrap" style={{ paddingTop: 20 }}>
+      <h3 style={sectionTitle}>Partido destacado</h3>
+      <div style={{
+        background: `linear-gradient(135deg, ${BG2} 0%, ${BG3} 100%)`,
+        border: "1px solid rgba(201,168,76,0.28)", borderRadius: 20, padding: "24px 22px",
+        position: "relative", overflow: "hidden",
+      }}>
+        <div aria-hidden style={{ position: "absolute", inset: 0, background: "radial-gradient(80% 120% at 50% -20%, rgba(201,168,76,0.10), transparent 60%)", pointerEvents: "none" }} />
+        <div style={{ position: "relative", display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center", marginBottom: 20 }}>
+          <span style={pillTag}>Grupo {m.g}</span>
+          <span style={pillTag}><Calendar size={12} /> {fmtKickoff(m)}</span>
+          <span style={{ ...pillTag, color: TIER_COLOR[t.label], borderColor: `${TIER_COLOR[t.label]}55` }}>
+            <TierIcon label={t.label} size={13} /> ×{t.multiplier.toFixed(2)} · {tierMood(t.multiplier)}
+          </span>
+        </div>
+        <div className="pj-featured-teams" style={{ position: "relative" }}>
+          <FeaturedTeam flag={m.hf} name={m.h} />
+          <div style={{ fontSize: 30, fontWeight: 900, color: GOLD, letterSpacing: 1, flexShrink: 0 }}>VS</div>
+          <FeaturedTeam flag={m.af} name={m.a} />
+        </div>
+        <button onClick={() => onPick(String(m.i))} className="pj-cta" style={featuredBtn}>Lanzar predicción</button>
+      </div>
+    </section>
+  );
+}
+
+function Filters({ filter, setFilter, query, setQuery, groups }: {
+  filter: string; setFilter: (f: string) => void; query: string; setQuery: (q: string) => void; groups: string[];
+}) {
+  const chips: { key: string; label: string }[] = [
+    { key: "all", label: "Todos" },
+    { key: "today", label: "Hoy" },
+    { key: "underdog", label: "Underdog" },
+    { key: "x1.25", label: "×1.25" },
+    { key: "x1.50", label: "×1.50" },
+    { key: "x2.00", label: "×2.00" },
+    ...groups.map((g) => ({ key: `group:${g}`, label: `Grupo ${g}` })),
+  ];
+  return (
+    <section className="pj-wrap" style={{ paddingTop: 26 }}>
+      <div className="pj-filter-head">
+        <h3 style={{ ...sectionTitle, margin: 0 }}>Elige tu batalla</h3>
+        <input
+          className="pj-search-input"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Buscar selección…"
+          style={{ background: BG2, border: CARD_BORDER, borderRadius: 99, color: "#fff", fontSize: 13, padding: "10px 16px", outline: "none" }}
+        />
+      </div>
+      <div className="pj-filters">
+        {chips.map((c) => {
+          const active = filter === c.key;
+          return (
+            <button
+              key={c.key}
+              onClick={() => setFilter(active && c.key !== "all" ? "all" : c.key)}
+              style={{
+                flexShrink: 0, whiteSpace: "nowrap", cursor: "pointer", fontSize: 13, fontWeight: 700,
+                padding: "8px 14px", borderRadius: 99,
+                background: active ? "rgba(201,168,76,0.16)" : BG2,
+                color: active ? GOLD2 : MID,
+                border: active ? `1px solid ${GOLD}` : CARD_BORDER,
+              }}
+            >
+              {c.label}
+            </button>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+function MatchRow({ flag, name }: { flag: string; name: string }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 9, minWidth: 0 }}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={flagUrl(flag)} alt="" style={{ width: 26, height: 17, borderRadius: 3, objectFit: "cover", flexShrink: 0 }} />
+      <span style={{ fontSize: 14.5, fontWeight: 700, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{name}</span>
+    </div>
+  );
+}
+
+function MatchCard({ m, onPick }: { m: Match; onPick: (id: string) => void }) {
+  const t = tierOf(m);
+  return (
+    <div className="pj-match-card" style={{ background: BG2, border: CARD_BORDER, borderRadius: 14, padding: 14 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 11 }}>
+        <span style={{ fontSize: 10.5, color: DIM, display: "inline-flex", alignItems: "center", gap: 4 }}><Clock size={11} /> {fmtKickoff(m)}</span>
+        <span style={{ fontSize: 10.5, fontWeight: 800, color: TIER_COLOR[t.label], display: "inline-flex", alignItems: "center", gap: 3 }}>
+          <TierIcon label={t.label} size={12} /> ×{t.multiplier.toFixed(2)}
+        </span>
+      </div>
+      <MatchRow flag={m.hf} name={m.h} />
+      <div style={{ fontSize: 10, fontWeight: 800, color: DIM, margin: "4px 0 4px 35px" }}>VS</div>
+      <MatchRow flag={m.af} name={m.a} />
+      <div style={{ fontSize: 11, color: TIER_COLOR[t.label], fontWeight: 600, margin: "11px 0" }}>{tierMood(t.multiplier)}</div>
+      <button onClick={() => onPick(String(m.i))} className="pj-predict-btn" style={{
+        width: "100%", padding: "10px", borderRadius: 10, border: "none", cursor: "pointer",
+        background: "rgba(201,168,76,0.12)", color: GOLD2, fontWeight: 800, fontSize: 13, minHeight: 44,
+      }}>
+        Predecir
+      </button>
+    </div>
+  );
+}
+
+function GroupGrid({ matches, onPick }: { matches: Match[]; onPick: (id: string) => void }) {
   const groups = useMemo(() => {
     const map = new Map<string, Match[]>();
     for (const m of matches) {
@@ -358,40 +623,30 @@ function MatchBoard({ matches, onPick }: { matches: Match[]; onPick: (id: string
     return [...map.entries()].sort((a, b) => a[0].localeCompare(b[0]));
   }, [matches]);
 
+  if (!groups.length) {
+    return (
+      <section className="pj-wrap" style={{ paddingTop: 16 }}>
+        <div style={{ textAlign: "center", color: DIM, fontSize: 14, padding: "40px 16px", background: BG3, border: CARD_BORDER, borderRadius: 16 }}>
+          No hay partidos para este filtro. Prueba con otra selección o quita los filtros.
+        </div>
+      </section>
+    );
+  }
+
   return (
-    <section style={{ maxWidth: 1100, margin: "0 auto", padding: "8px 16px 4px" }}>
-      <h2 style={{ fontSize: 14, fontWeight: 700, color: MID, marginBottom: 12 }}>Elige un partido</h2>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(260px,1fr))", gap: 16 }}>
+    <section className="pj-wrap" style={{ paddingTop: 16 }}>
+      <div className="pj-group-grid">
         {groups.map(([g, ms]) => (
-          <div key={g} style={{ background: BG3, border: CARD_BORDER, borderRadius: 16, padding: 14 }}>
-            <div style={{ fontSize: 13, fontWeight: 800, color: GOLD, marginBottom: 10, letterSpacing: 0.5 }}>Grupo {g}</div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              {ms.map((m) => {
-                const t = tierOf(m);
-                return (
-                  <button key={m.i} onClick={() => onPick(String(m.i))} style={{
-                    width: "100%", textAlign: "left", cursor: "pointer",
-                    background: BG2, border: CARD_BORDER, borderRadius: 12, padding: 11, color: "#fff",
-                  }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 7 }}>
-                      <span style={{ fontSize: 10, color: DIM }}>{fmtKickoff(m)}</span>
-                      {t.multiplier > 1
-                        ? <span style={{ fontSize: 10, fontWeight: 700, color: GOLD, display: "inline-flex", alignItems: "center", gap: 3 }}><TierIcon label={t.label} size={13} /> ×{t.multiplier.toFixed(2)}</span>
-                        : <span title={t.label} style={{ display: "inline-flex" }}><TierIcon label={t.label} size={14} /></span>}
-                    </div>
-                    <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 5 }}>
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={flagUrl(m.hf)} alt="" style={{ width: 22, height: 15, borderRadius: 2, objectFit: "cover" }} />
-                      <span style={{ fontSize: 13.5, fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{m.h}</span>
-                    </div>
-                    <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={flagUrl(m.af)} alt="" style={{ width: 22, height: 15, borderRadius: 2, objectFit: "cover" }} />
-                      <span style={{ fontSize: 13.5, fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{m.a}</span>
-                    </div>
-                  </button>
-                );
-              })}
+          <div key={g} style={{ background: BG3, border: CARD_BORDER, borderRadius: 18, padding: 16 }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 13 }}>
+              <span style={{ fontSize: 14, fontWeight: 900, color: GOLD, letterSpacing: 0.5, display: "inline-flex", alignItems: "center", gap: 8 }}>
+                <span style={{ width: 26, height: 26, borderRadius: 8, background: "rgba(201,168,76,0.14)", display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 13 }}>{g}</span>
+                Grupo {g}
+              </span>
+              <span style={{ fontSize: 11, color: DIM, fontWeight: 600 }}>{ms.length} {ms.length === 1 ? "partido" : "partidos"}</span>
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              {ms.map((m) => <MatchCard key={m.i} m={m} onPick={onPick} />)}
             </div>
           </div>
         ))}
@@ -400,83 +655,74 @@ function MatchBoard({ matches, onPick }: { matches: Match[]; onPick: (id: string
   );
 }
 
-// ─── Estado vacío: showcase de los 8 tipos + Modo Underdog ───────────────────
-function EmptyShowcase() {
-  const tiers = [
-    { label: "Estelar", mult: "×1.0", desc: "Favorito claro", color: GREEN },
-    { label: "Bronce", mult: "×1.25", desc: "Brecha media", color: "#cd7f32" },
-    { label: "Oro", mult: "×1.5", desc: "Sorpresa probable", color: GOLD },
-    { label: "Diamante", mult: "×2.0", desc: "Batacazo histórico", color: "#38bdf8" },
-  ];
+function TypesShowcase() {
   return (
-    <section style={{ maxWidth: 1100, margin: "0 auto", padding: "16px 16px 60px" }}>
-      <div style={{
-        background: `linear-gradient(135deg, ${BG2} 0%, ${BG3} 100%)`,
-        border: CARD_BORDER, borderRadius: 20, padding: "28px 24px", textAlign: "center", marginBottom: 24,
-      }}>
-        <div style={{ fontSize: 13, fontWeight: 700, color: GOLD, letterSpacing: 1, textTransform: "uppercase" }}>
-          Predicciones ZonaMundial
-        </div>
-        <h2 style={{ fontSize: 26, fontWeight: 900, margin: "8px 0 6px", color: "#fff" }}>
-          Elige un partido y demuestra que sabes de fútbol
-        </h2>
-        <p style={{ fontSize: 15, color: MID, maxWidth: 620, margin: "0 auto", lineHeight: 1.5 }}>
-          8 formas distintas de predecir cada partido. Acumula puntos, sube en el ranking y desbloquea
-          el multiplicador <strong style={{ color: GOLD }}>Modo Underdog</strong> cuando apuestes por el menos favorito.
-        </p>
-      </div>
-
-      <h3 style={{ fontSize: 14, fontWeight: 700, color: MID, marginBottom: 12 }}>Los 8 tipos de predicción</h3>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(240px,1fr))", gap: 14, marginBottom: 32 }}>
+    <section className="pj-wrap" style={{ paddingTop: 40 }}>
+      <h3 style={sectionTitle}>Los 8 tipos de predicción</h3>
+      <p style={{ fontSize: 13.5, color: MID, margin: "-6px 0 18px", maxWidth: 560, lineHeight: 1.5 }}>
+        Cada partido, ocho maneras distintas de demostrar que sabes de fútbol.
+      </p>
+      <div className="pj-types-grid">
         {PREDICTION_TYPES.map((type) => {
           const meta = TYPE_META[type];
           const TypeIcon = TYPE_ICON[type];
           return (
-            <div key={type} style={{
-              background: BG2, border: CARD_BORDER, borderRadius: 14, padding: 16,
-              borderTop: `2px solid ${meta.color}`,
-            }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+            <div key={type} className="pj-type-card" style={{ background: BG2, border: CARD_BORDER, borderRadius: 16, padding: 16, borderTop: `2px solid ${meta.color}` }}>
+              <div style={{ width: 42, height: 42, borderRadius: 12, background: `${meta.color}22`, display: "inline-flex", alignItems: "center", justifyContent: "center", marginBottom: 11 }}>
                 <TypeIcon size={22} color={meta.color} />
-                <span style={{ fontSize: 15, fontWeight: 700, color: "#fff" }}>{meta.label}</span>
               </div>
-              <p style={{ fontSize: 12.5, color: MID, lineHeight: 1.45, margin: "0 0 10px", minHeight: 36 }}>{meta.blurb}</p>
+              <div style={{ fontSize: 15, fontWeight: 800, color: "#fff", marginBottom: 5 }}>{meta.label}</div>
+              <p style={{ fontSize: 12.5, color: MID, lineHeight: 1.45, margin: "0 0 12px", minHeight: 36 }}>{meta.blurb}</p>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <span style={{ fontSize: 11, fontWeight: 700, color: meta.color }}>
-                  {meta.minPoints} a {meta.maxPoints} pts
-                </span>
-                <span style={{ fontSize: 10, fontWeight: 600, color: DIM, background: "rgba(255,255,255,0.05)", padding: "3px 8px", borderRadius: 99 }}>
-                  {meta.difficulty}
-                </span>
+                <span style={{ fontSize: 11.5, fontWeight: 800, color: meta.color }}>{meta.minPoints}–{meta.maxPoints} pts</span>
+                <span style={{ fontSize: 10, fontWeight: 700, color: DIM, background: "rgba(255,255,255,0.05)", padding: "3px 9px", borderRadius: 99 }}>{meta.difficulty}</span>
               </div>
             </div>
           );
         })}
       </div>
+    </section>
+  );
+}
 
-      <h3 style={{ fontSize: 14, fontWeight: 700, color: MID, marginBottom: 4, display: "flex", alignItems: "center", gap: 6 }}>
-        Modo Underdog <Gem size={15} color="#38bdf8" />
-      </h3>
-      <p style={{ fontSize: 12.5, color: DIM, marginBottom: 12 }}>
-        Cuanto mayor sea la diferencia de ranking FIFA entre los equipos, mayor el multiplicador de puntos por acertar.
-      </p>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(180px,1fr))", gap: 12 }}>
-        {tiers.map((t) => (
-          <div key={t.label} style={{
-            background: BG2, border: CARD_BORDER, borderRadius: 14, padding: "14px 16px",
-            display: "flex", alignItems: "center", gap: 12,
-          }}>
-            <TierIcon label={t.label} size={26} />
-            <div>
-              <div style={{ fontSize: 15, fontWeight: 800, color: t.color }}>{t.label} <span style={{ color: "#fff" }}>{t.mult}</span></div>
-              <div style={{ fontSize: 11.5, color: MID }}>{t.desc}</div>
+function UnderdogBand() {
+  const tiers = [
+    { label: "Estelar", mult: "×1.0", desc: "Favorito claro" },
+    { label: "Bronce", mult: "×1.25", desc: "Partido abierto" },
+    { label: "Oro", mult: "×1.5", desc: "Sorpresa posible" },
+    { label: "Diamante", mult: "×2.0", desc: "Batacazo histórico" },
+  ];
+  return (
+    <section className="pj-wrap" style={{ paddingTop: 40, paddingBottom: 60 }}>
+      <div style={{ background: `linear-gradient(135deg, ${BG2}, ${BG3})`, border: CARD_BORDER, borderRadius: 20, padding: "24px 22px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 7 }}>
+          <Gem size={20} color="#38bdf8" />
+          <h3 style={{ fontSize: 18, fontWeight: 900, margin: 0 }}>Gana más si ves la sorpresa</h3>
+        </div>
+        <p style={{ fontSize: 13, color: MID, margin: "0 0 18px", maxWidth: 600, lineHeight: 1.5 }}>
+          Cuanto mayor la diferencia de ranking FIFA entre los equipos, mayor el multiplicador de puntos por acertar. Atrévete con el menos favorito.
+        </p>
+        <div className="pj-underdog-grid">
+          {tiers.map((t) => (
+            <div key={t.label} style={{ background: "rgba(255,255,255,0.04)", border: `1px solid ${TIER_COLOR[t.label]}3a`, borderRadius: 14, padding: "16px 14px" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 9 }}>
+                <TierIcon label={t.label} size={22} />
+                <span style={{ fontSize: 18, fontWeight: 900, color: TIER_COLOR[t.label] }}>{t.mult}</span>
+              </div>
+              <div style={{ fontSize: 14, fontWeight: 800, color: "#fff" }}>{t.label}</div>
+              <div style={{ fontSize: 12, color: MID, marginTop: 2 }}>{t.desc}</div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
 }
+
+const featuredBtn: React.CSSProperties = {
+  position: "relative", width: "100%", marginTop: 22, padding: "14px", borderRadius: 12, border: "none", cursor: "pointer",
+  background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: BG, fontWeight: 900, fontSize: 15, minHeight: 48,
+};
 
 function MatchHeader({ m, state }: { m: Match; state: MatchState | null }) {
   const t = tierOf(m);

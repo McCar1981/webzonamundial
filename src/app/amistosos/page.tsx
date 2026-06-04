@@ -9,7 +9,7 @@
 
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { subscribeToPush, getNotificationPermission } from "@/lib/push-client";
 import type {
   FriendlyEvent,
@@ -18,6 +18,7 @@ import type {
   FriendlyLineupPlayer,
   FriendlySnapshot,
   FriendlyStat,
+  FriendlyTeam,
 } from "@/lib/friendlies/types";
 import { isFinishedStatus, isLiveStatus } from "@/lib/friendlies/types";
 
@@ -282,9 +283,84 @@ function InfoLine({ label, value }: { label: string; value: string }) {
   );
 }
 
+interface GoalCeleb {
+  team: FriendlyTeam;
+  player?: string;
+  own: boolean;
+  key: number;
+}
+
+/** Celebración a pantalla completa cuando cae un gol (overlay sobre el detalle). */
+function GoalCelebration({ celeb }: { celeb: GoalCeleb }) {
+  const confetti = useMemo(() => {
+    const palette = [GOLD, OFF, BLUE, "#ffffff", "#22c55e", "#ff5a8a"];
+    return Array.from({ length: 48 }).map((_, i) => {
+      const ang = Math.random() * Math.PI * 2;
+      const dist = 26 + Math.random() * 40;
+      return {
+        id: i,
+        tx: Math.cos(ang) * dist,
+        ty: Math.sin(ang) * dist + 20,
+        rot: Math.random() * 720 - 360,
+        color: palette[i % palette.length],
+        dur: 1.8 + Math.random() * 1.4,
+        delay: Math.random() * 0.2,
+        w: 7 + Math.random() * 6,
+        h: 10 + Math.random() * 8,
+        round: Math.random() < 0.4,
+      };
+    });
+  }, [celeb.key]);
+
+  return (
+    <div
+      key={celeb.key}
+      style={{ position: "fixed", inset: 0, zIndex: 60, display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none", overflow: "hidden" }}
+    >
+      <div className="zm-goal-flash" />
+      {confetti.map((c) => (
+        <span
+          key={c.id}
+          className="zm-conf"
+          style={{
+            background: c.color,
+            width: c.w,
+            height: c.h,
+            borderRadius: c.round ? "50%" : 2,
+            animationDuration: `${c.dur}s`,
+            animationDelay: `${c.delay}s`,
+            ["--tx" as string]: `${c.tx}vw`,
+            ["--ty" as string]: `${c.ty}vh`,
+            ["--r" as string]: `${c.rot}deg`,
+          }}
+        />
+      ))}
+      <div className="zm-goal-card">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={celeb.team.logo} alt="" width={72} height={72} style={{ filter: "drop-shadow(0 6px 16px rgba(0,0,0,.6))" }} />
+        <div className="zm-goal-word">¡GOL!</div>
+        <div style={{ display: "flex", alignItems: "center", flexDirection: "column", gap: 2 }}>
+          <span style={{ color: GOLD, fontWeight: 900, fontSize: "clamp(16px,4vw,24px)", textTransform: "uppercase", letterSpacing: 1 }}>
+            {celeb.team.name}
+          </span>
+          {celeb.player && (
+            <span style={{ color: OFF, fontWeight: 700, fontSize: "clamp(14px,3vw,18px)" }}>
+              {celeb.player}
+              {celeb.own ? " (p.p.)" : ""}
+            </span>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function DetailView({ id, onBack }: { id: number; onBack: () => void }) {
   const [snap, setSnap] = useState<FriendlySnapshot | null>(null);
   const [loading, setLoading] = useState(true);
+  const [goalCeleb, setGoalCeleb] = useState<GoalCeleb | null>(null);
+  const [tab, setTab] = useState<"crono" | "lineups" | "stats">("crono");
+  const prevGoalsRef = useRef<{ h: number; a: number } | null>(null);
 
   const load = useCallback(async () => {
     try {
@@ -303,8 +379,44 @@ function DetailView({ id, onBack }: { id: number; onBack: () => void }) {
     return () => clearInterval(t);
   }, [load]);
 
+  // Detecta goles nuevos comparando el marcador entre snapshots y dispara la
+  // celebración. En la primera carga solo memoriza (no celebra goles previos).
+  useEffect(() => {
+    if (!snap) return;
+    const h = snap.goals[0] ?? 0;
+    const a = snap.goals[1] ?? 0;
+    const prev = prevGoalsRef.current;
+    prevGoalsRef.current = { h, a };
+    if (!prev) return;
+    const scoredHome = h > prev.h;
+    const scoredAway = a > prev.a;
+    if (!scoredHome && !scoredAway) return;
+    const benef: "home" | "away" = scoredHome ? "home" : "away";
+    const goalEvents = snap.events.filter(
+      (e) => e.type === "goal" || e.type === "penalty_goal" || e.type === "own_goal",
+    );
+    const last = [...goalEvents].reverse().find((e) => {
+      const b = e.type === "own_goal" ? (e.side === "home" ? "away" : "home") : e.side;
+      return b === benef;
+    });
+    setGoalCeleb({
+      team: benef === "home" ? snap.home : snap.away,
+      player: last?.player,
+      own: last?.type === "own_goal",
+      key: Date.now(),
+    });
+  }, [snap]);
+
+  // Auto-cierre de la celebración.
+  useEffect(() => {
+    if (!goalCeleb) return;
+    const t = setTimeout(() => setGoalCeleb(null), 4200);
+    return () => clearTimeout(t);
+  }, [goalCeleb]);
+
   return (
     <div>
+      {goalCeleb && <GoalCelebration celeb={goalCeleb} />}
       <button
         type="button"
         onClick={onBack}
@@ -348,51 +460,92 @@ function DetailView({ id, onBack }: { id: number; onBack: () => void }) {
             {snap.referee && <InfoLine label="Árbitro" value={snap.referee} />}
           </section>
 
-          {snap.stats.length > 0 && (
-            <section style={{ marginBottom: 18 }}>
-              <h3 style={{ color: OFF, fontSize: 16, marginBottom: 12 }}>Estadísticas</h3>
-              <div style={{ background: PANEL, borderRadius: 14, padding: 16, border: "1px solid rgba(255,255,255,0.06)" }}>
-                {snap.stats.map((s) => (
-                  <StatRow key={s.label} s={s} />
-                ))}
+          {/* Pestañas: Cronología · Alineaciones · Estadísticas */}
+          <div style={{ display: "flex", borderBottom: "1px solid rgba(255,255,255,0.08)", marginBottom: 18 }}>
+            {([
+              ["crono", "Cronología"],
+              ["lineups", "Alineaciones"],
+              ["stats", "Estadísticas"],
+            ] as const).map(([key, label]) => {
+              const active = tab === key;
+              return (
+                <button
+                  key={key}
+                  type="button"
+                  onClick={() => setTab(key)}
+                  style={{
+                    flex: 1,
+                    background: "none",
+                    border: "none",
+                    borderBottom: `2px solid ${active ? GOLD : "transparent"}`,
+                    color: active ? OFF : GRAY,
+                    fontWeight: 700,
+                    fontSize: 13,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.04em",
+                    padding: "12px 4px",
+                    cursor: "pointer",
+                    marginBottom: -1,
+                  }}
+                >
+                  {label}
+                </button>
+              );
+            })}
+          </div>
+
+          {tab === "crono" && (
+            <section>
+              {snap.events.length === 0 ? (
+                <p style={{ color: GRAY, fontSize: 14 }}>Sin sucesos todavía.</p>
+              ) : (
+                <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: 8 }}>
+                  {snap.events.map((e) => (
+                    <li
+                      key={e.id}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 10,
+                        background: PANEL,
+                        borderRadius: 10,
+                        padding: "8px 12px",
+                        borderLeft: `3px solid ${eventColor(e.type)}`,
+                      }}
+                    >
+                      <span style={{ color: GOLD, fontWeight: 700, width: 38, flexShrink: 0, fontVariantNumeric: "tabular-nums" }}>
+                        {e.minute}&apos;{e.extra ? `+${e.extra}` : ""}
+                      </span>
+                      <span style={{ color: OFF, fontSize: 13 }}>{eventText(e)}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </section>
+          )}
+
+          {tab === "lineups" && (
+            <section>
+              <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
+                <LineupCol title={snap.home.name} lineup={snap.homeLineup} />
+                <LineupCol title={snap.away.name} lineup={snap.awayLineup} />
               </div>
             </section>
           )}
 
-          {snap.events.length > 0 && (
-            <section style={{ marginBottom: 18 }}>
-              <h3 style={{ color: OFF, fontSize: 16, marginBottom: 10 }}>Sucesos del partido</h3>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: 8 }}>
-                {snap.events.map((e) => (
-                  <li
-                    key={e.id}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 10,
-                      background: PANEL,
-                      borderRadius: 10,
-                      padding: "8px 12px",
-                      borderLeft: `3px solid ${eventColor(e.type)}`,
-                    }}
-                  >
-                    <span style={{ color: GOLD, fontWeight: 700, width: 38, flexShrink: 0, fontVariantNumeric: "tabular-nums" }}>
-                      {e.minute}&apos;{e.extra ? `+${e.extra}` : ""}
-                    </span>
-                    <span style={{ color: OFF, fontSize: 13 }}>{eventText(e)}</span>
-                  </li>
-                ))}
-              </ul>
+          {tab === "stats" && (
+            <section>
+              {snap.stats.length === 0 ? (
+                <p style={{ color: GRAY, fontSize: 14 }}>Sin estadísticas todavía.</p>
+              ) : (
+                <div style={{ background: PANEL, borderRadius: 14, padding: 16, border: "1px solid rgba(255,255,255,0.06)" }}>
+                  {snap.stats.map((s) => (
+                    <StatRow key={s.label} s={s} />
+                  ))}
+                </div>
+              )}
             </section>
           )}
-
-          <section>
-            <h3 style={{ color: OFF, fontSize: 16, marginBottom: 10 }}>Alineaciones</h3>
-            <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-              <LineupCol title={snap.home.name} lineup={snap.homeLineup} />
-              <LineupCol title={snap.away.name} lineup={snap.awayLineup} />
-            </div>
-          </section>
         </>
       )}
     </div>
@@ -458,7 +611,16 @@ export default function AmistososPage() {
 
   return (
     <main style={{ background: BG, minHeight: "100vh", color: OFF }}>
-      <style>{`@keyframes zmPulse{0%,100%{opacity:1}50%{opacity:.25}}`}</style>
+      <style>{`@keyframes zmPulse{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes zmGoalFlash{0%{opacity:.9}40%{opacity:0}60%{opacity:.4}100%{opacity:0}}
+@keyframes zmGoalIn{0%{transform:scale(.4) rotate(-6deg);opacity:0}60%{transform:scale(1.12) rotate(2deg);opacity:1}100%{transform:scale(1) rotate(0)}}
+@keyframes zmGoalShine{0%{background-position:0 0}100%{background-position:280% 0}}
+@keyframes zmConf{0%{opacity:1;transform:translate(-50%,-50%) rotate(0)}85%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--tx)),calc(-50% + var(--ty))) rotate(var(--r))}}
+.zm-goal-flash{position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,rgba(255,255,255,.9),rgba(230,200,92,.45) 35%,rgba(0,0,0,0) 70%);animation:zmGoalFlash 1s ease forwards}
+.zm-conf{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);opacity:0;animation-name:zmConf;animation-timing-function:cubic-bezier(.15,.7,.3,1);animation-fill-mode:forwards}
+.zm-goal-card{position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;animation:zmGoalIn .6s cubic-bezier(.2,1.5,.35,1) both}
+.zm-goal-word{font-weight:900;letter-spacing:3px;line-height:.9;font-size:clamp(56px,16vw,140px);background:linear-gradient(100deg,#e8d48b,#fff 20%,#E6C85C 40%,#fff 60%,#e8d48b 82%);background-size:280% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;filter:drop-shadow(0 8px 20px rgba(0,0,0,.6));animation:zmGoalShine 1.8s linear infinite}
+@media (prefers-reduced-motion: reduce){.zm-conf,.zm-goal-word{animation-duration:.01s!important}}`}</style>
       <div style={{ maxWidth: 760, margin: "0 auto", padding: "32px 16px 64px" }}>
         {openId != null ? (
           <DetailView

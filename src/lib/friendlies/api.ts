@@ -144,11 +144,24 @@ function norm(s: string): string {
     .replace(/[^a-z]/g, "");
 }
 
+/** Todos los amistosos de selecciones absolutas de una temporada (1 llamada). */
+export async function fetchFriendliesBySeason(season: number): Promise<FriendlyFixture[]> {
+  const all: FriendlyFixture[] = [];
+  for (const leagueId of FRIENDLY_LEAGUE_IDS) {
+    const rows = await apiGet<RawFixtureRow[]>(
+      `/fixtures?league=${leagueId}&season=${season}`,
+    );
+    if (rows) all.push(...rows.filter(isSeniorFriendly).map(toFixture));
+  }
+  return all;
+}
+
 /**
  * Busca el fixtureId de un amistoso por los nombres de los dos equipos (en
- * cualquier orden, comparación normalizada). Escanea los partidos en vivo y una
- * ventana de fechas (ayer/hoy/mañana, UTC). Devuelve null si no lo encuentra.
- * Pensado para "montar" el Match Center sobre un amistoso real sin mapear ids.
+ * cualquier orden, comparación normalizada). Prioriza: partido en vivo ahora >
+ * próximo programado más cercano > último jugado. Escanea toda la temporada
+ * (no solo una ventana de días), para "montar" el Match Center sobre un amistoso
+ * real sin mapear ids a mano. Devuelve null si no existe ese cruce.
  */
 export async function findFriendlyFixtureId(
   teamA: string,
@@ -164,20 +177,28 @@ export async function findFriendlyFixtureId(
     );
   };
 
+  // 1. En vivo ahora mismo.
   const live = await fetchLiveFriendlies();
-  const hit = live.find(matches);
-  if (hit) return hit.fixtureId;
+  const liveHit = live.find(matches);
+  if (liveHit) return liveHit.fixtureId;
 
-  const today = new Date();
-  for (const offset of [0, 1, -1]) {
-    const d = new Date(today);
-    d.setUTCDate(d.getUTCDate() + offset);
-    const date = d.toISOString().slice(0, 10);
-    const rows = await fetchFriendliesByDate(date);
-    const found = rows.find(matches);
-    if (found) return found.fixtureId;
-  }
-  return null;
+  // 2. Toda la temporada (año actual y el siguiente, por si cruza de año).
+  const year = new Date().getUTCFullYear();
+  const seasons = Array.from(new Set([year, year + 1]));
+  const all: FriendlyFixture[] = [];
+  for (const s of seasons) all.push(...(await fetchFriendliesBySeason(s)));
+  const cands = all.filter(matches);
+  if (cands.length === 0) return null;
+
+  const now = Date.now();
+  const ts = (f: FriendlyFixture) => new Date(f.date).getTime();
+  const upcoming = cands
+    .filter((f) => ts(f) >= now)
+    .sort((x, y) => ts(x) - ts(y));
+  if (upcoming.length > 0) return upcoming[0].fixtureId;
+
+  // Sin próximos: el más reciente ya jugado.
+  return cands.sort((x, y) => ts(y) - ts(x))[0].fixtureId;
 }
 
 /** Amistosos de selecciones absolutas de una fecha concreta (YYYY-MM-DD, UTC). */

@@ -132,6 +132,10 @@ export interface LiveSnapshot {
   status: string;
   /** Minuto transcurrido (api-football "elapsed"). */
   elapsed: number;
+  /** ISO datetime del saque (api-football "fixture.date"), si se conoce. */
+  kickoff?: string;
+  /** Nombre del árbitro, si la API lo provee. */
+  referee?: string;
   score: Pair;
   events: MatchEvent[];
   /** eventId -> texto de locución (rellenado por el narrador IA). */

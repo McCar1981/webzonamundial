@@ -82,6 +82,23 @@ function clockLabel(sec: number, finished: boolean): string {
   return `90+${mm - 90}'`;
 }
 
+// Estados api-football en los que el balón rueda (el reloj corre).
+const IN_PLAY = new Set(["1H", "2H", "ET", "BT", "P", "LIVE", "INT"]);
+function isInPlay(status: string): boolean {
+  return IN_PLAY.has(status);
+}
+
+/** Formatea el saque (ISO) a fecha y hora en la zona horaria del usuario. */
+function fmtKickoff(iso?: string): { date: string; time: string } | null {
+  if (!iso) return null;
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return null;
+  return {
+    date: d.toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long", year: "numeric" }),
+    time: d.toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit" }),
+  };
+}
+
 const EVENT_ICON: Record<string, string> = {
   goal: "⚽", penalty_goal: "⚽", own_goal: "⚽", penalty_miss: "✗",
   yellow: "🟨", second_yellow: "🟨", red: "🟥", sub: "🔁", var: "📺",
@@ -126,6 +143,8 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
   const [lastScorer, setLastScorer] = useState<{ side: "home" | "away"; player?: string; minute: number } | null>(null);
   const [secondHalf, setSecondHalf] = useState(false);
   const [finished, setFinished] = useState(false);
+  const [status, setStatus] = useState<string>("");
+  const [kickoff, setKickoff] = useState<string | undefined>(undefined);
   const [paused, setPaused] = useState(false);
   const [speed, setSpeed] = useState(12);
   const [showHeat, setShowHeat] = useState(false);
@@ -289,6 +308,8 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
         setScore(data.score);
         setStats(data.stats);
         setLog([...data.events].reverse().slice(0, 60));
+        setStatus(data.status);
+        setKickoff(data.kickoff);
         setSecondHalf(data.elapsed >= 45 || data.status === "2H" || data.status === "ET");
         setFinished(data.status === "FT" || data.status === "AET" || data.status === "PEN");
       }
@@ -324,15 +345,16 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
     return () => clearInterval(interval);
   }, [feed, paused, finished, speed, fireEvent]);
 
-  // Reloj de display (modo live)
+  // Reloj de display (modo live): solo corre con el partido EN JUEGO. Antes del
+  // saque (NS) o en descanso (HT) se queda parado.
   useEffect(() => {
-    if (!feed || feed.mode !== "live" || finished) return;
+    if (!feed || feed.mode !== "live" || finished || !isInPlay(status)) return;
     const interval = setInterval(() => {
       secRef.current += 1;
       setSec(secRef.current);
     }, 1000);
     return () => clearInterval(interval);
-  }, [feed, finished]);
+  }, [feed, finished, status]);
 
   // Polling de datos reales (modo live)
   useEffect(() => {
@@ -351,6 +373,8 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
           if (!firedRef.current.has(e.id)) fireEvent(e, true);
         }
         setScore(data.score);
+        setStatus(data.status);
+        setKickoff(data.kickoff);
         // Refresca también alineaciones/formación cuando la API las publica.
         setFeed(data);
         if (data.status === "FT" || data.status === "AET" || data.status === "PEN") setFinished(true);
@@ -593,9 +617,13 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
             {/* Marcador */}
             <div style={{ background: BG2, borderRadius: 20, border: "1px solid rgba(255,255,255,0.08)", padding: "16px clamp(10px,4vw,20px)", marginBottom: 14 }}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginBottom: 12 }}>
-                {feed.mode === "live" && !finished && <span className="mc-live-dot" />}
+                {feed.mode === "live" && isInPlay(status) && <span className="mc-live-dot" />}
                 <span style={{ fontSize: 12, fontWeight: 800, letterSpacing: 1.5, color: finished ? MID : GREEN, textTransform: "uppercase" }}>
-                  {feed.mode === "sim" ? `Simulación · ${phase}` : phase}
+                  {feed.mode === "sim"
+                    ? `Simulación · ${phase}`
+                    : feed.mode === "live" && !finished && !isInPlay(status)
+                      ? `${status === "HT" ? "Descanso" : "Previa"} · ${phase}`
+                      : phase}
                 </span>
               </div>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
@@ -606,8 +634,10 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
                     <span style={{ color: DIM, fontSize: "clamp(22px,7vw,36px)" }}>:</span>
                     <span key={`as-${score[1]}`} style={{ color: GOLD2, animation: "mcPop .4s ease" }}>{score[1]}</span>
                   </div>
-                  <div className="mc-num" style={{ marginTop: 6, fontSize: 15, fontWeight: 700, color: finished ? MID : GREEN, animation: finished ? undefined : "mcClock 1.6s ease infinite" }}>
-                    {clockLabel(sec, finished)}
+                  <div className="mc-num" style={{ marginTop: 6, fontSize: 15, fontWeight: 700, color: finished ? MID : GREEN, animation: feed.mode === "live" && isInPlay(status) && !finished ? "mcClock 1.6s ease infinite" : undefined }}>
+                    {feed.mode === "live" && !finished && !isInPlay(status)
+                      ? (status === "HT" ? "DESCANSO" : (fmtKickoff(kickoff)?.time ?? "PREVIA"))
+                      : clockLabel(sec, finished)}
                   </div>
                 </div>
                 <TeamBlock name={meta.away.name} flag={meta.away.flag} color={meta.away.color} right scorer={lastScorer?.side === "away" ? lastScorer : null} />
@@ -718,7 +748,7 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
               <MatchSummary log={log} meta={meta} />
               <Lineups lineups={lineups} meta={meta} />
               {h2h && <H2HPanel h2h={h2h} meta={meta} />}
-              <MatchInfo meta={meta} lineups={lineups} />
+              <MatchInfo meta={meta} lineups={lineups} kickoff={kickoff} referee={feed.mode === "live" ? feed.referee : undefined} />
             </div>
 
             {/* Modo destacados al final */}
@@ -1107,14 +1137,18 @@ function Lineups({ lineups, meta }: { lineups: { home: TeamLineup; away: TeamLin
   );
 }
 
-function MatchInfo({ meta, lineups }: { meta: MatchMeta; lineups: { home: TeamLineup; away: TeamLineup } }) {
+function MatchInfo({ meta, lineups, kickoff, referee }: { meta: MatchMeta; lineups: { home: TeamLineup; away: TeamLineup }; kickoff?: string; referee?: string }) {
+  // Si hay saque real (datos en vivo), mostramos fecha/hora reales en la zona
+  // horaria del usuario; si no, caemos a los del meta.
+  const ko = fmtKickoff(kickoff);
   const rows: [string, string][] = [
     ["Estadio", meta.venue],
     ["Ciudad", meta.city],
-    ["Fecha", meta.date],
-    ["Hora", meta.time],
+    ["Fecha", ko?.date ?? meta.date],
+    ["Hora", ko ? `${ko.time} (tu hora local)` : meta.time],
     ["Fase", meta.phase],
     ["Grupo", meta.group],
+    ["Árbitro", referee ?? ""],
     [`Formación ${meta.home.name}`, lineups.home.formation],
     [`Formación ${meta.away.name}`, lineups.away.formation],
   ].filter(([, v]) => v) as [string, string][];

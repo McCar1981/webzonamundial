@@ -53,7 +53,13 @@ async function apiGet<T>(path: string): Promise<T | null> {
 
 // --- Tipos crudos parciales de api-football ---
 interface RawFixture {
-  fixture: { id: number; status: { short: string; elapsed: number | null } };
+  fixture: {
+    id: number;
+    date: string;
+    referee: string | null;
+    status: { short: string; elapsed: number | null };
+    venue: { name: string | null; city: string | null };
+  };
   teams: { home: { id: number }; away: { id: number } };
   goals: { home: number | null; away: number | null };
 }
@@ -194,17 +200,50 @@ export async function fetchLiveSnapshot(
   const homeLineup = lineupFromRaw((rawLineups || []).find((l) => l.team.id === homeId));
   const awayLineup = lineupFromRaw((rawLineups || []).find((l) => l.team.id === awayId));
 
+  // Enriquecemos el meta con la sede/ciudad reales del fixture (nombres, banderas,
+  // colores y fase legible en ES se conservan del meta original).
+  const enriched: MatchMeta = {
+    ...meta,
+    venue: fx.fixture.venue.name || meta.venue,
+    city: fx.fixture.venue.city || meta.city,
+  };
+
   return {
     mode: "live",
     matchId: meta.id,
     status: fx.fixture.status.short,
     elapsed: fx.fixture.status.elapsed ?? 0,
+    kickoff: fx.fixture.date,
+    referee: fx.fixture.referee ?? undefined,
     score: [fx.goals.home ?? 0, fx.goals.away ?? 0],
     events,
     narration: {},
     stats,
     homeLineup,
     awayLineup,
+    meta: enriched,
+    updatedAt: Date.now(),
+  };
+}
+
+/**
+ * Snapshot ESTÁTICO de "por comenzar" cuando no hay datos en vivo todavía
+ * (o la API no responde). Mantiene el partido parado: estado NS, sin eventos,
+ * con un XI por defecto para pintar la cancha. Nunca simula.
+ */
+export function scheduledSnapshot(meta: MatchMeta, kickoff?: string): LiveSnapshot {
+  return {
+    mode: "live",
+    matchId: meta.id,
+    status: "NS",
+    elapsed: 0,
+    kickoff,
+    score: [0, 0],
+    events: [],
+    narration: {},
+    stats: EMPTY_STATS,
+    homeLineup: lineupFromRaw(undefined),
+    awayLineup: lineupFromRaw(undefined),
     meta,
     updatedAt: Date.now(),
   };

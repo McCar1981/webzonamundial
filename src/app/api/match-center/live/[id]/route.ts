@@ -14,7 +14,11 @@ import { NextResponse } from "next/server";
 import { kv } from "@vercel/kv";
 import { buildMeta, getFixtureId, getCachedSnapshot, cacheSnapshot } from "@/lib/match-center/store";
 import { buildSimulation } from "@/lib/match-center/simulation";
-import { fetchLiveSnapshot } from "@/lib/match-center/apiFootball";
+import { fetchLiveSnapshot, scheduledSnapshot } from "@/lib/match-center/apiFootball";
+
+// Partidos que SOLO deben mostrar datos reales (nunca simulación). Antes del
+// saque se quedan parados en "por comenzar". Por ahora, el amistoso de prueba.
+const REAL_ONLY_IDS = new Set<number>([9001]);
 import { aiNarrateBatch } from "@/lib/match-center/narrator";
 
 export const runtime = "nodejs";
@@ -69,7 +73,14 @@ export async function GET(
           headers: { "Cache-Control": "public, s-maxage=10, stale-while-revalidate=20" },
         });
       }
-      // si la API falla, caemos a simulación
+      // si la API falla, caemos a simulación (salvo partidos solo-reales)
+    }
+    // Partidos solo-reales: nunca simular. Si aún no hay datos en vivo,
+    // devolvemos un estado estático "por comenzar" con la info disponible.
+    if (REAL_ONLY_IDS.has(matchId)) {
+      return NextResponse.json(scheduledSnapshot(meta), {
+        headers: { "Cache-Control": "no-store" },
+      });
     }
   }
 

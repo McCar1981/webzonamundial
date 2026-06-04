@@ -646,9 +646,16 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
                 <TeamBlock name={meta.home.name} flag={meta.home.flag} color={meta.home.color} scorer={lastScorer?.side === "home" ? lastScorer : null} />
                 <div style={{ textAlign: "center", flex: "0 0 auto", minWidth: 88 }}>
                   <div className="mc-num" style={{ fontSize: "clamp(34px,11vw,56px)", fontWeight: 700, lineHeight: 1, display: "flex", justifyContent: "center", alignItems: "center", gap: "clamp(6px,3vw,14px)" }}>
-                    <span key={`hs-${score[0]}`} style={{ color: GOLD2, animation: "mcPop .4s ease" }}>{score[0]}</span>
-                    <span style={{ color: DIM, fontSize: "clamp(22px,7vw,36px)" }}>:</span>
-                    <span key={`as-${score[1]}`} style={{ color: GOLD2, animation: "mcPop .4s ease" }}>{score[1]}</span>
+                    {feed.mode === "live" && !finished && !isInPlay(status) && status !== "HT" ? (
+                      // Antes del saque: "VS" en vez de 0:0 (no parece resultado).
+                      <span style={{ color: GOLD2, fontSize: "clamp(26px,8vw,40px)" }}>VS</span>
+                    ) : (
+                      <>
+                        <span key={`hs-${score[0]}`} style={{ color: GOLD2, animation: "mcPop .4s ease" }}>{score[0]}</span>
+                        <span style={{ color: DIM, fontSize: "clamp(22px,7vw,36px)" }}>:</span>
+                        <span key={`as-${score[1]}`} style={{ color: GOLD2, animation: "mcPop .4s ease" }}>{score[1]}</span>
+                      </>
+                    )}
                   </div>
                   <div className="mc-num" style={{ marginTop: 6, fontSize: 15, fontWeight: 700, color: finished ? MID : GREEN, animation: feed.mode === "live" && isInPlay(status) && !finished ? "mcClock 1.6s ease infinite" : undefined }}>
                     {feed.mode === "live" && !finished && !isInPlay(status)

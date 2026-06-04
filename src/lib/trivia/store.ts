@@ -7,7 +7,7 @@
 
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { kv } from "@vercel/kv";
+import { kv } from "@/lib/kv";
 import type {
   DailyTriviaSet,
   LeaderboardEntry,

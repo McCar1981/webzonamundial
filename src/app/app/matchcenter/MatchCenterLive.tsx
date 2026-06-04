@@ -630,7 +630,11 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
               </>
             )}
 
-            {/* Marcador */}
+            {/* Marcador. Antes del saque NO se muestra: la cabecera con cuenta
+                atrás (PreMatchHero) ya hace de marcador previo, así evitamos el
+                panel "VS / 21:00" duplicado. Aparece al arrancar (en juego),
+                en descanso y al final. */}
+            {!(feed.mode === "live" && !finished && !isInPlay(status) && status !== "HT") && (
             <div style={{ background: BG2, borderRadius: 20, border: "1px solid rgba(255,255,255,0.08)", padding: "16px clamp(10px,4vw,20px)", marginBottom: 14 }}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginBottom: 12 }}>
                 {feed.mode === "live" && isInPlay(status) && <span className="mc-live-dot" />}
@@ -666,6 +670,7 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
                 <TeamBlock name={meta.away.name} flag={meta.away.flag} color={meta.away.color} right scorer={lastScorer?.side === "away" ? lastScorer : null} />
               </div>
             </div>
+            )}
 
             {/* Controles */}
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 14, alignItems: "center" }}>

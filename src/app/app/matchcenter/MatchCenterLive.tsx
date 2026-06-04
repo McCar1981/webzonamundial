@@ -11,6 +11,7 @@ import Pitch from "./Pitch";
 import MatchFx from "./MatchFx";
 import PreMatchHero from "./PreMatchHero";
 import PreMatchPreview from "./PreMatchPreview";
+import CommentsPanel from "./CommentsPanel";
 import { createSpeaker, type Speaker } from "@/lib/match-center/voice";
 import { createSound, type MatchSound } from "@/lib/match-center/sound";
 import {
@@ -793,6 +794,10 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
               {h2h && <H2HPanel h2h={h2h} meta={meta} />}
               <MatchInfo meta={meta} lineups={lineups} kickoff={kickoff} referee={feed.mode === "live" ? feed.referee : undefined} />
             </div>
+
+            {/* Comentarios en vivo + compartir (leer es público; comentar exige
+                registro). Solo en partidos reales (no en la simulación). */}
+            {feed.mode === "live" && <CommentsPanel matchId={matchId} meta={meta} />}
 
             {/* Modo destacados al final */}
             {showHighlights && (

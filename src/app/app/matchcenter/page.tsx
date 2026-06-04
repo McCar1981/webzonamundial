@@ -7,8 +7,15 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SvgIcon } from "@/components/icons";
 import ModuleLandingExtras from "@/components/app-modules/ModuleLandingExtras";
 import { MATCHES } from "@/data/matches";
+import { matchSlug } from "@/lib/match-center/slug";
 
 const J1 = MATCHES.filter((m) => m.j === 1).slice(0, 12);
+
+/** URL del Match Center por nombres (con fallback al id numérico). */
+function matchHref(id: number, sim = true): string {
+  const slug = matchSlug(id) ?? String(id);
+  return `/app/matchcenter/${slug}${sim ? "?sim=1" : ""}`;
+}
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -102,7 +109,7 @@ export default function MatchCenterPage() {
             Todo lo que pasa en el partido, en un solo lugar. Stats, alineaciones, timeline y análisis en tiempo real.
           </p>
           <div style={{ marginTop: 40, display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-            <Link href="/app/matchcenter/1?sim=1" data-hero-cta data-hover-btn style={{
+            <Link href={matchHref(1)} data-hero-cta data-hover-btn style={{
               padding: "16px 36px", borderRadius: 14,
               background: `linear-gradient(135deg,${GOLD},${GOLD2})`,
               color: BG, fontWeight: 800, fontSize: 16, textDecoration: "none", display: "inline-block",
@@ -132,7 +139,7 @@ export default function MatchCenterPage() {
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(220px,1fr))", gap: 12 }}>
             {J1.map((m) => (
-              <Link key={m.i} href={`/app/matchcenter/${m.i}?sim=1`} style={{
+              <Link key={m.i} href={matchHref(m.i)} style={{
                 display: "block", padding: 14, borderRadius: 14, background: BG2,
                 border: "1px solid rgba(255,255,255,0.07)", textDecoration: "none", color: "#fff",
               }}>

@@ -40,37 +40,8 @@ function teamMeta(name: string, flag: string): MatchTeamMeta {
   };
 }
 
-/** Normaliza un texto a slug url-safe: sin acentos, minúsculas, guiones. */
-function slugify(s: string): string {
-  return s
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-}
-
-/** Slug "bonito" de un partido a partir de los nombres (p.ej. "espana-irak"). */
-export function matchSlug(matchId: number): string | null {
-  const m = MATCHES.find((x) => x.i === matchId);
-  if (!m) return null;
-  return slugify(`${m.h}-${m.a}`);
-}
-
-/**
- * Resuelve el parámetro de ruta a un id de partido. Acepta tanto el id numérico
- * (p.ej. "9001") como el slug por nombres (p.ej. "espana-irak"). Devuelve null
- * si no corresponde a ningún partido conocido.
- */
-export function resolveMatchId(param: string): number | null {
-  if (/^\d+$/.test(param)) {
-    const n = parseInt(param, 10);
-    return MATCHES.some((x) => x.i === n) ? n : null;
-  }
-  const slug = slugify(param);
-  const m = MATCHES.find((x) => slugify(`${x.h}-${x.a}`) === slug);
-  return m ? m.i : null;
-}
+// Re-exporta los helpers de slug (definidos en módulo sin deps de servidor).
+export { matchSlug, resolveMatchId } from "./slug";
 
 /** Construye los metadatos de un partido a partir de su id (1..104). */
 export function buildMeta(matchId: number): MatchMeta | null {

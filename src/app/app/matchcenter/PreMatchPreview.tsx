@@ -6,6 +6,8 @@
 // como partido de preparación, sin inventar alineaciones, resultados ni
 // historiales. Incluye el crédito de la foto (Wikimedia Commons, CC BY-SA 3.0).
 
+import { useState } from "react";
+
 const GOLD = "#c9a84c";
 const GOLD2 = "#e8d48b";
 const MID = "#8a94b0";
@@ -13,44 +15,94 @@ const DIM = "#6a7a9a";
 const BG2 = "#0F1D32";
 
 export default function PreMatchPreview() {
+  // Colapsada por defecto para no empujar la cancha hacia abajo.
+  const [open, setOpen] = useState(false);
+
   return (
     <section
       style={{
         background: BG2,
         borderRadius: 20,
         border: "1px solid rgba(255,255,255,0.08)",
-        padding: "18px clamp(14px,4vw,26px) 20px",
+        padding: "14px clamp(14px,4vw,26px)",
         marginBottom: 14,
       }}
     >
-      <span
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
         style={{
-          display: "inline-block",
-          fontSize: 11,
-          fontWeight: 800,
-          letterSpacing: 1.4,
-          textTransform: "uppercase",
-          color: GOLD2,
-          marginBottom: 8,
+          display: "flex",
+          alignItems: "center",
+          gap: 12,
+          width: "100%",
+          background: "transparent",
+          border: "none",
+          padding: "4px 0",
+          cursor: "pointer",
+          textAlign: "left",
+          color: "inherit",
         }}
       >
-        Previa del partido
-      </span>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <span
+            style={{
+              display: "block",
+              fontSize: 11,
+              fontWeight: 800,
+              letterSpacing: 1.4,
+              textTransform: "uppercase",
+              color: GOLD2,
+              marginBottom: 4,
+            }}
+          >
+            Previa del partido
+          </span>
+          <span
+            className="mc-condensed"
+            style={{
+              display: "block",
+              fontSize: "clamp(16px,4.4vw,24px)",
+              fontWeight: 700,
+              lineHeight: 1.18,
+              color: "#fff",
+            }}
+          >
+            España–Irak: primer ensayo de preparación con la mira en 2026
+          </span>
+        </div>
+        <svg
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          aria-hidden
+          style={{
+            flexShrink: 0,
+            transition: "transform .25s ease",
+            transform: open ? "rotate(180deg)" : "rotate(0deg)",
+          }}
+        >
+          <path
+            d="M6 9l6 6 6-6"
+            stroke={GOLD2}
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </button>
 
-      <h2
-        className="mc-condensed"
-        style={{
-          fontSize: "clamp(20px,5.2vw,30px)",
-          fontWeight: 700,
-          lineHeight: 1.12,
-          margin: "0 0 14px",
-          color: "#fff",
-        }}
-      >
-        España–Irak: primer ensayo de preparación con la mira en 2026
-      </h2>
+      {!open && (
+        <p style={{ margin: "8px 0 0", fontSize: 12.5, color: MID, fontWeight: 600 }}>
+          Toca para leer la previa
+        </p>
+      )}
 
-      <div style={{ display: "flex", flexDirection: "column", gap: 12, fontSize: 15, lineHeight: 1.65, color: "#d7deec" }}>
+      {open && (
+        <>
+      <div style={{ display: "flex", flexDirection: "column", gap: 12, fontSize: 15, lineHeight: 1.65, color: "#d7deec", marginTop: 14 }}>
         <p style={{ margin: 0 }}>
           España, vigente campeona de Europa, abre su ventana de amistosos
           recibiendo a Irak en el Estadio de Riazor. Es un partido de
@@ -104,6 +156,8 @@ export default function PreMatchPreview() {
         vía Wikimedia Commons. Previa editorial con fines informativos; las
         alineaciones y novedades se confirman antes del saque.
       </p>
+        </>
+      )}
     </section>
   );
 }

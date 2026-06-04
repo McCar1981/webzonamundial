@@ -15,7 +15,7 @@ import Cosmetics from "./Cosmetics";
 import LiveMicroPicks from "./LiveMicroPicks";
 import {
   TYPE_ICON, TIER_ICON,
-  ArrowLeft, Calendar, Check, ChevronRight, Clock, Flame, Gem, Globe, Pencil, Sparkles, TrendingUp, Trophy, Users, X,
+  ArrowLeft, Calendar, Check, ChevronRight, Clock, Flame, Gem, Globe, Pencil, Radio, Sparkles, TrendingUp, Trophy, Users, X, Zap,
 } from "./icons";
 import {
   MINUTE_RANGES,
@@ -70,6 +70,26 @@ function tierMood(mult: number): string {
   if (mult >= 1.25) return "Partido abierto";
   return "Favorito claro";
 }
+
+// Frase de "evento" para el partido destacado, derivada del multiplicador.
+function matchEventLine(mult: number): string {
+  if (mult >= 2) return "Batacazo histórico esperando suceder";
+  if (mult >= 1.5) return "Partido trampa: el favorito puede caer";
+  if (mult >= 1.25) return "Partido abierto, cualquiera se lo lleva";
+  return "Duelo de favoritos, margen mínimo";
+}
+
+// Miles con separador local (2481 → "2.481").
+const fmtCount = (n: number): string => n.toLocaleString("es");
+
+// Datos del pulso de actividad (/api/predictions/pulse).
+interface ActivityPulse {
+  most_played: { match_id: string; count: number; home_team: string; away_team: string; home_flag: string; away_flag: string } | null;
+  changed_today: number;
+  predictions_today: number;
+}
+// Distribución de la manada para el ganador (/social-stats, tipo "winner").
+interface WinnerSplit { home: number; draw: number; away: number; total: number }
 
 // ¿El partido se juega hoy? (solo presentación, para el filtro "Hoy").
 function isMatchToday(m: Match): boolean {
@@ -398,6 +418,14 @@ const PJ_CSS = `
 .prediction-filters .pj-filters > button { scroll-snap-align: start; }
 .prediction-filters .pj-filters::-webkit-scrollbar { height: 0; display: none; }
 
+/* Banda "En directo" */
+.pj-live-items { display: flex; flex-direction: column; gap: 8px; }
+@media (min-width: 900px) {
+  .pj-live-items { flex-direction: row; align-items: center; gap: 22px; }
+  .pj-live-item { flex: 1; }
+  .pj-live-item + .pj-live-item { border-left: 1px solid rgba(255,255,255,0.08); padding-left: 22px; }
+}
+
 /* Featured */
 .pj-featured-teams { display: flex; align-items: center; justify-content: center; gap: 16px; }
 
@@ -448,6 +476,21 @@ const pillTag: React.CSSProperties = { fontSize: 11.5, fontWeight: 700, color: M
 function LandingView({ matches, onPick }: { matches: Match[]; onPick: (id: string) => void }) {
   const [filter, setFilter] = useState<string>("all");
   const [query, setQuery] = useState("");
+  const [pulse, setPulse] = useState<ActivityPulse | null>(null);
+  const [mine, setMine] = useState<{ counts: Record<string, number>; types_total: number } | null>(null);
+
+  useEffect(() => {
+    let alive = true;
+    fetch("/api/predictions/pulse")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j) => { if (alive && j) setPulse(j); })
+      .catch(() => {});
+    fetch("/api/predictions/mine")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j) => { if (alive && j) setMine(j); })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, []);
 
   const featured = matches[0] ?? null;
 
@@ -475,9 +518,10 @@ function LandingView({ matches, onPick }: { matches: Match[]; onPick: (id: strin
   return (
     <>
       <Hero />
-      {featured && <FeaturedMatch m={featured} onPick={onPick} />}
+      <LiveActivityBand pulse={pulse} />
+      {featured && <FeaturedMatch m={featured} onPick={onPick} pulse={pulse} />}
       <Filters filter={filter} setFilter={setFilter} query={query} setQuery={setQuery} groups={groupLetters} />
-      <GroupGrid matches={filtered} onPick={onPick} />
+      <GroupGrid matches={filtered} onPick={onPick} mine={mine} />
       <TypesShowcase />
       <UnderdogBand />
       <CtaFinal />
@@ -528,6 +572,70 @@ function Hero() {
   );
 }
 
+// Banda "En directo": pulso real de la comunidad + el XP del usuario al
+// siguiente nivel. Se oculta entera si no hay nada que mostrar.
+function LiveActivityBand({ pulse }: { pulse: ActivityPulse | null }) {
+  const [me, setMe] = useState<{ name: string; level: number; xpToNext: number } | null>(null);
+
+  useEffect(() => {
+    let alive = true;
+    fetch("/api/predictions/me")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j: { level?: { level: number; xpToNext: number }; name?: string; username?: string } | null) => {
+        if (!alive || !j?.level) return;
+        setMe({ name: j.username || j.name || "Tú", level: j.level.level, xpToNext: j.level.xpToNext });
+      })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, []);
+
+  const items: { icon: typeof Flame; node: React.ReactNode }[] = [];
+  if (pulse?.most_played && pulse.most_played.count > 0) {
+    items.push({
+      icon: Flame,
+      node: <><strong style={{ color: "#fff", fontWeight: 800 }}>{pulse.most_played.home_team} vs {pulse.most_played.away_team}</strong> es el partido más jugado</>,
+    });
+  }
+  if (pulse && pulse.changed_today > 0) {
+    items.push({
+      icon: Zap,
+      node: <><strong style={{ color: "#fff", fontWeight: 800 }}>{fmtCount(pulse.changed_today)}</strong> {pulse.changed_today === 1 ? "usuario ha cambiado" : "usuarios han cambiado"} su predicción hoy</>,
+    });
+  }
+  if (me && me.xpToNext > 0) {
+    items.push({
+      icon: Trophy,
+      node: <><strong style={{ color: "#fff", fontWeight: 800 }}>{me.name}</strong> está a {fmtCount(me.xpToNext)} XP del nivel {me.level + 1}</>,
+    });
+  }
+
+  if (!items.length) return null;
+
+  return (
+    <section className="pj-wrap" style={{ paddingTop: 14 }}>
+      <div style={{ background: BG2, border: CARD_BORDER, borderRadius: 16, padding: "12px 16px", position: "relative", overflow: "hidden" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 10 }}>
+          <span aria-hidden style={{ position: "relative", display: "inline-flex" }}>
+            <Radio size={14} color={RED} />
+          </span>
+          <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: 1.5, textTransform: "uppercase", color: RED }}>En directo en ZonaMundial</span>
+        </div>
+        <div className="pj-live-items">
+          {items.map((it, i) => {
+            const Icon = it.icon;
+            return (
+              <div key={i} className="pj-live-item" style={{ display: "flex", alignItems: "center", gap: 8, color: MID, fontSize: 13 }}>
+                <Icon size={15} color={GOLD2} style={{ flexShrink: 0 }} />
+                <span>{it.node}</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function FeaturedTeam({ flag, name }: { flag: string; name: string }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 9, flex: 1, minWidth: 0 }}>
@@ -538,8 +646,27 @@ function FeaturedTeam({ flag, name }: { flag: string; name: string }) {
   );
 }
 
-function FeaturedMatch({ m, onPick }: { m: Match; onPick: (id: string) => void }) {
+function FeaturedMatch({ m, onPick, pulse }: { m: Match; onPick: (id: string) => void; pulse: ActivityPulse | null }) {
   const t = tierOf(m);
+  const [split, setSplit] = useState<WinnerSplit | null>(null);
+
+  useEffect(() => {
+    let alive = true;
+    fetch(`/api/predictions/match/${m.i}/social-stats`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j: { total_predictions: number; stats: Record<string, { option_key: string; count: number; pct: number }[]> } | null) => {
+        if (!alive || !j) return;
+        const w = j.stats?.winner ?? [];
+        const get = (k: string) => Math.round(w.find((o) => o.option_key === k)?.pct ?? 0);
+        setSplit({ home: get("home"), draw: get("draw"), away: get("away"), total: j.total_predictions ?? 0 });
+      })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, [m.i]);
+
+  const isMostPlayed = pulse?.most_played?.match_id === String(m.i);
+  const hasVotes = split != null && split.total > 0;
+
   return (
     <section className="pj-wrap featured-match" style={{ paddingTop: 20 }}>
       <h3 style={sectionTitle}>Partido destacado</h3>
@@ -549,19 +676,57 @@ function FeaturedMatch({ m, onPick }: { m: Match; onPick: (id: string) => void }
         position: "relative", overflow: "hidden",
       }}>
         <div aria-hidden style={{ position: "absolute", inset: 0, background: "radial-gradient(80% 120% at 50% -20%, rgba(201,168,76,0.10), transparent 60%)", pointerEvents: "none" }} />
-        <div style={{ position: "relative", display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center", marginBottom: 20 }}>
+        <div style={{ position: "relative", display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center", marginBottom: 18 }}>
           <span style={pillTag}>Grupo {m.g}</span>
           <span style={pillTag}><Calendar size={12} /> {fmtKickoff(m)}</span>
           <span style={{ ...pillTag, color: TIER_COLOR[t.label], borderColor: `${TIER_COLOR[t.label]}55` }}>
             <TierIcon label={t.label} size={13} /> ×{t.multiplier.toFixed(2)} · {tierMood(t.multiplier)}
           </span>
+          {isMostPlayed && (
+            <span style={{ ...pillTag, color: "#1a1206", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, borderColor: GOLD, fontWeight: 800 }}>
+              <Flame size={12} /> Más jugado ahora
+            </span>
+          )}
         </div>
+
         <div className="pj-featured-teams" style={{ position: "relative" }}>
           <FeaturedTeam flag={m.hf} name={m.h} />
           <div style={{ fontSize: 30, fontWeight: 900, color: GOLD, letterSpacing: 1, flexShrink: 0 }}>VS</div>
           <FeaturedTeam flag={m.af} name={m.a} />
         </div>
+
+        {/* Texto-evento + distribución de la manada */}
+        <div style={{ position: "relative", marginTop: 18, textAlign: "center" }}>
+          <div style={{ color: GOLD2, fontSize: 13, fontWeight: 700 }}>{matchEventLine(t.multiplier)}</div>
+          {hasVotes ? (
+            <>
+              <div style={{ color: MID, fontSize: 12.5, marginTop: 8 }}>La manada está dividida:</div>
+              <div style={{ fontSize: 13.5, fontWeight: 800, marginTop: 4, display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 4 }}>
+                <span style={{ color: GREEN }}>{split!.home}% {m.h}</span>
+                <span style={{ color: DIM }}>·</span>
+                <span style={{ color: MID }}>{split!.draw}% Empate</span>
+                <span style={{ color: DIM }}>·</span>
+                <span style={{ color: "#38bdf8" }}>{split!.away}% {m.a}</span>
+              </div>
+              {/* Mini barra de tendencia */}
+              <div style={{ display: "flex", height: 8, borderRadius: 99, overflow: "hidden", marginTop: 10, border: CARD_BORDER, maxWidth: 460, marginLeft: "auto", marginRight: "auto" }}>
+                <div style={{ width: `${split!.home}%`, background: GREEN }} />
+                <div style={{ width: `${split!.draw}%`, background: MID }} />
+                <div style={{ width: `${split!.away}%`, background: "#38bdf8" }} />
+              </div>
+            </>
+          ) : (
+            <div style={{ color: MID, fontSize: 12.5, marginTop: 8 }}>Sé el primero en predecir este partido.</div>
+          )}
+        </div>
+
         <button onClick={() => onPick(String(m.i))} className="pj-cta" style={featuredBtn} aria-label={`Lanzar predicción para ${m.h} contra ${m.a}`}>Lanzar predicción</button>
+
+        {hasVotes && (
+          <div style={{ position: "relative", textAlign: "center", marginTop: 10, color: DIM, fontSize: 11.5, display: "flex", alignItems: "center", justifyContent: "center", gap: 5 }}>
+            <Users size={12} /> {fmtCount(split!.total)} predicciones
+          </div>
+        )}
       </div>
     </section>
   );
@@ -628,38 +793,65 @@ function TeamLine({ flag, name }: { flag: string; name: string }) {
   );
 }
 
-function MatchCard({ m, onPick }: { m: Match; onPick: (id: string) => void }) {
+const AMBER = "#f59e0b";
+
+function MatchCard({ m, onPick, predicted, typesTotal }: { m: Match; onPick: (id: string) => void; predicted: number; typesTotal: number }) {
   const t = tierOf(m);
+  const tierColor = TIER_COLOR[t.label];
+
+  // Estado del usuario en este partido.
+  const state: "play" | "partial" | "done" =
+    predicted >= typesTotal && typesTotal > 0 ? "done" : predicted > 0 ? "partial" : "play";
+  const stateLabel = state === "done" ? "Ya predicho" : state === "play" ? "Aún sin predecir" : "Pendiente";
+
   return (
     <button
       className="match-row"
       onClick={() => onPick(String(m.i))}
-      aria-label={`Predecir ${m.h} contra ${m.a}, ${fmtKickoff(m)}, multiplicador ×${t.multiplier.toFixed(2)}`}
+      aria-label={`${stateLabel}. Predecir ${m.h} contra ${m.a}, ${fmtKickoff(m)}, multiplicador ×${t.multiplier.toFixed(2)}, ${tierMood(t.multiplier)}`}
       style={{
         display: "block", width: "100%", textAlign: "left", cursor: "pointer", color: "#fff",
         background: BG2, border: CARD_BORDER, borderRadius: 14, padding: 14,
       }}
     >
+      {/* Fila superior: hora + multiplicador como recompensa */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 11 }}>
         <span style={{ fontSize: 10.5, color: DIM, display: "inline-flex", alignItems: "center", gap: 4 }}><Clock size={11} /> {fmtKickoff(m)}</span>
-        <span style={{ fontSize: 10.5, fontWeight: 800, color: TIER_COLOR[t.label], display: "inline-flex", alignItems: "center", gap: 3 }}>
+        <span style={{
+          fontSize: 12, fontWeight: 900, color: tierColor, display: "inline-flex", alignItems: "center", gap: 4,
+          background: `${tierColor}1f`, border: `1px solid ${tierColor}55`, borderRadius: 99, padding: "3px 9px",
+        }}>
           <TierIcon label={t.label} size={12} /> ×{t.multiplier.toFixed(2)}
         </span>
       </div>
+
       <TeamLine flag={m.hf} name={m.h} />
       <div style={{ fontSize: 10, fontWeight: 800, color: DIM, margin: "4px 0 4px 35px" }}>VS</div>
       <TeamLine flag={m.af} name={m.a} />
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 12 }}>
-        <span style={{ fontSize: 11, color: TIER_COLOR[t.label], fontWeight: 600 }}>{tierMood(t.multiplier)}</span>
-        <span className="match-row-chevron" style={{ color: MID, display: "inline-flex", alignItems: "center", gap: 3, fontSize: 11.5, fontWeight: 700 }}>
-          Predecir <ChevronRight size={16} />
-        </span>
+
+      {/* Fila inferior: mood (recompensa) + estado/acción */}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: 12 }}>
+        <span style={{ fontSize: 11, color: tierColor, fontWeight: 700 }}>{tierMood(t.multiplier)}</span>
+        {state === "done" ? (
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 800, color: GREEN, border: `1px solid ${GREEN}66`, background: "rgba(34,197,94,0.12)", borderRadius: 99, padding: "5px 11px" }}>
+            <Check size={13} /> Ya predicho
+          </span>
+        ) : state === "partial" ? (
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 800, color: AMBER, border: `1px solid ${AMBER}66`, background: "rgba(245,158,11,0.12)", borderRadius: 99, padding: "5px 11px" }}>
+            <Clock size={12} /> Pendiente · {predicted}/{typesTotal}
+          </span>
+        ) : (
+          <span className="match-row-chevron" style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 900, color: "#1a1206", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, borderRadius: 99, padding: "5px 12px" }}>
+            Jugar <ChevronRight size={15} />
+          </span>
+        )}
       </div>
     </button>
   );
 }
 
-function GroupGrid({ matches, onPick }: { matches: Match[]; onPick: (id: string) => void }) {
+function GroupGrid({ matches, onPick, mine }: { matches: Match[]; onPick: (id: string) => void; mine: { counts: Record<string, number>; types_total: number } | null }) {
+  const typesTotal = mine?.types_total ?? PREDICTION_TYPES.length;
   const groups = useMemo(() => {
     const map = new Map<string, Match[]>();
     for (const m of matches) {
@@ -693,7 +885,7 @@ function GroupGrid({ matches, onPick }: { matches: Match[]; onPick: (id: string)
               <span style={{ fontSize: 11, color: DIM, fontWeight: 600 }}>{ms.length} {ms.length === 1 ? "partido" : "partidos"}</span>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              {ms.map((m) => <MatchCard key={m.i} m={m} onPick={onPick} />)}
+              {ms.map((m) => <MatchCard key={m.i} m={m} onPick={onPick} predicted={mine?.counts[String(m.i)] ?? 0} typesTotal={typesTotal} />)}
             </div>
           </div>
         ))}

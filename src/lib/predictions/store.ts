@@ -154,6 +154,21 @@ export async function getMatchPredictions(userId: string, matchId: string): Prom
   return (data as PredictionRow[] | null) ?? [];
 }
 
+/**
+ * Cuántas predicciones (de los 8 tipos) ha hecho el usuario en cada partido.
+ * Devuelve un mapa match_id → nº de tipos predichos. Para marcar las cards del
+ * tablero como "Jugar" / "Pendiente" / "Ya predicho". Lectura propia (RLS).
+ */
+export async function predictedCountsByUser(userId: string): Promise<Record<string, number>> {
+  const supa = createSupabaseServerClient();
+  const { data } = await supa.from("predictions").select("match_id").eq("user_id", userId);
+  const counts: Record<string, number> = {};
+  for (const r of (data ?? []) as { match_id: string }[]) {
+    counts[r.match_id] = (counts[r.match_id] ?? 0) + 1;
+  }
+  return counts;
+}
+
 // ─── Estadísticas sociales (tipo 8) ──────────────────────────────────────────
 export function optionKeyForStats(type: PredictionType, data: PredictionData): string {
   switch (type) {
@@ -216,6 +231,45 @@ export async function getSocialStats(matchId: string): Promise<SocialStatsOut> {
   }
   for (const k of Object.keys(stats)) stats[k].sort((a, b) => b.count - a.count);
   return { total_predictions: total, stats };
+}
+
+// ─── Pulso de actividad (banda "En directo") ─────────────────────────────────
+export interface ActivityPulse {
+  most_played: { match_id: string; count: number } | null;
+  changed_today: number;
+  predictions_today: number;
+}
+/**
+ * Agregados de actividad de toda la comunidad para la banda "En directo":
+ * partido más jugado, cuántas predicciones se cambiaron hoy y cuántas se
+ * crearon hoy (UTC). Solo lectura, cruza usuarios → cliente admin.
+ */
+export async function getActivityPulse(): Promise<ActivityPulse> {
+  const admin = adminClient();
+  const start = new Date();
+  start.setUTCHours(0, 0, 0, 0);
+  const iso = start.toISOString();
+
+  const [socialRes, changedRes, todayRes] = await Promise.all([
+    admin.from("prediction_social_stats").select("match_id,vote_count").eq("prediction_type", "winner"),
+    admin.from("predictions").select("id", { count: "exact", head: true }).gte("changed_at", iso),
+    admin.from("predictions").select("id", { count: "exact", head: true }).gte("created_at", iso),
+  ]);
+
+  const totals = new Map<string, number>();
+  for (const r of (socialRes.data ?? []) as { match_id: string; vote_count: number }[]) {
+    totals.set(r.match_id, (totals.get(r.match_id) ?? 0) + (r.vote_count ?? 0));
+  }
+  let most_played: ActivityPulse["most_played"] = null;
+  for (const [match_id, count] of totals) {
+    if (!most_played || count > most_played.count) most_played = { match_id, count };
+  }
+
+  return {
+    most_played,
+    changed_today: changedRes.count ?? 0,
+    predictions_today: todayRes.count ?? 0,
+  };
 }
 
 // ─── Resolución de partido (interno / worker) ────────────────────────────────

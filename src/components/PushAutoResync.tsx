@@ -24,8 +24,16 @@ export default function PushAutoResync() {
     (async () => {
       if (!isPushSupported()) return;
       if (typeof Notification === "undefined") return;
-      // Solo si el usuario ya concedió permiso (no perseguimos visitas
-      // anónimas — eso lo hace PushOptInBanner).
+
+      // Registrar el Service Worker SIEMPRE, aunque el usuario no tenga
+      // notificaciones concedidas. Es requisito para que el navegador
+      // ofrezca instalar la PWA (dispara beforeinstallprompt). Antes el SW
+      // solo se registraba con permiso de push, así que a los visitantes
+      // nuevos no les aparecía la opción de instalar en el móvil.
+      const reg = await ensureServiceWorker();
+      if (!reg || cancelled) return;
+
+      // A partir de aquí, lógica de resync de push (requiere permiso).
       if (Notification.permission !== "granted") return;
 
       // No-spam: solo intentar resync cada 24h por dispositivo.
@@ -35,9 +43,6 @@ export default function PushAutoResync() {
       } catch {
         /* localStorage no disponible — seguimos */
       }
-
-      const reg = await ensureServiceWorker();
-      if (!reg || cancelled) return;
 
       const currentSub = await reg.pushManager.getSubscription();
       if (!currentSub || cancelled) {

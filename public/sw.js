@@ -21,6 +21,14 @@ self.addEventListener("activate", (event) => {
   event.waitUntil(self.clients.claim());
 });
 
+// Fetch handler (passthrough, sin caché). Chrome EXIGE que el SW tenga un
+// manejador "fetch" para considerar la app instalable y disparar
+// beforeinstallprompt. No interceptamos nada: dejamos que la red resuelva
+// cada petición con normalidad.
+self.addEventListener("fetch", () => {
+  // no-op: sin respondWith → comportamiento de red por defecto.
+});
+
 self.addEventListener("push", (event) => {
   if (!event.data) {
     console.warn("[sw] push received without data");

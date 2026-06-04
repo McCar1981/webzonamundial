@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { createPortal } from "react-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
 import type { Translations } from "@/i18n/translations";
-import PromoPopup from "@/components/PromoPopup";
 import PushAutoResync from "@/components/PushAutoResync";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SocialDock } from "@/components/SocialDock";
@@ -392,9 +391,6 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
 
       {/* ═══ LATERAL ADS — Desktop only, append directly to body to escape scroll container ═══ */}
       <LateralAds />
-
-      {/* ═══ PROMO POPUP (global) ═══ */}
-      <PromoPopup />
 
       {/* Resincroniza la suscripción push del navegador con el backend
           una vez cada 24h por dispositivo. Útil porque Chrome móvil rota

@@ -733,6 +733,7 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
                   shotFx={shotFx}
                   attackBias={(stats.possession[0] || 50) / 100}
                   active={feed.mode === "live" ? isInPlay(status) : !finished && !paused}
+                  roam={feed.mode === "sim"}
                   flip={secondHalf}
                   intensity={Math.min(1, Math.abs(momentum) * 0.85 + 0.15)}
                   showHeat={showHeat}

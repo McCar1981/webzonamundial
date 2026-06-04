@@ -177,6 +177,10 @@ interface PitchProps {
   attackBias?: number;
   /** El balón deambula solo cuando está activo (sim corriendo / en vivo). */
   active?: boolean;
+  /** Movimiento simulado del balón/jugadores. En vivo (datos reales sin
+   *  coordenadas de jugada) se desactiva: el balón no deambula y los jugadores
+   *  mantienen su formación, para no inventar acciones que no han ocurrido. */
+  roam?: boolean;
   /** Segunda mitad: los equipos cambian de lado. */
   flip?: boolean;
   /** Energía del público 0..1 (deriva del momentum). */
@@ -250,6 +254,7 @@ export default function Pitch({
   shotFx,
   attackBias = 0.5,
   active = true,
+  roam = true,
   flip = false,
   intensity = 0.3,
   showHeat = false,
@@ -330,6 +335,7 @@ export default function Pitch({
   const biasRef = useRef(attackBias);
   const flipRef = useRef(flip);
   const activeRef = useRef(active);
+  const roamRef = useRef(roam);
   const playersRef = useRef(players);
   const history = useRef<{ x: number; y: number }[]>([]);
   const angle = useRef(0);
@@ -350,6 +356,7 @@ export default function Pitch({
   useEffect(() => { biasRef.current = attackBias; }, [attackBias]);
   useEffect(() => { flipRef.current = flip; }, [flip]);
   useEffect(() => { activeRef.current = active; }, [active]);
+  useEffect(() => { roamRef.current = roam; }, [roam]);
   useEffect(() => { playersRef.current = players; }, [players]);
 
   // Un evento fija el objetivo del balón y lo "ancla" un instante.
@@ -392,7 +399,7 @@ export default function Pitch({
       const anchored = now < eventHold.current;
       const sh = shot.current;
 
-      if (activeRef.current && !anchored && (!sh || !sh.active)) {
+      if (activeRef.current && roamRef.current && !anchored && (!sh || !sh.active)) {
         roamAcc.current += dt;
         if (roamAcc.current >= roamInt.current) {
           roamAcc.current = 0;
@@ -463,8 +470,10 @@ export default function Pitch({
         }
       }
 
-      // Cada jugador: deambular individual + reacción al balón.
-      const idleK = activeRef.current ? 1 : 0.3;
+      // Cada jugador: deambular individual + reacción al balón. En vivo (roam
+      // off) no inventamos movimiento: formación quieta con respiración mínima.
+      const idleK = roamRef.current ? (activeRef.current ? 1 : 0.3) : 0.12;
+      const reactK = roamRef.current ? 1 : 0;
       const list = playersRef.current;
       const cur: { x: number; y: number; side: string; gk: boolean }[] = [];
       for (let i = 0; i < list.length; i++) {
@@ -474,8 +483,8 @@ export default function Pitch({
         const maxS = pl.gk ? 26 : 74;
         const wx = Math.sin(now / pl.perX + pl.ph) * pl.ampX * idleK;
         const wy = Math.cos(now / pl.perY + pl.ph * 1.3) * pl.ampY * idleK;
-        const ox = clamp((bxp - pl.bx) * pl.react + wx, -maxS, maxS);
-        const oy = clamp((byp - pl.by) * pl.react + wy, -maxS, maxS);
+        const ox = clamp((bxp - pl.bx) * pl.react * reactK + wx, -maxS, maxS);
+        const oy = clamp((byp - pl.by) * pl.react * reactK + wy, -maxS, maxS);
         const cxp = pl.bx + ox, cyp = pl.by + oy;
         cur.push({ x: cxp, y: cyp, side: pl.side, gk: pl.gk });
         if (g) g.setAttribute("transform", `translate(${cxp},${cyp})`);

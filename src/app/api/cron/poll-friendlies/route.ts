@@ -234,8 +234,9 @@ export async function GET(req: Request) {
       pushes++;
     }
 
-    // Inicio del partido.
-    if (!prev.startSent && isLiveStatus(snap.status)) {
+    // Inicio del partido. (En HT no avisamos de "comienza": ya está en curso;
+    // isLiveStatus incluye el descanso, así que lo excluimos aquí.)
+    if (!prev.startSent && isLiveStatus(snap.status) && snap.status !== "HT") {
       await push({
         title: `¡Comienza! ${teams(snap)}`,
         body: `Amistoso internacional en juego.${venueSuffix(snap)}`,

@@ -98,9 +98,11 @@ export interface FriendlyState {
   ftSent: boolean;
 }
 
-/** ¿El partido está en juego ahora mismo? */
+/** ¿El partido está en curso ahora mismo? Incluye el descanso (HT): el partido
+ *  no ha terminado, solo está pausado, así que cuenta como "en vivo" para la
+ *  lista, las etiquetas de estado y el resaltado. */
 export function isLiveStatus(status: string): boolean {
-  return ["1H", "2H", "ET", "BT", "P", "LIVE", "INT"].includes(status);
+  return ["1H", "HT", "2H", "ET", "BT", "P", "LIVE", "INT"].includes(status);
 }
 
 /** ¿El partido ya terminó? */

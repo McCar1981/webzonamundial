@@ -28,6 +28,10 @@
     {
       "path": "/api/cron/resolve-predictions",
       "schedule": "*/30 * * * *"
+    },
+    {
+      "path": "/api/cron/predictions-engagement",
+      "schedule": "0 20 * * *"
     }
   ]
 }

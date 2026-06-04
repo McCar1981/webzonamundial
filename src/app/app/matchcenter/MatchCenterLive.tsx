@@ -703,7 +703,7 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
                   goalPulse={goalPulse}
                   shotFx={shotFx}
                   attackBias={(stats.possession[0] || 50) / 100}
-                  active={!finished && !(feed.mode === "sim" && paused)}
+                  active={feed.mode === "live" ? isInPlay(status) : !finished && !paused}
                   flip={secondHalf}
                   intensity={Math.min(1, Math.abs(momentum) * 0.85 + 0.15)}
                   showHeat={showHeat}
@@ -713,6 +713,21 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
                 />
               </div>
               <MatchFx meta={meta} goalPulse={goalPulse} cardFx={cardFx} subFx={subFx} />
+              {feed.mode === "live" && !isInPlay(status) && !finished && (
+                <div style={{ position: "absolute", inset: 0, zIndex: 7, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 8, background: "rgba(6,11,20,0.55)", borderRadius: 16, pointerEvents: "none" }}>
+                  <span className="mc-condensed" style={{ fontSize: 22, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: GOLD2 }}>
+                    {status === "HT" ? "Descanso" : "Por comenzar"}
+                  </span>
+                  {status !== "HT" && (
+                    <span style={{ fontSize: 14, fontWeight: 600, color: "#cfd8ea" }}>
+                      {(() => {
+                        const ko = fmtKickoff(kickoff);
+                        return ko ? `Saque ${ko.date} · ${ko.time}` : "Esperando el inicio";
+                      })()}
+                    </span>
+                  )}
+                </div>
+              )}
               {hoverPlayer && (
                 <PlayerCard player={hoverPlayer} meta={meta} />
               )}

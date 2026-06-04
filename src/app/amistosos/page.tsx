@@ -9,7 +9,7 @@
 
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { subscribeToPush, getNotificationPermission } from "@/lib/push-client";
 import type {
   FriendlyEvent,
@@ -368,10 +368,20 @@ function EventRow({ e }: { e: FriendlyEvent }) {
   );
 }
 
+/** Separador de fase (saque, descanso, final…). Es info real del partido. */
+function PeriodMarker({ label }: { label: string }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "2px 0" }}>
+      <span style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.10)" }} />
+      <span style={{ color: GRAY, fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", whiteSpace: "nowrap" }}>
+        {label}
+      </span>
+      <span style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.10)" }} />
+    </div>
+  );
+}
+
 function Cronologia({ snap }: { snap: FriendlySnapshot }) {
-  if (snap.events.length === 0) {
-    return <p style={{ color: GRAY, fontSize: 14 }}>Sin sucesos todavía.</p>;
-  }
   // Marcador acumulado en el momento de cada gol (orden cronológico ascendente).
   const running: Record<string, [number, number]> = {};
   let h = 0;
@@ -384,17 +394,53 @@ function Cronologia({ snap }: { snap: FriendlySnapshot }) {
       running[e.id] = [h, a];
     }
   }
-  // Más recientes arriba.
-  const ordered = [...snap.events].reverse();
+
+  // Fases reales del partido (derivadas del estado/minuto, no inventadas). Dan
+  // vida a la cronología aunque todavía no haya goles ni tarjetas.
+  const started = isLiveStatus(snap.status) || isFinishedStatus(snap.status);
+  const reached2H = ["2H", "ET", "BT", "P", "FT", "AET", "PEN"].includes(snap.status);
+  const reachedHT = snap.status === "HT" || reached2H || (snap.elapsed != null && snap.elapsed >= 45);
+  const finished = isFinishedStatus(snap.status);
+
+  // Lista unificada (eventos + separadores de fase), ordenada con lo más
+  // reciente arriba mediante una clave de minuto.
+  const items: { key: string; sort: number; node: ReactNode }[] = [];
+  if (started) items.push({ key: "ko", sort: -1, node: <PeriodMarker label="Comienza el partido" /> });
+  if (reachedHT) items.push({ key: "ht", sort: 45.9, node: <PeriodMarker label="Descanso" /> });
+  if (reached2H) items.push({ key: "2h", sort: 46, node: <PeriodMarker label="Segunda parte" /> });
+  if (finished) items.push({ key: "ft", sort: 1000, node: <PeriodMarker label="Final del partido" /> });
+  snap.events.forEach((e, i) => {
+    const sort = e.minute + (e.extra ?? 0) / 100 + i / 1e6;
+    const node =
+      GOAL_TYPES.has(e.type) && e.side !== "neutral" ? (
+        <GoalCard e={e} snap={snap} score={running[e.id] ?? [0, 0]} />
+      ) : (
+        <EventRow e={e} />
+      );
+    items.push({ key: e.id, sort, node });
+  });
+  items.sort((x, y) => y.sort - x.sort);
+
+  if (items.length === 0) {
+    return <p style={{ color: GRAY, fontSize: 14 }}>Sin sucesos todavía.</p>;
+  }
+
   return (
     <div style={{ display: "grid", gap: 10 }}>
-      {ordered.map((e) =>
-        GOAL_TYPES.has(e.type) && e.side !== "neutral" ? (
-          <GoalCard key={e.id} e={e} snap={snap} score={running[e.id] ?? [0, 0]} />
-        ) : (
-          <EventRow key={e.id} e={e} />
-        ),
+      {isLiveStatus(snap.status) && (
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#E5484D", animation: "zmPulse 1.2s ease-in-out infinite" }} />
+          <span style={{ color: BLUE, fontWeight: 800, fontSize: 13 }}>
+            {snap.status === "HT" ? "Descanso" : snap.elapsed != null ? `En juego · ${snap.elapsed}'` : "En juego"}
+          </span>
+        </div>
       )}
+      {started && snap.events.length === 0 && (
+        <p style={{ color: GRAY, fontSize: 13, margin: 0 }}>El partido está en juego. Aún sin goles ni tarjetas.</p>
+      )}
+      {items.map((it) => (
+        <div key={it.key}>{it.node}</div>
+      ))}
     </div>
   );
 }

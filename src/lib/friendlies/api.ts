@@ -71,8 +71,8 @@ interface RawFixtureRow {
 interface RawEvent {
   time: { elapsed: number | null; extra: number | null };
   team: { id: number };
-  player: { name: string | null };
-  assist: { name: string | null };
+  player: { id: number | null; name: string | null };
+  assist: { id: number | null; name: string | null };
   type: string;
   detail: string;
 }
@@ -249,6 +249,7 @@ async function fetchEvents(fixtureId: number, homeId: number, awayId: number): P
       type,
       side,
       player: e.player.name || undefined,
+      playerId: e.player.id ?? undefined,
       assist: e.assist.name || undefined,
       playerIn: type === "sub" ? e.assist.name || undefined : undefined,
       detail: e.detail || undefined,

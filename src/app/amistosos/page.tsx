@@ -274,6 +274,131 @@ function StatRow({ s }: { s: FriendlyStat }) {
   );
 }
 
+// ───────────────────────── cronología (timeline) ─────────────────────────
+
+const GOAL_TYPES = new Set<FriendlyEvent["type"]>(["goal", "penalty_goal", "own_goal"]);
+
+/** Foto del jugador (api-football). Se oculta sola si no existe. */
+function PlayerPhoto({ id, size = 52 }: { id?: number; size?: number }) {
+  const [err, setErr] = useState(false);
+  if (!id || err) return null;
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={`https://media.api-sports.io/football/players/${id}.png`}
+      alt=""
+      width={size}
+      height={size}
+      onError={() => setErr(true)}
+      style={{ width: size, height: size, borderRadius: "50%", objectFit: "cover", border: `2px solid ${GOLD}66`, flexShrink: 0, background: BG }}
+    />
+  );
+}
+
+function goalTitle(t: FriendlyEvent["type"]): string {
+  if (t === "penalty_goal") return "¡GOL DE PENALTI!";
+  if (t === "own_goal") return "GOL EN PROPIA";
+  return "¡GOL!";
+}
+
+function minuteText(e: FriendlyEvent): string {
+  return `${e.minute}${e.extra ? `+${e.extra}` : ""}'`;
+}
+
+/** Tarjeta destacada de gol con marcador del momento, autor y foto. */
+function GoalCard({ e, snap, score }: { e: FriendlyEvent; snap: FriendlySnapshot; score: [number, number] }) {
+  // Equipo beneficiado (en propia, el rival del que la metió).
+  const benef: "home" | "away" =
+    e.type === "own_goal" ? (e.side === "home" ? "away" : "home") : e.side === "away" ? "away" : "home";
+  const team = benef === "home" ? snap.home : snap.away;
+  return (
+    <div style={{ borderRadius: 14, overflow: "hidden", border: `1px solid ${GOLD}55` }}>
+      <div style={{ background: `linear-gradient(135deg, ${BLUE}, #1b54b8)`, padding: "12px 14px", textAlign: "center" }}>
+        <div style={{ display: "inline-flex", alignItems: "center", gap: 8, color: "#fff" }}>
+          <Icon path={ICON.ball} color="#fff" size={18} />
+          <span style={{ fontWeight: 900, letterSpacing: 1, fontSize: 15 }}>{goalTitle(e.type)}</span>
+        </div>
+        <div style={{ color: "#dce6ff", fontWeight: 700, fontSize: 12, marginTop: 2 }}>{minuteText(e)}</div>
+      </div>
+      <div style={{ background: "rgba(47,128,255,0.18)", padding: "8px 14px", display: "flex", alignItems: "center", justifyContent: "center", gap: 12, color: OFF, fontWeight: 700, fontSize: 14 }}>
+        <span>{snap.home.name}</span>
+        <span style={{ color: GOLD, fontWeight: 900, fontVariantNumeric: "tabular-nums" }}>{score[0]} - {score[1]}</span>
+        <span>{snap.away.name}</span>
+      </div>
+      <div style={{ background: PANEL, padding: 14, display: "flex", alignItems: "center", gap: 12 }}>
+        <div style={{ minWidth: 0, flex: 1 }}>
+          <div style={{ color: OFF, fontWeight: 800, fontSize: 16, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+            {e.player ?? "Gol"}
+          </div>
+          <div style={{ color: GRAY, fontSize: 12, marginTop: 2 }}>{team.name}</div>
+          {e.assist && <div style={{ color: GRAY, fontSize: 12, marginTop: 2 }}>Asistió: {e.assist}</div>}
+        </div>
+        <PlayerPhoto id={e.playerId} />
+      </div>
+    </div>
+  );
+}
+
+/** Fila compacta para sucesos no-gol (tarjetas, cambios, VAR...). */
+function EventRow({ e }: { e: FriendlyEvent }) {
+  const iconPath =
+    e.type === "yellow" || e.type === "red" || e.type === "second_yellow"
+      ? ICON.card
+      : e.type === "sub"
+      ? ICON.swap
+      : ICON.ball;
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        background: PANEL,
+        borderRadius: 10,
+        padding: "8px 12px",
+        borderLeft: `3px solid ${eventColor(e.type)}`,
+      }}
+    >
+      <span style={{ color: GOLD, fontWeight: 700, width: 38, flexShrink: 0, fontVariantNumeric: "tabular-nums" }}>
+        {minuteText(e)}
+      </span>
+      <Icon path={iconPath} color={eventColor(e.type)} size={16} />
+      <span style={{ color: OFF, fontSize: 13 }}>{eventText(e)}</span>
+    </div>
+  );
+}
+
+function Cronologia({ snap }: { snap: FriendlySnapshot }) {
+  if (snap.events.length === 0) {
+    return <p style={{ color: GRAY, fontSize: 14 }}>Sin sucesos todavía.</p>;
+  }
+  // Marcador acumulado en el momento de cada gol (orden cronológico ascendente).
+  const running: Record<string, [number, number]> = {};
+  let h = 0;
+  let a = 0;
+  for (const e of snap.events) {
+    if (GOAL_TYPES.has(e.type) && e.side !== "neutral") {
+      const benef = e.type === "own_goal" ? (e.side === "home" ? "away" : "home") : e.side;
+      if (benef === "home") h += 1;
+      else a += 1;
+      running[e.id] = [h, a];
+    }
+  }
+  // Más recientes arriba.
+  const ordered = [...snap.events].reverse();
+  return (
+    <div style={{ display: "grid", gap: 10 }}>
+      {ordered.map((e) =>
+        GOAL_TYPES.has(e.type) && e.side !== "neutral" ? (
+          <GoalCard key={e.id} e={e} snap={snap} score={running[e.id] ?? [0, 0]} />
+        ) : (
+          <EventRow key={e.id} e={e} />
+        ),
+      )}
+    </div>
+  );
+}
+
 function InfoLine({ label, value }: { label: string; value: string }) {
   return (
     <div style={{ display: "flex", gap: 8, fontSize: 12 }}>
@@ -496,31 +621,7 @@ function DetailView({ id, onBack }: { id: number; onBack: () => void }) {
 
           {tab === "crono" && (
             <section>
-              {snap.events.length === 0 ? (
-                <p style={{ color: GRAY, fontSize: 14 }}>Sin sucesos todavía.</p>
-              ) : (
-                <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: 8 }}>
-                  {snap.events.map((e) => (
-                    <li
-                      key={e.id}
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 10,
-                        background: PANEL,
-                        borderRadius: 10,
-                        padding: "8px 12px",
-                        borderLeft: `3px solid ${eventColor(e.type)}`,
-                      }}
-                    >
-                      <span style={{ color: GOLD, fontWeight: 700, width: 38, flexShrink: 0, fontVariantNumeric: "tabular-nums" }}>
-                        {e.minute}&apos;{e.extra ? `+${e.extra}` : ""}
-                      </span>
-                      <span style={{ color: OFF, fontSize: 13 }}>{eventText(e)}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
+              <Cronologia snap={snap} />
             </section>
           )}
 

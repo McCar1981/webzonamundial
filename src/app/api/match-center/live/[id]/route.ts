@@ -46,7 +46,9 @@ export async function GET(
   }
 
   const url = new URL(req.url);
-  const forceSim = url.searchParams.get("sim") === "1";
+  // Los partidos solo-reales (p.ej. España-Irak) NUNCA simulan, aunque se pida
+  // ?sim=1 desde el hub: ahí mostramos datos reales o el estado "por comenzar".
+  const forceSim = url.searchParams.get("sim") === "1" && !REAL_ONLY_IDS.has(matchId);
   const useAI = url.searchParams.get("ai") !== "0" && !!process.env.ANTHROPIC_API_KEY;
 
   // --- Modo live real ---

@@ -51,6 +51,8 @@ export interface FriendlyEvent {
   type: FriendlyEventType;
   side: "home" | "away" | "neutral";
   player?: string;
+  /** id api-football del jugador, para la foto. */
+  playerId?: number;
   assist?: string;
   playerIn?: string;
   detail?: string;

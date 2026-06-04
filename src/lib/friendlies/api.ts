@@ -103,14 +103,32 @@ function isFriendly(leagueId: number): boolean {
   return FRIENDLY_LEAGUE_IDS.includes(leagueId);
 }
 
-/** Todos los amistosos de selecciones EN VIVO ahora mismo (1 sola llamada). */
+// Selecciones NO absolutas: sub-21/20/19/23/17, olímpicas, etc. Las
+// detectamos por el nombre del equipo que sirve api-football (p.ej. "Spain U21",
+// "Argentina U-20", "Brazil Sub 23"). Solo queremos selecciones ABSOLUTAS.
+const YOUTH_RE = /\b(U[-\s]?\d{1,2}|sub[-\s]?\d{1,2}|olympic|olímpic\w*)\b/i;
+
+function isSeniorTeam(name: string): boolean {
+  return !YOUTH_RE.test(name);
+}
+
+/** ¿Es un amistoso de selecciones ABSOLUTAS (ambos equipos seniors)? */
+function isSeniorFriendly(row: RawFixtureRow): boolean {
+  return (
+    isFriendly(row.league.id) &&
+    isSeniorTeam(row.teams.home.name) &&
+    isSeniorTeam(row.teams.away.name)
+  );
+}
+
+/** Todos los amistosos de selecciones absolutas EN VIVO ahora mismo (1 llamada). */
 export async function fetchLiveFriendlies(): Promise<FriendlyFixture[]> {
   const rows = await apiGet<RawFixtureRow[]>(`/fixtures?live=all`);
   if (!rows) return [];
-  return rows.filter((r) => isFriendly(r.league.id)).map(toFixture);
+  return rows.filter(isSeniorFriendly).map(toFixture);
 }
 
-/** Amistosos de selecciones de una fecha concreta (YYYY-MM-DD, UTC). */
+/** Amistosos de selecciones absolutas de una fecha concreta (YYYY-MM-DD, UTC). */
 export async function fetchFriendliesByDate(date: string): Promise<FriendlyFixture[]> {
   const season = Number(date.slice(0, 4));
   const all: FriendlyFixture[] = [];
@@ -118,7 +136,7 @@ export async function fetchFriendliesByDate(date: string): Promise<FriendlyFixtu
     const rows = await apiGet<RawFixtureRow[]>(
       `/fixtures?league=${leagueId}&season=${season}&date=${date}`,
     );
-    if (rows) all.push(...rows.map(toFixture));
+    if (rows) all.push(...rows.filter(isSeniorFriendly).map(toFixture));
   }
   return all.sort((a, b) => a.date.localeCompare(b.date));
 }

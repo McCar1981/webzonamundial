@@ -96,6 +96,11 @@ export function MatchCenterBanner() {
     if (!Number.isNaN(ko) && Date.now() - ko > 24 * 60 * 60 * 1000) return null;
   }
 
+  // Marcador solo cuando tiene sentido (en juego / descanso / final). Antes del
+  // saque mostramos "VS" en vez de un 0-0 que parece partido ya empezado.
+  const showScore = (live || finished || status === "HT") && hasScore;
+  const kickoffText = !live && !finished && status !== "HT" ? fmtKickoff(kickoff) : null;
+
   let badge: { text: string; color: string; pulse: boolean };
   if (live) {
     const min = elapsed ? `${elapsed}'` : "";
@@ -105,8 +110,7 @@ export function MatchCenterBanner() {
   } else if (finished) {
     badge = { text: "FINAL", color: "#8a94b0", pulse: false };
   } else {
-    const ko = fmtKickoff(kickoff);
-    badge = { text: ko ? `Por comenzar · ${ko}` : "Por comenzar", color: GOLD2, pulse: false };
+    badge = { text: "POR COMENZAR", color: GOLD2, pulse: false };
   }
 
   return (
@@ -139,9 +143,9 @@ export function MatchCenterBanner() {
             <div className="flex flex-1 items-center justify-center gap-4 sm:justify-start sm:gap-6">
               <TeamSide name={meta.home.name} flag={meta.home.flag} />
 
-              <div className="flex flex-col items-center gap-2">
+              <div className="flex min-w-[112px] flex-col items-center gap-2">
                 <span
-                  className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wider"
+                  className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider"
                   style={{
                     background: "rgba(0,0,0,0.35)",
                     color: badge.color,
@@ -158,16 +162,24 @@ export function MatchCenterBanner() {
                 </span>
                 <div
                   className="font-black tabular-nums leading-none"
-                  style={{ color: "#F4F6FA", fontSize: 38 }}
+                  style={{ color: "#F4F6FA", fontSize: showScore ? 38 : 30 }}
                 >
-                  {hasScore ? (
+                  {showScore ? (
                     <span>
                       {hg} <span style={{ color: GOLD, opacity: 0.6 }}>-</span> {ag}
                     </span>
                   ) : (
-                    <span style={{ color: GOLD2, fontSize: 30 }}>VS</span>
+                    <span style={{ color: GOLD2 }}>VS</span>
                   )}
                 </div>
+                {kickoffText && (
+                  <span
+                    className="whitespace-nowrap text-center text-[12px] font-semibold leading-tight"
+                    style={{ color: "#aeb8cf" }}
+                  >
+                    {kickoffText}
+                  </span>
+                )}
               </div>
 
               <TeamSide name={meta.away.name} flag={meta.away.flag} />

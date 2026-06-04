@@ -102,35 +102,47 @@ function eventLabel(e: FriendlyEvent, s: FriendlySnapshot): {
   body: string;
   icon: string;
 } | null {
+  // "country" del evento = la selección. "player" = nombre que da api-football.
   const team = e.side === "home" ? s.home.name : e.side === "away" ? s.away.name : "";
-  const who = e.player ? ` ${e.player}` : "";
+  const player = e.player?.trim() || "";
   const min = `${e.minute}'${e.extra ? `+${e.extra}` : ""}`;
   const icon = eventIcon(e, s);
   switch (e.type) {
     case "goal":
-    case "penalty_goal":
+    case "penalty_goal": {
+      const pen = e.type === "penalty_goal" ? " de penalti" : "";
+      // Título con jugador y país; si no hay nombre, solo el país.
+      const head = player ? `GOL de ${player} (${team})${pen}` : `GOL${pen} de ${team}`;
       return {
-        title: `GOL — ${teams(s)} ${scoreText(s.goals)}`,
-        body: `${min} ${team}:${who}${e.assist ? ` (asist. ${e.assist})` : ""}`,
+        title: head,
+        body: `${min} · ${teams(s)} ${scoreText(s.goals)}${e.assist ? ` · asist. ${e.assist}` : ""}`,
         icon,
       };
+    }
     case "own_goal":
       return {
-        title: `GOL en propia — ${teams(s)} ${scoreText(s.goals)}`,
-        body: `${min}${who} (${team})`,
+        title: player ? `GOL en propia de ${player} (${team})` : `GOL en propia (${team})`,
+        body: `${min} · ${teams(s)} ${scoreText(s.goals)}`,
         icon,
       };
     case "penalty_miss":
       return {
-        title: `Penalti fallado — ${teams(s)}`,
-        body: `${min} ${team}:${who}`,
+        title: player ? `Penalti fallado por ${player} (${team})` : `Penalti fallado (${team})`,
+        body: `${min} · ${teams(s)}`,
         icon,
       };
     case "red":
+      return {
+        title: player ? `Tarjeta roja a ${player} (${team})` : `Tarjeta roja (${team})`,
+        body: `${min} · ${teams(s)} ${scoreText(s.goals)}`,
+        icon,
+      };
     case "second_yellow":
       return {
-        title: `Roja — ${teams(s)}`,
-        body: `${min} ${team}:${who}`,
+        title: player
+          ? `Tarjeta roja (doble amarilla) a ${player} (${team})`
+          : `Tarjeta roja (doble amarilla) (${team})`,
+        body: `${min} · ${teams(s)} ${scoreText(s.goals)}`,
         icon,
       };
     default:

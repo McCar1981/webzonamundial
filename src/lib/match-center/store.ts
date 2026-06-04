@@ -13,6 +13,20 @@ const SNAP_PREFIX = "mc:snap:v1:";
 const FIXTURE_PREFIX = "mc:fixture:v1:";
 const SNAP_TTL_SECONDS = 25; // ligeramente por encima del intervalo de polling
 
+// Estados "en juego": el minuto avanza, así que un snapshot cacheado caduca.
+const IN_PLAY = new Set(["1H", "HT", "2H", "ET", "BT", "P", "LIVE", "INT"]);
+// Guardia de frescura por `updatedAt`: si un snapshot EN JUEGO es más viejo que
+// esto, lo tratamos como caducado y forzamos refetch — aunque el TTL de KV
+// fallara. Como cada escritura buena renueva `updatedAt`, esto se autocura y
+// mantiene el throttle (a lo sumo 1 refetch por ventana).
+const LIVE_FRESH_MS = 45_000;
+
+function isSnapshotStale(snap: LiveSnapshot): boolean {
+  if (!IN_PLAY.has(snap.status)) return false; // NS/FT/AET/PEN no cambian de minuto
+  const age = Date.now() - (snap.updatedAt ?? 0);
+  return age > LIVE_FRESH_MS;
+}
+
 function isKvEnabled(): boolean {
   return !!process.env.KV_REST_API_URL && !!process.env.KV_REST_API_TOKEN;
 }
@@ -107,13 +121,26 @@ export async function setFixtureId(matchId: number, fixtureId: number): Promise<
   }
 }
 
-export async function getCachedSnapshot(matchId: number): Promise<LiveSnapshot | null> {
+/** Lee el último snapshot de KV, exista o no frescura (puede estar caducado). */
+export async function getLastSnapshot(matchId: number): Promise<LiveSnapshot | null> {
   if (!isKvEnabled()) return null;
   try {
     return (await kv.get<LiveSnapshot>(`${SNAP_PREFIX}${matchId}`)) || null;
   } catch {
     return null;
   }
+}
+
+/**
+ * Snapshot cacheado SOLO si sigue fresco. Para partidos en juego, descarta el
+ * cacheado si `updatedAt` es demasiado viejo (defensa ante un TTL de KV que no
+ * caduque), de modo que el llamador vuelva a pedir datos reales y el minuto no
+ * se quede congelado.
+ */
+export async function getCachedSnapshot(matchId: number): Promise<LiveSnapshot | null> {
+  const snap = await getLastSnapshot(matchId);
+  if (!snap) return null;
+  return isSnapshotStale(snap) ? null : snap;
 }
 
 export async function cacheSnapshot(snap: LiveSnapshot): Promise<void> {

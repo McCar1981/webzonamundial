@@ -12,7 +12,7 @@
 
 import { NextResponse } from "next/server";
 import { kv } from "@vercel/kv";
-import { buildMeta, getFixtureId, getCachedSnapshot, cacheSnapshot } from "@/lib/match-center/store";
+import { buildMeta, getFixtureId, getCachedSnapshot, getLastSnapshot, cacheSnapshot } from "@/lib/match-center/store";
 import { buildSimulation } from "@/lib/match-center/simulation";
 import { fetchLiveSnapshot, scheduledSnapshot } from "@/lib/match-center/apiFootball";
 
@@ -74,6 +74,14 @@ export async function GET(
         return NextResponse.json(snap, {
           headers: { "Cache-Control": "public, s-maxage=10, stale-while-revalidate=20" },
         });
+      }
+      // El refetch falló (API caída o sin cuota). Si teníamos un snapshot previo
+      // —aunque esté algo viejo— lo devolvemos: el último estado REAL conocido es
+      // más fiel que reiniciar el partido a "por comenzar". Se autocura cuando la
+      // API vuelva a responder.
+      const last = await getLastSnapshot(matchId);
+      if (last) {
+        return NextResponse.json(last, { headers: { "Cache-Control": "no-store" } });
       }
       // si la API falla, caemos a simulación (salvo partidos solo-reales)
     }

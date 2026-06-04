@@ -2,13 +2,26 @@
 //
 // Inicia una partida. Crea una sesión en servidor (con las respuestas) y
 // devuelve al cliente las preguntas SIN las respuestas correctas.
+//
+// Las preguntas salen del BANCO ACUMULATIVO de preguntas verificadas (doble
+// pase de IA), excluyendo las que este usuario YA ha visto (anti-repetición).
+// Si el banco se queda corto, se generan más al vuelo (verificadas) y se
+// acumulan; si el usuario ya jugó todo el banco, se recicla su historial.
 
 import { NextResponse } from "next/server";
 import { generateQuestions } from "@/lib/trivia/generator";
-import { getDailySet, getRecentQuestionTexts, saveDailySet, saveSession, todayUTC } from "@/lib/trivia/store";
+import {
+  addToBank,
+  getQuestionBank,
+  getSeenIds,
+  resetSeen,
+  saveSession,
+  todayUTC,
+} from "@/lib/trivia/store";
+import { resolveIdentity } from "@/lib/trivia/identity";
 import { newSessionId, pickQuestions, toClientQuestion } from "@/lib/trivia/play";
 import { FALLBACK_QUESTIONS } from "@/data/trivia-fallback";
-import type { DailyTriviaSet, ServerSession, TriviaMode } from "@/lib/trivia/types";
+import type { ServerSession, TriviaMode, TriviaQuestion } from "@/lib/trivia/types";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -16,7 +29,7 @@ export const dynamic = "force-dynamic";
 const MODES: TriviaMode[] = ["diaria", "relampago", "muerte-subita"];
 
 export async function POST(req: Request) {
-  let body: { mode?: string };
+  let body: { mode?: string; anonId?: string; name?: string };
   try {
     body = await req.json();
   } catch {
@@ -26,35 +39,43 @@ export async function POST(req: Request) {
     ? (body.mode as TriviaMode)
     : "diaria";
 
-  const date = todayUTC();
-  let set = await getDailySet(date);
+  const { userId } = await resolveIdentity(body.name, body.anonId);
 
-  // Fallback: si el cron aún no generó el set de hoy, lo generamos al vuelo
-  // (la primera visita del día lo dispara). Idempotente para el resto.
-  if (!set || set.questions.length < 10) {
-    const avoid = await getRecentQuestionTexts(7);
-    const questions = await generateQuestions(30, avoid);
-    if (questions.length >= 5) {
-      set = { date, generatedAt: new Date().toISOString(), questions } as DailyTriviaSet;
-      await saveDailySet(set);
-    } else {
-      // Red de seguridad: si la generación con IA no está disponible (falta de
-      // API key, error del modelo, etc.) servimos el banco estático para que la
-      // trivia nunca se quede sin preguntas. NO lo persistimos en KV, así el
-      // cron diario podrá generar el set real más tarde.
-      set = {
-        date,
-        generatedAt: new Date().toISOString(),
-        questions: FALLBACK_QUESTIONS,
-      } as DailyTriviaSet;
+  // 1) Banco acumulativo. Se siembra con el banco verificado a mano la primera vez.
+  let bank = await getQuestionBank();
+  if (bank.length < FALLBACK_QUESTIONS.length) {
+    await addToBank(FALLBACK_QUESTIONS);
+    bank = await getQuestionBank();
+  }
+
+  // 2) Excluir lo que este usuario ya vio.
+  const seen = await getSeenIds(userId);
+  let pool: TriviaQuestion[] = bank.filter((q) => !seen.has(q.id));
+
+  // 3) Si quedan pocas sin ver, generar más (verificadas) y acumular. Para
+  // muerte-súbita basta un colchón menor: repeatToLength rellena la partida.
+  const target = mode === "muerte-subita" ? 12 : 10;
+  if (pool.length < target) {
+    const avoid = bank.map((q) => q.question);
+    const fresh = await generateQuestions(20, avoid);
+    if (fresh.length > 0) {
+      await addToBank(fresh);
+      bank = await getQuestionBank();
+      pool = bank.filter((q) => !seen.has(q.id));
     }
   }
 
-  const questions = pickQuestions(set, mode);
+  // 4) Si el usuario ya jugó TODO el banco, reciclar su historial.
+  if (pool.length === 0) {
+    await resetSeen(userId);
+    pool = bank;
+  }
+
+  const questions = pickQuestions(pool, mode);
   const session: ServerSession = {
     id: newSessionId(),
     mode,
-    date,
+    date: todayUTC(),
     questions,
     answered: [],
     correct: 0,
@@ -70,7 +91,7 @@ export async function POST(req: Request) {
   return NextResponse.json({
     sessionId: session.id,
     mode,
-    date,
+    date: session.date,
     total: mode === "muerte-subita" ? null : questions.length,
     questions: questions.map(toClientQuestion),
   });

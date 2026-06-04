@@ -5,14 +5,20 @@
 // Identidad: usuario Supabase si hay sesión, si no un anonId del cliente.
 
 import { NextResponse } from "next/server";
-import { createSupabaseServerClient } from "@/lib/supabase/server";
 import {
+  addSeenIds,
   deleteSession,
   getSession,
   recordSession,
 } from "@/lib/trivia/store";
+import { resolveIdentity } from "@/lib/trivia/identity";
 import { timeBonusMultiplier } from "@/lib/trivia/types";
 import type { SessionResult } from "@/lib/trivia/types";
+
+/** Quita el sufijo "-rN" que añade repeatToLength para volver al id base. */
+function baseId(id: string): string {
+  return id.replace(/-r\d+$/, "");
+}
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -37,42 +43,26 @@ export async function POST(req: Request) {
   }
 
   // Identidad
-  let userId = "";
-  let name = (body.name || "").trim().slice(0, 24);
-  try {
-    const supabase = createSupabaseServerClient();
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    if (user) {
-      userId = user.id;
-      if (!name) {
-        const { data: profile } = await supabase
-          .from("profiles")
-          .select("username")
-          .eq("id", user.id)
-          .maybeSingle();
-        name = (profile?.username as string) || user.email?.split("@")[0] || "Jugador";
-      }
-    }
-  } catch {
-    /* sin sesión supabase → anon */
+  const { userId, name } = await resolveIdentity(body.name, body.anonId);
+
+  // Marca como vistas las preguntas mostradas (anti-repetición), aunque no se
+  // registre en ranking. Se usa el id base (sin sufijo de repetición).
+  if (userId) {
+    const seenIds = [...new Set(session.questions.map((q) => baseId(q.id)))];
+    await addSeenIds(userId, seenIds);
   }
+
   if (!userId) {
-    userId = (body.anonId || "").trim().slice(0, 40);
-    if (!userId) {
-      // No hay identidad: cerramos la sesión pero no registramos en ranking.
-      session.finished = true;
-      await deleteSession(session.id);
-      return NextResponse.json({
-        recorded: false,
-        points: session.points,
-        correct: session.correct,
-        answered: session.answered.length,
-        bestStreak: session.bestStreak,
-      });
-    }
-    name = name || "Anónimo";
+    // No hay identidad: cerramos la sesión pero no registramos en ranking.
+    session.finished = true;
+    await deleteSession(session.id);
+    return NextResponse.json({
+      recorded: false,
+      points: session.points,
+      correct: session.correct,
+      answered: session.answered.length,
+      bestStreak: session.bestStreak,
+    });
   }
 
   // Bonus de horario + día perfecto

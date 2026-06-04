@@ -1,19 +1,19 @@
 // src/app/api/cron/generate-trivia/route.ts
 //
-// Cron diario: genera el set de preguntas de trivia del día con Claude y lo
-// guarda en KV. Mismo patrón de auth que el resto de crons (Bearer CRON_SECRET
-// o ?secret=). Idempotente: si ya existe el set de hoy y no se fuerza, no
-// vuelve a llamar al modelo (ahorro de tokens).
+// Cron diario: genera preguntas de trivia con Claude (verificadas por doble
+// pase) y las ACUMULA en el banco persistente. El banco crece cada día, así la
+// trivia tiende a "infinita" sin repetir. Mismo patrón de auth que el resto de
+// crons (Bearer CRON_SECRET o ?secret=).
 
 import { NextResponse } from "next/server";
 import { generateQuestions } from "@/lib/trivia/generator";
-import { getDailySet, getRecentQuestionTexts, saveDailySet, todayUTC } from "@/lib/trivia/store";
-import type { DailyTriviaSet } from "@/lib/trivia/types";
+import { addToBank, getQuestionBank } from "@/lib/trivia/store";
+import { FALLBACK_QUESTIONS } from "@/data/trivia-fallback";
 import { revalidatePath } from "next/cache";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-export const maxDuration = 60;
+export const maxDuration = 120;
 
 export async function GET(req: Request) {
   const expected = process.env.CRON_SECRET;
@@ -27,39 +27,22 @@ export async function GET(req: Request) {
   }
 
   const url = new URL(req.url);
-  const force = url.searchParams.get("force") === "1";
   const count = Math.min(
-    30,
+    40,
     Math.max(8, Number(url.searchParams.get("count")) || 30),
   );
-  const date = todayUTC();
 
-  const existing = await getDailySet(date);
-  if (existing && existing.questions.length >= 10 && !force) {
-    return NextResponse.json({
-      ok: true,
-      skipped: true,
-      reason: "ya existe el set de hoy",
-      date,
-      count: existing.questions.length,
-    });
+  // Siembra del banco con las preguntas verificadas a mano (la primera vez).
+  let bank = await getQuestionBank();
+  if (bank.length < FALLBACK_QUESTIONS.length) {
+    await addToBank(FALLBACK_QUESTIONS);
+    bank = await getQuestionBank();
   }
 
-  const avoid = await getRecentQuestionTexts(7);
+  // Genera preguntas nuevas evitando todo lo que ya hay en el banco.
+  const avoid = bank.map((q) => q.question);
   const questions = await generateQuestions(count, avoid);
-  if (questions.length < 5) {
-    return NextResponse.json(
-      { ok: false, error: "generación insuficiente", got: questions.length },
-      { status: 502 },
-    );
-  }
-
-  const set: DailyTriviaSet = {
-    date,
-    generatedAt: new Date().toISOString(),
-    questions,
-  };
-  await saveDailySet(set);
+  const added = await addToBank(questions);
 
   try {
     revalidatePath("/trivia");
@@ -69,7 +52,8 @@ export async function GET(req: Request) {
 
   return NextResponse.json({
     ok: true,
-    date,
-    count: questions.length,
+    generated: questions.length, // pasaron generación + verificación
+    added, // nuevas (no duplicadas) que entraron al banco
+    bankSize: bank.length + added,
   });
 }

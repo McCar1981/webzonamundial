@@ -145,7 +145,7 @@ export default function TriviaGame() {
       const r = await fetch("/api/trivia/start", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ mode: m }),
+        body: JSON.stringify({ mode: m, anonId: anonRef.current, name: name.trim() || undefined }),
       });
       if (!r.ok) {
         const e = await r.json().catch(() => ({}));

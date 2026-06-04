@@ -2,7 +2,7 @@
 //
 // Helpers de partida compartidos por los endpoints de trivia.
 
-import type { DailyTriviaSet, TriviaMode, TriviaQuestion } from "./types";
+import type { TriviaMode, TriviaQuestion } from "./types";
 
 /** Pregunta tal como la ve el cliente: SIN la respuesta correcta. */
 export interface ClientQuestion {
@@ -65,9 +65,8 @@ function repeatToLength(pool: TriviaQuestion[], n: number): TriviaQuestion[] {
   return out;
 }
 
-/** Selecciona las preguntas de la partida según el modo. */
-export function pickQuestions(set: DailyTriviaSet, mode: TriviaMode): TriviaQuestion[] {
-  const pool = set.questions;
+/** Selecciona las preguntas de la partida según el modo, a partir de un pool. */
+export function pickQuestions(pool: TriviaQuestion[], mode: TriviaMode): TriviaQuestion[] {
   let picked: TriviaQuestion[];
   if (mode === "relampago") {
     picked = repeatToLength(shuffle(pool), 10);

@@ -14,6 +14,7 @@ import type {
   LeaderboardPeriod,
   ServerSession,
   SessionResult,
+  TriviaQuestion,
   TriviaUserStats,
 } from "./types";
 
@@ -23,6 +24,11 @@ const V = "v1";
 // afectar a rankings, stats ni sesiones, que siguen usando V.
 const DAILY_V = "v2";
 const DAILY_KEY = (date: string) => `trivia:daily:${DAILY_V}:${date}`;
+// Banco ACUMULATIVO de preguntas verificadas (doble pase). Crece cada día y es
+// la fuente "infinita" de la trivia. Persistente (sin TTL).
+const BANK_KEY = `trivia:bank:${DAILY_V}`;
+// Conjunto de ids de preguntas que un usuario ya ha visto (anti-repetición).
+const SEEN_KEY = (userId: string) => `trivia:seen:${DAILY_V}:${userId}`;
 const LB_GLOBAL_KEY = `trivia:lb:global:${V}`;
 const LB_DAILY_KEY = (date: string) => `trivia:lb:daily:${V}:${date}`;
 const USER_KEY = (userId: string) => `trivia:user:${V}:${userId}`;
@@ -45,6 +51,8 @@ interface FsStore {
   lbGlobal: Record<string, number>;
   lbDaily: Record<string, Record<string, number>>;
   sessions: Record<string, ServerSession>;
+  bank: TriviaQuestion[];
+  seen: Record<string, string[]>;
 }
 
 async function readFs(): Promise<FsStore> {
@@ -58,6 +66,8 @@ async function readFs(): Promise<FsStore> {
       lbGlobal: parsed.lbGlobal || {},
       lbDaily: parsed.lbDaily || {},
       sessions: parsed.sessions || {},
+      bank: parsed.bank || [],
+      seen: parsed.seen || {},
     };
   } catch {
     return {
@@ -67,6 +77,8 @@ async function readFs(): Promise<FsStore> {
       lbGlobal: {},
       lbDaily: {},
       sessions: {},
+      bank: [],
+      seen: {},
     };
   }
 }
@@ -112,6 +124,81 @@ export async function getRecentQuestionTexts(days = 7): Promise<string[]> {
     if (set) for (const q of set.questions) texts.push(q.question);
   }
   return texts;
+}
+
+// ───────────────────────── banco acumulativo ─────────────────────────
+
+/** Devuelve el banco completo de preguntas verificadas. */
+export async function getQuestionBank(): Promise<TriviaQuestion[]> {
+  if (isKvEnabled()) {
+    return (await kv.get<TriviaQuestion[]>(BANK_KEY)) ?? [];
+  }
+  const store = await readFs();
+  return store.bank;
+}
+
+/**
+ * Añade preguntas nuevas al banco (dedup por id estable). Devuelve cuántas
+ * se agregaron realmente. El banco crece sin límite → fuente "infinita".
+ */
+export async function addToBank(questions: TriviaQuestion[]): Promise<number> {
+  if (questions.length === 0) return 0;
+  if (isKvEnabled()) {
+    const bank = (await kv.get<TriviaQuestion[]>(BANK_KEY)) ?? [];
+    const ids = new Set(bank.map((q) => q.id));
+    const fresh = questions.filter((q) => !ids.has(q.id));
+    if (fresh.length === 0) return 0;
+    await kv.set(BANK_KEY, [...bank, ...fresh]);
+    return fresh.length;
+  }
+  const store = await readFs();
+  const ids = new Set(store.bank.map((q) => q.id));
+  const fresh = questions.filter((q) => !ids.has(q.id));
+  if (fresh.length === 0) return 0;
+  store.bank = [...store.bank, ...fresh];
+  await writeFs(store);
+  return fresh.length;
+}
+
+// ───────────────────────── anti-repetición por usuario ─────────────────────────
+
+/** Ids de preguntas que el usuario ya ha visto. */
+export async function getSeenIds(userId: string): Promise<Set<string>> {
+  if (!userId) return new Set();
+  if (isKvEnabled()) {
+    const members = (await kv.smembers(SEEN_KEY(userId))) as string[];
+    return new Set(members);
+  }
+  const store = await readFs();
+  return new Set(store.seen[userId] ?? []);
+}
+
+/** Marca preguntas como vistas por el usuario (no se le volverán a mostrar
+ *  hasta agotar el banco). */
+export async function addSeenIds(userId: string, ids: string[]): Promise<void> {
+  if (!userId || ids.length === 0) return;
+  if (isKvEnabled()) {
+    await kv.sadd(SEEN_KEY(userId), ids[0], ...ids.slice(1));
+    return;
+  }
+  const store = await readFs();
+  const set = new Set(store.seen[userId] ?? []);
+  for (const id of ids) set.add(id);
+  store.seen[userId] = [...set];
+  await writeFs(store);
+}
+
+/** Reinicia el historial de "visto" del usuario (cuando ya jugó todo el banco
+ *  y hay que empezar a reciclar). */
+export async function resetSeen(userId: string): Promise<void> {
+  if (!userId) return;
+  if (isKvEnabled()) {
+    await kv.del(SEEN_KEY(userId));
+    return;
+  }
+  const store = await readFs();
+  delete store.seen[userId];
+  await writeFs(store);
 }
 
 // ───────────────────────── stats + leaderboard ─────────────────────────

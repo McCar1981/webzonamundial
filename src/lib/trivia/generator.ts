@@ -147,21 +147,29 @@ export async function generateQuestions(
 
   if (!Array.isArray(parsed.questions)) return [];
 
-  const out: TriviaQuestion[] = [];
+  const candidates: TriviaQuestion[] = [];
   const seen = new Set<string>(); // anti-repetición dentro del set
   for (let i = 0; i < parsed.questions.length; i++) {
-    const q = validateQuestion(parsed.questions[i], i);
+    const q = validateQuestion(parsed.questions[i]);
     if (!q) continue;
     const key = normalizeText(q.question);
     if (seen.has(key) || avoidSet.has(key)) continue; // ya usada hoy o en días previos
     seen.add(key);
-    out.push(q);
+    candidates.push(q);
   }
-  return out;
+
+  // ── Verificador de doble pase ──────────────────────────────────────────
+  // Cada candidata pasa por una SEGUNDA llamada a la IA, independiente, que
+  // responde la pregunta "a ciegas" (sin saber cuál marcamos como correcta) y
+  // detecta premisas falsas o ambigüedades. Solo sobreviven las preguntas en
+  // las que el verificador coincide con seguridad. Atrapa errores factuales
+  // que ninguna regex puede ver (p.ej. "árbitro brasileño Jack Taylor" → inglés).
+  const verdicts = await Promise.all(candidates.map((q) => verifyQuestion(q, model)));
+  return candidates.filter((_, i) => verdicts[i]);
 }
 
 /** Normaliza un enunciado para comparar repeticiones (sin tildes/símbolos/espacios). */
-function normalizeText(s: string): string {
+export function normalizeText(s: string): string {
   return s
     .toLowerCase()
     .normalize("NFD")
@@ -170,12 +178,83 @@ function normalizeText(s: string): string {
     .trim();
 }
 
+/** ID estable derivado del enunciado (misma pregunta → mismo id siempre).
+ *  Permite deduplicar en el banco y rastrear "ya visto" por usuario. */
+export function stableQuestionId(question: string): string {
+  const norm = normalizeText(question);
+  let h = 5381;
+  for (let i = 0; i < norm.length; i++) h = ((h << 5) + h + norm.charCodeAt(i)) | 0;
+  return "q" + (h >>> 0).toString(36);
+}
+
+const VERIFY_SYSTEM = `Eres un verificador EXPERTO e IMPLACABLE de trivia de fútbol y Mundiales. Recibes una pregunta con 4 opciones (NO sabes cuál marcó el autor como correcta). Tu trabajo es responderla con tu propio conocimiento y auditar su calidad.
+
+Devuelve SOLO un JSON, sin markdown:
+{
+  "answerIndex": <0-3, la opción que TÚ sabes que es correcta>,
+  "confidence": "alta" | "media" | "baja",
+  "falsePremise": <true si la pregunta da por cierto algo falso, p.ej. "el árbitro brasileño X" cuando X no es brasileño, o "la final en México" cuando no lo es>,
+  "ambiguous": <true si hay más de una opción defendible o la pregunta es confusa>,
+  "factError": <true si NINGUNA de las 4 opciones es realmente correcta>
+}
+
+Sé estricto: ante la mínima duda factual marca confidence "baja". No inventes.`;
+
+interface Verdict {
+  answerIndex?: unknown;
+  confidence?: unknown;
+  falsePremise?: unknown;
+  ambiguous?: unknown;
+  factError?: unknown;
+}
+
+/** Segundo pase: la IA responde a ciegas y solo aceptamos si coincide con
+ *  seguridad y no detecta premisa falsa / ambigüedad / error factual. */
+async function verifyQuestion(q: TriviaQuestion, model: string): Promise<boolean> {
+  const payload = {
+    question: q.question,
+    options: q.options, // sin revelar correctIndex
+  };
+  let resp;
+  try {
+    const client = getClient();
+    resp = await client.messages.create({
+      model,
+      max_tokens: 200,
+      temperature: 0, // máxima determinación: queremos su mejor conocimiento
+      system: VERIFY_SYSTEM,
+      messages: [{ role: "user", content: JSON.stringify(payload) }],
+    });
+  } catch {
+    // Si el verificador no está disponible, NO aceptamos (preferimos menos
+    // preguntas que una incorrecta). El banco/fallback cubre el hueco.
+    return false;
+  }
+
+  const block = resp.content.find((b) => b.type === "text");
+  if (!block || block.type !== "text") return false;
+  const raw = block.text.trim().replace(/^```(?:json)?\s*/, "").replace(/```\s*$/, "");
+  let v: Verdict;
+  try {
+    v = JSON.parse(raw);
+  } catch {
+    return false;
+  }
+
+  const answerIndex = Number(v.answerIndex);
+  if (!Number.isInteger(answerIndex)) return false;
+  if (v.falsePremise === true || v.ambiguous === true || v.factError === true) return false;
+  if (String(v.confidence).toLowerCase() !== "alta") return false;
+  // El verificador, a ciegas, debe llegar a la MISMA respuesta que el autor.
+  return answerIndex === q.correctIndex;
+}
+
 // Opciones "comodín" prohibidas: el dato correcto siempre debe ser concreto.
 const BANNED_OPTION = /^(ninguna|todas|todas las anteriores|ninguna de las anteriores|aun no|aún no|no se sabe|no se|no esta confirmado|no está confirmado|cualquiera|otro|otra)\b/i;
 // Señales de que la explicación es dudosa o se autocorrige → pregunta basura.
 const BAD_EXPLANATION = /\berror\b|no estoy seguro|no estoy segura|creo que|posiblemente|tal vez|quiza|quizá|deberia|debería ser|en realidad la|corrijo|me equivoco/i;
 
-function validateQuestion(q: RawQuestion, idx: number): TriviaQuestion | null {
+function validateQuestion(q: RawQuestion): TriviaQuestion | null {
   if (typeof q.question !== "string" || q.question.trim().length < 8) return null;
   if (!Array.isArray(q.options) || q.options.length !== 4) return null;
   const options = q.options.map((o) => String(o).trim());
@@ -206,9 +285,10 @@ function validateQuestion(q: RawQuestion, idx: number): TriviaQuestion | null {
   // Explicación que duda o se autocorrige → la pregunta es poco fiable, se descarta.
   if (explanation && BAD_EXPLANATION.test(explanation)) return null;
 
+  const question = q.question.trim();
   return {
-    id: `q-${Date.now().toString(36)}-${idx}`,
-    question: q.question.trim(),
+    id: stableQuestionId(question),
+    question,
     options,
     correctIndex,
     category,

@@ -48,6 +48,7 @@ import { matchesOnDate } from "./match-data";
 import { bracketPointsByUser } from "./bracket-store";
 import { cosmeticsByUser } from "./cosmetics-store";
 import type { CosmeticDisplay } from "./cosmetics";
+import { recordDuelResult } from "./rivalries-store";
 
 interface ProfileGam {
   xp: number;
@@ -273,6 +274,15 @@ async function resolveDuelsForMatch(matchId: string): Promise<void> {
       const prof = await readProfile(winner);
       await admin.from("profiles").update({ coins: prof.coins + 50 }).eq("id", winner);
     }
+    // Acumula el cara a cara persistente (Mejora I).
+    await recordDuelResult({
+      challengerId: d.challenger_id,
+      opponentId: d.opponent_id,
+      challengerPoints: cp,
+      opponentPoints: op,
+      winnerId: winner,
+      matchId,
+    }).catch(() => {});
   }
 }
 

@@ -4,7 +4,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Swords, Users } from "../icons";
+import { ArrowLeft, Crown, Flame, Swords, Users } from "../icons";
 import { PositionBadge, TitleChip, nameColorStyle, type CosmeticDisplay } from "../cosmetic-render";
 
 const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825";
@@ -14,10 +14,19 @@ const CARD_BORDER = "1px solid rgba(255,255,255,0.07)";
 interface League { id: string; name: string; code: string; owner_id: string; member_count: number }
 interface Standing { position: number; user_id: string; display_name: string; avatar_url: string | null; points: number; match_points?: number; bracket_points?: number; cosmetics?: CosmeticDisplay | null }
 interface Duel { id: string; match_id: string; status: string; challenger_id: string; opponent_id: string; challenger_points: number | null; opponent_points: number | null; winner_id: string | null }
+interface Rivalry {
+  opponent: { id: string; name: string; avatar_url: string | null; cosmetics: CosmeticDisplay | null };
+  duels_count: number; my_wins: number; their_wins: number; draws: number;
+  my_points: number; their_points: number;
+  lead: "me" | "them" | "even";
+  streak: { holder: "me" | "them" | null; len: number };
+  last_match_id: string | null; last_duel_at: string | null;
+}
 
 export default function LigasPage() {
   const [leagues, setLeagues] = useState<League[]>([]);
   const [duels, setDuels] = useState<Duel[]>([]);
+  const [rivalries, setRivalries] = useState<Rivalry[]>([]);
   const [name, setName] = useState("");
   const [code, setCode] = useState("");
   const [standings, setStandings] = useState<Record<string, Standing[]>>({});
@@ -36,7 +45,11 @@ export default function LigasPage() {
     const r = await fetch("/api/predictions/duels");
     if (r.ok) setDuels((await r.json()).duels ?? []);
   }, []);
-  useEffect(() => { void loadLeagues(); void loadDuels(); }, [loadLeagues, loadDuels]);
+  const loadRivalries = useCallback(async () => {
+    const r = await fetch("/api/predictions/rivalries");
+    if (r.ok) setRivalries((await r.json()).rivalries ?? []);
+  }, []);
+  useEffect(() => { void loadLeagues(); void loadDuels(); void loadRivalries(); }, [loadLeagues, loadDuels, loadRivalries]);
   useEffect(() => { if (toast) { const id = setTimeout(() => setToast(null), 3000); return () => clearTimeout(id); } }, [toast]);
 
   const create = useCallback(async () => {
@@ -182,6 +195,46 @@ export default function LigasPage() {
               </div>
             ))}
           </div>
+        )}
+
+        {/* Rivalidades 1v1 persistentes (cara a cara acumulado) */}
+        {rivalries.length > 0 && (
+          <>
+            <h2 style={{ fontSize: 18, fontWeight: 900, marginTop: 28, display: "flex", alignItems: "center", gap: 8 }}><Crown size={20} color={GOLD2} /> Tus rivalidades</h2>
+            <p style={{ color: DIM, fontSize: 13, marginTop: 4 }}>Historial cara a cara de tus duelos resueltos. Cada victoria define quién manda.</p>
+            <div style={{ marginTop: 12, display: "flex", flexDirection: "column", gap: 8 }}>
+              {rivalries.map((r) => {
+                const leadColor = r.lead === "me" ? GREEN : r.lead === "them" ? "#e5604d" : MID;
+                return (
+                  <div key={r.opponent.id} style={{ background: BG2, border: CARD_BORDER, borderRadius: 12, padding: "12px 14px", display: "flex", flexDirection: "column", gap: 8 }}>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 8 }}>
+                      <span style={{ display: "inline-flex", alignItems: "center", gap: 7, minWidth: 0 }}>
+                        <Swords size={16} color={GOLD2} />
+                        <span style={{ fontWeight: 800, fontSize: 14.5, ...nameColorStyle(r.opponent.cosmetics) }}>{r.opponent.name}</span>
+                        <TitleChip title={r.opponent.cosmetics?.title} />
+                      </span>
+                      <span style={{ fontSize: 12.5, color: MID }}>{r.duels_count} {r.duels_count === 1 ? "duelo" : "duelos"}</span>
+                    </div>
+                    <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+                      <span style={{ fontWeight: 900, fontSize: 20, color: leadColor }}>
+                        {r.my_wins}<span style={{ color: DIM, fontWeight: 700, fontSize: 15 }}> – </span>{r.their_wins}
+                      </span>
+                      {r.draws > 0 && <span style={{ fontSize: 12, color: DIM }}>{r.draws} {r.draws === 1 ? "empate" : "empates"}</span>}
+                      <span style={{ fontSize: 12.5, color: leadColor, fontWeight: 700 }}>
+                        {r.lead === "me" ? "Vas por delante" : r.lead === "them" ? "Vas por detrás" : "Empatados"}
+                      </span>
+                      {r.streak.holder && r.streak.len >= 2 && (
+                        <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 12, fontWeight: 700, color: r.streak.holder === "me" ? GREEN : "#e5604d" }}>
+                          <Flame size={13} /> {r.streak.holder === "me" ? "Racha tuya" : "Racha rival"} de {r.streak.len}
+                        </span>
+                      )}
+                    </div>
+                    <div style={{ fontSize: 11.5, color: DIM }}>Puntos acumulados: {r.my_points} vs {r.their_points}</div>
+                  </div>
+                );
+              })}
+            </div>
+          </>
         )}
       </div>
 

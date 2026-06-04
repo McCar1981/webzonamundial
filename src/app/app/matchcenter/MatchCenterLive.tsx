@@ -790,7 +790,7 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
               <StatsPanel stats={stats} meta={meta} />
               <Timeline log={log} meta={meta} onRelive={relive} />
               <MatchSummary log={log} meta={meta} />
-              <Lineups lineups={lineups} meta={meta} />
+              <Lineups lineups={lineups} meta={meta} allowPending={feed.mode === "live"} />
               {h2h && <H2HPanel h2h={h2h} meta={meta} />}
               <MatchInfo meta={meta} lineups={lineups} kickoff={kickoff} referee={feed.mode === "live" ? feed.referee : undefined} />
             </div>
@@ -1029,16 +1029,25 @@ const POS_GROUPS: { key: string; label: string }[] = [
   { key: "FW", label: "Ataque" },
 ];
 
-function TeamLineupCol({ team, lineup, right }: { team: MatchMeta["home"]; lineup: TeamLineup; right?: boolean }) {
+function TeamLineupCol({ team, lineup, right, allowPending }: { team: MatchMeta["home"]; lineup: TeamLineup; right?: boolean; allowPending?: boolean }) {
+  // Alineación "por confirmar": en datos reales (live), api-football aún no ha
+  // publicado el once oficial, así que los nombres vienen vacíos. En vez de
+  // mostrar un XI ficticio ("Dorsal 1, 2…"), avisamos que falta confirmar.
+  const pending = allowPending && lineup.starters.every((p) => !p.name);
   return (
     <div>
       <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10, flexDirection: right ? "row-reverse" : "row", textAlign: right ? "right" : "left" }}>
         <img src={flagUrl(team.flag)} alt={team.name} style={{ width: 30, height: 20, borderRadius: 4, objectFit: "cover", border: `1px solid ${team.color}` }} />
         <div>
           <div className="mc-condensed" style={{ fontWeight: 700, fontSize: 14, textTransform: "uppercase", lineHeight: 1 }}>{team.name}</div>
-          <div className="mc-num" style={{ fontSize: 11, color: GOLD2, fontWeight: 700 }}>{lineup.formation}</div>
+          {!pending && <div className="mc-num" style={{ fontSize: 11, color: GOLD2, fontWeight: 700 }}>{lineup.formation}</div>}
         </div>
       </div>
+      {pending ? (
+        <div style={{ fontSize: 12, color: MID, fontWeight: 600, lineHeight: 1.5, padding: "6px 0" }}>
+          Alineación oficial por confirmar. Se publicará en cuanto el seleccionador la anuncie (normalmente alrededor de una hora antes del saque).
+        </div>
+      ) : (
       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
         {POS_GROUPS.map((g) => {
           const rows = lineup.starters.filter((p) => p.pos === g.key);
@@ -1058,6 +1067,7 @@ function TeamLineupCol({ team, lineup, right }: { team: MatchMeta["home"]; lineu
           );
         })}
       </div>
+      )}
     </div>
   );
 }
@@ -1173,13 +1183,13 @@ function H2HPanel({ h2h, meta }: { h2h: H2HData; meta: MatchMeta }) {
   );
 }
 
-function Lineups({ lineups, meta }: { lineups: { home: TeamLineup; away: TeamLineup }; meta: MatchMeta }) {
+function Lineups({ lineups, meta, allowPending }: { lineups: { home: TeamLineup; away: TeamLineup }; meta: MatchMeta; allowPending?: boolean }) {
   return (
     <div style={{ background: BG2, borderRadius: 16, border: "1px solid rgba(255,255,255,0.08)", padding: 18 }}>
       <h3 style={{ fontSize: 13, fontWeight: 800, color: MID, textTransform: "uppercase", letterSpacing: 1, marginBottom: 14 }}>Alineaciones</h3>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-        <TeamLineupCol team={meta.home} lineup={lineups.home} />
-        <TeamLineupCol team={meta.away} lineup={lineups.away} right />
+        <TeamLineupCol team={meta.home} lineup={lineups.home} allowPending={allowPending} />
+        <TeamLineupCol team={meta.away} lineup={lineups.away} right allowPending={allowPending} />
       </div>
     </div>
   );

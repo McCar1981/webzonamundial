@@ -377,7 +377,8 @@ const PJ_CSS = `
   .pj-filter-head { flex-direction: row; align-items: center; justify-content: space-between; }
   .pj-search-input { width: 240px; }
 }
-.prediction-filters .pj-filters { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: none; }
+.prediction-filters .pj-filters { display: flex; flex-wrap: nowrap; gap: 8px; overflow-x: auto; overflow-y: hidden; padding-bottom: 6px; scrollbar-width: none; -webkit-overflow-scrolling: touch; scroll-snap-type: x proximity; }
+.prediction-filters .pj-filters > button { scroll-snap-align: start; }
 .prediction-filters .pj-filters::-webkit-scrollbar { height: 0; display: none; }
 
 /* Featured */

@@ -15,7 +15,7 @@ import Cosmetics from "./Cosmetics";
 import LiveMicroPicks from "./LiveMicroPicks";
 import {
   TYPE_ICON, TIER_ICON,
-  ArrowLeft, Calendar, Check, Clock, Flame, Gem, Globe, Pencil, Sparkles, TrendingUp, Trophy, Users, X,
+  ArrowLeft, Calendar, Check, ChevronRight, Clock, Flame, Gem, Globe, Pencil, Sparkles, TrendingUp, Trophy, Users, X,
 } from "./icons";
 import {
   MINUTE_RANGES,
@@ -352,57 +352,65 @@ export default function PrediccionesGame() {
 
 // ─── Layout base ─────────────────────────────────────────────────────────────
 const PJ_CSS = `
-.pj-wrap { max-width: 1180px; margin: 0 auto; padding-left: 16px; padding-right: 16px; }
+.predictions-page * { box-sizing: border-box; }
+.pj-wrap { max-width: 1280px; margin: 0 auto; padding-left: 16px; padding-right: 16px; }
 
 /* Hero */
-.pj-hero { display: flex; flex-direction: column; gap: 22px; }
+.predictions-hero { display: flex; flex-direction: column; gap: 22px; }
 .pj-hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 @media (min-width: 1024px) {
-  .pj-hero { flex-direction: row; align-items: center; justify-content: space-between; }
+  .predictions-hero { flex-direction: row; align-items: center; justify-content: space-between; }
   .pj-hero-text { flex: 1; }
   .pj-hero-stats { width: 380px; flex-shrink: 0; }
 }
 
 /* Filtros */
 .pj-filter-head { display: flex; flex-direction: column; gap: 12px; margin-bottom: 14px; }
-.pj-search-input { width: 100%; box-sizing: border-box; }
+.pj-search-input { width: 100%; }
 @media (min-width: 560px) {
   .pj-filter-head { flex-direction: row; align-items: center; justify-content: space-between; }
   .pj-search-input { width: 240px; }
 }
-.pj-filters { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: none; }
-.pj-filters::-webkit-scrollbar { height: 0; display: none; }
+.prediction-filters .pj-filters { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: none; }
+.prediction-filters .pj-filters::-webkit-scrollbar { height: 0; display: none; }
 
 /* Featured */
 .pj-featured-teams { display: flex; align-items: center; justify-content: center; gap: 16px; }
 
 /* Grupos */
-.pj-group-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
-@media (min-width: 768px) { .pj-group-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1280px) { .pj-group-grid { grid-template-columns: repeat(3, 1fr); } }
+.group-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 768px) { .group-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .group-grid { grid-template-columns: repeat(3, 1fr); } }
 
-.pj-match-card { transition: transform .15s ease, border-color .15s ease, background .15s ease; }
-.pj-match-card:hover { transform: translateY(-2px); border-color: rgba(201,168,76,0.45); background: #12233b; }
-.pj-predict-btn { transition: background .15s ease, color .15s ease; }
-.pj-predict-btn:hover { background: rgba(201,168,76,0.22); color: #fff; }
+.match-row { transition: border-color .15s ease, background .15s ease; }
+.match-row:hover { border-color: rgba(201,168,76,0.45); background: #12233b; }
+.match-row:hover .match-row-chevron { color: ${GOLD2}; transform: translateX(2px); }
+.match-row:focus-visible { outline: 2px solid rgba(201,168,76,0.7); outline-offset: 2px; }
+.match-row-chevron { transition: color .15s ease, transform .15s ease; }
+
 .pj-cta { transition: filter .15s ease, transform .15s ease; }
 .pj-cta:hover { filter: brightness(1.06); transform: translateY(-1px); }
+.pj-cta:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 
-/* 8 tipos */
-.pj-types-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
-@media (min-width: 560px) { .pj-types-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1024px) { .pj-types-grid { grid-template-columns: repeat(4, 1fr); } }
+/* 8 formas de acertar */
+.prediction-modes .pj-types-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 560px) { .prediction-modes .pj-types-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .prediction-modes .pj-types-grid { grid-template-columns: repeat(4, 1fr); } }
 .pj-type-card { transition: transform .15s ease, border-color .15s ease; }
 .pj-type-card:hover { transform: translateY(-2px); border-color: rgba(201,168,76,0.35); }
 
 /* Underdog */
-.pj-underdog-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-@media (min-width: 768px) { .pj-underdog-grid { grid-template-columns: repeat(4, 1fr); } }
+.underdog-section .pj-underdog-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+@media (min-width: 768px) { .underdog-section .pj-underdog-grid { grid-template-columns: repeat(4, 1fr); } }
+
+/* CTA final */
+.pj-cta-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+@media (min-width: 768px) { .pj-cta-grid { grid-template-columns: repeat(2, 1fr); } }
 `;
 
 function Shell({ children }: { children: React.ReactNode }) {
   return (
-    <div style={{ background: BG, color: "#fff", fontFamily: "'Outfit',sans-serif", minHeight: "100vh", paddingBottom: 40 }}>
+    <div className="predictions-page" style={{ background: BG, color: "#fff", fontFamily: "'Outfit',sans-serif", minHeight: "100vh", paddingBottom: 40 }}>
       <style>{PJ_CSS}</style>
       {children}
     </div>
@@ -448,6 +456,7 @@ function LandingView({ matches, onPick }: { matches: Match[]; onPick: (id: strin
       <GroupGrid matches={filtered} onPick={onPick} />
       <TypesShowcase />
       <UnderdogBand />
+      <CtaFinal />
     </>
   );
 }
@@ -460,10 +469,12 @@ function Hero() {
   ];
   return (
     <section className="pj-wrap" style={{ paddingTop: 14, paddingBottom: 6 }}>
-      <div className="pj-hero" style={{
+      <div className="predictions-hero" style={{
         background: `radial-gradient(120% 150% at 0% 0%, ${BG2} 0%, ${BG3} 55%, ${BG} 100%)`,
         border: CARD_BORDER, borderRadius: 22, padding: "28px 24px", position: "relative", overflow: "hidden",
       }}>
+        {/* textura sutil de campo (líneas verticales muy tenues) */}
+        <div aria-hidden style={{ position: "absolute", inset: 0, opacity: 0.5, pointerEvents: "none", backgroundImage: "repeating-linear-gradient(90deg, rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 64px)" }} />
         <div aria-hidden style={{ position: "absolute", top: -90, right: -50, width: 280, height: 280, borderRadius: "50%", background: "radial-gradient(circle, rgba(201,168,76,0.16), transparent 70%)", pointerEvents: "none" }} />
         <div className="pj-hero-text" style={{ position: "relative", zIndex: 1 }}>
           <span style={{ color: GOLD, fontSize: 11, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase" }}>Mundial 2026 · Predicciones</span>
@@ -504,7 +515,7 @@ function FeaturedTeam({ flag, name }: { flag: string; name: string }) {
 function FeaturedMatch({ m, onPick }: { m: Match; onPick: (id: string) => void }) {
   const t = tierOf(m);
   return (
-    <section className="pj-wrap" style={{ paddingTop: 20 }}>
+    <section className="pj-wrap featured-match" style={{ paddingTop: 20 }}>
       <h3 style={sectionTitle}>Partido destacado</h3>
       <div style={{
         background: `linear-gradient(135deg, ${BG2} 0%, ${BG3} 100%)`,
@@ -524,7 +535,7 @@ function FeaturedMatch({ m, onPick }: { m: Match; onPick: (id: string) => void }
           <div style={{ fontSize: 30, fontWeight: 900, color: GOLD, letterSpacing: 1, flexShrink: 0 }}>VS</div>
           <FeaturedTeam flag={m.af} name={m.a} />
         </div>
-        <button onClick={() => onPick(String(m.i))} className="pj-cta" style={featuredBtn}>Lanzar predicción</button>
+        <button onClick={() => onPick(String(m.i))} className="pj-cta" style={featuredBtn} aria-label={`Lanzar predicción para ${m.h} contra ${m.a}`}>Lanzar predicción</button>
       </div>
     </section>
   );
@@ -543,11 +554,13 @@ function Filters({ filter, setFilter, query, setQuery, groups }: {
     ...groups.map((g) => ({ key: `group:${g}`, label: `Grupo ${g}` })),
   ];
   return (
-    <section className="pj-wrap" style={{ paddingTop: 26 }}>
+    <section className="pj-wrap prediction-filters" style={{ paddingTop: 26 }}>
       <div className="pj-filter-head">
         <h3 style={{ ...sectionTitle, margin: 0 }}>Elige tu batalla</h3>
         <input
           className="pj-search-input"
+          type="search"
+          aria-label="Buscar selección"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Buscar selección…"
@@ -560,10 +573,11 @@ function Filters({ filter, setFilter, query, setQuery, groups }: {
           return (
             <button
               key={c.key}
+              aria-pressed={active}
               onClick={() => setFilter(active && c.key !== "all" ? "all" : c.key)}
               style={{
-                flexShrink: 0, whiteSpace: "nowrap", cursor: "pointer", fontSize: 13, fontWeight: 700,
-                padding: "8px 14px", borderRadius: 99,
+                flexShrink: 0, whiteSpace: "nowrap", cursor: "pointer", fontSize: 13, fontWeight: 600,
+                padding: "0 16px", minHeight: 40, borderRadius: 99,
                 background: active ? "rgba(201,168,76,0.16)" : BG2,
                 color: active ? GOLD2 : MID,
                 border: active ? `1px solid ${GOLD}` : CARD_BORDER,
@@ -578,7 +592,7 @@ function Filters({ filter, setFilter, query, setQuery, groups }: {
   );
 }
 
-function MatchRow({ flag, name }: { flag: string; name: string }) {
+function TeamLine({ flag, name }: { flag: string; name: string }) {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 9, minWidth: 0 }}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -591,24 +605,31 @@ function MatchRow({ flag, name }: { flag: string; name: string }) {
 function MatchCard({ m, onPick }: { m: Match; onPick: (id: string) => void }) {
   const t = tierOf(m);
   return (
-    <div className="pj-match-card" style={{ background: BG2, border: CARD_BORDER, borderRadius: 14, padding: 14 }}>
+    <button
+      className="match-row"
+      onClick={() => onPick(String(m.i))}
+      aria-label={`Predecir ${m.h} contra ${m.a}, ${fmtKickoff(m)}, multiplicador ×${t.multiplier.toFixed(2)}`}
+      style={{
+        display: "block", width: "100%", textAlign: "left", cursor: "pointer", color: "#fff",
+        background: BG2, border: CARD_BORDER, borderRadius: 14, padding: 14,
+      }}
+    >
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 11 }}>
         <span style={{ fontSize: 10.5, color: DIM, display: "inline-flex", alignItems: "center", gap: 4 }}><Clock size={11} /> {fmtKickoff(m)}</span>
         <span style={{ fontSize: 10.5, fontWeight: 800, color: TIER_COLOR[t.label], display: "inline-flex", alignItems: "center", gap: 3 }}>
           <TierIcon label={t.label} size={12} /> ×{t.multiplier.toFixed(2)}
         </span>
       </div>
-      <MatchRow flag={m.hf} name={m.h} />
+      <TeamLine flag={m.hf} name={m.h} />
       <div style={{ fontSize: 10, fontWeight: 800, color: DIM, margin: "4px 0 4px 35px" }}>VS</div>
-      <MatchRow flag={m.af} name={m.a} />
-      <div style={{ fontSize: 11, color: TIER_COLOR[t.label], fontWeight: 600, margin: "11px 0" }}>{tierMood(t.multiplier)}</div>
-      <button onClick={() => onPick(String(m.i))} className="pj-predict-btn" style={{
-        width: "100%", padding: "10px", borderRadius: 10, border: "none", cursor: "pointer",
-        background: "rgba(201,168,76,0.12)", color: GOLD2, fontWeight: 800, fontSize: 13, minHeight: 44,
-      }}>
-        Predecir
-      </button>
-    </div>
+      <TeamLine flag={m.af} name={m.a} />
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 12 }}>
+        <span style={{ fontSize: 11, color: TIER_COLOR[t.label], fontWeight: 600 }}>{tierMood(t.multiplier)}</span>
+        <span className="match-row-chevron" style={{ color: MID, display: "inline-flex", alignItems: "center", gap: 3, fontSize: 11.5, fontWeight: 700 }}>
+          Predecir <ChevronRight size={16} />
+        </span>
+      </div>
+    </button>
   );
 }
 
@@ -635,9 +656,9 @@ function GroupGrid({ matches, onPick }: { matches: Match[]; onPick: (id: string)
 
   return (
     <section className="pj-wrap" style={{ paddingTop: 16 }}>
-      <div className="pj-group-grid">
+      <div className="group-grid">
         {groups.map(([g, ms]) => (
-          <div key={g} style={{ background: BG3, border: CARD_BORDER, borderRadius: 18, padding: 16 }}>
+          <div key={g} className="group-card" style={{ background: BG3, border: CARD_BORDER, borderRadius: 18, padding: 16 }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 13 }}>
               <span style={{ fontSize: 14, fontWeight: 900, color: GOLD, letterSpacing: 0.5, display: "inline-flex", alignItems: "center", gap: 8 }}>
                 <span style={{ width: 26, height: 26, borderRadius: 8, background: "rgba(201,168,76,0.14)", display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 13 }}>{g}</span>
@@ -657,10 +678,10 @@ function GroupGrid({ matches, onPick }: { matches: Match[]; onPick: (id: string)
 
 function TypesShowcase() {
   return (
-    <section className="pj-wrap" style={{ paddingTop: 40 }}>
-      <h3 style={sectionTitle}>Los 8 tipos de predicción</h3>
+    <section className="pj-wrap prediction-modes" style={{ paddingTop: 40 }}>
+      <h3 style={sectionTitle}>8 formas de acertar</h3>
       <p style={{ fontSize: 13.5, color: MID, margin: "-6px 0 18px", maxWidth: 560, lineHeight: 1.5 }}>
-        Cada partido, ocho maneras distintas de demostrar que sabes de fútbol.
+        No todo va de adivinar el marcador. Elige cómo quieres leer cada partido.
       </p>
       <div className="pj-types-grid">
         {PREDICTION_TYPES.map((type) => {
@@ -693,7 +714,7 @@ function UnderdogBand() {
     { label: "Diamante", mult: "×2.0", desc: "Batacazo histórico" },
   ];
   return (
-    <section className="pj-wrap" style={{ paddingTop: 40, paddingBottom: 60 }}>
+    <section className="pj-wrap underdog-section" style={{ paddingTop: 40 }}>
       <div style={{ background: `linear-gradient(135deg, ${BG2}, ${BG3})`, border: CARD_BORDER, borderRadius: 20, padding: "24px 22px" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 7 }}>
           <Gem size={20} color="#38bdf8" />
@@ -714,6 +735,54 @@ function UnderdogBand() {
             </div>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+function CtaFinal() {
+  const cards = [
+    {
+      icon: Users, href: "/app/predicciones/jugar/ligas",
+      title: "Únete a una liga privada", text: "Juega con tus amigos y compite por la gloria.",
+      btn: "Crear liga", gold: true,
+    },
+    {
+      icon: Trophy, href: "/app/predicciones/jugar/ranking",
+      title: "Compite en el ranking", text: "Demuestra que eres el mejor predictor.",
+      btn: "Ver ranking", gold: false,
+    },
+  ];
+  return (
+    <section className="pj-wrap" style={{ paddingTop: 40, paddingBottom: 60 }}>
+      <div className="pj-cta-grid">
+        {cards.map((c) => {
+          const Icon = c.icon;
+          return (
+            <div key={c.href} style={{ background: BG3, border: CARD_BORDER, borderRadius: 18, padding: "22px 20px", display: "flex", flexDirection: "column" }}>
+              <div style={{ width: 42, height: 42, borderRadius: 12, background: "rgba(201,168,76,0.14)", display: "inline-flex", alignItems: "center", justifyContent: "center", marginBottom: 12 }}>
+                <Icon size={22} color={GOLD2} />
+              </div>
+              <h3 style={{ fontSize: 17, fontWeight: 800, margin: "0 0 6px" }}>{c.title}</h3>
+              <p style={{ fontSize: 13.5, color: MID, lineHeight: 1.5, margin: "0 0 18px", flex: 1 }}>{c.text}</p>
+              <Link
+                href={c.href}
+                className="pj-cta"
+                style={c.gold ? {
+                  display: "inline-flex", alignItems: "center", justifyContent: "center", minHeight: 46,
+                  padding: "0 22px", borderRadius: 12, textDecoration: "none", fontWeight: 800, fontSize: 14,
+                  background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: BG, alignSelf: "flex-start",
+                } : {
+                  display: "inline-flex", alignItems: "center", justifyContent: "center", minHeight: 46,
+                  padding: "0 22px", borderRadius: 12, textDecoration: "none", fontWeight: 800, fontSize: 14,
+                  background: "rgba(201,168,76,0.12)", color: GOLD2, border: `1px solid ${GOLD}55`, alignSelf: "flex-start",
+                }}
+              >
+                {c.btn}
+              </Link>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

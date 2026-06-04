@@ -229,7 +229,15 @@ export default function TriviaGame() {
   const q = questions[idx];
 
   return (
-    <div style={{ background: BG, color: "#fff", minHeight: "100vh", fontFamily: "'Outfit',sans-serif" }}>
+    <div
+      className={phase === "result" ? "zm-result-bg" : undefined}
+      style={{
+        background: phase === "result" ? undefined : BG,
+        color: "#fff",
+        minHeight: "100vh",
+        fontFamily: "'Outfit',sans-serif",
+      }}
+    >
       <style>{`
         @keyframes pop{0%{transform:scale(.9);opacity:0}100%{transform:scale(1);opacity:1}}
         @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
@@ -237,6 +245,17 @@ export default function TriviaGame() {
         @keyframes barIn{from{width:100%}to{width:0%}}
         .zm-opt{transition:all .15s}
         .zm-opt:hover:not(:disabled){border-color:${GOLD}88;transform:translateY(-2px)}
+        .zm-result-bg{
+          background-color:${BG};
+          background-image:linear-gradient(to bottom,rgba(5,11,20,.92),rgba(5,11,20,.985)),url('/assets/trivia/results/trivia-result-bg-mobile.png');
+          background-size:cover;background-position:center top;background-repeat:no-repeat;
+        }
+        @media(min-width:1024px){
+          .zm-result-bg{
+            background-image:linear-gradient(to bottom,rgba(5,11,20,.9),rgba(5,11,20,.98)),url('/assets/trivia/results/trivia-result-bg-desktop.png');
+            background-attachment:fixed;
+          }
+        }
       `}</style>
 
       <div style={{ maxWidth: 720, margin: "0 auto", padding: "20px 16px 80px" }}>
@@ -621,6 +640,16 @@ function Pill({ text }: { text: string }) {
 
 // ───────────────────────── Result ─────────────────────────
 
+const R = "/assets/trivia/results";
+
+/** Rango según puntos (solo visual; no cambia ninguna lógica de juego). */
+function rankFor(points: number): string {
+  if (points >= 121) return "Leyenda ZonaMundial";
+  if (points >= 81) return "Experto Mundialista";
+  if (points >= 41) return "Buen Predictor";
+  return "Aprendiz Mundialista";
+}
+
 function Result({
   result,
   mode,
@@ -633,6 +662,9 @@ function Result({
   onMenu: () => void;
 }) {
   const pct = result.answered > 0 ? Math.round((result.correct / result.answered) * 100) : 0;
+  const rank = rankFor(result.points);
+  const xp = result.points;
+  const futcoins = Math.max(1, Math.round(result.points / 10));
   const share = async () => {
     const text =
       mode === "muerte-subita"
@@ -655,81 +687,126 @@ function Result({
     }
   };
 
-  return (
-    <div style={{ textAlign: "center", animation: "pop .3s ease" }}>
-      <div style={{ fontSize: 54, marginBottom: 4 }}>{pct >= 70 ? "🏆" : pct >= 40 ? "👏" : "💪"}</div>
-      <h2 style={{ fontSize: 26, fontWeight: 900, marginBottom: 4 }}>
-        {result.points.toLocaleString()} <span style={{ color: GOLD2 }}>puntos</span>
-      </h2>
-      <p style={{ color: MID, fontSize: 15, marginBottom: 22 }}>
-        {mode === "muerte-subita"
-          ? `Aguantaste ${result.survival} preguntas seguidas`
-          : `${result.correct} de ${result.answered} correctas (${pct}%)`}
-      </p>
+  const hasBadges =
+    result.perfectDay ||
+    result.timeBonus === "early_bird" ||
+    result.timeBonus === "night_owl";
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10, marginBottom: 18 }}>
-        <Stat label="Aciertos" value={`${result.correct}/${result.answered}`} />
-        <Stat label="Mejor racha" value={`🔥 ${result.bestStreak}`} />
-        <Stat label="Precisión" value={`${pct}%`} />
+  return (
+    <div className="zm-r">
+      <style>{`
+        .zm-r{max-width:760px;margin:0 auto;animation:pop .3s ease}
+        .zm-r-eyebrow{text-align:center;color:#E6C85C;font-size:11px;font-weight:800;letter-spacing:4px;text-transform:uppercase;margin-bottom:14px}
+        .zm-r-card{position:relative;background-image:linear-gradient(180deg,rgba(7,20,38,.35),rgba(7,20,38,.55)),url('${R}/result-main-panel.png');background-size:100% 100%;background-repeat:no-repeat;padding:42px 22px 30px;text-align:center;margin-bottom:16px}
+        .zm-r-medal{width:88px;height:88px;margin:0 auto 8px;display:block;filter:drop-shadow(0 6px 18px rgba(0,0,0,.55))}
+        .zm-r-score{font-weight:900;line-height:.95;font-size:clamp(46px,13vw,66px);color:#F4F6FA;text-shadow:0 2px 18px rgba(0,0,0,.4)}
+        .zm-r-score b{color:#E6C85C}
+        .zm-r-score em{display:block;font-style:normal;font-size:.26em;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:#8E9AB3;margin-top:8px}
+        .zm-r-summary{color:#8E9AB3;font-size:15px;font-weight:500;margin:12px 0 16px}
+        .zm-r-rank{display:inline-block;padding:9px 20px;border-radius:999px;font-weight:800;font-size:14px;letter-spacing:.4px;color:#050B14;background:linear-gradient(135deg,#D8B84F,#E6C85C);box-shadow:0 6px 18px rgba(216,184,79,.28)}
+        .zm-r-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+        .zm-r-stat{background:linear-gradient(180deg,#0B1A2D,#071426);border:1px solid rgba(47,128,255,.28);border-radius:14px;padding:14px 6px;text-align:center}
+        .zm-r-stat img{width:24px;height:24px;margin-bottom:6px}
+        .zm-r-stat strong{display:block;font-size:clamp(18px,5.4vw,22px);font-weight:800;color:#F4F6FA}
+        .zm-r-stat span{display:block;margin-top:2px;font-size:11px;color:#8E9AB3;font-weight:500}
+        .zm-r-rewards{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;background:linear-gradient(180deg,#0B1A2D,#071426);border:1px solid rgba(47,128,255,.22);border-radius:14px;padding:12px 6px;margin-bottom:18px}
+        .zm-r-reward{display:flex;align-items:center;gap:7px;padding:4px 14px;font-weight:800;color:#F4F6FA;font-size:14px}
+        .zm-r-reward img{width:20px;height:20px}
+        .zm-r-reward+.zm-r-reward{border-left:1px solid rgba(255,255,255,.08)}
+        .zm-r-badge{margin:0 5px;padding:5px 12px;border-radius:999px;font-size:12px;font-weight:700;color:#E6C85C;background:rgba(230,200,92,.12);border:1px solid rgba(230,200,92,.42)}
+        .zm-r-actions{display:grid;gap:10px;max-width:640px;margin:0 auto}
+        .zm-r-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:52px;padding:14px 18px;border-radius:14px;font-weight:800;font-size:16px;font-family:inherit;cursor:pointer;border:none;transition:transform .12s,filter .12s}
+        .zm-r-btn img{width:20px;height:20px}
+        .zm-r-btn:hover{filter:brightness(1.07)}
+        .zm-r-btn:active{transform:translateY(1px)}
+        .zm-r-btn:focus-visible{outline:3px solid #2F80FF;outline-offset:2px}
+        .zm-r-primary{background:linear-gradient(135deg,#D8B84F,#E6C85C);color:#050B14}
+        .zm-r-secondary{background:#0B1A2D;color:#F4F6FA;border:1px solid rgba(47,128,255,.55)}
+        .zm-r-tertiary{background:transparent;color:#8E9AB3;border:1px solid rgba(255,255,255,.1)}
+        .zm-r-chev{margin-left:auto;font-size:20px;line-height:1;font-weight:800}
+        .zm-r-note{color:#6a7a9a;font-size:12px;text-align:center;margin:14px auto 0;max-width:480px}
+        @media(max-width:359px){.zm-r-reward{padding:4px 9px;font-size:13px}}
+      `}</style>
+
+      <p className="zm-r-eyebrow">Resultado final</p>
+
+      {/* Card principal */}
+      <div className="zm-r-card">
+        <img className="zm-r-medal" src={`${R}/rank-medal.png`} alt="" />
+        <div className="zm-r-score">
+          <b>{result.points.toLocaleString()}</b>
+          <em>puntos</em>
+        </div>
+        <p className="zm-r-summary">
+          {mode === "muerte-subita"
+            ? `Aguantaste ${result.survival} preguntas seguidas`
+            : `${result.correct} de ${result.answered} correctas (${pct}%)`}
+        </p>
+        <span className="zm-r-rank">{rank}</span>
       </div>
 
-      {(result.perfectDay || (result.timeBonus && result.timeBonusMult && result.timeBonusMult > 1)) && (
-        <div style={{ marginBottom: 18, display: "flex", flexDirection: "column", gap: 8 }}>
-          {result.perfectDay && <Badge text="🌟 Día Perfecto · +50 pts" />}
-          {result.timeBonus === "early_bird" && <Badge text="🐦 Early Bird · ×1.5" />}
-          {result.timeBonus === "night_owl" && <Badge text="🦉 Búho Nocturno · ×1.25" />}
+      {/* Stats */}
+      <div className="zm-r-stats">
+        <article className="zm-r-stat">
+          <img src={`${R}/icon-target.svg`} alt="" />
+          <strong>
+            {result.correct}/{result.answered}
+          </strong>
+          <span>Aciertos</span>
+        </article>
+        <article className="zm-r-stat">
+          <img src={`${R}/icon-fire.svg`} alt="" />
+          <strong>{result.bestStreak}</strong>
+          <span>Mejor racha</span>
+        </article>
+        <article className="zm-r-stat">
+          <img src={`${R}/icon-accuracy.svg`} alt="" />
+          <strong>{pct}%</strong>
+          <span>Precisión</span>
+        </article>
+      </div>
+
+      {/* Recompensas */}
+      <div className="zm-r-rewards">
+        <div className="zm-r-reward">
+          <img src={`${R}/icon-xp.svg`} alt="" />
+          <span>+{xp.toLocaleString()} XP</span>
         </div>
-      )}
+        <div className="zm-r-reward">
+          <img src={`${R}/icon-futcoins.svg`} alt="" />
+          <span>+{futcoins} Fútcoins</span>
+        </div>
+        {hasBadges && (
+          <div className="zm-r-reward" style={{ borderLeft: "1px solid rgba(255,255,255,.08)" }}>
+            {result.perfectDay && <span className="zm-r-badge">Día Perfecto +50</span>}
+            {result.timeBonus === "early_bird" && <span className="zm-r-badge">Early Bird ×1.5</span>}
+            {result.timeBonus === "night_owl" && <span className="zm-r-badge">Búho Nocturno ×1.25</span>}
+          </div>
+        )}
+      </div>
 
       {!result.recorded && (
-        <p style={{ color: DIM, fontSize: 12, marginBottom: 16 }}>
+        <p className="zm-r-note">
           Tu puntuación no se guardó en el ranking (sin nombre). Pon tu nombre en el menú para competir.
         </p>
       )}
 
-      <div style={{ display: "grid", gap: 10 }}>
-        <button onClick={share} style={btn(`linear-gradient(135deg,${GOLD},${GOLD2})`, BG)}>
-          📲 Compartir resultado
+      {/* Acciones */}
+      <div className="zm-r-actions" style={{ marginTop: 18 }}>
+        <button className="zm-r-btn zm-r-primary" onClick={share}>
+          <img src={`${R}/icon-share.svg`} alt="" />
+          Compartir resultado
+          <span className="zm-r-chev" aria-hidden="true">›</span>
         </button>
-        <button onClick={onAgain} style={btn(BG2, "#fff", "1px solid rgba(255,255,255,0.1)")}>
-          🔁 Jugar otra vez
+        <button className="zm-r-btn zm-r-secondary" onClick={onAgain}>
+          <img src={`${R}/icon-replay.svg`} alt="" />
+          Jugar otra vez
         </button>
-        <button onClick={onMenu} style={btn("transparent", MID, "1px solid rgba(255,255,255,0.08)")}>
-          ← Menú
+        <button className="zm-r-btn zm-r-tertiary" onClick={onMenu}>
+          <img src={`${R}/icon-menu.svg`} alt="" />
+          Menú
         </button>
       </div>
     </div>
   );
-}
-
-function Stat({ label, value }: { label: string; value: string }) {
-  return (
-    <div style={{ background: BG2, borderRadius: 12, padding: "14px 8px" }}>
-      <div style={{ fontSize: 18, fontWeight: 800 }}>{value}</div>
-      <div style={{ fontSize: 11, color: DIM, marginTop: 2 }}>{label}</div>
-    </div>
-  );
-}
-
-function Badge({ text }: { text: string }) {
-  return (
-    <span style={{ background: `${GOLD}1a`, border: `1px solid ${GOLD}44`, color: GOLD2, padding: "8px 14px", borderRadius: 999, fontSize: 13, fontWeight: 700, display: "inline-block" }}>
-      {text}
-    </span>
-  );
-}
-
-function btn(bg: string, color: string, border = "none"): React.CSSProperties {
-  return {
-    width: "100%",
-    padding: "15px",
-    borderRadius: 14,
-    border,
-    cursor: "pointer",
-    background: bg,
-    color,
-    fontWeight: 800,
-    fontSize: 16,
-    fontFamily: "inherit",
-  };
 }

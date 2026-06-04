@@ -30,7 +30,8 @@ export type NotificationCategory =
   | "predictions-reminder"
   | "fantasy"
   | "blog-posts"
-  | "creators";
+  | "creators"
+  | "amistosos";
 
 export type NotificationChannel = "push" | "email" | "in-app";
 

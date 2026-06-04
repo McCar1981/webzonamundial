@@ -26,6 +26,7 @@ const VALID_CATEGORIES: NotificationCategory[] = [
   "fantasy",
   "blog-posts",
   "creators",
+  "amistosos",
 ];
 const VALID_CHANNELS: NotificationChannel[] = ["push", "email", "in-app"];
 

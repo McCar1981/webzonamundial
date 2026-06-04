@@ -130,6 +130,17 @@ const CATEGORIES: CategoryDef[] = [
     emailSupported: false,
     pushSupported: true,
   },
+  {
+    id: "amistosos",
+    label: "Amistosos de selecciones",
+    description: "Goles, alineaciones, inicio, descanso y final en vivo",
+    icon: "",
+    status: "active",
+    defaultEmail: false,
+    defaultPush: true,
+    emailSupported: false,
+    pushSupported: true,
+  },
 ];
 
 function prefValue(

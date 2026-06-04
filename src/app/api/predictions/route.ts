@@ -13,10 +13,10 @@ import {
   type SocialData,
 } from "@/lib/predictions/types";
 import { validatePredictionData, checkOpen, isEarlyBird } from "@/lib/predictions/rules";
-import { getMatchMeta, matchMultiplier } from "@/lib/predictions/match-data";
+import { getMatch, getMatchMeta, matchMultiplier } from "@/lib/predictions/match-data";
 import { potentialPoints } from "@/lib/predictions/scoring";
 import { isPremium, findPrediction, createPrediction } from "@/lib/predictions/store";
-import { bumpChallengeProgress, extendStreakWindow } from "@/lib/predictions/gamification-store";
+import { bumpChallengeProgress, claimJornadaIfComplete, extendStreakWindow } from "@/lib/predictions/gamification-store";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -96,6 +96,10 @@ export async function POST(req: Request) {
 
   // Racha: predecir cuenta como engagement → renueva la cuenta atrás.
   await extendStreakWindow(user.id).catch(() => {});
+
+  // Battle Pass: si esta predicción completa la jornada del día, paga el bonus.
+  const matchDay = getMatch(match_id)?.d;
+  if (matchDay) await claimJornadaIfComplete(user.id, matchDay).catch(() => {});
 
   const tm = TYPE_META[prediction_type];
   return NextResponse.json({

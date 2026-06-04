@@ -80,6 +80,20 @@ export function getMatchMeta(matchId: string): MatchMeta | null {
   };
 }
 
+// ─── Jornadas por día (para el bonus de jornada del Battle Pass) ─────────────
+// Una "jornada" en el bucle de engagement = todos los partidos de fase de grupos
+// que se juegan un mismo día. Predecirlos todos otorga el bonus de jornada.
+export function matchesOnDate(dateKey: string): string[] {
+  return MATCHES.filter((m) => m.p === "Fase de grupos" && m.d === dateKey).map((m) => String(m.i));
+}
+
+/** Fechas (YYYY-MM-DD) con partidos de fase de grupos, en orden de calendario. */
+export function matchDays(): string[] {
+  const set = new Set<string>();
+  for (const m of MATCHES) if (m.p === "Fase de grupos") set.add(m.d);
+  return [...set].sort();
+}
+
 // ─── Multiplicador "Modo Underdog" del partido ───────────────────────────────
 // Mismo criterio que el Fantasy: a mayor diferencia de ranking FIFA, mayor
 // multiplicador (el partido "desigual" es más difícil de predecir → vale más).

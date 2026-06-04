@@ -34,6 +34,17 @@ import {
   type BoostId,
   type ChallengeSignals,
 } from "./gamification";
+import {
+  buildBattlePassView,
+  jornadaBonus,
+  seasonInfo,
+  seasonKey,
+  tierForXp,
+  tierReward,
+  type BattlePassView,
+  type Track,
+} from "./battlepass";
+import { matchesOnDate } from "./match-data";
 
 interface ProfileGam {
   xp: number;
@@ -67,6 +78,40 @@ async function readProfile(uid: string): Promise<ProfileGam> {
     streak_expires_at: p.streak_expires_at ?? null,
     streak_anchor: p.streak_anchor ?? null,
   };
+}
+
+/** Lee el flag premium del usuario (columna profiles.is_premium). */
+async function readPremium(uid: string): Promise<boolean> {
+  const admin = adminClient();
+  const { data } = await admin.from("profiles").select("is_premium").eq("id", uid).maybeSingle();
+  return Boolean((data as { is_premium?: boolean } | null)?.is_premium);
+}
+
+/**
+ * Suma XP a la TEMPORADA vigente del Battle Pass (separado del XP de por vida).
+ * Se llama desde los mismos puntos donde se otorga XP de progresión. Idempotente
+ * por upsert con incremento leído-y-escrito (no concurrente-seguro al 100%, pero
+ * la resolución es secuencial por usuario).
+ */
+export async function addSeasonXp(uid: string, xp: number): Promise<void> {
+  if (xp <= 0) return;
+  const admin = adminClient();
+  const key = seasonKey();
+  const { data } = await admin
+    .from("prediction_season_xp")
+    .select("xp").eq("user_id", uid).eq("season_key", key).maybeSingle();
+  const current = (data as { xp: number } | null)?.xp ?? 0;
+  await admin.from("prediction_season_xp").upsert({
+    user_id: uid, season_key: key, xp: current + xp, updated_at: new Date().toISOString(),
+  }, { onConflict: "user_id,season_key" });
+}
+
+async function readSeasonXp(uid: string, key: string): Promise<number> {
+  const admin = adminClient();
+  const { data } = await admin
+    .from("prediction_season_xp")
+    .select("xp").eq("user_id", uid).eq("season_key", key).maybeSingle();
+  return (data as { xp: number } | null)?.xp ?? 0;
 }
 
 /**
@@ -178,10 +223,12 @@ export async function grantMatchRewards(matchId: string, userIds: string[]): Pro
     const { data: ach } = await admin.from("prediction_achievements").select("achievement_id").eq("user_id", uid);
     const unlocked = new Set((ach ?? []).map((a) => (a as { achievement_id: string }).achievement_id));
     const fresh = newlyUnlocked(stats, unlocked);
+    let seasonXp = gainedXp; // XP de temporada ganado en esta resolución
     for (const a of fresh) {
       await admin.from("prediction_achievements").insert({ user_id: uid, achievement_id: a.id }).then(() => {}, () => {});
       newCoins += a.rewardCoins;
       newXp += a.rewardXp;
+      seasonXp += a.rewardXp;
     }
 
     await admin.from("profiles").update({
@@ -191,6 +238,9 @@ export async function grantMatchRewards(matchId: string, userIds: string[]): Pro
       best_streak: Math.max(best, prof.best_streak),
       streak_expires_at: streakExpiresAt,
     }).eq("id", uid);
+
+    // Battle Pass: el mismo XP de progresión llena la pista de temporada.
+    await addSeasonXp(uid, seasonXp).catch(() => {});
   }
 
   // Resolver duelos 1v1 de este partido.
@@ -361,6 +411,7 @@ export async function bumpChallengeProgress(uid: string, signals: ChallengeSigna
       coins: prof.coins + challenge.rewardCoins,
       xp: prof.xp + challenge.rewardXp,
     }).eq("id", uid);
+    await addSeasonXp(uid, challenge.rewardXp).catch(() => {});
   }
 }
 
@@ -416,7 +467,102 @@ export async function claimDaily(uid: string): Promise<CheckinResult> {
     user_id: uid, day_key: today, reward_coins: reward.coins, reward_xp: reward.xp,
   }, { onConflict: "user_id,day_key" });
 
+  // El XP del check-in (y del cofre) también llena la pista de temporada.
+  await addSeasonXp(uid, reward.xp + (chest?.xp ?? 0)).catch(() => {});
+
   return { already: false, reward, chest, checkin_days: newDays, coins };
+}
+
+// ─── Battle Pass de temporada (mejora E) ─────────────────────────────────────
+/** Construye la vista de la pista de temporada para la UI. */
+export async function getBattlePass(uid: string): Promise<BattlePassView> {
+  const admin = adminClient();
+  const season = seasonInfo();
+  const [seasonXp, premium] = await Promise.all([
+    readSeasonXp(uid, season.key),
+    readPremium(uid),
+  ]);
+  const { data: claimRows } = await admin
+    .from("prediction_battlepass_claims")
+    .select("tier,track")
+    .eq("user_id", uid).eq("season_key", season.key);
+  const claimed = new Set(
+    (claimRows ?? []).map((c) => {
+      const r = c as { tier: number; track: string };
+      return `${r.tier}:${r.track}`;
+    }),
+  );
+  return buildBattlePassView(season, seasonXp, premium, claimed);
+}
+
+export interface ClaimTierResult { ok: boolean; error?: string; coins?: number; boost?: BoostId | null }
+/**
+ * Reclama la recompensa de un nivel/tramo del Battle Pass. Valida que el nivel
+ * esté desbloqueado, que el tramo premium requiera premium, y que no se haya
+ * reclamado ya (idempotente vía PK de prediction_battlepass_claims).
+ */
+export async function claimBattlePassTier(uid: string, tier: number, track: Track): Promise<ClaimTierResult> {
+  if (tier < 1) return { ok: false, error: "invalid_tier" };
+  const admin = adminClient();
+  const season = seasonInfo();
+  const seasonXp = await readSeasonXp(uid, season.key);
+  if (tierForXp(seasonXp) < tier) return { ok: false, error: "tier_locked" };
+  if (track === "premium" && !(await readPremium(uid))) return { ok: false, error: "premium_required" };
+
+  // Idempotencia: si ya existe el claim, no se vuelve a pagar.
+  const { error: claimErr } = await admin
+    .from("prediction_battlepass_claims")
+    .insert({ user_id: uid, season_key: season.key, tier, track });
+  if (claimErr) return { ok: false, error: "already_claimed" };
+
+  const reward = tierReward(tier, track);
+  const prof = await readProfile(uid);
+  await admin.from("profiles").update({ coins: prof.coins + reward.coins }).eq("id", uid);
+  if (reward.boost) {
+    await admin.from("prediction_boosts").insert({ user_id: uid, boost_id: reward.boost });
+  }
+  return { ok: true, coins: prof.coins + reward.coins, boost: reward.boost };
+}
+
+export interface JornadaResult { ok: boolean; awarded: boolean; xp?: number; coins?: number; missing?: number }
+/**
+ * Otorga el bonus de jornada si el usuario predijo TODOS los partidos de un día.
+ * Idempotente: registra el cobro en prediction_jornada_claims (PK user_id,day_key).
+ * El XP del bonus también llena la pista de temporada.
+ */
+export async function claimJornadaIfComplete(uid: string, dayKey: string): Promise<JornadaResult> {
+  const matchIds = matchesOnDate(dayKey);
+  if (!matchIds.length) return { ok: false, awarded: false, missing: 0 };
+
+  const admin = adminClient();
+  // ¿Ya cobrado este día?
+  const { data: existing } = await admin
+    .from("prediction_jornada_claims")
+    .select("day_key").eq("user_id", uid).eq("day_key", dayKey).maybeSingle();
+  if (existing) return { ok: true, awarded: false };
+
+  // ¿Predijo todos los partidos del día? (al menos una predicción por partido)
+  const { data: preds } = await admin
+    .from("predictions")
+    .select("match_id").eq("user_id", uid).in("match_id", matchIds);
+  const predicted = new Set((preds ?? []).map((p) => (p as { match_id: string }).match_id));
+  const missing = matchIds.filter((id) => !predicted.has(id)).length;
+  if (missing > 0) return { ok: true, awarded: false, missing };
+
+  const bonus = jornadaBonus(matchIds.length);
+  // Idempotencia: el insert con PK protege contra doble cobro concurrente.
+  const { error: claimErr } = await admin.from("prediction_jornada_claims").insert({
+    user_id: uid, day_key: dayKey, reward_xp: bonus.xp, reward_coins: bonus.coins,
+  });
+  if (claimErr) return { ok: true, awarded: false };
+
+  const prof = await readProfile(uid);
+  await admin.from("profiles").update({
+    coins: prof.coins + bonus.coins,
+    xp: prof.xp + bonus.xp,
+  }).eq("id", uid);
+  await addSeasonXp(uid, bonus.xp).catch(() => {});
+  return { ok: true, awarded: true, xp: bonus.xp, coins: bonus.coins };
 }
 
 // ─── Economía: comprar boost ─────────────────────────────────────────────────

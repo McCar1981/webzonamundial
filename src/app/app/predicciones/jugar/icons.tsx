@@ -6,8 +6,8 @@
 
 import {
   ArrowLeft, Award, BarChart3, Bird, Brain, Calendar, Check, CheckCircle2,
-  Circle, Clock, Coins, Crosshair, Dices, Eye, Flame, Gem, Gift, Globe, Goal,
-  Link2, Medal, Pencil, PawPrint, Radio, Rocket, ShieldCheck, ShoppingCart,
+  Circle, Clock, Coins, Crosshair, Crown, Dices, Eye, Flame, Gem, Gift, Globe, Goal,
+  Link2, Lock, Medal, Pencil, PawPrint, Radio, Rocket, ShieldCheck, ShoppingCart,
   Snowflake, Sparkles, Star, Swords, Target, Timer, TrendingUp, Trophy, Users,
   X, Zap,
   type LucideIcon,
@@ -74,6 +74,7 @@ export const TIER_ICON: Record<string, LucideIcon> = {
 // Iconos sueltos reutilizados por la UI.
 export {
   ArrowLeft, Award, Calendar, Check, CheckCircle2, Circle, Clock, Coins,
-  Crosshair, Flame, Gem, Gift, Globe, Goal, Medal, Pencil, Radio, ShoppingCart,
-  Sparkles, Star, Swords, Timer, Trophy, TrendingUp, Users, X, Zap,
+  Crosshair, Crown, Flame, Gem, Gift, Globe, Goal, Lock, Medal, Pencil, Radio,
+  ShoppingCart, Snowflake, Sparkles, Star, Swords, Timer, Trophy, TrendingUp,
+  Users, X, Zap,
 };

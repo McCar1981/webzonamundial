@@ -14,7 +14,8 @@ import { GOLD, GOLD2 } from "../constants";
 
 const MATCH_ID = 9001;
 const ENDPOINT = `/api/match-center/live/${MATCH_ID}`;
-const HREF = `/app/matchcenter/${MATCH_ID}`;
+// URL "bonita" por nombres (el route resuelve slug o id numérico indistintamente).
+const HREF = `/app/matchcenter/espana-irak`;
 
 const IN_PLAY = ["1H", "2H", "ET", "BT", "P", "LIVE", "INT"];
 const FINISHED = ["FT", "AET", "PEN"];

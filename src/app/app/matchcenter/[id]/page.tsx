@@ -6,7 +6,7 @@
 
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { buildMeta } from "@/lib/match-center/store";
+import { buildMeta, resolveMatchId, matchSlug } from "@/lib/match-center/store";
 import MatchCenterLive from "../MatchCenterLive";
 
 export const dynamic = "force-dynamic";
@@ -17,20 +17,23 @@ interface PageProps {
 }
 
 export function generateMetadata({ params }: PageProps): Metadata {
-  const meta = buildMeta(parseInt(params.id, 10));
+  const matchId = resolveMatchId(params.id);
+  const meta = matchId != null ? buildMeta(matchId) : null;
   if (!meta) return { title: "Match Center | ZonaMundial" };
   const title = `${meta.home.name} vs ${meta.away.name} EN VIVO — Match Center | ZonaMundial`;
+  const slug = matchSlug(meta.id);
   return {
     title,
     description: `Sigue ${meta.home.name} contra ${meta.away.name} en vivo: marcador, cancha animada, estadísticas y locución del partido. ${meta.phase}, ${meta.venue}.`,
     robots: { index: false, follow: true },
+    ...(slug ? { alternates: { canonical: `/app/matchcenter/${slug}` } } : {}),
   };
 }
 
 export default function MatchPage({ params, searchParams }: PageProps) {
-  const matchId = parseInt(params.id, 10);
-  const meta = buildMeta(matchId);
-  if (!meta) notFound();
+  const matchId = resolveMatchId(params.id);
+  const meta = matchId != null ? buildMeta(matchId) : null;
+  if (matchId == null || !meta) notFound();
   const sim = searchParams?.sim === "1";
   return <MatchCenterLive matchId={matchId} meta={meta} sim={sim} />;
 }

@@ -248,7 +248,7 @@ export default function PrediccionesGame() {
 
   return (
     <Shell>
-      <header style={{ padding: "20px 16px 8px", maxWidth: 1100, margin: "0 auto" }}>
+      <header style={{ padding: "20px 16px 8px", maxWidth: 1280, margin: "0 auto" }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 8 }}>
           <div>
             <span style={{ color: GOLD, fontSize: 11, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase" }}>ZonaMundial</span>
@@ -269,7 +269,7 @@ export default function PrediccionesGame() {
           a lo ancho debajo mediante flex order. */}
       <div
         className="progress-strip"
-        style={{ maxWidth: 1100, margin: "0 auto", padding: "0 16px 4px", display: "flex", flexWrap: "wrap", gap: 10, alignItems: "stretch" }}
+        style={{ maxWidth: 1280, margin: "0 auto", padding: "0 16px 4px", display: "flex", flexWrap: "wrap", gap: 10, alignItems: "stretch" }}
       >
         <GamificationHUD />
         <BattlePass />

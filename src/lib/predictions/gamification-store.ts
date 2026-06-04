@@ -45,6 +45,7 @@ import {
   type Track,
 } from "./battlepass";
 import { matchesOnDate } from "./match-data";
+import { bracketPointsByUser } from "./bracket-store";
 
 interface ProfileGam {
   xp: number;
@@ -639,7 +640,12 @@ export async function myLeagues(uid: string): Promise<LeagueOut[]> {
   return out;
 }
 
-export interface LeagueStanding { position: number; user_id: string; display_name: string; avatar_url: string | null; points: number; }
+export interface LeagueStanding {
+  position: number; user_id: string; display_name: string; avatar_url: string | null;
+  points: number;          // total = predicciones + bracket
+  match_points: number;    // puntos de predicciones por partido
+  bracket_points: number;  // puntos del bracket de eliminatorias
+}
 export async function leagueLeaderboard(leagueId: string): Promise<LeagueStanding[]> {
   const admin = adminClient();
   const { data: mem } = await admin.from("prediction_league_members").select("user_id").eq("league_id", leagueId);
@@ -651,19 +657,25 @@ export async function leagueLeaderboard(leagueId: string): Promise<LeagueStandin
   for (const r of (preds ?? []) as { user_id: string; points_earned: number | null }[]) {
     agg.set(r.user_id, (agg.get(r.user_id) ?? 0) + (r.points_earned ?? 0));
   }
+  // El bracket de eliminatorias suma a la clasificación de la liga.
+  const bracketPts = await bracketPointsByUser(ids);
   const { data: profs } = await admin.from("profiles").select("id,username,avatar_url").in("id", ids);
   const pmap = new Map((profs ?? []).map((p) => {
     const r = p as { id: string; username: string | null; avatar_url: string | null };
     return [r.id, r];
   }));
   return ids
-    .map((id) => ({ user_id: id, points: agg.get(id) ?? 0 }))
+    .map((id) => {
+      const match_points = agg.get(id) ?? 0;
+      const bracket_points = bracketPts.get(id) ?? 0;
+      return { user_id: id, match_points, bracket_points, points: match_points + bracket_points };
+    })
     .sort((a, b) => b.points - a.points)
     .map((e, i) => ({
       position: i + 1, user_id: e.user_id,
       display_name: pmap.get(e.user_id)?.username ?? "Anónimo",
       avatar_url: pmap.get(e.user_id)?.avatar_url ?? null,
-      points: e.points,
+      points: e.points, match_points: e.match_points, bracket_points: e.bracket_points,
     }));
 }
 

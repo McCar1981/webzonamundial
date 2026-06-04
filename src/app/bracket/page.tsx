@@ -4,6 +4,7 @@
 
 import type { Metadata } from "next";
 import BracketChallenge from "@/components/bracket/BracketChallenge";
+import BracketAccountSync from "@/components/bracket/BracketAccountSync";
 import BracketEditorialIntro from "@/components/bracket/BracketEditorialIntro";
 
 export const metadata: Metadata = {
@@ -32,6 +33,8 @@ export default function BracketPage() {
   return (
     <>
       <BracketChallenge />
+      {/* Mejora F: guardar el bracket en la cuenta para competir en ligas. */}
+      <BracketAccountSync />
       {/*
         Bloque editorial al pie de la página (~900 palabras) que enriquece
         /bracket de cara a SEO + AdSense. Demuestra que la página no es solo

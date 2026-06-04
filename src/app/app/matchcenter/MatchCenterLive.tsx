@@ -351,6 +351,8 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
           if (!firedRef.current.has(e.id)) fireEvent(e, true);
         }
         setScore(data.score);
+        // Refresca también alineaciones/formación cuando la API las publica.
+        setFeed(data);
         if (data.status === "FT" || data.status === "AET" || data.status === "PEN") setFinished(true);
       } catch {
         /* reintenta al siguiente tick */

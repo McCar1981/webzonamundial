@@ -264,11 +264,17 @@ export default function PrediccionesGame() {
         </div>
       </header>
 
-      <GamificationHUD />
-      <div style={{ height: 10 }} />
-      <BattlePass />
-      <div style={{ height: 10 }} />
-      <Cosmetics />
+      {/* Tira de progreso: los 6 recuadros (Nivel, Racha, Fútcoins, Reto,
+          Pase, Cosméticos) en una sola fila; los paneles desplegables caen
+          a lo ancho debajo mediante flex order. */}
+      <div
+        className="progress-strip"
+        style={{ maxWidth: 1100, margin: "0 auto", padding: "0 16px 4px", display: "flex", flexWrap: "wrap", gap: 10, alignItems: "stretch" }}
+      >
+        <GamificationHUD />
+        <BattlePass />
+        <Cosmetics />
+      </div>
 
       {/* Vista tablero: hero + partido destacado + filtros + grupos + showcase */}
       {!selectedMatch && <LandingView matches={groupMatches} onPick={selectMatch} />}

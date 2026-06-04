@@ -66,40 +66,39 @@ export default function BattlePass() {
   const { season, premium, tier, tier_count, xp_into_tier, xp_for_tier, progress, tiers } = data;
 
   return (
-    <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 16px" }}>
-      {/* Cabecera resumida + toggle */}
+    <>
+      {/* Recuadro 5 · Pase de temporada (resumen + toggle) */}
       <button
         onClick={() => setOpen((o) => !o)}
         style={{
-          width: "100%", textAlign: "left", cursor: "pointer", background: BG2,
-          border: CARD_BORDER, borderRadius: 14, padding: "12px 14px", color: "inherit",
-          display: "flex", gap: 14, flexWrap: "wrap", alignItems: "center", justifyContent: "space-between",
+          flex: "2 1 210px", minWidth: 0, textAlign: "left", cursor: "pointer", background: BG2,
+          border: CARD_BORDER, borderRadius: 14, padding: "10px 13px", color: "inherit",
+          display: "flex", flexDirection: "column", justifyContent: "center", gap: 4,
         }}
       >
-        <div style={{ flex: "1 1 220px", minWidth: 0 }}>
-          <div style={{ fontSize: 11, color: DIM, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", display: "flex", alignItems: "center", gap: 6 }}>
-            <Trophy size={13} color={GOLD2} /> Pase de temporada {season.key}
-            {premium && <span style={{ display: "inline-flex", alignItems: "center", gap: 3, color: PURPLE, fontWeight: 800 }}><Crown size={12} /> Founders</span>}
-          </div>
-          <div style={{ fontWeight: 800, marginTop: 3, display: "flex", alignItems: "center", gap: 7 }}>
-            Nivel {tier}<span style={{ color: DIM, fontWeight: 700, fontSize: 12 }}>/ {tier_count}</span>
-            <span style={{ color: MID, fontSize: 12, display: "inline-flex", alignItems: "center", gap: 4 }}>
-              <Clock size={12} /> {season.days_left}d restantes
-            </span>
-          </div>
-          {/* Progreso al siguiente nivel */}
-          <div style={{ height: 9, background: BG3, borderRadius: 99, marginTop: 8, overflow: "hidden", border: CARD_BORDER }}>
-            <div style={{ width: `${Math.round(progress * 100)}%`, height: "100%", background: `linear-gradient(90deg,${GOLD},${GOLD2})`, transition: "width .4s" }} />
-          </div>
-          <div style={{ color: DIM, fontSize: 10.5, marginTop: 5 }}>
-            {tier < tier_count ? `${xp_into_tier}/${xp_for_tier} XP de temporada al nivel ${tier + 1}` : "Pista completa"}
-          </div>
+        <div style={{ fontSize: 10.5, color: DIM, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", display: "flex", alignItems: "center", gap: 6 }}>
+          <Trophy size={13} color={GOLD2} /> Pase de temporada
+          {premium && <span style={{ display: "inline-flex", alignItems: "center", gap: 3, color: PURPLE, fontWeight: 800 }}><Crown size={12} /> Founders</span>}
         </div>
-        <span style={{ color: GOLD2, fontWeight: 800, fontSize: 13 }}>{open ? "Ocultar" : "Ver pista"}</span>
+        <div style={{ fontWeight: 800, fontSize: 13.5, display: "flex", alignItems: "center", gap: 7, flexWrap: "wrap" }}>
+          Nivel {tier}<span style={{ color: DIM, fontWeight: 700, fontSize: 12 }}>/ {tier_count}</span>
+          <span style={{ color: MID, fontSize: 11.5, display: "inline-flex", alignItems: "center", gap: 4 }}>
+            <Clock size={12} /> {season.days_left}d
+          </span>
+        </div>
+        <div style={{ height: 8, background: BG3, borderRadius: 99, overflow: "hidden", border: CARD_BORDER }}>
+          <div style={{ width: `${Math.round(progress * 100)}%`, height: "100%", background: `linear-gradient(90deg,${GOLD},${GOLD2})`, transition: "width .4s" }} />
+        </div>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+          <span style={{ color: DIM, fontSize: 10.5 }}>
+            {tier < tier_count ? `${xp_into_tier}/${xp_for_tier} XP al nivel ${tier + 1}` : "Pista completa"}
+          </span>
+          <span style={{ color: GOLD2, fontWeight: 800, fontSize: 11.5 }}>{open ? "Ocultar" : "Ver pista"}</span>
+        </div>
       </button>
 
       {open && (
-        <div style={{ marginTop: 10, display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(150px,1fr))", gap: 10 }}>
+        <div style={{ order: 2, flexBasis: "100%", width: "100%", display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(150px,1fr))", gap: 10 }}>
           {tiers.map((t) => (
             <div
               key={t.tier}
@@ -145,7 +144,7 @@ export default function BattlePass() {
           {flash}
         </div>
       )}
-    </div>
+    </>
   );
 }
 

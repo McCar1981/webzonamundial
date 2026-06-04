@@ -90,160 +90,153 @@ export default function GamificationHUD() {
   const { level, coins, streak, daily, flash: fl, boosts } = data;
   const unlockedCount = data.achievements.filter((a) => a.unlocked).length;
 
+  const challengePct = Math.round((Math.min(daily.challenge_progress, daily.challenge_target) / daily.challenge_target) * 100);
+
   return (
-    <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 16px 4px", display: "flex", flexDirection: "column", gap: 10 }}>
-      {/* Fila de stats: Nivel + Racha + Fútcoins */}
-      <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "stretch" }}>
-        {/* Nivel + XP */}
-        <div style={{ flex: "3 1 280px", background: BG2, border: CARD_BORDER, borderRadius: 14, padding: "12px 14px" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
-            <span style={{ fontWeight: 900, fontSize: 15 }}>
-              <span style={{ color: GOLD2 }}>Nivel {level.level}</span>{" "}
-              <span style={{ color: MID, fontSize: 12, fontWeight: 700 }}>{level.title}</span>
-            </span>
-            <span style={{ color: DIM, fontSize: 11 }}>{level.xpIntoLevel}/{level.xpForLevel} XP</span>
-          </div>
-          <div style={{ height: 9, background: BG3, borderRadius: 99, marginTop: 8, overflow: "hidden", border: CARD_BORDER }}>
-            <div style={{ width: `${Math.round(level.progress * 100)}%`, height: "100%", background: `linear-gradient(90deg,${GOLD},${GOLD2})`, transition: "width .4s" }} />
-          </div>
-          <div style={{ color: DIM, fontSize: 10.5, marginTop: 5 }}>Faltan {level.xpToNext} XP para subir</div>
-        </div>
-
-        {/* Racha (con cuenta atrás de caducidad) */}
-        <Stat
-          icon={Flame}
-          value={streak.current}
-          label={
-            streak.active && streak.hours_left != null
-              ? `Expira en ${formatHoursLeft(streak.hours_left)} · ×1.5`
-              : streak.active
-                ? "Racha activa ×1.5"
-                : `Racha · récord ${streak.best}`
-          }
-          glow={streak.active}
-          urgent={streak.active && streak.hours_left != null && streak.hours_left <= 6}
-        />
-        {/* Monedas */}
-        <Stat icon={Coins} value={coins} label={data.coin_name} />
-      </div>
-
-      {/* Hora Feliz (flash) */}
-      {fl.active && (
-        <div style={{ background: "rgba(232,212,139,0.12)", border: `1px solid ${GOLD}`, borderRadius: 14, padding: "9px 14px", color: GOLD2, fontWeight: 800, fontSize: 13.5, textAlign: "center" }}>
-          {fl.label} — termina a las {new Date(fl.endsAt).toLocaleTimeString("es", { hour: "2-digit", minute: "2-digit" })}
-        </div>
-      )}
-
-      {/* Reto diario + check-in (una sola tarjeta) */}
-      <div style={{ background: BG2, border: CARD_BORDER, borderRadius: 14, padding: "12px 14px", display: "flex", gap: 14, flexWrap: "wrap", alignItems: "center", justifyContent: "space-between" }}>
-        <div style={{ flex: "1 1 220px", minWidth: 0 }}>
-          <div style={{ fontSize: 11, color: DIM, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", display: "flex", alignItems: "center", gap: 6 }}>
-            Reto de hoy
-            {daily.challenge_completed && <CheckCircle2 size={13} color={GREEN} />}
-          </div>
-          <div style={{ fontWeight: 800, marginTop: 3, display: "flex", alignItems: "center", gap: 7 }}>
-            {challengeIcon(daily.challenge.key)}
-            {daily.challenge.title}
-          </div>
-          <div style={{ color: MID, fontSize: 12.5, marginTop: 2 }}>{daily.challenge.description}</div>
-          {/* Progreso del reto */}
-          <div style={{ marginTop: 7 }}>
-            <div style={{ height: 7, background: BG3, borderRadius: 99, overflow: "hidden", border: CARD_BORDER }}>
-              <div style={{ width: `${Math.round((Math.min(daily.challenge_progress, daily.challenge_target) / daily.challenge_target) * 100)}%`, height: "100%", background: daily.challenge_completed ? GREEN : `linear-gradient(90deg,${GOLD},${GOLD2})`, transition: "width .4s" }} />
-            </div>
-            <div style={{ color: daily.challenge_completed ? GREEN : DIM, fontSize: 11, marginTop: 4, fontWeight: 700 }}>
-              {daily.challenge_completed
-                ? "Reto completado · recompensa entregada"
-                : `Progreso ${Math.min(daily.challenge_progress, daily.challenge_target)}/${daily.challenge_target}`}
-            </div>
-          </div>
-          <div style={{ color: GOLD2, fontSize: 11.5, marginTop: 5, fontWeight: 700, display: "flex", alignItems: "center", gap: 4 }}>
-            Recompensa: <Coins size={13} /> {daily.challenge.rewardCoins} · +{daily.challenge.rewardXp} XP
-          </div>
-        </div>
-        <button
-          onClick={claimDaily}
-          disabled={!daily.can_claim || busy}
-          style={{
-            flex: "1 1 170px", maxWidth: 240, cursor: daily.can_claim ? "pointer" : "default",
-            background: daily.can_claim ? `linear-gradient(135deg,${GOLD},${GOLD2})` : BG3,
-            color: daily.can_claim ? "#1a1206" : DIM, border: CARD_BORDER, borderRadius: 12,
-            fontWeight: 900, fontSize: 14, padding: "12px 16px", textAlign: "center",
-          }}
-        >
-          {daily.can_claim
-            ? <><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><Gift size={16} /> Check-in</span><br /><span style={{ fontSize: 11, fontWeight: 700, display: "inline-flex", alignItems: "center", gap: 3 }}>+<Coins size={12} />{daily.next_reward.coins} día {daily.next_reward.day}{daily.next_reward.chest ? " + cofre" : ""}</span></>
-            : <><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><CheckCircle2 size={16} /> Reclamado</span><br /><span style={{ fontSize: 11, fontWeight: 700 }}>{daily.checkin_days} días seguidos</span></>}
-        </button>
-      </div>
-
-      {/* Tabs: logros / tienda + inventario */}
-      <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
-        <TabBtn active={tab === "achievements"} onClick={() => setTab(tab === "achievements" ? null : "achievements")}>
-          <Medal size={15} /> Logros {unlockedCount}/{data.achievements.length}
-        </TabBtn>
-        <TabBtn active={tab === "shop"} onClick={() => setTab(tab === "shop" ? null : "shop")}>
-          <ShoppingCart size={15} /> Tienda de boosts
-        </TabBtn>
-        {boosts.length > 0 && (
-          <span style={{ color: MID, fontSize: 12, display: "inline-flex", alignItems: "center", gap: 10 }}>
-            Inventario:
-            {boosts.map((b) => (
-              <span key={b.id} style={{ display: "inline-flex", alignItems: "center", gap: 3 }}>
-                {boostIcon(b.id)}{b.count}
-              </span>
-            ))}
+    <>
+      {/* Recuadro 1 · Nivel + XP (ancho) */}
+      <div style={{ flex: "3 1 240px", background: BG2, border: CARD_BORDER, borderRadius: 14, padding: "11px 13px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+          <span style={{ fontWeight: 900, fontSize: 15 }}>
+            <span style={{ color: GOLD2 }}>Nivel {level.level}</span>{" "}
+            <span style={{ color: MID, fontSize: 12, fontWeight: 700 }}>{level.title}</span>
           </span>
+          <span style={{ color: DIM, fontSize: 11 }}>{level.xpIntoLevel}/{level.xpForLevel} XP</span>
+        </div>
+        <div style={{ height: 9, background: BG3, borderRadius: 99, marginTop: 8, overflow: "hidden", border: CARD_BORDER }}>
+          <div style={{ width: `${Math.round(level.progress * 100)}%`, height: "100%", background: `linear-gradient(90deg,${GOLD},${GOLD2})`, transition: "width .4s" }} />
+        </div>
+        <div style={{ color: DIM, fontSize: 10.5, marginTop: 5 }}>Faltan {level.xpToNext} XP para subir</div>
+      </div>
+
+      {/* Recuadro 2 · Racha (con cuenta atrás de caducidad) */}
+      <Stat
+        icon={Flame}
+        value={streak.current}
+        label={
+          streak.active && streak.hours_left != null
+            ? `Expira en ${formatHoursLeft(streak.hours_left)} · ×1.5`
+            : streak.active
+              ? "Racha activa ×1.5"
+              : `Racha · récord ${streak.best}`
+        }
+        glow={streak.active}
+        urgent={streak.active && streak.hours_left != null && streak.hours_left <= 6}
+      />
+      {/* Recuadro 3 · Fútcoins */}
+      <Stat icon={Coins} value={coins} label={data.coin_name} />
+
+      {/* Recuadro 4 · Reto de hoy (compacto, con check-in) */}
+      <div style={{ flex: "2 1 210px", background: BG2, border: CARD_BORDER, borderRadius: 14, padding: "10px 13px", display: "flex", flexDirection: "column", gap: 6, minWidth: 0 }}>
+        <div style={{ fontSize: 10.5, color: DIM, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", display: "flex", alignItems: "center", gap: 6 }}>
+          Reto de hoy
+          {daily.challenge_completed && <CheckCircle2 size={13} color={GREEN} />}
+        </div>
+        <div style={{ fontWeight: 800, fontSize: 13.5, display: "flex", alignItems: "center", gap: 7, minWidth: 0 }}>
+          {challengeIcon(daily.challenge.key)}
+          <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{daily.challenge.title}</span>
+        </div>
+        <div style={{ height: 7, background: BG3, borderRadius: 99, overflow: "hidden", border: CARD_BORDER }}>
+          <div style={{ width: `${challengePct}%`, height: "100%", background: daily.challenge_completed ? GREEN : `linear-gradient(90deg,${GOLD},${GOLD2})`, transition: "width .4s" }} />
+        </div>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+          <span style={{ color: daily.challenge_completed ? GREEN : GOLD2, fontSize: 11, fontWeight: 700, display: "inline-flex", alignItems: "center", gap: 4 }}>
+            <Coins size={12} /> {daily.challenge.rewardCoins} · +{daily.challenge.rewardXp} XP
+          </span>
+          <button
+            onClick={claimDaily}
+            disabled={!daily.can_claim || busy}
+            title={daily.can_claim ? `+${daily.next_reward.coins} día ${daily.next_reward.day}${daily.next_reward.chest ? " + cofre" : ""}` : `${daily.checkin_days} días seguidos`}
+            style={{
+              cursor: daily.can_claim ? "pointer" : "default", whiteSpace: "nowrap",
+              background: daily.can_claim ? `linear-gradient(135deg,${GOLD},${GOLD2})` : BG3,
+              color: daily.can_claim ? "#1a1206" : DIM, border: CARD_BORDER, borderRadius: 9,
+              fontWeight: 800, fontSize: 11.5, padding: "6px 10px",
+              display: "inline-flex", alignItems: "center", gap: 5,
+            }}
+          >
+            {daily.can_claim ? <><Gift size={13} /> Check-in</> : <><CheckCircle2 size={13} /> Hecho</>}
+          </button>
+        </div>
+      </div>
+
+      {/* Bloque desplegable a lo ancho (cae bajo la tira) */}
+      <div style={{ order: 2, flexBasis: "100%", width: "100%", display: "flex", flexDirection: "column", gap: 10 }}>
+        {/* Hora Feliz (flash) */}
+        {fl.active && (
+          <div style={{ background: "rgba(232,212,139,0.12)", border: `1px solid ${GOLD}`, borderRadius: 14, padding: "9px 14px", color: GOLD2, fontWeight: 800, fontSize: 13.5, textAlign: "center" }}>
+            {fl.label} — termina a las {new Date(fl.endsAt).toLocaleTimeString("es", { hour: "2-digit", minute: "2-digit" })}
+          </div>
+        )}
+
+        {/* Tabs: logros / tienda + inventario */}
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
+          <TabBtn active={tab === "achievements"} onClick={() => setTab(tab === "achievements" ? null : "achievements")}>
+            <Medal size={15} /> Logros {unlockedCount}/{data.achievements.length}
+          </TabBtn>
+          <TabBtn active={tab === "shop"} onClick={() => setTab(tab === "shop" ? null : "shop")}>
+            <ShoppingCart size={15} /> Tienda de boosts
+          </TabBtn>
+          {boosts.length > 0 && (
+            <span style={{ color: MID, fontSize: 12, display: "inline-flex", alignItems: "center", gap: 10 }}>
+              Inventario:
+              {boosts.map((b) => (
+                <span key={b.id} style={{ display: "inline-flex", alignItems: "center", gap: 3 }}>
+                  {boostIcon(b.id)}{b.count}
+                </span>
+              ))}
+            </span>
+          )}
+        </div>
+
+        {tab === "achievements" && (
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(220px,1fr))", gap: 10 }}>
+            {data.achievements.map((a) => (
+              <div key={a.id} style={{ background: BG2, border: a.unlocked ? `1px solid ${GREEN}` : CARD_BORDER, borderRadius: 12, padding: "10px 12px", opacity: a.unlocked ? 1 : 0.55 }}>
+                <div style={{ fontWeight: 800, fontSize: 13.5, display: "flex", alignItems: "center", gap: 7 }}>
+                  {achievementIcon(a.id)}
+                  {a.name}
+                  {a.unlocked && <CheckCircle2 size={14} color={GREEN} />}
+                </div>
+                <div style={{ color: MID, fontSize: 12, marginTop: 2 }}>{a.description}</div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {tab === "shop" && (
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(240px,1fr))", gap: 10 }}>
+            {catalog.map((c) => (
+              <div key={c.id} style={{ background: BG2, border: CARD_BORDER, borderRadius: 12, padding: "11px 13px" }}>
+                <div style={{ fontWeight: 800, display: "flex", alignItems: "center", gap: 7 }}>
+                  {boostIcon(c.id)}
+                  {c.name}
+                </div>
+                <div style={{ color: MID, fontSize: 12, marginTop: 3, minHeight: 32 }}>{c.description}</div>
+                <button
+                  onClick={() => buyBoost(c.id)}
+                  disabled={busy || coins < c.cost}
+                  style={{
+                    marginTop: 8, width: "100%", cursor: coins >= c.cost ? "pointer" : "default",
+                    background: coins >= c.cost ? `linear-gradient(135deg,${GOLD},${GOLD2})` : BG3,
+                    color: coins >= c.cost ? "#1a1206" : DIM, border: CARD_BORDER, borderRadius: 9,
+                    fontWeight: 800, fontSize: 13, padding: "8px 10px",
+                  }}
+                >
+                  <span style={{ display: "inline-flex", alignItems: "center", gap: 4, justifyContent: "center" }}>Comprar · <Coins size={13} /> {c.cost}</span>
+                </button>
+              </div>
+            ))}
+          </div>
         )}
       </div>
-
-      {tab === "achievements" && (
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(220px,1fr))", gap: 10 }}>
-          {data.achievements.map((a) => (
-            <div key={a.id} style={{ background: BG2, border: a.unlocked ? `1px solid ${GREEN}` : CARD_BORDER, borderRadius: 12, padding: "10px 12px", opacity: a.unlocked ? 1 : 0.55 }}>
-              <div style={{ fontWeight: 800, fontSize: 13.5, display: "flex", alignItems: "center", gap: 7 }}>
-                {achievementIcon(a.id)}
-                {a.name}
-                {a.unlocked && <CheckCircle2 size={14} color={GREEN} />}
-              </div>
-              <div style={{ color: MID, fontSize: 12, marginTop: 2 }}>{a.description}</div>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {tab === "shop" && (
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(240px,1fr))", gap: 10 }}>
-          {catalog.map((c) => (
-            <div key={c.id} style={{ background: BG2, border: CARD_BORDER, borderRadius: 12, padding: "11px 13px" }}>
-              <div style={{ fontWeight: 800, display: "flex", alignItems: "center", gap: 7 }}>
-                {boostIcon(c.id)}
-                {c.name}
-              </div>
-              <div style={{ color: MID, fontSize: 12, marginTop: 3, minHeight: 32 }}>{c.description}</div>
-              <button
-                onClick={() => buyBoost(c.id)}
-                disabled={busy || coins < c.cost}
-                style={{
-                  marginTop: 8, width: "100%", cursor: coins >= c.cost ? "pointer" : "default",
-                  background: coins >= c.cost ? `linear-gradient(135deg,${GOLD},${GOLD2})` : BG3,
-                  color: coins >= c.cost ? "#1a1206" : DIM, border: CARD_BORDER, borderRadius: 9,
-                  fontWeight: 800, fontSize: 13, padding: "8px 10px",
-                }}
-              >
-                <span style={{ display: "inline-flex", alignItems: "center", gap: 4, justifyContent: "center" }}>Comprar · <Coins size={13} /> {c.cost}</span>
-              </button>
-            </div>
-          ))}
-        </div>
-      )}
 
       {flash && (
         <div style={{ position: "fixed", bottom: 20, left: "50%", transform: "translateX(-50%)", background: BG2, border: `1px solid ${GOLD}`, color: GOLD2, borderRadius: 12, padding: "11px 18px", fontWeight: 700, fontSize: 13.5, zIndex: 50, boxShadow: "0 8px 30px rgba(0,0,0,0.5)" }}>
           {flash}
         </div>
       )}
-    </div>
+    </>
   );
 }
 

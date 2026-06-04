@@ -68,35 +68,33 @@ export default function Cosmetics() {
   const ownedCount = data.items.filter((i) => i.owned).length;
 
   return (
-    <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 16px" }}>
+    <>
+      {/* Recuadro 6 · Tienda de cosméticos (resumen + toggle) */}
       <button
         onClick={() => setOpen((o) => !o)}
         style={{
-          width: "100%", textAlign: "left", cursor: "pointer", background: BG2,
-          border: CARD_BORDER, borderRadius: 14, padding: "12px 14px", color: "inherit",
-          display: "flex", gap: 14, flexWrap: "wrap", alignItems: "center", justifyContent: "space-between",
+          flex: "2 1 210px", minWidth: 0, textAlign: "left", cursor: "pointer", background: BG2,
+          border: CARD_BORDER, borderRadius: 14, padding: "10px 13px", color: "inherit",
+          display: "flex", flexDirection: "column", justifyContent: "center", gap: 4,
         }}
       >
-        <div style={{ flex: "1 1 220px", minWidth: 0 }}>
-          <div style={{ fontSize: 11, color: DIM, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", display: "flex", alignItems: "center", gap: 6 }}>
-            <Palette size={13} color={GOLD2} /> Cosméticos
-          </div>
-          <div style={{ fontWeight: 800, marginTop: 3, display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-            Personaliza tu perfil
-            <span style={{ color: MID, fontSize: 12, fontWeight: 700 }}>{ownedCount}/{data.items.length} desbloqueados</span>
-            <span style={{ color: GOLD2, fontSize: 12, fontWeight: 800, display: "inline-flex", alignItems: "center", gap: 4 }}>
-              <Coins size={13} /> {data.coins}
-            </span>
-          </div>
-          <div style={{ color: DIM, fontSize: 11, marginTop: 4 }}>
-            Marcos, colores de nombre y títulos que se lucen en rankings y ligas.
-          </div>
+        <div style={{ fontSize: 10.5, color: DIM, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", display: "flex", alignItems: "center", gap: 6 }}>
+          <Palette size={13} color={GOLD2} /> Cosméticos
         </div>
-        <span style={{ color: GOLD2, fontWeight: 800, fontSize: 13 }}>{open ? "Ocultar" : "Ver tienda"}</span>
+        <div style={{ fontWeight: 800, fontSize: 13.5 }}>Personaliza tu perfil</div>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+          <span style={{ color: MID, fontSize: 11.5, fontWeight: 700 }}>{ownedCount}/{data.items.length} desbloqueados</span>
+          <span style={{ color: GOLD2, fontSize: 11.5, fontWeight: 800, display: "inline-flex", alignItems: "center", gap: 4 }}>
+            <Coins size={12} /> {data.coins}
+          </span>
+        </div>
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <span style={{ color: GOLD2, fontWeight: 800, fontSize: 11.5 }}>{open ? "Ocultar" : "Ver tienda"}</span>
+        </div>
       </button>
 
       {open && (
-        <div style={{ marginTop: 10, display: "flex", flexDirection: "column", gap: 14 }}>
+        <div style={{ order: 2, flexBasis: "100%", width: "100%", display: "flex", flexDirection: "column", gap: 14 }}>
           {KIND_ORDER.map((kind) => (
             <div key={kind}>
               <div style={{ fontWeight: 800, fontSize: 13.5, color: GOLD2, marginBottom: 8 }}>{KIND_LABEL[kind]}</div>
@@ -120,7 +118,7 @@ export default function Cosmetics() {
           {flash}
         </div>
       )}
-    </div>
+    </>
   );
 }
 

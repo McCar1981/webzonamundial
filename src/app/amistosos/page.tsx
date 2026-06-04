@@ -421,14 +421,29 @@ export default function AmistososPage() {
     return () => clearInterval(t);
   }, [load]);
 
+  // Si el navegador ya tiene permiso DENEGADO, lo reflejamos. No marcamos
+  // "on" solo por tener permiso: tener permiso (p.ej. por las noticias) no
+  // significa estar suscrito a la categoría "amistosos". El usuario debe pulsar
+  // para registrar la suscripción de amistosos.
   useEffect(() => {
-    if (getNotificationPermission() === "granted") setPushState("on");
+    if (getNotificationPermission() === "denied") setPushState("denied");
   }, []);
 
   async function enablePush() {
     setPushState("loading");
-    const sub = await subscribeToPush({ kinds: ["amistosos"] });
-    setPushState(sub ? "on" : "denied");
+    try {
+      const sub = await subscribeToPush({ kinds: ["amistosos"] });
+      setPushState(sub ? "on" : "denied");
+    } catch {
+      setPushState("denied");
+    }
+  }
+
+  function openMatch(matchId: number) {
+    setOpenId(matchId);
+    // Al venir desde una tarjeta que puede estar al final de la lista, el
+    // scroll se queda abajo (footer). Subimos arriba para ver el detalle.
+    if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "auto" });
   }
 
   return (
@@ -436,7 +451,13 @@ export default function AmistososPage() {
       <style>{`@keyframes zmPulse{0%,100%{opacity:1}50%{opacity:.25}}`}</style>
       <div style={{ maxWidth: 760, margin: "0 auto", padding: "32px 16px 64px" }}>
         {openId != null ? (
-          <DetailView id={openId} onBack={() => setOpenId(null)} />
+          <DetailView
+            id={openId}
+            onBack={() => {
+              setOpenId(null);
+              if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "auto" });
+            }}
+          />
         ) : (
           <>
             <header style={{ marginBottom: 24 }}>
@@ -475,9 +496,9 @@ export default function AmistososPage() {
               </button>
             </header>
 
-            <Section title="En vivo" items={data?.live ?? []} onOpen={setOpenId} emptyText="No hay amistosos en juego ahora mismo." />
-            <Section title="Próximos" items={data?.upcoming ?? []} onOpen={setOpenId} emptyText="Sin amistosos próximos en las próximas horas." />
-            <Section title="Finalizados hoy" items={data?.finished ?? []} onOpen={setOpenId} emptyText={null} />
+            <Section title="En vivo" items={data?.live ?? []} onOpen={openMatch} emptyText="No hay amistosos en juego ahora mismo." />
+            <Section title="Próximos" items={data?.upcoming ?? []} onOpen={openMatch} emptyText="Sin amistosos próximos en las próximas horas." />
+            <Section title="Finalizados hoy" items={data?.finished ?? []} onOpen={openMatch} emptyText={null} />
           </>
         )}
       </div>

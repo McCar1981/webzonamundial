@@ -1,9 +1,10 @@
 "use client";
 
-// Panel de comentarios en vivo del Match Center. Cualquiera puede LEER; solo los
-// usuarios registrados pueden ESCRIBIR (si no hay sesión, se muestra un CTA a
-// /login). La bandera del país se renderiza con flagcdn (consistente con el
-// resto de la app; sin emojis). Hace polling cada 12s para refrescar.
+// Comentarios en vivo del Match Center estilo "hoja inferior" (bottom-sheet):
+// un botón flotante con icono + contador abre una ventana modal con la lista y
+// una barra de escritura fija abajo. Cualquiera puede LEER; solo los usuarios
+// registrados pueden ESCRIBIR (si no hay sesión, CTA a /login). La bandera del
+// país se renderiza con flagcdn (consistente con la app; sin emojis).
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
@@ -49,6 +50,7 @@ function initial(name: string): string {
 }
 
 export default function CommentsPanel({ matchId, meta }: { matchId: number; meta: MatchMeta }) {
+  const [open, setOpen] = useState(false);
   const [comments, setComments] = useState<Comment[]>([]);
   const [authed, setAuthed] = useState<boolean | null>(null); // null = comprobando
   const [text, setText] = useState("");
@@ -85,16 +87,31 @@ export default function CommentsPanel({ matchId, meta }: { matchId: number; meta
     }
   }, [endpoint]);
 
-  // Polling cada 12s.
+  // Polling: más frecuente con la ventana abierta; lento (solo contador) cerrada.
   useEffect(() => {
     aliveRef.current = true;
     load();
-    const id = setInterval(load, 12000);
+    const id = setInterval(load, open ? 12000 : 30000);
     return () => {
       aliveRef.current = false;
       clearInterval(id);
     };
-  }, [load]);
+  }, [load, open]);
+
+  // Bloquea el scroll del fondo y permite cerrar con Escape mientras está abierta.
+  useEffect(() => {
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prev;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -122,7 +139,6 @@ export default function CommentsPanel({ matchId, meta }: { matchId: number; meta
       }
       const data = (await res.json()) as { comment: Comment };
       setText("");
-      // Optimista: lo ponemos al frente y refrescamos en segundo plano.
       if (data.comment) setComments((prev) => [data.comment, ...prev].slice(0, 60));
       load();
     } catch {
@@ -133,8 +149,7 @@ export default function CommentsPanel({ matchId, meta }: { matchId: number; meta
   }
 
   async function share() {
-    const url =
-      typeof window !== "undefined" ? window.location.href : "https://zonamundial.app";
+    const url = typeof window !== "undefined" ? window.location.href : "https://zonamundial.app";
     const title = `${meta.home.name} vs ${meta.away.name}`;
     const shareText = `Sigue ${title} en directo en ZonaMundial`;
     try {
@@ -146,218 +161,330 @@ export default function CommentsPanel({ matchId, meta }: { matchId: number; meta
         setTimeout(() => setErr(null), 2500);
       }
     } catch {
-      /* el usuario canceló: nada que hacer */
+      /* el usuario canceló */
     }
   }
 
-  return (
-    <section
-      style={{
-        background: BG2,
-        borderRadius: 20,
-        border: "1px solid rgba(255,255,255,0.08)",
-        padding: "16px clamp(12px,4vw,20px)",
-        marginTop: 14,
-      }}
-    >
-      {/* Cabecera */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, marginBottom: 14 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
-            <path
-              d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-              stroke={GOLD2}
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          <span style={{ fontSize: 13, fontWeight: 800, letterSpacing: 1, textTransform: "uppercase", color: GOLD2 }}>
-            Comentarios en vivo
-          </span>
-          {comments.length > 0 && (
-            <span style={{ fontSize: 12, color: DIM, fontWeight: 700 }}>· {comments.length}</span>
-          )}
-        </div>
-        <button
-          type="button"
-          onClick={share}
-          aria-label="Compartir partido"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 6,
-            background: "transparent",
-            border: `1px solid ${GOLD}55`,
-            borderRadius: 999,
-            color: GOLD2,
-            fontSize: 12.5,
-            fontWeight: 700,
-            padding: "6px 12px",
-            cursor: "pointer",
-          }}
-        >
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden>
-            <path
-              d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13"
-              stroke={GOLD2}
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          Compartir
-        </button>
-      </div>
+  const count = comments.length;
 
-      {/* Caja de escritura / CTA de login */}
-      {authed ? (
-        <form onSubmit={submit} style={{ marginBottom: 14 }}>
-          <textarea
-            value={text}
-            onChange={(e) => setText(e.target.value.slice(0, MAX_LEN))}
-            placeholder="Escribe tu comentario…"
-            rows={2}
-            style={{
-              width: "100%",
-              resize: "vertical",
-              background: BG3,
-              border: "1px solid rgba(255,255,255,0.1)",
-              borderRadius: 12,
-              color: "#e7edf7",
-              fontSize: 14,
-              padding: "10px 12px",
-              outline: "none",
-              fontFamily: "inherit",
-            }}
+  return (
+    <>
+      {/* Botón flotante con contador (abre la ventana). Abajo-izquierda para no
+          chocar con la IA Coach (abajo-derecha) ni el menú social (centro). */}
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        aria-label="Abrir comentarios"
+        style={{
+          position: "fixed",
+          left: 16,
+          bottom: 20,
+          zIndex: 60,
+          width: 56,
+          height: 56,
+          borderRadius: "50%",
+          background: BG2,
+          border: `1px solid ${GOLD}55`,
+          boxShadow: "0 10px 30px rgba(0,0,0,0.45)",
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden>
+          <path
+            d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+            stroke={GOLD2}
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 8 }}>
-            <span style={{ fontSize: 11, color: DIM }}>
-              {text.length}/{MAX_LEN}
-            </span>
-            <button
-              type="submit"
-              disabled={!text.trim() || sending}
-              style={{
-                background: !text.trim() || sending ? "rgba(201,168,76,0.4)" : `linear-gradient(90deg, ${GOLD}, ${GOLD2})`,
-                color: "#0B1825",
-                border: "none",
-                borderRadius: 999,
-                fontSize: 13,
-                fontWeight: 800,
-                padding: "8px 18px",
-                cursor: !text.trim() || sending ? "default" : "pointer",
-              }}
-            >
-              {sending ? "Enviando…" : "Comentar"}
-            </button>
-          </div>
-        </form>
-      ) : authed === false ? (
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: 10,
-            flexWrap: "wrap",
-            background: BG3,
-            border: `1px solid ${GOLD}33`,
-            borderRadius: 12,
-            padding: "12px 14px",
-            marginBottom: 14,
-          }}
-        >
-          <span style={{ fontSize: 13.5, color: "#cfd8ea", fontWeight: 600 }}>
-            Regístrate o inicia sesión para comentar el partido.
-          </span>
-          <Link
-            href={loginHref}
+        </svg>
+        {count > 0 && (
+          <span
             style={{
-              background: `linear-gradient(90deg, ${GOLD}, ${GOLD2})`,
-              color: "#0B1825",
+              position: "absolute",
+              top: -4,
+              right: -4,
+              minWidth: 20,
+              height: 20,
+              padding: "0 5px",
               borderRadius: 999,
-              fontSize: 13,
+              background: GOLD,
+              color: "#0B1825",
+              fontSize: 11,
               fontWeight: 800,
-              padding: "8px 18px",
-              textDecoration: "none",
-              whiteSpace: "nowrap",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              border: `2px solid ${BG3}`,
             }}
           >
-            Iniciar sesión
-          </Link>
-        </div>
-      ) : (
-        <div style={{ height: 1, marginBottom: 14 }} />
-      )}
+            {count > 99 ? "99+" : count}
+          </span>
+        )}
+      </button>
 
-      {err && (
-        <p style={{ margin: "0 0 12px", fontSize: 12.5, color: GOLD2, fontWeight: 600 }}>{err}</p>
-      )}
+      {/* Ventana modal (bottom-sheet) */}
+      {open && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Comentarios"
+          onClick={() => setOpen(false)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 70,
+            background: "rgba(3,7,14,0.62)",
+            display: "flex",
+            alignItems: "flex-end",
+            justifyContent: "center",
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              width: "100%",
+              maxWidth: 640,
+              maxHeight: "86vh",
+              background: BG3,
+              borderTopLeftRadius: 22,
+              borderTopRightRadius: 22,
+              border: "1px solid rgba(255,255,255,0.08)",
+              borderBottom: "none",
+              display: "flex",
+              flexDirection: "column",
+              animation: "mcSheetUp .28s cubic-bezier(.22,1,.36,1)",
+            }}
+          >
+            {/* Asa */}
+            <div style={{ display: "flex", justifyContent: "center", paddingTop: 10 }}>
+              <span style={{ width: 44, height: 5, borderRadius: 999, background: "rgba(255,255,255,0.18)" }} />
+            </div>
 
-      {/* Lista de comentarios */}
-      {comments.length === 0 ? (
-        <p style={{ margin: 0, fontSize: 13.5, color: MID, fontWeight: 500 }}>
-          Sé el primero en comentar.
-        </p>
-      ) : (
-        <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 12 }}>
-          {comments.map((c) => (
-            <li key={c.id} style={{ display: "flex", gap: 10 }}>
-              {/* Avatar o inicial */}
-              {c.avatar ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={c.avatar}
-                  alt={c.name}
-                  width={34}
-                  height={34}
-                  style={{ borderRadius: "50%", objectFit: "cover", flexShrink: 0, border: "1px solid rgba(255,255,255,0.12)" }}
-                />
+            {/* Cabecera */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: 10,
+                padding: "12px clamp(14px,4vw,20px) 12px",
+                borderBottom: "1px solid rgba(255,255,255,0.07)",
+              }}
+            >
+              <span style={{ fontSize: 18, fontWeight: 800, color: "#fff" }}>
+                Comentarios {count > 0 ? `(${count})` : ""}
+              </span>
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <button
+                  type="button"
+                  onClick={share}
+                  aria-label="Compartir partido"
+                  style={iconBtnStyle}
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+                    <path
+                      d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13"
+                      stroke={GOLD2}
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  aria-label="Cerrar"
+                  style={iconBtnStyle}
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+                    <path d="M6 6l12 12M18 6L6 18" stroke={MID} strokeWidth="2" strokeLinecap="round" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            {/* Lista (scroll) */}
+            <div style={{ flex: 1, overflowY: "auto", padding: "14px clamp(14px,4vw,20px)" }}>
+              {err && (
+                <p style={{ margin: "0 0 12px", fontSize: 12.5, color: GOLD2, fontWeight: 600 }}>{err}</p>
+              )}
+              {count === 0 ? (
+                <p style={{ margin: 0, fontSize: 14, color: MID, fontWeight: 500 }}>
+                  Sé el primero en comentar.
+                </p>
               ) : (
-                <span
+                <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 14 }}>
+                  {comments.map((c) => (
+                    <li key={c.id} style={{ display: "flex", gap: 10 }}>
+                      {c.avatar ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={c.avatar}
+                          alt={c.name}
+                          width={36}
+                          height={36}
+                          style={{ borderRadius: "50%", objectFit: "cover", flexShrink: 0, border: "1px solid rgba(255,255,255,0.12)" }}
+                        />
+                      ) : (
+                        <span
+                          style={{
+                            width: 36,
+                            height: 36,
+                            flexShrink: 0,
+                            borderRadius: "50%",
+                            background: "rgba(201,168,76,0.18)",
+                            color: GOLD2,
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            fontSize: 15,
+                            fontWeight: 800,
+                          }}
+                        >
+                          {initial(c.name)}
+                        </span>
+                      )}
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 3 }}>
+                          {c.country && (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img
+                              src={flagUrl(c.country)}
+                              alt={c.country}
+                              width={18}
+                              height={13}
+                              style={{ borderRadius: 2, objectFit: "cover", flexShrink: 0 }}
+                            />
+                          )}
+                          <span style={{ fontSize: 13.5, fontWeight: 700, color: "#e7edf7", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                            {c.name}
+                          </span>
+                          <span style={{ fontSize: 11, color: DIM, flexShrink: 0 }}>· {relTime(c.ts)}</span>
+                        </div>
+                        <p style={{ margin: 0, fontSize: 14.5, lineHeight: 1.45, color: "#d7deec", wordBreak: "break-word" }}>
+                          {c.text}
+                        </p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+
+            {/* Barra de escritura fija / CTA de login */}
+            {authed ? (
+              <form
+                onSubmit={submit}
+                style={{
+                  display: "flex",
+                  alignItems: "flex-end",
+                  gap: 8,
+                  padding: "10px clamp(12px,4vw,18px)",
+                  paddingBottom: "calc(10px + env(safe-area-inset-bottom))",
+                  borderTop: "1px solid rgba(255,255,255,0.07)",
+                  background: BG2,
+                }}
+              >
+                <textarea
+                  value={text}
+                  onChange={(e) => setText(e.target.value.slice(0, MAX_LEN))}
+                  placeholder="¿Qué opinas?"
+                  rows={1}
                   style={{
-                    width: 34,
-                    height: 34,
+                    flex: 1,
+                    resize: "none",
+                    maxHeight: 120,
+                    background: BG3,
+                    border: "1px solid rgba(255,255,255,0.1)",
+                    borderRadius: 22,
+                    color: "#e7edf7",
+                    fontSize: 14.5,
+                    padding: "10px 14px",
+                    outline: "none",
+                    fontFamily: "inherit",
+                    lineHeight: 1.4,
+                  }}
+                />
+                <button
+                  type="submit"
+                  disabled={!text.trim() || sending}
+                  aria-label="Enviar comentario"
+                  style={{
+                    width: 44,
+                    height: 44,
                     flexShrink: 0,
                     borderRadius: "50%",
-                    background: "rgba(201,168,76,0.18)",
-                    color: GOLD2,
+                    border: "none",
+                    background: !text.trim() || sending ? "rgba(201,168,76,0.4)" : `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
+                    cursor: !text.trim() || sending ? "default" : "pointer",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    fontSize: 14,
-                    fontWeight: 800,
                   }}
                 >
-                  {initial(c.name)}
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
+                    <path d="M12 20V5M5 12l7-7 7 7" stroke="#0B1825" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+              </form>
+            ) : (
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  gap: 10,
+                  flexWrap: "wrap",
+                  padding: "12px clamp(12px,4vw,18px)",
+                  paddingBottom: "calc(12px + env(safe-area-inset-bottom))",
+                  borderTop: "1px solid rgba(255,255,255,0.07)",
+                  background: BG2,
+                }}
+              >
+                <span style={{ fontSize: 13.5, color: "#cfd8ea", fontWeight: 600 }}>
+                  Regístrate o inicia sesión para comentar.
                 </span>
-              )}
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 2 }}>
-                  {c.country && (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={flagUrl(c.country)}
-                      alt={c.country}
-                      width={18}
-                      height={13}
-                      style={{ borderRadius: 2, objectFit: "cover", flexShrink: 0 }}
-                    />
-                  )}
-                  <span style={{ fontSize: 13, fontWeight: 700, color: "#e7edf7", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                    {c.name}
-                  </span>
-                  <span style={{ fontSize: 11, color: DIM, flexShrink: 0 }}>· {relTime(c.ts)}</span>
-                </div>
-                <p style={{ margin: 0, fontSize: 14, lineHeight: 1.45, color: "#d7deec", wordBreak: "break-word" }}>
-                  {c.text}
-                </p>
+                <Link
+                  href={loginHref}
+                  style={{
+                    background: `linear-gradient(90deg, ${GOLD}, ${GOLD2})`,
+                    color: "#0B1825",
+                    borderRadius: 999,
+                    fontSize: 13,
+                    fontWeight: 800,
+                    padding: "8px 18px",
+                    textDecoration: "none",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  Iniciar sesión
+                </Link>
               </div>
-            </li>
-          ))}
-        </ul>
+            )}
+          </div>
+
+          <style>{`
+            @keyframes mcSheetUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+          `}</style>
+        </div>
       )}
-    </section>
+    </>
   );
 }
+
+const iconBtnStyle: React.CSSProperties = {
+  width: 36,
+  height: 36,
+  borderRadius: "50%",
+  background: "rgba(255,255,255,0.06)",
+  border: "1px solid rgba(255,255,255,0.1)",
+  cursor: "pointer",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+};

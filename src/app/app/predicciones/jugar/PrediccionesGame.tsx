@@ -369,6 +369,23 @@ const PJ_CSS = `
   .pj-hero-text { flex: 1; }
   .pj-hero-stats { width: 380px; flex-shrink: 0; }
 }
+/* Imagen de fondo del hero (móvil por defecto, escritorio en >=768px).
+   El overlay oscuro mantiene legible el texto. Si los archivos no existen aún,
+   solo se ve el overlay (sin imagen rota). */
+.predictions-hero .pj-hero-bg {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(90deg, rgba(6,11,20,0.94) 0%, rgba(6,11,20,0.72) 45%, rgba(6,11,20,0.42) 100%),
+    url('/img/predicciones/hero-mobile.webp');
+  background-size: cover; background-position: center;
+}
+@media (min-width: 768px) {
+  .predictions-hero .pj-hero-bg {
+    background-image:
+      linear-gradient(90deg, rgba(6,11,20,0.92) 0%, rgba(6,11,20,0.62) 50%, rgba(6,11,20,0.34) 100%),
+      url('/img/predicciones/hero-desktop.webp');
+  }
+}
 
 /* Filtros */
 .pj-filter-head { display: flex; flex-direction: column; gap: 12px; margin-bottom: 14px; }
@@ -480,6 +497,8 @@ function Hero() {
         background: `radial-gradient(120% 150% at 0% 0%, ${BG2} 0%, ${BG3} 55%, ${BG} 100%)`,
         border: CARD_BORDER, borderRadius: 22, padding: "28px 24px", position: "relative", overflow: "hidden",
       }}>
+        {/* imagen de fondo responsive (escritorio / móvil) con overlay oscuro */}
+        <div aria-hidden className="pj-hero-bg" />
         {/* textura sutil de campo (líneas verticales muy tenues) */}
         <div aria-hidden style={{ position: "absolute", inset: 0, opacity: 0.5, pointerEvents: "none", backgroundImage: "repeating-linear-gradient(90deg, rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 64px)" }} />
         <div aria-hidden style={{ position: "absolute", top: -90, right: -50, width: 280, height: 280, borderRadius: "50%", background: "radial-gradient(circle, rgba(201,168,76,0.16), transparent 70%)", pointerEvents: "none" }} />

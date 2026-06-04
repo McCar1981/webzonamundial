@@ -26,7 +26,13 @@ const DAILY_V = "v2";
 const DAILY_KEY = (date: string) => `trivia:daily:${DAILY_V}:${date}`;
 // Banco ACUMULATIVO de preguntas verificadas (doble pase). Crece cada día y es
 // la fuente "infinita" de la trivia. Persistente (sin TTL).
-const BANK_KEY = `trivia:bank:${DAILY_V}`;
+//
+// Se guarda como HASH de Redis (campo = id de pregunta, valor = pregunta). Es
+// clave que sea un hash y NO un blob JSON: addToBank usa HSET por campo, que es
+// atómico por id. Así dos escritores concurrentes (p.ej. varios usuarios en
+// /start, o crons solapados) NO se pisan entre sí. Con un único array JSON un
+// read-modify-write concurrente perdía preguntas (last-writer-wins).
+const BANK_KEY = `trivia:bankh:${DAILY_V}`;
 // Conjunto de ids de preguntas que un usuario ya ha visto (anti-repetición).
 const SEEN_KEY = (userId: string) => `trivia:seen:${DAILY_V}:${userId}`;
 const LB_GLOBAL_KEY = `trivia:lb:global:${V}`;
@@ -131,7 +137,8 @@ export async function getRecentQuestionTexts(days = 7): Promise<string[]> {
 /** Devuelve el banco completo de preguntas verificadas. */
 export async function getQuestionBank(): Promise<TriviaQuestion[]> {
   if (isKvEnabled()) {
-    return (await kv.get<TriviaQuestion[]>(BANK_KEY)) ?? [];
+    const map = await kv.hgetall<Record<string, TriviaQuestion>>(BANK_KEY);
+    return map ? Object.values(map) : [];
   }
   const store = await readFs();
   return store.bank;
@@ -140,16 +147,24 @@ export async function getQuestionBank(): Promise<TriviaQuestion[]> {
 /**
  * Añade preguntas nuevas al banco (dedup por id estable). Devuelve cuántas
  * se agregaron realmente. El banco crece sin límite → fuente "infinita".
+ *
+ * En KV escribe con HSET (un campo por id): es atómico por campo, así que dos
+ * llamadas concurrentes que añadan ids distintos no se pisan. Reañadir un id ya
+ * existente es idempotente (mismo contenido), por eso solo contamos como nuevas
+ * las que no estaban en el hash.
  */
 export async function addToBank(questions: TriviaQuestion[]): Promise<number> {
   if (questions.length === 0) return 0;
   if (isKvEnabled()) {
-    const bank = (await kv.get<TriviaQuestion[]>(BANK_KEY)) ?? [];
-    const ids = new Set(bank.map((q) => q.id));
-    const fresh = questions.filter((q) => !ids.has(q.id));
-    if (fresh.length === 0) return 0;
-    await kv.set(BANK_KEY, [...bank, ...fresh]);
-    return fresh.length;
+    const existing = new Set(await kv.hkeys(BANK_KEY));
+    // Dedup también dentro del propio lote (mismo id repetido).
+    const freshById = new Map<string, TriviaQuestion>();
+    for (const q of questions) {
+      if (!existing.has(q.id)) freshById.set(q.id, q);
+    }
+    if (freshById.size === 0) return 0;
+    await kv.hset(BANK_KEY, Object.fromEntries(freshById));
+    return freshById.size;
   }
   const store = await readFs();
   const ids = new Set(store.bank.map((q) => q.id));

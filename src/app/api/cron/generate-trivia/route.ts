@@ -43,6 +43,7 @@ export async function GET(req: Request) {
   const avoid = bank.map((q) => q.question);
   const questions = await generateQuestions(count, avoid);
   const added = await addToBank(questions);
+  const bankSize = (await getQuestionBank()).length;
 
   try {
     revalidatePath("/trivia");
@@ -54,6 +55,6 @@ export async function GET(req: Request) {
     ok: true,
     generated: questions.length, // pasaron generación + verificación
     added, // nuevas (no duplicadas) que entraron al banco
-    bankSize: bank.length + added,
+    bankSize, // tamaño real del banco tras añadir
   });
 }

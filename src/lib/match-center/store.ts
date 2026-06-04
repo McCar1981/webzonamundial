@@ -82,6 +82,16 @@ export async function getFixtureId(matchId: number): Promise<number | null> {
       /* ignore */
     }
   }
+  // Partido de PRUEBA (id 9001): autoresuelve el fixture real del amistoso
+  // España-Irak desde api-football (nombres en inglés) y lo cachea en KV.
+  if (matchId === 9001) {
+    const { findFriendlyFixtureId } = await import("@/lib/friendlies/api");
+    const fid = await findFriendlyFixtureId("Spain", "Iraq");
+    if (fid) {
+      await setFixtureId(matchId, fid);
+      return fid;
+    }
+  }
   return null;
 }
 

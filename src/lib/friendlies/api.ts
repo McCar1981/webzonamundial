@@ -136,6 +136,50 @@ export async function fetchLiveFriendlies(): Promise<FriendlyFixture[]> {
   return rows.filter(isSeniorFriendly).map(toFixture);
 }
 
+function norm(s: string): string {
+  return s
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z]/g, "");
+}
+
+/**
+ * Busca el fixtureId de un amistoso por los nombres de los dos equipos (en
+ * cualquier orden, comparación normalizada). Escanea los partidos en vivo y una
+ * ventana de fechas (ayer/hoy/mañana, UTC). Devuelve null si no lo encuentra.
+ * Pensado para "montar" el Match Center sobre un amistoso real sin mapear ids.
+ */
+export async function findFriendlyFixtureId(
+  teamA: string,
+  teamB: string,
+): Promise<number | null> {
+  const a = norm(teamA);
+  const b = norm(teamB);
+  const matches = (fx: FriendlyFixture) => {
+    const h = norm(fx.home.name);
+    const v = norm(fx.away.name);
+    return (
+      (h.includes(a) && v.includes(b)) || (h.includes(b) && v.includes(a))
+    );
+  };
+
+  const live = await fetchLiveFriendlies();
+  const hit = live.find(matches);
+  if (hit) return hit.fixtureId;
+
+  const today = new Date();
+  for (const offset of [0, 1, -1]) {
+    const d = new Date(today);
+    d.setUTCDate(d.getUTCDate() + offset);
+    const date = d.toISOString().slice(0, 10);
+    const rows = await fetchFriendliesByDate(date);
+    const found = rows.find(matches);
+    if (found) return found.fixtureId;
+  }
+  return null;
+}
+
 /** Amistosos de selecciones absolutas de una fecha concreta (YYYY-MM-DD, UTC). */
 export async function fetchFriendliesByDate(date: string): Promise<FriendlyFixture[]> {
   const season = Number(date.slice(0, 4));

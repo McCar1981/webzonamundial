@@ -46,6 +46,8 @@ import {
 } from "./battlepass";
 import { matchesOnDate } from "./match-data";
 import { bracketPointsByUser } from "./bracket-store";
+import { cosmeticsByUser } from "./cosmetics-store";
+import type { CosmeticDisplay } from "./cosmetics";
 
 interface ProfileGam {
   xp: number;
@@ -645,6 +647,7 @@ export interface LeagueStanding {
   points: number;          // total = predicciones + bracket
   match_points: number;    // puntos de predicciones por partido
   bracket_points: number;  // puntos del bracket de eliminatorias
+  cosmetics: CosmeticDisplay | null; // marco/color/título equipados (prestigio)
 }
 export async function leagueLeaderboard(leagueId: string): Promise<LeagueStanding[]> {
   const admin = adminClient();
@@ -659,6 +662,7 @@ export async function leagueLeaderboard(leagueId: string): Promise<LeagueStandin
   }
   // El bracket de eliminatorias suma a la clasificación de la liga.
   const bracketPts = await bracketPointsByUser(ids);
+  const cmap = await cosmeticsByUser(ids);
   const { data: profs } = await admin.from("profiles").select("id,username,avatar_url").in("id", ids);
   const pmap = new Map((profs ?? []).map((p) => {
     const r = p as { id: string; username: string | null; avatar_url: string | null };
@@ -676,6 +680,7 @@ export async function leagueLeaderboard(leagueId: string): Promise<LeagueStandin
       display_name: pmap.get(e.user_id)?.username ?? "Anónimo",
       avatar_url: pmap.get(e.user_id)?.avatar_url ?? null,
       points: e.points, match_points: e.match_points, bracket_points: e.bracket_points,
+      cosmetics: cmap.get(e.user_id) ?? null,
     }));
 }
 
@@ -722,6 +727,7 @@ export async function myDuels(uid: string): Promise<DuelOut[]> {
 // ─── Leaderboard semanal ─────────────────────────────────────────────────────
 export interface WeeklyEntry {
   position: number; user_id: string; display_name: string; avatar_url: string | null; points: number; predictions: number;
+  cosmetics: CosmeticDisplay | null;
 }
 export async function getWeeklyLeaderboard(limit = 50): Promise<WeeklyEntry[]> {
   const admin = adminClient();
@@ -743,11 +749,13 @@ export async function getWeeklyLeaderboard(limit = 50): Promise<WeeklyEntry[]> {
     const r = p as { id: string; username: string | null; avatar_url: string | null };
     return [r.id, r];
   }));
+  const cmap = await cosmeticsByUser(ids);
   return sorted.map(([id, a], i) => ({
     position: i + 1, user_id: id,
     display_name: pmap.get(id)?.username ?? "Anónimo",
     avatar_url: pmap.get(id)?.avatar_url ?? null,
     points: a.pts, predictions: a.n,
+    cosmetics: cmap.get(id) ?? null,
   }));
 }
 

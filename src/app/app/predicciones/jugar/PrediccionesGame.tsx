@@ -11,6 +11,7 @@ import { etToDate } from "@/lib/bracket/match-time";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import GamificationHUD from "./GamificationHUD";
 import BattlePass from "./BattlePass";
+import Cosmetics from "./Cosmetics";
 import LiveMicroPicks from "./LiveMicroPicks";
 import {
   TYPE_ICON, TIER_ICON,
@@ -248,6 +249,8 @@ export default function PrediccionesGame() {
       <GamificationHUD />
       <div style={{ height: 10 }} />
       <BattlePass />
+      <div style={{ height: 10 }} />
+      <Cosmetics />
 
       {/* Vista tablero: partidos agrupados por grupo (no slider) */}
       {!selectedMatch && (

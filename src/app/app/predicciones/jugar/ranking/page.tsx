@@ -3,13 +3,14 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, Calendar, Globe, Star, Trophy } from "../icons";
+import { PositionBadge, TitleChip, nameColorStyle, type CosmeticDisplay } from "../cosmetic-render";
 
-const BG = "#060B14", BG2 = "#0F1D32", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a";
+const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a";
 const CARD_BORDER = "1px solid rgba(255,255,255,0.07)";
 
 interface Entry {
   position: number;
-  user: { id: string; display_name: string; avatar_url: string | null; is_premium: boolean };
+  user: { id: string; display_name: string; avatar_url: string | null; is_premium: boolean; cosmetics: CosmeticDisplay | null };
   total_points: number;
   predictions_count: number;
   accuracy_pct: number;
@@ -56,9 +57,12 @@ export default function RankingPage() {
           <div style={{ marginTop: 16, display: "flex", flexDirection: "column", gap: 8 }}>
             {rankings.map((e) => (
               <div key={e.user.id} style={{ display: "flex", alignItems: "center", gap: 12, background: BG2, border: CARD_BORDER, borderRadius: 12, padding: "10px 14px" }}>
-                <span style={{ width: 28, fontWeight: 900, color: e.position <= 3 ? GOLD : MID, fontSize: 16 }}>{e.position}</span>
-                <span style={{ flex: 1, fontWeight: 700, fontSize: 14, display: "inline-flex", alignItems: "center", gap: 5 }}>
-                  {e.user.display_name}{e.user.is_premium && <Star size={13} color={GOLD2} fill={GOLD2} />}
+                <PositionBadge position={e.position} cosmetics={e.user.cosmetics} top3color={GOLD} baseColor={MID} innerBg={BG3} />
+                <span style={{ flex: 1, display: "inline-flex", alignItems: "center", gap: 7, flexWrap: "wrap", minWidth: 0 }}>
+                  <span style={{ fontWeight: 700, fontSize: 14, display: "inline-flex", alignItems: "center", gap: 5, ...nameColorStyle(e.user.cosmetics) }}>
+                    {e.user.display_name}{e.user.is_premium && <Star size={13} color={GOLD2} fill={GOLD2} />}
+                  </span>
+                  <TitleChip title={e.user.cosmetics?.title} />
                 </span>
                 <span style={{ fontSize: 12, color: DIM }}>{e.accuracy_pct}% · {e.predictions_count}</span>
                 <span style={{ fontWeight: 800, color: GOLD, minWidth: 56, textAlign: "right" }}>{e.total_points} pts</span>

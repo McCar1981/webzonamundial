@@ -5,13 +5,14 @@
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, Swords, Users } from "../icons";
+import { PositionBadge, TitleChip, nameColorStyle, type CosmeticDisplay } from "../cosmetic-render";
 
 const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825";
 const GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a", GREEN = "#22c55e";
 const CARD_BORDER = "1px solid rgba(255,255,255,0.07)";
 
 interface League { id: string; name: string; code: string; owner_id: string; member_count: number }
-interface Standing { position: number; user_id: string; display_name: string; avatar_url: string | null; points: number; match_points?: number; bracket_points?: number }
+interface Standing { position: number; user_id: string; display_name: string; avatar_url: string | null; points: number; match_points?: number; bracket_points?: number; cosmetics?: CosmeticDisplay | null }
 interface Duel { id: string; match_id: string; status: string; challenger_id: string; opponent_id: string; challenger_points: number | null; opponent_points: number | null; winner_id: string | null }
 
 export default function LigasPage() {
@@ -133,8 +134,11 @@ export default function LigasPage() {
                     {standings[l.id].length === 0 && <span style={{ color: DIM, fontSize: 13 }}>Sin puntos todavía.</span>}
                     {standings[l.id].map((s) => (
                       <div key={s.user_id} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 13.5 }}>
-                        <span style={{ width: 22, color: s.position <= 3 ? GOLD : MID, fontWeight: 800 }}>{s.position}</span>
-                        <span style={{ flex: 1 }}>{s.display_name}</span>
+                        <PositionBadge position={s.position} cosmetics={s.cosmetics} top3color={GOLD} baseColor={MID} innerBg={BG3} />
+                        <span style={{ flex: 1, display: "inline-flex", alignItems: "center", gap: 7, flexWrap: "wrap", minWidth: 0 }}>
+                          <span style={nameColorStyle(s.cosmetics)}>{s.display_name}</span>
+                          <TitleChip title={s.cosmetics?.title} />
+                        </span>
                         {(s.bracket_points ?? 0) > 0 && (
                           <span style={{ color: DIM, fontWeight: 600, fontSize: 11.5 }}>
                             {s.match_points ?? 0} + {s.bracket_points} bracket

@@ -21,7 +21,7 @@ export async function GET(req: Request) {
     const week = await getWeeklyLeaderboard(limit);
     const rankings = week.map((e) => ({
       position: e.position,
-      user: { id: e.user_id, display_name: e.display_name, avatar_url: e.avatar_url, is_premium: false },
+      user: { id: e.user_id, display_name: e.display_name, avatar_url: e.avatar_url, is_premium: false, cosmetics: e.cosmetics },
       total_points: e.points,
       predictions_count: e.predictions,
       accuracy_pct: 0,

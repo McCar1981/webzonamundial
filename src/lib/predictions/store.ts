@@ -25,6 +25,8 @@ import { matchMultiplier } from "./match-data";
 import { adminClient } from "./admin";
 import { grantMatchRewards } from "./gamification-store";
 import { STREAK_THRESHOLD, boostDef } from "./gamification";
+import { cosmeticsByUser } from "./cosmetics-store";
+import type { CosmeticDisplay } from "./cosmetics";
 
 // ─── Premium ─────────────────────────────────────────────────────────────────
 export async function isPremium(userId: string): Promise<boolean> {
@@ -426,7 +428,7 @@ export async function getMyStats(userId: string): Promise<MyStats> {
 // ─── Leaderboard ─────────────────────────────────────────────────────────────
 export interface LeaderboardEntry {
   position: number;
-  user: { id: string; display_name: string; avatar_url: string | null; is_premium: boolean };
+  user: { id: string; display_name: string; avatar_url: string | null; is_premium: boolean; cosmetics: CosmeticDisplay | null };
   total_points: number;
   predictions_count: number;
   accuracy_pct: number;
@@ -453,6 +455,7 @@ export async function getLeaderboard(limit = 50): Promise<LeaderboardEntry[]> {
     ? await admin.from("profiles").select("id,username,avatar_url,is_premium").in("id", ids)
     : { data: [] };
   const pmap = new Map((profs ?? []).map((p) => [(p as { id: string }).id, p as { username: string | null; avatar_url: string | null; is_premium: boolean }]));
+  const cmap = await cosmeticsByUser(ids);
 
   return sorted.map(([id, a], i) => {
     const pr = pmap.get(id);
@@ -463,6 +466,7 @@ export async function getLeaderboard(limit = 50): Promise<LeaderboardEntry[]> {
         display_name: pr?.username ?? "Anónimo",
         avatar_url: pr?.avatar_url ?? null,
         is_premium: Boolean(pr?.is_premium),
+        cosmetics: cmap.get(id) ?? null,
       },
       total_points: a.pts,
       predictions_count: a.count,

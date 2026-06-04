@@ -53,6 +53,11 @@ export default function PreMatchHero({ meta, kickoff, image }: Props) {
   const target = kickoff ? new Date(kickoff).getTime() : NaN;
   const diff = Number.isNaN(target) ? NaN : target - now;
   const counting = !Number.isNaN(diff) && diff > 0;
+  // El saque previsto ya pasó (>1 min) pero aún no llegan datos en vivo: hay un
+  // desfase típico hasta que el proveedor marca el partido "en juego". Mostramos
+  // "esperando datos" en lugar de "a punto de empezar / saque previsto", que
+  // confunde cuando el partido ya rueda. (Nunca simulamos: solo cambia el texto.)
+  const awaitingLive = !Number.isNaN(diff) && diff <= -60 * 1000;
 
   let h = 0,
     m = 0,
@@ -210,13 +215,15 @@ export default function PreMatchHero({ meta, kickoff, image }: Props) {
                     color: GOLD2,
                   }}
                 >
-                  A punto de empezar
+                  {awaitingLive ? "Esperando datos en vivo" : "A punto de empezar"}
                 </div>
-                {ko && (
-                  <div style={{ marginTop: 8, fontSize: 12.5, fontWeight: 700, color: MID }}>
-                    Saque previsto · {ko.time}h
-                  </div>
-                )}
+                <div style={{ marginTop: 8, fontSize: 12.5, fontWeight: 700, color: MID }}>
+                  {awaitingLive
+                    ? "El partido ya ha comenzado · actualizando…"
+                    : ko
+                      ? `Saque previsto · ${ko.time}h`
+                      : "Por comenzar"}
+                </div>
               </>
             )}
           </div>

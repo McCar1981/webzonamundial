@@ -299,7 +299,7 @@ function DetailView({ id, onBack }: { id: number; onBack: () => void }) {
 
   useEffect(() => {
     load();
-    const t = setInterval(load, 25_000);
+    const t = setInterval(load, 12_000);
     return () => clearInterval(t);
   }, [load]);
 
@@ -417,9 +417,19 @@ export default function AmistososPage() {
 
   useEffect(() => {
     load();
-    const t = setInterval(load, 30_000);
+    const t = setInterval(load, 15_000);
     return () => clearInterval(t);
   }, [load]);
+
+  // Deep-link: si llegamos con ?match=<fixtureId> (p.ej. desde un push), abrimos
+  // directamente el detalle de ese partido en vez de la lista.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const m = new URLSearchParams(window.location.search).get("match");
+    if (!m) return;
+    const id = parseInt(m, 10);
+    if (Number.isInteger(id)) setOpenId(id);
+  }, []);
 
   // Si el navegador ya tiene permiso DENEGADO, lo reflejamos. No marcamos
   // "on" solo por tener permiso: tener permiso (p.ej. por las noticias) no

@@ -42,6 +42,24 @@ const PUSH_KIND = "amistosos";
 const PUSH_ICON = "/img/email/logo-zonamundial.png";
 const PUSH_URL = "/amistosos";
 
+/** Deep-link directo al detalle del partido (la página /amistosos lee ?match). */
+function matchUrl(fixtureId: number): string {
+  return `${PUSH_URL}?match=${fixtureId}`;
+}
+
+/** Escudo/bandera del equipo de un evento (para usar como icono del push). */
+function eventIcon(e: FriendlyEvent, s: FriendlySnapshot): string {
+  if (e.side === "home") return s.home.logo || PUSH_ICON;
+  if (e.side === "away") return s.away.logo || PUSH_ICON;
+  return PUSH_ICON;
+}
+
+/** Sufijo con la sede, si la API la provee, para enriquecer el cuerpo. */
+function venueSuffix(s: FriendlySnapshot): string {
+  const place = [s.venue, s.city].filter(Boolean).join(", ");
+  return place ? ` · ${place}` : "";
+}
+
 // Cuánto antes del saque empezamos a sondear (para pillar las alineaciones).
 const PREKICK_WINDOW_MS = 30 * 60_000;
 // Cuánto después de terminar seguimos sondeando (para asegurar el push de final).
@@ -82,32 +100,38 @@ function scoreText(goals: Score): string {
 function eventLabel(e: FriendlyEvent, s: FriendlySnapshot): {
   title: string;
   body: string;
+  icon: string;
 } | null {
   const team = e.side === "home" ? s.home.name : e.side === "away" ? s.away.name : "";
   const who = e.player ? ` ${e.player}` : "";
   const min = `${e.minute}'${e.extra ? `+${e.extra}` : ""}`;
+  const icon = eventIcon(e, s);
   switch (e.type) {
     case "goal":
     case "penalty_goal":
       return {
         title: `GOL — ${teams(s)} ${scoreText(s.goals)}`,
         body: `${min} ${team}:${who}${e.assist ? ` (asist. ${e.assist})` : ""}`,
+        icon,
       };
     case "own_goal":
       return {
         title: `GOL en propia — ${teams(s)} ${scoreText(s.goals)}`,
         body: `${min}${who} (${team})`,
+        icon,
       };
     case "penalty_miss":
       return {
         title: `Penalti fallado — ${teams(s)}`,
         body: `${min} ${team}:${who}`,
+        icon,
       };
     case "red":
     case "second_yellow":
       return {
         title: `Roja — ${teams(s)}`,
         body: `${min} ${team}:${who}`,
+        icon,
       };
     default:
       return null;
@@ -182,13 +206,16 @@ export async function GET(req: Request) {
       ftSent: prev.ftSent,
     };
 
+    const url = matchUrl(fix.fixtureId);
+
     // Alineaciones confirmadas (antes del saque, una sola vez).
     if (!prev.lineupsSent && snap.homeLineup && snap.awayLineup) {
       await push({
         title: `Alineaciones — ${teams(snap)}`,
-        body: `XI confirmado. ${snap.homeLineup.formation ?? ""} vs ${snap.awayLineup.formation ?? ""}`.trim(),
-        url: PUSH_URL,
-        icon: PUSH_ICON,
+        body: `XI confirmado. ${snap.homeLineup.formation ?? ""} vs ${snap.awayLineup.formation ?? ""}`.trim() + venueSuffix(snap),
+        url,
+        icon: snap.home.logo || PUSH_ICON,
+        image: snap.away.logo || undefined,
         tag: `amistoso-${fix.fixtureId}-lineups`,
       });
       next.lineupsSent = true;
@@ -199,9 +226,10 @@ export async function GET(req: Request) {
     if (!prev.startSent && isLiveStatus(snap.status)) {
       await push({
         title: `¡Comienza! ${teams(snap)}`,
-        body: `Amistoso internacional en juego.`,
-        url: PUSH_URL,
-        icon: PUSH_ICON,
+        body: `Amistoso internacional en juego.${venueSuffix(snap)}`,
+        url,
+        icon: snap.home.logo || PUSH_ICON,
+        image: snap.away.logo || undefined,
         tag: `amistoso-${fix.fixtureId}-start`,
       });
       next.startSent = true;
@@ -216,8 +244,8 @@ export async function GET(req: Request) {
       await push({
         title: label.title,
         body: label.body,
-        url: PUSH_URL,
-        icon: PUSH_ICON,
+        url,
+        icon: label.icon,
         tag: `amistoso-${fix.fixtureId}-ev-${e.id}`,
       });
       pushes++;
@@ -228,7 +256,7 @@ export async function GET(req: Request) {
       await push({
         title: `Descanso — ${teams(snap)} ${scoreText(snap.goals)}`,
         body: `Final de la primera parte.`,
-        url: PUSH_URL,
+        url,
         icon: PUSH_ICON,
         tag: `amistoso-${fix.fixtureId}-ht`,
       });
@@ -238,11 +266,17 @@ export async function GET(req: Request) {
 
     // Final.
     if (!prev.ftSent && isFinishedStatus(snap.status)) {
+      const winner =
+        (snap.goals[0] ?? 0) > (snap.goals[1] ?? 0)
+          ? snap.home
+          : (snap.goals[1] ?? 0) > (snap.goals[0] ?? 0)
+          ? snap.away
+          : null;
       await push({
         title: `Final — ${teams(snap)} ${scoreText(snap.goals)}`,
-        body: `Ha terminado el amistoso.`,
-        url: PUSH_URL,
-        icon: PUSH_ICON,
+        body: winner ? `Victoria de ${winner.name}.` : `Empate en el amistoso.`,
+        url,
+        icon: winner?.logo || PUSH_ICON,
         tag: `amistoso-${fix.fixtureId}-ft`,
       });
       next.ftSent = true;

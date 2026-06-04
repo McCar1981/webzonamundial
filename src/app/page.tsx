@@ -33,7 +33,6 @@ import { CalendarBanner } from "./_home/sections/CalendarBanner";
 import { BracketBanner } from "./_home/sections/BracketBanner";
 import { HomeTriviaPlaySection } from "./_home/sections/HomeTriviaPlaySection";
 import { HomeMatchPredictSection } from "./_home/sections/HomeMatchPredictSection";
-import { MatchCenterBanner } from "./_home/sections/MatchCenterBanner";
 
 export default function HomePage() {
   const { t } = useLanguage();
@@ -84,11 +83,8 @@ export default function HomePage() {
           instalable; en iOS muestra las instrucciones de Safari. */}
       <HomeInstallBanner />
       {/*
-        Banner del Match Center (amistoso real España-Irak, id 9001) justo
-        debajo del hero: máxima visibilidad para el público en España. Se
-        autoactualiza y enlaza al directo; degrada a null si no hay datos.
+        Banner del Match Center retirado temporalmente del home (se reformulará).
       */}
-      <MatchCenterBanner />
       <StatsHowSection />
       {/*
         Trivia JUGABLE inline: el único módulo que ya está activo (no requiere

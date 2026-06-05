@@ -183,7 +183,7 @@ export default function PreMatchHero({ meta, kickoff, image }: Props) {
         >
           <TeamSide name={meta.home.name} flag={meta.home.flag} color={homeColor} />
 
-          <div style={{ flex: "0 0 auto", textAlign: "center", minWidth: "clamp(120px,40vw,210px)" }}>
+          <div style={{ flex: "0 0 auto", textAlign: "center", minWidth: "clamp(96px,32vw,200px)" }}>
             {counting ? (
               <>
                 <div
@@ -191,7 +191,7 @@ export default function PreMatchHero({ meta, kickoff, image }: Props) {
                     display: "flex",
                     alignItems: "flex-start",
                     justifyContent: "center",
-                    gap: "clamp(4px,2vw,10px)",
+                    gap: "clamp(3px,1.4vw,8px)",
                   }}
                 >
                   <Unit value={pad(h)} label="hrs" />
@@ -278,11 +278,12 @@ function TeamSide({ name, flag, color }: { name: string; flag: string; color: st
         className="mc-condensed"
         style={{
           fontWeight: 700,
-          fontSize: "clamp(12px,3.6vw,17px)",
+          fontSize: "clamp(11px,3.2vw,17px)",
           textAlign: "center",
           textTransform: "uppercase",
           lineHeight: 1.1,
           maxWidth: "100%",
+          overflowWrap: "anywhere",
         }}
       >
         {name}
@@ -297,7 +298,7 @@ function Unit({ value, label }: { value: string; label: string }) {
       <span
         className="mc-num"
         style={{
-          fontSize: "clamp(30px,9vw,48px)",
+          fontSize: "clamp(22px,6.4vw,44px)",
           fontWeight: 700,
           lineHeight: 1,
           color: "#fff",
@@ -327,7 +328,7 @@ function Colon() {
     <span
       className="mc-num"
       style={{
-        fontSize: "clamp(24px,7vw,40px)",
+        fontSize: "clamp(18px,5vw,36px)",
         fontWeight: 700,
         lineHeight: 1,
         color: GOLD,

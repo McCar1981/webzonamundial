@@ -262,7 +262,7 @@ export default function FantasyPage() {
       {/* LAYOUT 2 COLUMNAS: IMAGEN ALINEACIÓN + TEXTO */}
       <section data-ali-section style={{padding:"60px 20px",background:BG}}>
         <div style={{maxWidth:1400,margin:"0 auto"}}>
-          <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(450px,1fr))",gap:60,alignItems:"center"}}>
+          <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(min(100%,450px),1fr))",gap:60,alignItems:"center"}}>
             <div data-ali-img style={{position:"relative"}}>
               <div style={{
                 borderRadius:24,overflow:"hidden",
@@ -320,7 +320,7 @@ export default function FantasyPage() {
       {/* LAYOUT 2 COLUMNAS INVERSO: TEXTO + IMAGEN LISTADO */}
       <section data-list-section style={{padding:"80px 20px",background:BG3}}>
         <div style={{maxWidth:1400,margin:"0 auto"}}>
-          <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(450px,1fr))",gap:60,alignItems:"center"}}>
+          <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(min(100%,450px),1fr))",gap:60,alignItems:"center"}}>
             <div data-list-content style={{order:1}}>
               <span style={{color:GOLD,fontSize:12,fontWeight:700,letterSpacing:2,textTransform:"uppercase"}}>{fT.listSectionBadge}</span>
               <h2 style={{fontSize:"clamp(28px,4vw,40px)",fontWeight:800,marginTop:16,marginBottom:24,lineHeight:1.2}}>

@@ -9,6 +9,7 @@
 import { BG, BG2, BG3, GOLD, GOLD2, MID, DIM, flagUrl } from "./fx";
 import FichaDT from "./FichaDT";
 import RealWorldCupCard from "./RealWorldCupCard";
+import StreakCard from "./StreakCard";
 import { rankForOverall, SKILL_BRANCHES } from "@/lib/modo-carrera/constants";
 import { DEMAND_LABEL, VERDICT_LABEL, jobAtRisk } from "@/lib/modo-carrera/board";
 import type { CareerState } from "@/lib/modo-carrera/types";
@@ -29,7 +30,15 @@ function Card({ title, children }: { title: string; children: React.ReactNode })
   );
 }
 
-export default function HubView({ career, paseDT = false }: { career: CareerState; paseDT?: boolean }) {
+export default function HubView({
+  career,
+  paseDT = false,
+  onClaimStreak,
+}: {
+  career: CareerState;
+  paseDT?: boolean;
+  onClaimStreak?: () => void;
+}) {
   const { progression: pr, reputation, missions, legacy, board } = career;
   const rank = rankForOverall(pr.overall);
   const nation = SELECCIONES.find((s) => s.slug === career.identity.nationSlug);
@@ -48,6 +57,9 @@ export default function HubView({ career, paseDT = false }: { career: CareerStat
 
       {/* Panel derecho */}
       <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
+        {/* Racha diaria (gancho de retorno) */}
+        {onClaimStreak && <StreakCard career={career} onClaim={onClaimStreak} />}
+
         {/* Progresión */}
         <Card title="Progresión">
           <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 12 }}>

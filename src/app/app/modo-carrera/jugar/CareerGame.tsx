@@ -16,6 +16,7 @@ import type { CareerState, CareerTab, SkillBranch, NarrativeKind } from "@/lib/m
 import { unlockSkill, applyDecision } from "@/lib/modo-carrera/engine";
 import { beginSeason, playNextMatch, startNextSeason, type PlayResult } from "@/lib/modo-carrera/season";
 import { ensureMissions, advanceMission, claimMission } from "@/lib/modo-carrera/missions";
+import { claimStreak } from "@/lib/modo-carrera/streak";
 import { templateEntry, type NarrativeContext } from "@/lib/modo-carrera/narrative";
 import { PHILOSOPHIES } from "@/lib/modo-carrera/constants";
 import { SELECCIONES } from "@/data/selecciones";
@@ -128,6 +129,8 @@ export default function CareerGame() {
     setCareer((c) => (c ? advanceMission(c, id) : c));
   const handleClaim = (id: string) =>
     setCareer((c) => (c ? claimMission(c, id).state : c));
+  const handleClaimStreak = () =>
+    setCareer((c) => (c ? claimStreak(c).state : c));
   // Motor de temporada.
   const handleStartSeason = () =>
     setCareer((c) => (c ? beginSeason(c) : c));
@@ -206,7 +209,7 @@ export default function CareerGame() {
         })}
       </nav>
 
-      {tab === "hub" && <HubView career={career} paseDT={paseDT} />}
+      {tab === "hub" && <HubView career={career} paseDT={paseDT} onClaimStreak={handleClaimStreak} />}
       {tab === "temporada" && (
         <SeasonView
           career={career}

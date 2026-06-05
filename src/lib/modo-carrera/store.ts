@@ -5,7 +5,7 @@
 // tolerar saves antiguos o corruptos. Al iniciar sesión, CareerGame sincroniza
 // este estado con Supabase via /api/modo-carrera/save.
 
-import type { CareerState, SeasonState, SeasonMatch, TournamentStage, MatchOutcome, BoardState, BoardDemand, BoardVerdict } from "./types";
+import type { CareerState, SeasonState, SeasonMatch, TournamentStage, MatchOutcome, BoardState, BoardDemand, BoardVerdict, StreakState } from "./types";
 import { CAREER_STORAGE_KEY, CAREER_SCHEMA_VERSION, xpRequired } from "./constants";
 
 /** Partida vacía inicial (DT sin crear todavía). */
@@ -44,6 +44,7 @@ export function defaultCareer(): CareerState {
       records: { matchesPlayed: 0, wins: 0, draws: 0, losses: 0, goalsFor: 0, goalsAgainst: 0, titlesWon: 0 },
     },
     board: { objective: "octavos", confidence: 60, lastVerdict: "pendiente" },
+    streak: { current: 0, best: 0, lastClaim: null },
     season: null,
     updatedAt: now,
   };
@@ -71,6 +72,16 @@ function normalizeBoard(raw: unknown): BoardState {
     objective: DEMANDS.includes(b.objective as BoardDemand) ? (b.objective as BoardDemand) : "octavos",
     confidence: clampInt(b.confidence, 0, 100, 60),
     lastVerdict: VERDICTS.includes(b.lastVerdict as BoardVerdict) ? (b.lastVerdict as BoardVerdict) : "pendiente",
+  };
+}
+
+/** Repara/normaliza la racha diaria; rellena con valores por defecto. */
+function normalizeStreak(raw: unknown): StreakState {
+  const s = (raw && typeof raw === "object" ? raw : {}) as Partial<StreakState>;
+  return {
+    current: clampInt(s.current, 0, 100000, 0),
+    best: clampInt(s.best, 0, 100000, 0),
+    lastClaim: typeof s.lastClaim === "string" ? s.lastClaim : null,
   };
 }
 
@@ -173,6 +184,7 @@ export function normalizeCareer(raw: Partial<CareerState> | null | undefined): C
       },
     },
     board: normalizeBoard(raw.board),
+    streak: normalizeStreak(raw.streak),
     season: normalizeSeason(raw.season),
     updatedAt: typeof raw.updatedAt === "string" ? raw.updatedAt : base.updatedAt,
   };

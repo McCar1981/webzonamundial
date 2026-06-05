@@ -206,6 +206,17 @@ export interface BoardState {
   lastVerdict: BoardVerdict;
 }
 
+// ─── Racha diaria (enganche de retorno) ──────────────────────────────────────
+/** Racha de días consecutivos en los que el DT reclama su recompensa diaria. */
+export interface StreakState {
+  /** Días consecutivos en la racha actual. */
+  current: number;
+  /** Mejor racha histórica alcanzada. */
+  best: number;
+  /** Fecha (YYYY-MM-DD, hora local) del último reclamo. null = nunca. */
+  lastClaim: string | null;
+}
+
 // ─── Estado raíz de la carrera ───────────────────────────────────────────────
 export interface CareerState {
   /** Versión del esquema, para migraciones futuras del JSON. */
@@ -219,6 +230,8 @@ export interface CareerState {
   legacy: Legacy;
   /** Junta/federación: objetivo de temporada y confianza en el DT. */
   board: BoardState;
+  /** Racha diaria de retorno (recompensa por entrar cada día). */
+  streak: StreakState;
   /** Torneo en curso (motor de temporada). null = aún no iniciado. */
   season: SeasonState | null;
   /** Marca de última actualización local. */

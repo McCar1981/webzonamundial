@@ -107,12 +107,13 @@ export default function TeamView({ team, validation, onSlotClickEmpty, onRemove,
       ) : (
         // Panel blanco bajo el campo → contraste y base para animaciones.
         <div style={{ maxWidth: 470, margin: "0 auto", padding: 9, borderRadius: 22, background: "linear-gradient(180deg,#ffffff 0%,#e9eff7 100%)", animation: "zmRise .5s ease both, zmFieldGlow 6s ease-in-out infinite .6s" }}>
-          <div style={{ position: "relative", aspectRatio: "400 / 600", borderRadius: 15, overflow: "hidden", boxShadow: "inset 0 0 0 1px rgba(125,255,206,0.14)" }}>
+          <div style={{ position: "relative", aspectRatio: "400 / 680", borderRadius: 15, overflow: "hidden", boxShadow: "inset 0 0 0 1px rgba(125,255,206,0.14)" }}>
             <PitchSVG orientation="v" />
 
             {/* Capa de jugadores: delanteros arriba (portería rival) → portero abajo (la nuestra).
-                Padding vertical reducido + campo más alto → todas las líneas (incl. el portero) caben sin recortes. */}
-            <div style={{ position: "absolute", inset: 0, padding: "3.5% 3%", display: "flex", flexDirection: "column", justifyContent: "space-between", zIndex: 2 }}>
+                Campo más alto + más aire arriba/abajo → todas las líneas (incl. el portero,
+                que se ancla al borde inferior) caben sin recortarse contra la portería. */}
+            <div style={{ position: "absolute", inset: 0, padding: "5% 3% 6%", display: "flex", flexDirection: "column", justifyContent: "space-between", zIndex: 2 }}>
               {(["FWD", "MID", "DEF", "GK"] as const).map((pref, li) => (
                 <div key={pref} style={{ display: "flex", justifyContent: "center", gap: 6, flexWrap: "wrap" }}>
                   {lineSlots(pref).map((s, i) => (

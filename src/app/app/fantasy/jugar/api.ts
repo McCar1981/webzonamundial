@@ -6,6 +6,7 @@
 // funcionando en modo invitado (localStorage).
 
 import type { FantasyTeamState } from "@/lib/fantasy/types";
+import type { LiveSnapshot } from "@/lib/match-center/types";
 
 export interface FantasyRankEntry {
   position: number;
@@ -51,6 +52,22 @@ export async function saveServerTeam(
     return res.ok;
   } catch {
     return false;
+  }
+}
+
+/**
+ * Snapshots REALES de los partidos de la jornada (Fase 3). Devuelve un mapa
+ * matchId → snapshot. Degrada a {} si no hay datos.
+ */
+export async function fetchFantasyLive(matchIds: number[]): Promise<Record<number, LiveSnapshot>> {
+  if (matchIds.length === 0) return {};
+  try {
+    const res = await fetch(`/api/fantasy/live?ids=${matchIds.join("-")}`, { cache: "no-store" });
+    if (!res.ok) return {};
+    const data = (await res.json()) as { snapshots: Record<number, LiveSnapshot> };
+    return data.snapshots ?? {};
+  } catch {
+    return {};
   }
 }
 

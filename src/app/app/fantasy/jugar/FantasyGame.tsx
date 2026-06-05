@@ -20,6 +20,7 @@ import MarketView from "./MarketView";
 import LiveView from "./LiveView";
 import LeaguesView from "./LeaguesView";
 import CoachView from "./CoachView";
+import AchievementsView from "./AchievementsView";
 import Onboarding from "./Onboarding";
 
 const ONBOARDED_KEY = "zm-fantasy-onboarded:v1";
@@ -34,13 +35,14 @@ const FANTASY_BG =
   "radial-gradient(1400px 760px at 50% 110%, rgba(20,150,86,0.34), transparent 60%)," + // verde césped al pie
   "linear-gradient(180deg, #0b1a30 0%, #091324 50%, #060c18 100%)"; // base azul noche
 
-type Tab = "equipo" | "mercado" | "vivo" | "ligas" | "coach";
+type Tab = "equipo" | "mercado" | "vivo" | "ligas" | "logros" | "coach";
 
 const TABS: { id: Tab; label: string; icon: string }[] = [
   { id: "equipo", label: "Mi Equipo", icon: "🧩" },
   { id: "mercado", label: "Mercado", icon: "📈" },
   { id: "vivo", label: "En Vivo", icon: "🔴" },
   { id: "ligas", label: "Ligas", icon: "🏟️" },
+  { id: "logros", label: "Logros", icon: "🏅" },
   { id: "coach", label: "Coach IA", icon: "🤖" },
 ];
 
@@ -379,6 +381,7 @@ export default function FantasyGame() {
         )}
         {tab === "vivo" && <LiveView team={team} onCommit={commitGameweek} transfers={transfers} />}
         {tab === "ligas" && <LeaguesView team={team} authed={authed === true} />}
+        {tab === "logros" && <AchievementsView team={team} />}
         {tab === "coach" && <CoachView team={team} ownedIds={ownedIds} budgetRemaining={budgetRemaining} onAutoDraft={doAutoDraft} onCaptain={setCaptain} onGoMarket={() => setTab("mercado")} />}
       </div>
 

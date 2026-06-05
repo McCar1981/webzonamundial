@@ -33,7 +33,13 @@ interface Feed {
   elapsed: number;
   kickoff?: string;
   score: [number | null, number | null];
-  meta: { home: TeamMeta; away: TeamMeta; venue?: string; city?: string };
+  meta: {
+    home: TeamMeta;
+    away: TeamMeta;
+    venue?: string;
+    city?: string;
+    phase?: string;
+  };
 }
 
 function flagUrl(code: string): string {
@@ -135,6 +141,12 @@ export function MatchCenterBanner() {
   const kickoffText = upcoming ? fmtKickoff(kickoff) : null;
   const venueText = fmtVenue(meta.venue, meta.city);
 
+  // Competición/fase del partido (p. ej. "Fase de grupos" o "Amistoso").
+  const isFriendly = (meta.phase || "").toLowerCase().includes("amistoso");
+  const competitionLabel = isFriendly
+    ? "Amistoso internacional"
+    : meta.phase || null;
+
   // Cuenta atrás hasta el saque (solo si el partido aún no empieza).
   const koMs = kickoff ? new Date(kickoff).getTime() : NaN;
   const countdown =
@@ -183,23 +195,37 @@ export function MatchCenterBanner() {
           <div className="relative flex flex-col gap-5 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
             {/* Bloque equipos + marcador */}
             <div className="flex flex-1 flex-col items-center gap-3 sm:items-start">
-              {/* Badge de estado (en vivo / descanso / final / cuenta atrás) */}
-              <span
-                className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider"
-                style={{
-                  background: "rgba(0,0,0,0.35)",
-                  color: badge.color,
-                  border: `1px solid ${badge.color}55`,
-                }}
-              >
-                {badge.pulse && (
+              {/* Estado + competición (amistoso, fase de grupos, ...) */}
+              <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-start">
+                <span
+                  className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider"
+                  style={{
+                    background: "rgba(0,0,0,0.35)",
+                    color: badge.color,
+                    border: `1px solid ${badge.color}55`,
+                  }}
+                >
+                  {badge.pulse && (
+                    <span
+                      className="zm-mcb-pulse inline-block h-2 w-2 rounded-full"
+                      style={{ background: badge.color }}
+                    />
+                  )}
+                  {badge.text}
+                </span>
+                {competitionLabel && (
                   <span
-                    className="zm-mcb-pulse inline-block h-2 w-2 rounded-full"
-                    style={{ background: badge.color }}
-                  />
+                    className="inline-flex items-center whitespace-nowrap rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider"
+                    style={{
+                      background: "rgba(0,0,0,0.35)",
+                      color: "#aeb8cf",
+                      border: "1px solid rgba(174,184,207,0.3)",
+                    }}
+                  >
+                    {competitionLabel}
+                  </span>
                 )}
-                {badge.text}
-              </span>
+              </div>
 
               {/* Marcador broadcast con banderas montadas por país. Muestra el
                   resultado en vivo/final y "VS" antes del saque (sin parecer 0-0). */}

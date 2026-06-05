@@ -271,7 +271,7 @@ export default function FantasyPage() {
                 maxWidth:400,margin:"0 auto"
               }}>
                 <img
-                  src="/img/zonamundial-images/imagenes/alineacion fantasy.jpeg"
+                  src="/img/zonamundial-images/imagenes/alineacion-fantasy.jpeg"
                   alt="Alineación Fantasy ZonaMundial"
                   style={{width:"100%",height:"auto",display:"block"}}
                 />

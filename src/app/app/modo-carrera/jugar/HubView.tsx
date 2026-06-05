@@ -29,7 +29,7 @@ function Card({ title, children }: { title: string; children: React.ReactNode })
   );
 }
 
-export default function HubView({ career }: { career: CareerState }) {
+export default function HubView({ career, paseDT = false }: { career: CareerState; paseDT?: boolean }) {
   const { progression: pr, reputation, missions, legacy, board } = career;
   const rank = rankForOverall(pr.overall);
   const nation = SELECCIONES.find((s) => s.slug === career.identity.nationSlug);
@@ -120,7 +120,7 @@ export default function HubView({ career }: { career: CareerState }) {
         </Card>
 
         {/* Puente con el Mundial real */}
-        <RealWorldCupCard nationSlug={career.identity.nationSlug} />
+        <RealWorldCupCard nationSlug={career.identity.nationSlug} paseDT={paseDT} />
 
         {/* Misiones */}
         <Card title="Misiones activas">

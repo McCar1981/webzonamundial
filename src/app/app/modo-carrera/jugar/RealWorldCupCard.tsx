@@ -55,7 +55,7 @@ function countdownText(ms: number): string {
   return `Faltan ${mins} min`;
 }
 
-export default function RealWorldCupCard({ nationSlug }: { nationSlug: string | null }) {
+export default function RealWorldCupCard({ nationSlug, paseDT = false }: { nationSlug: string | null; paseDT?: boolean }) {
   const [now, setNow] = useState<number | null>(null);
   const nation = useMemo(() => SELECCIONES.find((s) => s.slug === nationSlug), [nationSlug]);
   const fixtures = useMemo(() => (nation ? buildFixtures(nation.flagCode) : []), [nation]);
@@ -131,40 +131,60 @@ export default function RealWorldCupCard({ nationSlug }: { nationSlug: string | 
         </div>
       )}
 
-      {/* Embudo de monetización: Temporada en Vivo (Pase DT). */}
-      <Link
-        href="/premium"
-        style={{
-          marginTop: 16,
-          display: "block",
-          padding: "12px 16px",
-          borderRadius: 12,
-          background: `linear-gradient(135deg, rgba(201,168,76,0.16), rgba(232,212,139,0.06))`,
-          border: "1px solid rgba(201,168,76,0.35)",
-          textDecoration: "none",
-        }}
-      >
-        <div style={{ fontSize: 13.5, fontWeight: 800, color: GOLD2 }}>
-          Dirige a {nation.nombre} con los resultados reales
-        </div>
-        <div style={{ fontSize: 12, color: MID, marginTop: 2 }}>
-          Temporada en Vivo: tu carrera avanza al ritmo del Mundial real. Disponible con el Pase DT.
-        </div>
-        <span
+      {/* Pase DT: estado activo (ya desbloqueado) o embudo de monetización. */}
+      {paseDT ? (
+        <div
           style={{
-            marginTop: 8,
-            display: "inline-block",
-            fontSize: 11,
-            fontWeight: 800,
-            color: BG,
-            background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
-            borderRadius: 999,
-            padding: "5px 12px",
+            marginTop: 16,
+            padding: "12px 16px",
+            borderRadius: 12,
+            background: "rgba(34,197,94,0.10)",
+            border: "1px solid rgba(34,197,94,0.32)",
           }}
         >
-          Conocer el Pase DT
-        </span>
-      </Link>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+            <span style={{ width: 8, height: 8, borderRadius: "50%", background: GREEN, boxShadow: `0 0 8px ${GREEN}`, display: "inline-block" }} />
+            <span style={{ fontSize: 13.5, fontWeight: 800, color: GREEN }}>Temporada en Vivo activa</span>
+          </div>
+          <div style={{ fontSize: 12, color: MID, marginTop: 4 }}>
+            Tu carrera con {nation.nombre} avanza al ritmo del Mundial real. Pase DT incluido.
+          </div>
+        </div>
+      ) : (
+        <Link
+          href="/premium"
+          style={{
+            marginTop: 16,
+            display: "block",
+            padding: "12px 16px",
+            borderRadius: 12,
+            background: `linear-gradient(135deg, rgba(201,168,76,0.16), rgba(232,212,139,0.06))`,
+            border: "1px solid rgba(201,168,76,0.35)",
+            textDecoration: "none",
+          }}
+        >
+          <div style={{ fontSize: 13.5, fontWeight: 800, color: GOLD2 }}>
+            Dirige a {nation.nombre} con los resultados reales
+          </div>
+          <div style={{ fontSize: 12, color: MID, marginTop: 2 }}>
+            Temporada en Vivo: tu carrera avanza al ritmo del Mundial real. Disponible con el Pase DT.
+          </div>
+          <span
+            style={{
+              marginTop: 8,
+              display: "inline-block",
+              fontSize: 11,
+              fontWeight: 800,
+              color: BG,
+              background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
+              borderRadius: 999,
+              padding: "5px 12px",
+            }}
+          >
+            Conocer el Pase DT
+          </span>
+        </Link>
+      )}
     </div>
   );
 }

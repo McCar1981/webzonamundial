@@ -19,7 +19,7 @@ import { ensureMissions, advanceMission, claimMission } from "@/lib/modo-carrera
 import { templateEntry, type NarrativeContext } from "@/lib/modo-carrera/narrative";
 import { PHILOSOPHIES } from "@/lib/modo-carrera/constants";
 import { SELECCIONES } from "@/data/selecciones";
-import { fetchServerCareer, saveServerCareer, requestNarrative } from "./api";
+import { fetchServerCareer, saveServerCareer, requestNarrative, fetchEntitlement } from "./api";
 import { BG, BG2, GOLD, GOLD2, MID } from "./fx";
 import OnboardingDT from "./OnboardingDT";
 import HubView from "./HubView";
@@ -46,6 +46,7 @@ const TABS: { id: CareerTab; label: string }[] = [
 export default function CareerGame() {
   const [career, setCareer] = useState<CareerState | null>(null);
   const [authed, setAuthed] = useState<boolean | null>(null);
+  const [paseDT, setPaseDT] = useState(false);
   const [tab, setTab] = useState<CareerTab>("hub");
   const [levelUp, setLevelUp] = useState<{ overall: number; levels: number } | null>(null);
   const hydrated = useRef(false);
@@ -65,6 +66,7 @@ export default function CareerGame() {
           return;
         }
         setAuthed(true);
+        void fetchEntitlement().then((e) => setPaseDT(e.paseDT));
         const server = await fetchServerCareer();
         if (server) {
           setCareer(ensureMissions(server));
@@ -204,7 +206,7 @@ export default function CareerGame() {
         })}
       </nav>
 
-      {tab === "hub" && <HubView career={career} />}
+      {tab === "hub" && <HubView career={career} paseDT={paseDT} />}
       {tab === "temporada" && (
         <SeasonView
           career={career}

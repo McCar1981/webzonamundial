@@ -4,6 +4,26 @@
 import type { CareerState, CareerRankEntry, NarrativeEntry, NarrativeKind } from "@/lib/modo-carrera/types";
 import type { NarrativeContext } from "@/lib/modo-carrera/narrative";
 
+export interface CareerEntitlement {
+  authed: boolean;
+  paseDT: boolean;
+}
+
+/**
+ * Lee el acceso premium (Pase DT) del usuario. Ante cualquier fallo devuelve
+ * sin acceso: nunca desbloqueamos premium por un error de red.
+ */
+export async function fetchEntitlement(): Promise<CareerEntitlement> {
+  try {
+    const res = await fetch("/api/modo-carrera/entitlement");
+    if (!res.ok) return { authed: false, paseDT: false };
+    const data = (await res.json()) as Partial<CareerEntitlement>;
+    return { authed: !!data.authed, paseDT: !!data.paseDT };
+  } catch {
+    return { authed: false, paseDT: false };
+  }
+}
+
 /** Trae el ranking global de DTs. Devuelve [] ante cualquier fallo. */
 export async function fetchLeaderboard(): Promise<CareerRankEntry[]> {
   try {

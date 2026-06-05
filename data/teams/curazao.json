@@ -444,6 +444,21 @@
     },
     "likely_squad": [
       {
+        "id": "eloy-room",
+        "full_name": "Eloy Room",
+        "display_name": "Eloy Room",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Miami FC",
+          "country_iso": "cw",
+          "league": "Buscando club"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Room_Eloy_Columbus_Crew_SC_Meet_the_Team_2019.jpg/330px-Room_Eloy_Columbus_Crew_SC_Meet_the_Team_2019.jpg"
+      },
+      {
         "id": "tyrick-bodak",
         "full_name": "Tyrick Bodak",
         "display_name": "Tyrick Bodak",
@@ -473,93 +488,18 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Austria_U-18_vs._Netherlands_U-18_2017-03-23_%28095%29_%28cropped%29.jpg/330px-Austria_U-18_vs._Netherlands_U-18_2017-03-23_%28095%29_%28cropped%29.jpg"
       },
       {
-        "id": "eloy-room",
-        "full_name": "Eloy Room",
-        "display_name": "Eloy Room",
-        "position": "GK",
-        "detailed_position": "GK",
-        "club": {
-          "name": "Miami FC",
-          "country_iso": "cw",
-          "league": "Buscando club"
-        },
-        "shirt_number_expected": 1,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Room_Eloy_Columbus_Crew_SC_Meet_the_Team_2019.jpg/330px-Room_Eloy_Columbus_Crew_SC_Meet_the_Team_2019.jpg"
-      },
-      {
-        "id": "riechedly-bazoer",
-        "full_name": "Riechedly Bazoer",
-        "display_name": "Riechedly Bazoer",
+        "id": "shurandy-sambo",
+        "full_name": "Shurandy Sambo",
+        "display_name": "Shurandy Sambo",
         "position": "DEF",
-        "detailed_position": "DEF",
+        "detailed_position": "RB",
         "club": {
-          "name": "Konyaspor",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/21/Dnepr-Ajax_%282%29.jpg"
-      },
-      {
-        "id": "joshua-brenet",
-        "full_name": "Joshua Brenet",
-        "display_name": "Joshua Brenet",
-        "position": "DEF",
-        "detailed_position": "DEF",
-        "club": {
-          "name": "Kayserispor",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8b/PSV_Eindhoven%2C_Teamcamp_Bad_Erlach%2C_July_2014_%28076%29.jpg"
-      },
-      {
-        "id": "roshon-van-eijma",
-        "full_name": "Roshon van Eijma",
-        "display_name": "Roshon van Eijma",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Waalwijk",
+          "name": "Sparta Rotterdam",
           "country_iso": "nl",
           "league": "Eredivisie"
         },
-        "shirt_number_expected": 5,
+        "shirt_number_expected": 2,
         "status": "fixed"
-      },
-      {
-        "id": "sherel-floranus",
-        "full_name": "Sherel Floranus",
-        "display_name": "Sherel Floranus",
-        "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "PEC Zwolle",
-          "country_iso": "nl",
-          "league": "Eredivisie"
-        },
-        "shirt_number_expected": 3,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Sherel_Floranus_at_Antalyaspor_vs_Fatih_Karag%C3%BCmr%C3%BCk_SK_20220213.jpg/330px-Sherel_Floranus_at_Antalyaspor_vs_Fatih_Karag%C3%BCmr%C3%BCk_SK_20220213.jpg"
-      },
-      {
-        "id": "deveron-fonville",
-        "full_name": "Deveron Fonville",
-        "display_name": "Deveron Fonville",
-        "position": "DEF",
-        "detailed_position": "DEF",
-        "club": {
-          "name": "NEC Nijmegen",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": null
       },
       {
         "id": "jurien-gaari",
@@ -577,6 +517,36 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Go_Ahead_Eagles_-_RKC_Waalwijk_-_52830811567_%28cropped%29.jpg/330px-Go_Ahead_Eagles_-_RKC_Waalwijk_-_52830811567_%28cropped%29.jpg"
       },
       {
+        "id": "roshon-van-eijma",
+        "full_name": "Roshon van Eijma",
+        "display_name": "Roshon van Eijma",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Waalwijk",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Roshon_van_Eijma_2025_profile_photo_%28cropped%29.png"
+      },
+      {
+        "id": "sherel-floranus",
+        "full_name": "Sherel Floranus",
+        "display_name": "Sherel Floranus",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "PEC Zwolle",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Sherel_Floranus_at_Antalyaspor_vs_Fatih_Karag%C3%BCmr%C3%BCk_SK_20220213.jpg/330px-Sherel_Floranus_at_Antalyaspor_vs_Fatih_Karag%C3%BCmr%C3%BCk_SK_20220213.jpg"
+      },
+      {
         "id": "armando-obispo",
         "full_name": "Armando Obispo",
         "display_name": "Armando Obispo",
@@ -592,107 +562,49 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Austria_U-18_vs._Netherlands_U-18_2017-03-23_%28060%29.jpg/330px-Austria_U-18_vs._Netherlands_U-18_2017-03-23_%28060%29.jpg"
       },
       {
-        "id": "shurandy-sambo",
-        "full_name": "Shurandy Sambo",
-        "display_name": "Shurandy Sambo",
+        "id": "joshua-brenet",
+        "full_name": "Joshua Brenet",
+        "display_name": "Joshua Brenet",
         "position": "DEF",
-        "detailed_position": "RB",
+        "detailed_position": "DEF",
         "club": {
-          "name": "Sparta Rotterdam",
-          "country_iso": "nl",
-          "league": "Eredivisie"
-        },
-        "shirt_number_expected": 2,
-        "status": "fixed"
-      },
-      {
-        "id": "juninho-bacuna",
-        "full_name": "Juninho Bacuna",
-        "display_name": "Juninho Bacuna",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "FC Volendam",
-          "country_iso": "gb-eng",
-          "league": "Championship"
-        },
-        "shirt_number_expected": 8,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Juninho_bacuna-1531777726.jpeg/330px-Juninho_bacuna-1531777726.jpeg"
-      },
-      {
-        "id": "leandro-bacuna",
-        "full_name": "Leandro Bacuna",
-        "display_name": "Leandro Bacuna",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Iğdır FK",
-          "country_iso": "gb-eng",
-          "league": "Championship"
-        },
-        "shirt_number_expected": 6,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Leandro_Bacuna.jpg/330px-Leandro_Bacuna.jpg"
-      },
-      {
-        "id": "livano-comenencia",
-        "full_name": "Livano Comenencia",
-        "display_name": "Livano Comenencia",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Zúrich",
-          "country_iso": "it",
-          "league": "Serie C"
-        },
-        "shirt_number_expected": 16,
-        "status": "fixed"
-      },
-      {
-        "id": "kevin-felida",
-        "full_name": "Kevin Felida",
-        "display_name": "Kevin Felida",
-        "position": "MID",
-        "detailed_position": "MID",
-        "club": {
-          "name": "Den Bosch",
+          "name": "Kayserispor",
           "country_iso": null,
           "league": null
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Kevin_felida-1571753982.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8b/PSV_Eindhoven%2C_Teamcamp_Bad_Erlach%2C_July_2014_%28076%29.jpg"
       },
       {
-        "id": "arjany-martha",
-        "full_name": "Arjany Martha",
-        "display_name": "Arjany Martha",
-        "position": "MID",
-        "detailed_position": "MID",
+        "id": "riechedly-bazoer",
+        "full_name": "Riechedly Bazoer",
+        "display_name": "Riechedly Bazoer",
+        "position": "DEF",
+        "detailed_position": "DEF",
         "club": {
-          "name": "Rotherham",
+          "name": "Konyaspor",
           "country_iso": null,
           "league": null
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/58/Ar%27jany_Martha_18042026_%283%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/21/Dnepr-Ajax_%282%29.jpg"
       },
       {
-        "id": "tyrese-noslin",
-        "full_name": "Tyrese Noslin",
-        "display_name": "Tyrese Noslin",
-        "position": "MID",
-        "detailed_position": "MID",
+        "id": "deveron-fonville",
+        "full_name": "Deveron Fonville",
+        "display_name": "Deveron Fonville",
+        "position": "DEF",
+        "detailed_position": "DEF",
         "club": {
-          "name": "Telstar",
+          "name": "NEC Nijmegen",
           "country_iso": null,
           "league": null
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Tyrese_Noslin.jpg"
+        "photo_url": null
       },
       {
         "id": "godfried-roemeratoe",
@@ -710,18 +622,63 @@
         "photo_url": null
       },
       {
-        "id": "jeremy-antonisse",
-        "full_name": "Jeremy Antonisse",
-        "display_name": "Jeremy Antonisse",
+        "id": "juninho-bacuna",
+        "full_name": "Juninho Bacuna",
+        "display_name": "Juninho Bacuna",
         "position": "MID",
         "detailed_position": "CM",
         "club": {
-          "name": "Kifisia",
-          "country_iso": "nl",
-          "league": "Eerste Divisie"
+          "name": "FC Volendam",
+          "country_iso": "gb-eng",
+          "league": "Championship"
         },
-        "shirt_number_expected": 18,
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Juninho_bacuna-1531777726.jpeg/330px-Juninho_bacuna-1531777726.jpeg"
+      },
+      {
+        "id": "livano-comenencia",
+        "full_name": "Livano Comenencia",
+        "display_name": "Livano Comenencia",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Zúrich",
+          "country_iso": "it",
+          "league": "Serie C"
+        },
+        "shirt_number_expected": 16,
         "status": "fixed"
+      },
+      {
+        "id": "leandro-bacuna",
+        "full_name": "Leandro Bacuna",
+        "display_name": "Leandro Bacuna",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Iğdır FK",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Leandro_Bacuna.jpg/330px-Leandro_Bacuna.jpg"
+      },
+      {
+        "id": "arjany-martha",
+        "full_name": "Arjany Martha",
+        "display_name": "Arjany Martha",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": {
+          "name": "Rotherham",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/58/Ar%27jany_Martha_18042026_%283%29.jpg"
       },
       {
         "id": "tahith-chong",
@@ -739,64 +696,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Tahith_Chong_%2838487929362%29.jpg/330px-Tahith_Chong_%2838487929362%29.jpg"
       },
       {
-        "id": "kenji-gorre",
-        "full_name": "Kenji Gorré",
-        "display_name": "Kenji Gorré",
-        "position": "FWD",
-        "detailed_position": "LW",
+        "id": "kevin-felida",
+        "full_name": "Kevin Felida",
+        "display_name": "Kevin Felida",
+        "position": "MID",
+        "detailed_position": "MID",
         "club": {
-          "name": "Maccabi Haifa",
-          "country_iso": "nl",
-          "league": "Eredivisie"
-        },
-        "shirt_number_expected": 19,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Kenji_Gorr%C3%A9_%282015%29.jpg/330px-Kenji_Gorr%C3%A9_%282015%29.jpg"
-      },
-      {
-        "id": "sontje-hansen",
-        "full_name": "Sontje Hansen",
-        "display_name": "Sontje Hansen",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Middlesbrough",
-          "country_iso": "nl",
-          "league": "Eredivisie"
-        },
-        "shirt_number_expected": 7,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/GAE_-_NEC_-_53493469456_%28Sontje_Hansen%29.jpg/330px-GAE_-_NEC_-_53493469456_%28Sontje_Hansen%29.jpg"
-      },
-      {
-        "id": "gervane-kastaneer",
-        "full_name": "Gervane Kastaneer",
-        "display_name": "Gervane Kastaneer",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Terengganu",
-          "country_iso": "nl",
-          "league": "Eerste Divisie"
-        },
-        "shirt_number_expected": 9,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Gervane-kastaneer.jpg/330px-Gervane-kastaneer.jpg"
-      },
-      {
-        "id": "brandley-kuwas",
-        "full_name": "Brandley Kuwas",
-        "display_name": "Brandley Kuwas",
-        "position": "FWD",
-        "detailed_position": "FWD",
-        "club": {
-          "name": "FC Volendam",
+          "name": "Den Bosch",
           "country_iso": null,
           "league": null
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Brandley_Kuwas.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Kevin_felida-1571753982.jpg"
       },
       {
         "id": "jurgen-locadia",
@@ -814,6 +726,65 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/PSV_Eindhoven%2C_Teamcamp_Bad_Erlach%2C_July_2014_%28094%29.jpg"
       },
       {
+        "id": "jeremy-antonisse",
+        "full_name": "Jeremy Antonisse",
+        "display_name": "Jeremy Antonisse",
+        "position": "FWD",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Kifisia",
+          "country_iso": "nl",
+          "league": "Eerste Divisie"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed"
+      },
+      {
+        "id": "sontje-hansen",
+        "full_name": "Sontje Hansen",
+        "display_name": "Sontje Hansen",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Middlesbrough",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/GAE_-_NEC_-_53493469456_%28Sontje_Hansen%29.jpg/330px-GAE_-_NEC_-_53493469456_%28Sontje_Hansen%29.jpg"
+      },
+      {
+        "id": "tyrese-noslin",
+        "full_name": "Tyrese Noslin",
+        "display_name": "Tyrese Noslin",
+        "position": "FWD",
+        "detailed_position": "MID",
+        "club": {
+          "name": "Telstar",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Tyrese_Noslin.jpg"
+      },
+      {
+        "id": "kenji-gorre",
+        "full_name": "Kenji Gorré",
+        "display_name": "Kenji Gorré",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Maccabi Haifa",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Kenji_Gorr%C3%A9_%282015%29.jpg/330px-Kenji_Gorr%C3%A9_%282015%29.jpg"
+      },
+      {
         "id": "jearl-margaritha",
         "full_name": "Jearl Margaritha",
         "display_name": "Jearl Margaritha",
@@ -827,6 +798,36 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
+      },
+      {
+        "id": "brandley-kuwas",
+        "full_name": "Brandley Kuwas",
+        "display_name": "Brandley Kuwas",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": {
+          "name": "FC Volendam",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Brandley_Kuwas.png"
+      },
+      {
+        "id": "gervane-kastaneer",
+        "full_name": "Gervane Kastaneer",
+        "display_name": "Gervane Kastaneer",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Terengganu",
+          "country_iso": "nl",
+          "league": "Eerste Divisie"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Gervane-kastaneer.jpg/330px-Gervane-kastaneer.jpg"
       }
     ],
     "starting_xi": {
@@ -948,8 +949,8 @@
       "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: NO CLASIFICÓ. Catar 2022: NO CLASIFICÓ. Mundial 2026: 1ª PARTICIPACIÓN HISTÓRICA. País más pequeño en clasificar."
     },
     "squad_announced": true,
-    "squad_announced_date": "2026-05-26",
-    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 2026,

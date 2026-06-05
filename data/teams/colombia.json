@@ -800,21 +800,6 @@
     },
     "likely_squad": [
       {
-        "id": "camilo-vargas",
-        "full_name": "Camilo Vargas",
-        "display_name": "Camilo Vargas",
-        "position": "GK",
-        "detailed_position": "GK",
-        "club": {
-          "name": "Atlas",
-          "country_iso": "mx",
-          "league": "Liga MX"
-        },
-        "shirt_number_expected": 22,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Camilo_Vargas_2022.jpeg/330px-Camilo_Vargas_2022.jpeg"
-      },
-      {
         "id": "david-ospina",
         "full_name": "David Ospina",
         "display_name": "David Ospina",
@@ -828,6 +813,21 @@
         "shirt_number_expected": 1,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/David_Ospina%2C_2015-05-31_%28cropped%29.JPG/330px-David_Ospina%2C_2015-05-31_%28cropped%29.JPG"
+      },
+      {
+        "id": "camilo-vargas",
+        "full_name": "Camilo Vargas",
+        "display_name": "Camilo Vargas",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Atlas",
+          "country_iso": "mx",
+          "league": "Liga MX"
+        },
+        "shirt_number_expected": 22,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Camilo_Vargas_2022.jpeg/330px-Camilo_Vargas_2022.jpeg"
       },
       {
         "id": "alvaro-montero",
@@ -856,7 +856,23 @@
           "league": "Premier League"
         },
         "shirt_number_expected": 4,
-        "status": "fixed"
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/df/Fredrikstad_Fotballklubb_v_Crystal_Palace_FC%2C_28_August_2025_A36.jpg"
+      },
+      {
+        "id": "jhon-lucumi",
+        "full_name": "Jhon Lucumí",
+        "display_name": "Jhon Lucumí",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Bologna",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Jhon_Lucum%C3%AD_September_2019.jpg/330px-Jhon_Lucum%C3%AD_September_2019.jpg"
       },
       {
         "id": "santiago-arias",
@@ -889,34 +905,30 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/FWC_2018_-_Round_of_16_-_COL_v_ENG_-_Photo_103_%28cropped%29.jpg/330px-FWC_2018_-_Round_of_16_-_COL_v_ENG_-_Photo_103_%28cropped%29.jpg"
       },
       {
-        "id": "davinson-sanchez",
-        "full_name": "Dávinson Sánchez",
-        "display_name": "Dávinson Sánchez",
+        "id": "gustavo-puerta",
+        "full_name": "Gustavo Puerta",
+        "display_name": "Gustavo Puerta",
         "position": "DEF",
-        "detailed_position": "CB",
+        "detailed_position": "MID",
         "club": {
-          "name": "Galatasaray",
-          "country_iso": "tr",
-          "league": "Süper Lig"
+          "name": "Racing de Santander",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 23,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/D%C3%A1vinson_S%C3%A1nchez%2C_POL_vs_COL%3B_FWC_2018.jpg/330px-D%C3%A1vinson_S%C3%A1nchez%2C_POL_vs_COL%3B_FWC_2018.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Gustavo_Puerta_2023.jpg"
       },
       {
-        "id": "jhon-lucumi",
-        "full_name": "Jhon Lucumí",
-        "display_name": "Jhon Lucumí",
+        "id": "johan-mojica",
+        "full_name": "Johan Mojica",
+        "display_name": "Johan Mojica",
         "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Bologna",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 3,
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Jhon_Lucum%C3%AD_September_2019.jpg/330px-Jhon_Lucum%C3%AD_September_2019.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/FWC_2018_-_Round_of_16_-_COL_v_ENG_-_Photo_102_%28cropped%29_2.jpg"
       },
       {
         "id": "willer-ditta",
@@ -934,21 +946,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Willer_Ditta_en_Newell%27s_Old_Boys.jpg"
       },
       {
-        "id": "yohan-mojica",
-        "full_name": "Yohan Mojica",
-        "display_name": "Yohan Mojica",
-        "position": "DEF",
-        "detailed_position": "DEF",
-        "club": {
-          "name": "Mallorca",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": null
-      },
-      {
         "id": "deiver-machado",
         "full_name": "Déiver Machado",
         "display_name": "Déiver Machado",
@@ -964,49 +961,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Lens_-_Reims_%2812-05-2023%29_33.jpg"
       },
       {
-        "id": "richard-rios",
-        "full_name": "Richard Ríos",
-        "display_name": "Richard Ríos",
-        "position": "MID",
-        "detailed_position": "CM",
+        "id": "davinson-sanchez",
+        "full_name": "Dávinson Sánchez",
+        "display_name": "Dávinson Sánchez",
+        "position": "DEF",
+        "detailed_position": "CB",
         "club": {
-          "name": "Benfica",
-          "country_iso": "br",
-          "league": "Brasileirão"
+          "name": "Galatasaray",
+          "country_iso": "tr",
+          "league": "Süper Lig"
         },
-        "shirt_number_expected": 25,
+        "shirt_number_expected": 23,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Richard-Rios-Palmeiras-Liverpool-abr24.jpg/330px-Richard-Rios-Palmeiras-Liverpool-abr24.jpg"
-      },
-      {
-        "id": "jefferson-lerma",
-        "full_name": "Jefferson Lerma",
-        "display_name": "Jefferson Lerma",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Crystal Palace",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 16,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Jefferson_Lerma_2018.png/330px-Jefferson_Lerma_2018.png"
-      },
-      {
-        "id": "gustavo-puerta",
-        "full_name": "Gustavo Puerta",
-        "display_name": "Gustavo Puerta",
-        "position": "MID",
-        "detailed_position": "MID",
-        "club": {
-          "name": "Racing de Santander",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Gustavo_Puerta_2023.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/D%C3%A1vinson_S%C3%A1nchez%2C_POL_vs_COL%3B_FWC_2018.jpg/330px-D%C3%A1vinson_S%C3%A1nchez%2C_POL_vs_COL%3B_FWC_2018.jpg"
       },
       {
         "id": "kevin-castano",
@@ -1024,49 +991,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Kevin_con_Krasnodar_en_2023.jpg/330px-Kevin_con_Krasnodar_en_2023.jpg"
       },
       {
-        "id": "jhon-arias",
-        "full_name": "Jhon Arias",
-        "display_name": "Jhon Arias",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Palmeiras",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 11,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Jhon_Arias_en_Palmeiras_-_Copa_Libertadores_2026.jpg"
-      },
-      {
-        "id": "james-rodriguez",
-        "full_name": "James David Rodríguez",
-        "display_name": "James Rodríguez",
+        "id": "richard-rios",
+        "full_name": "Richard Ríos",
+        "display_name": "Richard Ríos",
         "position": "MID",
-        "detailed_position": "CAM",
+        "detailed_position": "CM",
         "club": {
-          "name": "Minnesota United",
-          "country_iso": "mx",
-          "league": "Liga MX"
+          "name": "Benfica",
+          "country_iso": "br",
+          "league": "Brasileirão"
         },
-        "shirt_number_expected": 10,
+        "shirt_number_expected": 25,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/James_Roday_by_Gage_Skidmore.jpg/330px-James_Roday_by_Gage_Skidmore.jpg"
-      },
-      {
-        "id": "juan-fernando-quintero",
-        "full_name": "Juan Fernando Quintero",
-        "display_name": "Juanfer Quintero",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "River Plate",
-          "country_iso": "co",
-          "league": "Liga BetPlay"
-        },
-        "shirt_number_expected": 20,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Juan_Quintero_%28cropped%29.jpg/330px-Juan_Quintero_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Richard-Rios-Palmeiras-Liverpool-abr24.jpg/330px-Richard-Rios-Palmeiras-Liverpool-abr24.jpg"
       },
       {
         "id": "jorge-carrascal",
@@ -1084,6 +1021,36 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Jorge_Carrascal_2025.jpg/330px-Jorge_Carrascal_2025.jpg"
       },
       {
+        "id": "james-rodriguez",
+        "full_name": "James David Rodríguez",
+        "display_name": "James Rodríguez",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Minnesota United",
+          "country_iso": "mx",
+          "league": "Liga MX"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/James_Roday_by_Gage_Skidmore.jpg/330px-James_Roday_by_Gage_Skidmore.jpg"
+      },
+      {
+        "id": "jhon-arias",
+        "full_name": "Jhon Arias",
+        "display_name": "Jhon Arias",
+        "position": "MID",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Palmeiras",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Jhon_Arias_en_Palmeiras_-_Copa_Libertadores_2026.jpg"
+      },
+      {
         "id": "juan-camilo-portilla",
         "full_name": "Juan Camilo Portilla",
         "display_name": "Juan Camilo Portilla",
@@ -1099,6 +1066,36 @@
         "photo_url": null
       },
       {
+        "id": "jefferson-lerma",
+        "full_name": "Jefferson Lerma",
+        "display_name": "Jefferson Lerma",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Crystal Palace",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 16,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Jefferson_Lerma_2018.png/330px-Jefferson_Lerma_2018.png"
+      },
+      {
+        "id": "juan-fernando-quintero",
+        "full_name": "Juan Fernando Quintero",
+        "display_name": "Juanfer Quintero",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "River Plate",
+          "country_iso": "co",
+          "league": "Liga BetPlay"
+        },
+        "shirt_number_expected": 20,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Juan_Quintero_%28cropped%29.jpg/330px-Juan_Quintero_%28cropped%29.jpg"
+      },
+      {
         "id": "luis-diaz",
         "full_name": "Luis Fernando Díaz",
         "display_name": "Luis Díaz",
@@ -1112,50 +1109,6 @@
         "shirt_number_expected": 7,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/FC_RB_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%282026-01-06_Testspiel%29_40_%28Luiz_D%C3%ADaz%29.jpg/330px-FC_RB_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%282026-01-06_Testspiel%29_40_%28Luiz_D%C3%ADaz%29.jpg"
-      },
-      {
-        "id": "luis-suarez",
-        "full_name": "Luis Javier Suárez",
-        "display_name": "Luis Suárez (col)",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Sporting",
-          "country_iso": "pt",
-          "league": "Primeira Liga"
-        },
-        "shirt_number_expected": 19,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Luis_Javier_Su%C3%A1rez_Charris.jpg/330px-Luis_Javier_Su%C3%A1rez_Charris.jpg"
-      },
-      {
-        "id": "carlos-gomez",
-        "full_name": "Carlos Gómez",
-        "display_name": "Carlos Gómez",
-        "position": "FWD",
-        "detailed_position": "FWD",
-        "club": {
-          "name": "Vasco da Gama",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": null
-      },
-      {
-        "id": "jaminton-campaz",
-        "full_name": "Jaminton Campaz",
-        "display_name": "Jaminton Campaz",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Rosario Central",
-          "country_iso": "ar",
-          "league": "Liga Profesional"
-        },
-        "shirt_number_expected": 21,
-        "status": "fixed"
       },
       {
         "id": "jhon-cordoba",
@@ -1186,6 +1139,43 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
+      },
+      {
+        "id": "leandro-campaz",
+        "full_name": "Leandro Campaz",
+        "display_name": "Leandro Campaz",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "luis-suarez",
+        "full_name": "Luis Javier Suárez",
+        "display_name": "Luis Suárez (col)",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Sporting",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Luis_Javier_Su%C3%A1rez_Charris.jpg/330px-Luis_Javier_Su%C3%A1rez_Charris.jpg"
+      },
+      {
+        "id": "andres-gomez",
+        "full_name": "Andrés Gómez",
+        "display_name": "Andrés Gómez",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/7b/IMCF_vs._RSL_25_%28cropped%29_%28cropped%29.jpg"
       }
     ],
     "starting_xi": {
@@ -1303,8 +1293,8 @@
       "vs_last_3_wcs": "Brasil 2014: cuartos, eliminada por Brasil 2-1 (lesión grave de Neymar por entrada de Zúñiga). Rusia 2018: octavos, eliminada por Inglaterra en penales tras 1-1. Catar 2022: NO clasificó (6º puesto eliminatoria). Mundial 2026: regreso tras 8 años de ausencia con la generación de James-Luis Díaz buscando superar los cuartos por primera vez."
     },
     "squad_announced": true,
-    "squad_announced_date": "2026-05-26",
-    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 1962,

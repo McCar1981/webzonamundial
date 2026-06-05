@@ -466,21 +466,6 @@
     },
     "likely_squad": [
       {
-        "id": "oliver-baumann",
-        "full_name": "Oliver Baumann",
-        "display_name": "Oliver Baumann",
-        "position": "GK",
-        "detailed_position": "GK",
-        "club": {
-          "name": "Hoffenheim",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/OliverBaumann_%28cropped%29.jpg"
-      },
-      {
         "id": "manuel-neuer",
         "full_name": "Manuel Neuer",
         "display_name": "Manuel Neuer",
@@ -494,6 +479,21 @@
         "shirt_number_expected": 1,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/20180602_FIFA_Friendly_Match_Austria_vs._Germany_Manuel_Neuer_850_0723.jpg/330px-20180602_FIFA_Friendly_Match_Austria_vs._Germany_Manuel_Neuer_850_0723.jpg"
+      },
+      {
+        "id": "oliver-baumann",
+        "full_name": "Oliver Baumann",
+        "display_name": "Oliver Baumann",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Hoffenheim",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/OliverBaumann_%28cropped%29.jpg"
       },
       {
         "id": "alexander-nubel",
@@ -526,79 +526,15 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Waldemar_anton_%28cropped%29.jpg/330px-Waldemar_anton_%28cropped%29.jpg"
       },
       {
-        "id": "nathaniel-brown",
-        "full_name": "Nathaniel Brown",
-        "display_name": "Nathaniel Brown",
+        "id": "waldemar-anton",
+        "full_name": "Waldemar Anton",
+        "display_name": "Waldemar Anton",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": {
-          "name": "Eintracht Frankfurt",
-          "country_iso": null,
-          "league": null
-        },
+        "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
-      },
-      {
-        "id": "joshua-kimmich",
-        "full_name": "Joshua Kimmich",
-        "display_name": "Kimmich",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Bayern Múnich",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 6,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/2019-06-11_Fu%C3%9Fball%2C_M%C3%A4nner%2C_L%C3%A4nderspiel%2C_Deutschland-Estland_StP_2078_LR10_by_Stepro.jpg/330px-2019-06-11_Fu%C3%9Fball%2C_M%C3%A4nner%2C_L%C3%A4nderspiel%2C_Deutschland-Estland_StP_2078_LR10_by_Stepro.jpg"
-      },
-      {
-        "id": "david-raum",
-        "full_name": "David Raum",
-        "display_name": "David Raum",
-        "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "RB Leipzig",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 3,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2658_%28cropped%29.jpg/330px-2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2658_%28cropped%29.jpg"
-      },
-      {
-        "id": "antonio-rudiger",
-        "full_name": "Antonio Rüdiger",
-        "display_name": "Rüdiger",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Real Madrid",
-          "country_iso": "es",
-          "league": "La Liga"
-        },
-        "shirt_number_expected": 2,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/20180602_FIFA_Friendly_Match_Austria_vs._Germany_Antonio_R%C3%BCdiger_850_0711.jpg/330px-20180602_FIFA_Friendly_Match_Austria_vs._Germany_Antonio_R%C3%BCdiger_850_0711.jpg"
-      },
-      {
-        "id": "nico-schlotterbeck",
-        "full_name": "Nico Schlotterbeck",
-        "display_name": "Schlotterbeck",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Borussia Dortmund",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 23,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93069.jpg/330px-2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93069.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/33/Waldemar_anton_%28cropped%29.jpg"
       },
       {
         "id": "jonathan-tah",
@@ -616,6 +552,66 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Jonathan_Tah_2019.jpg/330px-Jonathan_Tah_2019.jpg"
       },
       {
+        "id": "joshua-kimmich",
+        "full_name": "Joshua Kimmich",
+        "display_name": "Kimmich",
+        "position": "DEF",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Bayern Múnich",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/2019-06-11_Fu%C3%9Fball%2C_M%C3%A4nner%2C_L%C3%A4nderspiel%2C_Deutschland-Estland_StP_2078_LR10_by_Stepro.jpg/330px-2019-06-11_Fu%C3%9Fball%2C_M%C3%A4nner%2C_L%C3%A4nderspiel%2C_Deutschland-Estland_StP_2078_LR10_by_Stepro.jpg"
+      },
+      {
+        "id": "nico-schlotterbeck",
+        "full_name": "Nico Schlotterbeck",
+        "display_name": "Schlotterbeck",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Borussia Dortmund",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 23,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93069.jpg/330px-2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93069.jpg"
+      },
+      {
+        "id": "nathaniel-brown",
+        "full_name": "Nathaniel Brown",
+        "display_name": "Nathaniel Brown",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Eintracht Frankfurt",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "david-raum",
+        "full_name": "David Raum",
+        "display_name": "David Raum",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "RB Leipzig",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2658_%28cropped%29.jpg/330px-2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2658_%28cropped%29.jpg"
+      },
+      {
         "id": "malick-thiaw",
         "full_name": "Malick Thiaw",
         "display_name": "Malick Thiaw",
@@ -631,19 +627,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/66/Milan_Lecce_2023_Thiaw.jpg"
       },
       {
-        "id": "nadiem-amiri",
-        "full_name": "Nadiem Amiri",
-        "display_name": "Amiri",
+        "id": "aleksandar-pavlovic",
+        "full_name": "Aleksandar Pavlović",
+        "display_name": "Aleksandar Pavlović",
         "position": "MID",
-        "detailed_position": "CM",
+        "detailed_position": "MID",
         "club": {
-          "name": "Mainz 05",
-          "country_iso": "de",
-          "league": "Bundesliga"
+          "name": "Bayern Múnich",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 14,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/NadiemAmiri.jpg/330px-NadiemAmiri.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/90/FC_RB_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%282026-01-06_Testspiel%29_34.jpg"
       },
       {
         "id": "leon-goretzka",
@@ -659,36 +655,6 @@
         "shirt_number_expected": 18,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/2019-06-11_Fu%C3%9Fball%2C_M%C3%A4nner%2C_L%C3%A4nderspiel%2C_Deutschland-Estland_StP_2074_LR10_by_Stepro_%28cropped%29.jpg/330px-2019-06-11_Fu%C3%9Fball%2C_M%C3%A4nner%2C_L%C3%A4nderspiel%2C_Deutschland-Estland_StP_2074_LR10_by_Stepro_%28cropped%29.jpg"
-      },
-      {
-        "id": "pascal-gross",
-        "full_name": "Pascal Groß",
-        "display_name": "Pascal Groß",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Brighton",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 8,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Pascal_Gross.jpg/330px-Pascal_Gross.jpg"
-      },
-      {
-        "id": "lennart-karl",
-        "full_name": "Lennart Karl",
-        "display_name": "Lennart Karl",
-        "position": "MID",
-        "detailed_position": "MID",
-        "club": {
-          "name": "Bayern Múnich",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": null
       },
       {
         "id": "jamie-leweling",
@@ -709,7 +675,7 @@
         "id": "jamal-musiala",
         "full_name": "Jamal Musiala",
         "display_name": "Musiala",
-        "position": "FWD",
+        "position": "MID",
         "detailed_position": "CAM",
         "club": {
           "name": "Bayern Múnich",
@@ -721,34 +687,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Jamal_Musiala_2022_%28cropped%29.jpg/330px-Jamal_Musiala_2022_%28cropped%29.jpg"
       },
       {
-        "id": "felix-nmecha",
-        "full_name": "Felix Nmecha",
-        "display_name": "Nmecha",
+        "id": "pascal-gross",
+        "full_name": "Pascal Groß",
+        "display_name": "Pascal Groß",
         "position": "MID",
         "detailed_position": "CM",
         "club": {
-          "name": "Borussia Dortmund",
+          "name": "Brighton",
           "country_iso": "de",
           "league": "Bundesliga"
         },
-        "shirt_number_expected": 15,
+        "shirt_number_expected": 8,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Felix_Nmecha_2021.jpg/330px-Felix_Nmecha_2021.jpg"
-      },
-      {
-        "id": "aleksandar-pavlovic",
-        "full_name": "Aleksandar Pavlović",
-        "display_name": "Aleksandar Pavlović",
-        "position": "MID",
-        "detailed_position": "MID",
-        "club": {
-          "name": "Bayern Múnich",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/90/FC_RB_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%282026-01-06_Testspiel%29_34.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Pascal_Gross.jpg/330px-Pascal_Gross.jpg"
       },
       {
         "id": "angelo-stiller",
@@ -766,19 +717,79 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Angelo_Stiller_2023.jpg"
       },
       {
-        "id": "maximilian-beier",
-        "full_name": "Maximilian Beier",
-        "display_name": "Maximilian Beier",
-        "position": "FWD",
-        "detailed_position": "FWD",
+        "id": "florian-wirtz",
+        "full_name": "Florian Wirtz",
+        "display_name": "Florian Wirtz",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Liverpool",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Florian_Wirtz_04012026_%283%29_%28extracted%29.jpg/330px-Florian_Wirtz_04012026_%283%29_%28extracted%29.jpg"
+      },
+      {
+        "id": "leroy-sane",
+        "full_name": "Leroy Sané",
+        "display_name": "Leroy Sané",
+        "position": "MID",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Galatasaray",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/20180602_FIFA_Friendly_Match_Austria_vs._Germany_Leroy_San%C3%A9_850_0668.jpg/330px-20180602_FIFA_Friendly_Match_Austria_vs._Germany_Leroy_San%C3%A9_850_0668.jpg"
+      },
+      {
+        "id": "nadiem-amiri",
+        "full_name": "Nadiem Amiri",
+        "display_name": "Amiri",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Mainz 05",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/NadiemAmiri.jpg/330px-NadiemAmiri.jpg"
+      },
+      {
+        "id": "felix-nmecha",
+        "full_name": "Felix Nmecha",
+        "display_name": "Nmecha",
+        "position": "MID",
+        "detailed_position": "CM",
         "club": {
           "name": "Borussia Dortmund",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 15,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Felix_Nmecha_2021.jpg/330px-Felix_Nmecha_2021.jpg"
+      },
+      {
+        "id": "lennart-karl",
+        "full_name": "Lennart Karl",
+        "display_name": "Lennart Karl",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": {
+          "name": "Bayern Múnich",
           "country_iso": null,
           "league": null
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Maximilian_Beier_training_with_Borussia_Dortmund_%282026%29.jpg"
+        "photo_url": null
       },
       {
         "id": "kai-havertz",
@@ -796,19 +807,34 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/59/Kai_Havertz_2020.jpg"
       },
       {
-        "id": "leroy-sane",
-        "full_name": "Leroy Sané",
-        "display_name": "Leroy Sané",
+        "id": "nick-woltemade",
+        "full_name": "Nick Woltemade",
+        "display_name": "Woltemade",
         "position": "FWD",
-        "detailed_position": "RW",
+        "detailed_position": "ST",
         "club": {
-          "name": "Galatasaray",
-          "country_iso": "tr",
-          "league": "Süper Lig"
+          "name": "Newcastle United",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
         },
-        "shirt_number_expected": 19,
+        "shirt_number_expected": 9,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/20180602_FIFA_Friendly_Match_Austria_vs._Germany_Leroy_San%C3%A9_850_0668.jpg/330px-20180602_FIFA_Friendly_Match_Austria_vs._Germany_Leroy_San%C3%A9_850_0668.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Nick_Woltemade_24052026_%285%29.jpg"
+      },
+      {
+        "id": "maximilian-beier",
+        "full_name": "Maximilian Beier",
+        "display_name": "Maximilian Beier",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": {
+          "name": "Borussia Dortmund",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Maximilian_Beier_training_with_Borussia_Dortmund_%282026%29.jpg"
       },
       {
         "id": "deniz-undav",
@@ -824,35 +850,6 @@
         "shirt_number_expected": 26,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Deniz_undav.jpg/330px-Deniz_undav.jpg"
-      },
-      {
-        "id": "florian-wirtz",
-        "full_name": "Florian Wirtz",
-        "display_name": "Florian Wirtz",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Liverpool",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 10,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Florian_Wirtz_04012026_%283%29_%28extracted%29.jpg/330px-Florian_Wirtz_04012026_%283%29_%28extracted%29.jpg"
-      },
-      {
-        "id": "nick-woltemade",
-        "full_name": "Nick Woltemade",
-        "display_name": "Woltemade",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Newcastle United",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 9,
-        "status": "fixed"
       }
     ],
     "starting_xi": {
@@ -972,8 +969,8 @@
       "vs_last_3_wcs": "Rusia 2018: ELIMINADA EN PRIMERA RONDA (defensora del título), 1 victoria en 3 partidos. Catar 2022: ELIMINADA EN PRIMERA RONDA por diferencia de goles. Mundial 2026: la presión de 12 años sin pasar de octavos es enorme. Generación nueva busca redención."
     },
     "squad_announced": true,
-    "squad_announced_date": "2026-05-26",
-    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 1934,

@@ -539,6 +539,36 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/33/Michael_Woud.jpg"
       },
       {
+        "id": "tim-payne",
+        "full_name": "Tim Payne",
+        "display_name": "Tim Payne",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Wellington",
+          "country_iso": "nz",
+          "league": "A-League"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/67/Tim_Payne_%282025%2C_photo_2%29_%28cropped%29.jpg"
+      },
+      {
+        "id": "francis-de-vries",
+        "full_name": "Francis de Vries",
+        "display_name": "Francis de Vries",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Auckland FC",
+          "country_iso": "nz",
+          "league": "A-League"
+        },
+        "shirt_number_expected": 13,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Francis_de_Vries.jpg/330px-Francis_de_Vries.jpg"
+      },
+      {
         "id": "tyler-bindon",
         "full_name": "Tyler Bindon",
         "display_name": "Tyler Bindon",
@@ -583,48 +613,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Liberato_Cacace_30082025_%281%29.jpg/330px-Liberato_Cacace_30082025_%281%29.jpg"
       },
       {
-        "id": "francis-de-vries",
-        "full_name": "Francis de Vries",
-        "display_name": "Francis de Vries",
-        "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "Auckland FC",
-          "country_iso": "nz",
-          "league": "A-League"
-        },
-        "shirt_number_expected": 13,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Francis_de_Vries.jpg/330px-Francis_de_Vries.jpg"
-      },
-      {
-        "id": "callan-elliot",
-        "full_name": "Callan Elliot",
-        "display_name": "Callan Elliot",
-        "position": "DEF",
-        "detailed_position": "DEF",
-        "club": {
-          "name": "Auckland FC"
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Callan_Elliot.jpg"
-      },
-      {
-        "id": "tim-payne",
-        "full_name": "Tim Payne",
-        "display_name": "Tim Payne",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Wellington",
-          "country_iso": "nz",
-          "league": "A-League"
-        },
-        "shirt_number_expected": 2,
-        "status": "fixed"
-      },
-      {
         "id": "nando-pijnaker",
         "full_name": "Nando Pijnaker",
         "display_name": "Nando Pijnaker",
@@ -637,21 +625,6 @@
         },
         "shirt_number_expected": 22,
         "status": "fixed"
-      },
-      {
-        "id": "tommy-smith",
-        "full_name": "Tommy Smith",
-        "display_name": "Tommy Smith",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Braintree",
-          "country_iso": "nz",
-          "league": "A-League"
-        },
-        "shirt_number_expected": 21,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Tommy_Smith_-_It_8.jpg/330px-Tommy_Smith_-_It_8.jpg"
       },
       {
         "id": "finn-surman",
@@ -669,23 +642,38 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Finn_Surman.jpg/330px-Finn_Surman.jpg"
       },
       {
-        "id": "lachlan-bayliss",
-        "full_name": "Lachlan Bayliss",
-        "display_name": "Lachlan Bayliss",
-        "position": "MID",
-        "detailed_position": "MID",
+        "id": "callan-elliot",
+        "full_name": "Callan Elliot",
+        "display_name": "Callan Elliot",
+        "position": "DEF",
+        "detailed_position": "DEF",
         "club": {
-          "name": "Newcastle"
+          "name": "Auckland FC"
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Lachlan_Bayliss.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Callan_Elliot.jpg"
+      },
+      {
+        "id": "tommy-smith",
+        "full_name": "Tommy Smith",
+        "display_name": "Tommy Smith",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Braintree",
+          "country_iso": "nz",
+          "league": "A-League"
+        },
+        "shirt_number_expected": 21,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Tommy_Smith_-_It_8.jpg/330px-Tommy_Smith_-_It_8.jpg"
       },
       {
         "id": "joe-bell",
         "full_name": "Joe Bell",
         "display_name": "Joe Bell",
-        "position": "DEF",
+        "position": "MID",
         "detailed_position": "RB",
         "club": {
           "name": "Viking",
@@ -697,19 +685,18 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Joe_Bell_2023.jpg"
       },
       {
-        "id": "alex-rufer",
-        "full_name": "Alex Rufer",
-        "display_name": "Alex Rufer",
+        "id": "matthew-garbett",
+        "full_name": "Matthew Garbett",
+        "display_name": "Matthew Garbett",
         "position": "MID",
-        "detailed_position": "CDM",
+        "detailed_position": "CM",
         "club": {
-          "name": "Wellington",
-          "country_iso": "nz",
-          "league": "A-League"
+          "name": "Peterborough",
+          "country_iso": "it",
+          "league": "Serie A"
         },
-        "shirt_number_expected": 17,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Alex_Rufer.jpg/330px-Alex_Rufer.jpg"
+        "shirt_number_expected": 16,
+        "status": "fixed"
       },
       {
         "id": "marko-stamenic",
@@ -727,48 +714,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/FC_Zenit_Saint_Petersburg_vs._Red_Star_Belgrade%2C_4_July_2023_%2850%29.jpg/330px-FC_Zenit_Saint_Petersburg_vs._Red_Star_Belgrade%2C_4_July_2023_%2850%29.jpg"
       },
       {
-        "id": "ryan-thomas",
-        "full_name": "Ryan Thomas",
-        "display_name": "Ryan Thomas",
+        "id": "sarpreet-singh",
+        "full_name": "Sarpreet Singh",
+        "display_name": "Sarpreet Singh",
         "position": "MID",
-        "detailed_position": "CDM",
+        "detailed_position": "CAM",
         "club": {
-          "name": "PEC Zwolle",
-          "country_iso": "nz",
-          "league": "A-League"
+          "name": "Wellington",
+          "country_iso": "de",
+          "league": "Bundesliga"
         },
-        "shirt_number_expected": 8,
+        "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Ryan_Thomas_2.jpg/330px-Ryan_Thomas_2.jpg"
-      },
-      {
-        "id": "kosta-barbarouses",
-        "full_name": "Kosta Barbarouses",
-        "display_name": "Kosta Barbarouses",
-        "position": "FWD",
-        "detailed_position": "LW",
-        "club": {
-          "name": "Western Sydney",
-          "country_iso": "nz",
-          "league": "A-League"
-        },
-        "shirt_number_expected": 11,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/New_Zealand-Portugal_%2824%29_%28cropped%29.jpg/330px-New_Zealand-Portugal_%2824%29_%28cropped%29.jpg"
-      },
-      {
-        "id": "matthew-garbett",
-        "full_name": "Matthew Garbett",
-        "display_name": "Matthew Garbett",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Peterborough",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 16,
-        "status": "fixed"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Sarpreet_Singh_Training_2019-07-28_FC_Bayern_Munich.png/330px-Sarpreet_Singh_Training_2019-07-28_FC_Bayern_Munich.png"
       },
       {
         "id": "elijah-just",
@@ -786,17 +744,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Elijah_Just.jpg/330px-Elijah_Just.jpg"
       },
       {
-        "id": "callum-mccowatt",
-        "full_name": "Callum McCowatt",
-        "display_name": "Callum McCowatt",
-        "position": "FWD",
-        "detailed_position": "FWD",
+        "id": "alex-rufer",
+        "full_name": "Alex Rufer",
+        "display_name": "Alex Rufer",
+        "position": "MID",
+        "detailed_position": "CDM",
         "club": {
-          "name": "Silkeborg"
+          "name": "Wellington",
+          "country_iso": "nz",
+          "league": "A-League"
         },
-        "shirt_number_expected": null,
+        "shirt_number_expected": 17,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Callum_McCowatt_playing_for_New_Zealand%2C_26_March_2023_%282%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Alex_Rufer.jpg/330px-Alex_Rufer.jpg"
       },
       {
         "id": "ben-old",
@@ -814,46 +774,45 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Ben_Old_playing_for_Wellington_v_Perth%2C_March_2022.jpg/330px-Ben_Old_playing_for_Wellington_v_Perth%2C_March_2022.jpg"
       },
       {
-        "id": "jesse-randall",
-        "full_name": "Jesse Randall",
-        "display_name": "Jesse Randall",
+        "id": "callum-mccowatt",
+        "full_name": "Callum McCowatt",
+        "display_name": "Callum McCowatt",
         "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Auckland FC",
-          "country_iso": "nz",
-          "league": "A-League"
-        },
-        "shirt_number_expected": 25,
-        "status": "fixed"
-      },
-      {
-        "id": "sarpreet-singh",
-        "full_name": "Sarpreet Singh",
-        "display_name": "Sarpreet Singh",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Wellington",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 10,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Sarpreet_Singh_Training_2019-07-28_FC_Bayern_Munich.png/330px-Sarpreet_Singh_Training_2019-07-28_FC_Bayern_Munich.png"
-      },
-      {
-        "id": "ben-waine",
-        "full_name": "Ben Waine",
-        "display_name": "Ben Waine",
-        "position": "FWD",
         "detailed_position": "FWD",
         "club": {
-          "name": "Port Vale"
+          "name": "Silkeborg"
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Ben_Waine.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Callum_McCowatt_playing_for_New_Zealand%2C_26_March_2023_%282%29_%28cropped%29.jpg"
+      },
+      {
+        "id": "ryan-thomas",
+        "full_name": "Ryan Thomas",
+        "display_name": "Ryan Thomas",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "PEC Zwolle",
+          "country_iso": "nz",
+          "league": "A-League"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Ryan_Thomas_2.jpg/330px-Ryan_Thomas_2.jpg"
+      },
+      {
+        "id": "lachlan-bayliss",
+        "full_name": "Lachlan Bayliss",
+        "display_name": "Lachlan Bayliss",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": {
+          "name": "Newcastle"
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Lachlan_Bayliss.jpg"
       },
       {
         "id": "chris-wood",
@@ -869,6 +828,48 @@
         "shirt_number_expected": 9,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Russia-New_Zeland_%2817%29.jpg/330px-Russia-New_Zeland_%2817%29.jpg"
+      },
+      {
+        "id": "kosta-barbarouses",
+        "full_name": "Kosta Barbarouses",
+        "display_name": "Kosta Barbarouses",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Western Sydney",
+          "country_iso": "nz",
+          "league": "A-League"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/New_Zealand-Portugal_%2824%29_%28cropped%29.jpg/330px-New_Zealand-Portugal_%2824%29_%28cropped%29.jpg"
+      },
+      {
+        "id": "ben-waine",
+        "full_name": "Ben Waine",
+        "display_name": "Ben Waine",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": {
+          "name": "Port Vale"
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Ben_Waine.jpg"
+      },
+      {
+        "id": "jesse-randall",
+        "full_name": "Jesse Randall",
+        "display_name": "Jesse Randall",
+        "position": "FWD",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Auckland FC",
+          "country_iso": "nz",
+          "league": "A-League"
+        },
+        "shirt_number_expected": 25,
+        "status": "fixed"
       }
     ],
     "starting_xi": {
@@ -990,8 +991,8 @@
       "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: NO CLASIFICÓ (cayó vs Perú repechaje 0-2 global). Catar 2022: NO CLASIFICÓ (cayó vs Costa Rica 0-1 repechaje). Mundial 2026: 3ª participación tras 16 AÑOS sin Mundial."
     },
     "squad_announced": true,
-    "squad_announced_date": "2026-05-26",
-    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 1982,

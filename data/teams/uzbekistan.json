@@ -88,7 +88,7 @@
         "goals_against": 7,
         "goal_difference": 9,
         "points": 21,
-        "win_percentage": 60.0,
+        "win_percentage": 60,
         "clean_sheets": 5,
         "notes": "2ª mejor del Grupo A solo detrás de Irán (23). 1 sola derrota. Selló pase con 1 fecha de antelación."
       },
@@ -505,21 +505,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/O%CA%BBtkir_Yusupov_%28cropped%29.jpg/330px-O%CA%BBtkir_Yusupov_%28cropped%29.jpg"
       },
       {
-        "id": "sanjar-kuvvatov",
-        "full_name": "Sanjar Kuvvatov",
-        "display_name": "Sanjar Kuvvatov",
-        "position": "GK",
-        "detailed_position": "GK",
-        "club": {
-          "name": "Andijan",
-          "country_iso": "uz",
-          "league": "Super League uzbeka"
-        },
-        "shirt_number_expected": 12,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Sanjar_Kuvvatov_2020.jpg/330px-Sanjar_Kuvvatov_2020.jpg"
-      },
-      {
         "id": "abduvohid-nematov",
         "full_name": "Abduvohid Nematov",
         "display_name": "Abduvohid Nematov",
@@ -531,37 +516,19 @@
           "league": "Super League uzbeka"
         },
         "shirt_number_expected": 23,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Abduvohid_Nematov_%28cropped%29.jpg/330px-Abduvohid_Nematov_%28cropped%29.jpg"
       },
       {
-        "id": "khojiakbar-alijonov",
-        "full_name": "Khojiakbar Alijonov",
-        "display_name": "Khojiakbar Alijonov",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Pakhtakor",
-          "country_iso": "uz",
-          "league": "Super League uzbeka"
-        },
-        "shirt_number_expected": 2,
+        "id": "botirali-ergashev",
+        "full_name": "Botirali Ergashev",
+        "display_name": "Botirali Ergashev",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/FC_Pakhtakor_in_March_2019_%28cropped%29.jpg"
-      },
-      {
-        "id": "abdulla-abdullaev",
-        "full_name": "Abdulla Abdullaev",
-        "display_name": "Abdulla Abdullaev",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Pakhtakor",
-          "country_iso": "uz",
-          "league": "Super League uzbeka"
-        },
-        "shirt_number_expected": 14,
-        "status": "probable"
+        "photo_url": null
       },
       {
         "id": "abdukodir-khusanov",
@@ -579,18 +546,30 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/53/Abdukodir_Khusanov_%28cropped%29.jpg"
       },
       {
-        "id": "umarbek-eshmurodov",
-        "full_name": "Umarbek Eshmurodov",
-        "display_name": "Umarbek Eshmurodov",
+        "id": "khojiakbar-alijonov",
+        "full_name": "Khojiakbar Alijonov",
+        "display_name": "Khojiakbar Alijonov",
         "position": "DEF",
-        "detailed_position": "CB",
+        "detailed_position": "RB",
         "club": {
           "name": "Pakhtakor",
           "country_iso": "uz",
           "league": "Super League uzbeka"
         },
-        "shirt_number_expected": 5,
-        "status": "fixed"
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/FC_Pakhtakor_in_March_2019_%28cropped%29.jpg"
+      },
+      {
+        "id": "farrukh-sayfiev",
+        "full_name": "Farrukh Sayfiev",
+        "display_name": "Farrukh Sayfiev",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "rustam-ashurmatov",
@@ -608,21 +587,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Rustamjon_Ashurmatov_%28cropped%29.jpg/330px-Rustamjon_Ashurmatov_%28cropped%29.jpg"
       },
       {
-        "id": "javokhir-sidikov",
-        "full_name": "Javokhir Sidikov",
-        "display_name": "Javokhir Sidikov",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Pakhtakor",
-          "country_iso": "uz",
-          "league": "Super League uzbeka"
-        },
-        "shirt_number_expected": 22,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Javokhir_Sidikov.jpg/330px-Javokhir_Sidikov.jpg"
-      },
-      {
         "id": "sherzod-nasrullaev",
         "full_name": "Sherzod Nasrullaev",
         "display_name": "Sherzod Nasrullaev",
@@ -638,19 +602,80 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Sherzod_Nasrullayev.jpg"
       },
       {
-        "id": "sherzod-azamov",
-        "full_name": "Sherzod Azamov",
-        "display_name": "Sherzod Azamov",
+        "id": "umarbek-eshmurodov",
+        "full_name": "Umarbek Eshmurodov",
+        "display_name": "Umarbek Eshmurodov",
         "position": "DEF",
-        "detailed_position": "LB",
+        "detailed_position": "CB",
         "club": {
-          "name": "Bunyodkor",
+          "name": "Pakhtakor",
           "country_iso": "uz",
           "league": "Super League uzbeka"
         },
-        "shirt_number_expected": 13,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Sherzod_Azamov_2020.jpg/330px-Sherzod_Azamov_2020.jpg"
+        "shirt_number_expected": 5,
+        "status": "fixed"
+      },
+      {
+        "id": "abdulla-abdullaev",
+        "full_name": "Abdulla Abdullaev",
+        "display_name": "Abdulla Abdullaev",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Pakhtakor",
+          "country_iso": "uz",
+          "league": "Super League uzbeka"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed"
+      },
+      {
+        "id": "behruzjon-karimov",
+        "full_name": "Behruzjon Karimov",
+        "display_name": "Behruzjon Karimov",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "avazbek-ulmasaliyev",
+        "full_name": "Avazbek Ulmasaliyev",
+        "display_name": "Avazbek Ulmasaliyev",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "jakhongir-urozov",
+        "full_name": "Jakhongir Urozov",
+        "display_name": "Jakhongir Urozov",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "akmal-mozgovoy",
+        "full_name": "Akmal Mozgovoy",
+        "display_name": "Akmal Mozgovoy",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Pakhtakor",
+          "country_iso": "uz",
+          "league": "Super League uzbeka"
+        },
+        "shirt_number_expected": 16,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/54/CAFA_Nations_Cup_2025_Uzbekistan_Kyrgyz_Republic_%28cropped%29.jpg"
       },
       {
         "id": "otabek-shukurov",
@@ -668,19 +693,63 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Otabek_Shukurov.jpg/330px-Otabek_Shukurov.jpg"
       },
       {
-        "id": "akmal-mozgovoy",
-        "full_name": "Akmal Mozgovoy",
-        "display_name": "Akmal Mozgovoy",
+        "id": "jamshid-iskanderov",
+        "full_name": "Jamshid Iskanderov",
+        "display_name": "Jamshid Iskanderov",
         "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Pakhtakor",
-          "country_iso": "uz",
-          "league": "Super League uzbeka"
-        },
-        "shirt_number_expected": 16,
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/54/CAFA_Nations_Cup_2025_Uzbekistan_Kyrgyz_Republic_%28cropped%29.jpg"
+        "photo_url": null
+      },
+      {
+        "id": "odiljon-xamrobekov",
+        "full_name": "Odiljon Xamrobekov",
+        "display_name": "Odiljon Xamrobekov",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "jaloliddin-masharipov",
+        "full_name": "Jaloliddin Masharipov",
+        "display_name": "Jaloliddin Masharipov",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Al-Nassr",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Jaloliddin_Masharipov_2020.jpg/330px-Jaloliddin_Masharipov_2020.jpg"
+      },
+      {
+        "id": "oston-urunov",
+        "full_name": "Oston Urunov",
+        "display_name": "Oston Urunov",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "dostonbek-khamdamov",
+        "full_name": "Dostonbek Khamdamov",
+        "display_name": "Dostonbek Khamdamov",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "azizjon-ganiev",
@@ -712,33 +781,15 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Abbosbek_Fayzullaev_at_Press_conference_of_the_national_football_teams_of_Iran_and_Uzbekistan_%28Mehr%2C_23_March_2025%29_%28cropped%29.jpg/330px-Abbosbek_Fayzullaev_at_Press_conference_of_the_national_football_teams_of_Iran_and_Uzbekistan_%28Mehr%2C_23_March_2025%29_%28cropped%29.jpg"
       },
       {
-        "id": "jaloliddin-masharipov",
-        "full_name": "Jaloliddin Masharipov",
-        "display_name": "Jaloliddin Masharipov",
+        "id": "sherzod-esanov",
+        "full_name": "Sherzod Esanov",
+        "display_name": "Sherzod Esanov",
         "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Al-Nassr",
-          "country_iso": "sa",
-          "league": "Saudi Pro League"
-        },
-        "shirt_number_expected": 10,
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Jaloliddin_Masharipov_2020.jpg/330px-Jaloliddin_Masharipov_2020.jpg"
-      },
-      {
-        "id": "ulugbek-khoshimov",
-        "full_name": "Ulugbek Khoshimov",
-        "display_name": "Ulugbek Khoshimov",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Bunyodkor",
-          "country_iso": "uz",
-          "league": "Super League uzbeka"
-        },
-        "shirt_number_expected": 8,
-        "status": "probable"
+        "photo_url": null
       },
       {
         "id": "eldor-shomurodov",
@@ -756,9 +807,9 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Eldor_Shomurodov_14_%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_FK_20250731_%2810%29_%28cropped%29.jpg/330px-Eldor_Shomurodov_14_%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_FK_20250731_%2810%29_%28cropped%29.jpg"
       },
       {
-        "id": "khojimat-erkinov",
-        "full_name": "Khojimat Erkinov",
-        "display_name": "Khojimat Erkinov",
+        "id": "azizbek-amonov",
+        "full_name": "Azizbek Amonov",
+        "display_name": "Azizbek Amonov",
         "position": "FWD",
         "detailed_position": "RW",
         "club": {
@@ -766,24 +817,9 @@
           "country_iso": "uz",
           "league": "Super League uzbeka"
         },
-        "shirt_number_expected": 7,
+        "shirt_number_expected": 20,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Khojimat_Erkinov_2022_%281%29.jpg/330px-Khojimat_Erkinov_2022_%281%29.jpg"
-      },
-      {
-        "id": "bobur-abdikholikov",
-        "full_name": "Bobur Abdikholikov",
-        "display_name": "Bobur Abdikholikov",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Andijan",
-          "country_iso": "uz",
-          "league": "Super League uzbeka"
-        },
-        "shirt_number_expected": 11,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Bobur_Abduholiqov_2021.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Esteghlal_Celebrate_IPL_Title_Win_at_Azadi_Stadium_-_145.jpg/330px-Esteghlal_Celebrate_IPL_Title_Win_at_Azadi_Stadium_-_145.jpg"
       },
       {
         "id": "igor-sergeev",
@@ -799,79 +835,6 @@
         "shirt_number_expected": 19,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Igor_Sergeev_Persepolis_v_Sepahan_23_January_2026.jpg/330px-Igor_Sergeev_Persepolis_v_Sepahan_23_January_2026.jpg"
-      },
-      {
-        "id": "azizbek-amonov",
-        "full_name": "Azizbek Amonov",
-        "display_name": "Azizbek Amonov",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Pakhtakor",
-          "country_iso": "uz",
-          "league": "Super League uzbeka"
-        },
-        "shirt_number_expected": 20,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Esteghlal_Celebrate_IPL_Title_Win_at_Azadi_Stadium_-_145.jpg/330px-Esteghlal_Celebrate_IPL_Title_Win_at_Azadi_Stadium_-_145.jpg"
-      },
-      {
-        "id": "khusayn-norchaev",
-        "full_name": "Khusayn Norchaev",
-        "display_name": "Khusayn Norchaev",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Pakhtakor",
-          "country_iso": "uz",
-          "league": "Super League uzbeka"
-        },
-        "shirt_number_expected": 21,
-        "status": "probable"
-      },
-      {
-        "id": "alibek-davronov",
-        "full_name": "Alibek Davronov",
-        "display_name": "Alibek Davronov",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Pakhtakor",
-          "country_iso": "uz",
-          "league": "Super League uzbeka"
-        },
-        "shirt_number_expected": 24,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Alibek_Davronov.jpg/330px-Alibek_Davronov.jpg"
-      },
-      {
-        "id": "shokhruz-norkhonov",
-        "full_name": "Shokhruz Norkhonov",
-        "display_name": "Shokhruz Norkhonov",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Bunyodkor",
-          "country_iso": "uz",
-          "league": "Super League uzbeka"
-        },
-        "shirt_number_expected": 25,
-        "status": "bubble"
-      },
-      {
-        "id": "diyor-kholmatov",
-        "full_name": "Diyor Kholmatov",
-        "display_name": "Diyor Kholmatov",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Pakhtakor",
-          "country_iso": "uz",
-          "league": "Super League uzbeka"
-        },
-        "shirt_number_expected": 26,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Diyor_Xolmatov.jpg/330px-Diyor_Xolmatov.jpg"
       }
     ],
     "starting_xi": {
@@ -991,8 +954,10 @@
       },
       "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ (perdió repechaje vs Jordania). Rusia 2018: NO CLASIFICÓ. Catar 2022: NO CLASIFICÓ. Mundial 2026: PRIMERA PARTICIPACIÓN HISTÓRICA. DEBUTANTE 81 de Mundiales."
     },
-    "squad_announced": false,
-    "squad_announced_status": "pending_official"
+    "squad_announced": true,
+    "squad_announced_status": "pending_official",
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 2026,
@@ -1012,7 +977,7 @@
       "lost": 0,
       "goals_for": 0,
       "goals_against": 0,
-      "win_percentage": 0.0,
+      "win_percentage": 0,
       "notes": "Sin participación previa. DEBUTANTE 2026."
     },
     "by_world_cup": [],

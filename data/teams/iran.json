@@ -88,7 +88,7 @@
         "goals_against": 5,
         "goal_difference": 12,
         "points": 23,
-        "win_percentage": 70.0,
+        "win_percentage": 70,
         "clean_sheets": 6,
         "notes": "Mejor resultado AFC junto a Japón. Solo 1 derrota (vs UAE como visitante) y 5 GC."
       },
@@ -561,53 +561,45 @@
           "league": "Persian Gulf Pro League"
         },
         "shirt_number_expected": 12,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Payam_Niazmand%2C_Esteghlal_vs._Sepahan.jpg/330px-Payam_Niazmand%2C_Esteghlal_vs._Sepahan.jpg"
       },
       {
-        "id": "amir-abedzadeh",
-        "full_name": "Amir Abedzadeh",
-        "display_name": "Amir Abedzadeh",
+        "id": "majid-hosseini",
+        "full_name": "Majid Hosseini",
+        "display_name": "Majid Hosseini",
         "position": "GK",
-        "detailed_position": "GK",
+        "detailed_position": "CB",
         "club": {
-          "name": "Mirandés",
-          "country_iso": "es",
-          "league": "La Liga 2"
-        },
-        "shirt_number_expected": 23,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Amir_Abedzadeh_in_Iran_national_football_team.jpg/330px-Amir_Abedzadeh_in_Iran_national_football_team.jpg"
-      },
-      {
-        "id": "ramin-rezaeian",
-        "full_name": "Ramin Rezaeian",
-        "display_name": "Ramin Rezaeian",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Sepahan",
+          "name": "Esteghlal",
           "country_iso": "ir",
           "league": "Persian Gulf Pro League"
         },
-        "shirt_number_expected": 2,
+        "shirt_number_expected": 5,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/IRN-JPN_20190128_Bolourian_3.jpg/330px-IRN-JPN_20190128_Bolourian_3.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Majid_Hosseini_2018.jpg/330px-Majid_Hosseini_2018.jpg"
       },
       {
-        "id": "sadegh-moharrami",
-        "full_name": "Sadegh Moharrami",
-        "display_name": "Sadegh Moharrami",
+        "id": "saleh-hardani",
+        "full_name": "Saleh Hardani",
+        "display_name": "Saleh Hardani",
         "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Persepolis",
-          "country_iso": "ir",
-          "league": "Persian Gulf Pro League"
-        },
-        "shirt_number_expected": 14,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Sadegh_Moharrami_ACL_2018.jpg/330px-Sadegh_Moharrami_ACL_2018.jpg"
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "ehsan-hajisafi",
+        "full_name": "Ehsan Hajisafi",
+        "display_name": "Ehsan Hajisafi",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "shojae-khalilzadeh",
@@ -625,51 +617,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Iran_football_award_winners_2019_006_%28cropped%29.jpg/330px-Iran_football_award_winners_2019_006_%28cropped%29.jpg"
       },
       {
-        "id": "majid-hosseini",
-        "full_name": "Majid Hosseini",
-        "display_name": "Majid Hosseini",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Esteghlal",
-          "country_iso": "ir",
-          "league": "Persian Gulf Pro League"
-        },
-        "shirt_number_expected": 5,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Majid_Hosseini_2018.jpg/330px-Majid_Hosseini_2018.jpg"
-      },
-      {
-        "id": "morteza-pouraliganji",
-        "full_name": "Morteza Pouraliganji",
-        "display_name": "Morteza Pouraliganji",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Persepolis",
-          "country_iso": "ir",
-          "league": "Persian Gulf Pro League"
-        },
-        "shirt_number_expected": 15,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Iran-Morocco_by_soccer.ru_8.jpg/330px-Iran-Morocco_by_soccer.ru_8.jpg"
-      },
-      {
-        "id": "aref-aghasi",
-        "full_name": "Aref Aghasi",
-        "display_name": "Aref Aghasi",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Sepahan",
-          "country_iso": "ir",
-          "league": "Persian Gulf Pro League"
-        },
-        "shirt_number_expected": 22,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Esteghlal_FC_in_training%2C_29_September_2021_-_08.jpg/330px-Esteghlal_FC_in_training%2C_29_September_2021_-_08.jpg"
-      },
-      {
         "id": "milad-mohammadi",
         "full_name": "Milad Mohammadi",
         "display_name": "Milad Mohammadi",
@@ -685,19 +632,63 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Milad_Mohammadi_2017.jpg/330px-Milad_Mohammadi_2017.jpg"
       },
       {
-        "id": "ehsan-hajsafi",
-        "full_name": "Ehsan Hajsafi",
-        "display_name": "Ehsan Hajsafi",
+        "id": "hossein-kanani",
+        "full_name": "Hossein Kanani",
+        "display_name": "Hossein Kanani",
         "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "AEK Atenas",
-          "country_iso": "gr",
-          "league": "Super League griega"
-        },
-        "shirt_number_expected": 13,
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/%D9%86%D8%B4%D8%B3%D8%AA_%D8%AE%D8%A8%D8%B1%DB%8C_%D9%BE%DB%8C%D8%B4_%D8%A7%D8%B2_%D8%A8%D8%A7%D8%B2%DB%8C_%D8%A7%DB%8C%D8%B1%D8%A7%D9%86_%D9%88_%D8%A7%D9%86%DA%AF%D9%84%DB%8C%D8%B3_%2826%29_%28cropped%29.jpg/330px-%D9%86%D8%B4%D8%B3%D8%AA_%D8%AE%D8%A8%D8%B1%DB%8C_%D9%BE%DB%8C%D8%B4_%D8%A7%D8%B2_%D8%A8%D8%A7%D8%B2%DB%8C_%D8%A7%DB%8C%D8%B1%D8%A7%D9%86_%D9%88_%D8%A7%D9%86%DA%AF%D9%84%DB%8C%D8%B3_%2826%29_%28cropped%29.jpg"
+        "photo_url": null
+      },
+      {
+        "id": "arya-yousefi",
+        "full_name": "Arya Yousefi",
+        "display_name": "Arya Yousefi",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "ali-nemati",
+        "full_name": "Ali Nemati",
+        "display_name": "Ali Nemati",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/db/Mes_Rafsanjan_F.C._vs_Persepolis_F.C.%2C_19_November_2021_2.jpg"
+      },
+      {
+        "id": "ramin-rezaeian",
+        "full_name": "Ramin Rezaeian",
+        "display_name": "Ramin Rezaeian",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Sepahan",
+          "country_iso": "ir",
+          "league": "Persian Gulf Pro League"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/IRN-JPN_20190128_Bolourian_3.jpg/330px-IRN-JPN_20190128_Bolourian_3.jpg"
+      },
+      {
+        "id": "danial-iri",
+        "full_name": "Danial Iri",
+        "display_name": "Danial Iri",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "saeid-ezatolahi",
@@ -715,21 +706,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Saeid_Ezatolahi_at_Iran_training_2018.jpg/330px-Saeid_Ezatolahi_at_Iran_training_2018.jpg"
       },
       {
-        "id": "ahmad-nourollahi",
-        "full_name": "Ahmad Nourollahi",
-        "display_name": "Ahmad Nourollahi",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Shabab Al-Ahli",
-          "country_iso": "ae",
-          "league": "UAE Pro League"
-        },
-        "shirt_number_expected": 16,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Tehran_derby_30_03_2019_4.jpg/330px-Tehran_derby_30_03_2019_4.jpg"
-      },
-      {
         "id": "alireza-jahanbakhsh",
         "full_name": "Alireza Jahanbakhsh",
         "display_name": "Alireza Jahanbakhsh",
@@ -743,6 +719,17 @@
         "shirt_number_expected": 7,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2826%29_%28cropped%29.jpg/330px-2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2826%29_%28cropped%29.jpg"
+      },
+      {
+        "id": "mohammad-mohebbi",
+        "full_name": "Mohammad Mohebbi",
+        "display_name": "Mohammad Mohebbi",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "saman-ghoddos",
@@ -760,34 +747,48 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Saman_Ghoddos_-_2018_FIFA_World_Cup.jpg"
       },
       {
-        "id": "omid-noorafkan",
-        "full_name": "Omid Noorafkan",
-        "display_name": "Omid Noorafkan",
+        "id": "roozbeh-cheshmi",
+        "full_name": "Roozbeh Cheshmi",
+        "display_name": "Roozbeh Cheshmi",
         "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Sepahan",
-          "country_iso": "ir",
-          "league": "Persian Gulf Pro League"
-        },
-        "shirt_number_expected": 17,
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Omid_Noorafkan_in_Esteghlal_training_2018-02-28_01.jpg"
+        "photo_url": null
       },
       {
-        "id": "saeid-sadeghi",
-        "full_name": "Saeid Sadeghi",
-        "display_name": "Saeid Sadeghi",
+        "id": "mehdi-torabi",
+        "full_name": "Mehdi Torabi",
+        "display_name": "Mehdi Torabi",
         "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Sepahan",
-          "country_iso": "ir",
-          "league": "Persian Gulf Pro League"
-        },
-        "shirt_number_expected": 18,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Persepolis_v_Havadar%2C_5_September_2022_12.jpg"
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/93/Mehdi_Torabi_2021.jpg"
+      },
+      {
+        "id": "mohammad-ghorbani",
+        "full_name": "Mohammad Ghorbani",
+        "display_name": "Mohammad Ghorbani",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Mohammad_Ghorbani_%28footballer%29_2024.jpg"
+      },
+      {
+        "id": "amirmohammad-razaghinia",
+        "full_name": "Amirmohammad Razaghinia",
+        "display_name": "Amirmohammad Razaghinia",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "mehdi-taremi",
@@ -805,36 +806,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Iran_-_Japan%2C_AFC_Asian_Cup_2019_42_%28cropped%29.jpg"
       },
       {
-        "id": "sardar-azmoun",
-        "full_name": "Sardar Azmoun",
-        "display_name": "Sardar Azmoun",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Shabab Al-Ahli",
-          "country_iso": "ae",
-          "league": "UAE Pro League"
-        },
-        "shirt_number_expected": 10,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Sardar_Azmoun_-_IRN_vs_USA_-_FIFA_WC_2022.jpg/330px-Sardar_Azmoun_-_IRN_vs_USA_-_FIFA_WC_2022.jpg"
-      },
-      {
-        "id": "mohammad-mohebi",
-        "full_name": "Mohammad Mohebi",
-        "display_name": "Mohammad Mohebi",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Rostov",
-          "country_iso": "ru",
-          "league": "Premier rusa"
-        },
-        "shirt_number_expected": 11,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Mohammad_Mohebi.jpg/330px-Mohammad_Mohebi.jpg"
-      },
-      {
         "id": "mehdi-ghayedi",
         "full_name": "Mehdi Ghayedi",
         "display_name": "Mehdi Ghayedi",
@@ -850,79 +821,48 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Esteghlal_FC_vs_Tractor_FC%2C_18_May_2023_-_04.jpg/330px-Esteghlal_FC_vs_Tractor_FC%2C_18_May_2023_-_04.jpg"
       },
       {
-        "id": "kaveh-rezaei",
-        "full_name": "Kaveh Rezaei",
-        "display_name": "Kaveh Rezaei",
+        "id": "ali-alipour",
+        "full_name": "Ali Alipour",
+        "display_name": "Ali Alipour",
         "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Esteghlal",
-          "country_iso": "ir",
-          "league": "Persian Gulf Pro League"
-        },
-        "shirt_number_expected": 20,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Kaveh_Rezaei_2.jpg/330px-Kaveh_Rezaei_2.jpg"
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/42/Ali_Alipour_at_IFF%27s_annual_awards_ceremony.jpg"
       },
       {
-        "id": "shahriar-moghanlou",
-        "full_name": "Shahriar Moghanlou",
-        "display_name": "Shahriar Moghanlou",
+        "id": "amirhossein-hosseinzadeh",
+        "full_name": "Amirhossein Hosseinzadeh",
+        "display_name": "Amirhossein Hosseinzadeh",
         "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Sepahan",
-          "country_iso": "ir",
-          "league": "Persian Gulf Pro League"
-        },
-        "shirt_number_expected": 21,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Shahriyar_Moghanlou_14000129000016637543017694769152.jpg/330px-Shahriyar_Moghanlou_14000129000016637543017694769152.jpg"
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/28/Esteghlal_FC_in_training%2C_29_September_2021_-_09.jpg"
       },
       {
-        "id": "yasin-salmani",
-        "full_name": "Yasin Salmani",
-        "display_name": "Yasin Salmani",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Tractor SC",
-          "country_iso": "ir",
-          "league": "Persian Gulf Pro League"
-        },
-        "shirt_number_expected": 24,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Yasin_Salmani_playing_for_Sepahan_in_2021_%28cropped%29.jpg/330px-Yasin_Salmani_playing_for_Sepahan_in_2021_%28cropped%29.jpg"
+        "id": "shahriyar-moghanloo",
+        "full_name": "Shahriyar Moghanloo",
+        "display_name": "Shahriyar Moghanloo",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
-        "id": "mohammad-karimi",
-        "full_name": "Mohammad Karimi",
-        "display_name": "Mohammad Karimi",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Sepahan",
-          "country_iso": "ir",
-          "league": "Persian Gulf Pro League"
-        },
-        "shirt_number_expected": 25,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Mohammad_Karimi.jpg"
-      },
-      {
-        "id": "abolfazl-jalali",
-        "full_name": "Abolfazl Jalali",
-        "display_name": "Abolfazl Jalali",
-        "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "Esteghlal",
-          "country_iso": "ir",
-          "league": "Persian Gulf Pro League"
-        },
-        "shirt_number_expected": 26,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Abolfazl_Jalali%2C_Esteghlal_FC_vs_Shahr_Khodro_FC%2C_9_May_2022.jpg/330px-Abolfazl_Jalali%2C_Esteghlal_FC_vs_Shahr_Khodro_FC%2C_9_May_2022.jpg"
+        "id": "dennis-dargahi",
+        "full_name": "Dennis Dargahi",
+        "display_name": "Dennis Dargahi",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       }
     ],
     "starting_xi": {
@@ -1041,8 +981,10 @@
       },
       "vs_last_3_wcs": "Brasil 2014: fase de grupos. Rusia 2018: fase de grupos. Catar 2022: fase de grupos (con triunfo ÉPICO 2-0 a Gales). Mundial 2026: 7ª participación, 4ª CONSECUTIVA (récord histórico iraní). 1978, 1998, 2006, 2014, 2018, 2022, 2026."
     },
-    "squad_announced": false,
-    "squad_announced_status": "pending_official"
+    "squad_announced": true,
+    "squad_announced_status": "pending_official",
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 1978,

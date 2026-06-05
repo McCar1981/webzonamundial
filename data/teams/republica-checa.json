@@ -88,7 +88,7 @@
         "goals_against": 16,
         "goal_difference": 6,
         "points": 17,
-        "win_percentage": 50.0,
+        "win_percentage": 50,
         "clean_sheets": 3,
         "notes": "Stats acumulados: Grupo L (8 partidos: 5G 1E 2P, 16 puntos) + Play-offs (2 partidos: 0G 2E 0P en reglamento, ganados ambos en penales)."
       },
@@ -592,6 +592,21 @@
     },
     "likely_squad": [
       {
+        "id": "matej-kovar",
+        "full_name": "Matěj Kovář",
+        "display_name": "Matěj Kovář",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Bayer Leverkusen",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 23,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Matj_kova-1772635856.JPG/330px-Matj_kova-1772635856.JPG"
+      },
+      {
         "id": "jindrich-stanek",
         "full_name": "Jindřich Staněk",
         "display_name": "Jindřich Staněk",
@@ -607,63 +622,26 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Jind%C5%99ich_Stan%C4%9Bk_brank%C3%A1%C5%99_FK_Viktorie_Plze%C5%88_%28r._2023%29_%28cropped%29.jpg/330px-Jind%C5%99ich_Stan%C4%9Bk_brank%C3%A1%C5%99_FK_Viktorie_Plze%C5%88_%28r._2023%29_%28cropped%29.jpg"
       },
       {
-        "id": "vitezslav-jaros",
-        "full_name": "Vítězslav Jaroš",
-        "display_name": "Vítězslav Jaroš",
+        "id": "lukas-hornicek",
+        "full_name": "Lukáš Horníček",
+        "display_name": "Lukáš Horníček",
         "position": "GK",
         "detailed_position": "GK",
-        "club": {
-          "name": "Liverpool",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 12,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/FC_RB_salzburg_gegen_SK_Sturm_Graz_%282024-02-09%29_34.jpg/330px-FC_RB_salzburg_gegen_SK_Sturm_Graz_%282024-02-09%29_34.jpg"
-      },
-      {
-        "id": "matej-kovar",
-        "full_name": "Matěj Kovář",
-        "display_name": "Matěj Kovář",
-        "position": "GK",
-        "detailed_position": "GK",
-        "club": {
-          "name": "Bayer Leverkusen",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 23,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Matj_kova-1772635856.JPG/330px-Matj_kova-1772635856.JPG"
-      },
-      {
-        "id": "vladimir-coufal",
-        "full_name": "Vladimír Coufal",
-        "display_name": "Vladimír Coufal",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "West Ham",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 2,
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Vladim%C3%ADr_Coufal_with_West_Ham_United.jpeg/330px-Vladim%C3%ADr_Coufal_with_West_Ham_United.jpeg"
+        "photo_url": null
       },
       {
-        "id": "tomas-vlcek",
-        "full_name": "Tomáš Vlček",
-        "display_name": "Tomáš Vlček",
+        "id": "david-zima",
+        "full_name": "David Zima",
+        "display_name": "David Zima",
         "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Slavia Praga",
-          "country_iso": "cz",
-          "league": "Fortuna Liga"
-        },
-        "shirt_number_expected": 14,
-        "status": "probable"
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "tomas-holes",
@@ -695,6 +673,32 @@
         "status": "fixed"
       },
       {
+        "id": "vladimir-coufal",
+        "full_name": "Vladimír Coufal",
+        "display_name": "Vladimír Coufal",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "West Ham",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Vladim%C3%ADr_Coufal_with_West_Ham_United.jpeg/330px-Vladim%C3%ADr_Coufal_with_West_Ham_United.jpeg"
+      },
+      {
+        "id": "stepan-chaloupek",
+        "full_name": "Štěpán Chaloupek",
+        "display_name": "Štěpán Chaloupek",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
         "id": "ladislav-krejci",
         "full_name": "Ladislav Krejčí",
         "display_name": "Ladislav Krejčí",
@@ -707,6 +711,31 @@
         },
         "shirt_number_expected": 5,
         "status": "fixed"
+      },
+      {
+        "id": "david-jurasek",
+        "full_name": "David Jurásek",
+        "display_name": "David Jurásek",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Hoffenheim",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed"
+      },
+      {
+        "id": "jaroslav-zeleny",
+        "full_name": "Jaroslav Zelený",
+        "display_name": "Jaroslav Zelený",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "david-doudera",
@@ -724,47 +753,15 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/David_Doud%C4%9Bra%2C_U21_CZE-GRE_2019-10-10.jpg/330px-David_Doud%C4%9Bra%2C_U21_CZE-GRE_2019-10-10.jpg"
       },
       {
-        "id": "david-jurasek",
-        "full_name": "David Jurásek",
-        "display_name": "David Jurásek",
-        "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "Hoffenheim",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 3,
-        "status": "fixed"
-      },
-      {
-        "id": "matej-jurasek",
-        "full_name": "Matěj Jurásek",
-        "display_name": "Matěj Jurásek",
+        "id": "vladimir-darida",
+        "full_name": "Vladimír Darida",
+        "display_name": "Vladimír Darida",
         "position": "MID",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Slavia Praga",
-          "country_iso": "cz",
-          "league": "Fortuna Liga"
-        },
-        "shirt_number_expected": 24,
-        "status": "probable"
-      },
-      {
-        "id": "tomas-soucek",
-        "full_name": "Tomáš Souček",
-        "display_name": "Tomáš Souček",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "West Ham",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 8,
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Tom%C3%A1%C5%A1_Sou%C4%8Dek_WHU.jpeg/330px-Tom%C3%A1%C5%A1_Sou%C4%8Dek_WHU.jpeg"
+        "photo_url": null
       },
       {
         "id": "lukas-cerv",
@@ -778,6 +775,20 @@
           "league": "Fortuna Liga"
         },
         "shirt_number_expected": 6,
+        "status": "fixed"
+      },
+      {
+        "id": "lukas-provod",
+        "full_name": "Lukáš Provod",
+        "display_name": "Lukáš Provod",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Slavia Praga",
+          "country_iso": "cz",
+          "league": "Fortuna Liga"
+        },
+        "shirt_number_expected": 18,
         "status": "fixed"
       },
       {
@@ -796,63 +807,41 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Michal_Sad%C3%ADlek%2C_U21_CZE-GRE_2019-10-10_%282%29.jpg/330px-Michal_Sad%C3%ADlek%2C_U21_CZE-GRE_2019-10-10_%282%29.jpg"
       },
       {
-        "id": "lukas-provod",
-        "full_name": "Lukáš Provod",
-        "display_name": "Lukáš Provod",
+        "id": "tomas-soucek",
+        "full_name": "Tomáš Souček",
+        "display_name": "Tomáš Souček",
         "position": "MID",
-        "detailed_position": "CAM",
+        "detailed_position": "CDM",
         "club": {
-          "name": "Slavia Praga",
-          "country_iso": "cz",
-          "league": "Fortuna Liga"
+          "name": "West Ham",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
         },
-        "shirt_number_expected": 18,
-        "status": "fixed"
-      },
-      {
-        "id": "ondrej-lingr",
-        "full_name": "Ondřej Lingr",
-        "display_name": "Ondřej Lingr",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Sturm Graz",
-          "country_iso": "at",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 19,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Ond%C5%99ej_Lingr%2C_U21_CZE-GRE_2019-10-10_%281%29_%28cropped%29.jpg/330px-Ond%C5%99ej_Lingr%2C_U21_CZE-GRE_2019-10-10_%281%29_%28cropped%29.jpg"
-      },
-      {
-        "id": "antonin-barak",
-        "full_name": "Antonín Barák",
-        "display_name": "Antonín Barák",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Kasimpasa",
-          "country_iso": "tr",
-          "league": "Süper Lig"
-        },
-        "shirt_number_expected": 17,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Anton%C3%ADn_Bar%C3%A1k_20180601_AUSCZE_3910_%28cropped%29.jpg/330px-Anton%C3%ADn_Bar%C3%A1k_20180601_AUSCZE_3910_%28cropped%29.jpg"
-      },
-      {
-        "id": "patrik-schick",
-        "full_name": "Patrik Schick",
-        "display_name": "Patrik Schick",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Bayer Leverkusen",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 9,
+        "shirt_number_expected": 8,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Patrik_Schick_20180601_AUSCZE_3910_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Tom%C3%A1%C5%A1_Sou%C4%8Dek_WHU.jpeg/330px-Tom%C3%A1%C5%A1_Sou%C4%8Dek_WHU.jpeg"
+      },
+      {
+        "id": "alexandr-sojka",
+        "full_name": "Alexandr Sojka",
+        "display_name": "Alexandr Sojka",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "hugo-sochurek",
+        "full_name": "Hugo Šochůrek",
+        "display_name": "Hugo Šochůrek",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "adam-hlozek",
@@ -870,19 +859,30 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Dimitris_Nikolaou_%26_Adam_Hlo%C5%BEek%2C_U21_CZE-GRE_2019-10-10_%28cropped%29.jpg/330px-Dimitris_Nikolaou_%26_Adam_Hlo%C5%BEek%2C_U21_CZE-GRE_2019-10-10_%28cropped%29.jpg"
       },
       {
-        "id": "vaclav-cerny",
-        "full_name": "Václav Černý",
-        "display_name": "Václav Černý",
+        "id": "patrik-schick",
+        "full_name": "Patrik Schick",
+        "display_name": "Patrik Schick",
         "position": "FWD",
-        "detailed_position": "RW",
+        "detailed_position": "ST",
         "club": {
-          "name": "Wolfsburgo",
+          "name": "Bayer Leverkusen",
           "country_iso": "de",
           "league": "Bundesliga"
         },
-        "shirt_number_expected": 11,
+        "shirt_number_expected": 9,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Vaclav_Cerny_2016.jpg/330px-Vaclav_Cerny_2016.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Patrik_Schick_20180601_AUSCZE_3910_%28cropped%29.jpg"
+      },
+      {
+        "id": "jan-kuchta",
+        "full_name": "Jan Kuchta",
+        "display_name": "Jan Kuchta",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "mojmir-chytil",
@@ -914,21 +914,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Pavel_%C5%A0ulc_%28cropped%29.jpg/330px-Pavel_%C5%A0ulc_%28cropped%29.jpg"
       },
       {
-        "id": "jakub-jankto",
-        "full_name": "Jakub Jankto",
-        "display_name": "Jakub Jankto",
-        "position": "MID",
-        "detailed_position": "LM",
-        "club": {
-          "name": "Cagliari",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 21,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Jankto_Udinese_%28cropped%29.JPG/330px-Jankto_Udinese_%28cropped%29.JPG"
-      },
-      {
         "id": "tomas-chory",
         "full_name": "Tomáš Chorý",
         "display_name": "Tomáš Chorý",
@@ -940,36 +925,19 @@
           "league": "Fortuna Liga"
         },
         "shirt_number_expected": 13,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Tom%C3%A1%C5%A1_Chor%C3%BD_%28cropped%29.jpg/330px-Tom%C3%A1%C5%A1_Chor%C3%BD_%28cropped%29.jpg"
       },
       {
-        "id": "vasil-kusej",
-        "full_name": "Vasil Kušej",
-        "display_name": "Vasil Kušej",
+        "id": "denis-visinsky",
+        "full_name": "Denis Višinský",
+        "display_name": "Denis Višinský",
         "position": "FWD",
-        "detailed_position": "LW",
-        "club": {
-          "name": "Mladá Boleslav",
-          "country_iso": "cz",
-          "league": "Fortuna Liga"
-        },
-        "shirt_number_expected": 25,
-        "status": "bubble"
-      },
-      {
-        "id": "petr-sevcik",
-        "full_name": "Petr Ševčík",
-        "display_name": "Petr Ševčík",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Slavia Praga",
-          "country_iso": "cz",
-          "league": "Fortuna Liga"
-        },
-        "shirt_number_expected": 26,
-        "status": "bubble"
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       }
     ],
     "starting_xi": {
@@ -1088,8 +1056,10 @@
       },
       "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: NO CLASIFICÓ. Catar 2022: NO CLASIFICÓ. Mundial 2026: 3ª participación como Chequia (1ª en 2006). Generación más prometedora desde Eurocopa 2004 (semis con Nedvěd-Rosický-Baroš)."
     },
-    "squad_announced": false,
-    "squad_announced_status": "pending_official"
+    "squad_announced": true,
+    "squad_announced_status": "pending_official",
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 2006,

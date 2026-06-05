@@ -465,6 +465,19 @@
     },
     "likely_squad": [
       {
+        "id": "jacob-widell-zetterstrom",
+        "full_name": "Jacob Widell Zetterström",
+        "display_name": "Jacob Widell Zetterström",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Derby"
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/ce/FC_RB_Salzburg_gegen_Derby_County_%282025-07-18_Testspiel%29_24_%28cropped%29.jpg"
+      },
+      {
         "id": "viktor-johansson",
         "full_name": "Viktor Johansson",
         "display_name": "Viktor Johansson",
@@ -495,30 +508,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Kristoffer_Nordfeldt_%28Sweden_starting_XI_vs_Moldova%2C_12_October_2023%29.jpg/330px-Kristoffer_Nordfeldt_%28Sweden_starting_XI_vs_Moldova%2C_12_October_2023%29.jpg"
       },
       {
-        "id": "jacob-widell-zetterstrom",
-        "full_name": "Jacob Widell Zetterström",
-        "display_name": "Jacob Widell Zetterström",
-        "position": "GK",
-        "detailed_position": "GK",
-        "club": {
-          "name": "Derby"
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/ce/FC_RB_Salzburg_gegen_Derby_County_%282025-07-18_Testspiel%29_24_%28cropped%29.jpg"
-      },
-      {
-        "id": "hjalmar-ekdal",
-        "full_name": "Hjalmar Ekdal",
-        "display_name": "Hjalmar Ekdal",
+        "id": "gustaf-lagerbielke",
+        "full_name": "Gustaf Lagerbielke",
+        "display_name": "Lagerbielke",
         "position": "DEF",
-        "detailed_position": "DEF",
+        "detailed_position": "CB",
         "club": {
-          "name": "Burnley"
+          "name": "SC Braga",
+          "country_iso": "nl",
+          "league": "Eredivisie"
         },
-        "shirt_number_expected": null,
+        "shirt_number_expected": 22,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Hjalmar_Ekdal_%28Sirius%2C_2020%2C_cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Gustaf_Lagerbielke_%28Sweden_vs_Moldova%2C_12_October_2023%29.jpg/330px-Gustaf_Lagerbielke_%28Sweden_vs_Moldova%2C_12_October_2023%29.jpg"
       },
       {
         "id": "victor-nilsson-lindelof",
@@ -550,86 +552,23 @@
         "status": "fixed"
       },
       {
-        "id": "emil-holm",
-        "full_name": "Emil Holm",
-        "display_name": "Emil Holm",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Juventus",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 2,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Emil_Holm_%28Sweden_vs_Moldova%2C_12_October_2023%29.jpg/330px-Emil_Holm_%28Sweden_vs_Moldova%2C_12_October_2023%29.jpg"
-      },
-      {
-        "id": "gustaf-lagerbielke",
-        "full_name": "Gustaf Lagerbielke",
-        "display_name": "Lagerbielke",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "SC Braga",
-          "country_iso": "nl",
-          "league": "Eredivisie"
-        },
-        "shirt_number_expected": 22,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Gustaf_Lagerbielke_%28Sweden_vs_Moldova%2C_12_October_2023%29.jpg/330px-Gustaf_Lagerbielke_%28Sweden_vs_Moldova%2C_12_October_2023%29.jpg"
-      },
-      {
-        "id": "viktor-lindelof",
-        "full_name": "Viktor Lindelöf",
-        "display_name": "Viktor Lindelöf",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Aston Villa",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 3,
-        "status": "fixed"
-      },
-      {
-        "id": "erick-smith",
-        "full_name": "Erick Smith",
-        "display_name": "Erick Smith",
+        "id": "gabriel-gudmundsson",
+        "full_name": "Gabriel Gudmundsson",
+        "display_name": "Gabriel Gudmundsson",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": {
-          "name": "St. Pauli"
-        },
+        "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
       },
       {
-        "id": "carl-starfelt",
-        "full_name": "Carl Starfelt",
-        "display_name": "Carl Starfelt",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Celta de Vigo",
-          "country_iso": "es",
-          "league": "La Liga"
-        },
-        "shirt_number_expected": 5,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/10/Carl_Starfelt.jpg"
-      },
-      {
-        "id": "elliot-stroud",
-        "full_name": "Elliot Stroud",
-        "display_name": "Elliot Stroud",
+        "id": "herman-johansson",
+        "full_name": "Herman Johansson",
+        "display_name": "Herman Johansson",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": {
-          "name": "Mjällby"
-        },
+        "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -650,19 +589,73 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/2015_RiP_In_Flames_-_Daniel_Svensson_by_2eight_-_DSC5848.jpg/330px-2015_RiP_In_Flames_-_Daniel_Svensson_by_2eight_-_DSC5848.jpg"
       },
       {
-        "id": "yasin-ayari",
-        "full_name": "Yasin Ayari",
-        "display_name": "Yasin Ayari",
-        "position": "MID",
-        "detailed_position": "CM",
+        "id": "hjalmar-ekdal",
+        "full_name": "Hjalmar Ekdal",
+        "display_name": "Hjalmar Ekdal",
+        "position": "DEF",
+        "detailed_position": "DEF",
         "club": {
-          "name": "Brighton",
+          "name": "Burnley"
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Hjalmar_Ekdal_%28Sirius%2C_2020%2C_cropped%29.jpg"
+      },
+      {
+        "id": "carl-starfelt",
+        "full_name": "Carl Starfelt",
+        "display_name": "Carl Starfelt",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Celta de Vigo",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/10/Carl_Starfelt.jpg"
+      },
+      {
+        "id": "erick-smith",
+        "full_name": "Erick Smith",
+        "display_name": "Erick Smith",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "St. Pauli"
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "alexander-bernhardsson",
+        "full_name": "Alexander Bernhardsson",
+        "display_name": "Bernhardsson",
+        "position": "DEF",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Kiel",
           "country_iso": "gb-eng",
           "league": "Premier League"
         },
-        "shirt_number_expected": 16,
+        "shirt_number_expected": 19,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Yasin_Ayari_%28Sweden_U21_vs_Moldova_U21%2C_13_October_2023%29.jpg/330px-Yasin_Ayari_%28Sweden_U21_vs_Moldova_U21%2C_13_October_2023%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/2025-02-19_Alexander_Bernhardsson_1.jpg/330px-2025-02-19_Alexander_Bernhardsson_1.jpg"
+      },
+      {
+        "id": "elliot-stroud",
+        "full_name": "Elliot Stroud",
+        "display_name": "Elliot Stroud",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Mjällby"
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "lucas-bergvall",
@@ -680,19 +673,32 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Lucas_Bergvall_%28Sweden_U21_vs_Moldova_U21%2C_13_October_2023%29.jpg/330px-Lucas_Bergvall_%28Sweden_U21_vs_Moldova_U21%2C_13_October_2023%29.jpg"
       },
       {
-        "id": "alexander-bernhardsson",
-        "full_name": "Alexander Bernhardsson",
-        "display_name": "Bernhardsson",
-        "position": "FWD",
-        "detailed_position": "LW",
+        "id": "benjamin-nygren",
+        "full_name": "Benjamin Nygren",
+        "display_name": "Benjamin Nygren",
+        "position": "MID",
+        "detailed_position": "ST",
         "club": {
-          "name": "Kiel",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
+          "name": "Celtic",
+          "country_iso": "be",
+          "league": "Pro League"
         },
-        "shirt_number_expected": 19,
+        "shirt_number_expected": 21,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/2025-02-19_Alexander_Bernhardsson_1.jpg/330px-2025-02-19_Alexander_Bernhardsson_1.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Benjamin_Nygren_%28cropped%29.jpg/330px-Benjamin_Nygren_%28cropped%29.jpg"
+      },
+      {
+        "id": "ken-sema",
+        "full_name": "Ken Sema",
+        "display_name": "Ken Sema",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": {
+          "name": "Pafos"
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_52_%28Ken_Sema%29.jpg"
       },
       {
         "id": "jesper-karlstrom",
@@ -710,17 +716,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Jesper_Karlstr%C3%B6m_%28Djurg%C3%A5rden%2C_2020%2C_cropped%29.jpg/330px-Jesper_Karlstr%C3%B6m_%28Djurg%C3%A5rden%2C_2020%2C_cropped%29.jpg"
       },
       {
-        "id": "ken-sema",
-        "full_name": "Ken Sema",
-        "display_name": "Ken Sema",
+        "id": "yasin-ayari",
+        "full_name": "Yasin Ayari",
+        "display_name": "Yasin Ayari",
         "position": "MID",
-        "detailed_position": "MID",
+        "detailed_position": "CM",
         "club": {
-          "name": "Pafos"
+          "name": "Brighton",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
         },
-        "shirt_number_expected": null,
+        "shirt_number_expected": 16,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_52_%28Ken_Sema%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Yasin_Ayari_%28Sweden_U21_vs_Moldova_U21%2C_13_October_2023%29.jpg/330px-Yasin_Ayari_%28Sweden_U21_vs_Moldova_U21%2C_13_October_2023%29.jpg"
       },
       {
         "id": "mattias-svanberg",
@@ -751,17 +759,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Besfort_Zeneli_Union_Saint-Gilloise_2026.jpg"
       },
       {
-        "id": "taha-ali",
-        "full_name": "Taha Ali",
-        "display_name": "Taha Ali",
-        "position": "MID",
-        "detailed_position": "MID",
+        "id": "alexander-isak",
+        "full_name": "Alexander Isak",
+        "display_name": "Alexander Isak",
+        "position": "FWD",
+        "detailed_position": "ST",
         "club": {
-          "name": "Malmö"
+          "name": "Liverpool",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
         },
-        "shirt_number_expected": null,
+        "shirt_number_expected": 11,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Alexander_Isak_56_%28cropped%29.jpg/330px-UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Alexander_Isak_56_%28cropped%29.jpg"
       },
       {
         "id": "anthony-elanga",
@@ -794,25 +804,10 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Viktor_Gy%C3%B6keres_2018.jpg/330px-Viktor_Gy%C3%B6keres_2018.jpg"
       },
       {
-        "id": "alexander-isak",
-        "full_name": "Alexander Isak",
-        "display_name": "Alexander Isak",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Liverpool",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 11,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Alexander_Isak_56_%28cropped%29.jpg/330px-UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Alexander_Isak_56_%28cropped%29.jpg"
-      },
-      {
         "id": "gustaf-nilsson",
         "full_name": "Gustaf Nilsson",
         "display_name": "Gustaf Nilsson",
-        "position": "MID",
+        "position": "FWD",
         "detailed_position": "MID",
         "club": {
           "name": "Brujas"
@@ -822,19 +817,17 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Gustaf_Nilsson_USG_2023.jpg"
       },
       {
-        "id": "benjamin-nygren",
-        "full_name": "Benjamin Nygren",
-        "display_name": "Benjamin Nygren",
+        "id": "taha-ali",
+        "full_name": "Taha Ali",
+        "display_name": "Taha Ali",
         "position": "FWD",
-        "detailed_position": "ST",
+        "detailed_position": "MID",
         "club": {
-          "name": "Celtic",
-          "country_iso": "be",
-          "league": "Pro League"
+          "name": "Malmö"
         },
-        "shirt_number_expected": 21,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Benjamin_Nygren_%28cropped%29.jpg/330px-Benjamin_Nygren_%28cropped%29.jpg"
+        "photo_url": null
       }
     ],
     "starting_xi": {
@@ -954,8 +947,8 @@
       "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: cuartos de final, eliminada por Inglaterra 0-2. Catar 2022: NO CLASIFICÓ. Mundial 2026: regreso vía play-off tras 8 años. La generación Isak-Gyökeres es la más prometedora desde la Suecia subcampeona 1958."
     },
     "squad_announced": true,
-    "squad_announced_date": "2026-05-26",
-    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 1934,

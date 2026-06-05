@@ -450,7 +450,8 @@
           "league": "Premier League"
         },
         "shirt_number_expected": 1,
-        "status": "fixed"
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/09/CINvRIC_2017-07-09_-_Matt_Turner_%2840983917805%29_%28cropped%29.jpg"
       },
       {
         "id": "matt-freese",
@@ -468,19 +469,15 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Matt_Freese_NYCFC_vs_DC_United_on_Aug_30_2025-019_%28cropped%29.jpg/330px-Matt_Freese_NYCFC_vs_DC_United_on_Aug_30_2025-019_%28cropped%29.jpg"
       },
       {
-        "id": "patrick-schulte",
-        "full_name": "Patrick Schulte",
-        "display_name": "Patrick Schulte",
+        "id": "chris-brady",
+        "full_name": "Chris Brady",
+        "display_name": "Chris Brady",
         "position": "GK",
         "detailed_position": "GK",
-        "club": {
-          "name": "Columbus Crew",
-          "country_iso": "us",
-          "league": "MLS"
-        },
-        "shirt_number_expected": 23,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/P_Schulte.jpg/330px-P_Schulte.jpg"
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Chris_Brady_Philadelphia_Chicago_10.26.25-026_%28cropped%29.jpg"
       },
       {
         "id": "sergino-dest",
@@ -498,21 +495,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Sergino_Dest.jpg/330px-Sergino_Dest.jpg"
       },
       {
-        "id": "joe-scally",
-        "full_name": "Joe Scally",
-        "display_name": "Joe Scally",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Borussia Mönchengladbach",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 14,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Joe_Scally_USMNT_v_Belgium_Mar_28_2026-51_%28cropped%29.jpg/330px-Joe_Scally_USMNT_v_Belgium_Mar_28_2026-51_%28cropped%29.jpg"
-      },
-      {
         "id": "chris-richards",
         "full_name": "Chris Richards",
         "display_name": "Chris Richards",
@@ -526,51 +508,6 @@
         "shirt_number_expected": 4,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Chris_Richards%2C_2025_CONCACAF_Gold_Cup%2C_02_%28cropped%29.jpg/330px-Chris_Richards%2C_2025_CONCACAF_Gold_Cup%2C_02_%28cropped%29.jpg"
-      },
-      {
-        "id": "tim-ream",
-        "full_name": "Tim Ream",
-        "display_name": "Tim Ream",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Charlotte FC",
-          "country_iso": "us",
-          "league": "MLS"
-        },
-        "shirt_number_expected": 5,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Tim_Ream_NYCFC_v_Charlotte_20_Sep_2025-021_%28cropped%29.jpg/330px-Tim_Ream_NYCFC_v_Charlotte_20_Sep_2025-021_%28cropped%29.jpg"
-      },
-      {
-        "id": "miles-robinson",
-        "full_name": "Miles Robinson",
-        "display_name": "Miles Robinson",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "FC Cincinnati",
-          "country_iso": "us",
-          "league": "MLS"
-        },
-        "shirt_number_expected": 15,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Miles_Robinson%2C_2025_CONCACAF_Gold_Cup.jpg/330px-Miles_Robinson%2C_2025_CONCACAF_Gold_Cup.jpg"
-      },
-      {
-        "id": "mark-mckenzie",
-        "full_name": "Mark McKenzie",
-        "display_name": "Mark McKenzie",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Toulouse",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 22,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/McKenzie_asse_tfc_2425.png/330px-McKenzie_asse_tfc_2425.png"
       },
       {
         "id": "antonee-robinson",
@@ -588,6 +525,58 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/05/Antonee_Robinson_WC2022_%28cropped%29.jpg"
       },
       {
+        "id": "auston-trusty",
+        "full_name": "Auston Trusty",
+        "display_name": "Auston Trusty",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Auston_Trusty_USMNT_v_Belgium_Mar_28_2026-43_%28cropped%29.jpg"
+      },
+      {
+        "id": "miles-robinson",
+        "full_name": "Miles Robinson",
+        "display_name": "Miles Robinson",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "FC Cincinnati",
+          "country_iso": "us",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 15,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Miles_Robinson%2C_2025_CONCACAF_Gold_Cup.jpg/330px-Miles_Robinson%2C_2025_CONCACAF_Gold_Cup.jpg"
+      },
+      {
+        "id": "tim-ream",
+        "full_name": "Tim Ream",
+        "display_name": "Tim Ream",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Charlotte FC",
+          "country_iso": "us",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Tim_Ream_NYCFC_v_Charlotte_20_Sep_2025-021_%28cropped%29.jpg/330px-Tim_Ream_NYCFC_v_Charlotte_20_Sep_2025-021_%28cropped%29.jpg"
+      },
+      {
+        "id": "alex-freeman",
+        "full_name": "Alex Freeman",
+        "display_name": "Alex Freeman",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Alex_Freeman_USMNT_v_Belgium_Mar_28_2026-59_%28cropped%29.jpg"
+      },
+      {
         "id": "max-arfsten",
         "full_name": "Max Arfsten",
         "display_name": "Max Arfsten",
@@ -601,6 +590,36 @@
         "shirt_number_expected": 13,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Maximilian_Arfsten%2C_2025_CONCACAF_Gold_Cup%2C_03_%28cropped%29.jpg/330px-Maximilian_Arfsten%2C_2025_CONCACAF_Gold_Cup%2C_03_%28cropped%29.jpg"
+      },
+      {
+        "id": "mark-mckenzie",
+        "full_name": "Mark McKenzie",
+        "display_name": "Mark McKenzie",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Toulouse",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 22,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/McKenzie_asse_tfc_2425.png/330px-McKenzie_asse_tfc_2425.png"
+      },
+      {
+        "id": "joe-scally",
+        "full_name": "Joe Scally",
+        "display_name": "Joe Scally",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Borussia Mönchengladbach",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Joe_Scally_USMNT_v_Belgium_Mar_28_2026-51_%28cropped%29.jpg/330px-Joe_Scally_USMNT_v_Belgium_Mar_28_2026-51_%28cropped%29.jpg"
       },
       {
         "id": "tyler-adams",
@@ -618,6 +637,17 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/2021-11-06_Fu%C3%9Fball%2C_M%C3%A4nner%2C_1._Bundesliga%2C_RB_Leipzig_-_Borussia_Dortmund_1DX_1527_by_Stepro_%28cropped%29.jpg/330px-2021-11-06_Fu%C3%9Fball%2C_M%C3%A4nner%2C_1._Bundesliga%2C_RB_Leipzig_-_Borussia_Dortmund_1DX_1527_by_Stepro_%28cropped%29.jpg"
       },
       {
+        "id": "giovanni-reyna",
+        "full_name": "Giovanni Reyna",
+        "display_name": "Giovanni Reyna",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/25/Gio_Reyna_USMNT_v_Belgium_Mar_28_2026-60_%28cropped%29.jpg"
+      },
+      {
         "id": "weston-mckennie",
         "full_name": "Weston McKennie",
         "display_name": "Weston McKennie",
@@ -633,64 +663,26 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/USAvVEN_2019-06-09_-_Weston_McKennie_%2851170534993%29_%28close-up%29.jpg/330px-USAvVEN_2019-06-09_-_Weston_McKennie_%2851170534993%29_%28close-up%29.jpg"
       },
       {
-        "id": "yunus-musah",
-        "full_name": "Yunus Musah",
-        "display_name": "Yunus Musah",
+        "id": "sebastian-berhalter",
+        "full_name": "Sebastian Berhalter",
+        "display_name": "Sebastian Berhalter",
         "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "AC Milan",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 17,
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/dc/2022_FIFA_World_Cup_United_States_1%E2%80%931_Wales_-_%2813%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Sebastian_Berhalter_USMNT_v_Belgium_Mar_28_2026-56.jpg"
       },
       {
-        "id": "luca-de-la-torre",
-        "full_name": "Luca de la Torre",
-        "display_name": "Luca de la Torre",
+        "id": "cristian-roldan",
+        "full_name": "Cristian Roldán",
+        "display_name": "Cristian Roldán",
         "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "San Diego FC",
-          "country_iso": "us",
-          "league": "MLS"
-        },
-        "shirt_number_expected": 16,
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Luca_de_la_Torre%2C_2025_CONCACAF_Gold_Cup%2C_01_%28cropped%29.jpg/330px-Luca_de_la_Torre%2C_2025_CONCACAF_Gold_Cup%2C_01_%28cropped%29.jpg"
-      },
-      {
-        "id": "tanner-tessmann",
-        "full_name": "Tanner Tessmann",
-        "display_name": "Tanner Tessmann",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Lyon",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 18,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Tessmann_asse_ol_2425.png/330px-Tessmann_asse_ol_2425.png"
-      },
-      {
-        "id": "diego-luna",
-        "full_name": "Diego Luna",
-        "display_name": "Diego Luna",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Real Salt Lake",
-          "country_iso": "us",
-          "league": "MLS"
-        },
-        "shirt_number_expected": 19,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Diego_Luna_Berlinale_2017.jpg/330px-Diego_Luna_Berlinale_2017.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Cristian_Roldan_USMNT_v_Belgium_Mar_28_2026-50_%28cropped%29.jpg"
       },
       {
         "id": "malik-tillman",
@@ -708,36 +700,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Malik_Tillman_2025_CONCACAF_Gold_Cup_final_%28cropped%29.jpg/330px-Malik_Tillman_2025_CONCACAF_Gold_Cup_final_%28cropped%29.jpg"
       },
       {
-        "id": "christian-pulisic",
-        "full_name": "Christian Pulisic",
-        "display_name": "Christian Pulisic",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "AC Milan",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 10,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/USMNT_vs._Trinidad_and_Tobago_%2848125059622%29_%28cropped%29.jpg/330px-USMNT_vs._Trinidad_and_Tobago_%2848125059622%29_%28cropped%29.jpg"
-      },
-      {
-        "id": "timothy-weah",
-        "full_name": "Timothy Weah",
-        "display_name": "Tim Weah",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Marsella",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 21,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/9e/2022_FIFA_World_Cup_United_States_1%E2%80%931_Wales_-_%2817%29_%28cropped%29.jpg"
-      },
-      {
         "id": "ricardo-pepi",
         "full_name": "Ricardo Pepi",
         "display_name": "Ricardo Pepi",
@@ -753,33 +715,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/GAE_-_FC_Groningen_-_52877441697_%28Ricardo_Pepi%29.jpg/330px-GAE_-_FC_Groningen_-_52877441697_%28Ricardo_Pepi%29.jpg"
       },
       {
-        "id": "folarin-balogun",
-        "full_name": "Folarin Balogun",
-        "display_name": "Folarin Balogun",
+        "id": "christian-pulisic",
+        "full_name": "Christian Pulisic",
+        "display_name": "Christian Pulisic",
         "position": "FWD",
-        "detailed_position": "ST",
+        "detailed_position": "RW",
         "club": {
-          "name": "Mónaco",
-          "country_iso": "fr",
-          "league": "Ligue 1"
+          "name": "AC Milan",
+          "country_iso": "it",
+          "league": "Serie A"
         },
-        "shirt_number_expected": 20,
+        "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Balogun_asse_asm_2425.png/330px-Balogun_asse_asm_2425.png"
-      },
-      {
-        "id": "patrick-agyemang",
-        "full_name": "Patrick Agyemang",
-        "display_name": "Patrick Agyemang",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Charlotte FC",
-          "country_iso": "us",
-          "league": "MLS"
-        },
-        "shirt_number_expected": 11,
-        "status": "fixed"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/USMNT_vs._Trinidad_and_Tobago_%2848125059622%29_%28cropped%29.jpg/330px-USMNT_vs._Trinidad_and_Tobago_%2848125059622%29_%28cropped%29.jpg"
       },
       {
         "id": "brenden-aaronson",
@@ -797,21 +745,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/FC_RB_Salzburg_gegen_WSG_Tirol_%28_mit_Meisterteller%C3%BCbergabe_22._Mai_2021%29_15.jpg/330px-FC_RB_Salzburg_gegen_WSG_Tirol_%28_mit_Meisterteller%C3%BCbergabe_22._Mai_2021%29_15.jpg"
       },
       {
-        "id": "damion-downs",
-        "full_name": "Damion Downs",
-        "display_name": "Damion Downs",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "1. FC Köln",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 25,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Damion_Downs%2C_2025_CONCACAF_Gold_Cup%2C_02_%28cropped%29.jpg/330px-Damion_Downs%2C_2025_CONCACAF_Gold_Cup%2C_02_%28cropped%29.jpg"
-      },
-      {
         "id": "haji-wright",
         "full_name": "Haji Wright",
         "display_name": "Haji Wright",
@@ -823,8 +756,49 @@
           "league": "Championship"
         },
         "shirt_number_expected": 26,
-        "status": "bubble",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Haji_Wright_at_Antalyaspor_vs_Trabzonspor_20211211_%282%29_%28cropped%29_%28cropped%29.jpg/330px-Haji_Wright_at_Antalyaspor_vs_Trabzonspor_20211211_%282%29_%28cropped%29_%28cropped%29.jpg"
+      },
+      {
+        "id": "folarin-balogun",
+        "full_name": "Folarin Balogun",
+        "display_name": "Folarin Balogun",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Mónaco",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 20,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Balogun_asse_asm_2425.png/330px-Balogun_asse_asm_2425.png"
+      },
+      {
+        "id": "timothy-weah",
+        "full_name": "Timothy Weah",
+        "display_name": "Tim Weah",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Marsella",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 21,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/9e/2022_FIFA_World_Cup_United_States_1%E2%80%931_Wales_-_%2817%29_%28cropped%29.jpg"
+      },
+      {
+        "id": "alex-zendejas",
+        "full_name": "Alex Zendejas",
+        "display_name": "Alex Zendejas",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       }
     ],
     "starting_xi": {
@@ -945,8 +919,10 @@
       },
       "vs_last_3_wcs": "Brasil 2014: octavos (1-2 Bélgica). Rusia 2018: NO CLASIFICÓ (debacle histórica vs Trinidad y Tobago). Catar 2022: octavos (1-3 Holanda). Mundial 2026: 12ª participación, 6ª consecutiva (interrumpida solo en 2018)."
     },
-    "squad_announced": false,
-    "squad_announced_status": "pending_official"
+    "squad_announced": true,
+    "squad_announced_status": "pending_official",
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 1930,

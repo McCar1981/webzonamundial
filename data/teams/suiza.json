@@ -439,21 +439,6 @@
     },
     "likely_squad": [
       {
-        "id": "marvin-keller",
-        "full_name": "Marvin Keller",
-        "display_name": "Marvin Keller",
-        "position": "GK",
-        "detailed_position": "GK",
-        "club": {
-          "name": "Young Boys",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": null
-      },
-      {
         "id": "gregor-kobel",
         "full_name": "Gregor Kobel",
         "display_name": "Gregor Kobel",
@@ -484,73 +469,13 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/95/20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8056.jpg"
       },
       {
-        "id": "manuel-akanji",
-        "full_name": "Manuel Akanji",
-        "display_name": "Manuel Akanji",
-        "position": "DEF",
-        "detailed_position": "CB",
+        "id": "marvin-keller",
+        "full_name": "Marvin Keller",
+        "display_name": "Marvin Keller",
+        "position": "GK",
+        "detailed_position": "GK",
         "club": {
-          "name": "Inter",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 5,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Ser-Swi_%2834%29_%28cropped%29.jpg"
-      },
-      {
-        "id": "aurele-amenda",
-        "full_name": "Aurèle Amenda",
-        "display_name": "Aurèle Amenda",
-        "position": "DEF",
-        "detailed_position": "DEF",
-        "club": {
-          "name": "Eintracht Frankfurt",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": null
-      },
-      {
-        "id": "eray-comert",
-        "full_name": "Eray Cömert",
-        "display_name": "Eray Cömert",
-        "position": "DEF",
-        "detailed_position": "DEF",
-        "club": {
-          "name": "Valencia",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/85/Eray_C%C3%B6mert_2019.jpg"
-      },
-      {
-        "id": "nico-elvedi",
-        "full_name": "Nico Elvedi",
-        "display_name": "Nico Elvedi",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Borussia Mönchengladbach",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 4,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Wales-Switzerland_match_at_Euro_2020_in_Baku_%28cropped%29.jpg"
-      },
-      {
-        "id": "luca-jaquez",
-        "full_name": "Luca Jaquez",
-        "display_name": "Luca Jaquez",
-        "position": "DEF",
-        "detailed_position": "DEF",
-        "club": {
-          "name": "Stuttgart",
+          "name": "Young Boys",
           "country_iso": null,
           "league": null
         },
@@ -574,21 +499,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/2025-05-16_Hamburger_SV_Miro_Muheim.jpg/330px-2025-05-16_Hamburger_SV_Miro_Muheim.jpg"
       },
       {
-        "id": "ricardo-rodriguez",
-        "full_name": "Ricardo Rodríguez",
-        "display_name": "Ricardo Rodríguez",
-        "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "Betis",
-          "country_iso": "es",
-          "league": "La Liga"
-        },
-        "shirt_number_expected": 13,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Ricardo_Rodr%C3%ADguez_2018.jpg"
-      },
-      {
         "id": "silvan-widmer",
         "full_name": "Silvan Widmer",
         "display_name": "Silvan Widmer",
@@ -604,19 +514,94 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/AUT_vs._SUI_2015-11-17_%28173%29_Silvan_Widmer.jpg/330px-AUT_vs._SUI_2015-11-17_%28173%29_Silvan_Widmer.jpg"
       },
       {
-        "id": "granit-xhaka",
-        "full_name": "Granit Xhaka",
-        "display_name": "Granit Xhaka",
-        "position": "MID",
-        "detailed_position": "CDM",
+        "id": "nico-elvedi",
+        "full_name": "Nico Elvedi",
+        "display_name": "Nico Elvedi",
+        "position": "DEF",
+        "detailed_position": "CB",
         "club": {
-          "name": "Sunderland",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
+          "name": "Borussia Mönchengladbach",
+          "country_iso": "de",
+          "league": "Bundesliga"
         },
-        "shirt_number_expected": 10,
+        "shirt_number_expected": 4,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Granit_Xhaka_%28cropped%29.jpg/330px-Granit_Xhaka_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Wales-Switzerland_match_at_Euro_2020_in_Baku_%28cropped%29.jpg"
+      },
+      {
+        "id": "manuel-akanji",
+        "full_name": "Manuel Akanji",
+        "display_name": "Manuel Akanji",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Inter",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Ser-Swi_%2834%29_%28cropped%29.jpg"
+      },
+      {
+        "id": "ricardo-rodriguez",
+        "full_name": "Ricardo Rodríguez",
+        "display_name": "Ricardo Rodríguez",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Betis",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 13,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Ricardo_Rodr%C3%ADguez_2018.jpg"
+      },
+      {
+        "id": "eray-comert",
+        "full_name": "Eray Cömert",
+        "display_name": "Eray Cömert",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Valencia",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/85/Eray_C%C3%B6mert_2019.jpg"
+      },
+      {
+        "id": "aurele-amenda",
+        "full_name": "Aurèle Amenda",
+        "display_name": "Aurèle Amenda",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Eintracht Frankfurt",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "luca-jaquez",
+        "full_name": "Luca Jaquez",
+        "display_name": "Luca Jaquez",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Stuttgart",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "denis-zakaria",
@@ -634,35 +619,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Zakaria_asse_asm_2425.png/330px-Zakaria_asse_asm_2425.png"
       },
       {
-        "id": "michel-aebischer",
-        "full_name": "Michel Aebischer",
-        "display_name": "Michel Aebischer",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Pisa",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 17,
-        "status": "fixed"
-      },
-      {
-        "id": "christian-fassnacht",
-        "full_name": "Christian Fassnacht",
-        "display_name": "Christian Fassnacht",
-        "position": "MID",
-        "detailed_position": "MID",
-        "club": {
-          "name": "Young Boys",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/77/Christian_Fassnacht_%28cropped%29.jpg"
-      },
-      {
         "id": "remo-freuler",
         "full_name": "Remo Freuler",
         "display_name": "Remo Freuler",
@@ -676,21 +632,6 @@
         "shirt_number_expected": 15,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c6/RemoFreuler.jpg"
-      },
-      {
-        "id": "ardon-jashari",
-        "full_name": "Ardon Jashari",
-        "display_name": "Ardon Jashari",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Milan",
-          "country_iso": "be",
-          "league": "Pro League"
-        },
-        "shirt_number_expected": 8,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Ali_Maamar_RSCA_2025.jpg/330px-Ali_Maamar_RSCA_2025.jpg"
       },
       {
         "id": "johan-manzambi",
@@ -708,18 +649,34 @@
         "photo_url": null
       },
       {
-        "id": "fabian-rieder",
-        "full_name": "Fabian Rieder",
-        "display_name": "Fabian Rieder",
+        "id": "granit-xhaka",
+        "full_name": "Granit Xhaka",
+        "display_name": "Granit Xhaka",
         "position": "MID",
-        "detailed_position": "CAM",
+        "detailed_position": "CDM",
         "club": {
-          "name": "Augsburgo",
-          "country_iso": "de",
-          "league": "Bundesliga"
+          "name": "Sunderland",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
         },
-        "shirt_number_expected": 19,
-        "status": "fixed"
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Granit_Xhaka_%28cropped%29.jpg/330px-Granit_Xhaka_%28cropped%29.jpg"
+      },
+      {
+        "id": "ardon-jashari",
+        "full_name": "Ardon Jashari",
+        "display_name": "Ardon Jashari",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Milan",
+          "country_iso": "be",
+          "league": "Pro League"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Ali_Maamar_RSCA_2025.jpg/330px-Ali_Maamar_RSCA_2025.jpg"
       },
       {
         "id": "djibril-sow",
@@ -737,17 +694,31 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/2c/DjibrilSow.jpg"
       },
       {
-        "id": "zeki-amdouni",
-        "full_name": "Zeki Amdouni",
-        "display_name": "Zeki Amdouni",
-        "position": "FWD",
-        "detailed_position": "ST",
+        "id": "michel-aebischer",
+        "full_name": "Michel Aebischer",
+        "display_name": "Michel Aebischer",
+        "position": "MID",
+        "detailed_position": "CM",
         "club": {
-          "name": "Burnley",
-          "country_iso": "pt",
-          "league": "Primeira Liga"
+          "name": "Pisa",
+          "country_iso": "it",
+          "league": "Serie A"
         },
-        "shirt_number_expected": 23,
+        "shirt_number_expected": 17,
+        "status": "fixed"
+      },
+      {
+        "id": "fabian-rieder",
+        "full_name": "Fabian Rieder",
+        "display_name": "Fabian Rieder",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Augsburgo",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 19,
         "status": "fixed"
       },
       {
@@ -766,21 +737,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/2018-08-17_1._FC_Schweinfurt_05_vs._FC_Schalke_04_%28DFB-Pokal%29_by_Sandro_Halank%E2%80%93066_%28cropped%29.jpg/330px-2018-08-17_1._FC_Schweinfurt_05_vs._FC_Schalke_04_%28DFB-Pokal%29_by_Sandro_Halank%E2%80%93066_%28cropped%29.jpg"
       },
       {
-        "id": "cedric-itten",
-        "full_name": "Cedric Itten",
-        "display_name": "Cedric Itten",
-        "position": "FWD",
-        "detailed_position": "FWD",
-        "club": {
-          "name": "Fortuna Düsseldorf",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": null
-      },
-      {
         "id": "dan-ndoye",
         "full_name": "Dan Ndoye",
         "display_name": "Dan Ndoye",
@@ -794,6 +750,35 @@
         "shirt_number_expected": 9,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Lens_-_Nice_%2823-01-2021%29_52.jpg/330px-Lens_-_Nice_%2823-01-2021%29_52.jpg"
+      },
+      {
+        "id": "christian-fassnacht",
+        "full_name": "Christian Fassnacht",
+        "display_name": "Christian Fassnacht",
+        "position": "FWD",
+        "detailed_position": "MID",
+        "club": {
+          "name": "Young Boys",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/77/Christian_Fassnacht_%28cropped%29.jpg"
+      },
+      {
+        "id": "ruben-vargas",
+        "full_name": "Ruben Vargas",
+        "display_name": "Ruben Vargas",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Sevilla",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed"
       },
       {
         "id": "noah-okafor",
@@ -811,18 +796,33 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/FC_RB_Salzburg_gegen_FK_Austria_Wien_%282022-04-24%29_68.jpg/330px-FC_RB_Salzburg_gegen_FK_Austria_Wien_%282022-04-24%29_68.jpg"
       },
       {
-        "id": "ruben-vargas",
-        "full_name": "Ruben Vargas",
-        "display_name": "Ruben Vargas",
+        "id": "zeki-amdouni",
+        "full_name": "Zeki Amdouni",
+        "display_name": "Zeki Amdouni",
         "position": "FWD",
-        "detailed_position": "LW",
+        "detailed_position": "ST",
         "club": {
-          "name": "Sevilla",
-          "country_iso": "es",
-          "league": "La Liga"
+          "name": "Burnley",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
         },
-        "shirt_number_expected": 14,
+        "shirt_number_expected": 23,
         "status": "fixed"
+      },
+      {
+        "id": "cedric-itten",
+        "full_name": "Cedric Itten",
+        "display_name": "Cedric Itten",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": {
+          "name": "Fortuna Düsseldorf",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       }
     ],
     "starting_xi": {
@@ -942,8 +942,8 @@
       "vs_last_3_wcs": "Brasil 2014: octavos, eliminada por Argentina 0-1 (gol Di María 118'). Rusia 2018: octavos, eliminada por Suecia 0-1. Catar 2022: octavos, eliminada por Portugal 1-6 (hat-trick Gonçalo Ramos). Mundial 2026: 12ª participación, 6ª consecutiva (récord histórico suizo), busca por fin superar el techo de octavos."
     },
     "squad_announced": true,
-    "squad_announced_date": "2026-05-26",
-    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 1934,

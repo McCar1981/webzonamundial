@@ -569,6 +569,21 @@
     },
     "likely_squad": [
       {
+        "id": "yehvann-diouf",
+        "full_name": "Yehvann Diouf",
+        "display_name": "Yehvann Diouf",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "OGC Niza",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Diouf_asse_sr_2425.png"
+      },
+      {
         "id": "edouard-mendy",
         "full_name": "Édouard Mendy",
         "display_name": "Édouard Mendy",
@@ -599,19 +614,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Mory_Diaw_2015_%28cropped%29.jpg/330px-Mory_Diaw_2015_%28cropped%29.jpg"
       },
       {
-        "id": "yehvann-diouf",
-        "full_name": "Yehvann Diouf",
-        "display_name": "Yehvann Diouf",
-        "position": "GK",
-        "detailed_position": "GK",
+        "id": "mamadou-sarr",
+        "full_name": "Mamadou Sarr",
+        "display_name": "Mamadou Sarr",
+        "position": "DEF",
+        "detailed_position": "DEF",
         "club": {
-          "name": "OGC Niza",
+          "name": "Chelsea",
           "country_iso": null,
           "league": null
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Diouf_asse_sr_2425.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Sarr_asse_rcsa_2425.jpg"
       },
       {
         "id": "kalidou-koulibaly",
@@ -629,21 +644,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Joueur_de_foot.jpg/330px-Joueur_de_foot.jpg"
       },
       {
-        "id": "moussa-niakhate",
-        "full_name": "Moussa Niakhaté",
-        "display_name": "Moussa Niakhaté",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Olympique de Lyon",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 4,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Niakhat%C3%A9_asse_ol_2425.png/330px-Niakhat%C3%A9_asse_ol_2425.png"
-      },
-      {
         "id": "abdoulaye-seck",
         "full_name": "Abdoulaye Seck",
         "display_name": "Abdoulaye Seck",
@@ -657,21 +657,6 @@
         "shirt_number_expected": 2,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Abdoulaye_Seck.jpg/330px-Abdoulaye_Seck.jpg"
-      },
-      {
-        "id": "mamadou-sarr",
-        "full_name": "Mamadou Sarr",
-        "display_name": "Mamadou Sarr",
-        "position": "DEF",
-        "detailed_position": "DEF",
-        "club": {
-          "name": "Chelsea",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Sarr_asse_rcsa_2425.jpg"
       },
       {
         "id": "ismail-jakobs",
@@ -689,18 +674,34 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/db/Ismail_Jakobs.jpg"
       },
       {
-        "id": "el-hadji-malick-diouf",
-        "full_name": "El Hadji Malick Diouf",
-        "display_name": "Malick Diouf",
+        "id": "krepin-diatta",
+        "full_name": "Krépin Diatta",
+        "display_name": "Krépin Diatta",
         "position": "DEF",
-        "detailed_position": "LB",
+        "detailed_position": "RB",
         "club": {
-          "name": "West Ham",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
+          "name": "AS Mónaco",
+          "country_iso": "fr",
+          "league": "Ligue 1"
         },
-        "shirt_number_expected": 12,
-        "status": "fixed"
+        "shirt_number_expected": 15,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Kr%C3%A9pin_Diatta_S%C3%A9n%C3%A9gal.png/330px-Kr%C3%A9pin_Diatta_S%C3%A9n%C3%A9gal.png"
+      },
+      {
+        "id": "moussa-niakhate",
+        "full_name": "Moussa Niakhaté",
+        "display_name": "Moussa Niakhaté",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Olympique de Lyon",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Niakhat%C3%A9_asse_ol_2425.png/330px-Niakhat%C3%A9_asse_ol_2425.png"
       },
       {
         "id": "antoine-mendy",
@@ -718,19 +719,18 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/2017-09-10_Afrobasket_SENMOZ_01.jpg/330px-2017-09-10_Afrobasket_SENMOZ_01.jpg"
       },
       {
-        "id": "nobel-mendy",
-        "full_name": "Nobel Mendy",
-        "display_name": "Nobel Mendy",
+        "id": "el-hadji-malick-diouf",
+        "full_name": "El Hadji Malick Diouf",
+        "display_name": "Malick Diouf",
         "position": "DEF",
-        "detailed_position": "DEF",
+        "detailed_position": "LB",
         "club": {
-          "name": "Rayo Vallecano",
-          "country_iso": null,
-          "league": null
+          "name": "West Ham",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
         },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": null
+        "shirt_number_expected": 12,
+        "status": "fixed"
       },
       {
         "id": "idrissa-gueye",
@@ -748,19 +748,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Idrissa_Gueye.jpg/330px-Idrissa_Gueye.jpg"
       },
       {
-        "id": "pape-matar-sarr",
-        "full_name": "Pape Matar Sarr",
-        "display_name": "Pape Matar Sarr",
+        "id": "pathe-ciss",
+        "full_name": "Pathé Ciss",
+        "display_name": "Pathé Ciss",
         "position": "MID",
-        "detailed_position": "CM",
+        "detailed_position": "MID",
         "club": {
-          "name": "Tottenham",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
+          "name": "Rayo Vallecano",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 8,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/RC_Lens_-_FC_Metz_%2814-03-2021%29_37.jpg/330px-RC_Lens_-_FC_Metz_%2814-03-2021%29_37.jpg"
+        "photo_url": null
       },
       {
         "id": "lamine-camara",
@@ -778,19 +778,45 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/75/5._Islamic_Solidarity_Games_2021_Konya_7_Lamine_Camara_%28cropped%29.jpg"
       },
       {
-        "id": "krepin-diatta",
-        "full_name": "Krépin Diatta",
-        "display_name": "Krépin Diatta",
-        "position": "DEF",
-        "detailed_position": "RB",
+        "id": "pape-matar-sarr",
+        "full_name": "Pape Matar Sarr",
+        "display_name": "Pape Matar Sarr",
+        "position": "MID",
+        "detailed_position": "CM",
         "club": {
-          "name": "AS Mónaco",
-          "country_iso": "fr",
-          "league": "Ligue 1"
+          "name": "Tottenham",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
         },
-        "shirt_number_expected": 15,
+        "shirt_number_expected": 8,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Kr%C3%A9pin_Diatta_S%C3%A9n%C3%A9gal.png/330px-Kr%C3%A9pin_Diatta_S%C3%A9n%C3%A9gal.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/RC_Lens_-_FC_Metz_%2814-03-2021%29_37.jpg/330px-RC_Lens_-_FC_Metz_%2814-03-2021%29_37.jpg"
+      },
+      {
+        "id": "habib-diarra",
+        "full_name": "Habib Diarra",
+        "display_name": "Habib Diarra",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Sunderland",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Diarra_asse_rcsa_2425.jpg/330px-Diarra_asse_rcsa_2425.jpg"
+      },
+      {
+        "id": "bara-ndiaye",
+        "full_name": "Bara Ndiaye",
+        "display_name": "Bara Ndiaye",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "pape-gueye",
@@ -808,13 +834,13 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Lens_-_Le_Havre_AC_%2801-04-2019%29_44.jpg/330px-Lens_-_Le_Havre_AC_%2801-04-2019%29_44.jpg"
       },
       {
-        "id": "pathe-ciss",
-        "full_name": "Pathé Ciss",
-        "display_name": "Pathé Ciss",
-        "position": "MID",
-        "detailed_position": "MID",
+        "id": "assane-diao",
+        "full_name": "Assane Diao",
+        "display_name": "Assane Diao",
+        "position": "FWD",
+        "detailed_position": "FWD",
         "club": {
-          "name": "Rayo Vallecano",
+          "name": "Como 1907",
           "country_iso": null,
           "league": null
         },
@@ -823,19 +849,19 @@
         "photo_url": null
       },
       {
-        "id": "habib-diarra",
-        "full_name": "Habib Diarra",
-        "display_name": "Habib Diarra",
-        "position": "MID",
-        "detailed_position": "CM",
+        "id": "bamba-dieng",
+        "full_name": "Bamba Dieng",
+        "display_name": "Bamba Dieng",
+        "position": "FWD",
+        "detailed_position": "FWD",
         "club": {
-          "name": "Sunderland",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
+          "name": "Lorient",
+          "country_iso": null,
+          "league": null
         },
-        "shirt_number_expected": 17,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Diarra_asse_rcsa_2425.jpg/330px-Diarra_asse_rcsa_2425.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Dieng_asse_sco_2425.png"
       },
       {
         "id": "sadio-mane",
@@ -868,19 +894,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Nicolas_Jackson_2025_FIFA_Club_World_Cup_Final.jpg"
       },
       {
-        "id": "ismaila-sarr",
-        "full_name": "Ismaïla Sarr",
-        "display_name": "Ismaïla Sarr",
+        "id": "cherif-ndiaye",
+        "full_name": "Chérif Ndiaye",
+        "display_name": "Chérif Ndiaye",
         "position": "FWD",
-        "detailed_position": "RW",
+        "detailed_position": "ST",
         "club": {
-          "name": "Crystal Palace",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
+          "name": "Samsunspor",
+          "country_iso": "rs",
+          "league": "Super Liga"
         },
-        "shirt_number_expected": 7,
+        "shirt_number_expected": 13,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Ismaila_Sarr_2022.jpg/330px-Ismaila_Sarr_2022.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Cherif_Ndiaye%2C_27092025_%28cropped%29.jpg"
       },
       {
         "id": "iliman-ndiaye",
@@ -898,79 +924,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Iliman_Ndiaye.png/330px-Iliman_Ndiaye.png"
       },
       {
-        "id": "boulaye-dia",
-        "full_name": "Boulaye Dia",
-        "display_name": "Boulaye Dia",
+        "id": "ismaila-sarr",
+        "full_name": "Ismaïla Sarr",
+        "display_name": "Ismaïla Sarr",
         "position": "FWD",
-        "detailed_position": "ST",
+        "detailed_position": "RW",
         "club": {
-          "name": "Lazio",
-          "country_iso": "it",
-          "league": "Serie A"
+          "name": "Crystal Palace",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
         },
-        "shirt_number_expected": 19,
+        "shirt_number_expected": 7,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Boulaye_Dia_Reims_%28cropped%29.jpg/330px-Boulaye_Dia_Reims_%28cropped%29.jpg"
-      },
-      {
-        "id": "habib-diallo",
-        "full_name": "Habib Diallo",
-        "display_name": "Habib Diallo",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Metz",
-          "country_iso": "sa",
-          "league": "Saudi Pro League"
-        },
-        "shirt_number_expected": 20,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/RC_Lens_-_FC_Metz_%2809-02-2019%29_38.jpg/330px-RC_Lens_-_FC_Metz_%2809-02-2019%29_38.jpg"
-      },
-      {
-        "id": "bamba-dieng",
-        "full_name": "Bamba Dieng",
-        "display_name": "Bamba Dieng",
-        "position": "FWD",
-        "detailed_position": "FWD",
-        "club": {
-          "name": "Lorient",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Dieng_asse_sco_2425.png"
-      },
-      {
-        "id": "cherif-ndiaye",
-        "full_name": "Chérif Ndiaye",
-        "display_name": "Chérif Ndiaye",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Samsunspor",
-          "country_iso": "rs",
-          "league": "Super Liga"
-        },
-        "shirt_number_expected": 13,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Cherif_Ndiaye%2C_27092025_%28cropped%29.jpg"
-      },
-      {
-        "id": "assane-diao",
-        "full_name": "Assane Diao",
-        "display_name": "Assane Diao",
-        "position": "FWD",
-        "detailed_position": "FWD",
-        "club": {
-          "name": "Como 1907",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Ismaila_Sarr_2022.jpg/330px-Ismaila_Sarr_2022.jpg"
       },
       {
         "id": "ibrahim-mbaye",
@@ -986,21 +952,6 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Ibrahima_Mbaye.jpg"
-      },
-      {
-        "id": "mamadou-diakhon",
-        "full_name": "Mamadou Diakhon",
-        "display_name": "Mamadou Diakhon",
-        "position": "FWD",
-        "detailed_position": "FWD",
-        "club": {
-          "name": "Club Brugge",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Diakhon_asse_sr_2425.png"
       }
     ],
     "starting_xi": {
@@ -1121,8 +1072,8 @@
       "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: fase de grupos eliminada (única vez por fair-play en historia mundial, ante Japón por amarillas). Catar 2022: octavos, eliminada por Inglaterra 0-3. Mundial 2026: 4ª participación, 3ª consecutiva. Generación Mané busca despedirse mejorando techo 2002."
     },
     "squad_announced": true,
-    "squad_announced_date": "2026-05-26",
-    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 2002,

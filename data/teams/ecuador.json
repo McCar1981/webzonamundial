@@ -701,6 +701,32 @@
     },
     "likely_squad": [
       {
+        "id": "hernan-galindez",
+        "full_name": "Hernán Galíndez",
+        "display_name": "Galíndez",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Aucas",
+          "country_iso": "ec",
+          "league": "Serie A Ecuador"
+        },
+        "shirt_number_expected": 22,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/HERN%C3%81N_GAL%C3%8DNDEZ.jpg/330px-HERN%C3%81N_GAL%C3%8DNDEZ.jpg"
+      },
+      {
+        "id": "moises-ramirez",
+        "full_name": "Moisés Ramírez",
+        "display_name": "Moisés Ramírez",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
         "id": "gonzalo-valle",
         "full_name": "Gonzalo Valle",
         "display_name": "Gonzalo Valle",
@@ -715,51 +741,6 @@
         "status": "fixed"
       },
       {
-        "id": "alexander-dominguez",
-        "full_name": "Alexander Domínguez",
-        "display_name": "Alexander Domínguez",
-        "position": "GK",
-        "detailed_position": "GK",
-        "club": {
-          "name": "LDU Quito",
-          "country_iso": "ec",
-          "league": "Serie A Ecuador"
-        },
-        "shirt_number_expected": 12,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Ecuador_tren2015_%281%29.jpg/330px-Ecuador_tren2015_%281%29.jpg"
-      },
-      {
-        "id": "hernan-galindez",
-        "full_name": "Hernán Galíndez",
-        "display_name": "Galíndez",
-        "position": "GK",
-        "detailed_position": "GK",
-        "club": {
-          "name": "Aucas",
-          "country_iso": "ec",
-          "league": "Serie A Ecuador"
-        },
-        "shirt_number_expected": 22,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/HERN%C3%81N_GAL%C3%8DNDEZ.jpg/330px-HERN%C3%81N_GAL%C3%8DNDEZ.jpg"
-      },
-      {
-        "id": "william-pacho",
-        "full_name": "William Pacho",
-        "display_name": "William Pacho",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "PSG",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 5,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Pacho_asse_psg_2425.png/330px-Pacho_asse_psg_2425.png"
-      },
-      {
         "id": "felix-torres",
         "full_name": "Félix Torres",
         "display_name": "Félix Torres",
@@ -771,7 +752,8 @@
           "league": "Brasileirão"
         },
         "shirt_number_expected": 4,
-        "status": "fixed"
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/F%C3%A9lix_Torres_%28cropped%29.png"
       },
       {
         "id": "piero-hincapie",
@@ -800,23 +782,23 @@
           "league": "Pro League"
         },
         "shirt_number_expected": 6,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/JoelOrd%C3%B3%C3%B1ez.jpg/330px-JoelOrd%C3%B3%C3%B1ez.jpg"
       },
       {
-        "id": "angelo-preciado",
-        "full_name": "Ángelo Preciado",
-        "display_name": "Ángelo Preciado",
+        "id": "william-pacho",
+        "full_name": "William Pacho",
+        "display_name": "William Pacho",
         "position": "DEF",
-        "detailed_position": "RB",
+        "detailed_position": "CB",
         "club": {
-          "name": "Standard Lieja",
-          "country_iso": "be",
-          "league": "Pro League"
+          "name": "PSG",
+          "country_iso": "fr",
+          "league": "Ligue 1"
         },
-        "shirt_number_expected": 17,
+        "shirt_number_expected": 5,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Angelo_Preciado.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Pacho_asse_psg_2425.png/330px-Pacho_asse_psg_2425.png"
       },
       {
         "id": "pervis-estupinan",
@@ -834,62 +816,66 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Pervis_Estupi%C3%B1%C3%A1n_WC2022.jpg/330px-Pervis_Estupi%C3%B1%C3%A1n_WC2022.jpg"
       },
       {
-        "id": "moises-caicedo",
-        "full_name": "Moisés Caicedo",
-        "display_name": "Moisés Caicedo",
-        "position": "MID",
-        "detailed_position": "CDM",
+        "id": "angelo-preciado",
+        "full_name": "Ángelo Preciado",
+        "display_name": "Ángelo Preciado",
+        "position": "DEF",
+        "detailed_position": "RB",
         "club": {
-          "name": "Chelsea",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
+          "name": "Standard Lieja",
+          "country_iso": "be",
+          "league": "Pro League"
         },
-        "shirt_number_expected": 23,
+        "shirt_number_expected": 17,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Mois%C3%A9s_Caicedo_20042025_%281%29.jpg/330px-Mois%C3%A9s_Caicedo_20042025_%281%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Angelo_Preciado.jpg"
       },
       {
-        "id": "jhegson-mendez",
-        "full_name": "Jhegson Méndez",
-        "display_name": "Jhegson Méndez",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "LAFC",
-          "country_iso": "us",
-          "league": "MLS"
-        },
-        "shirt_number_expected": 18,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f1/SELECCI%C3%93N_DE_F%C3%9ATBOL_SUB_20_-_Jhegson_Martinez_%28cropped%29.jpg"
+        "id": "jackson-porozo",
+        "full_name": "Jackson Porozo",
+        "display_name": "Jackson Porozo",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Jackson_Porozo_2022.jpg"
       },
       {
-        "id": "alan-franco",
-        "full_name": "Alan Franco",
-        "display_name": "Alan Franco",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Charlotte FC",
-          "country_iso": "us",
-          "league": "MLS"
-        },
-        "shirt_number_expected": 13,
-        "status": "probable"
-      },
-      {
-        "id": "patrickson-delgado",
-        "full_name": "Patrickson Delgado",
-        "display_name": "Patrickson Delgado",
-        "position": "MID",
-        "detailed_position": "CM",
+        "id": "yaimar-medina",
+        "full_name": "Yaimar Medina",
+        "display_name": "Yaimar Medina",
+        "position": "DEF",
+        "detailed_position": "RB",
         "club": {
           "name": "Independiente del Valle",
           "country_iso": "ec",
           "league": "Serie A Ecuador"
         },
-        "shirt_number_expected": 14,
-        "status": "probable"
+        "shirt_number_expected": 24,
+        "status": "fixed"
+      },
+      {
+        "id": "jordy-alcivar",
+        "full_name": "Jordy Alcívar",
+        "display_name": "Jordy Alcívar",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/SESI%C3%93N_NO._603_DEL_PLENO_DE_LA_ASAMBLEA_NACIONAL._QUITO%2C_25_DE_JUNIO_2019._%2848129379208%29_%28cropped%29.jpg"
+      },
+      {
+        "id": "anthony-valencia",
+        "full_name": "Anthony Valencia",
+        "display_name": "Anthony Valencia",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "kendry-paez",
@@ -907,19 +893,87 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Kendry_Paez_2023_Sudamericano_Sub_17_%28cropped%29.jpg"
       },
       {
-        "id": "jeremy-sarmiento",
-        "full_name": "Jeremy Sarmiento",
-        "display_name": "Jeremy Sarmiento",
-        "position": "FWD",
-        "detailed_position": "RW",
+        "id": "alan-minda",
+        "full_name": "Alan Minda",
+        "display_name": "Alan Minda",
+        "position": "MID",
+        "detailed_position": "LW",
         "club": {
-          "name": "Ipswich",
-          "country_iso": "gb-eng",
-          "league": "Championship"
+          "name": "Cercle Brujas",
+          "country_iso": "be",
+          "league": "Pro League"
         },
-        "shirt_number_expected": 19,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/BHA_5_v_Espanyol_1_pre_season_30_07_2022_160.jpg/330px-BHA_5_v_Espanyol_1_pre_season_30_07_2022_160.jpg"
+        "shirt_number_expected": 8,
+        "status": "fixed"
+      },
+      {
+        "id": "pedro-vite",
+        "full_name": "Pedro Vite",
+        "display_name": "Pedro Vite",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/39/Inter_Miami_CF_3-1_UNAM_%286_August_2025%29_04_%28cropped%29.jpg"
+      },
+      {
+        "id": "denil-castillo",
+        "full_name": "Denil Castillo",
+        "display_name": "Denil Castillo",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Independiente del Valle",
+          "country_iso": "ec",
+          "league": "Serie A Ecuador"
+        },
+        "shirt_number_expected": 15,
+        "status": "fixed"
+      },
+      {
+        "id": "alan-franco",
+        "full_name": "Alan Franco",
+        "display_name": "Alan Franco",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Charlotte FC",
+          "country_iso": "us",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 13,
+        "status": "fixed"
+      },
+      {
+        "id": "moises-caicedo",
+        "full_name": "Moisés Caicedo",
+        "display_name": "Moisés Caicedo",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Chelsea",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 23,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Mois%C3%A9s_Caicedo_20042025_%281%29.jpg/330px-Mois%C3%A9s_Caicedo_20042025_%281%29.jpg"
+      },
+      {
+        "id": "john-yeboah",
+        "full_name": "John Yeboah",
+        "display_name": "John Yeboah",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Standard Lieja",
+          "country_iso": "be",
+          "league": "Pro League"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/John_Yeboah_2020.png/330px-John_Yeboah_2020.png"
       },
       {
         "id": "kevin-rodriguez",
@@ -933,7 +987,7 @@
           "league": "Pro League"
         },
         "shirt_number_expected": 9,
-        "status": "probable"
+        "status": "fixed"
       },
       {
         "id": "enner-valencia",
@@ -951,6 +1005,21 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Enner_Valencia%2C_January_2016.jpg/330px-Enner_Valencia%2C_January_2016.jpg"
       },
       {
+        "id": "jordy-caicedo",
+        "full_name": "Jordy Caicedo",
+        "display_name": "Jordy Caicedo",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Tijuana",
+          "country_iso": "mx",
+          "league": "Liga MX"
+        },
+        "shirt_number_expected": 26,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/J._Kaisedo.jpg/330px-J._Kaisedo.jpg"
+      },
+      {
         "id": "gonzalo-plata",
         "full_name": "Gonzalo Plata",
         "display_name": "Gonzalo Plata",
@@ -966,120 +1035,26 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/92/2022_FIFA_World_Cup_Qatar_0%E2%80%932_Ecuador_-_Plata.jpg"
       },
       {
-        "id": "john-yeboah",
-        "full_name": "John Yeboah",
-        "display_name": "John Yeboah",
+        "id": "nilson-angulo",
+        "full_name": "Nilson Angulo",
+        "display_name": "Nilson Angulo",
         "position": "FWD",
-        "detailed_position": "LW",
-        "club": {
-          "name": "Standard Lieja",
-          "country_iso": "be",
-          "league": "Pro League"
-        },
-        "shirt_number_expected": 10,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/John_Yeboah_2020.png/330px-John_Yeboah_2020.png"
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Nilson_Angulo_RSC_Anderlecht_2025.jpg"
       },
       {
-        "id": "alan-minda",
-        "full_name": "Alan Minda",
-        "display_name": "Alan Minda",
+        "id": "jeremy-arevalo",
+        "full_name": "Jeremy Arévalo",
+        "display_name": "Jeremy Arévalo",
         "position": "FWD",
-        "detailed_position": "LW",
-        "club": {
-          "name": "Cercle Brujas",
-          "country_iso": "be",
-          "league": "Pro League"
-        },
-        "shirt_number_expected": 8,
-        "status": "probable"
-      },
-      {
-        "id": "leonardo-campana",
-        "full_name": "Leonardo Campana",
-        "display_name": "Leonardo Campana",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Inter Miami",
-          "country_iso": "us",
-          "league": "MLS"
-        },
-        "shirt_number_expected": 21,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Leo_Campana_Revolution_Nashville_6.25.25-155_%28cropped%29.jpg/330px-Leo_Campana_Revolution_Nashville_6.25.25-155_%28cropped%29.jpg"
-      },
-      {
-        "id": "djorkaeff-reasco",
-        "full_name": "Djorkaeff Reasco",
-        "display_name": "Djorkaeff Reasco",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Universidad Católica",
-          "country_iso": "ec",
-          "league": "Serie A Ecuador"
-        },
-        "shirt_number_expected": 25,
-        "status": "bubble"
-      },
-      {
-        "id": "denil-castillo",
-        "full_name": "Denil Castillo",
-        "display_name": "Denil Castillo",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Independiente del Valle",
-          "country_iso": "ec",
-          "league": "Serie A Ecuador"
-        },
-        "shirt_number_expected": 15,
-        "status": "bubble"
-      },
-      {
-        "id": "jordy-caicedo",
-        "full_name": "Jordy Caicedo",
-        "display_name": "Jordy Caicedo",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Tijuana",
-          "country_iso": "mx",
-          "league": "Liga MX"
-        },
-        "shirt_number_expected": 26,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/J._Kaisedo.jpg/330px-J._Kaisedo.jpg"
-      },
-      {
-        "id": "willian-pacho-2",
-        "full_name": "Diego Palacios",
-        "display_name": "Diego Palacios",
-        "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "Corinthians",
-          "country_iso": "br",
-          "league": "Brasileirão"
-        },
-        "shirt_number_expected": 16,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/%D0%94%D1%96%D1%94%D0%B3%D0%BE_%D0%9F%D0%B0%D0%BB%D0%B0%D1%81%D1%96%D0%BE%D1%81_%E2%80%94_%D0%A4%D0%9A_%D0%9A%D0%B0%D1%80%D0%BF%D0%B0%D1%82%D0%B8_%D0%9B%D1%8C%D0%B2%D1%96%D0%B2_%282025%29_full_image.png/330px-%D0%94%D1%96%D1%94%D0%B3%D0%BE_%D0%9F%D0%B0%D0%BB%D0%B0%D1%81%D1%96%D0%BE%D1%81_%E2%80%94_%D0%A4%D0%9A_%D0%9A%D0%B0%D1%80%D0%BF%D0%B0%D1%82%D0%B8_%D0%9B%D1%8C%D0%B2%D1%96%D0%B2_%282025%29_full_image.png"
-      },
-      {
-        "id": "yaimar-medina",
-        "full_name": "Yaimar Medina",
-        "display_name": "Yaimar Medina",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Independiente del Valle",
-          "country_iso": "ec",
-          "league": "Serie A Ecuador"
-        },
-        "shirt_number_expected": 24,
-        "status": "bubble"
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       }
     ],
     "starting_xi": {
@@ -1198,8 +1173,10 @@
       },
       "vs_last_3_wcs": "Brasil 2014: fase de grupos eliminada por diferencia de goles. Catar 2022: fase de grupos, eliminada con 4 puntos. Mundial 2026: 5ª participación histórica, segunda consecutiva. Llega como 2º clasificado CONMEBOL, mejor papel desde 1998."
     },
-    "squad_announced": false,
-    "squad_announced_status": "pending_official"
+    "squad_announced": true,
+    "squad_announced_status": "pending_official",
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 2002,

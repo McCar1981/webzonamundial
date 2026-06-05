@@ -547,6 +547,17 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/2025-04-23_-_FC_St_Pauli_-_Nikola_Vasilj.jpg/330px-2025-04-23_-_FC_St_Pauli_-_Nikola_Vasilj.jpg"
       },
       {
+        "id": "mladen-jurkas",
+        "full_name": "Mladen Jurkas",
+        "display_name": "Mladen Jurkas",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
         "id": "martin-zlomislic",
         "full_name": "Martin Zlomislić",
         "display_name": "Martin Zlomislić",
@@ -562,13 +573,43 @@
         "photo_url": null
       },
       {
-        "id": "osman-hadzikic",
-        "full_name": "Osman Hadžikić",
-        "display_name": "Osman Hadžikić",
-        "position": "GK",
-        "detailed_position": "GK",
+        "id": "nihad-mujakic",
+        "full_name": "Nihad Mujakić",
+        "display_name": "Nihad Mujakić",
+        "position": "DEF",
+        "detailed_position": "DEF",
         "club": {
-          "name": "Slaven Belupo",
+          "name": "Gaziantep",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "dennis-hadzikadunic",
+        "full_name": "Dennis Hadžikadunić",
+        "display_name": "Hadžikadunić",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Sampdoria",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Dennis_Had%C5%BEikaduni%C4%87_2021.jpg/330px-Dennis_Had%C5%BEikaduni%C4%87_2021.jpg"
+      },
+      {
+        "id": "tarik-muharemovic",
+        "full_name": "Tarik Muharemović",
+        "display_name": "Tarik Muharemović",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Sassuolo",
           "country_iso": null,
           "league": null
         },
@@ -607,21 +648,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/FC_Liefering_gegen_SV_Ried_%2819._Oktober_2019%29_31.jpg/330px-FC_Liefering_gegen_SV_Ried_%2819._Oktober_2019%29_31.jpg"
       },
       {
-        "id": "nihad-mujakic",
-        "full_name": "Nihad Mujakić",
-        "display_name": "Nihad Mujakić",
-        "position": "DEF",
-        "detailed_position": "DEF",
-        "club": {
-          "name": "Gaziantep",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": null
-      },
-      {
         "id": "nikola-katic",
         "full_name": "Nikola Katić",
         "display_name": "Nikola Katić",
@@ -635,21 +661,6 @@
         "shirt_number_expected": 4,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/SM-Rangers18_%2816%29.jpg/330px-SM-Rangers18_%2816%29.jpg"
-      },
-      {
-        "id": "tarik-muharemovic",
-        "full_name": "Tarik Muharemović",
-        "display_name": "Tarik Muharemović",
-        "position": "DEF",
-        "detailed_position": "DEF",
-        "club": {
-          "name": "Sassuolo",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": null
       },
       {
         "id": "stjepan-radeljic",
@@ -667,21 +678,6 @@
         "photo_url": null
       },
       {
-        "id": "dennis-hadzikadunic",
-        "full_name": "Dennis Hadžikadunić",
-        "display_name": "Hadžikadunić",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Sampdoria",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 3,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Dennis_Had%C5%BEikaduni%C4%87_2021.jpg/330px-Dennis_Had%C5%BEikaduni%C4%87_2021.jpg"
-      },
-      {
         "id": "nidal-celik",
         "full_name": "Nidal Čelik",
         "display_name": "Nidal Čelik",
@@ -697,19 +693,49 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/94/%C4%8Celik_rcl_asse_2425.png"
       },
       {
-        "id": "amir-hadziahmetovic",
-        "full_name": "Amir Hadžiahmetović",
-        "display_name": "Amir Hadžiahmetović",
-        "position": "DEF",
-        "detailed_position": "DEF",
+        "id": "benjamin-tahirovic",
+        "full_name": "Benjamin Tahirović",
+        "display_name": "Benjamin Tahirović",
+        "position": "MID",
+        "detailed_position": "MID",
         "club": {
-          "name": "Hull City",
+          "name": "Brøndby",
           "country_iso": null,
           "league": null
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/30/Amir_Hadziahmetovic_20231008_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Benjamin_Tahirovi%C4%87_-_GAE_-_Ajax_%2853465349575%29.jpg"
+      },
+      {
+        "id": "armin-gigovic",
+        "full_name": "Armin Gigović",
+        "display_name": "Armin Gigović",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Young Boys",
+          "country_iso": "sk",
+          "league": "Slovak Super Liga"
+        },
+        "shirt_number_expected": 26,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/59/Armin_Gigovi%C4%87_2020_%28cropped%29.jpg"
+      },
+      {
+        "id": "ivan-basic",
+        "full_name": "Ivan Bašić",
+        "display_name": "Ivan Bašić",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": {
+          "name": "Astana",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/98/Ivan_Ba%C5%A1i%C4%87_2022.jpg"
       },
       {
         "id": "ivan-sunjic",
@@ -727,19 +753,33 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Ivan_%C5%A0unji%C4%87_2022.jpg"
       },
       {
-        "id": "ivan-basic",
-        "full_name": "Ivan Bašić",
-        "display_name": "Ivan Bašić",
+        "id": "amar-memic",
+        "full_name": "Amar Memić",
+        "display_name": "Amar Memić",
         "position": "MID",
-        "detailed_position": "MID",
+        "detailed_position": "CM",
         "club": {
-          "name": "Astana",
+          "name": "Viktoria Plzeň",
+          "country_iso": "be",
+          "league": "Pro League"
+        },
+        "shirt_number_expected": 16,
+        "status": "fixed"
+      },
+      {
+        "id": "amir-hadziahmetovic",
+        "full_name": "Amir Hadžiahmetović",
+        "display_name": "Amir Hadžiahmetović",
+        "position": "MID",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Hull City",
           "country_iso": null,
           "league": null
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/98/Ivan_Ba%C5%A1i%C4%87_2022.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/30/Amir_Hadziahmetovic_20231008_%28cropped%29.jpg"
       },
       {
         "id": "dzenis-burnic",
@@ -772,74 +812,13 @@
         "photo_url": null
       },
       {
-        "id": "benjamin-tahirovic",
-        "full_name": "Benjamin Tahirović",
-        "display_name": "Benjamin Tahirović",
-        "position": "MID",
-        "detailed_position": "MID",
-        "club": {
-          "name": "Brøndby",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Benjamin_Tahirovi%C4%87_-_GAE_-_Ajax_%2853465349575%29.jpg"
-      },
-      {
-        "id": "amar-memic",
-        "full_name": "Amar Memić",
-        "display_name": "Amar Memić",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Viktoria Plzeň",
-          "country_iso": "be",
-          "league": "Pro League"
-        },
-        "shirt_number_expected": 16,
-        "status": "fixed"
-      },
-      {
-        "id": "armin-gigovic",
-        "full_name": "Armin Gigović",
-        "display_name": "Armin Gigović",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Young Boys",
-          "country_iso": "sk",
-          "league": "Slovak Super Liga"
-        },
-        "shirt_number_expected": 26,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/59/Armin_Gigovi%C4%87_2020_%28cropped%29.jpg"
-      },
-      {
-        "id": "kerim-alajbegovic",
-        "full_name": "Kerim Alajbegović",
-        "display_name": "Alajbegović",
+        "id": "samed-bazdar",
+        "full_name": "Samed Baždar",
+        "display_name": "Samed Baždar",
         "position": "FWD",
-        "detailed_position": "RW",
+        "detailed_position": "FWD",
         "club": {
-          "name": "RB Salzburg",
-          "country_iso": "de",
-          "league": "3. Liga"
-        },
-        "shirt_number_expected": 17,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Jahresbeginnfeier_FC_RB_Salzburg_%282026-01-25_RB_Arena%29_10.jpg/330px-Jahresbeginnfeier_FC_RB_Salzburg_%282026-01-25_RB_Arena%29_10.jpg"
-      },
-      {
-        "id": "esmir-bajraktarevic",
-        "full_name": "Esmir Bajraktarević",
-        "display_name": "Esmir Bajraktarević",
-        "position": "MID",
-        "detailed_position": "MID",
-        "club": {
-          "name": "PSV Eindhoven",
-          "country_iso": null,
-          "league": null
+          "name": "Jagiellonia Białystok"
         },
         "shirt_number_expected": null,
         "status": "fixed",
@@ -860,26 +839,45 @@
         "status": "fixed"
       },
       {
-        "id": "jovo-lukic",
-        "full_name": "Jovo Lukić",
-        "display_name": "Jovo Lukić",
+        "id": "edin-dzeko",
+        "full_name": "Edin Džeko",
+        "display_name": "Edin Džeko",
         "position": "FWD",
-        "detailed_position": "FWD",
+        "detailed_position": "ST",
         "club": {
-          "name": "Universitatea Cluj"
+          "name": "Schalke 04",
+          "country_iso": "tr",
+          "league": "Süper Lig"
         },
-        "shirt_number_expected": null,
+        "shirt_number_expected": 11,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/20150331_2026_AUT_BIH_2177_Edin_D%C5%BEeko_%28cropped%29.jpg/330px-20150331_2026_AUT_BIH_2177_Edin_D%C5%BEeko_%28cropped%29.jpg"
       },
       {
-        "id": "samed-bazdar",
-        "full_name": "Samed Baždar",
-        "display_name": "Samed Baždar",
+        "id": "kerim-alajbegovic",
+        "full_name": "Kerim Alajbegović",
+        "display_name": "Alajbegović",
         "position": "FWD",
-        "detailed_position": "FWD",
+        "detailed_position": "RW",
         "club": {
-          "name": "Jagiellonia Białystok"
+          "name": "RB Salzburg",
+          "country_iso": "de",
+          "league": "3. Liga"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Jahresbeginnfeier_FC_RB_Salzburg_%282026-01-25_RB_Arena%29_10.jpg/330px-Jahresbeginnfeier_FC_RB_Salzburg_%282026-01-25_RB_Arena%29_10.jpg"
+      },
+      {
+        "id": "esmir-bajraktarevic",
+        "full_name": "Esmir Bajraktarević",
+        "display_name": "Esmir Bajraktarević",
+        "position": "FWD",
+        "detailed_position": "MID",
+        "club": {
+          "name": "PSV Eindhoven",
+          "country_iso": null,
+          "league": null
         },
         "shirt_number_expected": null,
         "status": "fixed",
@@ -901,19 +899,17 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/FC_RB_Salzburg_vs._FK_Austria_Wien_%282023-04-09%29_55.jpg/330px-FC_RB_Salzburg_vs._FK_Austria_Wien_%282023-04-09%29_55.jpg"
       },
       {
-        "id": "edin-dzeko",
-        "full_name": "Edin Džeko",
-        "display_name": "Edin Džeko",
+        "id": "jovo-lukic",
+        "full_name": "Jovo Lukić",
+        "display_name": "Jovo Lukić",
         "position": "FWD",
-        "detailed_position": "ST",
+        "detailed_position": "FWD",
         "club": {
-          "name": "Schalke 04",
-          "country_iso": "tr",
-          "league": "Süper Lig"
+          "name": "Universitatea Cluj"
         },
-        "shirt_number_expected": 11,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/20150331_2026_AUT_BIH_2177_Edin_D%C5%BEeko_%28cropped%29.jpg/330px-20150331_2026_AUT_BIH_2177_Edin_D%C5%BEeko_%28cropped%29.jpg"
+        "photo_url": null
       }
     ],
     "starting_xi": {
@@ -1033,8 +1029,8 @@
       "vs_last_3_wcs": "Brasil 2014: 1ª y única participación, eliminada en grupos. Rusia 2018: NO clasificó. Catar 2022: NO clasificó. Mundial 2026: 2ª participación absoluta vía play-off histórico ante Italia."
     },
     "squad_announced": true,
-    "squad_announced_date": "2026-05-26",
-    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 2014,

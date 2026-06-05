@@ -89,7 +89,7 @@
         "goals_against": 9,
         "goal_difference": 3,
         "points": 15,
-        "win_percentage": 40.0,
+        "win_percentage": 40,
         "clean_sheets": 4,
         "notes": "Stats de la 3ª ronda Grupo B (10 PJ, 15 pts, 3º). Adicionalmente: 4ª ronda 1G 1E, 5ª ronda 1G 1E vs UAE (3-2 global), repechaje 1-0 vs Bolivia. Total 14 partidos eliminatorios."
       },
@@ -512,20 +512,6 @@
     },
     "likely_squad": [
       {
-        "id": "ahmed-basil",
-        "full_name": "Ahmed Basil Hamada",
-        "display_name": "Ahmed Basil",
-        "position": "GK",
-        "detailed_position": "GK",
-        "club": {
-          "name": "Al-Talaba",
-          "country_iso": "iq",
-          "league": "Iraq Stars League"
-        },
-        "shirt_number_expected": 1,
-        "status": "fixed"
-      },
-      {
         "id": "fahad-talib",
         "full_name": "Fahad Talib",
         "display_name": "Fahad Talib",
@@ -552,8 +538,33 @@
           "league": "Iraq Stars League"
         },
         "shirt_number_expected": 23,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Jalal12.JPG/330px-Jalal12.JPG"
+      },
+      {
+        "id": "ahmed-basil",
+        "full_name": "Ahmed Basil Hamada",
+        "display_name": "Ahmed Basil",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Al-Talaba",
+          "country_iso": "iq",
+          "league": "Iraq Stars League"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed"
+      },
+      {
+        "id": "rebin-ghareeb",
+        "full_name": "Rebin Ghareeb",
+        "display_name": "Rebin Ghareeb",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "hussein-ali",
@@ -567,22 +578,8 @@
           "league": "Iraq Stars League"
         },
         "shirt_number_expected": 2,
-        "status": "fixed"
-      },
-      {
-        "id": "ahmed-yaseen",
-        "full_name": "Ahmed Yaseen",
-        "display_name": "Ahmed Yaseen",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Al-Shorta",
-          "country_iso": "iq",
-          "league": "Iraq Stars League"
-        },
-        "shirt_number_expected": 14,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Military_trial_of_Ahmed_Yassin%2C_March_1990_I_%283x4_cropped%29.jpg/330px-Military_trial_of_Ahmed_Yassin%2C_March_1990_I_%283x4_cropped%29.jpg"
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/GAE_-_SC_Heerenveen_-Hussein_Ali.jpg"
       },
       {
         "id": "zaid-tahseen",
@@ -613,19 +610,26 @@
         "status": "fixed"
       },
       {
-        "id": "rebin-sulaka",
-        "full_name": "Rebin Sulaka",
-        "display_name": "Rebin Sulaka",
+        "id": "munaf-younus",
+        "full_name": "Munaf Younus",
+        "display_name": "Munaf Younus",
         "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Al-Shorta",
-          "country_iso": "iq",
-          "league": "Iraq Stars League"
-        },
-        "shirt_number_expected": 15,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/240519_FC_%EC%84%9C%EC%9A%B8_%ED%8F%AC%ED%86%A0%ED%83%80%EC%9E%84_%28Rebin_Sulaka%29.jpg/330px-240519_FC_%EC%84%9C%EC%9A%B8_%ED%8F%AC%ED%86%A0%ED%83%80%EC%9E%84_%28Rebin_Sulaka%29.jpg"
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "ahmed-yahya",
+        "full_name": "Ahmed Yahya",
+        "display_name": "Ahmed Yahya",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8e/4822940_AE7I9740_-_Ahmed_Yahya.jpg"
       },
       {
         "id": "merchas-doski",
@@ -643,10 +647,35 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Merchas_doski.jpg/330px-Merchas_doski.jpg"
       },
       {
+        "id": "mustafa-saadoon",
+        "full_name": "Mustafa Saadoon",
+        "display_name": "Mustafa Saadoon",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "frans-putros",
+        "full_name": "Frans Putros",
+        "display_name": "Frans Putros",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Al-Wakrah",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 25,
+        "status": "fixed"
+      },
+      {
         "id": "youssef-amyn",
         "full_name": "Youssef Amyn",
         "display_name": "Youssef Amyn",
-        "position": "DEF",
+        "position": "MID",
         "detailed_position": "LB",
         "club": {
           "name": "FC Heidenheim",
@@ -672,36 +701,6 @@
         "status": "fixed"
       },
       {
-        "id": "amir-al-ammari",
-        "full_name": "Amir Al-Ammari",
-        "display_name": "Amir Al-Ammari",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Halmstads BK",
-          "country_iso": "se",
-          "league": "Allsvenskan"
-        },
-        "shirt_number_expected": 8,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Amir_Al-Ammari_%28Halmstad_vs_Degerfors%2C_7_October_2023%29.jpg/330px-Amir_Al-Ammari_%28Halmstad_vs_Degerfors%2C_7_October_2023%29.jpg"
-      },
-      {
-        "id": "aimar-sher",
-        "full_name": "Aimar Sher",
-        "display_name": "Aimar Sher",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Hammarby IF",
-          "country_iso": "se",
-          "league": "Allsvenskan"
-        },
-        "shirt_number_expected": 17,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/GAE_-_FC_Groningen_-_52878021366_%28cropped1%29.jpg/330px-GAE_-_FC_Groningen_-_52878021366_%28cropped1%29.jpg"
-      },
-      {
         "id": "zidane-iqbal",
         "full_name": "Zidane Iqbal",
         "display_name": "Zidane Iqbal",
@@ -717,19 +716,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Zidane_Iqbal_debut.jpg/330px-Zidane_Iqbal_debut.jpg"
       },
       {
-        "id": "bashar-resan",
-        "full_name": "Bashar Resan",
-        "display_name": "Bashar Resan",
+        "id": "amir-al-ammari",
+        "full_name": "Amir Al-Ammari",
+        "display_name": "Amir Al-Ammari",
         "position": "MID",
-        "detailed_position": "CDM",
+        "detailed_position": "CM",
         "club": {
-          "name": "Al-Khor",
-          "country_iso": "qa",
-          "league": "Qatar Stars League"
+          "name": "Halmstads BK",
+          "country_iso": "se",
+          "league": "Allsvenskan"
         },
-        "shirt_number_expected": 16,
+        "shirt_number_expected": 8,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Bashar_Resan%2C_Persepolis-Padideh_20190206.jpg/330px-Bashar_Resan%2C_Persepolis-Padideh_20190206.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Amir_Al-Ammari_%28Halmstad_vs_Degerfors%2C_7_October_2023%29.jpg/330px-Amir_Al-Ammari_%28Halmstad_vs_Degerfors%2C_7_October_2023%29.jpg"
       },
       {
         "id": "kevin-yakob",
@@ -747,33 +746,30 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Kevin_Enkido_Yakob2.jpg/330px-Kevin_Enkido_Yakob2.jpg"
       },
       {
-        "id": "ali-jasim",
-        "full_name": "Ali Jasim",
-        "display_name": "Ali Jasim",
-        "position": "FWD",
-        "detailed_position": "ST",
+        "id": "aimar-sher",
+        "full_name": "Aimar Sher",
+        "display_name": "Aimar Sher",
+        "position": "MID",
+        "detailed_position": "CAM",
         "club": {
-          "name": "Como 1907",
-          "country_iso": "it",
-          "league": "Serie A"
+          "name": "Hammarby IF",
+          "country_iso": "se",
+          "league": "Allsvenskan"
         },
-        "shirt_number_expected": 11,
-        "status": "fixed"
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/GAE_-_FC_Groningen_-_52878021366_%28cropped1%29.jpg/330px-GAE_-_FC_Groningen_-_52878021366_%28cropped1%29.jpg"
       },
       {
-        "id": "aymen-hussein",
-        "full_name": "Aymen Hussein",
-        "display_name": "Aymen Hussein",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Al-Quwa Al-Jawiya",
-          "country_iso": "iq",
-          "league": "Iraq Stars League"
-        },
-        "shirt_number_expected": 9,
+        "id": "zaid-ismael",
+        "full_name": "Zaid Ismael",
+        "display_name": "Zaid Ismael",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/78/4822953_AE7I9053_%28cropped2%29.jpg"
+        "photo_url": null
       },
       {
         "id": "ali-al-hamadi",
@@ -806,6 +802,57 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Mohanad_Ali.jpg/330px-Mohanad_Ali.jpg"
       },
       {
+        "id": "ahmed-qasim",
+        "full_name": "Ahmed Qasim",
+        "display_name": "Ahmed Qasim",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "ali-yousif",
+        "full_name": "Ali Yousif",
+        "display_name": "Ali Yousif",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "ali-jasim",
+        "full_name": "Ali Jasim",
+        "display_name": "Ali Jasim",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Como 1907",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed"
+      },
+      {
+        "id": "aymen-hussein",
+        "full_name": "Aymen Hussein",
+        "display_name": "Aymen Hussein",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Al-Quwa Al-Jawiya",
+          "country_iso": "iq",
+          "league": "Iraq Stars League"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/78/4822953_AE7I9053_%28cropped2%29.jpg"
+      },
+      {
         "id": "marko-farji",
         "full_name": "Marko Farji",
         "display_name": "Marko Farji",
@@ -818,77 +865,6 @@
         },
         "shirt_number_expected": 20,
         "status": "fixed"
-      },
-      {
-        "id": "sherko-kareem",
-        "full_name": "Sherko Kareem",
-        "display_name": "Sherko Kareem",
-        "position": "FWD",
-        "detailed_position": "LW",
-        "club": {
-          "name": "Al-Najaf",
-          "country_iso": "iq",
-          "league": "Iraq Stars League"
-        },
-        "shirt_number_expected": 22,
-        "status": "probable"
-      },
-      {
-        "id": "amjad-attwan",
-        "full_name": "Amjad Attwan",
-        "display_name": "Amjad Attwan",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Al-Hilal",
-          "country_iso": "sa",
-          "league": "Saudi Pro League"
-        },
-        "shirt_number_expected": 21,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Amjad_Attwan_%28cropped%29.jpg/330px-Amjad_Attwan_%28cropped%29.jpg"
-      },
-      {
-        "id": "zaid-ismail",
-        "full_name": "Zaid Ismail",
-        "display_name": "Zaid Ismail",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Al-Zawraa",
-          "country_iso": "iq",
-          "league": "Iraq Stars League"
-        },
-        "shirt_number_expected": 24,
-        "status": "probable"
-      },
-      {
-        "id": "frans-putros",
-        "full_name": "Frans Putros",
-        "display_name": "Frans Putros",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Al-Wakrah",
-          "country_iso": "qa",
-          "league": "Qatar Stars League"
-        },
-        "shirt_number_expected": 25,
-        "status": "bubble"
-      },
-      {
-        "id": "alaa-abbas",
-        "full_name": "Alaa Abbas",
-        "display_name": "Alaa Abbas",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Al-Najaf",
-          "country_iso": "iq",
-          "league": "Iraq Stars League"
-        },
-        "shirt_number_expected": 26,
-        "status": "bubble"
       }
     ],
     "starting_xi": {
@@ -1009,8 +985,10 @@
       },
       "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: NO CLASIFICÓ. Catar 2022: NO CLASIFICÓ. Mundial 2026: 2ª participación, 1ª desde MÉXICO 1986 (40 AÑOS DE ESPERA)."
     },
-    "squad_announced": false,
-    "squad_announced_status": "pending_official"
+    "squad_announced": true,
+    "squad_announced_status": "pending_official",
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 1986,
@@ -1030,7 +1008,7 @@
       "lost": 3,
       "goals_for": 1,
       "goals_against": 4,
-      "win_percentage": 0.0,
+      "win_percentage": 0,
       "notes": "3 partidos en 1 Mundial (1986). NO ganó ningún partido. Marcó solo 1 gol."
     },
     "by_world_cup": [

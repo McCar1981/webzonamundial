@@ -568,6 +568,21 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Dominik_Livakovi%C4%87_2021.jpg/330px-Dominik_Livakovi%C4%87_2021.jpg"
       },
       {
+        "id": "ivor-pandur",
+        "full_name": "Ivor Pandur",
+        "display_name": "Ivor Pandur",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Hull City",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
         "id": "dominik-kotarski",
         "full_name": "Dominik Kotarski",
         "display_name": "Dominik Kotarski",
@@ -583,19 +598,34 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/cd/S%C3%B8nderjyskE_-_FC_K%C3%B8benhavn%2C_27._September_2025_-_j_%28Dominik_Kotarski%29.jpg"
       },
       {
-        "id": "ivor-pandur",
-        "full_name": "Ivor Pandur",
-        "display_name": "Ivor Pandur",
-        "position": "GK",
-        "detailed_position": "GK",
+        "id": "josip-stanisic",
+        "full_name": "Josip Stanišić",
+        "display_name": "Josip Stanišić",
+        "position": "DEF",
+        "detailed_position": "RB",
         "club": {
-          "name": "Hull City",
-          "country_iso": null,
-          "league": null
+          "name": "Bayern Múnich",
+          "country_iso": "de",
+          "league": "Bundesliga"
         },
-        "shirt_number_expected": null,
+        "shirt_number_expected": 22,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/64/Josip_Stani%C5%A1i%C4%87_during_an_Interview_in_2023.png"
+      },
+      {
+        "id": "marin-pongracic",
+        "full_name": "Marin Pongračić",
+        "display_name": "Marin Pongračić",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Fiorentina",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/FC_Admira_Wacker_M%C3%B6dling_vs._FC_Red_Bull_Salzburg_2018-04-15_%28071%29.jpg/330px-FC_Admira_Wacker_M%C3%B6dling_vs._FC_Red_Bull_Salzburg_2018-04-15_%28071%29.jpg"
       },
       {
         "id": "josko-gvardiol",
@@ -643,49 +673,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/65/FC_Salzburg_gegen_GNK_Dinamo_Zagreb_%28UEFA_Championsleague_2022-10-05%29_47.jpg"
       },
       {
-        "id": "josip-stanisic",
-        "full_name": "Josip Stanišić",
-        "display_name": "Josip Stanišić",
+        "id": "kristijan-jakic",
+        "full_name": "Kristijan Jakić",
+        "display_name": "Kristijan Jakić",
         "position": "DEF",
-        "detailed_position": "RB",
+        "detailed_position": "CM",
         "club": {
-          "name": "Bayern Múnich",
+          "name": "Augsburgo",
           "country_iso": "de",
           "league": "Bundesliga"
         },
-        "shirt_number_expected": 22,
+        "shirt_number_expected": 26,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/64/Josip_Stani%C5%A1i%C4%87_during_an_Interview_in_2023.png"
-      },
-      {
-        "id": "marin-pongracic",
-        "full_name": "Marin Pongračić",
-        "display_name": "Marin Pongračić",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Fiorentina",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 3,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/FC_Admira_Wacker_M%C3%B6dling_vs._FC_Red_Bull_Salzburg_2018-04-15_%28071%29.jpg/330px-FC_Admira_Wacker_M%C3%B6dling_vs._FC_Red_Bull_Salzburg_2018-04-15_%28071%29.jpg"
-      },
-      {
-        "id": "martin-erlic",
-        "full_name": "Martin Erlić",
-        "display_name": "Martin Erlić",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Midtjylland",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 6,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Martin-Erlic.png/330px-Martin-Erlic.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Kristijan-Jakic.png/330px-Kristijan-Jakic.png"
       },
       {
         "id": "luka-vuskovic",
@@ -703,124 +703,19 @@
         "photo_url": null
       },
       {
-        "id": "luka-modric",
-        "full_name": "Luka Modrić",
-        "display_name": "Luka Modrić",
-        "position": "MID",
-        "detailed_position": "CM",
+        "id": "martin-erlic",
+        "full_name": "Martin Erlić",
+        "display_name": "Martin Erlić",
+        "position": "DEF",
+        "detailed_position": "CB",
         "club": {
-          "name": "Milan",
+          "name": "Midtjylland",
           "country_iso": "it",
           "league": "Serie A"
         },
-        "shirt_number_expected": 10,
+        "shirt_number_expected": 6,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Ofrenda_de_la_Liga_y_la_Champions-57-L.Mill%C3%A1n_%2852109310843%29_%28Luka_Modri%C4%87%29.jpg/330px-Ofrenda_de_la_Liga_y_la_Champions-57-L.Mill%C3%A1n_%2852109310843%29_%28Luka_Modri%C4%87%29.jpg"
-      },
-      {
-        "id": "mateo-kovacic",
-        "full_name": "Mateo Kovačić",
-        "display_name": "Mateo Kovačić",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Manchester City",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 8,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Yokohama_F._Marinos_-_Manchester_City_%283-5%29_-_53075077396_%28cropped%29_%28cropped%29.jpg/330px-Yokohama_F._Marinos_-_Manchester_City_%283-5%29_-_53075077396_%28cropped%29_%28cropped%29.jpg"
-      },
-      {
-        "id": "mario-pasalic",
-        "full_name": "Mario Pašalić",
-        "display_name": "Mario Pašalić",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Atalanta",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 15,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Mario_Pa%C5%A1ali%C4%87_2017.jpg/330px-Mario_Pa%C5%A1ali%C4%87_2017.jpg"
-      },
-      {
-        "id": "nikola-vlasic",
-        "full_name": "Nikola Vlašić",
-        "display_name": "Nikola Vlašić",
-        "position": "MID",
-        "detailed_position": "MID",
-        "club": {
-          "name": "Torino",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Nikola_Vla%C5%A1i%C4%87.jpg"
-      },
-      {
-        "id": "luka-sucic",
-        "full_name": "Luka Sučić",
-        "display_name": "Luka Sučić",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Real Sociedad",
-          "country_iso": "es",
-          "league": "La Liga"
-        },
-        "shirt_number_expected": 18,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/FC_Red_Bull_Salzburg_gegen_Wolfsberger_AC_%282022-02-20%29_32.jpg/330px-FC_Red_Bull_Salzburg_gegen_Wolfsberger_AC_%282022-02-20%29_32.jpg"
-      },
-      {
-        "id": "martin-baturina",
-        "full_name": "Martin Baturina",
-        "display_name": "Martin Baturina",
-        "position": "MID",
-        "detailed_position": "MID",
-        "club": {
-          "name": "Como",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a7/FC_Salzburg_gegen_GNK_Dinamo_Zagreb_%28UEFA_Championsleague_2022-10-05%29_52.jpg"
-      },
-      {
-        "id": "kristijan-jakic",
-        "full_name": "Kristijan Jakić",
-        "display_name": "Kristijan Jakić",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Augsburgo",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 26,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Kristijan-Jakic.png/330px-Kristijan-Jakic.png"
-      },
-      {
-        "id": "petar-sucic",
-        "full_name": "Petar Sučić",
-        "display_name": "Petar Sučić",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Inter",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 14,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Petar_Su%C4%8Di%C4%87.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Martin-Erlic.png/330px-Martin-Erlic.png"
       },
       {
         "id": "nikola-moro",
@@ -838,6 +733,96 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Nikola_Moro_2020.jpg"
       },
       {
+        "id": "mateo-kovacic",
+        "full_name": "Mateo Kovačić",
+        "display_name": "Mateo Kovačić",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Manchester City",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Yokohama_F._Marinos_-_Manchester_City_%283-5%29_-_53075077396_%28cropped%29_%28cropped%29.jpg/330px-Yokohama_F._Marinos_-_Manchester_City_%283-5%29_-_53075077396_%28cropped%29_%28cropped%29.jpg"
+      },
+      {
+        "id": "luka-modric",
+        "full_name": "Luka Modrić",
+        "display_name": "Luka Modrić",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Milan",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Ofrenda_de_la_Liga_y_la_Champions-57-L.Mill%C3%A1n_%2852109310843%29_%28Luka_Modri%C4%87%29.jpg/330px-Ofrenda_de_la_Liga_y_la_Champions-57-L.Mill%C3%A1n_%2852109310843%29_%28Luka_Modri%C4%87%29.jpg"
+      },
+      {
+        "id": "nikola-vlasic",
+        "full_name": "Nikola Vlašić",
+        "display_name": "Nikola Vlašić",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": {
+          "name": "Torino",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Nikola_Vla%C5%A1i%C4%87.jpg"
+      },
+      {
+        "id": "mario-pasalic",
+        "full_name": "Mario Pašalić",
+        "display_name": "Mario Pašalić",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Atalanta",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 15,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Mario_Pa%C5%A1ali%C4%87_2017.jpg/330px-Mario_Pa%C5%A1ali%C4%87_2017.jpg"
+      },
+      {
+        "id": "martin-baturina",
+        "full_name": "Martin Baturina",
+        "display_name": "Martin Baturina",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": {
+          "name": "Como",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a7/FC_Salzburg_gegen_GNK_Dinamo_Zagreb_%28UEFA_Championsleague_2022-10-05%29_52.jpg"
+      },
+      {
+        "id": "petar-sucic",
+        "full_name": "Petar Sučić",
+        "display_name": "Petar Sučić",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Inter",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Petar_Su%C4%8Di%C4%87.png"
+      },
+      {
         "id": "toni-fruk",
         "full_name": "Toni Fruk",
         "display_name": "Toni Fruk",
@@ -853,19 +838,19 @@
         "photo_url": null
       },
       {
-        "id": "ivan-perisic",
-        "full_name": "Ivan Perišić",
-        "display_name": "Ivan Perišić",
-        "position": "FWD",
-        "detailed_position": "LW",
+        "id": "luka-sucic",
+        "full_name": "Luka Sučić",
+        "display_name": "Luka Sučić",
+        "position": "MID",
+        "detailed_position": "CAM",
         "club": {
-          "name": "PSV",
-          "country_iso": "nl",
-          "league": "Eredivisie"
+          "name": "Real Sociedad",
+          "country_iso": "es",
+          "league": "La Liga"
         },
-        "shirt_number_expected": 4,
+        "shirt_number_expected": 18,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/85/Ivan_Peri%C5%A1i%C4%87_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/FC_Red_Bull_Salzburg_gegen_Wolfsberger_AC_%282022-02-20%29_32.jpg/330px-FC_Red_Bull_Salzburg_gegen_Wolfsberger_AC_%282022-02-20%29_32.jpg"
       },
       {
         "id": "andrej-kramaric",
@@ -898,6 +883,35 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Budimir%2C_Ante_FCSP_15-16_WP_%28cropped%29.jpg/330px-Budimir%2C_Ante_FCSP_15-16_WP_%28cropped%29.jpg"
       },
       {
+        "id": "ivan-perisic",
+        "full_name": "Ivan Perišić",
+        "display_name": "Ivan Perišić",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "PSV",
+          "country_iso": "nl",
+          "league": "Eredivisie"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/85/Ivan_Peri%C5%A1i%C4%87_%28cropped%29.jpg"
+      },
+      {
+        "id": "igor-matanovic",
+        "full_name": "Igor Matanović",
+        "display_name": "Igor Matanović",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Friburgo",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 24,
+        "status": "fixed"
+      },
+      {
         "id": "marco-pasalic",
         "full_name": "Marco Pašalić",
         "display_name": "Marco Pašalić",
@@ -926,20 +940,6 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Petar_Musa_NY_Red_Bulls_v_FC_Dallas_2_May_2026-53_%28cropped%29.jpg"
-      },
-      {
-        "id": "igor-matanovic",
-        "full_name": "Igor Matanović",
-        "display_name": "Igor Matanović",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Friburgo",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 24,
-        "status": "fixed"
       }
     ],
     "starting_xi": {
@@ -1060,8 +1060,8 @@
       "vs_last_3_wcs": "Brasil 2014: fase de grupos eliminada. Rusia 2018: SUBCAMPEONA. Final perdida 4-2 ante Francia. Mejor papel histórico. Catar 2022: TERCER PUESTO. Eliminada por Argentina 0-3 en semis. Mundial 2026: 7ª participación, último Mundial de Modrić. La generación dorada busca despedirse en lo más alto."
     },
     "squad_announced": true,
-    "squad_announced_date": "2026-05-26",
-    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 1998,

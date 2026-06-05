@@ -88,7 +88,7 @@
         "goals_against": 11,
         "goal_difference": 8,
         "points": 14,
-        "win_percentage": 50.0,
+        "win_percentage": 50,
         "clean_sheets": 2,
         "notes": "Stats acumulados: Grupo E (6 partidos: 4G 1E 1P, 13 puntos) + Play-offs Ruta C (2 partidos: 2G 0E 0P)."
       },
@@ -526,19 +526,15 @@
     },
     "likely_squad": [
       {
-        "id": "ugurcan-cakir",
-        "full_name": "Uğurcan Çakır",
-        "display_name": "Uğurcan Çakır",
+        "id": "mert-gunok",
+        "full_name": "Mert Günok",
+        "display_name": "Mert Günok",
         "position": "GK",
         "detailed_position": "GK",
-        "club": {
-          "name": "Galatasaray",
-          "country_iso": "tr",
-          "league": "Süper Lig"
-        },
-        "shirt_number_expected": 1,
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/U%C4%9Furcan_%C3%87ak%C4%B1r_at_Antalyaspor_vs_Trabzonspor_20211211_%282%29_%28cropped%29.jpg/330px-U%C4%9Furcan_%C3%87ak%C4%B1r_at_Antalyaspor_vs_Trabzonspor_20211211_%282%29_%28cropped%29.jpg"
+        "photo_url": null
       },
       {
         "id": "altay-bayindir",
@@ -552,83 +548,23 @@
           "league": "Premier League"
         },
         "shirt_number_expected": 12,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Altay_Bayindir.jpg"
       },
       {
-        "id": "berke-ozer",
-        "full_name": "Berke Özer",
-        "display_name": "Berke Özer",
+        "id": "ugurcan-cakir",
+        "full_name": "Uğurcan Çakır",
+        "display_name": "Uğurcan Çakır",
         "position": "GK",
         "detailed_position": "GK",
-        "club": {
-          "name": "Lille",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 23,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Berke_%C3%96zer_%282021-22_S%C3%BCper_Lig%29_%28cropped%29.png/330px-Berke_%C3%96zer_%282021-22_S%C3%BCper_Lig%29_%28cropped%29.png"
-      },
-      {
-        "id": "merih-demiral",
-        "full_name": "Merih Demiral",
-        "display_name": "Merih Demiral",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Al-Ahli",
-          "country_iso": "sa",
-          "league": "Saudi Pro League"
-        },
-        "shirt_number_expected": 3,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Demiral_in_the_international_match_in_September_2020_%28Cropped%29.jpg"
-      },
-      {
-        "id": "samet-akaydin",
-        "full_name": "Samet Akaydın",
-        "display_name": "Samet Akaydın",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Fenerbahçe",
-          "country_iso": "tr",
-          "league": "Süper Lig"
-        },
-        "shirt_number_expected": 4,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/SAMETAKAYD%C4%B0N_4.jpg/330px-SAMETAKAYD%C4%B0N_4.jpg"
-      },
-      {
-        "id": "abdulkerim-bardakci",
-        "full_name": "Abdülkerim Bardakcı",
-        "display_name": "Bardakcı",
-        "position": "DEF",
-        "detailed_position": "CB",
         "club": {
           "name": "Galatasaray",
           "country_iso": "tr",
           "league": "Süper Lig"
         },
-        "shirt_number_expected": 5,
+        "shirt_number_expected": 1,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Abd%C3%BClkerim_Bardak%C3%A7%C4%B1_-_beIN-Sports-Reklam_%282021%29_%28cropped%29.png/330px-Abd%C3%BClkerim_Bardak%C3%A7%C4%B1_-_beIN-Sports-Reklam_%282021%29_%28cropped%29.png"
-      },
-      {
-        "id": "caglar-soyuncu",
-        "full_name": "Çağlar Söyüncü",
-        "display_name": "Çağlar Söyüncü",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Fenerbahçe",
-          "country_iso": "tr",
-          "league": "Süper Lig"
-        },
-        "shirt_number_expected": 6,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/AUT_vs._TUR_2016-03-29_%28381%29_%28cropped%29.jpg/330px-AUT_vs._TUR_2016-03-29_%28381%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/U%C4%9Furcan_%C3%87ak%C4%B1r_at_Antalyaspor_vs_Trabzonspor_20211211_%282%29_%28cropped%29.jpg/330px-U%C4%9Furcan_%C3%87ak%C4%B1r_at_Antalyaspor_vs_Trabzonspor_20211211_%282%29_%28cropped%29.jpg"
       },
       {
         "id": "zeki-celik",
@@ -646,6 +582,92 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Zeki_%C3%A7elik_2020.jpg/330px-Zeki_%C3%A7elik_2020.jpg"
       },
       {
+        "id": "merih-demiral",
+        "full_name": "Merih Demiral",
+        "display_name": "Merih Demiral",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Al-Ahli",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Demiral_in_the_international_match_in_September_2020_%28Cropped%29.jpg"
+      },
+      {
+        "id": "caglar-soyuncu",
+        "full_name": "Çağlar Söyüncü",
+        "display_name": "Çağlar Söyüncü",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Fenerbahçe",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/AUT_vs._TUR_2016-03-29_%28381%29_%28cropped%29.jpg/330px-AUT_vs._TUR_2016-03-29_%28381%29_%28cropped%29.jpg"
+      },
+      {
+        "id": "eren-elmali",
+        "full_name": "Eren Elmalı",
+        "display_name": "Eren Elmalı",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Galatasaray",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 22,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Eren_Elmal%C4%B1_20251019.jpg/330px-Eren_Elmal%C4%B1_20251019.jpg"
+      },
+      {
+        "id": "abdulkerim-bardakci",
+        "full_name": "Abdülkerim Bardakcı",
+        "display_name": "Bardakcı",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Galatasaray",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Abd%C3%BClkerim_Bardak%C3%A7%C4%B1_-_beIN-Sports-Reklam_%282021%29_%28cropped%29.png/330px-Abd%C3%BClkerim_Bardak%C3%A7%C4%B1_-_beIN-Sports-Reklam_%282021%29_%28cropped%29.png"
+      },
+      {
+        "id": "ozan-kabak",
+        "full_name": "Ozan Kabak",
+        "display_name": "Ozan Kabak",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "mert-muldur",
+        "full_name": "Mert Müldür",
+        "display_name": "Mert Müldür",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Fenerbahçe",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 26,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/50/Rapid-Spartak_%2815%29_%28cropped%29.jpg"
+      },
+      {
         "id": "ferdi-kadioglu",
         "full_name": "Ferdi Kadıoğlu",
         "display_name": "Ferdi Kadıoğlu",
@@ -661,49 +683,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Ferdi_Kad%C4%B1o%C4%9Flu_2024.jpg/330px-Ferdi_Kad%C4%B1o%C4%9Flu_2024.jpg"
       },
       {
-        "id": "eren-elmali",
-        "full_name": "Eren Elmalı",
-        "display_name": "Eren Elmalı",
+        "id": "samet-akaydin",
+        "full_name": "Samet Akaydın",
+        "display_name": "Samet Akaydın",
         "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "Galatasaray",
-          "country_iso": "tr",
-          "league": "Süper Lig"
-        },
-        "shirt_number_expected": 22,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Eren_Elmal%C4%B1_20251019.jpg/330px-Eren_Elmal%C4%B1_20251019.jpg"
-      },
-      {
-        "id": "hakan-calhanoglu",
-        "full_name": "Hakan Çalhanoğlu",
-        "display_name": "Hakan Çalhanoğlu",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Inter de Milán",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 10,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/AUT_vs._TUR_2016-03-29_%28342%29.jpg/330px-AUT_vs._TUR_2016-03-29_%28342%29.jpg"
-      },
-      {
-        "id": "ismail-yuksek",
-        "full_name": "İsmail Yüksek",
-        "display_name": "İsmail Yüksek",
-        "position": "MID",
-        "detailed_position": "CM",
+        "detailed_position": "CB",
         "club": {
           "name": "Fenerbahçe",
           "country_iso": "tr",
           "league": "Süper Lig"
         },
-        "shirt_number_expected": 8,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/977561_sPICT_%28cropped%29.jpg/330px-977561_sPICT_%28cropped%29.jpg"
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/SAMETAKAYD%C4%B0N_4.jpg/330px-SAMETAKAYD%C4%B0N_4.jpg"
       },
       {
         "id": "salih-ozcan",
@@ -736,10 +728,66 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/K%C3%B6k%C3%A7%C3%BC_in_the_international_match_in_March_2024_%28Cropped%29.jpg/330px-K%C3%B6k%C3%A7%C3%BC_in_the_international_match_in_March_2024_%28Cropped%29.jpg"
       },
       {
+        "id": "hakan-calhanoglu",
+        "full_name": "Hakan Çalhanoğlu",
+        "display_name": "Hakan Çalhanoğlu",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Inter de Milán",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/AUT_vs._TUR_2016-03-29_%28342%29.jpg/330px-AUT_vs._TUR_2016-03-29_%28342%29.jpg"
+      },
+      {
+        "id": "ismail-yuksek",
+        "full_name": "İsmail Yüksek",
+        "display_name": "İsmail Yüksek",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Fenerbahçe",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/977561_sPICT_%28cropped%29.jpg/330px-977561_sPICT_%28cropped%29.jpg"
+      },
+      {
+        "id": "kaan-ayhan",
+        "full_name": "Kaan Ayhan",
+        "display_name": "Kaan Ayhan",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "kerem-akturkoglu",
+        "full_name": "Kerem Aktürkoğlu",
+        "display_name": "Aktürkoğlu",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Benfica",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Kerem_Akt%C3%BCrko%C4%9Flu_2021.jpg/330px-Kerem_Akt%C3%BCrko%C4%9Flu_2021.jpg"
+      },
+      {
         "id": "arda-guler",
         "full_name": "Arda Güler",
         "display_name": "Arda Güler",
-        "position": "MID",
+        "position": "FWD",
         "detailed_position": "CAM",
         "club": {
           "name": "Real Madrid",
@@ -749,6 +797,20 @@
         "shirt_number_expected": 17,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Derbide_Fenerbah%C3%A7e_Yedek_Oyuncu_Arda_G%C3%BCler_%282021-22_S%C3%BCper_Lig_-_Cropped%29.jpg"
+      },
+      {
+        "id": "deniz-gul",
+        "full_name": "Deniz Gül",
+        "display_name": "Deniz Gül",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Porto",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
+        },
+        "shirt_number_expected": 9,
+        "status": "fixed"
       },
       {
         "id": "kenan-yildiz",
@@ -766,19 +828,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Kenan_Y%C4%B1ld%C4%B1z_in_the_international_match_%28March_2025%29_%28cropped%29.jpg/330px-Kenan_Y%C4%B1ld%C4%B1z_in_the_international_match_%28March_2025%29_%28cropped%29.jpg"
       },
       {
-        "id": "kerem-akturkoglu",
-        "full_name": "Kerem Aktürkoğlu",
-        "display_name": "Aktürkoğlu",
+        "id": "irfan-can-kahveci",
+        "full_name": "İrfan Can Kahveci",
+        "display_name": "İrfan Can",
         "position": "FWD",
-        "detailed_position": "LW",
+        "detailed_position": "CAM",
         "club": {
-          "name": "Benfica",
-          "country_iso": "pt",
-          "league": "Primeira Liga"
+          "name": "Fenerbahçe",
+          "country_iso": "tr",
+          "league": "Süper Lig"
         },
-        "shirt_number_expected": 7,
+        "shirt_number_expected": 16,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Kerem_Akt%C3%BCrko%C4%9Flu_2021.jpg/330px-Kerem_Akt%C3%BCrko%C4%9Flu_2021.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/%C4%B0rfan_Can_Kahveci_%282021-22_S%C3%BCper_Lig%29_-_Resim2.png/330px-%C4%B0rfan_Can_Kahveci_%282021-22_S%C3%BCper_Lig%29_-_Resim2.png"
       },
       {
         "id": "yunus-akgun",
@@ -811,108 +873,26 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Bar%C4%B1%C5%9F_Alper_Y%C4%B1lmaz.jpg/330px-Bar%C4%B1%C5%9F_Alper_Y%C4%B1lmaz.jpg"
       },
       {
-        "id": "cengiz-under",
-        "full_name": "Cengiz Ünder",
-        "display_name": "Cengiz Ünder",
+        "id": "oguz-aydn",
+        "full_name": "Oğuz Aydın",
+        "display_name": "Oğuz Aydın",
         "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Beşiktaş",
-          "country_iso": "tr",
-          "league": "Süper Lig"
-        },
-        "shirt_number_expected": 15,
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Cengiz_%C3%9Cnder_2018.jpg/330px-Cengiz_%C3%9Cnder_2018.jpg"
+        "photo_url": null
       },
       {
-        "id": "deniz-gul",
-        "full_name": "Deniz Gül",
-        "display_name": "Deniz Gül",
+        "id": "can-uzun",
+        "full_name": "Can Uzun",
+        "display_name": "Can Uzun",
         "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Porto",
-          "country_iso": "pt",
-          "league": "Primeira Liga"
-        },
-        "shirt_number_expected": 9,
-        "status": "fixed"
-      },
-      {
-        "id": "semih-kilicsoy",
-        "full_name": "Semih Kılıçsoy",
-        "display_name": "Semih Kılıçsoy",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Beşiktaş",
-          "country_iso": "tr",
-          "league": "Süper Lig"
-        },
-        "shirt_number_expected": 25,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Semih_K%C4%B1l%C4%B1%C3%A7soy_20231008_%28cropped%29.jpg/330px-Semih_K%C4%B1l%C4%B1%C3%A7soy_20231008_%28cropped%29.jpg"
-      },
-      {
-        "id": "irfan-can-kahveci",
-        "full_name": "İrfan Can Kahveci",
-        "display_name": "İrfan Can",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Fenerbahçe",
-          "country_iso": "tr",
-          "league": "Süper Lig"
-        },
-        "shirt_number_expected": 16,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/%C4%B0rfan_Can_Kahveci_%282021-22_S%C3%BCper_Lig%29_-_Resim2.png/330px-%C4%B0rfan_Can_Kahveci_%282021-22_S%C3%BCper_Lig%29_-_Resim2.png"
-      },
-      {
-        "id": "okay-yokuslu",
-        "full_name": "Okay Yokuşlu",
-        "display_name": "Okay Yokuşlu",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "West Brom",
-          "country_iso": "gb-eng",
-          "league": "Championship"
-        },
-        "shirt_number_expected": 13,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Okay_Yoku%C5%9Flu_2018.jpg/330px-Okay_Yoku%C5%9Flu_2018.jpg"
-      },
-      {
-        "id": "umut-nayir",
-        "full_name": "Umut Nayir",
-        "display_name": "Umut Nayir",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Konyaspor",
-          "country_iso": "tr",
-          "league": "Süper Lig"
-        },
-        "shirt_number_expected": 24,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Umut_Nayir_%28cropped%29.jpg"
-      },
-      {
-        "id": "mert-muldur",
-        "full_name": "Mert Müldür",
-        "display_name": "Mert Müldür",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Fenerbahçe",
-          "country_iso": "tr",
-          "league": "Süper Lig"
-        },
-        "shirt_number_expected": 26,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/50/Rapid-Spartak_%2815%29_%28cropped%29.jpg"
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       }
     ],
     "starting_xi": {
@@ -1031,8 +1011,10 @@
       },
       "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: NO CLASIFICÓ. Catar 2022: NO CLASIFICÓ. Mundial 2026: regreso tras 24 años (última 2002 con tercer puesto histórico). La generación Güler-Yıldız es la más prometedora desde Hakan Şükür-Tugay-Davala 2002."
     },
-    "squad_announced": false,
-    "squad_announced_status": "pending_official"
+    "squad_announced": true,
+    "squad_announced_status": "pending_official",
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 1954,
@@ -1052,7 +1034,7 @@
       "lost": 4,
       "goals_for": 20,
       "goals_against": 17,
-      "win_percentage": 50.0,
+      "win_percentage": 50,
       "notes": "Datos hasta Catar 2022. Solo 2 participaciones (1954, 2002)."
     },
     "by_world_cup": [

@@ -88,7 +88,7 @@
         "goals_against": 8,
         "goal_difference": 2,
         "points": 13,
-        "win_percentage": 30.0,
+        "win_percentage": 30,
         "clean_sheets": 3,
         "notes": "Stats de la 3ª ronda Grupo A (10 PJ, 13 pts, 4º). Adicionalmente: 4ª ronda 1G 1E (vs Omán y UAE 2-1). Pase final consolidado el 14 oct 2025."
       },
@@ -527,6 +527,17 @@
         "status": "fixed"
       },
       {
+        "id": "salah-zakaria",
+        "full_name": "Salah Zakaria",
+        "display_name": "Salah Zakaria",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
         "id": "meshaal-barsham",
         "full_name": "Meshaal Barsham",
         "display_name": "Meshaal Barsham",
@@ -540,20 +551,6 @@
         "shirt_number_expected": 12,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Qatar_v_Lebanon_%2832%29_%28cropped%29.jpg/330px-Qatar_v_Lebanon_%2832%29_%28cropped%29.jpg"
-      },
-      {
-        "id": "shehab-ellethy",
-        "full_name": "Shehab Ellethy",
-        "display_name": "Shehab Ellethy",
-        "position": "GK",
-        "detailed_position": "GK",
-        "club": {
-          "name": "Al-Gharafa",
-          "country_iso": "qa",
-          "league": "Qatar Stars League"
-        },
-        "shirt_number_expected": 23,
-        "status": "probable"
       },
       {
         "id": "pedro-miguel",
@@ -571,50 +568,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Pedro_Miguel%2C_Concelho_da_Horta%2C_ilha_do_Faial%2C_A%C3%A7ores%2C_Portugal.JPG/330px-Pedro_Miguel%2C_Concelho_da_Horta%2C_ilha_do_Faial%2C_A%C3%A7ores%2C_Portugal.JPG"
       },
       {
-        "id": "mohammed-al-mannai",
-        "full_name": "Mohammed Al-Mannai",
-        "display_name": "Mohammed Al-Mannai",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Al-Wakrah",
-          "country_iso": "qa",
-          "league": "Qatar Stars League"
-        },
-        "shirt_number_expected": 14,
-        "status": "probable"
-      },
-      {
-        "id": "boualem-khoukhi",
-        "full_name": "Boualem Khoukhi",
-        "display_name": "Boualem Khoukhi",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Al-Sailiya",
-          "country_iso": "qa",
-          "league": "Qatar Stars League"
-        },
-        "shirt_number_expected": 4,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Boualem_Khoukhi.png/330px-Boualem_Khoukhi.png"
-      },
-      {
-        "id": "tarek-salman",
-        "full_name": "Tarek Salman",
-        "display_name": "Tarek Salman",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Al-Sadd",
-          "country_iso": "qa",
-          "league": "Qatar Stars League"
-        },
-        "shirt_number_expected": 5,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/76/Tarek_Salman.jpg"
-      },
-      {
         "id": "lucas-mendes",
         "full_name": "Lucas Mendes",
         "display_name": "Lucas Mendes",
@@ -628,6 +581,43 @@
         "shirt_number_expected": 13,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Valais_Cup_2013_-_OM-FC_Porto_13-07-2013_-_Lucas_Mendes.jpg/330px-Valais_Cup_2013_-_OM-FC_Porto_13-07-2013_-_Lucas_Mendes.jpg"
+      },
+      {
+        "id": "issa-laye",
+        "full_name": "Issa Laye",
+        "display_name": "Issa Laye",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "jassem-gaber",
+        "full_name": "Jassem Gaber",
+        "display_name": "Jassem Gaber",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Al-Wakrah",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 15,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Asian_Nations_Cup_Iran_-_Qatar_%285%29_%28cropped%29.jpg"
+      },
+      {
+        "id": "ayoub-aloui",
+        "full_name": "Ayoub Aloui",
+        "display_name": "Ayoub Aloui",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "homam-ahmed",
@@ -645,19 +635,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Asian_Nations_Cup_Iran_-_Qatar_%288%29_%28cropped%29.jpg"
       },
       {
-        "id": "jassem-gaber",
-        "full_name": "Jassem Gaber",
-        "display_name": "Jassem Gaber",
+        "id": "boualem-khoukhi",
+        "full_name": "Boualem Khoukhi",
+        "display_name": "Boualem Khoukhi",
         "position": "DEF",
         "detailed_position": "CB",
         "club": {
-          "name": "Al-Wakrah",
+          "name": "Al-Sailiya",
           "country_iso": "qa",
           "league": "Qatar Stars League"
         },
-        "shirt_number_expected": 15,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Asian_Nations_Cup_Iran_-_Qatar_%285%29_%28cropped%29.jpg"
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Boualem_Khoukhi.png/330px-Boualem_Khoukhi.png"
       },
       {
         "id": "sultan-al-brake",
@@ -671,52 +661,19 @@
           "league": "Qatar Stars League"
         },
         "shirt_number_expected": 22,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/36/Sultan_Al_Brake_in_2018.jpg"
       },
       {
-        "id": "assim-madibo",
-        "full_name": "Assim Madibo",
-        "display_name": "Assim Madibo",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Al-Duhail",
-          "country_iso": "qa",
-          "league": "Qatar Stars League"
-        },
-        "shirt_number_expected": 6,
+        "id": "al-hashmi-al-hussein",
+        "full_name": "Al-Hashmi Al-Hussein",
+        "display_name": "Al-Hashmi Al-Hussein",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/03/Qatar_-_Japan%2C_AFC_Asian_Cup_2019_58_-_Assim_Madibo.jpg"
-      },
-      {
-        "id": "karim-boudiaf",
-        "full_name": "Karim Boudiaf",
-        "display_name": "Karim Boudiaf",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Al-Duhail",
-          "country_iso": "qa",
-          "league": "Qatar Stars League"
-        },
-        "shirt_number_expected": 8,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Karim_Boudiaf_WC2022.jpg/330px-Karim_Boudiaf_WC2022.jpg"
-      },
-      {
-        "id": "ayoub-al-ouwi",
-        "full_name": "Ayoub Al-Ouwi",
-        "display_name": "Ayoub Al-Ouwi",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Al-Sadd",
-          "country_iso": "qa",
-          "league": "Qatar Stars League"
-        },
-        "shirt_number_expected": 16,
-        "status": "fixed"
+        "photo_url": null
       },
       {
         "id": "abdulaziz-hatem",
@@ -734,9 +691,24 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Abdulaziz_Hatem_2012_2.jpg/330px-Abdulaziz_Hatem_2012_2.jpg"
       },
       {
-        "id": "tameem-mansour",
-        "full_name": "Tameem Mansour",
-        "display_name": "Tameem Mansour",
+        "id": "karim-boudiaf",
+        "full_name": "Karim Boudiaf",
+        "display_name": "Karim Boudiaf",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Al-Duhail",
+          "country_iso": "qa",
+          "league": "Qatar Stars League"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Karim_Boudiaf_WC2022.jpg/330px-Karim_Boudiaf_WC2022.jpg"
+      },
+      {
+        "id": "ahmed-al-ganehi",
+        "full_name": "Ahmed Al-Ganehi",
+        "display_name": "Ahmed Al-Ganehi",
         "position": "MID",
         "detailed_position": "CM",
         "club": {
@@ -744,38 +716,49 @@
           "country_iso": "qa",
           "league": "Qatar Stars League"
         },
-        "shirt_number_expected": 18,
+        "shirt_number_expected": 26,
         "status": "fixed"
       },
       {
-        "id": "akram-afif",
-        "full_name": "Akram Afif",
-        "display_name": "Akram Afif",
-        "position": "FWD",
-        "detailed_position": "LW",
+        "id": "ahmed-fathy",
+        "full_name": "Ahmed Fathy Aboulela",
+        "display_name": "Ahmed Fathy",
+        "position": "MID",
+        "detailed_position": "RW",
         "club": {
-          "name": "Al-Sadd",
+          "name": "Al-Wakrah",
           "country_iso": "qa",
           "league": "Qatar Stars League"
         },
-        "shirt_number_expected": 11,
+        "shirt_number_expected": 20,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Qatar_v_Lebanon_%2837%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Ahmed_Fathy.jpg/330px-Ahmed_Fathy.jpg"
       },
       {
-        "id": "almoez-ali",
-        "full_name": "Almoez Ali",
-        "display_name": "Almoez Ali",
-        "position": "FWD",
-        "detailed_position": "ST",
+        "id": "assim-madibo",
+        "full_name": "Assim Madibo",
+        "display_name": "Assim Madibo",
+        "position": "MID",
+        "detailed_position": "CDM",
         "club": {
           "name": "Al-Duhail",
           "country_iso": "qa",
           "league": "Qatar Stars League"
         },
-        "shirt_number_expected": 19,
+        "shirt_number_expected": 6,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/87/Moez_Ali_at_Qatar_v_Japan_%E2%80%93_AFC_Asian_Cup_2019_final_32.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/03/Qatar_-_Japan%2C_AFC_Asian_Cup_2019_58_-_Assim_Madibo.jpg"
+      },
+      {
+        "id": "ahmed-alaaeldin",
+        "full_name": "Ahmed Alaaeldin",
+        "display_name": "Ahmed Alaaeldin",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "edmilson-junior",
@@ -793,21 +776,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Edmilson_Junior_2018.jpg"
       },
       {
-        "id": "hassan-al-haydos",
-        "full_name": "Hassan Al-Haydos",
-        "display_name": "Hassan Al-Haydos",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Al-Sadd",
-          "country_iso": "qa",
-          "league": "Qatar Stars League"
-        },
-        "shirt_number_expected": 10,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/df/Qatar_-_Japan%2C_AFC_Asian_Cup_2019_58_-_Hassan_Al_Haydos.jpg"
-      },
-      {
         "id": "mohammed-muntari",
         "full_name": "Mohammed Muntari",
         "display_name": "Mohammed Muntari",
@@ -823,76 +791,82 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/2022_FIFA_World_Cup_Qatar_0%E2%80%932_Ecuador_-_%286%29.jpg/330px-2022_FIFA_World_Cup_Qatar_0%E2%80%932_Ecuador_-_%286%29.jpg"
       },
       {
-        "id": "ahmed-fathy",
-        "full_name": "Ahmed Fathy Aboulela",
-        "display_name": "Ahmed Fathy",
+        "id": "hassan-al-haydos",
+        "full_name": "Hassan Al-Haydos",
+        "display_name": "Hassan Al-Haydos",
         "position": "FWD",
         "detailed_position": "RW",
         "club": {
-          "name": "Al-Wakrah",
+          "name": "Al-Sadd",
           "country_iso": "qa",
           "league": "Qatar Stars League"
         },
-        "shirt_number_expected": 20,
+        "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Ahmed_Fathy.jpg/330px-Ahmed_Fathy.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/df/Qatar_-_Japan%2C_AFC_Asian_Cup_2019_58_-_Hassan_Al_Haydos.jpg"
       },
       {
-        "id": "tahsin-mohammed",
-        "full_name": "Tahsin Mohammed",
-        "display_name": "Tahsin Mohammed",
+        "id": "akram-afif",
+        "full_name": "Akram Afif",
+        "display_name": "Akram Afif",
         "position": "FWD",
         "detailed_position": "LW",
         "club": {
-          "name": "Al-Arabi",
+          "name": "Al-Sadd",
           "country_iso": "qa",
           "league": "Qatar Stars League"
         },
-        "shirt_number_expected": 21,
-        "status": "probable"
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Qatar_v_Lebanon_%2837%29_%28cropped%29.jpg"
       },
       {
-        "id": "yousef-aymen",
-        "full_name": "Yousef Aymen",
-        "display_name": "Yousef Aymen",
+        "id": "yusuf-abdurisag",
+        "full_name": "Yusuf Abdurisag",
+        "display_name": "Yusuf Abdurisag",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "almoez-ali",
+        "full_name": "Almoez Ali",
+        "display_name": "Almoez Ali",
         "position": "FWD",
         "detailed_position": "ST",
         "club": {
-          "name": "Al-Wakrah",
+          "name": "Al-Duhail",
           "country_iso": "qa",
           "league": "Qatar Stars League"
         },
-        "shirt_number_expected": 24,
-        "status": "probable"
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/87/Moez_Ali_at_Qatar_v_Japan_%E2%80%93_AFC_Asian_Cup_2019_final_32.jpg"
       },
       {
-        "id": "jassem-jaber",
-        "full_name": "Jassem Jaber",
-        "display_name": "Jassem Jaber",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Al-Sadd",
-          "country_iso": "qa",
-          "league": "Qatar Stars League"
-        },
-        "shirt_number_expected": 25,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Asian_Nations_Cup_Iran_-_Qatar_%285%29_%28cropped%29.jpg"
+        "id": "tahsin-jamshid",
+        "full_name": "Tahsin Jamshid",
+        "display_name": "Tahsin Jamshid",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
-        "id": "ahmed-al-ganehi",
-        "full_name": "Ahmed Al-Ganehi",
-        "display_name": "Ahmed Al-Ganehi",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Al-Sadd",
-          "country_iso": "qa",
-          "league": "Qatar Stars League"
-        },
-        "shirt_number_expected": 26,
-        "status": "bubble"
+        "id": "mohamed-manai",
+        "full_name": "Mohamed Manai",
+        "display_name": "Mohamed Manai",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       }
     ],
     "starting_xi": {
@@ -1013,8 +987,10 @@
       },
       "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: NO CLASIFICÓ. Catar 2022: fase de grupos como ANFITRIÓN (perdió los 3, peor papel anfitrión histórico). Mundial 2026: 2ª participación, 1ª por mérito deportivo."
     },
-    "squad_announced": false,
-    "squad_announced_status": "pending_official"
+    "squad_announced": true,
+    "squad_announced_status": "pending_official",
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 2022,
@@ -1034,7 +1010,7 @@
       "lost": 3,
       "goals_for": 1,
       "goals_against": 7,
-      "win_percentage": 0.0,
+      "win_percentage": 0,
       "notes": "3 partidos en 1 Mundial. PEOR PAPEL DE UN ANFITRIÓN en la historia mundialista: 0 puntos."
     },
     "by_world_cup": [

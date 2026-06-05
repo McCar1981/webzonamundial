@@ -88,7 +88,7 @@
         "goals_against": 4,
         "goal_difference": 5,
         "points": 12,
-        "win_percentage": 50.0,
+        "win_percentage": 50,
         "clean_sheets": 3,
         "notes": "INVICTOS en eliminatoria. Pase invicto histórico. Antes había dominado la 2ª ronda con 12 pts en Grupo D (4G 0E 0P, 10 GF 1 GC)."
       },
@@ -415,6 +415,32 @@
     },
     "likely_squad": [
       {
+        "id": "luis-mejia",
+        "full_name": "Luis Mejía",
+        "display_name": "Luis Mejía",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Vélez Sarsfield",
+          "country_iso": "ar",
+          "league": "Liga Profesional Argentina"
+        },
+        "shirt_number_expected": 23,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Concacaf_Gold_Cup_%2848248588296%29_%28cropped%29.jpg/330px-Concacaf_Gold_Cup_%2848248588296%29_%28cropped%29.jpg"
+      },
+      {
+        "id": "cesar-samudio",
+        "full_name": "César Samudio",
+        "display_name": "César Samudio",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
         "id": "orlando-mosquera",
         "full_name": "Orlando Mosquera",
         "display_name": "Orlando Mosquera",
@@ -428,50 +454,6 @@
         "shirt_number_expected": 1,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Partido_Galicia_-_Panam%C3%A1_en_Bala%C3%ADdos_160_%28Orlando_Mosquera%29.jpg/330px-Partido_Galicia_-_Panam%C3%A1_en_Bala%C3%ADdos_160_%28Orlando_Mosquera%29.jpg"
-      },
-      {
-        "id": "jose-guerra",
-        "full_name": "José Guerra",
-        "display_name": "José Guerra",
-        "position": "GK",
-        "detailed_position": "GK",
-        "club": {
-          "name": "CAI",
-          "country_iso": "pa",
-          "league": "LPF Panamá"
-        },
-        "shirt_number_expected": 12,
-        "status": "fixed"
-      },
-      {
-        "id": "luis-mejia",
-        "full_name": "Luis Mejía",
-        "display_name": "Luis Mejía",
-        "position": "GK",
-        "detailed_position": "GK",
-        "club": {
-          "name": "Vélez Sarsfield",
-          "country_iso": "ar",
-          "league": "Liga Profesional Argentina"
-        },
-        "shirt_number_expected": 23,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Concacaf_Gold_Cup_%2848248588296%29_%28cropped%29.jpg/330px-Concacaf_Gold_Cup_%2848248588296%29_%28cropped%29.jpg"
-      },
-      {
-        "id": "michael-amir-murillo",
-        "full_name": "Michael Amir Murillo",
-        "display_name": "Amir Murillo",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Olympique de Marsella",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 2,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Partido_Galicia_-_Panam%C3%A1_en_Bala%C3%ADdos_63.jpg/330px-Partido_Galicia_-_Panam%C3%A1_en_Bala%C3%ADdos_63.jpg"
       },
       {
         "id": "cesar-blackman",
@@ -489,6 +471,17 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Partido_Galicia_-_Panam%C3%A1_en_Bala%C3%ADdos_153.jpg/330px-Partido_Galicia_-_Panam%C3%A1_en_Bala%C3%ADdos_153.jpg"
       },
       {
+        "id": "jose-cordoba",
+        "full_name": "José Córdoba",
+        "display_name": "José Córdoba",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/57/Jos%C3%A9_C%C3%B3rdoba.jpg"
+      },
+      {
         "id": "fidel-escobar",
         "full_name": "Fidel Escobar",
         "display_name": "Fidel Escobar",
@@ -504,19 +497,26 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/e8/ENG-PAN_%2813%29_2018-6-29_Fidel_Escobar.jpg"
       },
       {
-        "id": "andres-andrade",
-        "full_name": "Andrés Andrade",
-        "display_name": "Andrés Andrade",
+        "id": "edgardo-farina",
+        "full_name": "Edgardo Farina",
+        "display_name": "Edgardo Farina",
         "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Atlético Nacional",
-          "country_iso": "co",
-          "league": "Liga BetPlay"
-        },
-        "shirt_number_expected": 5,
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Andr%C3%A9s_Felipe_Andrade.jpg/330px-Andr%C3%A9s_Felipe_Andrade.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/62/Partido_Galicia_-_Panam%C3%A1_en_Bala%C3%ADdos_21_%28Edgardo_Fari%C3%B1a%29.jpg"
+      },
+      {
+        "id": "jiovany-ramos",
+        "full_name": "Jiovany Ramos",
+        "display_name": "Jiovany Ramos",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "carlos-harvey",
@@ -531,21 +531,6 @@
         },
         "shirt_number_expected": 15,
         "status": "fixed"
-      },
-      {
-        "id": "harold-cummings",
-        "full_name": "Harold Cummings",
-        "display_name": "Harold Cummings",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Tauro FC",
-          "country_iso": "pa",
-          "league": "LPF Panamá"
-        },
-        "shirt_number_expected": 22,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Uni%C3%B3n_Espa%C3%B1ola_v_Deportes_Iquique_20200126_10.jpg/330px-Uni%C3%B3n_Espa%C3%B1ola_v_Deportes_Iquique_20200126_10.jpg"
       },
       {
         "id": "eric-davis",
@@ -563,34 +548,86 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Erick_Davis_2018.jpg/330px-Erick_Davis_2018.jpg"
       },
       {
-        "id": "michael-murillo",
-        "full_name": "Michael Murillo",
-        "display_name": "Michael Murillo",
+        "id": "andres-andrade",
+        "full_name": "Andrés Andrade",
+        "display_name": "Andrés Andrade",
         "position": "DEF",
-        "detailed_position": "LB",
+        "detailed_position": "CB",
         "club": {
-          "name": "Anderlecht",
-          "country_iso": "be",
-          "league": "Pro League"
+          "name": "Atlético Nacional",
+          "country_iso": "co",
+          "league": "Liga BetPlay"
         },
-        "shirt_number_expected": 13,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Michael_Amir_Murillo_vs_Cincinnati%2C_May_2019.jpg/330px-Michael_Amir_Murillo_vs_Cincinnati%2C_May_2019.jpg"
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Andr%C3%A9s_Felipe_Andrade.jpg/330px-Andr%C3%A9s_Felipe_Andrade.jpg"
       },
       {
-        "id": "anibal-godoy",
-        "full_name": "Aníbal Godoy",
-        "display_name": "Aníbal Godoy",
+        "id": "michael-amir-murillo",
+        "full_name": "Michael Amir Murillo",
+        "display_name": "Amir Murillo",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Olympique de Marsella",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Partido_Galicia_-_Panam%C3%A1_en_Bala%C3%ADdos_63.jpg/330px-Partido_Galicia_-_Panam%C3%A1_en_Bala%C3%ADdos_63.jpg"
+      },
+      {
+        "id": "roderick-miller",
+        "full_name": "Roderick Miller",
+        "display_name": "Roderick Miller",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Partido_Galicia_-_Panam%C3%A1_en_Bala%C3%ADdos_59_%28Roderick_Miller%29.jpg"
+      },
+      {
+        "id": "jorge-gutierrez",
+        "full_name": "Jorge Gutiérrez",
+        "display_name": "Jorge Gutiérrez",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "cristian-martinez",
+        "full_name": "Cristian Martínez",
+        "display_name": "Cristian Martínez",
         "position": "MID",
         "detailed_position": "CDM",
         "club": {
-          "name": "San José Earthquakes",
-          "country_iso": "us",
-          "league": "MLS"
+          "name": "Independiente Medellín",
+          "country_iso": "co",
+          "league": "Liga BetPlay"
         },
-        "shirt_number_expected": 6,
+        "shirt_number_expected": 16,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Godoy.jpg/330px-Godoy.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/87/Cristian_Mart%C3%ADnez_2017-06-14_%2835788919006%29_%28cropped%29.jpg"
+      },
+      {
+        "id": "jose-luis-rodriguez",
+        "full_name": "José Luis Rodríguez",
+        "display_name": "Puma Rodríguez",
+        "position": "MID",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Tauro FC",
+          "country_iso": "pa",
+          "league": "LPF Panamá"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Festival_de_Las_Condes_2020_05.jpg/330px-Festival_de_Las_Condes_2020_05.jpg"
       },
       {
         "id": "adalberto-carrasquilla",
@@ -608,6 +645,20 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Coco_Carrasquilla.jpg/330px-Coco_Carrasquilla.jpg"
       },
       {
+        "id": "ismael-diaz",
+        "full_name": "Ismael Díaz",
+        "display_name": "Ismael Díaz",
+        "position": "MID",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Club León",
+          "country_iso": "mx",
+          "league": "Liga MX"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed"
+      },
+      {
         "id": "edgar-barcenas",
         "full_name": "Édgar Bárcenas",
         "display_name": "Édgar Bárcenas",
@@ -623,60 +674,58 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Partido_Galicia_-_Panam%C3%A1_en_Bala%C3%ADdos_68.jpg/330px-Partido_Galicia_-_Panam%C3%A1_en_Bala%C3%ADdos_68.jpg"
       },
       {
-        "id": "cristian-martinez",
-        "full_name": "Cristian Martínez",
-        "display_name": "Cristian Martínez",
+        "id": "alberto-quintero",
+        "full_name": "Alberto Quintero",
+        "display_name": "Alberto Quintero",
+        "position": "MID",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Universitario",
+          "country_iso": "pe",
+          "league": "Liga 1 peruana"
+        },
+        "shirt_number_expected": 21,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/72/Alberto-Quintero.jpg"
+      },
+      {
+        "id": "anibal-godoy",
+        "full_name": "Aníbal Godoy",
+        "display_name": "Aníbal Godoy",
         "position": "MID",
         "detailed_position": "CDM",
         "club": {
-          "name": "Independiente Medellín",
-          "country_iso": "co",
-          "league": "Liga BetPlay"
+          "name": "San José Earthquakes",
+          "country_iso": "us",
+          "league": "MLS"
         },
-        "shirt_number_expected": 16,
-        "status": "fixed"
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Godoy.jpg/330px-Godoy.jpg"
       },
       {
-        "id": "ivan-anderson",
-        "full_name": "Iván Anderson",
-        "display_name": "Iván Anderson",
+        "id": "cesar-yanis",
+        "full_name": "César Yanis",
+        "display_name": "César Yanis",
         "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Partido_Galicia_-_Panam%C3%A1_en_Bala%C3%ADdos_16_%28cropped%29.jpg"
+      },
+      {
+        "id": "tomas-rodriguez",
+        "full_name": "Tomás Rodríguez",
+        "display_name": "Tomás Rodríguez",
+        "position": "FWD",
         "detailed_position": "CM",
         "club": {
-          "name": "Plaza Amador",
+          "name": "CAI",
           "country_iso": "pa",
           "league": "LPF Panamá"
         },
-        "shirt_number_expected": 18,
-        "status": "fixed"
-      },
-      {
-        "id": "gabriel-gomez",
-        "full_name": "Gabriel 'Gavilán' Gómez",
-        "display_name": "Gabriel Gómez",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Veteranos retiro",
-          "country_iso": "pa",
-          "league": "LPF Panamá"
-        },
-        "shirt_number_expected": 19,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Gabriel_G%C3%B3mez_Philadelphia_Union_2012.jpg"
-      },
-      {
-        "id": "ismael-diaz",
-        "full_name": "Ismael Díaz",
-        "display_name": "Ismael Díaz",
-        "position": "FWD",
-        "detailed_position": "LW",
-        "club": {
-          "name": "Club León",
-          "country_iso": "mx",
-          "league": "Liga MX"
-        },
-        "shirt_number_expected": 7,
+        "shirt_number_expected": 26,
         "status": "fixed"
       },
       {
@@ -694,35 +743,6 @@
         "status": "fixed"
       },
       {
-        "id": "azarias-londono",
-        "full_name": "Azarías Londoño",
-        "display_name": "Azarías Londoño",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Universidad Católica",
-          "country_iso": "ec",
-          "league": "Serie A ecuatoriana"
-        },
-        "shirt_number_expected": 11,
-        "status": "fixed"
-      },
-      {
-        "id": "jose-luis-rodriguez",
-        "full_name": "José Luis Rodríguez",
-        "display_name": "Puma Rodríguez",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Tauro FC",
-          "country_iso": "pa",
-          "league": "LPF Panamá"
-        },
-        "shirt_number_expected": 10,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Festival_de_Las_Condes_2020_05.jpg/330px-Festival_de_Las_Condes_2020_05.jpg"
-      },
-      {
         "id": "cecilio-waterman",
         "full_name": "Cecilio Waterman",
         "display_name": "Cecilio Waterman",
@@ -738,62 +758,18 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Cecilio_Waterman_Everton_v_Cobresal_20230828_02.jpg/330px-Cecilio_Waterman_Everton_v_Cobresal_20230828_02.jpg"
       },
       {
-        "id": "alberto-quintero",
-        "full_name": "Alberto Quintero",
-        "display_name": "Alberto Quintero",
-        "position": "MID",
+        "id": "azarias-londono",
+        "full_name": "Azarías Londoño",
+        "display_name": "Azarías Londoño",
+        "position": "FWD",
         "detailed_position": "RW",
         "club": {
-          "name": "Universitario",
-          "country_iso": "pe",
-          "league": "Liga 1 peruana"
+          "name": "Universidad Católica",
+          "country_iso": "ec",
+          "league": "Serie A ecuatoriana"
         },
-        "shirt_number_expected": 21,
-        "status": "probable"
-      },
-      {
-        "id": "ricardo-avila",
-        "full_name": "Ricardo Ávila",
-        "display_name": "Ricardo Ávila",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "RC Lens",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 24,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Ricardo_%C3%81vila_2018.jpg/330px-Ricardo_%C3%81vila_2018.jpg"
-      },
-      {
-        "id": "yoel-barcenas",
-        "full_name": "Yoel Bárcenas",
-        "display_name": "Yoel Bárcenas",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Real Oviedo",
-          "country_iso": "es",
-          "league": "La Liga"
-        },
-        "shirt_number_expected": 25,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Partido_Galicia_-_Panam%C3%A1_en_Bala%C3%ADdos_68.jpg/330px-Partido_Galicia_-_Panam%C3%A1_en_Bala%C3%ADdos_68.jpg"
-      },
-      {
-        "id": "tomas-rodriguez",
-        "full_name": "Tomás Rodríguez",
-        "display_name": "Tomás Rodríguez",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "CAI",
-          "country_iso": "pa",
-          "league": "LPF Panamá"
-        },
-        "shirt_number_expected": 26,
-        "status": "bubble"
+        "shirt_number_expected": 11,
+        "status": "fixed"
       }
     ],
     "starting_xi": {
@@ -914,8 +890,10 @@
       },
       "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: fase de grupos (perdió los 3 partidos, 2-6 vs Bélgica, 1-6 vs Inglaterra, 1-2 vs Túnez). Catar 2022: NO CLASIFICÓ. Mundial 2026: 2ª participación, 1ª INVICTOS clasificatoria."
     },
-    "squad_announced": false,
-    "squad_announced_status": "pending_official"
+    "squad_announced": true,
+    "squad_announced_status": "pending_official",
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 2018,
@@ -935,7 +913,7 @@
       "lost": 3,
       "goals_for": 2,
       "goals_against": 11,
-      "win_percentage": 0.0,
+      "win_percentage": 0,
       "notes": "3 partidos en 1 Mundial (2018). Marcó 2 goles (Baloy y Meriah). NO ganó ni empató."
     },
     "by_world_cup": [

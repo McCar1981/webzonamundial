@@ -97,7 +97,7 @@
         "goals_against": 9,
         "goal_difference": 6,
         "points": 18,
-        "win_percentage": 50.0,
+        "win_percentage": 50,
         "clean_sheets": 4,
         "notes": "Stats finales tras sanción FIFA: una de las 2 derrotas es el 0-3 en mesa contra Lesoto (originalmente victoria 2-0) por alineación indebida de Mokoena."
       },
@@ -550,6 +550,17 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Ronwen_Williams_AFCON2025Q_35.jpg/330px-Ronwen_Williams_AFCON2025Q_35.jpg"
       },
       {
+        "id": "sipho-chaine",
+        "full_name": "Sipho Chaine",
+        "display_name": "Sipho Chaine",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
         "id": "ricardo-goss",
         "full_name": "Ricardo Goss",
         "display_name": "Ricardo Goss",
@@ -561,34 +572,6 @@
           "league": "PSL"
         },
         "shirt_number_expected": 12,
-        "status": "probable"
-      },
-      {
-        "id": "renaldo-leaner",
-        "full_name": "Renaldo Leaner",
-        "display_name": "Renaldo Leaner",
-        "position": "GK",
-        "detailed_position": "GK",
-        "club": {
-          "name": "Sekhukhune United",
-          "country_iso": "za",
-          "league": "PSL"
-        },
-        "shirt_number_expected": 23,
-        "status": "probable"
-      },
-      {
-        "id": "khuliso-mudau",
-        "full_name": "Khuliso Mudau",
-        "display_name": "Khuliso Mudau",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Mamelodi Sundowns",
-          "country_iso": "za",
-          "league": "PSL"
-        },
-        "shirt_number_expected": 2,
         "status": "fixed"
       },
       {
@@ -603,49 +586,6 @@
           "league": "PSL"
         },
         "shirt_number_expected": 14,
-        "status": "probable"
-      },
-      {
-        "id": "nkosinathi-sibisi",
-        "full_name": "Nkosinathi Sibisi",
-        "display_name": "Nkosinathi Sibisi",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Orlando Pirates",
-          "country_iso": "za",
-          "league": "PSL"
-        },
-        "shirt_number_expected": 4,
-        "status": "fixed"
-      },
-      {
-        "id": "siyabonga-ngezana",
-        "full_name": "Siyabonga Ngezana",
-        "display_name": "Siyabonga Ngezana",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Steaua Bucarest",
-          "country_iso": "ro",
-          "league": "Liga I"
-        },
-        "shirt_number_expected": 5,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Siyabonga_Ngezana_-_3_July_2023_%28cropped%29.jpg/330px-Siyabonga_Ngezana_-_3_July_2023_%28cropped%29.jpg"
-      },
-      {
-        "id": "ime-okon",
-        "full_name": "Ime Okon",
-        "display_name": "Ime Okon",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Hannover 96",
-          "country_iso": "de",
-          "league": "2. Bundesliga"
-        },
-        "shirt_number_expected": 15,
         "status": "fixed"
       },
       {
@@ -660,21 +600,7 @@
           "league": "PSL"
         },
         "shirt_number_expected": 6,
-        "status": "probable"
-      },
-      {
-        "id": "samukelo-kabini",
-        "full_name": "Samukelo Kabini",
-        "display_name": "Samukelo Kabini",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Molde FK",
-          "country_iso": "no",
-          "league": "Eliteserien"
-        },
-        "shirt_number_expected": 22,
-        "status": "probable"
+        "status": "fixed"
       },
       {
         "id": "aubrey-modiba",
@@ -703,7 +629,85 @@
           "league": "MLS"
         },
         "shirt_number_expected": 13,
-        "status": "probable"
+        "status": "fixed"
+      },
+      {
+        "id": "samukelo-kabini",
+        "full_name": "Samukelo Kabini",
+        "display_name": "Samukelo Kabini",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Molde FK",
+          "country_iso": "no",
+          "league": "Eliteserien"
+        },
+        "shirt_number_expected": 22,
+        "status": "fixed"
+      },
+      {
+        "id": "nkosinathi-sibisi",
+        "full_name": "Nkosinathi Sibisi",
+        "display_name": "Nkosinathi Sibisi",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Orlando Pirates",
+          "country_iso": "za",
+          "league": "PSL"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed"
+      },
+      {
+        "id": "khuliso-mudau",
+        "full_name": "Khuliso Mudau",
+        "display_name": "Khuliso Mudau",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Mamelodi Sundowns",
+          "country_iso": "za",
+          "league": "PSL"
+        },
+        "shirt_number_expected": 2,
+        "status": "fixed"
+      },
+      {
+        "id": "ime-okon",
+        "full_name": "Ime Okon",
+        "display_name": "Ime Okon",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Hannover 96",
+          "country_iso": "de",
+          "league": "2. Bundesliga"
+        },
+        "shirt_number_expected": 15,
+        "status": "fixed"
+      },
+      {
+        "id": "olwethu-makhanya",
+        "full_name": "Olwethu Makhanya",
+        "display_name": "Olwethu Makhanya",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "bradley-cross",
+        "full_name": "Bradley Cross",
+        "display_name": "Bradley Cross",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "teboho-mokoena",
@@ -717,20 +721,6 @@
           "league": "PSL"
         },
         "shirt_number_expected": 8,
-        "status": "fixed"
-      },
-      {
-        "id": "jayden-adams",
-        "full_name": "Jayden Adams",
-        "display_name": "Jayden Adams",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Mamelodi Sundowns",
-          "country_iso": "za",
-          "league": "PSL"
-        },
-        "shirt_number_expected": 16,
         "status": "fixed"
       },
       {
@@ -748,6 +738,20 @@
         "status": "fixed"
       },
       {
+        "id": "themba-zwane",
+        "full_name": "Themba Zwane",
+        "display_name": "Themba Zwane",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Mamelodi Sundowns",
+          "country_iso": "za",
+          "league": "PSL"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed"
+      },
+      {
         "id": "sphephelo-sithole",
         "full_name": "Sphephelo Sithole",
         "display_name": "Sphephelo Sithole",
@@ -762,32 +766,45 @@
         "status": "fixed"
       },
       {
-        "id": "sipho-mbule",
-        "full_name": "Sipho Mbule",
-        "display_name": "Sipho Mbule",
+        "id": "jayden-adams",
+        "full_name": "Jayden Adams",
+        "display_name": "Jayden Adams",
         "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Orlando Pirates",
-          "country_iso": "za",
-          "league": "PSL"
-        },
-        "shirt_number_expected": 19,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Go_Ahead_Eagles_-_Mamelodi_Sundowns_FC_-_53066348370.jpg/330px-Go_Ahead_Eagles_-_Mamelodi_Sundowns_FC_-_53066348370.jpg"
-      },
-      {
-        "id": "themba-zwane",
-        "full_name": "Themba Zwane",
-        "display_name": "Themba Zwane",
-        "position": "MID",
-        "detailed_position": "CAM",
+        "detailed_position": "CM",
         "club": {
           "name": "Mamelodi Sundowns",
           "country_iso": "za",
           "league": "PSL"
         },
-        "shirt_number_expected": 10,
+        "shirt_number_expected": 16,
+        "status": "fixed"
+      },
+      {
+        "id": "oswin-appollis",
+        "full_name": "Oswin Appollis",
+        "display_name": "Oswin Appollis",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Orlando Pirates",
+          "country_iso": "za",
+          "league": "PSL"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed"
+      },
+      {
+        "id": "tshepang-moremi",
+        "full_name": "Tshepang Moremi",
+        "display_name": "Tshepang Moremi",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Orlando Pirates",
+          "country_iso": "za",
+          "league": "PSL"
+        },
+        "shirt_number_expected": 20,
         "status": "fixed"
       },
       {
@@ -820,32 +837,30 @@
         "status": "fixed"
       },
       {
-        "id": "oswin-appollis",
-        "full_name": "Oswin Appollis",
-        "display_name": "Oswin Appollis",
+        "id": "thapelo-maseko",
+        "full_name": "Thapelo Maseko",
+        "display_name": "Thapelo Maseko",
         "position": "FWD",
-        "detailed_position": "LW",
+        "detailed_position": "RW",
         "club": {
-          "name": "Orlando Pirates",
-          "country_iso": "za",
-          "league": "PSL"
+          "name": "AEL Limassol",
+          "country_iso": "cy",
+          "league": "Cypriot 1st Division"
         },
-        "shirt_number_expected": 11,
-        "status": "fixed"
+        "shirt_number_expected": 26,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Go_Ahead_Eagles_-_Mamelodi_Sundowns_FC_-_53066145739.jpg/330px-Go_Ahead_Eagles_-_Mamelodi_Sundowns_FC_-_53066145739.jpg"
       },
       {
-        "id": "tshepang-moremi",
-        "full_name": "Tshepang Moremi",
-        "display_name": "Tshepang Moremi",
+        "id": "iqraam-rayners",
+        "full_name": "Iqraam Rayners",
+        "display_name": "Iqraam Rayners",
         "position": "FWD",
-        "detailed_position": "LW",
-        "club": {
-          "name": "Orlando Pirates",
-          "country_iso": "za",
-          "league": "PSL"
-        },
-        "shirt_number_expected": 20,
-        "status": "probable"
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "evidence-makgopa",
@@ -859,52 +874,18 @@
           "league": "PSL"
         },
         "shirt_number_expected": 21,
-        "status": "probable"
+        "status": "fixed"
       },
       {
-        "id": "bongokuhle-hlongwane",
-        "full_name": "Bongokuhle Hlongwane",
-        "display_name": "Bongi Hlongwane",
+        "id": "kamogelo-sebelebele",
+        "full_name": "Kamogelo Sebelebele",
+        "display_name": "Kamogelo Sebelebele",
         "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Minnesota United",
-          "country_iso": "us",
-          "league": "MLS"
-        },
-        "shirt_number_expected": 25,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Bongokuhle_%27Bongi%27_Hlongwane_-_MNUFC_-_Allianz_Field_-_MLS_-_%2852125526845%29.jpg/330px-Bongokuhle_%27Bongi%27_Hlongwane_-_MNUFC_-_Allianz_Field_-_MLS_-_%2852125526845%29.jpg"
-      },
-      {
-        "id": "thapelo-maseko",
-        "full_name": "Thapelo Maseko",
-        "display_name": "Thapelo Maseko",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "AEL Limassol",
-          "country_iso": "cy",
-          "league": "Cypriot 1st Division"
-        },
-        "shirt_number_expected": 26,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Go_Ahead_Eagles_-_Mamelodi_Sundowns_FC_-_53066145739.jpg/330px-Go_Ahead_Eagles_-_Mamelodi_Sundowns_FC_-_53066145739.jpg"
-      },
-      {
-        "id": "percy-tau",
-        "full_name": "Percy Tau",
-        "display_name": "Percy Tau",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Al-Ahly",
-          "country_iso": "eg",
-          "league": "Premier League egipcia"
-        },
-        "shirt_number_expected": 24,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Percy_Tau_in_2019_%28cropped%29.jpg"
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       }
     ],
     "starting_xi": {
@@ -1023,8 +1004,10 @@
       },
       "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: NO CLASIFICÓ. Catar 2022: NO CLASIFICÓ. Mundial 2026: 4ª participación tras 1998, 2002 y 2010 (anfitrión). 1ª clasificación deportiva desde 2002 (24 años de espera)."
     },
-    "squad_announced": false,
-    "squad_announced_status": "pending_official"
+    "squad_announced": true,
+    "squad_announced_status": "pending_official",
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 1998,

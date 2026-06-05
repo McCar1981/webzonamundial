@@ -477,59 +477,17 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/RC_Lens_-_AJ_Auxerre_%2809-03-2019%29_96.jpg/330px-RC_Lens_-_AJ_Auxerre_%2809-03-2019%29_96.jpg"
       },
       {
-        "id": "wilguens-paugain",
-        "full_name": "Wilguens Paugain",
-        "display_name": "Wilguens Paugain",
+        "id": "keeto-thermoncy",
+        "full_name": "Keeto Thermoncy",
+        "display_name": "Keeto Thermoncy",
         "position": "DEF",
         "detailed_position": "DEF",
         "club": {
-          "name": "Zulte Waregem"
+          "name": "Young Boys II"
         },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
-      },
-      {
-        "id": "duke-lacroix",
-        "full_name": "Duke Lacroix",
-        "display_name": "Duke Lacroix",
-        "position": "DEF",
-        "detailed_position": "DEF",
-        "club": {
-          "name": "Colorado Springs"
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": null
-      },
-      {
-        "id": "martin-experience",
-        "full_name": "Martin Expérience",
-        "display_name": "Martin Expérience",
-        "position": "FWD",
-        "detailed_position": "LW",
-        "club": {
-          "name": "AS Nancy-Lorraine",
-          "country_iso": "us",
-          "league": "MLS"
-        },
-        "shirt_number_expected": 20,
-        "status": "fixed"
-      },
-      {
-        "id": "jean-kevin-duverne",
-        "full_name": "Jean-Kévin Duverne",
-        "display_name": "Jean-Kévin Duverne",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "KAA Gent",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 15,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/RC_Lens_-_FC_Nantes_%2828-10-2023%29_-_Duverne.jpg/330px-RC_Lens_-_FC_Nantes_%2828-10-2023%29_-_Duverne.jpg"
       },
       {
         "id": "ricardo-ade",
@@ -561,54 +519,65 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/FC_Red_Bull_Salzburg_gegen_RSC_Anderlecht_%28Testspiel_7._Juli_2017%29_50.jpg/330px-FC_Red_Bull_Salzburg_gegen_RSC_Anderlecht_%28Testspiel_7._Juli_2017%29_50.jpg"
       },
       {
-        "id": "keeto-thermoncy",
-        "full_name": "Keeto Thermoncy",
-        "display_name": "Keeto Thermoncy",
+        "id": "martin-experience",
+        "full_name": "Martin Expérience",
+        "display_name": "Martin Expérience",
         "position": "DEF",
-        "detailed_position": "DEF",
+        "detailed_position": "LW",
         "club": {
-          "name": "Young Boys II"
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": null
-      },
-      {
-        "id": "leverton-pierre",
-        "full_name": "Leverton Pierre",
-        "display_name": "Leverton Pierre",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "FC Vizela",
+          "name": "AS Nancy-Lorraine",
           "country_iso": "us",
           "league": "MLS"
         },
-        "shirt_number_expected": 8,
+        "shirt_number_expected": 20,
         "status": "fixed"
       },
       {
-        "id": "carl-fred-sainthe",
-        "full_name": "Carl-Fred Sainthe",
-        "display_name": "Carl-Fred Sainthe",
-        "position": "MID",
-        "detailed_position": "MID",
+        "id": "markhus-lacroix",
+        "full_name": "Markhus Lacroix",
+        "display_name": "Markhus Lacroix",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "jean-kevin-duverne",
+        "full_name": "Jean-Kévin Duverne",
+        "display_name": "Jean-Kévin Duverne",
+        "position": "DEF",
+        "detailed_position": "CB",
         "club": {
-          "name": "El Paso Locomotive"
+          "name": "KAA Gent",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 15,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/RC_Lens_-_FC_Nantes_%2828-10-2023%29_-_Duverne.jpg/330px-RC_Lens_-_FC_Nantes_%2828-10-2023%29_-_Duverne.jpg"
+      },
+      {
+        "id": "wilguens-paugain",
+        "full_name": "Wilguens Paugain",
+        "display_name": "Wilguens Paugain",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Zulte Waregem"
         },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
       },
       {
-        "id": "jean-jacques-danley",
-        "full_name": "Jean-Jacques Danley",
-        "display_name": "Jean-Jacques Danley",
+        "id": "carl-sainte",
+        "full_name": "Carl Sainte",
+        "display_name": "Carl Sainte",
         "position": "MID",
         "detailed_position": "MID",
-        "club": {
-          "name": "Philadelphia Union"
-        },
+        "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -629,13 +598,27 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Lens_B_-_AC_Amiens_%2812-09-2015%29_64_%28cropped%29.JPG/330px-Lens_B_-_AC_Amiens_%2812-09-2015%29_64_%28cropped%29.JPG"
       },
       {
-        "id": "pierre-woodenski",
-        "full_name": "Pierre Woodenski",
-        "display_name": "Pierre Woodenski",
+        "id": "leverton-pierre",
+        "full_name": "Leverton Pierre",
+        "display_name": "Leverton Pierre",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "FC Vizela",
+          "country_iso": "us",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed"
+      },
+      {
+        "id": "jean-jacques-danley",
+        "full_name": "Jean-Jacques Danley",
+        "display_name": "Jean-Jacques Danley",
         "position": "MID",
         "detailed_position": "MID",
         "club": {
-          "name": "Violette AC"
+          "name": "Philadelphia Union"
         },
         "shirt_number_expected": null,
         "status": "fixed",
@@ -655,46 +638,15 @@
         "photo_url": null
       },
       {
-        "id": "louicius-deedson",
-        "full_name": "Louicius Deedson",
-        "display_name": "Louicius Deedson",
+        "id": "woodensky-pierre",
+        "full_name": "Woodensky Pierre",
+        "display_name": "Woodensky Pierre",
         "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "FC Dallas",
-          "country_iso": "fr",
-          "league": "Ligue 2"
-        },
-        "shirt_number_expected": 19,
-        "status": "fixed"
-      },
-      {
-        "id": "ruben-providence",
-        "full_name": "Rubén Providence",
-        "display_name": "Rubén Providence",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Almere City",
-          "country_iso": "nl",
-          "league": "Eerste Divisie"
-        },
-        "shirt_number_expected": 17,
-        "status": "fixed"
-      },
-      {
-        "id": "josue-casimir",
-        "full_name": "Josué Casimir",
-        "display_name": "Josué Casimir",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "AJ Auxerre",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 7,
-        "status": "fixed"
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "derrick-etienne",
@@ -708,21 +660,6 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/00/Derrick_Etienne_%2828411015376%29_%28cropped2%29.jpg"
-      },
-      {
-        "id": "wilson-isidor",
-        "full_name": "Wilson Isidor",
-        "display_name": "Wilson Isidor",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Sunderland",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 11,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Wilson_Isidor_2022.jpg/330px-Wilson_Isidor_2022.jpg"
       },
       {
         "id": "duckens-nazon",
@@ -740,18 +677,60 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/2025_Iran_Football_Premier_League_Esteghlal_and_Zob_Ahan_football_match_3_Mehr_%28cropped%29.jpg/330px-2025_Iran_Football_Premier_League_Esteghlal_and_Zob_Ahan_football_match_3_Mehr_%28cropped%29.jpg"
       },
       {
-        "id": "frantzdy-pierrot",
-        "full_name": "Frantzdy Pierrot",
-        "display_name": "Frantzdy Pierrot",
+        "id": "louicius-deedson",
+        "full_name": "Louicius Deedson",
+        "display_name": "Louicius Deedson",
+        "position": "FWD",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "FC Dallas",
+          "country_iso": "fr",
+          "league": "Ligue 2"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed"
+      },
+      {
+        "id": "ruben-providence",
+        "full_name": "Rubén Providence",
+        "display_name": "Rubén Providence",
+        "position": "FWD",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Almere City",
+          "country_iso": "nl",
+          "league": "Eerste Divisie"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed"
+      },
+      {
+        "id": "lenny-joseph",
+        "full_name": "Lenny Joseph",
+        "display_name": "Lenny Joseph",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": {
+          "name": "Ferencváros"
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "wilson-isidor",
+        "full_name": "Wilson Isidor",
+        "display_name": "Wilson Isidor",
         "position": "FWD",
         "detailed_position": "ST",
         "club": {
-          "name": "Çaykur Rizespor",
-          "country_iso": "be",
-          "league": "Pro League"
+          "name": "Sunderland",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
         },
-        "shirt_number_expected": 9,
-        "status": "fixed"
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Wilson_Isidor_2022.jpg/330px-Wilson_Isidor_2022.jpg"
       },
       {
         "id": "yassin-fortune",
@@ -767,17 +746,18 @@
         "photo_url": null
       },
       {
-        "id": "lenny-joseph",
-        "full_name": "Lenny Joseph",
-        "display_name": "Lenny Joseph",
+        "id": "frantzdy-pierrot",
+        "full_name": "Frantzdy Pierrot",
+        "display_name": "Frantzdy Pierrot",
         "position": "FWD",
-        "detailed_position": "FWD",
+        "detailed_position": "ST",
         "club": {
-          "name": "Ferencváros"
+          "name": "Çaykur Rizespor",
+          "country_iso": "be",
+          "league": "Pro League"
         },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": null
+        "shirt_number_expected": 9,
+        "status": "fixed"
       }
     ],
     "starting_xi": {
@@ -899,8 +879,8 @@
       "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: NO CLASIFICÓ. Catar 2022: NO CLASIFICÓ. Mundial 2026: 2ª participación, 1ª desde Alemania 1974 (52 AÑOS DE ESPERA)."
     },
     "squad_announced": true,
-    "squad_announced_date": "2026-05-26",
-    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 1974,

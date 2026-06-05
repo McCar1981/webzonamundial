@@ -424,19 +424,30 @@
     },
     "likely_squad": [
       {
-        "id": "luis-malagon",
-        "full_name": "Luis Ángel Malagón",
-        "display_name": "Luis Malagón",
+        "id": "raul-rangel",
+        "full_name": "Raúl Rangel",
+        "display_name": "Raúl Rangel",
         "position": "GK",
         "detailed_position": "GK",
         "club": {
-          "name": "Club América",
+          "name": "Chivas",
           "country_iso": "mx",
           "league": "Liga MX"
         },
-        "shirt_number_expected": 1,
+        "shirt_number_expected": 23,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/%C3%81ngel_Malag%C3%B3n_2.png/330px-%C3%81ngel_Malag%C3%B3n_2.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/III_Campeonato_Nacional_Abierto_de_M%C3%A9xico.jpg/330px-III_Campeonato_Nacional_Abierto_de_M%C3%A9xico.jpg"
+      },
+      {
+        "id": "carlos-acevedo",
+        "full_name": "Carlos Acevedo",
+        "display_name": "Carlos Acevedo",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/31/Carlos_Acevedo.png"
       },
       {
         "id": "guillermo-ochoa",
@@ -454,21 +465,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Ger-Mex_%285_cropped%29.jpg/330px-Ger-Mex_%285_cropped%29.jpg"
       },
       {
-        "id": "raul-rangel",
-        "full_name": "Raúl Rangel",
-        "display_name": "Raúl Rangel",
-        "position": "GK",
-        "detailed_position": "GK",
-        "club": {
-          "name": "Chivas",
-          "country_iso": "mx",
-          "league": "Liga MX"
-        },
-        "shirt_number_expected": 23,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/III_Campeonato_Nacional_Abierto_de_M%C3%A9xico.jpg/330px-III_Campeonato_Nacional_Abierto_de_M%C3%A9xico.jpg"
-      },
-      {
         "id": "jorge-sanchez",
         "full_name": "Jorge Sánchez",
         "display_name": "Jorge Sánchez",
@@ -480,21 +476,8 @@
           "league": "Liga MX"
         },
         "shirt_number_expected": 2,
-        "status": "fixed"
-      },
-      {
-        "id": "kevin-alvarez",
-        "full_name": "Kevin Álvarez",
-        "display_name": "Kevin Álvarez",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Club América",
-          "country_iso": "mx",
-          "league": "Liga MX"
-        },
-        "shirt_number_expected": 14,
-        "status": "probable"
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/30/Jorge_S%C3%A1nchez.png"
       },
       {
         "id": "cesar-montes",
@@ -512,6 +495,21 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/C%C3%A9sar_Montes.png/330px-C%C3%A9sar_Montes.png"
       },
       {
+        "id": "edson-alvarez",
+        "full_name": "Edson Álvarez",
+        "display_name": "Edson Álvarez",
+        "position": "DEF",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Fenerbahçe",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Edson_%C3%81lvarez.png/330px-Edson_%C3%81lvarez.png"
+      },
+      {
         "id": "johan-vasquez",
         "full_name": "Johan Vásquez",
         "display_name": "Johan Vásquez",
@@ -523,7 +521,8 @@
           "league": "Serie A"
         },
         "shirt_number_expected": 5,
-        "status": "fixed"
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Johan_V%C3%A1squez_2.png"
       },
       {
         "id": "israel-reyes",
@@ -541,19 +540,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Israel_Reyes_2.png/330px-Israel_Reyes_2.png"
       },
       {
-        "id": "jesus-orozco",
-        "full_name": "Jesús Orozco Chiquete",
-        "display_name": "Chiquete Orozco",
+        "id": "mateo-chavez",
+        "full_name": "Mateo Chávez",
+        "display_name": "Mateo Chávez",
         "position": "DEF",
-        "detailed_position": "CB",
+        "detailed_position": "LB",
         "club": {
-          "name": "Chivas",
-          "country_iso": "mx",
-          "league": "Liga MX"
+          "name": "AZ Alkmaar",
+          "country_iso": "nl",
+          "league": "Eredivisie"
         },
-        "shirt_number_expected": 22,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Jes%C3%BAs_Orozco.png/330px-Jes%C3%BAs_Orozco.png"
+        "shirt_number_expected": 13,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Mateo_Ch%C3%A1vez.png/330px-Mateo_Ch%C3%A1vez.png"
       },
       {
         "id": "jesus-gallardo",
@@ -571,49 +570,15 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Jes%C3%BAs_Gallardo.png/330px-Jes%C3%BAs_Gallardo.png"
       },
       {
-        "id": "mateo-chavez",
-        "full_name": "Mateo Chávez",
-        "display_name": "Mateo Chávez",
-        "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "AZ Alkmaar",
-          "country_iso": "nl",
-          "league": "Eredivisie"
-        },
-        "shirt_number_expected": 13,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Mateo_Ch%C3%A1vez.png/330px-Mateo_Ch%C3%A1vez.png"
-      },
-      {
-        "id": "edson-alvarez",
-        "full_name": "Edson Álvarez",
-        "display_name": "Edson Álvarez",
+        "id": "erik-lira",
+        "full_name": "Erik Lira",
+        "display_name": "Erik Lira",
         "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Fenerbahçe",
-          "country_iso": "tr",
-          "league": "Süper Lig"
-        },
-        "shirt_number_expected": 6,
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Edson_%C3%81lvarez.png/330px-Edson_%C3%81lvarez.png"
-      },
-      {
-        "id": "marcel-ruiz",
-        "full_name": "Marcel Ruiz",
-        "display_name": "Marcel Ruiz",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Toluca",
-          "country_iso": "mx",
-          "league": "Liga MX"
-        },
-        "shirt_number_expected": 8,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Marcel_Ruiz.png/330px-Marcel_Ruiz.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Erik_Lira_2.png"
       },
       {
         "id": "luis-romo",
@@ -631,33 +596,15 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Luis_Romo.png/330px-Luis_Romo.png"
       },
       {
-        "id": "carlos-rodriguez",
-        "full_name": "Carlos Rodríguez",
-        "display_name": "Carlos Rodríguez",
+        "id": "alvaro-fidalgo",
+        "full_name": "Álvaro Fidalgo",
+        "display_name": "Álvaro Fidalgo",
         "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Cruz Azul",
-          "country_iso": "mx",
-          "league": "Liga MX"
-        },
-        "shirt_number_expected": 17,
-        "status": "fixed"
-      },
-      {
-        "id": "erick-sanchez",
-        "full_name": "Erick 'Chapito' Sánchez",
-        "display_name": "Erick Sánchez",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Club América",
-          "country_iso": "mx",
-          "league": "Liga MX"
-        },
-        "shirt_number_expected": 18,
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Erick_Sanchez.png/330px-Erick_Sanchez.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/e9/%C3%81lvaro_Fidalgo.png"
       },
       {
         "id": "orbelin-pineda",
@@ -675,6 +622,20 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Orbel%C3%ADn_Pineda.png/330px-Orbel%C3%ADn_Pineda.png"
       },
       {
+        "id": "obed-vargas",
+        "full_name": "Obed Vargas",
+        "display_name": "Obed Vargas",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Atlético de Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 25,
+        "status": "fixed"
+      },
+      {
         "id": "gilberto-mora",
         "full_name": "Gilberto Mora",
         "display_name": "Gilberto Mora",
@@ -686,7 +647,30 @@
           "league": "Liga MX"
         },
         "shirt_number_expected": 24,
-        "status": "fixed"
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Gilberto_Mora.png"
+      },
+      {
+        "id": "luis-chavez",
+        "full_name": "Luis Chávez",
+        "display_name": "Luis Chávez",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Luis_Ch%C3%A1vez_WC_2022_-_01.jpg"
+      },
+      {
+        "id": "brian-gutierrez",
+        "full_name": "Brian Gutiérrez",
+        "display_name": "Brian Gutiérrez",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Brian_Guti%C3%A9rrez_Philadelphia_Chicago_10.26.25-126_%28cropped%29.jpg"
       },
       {
         "id": "raul-jimenez",
@@ -704,6 +688,21 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Ra%C3%BAl_Jim%C3%A9nez_2025.png/330px-Ra%C3%BAl_Jim%C3%A9nez_2025.png"
       },
       {
+        "id": "alexis-vega",
+        "full_name": "Alexis Vega",
+        "display_name": "Alexis Vega",
+        "position": "FWD",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Toluca",
+          "country_iso": "mx",
+          "league": "Liga MX"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Alexis_Vega.png/330px-Alexis_Vega.png"
+      },
+      {
         "id": "santiago-gimenez",
         "full_name": "Santiago Giménez",
         "display_name": "Santi Giménez",
@@ -719,49 +718,15 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Santiago_Gim%C3%A9nez.png/330px-Santiago_Gim%C3%A9nez.png"
       },
       {
-        "id": "hirving-lozano",
-        "full_name": "Hirving 'Chucky' Lozano",
-        "display_name": "Chucky Lozano",
+        "id": "armando-gonzalez",
+        "full_name": "Armando González",
+        "display_name": "Armando González",
         "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "San Diego FC",
-          "country_iso": "us",
-          "league": "MLS"
-        },
-        "shirt_number_expected": 22,
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Hirving_Lozano.png/330px-Hirving_Lozano.png"
-      },
-      {
-        "id": "roberto-alvarado",
-        "full_name": "Roberto Alvarado",
-        "display_name": "Piojo Alvarado",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Chivas",
-          "country_iso": "mx",
-          "league": "Liga MX"
-        },
-        "shirt_number_expected": 7,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Roberto_Alvarado.png/330px-Roberto_Alvarado.png"
-      },
-      {
-        "id": "alexis-vega",
-        "full_name": "Alexis Vega",
-        "display_name": "Alexis Vega",
-        "position": "FWD",
-        "detailed_position": "LW",
-        "club": {
-          "name": "Toluca",
-          "country_iso": "mx",
-          "league": "Liga MX"
-        },
-        "shirt_number_expected": 10,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Alexis_Vega.png/330px-Alexis_Vega.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Armando_Gonz%C3%A1lez.png"
       },
       {
         "id": "julian-quinones",
@@ -790,22 +755,34 @@
           "league": "Pro League"
         },
         "shirt_number_expected": 21,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/C%C3%A9sar_Huerta.png/330px-C%C3%A9sar_Huerta.png"
       },
       {
-        "id": "obed-vargas",
-        "full_name": "Obed Vargas",
-        "display_name": "Obed Vargas",
-        "position": "MID",
-        "detailed_position": "CM",
+        "id": "guillermo-martinez",
+        "full_name": "Guillermo Martínez",
+        "display_name": "Guillermo Martínez",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Inter_Miami_CF_3-1_UNAM_%286_August_2025%29_30_%28cropped%29.jpg"
+      },
+      {
+        "id": "roberto-alvarado",
+        "full_name": "Roberto Alvarado",
+        "display_name": "Piojo Alvarado",
+        "position": "FWD",
+        "detailed_position": "RW",
         "club": {
-          "name": "Atlético de Madrid",
-          "country_iso": "es",
-          "league": "La Liga"
+          "name": "Chivas",
+          "country_iso": "mx",
+          "league": "Liga MX"
         },
-        "shirt_number_expected": 25,
-        "status": "fixed"
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Roberto_Alvarado.png/330px-Roberto_Alvarado.png"
       }
     ],
     "starting_xi": {
@@ -929,8 +906,10 @@
       },
       "vs_last_3_wcs": "Brasil 2014: octavos (1-2 Holanda, polémica Robben). Rusia 2018: octavos (0-2 Brasil). Catar 2022: FASE DE GRUPOS (peor papel desde 1978, eliminada por DG). Mundial 2026: 17ª participación (la más de CONCACAF), 3ª vez ANFITRIÓN."
     },
-    "squad_announced": false,
-    "squad_announced_status": "pending_official"
+    "squad_announced": true,
+    "squad_announced_status": "pending_official",
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 1930,

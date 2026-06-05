@@ -656,21 +656,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Cel-Zen_%285%29_%28cropped%29.jpg/330px-Cel-Zen_%285%29_%28cropped%29.jpg"
       },
       {
-        "id": "david-møller-wolfe",
-        "full_name": "David Møller Wolfe",
-        "display_name": "David Møller Wolfe",
-        "position": "DEF",
-        "detailed_position": "DEF",
-        "club": {
-          "name": "Wolverhampton",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/David_M%C3%B8ller_Wolfe.jpg"
-      },
-      {
         "id": "leo-ostigard",
         "full_name": "Leo Østigård",
         "display_name": "Leo Østigård",
@@ -684,6 +669,21 @@
         "shirt_number_expected": 6,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Norway_Italy_-_June_2025_A_06_%28cropped%29.jpg/330px-Norway_Italy_-_June_2025_A_06_%28cropped%29.jpg"
+      },
+      {
+        "id": "david-møller-wolfe",
+        "full_name": "David Møller Wolfe",
+        "display_name": "David Møller Wolfe",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Wolverhampton",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/David_M%C3%B8ller_Wolfe.jpg"
       },
       {
         "id": "fredrik-bjorkan",
@@ -734,7 +734,7 @@
         "id": "alexander-fett-sorloth",
         "full_name": "Sondre Langås",
         "display_name": "Sondre Langås",
-        "position": "MID",
+        "position": "DEF",
         "detailed_position": "CM",
         "club": {
           "name": "Derby County",
@@ -759,21 +759,6 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Henrik_Falchener_25_Viking_FK_UECL_20250813_%285%29.jpg"
-      },
-      {
-        "id": "julian-ryerson",
-        "full_name": "Julian Ryerson",
-        "display_name": "Julian Ryerson",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Borussia Dortmund",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 5,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93157.jpg/330px-2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93157.jpg"
       },
       {
         "id": "morten-thorsby",
@@ -879,25 +864,10 @@
         "status": "fixed"
       },
       {
-        "id": "antonio-nusa",
-        "full_name": "Antonio Nusa",
-        "display_name": "Antonio Nusa",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "RB Leipzig",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 7,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Norway_Italy_-_June_2025_C_24.jpg/330px-Norway_Italy_-_June_2025_C_24.jpg"
-      },
-      {
         "id": "andreas-schjelderup",
         "full_name": "Andreas Schjelderup",
         "display_name": "Schjelderup",
-        "position": "FWD",
+        "position": "MID",
         "detailed_position": "LW",
         "club": {
           "name": "Benfica",
@@ -911,7 +881,7 @@
         "id": "oscar-bobb",
         "full_name": "Oscar Bobb",
         "display_name": "Oscar Bobb",
-        "position": "FWD",
+        "position": "MID",
         "detailed_position": "RW",
         "club": {
           "name": "Fulham",
@@ -981,6 +951,36 @@
         "shirt_number_expected": 23,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Norway_Italy_-_June_2025_A_15_%28cropped%29.jpg/330px-Norway_Italy_-_June_2025_A_15_%28cropped%29.jpg"
+      },
+      {
+        "id": "antonio-nusa",
+        "full_name": "Antonio Nusa",
+        "display_name": "Antonio Nusa",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "RB Leipzig",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Norway_Italy_-_June_2025_C_24.jpg/330px-Norway_Italy_-_June_2025_C_24.jpg"
+      },
+      {
+        "id": "julian-ryerson",
+        "full_name": "Julian Ryerson",
+        "display_name": "Julian Ryerson",
+        "position": "FWD",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Borussia Dortmund",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93157.jpg/330px-2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93157.jpg"
       }
     ],
     "starting_xi": {
@@ -1102,8 +1102,8 @@
       "vs_last_3_wcs": "Brasil 2014: NO clasificó. Rusia 2018: NO clasificó. Catar 2022: NO clasificó. Mundial 2026: 4ª participación absoluta (1938, 1994, 1998, 2026). Regreso histórico tras 28 años con la generación más talentosa de la historia."
     },
     "squad_announced": true,
-    "squad_announced_date": "2026-05-26",
-    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 1938,

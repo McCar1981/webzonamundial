@@ -87,7 +87,7 @@
         "goals_against": 8,
         "goal_difference": 10,
         "points": 19,
-        "win_percentage": 50.0,
+        "win_percentage": 50,
         "clean_sheets": 5,
         "notes": "Después del cambio de DT (Arnold→Popovic), Australia mejoró notablemente. Empató con Japón en ambas y le ganó al final."
       },
@@ -548,21 +548,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Ryan_rcl_asse_2425.png/330px-Ryan_rcl_asse_2425.png"
       },
       {
-        "id": "joe-gauci",
-        "full_name": "Joseph Gauci",
-        "display_name": "Joe Gauci",
-        "position": "GK",
-        "detailed_position": "GK",
-        "club": {
-          "name": "Aston Villa",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 12,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Joe_Gauci_%28cropped%29.jpg/330px-Joe_Gauci_%28cropped%29.jpg"
-      },
-      {
         "id": "paul-izzo",
         "full_name": "Paul Izzo",
         "display_name": "Paul Izzo",
@@ -574,22 +559,107 @@
           "league": "Superliga danesa"
         },
         "shirt_number_expected": 23,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Paul_Izzo_training_for_Melbourne_Victory_December_2022_%28cropped%29.jpg/330px-Paul_Izzo_training_for_Melbourne_Victory_December_2022_%28cropped%29.jpg"
       },
       {
-        "id": "lewis-miller",
-        "full_name": "Lewis Miller",
-        "display_name": "Lewis Miller",
+        "id": "patrick-beach",
+        "full_name": "Patrick Beach",
+        "display_name": "Patrick Beach",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/21/PatrickBeachvWSW_%28cropped%29.jpg"
+      },
+      {
+        "id": "milos-degenek",
+        "full_name": "Miloš Degenek",
+        "display_name": "Miloš Degenek",
         "position": "DEF",
-        "detailed_position": "RB",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Cameroon-Australia_%2820%29_%28cropped%29.jpg"
+      },
+      {
+        "id": "alessandro-circati",
+        "full_name": "Alessandro Circati",
+        "display_name": "Alessandro Circati",
+        "position": "DEF",
+        "detailed_position": "CB",
         "club": {
-          "name": "Stuttgart",
-          "country_iso": "de",
-          "league": "Bundesliga"
+          "name": "Parma",
+          "country_iso": "it",
+          "league": "Serie A"
         },
-        "shirt_number_expected": 2,
+        "shirt_number_expected": 15,
         "status": "fixed"
+      },
+      {
+        "id": "jacob-italiano",
+        "full_name": "Jacob Italiano",
+        "display_name": "Jacob Italiano",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "jordy-bos",
+        "full_name": "Jordan Bos",
+        "display_name": "Jordy Bos",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "KVC Westerlo",
+          "country_iso": "be",
+          "league": "Pro League"
+        },
+        "shirt_number_expected": 13,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4c/4822286_AE7I6649_-_Jordan_Bos.jpg"
+      },
+      {
+        "id": "jason-geria",
+        "full_name": "Jason Geria",
+        "display_name": "Jason Geria",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Geria_Victory_Training_May_2015.jpg"
+      },
+      {
+        "id": "kai-trewin",
+        "full_name": "Kai Trewin",
+        "display_name": "Kai Trewin",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Kai_Trewin_NYCFC_v_Colorado_Mar_14_2026-25_%28cropped%29.jpg"
+      },
+      {
+        "id": "aziz-behich",
+        "full_name": "Aziz Behich",
+        "display_name": "Aziz Behich",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Melbourne City",
+          "country_iso": "au",
+          "league": "A-League"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/20180601_FIFA_Friendly_Match_Czech_Republic_vs._Australia_Aziz_Behich_850_0277.jpg/330px-20180601_FIFA_Friendly_Match_Czech_Republic_vs._Australia_Aziz_Behich_850_0277.jpg"
       },
       {
         "id": "harry-souttar",
@@ -622,123 +692,15 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Cameron_Burgess_%28cropped%29.jpg"
       },
       {
-        "id": "alessandro-circati",
-        "full_name": "Alessandro Circati",
-        "display_name": "Alessandro Circati",
+        "id": "lucas-herrington",
+        "full_name": "Lucas Herrington",
+        "display_name": "Lucas Herrington",
         "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Parma",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 15,
-        "status": "fixed"
-      },
-      {
-        "id": "kye-rowles",
-        "full_name": "Kye Rowles",
-        "display_name": "Kye Rowles",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Heart of Midlothian",
-          "country_iso": "gb-sct",
-          "league": "Scottish Premiership"
-        },
-        "shirt_number_expected": 22,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Kye_Rowles_NYCFC_vs_DC_United_on_Aug_30_2025-016_%28cropped%29.jpg/330px-Kye_Rowles_NYCFC_vs_DC_United_on_Aug_30_2025-016_%28cropped%29.jpg"
-      },
-      {
-        "id": "aziz-behich",
-        "full_name": "Aziz Behich",
-        "display_name": "Aziz Behich",
-        "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "Melbourne City",
-          "country_iso": "au",
-          "league": "A-League"
-        },
-        "shirt_number_expected": 3,
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/20180601_FIFA_Friendly_Match_Czech_Republic_vs._Australia_Aziz_Behich_850_0277.jpg/330px-20180601_FIFA_Friendly_Match_Czech_Republic_vs._Australia_Aziz_Behich_850_0277.jpg"
-      },
-      {
-        "id": "jordy-bos",
-        "full_name": "Jordan Bos",
-        "display_name": "Jordy Bos",
-        "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "KVC Westerlo",
-          "country_iso": "be",
-          "league": "Pro League"
-        },
-        "shirt_number_expected": 13,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4c/4822286_AE7I6649_-_Jordan_Bos.jpg"
-      },
-      {
-        "id": "jackson-irvine",
-        "full_name": "Jackson Irvine",
-        "display_name": "Jackson Irvine",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "FC St. Pauli",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 6,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Chile_VS._Australia_%283%29_%28cropped%29_2.jpg/330px-Chile_VS._Australia_%283%29_%28cropped%29_2.jpg"
-      },
-      {
-        "id": "patrick-yazbek",
-        "full_name": "Patrick Yazbek",
-        "display_name": "Patrick Yazbek",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Nashville SC",
-          "country_iso": "us",
-          "league": "MLS"
-        },
-        "shirt_number_expected": 8,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Patrick_Yazbek_Revolution_Nashville_6.25.25-035_%28cropped%29.jpg/330px-Patrick_Yazbek_Revolution_Nashville_6.25.25-035_%28cropped%29.jpg"
-      },
-      {
-        "id": "aiden-oneill",
-        "full_name": "Aiden O'Neill",
-        "display_name": "Aiden O'Neill",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Hibernian",
-          "country_iso": "gb-sct",
-          "league": "Scottish Premiership"
-        },
-        "shirt_number_expected": 16,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Aiden_O%27Neill_CF_Montreal_NYCFC_6.28.25-034_%28cropped%29.jpg/330px-Aiden_O%27Neill_CF_Montreal_NYCFC_6.28.25-034_%28cropped%29.jpg"
-      },
-      {
-        "id": "ryan-teague",
-        "full_name": "Ryan Teague",
-        "display_name": "Ryan Teague",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Anderlecht",
-          "country_iso": "be",
-          "league": "Pro League"
-        },
-        "shirt_number_expected": 17,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Ryan_Teague_training_December_2023_%28cropped%29.jpg/330px-Ryan_Teague_training_December_2023_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/42/Lucas_Herrington_NYCFC_v_Colorado_Mar_14_2026-29_%28cropped%29.jpg"
       },
       {
         "id": "connor-metcalfe",
@@ -756,64 +718,67 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b2/4822293_AE7I6590_-_Connor_Metcalfe.jpg"
       },
       {
-        "id": "ajdin-hrustic",
-        "full_name": "Ajdin Hrustić",
-        "display_name": "Ajdin Hrustić",
+        "id": "aiden-oneill",
+        "full_name": "Aiden O'Neill",
+        "display_name": "Aiden O'Neill",
         "position": "MID",
-        "detailed_position": "CAM",
+        "detailed_position": "CDM",
         "club": {
-          "name": "Hellas Verona",
-          "country_iso": "it",
-          "league": "Serie A"
+          "name": "Hibernian",
+          "country_iso": "gb-sct",
+          "league": "Scottish Premiership"
         },
-        "shirt_number_expected": 19,
+        "shirt_number_expected": 16,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/53/2022128170418_2022-05-08_Fussball_Eintracht_Frankfurt_vs_Borussia_M%C3%B6nchengladbach_-_Sven_-_1D_X_MK_II_-_2055_-_B70I8166_%28Ajdin_Hrusti%C4%87_cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Aiden_O%27Neill_CF_Montreal_NYCFC_6.28.25-034_%28cropped%29.jpg/330px-Aiden_O%27Neill_CF_Montreal_NYCFC_6.28.25-034_%28cropped%29.jpg"
       },
       {
-        "id": "riley-mcgree",
-        "full_name": "Riley McGree",
-        "display_name": "Riley McGree",
+        "id": "cameron-devlin",
+        "full_name": "Cameron Devlin",
+        "display_name": "Cameron Devlin",
         "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Middlesbrough",
-          "country_iso": "gb-eng",
-          "league": "Championship"
-        },
-        "shirt_number_expected": 10,
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Riley_McGree.jpg/330px-Riley_McGree.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Cameron_Devlin_2021.png"
       },
       {
-        "id": "anthony-caceres",
-        "full_name": "Anthony Cáceres",
-        "display_name": "Anthony Cáceres",
+        "id": "jackson-irvine",
+        "full_name": "Jackson Irvine",
+        "display_name": "Jackson Irvine",
         "position": "MID",
-        "detailed_position": "CAM",
+        "detailed_position": "CM",
         "club": {
-          "name": "Sydney FC",
-          "country_iso": "au",
-          "league": "A-League"
+          "name": "FC St. Pauli",
+          "country_iso": "de",
+          "league": "Bundesliga"
         },
-        "shirt_number_expected": 24,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f5/Anthony_Caceres_Al_Wasl.jpg"
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Chile_VS._Australia_%283%29_%28cropped%29_2.jpg/330px-Chile_VS._Australia_%283%29_%28cropped%29_2.jpg"
       },
       {
-        "id": "mitchell-duke",
-        "full_name": "Mitchell Duke",
-        "display_name": "Mitch Duke",
+        "id": "paul-okon-engstler",
+        "full_name": "Paul Okon-Engstler",
+        "display_name": "Paul Okon-Engstler",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "mathew-leckie",
+        "full_name": "Mathew Leckie",
+        "display_name": "Mathew Leckie",
         "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Machida Zelvia",
-          "country_iso": "jp",
-          "league": "J1 League"
-        },
-        "shirt_number_expected": 9,
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Mitchell_Duke_2020.png/330px-Mitchell_Duke_2020.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Hertha_BSC_vs._West_Ham_United_20190731_%28054%29.jpg"
       },
       {
         "id": "mohamed-toure",
@@ -831,6 +796,32 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Lens_-_Reims_%2812-05-2023%29_21.jpg/330px-Lens_-_Reims_%2812-05-2023%29_21.jpg"
       },
       {
+        "id": "ajdin-hrustic",
+        "full_name": "Ajdin Hrustić",
+        "display_name": "Ajdin Hrustić",
+        "position": "FWD",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Hellas Verona",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/53/2022128170418_2022-05-08_Fussball_Eintracht_Frankfurt_vs_Borussia_M%C3%B6nchengladbach_-_Sven_-_1D_X_MK_II_-_2055_-_B70I8166_%28Ajdin_Hrusti%C4%87_cropped%29.jpg"
+      },
+      {
+        "id": "awer-mabil",
+        "full_name": "Awer Mabil",
+        "display_name": "Awer Mabil",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Awer_Mabil.jpg"
+      },
+      {
         "id": "nestory-irankunda",
         "full_name": "Nestory Irankunda",
         "display_name": "Nestory Irankunda",
@@ -846,78 +837,37 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Nestory_Irankunda_and_Kwadwo_Baah_09082025_%281%29_%28cropped%29.jpg/330px-Nestory_Irankunda_and_Kwadwo_Baah_09082025_%281%29_%28cropped%29.jpg"
       },
       {
-        "id": "martin-boyle",
-        "full_name": "Martin Boyle",
-        "display_name": "Martin Boyle",
+        "id": "cristian-volpato",
+        "full_name": "Cristian Volpato",
+        "display_name": "Cristian Volpato",
         "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Hibernian",
-          "country_iso": "gb-sct",
-          "league": "Scottish Premiership"
-        },
-        "shirt_number_expected": 7,
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/4822273_AE7I7255_-_Martin_Boyle.jpg/330px-4822273_AE7I7255_-_Martin_Boyle.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/9f/FC_Internazionale_Milano_v_US_Sassuolo_Calcio%2C_21_September_2025_-_08_%28Cristian_Volpato%29.jpg"
       },
       {
-        "id": "kusini-yengi",
-        "full_name": "Kusini Yengi",
-        "display_name": "Kusini Yengi",
+        "id": "nishan-velupillay",
+        "full_name": "Nishan Velupillay",
+        "display_name": "Nishan Velupillay",
         "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Sunderland",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 20,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/KusiniYengi1.png/330px-KusiniYengi1.png"
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Nishan_Velupillay_training_for_Melbourne_Victory_January_2023_%28cropped%29.jpg"
       },
       {
-        "id": "adam-taggart",
-        "full_name": "Adam Taggart",
-        "display_name": "Adam Taggart",
+        "id": "tete-yengi",
+        "full_name": "Tete Yengi",
+        "display_name": "Tete Yengi",
         "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Sunderland",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 25,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Adam_Taggart_2013.jpg/330px-Adam_Taggart_2013.jpg"
-      },
-      {
-        "id": "alex-robertson",
-        "full_name": "Alex Robertson",
-        "display_name": "Alex Robertson",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Cardiff City",
-          "country_iso": "gb-wls",
-          "league": "League One"
-        },
-        "shirt_number_expected": 26,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Alex_Robertson_05042025_%283%29.jpg/330px-Alex_Robertson_05042025_%283%29.jpg"
-      },
-      {
-        "id": "hayden-matthews",
-        "full_name": "Hayden Matthews",
-        "display_name": "Hayden Matthews",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Portsmouth",
-          "country_iso": "gb-eng",
-          "league": "Championship"
-        },
-        "shirt_number_expected": 14,
-        "status": "bubble"
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Tete_Yengi_-_Kelty_Hearts_-_July_2024.jpg"
       }
     ],
     "starting_xi": {
@@ -1037,8 +987,10 @@
       },
       "vs_last_3_wcs": "Brasil 2014: fase de grupos. Rusia 2018: fase de grupos. Catar 2022: OCTAVOS (eliminada 1-2 con Argentina, gol de Goodwin). Mundial 2026: 7ª participación, 6ª CONSECUTIVA (récord histórico)."
     },
-    "squad_announced": false,
-    "squad_announced_status": "pending_official"
+    "squad_announced": true,
+    "squad_announced_status": "pending_official",
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 1974,

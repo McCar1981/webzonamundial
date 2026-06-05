@@ -471,21 +471,6 @@
     },
     "likely_squad": [
       {
-        "id": "mike-maignan",
-        "full_name": "Mike Maignan",
-        "display_name": "Mike Maignan",
-        "position": "GK",
-        "detailed_position": "GK",
-        "club": {
-          "name": "AC Milán",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 16,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Mike_Maignan_2022_Salzburg_vs_AC_Milan_2022-09-06.jpg/330px-Mike_Maignan_2022_Salzburg_vs_AC_Milan_2022-09-06.jpg"
-      },
-      {
         "id": "brice-samba",
         "full_name": "Brice Samba",
         "display_name": "Brice Samba",
@@ -499,6 +484,21 @@
         "shirt_number_expected": 23,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Lens_-_Torino_FC_%2802-08-2023%29_6_%28cropped%29.jpg/330px-Lens_-_Torino_FC_%2802-08-2023%29_6_%28cropped%29.jpg"
+      },
+      {
+        "id": "mike-maignan",
+        "full_name": "Mike Maignan",
+        "display_name": "Mike Maignan",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "AC Milán",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 16,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Mike_Maignan_2022_Salzburg_vs_AC_Milan_2022-09-06.jpg/330px-Mike_Maignan_2022_Salzburg_vs_AC_Milan_2022-09-06.jpg"
       },
       {
         "id": "robin-risser",
@@ -516,21 +516,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Montpellier-Strasbourg_18-08-24%2C_Robin_Risser.jpg"
       },
       {
-        "id": "jules-kounde",
-        "full_name": "Jules Koundé",
-        "display_name": "Koundé",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Barcelona",
-          "country_iso": "es",
-          "league": "La Liga"
-        },
-        "shirt_number_expected": 5,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Jules_Kound%C3%A9_2020.jpg/330px-Jules_Kound%C3%A9_2020.jpg"
-      },
-      {
         "id": "malo-gusto",
         "full_name": "Malo Gusto",
         "display_name": "Malo Gusto",
@@ -544,81 +529,6 @@
         "shirt_number_expected": 2,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Olympique_lyonnais_-_ES_Troyes_AC_L1_19-08-2022_-_Malo_Gusto.jpg/330px-Olympique_lyonnais_-_ES_Troyes_AC_L1_19-08-2022_-_Malo_Gusto.jpg"
-      },
-      {
-        "id": "william-saliba",
-        "full_name": "William Saliba",
-        "display_name": "Saliba",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Arsenal",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 17,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/1_william_saliba_arsenal_2025_%28cropped%29.jpg/330px-1_william_saliba_arsenal_2025_%28cropped%29.jpg"
-      },
-      {
-        "id": "dayot-upamecano",
-        "full_name": "Dayot Upamecano",
-        "display_name": "Upamecano",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Bayern Múnich",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 18,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/2022-07-30_Fu%C3%9Fball%2C_M%C3%A4nner%2C_DFL-Supercup%2C_RB_Leipzig_-_FC_Bayern_M%C3%BCnchen_1DX_3244_by_Stepro.jpg/330px-2022-07-30_Fu%C3%9Fball%2C_M%C3%A4nner%2C_DFL-Supercup%2C_RB_Leipzig_-_FC_Bayern_M%C3%BCnchen_1DX_3244_by_Stepro.jpg"
-      },
-      {
-        "id": "ibrahima-konate",
-        "full_name": "Ibrahima Konaté",
-        "display_name": "Konaté",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Liverpool",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 4,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Liverpool_FC_gegen_1._FSV_Mainz_05_%28Testspiel_23._Juli_2021%29_15_%28cropped%29.jpg/330px-Liverpool_FC_gegen_1._FSV_Mainz_05_%28Testspiel_23._Juli_2021%29_15_%28cropped%29.jpg"
-      },
-      {
-        "id": "lucas-hernandez",
-        "full_name": "Lucas Hernández",
-        "display_name": "Lucas Hernández",
-        "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "PSG",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 21,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/FC_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%28Championsleague_Achtelfinale_Hinspiel_16._Februar_2022%29_52.jpg/330px-FC_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%28Championsleague_Achtelfinale_Hinspiel_16._Februar_2022%29_52.jpg"
-      },
-      {
-        "id": "theo-hernandez",
-        "full_name": "Theo Hernández",
-        "display_name": "Theo Hernández",
-        "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "Al-Hilal",
-          "country_iso": "sa",
-          "league": "Saudi Pro League"
-        },
-        "shirt_number_expected": 22,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/FC_Salzburg_vs._AC_Mailand_%28UEFA_Championsleague_2022-09-06%29_Th%C3%A9o_Hernandez.jpg/330px-FC_Salzburg_vs._AC_Mailand_%28UEFA_Championsleague_2022-09-06%29_Th%C3%A9o_Hernandez.jpg"
       },
       {
         "id": "lucas-digne",
@@ -636,6 +546,96 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/18/Lucas_Digne_Everton.jpg"
       },
       {
+        "id": "dayot-upamecano",
+        "full_name": "Dayot Upamecano",
+        "display_name": "Upamecano",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Bayern Múnich",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/2022-07-30_Fu%C3%9Fball%2C_M%C3%A4nner%2C_DFL-Supercup%2C_RB_Leipzig_-_FC_Bayern_M%C3%BCnchen_1DX_3244_by_Stepro.jpg/330px-2022-07-30_Fu%C3%9Fball%2C_M%C3%A4nner%2C_DFL-Supercup%2C_RB_Leipzig_-_FC_Bayern_M%C3%BCnchen_1DX_3244_by_Stepro.jpg"
+      },
+      {
+        "id": "jules-kounde",
+        "full_name": "Jules Koundé",
+        "display_name": "Koundé",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Barcelona",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Jules_Kound%C3%A9_2020.jpg/330px-Jules_Kound%C3%A9_2020.jpg"
+      },
+      {
+        "id": "ibrahima-konate",
+        "full_name": "Ibrahima Konaté",
+        "display_name": "Konaté",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Liverpool",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Liverpool_FC_gegen_1._FSV_Mainz_05_%28Testspiel_23._Juli_2021%29_15_%28cropped%29.jpg/330px-Liverpool_FC_gegen_1._FSV_Mainz_05_%28Testspiel_23._Juli_2021%29_15_%28cropped%29.jpg"
+      },
+      {
+        "id": "william-saliba",
+        "full_name": "William Saliba",
+        "display_name": "Saliba",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Arsenal",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/1_william_saliba_arsenal_2025_%28cropped%29.jpg/330px-1_william_saliba_arsenal_2025_%28cropped%29.jpg"
+      },
+      {
+        "id": "theo-hernandez",
+        "full_name": "Theo Hernández",
+        "display_name": "Theo Hernández",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Al-Hilal",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 22,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/FC_Salzburg_vs._AC_Mailand_%28UEFA_Championsleague_2022-09-06%29_Th%C3%A9o_Hernandez.jpg/330px-FC_Salzburg_vs._AC_Mailand_%28UEFA_Championsleague_2022-09-06%29_Th%C3%A9o_Hernandez.jpg"
+      },
+      {
+        "id": "lucas-hernandez",
+        "full_name": "Lucas Hernández",
+        "display_name": "Lucas Hernández",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "PSG",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 21,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/FC_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%28Championsleague_Achtelfinale_Hinspiel_16._Februar_2022%29_52.jpg/330px-FC_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%28Championsleague_Achtelfinale_Hinspiel_16._Februar_2022%29_52.jpg"
+      },
+      {
         "id": "maxence-lacroix",
         "full_name": "Maxence Lacroix",
         "display_name": "Maxence Lacroix",
@@ -649,6 +649,21 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Lens_-_Sochaux_%2823-11-2019%29_73.jpg"
+      },
+      {
+        "id": "manu-kone",
+        "full_name": "Manu Koné",
+        "display_name": "Manu Koné",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "AS Roma",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 25,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Kouadio_Manu_Kon%C3%A9_%282019-08-31%29_%28cropped%29.jpg/330px-Kouadio_Manu_Kon%C3%A9_%282019-08-31%29_%28cropped%29.jpg"
       },
       {
         "id": "aurelien-tchouameni",
@@ -666,21 +681,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/2025_04_26_Final_de_la_Copa_del_Rey_-_Aur%C3%A9lien_Tchouam%C3%A9ni.jpg"
       },
       {
-        "id": "adrien-rabiot",
-        "full_name": "Adrien Rabiot",
-        "display_name": "Rabiot",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "AC Milán",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 14,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Rabiot_asse_om_2425.png/330px-Rabiot_asse_om_2425.png"
-      },
-      {
         "id": "n-golo-kante",
         "full_name": "N'Golo Kanté",
         "display_name": "Kanté",
@@ -694,6 +694,21 @@
         "shirt_number_expected": 13,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/05/N%27Golo_Kant%C3%A9_%28cropped%29.jpg"
+      },
+      {
+        "id": "adrien-rabiot",
+        "full_name": "Adrien Rabiot",
+        "display_name": "Rabiot",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "AC Milán",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Rabiot_asse_om_2425.png/330px-Rabiot_asse_om_2425.png"
       },
       {
         "id": "warren-zaire-emery",
@@ -711,19 +726,62 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/92/Zaire_Emery_vs_MHSC_18_mars_2024.png"
       },
       {
-        "id": "manu-kone",
-        "full_name": "Manu Koné",
-        "display_name": "Manu Koné",
+        "id": "rayan-cherki",
+        "full_name": "Rayan Cherki",
+        "display_name": "Rayan Cherki",
         "position": "MID",
-        "detailed_position": "CM",
+        "detailed_position": "FWD",
         "club": {
-          "name": "AS Roma",
+          "name": "Manchester City",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Rayan_Cherki_2019.jpg"
+      },
+      {
+        "id": "maghnes-akliouche",
+        "full_name": "Maghnes Akliouche",
+        "display_name": "Maghnes Akliouche",
+        "position": "MID",
+        "detailed_position": "FWD",
+        "club": {
+          "name": "Mónaco"
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/00/Akliouche2_asse_asm_2425.png"
+      },
+      {
+        "id": "ousmane-dembele",
+        "full_name": "Ousmane Dembélé",
+        "display_name": "Dembélé",
+        "position": "FWD",
+        "detailed_position": "RW",
+        "club": {
+          "name": "PSG",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Ousmane_Demb%C3%A9l%C3%A9_2018_%28cropped%29.jpg/330px-Ousmane_Demb%C3%A9l%C3%A9_2018_%28cropped%29.jpg"
+      },
+      {
+        "id": "marcus-thuram",
+        "full_name": "Marcus Thuram",
+        "display_name": "Marcus Thuram",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "Inter",
           "country_iso": "it",
           "league": "Serie A"
         },
-        "shirt_number_expected": 25,
+        "shirt_number_expected": 15,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Kouadio_Manu_Kon%C3%A9_%282019-08-31%29_%28cropped%29.jpg/330px-Kouadio_Manu_Kon%C3%A9_%282019-08-31%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Marcus_Thuram_in_2023.jpg/330px-Marcus_Thuram_in_2023.jpg"
       },
       {
         "id": "kylian-mbappe",
@@ -756,19 +814,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/FC_RB_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%282026-01-06_Testspiel%29_10.jpg/330px-FC_RB_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%282026-01-06_Testspiel%29_10.jpg"
       },
       {
-        "id": "ousmane-dembele",
-        "full_name": "Ousmane Dembélé",
-        "display_name": "Dembélé",
+        "id": "bradley-barcola",
+        "full_name": "Bradley Barcola",
+        "display_name": "Barcola",
         "position": "FWD",
-        "detailed_position": "RW",
+        "detailed_position": "LW",
         "club": {
           "name": "PSG",
           "country_iso": "fr",
           "league": "Ligue 1"
         },
-        "shirt_number_expected": 11,
+        "shirt_number_expected": 26,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Ousmane_Demb%C3%A9l%C3%A9_2018_%28cropped%29.jpg/330px-Ousmane_Demb%C3%A9l%C3%A9_2018_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Barcola_asse_psg_2425.png/330px-Barcola_asse_psg_2425.png"
       },
       {
         "id": "desire-doue",
@@ -786,49 +844,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Doue_asse_psg_2425.png/330px-Doue_asse_psg_2425.png"
       },
       {
-        "id": "bradley-barcola",
-        "full_name": "Bradley Barcola",
-        "display_name": "Barcola",
-        "position": "FWD",
-        "detailed_position": "LW",
-        "club": {
-          "name": "PSG",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 26,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Barcola_asse_psg_2425.png/330px-Barcola_asse_psg_2425.png"
-      },
-      {
-        "id": "marcus-thuram",
-        "full_name": "Marcus Thuram",
-        "display_name": "Marcus Thuram",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Inter",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 15,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Marcus_Thuram_in_2023.jpg/330px-Marcus_Thuram_in_2023.jpg"
-      },
-      {
-        "id": "maghnes-akliouche",
-        "full_name": "Maghnes Akliouche",
-        "display_name": "Maghnes Akliouche",
-        "position": "FWD",
-        "detailed_position": "FWD",
-        "club": {
-          "name": "Mónaco"
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/00/Akliouche2_asse_asm_2425.png"
-      },
-      {
         "id": "jean-philippe-mateta",
         "full_name": "Jean-Philippe Mateta",
         "display_name": "Jean-Philippe Mateta",
@@ -840,21 +855,6 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Jean-Philippe_Mateta_%28cropped%29.jpg"
-      },
-      {
-        "id": "rayan-cherki",
-        "full_name": "Rayan Cherki",
-        "display_name": "Rayan Cherki",
-        "position": "FWD",
-        "detailed_position": "FWD",
-        "club": {
-          "name": "Manchester City",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Rayan_Cherki_2019.jpg"
       }
     ],
     "starting_xi": {
@@ -972,8 +972,8 @@
       "vs_last_3_wcs": "Rusia 2018: CAMPEÓN. Final 4-2 ante Croacia, 2 goles de Pogba/Mbappé. Catar 2022: SUBCAMPEÓN. Final 3-3 con hat-trick de Mbappé, perdió en penales 4-2 con Argentina. Mundial 2026: aspiración real al tercer título. La 'tercera será la vencida' para Mbappé."
     },
     "squad_announced": true,
-    "squad_announced_date": "2026-05-26",
-    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 1930,

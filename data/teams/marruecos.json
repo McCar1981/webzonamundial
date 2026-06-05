@@ -514,7 +514,7 @@
           "league": "Botola Pro"
         },
         "shirt_number_expected": 12,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/38/Munir_Mohand_Mohamedi_%28cropped2%29.jpg"
       },
       {
@@ -529,7 +529,7 @@
           "league": "Botola Pro"
         },
         "shirt_number_expected": 22,
-        "status": "bubble",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/%D8%A3%D8%AD%D9%85%D8%AF_%D8%B1%D8%B6%D8%A7_%D8%A7%D9%84%D8%AA%D9%83%D9%86%D8%A7%D9%88%D8%AA%D9%8A.jpg/330px-%D8%A3%D8%AD%D9%85%D8%AF_%D8%B1%D8%B6%D8%A7_%D8%A7%D9%84%D8%AA%D9%83%D9%86%D8%A7%D9%88%D8%AA%D9%8A.jpg"
       },
       {
@@ -563,21 +563,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Mazraoui.jpg/330px-Mazraoui.jpg"
       },
       {
-        "id": "achraf-dari",
-        "full_name": "Achraf Dari",
-        "display_name": "Dari",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Brest",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 5,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/78/Persa_dar%C3%AD.png"
-      },
-      {
         "id": "nayef-aguerd",
         "full_name": "Nayef Aguerd",
         "display_name": "Aguerd",
@@ -593,63 +578,70 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Nayef_Aguerd_vs_Niger%2C_5_Sept_2025.jpg/330px-Nayef_Aguerd_vs_Niger%2C_5_Sept_2025.jpg"
       },
       {
-        "id": "romain-saiss",
-        "full_name": "Romain Saiss",
-        "display_name": "Romain Saïss",
+        "id": "zakaria-el-ouahdi",
+        "full_name": "Zakaria El Ouahdi",
+        "display_name": "Zakaria El Ouahdi",
         "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Al-Shabab",
-          "country_iso": "sa",
-          "league": "Saudi Pro League"
-        },
-        "shirt_number_expected": 4,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/RomainSaiss.jpg/330px-RomainSaiss.jpg"
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Zakaria_El_Ouahdi_at_the_Olympic_Games_2024_%28cropped%29.jpg"
       },
       {
-        "id": "jawad-el-yamiq",
-        "full_name": "Jawad El Yamiq",
-        "display_name": "El Yamiq",
+        "id": "issa-diop",
+        "full_name": "Issa Diop",
+        "display_name": "Issa Diop",
         "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Real Valladolid",
-          "country_iso": "es",
-          "league": "La Liga 2"
-        },
-        "shirt_number_expected": 17,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Elyamiq.jpg/330px-Elyamiq.jpg"
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Issa_Diop_during_Moroccan_national_anthem_against_Paraguay_%28cropped%29.jpg"
       },
       {
-        "id": "adam-masina",
-        "full_name": "Adam Masina",
-        "display_name": "Adam Masina",
+        "id": "chadi-riad",
+        "full_name": "Chadi Riad",
+        "display_name": "Chadi Riad",
         "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "Torino",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 3,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Adam_Masina_-_Maroc_vs_Niger_%28cropped%29.jpg/330px-Adam_Masina_-_Maroc_vs_Niger_%28cropped%29.jpg"
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Chadi_Riad_against_Paraguay_%28cropped%29.jpg"
       },
       {
-        "id": "yahia-attiat-allah",
-        "full_name": "Yahia Attiat-Allah",
-        "display_name": "Attiat-Allah",
+        "id": "youssef-belammari",
+        "full_name": "Youssef Belammari",
+        "display_name": "Youssef Belammari",
         "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "Wydad Casablanca",
-          "country_iso": "ma",
-          "league": "Botola Pro"
-        },
-        "shirt_number_expected": 25,
-        "status": "bubble"
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Youssef_Belammari_vs_Niger_%28cropped%29.jpg"
+      },
+      {
+        "id": "redouane-halhal",
+        "full_name": "Redouane Halhal",
+        "display_name": "Redouane Halhal",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Redouane_Halhal_vs_Paraguay_%28cropped%29.jpg"
+      },
+      {
+        "id": "anass-salah-eddine",
+        "full_name": "Anass Salah-Eddine",
+        "display_name": "Anass Salah-Eddine",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Anass_Salah-Eddine_against_Paraguay_%28cropped%29.jpg"
       },
       {
         "id": "sofyan-amrabat",
@@ -667,6 +659,28 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Sofyan_Amrabat_vs_Niger_%28cropped%29.jpg/330px-Sofyan_Amrabat_vs_Niger_%28cropped%29.jpg"
       },
       {
+        "id": "ayyoub-bouaddi",
+        "full_name": "Ayyoub Bouaddi",
+        "display_name": "Ayyoub Bouaddi",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Bouaddi_asselosc_2425.jpg"
+      },
+      {
+        "id": "chemsdine-talbi",
+        "full_name": "Chemsdine Talbi",
+        "display_name": "Chemsdine Talbi",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Chemsdine_Talbi_against_Paraguay_%28cropped%29.jpg"
+      },
+      {
         "id": "azzedine-ounahi",
         "full_name": "Azzedine Ounahi",
         "display_name": "Ounahi",
@@ -680,21 +694,6 @@
         "shirt_number_expected": 8,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Ounahi_vs_Paraguay_%28cropped%29.jpg/330px-Ounahi_vs_Paraguay_%28cropped%29.jpg"
-      },
-      {
-        "id": "bilal-el-khannouss",
-        "full_name": "Bilal El Khannouss",
-        "display_name": "El Khannouss",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Stuttgart",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 18,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/El_Khannouss.jpg/330px-El_Khannouss.jpg"
       },
       {
         "id": "ismail-saibari",
@@ -712,19 +711,41 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Ismael_Saibari_vs_Niger_%28cropped%29.jpg/330px-Ismael_Saibari_vs_Niger_%28cropped%29.jpg"
       },
       {
-        "id": "selim-amallah",
-        "full_name": "Selim Amallah",
-        "display_name": "Amallah",
+        "id": "samir-el-mourabet",
+        "full_name": "Samir El Mourabet",
+        "display_name": "Samir El Mourabet",
         "position": "MID",
-        "detailed_position": "CM",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Samir_El_Mourabet_vs_Paraguay_%28cropped%29.jpg"
+      },
+      {
+        "id": "gessime-yassine",
+        "full_name": "Gessime Yassine",
+        "display_name": "Gessime Yassine",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Gessime_Yassine_against_Paraguay_2_%28cropped%29.jpg"
+      },
+      {
+        "id": "bilal-el-khannouss",
+        "full_name": "Bilal El Khannouss",
+        "display_name": "El Khannouss",
+        "position": "MID",
+        "detailed_position": "CAM",
         "club": {
-          "name": "Valladolid",
-          "country_iso": "es",
-          "league": "La Liga 2"
+          "name": "Stuttgart",
+          "country_iso": "de",
+          "league": "Bundesliga"
         },
-        "shirt_number_expected": 16,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Amellah_%28cropped%29.jpg/330px-Amellah_%28cropped%29.jpg"
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/El_Khannouss.jpg/330px-El_Khannouss.jpg"
       },
       {
         "id": "neil-el-aynaoui",
@@ -738,8 +759,19 @@
           "league": "Ligue 1"
         },
         "shirt_number_expected": 23,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Neil_El_Aynaoui_vs_Niger_%28cropped%29.jpg/330px-Neil_El_Aynaoui_vs_Niger_%28cropped%29.jpg"
+      },
+      {
+        "id": "soufiane-rahimi",
+        "full_name": "Soufiane Rahimi",
+        "display_name": "Soufiane Rahimi",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Soufiane_Rahimi_against_Paraguay_%28cropped%29.jpg"
       },
       {
         "id": "brahim-diaz",
@@ -757,34 +789,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Brahim_Diaz_3_vs_Niger_%28cropped%29_%28cropped%29.jpg/330px-Brahim_Diaz_3_vs_Niger_%28cropped%29_%28cropped%29.jpg"
       },
       {
-        "id": "hakim-ziyech",
-        "full_name": "Hakim Ziyech",
-        "display_name": "Ziyech",
+        "id": "abde-ezzalzouli",
+        "full_name": "Abde Ezzalzouli",
+        "display_name": "Abde Ezzalzouli",
         "position": "FWD",
-        "detailed_position": "RW",
+        "detailed_position": "LW",
         "club": {
-          "name": "Al Duhail",
-          "country_iso": "qa",
-          "league": "QSL"
+          "name": "Real Betis",
+          "country_iso": "es",
+          "league": "La Liga"
         },
-        "shirt_number_expected": 7,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Hakim_Ziyech_2021.jpg/330px-Hakim_Ziyech_2021.jpg"
-      },
-      {
-        "id": "youssef-en-nesyri",
-        "full_name": "Youssef En-Nesyri",
-        "display_name": "En-Nesyri",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Fenerbahçe",
-          "country_iso": "tr",
-          "league": "Süper Lig"
-        },
-        "shirt_number_expected": 19,
+        "shirt_number_expected": 26,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Ennesyri.jpg/330px-Ennesyri.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/AbdeEz.jpg/330px-AbdeEz.jpg"
       },
       {
         "id": "ayoub-el-kaabi",
@@ -802,79 +819,15 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Ayoub_El_Kaabi_vs_Niger_%28cropped%29.jpg/330px-Ayoub_El_Kaabi_vs_Niger_%28cropped%29.jpg"
       },
       {
-        "id": "hamza-igamane",
-        "full_name": "Hamza Igamane",
-        "display_name": "Igamane",
+        "id": "ayoub-amaimouni",
+        "full_name": "Ayoub Amaimouni",
+        "display_name": "Ayoub Amaimouni",
         "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Rangers",
-          "country_iso": "gb-sct",
-          "league": "Scottish Premiership"
-        },
-        "shirt_number_expected": 13,
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Hamza_Igamane_vs_Niger_%28cropped%29.jpg/330px-Hamza_Igamane_vs_Niger_%28cropped%29.jpg"
-      },
-      {
-        "id": "sofiane-boufal",
-        "full_name": "Sofiane Boufal",
-        "display_name": "Boufal",
-        "position": "FWD",
-        "detailed_position": "LW",
-        "club": {
-          "name": "Al-Rayyan",
-          "country_iso": "qa",
-          "league": "QSL"
-        },
-        "shirt_number_expected": 24,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/XXIII_Memorial_Quinocho_%28RC_Celta_vs_Mainz_05%29_-_23_%28cropped%29.jpg/330px-XXIII_Memorial_Quinocho_%28RC_Celta_vs_Mainz_05%29_-_23_%28cropped%29.jpg"
-      },
-      {
-        "id": "amine-adli",
-        "full_name": "Amine Adli",
-        "display_name": "Adli",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Bournemouth",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 15,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/AmineAdli.jpg/330px-AmineAdli.jpg"
-      },
-      {
-        "id": "eliesse-ben-seghir",
-        "full_name": "Eliesse Ben Seghir",
-        "display_name": "Ben Seghir",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Bayer Leverkusen",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 20,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Eliesse_Ben_Seghir_vs_Niger_%28cropped%29_%28cropped%29.jpg/330px-Eliesse_Ben_Seghir_vs_Niger_%28cropped%29_%28cropped%29.jpg"
-      },
-      {
-        "id": "abde-ezzalzouli",
-        "full_name": "Abde Ezzalzouli",
-        "display_name": "Abde Ezzalzouli",
-        "position": "FWD",
-        "detailed_position": "LW",
-        "club": {
-          "name": "Real Betis",
-          "country_iso": "es",
-          "league": "La Liga"
-        },
-        "shirt_number_expected": 26,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/AbdeEz.jpg/330px-AbdeEz.jpg"
+        "photo_url": null
       }
     ],
     "starting_xi": {
@@ -992,8 +945,10 @@
       },
       "vs_last_3_wcs": "Rusia 2018: fase de grupos, último con 1 punto. Catar 2022: 4º PUESTO HISTÓRICO. Eliminó a Bélgica en grupos, a España en octavos (penales), a Portugal en cuartos. Cayó ante Francia en semis (2-0) y ante Croacia (2-1) en el partido por el bronce. Mundial 2026: llega como semifinalista vigente del Mundial, subcampeón Africano 2025 (CAN), con la mayoría del bloque vigente más nuevos talentos de élite (Brahim Díaz, El Khannouss, Saibari)."
     },
-    "squad_announced": false,
-    "squad_announced_status": "pending_official"
+    "squad_announced": true,
+    "squad_announced_status": "pending_official",
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 1970,

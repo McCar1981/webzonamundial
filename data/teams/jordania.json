@@ -87,7 +87,7 @@
         "goals_against": 8,
         "goal_difference": 6,
         "points": 16,
-        "win_percentage": 40.0,
+        "win_percentage": 40,
         "clean_sheets": 4,
         "notes": "Jordania perdió solo con Corea del Sur e Iraq. Triunfo decisivo 3-0 a Omán (hat-trick de Ali Olwan) selló el pase histórico."
       },
@@ -535,47 +535,63 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Yazeed_Abulaila.png/330px-Yazeed_Abulaila.png"
       },
       {
-        "id": "amer-shafia",
-        "full_name": "Amer Shafia",
-        "display_name": "Amer Shafia",
+        "id": "nour-baniateyah",
+        "full_name": "Nour Baniateyah",
+        "display_name": "Nour Baniateyah",
         "position": "GK",
         "detailed_position": "GK",
-        "club": {
-          "name": "Al-Faisaly",
-          "country_iso": "jo",
-          "league": "Liga Premier de Jordania"
-        },
-        "shirt_number_expected": 12,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/AUS-JOR_20190106_Asian_Cup_1.jpg/330px-AUS-JOR_20190106_Asian_Cup_1.jpg"
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
-        "id": "abdullah-al-fakhouri",
-        "full_name": "Abdullah Al-Fakhouri",
-        "display_name": "Al-Fakhouri",
+        "id": "abdallah-al-fakhori",
+        "full_name": "Abdallah Al-Fakhori",
+        "display_name": "Abdallah Al-Fakhori",
         "position": "GK",
         "detailed_position": "GK",
-        "club": {
-          "name": "Al-Wehdat",
-          "country_iso": "jo",
-          "league": "Liga Premier de Jordania"
-        },
-        "shirt_number_expected": 23,
-        "status": "probable"
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
-        "id": "adham-al-quraishi",
-        "full_name": "Adham Al-Quraishi",
-        "display_name": "Adham Al-Quraishi",
+        "id": "mohammad-abu-hasheesh",
+        "full_name": "Mohammad Abu Hasheesh",
+        "display_name": "Mohammad Abu Hasheesh",
         "position": "DEF",
-        "detailed_position": "RB",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "abdallah-nasib",
+        "full_name": "Abdallah Nasib",
+        "display_name": "Abdallah Nasib",
+        "position": "DEF",
+        "detailed_position": "CB",
         "club": {
-          "name": "Al-Wehdat",
+          "name": "Al-Salt",
           "country_iso": "jo",
           "league": "Liga Premier de Jordania"
         },
-        "shirt_number_expected": 2,
-        "status": "fixed"
+        "shirt_number_expected": 24,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Abdallah_Nasib.png/330px-Abdallah_Nasib.png"
+      },
+      {
+        "id": "husam-abu-dahab",
+        "full_name": "Husam Abu Dahab",
+        "display_name": "Husam Abu Dahab",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "yazan-al-arab",
@@ -607,18 +623,26 @@
         "status": "fixed"
       },
       {
-        "id": "salem-al-ajalin",
-        "full_name": "Salem Al-Ajalin",
-        "display_name": "Salem Al-Ajalin",
+        "id": "saleem-obaid",
+        "full_name": "Saleem Obaid",
+        "display_name": "Saleem Obaid",
         "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Al-Wehdat",
-          "country_iso": "jo",
-          "league": "Liga Premier de Jordania"
-        },
-        "shirt_number_expected": 15,
-        "status": "probable"
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "saed-al-rosan",
+        "full_name": "Saed Al-Rosan",
+        "display_name": "Saed Al-Rosan",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/99/AFC_Champions_League_-_Sepahan_of_Iran_and_Al-Hussein_of_Jordan_17_%28Mehr%2C_2025%29_%28cropped%29.jpg"
       },
       {
         "id": "ehsan-haddad",
@@ -632,68 +656,30 @@
           "league": "Liga Premier de Jordania"
         },
         "shirt_number_expected": 22,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Ihsan_Haddad.jpg/330px-Ihsan_Haddad.jpg"
       },
       {
-        "id": "mohammad-abu-hashish",
-        "full_name": "Mohammad Abu Hashish",
-        "display_name": "Abu Hashish",
+        "id": "anas-badawi",
+        "full_name": "Anas Badawi",
+        "display_name": "Anas Badawi",
         "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "Al-Wehdat",
-          "country_iso": "jo",
-          "league": "Liga Premier de Jordania"
-        },
-        "shirt_number_expected": 3,
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Mohammad_Abu_Hashish.png/330px-Mohammad_Abu_Hashish.png"
+        "photo_url": null
       },
       {
-        "id": "feras-shelbaieh",
-        "full_name": "Feras Shelbaieh",
-        "display_name": "Feras Shelbaieh",
-        "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "Al-Hussein SC",
-          "country_iso": "jo",
-          "league": "Liga Premier de Jordania"
-        },
-        "shirt_number_expected": 13,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Asian_Nations_Cup_-_Jordan_and_South_Korea_%2861%29_%28cropped2%29.jpg"
-      },
-      {
-        "id": "nizar-al-rashdan",
-        "full_name": "Nizar Al-Rashdan",
-        "display_name": "Nizar Al-Rashdan",
+        "id": "amer-jamous",
+        "full_name": "Amer Jamous",
+        "display_name": "Amer Jamous",
         "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Al-Wakrah",
-          "country_iso": "qa",
-          "league": "Qatar Stars League"
-        },
-        "shirt_number_expected": 6,
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Asian_Nations_Cup_-_Jordan_and_South_Korea_%2874%29_%28cropped%29.jpg"
-      },
-      {
-        "id": "ehsan-haddad-mid",
-        "full_name": "Ehsan Haddad (mediocampista)",
-        "display_name": "Haddad MID",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Al-Wehdat",
-          "country_iso": "jo",
-          "league": "Liga Premier de Jordania"
-        },
-        "shirt_number_expected": 14,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Ihsan_Haddad.jpg/330px-Ihsan_Haddad.jpg"
+        "photo_url": null
       },
       {
         "id": "noor-al-rawabdeh",
@@ -711,21 +697,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Noor_Al-Rawabdeh.png/330px-Noor_Al-Rawabdeh.png"
       },
       {
-        "id": "mahmoud-al-mardi",
-        "full_name": "Mahmoud Al-Mardi",
-        "display_name": "Mahmoud Al-Mardi",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Al-Wehdat",
-          "country_iso": "jo",
-          "league": "Liga Premier de Jordania"
-        },
-        "shirt_number_expected": 17,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/67/Asian_Nations_Cup_-_Jordan_and_South_Korea_%2867%29_%28cropped3%29.jpg"
-      },
-      {
         "id": "rajae-ayed",
         "full_name": "Rajae Ayed",
         "display_name": "Rajae Ayed",
@@ -737,52 +708,66 @@
           "league": "Liga Premier de Jordania"
         },
         "shirt_number_expected": 16,
-        "status": "probable"
+        "status": "fixed"
       },
       {
-        "id": "ibrahim-sabra",
-        "full_name": "Ibrahim Sabra",
-        "display_name": "Ibrahim Sabra",
+        "id": "ibrahim-sadeh",
+        "full_name": "Ibrahim Sadeh",
+        "display_name": "Ibrahim Sadeh",
         "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "HB Køge",
-          "country_iso": "dk",
-          "league": "1. Division (2ª danesa)"
-        },
-        "shirt_number_expected": 18,
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Player_Ibraheem_Sabra.jpg/330px-Player_Ibraheem_Sabra.jpg"
+        "photo_url": null
       },
       {
-        "id": "musa-al-tamari",
-        "full_name": "Mousa Al-Tamari",
-        "display_name": "Mousa Al-Tamari",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Stade Rennes",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 10,
+        "id": "mohannad-abu-taha",
+        "full_name": "Mohannad Abu Taha",
+        "display_name": "Mohannad Abu Taha",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Al_taamari_asse_mhsc_2425.png/330px-Al_taamari_asse_mhsc_2425.png"
+        "photo_url": null
       },
       {
-        "id": "yazan-al-naimat",
-        "full_name": "Yazan Al-Naimat",
-        "display_name": "Yazan Al-Naimat",
-        "position": "FWD",
-        "detailed_position": "ST",
+        "id": "nizar-al-rashdan",
+        "full_name": "Nizar Al-Rashdan",
+        "display_name": "Nizar Al-Rashdan",
+        "position": "MID",
+        "detailed_position": "CDM",
         "club": {
-          "name": "Al-Arabi SC",
+          "name": "Al-Wakrah",
           "country_iso": "qa",
           "league": "Qatar Stars League"
         },
-        "shirt_number_expected": 9,
+        "shirt_number_expected": 6,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Yazan_Al-Naimat_2.jpg/330px-Yazan_Al-Naimat_2.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Asian_Nations_Cup_-_Jordan_and_South_Korea_%2874%29_%28cropped%29.jpg"
+      },
+      {
+        "id": "mohammad-al-daoud",
+        "full_name": "Mohammad Al-Daoud",
+        "display_name": "Mohammad Al-Daoud",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "mohammad-abu-zraiq",
+        "full_name": "Mohammad Abu Zraiq",
+        "display_name": "Mohammad Abu Zraiq",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "ali-olwan",
@@ -800,104 +785,71 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Ali_Olwan.png/330px-Ali_Olwan.png"
       },
       {
-        "id": "mahmoud-zoorab",
-        "full_name": "Mahmoud Zoorab",
-        "display_name": "Mahmoud Zoorab",
+        "id": "musa-al-tamari",
+        "full_name": "Mousa Al-Tamari",
+        "display_name": "Mousa Al-Tamari",
         "position": "FWD",
-        "detailed_position": "LW",
+        "detailed_position": "RW",
         "club": {
-          "name": "Al-Wehdat",
-          "country_iso": "jo",
-          "league": "Liga Premier de Jordania"
+          "name": "Stade Rennes",
+          "country_iso": "fr",
+          "league": "Ligue 1"
         },
-        "shirt_number_expected": 19,
-        "status": "probable"
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Al_taamari_asse_mhsc_2425.png/330px-Al_taamari_asse_mhsc_2425.png"
       },
       {
-        "id": "tamer-bany-attieh",
-        "full_name": "Tamer Bany Attieh",
-        "display_name": "Tamer Bany",
+        "id": "odeh-fakhoury",
+        "full_name": "Odeh Fakhoury",
+        "display_name": "Odeh Fakhoury",
         "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Al-Hussein SC",
-          "country_iso": "jo",
-          "league": "Liga Premier de Jordania"
-        },
-        "shirt_number_expected": 20,
-        "status": "probable"
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
-        "id": "yousef-abu-jalboush",
-        "full_name": "Yousef Abu Jalboush",
-        "display_name": "Abu Jalboush",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Al-Faisaly",
-          "country_iso": "jo",
-          "league": "Liga Premier de Jordania"
-        },
-        "shirt_number_expected": 7,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Sepahan_and_Al-Hussein_Jordan_football_teams_meet_2_%282025%29_esfahanzibaonline.ir_%28cropped%29.jpg/330px-Sepahan_and_Al-Hussein_Jordan_football_teams_meet_2_%282025%29_esfahanzibaonline.ir_%28cropped%29.jpg"
-      },
-      {
-        "id": "ali-mghaisheb",
-        "full_name": "Ali Mghaisheb",
-        "display_name": "Ali Mghaisheb",
-        "position": "MID",
+        "id": "mahmoud-al-mardi",
+        "full_name": "Mahmoud Al-Mardi",
+        "display_name": "Mahmoud Al-Mardi",
+        "position": "FWD",
         "detailed_position": "CAM",
         "club": {
           "name": "Al-Wehdat",
           "country_iso": "jo",
           "league": "Liga Premier de Jordania"
         },
-        "shirt_number_expected": 21,
-        "status": "bubble"
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/67/Asian_Nations_Cup_-_Jordan_and_South_Korea_%2867%29_%28cropped3%29.jpg"
       },
       {
-        "id": "abdallah-nasib",
-        "full_name": "Abdallah Nasib",
-        "display_name": "Abdallah Nasib",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Al-Salt",
-          "country_iso": "jo",
-          "league": "Liga Premier de Jordania"
-        },
-        "shirt_number_expected": 24,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Abdallah_Nasib.png/330px-Abdallah_Nasib.png"
-      },
-      {
-        "id": "yousef-al-rawashdeh",
-        "full_name": "Yousef Al-Rawashdeh",
-        "display_name": "Al-Rawashdeh",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Al-Wehdat",
-          "country_iso": "jo",
-          "league": "Liga Premier de Jordania"
-        },
-        "shirt_number_expected": 25,
-        "status": "bubble"
-      },
-      {
-        "id": "saleh-rateb",
-        "full_name": "Saleh Rateb",
-        "display_name": "Saleh Rateb",
+        "id": "ibrahim-sabra",
+        "full_name": "Ibrahim Sabra",
+        "display_name": "Ibrahim Sabra",
         "position": "FWD",
-        "detailed_position": "ST",
+        "detailed_position": "CAM",
         "club": {
-          "name": "Al-Faisaly",
-          "country_iso": "jo",
-          "league": "Liga Premier de Jordania"
+          "name": "HB Køge",
+          "country_iso": "dk",
+          "league": "1. Division (2ª danesa)"
         },
-        "shirt_number_expected": 26,
-        "status": "bubble"
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Player_Ibraheem_Sabra.jpg/330px-Player_Ibraheem_Sabra.jpg"
+      },
+      {
+        "id": "ali-azaizeh",
+        "full_name": "Ali Azaizeh",
+        "display_name": "Ali Azaizeh",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       }
     ],
     "starting_xi": {
@@ -1016,8 +968,10 @@
       },
       "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ (cayó en repechaje intercontinental con Uruguay). Rusia 2018: NO CLASIFICÓ. Catar 2022: NO CLASIFICÓ. Mundial 2026: PRIMERA PARTICIPACIÓN HISTÓRICA. Debutante absoluto, 40 años después de su 1ª eliminatoria (México 1986)."
     },
-    "squad_announced": false,
-    "squad_announced_status": "pending_official"
+    "squad_announced": true,
+    "squad_announced_status": "pending_official",
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 2026,
@@ -1037,7 +991,7 @@
       "lost": 0,
       "goals_for": 0,
       "goals_against": 0,
-      "win_percentage": 0.0,
+      "win_percentage": 0,
       "notes": "Debutante absoluto en Mundial 2026. PRIMERA participación de la historia. Su mejor antecedente: subcampeón Copa Asia 2023."
     },
     "by_world_cup": [],

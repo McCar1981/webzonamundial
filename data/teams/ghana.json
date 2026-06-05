@@ -87,7 +87,7 @@
         "goals_against": 6,
         "goal_difference": 8,
         "points": 19,
-        "win_percentage": 75.0,
+        "win_percentage": 75,
         "clean_sheets": 4,
         "notes": "Grupo I tuvo solo 5 equipos por la retirada de Eritrea. Madagascar 2º quedó fuera."
       },
@@ -495,34 +495,26 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/FC_Red_Bull_Salzburg_gegen_SK_Sturm_Graz_%289._April_2017%29_02.jpg/330px-FC_Red_Bull_Salzburg_gegen_SK_Sturm_Graz_%289._April_2017%29_02.jpg"
       },
       {
-        "id": "richard-ofori",
-        "full_name": "Richard Ofori",
-        "display_name": "Richard Ofori",
+        "id": "joseph-anang",
+        "full_name": "Joseph Anang",
+        "display_name": "Joseph Anang",
         "position": "GK",
         "detailed_position": "GK",
-        "club": {
-          "name": "Orlando Pirates",
-          "country_iso": "za",
-          "league": "Premier Soccer League"
-        },
-        "shirt_number_expected": 16,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Richard_Ofori.jpeg/330px-Richard_Ofori.jpeg"
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Hertha_BSC_vs._West_Ham_United_20190731_%28199%29.jpg"
       },
       {
-        "id": "joseph-wollacott",
-        "full_name": "Joseph Wollacott",
-        "display_name": "Joseph Wollacott",
+        "id": "benjamin-asare",
+        "full_name": "Benjamin Asare",
+        "display_name": "Benjamin Asare",
         "position": "GK",
         "detailed_position": "GK",
-        "club": {
-          "name": "Salford City",
-          "country_iso": "gb-eng",
-          "league": "League Two"
-        },
-        "shirt_number_expected": 23,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Ghana_%281%29_%28cropped_Jojo_Wollacott%29.jpg/330px-Ghana_%281%29_%28cropped_Jojo_Wollacott%29.jpg"
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "alidu-seidu",
@@ -539,34 +531,15 @@
         "status": "fixed"
       },
       {
-        "id": "mohammed-salisu",
-        "full_name": "Mohammed Salisu",
-        "display_name": "Salisu",
+        "id": "jonas-adjetey",
+        "full_name": "Jonas Adjetey",
+        "display_name": "Jonas Adjetey",
         "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Mónaco",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 3,
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Salisu_asse_asm_2425.png/330px-Salisu_asse_asm_2425.png"
-      },
-      {
-        "id": "alexander-djiku",
-        "full_name": "Alexander Djiku",
-        "display_name": "Djiku",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Fenerbahce",
-          "country_iso": "tr",
-          "league": "Süper Lig"
-        },
-        "shirt_number_expected": 5,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Ghana_%281%29_%28cropped_Alexander_Djiku%29.jpg/330px-Ghana_%281%29_%28cropped_Alexander_Djiku%29.jpg"
+        "photo_url": null
       },
       {
         "id": "abdul-mumin",
@@ -609,8 +582,63 @@
           "league": "Super League"
         },
         "shirt_number_expected": 12,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/12AbdulRahmanBaba.jpg/330px-12AbdulRahmanBaba.jpg"
+      },
+      {
+        "id": "jerome-opoku",
+        "full_name": "Jerome Opoku",
+        "display_name": "Jerome Opoku",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Jerome_Opoku_3_%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_FK_UECL_20250813_%281%29.jpg"
+      },
+      {
+        "id": "kojo-oppong",
+        "full_name": "Kojo Oppong",
+        "display_name": "Kojo Oppong",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "derrick-luckassen",
+        "full_name": "Derrick Luckassen",
+        "display_name": "Derrick Luckassen",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Derrick_luckassen-1447005764.JPG"
+      },
+      {
+        "id": "marvin-senaya",
+        "full_name": "Marvin Senaya",
+        "display_name": "Marvin Senaya",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "caleb-yirenkyi",
+        "full_name": "Caleb Yirenkyi",
+        "display_name": "Caleb Yirenkyi",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "thomas-partey",
@@ -628,6 +656,32 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/42/ATL-Madrid-Lokomotiv001-Thomas_%28cropped%29.jpg"
       },
       {
+        "id": "kwasi-sibo",
+        "full_name": "Kwasi Sibo",
+        "display_name": "Kwasi Sibo",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "antoine-semenyo",
+        "full_name": "Antoine Semenyo",
+        "display_name": "Antoine Semenyo",
+        "position": "MID",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Manchester City",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Antoine_Semenyo_2026.png/330px-Antoine_Semenyo_2026.png"
+      },
+      {
         "id": "elisha-owusu",
         "full_name": "Elisha Owusu",
         "display_name": "Elisha Owusu",
@@ -643,64 +697,30 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Lens_-_Sochaux_%2815-09-2018%29_175_%28cropped%29.jpg/330px-Lens_-_Sochaux_%2815-09-2018%29_175_%28cropped%29.jpg"
       },
       {
-        "id": "salis-abdul-samed",
-        "full_name": "Salis Abdul Samed",
-        "display_name": "Abdul Samed",
+        "id": "augustine-boakye",
+        "full_name": "Augustine Boakye",
+        "display_name": "Augustine Boakye",
         "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Lens",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 6,
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Lens_-_Reims_%2812-05-2023%29_45.jpg/330px-Lens_-_Reims_%2812-05-2023%29_45.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/05/Boakye_ASSE_MHSC_2425.png"
       },
       {
-        "id": "mohammed-kudus",
-        "full_name": "Mohammed Kudus",
-        "display_name": "Mohammed Kudus",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Tottenham",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 20,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/GAE_-_Ajax_-_52788309814_%28Mohammed_Kudus%29.jpg/330px-GAE_-_Ajax_-_52788309814_%28Mohammed_Kudus%29.jpg"
-      },
-      {
-        "id": "ernest-nuamah",
-        "full_name": "Ernest Nuamah",
-        "display_name": "Ernest Nuamah",
-        "position": "MID",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Lyon",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 18,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Nuamah_vs_FCSB.png"
-      },
-      {
-        "id": "antoine-semenyo",
-        "full_name": "Antoine Semenyo",
-        "display_name": "Antoine Semenyo",
+        "id": "fatawu-issahaku",
+        "full_name": "Fatawu Issahaku",
+        "display_name": "Fatawu Issahaku",
         "position": "FWD",
         "detailed_position": "RW",
         "club": {
-          "name": "Manchester City",
+          "name": "Leicester",
           "country_iso": "gb-eng",
-          "league": "Premier League"
+          "league": "Championship"
         },
-        "shirt_number_expected": 11,
+        "shirt_number_expected": 17,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Antoine_Semenyo_2026.png/330px-Antoine_Semenyo_2026.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Abdul_Fatawu_24082024_%286%29.jpg"
       },
       {
         "id": "jordan-ayew",
@@ -718,19 +738,26 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Jordan_Ayew_24082024_%282%29.jpg/330px-Jordan_Ayew_24082024_%282%29.jpg"
       },
       {
-        "id": "andre-ayew",
-        "full_name": "André Ayew",
-        "display_name": "André Ayew",
+        "id": "brandon-thomas-asante",
+        "full_name": "Brandon Thomas-Asante",
+        "display_name": "Brandon Thomas-Asante",
         "position": "FWD",
-        "detailed_position": "LW",
-        "club": {
-          "name": "Le Havre",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 9,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/20150331_Mali_vs_Ghana_157.jpg/330px-20150331_Mali_vs_Ghana_157.jpg"
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "christopher-baah",
+        "full_name": "Christopher Baah",
+        "display_name": "Christopher Baah",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "inaki-williams",
@@ -763,121 +790,30 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Kamaldeen_Sulemana_%28cropped%29.jpg/330px-Kamaldeen_Sulemana_%28cropped%29.jpg"
       },
       {
-        "id": "fatawu-issahaku",
-        "full_name": "Fatawu Issahaku",
-        "display_name": "Fatawu Issahaku",
+        "id": "ernest-nuamah",
+        "full_name": "Ernest Nuamah",
+        "display_name": "Ernest Nuamah",
         "position": "FWD",
         "detailed_position": "RW",
         "club": {
-          "name": "Leicester",
-          "country_iso": "gb-eng",
-          "league": "Championship"
+          "name": "Lyon",
+          "country_iso": "fr",
+          "league": "Ligue 1"
         },
-        "shirt_number_expected": 17,
-        "status": "fixed"
-      },
-      {
-        "id": "felix-afena-gyan",
-        "full_name": "Felix Afena-Gyan",
-        "display_name": "Felix Afena-Gyan",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Ferencvaros",
-          "country_iso": "hu",
-          "league": "NB I"
-        },
-        "shirt_number_expected": 13,
-        "status": "probable"
-      },
-      {
-        "id": "abu-francis",
-        "full_name": "Abu Francis",
-        "display_name": "Abu Francis",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Cercle Brugge",
-          "country_iso": "be",
-          "league": "Pro League"
-        },
-        "shirt_number_expected": 15,
-        "status": "probable"
-      },
-      {
-        "id": "majeed-ashimeru",
-        "full_name": "Majeed Ashimeru",
-        "display_name": "Majeed Ashimeru",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Anderlecht",
-          "country_iso": "be",
-          "league": "Pro League"
-        },
-        "shirt_number_expected": 21,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/FC_RB_Salzburg_versus_CSKA_Sofia_%28Testspiel_3._Juli_2019%29_17.jpg/330px-FC_RB_Salzburg_versus_CSKA_Sofia_%28Testspiel_3._Juli_2019%29_17.jpg"
-      },
-      {
-        "id": "abdul-mannaf-nurudeen",
-        "full_name": "Abdul Manaf Nurudeen",
-        "display_name": "Manaf Nurudeen",
-        "position": "GK",
-        "detailed_position": "GK",
-        "club": {
-          "name": "Eupen",
-          "country_iso": "be",
-          "league": "Pro League"
-        },
-        "shirt_number_expected": 22,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Eupen-cologne_3.jpg/330px-Eupen-cologne_3.jpg"
-      },
-      {
-        "id": "tariq-lamptey",
-        "full_name": "Tariq Lamptey",
-        "display_name": "Tariq Lamptey",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Brighton",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 24,
+        "shirt_number_expected": 18,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Tariq_Lamptey_2022.jpg/330px-Tariq_Lamptey_2022.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Nuamah_vs_FCSB.png"
       },
       {
-        "id": "denis-odoi",
-        "full_name": "Denis Odoi",
-        "display_name": "Denis Odoi",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Brujas",
-          "country_iso": "be",
-          "league": "Pro League"
-        },
-        "shirt_number_expected": 25,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Metall-Lokeren_%285%29.jpg/330px-Metall-Lokeren_%285%29.jpg"
-      },
-      {
-        "id": "joseph-paintsil",
-        "full_name": "Joseph Paintsil",
-        "display_name": "Joseph Paintsil",
+        "id": "prince-adu",
+        "full_name": "Prince Adu",
+        "display_name": "Prince Adu",
         "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "LA Galaxy",
-          "country_iso": "us",
-          "league": "MLS"
-        },
-        "shirt_number_expected": 26,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Joseph_Paintsil.2020.jpg/330px-Joseph_Paintsil.2020.jpg"
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       }
     ],
     "starting_xi": {
@@ -999,8 +935,10 @@
       },
       "vs_last_3_wcs": "Brasil 2014: fase de grupos eliminada (1G 1E 2P). Rusia 2018: NO CLASIFICÓ. Catar 2022: fase de grupos eliminada (1G 0E 2P). Mundial 2026: 5ª participación (5 de 6 últimas). Generación Kudus busca repetir 2010 (cuartos histórico)."
     },
-    "squad_announced": false,
-    "squad_announced_status": "pending_official"
+    "squad_announced": true,
+    "squad_announced_status": "pending_official",
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 2006,

@@ -707,78 +707,37 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Gatito_Fernandez.jpg/330px-Gatito_Fernandez.jpg"
       },
       {
-        "id": "carlos-coronel",
-        "full_name": "Carlos Coronel",
-        "display_name": "Carlos Coronel",
+        "id": "orlando-gill",
+        "full_name": "Orlando Gill",
+        "display_name": "Orlando Gill",
         "position": "GK",
         "detailed_position": "GK",
-        "club": {
-          "name": "New York RB",
-          "country_iso": "us",
-          "league": "MLS"
-        },
-        "shirt_number_expected": 12,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/FC_Liefering_gegen_FC_Blau-Wei%C3%9F_Linz_%2824._April_2018%29_08.jpg/330px-FC_Liefering_gegen_FC_Blau-Wei%C3%9F_Linz_%2824._April_2018%29_08.jpg"
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
-        "id": "anthony-silva",
-        "full_name": "Anthony Silva",
-        "display_name": "Anthony Silva",
+        "id": "gaston-olveira",
+        "full_name": "Gastón Olveira",
+        "display_name": "Gastón Olveira",
         "position": "GK",
         "detailed_position": "GK",
-        "club": {
-          "name": "Olimpia",
-          "country_iso": "py",
-          "league": "Primera División"
-        },
-        "shirt_number_expected": 22,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/85/Antony_Silva_France_2_juin_2017.jpg"
-      },
-      {
-        "id": "robert-rojas",
-        "full_name": "Robert Rojas",
-        "display_name": "Robert Rojas",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Vasco da Gama",
-          "country_iso": "br",
-          "league": "Brasileirão"
-        },
-        "shirt_number_expected": 4,
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Palestino_-_River_Plate_20190424_30.jpg/330px-Palestino_-_River_Plate_20190424_30.jpg"
+        "photo_url": null
       },
       {
-        "id": "agustin-sandez",
-        "full_name": "Agustín Sández",
-        "display_name": "Agustín Sández",
+        "id": "gustavo-velazquez",
+        "full_name": "Gustavo Velázquez",
+        "display_name": "Gustavo Velázquez",
         "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "Boca Juniors",
-          "country_iso": "ar",
-          "league": "Liga Profesional"
-        },
-        "shirt_number_expected": 6,
-        "status": "probable"
-      },
-      {
-        "id": "gustavo-gomez",
-        "full_name": "Gustavo Gómez",
-        "display_name": "Gustavo Gómez",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Palmeiras",
-          "country_iso": "br",
-          "league": "Brasileirão"
-        },
-        "shirt_number_expected": 5,
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Gustavo-Gomez-Palmeiras-Athletico-jul-2022-2.jpg/330px-Gustavo-Gomez-Palmeiras-Athletico-jul-2022-2.jpg"
+        "photo_url": null
       },
       {
         "id": "omar-alderete",
@@ -796,6 +755,32 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Omar_Alderete_2019_%28cropped%29.jpg/330px-Omar_Alderete_2019_%28cropped%29.jpg"
       },
       {
+        "id": "juan-caceres",
+        "full_name": "Juan Cáceres",
+        "display_name": "Juan Cáceres",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/77/Juan_Jos%C3%A9_C%C3%A1ceres_2025.jpg"
+      },
+      {
+        "id": "fabian-balbuena",
+        "full_name": "Fabián Balbuena",
+        "display_name": "Fabián Balbuena",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Internacional",
+          "country_iso": "br",
+          "league": "Brasileirão"
+        },
+        "shirt_number_expected": 13,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Fabi%C3%A1n_Balbuena_2021.jpg/330px-Fabi%C3%A1n_Balbuena_2021.jpg"
+      },
+      {
         "id": "junior-alonso",
         "full_name": "Junior Alonso",
         "display_name": "Junior Alonso",
@@ -811,32 +796,97 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/J%C3%BAnior_Alonso_20180612_%28cropped%29.jpg/330px-J%C3%BAnior_Alonso_20180612_%28cropped%29.jpg"
       },
       {
-        "id": "alan-benitez",
-        "full_name": "Alan Benítez",
-        "display_name": "Alan Benítez",
+        "id": "jose-canale",
+        "full_name": "José Canale",
+        "display_name": "José Canale",
         "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Independiente",
-          "country_iso": "ar",
-          "league": "Liga Profesional"
-        },
-        "shirt_number_expected": 17,
-        "status": "probable"
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
-        "id": "matias-espinoza",
-        "full_name": "Matías Espinoza",
-        "display_name": "Matías Espinoza",
+        "id": "gustavo-gomez",
+        "full_name": "Gustavo Gómez",
+        "display_name": "Gustavo Gómez",
         "position": "DEF",
-        "detailed_position": "LB",
+        "detailed_position": "CB",
         "club": {
-          "name": "Aldosivi",
-          "country_iso": "ar",
-          "league": "Liga Profesional"
+          "name": "Palmeiras",
+          "country_iso": "br",
+          "league": "Brasileirão"
         },
-        "shirt_number_expected": 16,
-        "status": "bubble"
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Gustavo-Gomez-Palmeiras-Athletico-jul-2022-2.jpg/330px-Gustavo-Gomez-Palmeiras-Athletico-jul-2022-2.jpg"
+      },
+      {
+        "id": "alexandro-maidana",
+        "full_name": "Alexandro Maidana",
+        "display_name": "Alexandro Maidana",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "ramon-sosa",
+        "full_name": "Ramón Sosa",
+        "display_name": "Ramón Sosa",
+        "position": "MID",
+        "detailed_position": "RW",
+        "club": {
+          "name": "Nottingham Forest",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Ramon-sosa-palmeiras-sport-ago-25-4_%28cropped%29.jpg/330px-Ramon-sosa-palmeiras-sport-ago-25-4_%28cropped%29.jpg"
+      },
+      {
+        "id": "diego-gomez",
+        "full_name": "Diego Gómez",
+        "display_name": "Diego Gómez",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Brighton",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Inter_Miami_vs_Real_Salt_Lake_02_%28cropped%29.jpg"
+      },
+      {
+        "id": "miguel-almiron",
+        "full_name": "Miguel Almirón",
+        "display_name": "Miguel Almirón",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Atlanta United",
+          "country_iso": "us",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Miguel_Almir%C3%B3n_2021-08-07_1_%28cropped%29.jpg/330px-Miguel_Almir%C3%B3n_2021-08-07_1_%28cropped%29.jpg"
+      },
+      {
+        "id": "mauricio",
+        "full_name": "Mauricio",
+        "display_name": "Mauricio",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Mauricio-palmeiras-sport-ago-25_%28cropped%29.jpg"
       },
       {
         "id": "andres-cubas",
@@ -868,63 +918,15 @@
         "status": "fixed"
       },
       {
-        "id": "diego-gomez",
-        "full_name": "Diego Gómez",
-        "display_name": "Diego Gómez",
+        "id": "braian-ojeda",
+        "full_name": "Braian Ojeda",
+        "display_name": "Braian Ojeda",
         "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Brighton",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 14,
-        "status": "fixed"
-      },
-      {
-        "id": "ramon-sosa",
-        "full_name": "Ramón Sosa",
-        "display_name": "Ramón Sosa",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Nottingham Forest",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 11,
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Ramon-sosa-palmeiras-sport-ago-25-4_%28cropped%29.jpg/330px-Ramon-sosa-palmeiras-sport-ago-25-4_%28cropped%29.jpg"
-      },
-      {
-        "id": "richard-sanchez",
-        "full_name": "Richard Sánchez",
-        "display_name": "Richard Sánchez",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Internacional",
-          "country_iso": "br",
-          "league": "Brasileirão"
-        },
-        "shirt_number_expected": 15,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Sanchez_Richard_Columbus_Crew_SC_vs_Chicago_Fire_May_12_2018.jpg/330px-Sanchez_Richard_Columbus_Crew_SC_vs_Chicago_Fire_May_12_2018.jpg"
-      },
-      {
-        "id": "miguel-almiron",
-        "full_name": "Miguel Almirón",
-        "display_name": "Miguel Almirón",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Atlanta United",
-          "country_iso": "us",
-          "league": "MLS"
-        },
-        "shirt_number_expected": 10,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Miguel_Almir%C3%B3n_2021-08-07_1_%28cropped%29.jpg/330px-Miguel_Almir%C3%B3n_2021-08-07_1_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Dynamo_vs_Real_Salt_Lake_%28Mar_2025%29_16_%28cropped%29.jpg"
       },
       {
         "id": "matias-galarza-fonda",
@@ -938,8 +940,19 @@
           "league": "Liga Profesional"
         },
         "shirt_number_expected": 21,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Mat%C3%ADas_Galarza_-_Brasileir%C3%A3o_S%C3%A9rie_A-_Bragantino_4_x_2_Coritiba_-_52150854647_%28cropped%29.jpg/330px-Mat%C3%ADas_Galarza_-_Brasileir%C3%A3o_S%C3%A9rie_A-_Bragantino_4_x_2_Coritiba_-_52150854647_%28cropped%29.jpg"
+      },
+      {
+        "id": "gustavo-caballero",
+        "full_name": "Gustavo Caballero",
+        "display_name": "Gustavo Caballero",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "antonio-sanabria",
@@ -957,6 +970,35 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Antonio_Sanabria%2C_2025_%28cropped%29.jpg/330px-Antonio_Sanabria%2C_2025_%28cropped%29.jpg"
       },
       {
+        "id": "alejandro-romero",
+        "full_name": "Alejandro Romero Gamarra",
+        "display_name": "Kaku Romero",
+        "position": "FWD",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Toronto FC",
+          "country_iso": "ca",
+          "league": "MLS"
+        },
+        "shirt_number_expected": 20,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Alejandro_Romero_20180612_%28cropped%29.jpg/330px-Alejandro_Romero_20180612_%28cropped%29.jpg"
+      },
+      {
+        "id": "alex-arce",
+        "full_name": "Alex Arce",
+        "display_name": "Alex Arce",
+        "position": "FWD",
+        "detailed_position": "ST",
+        "club": {
+          "name": "LDU Quito",
+          "country_iso": "ec",
+          "league": "Serie A Ecuador"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed"
+      },
+      {
         "id": "julio-enciso",
         "full_name": "Julio Enciso",
         "display_name": "Julio Enciso",
@@ -972,34 +1014,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Enciso_2022.jpg"
       },
       {
-        "id": "alex-arce",
-        "full_name": "Alex Arce",
-        "display_name": "Alex Arce",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "LDU Quito",
-          "country_iso": "ec",
-          "league": "Serie A Ecuador"
-        },
-        "shirt_number_expected": 19,
-        "status": "probable"
-      },
-      {
-        "id": "adam-bareiro",
-        "full_name": "Adam Bareiro",
-        "display_name": "Adam Bareiro",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "San Lorenzo",
-          "country_iso": "ar",
-          "league": "Liga Profesional"
-        },
-        "shirt_number_expected": 26,
-        "status": "bubble"
-      },
-      {
         "id": "gabriel-avalos",
         "full_name": "Gabriel Ávalos",
         "display_name": "Gabriel Ávalos",
@@ -1011,67 +1025,18 @@
           "league": "Liga Profesional"
         },
         "shirt_number_expected": 25,
-        "status": "bubble"
+        "status": "fixed"
       },
       {
-        "id": "alejandro-romero",
-        "full_name": "Alejandro Romero Gamarra",
-        "display_name": "Kaku Romero",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Toronto FC",
-          "country_iso": "ca",
-          "league": "MLS"
-        },
-        "shirt_number_expected": 20,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Alejandro_Romero_20180612_%28cropped%29.jpg/330px-Alejandro_Romero_20180612_%28cropped%29.jpg"
-      },
-      {
-        "id": "fabian-balbuena",
-        "full_name": "Fabián Balbuena",
-        "display_name": "Fabián Balbuena",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Internacional",
-          "country_iso": "br",
-          "league": "Brasileirão"
-        },
-        "shirt_number_expected": 13,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Fabi%C3%A1n_Balbuena_2021.jpg/330px-Fabi%C3%A1n_Balbuena_2021.jpg"
-      },
-      {
-        "id": "braian-samudio",
-        "full_name": "Braian Samudio",
-        "display_name": "Braian Samudio",
+        "id": "isidro-pitta",
+        "full_name": "Isidro Pitta",
+        "display_name": "Isidro Pitta",
         "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Sportivo Luqueño",
-          "country_iso": "py",
-          "league": "Primera División"
-        },
-        "shirt_number_expected": 24,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/FC_Red_Bull_Salzburg_gegen_%C3%87aykur_Rizespor_%28Testspiel%29_06.jpg/330px-FC_Red_Bull_Salzburg_gegen_%C3%87aykur_Rizespor_%28Testspiel%29_06.jpg"
-      },
-      {
-        "id": "ivan-leguizamon",
-        "full_name": "Iván Leguizamón",
-        "display_name": "Iván Leguizamón",
-        "position": "FWD",
-        "detailed_position": "LW",
-        "club": {
-          "name": "Lanús",
-          "country_iso": "ar",
-          "league": "Liga Profesional"
-        },
-        "shirt_number_expected": 2,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Leguizamon.jpg/330px-Leguizamon.jpg"
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/47/Isidro-Pitta-Juventude-Corinthians-jun-2022.jpg"
       }
     ],
     "starting_xi": {
@@ -1189,8 +1154,10 @@
       },
       "vs_last_3_wcs": "Sudáfrica 2010: cuartos de final, eliminada por España futura campeona (1-0 con gol de Villa). Brasil 2014: NO clasificó. Rusia 2018: NO clasificó. Catar 2022: NO clasificó. Mundial 2026: regreso histórico tras 16 años de ausencia (3 ediciones consecutivas sin Paraguay)."
     },
-    "squad_announced": false,
-    "squad_announced_status": "pending_official"
+    "squad_announced": true,
+    "squad_announced_status": "pending_official",
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 1930,

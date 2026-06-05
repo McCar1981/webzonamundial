@@ -535,21 +535,6 @@
     },
     "likely_squad": [
       {
-        "id": "patrick-pentz",
-        "full_name": "Patrick Pentz",
-        "display_name": "Patrick Pentz",
-        "position": "GK",
-        "detailed_position": "GK",
-        "club": {
-          "name": "Brøndby IF",
-          "country_iso": "dk",
-          "league": "Superliga"
-        },
-        "shirt_number_expected": 1,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/20161203_ADM_AUS_3873.jpg/330px-20161203_ADM_AUS_3873.jpg"
-      },
-      {
         "id": "alexander-schlager",
         "full_name": "Alexander Schlager",
         "display_name": "Schlager",
@@ -580,6 +565,21 @@
         "photo_url": null
       },
       {
+        "id": "patrick-pentz",
+        "full_name": "Patrick Pentz",
+        "display_name": "Patrick Pentz",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Brøndby IF",
+          "country_iso": "dk",
+          "league": "Superliga"
+        },
+        "shirt_number_expected": 1,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/20161203_ADM_AUS_3873.jpg/330px-20161203_ADM_AUS_3873.jpg"
+      },
+      {
         "id": "david-affengruber",
         "full_name": "David Affengruber",
         "display_name": "David Affengruber",
@@ -593,21 +593,6 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/FC_Liefering_versus_Young_Violets_Austria_Wien_%2830._August_2019%29_28.jpg"
-      },
-      {
-        "id": "david-alaba",
-        "full_name": "David Alaba",
-        "display_name": "David Alaba",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Real Madrid",
-          "country_iso": "es",
-          "league": "La Liga"
-        },
-        "shirt_number_expected": 8,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_David_Alaba_850_1632.jpg/330px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_David_Alaba_850_1632.jpg"
       },
       {
         "id": "kevin-danso",
@@ -625,19 +610,34 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Austria_national_under-21_football_team_-_Teamcamp_October_2019_%2835%29.jpg/330px-Austria_national_under-21_football_team_-_Teamcamp_October_2019_%2835%29.jpg"
       },
       {
-        "id": "marco-friedl",
-        "full_name": "Marco Friedl",
-        "display_name": "Marco Friedl",
+        "id": "stefan-posch",
+        "full_name": "Stefan Posch",
+        "display_name": "Stefan Posch",
         "position": "DEF",
-        "detailed_position": "DEF",
+        "detailed_position": "RB",
         "club": {
-          "name": "Werder Bremen",
-          "country_iso": null,
-          "league": null
+          "name": "Mainz 05",
+          "country_iso": "it",
+          "league": "Serie A"
         },
-        "shirt_number_expected": null,
+        "shirt_number_expected": 16,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Austria_national_under-21_football_team_-_Teamcamp_June_2017_%28110%29.jpg/330px-Austria_national_under-21_football_team_-_Teamcamp_June_2017_%28110%29.jpg"
+      },
+      {
+        "id": "david-alaba",
+        "full_name": "David Alaba",
+        "display_name": "David Alaba",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Real Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_David_Alaba_850_1632.jpg/330px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_David_Alaba_850_1632.jpg"
       },
       {
         "id": "philipp-lienhart",
@@ -670,34 +670,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/XXIII_Memorial_Quinocho_%28RC_Celta_vs_Mainz_05%29_-_74_%28cropped%29.jpg/330px-XXIII_Memorial_Quinocho_%28RC_Celta_vs_Mainz_05%29_-_74_%28cropped%29.jpg"
       },
       {
-        "id": "stefan-posch",
-        "full_name": "Stefan Posch",
-        "display_name": "Stefan Posch",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Mainz 05",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 16,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Austria_national_under-21_football_team_-_Teamcamp_June_2017_%28110%29.jpg/330px-Austria_national_under-21_football_team_-_Teamcamp_June_2017_%28110%29.jpg"
-      },
-      {
-        "id": "alexander-prass",
-        "full_name": "Alexander Prass",
-        "display_name": "Alexander Prass",
+        "id": "marco-friedl",
+        "full_name": "Marco Friedl",
+        "display_name": "Marco Friedl",
         "position": "DEF",
         "detailed_position": "DEF",
         "club": {
-          "name": "Hoffenheim",
+          "name": "Werder Bremen",
           "country_iso": null,
           "league": null
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1a/FC_Liefering_versus_WSG_Wattens_%2824._Mai_2019%29_06.jpg"
+        "photo_url": null
       },
       {
         "id": "michael-svoboda",
@@ -715,81 +700,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/35/FC_RB_Salzburg_gegen_WSG_Swarowski_Tirol_%287._Dezember_2019%29_62_%28Michael_Svoboda%29.jpg"
       },
       {
-        "id": "christoph-baumgartner",
-        "full_name": "Christoph Baumgartner",
-        "display_name": "Baumgartner",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "RB Leipzig",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 17,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Austria_national_under-21_football_team_-_Teamcamp_October_2019_%2860%29.jpg/330px-Austria_national_under-21_football_team_-_Teamcamp_October_2019_%2860%29.jpg"
-      },
-      {
-        "id": "carney-chukwuemeka",
-        "full_name": "Carney Chukwuemeka",
-        "display_name": "Carney Chukwuemeka",
-        "position": "MID",
-        "detailed_position": "MID",
-        "club": {
-          "name": "Borussia Dortmund",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": null
-      },
-      {
-        "id": "florian-grillitsch",
-        "full_name": "Florian Grillitsch",
-        "display_name": "Grillitsch",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "SC Braga",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 6,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/20180602_AUTGER_4687_%28cropped%29_Florian_Grillitsch.jpg/330px-20180602_AUTGER_4687_%28cropped%29_Florian_Grillitsch.jpg"
-      },
-      {
-        "id": "konrad-laimer",
-        "full_name": "Konrad Laimer",
-        "display_name": "Konrad Laimer",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Bayern Múnich",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 10,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/2022-07-21_Fu%C3%9Fball%2C_M%C3%A4nner%2CFreundschaftsspiel%2C_RB_Leipzig_-_FC_Liverpool_1DX_2137_by_Stepro_%28cropped%29.jpg/330px-2022-07-21_Fu%C3%9Fball%2C_M%C3%A4nner%2CFreundschaftsspiel%2C_RB_Leipzig_-_FC_Liverpool_1DX_2137_by_Stepro_%28cropped%29.jpg"
-      },
-      {
-        "id": "marcel-sabitzer",
-        "full_name": "Marcel Sabitzer",
-        "display_name": "Marcel Sabitzer",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Borussia Dortmund",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 19,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Marcel_Sabitzer_2020_%28cropped%29.jpg/330px-Marcel_Sabitzer_2020_%28cropped%29.jpg"
-      },
-      {
         "id": "xaver-schlager",
         "full_name": "Xaver Schlager",
         "display_name": "Xaver Schlager",
@@ -803,36 +713,6 @@
         "shirt_number_expected": 20,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/FC_Salzburg_gegen_Club_Br%C3%BCgge_%28Euroleague_Sechzehntelfinale%29_21.jpg/330px-FC_Salzburg_gegen_Club_Br%C3%BCgge_%28Euroleague_Sechzehntelfinale%29_21.jpg"
-      },
-      {
-        "id": "romano-schmid",
-        "full_name": "Romano Schmid",
-        "display_name": "Romano Schmid",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Werder Bremen",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 23,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/FC_Liefering_versus_Blau_Wei%C3%9F_Linz_%2822._September_2017%29_41.jpg/330px-FC_Liefering_versus_Blau_Wei%C3%9F_Linz_%2822._September_2017%29_41.jpg"
-      },
-      {
-        "id": "alessandro-schopf",
-        "full_name": "Alessandro Schöpf",
-        "display_name": "Alessandro Schöpf",
-        "position": "MID",
-        "detailed_position": "MID",
-        "club": {
-          "name": "RZ Pellets",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/3c/2018-08-17_1._FC_Schweinfurt_05_vs._FC_Schalke_04_%28DFB-Pokal%29_by_Sandro_Halank%E2%80%93521_%28cropped%29.jpg"
       },
       {
         "id": "nicolas-seiwald",
@@ -850,6 +730,111 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Meisterteller%C3%BCbergabe_Saison_2021-22_%282022-05-21%29_49.jpg/330px-Meisterteller%C3%BCbergabe_Saison_2021-22_%282022-05-21%29_49.jpg"
       },
       {
+        "id": "marcel-sabitzer",
+        "full_name": "Marcel Sabitzer",
+        "display_name": "Marcel Sabitzer",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Borussia Dortmund",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 19,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Marcel_Sabitzer_2020_%28cropped%29.jpg/330px-Marcel_Sabitzer_2020_%28cropped%29.jpg"
+      },
+      {
+        "id": "florian-grillitsch",
+        "full_name": "Florian Grillitsch",
+        "display_name": "Grillitsch",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "SC Braga",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/20180602_AUTGER_4687_%28cropped%29_Florian_Grillitsch.jpg/330px-20180602_AUTGER_4687_%28cropped%29_Florian_Grillitsch.jpg"
+      },
+      {
+        "id": "carney-chukwuemeka",
+        "full_name": "Carney Chukwuemeka",
+        "display_name": "Carney Chukwuemeka",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": {
+          "name": "Borussia Dortmund",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "romano-schmid",
+        "full_name": "Romano Schmid",
+        "display_name": "Romano Schmid",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Werder Bremen",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 23,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/FC_Liefering_versus_Blau_Wei%C3%9F_Linz_%2822._September_2017%29_41.jpg/330px-FC_Liefering_versus_Blau_Wei%C3%9F_Linz_%2822._September_2017%29_41.jpg"
+      },
+      {
+        "id": "christoph-baumgartner",
+        "full_name": "Christoph Baumgartner",
+        "display_name": "Baumgartner",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "RB Leipzig",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Austria_national_under-21_football_team_-_Teamcamp_October_2019_%2860%29.jpg/330px-Austria_national_under-21_football_team_-_Teamcamp_October_2019_%2860%29.jpg"
+      },
+      {
+        "id": "konrad-laimer",
+        "full_name": "Konrad Laimer",
+        "display_name": "Konrad Laimer",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Bayern Múnich",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 10,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/2022-07-21_Fu%C3%9Fball%2C_M%C3%A4nner%2CFreundschaftsspiel%2C_RB_Leipzig_-_FC_Liverpool_1DX_2137_by_Stepro_%28cropped%29.jpg/330px-2022-07-21_Fu%C3%9Fball%2C_M%C3%A4nner%2CFreundschaftsspiel%2C_RB_Leipzig_-_FC_Liverpool_1DX_2137_by_Stepro_%28cropped%29.jpg"
+      },
+      {
+        "id": "alexander-prass",
+        "full_name": "Alexander Prass",
+        "display_name": "Alexander Prass",
+        "position": "MID",
+        "detailed_position": "DEF",
+        "club": {
+          "name": "Hoffenheim",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1a/FC_Liefering_versus_WSG_Wattens_%2824._Mai_2019%29_06.jpg"
+      },
+      {
         "id": "paul-wanner",
         "full_name": "Paul Wanner",
         "display_name": "Paul Wanner",
@@ -865,19 +850,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/41/Paul_wanner-1772636856_%28cropped%29.JPG"
       },
       {
-        "id": "patrick-wimmer",
-        "full_name": "Patrick Wimmer",
-        "display_name": "Patrick Wimmer",
+        "id": "alessandro-schopf",
+        "full_name": "Alessandro Schöpf",
+        "display_name": "Alessandro Schöpf",
         "position": "MID",
         "detailed_position": "MID",
         "club": {
-          "name": "Wolfsburgo",
+          "name": "RZ Pellets",
           "country_iso": null,
           "league": null
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/5f/UEFA_Euro_2023_Qualifiers_Austria_vs._Finland_%282022-06-03%29_29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/3c/2018-08-17_1._FC_Schweinfurt_05_vs._FC_Schalke_04_%28DFB-Pokal%29_by_Sandro_Halank%E2%80%93521_%28cropped%29.jpg"
       },
       {
         "id": "marko-arnautovic",
@@ -923,6 +908,21 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Sasa_kalajdzic.jpg"
+      },
+      {
+        "id": "patrick-wimmer",
+        "full_name": "Patrick Wimmer",
+        "display_name": "Patrick Wimmer",
+        "position": "FWD",
+        "detailed_position": "MID",
+        "club": {
+          "name": "Wolfsburgo",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/5f/UEFA_Euro_2023_Qualifiers_Austria_vs._Finland_%282022-06-03%29_29.jpg"
       }
     ],
     "starting_xi": {
@@ -1044,8 +1044,8 @@
       "vs_last_3_wcs": "Brasil 2014: NO clasificó. Rusia 2018: NO clasificó. Catar 2022: NO clasificó. Mundial 2026: 8ª participación absoluta, regreso histórico tras 28 años (último Francia 1998: 1er puesto Grupo B → eliminada por Italia). La generación dorada moderna (Alaba, Arnautović, Sabitzer) llegó por fin a Mundial."
     },
     "squad_announced": true,
-    "squad_announced_date": "2026-05-26",
-    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 1934,

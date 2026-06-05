@@ -810,6 +810,32 @@
     },
     "likely_squad": [
       {
+        "id": "juan-musso",
+        "full_name": "Juan Musso",
+        "display_name": "Juan Musso",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Musso_Udinese.png"
+      },
+      {
+        "id": "geronimo-rulli",
+        "full_name": "Gerónimo Rulli",
+        "display_name": "Gerónimo Rulli",
+        "position": "GK",
+        "detailed_position": "GK",
+        "club": {
+          "name": "Olympique Marsella",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 12,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/GAE_-_Ajax_-_52787523707_%28Ger%C3%B3nimo_Rulli%29.jpg/330px-GAE_-_Ajax_-_52787523707_%28Ger%C3%B3nimo_Rulli%29.jpg"
+      },
+      {
         "id": "emiliano-martinez",
         "full_name": "Emiliano Martínez",
         "display_name": "Dibu Martínez",
@@ -825,48 +851,34 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/St._Louis_City_vs_Aston_Villa_%28Jul_2025%29_14_%28Emiliano_Mart%C3%ADnez%29.jpg/330px-St._Louis_City_vs_Aston_Villa_%28Jul_2025%29_14_%28Emiliano_Mart%C3%ADnez%29.jpg"
       },
       {
-        "id": "geronimo-rulli",
-        "full_name": "Gerónimo Rulli",
-        "display_name": "Gerónimo Rulli",
-        "position": "GK",
-        "detailed_position": "GK",
+        "id": "leonardo-balerdi",
+        "full_name": "Leonardo Balerdi",
+        "display_name": "Leo Balerdi",
+        "position": "DEF",
+        "detailed_position": "CB",
         "club": {
           "name": "Olympique Marsella",
           "country_iso": "fr",
           "league": "Ligue 1"
         },
-        "shirt_number_expected": 12,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/GAE_-_Ajax_-_52787523707_%28Ger%C3%B3nimo_Rulli%29.jpg/330px-GAE_-_Ajax_-_52787523707_%28Ger%C3%B3nimo_Rulli%29.jpg"
-      },
-      {
-        "id": "walter-benitez",
-        "full_name": "Walter Benítez",
-        "display_name": "Walter Benítez",
-        "position": "GK",
-        "detailed_position": "GK",
-        "club": {
-          "name": "PSV Eindhoven",
-          "country_iso": "nl",
-          "league": "Eredivisie"
-        },
-        "shirt_number_expected": 1,
-        "status": "bubble"
-      },
-      {
-        "id": "nahuel-molina",
-        "full_name": "Nahuel Molina",
-        "display_name": "Nahuel Molina",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Atlético de Madrid",
-          "country_iso": "es",
-          "league": "La Liga"
-        },
-        "shirt_number_expected": 4,
+        "shirt_number_expected": 6,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/69/Nahuel_Molina_WC2022.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Leonardo_Balerdi_OM_%28cropped%29.jpg/330px-Leonardo_Balerdi_OM_%28cropped%29.jpg"
+      },
+      {
+        "id": "nicolas-tagliafico",
+        "full_name": "Nicolás Tagliafico",
+        "display_name": "Nicolás Tagliafico",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Olympique Lyonnais",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Tagliafico_with_Lyon_in_2022.png/330px-Tagliafico_with_Lyon_in_2022.png"
       },
       {
         "id": "gonzalo-montiel",
@@ -880,8 +892,23 @@
           "league": "Liga Profesional"
         },
         "shirt_number_expected": 26,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Palestino_-_River_Plate_20190424_05.jpg/330px-Palestino_-_River_Plate_20190424_05.jpg"
+      },
+      {
+        "id": "lisandro-martinez",
+        "full_name": "Lisandro Martínez",
+        "display_name": "Licha Martínez",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Manchester United",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 25,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Argentina_-_Colombia_2022_%2851%29_%28cropped%29.jpg/330px-Argentina_-_Colombia_2022_%2851%29_%28cropped%29.jpg"
       },
       {
         "id": "cristian-romero",
@@ -914,66 +941,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Arg_vs_mexico_otamendi_%28cropped%29.jpg"
       },
       {
-        "id": "lisandro-martinez",
-        "full_name": "Lisandro Martínez",
-        "display_name": "Licha Martínez",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Manchester United",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 25,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Argentina_-_Colombia_2022_%2851%29_%28cropped%29.jpg/330px-Argentina_-_Colombia_2022_%2851%29_%28cropped%29.jpg"
-      },
-      {
-        "id": "leonardo-balerdi",
-        "full_name": "Leonardo Balerdi",
-        "display_name": "Leo Balerdi",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Olympique Marsella",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 6,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Leonardo_Balerdi_OM_%28cropped%29.jpg/330px-Leonardo_Balerdi_OM_%28cropped%29.jpg"
-      },
-      {
-        "id": "nicolas-tagliafico",
-        "full_name": "Nicolás Tagliafico",
-        "display_name": "Nicolás Tagliafico",
-        "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "Olympique Lyonnais",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 3,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Tagliafico_with_Lyon_in_2022.png/330px-Tagliafico_with_Lyon_in_2022.png"
-      },
-      {
-        "id": "marcos-acuna",
-        "full_name": "Marcos Acuña",
-        "display_name": "Huevo Acuña",
-        "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "River Plate",
-          "country_iso": "ar",
-          "league": "Liga Profesional"
-        },
-        "shirt_number_expected": 8,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Marcos_acuna_vs_mexico_2022.jpg"
-      },
-      {
         "id": "facundo-medina",
         "full_name": "Facundo Medina",
         "display_name": "Facundo Medina",
@@ -985,23 +952,23 @@
           "league": "Ligue 1"
         },
         "shirt_number_expected": 24,
-        "status": "bubble",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Entra%C3%AEnement_du_RC_Lens_-_15_juillet_2020_21.jpg/330px-Entra%C3%AEnement_du_RC_Lens_-_15_juillet_2020_21.jpg"
       },
       {
-        "id": "rodrigo-de-paul",
-        "full_name": "Rodrigo De Paul",
-        "display_name": "Rodrigo De Paul",
-        "position": "MID",
-        "detailed_position": "CM",
+        "id": "nahuel-molina",
+        "full_name": "Nahuel Molina",
+        "display_name": "Nahuel Molina",
+        "position": "DEF",
+        "detailed_position": "RB",
         "club": {
-          "name": "Inter Miami CF",
-          "country_iso": "us",
-          "league": "MLS"
+          "name": "Atlético de Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
         },
-        "shirt_number_expected": 7,
+        "shirt_number_expected": 4,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Rodrigo_De_Paul_NYCFC_Miami_24_Sep_2025-018_%28cropped%29.jpg/330px-Rodrigo_De_Paul_NYCFC_Miami_24_Sep_2025-018_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/69/Nahuel_Molina_WC2022.jpg"
       },
       {
         "id": "leandro-paredes",
@@ -1019,19 +986,75 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Leandro_Paredes_2018_%28cropped%29.jpg/330px-Leandro_Paredes_2018_%28cropped%29.jpg"
       },
       {
-        "id": "enzo-fernandez",
-        "full_name": "Enzo Fernández",
-        "display_name": "Enzo Fernández",
+        "id": "rodrigo-de-paul",
+        "full_name": "Rodrigo De Paul",
+        "display_name": "Rodrigo De Paul",
         "position": "MID",
         "detailed_position": "CM",
         "club": {
-          "name": "Chelsea",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
+          "name": "Inter Miami CF",
+          "country_iso": "us",
+          "league": "MLS"
         },
-        "shirt_number_expected": 24,
+        "shirt_number_expected": 7,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Enzo_Fern%C3%A1ndez_WC2022.jpg/330px-Enzo_Fern%C3%A1ndez_WC2022.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Rodrigo_De_Paul_NYCFC_Miami_24_Sep_2025-018_%28cropped%29.jpg/330px-Rodrigo_De_Paul_NYCFC_Miami_24_Sep_2025-018_%28cropped%29.jpg"
+      },
+      {
+        "id": "valentin-barco",
+        "full_name": "Valentín Barco",
+        "display_name": "Valentín Barco",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Entrenamiento_Argentina_Sub20_previo_al_mundial_-_BugWarp_%2813%29_%28cropped%29_%28cropped%29.jpg"
+      },
+      {
+        "id": "giovani-lo-celso",
+        "full_name": "Giovani Lo Celso",
+        "display_name": "Gio Lo Celso",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Real Betis",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/2020-03-10_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League_Achtelfinale%2C_RB_Leipzig_-_Tottenham_Hotspur_1DX_3705_by_Stepro.jpg/330px-2020-03-10_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League_Achtelfinale%2C_RB_Leipzig_-_Tottenham_Hotspur_1DX_3705_by_Stepro.jpg"
+      },
+      {
+        "id": "exequiel-palacios",
+        "full_name": "Exequiel Palacios",
+        "display_name": "Exequiel Palacios",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Bayer Leverkusen",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 14,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Exequiel_Palacios%2C_2022-07-31%2C_Saisoner%C3%B6ffnung_Bayer_04%2C_Leverkusen_%281%29.jpg/330px-Exequiel_Palacios%2C_2022-07-31%2C_Saisoner%C3%B6ffnung_Bayer_04%2C_Leverkusen_%281%29.jpg"
+      },
+      {
+        "id": "nico-gonzalez",
+        "full_name": "Nicolás González",
+        "display_name": "Nico González",
+        "position": "MID",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Juventus",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/NicolasGonzalez_%28cropped%29.jpg/330px-NicolasGonzalez_%28cropped%29.jpg"
       },
       {
         "id": "alexis-mac-allister",
@@ -1049,64 +1072,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Alexis_Mac_Allister_WC_2022.jpg/330px-Alexis_Mac_Allister_WC_2022.jpg"
       },
       {
-        "id": "giovani-lo-celso",
-        "full_name": "Giovani Lo Celso",
-        "display_name": "Gio Lo Celso",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Real Betis",
-          "country_iso": "es",
-          "league": "La Liga"
-        },
-        "shirt_number_expected": 18,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/2020-03-10_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League_Achtelfinale%2C_RB_Leipzig_-_Tottenham_Hotspur_1DX_3705_by_Stepro.jpg/330px-2020-03-10_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League_Achtelfinale%2C_RB_Leipzig_-_Tottenham_Hotspur_1DX_3705_by_Stepro.jpg"
-      },
-      {
-        "id": "exequiel-palacios",
-        "full_name": "Exequiel Palacios",
-        "display_name": "Exequiel Palacios",
+        "id": "enzo-fernandez",
+        "full_name": "Enzo Fernández",
+        "display_name": "Enzo Fernández",
         "position": "MID",
         "detailed_position": "CM",
         "club": {
-          "name": "Bayer Leverkusen",
-          "country_iso": "de",
-          "league": "Bundesliga"
+          "name": "Chelsea",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
         },
-        "shirt_number_expected": 14,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Exequiel_Palacios%2C_2022-07-31%2C_Saisoner%C3%B6ffnung_Bayer_04%2C_Leverkusen_%281%29.jpg/330px-Exequiel_Palacios%2C_2022-07-31%2C_Saisoner%C3%B6ffnung_Bayer_04%2C_Leverkusen_%281%29.jpg"
-      },
-      {
-        "id": "thiago-almada",
-        "full_name": "Thiago Almada",
-        "display_name": "Thiago Almada",
-        "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Olympique Lyonnais",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 16,
+        "shirt_number_expected": 24,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Almada_asse_ol_2425.png/330px-Almada_asse_ol_2425.png"
-      },
-      {
-        "id": "lionel-messi",
-        "full_name": "Lionel Andrés Messi",
-        "display_name": "Lionel Messi",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Inter Miami CF",
-          "country_iso": "us",
-          "league": "MLS"
-        },
-        "shirt_number_expected": 10,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg/330px-Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Enzo_Fern%C3%A1ndez_WC2022.jpg/330px-Enzo_Fern%C3%A1ndez_WC2022.jpg"
       },
       {
         "id": "julian-alvarez",
@@ -1124,34 +1102,34 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/03/Argentina_national_football_team_-_2_-_2022_%28Juli%C3%A1n_%C3%81lvarez%29.jpg"
       },
       {
-        "id": "lautaro-martinez",
-        "full_name": "Lautaro Martínez",
-        "display_name": "Lautaro Martínez",
+        "id": "lionel-messi",
+        "full_name": "Lionel Andrés Messi",
+        "display_name": "Lionel Messi",
         "position": "FWD",
-        "detailed_position": "ST",
+        "detailed_position": "RW",
         "club": {
-          "name": "Inter de Milán",
-          "country_iso": "it",
-          "league": "Serie A"
+          "name": "Inter Miami CF",
+          "country_iso": "us",
+          "league": "MLS"
         },
-        "shirt_number_expected": 22,
+        "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Lautaro_Mart%C3%ADnez_%28cropped%29.jpg/330px-Lautaro_Mart%C3%ADnez_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg/330px-Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg"
       },
       {
-        "id": "nico-gonzalez",
-        "full_name": "Nicolás González",
-        "display_name": "Nico González",
+        "id": "thiago-almada",
+        "full_name": "Thiago Almada",
+        "display_name": "Thiago Almada",
         "position": "FWD",
-        "detailed_position": "LW",
+        "detailed_position": "CAM",
         "club": {
-          "name": "Juventus",
-          "country_iso": "it",
-          "league": "Serie A"
+          "name": "Olympique Lyonnais",
+          "country_iso": "fr",
+          "league": "Ligue 1"
         },
-        "shirt_number_expected": 11,
+        "shirt_number_expected": 16,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/NicolasGonzalez_%28cropped%29.jpg/330px-NicolasGonzalez_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Almada_asse_ol_2425.png/330px-Almada_asse_ol_2425.png"
       },
       {
         "id": "giuliano-simeone",
@@ -1165,38 +1143,45 @@
           "league": "La Liga"
         },
         "shirt_number_expected": 21,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Giuliano_Simeone%2C_FC_Salzburg_vs._Atletico_Madrid_%282025-01-29_UEFA_Championsleague%29_53_%28cropped%29.jpg/330px-Giuliano_Simeone%2C_FC_Salzburg_vs._Atletico_Madrid_%282025-01-29_UEFA_Championsleague%29_53_%28cropped%29.jpg"
       },
       {
-        "id": "paulo-dybala",
-        "full_name": "Paulo Dybala",
-        "display_name": "Paulo Dybala",
+        "id": "nicolas-paz",
+        "full_name": "Nicolás Paz",
+        "display_name": "Nicolás Paz",
         "position": "FWD",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Roma",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 15,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_38_-_Paulo_Dybala_%28cropped%29.jpg/330px-FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_38_-_Paulo_Dybala_%28cropped%29.jpg"
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
-        "id": "valentin-castellanos",
-        "full_name": "Valentín Castellanos",
-        "display_name": "Taty Castellanos",
+        "id": "jose-lopez",
+        "full_name": "José López",
+        "display_name": "José López",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/J_j_lopez_argentina.jpg"
+      },
+      {
+        "id": "lautaro-martinez",
+        "full_name": "Lautaro Martínez",
+        "display_name": "Lautaro Martínez",
         "position": "FWD",
         "detailed_position": "ST",
         "club": {
-          "name": "Lazio",
+          "name": "Inter de Milán",
           "country_iso": "it",
           "league": "Serie A"
         },
-        "shirt_number_expected": 17,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Zapaterito.jpg/330px-Zapaterito.jpg"
+        "shirt_number_expected": 22,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Lautaro_Mart%C3%ADnez_%28cropped%29.jpg/330px-Lautaro_Mart%C3%ADnez_%28cropped%29.jpg"
       }
     ],
     "starting_xi": {
@@ -1313,8 +1298,10 @@
       },
       "vs_last_3_wcs": "Russia 2018: octavos eliminado por Francia 3-4. Qatar 2022: CAMPEÓN tras vencer en final 3-3 (4-2 pen) a Francia. Mundial 2026: parte como vigente campeón con un equipo más maduro pero con 4 años más en sus piernas. La continuidad táctica de Scaloni (8 años en el cargo) es valor único entre los favoritos."
     },
-    "squad_announced": false,
-    "squad_announced_status": "pending_official"
+    "squad_announced": true,
+    "squad_announced_status": "pending_official",
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 1930,

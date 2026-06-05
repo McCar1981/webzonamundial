@@ -614,67 +614,19 @@
           "league": "Liga BetPlay"
         },
         "shirt_number_expected": 23,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Santiago_Mele.jpg/330px-Santiago_Mele.jpg"
       },
       {
-        "id": "franco-israel",
-        "full_name": "Franco Israel",
-        "display_name": "Israel",
+        "id": "fernando-muslera",
+        "full_name": "Fernando Muslera",
+        "display_name": "Fernando Muslera",
         "position": "GK",
         "detailed_position": "GK",
-        "club": {
-          "name": "Sporting Lisboa",
-          "country_iso": "pt",
-          "league": "Primeira Liga"
-        },
-        "shirt_number_expected": 12,
-        "status": "probable"
-      },
-      {
-        "id": "nahitan-nandez",
-        "full_name": "Nahitan Nández",
-        "display_name": "Nández",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Al-Qadsiah",
-          "country_iso": "sa",
-          "league": "Saudi Pro League"
-        },
-        "shirt_number_expected": 17,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Urug_tren_%283%29_-_%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.jpg/330px-Urug_tren_%283%29_-_%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.jpg"
-      },
-      {
-        "id": "guillermo-varela",
-        "full_name": "Guillermo Varela",
-        "display_name": "Varela",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Flamengo",
-          "country_iso": "br",
-          "league": "Brasileirão"
-        },
-        "shirt_number_expected": 22,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Guillermo_Varela_2022.jpg/330px-Guillermo_Varela_2022.jpg"
-      },
-      {
-        "id": "ronald-araujo",
-        "full_name": "Ronald Araújo",
-        "display_name": "Araújo",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "FC Barcelona",
-          "country_iso": "es",
-          "league": "La Liga"
-        },
-        "shirt_number_expected": 4,
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/FC_Red_Bull_Salzburg_gegen_CF_Barcelona_%28Testspiel_4._August_2021%29_45_%28cropped%29.jpg/330px-FC_Red_Bull_Salzburg_gegen_CF_Barcelona_%28Testspiel_4._August_2021%29_45_%28cropped%29.jpg"
+        "photo_url": null
       },
       {
         "id": "jose-maria-gimenez",
@@ -703,8 +655,49 @@
           "league": "Liga MX"
         },
         "shirt_number_expected": 3,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Sebasti%C3%A1n_C%C3%A1ceres.jpg/330px-Sebasti%C3%A1n_C%C3%A1ceres.jpg"
+      },
+      {
+        "id": "ronald-araujo",
+        "full_name": "Ronald Araújo",
+        "display_name": "Araújo",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "FC Barcelona",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/FC_Red_Bull_Salzburg_gegen_CF_Barcelona_%28Testspiel_4._August_2021%29_45_%28cropped%29.jpg/330px-FC_Red_Bull_Salzburg_gegen_CF_Barcelona_%28Testspiel_4._August_2021%29_45_%28cropped%29.jpg"
+      },
+      {
+        "id": "guillermo-varela",
+        "full_name": "Guillermo Varela",
+        "display_name": "Varela",
+        "position": "DEF",
+        "detailed_position": "RB",
+        "club": {
+          "name": "Flamengo",
+          "country_iso": "br",
+          "league": "Brasileirão"
+        },
+        "shirt_number_expected": 22,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Guillermo_Varela_2022.jpg/330px-Guillermo_Varela_2022.jpg"
+      },
+      {
+        "id": "mathias-olivera",
+        "full_name": "Mathías Olivera",
+        "display_name": "Mathías Olivera",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "matias-vina",
@@ -718,23 +711,8 @@
           "league": "Brasileirão"
         },
         "shirt_number_expected": 13,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Mat%C3%ADas_Vi%C3%B1a.jpg/330px-Mat%C3%ADas_Vi%C3%B1a.jpg"
-      },
-      {
-        "id": "joaquin-piquerez",
-        "full_name": "Joaquín Piquerez",
-        "display_name": "Piquerez",
-        "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "Palmeiras",
-          "country_iso": "br",
-          "league": "Brasileirão"
-        },
-        "shirt_number_expected": 16,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Joaquin-Piquerez-Palmeiras-Athletico-jul-2022-2.jpg/330px-Joaquin-Piquerez-Palmeiras-Athletico-jul-2022-2.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Mat%C3%ADas_Vi%C3%B1a.jpg/330px-Mat%C3%ADas_Vi%C3%B1a.jpg"
       },
       {
         "id": "santiago-bueno",
@@ -748,23 +726,22 @@
           "league": "Premier League"
         },
         "shirt_number_expected": 19,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Santiago_Bueno.png/330px-Santiago_Bueno.png"
       },
       {
-        "id": "federico-valverde",
-        "full_name": "Federico Valverde",
-        "display_name": "Valverde",
+        "id": "manuel-ugarte",
+        "full_name": "Manuel Ugarte",
+        "display_name": "Ugarte",
         "position": "MID",
-        "detailed_position": "CM",
+        "detailed_position": "CDM",
         "club": {
-          "name": "Real Madrid",
-          "country_iso": "es",
-          "league": "La Liga"
+          "name": "Manchester United",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
         },
-        "shirt_number_expected": 15,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Federico_Valverde_2021_%28cropped%29.jpg/330px-Federico_Valverde_2021_%28cropped%29.jpg"
+        "shirt_number_expected": 5,
+        "status": "fixed"
       },
       {
         "id": "rodrigo-bentancur",
@@ -782,20 +759,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/20171114_AUT_URU_4518_-_Rodrigo_Bentancur_%28cropped%29_2.jpg/330px-20171114_AUT_URU_4518_-_Rodrigo_Bentancur_%28cropped%29_2.jpg"
       },
       {
-        "id": "manuel-ugarte",
-        "full_name": "Manuel Ugarte",
-        "display_name": "Ugarte",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Manchester United",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 5,
-        "status": "fixed"
-      },
-      {
         "id": "nicolas-de-la-cruz",
         "full_name": "Nicolás de la Cruz",
         "display_name": "De la Cruz",
@@ -809,6 +772,21 @@
         "shirt_number_expected": 10,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Nicol%C3%A1s_de_la_Cruz.jpg/330px-Nicol%C3%A1s_de_la_Cruz.jpg"
+      },
+      {
+        "id": "federico-valverde",
+        "full_name": "Federico Valverde",
+        "display_name": "Valverde",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Real Madrid",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 15,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Federico_Valverde_2021_%28cropped%29.jpg/330px-Federico_Valverde_2021_%28cropped%29.jpg"
       },
       {
         "id": "giorgian-de-arrascaeta",
@@ -826,34 +804,81 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Giorgian_De_Arrascaeta_20171114_AUT_URU_4546_%28cropped%29.jpg/330px-Giorgian_De_Arrascaeta_20171114_AUT_URU_4546_%28cropped%29.jpg"
       },
       {
-        "id": "rodrigo-aguirre",
-        "full_name": "Rodrigo Aguirre",
-        "display_name": "Aguirre",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "América",
-          "country_iso": "mx",
-          "league": "Liga MX"
-        },
-        "shirt_number_expected": 18,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Rodrigo_Aguirre.png/330px-Rodrigo_Aguirre.png"
-      },
-      {
-        "id": "facundo-pellistri",
-        "full_name": "Facundo Pellistri",
-        "display_name": "Pellistri",
-        "position": "FWD",
+        "id": "agustin-canobbio",
+        "full_name": "Agustín Canobbio",
+        "display_name": "Canobbio",
+        "position": "MID",
         "detailed_position": "RW",
         "club": {
-          "name": "Panathinaikos",
-          "country_iso": "gr",
-          "league": "Super League Greece"
+          "name": "Fluminense",
+          "country_iso": "br",
+          "league": "Brasileirão"
         },
-        "shirt_number_expected": 11,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Facundo_Pellistri_WC2022.jpg/330px-Facundo_Pellistri_WC2022.jpg"
+        "shirt_number_expected": 21,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Agust%C3%ADn_Canobbio_-_S%C3%89RIE_A_-_PALMEIRAS_0_X_2_ATHLETICO_PARANAENSE_-_52192996579_%28cropped%29.jpg/330px-Agust%C3%ADn_Canobbio_-_S%C3%89RIE_A_-_PALMEIRAS_0_X_2_ATHLETICO_PARANAENSE_-_52192996579_%28cropped%29.jpg"
+      },
+      {
+        "id": "emiliano-martinez",
+        "full_name": "Emiliano Martínez",
+        "display_name": "Emiliano Martínez",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "maximiliano-araujo",
+        "full_name": "Maximiliano Araújo",
+        "display_name": "Maxi Araújo",
+        "position": "MID",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Sporting Lisboa",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed"
+      },
+      {
+        "id": "joaquin-piquerez",
+        "full_name": "Joaquín Piquerez",
+        "display_name": "Piquerez",
+        "position": "MID",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Palmeiras",
+          "country_iso": "br",
+          "league": "Brasileirão"
+        },
+        "shirt_number_expected": 16,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Joaquin-Piquerez-Palmeiras-Athletico-jul-2022-2.jpg/330px-Joaquin-Piquerez-Palmeiras-Athletico-jul-2022-2.jpg"
+      },
+      {
+        "id": "juan-sanabria",
+        "full_name": "Juan Sanabria",
+        "display_name": "Juan Sanabria",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "rodrigo-zalazar",
+        "full_name": "Rodrigo Zalazar",
+        "display_name": "Rodrigo Zalazar",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "darwin-nunez",
@@ -871,33 +896,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Darwin_N%C3%BA%C3%B1ez_%28cropped%29.jpg/330px-Darwin_N%C3%BA%C3%B1ez_%28cropped%29.jpg"
       },
       {
-        "id": "maximiliano-araujo",
-        "full_name": "Maximiliano Araújo",
-        "display_name": "Maxi Araújo",
-        "position": "FWD",
-        "detailed_position": "LW",
-        "club": {
-          "name": "Sporting Lisboa",
-          "country_iso": "pt",
-          "league": "Primeira Liga"
-        },
-        "shirt_number_expected": 7,
-        "status": "fixed"
-      },
-      {
-        "id": "agustin-canobbio",
-        "full_name": "Agustín Canobbio",
-        "display_name": "Canobbio",
+        "id": "facundo-pellistri",
+        "full_name": "Facundo Pellistri",
+        "display_name": "Pellistri",
         "position": "FWD",
         "detailed_position": "RW",
         "club": {
-          "name": "Fluminense",
-          "country_iso": "br",
-          "league": "Brasileirão"
+          "name": "Panathinaikos",
+          "country_iso": "gr",
+          "league": "Super League Greece"
         },
-        "shirt_number_expected": 21,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Agust%C3%ADn_Canobbio_-_S%C3%89RIE_A_-_PALMEIRAS_0_X_2_ATHLETICO_PARANAENSE_-_52192996579_%28cropped%29.jpg/330px-Agust%C3%ADn_Canobbio_-_S%C3%89RIE_A_-_PALMEIRAS_0_X_2_ATHLETICO_PARANAENSE_-_52192996579_%28cropped%29.jpg"
+        "shirt_number_expected": 11,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Facundo_Pellistri_WC2022.jpg/330px-Facundo_Pellistri_WC2022.jpg"
       },
       {
         "id": "brian-rodriguez",
@@ -911,53 +922,23 @@
           "league": "Liga MX"
         },
         "shirt_number_expected": 14,
-        "status": "probable",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Brian_Rodriguez.png/330px-Brian_Rodriguez.png"
       },
       {
-        "id": "luis-suarez",
-        "full_name": "Luis Suárez",
-        "display_name": "Luis Suárez",
+        "id": "rodrigo-aguirre",
+        "full_name": "Rodrigo Aguirre",
+        "display_name": "Aguirre",
         "position": "FWD",
         "detailed_position": "ST",
         "club": {
-          "name": "Inter Miami CF",
-          "country_iso": "us",
-          "league": "MLS"
+          "name": "América",
+          "country_iso": "mx",
+          "league": "Liga MX"
         },
-        "shirt_number_expected": 20,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Luis_Su%C3%A1rez_2026_%28cropped%29.jpg/330px-Luis_Su%C3%A1rez_2026_%28cropped%29.jpg"
-      },
-      {
-        "id": "edinson-cavani",
-        "full_name": "Edinson Cavani",
-        "display_name": "Cavani",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Boca Juniors",
-          "country_iso": "ar",
-          "league": "Liga Profesional"
-        },
-        "shirt_number_expected": 24,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/PALMEIRAS_X_BOCA_JUNIORS_-_COPA_LIBERTADORES_2023_%2853286889335%29.jpg/330px-PALMEIRAS_X_BOCA_JUNIORS_-_COPA_LIBERTADORES_2023_%2853286889335%29.jpg"
-      },
-      {
-        "id": "matias-arezo",
-        "full_name": "Matías Arezo",
-        "display_name": "Arezo",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Peñarol",
-          "country_iso": "uy",
-          "league": "Primera División Uruguay"
-        },
-        "shirt_number_expected": 25,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Areso_01.jpg/330px-Areso_01.jpg"
+        "shirt_number_expected": 18,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Rodrigo_Aguirre.png/330px-Rodrigo_Aguirre.png"
       },
       {
         "id": "federico-vinas",
@@ -971,7 +952,7 @@
           "league": "La Liga"
         },
         "shirt_number_expected": 26,
-        "status": "bubble",
+        "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Federico_Vi%C3%B1as.jpg/330px-Federico_Vi%C3%B1as.jpg"
       }
     ],
@@ -1090,8 +1071,10 @@
       },
       "vs_last_3_wcs": "Russia 2018: cuartos eliminado por Francia 0-2. Qatar 2022: fase de grupos eliminado pese a 2-0 a Ghana en última jornada (eliminado por diferencia de goles). Mundial 2026: tras la decepción de 2022, Uruguay busca volver a los cuartos al menos."
     },
-    "squad_announced": false,
-    "squad_announced_status": "pending_official"
+    "squad_announced": true,
+    "squad_announced_status": "pending_official",
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 1930,

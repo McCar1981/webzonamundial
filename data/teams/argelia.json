@@ -89,7 +89,7 @@
         "goals_against": 6,
         "goal_difference": 18,
         "points": 25,
-        "win_percentage": 80.0,
+        "win_percentage": 80,
         "clean_sheets": 6
       },
       "coach_during_qualifying": "Djamel Belmadi (2023-2024) → Vladimir Petković (julio 2024 - presente)",
@@ -582,93 +582,37 @@
     },
     "likely_squad": [
       {
-        "id": "alexis-guendouz",
-        "full_name": "Alexis Guendouz",
-        "display_name": "Alexis Guendouz",
+        "id": "melvin-mastil",
+        "full_name": "Melvin Mastil",
+        "display_name": "Melvin Mastil",
         "position": "GK",
         "detailed_position": "GK",
-        "club": {
-          "name": "MC Alger",
-          "country_iso": "dz",
-          "league": "Ligue 1 DZ"
-        },
-        "shirt_number_expected": 1,
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Alexis_Guendouz_Persepolis_Tehran.jpg/330px-Alexis_Guendouz_Persepolis_Tehran.jpg"
+        "photo_url": null
       },
       {
-        "id": "anthony-mandrea",
-        "full_name": "Anthony Mandrea",
-        "display_name": "Anthony Mandrea",
+        "id": "oussama-benbot",
+        "full_name": "Oussama Benbot",
+        "display_name": "Oussama Benbot",
         "position": "GK",
         "detailed_position": "GK",
-        "club": {
-          "name": "Caen",
-          "country_iso": "fr",
-          "league": "Ligue 2"
-        },
-        "shirt_number_expected": 16,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Joueurs_du_Stade_Malherbe_Caen_10_ao%C3%BBt_2024_%28Mandrea%29.jpg/330px-Joueurs_du_Stade_Malherbe_Caen_10_ao%C3%BBt_2024_%28Mandrea%29.jpg"
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
-        "id": "moustapha-zeghba",
-        "full_name": "Moustapha Zeghba",
-        "display_name": "Zeghba",
+        "id": "luca-zidane",
+        "full_name": "Luca Zidane",
+        "display_name": "Luca Zidane",
         "position": "GK",
         "detailed_position": "GK",
-        "club": {
-          "name": "USM Alger",
-          "country_iso": "dz",
-          "league": "Ligue 1 DZ"
-        },
-        "shirt_number_expected": 23,
-        "status": "bubble"
-      },
-      {
-        "id": "ramy-bensebaini",
-        "full_name": "Ramy Bensebaini",
-        "display_name": "Ramy Bensebaini",
-        "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "Borussia Dortmund",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 3,
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93134.jpg/330px-2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93134.jpg"
-      },
-      {
-        "id": "rayan-ait-nouri",
-        "full_name": "Rayan Aït-Nouri",
-        "display_name": "Aït-Nouri",
-        "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "Manchester City",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 12,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Rayan_A%C3%AFt-Nouri_playing_for_Algeria_in_2024_%28cropped%29.jpg/330px-Rayan_A%C3%AFt-Nouri_playing_for_Algeria_in_2024_%28cropped%29.jpg"
-      },
-      {
-        "id": "mohamed-tougai",
-        "full_name": "Mohamed Amine Tougai",
-        "display_name": "Tougai",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Al-Sadd",
-          "country_iso": "qa",
-          "league": "Stars League"
-        },
-        "shirt_number_expected": 4,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Mohamed_Amine_Tougai.jpg/330px-Mohamed_Amine_Tougai.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/81/Real_Madrid_C.F._the_Winner_Of_The_Champions_League_in_2018_%28Luca2%29.jpg"
       },
       {
         "id": "aïssa-mandi",
@@ -686,48 +630,115 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Alg%C3%A9rie_-_Arm%C3%A9nie_-_20140531_-_Aissa_Mandi.jpg/330px-Alg%C3%A9rie_-_Arm%C3%A9nie_-_20140531_-_Aissa_Mandi.jpg"
       },
       {
-        "id": "djamel-benlamri",
-        "full_name": "Hocine Benayada",
-        "display_name": "Hocine Benayada",
+        "id": "achraf-abada",
+        "full_name": "Achraf Abada",
+        "display_name": "Achraf Abada",
         "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "ES Sétif",
-          "country_iso": "dz",
-          "league": "Ligue 1 DZ"
-        },
-        "shirt_number_expected": 22,
-        "status": "probable"
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
-        "id": "youcef-atal",
-        "full_name": "Youcef Atal",
-        "display_name": "Youcef Atal",
+        "id": "mohamed-tougai",
+        "full_name": "Mohamed Amine Tougai",
+        "display_name": "Tougai",
         "position": "DEF",
-        "detailed_position": "RB",
+        "detailed_position": "CB",
         "club": {
           "name": "Al-Sadd",
           "country_iso": "qa",
           "league": "Stars League"
         },
-        "shirt_number_expected": 2,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Youcef_Atal.jpg"
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Mohamed_Amine_Tougai.jpg/330px-Mohamed_Amine_Tougai.jpg"
       },
       {
-        "id": "ismael-bennacer",
-        "full_name": "Ismaël Bennacer",
-        "display_name": "Ismaël Bennacer",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Dinamo Zagreb",
-          "country_iso": "hr",
-          "league": "HNL"
-        },
-        "shirt_number_expected": 6,
+        "id": "zineddine-belaid",
+        "full_name": "Zineddine Belaïd",
+        "display_name": "Zineddine Belaïd",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/BennacerLeB2022.jpg/330px-BennacerLeB2022.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Zineddine_Bela%C3%AFd_-_20240326_%28cropped%29.jpg"
+      },
+      {
+        "id": "jaouen-hadjam",
+        "full_name": "Jaouen Hadjam",
+        "display_name": "Jaouen Hadjam",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/RC_Lens_-_FC_Nantes_%2828-10-2023%29_10.jpg"
+      },
+      {
+        "id": "rayan-ait-nouri",
+        "full_name": "Rayan Aït-Nouri",
+        "display_name": "Aït-Nouri",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Manchester City",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 12,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Rayan_A%C3%AFt-Nouri_playing_for_Algeria_in_2024_%28cropped%29.jpg/330px-Rayan_A%C3%AFt-Nouri_playing_for_Algeria_in_2024_%28cropped%29.jpg"
+      },
+      {
+        "id": "rafik-belghali",
+        "full_name": "Rafik Belghali",
+        "display_name": "Rafik Belghali",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "ramy-bensebaini",
+        "full_name": "Ramy Bensebaini",
+        "display_name": "Ramy Bensebaini",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Borussia Dortmund",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 3,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93134.jpg/330px-2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93134.jpg"
+      },
+      {
+        "id": "samir-chergui",
+        "full_name": "Samir Chergui",
+        "display_name": "Samir Chergui",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "ramiz-zerrouki",
+        "full_name": "Ramiz Zerrouki",
+        "display_name": "Ramiz Zerrouki",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Ramiz_zerrouki-1672746224.jpg"
       },
       {
         "id": "houssem-aouar",
@@ -760,18 +771,15 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/World_Cup_Qualification_Africa_Guinea_v_Algeria_14_%28Far%C3%A8s_Cha%C3%AFbi%29.jpg/330px-World_Cup_Qualification_Africa_Guinea_v_Algeria_14_%28Far%C3%A8s_Cha%C3%AFbi%29.jpg"
       },
       {
-        "id": "ibrahim-maza",
-        "full_name": "Ibrahim Maza",
-        "display_name": "Ibrahim Maza",
+        "id": "hicham-boudaoui",
+        "full_name": "Hicham Boudaoui",
+        "display_name": "Hicham Boudaoui",
         "position": "MID",
-        "detailed_position": "CAM",
-        "club": {
-          "name": "Bayer Leverkusen",
-          "country_iso": "de",
-          "league": "Bundesliga"
-        },
-        "shirt_number_expected": 20,
-        "status": "fixed"
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Boudaoui_asse_ogcn_2425.png"
       },
       {
         "id": "nabil-bentaleb",
@@ -789,18 +797,32 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Nabil_Bentaleb_2014.jpg/330px-Nabil_Bentaleb_2014.jpg"
       },
       {
-        "id": "adam-zorgane",
-        "full_name": "Adam Zorgane",
-        "display_name": "Adam Zorgane",
+        "id": "ibrahim-maza",
+        "full_name": "Ibrahim Maza",
+        "display_name": "Ibrahim Maza",
+        "position": "MID",
+        "detailed_position": "CAM",
+        "club": {
+          "name": "Bayer Leverkusen",
+          "country_iso": "de",
+          "league": "Bundesliga"
+        },
+        "shirt_number_expected": 20,
+        "status": "fixed"
+      },
+      {
+        "id": "yassine-titraoui",
+        "full_name": "Yassine Titraoui",
+        "display_name": "Yassine Titraoui",
         "position": "MID",
         "detailed_position": "CM",
         "club": {
-          "name": "Charleroi",
-          "country_iso": "be",
-          "league": "Pro League"
+          "name": "Boavista",
+          "country_iso": "pt",
+          "league": "Primeira Liga"
         },
-        "shirt_number_expected": 14,
-        "status": "probable"
+        "shirt_number_expected": 15,
+        "status": "fixed"
       },
       {
         "id": "riyad-mahrez",
@@ -818,19 +840,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Mahrez_2021.jpg/330px-Mahrez_2021.jpg"
       },
       {
-        "id": "mohamed-amoura",
-        "full_name": "Mohamed Amoura",
-        "display_name": "Mohamed Amoura",
+        "id": "amine-gouiri",
+        "full_name": "Amine Gouiri",
+        "display_name": "Amine Gouiri",
         "position": "FWD",
         "detailed_position": "ST",
         "club": {
-          "name": "Wolfsburgo",
-          "country_iso": "de",
-          "league": "Bundesliga"
+          "name": "Marsella",
+          "country_iso": "fr",
+          "league": "Ligue 1"
         },
-        "shirt_number_expected": 9,
+        "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/29/Mohammed_Amoura_training_against_Mozambique.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Amine_Gouiri_%282017%29.jpg/330px-Amine_Gouiri_%282017%29.jpg"
       },
       {
         "id": "anis-hadj-moussa",
@@ -848,122 +870,52 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/57/MCI_VS_FER_2024_%28Anis_Hadj_Moussa%29.jpg"
       },
       {
-        "id": "said-benrahma",
-        "full_name": "Saïd Benrahma",
-        "display_name": "Saïd Benrahma",
+        "id": "nadhir-benbouali",
+        "full_name": "Nadhir Benbouali",
+        "display_name": "Nadhir Benbouali",
         "position": "FWD",
-        "detailed_position": "LW",
-        "club": {
-          "name": "Neom SC",
-          "country_iso": "sa",
-          "league": "Saudi Pro League"
-        },
-        "shirt_number_expected": 19,
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Sa%C3%AFd_Benrahma_-_20240326.jpg/330px-Sa%C3%AFd_Benrahma_-_20240326.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/36/Ahmed_Nadhir_Benbouali_2025.jpg"
       },
       {
-        "id": "islam-slimani",
-        "full_name": "Islam Slimani",
-        "display_name": "Islam Slimani",
+        "id": "mohamed-amoura",
+        "full_name": "Mohamed Amoura",
+        "display_name": "Mohamed Amoura",
         "position": "FWD",
         "detailed_position": "ST",
         "club": {
-          "name": "Al-Wakrah",
-          "country_iso": "qa",
-          "league": "Stars League"
-        },
-        "shirt_number_expected": 13,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4d/CSKA_Sporting_%2812%29.jpg"
-      },
-      {
-        "id": "amine-gouiri",
-        "full_name": "Amine Gouiri",
-        "display_name": "Amine Gouiri",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Marsella",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 10,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Amine_Gouiri_%282017%29.jpg/330px-Amine_Gouiri_%282017%29.jpg"
-      },
-      {
-        "id": "yacine-brahimi",
-        "full_name": "Yacine Brahimi",
-        "display_name": "Yacine Brahimi",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Al-Gharafa",
-          "country_iso": "qa",
-          "league": "Stars League"
-        },
-        "shirt_number_expected": 25,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Yacine_Brahimi_2018.jpg/330px-Yacine_Brahimi_2018.jpg"
-      },
-      {
-        "id": "badredine-bouanani",
-        "full_name": "Badredine Bouanani",
-        "display_name": "Bouanani",
-        "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Stuttgart",
+          "name": "Wolfsburgo",
           "country_iso": "de",
           "league": "Bundesliga"
         },
-        "shirt_number_expected": 21,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Bouanani_asse_ogcn_2425.png/330px-Bouanani_asse_ogcn_2425.png"
+        "shirt_number_expected": 9,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/29/Mohammed_Amoura_training_against_Mozambique.png"
       },
       {
-        "id": "mohammed-elamine-amoura",
-        "full_name": "Mohamed-El Amine Amoura",
-        "display_name": "ME Amoura",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "PAOK",
-          "country_iso": "gr",
-          "league": "Super League"
-        },
-        "shirt_number_expected": 26,
-        "status": "bubble"
+        "id": "adil-boulbina",
+        "full_name": "Adil Boulbina",
+        "display_name": "Adil Boulbina",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Adel_Boulbina.jpg"
       },
       {
-        "id": "abdelkader-bedrane",
-        "full_name": "Abdelkader Bedrane",
-        "display_name": "Abdelkader Bedrane",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Étoile du Sahel",
-          "country_iso": "tn",
-          "league": "Ligue Pro 1"
-        },
-        "shirt_number_expected": 24,
-        "status": "bubble",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Alg%C3%A9rie-Sierraleone_%285%29_%28cropped%29_-_Abdelkader_Bedrane.jpg/330px-Alg%C3%A9rie-Sierraleone_%285%29_%28cropped%29_-_Abdelkader_Bedrane.jpg"
-      },
-      {
-        "id": "yassine-titraoui",
-        "full_name": "Yassine Titraoui",
-        "display_name": "Yassine Titraoui",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Boavista",
-          "country_iso": "pt",
-          "league": "Primeira Liga"
-        },
-        "shirt_number_expected": 15,
-        "status": "bubble"
+        "id": "fares-ghedjemis",
+        "full_name": "Fares Ghedjemis",
+        "display_name": "Fares Ghedjemis",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       }
     ],
     "starting_xi": {
@@ -1082,8 +1034,10 @@
       },
       "vs_last_3_wcs": "Brasil 2014: octavos, eliminada por Alemania 1-2 en prórroga (Schürrle, Khedira). Rusia 2018: NO CLASIFICÓ. Catar 2022: NO CLASIFICÓ. Mundial 2026: 5ª participación tras 12 años de ausencia. Generación Mahrez busca despedirse mejorando techo (octavos 2014)."
     },
-    "squad_announced": false,
-    "squad_announced_status": "pending_official"
+    "squad_announced": true,
+    "squad_announced_status": "pending_official",
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 1982,

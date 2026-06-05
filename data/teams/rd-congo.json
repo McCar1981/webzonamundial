@@ -592,21 +592,6 @@
         "photo_url": null
       },
       {
-        "id": "chancel-mbemba",
-        "full_name": "Chancel Mbemba",
-        "display_name": "Chancel Mbemba",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Lille OSC",
-          "country_iso": "fr",
-          "league": "Ligue 1"
-        },
-        "shirt_number_expected": 4,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/24BBRW_-_53535940590_%28cropped%29.jpg/330px-24BBRW_-_53535940590_%28cropped%29.jpg"
-      },
-      {
         "id": "aaron-wan-bissaka",
         "full_name": "Aaron Wan-Bissaka",
         "display_name": "Aaron Wan-Bissaka",
@@ -620,50 +605,6 @@
         "shirt_number_expected": 2,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Aaron_Wan_Bissaka_2019.jpg/330px-Aaron_Wan_Bissaka_2019.jpg"
-      },
-      {
-        "id": "axel-tuanzebe",
-        "full_name": "Axel Tuanzebe",
-        "display_name": "Axel Tuanzebe",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Burnley",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 5,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Manchester_United_v_Everton%2C_7_August_2021_%2836%29.jpg/330px-Manchester_United_v_Everton%2C_7_August_2021_%2836%29.jpg"
-      },
-      {
-        "id": "arthur-masuaku",
-        "full_name": "Arthur Masuaku",
-        "display_name": "Arthur Masuaku",
-        "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "RC Lens",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 3,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Hertha_BSC_vs._West_Ham_United_20190731_%28184%29.jpg/330px-Hertha_BSC_vs._West_Ham_United_20190731_%28184%29.jpg"
-      },
-      {
-        "id": "joris-kayembe",
-        "full_name": "Joris Kayembe",
-        "display_name": "Joris Kayembe",
-        "position": "DEF",
-        "detailed_position": "LB",
-        "club": {
-          "name": "Genk",
-          "country_iso": "hu",
-          "league": "NB I"
-        },
-        "shirt_number_expected": 26,
-        "status": "fixed"
       },
       {
         "id": "steve-kapuadi",
@@ -681,18 +622,19 @@
         "photo_url": null
       },
       {
-        "id": "rocky-bushiri",
-        "full_name": "Rocky Bushiri",
-        "display_name": "Rocky Bushiri",
+        "id": "axel-tuanzebe",
+        "full_name": "Axel Tuanzebe",
+        "display_name": "Axel Tuanzebe",
         "position": "DEF",
         "detailed_position": "CB",
         "club": {
-          "name": "Hibernian",
-          "country_iso": "gb-sct",
-          "league": "Scottish Premiership"
+          "name": "Burnley",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
         },
-        "shirt_number_expected": 24,
-        "status": "fixed"
+        "shirt_number_expected": 5,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Manchester_United_v_Everton%2C_7_August_2021_%2836%29.jpg/330px-Manchester_United_v_Everton%2C_7_August_2021_%2836%29.jpg"
       },
       {
         "id": "dylan-batubinsika",
@@ -710,6 +652,35 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Batubinsika_asse_fcn_2425.png/330px-Batubinsika_asse_fcn_2425.png"
       },
       {
+        "id": "joris-kayembe",
+        "full_name": "Joris Kayembe",
+        "display_name": "Joris Kayembe",
+        "position": "DEF",
+        "detailed_position": "LB",
+        "club": {
+          "name": "Genk",
+          "country_iso": "hu",
+          "league": "NB I"
+        },
+        "shirt_number_expected": 26,
+        "status": "fixed"
+      },
+      {
+        "id": "chancel-mbemba",
+        "full_name": "Chancel Mbemba",
+        "display_name": "Chancel Mbemba",
+        "position": "DEF",
+        "detailed_position": "CB",
+        "club": {
+          "name": "Lille OSC",
+          "country_iso": "fr",
+          "league": "Ligue 1"
+        },
+        "shirt_number_expected": 4,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/24BBRW_-_53535940590_%28cropped%29.jpg/330px-24BBRW_-_53535940590_%28cropped%29.jpg"
+      },
+      {
         "id": "gedeon-kalulu",
         "full_name": "Gédéon Kalulu",
         "display_name": "Gédéon Kalulu",
@@ -725,49 +696,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/G%C3%A9d%C3%A9on_Kalulu%29.jpg/330px-G%C3%A9d%C3%A9on_Kalulu%29.jpg"
       },
       {
-        "id": "noah-sadiki",
-        "full_name": "Noah Sadiki",
-        "display_name": "Noah Sadiki",
-        "position": "MID",
-        "detailed_position": "CDM",
+        "id": "arthur-masuaku",
+        "full_name": "Arthur Masuaku",
+        "display_name": "Arthur Masuaku",
+        "position": "DEF",
+        "detailed_position": "LB",
         "club": {
-          "name": "Sunderland",
+          "name": "RC Lens",
           "country_iso": "gb-eng",
           "league": "Premier League"
         },
-        "shirt_number_expected": 8,
+        "shirt_number_expected": 3,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Noah_Sadiki_versus_Real_Betis_2nd_August_2025.jpg/330px-Noah_Sadiki_versus_Real_Betis_2nd_August_2025.jpg"
-      },
-      {
-        "id": "samuel-moutoussamy",
-        "full_name": "Samuel Moutoussamy",
-        "display_name": "Samuel Moutoussamy",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Atrómitos",
-          "country_iso": "es",
-          "league": "La Liga"
-        },
-        "shirt_number_expected": 6,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Samuel_Moutoussamy_2018.jpg/330px-Samuel_Moutoussamy_2018.jpg"
-      },
-      {
-        "id": "edo-kayembe",
-        "full_name": "Edo Kayembe",
-        "display_name": "Edo Kayembe",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Watford",
-          "country_iso": "gb-eng",
-          "league": "Championship"
-        },
-        "shirt_number_expected": 16,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Edo_Kayembe_2025_%28cropped%29.jpg/330px-Edo_Kayembe_2025_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Hertha_BSC_vs._West_Ham_United_20190731_%28184%29.jpg/330px-Hertha_BSC_vs._West_Ham_United_20190731_%28184%29.jpg"
       },
       {
         "id": "ngal-ayel-mukau",
@@ -782,21 +723,6 @@
         },
         "shirt_number_expected": 25,
         "status": "fixed"
-      },
-      {
-        "id": "charles-pickel",
-        "full_name": "Charles Pickel",
-        "display_name": "Charles Pickel",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Espanyol",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 17,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/RC_Lens_-_Grenoble_Foot_38_%2810-02-2020%29_60.jpg/330px-RC_Lens_-_Grenoble_Foot_38_%2810-02-2020%29_60.jpg"
       },
       {
         "id": "nathanael-mbuku",
@@ -814,10 +740,96 @@
         "photo_url": null
       },
       {
+        "id": "samuel-moutoussamy",
+        "full_name": "Samuel Moutoussamy",
+        "display_name": "Samuel Moutoussamy",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Atrómitos",
+          "country_iso": "es",
+          "league": "La Liga"
+        },
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Samuel_Moutoussamy_2018.jpg/330px-Samuel_Moutoussamy_2018.jpg"
+      },
+      {
+        "id": "theo-bongonda",
+        "full_name": "Théo Bongonda",
+        "display_name": "Théo Bongonda",
+        "position": "MID",
+        "detailed_position": "LW",
+        "club": {
+          "name": "Spartak Moscú",
+          "country_iso": "tr",
+          "league": "Süper Lig"
+        },
+        "shirt_number_expected": 7,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Bongonda_in_DR_Congo_national_football_team.jpg/330px-Bongonda_in_DR_Congo_national_football_team.jpg"
+      },
+      {
+        "id": "noah-sadiki",
+        "full_name": "Noah Sadiki",
+        "display_name": "Noah Sadiki",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Sunderland",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
+        },
+        "shirt_number_expected": 8,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Noah_Sadiki_versus_Real_Betis_2nd_August_2025.jpg/330px-Noah_Sadiki_versus_Real_Betis_2nd_August_2025.jpg"
+      },
+      {
+        "id": "aaron-tshibola",
+        "full_name": "Aaron Tshibola",
+        "display_name": "Aaron Tshibola",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "charles-pickel",
+        "full_name": "Charles Pickel",
+        "display_name": "Charles Pickel",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Espanyol",
+          "country_iso": "it",
+          "league": "Serie A"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/RC_Lens_-_Grenoble_Foot_38_%2810-02-2020%29_60.jpg/330px-RC_Lens_-_Grenoble_Foot_38_%2810-02-2020%29_60.jpg"
+      },
+      {
+        "id": "edo-kayembe",
+        "full_name": "Edo Kayembe",
+        "display_name": "Edo Kayembe",
+        "position": "MID",
+        "detailed_position": "CM",
+        "club": {
+          "name": "Watford",
+          "country_iso": "gb-eng",
+          "league": "Championship"
+        },
+        "shirt_number_expected": 16,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Edo_Kayembe_2025_%28cropped%29.jpg/330px-Edo_Kayembe_2025_%28cropped%29.jpg"
+      },
+      {
         "id": "brian-cipenga",
         "full_name": "Brian Cipenga",
         "display_name": "Brian Cipenga",
-        "position": "MID",
+        "position": "FWD",
         "detailed_position": "MID",
         "club": {
           "name": "Castellón",
@@ -827,6 +839,21 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
+      },
+      {
+        "id": "gael-kakuta",
+        "full_name": "Gaël Kakuta",
+        "display_name": "Gaël Kakuta",
+        "position": "FWD",
+        "detailed_position": "MID",
+        "club": {
+          "name": "AEL Larissa",
+          "country_iso": null,
+          "league": null
+        },
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Entra%C3%AEnement_du_RC_Lens_-_15_juillet_2020_24.jpg"
       },
       {
         "id": "meschack-elia",
@@ -844,34 +871,19 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/db/Meschack_Elia_%28cropped%29.jpg"
       },
       {
-        "id": "gael-kakuta",
-        "full_name": "Gaël Kakuta",
-        "display_name": "Gaël Kakuta",
-        "position": "MID",
-        "detailed_position": "MID",
-        "club": {
-          "name": "AEL Larissa",
-          "country_iso": null,
-          "league": null
-        },
-        "shirt_number_expected": null,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Entra%C3%AEnement_du_RC_Lens_-_15_juillet_2020_24.jpg"
-      },
-      {
-        "id": "theo-bongonda",
-        "full_name": "Théo Bongonda",
-        "display_name": "Théo Bongonda",
+        "id": "cedric-bakambu",
+        "full_name": "Cédric Bakambu",
+        "display_name": "Cédric Bakambu",
         "position": "FWD",
-        "detailed_position": "LW",
+        "detailed_position": "ST",
         "club": {
-          "name": "Spartak Moscú",
-          "country_iso": "tr",
-          "league": "Süper Lig"
+          "name": "Betis",
+          "country_iso": "es",
+          "league": "La Liga"
         },
-        "shirt_number_expected": 7,
+        "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Bongonda_in_DR_Congo_national_football_team.jpg/330px-Bongonda_in_DR_Congo_national_football_team.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/C%C3%A9dric_Bakambu_2016_%28cropped%29.jpg/330px-C%C3%A9dric_Bakambu_2016_%28cropped%29.jpg"
       },
       {
         "id": "fiston-mayele",
@@ -888,19 +900,19 @@
         "status": "fixed"
       },
       {
-        "id": "cedric-bakambu",
-        "full_name": "Cédric Bakambu",
-        "display_name": "Cédric Bakambu",
+        "id": "yoane-wissa",
+        "full_name": "Yoane Wissa",
+        "display_name": "Yoane Wissa",
         "position": "FWD",
         "detailed_position": "ST",
         "club": {
-          "name": "Betis",
-          "country_iso": "es",
-          "league": "La Liga"
+          "name": "Newcastle",
+          "country_iso": "gb-eng",
+          "league": "Premier League"
         },
-        "shirt_number_expected": 10,
+        "shirt_number_expected": 9,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/C%C3%A9dric_Bakambu_2016_%28cropped%29.jpg/330px-C%C3%A9dric_Bakambu_2016_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/CAN_2023RD_Congo_2-1_Guin%C3%A9e_9939_%28cropped%29.jpg/330px-CAN_2023RD_Congo_2-1_Guin%C3%A9e_9939_%28cropped%29.jpg"
       },
       {
         "id": "simon-banza",
@@ -916,21 +928,6 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/78/Lens_-_Sochaux_%2823-11-2019%29_99_%28cropped%29.jpg"
-      },
-      {
-        "id": "yoane-wissa",
-        "full_name": "Yoane Wissa",
-        "display_name": "Yoane Wissa",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Newcastle",
-          "country_iso": "gb-eng",
-          "league": "Premier League"
-        },
-        "shirt_number_expected": 9,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/CAN_2023RD_Congo_2-1_Guin%C3%A9e_9939_%28cropped%29.jpg/330px-CAN_2023RD_Congo_2-1_Guin%C3%A9e_9939_%28cropped%29.jpg"
       }
     ],
     "starting_xi": {
@@ -1050,8 +1047,8 @@
       "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: NO CLASIFICÓ. Catar 2022: NO CLASIFICÓ. Mundial 2026: 2ª participación histórica del país. La 1ª fue como ZAIRE en 1974 (Alemania Federal): perdió los 3 partidos (0-2 Escocia, 0-9 Yugoslavia, 0-3 Brasil). Récord aún vigente: NUNCA ganó ni empató un partido en Mundiales."
     },
     "squad_announced": true,
-    "squad_announced_date": "2026-05-26",
-    "squad_source": "Convocatoria oficial federacion (al 26 may 2026)"
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 1974,

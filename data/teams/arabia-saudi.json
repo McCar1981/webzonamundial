@@ -88,7 +88,7 @@
         "goals_against": 7,
         "goal_difference": 2,
         "points": 13,
-        "win_percentage": 30.0,
+        "win_percentage": 30,
         "clean_sheets": 4,
         "notes": "Stats de la 3ª ronda Grupo C (10 PJ, 13 pts, 3º). Adicionalmente: 4ª ronda 1G 1E (3-2 Indonesia, 0-0 Iraq). Pase final consolidado el 14 oct 2025."
       },
@@ -540,65 +540,29 @@
           "league": "Saudi Pro League"
         },
         "shirt_number_expected": 23,
-        "status": "probable"
-      },
-      {
-        "id": "saud-abdulhamid",
-        "full_name": "Saud Abdulhamid",
-        "display_name": "Saud Abdulhamid",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "AS Roma",
-          "country_iso": "it",
-          "league": "Serie A"
-        },
-        "shirt_number_expected": 2,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Saudi_Arabia_v_Oman_%282%29_%28cropped%29.jpg/330px-Saudi_Arabia_v_Oman_%282%29_%28cropped%29.jpg"
-      },
-      {
-        "id": "moteb-al-harbi",
-        "full_name": "Moteb Al-Harbi",
-        "display_name": "Moteb Al-Harbi",
-        "position": "DEF",
-        "detailed_position": "RB",
-        "club": {
-          "name": "Al-Shabab",
-          "country_iso": "sa",
-          "league": "Saudi Pro League"
-        },
-        "shirt_number_expected": 14,
-        "status": "probable"
-      },
-      {
-        "id": "ali-al-bulayhi",
-        "full_name": "Ali Al-Bulayhi",
-        "display_name": "Ali Al-Bulayhi",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Al-Hilal",
-          "country_iso": "sa",
-          "league": "Saudi Pro League"
-        },
-        "shirt_number_expected": 4,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Saudi_Arabia_v_Oman_%2813%29_%28cropped%29.jpg/330px-Saudi_Arabia_v_Oman_%2813%29_%28cropped%29.jpg"
-      },
-      {
-        "id": "hassan-tambakti",
-        "full_name": "Hassan Tambakti",
-        "display_name": "Hassan Tambakti",
-        "position": "DEF",
-        "detailed_position": "CB",
-        "club": {
-          "name": "Al-Hilal",
-          "country_iso": "sa",
-          "league": "Saudi Pro League"
-        },
-        "shirt_number_expected": 5,
         "status": "fixed"
+      },
+      {
+        "id": "ali-majrashi",
+        "full_name": "Ali Majrashi",
+        "display_name": "Ali Majrashi",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Ali_Majrashi%2C_2025_CONCACAF_Gold_Cup_%28cropped%29.jpg"
+      },
+      {
+        "id": "ali-lajami",
+        "full_name": "Ali Lajami",
+        "display_name": "Ali Lajami",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "abdulelah-al-amri",
@@ -616,107 +580,91 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/09/Abdulelah_Al-Amri_2023_%28cropped%29.jpg"
       },
       {
-        "id": "jehad-thakri",
-        "full_name": "Jehad Thakri",
-        "display_name": "Jehad Thakri",
+        "id": "hassan-tambakti",
+        "full_name": "Hassan Tambakti",
+        "display_name": "Hassan Tambakti",
         "position": "DEF",
         "detailed_position": "CB",
-        "club": {
-          "name": "Al-Ittihad",
-          "country_iso": "sa",
-          "league": "Saudi Pro League"
-        },
-        "shirt_number_expected": 22,
-        "status": "probable"
-      },
-      {
-        "id": "yasir-al-shahrani",
-        "full_name": "Yasir Al-Shahrani",
-        "display_name": "Yasir Al-Shahrani",
-        "position": "DEF",
-        "detailed_position": "LB",
         "club": {
           "name": "Al-Hilal",
           "country_iso": "sa",
           "league": "Saudi Pro League"
         },
-        "shirt_number_expected": 13,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Yasser_Al-Shahrani_2018.jpg/330px-Yasser_Al-Shahrani_2018.jpg"
+        "shirt_number_expected": 5,
+        "status": "fixed"
       },
       {
-        "id": "sultan-al-ghannam",
-        "full_name": "Sultan Al-Ghannam",
-        "display_name": "Sultan Al-Ghannam",
+        "id": "saud-abdulhamid",
+        "full_name": "Saud Abdulhamid",
+        "display_name": "Saud Abdulhamid",
         "position": "DEF",
-        "detailed_position": "LB",
+        "detailed_position": "RB",
         "club": {
-          "name": "Al-Nassr",
-          "country_iso": "sa",
-          "league": "Saudi Pro League"
+          "name": "AS Roma",
+          "country_iso": "it",
+          "league": "Serie A"
         },
-        "shirt_number_expected": 3,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Sultan_Al-Ghannam_2023_%28cropped%29.jpg"
+        "shirt_number_expected": 2,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Saudi_Arabia_v_Oman_%282%29_%28cropped%29.jpg/330px-Saudi_Arabia_v_Oman_%282%29_%28cropped%29.jpg"
       },
       {
-        "id": "abdullah-al-khaibari",
-        "full_name": "Abdullah Al-Khaibari",
-        "display_name": "Abdullah Al-Khaibari",
-        "position": "MID",
-        "detailed_position": "CDM",
+        "id": "nawaf-bu-washl",
+        "full_name": "Nawaf Bu Washl",
+        "display_name": "Nawaf Bu Washl",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "hassan-kadish",
+        "full_name": "Hassan Kadish",
+        "display_name": "Hassan Kadish",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "moteb-al-harbi",
+        "full_name": "Moteb Al-Harbi",
+        "display_name": "Moteb Al-Harbi",
+        "position": "DEF",
+        "detailed_position": "RB",
         "club": {
           "name": "Al-Shabab",
           "country_iso": "sa",
           "league": "Saudi Pro League"
         },
-        "shirt_number_expected": 6,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/13/Abdullah_Al-Khaibari_2023_%28cropped%29.jpg"
-      },
-      {
-        "id": "mohammed-kanno",
-        "full_name": "Mohammed Kanno",
-        "display_name": "Mohammed Kanno",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Al-Hilal",
-          "country_iso": "sa",
-          "league": "Saudi Pro League"
-        },
-        "shirt_number_expected": 17,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Group_photographs_of_Al_Hilal%2C_Al_Hilal_SFC_vs_Chelsea_F.C.%2C_9_February_2022_%28cropped%29.jpg"
-      },
-      {
-        "id": "musab-al-juwayr",
-        "full_name": "Musab Al-Juwayr",
-        "display_name": "Musab Al-Juwayr",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Al-Qadsiah",
-          "country_iso": "sa",
-          "league": "Saudi Pro League"
-        },
-        "shirt_number_expected": 16,
+        "shirt_number_expected": 14,
         "status": "fixed"
       },
       {
-        "id": "salman-al-faraj",
-        "full_name": "Salman Al-Faraj",
-        "display_name": "Salman Al-Faraj",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Al-Hilal",
-          "country_iso": "sa",
-          "league": "Saudi Pro League"
-        },
-        "shirt_number_expected": 7,
-        "status": "probable",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Salman_Al-Faraj_2018.jpg/330px-Salman_Al-Faraj_2018.jpg"
+        "id": "jehad-thikri",
+        "full_name": "Jehad Thikri",
+        "display_name": "Jehad Thikri",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "mohammed-abu-alshamat",
+        "full_name": "Mohammed Abu Alshamat",
+        "display_name": "Mohammed Abu Alshamat",
+        "position": "DEF",
+        "detailed_position": "DEF",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "nasser-al-dawsari",
@@ -734,32 +682,92 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Saudi_Arabia_v_Oman_%289%29_%28cropped%29.jpg/330px-Saudi_Arabia_v_Oman_%289%29_%28cropped%29.jpg"
       },
       {
-        "id": "mohammed-aboulshamat",
-        "full_name": "Mohammed Aboulshamat",
-        "display_name": "Mohammed Aboulshamat",
+        "id": "musab-al-juwayr",
+        "full_name": "Musab Al-Juwayr",
+        "display_name": "Musab Al-Juwayr",
         "position": "MID",
-        "detailed_position": "CAM",
+        "detailed_position": "CM",
         "club": {
-          "name": "Al-Ittihad",
+          "name": "Al-Qadsiah",
           "country_iso": "sa",
           "league": "Saudi Pro League"
         },
-        "shirt_number_expected": 8,
+        "shirt_number_expected": 16,
         "status": "fixed"
       },
       {
-        "id": "abdulrahman-al-obud",
-        "full_name": "Abdulrahman Al-Obud",
-        "display_name": "Abdulrahman Al-Obud",
+        "id": "abdullah-al-khaibari",
+        "full_name": "Abdullah Al-Khaibari",
+        "display_name": "Abdullah Al-Khaibari",
         "position": "MID",
-        "detailed_position": "CAM",
+        "detailed_position": "CDM",
         "club": {
           "name": "Al-Shabab",
           "country_iso": "sa",
           "league": "Saudi Pro League"
         },
-        "shirt_number_expected": 19,
-        "status": "fixed"
+        "shirt_number_expected": 6,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/13/Abdullah_Al-Khaibari_2023_%28cropped%29.jpg"
+      },
+      {
+        "id": "ziyad-al-johani",
+        "full_name": "Ziyad Al-Johani",
+        "display_name": "Ziyad Al-Johani",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Ziyad_Al-Johani.jpg"
+      },
+      {
+        "id": "ala-al-hajji",
+        "full_name": "Ala Al-Hajji",
+        "display_name": "Ala Al-Hajji",
+        "position": "MID",
+        "detailed_position": "MID",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "mohammed-kanno",
+        "full_name": "Mohammed Kanno",
+        "display_name": "Mohammed Kanno",
+        "position": "MID",
+        "detailed_position": "CDM",
+        "club": {
+          "name": "Al-Hilal",
+          "country_iso": "sa",
+          "league": "Saudi Pro League"
+        },
+        "shirt_number_expected": 17,
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Group_photographs_of_Al_Hilal%2C_Al_Hilal_SFC_vs_Chelsea_F.C.%2C_9_February_2022_%28cropped%29.jpg"
+      },
+      {
+        "id": "aiman-yahya",
+        "full_name": "Aiman Yahya",
+        "display_name": "Aiman Yahya",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
+      },
+      {
+        "id": "feras-al-brikan",
+        "full_name": "Feras Al-Brikan",
+        "display_name": "Feras Al-Brikan",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
         "id": "salem-al-dawsari",
@@ -777,35 +785,6 @@
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Salem_Al-Dawsari_2018.jpg/330px-Salem_Al-Dawsari_2018.jpg"
       },
       {
-        "id": "firas-al-buraikan",
-        "full_name": "Firas Al-Buraikan",
-        "display_name": "Firas Al-Buraikan",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Al-Ahli",
-          "country_iso": "sa",
-          "league": "Saudi Pro League"
-        },
-        "shirt_number_expected": 9,
-        "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Feras_Albrikan%2C_2025_CONCACAF_Gold_Cup_%28cropped%29.jpg/330px-Feras_Albrikan%2C_2025_CONCACAF_Gold_Cup_%28cropped%29.jpg"
-      },
-      {
-        "id": "abdullah-radif",
-        "full_name": "Abdullah Radif",
-        "display_name": "Abdullah Radif",
-        "position": "FWD",
-        "detailed_position": "ST",
-        "club": {
-          "name": "Al-Ittihad",
-          "country_iso": "sa",
-          "league": "Saudi Pro League"
-        },
-        "shirt_number_expected": 20,
-        "status": "fixed"
-      },
-      {
         "id": "saleh-al-shehri",
         "full_name": "Saleh Al-Shehri",
         "display_name": "Saleh Al-Shehri",
@@ -820,60 +799,37 @@
         "status": "fixed"
       },
       {
-        "id": "marwan-al-sahafi",
-        "full_name": "Marwan Al-Sahafi",
-        "display_name": "Marwan Al-Sahafi",
+        "id": "khalid-al-ghannam",
+        "full_name": "Khalid Al-Ghannam",
+        "display_name": "Khalid Al-Ghannam",
         "position": "FWD",
-        "detailed_position": "RW",
-        "club": {
-          "name": "Royal Antwerp",
-          "country_iso": "be",
-          "league": "Pro League"
-        },
-        "shirt_number_expected": 21,
-        "status": "fixed"
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
-        "id": "haitham-asiri",
-        "full_name": "Haitham Asiri",
-        "display_name": "Haitham Asiri",
+        "id": "abdullah-al-hamddan",
+        "full_name": "Abdullah Al-Hamddan",
+        "display_name": "Abdullah Al-Hamddan",
         "position": "FWD",
-        "detailed_position": "LW",
-        "club": {
-          "name": "Al-Ahli",
-          "country_iso": "sa",
-          "league": "Saudi Pro League"
-        },
-        "shirt_number_expected": 24,
-        "status": "probable"
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       },
       {
-        "id": "fawaz-al-torais",
-        "full_name": "Fawaz Al-Torais",
-        "display_name": "Fawaz Al-Torais",
-        "position": "MID",
-        "detailed_position": "CM",
-        "club": {
-          "name": "Al-Shabab",
-          "country_iso": "sa",
-          "league": "Saudi Pro League"
-        },
-        "shirt_number_expected": 25,
-        "status": "bubble"
-      },
-      {
-        "id": "abdullah-al-malki",
-        "full_name": "Abdullah Al-Malki",
-        "display_name": "Abdullah Al-Malki",
-        "position": "MID",
-        "detailed_position": "CDM",
-        "club": {
-          "name": "Al-Hilal",
-          "country_iso": "sa",
-          "league": "Saudi Pro League"
-        },
-        "shirt_number_expected": 26,
-        "status": "bubble"
+        "id": "sultan-mandash",
+        "full_name": "Sultan Mandash",
+        "display_name": "Sultan Mandash",
+        "position": "FWD",
+        "detailed_position": "FWD",
+        "club": null,
+        "shirt_number_expected": null,
+        "status": "fixed",
+        "photo_url": null
       }
     ],
     "starting_xi": {
@@ -994,8 +950,10 @@
       },
       "vs_last_3_wcs": "Brasil 2014: NO CLASIFICÓ. Rusia 2018: fase de grupos. Catar 2022: fase de grupos (con MILAGRO DE LUSAIL: 2-1 a Argentina campeona). Mundial 2026: 7ª participación, 3ª CONSECUTIVA."
     },
-    "squad_announced": false,
-    "squad_announced_status": "pending_official"
+    "squad_announced": true,
+    "squad_announced_status": "pending_official",
+    "squad_announced_date": "2026-06-04",
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
   },
   "history": {
     "first_appearance": 1994,

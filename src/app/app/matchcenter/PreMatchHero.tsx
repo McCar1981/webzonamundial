@@ -21,16 +21,24 @@ function pad(n: number): string {
   return String(n).padStart(2, "0");
 }
 
-function fmtKickoff(iso?: string): { date: string; time: string } | null {
+function fmtKickoff(
+  iso?: string,
+): { date: string; compact: string; time: string } | null {
   if (!iso) return null;
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return null;
+  const dd = String(d.getDate()).padStart(2, "0");
+  const mm = String(d.getMonth() + 1).padStart(2, "0");
+  const weekday = d.toLocaleDateString("es-ES", { weekday: "long" });
   return {
     date: d.toLocaleDateString("es-ES", {
       weekday: "long",
       day: "numeric",
       month: "long",
     }),
+    // Versión compacta "Jueves, 11/06": ocupa menos ancho en el bloque central
+    // y deja sitio para nombres largos como "Sudáfrica".
+    compact: `${weekday}, ${dd}/${mm}`,
     time: d.toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit" }),
   };
 }
@@ -209,7 +217,7 @@ export default function PreMatchHero({ meta, kickoff, image }: Props) {
                     textTransform: "capitalize",
                   }}
                 >
-                  {ko ? `${ko.date} · ${ko.time}h` : "Por comenzar"}
+                  {ko ? `${ko.compact} · ${ko.time}h` : "Por comenzar"}
                 </div>
               </>
             ) : (
@@ -298,7 +306,7 @@ function Unit({ value, label }: { value: string; label: string }) {
       <span
         className="mc-num"
         style={{
-          fontSize: "clamp(22px,6.4vw,44px)",
+          fontSize: "clamp(20px,5.8vw,42px)",
           fontWeight: 700,
           lineHeight: 1,
           color: "#fff",

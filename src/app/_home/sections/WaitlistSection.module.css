@@ -11,7 +11,7 @@
   /* Stadium bg (reused) + dark veil so the light card pops */
   background:
     radial-gradient(ellipse 80% 70% at 50% 50%, rgba(10, 15, 30, 0.35), rgba(6, 6, 14, 0.92) 75%),
-    url("/img/heroes/hero-stadium.webp");
+    url("/img/heroes/ball-stadium-pitch.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

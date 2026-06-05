@@ -13,7 +13,8 @@ import type { NationalTeam } from "@/types/team";
 import type { MatchMeta } from "./types";
 
 // Imagen de respaldo: garantiza que SIEMPRE haya una foto aunque no haya estrella.
-const FALLBACK_IMAGE = "/img/heroes/hero-stadium.jpg";
+// Estadio real con balón en el césped (neutral, sirve para cualquier partido).
+const FALLBACK_IMAGE = "/img/heroes/ball-stadium-pitch.jpg";
 
 function norm(s: string): string {
   return s

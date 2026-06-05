@@ -13,6 +13,7 @@
 // recibe el fixtureId ya resuelto.
 
 import { buildLineup } from "./formations";
+import { withBallZones } from "./zones";
 import type {
   LineupPlayer,
   LiveSnapshot,
@@ -62,6 +63,12 @@ interface RawFixture {
   };
   teams: { home: { id: number }; away: { id: number } };
   goals: { home: number | null; away: number | null };
+  // `/fixtures?id=` embebe estos bloques en la propia respuesta del fixture, de
+  // modo que UNA petición trae eventos+stats+alineaciones (antes eran 4). Si la
+  // API no los incluye, caemos a las peticiones sueltas como respaldo.
+  events?: RawEvent[];
+  statistics?: RawStatBlock[];
+  lineups?: RawLineup[];
 }
 interface RawEvent {
   time: { elapsed: number | null; extra: number | null };
@@ -143,16 +150,63 @@ export async function fetchLiveSnapshot(
   const fixtures = await apiGet<RawFixture[]>(`/fixtures?id=${fixtureId}`);
   if (!fixtures || fixtures.length === 0) return null;
   const fx = fixtures[0];
+
+  // Preferimos los bloques EMBEBIDOS en `/fixtures?id=` (1 request). Solo si la
+  // API no los trae (poco común en vivo) pedimos los endpoints sueltos. Esto
+  // baja el gasto de cuota de 4 a 1 request por partido.
+  if (fx.events == null && fx.statistics == null && fx.lineups == null) {
+    const [rawEvents, rawStats, rawLineups] = await Promise.all([
+      apiGet<RawEvent[]>(`/fixtures/events?fixture=${fixtureId}`),
+      apiGet<RawStatBlock[]>(`/fixtures/statistics?fixture=${fixtureId}`),
+      apiGet<RawLineup[]>(`/fixtures/lineups?fixture=${fixtureId}`),
+    ]);
+    fx.events = rawEvents ?? undefined;
+    fx.statistics = rawStats ?? undefined;
+    fx.lineups = rawLineups ?? undefined;
+  }
+
+  return snapshotFromFixture(fx, meta);
+}
+
+/**
+ * Descarga en LOTE varios partidos en una sola petición `/fixtures?ids=` (hasta
+ * 20 por request). Devuelve un mapa matchId -> LiveSnapshot solo para los
+ * fixtures que la API resolvió. Pensado para el poller centralizado: con un
+ * único request se refresca toda la jornada en vivo (gran ahorro de cuota).
+ */
+export async function fetchLiveSnapshots(
+  pairs: { matchId: number; fixtureId: number; meta: MatchMeta }[],
+): Promise<Record<number, LiveSnapshot>> {
+  const out: Record<number, LiveSnapshot> = {};
+  if (pairs.length === 0) return out;
+
+  // api-football limita a 20 ids por request: troceamos en lotes de 20.
+  for (let i = 0; i < pairs.length; i += 20) {
+    const batch = pairs.slice(i, i + 20);
+    const ids = batch.map((p) => p.fixtureId).join("-");
+    const fixtures = await apiGet<RawFixture[]>(`/fixtures?ids=${ids}`);
+    if (!fixtures) continue;
+    const byFixture = new Map(fixtures.map((f) => [f.fixture.id, f]));
+    for (const p of batch) {
+      const fx = byFixture.get(p.fixtureId);
+      if (!fx) continue;
+      out[p.matchId] = snapshotFromFixture(fx, p.meta);
+    }
+  }
+  return out;
+}
+
+/** Mapea un RawFixture (con bloques embebidos) a LiveSnapshot. */
+function snapshotFromFixture(fx: RawFixture, meta: MatchMeta): LiveSnapshot {
+  const fixtureId = fx.fixture.id;
   const homeId = fx.teams.home.id;
   const awayId = fx.teams.away.id;
   const sideOf = (teamId: number): MatchEvent["side"] =>
     teamId === homeId ? "home" : teamId === awayId ? "away" : "neutral";
 
-  const [rawEvents, rawStats, rawLineups] = await Promise.all([
-    apiGet<RawEvent[]>(`/fixtures/events?fixture=${fixtureId}`),
-    apiGet<RawStatBlock[]>(`/fixtures/statistics?fixture=${fixtureId}`),
-    apiGet<RawLineup[]>(`/fixtures/lineups?fixture=${fixtureId}`),
-  ]);
+  const rawEvents = fx.events ?? null;
+  const rawStats = fx.statistics ?? null;
+  const rawLineups = fx.lineups ?? null;
 
   const events: MatchEvent[] = (rawEvents || []).map((e, idx) => {
     const minute = e.time.elapsed ?? 0;
@@ -174,6 +228,10 @@ export async function fetchLiveSnapshot(
     };
   });
   events.sort((a, b) => a.t - b.t);
+  // El feed real no trae posición de jugada: la máquina de zonas asigna x/y por
+  // tipo+lado, de modo que un gol viaja al área correcta y el balón nunca queda
+  // en el lado equivocado. Eventos como cambio/VAR no mueven el balón.
+  const placedEvents = withBallZones(events);
 
   const homeStats = (rawStats || []).find((s) => s.team.id === homeId);
   const awayStats = (rawStats || []).find((s) => s.team.id === awayId);
@@ -216,7 +274,7 @@ export async function fetchLiveSnapshot(
     kickoff: fx.fixture.date,
     referee: fx.fixture.referee ?? undefined,
     score: [fx.goals.home ?? 0, fx.goals.away ?? 0],
-    events,
+    events: placedEvents,
     narration: {},
     stats,
     homeLineup,

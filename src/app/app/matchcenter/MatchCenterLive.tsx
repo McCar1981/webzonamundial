@@ -14,6 +14,7 @@ import PreMatchPreview from "./PreMatchPreview";
 import CommentsPanel from "./CommentsPanel";
 import { createSpeaker, type Speaker } from "@/lib/match-center/voice";
 import { createSound, type MatchSound } from "@/lib/match-center/sound";
+import { zoneForEvent } from "@/lib/match-center/zones";
 import {
   EMPTY_STATS,
   type LiveStats,
@@ -76,6 +77,37 @@ function statAt(frames: StatKeyframe[], t: number): LiveStats {
     }
   }
   return frames[frames.length - 1].stats;
+}
+
+// Locución AMBIENTE: relleno entre jugadas para que la cronología no se quede
+// congelada en el último evento cuando pasan minutos sin acción. Se construye
+// SOLO con datos reales (posesión, minuto): no inventa jugadas. Determinista
+// por `seed` para variar la frase sin repetir la inmediata anterior.
+function ambientLine(
+  meta: MatchMeta,
+  possHome: number,
+  sec: number,
+  seed: number,
+): string {
+  const mm = Math.max(1, Math.floor(sec / 60));
+  const diff = possHome - (100 - possHome);
+  const dom = diff > 12 ? meta.home.name : diff < -12 ? meta.away.name : null;
+  const min = `'${mm}`;
+  const balanced = [
+    `Partido parejo en el medio campo. ${min}.`,
+    `Se mide el ritmo, ninguno cede el control. ${min}.`,
+    `Intercambio de golpes en la mitad de la cancha. ${min}.`,
+    `Tanteo entre ${meta.home.name} y ${meta.away.name}. ${min}.`,
+  ];
+  const dominant = dom
+    ? [
+        `${dom} mueve el balón con paciencia y manda en la posesión. ${min}.`,
+        `${dom} acumula metros y hace correr al rival. ${min}.`,
+        `Insiste ${dom}, que lleva el peso del juego. ${min}.`,
+      ]
+    : balanced;
+  const pool = dom ? dominant : balanced;
+  return pool[seed % pool.length];
 }
 
 function clockLabel(sec: number, finished: boolean): string {
@@ -168,8 +200,13 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
 
   const feedRef = useRef<MatchFeed | null>(null);
   const secRef = useRef(0);
+  const statsRef = useRef<LiveStats>(EMPTY_STATS);
   const firedRef = useRef<Set<string>>(new Set());
   const lastGoalRef = useRef<MatchEvent | null>(null);
+  // Marca de tiempo (real) de la última locución mostrada. La usa el relleno
+  // ambiente para no hablar encima de un evento reciente.
+  const lastNarrAtRef = useRef(0);
+  const ambientSeedRef = useRef(0);
   const [replayTag, setReplayTag] = useState(false);
   const [h2h, setH2h] = useState<H2HData | null>(null);
   const speakerRef = useRef<Speaker | null>(null);
@@ -219,6 +256,14 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
       if (firedRef.current.has(e.id)) return;
       firedRef.current.add(e.id);
 
+      // Coordenadas del balón: usa las del evento si existen; si no (feed real
+      // sin posición de jugada), la máquina de zonas las deriva por tipo+lado,
+      // garantizando que el balón nunca caiga en el lado equivocado.
+      const coords =
+        typeof e.x === "number" && typeof e.y === "number"
+          ? { x: e.x, y: e.y }
+          : zoneForEvent(e.type, e.side, e.id);
+
       const snd = soundRef.current;
       const isGoal = e.type === "goal" || e.type === "penalty_goal" || e.type === "own_goal";
       if (isGoal && e.side !== "neutral") {
@@ -232,16 +277,16 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
         lastGoalRef.current = e;
         if (animate) {
           setGoalPulse({ side: e.side, key: Date.now(), player: e.player });
-          if (typeof e.x === "number" && typeof e.y === "number") {
-            setShotFx({ key: Date.now(), x: e.x, y: e.y, raised: true });
+          if (coords) {
+            setShotFx({ key: Date.now(), x: coords.x, y: coords.y, raised: true });
           }
           snd?.whistle(false); // el árbitro pita el gol
           snd?.goal();
         }
       }
       // Disparos: el balón viaja en arco hacia el destino.
-      if (animate && (e.type === "shot" || e.type === "shot_on" || e.type === "chance" || e.type === "penalty_miss") && typeof e.x === "number" && typeof e.y === "number") {
-        setShotFx({ key: Date.now(), x: e.x, y: e.y, raised: e.type !== "shot" });
+      if (animate && (e.type === "shot" || e.type === "shot_on" || e.type === "chance" || e.type === "penalty_miss") && coords) {
+        setShotFx({ key: Date.now(), x: coords.x, y: coords.y, raised: e.type !== "shot" });
       }
       if (animate && e.side !== "neutral") {
         if (e.type === "yellow" || e.type === "second_yellow") {
@@ -265,12 +310,13 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
         if (e.type === "kickoff") snd?.whistle(false);
         else if (e.type === "half_time" || e.type === "full_time") snd?.whistle(true);
       }
-      if (typeof e.x === "number" && typeof e.y === "number") {
-        setBall({ x: e.x, y: e.y });
+      if (coords) {
+        setBall({ x: coords.x, y: coords.y });
       }
       const text = narrationFor(e);
       if (text) {
         setNarration(text);
+        lastNarrAtRef.current = Date.now();
         if (animate && SPEAK_TYPES.has(e.type)) speak(text, isGoal || e.type === "red");
       }
       if (e.type === "half_time") setSecondHalf(true);
@@ -388,6 +434,28 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
     return () => clearInterval(interval);
   }, [feed, finished, matchId, fireEvent]);
 
+  // Mantiene statsRef sincronizado para el relleno ambiente (lee sin re-crear
+  // su intervalo en cada actualización de stats).
+  useEffect(() => { statsRef.current = stats; }, [stats]);
+
+  // Locución AMBIENTE: si pasan >60s reales sin nueva locución y el partido está
+  // en juego, emite una frase de relleno (posesión/minuto, datos reales) para
+  // que la cronología no se quede congelada. No usa TTS: no pisa la voz de los
+  // eventos ni satura al usuario.
+  useEffect(() => {
+    if (!feed) return;
+    const playing = feed.mode === "sim" ? !paused && !finished : isInPlay(status);
+    if (!playing) return;
+    const id = setInterval(() => {
+      if (Date.now() - lastNarrAtRef.current < 60000) return;
+      ambientSeedRef.current += 1;
+      const possHome = statsRef.current.possession[0] || 50;
+      setNarration(ambientLine(meta, possHome, secRef.current, ambientSeedRef.current));
+      lastNarrAtRef.current = Date.now();
+    }, 10000);
+    return () => clearInterval(id);
+  }, [feed, paused, finished, status, meta]);
+
   // Limpia el pulso de gol
   useEffect(() => {
     if (!goalPulse) return;
@@ -468,9 +536,13 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
   // (sin alterar el marcador). Usado por la línea de tiempo y los destacados.
   const relive = useCallback((e: MatchEvent) => {
     const snd = soundRef.current;
-    if (typeof e.x === "number" && typeof e.y === "number") {
-      setBall({ x: e.x, y: e.y });
-      setShotFx({ key: Date.now(), x: e.x, y: e.y, raised: e.type !== "shot" });
+    const coords =
+      typeof e.x === "number" && typeof e.y === "number"
+        ? { x: e.x, y: e.y }
+        : zoneForEvent(e.type, e.side, e.id);
+    if (coords) {
+      setBall({ x: coords.x, y: coords.y });
+      setShotFx({ key: Date.now(), x: coords.x, y: coords.y, raised: e.type !== "shot" });
     }
     const isGoal = e.type === "goal" || e.type === "penalty_goal" || e.type === "own_goal";
     if (isGoal && e.side !== "neutral") {

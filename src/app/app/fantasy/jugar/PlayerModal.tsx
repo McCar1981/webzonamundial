@@ -40,10 +40,11 @@ export default function PlayerModal({ players, onClose }: Props) {
   const compare = players.length > 1;
 
   return (
-    <div onClick={onClose} style={{ position: "fixed", inset: 0, zIndex: 60, background: "rgba(0,0,0,0.66)", backdropFilter: "blur(3px)", display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}>
+    <div onClick={onClose} style={{ position: "fixed", inset: 0, zIndex: 2000, background: "rgba(0,0,0,0.66)", backdropFilter: "blur(3px)", display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}>
       <div onClick={(e) => e.stopPropagation()} style={{ width: "100%", maxWidth: compare ? 560 : 380, maxHeight: "90vh", overflowY: "auto", background: BG, border: `1px solid ${GOLD}44`, borderRadius: 18, boxShadow: "0 20px 60px rgba(0,0,0,0.6)" }}>
-        {/* Cabecera */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 16px", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+        {/* Cabecera — sticky para que el botón de cerrar (×) siga visible al
+            hacer scroll del contenido largo de la ficha. */}
+        <div style={{ position: "sticky", top: 0, zIndex: 2, background: BG, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 16px", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
           <div style={{ fontSize: 12, fontWeight: 800, color: DIM, textTransform: "uppercase", letterSpacing: 1 }}>{compare ? "⚖️ Comparador" : "Ficha de jugador"}</div>
           <button onClick={onClose} style={{ background: "none", border: "none", color: MID, fontSize: 20, fontWeight: 800, cursor: "pointer", lineHeight: 1 }}>×</button>
         </div>

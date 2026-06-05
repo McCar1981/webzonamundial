@@ -18,7 +18,9 @@ const ORDER: Scene[] = ["prologo", "nombre", "filosofia", "nacion", "comienzo"];
 
 // Fondo cinemático por escena. Si la imagen no existe, el degradado base hace de
 // fallback (el <img> de fondo simplemente no carga y no rompe nada).
+// Variante vertical para móvil (<=640px); la horizontal queda de respaldo.
 const SCENE_BG = "/img/modo-carrera/onboarding-bg.webp";
+const SCENE_BG_MOBILE = "/img/modo-carrera/onboarding-bg-mobile.webp";
 
 function buildOpeningNarrative(name: string, nationName: string, philName: string): NarrativeEntry {
   return {
@@ -107,10 +109,14 @@ export default function OnboardingDT({
         .mc-delay-1 { animation-delay:.12s; } .mc-delay-2 { animation-delay:.24s; } .mc-delay-3 { animation-delay:.36s; }
       `}</style>
 
-      {/* Fondo cinemático + degradado (fallback si la imagen no existe) */}
+      {/* Fondo cinemático + degradado (fallback si la imagen no existe).
+          <picture> sirve la variante vertical en móvil y la horizontal en el resto. */}
       <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={SCENE_BG} alt="" aria-hidden style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.35 }} onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }} />
+        <picture>
+          <source media="(max-width: 640px)" srcSet={SCENE_BG_MOBILE} />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={SCENE_BG} alt="" aria-hidden style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.35 }} onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }} />
+        </picture>
         <div style={{ position: "absolute", inset: 0, background: `radial-gradient(ellipse at 30% 20%, rgba(201,168,76,0.16), transparent 55%), linear-gradient(180deg, rgba(6,11,20,0.7), ${BG} 85%)` }} />
       </div>
 

@@ -1,7 +1,7 @@
 // src/app/_home/sections/MatchCenterBanner.tsx
 //
-// Banner del Match Center en el HOME: destaca el amistoso real España-Irak
-// (id 9001) justo debajo del hero para máxima visibilidad en España.
+// Banner del Match Center en el HOME: destaca el amistoso real Portugal-Chile
+// (id 9002) justo debajo del hero para máxima visibilidad.
 // Se autoactualiza por polling del endpoint live y enlaza al Match Center.
 // SVG-only (sin emojis). Degrada a null si la API falla o el partido terminó
 // hace rato (no queremos un banner muerto en la portada).
@@ -12,10 +12,10 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { GOLD, GOLD2 } from "../constants";
 
-const MATCH_ID = 9001;
+const MATCH_ID = 9002;
 const ENDPOINT = `/api/match-center/live/${MATCH_ID}`;
 // URL "bonita" por nombres (el route resuelve slug o id numérico indistintamente).
-const HREF = `/app/matchcenter/espana-irak`;
+const HREF = `/app/matchcenter/portugal-chile`;
 
 const IN_PLAY = ["1H", "2H", "ET", "BT", "P", "LIVE", "INT"];
 const FINISHED = ["FT", "AET", "PEN"];

@@ -17,8 +17,9 @@ import { buildSimulation } from "@/lib/match-center/simulation";
 import { fetchLiveSnapshot, scheduledSnapshot } from "@/lib/match-center/apiFootball";
 
 // Partidos que SOLO deben mostrar datos reales (nunca simulación). Antes del
-// saque se quedan parados en "por comenzar". Por ahora, el amistoso de prueba.
-const REAL_ONLY_IDS = new Set<number>([9001]);
+// saque se quedan parados en "por comenzar". Por ahora, el amistoso de prueba
+// Portugal-Chile (id 9002).
+const REAL_ONLY_IDS = new Set<number>([9002]);
 import { aiNarrateBatch } from "@/lib/match-center/narrator";
 
 export const runtime = "nodejs";
@@ -46,7 +47,7 @@ export async function GET(
   }
 
   const url = new URL(req.url);
-  // Los partidos solo-reales (p.ej. España-Irak) NUNCA simulan, aunque se pida
+  // Los partidos solo-reales (p.ej. Portugal-Chile) NUNCA simulan, aunque se pida
   // ?sim=1 desde el hub: ahí mostramos datos reales o el estado "por comenzar".
   const forceSim = url.searchParams.get("sim") === "1" && !REAL_ONLY_IDS.has(matchId);
   const useAI = url.searchParams.get("ai") !== "0" && !!process.env.ANTHROPIC_API_KEY;

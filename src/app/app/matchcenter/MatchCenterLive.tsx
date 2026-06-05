@@ -917,16 +917,12 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
         {feed && lineups && (
           <>
             {/* Previa: cabecera con cuenta atrás + análisis editorial antes de
-                empezar. La foto del estadio y la previa son específicas del
-                amistoso España-Irak (Riazor, id 9001). */}
+                empezar. La previa es específica del amistoso de prueba
+                Portugal-Chile (id 9002). */}
             {feed.mode === "live" && !finished && !isInPlay(status) && status !== "HT" && (
               <>
-                <PreMatchHero
-                  meta={meta}
-                  kickoff={kickoff}
-                  image={matchId === 9001 ? "/img/matchcenter/riazor.jpg" : undefined}
-                />
-                {matchId === 9001 && <PreMatchPreview />}
+                <PreMatchHero meta={meta} kickoff={kickoff} />
+                {matchId === 9002 && <PreMatchPreview />}
               </>
             )}
 

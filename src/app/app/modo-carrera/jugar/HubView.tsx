@@ -6,7 +6,7 @@
 
 "use client";
 
-import { BG, BG2, BG3, GOLD, GOLD2, MID, DIM } from "./fx";
+import { BG, BG2, BG3, GOLD, GOLD2, MID, DIM, flagUrl } from "./fx";
 import FichaDT from "./FichaDT";
 import { rankForOverall, SKILL_BRANCHES } from "@/lib/modo-carrera/constants";
 import type { CareerState } from "@/lib/modo-carrera/types";
@@ -27,6 +27,9 @@ export default function HubView({ career }: { career: CareerState }) {
   const nation = SELECCIONES.find((s) => s.slug === career.identity.nationSlug);
   const xpPct = Math.min(100, Math.round((pr.xp / Math.max(1, pr.xpToNext)) * 100));
   const activeMissions = missions.filter((m) => m.status === "activa");
+  const season = career.season;
+  const nextMatch = season && !season.finished ? season.fixtures[season.cursor] ?? null : null;
+  const nextOpp = nextMatch ? SELECCIONES.find((s) => s.slug === nextMatch.opponentSlug) : undefined;
 
   return (
     <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "auto 1fr", gap: 28, alignItems: "start" }}>
@@ -53,15 +56,36 @@ export default function HubView({ career }: { career: CareerState }) {
           </div>
         </Card>
 
-        {/* Próximo hito (placeholder hasta motor de partidos) */}
-        <Card title="Próximo hito">
-          <div style={{ color: MID, fontSize: 14, lineHeight: 1.6 }}>
-            {nation ? (
-              <>Dirigiendo a <strong style={{ color: "#fff" }}>{nation.nombre}</strong>. El calendario de partidos llegará en la próxima fase.</>
-            ) : (
-              "Configura tu selección para ver tu próximo partido."
-            )}
-          </div>
+        {/* Próximo partido (motor de temporada) */}
+        <Card title="Próximo partido">
+          {nextMatch ? (
+            <div>
+              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 0.6, textTransform: "uppercase", color: GOLD, marginBottom: 8 }}>
+                {nextMatch.label}
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 16, fontWeight: 800, color: "#fff" }}>
+                {nextOpp && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={flagUrl(nextOpp.flagCode)} alt="" style={{ width: 26, height: 18, objectFit: "cover", borderRadius: 3 }} />
+                )}
+                <span>{nextOpp?.nombre ?? nextMatch.opponentSlug}</span>
+                <span style={{ fontSize: 12, color: DIM, fontWeight: 600 }}>{nextMatch.home ? "(Local)" : "(Visitante)"}</span>
+              </div>
+              <div style={{ marginTop: 8, fontSize: 13, color: MID }}>Ve a la pestaña Temporada para disputarlo.</div>
+            </div>
+          ) : season?.finished ? (
+            <div style={{ color: MID, fontSize: 14, lineHeight: 1.6 }}>
+              {season.stage === "campeon" ? "¡Eres campeón del mundo!" : "Temporada finalizada."} Inicia una nueva temporada desde la pestaña Temporada.
+            </div>
+          ) : (
+            <div style={{ color: MID, fontSize: 14, lineHeight: 1.6 }}>
+              {nation ? (
+                <>Dirigiendo a <strong style={{ color: "#fff" }}>{nation.nombre}</strong>. Comienza tu temporada desde la pestaña <strong style={{ color: GOLD }}>Temporada</strong>.</>
+              ) : (
+                "Configura tu selección para ver tu próximo partido."
+              )}
+            </div>
+          )}
         </Card>
 
         {/* Misiones */}

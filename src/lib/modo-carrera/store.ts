@@ -5,7 +5,7 @@
 // tolerar saves antiguos o corruptos. Al iniciar sesión, CareerGame sincroniza
 // este estado con Supabase via /api/modo-carrera/save.
 
-import type { CareerState } from "./types";
+import type { CareerState, SeasonState, SeasonMatch, TournamentStage, MatchOutcome } from "./types";
 import { CAREER_STORAGE_KEY, CAREER_SCHEMA_VERSION, xpRequired } from "./constants";
 
 /** Partida vacía inicial (DT sin crear todavía). */
@@ -43,6 +43,7 @@ export function defaultCareer(): CareerState {
       trophies: [],
       records: { matchesPlayed: 0, wins: 0, draws: 0, losses: 0, goalsFor: 0, goalsAgainst: 0, titlesWon: 0 },
     },
+    season: null,
     updatedAt: now,
   };
 }
@@ -56,6 +57,38 @@ const clampInt = (n: unknown, lo: number, hi: number, fb: number): number => {
   const v = typeof n === "number" && Number.isFinite(n) ? Math.round(n) : fb;
   return Math.max(lo, Math.min(hi, v));
 };
+
+const STAGES: TournamentStage[] = ["grupos", "octavos", "cuartos", "semifinal", "final", "campeon", "eliminado"];
+const OUTCOMES: MatchOutcome[] = ["V", "E", "D"];
+
+/** Repara/normaliza la temporada en curso; devuelve null si el dato es inválido. */
+function normalizeSeason(raw: unknown): SeasonState | null {
+  if (!raw || typeof raw !== "object") return null;
+  const s = raw as Partial<SeasonState>;
+  if (!Array.isArray(s.fixtures)) return null;
+  const fixtures: SeasonMatch[] = (s.fixtures as unknown[])
+    .map((x) => (x && typeof x === "object" ? (x as Partial<SeasonMatch>) : null))
+    .filter((m): m is Partial<SeasonMatch> => !!m && typeof m.opponentSlug === "string")
+    .map((m) => ({
+      id: typeof m.id === "string" ? m.id : `fx-${Math.random().toString(36).slice(2)}`,
+      stage: STAGES.includes(m.stage as TournamentStage) ? (m.stage as TournamentStage) : "grupos",
+      label: typeof m.label === "string" ? m.label : "Partido",
+      opponentSlug: m.opponentSlug as string,
+      home: m.home !== false,
+      played: m.played === true,
+      gf: typeof m.gf === "number" ? clampInt(m.gf, 0, 99, 0) : null,
+      ga: typeof m.ga === "number" ? clampInt(m.ga, 0, 99, 0) : null,
+      outcome: OUTCOMES.includes(m.outcome as MatchOutcome) ? (m.outcome as MatchOutcome) : null,
+    }));
+  if (fixtures.length === 0) return null;
+  return {
+    season: clampInt(s.season, 1, 999, 1),
+    fixtures,
+    cursor: clampInt(s.cursor, 0, fixtures.length, 0),
+    stage: STAGES.includes(s.stage as TournamentStage) ? (s.stage as TournamentStage) : "grupos",
+    finished: s.finished === true,
+  };
+}
 
 /**
  * Repara/normaliza un estado posiblemente parcial o de versión antigua para que
@@ -126,6 +159,7 @@ export function normalizeCareer(raw: Partial<CareerState> | null | undefined): C
         titlesWon: clampInt(leg.records?.titlesWon, 0, 1_000_000, 0),
       },
     },
+    season: normalizeSeason(raw.season),
     updatedAt: typeof raw.updatedAt === "string" ? raw.updatedAt : base.updatedAt,
   };
 }

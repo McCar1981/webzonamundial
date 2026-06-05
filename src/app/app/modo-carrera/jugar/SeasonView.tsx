@@ -1,0 +1,320 @@
+// src/app/app/modo-carrera/jugar/SeasonView.tsx
+// Motor de temporada (UI). Muestra el calendario del Mundial que dirige el DT,
+// permite disputar el próximo partido (simulación en el motor `season.ts`) y
+// revela el resultado con una animación. Al terminar el torneo ofrece arrancar la
+// siguiente temporada. SVG-only, sin emojis.
+
+"use client";
+
+import { useState } from "react";
+import { BG, BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED, flagUrl } from "./fx";
+import { SELECCIONES } from "@/data/selecciones";
+import { STAGE_LABEL } from "@/lib/modo-carrera/season";
+import type { PlayResult } from "@/lib/modo-carrera/season";
+import type { CareerState, SeasonMatch } from "@/lib/modo-carrera/types";
+
+const OUTCOME_LABEL = { V: "Victoria", E: "Empate", D: "Derrota" } as const;
+const OUTCOME_COLOR = { V: GREEN, E: GOLD, D: RED } as const;
+
+function sel(slug: string) {
+  return SELECCIONES.find((s) => s.slug === slug);
+}
+
+function FlagName({ slug, size = 22 }: { slug: string; size?: number }) {
+  const s = sel(slug);
+  return (
+    <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+      {s && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={flagUrl(s.flagCode)}
+          alt=""
+          style={{ width: size, height: size * 0.7, objectFit: "cover", borderRadius: 3, boxShadow: "0 1px 4px rgba(0,0,0,0.4)" }}
+        />
+      )}
+      <span>{s?.nombre ?? slug}</span>
+    </span>
+  );
+}
+
+function FixtureRow({ m, isNext }: { m: SeasonMatch; isNext: boolean }) {
+  const color = m.outcome ? OUTCOME_COLOR[m.outcome] : isNext ? GOLD2 : MID;
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: 12,
+        padding: "12px 14px",
+        borderRadius: 12,
+        background: isNext ? "rgba(201,168,76,0.10)" : BG3,
+        border: `1px solid ${isNext ? GOLD : m.played ? "rgba(255,255,255,0.06)" : "rgba(255,255,255,0.04)"}`,
+        opacity: m.played || isNext ? 1 : 0.6,
+      }}
+    >
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 0.6, textTransform: "uppercase", color: isNext ? GOLD : DIM }}>
+          {m.label}
+          {isNext && " · próximo"}
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 4, fontSize: 14, color: "#fff", fontWeight: 700 }}>
+          <FlagName slug={m.opponentSlug} />
+          <span style={{ fontSize: 11, color: DIM, fontWeight: 600 }}>{m.home ? "(L)" : "(V)"}</span>
+        </div>
+      </div>
+      <div style={{ textAlign: "right" }}>
+        {m.played && m.gf !== null && m.ga !== null ? (
+          <div style={{ fontSize: 18, fontWeight: 900, color }}>
+            {m.gf} - {m.ga}
+          </div>
+        ) : (
+          <div style={{ fontSize: 16, fontWeight: 800, color: isNext ? GOLD2 : DIM }}>—</div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default function SeasonView({
+  career,
+  onStart,
+  onPlayNext,
+  onNextSeason,
+}: {
+  career: CareerState;
+  onStart: () => void;
+  onPlayNext: () => PlayResult | null;
+  onNextSeason: () => void;
+}) {
+  const { season } = career;
+  const [busy, setBusy] = useState(false);
+  const [reveal, setReveal] = useState<PlayResult | null>(null);
+
+  const nationSlug = career.identity.nationSlug ?? "";
+  const nation = sel(nationSlug);
+
+  // Sin temporada activa → CTA para iniciar el torneo.
+  if (!season) {
+    return (
+      <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center", padding: "40px 20px" }}>
+        <h2 style={{ fontSize: 24, fontWeight: 900, color: "#fff" }}>El Mundial te espera</h2>
+        <p style={{ fontSize: 14, color: MID, marginTop: 8, lineHeight: 1.6 }}>
+          {nation ? (
+            <>Toma las riendas de <strong style={{ color: "#fff" }}>{nation.nombre}</strong> y guíalos por la fase de grupos y la eliminatoria hasta la gloria.</>
+          ) : (
+            "Configura tu selección para comenzar el torneo."
+          )}
+        </p>
+        <button
+          type="button"
+          onClick={onStart}
+          style={{
+            marginTop: 24,
+            padding: "14px 32px",
+            borderRadius: 12,
+            border: "none",
+            background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
+            color: BG,
+            fontWeight: 900,
+            fontSize: 15,
+            cursor: "pointer",
+            boxShadow: "0 10px 30px rgba(201,168,76,0.35)",
+          }}
+        >
+          Comenzar temporada {career.progression.season}
+        </button>
+      </div>
+    );
+  }
+
+  const nextMatch = !season.finished ? season.fixtures[season.cursor] ?? null : null;
+
+  const play = () => {
+    if (busy || !nextMatch) return;
+    setBusy(true);
+    const res = onPlayNext();
+    if (res && res.match) setReveal(res);
+    setBusy(false);
+  };
+
+  return (
+    <div style={{ maxWidth: 820, margin: "0 auto" }}>
+      <style>{`
+        @keyframes mcScoreIn { 0% { transform: scale(.7); opacity: 0; } 60% { transform: scale(1.08); } 100% { transform: scale(1); opacity: 1; } }
+        @keyframes mcBannerIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+      `}</style>
+
+      {/* Cabecera */}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12, marginBottom: 18 }}>
+        <div>
+          <h2 style={{ fontSize: 22, fontWeight: 900, color: "#fff" }}>Temporada {season.season}</h2>
+          <p style={{ fontSize: 13, color: MID, marginTop: 4 }}>
+            {nation ? `Al mando de ${nation.nombre}` : "Mundial"} · {STAGE_LABEL[season.stage]}
+          </p>
+        </div>
+        {!season.finished && nextMatch && (
+          <button
+            type="button"
+            onClick={play}
+            disabled={busy}
+            style={{
+              padding: "12px 24px",
+              borderRadius: 10,
+              border: "none",
+              background: busy ? BG3 : `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
+              color: busy ? DIM : BG,
+              fontWeight: 900,
+              fontSize: 14,
+              cursor: busy ? "default" : "pointer",
+              boxShadow: busy ? "none" : "0 8px 22px rgba(201,168,76,0.32)",
+            }}
+          >
+            {busy ? "Jugando…" : "Disputar partido"}
+          </button>
+        )}
+      </div>
+
+      {/* Estado terminal del torneo */}
+      {season.finished && (
+        <div
+          style={{
+            marginBottom: 18,
+            padding: 20,
+            borderRadius: 16,
+            textAlign: "center",
+            background: season.stage === "campeon" ? "rgba(201,168,76,0.14)" : "rgba(239,68,68,0.10)",
+            border: `1px solid ${season.stage === "campeon" ? GOLD : RED}`,
+            animation: "mcBannerIn .5s ease both",
+          }}
+        >
+          <div style={{ fontSize: 12, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase", color: season.stage === "campeon" ? GOLD : RED }}>
+            {season.stage === "campeon" ? "Torneo conquistado" : "Torneo finalizado"}
+          </div>
+          <h3 style={{ fontSize: 22, fontWeight: 900, color: "#fff", margin: "6px 0 14px" }}>
+            {season.stage === "campeon" ? "¡Campeones del Mundo!" : "Eliminados del Mundial"}
+          </h3>
+          <button
+            type="button"
+            onClick={onNextSeason}
+            style={{
+              padding: "12px 28px",
+              borderRadius: 10,
+              border: `1px solid ${GOLD}`,
+              background: "rgba(201,168,76,0.12)",
+              color: GOLD2,
+              fontWeight: 800,
+              fontSize: 14,
+              cursor: "pointer",
+            }}
+          >
+            Comenzar temporada {season.season + 1}
+          </button>
+        </div>
+      )}
+
+      {/* Calendario */}
+      <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        {season.fixtures.map((m, i) => (
+          <FixtureRow key={m.id} m={m} isNext={!season.finished && i === season.cursor} />
+        ))}
+      </div>
+
+      {/* Revelado del resultado */}
+      {reveal && reveal.match && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setReveal(null)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 90,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "rgba(6,11,20,0.86)",
+            padding: 20,
+            animation: "mcBannerIn .25s ease both",
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              width: "100%",
+              maxWidth: 440,
+              padding: 28,
+              borderRadius: 18,
+              background: BG2,
+              border: `1px solid ${reveal.match.outcome ? OUTCOME_COLOR[reveal.match.outcome] : GOLD}`,
+              textAlign: "center",
+              boxShadow: "0 24px 60px rgba(0,0,0,0.6)",
+            }}
+          >
+            <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase", color: GOLD }}>
+              {reveal.match.label}
+            </div>
+
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 18, margin: "18px 0", animation: "mcScoreIn .6s cubic-bezier(.2,.8,.2,1) both" }}>
+              <div style={{ flex: 1, textAlign: "right" }}>
+                <FlagName slug={nationSlug} size={26} />
+              </div>
+              <div style={{ fontSize: 38, fontWeight: 900, color: reveal.match.outcome ? OUTCOME_COLOR[reveal.match.outcome] : "#fff" }}>
+                {reveal.match.gf} - {reveal.match.ga}
+              </div>
+              <div style={{ flex: 1, textAlign: "left" }}>
+                <FlagName slug={reveal.match.opponentSlug} size={26} />
+              </div>
+            </div>
+
+            <div style={{ fontSize: 16, fontWeight: 900, color: reveal.match.outcome ? OUTCOME_COLOR[reveal.match.outcome] : "#fff" }}>
+              {reveal.match.outcome ? OUTCOME_LABEL[reveal.match.outcome] : ""}
+            </div>
+
+            {/* Insignias de recompensa */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "center", marginTop: 16 }}>
+              {reveal.leveledUp && (
+                <span style={chip(GOLD)}>¡Subiste {reveal.levelsGained > 1 ? `${reveal.levelsGained} niveles` : "de nivel"}!</span>
+              )}
+              {reveal.champion && <span style={chip(GOLD)}>Copa del Mundo</span>}
+              {reveal.eliminated && <span style={chip(RED)}>Eliminado</span>}
+              {reveal.newTitles.map((t) => (
+                <span key={t} style={chip(GOLD2)}>Título: {t}</span>
+              ))}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setReveal(null)}
+              style={{
+                marginTop: 22,
+                padding: "11px 26px",
+                borderRadius: 10,
+                border: "none",
+                background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
+                color: BG,
+                fontWeight: 800,
+                fontSize: 14,
+                cursor: "pointer",
+              }}
+            >
+              Continuar
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function chip(color: string): React.CSSProperties {
+  return {
+    fontSize: 11,
+    fontWeight: 800,
+    letterSpacing: 0.4,
+    color,
+    border: `1px solid ${color}66`,
+    background: `${color}1a`,
+    borderRadius: 999,
+    padding: "4px 10px",
+  };
+}

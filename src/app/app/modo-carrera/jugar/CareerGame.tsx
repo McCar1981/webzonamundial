@@ -14,6 +14,7 @@ import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { defaultCareer, loadCareer, saveCareer, isCareerStarted } from "@/lib/modo-carrera/store";
 import type { CareerState, CareerTab, SkillBranch, NarrativeKind } from "@/lib/modo-carrera/types";
 import { unlockSkill } from "@/lib/modo-carrera/engine";
+import { buildSeason, playNextMatch, startNextSeason, type PlayResult } from "@/lib/modo-carrera/season";
 import { ensureMissions, advanceMission, claimMission } from "@/lib/modo-carrera/missions";
 import { templateEntry, type NarrativeContext } from "@/lib/modo-carrera/narrative";
 import { PHILOSOPHIES } from "@/lib/modo-carrera/constants";
@@ -22,6 +23,7 @@ import { fetchServerCareer, saveServerCareer, requestNarrative } from "./api";
 import { BG, BG2, GOLD, GOLD2, MID } from "./fx";
 import OnboardingDT from "./OnboardingDT";
 import HubView from "./HubView";
+import SeasonView from "./SeasonView";
 import SkillTreeView from "./SkillTreeView";
 import MissionsView from "./MissionsView";
 import ReputationView from "./ReputationView";
@@ -30,6 +32,7 @@ import LegacyView from "./LegacyView";
 
 const TABS: { id: CareerTab; label: string }[] = [
   { id: "hub", label: "Hub" },
+  { id: "temporada", label: "Temporada" },
   { id: "habilidades", label: "Habilidades" },
   { id: "misiones", label: "Misiones" },
   { id: "reputacion", label: "Reputación" },
@@ -108,6 +111,17 @@ export default function CareerGame() {
     setCareer((c) => (c ? advanceMission(c, id) : c));
   const handleClaim = (id: string) =>
     setCareer((c) => (c ? claimMission(c, id).state : c));
+  // Motor de temporada.
+  const handleStartSeason = () =>
+    setCareer((c) => (c ? { ...c, season: buildSeason(c), updatedAt: new Date().toISOString() } : c));
+  const handleNextSeason = () =>
+    setCareer((c) => (c ? startNextSeason(c) : c));
+  const handlePlayNext = (): PlayResult | null => {
+    if (!career) return null;
+    const res = playNextMatch(career);
+    if (res.match) setCareer(res.career);
+    return res;
+  };
   const handleChoose = (entryId: string, choiceId: string) =>
     setCareer((c) =>
       c
@@ -185,6 +199,14 @@ export default function CareerGame() {
       </nav>
 
       {tab === "hub" && <HubView career={career} />}
+      {tab === "temporada" && (
+        <SeasonView
+          career={career}
+          onStart={handleStartSeason}
+          onPlayNext={handlePlayNext}
+          onNextSeason={handleNextSeason}
+        />
+      )}
       {tab === "habilidades" && <SkillTreeView career={career} onUnlock={handleUnlock} />}
       {tab === "misiones" && <MissionsView career={career} onAdvance={handleAdvance} onClaim={handleClaim} />}
       {tab === "reputacion" && <ReputationView career={career} />}

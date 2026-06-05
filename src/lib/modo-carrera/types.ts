@@ -144,6 +144,52 @@ export interface Legacy {
   };
 }
 
+// ─── Motor de temporada (bucle de juego) ─────────────────────────────────────
+/** Resultado de un partido desde la óptica del DT. */
+export type MatchOutcome = "V" | "E" | "D";
+
+/** Fases del torneo (Mundial) que dirige el DT en una temporada. */
+export type TournamentStage =
+  | "grupos"
+  | "octavos"
+  | "cuartos"
+  | "semifinal"
+  | "final"
+  | "campeon"
+  | "eliminado";
+
+/** Un partido del calendario de la temporada. */
+export interface SeasonMatch {
+  id: string;
+  /** Fase a la que pertenece el partido. */
+  stage: TournamentStage;
+  /** Etiqueta legible ("Fase de grupos · J1", "Final"...). */
+  label: string;
+  /** Slug de la selección rival (ficha BIBLIA). */
+  opponentSlug: string;
+  /** ¿Se juega como local? (afecta levemente la simulación). */
+  home: boolean;
+  played: boolean;
+  /** Goles a favor/en contra (null hasta que se juega). */
+  gf: number | null;
+  ga: number | null;
+  outcome: MatchOutcome | null;
+}
+
+/** Estado de la temporada/torneo en curso. */
+export interface SeasonState {
+  /** Número de temporada (espejo de progression.season al crearse). */
+  season: number;
+  /** Calendario completo del torneo. */
+  fixtures: SeasonMatch[];
+  /** Índice del próximo partido a disputar. */
+  cursor: number;
+  /** Fase actual o estado terminal (campeon/eliminado). */
+  stage: TournamentStage;
+  /** El torneo terminó (campeón o eliminado). */
+  finished: boolean;
+}
+
 // ─── Estado raíz de la carrera ───────────────────────────────────────────────
 export interface CareerState {
   /** Versión del esquema, para migraciones futuras del JSON. */
@@ -155,6 +201,8 @@ export interface CareerState {
   reputation: Reputation;
   narrative: NarrativeEntry[];
   legacy: Legacy;
+  /** Torneo en curso (motor de temporada). null = aún no iniciado. */
+  season: SeasonState | null;
   /** Marca de última actualización local. */
   updatedAt: string;
 }
@@ -162,6 +210,7 @@ export interface CareerState {
 /** Pestañas del Hub jugable (orden de navegación). */
 export type CareerTab =
   | "hub"
+  | "temporada"
   | "habilidades"
   | "misiones"
   | "reputacion"

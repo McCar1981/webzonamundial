@@ -33,7 +33,7 @@ import {
   type Score,
 } from "@/lib/friendlies/types";
 import { broadcastPush, type PushPayload } from "@/lib/push-notifications";
-import { esName, favoritePhoto } from "@/lib/friendlies/teamInfo";
+import { esName, favoritePhoto, teamFlagEmoji } from "@/lib/friendlies/teamInfo";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -42,6 +42,10 @@ export const maxDuration = 60;
 const PUSH_KIND = "amistosos";
 const PUSH_ICON = "/img/email/logo-zonamundial.png";
 const PUSH_URL = "/amistosos";
+// Imagen GRANDE de respaldo: una FOTO (estadio), nunca una bandera. Solo se usa
+// cuando ninguna de las dos selecciones tiene foto de jugador resoluble (p.ej.
+// amistosos entre selecciones que no van al Mundial, sin ficha BIBLIA).
+const PUSH_PHOTO_FALLBACK = "/img/heroes/hero-stadium.jpg";
 
 /** Deep-link directo al detalle del partido (la página /amistosos lee ?match). */
 function matchUrl(fixtureId: number): string {
@@ -90,9 +94,11 @@ function shouldPoll(fix: FriendlyFixture, now: number): boolean {
   return false;
 }
 
-/** "Local vs Visitante" con los nombres ya traducidos al español. */
-function vsText(homeEs: string, awayEs: string): string {
-  return `${homeEs} vs ${awayEs}`;
+/** "🏴 Local vs 🏴 Visitante": nombres en español con la bandera de cada país. */
+function vsText(homeEs: string, awayEs: string, homeFlag = "", awayFlag = ""): string {
+  const h = homeFlag ? `${homeFlag} ${homeEs}` : homeEs;
+  const a = awayFlag ? `${awayFlag} ${awayEs}` : awayEs;
+  return `${h} vs ${a}`;
 }
 
 function scoreText(goals: Score): string {
@@ -104,6 +110,8 @@ function eventLabel(
   s: FriendlySnapshot,
   homeEs: string,
   awayEs: string,
+  homeFlag = "",
+  awayFlag = "",
 ): {
   title: string;
   body: string;
@@ -114,7 +122,7 @@ function eventLabel(
   const player = e.player?.trim() || "";
   const min = `${e.minute}'${e.extra ? `+${e.extra}` : ""}`;
   const icon = eventIcon(e, s);
-  const vs = vsText(homeEs, awayEs);
+  const vs = vsText(homeEs, awayEs, homeFlag, awayFlag);
   switch (e.type) {
     case "goal":
     case "penalty_goal": {
@@ -204,13 +212,15 @@ export async function GET(req: Request) {
     const snap = await fetchFriendlySnapshot(fix.fixtureId);
     if (!snap) continue;
 
-    // Nombres en español + foto que acompaña el partido (selección favorita).
-    const [homeEs, awayEs, matchPhoto] = await Promise.all([
+    // Nombres en español + banderas + foto que acompaña el partido (favorita).
+    const [homeEs, awayEs, homeFlag, awayFlag, matchPhoto] = await Promise.all([
       esName(snap.home.name),
       esName(snap.away.name),
+      teamFlagEmoji(snap.home.name),
+      teamFlagEmoji(snap.away.name),
       favoritePhoto(snap.home.name, snap.away.name),
     ]);
-    const vs = vsText(homeEs, awayEs);
+    const vs = vsText(homeEs, awayEs, homeFlag, awayFlag);
 
     const prev: FriendlyState =
       (await getFriendlyState(fix.fixtureId)) ?? {
@@ -243,7 +253,7 @@ export async function GET(req: Request) {
         body: `XI confirmado. ${snap.homeLineup.formation ?? ""} vs ${snap.awayLineup.formation ?? ""}`.trim() + venueSuffix(snap),
         url,
         icon: snap.home.logo || PUSH_ICON,
-        image: matchPhoto || snap.away.logo || undefined,
+        image: matchPhoto || PUSH_PHOTO_FALLBACK,
         tag: `amistoso-${fix.fixtureId}-lineups`,
       });
       next.lineupsSent = true;
@@ -258,7 +268,7 @@ export async function GET(req: Request) {
         body: `Amistoso internacional en juego.${venueSuffix(snap)}`,
         url,
         icon: snap.home.logo || PUSH_ICON,
-        image: matchPhoto || snap.away.logo || undefined,
+        image: matchPhoto || PUSH_PHOTO_FALLBACK,
         tag: `amistoso-${fix.fixtureId}-start`,
       });
       next.startSent = true;
@@ -268,7 +278,7 @@ export async function GET(req: Request) {
     // Eventos nuevos (gol, roja, penalti fallado).
     for (const e of snap.events) {
       if (seen.has(e.id)) continue;
-      const label = eventLabel(e, snap, homeEs, awayEs);
+      const label = eventLabel(e, snap, homeEs, awayEs, homeFlag, awayFlag);
       if (!label) continue;
       await push({
         title: label.title,
@@ -308,7 +318,7 @@ export async function GET(req: Request) {
         body: winnerEs ? `Victoria de ${winnerEs}.` : `Empate en el amistoso.`,
         url,
         icon: winnerLogo || PUSH_ICON,
-        image: matchPhoto || undefined,
+        image: matchPhoto || PUSH_PHOTO_FALLBACK,
         tag: `amistoso-${fix.fixtureId}-ft`,
       });
       next.ftSent = true;

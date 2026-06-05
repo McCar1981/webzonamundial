@@ -10,6 +10,7 @@
 
 import { loadTeam, listBibliaSlugs } from "@/lib/biblia";
 import type { NationalTeam } from "@/types/team";
+import { flagEmoji, isoFromName } from "./flags";
 
 export interface TeamInfo {
   name_es: string;
@@ -80,6 +81,17 @@ export async function teamInfo(name: string): Promise<TeamInfo | null> {
 export async function esName(name: string): Promise<string> {
   const info = await teamInfo(name);
   return info?.name_es ?? name;
+}
+
+/**
+ * Emoji de la bandera de la selección, para el título del push. ISO de la ficha
+ * BIBLIA (las 48 del Mundial); si no hay ficha (rival no clasificado), del mapa
+ * por nombre inglés de api-football. "" si no se resuelve.
+ */
+export async function teamFlagEmoji(name: string): Promise<string> {
+  const info = await teamInfo(name);
+  const iso = info?.iso || isoFromName(name);
+  return flagEmoji(iso);
 }
 
 /**

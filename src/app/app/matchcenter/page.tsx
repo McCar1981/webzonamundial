@@ -8,6 +8,7 @@ import { SvgIcon } from "@/components/icons";
 import ModuleLandingExtras from "@/components/app-modules/ModuleLandingExtras";
 import { MATCHES } from "@/data/matches";
 import { matchSlug } from "@/lib/match-center/slug";
+import FootballScoreboard from "@/components/FootballScoreboard";
 
 const J1 = MATCHES.filter((m) => m.j === 1).slice(0, 12);
 
@@ -176,19 +177,16 @@ export default function MatchCenterPage() {
             padding: 24, borderRadius: 24, background: BG2,
             border: "1px solid rgba(255,255,255,0.08)", marginBottom: 32
           }}>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 24 }}>
-              <div style={{ textAlign: "center", flex: 1 }}>
-                <img src="https://flagcdn.com/w80/ar.png" alt="" style={{ width: 64, height: 44, borderRadius: 6, objectFit: "cover", margin: "0 auto 8px" }} />
-                <div style={{ fontWeight: 800, fontSize: 18 }}>Argentina</div>
-              </div>
-              <div style={{ textAlign: "center", padding: "0 24px" }}>
-                <div style={{ fontSize: 42, fontWeight: 900, color: GOLD }}>2 - 1</div>
-                <div style={{ fontSize: 12, color: "#22c55e", fontWeight: 700 }}>84'</div>
-              </div>
-              <div style={{ textAlign: "center", flex: 1 }}>
-                <img src="https://flagcdn.com/w80/fr.png" alt="" style={{ width: 64, height: 44, borderRadius: 6, objectFit: "cover", margin: "0 auto 8px" }} />
-                <div style={{ fontWeight: 800, fontSize: 18 }}>Francia</div>
-              </div>
+            <div style={{ marginBottom: 24 }}>
+              <FootballScoreboard
+                homeTeam="ARG"
+                awayTeam="FRA"
+                homeScore={2}
+                awayScore={1}
+                matchTime="84'"
+                homeFlag="https://flagcdn.com/w80/ar.png"
+                awayFlag="https://flagcdn.com/w80/fr.png"
+              />
             </div>
 
             <div data-stats-list style={{ display: "flex", flexDirection: "column", gap: 14 }}>

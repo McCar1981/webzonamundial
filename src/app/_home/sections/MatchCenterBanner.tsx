@@ -13,6 +13,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { GOLD, GOLD2 } from "../constants";
+import FootballScoreboard from "@/components/FootballScoreboard";
+import { teamAbbr } from "@/lib/team-abbr";
 
 // Endpoint que decide el partido destacado según la regla fija.
 const ENDPOINT = `/api/match-center/featured`;
@@ -180,73 +182,92 @@ export function MatchCenterBanner() {
 
           <div className="relative flex flex-col gap-5 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
             {/* Bloque equipos + marcador */}
-            <div className="flex flex-1 items-center justify-center gap-4 sm:justify-start sm:gap-6">
-              <TeamSide name={meta.home.name} flag={meta.home.flag} />
+            <div className="flex flex-1 flex-col items-center gap-3 sm:items-start">
+              {/* Badge de estado (en vivo / descanso / final / cuenta atrás) */}
+              <span
+                className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider"
+                style={{
+                  background: "rgba(0,0,0,0.35)",
+                  color: badge.color,
+                  border: `1px solid ${badge.color}55`,
+                }}
+              >
+                {badge.pulse && (
+                  <span
+                    className="zm-mcb-pulse inline-block h-2 w-2 rounded-full"
+                    style={{ background: badge.color }}
+                  />
+                )}
+                {badge.text}
+              </span>
 
-              <div className="flex min-w-[112px] flex-col items-center gap-2">
-                <span
-                  className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider"
-                  style={{
-                    background: "rgba(0,0,0,0.35)",
-                    color: badge.color,
-                    border: `1px solid ${badge.color}55`,
-                  }}
-                >
-                  {badge.pulse && (
-                    <span
-                      className="zm-mcb-pulse inline-block h-2 w-2 rounded-full"
-                      style={{ background: badge.color }}
-                    />
-                  )}
-                  {badge.text}
-                </span>
-                <div
-                  className="font-black tabular-nums leading-none"
-                  style={{ color: "#F4F6FA", fontSize: showScore ? 38 : 30 }}
-                >
-                  {showScore ? (
-                    <span>
-                      {hg} <span style={{ color: GOLD, opacity: 0.6 }}>-</span> {ag}
-                    </span>
-                  ) : (
-                    <span style={{ color: GOLD2 }}>VS</span>
-                  )}
+              {showScore ? (
+                // Marcador broadcast con banderas montadas por país.
+                <div className="w-full max-w-md">
+                  <FootballScoreboard
+                    homeTeam={teamAbbr(meta.home.flag, meta.home.name)}
+                    awayTeam={teamAbbr(meta.away.flag, meta.away.name)}
+                    homeScore={hg as number}
+                    awayScore={ag as number}
+                    matchTime={
+                      live
+                        ? elapsed
+                          ? `${elapsed}'`
+                          : "EN VIVO"
+                        : status === "HT"
+                          ? "HT"
+                          : "FINAL"
+                    }
+                    homeFlag={flagUrl(meta.home.flag)}
+                    awayFlag={flagUrl(meta.away.flag)}
+                  />
                 </div>
-                {kickoffText && (
+              ) : (
+                // Antes del saque: banderas + "VS" + cuenta atrás.
+                <div className="flex items-center justify-center gap-4 sm:justify-start sm:gap-6">
+                  <TeamSide name={meta.home.name} flag={meta.home.flag} />
                   <span
-                    className="whitespace-nowrap text-center text-[12px] font-semibold leading-tight"
-                    style={{ color: "#aeb8cf" }}
+                    className="font-black leading-none"
+                    style={{ color: GOLD2, fontSize: 30 }}
                   >
-                    {kickoffText}
+                    VS
                   </span>
-                )}
-                {venueText && (
-                  <span
-                    className="inline-flex items-center gap-1 text-center text-[11px] font-medium leading-tight"
-                    style={{ color: "#8a94b0" }}
-                  >
-                    <svg
-                      width="11"
-                      height="11"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      aria-hidden
-                      style={{ flexShrink: 0 }}
-                    >
-                      <path
-                        d="M12 21s-6-5.686-6-10a6 6 0 1112 0c0 4.314-6 10-6 10z"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinejoin="round"
-                      />
-                      <circle cx="12" cy="11" r="2" stroke="currentColor" strokeWidth="2" />
-                    </svg>
-                    {venueText}
-                  </span>
-                )}
-              </div>
+                  <TeamSide name={meta.away.name} flag={meta.away.flag} />
+                </div>
+              )}
 
-              <TeamSide name={meta.away.name} flag={meta.away.flag} />
+              {kickoffText && (
+                <span
+                  className="whitespace-nowrap text-[12px] font-semibold leading-tight"
+                  style={{ color: "#aeb8cf" }}
+                >
+                  {kickoffText}
+                </span>
+              )}
+              {venueText && (
+                <span
+                  className="inline-flex items-center gap-1 text-[11px] font-medium leading-tight"
+                  style={{ color: "#8a94b0" }}
+                >
+                  <svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden
+                    style={{ flexShrink: 0 }}
+                  >
+                    <path
+                      d="M12 21s-6-5.686-6-10a6 6 0 1112 0c0 4.314-6 10-6 10z"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinejoin="round"
+                    />
+                    <circle cx="12" cy="11" r="2" stroke="currentColor" strokeWidth="2" />
+                  </svg>
+                  {venueText}
+                </span>
+              )}
             </div>
 
             {/* CTA */}

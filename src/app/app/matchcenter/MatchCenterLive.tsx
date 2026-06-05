@@ -15,6 +15,8 @@ import CommentsPanel from "./CommentsPanel";
 import { createSpeaker, type Speaker } from "@/lib/match-center/voice";
 import { createSound, type MatchSound } from "@/lib/match-center/sound";
 import { zoneForEvent } from "@/lib/match-center/zones";
+import FootballScoreboard from "@/components/FootballScoreboard";
+import { teamAbbr } from "@/lib/team-abbr";
 import {
   EMPTY_STATS,
   type LiveStats,
@@ -944,29 +946,44 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
                       : phase}
                 </span>
               </div>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
-                <TeamBlock name={meta.home.name} flag={meta.home.flag} color={meta.home.color} scorer={lastScorer?.side === "home" ? lastScorer : null} />
-                <div style={{ textAlign: "center", flex: "0 0 auto", minWidth: 88 }}>
-                  <div className="mc-num" style={{ fontSize: "clamp(34px,11vw,56px)", fontWeight: 700, lineHeight: 1, display: "flex", justifyContent: "center", alignItems: "center", gap: "clamp(6px,3vw,14px)" }}>
-                    {feed.mode === "live" && !finished && !isInPlay(status) && status !== "HT" ? (
-                      // Antes del saque: "VS" en vez de 0:0 (no parece resultado).
+              {feed.mode === "live" && !finished && !isInPlay(status) && status !== "HT" ? (
+                // Antes del saque: layout con banderas + "VS" + hora (sin resultado).
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+                  <TeamBlock name={meta.home.name} flag={meta.home.flag} color={meta.home.color} scorer={null} />
+                  <div style={{ textAlign: "center", flex: "0 0 auto", minWidth: 88 }}>
+                    <div className="mc-num" style={{ fontSize: "clamp(34px,11vw,56px)", fontWeight: 700, lineHeight: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
                       <span style={{ color: GOLD2, fontSize: "clamp(26px,8vw,40px)" }}>VS</span>
-                    ) : (
-                      <>
-                        <span key={`hs-${score[0]}`} style={{ color: GOLD2, animation: "mcPop .4s ease" }}>{score[0]}</span>
-                        <span style={{ color: DIM, fontSize: "clamp(22px,7vw,36px)" }}>:</span>
-                        <span key={`as-${score[1]}`} style={{ color: GOLD2, animation: "mcPop .4s ease" }}>{score[1]}</span>
-                      </>
-                    )}
+                    </div>
+                    <div className="mc-num" style={{ marginTop: 6, fontSize: 15, fontWeight: 700, color: GREEN }}>
+                      {fmtKickoff(kickoff)?.time ?? "PREVIA"}
+                    </div>
                   </div>
-                  <div className="mc-num" style={{ marginTop: 6, fontSize: 15, fontWeight: 700, color: finished ? MID : GREEN, animation: feed.mode === "live" && isInPlay(status) && !finished ? "mcClock 1.6s ease infinite" : undefined }}>
-                    {feed.mode === "live" && !finished && !isInPlay(status)
-                      ? (status === "HT" ? "DESCANSO" : (fmtKickoff(kickoff)?.time ?? "PREVIA"))
-                      : clockLabel(sec, finished)}
-                  </div>
+                  <TeamBlock name={meta.away.name} flag={meta.away.flag} color={meta.away.color} right scorer={null} />
                 </div>
-                <TeamBlock name={meta.away.name} flag={meta.away.flag} color={meta.away.color} right scorer={lastScorer?.side === "away" ? lastScorer : null} />
-              </div>
+              ) : (
+                // En juego / descanso / final: marcador broadcast (FootballScoreboard).
+                // El chip del último goleador se conserva encima del marcador.
+                <>
+                  {lastScorer && (
+                    <div style={{ display: "flex", justifyContent: "center", marginBottom: 10 }}>
+                      <span style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "rgba(201,168,76,0.14)", border: `1px solid ${GOLD}55`, borderRadius: 20, padding: "3px 10px" }}>
+                        <BallIcon size={12} />
+                        <span style={{ fontSize: 12, fontWeight: 700 }}>{lastScorer.player ? lastNameShort(lastScorer.player) : "Gol"}</span>
+                        <span className="mc-num" style={{ fontSize: 11, color: GOLD2, fontWeight: 700 }}>{lastScorer.minute}{"'"}</span>
+                      </span>
+                    </div>
+                  )}
+                  <FootballScoreboard
+                    homeTeam={teamAbbr(meta.home.flag, meta.home.name)}
+                    awayTeam={teamAbbr(meta.away.flag, meta.away.name)}
+                    homeScore={score[0]}
+                    awayScore={score[1]}
+                    matchTime={finished ? "FINAL" : status === "HT" ? "HT" : clockLabel(sec, finished)}
+                    homeFlag={flagUrl(meta.home.flag)}
+                    awayFlag={flagUrl(meta.away.flag)}
+                  />
+                </>
+              )}
             </div>
             )}
 

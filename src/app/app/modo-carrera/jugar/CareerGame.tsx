@@ -51,6 +51,7 @@ export default function CareerGame() {
   const [paseDT, setPaseDT] = useState(false);
   const [tab, setTab] = useState<CareerTab>("hub");
   const [levelUp, setLevelUp] = useState<{ overall: number; levels: number } | null>(null);
+  const [narrativeQuota, setNarrativeQuota] = useState<{ remaining: number | null; exceeded: boolean }>({ remaining: null, exceeded: false });
   const hydrated = useRef(false);
   const prevOverall = useRef<number | null>(null);
 
@@ -160,7 +161,9 @@ export default function CareerGame() {
       morale: career.progression.morale,
       reputationTotal: career.reputation.total,
     };
-    const entry = (await requestNarrative(kind, ctx)) ?? templateEntry(kind, ctx);
+    const res = await requestNarrative(kind, ctx);
+    const entry = res.entry ?? templateEntry(kind, ctx);
+    setNarrativeQuota({ remaining: res.remaining, exceeded: res.exceeded });
     setCareer((c) => (c ? { ...c, narrative: [entry, ...c.narrative], updatedAt: new Date().toISOString() } : c));
   };
 
@@ -227,7 +230,16 @@ export default function CareerGame() {
       {tab === "habilidades" && <SkillTreeView career={career} onUnlock={handleUnlock} />}
       {tab === "misiones" && <MissionsView career={career} onAdvance={handleAdvance} onClaim={handleClaim} />}
       {tab === "reputacion" && <ReputationView career={career} />}
-      {tab === "narrativa" && <NarrativeView career={career} onChoose={handleChoose} onGenerate={handleGenerate} />}
+      {tab === "narrativa" && (
+        <NarrativeView
+          career={career}
+          paseDT={paseDT}
+          remaining={narrativeQuota.remaining}
+          exceeded={narrativeQuota.exceeded}
+          onChoose={handleChoose}
+          onGenerate={handleGenerate}
+        />
+      )}
       {tab === "legado" && <LegacyView career={career} />}
       {tab === "ranking" && <RankingView />}
     </div>

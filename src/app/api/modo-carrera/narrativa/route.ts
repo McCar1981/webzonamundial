@@ -10,8 +10,11 @@
 
 import { NextResponse } from "next/server";
 import { generateNarrative } from "@/lib/modo-carrera/narrative-generator";
-import type { NarrativeContext } from "@/lib/modo-carrera/narrative";
+import { templateEntry, type NarrativeContext } from "@/lib/modo-carrera/narrative";
 import type { NarrativeKind } from "@/lib/modo-carrera/types";
+import { getCurrentUser } from "@/lib/auth-helpers";
+import { isPaseDT } from "@/lib/pasedt/entitlement";
+import { consumeNarrativeQuota } from "@/lib/modo-carrera/narrative-quota";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -55,9 +58,24 @@ export async function POST(req: Request) {
     reputationTotal: num(body.context?.reputationTotal, 0),
   };
 
-  const entry = await generateNarrative(kind, ctx);
+  // Cuota por COSTE marginal (tokens). Pase DT = ilimitada; usuario gratis y
+  // invitado tienen cupo diario. Al agotarlo se sirve la versión por plantilla
+  // (sin tokens): el DT nunca se queda sin contenido, solo sin IA.
+  const user = await getCurrentUser();
+  const paseDT = user?.email ? await isPaseDT(user.email) : false;
+  const quota = await consumeNarrativeQuota({ userId: user?.id ?? null, paseDT });
+
+  const entry = quota.allowed ? await generateNarrative(kind, ctx) : templateEntry(kind, ctx);
   return NextResponse.json(
-    { ok: true, entry, generatedAt: new Date().toISOString() },
+    {
+      ok: true,
+      entry,
+      ai: quota.allowed,
+      exceeded: quota.exceeded,
+      remaining: quota.remaining,
+      paseDT,
+      generatedAt: new Date().toISOString(),
+    },
     { headers: { "Cache-Control": "no-store" } },
   );
 }

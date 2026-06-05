@@ -7,6 +7,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { BG2, BG3, GOLD, GOLD2, MID, DIM } from "./fx";
 import type { CareerState, NarrativeEntry, NarrativeKind } from "@/lib/modo-carrera/types";
 
@@ -31,10 +32,16 @@ function fmtDate(iso: string): string {
 
 export default function NarrativeView({
   career,
+  paseDT = false,
+  remaining = null,
+  exceeded = false,
   onChoose,
   onGenerate,
 }: {
   career: CareerState;
+  paseDT?: boolean;
+  remaining?: number | null;
+  exceeded?: boolean;
   onChoose: (entryId: string, choiceId: string) => void;
   onGenerate: (kind: NarrativeKind) => Promise<void>;
 }) {
@@ -103,6 +110,34 @@ export default function NarrativeView({
           );
         })}
       </div>
+
+      {/* Estado de cupo IA + upsell del Pase DT (gate por coste de tokens, no por poder) */}
+      {paseDT ? (
+        <div style={{ marginBottom: 20, fontSize: 12.5, color: GOLD2, display: "inline-flex", alignItems: "center", gap: 8 }}>
+          <span style={{ width: 7, height: 7, borderRadius: "50%", background: GOLD, display: "inline-block" }} />
+          Pase DT activo · narrativa con IA ilimitada
+        </div>
+      ) : exceeded ? (
+        <div style={{ marginBottom: 20, padding: "14px 16px", borderRadius: 12, background: "rgba(201,168,76,0.10)", border: `1px solid ${GOLD}44` }}>
+          <div style={{ fontSize: 13.5, fontWeight: 800, color: GOLD2 }}>Cupo de narrativa IA agotado por hoy</div>
+          <div style={{ fontSize: 12.5, color: MID, marginTop: 4, lineHeight: 1.5 }}>
+            Las nuevas entradas se escriben por plantilla. Con el <strong style={{ color: GOLD2 }}>Pase DT</strong> tu prensa se genera con IA sin límite.
+          </div>
+          <Link
+            href="/premium"
+            style={{ display: "inline-block", marginTop: 10, padding: "8px 16px", borderRadius: 999, background: GOLD, color: "#1a1407", fontSize: 13, fontWeight: 800, textDecoration: "none" }}
+          >
+            Conseguir Pase DT
+          </Link>
+        </div>
+      ) : remaining !== null ? (
+        <div style={{ marginBottom: 20, fontSize: 12.5, color: MID }}>
+          Te quedan <strong style={{ color: GOLD2 }}>{remaining}</strong> generaciones con IA hoy ·{" "}
+          <Link href="/premium" style={{ color: GOLD, textDecoration: "none", fontWeight: 700 }}>
+            Pase DT = ilimitada
+          </Link>
+        </div>
+      ) : null}
 
       {entries.length === 0 ? (
         <div style={{ padding: "40px 20px", textAlign: "center", borderRadius: 14, background: BG2, border: "1px dashed rgba(255,255,255,0.08)" }}>

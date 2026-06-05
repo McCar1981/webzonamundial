@@ -42,10 +42,6 @@ export const maxDuration = 60;
 const PUSH_KIND = "amistosos";
 const PUSH_ICON = "/img/email/logo-zonamundial.png";
 const PUSH_URL = "/amistosos";
-// Imagen GRANDE de respaldo: una FOTO (estadio), nunca una bandera. Solo se usa
-// cuando ninguna de las dos selecciones tiene foto de jugador resoluble (p.ej.
-// amistosos entre selecciones que no van al Mundial, sin ficha BIBLIA).
-const PUSH_PHOTO_FALLBACK = "/img/heroes/hero-stadium.jpg";
 
 /** Deep-link directo al detalle del partido (la página /amistosos lee ?match). */
 function matchUrl(fixtureId: number): string {
@@ -253,7 +249,7 @@ export async function GET(req: Request) {
         body: `XI confirmado. ${snap.homeLineup.formation ?? ""} vs ${snap.awayLineup.formation ?? ""}`.trim() + venueSuffix(snap),
         url,
         icon: snap.home.logo || PUSH_ICON,
-        image: matchPhoto || PUSH_PHOTO_FALLBACK,
+        image: matchPhoto || undefined,
         tag: `amistoso-${fix.fixtureId}-lineups`,
       });
       next.lineupsSent = true;
@@ -268,7 +264,7 @@ export async function GET(req: Request) {
         body: `Amistoso internacional en juego.${venueSuffix(snap)}`,
         url,
         icon: snap.home.logo || PUSH_ICON,
-        image: matchPhoto || PUSH_PHOTO_FALLBACK,
+        image: matchPhoto || undefined,
         tag: `amistoso-${fix.fixtureId}-start`,
       });
       next.startSent = true;
@@ -318,7 +314,7 @@ export async function GET(req: Request) {
         body: winnerEs ? `Victoria de ${winnerEs}.` : `Empate en el amistoso.`,
         url,
         icon: winnerLogo || PUSH_ICON,
-        image: matchPhoto || PUSH_PHOTO_FALLBACK,
+        image: matchPhoto || undefined,
         tag: `amistoso-${fix.fixtureId}-ft`,
       });
       next.ftSent = true;

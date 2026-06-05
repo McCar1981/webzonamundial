@@ -4,13 +4,15 @@
 // equipo (localStorage), la validación, y las 5 vistas: Equipo, Mercado,
 // En Vivo, Ligas y Coach IA.
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { getPlayerById, ROSTERED_COUNT } from "@/lib/fantasy/players";
-import { remapFormation, validateTeam } from "@/lib/fantasy/rules";
+import { remapFormation, validateTeam, transferCost } from "@/lib/fantasy/rules";
 import { autoDraft } from "@/lib/fantasy/coach";
-import { defaultTeam, loadTeam, saveTeam, clearTeam } from "@/lib/fantasy/store";
-import { BUDGET, type FantasyPos, type FantasyTeamState, type PowerUp, type SquadSlot } from "@/lib/fantasy/types";
+import { defaultTeam, loadTeam, saveTeam, clearTeam, normalizeTeam } from "@/lib/fantasy/store";
+import { createSupabaseBrowserClient } from "@/lib/supabase/client";
+import { fetchServerTeam, saveServerTeam } from "./api";
+import { BUDGET, FREE_TRANSFERS, MAX_FREE_TRANSFERS, type FantasyPos, type FantasyTeamState, type PowerUp, type SquadSlot } from "@/lib/fantasy/types";
 import { BG, BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED, money } from "./fx";
 import { FORMATIONS } from "@/lib/fantasy/rules";
 import TeamView from "./TeamView";
@@ -50,9 +52,14 @@ export default function FantasyGame() {
   const [toast, setToast] = useState<string | null>(null);
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [isWide, setIsWide] = useState(false); // ≥1024px → fondo claro (en prueba)
+  const [authed, setAuthed] = useState<boolean | null>(null);
+  // syncReady evita que el autoguardado pise el equipo del servidor con el
+  // estado por defecto durante el breve instante previo a la carga inicial.
+  const syncReady = useRef(false);
 
   useEffect(() => {
-    setTeam(loadTeam() ?? defaultTeam());
+    const local = loadTeam() ?? defaultTeam();
+    setTeam(local);
     setLoaded(true);
     try {
       if (!window.localStorage.getItem(ONBOARDED_KEY)) setShowOnboarding(true);
@@ -60,6 +67,29 @@ export default function FantasyGame() {
     const onResize = () => setIsWide(window.innerWidth >= 1024);
     onResize();
     window.addEventListener("resize", onResize);
+
+    // Sesión + sincronización con el backend real (Fase 1). El localStorage
+    // queda como modo invitado; al iniciar sesión se prioriza el equipo del
+    // servidor y, si está vacío pero el invitado tenía progreso, se migra.
+    (async () => {
+      let isAuthed = false;
+      try {
+        const supa = createSupabaseBrowserClient();
+        const { data } = await supa.auth.getUser();
+        isAuthed = !!data.user;
+      } catch { /* sin sesión */ }
+      setAuthed(isAuthed);
+      if (isAuthed) {
+        const server = await fetchServerTeam();
+        if (server) {
+          setTeam(normalizeTeam(server));
+        } else if (hasProgress(local)) {
+          await saveServerTeam(local); // migra el progreso de invitado
+        }
+      }
+      syncReady.current = true;
+    })();
+
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
@@ -71,6 +101,14 @@ export default function FantasyGame() {
   useEffect(() => {
     if (loaded) saveTeam(team);
   }, [team, loaded]);
+
+  // Autoguardado en el servidor (debounce) cuando hay sesión. No se dispara
+  // hasta que la carga inicial terminó (syncReady) para no pisar lo del backend.
+  useEffect(() => {
+    if (!loaded || !authed || !syncReady.current) return;
+    const id = window.setTimeout(() => { saveServerTeam(team).catch(() => {}); }, 1200);
+    return () => window.clearTimeout(id);
+  }, [team, loaded, authed]);
 
   const flash = useCallback((msg: string) => {
     setToast(msg);
@@ -85,6 +123,13 @@ export default function FantasyGame() {
   const budgetRemaining = validation.budgetRemaining;
 
   const update = useCallback((mut: (t: FantasyTeamState) => FantasyTeamState) => setTeam((t) => mut(structuredCloneSafe(t))), []);
+
+  // Coste de fichajes de la jornada respecto a la plantilla confirmada (Fase 2).
+  // El comodín ("comodin") deja todos los fichajes gratis.
+  const transfers = useMemo(
+    () => transferCost(team.committedSlots, team.slots, team.freeTransfers, team.powerUp === "comodin"),
+    [team.committedSlots, team.slots, team.freeTransfers, team.powerUp],
+  );
 
   const setFormation = useCallback(
     (code: string) => {
@@ -220,24 +265,34 @@ export default function FantasyGame() {
     setTab("mercado");
   }, []);
 
-  // Confirma la jornada: guarda puntos en el historial y avanza.
+  // Confirma la jornada: aplica el coste de fichajes, guarda puntos netos en el
+  // historial, consume el chip, repone fichajes gratis y avanza de jornada.
+  // Si hay sesión, persiste de inmediato y registra la puntuación semanal.
   const commitGameweek = useCallback(
     (points: number) => {
-      update((t) => {
-        const usedPU = t.powerUp;
-        return {
-          ...t,
-          totalPoints: t.totalPoints + points,
-          history: [...t.history.filter((h) => h.gw !== t.gameweek), { gw: t.gameweek, points, powerUp: usedPU }],
-          powerUpsUsed: usedPU && !t.powerUpsUsed.includes(usedPU) ? [...t.powerUpsUsed, usedPU] : t.powerUpsUsed,
-          gameweek: Math.min(7, t.gameweek + 1),
-          powerUp: null,
-        };
-      });
-      flash(`Jornada confirmada: +${points} pts.`);
+      const tc = transferCost(team.committedSlots, team.slots, team.freeTransfers, team.powerUp === "comodin");
+      const net = points - tc.penalty;
+      const usedPU = team.powerUp;
+      const next: FantasyTeamState = {
+        ...team,
+        totalPoints: team.totalPoints + net,
+        history: [...team.history.filter((h) => h.gw !== team.gameweek), { gw: team.gameweek, points: net, powerUp: usedPU }],
+        powerUpsUsed: usedPU && !team.powerUpsUsed.includes(usedPU) ? [...team.powerUpsUsed, usedPU] : team.powerUpsUsed,
+        gameweek: Math.min(7, team.gameweek + 1),
+        powerUp: null,
+        // Fija la plantilla actual como base para contar los fichajes de la próxima
+        // jornada y repone un fichaje gratis (tope MAX_FREE_TRANSFERS).
+        committedSlots: team.slots.map((s) => ({ ...s })),
+        freeTransfers: Math.min(MAX_FREE_TRANSFERS, (tc.wildcard ? team.freeTransfers : Math.max(0, team.freeTransfers - tc.transfers)) + FREE_TRANSFERS),
+      };
+      setTeam(next);
+      if (authed) {
+        saveServerTeam(next, { gw: team.gameweek, points: net, powerUp: usedPU }).catch(() => {});
+      }
+      flash(tc.penalty > 0 ? `Jornada confirmada: +${points} −${tc.penalty} (fichajes) = +${net} pts.` : `Jornada confirmada: +${net} pts.`);
       setTab("ligas");
     },
-    [update, flash],
+    [team, authed, flash],
   );
 
   if (!loaded) {
@@ -322,8 +377,8 @@ export default function FantasyGame() {
             onPick={assignPlayer}
           />
         )}
-        {tab === "vivo" && <LiveView team={team} onCommit={commitGameweek} />}
-        {tab === "ligas" && <LeaguesView team={team} />}
+        {tab === "vivo" && <LiveView team={team} onCommit={commitGameweek} transfers={transfers} />}
+        {tab === "ligas" && <LeaguesView team={team} authed={authed === true} />}
         {tab === "coach" && <CoachView team={team} ownedIds={ownedIds} budgetRemaining={budgetRemaining} onAutoDraft={doAutoDraft} onCaptain={setCaptain} onGoMarket={() => setTab("mercado")} />}
       </div>
 
@@ -338,6 +393,11 @@ export default function FantasyGame() {
       </div>
     </div>
   );
+}
+
+/** ¿El equipo invitado tiene progreso digno de migrar al servidor? */
+function hasProgress(t: FantasyTeamState): boolean {
+  return t.totalPoints > 0 || t.history.length > 0 || t.slots.some((s) => s.playerId);
 }
 
 function slotAccepts(slot: SquadSlot, pos: FantasyPos): boolean {

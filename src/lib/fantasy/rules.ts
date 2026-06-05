@@ -5,6 +5,7 @@
 import {
   BUDGET,
   MAX_PER_NATION,
+  TRANSFER_PENALTY,
   type FantasyPlayer,
   type FantasyPos,
   type FormationRule,
@@ -70,6 +71,37 @@ export function remapFormation(prev: SquadSlot[], code: string, posOf: (id: stri
   place(false); // primero rellena el once
   place(true); // luego el banquillo
   return next;
+}
+
+/**
+ * Cuenta los FICHAJES hechos respecto a la plantilla confirmada en la última
+ * jornada: cada jugador que está ahora y no estaba antes es un fichaje. Si no
+ * hay plantilla base (primer equipo), el armado inicial es gratis (0 fichajes).
+ */
+export function countTransfers(committed: SquadSlot[], current: SquadSlot[]): number {
+  const before = new Set(committed.map((s) => s.playerId).filter(Boolean) as string[]);
+  if (before.size === 0) return 0; // armado inicial: gratis
+  let incoming = 0;
+  for (const id of current.map((s) => s.playerId).filter(Boolean) as string[]) {
+    if (!before.has(id)) incoming++;
+  }
+  return incoming;
+}
+
+export interface TransferCost {
+  transfers: number;      // fichajes hechos esta jornada
+  free: number;           // fichajes gratis disponibles
+  paid: number;           // fichajes que cuestan puntos
+  penalty: number;        // puntos descontados (paid × TRANSFER_PENALTY)
+  wildcard: boolean;      // comodín activo → todo gratis
+}
+
+/** Coste en puntos de los fichajes de la jornada (el comodín lo anula). */
+export function transferCost(committed: SquadSlot[], current: SquadSlot[], freeTransfers: number, wildcard: boolean): TransferCost {
+  const transfers = countTransfers(committed, current);
+  if (wildcard) return { transfers, free: freeTransfers, paid: 0, penalty: 0, wildcard: true };
+  const paid = Math.max(0, transfers - Math.max(0, freeTransfers));
+  return { transfers, free: freeTransfers, paid, penalty: paid * TRANSFER_PENALTY, wildcard: false };
 }
 
 export interface TeamValidation {

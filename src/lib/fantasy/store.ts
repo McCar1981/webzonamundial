@@ -4,7 +4,7 @@
 // para poder migrar/invalidar sin romper a usuarios antiguos.
 
 import { buildSlots } from "./rules";
-import type { FantasyTeamState } from "./types";
+import { FREE_TRANSFERS, type FantasyTeamState } from "./types";
 
 const KEY = "zm-fantasy:v2";
 
@@ -21,6 +21,20 @@ export function defaultTeam(): FantasyTeamState {
     gameweek: 1,
     totalPoints: 0,
     history: [],
+    freeTransfers: FREE_TRANSFERS,
+    committedSlots: [],
+  };
+}
+
+/** Rellena campos que pudieran faltar en estados guardados por versiones antiguas. */
+export function normalizeTeam(t: FantasyTeamState): FantasyTeamState {
+  return {
+    ...defaultTeam(),
+    ...t,
+    freeTransfers: typeof t.freeTransfers === "number" ? t.freeTransfers : FREE_TRANSFERS,
+    committedSlots: Array.isArray(t.committedSlots) ? t.committedSlots : [],
+    history: Array.isArray(t.history) ? t.history : [],
+    powerUpsUsed: Array.isArray(t.powerUpsUsed) ? t.powerUpsUsed : [],
   };
 }
 
@@ -31,7 +45,7 @@ export function loadTeam(): FantasyTeamState | null {
     if (!raw) return null;
     const parsed = JSON.parse(raw) as FantasyTeamState;
     if (!parsed.slots || !Array.isArray(parsed.slots)) return null;
-    return parsed;
+    return normalizeTeam(parsed);
   } catch {
     return null;
   }

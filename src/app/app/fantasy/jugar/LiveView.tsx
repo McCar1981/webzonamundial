@@ -9,16 +9,18 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { simulateGameweek, POWER_UPS, type GameweekResult } from "@/lib/fantasy/scoring";
 import { isFantasyLive, countdownToKickoff } from "@/lib/fantasy/season";
 import type { FantasyTeamState } from "@/lib/fantasy/types";
+import type { TransferCost } from "@/lib/fantasy/rules";
 import { BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED, flagUrl, lastName, POS_LABEL, POS_COLOR } from "./fx";
 
 interface Props {
   team: FantasyTeamState;
   onCommit: (points: number) => void;
+  transfers: TransferCost;
 }
 
 type Phase = "idle" | "playing" | "done";
 
-export default function LiveView({ team, onCommit }: Props) {
+export default function LiveView({ team, onCommit, transfers }: Props) {
   const filled = team.slots.filter((s) => s.playerId).length;
   const ready = filled === 15;
 
@@ -118,10 +120,22 @@ export default function LiveView({ team, onCommit }: Props) {
           {phase === "done" && (
             <>
               <button onClick={play} style={btnGhost}>↻ Repetir</button>
-              <button onClick={() => onCommit(result.total)} style={btnPrimary}>✓ Confirmar jornada (+{result.total})</button>
+              <button onClick={() => onCommit(result.total)} style={btnPrimary}>
+                ✓ Confirmar jornada (+{result.total - transfers.penalty})
+              </button>
             </>
           )}
         </div>
+        {/* Coste de fichajes de la jornada (Fase 2): 2 gratis, −4 pts por extra) */}
+        {transfers.transfers > 0 && (
+          <div style={{ fontSize: 12, marginTop: 10, fontWeight: 700, color: transfers.penalty > 0 ? RED : GREEN }}>
+            {transfers.wildcard
+              ? `Comodín activo: ${transfers.transfers} fichajes gratis.`
+              : transfers.penalty > 0
+                ? `${transfers.transfers} fichajes · ${transfers.free} gratis · ${transfers.paid} con coste = −${transfers.penalty} pts`
+                : `${transfers.transfers} fichajes (gratis).`}
+          </div>
+        )}
         {phase === "playing" && (
           <div style={{ height: 5, borderRadius: 5, background: "rgba(255,255,255,0.1)", marginTop: 14, overflow: "hidden" }}>
             <div style={{ height: "100%", width: `${(shownMinute / 95) * 100}%`, background: `linear-gradient(90deg,${GOLD},${GOLD2})`, transition: "width .2s" }} />

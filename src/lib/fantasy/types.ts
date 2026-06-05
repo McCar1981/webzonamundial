@@ -74,12 +74,16 @@ export interface FantasyTeamState {
   slots: SquadSlot[];
   captainId: string | null;
   viceId: string | null;
-  powerUp: PowerUp | null; // power-up armado para la jornada
-  powerUpsUsed: PowerUp[]; // usados en el torneo
+  powerUp: PowerUp | null; // power-up (chip) armado para la jornada
+  powerUpsUsed: PowerUp[]; // chips ya gastados en el torneo (un solo uso cada uno)
   wildcardUsed: boolean;
   gameweek: number;
   totalPoints: number;
   history: { gw: number; points: number; powerUp: PowerUp | null }[];
+  /** Fichajes gratis disponibles esta jornada (acumulables hasta MAX_FREE_TRANSFERS). */
+  freeTransfers: number;
+  /** Plantilla "fichada" al confirmar la última jornada: base para contar fichajes. */
+  committedSlots: SquadSlot[];
 }
 
 /** Reglas de una formación: cuántos por línea (sin contar banquillo). */
@@ -94,4 +98,6 @@ export interface FormationRule {
 export const BUDGET = 100; // €100M
 export const SQUAD_SIZE = 15; // 11 titulares + 4 banquillo
 export const MAX_PER_NATION = 3;
-export const FREE_TRANSFERS = 2;
+export const FREE_TRANSFERS = 2; // fichajes gratis por jornada
+export const MAX_FREE_TRANSFERS = 2; // tope de fichajes gratis acumulables
+export const TRANSFER_PENALTY = 4; // puntos que descuenta cada fichaje extra

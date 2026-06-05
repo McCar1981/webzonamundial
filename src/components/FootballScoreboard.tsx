@@ -55,10 +55,14 @@ export interface FootballScoreboardProps {
   homeTeam: string;
   /** Abreviatura del equipo visitante, p. ej. "MEX". */
   awayTeam: string;
-  /** Goles del equipo local. */
-  homeScore: number;
-  /** Goles del equipo visitante. */
-  awayScore: number;
+  /**
+   * Goles del equipo local. Si se omite (junto con awayScore) el panel
+   * central muestra "VS" en vez de un marcador — útil antes del saque,
+   * para no aparentar un 0-0 de un partido que aún no ha empezado.
+   */
+  homeScore?: number | null;
+  /** Goles del equipo visitante. Ver homeScore. */
+  awayScore?: number | null;
   /**
    * Tiempo de partido a mostrar, p. ej. "41:23", "HT", "FT".
    * Si se omite, el panel de tiempo no se renderiza (útil para
@@ -100,9 +104,11 @@ export default function FootballScoreboard({
   theme,
   className,
 }: FootballScoreboardProps) {
-  const ariaLabel = matchTime
-    ? `${homeTeam} ${homeScore}, ${awayTeam} ${awayScore}, minuto ${matchTime}`
-    : `${homeTeam} ${homeScore}, ${awayTeam} ${awayScore}`;
+  const hasScore = homeScore != null && awayScore != null;
+  const scoreLabel = hasScore
+    ? `${homeTeam} ${homeScore}, ${awayTeam} ${awayScore}`
+    : `${homeTeam} contra ${awayTeam}`;
+  const ariaLabel = matchTime ? `${scoreLabel}, minuto ${matchTime}` : scoreLabel;
 
   return (
     <div
@@ -120,13 +126,19 @@ export default function FootballScoreboard({
         <span className={styles.abbr}>{homeTeam}</span>
       </div>
 
-      {/* Panel central del resultado */}
+      {/* Panel central del resultado (o "VS" antes del saque) */}
       <div className={styles.result}>
-        <span className={styles.score}>{homeScore}</span>
-        <span className={styles.colon} aria-hidden>
-          :
-        </span>
-        <span className={styles.score}>{awayScore}</span>
+        {hasScore ? (
+          <>
+            <span className={styles.score}>{homeScore}</span>
+            <span className={styles.colon} aria-hidden>
+              :
+            </span>
+            <span className={styles.score}>{awayScore}</span>
+          </>
+        ) : (
+          <span className={styles.vs}>VS</span>
+        )}
       </div>
 
       {/* Panel visitante */}

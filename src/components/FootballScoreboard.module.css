@@ -238,6 +238,19 @@
   text-shadow: 0 2px 3px rgba(0, 0, 0, 0.55);
 }
 
+/* "VS" antes del saque (cuando no hay marcador). */
+.vs {
+  position: relative;
+  z-index: 2;
+  font-size: clamp(20px, 5vw, 34px);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-shadow:
+    0 2px 3px rgba(0, 0, 0, 0.55),
+    0 0 14px rgba(0, 0, 0, 0.3);
+}
+
 /* ============================= PANEL TIEMPO ============================= */
 
 .time {

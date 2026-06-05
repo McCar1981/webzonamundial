@@ -201,40 +201,29 @@ export function MatchCenterBanner() {
                 {badge.text}
               </span>
 
-              {showScore ? (
-                // Marcador broadcast con banderas montadas por país.
-                <div className="w-full max-w-md">
-                  <FootballScoreboard
-                    homeTeam={teamAbbr(meta.home.flag, meta.home.name)}
-                    awayTeam={teamAbbr(meta.away.flag, meta.away.name)}
-                    homeScore={hg as number}
-                    awayScore={ag as number}
-                    matchTime={
-                      live
-                        ? elapsed
-                          ? `${elapsed}'`
-                          : "EN VIVO"
-                        : status === "HT"
-                          ? "HT"
-                          : "FINAL"
-                    }
-                    homeFlag={flagUrl(meta.home.flag)}
-                    awayFlag={flagUrl(meta.away.flag)}
-                  />
-                </div>
-              ) : (
-                // Antes del saque: banderas + "VS" + cuenta atrás.
-                <div className="flex items-center justify-center gap-4 sm:justify-start sm:gap-6">
-                  <TeamSide name={meta.home.name} flag={meta.home.flag} />
-                  <span
-                    className="font-black leading-none"
-                    style={{ color: GOLD2, fontSize: 30 }}
-                  >
-                    VS
-                  </span>
-                  <TeamSide name={meta.away.name} flag={meta.away.flag} />
-                </div>
-              )}
+              {/* Marcador broadcast con banderas montadas por país. Muestra el
+                  resultado en vivo/final y "VS" antes del saque (sin parecer 0-0). */}
+              <div className="w-full max-w-md">
+                <FootballScoreboard
+                  homeTeam={teamAbbr(meta.home.flag, meta.home.name)}
+                  awayTeam={teamAbbr(meta.away.flag, meta.away.name)}
+                  homeScore={showScore ? hg : null}
+                  awayScore={showScore ? ag : null}
+                  matchTime={
+                    live
+                      ? elapsed
+                        ? `${elapsed}'`
+                        : "EN VIVO"
+                      : status === "HT"
+                        ? "HT"
+                        : finished
+                          ? "FINAL"
+                          : undefined
+                  }
+                  homeFlag={flagUrl(meta.home.flag)}
+                  awayFlag={flagUrl(meta.away.flag)}
+                />
+              </div>
 
               {kickoffText && (
                 <span
@@ -319,27 +308,5 @@ export function MatchCenterBanner() {
         }
       `}</style>
     </section>
-  );
-}
-
-function TeamSide({ name, flag }: { name: string; flag: string }) {
-  return (
-    <div className="flex flex-col items-center gap-2" style={{ minWidth: 84 }}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={flagUrl(flag)}
-        alt={name}
-        width={56}
-        height={42}
-        className="rounded-md shadow-md"
-        style={{ objectFit: "cover", border: "1px solid rgba(255,255,255,0.15)" }}
-      />
-      <span
-        className="text-center text-sm font-bold leading-tight"
-        style={{ color: "#F4F6FA", maxWidth: 96 }}
-      >
-        {name}
-      </span>
-    </div>
   );
 }

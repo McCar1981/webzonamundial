@@ -1,0 +1,169 @@
+// src/lib/modo-carrera/types.ts
+//
+// Modelo de datos del MODO CARRERA (estilo FIFA Career Mode). Todo el progreso
+// del usuario vive en un único objeto CareerState que se guarda en localStorage
+// (modo invitado) y se sincroniza a Supabase (tabla modo_carrera_saves) al
+// iniciar sesión, exactamente igual que el FantasyTeamState del Fantasy.
+//
+// El estado agrupa los 7 PILARES del diseño:
+//   1. Identidad DT       → identity
+//   2. Progresión         → progression
+//   3. Árbol de habilidades → skills
+//   4. Misiones dinámicas → missions
+//   5. Reputación         → reputation
+//   6. Narrativa viva     → narrative
+//   7. Legado DT          → legacy
+
+// ─── Pilar 1: Identidad DT ───────────────────────────────────────────────────
+/** Las 4 filosofías tácticas elegibles al crear el DT. */
+export type Philosophy = "ofensiva" | "defensiva" | "posesion" | "contragolpe";
+
+export interface DTIdentity {
+  /** Nombre del director técnico (lo elige el usuario). */
+  name: string;
+  /** Filosofía táctica base (define bonus/penalizaciones). */
+  philosophy: Philosophy | null;
+  /** Slug de la selección adoptada (una de las 48 fichas BIBLIA). */
+  nationSlug: string | null;
+  /** Semilla del avatar/carta DT (determinista para colores y patrón). */
+  avatarSeed: number;
+  /** Marca temporal de creación del DT. */
+  createdAt: string | null;
+}
+
+// ─── Pilar 2: Progresión ─────────────────────────────────────────────────────
+export interface Progression {
+  /** Valoración global del DT, 0-99 (estilo overall FIFA). */
+  overall: number;
+  /** Experiencia acumulada en el nivel actual. */
+  xp: number;
+  /** XP necesaria para subir de nivel (crece con el overall). */
+  xpToNext: number;
+  /** Moral del vestuario, 0-100 (afecta rendimiento). */
+  morale: number;
+  /** Temporada actual de la carrera. */
+  season: number;
+}
+
+// ─── Pilar 3: Árbol de habilidades ───────────────────────────────────────────
+/** Las 4 ramas del árbol; cada una sube de 0 a 5. */
+export type SkillBranch = "ataque" | "defensa" | "mental" | "gestion";
+
+export interface SkillTree {
+  /** Nivel actual (0-5) por rama. */
+  levels: Record<SkillBranch, number>;
+  /** Puntos de habilidad disponibles para gastar. */
+  points: number;
+}
+
+// ─── Pilar 4: Misiones dinámicas ─────────────────────────────────────────────
+export type MissionKind = "diaria" | "semanal" | "torneo" | "flash";
+export type MissionStatus = "activa" | "completada" | "fallida" | "reclamada";
+
+export interface Mission {
+  id: string;
+  kind: MissionKind;
+  title: string;
+  description: string;
+  /** Progreso 0..target. */
+  progress: number;
+  target: number;
+  /** Recompensas al completar. */
+  rewardXp: number;
+  rewardReputation: number;
+  status: MissionStatus;
+  /** ISO de expiración (para diarias/flash). null = sin caducidad. */
+  expiresAt: string | null;
+}
+
+// ─── Pilar 5: Reputación ─────────────────────────────────────────────────────
+/** Los 6 stats de reputación que definen el perfil público del DT. */
+export interface ReputationStats {
+  prestigio: number;
+  carisma: number;
+  tactica: number;
+  disciplina: number;
+  mediatico: number;
+  cantera: number;
+}
+
+export interface Rivalry {
+  /** Slug o nombre del DT/selección rival. */
+  rival: string;
+  /** Intensidad de la rivalidad, 0-100. */
+  intensity: number;
+  wins: number;
+  losses: number;
+}
+
+export interface Reputation {
+  /** Reputación global agregada (se replica en la columna `reputation`). */
+  total: number;
+  stats: ReputationStats;
+  rivalries: Rivalry[];
+  /** Títulos/insignias desbloqueados (ids). */
+  titles: string[];
+}
+
+// ─── Pilar 6: Narrativa viva ─────────────────────────────────────────────────
+export type NarrativeKind = "briefing" | "titular" | "rueda_prensa" | "evento";
+
+export interface NarrativeEntry {
+  id: string;
+  kind: NarrativeKind;
+  /** Texto generado (Claude API) o plantilla. */
+  body: string;
+  /** ISO de creación. */
+  createdAt: string;
+  /** Si requiere decisión del usuario (rueda de prensa con opciones). */
+  choices?: { id: string; label: string; effect: string }[];
+  /** Opción elegida por el usuario, si aplica. */
+  chosen?: string | null;
+}
+
+// ─── Pilar 7: Legado DT ──────────────────────────────────────────────────────
+export interface Trophy {
+  id: string;
+  name: string;
+  season: number;
+  /** ISO de obtención. */
+  wonAt: string;
+}
+
+export interface Legacy {
+  trophies: Trophy[];
+  /** Récords permanentes del perfil DT. */
+  records: {
+    matchesPlayed: number;
+    wins: number;
+    draws: number;
+    losses: number;
+    goalsFor: number;
+    goalsAgainst: number;
+    titlesWon: number;
+  };
+}
+
+// ─── Estado raíz de la carrera ───────────────────────────────────────────────
+export interface CareerState {
+  /** Versión del esquema, para migraciones futuras del JSON. */
+  version: number;
+  identity: DTIdentity;
+  progression: Progression;
+  skills: SkillTree;
+  missions: Mission[];
+  reputation: Reputation;
+  narrative: NarrativeEntry[];
+  legacy: Legacy;
+  /** Marca de última actualización local. */
+  updatedAt: string;
+}
+
+/** Pestañas del Hub jugable (orden de navegación). */
+export type CareerTab =
+  | "hub"
+  | "habilidades"
+  | "misiones"
+  | "reputacion"
+  | "narrativa"
+  | "legado";

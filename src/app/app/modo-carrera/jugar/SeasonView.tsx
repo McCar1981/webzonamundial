@@ -11,10 +11,17 @@ import { BG, BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED, flagUrl } from "./fx";
 import { SELECCIONES } from "@/data/selecciones";
 import { STAGE_LABEL } from "@/lib/modo-carrera/season";
 import type { PlayResult } from "@/lib/modo-carrera/season";
+import { DEMAND_LABEL, VERDICT_LABEL } from "@/lib/modo-carrera/board";
 import type { CareerState, SeasonMatch } from "@/lib/modo-carrera/types";
 
 const OUTCOME_LABEL = { V: "Victoria", E: "Empate", D: "Derrota" } as const;
 const OUTCOME_COLOR = { V: GREEN, E: GOLD, D: RED } as const;
+
+function confColor(n: number): string {
+  if (n >= 60) return GREEN;
+  if (n >= 25) return GOLD;
+  return RED;
+}
 
 function sel(slug: string) {
   return SELECCIONES.find((s) => s.slug === slug);
@@ -151,6 +158,11 @@ export default function SeasonView({
           <p style={{ fontSize: 13, color: MID, marginTop: 4 }}>
             {nation ? `Al mando de ${nation.nombre}` : "Mundial"} · {STAGE_LABEL[season.stage]}
           </p>
+          <p style={{ fontSize: 12, color: DIM, marginTop: 6 }}>
+            Objetivo de la federación: <strong style={{ color: GOLD2 }}>{DEMAND_LABEL[career.board.objective]}</strong>
+            {" · "}
+            Confianza: <strong style={{ color: confColor(career.board.confidence) }}>{career.board.confidence}/100</strong>
+          </p>
         </div>
         {!season.finished && nextMatch && (
           <button
@@ -280,6 +292,11 @@ export default function SeasonView({
               {reveal.newTitles.map((t) => (
                 <span key={t} style={chip(GOLD2)}>Título: {t}</span>
               ))}
+              {reveal.boardVerdict && reveal.boardVerdict !== "pendiente" && (
+                <span style={chip(confColor(reveal.boardConfidence ?? 50))}>
+                  Federación: {VERDICT_LABEL[reveal.boardVerdict]}
+                </span>
+              )}
             </div>
 
             <button

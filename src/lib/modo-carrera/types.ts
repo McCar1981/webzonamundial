@@ -190,6 +190,22 @@ export interface SeasonState {
   finished: boolean;
 }
 
+// ─── Junta / Federación (presión y objetivos, estilo FIFA) ───────────────────
+/** Fase mínima que la federación exige alcanzar esta temporada. */
+export type BoardDemand = "octavos" | "cuartos" | "semifinal" | "final" | "campeon";
+
+/** Veredicto de la federación al cerrar la temporada. */
+export type BoardVerdict = "pendiente" | "superado" | "cumplido" | "fallido";
+
+export interface BoardState {
+  /** Objetivo mínimo de la temporada (se fija al arrancar el torneo). */
+  objective: BoardDemand;
+  /** Confianza de la federación, 0-100. Por debajo de 25 el puesto peligra. */
+  confidence: number;
+  /** Resultado de la última evaluación de temporada. */
+  lastVerdict: BoardVerdict;
+}
+
 // ─── Estado raíz de la carrera ───────────────────────────────────────────────
 export interface CareerState {
   /** Versión del esquema, para migraciones futuras del JSON. */
@@ -201,6 +217,8 @@ export interface CareerState {
   reputation: Reputation;
   narrative: NarrativeEntry[];
   legacy: Legacy;
+  /** Junta/federación: objetivo de temporada y confianza en el DT. */
+  board: BoardState;
   /** Torneo en curso (motor de temporada). null = aún no iniciado. */
   season: SeasonState | null;
   /** Marca de última actualización local. */

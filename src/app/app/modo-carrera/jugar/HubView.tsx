@@ -9,8 +9,15 @@
 import { BG, BG2, BG3, GOLD, GOLD2, MID, DIM, flagUrl } from "./fx";
 import FichaDT from "./FichaDT";
 import { rankForOverall, SKILL_BRANCHES } from "@/lib/modo-carrera/constants";
+import { DEMAND_LABEL, VERDICT_LABEL, jobAtRisk } from "@/lib/modo-carrera/board";
 import type { CareerState } from "@/lib/modo-carrera/types";
 import { SELECCIONES } from "@/data/selecciones";
+
+function confColor(n: number): string {
+  if (n >= 60) return "#22c55e";
+  if (n >= 25) return GOLD;
+  return "#ef4444";
+}
 
 function Card({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -22,7 +29,7 @@ function Card({ title, children }: { title: string; children: React.ReactNode })
 }
 
 export default function HubView({ career }: { career: CareerState }) {
-  const { progression: pr, reputation, missions, legacy } = career;
+  const { progression: pr, reputation, missions, legacy, board } = career;
   const rank = rankForOverall(pr.overall);
   const nation = SELECCIONES.find((s) => s.slug === career.identity.nationSlug);
   const xpPct = Math.min(100, Math.round((pr.xp / Math.max(1, pr.xpToNext)) * 100));
@@ -54,6 +61,29 @@ export default function HubView({ career }: { career: CareerState }) {
           <div style={{ height: 8, borderRadius: 4, background: BG3, overflow: "hidden" }}>
             <div style={{ height: "100%", width: `${xpPct}%`, background: `linear-gradient(90deg,${GOLD},${GOLD2})`, borderRadius: 4 }} />
           </div>
+        </Card>
+
+        {/* Junta directiva / federación (objetivo + confianza) */}
+        <Card title="Junta directiva">
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 10 }}>
+            <div>
+              <div style={{ fontSize: 11, color: DIM, textTransform: "uppercase", letterSpacing: 0.6 }}>Objetivo de temporada</div>
+              <div style={{ fontSize: 16, fontWeight: 800, color: "#fff" }}>{DEMAND_LABEL[board.objective]}</div>
+            </div>
+            <span style={{ fontSize: 12, fontWeight: 700, color: confColor(board.confidence) }}>{VERDICT_LABEL[board.lastVerdict]}</span>
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, color: DIM, marginBottom: 4 }}>
+            <span>Confianza de la federación</span>
+            <span style={{ color: confColor(board.confidence), fontWeight: 700 }}>{board.confidence}/100</span>
+          </div>
+          <div style={{ height: 8, borderRadius: 4, background: BG3, overflow: "hidden" }}>
+            <div style={{ height: "100%", width: `${board.confidence}%`, background: confColor(board.confidence), borderRadius: 4 }} />
+          </div>
+          {jobAtRisk(board) && (
+            <div style={{ marginTop: 8, fontSize: 12, color: "#ef4444", fontWeight: 700 }}>
+              Tu puesto peligra: necesitas resultados ya.
+            </div>
+          )}
         </Card>
 
         {/* Próximo partido (motor de temporada) */}

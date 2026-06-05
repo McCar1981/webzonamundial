@@ -5,7 +5,7 @@
 // tolerar saves antiguos o corruptos. Al iniciar sesión, CareerGame sincroniza
 // este estado con Supabase via /api/modo-carrera/save.
 
-import type { CareerState, SeasonState, SeasonMatch, TournamentStage, MatchOutcome } from "./types";
+import type { CareerState, SeasonState, SeasonMatch, TournamentStage, MatchOutcome, BoardState, BoardDemand, BoardVerdict } from "./types";
 import { CAREER_STORAGE_KEY, CAREER_SCHEMA_VERSION, xpRequired } from "./constants";
 
 /** Partida vacía inicial (DT sin crear todavía). */
@@ -43,6 +43,7 @@ export function defaultCareer(): CareerState {
       trophies: [],
       records: { matchesPlayed: 0, wins: 0, draws: 0, losses: 0, goalsFor: 0, goalsAgainst: 0, titlesWon: 0 },
     },
+    board: { objective: "octavos", confidence: 60, lastVerdict: "pendiente" },
     season: null,
     updatedAt: now,
   };
@@ -60,6 +61,18 @@ const clampInt = (n: unknown, lo: number, hi: number, fb: number): number => {
 
 const STAGES: TournamentStage[] = ["grupos", "octavos", "cuartos", "semifinal", "final", "campeon", "eliminado"];
 const OUTCOMES: MatchOutcome[] = ["V", "E", "D"];
+const DEMANDS: BoardDemand[] = ["octavos", "cuartos", "semifinal", "final", "campeon"];
+const VERDICTS: BoardVerdict[] = ["pendiente", "superado", "cumplido", "fallido"];
+
+/** Repara/normaliza el estado de la junta; rellena con valores por defecto. */
+function normalizeBoard(raw: unknown): BoardState {
+  const b = (raw && typeof raw === "object" ? raw : {}) as Partial<BoardState>;
+  return {
+    objective: DEMANDS.includes(b.objective as BoardDemand) ? (b.objective as BoardDemand) : "octavos",
+    confidence: clampInt(b.confidence, 0, 100, 60),
+    lastVerdict: VERDICTS.includes(b.lastVerdict as BoardVerdict) ? (b.lastVerdict as BoardVerdict) : "pendiente",
+  };
+}
 
 /** Repara/normaliza la temporada en curso; devuelve null si el dato es inválido. */
 function normalizeSeason(raw: unknown): SeasonState | null {
@@ -159,6 +172,7 @@ export function normalizeCareer(raw: Partial<CareerState> | null | undefined): C
         titlesWon: clampInt(leg.records?.titlesWon, 0, 1_000_000, 0),
       },
     },
+    board: normalizeBoard(raw.board),
     season: normalizeSeason(raw.season),
     updatedAt: typeof raw.updatedAt === "string" ? raw.updatedAt : base.updatedAt,
   };

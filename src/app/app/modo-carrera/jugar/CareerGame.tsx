@@ -14,7 +14,7 @@ import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { defaultCareer, loadCareer, saveCareer, isCareerStarted } from "@/lib/modo-carrera/store";
 import type { CareerState, CareerTab, SkillBranch, NarrativeKind } from "@/lib/modo-carrera/types";
 import { unlockSkill, applyDecision } from "@/lib/modo-carrera/engine";
-import { buildSeason, playNextMatch, startNextSeason, type PlayResult } from "@/lib/modo-carrera/season";
+import { beginSeason, playNextMatch, startNextSeason, type PlayResult } from "@/lib/modo-carrera/season";
 import { ensureMissions, advanceMission, claimMission } from "@/lib/modo-carrera/missions";
 import { templateEntry, type NarrativeContext } from "@/lib/modo-carrera/narrative";
 import { PHILOSOPHIES } from "@/lib/modo-carrera/constants";
@@ -128,7 +128,7 @@ export default function CareerGame() {
     setCareer((c) => (c ? claimMission(c, id).state : c));
   // Motor de temporada.
   const handleStartSeason = () =>
-    setCareer((c) => (c ? { ...c, season: buildSeason(c), updatedAt: new Date().toISOString() } : c));
+    setCareer((c) => (c ? beginSeason(c) : c));
   const handleNextSeason = () =>
     setCareer((c) => (c ? startNextSeason(c) : c));
   const handlePlayNext = (): PlayResult | null => {

@@ -20,9 +20,11 @@ import type {
   Mission,
   NarrativeEntry,
   Trophy,
+  BoardVerdict,
 } from "./types";
 import { grantXp, sumReputation } from "./engine";
 import { missionKey } from "./missions";
+import { buildBoardObjective, evaluateSeason } from "./board";
 import { SELECCIONES, type Seleccion } from "@/data/selecciones";
 
 const now = () => new Date().toISOString();
@@ -95,6 +97,17 @@ function opponentStrength(slug: string): number {
   return clamp(92 - (rank - 1) * 0.42, 48, 94);
 }
 
+/**
+ * Momentum (forma) a partir de los últimos resultados de la temporada en curso.
+ * Crea rachas dinámicas: ganar encadena empuje (+), perder lastra (-). Rango ~ -3..+3.
+ */
+export function formMomentum(c: CareerState): number {
+  const played = (c.season?.fixtures ?? []).filter((m) => m.played).slice(-3);
+  let m = 0;
+  for (const p of played) m += p.outcome === "V" ? 1 : p.outcome === "D" ? -1 : 0;
+  return m;
+}
+
 // ─── Simulación de un partido ────────────────────────────────────────────────
 /** Muestreo de Poisson (algoritmo de Knuth) para los goles. */
 function poisson(lambda: number): number {
@@ -117,8 +130,9 @@ function simulate(c: CareerState, match: SeasonMatch, decisive: boolean): { gf: 
   const { atk, def } = attackDefense(c);
   const oStr = opponentStrength(match.opponentSlug);
   const home = match.home ? 2.5 : 0;
-  const lamFor = clamp(1.35 + (atk + home - oStr) / 9, 0.25, 4.6);
-  const lamAg = clamp(1.35 + (oStr - def) / 9, 0.2, 4.4);
+  const mom = formMomentum(c); // -3..+3
+  const lamFor = clamp(1.35 + (atk + home - oStr) / 9 + mom * 0.12, 0.25, 4.6);
+  const lamAg = clamp(1.35 + (oStr - def) / 9 - mom * 0.09, 0.2, 4.4);
   let gf = poisson(lamFor);
   let ga = poisson(lamAg);
   if (decisive && gf === ga) {
@@ -192,11 +206,25 @@ export function buildSeason(c: CareerState): SeasonState {
   return { season, fixtures, cursor: 0, stage: "grupos", finished: false };
 }
 
+/**
+ * Arranca el torneo de la temporada actual: genera el calendario y fija el
+ * objetivo (adaptativo) de la federación, dejando el veredicto en "pendiente".
+ * La confianza acumulada se conserva entre temporadas.
+ */
+export function beginSeason(c: CareerState): CareerState {
+  return {
+    ...c,
+    board: { ...c.board, objective: buildBoardObjective(c), lastVerdict: "pendiente" },
+    season: buildSeason(c),
+    updatedAt: now(),
+  };
+}
+
 /** Arranca la siguiente temporada: sube el contador y genera un torneo nuevo. */
 export function startNextSeason(c: CareerState): CareerState {
   const season = c.progression.season + 1;
   const withSeason: CareerState = { ...c, progression: { ...c.progression, season } };
-  return { ...withSeason, season: buildSeason(withSeason), updatedAt: now() };
+  return beginSeason(withSeason);
 }
 
 // ─── Disputar el próximo partido ─────────────────────────────────────────────
@@ -211,6 +239,10 @@ export interface PlayResult {
   newTitles: string[];
   eliminated: boolean;
   champion: boolean;
+  /** Veredicto de la federación al cerrar la temporada (null si no terminó). */
+  boardVerdict: BoardVerdict | null;
+  /** Confianza de la federación tras la evaluación (null si no terminó). */
+  boardConfidence: number | null;
 }
 
 function advanceMissionInline(m: Mission): Mission {
@@ -233,6 +265,8 @@ export function playNextMatch(c0: CareerState): PlayResult {
     newTitles: [],
     eliminated: false,
     champion: false,
+    boardVerdict: null,
+    boardConfidence: null,
   };
 
   const season = c0.season;
@@ -262,7 +296,7 @@ export function playNextMatch(c0: CareerState): PlayResult {
   };
 
   // ── Moral ──
-  const morale = clamp(c0.progression.morale + (outcome === "V" ? 6 : outcome === "E" ? 1 : -8), 0, 100);
+  let morale = clamp(c0.progression.morale + (outcome === "V" ? 6 : outcome === "E" ? 1 : -8), 0, 100);
 
   // ── Transición de fase ──
   let stage: TournamentStage = season.stage;
@@ -365,13 +399,32 @@ export function playNextMatch(c0: CareerState): PlayResult {
   }
 
   // ── Reputación (bonus al campeón) ──
-  const repStats = champion
+  let repStats = champion
     ? {
         ...c0.reputation.stats,
         prestigio: clamp(c0.reputation.stats.prestigio + 5, 0, 100),
         mediatico: clamp(c0.reputation.stats.mediatico + 5, 0, 100),
       }
     : c0.reputation.stats;
+
+  // ── Junta / federación (evaluación al cerrar la temporada) ──
+  let board = c0.board;
+  let boardVerdict: BoardVerdict | null = null;
+  if (finished) {
+    // Fase realmente alcanzada: campeón, o la ronda donde cayó (grupos si no pasó).
+    const reached: TournamentStage = champion
+      ? "campeon"
+      : fx.stage === "grupos"
+        ? "grupos"
+        : fx.stage;
+    const evalc = evaluateSeason(c0, reached);
+    board = evalc.board;
+    boardVerdict = evalc.verdict;
+    morale = clamp(morale + evalc.moraleDelta, 0, 100);
+    if (evalc.prestigioDelta) {
+      repStats = { ...repStats, prestigio: clamp(repStats.prestigio + evalc.prestigioDelta, 0, 100) };
+    }
+  }
 
   // ── Narrativa (titular automático en partidos clave) ──
   let narrative = c0.narrative;
@@ -396,6 +449,25 @@ export function playNextMatch(c0: CareerState): PlayResult {
     narrative = [entry, ...narrative];
   }
 
+  // Titular de la federación al cerrar la temporada (presión/respaldo).
+  if (boardVerdict) {
+    const dtName = c0.identity.name.trim() || "el DT";
+    let bbody: string;
+    if (boardVerdict === "superado") {
+      bbody = `La federación felicita a ${dtName}: superó las expectativas y refuerza su confianza en el proyecto.`;
+    } else if (boardVerdict === "cumplido") {
+      bbody = `La federación da el visto bueno a ${dtName}: objetivo cumplido y respaldo al banquillo.`;
+    } else {
+      bbody = board.confidence < 25
+        ? `Crisis en la federación: ${dtName} no alcanzó el objetivo y su continuidad está en entredicho.`
+        : `La federación lamenta no haber llegado a la meta. ${dtName} queda señalado y deberá responder.`;
+    }
+    narrative = [
+      { id: `junta-s${season.season}`, kind: "evento", body: bbody, createdAt: now(), chosen: null },
+      ...narrative,
+    ];
+  }
+
   // ── XP ──
   const xpGain = (outcome === "V" ? 130 : outcome === "E" ? 60 : 35) + gf * 8 + (decisive ? 20 : 0);
 
@@ -406,6 +478,7 @@ export function playNextMatch(c0: CareerState): PlayResult {
     reputation: { ...c0.reputation, stats: repStats, total: sumReputation(repStats), rivalries, titles },
     narrative,
     legacy: { trophies, records },
+    board,
     season: { ...season, fixtures, cursor: idx + 1, stage, finished },
     updatedAt: now(),
   };
@@ -421,5 +494,7 @@ export function playNextMatch(c0: CareerState): PlayResult {
     newTitles,
     eliminated,
     champion,
+    boardVerdict,
+    boardConfidence: finished ? board.confidence : null,
   };
 }

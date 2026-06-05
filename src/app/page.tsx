@@ -83,7 +83,8 @@ export default function HomePage() {
           instalable; en iOS muestra las instrucciones de Safari. */}
       <HomeInstallBanner />
       {/*
-        Banner del Match Center retirado temporalmente del home (se reformulará).
+        Banner del Match Center: ahora vive DENTRO del hero (HeroSection), con
+        selección automática de partido (regla fija en /api/match-center/featured).
       */}
       <StatsHowSection />
       {/*

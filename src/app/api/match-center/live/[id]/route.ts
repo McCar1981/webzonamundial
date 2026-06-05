@@ -17,9 +17,10 @@ import { buildSimulation } from "@/lib/match-center/simulation";
 import { fetchLiveSnapshot, scheduledSnapshot } from "@/lib/match-center/apiFootball";
 
 // Partidos que SOLO deben mostrar datos reales (nunca simulación). Antes del
-// saque se quedan parados en "por comenzar". Por ahora, el amistoso de prueba
-// Portugal-Chile (id 9002).
-const REAL_ONLY_IDS = new Set<number>([9002]);
+// saque se quedan parados en "por comenzar". Derivado de la fuente única de
+// partidos programados para el Match Center.
+import { PROGRAMMED_MATCH_IDS } from "@/lib/match-center/programmed";
+const REAL_ONLY_IDS = new Set<number>(PROGRAMMED_MATCH_IDS);
 import { aiNarrateBatch } from "@/lib/match-center/narrator";
 
 export const runtime = "nodejs";

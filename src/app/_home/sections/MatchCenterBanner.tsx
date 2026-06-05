@@ -1,10 +1,12 @@
 // src/app/_home/sections/MatchCenterBanner.tsx
 //
-// Banner del Match Center en el HOME: destaca el amistoso real Portugal-Chile
-// (id 9002) justo debajo del hero para máxima visibilidad.
-// Se autoactualiza por polling del endpoint live y enlaza al Match Center.
-// SVG-only (sin emojis). Degrada a null si la API falla o el partido terminó
-// hace rato (no queremos un banner muerto en la portada).
+// Banner del Match Center en el HOME (dentro del hero): destaca SIEMPRE un
+// partido, aplicando la REGLA FIJA del endpoint /featured:
+//   - el partido programado en juego o el próximo;
+//   - cuando termina, pasa automáticamente al siguiente programado;
+//   - si no queda ninguno, el PRIMER partido del Mundial.
+// Se autoactualiza por polling y enlaza al Match Center del partido elegido.
+// SVG-only (sin emojis). Solo se oculta si la API falla por completo.
 
 "use client";
 
@@ -12,10 +14,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { GOLD, GOLD2 } from "../constants";
 
-const MATCH_ID = 9002;
-const ENDPOINT = `/api/match-center/live/${MATCH_ID}`;
-// URL "bonita" por nombres (el route resuelve slug o id numérico indistintamente).
-const HREF = `/app/matchcenter/portugal-chile`;
+// Endpoint que decide el partido destacado según la regla fija.
+const ENDPOINT = `/api/match-center/featured`;
 
 const IN_PLAY = ["1H", "2H", "ET", "BT", "P", "LIVE", "INT"];
 const FINISHED = ["FT", "AET", "PEN"];
@@ -25,6 +25,8 @@ interface TeamMeta {
   flag: string;
 }
 interface Feed {
+  matchId: number;
+  slug?: string | null;
   status: string;
   elapsed: number;
   kickoff?: string;
@@ -90,12 +92,8 @@ export function MatchCenterBanner() {
   const [hg, ag] = score;
   const hasScore = hg != null && ag != null;
 
-  // No mostramos el banner mucho después del pitido final: pierde sentido en
-  // la portada. Lo dejamos hasta el día siguiente del saque y luego null.
-  if (finished && kickoff) {
-    const ko = new Date(kickoff).getTime();
-    if (!Number.isNaN(ko) && Date.now() - ko > 24 * 60 * 60 * 1000) return null;
-  }
+  // URL "bonita" por nombres del partido elegido (el route resuelve slug o id).
+  const HREF = `/app/matchcenter/${feed.slug || feed.matchId}`;
 
   // Marcador solo cuando tiene sentido (en juego / descanso / final). Antes del
   // saque mostramos "VS" en vez de un 0-0 que parece partido ya empezado.

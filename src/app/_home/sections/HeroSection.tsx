@@ -5,6 +5,7 @@ import Link from "next/link";
 import { CREADORES } from "@/data/creadores";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { homeSections } from "@/i18n/home-sections";
+import { MatchCenterBanner } from "./MatchCenterBanner";
 import styles from "./HeroSection.module.css";
 
 type Props = {
@@ -477,6 +478,10 @@ export function HeroSection({ heroRef, titleRef, cd }: Props) {
       />
 
       <StatsBar />
+
+      {/* Banner del Match Center: SIEMPRE muestra un partido (regla fija en
+          /api/match-center/featured). Cierra el hero como tira en directo. */}
+      <MatchCenterBanner />
     </section>
   );
 }

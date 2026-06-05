@@ -385,9 +385,11 @@ interface Props {
   matchId: number;
   meta: MatchMeta;
   sim: boolean;
+  /** Foto que acompaña al partido en la previa (jugador estrella / estadio). */
+  heroImage?: string;
 }
 
-export default function MatchCenterLive({ matchId, meta, sim }: Props) {
+export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props) {
   const [feed, setFeed] = useState<MatchFeed | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -921,7 +923,7 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
                 Portugal-Chile (id 9002). */}
             {feed.mode === "live" && !finished && !isInPlay(status) && status !== "HT" && (
               <>
-                <PreMatchHero meta={meta} kickoff={kickoff} />
+                <PreMatchHero meta={meta} kickoff={kickoff} image={heroImage} />
                 {matchId === 9002 && <PreMatchPreview />}
               </>
             )}

@@ -95,6 +95,7 @@ export default function PreMatchHero({ meta, kickoff, image }: Props) {
               width: "100%",
               height: "100%",
               objectFit: "cover",
+              objectPosition: "center 22%",
               opacity: 0.5,
               pointerEvents: "none",
             }}

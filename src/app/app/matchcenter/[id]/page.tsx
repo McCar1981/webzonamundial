@@ -7,6 +7,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { buildMeta, resolveMatchId, matchSlug } from "@/lib/match-center/store";
+import { matchHeroImage } from "@/lib/match-center/heroImage";
 import MatchCenterLive from "../MatchCenterLive";
 
 export const dynamic = "force-dynamic";
@@ -30,10 +31,12 @@ export function generateMetadata({ params }: PageProps): Metadata {
   };
 }
 
-export default function MatchPage({ params, searchParams }: PageProps) {
+export default async function MatchPage({ params, searchParams }: PageProps) {
   const matchId = resolveMatchId(params.id);
   const meta = matchId != null ? buildMeta(matchId) : null;
   if (matchId == null || !meta) notFound();
   const sim = searchParams?.sim === "1";
-  return <MatchCenterLive matchId={matchId} meta={meta} sim={sim} />;
+  // Foto que acompaña al partido (jugador estrella local; respaldo: estadio).
+  const heroImage = await matchHeroImage(meta);
+  return <MatchCenterLive matchId={matchId} meta={meta} sim={sim} heroImage={heroImage} />;
 }

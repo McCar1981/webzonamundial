@@ -31,7 +31,7 @@ interface Feed {
   elapsed: number;
   kickoff?: string;
   score: [number | null, number | null];
-  meta: { home: TeamMeta; away: TeamMeta };
+  meta: { home: TeamMeta; away: TeamMeta; venue?: string; city?: string };
 }
 
 function flagUrl(code: string): string {
@@ -53,9 +53,40 @@ function fmtKickoff(iso?: string): string | null {
   return `${date} · ${time}`;
 }
 
+// Cuenta atrás hasta el saque. Devuelve null si ya pasó la hora.
+function fmtCountdown(target: number, now: number): string | null {
+  let diff = Math.floor((target - now) / 1000);
+  if (diff <= 0) return null;
+  const d = Math.floor(diff / 86400);
+  diff -= d * 86400;
+  const h = Math.floor(diff / 3600);
+  diff -= h * 3600;
+  const m = Math.floor(diff / 60);
+  const s = diff - m * 60;
+  const pad = (n: number) => String(n).padStart(2, "0");
+  if (d > 0) return `${d}d ${pad(h)}h ${pad(m)}m`;
+  if (h > 0) return `${pad(h)}h ${pad(m)}m ${pad(s)}s`;
+  return `${pad(m)}m ${pad(s)}s`;
+}
+
+// Lugar del partido: "Estadio, Ciudad" descartando vacíos y placeholders.
+function fmtVenue(venue?: string, city?: string): string | null {
+  const parts = [venue, city]
+    .map((p) => (p || "").trim())
+    .filter((p) => p && p.toLowerCase() !== "amistoso internacional");
+  return parts.length ? parts.join(" · ") : null;
+}
+
 export function MatchCenterBanner() {
   const [feed, setFeed] = useState<Feed | null>(null);
   const [failed, setFailed] = useState(false);
+  // Reloj propio (1s) para la cuenta atrás hasta el saque.
+  const [nowMs, setNowMs] = useState(() => Date.now());
+
+  useEffect(() => {
+    const id = setInterval(() => setNowMs(Date.now()), 1000);
+    return () => clearInterval(id);
+  }, []);
 
   useEffect(() => {
     let alive = true;
@@ -98,7 +129,14 @@ export function MatchCenterBanner() {
   // Marcador solo cuando tiene sentido (en juego / descanso / final). Antes del
   // saque mostramos "VS" en vez de un 0-0 que parece partido ya empezado.
   const showScore = (live || finished || status === "HT") && hasScore;
-  const kickoffText = !live && !finished && status !== "HT" ? fmtKickoff(kickoff) : null;
+  const upcoming = !live && !finished && status !== "HT";
+  const kickoffText = upcoming ? fmtKickoff(kickoff) : null;
+  const venueText = fmtVenue(meta.venue, meta.city);
+
+  // Cuenta atrás hasta el saque (solo si el partido aún no empieza).
+  const koMs = kickoff ? new Date(kickoff).getTime() : NaN;
+  const countdown =
+    upcoming && !Number.isNaN(koMs) ? fmtCountdown(koMs, nowMs) : null;
 
   let badge: { text: string; color: string; pulse: boolean };
   if (live) {
@@ -108,6 +146,9 @@ export function MatchCenterBanner() {
     badge = { text: "DESCANSO", color: GOLD2, pulse: false };
   } else if (finished) {
     badge = { text: "FINAL", color: "#8a94b0", pulse: false };
+  } else if (countdown) {
+    // En lugar de "POR COMENZAR" mostramos la cuenta atrás viva.
+    badge = { text: `FALTAN ${countdown}`, color: GOLD2, pulse: true };
   } else {
     badge = { text: "POR COMENZAR", color: GOLD2, pulse: false };
   }
@@ -177,6 +218,30 @@ export function MatchCenterBanner() {
                     style={{ color: "#aeb8cf" }}
                   >
                     {kickoffText}
+                  </span>
+                )}
+                {venueText && (
+                  <span
+                    className="inline-flex items-center gap-1 text-center text-[11px] font-medium leading-tight"
+                    style={{ color: "#8a94b0" }}
+                  >
+                    <svg
+                      width="11"
+                      height="11"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden
+                      style={{ flexShrink: 0 }}
+                    >
+                      <path
+                        d="M12 21s-6-5.686-6-10a6 6 0 1112 0c0 4.314-6 10-6 10z"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinejoin="round"
+                      />
+                      <circle cx="12" cy="11" r="2" stroke="currentColor" strokeWidth="2" />
+                    </svg>
+                    {venueText}
                   </span>
                 )}
               </div>

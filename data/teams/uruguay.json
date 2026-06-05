@@ -626,7 +626,7 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/38/Fernando_Muslera_in_2021.jpg"
       },
       {
         "id": "jose-maria-gimenez",
@@ -697,7 +697,7 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f5/Math%C3%ADas_Olivera_WC2022.jpg"
       },
       {
         "id": "matias-vina",
@@ -741,7 +741,8 @@
           "league": "Premier League"
         },
         "shirt_number_expected": 5,
-        "status": "fixed"
+        "status": "fixed",
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/M.UGARTE.jpg"
       },
       {
         "id": "rodrigo-bentancur",
@@ -827,7 +828,7 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Emiliano_Martinez_%28dinamarca%29.jpg"
       },
       {
         "id": "maximiliano-araujo",

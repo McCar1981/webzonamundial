@@ -534,7 +534,7 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Mert_G%C3%BCnok_%28cropped%29.jpg"
       },
       {
         "id": "altay-bayindir",
@@ -650,7 +650,7 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Ozan_kabak.jpg"
       },
       {
         "id": "mert-muldur",
@@ -766,7 +766,7 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/62/Kaan-Ayhan-08-2019.jpg"
       },
       {
         "id": "kerem-akturkoglu",

@@ -938,9 +938,9 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
             <div style={{ background: BG2, borderRadius: 20, border: "1px solid rgba(255,255,255,0.08)", padding: "16px clamp(10px,4vw,20px)", marginBottom: 14 }}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginBottom: 12 }}>
                 {feed.mode === "live" && isInPlay(status) && <span className="mc-live-dot" />}
-                <span style={{ fontSize: 12, fontWeight: 800, letterSpacing: 1.5, color: finished ? MID : GREEN, textTransform: "uppercase" }}>
+                <span style={{ fontSize: 12, fontWeight: 800, letterSpacing: 1.5, color: finished ? MID : "#fff", textTransform: "uppercase" }}>
                   {feed.mode === "sim"
-                    ? `Simulación · ${phase}`
+                    ? phase
                     : feed.mode === "live" && !finished && !isInPlay(status)
                       ? `${status === "HT" ? "Descanso" : "Previa"} · ${phase}`
                       : phase}

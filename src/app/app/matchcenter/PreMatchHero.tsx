@@ -72,6 +72,14 @@ export default function PreMatchHero({ meta, kickoff, image }: Props) {
   const homeColor = meta.home.color || GOLD;
   const awayColor = meta.away.color || GOLD;
 
+  // Fase de grupos: al terminar la cuenta atrás mostramos "FASE DE GRUPOS ·
+  // GRUPO X" en blanco, en lugar de "A punto de empezar".
+  const isGroupStage = /fase de grupos/i.test(meta.phase);
+  const groupHeadline =
+    isGroupStage && meta.group
+      ? `${meta.phase} · Grupo ${meta.group}`.toUpperCase()
+      : null;
+
   return (
     <div
       style={{
@@ -213,17 +221,23 @@ export default function PreMatchHero({ meta, kickoff, image }: Props) {
                     fontWeight: 700,
                     letterSpacing: 2,
                     textTransform: "uppercase",
-                    color: GOLD2,
+                    color: groupHeadline ? "#fff" : GOLD2,
                   }}
                 >
-                  {awaitingLive ? "Esperando datos en vivo" : "A punto de empezar"}
+                  {groupHeadline
+                    ? groupHeadline
+                    : awaitingLive
+                      ? "Esperando datos en vivo"
+                      : "A punto de empezar"}
                 </div>
                 <div style={{ marginTop: 8, fontSize: 12.5, fontWeight: 700, color: MID }}>
-                  {awaitingLive
-                    ? "El partido ya ha comenzado · actualizando…"
-                    : ko
-                      ? `Saque previsto · ${ko.time}h`
-                      : "Por comenzar"}
+                  {groupHeadline
+                    ? "Preparado para el partido"
+                    : awaitingLive
+                      ? "El partido ya ha comenzado · actualizando…"
+                      : ko
+                        ? `Saque previsto · ${ko.time}h`
+                        : "Por comenzar"}
                 </div>
               </>
             )}

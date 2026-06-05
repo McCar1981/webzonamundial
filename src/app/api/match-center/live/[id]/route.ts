@@ -22,6 +22,14 @@ import { fetchLiveSnapshot, scheduledSnapshot } from "@/lib/match-center/apiFoot
 import { PROGRAMMED_MATCH_IDS } from "@/lib/match-center/programmed";
 const REAL_ONLY_IDS = new Set<number>(PROGRAMMED_MATCH_IDS);
 import { aiNarrateBatch } from "@/lib/match-center/narrator";
+import { etToDate } from "@/lib/bracket/match-time";
+
+// Los partidos de FASE DE GRUPOS tampoco simulan: se quedan "preparados para el
+// partido" (cuenta atrás al saque) hasta que haya datos reales. Así un partido
+// del Mundial nunca se ve como una simulación.
+function isGroupStage(phase: string): boolean {
+  return /fase de grupos/i.test(phase);
+}
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -48,9 +56,11 @@ export async function GET(
   }
 
   const url = new URL(req.url);
-  // Los partidos solo-reales (p.ej. Portugal-Chile) NUNCA simulan, aunque se pida
-  // ?sim=1 desde el hub: ahí mostramos datos reales o el estado "por comenzar".
-  const forceSim = url.searchParams.get("sim") === "1" && !REAL_ONLY_IDS.has(matchId);
+  // Partidos que nunca simulan: los solo-reales (p.ej. Portugal-Chile) y TODOS
+  // los de fase de grupos. Antes del saque se quedan "por comenzar" con cuenta
+  // atrás; aunque se pida ?sim=1 desde el hub no simulan.
+  const realOnly = REAL_ONLY_IDS.has(matchId) || isGroupStage(meta.phase);
+  const forceSim = url.searchParams.get("sim") === "1" && !realOnly;
   const useAI = url.searchParams.get("ai") !== "0" && !!process.env.ANTHROPIC_API_KEY;
 
   // --- Modo live real ---
@@ -87,10 +97,12 @@ export async function GET(
       }
       // si la API falla, caemos a simulación (salvo partidos solo-reales)
     }
-    // Partidos solo-reales: nunca simular. Si aún no hay datos en vivo,
-    // devolvemos un estado estático "por comenzar" con la info disponible.
-    if (REAL_ONLY_IDS.has(matchId)) {
-      return NextResponse.json(scheduledSnapshot(meta), {
+    // Partidos solo-reales / fase de grupos: nunca simular. Si aún no hay datos
+    // en vivo, devolvemos un estado "por comenzar" con la cuenta atrás al saque
+    // (derivada de la hora oficial ET del fixture).
+    if (realOnly) {
+      const kickoff = etToDate(meta.date, meta.time)?.toISOString();
+      return NextResponse.json(scheduledSnapshot(meta, kickoff), {
         headers: { "Cache-Control": "no-store" },
       });
     }

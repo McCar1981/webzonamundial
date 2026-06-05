@@ -12,10 +12,13 @@
 import { useEffect, useRef, useState } from "react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { defaultCareer, loadCareer, saveCareer, isCareerStarted } from "@/lib/modo-carrera/store";
-import type { CareerState, CareerTab, SkillBranch } from "@/lib/modo-carrera/types";
+import type { CareerState, CareerTab, SkillBranch, NarrativeKind } from "@/lib/modo-carrera/types";
 import { unlockSkill } from "@/lib/modo-carrera/engine";
 import { ensureMissions, advanceMission, claimMission } from "@/lib/modo-carrera/missions";
-import { fetchServerCareer, saveServerCareer } from "./api";
+import { templateEntry, type NarrativeContext } from "@/lib/modo-carrera/narrative";
+import { PHILOSOPHIES } from "@/lib/modo-carrera/constants";
+import { SELECCIONES } from "@/data/selecciones";
+import { fetchServerCareer, saveServerCareer, requestNarrative } from "./api";
 import { BG, BG2, GOLD, GOLD2, MID } from "./fx";
 import OnboardingDT from "./OnboardingDT";
 import HubView from "./HubView";
@@ -118,6 +121,22 @@ export default function CareerGame() {
         : c,
     );
 
+  // Genera una entrada de narrativa (IA en el servidor; si falla, plantilla local).
+  const handleGenerate = async (kind: NarrativeKind) => {
+    if (!career) return;
+    const ctx: NarrativeContext = {
+      dtName: career.identity.name.trim() || "El nuevo DT",
+      philosophyName: PHILOSOPHIES.find((p) => p.id === career.identity.philosophy)?.name ?? "su estilo",
+      nationName: SELECCIONES.find((s) => s.slug === career.identity.nationSlug)?.nombre ?? "su selección",
+      overall: career.progression.overall,
+      season: career.progression.season,
+      morale: career.progression.morale,
+      reputationTotal: career.reputation.total,
+    };
+    const entry = (await requestNarrative(kind, ctx)) ?? templateEntry(kind, ctx);
+    setCareer((c) => (c ? { ...c, narrative: [entry, ...c.narrative], updatedAt: new Date().toISOString() } : c));
+  };
+
   return (
     <div style={{ background: BG, minHeight: "100vh", color: "#fff", fontFamily: "'Outfit',sans-serif", padding: "32px 20px 80px" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto 18px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
@@ -169,7 +188,7 @@ export default function CareerGame() {
       {tab === "habilidades" && <SkillTreeView career={career} onUnlock={handleUnlock} />}
       {tab === "misiones" && <MissionsView career={career} onAdvance={handleAdvance} onClaim={handleClaim} />}
       {tab === "reputacion" && <ReputationView career={career} />}
-      {tab === "narrativa" && <NarrativeView career={career} onChoose={handleChoose} />}
+      {tab === "narrativa" && <NarrativeView career={career} onChoose={handleChoose} onGenerate={handleGenerate} />}
       {tab === "legado" && <LegacyView career={career} />}
     </div>
   );

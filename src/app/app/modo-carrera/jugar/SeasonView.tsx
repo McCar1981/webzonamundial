@@ -6,11 +6,14 @@
 
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 import { BG, BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED, flagUrl } from "./fx";
 import { SELECCIONES } from "@/data/selecciones";
 import { STAGE_LABEL } from "@/lib/modo-carrera/season";
 import type { PlayResult } from "@/lib/modo-carrera/season";
+import { liveLockMs } from "@/lib/modo-carrera/live-season";
+import { getUserTimezone } from "@/lib/bracket/match-time";
 import { DEMAND_LABEL, VERDICT_LABEL } from "@/lib/modo-carrera/board";
 import type { CareerState, SeasonMatch } from "@/lib/modo-carrera/types";
 
@@ -25,6 +28,32 @@ function confColor(n: number): string {
 
 function sel(slug: string) {
   return SELECCIONES.find((s) => s.slug === slug);
+}
+
+/** "Faltan 3 días", "Faltan 5 h 20 min", etc. */
+function fmtCountdown(ms: number): string {
+  if (ms <= 0) return "Disponible ahora";
+  const min = Math.floor(ms / 60000);
+  const days = Math.floor(min / 1440);
+  const hours = Math.floor((min % 1440) / 60);
+  const mins = min % 60;
+  if (days >= 1) return `Faltan ${days} ${days === 1 ? "día" : "días"}${hours ? ` y ${hours} h` : ""}`;
+  if (hours >= 1) return `Faltan ${hours} h ${mins} min`;
+  return `Faltan ${mins} min`;
+}
+
+function fmtKickoff(iso: string): string {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return "";
+  return new Intl.DateTimeFormat("es-ES", {
+    timeZone: getUserTimezone(),
+    weekday: "short",
+    day: "2-digit",
+    month: "short",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).format(d);
 }
 
 function FlagName({ slug, size = 22 }: { slug: string; size?: number }) {
@@ -68,6 +97,9 @@ function FixtureRow({ m, isNext }: { m: SeasonMatch; isNext: boolean }) {
           <FlagName slug={m.opponentSlug} />
           <span style={{ fontSize: 11, color: DIM, fontWeight: 600 }}>{m.home ? "(L)" : "(V)"}</span>
         </div>
+        {!m.played && m.kickoffISO && (
+          <div style={{ fontSize: 11, color: DIM, marginTop: 4, textTransform: "capitalize" }}>{fmtKickoff(m.kickoffISO)}</div>
+        )}
       </div>
       <div style={{ textAlign: "right" }}>
         {m.played && m.gf !== null && m.ga !== null ? (
@@ -84,24 +116,39 @@ function FixtureRow({ m, isNext }: { m: SeasonMatch; isNext: boolean }) {
 
 export default function SeasonView({
   career,
+  paseDT = false,
+  canLive = false,
   onStart,
+  onStartLive,
   onPlayNext,
   onNextSeason,
 }: {
   career: CareerState;
+  paseDT?: boolean;
+  canLive?: boolean;
   onStart: () => void;
+  onStartLive?: () => void;
   onPlayNext: () => PlayResult | null;
   onNextSeason: () => void;
 }) {
   const { season } = career;
   const [busy, setBusy] = useState(false);
   const [reveal, setReveal] = useState<PlayResult | null>(null);
+  const [nowMs, setNowMs] = useState<number>(() => Date.now());
+
+  // Tick por minuto para refrescar la cuenta atrás de la Temporada en Vivo.
+  useEffect(() => {
+    if (!season?.live) return;
+    const id = setInterval(() => setNowMs(Date.now()), 60000);
+    return () => clearInterval(id);
+  }, [season?.live]);
 
   const nationSlug = career.identity.nationSlug ?? "";
   const nation = sel(nationSlug);
 
-  // Sin temporada activa → CTA para iniciar el torneo.
+  // Sin temporada activa → CTA para iniciar el torneo (clásico o en vivo).
   if (!season) {
+    const liveAvailable = paseDT && canLive;
     return (
       <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center", padding: "40px 20px" }}>
         <h2 style={{ fontSize: 24, fontWeight: 900, color: "#fff" }}>El Mundial te espera</h2>
@@ -112,32 +159,78 @@ export default function SeasonView({
             "Configura tu selección para comenzar el torneo."
           )}
         </p>
-        <button
-          type="button"
-          onClick={onStart}
-          style={{
-            marginTop: 24,
-            padding: "14px 32px",
-            borderRadius: 12,
-            border: "none",
-            background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
-            color: BG,
-            fontWeight: 900,
-            fontSize: 15,
-            cursor: "pointer",
-            boxShadow: "0 10px 30px rgba(201,168,76,0.35)",
-          }}
-        >
-          Comenzar temporada {career.progression.season}
-        </button>
+
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12, marginTop: 24 }}>
+          <button
+            type="button"
+            onClick={onStart}
+            style={{
+              padding: "14px 32px",
+              borderRadius: 12,
+              border: "none",
+              background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
+              color: BG,
+              fontWeight: 900,
+              fontSize: 15,
+              cursor: "pointer",
+              boxShadow: "0 10px 30px rgba(201,168,76,0.35)",
+            }}
+          >
+            Comenzar temporada {career.progression.season}
+          </button>
+
+          {/* Temporada en Vivo: disponible con Pase DT y si hay partidos reales */}
+          {liveAvailable && onStartLive ? (
+            <button
+              type="button"
+              onClick={onStartLive}
+              style={{
+                padding: "12px 28px",
+                borderRadius: 12,
+                border: `1px solid ${GREEN}`,
+                background: "rgba(34,197,94,0.12)",
+                color: GREEN,
+                fontWeight: 800,
+                fontSize: 14,
+                cursor: "pointer",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+              }}
+            >
+              <span style={{ width: 8, height: 8, borderRadius: "50%", background: GREEN, boxShadow: `0 0 8px ${GREEN}` }} />
+              Jugar Temporada en Vivo
+            </button>
+          ) : canLive ? (
+            <Link
+              href="/premium"
+              style={{
+                maxWidth: 420,
+                padding: "12px 18px",
+                borderRadius: 12,
+                background: "linear-gradient(135deg, rgba(201,168,76,0.16), rgba(232,212,139,0.06))",
+                border: "1px solid rgba(201,168,76,0.35)",
+                textDecoration: "none",
+                textAlign: "left",
+              }}
+            >
+              <div style={{ fontSize: 13.5, fontWeight: 800, color: GOLD2 }}>Temporada en Vivo</div>
+              <div style={{ fontSize: 12, color: MID, marginTop: 2 }}>
+                Tu carrera avanza al ritmo del Mundial real{nation ? ` de ${nation.nombre}` : ""}: cada partido se desbloquea a la hora real del saque. Disponible con el Pase DT.
+              </div>
+            </Link>
+          ) : null}
+        </div>
       </div>
     );
   }
 
   const nextMatch = !season.finished ? season.fixtures[season.cursor] ?? null : null;
+  const lockMs = season.live && nextMatch ? liveLockMs(nextMatch, nowMs) : 0;
+  const locked = lockMs > 0;
 
   const play = () => {
-    if (busy || !nextMatch) return;
+    if (busy || !nextMatch || locked) return;
     setBusy(true);
     const res = onPlayNext();
     if (res && res.match) setReveal(res);
@@ -154,7 +247,15 @@ export default function SeasonView({
       {/* Cabecera */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12, marginBottom: 18 }}>
         <div>
-          <h2 style={{ fontSize: 22, fontWeight: 900, color: "#fff" }}>Temporada {season.season}</h2>
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <h2 style={{ fontSize: 22, fontWeight: 900, color: "#fff" }}>Temporada {season.season}</h2>
+            {season.live && (
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 11, fontWeight: 800, color: GREEN, border: `1px solid ${GREEN}66`, background: "rgba(34,197,94,0.12)", borderRadius: 999, padding: "3px 10px" }}>
+                <span style={{ width: 7, height: 7, borderRadius: "50%", background: GREEN, boxShadow: `0 0 8px ${GREEN}` }} />
+                EN VIVO
+              </span>
+            )}
+          </div>
           <p style={{ fontSize: 13, color: MID, marginTop: 4 }}>
             {nation ? `Al mando de ${nation.nombre}` : "Mundial"} · {STAGE_LABEL[season.stage]}
           </p>
@@ -165,24 +266,32 @@ export default function SeasonView({
           </p>
         </div>
         {!season.finished && nextMatch && (
-          <button
-            type="button"
-            onClick={play}
-            disabled={busy}
-            style={{
-              padding: "12px 24px",
-              borderRadius: 10,
-              border: "none",
-              background: busy ? BG3 : `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
-              color: busy ? DIM : BG,
-              fontWeight: 900,
-              fontSize: 14,
-              cursor: busy ? "default" : "pointer",
-              boxShadow: busy ? "none" : "0 8px 22px rgba(201,168,76,0.32)",
-            }}
-          >
-            {busy ? "Jugando…" : "Disputar partido"}
-          </button>
+          locked ? (
+            <div style={{ textAlign: "right" }}>
+              <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: 0.6, textTransform: "uppercase", color: GREEN }}>El partido te espera</div>
+              <div style={{ fontSize: 14, fontWeight: 900, color: GOLD2, marginTop: 2 }}>{fmtCountdown(lockMs)}</div>
+              <div style={{ fontSize: 11, color: DIM, marginTop: 2 }}>Se juega a la hora real del saque</div>
+            </div>
+          ) : (
+            <button
+              type="button"
+              onClick={play}
+              disabled={busy}
+              style={{
+                padding: "12px 24px",
+                borderRadius: 10,
+                border: "none",
+                background: busy ? BG3 : `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
+                color: busy ? DIM : BG,
+                fontWeight: 900,
+                fontSize: 14,
+                cursor: busy ? "default" : "pointer",
+                boxShadow: busy ? "none" : "0 8px 22px rgba(201,168,76,0.32)",
+              }}
+            >
+              {busy ? "Jugando…" : "Disputar partido"}
+            </button>
+          )
         )}
       </div>
 

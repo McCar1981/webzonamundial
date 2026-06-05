@@ -15,6 +15,7 @@ import { defaultCareer, loadCareer, saveCareer, isCareerStarted } from "@/lib/mo
 import type { CareerState, CareerTab, SkillBranch, NarrativeKind } from "@/lib/modo-carrera/types";
 import { unlockSkill, applyDecision } from "@/lib/modo-carrera/engine";
 import { beginSeason, playNextMatch, startNextSeason, type PlayResult } from "@/lib/modo-carrera/season";
+import { beginLiveSeason, hasLiveFixtures } from "@/lib/modo-carrera/live-season";
 import { ensureMissions, advanceMission, claimMission } from "@/lib/modo-carrera/missions";
 import { claimStreak } from "@/lib/modo-carrera/streak";
 import { templateEntry, type NarrativeContext } from "@/lib/modo-carrera/narrative";
@@ -134,6 +135,8 @@ export default function CareerGame() {
   // Motor de temporada.
   const handleStartSeason = () =>
     setCareer((c) => (c ? beginSeason(c) : c));
+  const handleStartLiveSeason = () =>
+    setCareer((c) => (c ? beginLiveSeason(c) ?? beginSeason(c) : c));
   const handleNextSeason = () =>
     setCareer((c) => (c ? startNextSeason(c) : c));
   const handlePlayNext = (): PlayResult | null => {
@@ -213,7 +216,10 @@ export default function CareerGame() {
       {tab === "temporada" && (
         <SeasonView
           career={career}
+          paseDT={paseDT}
+          canLive={hasLiveFixtures(career.identity.nationSlug)}
           onStart={handleStartSeason}
+          onStartLive={handleStartLiveSeason}
           onPlayNext={handlePlayNext}
           onNextSeason={handleNextSeason}
         />

@@ -276,6 +276,13 @@ export function playNextMatch(c0: CareerState): PlayResult {
   const fx = season.fixtures[idx];
   if (fx.played) return empty;
 
+  // Temporada en Vivo: el partido no se puede disputar hasta la hora real del
+  // saque. Si aún no ha llegado, no pasa nada (la UI muestra la cuenta atrás).
+  if (season.live && fx.kickoffISO) {
+    const k = Date.parse(fx.kickoffISO);
+    if (Number.isFinite(k) && k > Date.now()) return empty;
+  }
+
   const decisive = fx.stage !== "grupos";
   const { gf, ga } = simulate(c0, fx, decisive);
   const outcome: MatchOutcome = gf > ga ? "V" : gf < ga ? "D" : "E";

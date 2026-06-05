@@ -99,6 +99,7 @@ function normalizeSeason(raw: unknown): SeasonState | null {
       label: typeof m.label === "string" ? m.label : "Partido",
       opponentSlug: m.opponentSlug as string,
       home: m.home !== false,
+      kickoffISO: typeof m.kickoffISO === "string" ? m.kickoffISO : null,
       played: m.played === true,
       gf: typeof m.gf === "number" ? clampInt(m.gf, 0, 99, 0) : null,
       ga: typeof m.ga === "number" ? clampInt(m.ga, 0, 99, 0) : null,
@@ -111,6 +112,7 @@ function normalizeSeason(raw: unknown): SeasonState | null {
     cursor: clampInt(s.cursor, 0, fixtures.length, 0),
     stage: STAGES.includes(s.stage as TournamentStage) ? (s.stage as TournamentStage) : "grupos",
     finished: s.finished === true,
+    live: s.live === true,
   };
 }
 

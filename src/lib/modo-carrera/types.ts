@@ -169,6 +169,11 @@ export interface SeasonMatch {
   opponentSlug: string;
   /** ¿Se juega como local? (afecta levemente la simulación). */
   home: boolean;
+  /**
+   * Solo en Temporada en Vivo: instante real del saque (ISO). El partido no se
+   * puede disputar hasta que llegue esa hora. null/ausente = sin bloqueo horario.
+   */
+  kickoffISO?: string | null;
   played: boolean;
   /** Goles a favor/en contra (null hasta que se juega). */
   gf: number | null;
@@ -188,6 +193,11 @@ export interface SeasonState {
   stage: TournamentStage;
   /** El torneo terminó (campeón o eliminado). */
   finished: boolean;
+  /**
+   * Temporada en Vivo (Pase DT): el calendario sigue los partidos REALES de la
+   * selección y cada encuentro se desbloquea a la hora real del saque.
+   */
+  live?: boolean;
 }
 
 // ─── Junta / Federación (presión y objetivos, estilo FIFA) ───────────────────

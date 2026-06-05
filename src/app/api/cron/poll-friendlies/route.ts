@@ -33,6 +33,7 @@ import {
   type Score,
 } from "@/lib/friendlies/types";
 import { broadcastPush, type PushPayload } from "@/lib/push-notifications";
+import { esName, favoritePhoto } from "@/lib/friendlies/teamInfo";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -89,24 +90,31 @@ function shouldPoll(fix: FriendlyFixture, now: number): boolean {
   return false;
 }
 
-function teams(s: FriendlySnapshot): string {
-  return `${s.home.name} vs ${s.away.name}`;
+/** "Local vs Visitante" con los nombres ya traducidos al español. */
+function vsText(homeEs: string, awayEs: string): string {
+  return `${homeEs} vs ${awayEs}`;
 }
 
 function scoreText(goals: Score): string {
   return `${goals[0] ?? 0}-${goals[1] ?? 0}`;
 }
 
-function eventLabel(e: FriendlyEvent, s: FriendlySnapshot): {
+function eventLabel(
+  e: FriendlyEvent,
+  s: FriendlySnapshot,
+  homeEs: string,
+  awayEs: string,
+): {
   title: string;
   body: string;
   icon: string;
 } | null {
-  // "country" del evento = la selección. "player" = nombre que da api-football.
-  const team = e.side === "home" ? s.home.name : e.side === "away" ? s.away.name : "";
+  // "country" del evento = la selección (en español). "player" = api-football.
+  const team = e.side === "home" ? homeEs : e.side === "away" ? awayEs : "";
   const player = e.player?.trim() || "";
   const min = `${e.minute}'${e.extra ? `+${e.extra}` : ""}`;
   const icon = eventIcon(e, s);
+  const vs = vsText(homeEs, awayEs);
   switch (e.type) {
     case "goal":
     case "penalty_goal": {
@@ -115,26 +123,26 @@ function eventLabel(e: FriendlyEvent, s: FriendlySnapshot): {
       const head = player ? `GOL de ${player} (${team})${pen}` : `GOL${pen} de ${team}`;
       return {
         title: head,
-        body: `${min} · ${teams(s)} ${scoreText(s.goals)}${e.assist ? ` · asist. ${e.assist}` : ""}`,
+        body: `${min} · ${vs} ${scoreText(s.goals)}${e.assist ? ` · asist. ${e.assist}` : ""}`,
         icon,
       };
     }
     case "own_goal":
       return {
         title: player ? `GOL en propia de ${player} (${team})` : `GOL en propia (${team})`,
-        body: `${min} · ${teams(s)} ${scoreText(s.goals)}`,
+        body: `${min} · ${vs} ${scoreText(s.goals)}`,
         icon,
       };
     case "penalty_miss":
       return {
         title: player ? `Penalti fallado por ${player} (${team})` : `Penalti fallado (${team})`,
-        body: `${min} · ${teams(s)}`,
+        body: `${min} · ${vs}`,
         icon,
       };
     case "red":
       return {
         title: player ? `Tarjeta roja a ${player} (${team})` : `Tarjeta roja (${team})`,
-        body: `${min} · ${teams(s)} ${scoreText(s.goals)}`,
+        body: `${min} · ${vs} ${scoreText(s.goals)}`,
         icon,
       };
     case "second_yellow":
@@ -142,7 +150,7 @@ function eventLabel(e: FriendlyEvent, s: FriendlySnapshot): {
         title: player
           ? `Tarjeta roja (doble amarilla) a ${player} (${team})`
           : `Tarjeta roja (doble amarilla) (${team})`,
-        body: `${min} · ${teams(s)} ${scoreText(s.goals)}`,
+        body: `${min} · ${vs} ${scoreText(s.goals)}`,
         icon,
       };
     default:
@@ -196,6 +204,14 @@ export async function GET(req: Request) {
     const snap = await fetchFriendlySnapshot(fix.fixtureId);
     if (!snap) continue;
 
+    // Nombres en español + foto que acompaña el partido (selección favorita).
+    const [homeEs, awayEs, matchPhoto] = await Promise.all([
+      esName(snap.home.name),
+      esName(snap.away.name),
+      favoritePhoto(snap.home.name, snap.away.name),
+    ]);
+    const vs = vsText(homeEs, awayEs);
+
     const prev: FriendlyState =
       (await getFriendlyState(fix.fixtureId)) ?? {
         status: "",
@@ -223,11 +239,11 @@ export async function GET(req: Request) {
     // Alineaciones confirmadas (antes del saque, una sola vez).
     if (!prev.lineupsSent && snap.homeLineup && snap.awayLineup) {
       await push({
-        title: `Alineaciones — ${teams(snap)}`,
+        title: `Alineaciones — ${vs}`,
         body: `XI confirmado. ${snap.homeLineup.formation ?? ""} vs ${snap.awayLineup.formation ?? ""}`.trim() + venueSuffix(snap),
         url,
         icon: snap.home.logo || PUSH_ICON,
-        image: snap.away.logo || undefined,
+        image: matchPhoto || snap.away.logo || undefined,
         tag: `amistoso-${fix.fixtureId}-lineups`,
       });
       next.lineupsSent = true;
@@ -238,11 +254,11 @@ export async function GET(req: Request) {
     // isLiveStatus incluye el descanso, así que lo excluimos aquí.)
     if (!prev.startSent && isLiveStatus(snap.status) && snap.status !== "HT") {
       await push({
-        title: `¡Comienza! ${teams(snap)}`,
+        title: `¡Comienza! ${vs}`,
         body: `Amistoso internacional en juego.${venueSuffix(snap)}`,
         url,
         icon: snap.home.logo || PUSH_ICON,
-        image: snap.away.logo || undefined,
+        image: matchPhoto || snap.away.logo || undefined,
         tag: `amistoso-${fix.fixtureId}-start`,
       });
       next.startSent = true;
@@ -252,7 +268,7 @@ export async function GET(req: Request) {
     // Eventos nuevos (gol, roja, penalti fallado).
     for (const e of snap.events) {
       if (seen.has(e.id)) continue;
-      const label = eventLabel(e, snap);
+      const label = eventLabel(e, snap, homeEs, awayEs);
       if (!label) continue;
       await push({
         title: label.title,
@@ -267,7 +283,7 @@ export async function GET(req: Request) {
     // Descanso.
     if (!prev.htSent && snap.status === "HT") {
       await push({
-        title: `Descanso — ${teams(snap)} ${scoreText(snap.goals)}`,
+        title: `Descanso — ${vs} ${scoreText(snap.goals)}`,
         body: `Final de la primera parte.`,
         url,
         icon: PUSH_ICON,
@@ -279,17 +295,20 @@ export async function GET(req: Request) {
 
     // Final.
     if (!prev.ftSent && isFinishedStatus(snap.status)) {
-      const winner =
+      const winnerEs =
         (snap.goals[0] ?? 0) > (snap.goals[1] ?? 0)
-          ? snap.home
+          ? homeEs
           : (snap.goals[1] ?? 0) > (snap.goals[0] ?? 0)
-          ? snap.away
+          ? awayEs
           : null;
+      const winnerLogo =
+        winnerEs === homeEs ? snap.home.logo : winnerEs === awayEs ? snap.away.logo : null;
       await push({
-        title: `Final — ${teams(snap)} ${scoreText(snap.goals)}`,
-        body: winner ? `Victoria de ${winner.name}.` : `Empate en el amistoso.`,
+        title: `Final — ${vs} ${scoreText(snap.goals)}`,
+        body: winnerEs ? `Victoria de ${winnerEs}.` : `Empate en el amistoso.`,
         url,
-        icon: winner?.logo || PUSH_ICON,
+        icon: winnerLogo || PUSH_ICON,
+        image: matchPhoto || undefined,
         tag: `amistoso-${fix.fixtureId}-ft`,
       });
       next.ftSent = true;

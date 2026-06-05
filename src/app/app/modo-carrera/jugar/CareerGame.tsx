@@ -13,7 +13,7 @@ import { useEffect, useRef, useState } from "react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { defaultCareer, loadCareer, saveCareer, isCareerStarted } from "@/lib/modo-carrera/store";
 import type { CareerState, CareerTab, SkillBranch, NarrativeKind } from "@/lib/modo-carrera/types";
-import { unlockSkill } from "@/lib/modo-carrera/engine";
+import { unlockSkill, applyDecision } from "@/lib/modo-carrera/engine";
 import { buildSeason, playNextMatch, startNextSeason, type PlayResult } from "@/lib/modo-carrera/season";
 import { ensureMissions, advanceMission, claimMission } from "@/lib/modo-carrera/missions";
 import { templateEntry, type NarrativeContext } from "@/lib/modo-carrera/narrative";
@@ -24,11 +24,13 @@ import { BG, BG2, GOLD, GOLD2, MID } from "./fx";
 import OnboardingDT from "./OnboardingDT";
 import HubView from "./HubView";
 import SeasonView from "./SeasonView";
+import LevelUpOverlay from "./LevelUpOverlay";
 import SkillTreeView from "./SkillTreeView";
 import MissionsView from "./MissionsView";
 import ReputationView from "./ReputationView";
 import NarrativeView from "./NarrativeView";
 import LegacyView from "./LegacyView";
+import RankingView from "./RankingView";
 
 const TABS: { id: CareerTab; label: string }[] = [
   { id: "hub", label: "Hub" },
@@ -38,13 +40,16 @@ const TABS: { id: CareerTab; label: string }[] = [
   { id: "reputacion", label: "Reputación" },
   { id: "narrativa", label: "Narrativa" },
   { id: "legado", label: "Legado" },
+  { id: "ranking", label: "Ranking" },
 ];
 
 export default function CareerGame() {
   const [career, setCareer] = useState<CareerState | null>(null);
   const [authed, setAuthed] = useState<boolean | null>(null);
   const [tab, setTab] = useState<CareerTab>("hub");
+  const [levelUp, setLevelUp] = useState<{ overall: number; levels: number } | null>(null);
   const hydrated = useRef(false);
+  const prevOverall = useRef<number | null>(null);
 
   // Carga inicial + sincronización con servidor.
   useEffect(() => {
@@ -81,6 +86,16 @@ export default function CareerGame() {
     saveCareer(career);
     if (authed) void saveServerCareer(career);
   }, [career, authed]);
+
+  // Celebración de subida de nivel: dispara el overlay cuando crece el overall.
+  useEffect(() => {
+    const cur = career?.progression.overall;
+    if (typeof cur !== "number") return;
+    if (prevOverall.current !== null && hydrated.current && cur > prevOverall.current) {
+      setLevelUp({ overall: cur, levels: cur - prevOverall.current });
+    }
+    prevOverall.current = cur;
+  }, [career?.progression.overall]);
 
   if (!career) {
     return (
@@ -123,17 +138,7 @@ export default function CareerGame() {
     return res;
   };
   const handleChoose = (entryId: string, choiceId: string) =>
-    setCareer((c) =>
-      c
-        ? {
-            ...c,
-            narrative: c.narrative.map((e) =>
-              e.id === entryId && !e.chosen ? { ...e, chosen: choiceId } : e,
-            ),
-            updatedAt: new Date().toISOString(),
-          }
-        : c,
-    );
+    setCareer((c) => (c ? applyDecision(c, entryId, choiceId) : c));
 
   // Genera una entrada de narrativa (IA en el servidor; si falla, plantilla local).
   const handleGenerate = async (kind: NarrativeKind) => {
@@ -153,6 +158,7 @@ export default function CareerGame() {
 
   return (
     <div style={{ background: BG, minHeight: "100vh", color: "#fff", fontFamily: "'Outfit',sans-serif", padding: "32px 20px 80px" }}>
+      {levelUp && <LevelUpOverlay overall={levelUp.overall} levels={levelUp.levels} onClose={() => setLevelUp(null)} />}
       <div style={{ maxWidth: 1100, margin: "0 auto 18px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <h1 style={{ fontSize: "clamp(22px,3vw,30px)", fontWeight: 900 }}>Modo Carrera</h1>
         {authed === false && (
@@ -212,6 +218,7 @@ export default function CareerGame() {
       {tab === "reputacion" && <ReputationView career={career} />}
       {tab === "narrativa" && <NarrativeView career={career} onChoose={handleChoose} onGenerate={handleGenerate} />}
       {tab === "legado" && <LegacyView career={career} />}
+      {tab === "ranking" && <RankingView />}
     </div>
   );
 }

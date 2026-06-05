@@ -207,6 +207,19 @@ export interface CareerState {
   updatedAt: string;
 }
 
+/** Entrada del ranking global de DTs (cruza usuarios). */
+export interface CareerRankEntry {
+  position: number;
+  user_id: string;
+  dt_name: string;
+  nation_slug: string | null;
+  display_name: string;
+  avatar_url: string | null;
+  overall: number;
+  reputation: number;
+  rank: string;
+}
+
 /** Pestañas del Hub jugable (orden de navegación). */
 export type CareerTab =
   | "hub"
@@ -215,4 +228,5 @@ export type CareerTab =
   | "misiones"
   | "reputacion"
   | "narrativa"
-  | "legado";
+  | "legado"
+  | "ranking";

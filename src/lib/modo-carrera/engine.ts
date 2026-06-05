@@ -8,10 +8,11 @@
 //
 // Todas las funciones son inmutables: devuelven un CareerState NUEVO.
 
-import type { CareerState, SkillBranch } from "./types";
+import type { CareerState, SkillBranch, ReputationStats } from "./types";
 import { xpRequired, MAX_SKILL_LEVEL } from "./constants";
 
 const now = () => new Date().toISOString();
+const clamp = (n: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, n));
 
 // ─── XP / subida de nivel ────────────────────────────────────────────────────
 export interface XpResult {
@@ -91,6 +92,56 @@ export function unlockSkill(state: CareerState, branch: SkillBranch): CareerStat
     ...state,
     skills: { levels, points: state.skills.points - 1 },
     reputation: { ...state.reputation, stats, total },
+    updatedAt: now(),
+  };
+}
+
+// ─── Decisiones de narrativa (Pilar 6) ───────────────────────────────────────
+// Cada opción de una rueda de prensa/evento aplica efectos reales sobre la moral
+// y la reputación. Las claves coinciden con los `id` de las opciones generadas en
+// narrative.ts (calma/ambicion/cantera).
+interface DecisionEffect {
+  morale?: number;
+  stats?: Partial<ReputationStats>;
+}
+
+const DECISION_EFFECTS: Record<string, DecisionEffect> = {
+  calma: { morale: 4, stats: { disciplina: 3 } },
+  ambicion: { morale: 2, stats: { mediatico: 6, prestigio: 2 } },
+  cantera: { morale: 3, stats: { cantera: 6 } },
+};
+
+/**
+ * Registra la decisión del usuario en una entrada de narrativa y aplica sus
+ * efectos (moral + reputación). Idempotente: si la entrada no existe o ya estaba
+ * decidida, devuelve el estado sin cambios.
+ */
+export function applyDecision(state: CareerState, entryId: string, choiceId: string): CareerState {
+  const entry = state.narrative.find((e) => e.id === entryId);
+  if (!entry || entry.chosen) return state;
+
+  const narrative = state.narrative.map((e) =>
+    e.id === entryId && !e.chosen ? { ...e, chosen: choiceId } : e,
+  );
+
+  const eff = DECISION_EFFECTS[choiceId];
+  if (!eff) {
+    return { ...state, narrative, updatedAt: now() };
+  }
+
+  const morale = clamp(state.progression.morale + (eff.morale ?? 0), 0, 100);
+  const stats = { ...state.reputation.stats };
+  if (eff.stats) {
+    for (const [k, v] of Object.entries(eff.stats) as [keyof ReputationStats, number][]) {
+      stats[k] = clamp(stats[k] + v, 0, 100);
+    }
+  }
+
+  return {
+    ...state,
+    progression: { ...state.progression, morale },
+    reputation: { ...state.reputation, stats, total: sumReputation(stats) },
+    narrative,
     updatedAt: now(),
   };
 }

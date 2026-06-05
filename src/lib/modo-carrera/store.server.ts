@@ -9,7 +9,7 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { adminClient } from "@/lib/predictions/admin";
 import { normalizeCareer } from "./store";
 import { rankForOverall } from "./constants";
-import type { CareerState } from "./types";
+import type { CareerState, CareerRankEntry } from "./types";
 
 // ─── Partida del usuario ─────────────────────────────────────────────────────
 export async function getCareer(userId: string): Promise<CareerState | null> {
@@ -45,18 +45,6 @@ export async function saveCareer(userId: string, state: CareerState): Promise<vo
 }
 
 // ─── Ranking DT (cruza usuarios) ─────────────────────────────────────────────
-export interface CareerRankEntry {
-  position: number;
-  user_id: string;
-  dt_name: string;
-  nation_slug: string | null;
-  display_name: string;
-  avatar_url: string | null;
-  overall: number;
-  reputation: number;
-  rank: string;
-}
-
 /** Ranking global de DTs por reputación (desempate por overall). */
 export async function getCareerLeaderboard(limit = 50): Promise<CareerRankEntry[]> {
   const admin = adminClient();

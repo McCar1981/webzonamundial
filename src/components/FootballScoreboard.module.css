@@ -1,0 +1,301 @@
+/* FootballScoreboard.module.css
+ *
+ * Marcador de fútbol estilo broadcast (TV). Todo el aspecto se controla con
+ * CSS variables que se inyectan desde el componente (prop `theme`), así que
+ * los colores se pueden cambiar sin tocar este archivo.
+ *
+ * Técnicas usadas: clip-path (paneles diagonales), linear/radial-gradient
+ * (profundidad y brillo), box-shadow inset/externo (relieve y glow),
+ * ::before/::after (reflejos y textura), clamp() (responsive fluido).
+ */
+
+.scoreboard {
+  /* ---- Valores por defecto del tema (los pisa el inline-style del theme) ---- */
+  --fsb-bg: #101418;
+  --fsb-result: #c5161d;
+  --fsb-result-dark: #71090d;
+  --fsb-time: #00c8ff;
+  --fsb-time-dark: #005dff;
+  --fsb-accent: #ff1f2d;
+  --fsb-text: #ffffff;
+
+  /* Altura fluida: ~72px en desktop, se reduce en móvil sin romperse. */
+  --fsb-h: clamp(50px, 8.5vw, 72px);
+  /* Ángulo/desfase de los cortes diagonales. */
+  --fsb-slant: clamp(11px, 2vw, 18px);
+
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  height: var(--fsb-h);
+  /* Espacio extra abajo/lados para que el glow cyan no se recorte. */
+  margin: 0;
+  font-family: "Outfit", system-ui, -apple-system, sans-serif;
+  color: var(--fsb-text);
+  /* Sin overflow:hidden → el glow del panel de tiempo puede salir. */
+  isolation: isolate;
+}
+
+/* Textura sutil de líneas diagonales sobre todo el marcador. */
+.scoreboard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  border-radius: 10px;
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.022) 0px,
+    rgba(255, 255, 255, 0.022) 1px,
+    transparent 1px,
+    transparent 7px
+  );
+  mix-blend-mode: overlay;
+}
+
+/* ============================ PANELES DE EQUIPO ============================ */
+
+.team {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(180deg, #1b2128 0%, var(--fsb-bg) 55%, #0a0d11 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.55);
+}
+
+/* Brillo superior tipo cristal en los paneles oscuros. */
+.team::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 50% 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), transparent);
+}
+
+.home {
+  justify-content: space-between;
+  padding: 0 clamp(8px, 1.6vw, 16px) 0 clamp(20px, 3.2vw, 34px);
+  border-radius: 10px 0 0 10px;
+}
+
+.away {
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  padding: 0 clamp(20px, 3.2vw, 34px) 0 clamp(8px, 1.6vw, 16px);
+}
+
+/* Acento diagonal rojo en el extremo izquierdo del panel local. */
+.accent {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: clamp(8px, 1.4vw, 14px);
+  background: linear-gradient(180deg, var(--fsb-accent), var(--fsb-result-dark));
+  clip-path: polygon(0 0, 100% 0, 60% 100%, 0 100%);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+/* ----------------------------- Banderas ----------------------------- */
+
+.flagWrap {
+  position: relative;
+  flex-shrink: 0;
+  width: clamp(28px, 5.2vw, 42px);
+  height: clamp(28px, 5.2vw, 42px);
+  border-radius: 50%;
+  padding: 2px;
+  /* Anillo metálico. */
+  background: conic-gradient(
+    from 210deg,
+    #f1f1f1,
+    #8d8d8d,
+    #ffffff,
+    #5f5f5f,
+    #d8d8d8,
+    #f1f1f1
+  );
+  box-shadow:
+    0 3px 9px rgba(0, 0, 0, 0.6),
+    inset 0 0 4px rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
+
+.flag {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  background: #222;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.55);
+}
+
+/* --------------------------- Abreviaturas --------------------------- */
+
+.abbr {
+  font-size: clamp(17px, 4.4vw, 30px);
+  font-weight: 800;
+  letter-spacing: 0.045em;
+  line-height: 1;
+  white-space: nowrap;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.65);
+  z-index: 2;
+}
+
+/* ============================ PANEL RESULTADO ============================ */
+
+.result {
+  position: relative;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(6px, 1.4vw, 12px);
+  padding: 0 clamp(18px, 3.4vw, 34px);
+  /* Solapa los paneles de equipo para que el corte diagonal quede encima. */
+  margin: 0 calc(var(--fsb-slant) * -1);
+  /* Parallelogramo inclinado a la derecha (cortes "/"). */
+  clip-path: polygon(
+    var(--fsb-slant) 0,
+    100% 0,
+    calc(100% - var(--fsb-slant)) 100%,
+    0 100%
+  );
+  background:
+    radial-gradient(120% 80% at 50% -10%, rgba(255, 255, 255, 0.28), transparent 60%),
+    linear-gradient(180deg, var(--fsb-result) 0%, var(--fsb-result-dark) 100%);
+  box-shadow:
+    inset 0 2px 1px rgba(255, 255, 255, 0.35),
+    inset 0 -6px 14px rgba(0, 0, 0, 0.5),
+    0 6px 18px rgba(0, 0, 0, 0.45);
+  z-index: 3;
+}
+
+/* Línea diagonal más oscura en los laterales del panel rojo. */
+.result::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  clip-path: polygon(
+    var(--fsb-slant) 0,
+    100% 0,
+    calc(100% - var(--fsb-slant)) 100%,
+    0 100%
+  );
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.45) 0%,
+    transparent 14%,
+    transparent 86%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
+}
+
+/* Reflejo de cristal en la mitad superior del panel rojo. */
+.result::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 55% 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.22), transparent);
+  clip-path: polygon(
+    var(--fsb-slant) 0,
+    100% 0,
+    calc(100% - calc(var(--fsb-slant) * 0.45)) 100%,
+    calc(var(--fsb-slant) * 0.55) 100%
+  );
+}
+
+.score {
+  position: relative;
+  z-index: 2;
+  font-size: clamp(24px, 6.2vw, 42px);
+  font-weight: 900;
+  line-height: 1;
+  text-shadow:
+    0 2px 3px rgba(0, 0, 0, 0.55),
+    0 0 14px rgba(0, 0, 0, 0.3);
+  font-variant-numeric: tabular-nums;
+}
+
+.colon {
+  position: relative;
+  z-index: 2;
+  font-size: clamp(20px, 5vw, 34px);
+  font-weight: 700;
+  line-height: 1;
+  opacity: 0.92;
+  transform: translateY(-0.06em);
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.55);
+}
+
+/* ============================= PANEL TIEMPO ============================= */
+
+.time {
+  position: relative;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 clamp(12px, 2.4vw, 22px);
+  min-width: clamp(58px, 12vw, 92px);
+  /* Solapa el panel visitante por la izquierda con corte diagonal. */
+  margin-left: calc(var(--fsb-slant) * -1);
+  clip-path: polygon(var(--fsb-slant) 0, 100% 0, 100% 100%, 0 100%);
+  border-radius: 0 10px 10px 0;
+  background:
+    radial-gradient(120% 90% at 50% -10%, rgba(255, 255, 255, 0.4), transparent 55%),
+    linear-gradient(180deg, var(--fsb-time) 0%, var(--fsb-time-dark) 100%);
+  box-shadow:
+    inset 0 2px 1px rgba(255, 255, 255, 0.5),
+    inset 0 -6px 14px rgba(0, 0, 0, 0.35),
+    /* Glow cyan externo. */
+    0 0 18px rgba(0, 200, 255, 0.55),
+    0 0 36px rgba(0, 120, 255, 0.3);
+  z-index: 4;
+}
+
+/* Borde luminoso cyan alrededor del panel de tiempo. */
+.time::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  clip-path: polygon(var(--fsb-slant) 0, 100% 0, 100% 100%, 0 100%);
+  border-radius: 0 10px 10px 0;
+  box-shadow: inset 0 0 0 1.5px rgba(180, 245, 255, 0.7);
+}
+
+.timeText {
+  position: relative;
+  z-index: 2;
+  font-size: clamp(15px, 3.6vw, 26px);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: #f4fdff;
+  text-shadow:
+    0 1px 2px rgba(0, 40, 70, 0.7),
+    0 0 10px rgba(255, 255, 255, 0.35);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ====================== AJUSTES MÓVIL (estrechos) ====================== */
+
+@media (max-width: 380px) {
+  .scoreboard {
+    --fsb-slant: 9px;
+  }
+  .accent {
+    width: 7px;
+  }
+}

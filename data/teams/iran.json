@@ -585,7 +585,9 @@
         "display_name": "Saleh Hardani",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "Esteghlal"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -596,7 +598,9 @@
         "display_name": "Ehsan Hajisafi",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "Sepahan"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -637,7 +641,9 @@
         "display_name": "Hossein Kanani",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "Persepolis"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -648,7 +654,9 @@
         "display_name": "Arya Yousefi",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "Sepahan"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -659,7 +667,9 @@
         "display_name": "Ali Nemati",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "Foolad"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/db/Mes_Rafsanjan_F.C._vs_Persepolis_F.C.%2C_19_November_2021_2.jpg"
@@ -685,7 +695,9 @@
         "display_name": "Danial Iri",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "Malavan"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -726,7 +738,9 @@
         "display_name": "Mohammad Mohebbi",
         "position": "MID",
         "detailed_position": "MID",
-        "club": null,
+        "club": {
+          "name": "Rostov"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -752,7 +766,9 @@
         "display_name": "Roozbeh Cheshmi",
         "position": "MID",
         "detailed_position": "MID",
-        "club": null,
+        "club": {
+          "name": "Esteghlal"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -763,7 +779,9 @@
         "display_name": "Mehdi Torabi",
         "position": "MID",
         "detailed_position": "MID",
-        "club": null,
+        "club": {
+          "name": "Tractor"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/93/Mehdi_Torabi_2021.jpg"
@@ -774,7 +792,9 @@
         "display_name": "Mohammad Ghorbani",
         "position": "MID",
         "detailed_position": "MID",
-        "club": null,
+        "club": {
+          "name": "Al Wahda"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Mohammad_Ghorbani_%28footballer%29_2024.jpg"
@@ -785,7 +805,9 @@
         "display_name": "Amirmohammad Razaghinia",
         "position": "MID",
         "detailed_position": "MID",
-        "club": null,
+        "club": {
+          "name": "Esteghlal"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -826,7 +848,9 @@
         "display_name": "Ali Alipour",
         "position": "FWD",
         "detailed_position": "FWD",
-        "club": null,
+        "club": {
+          "name": "Persepolis"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/42/Ali_Alipour_at_IFF%27s_annual_awards_ceremony.jpg"
@@ -837,7 +861,9 @@
         "display_name": "Amirhossein Hosseinzadeh",
         "position": "FWD",
         "detailed_position": "FWD",
-        "club": null,
+        "club": {
+          "name": "Tractor"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/28/Esteghlal_FC_in_training%2C_29_September_2021_-_09.jpg"
@@ -848,7 +874,9 @@
         "display_name": "Shahriyar Moghanloo",
         "position": "FWD",
         "detailed_position": "FWD",
-        "club": null,
+        "club": {
+          "name": "Kalba"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null

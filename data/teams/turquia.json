@@ -531,7 +531,9 @@
         "display_name": "Mert Günok",
         "position": "GK",
         "detailed_position": "GK",
-        "club": null,
+        "club": {
+          "name": "Fenerbahçe"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Mert_G%C3%BCnok_%28cropped%29.jpg"
@@ -647,7 +649,9 @@
         "display_name": "Ozan Kabak",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "TSG Hoffenheim"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Ozan_kabak.jpg"
@@ -763,7 +767,9 @@
         "display_name": "Kaan Ayhan",
         "position": "MID",
         "detailed_position": "MID",
-        "club": null,
+        "club": {
+          "name": "Galatasaray"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/62/Kaan-Ayhan-08-2019.jpg"
@@ -878,7 +884,9 @@
         "display_name": "Oğuz Aydın",
         "position": "FWD",
         "detailed_position": "FWD",
-        "club": null,
+        "club": {
+          "name": "Fenerbahçe"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -889,7 +897,9 @@
         "display_name": "Can Uzun",
         "position": "FWD",
         "detailed_position": "FWD",
-        "club": null,
+        "club": {
+          "name": "Eintracht Frankfurt"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null

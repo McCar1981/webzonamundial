@@ -721,7 +721,9 @@
         "display_name": "Moisés Ramírez",
         "position": "GK",
         "detailed_position": "GK",
-        "club": null,
+        "club": {
+          "name": "Kifisia"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -836,7 +838,9 @@
         "display_name": "Jackson Porozo",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "Tijuana"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Jackson_Porozo_2022.jpg"
@@ -861,7 +865,9 @@
         "display_name": "Jordy Alcívar",
         "position": "MID",
         "detailed_position": "MID",
-        "club": null,
+        "club": {
+          "name": "Independiente del Valle"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/SESI%C3%93N_NO._603_DEL_PLENO_DE_LA_ASAMBLEA_NACIONAL._QUITO%2C_25_DE_JUNIO_2019._%2848129379208%29_%28cropped%29.jpg"
@@ -872,7 +878,9 @@
         "display_name": "Anthony Valencia",
         "position": "MID",
         "detailed_position": "MID",
-        "club": null,
+        "club": {
+          "name": "Antwerp"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -912,7 +920,9 @@
         "display_name": "Pedro Vite",
         "position": "MID",
         "detailed_position": "MID",
-        "club": null,
+        "club": {
+          "name": "UNAM"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/39/Inter_Miami_CF_3-1_UNAM_%286_August_2025%29_04_%28cropped%29.jpg"
@@ -1040,7 +1050,9 @@
         "display_name": "Nilson Angulo",
         "position": "FWD",
         "detailed_position": "FWD",
-        "club": null,
+        "club": {
+          "name": "Sunderland"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Nilson_Angulo_RSC_Anderlecht_2025.jpg"
@@ -1051,7 +1063,9 @@
         "display_name": "Jeremy Arévalo",
         "position": "FWD",
         "detailed_position": "FWD",
-        "club": null,
+        "club": {
+          "name": "VfB Stuttgart"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null

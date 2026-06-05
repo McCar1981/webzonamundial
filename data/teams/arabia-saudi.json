@@ -548,7 +548,9 @@
         "display_name": "Ali Majrashi",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "Al-Ahli"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Ali_Majrashi%2C_2025_CONCACAF_Gold_Cup_%28cropped%29.jpg"
@@ -559,7 +561,9 @@
         "display_name": "Ali Lajami",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "Al-Hilal"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -614,7 +618,9 @@
         "display_name": "Nawaf Bu Washl",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "Al-Nassr"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -625,7 +631,9 @@
         "display_name": "Hassan Kadish",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "Al-Ittihad"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -650,7 +658,9 @@
         "display_name": "Jehad Thikri",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "Al-Qadsiah"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -661,7 +671,9 @@
         "display_name": "Mohammed Abu Alshamat",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "Al-Qadsiah"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -716,7 +728,9 @@
         "display_name": "Ziyad Al-Johani",
         "position": "MID",
         "detailed_position": "MID",
-        "club": null,
+        "club": {
+          "name": "Al-Ahli"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Ziyad_Al-Johani.jpg"
@@ -727,7 +741,9 @@
         "display_name": "Ala Al-Hajji",
         "position": "MID",
         "detailed_position": "MID",
-        "club": null,
+        "club": {
+          "name": "Neom"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -753,7 +769,9 @@
         "display_name": "Aiman Yahya",
         "position": "FWD",
         "detailed_position": "FWD",
-        "club": null,
+        "club": {
+          "name": "Al-Nassr"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -764,7 +782,9 @@
         "display_name": "Feras Al-Brikan",
         "position": "FWD",
         "detailed_position": "FWD",
-        "club": null,
+        "club": {
+          "name": "Al-Ahli"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -804,7 +824,9 @@
         "display_name": "Khalid Al-Ghannam",
         "position": "FWD",
         "detailed_position": "FWD",
-        "club": null,
+        "club": {
+          "name": "Al-Ettifaq"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -815,7 +837,9 @@
         "display_name": "Abdullah Al-Hamddan",
         "position": "FWD",
         "detailed_position": "FWD",
-        "club": null,
+        "club": {
+          "name": "Al-Nassr"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -826,7 +850,9 @@
         "display_name": "Sultan Mandash",
         "position": "FWD",
         "detailed_position": "FWD",
-        "club": null,
+        "club": {
+          "name": "Al-Hilal"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null

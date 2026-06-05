@@ -623,7 +623,9 @@
         "display_name": "Fernando Muslera",
         "position": "GK",
         "detailed_position": "GK",
-        "club": null,
+        "club": {
+          "name": "Estudiantes"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/38/Fernando_Muslera_in_2021.jpg"
@@ -694,7 +696,9 @@
         "display_name": "Mathías Olivera",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "Napoli"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f5/Math%C3%ADas_Olivera_WC2022.jpg"
@@ -825,7 +829,9 @@
         "display_name": "Emiliano Martínez",
         "position": "MID",
         "detailed_position": "MID",
-        "club": null,
+        "club": {
+          "name": "Palmeiras"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Emiliano_Martinez_%28dinamarca%29.jpg"
@@ -865,7 +871,9 @@
         "display_name": "Juan Sanabria",
         "position": "MID",
         "detailed_position": "MID",
-        "club": null,
+        "club": {
+          "name": "Real Salt Lake"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -876,7 +884,9 @@
         "display_name": "Rodrigo Zalazar",
         "position": "MID",
         "detailed_position": "MID",
-        "club": null,
+        "club": {
+          "name": "Braga"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null

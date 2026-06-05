@@ -532,7 +532,9 @@
         "display_name": "Salah Zakaria",
         "position": "GK",
         "detailed_position": "GK",
-        "club": null,
+        "club": {
+          "name": "Al-Duhail"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -588,7 +590,9 @@
         "display_name": "Issa Laye",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "Al-Arabi"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -614,7 +618,9 @@
         "display_name": "Ayoub Aloui",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "Al-Gharafa"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -670,7 +676,9 @@
         "display_name": "Al-Hashmi Al-Hussein",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "Al-Arabi"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -755,7 +763,9 @@
         "display_name": "Ahmed Alaaeldin",
         "position": "FWD",
         "detailed_position": "FWD",
-        "club": null,
+        "club": {
+          "name": "Al-Rayyan"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Qatar_v_Japan_%E2%80%93_AFC_Asian_Cup_2019_final_04_%28cropped%29.jpg"
@@ -826,7 +836,9 @@
         "display_name": "Yusuf Abdurisag",
         "position": "FWD",
         "detailed_position": "FWD",
-        "club": null,
+        "club": {
+          "name": "Al-Wakrah"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Asian_Nations_Cup_Iran_-_Qatar_%2822%29_%28cropped1%29.jpg"
@@ -852,7 +864,9 @@
         "display_name": "Tahsin Jamshid",
         "position": "FWD",
         "detailed_position": "FWD",
-        "club": null,
+        "club": {
+          "name": "Al-Duhail"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -863,7 +877,9 @@
         "display_name": "Mohamed Manai",
         "position": "FWD",
         "detailed_position": "FWD",
-        "club": null,
+        "club": {
+          "name": "Al-Shamal"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null

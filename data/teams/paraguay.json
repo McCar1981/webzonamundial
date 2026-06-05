@@ -712,7 +712,9 @@
         "display_name": "Orlando Gill",
         "position": "GK",
         "detailed_position": "GK",
-        "club": null,
+        "club": {
+          "name": "San Lorenzo"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -723,7 +725,9 @@
         "display_name": "Gastón Olveira",
         "position": "GK",
         "detailed_position": "GK",
-        "club": null,
+        "club": {
+          "name": "Olimpia"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -734,7 +738,9 @@
         "display_name": "Gustavo Velázquez",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "Cerro Porteño"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -760,7 +766,9 @@
         "display_name": "Juan Cáceres",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "Dynamo Moscow"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/77/Juan_Jos%C3%A9_C%C3%A1ceres_2025.jpg"
@@ -801,7 +809,9 @@
         "display_name": "José Canale",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "Lanús"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -827,7 +837,9 @@
         "display_name": "Alexandro Maidana",
         "position": "DEF",
         "detailed_position": "DEF",
-        "club": null,
+        "club": {
+          "name": "Talleres"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -883,7 +895,9 @@
         "display_name": "Mauricio",
         "position": "MID",
         "detailed_position": "MID",
-        "club": null,
+        "club": {
+          "name": "Palmeiras"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Mauricio-palmeiras-sport-ago-25_%28cropped%29.jpg"
@@ -923,7 +937,9 @@
         "display_name": "Braian Ojeda",
         "position": "MID",
         "detailed_position": "MID",
-        "club": null,
+        "club": {
+          "name": "Orlando City SC"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Dynamo_vs_Real_Salt_Lake_%28Mar_2025%29_16_%28cropped%29.jpg"
@@ -949,7 +965,9 @@
         "display_name": "Gustavo Caballero",
         "position": "MID",
         "detailed_position": "MID",
-        "club": null,
+        "club": {
+          "name": "Portsmouth"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null
@@ -1033,7 +1051,9 @@
         "display_name": "Isidro Pitta",
         "position": "FWD",
         "detailed_position": "FWD",
-        "club": null,
+        "club": {
+          "name": "Red Bull Bragantino"
+        },
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/47/Isidro-Pitta-Juventude-Corinthians-jun-2022.jpg"

@@ -8,6 +8,7 @@
 
 import { BG, BG2, BG3, GOLD, GOLD2, MID, DIM, flagUrl } from "./fx";
 import FichaDT from "./FichaDT";
+import RealWorldCupCard from "./RealWorldCupCard";
 import { rankForOverall, SKILL_BRANCHES } from "@/lib/modo-carrera/constants";
 import { DEMAND_LABEL, VERDICT_LABEL, jobAtRisk } from "@/lib/modo-carrera/board";
 import type { CareerState } from "@/lib/modo-carrera/types";
@@ -117,6 +118,9 @@ export default function HubView({ career }: { career: CareerState }) {
             </div>
           )}
         </Card>
+
+        {/* Puente con el Mundial real */}
+        <RealWorldCupCard nationSlug={career.identity.nationSlug} />
 
         {/* Misiones */}
         <Card title="Misiones activas">

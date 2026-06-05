@@ -141,11 +141,14 @@
 /* --------------------------- Abreviaturas --------------------------- */
 
 .abbr {
-  font-size: clamp(17px, 4.4vw, 30px);
+  font-size: clamp(15px, 4vw, 30px);
   font-weight: 800;
   letter-spacing: 0.045em;
   line-height: 1;
   white-space: nowrap;
+  /* Si aun así no cabe en pantallas muy estrechas, recorta sin desbordar. */
+  overflow: hidden;
+  text-overflow: clip;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.65);
   z-index: 2;
 }
@@ -304,11 +307,23 @@
 
 /* ====================== AJUSTES MÓVIL (estrechos) ====================== */
 
-@media (max-width: 380px) {
+@media (max-width: 420px) {
   .scoreboard {
     --fsb-slant: 9px;
   }
   .accent {
     width: 7px;
+  }
+  /* Menos padding en los paneles de equipo para dar aire a la abreviatura. */
+  .home {
+    padding-left: 14px;
+    padding-right: 6px;
+  }
+  .away {
+    padding-left: 6px;
+    padding-right: 14px;
+  }
+  .result {
+    padding: 0 12px;
   }
 }

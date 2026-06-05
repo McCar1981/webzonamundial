@@ -198,7 +198,7 @@ export function MatchCenterBanner() {
               {/* Estado + competición (amistoso, fase de grupos, ...) */}
               <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-start">
                 <span
-                  className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider"
+                  className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-1 text-[9px] font-bold uppercase tracking-wide sm:px-3 sm:text-[10px] sm:tracking-wider"
                   style={{
                     background: "rgba(0,0,0,0.35)",
                     color: badge.color,
@@ -215,7 +215,7 @@ export function MatchCenterBanner() {
                 </span>
                 {competitionLabel && (
                   <span
-                    className="inline-flex items-center whitespace-nowrap rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider"
+                    className="inline-flex items-center whitespace-nowrap rounded-full px-2.5 py-1 text-[9px] font-bold uppercase tracking-wide sm:px-3 sm:text-[10px] sm:tracking-wider"
                     style={{
                       background: "rgba(0,0,0,0.35)",
                       color: "#aeb8cf",

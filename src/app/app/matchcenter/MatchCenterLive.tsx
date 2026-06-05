@@ -134,12 +134,239 @@ function fmtKickoff(iso?: string): { date: string; time: string } | null {
   };
 }
 
-const EVENT_ICON: Record<string, string> = {
-  goal: "⚽", penalty_goal: "⚽", own_goal: "⚽", penalty_miss: "✗",
-  yellow: "🟨", second_yellow: "🟨", red: "🟥", sub: "🔁", var: "📺",
-  corner: "⛳", shot_on: "🎯", shot: "↗", save: "🧤", offside: "🚩",
-  chance: "❗", injury: "➕", kickoff: "▶", half_time: "⏸", full_time: "🏁",
-};
+// Iconos de evento en SVG (regla del proyecto: nunca emojis, siempre SVG).
+// Autocontenido: cada tipo trae sus colores; `size` controla el lado en px.
+function EventIcon({ type, size = 18 }: { type: string; size?: number }) {
+  const p = { width: size, height: size, viewBox: "0 0 24 24", fill: "none" } as const;
+  switch (type) {
+    case "goal":
+    case "penalty_goal":
+    case "own_goal":
+      return (
+        <svg {...p}>
+          <circle cx="12" cy="12" r="9" fill="#fff" stroke={BG3} strokeWidth="1.2" />
+          <path d="M12 7.2l2.7 1.95-1.03 3.2H10.33L9.3 9.15z" fill={BG3} />
+          <path d="M12 7.2V4.3M14.7 9.15l2.5-1.1M13.67 12.35l1.7 2.7M10.33 12.35l-1.7 2.7M9.3 9.15l-2.5-1.1" stroke={BG3} strokeWidth="1" strokeLinecap="round" />
+        </svg>
+      );
+    case "penalty_miss":
+      return (
+        <svg {...p}>
+          <circle cx="12" cy="12" r="8.5" stroke={RED} strokeWidth="1.8" />
+          <path d="M8.5 8.5l7 7M15.5 8.5l-7 7" stroke={RED} strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      );
+    case "yellow":
+      return <svg {...p}><rect x="7" y="3.5" width="10" height="14" rx="1.6" fill="#eab308" transform="rotate(8 12 10)" /></svg>;
+    case "second_yellow":
+      return (
+        <svg {...p}>
+          <rect x="4.5" y="4.5" width="9" height="13" rx="1.5" fill="#eab308" transform="rotate(-9 9 11)" />
+          <rect x="10.5" y="5" width="9" height="13" rx="1.5" fill={RED} transform="rotate(9 15 11)" />
+        </svg>
+      );
+    case "red":
+      return <svg {...p}><rect x="7" y="3.5" width="10" height="14" rx="1.6" fill={RED} transform="rotate(8 12 10)" /></svg>;
+    case "sub":
+      return (
+        <svg {...p}>
+          <path d="M8 5v11M8 16l-2.4-2.4M8 16l2.4-2.4" stroke={GREEN} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M16 19V8M16 8l-2.4 2.4M16 8l2.4 2.4" stroke={RED} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case "var":
+      return (
+        <svg {...p}>
+          <rect x="3" y="5" width="18" height="12" rx="2" stroke={GOLD} strokeWidth="1.6" />
+          <path d="M9 20h6M12 17v3" stroke={GOLD} strokeWidth="1.4" strokeLinecap="round" />
+          <path d="M7.5 8.5h9M7.5 11.5h5.5" stroke={GOLD} strokeWidth="1.2" strokeLinecap="round" />
+        </svg>
+      );
+    case "corner":
+      return (
+        <svg {...p}>
+          <path d="M7 4v16" stroke={GOLD} strokeWidth="1.6" strokeLinecap="round" />
+          <path d="M7 4l9 2.6L7 9.6z" fill={GOLD} />
+        </svg>
+      );
+    case "shot_on":
+      return (
+        <svg {...p}>
+          <circle cx="12" cy="12" r="8.5" stroke={GOLD} strokeWidth="1.5" />
+          <circle cx="12" cy="12" r="4.5" stroke={GOLD} strokeWidth="1.4" />
+          <circle cx="12" cy="12" r="1.4" fill={GOLD} />
+        </svg>
+      );
+    case "shot":
+      return <svg {...p}><path d="M5 19L19 5M19 5h-6M19 5v6" stroke={GOLD} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>;
+    case "save":
+      return (
+        <svg {...p}>
+          <path d="M7.5 12V7a1.3 1.3 0 0 1 2.6 0v3.2m0 0V5.6a1.3 1.3 0 0 1 2.6 0v4.6m0 0V6.4a1.3 1.3 0 0 1 2.6 0v6.6c0 3.4-2.1 6-5.2 6-1.9 0-3.1-.9-4.2-2.5l-1.9-2.9a1.3 1.3 0 0 1 2-1.6l1 1z" stroke={GOLD} strokeWidth="1.3" strokeLinejoin="round" strokeLinecap="round" />
+        </svg>
+      );
+    case "offside":
+      return (
+        <svg {...p}>
+          <path d="M6 3v18" stroke={GOLD} strokeWidth="1.6" strokeLinecap="round" />
+          <path d="M6 4h11v7H6z" fill={GOLD} fillOpacity="0.85" />
+        </svg>
+      );
+    case "chance":
+      return (
+        <svg {...p}>
+          <circle cx="12" cy="12" r="8.5" stroke={GOLD} strokeWidth="1.6" />
+          <path d="M12 7v6" stroke={GOLD} strokeWidth="1.8" strokeLinecap="round" />
+          <circle cx="12" cy="16.4" r="1.1" fill={GOLD} />
+        </svg>
+      );
+    case "injury":
+      return <svg {...p}><path d="M12 6v12M6 12h12" stroke={RED} strokeWidth="2.2" strokeLinecap="round" /></svg>;
+    case "kickoff":
+      return <svg {...p}><path d="M8 6l10 6-10 6z" fill={GOLD} /></svg>;
+    case "half_time":
+      return (
+        <svg {...p}>
+          <rect x="7" y="6" width="3.5" height="12" rx="1" fill={GOLD} />
+          <rect x="13.5" y="6" width="3.5" height="12" rx="1" fill={GOLD} />
+        </svg>
+      );
+    case "full_time":
+      return (
+        <svg {...p}>
+          <path d="M6 4v16" stroke={GOLD} strokeWidth="1.6" strokeLinecap="round" />
+          <path d="M7.5 5h2.6v2.6H7.5zM12.7 5h2.6v2.6h-2.6zM10.1 7.6h2.6v2.6h-2.6zM15.3 7.6h2.6v2.6h-2.6zM7.5 10.2h2.6v2.6H7.5zM12.7 10.2h2.6v2.6h-2.6z" fill={GOLD} />
+        </svg>
+      );
+    default:
+      return <svg {...p}><circle cx="12" cy="12" r="2.5" fill={GOLD} /></svg>;
+  }
+}
+
+// Glifo de "revivir/repetir" en SVG (flecha circular).
+function ReliveIcon({ size = 12, color = "currentColor" }: { size?: number; color?: string }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <path d="M5 12a7 7 0 1 1 2 4.9" stroke={color} strokeWidth="1.8" strokeLinecap="round" />
+      <path d="M5 17v-4h4" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+// --- Iconos de UI (controles/etiquetas) en SVG. `currentColor` hereda el color
+// del botón/texto contenedor. Regla del proyecto: nunca emojis. ---
+type IcoProps = { size?: number; color?: string };
+const ico = (size: number) => ({ width: size, height: size, viewBox: "0 0 24 24", fill: "none" } as const);
+
+function MicIcon({ size = 15, color = "currentColor", off = false }: IcoProps & { off?: boolean }) {
+  return (
+    <svg {...ico(size)}>
+      <rect x="9" y="2.5" width="6" height="11" rx="3" stroke={color} strokeWidth="1.7" />
+      <path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7" stroke={color} strokeWidth="1.7" strokeLinecap="round" />
+      {off && <path d="M3.5 3.5l17 17" stroke={color} strokeWidth="1.7" strokeLinecap="round" />}
+    </svg>
+  );
+}
+function SoundIcon({ size = 15, color = "currentColor", off = false }: IcoProps & { off?: boolean }) {
+  return (
+    <svg {...ico(size)}>
+      <path d="M4 9v6h3.5L13 19V5L7.5 9z" fill={color} stroke={color} strokeWidth="1.4" strokeLinejoin="round" />
+      {off ? (
+        <path d="M16.5 9.5l4 4M20.5 9.5l-4 4" stroke={color} strokeWidth="1.7" strokeLinecap="round" />
+      ) : (
+        <path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+      )}
+    </svg>
+  );
+}
+function PlayIcon({ size = 14, color = "currentColor" }: IcoProps) {
+  return <svg {...ico(size)}><path d="M7 5l11 7-11 7z" fill={color} /></svg>;
+}
+function PauseIcon({ size = 14, color = "currentColor" }: IcoProps) {
+  return <svg {...ico(size)}><rect x="6.5" y="5" width="3.6" height="14" rx="1" fill={color} /><rect x="13.9" y="5" width="3.6" height="14" rx="1" fill={color} /></svg>;
+}
+function TacticalIcon({ size = 14, color = "currentColor" }: IcoProps) {
+  return (
+    <svg {...ico(size)}>
+      <rect x="4" y="3" width="16" height="18" rx="2" stroke={color} strokeWidth="1.6" />
+      <path d="M12 3v18M4 12h16" stroke={color} strokeWidth="1.2" />
+      <circle cx="12" cy="12" r="2.2" stroke={color} strokeWidth="1.2" />
+    </svg>
+  );
+}
+function CameraIcon({ size = 14, color = "currentColor" }: IcoProps) {
+  return (
+    <svg {...ico(size)}>
+      <rect x="2.5" y="6.5" width="13" height="11" rx="2" stroke={color} strokeWidth="1.6" />
+      <path d="M15.5 10.5l5-2.5v8l-5-2.5z" stroke={color} strokeWidth="1.6" strokeLinejoin="round" />
+    </svg>
+  );
+}
+function HeatIcon({ size = 14, color = "currentColor" }: IcoProps) {
+  return (
+    <svg {...ico(size)}>
+      <path d="M12 2.5c3 3.2 5.5 5.6 5.5 9.5a5.5 5.5 0 0 1-11 0c0-1.7.7-3 1.7-4.2.3 1 .9 1.7 1.8 2 0-2.4.8-4.6 2-7.3z" fill={color} fillOpacity="0.25" stroke={color} strokeWidth="1.5" strokeLinejoin="round" />
+    </svg>
+  );
+}
+function BallIcon({ size = 12, color = BG3 }: IcoProps) {
+  return (
+    <svg {...ico(size)}>
+      <circle cx="12" cy="12" r="9" fill="#fff" stroke={color} strokeWidth="1.2" />
+      <path d="M12 7.2l2.7 1.95-1.03 3.2H10.33L9.3 9.15z" fill={color} />
+      <path d="M12 7.2V4.3M14.7 9.15l2.5-1.1M13.67 12.35l1.7 2.7M10.33 12.35l-1.7 2.7M9.3 9.15l-2.5-1.1" stroke={color} strokeWidth="1" strokeLinecap="round" />
+    </svg>
+  );
+}
+function BootIcon({ size = 13, color = "currentColor" }: IcoProps) {
+  return (
+    <svg {...ico(size)}>
+      <path d="M3 8h6l3 3 8 1.5c1 .2 1.5.9 1.5 2V17a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" fill={color} fillOpacity="0.2" stroke={color} strokeWidth="1.4" strokeLinejoin="round" />
+      <path d="M3 14h7M6 18v2M10 18v2M14 18.2v1.8M18 18.2v1.8" stroke={color} strokeWidth="1.2" strokeLinecap="round" />
+    </svg>
+  );
+}
+function CloseIcon({ size = 13, color = "currentColor" }: IcoProps) {
+  return <svg {...ico(size)}><path d="M6 6l12 12M18 6L6 18" stroke={color} strokeWidth="1.9" strokeLinecap="round" /></svg>;
+}
+function SparkleIcon({ size = 14, color = GOLD }: IcoProps) {
+  return (
+    <svg {...ico(size)}>
+      <path d="M12 3l1.6 5.2L19 10l-5.4 1.8L12 17l-1.6-5.2L5 10l5.4-1.8z" fill={color} />
+      <path d="M18.5 14l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z" fill={color} fillOpacity="0.7" />
+    </svg>
+  );
+}
+function ChevronRightIcon({ size = 12, color = GOLD }: IcoProps) {
+  return <svg {...ico(size)}><path d="M9 5l7 7-7 7" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>;
+}
+function ArrowLeftIcon({ size = 14, color = "currentColor" }: IcoProps) {
+  return <svg {...ico(size)}><path d="M19 12H5M5 12l6-6M5 12l6 6" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>;
+}
+function CrowdIcon({ mood, size = 22, color = "currentColor" }: { mood: string; size?: number; color?: string }) {
+  if (mood === "fire") return <HeatIcon size={size} color={color} />;
+  if (mood === "mega")
+    return (
+      <svg {...ico(size)}>
+        <path d="M3 10v4l3 .5 2.5 4 2-1-1.8-3 7.3 1.5V7L8.5 9.5 6 10z" fill={color} fillOpacity="0.25" stroke={color} strokeWidth="1.5" strokeLinejoin="round" />
+        <path d="M18 8.5a4 4 0 0 1 0 7" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+      </svg>
+    );
+  if (mood === "clap")
+    return (
+      <svg {...ico(size)}>
+        <path d="M7 13l-2.5-2.5a1.4 1.4 0 0 1 2-2L9 11M9 11V5.5a1.4 1.4 0 0 1 2.8 0V11M11.8 11V6.5a1.4 1.4 0 0 1 2.8 0V12c0 3.3-2 5.5-5 5.5-1.7 0-3-.8-4-2.2" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M16.5 4l1 1.5M19 6l-1.5 1M19.5 9.5l-2-.3" stroke={color} strokeWidth="1.2" strokeLinecap="round" />
+      </svg>
+    );
+  return (
+    <svg {...ico(size)}>
+      <path d="M9 18V6l10-2v12" fill="none" stroke={color} strokeWidth="1.6" strokeLinejoin="round" />
+      <circle cx="6.5" cy="18" r="2.5" stroke={color} strokeWidth="1.6" />
+      <circle cx="16.5" cy="16" r="2.5" stroke={color} strokeWidth="1.6" />
+    </svg>
+  );
+}
 
 interface H2HMatch {
   date: string;
@@ -676,8 +903,8 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
       <div style={{ maxWidth: 1080, margin: "0 auto", padding: "16px 16px 80px" }}>
         {/* Top bar */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
-          <Link href="/app/matchcenter" style={{ color: MID, textDecoration: "none", fontSize: 14, fontWeight: 600 }}>
-            ← Match Center
+          <Link href="/app/matchcenter" style={{ color: MID, textDecoration: "none", fontSize: 14, fontWeight: 600, display: "inline-flex", alignItems: "center", gap: 6 }}>
+            <ArrowLeftIcon size={14} /> Match Center
           </Link>
           <span style={{ fontSize: 11, color: DIM }}>
             {meta.phase} · {meta.venue}, {meta.city}
@@ -748,15 +975,15 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
             {/* Controles */}
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 14, alignItems: "center" }}>
               <button onClick={toggleVoice} disabled={!voiceAvailable} style={voiceOn ? btnGold : btnGhost}>
-                {voiceOn ? "🎙️ Locución ON" : "🎙️ Locución OFF"}
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><MicIcon size={15} off={!voiceOn} /> {voiceOn ? "Locución ON" : "Locución OFF"}</span>
               </button>
               <button onClick={toggleSound} disabled={!soundAvailable} style={soundOn ? btnGold : btnGhost}>
-                {soundOn ? "🔊 Sonido ON" : "🔇 Sonido OFF"}
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><SoundIcon size={15} off={!soundOn} /> {soundOn ? "Sonido ON" : "Sonido OFF"}</span>
               </button>
               {feed.mode === "sim" && (
                 <>
                   <button onClick={() => setPaused((p) => !p)} disabled={finished} style={btnGhost}>
-                    {paused ? "▶ Reanudar" : "⏸ Pausa"}
+                    <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>{paused ? <PlayIcon size={13} /> : <PauseIcon size={13} />} {paused ? "Reanudar" : "Pausa"}</span>
                   </button>
                   <div style={{ display: "flex", gap: 4, marginLeft: "auto", alignItems: "center" }}>
                     <span style={{ fontSize: 11, color: DIM, marginRight: 4 }}>Velocidad</span>
@@ -769,13 +996,13 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
                 </>
               )}
               {finished && (
-                <button onClick={replay} style={btnGold}>↻ Repetir</button>
+                <button onClick={replay} style={btnGold}><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><ReliveIcon size={13} /> Repetir</span></button>
               )}
             </div>
 
             {/* Locución actual */}
             <div style={{ background: BG3, border: `1px solid ${GOLD}33`, borderRadius: 14, padding: "12px 16px", marginBottom: 14, minHeight: 48, display: "flex", alignItems: "center", gap: 10 }}>
-              <span style={{ fontSize: 18 }}>🎙️</span>
+              <span style={{ display: "inline-flex", color: GOLD }}><MicIcon size={18} /></span>
               <span key={narration} style={{ fontSize: 15, fontWeight: 600, animation: "mcSlide .3s ease" }}>
                 {narration || "El relato del partido aparecerá aquí…"}
               </span>
@@ -787,10 +1014,10 @@ export default function MatchCenterLive({ matchId, meta, sim }: Props) {
             {/* Controles de cámara/capas de la cancha */}
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 10, alignItems: "center" }}>
               <button onClick={() => setTactical((t) => !t)} style={tactical ? btnGoldSm : btnGhostSm}>
-                {tactical ? "📋 Vista táctica 2D" : "🎥 Vista cámara 3D"}
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>{tactical ? <TacticalIcon size={14} /> : <CameraIcon size={14} />} {tactical ? "Vista táctica 2D" : "Vista cámara 3D"}</span>
               </button>
               <button onClick={() => setShowHeat((h) => !h)} style={showHeat ? btnGoldSm : btnGhostSm}>
-                {showHeat ? "🔥 Mapa de calor ON" : "🔥 Mapa de calor"}
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><HeatIcon size={14} /> {showHeat ? "Mapa de calor ON" : "Mapa de calor"}</span>
               </button>
             </div>
 
@@ -896,7 +1123,7 @@ function TeamBlock({ name, flag, color, right, scorer }: { name: string; flag: s
       <div className="mc-condensed" style={{ fontWeight: 700, fontSize: "clamp(11px,3.4vw,16px)", textAlign: "center", textTransform: "uppercase", lineHeight: 1.1, maxWidth: "100%" }}>{name}</div>
       {scorer && (
         <div key={`sc-${scorer.minute}-${scorer.player}`} style={{ display: "flex", alignItems: "center", gap: 6, maxWidth: "100%", background: "rgba(201,168,76,0.14)", border: `1px solid ${GOLD}55`, borderRadius: 20, padding: "3px 10px", animation: "mcChip .4s ease" }}>
-          <span style={{ fontSize: 12 }}>⚽</span>
+          <span style={{ display: "inline-flex" }}><BallIcon size={13} /></span>
           <span style={{ fontSize: 12, fontWeight: 700 }}>{scorer.player ? lastNameShort(scorer.player) : "Gol"}</span>
           <span className="mc-num" style={{ fontSize: 11, color: GOLD2, fontWeight: 700 }}>{scorer.minute}{"'"}</span>
         </div>
@@ -934,10 +1161,10 @@ function PlayerCard({ player, meta }: { player: { num: number; label: string; si
 }
 
 function crowdMood(intensity: number): { label: string; icon: string; color: string } {
-  if (intensity >= 0.75) return { label: "Estadio en llamas", icon: "🔥", color: "#ef4444" };
-  if (intensity >= 0.5) return { label: "Afición encendida", icon: "📣", color: "#f59e0b" };
-  if (intensity >= 0.28) return { label: "Ambiente vibrante", icon: "👏", color: GOLD };
-  return { label: "Partido de tanteo", icon: "🎵", color: MID };
+  if (intensity >= 0.75) return { label: "Estadio en llamas", icon: "fire", color: "#ef4444" };
+  if (intensity >= 0.5) return { label: "Afición encendida", icon: "mega", color: "#f59e0b" };
+  if (intensity >= 0.28) return { label: "Ambiente vibrante", icon: "clap", color: GOLD };
+  return { label: "Partido de tanteo", icon: "music", color: MID };
 }
 
 function Momentum({ stats, meta, momentum, soundOn }: { stats: LiveStats; meta: MatchMeta; momentum: number; soundOn: boolean }) {
@@ -973,11 +1200,11 @@ function Momentum({ stats, meta, momentum, soundOn }: { stats: LiveStats; meta: 
 
       {/* Reacción del público */}
       <div style={{ marginTop: 14, display: "flex", alignItems: "center", gap: 12 }}>
-        <span style={{ fontSize: 22, animation: intensity >= 0.5 ? "mcPulse 0.9s infinite" : undefined }}>{mood.icon}</span>
+        <span style={{ display: "inline-flex", color: mood.color, animation: intensity >= 0.5 ? "mcPulse 0.9s infinite" : undefined }}><CrowdIcon mood={mood.icon} size={22} /></span>
         <div style={{ flex: 1 }}>
           <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, color: DIM, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1, marginBottom: 4 }}>
             <span>Ambiente · {mood.label}</span>
-            <span style={{ color: soundOn ? GREEN : DIM }}>{soundOn ? "🔊" : "🔇"}</span>
+            <span style={{ display: "inline-flex", color: soundOn ? GREEN : DIM }}><SoundIcon size={14} off={!soundOn} /></span>
           </div>
           <div style={{ height: 8, borderRadius: 4, background: "rgba(255,255,255,0.06)", overflow: "hidden" }}>
             <div style={{ width: `${intensity * 100}%`, height: "100%", background: mood.color, transition: "width .6s ease, background .6s ease" }} />
@@ -1057,7 +1284,7 @@ function Timeline({ log, meta, onRelive }: { log: MatchEvent[]; meta: MatchMeta;
                   background: isGoal ? "rgba(201,168,76,0.16)" : "rgba(255,255,255,0.04)",
                   border: `1px solid ${side ? side.color + "55" : "rgba(255,255,255,0.1)"}`,
                 }}>
-                <span style={{ fontSize: isGoal ? 22 : 18 }}>{EVENT_ICON[e.type] || "•"}</span>
+                <EventIcon type={e.type} size={isGoal ? 22 : 18} />
                 <span className="mc-num" style={{ fontSize: 10, fontWeight: 700, color: DIM }}>{e.minute}{"'"}</span>
               </button>
             );
@@ -1080,13 +1307,13 @@ function Timeline({ log, meta, onRelive }: { log: MatchEvent[]; meta: MatchMeta;
               <span className="mc-num" style={{ fontSize: 11, fontWeight: 700, color: DIM, minWidth: 34 }}>
                 {e.minute}{e.extra ? `+${e.extra}` : ""}{"'"}
               </span>
-              <span style={{ fontSize: 16, minWidth: 22, textAlign: "center" }}>{EVENT_ICON[e.type] || "•"}</span>
+              <span style={{ minWidth: 22, display: "inline-flex", justifyContent: "center" }}><EventIcon type={e.type} size={16} /></span>
               <span style={{ fontSize: 13, fontWeight: isGoal ? 800 : 600, flex: 1 }}>
                 {e.player ? `${e.player} ` : ""}
                 <span style={{ color: side ? side.color : MID, fontWeight: 700 }}>{side ? side.name : ""}</span>
                 {e.detail ? <span style={{ color: DIM }}> · {e.detail}</span> : ""}
               </span>
-              {can && <span style={{ fontSize: 11, color: GOLD }}>↻</span>}
+              {can && <span style={{ display: "inline-flex" }}><ReliveIcon size={13} /></span>}
             </div>
           );
         })}
@@ -1207,8 +1434,8 @@ function MatchSummary({ log, meta }: { log: MatchEvent[]; meta: MatchMeta }) {
         ) : (
           <div style={{ display: "flex", flexDirection: "column", gap: 3, marginBottom: 8 }}>
             {goals.map((e) => (
-              <div key={e.id} style={{ fontSize: 12, fontWeight: 600 }}>
-                ⚽ {e.player ? lastNameShort(e.player) : "Gol"}{e.type === "penalty_goal" ? " (p)" : e.type === "own_goal" ? " (p.p.)" : ""}{" "}
+              <div key={e.id} style={{ fontSize: 12, fontWeight: 600, display: "flex", alignItems: "center", gap: 5 }}>
+                <BallIcon size={12} /> {e.player ? lastNameShort(e.player) : "Gol"}{e.type === "penalty_goal" ? " (p)" : e.type === "own_goal" ? " (p.p.)" : ""}{" "}
                 <span className="mc-num" style={{ color: GOLD2, fontWeight: 700 }}>{minuteLabel(e)}</span>
               </div>
             ))}
@@ -1219,15 +1446,15 @@ function MatchSummary({ log, meta }: { log: MatchEvent[]; meta: MatchMeta }) {
             <div style={{ fontSize: 9, fontWeight: 800, color: DIM, textTransform: "uppercase", letterSpacing: 1, marginBottom: 4 }}>Asistencias</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 3, marginBottom: 8 }}>
               {assists.map((a, i) => (
-                <div key={i} style={{ fontSize: 12, fontWeight: 600, color: MID }}>👟 {a.name} <span className="mc-num" style={{ color: GOLD2 }}>{a.minute}</span></div>
+                <div key={i} style={{ fontSize: 12, fontWeight: 600, color: MID, display: "flex", alignItems: "center", gap: 5 }}><BootIcon size={13} /> {a.name} <span className="mc-num" style={{ color: GOLD2 }}>{a.minute}</span></div>
               ))}
             </div>
           </>
         )}
         <div style={{ fontSize: 9, fontWeight: 800, color: DIM, textTransform: "uppercase", letterSpacing: 1, marginBottom: 4 }}>Tarjetas</div>
         <div style={{ display: "flex", gap: 12, justifyContent: right ? "flex-end" : "flex-start" }}>
-          <span style={{ fontSize: 12, fontWeight: 700 }}>🟨 <span className="mc-num">{cards.y}</span></span>
-          <span style={{ fontSize: 12, fontWeight: 700 }}>🟥 <span className="mc-num">{cards.r}</span></span>
+          <span style={{ fontSize: 12, fontWeight: 700, display: "inline-flex", alignItems: "center", gap: 5 }}><EventIcon type="yellow" size={13} /> <span className="mc-num">{cards.y}</span></span>
+          <span style={{ fontSize: 12, fontWeight: 700, display: "inline-flex", alignItems: "center", gap: 5 }}><EventIcon type="red" size={13} /> <span className="mc-num">{cards.r}</span></span>
         </div>
       </div>
     );
@@ -1321,7 +1548,7 @@ function Highlights({ log, meta, score, onRelive, onClose }: { log: MatchEvent[]
       <div style={{ width: "min(560px,100%)", maxHeight: "86vh", overflowY: "auto", background: BG2, borderRadius: 20, border: `1px solid ${GOLD}44`, padding: 22, boxShadow: "0 30px 80px rgba(0,0,0,0.7)" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
           <h3 className="mc-condensed" style={{ fontSize: 22, fontWeight: 700, color: GOLD2, textTransform: "uppercase", margin: 0 }}>Destacados</h3>
-          <button onClick={onClose} style={btnGhostSm}>✕ Cerrar</button>
+          <button onClick={onClose} style={btnGhostSm}><span style={{ display: "inline-flex", alignItems: "center", gap: 5 }}><CloseIcon size={12} /> Cerrar</span></button>
         </div>
         <div style={{ textAlign: "center", marginBottom: 18 }}>
           <div className="mc-condensed" style={{ fontSize: 14, color: MID, textTransform: "uppercase", marginBottom: 6 }}>{meta.home.name} vs {meta.away.name}</div>
@@ -1341,13 +1568,13 @@ function Highlights({ log, meta, score, onRelive, onClose }: { log: MatchEvent[]
                 animation: "mcSlide .3s ease", animationDelay: `${i * 0.05}s`, animationFillMode: "backwards",
                 color: "#fff",
               }}>
-                <span style={{ fontSize: 24 }}>{EVENT_ICON[e.type] || "•"}</span>
+                <EventIcon type={e.type} size={24} />
                 <div style={{ flex: 1 }}>
                   <div style={{ fontWeight: 800, fontSize: 14 }}>{e.player || (isGoal ? "Gol" : "Jugada")}</div>
                   <div style={{ fontSize: 11, color: side ? side.color : MID, fontWeight: 700 }}>{side ? side.name : ""}{e.detail ? ` · ${e.detail}` : ""}</div>
                 </div>
                 <span className="mc-num" style={{ fontSize: 14, fontWeight: 700, color: GOLD2 }}>{e.minute}{e.extra ? `+${e.extra}` : ""}{"'"}</span>
-                <span style={{ fontSize: 12, color: GOLD }}>▶ Revivir</span>
+                <span style={{ fontSize: 12, color: GOLD, display: "inline-flex", alignItems: "center", gap: 4 }}><ReliveIcon size={12} /> Revivir</span>
               </button>
             );
           })}
@@ -1414,10 +1641,10 @@ function CoachLivePanel({
     <div style={{ background: BG2, borderRadius: 16, border: `1px solid ${GOLD}33`, padding: 18 }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, marginBottom: analysis || loading || error ? 14 : 0 }}>
         <h3 style={{ fontSize: 13, fontWeight: 800, color: GOLD2, textTransform: "uppercase", letterSpacing: 1, margin: 0, display: "flex", alignItems: "center", gap: 8 }}>
-          <span>✨</span> Coach IA en vivo
+          <span style={{ display: "inline-flex" }}><SparkleIcon size={14} /></span> Coach IA en vivo
         </h3>
         <button onClick={onAsk} disabled={loading} style={loading ? { ...btnGhostSm, opacity: 0.6 } : btnGoldSm}>
-          {loading ? "Analizando…" : analysis ? "↻ Actualizar lectura" : finished ? "Lectura del partido" : "Pedir lectura del momento"}
+          {loading ? "Analizando…" : analysis ? <span style={{ display: "inline-flex", alignItems: "center", gap: 5 }}><ReliveIcon size={12} /> Actualizar lectura</span> : finished ? "Lectura del partido" : "Pedir lectura del momento"}
         </button>
       </div>
 
@@ -1482,7 +1709,7 @@ function CoachLivePanel({
               <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 6 }}>
                 {analysis.keyObservations.map((o, i) => (
                   <li key={i} style={{ fontSize: 12.5, color: "rgba(255,255,255,0.8)", paddingLeft: 14, position: "relative", lineHeight: 1.4 }}>
-                    <span style={{ position: "absolute", left: 0, color: GOLD }}>▸</span>
+                    <span style={{ position: "absolute", left: 0, top: 3, display: "inline-flex" }}><ChevronRightIcon size={11} /></span>
                     {o}
                   </li>
                 ))}

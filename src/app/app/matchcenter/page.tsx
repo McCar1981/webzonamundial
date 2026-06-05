@@ -21,6 +21,13 @@ gsap.registerPlugin(ScrollTrigger);
 
 const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a";
 
+// Icono SVG de "play" (regla del proyecto: nunca emojis). Hereda color con currentColor.
+const PlayIcon = ({ size = 14 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" style={{ verticalAlign: "middle", marginRight: 6 }}>
+    <path d="M8 5v14l11-7z" />
+  </svg>
+);
+
 const STATS = [
   { label: "Posesión", home: "58%", away: "42%", homeWidth: "58%", awayWidth: "42%", color: "#3b82f6" },
   { label: "Tiros (a puerta)", home: "14 (8)", away: "9 (4)", homeWidth: "60%", awayWidth: "40%", color: "#22c55e" },
@@ -115,7 +122,7 @@ export default function MatchCenterPage() {
               color: BG, fontWeight: 800, fontSize: 16, textDecoration: "none", display: "inline-block",
               boxShadow: "0 8px 32px rgba(201,168,76,0.3)"
             }}>
-              ▶ Ver demo en vivo
+              <PlayIcon size={15} />Ver demo en vivo
             </Link>
             <span data-hero-cta style={{
               padding: "16px 28px", borderRadius: 14,
@@ -155,7 +162,7 @@ export default function MatchCenterPage() {
                     <img src={`https://flagcdn.com/w40/${m.af}.png`} alt="" style={{ width: 24, height: 16, borderRadius: 3, objectFit: "cover" }} />
                   </div>
                 </div>
-                <div style={{ marginTop: 10, fontSize: 11, color: "#10b981", fontWeight: 700 }}>▶ Abrir Match Center</div>
+                <div style={{ marginTop: 10, fontSize: 11, color: "#10b981", fontWeight: 700 }}><PlayIcon size={11} />Abrir Match Center</div>
               </Link>
             ))}
           </div>

@@ -22,6 +22,23 @@ interface Props {
 
 const GOLD = "#c9a84c", GOLD2 = "#e8d48b";
 
+// Iconos SVG (regla del proyecto: nunca emojis). Heredan el color con currentColor.
+const SwapIcon = ({ size = 14 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <path d="M4 8h13M14 5l3 3-3 3M20 16H7M10 13l-3 3 3 3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+const ArrowUpIcon = ({ size = 12 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <path d="M12 19V5M12 5l-6 6M12 5l6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+const ArrowDownIcon = ({ size = 12 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <path d="M12 5v14M12 19l-6-6M12 19l6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
 export default function MatchFx({ meta, goalPulse, cardFx, subFx }: Props) {
   const confetti = useMemo(() => {
     if (!goalPulse) return [];
@@ -118,15 +135,15 @@ export default function MatchFx({ meta, goalPulse, cardFx, subFx }: Props) {
         <div key={`s-${subFx.key}`} className="fx-sub">
           <div className="fx-sub-card" style={{ ["--team" as string]: subTeam.color }}>
             <div className="fx-sub-head">
-              <span className="fx-sub-icon">⇄</span> CAMBIO
+              <span className="fx-sub-icon"><SwapIcon size={14} /></span> CAMBIO
               <span className="fx-sub-team" style={{ color: subTeam.color }}>{subTeam.name}</span>
             </div>
             <div className="fx-sub-row">
-              <span className="fx-sub-in">▲ ENTRA</span>
+              <span className="fx-sub-in"><ArrowUpIcon size={12} /> ENTRA</span>
               <b>{subFx.playerIn ? lastName(subFx.playerIn) : "—"}</b>
             </div>
             <div className="fx-sub-row">
-              <span className="fx-sub-out">▼ SALE</span>
+              <span className="fx-sub-out"><ArrowDownIcon size={12} /> SALE</span>
               <b className="fx-sub-dim">{subFx.playerOut ? lastName(subFx.playerOut) : "—"}</b>
             </div>
           </div>
@@ -207,12 +224,12 @@ const CSS = `
 .fx-sub{align-items:flex-start;justify-content:center;padding-top:6%}
 .fx-sub-card{min-width:min(78%,360px);background:linear-gradient(180deg, rgba(15,29,50,.97), rgba(11,24,37,.97));border:1px solid rgba(255,255,255,.12);border-top:3px solid var(--team);border-radius:14px;padding:12px 16px;backdrop-filter:blur(6px);box-shadow:0 16px 40px rgba(0,0,0,.55);animation:fxLowerIn .5s cubic-bezier(.2,1,.3,1) both, fxDim 3s ease forwards}
 .fx-sub-head{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:900;letter-spacing:2px;color:#8a94b0;text-transform:uppercase;margin-bottom:8px}
-.fx-sub-icon{color:#c9a84c;font-size:15px}
+.fx-sub-icon{color:#c9a84c;display:inline-flex;align-items:center}
 .fx-sub-team{margin-left:auto;letter-spacing:1px}
 .fx-sub-row{display:flex;align-items:center;gap:10px;font-size:clamp(15px,2.6vw,20px);padding:3px 0}
 .fx-sub-row b{font-weight:900;color:#fff}
-.fx-sub-in{font-size:12px;font-weight:900;color:#22c55e;min-width:78px}
-.fx-sub-out{font-size:12px;font-weight:900;color:#ef4444;min-width:78px}
+.fx-sub-in{font-size:12px;font-weight:900;color:#22c55e;min-width:78px;display:inline-flex;align-items:center;gap:4px}
+.fx-sub-out{font-size:12px;font-weight:900;color:#ef4444;min-width:78px;display:inline-flex;align-items:center;gap:4px}
 .fx-sub-dim{color:#8a94b0!important}
 
 @media (prefers-reduced-motion: reduce){

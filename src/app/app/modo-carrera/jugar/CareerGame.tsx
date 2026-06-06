@@ -14,7 +14,7 @@ import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { defaultCareer, loadCareer, saveCareer, isCareerStarted } from "@/lib/modo-carrera/store";
 import type { CareerState, CareerTab, SkillBranch, NarrativeKind, Trophy } from "@/lib/modo-carrera/types";
 import { unlockSkill, applyDecision } from "@/lib/modo-carrera/engine";
-import { beginSeason, playNextMatch, startNextSeason, type PlayResult } from "@/lib/modo-carrera/season";
+import { beginSeason, resolveMatch, startNextSeason, type PlayResult } from "@/lib/modo-carrera/season";
 import { beginLiveSeason, hasLiveFixtures } from "@/lib/modo-carrera/live-season";
 import { ensureMissions, advanceMission, claimMission } from "@/lib/modo-carrera/missions";
 import { claimStreak } from "@/lib/modo-carrera/streak";
@@ -167,9 +167,9 @@ export default function CareerGame() {
     setCareer((c) => (c ? beginLiveSeason(c) ?? beginSeason(c) : c));
   const handleNextSeason = () =>
     setCareer((c) => (c ? startNextSeason(c) : c));
-  const handlePlayNext = (): PlayResult | null => {
+  const handleResolveMatch = (gf: number, ga: number): PlayResult | null => {
     if (!career) return null;
-    const res = playNextMatch(career);
+    const res = resolveMatch(career, gf, ga);
     if (res.match) setCareer(res.career);
     return res;
   };
@@ -294,7 +294,7 @@ export default function CareerGame() {
           canLive={hasLiveFixtures(career.identity.nationSlug)}
           onStart={handleStartSeason}
           onStartLive={handleStartLiveSeason}
-          onPlayNext={handlePlayNext}
+          onResolveMatch={handleResolveMatch}
           onNextSeason={handleNextSeason}
         />
       )}

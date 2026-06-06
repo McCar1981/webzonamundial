@@ -140,7 +140,7 @@ export function formMomentum(c: CareerState): number {
 
 // ─── Simulación de un partido ────────────────────────────────────────────────
 /** Muestreo de Poisson (algoritmo de Knuth) para los goles. */
-function poisson(lambda: number): number {
+export function poisson(lambda: number): number {
   const L = Math.exp(-lambda);
   let k = 0;
   let p = 1;
@@ -152,23 +152,43 @@ function poisson(lambda: number): number {
 }
 
 /**
- * Simula el marcador del partido. En eliminatoria (`decisive`) no hay empates: si
- * el tiempo reglamentario acaba igualado, se resuelve por prórroga/penaltis a
- * favor de quien tenga más fuerza + un componente de azar.
+ * Goles esperados (lambda) del partido para cada lado, ANTES de resolver empates.
+ * Es la base estadística compartida por el modo rápido y el partido jugable
+ * (match-live.ts), que sobre estas medias aplica plan táctico y decisiones.
  */
-function simulate(c: CareerState, match: SeasonMatch, decisive: boolean): { gf: number; ga: number } {
+export function matchLambdas(c: CareerState, match: SeasonMatch): { lamFor: number; lamAg: number } {
   const { atk, def } = attackDefense(c);
   const oStr = opponentStrength(match.opponentSlug);
   const home = match.home ? 2.5 : 0;
   const mom = formMomentum(c); // -3..+3
   const lamFor = clamp(1.35 + (atk + home - oStr) / 9 + mom * 0.12, 0.25, 4.6);
   const lamAg = clamp(1.35 + (oStr - def) / 9 - mom * 0.09, 0.2, 4.4);
+  return { lamFor, lamAg };
+}
+
+/**
+ * Resuelve quién gana una eliminatoria igualada (prórroga/penaltis): la fuerza
+ * del equipo (con ventaja de local) más un componente de azar.
+ */
+export function decisiveWinner(c: CareerState, match: SeasonMatch): "self" | "opp" {
+  const { atk } = attackDefense(c);
+  const oStr = opponentStrength(match.opponentSlug);
+  const home = match.home ? 2.5 : 0;
+  const mine = atk + home + Math.random() * 10;
+  const theirs = oStr + Math.random() * 10;
+  return mine >= theirs ? "self" : "opp";
+}
+
+/**
+ * Simula el marcador del partido (modo rápido). En eliminatoria (`decisive`) no
+ * hay empates: si el reglamentario acaba igualado, lo resuelve `decisiveWinner`.
+ */
+function simulate(c: CareerState, match: SeasonMatch, decisive: boolean): { gf: number; ga: number } {
+  const { lamFor, lamAg } = matchLambdas(c, match);
   let gf = poisson(lamFor);
   let ga = poisson(lamAg);
   if (decisive && gf === ga) {
-    const mine = atk + home + Math.random() * 10;
-    const theirs = oStr + Math.random() * 10;
-    if (mine >= theirs) gf++;
+    if (decisiveWinner(c, match) === "self") gf++;
     else ga++;
   }
   return { gf, ga };
@@ -341,13 +361,8 @@ function qualifiesFromGroup(selfSlug: string, groupMatches: SeasonMatch[]): bool
   return pos >= 0 && pos < 2;
 }
 
-/**
- * Simula el siguiente partido del calendario y aplica el resultado a todos los
- * pilares. Si no hay temporada activa o el torneo terminó, devuelve el estado sin
- * cambios.
- */
-export function playNextMatch(c0: CareerState): PlayResult {
-  const empty: PlayResult = {
+function emptyResult(c0: CareerState): PlayResult {
+  return {
     career: c0,
     match: null,
     leveledUp: false,
@@ -359,23 +374,57 @@ export function playNextMatch(c0: CareerState): PlayResult {
     boardVerdict: null,
     boardConfidence: null,
   };
+}
 
-  const season = c0.season;
-  if (!season || season.finished || season.cursor >= season.fixtures.length) return empty;
-
-  const idx = season.cursor;
-  const fx = season.fixtures[idx];
-  if (fx.played) return empty;
-
-  // Temporada en Vivo: el partido no se puede disputar hasta la hora real del
-  // saque. Si aún no ha llegado, no pasa nada (la UI muestra la cuenta atrás).
+/**
+ * Índice del partido disputable AHORA (el cursor) o -1 si no procede: no hay
+ * temporada, terminó, ya se jugó, o —en Temporada en Vivo— aún no ha llegado la
+ * hora real del saque (la UI muestra la cuenta atrás).
+ */
+function playableIndex(season: SeasonState | null): number {
+  if (!season || season.finished || season.cursor >= season.fixtures.length) return -1;
+  const fx = season.fixtures[season.cursor];
+  if (fx.played) return -1;
   if (season.live && fx.kickoffISO) {
     const k = Date.parse(fx.kickoffISO);
-    if (Number.isFinite(k) && k > Date.now()) return empty;
+    if (Number.isFinite(k) && k > Date.now()) return -1;
   }
+  return season.cursor;
+}
 
+/**
+ * Simulación RÁPIDA: decide el marcador del próximo partido (modelo de Poisson) y
+ * lo aplica a todos los pilares vía resolveMatch. Es el atajo "Disputar al
+ * instante"; el partido interactivo usa resolveMatch directamente con su marcador.
+ */
+export function playNextMatch(c0: CareerState): PlayResult {
+  const season = c0.season;
+  const idx = playableIndex(season);
+  if (idx < 0 || !season) return emptyResult(c0);
+  const fx = season.fixtures[idx];
   const decisive = fx.stage !== "grupos";
   const { gf, ga } = simulate(c0, fx, decisive);
+  return resolveMatch(c0, gf, ga);
+}
+
+/**
+ * Aplica un marcador YA decidido (gf-ga, p. ej. el del partido interactivo) al
+ * partido en curso y a todos los pilares. Si no hay partido disputable, devuelve
+ * el estado sin cambios. En eliminatoria fuerza un ganador si llega empatado.
+ */
+export function resolveMatch(c0: CareerState, gfIn: number, gaIn: number): PlayResult {
+  const season = c0.season;
+  const idx = playableIndex(season);
+  if (idx < 0 || !season) return emptyResult(c0);
+
+  const fx = season.fixtures[idx];
+  const decisive = fx.stage !== "grupos";
+  let gf = Math.max(0, Math.round(gfIn));
+  let ga = Math.max(0, Math.round(gaIn));
+  if (decisive && gf === ga) {
+    if (decisiveWinner(c0, fx) === "self") gf++;
+    else ga++;
+  }
   const outcome: MatchOutcome = gf > ga ? "V" : gf < ga ? "D" : "E";
 
   const playedMatch: SeasonMatch = { ...fx, played: true, gf, ga, outcome };

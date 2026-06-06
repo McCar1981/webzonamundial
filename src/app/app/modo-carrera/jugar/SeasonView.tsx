@@ -16,6 +16,7 @@ import { liveLockMs } from "@/lib/modo-carrera/live-season";
 import { getUserTimezone } from "@/lib/bracket/match-time";
 import { DEMAND_LABEL, VERDICT_LABEL } from "@/lib/modo-carrera/board";
 import type { CareerState, SeasonMatch } from "@/lib/modo-carrera/types";
+import MatchLive from "./MatchLive";
 
 const OUTCOME_LABEL = { V: "Victoria", E: "Empate", D: "Derrota" } as const;
 const OUTCOME_COLOR = { V: GREEN, E: GOLD, D: RED } as const;
@@ -120,7 +121,7 @@ export default function SeasonView({
   canLive = false,
   onStart,
   onStartLive,
-  onPlayNext,
+  onResolveMatch,
   onNextSeason,
 }: {
   career: CareerState;
@@ -128,11 +129,11 @@ export default function SeasonView({
   canLive?: boolean;
   onStart: () => void;
   onStartLive?: () => void;
-  onPlayNext: () => PlayResult | null;
+  onResolveMatch: (gf: number, ga: number) => PlayResult | null;
   onNextSeason: () => void;
 }) {
   const { season } = career;
-  const [busy, setBusy] = useState(false);
+  const [live, setLive] = useState(false);
   const [reveal, setReveal] = useState<PlayResult | null>(null);
   const [nowMs, setNowMs] = useState<number>(() => Date.now());
 
@@ -264,12 +265,15 @@ export default function SeasonView({
   const lockMs = season.live && nextMatch ? liveLockMs(nextMatch, nowMs) : 0;
   const locked = lockMs > 0;
 
-  const play = () => {
-    if (busy || !nextMatch || locked) return;
-    setBusy(true);
-    const res = onPlayNext();
+  const openMatch = () => {
+    if (live || !nextMatch || locked) return;
+    setLive(true);
+  };
+
+  const finishMatch = (gf: number, ga: number) => {
+    const res = onResolveMatch(gf, ga);
+    setLive(false);
     if (res && res.match) setReveal(res);
-    setBusy(false);
   };
 
   return (
@@ -310,21 +314,20 @@ export default function SeasonView({
           ) : (
             <button
               type="button"
-              onClick={play}
-              disabled={busy}
+              onClick={openMatch}
               style={{
                 padding: "12px 24px",
                 borderRadius: 10,
                 border: "none",
-                background: busy ? BG3 : `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
-                color: busy ? DIM : BG,
+                background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
+                color: BG,
                 fontWeight: 900,
                 fontSize: 14,
-                cursor: busy ? "default" : "pointer",
-                boxShadow: busy ? "none" : "0 8px 22px rgba(201,168,76,0.32)",
+                cursor: "pointer",
+                boxShadow: "0 8px 22px rgba(201,168,76,0.32)",
               }}
             >
-              {busy ? "Jugando…" : "Disputar partido"}
+              Disputar partido
             </button>
           )
         )}
@@ -374,6 +377,16 @@ export default function SeasonView({
           <FixtureRow key={m.id} m={m} isNext={!season.finished && i === season.cursor} />
         ))}
       </div>
+
+      {/* Partido interactivo */}
+      {live && nextMatch && (
+        <MatchLive
+          career={career}
+          match={nextMatch}
+          onFinish={finishMatch}
+          onCancel={() => setLive(false)}
+        />
+      )}
 
       {/* Revelado del resultado */}
       {reveal && reveal.match && (

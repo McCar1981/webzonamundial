@@ -129,7 +129,7 @@ export default function SeasonView({
   canLive?: boolean;
   onStart: () => void;
   onStartLive?: () => void;
-  onResolveMatch: (gf: number, ga: number) => PlayResult | null;
+  onResolveMatch: (gf: number, ga: number, wasBehind?: boolean) => PlayResult | null;
   onNextSeason: () => void;
 }) {
   const { season } = career;
@@ -270,8 +270,8 @@ export default function SeasonView({
     setLive(true);
   };
 
-  const finishMatch = (gf: number, ga: number) => {
-    const res = onResolveMatch(gf, ga);
+  const finishMatch = (gf: number, ga: number, wasBehind?: boolean) => {
+    const res = onResolveMatch(gf, ga, wasBehind);
     setLive(false);
     if (res && res.match) setReveal(res);
   };

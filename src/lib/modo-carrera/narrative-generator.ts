@@ -43,13 +43,34 @@ Formato JSON:
 Para rueda_prensa:
 {"body": "pregunta", "choices": [{"id":"a","label":"respuesta","effect":"consecuencia"}, ...]}`;
 
+/**
+ * Neutraliza intentos de prompt injection en campos controlados por el usuario
+ * (sobre todo el nombre del DT): elimina saltos de línea y caracteres de
+ * estructura/control que permitirían "escapar" del mensaje y dictar
+ * instrucciones al modelo, y acota la longitud.
+ */
+function sanitize(v: unknown, max = 60): string {
+  return String(v ?? "")
+    .replace(/[\r\n\t`{}<>]/g, " ")
+    .replace(/\s{2,}/g, " ")
+    .trim()
+    .slice(0, max);
+}
+
+/** Entero acotado para los campos numéricos del contexto (defensa en profundidad). */
+function safeInt(v: unknown, lo: number, hi: number): number {
+  const n = Math.round(Number(v));
+  if (!Number.isFinite(n)) return lo;
+  return Math.max(lo, Math.min(hi, n));
+}
+
 function buildUserMessage(kind: NarrativeKind, c: NarrativeContext): string {
   return `Genera una entrada de tipo "${kind}".
-DT: ${c.dtName}
-Selección: ${c.nationName}
-Filosofía: ${c.philosophyName}
-Overall: ${c.overall}/99 · Temporada: ${c.season}
-Moral del vestuario: ${c.morale}/100 · Reputación total: ${c.reputationTotal}
+DT: ${sanitize(c.dtName, 40)}
+Selección: ${sanitize(c.nationName, 40)}
+Filosofía: ${sanitize(c.philosophyName, 40)}
+Overall: ${safeInt(c.overall, 0, 99)}/99 · Temporada: ${safeInt(c.season, 1, 999)}
+Moral del vestuario: ${safeInt(c.morale, 0, 100)}/100 · Reputación total: ${safeInt(c.reputationTotal, 0, 600)}
 
 Devuelve SOLO el JSON.`;
 }

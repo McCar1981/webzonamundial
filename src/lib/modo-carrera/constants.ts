@@ -141,9 +141,14 @@ export const TITLES: TitleDef[] = [
 ];
 
 // ─── Curva de XP / overall (Pilar 2) ─────────────────────────────────────────
-/** XP necesaria para el siguiente nivel según el overall actual. */
+/**
+ * XP necesaria para el siguiente nivel según el overall actual. Curva CUADRÁTICA
+ * (antes lineal 100+overall*20, demasiado plana): cada nivel cuesta cada vez más,
+ * así que llegar a la élite (90+) es un logro de largo plazo, no un trámite.
+ * Ej.: overall 50 ≈ 2250 XP · 75 ≈ 4425 · 99 ≈ 7219.
+ */
 export function xpRequired(overall: number): number {
-  return 100 + overall * 20;
+  return Math.round(150 + overall * 12 + overall * overall * 0.6);
 }
 
 // ─── Misiones semilla (Pilar 4) ──────────────────────────────────────────────

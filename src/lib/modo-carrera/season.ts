@@ -162,7 +162,9 @@ export function matchLambdas(c: CareerState, match: SeasonMatch): { lamFor: numb
   const home = match.home ? 2.5 : 0;
   const mom = formMomentum(c); // -3..+3
   const lamFor = clamp(1.35 + (atk + home - oStr) / 9 + mom * 0.12, 0.25, 4.6);
-  const lamAg = clamp(1.35 + (oStr - def) / 9 - mom * 0.09, 0.2, 4.4);
+  // Momentum simétrico: la racha pesa igual en ataque y en defensa (antes la
+  // forma empujaba más los goles a favor (0.12) que los que evitaba (0.09)).
+  const lamAg = clamp(1.35 + (oStr - def) / 9 - mom * 0.12, 0.2, 4.4);
   return { lamFor, lamAg };
 }
 
@@ -304,13 +306,18 @@ function advanceMissionInline(m: Mission): Mission {
 }
 
 // ─── Clasificación de grupo (tabla real, top 2) ──────────────────────────────
-/** Simula un partido neutral entre dos rivales según su fuerza (sin DT). */
+/**
+ * Resultado DETERMINISTA de un partido neutral entre dos rivales según su fuerza
+ * (sin DT, sin azar): los goles esperados se redondean. Antes usaba Poisson, así
+ * que la misma tabla de grupo podía clasificar o eliminar al DT por pura suerte
+ * en partidos que él ni juega. Ahora la tabla es reproducible y justa.
+ */
 function simNeutral(aSlug: string, bSlug: string): { ga: number; gb: number } {
   const sa = opponentStrength(aSlug);
   const sb = opponentStrength(bSlug);
-  const lamA = clamp(1.3 + (sa - sb) / 10, 0.22, 4.2);
-  const lamB = clamp(1.3 + (sb - sa) / 10, 0.22, 4.2);
-  return { ga: poisson(lamA), gb: poisson(lamB) };
+  const ga = Math.max(0, Math.round(clamp(1.3 + (sa - sb) / 12, 0.22, 4.2)));
+  const gb = Math.max(0, Math.round(clamp(1.3 + (sb - sa) / 12, 0.22, 4.2)));
+  return { ga, gb };
 }
 
 interface Standing {
@@ -412,7 +419,12 @@ export function playNextMatch(c0: CareerState): PlayResult {
  * partido en curso y a todos los pilares. Si no hay partido disputable, devuelve
  * el estado sin cambios. En eliminatoria fuerza un ganador si llega empatado.
  */
-export function resolveMatch(c0: CareerState, gfIn: number, gaIn: number): PlayResult {
+export function resolveMatch(
+  c0: CareerState,
+  gfIn: number,
+  gaIn: number,
+  opts?: { wasBehind?: boolean },
+): PlayResult {
   const season = c0.season;
   const idx = playableIndex(season);
   if (idx < 0 || !season) return emptyResult(c0);
@@ -530,6 +542,9 @@ export function resolveMatch(c0: CareerState, gfIn: number, gaIn: number): PlayR
       addTitle("invicto");
     }
   }
+  // "Rey de la remontada": ganar un partido en el que se estuvo por detrás en el
+  // marcador (lo aporta el partido interactivo, que sí conoce el desarrollo).
+  if (outcome === "V" && opts?.wasBehind) addTitle("remontada");
 
   // ── Trofeo (campeón) ──
   let newTrophy: Trophy | null = null;
@@ -542,15 +557,25 @@ export function resolveMatch(c0: CareerState, gfIn: number, gaIn: number): PlayR
     records.titlesWon += 1;
   }
 
-  // ── Reputación (bonus al campeón) ──
-  let repStats = champion
-    ? {
-        ...c0.reputation.stats,
-        prestigio: clamp(c0.reputation.stats.prestigio + 5, 0, 100),
-        mediatico: clamp(c0.reputation.stats.mediatico + 5, 0, 100),
-        carisma: clamp(c0.reputation.stats.carisma + 5, 0, 100),
-      }
-    : c0.reputation.stats;
+  // ── Reputación ──
+  // Crecimiento orgánico de táctica y carisma POR PARTIDO (antes quedaban casi
+  // estancados): la táctica madura compitiendo —más en eliminatorias y al ganar—
+  // y el carisma sube al ganar y caldear el ambiente.
+  const tacticaGain = (outcome === "V" ? 2 : outcome === "E" ? 1 : 0) + (decisive ? 1 : 0);
+  const carismaGain = outcome === "V" ? 2 : outcome === "E" ? 1 : 0;
+  let repStats = {
+    ...c0.reputation.stats,
+    tactica: clamp(c0.reputation.stats.tactica + tacticaGain, 0, 100),
+    carisma: clamp(c0.reputation.stats.carisma + carismaGain, 0, 100),
+  };
+  if (champion) {
+    repStats = {
+      ...repStats,
+      prestigio: clamp(repStats.prestigio + 5, 0, 100),
+      mediatico: clamp(repStats.mediatico + 5, 0, 100),
+      carisma: clamp(repStats.carisma + 5, 0, 100),
+    };
+  }
 
   // ── Junta / federación (evaluación al cerrar la temporada) ──
   let board = c0.board;

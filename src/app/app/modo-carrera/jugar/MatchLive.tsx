@@ -86,6 +86,18 @@ function buildEvents(gfSelf: number, gaOpp: number, selfSlug: string, oppSlug: s
   return ev.sort((a, b) => a.minute - b.minute);
 }
 
+/** ¿El DT estuvo por detrás en el marcador en algún momento del partido? */
+function wasEverBehind(events: GoalEvent[]): boolean {
+  let gf = 0;
+  let ga = 0;
+  for (const e of [...events].sort((a, b) => a.minute - b.minute)) {
+    if (e.team === "self") gf++;
+    else ga++;
+    if (ga > gf) return true;
+  }
+  return false;
+}
+
 export default function MatchLive({
   career,
   match,
@@ -94,7 +106,7 @@ export default function MatchLive({
 }: {
   career: CareerState;
   match: SeasonMatch;
-  onFinish: (gf: number, ga: number) => void;
+  onFinish: (gf: number, ga: number, wasBehind: boolean) => void;
   onCancel: () => void;
 }) {
   const selfSlug = career.identity.nationSlug ?? "";
@@ -374,7 +386,7 @@ export default function MatchLive({
                 <div style={{ fontSize: 14.5, fontWeight: 800, color: "#fff", marginTop: 3 }}>{motm}</div>
               </div>
             )}
-            <button type="button" onClick={() => onFinish(finalGf, finalGa)} style={btnGold}>
+            <button type="button" onClick={() => onFinish(finalGf, finalGa, wasEverBehind(events))} style={btnGold}>
               Ver resumen
             </button>
           </>

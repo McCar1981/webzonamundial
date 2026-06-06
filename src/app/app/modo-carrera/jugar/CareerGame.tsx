@@ -167,9 +167,9 @@ export default function CareerGame() {
     setCareer((c) => (c ? beginLiveSeason(c) ?? beginSeason(c) : c));
   const handleNextSeason = () =>
     setCareer((c) => (c ? startNextSeason(c) : c));
-  const handleResolveMatch = (gf: number, ga: number): PlayResult | null => {
+  const handleResolveMatch = (gf: number, ga: number, wasBehind?: boolean): PlayResult | null => {
     if (!career) return null;
-    const res = resolveMatch(career, gf, ga);
+    const res = resolveMatch(career, gf, ga, { wasBehind });
     if (res.match) setCareer(res.career);
     return res;
   };

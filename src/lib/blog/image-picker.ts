@@ -192,15 +192,19 @@ function detectCountries(opts: {
   keywords: string[];
   tags: string[];
 }): string[] {
-  const titleN = norm(opts.title);
-  const restN = norm([...opts.keywords, ...opts.tags].join(" "));
+  // Tokeniza por PALABRAS (delimitadas por espacios). Esencial: hacerlo por
+  // subcadena daba falsos positivos — "decidirán"/"seguirán" contienen "irán" y
+  // colaban Irán en posts que no van de Irán. Comparamos palabra completa.
+  const titleN = tokenized(opts.title);
+  const restN = tokenized([...opts.keywords, ...opts.tags].join(" "));
   const inTitle: string[] = [];
   const inRest: string[] = [];
 
-  const consider = (token: string, en: string) => {
+  const consider = (name: string, en: string) => {
     if (inTitle.includes(en) || inRest.includes(en)) return;
-    if (titleN.includes(token)) inTitle.push(en);
-    else if (restN.includes(token)) inRest.push(en);
+    const phrase = ` ${name} `;
+    if (titleN.includes(phrase)) inTitle.push(en);
+    else if (restN.includes(phrase)) inRest.push(en);
   };
 
   // Nombres en español (más probables en nuestros títulos).
@@ -209,6 +213,15 @@ function detectCountries(opts: {
   for (const en of WC_NATIONS_EN) consider(en.toLowerCase(), en);
 
   return [...inTitle, ...inRest];
+}
+
+/** Normaliza a una cadena de palabras separadas por un único espacio y rodeada
+ * de espacios, para poder buscar PALABRAS completas con `.includes(" x ")`. */
+function tokenized(s: string): string {
+  const words = norm(s)
+    .split(/[^a-z0-9áéíóúñü]+/)
+    .filter(Boolean);
+  return ` ${words.join(" ")} `;
 }
 
 /** Nombres propios no-país (jugadores, estadios, ciudades) que suelen ser

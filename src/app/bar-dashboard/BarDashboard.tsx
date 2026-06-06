@@ -487,9 +487,9 @@ function Personalization({ bar, setBar, hasActivePlan, onFlash }: { bar: BarRow;
 
   const set = (k: keyof typeof form, v: string) => setForm((f) => ({ ...f, [k]: v }));
 
-  const onLogo = useCallback((b: BarRow) => {
+  const onImage = useCallback((b: BarRow) => {
     setBar(b);
-    setForm((f) => ({ ...f, logo_url: b.logo_url ?? "" }));
+    setForm((f) => ({ ...f, logo_url: b.logo_url ?? "", cover_url: b.cover_url ?? "" }));
   }, [setBar]);
 
   const save = useCallback(async (extra?: Partial<BarRow>) => {
@@ -511,8 +511,8 @@ function Personalization({ bar, setBar, hasActivePlan, onFlash }: { bar: BarRow;
         <Field label="Texto del botón principal"><input value={form.cta_label} onChange={(e) => set("cta_label", e.target.value)} style={inp()} /></Field>
         <Field label="Instagram (sin @)"><input value={form.instagram} onChange={(e) => set("instagram", e.target.value)} style={inp()} /></Field>
         <Field label="Dirección"><input value={form.address} onChange={(e) => set("address", e.target.value)} style={inp()} /></Field>
-        <Field label="Logo del bar"><LogoUpload logoUrl={form.logo_url} onChange={onLogo} onFlash={onFlash} /></Field>
-        <Field label="URL de la portada"><input value={form.cover_url} onChange={(e) => set("cover_url", e.target.value)} placeholder="https://…" style={inp()} /></Field>
+        <Field label="Logo del bar"><ImageUpload kind="logo" url={form.logo_url} onChange={onImage} onFlash={onFlash} /></Field>
+        <Field label="Portada del bar"><ImageUpload kind="cover" url={form.cover_url} onChange={onImage} onFlash={onFlash} /></Field>
         <Field label="Tema visual">
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(120px,1fr))", gap: 8 }}>
             {themes.map((th) => (
@@ -555,43 +555,45 @@ function Personalization({ bar, setBar, hasActivePlan, onFlash }: { bar: BarRow;
   );
 }
 
-function LogoUpload({ logoUrl, onChange, onFlash }: { logoUrl: string; onChange: (b: BarRow) => void; onFlash: (s: string) => void }) {
+function ImageUpload({ kind, url, onChange, onFlash }: { kind: "logo" | "cover"; url: string; onChange: (b: BarRow) => void; onFlash: (s: string) => void }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [busy, setBusy] = useState(false);
+  const noun = kind === "cover" ? "portada" : "logo";
+  const isCover = kind === "cover";
 
   const upload = useCallback(async (file: File) => {
     setBusy(true);
     try {
       const fd = new FormData();
       fd.append("file", file);
-      const res = await fetch("/api/bars/logo", { method: "POST", body: fd });
+      const res = await fetch(`/api/bars/logo?kind=${kind}`, { method: "POST", body: fd });
       const j = await res.json();
-      if (res.ok && j.bar) { onChange(j.bar); onFlash("Logo actualizado"); }
-      else onFlash(j.error || "No se pudo subir el logo");
-    } catch { onFlash("Error de red al subir el logo"); }
+      if (res.ok && j.bar) { onChange(j.bar); onFlash(`${isCover ? "Portada actualizada" : "Logo actualizado"}`); }
+      else onFlash(j.error || `No se pudo subir la ${noun}`);
+    } catch { onFlash(`Error de red al subir la ${noun}`); }
     finally { setBusy(false); if (inputRef.current) inputRef.current.value = ""; }
-  }, [onChange, onFlash]);
+  }, [kind, isCover, noun, onChange, onFlash]);
 
   const remove = useCallback(async () => {
     setBusy(true);
     try {
-      const res = await fetch("/api/bars/logo", { method: "DELETE" });
+      const res = await fetch(`/api/bars/logo?kind=${kind}`, { method: "DELETE" });
       const j = await res.json();
-      if (res.ok && j.bar) { onChange(j.bar); onFlash("Logo eliminado"); }
+      if (res.ok && j.bar) { onChange(j.bar); onFlash(`${isCover ? "Portada eliminada" : "Logo eliminado"}`); }
       else onFlash(j.error || "No se pudo eliminar");
     } catch { onFlash("Error de red"); }
     finally { setBusy(false); }
-  }, [onChange, onFlash]);
+  }, [kind, isCover, onChange, onFlash]);
 
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
       <div style={{
-        width: 72, height: 72, borderRadius: 12, flexShrink: 0, border: BORDER, background: BG3,
+        width: isCover ? 128 : 72, height: 72, borderRadius: 12, flexShrink: 0, border: BORDER, background: BG3,
         display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
       }}>
-        {logoUrl
+        {url
           // eslint-disable-next-line @next/next/no-img-element
-          ? <img src={logoUrl} alt="Logo del bar" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+          ? <img src={url} alt={`${noun} del bar`} style={{ width: "100%", height: "100%", objectFit: isCover ? "cover" : "contain" }} />
           : <ImageIcon size={26} color={DIM} />}
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
@@ -602,9 +604,9 @@ function LogoUpload({ logoUrl, onChange, onFlash }: { logoUrl: string; onChange:
         />
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
           <button type="button" onClick={() => inputRef.current?.click()} disabled={busy} style={{ ...btn(), opacity: busy ? 0.6 : 1 }}>
-            {busy ? <Loader2 size={15} className="spin" /> : <Upload size={15} />} {logoUrl ? "Cambiar logo" : "Subir logo"}
+            {busy ? <Loader2 size={15} className="spin" /> : <Upload size={15} />} {url ? `Cambiar ${noun}` : `Subir ${noun}`}
           </button>
-          {logoUrl && (
+          {url && (
             <button type="button" onClick={() => void remove()} disabled={busy} style={{ ...qa(), cursor: "pointer", color: DIM }}>
               <Trash2 size={14} /> Quitar
             </button>

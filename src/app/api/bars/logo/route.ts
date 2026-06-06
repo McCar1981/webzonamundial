@@ -1,15 +1,17 @@
 // src/app/api/bars/logo/route.ts
 //
-// POST   /api/bars/logo — sube el logo del bar del dueño (multipart/form-data).
-// DELETE /api/bars/logo — elimina el logo actual del bar del dueño.
+// POST   /api/bars/logo — sube una imagen del bar del dueño (multipart/form-data).
+// DELETE /api/bars/logo — elimina la imagen actual del bar del dueño.
 //
-// Mismo patrón que /api/account/avatar: subida server-side con service_role
-// (determinista, valida MIME/size en el server, no confía en el browser). El
-// archivo se guarda en el bucket público "bar-logos" bajo <barId>/logo.<ext> y
-// la URL pública resultante se guarda en bars.logo_url.
+// Sirve dos imágenes según ?kind= (o campo "kind" del form): "logo" (por
+// defecto) y "cover" (portada). Mismo patrón que /api/account/avatar: subida
+// server-side con service_role (determinista, valida MIME/size en el server,
+// no confía en el browser). Se guarda en el bucket público "bar-logos" bajo
+// <barId>/<kind>.<ext> y la URL pública resultante se guarda en la columna
+// correspondiente (logo_url o cover_url).
 //
 // Auth: sesión por cookies. El bar es SIEMPRE el del usuario (getBarByOwner),
-// nunca un id del body → un atacante no puede tocar logos ajenos.
+// nunca un id del body → un atacante no puede tocar imágenes ajenas.
 
 import { NextRequest, NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
@@ -28,6 +30,13 @@ const MIME_TO_EXT: Record<string, string> = {
   "image/webp": "webp",
   "image/svg+xml": "svg",
 };
+
+// Tipo de imagen → columna del bar. "logo" por defecto.
+function resolveKind(raw: string | null): { kind: "logo" | "cover"; column: "logo_url" | "cover_url" } {
+  return raw === "cover"
+    ? { kind: "cover", column: "cover_url" }
+    : { kind: "logo", column: "logo_url" };
+}
 
 export async function POST(request: NextRequest) {
   // 1. Auth
@@ -49,6 +58,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "No file provided" }, { status: 400 });
   }
 
+  const { kind, column } = resolveKind(
+    new URL(request.url).searchParams.get("kind") ?? (form.get("kind") as string | null),
+  );
+
   // 4. Validar MIME + size en server
   if (!ALLOWED_MIME.has(file.type)) {
     return NextResponse.json({ error: "Formato no soportado. Usa JPG, PNG, WEBP o SVG." }, { status: 415 });
@@ -59,17 +72,21 @@ export async function POST(request: NextRequest) {
 
   const admin = adminClient();
   const ext = MIME_TO_EXT[file.type];
-  const path = `${bar.id}/logo.${ext}`;
+  const path = `${bar.id}/${kind}.${ext}`;
 
-  // 5. Limpia logos previos del bar (evita huérfanos al cambiar de extensión)
+  // 5. Limpia versiones previas de ESTE tipo (evita huérfanos al cambiar de
+  //    extensión). No toca el otro tipo (logo vs cover conviven).
   try {
     const { data: existing } = await admin.storage.from(BUCKET).list(bar.id);
     if (existing && existing.length > 0) {
-      const toRemove = existing.map((f) => `${bar.id}/${f.name}`).filter((p) => p !== path);
+      const toRemove = existing
+        .filter((f) => f.name.startsWith(`${kind}.`))
+        .map((f) => `${bar.id}/${f.name}`)
+        .filter((p) => p !== path);
       if (toRemove.length > 0) await admin.storage.from(BUCKET).remove(toRemove);
     }
   } catch (err) {
-    console.warn("[bar-logo] cleanup failed:", (err as Error).message);
+    console.warn(`[bar-${kind}] cleanup failed:`, (err as Error).message);
   }
 
   // 6. Subir
@@ -78,7 +95,7 @@ export async function POST(request: NextRequest) {
     upsert: true, contentType: file.type, cacheControl: "3600",
   });
   if (uploadError) {
-    console.error("[bar-logo] upload failed:", uploadError.message);
+    console.error(`[bar-${kind}] upload failed:`, uploadError.message);
     return NextResponse.json({ error: `No se pudo subir: ${uploadError.message}` }, { status: 500 });
   }
 
@@ -86,16 +103,16 @@ export async function POST(request: NextRequest) {
   const { data: pub } = admin.storage.from(BUCKET).getPublicUrl(path);
   const url = `${pub.publicUrl}?v=${Date.now()}`;
 
-  // 8. Guardar en bars.logo_url
-  const updated = await updateBar(user.id, { logo_url: url });
+  // 8. Guardar en la columna correspondiente
+  const updated = await updateBar(user.id, { [column]: url });
   if (!updated) {
-    return NextResponse.json({ error: "Logo subido pero error guardando el bar." }, { status: 500 });
+    return NextResponse.json({ error: "Imagen subida pero error guardando el bar." }, { status: 500 });
   }
 
   return NextResponse.json({ ok: true, url, bar: updated });
 }
 
-export async function DELETE() {
+export async function DELETE(request: NextRequest) {
   const supa = createSupabaseServerClient();
   const { data: { user } } = await supa.auth.getUser();
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -103,13 +120,16 @@ export async function DELETE() {
   const bar = await getBarByOwner(user.id);
   if (!bar) return NextResponse.json({ error: "bar_not_found" }, { status: 404 });
 
+  const { kind, column } = resolveKind(new URL(request.url).searchParams.get("kind"));
+
   const admin = adminClient();
   const { data: existing } = await admin.storage.from(BUCKET).list(bar.id);
   if (existing && existing.length > 0) {
-    await admin.storage.from(BUCKET).remove(existing.map((f) => `${bar.id}/${f.name}`));
+    const toRemove = existing.filter((f) => f.name.startsWith(`${kind}.`)).map((f) => `${bar.id}/${f.name}`);
+    if (toRemove.length > 0) await admin.storage.from(BUCKET).remove(toRemove);
   }
 
-  const updated = await updateBar(user.id, { logo_url: null });
+  const updated = await updateBar(user.id, { [column]: null });
   if (!updated) return NextResponse.json({ error: "Error limpiando el bar." }, { status: 500 });
   return NextResponse.json({ ok: true, bar: updated });
 }

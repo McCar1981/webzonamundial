@@ -89,7 +89,7 @@ export default function BattlePass() {
         <div style={{ height: 8, background: BG3, borderRadius: 99, overflow: "hidden", border: CARD_BORDER }}>
           <div style={{ width: `${Math.round(progress * 100)}%`, height: "100%", background: `linear-gradient(90deg,${GOLD},${GOLD2})`, transition: "width .4s" }} />
         </div>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, flexWrap: "wrap" }}>
           <span style={{ color: DIM, fontSize: 10.5 }}>
             {tier < tier_count ? `${xp_into_tier}/${xp_for_tier} XP al nivel ${tier + 1}` : "Pista completa"}
           </span>
@@ -98,7 +98,7 @@ export default function BattlePass() {
       </button>
 
       {open && (
-        <div style={{ order: 2, flexBasis: "100%", width: "100%", display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(150px,1fr))", gap: 10 }}>
+        <div className="strip-wide" style={{ order: 2, flexBasis: "100%", width: "100%", display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(150px,1fr))", gap: 10 }}>
           {tiers.map((t) => (
             <div
               key={t.tier}

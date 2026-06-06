@@ -94,7 +94,7 @@ export default function Cosmetics() {
       </button>
 
       {open && (
-        <div style={{ order: 2, flexBasis: "100%", width: "100%", display: "flex", flexDirection: "column", gap: 14 }}>
+        <div className="strip-wide" style={{ order: 2, flexBasis: "100%", width: "100%", display: "flex", flexDirection: "column", gap: 14 }}>
           {KIND_ORDER.map((kind) => (
             <div key={kind}>
               <div style={{ fontWeight: 800, fontSize: 13.5, color: GOLD2, marginBottom: 8 }}>{KIND_LABEL[kind]}</div>

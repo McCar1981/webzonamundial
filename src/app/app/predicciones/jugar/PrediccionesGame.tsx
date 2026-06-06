@@ -287,10 +287,7 @@ export default function PrediccionesGame() {
       {/* Tira de progreso: los 6 recuadros (Nivel, Racha, Fútcoins, Reto,
           Pase, Cosméticos) en una sola fila; los paneles desplegables caen
           a lo ancho debajo mediante flex order. */}
-      <div
-        className="progress-strip"
-        style={{ maxWidth: 1280, margin: "0 auto", padding: "0 16px 4px", display: "flex", flexWrap: "wrap", gap: 10, alignItems: "stretch" }}
-      >
+      <div className="progress-strip">
         <GamificationHUD />
         <BattlePass />
         <Cosmetics />
@@ -380,6 +377,30 @@ export default function PrediccionesGame() {
 const PJ_CSS = `
 .predictions-page * { box-sizing: border-box; }
 .pj-wrap { max-width: 1280px; margin: 0 auto; padding-left: 16px; padding-right: 16px; }
+
+/* Tira de progreso (Nivel, Racha, Fútcoins, Reto, Pase, Cosméticos).
+   Móvil: grid de 3 columnas → los 6 recuadros caben en 2 filas exactas.
+   Escritorio (>=768px): una sola fila flex que reparte el ancho. En ambos
+   casos los paneles desplegables (logros, pista, tienda) usan order:2 para
+   caer debajo a todo lo ancho. */
+.progress-strip {
+  max-width: 1280px; margin: 0 auto; padding: 0 16px 4px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+  align-items: stretch;
+}
+.progress-strip > * { min-width: 0; }
+/* Los desplegables ocupan toda la fila del grid. */
+.progress-strip > .strip-wide { grid-column: 1 / -1; }
+/* En móvil, recortamos un poco el padding horizontal de los 6 recuadros para
+   que el contenido respire dentro de columnas estrechas (3 por fila). */
+@media (max-width: 767px) {
+  .progress-strip > *:not(.strip-wide) {
+    padding-left: 9px !important; padding-right: 9px !important;
+  }
+}
+@media (min-width: 768px) {
+  .progress-strip { display: flex; flex-wrap: wrap; gap: 10px; }
+}
 
 /* Hero */
 .predictions-hero { display: flex; flex-direction: column; gap: 22px; }

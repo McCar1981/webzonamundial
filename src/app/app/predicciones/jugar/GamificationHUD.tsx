@@ -96,7 +96,7 @@ export default function GamificationHUD() {
     <>
       {/* Recuadro 1 · Nivel + XP (ancho) */}
       <div style={{ flex: "3 1 240px", background: BG2, border: CARD_BORDER, borderRadius: 14, padding: "11px 13px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: "2px 6px" }}>
           <span style={{ fontWeight: 900, fontSize: 15 }}>
             <span style={{ color: GOLD2 }}>Nivel {level.level}</span>{" "}
             <span style={{ color: MID, fontSize: 12, fontWeight: 700 }}>{level.title}</span>
@@ -139,7 +139,7 @@ export default function GamificationHUD() {
         <div style={{ height: 7, background: BG3, borderRadius: 99, overflow: "hidden", border: CARD_BORDER }}>
           <div style={{ width: `${challengePct}%`, height: "100%", background: daily.challenge_completed ? GREEN : `linear-gradient(90deg,${GOLD},${GOLD2})`, transition: "width .4s" }} />
         </div>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, flexWrap: "wrap" }}>
           <span style={{ color: daily.challenge_completed ? GREEN : GOLD2, fontSize: 11, fontWeight: 700, display: "inline-flex", alignItems: "center", gap: 4 }}>
             <Coins size={12} /> {daily.challenge.rewardCoins} · +{daily.challenge.rewardXp} XP
           </span>
@@ -161,7 +161,7 @@ export default function GamificationHUD() {
       </div>
 
       {/* Bloque desplegable a lo ancho (cae bajo la tira) */}
-      <div style={{ order: 2, flexBasis: "100%", width: "100%", display: "flex", flexDirection: "column", gap: 10 }}>
+      <div className="strip-wide" style={{ order: 2, flexBasis: "100%", width: "100%", display: "flex", flexDirection: "column", gap: 10 }}>
         {/* Hora Feliz (flash) */}
         {fl.active && (
           <div style={{ background: "rgba(232,212,139,0.12)", border: `1px solid ${GOLD}`, borderRadius: 14, padding: "9px 14px", color: GOLD2, fontWeight: 800, fontSize: 13.5, textAlign: "center" }}>

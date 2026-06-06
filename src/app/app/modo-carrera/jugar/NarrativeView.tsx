@@ -72,8 +72,25 @@ export default function NarrativeView({
       <style>{`
         @keyframes mcDots { 0%,80%,100%{opacity:.2} 40%{opacity:1} }
         .mc-dot { animation: mcDots 1.2s infinite both; }
+        .mc-prensa-head {
+          background-image: linear-gradient(180deg, rgba(6,11,20,0.55), rgba(6,11,20,0.88)), url('/img/modo-carrera/narrativa/prensa-bg.png');
+          background-size: cover; background-position: center;
+        }
+        .mc-titular-paper {
+          background-image: linear-gradient(180deg, rgba(231,224,205,0.92), rgba(214,205,180,0.95)), url('/img/modo-carrera/narrativa/periodico-texture.png');
+          background-size: cover; background-position: center;
+        }
+        @media (max-width: 640px) {
+          .mc-prensa-head {
+            background-image: linear-gradient(180deg, rgba(6,11,20,0.55), rgba(6,11,20,0.88)), url('/img/modo-carrera/narrativa/prensa-bg-mobile.png');
+          }
+          .mc-titular-paper {
+            background-image: linear-gradient(180deg, rgba(231,224,205,0.92), rgba(214,205,180,0.95)), url('/img/modo-carrera/narrativa/periodico-texture-mobile.png');
+          }
+        }
       `}</style>
       <div
+        className="mc-prensa-head"
         style={{
           position: "relative",
           overflow: "hidden",
@@ -81,10 +98,6 @@ export default function NarrativeView({
           padding: "26px 22px",
           borderRadius: 16,
           border: "1px solid rgba(255,255,255,0.06)",
-          backgroundImage:
-            "linear-gradient(180deg, rgba(6,11,20,0.55), rgba(6,11,20,0.88)), url('/img/modo-carrera/narrativa/prensa-bg.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
         }}
       >
         <h2 style={{ fontSize: 22, fontWeight: 900, color: "#fff", position: "relative" }}>Narrativa</h2>
@@ -171,27 +184,30 @@ export default function NarrativeView({
           {entries.map((e) => {
             const pending = e.choices && e.choices.length > 0 && !e.chosen;
             const isTitular = e.kind === "titular";
-            // Los titulares se imprimen sobre textura de periódico (tinta oscura);
-            // el resto mantiene el estilo de tarjeta oscura.
+            const isPrensa = e.kind === "rueda_prensa";
+            // Titulares → textura de periódico (tinta oscura). Ruedas de prensa →
+            // fondo de podio de prensa (texto claro). El resto, tarjeta oscura.
             const ink = "#1a1610";
-            return (
-              <article
-                key={e.id}
-                style={
-                  isTitular
-                    ? {
-                        padding: 20,
-                        borderRadius: 14,
-                        backgroundImage:
-                          "linear-gradient(180deg, rgba(231,224,205,0.92), rgba(214,205,180,0.95)), url('/img/modo-carrera/narrativa/periodico-texture.png')",
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                        border: `1px solid ${pending ? GOLD : "rgba(26,22,16,0.25)"}`,
-                        boxShadow: "inset 0 0 60px rgba(0,0,0,0.08)",
-                      }
-                    : { padding: 18, borderRadius: 14, background: BG2, border: `1px solid ${pending ? GOLD : "rgba(255,255,255,0.06)"}` }
+            const baseStyle: React.CSSProperties = isTitular
+              ? {
+                  padding: 20,
+                  borderRadius: 14,
+                  border: `1px solid ${pending ? GOLD : "rgba(26,22,16,0.25)"}`,
+                  boxShadow: "inset 0 0 60px rgba(0,0,0,0.08)",
                 }
-              >
+              : isPrensa
+                ? {
+                    padding: 18,
+                    borderRadius: 14,
+                    backgroundImage:
+                      "linear-gradient(180deg, rgba(6,11,20,0.72), rgba(6,11,20,0.92)), url('/img/modo-carrera/narrativa/prensa-podio.png')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    border: `1px solid ${pending ? GOLD : "rgba(255,255,255,0.08)"}`,
+                  }
+                : { padding: 18, borderRadius: 14, background: BG2, border: `1px solid ${pending ? GOLD : "rgba(255,255,255,0.06)"}` };
+            return (
+              <article key={e.id} className={isTitular ? "mc-titular-paper" : undefined} style={baseStyle}>
                 <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
                   {e.kind === "evento" && eventIcon(e.body) && (
                     <img

@@ -79,6 +79,17 @@ export default function LegacyView({ career, paseDT = false }: { career: CareerS
 
   return (
     <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+      <style>{`
+        .mc-vitrina {
+          background-image: linear-gradient(180deg, rgba(15,29,50,0.82), rgba(6,11,20,0.94)), url('/img/modo-carrera/trofeos/vitrina-bg.png');
+          background-size: cover; background-position: center;
+        }
+        @media (max-width: 640px) {
+          .mc-vitrina {
+            background-image: linear-gradient(180deg, rgba(15,29,50,0.82), rgba(6,11,20,0.94)), url('/img/modo-carrera/trofeos/vitrina-bg-mobile.png');
+          }
+        }
+      `}</style>
       {reveal && <TrophyReveal trophy={reveal} paseDT={paseDT} onClose={() => setReveal(null)} />}
 
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12, marginBottom: 20 }}>
@@ -106,6 +117,7 @@ export default function LegacyView({ career, paseDT = false }: { career: CareerS
 
       {/* Vitrina de trofeos */}
       <div
+        className="mc-vitrina"
         style={{
           position: "relative",
           overflow: "hidden",
@@ -113,10 +125,6 @@ export default function LegacyView({ career, paseDT = false }: { career: CareerS
           borderRadius: 16,
           border: "1px solid rgba(255,255,255,0.05)",
           marginBottom: 16,
-          backgroundImage:
-            "linear-gradient(180deg, rgba(15,29,50,0.82), rgba(6,11,20,0.94)), url('/img/modo-carrera/trofeos/vitrina-bg.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
         }}
       >
         <h3 style={{ fontSize: 13, fontWeight: 800, letterSpacing: 1, textTransform: "uppercase", color: GOLD, marginBottom: 14, position: "relative" }}>Vitrina</h3>

@@ -165,7 +165,7 @@ function MissionCard({
     >
       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
         <img
-          src={`/img/modo-carrera/icons/mission-${m.kind}.png`}
+          src={isTraining ? "/img/modo-carrera/icons/entrenamiento.png" : `/img/modo-carrera/icons/mission-${m.kind}.png`}
           alt=""
           width={22}
           height={22}

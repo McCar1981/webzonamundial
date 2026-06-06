@@ -219,7 +219,7 @@ export default function ModoCarreraPage() {
             {mcT.subtitle}
           </p>
           <div style={{ marginTop: 40, display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-            <Link href="/registro" data-hero-cta data-hover-btn style={{
+            <Link href="/app/modo-carrera/jugar" data-hero-cta data-hover-btn style={{
               padding: "16px 36px", borderRadius: 14,
               background: `linear-gradient(135deg,${GOLD},${GOLD2})`,
               color: BG, fontWeight: 800, fontSize: 16, textDecoration: "none", display: "inline-block",
@@ -433,7 +433,7 @@ export default function ModoCarreraPage() {
           <p data-cta-content style={{ color: MID, marginBottom: 40, fontSize: 18 }}>
             {mcT.ctaFinalDesc}
           </p>
-          <Link href="/registro" data-cta-content data-hover-btn style={{
+          <Link href="/app/modo-carrera/jugar" data-cta-content data-hover-btn style={{
             padding: "18px 44px", borderRadius: 14,
             background: `linear-gradient(135deg,${GOLD},${GOLD2})`,
             color: BG, fontWeight: 800, fontSize: 18, textDecoration: "none", display: "inline-block",

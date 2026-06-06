@@ -8,6 +8,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { listAllBars } from "@/lib/bars/store";
 import { getPlan } from "@/lib/bars/plans";
+import BarPlanActions from "./BarPlanActions";
 
 export const metadata: Metadata = {
   title: "Bares · Panel interno",
@@ -57,6 +58,7 @@ export default async function BarsAdminPage() {
               <th className="px-3 py-2.5">Participantes</th>
               <th className="px-3 py-2.5">Creado</th>
               <th className="px-3 py-2.5">Página</th>
+              <th className="px-3 py-2.5">Plan (test)</th>
             </tr>
           </thead>
           <tbody>
@@ -85,11 +87,14 @@ export default async function BarsAdminPage() {
                 <td className="px-3 py-2.5">
                   <Link href={`/b/${b.slug}`} target="_blank" className="text-[#C9A84C] hover:underline text-xs">Ver</Link>
                 </td>
+                <td className="px-3 py-2.5">
+                  <BarPlanActions barId={b.id} paid={b.paid} />
+                </td>
               </tr>
             ))}
             {bars.length === 0 && (
               <tr>
-                <td colSpan={8} className="px-3 py-6 text-center text-gray-500">
+                <td colSpan={9} className="px-3 py-6 text-center text-gray-500">
                   Aún no hay bares registrados.
                 </td>
               </tr>

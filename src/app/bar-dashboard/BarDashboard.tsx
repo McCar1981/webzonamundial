@@ -4,11 +4,12 @@
 // resumen de métricas, QR + descarga de materiales, premios y personalización.
 // Estilo corporativo ZonaMundial (azul marino + dorado). Solo iconos SVG.
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import QRCode from "qrcode";
 import {
   Trophy, Users, QrCode, Gift, Palette, BarChart3, Tv, ExternalLink, Copy, Check,
   Download, Plus, Trash2, Eye, Loader2, Rocket, CreditCard, MapPin, Printer, FileSpreadsheet, Lock,
+  Upload, ImageIcon,
 } from "lucide-react";
 import { themeList } from "@/lib/bars/themes";
 import { planList, getPlan, type BarPlan } from "@/lib/bars/plans";
@@ -486,6 +487,11 @@ function Personalization({ bar, setBar, hasActivePlan, onFlash }: { bar: BarRow;
 
   const set = (k: keyof typeof form, v: string) => setForm((f) => ({ ...f, [k]: v }));
 
+  const onLogo = useCallback((b: BarRow) => {
+    setBar(b);
+    setForm((f) => ({ ...f, logo_url: b.logo_url ?? "" }));
+  }, [setBar]);
+
   const save = useCallback(async (extra?: Partial<BarRow>) => {
     setBusy(true);
     try {
@@ -505,7 +511,7 @@ function Personalization({ bar, setBar, hasActivePlan, onFlash }: { bar: BarRow;
         <Field label="Texto del botón principal"><input value={form.cta_label} onChange={(e) => set("cta_label", e.target.value)} style={inp()} /></Field>
         <Field label="Instagram (sin @)"><input value={form.instagram} onChange={(e) => set("instagram", e.target.value)} style={inp()} /></Field>
         <Field label="Dirección"><input value={form.address} onChange={(e) => set("address", e.target.value)} style={inp()} /></Field>
-        <Field label="URL del logo"><input value={form.logo_url} onChange={(e) => set("logo_url", e.target.value)} placeholder="https://…" style={inp()} /></Field>
+        <Field label="Logo del bar"><LogoUpload logoUrl={form.logo_url} onChange={onLogo} onFlash={onFlash} /></Field>
         <Field label="URL de la portada"><input value={form.cover_url} onChange={(e) => set("cover_url", e.target.value)} placeholder="https://…" style={inp()} /></Field>
         <Field label="Tema visual">
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(120px,1fr))", gap: 8 }}>
@@ -546,6 +552,67 @@ function Personalization({ bar, setBar, hasActivePlan, onFlash }: { bar: BarRow;
         </div>
       </div>
     </Section>
+  );
+}
+
+function LogoUpload({ logoUrl, onChange, onFlash }: { logoUrl: string; onChange: (b: BarRow) => void; onFlash: (s: string) => void }) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [busy, setBusy] = useState(false);
+
+  const upload = useCallback(async (file: File) => {
+    setBusy(true);
+    try {
+      const fd = new FormData();
+      fd.append("file", file);
+      const res = await fetch("/api/bars/logo", { method: "POST", body: fd });
+      const j = await res.json();
+      if (res.ok && j.bar) { onChange(j.bar); onFlash("Logo actualizado"); }
+      else onFlash(j.error || "No se pudo subir el logo");
+    } catch { onFlash("Error de red al subir el logo"); }
+    finally { setBusy(false); if (inputRef.current) inputRef.current.value = ""; }
+  }, [onChange, onFlash]);
+
+  const remove = useCallback(async () => {
+    setBusy(true);
+    try {
+      const res = await fetch("/api/bars/logo", { method: "DELETE" });
+      const j = await res.json();
+      if (res.ok && j.bar) { onChange(j.bar); onFlash("Logo eliminado"); }
+      else onFlash(j.error || "No se pudo eliminar");
+    } catch { onFlash("Error de red"); }
+    finally { setBusy(false); }
+  }, [onChange, onFlash]);
+
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
+      <div style={{
+        width: 72, height: 72, borderRadius: 12, flexShrink: 0, border: BORDER, background: BG3,
+        display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
+      }}>
+        {logoUrl
+          // eslint-disable-next-line @next/next/no-img-element
+          ? <img src={logoUrl} alt="Logo del bar" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+          : <ImageIcon size={26} color={DIM} />}
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+        <input
+          ref={inputRef} type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml"
+          onChange={(e) => { const f = e.target.files?.[0]; if (f) void upload(f); }}
+          style={{ display: "none" }}
+        />
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+          <button type="button" onClick={() => inputRef.current?.click()} disabled={busy} style={{ ...btn(), opacity: busy ? 0.6 : 1 }}>
+            {busy ? <Loader2 size={15} className="spin" /> : <Upload size={15} />} {logoUrl ? "Cambiar logo" : "Subir logo"}
+          </button>
+          {logoUrl && (
+            <button type="button" onClick={() => void remove()} disabled={busy} style={{ ...qa(), cursor: "pointer", color: DIM }}>
+              <Trash2 size={14} /> Quitar
+            </button>
+          )}
+        </div>
+        <span style={{ color: DIM, fontSize: 11.5 }}>PNG, JPG, WEBP o SVG · máx. 2 MB</span>
+      </div>
+    </div>
   );
 }
 

@@ -179,3 +179,53 @@ export async function getCurrentSubscription(): Promise<PushSubscription | null>
   if (!reg) return null;
   return await reg.pushManager.getSubscription();
 }
+
+/**
+ * "Seguir partido" (efecto pin de Google). Asegura permiso + suscripción y
+ * registra/quita este browser como seguidor del partido en el backend. El cron
+ * del Match Center le mandará la notificación fijada con marcador y minuto.
+ * Devuelve el estado resultante (true = siguiendo) o null si no se pudo.
+ */
+export async function setMatchFollow(
+  matchId: number,
+  follow: boolean,
+): Promise<boolean | null> {
+  if (!isPushSupported()) return null;
+  // Para seguir hace falta una suscripción; subscribeToPush es idempotente y
+  // pide permiso si aún no lo hay.
+  let sub = await getCurrentSubscription();
+  if (!sub && follow) {
+    sub = await subscribeToPush({ kinds: ["tournament-key-events"] });
+  }
+  if (!sub) return null;
+  try {
+    const r = await fetch("/api/match-center/follow", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ matchId, follow, subscription: sub.toJSON() }),
+    });
+    if (!r.ok) return null;
+    const data = (await r.json()) as { following?: boolean };
+    return !!data.following;
+  } catch (err) {
+    console.error("[push-client] setMatchFollow failed:", err);
+    return null;
+  }
+}
+
+/** ¿Este browser sigue el partido? (consulta el backend por endpoint). */
+export async function getMatchFollow(matchId: number): Promise<boolean> {
+  const sub = await getCurrentSubscription();
+  if (!sub) return false;
+  try {
+    const r = await fetch(
+      `/api/match-center/follow?matchId=${matchId}&endpoint=${encodeURIComponent(sub.endpoint)}`,
+      { cache: "no-store" },
+    );
+    if (!r.ok) return false;
+    const data = (await r.json()) as { following?: boolean };
+    return !!data.following;
+  } catch {
+    return false;
+  }
+}

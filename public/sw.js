@@ -57,7 +57,11 @@ self.addEventListener("push", (event) => {
     tag: payload.tag || "news",
     // Si llega un push con el mismo tag, reemplaza al anterior.
     renotify: true,
-    requireInteraction: false,
+    // "Fijar" (Seguir partido): si viene requireInteraction, la notificación
+    // queda anclada hasta que el usuario la descarta, en vez de auto-cerrarse.
+    requireInteraction: !!payload.requireInteraction,
+    // Tick silencioso: refresca la tarjeta (marcador/minuto) sin sonido.
+    silent: !!payload.silent,
     data: {
       url: payload.url || "/",
       pushId: payload.pushId,

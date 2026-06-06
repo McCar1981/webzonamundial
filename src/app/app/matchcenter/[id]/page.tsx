@@ -9,6 +9,7 @@ import { notFound } from "next/navigation";
 import { buildMeta, resolveMatchId, matchSlug } from "@/lib/match-center/store";
 import { matchHeroImage } from "@/lib/match-center/heroImage";
 import MatchCenterLive from "../MatchCenterLive";
+import FollowMatchButton from "../FollowMatchButton";
 
 export const dynamic = "force-dynamic";
 
@@ -38,5 +39,16 @@ export default async function MatchPage({ params, searchParams }: PageProps) {
   const sim = searchParams?.sim === "1";
   // Foto que acompaña al partido (jugador estrella local; respaldo: estadio).
   const heroImage = await matchHeroImage(meta);
-  return <MatchCenterLive matchId={matchId} meta={meta} sim={sim} heroImage={heroImage} />;
+  return (
+    <>
+      <div style={{ display: "flex", justifyContent: "center", padding: "12px 16px 0" }}>
+        <FollowMatchButton
+          matchId={matchId}
+          homeName={meta.home.name}
+          awayName={meta.away.name}
+        />
+      </div>
+      <MatchCenterLive matchId={matchId} meta={meta} sim={sim} heroImage={heroImage} />
+    </>
+  );
 }

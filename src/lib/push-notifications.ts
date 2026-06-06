@@ -30,6 +30,12 @@ export interface PushPayload {
   badge?: string;
   // Imagen grande del push (opcional, Android la muestra bajo el título).
   image?: string;
+  // "Fijar": la notificación no se auto-cierra (queda anclada hasta que el
+  // usuario la descarta). Lo usa "Seguir partido" para el efecto pin.
+  requireInteraction?: boolean;
+  // Actualización silenciosa: refresca la tarjeta (marcador/minuto) sin sonido
+  // ni vibración. Para los "ticks" de minuto del partido seguido.
+  silent?: boolean;
   // Identificador interno para tracking.
   pushId?: string;
 }
@@ -327,4 +333,64 @@ export async function broadcastPush(opts: {
   }
 
   return { total: subs.length, sent, gone, failed };
+}
+
+/**
+ * Envía un push a una lista EXPLÍCITA de endpoints (no por kind). Lo usa
+ * "Seguir partido": manda la versión fijada (requireInteraction) solo a los
+ * que siguen ese partido. Busca sus claves en push_subscriptions y gestiona
+ * los fallos igual que broadcastPush (410 → borrar, 5 fallos → borrar).
+ */
+export async function sendPushToEndpoints(opts: {
+  endpoints: string[];
+  payload: PushPayload;
+}): Promise<{ total: number; sent: number; gone: number; failed: number }> {
+  const uniq = [...new Set(opts.endpoints)].filter(Boolean);
+  if (uniq.length === 0) return { total: 0, sent: 0, gone: 0, failed: 0 };
+
+  let rows: Array<{
+    id: string;
+    endpoint: string;
+    p256dh: string;
+    auth: string;
+    failure_count: number;
+  }> = [];
+  try {
+    const admin = getAdmin();
+    const { data, error } = await admin
+      .from("push_subscriptions")
+      .select("id, endpoint, p256dh, auth, failure_count")
+      .in("endpoint", uniq);
+    if (error) {
+      console.error("[push] sendPushToEndpoints query failed:", error.message);
+      return { total: 0, sent: 0, gone: 0, failed: 0 };
+    }
+    rows = data ?? [];
+  } catch (err) {
+    console.error("[push] sendPushToEndpoints threw:", (err as Error).message);
+    return { total: 0, sent: 0, gone: 0, failed: 0 };
+  }
+
+  let sent = 0;
+  let gone = 0;
+  let failed = 0;
+  for (const sub of rows) {
+    const result = await sendPushToSubscription({
+      endpoint: sub.endpoint,
+      p256dh: sub.p256dh,
+      auth: sub.auth,
+      payload: opts.payload,
+    });
+    if (result.ok) {
+      sent += 1;
+      await markSuccess(sub.id);
+    } else if (result.gone) {
+      gone += 1;
+      await deleteSubscriptionById(sub.id);
+    } else {
+      failed += 1;
+      await markFailureOrDelete(sub.id, sub.failure_count);
+    }
+  }
+  return { total: rows.length, sent, gone, failed };
 }

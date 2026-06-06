@@ -14,10 +14,15 @@
 // (El Service Worker tiene renotify:true, así que cada novedad re-alerta.)
 
 import { kv } from "@/lib/kv";
-import { broadcastPush, type PushPayload } from "@/lib/push-notifications";
+import {
+  broadcastPush,
+  sendPushToEndpoints,
+  type PushPayload,
+} from "@/lib/push-notifications";
 import { flagEmoji } from "@/lib/friendlies/flags";
 import { teamInfo, favoritePhoto } from "@/lib/friendlies/teamInfo";
 import { isFinishedStatus, isLiveStatus } from "@/lib/friendlies/types";
+import { clearFollowers, getFollowers } from "./followers";
 import type { LiveSnapshot, MatchEvent, MatchMeta, Pair } from "./types";
 
 const PUSH_KIND = "tournament-key-events";
@@ -180,13 +185,27 @@ export async function processMatchPush(snap: LiveSnapshot): Promise<number> {
     ftSent: prev.ftSent,
   };
 
+  // Seguidores del partido (efecto "pin" de Google): reciben la MISMA tarjeta
+  // pero fijada (requireInteraction). Se envía DESPUÉS del broadcast normal, con
+  // el mismo tag, así que en su dispositivo gana la versión fijada.
+  const followers = await getFollowers(matchId);
+
   let pushes = 0;
-  const send = async (payload: Omit<PushPayload, "url" | "tag">) => {
-    await broadcastPush({
-      kind: PUSH_KIND,
-      payload: { ...payload, url, tag, badge: "/icons/badge-72.png" },
-    });
+  let sentThisPass = false;
+  const send = async (
+    payload: Omit<PushPayload, "url" | "tag">,
+    opts: { pin?: boolean } = {},
+  ) => {
+    const common = { ...payload, url, tag, badge: "/icons/badge-72.png" };
+    await broadcastPush({ kind: PUSH_KIND, payload: common });
+    if (followers.length > 0) {
+      await sendPushToEndpoints({
+        endpoints: followers,
+        payload: { ...common, requireInteraction: opts.pin !== false },
+      });
+    }
     pushes++;
+    sentThisPass = true;
   };
 
   // Alineaciones confirmadas (una sola vez, antes del saque).
@@ -242,13 +261,48 @@ export async function processMatchPush(snap: LiveSnapshot): Promise<number> {
         : (snap.score[1] ?? 0) > (snap.score[0] ?? 0)
         ? meta.away.name
         : null;
-    await send({
-      title: `Final — ${vs} ${scoreText(snap.score)}`,
-      body: winner ? `Victoria de ${winner}.` : `Empate.`,
-      icon: PUSH_ICON,
-      image: fallbackPhoto || undefined,
-    });
+    // El final NO se fija (pin: false): así el seguidor puede descartarlo.
+    await send(
+      {
+        title: `Final — ${vs} ${scoreText(snap.score)}`,
+        body: winner ? `Victoria de ${winner}.` : `Empate.`,
+        icon: PUSH_ICON,
+        image: fallbackPhoto || undefined,
+      },
+      { pin: false },
+    );
     next.ftSent = true;
+    // El partido acabó: libera el set de seguidores (limpia KV y permite que el
+    // pin desaparezca; no habrá más actualizaciones).
+    await clearFollowers(matchId);
+  }
+
+  // "Tick" de minuto para los seguidores: si el partido está en juego y no hubo
+  // ningún aviso en esta pasada, refrescamos su tarjeta FIJADA con el marcador y
+  // el minuto actuales, SIN sonido (silent) para no molestar. Así el pin imita
+  // al de Google mostrando el tiempo de juego al día. (Solo a seguidores; el
+  // broadcast normal no recibe ticks.)
+  if (
+    !sentThisPass &&
+    followers.length > 0 &&
+    isLiveStatus(snap.status) &&
+    snap.status !== "HT"
+  ) {
+    const homeLine = `${flagEmoji(meta.home.flag)} ${meta.home.name}`.trim();
+    const awayLine = `${flagEmoji(meta.away.flag)} ${meta.away.name}`.trim();
+    await sendPushToEndpoints({
+      endpoints: followers,
+      payload: {
+        title: `${homeLine} ${scoreText(snap.score)} ${awayLine}`,
+        body: `🔴 EN VIVO · ${snap.elapsed}'${meta.venue ? ` · ${meta.venue}` : ""}`,
+        url,
+        tag,
+        badge: "/icons/badge-72.png",
+        icon: PUSH_ICON,
+        requireInteraction: true,
+        silent: true,
+      },
+    });
   }
 
   // Solo escribimos estado si hubo algún push o cambió el estado base, para no

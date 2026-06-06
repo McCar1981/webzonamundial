@@ -80,14 +80,14 @@
 
 .home {
   justify-content: space-between;
-  padding: 0 clamp(8px, 1.6vw, 16px) 0 clamp(20px, 3.2vw, 34px);
+  padding: 0 clamp(6px, 1.2vw, 12px) 0 clamp(18px, 2.6vw, 26px);
   border-radius: 10px 0 0 10px;
 }
 
 .away {
   justify-content: space-between;
   flex-direction: row-reverse;
-  padding: 0 clamp(20px, 3.2vw, 34px) 0 clamp(8px, 1.6vw, 16px);
+  padding: 0 clamp(18px, 2.6vw, 26px) 0 clamp(6px, 1.2vw, 12px);
 }
 
 /* Acento diagonal rojo en el extremo izquierdo del panel local. */
@@ -141,7 +141,13 @@
 /* --------------------------- Abreviaturas --------------------------- */
 
 .abbr {
-  font-size: clamp(15px, 4vw, 30px);
+  /* Ocupa el ancho gris restante junto a la bandera y centra el texto en él,
+     en vez de quedar pegado al panel rojo central (mejor estética). */
+  flex: 1 1 auto;
+  min-width: 0;
+  text-align: center;
+  padding: 0 2px;
+  font-size: clamp(15px, 3.4vw, 26px);
   font-weight: 800;
   letter-spacing: 0.045em;
   line-height: 1;
@@ -162,7 +168,7 @@
   align-items: center;
   justify-content: center;
   gap: clamp(6px, 1.4vw, 12px);
-  padding: 0 clamp(18px, 3.4vw, 34px);
+  padding: 0 clamp(14px, 2.4vw, 24px);
   /* Solapa los paneles de equipo para que el corte diagonal quede encima. */
   margin: 0 calc(var(--fsb-slant) * -1);
   /* Parallelogramo inclinado a la derecha (cortes "/"). */

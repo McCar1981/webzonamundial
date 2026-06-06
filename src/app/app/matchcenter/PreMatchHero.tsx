@@ -191,7 +191,7 @@ export default function PreMatchHero({ meta, kickoff, image }: Props) {
         >
           <TeamSide name={meta.home.name} flag={meta.home.flag} color={homeColor} />
 
-          <div style={{ flex: "0 0 auto", textAlign: "center", minWidth: "clamp(96px,32vw,200px)" }}>
+          <div style={{ flex: "0 1 auto", textAlign: "center", minWidth: "clamp(88px,26vw,160px)", maxWidth: "46%" }}>
             {counting ? (
               <>
                 <div
@@ -225,11 +225,14 @@ export default function PreMatchHero({ meta, kickoff, image }: Props) {
                 <div
                   className="mc-condensed"
                   style={{
-                    fontSize: "clamp(20px,6vw,30px)",
+                    fontSize: "clamp(18px,5vw,30px)",
                     fontWeight: 700,
-                    letterSpacing: 2,
+                    letterSpacing: 1,
                     textTransform: "uppercase",
                     color: groupHeadline ? "#fff" : GOLD2,
+                    lineHeight: 1.12,
+                    overflowWrap: "break-word",
+                    hyphens: "auto",
                   }}
                 >
                   {groupHeadline
@@ -274,6 +277,7 @@ function TeamSide({ name, flag, color }: { name: string; flag: string; color: st
         src={flagUrl(flag)}
         alt={name}
         style={{
+          flexShrink: 0,
           width: "clamp(54px,16vw,82px)",
           height: "clamp(54px,16vw,82px)",
           borderRadius: "50%",

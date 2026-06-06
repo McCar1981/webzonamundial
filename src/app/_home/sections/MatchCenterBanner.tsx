@@ -229,7 +229,7 @@ export function MatchCenterBanner() {
 
               {/* Marcador broadcast con banderas montadas por país. Muestra el
                   resultado en vivo/final y "VS" antes del saque (sin parecer 0-0). */}
-              <div className="w-full max-w-md">
+              <div className="w-full max-w-xl">
                 <FootballScoreboard
                   homeTeam={teamAbbr(meta.home.flag, meta.home.name)}
                   awayTeam={teamAbbr(meta.away.flag, meta.away.name)}

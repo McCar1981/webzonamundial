@@ -30,6 +30,10 @@ import { SELECCIONES, type Seleccion } from "@/data/selecciones";
 const now = () => new Date().toISOString();
 const clamp = (n: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, n));
 
+// Tope de entradas de narrativa conservadas (las más recientes van primero) para
+// que el JSON de la partida no crezca sin límite con el paso de las temporadas.
+const MAX_NARRATIVE = 50;
+
 // ─── Etiquetas de fase ───────────────────────────────────────────────────────
 export const STAGE_LABEL: Record<TournamentStage, string> = {
   grupos: "Fase de grupos",
@@ -52,22 +56,54 @@ function seleccion(slug: string | null | undefined): Seleccion | undefined {
   return SELECCIONES.find((s) => s.slug === slug);
 }
 
-// ─── Fuerzas (DT vs rival) ───────────────────────────────────────────────────
-/** Fuerza base del DT a partir de overall + árbol de habilidades + moral. */
-function dtStrength(c: CareerState): number {
-  const base = c.progression.overall; // 50..99
-  const s = c.skills.levels;
-  const skill = (s.ataque + s.defensa) * 1.4 + (s.mental + s.gestion) * 1.0; // 0..~24
-  const moraleAdj = (c.progression.morale - 70) * 0.15; // -10.5..+4.5
-  return base + skill + moraleAdj;
+// ─── Fuerzas (equipo del DT vs rival) ────────────────────────────────────────
+/**
+ * Fuerza por ranking FIFA de una selección (menor ranking → más fuerte). Es la
+ * CALIDAD REAL de la plantilla: Argentina (rank 1) ≈ 92; un debutante ≈ 48.
+ */
+function rankStrength(slug: string | null | undefined): number {
+  const rank = seleccion(slug)?.rankingFIFA ?? 60;
+  return clamp(92 - (rank - 1) * 0.42, 48, 94);
 }
 
-/** Potencial ofensivo/defensivo según filosofía y ramas del árbol. */
-function attackDefense(c: CareerState): { atk: number; def: number } {
-  const str = dtStrength(c);
+/** Fuerza del rival (alias semántico de rankStrength). */
+function opponentStrength(slug: string): number {
+  return rankStrength(slug);
+}
+
+/**
+ * Aporte del DT POR ENCIMA de la plantilla: el overall del míster, sus habilidades
+ * generales (mental/gestión, que ayudan a todo) y la moral del vestuario. Un DT
+ * novato (overall 50) no resta calidad a la selección; uno consolidado la mejora.
+ */
+function dtBonus(c: CareerState): number {
   const s = c.skills.levels;
-  let atk = str + s.ataque * 1.5;
-  let def = str + s.defensa * 1.5;
+  const general = (s.mental + s.gestion) * 1.2; // 0..12
+  const overallAdj = (c.progression.overall - 50) * 0.3; // 0..~15
+  const moraleAdj = (c.progression.morale - 70) * 0.15; // -10.5..+4.5
+  return overallAdj + general + moraleAdj;
+}
+
+/**
+ * Fuerza total del equipo = CALIDAD REAL de la selección (ranking FIFA) + aporte
+ * del DT. Así dirigir a Argentina con un novato sigue siendo dirigir a Argentina,
+ * no a un equipo de fuerza 50. (Antes solo contaba el overall del DT, de ahí los
+ * marcadores absurdos tipo Argentina 0-4 Argelia con un DT recién creado.)
+ */
+function dtStrength(c: CareerState): number {
+  return rankStrength(c.identity.nationSlug) + dtBonus(c);
+}
+
+/**
+ * Potencial ofensivo/defensivo: base común del equipo + especialización por rama
+ * (ataque SOLO refuerza el ataque; defensa SOLO la defensa, sin doble cómputo) y
+ * el sesgo de la filosofía.
+ */
+function attackDefense(c: CareerState): { atk: number; def: number } {
+  const base = dtStrength(c);
+  const s = c.skills.levels;
+  let atk = base + s.ataque * 2.0;
+  let def = base + s.defensa * 2.0;
   switch (c.identity.philosophy) {
     case "ofensiva":
       atk += 6;
@@ -89,12 +125,6 @@ function attackDefense(c: CareerState): { atk: number; def: number } {
       break;
   }
   return { atk, def };
-}
-
-/** Fuerza del rival a partir de su ranking FIFA (menor ranking → más fuerte). */
-function opponentStrength(slug: string): number {
-  const rank = seleccion(slug)?.rankingFIFA ?? 60;
-  return clamp(92 - (rank - 1) * 0.42, 48, 94);
 }
 
 /**
@@ -253,6 +283,64 @@ function advanceMissionInline(m: Mission): Mission {
   return { ...m, progress, status: progress >= m.target ? "completada" : m.status };
 }
 
+// ─── Clasificación de grupo (tabla real, top 2) ──────────────────────────────
+/** Simula un partido neutral entre dos rivales según su fuerza (sin DT). */
+function simNeutral(aSlug: string, bSlug: string): { ga: number; gb: number } {
+  const sa = opponentStrength(aSlug);
+  const sb = opponentStrength(bSlug);
+  const lamA = clamp(1.3 + (sa - sb) / 10, 0.22, 4.2);
+  const lamB = clamp(1.3 + (sb - sa) / 10, 0.22, 4.2);
+  return { ga: poisson(lamA), gb: poisson(lamB) };
+}
+
+interface Standing {
+  pts: number;
+  gd: number;
+  gf: number;
+}
+
+/**
+ * ¿La selección del DT clasifica? Construye la TABLA del grupo: suma los puntos
+ * del DT (de sus 3 partidos ya jugados) y simula los 3 partidos entre los rivales
+ * para completar la clasificación. Pasan los DOS primeros (puntos, luego
+ * diferencia de goles, luego goles a favor), como en el Mundial real. Sustituye a
+ * la antigua heurística `pts >= 4`, que no miraba la tabla del grupo.
+ */
+function qualifiesFromGroup(selfSlug: string, groupMatches: SeasonMatch[]): boolean {
+  const table = new Map<string, Standing>();
+  const add = (slug: string, pts: number, gf: number, ga: number) => {
+    const t = table.get(slug) ?? { pts: 0, gd: 0, gf: 0 };
+    t.pts += pts;
+    t.gd += gf - ga;
+    t.gf += gf;
+    table.set(slug, t);
+  };
+
+  // Resultados reales del DT (y su reflejo para cada rival).
+  for (const m of groupMatches) {
+    const gf = m.gf ?? 0;
+    const ga = m.ga ?? 0;
+    add(selfSlug, m.outcome === "V" ? 3 : m.outcome === "E" ? 1 : 0, gf, ga);
+    add(m.opponentSlug, m.outcome === "D" ? 3 : m.outcome === "E" ? 1 : 0, ga, gf);
+  }
+
+  // Partidos entre los rivales (round-robin de los 3) para completar la tabla.
+  const opps = groupMatches.map((m) => m.opponentSlug);
+  for (let i = 0; i < opps.length; i++) {
+    for (let j = i + 1; j < opps.length; j++) {
+      const { ga, gb } = simNeutral(opps[i], opps[j]);
+      add(opps[i], ga > gb ? 3 : ga < gb ? 0 : 1, ga, gb);
+      add(opps[j], gb > ga ? 3 : gb < ga ? 0 : 1, gb, ga);
+    }
+  }
+
+  const ranked = [...table.entries()].sort(
+    (a, b) => b[1].pts - a[1].pts || b[1].gd - a[1].gd || b[1].gf - a[1].gf,
+  );
+  const pos = ranked.findIndex(([slug]) => slug === selfSlug);
+  return pos >= 0 && pos < 2;
+}
+
 /**
  * Simula el siguiente partido del calendario y aplica el resultado a todos los
  * pilares. Si no hay temporada activa o el torneo terminó, devuelve el estado sin
@@ -318,12 +406,9 @@ export function playNextMatch(c0: CareerState): PlayResult {
     const groupMatches = fixtures.filter((m) => m.stage === "grupos");
     const groupDone = groupMatches.every((m) => m.played);
     if (groupDone) {
-      const pts = groupMatches.reduce(
-        (a, m) => a + (m.outcome === "V" ? 3 : m.outcome === "E" ? 1 : 0),
-        0,
-      );
-      if (pts >= 4) {
-        stage = "octavos"; // clasifica a la siguiente ronda
+      const selfSlug = c0.identity.nationSlug ?? "__self__";
+      if (qualifiesFromGroup(selfSlug, groupMatches)) {
+        stage = "octavos"; // termina entre los dos primeros del grupo
       } else {
         stage = "eliminado";
         finished = true;
@@ -487,7 +572,7 @@ export function playNextMatch(c0: CareerState): PlayResult {
     progression: { ...c0.progression, morale },
     missions,
     reputation: { ...c0.reputation, stats: repStats, total: sumReputation(repStats), rivalries, titles },
-    narrative,
+    narrative: narrative.slice(0, MAX_NARRATIVE),
     legacy: { trophies, records },
     board,
     season: { ...season, fixtures, cursor: idx + 1, stage, finished },

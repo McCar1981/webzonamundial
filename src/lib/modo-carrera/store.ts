@@ -172,7 +172,7 @@ export function normalizeCareer(raw: Partial<CareerState> | null | undefined): C
       rivalries: Array.isArray(rep.rivalries) ? rep.rivalries : [],
       titles: Array.isArray(rep.titles) ? rep.titles : [],
     },
-    narrative: Array.isArray(raw.narrative) ? raw.narrative : [],
+    narrative: Array.isArray(raw.narrative) ? raw.narrative.slice(0, 50) : [],
     legacy: {
       trophies: Array.isArray(leg.trophies) ? leg.trophies : [],
       records: {

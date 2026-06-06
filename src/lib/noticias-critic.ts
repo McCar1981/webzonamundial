@@ -42,8 +42,8 @@ export interface CriticVerdict {
  *  - Media global >= MIN_MEDIA.
  *  - No duplicado.
  */
-export const CRITIC_MIN_CRITICA = Number(process.env.NEWS_CRITIC_MIN_CRITICA ?? 4);
-export const CRITIC_MIN_MEDIA = Number(process.env.NEWS_CRITIC_MIN_MEDIA ?? 4);
+export const CRITIC_MIN_CRITICA = Number(process.env.NEWS_CRITIC_MIN_CRITICA ?? 3);
+export const CRITIC_MIN_MEDIA = Number(process.env.NEWS_CRITIC_MIN_MEDIA ?? 3.5);
 
 const SYSTEM_PROMPT = `Eres el editor jefe de la sección de noticias de fútbol de ZonaMundial (plataforma sobre el Mundial 2026). Eres EXIGENTE: tu trabajo es proteger la calidad del sitio, que está bajo revisión de Google AdSense y no puede publicar contenido de poco valor. Ante la duda, RECHAZA.
 

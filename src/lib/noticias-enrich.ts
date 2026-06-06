@@ -106,8 +106,16 @@ export function extractParagraphs(html: string): string[] {
       .replace(/\s+/g, " ")
       .trim();
     if (text.length < MIN_PARAGRAPH_CHARS) continue;
-    // Descartar boilerplate típico de cookies / suscripción.
-    if (/cookie|suscríb|subscribe|newsletter|política de privacidad/i.test(text)) continue;
+    // Descartar boilerplate típico (cookies, suscripción, legal, footers de
+    // medios). Ej. real detectado: muchos medios incluyen un párrafo de
+    // "subvenciones del Gobierno de Canarias" en el footer que se colaba como
+    // material fuente y ensuciaba la reescritura.
+    if (
+      /cookie|suscríb|subscribe|newsletter|política de privacidad|subvencion|gobierno de canarias|derechos reservados|all rights reserved|©|aviso legal|condiciones de uso|términos y condiciones|publicidad|comparte en|síguenos/i.test(
+        text,
+      )
+    )
+      continue;
     if (seen.has(text)) continue;
     seen.add(text);
     paras.push(text);

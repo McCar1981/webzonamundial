@@ -78,6 +78,7 @@ export default function BarDashboard({ initialBar, initialStats, initialQr, init
         </header>
 
         <PlanSection bar={bar} payment={initialPayment} hasActivePlan={hasActivePlan} onFlash={setFlash} />
+        <KitSection />
         <Resumen stats={stats} bar={bar} origin={origin} onFlash={setFlash} />
         <QrSection bar={bar} qr={qr} origin={origin} onFlash={setFlash} />
         <ZonesSection bar={bar} plan={plan} sources={sources} setSources={setSources} origin={origin} onFlash={setFlash} />
@@ -102,6 +103,27 @@ function Section({ icon, title, children }: { icon: React.ReactNode; title: stri
         {icon} {title}
       </h2>
       {children}
+    </section>
+  );
+}
+
+function KitSection() {
+  return (
+    <section style={{ marginBottom: 18 }}>
+      <div style={{ background: "linear-gradient(180deg, rgba(201,168,76,0.10), rgba(15,29,50,0.6))", border: "1px solid rgba(201,168,76,0.3)", borderRadius: 16, padding: 18, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 14, flexWrap: "wrap" }}>
+        <div>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 7, color: GOLD, fontWeight: 800, fontSize: 11.5, textTransform: "uppercase", letterSpacing: 1 }}>
+            <Rocket size={14} /> Kit de activación
+          </div>
+          <h2 style={{ fontSize: 19, fontWeight: 900, margin: "6px 0 0" }}>Tu porra ya está lista</h2>
+          <p style={{ color: MID, fontSize: 13.5, margin: "5px 0 0", maxWidth: 460, lineHeight: 1.5 }}>
+            Descarga tus carteles, compártelos en redes y abre la pantalla TV para empezar a recibir participantes.
+          </p>
+        </div>
+        <a href="/bar-dashboard/kit" style={{ display: "inline-flex", alignItems: "center", gap: 7, background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#1A1208", fontWeight: 800, fontSize: 14, padding: "11px 18px", borderRadius: 999, textDecoration: "none", whiteSpace: "nowrap" }}>
+          <Rocket size={16} /> Abrir kit de activación
+        </a>
+      </div>
     </section>
   );
 }

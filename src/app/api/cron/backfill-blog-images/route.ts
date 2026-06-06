@@ -19,7 +19,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { readAutoPosts, writeAutoPosts } from "@/lib/blog/store";
 import { readEvergreenPosts, writeEvergreenPosts } from "@/lib/blog/evergreen-store";
-import { pickRelatedImage } from "@/lib/blog/image-picker";
+import { pickRelatedImage, findRelatedImage } from "@/lib/blog/image-picker";
 import type { BlogPost } from "@/lib/blog/types";
 
 export const runtime = "nodejs";
@@ -87,12 +87,34 @@ export async function GET(req: NextRequest) {
   const url = new URL(req.url);
   const limit = Math.max(1, parseInt(url.searchParams.get("limit") || "60", 10));
   const dry = url.searchParams.get("dry") === "1";
+  const probe = url.searchParams.get("probe") === "1";
   const budget = { remaining: limit };
 
   const [auto, evergreen] = await Promise.all([
     readAutoPosts(),
     readEvergreenPosts(),
   ]);
+
+  // Modo diagnóstico: corre el picker sobre los primeros posts que necesitan
+  // imagen y devuelve POR QUÉ no se elige (status HTTP, nº de páginas,
+  // candidatos, rechazos por filtro). No escribe nada.
+  if (probe) {
+    const targets = [...auto, ...evergreen].filter(needsImage).slice(0, 5);
+    const diagnostics = await Promise.all(
+      targets.map(async (p) => ({
+        slug: p.slug,
+        category: p.category,
+        keywords: p.keywords,
+        tags: p.tags,
+        diag: await findRelatedImage({
+          keywords: p.keywords ?? [],
+          tags: p.tags ?? [],
+          category: p.category,
+        }),
+      })),
+    );
+    return NextResponse.json({ ok: true, probe: true, diagnostics });
+  }
 
   const autoNeeded = auto.filter(needsImage).length;
   const evergreenNeeded = evergreen.filter(needsImage).length;

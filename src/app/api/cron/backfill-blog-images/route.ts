@@ -27,50 +27,46 @@ export const dynamic = "force-dynamic";
 export const maxDuration = 300;
 
 const PLACEHOLDER = "/img/blog/placeholder-zm.jpg";
-const CONCURRENCY = 4;
 
 function needsImage(p: BlogPost): boolean {
   return !p.ogImage || p.ogImage === PLACEHOLDER;
 }
 
-/** Procesa los posts que necesitan imagen con concurrencia acotada. Devuelve
- * el array (mismas referencias, mutado en sitio) y cuántos se rellenaron. */
+/** Procesa los posts que necesitan imagen. Devuelve el array (mismas
+ * referencias, mutado en sitio) y cuántos se rellenaron. */
 async function fillImages(
   posts: BlogPost[],
   budget: { remaining: number },
   dry: boolean,
+  used: Set<string>,
 ): Promise<{ filled: number; details: Array<{ slug: string; src: string }> }> {
   const targets = posts.filter(needsImage);
   let filled = 0;
   const details: Array<{ slug: string; src: string }> = [];
-  let next = 0;
 
-  async function worker(): Promise<void> {
-    for (;;) {
-      const i = next++;
-      if (i >= targets.length) return;
-      if (budget.remaining <= 0) return;
-      budget.remaining -= 1;
-      const post = targets[i];
-      const picked = await pickRelatedImage({
-        title: post.title,
-        keywords: post.keywords ?? [],
-        tags: post.tags ?? [],
-        category: post.category,
-      });
-      if (picked) {
-        if (!dry) {
-          post.ogImage = picked.src;
-          post.ogImageCredit = picked.credit;
-        }
-        filled += 1;
-        details.push({ slug: post.slug, src: picked.src });
+  // Secuencial a propósito: garantiza imágenes DISTINTAS por post (cada elección
+  // se añade a `used` antes de la siguiente) y no satura la API de Commons.
+  for (const post of targets) {
+    if (budget.remaining <= 0) break;
+    budget.remaining -= 1;
+    const picked = await pickRelatedImage({
+      title: post.title,
+      keywords: post.keywords ?? [],
+      tags: post.tags ?? [],
+      category: post.category,
+      exclude: used,
+    });
+    if (picked) {
+      used.add(picked.src);
+      if (!dry) {
+        post.ogImage = picked.src;
+        post.ogImageCredit = picked.credit;
       }
+      filled += 1;
+      details.push({ slug: post.slug, src: picked.src });
     }
   }
 
-  const lanes = Math.max(1, Math.min(CONCURRENCY, targets.length));
-  await Promise.all(Array.from({ length: lanes }, () => worker()));
   return { filled, details };
 }
 
@@ -107,6 +103,7 @@ export async function GET(req: NextRequest) {
         keywords: p.keywords,
         tags: p.tags,
         diag: await findRelatedImage({
+          title: p.title,
           keywords: p.keywords ?? [],
           tags: p.tags ?? [],
           category: p.category,
@@ -119,8 +116,15 @@ export async function GET(req: NextRequest) {
   const autoNeeded = auto.filter(needsImage).length;
   const evergreenNeeded = evergreen.filter(needsImage).length;
 
-  const autoResult = await fillImages(auto, budget, dry);
-  const evergreenResult = await fillImages(evergreen, budget, dry);
+  // Conjunto compartido de imágenes ya usadas (incl. las que algunos posts ya
+  // tienen) para que cada entrada reciba una foto DISTINTA.
+  const used = new Set<string>();
+  for (const p of [...auto, ...evergreen]) {
+    if (!needsImage(p) && p.ogImage) used.add(p.ogImage);
+  }
+
+  const autoResult = await fillImages(auto, budget, dry, used);
+  const evergreenResult = await fillImages(evergreen, budget, dry, used);
 
   let wroteAuto = false;
   let wroteEvergreen = false;

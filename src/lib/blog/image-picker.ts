@@ -45,16 +45,87 @@ export interface PickDiagnostics {
   error?: string;
 }
 
-/** Pista de búsqueda en inglés por categoría (las descripciones de Commons
- * suelen estar en inglés; un término ancla mejora mucho la pertinencia). */
+/** Ancla en inglés por categoría: las descripciones de Commons están en inglés,
+ * así que sesgamos hacia imagen REAL de Mundial/fútbol, no fotos amateur. */
 const CATEGORY_HINT: Record<BlogCategory, string> = {
-  analisis: "football match",
+  analisis: "FIFA World Cup match",
   selecciones: "national football team",
-  sedes: "football stadium",
-  datos: "football",
+  sedes: "stadium",
+  datos: "FIFA World Cup",
   historia: "FIFA World Cup",
-  guia: "football",
+  guia: "FIFA World Cup",
 };
+
+/** Traducción ES→EN de entidades futbolísticas frecuentes (selecciones del
+ * Mundial 2026 + términos clave). Las descripciones de Commons están en inglés;
+ * sin esto, "Países Bajos" no encuentra nada y "Netherlands" sí. Nombres de
+ * jugadores/estadios suelen ser iguales en ambos idiomas y se extraen aparte. */
+const ES_TO_EN: Record<string, string> = {
+  "países bajos": "Netherlands",
+  "estados unidos": "United States",
+  "corea del sur": "South Korea",
+  "arabia saudí": "Saudi Arabia",
+  "costa rica": "Costa Rica",
+  alemania: "Germany",
+  españa: "Spain",
+  francia: "France",
+  inglaterra: "England",
+  brasil: "Brazil",
+  méxico: "Mexico",
+  canadá: "Canada",
+  italia: "Italy",
+  bélgica: "Belgium",
+  croacia: "Croatia",
+  uruguay: "Uruguay",
+  colombia: "Colombia",
+  marruecos: "Morocco",
+  senegal: "Senegal",
+  ghana: "Ghana",
+  camerún: "Cameroon",
+  nigeria: "Nigeria",
+  australia: "Australia",
+  suiza: "Switzerland",
+  dinamarca: "Denmark",
+  polonia: "Poland",
+  serbia: "Serbia",
+  ecuador: "Ecuador",
+  perú: "Peru",
+  chile: "Chile",
+  catar: "Qatar",
+  irán: "Iran",
+  egipto: "Egypt",
+  argelia: "Algeria",
+  gales: "Wales",
+  escocia: "Scotland",
+  noruega: "Norway",
+  austria: "Austria",
+  turquía: "Turkey",
+  grecia: "Greece",
+  japón: "Japan",
+  suecia: "Sweden",
+  túnez: "Tunisia",
+  portugal: "Portugal",
+  argentina: "Argentina",
+};
+
+const STOPWORDS = new Set([
+  "Mundial",
+  "Grupo",
+  "Análisis",
+  "Datos",
+  "Historia",
+  "Guía",
+  "Selecciones",
+  "Curiosidades",
+  "Estadísticas",
+  "Táctico",
+  "Jugadores",
+  "Favoritos",
+  "Predicciones",
+  "Planificación",
+  "Transmisión",
+  "Calendario",
+]);
 
 /** Títulos de archivo que casi nunca son una buena foto editorial. */
 const TITLE_BLOCKLIST =
@@ -94,26 +165,59 @@ function isFreeLicense(short: string, usage: string): boolean {
   return /cc[ -]?by|cc0|public domain|pdm|dominio público/.test(blob);
 }
 
-/** Construye la query temática a partir del post. */
+/**
+ * Extrae entidades en inglés del post: traduce selecciones conocidas (ES→EN) y
+ * recoge nombres propios (jugadores, estadios, ciudades) que suelen ser iguales
+ * en ambos idiomas. Devuelve hasta 2 entidades para anclar la búsqueda al TEMA.
+ */
+function extractEntities(opts: {
+  title: string;
+  keywords: string[];
+  tags: string[];
+}): string[] {
+  const text = [opts.title, ...opts.keywords, ...opts.tags].join(" ");
+  const lower = text.toLowerCase();
+  const found: string[] = [];
+
+  // 1) Selecciones / términos del diccionario ES→EN.
+  for (const [es, en] of Object.entries(ES_TO_EN)) {
+    if (lower.includes(es) && !found.includes(en)) found.push(en);
+  }
+
+  // 2) Nombres propios (palabras Capitalizadas ≥4 letras) no genéricos: cubre
+  //    jugadores y estadios ("Messi", "Mbappé", "Azteca", "SoFi", "Neymar").
+  const proper = text.match(/\b[A-ZÁÉÍÓÚÑ][a-záéíóúñ]{3,}\b/g) ?? [];
+  for (const w of proper) {
+    if (STOPWORDS.has(w)) continue;
+    if (/^\d/.test(w)) continue;
+    if (!found.includes(w)) found.push(w);
+  }
+
+  return found.slice(0, 2);
+}
+
+/** Construye la query temática: ancla de categoría + entidades del post. */
 function buildQuery(opts: {
+  title: string;
   keywords: string[];
   tags: string[];
   category: BlogCategory;
 }): string {
-  const terms = [...opts.keywords, ...opts.tags]
-    .map((t) => t.trim())
-    .filter((t) => t.length >= 4)
-    .slice(0, 3);
-  const hint = CATEGORY_HINT[opts.category] ?? "football";
-  return [hint, ...terms].join(" ");
+  const hint = CATEGORY_HINT[opts.category] ?? "FIFA World Cup";
+  const entities = extractEntities(opts);
+  return [hint, ...entities].join(" ");
 }
 
 function em(info: CommonsImageInfo, key: string): string {
   return info.extmetadata?.[key]?.value ?? "";
 }
 
-/** Ejecuta UNA búsqueda en Commons y devuelve diagnóstico + imagen elegida. */
-async function searchOnce(query: string): Promise<PickDiagnostics> {
+/** Ejecuta UNA búsqueda en Commons y devuelve diagnóstico + imagen elegida.
+ * `exclude` evita reutilizar la misma foto en varios posts. */
+async function searchOnce(
+  query: string,
+  exclude: Set<string> = new Set(),
+): Promise<PickDiagnostics> {
   const diag: PickDiagnostics = {
     query,
     status: "error",
@@ -206,7 +310,7 @@ async function searchOnce(query: string): Promise<PickDiagnostics> {
       continue;
     }
     const src = info.thumburl || info.url;
-    if (!src) {
+    if (!src || exclude.has(src)) {
       diag.rejected.nosrc += 1;
       continue;
     }
@@ -241,15 +345,18 @@ async function searchOnce(query: string): Promise<PickDiagnostics> {
  * con la pista de categoría sola. Devuelve el último diagnóstico relevante.
  */
 export async function findRelatedImage(opts: {
+  title: string;
   keywords: string[];
   tags: string[];
   category: BlogCategory;
+  exclude?: Set<string>;
 }): Promise<PickDiagnostics> {
-  const primary = await searchOnce(buildQuery(opts));
+  const exclude = opts.exclude ?? new Set<string>();
+  const primary = await searchOnce(buildQuery(opts), exclude);
   if (primary.picked) return primary;
   // Fallback: solo la pista de categoría (casi siempre tiene fotos reales).
-  const hint = CATEGORY_HINT[opts.category] ?? "football";
-  const fallback = await searchOnce(hint);
+  const hint = CATEGORY_HINT[opts.category] ?? "FIFA World Cup";
+  const fallback = await searchOnce(hint, exclude);
   // Devuelve el diagnóstico que tenga imagen; si ninguno, el primario (más
   // informativo sobre el motivo).
   return fallback.picked ? fallback : primary;
@@ -264,6 +371,7 @@ export async function pickRelatedImage(opts: {
   keywords: string[];
   tags: string[];
   category: BlogCategory;
+  exclude?: Set<string>;
 }): Promise<PickedImage | null> {
   const diag = await findRelatedImage(opts);
   return diag.picked ?? null;

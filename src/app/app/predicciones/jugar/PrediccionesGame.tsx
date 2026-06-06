@@ -14,6 +14,7 @@ import GamificationHUD from "./GamificationHUD";
 import BattlePass from "./BattlePass";
 import Cosmetics from "./Cosmetics";
 import LiveMicroPicks from "./LiveMicroPicks";
+import PrediccionAIAnalysis, { type AISuggestion } from "./PrediccionAIAnalysis";
 import {
   TYPE_ICON, TIER_ICON,
   ArrowLeft, Calendar, Check, CheckCircle2, ChevronRight, Clock, Coins, Flame, Gem, Gift, Globe, Pencil, Radio, Sparkles, TrendingUp, Trophy, Users, X, Zap,
@@ -1232,6 +1233,23 @@ function MatchDetailView({
     await onSubmit(type, data, confidence);
   }, [onSubmit]);
 
+  // Aplica la sugerencia de la IA pre-rellenando los módulos de tendencia:
+  // Resultado exacto + Ganador (coherente con el marcador) y, si la línea de
+  // goles sugerida coincide con una de las disponibles, también Over/Under.
+  const applyAI = useCallback(async (s: AISuggestion) => {
+    await onSubmit("exact_score", { home_goals: s.exactScore.home_goals, away_goals: s.exactScore.away_goals } as PredictionData);
+    await onSubmit("winner", { result: s.winner } as PredictionData, 1);
+    if (s.overUnder) {
+      const goalsLine = ouLines.find((l) => l.category === "goals");
+      const diff = goalsLine
+        ? (["easy", "medium", "hard"] as const).find((d) => goalsLine[d].line === s.overUnder!.line)
+        : undefined;
+      if (goalsLine && diff) {
+        await onSubmit("over_under", { category: "goals", line: s.overUnder.line, choice: s.overUnder.choice, difficulty: diff } as PredictionData);
+      }
+    }
+  }, [onSubmit, ouLines]);
+
   const toggle = (type: PredictionType) => {
     userTouched.current = true;
     setOpenType((cur) => (cur === type ? null : type));
@@ -1270,6 +1288,8 @@ function MatchDetailView({
       <UserMiniStatsBar />
       <PredictionProgressBar completed={completedCount} total={total} />
       <LiveMicroPicks matchId={String(match.i)} />
+
+      <PrediccionAIAnalysis match={match} onApply={applyAI} />
 
       {loading && !state && <p style={{ color: DIM, textAlign: "center", padding: 24 }}>Cargando predicciones…</p>}
 

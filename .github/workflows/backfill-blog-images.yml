@@ -1,0 +1,42 @@
+name: Backfill blog images (manual)
+
+# Repara los posts del blog que aun tienen el placeholder gris generico,
+# asignandoles una imagen relacionada de Wikimedia Commons (con credito).
+# Solo manual: es una correccion puntual, no un cron recurrente.
+#
+# Requiere los mismos secrets que ingest-news:
+#   - SITE_URL
+#   - CRON_SECRET
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry:
+        description: "Modo simulacion (1 = no escribe, solo informa)"
+        required: false
+        default: "1"
+      limit:
+        description: "Maximo de posts a procesar en esta corrida"
+        required: false
+        default: "60"
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger backfill-blog-images endpoint
+        env:
+          SITE_URL: ${{ secrets.SITE_URL }}
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+          DRY: ${{ github.event.inputs.dry }}
+          LIMIT: ${{ github.event.inputs.limit }}
+        run: |
+          if [ -z "$SITE_URL" ] || [ -z "$CRON_SECRET" ]; then
+            echo "::error::Missing SITE_URL or CRON_SECRET secrets"
+            exit 1
+          fi
+          curl -fsSL -m 300 \
+            -H "Authorization: Bearer $CRON_SECRET" \
+            "$SITE_URL/api/cron/backfill-blog-images?dry=${DRY}&limit=${LIMIT}" \
+            -o response.json
+          cat response.json

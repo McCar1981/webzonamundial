@@ -9,13 +9,14 @@ import { MATCHES, type Match } from "@/data/matches";
 import { SELECCIONES } from "@/data/selecciones";
 import { etToDate } from "@/lib/bracket/match-time";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
+import type { GamificationSummary } from "@/lib/predictions/gamification-store";
 import GamificationHUD from "./GamificationHUD";
 import BattlePass from "./BattlePass";
 import Cosmetics from "./Cosmetics";
 import LiveMicroPicks from "./LiveMicroPicks";
 import {
   TYPE_ICON, TIER_ICON,
-  ArrowLeft, Calendar, Check, ChevronRight, Clock, Flame, Gem, Globe, Pencil, Radio, Sparkles, TrendingUp, Trophy, Users, X, Zap,
+  ArrowLeft, Calendar, Check, CheckCircle2, ChevronRight, Clock, Coins, Flame, Gem, Globe, Pencil, Radio, Sparkles, TrendingUp, Trophy, Users, X, Zap,
 } from "./icons";
 import {
   MINUTE_RANGES,
@@ -284,79 +285,37 @@ export default function PrediccionesGame() {
         </div>
       </header>
 
-      {/* Tira de progreso: los 6 recuadros (Nivel, Racha, Fútcoins, Reto,
-          Pase, Cosméticos) en una sola fila; los paneles desplegables caen
-          a lo ancho debajo mediante flex order. */}
-      <div className="progress-strip">
-        <GamificationHUD />
-        <BattlePass />
-        <Cosmetics />
-      </div>
-
-      {/* Vista tablero: hero + partido destacado + filtros + grupos + showcase */}
-      {!selectedMatch && <LandingView matches={groupMatches} onPick={selectMatch} />}
-
-      {selectedMatch && (
-        <section style={{ maxWidth: 1100, margin: "0 auto", padding: "12px 16px 60px" }}>
-          <button
-            onClick={() => { setMatchId(null); setState(null); }}
-            style={{
-              display: "inline-flex", alignItems: "center", gap: 8, cursor: "pointer",
-              background: BG2, border: CARD_BORDER, borderRadius: 99, color: GOLD2,
-              fontWeight: 700, fontSize: 14, padding: "9px 16px", marginBottom: 14,
-            }}
-          >
-            <ArrowLeft size={16} /> Volver a los partidos
-          </button>
-          <MatchHeader m={selectedMatch} state={state} />
-          <LiveMicroPicks matchId={String(selectedMatch.i)} />
-          {loading && !state && <p style={{ color: DIM, textAlign: "center", padding: 24 }}>Cargando predicciones…</p>}
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(300px,1fr))", gap: 16, marginTop: 16 }}>
-            {PREDICTION_TYPES.map((type) => {
-              const existing = state?.predictions.find((p) => p.prediction_type === type) ?? null;
-              const mult = state?.match_multiplier ?? tierOf(selectedMatch).multiplier;
-              const isEditing = editing.has(type);
-              const locked = existing ? existing.status === "resolved" : false;
-              const showForm = !existing || isEditing;
-              return (
-                <TypeCard key={type} type={type} mult={mult}>
-                  {showForm ? (
-                    <>
-                      {isEditing && (
-                        <button
-                          onClick={() => setEditing((prev) => { const n = new Set(prev); n.delete(type); return n; })}
-                          style={{ background: "none", border: "none", color: DIM, cursor: "pointer", fontSize: 12, marginBottom: 8, padding: 0, display: "inline-flex", alignItems: "center", gap: 4 }}
-                        >
-                          <X size={13} /> Cancelar edición
-                        </button>
-                      )}
-                      <TypeForm
-                        type={type}
-                        match={selectedMatch}
-                        scorers={scorers}
-                        pendingTeams={pendingTeams}
-                        duels={duels}
-                        ouLines={ouLines}
-                        social={social}
-                        initial={isEditing ? existing : null}
-                        onSubmit={submit}
-                      />
-                    </>
-                  ) : (
-                    <CompletedView
-                      p={existing}
-                      type={type}
-                      scorers={scorers}
-                      duels={duels}
-                      onEdit={locked ? undefined : () => setEditing((prev) => new Set(prev).add(type))}
-                    />
-                  )}
-                </TypeCard>
-              );
-            })}
+      {/* Vista tablero: tira de progreso + hero + destacado + filtros + grupos.
+          La tira de gamificación (Nivel, Racha, Fútcoins, Reto, Pase, Tienda)
+          solo se muestra en el tablero; en el detalle de un partido pasa al
+          fondo como "Extras" para no distraer del flujo de predicción. */}
+      {!selectedMatch && (
+        <>
+          <div className="progress-strip">
+            <GamificationHUD />
+            <BattlePass />
+            <Cosmetics />
           </div>
-        </section>
+          <LandingView matches={groupMatches} onPick={selectMatch} />
+        </>
+      )}
+
+      {/* Vista de detalle: flujo enfocado de predicción del partido */}
+      {selectedMatch && (
+        <MatchDetailView
+          match={selectedMatch}
+          state={state}
+          loading={loading}
+          scorers={scorers}
+          pendingTeams={pendingTeams}
+          duels={duels}
+          ouLines={ouLines}
+          social={social}
+          editing={editing}
+          setEditing={setEditing}
+          onSubmit={submit}
+          onBack={() => { setMatchId(null); setState(null); }}
+        />
       )}
 
       {toast && (
@@ -479,6 +438,63 @@ const PJ_CSS = `
 /* CTA final */
 .pj-cta-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
 @media (min-width: 768px) { .pj-cta-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* ── Detalle de partido: flujo enfocado de predicción ── */
+/* Columna central acotada (máx 720px) y espacio inferior para el pie fijo. */
+.pj-detail {
+  max-width: 720px; margin: 0 auto;
+  padding: 12px 16px calc(96px + env(safe-area-inset-bottom));
+  display: flex; flex-direction: column; gap: 12px;
+}
+.pj-back { transition: background .15s ease; }
+.pj-back:hover { background: rgba(201,168,76,0.14); }
+.pj-summary { position: sticky; top: 0; z-index: 5; }
+
+/* Mini barra de stats (Nivel / XP / Racha / Fútcoins) */
+.pj-ministats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.pj-ministat {
+  display: flex; align-items: center; gap: 7px; min-width: 0;
+  background: ${BG2}; border: ${CARD_BORDER}; border-radius: 12px; padding: 9px 10px;
+}
+
+/* Barra de progreso del partido */
+.pj-progress { background: ${BG2}; border: ${CARD_BORDER}; border-radius: 14px; padding: 12px 14px; }
+
+/* Acordeón de módulos */
+.pj-accordion { display: flex; flex-direction: column; gap: 10px; }
+.pj-module { transition: border-color .15s ease; scroll-margin-top: 96px; }
+.pj-module-head { transition: background .15s ease; }
+.pj-module-head:hover { background: rgba(255,255,255,0.03); }
+.pj-module-head:focus-visible { outline: 2px solid rgba(201,168,76,0.7); outline-offset: -2px; }
+.pj-module-statelabel { display: none; }
+@media (min-width: 420px) { .pj-module-statelabel { display: inline; } }
+
+/* Extras secundarios (gamificación completa al fondo) */
+.pj-extras { background: ${BG2}; border: ${CARD_BORDER}; border-radius: 14px; padding: 0 14px; margin-top: 4px; }
+.pj-extras > summary {
+  list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between;
+  gap: 8px; padding: 13px 0; font-size: 13px; font-weight: 700; color: ${MID}; min-height: 48px;
+}
+.pj-extras > summary::-webkit-details-marker { display: none; }
+.pj-extras .pj-extras-chev { color: ${DIM}; transition: transform .2s ease; flex-shrink: 0; }
+.pj-extras[open] .pj-extras-chev { transform: rotate(90deg); }
+.pj-extras[open] { padding-bottom: 14px; }
+/* Dentro de Extras la tira vuelve a fluir a lo ancho de la columna. */
+.pj-extras .progress-strip { padding-left: 0; padding-right: 0; max-width: none; }
+
+/* Pie fijo de acción. z-index por debajo del lanzador global de IA Coach
+   (1200) y con holgura a la derecha para no quedar bajo su botón flotante. */
+.pj-sticky-footer {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+  background: rgba(11,24,37,0.92); backdrop-filter: blur(10px);
+  border-top: ${CARD_BORDER};
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+}
+.pj-sticky-inner {
+  max-width: 720px; margin: 0 auto; display: flex; align-items: center; gap: 12px;
+  justify-content: space-between; padding-right: 76px;
+}
+@media (min-width: 860px) { .pj-sticky-inner { padding-right: 0; } }
 `;
 
 function Shell({ children }: { children: React.ReactNode }) {
@@ -1032,31 +1048,365 @@ const featuredBtn: React.CSSProperties = {
   background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: BG, fontWeight: 900, fontSize: 15, minHeight: 48,
 };
 
-function MatchHeader({ m, state }: { m: Match; state: MatchState | null }) {
-  const t = tierOf(m);
-  const completed = state?.types_completed.length ?? 0;
-  const pct = Math.round((completed / PREDICTION_TYPES.length) * 100);
-  const close = state?.predictions_close_at ? new Date(state.predictions_close_at) : null;
+// ─── Vista de detalle: flujo enfocado de predicción ─────────────────────────
+// Sustituye al antiguo tablero de 8 tarjetas por un flujo guiado: cabecera
+// compacta del partido + barra de stats + progreso + acordeón de módulos
+// (uno abierto a la vez, autoavance al guardar) + pie fijo de acción.
+
+interface DetailProps {
+  match: Match;
+  state: MatchState | null;
+  loading: boolean;
+  scorers: ScorerCandidate[];
+  pendingTeams: string[];
+  duels: DuelOut[];
+  ouLines: OverUnderLineOut[];
+  social: SocialStatsOut | null;
+  editing: Set<PredictionType>;
+  setEditing: React.Dispatch<React.SetStateAction<Set<PredictionType>>>;
+  onSubmit: SubmitFn;
+  onBack: () => void;
+}
+
+function MatchDetailView({
+  match, state, loading, scorers, pendingTeams, duels, ouLines, social,
+  editing, setEditing, onSubmit, onBack,
+}: DetailProps) {
+  const completedTypes = useMemo(() => new Set(state?.types_completed ?? []), [state]);
+  const completedCount = completedTypes.size;
+  const total = PREDICTION_TYPES.length;
+  const mult = state?.match_multiplier ?? tierOf(match).multiplier;
+
+  const [openType, setOpenType] = useState<PredictionType | null>(null);
+  const pendingAdvance = useRef<PredictionType | null>(null);
+  const userTouched = useRef(false);
+
+  // Abre por defecto el primer módulo pendiente cuando llegan los datos, salvo
+  // que el usuario ya haya interactuado manualmente con el acordeón.
+  useEffect(() => {
+    if (userTouched.current || openType !== null) return;
+    const firstPending = PREDICTION_TYPES.find((t) => !completedTypes.has(t));
+    setOpenType(firstPending ?? PREDICTION_TYPES[0]);
+  }, [completedTypes, openType]);
+
+  // Autoavance: cuando el estado refleja que el tipo recién guardado ya está
+  // completado, abre automáticamente el siguiente módulo pendiente.
+  useEffect(() => {
+    const saved = pendingAdvance.current;
+    if (!saved || !completedTypes.has(saved)) return;
+    pendingAdvance.current = null;
+    setOpenType(PREDICTION_TYPES.find((t) => !completedTypes.has(t)) ?? null);
+  }, [completedTypes]);
+
+  const handleSubmit = useCallback<SubmitFn>(async (type, data, confidence) => {
+    pendingAdvance.current = type;
+    await onSubmit(type, data, confidence);
+  }, [onSubmit]);
+
+  const toggle = (type: PredictionType) => {
+    userTouched.current = true;
+    setOpenType((cur) => (cur === type ? null : type));
+  };
+  const startEdit = (type: PredictionType) => {
+    userTouched.current = true;
+    setEditing((prev) => new Set(prev).add(type));
+    setOpenType(type);
+  };
+  const cancelEdit = (type: PredictionType) =>
+    setEditing((prev) => { const n = new Set(prev); n.delete(type); return n; });
+
+  const nextPending = PREDICTION_TYPES.find((t) => !completedTypes.has(t)) ?? null;
+  const goNext = () => {
+    if (!nextPending) { onBack(); return; }
+    userTouched.current = true;
+    setOpenType(nextPending);
+    if (typeof document !== "undefined") {
+      document.getElementById(`pmod-${nextPending}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  };
+
   return (
-    <div style={{ background: BG2, border: CARD_BORDER, borderRadius: 16, padding: 16 }}>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 14, flexWrap: "wrap" }}>
-        <TeamTag flag={m.hf} name={m.h} />
-        <span style={{ fontWeight: 900, color: DIM }}>VS</span>
-        <TeamTag flag={m.af} name={m.a} right />
+    <section className="pj-detail">
+      <MatchSummaryCard match={match} state={state} completed={completedCount} total={total} onBack={onBack} />
+      <UserMiniStatsBar />
+      <PredictionProgressBar completed={completedCount} total={total} />
+      <LiveMicroPicks matchId={String(match.i)} />
+
+      {loading && !state && <p style={{ color: DIM, textAlign: "center", padding: 24 }}>Cargando predicciones…</p>}
+
+      <div className="pj-accordion">
+        {PREDICTION_TYPES.map((type) => {
+          const existing = state?.predictions.find((p) => p.prediction_type === type) ?? null;
+          const isEditing = editing.has(type);
+          const locked = existing ? existing.status === "resolved" : false;
+          const done = completedTypes.has(type) && !isEditing;
+          const open = openType === type;
+          const showForm = !existing || isEditing;
+          return (
+            <PredictionModuleCard
+              key={type}
+              type={type}
+              mult={mult}
+              open={open}
+              done={done}
+              existing={existing}
+              scorers={scorers}
+              duels={duels}
+              onToggle={() => toggle(type)}
+            >
+              {showForm ? (
+                <>
+                  {isEditing && (
+                    <button
+                      onClick={() => cancelEdit(type)}
+                      style={{ background: "none", border: "none", color: DIM, cursor: "pointer", fontSize: 12, marginBottom: 8, padding: 0, display: "inline-flex", alignItems: "center", gap: 4 }}
+                    >
+                      <X size={13} /> Cancelar edición
+                    </button>
+                  )}
+                  <TypeForm
+                    type={type}
+                    match={match}
+                    scorers={scorers}
+                    pendingTeams={pendingTeams}
+                    duels={duels}
+                    ouLines={ouLines}
+                    social={social}
+                    initial={isEditing ? existing : null}
+                    onSubmit={handleSubmit}
+                  />
+                </>
+              ) : (
+                <CompletedView
+                  p={existing!}
+                  type={type}
+                  scorers={scorers}
+                  duels={duels}
+                  onEdit={locked ? undefined : () => startEdit(type)}
+                />
+              )}
+            </PredictionModuleCard>
+          );
+        })}
       </div>
-      <div style={{ display: "flex", justifyContent: "center", gap: 8, marginTop: 10, flexWrap: "wrap" }}>
-        <Badge>{m.vc} · {fmtKickoff(m)}</Badge>
-        <Badge><TierIcon label={t.label} size={13} /> {t.label} ×{t.multiplier.toFixed(2)}</Badge>
-        {close && <Badge>Cierra {close.toLocaleString("es", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" })}</Badge>}
+
+      {/* Extras secundarios al fondo: gamificación completa, pase y tienda. */}
+      <details className="pj-extras">
+        <summary>
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+            <Sparkles size={15} color={GOLD2} /> Extras · logros, pase de temporada y tienda
+          </span>
+          <ChevronRight size={16} className="pj-extras-chev" />
+        </summary>
+        <div className="progress-strip" style={{ paddingTop: 12 }}>
+          <GamificationHUD />
+          <BattlePass />
+          <Cosmetics />
+        </div>
+      </details>
+
+      <StickyFooter completed={completedCount} total={total} nextPending={nextPending} onAction={goNext} />
+    </section>
+  );
+}
+
+function MatchSummaryCard({ match, state, completed, total, onBack }: {
+  match: Match; state: MatchState | null; completed: number; total: number; onBack: () => void;
+}) {
+  const t = tierOf(match);
+  const tierColor = TIER_COLOR[t.label];
+  const close = state?.predictions_close_at ? new Date(state.predictions_close_at) : null;
+  const closeRel = useCloseCountdown(close);
+  const pct = Math.round((completed / total) * 100);
+  return (
+    <div className="pj-summary" style={{ background: BG2, border: CARD_BORDER, borderRadius: 16, padding: "12px 14px" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
+        <button onClick={onBack} aria-label="Volver a los partidos" className="pj-back"
+          style={{ display: "inline-flex", alignItems: "center", gap: 6, cursor: "pointer", background: "rgba(255,255,255,0.04)", border: CARD_BORDER, borderRadius: 99, color: GOLD2, fontWeight: 700, fontSize: 13, padding: "7px 13px", minHeight: 36, flexShrink: 0 }}>
+          <ArrowLeft size={15} /> Partidos
+        </button>
+        <span style={{ marginLeft: "auto", fontSize: 11.5, fontWeight: 800, color: tierColor, display: "inline-flex", alignItems: "center", gap: 4, background: `${tierColor}1f`, border: `1px solid ${tierColor}55`, borderRadius: 99, padding: "5px 10px" }}>
+          <TierIcon label={t.label} size={13} /> ×{t.multiplier.toFixed(2)}
+        </span>
       </div>
+
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 14 }}>
+        <TeamTag flag={match.hf} name={match.h} />
+        <span style={{ fontWeight: 900, color: DIM, fontSize: 14 }}>VS</span>
+        <TeamTag flag={match.af} name={match.a} right />
+      </div>
+
+      <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 7, marginTop: 10 }}>
+        {match.vn && <Badge><Globe size={12} /> {match.vn}{match.vc ? ` · ${match.vc}` : ""}</Badge>}
+        <Badge><Calendar size={12} /> {fmtKickoff(match)}</Badge>
+        {closeRel && <Badge><Clock size={12} /> Cierra {closeRel}</Badge>}
+      </div>
+
       <div style={{ marginTop: 12 }}>
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, color: MID, marginBottom: 4 }}>
-          <span>Progreso: {completed}/{PREDICTION_TYPES.length} tipos</span>
-          {completed === PREDICTION_TYPES.length && <span style={{ color: GOLD, fontWeight: 700 }}>¡Predicción perfecta posible! +500</span>}
+          <span>{completed}/{total} predicciones</span>
+          {completed === total && <span style={{ color: GOLD, fontWeight: 700, display: "inline-flex", alignItems: "center", gap: 4 }}><Sparkles size={12} /> ¡Posible pleno! +500</span>}
         </div>
         <div style={{ height: 6, borderRadius: 6, background: "rgba(255,255,255,0.08)", overflow: "hidden" }}>
-          <div style={{ width: `${pct}%`, height: "100%", background: `linear-gradient(90deg,${GOLD},${GOLD2})`, transition: "width 0.4s" }} />
+          <div style={{ width: `${pct}%`, height: "100%", background: `linear-gradient(90deg,${GOLD},${GOLD2})`, transition: "width .4s" }} />
         </div>
+      </div>
+    </div>
+  );
+}
+
+// Cuenta atrás "humana" hasta el cierre de predicciones (sin simular nada,
+// solo formatea la diferencia con la hora real de cierre).
+function useCloseCountdown(close: Date | null): string | null {
+  const [, tick] = useState(0);
+  useEffect(() => {
+    if (!close) return;
+    const id = setInterval(() => tick((n) => n + 1), 60_000);
+    return () => clearInterval(id);
+  }, [close]);
+  if (!close) return null;
+  const diff = close.getTime() - Date.now();
+  if (diff <= 0) return "cerrado";
+  const mins = Math.floor(diff / 60_000);
+  const days = Math.floor(mins / 1440);
+  const hrs = Math.floor((mins % 1440) / 60);
+  if (days > 0) return `en ${days}d ${hrs}h`;
+  if (hrs > 0) return `en ${hrs}h ${mins % 60}m`;
+  return `en ${mins}m`;
+}
+
+function UserMiniStatsBar() {
+  const [s, setS] = useState<GamificationSummary | null>(null);
+  useEffect(() => {
+    let alive = true;
+    fetch("/api/predictions/me")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j) => { if (alive && j) setS(j); })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, []);
+  if (!s) return null;
+  const items: { icon: typeof Trophy; color: string; label: string; value: string; sub?: string }[] = [
+    { icon: Trophy, color: GOLD2, label: "Nivel", value: String(s.level.level), sub: s.level.title },
+    { icon: TrendingUp, color: "#38bdf8", label: "XP", value: `${s.level.xpIntoLevel}/${s.level.xpForLevel}` },
+    { icon: Flame, color: s.streak.active ? "#f59e0b" : DIM, label: "Racha", value: String(s.streak.current) },
+    { icon: Coins, color: GOLD, label: "Fútcoins", value: fmtCount(s.coins) },
+  ];
+  return (
+    <div className="pj-ministats" role="group" aria-label="Tu progreso">
+      {items.map((it) => {
+        const Icon = it.icon;
+        return (
+          <div key={it.label} className="pj-ministat">
+            <Icon size={15} color={it.color} style={{ flexShrink: 0 }} />
+            <div style={{ minWidth: 0 }}>
+              <div style={{ fontSize: 9.5, color: DIM, fontWeight: 700, letterSpacing: 0.4, textTransform: "uppercase", lineHeight: 1.1 }}>{it.label}</div>
+              <div style={{ fontSize: 13, fontWeight: 800, lineHeight: 1.15, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{it.value}</div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function PredictionProgressBar({ completed, total }: { completed: number; total: number }) {
+  const pct = Math.round((completed / total) * 100);
+  const remaining = total - completed;
+  const msg = completed === 0 ? "Empieza por el resultado exacto y avanza módulo a módulo."
+    : remaining === 0 ? "¡Todas listas! Tu predicción de este partido está completa."
+    : remaining === 1 ? "Solo te queda 1 módulo para completar el partido."
+    : `Vas muy bien · te quedan ${remaining} módulos.`;
+  return (
+    <div className="pj-progress" aria-live="polite">
+      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 8, marginBottom: 6 }}>
+        <span style={{ fontSize: 14, fontWeight: 800 }}>
+          {completed} <span style={{ color: MID, fontWeight: 600 }}>de {total} completadas</span>
+        </span>
+        <span style={{ fontSize: 12, fontWeight: 800, color: GOLD2 }}>{pct}%</span>
+      </div>
+      <div style={{ height: 8, borderRadius: 99, background: "rgba(255,255,255,0.08)", overflow: "hidden" }}>
+        <div style={{ width: `${pct}%`, height: "100%", background: `linear-gradient(90deg,${GREEN},#16a34a)`, transition: "width .4s" }} />
+      </div>
+      <div style={{ fontSize: 12, color: MID, marginTop: 7, lineHeight: 1.4 }}>{msg}</div>
+    </div>
+  );
+}
+
+function PredictionModuleCard({ type, mult, open, done, existing, scorers, duels, onToggle, children }: {
+  type: PredictionType; mult: number; open: boolean; done: boolean;
+  existing: MatchPrediction | null; scorers: ScorerCandidate[]; duels: DuelOut[];
+  onToggle: () => void; children: React.ReactNode;
+}) {
+  const meta = TYPE_META[type];
+  const TypeIcon = TYPE_ICON[type];
+  const maxPts = Math.round(meta.maxPoints * mult);
+  const resolved = existing?.status === "resolved";
+  const statusColor = resolved ? (existing!.is_correct ? GREEN : RED) : done ? GREEN : open ? GOLD : DIM;
+  const headerId = `pmodh-${type}`;
+  const panelId = `pmodp-${type}`;
+  return (
+    <div id={`pmod-${type}`} className="pj-module" style={{ background: BG3, border: open ? `1px solid ${meta.color}66` : CARD_BORDER, borderLeft: `3px solid ${meta.color}`, borderRadius: 14, overflow: "hidden" }}>
+      <button
+        id={headerId}
+        onClick={onToggle}
+        aria-expanded={open}
+        aria-controls={panelId}
+        className="pj-module-head"
+        style={{ width: "100%", display: "flex", alignItems: "center", gap: 11, padding: "13px 14px", cursor: "pointer", background: "none", border: "none", color: "#fff", textAlign: "left", minHeight: 56 }}
+      >
+        <span style={{ width: 34, height: 34, borderRadius: 10, background: `${meta.color}22`, display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+          <TypeIcon size={18} color={meta.color} />
+        </span>
+        <span style={{ flex: 1, minWidth: 0 }}>
+          <span style={{ display: "block", fontWeight: 800, fontSize: 14, lineHeight: 1.2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{meta.label}</span>
+          <span style={{ display: "block", fontSize: 11, color: MID, marginTop: 2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+            {done && existing ? summarize(type, existing, scorers, duels) : `${meta.difficulty} · hasta ${maxPts} pts`}
+          </span>
+        </span>
+        {done ? (
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 800, color: statusColor, flexShrink: 0 }}>
+            <CheckCircle2 size={16} />
+            <span className="pj-module-statelabel">{resolved ? (existing!.is_correct ? "Acertada" : "Fallada") : "Lista"}</span>
+          </span>
+        ) : (
+          <ChevronRight size={18} color={open ? GOLD2 : DIM} style={{ flexShrink: 0, transform: open ? "rotate(90deg)" : "none", transition: "transform .2s" }} />
+        )}
+      </button>
+      {open && (
+        <div id={panelId} role="region" aria-labelledby={headerId} style={{ padding: "0 14px 14px" }}>
+          {children}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function StickyFooter({ completed, total, nextPending, onAction }: {
+  completed: number; total: number; nextPending: PredictionType | null; onAction: () => void;
+}) {
+  const allDone = completed >= total;
+  return (
+    <div className="pj-sticky-footer">
+      <div className="pj-sticky-inner">
+        <div style={{ minWidth: 0 }}>
+          <div style={{ fontSize: 13, fontWeight: 800, lineHeight: 1.1 }}>{completed}/{total} listas</div>
+          <div style={{ fontSize: 11, color: MID, lineHeight: 1.2, marginTop: 2 }}>
+            {allDone ? "Partido completo" : nextPending ? `Siguiente · ${TYPE_META[nextPending].label}` : "Sigue prediciendo"}
+          </div>
+        </div>
+        <button
+          onClick={onAction}
+          className="pj-cta"
+          style={{
+            flexShrink: 0, cursor: "pointer", borderRadius: 11, minHeight: 44, padding: "0 18px",
+            fontWeight: 800, fontSize: 14, display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 6,
+            background: allDone ? "rgba(34,197,94,0.16)" : `linear-gradient(135deg,${GOLD},${GOLD2})`,
+            color: allDone ? GREEN : BG, border: allDone ? `1px solid ${GREEN}66` : "none",
+          }}
+        >
+          {allDone ? <><Check size={16} /> Finalizar</> : <>Continuar <ChevronRight size={16} /></>}
+        </button>
       </div>
     </div>
   );
@@ -1074,28 +1424,6 @@ function TeamTag({ flag, name, right }: { flag: string; name: string; right?: bo
 
 function Badge({ children }: { children: React.ReactNode }) {
   return <span style={{ fontSize: 11, fontWeight: 600, color: MID, background: "rgba(255,255,255,0.05)", border: CARD_BORDER, borderRadius: 20, padding: "4px 10px", display: "inline-flex", alignItems: "center", gap: 4 }}>{children}</span>;
-}
-
-function TypeCard({ type, mult, children }: { type: PredictionType; mult: number; children: React.ReactNode }) {
-  const meta = TYPE_META[type];
-  const TypeIcon = TYPE_ICON[type];
-  const maxPts = Math.round(meta.maxPoints * mult);
-  return (
-    <div style={{ background: BG3, border: CARD_BORDER, borderRadius: 16, padding: 16, borderTop: `3px solid ${meta.color}` }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6 }}>
-        <TypeIcon size={22} color={meta.color} />
-        <div style={{ flex: 1 }}>
-          <h3 style={{ fontWeight: 800, fontSize: 15 }}>{meta.label}</h3>
-          <span style={{ fontSize: 11, color: DIM }}>Dificultad: {meta.difficulty}</span>
-        </div>
-        <span style={{ fontSize: 11, fontWeight: 700, color: GOLD, background: "rgba(201,168,76,0.12)", borderRadius: 8, padding: "3px 8px" }}>
-          hasta {maxPts} pts
-        </span>
-      </div>
-      <p style={{ fontSize: 12, color: MID, lineHeight: 1.5, marginBottom: 12 }}>{meta.blurb}</p>
-      {children}
-    </div>
-  );
 }
 
 // ─── Vista de predicción ya enviada ──────────────────────────────────────────

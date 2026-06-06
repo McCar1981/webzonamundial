@@ -9,7 +9,7 @@
 // Server-only (lee data/teams via fs). El índice se construye una sola vez.
 
 import { loadTeam, listBibliaSlugs } from "@/lib/biblia";
-import type { NationalTeam } from "@/types/team";
+import type { NationalTeam, Player } from "@/types/team";
 import { flagEmoji, isoFromName } from "./flags";
 
 export interface TeamInfo {
@@ -75,6 +75,82 @@ export async function teamInfo(name: string): Promise<TeamInfo | null> {
   if (!name) return null;
   const idx = await getIndex();
   return idx.get(norm(name)) ?? null;
+}
+
+// Índice nombre de selección (cualquier idioma) -> convocatoria, una sola vez.
+// Permite resolver la foto del jugador concreto de un evento (goleador/expulsado).
+let squadIndexPromise: Promise<Map<string, Player[]>> | null = null;
+async function getSquadIndex(): Promise<Map<string, Player[]>> {
+  if (!squadIndexPromise) {
+    squadIndexPromise = (async () => {
+      const map = new Map<string, Player[]>();
+      const slugs = await listBibliaSlugs();
+      for (const slug of slugs) {
+        const t = await loadTeam(slug);
+        if (!t) continue;
+        const squad = t.wc_2026?.likely_squad ?? [];
+        for (const key of [t.name_en, t.name_es, t.name_local, slug]) {
+          if (key) map.set(norm(key), squad);
+        }
+      }
+      return map;
+    })();
+  }
+  return squadIndexPromise;
+}
+
+/**
+ * Foto del jugador concreto de un evento, cruzando el nombre que da api-football
+ * (p.ej. "D. Lukebakio") con la convocatoria BIBLIA (p.ej. "Dodi Lukebakio").
+ * Conservador: si hay ambigüedad o no hay foto, devuelve null (el llamador usará
+ * la foto del partido como respaldo). Así evitamos mostrar a OTRO jugador.
+ */
+export async function playerPhoto(
+  teamName: string,
+  playerName: string,
+): Promise<string | null> {
+  if (!teamName || !playerName) return null;
+  const idx = await getSquadIndex();
+  const squad = idx.get(norm(teamName));
+  if (!squad || squad.length === 0) return null;
+
+  const q = norm(playerName);
+  const qTokens = q.split(/\s+/).filter(Boolean);
+  if (qTokens.length === 0) return null;
+  const qSurname = qTokens[qTokens.length - 1];
+  const qFirst = qTokens[0].replace(/\./g, "");
+  const qIsInitial = qFirst.length <= 1;
+
+  const lastToken = (s: string): string => {
+    const t = norm(s).split(/\s+/).filter(Boolean);
+    return t[t.length - 1] ?? "";
+  };
+  const firstToken = (s: string): string =>
+    norm(s).split(/\s+/).filter(Boolean)[0] ?? "";
+
+  // 1) Coincidencia exacta de nombre completo o display.
+  for (const p of squad) {
+    if (norm(p.full_name || "") === q || norm(p.display_name || "") === q) {
+      return p.photo_url || null;
+    }
+  }
+
+  // 2) Por apellido (último token). Si solo uno coincide, ese.
+  const bySurname = squad.filter(
+    (p) => lastToken(p.full_name || "") === qSurname || lastToken(p.display_name || "") === qSurname,
+  );
+  if (bySurname.length === 1) return bySurname[0].photo_url || null;
+
+  // 3) Varios con el mismo apellido: desambiguar por nombre/inicial.
+  if (bySurname.length > 1) {
+    const refined = bySurname.filter((p) => {
+      const f = firstToken(p.full_name || "");
+      return qIsInitial ? f.startsWith(qFirst) : f === qFirst;
+    });
+    if (refined.length === 1) return refined[0].photo_url || null;
+  }
+
+  return null;
 }
 
 /** Nombre en español de la selección; el original si no hay ficha. */

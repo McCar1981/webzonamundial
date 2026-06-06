@@ -20,7 +20,7 @@ import {
   type PushPayload,
 } from "@/lib/push-notifications";
 import { flagEmoji } from "@/lib/friendlies/flags";
-import { teamInfo, favoritePhoto } from "@/lib/friendlies/teamInfo";
+import { teamInfo, favoritePhoto, playerPhoto } from "@/lib/friendlies/teamInfo";
 import { isFinishedStatus, isLiveStatus } from "@/lib/friendlies/types";
 import { clearFollowers, getFollowers } from "./followers";
 import type { LiveSnapshot, MatchEvent, MatchMeta, Pair } from "./types";
@@ -235,11 +235,16 @@ export async function processMatchPush(snap: LiveSnapshot): Promise<number> {
     if (seen.has(e.id)) continue;
     const label = eventLabel(e, meta, snap.score);
     if (!label) continue;
+    // Foto del PROTAGONISTA (goleador/expulsado) cruzando su nombre con la
+    // convocatoria BIBLIA; respaldo: estrella del equipo / favorito.
+    const teamName =
+      e.side === "home" ? meta.home.name : e.side === "away" ? meta.away.name : "";
+    const actorPhoto = e.player ? await playerPhoto(teamName, e.player) : null;
     await send({
       title: label.title,
       body: label.body,
       icon: PUSH_ICON,
-      image: photoFor(e.side),
+      image: actorPhoto || photoFor(e.side),
     });
   }
 

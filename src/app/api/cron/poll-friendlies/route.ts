@@ -33,7 +33,7 @@ import {
   type Score,
 } from "@/lib/friendlies/types";
 import { broadcastPush, type PushPayload } from "@/lib/push-notifications";
-import { esName, favoritePhoto, teamFlagEmoji } from "@/lib/friendlies/teamInfo";
+import { esName, favoritePhoto, playerPhoto, teamFlagEmoji } from "@/lib/friendlies/teamInfo";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -281,12 +281,17 @@ export async function GET(req: Request) {
       if (seen.has(e.id)) continue;
       const label = eventLabel(e, snap, homeEs, awayEs, homeFlag, awayFlag);
       if (!label) continue;
+      // Foto del PROTAGONISTA del evento (goleador/expulsado), cruzando su
+      // nombre con la convocatoria BIBLIA. Respaldo: la foto del partido.
+      const teamName =
+        e.side === "home" ? snap.home.name : e.side === "away" ? snap.away.name : "";
+      const actorPhoto = e.player ? await playerPhoto(teamName, e.player) : null;
       await push({
         title: label.title,
         body: label.body,
         url,
         icon: label.icon,
-        image: matchPhoto || undefined,
+        image: actorPhoto || matchPhoto || undefined,
         tag,
       });
       pushes++;

@@ -69,7 +69,11 @@ export default function FichaDT({
         borderRadius: 20,
         position: "relative",
         overflow: "hidden",
-        background: `linear-gradient(160deg, ${GOLD2} 0%, ${GOLD} 35%, #8a6f28 100%)`,
+        // Textura foil dorada sobre el degradado base (si no carga, queda el degradado).
+        backgroundColor: GOLD,
+        backgroundImage: `linear-gradient(160deg, rgba(232,212,139,0.55) 0%, rgba(201,168,76,0.35) 35%, rgba(138,111,40,0.6) 100%), url('/img/modo-carrera/card-texture.png')`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
         boxShadow: "0 24px 60px rgba(0,0,0,0.5)",
         color: BG,
         fontFamily: "'Outfit',sans-serif",

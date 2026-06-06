@@ -182,10 +182,24 @@ export default function CareerGame() {
   };
 
   return (
-    <div style={{ background: BG, minHeight: "100vh", color: "#fff", fontFamily: "'Outfit',sans-serif", padding: "32px 20px 80px" }}>
+    <div style={{ position: "relative", background: BG, minHeight: "100vh", color: "#fff", fontFamily: "'Outfit',sans-serif", padding: "32px 20px 80px" }}>
+      {/* Fondo de marca: cancha + escudo ZonaMundial, muy sutil tras la interfaz. */}
+      <div
+        aria-hidden
+        style={{
+          position: "fixed",
+          inset: 0,
+          zIndex: 0,
+          pointerEvents: "none",
+          backgroundImage:
+            "linear-gradient(rgba(6,11,20,0.84), rgba(6,11,20,0.93)), url('/img/modo-carrera/hub-bg.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center top",
+        }}
+      />
       {levelUp && <LevelUpOverlay overall={levelUp.overall} levels={levelUp.levels} onClose={() => setLevelUp(null)} />}
       {trophyReveal && <TrophyReveal trophy={trophyReveal} paseDT={paseDT} onClose={() => setTrophyReveal(null)} />}
-      <div style={{ maxWidth: 1100, margin: "0 auto 18px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto 18px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <h1 style={{ fontSize: "clamp(22px,3vw,30px)", fontWeight: 900 }}>Modo Carrera</h1>
         {authed === false && (
           <span style={{ fontSize: 12, color: GOLD, border: "1px solid rgba(201,168,76,0.4)", borderRadius: 999, padding: "6px 12px" }}>
@@ -194,6 +208,8 @@ export default function CareerGame() {
         )}
       </div>
 
+      {/* Contenido por encima del fondo de marca */}
+      <div style={{ position: "relative", zIndex: 1 }}>
       {/* Navegación por pestañas */}
       <nav
         style={{
@@ -257,6 +273,7 @@ export default function CareerGame() {
       )}
       {tab === "legado" && <LegacyView career={career} paseDT={paseDT} />}
       {tab === "ranking" && <RankingView />}
+      </div>
     </div>
   );
 }

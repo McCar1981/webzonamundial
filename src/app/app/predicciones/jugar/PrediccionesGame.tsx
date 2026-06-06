@@ -264,16 +264,6 @@ export default function PrediccionesGame() {
 
   return (
     <Shell>
-      {/* Header de página minimalista: solo la marca. La navegación (Ranking/
-          Ligas/Stats) baja a accesos secundarios bajo el partido, y el título
-          "Predicciones" lo lleva el hero compacto, para no robar altura por
-          encima del partido ni duplicar cabeceras. */}
-      <header style={{ padding: "10px 16px 2px", maxWidth: 1280, margin: "0 auto" }}>
-        <span style={{ display: "inline-flex", alignItems: "center", gap: 6, color: GOLD, fontSize: 11.5, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase" }}>
-          <Sparkles size={15} color={GOLD2} /> ZonaMundial
-        </span>
-      </header>
-
       {/* Vista tablero: hero compacto + resumen + partido destacado arriba +
           filtros + grupos, y la gamificación (Nivel, Reto, Pase, Cosméticos,
           Logros, Tienda) plegada al fondo como "Misiones y recompensas" para no

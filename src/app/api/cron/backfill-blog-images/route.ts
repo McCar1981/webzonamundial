@@ -1,0 +1,140 @@
+// GET /api/cron/backfill-blog-images
+//
+// Asigna una imagen RELACIONADA (Wikimedia Commons, con crédito) a los posts
+// del blog que aún tienen el placeholder genérico gris. Recorre tanto los posts
+// auto-generados (store.ts) como los perennes/Track B (evergreen-store.ts) que
+// ya viven en KV y los reescribe en sitio.
+//
+// Es la pieza que arregla el "muro de tarjetas grises" YA publicado: el cambio
+// en el generador solo afecta a los posts NUEVOS; esto repara los existentes.
+//
+// Auth: Authorization: Bearer ${CRON_SECRET} o ?secret=...
+// Params:
+//   ?limit=N   máximo de posts a procesar en esta corrida (default 60).
+//   ?dry=1     solo informa qué haría, sin escribir en KV.
+//
+// Idempotente: salta los posts que ya tienen una imagen real (no placeholder).
+
+import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
+import { readAutoPosts, writeAutoPosts } from "@/lib/blog/store";
+import { readEvergreenPosts, writeEvergreenPosts } from "@/lib/blog/evergreen-store";
+import { pickRelatedImage } from "@/lib/blog/image-picker";
+import type { BlogPost } from "@/lib/blog/types";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+export const maxDuration = 300;
+
+const PLACEHOLDER = "/img/blog/placeholder-zm.jpg";
+const CONCURRENCY = 4;
+
+function needsImage(p: BlogPost): boolean {
+  return !p.ogImage || p.ogImage === PLACEHOLDER;
+}
+
+/** Procesa los posts que necesitan imagen con concurrencia acotada. Devuelve
+ * el array (mismas referencias, mutado en sitio) y cuántos se rellenaron. */
+async function fillImages(
+  posts: BlogPost[],
+  budget: { remaining: number },
+  dry: boolean,
+): Promise<{ filled: number; details: Array<{ slug: string; src: string }> }> {
+  const targets = posts.filter(needsImage);
+  let filled = 0;
+  const details: Array<{ slug: string; src: string }> = [];
+  let next = 0;
+
+  async function worker(): Promise<void> {
+    for (;;) {
+      const i = next++;
+      if (i >= targets.length) return;
+      if (budget.remaining <= 0) return;
+      budget.remaining -= 1;
+      const post = targets[i];
+      const picked = await pickRelatedImage({
+        title: post.title,
+        keywords: post.keywords ?? [],
+        tags: post.tags ?? [],
+        category: post.category,
+      });
+      if (picked) {
+        if (!dry) {
+          post.ogImage = picked.src;
+          post.ogImageCredit = picked.credit;
+        }
+        filled += 1;
+        details.push({ slug: post.slug, src: picked.src });
+      }
+    }
+  }
+
+  const lanes = Math.max(1, Math.min(CONCURRENCY, targets.length));
+  await Promise.all(Array.from({ length: lanes }, () => worker()));
+  return { filled, details };
+}
+
+export async function GET(req: NextRequest) {
+  const expected = process.env.CRON_SECRET;
+  if (expected) {
+    const auth = req.headers.get("authorization");
+    const querySecret = new URL(req.url).searchParams.get("secret");
+    if (auth !== `Bearer ${expected}` && querySecret !== expected) {
+      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+    }
+  }
+
+  const url = new URL(req.url);
+  const limit = Math.max(1, parseInt(url.searchParams.get("limit") || "60", 10));
+  const dry = url.searchParams.get("dry") === "1";
+  const budget = { remaining: limit };
+
+  const [auto, evergreen] = await Promise.all([
+    readAutoPosts(),
+    readEvergreenPosts(),
+  ]);
+
+  const autoNeeded = auto.filter(needsImage).length;
+  const evergreenNeeded = evergreen.filter(needsImage).length;
+
+  const autoResult = await fillImages(auto, budget, dry);
+  const evergreenResult = await fillImages(evergreen, budget, dry);
+
+  let wroteAuto = false;
+  let wroteEvergreen = false;
+  if (!dry && autoResult.filled > 0) {
+    wroteAuto = await writeAutoPosts(auto);
+  }
+  if (!dry && evergreenResult.filled > 0) {
+    wroteEvergreen = await writeEvergreenPosts(evergreen);
+  }
+
+  if (!dry && (wroteAuto || wroteEvergreen)) {
+    try {
+      revalidatePath("/blog");
+      revalidatePath("/blog/[slug]", "page");
+    } catch (err) {
+      console.error("[backfill-blog-images] revalidate failed:", (err as Error).message);
+    }
+  }
+
+  return NextResponse.json({
+    ok: true,
+    dry,
+    limit,
+    auto: {
+      total: auto.length,
+      needed: autoNeeded,
+      filled: autoResult.filled,
+      wrote: wroteAuto,
+    },
+    evergreen: {
+      total: evergreen.length,
+      needed: evergreenNeeded,
+      filled: evergreenResult.filled,
+      wrote: wroteEvergreen,
+    },
+    remainingBudget: budget.remaining,
+    details: [...autoResult.details, ...evergreenResult.details].slice(0, 60),
+  });
+}

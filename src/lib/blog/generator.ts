@@ -14,6 +14,7 @@
 
 import Anthropic from "@anthropic-ai/sdk";
 import type { BlogPost, BlogBlock, BlogCategory } from "./types";
+import { pickRelatedImage } from "./image-picker";
 
 const DEFAULT_MODEL = "claude-haiku-4-5-20251001";
 
@@ -238,22 +239,40 @@ Genera un BlogPost completo siguiendo estrictamente el esquema JSON del system p
   }, 0);
   const readingTime = Math.max(3, Math.round(wordCount / 220));
 
-  // ogImage: si el modelo no devolvi\u00f3 una propia, ponemos placeholder.
-  // El equipo editorial puede subir una real despu\u00e9s si quiere.
-  const ogImage =
-    parsed.ogImage && parsed.ogImage.startsWith("/")
+  const PLACEHOLDER = "/img/blog/placeholder-zm.jpg";
+  const keywords = (parsed.keywords as string[]).slice(0, 12).map(String);
+  const tags = (parsed.tags as string[]).slice(0, 6).map(String);
+  const category = parsed.category as BlogCategory;
+  const title = String(parsed.title).slice(0, 120);
+
+  // ogImage: si el modelo entreg\u00f3 una ruta local propia (distinta del
+  // placeholder), se respeta. Si no, buscamos una foto RELACIONADA con el tema
+  // en Wikimedia Commons (con cr\u00e9dito). Solo si eso falla queda el placeholder.
+  const modelImage =
+    parsed.ogImage && parsed.ogImage.startsWith("/") && parsed.ogImage !== PLACEHOLDER
       ? parsed.ogImage
-      : "/img/blog/placeholder-zm.jpg";
+      : null;
+
+  let ogImage = modelImage ?? PLACEHOLDER;
+  let ogImageCredit: BlogPost["ogImageCredit"];
+  if (!modelImage) {
+    const picked = await pickRelatedImage({ title, keywords, tags, category });
+    if (picked) {
+      ogImage = picked.src;
+      ogImageCredit = picked.credit;
+    }
+  }
 
   const post: BlogPost = {
     slug,
-    title: String(parsed.title).slice(0, 120),
+    title,
     description: String(parsed.description).slice(0, 200),
     dek: String(parsed.dek).slice(0, 280),
     ogImage,
-    category: parsed.category as BlogCategory,
-    keywords: (parsed.keywords as string[]).slice(0, 12).map(String),
-    tags: (parsed.tags as string[]).slice(0, 6).map(String),
+    ...(ogImageCredit ? { ogImageCredit } : {}),
+    category,
+    keywords,
+    tags,
     publishedAt: new Date().toISOString(),
     readingTime,
     body: parsed.body as BlogBlock[],

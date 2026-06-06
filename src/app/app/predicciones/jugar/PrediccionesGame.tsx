@@ -24,6 +24,7 @@ import {
   PREDICTION_TYPES,
   TYPE_META,
   type ChainEventType,
+  type ChainStep,
   type DramaEvent,
   type MinuteRange,
   type OverUnderCategory,
@@ -1819,39 +1820,107 @@ function FirstScorerForm({ scorers, pendingTeams, init, editLabel, onSubmit }: {
   );
 }
 
-function ChainForm({ init, editLabel, onSubmit }: { init: Record<string, unknown> | null; editLabel: string | null; onSubmit: SubmitFn }) {
-  const initSteps = Array.isArray(init?.chain)
-    ? (init!.chain as { event_type: ChainEventType; event_data?: { description?: string } }[])
-        .map((s) => ({ event_type: s.event_type, description: s.event_data?.description ?? "" }))
+// Borrador editable de un eslabón: guarda los 4 datos posibles, pero solo se
+// envía el que corresponde al event_type elegido (ver toEventData).
+type ChainDraft = { event_type: ChainEventType; team: "home" | "away"; result: WinnerResult; home: number; away: number };
+
+function ChainForm({ match, init, editLabel, onSubmit }: { match: Match; init: Record<string, unknown> | null; editLabel: string | null; onSubmit: SubmitFn }) {
+  const initSteps: ChainDraft[] | null = Array.isArray(init?.chain)
+    ? (init!.chain as ChainStep[]).map((s) => ({
+        event_type: s.event_type,
+        team: s.event_data?.team ?? "home",
+        result: s.event_data?.result ?? "home",
+        home: typeof s.event_data?.home === "number" ? s.event_data.home : 0,
+        away: typeof s.event_data?.away === "number" ? s.event_data.away : 0,
+      }))
     : null;
-  const [steps, setSteps] = useState<{ event_type: ChainEventType; description: string }[]>(initSteps ?? [
-    { event_type: "goal", description: "" },
-    { event_type: "card", description: "" },
-    { event_type: "winner", description: "" },
+  const [steps, setSteps] = useState<ChainDraft[]>(initSteps ?? [
+    { event_type: "goal", team: "home", result: "home", home: 0, away: 0 },
+    { event_type: "card", team: "away", result: "home", home: 0, away: 0 },
+    { event_type: "winner", team: "home", result: "home", home: 0, away: 0 },
   ]);
   const [busy, setBusy] = useState(false);
-  const update = (i: number, patch: Partial<{ event_type: ChainEventType; description: string }>) =>
+  const update = (i: number, patch: Partial<ChainDraft>) =>
     setSteps((prev) => prev.map((s, idx) => (idx === i ? { ...s, ...patch } : s)));
+
+  const teamName = (t: "home" | "away") => (t === "home" ? match.h : match.a);
+  // Texto legible que se guarda junto al dato estructurado (para resúmenes/UI).
+  const describe = (s: ChainDraft): string => {
+    switch (s.event_type) {
+      case "goal": return `Gol de ${teamName(s.team)}`;
+      case "card": return `Tarjeta para ${teamName(s.team)}`;
+      case "winner": return s.result === "draw" ? "Empate" : `Gana ${teamName(s.result)}`;
+      case "halftime_score": return `Descanso ${s.home}-${s.away}`;
+    }
+  };
+  // Construye SOLO los campos que el motor de puntuación lee para cada tipo.
+  const toEventData = (s: ChainDraft): ChainStep["event_data"] => {
+    switch (s.event_type) {
+      case "goal":
+      case "card": return { team: s.team, description: describe(s) };
+      case "winner": return { result: s.result, description: describe(s) };
+      case "halftime_score": return { home: s.home, away: s.away, description: describe(s) };
+    }
+  };
+
   return (
     <div>
+      <p style={{ fontSize: 11, color: DIM, lineHeight: 1.5, marginBottom: 10 }}>
+        Predice 3 eventos <strong style={{ color: MID }}>en el orden exacto</strong> en que crees que ocurrirán durante el partido. Cuantos más aciertes seguidos desde el primero, más puntos (cadena completa = 100).
+      </p>
       {steps.map((s, i) => (
         <div key={i} style={{ display: "flex", gap: 6, marginBottom: 8, alignItems: "center" }}>
           <span style={{ width: 18, fontWeight: 800, color: GOLD, fontSize: 13 }}>{i + 1}</span>
-          <select value={s.event_type} onChange={(e) => update(i, { event_type: e.target.value as ChainEventType })} style={{ ...inputStyle, width: 130 }}>
+          <select value={s.event_type} onChange={(e) => update(i, { event_type: e.target.value as ChainEventType })} style={{ ...inputStyle, width: 150 }}>
             {(Object.keys(CHAIN_EVENT_LABEL) as ChainEventType[]).map((k) => <option key={k} value={k}>{CHAIN_EVENT_LABEL[k]}</option>)}
           </select>
-          <input value={s.description} onChange={(e) => update(i, { description: e.target.value })} placeholder="Detalle…" style={{ ...inputStyle, flex: 1 }} />
+          <ChainStepDetail step={s} match={match} onChange={(patch) => update(i, patch)} />
         </div>
       ))}
       <button disabled={busy} style={btnPrimary} onClick={async () => {
         setBusy(true);
-        await onSubmit("chain", { chain: steps.map((s, i) => ({ step: i + 1, event_type: s.event_type, event_data: { description: s.description } })) });
+        await onSubmit("chain", { chain: steps.map((s, i) => ({ step: i + 1, event_type: s.event_type, event_data: toEventData(s) })) });
         setBusy(false);
       }}>
         {editLabel ?? "Guardar"} cadena (3 eslabones)
       </button>
     </div>
   );
+}
+
+// Control de "detalle" de cada eslabón: cambia según el tipo de evento elegido,
+// de modo que siempre se captura el dato concreto que la puntuación necesita.
+function ChainStepDetail({ step, match, onChange }: { step: ChainDraft; match: Match; onChange: (patch: Partial<ChainDraft>) => void }) {
+  const selStyle: React.CSSProperties = { ...inputStyle, flex: 1, padding: "8px 8px" };
+  const numStyle: React.CSSProperties = { ...inputStyle, width: 48, textAlign: "center", padding: "8px 4px" };
+  switch (step.event_type) {
+    case "goal":
+    case "card":
+      return (
+        <select value={step.team} onChange={(e) => onChange({ team: e.target.value as "home" | "away" })} style={selStyle}>
+          <option value="home">{match.h}</option>
+          <option value="away">{match.a}</option>
+        </select>
+      );
+    case "winner":
+      return (
+        <select value={step.result} onChange={(e) => onChange({ result: e.target.value as WinnerResult })} style={selStyle}>
+          <option value="home">Gana {match.h}</option>
+          <option value="draw">Empate</option>
+          <option value="away">Gana {match.a}</option>
+        </select>
+      );
+    case "halftime_score":
+      return (
+        <div style={{ display: "flex", alignItems: "center", gap: 4, flex: 1 }}>
+          <input type="number" min={0} max={20} value={step.home} aria-label={`Goles ${match.h} al descanso`}
+            onChange={(e) => onChange({ home: Math.max(0, Math.min(20, Number(e.target.value) || 0)) })} style={numStyle} />
+          <span style={{ color: DIM, fontWeight: 800 }}>–</span>
+          <input type="number" min={0} max={20} value={step.away} aria-label={`Goles ${match.a} al descanso`}
+            onChange={(e) => onChange({ away: Math.max(0, Math.min(20, Number(e.target.value) || 0)) })} style={numStyle} />
+        </div>
+      );
+  }
 }
 
 function DuelForm({ duels, init, editLabel, onSubmit }: { duels: DuelOut[]; init: Record<string, unknown> | null; editLabel: string | null; onSubmit: SubmitFn }) {

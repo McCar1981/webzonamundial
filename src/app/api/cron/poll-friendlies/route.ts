@@ -67,6 +67,15 @@ const PREKICK_WINDOW_MS = 30 * 60_000;
 const POSTMATCH_WINDOW_MS = 10 * 60_000;
 // Margen para responder dentro del maxDuration aunque haya muchos partidos.
 const TIME_BUDGET_MS = 50_000;
+// Opción 1: bucle interno sub-minuto. Cuando hay algún partido EN VIVO, el cron
+// no hace una sola pasada por invocación: repite cada POLL_INTERVAL_MS hasta
+// agotar el presupuesto. Así la latencia efectiva del push baja de ~1-4 min
+// (drift/skips del cron de Vercel) a ~15s, y sobrevive a un disparo saltado.
+const POLL_INTERVAL_MS = 15_000;
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 function utcDate(offsetDays = 0): string {
   const d = new Date();
@@ -166,26 +175,29 @@ async function push(payload: PushPayload): Promise<void> {
   await broadcastPush({ kind: PUSH_KIND, payload });
 }
 
-export async function GET(req: Request) {
-  const startMs = Date.now();
+/** Foto destacada para resúmenes (descanso/final): la del autor del ÚLTIMO gol
+ *  del partido. Así la imagen es dinámica y cuenta lo que pasó, en vez de mostrar
+ *  siempre al favorito. null si no se resuelve (el llamador usa el respaldo). */
+async function lastScorerPhoto(snap: FriendlySnapshot): Promise<string | null> {
+  const goals = snap.events.filter(
+    (e) => e.type === "goal" || e.type === "penalty_goal",
+  );
+  if (goals.length === 0) return null;
+  const last = goals.reduce((a, b) =>
+    b.minute + (b.extra ?? 0) / 100 >= a.minute + (a.extra ?? 0) / 100 ? b : a,
+  );
+  const teamName =
+    last.side === "home" ? snap.home.name : last.side === "away" ? snap.away.name : "";
+  return last.player ? await playerPhoto(teamName, last.player) : null;
+}
 
-  const expected = process.env.CRON_SECRET;
-  if (expected) {
-    const auth = req.headers.get("authorization");
-    const headerOk = auth === `Bearer ${expected}`;
-    const queryOk = new URL(req.url).searchParams.get("secret") === expected;
-    if (!headerOk && !queryOk) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-    }
-  }
-
-  if (!apiFootballEnabled()) {
-    return NextResponse.json(
-      { error: "api_not_configured", message: "API_SPORTS_KEY requerida" },
-      { status: 500 },
-    );
-  }
-
+/** Una pasada completa: descubre candidatos, los sondea y manda los push nuevos.
+ *  Devuelve cuántos push mandó, qué fixtures tocó y cuántos siguen EN VIVO (para
+ *  que el llamador decida si repetir el bucle interno). El estado vive en KV, así
+ *  que repetir esta función es seguro e idempotente entre pasadas. */
+async function runPass(
+  startMs: number,
+): Promise<{ pushes: number; touched: number[]; live: number }> {
   const now = Date.now();
 
   // 1) Descubre candidatos: en vivo + agenda de hoy y mañana (UTC), sin duplicar.
@@ -198,6 +210,7 @@ export async function GET(req: Request) {
   for (const f of [...live, ...today, ...tomorrow]) byId.set(f.fixtureId, f);
 
   const candidates = [...byId.values()].filter((f) => shouldPoll(f, now));
+  const liveCount = candidates.filter((f) => isLiveStatus(f.status)).length;
 
   let pushes = 0;
   const touched: number[] = [];
@@ -304,6 +317,7 @@ export async function GET(req: Request) {
         body: `Final de la primera parte.`,
         url,
         icon: PUSH_ICON,
+        image: (await lastScorerPhoto(snap)) || matchPhoto || undefined,
         tag,
       });
       next.htSent = true;
@@ -325,7 +339,7 @@ export async function GET(req: Request) {
         body: winnerEs ? `Victoria de ${winnerEs}.` : `Empate en el amistoso.`,
         url,
         icon: winnerLogo || PUSH_ICON,
-        image: matchPhoto || undefined,
+        image: (await lastScorerPhoto(snap)) || matchPhoto || undefined,
         tag,
       });
       next.ftSent = true;
@@ -336,11 +350,54 @@ export async function GET(req: Request) {
     touched.push(fix.fixtureId);
   }
 
+  return { pushes, touched, live: liveCount };
+}
+
+export async function GET(req: Request) {
+  const startMs = Date.now();
+
+  const expected = process.env.CRON_SECRET;
+  if (expected) {
+    const auth = req.headers.get("authorization");
+    const headerOk = auth === `Bearer ${expected}`;
+    const queryOk = new URL(req.url).searchParams.get("secret") === expected;
+    if (!headerOk && !queryOk) {
+      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+    }
+  }
+
+  if (!apiFootballEnabled()) {
+    return NextResponse.json(
+      { error: "api_not_configured", message: "API_SPORTS_KEY requerida" },
+      { status: 500 },
+    );
+  }
+
+  // Bucle interno sub-minuto (Opción 1): mientras haya partido EN VIVO y quede
+  // presupuesto, repetimos la pasada cada POLL_INTERVAL_MS. Si no hay nada en
+  // vivo, una sola pasada (idéntico al comportamiento anterior).
+  let totalPushes = 0;
+  const touchedAll = new Set<number>();
+  let passes = 0;
+
+  for (;;) {
+    const { pushes, touched, live } = await runPass(startMs);
+    totalPushes += pushes;
+    for (const id of touched) touchedAll.add(id);
+    passes++;
+
+    if (live === 0) break;
+    // ¿Cabe otra pasada? Necesitamos el sleep + un margen para sondear.
+    const budgetLeft = TIME_BUDGET_MS - (Date.now() - startMs);
+    if (budgetLeft < POLL_INTERVAL_MS + 5_000) break;
+    await sleep(POLL_INTERVAL_MS);
+  }
+
   return NextResponse.json({
     ok: true,
-    candidates: candidates.length,
-    polled: touched.length,
-    pushes,
+    passes,
+    polled: touchedAll.size,
+    pushes: totalPushes,
     duration_ms: Date.now() - startMs,
   });
 }

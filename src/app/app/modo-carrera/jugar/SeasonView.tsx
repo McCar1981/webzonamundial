@@ -11,6 +11,7 @@ import Link from "next/link";
 import { BG, BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED, flagUrl } from "./fx";
 import { SELECCIONES } from "@/data/selecciones";
 import { STAGE_LABEL } from "@/lib/modo-carrera/season";
+import { activeInjuries } from "@/lib/modo-carrera/injuries";
 import type { PlayResult } from "@/lib/modo-carrera/season";
 import { liveLockMs } from "@/lib/modo-carrera/live-season";
 import { getUserTimezone } from "@/lib/bracket/match-time";
@@ -116,6 +117,46 @@ function FixtureRow({ m, isNext }: { m: SeasonMatch; isNext: boolean }) {
         ) : (
           <div style={{ fontSize: 16, fontWeight: 800, color: isNext ? GOLD2 : DIM }}>—</div>
         )}
+      </div>
+    </div>
+  );
+}
+
+/** Icono SVG de parte médico (cruz en escudo). Sin emojis. */
+function MedicalIcon({ size = 16, color = RED }: { size?: number; color?: string }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5l-8-3Z" stroke={color} strokeWidth="1.6" strokeLinejoin="round" />
+      <path d="M12 8v6M9 11h6" stroke={color} strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+/** Panel de bajas (lesiones) activas del plantel antes del próximo partido. */
+function InjuriesPanel({ career }: { career: CareerState }) {
+  const injuries = activeInjuries(career);
+  if (injuries.length === 0) return null;
+  const zona = (pos: string) => (pos === "FWD" || pos === "MID" ? "ataque" : "defensa");
+  return (
+    <div style={{ marginBottom: 14, padding: 14, borderRadius: 14, background: "rgba(239,68,68,0.07)", border: `1px solid ${RED}44` }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
+        <MedicalIcon size={16} />
+        <span style={{ fontSize: 12, fontWeight: 800, letterSpacing: 0.6, textTransform: "uppercase", color: RED }}>
+          Parte médico · {injuries.length} {injuries.length === 1 ? "baja" : "bajas"}
+        </span>
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        {injuries.map((inj) => (
+          <div key={inj.player} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, fontSize: 13 }}>
+            <span style={{ color: "#fff", fontWeight: 700, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+              {inj.player}
+              <span style={{ color: DIM, fontWeight: 600, marginLeft: 6 }}>· merma el {zona(inj.pos)}</span>
+            </span>
+            <span style={{ flexShrink: 0, fontSize: 11, fontWeight: 800, color: GOLD2, border: `1px solid ${GOLD2}55`, background: `${GOLD2}14`, borderRadius: 999, padding: "3px 9px" }}>
+              {inj.matchesOut === 1 ? "1 partido" : `${inj.matchesOut} partidos`}
+            </span>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -376,6 +417,9 @@ export default function SeasonView({
           </button>
         </div>
       )}
+
+      {/* Bajas (lesiones) del plantel */}
+      {!season.finished && <InjuriesPanel career={career} />}
 
       {/* Calendario */}
       <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>

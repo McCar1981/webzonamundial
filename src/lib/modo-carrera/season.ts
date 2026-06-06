@@ -25,6 +25,7 @@ import type {
 import { grantXp, sumReputation } from "./engine";
 import { missionKey } from "./missions";
 import { buildBoardObjective, evaluateSeason } from "./board";
+import { injuryPenalty, tickInjuries, rollInjury, activeInjuries } from "./injuries";
 import { SELECCIONES, type Seleccion } from "@/data/selecciones";
 
 const now = () => new Date().toISOString();
@@ -104,6 +105,10 @@ function attackDefense(c: CareerState): { atk: number; def: number } {
   const s = c.skills.levels;
   let atk = base + s.ataque * 2.0;
   let def = base + s.defensa * 2.0;
+  // Lesiones: cada baja resta fuerza en su zona (FWD/MID → ataque; DEF/GK → defensa).
+  const pen = injuryPenalty(c);
+  atk -= pen.atk;
+  def -= pen.def;
   switch (c.identity.philosophy) {
     case "ofensiva":
       atk += 6;
@@ -638,6 +643,29 @@ export function resolveMatch(
     ];
   }
 
+  // ── Lesiones del plantel ──
+  // Tras el partido, los lesionados recuperan un partido (los ya sanos vuelven) y,
+  // si el torneo sigue, se tira por una nueva baja para el próximo encuentro.
+  let injuries = tickInjuries(activeInjuries(c0));
+  if (!finished) {
+    const newInj = rollInjury(c0, injuries);
+    if (newInj) {
+      injuries = [...injuries, newInj];
+      const nationName = seleccion(c0.identity.nationSlug)?.nombre ?? "La selección";
+      const partidos = newInj.matchesOut === 1 ? "1 partido" : `${newInj.matchesOut} partidos`;
+      narrative = [
+        {
+          id: `lesion-s${season.season}-${idx}`,
+          kind: "evento",
+          body: `Parte médico en ${nationName}: ${newInj.player} cae lesionado y será baja ${partidos}. El cuerpo técnico ya trabaja en su recambio.`,
+          createdAt: now(),
+          chosen: null,
+        },
+        ...narrative,
+      ];
+    }
+  }
+
   // ── XP ──
   const xpGain = (outcome === "V" ? 130 : outcome === "E" ? 60 : 35) + gf * 8 + (decisive ? 20 : 0);
 
@@ -649,6 +677,7 @@ export function resolveMatch(
     narrative: narrative.slice(0, MAX_NARRATIVE),
     legacy: { trophies, records },
     board,
+    squad: { ...c0.squad, injuries },
     season: { ...season, fixtures, cursor: idx + 1, stage, finished },
     updatedAt: now(),
   };

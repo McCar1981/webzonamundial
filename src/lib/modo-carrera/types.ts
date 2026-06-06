@@ -144,6 +144,22 @@ export interface Legacy {
   };
 }
 
+// ─── Lesiones (plantel) ──────────────────────────────────────────────────────
+/** Un jugador lesionado de la selección del DT, con los partidos de baja restantes. */
+export interface Injury {
+  /** Nombre del jugador (de FANTASY_ROSTERS). */
+  player: string;
+  /** Posición (FWD/MID/DEF/GK), define si penaliza ataque o defensa. */
+  pos: string;
+  /** Partidos restantes de baja (se descuenta tras cada partido). */
+  matchesOut: number;
+}
+
+/** Estado del plantel: por ahora, las lesiones activas. */
+export interface SquadState {
+  injuries: Injury[];
+}
+
 // ─── Motor de temporada (bucle de juego) ─────────────────────────────────────
 /** Resultado de un partido desde la óptica del DT. */
 export type MatchOutcome = "V" | "E" | "D";
@@ -244,6 +260,8 @@ export interface CareerState {
   streak: StreakState;
   /** Torneo en curso (motor de temporada). null = aún no iniciado. */
   season: SeasonState | null;
+  /** Plantel: lesiones activas. Opcional para compatibilidad con saves antiguos. */
+  squad?: SquadState;
   /** Marca de última actualización local. */
   updatedAt: string;
 }

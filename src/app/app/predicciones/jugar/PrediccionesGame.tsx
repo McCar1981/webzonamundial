@@ -1118,6 +1118,16 @@ function MatchDetailView({
   const cancelEdit = (type: PredictionType) =>
     setEditing((prev) => { const n = new Set(prev); n.delete(type); return n; });
 
+  // Resultado derivado del marcador exacto ya guardado: condiciona el módulo de
+  // "Ganador con confianza" (si el marcador es empate, el ganador queda fijado).
+  const exactPred = state?.predictions.find((p) => p.prediction_type === "exact_score") ?? null;
+  const scoreResult: WinnerResult | null = exactPred
+    ? (() => {
+        const d = exactPred.prediction_data as unknown as { home_goals: number; away_goals: number };
+        return d.home_goals === d.away_goals ? "draw" : d.home_goals > d.away_goals ? "home" : "away";
+      })()
+    : null;
+
   const nextPending = PREDICTION_TYPES.find((t) => !completedTypes.has(t)) ?? null;
   const goNext = () => {
     if (!nextPending) { onBack(); return; }
@@ -1175,6 +1185,7 @@ function MatchDetailView({
                     duels={duels}
                     ouLines={ouLines}
                     social={social}
+                    scoreResult={scoreResult}
                     initial={isEditing ? existing : null}
                     onSubmit={handleSubmit}
                   />
@@ -1490,6 +1501,7 @@ function TypeForm(props: {
   duels: DuelOut[];
   ouLines: OverUnderLineOut[];
   social: SocialStatsOut | null;
+  scoreResult: WinnerResult | null;
   initial: MatchPrediction | null;
   onSubmit: SubmitFn;
 }) {
@@ -1497,7 +1509,7 @@ function TypeForm(props: {
   const editLabel = props.initial ? "Actualizar" : null;
   switch (props.type) {
     case "exact_score": return <ExactScoreForm {...props} init={d} editLabel={editLabel} />;
-    case "winner": return <WinnerForm {...props} init={d} initConf={props.initial?.confidence_multiplier ?? 1} editLabel={editLabel} />;
+    case "winner": return <WinnerForm {...props} init={d} initConf={props.initial?.confidence_multiplier ?? 1} editLabel={editLabel} scoreResult={props.scoreResult} />;
     case "first_scorer": return <FirstScorerForm {...props} init={d} editLabel={editLabel} />;
     case "chain": return <ChainForm {...props} init={d} editLabel={editLabel} />;
     case "duel": return <DuelForm {...props} init={d} editLabel={editLabel} />;
@@ -1576,10 +1588,15 @@ function Stepper({ label, value, onChange }: { label: string; value: number; onC
 }
 const stepBtn: React.CSSProperties = { width: 28, height: 28, borderRadius: 8, border: CARD_BORDER, background: BG, color: GOLD, fontSize: 18, fontWeight: 800, cursor: "pointer" };
 
-function WinnerForm({ match, social, init, initConf, editLabel, onSubmit }: { match: Match; social: SocialStatsOut | null; init: Record<string, unknown> | null; initConf: number; editLabel: string | null; onSubmit: SubmitFn }) {
-  const [result, setResult] = useState<WinnerResult | null>((init?.result as WinnerResult) ?? null);
+function WinnerForm({ match, social, init, initConf, editLabel, onSubmit, scoreResult }: { match: Match; social: SocialStatsOut | null; init: Record<string, unknown> | null; initConf: number; editLabel: string | null; onSubmit: SubmitFn; scoreResult: WinnerResult | null }) {
+  // Si el marcador exacto guardado es empate, el ganador queda fijado en
+  // "Empate": no tiene sentido elegir una selección que contradiga el marcador.
+  const forcedDraw = scoreResult === "draw";
+  const [result, setResult] = useState<WinnerResult | null>(forcedDraw ? "draw" : ((init?.result as WinnerResult) ?? null));
   const [conf, setConf] = useState(initConf || 1);
   const [busy, setBusy] = useState(false);
+  // Si el marcador cambia a empate mientras el módulo está abierto, sincroniza.
+  useEffect(() => { if (forcedDraw) setResult("draw"); }, [forcedDraw]);
   const winnerStats = social?.stats?.winner ?? [];
   const winnerTotal = winnerStats.reduce((s, r) => s + r.count, 0);
   const pctOf = (r: WinnerResult): number => winnerStats.find((s) => s.option_key === `winner:${r}`)?.pct ?? 0;
@@ -1588,6 +1605,11 @@ function WinnerForm({ match, social, init, initConf, editLabel, onSubmit }: { ma
   ];
   return (
     <div>
+      {forcedDraw && (
+        <div style={{ fontSize: 11.5, color: GOLD, background: "rgba(201,168,76,0.10)", border: `1px solid ${GOLD}40`, borderRadius: 8, padding: "7px 10px", marginBottom: 8, lineHeight: 1.4, display: "flex", gap: 6 }}>
+          <Check size={14} style={{ flexShrink: 0, marginTop: 1 }} /> <span>Tu marcador es un empate, así que el ganador queda fijado en <strong>Empate</strong>. Elige solo tu nivel de confianza.</span>
+        </div>
+      )}
       {winnerTotal > 0 && (
         <div style={{ fontSize: 11, color: DIM, marginBottom: 6 }}>Qué predice la comunidad ({winnerTotal})</div>
       )}
@@ -1595,10 +1617,12 @@ function WinnerForm({ match, social, init, initConf, editLabel, onSubmit }: { ma
         {options.map((o) => {
           const active = result === o.key;
           const pct = pctOf(o.key);
+          const disabled = forcedDraw && o.key !== "draw";
           return (
-            <button key={o.key} onClick={() => setResult(o.key)} style={{
-              width: "100%", padding: "8px 10px", borderRadius: 8, cursor: "pointer", textAlign: "left",
+            <button key={o.key} onClick={() => { if (!forcedDraw) setResult(o.key); }} disabled={disabled} aria-disabled={disabled} style={{
+              width: "100%", padding: "8px 10px", borderRadius: 8, cursor: disabled ? "not-allowed" : "pointer", textAlign: "left",
               position: "relative", overflow: "hidden", border: active ? `1px solid ${GOLD}` : CARD_BORDER, background: BG, color: "#fff",
+              opacity: disabled ? 0.4 : 1,
             }}>
               {winnerTotal > 0 && <span style={{ position: "absolute", inset: 0, width: `${pct}%`, background: "rgba(201,168,76,0.16)" }} />}
               <span style={{ position: "relative", display: "flex", justifyContent: "space-between", fontSize: 13, fontWeight: 700, color: active ? GOLD : "#fff" }}>

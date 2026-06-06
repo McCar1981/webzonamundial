@@ -10,6 +10,7 @@ import { useMemo, useState } from "react";
 import { BG, BG2, BG3, GOLD, GOLD2, MID, DIM, flagUrl } from "./fx";
 import FichaDT, { PhilosophyIcon } from "./FichaDT";
 import { PHILOSOPHIES } from "@/lib/modo-carrera/constants";
+import { realObjective } from "@/lib/modo-carrera/board";
 import type { CareerState, Philosophy, NarrativeEntry } from "@/lib/modo-carrera/types";
 import { SELECCIONES } from "@/data/selecciones";
 
@@ -71,6 +72,9 @@ export default function OnboardingDT({
       onChange({
         ...career,
         identity: { ...career.identity, createdAt: new Date().toISOString() },
+        // Fija el objetivo realista de la selección (ranking real) para que el Hub
+        // lo muestre desde el principio, no el "octavos" por defecto.
+        board: { ...career.board, objective: realObjective(id.nationSlug) },
         narrative: [opening, ...career.narrative],
         updatedAt: new Date().toISOString(),
       });

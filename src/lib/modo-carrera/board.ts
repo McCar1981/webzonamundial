@@ -52,27 +52,38 @@ const DEMAND_AS_STAGE: Record<BoardDemand, TournamentStage> = {
   campeon: "campeon",
 };
 
-// ─── Objetivo adaptativo ─────────────────────────────────────────────────────
-/** Fuerza percibida del proyecto: ranking FIFA de la selección + overall del DT. */
-function projectStrength(c: CareerState): number {
-  const rank = SELECCIONES.find((s) => s.slug === c.identity.nationSlug)?.rankingFIFA ?? 30;
-  const ovr = c.progression.overall; // 50..99
-  // Menor ranking (mejor selección) y mayor overall ⇒ más presión.
-  return clamp(100 - (rank - 1) * 1.6 + (ovr - 50) * 0.6, 0, 130);
+// ─── Objetivo realista + adaptativo ──────────────────────────────────────────
+const DEMAND_BY_INDEX: BoardDemand[] = ["octavos", "cuartos", "semifinal", "final", "campeon"];
+
+/**
+ * Ambición REAL de la selección según su fuerza real (ranking FIFA), como índice
+ * 0..4 sobre DEMAND_BY_INDEX. Es lo que de verdad se le exige a ese país en un
+ * Mundial: una potencia top apunta a la final/título; un debutante, a octavos.
+ * Ej.: España (ranking 8) → semifinales.
+ */
+function realIndex(nationSlug: string | null | undefined): number {
+  const rank = SELECCIONES.find((s) => s.slug === nationSlug)?.rankingFIFA ?? 50;
+  if (rank <= 2) return 4; // campeón (máximos favoritos)
+  if (rank <= 5) return 3; // final
+  if (rank <= 12) return 2; // semifinal
+  if (rank <= 24) return 1; // cuartos
+  return 0; // clasificar a octavos
+}
+
+/** Objetivo realista de la selección, independiente del overall del DT. */
+export function realObjective(nationSlug: string | null | undefined): BoardDemand {
+  return DEMAND_BY_INDEX[realIndex(nationSlug)];
 }
 
 /**
- * Calcula el objetivo de la federación para la temporada. Es adaptativo: crece
- * con la fuerza de la selección y la reputación del DT, de modo que al mejorar el
- * overall la exigencia sube sola (la dinastía nunca se acomoda).
+ * Objetivo de la federación para la temporada. Parte de la ambición REAL del país
+ * (ranking) y sube con el overall del DT: la exigencia crece con la dinastía, pero
+ * nunca arranca por debajo de lo que ese país realmente persigue en un Mundial.
  */
 export function buildBoardObjective(c: CareerState): BoardDemand {
-  const s = projectStrength(c);
-  if (s >= 96) return "campeon";
-  if (s >= 80) return "final";
-  if (s >= 62) return "semifinal";
-  if (s >= 44) return "cuartos";
-  return "octavos";
+  const base = realIndex(c.identity.nationSlug);
+  const bump = Math.floor((c.progression.overall - 50) / 15); // 0..~3 según overall
+  return DEMAND_BY_INDEX[clamp(base + bump, 0, 4)];
 }
 
 // ─── Evaluación de cierre de temporada ───────────────────────────────────────

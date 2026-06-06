@@ -295,7 +295,7 @@ export default function SeasonView({
             {nation ? `Al mando de ${nation.nombre}` : "Mundial"} · {STAGE_LABEL[season.stage]}
           </p>
           <p style={{ fontSize: 12, color: DIM, marginTop: 6 }}>
-            Objetivo de la federación: <strong style={{ color: GOLD2 }}>{DEMAND_LABEL[career.board.objective]}</strong>
+            {season.live ? "Objetivo del Mundial" : "Objetivo de la federación"}: <strong style={{ color: GOLD2 }}>{DEMAND_LABEL[career.board.objective]}</strong>
             {" · "}
             Confianza: <strong style={{ color: confColor(career.board.confidence) }}>{career.board.confidence}/100</strong>
           </p>

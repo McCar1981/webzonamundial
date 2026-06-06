@@ -86,7 +86,7 @@ export default function HubView({
         <Card title="Junta directiva">
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 10 }}>
             <div>
-              <div style={{ fontSize: 11, color: DIM, textTransform: "uppercase", letterSpacing: 0.6 }}>Objetivo de temporada</div>
+              <div style={{ fontSize: 11, color: DIM, textTransform: "uppercase", letterSpacing: 0.6 }}>{career.season?.live ? "Objetivo del Mundial" : "Objetivo de temporada"}</div>
               <div style={{ fontSize: 16, fontWeight: 800, color: "#fff" }}>{DEMAND_LABEL[board.objective]}</div>
             </div>
             <span style={{ fontSize: 12, fontWeight: 700, color: confColor(board.confidence) }}>{VERDICT_LABEL[board.lastVerdict]}</span>

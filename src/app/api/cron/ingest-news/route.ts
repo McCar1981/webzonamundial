@@ -99,6 +99,50 @@ export async function GET(req: Request) {
   // Tracking de drafts que pasan a "published" en este tick.
   // Los usamos para disparar web push tras la revalidación.
   const newlyPublished: DraftNoticia[] = [];
+  // Diagnóstico: por cada draft que SE EVALÚA pero NO se publica, guardamos el
+  // veredicto del crítico (las 5 notas + media + duplicado + motivos). Así la
+  // respuesta del cron muestra POR QUÉ se rechaza cada noticia, sin depender de
+  // los logs de runtime de Vercel. `critic: null` => la llamada a la IA falló o
+  // el JSON no parseó (eso NO es un rechazo de calidad, es un fallo técnico).
+  const criticRejections: Array<{
+    title: string;
+    status: DraftNoticia["status"];
+    duplicate: boolean | null;
+    avg: number | null;
+    scores: Record<string, number> | null;
+    motivos: string;
+  }> = [];
+  function recordRejection(d: DraftNoticia) {
+    const v = d.critic;
+    const scores = v
+      ? {
+          relevancia: v.relevancia,
+          originalidad: v.originalidad_valor,
+          profundidad: v.profundidad,
+          precision: v.precision_factual,
+          utilidad: v.utilidad_lector,
+        }
+      : null;
+    const avg = v
+      ? Math.round(
+          ((v.relevancia +
+            v.originalidad_valor +
+            v.profundidad +
+            v.precision_factual +
+            v.utilidad_lector) /
+            5) *
+            10,
+        ) / 10
+      : null;
+    criticRejections.push({
+      title: d.title,
+      status: d.status,
+      duplicate: v ? v.es_duplicado : null,
+      avg,
+      scores,
+      motivos: v?.motivos ?? "sin veredicto del crítico (fallo de IA o de parseo JSON)",
+    });
+  }
   // Soft deadline: stop the rewrite loop ~50s into the request to leave
   // ~10s of headroom under Vercel Hobby's 60s function cap. Any drafts not
   // rewritten remain status: "draft" and will be picked up on the next tick.
@@ -132,6 +176,8 @@ export async function GET(req: Request) {
           publishedThisRun += 1;
           recentTitles.unshift(result.drafts[i].title);
           newlyPublished.push(result.drafts[i]);
+        } else {
+          recordRejection(result.drafts[i]);
         }
       } catch (err) {
         rewriteFailed += 1;
@@ -180,6 +226,8 @@ export async function GET(req: Request) {
             publishedThisRun += 1;
             recentTitles.unshift(updated.title);
             newlyPublished.push(updated);
+          } else {
+            recordRejection(updated);
           }
         }
       } catch (err) {
@@ -270,6 +318,12 @@ export async function GET(req: Request) {
     publishedThisRun,
     capReached: capReached(),
     errors: result.errors,
+    // Diagnóstico del crítico: cuántos rechazó y por qué (últimos 15 del tick).
+    // Si criticRejectedCount > 0 con rewritten = 0, el cuello de botella es el
+    // gate de calidad, no el throughput. Revisa `motivos` y `scores` para ver
+    // si el umbral (NEWS_CRITIC_MIN_CRITICA / NEWS_CRITIC_MIN_MEDIA) es el problema.
+    criticRejectedCount: criticRejections.length,
+    criticRejections: criticRejections.slice(-15),
     totalStored: store.drafts.length,
     publishedCount: published,
     push: {

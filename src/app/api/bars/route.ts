@@ -1,0 +1,44 @@
+// src/app/api/bars/route.ts
+//
+// GET   /api/bars  → el bar del usuario (dueño), o null.
+// POST  /api/bars  → crea el bar del usuario (+ su porra/liga + QR principal).
+// PATCH /api/bars  → actualiza campos editables del bar del usuario.
+
+import { NextResponse } from "next/server";
+import { getCurrentUser } from "@/lib/auth-helpers";
+import { createBar, getBarByOwner, updateBar } from "@/lib/bars/store";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
+export async function GET() {
+  const user = await getCurrentUser();
+  if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  const bar = await getBarByOwner(user.id);
+  return NextResponse.json({ bar });
+}
+
+export async function POST(req: Request) {
+  const user = await getCurrentUser();
+  if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+
+  const existing = await getBarByOwner(user.id);
+  if (existing) return NextResponse.json({ error: "already_exists", bar: existing }, { status: 409 });
+
+  let body: { name?: string; city?: string; themeId?: string };
+  try { body = await req.json(); } catch { return NextResponse.json({ error: "bad_request" }, { status: 400 }); }
+  if (!body.name || !body.name.trim()) return NextResponse.json({ error: "bad_request", message: "name requerido" }, { status: 400 });
+
+  const bar = await createBar(user.id, { name: body.name, city: body.city, themeId: body.themeId });
+  return NextResponse.json({ ok: true, bar }, { status: 201 });
+}
+
+export async function PATCH(req: Request) {
+  const user = await getCurrentUser();
+  if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  let patch: Record<string, unknown>;
+  try { patch = await req.json(); } catch { return NextResponse.json({ error: "bad_request" }, { status: 400 }); }
+  const bar = await updateBar(user.id, patch);
+  if (!bar) return NextResponse.json({ error: "bar_not_found" }, { status: 404 });
+  return NextResponse.json({ ok: true, bar });
+}

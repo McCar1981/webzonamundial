@@ -91,6 +91,9 @@ a:hover {
 }
 
 /* ══════ ANIMATIONS ══════ */
+@keyframes spin { to { transform: rotate(360deg); } }
+.spin { animation: spin 0.9s linear infinite; }
+
 @keyframes gradient {
   0%, 100% {
     background-position: 0% 50%;

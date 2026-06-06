@@ -103,13 +103,22 @@ export async function GET(req: Request) {
   // ~10s of headroom under Vercel Hobby's 60s function cap. Any drafts not
   // rewritten remain status: "draft" and will be picked up on the next tick.
   const deadlineMs = Date.now() + 50_000;
+  // Phase 1 (rewriting brand-new drafts) gets only the FIRST slice of the
+  // budget so it can never starve Phase 2. Before this, high news volume made
+  // Phase 1 burn the whole 50s every tick (`abortedByTimeout: true`), so
+  // Phase 2 — the path that republishes already-vetted pending drafts — never
+  // ran and nothing got published for two days. Phase 2 keeps the full
+  // deadlineMs and now always receives the remaining budget.
+  const phase1DeadlineMs = Date.now() + 30_000;
 
   // FASE 1: Reescribir drafts NUEVOS (recién ingestados de GNews).
   if (rewriteEnabled) {
     const cap = rewriteLimit > 0 ? Math.min(rewriteLimit, result.drafts.length) : result.drafts.length;
     for (let i = 0; i < cap; i++) {
-      if (Date.now() > deadlineMs) {
-        abortedByTimeout = true;
+      // Hand off to Phase 2 once Phase 1's sub-window is spent. This is an
+      // expected handoff, NOT a hard timeout, so we don't set abortedByTimeout
+      // (that flag is reserved for running out the full request budget).
+      if (Date.now() > phase1DeadlineMs) {
         break;
       }
       // Cap diario: si ya alcanzamos el máximo de publicaciones del día, no
@@ -137,7 +146,7 @@ export async function GET(req: Request) {
   // (p.ej. por fallos transitorios de Claude). Sin esto, los drafts
   // huérfanos nunca se publican. Tomamos los más recientes primero
   // para que la página de noticias quede fresca.
-  if (rewriteEnabled && !abortedByTimeout) {
+  if (rewriteEnabled) {
     const pendingDrafts = store.drafts.filter((d) => d.status === "draft");
     // Iteramos sobre los más recientes (final del array, recién pusheados
     // al inicio + drafts pendientes viejos).
@@ -179,9 +188,18 @@ export async function GET(req: Request) {
       }
     }
   }
-  // Keep only the last 300 drafts so the file does not balloon
-  if (store.drafts.length > 300) {
-    store.drafts = store.drafts.slice(-300);
+  // Trim the store WITHOUT ever evicting published articles. The old logic
+  // (slice(-300)) kept the most-recently-pushed entries, but raw drafts are
+  // always appended last, so published articles — being older — were the first
+  // to be evicted. That silently drained the public feed (publishedCount fell
+  // 51 → 1 over two days). We now keep every published article and only trim
+  // surplus draft/review entries, oldest first.
+  const MAX_STORE = 300;
+  if (store.drafts.length > MAX_STORE) {
+    const publishedDrafts = store.drafts.filter((d) => d.status === "published");
+    const otherDrafts = store.drafts.filter((d) => d.status !== "published");
+    const slotsForOthers = Math.max(0, MAX_STORE - publishedDrafts.length);
+    store.drafts = [...otherDrafts.slice(-slotsForOthers), ...publishedDrafts];
   }
   store.generatedAt = new Date().toISOString();
   await writeIngestStore(store);

@@ -95,10 +95,26 @@ export interface DraftNoticia extends Omit<Noticia, "id" | "body"> {
   /** Veredicto del crítico de calidad (Fase 1). Se guarda para auditoría
    *  y para poder re-evaluar/limpiar drafts existentes. */
   critic?: CriticVerdict;
+  /** Marca de recuperación histórica (backfill). Cuando es true, el draft
+   *  proviene de una ventana de fechas pasada y su `ingestedAt` se fijó a la
+   *  fecha REAL de publicación del medio (no "ahora"). Las fases de reescritura
+   *  NO deben refrescar su ingestedAt, para que la pieza aparezca en su día
+   *  real en el feed y no todas hoy. */
+  backfilled?: boolean;
 }
 
-/** Convert a raw GNews article into a draft Noticia (stub rewrite). */
-export function buildDraftFromGNews(article: GNewsArticle, seed = 0): DraftNoticia {
+/**
+ * Convert a raw GNews article into a draft Noticia (stub rewrite).
+ *
+ * `ingestedAtOverride` permite el backfill histórico: fija `ingestedAt` a la
+ * fecha real del medio (publishedAt) en vez de "ahora", para que la pieza se
+ * ordene por su día real en el feed.
+ */
+export function buildDraftFromGNews(
+  article: GNewsArticle,
+  seed = 0,
+  ingestedAtOverride?: string,
+): DraftNoticia {
   const cat = classifyCategory(article);
   const flags = detectFlags(article);
   const author = pickAuthorForArticle({ cat, flags, seed });
@@ -144,7 +160,8 @@ export function buildDraftFromGNews(article: GNewsArticle, seed = 0): DraftNotic
     sourceName: article.source.name,
     status: "draft",
     sourceUrlHash: hashUrl(article.url),
-    ingestedAt: new Date().toISOString(),
+    ingestedAt: ingestedAtOverride ?? new Date().toISOString(),
+    ...(ingestedAtOverride ? { backfilled: true } : {}),
   };
 }
 
@@ -202,12 +219,22 @@ export async function ingestNews(opts: {
   queries?: (keyof typeof WORLD_CUP_QUERIES)[];
   /** Max articles per query (1-10 on free tier) */
   maxPerQuery?: number;
+  /** Ventana de fechas (ISO 8601). Para backfill histórico. GNews Free cubre
+   *  hasta 30 días atrás. */
+  from?: string;
+  to?: string;
+  /** Si true, `ingestedAt` de cada draft = publishedAt REAL del medio (no
+   *  "ahora"). Se usa en backfill para que la pieza caiga en su día real. */
+  useRealDateAsIngestedAt?: boolean;
 }): Promise<IngestResult> {
   const {
     knownHashes,
     knownFingerprints = new Set<string>(),
     queries = ["general"],
     maxPerQuery = 10,
+    from,
+    to,
+    useRealDateAsIngestedAt = false,
   } = opts;
   const result: IngestResult = { fetched: 0, drafts: [], duplicates: 0, errors: [] };
 
@@ -215,7 +242,7 @@ export async function ingestNews(opts: {
     const queryKey = queries[q_i];
     const q = WORLD_CUP_QUERIES[queryKey];
     try {
-      const resp = await gnewsSearch({ q, lang: "es", max: maxPerQuery });
+      const resp = await gnewsSearch({ q, lang: "es", max: maxPerQuery, from, to });
       result.fetched += resp.articles.length;
       resp.articles.forEach((a, i) => {
         // Drop non-football "Copa del Mundo" articles (cycling, rugby, etc.)
@@ -241,7 +268,9 @@ export async function ingestNews(opts: {
         }
         knownHashes.add(hash);
         if (fp) knownFingerprints.add(fp);
-        result.drafts.push(buildDraftFromGNews(a, i));
+        result.drafts.push(
+          buildDraftFromGNews(a, i, useRealDateAsIngestedAt ? a.publishedAt : undefined),
+        );
       });
     } catch (err) {
       result.errors.push(`[${queryKey}] ${(err as Error).message}`);

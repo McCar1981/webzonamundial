@@ -12,7 +12,7 @@
 
 import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
-import { ingestNews } from "@/lib/noticias-ingest";
+import { ingestNews, titleFingerprint, type IngestResult } from "@/lib/noticias-ingest";
 import { applyRewrite } from "@/lib/noticias-rewriter";
 import { enrichDraft, enrichEnabled } from "@/lib/noticias-enrich";
 import { WORLD_CUP_QUERIES, HOT_QUERY_KEYS, COLD_QUERY_KEYS, type WorldCupQueryKey } from "@/lib/gnews";
@@ -139,11 +139,77 @@ export async function GET(req: Request) {
     }
   }
 
-  const result = await ingestNews({
-    knownHashes,
-    queries,
-    maxPerQuery: 10,
-  });
+  // ----- Backfill histórico (recuperación de credibilidad) -----
+  // ?backfill=<días> (máx 30, límite del GNews Free) reconstruye el feed
+  // barriendo los últimos N días en ventanas deslizantes. Cada pieza conserva
+  // su FECHA REAL (ingestedAt = publishedAt del medio, marcada como backfilled)
+  // para que aparezca en su día real en el feed — NO todas hoy. Entran como
+  // borradores; este run reescribe unas pocas y el cron horario publica el
+  // resto gradualmente (Fase 2), respetando el cap diario.
+  //
+  // Coste en cuota: WINDOWS × BEATS_PER_WINDOW requests. Con 30 días, ventana
+  // de 5 días y 3 beats/ventana = 6×3 = 18 requests. El GNews Free son 100/día,
+  // así que dispáralo cuando el cron horario no esté quemando la cuota.
+  const backfillDays = Math.min(
+    parseInt(url.searchParams.get("backfill") || "0", 10) || 0,
+    30,
+  );
+  let result: IngestResult;
+  if (backfillDays > 0) {
+    const WINDOW_DAYS = Math.max(
+      1,
+      parseInt(process.env.NEWS_BACKFILL_WINDOW_DAYS || "5", 10),
+    );
+    const BEATS_PER_WINDOW = Math.max(
+      1,
+      parseInt(process.env.NEWS_BACKFILL_BEATS_PER_WINDOW || "3", 10),
+    );
+    const allBeats: WorldCupQueryKey[] = [...HOT_QUERY_KEYS, ...COLD_QUERY_KEYS];
+    // Huellas de título ya conocidas, para dedup de "misma noticia, otro medio"
+    // a lo largo de todas las ventanas del barrido.
+    const knownFingerprints = new Set<string>(
+      store.drafts.map((d) => titleFingerprint(d.title)).filter(Boolean),
+    );
+    const combined: IngestResult = { fetched: 0, drafts: [], duplicates: 0, errors: [] };
+    const now = Date.now();
+    const DAY_MS = 86_400_000;
+    let win = 0;
+    for (let startDay = 0; startDay < backfillDays; startDay += WINDOW_DAYS) {
+      const to = new Date(now - startDay * DAY_MS).toISOString();
+      const from = new Date(
+        now - Math.min(startDay + WINDOW_DAYS, backfillDays) * DAY_MS,
+      ).toISOString();
+      // Rotar beats por ventana para cubrir distintos temas sin agotar la cuota.
+      const beatsThisWindow: WorldCupQueryKey[] = [];
+      for (let b = 0; b < BEATS_PER_WINDOW; b++) {
+        beatsThisWindow.push(allBeats[(win * BEATS_PER_WINDOW + b) % allBeats.length]);
+      }
+      const r = await ingestNews({
+        knownHashes,
+        knownFingerprints,
+        queries: beatsThisWindow,
+        maxPerQuery: 10,
+        from,
+        to,
+        useRealDateAsIngestedAt: true,
+      });
+      combined.fetched += r.fetched;
+      combined.drafts.push(...r.drafts);
+      combined.duplicates += r.duplicates;
+      combined.errors.push(...r.errors);
+      win += 1;
+      // Throttle entre ventanas (cada ventana es una llamada distinta a
+      // ingestNews, que solo throttlea entre beats internos). GNews Free ~1/s.
+      await new Promise((res) => setTimeout(res, 1100));
+    }
+    result = combined;
+  } else {
+    result = await ingestNews({
+      knownHashes,
+      queries,
+      maxPerQuery: 10,
+    });
+  }
 
   const rewriteEnabled = !!process.env.ANTHROPIC_API_KEY && !skipRewrite;
 
@@ -276,7 +342,9 @@ export async function GET(req: Request) {
           // del feed (tiebreaker cuando comparte `date` con otras). Sin esto,
           // los drafts viejos retried mantenían su ingestedAt original y se
           // quedaban hundidos detrás de noticias estáticas del mismo día.
-          if (updated.status === "published") {
+          // EXCEPCIÓN: las piezas de backfill conservan su fecha REAL (no se
+          // refrescan), porque su gracia es aparecer en su día histórico.
+          if (updated.status === "published" && !updated.backfilled) {
             updated.ingestedAt = new Date().toISOString();
           }
           store.drafts[idx] = updated;
@@ -373,6 +441,7 @@ export async function GET(req: Request) {
     rewriteFailed,
     rewriteEnabled,
     enrichEnabled: enrichEnabled(),
+    backfillDays,
     abortedByTimeout,
     dailyCap: DAILY_PUBLISH_CAP,
     publishedTodayBefore: publishedToday,

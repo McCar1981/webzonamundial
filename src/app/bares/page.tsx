@@ -26,10 +26,10 @@ const STEPS = [
 
 const FEATURES = [
   { icon: Smartphone, title: "Landing personalizada", text: "Tu página de bar con tu identidad, dentro del ecosistema ZonaMundial." },
-  { icon: QrCode, title: "QR dinámico", text: "Un QR (o varios por zona en Pro) con seguimiento de escaneos." },
+  { icon: QrCode, title: "QR dinámico", text: "Un QR (o varios por zona en planes superiores) con seguimiento de escaneos." },
   { icon: BarChart3, title: "Ranking en vivo", text: "Clasificación del bar que reúne a tus clientes jornada a jornada." },
   { icon: Tv, title: "Pantalla TV", text: "Modo televisión a pantalla completa con QR, top 10 y premio del día." },
-  { icon: Gift, title: "Premios", text: "Configura el premio principal y, en planes superiores, premios por jornada." },
+  { icon: Gift, title: "Premios", text: "Configura el premio principal de tu porra para premiar a tus clientes." },
   { icon: Users, title: "Puerta a ZonaMundial", text: "Tus clientes acceden al ranking global, trivia y más predicciones." },
 ];
 

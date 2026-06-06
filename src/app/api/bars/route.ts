@@ -6,7 +6,7 @@
 
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
-import { createBar, getBarByOwner, updateBar } from "@/lib/bars/store";
+import { createBar, getBarByOwner, updateBar, barHasActivePlan } from "@/lib/bars/store";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -38,6 +38,19 @@ export async function PATCH(req: Request) {
   if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   let patch: Record<string, unknown>;
   try { patch = await req.json(); } catch { return NextResponse.json({ error: "bad_request" }, { status: 400 }); }
+
+  // Publicar exige plan activo. Se puede configurar gratis, pero no salir al público.
+  if (patch.status === "published") {
+    const current = await getBarByOwner(user.id);
+    if (!current) return NextResponse.json({ error: "bar_not_found" }, { status: 404 });
+    if (!(await barHasActivePlan(current.id))) {
+      return NextResponse.json(
+        { error: "plan_required", message: "Activa tu plan para publicar tu porra." },
+        { status: 403 },
+      );
+    }
+  }
+
   const bar = await updateBar(user.id, patch);
   if (!bar) return NextResponse.json({ error: "bar_not_found" }, { status: 404 });
   return NextResponse.json({ ok: true, bar });

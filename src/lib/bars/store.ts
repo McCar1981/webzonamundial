@@ -14,7 +14,6 @@ import { adminClient } from "@/lib/predictions/admin";
 import { leagueCode } from "@/lib/predictions/gamification";
 import { leagueLeaderboard, type LeagueStanding } from "@/lib/predictions/gamification-store";
 import { DEFAULT_THEME_ID } from "./themes";
-import { DEFAULT_PLAN_ID } from "./plans";
 
 // ─── Tipos ───────────────────────────────────────────────────────────────────
 export interface BarRow {
@@ -34,8 +33,8 @@ export interface BarRow {
   website: string | null;
   theme_id: string;
   cta_label: string;
-  status: string;   // draft | published | paused
-  plan_id: string;  // arranque | completo | pro
+  status: string;          // draft | pending_payment | published | paused
+  plan_id: string | null;  // null (sin plan) | arranque | completo | pro
   created_at: string;
   updated_at: string;
 }
@@ -140,6 +139,14 @@ export async function getMainQr(barId: string): Promise<QrSource | null> {
   return (data as QrSource | null) ?? null;
 }
 
+/** Busca una fuente QR del bar por su código (cualquier zona, no solo la principal). */
+export async function getQrSourceByCode(barId: string, code: string): Promise<QrSource | null> {
+  const admin = adminClient();
+  const { data } = await admin.from("bar_qr_sources").select("*")
+    .eq("bar_id", barId).eq("code", code).maybeSingle();
+  return (data as QrSource | null) ?? null;
+}
+
 export async function countQrSources(barId: string): Promise<number> {
   const admin = adminClient();
   const { count } = await admin.from("bar_qr_sources")
@@ -221,11 +228,11 @@ export async function createBar(uid: string, input: CreateBarInput): Promise<Bar
   const leagueId = (league as { id: string }).id;
   await admin.from("prediction_league_members").insert({ league_id: leagueId, user_id: uid });
 
-  // 2) El bar.
+  // 2) El bar. SIN plan por defecto: queda en borrador hasta que se paga.
   const { data: bar, error: bErr } = await admin.from("bars").insert({
     owner_user_id: uid, league_id: leagueId, name, slug,
     city: input.city?.trim().slice(0, 80) || null,
-    theme_id: input.themeId || DEFAULT_THEME_ID, plan_id: DEFAULT_PLAN_ID, status: "draft",
+    theme_id: input.themeId || DEFAULT_THEME_ID, plan_id: null, status: "draft",
   }).select("*").single();
   if (bErr) throw bErr;
   const row = bar as BarRow;
@@ -277,12 +284,14 @@ export async function joinBarPorra(
 
   await admin.from("prediction_league_members")
     .upsert({ league_id: bar.league_id, user_id: uid }, { onConflict: "league_id,user_id" });
-  await admin.from("bar_participants").upsert({
-    bar_id: bar.id, user_id: uid,
-    source: opts.source ?? "qr", qr_source_id: opts.qrSourceId ?? null,
-  }, { onConflict: "bar_id,user_id" });
 
+  // La atribución (qr_source_id/source) se fija SOLO en el primer ingreso: es el
+  // origen de captación. Reescaneos posteriores no la sobrescriben.
   if (!alreadyMember) {
+    await admin.from("bar_participants").insert({
+      bar_id: bar.id, user_id: uid,
+      source: opts.source ?? "qr", qr_source_id: opts.qrSourceId ?? null,
+    });
     await logEvent(bar.id, "bar_user_joined", { user_id: uid, qr_source_id: opts.qrSourceId ?? null });
   }
   return { ok: true, alreadyMember, barId: bar.id };
@@ -368,6 +377,14 @@ export async function barHasActivePlan(barId: string): Promise<boolean> {
   return !!payment && payment.status === "active" && !payment.refunded_at;
 }
 
+/**
+ * True si la porra es PÚBLICA: publicada Y con plan activo. Es la condición que
+ * deben cumplir las páginas públicas (/b, /ranking, /tv) y el ingreso de clientes.
+ */
+export async function barIsLive(bar: BarRow): Promise<boolean> {
+  return bar.status === "published" && (await barHasActivePlan(bar.id));
+}
+
 export interface RecordPaymentInput {
   planId: string;
   amount: number;
@@ -404,13 +421,24 @@ export async function recordBarPlanPayment(barId: string, input: RecordPaymentIn
   });
 }
 
-/** Marca el pago del bar como reembolsado (lo dispara charge.refunded). */
+/**
+ * Marca el pago del bar como reembolsado (lo dispara charge.refunded) y degrada
+ * el bar: le quita el plan (plan_id = null) y, si estaba publicado, lo pasa a
+ * "pending_payment" para que deje de ser público y se bloqueen las funciones
+ * premium. No borra datos del bar ni participantes.
+ */
 export async function markBarPaymentRefunded(barId: string): Promise<void> {
   const admin = adminClient();
   const now = new Date().toISOString();
   await admin.from("bar_payments")
     .update({ status: "refunded", refunded_at: now, updated_at: now })
     .eq("bar_id", barId);
+
+  const bar = await getBarById(barId);
+  const update: Record<string, unknown> = { plan_id: null, updated_at: now };
+  if (bar?.status === "published") update.status = "pending_payment";
+  await admin.from("bars").update(update).eq("id", barId);
+
   await logEvent(barId, "bar_plan_refunded", {});
 }
 

@@ -36,19 +36,19 @@ export const BAR_PLANS: Record<BarPlanId, BarPlan> = {
     id: "completo", name: "Mundial Completo", tagline: "Mantén el ambiente vivo durante todo el torneo",
     priceEur: 99, priceUsd: 109, highlight: true,
     features: [
-      "Todo lo de Arranque", "Premios por jornada", "Exportar participantes", "Ranking semanal",
-      "Materiales premium", "Soporte prioritario", "Personalización ampliada",
+      "Todo lo de Arranque", "Hasta 3 QR por zonas", "Exportar clasificación (CSV)",
+      "Materiales premium (cartel A4)", "Soporte prioritario", "Personalización ampliada",
     ],
-    maxQrSources: 3, weeklyPrizes: true, exportParticipants: true, premiumMaterials: true, barVsBar: false,
+    maxQrSources: 3, weeklyPrizes: false, exportParticipants: true, premiumMaterials: true, barVsBar: false,
   },
   pro: {
     id: "pro", name: "Bar Pro", tagline: "Para cadenas y bares deportivos que van a por todas",
     priceEur: 179, priceUsd: 199,
     features: [
-      "Todo lo de Completo", "QR por zonas (barra, terraza, salón, TV)", "Ranking avanzado",
-      "Reto entre bares", "Reporte avanzado", "Pantalla TV premium", "Múltiples premios",
+      "Todo lo de Completo", "Hasta 6 QR por zonas (barra, terraza, salón, TV)",
+      "Pantalla TV a pantalla completa", "Materiales premium", "Soporte prioritario",
     ],
-    maxQrSources: 6, weeklyPrizes: true, exportParticipants: true, premiumMaterials: true, barVsBar: true,
+    maxQrSources: 6, weeklyPrizes: false, exportParticipants: true, premiumMaterials: true, barVsBar: false,
   },
 };
 

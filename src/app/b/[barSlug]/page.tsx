@@ -9,8 +9,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MapPin, Trophy, AtSign, Gift, Users, ArrowRight, Star } from "lucide-react";
-import { getBarBySlug, listPrizes, barLeaderboard, participantCount } from "@/lib/bars/store";
+import { getBarBySlug, listPrizes, barLeaderboard, participantCount, barIsLive } from "@/lib/bars/store";
 import { getTheme } from "@/lib/bars/themes";
+import BarInactiveScreen from "@/components/bars/BarInactiveScreen";
 import JoinButton from "./JoinButton";
 
 export const dynamic = "force-dynamic";
@@ -30,6 +31,9 @@ export default async function BarPublicPage({
 }: { params: { barSlug: string }; searchParams: { qr?: string } }) {
   const bar = await getBarBySlug(params.barSlug);
   if (!bar) notFound();
+
+  // Porra no pública (sin publicar o sin plan activo): pantalla de "no activa".
+  if (!(await barIsLive(bar))) return <BarInactiveScreen bar={bar} />;
 
   const t = getTheme(bar.theme_id);
   const [prizes, standings, count] = await Promise.all([

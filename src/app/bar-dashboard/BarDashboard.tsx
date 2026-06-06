@@ -62,10 +62,15 @@ export default function BarDashboard({ initialBar, initialStats, initialQr, init
           </div>
           <h1 style={{ fontSize: 24, fontWeight: 900, margin: "6px 0 0" }}>{bar.name}</h1>
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 6, color: MID, fontSize: 13 }}>
-            <span style={{ display: "inline-flex", alignItems: "center", gap: 4, color: bar.status === "published" ? GREEN : DIM }}>
-              <span style={{ width: 8, height: 8, borderRadius: 99, background: bar.status === "published" ? GREEN : DIM }} />
-              {bar.status === "published" ? "Publicado" : "Borrador"}
-            </span>
+            {(() => {
+              const s = statusLabel(bar.status);
+              return (
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 4, color: s.color }}>
+                  <span style={{ width: 8, height: 8, borderRadius: 99, background: s.color }} />
+                  {s.text}
+                </span>
+              );
+            })()}
             <a href={`/b/${bar.slug}`} target="_blank" rel="noopener noreferrer" style={{ color: GOLD2, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 4 }}>
               Ver página pública <ExternalLink size={12} />
             </a>
@@ -78,7 +83,7 @@ export default function BarDashboard({ initialBar, initialStats, initialQr, init
         <ZonesSection bar={bar} plan={plan} sources={sources} setSources={setSources} origin={origin} onFlash={setFlash} />
         <MaterialsSection bar={bar} plan={plan} onFlash={setFlash} />
         <Prizes bar={bar} prizes={prizes} setPrizes={setPrizes} onFlash={setFlash} />
-        <Personalization bar={bar} setBar={setBar} onFlash={setFlash} />
+        <Personalization bar={bar} setBar={setBar} hasActivePlan={hasActivePlan} onFlash={setFlash} />
       </div>
 
       {flash && (
@@ -128,6 +133,15 @@ function Resumen({ stats, bar, origin, onFlash }: { stats: BarStats | null; bar:
 
 function qa(): React.CSSProperties {
   return { display: "inline-flex", alignItems: "center", gap: 6, background: BG2, border: BORDER, color: "#E2E8F0", borderRadius: 10, fontWeight: 700, fontSize: 13, padding: "8px 12px", textDecoration: "none" };
+}
+
+function statusLabel(status: string): { text: string; color: string } {
+  switch (status) {
+    case "published": return { text: "Publicado", color: GREEN };
+    case "pending_payment": return { text: "Pendiente de pago", color: GOLD };
+    case "paused": return { text: "Suspendido", color: MID };
+    default: return { text: "Borrador", color: DIM };
+  }
 }
 
 function PlanSection({ bar, payment, hasActivePlan, onFlash }: { bar: BarRow; payment: BarPayment | null; hasActivePlan: boolean; onFlash: (s: string) => void }) {
@@ -439,7 +453,7 @@ function Prizes({ bar, prizes, setPrizes, onFlash }: { bar: BarRow; prizes: BarP
   );
 }
 
-function Personalization({ bar, setBar, onFlash }: { bar: BarRow; setBar: (b: BarRow) => void; onFlash: (s: string) => void }) {
+function Personalization({ bar, setBar, hasActivePlan, onFlash }: { bar: BarRow; setBar: (b: BarRow) => void; hasActivePlan: boolean; onFlash: (s: string) => void }) {
   const [form, setForm] = useState({
     name: bar.name, city: bar.city ?? "", welcome_message: bar.welcome_message ?? "",
     cta_label: bar.cta_label, description: bar.description ?? "", instagram: bar.instagram ?? "",
@@ -493,9 +507,15 @@ function Personalization({ bar, setBar, onFlash }: { bar: BarRow; setBar: (b: Ba
             {busy ? <Loader2 size={15} className="spin" /> : <Check size={15} />} Guardar cambios
           </button>
           {bar.status !== "published" ? (
-            <button onClick={() => void save({ status: "published" })} disabled={busy} style={{ ...btn(true), opacity: busy ? 0.6 : 1 }}>
-              <Rocket size={15} /> Publicar porra
-            </button>
+            hasActivePlan ? (
+              <button onClick={() => void save({ status: "published" })} disabled={busy} style={{ ...btn(true), opacity: busy ? 0.6 : 1 }}>
+                <Rocket size={15} /> Publicar porra
+              </button>
+            ) : (
+              <button onClick={() => onFlash("Activa tu plan para publicar tu porra.")} style={{ ...qa(), cursor: "pointer", color: DIM }}>
+                <Lock size={14} /> Activa tu plan para publicar
+              </button>
+            )
           ) : (
             <button onClick={() => void save({ status: "paused" })} disabled={busy} style={{ ...qa(), cursor: "pointer" }}>
               <Eye size={15} /> Pausar

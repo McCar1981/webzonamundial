@@ -9,8 +9,9 @@ import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import QRCode from "qrcode";
 import { Trophy, Crown } from "lucide-react";
-import { getBarBySlug, barLeaderboard, listPrizes, getMainQr } from "@/lib/bars/store";
+import { getBarBySlug, barLeaderboard, listPrizes, getMainQr, barIsLive } from "@/lib/bars/store";
 import { getTheme } from "@/lib/bars/themes";
+import BarInactiveScreen from "@/components/bars/BarInactiveScreen";
 import AutoRefresh from "./AutoRefresh";
 
 export const dynamic = "force-dynamic";
@@ -35,6 +36,7 @@ function siteOrigin(): string {
 export default async function BarTvPage({ params }: { params: { barSlug: string } }) {
   const bar = await getBarBySlug(params.barSlug);
   if (!bar) notFound();
+  if (!(await barIsLive(bar))) return <BarInactiveScreen bar={bar} />;
 
   const t = getTheme(bar.theme_id);
   const [standings, prizes, mainQr] = await Promise.all([

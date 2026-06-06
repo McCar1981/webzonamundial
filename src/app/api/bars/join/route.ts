@@ -6,7 +6,7 @@
 
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
-import { getBarBySlug, getMainQr, joinBarPorra } from "@/lib/bars/store";
+import { getBarBySlug, getQrSourceByCode, joinBarPorra, barIsLive } from "@/lib/bars/store";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -22,11 +22,17 @@ export async function POST(req: Request) {
   const bar = await getBarBySlug(body.slug);
   if (!bar) return NextResponse.json({ error: "bar_not_found" }, { status: 404 });
 
-  // Resolver el QR concreto (si vino) para atribución; si no, el principal.
+  // Solo se puede entrar en porras públicas (publicadas y con plan activo).
+  if (!(await barIsLive(bar))) {
+    return NextResponse.json({ error: "bar_not_active" }, { status: 403 });
+  }
+
+  // Resolver el QR concreto (si vino) contra TODAS las zonas del bar para la
+  // atribución. Si el código no existe en este bar, qr_source_id queda en null.
   let qrSourceId: string | null = null;
   if (body.qr) {
-    const main = await getMainQr(bar.id);
-    qrSourceId = main && main.code === body.qr ? main.id : null;
+    const src = await getQrSourceByCode(bar.id, body.qr);
+    qrSourceId = src?.id ?? null;
   }
 
   const result = await joinBarPorra(user.id, bar, {

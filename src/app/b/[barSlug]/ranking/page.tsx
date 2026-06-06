@@ -7,8 +7,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Trophy, ArrowLeft, ArrowRight, Star, Crown } from "lucide-react";
-import { getBarBySlug, barLeaderboard } from "@/lib/bars/store";
+import { getBarBySlug, barLeaderboard, barIsLive } from "@/lib/bars/store";
 import { getTheme } from "@/lib/bars/themes";
+import BarInactiveScreen from "@/components/bars/BarInactiveScreen";
 
 export const dynamic = "force-dynamic";
 
@@ -23,6 +24,7 @@ export async function generateMetadata({ params }: { params: { barSlug: string }
 export default async function BarRankingPage({ params }: { params: { barSlug: string } }) {
   const bar = await getBarBySlug(params.barSlug);
   if (!bar) notFound();
+  if (!(await barIsLive(bar))) return <BarInactiveScreen bar={bar} />;
 
   const t = getTheme(bar.theme_id);
   const standings = await barLeaderboard(bar);

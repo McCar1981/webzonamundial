@@ -317,7 +317,11 @@ async function searchOnce(
     generator: "search",
     gsrsearch: `${query} filetype:bitmap`,
     gsrnamespace: "6",
-    gsrlimit: "15",
+    // Amplio a propósito: con dedupe entre posts, un set pequeño deja a algunas
+    // entradas sin foto de selección libre (p.ej. EE.UU. si otra ya tomó la
+    // buena), forzando una imagen del país pero de otro deporte. Más candidatos
+    // = la relevancia futbolística casi siempre encuentra una alternativa.
+    gsrlimit: "30",
     prop: "imageinfo",
     iiprop: "url|extmetadata|mime|size",
     iiurlwidth: "1280",

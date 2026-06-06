@@ -454,10 +454,13 @@ const PJ_CSS = `
 .pj-summary { position: sticky; top: 0; z-index: 5; }
 
 /* Mini barra de stats (Nivel / XP / Racha / Fútcoins) */
-.pj-ministats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+/* En móviles estrechos: rejilla 2×2 para que cada tarjeta (sobre todo Fútcoins)
+   respire y no quede pegada al borde. A partir de 560px volvemos a 4 columnas. */
+.pj-ministats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+@media (min-width: 560px) { .pj-ministats { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 .pj-ministat {
-  display: flex; align-items: center; gap: 7px; min-width: 0;
-  background: ${BG2}; border: ${CARD_BORDER}; border-radius: 12px; padding: 9px 10px;
+  display: flex; align-items: center; gap: 7px; min-width: 0; overflow: hidden;
+  background: ${BG2}; border: ${CARD_BORDER}; border-radius: 12px; padding: 9px 11px;
 }
 
 /* Barra de progreso del partido */

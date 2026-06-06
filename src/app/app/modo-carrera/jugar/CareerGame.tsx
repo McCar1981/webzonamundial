@@ -34,6 +34,9 @@ import ReputationView from "./ReputationView";
 import NarrativeView from "./NarrativeView";
 import LegacyView from "./LegacyView";
 import RankingView from "./RankingView";
+import GuideModal from "./GuideModal";
+
+const GUIDE_SEEN_KEY = "zm_mc_guide_seen";
 
 const TABS: { id: CareerTab; label: string }[] = [
   { id: "hub", label: "Hub" },
@@ -53,6 +56,7 @@ export default function CareerGame() {
   const [tab, setTab] = useState<CareerTab>("hub");
   const [levelUp, setLevelUp] = useState<{ overall: number; levels: number } | null>(null);
   const [trophyReveal, setTrophyReveal] = useState<Trophy | null>(null);
+  const [showGuide, setShowGuide] = useState(false);
   const [narrativeQuota, setNarrativeQuota] = useState<{ remaining: number | null; exceeded: boolean }>({ remaining: null, exceeded: false });
   const hydrated = useRef(false);
   const prevOverall = useRef<number | null>(null);
@@ -115,6 +119,15 @@ export default function CareerGame() {
     }
     prevTrophies.current = trophies.length;
   }, [career?.legacy.trophies]);
+
+  // Guía automática la primera vez que el DT ya está creado (tras el onboarding).
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (!career || !isCareerStarted(career) || !career.identity.createdAt) return;
+    if (localStorage.getItem(GUIDE_SEEN_KEY)) return;
+    localStorage.setItem(GUIDE_SEEN_KEY, "1");
+    setShowGuide(true);
+  }, [career]);
 
   if (!career) {
     return (
@@ -199,13 +212,40 @@ export default function CareerGame() {
       />
       {levelUp && <LevelUpOverlay overall={levelUp.overall} levels={levelUp.levels} onClose={() => setLevelUp(null)} />}
       {trophyReveal && <TrophyReveal trophy={trophyReveal} paseDT={paseDT} onClose={() => setTrophyReveal(null)} />}
-      <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto 18px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      {showGuide && <GuideModal onClose={() => setShowGuide(false)} />}
+      <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto 18px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
         <h1 style={{ fontSize: "clamp(22px,3vw,30px)", fontWeight: 900 }}>Modo Carrera</h1>
-        {authed === false && (
-          <span style={{ fontSize: 12, color: GOLD, border: "1px solid rgba(201,168,76,0.4)", borderRadius: 999, padding: "6px 12px" }}>
-            Inicia sesión para guardar tu carrera
-          </span>
-        )}
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          {authed === false && (
+            <span style={{ fontSize: 12, color: GOLD, border: "1px solid rgba(201,168,76,0.4)", borderRadius: 999, padding: "6px 12px" }}>
+              Inicia sesión para guardar tu carrera
+            </span>
+          )}
+          <button
+            type="button"
+            onClick={() => setShowGuide(true)}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 7,
+              fontSize: 13,
+              fontWeight: 800,
+              color: GOLD2,
+              background: BG2,
+              border: "1px solid rgba(201,168,76,0.4)",
+              borderRadius: 999,
+              padding: "6px 14px",
+              cursor: "pointer",
+            }}
+          >
+            <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3" />
+              <path d="M12 17h.01" />
+            </svg>
+            Guía
+          </button>
+        </div>
       </div>
 
       {/* Contenido por encima del fondo de marca */}

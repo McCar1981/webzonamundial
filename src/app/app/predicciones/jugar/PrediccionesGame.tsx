@@ -1703,7 +1703,7 @@ function ExactScoreForm({ match, init, editLabel, onSubmit }: { match: Match; in
 function Stepper({ label, value, onChange }: { label: string; value: number; onChange: (n: number) => void }) {
   return (
     <div style={{ textAlign: "center" }}>
-      <div style={{ fontSize: 11, color: DIM, marginBottom: 4, maxWidth: 90, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{label}</div>
+      <div style={{ fontSize: 14, fontWeight: 800, color: "#fff", marginBottom: 6, maxWidth: 110, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{label}</div>
       <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
         <button onClick={() => onChange(Math.max(0, value - 1))} style={stepBtn}>−</button>
         <span style={{ fontSize: 22, fontWeight: 900, minWidth: 24 }}>{value}</span>

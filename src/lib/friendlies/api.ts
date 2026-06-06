@@ -14,6 +14,8 @@ import type {
   FriendlyStat,
   Score,
 } from "./types";
+import { SELECCIONES } from "@/data/selecciones";
+import { isoFromName } from "./flags";
 
 const API_SPORTS_BASE = "https://v3.football.api-sports.io";
 
@@ -129,11 +131,37 @@ function isSeniorFriendly(row: RawFixtureRow): boolean {
   );
 }
 
+// ISO (alpha-2 / gb-sct…) de las 48 selecciones clasificadas al Mundial 2026.
+// Sirve para quedarnos SOLO con amistosos en los que juegue al menos una de
+// ellas, y así no gastar llamadas a api-football sondeando partidos
+// irrelevantes (rivales no mundialistas entre sí).
+const WORLD_CUP_ISOS = new Set(
+  SELECCIONES.map((s) => s.flagCode.toLowerCase()).filter(Boolean),
+);
+
+/** ¿Es una de las 48 selecciones del Mundial? (por nombre inglés de api-football). */
+function isWorldCupTeam(name: string): boolean {
+  const iso = isoFromName(name);
+  return iso != null && WORLD_CUP_ISOS.has(iso.toLowerCase());
+}
+
+/**
+ * Amistoso que nos interesa: de selecciones absolutas Y con AL MENOS una de las
+ * 48 del Mundial en el campo. Filtra los amistosos sin ninguna mundialista para
+ * reducir el coste de polling en api-football.
+ */
+function isRelevantFriendly(row: RawFixtureRow): boolean {
+  return (
+    isSeniorFriendly(row) &&
+    (isWorldCupTeam(row.teams.home.name) || isWorldCupTeam(row.teams.away.name))
+  );
+}
+
 /** Todos los amistosos de selecciones absolutas EN VIVO ahora mismo (1 llamada). */
 export async function fetchLiveFriendlies(): Promise<FriendlyFixture[]> {
   const rows = await apiGet<RawFixtureRow[]>(`/fixtures?live=all`);
   if (!rows) return [];
-  return rows.filter(isSeniorFriendly).map(toFixture);
+  return rows.filter(isRelevantFriendly).map(toFixture);
 }
 
 function norm(s: string): string {
@@ -151,7 +179,7 @@ export async function fetchFriendliesBySeason(season: number): Promise<FriendlyF
     const rows = await apiGet<RawFixtureRow[]>(
       `/fixtures?league=${leagueId}&season=${season}`,
     );
-    if (rows) all.push(...rows.filter(isSeniorFriendly).map(toFixture));
+    if (rows) all.push(...rows.filter(isRelevantFriendly).map(toFixture));
   }
   return all;
 }
@@ -209,7 +237,7 @@ export async function fetchFriendliesByDate(date: string): Promise<FriendlyFixtu
     const rows = await apiGet<RawFixtureRow[]>(
       `/fixtures?league=${leagueId}&season=${season}&date=${date}`,
     );
-    if (rows) all.push(...rows.filter(isSeniorFriendly).map(toFixture));
+    if (rows) all.push(...rows.filter(isRelevantFriendly).map(toFixture));
   }
   return all.sort((a, b) => a.date.localeCompare(b.date));
 }

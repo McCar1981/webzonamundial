@@ -169,8 +169,26 @@ export async function listSubscriptionsForKind(kind: string): Promise<
       (optOutRows ?? []).map((r) => r.user_id as string),
     );
 
-    // 3) Trae todas las subs del kind legacy (compat con kinds[] array).
-    const { data: subs, error } = await admin
+    // 3) Base de destinatarios = UNI\u00d3N de dos fuentes:
+    //    (a) subs con el kind en su kinds[] legacy (compat FASE 2), y
+    //    (b) subs cuyo user activ\u00f3 la preferencia (category=kind, push) en
+    //        FASE 3 \u2014 aunque su kinds[] NO contenga el kind. Sin esto, activar
+    //        una categor\u00eda nueva en /cuenta/notificaciones no surt\u00eda efecto
+    //        porque el array kinds[] (escrito al suscribirse, normalmente solo
+    //        ["news"]) hac\u00eda de portero y exclu\u00eda al user.
+    const byId = new Map<
+      string,
+      {
+        id: string;
+        endpoint: string;
+        p256dh: string;
+        auth: string;
+        failure_count: number;
+        user_id: string | null;
+      }
+    >();
+
+    const { data: legacySubs, error } = await admin
       .from("push_subscriptions")
       .select("id, endpoint, p256dh, auth, failure_count, user_id")
       .contains("kinds", [kind]);
@@ -178,16 +196,27 @@ export async function listSubscriptionsForKind(kind: string): Promise<
       console.error("[push] listSubscriptionsForKind failed:", error.message);
       return [];
     }
+    for (const s of legacySubs ?? []) byId.set(s.id as string, s);
 
-    // 4) Filtra: incluye si est\u00e1 en allowedUserIds, o si NO tiene fila
-    //    de preferencia (legacy compat). Excluye si tiene opt-out expl\u00edcito.
-    const result = (subs ?? []).filter((s) => {
+    // (b) subs de los users con preferencia activa (independiente de kinds[]).
+    if (allowedUserIds.size > 0) {
+      const { data: prefSubs, error: prefErr } = await admin
+        .from("push_subscriptions")
+        .select("id, endpoint, p256dh, auth, failure_count, user_id")
+        .in("user_id", [...allowedUserIds]);
+      if (prefErr) {
+        console.error("[push] listSubscriptionsForKind pref subs failed:", prefErr.message);
+      } else {
+        for (const s of prefSubs ?? []) byId.set(s.id as string, s);
+      }
+    }
+
+    // 4) Filtra: excluye solo si el user tiene opt-out expl\u00edcito de esta
+    //    categor\u00eda por push. El resto (legacy o con pref activa) recibe.
+    const result = [...byId.values()].filter((s) => {
       const uid = s.user_id as string | null;
       if (!uid) return true; // an\u00f3nimas: no podemos filtrar, las incluimos
       if (optedOutUserIds.has(uid)) return false;
-      if (allowedUserIds.has(uid)) return true;
-      // Sin preferencia expl\u00edcita: legacy compat (los users de FASE 2
-      // que se suscribieron antes de FASE 3 siguen recibiendo).
       return true;
     });
 

@@ -125,6 +125,21 @@ const STOPWORDS = new Set([
   "Planificación",
   "Transmisión",
   "Calendario",
+  // Interrogativos / artículos / conectores capitalizados al inicio de título.
+  "Cómo",
+  "Qué",
+  "Dónde",
+  "Cuándo",
+  "Cuál",
+  "Quién",
+  "Por",
+  "Para",
+  "Las",
+  "Los",
+  "Una",
+  "Esto",
+  "Este",
+  "Esta",
 ]);
 
 /** Títulos de archivo que casi nunca son una buena foto editorial. */
@@ -279,6 +294,7 @@ async function searchOnce(
     src: string;
     width: number;
     landscape: boolean;
+    isJpeg: boolean;
     credit: ImageCredit;
   }> = [];
 
@@ -319,6 +335,7 @@ async function searchOnce(
       src,
       width,
       landscape: width >= height,
+      isJpeg: /image\/jpeg/.test(info.mime ?? ""),
       credit: {
         author: author.slice(0, 120),
         license: licenseShort || "CC BY-SA",
@@ -332,6 +349,8 @@ async function searchOnce(
   if (candidates.length === 0) return diag;
 
   candidates.sort((a, b) => {
+    // JPEG primero (las fotos reales suelen ser jpeg; PNG suele ser mapa/diagrama).
+    if (a.isJpeg !== b.isJpeg) return a.isJpeg ? -1 : 1;
     if (a.landscape !== b.landscape) return a.landscape ? -1 : 1;
     return b.width - a.width;
   });

@@ -141,6 +141,12 @@ const STOPWORDS = new Set([
 const TITLE_BLOCKLIST =
   /logo|coat[_ ]of[_ ]arms|escudo|locator|location[_ ]map|\bmap\b|mapa|flag|bandera|\bicon\b|seal|emblem|diagram|chart|graph|svg|\.svg|wordmark|crest/i;
 
+/** Otros deportes: en un post de país hay muchas fotos de "selección nacional"
+ * que NO son de fútbol (béisbol y fútbol americano en EE.UU., etc.). Se
+ * descartan para no poner un deporte equivocado en una entrada del Mundial. */
+const OTHER_SPORT =
+  /baseball|basketball|\bhockey\b|rugby|cricket|volleyball|\bgolf\b|tennis|american[_ ]football|gridiron|softball|lacrosse|\bnfl\b|\bnba\b|\bmlb\b|handball|wrestling/i;
+
 interface CommonsImageInfo {
   url?: string;
   thumburl?: string;
@@ -438,10 +444,10 @@ async function searchOnce(
       /national (football |soccer )?team|world cup|f[uú]tbol|selecci[oó]n|\bsoccer\b|\bfifa\b|\buefa\b|conmebol|\bcopa\b/.test(
         relText,
       );
-    // En un post de país (needle), exigimos también que sea fútbol-asociación:
-    // mejor una imagen NEUTRA del Mundial que una foto del país de otro deporte
-    // (p.ej. fútbol americano de 1899 en la guía de EE.UU.).
-    if (needle && !soccer) {
+    // En un post de país (needle), exigimos fútbol-asociación y descartamos
+    // explícitamente otros deportes: mejor una imagen NEUTRA del Mundial que una
+    // foto del país de otro deporte (béisbol/fútbol americano de EE.UU., etc.).
+    if (needle && (!soccer || OTHER_SPORT.test(relText))) {
       diag.rejected.token += 1;
       continue;
     }

@@ -19,8 +19,8 @@ const ORDER: Scene[] = ["prologo", "nombre", "filosofia", "nacion", "comienzo"];
 // Fondo cinemático por escena. Si la imagen no existe, el degradado base hace de
 // fallback (el <img> de fondo simplemente no carga y no rompe nada).
 // Variante vertical para móvil (<=640px); la horizontal queda de respaldo.
-const SCENE_BG = "/img/modo-carrera/onboarding-bg.webp";
-const SCENE_BG_MOBILE = "/img/modo-carrera/onboarding-bg-mobile.webp";
+const SCENE_BG = "/img/modo-carrera/onboarding-bg.png";
+const SCENE_BG_MOBILE = "/img/modo-carrera/onboarding-bg-mobile.png";
 
 function buildOpeningNarrative(name: string, nationName: string, philName: string): NarrativeEntry {
   return {

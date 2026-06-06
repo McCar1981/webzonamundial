@@ -12,7 +12,7 @@ import TrophyReveal from "./TrophyReveal";
 import { SELECCIONES } from "@/data/selecciones";
 import type { CareerState, Trophy } from "@/lib/modo-carrera/types";
 
-const TROPHY_IMG = "/img/modo-carrera/trofeos/trofeo-mundial.webp";
+const TROPHY_IMG = "/img/modo-carrera/trofeos/trofeo-mundial.png";
 
 /** Cuenta animada de 0 al valor al montar. */
 function useCountUp(target: number, ms = 900): number {

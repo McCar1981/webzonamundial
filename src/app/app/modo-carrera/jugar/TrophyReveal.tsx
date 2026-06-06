@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import { BG, GOLD, GOLD2, MID } from "./fx";
 import type { Trophy } from "@/lib/modo-carrera/types";
 
-const TROPHY_IMG = "/img/modo-carrera/trofeos/trofeo-mundial.webp";
+const TROPHY_IMG = "/img/modo-carrera/trofeos/trofeo-mundial.png";
 
 // Piezas de confeti deterministas (sin random en render para evitar parpadeos).
 const CONFETTI = Array.from({ length: 28 }, (_, i) => ({

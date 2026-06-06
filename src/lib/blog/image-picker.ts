@@ -40,21 +40,11 @@ export interface PickDiagnostics {
     license: number;
     title: number;
     nosrc: number;
+    token: number;
   };
   picked?: PickedImage;
   error?: string;
 }
-
-/** Ancla en inglés por categoría: las descripciones de Commons están en inglés,
- * así que sesgamos hacia imagen REAL de Mundial/fútbol, no fotos amateur. */
-const CATEGORY_HINT: Record<BlogCategory, string> = {
-  analisis: "FIFA World Cup match",
-  selecciones: "national football team",
-  sedes: "stadium",
-  datos: "FIFA World Cup",
-  historia: "FIFA World Cup",
-  guia: "FIFA World Cup",
-};
 
 /** Traducción ES→EN de entidades futbolísticas frecuentes (selecciones del
  * Mundial 2026 + términos clave). Las descripciones de Commons están en inglés;
@@ -107,6 +97,11 @@ const ES_TO_EN: Record<string, string> = {
   portugal: "Portugal",
   argentina: "Argentina",
 };
+
+/** Nombres en inglés de las selecciones (para detectar también el país cuando
+ * el texto ya viene en inglés, p.ej. tags). El orden no importa: la prioridad
+ * la da la posición en el TÍTULO del post (ver detectCountries). */
+const WC_NATIONS_EN: string[] = Array.from(new Set(Object.values(ES_TO_EN)));
 
 const STOPWORDS = new Set([
   "Mundial",
@@ -180,47 +175,107 @@ function isFreeLicense(short: string, usage: string): boolean {
   return /cc[ -]?by|cc0|public domain|pdm|dominio público/.test(blob);
 }
 
+/** Normaliza para comparar tokens contra títulos/descripciones de Commons
+ * (que usan guiones bajos y mayúsculas arbitrarias). */
+function norm(s: string): string {
+  return s.replace(/_/g, " ").toLowerCase();
+}
+
 /**
- * Extrae entidades en inglés del post: traduce selecciones conocidas (ES→EN) y
- * recoge nombres propios (jugadores, estadios, ciudades) que suelen ser iguales
- * en ambos idiomas. Devuelve hasta 2 entidades para anclar la búsqueda al TEMA.
+ * Detecta el/los PAÍS(es) del post, en inglés. Da prioridad a los que aparecen
+ * en el TÍTULO (el tema central) sobre los de keywords/tags. Reconoce tanto los
+ * nombres en español (diccionario ES→EN) como en inglés. El primero devuelto es
+ * el país principal sobre el que se ancla la búsqueda de imagen.
  */
-function extractEntities(opts: {
+function detectCountries(opts: {
+  title: string;
+  keywords: string[];
+  tags: string[];
+}): string[] {
+  const titleN = norm(opts.title);
+  const restN = norm([...opts.keywords, ...opts.tags].join(" "));
+  const inTitle: string[] = [];
+  const inRest: string[] = [];
+
+  const consider = (token: string, en: string) => {
+    if (inTitle.includes(en) || inRest.includes(en)) return;
+    if (titleN.includes(token)) inTitle.push(en);
+    else if (restN.includes(token)) inRest.push(en);
+  };
+
+  // Nombres en español (más probables en nuestros títulos).
+  for (const [es, en] of Object.entries(ES_TO_EN)) consider(es, en);
+  // Nombres en inglés (por si vienen en tags/keywords).
+  for (const en of WC_NATIONS_EN) consider(en.toLowerCase(), en);
+
+  return [...inTitle, ...inRest];
+}
+
+/** Nombres propios no-país (jugadores, estadios, ciudades) que suelen ser
+ * iguales en ES/EN. Sirven como anclas secundarias cuando NO hay país. */
+function extractProperNouns(opts: {
   title: string;
   keywords: string[];
   tags: string[];
 }): string[] {
   const text = [opts.title, ...opts.keywords, ...opts.tags].join(" ");
-  const lower = text.toLowerCase();
-  const found: string[] = [];
-
-  // 1) Selecciones / términos del diccionario ES→EN.
-  for (const [es, en] of Object.entries(ES_TO_EN)) {
-    if (lower.includes(es) && !found.includes(en)) found.push(en);
-  }
-
-  // 2) Nombres propios (palabras Capitalizadas ≥4 letras) no genéricos: cubre
-  //    jugadores y estadios ("Messi", "Mbappé", "Azteca", "SoFi", "Neymar").
   const proper = text.match(/\b[A-ZÁÉÍÓÚÑ][a-záéíóúñ]{3,}\b/g) ?? [];
+  const out: string[] = [];
   for (const w of proper) {
     if (STOPWORDS.has(w)) continue;
     if (/^\d/.test(w)) continue;
-    if (!found.includes(w)) found.push(w);
+    if (!out.includes(w)) out.push(w);
   }
-
-  return found.slice(0, 2);
+  return out.slice(0, 2);
 }
 
-/** Construye la query temática: ancla de categoría + entidades del post. */
-function buildQuery(opts: {
+/** Un intento de búsqueda. `requireToken`, si está, OBLIGA a que la imagen
+ * elegida mencione ese término en su título/descripción/categorías: así una
+ * entrada sobre Canadá NUNCA recibe una foto de Irán. */
+interface Attempt {
+  query: string;
+  requireToken?: string;
+}
+
+/**
+ * Construye la lista ORDENADA de intentos. La estrategia clave para la
+ * RELEVANCIA por país:
+ *  1) Si hay país: el país va PRIMERO en la query y es REQUISITO (requireToken).
+ *     Si Commons no devuelve una foto que mencione ese país, NO se acepta una
+ *     foto de otro país: se cae a una imagen NEUTRA del Mundial (trofeo/estadio)
+ *     que es temática pero imposible de "equivocar de país".
+ *  2) Si no hay país pero sí un nombre propio (jugador/estadio), se ancla a él.
+ *  3) Fallbacks NEUTROS y agnósticos de país (trofeo/estadio/partido): jamás
+ *     pueden ser un desajuste de país.
+ */
+function buildAttempts(opts: {
   title: string;
   keywords: string[];
   tags: string[];
   category: BlogCategory;
-}): string {
-  const hint = CATEGORY_HINT[opts.category] ?? "FIFA World Cup";
-  const entities = extractEntities(opts);
-  return [hint, ...entities].join(" ");
+}): Attempt[] {
+  const attempts: Attempt[] = [];
+  const primary = detectCountries(opts)[0];
+
+  if (primary) {
+    attempts.push({ query: `${primary} national football team`, requireToken: primary });
+    attempts.push({ query: `${primary} football team`, requireToken: primary });
+    attempts.push({ query: `${primary} national team World Cup`, requireToken: primary });
+  } else {
+    for (const n of extractProperNouns(opts)) {
+      attempts.push({ query: `${n} football`, requireToken: n });
+    }
+  }
+
+  // Fallbacks neutros: temáticos del Mundial pero SIN selección concreta, así
+  // que no pueden chocar con el país del post.
+  if (opts.category === "sedes") {
+    attempts.push({ query: "FIFA World Cup stadium" });
+  }
+  attempts.push({ query: "FIFA World Cup trophy" });
+  attempts.push({ query: "FIFA World Cup match" });
+
+  return attempts;
 }
 
 function em(info: CommonsImageInfo, key: string): string {
@@ -232,14 +287,16 @@ function em(info: CommonsImageInfo, key: string): string {
 async function searchOnce(
   query: string,
   exclude: Set<string> = new Set(),
+  requireToken?: string,
 ): Promise<PickDiagnostics> {
   const diag: PickDiagnostics = {
     query,
     status: "error",
     pages: 0,
     candidates: 0,
-    rejected: { mime: 0, width: 0, license: 0, title: 0, nosrc: 0 },
+    rejected: { mime: 0, width: 0, license: 0, title: 0, nosrc: 0, token: 0 },
   };
+  const needle = requireToken ? norm(requireToken) : null;
 
   const params = new URLSearchParams({
     action: "query",
@@ -325,6 +382,23 @@ async function searchOnce(
       diag.rejected.license += 1;
       continue;
     }
+    // Anclaje por país/entidad: la imagen DEBE mencionar el término requerido
+    // en su título, descripción o categorías. Evita poner Irán en una entrada
+    // sobre Canadá: si el resultado no es del país, se descarta.
+    if (needle) {
+      const haystack = norm(
+        [
+          title,
+          stripHtml(em(info, "ImageDescription")),
+          stripHtml(em(info, "Categories")),
+          stripHtml(em(info, "ObjectName")),
+        ].join(" "),
+      );
+      if (!haystack.includes(needle)) {
+        diag.rejected.token += 1;
+        continue;
+      }
+    }
     const src = info.thumburl || info.url;
     if (!src || exclude.has(src)) {
       diag.rejected.nosrc += 1;
@@ -371,14 +445,19 @@ export async function findRelatedImage(opts: {
   exclude?: Set<string>;
 }): Promise<PickDiagnostics> {
   const exclude = opts.exclude ?? new Set<string>();
-  const primary = await searchOnce(buildQuery(opts), exclude);
-  if (primary.picked) return primary;
-  // Fallback: solo la pista de categoría (casi siempre tiene fotos reales).
-  const hint = CATEGORY_HINT[opts.category] ?? "FIFA World Cup";
-  const fallback = await searchOnce(hint, exclude);
-  // Devuelve el diagnóstico que tenga imagen; si ninguno, el primario (más
-  // informativo sobre el motivo).
-  return fallback.picked ? fallback : primary;
+  const attempts = buildAttempts(opts);
+  let last: PickDiagnostics | null = null;
+
+  // Intentos en orden: primero el país (como REQUISITO), luego neutros. En
+  // cuanto uno da imagen válida, se devuelve. Si ninguno acierta, se devuelve
+  // el último diagnóstico (informativo sobre el motivo del rechazo).
+  for (const attempt of attempts) {
+    const diag = await searchOnce(attempt.query, exclude, attempt.requireToken);
+    if (diag.picked) return diag;
+    last = diag;
+  }
+
+  return last as PickDiagnostics;
 }
 
 /**

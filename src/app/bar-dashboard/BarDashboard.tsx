@@ -1,23 +1,38 @@
 "use client";
 
-// Dashboard del bar (FASE 1). Panel del dueño para crear/gestionar su porra:
-// resumen de métricas, QR + descarga de materiales, premios y personalización.
-// Estilo corporativo ZonaMundial (azul marino + dorado). Solo iconos SVG.
+// Dashboard del bar (FASE 1) — "Centro de control de tu porra".
+// Panel del dueño para configurar, activar, publicar y promocionar su porra.
+// Reorganizado en 2 columnas (desktop) con card de estado, checklist de
+// activación y siguiente paso recomendado. Mobile-first. Solo iconos SVG.
+//
+// IMPORTANTE: este archivo es SOLO UX/UI. No toca pagos/Stripe/webhook ni el
+// gating de publicación (sigue validándose en el servidor: PATCH /api/bars
+// rechaza publicar sin plan activo).
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import QRCode from "qrcode";
 import {
   Trophy, Users, QrCode, Gift, Palette, BarChart3, Tv, ExternalLink, Copy, Check,
   Download, Plus, Trash2, Eye, Loader2, Rocket, CreditCard, MapPin, Printer, FileSpreadsheet, Lock,
-  Upload, ImageIcon,
+  Upload, ImageIcon, CheckCircle2, Circle, ArrowRight, Sparkles, HelpCircle, Share2,
 } from "lucide-react";
 import { themeList } from "@/lib/bars/themes";
 import { planList, getPlan, type BarPlan } from "@/lib/bars/plans";
 import type { BarRow, QrSource, BarPrize, BarStats, BarPayment } from "@/lib/bars/store";
 
 const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825";
-const GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#94A3B8", DIM = "#64748B", GREEN = "#22c55e";
+const GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#94A3B8", DIM = "#64748B", GREEN = "#22c55e", RED = "#f87171";
 const BORDER = "1px solid rgba(255,255,255,0.08)";
+
+// Descripciones comerciales (UI). Las FEATURES reales salen de plans.ts para no
+// prometer funciones no implementadas.
+const PLAN_TAGLINE: Record<string, string> = {
+  arranque: "Para bares que quieren lanzar una porra sencilla y rápida.",
+  completo: "Todo lo necesario para activar la porra en barra, mesas, redes y pantalla TV.",
+  pro: "Para bares grandes, pubs deportivos o locales con mucha afluencia.",
+};
+
+type CardState = "draft" | "planActive" | "published" | "suspended";
 
 interface Props {
   initialBar: BarRow | null;
@@ -36,6 +51,7 @@ export default function BarDashboard({ initialBar, initialStats, initialQr, init
   const [sources, setSources] = useState<QrSource[]>(initialSources);
   const [prizes, setPrizes] = useState<BarPrize[]>(initialPrizes);
   const [flash, setFlash] = useState<string | null>(null);
+  const [publishing, setPublishing] = useState(false);
 
   useEffect(() => { if (flash) { const id = setTimeout(() => setFlash(null), 3000); return () => clearTimeout(id); } }, [flash]);
 
@@ -49,47 +65,102 @@ export default function BarDashboard({ initialBar, initialStats, initialQr, init
     }
   }, []);
 
+  const publish = useCallback(async () => {
+    setPublishing(true);
+    try {
+      const res = await fetch("/api/bars", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ status: "published" }) });
+      const j = await res.json();
+      if (res.ok && j.bar) { setBar(j.bar); setFlash("¡Porra publicada! Tu QR ya está activo."); }
+      else setFlash(j.message || j.error || "No se pudo publicar la porra.");
+    } catch { setFlash("Error de red. Inténtalo de nuevo."); }
+    finally { setPublishing(false); }
+  }, []);
+
   if (!bar) return <CreateBar onCreated={setBar} />;
 
   const hasActivePlan = !!initialPayment && initialPayment.status === "active" && !initialPayment.refunded_at;
   const plan = getPlan(bar.plan_id);
+  const isPublished = bar.status === "published";
+  const isPaused = bar.status === "paused";
+  const isRefunded = !!initialPayment && !!initialPayment.refunded_at;
+
+  const cardState: CardState = !hasActivePlan
+    ? (isRefunded ? "suspended" : "draft")
+    : isPublished ? "published" : "planActive";
+
+  const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  const goPlans = () => scrollTo("bd-planes");
+  const goPrizes = () => scrollTo("bd-premios");
+
+  const hasPrize = prizes.length > 0;
+  const hasBarData = !!(bar.city || bar.logo_url || bar.description || bar.welcome_message);
+  const checklist = [
+    { label: "Datos del bar", done: hasBarData },
+    { label: "Premio", done: hasPrize },
+    { label: "Plan activo", done: hasActivePlan },
+    { label: "Publicación", done: isPublished },
+    { label: "QR", done: !!qr },
+    { label: "Kit", done: hasActivePlan },
+    { label: "Pantalla TV", done: isPublished && hasActivePlan },
+  ];
 
   return (
     <div style={{ minHeight: "100vh", background: BG, color: "#E2E8F0" }}>
-      <div style={{ maxWidth: 780, margin: "0 auto", padding: "24px 16px 64px" }}>
-        <header style={{ marginBottom: 20 }}>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 7, color: GOLD, fontWeight: 800, fontSize: 12, textTransform: "uppercase", letterSpacing: 1 }}>
-            <Trophy size={14} /> Panel del bar
-          </div>
-          <h1 style={{ fontSize: 24, fontWeight: 900, margin: "6px 0 0" }}>{bar.name}</h1>
-          <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 6, color: MID, fontSize: 13 }}>
-            {(() => {
-              const s = statusLabel(bar.status);
-              return (
-                <span style={{ display: "inline-flex", alignItems: "center", gap: 4, color: s.color }}>
-                  <span style={{ width: 8, height: 8, borderRadius: 99, background: s.color }} />
-                  {s.text}
-                </span>
-              );
-            })()}
-            <a href={`/b/${bar.slug}`} target="_blank" rel="noopener noreferrer" style={{ color: GOLD2, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 4 }}>
-              Ver página pública <ExternalLink size={12} />
-            </a>
-          </div>
-        </header>
+      {/* UX-only: ocultar publicidad y banners en el panel B2B + layout responsive */}
+      <style>{`
+        .zm-pub-lat { display: none !important; }
+        .google-auto-placed, ins.adsbygoogle { display: none !important; }
+        .bd-grid { display: grid; grid-template-columns: 1fr; gap: 18px; align-items: start; }
+        .bd-main { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+        .bd-side { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+        @media (min-width: 980px) {
+          .bd-grid { grid-template-columns: minmax(0,1fr) 340px; }
+          .bd-main { grid-column: 1; grid-row: 1; }
+          .bd-side { grid-column: 2; grid-row: 1; position: sticky; top: 80px; }
+        }
+      `}</style>
 
-        <PlanSection bar={bar} payment={initialPayment} hasActivePlan={hasActivePlan} onFlash={setFlash} />
-        <KitSection />
-        <Resumen stats={stats} bar={bar} origin={origin} onFlash={setFlash} />
-        <QrSection bar={bar} qr={qr} origin={origin} onFlash={setFlash} />
-        <ZonesSection bar={bar} plan={plan} sources={sources} setSources={setSources} origin={origin} onFlash={setFlash} />
-        <MaterialsSection bar={bar} plan={plan} onFlash={setFlash} />
-        <Prizes bar={bar} prizes={prizes} setPrizes={setPrizes} onFlash={setFlash} />
-        <Personalization bar={bar} setBar={setBar} hasActivePlan={hasActivePlan} onFlash={setFlash} />
+      <div style={{ maxWidth: 1120, margin: "0 auto", padding: "24px 16px 64px" }}>
+        <DashHeader bar={bar} state={cardState} hasActivePlan={hasActivePlan} isPaused={isPaused} isRefunded={isRefunded} />
+
+        <div style={{ marginBottom: 18 }}>
+          <StatusCard state={cardState} bar={bar} publishing={publishing} onPublish={() => void publish()} onPlans={goPlans} />
+        </div>
+
+        <div className="bd-grid">
+          <aside className="bd-side">
+            <ChecklistCard items={checklist} />
+            <NextStepCard
+              state={cardState} hasPrize={hasPrize} publishing={publishing}
+              onPublish={() => void publish()} onPlans={goPlans} onPrizes={goPrizes} bar={bar}
+            />
+            <QuickHelpCard bar={bar} origin={origin} onFlash={setFlash} />
+          </aside>
+
+          <div className="bd-main">
+            {!hasActivePlan && (
+              <div id="bd-planes">
+                <PlanSection bar={bar} payment={initialPayment} hasActivePlan={hasActivePlan} onFlash={setFlash} />
+              </div>
+            )}
+            {hasActivePlan && (
+              <PlanSection bar={bar} payment={initialPayment} hasActivePlan={hasActivePlan} onFlash={setFlash} />
+            )}
+            <KitSection hasActivePlan={hasActivePlan} />
+            <Resumen stats={stats} bar={bar} origin={origin} onFlash={setFlash} hasActivePlan={hasActivePlan} isPublished={isPublished} />
+            <QrSection bar={bar} qr={qr} origin={origin} onFlash={setFlash} hasActivePlan={hasActivePlan} />
+            <ZonesSection bar={bar} plan={plan} sources={sources} setSources={setSources} origin={origin} onFlash={setFlash} />
+            <MaterialsSection bar={bar} plan={plan} onFlash={setFlash} />
+            <div id="bd-premios">
+              <Prizes bar={bar} prizes={prizes} setPrizes={setPrizes} onFlash={setFlash} />
+            </div>
+            <Personalization bar={bar} setBar={setBar} hasActivePlan={hasActivePlan} onFlash={setFlash} />
+          </div>
+        </div>
       </div>
 
       {flash && (
-        <div style={{ position: "fixed", bottom: 20, left: "50%", transform: "translateX(-50%)", background: BG2, border: `1px solid ${GOLD}`, color: GOLD2, borderRadius: 12, padding: "11px 18px", fontWeight: 700, fontSize: 13.5, zIndex: 50, boxShadow: "0 8px 30px rgba(0,0,0,0.5)" }}>
+        <div style={{ position: "fixed", bottom: 20, left: "50%", transform: "translateX(-50%)", background: BG2, border: `1px solid ${GOLD}`, color: GOLD2, borderRadius: 12, padding: "11px 18px", fontWeight: 700, fontSize: 13.5, zIndex: 50, boxShadow: "0 8px 30px rgba(0,0,0,0.5)", maxWidth: "90vw", textAlign: "center" }}>
           {flash}
         </div>
       )}
@@ -97,9 +168,182 @@ export default function BarDashboard({ initialBar, initialStats, initialQr, init
   );
 }
 
+// ─── Header: "Centro de control de tu porra" ─────────────────────────────────
+function DashHeader({ bar, state, hasActivePlan, isPaused, isRefunded }: { bar: BarRow; state: CardState; hasActivePlan: boolean; isPaused: boolean; isRefunded: boolean }) {
+  const badge = statusBadge(bar.status, hasActivePlan, isPaused, isRefunded);
+  return (
+    <header style={{ marginBottom: 18 }}>
+      <div style={{ display: "inline-flex", alignItems: "center", gap: 7, color: GOLD, fontWeight: 800, fontSize: 12, textTransform: "uppercase", letterSpacing: 1 }}>
+        <Trophy size={14} /> Porra del bar
+      </div>
+      <h1 style={{ fontSize: 27, fontWeight: 900, margin: "8px 0 2px", lineHeight: 1.1 }}>Centro de control de tu porra</h1>
+      <p style={{ color: MID, fontSize: 14.5, margin: "0 0 12px", maxWidth: 620, lineHeight: 1.5 }}>
+        Configura, activa y comparte la porra del Mundial de tu bar desde aquí.
+      </p>
+      <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+        <span style={{ fontWeight: 800, fontSize: 15 }}>{bar.name}</span>
+        <span style={{ display: "inline-flex", alignItems: "center", gap: 6, background: badge.bg, color: badge.color, border: `1px solid ${badge.color}33`, borderRadius: 999, padding: "4px 11px", fontSize: 12.5, fontWeight: 800 }}>
+          <span style={{ width: 8, height: 8, borderRadius: 99, background: badge.color }} /> {badge.text}
+        </span>
+        <a href={`/b/${bar.slug}`} target="_blank" rel="noopener noreferrer" style={{ color: GOLD2, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 4, fontSize: 13, fontWeight: 700 }}>
+          {state === "published" ? "Ver página pública" : "Ver vista previa"} <ExternalLink size={13} />
+        </a>
+      </div>
+    </header>
+  );
+}
+
+function statusBadge(status: string, hasActivePlan: boolean, isPaused: boolean, isRefunded: boolean): { text: string; color: string; bg: string } {
+  if (status === "published" && hasActivePlan) return { text: "Publicado", color: GREEN, bg: "rgba(34,197,94,0.12)" };
+  if (isPaused) return { text: "Suspendido", color: MID, bg: "rgba(148,163,184,0.12)" };
+  if (isRefunded) return { text: "Suspendido", color: RED, bg: "rgba(248,113,113,0.12)" };
+  if (hasActivePlan) return { text: "Plan activo", color: GOLD, bg: "rgba(201,168,76,0.14)" };
+  if (status === "pending_payment") return { text: "Pendiente de pago", color: GOLD, bg: "rgba(201,168,76,0.14)" };
+  return { text: "Borrador", color: DIM, bg: "rgba(100,116,139,0.12)" };
+}
+
+// ─── Card principal: estado de activación ────────────────────────────────────
+function StatusCard({ state, bar, publishing, onPublish, onPlans }: { state: CardState; bar: BarRow; publishing: boolean; onPublish: () => void; onPlans: () => void }) {
+  const cfg: Record<CardState, { eyebrow: string; title: string; text: string; primary: ActionCfg; secondary?: ActionCfg }> = {
+    draft: {
+      eyebrow: "Estado de tu porra", title: "Tu porra está en borrador",
+      text: "Activa un plan para publicar tu porra, activar el QR y empezar a recibir participantes.",
+      primary: { label: "Activar plan", icon: <CreditCard size={16} />, onClick: onPlans },
+      secondary: { label: "Ver vista previa", icon: <Eye size={15} />, href: `/b/${bar.slug}` },
+    },
+    planActive: {
+      eyebrow: "Estado de tu porra", title: "Tu plan está activo",
+      text: "Publica tu porra para activar el QR y empezar a recibir participantes.",
+      primary: { label: "Publicar porra", icon: <Rocket size={16} />, onClick: onPublish, busy: publishing },
+      secondary: { label: "Abrir kit de activación", icon: <Sparkles size={15} />, href: "/bar-dashboard/kit" },
+    },
+    published: {
+      eyebrow: "Estado de tu porra", title: "Porra publicada",
+      text: "Tu QR ya está activo. Comparte tus carteles y abre la pantalla TV durante los partidos.",
+      primary: { label: "Abrir pantalla TV", icon: <Tv size={16} />, href: `/b/${bar.slug}/tv` },
+      secondary: { label: "Descargar kit", icon: <Download size={15} />, href: "/bar-dashboard/kit" },
+    },
+    suspended: {
+      eyebrow: "Estado de tu porra", title: "Tu plan ya no está activo",
+      text: "Para volver a publicar tu porra, activa un nuevo plan.",
+      primary: { label: "Activar plan", icon: <CreditCard size={16} />, onClick: onPlans },
+    },
+  };
+  const c = cfg[state];
+  return (
+    <div style={{
+      background: "linear-gradient(160deg, rgba(201,168,76,0.12), rgba(15,29,50,0.65) 55%)",
+      border: `1px solid ${GOLD}66`, borderRadius: 20, padding: "22px 22px 20px",
+      boxShadow: "0 14px 50px -20px rgba(201,168,76,0.35)",
+    }}>
+      <div style={{ display: "inline-flex", alignItems: "center", gap: 7, color: GOLD, fontWeight: 800, fontSize: 11.5, textTransform: "uppercase", letterSpacing: 1 }}>
+        <Sparkles size={14} /> {c.eyebrow}
+      </div>
+      <h2 style={{ fontSize: 22, fontWeight: 900, margin: "8px 0 0", lineHeight: 1.15 }}>{c.title}</h2>
+      <p style={{ color: "#cbd5e1", fontSize: 14.5, margin: "7px 0 16px", maxWidth: 560, lineHeight: 1.55 }}>{c.text}</p>
+      <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+        <Action cfg={c.primary} primary />
+        {c.secondary && <Action cfg={c.secondary} />}
+      </div>
+    </div>
+  );
+}
+
+interface ActionCfg { label: string; icon?: React.ReactNode; href?: string; onClick?: () => void; busy?: boolean }
+function Action({ cfg, primary }: { cfg: ActionCfg; primary?: boolean }) {
+  const style: React.CSSProperties = {
+    display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 7, cursor: cfg.busy ? "default" : "pointer",
+    border: primary ? "none" : BORDER, textDecoration: "none", borderRadius: 12, fontWeight: 800, fontSize: 14, padding: "11px 18px",
+    background: primary ? `linear-gradient(135deg, ${GOLD}, ${GOLD2})` : "rgba(255,255,255,0.05)",
+    color: primary ? "#1A1208" : "#E2E8F0", opacity: cfg.busy ? 0.7 : 1, whiteSpace: "nowrap",
+  };
+  const inner = <>{cfg.busy ? <Loader2 size={16} className="spin" /> : cfg.icon} {cfg.label}</>;
+  if (cfg.href) return <a href={cfg.href} target="_blank" rel="noopener noreferrer" style={style}>{inner}</a>;
+  return <button type="button" onClick={cfg.onClick} disabled={cfg.busy} style={style}>{inner}</button>;
+}
+
+// ─── Checklist de activación ─────────────────────────────────────────────────
+function ChecklistCard({ items }: { items: { label: string; done: boolean }[] }) {
+  const done = items.filter((i) => i.done).length;
+  const pct = Math.round((done / items.length) * 100);
+  return (
+    <div style={{ background: BG2, border: BORDER, borderRadius: 16, padding: 16 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, fontWeight: 800, fontSize: 14.5, marginBottom: 4 }}>
+        <CheckCircle2 size={16} color={GOLD} /> Checklist para lanzar tu porra
+      </div>
+      <div style={{ color: MID, fontSize: 12.5, marginBottom: 10 }}>{done} de {items.length} completado</div>
+      <div style={{ height: 6, borderRadius: 99, background: "rgba(255,255,255,0.08)", overflow: "hidden", marginBottom: 12 }}>
+        <div style={{ width: `${pct}%`, height: "100%", background: `linear-gradient(90deg, ${GOLD}, ${GOLD2})`, transition: "width .4s" }} />
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        {items.map((it) => (
+          <div key={it.label} style={{ display: "flex", alignItems: "center", gap: 9, fontSize: 13.5, color: it.done ? "#E2E8F0" : MID }}>
+            {it.done ? <CheckCircle2 size={17} color={GOLD} /> : <Circle size={17} color={DIM} />}
+            <span style={{ textDecoration: it.done ? "none" : "none" }}>{it.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ─── Siguiente paso recomendado ──────────────────────────────────────────────
+function NextStepCard({ state, hasPrize, publishing, onPublish, onPlans, onPrizes, bar }: { state: CardState; hasPrize: boolean; publishing: boolean; onPublish: () => void; onPlans: () => void; onPrizes: () => void; bar: BarRow }) {
+  let text: string; let action: ActionCfg;
+  if (!hasPrize) {
+    text = "Añade un premio para motivar a tus clientes a participar.";
+    action = { label: "Añadir premio", icon: <Gift size={15} />, onClick: onPrizes };
+  } else if (state === "draft" || state === "suspended") {
+    text = "Activa un plan para publicar tu porra.";
+    action = { label: "Activar plan", icon: <CreditCard size={15} />, onClick: onPlans };
+  } else if (state === "planActive") {
+    text = "Publica tu porra para empezar a recibir participantes.";
+    action = { label: "Publicar porra", icon: <Rocket size={15} />, onClick: onPublish, busy: publishing };
+  } else {
+    text = "Comparte tu QR y abre la pantalla TV durante los partidos.";
+    action = { label: "Abrir pantalla TV", icon: <Tv size={15} />, href: `/b/${bar.slug}/tv` };
+  }
+  return (
+    <div style={{ background: "linear-gradient(180deg, rgba(201,168,76,0.10), rgba(15,29,50,0.5))", border: `1px solid ${GOLD}44`, borderRadius: 16, padding: 16 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, fontWeight: 800, fontSize: 14.5, marginBottom: 6 }}>
+        <ArrowRight size={16} color={GOLD} /> Siguiente paso
+      </div>
+      <p style={{ color: "#cbd5e1", fontSize: 13.5, margin: "0 0 12px", lineHeight: 1.5 }}>{text}</p>
+      <Action cfg={action} primary />
+    </div>
+  );
+}
+
+// ─── Ayuda rápida + enlace público ───────────────────────────────────────────
+function QuickHelpCard({ bar, origin, onFlash }: { bar: BarRow; origin: string; onFlash: (s: string) => void }) {
+  const url = `${origin}/b/${bar.slug}`;
+  const short = url.replace(/^https?:\/\//, "");
+  return (
+    <div style={{ background: BG2, border: BORDER, borderRadius: 16, padding: 16 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, fontWeight: 800, fontSize: 14.5, marginBottom: 8 }}>
+        <HelpCircle size={16} color={GOLD} /> Ayuda rápida
+      </div>
+      <div style={{ color: MID, fontSize: 12.5, marginBottom: 6 }}>Enlace de tu porra</div>
+      <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 12 }}>
+        <code style={{ background: BG3, border: BORDER, borderRadius: 8, padding: "6px 9px", fontSize: 12, color: GOLD2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", flex: 1 }}>{short}</code>
+        <button onClick={() => { void navigator.clipboard.writeText(url); onFlash("Enlace copiado"); }} style={{ ...qa(), cursor: "pointer", padding: "6px 9px" }} title="Copiar enlace"><Copy size={14} /></button>
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
+        <a href="/bares/precios" target="_blank" rel="noopener noreferrer" style={helpLink()}>Ver comparativa de planes <ExternalLink size={12} /></a>
+        <a href="/bar-dashboard/kit" style={helpLink()}>Abrir kit de activación <ArrowRight size={12} /></a>
+        <a href={`/b/${bar.slug}/ranking`} target="_blank" rel="noopener noreferrer" style={helpLink()}>Ver ranking del bar <ExternalLink size={12} /></a>
+      </div>
+    </div>
+  );
+}
+
+function helpLink(): React.CSSProperties {
+  return { display: "inline-flex", alignItems: "center", gap: 5, color: GOLD2, textDecoration: "none", fontSize: 13, fontWeight: 700 };
+}
+
 function Section({ icon, title, children }: { icon: React.ReactNode; title: string; children: React.ReactNode }) {
   return (
-    <section style={{ marginBottom: 18 }}>
+    <section>
       <h2 style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 15, fontWeight: 800, margin: "0 0 10px" }}>
         {icon} {title}
       </h2>
@@ -108,40 +352,66 @@ function Section({ icon, title, children }: { icon: React.ReactNode; title: stri
   );
 }
 
-function KitSection() {
+// ─── Kit de activación (con valor visual + gating por plan) ───────────────────
+function KitSection({ hasActivePlan }: { hasActivePlan: boolean }) {
+  const items = [
+    { icon: <QrCode size={18} color={GOLD2} />, label: "QR" },
+    { icon: <Printer size={18} color={GOLD2} />, label: "Cartel" },
+    { icon: <ImageIcon size={18} color={GOLD2} />, label: "Mesa" },
+    { icon: <Share2 size={18} color={GOLD2} />, label: "Story" },
+    { icon: <Tv size={18} color={GOLD2} />, label: "TV" },
+  ];
   return (
-    <section style={{ marginBottom: 18 }}>
-      <div style={{ background: "linear-gradient(180deg, rgba(201,168,76,0.10), rgba(15,29,50,0.6))", border: "1px solid rgba(201,168,76,0.3)", borderRadius: 16, padding: 18, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 14, flexWrap: "wrap" }}>
-        <div>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 7, color: GOLD, fontWeight: 800, fontSize: 11.5, textTransform: "uppercase", letterSpacing: 1 }}>
-            <Rocket size={14} /> Kit de activación
-          </div>
-          <h2 style={{ fontSize: 19, fontWeight: 900, margin: "6px 0 0" }}>Tu porra ya está lista</h2>
-          <p style={{ color: MID, fontSize: 13.5, margin: "5px 0 0", maxWidth: 460, lineHeight: 1.5 }}>
-            Descarga tus carteles, compártelos en redes y abre la pantalla TV para empezar a recibir participantes.
-          </p>
+    <section>
+      <div style={{ background: "linear-gradient(180deg, rgba(201,168,76,0.10), rgba(15,29,50,0.6))", border: `1px solid ${GOLD}4d`, borderRadius: 18, padding: 18 }}>
+        <div style={{ display: "inline-flex", alignItems: "center", gap: 7, color: GOLD, fontWeight: 800, fontSize: 11.5, textTransform: "uppercase", letterSpacing: 1 }}>
+          <Sparkles size={14} /> Kit de activación
         </div>
-        <a href="/bar-dashboard/kit" style={{ display: "inline-flex", alignItems: "center", gap: 7, background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#1A1208", fontWeight: 800, fontSize: 14, padding: "11px 18px", borderRadius: 999, textDecoration: "none", whiteSpace: "nowrap" }}>
-          <Rocket size={16} /> Abrir kit de activación
-        </a>
+        <h2 style={{ fontSize: 19, fontWeight: 900, margin: "6px 0 0" }}>
+          {hasActivePlan ? "Tu kit de activación está listo" : "Kit preparado"}
+        </h2>
+        <p style={{ color: MID, fontSize: 13.5, margin: "5px 0 14px", maxWidth: 480, lineHeight: 1.5 }}>
+          {hasActivePlan
+            ? "Descarga tus carteles, compártelos en redes y abre la pantalla TV para empezar a recibir participantes."
+            : "Activa tu plan para descargar carteles, QR y materiales para redes."}
+        </p>
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 16 }}>
+          {items.map((it) => (
+            <div key={it.label} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 5, width: 64, padding: "10px 6px", background: BG3, border: BORDER, borderRadius: 12, opacity: hasActivePlan ? 1 : 0.6 }}>
+              {it.icon}
+              <span style={{ fontSize: 11, color: MID, fontWeight: 700 }}>{it.label}</span>
+            </div>
+          ))}
+        </div>
+        {hasActivePlan ? (
+          <a href="/bar-dashboard/kit" style={{ display: "inline-flex", alignItems: "center", gap: 7, background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#1A1208", fontWeight: 800, fontSize: 14, padding: "11px 18px", borderRadius: 999, textDecoration: "none" }}>
+            <Sparkles size={16} /> Abrir kit de activación
+          </a>
+        ) : (
+          <a href="/bares/precios" target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 7, background: "rgba(255,255,255,0.06)", color: "#E2E8F0", border: BORDER, fontWeight: 800, fontSize: 14, padding: "11px 18px", borderRadius: 999, textDecoration: "none" }}>
+            <CreditCard size={16} /> Activar plan
+          </a>
+        )}
       </div>
     </section>
   );
 }
 
-function Resumen({ stats, bar, origin, onFlash }: { stats: BarStats | null; bar: BarRow; origin: string; onFlash: (s: string) => void }) {
+// ─── Resumen / métricas (con microcopy si está en 0) ──────────────────────────
+function Resumen({ stats, bar, origin, onFlash, hasActivePlan, isPublished }: { stats: BarStats | null; bar: BarRow; origin: string; onFlash: (s: string) => void; hasActivePlan: boolean; isPublished: boolean }) {
   const cards = [
-    { label: "Participantes", value: stats?.participants ?? 0, icon: <Users size={16} color={GOLD2} /> },
-    { label: "Escaneos QR", value: stats?.scans ?? 0, icon: <QrCode size={16} color={GOLD2} /> },
-    { label: "Predicciones", value: stats?.predictions ?? 0, icon: <Trophy size={16} color={GOLD2} /> },
+    { label: "Participantes", value: stats?.participants ?? 0, icon: <Users size={16} color={GOLD2} />, help: "Aparecerán cuando los clientes se unan." },
+    { label: "Escaneos QR", value: stats?.scans ?? 0, icon: <QrCode size={16} color={GOLD2} />, help: "Coloca el QR en barra, mesas o TV." },
+    { label: "Predicciones", value: stats?.predictions ?? 0, icon: <Trophy size={16} color={GOLD2} />, help: "Se activarán cuando publiques la porra." },
   ];
   return (
     <Section icon={<BarChart3 size={17} color={GOLD} />} title="Resumen">
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(120px,1fr))", gap: 10, marginBottom: 12 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(150px,1fr))", gap: 10, marginBottom: 12 }}>
         {cards.map((c) => (
-          <div key={c.label} style={{ background: BG2, border: BORDER, borderRadius: 14, padding: "12px 14px" }}>
+          <div key={c.label} style={{ background: BG2, border: BORDER, borderRadius: 14, padding: "13px 14px" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 6, color: DIM, fontSize: 11.5, fontWeight: 700, textTransform: "uppercase", letterSpacing: 0.5 }}>{c.icon} {c.label}</div>
-            <div style={{ fontSize: 26, fontWeight: 900, marginTop: 4 }}>{c.value}</div>
+            <div style={{ fontSize: 28, fontWeight: 900, marginTop: 4 }}>{c.value}</div>
+            {c.value === 0 && <div style={{ color: DIM, fontSize: 11.5, marginTop: 4, lineHeight: 1.4 }}>{c.help}</div>}
           </div>
         ))}
       </div>
@@ -158,15 +428,7 @@ function qa(): React.CSSProperties {
   return { display: "inline-flex", alignItems: "center", gap: 6, background: BG2, border: BORDER, color: "#E2E8F0", borderRadius: 10, fontWeight: 700, fontSize: 13, padding: "8px 12px", textDecoration: "none" };
 }
 
-function statusLabel(status: string): { text: string; color: string } {
-  switch (status) {
-    case "published": return { text: "Publicado", color: GREEN };
-    case "pending_payment": return { text: "Pendiente de pago", color: GOLD };
-    case "paused": return { text: "Suspendido", color: MID };
-    default: return { text: "Borrador", color: DIM };
-  }
-}
-
+// ─── Planes (tarjetas con qué incluye cada plan) ──────────────────────────────
 function PlanSection({ bar, payment, hasActivePlan, onFlash }: { bar: BarRow; payment: BarPayment | null; hasActivePlan: boolean; onFlash: (s: string) => void }) {
   const [busy, setBusy] = useState<string | null>(null);
   const currentPlan = getPlan(bar.plan_id);
@@ -209,34 +471,52 @@ function PlanSection({ bar, payment, hasActivePlan, onFlash }: { bar: BarRow; pa
 
   return (
     <Section icon={<CreditCard size={17} color={GOLD} />} title="Activa tu plan">
-      <p style={{ color: MID, fontSize: 13, margin: "0 0 12px" }}>
-        Tu porra está en borrador. Elige un plan para publicarla y compartir tu QR. Pago único para todo el Mundial.
+      <p style={{ color: MID, fontSize: 13.5, margin: "0 0 14px", lineHeight: 1.5 }}>
+        Elige un plan para publicar tu porra, activar el QR y usarla durante todo el Mundial. Pago único.
       </p>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(160px,1fr))", gap: 10 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 12 }}>
         {planList().map((plan) => (
-          <div key={plan.id} style={{ background: BG2, border: plan.highlight ? `1px solid ${GOLD}` : BORDER, borderRadius: 14, padding: 14, display: "flex", flexDirection: "column" }}>
-            <div style={{ fontWeight: 900, fontSize: 15 }}>{plan.name}</div>
+          <div key={plan.id} style={{
+            position: "relative", background: BG2,
+            border: plan.highlight ? `1.5px solid ${GOLD}` : BORDER, borderRadius: 16, padding: 16,
+            display: "flex", flexDirection: "column",
+            boxShadow: plan.highlight ? "0 12px 40px -18px rgba(201,168,76,0.5)" : "none",
+          }}>
+            {plan.highlight && (
+              <span style={{ position: "absolute", top: -11, left: 16, background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#1A1208", fontWeight: 900, fontSize: 11, padding: "3px 10px", borderRadius: 999, textTransform: "uppercase", letterSpacing: 0.5 }}>
+                Recomendado
+              </span>
+            )}
+            <div style={{ fontWeight: 900, fontSize: 16 }}>{plan.name}</div>
             <div style={{ display: "flex", alignItems: "baseline", gap: 4, margin: "6px 0 2px" }}>
-              <span style={{ fontSize: 24, fontWeight: 900 }}>{plan.priceEur} €</span>
+              <span style={{ fontSize: 26, fontWeight: 900 }}>{plan.priceEur} €</span>
               <span style={{ color: DIM, fontSize: 12 }}>/ Mundial</span>
             </div>
             <div style={{ color: DIM, fontSize: 11, marginBottom: 10 }}>{plan.priceUsd} USD · LATAM y USA</div>
+            <p style={{ color: MID, fontSize: 12.5, margin: "0 0 12px", lineHeight: 1.45 }}>{PLAN_TAGLINE[plan.id] ?? plan.tagline}</p>
+            <ul style={{ listStyle: "none", margin: "0 0 14px", padding: 0, display: "flex", flexDirection: "column", gap: 7 }}>
+              {plan.features.map((f) => (
+                <li key={f} style={{ display: "flex", alignItems: "flex-start", gap: 7, fontSize: 12.5, color: "#cbd5e1", lineHeight: 1.4 }}>
+                  <Check size={14} color={GOLD} style={{ flexShrink: 0, marginTop: 2 }} /> {f}
+                </li>
+              ))}
+            </ul>
             <button
               onClick={() => void buy(plan.id)}
               disabled={!!busy}
               style={{
                 marginTop: "auto", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 6,
-                border: "none", cursor: busy ? "default" : "pointer", borderRadius: 10, fontWeight: 800, fontSize: 13, padding: "9px 12px",
+                border: "none", cursor: busy ? "default" : "pointer", borderRadius: 11, fontWeight: 800, fontSize: 13.5, padding: "11px 14px",
                 background: plan.highlight ? `linear-gradient(135deg, ${GOLD}, ${GOLD2})` : "rgba(255,255,255,0.06)",
                 color: plan.highlight ? "#1A1208" : "#E2E8F0", opacity: busy && busy !== plan.id ? 0.5 : 1,
               }}
             >
-              {busy === plan.id ? <Loader2 size={14} className="spin" /> : <CreditCard size={14} />} Elegir
+              {busy === plan.id ? <Loader2 size={14} className="spin" /> : <CreditCard size={14} />} Elegir plan
             </button>
           </div>
         ))}
       </div>
-      <p style={{ color: DIM, fontSize: 11.5, marginTop: 10 }}>
+      <p style={{ color: DIM, fontSize: 11.5, marginTop: 12 }}>
         Pago seguro con Stripe. La moneda se ajusta según tu país.{" "}
         <a href="/bares/precios" target="_blank" rel="noopener noreferrer" style={{ color: GOLD2 }}>Ver comparativa de planes</a>.
       </p>
@@ -244,7 +524,8 @@ function PlanSection({ bar, payment, hasActivePlan, onFlash }: { bar: BarRow; pa
   );
 }
 
-function QrSection({ bar, qr, origin, onFlash }: { bar: BarRow; qr: QrSource | null; origin: string; onFlash: (s: string) => void }) {
+// ─── QR oficial ──────────────────────────────────────────────────────────────
+function QrSection({ bar, qr, origin, onFlash, hasActivePlan }: { bar: BarRow; qr: QrSource | null; origin: string; onFlash: (s: string) => void; hasActivePlan: boolean }) {
   const [png, setPng] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const target = qr ? `${origin}/r/${qr.code}` : `${origin}/b/${bar.slug}`;
@@ -264,14 +545,26 @@ function QrSection({ bar, qr, origin, onFlash }: { bar: BarRow; qr: QrSource | n
   }, [target, bar.slug, onFlash]);
 
   return (
-    <Section icon={<QrCode size={17} color={GOLD} />} title="QR y materiales">
+    <Section icon={<QrCode size={17} color={GOLD} />} title="QR oficial de tu porra">
       <div style={{ background: BG2, border: BORDER, borderRadius: 14, padding: 16, display: "flex", gap: 16, flexWrap: "wrap", alignItems: "center" }}>
-        <div style={{ background: "#fff", borderRadius: 12, padding: 8, width: 150, height: 150, display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div style={{ background: "#fff", borderRadius: 12, padding: 8, width: 150, height: 150, display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          {png ? <img src={png} alt="QR de la porra" style={{ width: "100%", height: "100%" }} /> : <Loader2 size={24} className="spin" color="#0A0A0A" />}
+          {png ? <img src={png} alt="QR de la porra" style={{ width: "100%", height: "100%", opacity: hasActivePlan ? 1 : 0.5 }} /> : <Loader2 size={24} className="spin" color="#0A0A0A" />}
+          {!hasActivePlan && (
+            <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(255,255,255,0.35)", borderRadius: 12 }}>
+              <Lock size={28} color="#0A0A0A" />
+            </div>
+          )}
         </div>
         <div style={{ flex: "1 1 220px", minWidth: 0 }}>
-          <div style={{ color: MID, fontSize: 13, marginBottom: 4 }}>Coloca este QR en barra, mesas y TV. Cada escaneo se cuenta para tus estadísticas.</div>
+          <div style={{ color: MID, fontSize: 13, marginBottom: 4, lineHeight: 1.5 }}>
+            Colócalo en la barra, mesas, puerta del local o pantalla TV. Cada escaneo se contará en tus estadísticas.
+          </div>
+          {!hasActivePlan && (
+            <div style={{ display: "flex", alignItems: "center", gap: 7, background: "rgba(201,168,76,0.10)", border: `1px solid ${GOLD}44`, borderRadius: 10, padding: "8px 11px", color: GOLD2, fontSize: 12.5, marginBottom: 10, lineHeight: 1.4 }}>
+              <Lock size={14} style={{ flexShrink: 0 }} /> Tu QR está preparado, pero se activará cuando contrates un plan.
+            </div>
+          )}
           <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 12 }}>
             <code style={{ background: BG3, border: BORDER, borderRadius: 8, padding: "6px 9px", fontSize: 12.5, color: GOLD2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", flex: 1 }}>{shortUrl}</code>
             <button onClick={() => { void navigator.clipboard.writeText(target); setCopied(true); setTimeout(() => setCopied(false), 1500); }} style={{ ...qa(), cursor: "pointer", padding: "6px 9px" }}>
@@ -279,8 +572,10 @@ function QrSection({ bar, qr, origin, onFlash }: { bar: BarRow; qr: QrSource | n
             </button>
           </div>
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-            <button onClick={() => void download("png")} style={{ ...qa(), cursor: "pointer" }}><Download size={14} /> PNG</button>
+            <button onClick={() => void download("png")} style={{ ...qa(), cursor: "pointer" }}><Download size={14} /> Descargar QR (PNG)</button>
             <button onClick={() => void download("svg")} style={{ ...qa(), cursor: "pointer" }}><Download size={14} /> SVG</button>
+            <a href={`/b/${bar.slug}/tv`} target="_blank" rel="noopener noreferrer" style={qa()}><Tv size={14} /> Pantalla TV</a>
+            <a href="/bar-dashboard/kit" style={qa()}><Sparkles size={14} /> Kit</a>
           </div>
         </div>
       </div>
@@ -293,7 +588,7 @@ function ZonesSection({ bar, plan, sources, setSources, origin, onFlash }: { bar
   const [label, setLabel] = useState("");
   const [busy, setBusy] = useState(false);
   const max = plan.maxQrSources;
-  // Solo zonas extra (la principal se gestiona arriba en "QR y materiales").
+  // Solo zonas extra (la principal se gestiona arriba en "QR oficial").
   const zones = sources.filter((s) => s.source_type !== "main");
   const used = sources.length; // principal + zonas cuentan para el límite del plan
   const canAdd = used < max;
@@ -656,6 +951,7 @@ function CreateBar({ onCreated }: { onCreated: (b: BarRow) => void }) {
 
   return (
     <div style={{ minHeight: "100vh", background: BG, color: "#E2E8F0", display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}>
+      <style>{`.zm-pub-lat { display: none !important; } .google-auto-placed, ins.adsbygoogle { display: none !important; }`}</style>
       <div style={{ width: "100%", maxWidth: 440, background: BG2, border: BORDER, borderRadius: 18, padding: 24 }}>
         <div style={{ display: "inline-flex", alignItems: "center", gap: 7, color: GOLD, fontWeight: 800, fontSize: 12, textTransform: "uppercase", letterSpacing: 1 }}>
           <Trophy size={14} /> Porras Digitales para Bares

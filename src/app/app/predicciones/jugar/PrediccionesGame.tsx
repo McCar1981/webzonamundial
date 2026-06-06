@@ -16,7 +16,7 @@ import Cosmetics from "./Cosmetics";
 import LiveMicroPicks from "./LiveMicroPicks";
 import {
   TYPE_ICON, TIER_ICON,
-  ArrowLeft, Calendar, Check, CheckCircle2, ChevronRight, Clock, Coins, Flame, Gem, Globe, Pencil, Radio, Sparkles, TrendingUp, Trophy, Users, X, Zap,
+  ArrowLeft, Calendar, Check, CheckCircle2, ChevronRight, Clock, Coins, Flame, Gem, Gift, Globe, Pencil, Radio, Sparkles, TrendingUp, Trophy, Users, X, Zap,
 } from "./icons";
 import {
   MINUTE_RANGES,
@@ -272,35 +272,28 @@ export default function PrediccionesGame() {
 
   return (
     <Shell>
-      <header style={{ padding: "20px 16px 8px", maxWidth: 1280, margin: "0 auto" }}>
+      {/* Header de página compacto: marca + accesos secundarios (Ranking/Ligas/
+          Stats). El título "Predicciones" lo lleva el hero compacto justo debajo,
+          para no duplicarlo ni robar altura por encima del partido. */}
+      <header style={{ padding: "12px 16px 4px", maxWidth: 1280, margin: "0 auto" }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 8 }}>
-          <div>
-            <span style={{ color: GOLD, fontSize: 11, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase" }}>ZonaMundial</span>
-            <h1 style={{ fontSize: 26, fontWeight: 900, lineHeight: 1.1, display: "flex", alignItems: "center", gap: 8 }}>
-              <Sparkles size={24} color={GOLD2} /> Predicciones
-            </h1>
-          </div>
-          <div style={{ display: "flex", gap: 8 }}>
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 6, color: GOLD, fontSize: 11.5, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase" }}>
+            <Sparkles size={15} color={GOLD2} /> ZonaMundial
+          </span>
+          <nav aria-label="Secciones de predicciones" style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             <Link href="/app/predicciones/jugar/ranking" style={pillLink}><Trophy size={14} /> Ranking</Link>
             <Link href="/app/predicciones/jugar/ligas" style={pillLink}><Users size={14} /> Ligas</Link>
             <Link href="/app/predicciones/jugar/stats" style={pillLink}><TrendingUp size={14} /> Mis stats</Link>
-          </div>
+          </nav>
         </div>
       </header>
 
-      {/* Vista tablero: tira de progreso + hero + destacado + filtros + grupos.
-          La tira de gamificación (Nivel, Racha, Fútcoins, Reto, Pase, Tienda)
-          solo se muestra en el tablero; en el detalle de un partido pasa al
-          fondo como "Extras" para no distraer del flujo de predicción. */}
+      {/* Vista tablero: hero compacto + resumen + partido destacado arriba +
+          filtros + grupos, y la gamificación (Nivel, Reto, Pase, Cosméticos,
+          Logros, Tienda) plegada al fondo como "Misiones y recompensas" para no
+          tapar el partido. El flujo prioriza llegar rápido a "Predecir ahora". */}
       {!selectedMatch && (
-        <>
-          <div className="progress-strip">
-            <GamificationHUD />
-            <BattlePass />
-            <Cosmetics />
-          </div>
-          <LandingView matches={groupMatches} onPick={selectMatch} />
-        </>
+        <LandingView matches={groupMatches} onPick={selectMatch} />
       )}
 
       {/* Vista de detalle: flujo enfocado de predicción del partido */}
@@ -558,13 +551,30 @@ function LandingView({ matches, onPick }: { matches: Match[]; onPick: (id: strin
     });
   }, [matches, filter, query]);
 
+  // Tipos pendientes del partido destacado (para el subtítulo del hero).
+  const featuredPending = featured
+    ? (mine?.types_total ?? PREDICTION_TYPES.length) - (mine?.counts[String(featured.i)] ?? 0)
+    : 0;
+
   return (
     <>
-      <Hero />
-      <LiveActivityBand pulse={pulse} />
+      {/* Nivel 1 — acción: título compacto + resumen + partido destacado arriba */}
+      <CompactHero count={matches.length} pending={featuredPending} />
+      <section className="pj-wrap" style={{ paddingTop: 12 }}>
+        <UserMiniStatsBar />
+      </section>
       {featured && <FeaturedMatch m={featured} onPick={onPick} pulse={pulse} />}
+
+      {/* Nivel 2 — más partidos para predecir */}
       <Filters filter={filter} setFilter={setFilter} query={query} setQuery={setQuery} groups={groupLetters} />
       <GroupGrid matches={filtered} onPick={onPick} mine={mine} />
+
+      {/* Pulso de comunidad (prueba social) bajo los partidos */}
+      <LiveActivityBand pulse={pulse} />
+
+      {/* Nivel 4 — gamificación secundaria, plegada para no tapar el partido */}
+      <MissionsRewards />
+
       <TypesShowcase />
       <UnderdogBand />
       <CtaFinal />
@@ -572,45 +582,58 @@ function LandingView({ matches, onPick }: { matches: Match[]; onPick: (id: strin
   );
 }
 
-function Hero() {
-  const stats: { icon: typeof Globe; value: string; label: string }[] = [
-    { icon: Globe, value: "48", label: "selecciones" },
-    { icon: Sparkles, value: "8", label: "predicciones" },
-    { icon: Trophy, value: "Global", label: "ranking" },
-  ];
+// Hero compacto: título de sección + subtítulo + pill de disponibilidad. Sustituye
+// al hero grande con imagen para que el partido destacado quede más arriba.
+function CompactHero({ count, pending }: { count: number; pending: number }) {
   return (
-    <section className="pj-wrap" style={{ paddingTop: 14, paddingBottom: 6 }}>
-      <div className="predictions-hero" style={{
-        background: `radial-gradient(120% 150% at 0% 0%, ${BG2} 0%, ${BG3} 55%, ${BG} 100%)`,
-        border: CARD_BORDER, borderRadius: 22, padding: "28px 24px", position: "relative", overflow: "hidden",
+    <section className="pj-wrap" style={{ paddingTop: 14, paddingBottom: 2 }}>
+      <div style={{
+        position: "relative", overflow: "hidden",
+        background: `radial-gradient(130% 170% at 0% 0%, ${BG2} 0%, ${BG3} 58%, ${BG} 100%)`,
+        border: CARD_BORDER, borderRadius: 18, padding: "18px 20px",
       }}>
-        {/* imagen de fondo responsive (escritorio / móvil) con overlay oscuro */}
-        <div aria-hidden className="pj-hero-bg" />
-        {/* textura sutil de campo (líneas verticales muy tenues) */}
-        <div aria-hidden style={{ position: "absolute", inset: 0, opacity: 0.5, pointerEvents: "none", backgroundImage: "repeating-linear-gradient(90deg, rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 64px)" }} />
-        <div aria-hidden style={{ position: "absolute", top: -90, right: -50, width: 280, height: 280, borderRadius: "50%", background: "radial-gradient(circle, rgba(201,168,76,0.16), transparent 70%)", pointerEvents: "none" }} />
-        <div className="pj-hero-text" style={{ position: "relative", zIndex: 1 }}>
-          <span style={{ color: GOLD, fontSize: 11, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase" }}>Mundial 2026 · Predicciones</span>
-          <h2 style={{ fontSize: 30, fontWeight: 900, lineHeight: 1.08, margin: "10px 0 10px", maxWidth: 560 }}>
-            Predice el Mundial antes que todos
-          </h2>
-          <p style={{ fontSize: 14.5, color: MID, lineHeight: 1.55, maxWidth: 520, margin: 0 }}>
-            Ocho formas de leer cada partido. Acumula puntos, escala el ranking global y gana más cuando ves la sorpresa.
-          </p>
-        </div>
-        <div className="pj-hero-stats" style={{ position: "relative", zIndex: 1 }}>
-          {stats.map((s) => {
-            const Icon = s.icon;
-            return (
-              <div key={s.label} style={{ background: "rgba(255,255,255,0.04)", border: CARD_BORDER, borderRadius: 14, padding: "16px 8px", textAlign: "center" }}>
-                <Icon size={20} color={GOLD2} />
-                <div style={{ fontSize: 21, fontWeight: 900, color: "#fff", lineHeight: 1, marginTop: 8 }}>{s.value}</div>
-                <div style={{ fontSize: 11, color: MID, marginTop: 4, textTransform: "capitalize" }}>{s.label}</div>
-              </div>
-            );
-          })}
-        </div>
+        <div aria-hidden style={{ position: "absolute", top: -70, right: -45, width: 200, height: 200, borderRadius: "50%", background: "radial-gradient(circle, rgba(201,168,76,0.15), transparent 70%)", pointerEvents: "none" }} />
+        <span style={{ color: GOLD, fontSize: 10.5, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase" }}>Mundial 2026</span>
+        <h1 style={{ fontSize: 24, fontWeight: 900, lineHeight: 1.1, margin: "6px 0 4px", display: "flex", alignItems: "center", gap: 9 }}>
+          <Sparkles size={22} color={GOLD2} /> Predicciones
+        </h1>
+        <p style={{ fontSize: 13.5, color: MID, margin: 0, lineHeight: 1.5 }}>Completa tus pronósticos y suma puntos.</p>
+        {count > 0 && (
+          <div style={{ marginTop: 12, display: "flex", flexWrap: "wrap", gap: 8 }}>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "rgba(201,168,76,0.12)", border: `1px solid ${GOLD}55`, color: GOLD2, borderRadius: 99, padding: "5px 12px", fontSize: 12, fontWeight: 800 }}>
+              <Globe size={13} /> {count} {count === 1 ? "partido disponible" : "partidos disponibles"}
+            </span>
+            {pending > 0 && (
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "rgba(255,255,255,0.05)", border: CARD_BORDER, color: MID, borderRadius: 99, padding: "5px 12px", fontSize: 12, fontWeight: 700 }}>
+                <Clock size={13} /> {pending}/{PREDICTION_TYPES.length} tipos pendientes
+              </span>
+            )}
+          </div>
+        )}
       </div>
+    </section>
+  );
+}
+
+// Gamificación secundaria plegada: Reto, Pase, Cosméticos, Logros y Tienda.
+// Cerrada por defecto para que el partido sea el protagonista; el usuario la
+// abre cuando quiere gestionar recompensas. Reutiliza la tira existente.
+function MissionsRewards() {
+  return (
+    <section className="pj-wrap" style={{ paddingTop: 30 }}>
+      <details className="pj-extras">
+        <summary>
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 8, color: "#fff", fontSize: 14, fontWeight: 800 }}>
+            <Gift size={16} color={GOLD2} /> Misiones y recompensas
+          </span>
+          <ChevronRight size={18} className="pj-extras-chev" />
+        </summary>
+        <div className="progress-strip" style={{ paddingTop: 12 }}>
+          <GamificationHUD />
+          <BattlePass />
+          <Cosmetics />
+        </div>
+      </details>
     </section>
   );
 }
@@ -711,8 +734,8 @@ function FeaturedMatch({ m, onPick, pulse }: { m: Match; onPick: (id: string) =>
   const hasVotes = split != null && split.total > 0;
 
   return (
-    <section className="pj-wrap featured-match" style={{ paddingTop: 20 }}>
-      <h3 style={sectionTitle}>Partido destacado</h3>
+    <section className="pj-wrap featured-match" style={{ paddingTop: 18 }}>
+      <h2 style={sectionTitle}>Próximo partido para predecir</h2>
       <div style={{
         background: `linear-gradient(135deg, ${BG2} 0%, ${BG3} 100%)`,
         border: "1px solid rgba(201,168,76,0.28)", borderRadius: 20, padding: "24px 22px",
@@ -763,7 +786,9 @@ function FeaturedMatch({ m, onPick, pulse }: { m: Match; onPick: (id: string) =>
           )}
         </div>
 
-        <button onClick={() => onPick(String(m.i))} className="pj-cta" style={featuredBtn} aria-label={`Lanzar predicción para ${m.h} contra ${m.a}`}>Lanzar predicción</button>
+        <button onClick={() => onPick(String(m.i))} className="pj-cta" style={featuredBtn} aria-label={`Predecir ahora ${m.h} contra ${m.a}`}>
+          <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8 }}>Predecir ahora <ChevronRight size={18} /></span>
+        </button>
 
         {hasVotes && (
           <div style={{ position: "relative", textAlign: "center", marginTop: 10, color: DIM, fontSize: 11.5, display: "flex", alignItems: "center", justifyContent: "center", gap: 5 }}>
@@ -917,6 +942,7 @@ function GroupGrid({ matches, onPick, mine }: { matches: Match[]; onPick: (id: s
 
   return (
     <section className="pj-wrap" style={{ paddingTop: 16 }}>
+      <h2 style={sectionTitle}>Más partidos para predecir</h2>
       <div className="group-grid">
         {groups.map(([g, ms]) => (
           <div key={g} className="group-card" style={{ background: BG3, border: CARD_BORDER, borderRadius: 18, padding: 16 }}>

@@ -212,6 +212,9 @@ export default function PrediccionesGame() {
   }, []);
 
   const selectMatch = useCallback((id: string) => {
+    // Abre el detalle desde arriba: si el usuario hizo scroll en el tablero, el
+    // detalle debe empezar en la cabecera del partido, no a la altura previa.
+    if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "auto" });
     setMatchId(id);
     setState(null);
     setScorers([]);
@@ -1542,8 +1545,8 @@ function ManadaHint({ pct, total }: { pct: number; total: number }) {
 }
 
 function ExactScoreForm({ match, init, editLabel, onSubmit }: { match: Match; init: Record<string, unknown> | null; editLabel: string | null; onSubmit: SubmitFn }) {
-  const [h, setH] = useState(typeof init?.home_goals === "number" ? init.home_goals : 1);
-  const [a, setA] = useState(typeof init?.away_goals === "number" ? init.away_goals : 1);
+  const [h, setH] = useState(typeof init?.home_goals === "number" ? init.home_goals : 0);
+  const [a, setA] = useState(typeof init?.away_goals === "number" ? init.away_goals : 0);
   const [busy, setBusy] = useState(false);
   return (
     <div>

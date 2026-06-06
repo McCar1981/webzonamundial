@@ -108,11 +108,20 @@ async function getSquadIndex(): Promise<Map<string, Player[]>> {
 export async function playerPhoto(
   teamName: string,
   playerName: string,
+  seed = "",
 ): Promise<string | null> {
   if (!teamName || !playerName) return null;
   const idx = await getSquadIndex();
   const squad = idx.get(norm(teamName));
   if (!squad || squad.length === 0) return null;
+
+  // Elige entre photo_url + galería del jugador (variedad), determinista por seed.
+  const pick = (p: Player): string | null => {
+    const imgs = [p.photo_url, ...(p.photos ?? [])].filter((u): u is string => !!u);
+    if (imgs.length === 0) return null;
+    const i = seed ? hashSeed(seed) % imgs.length : 0;
+    return imgs[i] ?? null;
+  };
 
   const q = norm(playerName);
   const qTokens = q.split(/\s+/).filter(Boolean);
@@ -131,7 +140,7 @@ export async function playerPhoto(
   // 1) Coincidencia exacta de nombre completo o display.
   for (const p of squad) {
     if (norm(p.full_name || "") === q || norm(p.display_name || "") === q) {
-      return p.photo_url || null;
+      return pick(p);
     }
   }
 
@@ -139,7 +148,7 @@ export async function playerPhoto(
   const bySurname = squad.filter(
     (p) => lastToken(p.full_name || "") === qSurname || lastToken(p.display_name || "") === qSurname,
   );
-  if (bySurname.length === 1) return bySurname[0].photo_url || null;
+  if (bySurname.length === 1) return pick(bySurname[0]);
 
   // 3) Varios con el mismo apellido: desambiguar por nombre/inicial.
   if (bySurname.length > 1) {
@@ -147,10 +156,64 @@ export async function playerPhoto(
       const f = firstToken(p.full_name || "");
       return qIsInitial ? f.startsWith(qFirst) : f === qFirst;
     });
-    if (refined.length === 1) return refined[0].photo_url || null;
+    if (refined.length === 1) return pick(refined[0]);
   }
 
   return null;
+}
+
+// Índice nombre de selección -> pool de imágenes (image_pool curado + fotos de
+// la convocatoria + foto del jugador estrella), una sola vez. Da variedad a los
+// push usando lo que ya tenemos de Wikimedia Commons en BIBLIA.
+let poolIndexPromise: Promise<Map<string, string[]>> | null = null;
+async function getPoolIndex(): Promise<Map<string, string[]>> {
+  if (!poolIndexPromise) {
+    poolIndexPromise = (async () => {
+      const map = new Map<string, string[]>();
+      const slugs = await listBibliaSlugs();
+      for (const slug of slugs) {
+        const t = await loadTeam(slug);
+        if (!t) continue;
+        const imgs: string[] = [];
+        for (const u of t.wc_2026?.image_pool ?? []) if (u) imgs.push(u);
+        for (const p of t.wc_2026?.likely_squad ?? []) {
+          if (p.photo_url) imgs.push(p.photo_url);
+          for (const u of p.photos ?? []) if (u) imgs.push(u);
+        }
+        const sp = t.wc_2026?.star_player?.photo_url;
+        if (sp) imgs.push(sp);
+        const uniq = [...new Set(imgs)];
+        for (const key of [t.name_en, t.name_es, t.name_local, slug]) {
+          if (key) map.set(norm(key), uniq);
+        }
+      }
+      return map;
+    })();
+  }
+  return poolIndexPromise;
+}
+
+/** Hash estable de un string -> entero no negativo (para elegir de forma
+ *  determinista pero "aleatoria" del pool, sin parpadear entre re-sondeos). */
+function hashSeed(s: string): number {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0;
+  return Math.abs(h);
+}
+
+/**
+ * Imagen variada de una selección (pool curado + convocatoria). Se usa como
+ * respaldo cuando no se resuelve la foto del jugador concreto, para no mostrar
+ * siempre al favorito. Determinista por `seed` (p.ej. el id del evento) para que
+ * el mismo aviso muestre siempre la misma imagen. null si el país no tiene fotos.
+ */
+export async function countryImage(name: string, seed = ""): Promise<string | null> {
+  if (!name) return null;
+  const idx = await getPoolIndex();
+  const imgs = idx.get(norm(name));
+  if (!imgs || imgs.length === 0) return null;
+  const i = seed ? hashSeed(seed) % imgs.length : Math.floor(Math.random() * imgs.length);
+  return imgs[i] ?? null;
 }
 
 /** Nombre en español de la selección; el original si no hay ficha. */

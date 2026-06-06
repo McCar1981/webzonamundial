@@ -159,6 +159,10 @@ export interface WorldCup2026 {
   squad_announced_date?: string;
   /** Texto descriptivo de la fuente (p.ej. "Convocatoria oficial federación"). */
   squad_source?: string;
+  /** Pool curado de imágenes del país (Wikimedia Commons): celebraciones, acción,
+   *  afición, etc. Se combina con las fotos de la convocatoria para variar la
+   *  imagen de los push. Opción A acordada con Carlos (2026-06-06). */
+  image_pool?: string[];
 }
 
 export interface QualifyingData {
@@ -286,6 +290,9 @@ export interface Player {
   market_value_eur?: number;
   status: "fixed" | "probable" | "bubble";
   photo_url?: string;
+  /** Galería adicional del jugador (varias fotos para variar la imagen del
+   *  push al nombrarlo). Wikimedia Commons. */
+  photos?: string[];
 }
 
 export interface StartingXI {

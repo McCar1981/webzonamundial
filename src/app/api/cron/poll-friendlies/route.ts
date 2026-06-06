@@ -33,7 +33,13 @@ import {
   type Score,
 } from "@/lib/friendlies/types";
 import { broadcastPush, type PushPayload } from "@/lib/push-notifications";
-import { esName, favoritePhoto, playerPhoto, teamFlagEmoji } from "@/lib/friendlies/teamInfo";
+import {
+  countryImage,
+  esName,
+  favoritePhoto,
+  playerPhoto,
+  teamFlagEmoji,
+} from "@/lib/friendlies/teamInfo";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -188,7 +194,10 @@ async function lastScorerPhoto(snap: FriendlySnapshot): Promise<string | null> {
   );
   const teamName =
     last.side === "home" ? snap.home.name : last.side === "away" ? snap.away.name : "";
-  return last.player ? await playerPhoto(teamName, last.player) : null;
+  const seed = `${snap.fixtureId}:${last.id}`;
+  // Foto del goleador; si no se resuelve, imagen variada del país que marcó.
+  const byPlayer = last.player ? await playerPhoto(teamName, last.player, seed) : null;
+  return byPlayer || (await countryImage(teamName, seed));
 }
 
 /** Una pasada completa: descubre candidatos, los sondea y manda los push nuevos.
@@ -298,13 +307,16 @@ async function runPass(
       // nombre con la convocatoria BIBLIA. Respaldo: la foto del partido.
       const teamName =
         e.side === "home" ? snap.home.name : e.side === "away" ? snap.away.name : "";
-      const actorPhoto = e.player ? await playerPhoto(teamName, e.player) : null;
+      const actorPhoto = e.player ? await playerPhoto(teamName, e.player, e.id) : null;
+      // Cadena: foto del jugador → imagen variada del país → foto del partido.
+      const eventImage =
+        actorPhoto || (await countryImage(teamName, e.id)) || matchPhoto || undefined;
       await push({
         title: label.title,
         body: label.body,
         url,
         icon: label.icon,
-        image: actorPhoto || matchPhoto || undefined,
+        image: eventImage,
         tag,
       });
       pushes++;

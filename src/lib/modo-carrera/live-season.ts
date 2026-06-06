@@ -140,6 +140,8 @@ export function beginLiveSeason(c: CareerState): CareerState | null {
   return {
     ...c,
     board: { ...c.board, objective: buildBoardObjective(c), lastVerdict: "pendiente" },
+    // Misiones de torneo (racha, etc.) son por Mundial: se reinician al arrancar.
+    missions: c.missions.filter((m) => m.kind !== "torneo"),
     season: live,
     updatedAt: now(),
   };

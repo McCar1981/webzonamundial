@@ -215,6 +215,9 @@ export function beginSeason(c: CareerState): CareerState {
   return {
     ...c,
     board: { ...c.board, objective: buildBoardObjective(c), lastVerdict: "pendiente" },
+    // Las misiones de torneo (p. ej. racha) son por Mundial: se descartan al
+    // iniciar uno nuevo para que ensureMissions las resiembre desde cero.
+    missions: c.missions.filter((m) => m.kind !== "torneo"),
     season: buildSeason(c),
     updatedAt: now(),
   };
@@ -411,6 +414,7 @@ export function playNextMatch(c0: CareerState): PlayResult {
         ...c0.reputation.stats,
         prestigio: clamp(c0.reputation.stats.prestigio + 5, 0, 100),
         mediatico: clamp(c0.reputation.stats.mediatico + 5, 0, 100),
+        carisma: clamp(c0.reputation.stats.carisma + 5, 0, 100),
       }
     : c0.reputation.stats;
 

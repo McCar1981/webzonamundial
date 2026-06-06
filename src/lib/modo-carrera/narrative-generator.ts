@@ -12,6 +12,10 @@ import { templateEntry, narrativeId, type NarrativeContext } from "./narrative";
 const DEFAULT_MODEL = "claude-haiku-4-5-20251001";
 const MAX_TOKENS = 700;
 
+// Ids canónicos de las opciones de rueda de prensa, en orden. Deben coincidir con
+// las claves de DECISION_EFFECTS (engine.ts) para que la decisión tenga efecto.
+const DECISION_IDS = ["calma", "ambicion", "cantera"] as const;
+
 let _client: Anthropic | null = null;
 function getClient(): Anthropic | null {
   if (_client) return _client;
@@ -107,9 +111,18 @@ export async function generateNarrative(kind: NarrativeKind, c: NarrativeContext
     const body = typeof parsed.body === "string" ? parsed.body.trim() : "";
     if (!body) return templateEntry(kind, c);
 
-    const choices = kind === "rueda_prensa" ? coerceChoices(parsed.choices) : undefined;
+    let choices = kind === "rueda_prensa" ? coerceChoices(parsed.choices) : undefined;
     // Una rueda de prensa sin opciones válidas no sirve: cae a plantilla.
     if (kind === "rueda_prensa" && !choices) return templateEntry(kind, c);
+    // La IA inventa ids arbitrarios ("a"/"op1"...) que NO casan con DECISION_EFFECTS
+    // (calma/ambicion/cantera). Reasignamos los ids canónicos por posición para que
+    // la decisión del jugador aplique sus efectos reales sobre moral/reputación.
+    if (kind === "rueda_prensa" && choices) {
+      if (choices.length < DECISION_IDS.length) return templateEntry(kind, c);
+      choices = choices
+        .slice(0, DECISION_IDS.length)
+        .map((ch, i) => ({ ...ch, id: DECISION_IDS[i] }));
+    }
 
     return {
       id: narrativeId(kind),

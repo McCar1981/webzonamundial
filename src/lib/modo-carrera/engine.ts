@@ -107,7 +107,7 @@ interface DecisionEffect {
 
 const DECISION_EFFECTS: Record<string, DecisionEffect> = {
   calma: { morale: 4, stats: { disciplina: 3 } },
-  ambicion: { morale: 2, stats: { mediatico: 6, prestigio: 2 } },
+  ambicion: { morale: 2, stats: { mediatico: 6, prestigio: 2, carisma: 3 } },
   cantera: { morale: 3, stats: { cantera: 6 } },
 };
 

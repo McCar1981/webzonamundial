@@ -14,6 +14,7 @@ import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { ingestNews } from "@/lib/noticias-ingest";
 import { applyRewrite } from "@/lib/noticias-rewriter";
+import { enrichDraft, enrichEnabled } from "@/lib/noticias-enrich";
 import { HOT_QUERY_KEYS, COLD_QUERY_KEYS, type WorldCupQueryKey } from "@/lib/gnews";
 import { readIngestStore, writeIngestStore, getStorePath } from "@/lib/noticias-store";
 import { broadcastPush } from "@/lib/push-notifications";
@@ -187,7 +188,11 @@ export async function GET(req: Request) {
       // en "draft" y se reintentarán otro día con cupo.
       if (capReached()) break;
       try {
-        result.drafts[i] = await applyRewrite(result.drafts[i], { recentTitles });
+        // Enriquecer el material fuente (descarga el artículo original si el
+        // snippet de GNews es pobre). Auto-skip si ya es rico; fallback al
+        // snippet ante cualquier fallo. Acotado por timeout.
+        const enriched = await enrichDraft(result.drafts[i]);
+        result.drafts[i] = await applyRewrite(enriched, { recentTitles });
         if (result.drafts[i].status === "published") {
           rewritten += 1;
           publishedThisRun += 1;
@@ -225,7 +230,8 @@ export async function GET(req: Request) {
       }
       if (capReached()) break;
       try {
-        const updated = await applyRewrite(pendingDrafts[i], { recentTitles });
+        const enriched = await enrichDraft(pendingDrafts[i]);
+        const updated = await applyRewrite(enriched, { recentTitles });
         // Reemplazar el draft viejo en store.drafts (match por sourceUrlHash).
         const idx = store.drafts.findIndex((d) => d.sourceUrlHash === pendingDrafts[i].sourceUrlHash);
         if (idx >= 0) {
@@ -329,6 +335,7 @@ export async function GET(req: Request) {
     pendingDraftsRetried,
     rewriteFailed,
     rewriteEnabled,
+    enrichEnabled: enrichEnabled(),
     abortedByTimeout,
     dailyCap: DAILY_PUBLISH_CAP,
     publishedTodayBefore: publishedToday,

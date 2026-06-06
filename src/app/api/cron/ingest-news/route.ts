@@ -15,7 +15,7 @@ import { revalidatePath } from "next/cache";
 import { ingestNews } from "@/lib/noticias-ingest";
 import { applyRewrite } from "@/lib/noticias-rewriter";
 import { enrichDraft, enrichEnabled } from "@/lib/noticias-enrich";
-import { HOT_QUERY_KEYS, COLD_QUERY_KEYS, type WorldCupQueryKey } from "@/lib/gnews";
+import { WORLD_CUP_QUERIES, HOT_QUERY_KEYS, COLD_QUERY_KEYS, type WorldCupQueryKey } from "@/lib/gnews";
 import { readIngestStore, writeIngestStore, getStorePath } from "@/lib/noticias-store";
 import { broadcastPush } from "@/lib/push-notifications";
 import type { DraftNoticia } from "@/lib/noticias-ingest";
@@ -93,13 +93,28 @@ export async function GET(req: Request) {
       queries.push(k);
     }
   };
-  // Beats calientes: rotan por hora a lo largo de HOT_QUERY_KEYS.
-  for (let i = 0; i < hotPerTick; i++) {
-    pushQuery(HOT_QUERY_KEYS[(hourSeed + i) % HOT_QUERY_KEYS.length]);
+  // Override manual de beats: ?beats=squad,injuries,stars fuerza esos beats
+  // (ignora la rotación por hora). Útil para ponerse al día rápido tras una
+  // caída: la rotación normal depende de getUTCHours(), así que disparar varios
+  // runs la misma hora repetiría los mismos beats. Con ?beats puedo apuntar a
+  // los calientes ahora mismo. Solo se aceptan claves válidas de WORLD_CUP_QUERIES.
+  const beatsParam = url.searchParams.get("beats");
+  if (beatsParam) {
+    const valid = new Set(Object.keys(WORLD_CUP_QUERIES));
+    for (const k of beatsParam.split(",").map((s) => s.trim())) {
+      if (valid.has(k)) pushQuery(k as WorldCupQueryKey);
+    }
   }
-  // Beats fríos: cobertura residual, rotando por hora.
-  for (let i = 0; i < COLD_PER_TICK; i++) {
-    pushQuery(COLD_QUERY_KEYS[(hourSeed + i) % COLD_QUERY_KEYS.length]);
+  // Si no hubo override válido, rotación normal sesgada a beats calientes.
+  if (queries.length === 0) {
+    // Beats calientes: rotan por hora a lo largo de HOT_QUERY_KEYS.
+    for (let i = 0; i < hotPerTick; i++) {
+      pushQuery(HOT_QUERY_KEYS[(hourSeed + i) % HOT_QUERY_KEYS.length]);
+    }
+    // Beats fríos: cobertura residual, rotando por hora.
+    for (let i = 0; i < COLD_PER_TICK; i++) {
+      pushQuery(COLD_QUERY_KEYS[(hourSeed + i) % COLD_QUERY_KEYS.length]);
+    }
   }
 
   const result = await ingestNews({

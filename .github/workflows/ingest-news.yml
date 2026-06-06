@@ -11,6 +11,11 @@ on:
   schedule:
     - cron: "0 * * * *"
   workflow_dispatch: # allow manual run from the Actions tab
+    inputs:
+      beats:
+        description: "Beats a forzar (coma-separados, p.ej. squad,injuries,stars). Vacío = rotación normal por hora."
+        required: false
+        default: ""
 
 jobs:
   ingest:
@@ -20,13 +25,19 @@ jobs:
         env:
           SITE_URL: ${{ secrets.SITE_URL }}
           CRON_SECRET: ${{ secrets.CRON_SECRET }}
+          BEATS: ${{ github.event.inputs.beats }}
         run: |
           if [ -z "$SITE_URL" ] || [ -z "$CRON_SECRET" ]; then
             echo "::error::Missing SITE_URL or CRON_SECRET secrets"
             exit 1
           fi
+          URL="$SITE_URL/api/cron/ingest-news"
+          if [ -n "$BEATS" ]; then
+            URL="$URL?beats=$BEATS"
+            echo "Forzando beats: $BEATS"
+          fi
           curl -fsSL -m 300 \
             -H "Authorization: Bearer $CRON_SECRET" \
-            "$SITE_URL/api/cron/ingest-news" \
+            "$URL" \
             -o response.json
           cat response.json

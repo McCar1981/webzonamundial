@@ -49,14 +49,20 @@ export default function HubView({
   const nextOpp = nextMatch ? SELECCIONES.find((s) => s.slug === nextMatch.opponentSlug) : undefined;
 
   return (
-    <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "auto 1fr", gap: 28, alignItems: "start" }}>
+    <div className="mc-hub-grid" style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "auto 1fr", gap: 28, alignItems: "start" }}>
+      <style>{`
+        @media (max-width: 860px) {
+          .mc-hub-grid { grid-template-columns: 1fr !important; gap: 18px !important; }
+          .mc-hub-grid [data-hub-ficha] { justify-self: center; }
+        }
+      `}</style>
       {/* Carta DT */}
-      <div data-hub-ficha style={{ display: "flex", justifyContent: "center" }}>
+      <div data-hub-ficha style={{ display: "flex", justifyContent: "center", minWidth: 0 }}>
         <FichaDT identity={career.identity} progression={pr} />
       </div>
 
       {/* Panel derecho */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 18, minWidth: 0 }}>
         {/* Racha diaria (gancho de retorno) */}
         {onClaimStreak && <StreakCard career={career} onClaim={onClaimStreak} />}
 

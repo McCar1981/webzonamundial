@@ -107,6 +107,9 @@ export default function OnboardingDT({
         .mc-anim-pop { animation: mcPop .6s cubic-bezier(.2,.8,.2,1) both; }
         .mc-card-reveal { animation: mcPop .8s cubic-bezier(.2,.8,.2,1) both, mcFloat 5s ease-in-out 1s infinite; }
         .mc-delay-1 { animation-delay:.12s; } .mc-delay-2 { animation-delay:.24s; } .mc-delay-3 { animation-delay:.36s; }
+        @media (max-width: 860px) {
+          .mc-ob-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
+        }
       `}</style>
 
       {/* Fondo cinemático + degradado (fallback si la imagen no existe).
@@ -128,20 +131,20 @@ export default function OnboardingDT({
           ))}
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: showCard ? "1fr auto" : "1fr", gap: 48, alignItems: "center" }}>
+        <div className="mc-ob-grid" style={{ display: "grid", gridTemplateColumns: showCard ? "1fr auto" : "1fr", gap: 48, alignItems: "center" }}>
           {/* Columna narrativa */}
           <div key={scene} className="mc-anim-up">
             <span style={{ color: GOLD, fontSize: 12, fontWeight: 800, letterSpacing: 3, textTransform: "uppercase" }}>{KICKER[scene]}</span>
 
             {scene === "prologo" && (
               <>
-                <h1 className="mc-anim-up mc-delay-1" style={{ fontSize: "clamp(34px,6vw,60px)", fontWeight: 900, lineHeight: 1.05, margin: "14px 0 18px" }}>
+                <h1 className="mc-anim-up mc-delay-1" style={{ fontSize: "clamp(34px,6vw,60px)", fontWeight: 900, lineHeight: 1.05, margin: "14px 0 18px", textShadow: "0 2px 24px rgba(0,0,0,0.7)" }}>
                   Cada leyenda<br />tiene un <span style={{ color: GOLD }}>comienzo</span>
                 </h1>
-                <p className="mc-anim-up mc-delay-2" style={{ color: MID, fontSize: 18, lineHeight: 1.75, maxWidth: 560 }}>
+                <p className="mc-anim-up mc-delay-2" style={{ color: "#dbe2f1", fontSize: 18, lineHeight: 1.75, maxWidth: 560, textShadow: "0 1px 14px rgba(0,0,0,0.85)" }}>
                   No naciste con un trofeo en las manos. Naciste con una idea. Hoy te sientas por primera vez en el
                   banquillo de una selección, con un país entero mirándote. Lo que pase a partir de aquí —los títulos,
-                  las remontadas, las noches eternas— lo escribes tú. <span style={{ color: GOLD2, fontWeight: 600 }}>Esta es tu historia.</span>
+                  las remontadas, las noches eternas— lo escribes tú. <span style={{ color: GOLD2, fontWeight: 700 }}>Esta es tu historia.</span>
                 </p>
               </>
             )}

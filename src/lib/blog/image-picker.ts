@@ -365,6 +365,7 @@ async function searchOnce(
     width: number;
     landscape: boolean;
     isJpeg: boolean;
+    soccer: boolean;
     credit: ImageCredit;
   }> = [];
 
@@ -418,11 +419,27 @@ async function searchOnce(
       continue;
     }
     const author = stripHtml(em(info, "Artist")) || "Autor desconocido";
+    // Relevancia FUTBOLÍSTICA: prioriza fotos de selección/Mundial sobre otras
+    // que solo mencionan el país (una iglesia en Colombia, un equipo de fútbol
+    // americano en EE.UU.). Exige términos de fútbol-asociación, no el genérico
+    // "football" (que el fútbol americano también usa).
+    const relText = norm(
+      [
+        title,
+        stripHtml(em(info, "ImageDescription")),
+        stripHtml(em(info, "Categories")),
+      ].join(" "),
+    );
+    const soccer =
+      /national (football |soccer )?team|world cup|f[uú]tbol|selecci[oó]n|\bsoccer\b|\bfifa\b|\buefa\b|conmebol|\bcopa\b/.test(
+        relText,
+      );
     candidates.push({
       src,
       width,
       landscape: width >= height,
       isJpeg: /image\/jpeg/.test(info.mime ?? ""),
+      soccer,
       credit: {
         author: author.slice(0, 120),
         license: licenseShort || "CC BY-SA",
@@ -436,6 +453,9 @@ async function searchOnce(
   if (candidates.length === 0) return diag;
 
   candidates.sort((a, b) => {
+    // Relevancia futbolística primero (selección/Mundial sobre cualquier otra
+    // foto que solo comparta el país).
+    if (a.soccer !== b.soccer) return a.soccer ? -1 : 1;
     // JPEG primero (las fotos reales suelen ser jpeg; PNG suele ser mapa/diagrama).
     if (a.isJpeg !== b.isJpeg) return a.isJpeg ? -1 : 1;
     if (a.landscape !== b.landscape) return a.landscape ? -1 : 1;

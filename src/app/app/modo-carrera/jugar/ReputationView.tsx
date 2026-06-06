@@ -5,7 +5,7 @@
 "use client";
 
 import { BG2, BG3, GOLD, GOLD2, MID, DIM } from "./fx";
-import { LockIcon, StarIcon } from "./icons";
+import { LockIcon } from "./icons";
 import { TITLES } from "@/lib/modo-carrera/constants";
 import type { CareerState } from "@/lib/modo-carrera/types";
 
@@ -137,7 +137,17 @@ export default function ReputationView({ career }: { career: CareerState }) {
                   animationDelay: has ? `${i * 0.1}s` : undefined,
                 }}
               >
-                <span style={{ color: has ? GOLD2 : MID, marginTop: 2 }}>{has ? <StarIcon size={18} /> : <LockIcon size={16} />}</span>
+                {has ? (
+                  <img
+                    src={`/img/modo-carrera/icons/badges/badge-${t.id}.png`}
+                    alt=""
+                    width={44}
+                    height={44}
+                    style={{ flexShrink: 0, objectFit: "contain", filter: "drop-shadow(0 2px 6px rgba(201,168,76,0.35))" }}
+                  />
+                ) : (
+                  <span style={{ color: MID, marginTop: 2 }}><LockIcon size={16} /></span>
+                )}
                 <div>
                   <div style={{ fontSize: 13.5, fontWeight: 800, color: has ? "#fff" : MID }}>{t.name}</div>
                   <div style={{ fontSize: 11.5, color: DIM, marginTop: 2, lineHeight: 1.4 }}>{t.description}</div>

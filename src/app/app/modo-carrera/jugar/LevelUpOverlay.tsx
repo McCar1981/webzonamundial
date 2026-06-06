@@ -67,6 +67,27 @@ export default function LevelUpOverlay({
         @keyframes mcLvlSpark { 0% { transform: translate(0,0) scale(1); opacity: 1; } 100% { transform: translate(var(--dx), var(--dy)) scale(.2); opacity: 0; } }
       `}</style>
 
+      {/* Vídeo de celebración (de fondo; si no carga, quedan flash + partículas) */}
+      <video
+        aria-hidden
+        autoPlay
+        muted
+        playsInline
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          opacity: 0.45,
+          mixBlendMode: "screen",
+          pointerEvents: "none",
+        }}
+        onError={(e) => { (e.currentTarget as HTMLVideoElement).style.display = "none"; }}
+      >
+        <source src="/img/modo-carrera/video/subida-nivel.mp4" type="video/mp4" />
+      </video>
+
       {/* Flash dorado */}
       <div
         aria-hidden

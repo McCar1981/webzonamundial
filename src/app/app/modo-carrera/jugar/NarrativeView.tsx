@@ -1,8 +1,8 @@
 // src/app/app/modo-carrera/jugar/NarrativeView.tsx
 // Pilar 6 — Narrativa viva. Muestra el historial de entradas narrativas
 // (titulares, briefings, ruedas de prensa) y resuelve las decisiones pendientes.
-// La generación con IA (Claude) llega en F4; aquí se renderiza lo ya almacenado
-// (p.ej. el titular de apertura sembrado por el onboarding). SVG-only.
+// La generación con IA (Claude) está gateada por cupo diario / Pase DT; al agotarse
+// se cae a plantillas. Los titulares se imprimen sobre textura de periódico.
 
 "use client";
 
@@ -23,6 +23,15 @@ const GENERATE_BUTTONS: { kind: NarrativeKind; label: string }[] = [
   { kind: "titular", label: "Titular de prensa" },
   { kind: "rueda_prensa", label: "Rueda de prensa" },
 ];
+
+// Los eventos no llevan subtipo en los datos; elegimos el icono por palabras
+// clave del cuerpo (lesión / oferta-fichaje). Sin coincidencia → sin icono.
+function eventIcon(body: string): string | null {
+  const t = body.toLowerCase();
+  if (/lesi[óo]n|lesionad|baja|recae/.test(t)) return "/img/modo-carrera/icons/evento-lesion.png";
+  if (/oferta|fichaj|fichar|traspaso|interes/.test(t)) return "/img/modo-carrera/icons/evento-oferta.png";
+  return null;
+}
 
 function fmtDate(iso: string): string {
   const d = new Date(iso);
@@ -64,9 +73,22 @@ export default function NarrativeView({
         @keyframes mcDots { 0%,80%,100%{opacity:.2} 40%{opacity:1} }
         .mc-dot { animation: mcDots 1.2s infinite both; }
       `}</style>
-      <div style={{ marginBottom: 20 }}>
-        <h2 style={{ fontSize: 22, fontWeight: 900, color: "#fff" }}>Narrativa</h2>
-        <p style={{ fontSize: 13, color: MID, marginTop: 4 }}>
+      <div
+        style={{
+          position: "relative",
+          overflow: "hidden",
+          marginBottom: 20,
+          padding: "26px 22px",
+          borderRadius: 16,
+          border: "1px solid rgba(255,255,255,0.06)",
+          backgroundImage:
+            "linear-gradient(180deg, rgba(6,11,20,0.55), rgba(6,11,20,0.88)), url('/img/modo-carrera/narrativa/prensa-bg.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <h2 style={{ fontSize: 22, fontWeight: 900, color: "#fff", position: "relative" }}>Narrativa</h2>
+        <p style={{ fontSize: 13, color: MID, marginTop: 4, position: "relative" }}>
           La historia de tu carrera: titulares, briefings y ruedas de prensa.
         </p>
       </div>
@@ -148,15 +170,65 @@ export default function NarrativeView({
         <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
           {entries.map((e) => {
             const pending = e.choices && e.choices.length > 0 && !e.chosen;
+            const isTitular = e.kind === "titular";
+            // Los titulares se imprimen sobre textura de periódico (tinta oscura);
+            // el resto mantiene el estilo de tarjeta oscura.
+            const ink = "#1a1610";
             return (
-              <article key={e.id} style={{ padding: 18, borderRadius: 14, background: BG2, border: `1px solid ${pending ? GOLD : "rgba(255,255,255,0.06)"}` }}>
+              <article
+                key={e.id}
+                style={
+                  isTitular
+                    ? {
+                        padding: 20,
+                        borderRadius: 14,
+                        backgroundImage:
+                          "linear-gradient(180deg, rgba(231,224,205,0.92), rgba(214,205,180,0.95)), url('/img/modo-carrera/narrativa/periodico-texture.png')",
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        border: `1px solid ${pending ? GOLD : "rgba(26,22,16,0.25)"}`,
+                        boxShadow: "inset 0 0 60px rgba(0,0,0,0.08)",
+                      }
+                    : { padding: 18, borderRadius: 14, background: BG2, border: `1px solid ${pending ? GOLD : "rgba(255,255,255,0.06)"}` }
+                }
+              >
                 <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-                  <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: 1, textTransform: "uppercase", color: GOLD, border: `1px solid ${GOLD}55`, borderRadius: 999, padding: "2px 8px" }}>
+                  {e.kind === "evento" && eventIcon(e.body) && (
+                    <img
+                      src={eventIcon(e.body) as string}
+                      alt=""
+                      width={20}
+                      height={20}
+                      style={{ objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.92 }}
+                    />
+                  )}
+                  <span
+                    style={{
+                      fontSize: 10,
+                      fontWeight: 800,
+                      letterSpacing: 1,
+                      textTransform: "uppercase",
+                      color: isTitular ? ink : GOLD,
+                      border: `1px solid ${isTitular ? "rgba(26,22,16,0.4)" : `${GOLD}55`}`,
+                      borderRadius: 999,
+                      padding: "2px 8px",
+                    }}
+                  >
                     {KIND_LABEL[e.kind]}
                   </span>
-                  <span style={{ marginLeft: "auto", fontSize: 11, color: DIM }}>{fmtDate(e.createdAt)}</span>
+                  <span style={{ marginLeft: "auto", fontSize: 11, color: isTitular ? "rgba(26,22,16,0.55)" : DIM }}>{fmtDate(e.createdAt)}</span>
                 </div>
-                <p style={{ fontSize: 15, color: "#fff", lineHeight: 1.6, fontWeight: e.kind === "titular" ? 800 : 500 }}>{e.body}</p>
+                <p
+                  style={{
+                    fontSize: isTitular ? 17 : 15,
+                    color: isTitular ? ink : "#fff",
+                    lineHeight: 1.6,
+                    fontWeight: isTitular ? 800 : 500,
+                    fontFamily: isTitular ? "Georgia, 'Times New Roman', serif" : undefined,
+                  }}
+                >
+                  {e.body}
+                </p>
 
                 {e.choices && e.choices.length > 0 && (
                   <div style={{ marginTop: 14, display: "flex", flexDirection: "column", gap: 8 }}>

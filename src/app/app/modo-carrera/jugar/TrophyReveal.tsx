@@ -56,6 +56,27 @@ export default function TrophyReveal({ trophy, onClose }: { trophy: Trophy; onCl
         @keyframes mcTrConfetti { 0% { transform: translateY(-12vh) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 100% { transform: translateY(96vh) rotate(540deg); opacity: 0; } }
       `}</style>
 
+      {/* Vídeo de reveal (de fondo; si no carga, quedan rayos + confeti + copa) */}
+      <video
+        aria-hidden
+        autoPlay
+        muted
+        playsInline
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          opacity: 0.4,
+          mixBlendMode: "screen",
+          pointerEvents: "none",
+        }}
+        onError={(e) => { (e.currentTarget as HTMLVideoElement).style.display = "none"; }}
+      >
+        <source src="/img/modo-carrera/video/trofeo-reveal.mp4" type="video/mp4" />
+      </video>
+
       {/* Rayos de luz girando */}
       <div
         aria-hidden

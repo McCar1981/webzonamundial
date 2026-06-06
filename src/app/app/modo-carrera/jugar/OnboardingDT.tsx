@@ -276,9 +276,34 @@ export default function OnboardingDT({
           {showCard && (
             <div style={{ display: "flex", justifyContent: "center" }}>
               <div className={scene === "comienzo" ? "mc-card-reveal" : "mc-anim-pop"} style={{ position: "relative" }}>
-                <FichaDT identity={career.identity} progression={career.progression} />
                 {scene === "comienzo" && (
-                  <div style={{ position: "absolute", inset: 0, borderRadius: 20, overflow: "hidden", pointerEvents: "none" }}>
+                  <video
+                    aria-hidden
+                    autoPlay
+                    muted
+                    playsInline
+                    style={{
+                      position: "absolute",
+                      top: "-22%",
+                      left: "-22%",
+                      width: "144%",
+                      height: "144%",
+                      objectFit: "contain",
+                      opacity: 0.55,
+                      mixBlendMode: "screen",
+                      pointerEvents: "none",
+                      zIndex: 0,
+                    }}
+                    onError={(e) => { (e.currentTarget as HTMLVideoElement).style.display = "none"; }}
+                  >
+                    <source src="/img/modo-carrera/video/reveal-carta.mp4" type="video/mp4" />
+                  </video>
+                )}
+                <div style={{ position: "relative", zIndex: 1 }}>
+                  <FichaDT identity={career.identity} progression={career.progression} />
+                </div>
+                {scene === "comienzo" && (
+                  <div style={{ position: "absolute", inset: 0, borderRadius: 20, overflow: "hidden", pointerEvents: "none", zIndex: 2 }}>
                     <div style={{ position: "absolute", top: 0, bottom: 0, width: "60%", background: "linear-gradient(115deg, transparent, rgba(255,255,255,0.5), transparent)", animation: "mcShine 1.6s ease-in-out .4s 1 both" }} />
                   </div>
                 )}

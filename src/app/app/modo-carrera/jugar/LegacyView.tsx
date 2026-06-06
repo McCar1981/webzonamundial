@@ -14,6 +14,15 @@ import type { CareerState, Trophy } from "@/lib/modo-carrera/types";
 
 const TROPHY_IMG = "/img/modo-carrera/trofeos/trofeo-mundial.png";
 
+// Elegimos la imagen del trofeo por palabras clave del nombre (no hay subtipo
+// en los datos). Por defecto, la copa del Mundial.
+function trophyImg(name: string): string {
+  const t = name.toLowerCase();
+  if (/grupo|fase de grupos/.test(t)) return "/img/modo-carrera/trofeos/trofeo-grupos.png";
+  if (/octavo|cuarto|eliminator|fase final/.test(t)) return "/img/modo-carrera/trofeos/trofeo-octavos.png";
+  return TROPHY_IMG;
+}
+
 /** Cuenta animada de 0 al valor al montar. */
 function useCountUp(target: number, ms = 900): number {
   const [v, setV] = useState(0);
@@ -103,8 +112,21 @@ export default function LegacyView({ career }: { career: CareerState }) {
       </div>
 
       {/* Vitrina de trofeos */}
-      <div style={{ padding: 18, borderRadius: 16, background: BG2, border: "1px solid rgba(255,255,255,0.05)", marginBottom: 16 }}>
-        <h3 style={{ fontSize: 13, fontWeight: 800, letterSpacing: 1, textTransform: "uppercase", color: GOLD, marginBottom: 14 }}>Vitrina</h3>
+      <div
+        style={{
+          position: "relative",
+          overflow: "hidden",
+          padding: 18,
+          borderRadius: 16,
+          border: "1px solid rgba(255,255,255,0.05)",
+          marginBottom: 16,
+          backgroundImage:
+            "linear-gradient(180deg, rgba(15,29,50,0.82), rgba(6,11,20,0.94)), url('/img/modo-carrera/trofeos/vitrina-bg.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <h3 style={{ fontSize: 13, fontWeight: 800, letterSpacing: 1, textTransform: "uppercase", color: GOLD, marginBottom: 14, position: "relative" }}>Vitrina</h3>
         {legacy.trophies.length === 0 ? (
           <div style={{ color: DIM, fontSize: 14, padding: "20px 0", textAlign: "center" }}>
             La vitrina está vacía. Gana torneos para llenarla de gloria.
@@ -131,7 +153,7 @@ export default function LegacyView({ career }: { career: CareerState }) {
                   />
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={TROPHY_IMG}
+                    src={trophyImg(t.name)}
                     alt=""
                     style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain" }}
                     onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}

@@ -134,6 +134,7 @@ export default function MatchLive({
   const [clock, setClock] = useState(0);
   const [events, setEvents] = useState<GoalEvent[]>([]);
   const [goalFx, setGoalFx] = useState<GoalEvent | null>(null);
+  const [decisionLeft, setDecisionLeft] = useState(10);
   const lsRef = useRef<LiveMatchState | null>(null);
   const resRef = useRef<LiveMatchResult | null>(null);
   const clockRef = useRef(0);
@@ -233,6 +234,22 @@ export default function MatchLive({
     return () => clearTimeout(t);
   }, [shown.feed]);
 
+  // Cuenta atrás de la decisión del 60': el banco te apura. Si llega a 0, el
+  // cuerpo técnico mantiene el plan por ti (primera opción = KEEP).
+  useEffect(() => {
+    if (phase !== "decision") {
+      setDecisionLeft(10);
+      return;
+    }
+    if (decisionLeft <= 0) {
+      pickChoice(choicesFor(shown.gf, shown.ga)[0]);
+      return;
+    }
+    const t = setTimeout(() => setDecisionLeft((n) => n - 1), 1000);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase, decisionLeft]);
+
   const res = resRef.current;
   const finalGf = res ? res.gf : shown.gf;
   const finalGa = res ? res.ga : shown.ga;
@@ -281,6 +298,9 @@ export default function MatchLive({
         @keyframes mlGolUp { 0% { transform: translateY(26px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
         @keyframes mlWinIn { 0% { transform: scale(.5); opacity: 0; filter: blur(6px); } 60% { transform: scale(1.08); } 100% { transform: scale(1); opacity: 1; filter: blur(0); } }
         @keyframes mlGlow { 0%,100% { opacity: .45; transform: scale(1); } 50% { opacity: .8; transform: scale(1.08); } }
+        @keyframes mlDecHdr { 0% { transform: translateY(-14px) scale(.9); opacity: 0; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
+        @keyframes mlDecCard { 0% { transform: translateX(-22px); opacity: 0; } 100% { transform: translateX(0); opacity: 1; } }
+        @keyframes mlDecBorder { 0%,100% { box-shadow: 0 24px 70px rgba(0,0,0,0.65), 0 0 0 0 ${GOLD}00; } 50% { box-shadow: 0 24px 70px rgba(0,0,0,0.65), 0 0 26px 2px ${GOLD}55; } }
       `}</style>
 
       {phase === "fulltime" && outcome === "V" && <Confetti pieces={56} />}
@@ -308,6 +328,7 @@ export default function MatchLive({
           background: BG2,
           border: `1px solid ${phase === "fulltime" ? outColor : GOLD}`,
           boxShadow: "0 24px 70px rgba(0,0,0,0.65)",
+          animation: phase === "decision" ? "mlDecBorder 1.6s ease-in-out infinite" : undefined,
         }}
       >
         {/* Cabecera: etiqueta de fase / clásico */}
@@ -446,22 +467,54 @@ export default function MatchLive({
           </div>
         )}
 
-        {/* ── DECISIÓN minuto 60 ── */}
+        {/* ── DECISIÓN minuto 60 (momento teatral: el banquillo te mira) ── */}
         {phase === "decision" && (
           <>
-            <div style={{ textAlign: "center", fontSize: 12, fontWeight: 800, letterSpacing: 1, textTransform: "uppercase", color: GOLD, margin: "6px 0 4px" }}>
-              Minuto 60 · tu decisión
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12, margin: "6px 0 6px", animation: "mlDecHdr .45s cubic-bezier(.2,.9,.3,1.3) both" }}>
+              {/* Cronómetro circular de presión */}
+              <div style={{ position: "relative", width: 44, height: 44, flexShrink: 0 }}>
+                <svg width="44" height="44" viewBox="0 0 44 44" style={{ transform: "rotate(-90deg)" }}>
+                  <circle cx="22" cy="22" r="18" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="3" />
+                  <circle
+                    cx="22"
+                    cy="22"
+                    r="18"
+                    fill="none"
+                    stroke={decisionLeft <= 3 ? RED : GOLD}
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeDasharray={2 * Math.PI * 18}
+                    strokeDashoffset={2 * Math.PI * 18 * (1 - decisionLeft / 10)}
+                    style={{ transition: "stroke-dashoffset 1s linear, stroke .3s" }}
+                  />
+                </svg>
+                <span style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 15, fontWeight: 900, color: decisionLeft <= 3 ? RED : "#fff", animation: decisionLeft <= 3 ? "mlPulse .5s infinite" : "none" }}>
+                  {decisionLeft}
+                </span>
+              </div>
+              <div style={{ textAlign: "left" }}>
+                <div style={{ fontSize: 12, fontWeight: 900, letterSpacing: 1, textTransform: "uppercase", color: GOLD }}>Minuto 60 · tu decisión</div>
+                <div style={{ fontSize: 11.5, color: DIM, fontStyle: "italic", marginTop: 1 }}>El banquillo te mira…</div>
+              </div>
             </div>
             <div style={{ textAlign: "center", fontSize: 12.5, color: MID, marginBottom: 12 }}>
               {shown.gf > shown.ga ? "Vas ganando. ¿Cómo gestionas la ventaja?" : shown.gf < shown.ga ? "Vas por detrás. ¿Cómo reaccionas?" : "Todo igualado. ¿Qué arriesgas?"}
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              {decisionChoices.map((ch) => (
+              {decisionChoices.map((ch, i) => (
                 <button
                   key={ch.id}
                   type="button"
                   onClick={() => pickChoice(ch)}
-                  style={{ textAlign: "left", padding: "12px 14px", borderRadius: 12, cursor: "pointer", background: BG3, border: "1px solid rgba(255,255,255,0.06)" }}
+                  style={{
+                    textAlign: "left",
+                    padding: "12px 14px",
+                    borderRadius: 12,
+                    cursor: "pointer",
+                    background: BG3,
+                    border: "1px solid rgba(255,255,255,0.06)",
+                    animation: `mlDecCard .4s ${0.1 + i * 0.09}s cubic-bezier(.2,.9,.3,1.2) both`,
+                  }}
                 >
                   <div style={{ fontSize: 13.5, fontWeight: 800, color: "#fff" }}>{ch.name}</div>
                   <div style={{ fontSize: 12, color: MID, marginTop: 3, lineHeight: 1.5 }}>{ch.description}</div>

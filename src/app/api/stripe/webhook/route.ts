@@ -20,7 +20,9 @@ import {
   getFounderRecord,
   type FounderRecord,
 } from "@/lib/founders/store";
-import { sendFounderConfirmationEmail } from "@/lib/email";
+import { recordBarPlanPayment, markBarPaymentRefunded, getBarById } from "@/lib/bars/store";
+import { getPlan } from "@/lib/bars/plans";
+import { sendFounderConfirmationEmail, sendBarPlanConfirmationEmail } from "@/lib/email";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -88,14 +90,78 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
   });
 }
 
+async function handleBarPlanCheckout(session: Stripe.Checkout.Session) {
+  const barId = session.metadata?.bar_id;
+  const planId = session.metadata?.plan_id;
+  if (!barId || !planId) {
+    console.warn("[stripe webhook] bar_plan checkout sin bar_id/plan_id", session.id);
+    return;
+  }
+
+  // Resolvemos receipt URL desde el PaymentIntent → Charge.
+  let receiptUrl: string | null = null;
+  let paymentIntentId: string | null = null;
+  if (session.payment_intent) {
+    paymentIntentId =
+      typeof session.payment_intent === "string" ? session.payment_intent : session.payment_intent.id;
+    try {
+      const stripe = getStripe();
+      const pi = await stripe.paymentIntents.retrieve(paymentIntentId, { expand: ["latest_charge"] });
+      const charge = pi.latest_charge as Stripe.Charge | null;
+      receiptUrl = charge?.receipt_url || null;
+    } catch (err) {
+      console.warn("[stripe webhook] no pude resolver receipt (bar)", (err as Error).message);
+    }
+  }
+
+  const amount = session.amount_total ?? Number(session.metadata?.amount ?? 0);
+  const currency = (session.currency ?? session.metadata?.currency ?? "eur").toLowerCase();
+  const customerId = typeof session.customer === "string" ? session.customer : session.customer?.id ?? null;
+
+  await recordBarPlanPayment(barId, {
+    planId,
+    amount,
+    currency,
+    stripeSessionId: session.id,
+    stripePaymentIntentId: paymentIntentId,
+    stripeCustomerId: customerId,
+    receiptUrl,
+  });
+
+  // Email de confirmación al dueño (no bloquea el ack al webhook).
+  const email = (session.metadata?.email || session.customer_email || "").toLowerCase().trim();
+  if (email) {
+    const bar = await getBarById(barId);
+    void sendBarPlanConfirmationEmail({
+      to: email,
+      barName: bar?.name || "tu bar",
+      planName: getPlan(planId).name,
+      amount: formatAmount(amount, currency),
+      currency,
+      dashboardUrl: "https://zonamundial.app/bar-dashboard",
+      receiptUrl,
+    });
+  }
+}
+
 async function handleChargeRefunded(charge: Stripe.Charge) {
-  // Sólo nos interesan reembolsos completos del Founders Pass.
   const product = charge.metadata?.product;
-  if (product !== "founders_pass") return;
-  // amount_refunded < amount = parcial. Para Founders Pass tratamos cualquier
-  // reembolso como total porque es un único pago de 1 unidad.
   if (charge.amount_refunded === 0) return;
 
+  // Reembolso de un plan de bar.
+  if (product?.startsWith("bar_plan_")) {
+    const barId = charge.metadata?.bar_id;
+    if (!barId) {
+      console.warn("[stripe webhook] charge.refunded (bar) sin bar_id", charge.id);
+      return;
+    }
+    await markBarPaymentRefunded(barId);
+    return;
+  }
+
+  // Reembolso del Founders Pass. Cualquier reembolso se trata como total
+  // porque es un único pago de 1 unidad.
+  if (product !== "founders_pass") return;
   const email = (charge.metadata?.email || charge.receipt_email || "").toLowerCase().trim();
   if (!email) {
     console.warn("[stripe webhook] charge.refunded sin email", charge.id);
@@ -129,9 +195,15 @@ export async function POST(request: NextRequest) {
 
   try {
     switch (event.type) {
-      case "checkout.session.completed":
-        await handleCheckoutCompleted(event.data.object as Stripe.Checkout.Session);
+      case "checkout.session.completed": {
+        const session = event.data.object as Stripe.Checkout.Session;
+        if (session.metadata?.product?.startsWith("bar_plan_")) {
+          await handleBarPlanCheckout(session);
+        } else {
+          await handleCheckoutCompleted(session);
+        }
         break;
+      }
       case "charge.refunded":
         await handleChargeRefunded(event.data.object as Stripe.Charge);
         break;

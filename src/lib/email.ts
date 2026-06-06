@@ -335,6 +335,46 @@ export async function sendDailyDigest(opts: {
 }
 
 /**
+ * Confirmación de compra de un plan de bar (Porras Digitales para Bares).
+ */
+export async function sendBarPlanConfirmationEmail(opts: {
+  to: string;
+  barName: string;
+  planName: string;
+  amount: string;
+  currency: string;
+  dashboardUrl: string;
+  receiptUrl?: string | null;
+}): Promise<boolean> {
+  const receiptLine = opts.receiptUrl
+    ? `<p style="margin-top:14px;"><a href="${opts.receiptUrl}" style="color:#0066cc;">Descargar recibo oficial</a></p>`
+    : '';
+  return sendEmail({
+    to: opts.to,
+    subject: `Plan ${opts.planName} activado · ${opts.barName}`,
+    html: brandedEmail({
+      preheader: `La porra de ${opts.barName} ya está activa con el plan ${opts.planName}.`,
+      heading: 'Tu porra de bar está activa',
+      bodyHtml: `
+        <p>El pago de <strong>${escapeHtml(opts.amount)} ${escapeHtml(opts.currency.toUpperCase())}</strong> para
+        <strong>${escapeHtml(opts.barName)}</strong> se ha procesado correctamente.</p>
+        <p>Ya tienes activo el plan <strong>${escapeHtml(opts.planName)}</strong>. Desde tu panel puedes:</p>
+        <ul style="line-height:1.8;padding-left:20px;color:#1f2937;">
+          <li>Publicar la página de tu bar y compartir el QR.</li>
+          <li>Configurar premios y personalizar el aspecto.</li>
+          <li>Abrir la pantalla TV para el local.</li>
+          <li>Ver el ranking y las estadísticas de tu porra.</li>
+        </ul>
+        <p style="margin-top:18px;">Gracias por confiar en ZonaMundial para llenar tu bar en días de partido.</p>
+        ${receiptLine}
+      `,
+      ctaLabel: 'Ir a mi panel del bar',
+      ctaHref: opts.dashboardUrl,
+    }),
+  });
+}
+
+/**
  * Confirmación de compra del Founders Pass.
  */
 export async function sendFounderConfirmationEmail(opts: {

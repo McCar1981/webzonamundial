@@ -7,7 +7,7 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { requireUser } from "@/lib/auth-helpers";
-import { getBarByOwner, barStats, getMainQr, listPrizes } from "@/lib/bars/store";
+import { getBarByOwner, barStats, getMainQr, listPrizes, getBarPayment } from "@/lib/bars/store";
 import BarDashboard from "./BarDashboard";
 
 export const dynamic = "force-dynamic";
@@ -38,15 +38,17 @@ export default async function BarDashboardPage() {
         initialStats={null}
         initialQr={null}
         initialPrizes={[]}
+        initialPayment={null}
         origin={origin}
       />
     );
   }
 
-  const [stats, qr, prizes] = await Promise.all([
+  const [stats, qr, prizes, payment] = await Promise.all([
     barStats(bar.id),
     getMainQr(bar.id),
     listPrizes(bar.id),
+    getBarPayment(bar.id),
   ]);
 
   return (
@@ -55,6 +57,7 @@ export default async function BarDashboardPage() {
       initialStats={stats}
       initialQr={qr}
       initialPrizes={prizes}
+      initialPayment={payment}
       origin={origin}
     />
   );

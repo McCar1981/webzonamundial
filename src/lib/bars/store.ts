@@ -304,6 +304,81 @@ export async function logEvent(
   });
 }
 
+// ─── Pagos / planes (FASE 2) ───────────────────────────────────────────────────
+export interface BarPayment {
+  id: string;
+  bar_id: string;
+  plan_id: string;
+  amount: number;       // céntimos
+  currency: string;     // eur | usd
+  status: string;       // active | refunded
+  stripe_session_id: string | null;
+  stripe_payment_intent_id: string | null;
+  stripe_customer_id: string | null;
+  receipt_url: string | null;
+  purchased_at: string;
+  refunded_at: string | null;
+}
+
+/** Pago/plan vigente del bar (o null si nunca pagó). */
+export async function getBarPayment(barId: string): Promise<BarPayment | null> {
+  const admin = adminClient();
+  const { data } = await admin.from("bar_payments").select("*").eq("bar_id", barId).maybeSingle();
+  return (data as BarPayment | null) ?? null;
+}
+
+/** True si el bar tiene un plan pagado y no reembolsado. */
+export async function barHasActivePlan(barId: string): Promise<boolean> {
+  const payment = await getBarPayment(barId);
+  return !!payment && payment.status === "active" && !payment.refunded_at;
+}
+
+export interface RecordPaymentInput {
+  planId: string;
+  amount: number;
+  currency: string;
+  stripeSessionId: string | null;
+  stripePaymentIntentId: string | null;
+  stripeCustomerId: string | null;
+  receiptUrl: string | null;
+}
+
+/** Registra (o reactiva) el pago de un plan y actualiza bars.plan_id. Idempotente. */
+export async function recordBarPlanPayment(barId: string, input: RecordPaymentInput): Promise<void> {
+  const admin = adminClient();
+  const now = new Date().toISOString();
+
+  await admin.from("bar_payments").upsert({
+    bar_id: barId,
+    plan_id: input.planId,
+    amount: input.amount,
+    currency: input.currency,
+    status: "active",
+    stripe_session_id: input.stripeSessionId,
+    stripe_payment_intent_id: input.stripePaymentIntentId,
+    stripe_customer_id: input.stripeCustomerId,
+    receipt_url: input.receiptUrl,
+    purchased_at: now,
+    refunded_at: null,
+    updated_at: now,
+  }, { onConflict: "bar_id" });
+
+  await admin.from("bars").update({ plan_id: input.planId, updated_at: now }).eq("id", barId);
+  await logEvent(barId, "bar_plan_purchased", {
+    plan_id: input.planId, amount: input.amount, currency: input.currency,
+  });
+}
+
+/** Marca el pago del bar como reembolsado (lo dispara charge.refunded). */
+export async function markBarPaymentRefunded(barId: string): Promise<void> {
+  const admin = adminClient();
+  const now = new Date().toISOString();
+  await admin.from("bar_payments")
+    .update({ status: "refunded", refunded_at: now, updated_at: now })
+    .eq("bar_id", barId);
+  await logEvent(barId, "bar_plan_refunded", {});
+}
+
 export interface BarStats {
   participants: number;
   scans: number;

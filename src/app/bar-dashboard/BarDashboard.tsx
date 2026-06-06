@@ -8,10 +8,11 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import QRCode from "qrcode";
 import {
   Trophy, Users, QrCode, Gift, Palette, BarChart3, Tv, ExternalLink, Copy, Check,
-  Download, Plus, Trash2, Eye, Loader2, Rocket,
+  Download, Plus, Trash2, Eye, Loader2, Rocket, CreditCard,
 } from "lucide-react";
 import { themeList } from "@/lib/bars/themes";
-import type { BarRow, QrSource, BarPrize, BarStats } from "@/lib/bars/store";
+import { planList, getPlan } from "@/lib/bars/plans";
+import type { BarRow, QrSource, BarPrize, BarStats, BarPayment } from "@/lib/bars/store";
 
 const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825";
 const GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#94A3B8", DIM = "#64748B", GREEN = "#22c55e";
@@ -22,10 +23,11 @@ interface Props {
   initialStats: BarStats | null;
   initialQr: QrSource | null;
   initialPrizes: BarPrize[];
+  initialPayment: BarPayment | null;
   origin: string;
 }
 
-export default function BarDashboard({ initialBar, initialStats, initialQr, initialPrizes, origin }: Props) {
+export default function BarDashboard({ initialBar, initialStats, initialQr, initialPrizes, initialPayment, origin }: Props) {
   const [bar, setBar] = useState<BarRow | null>(initialBar);
   const [stats] = useState<BarStats | null>(initialStats);
   const [qr] = useState<QrSource | null>(initialQr);
@@ -34,7 +36,19 @@ export default function BarDashboard({ initialBar, initialStats, initialQr, init
 
   useEffect(() => { if (flash) { const id = setTimeout(() => setFlash(null), 3000); return () => clearTimeout(id); } }, [flash]);
 
+  // Feedback de retorno desde Stripe (?purchase=success / ?canceled=1).
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("purchase") === "success") setFlash("Pago confirmado. Tu plan está activo.");
+    else if (params.get("canceled") === "1") setFlash("Has cancelado el pago. Puedes intentarlo cuando quieras.");
+    if (params.has("purchase") || params.has("canceled") || params.has("session_id")) {
+      window.history.replaceState({}, "", "/bar-dashboard");
+    }
+  }, []);
+
   if (!bar) return <CreateBar onCreated={setBar} />;
+
+  const hasActivePlan = !!initialPayment && initialPayment.status === "active" && !initialPayment.refunded_at;
 
   return (
     <div style={{ minHeight: "100vh", background: BG, color: "#E2E8F0" }}>
@@ -55,6 +69,7 @@ export default function BarDashboard({ initialBar, initialStats, initialQr, init
           </div>
         </header>
 
+        <PlanSection bar={bar} payment={initialPayment} hasActivePlan={hasActivePlan} onFlash={setFlash} />
         <Resumen stats={stats} bar={bar} origin={origin} onFlash={setFlash} />
         <QrSection bar={bar} qr={qr} origin={origin} onFlash={setFlash} />
         <Prizes bar={bar} prizes={prizes} setPrizes={setPrizes} onFlash={setFlash} />
@@ -108,6 +123,83 @@ function Resumen({ stats, bar, origin, onFlash }: { stats: BarStats | null; bar:
 
 function qa(): React.CSSProperties {
   return { display: "inline-flex", alignItems: "center", gap: 6, background: BG2, border: BORDER, color: "#E2E8F0", borderRadius: 10, fontWeight: 700, fontSize: 13, padding: "8px 12px", textDecoration: "none" };
+}
+
+function PlanSection({ bar, payment, hasActivePlan, onFlash }: { bar: BarRow; payment: BarPayment | null; hasActivePlan: boolean; onFlash: (s: string) => void }) {
+  const [busy, setBusy] = useState<string | null>(null);
+  const currentPlan = getPlan(bar.plan_id);
+
+  async function buy(planId: string) {
+    setBusy(planId);
+    try {
+      const r = await fetch("/api/bars/checkout", {
+        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ plan_id: planId }),
+      });
+      const data = await r.json();
+      if (r.ok && data.url) { window.location.href = data.url; return; }
+      if (r.status === 401) { window.location.href = "/login?next=/bar-dashboard"; return; }
+      onFlash(data.error || "No pudimos iniciar el pago.");
+    } catch {
+      onFlash("Error de red. Inténtalo de nuevo.");
+    }
+    setBusy(null);
+  }
+
+  if (hasActivePlan && payment) {
+    return (
+      <Section icon={<CreditCard size={17} color={GOLD} />} title="Tu plan">
+        <div style={{ background: BG2, border: `1px solid ${GOLD}`, borderRadius: 14, padding: 16, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
+          <div>
+            <div style={{ fontWeight: 900, fontSize: 16 }}>{currentPlan.name}</div>
+            <div style={{ color: MID, fontSize: 12.5, marginTop: 2 }}>
+              Activo · {(payment.amount / 100).toFixed(0)} {payment.currency.toUpperCase()} · pago único
+            </div>
+          </div>
+          {payment.receipt_url && (
+            <a href={payment.receipt_url} target="_blank" rel="noopener noreferrer" style={{ ...qa(), cursor: "pointer" }}>
+              <Download size={14} /> Recibo
+            </a>
+          )}
+        </div>
+      </Section>
+    );
+  }
+
+  return (
+    <Section icon={<CreditCard size={17} color={GOLD} />} title="Activa tu plan">
+      <p style={{ color: MID, fontSize: 13, margin: "0 0 12px" }}>
+        Tu porra está en borrador. Elige un plan para publicarla y compartir tu QR. Pago único para todo el Mundial.
+      </p>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(160px,1fr))", gap: 10 }}>
+        {planList().map((plan) => (
+          <div key={plan.id} style={{ background: BG2, border: plan.highlight ? `1px solid ${GOLD}` : BORDER, borderRadius: 14, padding: 14, display: "flex", flexDirection: "column" }}>
+            <div style={{ fontWeight: 900, fontSize: 15 }}>{plan.name}</div>
+            <div style={{ display: "flex", alignItems: "baseline", gap: 4, margin: "6px 0 2px" }}>
+              <span style={{ fontSize: 24, fontWeight: 900 }}>{plan.priceEur} €</span>
+              <span style={{ color: DIM, fontSize: 12 }}>/ Mundial</span>
+            </div>
+            <div style={{ color: DIM, fontSize: 11, marginBottom: 10 }}>{plan.priceUsd} USD · LATAM y USA</div>
+            <button
+              onClick={() => void buy(plan.id)}
+              disabled={!!busy}
+              style={{
+                marginTop: "auto", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 6,
+                border: "none", cursor: busy ? "default" : "pointer", borderRadius: 10, fontWeight: 800, fontSize: 13, padding: "9px 12px",
+                background: plan.highlight ? `linear-gradient(135deg, ${GOLD}, ${GOLD2})` : "rgba(255,255,255,0.06)",
+                color: plan.highlight ? "#1A1208" : "#E2E8F0", opacity: busy && busy !== plan.id ? 0.5 : 1,
+              }}
+            >
+              {busy === plan.id ? <Loader2 size={14} className="spin" /> : <CreditCard size={14} />} Elegir
+            </button>
+          </div>
+        ))}
+      </div>
+      <p style={{ color: DIM, fontSize: 11.5, marginTop: 10 }}>
+        Pago seguro con Stripe. La moneda se ajusta según tu país.{" "}
+        <a href="/bares/precios" target="_blank" rel="noopener noreferrer" style={{ color: GOLD2 }}>Ver comparativa de planes</a>.
+      </p>
+    </Section>
+  );
 }
 
 function QrSection({ bar, qr, origin, onFlash }: { bar: BarRow; qr: QrSource | null; origin: string; onFlash: (s: string) => void }) {

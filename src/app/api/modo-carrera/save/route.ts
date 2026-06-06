@@ -10,6 +10,7 @@
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
 import { getCareer, saveCareer } from "@/lib/modo-carrera/store.server";
+import { allowSave, SAVE_WINDOW_SEC } from "@/lib/modo-carrera/save-rate-limit";
 import type { CareerState } from "@/lib/modo-carrera/types";
 
 export const runtime = "nodejs";
@@ -35,6 +36,14 @@ export async function PUT(req: Request) {
   const state = body.state;
   if (!state || typeof state !== "object" || !state.identity) {
     return NextResponse.json({ error: "bad_request", message: "state inválido" }, { status: 400 });
+  }
+
+  // Anti-abuso: 1 guardado por ventana de SAVE_WINDOW_SEC por usuario.
+  if (!(await allowSave(user.id))) {
+    return NextResponse.json(
+      { error: "rate_limited", message: "Demasiados guardados seguidos." },
+      { status: 429, headers: { "Retry-After": String(SAVE_WINDOW_SEC) } },
+    );
   }
 
   await saveCareer(user.id, state);

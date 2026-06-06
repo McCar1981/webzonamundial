@@ -5,8 +5,9 @@
 // tolerar saves antiguos o corruptos. Al iniciar sesión, CareerGame sincroniza
 // este estado con Supabase via /api/modo-carrera/save.
 
-import type { CareerState, SeasonState, SeasonMatch, TournamentStage, MatchOutcome, BoardState, BoardDemand, BoardVerdict, StreakState } from "./types";
-import { CAREER_STORAGE_KEY, CAREER_SCHEMA_VERSION, xpRequired } from "./constants";
+import type { CareerState, SeasonState, SeasonMatch, TournamentStage, MatchOutcome, BoardState, BoardDemand, BoardVerdict, StreakState, Mission, MissionKind, MissionStatus, Trophy } from "./types";
+import { CAREER_STORAGE_KEY, CAREER_SCHEMA_VERSION, xpRequired, TITLES } from "./constants";
+import { sumReputation } from "./engine";
 
 /** Partida vacía inicial (DT sin crear todavía). */
 export function defaultCareer(): CareerState {
@@ -64,6 +65,48 @@ const STAGES: TournamentStage[] = ["grupos", "octavos", "cuartos", "semifinal", 
 const OUTCOMES: MatchOutcome[] = ["V", "E", "D"];
 const DEMANDS: BoardDemand[] = ["octavos", "cuartos", "semifinal", "final", "campeon"];
 const VERDICTS: BoardVerdict[] = ["pendiente", "superado", "cumplido", "fallido"];
+const MISSION_KINDS: MissionKind[] = ["diaria", "semanal", "torneo", "flash"];
+const MISSION_STATUSES: MissionStatus[] = ["activa", "completada", "fallida", "reclamada"];
+const VALID_TITLE_IDS = new Set(TITLES.map((t) => t.id));
+
+// Topes legítimos de recompensa por misión (la plantilla más jugosa da 300 XP /
+// 25 reputación; dejamos margen sin abrir la puerta a saves manipulados).
+const MAX_MISSION_XP = 500;
+const MAX_MISSION_REP = 50;
+
+/** Valida una misión elemento a elemento; descarta basura y acota recompensas. */
+function normalizeMission(raw: unknown): Mission | null {
+  if (!raw || typeof raw !== "object") return null;
+  const m = raw as Partial<Mission>;
+  if (typeof m.id !== "string" || !m.id) return null;
+  if (!MISSION_KINDS.includes(m.kind as MissionKind)) return null;
+  const target = clampInt(m.target, 1, 1000, 1);
+  return {
+    id: m.id.slice(0, 60),
+    kind: m.kind as MissionKind,
+    title: typeof m.title === "string" ? m.title.slice(0, 80) : "Misión",
+    description: typeof m.description === "string" ? m.description.slice(0, 200) : "",
+    progress: clampInt(m.progress, 0, target, 0),
+    target,
+    rewardXp: clampInt(m.rewardXp, 0, MAX_MISSION_XP, 0),
+    rewardReputation: clampInt(m.rewardReputation, 0, MAX_MISSION_REP, 0),
+    status: MISSION_STATUSES.includes(m.status as MissionStatus) ? (m.status as MissionStatus) : "activa",
+    expiresAt: typeof m.expiresAt === "string" ? m.expiresAt : null,
+  };
+}
+
+/** Valida un trofeo del legado; exige id con patrón trofeo-sN. */
+function normalizeTrophy(raw: unknown): Trophy | null {
+  if (!raw || typeof raw !== "object") return null;
+  const t = raw as Partial<Trophy>;
+  if (typeof t.id !== "string" || !/^trofeo-s\d+$/.test(t.id)) return null;
+  return {
+    id: t.id,
+    name: typeof t.name === "string" ? t.name.slice(0, 80) : "Trofeo",
+    season: clampInt(t.season, 1, 999, 1),
+    wonAt: typeof t.wonAt === "string" ? t.wonAt : new Date().toISOString(),
+  };
+}
 
 /** Repara/normaliza el estado de la junta; rellena con valores por defecto. */
 function normalizeBoard(raw: unknown): BoardState {
@@ -133,6 +176,16 @@ export function normalizeCareer(raw: Partial<CareerState> | null | undefined): C
 
   const overall = clampInt(pr.overall, 0, 99, base.progression.overall);
 
+  // Stats de reputación acotados; el total NO se confía al cliente, se recalcula.
+  const repStats = {
+    prestigio: clampInt(rep.stats?.prestigio, 0, 100, 0),
+    carisma: clampInt(rep.stats?.carisma, 0, 100, 0),
+    tactica: clampInt(rep.stats?.tactica, 0, 100, 0),
+    disciplina: clampInt(rep.stats?.disciplina, 0, 100, 0),
+    mediatico: clampInt(rep.stats?.mediatico, 0, 100, 0),
+    cantera: clampInt(rep.stats?.cantera, 0, 100, 0),
+  };
+
   return {
     version: CAREER_SCHEMA_VERSION,
     identity: {
@@ -156,25 +209,26 @@ export function normalizeCareer(raw: Partial<CareerState> | null | undefined): C
         mental: clampInt(sk.levels?.mental, 0, 5, 0),
         gestion: clampInt(sk.levels?.gestion, 0, 5, 0),
       },
-      points: clampInt(sk.points, 0, 999, 0),
+      // Tope legítimo de puntos sin gastar = 99 - overall (no se pueden acumular
+      // más puntos de los que el progreso permitiría haber ganado).
+      points: clampInt(sk.points, 0, Math.max(0, 99 - overall), 0),
     },
-    missions: Array.isArray(raw.missions) ? raw.missions : [],
+    missions: Array.isArray(raw.missions)
+      ? raw.missions.map(normalizeMission).filter((m): m is Mission => m !== null).slice(0, 50)
+      : [],
     reputation: {
-      total: clampInt(rep.total, 0, 1_000_000, 0),
-      stats: {
-        prestigio: clampInt(rep.stats?.prestigio, 0, 100, 0),
-        carisma: clampInt(rep.stats?.carisma, 0, 100, 0),
-        tactica: clampInt(rep.stats?.tactica, 0, 100, 0),
-        disciplina: clampInt(rep.stats?.disciplina, 0, 100, 0),
-        mediatico: clampInt(rep.stats?.mediatico, 0, 100, 0),
-        cantera: clampInt(rep.stats?.cantera, 0, 100, 0),
-      },
+      total: sumReputation(repStats),
+      stats: repStats,
       rivalries: Array.isArray(rep.rivalries) ? rep.rivalries : [],
-      titles: Array.isArray(rep.titles) ? rep.titles : [],
+      titles: Array.isArray(rep.titles)
+        ? rep.titles.filter((t): t is string => typeof t === "string" && VALID_TITLE_IDS.has(t))
+        : [],
     },
     narrative: Array.isArray(raw.narrative) ? raw.narrative.slice(0, 50) : [],
     legacy: {
-      trophies: Array.isArray(leg.trophies) ? leg.trophies : [],
+      trophies: Array.isArray(leg.trophies)
+        ? leg.trophies.map(normalizeTrophy).filter((t): t is Trophy => t !== null).slice(0, 200)
+        : [],
       records: {
         matchesPlayed: clampInt(leg.records?.matchesPlayed, 0, 1_000_000, 0),
         wins: clampInt(leg.records?.wins, 0, 1_000_000, 0),

@@ -195,3 +195,34 @@ export async function enrichDraft(draft: DraftNoticia): Promise<DraftNoticia> {
 
   return { ...draft, body };
 }
+
+/**
+ * Enriquece varios drafts EN PARALELO con concurrencia acotada.
+ *
+ * El cuello de botella del enrich es la latencia de red: un fetch por artículo,
+ * hasta TIMEOUT_MS cada uno. Hacerlo en serie dentro del loop de reescritura
+ * sumaba esas esperas y quemaba el presupuesto del cron (abortedByTimeout),
+ * dejando solo 1-2 piezas enriquecidas por tick → reescrituras pobres que el
+ * crítico tumbaba. Lanzando `concurrency` fetches a la vez, las esperas se
+ * solapan y enriquecemos muchos más en la misma ventana de tiempo.
+ *
+ * Preserva el orden de entrada. Nunca lanza: cada draft que falle vuelve
+ * intacto (enrichDraft ya hace fallback al snippet ante cualquier error).
+ */
+export async function enrichMany(
+  drafts: DraftNoticia[],
+  concurrency = 4,
+): Promise<DraftNoticia[]> {
+  const out = new Array<DraftNoticia>(drafts.length);
+  let next = 0;
+  async function worker(): Promise<void> {
+    for (;;) {
+      const i = next++;
+      if (i >= drafts.length) return;
+      out[i] = await enrichDraft(drafts[i]);
+    }
+  }
+  const lanes = Math.max(1, Math.min(concurrency, drafts.length));
+  await Promise.all(Array.from({ length: lanes }, () => worker()));
+  return out;
+}

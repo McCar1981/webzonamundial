@@ -14,7 +14,7 @@ import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { ingestNews, titleFingerprint, type IngestResult } from "@/lib/noticias-ingest";
 import { applyRewrite } from "@/lib/noticias-rewriter";
-import { enrichDraft, enrichEnabled } from "@/lib/noticias-enrich";
+import { enrichMany, enrichEnabled } from "@/lib/noticias-enrich";
 import { WORLD_CUP_QUERIES, HOT_QUERY_KEYS, COLD_QUERY_KEYS, type WorldCupQueryKey } from "@/lib/gnews";
 import {
   readIngestStore,
@@ -277,8 +277,14 @@ export async function GET(req: Request) {
   const phase1DeadlineMs = Date.now() + 30_000;
 
   // FASE 1: Reescribir drafts NUEVOS (recién ingestados de GNews).
+  const enrichConcurrency = parseInt(process.env.NEWS_ENRICH_CONCURRENCY || "4", 10);
   if (rewriteEnabled) {
     const cap = rewriteLimit > 0 ? Math.min(rewriteLimit, result.drafts.length) : result.drafts.length;
+    // Pre-enriquecer EN PARALELO los candidatos de este tick. Antes el enrich
+    // corría en serie dentro del loop (un fetch tras otro), sumando latencia y
+    // quemando el presupuesto → solo 1-2 piezas enriquecidas por tick. Ahora las
+    // descargas se solapan y llegan ya enriquecidas al reescritor.
+    const phase1Enriched = await enrichMany(result.drafts.slice(0, cap), enrichConcurrency);
     for (let i = 0; i < cap; i++) {
       // Hand off to Phase 2 once Phase 1's sub-window is spent. This is an
       // expected handoff, NOT a hard timeout, so we don't set abortedByTimeout
@@ -291,11 +297,7 @@ export async function GET(req: Request) {
       // en "draft" y se reintentarán otro día con cupo.
       if (capReached()) break;
       try {
-        // Enriquecer el material fuente (descarga el artículo original si el
-        // snippet de GNews es pobre). Auto-skip si ya es rico; fallback al
-        // snippet ante cualquier fallo. Acotado por timeout.
-        const enriched = await enrichDraft(result.drafts[i]);
-        result.drafts[i] = await applyRewrite(enriched, { recentTitles });
+        result.drafts[i] = await applyRewrite(phase1Enriched[i], { recentTitles });
         if (result.drafts[i].status === "published") {
           rewritten += 1;
           publishedThisRun += 1;
@@ -326,6 +328,9 @@ export async function GET(req: Request) {
     const retryCap = Math.min(slotsLeft, pendingDrafts.length);
     // Los más nuevos primero (mayor probabilidad de relevancia).
     pendingDrafts.sort((a, b) => (b.date ?? "").localeCompare(a.date ?? ""));
+    // Pre-enriquecer en paralelo los candidatos a reintentar (mismo motivo que
+    // en Fase 1: solapar las descargas en vez de sumarlas en serie).
+    const phase2Enriched = await enrichMany(pendingDrafts.slice(0, retryCap), enrichConcurrency);
     for (let i = 0; i < retryCap; i++) {
       if (Date.now() > deadlineMs) {
         abortedByTimeout = true;
@@ -333,8 +338,7 @@ export async function GET(req: Request) {
       }
       if (capReached()) break;
       try {
-        const enriched = await enrichDraft(pendingDrafts[i]);
-        const updated = await applyRewrite(enriched, { recentTitles });
+        const updated = await applyRewrite(phase2Enriched[i], { recentTitles });
         // Reemplazar el draft viejo en store.drafts (match por sourceUrlHash).
         const idx = store.drafts.findIndex((d) => d.sourceUrlHash === pendingDrafts[i].sourceUrlHash);
         if (idx >= 0) {

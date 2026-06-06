@@ -43,7 +43,12 @@ export interface CriticVerdict {
  *  - No duplicado.
  */
 export const CRITIC_MIN_CRITICA = Number(process.env.NEWS_CRITIC_MIN_CRITICA ?? 3);
-export const CRITIC_MIN_MEDIA = Number(process.env.NEWS_CRITIC_MIN_MEDIA ?? 3.5);
+// Bajado 3.5 → 3.0: el Free de GNews trunca el texto fuente, lo que penaliza la
+// "profundidad" aunque la noticia sea legítima. Con 3.0 pasan noticias reales
+// que caían por una décima (p.ej. "Brasil sin Neymar") sin abrir la puerta a la
+// paja: el gate de dimensiones críticas (>=3 en relevancia/originalidad/precisión)
+// sigue tumbando off-topic y refritos con errores factuales.
+export const CRITIC_MIN_MEDIA = Number(process.env.NEWS_CRITIC_MIN_MEDIA ?? 3.0);
 
 const SYSTEM_PROMPT = `Eres el editor jefe de la sección de noticias de fútbol de ZonaMundial (plataforma sobre el Mundial 2026). Eres EXIGENTE: tu trabajo es proteger la calidad del sitio, que está bajo revisión de Google AdSense y no puede publicar contenido de poco valor. Ante la duda, RECHAZA.
 

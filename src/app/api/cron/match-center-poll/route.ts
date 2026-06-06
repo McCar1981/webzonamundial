@@ -20,6 +20,7 @@ import { NextResponse } from "next/server";
 import { MATCHES } from "@/data/matches";
 import { buildMeta, getFixtureId, cacheSnapshot } from "@/lib/match-center/store";
 import { fetchLiveSnapshots } from "@/lib/match-center/apiFootball";
+import { processMatchPush } from "@/lib/match-center/push";
 import type { MatchMeta } from "@/lib/match-center/types";
 
 export const runtime = "nodejs";
@@ -93,9 +94,18 @@ export async function GET(req: Request) {
   // UNA petición por lote de 20 trae todos los partidos en vivo.
   const snapshots = await fetchLiveSnapshots(pairs);
   let cached = 0;
+  let pushes = 0;
   for (const snap of Object.values(snapshots)) {
     await cacheSnapshot(snap);
     cached++;
+    // Tras calentar la caché, diff contra el estado guardado y manda los push
+    // de novedades (gol, roja, inicio, descanso, final). No falla la pasada si
+    // el push peta: la caché ya está servida.
+    try {
+      pushes += await processMatchPush(snap);
+    } catch (err) {
+      console.error("[mc-poll] push failed", snap.matchId, (err as Error).message);
+    }
   }
 
   return NextResponse.json({
@@ -103,6 +113,7 @@ export async function GET(req: Request) {
     windowed: windowed.length,
     mapped: pairs.length,
     cached,
+    pushes,
     duration_ms: Date.now() - startMs,
   });
 }

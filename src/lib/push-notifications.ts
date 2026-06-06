@@ -25,6 +25,9 @@ export interface PushPayload {
   tag?: string;
   // Icono que muestra Chrome desktop / Android. Debe ser PNG 192x192 o 256x256.
   icon?: string;
+  // Badge monocromo 72x72 (PNG transparente). Chrome lo pinta en la barra de
+  // estado de Android; si no se envía, el SW usa /icons/badge-72.png.
+  badge?: string;
   // Imagen grande del push (opcional, Android la muestra bajo el título).
   image?: string;
   // Identificador interno para tracking.

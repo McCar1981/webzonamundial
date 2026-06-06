@@ -241,6 +241,10 @@ export async function GET(req: Request) {
     };
 
     const url = matchUrl(fix.fixtureId);
+    // "Como Google": UNA notificación por partido. Todos los avisos del mismo
+    // amistoso comparten tag → el SO reemplaza el anterior en vez de apilar.
+    // (El SW tiene renotify:true, así que cada novedad re-alerta.)
+    const tag = `amistoso-${fix.fixtureId}`;
 
     // Alineaciones confirmadas (antes del saque, una sola vez).
     if (!prev.lineupsSent && snap.homeLineup && snap.awayLineup) {
@@ -250,7 +254,7 @@ export async function GET(req: Request) {
         url,
         icon: snap.home.logo || PUSH_ICON,
         image: matchPhoto || undefined,
-        tag: `amistoso-${fix.fixtureId}-lineups`,
+        tag,
       });
       next.lineupsSent = true;
       pushes++;
@@ -265,13 +269,14 @@ export async function GET(req: Request) {
         url,
         icon: snap.home.logo || PUSH_ICON,
         image: matchPhoto || undefined,
-        tag: `amistoso-${fix.fixtureId}-start`,
+        tag,
       });
       next.startSent = true;
       pushes++;
     }
 
-    // Eventos nuevos (gol, roja, penalti fallado).
+    // Eventos nuevos (gol, roja, penalti fallado). Adjuntamos imagen: los goles
+    // y las tarjetas rojas son los momentos más compartibles.
     for (const e of snap.events) {
       if (seen.has(e.id)) continue;
       const label = eventLabel(e, snap, homeEs, awayEs, homeFlag, awayFlag);
@@ -281,7 +286,8 @@ export async function GET(req: Request) {
         body: label.body,
         url,
         icon: label.icon,
-        tag: `amistoso-${fix.fixtureId}-ev-${e.id}`,
+        image: matchPhoto || undefined,
+        tag,
       });
       pushes++;
     }
@@ -293,7 +299,7 @@ export async function GET(req: Request) {
         body: `Final de la primera parte.`,
         url,
         icon: PUSH_ICON,
-        tag: `amistoso-${fix.fixtureId}-ht`,
+        tag,
       });
       next.htSent = true;
       pushes++;
@@ -315,7 +321,7 @@ export async function GET(req: Request) {
         url,
         icon: winnerLogo || PUSH_ICON,
         image: matchPhoto || undefined,
-        tag: `amistoso-${fix.fixtureId}-ft`,
+        tag,
       });
       next.ftSent = true;
       pushes++;

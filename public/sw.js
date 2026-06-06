@@ -50,7 +50,9 @@ self.addEventListener("push", (event) => {
   const options = {
     body: payload.body || "",
     icon: payload.icon || "/img/email/logo-zonamundial.png",
-    badge: payload.badge || "/img/email/logo-zonamundial.png",
+    // Badge monocromo 72x72 transparente: Android lo pinta en la barra de
+    // estado. Un PNG a color saldría gris/borroso, por eso usamos el dedicado.
+    badge: payload.badge || "/icons/badge-72.png",
     image: payload.image,
     tag: payload.tag || "news",
     // Si llega un push con el mismo tag, reemplaza al anterior.

@@ -146,80 +146,115 @@ export default function SeasonView({
   const nationSlug = career.identity.nationSlug ?? "";
   const nation = sel(nationSlug);
 
-  // Sin temporada activa → CTA para iniciar el torneo (clásico o en vivo).
+  // Sin temporada activa → elige una de las DOS modalidades (Libre vs En Vivo).
   if (!season) {
     const liveAvailable = paseDT && canLive;
     return (
-      <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center", padding: "40px 20px" }}>
-        <h2 style={{ fontSize: 24, fontWeight: 900, color: "#fff" }}>El Mundial te espera</h2>
-        <p style={{ fontSize: 14, color: MID, marginTop: 8, lineHeight: 1.6 }}>
-          {nation ? (
-            <>Toma las riendas de <strong style={{ color: "#fff" }}>{nation.nombre}</strong> y guíalos por la fase de grupos y la eliminatoria hasta la gloria.</>
-          ) : (
-            "Configura tu selección para comenzar el torneo."
-          )}
-        </p>
+      <div style={{ maxWidth: 880, margin: "0 auto", padding: "32px 20px" }}>
+        <style>{`
+          @media (max-width: 720px) { .mc-modes-grid { grid-template-columns: 1fr !important; } }
+        `}</style>
 
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12, marginTop: 24 }}>
-          <button
-            type="button"
-            onClick={onStart}
-            style={{
-              padding: "14px 32px",
-              borderRadius: 12,
-              border: "none",
-              background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
-              color: BG,
-              fontWeight: 900,
-              fontSize: 15,
-              cursor: "pointer",
-              boxShadow: "0 10px 30px rgba(201,168,76,0.35)",
-            }}
-          >
-            Comenzar temporada {career.progression.season}
-          </button>
+        <div style={{ textAlign: "center", marginBottom: 28 }}>
+          <h2 style={{ fontSize: 24, fontWeight: 900, color: "#fff" }}>Elige tu modalidad</h2>
+          <p style={{ fontSize: 14, color: MID, marginTop: 8, lineHeight: 1.6 }}>
+            {nation ? (
+              <>Llevarás a <strong style={{ color: "#fff" }}>{nation.nombre}</strong> a por la gloria. Dos formas de vivirlo:</>
+            ) : (
+              "Configura tu selección para comenzar el torneo."
+            )}
+          </p>
+        </div>
 
-          {/* Temporada en Vivo: disponible con Pase DT y si hay partidos reales */}
-          {liveAvailable && onStartLive ? (
+        <div className="mc-modes-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, alignItems: "stretch" }}>
+          {/* ── Modo Libre ── */}
+          <div style={{ display: "flex", flexDirection: "column", padding: 22, borderRadius: 18, background: BG2, border: `1px solid ${GOLD}44` }}>
+            <span style={{ alignSelf: "flex-start", fontSize: 10, fontWeight: 800, letterSpacing: 1, textTransform: "uppercase", color: GOLD, border: `1px solid ${GOLD}55`, borderRadius: 999, padding: "3px 10px" }}>
+              Disponible siempre
+            </span>
+            <h3 style={{ fontSize: 19, fontWeight: 900, color: "#fff", margin: "12px 0 6px" }}>Modo Libre</h3>
+            <p style={{ fontSize: 13.5, color: MID, lineHeight: 1.6, flex: 1 }}>
+              Un Mundial simulado a tu ritmo. Sorteamos los rivales según el ranking FIFA y disputas cada
+              partido cuando quieras, sin esperar a nadie.
+            </p>
             <button
               type="button"
-              onClick={onStartLive}
+              onClick={onStart}
               style={{
-                padding: "12px 28px",
+                marginTop: 18,
+                padding: "13px 24px",
                 borderRadius: 12,
-                border: `1px solid ${GREEN}`,
-                background: "rgba(34,197,94,0.12)",
-                color: GREEN,
-                fontWeight: 800,
-                fontSize: 14,
+                border: "none",
+                background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
+                color: BG,
+                fontWeight: 900,
+                fontSize: 14.5,
                 cursor: "pointer",
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
+                boxShadow: "0 10px 30px rgba(201,168,76,0.32)",
               }}
             >
-              <span style={{ width: 8, height: 8, borderRadius: "50%", background: GREEN, boxShadow: `0 0 8px ${GREEN}` }} />
-              Jugar Temporada en Vivo
+              Comenzar temporada {career.progression.season}
             </button>
-          ) : canLive ? (
-            <Link
-              href="/premium"
-              style={{
-                maxWidth: 420,
-                padding: "12px 18px",
-                borderRadius: 12,
-                background: "linear-gradient(135deg, rgba(201,168,76,0.16), rgba(232,212,139,0.06))",
-                border: "1px solid rgba(201,168,76,0.35)",
-                textDecoration: "none",
-                textAlign: "left",
-              }}
-            >
-              <div style={{ fontSize: 13.5, fontWeight: 800, color: GOLD2 }}>Temporada en Vivo</div>
-              <div style={{ fontSize: 12, color: MID, marginTop: 2 }}>
-                Tu carrera avanza al ritmo del Mundial real{nation ? ` de ${nation.nombre}` : ""}: cada partido se desbloquea a la hora real del saque. Disponible con el Pase DT.
+          </div>
+
+          {/* ── Mundial en Vivo ── */}
+          <div style={{ display: "flex", flexDirection: "column", padding: 22, borderRadius: 18, background: BG2, border: `1px solid ${canLive ? GREEN : "rgba(255,255,255,0.08)"}44`, opacity: canLive ? 1 : 0.85 }}>
+            <span style={{ alignSelf: "flex-start", display: "inline-flex", alignItems: "center", gap: 6, fontSize: 10, fontWeight: 800, letterSpacing: 1, textTransform: "uppercase", color: liveAvailable ? GREEN : GOLD2, border: `1px solid ${liveAvailable ? GREEN : GOLD2}55`, borderRadius: 999, padding: "3px 10px" }}>
+              {liveAvailable && <span style={{ width: 7, height: 7, borderRadius: "50%", background: GREEN, boxShadow: `0 0 8px ${GREEN}` }} />}
+              {liveAvailable ? "En vivo" : "Pase DT"}
+            </span>
+            <h3 style={{ fontSize: 19, fontWeight: 900, color: "#fff", margin: "12px 0 6px" }}>Mundial en Vivo</h3>
+            <p style={{ fontSize: 13.5, color: MID, lineHeight: 1.6, flex: 1 }}>
+              Tu carrera avanza al ritmo del Mundial real{nation ? ` de ${nation.nombre}` : ""}: rivales y horarios
+              reales, y cada partido se desbloquea a la hora exacta del saque.
+            </p>
+
+            {liveAvailable && onStartLive ? (
+              <button
+                type="button"
+                onClick={onStartLive}
+                style={{
+                  marginTop: 18,
+                  padding: "13px 24px",
+                  borderRadius: 12,
+                  border: `1px solid ${GREEN}`,
+                  background: "rgba(34,197,94,0.14)",
+                  color: GREEN,
+                  fontWeight: 800,
+                  fontSize: 14.5,
+                  cursor: "pointer",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: 8,
+                }}
+              >
+                <span style={{ width: 8, height: 8, borderRadius: "50%", background: GREEN, boxShadow: `0 0 8px ${GREEN}` }} />
+                Jugar en Vivo
+              </button>
+            ) : canLive ? (
+              <Link
+                href="/premium"
+                style={{
+                  marginTop: 18,
+                  padding: "13px 24px",
+                  borderRadius: 12,
+                  background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
+                  color: BG,
+                  fontWeight: 800,
+                  fontSize: 14.5,
+                  textDecoration: "none",
+                  textAlign: "center",
+                }}
+              >
+                Desbloquear con Pase DT
+              </Link>
+            ) : (
+              <div style={{ marginTop: 18, fontSize: 12.5, color: DIM, lineHeight: 1.5, fontStyle: "italic" }}>
+                {nation ? `${nation.nombre} no disputa el Mundial real, así que esta modalidad no está disponible para esta selección.` : "Elige una selección clasificada al Mundial para habilitar esta modalidad."}
               </div>
-            </Link>
-          ) : null}
+            )}
+          </div>
         </div>
       </div>
     );

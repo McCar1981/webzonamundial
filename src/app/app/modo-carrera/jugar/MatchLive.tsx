@@ -19,6 +19,7 @@ import { BG, BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED, flagUrl } from "./fx";
 import { SELECCIONES } from "@/data/selecciones";
 import { FANTASY_ROSTERS, type RosterPlayer } from "@/data/fantasy-rosters";
 import { classicLabel } from "@/lib/modo-carrera/classics";
+import { Kit, Confetti } from "./Visuals";
 import {
   TACTICAL_PLANS,
   planById,
@@ -205,8 +206,11 @@ export default function MatchLive({
         @keyframes mlScore { 0% { transform: scale(1.35); } 100% { transform: scale(1); } }
       `}</style>
 
+      {phase === "fulltime" && outcome === "V" && <Confetti pieces={42} />}
+
       <div
         style={{
+          position: "relative",
           width: "100%",
           maxWidth: 520,
           maxHeight: "94vh",
@@ -262,9 +266,13 @@ export default function MatchLive({
           <>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, margin: "4px 0 18px" }}>
               {[{ nat: selfNat, slug: selfSlug, players: selfKey, mine: true }, { nat: oppNat, slug: oppSlug, players: oppKey, mine: false }].map((side) => (
-                <div key={side.slug} style={{ padding: 12, borderRadius: 12, background: BG3, border: `1px solid ${side.mine ? GOLD + "55" : "rgba(255,255,255,0.06)"}` }}>
+                <div key={side.slug} style={{ position: "relative", overflow: "hidden", padding: 12, borderRadius: 12, background: BG3, border: `1px solid ${side.mine ? GOLD + "55" : "rgba(255,255,255,0.06)"}` }}>
+                  <div style={{ position: "absolute", top: -6, right: -6, zIndex: 0 }}>
+                    <Kit slug={side.slug} size={64} faded />
+                  </div>
+                  <div style={{ position: "relative", zIndex: 1 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-                    <Flag code={side.nat?.flagCode} size={20} />
+                    <Kit slug={side.slug} size={26} />
                     <span style={{ fontSize: 12.5, fontWeight: 800, color: "#fff" }}>{side.nat?.nombre ?? side.slug}</span>
                   </div>
                   {side.players.length ? (
@@ -277,6 +285,7 @@ export default function MatchLive({
                   ) : (
                     <div style={{ fontSize: 11.5, color: DIM, fontStyle: "italic" }}>Plantel por confirmar</div>
                   )}
+                  </div>
                 </div>
               ))}
             </div>

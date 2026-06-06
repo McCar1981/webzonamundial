@@ -15,11 +15,17 @@ import type { PlayResult } from "@/lib/modo-carrera/season";
 import { liveLockMs } from "@/lib/modo-carrera/live-season";
 import { getUserTimezone } from "@/lib/bracket/match-time";
 import { DEMAND_LABEL, VERDICT_LABEL } from "@/lib/modo-carrera/board";
+import { TITLES } from "@/lib/modo-carrera/constants";
 import type { CareerState, SeasonMatch } from "@/lib/modo-carrera/types";
 import MatchLive from "./MatchLive";
+import { Kit, Confetti } from "./Visuals";
 
 const OUTCOME_LABEL = { V: "Victoria", E: "Empate", D: "Derrota" } as const;
 const OUTCOME_COLOR = { V: GREEN, E: GOLD, D: RED } as const;
+
+/** Nombre legible de un título por id (cae al id si no está en el catálogo). */
+const TITLE_NAME: Record<string, string> = Object.fromEntries(TITLES.map((t) => [t.id, t.name]));
+const titleName = (id: string) => TITLE_NAME[id] ?? id;
 
 function confColor(n: number): string {
   if (n >= 60) return GREEN;
@@ -406,37 +412,57 @@ export default function SeasonView({
             animation: "mcBannerIn .25s ease both",
           }}
         >
+          {(() => {
+            const oc = reveal.match.outcome;
+            const ocColor = oc ? OUTCOME_COLOR[oc] : GOLD;
+            const celebrate = reveal.champion || oc === "V";
+            return (
           <div
             onClick={(e) => e.stopPropagation()}
             style={{
+              position: "relative",
+              overflow: "hidden",
               width: "100%",
               maxWidth: 440,
               padding: 28,
               borderRadius: 18,
-              background: BG2,
-              border: `1px solid ${reveal.match.outcome ? OUTCOME_COLOR[reveal.match.outcome] : GOLD}`,
+              background: `radial-gradient(120% 80% at 50% 0%, ${ocColor}24, ${BG2} 62%)`,
+              border: `1px solid ${ocColor}`,
               textAlign: "center",
-              boxShadow: "0 24px 60px rgba(0,0,0,0.6)",
+              boxShadow: `0 24px 60px rgba(0,0,0,0.6), 0 0 0 1px ${ocColor}22`,
             }}
           >
+            {celebrate && <Confetti pieces={reveal.champion ? 48 : 30} />}
+
+            <div style={{ position: "relative", zIndex: 3 }}>
             <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase", color: GOLD }}>
-              {reveal.match.label}
+              {reveal.champion ? "Campeón del Mundo" : reveal.match.label}
             </div>
 
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 18, margin: "18px 0", animation: "mcScoreIn .6s cubic-bezier(.2,.8,.2,1) both" }}>
-              <div style={{ flex: 1, textAlign: "right" }}>
-                <FlagName slug={nationSlug} size={26} />
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, margin: "16px 0 6px", animation: "mcScoreIn .6s cubic-bezier(.2,.8,.2,1) both" }}>
+              <div style={{ flex: 1, display: "flex", justifyContent: "flex-end" }}>
+                <Kit slug={nationSlug} size={72} />
               </div>
-              <div style={{ fontSize: 38, fontWeight: 900, color: reveal.match.outcome ? OUTCOME_COLOR[reveal.match.outcome] : "#fff" }}>
+              <div style={{ fontSize: 40, fontWeight: 900, color: oc ? ocColor : "#fff", minWidth: 92 }}>
                 {reveal.match.gf} - {reveal.match.ga}
               </div>
-              <div style={{ flex: 1, textAlign: "left" }}>
-                <FlagName slug={reveal.match.opponentSlug} size={26} />
+              <div style={{ flex: 1, display: "flex", justifyContent: "flex-start" }}>
+                <Kit slug={reveal.match.opponentSlug} size={72} />
               </div>
             </div>
 
-            <div style={{ fontSize: 16, fontWeight: 900, color: reveal.match.outcome ? OUTCOME_COLOR[reveal.match.outcome] : "#fff" }}>
-              {reveal.match.outcome ? OUTCOME_LABEL[reveal.match.outcome] : ""}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 16, marginBottom: 12 }}>
+              <div style={{ flex: 1, textAlign: "right", fontSize: 12 }}>
+                <FlagName slug={nationSlug} size={20} />
+              </div>
+              <div style={{ width: 40 }} />
+              <div style={{ flex: 1, textAlign: "left", fontSize: 12 }}>
+                <FlagName slug={reveal.match.opponentSlug} size={20} />
+              </div>
+            </div>
+
+            <div style={{ fontSize: 16, fontWeight: 900, color: oc ? ocColor : "#fff" }}>
+              {oc ? OUTCOME_LABEL[oc] : ""}
             </div>
 
             {/* Insignias de recompensa */}
@@ -447,7 +473,7 @@ export default function SeasonView({
               {reveal.champion && <span style={chip(GOLD)}>Copa del Mundo</span>}
               {reveal.eliminated && <span style={chip(RED)}>Eliminado</span>}
               {reveal.newTitles.map((t) => (
-                <span key={t} style={chip(GOLD2)}>Título: {t}</span>
+                <span key={t} style={chip(GOLD2)}>Título: {titleName(t)}</span>
               ))}
               {reveal.boardVerdict && reveal.boardVerdict !== "pendiente" && (
                 <span style={chip(confColor(reveal.boardConfidence ?? 50))}>
@@ -473,7 +499,10 @@ export default function SeasonView({
             >
               Continuar
             </button>
+            </div>
           </div>
+            );
+          })()}
         </div>
       )}
     </div>

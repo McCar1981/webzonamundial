@@ -14,7 +14,7 @@ import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { ingestNews } from "@/lib/noticias-ingest";
 import { applyRewrite } from "@/lib/noticias-rewriter";
-import { WORLD_CUP_QUERIES } from "@/lib/gnews";
+import { HOT_QUERY_KEYS, COLD_QUERY_KEYS, type WorldCupQueryKey } from "@/lib/gnews";
 import { readIngestStore, writeIngestStore, getStorePath } from "@/lib/noticias-store";
 import { broadcastPush } from "@/lib/push-notifications";
 import type { DraftNoticia } from "@/lib/noticias-ingest";
@@ -69,19 +69,36 @@ export async function GET(req: Request) {
       "5",
     10,
   );
-  // Pick a small subset of queries per tick (rotate by hour). Full coverage
-  // is achieved over 24h since we have 15 queries × ~10 results = 150 articles
-  // per full rotation.
-  const ALL_QUERIES = Object.keys(WORLD_CUP_QUERIES) as (keyof typeof WORLD_CUP_QUERIES)[];
-  // Cron cada 2h × 5 queries/tick = 12 × 5 = 60 req/día de GNews
-  // (free tier 100/día, holgura cómoda). 5 queries cubren más ángulos
-  // por ejecución (general, fixtures, injuries_wc, stars, squad...)
-  // → mayor probabilidad de pillar noticias frescas en cada tick.
+  // Selección de queries por tick, SESGADA hacia beats calientes (ver
+  // HOT_QUERY_KEYS / COLD_QUERY_KEYS en gnews.ts). El diagnóstico del crítico
+  // mostró que la rotación plana caía en beats fríos (sedes, entradas, FIFA) y
+  // metía relleno (Netflix, guías de trenes) que el crítico rechaza por baja
+  // originalidad. Ahora cada tick toma MAYORÍA de beats calientes
+  // (convocatorias, lesiones, cracks, selecciones top) + 1 frío para cobertura
+  // residual, rotando por hora para cubrir todo a lo largo del día sin inundar
+  // el feed de paja.
   const QUERIES_PER_TICK = parseInt(process.env.NEWS_QUERIES_PER_TICK || "5", 10);
+  const COLD_PER_TICK = Math.min(
+    QUERIES_PER_TICK,
+    parseInt(process.env.NEWS_COLD_PER_TICK || "1", 10),
+  );
+  const hotPerTick = Math.max(0, QUERIES_PER_TICK - COLD_PER_TICK);
   const hourSeed = new Date().getUTCHours();
-  const queries: (keyof typeof WORLD_CUP_QUERIES)[] = [];
-  for (let i = 0; i < QUERIES_PER_TICK; i++) {
-    queries.push(ALL_QUERIES[(hourSeed + i) % ALL_QUERIES.length]);
+  const queries: WorldCupQueryKey[] = [];
+  const seenQueries = new Set<WorldCupQueryKey>();
+  const pushQuery = (k: WorldCupQueryKey) => {
+    if (!seenQueries.has(k)) {
+      seenQueries.add(k);
+      queries.push(k);
+    }
+  };
+  // Beats calientes: rotan por hora a lo largo de HOT_QUERY_KEYS.
+  for (let i = 0; i < hotPerTick; i++) {
+    pushQuery(HOT_QUERY_KEYS[(hourSeed + i) % HOT_QUERY_KEYS.length]);
+  }
+  // Beats fríos: cobertura residual, rotando por hora.
+  for (let i = 0; i < COLD_PER_TICK; i++) {
+    pushQuery(COLD_QUERY_KEYS[(hourSeed + i) % COLD_QUERY_KEYS.length]);
   }
 
   const result = await ingestNews({

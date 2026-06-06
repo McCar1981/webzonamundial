@@ -162,6 +162,45 @@ export const WORLD_CUP_QUERIES = {
 export type WorldCupQueryKey = keyof typeof WORLD_CUP_QUERIES;
 
 /**
+ * Beats ordenados por prioridad editorial en la ventana pre-Mundial. La
+ * rotación del cron se sesga hacia el principio de esta lista.
+ *
+ * Beats CALIENTES: convocatorias, lesiones, cracks y selecciones top devuelven
+ * noticia con sustancia (datos, nombres, contexto) que el reescritor puede
+ * convertir en piezas originales y profundas → pasan el crítico de calidad.
+ *
+ * Beats FRÍOS: sedes, entradas, historia y FIFA institucional tienden a
+ * devolver relleno tangencial/de servicio (turismo, guías de streaming/trenes)
+ * que el crítico rechaza. Se cubren solo de vez en cuando para no inundar el
+ * feed de paja.
+ */
+export const HOT_QUERY_KEYS: WorldCupQueryKey[] = [
+  "squad",
+  "injuries",
+  "injuries_wc",
+  "stars",
+  "fixtures",
+  "coaches",
+  "argentina",
+  "brazil",
+  "spain",
+  "mexico",
+  "usa",
+  "portugal",
+  "france",
+  "england",
+  "general",
+];
+
+export const COLD_QUERY_KEYS: WorldCupQueryKey[] = [
+  "fifa",
+  "qualifiers",
+  "venues",
+  "tickets",
+  "history",
+];
+
+/**
  * Hard-blocked terms in titles or descriptions: if any appears, the article
  * is dropped before reaching the LLM, regardless of which query found it.
  * Catches "Copa del Mundo" articles about cycling, rugby, swimming etc.

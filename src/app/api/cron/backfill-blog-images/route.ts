@@ -12,8 +12,11 @@
 // Params:
 //   ?limit=N   máximo de posts a procesar en esta corrida (default 60).
 //   ?dry=1     solo informa qué haría, sin escribir en KV.
+//   ?force=1   REPROCESA todos los posts (no solo los del placeholder): sirve
+//              para CORREGIR imágenes ya asignadas que eran de otro país.
 //
-// Idempotente: salta los posts que ya tienen una imagen real (no placeholder).
+// Idempotente sin force: salta los posts que ya tienen una imagen real. Con
+// force=1 re-elige imagen para TODOS (vuelve a correr el picker corregido).
 
 import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
@@ -39,8 +42,9 @@ async function fillImages(
   budget: { remaining: number },
   dry: boolean,
   used: Set<string>,
+  force: boolean,
 ): Promise<{ filled: number; details: Array<{ slug: string; src: string }> }> {
-  const targets = posts.filter(needsImage);
+  const targets = posts.filter((p) => force || needsImage(p));
   let filled = 0;
   const details: Array<{ slug: string; src: string }> = [];
 
@@ -84,6 +88,7 @@ export async function GET(req: NextRequest) {
   const limit = Math.max(1, parseInt(url.searchParams.get("limit") || "60", 10));
   const dry = url.searchParams.get("dry") === "1";
   const probe = url.searchParams.get("probe") === "1";
+  const force = url.searchParams.get("force") === "1";
   const budget = { remaining: limit };
 
   const [auto, evergreen] = await Promise.all([
@@ -95,7 +100,9 @@ export async function GET(req: NextRequest) {
   // imagen y devuelve POR QUÉ no se elige (status HTTP, nº de páginas,
   // candidatos, rechazos por filtro). No escribe nada.
   if (probe) {
-    const targets = [...auto, ...evergreen].filter(needsImage).slice(0, 5);
+    const targets = [...auto, ...evergreen]
+      .filter((p) => force || needsImage(p))
+      .slice(0, 5);
     const diagnostics = await Promise.all(
       targets.map(async (p) => ({
         slug: p.slug,
@@ -113,18 +120,20 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ ok: true, probe: true, diagnostics });
   }
 
-  const autoNeeded = auto.filter(needsImage).length;
-  const evergreenNeeded = evergreen.filter(needsImage).length;
+  const autoNeeded = auto.filter((p) => force || needsImage(p)).length;
+  const evergreenNeeded = evergreen.filter((p) => force || needsImage(p)).length;
 
-  // Conjunto compartido de imágenes ya usadas (incl. las que algunos posts ya
-  // tienen) para que cada entrada reciba una foto DISTINTA.
+  // Conjunto compartido de imágenes ya usadas para que cada entrada reciba una
+  // foto DISTINTA. En force=1 NO sembramos las actuales: las vamos a reemplazar.
   const used = new Set<string>();
-  for (const p of [...auto, ...evergreen]) {
-    if (!needsImage(p) && p.ogImage) used.add(p.ogImage);
+  if (!force) {
+    for (const p of [...auto, ...evergreen]) {
+      if (!needsImage(p) && p.ogImage) used.add(p.ogImage);
+    }
   }
 
-  const autoResult = await fillImages(auto, budget, dry, used);
-  const evergreenResult = await fillImages(evergreen, budget, dry, used);
+  const autoResult = await fillImages(auto, budget, dry, used, force);
+  const evergreenResult = await fillImages(evergreen, budget, dry, used, force);
 
   let wroteAuto = false;
   let wroteEvergreen = false;
@@ -147,6 +156,7 @@ export async function GET(req: NextRequest) {
   return NextResponse.json({
     ok: true,
     dry,
+    force,
     limit,
     auto: {
       total: auto.length,

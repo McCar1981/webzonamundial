@@ -23,6 +23,10 @@ on:
         description: "Diagnostico (1 = informa por que no se elige imagen, no escribe)"
         required: false
         default: "0"
+      force:
+        description: "Reprocesar TODOS los posts (1 = corrige imagenes ya asignadas)"
+        required: false
+        default: "0"
 
 jobs:
   backfill:
@@ -35,6 +39,7 @@ jobs:
           DRY: ${{ github.event.inputs.dry }}
           LIMIT: ${{ github.event.inputs.limit }}
           PROBE: ${{ github.event.inputs.probe }}
+          FORCE: ${{ github.event.inputs.force }}
         run: |
           if [ -z "$SITE_URL" ] || [ -z "$CRON_SECRET" ]; then
             echo "::error::Missing SITE_URL or CRON_SECRET secrets"
@@ -42,6 +47,6 @@ jobs:
           fi
           curl -fsSL -m 300 \
             -H "Authorization: Bearer $CRON_SECRET" \
-            "$SITE_URL/api/cron/backfill-blog-images?dry=${DRY}&limit=${LIMIT}&probe=${PROBE}" \
+            "$SITE_URL/api/cron/backfill-blog-images?dry=${DRY}&limit=${LIMIT}&probe=${PROBE}&force=${FORCE}" \
             -o response.json
           cat response.json

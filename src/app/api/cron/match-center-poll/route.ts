@@ -31,6 +31,18 @@ export const maxDuration = 60;
 // (EDT en junio = UTC-4), así que componemos el instante con ese offset.
 const PREKICK_MS = 30 * 60_000;
 const POSTMATCH_MS = 150 * 60_000;
+// Margen para responder dentro del maxDuration.
+const TIME_BUDGET_MS = 50_000;
+// Opción 1: bucle interno sub-minuto. Mientras haya algún partido EN VIVO,
+// repetimos la pasada cada POLL_INTERVAL_MS para bajar la latencia del push de
+// ~1-4 min (drift/skips del cron de Vercel) a ~15s.
+const POLL_INTERVAL_MS = 15_000;
+// Estados de api-football que indican partido en curso (no NS/FT/PST/CANC...).
+const LIVE_STATUSES = new Set(["1H", "HT", "2H", "ET", "BT", "P", "LIVE", "INT", "SUSP"]);
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 function kickoffMs(date: string, time: string): number {
   const iso = `${date}T${time.length === 5 ? time : "00:00"}:00-04:00`;
@@ -46,6 +58,54 @@ function inLiveWindow(date: string, time: string, now: number): boolean {
 
 function apiKeyPresent(): boolean {
   return !!(process.env.API_SPORTS_KEY || process.env.RAPIDAPI_KEY);
+}
+
+/** Una pasada completa: ventana → fixtureIds → lote → caché + push. Devuelve los
+ *  contadores y cuántos snapshots siguen EN VIVO (para decidir si repetir). */
+async function runPass(): Promise<{
+  windowed: number;
+  mapped: number;
+  cached: number;
+  pushes: number;
+  live: number;
+}> {
+  const now = Date.now();
+  const windowed = MATCHES.filter((m) => inLiveWindow(m.d, m.t, now));
+
+  // Resuelve fixtureIds (KV/env) solo para los que tienen mapeo real.
+  const pairs: { matchId: number; fixtureId: number; meta: MatchMeta }[] = [];
+  for (const m of windowed) {
+    const meta = buildMeta(m.i);
+    if (!meta) continue;
+    const fixtureId = await getFixtureId(m.i);
+    if (!fixtureId) continue;
+    pairs.push({ matchId: m.i, fixtureId, meta });
+  }
+
+  if (pairs.length === 0) {
+    return { windowed: windowed.length, mapped: 0, cached: 0, pushes: 0, live: 0 };
+  }
+
+  // UNA petición por lote de 20 trae todos los partidos en vivo.
+  const snapshots = await fetchLiveSnapshots(pairs);
+  let cached = 0;
+  let pushes = 0;
+  let live = 0;
+  for (const snap of Object.values(snapshots)) {
+    await cacheSnapshot(snap);
+    cached++;
+    if (LIVE_STATUSES.has(snap.status)) live++;
+    // Tras calentar la caché, diff contra el estado guardado y manda los push
+    // de novedades (gol, roja, inicio, descanso, final). No falla la pasada si
+    // el push peta: la caché ya está servida.
+    try {
+      pushes += await processMatchPush(snap);
+    } catch (err) {
+      console.error("[mc-poll] push failed", snap.matchId, (err as Error).message);
+    }
+  }
+
+  return { windowed: windowed.length, mapped: pairs.length, cached, pushes, live };
 }
 
 export async function GET(req: Request) {
@@ -68,52 +128,36 @@ export async function GET(req: Request) {
     );
   }
 
-  const now = Date.now();
-  const windowed = MATCHES.filter((m) => inLiveWindow(m.d, m.t, now));
+  // Bucle interno sub-minuto (Opción 1): mientras haya partido EN VIVO y quede
+  // presupuesto, repetimos la pasada cada POLL_INTERVAL_MS. Si no hay nada en
+  // vivo, una sola pasada (idéntico al comportamiento anterior).
+  let totalCached = 0;
+  let totalPushes = 0;
+  let lastWindowed = 0;
+  let lastMapped = 0;
+  let passes = 0;
 
-  // Resuelve fixtureIds (KV/env) solo para los que tienen mapeo real.
-  const pairs: { matchId: number; fixtureId: number; meta: MatchMeta }[] = [];
-  for (const m of windowed) {
-    const meta = buildMeta(m.i);
-    if (!meta) continue;
-    const fixtureId = await getFixtureId(m.i);
-    if (!fixtureId) continue;
-    pairs.push({ matchId: m.i, fixtureId, meta });
-  }
+  for (;;) {
+    const { windowed, mapped, cached, pushes, live } = await runPass();
+    totalCached += cached;
+    totalPushes += pushes;
+    lastWindowed = windowed;
+    lastMapped = mapped;
+    passes++;
 
-  if (pairs.length === 0) {
-    return NextResponse.json({
-      ok: true,
-      windowed: windowed.length,
-      mapped: 0,
-      cached: 0,
-      duration_ms: Date.now() - startMs,
-    });
-  }
-
-  // UNA petición por lote de 20 trae todos los partidos en vivo.
-  const snapshots = await fetchLiveSnapshots(pairs);
-  let cached = 0;
-  let pushes = 0;
-  for (const snap of Object.values(snapshots)) {
-    await cacheSnapshot(snap);
-    cached++;
-    // Tras calentar la caché, diff contra el estado guardado y manda los push
-    // de novedades (gol, roja, inicio, descanso, final). No falla la pasada si
-    // el push peta: la caché ya está servida.
-    try {
-      pushes += await processMatchPush(snap);
-    } catch (err) {
-      console.error("[mc-poll] push failed", snap.matchId, (err as Error).message);
-    }
+    if (live === 0) break;
+    const budgetLeft = TIME_BUDGET_MS - (Date.now() - startMs);
+    if (budgetLeft < POLL_INTERVAL_MS + 5_000) break;
+    await sleep(POLL_INTERVAL_MS);
   }
 
   return NextResponse.json({
     ok: true,
-    windowed: windowed.length,
-    mapped: pairs.length,
-    cached,
-    pushes,
+    passes,
+    windowed: lastWindowed,
+    mapped: lastMapped,
+    cached: totalCached,
+    pushes: totalPushes,
     duration_ms: Date.now() - startMs,
   });
 }

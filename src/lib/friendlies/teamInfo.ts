@@ -216,6 +216,64 @@ export async function countryImage(name: string, seed = ""): Promise<string | nu
   return imgs[i] ?? null;
 }
 
+// Índice nombre de selección -> SOLO image_pool curado (ambiente: selección,
+// afición, acción del equipo). Para los push de contexto (previa, descanso,
+// final) preferimos estas a los retratos sueltos de jugadores.
+let atmosphereIndexPromise: Promise<Map<string, string[]>> | null = null;
+async function getAtmosphereIndex(): Promise<Map<string, string[]>> {
+  if (!atmosphereIndexPromise) {
+    atmosphereIndexPromise = (async () => {
+      const map = new Map<string, string[]>();
+      const slugs = await listBibliaSlugs();
+      for (const slug of slugs) {
+        const t = await loadTeam(slug);
+        if (!t) continue;
+        const imgs = [...new Set((t.wc_2026?.image_pool ?? []).filter(Boolean))];
+        for (const key of [t.name_en, t.name_es, t.name_local, slug]) {
+          if (key) map.set(norm(key), imgs);
+        }
+      }
+      return map;
+    })();
+  }
+  return atmosphereIndexPromise;
+}
+
+/**
+ * Imagen de AMBIENTE de una selección (image_pool curado: equipo/afición/acción).
+ * Para los avisos de contexto (previa, alineaciones, inicio, descanso, final).
+ * Si la ficha aún no tiene image_pool, cae a la galería amplia (countryImage),
+ * para no quedarse sin imagen. Determinista por `seed`.
+ */
+export async function countryAtmosphere(name: string, seed = ""): Promise<string | null> {
+  if (!name) return null;
+  const idx = await getAtmosphereIndex();
+  const imgs = idx.get(norm(name));
+  if (imgs && imgs.length > 0) {
+    const i = seed ? hashSeed(seed) % imgs.length : Math.floor(Math.random() * imgs.length);
+    return imgs[i] ?? null;
+  }
+  return countryImage(name, seed);
+}
+
+/**
+ * Imagen de ambiente del partido: la de la selección FAVORITA (mejor ranking).
+ * Para previas y resúmenes cuando no hay un protagonista concreto. null si
+ * ninguna se resuelve (el llamador usará un respaldo).
+ */
+export async function favoriteAtmosphere(
+  homeName: string,
+  awayName: string,
+  seed = "",
+): Promise<string | null> {
+  const [h, a] = await Promise.all([teamInfo(homeName), teamInfo(awayName)]);
+  const hr = h?.rank ?? Number.POSITIVE_INFINITY;
+  const ar = a?.rank ?? Number.POSITIVE_INFINITY;
+  const first = hr <= ar ? homeName : awayName;
+  const second = hr <= ar ? awayName : homeName;
+  return (await countryAtmosphere(first, seed)) || (await countryAtmosphere(second, seed));
+}
+
 /** Nombre en español de la selección; el original si no hay ficha. */
 export async function esName(name: string): Promise<string> {
   const info = await teamInfo(name);

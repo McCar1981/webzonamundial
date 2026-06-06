@@ -20,7 +20,13 @@ import {
   type PushPayload,
 } from "@/lib/push-notifications";
 import { flagEmoji } from "@/lib/friendlies/flags";
-import { teamInfo, favoritePhoto, playerPhoto, countryImage } from "@/lib/friendlies/teamInfo";
+import {
+  teamInfo,
+  favoritePhoto,
+  favoriteAtmosphere,
+  playerPhoto,
+  countryImage,
+} from "@/lib/friendlies/teamInfo";
 import { isFinishedStatus, isLiveStatus } from "@/lib/friendlies/types";
 import { clearFollowers, getFollowers } from "./followers";
 import type { LiveSnapshot, MatchEvent, MatchMeta, Pair } from "./types";
@@ -94,6 +100,25 @@ interface EventLabel {
   body: string;
 }
 
+/** Foto del autor del ÚLTIMO gol del partido (para resúmenes: descanso/final).
+ *  Así la imagen cuenta lo que pasó en vez de mostrar siempre al favorito. Si no
+ *  se resuelve el jugador, imagen variada del país que marcó. null si no hay gol. */
+async function lastScorerPhoto(snap: LiveSnapshot): Promise<string | null> {
+  const goals = snap.events.filter(
+    (e) => e.type === "goal" || e.type === "penalty_goal",
+  );
+  if (goals.length === 0) return null;
+  const last = goals.reduce((a, b) =>
+    b.minute + (b.extra ?? 0) / 100 >= a.minute + (a.extra ?? 0) / 100 ? b : a,
+  );
+  const meta = snap.meta;
+  const teamName =
+    last.side === "home" ? meta.home.name : last.side === "away" ? meta.away.name : "";
+  const seed = `${meta.id}:${last.id}`;
+  const byPlayer = last.player ? await playerPhoto(teamName, last.player, seed) : null;
+  return byPlayer || (await countryImage(teamName, seed));
+}
+
 /** Construye título+cuerpo de un evento. Goles y tarjetas rojas SIEMPRE
  *  incluyen jugador + país (lo que pidió Carlos). Amarillas → null (no se
  *  notifican, igual que Google, para no saturar). */
@@ -162,6 +187,10 @@ export async function processMatchPush(snap: LiveSnapshot): Promise<number> {
     const p = side === "home" ? homeInfo?.photo : side === "away" ? awayInfo?.photo : null;
     return p || fallbackPhoto || undefined;
   };
+  // Imagen de CONTEXTO (previa, alineaciones, inicio, descanso, final): ambiente
+  // del favorito (selección/afición), con respaldo a la foto de la estrella.
+  const atmosphere = await favoriteAtmosphere(meta.home.name, meta.away.name, `ctx-${matchId}`);
+  const contextImage = atmosphere || fallbackPhoto || undefined;
 
   const prev: MatchPushState =
     (await getState(matchId)) ?? {
@@ -214,7 +243,7 @@ export async function processMatchPush(snap: LiveSnapshot): Promise<number> {
       title: `Alineaciones — ${vs}`,
       body: `XI confirmado. ${snap.homeLineup?.formation ?? ""} vs ${snap.awayLineup?.formation ?? ""}`.trim(),
       icon: PUSH_ICON,
-      image: fallbackPhoto || undefined,
+      image: contextImage,
     });
     next.lineupsSent = true;
   }
@@ -225,7 +254,7 @@ export async function processMatchPush(snap: LiveSnapshot): Promise<number> {
       title: `¡Comienza! ${vs}`,
       body: `Partido del Mundial en juego.${meta.venue ? ` · ${meta.venue}` : ""}`,
       icon: PUSH_ICON,
-      image: fallbackPhoto || undefined,
+      image: contextImage,
     });
     next.startSent = true;
   }
@@ -257,6 +286,7 @@ export async function processMatchPush(snap: LiveSnapshot): Promise<number> {
       title: `Descanso — ${vs} ${scoreText(snap.score)}`,
       body: `Final de la primera parte.`,
       icon: PUSH_ICON,
+      image: (await lastScorerPhoto(snap)) || contextImage,
     });
     next.htSent = true;
   }
@@ -275,7 +305,7 @@ export async function processMatchPush(snap: LiveSnapshot): Promise<number> {
         title: `Final — ${vs} ${scoreText(snap.score)}`,
         body: winner ? `Victoria de ${winner}.` : `Empate.`,
         icon: PUSH_ICON,
-        image: fallbackPhoto || undefined,
+        image: (await lastScorerPhoto(snap)) || contextImage,
       },
       { pin: false },
     );

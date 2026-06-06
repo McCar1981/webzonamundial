@@ -36,6 +36,7 @@ import { broadcastPush, type PushPayload } from "@/lib/push-notifications";
 import {
   countryImage,
   esName,
+  favoriteAtmosphere,
   favoritePhoto,
   playerPhoto,
   teamFlagEmoji,
@@ -230,15 +231,21 @@ async function runPass(
     const snap = await fetchFriendlySnapshot(fix.fixtureId);
     if (!snap) continue;
 
-    // Nombres en español + banderas + foto que acompaña el partido (favorita).
-    const [homeEs, awayEs, homeFlag, awayFlag, matchPhoto] = await Promise.all([
-      esName(snap.home.name),
-      esName(snap.away.name),
-      teamFlagEmoji(snap.home.name),
-      teamFlagEmoji(snap.away.name),
-      favoritePhoto(snap.home.name, snap.away.name),
-    ]);
+    // Nombres en español + banderas + foto que acompaña el partido (favorita) +
+    // imagen de AMBIENTE para previas/resúmenes (selección/afición del favorito).
+    const [homeEs, awayEs, homeFlag, awayFlag, matchPhoto, matchAtmosphere] =
+      await Promise.all([
+        esName(snap.home.name),
+        esName(snap.away.name),
+        teamFlagEmoji(snap.home.name),
+        teamFlagEmoji(snap.away.name),
+        favoritePhoto(snap.home.name, snap.away.name),
+        favoriteAtmosphere(snap.home.name, snap.away.name, `ctx-${fix.fixtureId}`),
+      ]);
     const vs = vsText(homeEs, awayEs, homeFlag, awayFlag);
+    // Imagen de contexto (previa, alineaciones, inicio): ambiente del favorito,
+    // con respaldo a la foto de la estrella.
+    const contextImage = matchAtmosphere || matchPhoto || undefined;
 
     const prev: FriendlyState =
       (await getFriendlyState(fix.fixtureId)) ?? {
@@ -275,7 +282,7 @@ async function runPass(
         body: `XI confirmado. ${snap.homeLineup.formation ?? ""} vs ${snap.awayLineup.formation ?? ""}`.trim() + venueSuffix(snap),
         url,
         icon: snap.home.logo || PUSH_ICON,
-        image: matchPhoto || undefined,
+        image: contextImage,
         tag,
       });
       next.lineupsSent = true;
@@ -290,7 +297,7 @@ async function runPass(
         body: `Amistoso internacional en juego.${venueSuffix(snap)}`,
         url,
         icon: snap.home.logo || PUSH_ICON,
-        image: matchPhoto || undefined,
+        image: contextImage,
         tag,
       });
       next.startSent = true;
@@ -329,7 +336,7 @@ async function runPass(
         body: `Final de la primera parte.`,
         url,
         icon: PUSH_ICON,
-        image: (await lastScorerPhoto(snap)) || matchPhoto || undefined,
+        image: (await lastScorerPhoto(snap)) || contextImage,
         tag,
       });
       next.htSent = true;
@@ -351,7 +358,7 @@ async function runPass(
         body: winnerEs ? `Victoria de ${winnerEs}.` : `Empate en el amistoso.`,
         url,
         icon: winnerLogo || PUSH_ICON,
-        image: (await lastScorerPhoto(snap)) || matchPhoto || undefined,
+        image: (await lastScorerPhoto(snap)) || contextImage,
         tag,
       });
       next.ftSent = true;

@@ -438,6 +438,13 @@ async function searchOnce(
       /national (football |soccer )?team|world cup|f[uú]tbol|selecci[oó]n|\bsoccer\b|\bfifa\b|\buefa\b|conmebol|\bcopa\b/.test(
         relText,
       );
+    // En un post de país (needle), exigimos también que sea fútbol-asociación:
+    // mejor una imagen NEUTRA del Mundial que una foto del país de otro deporte
+    // (p.ej. fútbol americano de 1899 en la guía de EE.UU.).
+    if (needle && !soccer) {
+      diag.rejected.token += 1;
+      continue;
+    }
     candidates.push({
       src,
       width,

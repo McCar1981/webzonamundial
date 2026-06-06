@@ -140,6 +140,41 @@ export async function getMainQr(barId: string): Promise<QrSource | null> {
   return (data as QrSource | null) ?? null;
 }
 
+export async function countQrSources(barId: string): Promise<number> {
+  const admin = adminClient();
+  const { count } = await admin.from("bar_qr_sources")
+    .select("id", { count: "exact", head: true }).eq("bar_id", barId);
+  return count ?? 0;
+}
+
+export interface CreateQrInput { sourceType?: string; label?: string; }
+
+/** Crea una fuente QR de zona para el bar del dueño. Devuelve null si no es suyo. */
+export async function createQrSource(uid: string, barId: string, input: CreateQrInput): Promise<QrSource | null> {
+  const admin = adminClient();
+  const bar = await getBarById(barId);
+  if (!bar || bar.owner_user_id !== uid) return null;
+  const code = await uniqueQrCode();
+  const sourceType = (input.sourceType || "zona").slice(0, 20);
+  const { data } = await admin.from("bar_qr_sources").insert({
+    bar_id: barId, code, source_type: sourceType,
+    label: input.label?.trim().slice(0, 40) || sourceType,
+    utm_source: "qr", utm_medium: "bar", utm_campaign: "mundial2026", utm_content: sourceType,
+  }).select("*").single();
+  return (data as QrSource | null) ?? null;
+}
+
+/** Elimina una fuente QR del bar del dueño. No permite borrar la principal. */
+export async function deleteQrSource(uid: string, barId: string, qrId: string): Promise<boolean> {
+  const admin = adminClient();
+  const bar = await getBarById(barId);
+  if (!bar || bar.owner_user_id !== uid) return false;
+  const { data: qr } = await admin.from("bar_qr_sources").select("source_type").eq("id", qrId).eq("bar_id", barId).maybeSingle();
+  if (!qr || (qr as { source_type: string }).source_type === "main") return false;
+  await admin.from("bar_qr_sources").delete().eq("id", qrId).eq("bar_id", barId);
+  return true;
+}
+
 export async function listPrizes(barId: string): Promise<BarPrize[]> {
   const admin = adminClient();
   const { data } = await admin.from("bar_prizes").select("*")
@@ -384,6 +419,49 @@ export interface BarStats {
   scans: number;
   predictions: number;
   joins: number;
+}
+
+// ─── Admin (panel interno /admin/bars) ─────────────────────────────────────────
+export interface BarAdminRow extends BarRow {
+  participants: number;
+  paid: boolean;
+  payment_amount: number | null;
+  payment_currency: string | null;
+}
+
+/** Lista todos los bares con métricas básicas para el panel interno. */
+export async function listAllBars(limit = 200): Promise<BarAdminRow[]> {
+  const admin = adminClient();
+  const { data } = await admin.from("bars").select("*")
+    .order("created_at", { ascending: false }).limit(limit);
+  const bars = (data as BarRow[] | null) ?? [];
+  if (!bars.length) return [];
+
+  const ids = bars.map((b) => b.id);
+  const [{ data: parts }, { data: pays }] = await Promise.all([
+    admin.from("bar_participants").select("bar_id").in("bar_id", ids),
+    admin.from("bar_payments").select("bar_id,amount,currency,status,refunded_at").in("bar_id", ids),
+  ]);
+
+  const partCount = new Map<string, number>();
+  for (const p of (parts ?? []) as { bar_id: string }[]) {
+    partCount.set(p.bar_id, (partCount.get(p.bar_id) ?? 0) + 1);
+  }
+  const payByBar = new Map<string, { amount: number; currency: string; status: string; refunded_at: string | null }>();
+  for (const p of (pays ?? []) as { bar_id: string; amount: number; currency: string; status: string; refunded_at: string | null }[]) {
+    payByBar.set(p.bar_id, p);
+  }
+
+  return bars.map((b) => {
+    const pay = payByBar.get(b.id);
+    return {
+      ...b,
+      participants: partCount.get(b.id) ?? 0,
+      paid: !!pay && pay.status === "active" && !pay.refunded_at,
+      payment_amount: pay?.amount ?? null,
+      payment_currency: pay?.currency ?? null,
+    };
+  });
 }
 
 export async function barStats(barId: string): Promise<BarStats> {

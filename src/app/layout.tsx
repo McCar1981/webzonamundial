@@ -5,6 +5,7 @@ import "./globals.css";
 import RootLayoutClient from "./RootLayoutClient";
 import { LanguageProvider } from "@/i18n/LanguageContext";
 import CookieConsent from "@/components/CookieConsent";
+import NativeAppGuard from "@/components/NativeAppGuard";
 
 // Self-host Outfit via next/font for zero CLS + no render-blocking <link>.
 const outfit = Outfit({
@@ -319,6 +320,7 @@ export default async function RootLayout({
         <Script id="ga4-config" strategy="afterInteractive">
           {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-J9NWM9GNRK');`}
         </Script>
+        <NativeAppGuard />
         <LanguageProvider>
           <RootLayoutClient>{children}</RootLayoutClient>
         </LanguageProvider>

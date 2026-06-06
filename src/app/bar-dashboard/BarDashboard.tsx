@@ -8,10 +8,10 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import QRCode from "qrcode";
 import {
   Trophy, Users, QrCode, Gift, Palette, BarChart3, Tv, ExternalLink, Copy, Check,
-  Download, Plus, Trash2, Eye, Loader2, Rocket, CreditCard,
+  Download, Plus, Trash2, Eye, Loader2, Rocket, CreditCard, MapPin, Printer, FileSpreadsheet, Lock,
 } from "lucide-react";
 import { themeList } from "@/lib/bars/themes";
-import { planList, getPlan } from "@/lib/bars/plans";
+import { planList, getPlan, type BarPlan } from "@/lib/bars/plans";
 import type { BarRow, QrSource, BarPrize, BarStats, BarPayment } from "@/lib/bars/store";
 
 const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825";
@@ -22,15 +22,17 @@ interface Props {
   initialBar: BarRow | null;
   initialStats: BarStats | null;
   initialQr: QrSource | null;
+  initialSources: QrSource[];
   initialPrizes: BarPrize[];
   initialPayment: BarPayment | null;
   origin: string;
 }
 
-export default function BarDashboard({ initialBar, initialStats, initialQr, initialPrizes, initialPayment, origin }: Props) {
+export default function BarDashboard({ initialBar, initialStats, initialQr, initialSources, initialPrizes, initialPayment, origin }: Props) {
   const [bar, setBar] = useState<BarRow | null>(initialBar);
   const [stats] = useState<BarStats | null>(initialStats);
   const [qr] = useState<QrSource | null>(initialQr);
+  const [sources, setSources] = useState<QrSource[]>(initialSources);
   const [prizes, setPrizes] = useState<BarPrize[]>(initialPrizes);
   const [flash, setFlash] = useState<string | null>(null);
 
@@ -49,6 +51,7 @@ export default function BarDashboard({ initialBar, initialStats, initialQr, init
   if (!bar) return <CreateBar onCreated={setBar} />;
 
   const hasActivePlan = !!initialPayment && initialPayment.status === "active" && !initialPayment.refunded_at;
+  const plan = getPlan(bar.plan_id);
 
   return (
     <div style={{ minHeight: "100vh", background: BG, color: "#E2E8F0" }}>
@@ -72,6 +75,8 @@ export default function BarDashboard({ initialBar, initialStats, initialQr, init
         <PlanSection bar={bar} payment={initialPayment} hasActivePlan={hasActivePlan} onFlash={setFlash} />
         <Resumen stats={stats} bar={bar} origin={origin} onFlash={setFlash} />
         <QrSection bar={bar} qr={qr} origin={origin} onFlash={setFlash} />
+        <ZonesSection bar={bar} plan={plan} sources={sources} setSources={setSources} origin={origin} onFlash={setFlash} />
+        <MaterialsSection bar={bar} plan={plan} onFlash={setFlash} />
         <Prizes bar={bar} prizes={prizes} setPrizes={setPrizes} onFlash={setFlash} />
         <Personalization bar={bar} setBar={setBar} onFlash={setFlash} />
       </div>
@@ -240,6 +245,141 @@ function QrSection({ bar, qr, origin, onFlash }: { bar: BarRow; qr: QrSource | n
             <button onClick={() => void download("png")} style={{ ...qa(), cursor: "pointer" }}><Download size={14} /> PNG</button>
             <button onClick={() => void download("svg")} style={{ ...qa(), cursor: "pointer" }}><Download size={14} /> SVG</button>
           </div>
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+// ─── QR por zonas (multi-QR, gating por plan.maxQrSources) ───────────────────
+function ZonesSection({ bar, plan, sources, setSources, origin, onFlash }: { bar: BarRow; plan: BarPlan; sources: QrSource[]; setSources: (s: QrSource[]) => void; origin: string; onFlash: (s: string) => void }) {
+  const [label, setLabel] = useState("");
+  const [busy, setBusy] = useState(false);
+  const max = plan.maxQrSources;
+  // Solo zonas extra (la principal se gestiona arriba en "QR y materiales").
+  const zones = sources.filter((s) => s.source_type !== "main");
+  const used = sources.length; // principal + zonas cuentan para el límite del plan
+  const canAdd = used < max;
+
+  const add = useCallback(async () => {
+    setBusy(true);
+    try {
+      const res = await fetch("/api/bars/qr", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ sourceType: "zona", label }) });
+      const j = await res.json();
+      if (res.ok && j.qr) { setSources([...sources, j.qr]); setLabel(""); onFlash("Zona añadida"); }
+      else onFlash(j.message || "No se pudo crear la zona");
+    } catch { onFlash("Error de red"); } finally { setBusy(false); }
+  }, [label, sources, setSources, onFlash]);
+
+  const remove = useCallback(async (id: string) => {
+    const res = await fetch(`/api/bars/qr?id=${encodeURIComponent(id)}`, { method: "DELETE" });
+    if (res.ok) { setSources(sources.filter((s) => s.id !== id)); onFlash("Zona eliminada"); }
+    else onFlash("No se pudo eliminar");
+  }, [sources, setSources, onFlash]);
+
+  const downloadPng = useCallback(async (code: string, slug: string) => {
+    const data = await QRCode.toDataURL(`${origin}/r/${code}`, { width: 1024, margin: 2, errorCorrectionLevel: "M" });
+    const a = document.createElement("a");
+    a.href = data; a.download = `qr-${bar.slug}-${slug}.png`; a.click();
+  }, [origin, bar.slug]);
+
+  if (max <= 1) {
+    return (
+      <Section icon={<MapPin size={17} color={GOLD} />} title="QR por zonas">
+        <div style={{ background: BG2, border: BORDER, borderRadius: 14, padding: 16, display: "flex", alignItems: "center", gap: 10, color: MID, fontSize: 13.5 }}>
+          <Lock size={16} color={DIM} />
+          <span>Crea QR distintos para barra, terraza o salón y mide qué zona llena más tu bar.{" "}
+            <a href="/bares/precios" target="_blank" rel="noopener noreferrer" style={{ color: GOLD2 }}>Disponible en Mundial Completo y Bar Pro</a>.
+          </span>
+        </div>
+      </Section>
+    );
+  }
+
+  return (
+    <Section icon={<MapPin size={17} color={GOLD} />} title="QR por zonas">
+      <p style={{ color: MID, fontSize: 13, margin: "0 0 10px" }}>
+        Genera un QR por zona para saber desde dónde entran tus clientes. Usadas {used} de {max}.
+      </p>
+      {zones.length > 0 && (
+        <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 12 }}>
+          {zones.map((z) => (
+            <div key={z.id} style={{ display: "flex", alignItems: "center", gap: 10, background: BG2, border: BORDER, borderRadius: 12, padding: "10px 14px" }}>
+              <MapPin size={15} color={GOLD2} />
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontWeight: 700, fontSize: 14 }}>{z.label ?? "Zona"}</div>
+                <code style={{ color: DIM, fontSize: 11.5 }}>{`${origin}/r/${z.code}`.replace(/^https?:\/\//, "")}</code>
+              </div>
+              <button onClick={() => void downloadPng(z.code, (z.label ?? "zona").toLowerCase().replace(/[^a-z0-9]+/g, "-"))} style={{ ...qa(), cursor: "pointer", padding: "6px 9px" }} title="Descargar QR PNG"><Download size={14} /></button>
+              <a href={`/b/${bar.slug}/cartel?code=${encodeURIComponent(z.code)}`} target="_blank" rel="noopener noreferrer" style={{ ...qa(), padding: "6px 9px" }} title="Cartel de la zona"><Printer size={14} /></a>
+              <button onClick={() => void remove(z.id)} style={{ background: "transparent", border: "none", cursor: "pointer", color: DIM, padding: 4 }}><Trash2 size={15} /></button>
+            </div>
+          ))}
+        </div>
+      )}
+      {canAdd ? (
+        <div style={{ background: BG2, border: BORDER, borderRadius: 14, padding: 14, display: "flex", gap: 8, flexWrap: "wrap" }}>
+          <input value={label} onChange={(e) => setLabel(e.target.value)} placeholder="Nombre de la zona (Barra, Terraza, Salón…)" style={{ ...inp(), flex: "1 1 200px" }} />
+          <button onClick={() => void add()} disabled={busy} style={{ ...btn(), opacity: busy ? 0.6 : 1 }}>
+            {busy ? <Loader2 size={15} className="spin" /> : <Plus size={15} />} Añadir zona
+          </button>
+        </div>
+      ) : (
+        <div style={{ color: DIM, fontSize: 12.5 }}>Has alcanzado el máximo de QR de tu plan.</div>
+      )}
+    </Section>
+  );
+}
+
+// ─── Materiales premium: cartel imprimible + exportar participantes ───────────
+function MaterialsSection({ bar, plan, onFlash }: { bar: BarRow; plan: BarPlan; onFlash: (s: string) => void }) {
+  const [exporting, setExporting] = useState(false);
+
+  const exportCsv = useCallback(async () => {
+    setExporting(true);
+    try {
+      const res = await fetch("/api/bars/export");
+      if (!res.ok) { const j = await res.json().catch(() => ({})); onFlash(j.message || "No se pudo exportar"); return; }
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = `ranking-${bar.slug}.csv`; a.click();
+      URL.revokeObjectURL(url);
+      onFlash("Ranking exportado");
+    } catch { onFlash("Error de red"); } finally { setExporting(false); }
+  }, [bar.slug, onFlash]);
+
+  return (
+    <Section icon={<FileSpreadsheet size={17} color={GOLD} />} title="Materiales premium">
+      <div style={{ background: BG2, border: BORDER, borderRadius: 14, padding: 16, display: "flex", flexDirection: "column", gap: 12 }}>
+        {/* Cartel imprimible */}
+        <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
+          <div style={{ flex: "1 1 220px" }}>
+            <div style={{ fontWeight: 800, fontSize: 14, display: "flex", alignItems: "center", gap: 6 }}><Printer size={15} color={GOLD2} /> Cartel A4 para imprimir</div>
+            <div style={{ color: MID, fontSize: 12.5, marginTop: 2 }}>QR grande, premio y claim listos para colgar en el local.</div>
+          </div>
+          {plan.premiumMaterials ? (
+            <a href={`/b/${bar.slug}/cartel`} target="_blank" rel="noopener noreferrer" style={{ ...btn(), textDecoration: "none" }}><Printer size={15} /> Abrir cartel</a>
+          ) : (
+            <a href="/bares/precios" target="_blank" rel="noopener noreferrer" style={{ ...qa(), color: DIM }}><Lock size={14} /> Plan superior</a>
+          )}
+        </div>
+
+        <div style={{ height: 1, background: "rgba(255,255,255,0.06)" }} />
+
+        {/* Exportar participantes */}
+        <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
+          <div style={{ flex: "1 1 220px" }}>
+            <div style={{ fontWeight: 800, fontSize: 14, display: "flex", alignItems: "center", gap: 6 }}><FileSpreadsheet size={15} color={GOLD2} /> Exportar clasificación (CSV)</div>
+            <div style={{ color: MID, fontSize: 12.5, marginTop: 2 }}>Descarga posiciones y puntos. Sin datos personales sensibles.</div>
+          </div>
+          {plan.exportParticipants ? (
+            <button onClick={() => void exportCsv()} disabled={exporting} style={{ ...btn(), opacity: exporting ? 0.6 : 1 }}>
+              {exporting ? <Loader2 size={15} className="spin" /> : <Download size={15} />} Exportar CSV
+            </button>
+          ) : (
+            <a href="/bares/precios" target="_blank" rel="noopener noreferrer" style={{ ...qa(), color: DIM }}><Lock size={14} /> Plan superior</a>
+          )}
         </div>
       </div>
     </Section>

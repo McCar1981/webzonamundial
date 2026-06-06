@@ -74,6 +74,40 @@ body {
   background: var(--zm-gold);
 }
 
+/* ══════ NATIVE APP FEEL ══════
+   Bloquea la selección de texto en toda la webapp para imitar una app nativa
+   y evitar el menú contextual de Google ("Buscar en Google", toolbar de
+   selección en móvil). Los campos editables se re-habilitan más abajo para no
+   romper formularios (registro, predicciones, búsqueda, etc.). */
+html {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none; /* iOS: sin menú al mantener pulsado */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Campos donde el usuario SÍ debe poder seleccionar/editar/pegar texto. */
+input,
+textarea,
+select,
+[contenteditable="true"],
+[contenteditable=""] {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  -webkit-touch-callout: default;
+}
+
+/* Imágenes: sin arrastre ni guardado por long-press (feel app). */
+img {
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
 /* ══════ SELECTION ══════ */
 ::selection {
   background: rgba(201, 168, 76, 0.3);

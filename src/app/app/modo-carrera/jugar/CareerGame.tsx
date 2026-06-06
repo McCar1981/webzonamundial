@@ -12,7 +12,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { defaultCareer, loadCareer, saveCareer, isCareerStarted } from "@/lib/modo-carrera/store";
-import type { CareerState, CareerTab, SkillBranch, NarrativeKind } from "@/lib/modo-carrera/types";
+import type { CareerState, CareerTab, SkillBranch, NarrativeKind, Trophy } from "@/lib/modo-carrera/types";
 import { unlockSkill, applyDecision } from "@/lib/modo-carrera/engine";
 import { beginSeason, playNextMatch, startNextSeason, type PlayResult } from "@/lib/modo-carrera/season";
 import { beginLiveSeason, hasLiveFixtures } from "@/lib/modo-carrera/live-season";
@@ -27,6 +27,7 @@ import OnboardingDT from "./OnboardingDT";
 import HubView from "./HubView";
 import SeasonView from "./SeasonView";
 import LevelUpOverlay from "./LevelUpOverlay";
+import TrophyReveal from "./TrophyReveal";
 import SkillTreeView from "./SkillTreeView";
 import MissionsView from "./MissionsView";
 import ReputationView from "./ReputationView";
@@ -51,9 +52,11 @@ export default function CareerGame() {
   const [paseDT, setPaseDT] = useState(false);
   const [tab, setTab] = useState<CareerTab>("hub");
   const [levelUp, setLevelUp] = useState<{ overall: number; levels: number } | null>(null);
+  const [trophyReveal, setTrophyReveal] = useState<Trophy | null>(null);
   const [narrativeQuota, setNarrativeQuota] = useState<{ remaining: number | null; exceeded: boolean }>({ remaining: null, exceeded: false });
   const hydrated = useRef(false);
   const prevOverall = useRef<number | null>(null);
+  const prevTrophies = useRef<number | null>(null);
 
   // Carga inicial + sincronización con servidor.
   useEffect(() => {
@@ -101,6 +104,17 @@ export default function CareerGame() {
     }
     prevOverall.current = cur;
   }, [career?.progression.overall]);
+
+  // Reveal de trofeo a pantalla completa al GANAR uno nuevo, estés en la pestaña
+  // que estés (momento de máxima euforia → upsell del Pase DT en TrophyReveal).
+  useEffect(() => {
+    const trophies = career?.legacy.trophies;
+    if (!trophies) return;
+    if (prevTrophies.current !== null && hydrated.current && trophies.length > prevTrophies.current) {
+      setTrophyReveal(trophies[trophies.length - 1]);
+    }
+    prevTrophies.current = trophies.length;
+  }, [career?.legacy.trophies]);
 
   if (!career) {
     return (
@@ -170,6 +184,7 @@ export default function CareerGame() {
   return (
     <div style={{ background: BG, minHeight: "100vh", color: "#fff", fontFamily: "'Outfit',sans-serif", padding: "32px 20px 80px" }}>
       {levelUp && <LevelUpOverlay overall={levelUp.overall} levels={levelUp.levels} onClose={() => setLevelUp(null)} />}
+      {trophyReveal && <TrophyReveal trophy={trophyReveal} paseDT={paseDT} onClose={() => setTrophyReveal(null)} />}
       <div style={{ maxWidth: 1100, margin: "0 auto 18px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <h1 style={{ fontSize: "clamp(22px,3vw,30px)", fontWeight: 900 }}>Modo Carrera</h1>
         {authed === false && (
@@ -240,7 +255,7 @@ export default function CareerGame() {
           onGenerate={handleGenerate}
         />
       )}
-      {tab === "legado" && <LegacyView career={career} />}
+      {tab === "legado" && <LegacyView career={career} paseDT={paseDT} />}
       {tab === "ranking" && <RankingView />}
     </div>
   );

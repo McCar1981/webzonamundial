@@ -6,7 +6,7 @@
 
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { BG2, BG3, GOLD, GOLD2, MID, DIM } from "./fx";
 import TrophyReveal from "./TrophyReveal";
 import { SELECCIONES } from "@/data/selecciones";
@@ -52,19 +52,12 @@ function Stat({ label, value, accent }: { label: string; value: number; accent?:
   );
 }
 
-export default function LegacyView({ career }: { career: CareerState }) {
+export default function LegacyView({ career, paseDT = false }: { career: CareerState; paseDT?: boolean }) {
   const { legacy } = career;
   const { records } = legacy;
+  // Re-ver la celebración al pulsar un trofeo de la vitrina. El auto-reveal al
+  // GANAR uno nuevo lo dispara CareerGame (vale en cualquier pestaña).
   const [reveal, setReveal] = useState<Trophy | null>(null);
-
-  // Auto-reveal al GANAR un trofeo nuevo (cuando la cuenta crece en sesión).
-  const prevCount = useRef(legacy.trophies.length);
-  useEffect(() => {
-    if (legacy.trophies.length > prevCount.current) {
-      setReveal(legacy.trophies[legacy.trophies.length - 1]);
-    }
-    prevCount.current = legacy.trophies.length;
-  }, [legacy.trophies]);
 
   const share = async () => {
     const nation = SELECCIONES.find((s) => s.slug === career.identity.nationSlug)?.nombre ?? "su selección";
@@ -86,7 +79,7 @@ export default function LegacyView({ career }: { career: CareerState }) {
 
   return (
     <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-      {reveal && <TrophyReveal trophy={reveal} onClose={() => setReveal(null)} />}
+      {reveal && <TrophyReveal trophy={reveal} paseDT={paseDT} onClose={() => setReveal(null)} />}
 
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12, marginBottom: 20 }}>
         <div>

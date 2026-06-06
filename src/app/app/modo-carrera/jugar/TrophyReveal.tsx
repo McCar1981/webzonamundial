@@ -6,6 +6,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Link from "next/link";
 import { BG, GOLD, GOLD2, MID } from "./fx";
 import type { Trophy } from "@/lib/modo-carrera/types";
 
@@ -20,7 +21,7 @@ const CONFETTI = Array.from({ length: 28 }, (_, i) => ({
   size: 6 + (i % 3) * 3,
 }));
 
-export default function TrophyReveal({ trophy, onClose }: { trophy: Trophy; onClose: () => void }) {
+export default function TrophyReveal({ trophy, paseDT = false, onClose }: { trophy: Trophy; paseDT?: boolean; onClose: () => void }) {
   // Cerrar con Escape.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
@@ -155,20 +156,50 @@ export default function TrophyReveal({ trophy, onClose }: { trophy: Trophy; onCl
         </div>
         <h2 style={{ fontSize: "clamp(24px,5vw,40px)", fontWeight: 900, color: "#fff", margin: "8px 0 4px" }}>{trophy.name}</h2>
         <div style={{ fontSize: 14, color: MID }}>Temporada {trophy.season}</div>
+
+        {/* Upsell en el pico de euforia: solo para quien aún no tiene Pase DT. */}
+        {!paseDT && (
+          <div style={{ marginTop: 18, maxWidth: 420, marginInline: "auto" }}>
+            <div style={{ fontSize: 13, color: GOLD2, fontWeight: 700, lineHeight: 1.5 }}>
+              Inmortaliza esta gesta: con el Pase DT desbloqueas narrativa con IA sin límite y tu legado completo.
+            </div>
+            <Link
+              href="/premium"
+              onClick={(e) => e.stopPropagation()}
+              style={{
+                display: "inline-block",
+                marginTop: 12,
+                padding: "11px 24px",
+                borderRadius: 999,
+                background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
+                color: "#1a1407",
+                fontWeight: 800,
+                fontSize: 13.5,
+                textDecoration: "none",
+                boxShadow: "0 10px 30px rgba(201,168,76,0.4)",
+              }}
+            >
+              Conseguir Pase DT
+            </Link>
+          </div>
+        )}
+
         <button
           type="button"
           onClick={(e) => { e.stopPropagation(); onClose(); }}
           style={{
-            marginTop: 24,
-            padding: "12px 28px",
+            display: "block",
+            marginTop: paseDT ? 24 : 14,
+            marginInline: "auto",
+            padding: paseDT ? "12px 28px" : "9px 22px",
             borderRadius: 12,
-            border: "none",
-            background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
-            color: BG,
+            border: paseDT ? "none" : `1px solid ${GOLD}55`,
+            background: paseDT ? `linear-gradient(135deg, ${GOLD}, ${GOLD2})` : "transparent",
+            color: paseDT ? BG : MID,
             fontWeight: 800,
             fontSize: 14,
             cursor: "pointer",
-            boxShadow: "0 10px 30px rgba(201,168,76,0.4)",
+            boxShadow: paseDT ? "0 10px 30px rgba(201,168,76,0.4)" : "none",
           }}
         >
           Continuar

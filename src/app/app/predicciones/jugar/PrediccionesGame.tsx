@@ -72,14 +72,6 @@ function tierMood(mult: number): string {
   return "Favorito claro";
 }
 
-// Frase de "evento" para el partido destacado, derivada del multiplicador.
-function matchEventLine(mult: number): string {
-  if (mult >= 2) return "Batacazo histórico esperando suceder";
-  if (mult >= 1.5) return "Partido trampa: el favorito puede caer";
-  if (mult >= 1.25) return "Partido abierto, cualquiera se lo lleva";
-  return "Duelo de favoritos, margen mínimo";
-}
-
 // Miles con separador local (2481 → "2.481").
 const fmtCount = (n: number): string => n.toLocaleString("es");
 
@@ -272,20 +264,14 @@ export default function PrediccionesGame() {
 
   return (
     <Shell>
-      {/* Header de página compacto: marca + accesos secundarios (Ranking/Ligas/
-          Stats). El título "Predicciones" lo lleva el hero compacto justo debajo,
-          para no duplicarlo ni robar altura por encima del partido. */}
-      <header style={{ padding: "12px 16px 4px", maxWidth: 1280, margin: "0 auto" }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 8 }}>
-          <span style={{ display: "inline-flex", alignItems: "center", gap: 6, color: GOLD, fontSize: 11.5, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase" }}>
-            <Sparkles size={15} color={GOLD2} /> ZonaMundial
-          </span>
-          <nav aria-label="Secciones de predicciones" style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-            <Link href="/app/predicciones/jugar/ranking" style={pillLink}><Trophy size={14} /> Ranking</Link>
-            <Link href="/app/predicciones/jugar/ligas" style={pillLink}><Users size={14} /> Ligas</Link>
-            <Link href="/app/predicciones/jugar/stats" style={pillLink}><TrendingUp size={14} /> Mis stats</Link>
-          </nav>
-        </div>
+      {/* Header de página minimalista: solo la marca. La navegación (Ranking/
+          Ligas/Stats) baja a accesos secundarios bajo el partido, y el título
+          "Predicciones" lo lleva el hero compacto, para no robar altura por
+          encima del partido ni duplicar cabeceras. */}
+      <header style={{ padding: "10px 16px 2px", maxWidth: 1280, margin: "0 auto" }}>
+        <span style={{ display: "inline-flex", alignItems: "center", gap: 6, color: GOLD, fontSize: 11.5, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase" }}>
+          <Sparkles size={15} color={GOLD2} /> ZonaMundial
+        </span>
       </header>
 
       {/* Vista tablero: hero compacto + resumen + partido destacado arriba +
@@ -446,6 +432,17 @@ const PJ_CSS = `
 .pj-back:hover { background: rgba(201,168,76,0.14); }
 .pj-summary { position: sticky; top: 0; z-index: 5; }
 
+/* Barra de resumen del usuario (UNA sola card horizontal compacta) en el hub.
+   Items en línea con separadores; en móvil estrecho fluyen a 2 líneas. */
+.pj-usersummary {
+  background: ${BG2}; border: ${CARD_BORDER}; border-radius: 14px; padding: 10px 14px;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px;
+  font-size: 13px; font-weight: 800; color: #fff;
+}
+.pj-usersummary-item { display: inline-flex; align-items: center; gap: 6px; min-width: 0; }
+.pj-usersummary-item:not(:last-child)::after { content: "·"; color: ${DIM}; margin-left: 8px; font-weight: 700; }
+.pj-usersummary-sub { color: ${MID}; font-weight: 700; font-size: 11.5px; }
+
 /* Mini barra de stats (Nivel / XP / Racha / Fútcoins) */
 /* En móviles estrechos: rejilla 2×2 para que cada tarjeta (sobre todo Fútcoins)
    respire y no quede pegada al borde. A partir de 560px volvemos a 4 columnas. */
@@ -551,19 +548,26 @@ function LandingView({ matches, onPick }: { matches: Match[]; onPick: (id: strin
     });
   }, [matches, filter, query]);
 
-  // Tipos pendientes del partido destacado (para el subtítulo del hero).
-  const featuredPending = featured
-    ? (mine?.types_total ?? PREDICTION_TYPES.length) - (mine?.counts[String(featured.i)] ?? 0)
-    : 0;
+  // Progreso del partido destacado (para el subtítulo del hero y la card).
+  const typesTotal = mine?.types_total ?? PREDICTION_TYPES.length;
+  const featuredDone = featured ? (mine?.counts[String(featured.i)] ?? 0) : 0;
+  const featuredPending = featured ? typesTotal - featuredDone : 0;
 
   return (
     <>
-      {/* Nivel 1 — acción: título compacto + resumen + partido destacado arriba */}
+      {/* Nivel 1 — acción: hero compacto + partido destacado arriba del todo */}
       <CompactHero count={matches.length} pending={featuredPending} />
-      <section className="pj-wrap" style={{ paddingTop: 12 }}>
-        <UserMiniStatsBar />
+      {featured && (
+        <FeaturedMatch m={featured} onPick={onPick} pulse={pulse} predicted={featuredDone} typesTotal={typesTotal} />
+      )}
+
+      {/* Nivel 3 — resumen compacto del usuario (una sola barra) */}
+      <section className="pj-wrap" style={{ paddingTop: 14 }}>
+        <UserSummaryBar />
       </section>
-      {featured && <FeaturedMatch m={featured} onPick={onPick} pulse={pulse} />}
+
+      {/* Accesos secundarios — debajo del partido y del resumen */}
+      <QuickActionsNav />
 
       {/* Nivel 2 — más partidos para predecir */}
       <Filters filter={filter} setFilter={setFilter} query={query} setQuery={setQuery} groups={groupLetters} />
@@ -582,30 +586,78 @@ function LandingView({ matches, onPick }: { matches: Match[]; onPick: (id: strin
   );
 }
 
+// Barra compacta de accesos secundarios (Ranking · Ligas · Mis stats). Va debajo
+// del partido para no competir con el CTA principal "Predecir ahora".
+function QuickActionsNav() {
+  return (
+    <section className="pj-wrap" style={{ paddingTop: 12 }}>
+      <nav aria-label="Accesos de predicciones" style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+        <Link href="/app/predicciones/jugar/ranking" style={pillLink}><Trophy size={13} /> Ranking</Link>
+        <Link href="/app/predicciones/jugar/ligas" style={pillLink}><Users size={13} /> Ligas</Link>
+        <Link href="/app/predicciones/jugar/stats" style={pillLink}><TrendingUp size={13} /> Mis stats</Link>
+      </nav>
+    </section>
+  );
+}
+
+// Resumen del usuario en UNA sola barra compacta: Nivel · XP · Racha · Fútcoins.
+// Reemplaza las cuatro mini-cards: mismos datos, mucha menos altura.
+function UserSummaryBar() {
+  const [s, setS] = useState<GamificationSummary | null>(null);
+  useEffect(() => {
+    let alive = true;
+    fetch("/api/predictions/me")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j) => { if (alive && j) setS(j); })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, []);
+  if (!s) return null;
+  const items: { icon: typeof Trophy; color: string; label: string; sub?: string }[] = [
+    { icon: Trophy, color: GOLD2, label: `Nivel ${s.level.level}`, sub: s.level.title },
+    { icon: TrendingUp, color: "#38bdf8", label: `${s.level.xpIntoLevel}/${s.level.xpForLevel} XP` },
+    { icon: Flame, color: s.streak.active ? "#f59e0b" : DIM, label: `Racha ${s.streak.current}` },
+    { icon: Coins, color: GOLD, label: fmtCount(s.coins) },
+  ];
+  return (
+    <div className="pj-usersummary" role="group" aria-label="Tu progreso">
+      {items.map((it) => {
+        const Icon = it.icon;
+        return (
+          <span key={it.label} className="pj-usersummary-item">
+            <Icon size={15} color={it.color} style={{ flexShrink: 0 }} />
+            <span>{it.label}</span>
+            {it.sub && <span className="pj-usersummary-sub">{it.sub}</span>}
+          </span>
+        );
+      })}
+    </div>
+  );
+}
+
 // Hero compacto: título de sección + subtítulo + pill de disponibilidad. Sustituye
 // al hero grande con imagen para que el partido destacado quede más arriba.
 function CompactHero({ count, pending }: { count: number; pending: number }) {
   return (
-    <section className="pj-wrap" style={{ paddingTop: 14, paddingBottom: 2 }}>
+    <section className="pj-wrap" style={{ paddingTop: 8, paddingBottom: 2 }}>
       <div style={{
         position: "relative", overflow: "hidden",
         background: `radial-gradient(130% 170% at 0% 0%, ${BG2} 0%, ${BG3} 58%, ${BG} 100%)`,
-        border: CARD_BORDER, borderRadius: 18, padding: "18px 20px",
+        border: CARD_BORDER, borderRadius: 16, padding: "13px 16px",
       }}>
-        <div aria-hidden style={{ position: "absolute", top: -70, right: -45, width: 200, height: 200, borderRadius: "50%", background: "radial-gradient(circle, rgba(201,168,76,0.15), transparent 70%)", pointerEvents: "none" }} />
-        <span style={{ color: GOLD, fontSize: 10.5, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase" }}>Mundial 2026</span>
-        <h1 style={{ fontSize: 24, fontWeight: 900, lineHeight: 1.1, margin: "6px 0 4px", display: "flex", alignItems: "center", gap: 9 }}>
-          <Sparkles size={22} color={GOLD2} /> Predicciones
+        <div aria-hidden style={{ position: "absolute", top: -60, right: -40, width: 170, height: 170, borderRadius: "50%", background: "radial-gradient(circle, rgba(201,168,76,0.14), transparent 70%)", pointerEvents: "none" }} />
+        <h1 style={{ fontSize: 20, fontWeight: 900, lineHeight: 1.05, margin: 0, display: "flex", alignItems: "center", gap: 8 }}>
+          <Sparkles size={19} color={GOLD2} /> Predicciones
         </h1>
-        <p style={{ fontSize: 13.5, color: MID, margin: 0, lineHeight: 1.5 }}>Completa tus pronósticos y suma puntos.</p>
+        <p style={{ fontSize: 12.5, color: MID, margin: "3px 0 0", lineHeight: 1.4 }}>Completa tus pronósticos y suma puntos.</p>
         {count > 0 && (
-          <div style={{ marginTop: 12, display: "flex", flexWrap: "wrap", gap: 8 }}>
-            <span style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "rgba(201,168,76,0.12)", border: `1px solid ${GOLD}55`, color: GOLD2, borderRadius: 99, padding: "5px 12px", fontSize: 12, fontWeight: 800 }}>
-              <Globe size={13} /> {count} {count === 1 ? "partido disponible" : "partidos disponibles"}
+          <div style={{ marginTop: 9, display: "flex", flexWrap: "wrap", gap: 7 }}>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 5, background: "rgba(201,168,76,0.12)", border: `1px solid ${GOLD}55`, color: GOLD2, borderRadius: 99, padding: "4px 10px", fontSize: 11.5, fontWeight: 800 }}>
+              <Globe size={12} /> {count} {count === 1 ? "partido disponible" : "partidos disponibles"}
             </span>
             {pending > 0 && (
-              <span style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "rgba(255,255,255,0.05)", border: CARD_BORDER, color: MID, borderRadius: 99, padding: "5px 12px", fontSize: 12, fontWeight: 700 }}>
-                <Clock size={13} /> {pending}/{PREDICTION_TYPES.length} tipos pendientes
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 5, background: "rgba(255,255,255,0.05)", border: CARD_BORDER, color: MID, borderRadius: 99, padding: "4px 10px", fontSize: 11.5, fontWeight: 700 }}>
+                <Clock size={12} /> {pending}/{PREDICTION_TYPES.length} tipos pendientes
               </span>
             )}
           </div>
@@ -712,7 +764,9 @@ function FeaturedTeam({ flag, name }: { flag: string; name: string }) {
   );
 }
 
-function FeaturedMatch({ m, onPick, pulse }: { m: Match; onPick: (id: string) => void; pulse: ActivityPulse | null }) {
+function FeaturedMatch({ m, onPick, pulse, predicted, typesTotal }: {
+  m: Match; onPick: (id: string) => void; pulse: ActivityPulse | null; predicted: number; typesTotal: number;
+}) {
   const t = tierOf(m);
   const [split, setSplit] = useState<WinnerSplit | null>(null);
 
@@ -732,17 +786,27 @@ function FeaturedMatch({ m, onPick, pulse }: { m: Match; onPick: (id: string) =>
 
   const isMostPlayed = pulse?.most_played?.match_id === String(m.i);
   const hasVotes = split != null && split.total > 0;
+  const pending = Math.max(0, typesTotal - predicted);
 
   return (
-    <section className="pj-wrap featured-match" style={{ paddingTop: 18 }}>
+    <section className="pj-wrap featured-match" style={{ paddingTop: 16 }}>
       <h2 style={sectionTitle}>Próximo partido para predecir</h2>
       <div style={{
         background: `linear-gradient(135deg, ${BG2} 0%, ${BG3} 100%)`,
-        border: "1px solid rgba(201,168,76,0.28)", borderRadius: 20, padding: "24px 22px",
+        border: "1px solid rgba(201,168,76,0.28)", borderRadius: 20, padding: "18px 18px",
         position: "relative", overflow: "hidden",
       }}>
         <div aria-hidden style={{ position: "absolute", inset: 0, background: "radial-gradient(80% 120% at 50% -20%, rgba(201,168,76,0.10), transparent 60%)", pointerEvents: "none" }} />
-        <div style={{ position: "relative", display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center", marginBottom: 18 }}>
+
+        {/* 1º — protagonistas: equipos + banderas + VS */}
+        <div className="pj-featured-teams" style={{ position: "relative" }}>
+          <FeaturedTeam flag={m.hf} name={m.h} />
+          <div style={{ fontSize: 28, fontWeight: 900, color: GOLD, letterSpacing: 1, flexShrink: 0 }}>VS</div>
+          <FeaturedTeam flag={m.af} name={m.a} />
+        </div>
+
+        {/* 2º — contexto: grupo, fecha, multiplicador, más jugado */}
+        <div style={{ position: "relative", display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 7, marginTop: 14 }}>
           <span style={pillTag}>Grupo {m.g}</span>
           <span style={pillTag}><Calendar size={12} /> {fmtKickoff(m)}</span>
           <span style={{ ...pillTag, color: TIER_COLOR[t.label], borderColor: `${TIER_COLOR[t.label]}55` }}>
@@ -755,37 +819,32 @@ function FeaturedMatch({ m, onPick, pulse }: { m: Match; onPick: (id: string) =>
           )}
         </div>
 
-        <div className="pj-featured-teams" style={{ position: "relative" }}>
-          <FeaturedTeam flag={m.hf} name={m.h} />
-          <div style={{ fontSize: 30, fontWeight: 900, color: GOLD, letterSpacing: 1, flexShrink: 0 }}>VS</div>
-          <FeaturedTeam flag={m.af} name={m.a} />
+        {/* Distribución de la manada (si hay votos) */}
+        {hasVotes && (
+          <div style={{ position: "relative", marginTop: 14, textAlign: "center" }}>
+            <div style={{ fontSize: 12.5, fontWeight: 800, display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 4 }}>
+              <span style={{ color: GREEN }}>{split!.home}% {m.h}</span>
+              <span style={{ color: DIM }}>·</span>
+              <span style={{ color: MID }}>{split!.draw}% Empate</span>
+              <span style={{ color: DIM }}>·</span>
+              <span style={{ color: "#38bdf8" }}>{split!.away}% {m.a}</span>
+            </div>
+            <div style={{ display: "flex", height: 7, borderRadius: 99, overflow: "hidden", marginTop: 8, border: CARD_BORDER, maxWidth: 460, marginLeft: "auto", marginRight: "auto" }}>
+              <div style={{ width: `${split!.home}%`, background: GREEN }} />
+              <div style={{ width: `${split!.draw}%`, background: MID }} />
+              <div style={{ width: `${split!.away}%`, background: "#38bdf8" }} />
+            </div>
+          </div>
+        )}
+
+        {/* 3º — progreso del usuario en este partido */}
+        <div style={{ position: "relative", marginTop: 14, display: "flex", alignItems: "center", justifyContent: "center", gap: 6, color: pending === 0 ? GREEN : GOLD2, fontSize: 12.5, fontWeight: 800 }}>
+          {pending === 0
+            ? <><CheckCircle2 size={14} /> Predicción completa · {typesTotal}/{typesTotal} tipos</>
+            : <><Clock size={13} /> Progreso {predicted}/{typesTotal} tipos pendientes</>}
         </div>
 
-        {/* Texto-evento + distribución de la manada */}
-        <div style={{ position: "relative", marginTop: 18, textAlign: "center" }}>
-          <div style={{ color: GOLD2, fontSize: 13, fontWeight: 700 }}>{matchEventLine(t.multiplier)}</div>
-          {hasVotes ? (
-            <>
-              <div style={{ color: MID, fontSize: 12.5, marginTop: 8 }}>La manada está dividida:</div>
-              <div style={{ fontSize: 13.5, fontWeight: 800, marginTop: 4, display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 4 }}>
-                <span style={{ color: GREEN }}>{split!.home}% {m.h}</span>
-                <span style={{ color: DIM }}>·</span>
-                <span style={{ color: MID }}>{split!.draw}% Empate</span>
-                <span style={{ color: DIM }}>·</span>
-                <span style={{ color: "#38bdf8" }}>{split!.away}% {m.a}</span>
-              </div>
-              {/* Mini barra de tendencia */}
-              <div style={{ display: "flex", height: 8, borderRadius: 99, overflow: "hidden", marginTop: 10, border: CARD_BORDER, maxWidth: 460, marginLeft: "auto", marginRight: "auto" }}>
-                <div style={{ width: `${split!.home}%`, background: GREEN }} />
-                <div style={{ width: `${split!.draw}%`, background: MID }} />
-                <div style={{ width: `${split!.away}%`, background: "#38bdf8" }} />
-              </div>
-            </>
-          ) : (
-            <div style={{ color: MID, fontSize: 12.5, marginTop: 8 }}>Sé el primero en predecir este partido.</div>
-          )}
-        </div>
-
+        {/* CTA principal de la pantalla */}
         <button onClick={() => onPick(String(m.i))} className="pj-cta" style={featuredBtn} aria-label={`Predecir ahora ${m.h} contra ${m.a}`}>
           <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8 }}>Predecir ahora <ChevronRight size={18} /></span>
         </button>
@@ -1076,7 +1135,7 @@ function CtaFinal() {
 }
 
 const featuredBtn: React.CSSProperties = {
-  position: "relative", width: "100%", marginTop: 22, padding: "14px", borderRadius: 12, border: "none", cursor: "pointer",
+  position: "relative", width: "100%", marginTop: 14, padding: "14px", borderRadius: 12, border: "none", cursor: "pointer",
   background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: BG, fontWeight: 900, fontSize: 15, minHeight: 48,
 };
 

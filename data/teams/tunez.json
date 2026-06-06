@@ -620,7 +620,15 @@
         },
         "shirt_number_expected": 5,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Lens_-_Paris_FC_%2805-08-2020%29_23.jpg/330px-Lens_-_Paris_FC_%2805-08-2020%29_23.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Lens_-_Paris_FC_%2805-08-2020%29_23.jpg/330px-Lens_-_Paris_FC_%2805-08-2020%29_23.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Mohameddeq_Ali_Abdi_born_1983_is_a_Somali_politician_and_a_constitutional_expert._He_is_currently_leader_Institute_Youth_Security_Economic_stabilization_in_Somalia.jpg/500px-thumbnail.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Author_of_the_book_Why_Somali_does_not_get_the_right_direction_Mohameddeq_Ali_Abdi.jpg/500px-Author_of_the_book_Why_Somali_does_not_get_the_right_direction_Mohameddeq_Ali_Abdi.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Morat-Fribourg_2023_Ali_Abdi-Salem.jpg/500px-Morat-Fribourg_2023_Ali_Abdi-Salem.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/f/fe/Ali_Abdi_1402032314005672427763454.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Ali_Abdi_Aware_in_2007.png/500px-Ali_Abdi_Aware_in_2007.png",
+          "https://upload.wikimedia.org/wikipedia/commons/7/73/Mohamed_Aw-Ali_Abdi_in_2024.jpg"
+        ]
       },
       {
         "id": "montassar-talbi",
@@ -635,7 +643,10 @@
         },
         "shirt_number_expected": 4,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Montassar_Talbi_2021.jpg/330px-Montassar_Talbi_2021.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Montassar_Talbi_2021.jpg/330px-Montassar_Talbi_2021.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/e/e1/Montassar_Talbi_2022.jpg"
+        ]
       },
       {
         "id": "omar-rekik",
@@ -680,7 +691,11 @@
         },
         "shirt_number_expected": 3,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/RC_Lens_-_FC_Metz_%2814-03-2021%29_48.jpg/330px-RC_Lens_-_FC_Metz_%2814-03-2021%29_48.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/RC_Lens_-_FC_Metz_%2814-03-2021%29_48.jpg/330px-RC_Lens_-_FC_Metz_%2814-03-2021%29_48.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/2/25/Dylan_Bronn.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Dylan_Bronn_2.jpg/500px-Dylan_Bronn_2.jpg"
+        ]
       },
       {
         "id": "mortadha-ben-ouanes",
@@ -695,7 +710,12 @@
         },
         "shirt_number_expected": 14,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Mortadha_Ben_Ouanes.jpg/330px-Mortadha_Ben_Ouanes.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Mortadha_Ben_Ouanes.jpg/330px-Mortadha_Ben_Ouanes.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Mortadha_Ben_Ouanes_12.jpg/500px-Mortadha_Ben_Ouanes_12.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Mortadha_Ben_Ouanes_12_%281%29.jpg/500px-Mortadha_Ben_Ouanes_12_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Mortadha_Ben_Ouanes_12_Kas%C4%B1mpa%C5%9Fa_SK_20260130.jpg/500px-Mortadha_Ben_Ouanes_12_Kas%C4%B1mpa%C5%9Fa_SK_20260130.jpg"
+        ]
       },
       {
         "id": "yan-valery",
@@ -766,7 +786,15 @@
         },
         "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Manchester_United_v_Norwich_City%2C_16_April_2022_%2802%29.jpg/330px-Manchester_United_v_Norwich_City%2C_16_April_2022_%2802%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Manchester_United_v_Norwich_City%2C_16_April_2022_%2802%29.jpg/330px-Manchester_United_v_Norwich_City%2C_16_April_2022_%2802%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Hannibal_Mejbri%2C_July_2021.jpg/500px-Hannibal_Mejbri%2C_July_2021.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Hannibal_Mejbri%2C_28_July_2021_%28cropped%29.jpg/500px-Hannibal_Mejbri%2C_28_July_2021_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Hannibal_Mejbri_26042025_%281%29.jpg/500px-Hannibal_Mejbri_26042025_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Hannibal_Mejbri_26042025_%282%29.jpg/500px-Hannibal_Mejbri_26042025_%282%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Hannibal_Mejbri_26042025_%284%29.jpg/500px-Hannibal_Mejbri_26042025_%284%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Hannibal_Mejbri_26042025_%283%29.jpg/500px-Hannibal_Mejbri_26042025_%283%29.jpg"
+        ]
       },
       {
         "id": "ismael-gharbi",
@@ -781,7 +809,10 @@
         },
         "shirt_number_expected": 18,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Isma%C3%ABl_Gharbi_at_the_PSG-VAFC_game_%28cropped%29.jpg/330px-Isma%C3%ABl_Gharbi_at_the_PSG-VAFC_game_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Isma%C3%ABl_Gharbi_at_the_PSG-VAFC_game_%28cropped%29.jpg/330px-Isma%C3%ABl_Gharbi_at_the_PSG-VAFC_game_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Isma%C3%ABl_Gharbi_at_the_PSG-VAFC_game.jpg/500px-Isma%C3%ABl_Gharbi_at_the_PSG-VAFC_game.jpg"
+        ]
       },
       {
         "id": "rani-khedira",
@@ -796,7 +827,11 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Rani_Khedira_2023.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Rani_Khedira_2023.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/1/1e/Rani_khedira.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/2015-05-01_Rani_Khedira.jpg/500px-2015-05-01_Rani_Khedira.jpg"
+        ]
       },
       {
         "id": "khalil-ayari",
@@ -840,7 +875,11 @@
         },
         "shirt_number_expected": 8,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/2021-08-08_FC_Carl_Zeiss_Jena_gegen_1._FC_K%C3%B6ln_%28DFB-Pokal%29_by_Sandro_Halank%E2%80%93182.jpg/330px-2021-08-08_FC_Carl_Zeiss_Jena_gegen_1._FC_K%C3%B6ln_%28DFB-Pokal%29_by_Sandro_Halank%E2%80%93182.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/2021-08-08_FC_Carl_Zeiss_Jena_gegen_1._FC_K%C3%B6ln_%28DFB-Pokal%29_by_Sandro_Halank%E2%80%93182.jpg/330px-2021-08-08_FC_Carl_Zeiss_Jena_gegen_1._FC_K%C3%B6ln_%28DFB-Pokal%29_by_Sandro_Halank%E2%80%93182.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Skhiri_MHSC.JPG/500px-Skhiri_MHSC.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Ellyes_Skhiri_3499.JPG/500px-Ellyes_Skhiri_3499.JPG"
+        ]
       },
       {
         "id": "anis-ben-slimane",
@@ -899,7 +938,10 @@
         },
         "shirt_number_expected": 19,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/2025-04-23_-_FC_St_Pauli_-_Elias_Saad.jpg/330px-2025-04-23_-_FC_St_Pauli_-_Elias_Saad.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/2025-04-23_-_FC_St_Pauli_-_Elias_Saad.jpg/330px-2025-04-23_-_FC_St_Pauli_-_Elias_Saad.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/0/03/Elias-saad-ganem.JPG"
+        ]
       },
       {
         "id": "hazem-mastouri",
@@ -944,7 +986,10 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/FirasCHAOUAT2026.png/500px-FirasCHAOUAT2026.png"
+        ]
       }
     ],
     "starting_xi": {
@@ -1065,7 +1110,22 @@
     },
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
-    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
+    "image_pool": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Tunisia_football_team_2010.jpg/500px-Tunisia_football_team_2010.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Tunisia_football_team_1978.jpg/500px-Tunisia_football_team_1978.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Egypt_national_football_team%2C_2012.jpg/500px-Egypt_national_football_team%2C_2012.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/PAN-TUN_%285%29.jpg/500px-PAN-TUN_%285%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Mozambique-Tunisia_match_2009_%281%29.jpg/500px-Mozambique-Tunisia_match_2009_%281%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/National_Liberation_Front_football_team_of_Algeria.jpg/500px-National_Liberation_Front_football_team_of_Algeria.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/National_Liberation_Front_football_team_of_Algeria_02.jpg/500px-National_Liberation_Front_football_team_of_Algeria_02.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Tehaa-Fans-BenTaher.jpg/500px-Tehaa-Fans-BenTaher.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Tunisia.jpg/500px-Tunisia.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Tunesien-Fanblock_Nr._1.jpg/500px-Tunesien-Fanblock_Nr._1.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Tunesischer_Jubel.jpg/500px-Tunesischer_Jubel.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Ukrainian_Fans.jpg/500px-Ukrainian_Fans.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/GedFans.JPG/500px-GedFans.JPG"
+    ]
   },
   "history": {
     "first_appearance": 1978,

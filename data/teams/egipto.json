@@ -551,7 +551,10 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/46/Mohamed_El_Shenawy.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/46/Mohamed_El_Shenawy.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/8/80/ElShenawy.jpg"
+        ]
       },
       {
         "id": "el-mahdy-soliman",
@@ -592,7 +595,10 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/The_Millennium_Festival_of_Abu_Alaa_Al-Maari.png/500px-The_Millennium_Festival_of_Abu_Alaa_Al-Maari.png"
+        ]
       },
       {
         "id": "yasser-ibrahim",
@@ -607,7 +613,11 @@
         },
         "shirt_number_expected": 6,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Yasser_Ibrahim_in_FIFA_Club_World_Cup.jpg/330px-Yasser_Ibrahim_in_FIFA_Club_World_Cup.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Yasser_Ibrahim_in_FIFA_Club_World_Cup.jpg/330px-Yasser_Ibrahim_in_FIFA_Club_World_Cup.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/5/55/Yasser_Ibrahim%2C_Al_AHLY_TV_-_Mar_17%2C_2021.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/a/ab/Yasser_Ibrahim_in_2021_FIFA_Club_World_Cup.jpg"
+        ]
       },
       {
         "id": "mohamed-hany",
@@ -622,7 +632,10 @@
         },
         "shirt_number_expected": 2,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Mohamed_Hany_in_2021_FIFA_Club_World_Cup.jpg/330px-Mohamed_Hany_in_2021_FIFA_Club_World_Cup.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Mohamed_Hany_in_2021_FIFA_Club_World_Cup.jpg/330px-Mohamed_Hany_in_2021_FIFA_Club_World_Cup.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Aliou_Dieng_and_Mohamed_Hany_VS_C.F._Monterrey_in_2021_FIFA_Club_World_Cup.jpg/500px-Aliou_Dieng_and_Mohamed_Hany_VS_C.F._Monterrey_in_2021_FIFA_Club_World_Cup.jpg"
+        ]
       },
       {
         "id": "hossam-abdelmaguid",
@@ -652,7 +665,11 @@
         },
         "shirt_number_expected": 4,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/RamiRabea2020.jpg/330px-RamiRabea2020.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/RamiRabea2020.jpg/330px-RamiRabea2020.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/f/f2/RamyRabia2011.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Ramy_Rabia_in_2021_FIFA_Club_World_Cup.jpg/500px-Ramy_Rabia_in_2021_FIFA_Club_World_Cup.jpg"
+        ]
       },
       {
         "id": "mohamed-abdelmoneim",
@@ -741,7 +758,10 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Hamdy_Fathy.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Hamdy_Fathy.png",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/4/4d/Hamdy_Fathy_2.jpg"
+        ]
       },
       {
         "id": "mohanad-lashin",
@@ -836,7 +856,15 @@
         },
         "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Mohamed_Salah_2021_CAN_Final.jpg/330px-Mohamed_Salah_2021_CAN_Final.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Mohamed_Salah_2021_CAN_Final.jpg/330px-Mohamed_Salah_2021_CAN_Final.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Salah_with_a_fan.PNG/500px-Salah_with_a_fan.PNG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Mohamed_Salah.JPG/500px-Mohamed_Salah.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/d/d7/Mohamed_Salah_in_Basel.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Mohamed_Salah_with_Chelsea_-_Jan_2015.jpg/500px-Mohamed_Salah_with_Chelsea_-_Jan_2015.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Mohamed_Salah_2015.jpg/500px-Mohamed_Salah_2015.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Mohamed_Salah_2017.jpg/500px-Mohamed_Salah_2017.jpg"
+        ]
       },
       {
         "id": "haitham-hassan",
@@ -881,7 +909,12 @@
         },
         "shirt_number_expected": 11,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/OmarMarmoush.png/330px-OmarMarmoush.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/OmarMarmoush.png/330px-OmarMarmoush.png",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/e/e4/Marmoush.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/e/e8/OmarMarmoush.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Omar_Marmoush_in_2023.jpg/500px-Omar_Marmoush_in_2023.jpg"
+        ]
       },
       {
         "id": "mahmoud-hamdy",
@@ -892,7 +925,10 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f8/%D9%85%D8%AD%D9%85%D9%88%D8%AF_%D8%AD%D9%85%D8%AF%D9%8A_%D8%A7%D9%84%D9%88%D9%86%D8%B4.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f8/%D9%85%D8%AD%D9%85%D9%88%D8%AF_%D8%AD%D9%85%D8%AF%D9%8A_%D8%A7%D9%84%D9%88%D9%86%D8%B4.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/0/09/Hamdy.jpg"
+        ]
       }
     ],
     "starting_xi": {
@@ -1014,7 +1050,23 @@
     },
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
-    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
+    "image_pool": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Africa_cup_final1.jpg/500px-Africa_cup_final1.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/In_de_rust_van_Egypt-Ghana.jpg/500px-In_de_rust_van_Egypt-Ghana.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/New_Zealand_goal.JPG/500px-New_Zealand_goal.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Abdo_bob_bradley.jpg/500px-Abdo_bob_bradley.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Egypt_national_football_team_them_As-Sajedeen.png/500px-Egypt_national_football_team_them_As-Sajedeen.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Egypt_national_football_team%2C_2012.jpg/500px-Egypt_national_football_team%2C_2012.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Egypt_national_football_team_line_up%2C_2012.jpg/500px-Egypt_national_football_team_line_up%2C_2012.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/%C3%84gyptische-WM-Platzierungen.PNG/500px-%C3%84gyptische-WM-Platzierungen.PNG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Freundschaftsspiel_zwischen_dem_Karlsruher_FV_und_der_%C3%A4gyptischen_Fu%C3%9Fballnationalmannschaft.jpg/500px-Freundschaftsspiel_zwischen_dem_Karlsruher_FV_und_der_%C3%A4gyptischen_Fu%C3%9Fballnationalmannschaft.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/1928_Egyptian_Olympic_football_team.jpg/500px-1928_Egyptian_Olympic_football_team.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Afcon_u23_closing_ceremony3.jpg/500px-Afcon_u23_closing_ceremony3.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Afcon_u23_closing_ceremony2.jpg/500px-Afcon_u23_closing_ceremony2.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Pharaohs_Golden_Parade.jpg/500px-Pharaohs_Golden_Parade.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Reconstructed_statues_of_the_kushit_pharaohs_1.jpg/500px-Reconstructed_statues_of_the_kushit_pharaohs_1.jpg"
+    ]
   },
   "history": {
     "first_appearance": 1934,

@@ -547,7 +547,15 @@
         },
         "shirt_number_expected": 1,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/CHN%26IRN_2019_AFC_Asian_Cup_14.jpg/330px-CHN%26IRN_2019_AFC_Asian_Cup_14.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/CHN%26IRN_2019_AFC_Asian_Cup_14.jpg/330px-CHN%26IRN_2019_AFC_Asian_Cup_14.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/6/67/Alireza_Beiranvand.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/8/8a/Alireza_Beiranvand_2014.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/6/62/Alireza_Beiranvand_2015.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Alireza_Beiranvand_and_Ehsan_Hajsafi.jpg/500px-Alireza_Beiranvand_and_Ehsan_Hajsafi.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/3/38/Alireza_Beiranvand%2C_Tehran_derby.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/7/7a/Alireza_Beiranvand_-_2018_FIFA_World_Cup.jpg"
+        ]
       },
       {
         "id": "payam-niazmand",
@@ -562,7 +570,10 @@
         },
         "shirt_number_expected": 12,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Payam_Niazmand%2C_Esteghlal_vs._Sepahan.jpg/330px-Payam_Niazmand%2C_Esteghlal_vs._Sepahan.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Payam_Niazmand%2C_Esteghlal_vs._Sepahan.jpg/330px-Payam_Niazmand%2C_Esteghlal_vs._Sepahan.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/d/d2/Payam_Niazmand.jpg"
+        ]
       },
       {
         "id": "majid-hosseini",
@@ -577,7 +588,14 @@
         },
         "shirt_number_expected": 5,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Majid_Hosseini_2018.jpg/330px-Majid_Hosseini_2018.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Majid_Hosseini_2018.jpg/330px-Majid_Hosseini_2018.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/9/9c/Majid_Hosseini.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/f/fa/Majid_Hosseini_-_Esteghlal_Vs._Naft_Abadan.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/b/bc/Majid_Hosseini_at_IRNPOR_match_2018_FIFA_World_Cup.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/3/33/Majid_Hosseini_at_IRNPOR_match_2018_FIFA_World_Cup_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/c/c4/Majid_Hosseini_WC2022.jpg"
+        ]
       },
       {
         "id": "saleh-hardani",
@@ -590,7 +608,10 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/6/6f/Saleh_Hardani_with_Team_Melli%2C_2022.jpg"
+        ]
       },
       {
         "id": "ehsan-hajisafi",
@@ -618,7 +639,15 @@
         },
         "shirt_number_expected": 4,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Iran_football_award_winners_2019_006_%28cropped%29.jpg/330px-Iran_football_award_winners_2019_006_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Iran_football_award_winners_2019_006_%28cropped%29.jpg/330px-Iran_football_award_winners_2019_006_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/b/b5/Shoja_Khalilzadeh.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/a/a3/Shoja_Khalilzadeh_In_FC_Persepolis.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Shoja_Khalilzadeh_Persepolis_2018.jpg/500px-Shoja_Khalilzadeh_Persepolis_2018.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Shoja_KhalilzadehACL.jpg/500px-Shoja_KhalilzadehACL.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Shoja_Khalilzadeh_ACL18.jpg/500px-Shoja_Khalilzadeh_ACL18.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Shoja_Khalilzadeh3.jpg/500px-Shoja_Khalilzadeh3.jpg"
+        ]
       },
       {
         "id": "milad-mohammadi",
@@ -633,7 +662,13 @@
         },
         "shirt_number_expected": 3,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Milad_Mohammadi_2017.jpg/330px-Milad_Mohammadi_2017.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Milad_Mohammadi_2017.jpg/330px-Milad_Mohammadi_2017.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/e/e3/Milad_Mohammadi.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Milad_Mohammadi_for_Iran.jpg/500px-Milad_Mohammadi_for_Iran.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Mohammadi_and_Taremi.jpg/500px-Mohammadi_and_Taremi.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/d/dc/Milad_Mohammadi_WC2022.jpg"
+        ]
       },
       {
         "id": "hossein-kanani",
@@ -687,7 +722,13 @@
         },
         "shirt_number_expected": 2,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/IRN-JPN_20190128_Bolourian_3.jpg/330px-IRN-JPN_20190128_Bolourian_3.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/IRN-JPN_20190128_Bolourian_3.jpg/330px-IRN-JPN_20190128_Bolourian_3.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Ramin_Rezaeian_in_Iran_training.jpg/500px-Ramin_Rezaeian_in_Iran_training.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Ramin_Rezaeian_in_Iran_national_football_team_training.jpg/500px-Ramin_Rezaeian_in_Iran_national_football_team_training.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Ramin_Rezaeian_2.jpg/500px-Ramin_Rezaeian_2.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/6/69/Ramin_Rezaeian_at_the_2018_FIFA_World_Cup.jpg"
+        ]
       },
       {
         "id": "danial-iri",
@@ -730,7 +771,15 @@
         },
         "shirt_number_expected": 7,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2826%29_%28cropped%29.jpg/330px-2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2826%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2826%29_%28cropped%29.jpg/330px-2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2826%29_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Alireza_Jahanbakhsh_-_Iran_U23_vs._Saudi_Arabia_U23_in_Azadi_Stadiun.jpg/500px-Alireza_Jahanbakhsh_-_Iran_U23_vs._Saudi_Arabia_U23_in_Azadi_Stadiun.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Alireza_Jahanbakhsh_in_Iran_national_football_team_2018.jpg/500px-Alireza_Jahanbakhsh_in_Iran_national_football_team_2018.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Alireza_Jahanbakhsh_2018.jpg/500px-Alireza_Jahanbakhsh_2018.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/0/04/Alireza_Jahanbakhsh_in_match_against_Syria_%28crop%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Alireza_Jahanbakhsh_T1.jpg/500px-Alireza_Jahanbakhsh_T1.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/2/2b/Alireza_Jahanbakhsh_at_IRNPOR_match_2018_FIFA_World_Cup_02.jpg"
+        ]
       },
       {
         "id": "mohammad-mohebbi",
@@ -758,7 +807,15 @@
         },
         "shirt_number_expected": 8,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Saman_Ghoddos_-_2018_FIFA_World_Cup.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Saman_Ghoddos_-_2018_FIFA_World_Cup.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/7/7a/Saman_Ghoddos.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Morteza_Pouraliganji_and_Ghoddos.jpg/500px-Morteza_Pouraliganji_and_Ghoddos.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Saman_Ghoddos_in_Iran_training%2C_October_2018.jpg/500px-Saman_Ghoddos_in_Iran_training%2C_October_2018.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Alireza_Jahanbakhsh_and_Saman_Ghoddos_in_Iran_training.jpg/500px-Alireza_Jahanbakhsh_and_Saman_Ghoddos_in_Iran_training.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Saman_Ghoddos_at_Iran_training.jpg/500px-Saman_Ghoddos_at_Iran_training.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/6/65/Saman_Ghoddos_at_Iran_training%2C_20190126.jpg"
+        ]
       },
       {
         "id": "roozbeh-cheshmi",
@@ -771,7 +828,15 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/2/29/Rozbeh_Cheshmi.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Rozbeh_Cheshmi_vs_Pars.jpg/500px-Rozbeh_Cheshmi_vs_Pars.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Rouzbeh_Cheshmi.jpg/500px-Rouzbeh_Cheshmi.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Rouzbeh_Cheshmi_%282%29.jpg/500px-Rouzbeh_Cheshmi_%282%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Rouzbeh_Cheshmi-Dariush_Shojaeian.jpg/500px-Rouzbeh_Cheshmi-Dariush_Shojaeian.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/8/86/Rouzbeh_Cheshmi_2018.jpg"
+        ]
       },
       {
         "id": "mehdi-torabi",
@@ -784,7 +849,15 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/93/Mehdi_Torabi_2021.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/93/Mehdi_Torabi_2021.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/4/49/Mehdi_Torabi.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/c/cc/Mehdi.Torabi.png",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Torabi.jpg/500px-Torabi.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Torabi_And_Mensha.jpg/500px-Torabi_And_Mensha.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Mehdi_Torabi_16_A.jpg/500px-Mehdi_Torabi_16_A.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/e/e6/Mehdi_Torabi_16_B.jpg"
+        ]
       },
       {
         "id": "mohammad-ghorbani",
@@ -797,7 +870,15 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Mohammad_Ghorbani_%28footballer%29_2024.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Mohammad_Ghorbani_%28footballer%29_2024.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Mohammad_ghorbani.jpg/500px-Mohammad_ghorbani.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Ibrahim_Javadi%2C_Shamseddin_Seyed-Abbasi%2C_Abdollah_Movahed%2C_Mohammad_Ghorbani_1970.jpg/500px-Ibrahim_Javadi%2C_Shamseddin_Seyed-Abbasi%2C_Abdollah_Movahed%2C_Mohammad_Ghorbani_1970.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/a/a4/Mohammad_Ghorbani_1970.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/9/9e/Mohammad_Ghorbani_1970b.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Kiyomi_Kato_vs_Mohammad_Ghorbani_1972.jpg/500px-Kiyomi_Kato_vs_Mohammad_Ghorbani_1972.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/b/b7/Kiyomi_Kato_vs_Mohammad_Ghorbani_1972_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "amirmohammad-razaghinia",
@@ -825,7 +906,15 @@
         },
         "shirt_number_expected": 9,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Iran_-_Japan%2C_AFC_Asian_Cup_2019_42_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Iran_-_Japan%2C_AFC_Asian_Cup_2019_42_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Mehdi_Taremi_-_2015.JPG/500px-Mehdi_Taremi_-_2015.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Mehdi_Taremi_and_Alireza_Nourmohammadi.JPG/500px-Mehdi_Taremi_and_Alireza_Nourmohammadi.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/c/c0/Mehdi_Taremi_in_training.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Mehdi_Taremi_in_Iran_national_team_training.jpg/500px-Mehdi_Taremi_in_Iran_national_team_training.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Mehdi_Taremi_in_Iran_training.jpg/500px-Mehdi_Taremi_in_Iran_training.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/5/54/Mehdi_Taremi_at_the_Iranian_national_training.jpg"
+        ]
       },
       {
         "id": "mehdi-ghayedi",
@@ -840,7 +929,10 @@
         },
         "shirt_number_expected": 19,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Esteghlal_FC_vs_Tractor_FC%2C_18_May_2023_-_04.jpg/330px-Esteghlal_FC_vs_Tractor_FC%2C_18_May_2023_-_04.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Esteghlal_FC_vs_Tractor_FC%2C_18_May_2023_-_04.jpg/330px-Esteghlal_FC_vs_Tractor_FC%2C_18_May_2023_-_04.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/7/71/Mehdi_Ghayedi_Esteghlal_FC%2C_14_December_2019.jpg"
+        ]
       },
       {
         "id": "ali-alipour",
@@ -853,7 +945,15 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/42/Ali_Alipour_at_IFF%27s_annual_awards_ceremony.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/42/Ali_Alipour_at_IFF%27s_annual_awards_ceremony.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Ali_Alipour_-_Cropped.JPG/500px-Ali_Alipour_-_Cropped.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Ali_Alipour_in_Persepolis_training.jpg/500px-Ali_Alipour_in_Persepolis_training.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Ali_Alipour_-_Persepolis_v_Padideh.jpg/500px-Ali_Alipour_-_Persepolis_v_Padideh.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/d/d9/Ali_Alipour_playing_in_friendly_against_Paykan.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/9/94/Ali_Alipour_2017.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Ali_Alipour_and_Godwin_Mensha.jpg/500px-Ali_Alipour_and_Godwin_Mensha.jpg"
+        ]
       },
       {
         "id": "amirhossein-hosseinzadeh",
@@ -1012,7 +1112,23 @@
     "squad_announced": true,
     "squad_announced_status": "pending_official",
     "squad_announced_date": "2026-06-04",
-    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
+    "image_pool": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Iran_national_football_team%2C_1977.jpg/500px-Iran_national_football_team%2C_1977.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Iran_National_Football_Team_%282006%29.JPG/500px-Iran_National_Football_Team_%282006%29.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Iran_national_football_team_-_may_2013.jpg/500px-Iran_national_football_team_-_may_2013.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Iran_national_football_team_-_February_2013.jpg/500px-Iran_national_football_team_-_February_2013.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Iranian_national_football_team_supporters_at_2014_FIFA_World_Cup_05.jpg/500px-Iranian_national_football_team_supporters_at_2014_FIFA_World_Cup_05.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Iran_national_football_team_bus_01.jpg/500px-Iran_national_football_team_bus_01.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Iran_national_football_team_bus_02.jpg/500px-Iran_national_football_team_bus_02.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Iran_national_football_team_bus_03.jpg/500px-Iran_national_football_team_bus_03.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Iran_national_football_team_bus_04.jpg/500px-Iran_national_football_team_bus_04.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Mohammad_Khatami_meet_up_with_officials_and_athletes_of_Iran_national_football_team-July_14%2C_2004.png/500px-Mohammad_Khatami_meet_up_with_officials_and_athletes_of_Iran_national_football_team-July_14%2C_2004.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Iran_national_football_team_T2.jpg/500px-Iran_national_football_team_T2.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Iran_national_football_team_T1.jpg/500px-Iran_national_football_team_T1.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Iran_national_football_team_sp2.jpg/500px-Iran_national_football_team_sp2.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Iran_national_football_team_sp1.jpg/500px-Iran_national_football_team_sp1.jpg"
+    ]
   },
   "history": {
     "first_appearance": 1978,

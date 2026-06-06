@@ -556,7 +556,13 @@
         },
         "shirt_number_expected": 1,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Jordan_Pickford_2022-07-16_1.jpg/330px-Jordan_Pickford_2022-07-16_1.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Jordan_Pickford_2022-07-16_1.jpg/330px-Jordan_Pickford_2022-07-16_1.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/2017083200955_2017-03-24_Fussball_U21_Deutschland_vs_England_-_Sven_-_1D_X_-_0153_-_DV3P6479_-_Jordan_Pickford.jpg/500px-2017083200955_2017-03-24_Fussball_U21_Deutschland_vs_England_-_Sven_-_1D_X_-_0153_-_DV3P6479_-_Jordan_Pickford.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Jordan_Pickford_2018.jpg/500px-Jordan_Pickford_2018.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Jordan_Pickford_2018-07-03_1.jpg/500px-Jordan_Pickford_2018-07-03_1.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/9/9a/Jordan_Pickford_2018_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "dean-henderson",
@@ -571,7 +577,11 @@
         },
         "shirt_number_expected": 13,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/DeanHenderson2018.jpg/330px-DeanHenderson2018.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/DeanHenderson2018.jpg/330px-DeanHenderson2018.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Dean_Henderson_2021%28cropped%29.jpg/500px-Dean_Henderson_2021%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Dean_Henderson.jpg/500px-Dean_Henderson.jpg"
+        ]
       },
       {
         "id": "james-trafford",
@@ -736,7 +746,11 @@
         },
         "shirt_number_expected": 4,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%288%29_%28Declan_Rice%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%288%29_%28Declan_Rice%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Declan_Rice_-_53248339464_%28cropped%29.jpg/500px-Declan_Rice_-_53248339464_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Declan_Rice_-_53248276328_%28cropped%29.jpg/500px-Declan_Rice_-_53248276328_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "elliot-anderson",
@@ -765,7 +779,15 @@
         },
         "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/25th_Laureus_World_Sports_Awards_-_Red_Carpet_-_Jude_Bellingham_-_240422_190551-2_%28cropped%29.jpg/330px-25th_Laureus_World_Sports_Awards_-_Red_Carpet_-_Jude_Bellingham_-_240422_190551-2_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/25th_Laureus_World_Sports_Awards_-_Red_Carpet_-_Jude_Bellingham_-_240422_190551-2_%28cropped%29.jpg/330px-25th_Laureus_World_Sports_Awards_-_Red_Carpet_-_Jude_Bellingham_-_240422_190551-2_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Jude_Bellingham_Birmingham_2019.jpg/500px-Jude_Bellingham_Birmingham_2019.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Danil_Krugovoy_and_Jude_Bellingham_2020.jpg/500px-Danil_Krugovoy_and_Jude_Bellingham_2020.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Danil_Krugovoy_and_Jude_Bellingham_2020_%28cropped%29.jpg/500px-Danil_Krugovoy_and_Jude_Bellingham_2020_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/5/56/Jude_Bellingham_2020_%28cropped2%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/2/26/Jude_Bellingham_2022-11-21_1.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/f/fa/Jude_Bellingham_WC2022.jpg"
+        ]
       },
       {
         "id": "jordan-henderson",
@@ -854,7 +876,15 @@
         },
         "shirt_number_expected": 9,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Harry_Kane_on_October_10%2C_2023.jpg/330px-Harry_Kane_on_October_10%2C_2023.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Harry_Kane_on_October_10%2C_2023.jpg/330px-Harry_Kane_on_October_10%2C_2023.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Harry_Kane_2015.jpg/500px-Harry_Kane_2015.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Harry_Kane_%2824685589756%29.jpg/500px-Harry_Kane_%2824685589756%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Harry_Kane_%2824685589756%29_%28cropped%29.jpg/500px-Harry_Kane_%2824685589756%29_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Harry_Kane_in_Russia_2.jpg/500px-Harry_Kane_in_Russia_2.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Harry_Kane_2018.jpg/500px-Harry_Kane_2018.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Harry_Kane_England_cap_at_the_London_Museum.jpg/500px-Harry_Kane_England_cap_at_the_London_Museum.jpg"
+        ]
       },
       {
         "id": "marcus-rashford",
@@ -869,7 +899,10 @@
         },
         "shirt_number_expected": 21,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Marcus_Rashford_2022-11-21_1.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Marcus_Rashford_2022-11-21_1.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Marcus_Rashford_in_2023.jpg/500px-Marcus_Rashford_in_2023.jpg"
+        ]
       },
       {
         "id": "anthony-gordon",
@@ -884,7 +917,15 @@
         },
         "shirt_number_expected": 11,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Anthony_Gordon_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Anthony_Gordon_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Gordon_in_2024.jpg/500px-Gordon_in_2024.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Anthony_Elanga_and_Anthony_Gordon_24052026_%281%29.jpg/500px-Anthony_Elanga_and_Anthony_Gordon_24052026_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Anthony_Elanga_and_Anthony_Gordon_24052026_%282%29.jpg/500px-Anthony_Elanga_and_Anthony_Gordon_24052026_%282%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Anthony_Elanga_and_Anthony_Gordon_24052026_%283%29.jpg/500px-Anthony_Elanga_and_Anthony_Gordon_24052026_%283%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Anthony_Elanga%2C_Anthony_Gordon_and_Joe_Willock_24052026_%281%29.jpg/500px-Anthony_Elanga%2C_Anthony_Gordon_and_Joe_Willock_24052026_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Sean_Neave%2C_Joe_Willock_and_Anthony_Gordon_24052026_%281%29.jpg/500px-Sean_Neave%2C_Joe_Willock_and_Anthony_Gordon_24052026_%281%29.jpg"
+        ]
       },
       {
         "id": "ollie-watkins",
@@ -914,7 +955,10 @@
         },
         "shirt_number_expected": 17,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Fulham_v_Chelsea_20042025_%287%29_%28Noni_Madueke%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Fulham_v_Chelsea_20042025_%287%29_%28Noni_Madueke%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/1_Noni_Madueke.jpg/500px-1_Noni_Madueke.jpg"
+        ]
       },
       {
         "id": "ivan-toney",
@@ -1050,7 +1094,23 @@
     },
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
-    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
+    "image_pool": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Norway_national_football_team_1921.jpg/500px-Norway_national_football_team_1921.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Emile_Heskey_as_a_player_of_England_national_football_team.jpg/500px-Emile_Heskey_as_a_player_of_England_national_football_team.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Italy_national_football_team_Euro_2012_vs_England.jpg/500px-Italy_national_football_team_Euro_2012_vs_England.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Lions_Family_Portrait_Masai_Mara.jpg/500px-Lions_Family_Portrait_Masai_Mara.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Emmanuel_Agyemang-Badu_%28Ghana_national_football_team_vs._England_national_football_team%29.jpg/500px-Emmanuel_Agyemang-Badu_%28Ghana_national_football_team_vs._England_national_football_team%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Scotland_football_team_1871_v_England.jpg/500px-Scotland_football_team_1871_v_England.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/England_1973_yellow.jpg/500px-England_1973_yellow.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/1954_Hungary_7%E2%80%931_England%2C_%28association_football_friendly%29_Golden_Team.jpg/500px-1954_Hungary_7%E2%80%931_England%2C_%28association_football_friendly%29_Golden_Team.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Antigua_and_Barbuda_football_team_training_in_England.jpg/500px-Antigua_and_Barbuda_football_team_training_in_England.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/England_national_team_Russia_2018.jpg/500px-England_national_team_Russia_2018.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Belgium_national_football_team_World_Cup_2018.jpg/500px-Belgium_national_football_team_World_Cup_2018.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/FWC_2018_-_Round_of_16_-_COL_v_ENG_-_Team_England_penalty_shootout.jpg/500px-FWC_2018_-_Round_of_16_-_COL_v_ENG_-_Team_England_penalty_shootout.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/England_national_team_World_Cup_2018.jpg/500px-England_national_team_World_Cup_2018.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Brazil_women%27s_national_football_team_in_Feb._2019.jpg/500px-Brazil_women%27s_national_football_team_in_Feb._2019.jpg"
+    ]
   },
   "history": {
     "first_appearance": 1950,

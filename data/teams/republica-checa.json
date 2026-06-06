@@ -645,7 +645,15 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/e6/David_Zima_CZE-KUW_2021-11-11_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/e6/David_Zima_CZE-KUW_2021-11-11_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/T._Sou%C4%8Dek%2C_D._Zima%2C_Eid_Al_Otaibi%2C_P._Kralovi%C4%87_CZE-KUW_2021-11-11_%282%29.jpg/500px-T._Sou%C4%8Dek%2C_D._Zima%2C_Eid_Al_Otaibi%2C_P._Kralovi%C4%87_CZE-KUW_2021-11-11_%282%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/David_Zima_CZE-KUW_2021-11-11_%282%29.jpg/500px-David_Zima_CZE-KUW_2021-11-11_%282%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/David_Zima%2C_Tom%C3%A1%C5%A1_Sou%C4%8Dek_CZE-KUW_2021-11-11.jpg/500px-David_Zima%2C_Tom%C3%A1%C5%A1_Sou%C4%8Dek_CZE-KUW_2021-11-11.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Jakub_Brabec%2C_David_Zima_CZE-KUW_2021-11-11.jpg/500px-Jakub_Brabec%2C_David_Zima_CZE-KUW_2021-11-11.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/David_Zima_CZE-KUW_2021-11-11_%283%29.jpg/500px-David_Zima_CZE-KUW_2021-11-11_%283%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Bandar_Bourslee%2C_David_Zima_CZE-KUW_2021-11-11_%283%29.jpg/500px-Bandar_Bourslee%2C_David_Zima_CZE-KUW_2021-11-11_%283%29.jpg"
+        ]
       },
       {
         "id": "tomas-holes",
@@ -689,7 +697,15 @@
         },
         "shirt_number_expected": 2,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Vladim%C3%ADr_Coufal_with_West_Ham_United.jpeg/330px-Vladim%C3%ADr_Coufal_with_West_Ham_United.jpeg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Vladim%C3%ADr_Coufal_with_West_Ham_United.jpeg/330px-Vladim%C3%ADr_Coufal_with_West_Ham_United.jpeg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Vladim%C3%ADr_Coufal%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019.jpg/500px-Vladim%C3%ADr_Coufal%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Hamad_Al_Qallaf%2C_Vladim%C3%ADr_Coufal_CZE-KUW_2021-11-11_%283%29.jpg/500px-Hamad_Al_Qallaf%2C_Vladim%C3%ADr_Coufal_CZE-KUW_2021-11-11_%283%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Hamad_Al_Qallaf%2C_Vladim%C3%ADr_Coufal_CZE-KUW_2021-11-11_%284%29.jpg/500px-Hamad_Al_Qallaf%2C_Vladim%C3%ADr_Coufal_CZE-KUW_2021-11-11_%284%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Vladim%C3%ADr_Coufal_CZE-KUW_2021-11-11.jpg/500px-Vladim%C3%ADr_Coufal_CZE-KUW_2021-11-11.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Vladim%C3%ADr_Coufal_CZE-KUW_2021-11-11_%283%29.jpg/500px-Vladim%C3%ADr_Coufal_CZE-KUW_2021-11-11_%283%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Vladim%C3%ADr_Coufal%2C_Eid_Al_Rashidi_CZE-KUW_2021-11-11.jpg/500px-Vladim%C3%ADr_Coufal%2C_Eid_Al_Rashidi_CZE-KUW_2021-11-11.jpg"
+        ]
       },
       {
         "id": "stepan-chaloupek",
@@ -717,7 +733,15 @@
         },
         "shirt_number_expected": 5,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/91/14-06-03-%C4%8Cesko-Rakousko-Olomouc-nr19-1.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/91/14-06-03-%C4%8Cesko-Rakousko-Olomouc-nr19-1.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Ladislav_Krej%C4%8D%C3%AD%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019_%282%29.jpg/500px-Ladislav_Krej%C4%8D%C3%AD%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019_%282%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Ladislav_Krej%C4%8D%C3%AD%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019_%283%29.jpg/500px-Ladislav_Krej%C4%8D%C3%AD%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019_%283%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Ladislav_Krej%C4%8D%C3%AD%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019_%284%29.jpg/500px-Ladislav_Krej%C4%8D%C3%AD%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019_%284%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Ladislav_Krej%C4%8D%C3%AD%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019_%285%29.jpg/500px-Ladislav_Krej%C4%8D%C3%AD%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019_%285%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Ladislav_Krej%C4%8D%C3%AD%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019.jpg/500px-Ladislav_Krej%C4%8D%C3%AD%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Ladislav_Krej%C4%8D%C3%AD_%26_Josef_Hu%C5%A1bauer%2C_CZE-NIR_2019-10-14.jpg/500px-Ladislav_Krej%C4%8D%C3%AD_%26_Josef_Hu%C5%A1bauer%2C_CZE-NIR_2019-10-14.jpg"
+        ]
       },
       {
         "id": "david-jurasek",
@@ -772,7 +796,14 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Vladim%C3%ADr_Darida_20180601_AUSCZE_3910_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Vladim%C3%ADr_Darida_20180601_AUSCZE_3910_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Vladim%C3%ADr_Darida%2C_CZE-NIR_2019-10-14_%282%29.jpg/500px-Vladim%C3%ADr_Darida%2C_CZE-NIR_2019-10-14_%282%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Vladim%C3%ADr_Darida%2C_CZE-NIR_2019-10-14_%283%29.jpg/500px-Vladim%C3%ADr_Darida%2C_CZE-NIR_2019-10-14_%283%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Vladim%C3%ADr_Darida%2C_CZE-NIR_2019-10-14_%284%29.jpg/500px-Vladim%C3%ADr_Darida%2C_CZE-NIR_2019-10-14_%284%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Vladim%C3%ADr_Darida%2C_CZE-NIR_2019-10-14_%285%29.jpg/500px-Vladim%C3%ADr_Darida%2C_CZE-NIR_2019-10-14_%285%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Vladim%C3%ADr_Darida%2C_CZE-NIR_2019-10-14_%281%29.jpg/500px-Vladim%C3%ADr_Darida%2C_CZE-NIR_2019-10-14_%281%29.jpg"
+        ]
       },
       {
         "id": "lukas-cerv",
@@ -815,7 +846,13 @@
         },
         "shirt_number_expected": 16,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Michal_Sad%C3%ADlek%2C_U21_CZE-GRE_2019-10-10_%282%29.jpg/330px-Michal_Sad%C3%ADlek%2C_U21_CZE-GRE_2019-10-10_%282%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Michal_Sad%C3%ADlek%2C_U21_CZE-GRE_2019-10-10_%282%29.jpg/330px-Michal_Sad%C3%ADlek%2C_U21_CZE-GRE_2019-10-10_%282%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Michal_Sad%C3%ADlek%2C_U21_CZE-GRE_2019-10-10.jpg/500px-Michal_Sad%C3%ADlek%2C_U21_CZE-GRE_2019-10-10.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Michal_Sad%C3%ADlek_CZE-KUW_2021-11-11.jpg/500px-Michal_Sad%C3%ADlek_CZE-KUW_2021-11-11.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Hamad_Al_Qallaf%2C_Eid_Al_Rasheedi%2C_Michal_Sad%C3%ADlek_CZE-KUW_2021-11-11_%281%29.jpg/500px-Hamad_Al_Qallaf%2C_Eid_Al_Rasheedi%2C_Michal_Sad%C3%ADlek_CZE-KUW_2021-11-11_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Hamad_Al_Qallaf%2C_Eid_Al_Rasheedi%2C_Michal_Sad%C3%ADlek_CZE-KUW_2021-11-11_%282%29.jpg/500px-Hamad_Al_Qallaf%2C_Eid_Al_Rasheedi%2C_Michal_Sad%C3%ADlek_CZE-KUW_2021-11-11_%282%29.jpg"
+        ]
       },
       {
         "id": "tomas-soucek",
@@ -830,7 +867,15 @@
         },
         "shirt_number_expected": 8,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Tom%C3%A1%C5%A1_Sou%C4%8Dek_WHU.jpeg/330px-Tom%C3%A1%C5%A1_Sou%C4%8Dek_WHU.jpeg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Tom%C3%A1%C5%A1_Sou%C4%8Dek_WHU.jpeg/330px-Tom%C3%A1%C5%A1_Sou%C4%8Dek_WHU.jpeg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Tom%C3%A1%C5%A1_Sou%C4%8Dek%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019_%282%29.jpg/500px-Tom%C3%A1%C5%A1_Sou%C4%8Dek%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019_%282%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Tom%C3%A1%C5%A1_Sou%C4%8Dek%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019_%283%29.jpg/500px-Tom%C3%A1%C5%A1_Sou%C4%8Dek%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019_%283%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Tom%C3%A1%C5%A1_Sou%C4%8Dek%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019.jpg/500px-Tom%C3%A1%C5%A1_Sou%C4%8Dek%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Tom%C3%A1%C5%A1_Sou%C4%8Dek%2C_CZE-NIR_2019-10-14.jpg/500px-Tom%C3%A1%C5%A1_Sou%C4%8Dek%2C_CZE-NIR_2019-10-14.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tom%C3%A1%C5%A1_Sou%C4%8Dek%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019_%28cropped%29.jpg/500px-Tom%C3%A1%C5%A1_Sou%C4%8Dek%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Tom%C3%A1%C5%A1_Sou%C4%8Dek%2C_Eid_Al_Rashidi_CZE-KUW_2021-11-11.jpg/500px-Tom%C3%A1%C5%A1_Sou%C4%8Dek%2C_Eid_Al_Rashidi_CZE-KUW_2021-11-11.jpg"
+        ]
       },
       {
         "id": "alexandr-sojka",
@@ -871,7 +916,15 @@
         },
         "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Dimitris_Nikolaou_%26_Adam_Hlo%C5%BEek%2C_U21_CZE-GRE_2019-10-10_%28cropped%29.jpg/330px-Dimitris_Nikolaou_%26_Adam_Hlo%C5%BEek%2C_U21_CZE-GRE_2019-10-10_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Dimitris_Nikolaou_%26_Adam_Hlo%C5%BEek%2C_U21_CZE-GRE_2019-10-10_%28cropped%29.jpg/330px-Dimitris_Nikolaou_%26_Adam_Hlo%C5%BEek%2C_U21_CZE-GRE_2019-10-10_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Adam_Hlo%C5%BEek_%26_Panagiotis_Retsos%2C_U21_CZE-GRE_2019-10-10.jpg/500px-Adam_Hlo%C5%BEek_%26_Panagiotis_Retsos%2C_U21_CZE-GRE_2019-10-10.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Adam_Hlo%C5%BEek%2C_Konstantinos_Balogiannis%2C_U21_CZE-GRE_2019-10-10.jpg/500px-Adam_Hlo%C5%BEek%2C_Konstantinos_Balogiannis%2C_U21_CZE-GRE_2019-10-10.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Adam_Hlo%C5%BEek%2C_U21_CZE-GRE_2019-10-10_%282%29.jpg/500px-Adam_Hlo%C5%BEek%2C_U21_CZE-GRE_2019-10-10_%282%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Adam_Hlo%C5%BEek%2C_U21_CZE-GRE_2019-10-10_%283%29.jpg/500px-Adam_Hlo%C5%BEek%2C_U21_CZE-GRE_2019-10-10_%283%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Adam_Hlo%C5%BEek%2C_U21_CZE-GRE_2019-10-10_%284%29.jpg/500px-Adam_Hlo%C5%BEek%2C_U21_CZE-GRE_2019-10-10_%284%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Adam_Hlo%C5%BEek%2C_U21_CZE-GRE_2019-10-10.jpg/500px-Adam_Hlo%C5%BEek%2C_U21_CZE-GRE_2019-10-10.jpg"
+        ]
       },
       {
         "id": "patrik-schick",
@@ -886,7 +939,15 @@
         },
         "shirt_number_expected": 9,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Patrik_Schick_20180601_AUSCZE_3910_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Patrik_Schick_20180601_AUSCZE_3910_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Patrik_Schick%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019_%282%29.jpg/500px-Patrik_Schick%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019_%282%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Patrik_Schick%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019_%283%29.jpg/500px-Patrik_Schick%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019_%283%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Patrik_Schick%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019_%284%29.jpg/500px-Patrik_Schick%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019_%284%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Patrik_Schick%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019_%285%29.jpg/500px-Patrik_Schick%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019_%285%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Patrik_Schick%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019_%286%29.jpg/500px-Patrik_Schick%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019_%286%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Patrik_Schick%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019.jpg/500px-Patrik_Schick%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019.jpg"
+        ]
       },
       {
         "id": "jan-kuchta",
@@ -1078,7 +1139,23 @@
     "squad_announced": true,
     "squad_announced_status": "pending_official",
     "squad_announced_date": "2026-06-04",
-    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
+    "image_pool": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/EURO04_Czech_Team_546.jpg/500px-EURO04_Czech_Team_546.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Czech_national_football_team_U21_2007.JPG/500px-Czech_national_football_team_U21_2007.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Morocco_vs_Czech_Republic%2C_February_11_2009-06.jpg/500px-Morocco_vs_Czech_Republic%2C_February_11_2009-06.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/8/8c/Karim_Zaza_Morocco_vs_Czech_Republic_2009.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Czech_Republic_national_under-21_football_team_2011.jpg/500px-Czech_Republic_national_under-21_football_team_2011.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Bangeev_with_national_amateur_football_team_of_Bulgaria.JPG/500px-Bangeev_with_national_amateur_football_team_of_Bulgaria.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Russia_vs_Czech_2018.jpg/500px-Russia_vs_Czech_2018.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Montenegro_line-up%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019.jpg/500px-Montenegro_line-up%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Montenegro_players%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019.jpg/500px-Montenegro_players%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Warming-ups%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019.jpg/500px-Warming-ups%2C_Czech_Rp.-Montenegro_EURO_2020_QR_10-06-2019.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/7/7f/Stamp_of_Azerbaijan_-_1996_-_Colnect_289090_-_Czech_Republic_and_Germany.jpeg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Scotland_v_Czech_Rep_%28Euro_2012_Q%29_%287182392070%29.jpg/500px-Scotland_v_Czech_Rep_%28Euro_2012_Q%29_%287182392070%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Scotland_v_Czech_Rep_%281%29_%286546089359%29.jpg/500px-Scotland_v_Czech_Rep_%281%29_%286546089359%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Scotland_v_Czech_Rep_%282%29_%286546085991%29.jpg/500px-Scotland_v_Czech_Rep_%282%29_%286546085991%29.jpg"
+    ]
   },
   "history": {
     "first_appearance": 2006,

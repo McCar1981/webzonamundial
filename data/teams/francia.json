@@ -483,7 +483,15 @@
         },
         "shirt_number_expected": 23,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Lens_-_Torino_FC_%2802-08-2023%29_6_%28cropped%29.jpg/330px-Lens_-_Torino_FC_%2802-08-2023%29_6_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Lens_-_Torino_FC_%2802-08-2023%29_6_%28cropped%29.jpg/330px-Lens_-_Torino_FC_%2802-08-2023%29_6_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/f/f8/Brice-Samba.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Valais_Cup_2013_-_OM-FC_Porto_13-07-2013_-_Brice_Samba_en_extension.jpg/500px-Valais_Cup_2013_-_OM-FC_Porto_13-07-2013_-_Brice_Samba_en_extension.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Valais_Cup_2013_-_OM-FC_Porto_13-07-2013_-_Brice_Samba_et_Laurent_Spinosi_%C3%A0_l%27%C3%A9chauffement.jpg/500px-Valais_Cup_2013_-_OM-FC_Porto_13-07-2013_-_Brice_Samba_et_Laurent_Spinosi_%C3%A0_l%27%C3%A9chauffement.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Valais_Cup_2013_-_OM-FC_Porto_13-07-2013_-_Brice_Samba_tirant_un_6_m%C3%A8tres.jpg/500px-Valais_Cup_2013_-_OM-FC_Porto_13-07-2013_-_Brice_Samba_tirant_un_6_m%C3%A8tres.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Valais_Cup_2013_-_OM-FC_Porto_13-07-2013_-_Brice_Samba_tirant_un_6_m%C3%A8tres_1.jpg/500px-Valais_Cup_2013_-_OM-FC_Porto_13-07-2013_-_Brice_Samba_tirant_un_6_m%C3%A8tres_1.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Valais_Cup_2013_-_OM-FC_Porto_13-07-2013_-_Brice_Samba_tirant_un_6_m%C3%A8tres_2.jpg/500px-Valais_Cup_2013_-_OM-FC_Porto_13-07-2013_-_Brice_Samba_tirant_un_6_m%C3%A8tres_2.jpg"
+        ]
       },
       {
         "id": "mike-maignan",
@@ -498,7 +506,15 @@
         },
         "shirt_number_expected": 16,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Mike_Maignan_2022_Salzburg_vs_AC_Milan_2022-09-06.jpg/330px-Mike_Maignan_2022_Salzburg_vs_AC_Milan_2022-09-06.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Mike_Maignan_2022_Salzburg_vs_AC_Milan_2022-09-06.jpg/330px-Mike_Maignan_2022_Salzburg_vs_AC_Milan_2022-09-06.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/6m_lillois_tir%C3%A9_par_Mike_Maignan%2C_Toulouse%2C_6_mai_2018_%28TFC_-_LOSC%29.jpg/500px-6m_lillois_tir%C3%A9_par_Mike_Maignan%2C_Toulouse%2C_6_mai_2018_%28TFC_-_LOSC%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Chelsea_2_Lille_1_%2849202948728%29_Mike_Maignan.jpg/500px-Chelsea_2_Lille_1_%2849202948728%29_Mike_Maignan.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Maignan_1_Milan_2022.jpg/500px-Maignan_1_Milan_2022.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Maignan_2_Milan_2022.jpg/500px-Maignan_2_Milan_2022.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/4/4e/MikeMaignan2022Salzburg.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Maignan%2C_Milan_-_Salernitana_13-03-2023.jpg/500px-Maignan%2C_Milan_-_Salernitana_13-03-2023.jpg"
+        ]
       },
       {
         "id": "robin-risser",
@@ -513,7 +529,10 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Montpellier-Strasbourg_18-08-24%2C_Robin_Risser.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Montpellier-Strasbourg_18-08-24%2C_Robin_Risser.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/d/da/Montpellier-Strasbourg_18-08-24%2C_Robin_Risser_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "malo-gusto",
@@ -528,7 +547,12 @@
         },
         "shirt_number_expected": 2,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Olympique_lyonnais_-_ES_Troyes_AC_L1_19-08-2022_-_Malo_Gusto.jpg/330px-Olympique_lyonnais_-_ES_Troyes_AC_L1_19-08-2022_-_Malo_Gusto.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Olympique_lyonnais_-_ES_Troyes_AC_L1_19-08-2022_-_Malo_Gusto.jpg/330px-Olympique_lyonnais_-_ES_Troyes_AC_L1_19-08-2022_-_Malo_Gusto.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Gusto%2C_Vitiello_and_Bernardin_20042025_%281%29.jpg/500px-Gusto%2C_Vitiello_and_Bernardin_20042025_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Gusto_and_Vitiello_20042025_%281%29.jpg/500px-Gusto_and_Vitiello_20042025_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Malo_Gusto_20042025_%281%29.jpg/500px-Malo_Gusto_20042025_%281%29.jpg"
+        ]
       },
       {
         "id": "lucas-digne",
@@ -543,7 +567,15 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/18/Lucas_Digne_Everton.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/18/Lucas_Digne_Everton.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/3/3d/Lucas_DIGNE.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Lucas_Digne_%28LOSC%29.JPG/500px-Lucas_Digne_%28LOSC%29.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Lucas_Digne%2C_PSG.JPG/500px-Lucas_Digne%2C_PSG.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Lucas_Digne_%28LOSC%29_%28cropped%29.JPG/500px-Lucas_Digne_%28LOSC%29_%28cropped%29.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/France_on_the_overlap-_Lucas_Digne_runs_in_behind_Anthony_Martial_as_England%27s_Dele_Alli_and_Nathaniel_Clyne_close_in_%2822695623588%29.jpg/500px-France_on_the_overlap-_Lucas_Digne_runs_in_behind_Anthony_Martial_as_England%27s_Dele_Alli_and_Nathaniel_Clyne_close_in_%2822695623588%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Lucas_Digne_%28cropped%29.jpg/500px-Lucas_Digne_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "dayot-upamecano",
@@ -573,7 +605,11 @@
         },
         "shirt_number_expected": 5,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Jules_Kound%C3%A9_2020.jpg/330px-Jules_Kound%C3%A9_2020.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Jules_Kound%C3%A9_2020.jpg/330px-Jules_Kound%C3%A9_2020.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Jules_Kound%C3%A9.jpg/500px-Jules_Kound%C3%A9.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Jules_Kound%C3%A9_%28cropped%29.jpg/500px-Jules_Kound%C3%A9_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "ibrahima-konate",
@@ -588,7 +624,15 @@
         },
         "shirt_number_expected": 4,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Liverpool_FC_gegen_1._FSV_Mainz_05_%28Testspiel_23._Juli_2021%29_15_%28cropped%29.jpg/330px-Liverpool_FC_gegen_1._FSV_Mainz_05_%28Testspiel_23._Juli_2021%29_15_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Liverpool_FC_gegen_1._FSV_Mainz_05_%28Testspiel_23._Juli_2021%29_15_%28cropped%29.jpg/330px-Liverpool_FC_gegen_1._FSV_Mainz_05_%28Testspiel_23._Juli_2021%29_15_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/4/41/Ibrahima_Konat%C3%A9_im_Training_%282018%29.png",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Ibrahima_Konat%C3%A9_Liverpool_FC_gegen_1._FSV_Mainz_05_%28Testspiel_23._Juli_2021%29_18_%28cropped%29.jpg/500px-Ibrahima_Konat%C3%A9_Liverpool_FC_gegen_1._FSV_Mainz_05_%28Testspiel_23._Juli_2021%29_18_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Manchester_United_v_Liverpool%2C_24_October_2021_%2808%29_-_Ibrahima_Konat%C3%A9.jpg/500px-Manchester_United_v_Liverpool%2C_24_October_2021_%2808%29_-_Ibrahima_Konat%C3%A9.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Ibrahima_Konat%C3%A9_in_2021.jpg/500px-Ibrahima_Konat%C3%A9_in_2021.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Ibrahima_Konat%C3%A9_06042025_%281%29.jpg/500px-Ibrahima_Konat%C3%A9_06042025_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/3/39/Ibrahima_Konat%C3%A9_WC2022.jpg"
+        ]
       },
       {
         "id": "william-saliba",
@@ -603,7 +647,11 @@
         },
         "shirt_number_expected": 17,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/1_william_saliba_arsenal_2025_%28cropped%29.jpg/330px-1_william_saliba_arsenal_2025_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/1_william_saliba_arsenal_2025_%28cropped%29.jpg/330px-1_william_saliba_arsenal_2025_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/S%C3%A9rgio_Moreira_e_Ant%C3%B4nio_William_Saliba.jpg/500px-S%C3%A9rgio_Moreira_e_Ant%C3%B4nio_William_Saliba.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/1_william_saliba_arsenal_2025.jpg/500px-1_william_saliba_arsenal_2025.jpg"
+        ]
       },
       {
         "id": "theo-hernandez",
@@ -618,7 +666,13 @@
         },
         "shirt_number_expected": 22,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/FC_Salzburg_vs._AC_Mailand_%28UEFA_Championsleague_2022-09-06%29_Th%C3%A9o_Hernandez.jpg/330px-FC_Salzburg_vs._AC_Mailand_%28UEFA_Championsleague_2022-09-06%29_Th%C3%A9o_Hernandez.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/FC_Salzburg_vs._AC_Mailand_%28UEFA_Championsleague_2022-09-06%29_Th%C3%A9o_Hernandez.jpg/330px-FC_Salzburg_vs._AC_Mailand_%28UEFA_Championsleague_2022-09-06%29_Th%C3%A9o_Hernandez.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/a/a7/Theo_Hern%C3%A1ndez.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/6/66/TheoHernandez2022Salzburg.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Mazzocchi_and_Theo_Hernandez%2C_AC_Milan_vs_US_Salernitana%2C_March_13%2C_2023.jpg/500px-Mazzocchi_and_Theo_Hernandez%2C_AC_Milan_vs_US_Salernitana%2C_March_13%2C_2023.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Th%C3%A9o_Hernandez_arriva_in_albergo.jpg/500px-Th%C3%A9o_Hernandez_arriva_in_albergo.jpg"
+        ]
       },
       {
         "id": "lucas-hernandez",
@@ -633,7 +687,12 @@
         },
         "shirt_number_expected": 21,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/FC_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%28Championsleague_Achtelfinale_Hinspiel_16._Februar_2022%29_52.jpg/330px-FC_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%28Championsleague_Achtelfinale_Hinspiel_16._Februar_2022%29_52.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/FC_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%28Championsleague_Achtelfinale_Hinspiel_16._Februar_2022%29_52.jpg/330px-FC_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%28Championsleague_Achtelfinale_Hinspiel_16._Februar_2022%29_52.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/2/23/Chelsea_1_Atletico_Madrid_1_%28Lucas_Hern%C3%A1ndez%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Lucas_Hern%C3%A1ndez.jpg/500px-Lucas_Hern%C3%A1ndez.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Lucas_Hernandez_2022.jpg/500px-Lucas_Hernandez_2022.jpg"
+        ]
       },
       {
         "id": "maxence-lacroix",
@@ -648,7 +707,11 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Lens_-_Sochaux_%2823-11-2019%29_73.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Lens_-_Sochaux_%2823-11-2019%29_73.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/e/ea/Maxe-Lacroix.25-26.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Fredrikstad_Fotballklubb_v_Crystal_Palace_FC%2C_28_August_2025_A34_%28Maxence_Lacroix%29.jpg/500px-Fredrikstad_Fotballklubb_v_Crystal_Palace_FC%2C_28_August_2025_A34_%28Maxence_Lacroix%29.jpg"
+        ]
       },
       {
         "id": "manu-kone",
@@ -663,7 +726,12 @@
         },
         "shirt_number_expected": 25,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Kouadio_Manu_Kon%C3%A9_%282019-08-31%29_%28cropped%29.jpg/330px-Kouadio_Manu_Kon%C3%A9_%282019-08-31%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Kouadio_Manu_Kon%C3%A9_%282019-08-31%29_%28cropped%29.jpg/330px-Kouadio_Manu_Kon%C3%A9_%282019-08-31%29_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Kouadio_Manu_Kon%C3%A9_%282019-08-31%29.jpg/500px-Kouadio_Manu_Kon%C3%A9_%282019-08-31%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Manu_Kon%C3%A9_durante_il_riscaldamento_di_Roma-Lille.jpg/500px-Manu_Kon%C3%A9_durante_il_riscaldamento_di_Roma-Lille.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Manu_Kon%C3%A9_durante_il_riscaldamento_di_Roma-Lille_%28cropped%29.jpg/500px-Manu_Kon%C3%A9_durante_il_riscaldamento_di_Roma-Lille_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "aurelien-tchouameni",
@@ -678,7 +746,10 @@
         },
         "shirt_number_expected": 8,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/2025_04_26_Final_de_la_Copa_del_Rey_-_Aur%C3%A9lien_Tchouam%C3%A9ni.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/2025_04_26_Final_de_la_Copa_del_Rey_-_Aur%C3%A9lien_Tchouam%C3%A9ni.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Aur%C3%A9lien_Tchouam%C3%A9ni.jpg/500px-Aur%C3%A9lien_Tchouam%C3%A9ni.jpg"
+        ]
       },
       {
         "id": "n-golo-kante",
@@ -693,7 +764,15 @@
         },
         "shirt_number_expected": 13,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/05/N%27Golo_Kant%C3%A9_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/05/N%27Golo_Kant%C3%A9_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Kant%C3%A9.png/500px-Kant%C3%A9.png",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Ngolo_Kante_2016.jpg/500px-Ngolo_Kante_2016.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Ngolo_Kante_2017.jpg/500px-Ngolo_Kante_2017.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/N%27Golo_Kante_v_Newcastle.jpg/500px-N%27Golo_Kante_v_Newcastle.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/2/2e/N%27Golo_Kant%C3%A9_Russia_2018.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/N%27Golo_Kant%C3%A9_at_Baku_before_2019_UEFA_Europe_League_Final.jpg/500px-N%27Golo_Kant%C3%A9_at_Baku_before_2019_UEFA_Europe_League_Final.jpg"
+        ]
       },
       {
         "id": "adrien-rabiot",
@@ -708,7 +787,13 @@
         },
         "shirt_number_expected": 14,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Rabiot_asse_om_2425.png/330px-Rabiot_asse_om_2425.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Rabiot_asse_om_2425.png/330px-Rabiot_asse_om_2425.png",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/b/bc/Rabiot.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Adrien_Rabiot%2C_PSG.JPG/500px-Adrien_Rabiot%2C_PSG.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Adrien_Rabiot_2015.jpg/500px-Adrien_Rabiot_2015.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Chelsea_1_PSG_2_%2825672641705%29_-_Adrien_Rabiot_%28cropped%29.jpg/500px-Chelsea_1_PSG_2_%2825672641705%29_-_Adrien_Rabiot_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "warren-zaire-emery",
@@ -738,7 +823,11 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Rayan_Cherki_2019.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Rayan_Cherki_2019.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/d/da/Rayan_Cherki_2019_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Cherki_asse_ol_2425.png/500px-Cherki_asse_ol_2425.png"
+        ]
       },
       {
         "id": "maghnes-akliouche",
@@ -751,7 +840,12 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/00/Akliouche2_asse_asm_2425.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/00/Akliouche2_asse_asm_2425.png",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Magnes_Akliouche_dans_sa_voiture.jpg/500px-Magnes_Akliouche_dans_sa_voiture.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/e/e8/Magnes_Akliouche_dans_sa_voiture_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Akliouche_asse_asm_2425.png/500px-Akliouche_asse_asm_2425.png"
+        ]
       },
       {
         "id": "ousmane-dembele",
@@ -766,7 +860,15 @@
         },
         "shirt_number_expected": 11,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Ousmane_Demb%C3%A9l%C3%A9_2018_%28cropped%29.jpg/330px-Ousmane_Demb%C3%A9l%C3%A9_2018_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Ousmane_Demb%C3%A9l%C3%A9_2018_%28cropped%29.jpg/330px-Ousmane_Demb%C3%A9l%C3%A9_2018_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Saint-L%C3%B4_-_Rennes_CFA2_20150523_-_Ousmane_Demb%C3%A9l%C3%A9_1.JPG/500px-Saint-L%C3%B4_-_Rennes_CFA2_20150523_-_Ousmane_Demb%C3%A9l%C3%A9_1.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Saint-L%C3%B4_-_Rennes_CFA2_20150523_-_Ousmane_Demb%C3%A9l%C3%A9_2.JPG/500px-Saint-L%C3%B4_-_Rennes_CFA2_20150523_-_Ousmane_Demb%C3%A9l%C3%A9_2.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Saint-L%C3%B4_-_Rennes_CFA2_20150523_-_Ousmane_Demb%C3%A9l%C3%A9_3.JPG/500px-Saint-L%C3%B4_-_Rennes_CFA2_20150523_-_Ousmane_Demb%C3%A9l%C3%A9_3.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Saint-L%C3%B4_-_Rennes_CFA2_20150523_-_Ousmane_Demb%C3%A9l%C3%A9_4.JPG/500px-Saint-L%C3%B4_-_Rennes_CFA2_20150523_-_Ousmane_Demb%C3%A9l%C3%A9_4.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Dembele170727-2.jpg/500px-Dembele170727-2.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Dembele170727-3.jpg/500px-Dembele170727-3.jpg"
+        ]
       },
       {
         "id": "marcus-thuram",
@@ -781,7 +883,11 @@
         },
         "shirt_number_expected": 15,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Marcus_Thuram_in_2023.jpg/330px-Marcus_Thuram_in_2023.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Marcus_Thuram_in_2023.jpg/330px-Marcus_Thuram_in_2023.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/MARCUS_THURAM_-_INTER_MILAN_vs_SALZBURG.jpg/500px-MARCUS_THURAM_-_INTER_MILAN_vs_SALZBURG.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Marcus_Thuram_in_2023_%28cropped%29.jpg/500px-Marcus_Thuram_in_2023_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "kylian-mbappe",
@@ -796,7 +902,15 @@
         },
         "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Picture_with_Mbapp%C3%A9_%28cropped%29_%28cropped%29.jpg/330px-Picture_with_Mbapp%C3%A9_%28cropped%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Picture_with_Mbapp%C3%A9_%28cropped%29_%28cropped%29.jpg/330px-Picture_with_Mbapp%C3%A9_%28cropped%29_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/f/f3/Kylian_Mbapp%C3%A9_-_2017-05-06.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Kylian_Mbappe_2017.jpg/500px-Kylian_Mbappe_2017.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Kylian_Mbapp%C3%A9_%282%29.jpg/500px-Kylian_Mbapp%C3%A9_%282%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/1/1f/Kylian_Mbappe_-_March_2018.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Maillot_ext%C3%A9rieur_PSG_2017-2018_Mbapp%C3%A9.jpg/500px-Maillot_ext%C3%A9rieur_PSG_2017-2018_Mbapp%C3%A9.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Maillot_domicile_PSG_2017-2018_Mbapp%C3%A9.jpg/500px-Maillot_domicile_PSG_2017-2018_Mbapp%C3%A9.jpg"
+        ]
       },
       {
         "id": "michael-olise",
@@ -811,7 +925,11 @@
         },
         "shirt_number_expected": 7,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/FC_RB_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%282026-01-06_Testspiel%29_10.jpg/330px-FC_RB_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%282026-01-06_Testspiel%29_10.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/FC_RB_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%282026-01-06_Testspiel%29_10.jpg/330px-FC_RB_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%282026-01-06_Testspiel%29_10.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Olise_2022_crystal_palace.jpg/500px-Olise_2022_crystal_palace.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/e/e9/Michael_Olise_bayern_2025.jpg"
+        ]
       },
       {
         "id": "bradley-barcola",
@@ -826,7 +944,10 @@
         },
         "shirt_number_expected": 26,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Barcola_asse_psg_2425.png/330px-Barcola_asse_psg_2425.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Barcola_asse_psg_2425.png/330px-Barcola_asse_psg_2425.png",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Bradley_Barcola_vs_MHSC_7_May_2023.png/500px-Bradley_Barcola_vs_MHSC_7_May_2023.png"
+        ]
       },
       {
         "id": "desire-doue",
@@ -841,7 +962,10 @@
         },
         "shirt_number_expected": 24,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Doue_asse_psg_2425.png/330px-Doue_asse_psg_2425.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Doue_asse_psg_2425.png/330px-Doue_asse_psg_2425.png",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/6/6f/Doue_asse_psg_2425_%28cropped%29.png"
+        ]
       },
       {
         "id": "jean-philippe-mateta",
@@ -854,7 +978,12 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Jean-Philippe_Mateta_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Jean-Philippe_Mateta_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Spotted_the_Crystal_Palace_team_at_Wolverhampton_train_station-_Jean-Philippe_Mateta.jpg/500px-Spotted_the_Crystal_Palace_team_at_Wolverhampton_train_station-_Jean-Philippe_Mateta.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/1_jean-philippe_mateta_2026.jpg/500px-1_jean-philippe_mateta_2026.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Fredrikstad_Fotballklubb_v_Crystal_Palace_FC%2C_28_August_2025_B11_%28JP_Mateta%29.jpg/500px-Fredrikstad_Fotballklubb_v_Crystal_Palace_FC%2C_28_August_2025_B11_%28JP_Mateta%29.jpg"
+        ]
       }
     ],
     "starting_xi": {
@@ -973,7 +1102,23 @@
     },
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
-    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
+    "image_pool": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Fans_of_the_Angolan_national_football_team_in_Cologne.jpg/500px-Fans_of_the_Angolan_national_football_team_in_Cologne.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/France_football_1900.jpg/500px-France_football_1900.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/6/67/Yugoslavia_national_football_team_in_1929.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Belgian_national_football_team_1901.jpg/500px-Belgian_national_football_team_1901.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/French_national_football_team_-_Olympic_games_1920.jpg/500px-French_national_football_team_-_Olympic_games_1920.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/France_Olympic_team_1924.jpg/500px-France_Olympic_team_1924.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/France_national_football_team_2006.JPG/500px-France_national_football_team_2006.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/France_football_1924_olympics.jpg/500px-France_football_1924_olympics.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/France_national_football_1904.jpg/500px-France_national_football_1904.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/France-%C3%89cosse_de_football%2C_en_1897.jpg/500px-France-%C3%89cosse_de_football%2C_en_1897.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Jules_Rimet_et_l%27%C3%A9quipe_de_France_de_football%2C_en_partance_pour_la_Coupe_du_Monde_%C3%A0_Montevideo_en_1930.jpg/500px-Jules_Rimet_et_l%27%C3%A9quipe_de_France_de_football%2C_en_partance_pour_la_Coupe_du_Monde_%C3%A0_Montevideo_en_1930.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/France_national_football_team_2018.jpg/500px-France_national_football_team_2018.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/4/43/France_national_football_team_2018_%28cropped%29_-_Ousmane_Dembele.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Stade_de_France_1500_18.jpg/500px-Stade_de_France_1500_18.jpg"
+    ]
   },
   "history": {
     "first_appearance": 1930,

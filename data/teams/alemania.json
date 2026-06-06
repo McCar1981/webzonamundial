@@ -478,7 +478,15 @@
         },
         "shirt_number_expected": 1,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/20180602_FIFA_Friendly_Match_Austria_vs._Germany_Manuel_Neuer_850_0723.jpg/330px-20180602_FIFA_Friendly_Match_Austria_vs._Germany_Manuel_Neuer_850_0723.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/20180602_FIFA_Friendly_Match_Austria_vs._Germany_Manuel_Neuer_850_0723.jpg/330px-20180602_FIFA_Friendly_Match_Austria_vs._Germany_Manuel_Neuer_850_0723.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Manuel_Neuer%2C_Germany_national_football_team_%2801%29.jpg/500px-Manuel_Neuer%2C_Germany_national_football_team_%2801%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Manuel_Neuer%2C_Germany_national_football_team_%2802%29.jpg/500px-Manuel_Neuer%2C_Germany_national_football_team_%2802%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Manuel_Neuer%2C_Germany_national_football_team_%2803%29.jpg/500px-Manuel_Neuer%2C_Germany_national_football_team_%2803%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Manuel_Neuer%2C_Germany_national_football_team_%2804%29.jpg/500px-Manuel_Neuer%2C_Germany_national_football_team_%2804%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Manuel_Neuer%2C_Germany_national_football_team_%2805%29.jpg/500px-Manuel_Neuer%2C_Germany_national_football_team_%2805%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Manuel_Neuer%2C_Germany_national_football_team_%2806%29.jpg/500px-Manuel_Neuer%2C_Germany_national_football_team_%2806%29.jpg"
+        ]
       },
       {
         "id": "oliver-baumann",
@@ -493,7 +501,13 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/OliverBaumann_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/OliverBaumann_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Oliver_Baumann.jpg/500px-Oliver_Baumann.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/OliverBaumann.jpg/500px-OliverBaumann.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Oliver_Baumann_mural.jpg/500px-Oliver_Baumann_mural.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Oliver_Baumann_mural_crop.jpg/500px-Oliver_Baumann_mural_crop.jpg"
+        ]
       },
       {
         "id": "alexander-nubel",
@@ -508,7 +522,11 @@
         },
         "shirt_number_expected": 22,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Alexander_nuebel.jpg/330px-Alexander_nuebel.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Alexander_nuebel.jpg/330px-Alexander_nuebel.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Alexander_N%C3%BCbel.jpg/500px-Alexander_N%C3%BCbel.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Simon_Henzler_trainiert_Alexander_N%C3%BCbel_110919.jpg/500px-Simon_Henzler_trainiert_Alexander_N%C3%BCbel_110919.jpg"
+        ]
       },
       {
         "id": "waldemar-anton",
@@ -534,7 +552,12 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/33/Waldemar_anton_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/33/Waldemar_anton_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Anton%2C_Waldemar_H96_16-17_WP.jpg/500px-Anton%2C_Waldemar_H96_16-17_WP.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Waldemar_anton.jpg/500px-Waldemar_anton.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Waldemar_Anton_%282025%29.jpg/500px-Waldemar_Anton_%282025%29.jpg"
+        ]
       },
       {
         "id": "jonathan-tah",
@@ -549,7 +572,13 @@
         },
         "shirt_number_expected": 4,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Jonathan_Tah_2019.jpg/330px-Jonathan_Tah_2019.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Jonathan_Tah_2019.jpg/330px-Jonathan_Tah_2019.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Jonathan_Tah.jpg/500px-Jonathan_Tah.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Jonathan-Tah.jpg/500px-Jonathan-Tah.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/d/d2/Jonathan_Tah_2014.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Jonathan-Tah-2015-08.jpg/500px-Jonathan-Tah-2015-08.jpg"
+        ]
       },
       {
         "id": "joshua-kimmich",
@@ -564,7 +593,15 @@
         },
         "shirt_number_expected": 6,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/2019-06-11_Fu%C3%9Fball%2C_M%C3%A4nner%2C_L%C3%A4nderspiel%2C_Deutschland-Estland_StP_2078_LR10_by_Stepro.jpg/330px-2019-06-11_Fu%C3%9Fball%2C_M%C3%A4nner%2C_L%C3%A4nderspiel%2C_Deutschland-Estland_StP_2078_LR10_by_Stepro.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/2019-06-11_Fu%C3%9Fball%2C_M%C3%A4nner%2C_L%C3%A4nderspiel%2C_Deutschland-Estland_StP_2078_LR10_by_Stepro.jpg/330px-2019-06-11_Fu%C3%9Fball%2C_M%C3%A4nner%2C_L%C3%A4nderspiel%2C_Deutschland-Estland_StP_2078_LR10_by_Stepro.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/2015-05-01_Joshua_Kimmich.jpg/500px-2015-05-01_Joshua_Kimmich.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Joshua_Kimmich_Training_FC_Bayern_M%C3%BCnchen-1.jpg/500px-Joshua_Kimmich_Training_FC_Bayern_M%C3%BCnchen-1.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Joshua_Kimmich_Training_FC_Bayern_M%C3%BCnchen-2.jpg/500px-Joshua_Kimmich_Training_FC_Bayern_M%C3%BCnchen-2.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Kimmich2014.jpg/500px-Kimmich2014.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Joshua_Kimmich_Training_2017-03_FC_Bayern_Muenchen-1.jpg/500px-Joshua_Kimmich_Training_2017-03_FC_Bayern_Muenchen-1.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Joshua_Kimmich_Training_2017-03_FC_Bayern_Muenchen-2.jpg/500px-Joshua_Kimmich_Training_2017-03_FC_Bayern_Muenchen-2.jpg"
+        ]
       },
       {
         "id": "nico-schlotterbeck",
@@ -579,7 +616,10 @@
         },
         "shirt_number_expected": 23,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93069.jpg/330px-2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93069.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93069.jpg/330px-2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93069.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Nico_Schlotterbeck.jpg/500px-Nico_Schlotterbeck.jpg"
+        ]
       },
       {
         "id": "nathaniel-brown",
@@ -594,7 +634,10 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Captain_Nathaniel_Brown_House%2C_Brown_Street%2C_Salem%2C_MA.jpg/500px-Captain_Nathaniel_Brown_House%2C_Brown_Street%2C_Salem%2C_MA.jpg"
+        ]
       },
       {
         "id": "david-raum",
@@ -609,7 +652,10 @@
         },
         "shirt_number_expected": 3,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2658_%28cropped%29.jpg/330px-2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2658_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2658_%28cropped%29.jpg/330px-2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2658_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/2022_FIFA_World_Cup_Germany_1%E2%80%932_Japan_-_Gonda_vs_Raum.jpg/500px-2022_FIFA_World_Cup_Germany_1%E2%80%932_Japan_-_Gonda_vs_Raum.jpg"
+        ]
       },
       {
         "id": "malick-thiaw",
@@ -624,7 +670,15 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/66/Milan_Lecce_2023_Thiaw.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/66/Milan_Lecce_2023_Thiaw.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Thiaw_arriva_in_albergo.jpg/500px-Thiaw_arriva_in_albergo.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Malick_Thiaw_24052026_%281%29.jpg/500px-Malick_Thiaw_24052026_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Malick_Thiaw_24052026_%282%29.jpg/500px-Malick_Thiaw_24052026_%282%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Malick_Thiaw_24052026_%283%29.jpg/500px-Malick_Thiaw_24052026_%283%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Malick_Thiaw_24052026_%284%29.jpg/500px-Malick_Thiaw_24052026_%284%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Sian_Massey-Ellis_and_Malick_Thiaw_24052026_%281%29.jpg/500px-Sian_Massey-Ellis_and_Malick_Thiaw_24052026_%281%29.jpg"
+        ]
       },
       {
         "id": "aleksandar-pavlovic",
@@ -639,7 +693,10 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/90/FC_RB_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%282026-01-06_Testspiel%29_34.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/90/FC_RB_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%282026-01-06_Testspiel%29_34.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Aleksandar_Pavlovi%C4%87.jpg/500px-Aleksandar_Pavlovi%C4%87.jpg"
+        ]
       },
       {
         "id": "leon-goretzka",
@@ -654,7 +711,15 @@
         },
         "shirt_number_expected": 18,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/2019-06-11_Fu%C3%9Fball%2C_M%C3%A4nner%2C_L%C3%A4nderspiel%2C_Deutschland-Estland_StP_2074_LR10_by_Stepro_%28cropped%29.jpg/330px-2019-06-11_Fu%C3%9Fball%2C_M%C3%A4nner%2C_L%C3%A4nderspiel%2C_Deutschland-Estland_StP_2074_LR10_by_Stepro_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/2019-06-11_Fu%C3%9Fball%2C_M%C3%A4nner%2C_L%C3%A4nderspiel%2C_Deutschland-Estland_StP_2074_LR10_by_Stepro_%28cropped%29.jpg/330px-2019-06-11_Fu%C3%9Fball%2C_M%C3%A4nner%2C_L%C3%A4nderspiel%2C_Deutschland-Estland_StP_2074_LR10_by_Stepro_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Goretzka_Schalke_2015.jpg/500px-Goretzka_Schalke_2015.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/2017_Confederations_Cup_-_Final_-_Leon_Goretzka_%281%29.jpg/500px-2017_Confederations_Cup_-_Final_-_Leon_Goretzka_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/2017_Confederations_Cup_-_Final_-_Leon_Goretzka_%282%29.jpg/500px-2017_Confederations_Cup_-_Final_-_Leon_Goretzka_%282%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/2017_Confederations_Cup_-_Final_-_Leon_Goretzka_%282%29_%28cropped%29.jpg/500px-2017_Confederations_Cup_-_Final_-_Leon_Goretzka_%282%29_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Leon_Goretzka_Training_2019-04-10_FC_Bayern_Muenchen-1.jpg/500px-Leon_Goretzka_Training_2019-04-10_FC_Bayern_Muenchen-1.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Leon_Goretzka_Training_2019-04-10_FC_Bayern_Muenchen-2.jpg/500px-Leon_Goretzka_Training_2019-04-10_FC_Bayern_Muenchen-2.jpg"
+        ]
       },
       {
         "id": "jamie-leweling",
@@ -684,7 +749,15 @@
         },
         "shirt_number_expected": 11,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Jamal_Musiala_2022_%28cropped%29.jpg/330px-Jamal_Musiala_2022_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Jamal_Musiala_2022_%28cropped%29.jpg/330px-Jamal_Musiala_2022_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/9/93/Jamal_Musiala_October_2019.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Klostermann_and_Musiala_2022.jpg/500px-Klostermann_and_Musiala_2022.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Jamal_Musiala_2022.jpg/500px-Jamal_Musiala_2022.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/d/d3/Jamal_Musiala_WC2022.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/3/39/2022-07-30_Fu%C3%9Fball%2C_M%C3%A4nner%2C_DFL-Supercup%2C_RB_Leipzig_-_FC_Bayern_M%C3%BCnchen_1DX_3381_by_Stepro_%28Joshua_Zirkzee_y_Jamal_Musiala%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/a/aa/2022-07-30_Fu%C3%9Fball%2C_M%C3%A4nner%2C_DFL-Supercup%2C_RB_Leipzig_-_FC_Bayern_M%C3%BCnchen_1DX_3417_by_Stepro_%28Jamal_Musiala%2C_Joshua_Zikzee%29.jpg"
+        ]
       },
       {
         "id": "pascal-gross",
@@ -729,7 +802,15 @@
         },
         "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Florian_Wirtz_04012026_%283%29_%28extracted%29.jpg/330px-Florian_Wirtz_04012026_%283%29_%28extracted%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Florian_Wirtz_04012026_%283%29_%28extracted%29.jpg/330px-Florian_Wirtz_04012026_%283%29_%28extracted%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Florian_Wirtz%2C_2022-07-31%2C_Saisoner%C3%B6ffnung_Bayer_04%2C_Leverkusen_%281%29.jpg/500px-Florian_Wirtz%2C_2022-07-31%2C_Saisoner%C3%B6ffnung_Bayer_04%2C_Leverkusen_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Florian_Wirtz%2C_2022-07-31%2C_Saisoner%C3%B6ffnung_Bayer_04%2C_Leverkusen_%281%29_%28cropped%29.jpg/500px-Florian_Wirtz%2C_2022-07-31%2C_Saisoner%C3%B6ffnung_Bayer_04%2C_Leverkusen_%281%29_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Florian_Wirtz_2024.jpg/500px-Florian_Wirtz_2024.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Florian_Wirtz_04012026_%281%29.jpg/500px-Florian_Wirtz_04012026_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Florian_Wirtz_04012026_%282%29.jpg/500px-Florian_Wirtz_04012026_%282%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Florian_Wirtz_04012026_%283%29.jpg/500px-Florian_Wirtz_04012026_%283%29.jpg"
+        ]
       },
       {
         "id": "leroy-sane",
@@ -744,7 +825,15 @@
         },
         "shirt_number_expected": 19,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/20180602_FIFA_Friendly_Match_Austria_vs._Germany_Leroy_San%C3%A9_850_0668.jpg/330px-20180602_FIFA_Friendly_Match_Austria_vs._Germany_Leroy_San%C3%A9_850_0668.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/20180602_FIFA_Friendly_Match_Austria_vs._Germany_Leroy_San%C3%A9_850_0668.jpg/330px-20180602_FIFA_Friendly_Match_Austria_vs._Germany_Leroy_San%C3%A9_850_0668.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Leroy_Sane_S04_2015.jpg/500px-Leroy_Sane_S04_2015.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Leroy_Sane_MSV-Schalke-5932.jpg/500px-Leroy_Sane_MSV-Schalke-5932.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Leroy_Sane_MSV-Schalke-5709.jpg/500px-Leroy_Sane_MSV-Schalke-5709.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/20180602_FIFA_Friendly_Match_Austria_vs._Germany_Leroy_San%C3%A9_850_1160.jpg/500px-20180602_FIFA_Friendly_Match_Austria_vs._Germany_Leroy_San%C3%A9_850_1160.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/20180602_FIFA_Friendly_Match_Austria_vs._Germany_Lainer_San%C3%A9_850_0881.jpg/500px-20180602_FIFA_Friendly_Match_Austria_vs._Germany_Lainer_San%C3%A9_850_0881.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/a/a9/Leroy_San%C3%A9_in_December_2017_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "nadiem-amiri",
@@ -774,7 +863,10 @@
         },
         "shirt_number_expected": 15,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Felix_Nmecha_2021.jpg/330px-Felix_Nmecha_2021.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Felix_Nmecha_2021.jpg/330px-Felix_Nmecha_2021.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/a/ad/Felix_Nmecha_during_the_game_against_Hamburg_after_missing_a_penalty_in_Bundesliga%2C_21_March_2026.jpg"
+        ]
       },
       {
         "id": "lennart-karl",
@@ -804,7 +896,15 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/59/Kai_Havertz_2020.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/59/Kai_Havertz_2020.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Kai-Havertz-August-2018.jpg/500px-Kai-Havertz-August-2018.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Kai_Havertz%2CAlex_Gelzer_und_Julian_Brandt.jpg/500px-Kai_Havertz%2CAlex_Gelzer_und_Julian_Brandt.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/FC_Krasnodar_vs_Chelsea_Havertz_2020-10-28.jpg/500px-FC_Krasnodar_vs_Chelsea_Havertz_2020-10-28.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/2023_MLS_All_Star_Game_2023-07-21_Carles_Gil_Kai_Havertz_Aidan_Morris.jpg/500px-2023_MLS_All_Star_Game_2023-07-21_Carles_Gil_Kai_Havertz_Aidan_Morris.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/1_kai_havertz_2026.jpg/500px-1_kai_havertz_2026.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/1_kai_havertz_2026_%28cropped%29.jpg/500px-1_kai_havertz_2026_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "nick-woltemade",
@@ -819,7 +919,15 @@
         },
         "shirt_number_expected": 9,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Nick_Woltemade_24052026_%285%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Nick_Woltemade_24052026_%285%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Nick_Woltemade_24052026_%281%29.jpg/500px-Nick_Woltemade_24052026_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Nick_Woltemade_24052026_%282%29.jpg/500px-Nick_Woltemade_24052026_%282%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Nick_Woltemade%2C_Oscar_Bobb_and_Bruno_Guimar%C3%A3es_24052026_%281%29.jpg/500px-Nick_Woltemade%2C_Oscar_Bobb_and_Bruno_Guimar%C3%A3es_24052026_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Issa_Diop_and_Nick_Woltemade_24052026_%281%29.jpg/500px-Issa_Diop_and_Nick_Woltemade_24052026_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Nick_Woltemade_24052026_%283%29.jpg/500px-Nick_Woltemade_24052026_%283%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Nick_Woltemade_24052026_%284%29.jpg/500px-Nick_Woltemade_24052026_%284%29.jpg"
+        ]
       },
       {
         "id": "maximilian-beier",
@@ -970,7 +1078,23 @@
     },
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
-    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
+    "image_pool": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Fans_of_the_Portuguese_national_football_team_in_Cologne_1.jpg/500px-Fans_of_the_Portuguese_national_football_team_in_Cologne_1.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Fans_of_the_Portuguese_national_football_team_in_Cologne_2.jpg/500px-Fans_of_the_Portuguese_national_football_team_in_Cologne_2.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Manuel_Neuer%2C_Germany_national_football_team_%2807%29.jpg/500px-Manuel_Neuer%2C_Germany_national_football_team_%2807%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Manuel_Neuer%2C_Germany_national_football_team_%2808%29.jpg/500px-Manuel_Neuer%2C_Germany_national_football_team_%2808%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Mats_Hummels%2C_Germany_national_football_team_%2802%29.jpg/500px-Mats_Hummels%2C_Germany_national_football_team_%2802%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Mats_Hummels%2C_Germany_national_football_team_%2803%29.jpg/500px-Mats_Hummels%2C_Germany_national_football_team_%2803%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Sami_Khedira%2C_Germany_national_football_team_%2806%29.jpg/500px-Sami_Khedira%2C_Germany_national_football_team_%2806%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Sami_Khedira%2C_Germany_national_football_team_%2805%29.jpg/500px-Sami_Khedira%2C_Germany_national_football_team_%2805%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Sami_Khedira%2C_Germany_national_football_team_%2807%29.jpg/500px-Sami_Khedira%2C_Germany_national_football_team_%2807%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Mesut_%C3%96zil%2C_Germany_national_football_team_%2802%29.jpg/500px-Mesut_%C3%96zil%2C_Germany_national_football_team_%2802%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Mesut_%C3%96zil%2C_Germany_national_football_team_%2804%29.jpg/500px-Mesut_%C3%96zil%2C_Germany_national_football_team_%2804%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Mesut_%C3%96zil%2C_Germany_national_football_team_%2806%29.jpg/500px-Mesut_%C3%96zil%2C_Germany_national_football_team_%2806%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Andre_Sch%C3%BCrrle%2C_Germany_national_football_team_%2807%29.jpg/500px-Andre_Sch%C3%BCrrle%2C_Germany_national_football_team_%2807%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Lukas_Podolski%2C_Germany_national_football_team_%2807%29.jpg/500px-Lukas_Podolski%2C_Germany_national_football_team_%2807%29.jpg"
+    ]
   },
   "history": {
     "first_appearance": 1934,

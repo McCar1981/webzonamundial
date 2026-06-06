@@ -618,7 +618,10 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/81/Real_Madrid_C.F._the_Winner_Of_The_Champions_League_in_2018_%28Luca2%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/81/Real_Madrid_C.F._the_Winner_Of_The_Champions_League_in_2018_%28Luca2%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/3/36/Real_Madrid_C.F._the_Winner_Of_The_Champions_League_in_2018_%28Luca_Zidane%29.jpg"
+        ]
       },
       {
         "id": "aïssa-mandi",
@@ -633,7 +636,14 @@
         },
         "shirt_number_expected": 5,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Alg%C3%A9rie_-_Arm%C3%A9nie_-_20140531_-_Aissa_Mandi.jpg/330px-Alg%C3%A9rie_-_Arm%C3%A9nie_-_20140531_-_Aissa_Mandi.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Alg%C3%A9rie_-_Arm%C3%A9nie_-_20140531_-_Aissa_Mandi.jpg/330px-Alg%C3%A9rie_-_Arm%C3%A9nie_-_20140531_-_Aissa_Mandi.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Mandi1213.jpg/500px-Mandi1213.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/a/a0/A%C3%AFssa_Mandi_0587.png",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Alg%C3%A9rie_-_Arm%C3%A9nie_-_20140531_-_Adlan_Guedioura_%2817%29%2C_Essaid_Belkalem_%284%29_et_Aissa_Mandi_%2820%29.jpg/500px-Alg%C3%A9rie_-_Arm%C3%A9nie_-_20140531_-_Adlan_Guedioura_%2817%29%2C_Essaid_Belkalem_%284%29_et_Aissa_Mandi_%2820%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Alg%C3%A9rie_-_Arm%C3%A9nie_-_20140531_-_Aissa_Mandi_%2820%29%2C_Mohamed_Lamine_Zemmamouche_%2816%29_et_Mehdi_Lacen_%288%29.jpg/500px-Alg%C3%A9rie_-_Arm%C3%A9nie_-_20140531_-_Aissa_Mandi_%2820%29%2C_Mohamed_Lamine_Zemmamouche_%2816%29_et_Mehdi_Lacen_%288%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Mandi_asselosc_2425.jpg/500px-Mandi_asselosc_2425.jpg"
+        ]
       },
       {
         "id": "achraf-abada",
@@ -674,7 +684,10 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Zineddine_Bela%C3%AFd_-_20240326_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Zineddine_Bela%C3%AFd_-_20240326_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Zineddine_Bela%C3%AFd_-_20240326.jpg/500px-Zineddine_Bela%C3%AFd_-_20240326.jpg"
+        ]
       },
       {
         "id": "jaouen-hadjam",
@@ -702,7 +715,13 @@
         },
         "shirt_number_expected": 12,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Rayan_A%C3%AFt-Nouri_playing_for_Algeria_in_2024_%28cropped%29.jpg/330px-Rayan_A%C3%AFt-Nouri_playing_for_Algeria_in_2024_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Rayan_A%C3%AFt-Nouri_playing_for_Algeria_in_2024_%28cropped%29.jpg/330px-Rayan_A%C3%AFt-Nouri_playing_for_Algeria_in_2024_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/3/31/Rayan_A%C3%AFt-Nouri_%28cropped%29_WWFC_vs_Brighton_%26_Hove_Albion_4.3.2022.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/4/43/Rayan_A%C3%AFt-Nouri.png",
+          "https://upload.wikimedia.org/wikipedia/commons/e/e0/Rayan_A%C3%AFt-Nouri_%28cropped%29.png",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Rayan_A%C3%AFt-Nouri_playing_for_Algeria_in_2024.jpg/500px-Rayan_A%C3%AFt-Nouri_playing_for_Algeria_in_2024.jpg"
+        ]
       },
       {
         "id": "rafik-belghali",
@@ -730,7 +749,13 @@
         },
         "shirt_number_expected": 3,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93134.jpg/330px-2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93134.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93134.jpg/330px-2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93134.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Bensebaini_MHSC.jpg/500px-Bensebaini_MHSC.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Stade_rennais_vs_SM_Caen%2C_July_22nd_2017_-_Bensebaini_%281%29.jpg/500px-Stade_rennais_vs_SM_Caen%2C_July_22nd_2017_-_Bensebaini_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Stade_rennais_vs_SM_Caen%2C_July_22nd_2017_-_Maouassa_Bensebaini.jpg/500px-Stade_rennais_vs_SM_Caen%2C_July_22nd_2017_-_Maouassa_Bensebaini.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Stade_rennais_vs_SM_Caen%2C_July_22nd_2017_-_Maouassa_Bensebaini_Baal_Diakhaby.jpg/500px-Stade_rennais_vs_SM_Caen%2C_July_22nd_2017_-_Maouassa_Bensebaini_Baal_Diakhaby.jpg"
+        ]
       },
       {
         "id": "samir-chergui",
@@ -771,7 +796,15 @@
         },
         "shirt_number_expected": 8,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Houssem_Aouar_2017.jpg/330px-Houssem_Aouar_2017.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Houssem_Aouar_2017.jpg/330px-Houssem_Aouar_2017.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/OL_Store_-_maillot_d%27%27Houssem_Aouar.JPG/500px-OL_Store_-_maillot_d%27%27Houssem_Aouar.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/OL_Store_-_maillot_d%27%27Houssem_Aouar_-_2.JPG/500px-OL_Store_-_maillot_d%27%27Houssem_Aouar_-_2.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Djamel_Belmadi_avec_Houssem_Aouar_2024.jpg/500px-Djamel_Belmadi_avec_Houssem_Aouar_2024.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Houssem_Aouar_in_2024.jpg/500px-Houssem_Aouar_in_2024.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Houssem_Aouar_2017_%28cropped%29.jpg/500px-Houssem_Aouar_2017_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/20191002_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Olympique_Lyonnais_by_Stepro_StP_0064-2_%28Houssem_Aouar%29.jpg/500px-20191002_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Olympique_Lyonnais_by_Stepro_StP_0064-2_%28Houssem_Aouar%29.jpg"
+        ]
       },
       {
         "id": "fares-chaibi",
@@ -814,7 +847,10 @@
         },
         "shirt_number_expected": 17,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Nabil_Bentaleb_2014.jpg/330px-Nabil_Bentaleb_2014.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Nabil_Bentaleb_2014.jpg/330px-Nabil_Bentaleb_2014.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Nabil_Bentaleb.jpg/500px-Nabil_Bentaleb.jpg"
+        ]
       },
       {
         "id": "ibrahim-maza",
@@ -857,7 +893,15 @@
         },
         "shirt_number_expected": 7,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Mahrez_2021.jpg/330px-Mahrez_2021.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Mahrez_2021.jpg/330px-Mahrez_2021.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Alg%C3%A9rie_-_Arm%C3%A9nie_-_20140531_-_Rafik_Halliche_%285%29%2C_Djamel_Eddine_Mesbah_%286%29%2C_Yacine_Brahimi_%2811%29%2C_Riyad_Mahrez_%2821%29_et_Adlan_Guedioura_%2817%29.jpg/500px-Alg%C3%A9rie_-_Arm%C3%A9nie_-_20140531_-_Rafik_Halliche_%285%29%2C_Djamel_Eddine_Mesbah_%286%29%2C_Yacine_Brahimi_%2811%29%2C_Riyad_Mahrez_%2821%29_et_Adlan_Guedioura_%2817%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Alg%C3%A9rie_-_Arm%C3%A9nie_-_20140531_-_Riyad_Mahrez.jpg/500px-Alg%C3%A9rie_-_Arm%C3%A9nie_-_20140531_-_Riyad_Mahrez.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Riyad_Mahrez.jpg/500px-Riyad_Mahrez.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Mahrez_free_kick_1_%2816476351346%29.jpg/500px-Mahrez_free_kick_1_%2816476351346%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Mahrez_free_kick_2_%2816501343842%29.jpg/500px-Mahrez_free_kick_2_%2816501343842%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Alg%C3%A9rie_-_Arm%C3%A9nie_-_20140531_-_Riyad_Mahrez_%28cropped%29.jpg/500px-Alg%C3%A9rie_-_Arm%C3%A9nie_-_20140531_-_Riyad_Mahrez_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "amine-gouiri",
@@ -872,7 +916,13 @@
         },
         "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Amine_Gouiri_%282017%29.jpg/330px-Amine_Gouiri_%282017%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Amine_Gouiri_%282017%29.jpg/330px-Amine_Gouiri_%282017%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Amine_Gouiri_20180726.jpg/500px-Amine_Gouiri_20180726.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Gouiri_e_Zanandrea_20180726.jpg/500px-Gouiri_e_Zanandrea_20180726.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/RC_Lens_-_OGC_Nice_%2810-04-2022%29_25_Amine_Gouiri.jpg/500px-RC_Lens_-_OGC_Nice_%2810-04-2022%29_25_Amine_Gouiri.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Amine_Gouiri_France_Serbie_U21.jpg/500px-Amine_Gouiri_France_Serbie_U21.jpg"
+        ]
       },
       {
         "id": "anis-hadj-moussa",
@@ -1063,7 +1113,23 @@
     "squad_announced": true,
     "squad_announced_status": "pending_official",
     "squad_announced_date": "2026-06-04",
-    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
+    "image_pool": [
+      "https://upload.wikimedia.org/wikipedia/commons/4/42/Jubilee_FLN_soccer_team_1974.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Algeria_vs_Nigeria_-_1978_All-Africa_Games_final.jpg/500px-Algeria_vs_Nigeria_-_1978_All-Africa_Games_final.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Algeria_NT_training_2013_AFCON.jpg/500px-Algeria_NT_training_2013_AFCON.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Tunisia_vs_Algeria_2013_AFCON.jpg/500px-Tunisia_vs_Algeria_2013_AFCON.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Algeria_vs_Ivory_Coast_2013_AFCON.jpg/500px-Algeria_vs_Ivory_Coast_2013_AFCON.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Les_Verts_entament_leur_entra%C3%AEnement_sur_les_terrains_br%C3%A9siliens.jpg/500px-Les_Verts_entament_leur_entra%C3%AEnement_sur_les_terrains_br%C3%A9siliens.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Desert_Warriors_arrive_in_Brazil_06.jpg/500px-Desert_Warriors_arrive_in_Brazil_06.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/ACON_2015_CIV_ALG_%2816511337801%29.jpg/500px-ACON_2015_CIV_ALG_%2816511337801%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/b/b3/Rachid_Mekhloufi_%28cropped%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/%C3%89quipe_d%27Alg%C3%A9rie_de_football_-_Gare_ferroviaire_de_z%C3%A9ralda_%D9%85%D8%AD%D8%B7%D8%A9_%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B1_%D8%A8%D8%B2%D8%B1%D8%A7%D9%84%D8%AF%D8%A9.jpg/500px-%C3%89quipe_d%27Alg%C3%A9rie_de_football_-_Gare_ferroviaire_de_z%C3%A9ralda_%D9%85%D8%AD%D8%B7%D8%A9_%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B1_%D8%A8%D8%B2%D8%B1%D8%A7%D9%84%D8%AF%D8%A9.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/%C3%89quipe_d%27Alg%C3%A9rie_de_football_-_Gare_ferroviaire_de_z%C3%A9ralda_2_%D9%85%D8%AD%D8%B7%D8%A9_%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B1_%D8%A8%D8%B2%D8%B1%D8%A7%D9%84%D8%AF%D8%A9.jpg/500px-%C3%89quipe_d%27Alg%C3%A9rie_de_football_-_Gare_ferroviaire_de_z%C3%A9ralda_2_%D9%85%D8%AD%D8%B7%D8%A9_%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B1_%D8%A8%D8%B2%D8%B1%D8%A7%D9%84%D8%AF%D8%A9.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Equipe_du_Front_de_lib%C3%A9ration_nationale_1960.jpg/500px-Equipe_du_Front_de_lib%C3%A9ration_nationale_1960.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Football_at_the_2005_Islamic_Solidarity_Games%2C_Iran_2-0_Algeria_%2801%29.jpg/500px-Football_at_the_2005_Islamic_Solidarity_Games%2C_Iran_2-0_Algeria_%2801%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Walid_Berbagui.jpg/500px-Walid_Berbagui.jpg"
+    ]
   },
   "history": {
     "first_appearance": 1982,

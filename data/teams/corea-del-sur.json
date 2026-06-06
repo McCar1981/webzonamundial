@@ -567,7 +567,10 @@
         },
         "shirt_number_expected": 1,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Rus-SK2017_%2822%29.jpg/330px-Rus-SK2017_%2822%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Rus-SK2017_%2822%29.jpg/330px-Rus-SK2017_%2822%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/a/a9/Kim_Seung-Gyu.jpg"
+        ]
       },
       {
         "id": "song-bum-keun",
@@ -627,7 +630,15 @@
         },
         "shirt_number_expected": 4,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/84/%ED%86%A0%ED%8A%B8%EB%84%98-%EC%9C%A0%EB%B2%A4%ED%88%AC%EC%8A%A4_%EC%9D%B4%EC%A0%81%EC%84%A4%EC%97%90_%EC%A7%81%EC%A0%91_%EB%8B%B5%ED%95%9C_%EA%B9%80%EB%AF%BC%EC%9E%AC_1m_42s.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/84/%ED%86%A0%ED%8A%B8%EB%84%98-%EC%9C%A0%EB%B2%A4%ED%88%AC%EC%8A%A4_%EC%9D%B4%EC%A0%81%EC%84%A4%EC%97%90_%EC%A7%81%EC%A0%91_%EB%8B%B5%ED%95%9C_%EA%B9%80%EB%AF%BC%EC%9E%AC_1m_42s.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/7/7b/Lebanon_v_South_Korea%2C_14_November_2019_04_%28Kim_Min-jae%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Min-Jae_Kim_%282021-22_S%C3%BCper_Lig%29_-_Resim1.png/500px-Min-Jae_Kim_%282021-22_S%C3%BCper_Lig%29_-_Resim1.png",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Min-Jae_Kim_%282021-22_S%C3%BCper_Lig%29_-_Resim2.png/500px-Min-Jae_Kim_%282021-22_S%C3%BCper_Lig%29_-_Resim2.png",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Min-Jae_Kim_%282021-22_S%C3%BCper_Lig%29_-_Resim3.png/500px-Min-Jae_Kim_%282021-22_S%C3%BCper_Lig%29_-_Resim3.png",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Min-Jae_Kim_%282021-22_S%C3%BCper_Lig%29_-_Resim4.png/500px-Min-Jae_Kim_%282021-22_S%C3%BCper_Lig%29_-_Resim4.png",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Min-Jae_Kim_%282021-22_S%C3%BCper_Lig%29_-_Resim5.png/500px-Min-Jae_Kim_%282021-22_S%C3%BCper_Lig%29_-_Resim5.png"
+        ]
       },
       {
         "id": "taehyeon-kim",
@@ -679,7 +690,11 @@
         },
         "shirt_number_expected": 2,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/191202_K%EB%A6%AC%EA%B7%B8_%EC%8B%9C%EC%83%81%EC%8B%9D%2C_%EA%B9%80%EB%AC%B8%ED%99%98_3.jpg/330px-191202_K%EB%A6%AC%EA%B7%B8_%EC%8B%9C%EC%83%81%EC%8B%9D%2C_%EA%B9%80%EB%AC%B8%ED%99%98_3.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/191202_K%EB%A6%AC%EA%B7%B8_%EC%8B%9C%EC%83%81%EC%8B%9D%2C_%EA%B9%80%EB%AC%B8%ED%99%98_3.jpg/330px-191202_K%EB%A6%AC%EA%B7%B8_%EC%8B%9C%EC%83%81%EC%8B%9D%2C_%EA%B9%80%EB%AC%B8%ED%99%98_3.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Kim_Moon-hwan%2C_April_2015.jpg/500px-Kim_Moon-hwan%2C_April_2015.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Kim_Moon-hwan_and_James_Michel%2C_April_2015.jpg/500px-Kim_Moon-hwan_and_James_Michel%2C_April_2015.jpg"
+        ]
       },
       {
         "id": "park-jin-seob",
@@ -750,7 +765,12 @@
         },
         "shirt_number_expected": 6,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/240611_%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD_vs_%EC%A4%91%EA%B5%AD_%28%ED%99%A9%EC%9D%B8%EB%B2%94%29.jpg/330px-240611_%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD_vs_%EC%A4%91%EA%B5%AD_%28%ED%99%A9%EC%9D%B8%EB%B2%94%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/240611_%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD_vs_%EC%A4%91%EA%B5%AD_%28%ED%99%A9%EC%9D%B8%EB%B2%94%29.jpg/330px-240611_%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD_vs_%EC%A4%91%EA%B5%AD_%28%ED%99%A9%EC%9D%B8%EB%B2%94%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/4/42/Hwang_In-beom_in_Asian_Cup6_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/4/44/Lebanon_v_South_Korea%2C_14_November_2019_20_%28Hwang_In-beom%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Hwang_In-beom_2020.jpg/500px-Hwang_In-beom_2020.jpg"
+        ]
       },
       {
         "id": "paik-seung-ho",
@@ -780,7 +800,12 @@
         },
         "shirt_number_expected": 17,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Asian_Nations_Cup_-_Jordan_and_South_Korea_%2874%29_%28cropped%29_2.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Asian_Nations_Cup_-_Jordan_and_South_Korea_%2874%29_%28cropped%29_2.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/6/61/Kim_Jae-Sung.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Jae-SungLee.jpg/500px-Jae-SungLee.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/4/46/Lebanon_v_South_Korea%2C_14_November_2019_20_%28Lee_Jae-sung%29.jpg"
+        ]
       },
       {
         "id": "hwang-hee-chan",
@@ -795,7 +820,13 @@
         },
         "shirt_number_expected": 11,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/240622_%ED%99%A9%ED%9D%AC%EC%B0%AC_%ED%92%8B%EB%B3%BC_%ED%8E%98%EC%8A%A4%ED%8B%B0%EB%B2%8C.jpg/330px-240622_%ED%99%A9%ED%9D%AC%EC%B0%AC_%ED%92%8B%EB%B3%BC_%ED%8E%98%EC%8A%A4%ED%8B%B0%EB%B2%8C.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/240622_%ED%99%A9%ED%9D%AC%EC%B0%AC_%ED%92%8B%EB%B3%BC_%ED%8E%98%EC%8A%A4%ED%8B%B0%EB%B2%8C.jpg/330px-240622_%ED%99%A9%ED%9D%AC%EC%B0%AC_%ED%92%8B%EB%B3%BC_%ED%8E%98%EC%8A%A4%ED%8B%B0%EB%B2%8C.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Hwang_Hee-chan_01112025_%281%29.jpg/500px-Hwang_Hee-chan_01112025_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Hwang_Hee-chan_01112025_%282%29.jpg/500px-Hwang_Hee-chan_01112025_%282%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Hwang_Hee-chan_and_Sa%C5%A1a_Luki%C4%87_01112025_%281%29.jpg/500px-Hwang_Hee-chan_and_Sa%C5%A1a_Luki%C4%87_01112025_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Hwang_Hee-chan_01112025_%283%29.jpg/500px-Hwang_Hee-chan_01112025_%283%29.jpg"
+        ]
       },
       {
         "id": "bae-jun-ho",
@@ -810,7 +841,15 @@
         },
         "shirt_number_expected": 19,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/63/%EB%B0%B0%EC%A4%80%ED%98%B8vs_FC_%EC%84%9C%EC%9A%B8.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/63/%EB%B0%B0%EC%A4%80%ED%98%B8vs_FC_%EC%84%9C%EC%9A%B8.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Bae_Jun-ho_20092025_%281%29.jpg/500px-Bae_Jun-ho_20092025_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Bae_Jun-ho_20092025_%282%29.jpg/500px-Bae_Jun-ho_20092025_%282%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Bae_Jun-ho_20092025_%283%29.jpg/500px-Bae_Jun-ho_20092025_%283%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Bae_Jun-ho_20092025_%284%29.jpg/500px-Bae_Jun-ho_20092025_%284%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Bae_Jun-ho_20092025_%285%29.jpg/500px-Bae_Jun-ho_20092025_%285%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Bae_Jun-ho_20092025_%286%29.jpg/500px-Bae_Jun-ho_20092025_%286%29.jpg"
+        ]
       },
       {
         "id": "lee-kang-in",
@@ -825,7 +864,10 @@
         },
         "shirt_number_expected": 18,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Lee_Kang-in_-_2022_%2852551771501%29_%28cropped%29.jpg/330px-Lee_Kang-in_-_2022_%2852551771501%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Lee_Kang-in_-_2022_%2852551771501%29_%28cropped%29.jpg/330px-Lee_Kang-in_-_2022_%2852551771501%29_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/FC_Salzburg_gegen_Paris_Saint-Germain_UEFA_Champions_League_78_%28Lee_Kang-in%29.jpg/500px-FC_Salzburg_gegen_Paris_Saint-Germain_UEFA_Champions_League_78_%28Lee_Kang-in%29.jpg"
+        ]
       },
       {
         "id": "yang-hyun-jun",
@@ -840,7 +882,10 @@
         },
         "shirt_number_expected": 24,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Celtic-20240722-062_%28cropped%29.jpg/330px-Celtic-20240722-062_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Celtic-20240722-062_%28cropped%29.jpg/330px-Celtic-20240722-062_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Yang_Hyun-jun.jpg/500px-Yang_Hyun-jun.jpg"
+        ]
       },
       {
         "id": "kim-jin-gyu",
@@ -900,7 +945,15 @@
         },
         "shirt_number_expected": 7,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/BFA_2023_-2_Heung-Min_Son_%28cropped%29.jpg/330px-BFA_2023_-2_Heung-Min_Son_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/BFA_2023_-2_Heung-Min_Son_%28cropped%29.jpg/330px-BFA_2023_-2_Heung-Min_Son_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Son_Heung-Min.jpg/500px-Son_Heung-Min.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Son_Heung-min_2016.jpg/500px-Son_Heung-min_2016.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Son_Heung-Min_Spurs_2016.jpg/500px-Son_Heung-Min_Spurs_2016.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Heung-min_Son_2017.jpg/500px-Heung-min_Son_2017.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/b/be/Son_Heung-min_at_2019_AFC_Asian_Cup.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/6/69/Heung-Min_Son_2021.png"
+        ]
       },
       {
         "id": "cho-gue-sung",
@@ -930,7 +983,11 @@
         },
         "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/92/%EC%98%A4%ED%98%84%EA%B7%9C_2022%EB%85%84_%EC%B9%B4%ED%83%80%EB%A5%B4_%EC%9B%94%EB%93%9C%EC%BB%B5.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/92/%EC%98%A4%ED%98%84%EA%B7%9C_2022%EB%85%84_%EC%B9%B4%ED%83%80%EB%A5%B4_%EC%9B%94%EB%93%9C%EC%BB%B5.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/9/96/Oh_Hyeon-gyu_Be%C5%9Fikta%C5%9F_JK.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/b/b4/Oh_Hyeon-gyu_BJK.jpeg"
+        ]
       }
     ],
     "starting_xi": {
@@ -1052,7 +1109,23 @@
     },
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
-    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
+    "image_pool": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Korea_Beachsoccer_National_Team.jpg/500px-Korea_Beachsoccer_National_Team.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Korea_Republic_national_football_team_Samsung_Galaxy_S_in_2010_from_acrofan.jpg/500px-Korea_Republic_national_football_team_Samsung_Galaxy_S_in_2010_from_acrofan.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Women%27s_U-20_national_football_team_visiting_Cheong_Wa_Dae.jpg/500px-Women%27s_U-20_national_football_team_visiting_Cheong_Wa_Dae.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/1922_Korean_National_Sports_Festival_-_Football_-_Muo.png/500px-1922_Korean_National_Sports_Festival_-_Football_-_Muo.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/1922_Korean_National_Sports_Festival_-_Football_-_Bulgyo.png/500px-1922_Korean_National_Sports_Festival_-_Football_-_Bulgyo.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/1922_Korean_National_Sports_Festival_-_Football_-_Whimoon.png/500px-1922_Korean_National_Sports_Festival_-_Football_-_Whimoon.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/South_Korea_national_football_team_-_October_2012.jpg/500px-South_Korea_national_football_team_-_October_2012.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/1923_Korean_National_Sports_Festival_-_Football_-_Gwangseong.png/500px-1923_Korean_National_Sports_Festival_-_Football_-_Gwangseong.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/1923_Korean_National_Sports_Festival_-_Football_-_Baejae.png/500px-1923_Korean_National_Sports_Festival_-_Football_-_Baejae.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/1923_Korean_National_Sports_Festival_-_Football_-_Bulgyo.png/500px-1923_Korean_National_Sports_Festival_-_Football_-_Bulgyo.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/2018_IBSA_Blind_Football_WC_South_Korea_v_Costa_Rica_2965.JPG/500px-2018_IBSA_Blind_Football_WC_South_Korea_v_Costa_Rica_2965.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/2018_IBSA_Blind_Football_WC_South_Korea_v_Costa_Rica_2973.JPG/500px-2018_IBSA_Blind_Football_WC_South_Korea_v_Costa_Rica_2973.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/2018_IBSA_Blind_Football_WC_South_Korea_v_Costa_Rica_2975.JPG/500px-2018_IBSA_Blind_Football_WC_South_Korea_v_Costa_Rica_2975.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/2018_IBSA_Blind_Football_WC_South_Korea_v_Costa_Rica_2984.JPG/500px-2018_IBSA_Blind_Football_WC_South_Korea_v_Costa_Rica_2984.JPG"
+    ]
   },
   "history": {
     "first_appearance": 1954,

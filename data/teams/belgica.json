@@ -573,7 +573,15 @@
         },
         "shirt_number_expected": 13,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Courtois_2018_%28cropped%29.jpg/330px-Courtois_2018_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Courtois_2018_%28cropped%29.jpg/330px-Courtois_2018_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/c/ce/Thibaut_Courtois.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Thibaut_Courtois_-_02.jpg/500px-Thibaut_Courtois_-_02.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Thibaut_Courtois_-_01.jpg/500px-Thibaut_Courtois_-_01.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Thibaut_Courtois_-_02_%28cropped%29.jpg/500px-Thibaut_Courtois_-_02_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Courtois_aug_2014.jpg/500px-Courtois_aug_2014.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Courtois_v_lcfc.jpg/500px-Courtois_v_lcfc.jpg"
+        ]
       },
       {
         "id": "senne-lammens",
@@ -588,7 +596,12 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/df/Senne_Lammens_USMNT_v_Belgium_Mar_28_2026-98_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/df/Senne_Lammens_USMNT_v_Belgium_Mar_28_2026-98_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/8/81/Senne_Lammens_2025.png",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Senne_Lammens_USMNT_v_Belgium_Mar_28_2026-25.jpg/500px-Senne_Lammens_USMNT_v_Belgium_Mar_28_2026-25.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Senne_Lammens_USMNT_v_Belgium_Mar_28_2026-98.jpg/500px-Senne_Lammens_USMNT_v_Belgium_Mar_28_2026-98.jpg"
+        ]
       },
       {
         "id": "mike-penders",
@@ -618,7 +631,13 @@
         },
         "shirt_number_expected": 3,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Zeno_Debast_USMNT_v_Belgium_Mar_28_2026-80_%28cropped%29.jpg/330px-Zeno_Debast_USMNT_v_Belgium_Mar_28_2026-80_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Zeno_Debast_USMNT_v_Belgium_Mar_28_2026-80_%28cropped%29.jpg/330px-Zeno_Debast_USMNT_v_Belgium_Mar_28_2026-80_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Zeno_Debast_2024_03_30_-_RSCA_vs_Antwerp.jpg/500px-Zeno_Debast_2024_03_30_-_RSCA_vs_Antwerp.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/ZenoDebast.jpg/500px-ZenoDebast.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Zeno_Debast_USMNT_v_Belgium_Mar_28_2026-28.jpg/500px-Zeno_Debast_USMNT_v_Belgium_Mar_28_2026-28.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Zeno_Debast_USMNT_v_Belgium_Mar_28_2026-80.jpg/500px-Zeno_Debast_USMNT_v_Belgium_Mar_28_2026-80.jpg"
+        ]
       },
       {
         "id": "arthur-theate",
@@ -633,7 +652,11 @@
         },
         "shirt_number_expected": 14,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Arthur_Theate_Nations_League_Italy_2021.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Arthur_Theate_Nations_League_Italy_2021.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Arthur_Theate_USMNT_v_Belgium_Mar_28_2026-22.jpg/500px-Arthur_Theate_USMNT_v_Belgium_Mar_28_2026-22.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Arthur_Theate_USMNT_v_Belgium_Mar_28_2026-22_%28cropped%29.jpg/500px-Arthur_Theate_USMNT_v_Belgium_Mar_28_2026-22_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "brandon-mechele",
@@ -648,7 +671,13 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/FC_Salzburg_vs._Club_Br%C3%BCgge_%28Euroleague_Sechzehntelfinale%29_02.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/FC_Salzburg_vs._Club_Br%C3%BCgge_%28Euroleague_Sechzehntelfinale%29_02.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/7/78/Brandon_Mechele_Club_Brugge.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Brandon_Mechele_USMNT_v_Belgium_Mar_28_2026-78.jpg/500px-Brandon_Mechele_USMNT_v_Belgium_Mar_28_2026-78.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Brandon_Mechele_USMNT_v_Belgium_Mar_28_2026-89.jpg/500px-Brandon_Mechele_USMNT_v_Belgium_Mar_28_2026-89.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Brandon_Mechele_USMNT_v_Belgium_Mar_28_2026-78_%28cropped%29.jpg/500px-Brandon_Mechele_USMNT_v_Belgium_Mar_28_2026-78_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "maxim-de-cuyper",
@@ -663,7 +692,15 @@
         },
         "shirt_number_expected": 22,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Maxim_De_Cuyper_USMNT_v_Belgium_Mar_28_2026-79_%28cropped%29.jpg/330px-Maxim_De_Cuyper_USMNT_v_Belgium_Mar_28_2026-79_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Maxim_De_Cuyper_USMNT_v_Belgium_Mar_28_2026-79_%28cropped%29.jpg/330px-Maxim_De_Cuyper_USMNT_v_Belgium_Mar_28_2026-79_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Maxim_De_Cuyper_24012026_%281%29.jpg/500px-Maxim_De_Cuyper_24012026_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Maxim_De_Cuyper_and_Georginio_Rutter_24012026_%281%29.jpg/500px-Maxim_De_Cuyper_and_Georginio_Rutter_24012026_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/James_Milner_and_Maxim_De_Cuyper_24012026_%281%29.jpg/500px-James_Milner_and_Maxim_De_Cuyper_24012026_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/James_Milner_and_Maxim_De_Cuyper_24012026_%282%29.jpg/500px-James_Milner_and_Maxim_De_Cuyper_24012026_%282%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Maxim_De_Cuyper_and_James_Milner_24012026_%281%29.jpg/500px-Maxim_De_Cuyper_and_James_Milner_24012026_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Maxim_De_Cuyper_and_Diego_Coppola_24012026_%281%29.jpg/500px-Maxim_De_Cuyper_and_Diego_Coppola_24012026_%281%29.jpg"
+        ]
       },
       {
         "id": "thomas-meunier",
@@ -678,7 +715,15 @@
         },
         "shirt_number_expected": 15,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Thomas_Meunier.jpg/330px-Thomas_Meunier.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Thomas_Meunier.jpg/330px-Thomas_Meunier.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Thomas_Meunier_%2817_juli_2012%29.JPG/500px-Thomas_Meunier_%2817_juli_2012%29.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Thomas_Meunier_%2817_juli_2012%29_%282%29.JPG/500px-Thomas_Meunier_%2817_juli_2012%29_%282%29.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Thomas_Meunier_%2817_juli_2012%29_%283%29.JPG/500px-Thomas_Meunier_%2817_juli_2012%29_%283%29.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Thomas_Meunier_%2817_juli_2012%29_%284%29.JPG/500px-Thomas_Meunier_%2817_juli_2012%29_%284%29.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Thomas_Meunier_2018.jpg/500px-Thomas_Meunier_2018.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Thomas_Meunier_2018_2.jpg/500px-Thomas_Meunier_2018_2.jpg"
+        ]
       },
       {
         "id": "koni-de-winter",
@@ -693,7 +738,10 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/36/Koni_De_Winter_USMNT_v_Belgium_Mar_28_2026-36_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/36/Koni_De_Winter_USMNT_v_Belgium_Mar_28_2026-36_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Koni_De_Winter_USMNT_v_Belgium_Mar_28_2026-36.jpg/500px-Koni_De_Winter_USMNT_v_Belgium_Mar_28_2026-36.jpg"
+        ]
       },
       {
         "id": "joaquin-seys",
@@ -708,7 +756,10 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/38/FC_Salzburg_gegen_Club_Br%C3%BCgge_%282025-08-06_Championsleague_Qualifikation_Dritte_Runde%29_63_%28Joaquin_Seys%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/38/FC_Salzburg_gegen_Club_Br%C3%BCgge_%282025-08-06_Championsleague_Qualifikation_Dritte_Runde%29_63_%28Joaquin_Seys%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Joaquin_Seys_USMNT_v_Belgium_Mar_28_2026-206.jpg/500px-Joaquin_Seys_USMNT_v_Belgium_Mar_28_2026-206.jpg"
+        ]
       },
       {
         "id": "timothy-castagne",
@@ -723,7 +774,15 @@
         },
         "shirt_number_expected": 5,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Timothy_Castagne_01.jpg/330px-Timothy_Castagne_01.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Timothy_Castagne_01.jpg/330px-Timothy_Castagne_01.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Timothy_Castagne_14092024.jpg/500px-Timothy_Castagne_14092024.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Timothy_Castagne_2912024_%281%29.jpg/500px-Timothy_Castagne_2912024_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Timothy_Castagne_2912024_%282%29.jpg/500px-Timothy_Castagne_2912024_%282%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Timothy_Castagne_2912024_%283%29.jpg/500px-Timothy_Castagne_2912024_%283%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Timothy_Castagne_2912024_%284%29.jpg/500px-Timothy_Castagne_2912024_%284%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Timothy_Castagne_2912024_%285%29.jpg/500px-Timothy_Castagne_2912024_%285%29.jpg"
+        ]
       },
       {
         "id": "nathan-ngoy",
@@ -753,7 +812,15 @@
         },
         "shirt_number_expected": 6,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Axel_Witsel_WC2022.jpg/330px-Axel_Witsel_WC2022.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Axel_Witsel_WC2022.jpg/330px-Axel_Witsel_WC2022.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Italy_vs_Belgium_-_Axel_Witsel.jpg/500px-Italy_vs_Belgium_-_Axel_Witsel.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Axel_Witsel_in_National_Team.jpg/500px-Axel_Witsel_in_National_Team.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/8/8a/Axel_Witsel_Belgium.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Axel_Witsel_Benfica.jpg/500px-Axel_Witsel_Benfica.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/5/5a/Axel_Witsel.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/5/56/Axel_Witsel_2014.jpg"
+        ]
       },
       {
         "id": "kevin-de-bruyne",
@@ -768,7 +835,15 @@
         },
         "shirt_number_expected": 7,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Kevin_De_Bruyne-December_2021.png/330px-Kevin_De_Bruyne-December_2021.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Kevin_De_Bruyne-December_2021.png/330px-Kevin_De_Bruyne-December_2021.png",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/c/cc/Kevin_de_bruyne_werder.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/e/ef/Kevin-de-bruyne-2013.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Kevin_De_Bruyne_vs_USA.jpg/500px-Kevin_De_Bruyne_vs_USA.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Kevin_De_Bruyne_vs_USA_1.jpg/500px-Kevin_De_Bruyne_vs_USA_1.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Romelu_Lukaku_and_Kevin_De_Bruyne_vs_USA.jpg/500px-Romelu_Lukaku_and_Kevin_De_Bruyne_vs_USA.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Kevin_De_Bruyne_at_Samsung.jpg/500px-Kevin_De_Bruyne_at_Samsung.jpg"
+        ]
       },
       {
         "id": "youri-tielemans",
@@ -783,7 +858,15 @@
         },
         "shirt_number_expected": 8,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Youri_Tielemans_2019.jpg/330px-Youri_Tielemans_2019.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Youri_Tielemans_2019.jpg/330px-Youri_Tielemans_2019.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Youri_Tielemans.JPG/500px-Youri_Tielemans.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Sneijder_Tielemans.JPG/500px-Sneijder_Tielemans.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Youri_Tielemans_2016.jpg/500px-Youri_Tielemans_2016.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/2017_RUS_v_BEL_exhibition_-_Youri_Tielemans.jpg/500px-2017_RUS_v_BEL_exhibition_-_Youri_Tielemans.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/1/1c/Youri_Tielemans_2018.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/c/c6/Youri_Tielemans_2018_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "diego-moreira",
@@ -798,7 +881,12 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/18/Diego_Moreira.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/18/Diego_Moreira.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Diego_moreira_jr_luton_2023.jpg/500px-Diego_moreira_jr_luton_2023.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Moreira2_asse_rcsa_2425.jpg/500px-Moreira2_asse_rcsa_2425.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Diego_Moreira_2023.jpg/500px-Diego_Moreira_2023.jpg"
+        ]
       },
       {
         "id": "hans-vanaken",
@@ -813,7 +901,10 @@
         },
         "shirt_number_expected": 17,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Hans_Vanaken_Lommel_United.jpg/330px-Hans_Vanaken_Lommel_United.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Hans_Vanaken_Lommel_United.jpg/330px-Hans_Vanaken_Lommel_United.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Hans_Vanaken_Lommel_United_%28cropped%29.jpg/500px-Hans_Vanaken_Lommel_United_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "alexis-saelemaekers",
@@ -828,7 +919,15 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Alexis_Saelemaekers_USMNT_v_Belgium_Mar_28_2026-13_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Alexis_Saelemaekers_USMNT_v_Belgium_Mar_28_2026-13_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Saelemaekers_2_Milan-Torino_2021-22.jpg/500px-Saelemaekers_2_Milan-Torino_2021-22.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Saelemaekers_Milan-Torino_2021-22.jpg/500px-Saelemaekers_Milan-Torino_2021-22.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/e/e8/Alexis_Saelemaekers_2022_Salzburg_vs_AC_Milan_2022-09-06.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/a/ad/AlexisSaelemaekers2022Salzburg.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Saelemaekers%2C_Milan_-_Salernitana_13-03-2023.jpg/500px-Saelemaekers%2C_Milan_-_Salernitana_13-03-2023.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Alexis_Saelemaekers_USMNT_v_Belgium_Mar_28_2026-13.jpg/500px-Alexis_Saelemaekers_USMNT_v_Belgium_Mar_28_2026-13.jpg"
+        ]
       },
       {
         "id": "nicolas-raskin",
@@ -843,7 +942,12 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/31/Nicolas_Raskin_2023.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/31/Nicolas_Raskin_2023.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Nicolas_Raskin_USMNT_v_Belgium_Mar_28_2026-14.jpg/500px-Nicolas_Raskin_USMNT_v_Belgium_Mar_28_2026-14.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Nicolas_Raskin_USMNT_v_Belgium_Mar_28_2026-134.jpg/500px-Nicolas_Raskin_USMNT_v_Belgium_Mar_28_2026-134.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Nicolas_Raskin_USMNT_v_Belgium_Mar_28_2026-14_%28cropped%29.jpg/500px-Nicolas_Raskin_USMNT_v_Belgium_Mar_28_2026-14_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "amadou-onana",
@@ -858,7 +962,15 @@
         },
         "shirt_number_expected": 16,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/RC_Lens_-_Lille_OSC_%2817-09-2021%29_9_%28cropped%29.jpg/330px-RC_Lens_-_Lille_OSC_%2817-09-2021%29_9_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/RC_Lens_-_Lille_OSC_%2817-09-2021%29_9_%28cropped%29.jpg/330px-RC_Lens_-_Lille_OSC_%2817-09-2021%29_9_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Amadou_Onana_WC2022.jpg/500px-Amadou_Onana_WC2022.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/3/3a/St._Louis_City_vs_Aston_Villa_%28Jul_2025%29_08_%28C%C3%A9lio_Pompeu%2C_Amadou_Onana%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Amadou_Onana_USMNT_v_Belgium_Mar_28_2026-77.jpg/500px-Amadou_Onana_USMNT_v_Belgium_Mar_28_2026-77.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Amadou_Onana_USMNT_v_Belgium_Mar_28_2026-96.jpg/500px-Amadou_Onana_USMNT_v_Belgium_Mar_28_2026-96.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Amadou_Onana_USMNT_v_Belgium_Mar_28_2026-135.jpg/500px-Amadou_Onana_USMNT_v_Belgium_Mar_28_2026-135.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Amadou_Onana_USMNT_v_Belgium_Mar_28_2026-96_%28cropped%29.jpg/500px-Amadou_Onana_USMNT_v_Belgium_Mar_28_2026-96_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "romelu-lukaku",
@@ -873,7 +985,15 @@
         },
         "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Romelu_Lukaku_2021.jpg/330px-Romelu_Lukaku_2021.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Romelu_Lukaku_2021.jpg/330px-Romelu_Lukaku_2021.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/0/0a/Romelu_Lukaku.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Romelu_Lukaku_271797a.jpg/500px-Romelu_Lukaku_271797a.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Romelu_Lukaku_kick_off_Fulham_v_WBA_%28cropped%29.jpg/500px-Romelu_Lukaku_kick_off_Fulham_v_WBA_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Demarcus_Beasley_and_Romelu_Lukaku_USA_vs_Belgium.jpg/500px-Demarcus_Beasley_and_Romelu_Lukaku_USA_vs_Belgium.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Romelu_Lukaku_and_Kevin_De_Bruyne_vs_USA.jpg/500px-Romelu_Lukaku_and_Kevin_De_Bruyne_vs_USA.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Romelu_Lukaku_Chelsea_vs_AS-Roma_10AUG2013.jpg/500px-Romelu_Lukaku_Chelsea_vs_AS-Roma_10AUG2013.jpg"
+        ]
       },
       {
         "id": "leandro-trossard",
@@ -888,7 +1008,12 @@
         },
         "shirt_number_expected": 18,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/RC_Lens_-_Arsenal_FC_%2803-10-2023%29_26_%28cropped%29.jpg/330px-RC_Lens_-_Arsenal_FC_%2803-10-2023%29_26_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/RC_Lens_-_Arsenal_FC_%2803-10-2023%29_26_%28cropped%29.jpg/330px-RC_Lens_-_Arsenal_FC_%2803-10-2023%29_26_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/9/93/Leandro_Trossard_warming-up_Nations_League_2021_Italy.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Leandro_Trossard_2022.jpg/500px-Leandro_Trossard_2022.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Leandro_Trossard_in_2023.jpg/500px-Leandro_Trossard_in_2023.jpg"
+        ]
       },
       {
         "id": "jeremy-doku",
@@ -903,7 +1028,15 @@
         },
         "shirt_number_expected": 11,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2767_%28J%C3%A9r%C3%A9my_Doku%29.jpg/330px-2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2767_%28J%C3%A9r%C3%A9my_Doku%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2767_%28J%C3%A9r%C3%A9my_Doku%29.jpg/330px-2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2767_%28J%C3%A9r%C3%A9my_Doku%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/d/dc/J%C3%A9r%C3%A9my_Doku.png",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/J%C3%A9r%C3%A9my_Doku_USMNT_v_Belgium_Mar_28_2026-27.jpg/500px-J%C3%A9r%C3%A9my_Doku_USMNT_v_Belgium_Mar_28_2026-27.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/J%C3%A9r%C3%A9my_Doku_USMNT_v_Belgium_Mar_28_2026-169.jpg/500px-J%C3%A9r%C3%A9my_Doku_USMNT_v_Belgium_Mar_28_2026-169.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/J%C3%A9r%C3%A9my_Doku_USMNT_v_Belgium_Mar_28_2026-171.jpg/500px-J%C3%A9r%C3%A9my_Doku_USMNT_v_Belgium_Mar_28_2026-171.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/J%C3%A9r%C3%A9my_Doku_USMNT_v_Belgium_Mar_28_2026-27_%28cropped%29.jpg/500px-J%C3%A9r%C3%A9my_Doku_USMNT_v_Belgium_Mar_28_2026-27_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/J%C3%A9r%C3%A9my_Doku_USMNT_v_Belgium_Mar_28_2026-169_%28cropped%29.jpg/500px-J%C3%A9r%C3%A9my_Doku_USMNT_v_Belgium_Mar_28_2026-169_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "dodi-lukebakio",
@@ -918,7 +1051,13 @@
         },
         "shirt_number_expected": 20,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Dodi_Lukebakio_2021.jpg/330px-Dodi_Lukebakio_2021.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Dodi_Lukebakio_2021.jpg/330px-Dodi_Lukebakio_2021.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/f/f4/Dodi_Lukebakio.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/6/69/Dodi_Lukebakio_warming-up_Nations_League_2021_Italy.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Dodi_Luk%C3%A9bakio_USMNT_v_Belgium_Mar_28_2026-212.jpg/500px-Dodi_Luk%C3%A9bakio_USMNT_v_Belgium_Mar_28_2026-212.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Dodi_Luk%C3%A9bakio_USMNT_v_Belgium_Mar_28_2026-212_%28cropped%29.jpg/500px-Dodi_Luk%C3%A9bakio_USMNT_v_Belgium_Mar_28_2026-212_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "charles-de-ketelaere",
@@ -933,7 +1072,15 @@
         },
         "shirt_number_expected": 21,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Charles_De_Ketelaere_2022_Salzburg_vs_AC_Milan_2022-09-06.jpg/330px-Charles_De_Ketelaere_2022_Salzburg_vs_AC_Milan_2022-09-06.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Charles_De_Ketelaere_2022_Salzburg_vs_AC_Milan_2022-09-06.jpg/330px-Charles_De_Ketelaere_2022_Salzburg_vs_AC_Milan_2022-09-06.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/4/42/Charles_De_Ketelaere_Nations_League_2021_Italy.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/9/98/CharlesDeKetelaere2022Salzburg.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Doodsbrief_Charles_De_Ketelaere_1878_barcode_800000141064.jpg/500px-Doodsbrief_Charles_De_Ketelaere_1878_barcode_800000141064.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Charles_De_Ketelaere_USMNT_v_Belgium_Mar_28_2026-15.jpg/500px-Charles_De_Ketelaere_USMNT_v_Belgium_Mar_28_2026-15.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Charles_De_Ketelaere_USMNT_v_Belgium_Mar_28_2026-76.jpg/500px-Charles_De_Ketelaere_USMNT_v_Belgium_Mar_28_2026-76.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Charles_De_Ketelaere_USMNT_v_Belgium_Mar_28_2026-167.jpg/500px-Charles_De_Ketelaere_USMNT_v_Belgium_Mar_28_2026-167.jpg"
+        ]
       },
       {
         "id": "matias-fernandez-pardo",
@@ -1069,7 +1216,23 @@
     },
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
-    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
+    "image_pool": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Belgian_national_football_team_1901.jpg/500px-Belgian_national_football_team_1901.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Belgium_national_football_team_2011-03-25_%2801%29.jpg/500px-Belgium_national_football_team_2011-03-25_%2801%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/1900_Belgian_Olympic_Football_Team.jpg/500px-1900_Belgian_Olympic_Football_Team.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Gibraltar_Rugby_Football_Union_%28GRFU%29_National_15s_Squad_2012_v_Belgium_B.JPG/500px-Gibraltar_Rugby_Football_Union_%28GRFU%29_National_15s_Squad_2012_v_Belgium_B.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Belgium_National_Team_vs_USA_2013.jpg/500px-Belgium_National_Team_vs_USA_2013.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/United_States_Men%27s_National_Team_vs_Belgium_2013.jpg/500px-United_States_Men%27s_National_Team_vs_Belgium_2013.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Red_Devils_-_Farnborough_2006_%282532068714%29.jpg/500px-Red_Devils_-_Farnborough_2006_%282532068714%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Belgium_national_football_team_at_Samsung.jpg/500px-Belgium_national_football_team_at_Samsung.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Belgium_national_football_team_at_Samsung_%282%29.jpg/500px-Belgium_national_football_team_at_Samsung_%282%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Wallaceburg_Red_Devils_player_2014.jpg/500px-Wallaceburg_Red_Devils_player_2014.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Wallaceburg_Red_Devils_goalie_2014.jpg/500px-Wallaceburg_Red_Devils_goalie_2014.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/7/77/Wallaceburg_Red_Devils_player_home_2014.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/a/af/Wallaceburg_Red_Devils_goalie_home_2014.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Netherlands_womens_national_football_team_May_2014.jpg/500px-Netherlands_womens_national_football_team_May_2014.jpg"
+    ]
   },
   "history": {
     "first_appearance": 1930,

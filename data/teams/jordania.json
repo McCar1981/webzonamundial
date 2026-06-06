@@ -586,7 +586,10 @@
         },
         "shirt_number_expected": 24,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Abdallah_Nasib.png/330px-Abdallah_Nasib.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Abdallah_Nasib.png/330px-Abdallah_Nasib.png",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Abdallah_Nasib_2.jpg/500px-Abdallah_Nasib_2.jpg"
+        ]
       },
       {
         "id": "husam-abu-dahab",
@@ -614,7 +617,15 @@
         },
         "shirt_number_expected": 4,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/250720_FC_%EC%84%9C%EC%9A%B8_vs_%EC%9A%B8%EC%82%B0_%28Yazan_Al-Arab%29_1.jpg/330px-250720_FC_%EC%84%9C%EC%9A%B8_vs_%EC%9A%B8%EC%82%B0_%28Yazan_Al-Arab%29_1.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/250720_FC_%EC%84%9C%EC%9A%B8_vs_%EC%9A%B8%EC%82%B0_%28Yazan_Al-Arab%29_1.jpg/330px-250720_FC_%EC%84%9C%EC%9A%B8_vs_%EC%9A%B8%EC%82%B0_%28Yazan_Al-Arab%29_1.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/250222_FC_%EC%84%9C%EC%9D%84_vs_%EC%95%88%EC%96%91_%28Yazan_Al-Arab%29.jpg/500px-250222_FC_%EC%84%9C%EC%9D%84_vs_%EC%95%88%EC%96%91_%28Yazan_Al-Arab%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/250329_FC_%EC%84%9C%EC%9A%B8_vs_%EB%8C%80%EA%B5%AC_%28Yazan_Al-Arab%29.jpg/500px-250329_FC_%EC%84%9C%EC%9A%B8_vs_%EB%8C%80%EA%B5%AC_%28Yazan_Al-Arab%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/250524_FC_%EC%84%9C%EC%9A%B8_vs_%EC%88%98%EC%9B%90_%28Yazan_Al-Arab%29.jpg/500px-250524_FC_%EC%84%9C%EC%9A%B8_vs_%EC%88%98%EC%9B%90_%28Yazan_Al-Arab%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/250720_FC_%EC%84%9C%EC%9A%B8_vs_%EC%9A%B8%EC%82%B0_%28Yazan_Al-Arab%29_2.jpg/500px-250720_FC_%EC%84%9C%EC%9A%B8_vs_%EC%9A%B8%EC%82%B0_%28Yazan_Al-Arab%29_2.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/250720_FC_%EC%84%9C%EC%9A%B8_vs_%EC%9A%B8%EC%82%B0_%28Yazan_Al-Arab%29_3.jpg/500px-250720_FC_%EC%84%9C%EC%9A%B8_vs_%EC%9A%B8%EC%82%B0_%28Yazan_Al-Arab%29_3.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/260322_FC_%EC%84%9C%EC%9A%B8_vs_%EA%B4%91%EC%A3%BC_%28Yazan_Al-Arab%29.jpg/500px-260322_FC_%EC%84%9C%EC%9A%B8_vs_%EA%B4%91%EC%A3%BC_%28Yazan_Al-Arab%29.jpg"
+        ]
       },
       {
         "id": "mohammad-abualnadi",
@@ -710,7 +721,10 @@
         },
         "shirt_number_expected": 8,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Noor_Al-Rawabdeh.png/330px-Noor_Al-Rawabdeh.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Noor_Al-Rawabdeh.png/330px-Noor_Al-Rawabdeh.png",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Noor_Al-Rawabdeh_2.png/500px-Noor_Al-Rawabdeh_2.png"
+        ]
       },
       {
         "id": "rajae-ayed",
@@ -999,7 +1013,23 @@
     "squad_announced": true,
     "squad_announced_status": "pending_official",
     "squad_announced_date": "2026-06-04",
-    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
+    "image_pool": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Peru_Football_1936_Olympics.png/500px-Peru_Football_1936_Olympics.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Gibraltar_national_football_team_5_March_2014.jpg/500px-Gibraltar_national_football_team_5_March_2014.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Jordan_Rossiter_2014.jpg/500px-Jordan_Rossiter_2014.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Syria_national_football_team_in_Tehran_-_2015_AFC_Asian_Cup_qualification.jpg/500px-Syria_national_football_team_in_Tehran_-_2015_AFC_Asian_Cup_qualification.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Jordan_national_football_team_in_Tehran_-_2015_AFC_Asian_Cup_qualification.jpg/500px-Jordan_national_football_team_in_Tehran_-_2015_AFC_Asian_Cup_qualification.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Jordan_Evans.png/500px-Jordan_Evans.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Jordan_Arnell_Evans.jpg/500px-Jordan_Arnell_Evans.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Hamilton_Jordan_Columbus_Crew_SC_Meet_the_Team_2019.jpg/500px-Hamilton_Jordan_Columbus_Crew_SC_Meet_the_Team_2019.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Northern_Ireland_national_football_team_in_2021.jpg/500px-Northern_Ireland_national_football_team_in_2021.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Taha_Ismail.png/500px-Taha_Ismail.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/2008_Summer_Olympics_qualifications%2C_Iran_0-0_Jordan_%2812%29.jpg/500px-2008_Summer_Olympics_qualifications%2C_Iran_0-0_Jordan_%2812%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/2008_Summer_Olympics_qualifications%2C_Iran_0-0_Jordan_%2809%29.jpg/500px-2008_Summer_Olympics_qualifications%2C_Iran_0-0_Jordan_%2809%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/2008_Summer_Olympics_qualifications%2C_Iran_0-0_Jordan_%2811%29.jpg/500px-2008_Summer_Olympics_qualifications%2C_Iran_0-0_Jordan_%2811%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/2008_Summer_Olympics_qualifications%2C_Iran_0-0_Jordan_%2807%29.jpg/500px-2008_Summer_Olympics_qualifications%2C_Iran_0-0_Jordan_%2807%29.jpg"
+    ]
   },
   "history": {
     "first_appearance": 2026,

@@ -500,7 +500,15 @@
         },
         "shirt_number_expected": 1,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Yassine_Bono_%28cropped%29.jpg/330px-Yassine_Bono_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Yassine_Bono_%28cropped%29.jpg/330px-Yassine_Bono_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/f/fc/Yassine_Bounou.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/9/93/Yassine_bounou_Interview_2023.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Bounou.jpg/500px-Bounou.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Yassine_Bounou_-_Maroc_vs_Niger_%28cropped%29.jpg/500px-Yassine_Bounou_-_Maroc_vs_Niger_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Neil_El_Aynaoui%2C_Yassine_Bounou_and_Achraf_Hakimi.jpg/500px-Neil_El_Aynaoui%2C_Yassine_Bounou_and_Achraf_Hakimi.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Soufiane_Rahimi_and_Yassine_Bounou_against_Paraguay.jpg/500px-Soufiane_Rahimi_and_Yassine_Bounou_against_Paraguay.jpg"
+        ]
       },
       {
         "id": "munir-mohamedi",
@@ -515,7 +523,11 @@
         },
         "shirt_number_expected": 12,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/38/Munir_Mohand_Mohamedi_%28cropped2%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/38/Munir_Mohand_Mohamedi_%28cropped2%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/8/88/Munir_Mohand_Mohamedi.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/1/1f/Munir_Mohand_Mohamedi_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "ahmed-reda-tagnaouti",
@@ -545,7 +557,15 @@
         },
         "shirt_number_expected": 2,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Achraf_Hakimi_vs_Niger%2C_5_Sept_2025.jpg/330px-Achraf_Hakimi_vs_Niger%2C_5_Sept_2025.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Achraf_Hakimi_vs_Niger%2C_5_Sept_2025.jpg/330px-Achraf_Hakimi_vs_Niger%2C_5_Sept_2025.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/8/85/Iran-Morocco_by_soccer.ru_12_%28Achraf_Hakimi%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/9/91/Iran-Morocco_by_soccer.ru_14_%28Achraf_Hakimi%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/d/db/Real_Madrid_C.F._the_Winner_Of_The_Champions_League_in_2018_%28Achraf_Hakimi_2%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/8/86/Achraf_Hakimi_PSG.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/HakimiAchraf.jpg/500px-HakimiAchraf.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/AdliHakimi.jpg/500px-AdliHakimi.jpg"
+        ]
       },
       {
         "id": "noussair-mazraoui",
@@ -560,7 +580,12 @@
         },
         "shirt_number_expected": 14,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Mazraoui.jpg/330px-Mazraoui.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Mazraoui.jpg/330px-Mazraoui.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/d/db/Noussair_Mazraoui.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Noussair_Mazraoui_2.jpg/500px-Noussair_Mazraoui_2.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Noussair_Mazraoui_2_%28cropped%29.jpg/500px-Noussair_Mazraoui_2_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "nayef-aguerd",
@@ -575,7 +600,15 @@
         },
         "shirt_number_expected": 6,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Nayef_Aguerd_vs_Niger%2C_5_Sept_2025.jpg/330px-Nayef_Aguerd_vs_Niger%2C_5_Sept_2025.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Nayef_Aguerd_vs_Niger%2C_5_Sept_2025.jpg/330px-Nayef_Aguerd_vs_Niger%2C_5_Sept_2025.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Nayef_Aguerd.jpeg/500px-Nayef_Aguerd.jpeg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Nayef_Aguerd2.jpeg/500px-Nayef_Aguerd2.jpeg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Nayef_Aguerd2023.jpeg/500px-Nayef_Aguerd2023.jpeg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Nayef_Aguerd2023_%28cropped%29.jpeg/500px-Nayef_Aguerd2023_%28cropped%29.jpeg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Aguerd.jpg/500px-Aguerd.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/AguerdYoussef.jpg/500px-AguerdYoussef.jpg"
+        ]
       },
       {
         "id": "zakaria-el-ouahdi",
@@ -586,7 +619,10 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Zakaria_El_Ouahdi_at_the_Olympic_Games_2024_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Zakaria_El_Ouahdi_at_the_Olympic_Games_2024_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Zakaria_El_Ouahdi_Olympic_Games.jpg/500px-Zakaria_El_Ouahdi_Olympic_Games.jpg"
+        ]
       },
       {
         "id": "issa-diop",
@@ -597,7 +633,15 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Issa_Diop_during_Moroccan_national_anthem_against_Paraguay_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Issa_Diop_during_Moroccan_national_anthem_against_Paraguay_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Issa_Diop_%282018-04-21%29.jpg/500px-Issa_Diop_%282018-04-21%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Issa_Diop_and_Kevin_Mbabu.jpg/500px-Issa_Diop_and_Kevin_Mbabu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Issa_Diop_11052024_%281%29.jpg/500px-Issa_Diop_11052024_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Issa_Diop_11052024_%282%29.jpg/500px-Issa_Diop_11052024_%282%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Issa_Diop_11052024_%283%29.jpg/500px-Issa_Diop_11052024_%283%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kevin_and_Issa_Diop_13092025_%281%29.jpg/500px-Kevin_and_Issa_Diop_13092025_%281%29.jpg"
+        ]
       },
       {
         "id": "chadi-riad",
@@ -608,7 +652,13 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Chadi_Riad_against_Paraguay_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Chadi_Riad_against_Paraguay_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Chadi_Riad_%28cropped%29.jpg/500px-Chadi_Riad_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Chadi_Riad_Youth_League_%28cropped%29.jpg/500px-Chadi_Riad_Youth_League_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/3/39/Chadi_Riad_with_Barcelona_U19_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Chadi_Riad_against_Paraguay.jpg/500px-Chadi_Riad_against_Paraguay.jpg"
+        ]
       },
       {
         "id": "youssef-belammari",
@@ -619,7 +669,13 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Youssef_Belammari_vs_Niger_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Youssef_Belammari_vs_Niger_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Youssef_Belammari_%28Morocco_v_Niger%29_38_%28cropped%29.jpg/500px-Youssef_Belammari_%28Morocco_v_Niger%29_38_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/5/5c/Youssef_Belammari_%28Morocco_v_Niger%29_37_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Youssef_Belammari_2_vs_Niger_%28cropped%29.jpg/500px-Youssef_Belammari_2_vs_Niger_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Youssef_Belammari_vs_Niger_%28cropped%29_%28cropped%29.jpg/500px-Youssef_Belammari_vs_Niger_%28cropped%29_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "redouane-halhal",
@@ -630,7 +686,13 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Redouane_Halhal_vs_Paraguay_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Redouane_Halhal_vs_Paraguay_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Redouane_Halhal%2C_Samir_El_Mourabet_and_Anass_Salah-Eddine_vs_Paraguay.jpg/500px-Redouane_Halhal%2C_Samir_El_Mourabet_and_Anass_Salah-Eddine_vs_Paraguay.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Redouane_Halhal%2C_Samir_El_Mourabet%2C_Anass_Salah-Eddine_and_Neil_El_Aynaoui_against_Paraguay.jpg/500px-Redouane_Halhal%2C_Samir_El_Mourabet%2C_Anass_Salah-Eddine_and_Neil_El_Aynaoui_against_Paraguay.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Redouane_Halhal_against_Paraguay.jpg/500px-Redouane_Halhal_against_Paraguay.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Redouane_Halhal%2C_Samir_El_Mourabet_and_Anass_Salah-Eddine_vs_Paraguay_%28cropped%29.jpg/500px-Redouane_Halhal%2C_Samir_El_Mourabet_and_Anass_Salah-Eddine_vs_Paraguay_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "anass-salah-eddine",
@@ -656,7 +718,10 @@
         },
         "shirt_number_expected": 4,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Sofyan_Amrabat_vs_Niger_%28cropped%29.jpg/330px-Sofyan_Amrabat_vs_Niger_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Sofyan_Amrabat_vs_Niger_%28cropped%29.jpg/330px-Sofyan_Amrabat_vs_Niger_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Sofyan_Amrabat_%28Morocco_v_Niger%29_35_%28cropped%29.jpg/500px-Sofyan_Amrabat_%28Morocco_v_Niger%29_35_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "ayyoub-bouaddi",
@@ -667,7 +732,10 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Bouaddi_asselosc_2425.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Bouaddi_asselosc_2425.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Bouaddi_asselosc_2425_%28cropped%29.jpg/500px-Bouaddi_asselosc_2425_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "chemsdine-talbi",
@@ -678,7 +746,10 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Chemsdine_Talbi_against_Paraguay_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Chemsdine_Talbi_against_Paraguay_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/7/7c/Chemsdine_Talbi_%28Morocco_v_Niger%29_12_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "azzedine-ounahi",
@@ -693,7 +764,15 @@
         },
         "shirt_number_expected": 8,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Ounahi_vs_Paraguay_%28cropped%29.jpg/330px-Ounahi_vs_Paraguay_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Ounahi_vs_Paraguay_%28cropped%29.jpg/330px-Ounahi_vs_Paraguay_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Ounahi.jpg/500px-Ounahi.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Azzedine_Ounahi.jpg/500px-Azzedine_Ounahi.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Azzedine_Ounahi_%28cropped%29.jpg/500px-Azzedine_Ounahi_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Ounahi_and_Hakimi.jpg/500px-Ounahi_and_Hakimi.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Mohammed_VI_Football_Academy_%289%29_-_Terrain_Ounahi.jpg/500px-Mohammed_VI_Football_Academy_%289%29_-_Terrain_Ounahi.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Mohammed_VI_Football_Academy_%287%29_-_Terrain_Ounahi.jpg/500px-Mohammed_VI_Football_Academy_%287%29_-_Terrain_Ounahi.jpg"
+        ]
       },
       {
         "id": "ismail-saibari",
@@ -708,7 +787,14 @@
         },
         "shirt_number_expected": 21,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Ismael_Saibari_vs_Niger_%28cropped%29.jpg/330px-Ismael_Saibari_vs_Niger_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Ismael_Saibari_vs_Niger_%28cropped%29.jpg/330px-Ismael_Saibari_vs_Niger_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Saibari.jpg/500px-Saibari.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Saibari_%28cropped%29.jpg/500px-Saibari_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Ismael_Saibari.jpg/500px-Ismael_Saibari.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Ismael_Saibari_vs_Niger.jpg/500px-Ismael_Saibari_vs_Niger.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Ismael_Saibari_2_vs_Niger_%28cropped%29.jpg/500px-Ismael_Saibari_2_vs_Niger_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "samir-el-mourabet",
@@ -719,7 +805,13 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Samir_El_Mourabet_vs_Paraguay_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Samir_El_Mourabet_vs_Paraguay_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Redouane_Halhal%2C_Samir_El_Mourabet_and_Anass_Salah-Eddine_vs_Paraguay.jpg/500px-Redouane_Halhal%2C_Samir_El_Mourabet_and_Anass_Salah-Eddine_vs_Paraguay.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Redouane_Halhal%2C_Samir_El_Mourabet%2C_Anass_Salah-Eddine_and_Neil_El_Aynaoui_against_Paraguay.jpg/500px-Redouane_Halhal%2C_Samir_El_Mourabet%2C_Anass_Salah-Eddine_and_Neil_El_Aynaoui_against_Paraguay.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Samir_El_Mourabet_warming_up_with_Morocco.jpg/500px-Samir_El_Mourabet_warming_up_with_Morocco.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Redouane_Halhal%2C_Samir_El_Mourabet_and_Anass_Salah-Eddine_vs_Paraguay_%28cropped%29.jpg/500px-Redouane_Halhal%2C_Samir_El_Mourabet_and_Anass_Salah-Eddine_vs_Paraguay_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "gessime-yassine",
@@ -730,7 +822,14 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Gessime_Yassine_against_Paraguay_2_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Gessime_Yassine_against_Paraguay_2_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Gessime_Yassine_%28cropped%29.jpg/500px-Gessime_Yassine_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Gessime_Yassine_against_Paraguay.jpg/500px-Gessime_Yassine_against_Paraguay.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Gessime_Yassine_against_Paraguay_2.jpg/500px-Gessime_Yassine_against_Paraguay_2.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Gessime_Yassine_during_Moroccan_national_anthem_against_Paraguay_%28cropped%29.jpg/500px-Gessime_Yassine_during_Moroccan_national_anthem_against_Paraguay_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Gessime_Yassine_in_action_against_Paraguay.jpg/500px-Gessime_Yassine_in_action_against_Paraguay.jpg"
+        ]
       },
       {
         "id": "bilal-el-khannouss",
@@ -745,7 +844,12 @@
         },
         "shirt_number_expected": 18,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/El_Khannouss.jpg/330px-El_Khannouss.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/El_Khannouss.jpg/330px-El_Khannouss.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Bilal_El_Khannouss.jpg/500px-Bilal_El_Khannouss.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Bilal_El_Khannouss_2.jpg/500px-Bilal_El_Khannouss_2.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Bilal_El_Khannouss_2_%28cropped%29.jpg/500px-Bilal_El_Khannouss_2_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "neil-el-aynaoui",
@@ -771,7 +875,12 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Soufiane_Rahimi_against_Paraguay_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Soufiane_Rahimi_against_Paraguay_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Soufiane_Rahimi_at_the_Olympic_Games_2024.jpg/500px-Soufiane_Rahimi_at_the_Olympic_Games_2024.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Soufiane_Rahimi_at_the_Olympic_Games_2024_%28cropped%29.jpg/500px-Soufiane_Rahimi_at_the_Olympic_Games_2024_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Soufiane_Rahimi_and_Yassine_Bounou_against_Paraguay.jpg/500px-Soufiane_Rahimi_and_Yassine_Bounou_against_Paraguay.jpg"
+        ]
       },
       {
         "id": "brahim-diaz",
@@ -786,7 +895,10 @@
         },
         "shirt_number_expected": 11,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Brahim_Diaz_3_vs_Niger_%28cropped%29_%28cropped%29.jpg/330px-Brahim_Diaz_3_vs_Niger_%28cropped%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Brahim_Diaz_3_vs_Niger_%28cropped%29_%28cropped%29.jpg/330px-Brahim_Diaz_3_vs_Niger_%28cropped%29_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Brahim_Diaz_vs_Niger.jpg/500px-Brahim_Diaz_vs_Niger.jpg"
+        ]
       },
       {
         "id": "abde-ezzalzouli",
@@ -801,7 +913,10 @@
         },
         "shirt_number_expected": 26,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/AbdeEz.jpg/330px-AbdeEz.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/AbdeEz.jpg/330px-AbdeEz.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Abde_Ezzalzouli.jpg/500px-Abde_Ezzalzouli.jpg"
+        ]
       },
       {
         "id": "ayoub-el-kaabi",
@@ -816,7 +931,15 @@
         },
         "shirt_number_expected": 9,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Ayoub_El_Kaabi_vs_Niger_%28cropped%29.jpg/330px-Ayoub_El_Kaabi_vs_Niger_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Ayoub_El_Kaabi_vs_Niger_%28cropped%29.jpg/330px-Ayoub_El_Kaabi_vs_Niger_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/4/49/Ayoub_El_Kaabi.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/e/eb/Ayoub_El_Kaabi_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Elkaabi.jpg/500px-Elkaabi.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Ayoub_El_Kaabi_vs_Niger.jpg/500px-Ayoub_El_Kaabi_vs_Niger.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Ayoub_El_Kaabi_against_Paraguay.jpg/500px-Ayoub_El_Kaabi_against_Paraguay.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Ayoub_El_Kaabi_against_Paraguay_%28cropped%29.jpg/500px-Ayoub_El_Kaabi_against_Paraguay_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "ayoub-amaimouni",
@@ -948,7 +1071,23 @@
     "squad_announced": true,
     "squad_announced_status": "pending_official",
     "squad_announced_date": "2026-06-04",
-    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
+    "image_pool": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Tunisia_football_team_2010.jpg/500px-Tunisia_football_team_2010.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/2018_IBSA_Blind_Football_Madrid_Colombia_v_Morocco-1.JPG/500px-2018_IBSA_Blind_Football_Madrid_Colombia_v_Morocco-1.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/2018_IBSA_Blind_Football_Madrid_Colombia_v_Morocco-10.JPG/500px-2018_IBSA_Blind_Football_Madrid_Colombia_v_Morocco-10.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/2018_IBSA_Blind_Football_Madrid_Colombia_v_Morocco-11.JPG/500px-2018_IBSA_Blind_Football_Madrid_Colombia_v_Morocco-11.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/2018_IBSA_Blind_Football_Madrid_Colombia_v_Morocco-14.JPG/500px-2018_IBSA_Blind_Football_Madrid_Colombia_v_Morocco-14.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/2018_IBSA_Blind_Football_Madrid_Colombia_v_Morocco-15.JPG/500px-2018_IBSA_Blind_Football_Madrid_Colombia_v_Morocco-15.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/2018_IBSA_Blind_Football_Madrid_Colombia_v_Morocco-18.JPG/500px-2018_IBSA_Blind_Football_Madrid_Colombia_v_Morocco-18.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/2018_IBSA_Blind_Football_Madrid_Colombia_v_Morocco-19.JPG/500px-2018_IBSA_Blind_Football_Madrid_Colombia_v_Morocco-19.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/2018_IBSA_Blind_Football_Madrid_Colombia_v_Morocco-21.JPG/500px-2018_IBSA_Blind_Football_Madrid_Colombia_v_Morocco-21.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/2018_IBSA_Blind_Football_Madrid_Colombia_v_Morocco-22.JPG/500px-2018_IBSA_Blind_Football_Madrid_Colombia_v_Morocco-22.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/2018_IBSA_Blind_Football_Madrid_Colombia_v_Morocco-28.JPG/500px-2018_IBSA_Blind_Football_Madrid_Colombia_v_Morocco-28.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/2018_IBSA_Blind_Football_Madrid_Colombia_v_Morocco-29.JPG/500px-2018_IBSA_Blind_Football_Madrid_Colombia_v_Morocco-29.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/2018_IBSA_Blind_Football_Madrid_Colombia_v_Morocco-30.JPG/500px-2018_IBSA_Blind_Football_Madrid_Colombia_v_Morocco-30.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/2018_IBSA_Blind_Football_Madrid_Colombia_v_Morocco-4.JPG/500px-2018_IBSA_Blind_Football_Madrid_Colombia_v_Morocco-4.JPG"
+    ]
   },
   "history": {
     "first_appearance": 1970,

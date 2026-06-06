@@ -634,7 +634,10 @@
         },
         "shirt_number_expected": 14,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/%C3%89quipe_football_ivoirien_03_%28Ousmane_Diomande%29.jpg/330px-%C3%89quipe_football_ivoirien_03_%28Ousmane_Diomande%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/%C3%89quipe_football_ivoirien_03_%28Ousmane_Diomande%29.jpg/330px-%C3%89quipe_football_ivoirien_03_%28Ousmane_Diomande%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/2/28/%C3%89quipe_football_ivoirien_01_%28Ousmane_Diomande%29.jpg"
+        ]
       },
       {
         "id": "ghislain-konan",
@@ -761,7 +764,12 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Seko_Fofana.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Seko_Fofana.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Seko_Fofana_%28SC_Bastia%29.JPG/500px-Seko_Fofana_%28SC_Bastia%29.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Seko_Fofana_RC_Lens_-_Montpellier_HSC_%2812-12-2020%29_%28cropped%29.jpg/500px-Seko_Fofana_RC_Lens_-_Montpellier_HSC_%2812-12-2020%29_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/9/96/Fofana_asse_srfc_2425.png"
+        ]
       },
       {
         "id": "franck-kessie",
@@ -776,7 +784,12 @@
         },
         "shirt_number_expected": 19,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Franck_Yannick_Kessi%C3%A9.jpg/330px-Franck_Yannick_Kessi%C3%A9.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Franck_Yannick_Kessi%C3%A9.jpg/330px-Franck_Yannick_Kessi%C3%A9.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/1/10/Franck_Kessi%C3%A9_01.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Franck_Kessi%C3%A9.jpg/500px-Franck_Kessi%C3%A9.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Kessie_Milan-Torino_2021-22.jpg/500px-Kessie_Milan-Torino_2021-22.jpg"
+        ]
       },
       {
         "id": "ali-badra-sangare",
@@ -804,7 +817,10 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f1/%D7%A4%D7%90%D7%A8%D7%A4%D7%94_%D7%92%D7%95%D7%99%D7%90%D7%92%D7%95%D7%9F_-_Parfait_Guiagon.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f1/%D7%A4%D7%90%D7%A8%D7%A4%D7%94_%D7%92%D7%95%D7%99%D7%90%D7%92%D7%95%D7%9F_-_Parfait_Guiagon.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/%D7%A4%D7%90%D7%A8%D7%A4%D7%94_%D7%92%D7%95%D7%99%D7%90%D7%92%D7%95%D7%9F_-_Parfait_Guiagon_%28cropped%29.jpg/500px-%D7%A4%D7%90%D7%A8%D7%A4%D7%94_%D7%92%D7%95%D7%99%D7%90%D7%92%D7%95%D7%9F_-_Parfait_Guiagon_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "christiano-oulai",
@@ -915,7 +931,11 @@
         },
         "shirt_number_expected": 20,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Nicolas_Pepe_LOSC_%28cropped2%29.jpg/330px-Nicolas_Pepe_LOSC_%28cropped2%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Nicolas_Pepe_LOSC_%28cropped2%29.jpg/330px-Nicolas_Pepe_LOSC_%28cropped2%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Nicolas_Pepe_LOSC.jpg/500px-Nicolas_Pepe_LOSC.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Nicolas_Pepe_LOSC_%28cropped%29.jpg/500px-Nicolas_Pepe_LOSC_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "evan-guessand",
@@ -1065,7 +1085,23 @@
     },
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
-    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
+    "image_pool": [
+      "https://upload.wikimedia.org/wikipedia/commons/e/e1/Emmanuel_Kon%C3%A9.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cote_d%27Iviore_NT_2010.jpg/500px-Cote_d%27Iviore_NT_2010.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Ivory_Coast_vs_Tunisia_2013_AFCON.jpg/500px-Ivory_Coast_vs_Tunisia_2013_AFCON.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Algeria_vs_Ivory_Coast_2013_AFCON.jpg/500px-Algeria_vs_Ivory_Coast_2013_AFCON.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/a/a9/Cote_Divoire_Enblem.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Ivory_Coast_players_2013-01-10_001.jpg/500px-Ivory_Coast_players_2013-01-10_001.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Football_players.jpg/500px-Football_players.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/a/ac/Ivory_Coast_vs_Tunisia_2013_AFCON_%28cropped%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Equipe_de_la_Cote_d%27Ivoire.jpg/500px-Equipe_de_la_Cote_d%27Ivoire.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Match_cote_d%27ivoir_%2812%29.jpg/500px-Match_cote_d%27ivoir_%2812%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Match_cote_d%27ivoir_%2813%29.jpg/500px-Match_cote_d%27ivoir_%2813%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/a/a1/Tiro_Mohy_%C3%A0_Tanger.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Netherlands_fans_-_2006_FIFA_World_Cup.jpg/500px-Netherlands_fans_-_2006_FIFA_World_Cup.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Nigerian_vs_Ivory_Coast_CAN_2008.jpg/500px-Nigerian_vs_Ivory_Coast_CAN_2008.jpg"
+    ]
   },
   "history": {
     "first_appearance": 2006,

@@ -511,7 +511,11 @@
         },
         "shirt_number_expected": 13,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/David_Raya_in_2025.jpg/330px-David_Raya_in_2025.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/David_Raya_in_2025.jpg/330px-David_Raya_in_2025.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/0/0c/David_Raya%2C_Brentford_F.C._footballer%2C_July_2021.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/David_Raya_in_2025_%28cropped%29.jpg/500px-David_Raya_in_2025_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "joan-garcia",
@@ -526,7 +530,15 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4b/CE_Manresa_Alev%C3%AD_A%2C_amb_el_porter_Joan_Garcia%2C_abril_de_2012_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4b/CE_Manresa_Alev%C3%AD_A%2C_amb_el_porter_Joan_Garcia%2C_abril_de_2012_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Joan-garcia-lopez.jpg/500px-Joan-garcia-lopez.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Placa_Joan_Garcia_Oliver.JPG/500px-Placa_Joan_Garcia_Oliver.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/9/9d/JoanGarcia.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Joan_Garcia.jpg/500px-Joan_Garcia.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Joan_Garcia_Castell.jpg/500px-Joan_Garcia_Castell.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/d/de/Funeral_of_Leonese_anarquist_Buenaventura_Durruti_in_Barcelona%2C_there_was_Llu%C3%ADs_Companys_and_Joan_Garc%C3%ADa_Oliver.jpg"
+        ]
       },
       {
         "id": "unai-simon",
@@ -541,7 +553,12 @@
         },
         "shirt_number_expected": 23,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Unai_Sim%C3%B3n_2025_%28cropped%29.jpg/330px-Unai_Sim%C3%B3n_2025_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Unai_Sim%C3%B3n_2025_%28cropped%29.jpg/330px-Unai_Sim%C3%B3n_2025_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Unai_Sim%C3%B3n_Mendibil.jpg/500px-Unai_Sim%C3%B3n_Mendibil.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/5/55/Athleticeko_gabarra_itsasadarrean_%28Unai_Simon%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Unai_Sim%C3%B3n.jpg/500px-Unai_Sim%C3%B3n.jpg"
+        ]
       },
       {
         "id": "marc-pubill",
@@ -571,7 +588,15 @@
         },
         "shirt_number_expected": 18,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Alex_Grimaldo_2020.png/330px-Alex_Grimaldo_2020.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Alex_Grimaldo_2020.png/330px-Alex_Grimaldo_2020.png",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Ricardo_Esgaio_and_Alejandro_Grimaldo.jpg/500px-Ricardo_Esgaio_and_Alejandro_Grimaldo.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Alejandro_Grimaldo.jpg/500px-Alejandro_Grimaldo.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Alejandro_Grimaldo_%281%29.jpg/500px-Alejandro_Grimaldo_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Alejandro_Grimaldo%2C_Derik_Osede%2C_Jos%C3%A9_Campa%C3%B1a.jpg/500px-Alejandro_Grimaldo%2C_Derik_Osede%2C_Jos%C3%A9_Campa%C3%B1a.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Alejandro_Grimaldo_%282%29.jpg/500px-Alejandro_Grimaldo_%282%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Alejandro_Grimaldo_%283%29.jpg/500px-Alejandro_Grimaldo_%283%29.jpg"
+        ]
       },
       {
         "id": "eric-garcia",
@@ -586,7 +611,14 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Eric_Garcia_autographs_2022_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Eric_Garcia_autographs_2022_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/US_Navy_070818-N-6652A-010_Boatswain%27s_Mate_3rd_Class_Eric_Garcia%2C_attached_to_Mobile_Insure_Undersea_Warfare_109%2C_mans_his_weapon_during_an_annual_Field_Exercise_%28FEX%29.jpg/500px-thumbnail.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Eric_Garcia_%2841059704202%29.jpg/500px-Eric_Garcia_%2841059704202%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/8/8c/Eric_Garcia.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Col_Eric_Garcia.jpg/500px-Col_Eric_Garcia.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Eric_Garcia_autographs_2022.jpg/500px-Eric_Garcia_autographs_2022.jpg"
+        ]
       },
       {
         "id": "marcos-llorente",
@@ -601,7 +633,10 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/49/Marcos_Llorente_2019.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/49/Marcos_Llorente_2019.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Marcos_Llorente.JPG/500px-Marcos_Llorente.JPG"
+        ]
       },
       {
         "id": "pedro-porro",
@@ -631,7 +666,13 @@
         },
         "shirt_number_expected": 14,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Aymeric_Laporte_2023_%28cropped%29_2.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Aymeric_Laporte_2023_%28cropped%29_2.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Aymeric_Laporte_and_Leo_Messi.jpg/500px-Aymeric_Laporte_and_Leo_Messi.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/b/ba/Aymeric_Laporte%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/f/f9/Aymeric_Laporte_2023_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Persepolis_F.C._v_Al_Nassr_FC%2C_17_February_2025%2C_Aymeric_Laporte.jpg/500px-Persepolis_F.C._v_Al_Nassr_FC%2C_17_February_2025%2C_Aymeric_Laporte.jpg"
+        ]
       },
       {
         "id": "pau-cubarsi",
@@ -646,7 +687,12 @@
         },
         "shirt_number_expected": 5,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Pau_Cubars%C3%AD_%28cropped%29.jpg/330px-Pau_Cubars%C3%AD_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Pau_Cubars%C3%AD_%28cropped%29.jpg/330px-Pau_Cubars%C3%AD_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/9/99/Uzbekistan_vs._Spain%2C_2024_Summer_Olympic_men%27s_association_football%2C_2024-07-24_%28250%29_-_Pau_Cubars%C3%AD.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/6/63/2025_04_26_Final_de_la_Copa_del_Rey_-_54482387776_-_Pau_Cubars%C3%AD.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Pau_Cubars%C3%AD.jpg/500px-Pau_Cubars%C3%AD.jpg"
+        ]
       },
       {
         "id": "marc-cucurella",
@@ -661,7 +707,13 @@
         },
         "shirt_number_expected": 17,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Spain_football_team_in_202_%28Marc_Cucurella%29.jpg/330px-Spain_football_team_in_202_%28Marc_Cucurella%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Spain_football_team_in_202_%28Marc_Cucurella%29.jpg/330px-Spain_football_team_in_202_%28Marc_Cucurella%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/7/72/Marc_Cucurella.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Cucurella_Getafe.jpg/500px-Cucurella_Getafe.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/c/c7/Marc_Cucurella_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Marc_Cucurella_20042025_%281%29.jpg/500px-Marc_Cucurella_20042025_%281%29.jpg"
+        ]
       },
       {
         "id": "mikel-merino",
@@ -676,7 +728,15 @@
         },
         "shirt_number_expected": 15,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/1_mikel_merino_arsenal_2025_%28cropped%29.jpg/330px-1_mikel_merino_arsenal_2025_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/1_mikel_merino_arsenal_2025_%28cropped%29.jpg/330px-1_mikel_merino_arsenal_2025_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/8/8a/Mikel_Merino_2017.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Mikel_Merino_2018.jpg/500px-Mikel_Merino_2018.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Miker_Merino_2018.jpg/500px-Miker_Merino_2018.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Miker_Merino_2018_%28cropped%29.jpg/500px-Miker_Merino_2018_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/1_mikel_merino_arsenal_2025.jpg/500px-1_mikel_merino_arsenal_2025.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/2/2a/Mikel_Merino_Spain_national_team_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "fabian-ruiz",
@@ -691,7 +751,15 @@
         },
         "shirt_number_expected": 12,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Ruiz_asse_psg_2425.png/330px-Ruiz_asse_psg_2425.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Ruiz_asse_psg_2425.png/330px-Ruiz_asse_psg_2425.png",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Fabi%C3%A1n_Ruiz_2-1.jpg/500px-Fabi%C3%A1n_Ruiz_2-1.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Fabian_Ruiz_2.jpg/500px-UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Fabian_Ruiz_2.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Fabian_Ruiz_3.jpg/500px-UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Fabian_Ruiz_3.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Fabian_Ruiz_6.jpg/500px-UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Fabian_Ruiz_6.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Fabian_Ruiz_and_Robin_Quaison_2.jpg/500px-UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Fabian_Ruiz_and_Robin_Quaison_2.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Fabian_Ruiz_and_Robin_Quaison_3.jpg/500px-UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Fabian_Ruiz_and_Robin_Quaison_3.jpg"
+        ]
       },
       {
         "id": "gavi",
@@ -706,7 +774,15 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Gavi_%28footballer%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Gavi_%28footballer%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Gavi_panorama.jpg/500px-Gavi_panorama.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Gavi_zona_di_produzione.jpg/500px-Gavi_zona_di_produzione.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Gavi_Gangadhareshwara_temple%2C_Bengaluru.jpg/500px-Gavi_Gangadhareshwara_temple%2C_Bengaluru.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gavi_Shree.jpg/500px-Gavi_Shree.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Gavi_dam.jpg/500px-Gavi_dam.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Gavi_-_panorama.jpg/500px-Gavi_-_panorama.jpg"
+        ]
       },
       {
         "id": "alex-baena",
@@ -751,7 +827,11 @@
         },
         "shirt_number_expected": 6,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Mart%C3%ADn_Zubimendi.jpg/330px-Mart%C3%ADn_Zubimendi.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Mart%C3%ADn_Zubimendi.jpg/330px-Mart%C3%ADn_Zubimendi.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/1_Mart%C3%ADn_Zubimendi_arsenal_2025.jpg/500px-1_Mart%C3%ADn_Zubimendi_arsenal_2025.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/1_Mart%C3%ADn_Zubimendi_arsenal_2025_%28cropped%29.jpg/500px-1_Mart%C3%ADn_Zubimendi_arsenal_2025_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "pedri",
@@ -766,7 +846,10 @@
         },
         "shirt_number_expected": 8,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Pedri.jpg/330px-Pedri.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Pedri.jpg/330px-Pedri.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/f/f1/%D0%9C%D0%B0%D1%82%D1%87_%C2%AB%D0%94%D0%B8%D0%BD%D0%B0%D0%BC%D0%BE%C2%BB_-_%C2%AB%D0%91%D0%B0%D1%80%D1%81%D0%B5%D0%BB%D0%BE%D0%BD%D0%B0%C2%BB_0-4._24_%D0%BD%D0%BE%D1%8F%D0%B1%D1%80%D1%8F_2020_%D0%B3%D0%BE%D0%B4%D0%B0_%E2%80%94_1166854_%28Pedro_Gonz%C3%A1lez_L%C3%B3pez%2C_Pedri%29.jpg"
+        ]
       },
       {
         "id": "ferran-torres",
@@ -781,7 +864,11 @@
         },
         "shirt_number_expected": 7,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Ferran_Torres_2019.png/330px-Ferran_Torres_2019.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Ferran_Torres_2019.png/330px-Ferran_Torres_2019.png",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Ferran_Torres_Garc%C3%ADa.png/500px-Ferran_Torres_Garc%C3%ADa.png",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/2025_04_26_Final_de_la_Copa_del_Rey_%28Ferr%C3%A1n_Torres%29.jpg/500px-2025_04_26_Final_de_la_Copa_del_Rey_%28Ferr%C3%A1n_Torres%29.jpg"
+        ]
       },
       {
         "id": "dani-olmo",
@@ -796,7 +883,10 @@
         },
         "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Dani_Olmo_2022.jpg/330px-Dani_Olmo_2022.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Dani_Olmo_2022.jpg/330px-Dani_Olmo_2022.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Dani_Olmo.jpg/500px-Dani_Olmo.jpg"
+        ]
       },
       {
         "id": "yeremy-pino",
@@ -811,7 +901,10 @@
         },
         "shirt_number_expected": 26,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/80/Manchester_United_v_Villarreal_CF%2C_29_September_2021_%2807%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/80/Manchester_United_v_Villarreal_CF%2C_29_September_2021_%2807%29_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Y%C3%A9remi_Pino_at_the_press_conference_before_the_Europa_League_final%2C_27_May_2026_%2809%29.jpg/500px-Y%C3%A9remi_Pino_at_the_press_conference_before_the_Europa_League_final%2C_27_May_2026_%2809%29.jpg"
+        ]
       },
       {
         "id": "nico-williams",
@@ -826,7 +919,14 @@
         },
         "shirt_number_expected": 11,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/ATHLETIC-OSASUNA_SEMIFINAL._MAIDER_GOIKOETXEA_%28168%29_%28cropped%29.jpg/330px-ATHLETIC-OSASUNA_SEMIFINAL._MAIDER_GOIKOETXEA_%28168%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/ATHLETIC-OSASUNA_SEMIFINAL._MAIDER_GOIKOETXEA_%28168%29_%28cropped%29.jpg/330px-ATHLETIC-OSASUNA_SEMIFINAL._MAIDER_GOIKOETXEA_%28168%29_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Nico_Williams_Performing.jpg/500px-Nico_Williams_Performing.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/ATHLETIC-OSASUNA_SEMIFINAL._MAIDER_GOIKOETXEA_%2874%29_%28Nico_Williams%29.jpg/500px-ATHLETIC-OSASUNA_SEMIFINAL._MAIDER_GOIKOETXEA_%2874%29_%28Nico_Williams%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Nico_Williams_%28cropped%29.jpg/500px-Nico_Williams_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/NICO_WILLIAMS_-_ATHLETIC_BILBAO_v_OSASUNA.jpg/500px-NICO_WILLIAMS_-_ATHLETIC_BILBAO_v_OSASUNA.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/4/4d/Spain_football_team_in_2025_%28Nico_Williams%29.jpg"
+        ]
       },
       {
         "id": "lamine-yamal",
@@ -841,7 +941,15 @@
         },
         "shirt_number_expected": 19,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Lamine_Yamal_in_2025.jpg/330px-Lamine_Yamal_in_2025.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Lamine_Yamal_in_2025.jpg/330px-Lamine_Yamal_in_2025.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/8/8d/Lamine_Yamal%2C_S%C3%A1nchez_se_reuni%C3%B3_con_los_futbolistas_de_la_selecci%C3%B3n_espa%C3%B1ola_tras_ganar_la_Eurocopa_2024_%283%29_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/f/f3/Lamine_Yamal%2C_S%C3%A1nchez_se_reuni%C3%B3_con_los_futbolistas_de_la_selecci%C3%B3n_espa%C3%B1ola_tras_ganar_la_Eurocopa_2024_%283%29_%28cropped%29_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Lamine_Yamal_a_Xina_%282025%29.png/500px-Lamine_Yamal_a_Xina_%282025%29.png",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Lamine_Yamal_a_Xina.png/500px-Lamine_Yamal_a_Xina.png",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Lamine_Yamal_in_2025_%28cropped%29.jpg/500px-Lamine_Yamal_in_2025_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Lamine_Yamal_in_2025_%28cropped2%29.jpg/500px-Lamine_Yamal_in_2025_%28cropped2%29.jpg"
+        ]
       },
       {
         "id": "mikel-oyarzabal",
@@ -856,7 +964,15 @@
         },
         "shirt_number_expected": 21,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_108_%28cropped%29.jpg/330px-UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_108_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_108_%28cropped%29.jpg/330px-UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_108_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Mikel_Oyarzabal.jpg/500px-Mikel_Oyarzabal.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Mikel_Oyarzabal_2018.jpg/500px-Mikel_Oyarzabal_2018.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Mikel_Oyarzabal_4.jpg/500px-UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Mikel_Oyarzabal_4.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Mikel_Oyarzabal_6.jpg/500px-UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Mikel_Oyarzabal_6.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Mikel_Oyarzabal_and_Victor_Nilsson_Lindel%C3%B6f.jpg/500px-UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Mikel_Oyarzabal_and_Victor_Nilsson_Lindel%C3%B6f.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Mikel_Oyarzabal_POTM_oct2020.png/500px-Mikel_Oyarzabal_POTM_oct2020.png"
+        ]
       },
       {
         "id": "victor-munoz",
@@ -871,7 +987,15 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/V%C3%ADctor_Mu%C3%B1oz_D%C3%ADaz.jpg/500px-V%C3%ADctor_Mu%C3%B1oz_D%C3%ADaz.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/V%C3%ADctor_Mu%C3%B1oz_Reyes.jpg/500px-V%C3%ADctor_Mu%C3%B1oz_Reyes.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/5/55/V%C3%ADctor_Mu%C3%B1oz_Reyes_-_CROPPED.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Victor_Munoz-Kielemoes_tombe.jpg/500px-Victor_Munoz-Kielemoes_tombe.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Victor_Mu%C3%B1oz_Retrato_Profesional_en_Estudio.jpg/500px-Victor_Mu%C3%B1oz_Retrato_Profesional_en_Estudio.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Victor_Mu%C3%B1oz_tombe.jpg/500px-Victor_Mu%C3%B1oz_tombe.jpg"
+        ]
       },
       {
         "id": "borja-iglesias",
@@ -886,7 +1010,15 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/00/Borja_iglesias_2019001.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/00/Borja_iglesias_2019001.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Borja_Iglesias_en_las_fiestas_de_Brunete_de_2017.jpg/500px-Borja_Iglesias_en_las_fiestas_de_Brunete_de_2017.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Borja_Iglesias.jpg/500px-Borja_Iglesias.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/3/3c/Borja_Valero_Iglesias.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Borja_iglesias_presentaci%C3%B3n_002.jpg/500px-Borja_iglesias_presentaci%C3%B3n_002.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/20190816_193612_Borja_Iglesias_betis.jpg/500px-20190816_193612_Borja_Iglesias_betis.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/1/1c/Borja_iglesias_2019001_%28cropped%29.jpg"
+        ]
       }
     ],
     "starting_xi": {
@@ -1005,7 +1137,23 @@
     },
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
-    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
+    "image_pool": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Spain_national_football_team_in_the_1920_Summer_Olympics_in_Antwerp.jpg/500px-Spain_national_football_team_in_the_1920_Summer_Olympics_in_Antwerp.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Spanish_national_football_team_in_the_1920-21_season.jpg/500px-Spanish_national_football_team_in_the_1920-21_season.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Spanish_national_football_team%2C_1920.jpg/500px-Spanish_national_football_team%2C_1920.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Spanish_national_football_team_in_San_Sebastian%2C_28.01.1923.jpg/500px-Spanish_national_football_team_in_San_Sebastian%2C_28.01.1923.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Spanish_national_football_team_in_Lisbon%2C_17.12.1922.jpg/500px-Spanish_national_football_team_in_Lisbon%2C_17.12.1922.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Spanish_national_football_team_before_the_match_against_France_in_San_Sebastian%2C_28.01.1923.jpg/500px-Spanish_national_football_team_before_the_match_against_France_in_San_Sebastian%2C_28.01.1923.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Spanish_national_football_team_before_the_friendly_match_against_Italy_in_Valencia%2C_14.06.1925.jpg/500px-Spanish_national_football_team_before_the_friendly_match_against_Italy_in_Valencia%2C_14.06.1925.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Spanish_national_football_team_before_the_friendly_match_against_Portugal_in_Madrid%2C_29.05.1927.jpg/500px-Spanish_national_football_team_before_the_friendly_match_against_Portugal_in_Madrid%2C_29.05.1927.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Spanish_national_football_team_before_the_match_against_Italy_on_the_1928_Summer_Olympics_in_Amsterdam%2C_4.06.1928.jpg/500px-Spanish_national_football_team_before_the_match_against_Italy_on_the_1928_Summer_Olympics_in_Amsterdam%2C_4.06.1928.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Spanish_national_football_team_before_the_match_against_Mexico_on_the_1928_Summer_Olympics_in_Amsterdam%2C_30.05.1928.jpg/500px-Spanish_national_football_team_before_the_match_against_Mexico_on_the_1928_Summer_Olympics_in_Amsterdam%2C_30.05.1928.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Spanish_national_football_team_before_the_friendly_match_against_England_in_Madrid%2C_15.05.1929.jpg/500px-Spanish_national_football_team_before_the_friendly_match_against_England_in_Madrid%2C_15.05.1929.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Spanish_national_football_team_before_the_friendly_match_against_France_in_Zaragoza%2C_14.01.1929.jpg/500px-Spanish_national_football_team_before_the_friendly_match_against_France_in_Zaragoza%2C_14.01.1929.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Spanish_national_football_team_before_the_friendly_match_against_Czechoslovakia_in_Barcelona%2C_1930.jpg/500px-Spanish_national_football_team_before_the_friendly_match_against_Czechoslovakia_in_Barcelona%2C_1930.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Spanish_national_football_team_before_the_friendly_match_against_England_in_Madrid%2C_1929.jpg/500px-Spanish_national_football_team_before_the_friendly_match_against_England_in_Madrid%2C_1929.jpg"
+    ]
   },
   "history": {
     "first_appearance": 1934,

@@ -812,7 +812,15 @@
         },
         "shirt_number_expected": 1,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/David_Ospina%2C_2015-05-31_%28cropped%29.JPG/330px-David_Ospina%2C_2015-05-31_%28cropped%29.JPG"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/David_Ospina%2C_2015-05-31_%28cropped%29.JPG/330px-David_Ospina%2C_2015-05-31_%28cropped%29.JPG",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/6/6c/David_Ospina.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/David_Ospina_TPA.jpg/500px-David_Ospina_TPA.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/9/92/David_Ospina_Calentamiento.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/David_Ospina%2C_2015-05-31.JPG/500px-David_Ospina%2C_2015-05-31.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/David_Ospina%2C_Petr_Cech_Emiliano_Martinez_Arsenal_Members%27_Day_2015_%2819929834919%29.jpg/500px-David_Ospina%2C_Petr_Cech_Emiliano_Martinez_Arsenal_Members%27_Day_2015_%2819929834919%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/David_Ospina_Petr_Cech_Emiliano_Martinez_Arsenal_Members%27_Day_2015_%2820108547412%29.jpg/500px-David_Ospina_Petr_Cech_Emiliano_Martinez_Arsenal_Members%27_Day_2015_%2820108547412%29.jpg"
+        ]
       },
       {
         "id": "camilo-vargas",
@@ -827,7 +835,11 @@
         },
         "shirt_number_expected": 22,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Camilo_Vargas_2022.jpeg/330px-Camilo_Vargas_2022.jpeg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Camilo_Vargas_2022.jpeg/330px-Camilo_Vargas_2022.jpeg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/4/49/Camilo_vargas.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Camilo_Andres_Vargas.jpg/500px-Camilo_Andres_Vargas.jpg"
+        ]
       },
       {
         "id": "alvaro-montero",
@@ -842,7 +854,10 @@
         },
         "shirt_number_expected": 12,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Alvaro_Montero.jpg/330px-Alvaro_Montero.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Alvaro_Montero.jpg/330px-Alvaro_Montero.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/a/a8/%C3%81lvaro_Montero_Padilla.jpg"
+        ]
       },
       {
         "id": "daniel-munoz",
@@ -857,7 +872,15 @@
         },
         "shirt_number_expected": 4,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/df/Fredrikstad_Fotballklubb_v_Crystal_Palace_FC%2C_28_August_2025_A36.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/df/Fredrikstad_Fotballklubb_v_Crystal_Palace_FC%2C_28_August_2025_A36.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/4/4f/Daniel_Mu%C3%B1oz_%28Escritor_Uruguayo%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Daniel_Mu%C3%B1oz.JPG/500px-Daniel_Mu%C3%B1oz.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/c/c1/Daniel_Mu%C3%B1oz_cuecas_bravas.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Daniel_Mu%C3%B1oz%2C_en_Maip%C3%BA_2010.jpg/500px-Daniel_Mu%C3%B1oz%2C_en_Maip%C3%BA_2010.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Cantante%2CDaniel_Munoz_El_Ausente.JPG/500px-Cantante%2CDaniel_Munoz_El_Ausente.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Daniel_Mu%C3%B1oz_por_Sch%C3%BCtz.jpg/500px-Daniel_Mu%C3%B1oz_por_Sch%C3%BCtz.jpg"
+        ]
       },
       {
         "id": "jhon-lucumi",
@@ -887,7 +910,15 @@
         },
         "shirt_number_expected": 17,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Santiago_Arias_2019.jpg/330px-Santiago_Arias_2019.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Santiago_Arias_2019.jpg/330px-Santiago_Arias_2019.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/e/e1/Dinamo-PSV_%284%29_%28Arias_crop%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/5/56/Dinamo-PSV_%284%29_%28Arias_crop%29_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/3/3d/ATL-Madrid-Lokomotiv001-Arias.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Santiago_Arias.jpg/500px-Santiago_Arias.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Santiago_Arias_with_family_2023_Cincinnati.jpg/500px-Santiago_Arias_with_family_2023_Cincinnati.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Santiago_Arias_with_family_2023_Cincinnati_%28cropped%29.jpg/500px-Santiago_Arias_with_family_2023_Cincinnati_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "yerry-mina",
@@ -902,7 +933,11 @@
         },
         "shirt_number_expected": 13,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/FWC_2018_-_Round_of_16_-_COL_v_ENG_-_Photo_103_%28cropped%29.jpg/330px-FWC_2018_-_Round_of_16_-_COL_v_ENG_-_Photo_103_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/FWC_2018_-_Round_of_16_-_COL_v_ENG_-_Photo_103_%28cropped%29.jpg/330px-FWC_2018_-_Round_of_16_-_COL_v_ENG_-_Photo_103_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/b/b7/Yerry_Mina.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/7/7d/Yerry-mina-palmeiras-nov2016.png"
+        ]
       },
       {
         "id": "gustavo-puerta",
@@ -917,7 +952,10 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Gustavo_Puerta_2023.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Gustavo_Puerta_2023.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/9/94/Gustavo_Puerta_2023_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "johan-mojica",
@@ -973,7 +1011,12 @@
         },
         "shirt_number_expected": 23,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/D%C3%A1vinson_S%C3%A1nchez%2C_POL_vs_COL%3B_FWC_2018.jpg/330px-D%C3%A1vinson_S%C3%A1nchez%2C_POL_vs_COL%3B_FWC_2018.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/D%C3%A1vinson_S%C3%A1nchez%2C_POL_vs_COL%3B_FWC_2018.jpg/330px-D%C3%A1vinson_S%C3%A1nchez%2C_POL_vs_COL%3B_FWC_2018.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/FWC_2018_-_Round_of_16_-_COL_v_ENG_-_D_S%C3%A1nchez.jpg/500px-FWC_2018_-_Round_of_16_-_COL_v_ENG_-_D_S%C3%A1nchez.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Davinson_Sanchez_header_%2845272402092%29.jpg/500px-Davinson_Sanchez_header_%2845272402092%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Davinson_Sanchez_header_%2845272402092%29_%28cropped%29.jpg/500px-Davinson_Sanchez_header_%2845272402092%29_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "kevin-castano",
@@ -1003,7 +1046,15 @@
         },
         "shirt_number_expected": 25,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Richard-Rios-Palmeiras-Liverpool-abr24.jpg/330px-Richard-Rios-Palmeiras-Liverpool-abr24.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Richard-Rios-Palmeiras-Liverpool-abr24.jpg/330px-Richard-Rios-Palmeiras-Liverpool-abr24.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/a/ac/Richard-rios-palmeiras-2023.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/b/bb/Richard-rios-palmeiras-2023_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Richard-Rios-Palmeiras-Santos-jan24.jpg/500px-Richard-Rios-Palmeiras-Santos-jan24.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Richard-Rios-Palmeiras-Santos-jan24_%28cropped%29.jpg/500px-Richard-Rios-Palmeiras-Santos-jan24_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Rios-lopez-mayke-palmeiras-santos-jan24.jpg/500px-Rios-lopez-mayke-palmeiras-santos-jan24.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Richard-Rios-Palmeiras-Liverpool-abr24-2.jpg/500px-Richard-Rios-Palmeiras-Liverpool-abr24-2.jpg"
+        ]
       },
       {
         "id": "jorge-carrascal",
@@ -1018,7 +1069,11 @@
         },
         "shirt_number_expected": 2,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Jorge_Carrascal_2025.jpg/330px-Jorge_Carrascal_2025.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Jorge_Carrascal_2025.jpg/330px-Jorge_Carrascal_2025.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Jorge_Carrascal_2022.jpg/500px-Jorge_Carrascal_2022.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Jorge_Carrascal_in_2022.jpg/500px-Jorge_Carrascal_in_2022.jpg"
+        ]
       },
       {
         "id": "james-rodriguez",
@@ -1033,7 +1088,15 @@
         },
         "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/James_Roday_by_Gage_Skidmore.jpg/330px-James_Roday_by_Gage_Skidmore.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/James_Roday_by_Gage_Skidmore.jpg/330px-James_Roday_by_Gage_Skidmore.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/0/07/James_Rodr%C3%ADguez_1.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/James_Rodr%C3%ADguez.jpg/500px-James_Rodr%C3%ADguez.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/James_Rodr%C3%ADguez_%28cropped%29.jpg/500px-James_Rodr%C3%ADguez_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/1_James_Rodr%C3%ADguez.jpg/500px-1_James_Rodr%C3%ADguez.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/b/bf/James_Rodr%C3%ADguez_2016.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/7/76/James_Rodriguez_-_panoramio.jpg"
+        ]
       },
       {
         "id": "jhon-arias",
@@ -1048,7 +1111,15 @@
         },
         "shirt_number_expected": 11,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Jhon_Arias_en_Palmeiras_-_Copa_Libertadores_2026.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Jhon_Arias_en_Palmeiras_-_Copa_Libertadores_2026.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Jhon_Arias.jpg/500px-Jhon_Arias.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Jhon_Arias_%282024%29.jpg/500px-Jhon_Arias_%282024%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Jhon_Arias_01112025_%281%29.jpg/500px-Jhon_Arias_01112025_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Jhon_Arias_and_Santiago_Bueno_01112025_%281%29.jpg/500px-Jhon_Arias_and_Santiago_Bueno_01112025_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Jhon_Arias_01112025_%282%29.jpg/500px-Jhon_Arias_01112025_%282%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Jhon-Arias-Palmeiras-Jacuipense-abr26.jpg/500px-Jhon-Arias-Palmeiras-Jacuipense-abr26.jpg"
+        ]
       },
       {
         "id": "juan-camilo-portilla",
@@ -1078,7 +1149,13 @@
         },
         "shirt_number_expected": 16,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Jefferson_Lerma_2018.png/330px-Jefferson_Lerma_2018.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Jefferson_Lerma_2018.png/330px-Jefferson_Lerma_2018.png",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/8/8f/JeffersonLerma.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Jefferson_Lerma.jpg/500px-Jefferson_Lerma.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Jefferson_Lerma_Rio_2016.jpg/500px-Jefferson_Lerma_Rio_2016.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/FWC_2018_-_Round_of_16_-_COL_v_ENG_-_Photo_032_%28Jefferson_Lerma%29.jpg/500px-FWC_2018_-_Round_of_16_-_COL_v_ENG_-_Photo_032_%28Jefferson_Lerma%29.jpg"
+        ]
       },
       {
         "id": "juan-fernando-quintero",
@@ -1093,7 +1170,15 @@
         },
         "shirt_number_expected": 20,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Juan_Quintero_%28cropped%29.jpg/330px-Juan_Quintero_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Juan_Quintero_%28cropped%29.jpg/330px-Juan_Quintero_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/9/9a/Juan_Fernando_Quintero.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Entrainement_SRFC_Dinan_20150902_-_Juan_Fernando_Quintero_%281%29.JPG/500px-Entrainement_SRFC_Dinan_20150902_-_Juan_Fernando_Quintero_%281%29.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Entrainement_SRFC_Dinan_20150902_-_Juan_Fernando_Quintero_%282%29.JPG/500px-Entrainement_SRFC_Dinan_20150902_-_Juan_Fernando_Quintero_%282%29.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Entrainement_SRFC_Dinan_20150902_-_Juan_Fernando_Quintero_%283%29.JPG/500px-Entrainement_SRFC_Dinan_20150902_-_Juan_Fernando_Quintero_%283%29.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Entrainement_SRFC_Dinan_20150902_-_Juan_Fernando_Quintero_%281%29_%28cropped%29.JPG/500px-Entrainement_SRFC_Dinan_20150902_-_Juan_Fernando_Quintero_%281%29_%28cropped%29.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Juan_Quintero_Piverdi%C3%A8re_16_mars_2016.jpg/500px-Juan_Quintero_Piverdi%C3%A8re_16_mars_2016.jpg"
+        ]
       },
       {
         "id": "luis-diaz",
@@ -1108,7 +1193,15 @@
         },
         "shirt_number_expected": 7,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/FC_RB_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%282026-01-06_Testspiel%29_40_%28Luiz_D%C3%ADaz%29.jpg/330px-FC_RB_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%282026-01-06_Testspiel%29_40_%28Luiz_D%C3%ADaz%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/FC_RB_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%282026-01-06_Testspiel%29_40_%28Luiz_D%C3%ADaz%29.jpg/330px-FC_RB_Salzburg_gegen_FC_Bayern_M%C3%BCnchen_%282026-01-06_Testspiel%29_40_%28Luiz_D%C3%ADaz%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Luis_Diaz_2022.jpg/500px-Luis_Diaz_2022.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Luis_Diaz_2022_%282%29.jpg/500px-Luis_Diaz_2022_%282%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Luis_Diaz_2022_%283%29.jpg/500px-Luis_Diaz_2022_%283%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Luis_Diaz_2022_%282%29_%28cropped%29.jpg/500px-Luis_Diaz_2022_%282%29_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Luis_Diaz_%28cropped%29.jpg/500px-Luis_Diaz_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Luis_D%C3%ADaz_%28112%29_%28cropped%29.jpg/500px-Luis_D%C3%ADaz_%28112%29_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "jhon-cordoba",
@@ -1123,7 +1216,15 @@
         },
         "shirt_number_expected": 9,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Jhon_C%C3%B3rdoba%2C_FC_K%C3%B6ln%3B_29_Jul_2018.jpg/330px-Jhon_C%C3%B3rdoba%2C_FC_K%C3%B6ln%3B_29_Jul_2018.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Jhon_C%C3%B3rdoba%2C_FC_K%C3%B6ln%3B_29_Jul_2018.jpg/330px-Jhon_C%C3%B3rdoba%2C_FC_K%C3%B6ln%3B_29_Jul_2018.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Jhon_Cordoba_1._FC_K%C3%B6ln_%2840858752103%29.jpg/500px-Jhon_Cordoba_1._FC_K%C3%B6ln_%2840858752103%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Jhon_Cordoba_FC_Cologne_%2833947840208%29.jpg/500px-Jhon_Cordoba_FC_Cologne_%2833947840208%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Jhon_Cordoba_FC_Cologne_%2848569247471%29.jpg/500px-Jhon_Cordoba_FC_Cologne_%2848569247471%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Jhon_Cordoba_1._FC_K%C3%B6ln_%2847034914784%29.jpg/500px-Jhon_Cordoba_1._FC_K%C3%B6ln_%2847034914784%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Jhon_Cordoba_FC_Cologne_%2847034913764%29.jpg/500px-Jhon_Cordoba_FC_Cologne_%2847034913764%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/9/9f/Jhon_C%C3%B3rdoba_2022.jpg"
+        ]
       },
       {
         "id": "juan-camilo-cucho-hernandez",
@@ -1138,7 +1239,11 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Hernandez_Cucho_Columbus_Crew_Meet_the_Team_2022.jpg/500px-Hernandez_Cucho_Columbus_Crew_Meet_the_Team_2022.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Cucho_Hernandez_%28cropped%29.jpg/500px-Cucho_Hernandez_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "leandro-campaz",
@@ -1164,7 +1269,15 @@
         },
         "shirt_number_expected": 19,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Luis_Javier_Su%C3%A1rez_Charris.jpg/330px-Luis_Javier_Su%C3%A1rez_Charris.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Luis_Javier_Su%C3%A1rez_Charris.jpg/330px-Luis_Javier_Su%C3%A1rez_Charris.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Luis_Su%C3%A1rez_cropped.jpg/500px-Luis_Su%C3%A1rez_cropped.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Luis_Su%C3%A1rez_2.jpg/500px-Luis_Su%C3%A1rez_2.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/3/3b/Luis_Su%C3%A1rez_Miramontes.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/4/4d/Luis_Su%C3%A1rez_laughing.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Luis_Su%C3%A1rez_D%C3%ADaz.jpg/500px-Luis_Su%C3%A1rez_D%C3%ADaz.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/f/f9/Luis_Su%C3%A1rez_51744.jpg"
+        ]
       },
       {
         "id": "andres-gomez",
@@ -1175,7 +1288,15 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/7b/IMCF_vs._RSL_25_%28cropped%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/7b/IMCF_vs._RSL_25_%28cropped%29_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Carlos_G%C3%B3mez_on_August_3%2C_2008.jpg/500px-Carlos_G%C3%B3mez_on_August_3%2C_2008.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Carlos_G%C3%B3mez_2011.jpg/500px-Carlos_G%C3%B3mez_2011.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/6/65/Juan_Carlos_Gomez.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/d/d8/Jos%C3%A9_Carlos_G%C3%B3mez_Villamandos_%282014%29.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Carlos_G%C3%B3mez_on_September_27%2C_2013.jpg/500px-Carlos_G%C3%B3mez_on_September_27%2C_2013.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Carlos_G%C3%B3mez_on_August_25%2C_2015.jpg/500px-Carlos_G%C3%B3mez_on_August_25%2C_2015.jpg"
+        ]
       }
     ],
     "starting_xi": {
@@ -1294,7 +1415,23 @@
     },
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
-    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
+    "image_pool": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Jugadores_-_Colombia_vs_England.jpg/500px-Jugadores_-_Colombia_vs_England.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Colombia_vs_England.jpg/500px-Colombia_vs_England.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Colombia_vs_Brasil.jpg/500px-Colombia_vs_Brasil.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Colombia-Ecuador.JPG/500px-Colombia-Ecuador.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Seleccion_colombia_mujeres.jpg/500px-Seleccion_colombia_mujeres.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Colombia_Sub_17_Pascual_1.JPG/500px-Colombia_Sub_17_Pascual_1.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Colombia_Sub_17_Pascual_2.JPG/500px-Colombia_Sub_17_Pascual_2.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Colombia_Sub_17_Pascual_6.JPG/500px-Colombia_Sub_17_Pascual_6.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Colombia_Sub_17_Pascual_5.JPG/500px-Colombia_Sub_17_Pascual_5.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Colombia_Sub_17_Pascual_3.JPG/500px-Colombia_Sub_17_Pascual_3.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Colombia_Sub_17_Pascual_7.JPG/500px-Colombia_Sub_17_Pascual_7.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Colombia_Sub_17_Pascual_8.JPG/500px-Colombia_Sub_17_Pascual_8.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Colombia_Sub_17_Pascual_9.JPG/500px-Colombia_Sub_17_Pascual_9.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Colombia_Sub_17_Pascual_13.JPG/500px-Colombia_Sub_17_Pascual_13.JPG"
+    ]
   },
   "history": {
     "first_appearance": 1962,

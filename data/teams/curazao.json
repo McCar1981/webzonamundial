@@ -456,7 +456,11 @@
         },
         "shirt_number_expected": 1,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Room_Eloy_Columbus_Crew_SC_Meet_the_Team_2019.jpg/330px-Room_Eloy_Columbus_Crew_SC_Meet_the_Team_2019.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Room_Eloy_Columbus_Crew_SC_Meet_the_Team_2019.jpg/330px-Room_Eloy_Columbus_Crew_SC_Meet_the_Team_2019.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/a/a0/Eloy_Room.png",
+          "https://upload.wikimedia.org/wikipedia/commons/b/be/Eloy_Room.jpg"
+        ]
       },
       {
         "id": "tyrick-bodak",
@@ -663,7 +667,12 @@
         },
         "shirt_number_expected": 6,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Leandro_Bacuna.jpg/330px-Leandro_Bacuna.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Leandro_Bacuna.jpg/330px-Leandro_Bacuna.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/c/c1/Bacuna11.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/6/68/LeandroBacuna.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Leandro_Bacuna_Back_to_your_roots_Groningen.jpg/500px-Leandro_Bacuna_Back_to_your_roots_Groningen.jpg"
+        ]
       },
       {
         "id": "arjany-martha",
@@ -693,7 +702,10 @@
         },
         "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Tahith_Chong_%2838487929362%29.jpg/330px-Tahith_Chong_%2838487929362%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Tahith_Chong_%2838487929362%29.jpg/330px-Tahith_Chong_%2838487929362%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/George_Wilson%2C_D%27Mani_Bughail-Mellor_%26_Tahith_Chong_%2826743950469%29.jpg/500px-George_Wilson%2C_D%27Mani_Bughail-Mellor_%26_Tahith_Chong_%2826743950469%29.jpg"
+        ]
       },
       {
         "id": "kevin-felida",
@@ -723,7 +735,12 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/PSV_Eindhoven%2C_Teamcamp_Bad_Erlach%2C_July_2014_%28094%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/PSV_Eindhoven%2C_Teamcamp_Bad_Erlach%2C_July_2014_%28094%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/9/9f/Jurgen_Locadia.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/J%C3%BCrgen_Locadia_playing_for_FC_Cincinnati.jpg/500px-J%C3%BCrgen_Locadia_playing_for_FC_Cincinnati.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/J%C3%BCrgen_Locadia%2C_Persepolis_v_Havadar%2C_5_September_2022.jpg/500px-J%C3%BCrgen_Locadia%2C_Persepolis_v_Havadar%2C_5_September_2022.jpg"
+        ]
       },
       {
         "id": "jeremy-antonisse",
@@ -767,7 +784,10 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Tyrese_Noslin.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Tyrese_Noslin.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Tyrese_Noslin-1751620543.jpg/500px-Tyrese_Noslin-1751620543.jpg"
+        ]
       },
       {
         "id": "kenji-gorre",
@@ -782,7 +802,10 @@
         },
         "shirt_number_expected": 19,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Kenji_Gorr%C3%A9_%282015%29.jpg/330px-Kenji_Gorr%C3%A9_%282015%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Kenji_Gorr%C3%A9_%282015%29.jpg/330px-Kenji_Gorr%C3%A9_%282015%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/6/60/Kenji_Gorr%C3%A9_2023.jpg"
+        ]
       },
       {
         "id": "jearl-margaritha",
@@ -950,7 +973,18 @@
     },
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
-    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
+    "image_pool": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Dean_Mason_Montserrat.jpg/500px-Dean_Mason_Montserrat.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Schiphol_vertrek_Nederlands_elftal_naar_Indie%2C_Bestanddeelnr_906-6151.jpg/500px-Schiphol_vertrek_Nederlands_elftal_naar_Indie%2C_Bestanddeelnr_906-6151.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Schiphol_vertrek_Nederlands_elftal_naar_Indie%2C_Bestanddeelnr_906-6152.jpg/500px-Schiphol_vertrek_Nederlands_elftal_naar_Indie%2C_Bestanddeelnr_906-6152.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Schiphol_vertrek_Nederlands_elftal_naar_Indie%2C_Bestanddeelnr_906-6153.jpg/500px-Schiphol_vertrek_Nederlands_elftal_naar_Indie%2C_Bestanddeelnr_906-6153.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Remko_Bicentini_-_2020.jpg/500px-Remko_Bicentini_-_2020.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Selecci%C3%B3n_Argentina_Amistoso_marzo_2023_en_Santiago_Del_Estero_Estero_12.jpg/500px-Selecci%C3%B3n_Argentina_Amistoso_marzo_2023_en_Santiago_Del_Estero_Estero_12.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Selecci%C3%B3n_Argentina_Amistoso_marzo_2023_en_Santiago_Del_Estero_Estero_16.jpg/500px-Selecci%C3%B3n_Argentina_Amistoso_marzo_2023_en_Santiago_Del_Estero_Estero_16.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Selecci%C3%B3n_Argentina_Amistoso_marzo_2023_en_Santiago_Del_Estero_Estero_17.jpg/500px-Selecci%C3%B3n_Argentina_Amistoso_marzo_2023_en_Santiago_Del_Estero_Estero_17.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Selecci%C3%B3n_Argentina_Amistoso_marzo_2023_en_Santiago_Del_Estero_Estero_19.jpg/500px-Selecci%C3%B3n_Argentina_Amistoso_marzo_2023_en_Santiago_Del_Estero_Estero_19.jpg"
+    ]
   },
   "history": {
     "first_appearance": 2026,

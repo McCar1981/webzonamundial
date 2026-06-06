@@ -526,7 +526,10 @@
         },
         "shirt_number_expected": 12,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Mohammed_Al-Owais_2018.jpg/330px-Mohammed_Al-Owais_2018.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Mohammed_Al-Owais_2018.jpg/330px-Mohammed_Al-Owais_2018.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/1/18/Mohammed_Al-Owais.jpg"
+        ]
       },
       {
         "id": "ahmed-al-kassar",
@@ -610,7 +613,10 @@
         },
         "shirt_number_expected": 2,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Saudi_Arabia_v_Oman_%282%29_%28cropped%29.jpg/330px-Saudi_Arabia_v_Oman_%282%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Saudi_Arabia_v_Oman_%282%29_%28cropped%29.jpg/330px-Saudi_Arabia_v_Oman_%282%29_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/8/84/Saud_Abdulhamid_Clapping.png"
+        ]
       },
       {
         "id": "nawaf-bu-washl",
@@ -761,7 +767,10 @@
         },
         "shirt_number_expected": 17,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Group_photographs_of_Al_Hilal%2C_Al_Hilal_SFC_vs_Chelsea_F.C.%2C_9_February_2022_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Group_photographs_of_Al_Hilal%2C_Al_Hilal_SFC_vs_Chelsea_F.C.%2C_9_February_2022_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Hakim_Ziyech_%26_Mohamed_Kanno%2C_Al_Hilal_SFC_vs_Chelsea_F.C.%2C_9_February_2022.jpg/500px-Hakim_Ziyech_%26_Mohamed_Kanno%2C_Al_Hilal_SFC_vs_Chelsea_F.C.%2C_9_February_2022.jpg"
+        ]
       },
       {
         "id": "aiman-yahya",
@@ -802,7 +811,12 @@
         },
         "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Salem_Al-Dawsari_2018.jpg/330px-Salem_Al-Dawsari_2018.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Salem_Al-Dawsari_2018.jpg/330px-Salem_Al-Dawsari_2018.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/d/d0/Salem_Al-Dawsari.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Andreas_Christensen_%26_Salem_Al-Dawsari%2C_Al_Hilal_SFC_vs_Chelsea_F.C.%2C_9_February_2022.jpg/500px-Andreas_Christensen_%26_Salem_Al-Dawsari%2C_Al_Hilal_SFC_vs_Chelsea_F.C.%2C_9_February_2022.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/7/7e/C%C3%A9sar_Azpilicueta_%26_Salem_Al-Dawsari%2C_Al_Hilal_SFC_vs_Chelsea_F.C.%2C_9_February_2022.jpg"
+        ]
       },
       {
         "id": "saleh-al-shehri",
@@ -979,7 +993,23 @@
     "squad_announced": true,
     "squad_announced_status": "pending_official",
     "squad_announced_date": "2026-06-04",
-    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
+    "image_pool": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Iraq_national_football_team_wins_Asia_Cup_%28Edgeware_Road%29.jpg/500px-Iraq_national_football_team_wins_Asia_Cup_%28Edgeware_Road%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Iraq_national_football_team_wins_Asia_Cup_%28Edgeware_Road%29_2.jpg/500px-Iraq_national_football_team_wins_Asia_Cup_%28Edgeware_Road%29_2.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Iraq_national_football_team_wins_Asia_Cup_%28Edgeware_Road%29_3.jpg/500px-Iraq_national_football_team_wins_Asia_Cup_%28Edgeware_Road%29_3.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Asian_Cup_1984%2C_match_Saudi_Arabia_and_China.jpg/500px-Asian_Cup_1984%2C_match_Saudi_Arabia_and_China.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Saudi_Arabia_national_football_team_in_1984.jpg/500px-Saudi_Arabia_national_football_team_in_1984.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Saudi_football.jpg/500px-Saudi_football.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Sdm_4680.jpg/500px-Sdm_4680.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Sdm_4727.jpg/500px-Sdm_4727.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/8/85/Mohammad_Al-Sahlawi%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/0/0b/Omar_Hawsawi.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/d/d0/Abdullah_Al-Mayouf.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/9/90/Yasser_Al-Shahrani.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/1/11/HernanMaidana2018.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/KSA-EGY_%282%29.jpg/500px-KSA-EGY_%282%29.jpg"
+    ]
   },
   "history": {
     "first_appearance": 1994,

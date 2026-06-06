@@ -539,7 +539,10 @@
         },
         "shirt_number_expected": 23,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Jalal12.JPG/330px-Jalal12.JPG"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Jalal12.JPG/330px-Jalal12.JPG",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/7/70/Jalal_Hassan.jpg"
+        ]
       },
       {
         "id": "ahmed-basil",
@@ -579,7 +582,15 @@
         },
         "shirt_number_expected": 2,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/GAE_-_SC_Heerenveen_-Hussein_Ali.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/GAE_-_SC_Heerenveen_-Hussein_Ali.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Hussein-Ali_Montazeri_And_Ali_Khamenei.jpg/500px-Hussein-Ali_Montazeri_And_Ali_Khamenei.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/9/99/Hussein-Ali_Montazeri_in_evin_prison.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/5/56/Hussein-Ali_Montazeri_in_1957.png",
+          "https://upload.wikimedia.org/wikipedia/commons/5/56/Hussein-Ali_Montazeri_in_1955.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/4/46/Hussein-Ali_Montazeri_in_1966_as_prisoner.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/7/72/Hussein-Ali_Montazeri_in_1973.jpg"
+        ]
       },
       {
         "id": "zaid-tahseen",
@@ -633,7 +644,14 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8e/4822940_AE7I9740_-_Ahmed_Yahya.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8e/4822940_AE7I9740_-_Ahmed_Yahya.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Ahmed_Yahya_al-Dardiri_book_1939.jpg/500px-Ahmed_Yahya_al-Dardiri_book_1939.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Ahmed_Yahya_al-Dardiri_book_1926.jpg/500px-Ahmed_Yahya_al-Dardiri_book_1926.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Ahmed_Yahya_al-Dardiri_book2_1926.jpg/500px-Ahmed_Yahya_al-Dardiri_book2_1926.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/a/a9/Ahmed_Yahya_al-Dardiri_book_1950.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Ahmed_Yahya_al-Dardiri_al-Defaa_al-Watany_al-Masry_1923_Berlin.jpg/500px-Ahmed_Yahya_al-Dardiri_al-Defaa_al-Watany_al-Masry_1923_Berlin.jpg"
+        ]
       },
       {
         "id": "merchas-doski",
@@ -719,7 +737,11 @@
         },
         "shirt_number_expected": 18,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Zidane_Iqbal_debut.jpg/330px-Zidane_Iqbal_debut.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Zidane_Iqbal_debut.jpg/330px-Zidane_Iqbal_debut.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/9/96/Zidane_Iqbal_debut_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Zidane_Iqbal_MOTM.jpg/500px-Zidane_Iqbal_MOTM.jpg"
+        ]
       },
       {
         "id": "amir-al-ammari",
@@ -734,7 +756,11 @@
         },
         "shirt_number_expected": 8,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Amir_Al-Ammari_%28Halmstad_vs_Degerfors%2C_7_October_2023%29.jpg/330px-Amir_Al-Ammari_%28Halmstad_vs_Degerfors%2C_7_October_2023%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Amir_Al-Ammari_%28Halmstad_vs_Degerfors%2C_7_October_2023%29.jpg/330px-Amir_Al-Ammari_%28Halmstad_vs_Degerfors%2C_7_October_2023%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Hammarby-G%C3%B6teborg_2022-07-11_Amir_Al-Ammari.jpg/500px-Hammarby-G%C3%B6teborg_2022-07-11_Amir_Al-Ammari.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Amir_Al-Ammari_Cracovia.jpg/500px-Amir_Al-Ammari_Cracovia.jpg"
+        ]
       },
       {
         "id": "kevin-yakob",
@@ -749,7 +775,10 @@
         },
         "shirt_number_expected": 19,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Kevin_Enkido_Yakob2.jpg/330px-Kevin_Enkido_Yakob2.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Kevin_Enkido_Yakob2.jpg/330px-Kevin_Enkido_Yakob2.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Kevin_Enkido_Yakob.jpg/500px-Kevin_Enkido_Yakob.jpg"
+        ]
       },
       {
         "id": "aimar-sher",
@@ -792,7 +821,11 @@
         },
         "shirt_number_expected": 7,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Ali_Al-Hamadi.jpg/330px-Ali_Al-Hamadi.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Ali_Al-Hamadi.jpg/330px-Ali_Al-Hamadi.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Ali_Al-Hamadi_170224.jpg/500px-Ali_Al-Hamadi_170224.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Ali_Al-Hamadi_141224.jpg/500px-Ali_Al-Hamadi_141224.jpg"
+        ]
       },
       {
         "id": "mohanad-ali",
@@ -807,7 +840,12 @@
         },
         "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Mohanad_Ali.jpg/330px-Mohanad_Ali.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Mohanad_Ali.jpg/330px-Mohanad_Ali.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Untitled_-_panoramio_-_mohanad_ali.jpg/500px-Untitled_-_panoramio_-_mohanad_ali.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Untitled_-_panoramio_-_mohanad_ali_%281%29.jpg/500px-Untitled_-_panoramio_-_mohanad_ali_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Korelace_Kauzalita_Meme_2.jpg/500px-Korelace_Kauzalita_Meme_2.jpg"
+        ]
       },
       {
         "id": "ahmed-qasim",
@@ -1000,7 +1038,23 @@
     "squad_announced": true,
     "squad_announced_status": "pending_official",
     "squad_announced_date": "2026-06-04",
-    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
+    "image_pool": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Asian_Cup_Australia-Iraq_I.jpg/500px-Asian_Cup_Australia-Iraq_I.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Asian_Cup_Australia-Iraq_II.jpg/500px-Asian_Cup_Australia-Iraq_II.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Asian_Cup_Australia-Iraq_III.jpg/500px-Asian_Cup_Australia-Iraq_III.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Iraq_national_football_team_wins_Asia_Cup_%28Edgeware_Road%29.jpg/500px-Iraq_national_football_team_wins_Asia_Cup_%28Edgeware_Road%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Iraq_national_football_team_wins_Asia_Cup_%28Edgeware_Road%29_2.jpg/500px-Iraq_national_football_team_wins_Asia_Cup_%28Edgeware_Road%29_2.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Iraq_national_football_team_wins_Asia_Cup_%28Edgeware_Road%29_3.jpg/500px-Iraq_national_football_team_wins_Asia_Cup_%28Edgeware_Road%29_3.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Army_National_Guardsmen_in_Iraq_before_OSU_vs_UM_game.jpg/500px-Army_National_Guardsmen_in_Iraq_before_OSU_vs_UM_game.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Olyroos-Iraq_support.jpg/500px-Olyroos-Iraq_support.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Olyroos-Iraq.jpg/500px-Olyroos-Iraq.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Iraq_football_team.jpg/500px-Iraq_football_team.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Oman_football_team_2012.jpg/500px-Oman_football_team_2012.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Iraq_national_football_team_2011.jpg/500px-Iraq_national_football_team_2011.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Iraq_men%27s_football_team_2016_Olympics.jpg/500px-Iraq_men%27s_football_team_2016_Olympics.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Brazil_men%27s_football_team_2016_Olympics.jpg/500px-Brazil_men%27s_football_team_2016_Olympics.jpg"
+    ]
   },
   "history": {
     "first_appearance": 1986,

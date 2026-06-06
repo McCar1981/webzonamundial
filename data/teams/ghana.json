@@ -559,7 +559,13 @@
           "league": "La Liga"
         },
         "shirt_number_expected": 4,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/d/df/Abdul-Qadir_Abdul-Mumin.png",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Illustration_of_Sultan_Abdul_Mumin.jpg/500px-Illustration_of_Sultan_Abdul_Mumin.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Meet_Team_Buckley-_Abdul_Mumin_Abdul_Rahman_%286961601%29.jpg/500px-Meet_Team_Buckley-_Abdul_Mumin_Abdul_Rahman_%286961601%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Sheikh_Abdul_Mumin_at_a_wedding_grounds.jpg/500px-Sheikh_Abdul_Mumin_at_a_wedding_grounds.jpg"
+        ]
       },
       {
         "id": "gideon-mensah",
@@ -589,7 +595,12 @@
         },
         "shirt_number_expected": 12,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/12AbdulRahmanBaba.jpg/330px-12AbdulRahmanBaba.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/12AbdulRahmanBaba.jpg/330px-12AbdulRahmanBaba.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Abdul_Rahman_Baba.JPG/500px-Abdul_Rahman_Baba.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Baba_Rahman_20160416.jpg/500px-Baba_Rahman_20160416.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/2018_Baba_Rahman_%28cropped%29.jpg/500px-2018_Baba_Rahman_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "jerome-opoku",
@@ -615,7 +626,10 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/KOJO_OPPONG_NKRUMAH.jpg/500px-KOJO_OPPONG_NKRUMAH.jpg"
+        ]
       },
       {
         "id": "derrick-luckassen",
@@ -669,7 +683,11 @@
         },
         "shirt_number_expected": 5,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/42/ATL-Madrid-Lokomotiv001-Thomas_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/42/ATL-Madrid-Lokomotiv001-Thomas_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Thomas_Partey.jpg/500px-Thomas_Partey.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Thomas_Partey_2019.jpg/500px-Thomas_Partey_2019.jpg"
+        ]
       },
       {
         "id": "kwasi-sibo",
@@ -697,7 +715,15 @@
         },
         "shirt_number_expected": 11,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Antoine_Semenyo_2026.png/330px-Antoine_Semenyo_2026.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Antoine_Semenyo_2026.png/330px-Antoine_Semenyo_2026.png",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Antoine_Semenyo_2023.jpg/500px-Antoine_Semenyo_2023.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Eli_Junior_Kroupi_and_Antoine_Semenyo_27122025_%281%29.jpg/500px-Eli_Junior_Kroupi_and_Antoine_Semenyo_27122025_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Alex_Scott_and_Antoine_Semenyo_27122025_%281%29.jpg/500px-Alex_Scott_and_Antoine_Semenyo_27122025_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Yehor_Yarmolyuk%2C_Antoine_Semenyo_and_Keane_Lewis-Potter_27122025_%281%29.jpg/500px-Yehor_Yarmolyuk%2C_Antoine_Semenyo_and_Keane_Lewis-Potter_27122025_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Yehor_Yarmolyuk%2C_Antoine_Semenyo_and_Keane_Lewis-Potter_27122025_%282%29.jpg/500px-Yehor_Yarmolyuk%2C_Antoine_Semenyo_and_Keane_Lewis-Potter_27122025_%282%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Evanilson%2C_Rico_Henry_and_Antoine_Semenyo_27122025_%281%29.jpg/500px-Evanilson%2C_Rico_Henry_and_Antoine_Semenyo_27122025_%281%29.jpg"
+        ]
       },
       {
         "id": "elisha-owusu",
@@ -755,7 +781,15 @@
         },
         "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Jordan_Ayew_24082024_%282%29.jpg/330px-Jordan_Ayew_24082024_%282%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Jordan_Ayew_24082024_%282%29.jpg/330px-Jordan_Ayew_24082024_%282%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/0/09/Jordan_Ayew.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/5/59/Jordan_Ayew_-_TdC_2011.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/OM_-_FC_Porto_-_Valais_Cup_2013_-_Jordan_Ayew_2.jpg/500px-OM_-_FC_Porto_-_Valais_Cup_2013_-_Jordan_Ayew_2.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/OM_-_FC_Porto_-_Valais_Cup_2013_-_Jordan_Ayew_%28cropped%29.jpg/500px-OM_-_FC_Porto_-_Valais_Cup_2013_-_Jordan_Ayew_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/1/1e/Jordan_Ayew_2013.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/8/8a/Jordan_Ayew_2017.jpg"
+        ]
       },
       {
         "id": "brandon-thomas-asante",
@@ -964,7 +998,23 @@
     "squad_announced": true,
     "squad_announced_status": "pending_official",
     "squad_announced_date": "2026-06-04",
-    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
+    "image_pool": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Ghana_national_team_u-21.JPG/500px-Ghana_national_team_u-21.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Ghana_football_team_1960s.jpg/500px-Ghana_football_team_1960s.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Ghana_national_football_team.jpg/500px-Ghana_national_football_team.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Sulley_Muntari_%28Ghana_national_football_team%29.jpg/500px-Sulley_Muntari_%28Ghana_national_football_team%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/e/e7/Sulley_Muntari_%28Ghanaian_national_football_team%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Emmanuel_Agyemang-Badu_%28Ghana_national_football_team_vs._England_national_football_team%29.jpg/500px-Emmanuel_Agyemang-Badu_%28Ghana_national_football_team_vs._England_national_football_team%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Ghana_national_football_team_fans_%28Black_Stars_fans%29.jpg/500px-Ghana_national_football_team_fans_%28Black_Stars_fans%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Black_Stars_fans_%E2%80%93_Ghana_national_football_team_fans_%282010_FIFA_World_Cup%29.jpg/500px-Black_Stars_fans_%E2%80%93_Ghana_national_football_team_fans_%282010_FIFA_World_Cup%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Black_Stars_fans_%28Ghana_national_football_team_fans%29_%E2%80%93_2010_FIFA_World_Cup.jpg/500px-Black_Stars_fans_%28Ghana_national_football_team_fans%29_%E2%80%93_2010_FIFA_World_Cup.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Black_Stars_fans_%E2%80%93_Ghana_national_football_team_fans_goal_celebration_%282010_FIFA_World_Cup%29.jpg/500px-Black_Stars_fans_%E2%80%93_Ghana_national_football_team_fans_goal_celebration_%282010_FIFA_World_Cup%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Black_Stars_on_the_Road_1960s_%28Ghana_national_football_team%29.jpg/500px-Black_Stars_on_the_Road_1960s_%28Ghana_national_football_team%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Black_Stars_Goal_Celebration_%28Ghana_national_football_team%29.jpg/500px-Black_Stars_Goal_Celebration_%28Ghana_national_football_team%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Black_Stars_Training_%28Ghana_national_football_team%29.jpg/500px-Black_Stars_Training_%28Ghana_national_football_team%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Ghana_national_football_team_fan_%28Black_Stars_fan%29.jpg/500px-Ghana_national_football_team_fan_%28Black_Stars_fan%29.jpg"
+    ]
   },
   "history": {
     "first_appearance": 2006,

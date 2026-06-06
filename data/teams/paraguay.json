@@ -704,7 +704,10 @@
         },
         "shirt_number_expected": 1,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Gatito_Fernandez.jpg/330px-Gatito_Fernandez.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Gatito_Fernandez.jpg/330px-Gatito_Fernandez.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/4/48/Gatito_Fern%C3%A1ndez_%28Cerro_Porte%C3%B1o%29.png"
+        ]
       },
       {
         "id": "orlando-gill",
@@ -743,7 +746,10 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Carlos_Victor_Velazquez_.jpg/500px-Carlos_Victor_Velazquez_.jpg"
+        ]
       },
       {
         "id": "omar-alderete",
@@ -758,7 +764,11 @@
         },
         "shirt_number_expected": 3,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Omar_Alderete_2019_%28cropped%29.jpg/330px-Omar_Alderete_2019_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Omar_Alderete_2019_%28cropped%29.jpg/330px-Omar_Alderete_2019_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Omar_Alderete_2019.jpg/500px-Omar_Alderete_2019.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Omar_Alderete_2021.jpg/500px-Omar_Alderete_2021.jpg"
+        ]
       },
       {
         "id": "juan-caceres",
@@ -786,7 +796,12 @@
         },
         "shirt_number_expected": 13,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Fabi%C3%A1n_Balbuena_2021.jpg/330px-Fabi%C3%A1n_Balbuena_2021.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Fabi%C3%A1n_Balbuena_2021.jpg/330px-Fabi%C3%A1n_Balbuena_2021.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/5/5e/Fabi%C3%A1n_Balbuena.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Fabi%C3%A1n_Balbuena_20180612.jpg/500px-Fabi%C3%A1n_Balbuena_20180612.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Fabi%C3%A1n_Balbuena_2022.jpg/500px-Fabi%C3%A1n_Balbuena_2022.jpg"
+        ]
       },
       {
         "id": "junior-alonso",
@@ -801,7 +816,10 @@
         },
         "shirt_number_expected": 23,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/J%C3%BAnior_Alonso_20180612_%28cropped%29.jpg/330px-J%C3%BAnior_Alonso_20180612_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/J%C3%BAnior_Alonso_20180612_%28cropped%29.jpg/330px-J%C3%BAnior_Alonso_20180612_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/J%C3%BAnior_Alonso_20180612.jpg/500px-J%C3%BAnior_Alonso_20180612.jpg"
+        ]
       },
       {
         "id": "jose-canale",
@@ -829,7 +847,15 @@
         },
         "shirt_number_expected": 5,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Gustavo-Gomez-Palmeiras-Athletico-jul-2022-2.jpg/330px-Gustavo-Gomez-Palmeiras-Athletico-jul-2022-2.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Gustavo-Gomez-Palmeiras-Athletico-jul-2022-2.jpg/330px-Gustavo-Gomez-Palmeiras-Athletico-jul-2022-2.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/1/11/Gustavo-gomez-palmeiras-wikipedia.png",
+          "https://upload.wikimedia.org/wikipedia/commons/b/bb/Gustavo-gomez-palmeiras-wikipedia_%28cropped%29.png",
+          "https://upload.wikimedia.org/wikipedia/commons/3/36/Gustavo-gomez-palmeiras-2022.png",
+          "https://upload.wikimedia.org/wikipedia/commons/3/38/Gustavo-Gomez-Palmeiras-abr2022.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Gustavo-Gomez-Palmeiras-02-jul-2022.png/500px-Gustavo-Gomez-Palmeiras-02-jul-2022.png",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Gustavo-Gomez-Palmeiras-Athletico-jul-2022.jpg/500px-Gustavo-Gomez-Palmeiras-Athletico-jul-2022.jpg"
+        ]
       },
       {
         "id": "alexandro-maidana",
@@ -857,7 +883,15 @@
         },
         "shirt_number_expected": 11,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Ramon-sosa-palmeiras-sport-ago-25-4_%28cropped%29.jpg/330px-Ramon-sosa-palmeiras-sport-ago-25-4_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Ramon-sosa-palmeiras-sport-ago-25-4_%28cropped%29.jpg/330px-Ramon-sosa-palmeiras-sport-ago-25-4_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Apodaca%2C_Ramon_Sosa_-_8-3-1931_-_DPLA_-_93da57d5a9b687fd4670303787d3fc8d.jpg/500px-Apodaca%2C_Ramon_Sosa_-_8-3-1931_-_DPLA_-_93da57d5a9b687fd4670303787d3fc8d.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Ramon-sosa-palmeiras-ago2025.jpg/500px-Ramon-sosa-palmeiras-ago2025.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Ramon-sosa-palmeiras-ago2025_%28cropped%29.jpg/500px-Ramon-sosa-palmeiras-ago2025_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Ramon-sosa-palmeiras-sport-ago-25-5.jpg/500px-Ramon-sosa-palmeiras-sport-ago-25-5.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Ramon-sosa-palmeiras-sport-ago-25-3.jpg/500px-Ramon-sosa-palmeiras-sport-ago-25-3.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Ramon-sosa-palmeiras-sport-ago-25-4.jpg/500px-Ramon-sosa-palmeiras-sport-ago-25-4.jpg"
+        ]
       },
       {
         "id": "diego-gomez",
@@ -872,7 +906,12 @@
         },
         "shirt_number_expected": 14,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Inter_Miami_vs_Real_Salt_Lake_02_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Inter_Miami_vs_Real_Salt_Lake_02_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Diego_G%C3%B3mez_Cabrera.jpg/500px-Diego_G%C3%B3mez_Cabrera.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Diego_Gomez_2023.jpg/500px-Diego_Gomez_2023.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Diego_Gomez_2023_%28cropped%29.jpg/500px-Diego_Gomez_2023_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "miguel-almiron",
@@ -887,7 +926,15 @@
         },
         "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Miguel_Almir%C3%B3n_2021-08-07_1_%28cropped%29.jpg/330px-Miguel_Almir%C3%B3n_2021-08-07_1_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Miguel_Almir%C3%B3n_2021-08-07_1_%28cropped%29.jpg/330px-Miguel_Almir%C3%B3n_2021-08-07_1_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/2018-08-19_-_Atlanta_United_-_Miguel_Almir%C3%B3n.jpg/500px-2018-08-19_-_Atlanta_United_-_Miguel_Almir%C3%B3n.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Miguel_Almir%C3%B3n_playing_for_Atlanta_United_on_June_2%2C_2018.jpg/500px-Miguel_Almir%C3%B3n_playing_for_Atlanta_United_on_June_2%2C_2018.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Miguel_Almir%C3%B3n_2021-08-07_1.jpg/500px-Miguel_Almir%C3%B3n_2021-08-07_1.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Miguel_Almir%C3%B3n_Red_Bull_Atlanta_5.31.25-069.jpg/500px-Miguel_Almir%C3%B3n_Red_Bull_Atlanta_5.31.25-069.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Miguel_Almir%C3%B3n_Red_Bull_Atlanta_5.31.25-076.jpg/500px-Miguel_Almir%C3%B3n_Red_Bull_Atlanta_5.31.25-076.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Miguel_Almir%C3%B3n_Red_Bull_Atlanta_5.31.25-106.jpg/500px-Miguel_Almir%C3%B3n_Red_Bull_Atlanta_5.31.25-106.jpg"
+        ]
       },
       {
         "id": "mauricio",
@@ -900,7 +947,15 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Mauricio-palmeiras-sport-ago-25_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Mauricio-palmeiras-sport-ago-25_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Organiza%C3%A7%C3%A3o_Campus_Party_e_Maur%C3%ADcio_Meirelles.jpg/500px-Organiza%C3%A7%C3%A3o_Campus_Party_e_Maur%C3%ADcio_Meirelles.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Maur%C3%ADcio_Assump%C3%A7%C3%A3o.jpg/500px-Maur%C3%ADcio_Assump%C3%A7%C3%A3o.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Maur%C3%ADcio_Meirelles.JPG/500px-Maur%C3%ADcio_Meirelles.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Maur%C3%ADcio_Dziedricki.jpg/500px-Maur%C3%ADcio_Dziedricki.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Maur%C3%ADcio_Zenit.jpg/500px-Maur%C3%ADcio_Zenit.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Maur%C3%ADcio_Galiotte_%28cropped%29.jpg/500px-Maur%C3%ADcio_Galiotte_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "andres-cubas",
@@ -942,7 +997,13 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Dynamo_vs_Real_Salt_Lake_%28Mar_2025%29_16_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Dynamo_vs_Real_Salt_Lake_%28Mar_2025%29_16_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Braian_Ojeda.jpg/500px-Braian_Ojeda.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Iv%C3%A1n_Angulo%2C_Tiago%2C_and_Braian_Ojeda.jpg/500px-Iv%C3%A1n_Angulo%2C_Tiago%2C_and_Braian_Ojeda.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Braian_Ojeda_1.jpg/500px-Braian_Ojeda_1.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Griffin_Dorsey%2C_David_Brekalo%2C_and_Braian_Ojeda.jpg/500px-Griffin_Dorsey%2C_David_Brekalo%2C_and_Braian_Ojeda.jpg"
+        ]
       },
       {
         "id": "matias-galarza-fonda",
@@ -985,7 +1046,13 @@
         },
         "shirt_number_expected": 9,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Antonio_Sanabria%2C_2025_%28cropped%29.jpg/330px-Antonio_Sanabria%2C_2025_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Antonio_Sanabria%2C_2025_%28cropped%29.jpg/330px-Antonio_Sanabria%2C_2025_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Toni_Sanabria.jpg/500px-Toni_Sanabria.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Antonio_Sanabria%2C_2023.jpg/500px-Antonio_Sanabria%2C_2023.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Antonio_Sanabria%2C_2023_%28cropped%29.jpg/500px-Antonio_Sanabria%2C_2023_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Antonio_Sanabria%2C_2025.jpg/500px-Antonio_Sanabria%2C_2025.jpg"
+        ]
       },
       {
         "id": "alejandro-romero",
@@ -1056,7 +1123,10 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/47/Isidro-Pitta-Juventude-Corinthians-jun-2022.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/47/Isidro-Pitta-Juventude-Corinthians-jun-2022.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Brasileir%C3%A3o_A-_Corinthians_2_x_0_Juventude_-_Isidro_Pitta.jpg/500px-Brasileir%C3%A3o_A-_Corinthians_2_x_0_Juventude_-_Isidro_Pitta.jpg"
+        ]
       }
     ],
     "starting_xi": {
@@ -1177,7 +1247,19 @@
     "squad_announced": true,
     "squad_announced_status": "pending_official",
     "squad_announced_date": "2026-06-04",
-    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
+    "image_pool": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Paraguay_1929.JPG/500px-Paraguay_1929.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Paraguay_-_Honduras_-_Amistoso_junio2015_1.jpg/500px-Paraguay_-_Honduras_-_Amistoso_junio2015_1.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Paraguay_-_Honduras_-_Amistoso_junio2015_2.jpg/500px-Paraguay_-_Honduras_-_Amistoso_junio2015_2.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Usa_team_v_paraguay.jpg/500px-Usa_team_v_paraguay.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Jugadores_paraguay_peru_juntos.jpg/500px-Jugadores_paraguay_peru_juntos.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Brazil_vs_Paraguay%2C_2019_Copa_America_quarterfinal.png/500px-Brazil_vs_Paraguay%2C_2019_Copa_America_quarterfinal.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Robert_Harrison.jpg/500px-Robert_Harrison.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Selecci%C3%B3n_paraguaya_que_venci%C3%B3_2_a_0_a_Argentina_por_la_Copa_Chevallier_Boutell_de_1923.png/500px-Selecci%C3%B3n_paraguaya_que_venci%C3%B3_2_a_0_a_Argentina_por_la_Copa_Chevallier_Boutell_de_1923.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Paraguay_campeona_2025.jpg/500px-Paraguay_campeona_2025.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Racing_Club_vs._Cruzeiro_-_CONMEBOL_Sudamericana_2024.jpg/500px-Racing_Club_vs._Cruzeiro_-_CONMEBOL_Sudamericana_2024.jpg"
+    ]
   },
   "history": {
     "first_appearance": 1930,

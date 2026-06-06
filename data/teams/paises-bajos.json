@@ -733,7 +733,10 @@
         },
         "shirt_number_expected": 22,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Edison_ndreca_inter_egnati_%28cropped_Denzel_Dumfries%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Edison_ndreca_inter_egnati_%28cropped_Denzel_Dumfries%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/d/d5/%D0%A3%D0%BA%D1%80%D0%B0%D0%B8%D0%BD%D0%B0_U-21_-_%D0%93%D0%BE%D0%BB%D0%BB%D0%B0%D0%BD%D0%B4%D0%B8%D1%8F_U-21_1-1._10_%D0%BE%D0%BA%D1%82%D1%8F%D0%B1%D1%80%D1%8F_2017_%D0%B3%D0%BE%D0%B4%D0%B0_%E2%80%94_802886_%28Denzel_Dumfries%29.jpg"
+        ]
       },
       {
         "id": "jorrel-hato",
@@ -1079,7 +1082,23 @@
     "squad_announced": true,
     "squad_announced_status": "pending_official",
     "squad_announced_date": "2026-06-04",
-    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
+    "image_pool": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Training_Netherlands_in_Freiburg.JPG/500px-Training_Netherlands_in_Freiburg.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/9/91/Nederlands_voetbalelftal%2C_Nederland-Belgi%C3%AB%2C_3_april_1955.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/American_football_team_-_Dutch_National_players.jpg/500px-American_football_team_-_Dutch_National_players.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Belgian_national_football_team_1901.jpg/500px-Belgian_national_football_team_1901.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Nike_Holland%2C_Brazil_%26_Portugal_national_soccer_team_scarves.JPG/500px-Nike_Holland%2C_Brazil_%26_Portugal_national_soccer_team_scarves.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Tuvalu_national_football_team_%28team_picture%2C_2011%29.jpg/500px-Tuvalu_national_football_team_%28team_picture%2C_2011%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Netherlands_Football_Team_training_in_Krak%C3%B3w_2012_03.JPG/500px-Netherlands_Football_Team_training_in_Krak%C3%B3w_2012_03.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Netherlands_Football_Team_training_in_Krak%C3%B3w_2012_01.JPG/500px-Netherlands_Football_Team_training_in_Krak%C3%B3w_2012_01.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Netherlands_Football_Team_training_in_Krak%C3%B3w_2012_02.JPG/500px-Netherlands_Football_Team_training_in_Krak%C3%B3w_2012_02.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Netherlands_Football_Team_training_in_Krak%C3%B3w_2012_04.JPG/500px-Netherlands_Football_Team_training_in_Krak%C3%B3w_2012_04.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Netherlands_national_football_team_training_%2815300659767%29.jpg/500px-Netherlands_national_football_team_training_%2815300659767%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Netherlands_womens_national_football_team_May_2014.jpg/500px-Netherlands_womens_national_football_team_May_2014.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Nederlands_voetbalelftal_%2830-05-1946%29.png/500px-Nederlands_voetbalelftal_%2830-05-1946%29.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Nederlands_voetbalelftal_%2807-04-1947%29.png/500px-Nederlands_voetbalelftal_%2807-04-1947%29.png"
+    ]
   },
   "history": {
     "first_appearance": 1934,

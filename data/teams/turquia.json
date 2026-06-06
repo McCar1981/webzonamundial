@@ -551,7 +551,12 @@
         },
         "shirt_number_expected": 12,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Altay_Bayindir.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Altay_Bayindir.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Altay_Bay%C4%B1nd%C4%B1r_%282021-22_S%C3%BCper_Lig%29_-_Resim1.png/500px-Altay_Bay%C4%B1nd%C4%B1r_%282021-22_S%C3%BCper_Lig%29_-_Resim1.png",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Miguel_Crespo_ve_Altay_Bay%C4%B1nd%C4%B1r_%282021-22_S%C3%BCper_Lig%29.png/500px-Miguel_Crespo_ve_Altay_Bay%C4%B1nd%C4%B1r_%282021-22_S%C3%BCper_Lig%29.png",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Altay_Bay%C4%B1nd%C4%B1r_%282021-22_S%C3%BCper_Lig%29_-_Resim2.png/500px-Altay_Bay%C4%B1nd%C4%B1r_%282021-22_S%C3%BCper_Lig%29_-_Resim2.png"
+        ]
       },
       {
         "id": "ugurcan-cakir",
@@ -802,7 +807,10 @@
         },
         "shirt_number_expected": 17,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Derbide_Fenerbah%C3%A7e_Yedek_Oyuncu_Arda_G%C3%BCler_%282021-22_S%C3%BCper_Lig_-_Cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Derbide_Fenerbah%C3%A7e_Yedek_Oyuncu_Arda_G%C3%BCler_%282021-22_S%C3%BCper_Lig_-_Cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Arda_G%C3%BCler_%282021-22_S%C3%BCper_Lig%29_-_Resim3_%28cropped%29.png/500px-Arda_G%C3%BCler_%282021-22_S%C3%BCper_Lig%29_-_Resim3_%28cropped%29.png"
+        ]
       },
       {
         "id": "deniz-gul",
@@ -846,7 +854,11 @@
         },
         "shirt_number_expected": 16,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/%C4%B0rfan_Can_Kahveci_%282021-22_S%C3%BCper_Lig%29_-_Resim2.png/330px-%C4%B0rfan_Can_Kahveci_%282021-22_S%C3%BCper_Lig%29_-_Resim2.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/%C4%B0rfan_Can_Kahveci_%282021-22_S%C3%BCper_Lig%29_-_Resim2.png/330px-%C4%B0rfan_Can_Kahveci_%282021-22_S%C3%BCper_Lig%29_-_Resim2.png",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/%C4%B0rfan_Can_Kahveci_71_Kas%C4%B1mpa%C5%9Fa_SK_20260130_%281%29.jpg/500px-%C4%B0rfan_Can_Kahveci_71_Kas%C4%B1mpa%C5%9Fa_SK_20260130_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/%C4%B0rfan_Can_Kahveci_71_Kas%C4%B1mpa%C5%9Fa_SK_20260130_%282%29.jpg/500px-%C4%B0rfan_Can_Kahveci_71_Kas%C4%B1mpa%C5%9Fa_SK_20260130_%282%29.jpg"
+        ]
       },
       {
         "id": "yunus-akgun",
@@ -1024,7 +1036,23 @@
     "squad_announced": true,
     "squad_announced_status": "pending_official",
     "squad_announced_date": "2026-06-04",
-    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
+    "image_pool": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/T%C3%BCrkiye_Mill%C3%AE_Futbol_Tak%C4%B1m%C4%B1_Portal%C4%B1.png/500px-T%C3%BCrkiye_Mill%C3%AE_Futbol_Tak%C4%B1m%C4%B1_Portal%C4%B1.png",
+      "https://upload.wikimedia.org/wikipedia/commons/c/cf/Turkey_1923.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Tuerkische_Fu%C3%9Fballnationalmannschaft_2011-09-06_%2801%29.jpg/500px-Tuerkische_Fu%C3%9Fballnationalmannschaft_2011-09-06_%2801%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Servet_%C3%87etin_Turkey.jpg/500px-Servet_%C3%87etin_Turkey.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Egypt-Turkey_1928_Summer_Olympics.jpg/500px-Egypt-Turkey_1928_Summer_Olympics.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/1/15/Ilkmac1923.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/3/3d/Turkiyeromanya.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Turgay_%C5%9Eeren_%28left%29_and_Cor_van_der_Hart_in_4_May_1958.jpg/500px-Turgay_%C5%9Eeren_%28left%29_and_Cor_van_der_Hart_in_4_May_1958.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/0/05/First_ever_national_game.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Greece_vs_Turkey%2C_17_November_2015_%280-3%29.jpg/500px-Greece_vs_Turkey%2C_17_November_2015_%280-3%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Greece_vs_Turkey_%280-3%29%2C_17_November_2015.jpg/500px-Greece_vs_Turkey_%280-3%29%2C_17_November_2015.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Greece_vs_Turkey_%280-3%29%2C_17_November_2015%2C_3.jpg/500px-Greece_vs_Turkey_%280-3%29%2C_17_November_2015%2C_3.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/AUT_vs._TUR_2016-03-29_%28001%29.jpg/500px-AUT_vs._TUR_2016-03-29_%28001%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/AUT_vs._TUR_2016-03-29_%28215%29.jpg/500px-AUT_vs._TUR_2016-03-29_%28215%29.jpg"
+    ]
   },
   "history": {
     "first_appearance": 1954,

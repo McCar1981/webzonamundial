@@ -517,7 +517,15 @@
         },
         "shirt_number_expected": 23,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Abduvohid_Nematov_%28cropped%29.jpg/330px-Abduvohid_Nematov_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Abduvohid_Nematov_%28cropped%29.jpg/330px-Abduvohid_Nematov_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Abduvohid_Nematov.jpg/500px-Abduvohid_Nematov.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Abduvohid_Nematov_2_%28cropped%29.jpg/500px-Abduvohid_Nematov_2_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Abduvohid_Nematov_2.jpg/500px-Abduvohid_Nematov_2.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Abduvohid_Nematov_4.jpg/500px-Abduvohid_Nematov_4.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Abduvohid_Nematov_5.jpg/500px-Abduvohid_Nematov_5.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Abduvohid_Nematov_3.jpg/500px-Abduvohid_Nematov_3.jpg"
+        ]
       },
       {
         "id": "botirali-ergashev",
@@ -545,7 +553,12 @@
         },
         "shirt_number_expected": 4,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/53/Abdukodir_Khusanov_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/53/Abdukodir_Khusanov_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Khusanov_ASSE_RCL_2425.jpg/500px-Khusanov_ASSE_RCL_2425.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Abdukodir_Khusanov%27s_autograph.jpg/500px-Abdukodir_Khusanov%27s_autograph.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/0/0d/Abdukodir_Khusanov.jpg"
+        ]
       },
       {
         "id": "khojiakbar-alijonov",
@@ -573,7 +586,11 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Farrukh_Sayfiev1.jpg/500px-Farrukh_Sayfiev1.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Farrukh_Sayfiev_01.jpg/500px-Farrukh_Sayfiev_01.jpg"
+        ]
       },
       {
         "id": "rustam-ashurmatov",
@@ -588,7 +605,11 @@
         },
         "shirt_number_expected": 15,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Rustamjon_Ashurmatov_%28cropped%29.jpg/330px-Rustamjon_Ashurmatov_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Rustamjon_Ashurmatov_%28cropped%29.jpg/330px-Rustamjon_Ashurmatov_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Rustamjon_Ashurmatov.jpg/500px-Rustamjon_Ashurmatov.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Rustam_Ashurmatov_%28cropped%29.jpg/500px-Rustam_Ashurmatov_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "sherzod-nasrullaev",
@@ -603,7 +624,10 @@
         },
         "shirt_number_expected": 3,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Sherzod_Nasrullayev.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Sherzod_Nasrullayev.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Sherzod_Nasrullaev.jpg/500px-Sherzod_Nasrullaev.jpg"
+        ]
       },
       {
         "id": "umarbek-eshmurodov",
@@ -617,7 +641,15 @@
           "league": "Super League uzbeka"
         },
         "shirt_number_expected": 5,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/f/fb/Umar_Eshmurodov.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Umar_Eshmurodov_2.jpg/500px-Umar_Eshmurodov_2.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Umar_Eshmurodov_4.jpg/500px-Umar_Eshmurodov_4.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Umar_Eshmurodov_3.jpg/500px-Umar_Eshmurodov_3.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Umar_Eshmurodov_5.jpg/500px-Umar_Eshmurodov_5.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Umar_Eshmurodov_6.jpg/500px-Umar_Eshmurodov_6.jpg"
+        ]
       },
       {
         "id": "abdulla-abdullaev",
@@ -685,7 +717,15 @@
         },
         "shirt_number_expected": 16,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/54/CAFA_Nations_Cup_2025_Uzbekistan_Kyrgyz_Republic_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/54/CAFA_Nations_Cup_2025_Uzbekistan_Kyrgyz_Republic_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Akmal_Mozgovoy.jpg/500px-Akmal_Mozgovoy.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Akmal_Mozgovoy_2.jpg/500px-Akmal_Mozgovoy_2.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Akmal_Mozgovoy_4.jpg/500px-Akmal_Mozgovoy_4.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Akmal_Mozgovoy_3.jpg/500px-Akmal_Mozgovoy_3.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Akmal_Mozgovoy_5.jpg/500px-Akmal_Mozgovoy_5.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Akmal_Mozgovoy_6.jpg/500px-Akmal_Mozgovoy_6.jpg"
+        ]
       },
       {
         "id": "otabek-shukurov",
@@ -713,7 +753,10 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Jamshid_Iskanderov_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Jamshid_Iskanderov_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Jamshid_Iskanderov.jpg/500px-Jamshid_Iskanderov.jpg"
+        ]
       },
       {
         "id": "odiljon-xamrobekov",
@@ -741,7 +784,11 @@
         },
         "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Jaloliddin_Masharipov_2020.jpg/330px-Jaloliddin_Masharipov_2020.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Jaloliddin_Masharipov_2020.jpg/330px-Jaloliddin_Masharipov_2020.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/0/09/Esteghlal_FC_vs_Al-Gharafa_FC%2C_16_September_2024_-_06_%28Masharipov%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Coca_Cola_jar%2C_Jaloliddin_Masharipov_01.jpg/500px-Coca_Cola_jar%2C_Jaloliddin_Masharipov_01.jpg"
+        ]
       },
       {
         "id": "oston-urunov",
@@ -754,7 +801,11 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Oston_Urunov_2020.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Oston_Urunov_2020.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/9/99/Oston_Urunov.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/a/a4/Oston_Urunov_2.jpg"
+        ]
       },
       {
         "id": "dostonbek-khamdamov",
@@ -767,7 +818,10 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Dostonbek_Khamdamov_2018.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Dostonbek_Khamdamov_2018.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Dostonbek_Khamdamov.jpg/500px-Dostonbek_Khamdamov.jpg"
+        ]
       },
       {
         "id": "azizjon-ganiev",
@@ -797,7 +851,15 @@
         },
         "shirt_number_expected": 18,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Abbosbek_Fayzullaev_at_Press_conference_of_the_national_football_teams_of_Iran_and_Uzbekistan_%28Mehr%2C_23_March_2025%29_%28cropped%29.jpg/330px-Abbosbek_Fayzullaev_at_Press_conference_of_the_national_football_teams_of_Iran_and_Uzbekistan_%28Mehr%2C_23_March_2025%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Abbosbek_Fayzullaev_at_Press_conference_of_the_national_football_teams_of_Iran_and_Uzbekistan_%28Mehr%2C_23_March_2025%29_%28cropped%29.jpg/330px-Abbosbek_Fayzullaev_at_Press_conference_of_the_national_football_teams_of_Iran_and_Uzbekistan_%28Mehr%2C_23_March_2025%29_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Fayzullaev%2C_Arthur%2C_Douglas_Santos.jpg/500px-Fayzullaev%2C_Arthur%2C_Douglas_Santos.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/0/0c/Fayzullaev%2C_Arthur%2C_Douglas_Santos_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Fayzullaev_Kasymov_Fayziev.jpg/500px-Fayzullaev_Kasymov_Fayziev.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Abbosbek_Fayzullaev_Cska_Moscow_player.png/500px-Abbosbek_Fayzullaev_Cska_Moscow_player.png",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Abbosbek_Fayzullaev_11_%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_FK_UECL_20250821_%2810%29.jpg/500px-Abbosbek_Fayzullaev_11_%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_FK_UECL_20250821_%2810%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Abbosbek_Fayzullaev_11_%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_FK_UECL_20250821_%284%29.jpg/500px-Abbosbek_Fayzullaev_11_%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_FK_UECL_20250821_%284%29.jpg"
+        ]
       },
       {
         "id": "sherzod-esanov",
@@ -825,7 +887,13 @@
         },
         "shirt_number_expected": 9,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Eldor_Shomurodov_14_%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_FK_20250731_%2810%29_%28cropped%29.jpg/330px-Eldor_Shomurodov_14_%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_FK_20250731_%2810%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Eldor_Shomurodov_14_%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_FK_20250731_%2810%29_%28cropped%29.jpg/330px-Eldor_Shomurodov_14_%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_FK_20250731_%2810%29_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/8/8b/Eldor_Shomurodov_2017.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Eldor_Shomurodov.jpg/500px-Eldor_Shomurodov.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/4/49/Eldor_Shomurodov_2017_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Eldor_Shomurodov_14_%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_FK_20250731_%285%29.jpg/500px-Eldor_Shomurodov_14_%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_FK_20250731_%285%29.jpg"
+        ]
       },
       {
         "id": "azizbek-amonov",
@@ -855,7 +923,11 @@
         },
         "shirt_number_expected": 19,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Igor_Sergeev_Persepolis_v_Sepahan_23_January_2026.jpg/330px-Igor_Sergeev_Persepolis_v_Sepahan_23_January_2026.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Igor_Sergeev_Persepolis_v_Sepahan_23_January_2026.jpg/330px-Igor_Sergeev_Persepolis_v_Sepahan_23_January_2026.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Igor_Sergeev_voice_actor.jpg/500px-Igor_Sergeev_voice_actor.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Coca_Cola_jar%2C_Igor_Sergeev.jpg/500px-Coca_Cola_jar%2C_Igor_Sergeev.jpg"
+        ]
       }
     ],
     "starting_xi": {
@@ -978,7 +1050,23 @@
     "squad_announced": true,
     "squad_announced_status": "pending_official",
     "squad_announced_date": "2026-06-04",
-    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
+    "image_pool": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Uzbekistan_vs_Bahrain_2009.jpg/500px-Uzbekistan_vs_Bahrain_2009.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Uzbekistan_national_football_team.jpeg/500px-Uzbekistan_national_football_team.jpeg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Uzbekistan_national_football_team_opponents.png/500px-Uzbekistan_national_football_team_opponents.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Uzbekistan_vs_UEA_15.10.2024.jpg/500px-Uzbekistan_vs_UEA_15.10.2024.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Uzbekistan_women%27s_national_football_team_%28U-18%29.jpg/500px-Uzbekistan_women%27s_national_football_team_%28U-18%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Uzbekistan_women%27s_national_football_team_%28U-18%29_in_training.jpg/500px-Uzbekistan_women%27s_national_football_team_%28U-18%29_in_training.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Uzbekistan_U-18_women%27s_national_football_team.jpg/500px-Uzbekistan_U-18_women%27s_national_football_team.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Uzbekistan_national_football_team_supporter.jpg/500px-Uzbekistan_national_football_team_supporter.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Uzbekistan_U23.jpg/500px-Uzbekistan_U23.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Uzbekistan_U17_team_2025.jpg/500px-Uzbekistan_U17_team_2025.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Uzbekistan_national_association_football_team_with_President_of_Uzbekistan_after_Uzbekistan-Qatar_match%2C_on_June_10%2C_2025.jpg/500px-Uzbekistan_national_association_football_team_with_President_of_Uzbekistan_after_Uzbekistan-Qatar_match%2C_on_June_10%2C_2025.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Uzbekistan_U17_national_football_team.jpg/500px-Uzbekistan_U17_national_football_team.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Uzbekistan_U23_national_football_team_in_2023.jpg/500px-Uzbekistan_U23_national_football_team_in_2023.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Uzbekistan_women%27s_national_football_team%2C_2023.jpg/500px-Uzbekistan_women%27s_national_football_team%2C_2023.jpg"
+    ]
   },
   "history": {
     "first_appearance": 2026,

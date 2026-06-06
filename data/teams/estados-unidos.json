@@ -451,7 +451,10 @@
         },
         "shirt_number_expected": 1,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/09/CINvRIC_2017-07-09_-_Matt_Turner_%2840983917805%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/09/CINvRIC_2017-07-09_-_Matt_Turner_%2840983917805%29_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/a/a1/Turner_and_Peelle.png"
+        ]
       },
       {
         "id": "matt-freese",
@@ -492,7 +495,12 @@
         },
         "shirt_number_expected": 2,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Sergino_Dest.jpg/330px-Sergino_Dest.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Sergino_Dest.jpg/330px-Sergino_Dest.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/7/7d/%D0%9C%D0%B0%D1%82%D1%87_%C2%AB%D0%94%D0%B8%D0%BD%D0%B0%D0%BC%D0%BE%C2%BB_-_%C2%AB%D0%91%D0%B0%D1%80%D1%81%D0%B5%D0%BB%D0%BE%D0%BD%D0%B0%C2%BB_0-4._24_%D0%BD%D0%BE%D1%8F%D0%B1%D1%80%D1%8F_2020_%D0%B3%D0%BE%D0%B4%D0%B0_%E2%80%94_1166870_%28Sergi%C3%B1o_Dest%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Sergi%C3%B1o_Dest_in_Columbus.jpg/500px-Sergi%C3%B1o_Dest_in_Columbus.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Sergi%C3%B1o_Dest_and_Timothy_Weah.jpg/500px-Sergi%C3%B1o_Dest_and_Timothy_Weah.jpg"
+        ]
       },
       {
         "id": "chris-richards",
@@ -507,7 +515,15 @@
         },
         "shirt_number_expected": 4,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Chris_Richards%2C_2025_CONCACAF_Gold_Cup%2C_02_%28cropped%29.jpg/330px-Chris_Richards%2C_2025_CONCACAF_Gold_Cup%2C_02_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Chris_Richards%2C_2025_CONCACAF_Gold_Cup%2C_02_%28cropped%29.jpg/330px-Chris_Richards%2C_2025_CONCACAF_Gold_Cup%2C_02_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Chris_Richards_%28soccer%29.jpg/500px-Chris_Richards_%28soccer%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Chris_Richards_Neirivue-Moleson_2019-cropped.jpg/500px-Chris_Richards_Neirivue-Moleson_2019-cropped.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Chris_Richards_with_The_Bullets_July_2007.JPG/500px-Chris_Richards_with_The_Bullets_July_2007.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Chris_Richards%2C_2025_CONCACAF_Gold_Cup%2C_02.jpg/500px-Chris_Richards%2C_2025_CONCACAF_Gold_Cup%2C_02.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Chris_Richards%2C_2025_CONCACAF_Gold_Cup%2C_01.jpg/500px-Chris_Richards%2C_2025_CONCACAF_Gold_Cup%2C_01.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Chris_Richards%2C_2025_CONCACAF_Gold_Cup%2C_04.jpg/500px-Chris_Richards%2C_2025_CONCACAF_Gold_Cup%2C_04.jpg"
+        ]
       },
       {
         "id": "antonee-robinson",
@@ -522,7 +538,10 @@
         },
         "shirt_number_expected": 3,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/05/Antonee_Robinson_WC2022_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/05/Antonee_Robinson_WC2022_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Antonee_Robinson_USA_v_COL_2018_%2845272402752%29_%28cropped%29.jpg/500px-Antonee_Robinson_USA_v_COL_2018_%2845272402752%29_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "auston-trusty",
@@ -548,7 +567,11 @@
         },
         "shirt_number_expected": 15,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Miles_Robinson%2C_2025_CONCACAF_Gold_Cup.jpg/330px-Miles_Robinson%2C_2025_CONCACAF_Gold_Cup.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Miles_Robinson%2C_2025_CONCACAF_Gold_Cup.jpg/330px-Miles_Robinson%2C_2025_CONCACAF_Gold_Cup.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Miles_Robinson_USMNT_v_Belgium_Mar_28_2026-40.jpg/500px-Miles_Robinson_USMNT_v_Belgium_Mar_28_2026-40.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Miles_Robinson_USMNT_v_Belgium_Mar_28_2026-40_%28cropped%29.jpg/500px-Miles_Robinson_USMNT_v_Belgium_Mar_28_2026-40_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "tim-ream",
@@ -604,7 +627,10 @@
         },
         "shirt_number_expected": 22,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/McKenzie_asse_tfc_2425.png/330px-McKenzie_asse_tfc_2425.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/McKenzie_asse_tfc_2425.png/330px-McKenzie_asse_tfc_2425.png",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Jack_McKenzie_caricature.jpg/500px-Jack_McKenzie_caricature.jpg"
+        ]
       },
       {
         "id": "joe-scally",
@@ -634,7 +660,10 @@
         },
         "shirt_number_expected": 6,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/2021-11-06_Fu%C3%9Fball%2C_M%C3%A4nner%2C_1._Bundesliga%2C_RB_Leipzig_-_Borussia_Dortmund_1DX_1527_by_Stepro_%28cropped%29.jpg/330px-2021-11-06_Fu%C3%9Fball%2C_M%C3%A4nner%2C_1._Bundesliga%2C_RB_Leipzig_-_Borussia_Dortmund_1DX_1527_by_Stepro_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/2021-11-06_Fu%C3%9Fball%2C_M%C3%A4nner%2C_1._Bundesliga%2C_RB_Leipzig_-_Borussia_Dortmund_1DX_1527_by_Stepro_%28cropped%29.jpg/330px-2021-11-06_Fu%C3%9Fball%2C_M%C3%A4nner%2C_1._Bundesliga%2C_RB_Leipzig_-_Borussia_Dortmund_1DX_1527_by_Stepro_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Tristan_Blackmon%2C_Tyler_Adams%2C_and_Hayato_Araki.jpg/500px-Tristan_Blackmon%2C_Tyler_Adams%2C_and_Hayato_Araki.jpg"
+        ]
       },
       {
         "id": "giovanni-reyna",
@@ -660,7 +689,13 @@
         },
         "shirt_number_expected": 8,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/USAvVEN_2019-06-09_-_Weston_McKennie_%2851170534993%29_%28close-up%29.jpg/330px-USAvVEN_2019-06-09_-_Weston_McKennie_%2851170534993%29_%28close-up%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/USAvVEN_2019-06-09_-_Weston_McKennie_%2851170534993%29_%28close-up%29.jpg/330px-USAvVEN_2019-06-09_-_Weston_McKennie_%2851170534993%29_%28close-up%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Weston_McKennie_on_June_9%2C_2019.jpg/500px-Weston_McKennie_on_June_9%2C_2019.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/USAvVEN_2019-06-09_-_Weston_McKennie_%2851170549128%29.jpg/500px-USAvVEN_2019-06-09_-_Weston_McKennie_%2851170549128%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Weston_McKennie_vs_Zenit_2021-10-20_%28cropped%29.jpg/500px-Weston_McKennie_vs_Zenit_2021-10-20_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/2022_FIFA_World_Cup_England_0-0_USA_-_Weston_McKennie.jpg/500px-2022_FIFA_World_Cup_England_0-0_USA_-_Weston_McKennie.jpg"
+        ]
       },
       {
         "id": "sebastian-berhalter",
@@ -682,7 +717,15 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Cristian_Roldan_USMNT_v_Belgium_Mar_28_2026-50_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Cristian_Roldan_USMNT_v_Belgium_Mar_28_2026-50_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Cristian_Roldan_on_June_9%2C_2019.jpg/500px-Cristian_Roldan_on_June_9%2C_2019.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Cristian_Roldan_playing_for_the_United_States_on_June_6%2C_2019.jpg/500px-Cristian_Roldan_playing_for_the_United_States_on_June_6%2C_2019.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/USAvVEN_2019-06-09_-_Cristian_Roldan%2C_Aaron_Long%2C_Matt_Miazga_%2851170308366%29.jpg/500px-USAvVEN_2019-06-09_-_Cristian_Roldan%2C_Aaron_Long%2C_Matt_Miazga_%2851170308366%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/USAvVEN_2019-06-09_-_Cristian_Roldan_%2851171382440%29.jpg/500px-USAvVEN_2019-06-09_-_Cristian_Roldan_%2851171382440%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/USAvVEN_2019-06-09_-_Cristian_Roldan_%2851170290356%29.jpg/500px-USAvVEN_2019-06-09_-_Cristian_Roldan_%2851170290356%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/USAvVEN_2019-06-09_-_Cristian_Roldan_%2851170499328%29.jpg/500px-USAvVEN_2019-06-09_-_Cristian_Roldan_%2851170499328%29.jpg"
+        ]
       },
       {
         "id": "malik-tillman",
@@ -727,7 +770,15 @@
         },
         "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/USMNT_vs._Trinidad_and_Tobago_%2848125059622%29_%28cropped%29.jpg/330px-USMNT_vs._Trinidad_and_Tobago_%2848125059622%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/USMNT_vs._Trinidad_and_Tobago_%2848125059622%29_%28cropped%29.jpg/330px-USMNT_vs._Trinidad_and_Tobago_%2848125059622%29_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Pulisic170727-2.jpg/500px-Pulisic170727-2.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Pulisic170727-3.jpg/500px-Pulisic170727-3.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Christian_Pulisic_2017_%28cropped%29.jpg/500px-Christian_Pulisic_2017_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Christian_Pulisic_FC_Zenit_vs_Chelsea_8_December_2021.jpg/500px-Christian_Pulisic_FC_Zenit_vs_Chelsea_8_December_2021.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/2022_FIFA_World_Cup_England_0-0_USA_-_Saka_vs_Pulisic.jpg/500px-2022_FIFA_World_Cup_England_0-0_USA_-_Saka_vs_Pulisic.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/2022_FIFA_World_Cup_England_0-0_USA_-_Pulisic_and_Rice.jpg/500px-2022_FIFA_World_Cup_England_0-0_USA_-_Pulisic_and_Rice.jpg"
+        ]
       },
       {
         "id": "brenden-aaronson",
@@ -787,7 +838,15 @@
         },
         "shirt_number_expected": 21,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/9e/2022_FIFA_World_Cup_United_States_1%E2%80%931_Wales_-_%2817%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/9e/2022_FIFA_World_Cup_United_States_1%E2%80%931_Wales_-_%2817%29_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Ambassador_Davis_and_Liberian_President_George_Weah_at_the_2022_FIFA_World_Cup_Match_US_v._Wales.jpg/500px-Ambassador_Davis_and_Liberian_President_George_Weah_at_the_2022_FIFA_World_Cup_Match_US_v._Wales.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Ambassador_Davis_and_Liberian_President_George_Weah_at_the_2022_FIFA_World_Cup_Match_US_v._Wales_%28cropped%29.jpg/500px-Ambassador_Davis_and_Liberian_President_George_Weah_at_the_2022_FIFA_World_Cup_Match_US_v._Wales_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/2022_FIFA_World_Cup_England_0-0_USA_-_Weah_and_McKennie.jpg/500px-2022_FIFA_World_Cup_England_0-0_USA_-_Weah_and_McKennie.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/2022_FIFA_World_Cup_England_0-0_USA_-_Shaw_and_Weah.jpg/500px-2022_FIFA_World_Cup_England_0-0_USA_-_Shaw_and_Weah.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Sergi%C3%B1o_Dest_and_Timothy_Weah.jpg/500px-Sergi%C3%B1o_Dest_and_Timothy_Weah.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Timothy_Weah.jpg/500px-Timothy_Weah.jpg"
+        ]
       },
       {
         "id": "alex-zendejas",
@@ -922,7 +981,23 @@
     "squad_announced": true,
     "squad_announced_status": "pending_official",
     "squad_announced_date": "2026-06-04",
-    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
+    "image_pool": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Norway_national_football_team_in_1912.jpg/500px-Norway_national_football_team_in_1912.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/2011_United_States_women%27s_national_soccer_team_players_with_Hillary_Clinton.jpg/500px-2011_United_States_women%27s_national_soccer_team_players_with_Hillary_Clinton.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/United_States_Men%27s_National_Team_vs_Belgium_2013.jpg/500px-United_States_Men%27s_National_Team_vs_Belgium_2013.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Lebanon_national_football_team_1966.jpg/500px-Lebanon_national_football_team_1966.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Lebanon_national_football_team_1963.png/500px-Lebanon_national_football_team_1963.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Spain_national_football_team_in_the_1920_Summer_Olympics_in_Antwerp.jpg/500px-Spain_national_football_team_in_the_1920_Summer_Olympics_in_Antwerp.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/b/ba/Mandatory_Palestine_national_football_team%2C_1940_%282%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/c/c4/Mandatory_Palestine_national_football_team%2C_1940_%281%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Spanish_national_football_team_before_the_defeat_against_Belgium%2C_29.08.1920.jpg/500px-Spanish_national_football_team_before_the_defeat_against_Belgium%2C_29.08.1920.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Spanish_national_football_team_before_the_defeat_against_Belgium%2C_29.08.1920_%282%29.jpg/500px-Spanish_national_football_team_before_the_defeat_against_Belgium%2C_29.08.1920_%282%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Spanish_national_football_team_before_the_victory_over_Denmark_28.08.1920.jpg/500px-Spanish_national_football_team_before_the_victory_over_Denmark_28.08.1920.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Spanish_national_football_team_before_the_victory_over_Italy%2C_2.09.1920.jpg/500px-Spanish_national_football_team_before_the_victory_over_Italy%2C_2.09.1920.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Turkey_national_football_team_%2828.05.1950%29.png/500px-Turkey_national_football_team_%2828.05.1950%29.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/England_national_football_team%2C_11_April_1959.jpg/500px-England_national_football_team%2C_11_April_1959.jpg"
+    ]
   },
   "history": {
     "first_appearance": 1930,

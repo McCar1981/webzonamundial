@@ -427,7 +427,14 @@
         },
         "shirt_number_expected": 23,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Concacaf_Gold_Cup_%2848248588296%29_%28cropped%29.jpg/330px-Concacaf_Gold_Cup_%2848248588296%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Concacaf_Gold_Cup_%2848248588296%29_%28cropped%29.jpg/330px-Concacaf_Gold_Cup_%2848248588296%29_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/4/48/Jos%C3%A9_Luis_Mej%C3%ADa.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Defense.gov_News_Photo_110110-F-9708M-046_-_U.S._Air_Force_Staff_Sgt._Luis_Mejias_inspects_and_washes_the_blades_of_a_C-17_Globemaster_III_aircraft_at_Joint_Base_Pearl_Harbor-Hickam_Hawaii.jpg/500px-thumbnail.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Broadsheet_relating_to_Don_Luis_Mejia_with_Afan%2C_a_corrida_%28ballad%29_in_the_bottom_section_MET_DP869191.jpg/500px-Broadsheet_relating_to_Don_Luis_Mejia_with_Afan%2C_a_corrida_%28ballad%29_in_the_bottom_section_MET_DP869191.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Luis_Mej%C3%ADa_Primer_Cl%C3%A1sico_en_el_Campe%C3%B3n_del_Siglo_190512-6857-jikatu_%2847837953571%29.jpg/500px-Luis_Mej%C3%ADa_Primer_Cl%C3%A1sico_en_el_Campe%C3%B3n_del_Siglo_190512-6857-jikatu_%2847837953571%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Alcal%C3%A1_de_Henares_%28RPS_21-08-2019%29_Calle_Don_Luis_Mej%C3%ADa.png/500px-Alcal%C3%A1_de_Henares_%28RPS_21-08-2019%29_Calle_Don_Luis_Mej%C3%ADa.png"
+        ]
       },
       {
         "id": "cesar-samudio",
@@ -479,7 +486,15 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/57/Jos%C3%A9_C%C3%B3rdoba.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/57/Jos%C3%A9_C%C3%B3rdoba.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/C%C3%B3rdoba_-_Iglesia_de_San_Cayetano_y_San_Jos%C3%A9_05.jpg/500px-C%C3%B3rdoba_-_Iglesia_de_San_Cayetano_y_San_Jos%C3%A9_05.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Retablo_mayor_de_la_iglesia_del_Convento_de_Santa_Ana_y_San_Jos%C3%A9_%28C%C3%B3rdoba%29.jpg/500px-Retablo_mayor_de_la_iglesia_del_Convento_de_Santa_Ana_y_San_Jos%C3%A9_%28C%C3%B3rdoba%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Rio_San_Jose%2C_C%C3%B3rdoba_04.jpg/500px-Rio_San_Jose%2C_C%C3%B3rdoba_04.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Rio_San_Jose%2C_C%C3%B3rdoba_05.jpg/500px-Rio_San_Jose%2C_C%C3%B3rdoba_05.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Rio_San_Jose%2C_C%C3%B3rdoba_06.jpg/500px-Rio_San_Jose%2C_C%C3%B3rdoba_06.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Parque_de_San_Jos%C3%A9_en_C%C3%B3rdoba%2C_Veracruz_01.jpg/500px-Parque_de_San_Jos%C3%A9_en_C%C3%B3rdoba%2C_Veracruz_01.jpg"
+        ]
       },
       {
         "id": "fidel-escobar",
@@ -545,7 +560,15 @@
         },
         "shirt_number_expected": 3,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Erick_Davis_2018.jpg/330px-Erick_Davis_2018.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Erick_Davis_2018.jpg/330px-Erick_Davis_2018.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Eric_Davis.jpg/500px-Eric_Davis.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/b/b2/Eric_Davis_in_Afghanistan_1_hrs_080624-N-3377N-001_crop.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Eric_Davis_in_Afghanistan_2_hrs_080624-N-3377N-003_crop.jpg/500px-Eric_Davis_in_Afghanistan_2_hrs_080624-N-3377N-003_crop.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Eric_Davis_at_Serramonte_Center_2010-01-30_1.JPG/500px-Eric_Davis_at_Serramonte_Center_2010-01-30_1.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Eric_Davis_at_Serramonte_Center_2010-01-30_2.JPG/500px-Eric_Davis_at_Serramonte_Center_2010-01-30_2.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Eric_Davis_at_Serramonte_Center_2010-01-30_3.JPG/500px-Eric_Davis_at_Serramonte_Center_2010-01-30_3.JPG"
+        ]
       },
       {
         "id": "andres-andrade",
@@ -575,7 +598,15 @@
         },
         "shirt_number_expected": 2,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Partido_Galicia_-_Panam%C3%A1_en_Bala%C3%ADdos_63.jpg/330px-Partido_Galicia_-_Panam%C3%A1_en_Bala%C3%ADdos_63.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Partido_Galicia_-_Panam%C3%A1_en_Bala%C3%ADdos_63.jpg/330px-Partido_Galicia_-_Panam%C3%A1_en_Bala%C3%ADdos_63.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/d/d2/ENG-PAN_%2813%29_2018-6-29_Amir_Murillo.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/CINvNY_2019-05-25_-_Michael_Amir_Murillo_%2847963281286%29.jpg/500px-CINvNY_2019-05-25_-_Michael_Amir_Murillo_%2847963281286%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/CINvNY_2019-05-25_-_Roland_Lamah%2C_Michael_Amir_Murillo_%2847963200328%29.jpg/500px-CINvNY_2019-05-25_-_Roland_Lamah%2C_Michael_Amir_Murillo_%2847963200328%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/CINvNY_2019-05-25_-_Roland_Lamah%2C_Michael_Amir_Murillo_%2847963227716%29.jpg/500px-CINvNY_2019-05-25_-_Roland_Lamah%2C_Michael_Amir_Murillo_%2847963227716%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/CINvNY_2019-05-25_-_Roland_Lamah%2C_Michael_Amir_Murillo_%2847963196683%29.jpg/500px-CINvNY_2019-05-25_-_Roland_Lamah%2C_Michael_Amir_Murillo_%2847963196683%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/CINvNY_2019-05-25_-_Michael_Amir_Murillo%2C_Roland_Lamah_%2847963194818%29.jpg/500px-CINvNY_2019-05-25_-_Michael_Amir_Murillo%2C_Roland_Lamah_%2847963194818%29.jpg"
+        ]
       },
       {
         "id": "roderick-miller",
@@ -597,7 +628,10 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/6/66/Jorge_Abdiel_Guti%C3%A9rrez.jpg"
+        ]
       },
       {
         "id": "cristian-martinez",
@@ -612,7 +646,15 @@
         },
         "shirt_number_expected": 16,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/87/Cristian_Mart%C3%ADnez_2017-06-14_%2835788919006%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/87/Cristian_Mart%C3%ADnez_2017-06-14_%2835788919006%29_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Bibras_Natkho_helps_Cristian_Martinez_-_Crop.JPG/500px-Bibras_Natkho_helps_Cristian_Martinez_-_Crop.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Bibras_Natkho_helps_Cristian_Martinez.JPG/500px-Bibras_Natkho_helps_Cristian_Martinez.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Cristian_Martinez_spary.JPG/500px-Cristian_Martinez_spary.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Andorra_national_football_team_-_Cristian_Mart%C3%ADnez_%28001%29.jpg/500px-Andorra_national_football_team_-_Cristian_Mart%C3%ADnez_%28001%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/PRESENTACION_DE_CRISTIAN_MARTINEZ%2C_DIBUJANTE_PROYECTISTA.jpg/500px-PRESENTACION_DE_CRISTIAN_MARTINEZ%2C_DIBUJANTE_PROYECTISTA.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Cristian_Mart%C3%ADnez_2017-06-14_%2835440864480%29.jpg/500px-Cristian_Mart%C3%ADnez_2017-06-14_%2835440864480%29.jpg"
+        ]
       },
       {
         "id": "jose-luis-rodriguez",
@@ -627,7 +669,15 @@
         },
         "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Festival_de_Las_Condes_2020_05.jpg/330px-Festival_de_Las_Condes_2020_05.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Festival_de_Las_Condes_2020_05.jpg/330px-Festival_de_Las_Condes_2020_05.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/e/ef/Jos%C3%A9_Luis_Rodr%C3%ADguez_Zapatero.png",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Jos%C3%A9_Luis_Rodr%C3%ADguez_2.jpg/500px-Jos%C3%A9_Luis_Rodr%C3%ADguez_2.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Jos%C3%A9_Luis_Rodr%C3%ADguez_3.jpg/500px-Jos%C3%A9_Luis_Rodr%C3%ADguez_3.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/2/26/Jos%C3%A9_Luis_Rodr%C3%ADguez_Zapatero_2009_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Jos%C3%A9_Luis_Rodr%C3%ADguez_Zapatero_2015b_%28cropped%29.jpg/500px-Jos%C3%A9_Luis_Rodr%C3%ADguez_Zapatero_2015b_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/3/38/Jos%C3%A9_Luis_Rodr%C3%ADguez_Zapatero_2009b_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "adalberto-carrasquilla",
@@ -642,7 +692,10 @@
         },
         "shirt_number_expected": 8,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Coco_Carrasquilla.jpg/330px-Coco_Carrasquilla.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Coco_Carrasquilla.jpg/330px-Coco_Carrasquilla.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Coco_Carrasquilla_and_Nathan_Silva.jpg/500px-Coco_Carrasquilla_and_Nathan_Silva.jpg"
+        ]
       },
       {
         "id": "ismael-diaz",
@@ -686,7 +739,11 @@
         },
         "shirt_number_expected": 21,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/72/Alberto-Quintero.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/72/Alberto-Quintero.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/QuinteroAlberto17012018.jpg/500px-QuinteroAlberto17012018.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Alberto_Quintero.jpg/500px-Alberto_Quintero.jpg"
+        ]
       },
       {
         "id": "anibal-godoy",
@@ -701,7 +758,11 @@
         },
         "shirt_number_expected": 6,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Godoy.jpg/330px-Godoy.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Godoy.jpg/330px-Godoy.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Godoy_dribbling.jpg/500px-Godoy_dribbling.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Godoy_gesturing.jpg/500px-Godoy_gesturing.jpg"
+        ]
       },
       {
         "id": "cesar-yanis",
@@ -726,7 +787,15 @@
           "league": "LPF Panamá"
         },
         "shirt_number_expected": 26,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Tom%C3%A1s-Rodr%C3%ADguez-Rub%C3%AD.jpg/500px-Tom%C3%A1s-Rodr%C3%ADguez-Rub%C3%AD.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/0/03/Retrato_de_Tom%C3%A1s_Rodriguez_y_Diaz_Rubi.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/4/47/Rodr%C3%ADguez_Bola%C3%B1os%2C_Tom%C3%A1s_1979_1995.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Retrato_de_Tom%C3%A1s_Rodr%C3%ADguez_Pinilla.jpg/500px-Retrato_de_Tom%C3%A1s_Rodr%C3%ADguez_Pinilla.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Madrid_-_Viviendas_para_D._Tom%C3%A1s_Rodr%C3%ADguez_%28Calle_del_Marqu%C3%A9s_de_Villamejor_n%C2%BA_3%29_2.jpg/500px-Madrid_-_Viviendas_para_D._Tom%C3%A1s_Rodr%C3%ADguez_%28Calle_del_Marqu%C3%A9s_de_Villamejor_n%C2%BA_3%29_2.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Madrid_-_Viviendas_para_D._Tom%C3%A1s_Rodr%C3%ADguez_%28Calle_del_Marqu%C3%A9s_de_Villamejor_n%C2%BA_3%29_3.jpg/500px-Madrid_-_Viviendas_para_D._Tom%C3%A1s_Rodr%C3%ADguez_%28Calle_del_Marqu%C3%A9s_de_Villamejor_n%C2%BA_3%29_3.jpg"
+        ]
       },
       {
         "id": "jose-fajardo",
@@ -755,7 +824,11 @@
         },
         "shirt_number_expected": 20,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Cecilio_Waterman_Everton_v_Cobresal_20230828_02.jpg/330px-Cecilio_Waterman_Everton_v_Cobresal_20230828_02.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Cecilio_Waterman_Everton_v_Cobresal_20230828_02.jpg/330px-Cecilio_Waterman_Everton_v_Cobresal_20230828_02.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Cecilio_Waterman_Everton_v_Cobresal_20230828_01.jpg/500px-Cecilio_Waterman_Everton_v_Cobresal_20230828_01.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Cecilio_Waterman_Everton_v_Cobresal_20230828_03.jpg/500px-Cecilio_Waterman_Everton_v_Cobresal_20230828_03.jpg"
+        ]
       },
       {
         "id": "azarias-londono",
@@ -893,7 +966,23 @@
     "squad_announced": true,
     "squad_announced_status": "pending_official",
     "squad_announced_date": "2026-06-04",
-    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
+    "image_pool": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Amistoso_Panam%C3%A1_vs_El_Salvador.jpg/500px-Amistoso_Panam%C3%A1_vs_El_Salvador.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Marea_Roja_Panam%C3%A1.jpg/500px-Marea_Roja_Panam%C3%A1.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/3/3e/Equipacion_panama-2014-marea_roja.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Panam%C3%A1_FEPAFUT.jpg/500px-Panam%C3%A1_FEPAFUT.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Oberto_Lynch_antes_de_un_partido_con_la_seleccion_de_Panam%C3%A1.jpg/500px-Oberto_Lynch_antes_de_un_partido_con_la_seleccion_de_Panam%C3%A1.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/England_national_team_Russia_2018.jpg/500px-England_national_team_Russia_2018.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Panama_women%27s_national_football_team_on_Oct._4%2C_2018.jpg/500px-Panama_women%27s_national_football_team_on_Oct._4%2C_2018.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Panama_women%27s_national_football_team.jpg/500px-Panama_women%27s_national_football_team.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Seleccion_Panama_futbol_femenino_vs_Argentina_8nov2018_la_diez_00001_16.png/500px-Seleccion_Panama_futbol_femenino_vs_Argentina_8nov2018_la_diez_00001_16.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Seleccion_argentina_futbol_femenino_vs_panama_8nov2018_la_diez_00001_18.png/500px-Seleccion_argentina_futbol_femenino_vs_panama_8nov2018_la_diez_00001_18.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Seleccion_argentina_futbol_femenino_vs_panama_8nov2018_la_diez_00001_19.png/500px-Seleccion_argentina_futbol_femenino_vs_panama_8nov2018_la_diez_00001_19.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Seleccion_argentina_futbol_femenino_vs_panama_8nov2018_la_diez_00001_20.png/500px-Seleccion_argentina_futbol_femenino_vs_panama_8nov2018_la_diez_00001_20.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Seleccion_argentina_futbol_femenino_vs_panama_8nov2018_la_diez_00041_02.png/500px-Seleccion_argentina_futbol_femenino_vs_panama_8nov2018_la_diez_00041_02.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Seleccion_argentina_futbol_femenino_vs_panama_8nov2018_la_diez_00041_36.png/500px-Seleccion_argentina_futbol_femenino_vs_panama_8nov2018_la_diez_00041_36.png"
+    ]
   },
   "history": {
     "first_appearance": 2018,

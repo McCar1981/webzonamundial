@@ -606,7 +606,15 @@
           "league": "Premier Division IE"
         },
         "shirt_number_expected": 5,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Dom_Roberto_Lopes.JPG/500px-Dom_Roberto_Lopes.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/2/2f/Heber_lopes.png",
+          "https://upload.wikimedia.org/wikipedia/commons/5/58/Roberto_Lopes_de_Miranda.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/9/9f/2012_ROBERTO_LOPES_CANDIDATO_PREFEITO_RN_NATAL_TSE_%28200000004724%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/d/d1/2016_ROBERTO_LOPES_CANDIDATO_VICE-PREFEITO_GO_SENADOR_CANEDO_TSE_%2890000018100%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/0/02/Pico_Lopes.png"
+        ]
       },
       {
         "id": "logan-costa",
@@ -754,7 +762,10 @@
         },
         "shirt_number_expected": 7,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Cap-vert_vs_Ethiopi_%2824%29.jpg/330px-Cap-vert_vs_Ethiopi_%2824%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Cap-vert_vs_Ethiopi_%2824%29.jpg/330px-Cap-vert_vs_Ethiopi_%2824%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Garry_Rodrigues_2013_Catalonia.jpg/500px-Garry_Rodrigues_2013_Catalonia.jpg"
+        ]
       },
       {
         "id": "deroy-duarte",
@@ -1026,7 +1037,16 @@
     },
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
-    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
+    "image_pool": [
+      "https://upload.wikimedia.org/wikipedia/commons/8/89/Lucio_Antunes_2013_Catalonia.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Joan_Capdevila_%26_Ramilton_do_Rosario_Rambe_2013_Catalonia.jpg/500px-Joan_Capdevila_%26_Ramilton_do_Rosario_Rambe_2013_Catalonia.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/d/d1/TUN-CPV-2015-01-18.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/TUN-CPV-2015-01-18%281%29.png/500px-TUN-CPV-2015-01-18%281%29.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Uganda_Cranes_Fans_before_the_Match_between_Uganda_and_Cape_Verde.jpg/500px-Uganda_Cranes_Fans_before_the_Match_between_Uganda_and_Cape_Verde.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/A_young_Uganda_Cranes_football_fan.jpg/500px-A_young_Uganda_Cranes_football_fan.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Uganda_Cranes_Football_Fan.jpg/500px-Uganda_Cranes_Football_Fan.jpg"
+    ]
   },
   "history": {
     "first_appearance": 2026,

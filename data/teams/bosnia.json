@@ -544,7 +544,12 @@
         },
         "shirt_number_expected": 1,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/2025-04-23_-_FC_St_Pauli_-_Nikola_Vasilj.jpg/330px-2025-04-23_-_FC_St_Pauli_-_Nikola_Vasilj.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/2025-04-23_-_FC_St_Pauli_-_Nikola_Vasilj.jpg/330px-2025-04-23_-_FC_St_Pauli_-_Nikola_Vasilj.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/2025-04-23_-_FC_St_Pauli_-_Nikola_Vasilj_1.jpg/500px-2025-04-23_-_FC_St_Pauli_-_Nikola_Vasilj_1.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/2025-04-23_-_FC_St_Pauli_-_Nikola_Vasilj_2.jpg/500px-2025-04-23_-_FC_St_Pauli_-_Nikola_Vasilj_2.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/2025-04-23_-_FC_St_Pauli_-_Nikola_Vasilj_%28cropped%29.jpg/500px-2025-04-23_-_FC_St_Pauli_-_Nikola_Vasilj_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "mladen-jurkas",
@@ -630,7 +635,15 @@
         },
         "shirt_number_expected": 6,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/1_Sead_Kola%C5%A1inac_2018_%28cropped%29.jpg/330px-1_Sead_Kola%C5%A1inac_2018_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/1_Sead_Kola%C5%A1inac_2018_%28cropped%29.jpg/330px-1_Sead_Kola%C5%A1inac_2018_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Sead_Kola%C5%A1inac.JPG/500px-Sead_Kola%C5%A1inac.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Sead_Kola%C5%A1inac_S04_2015.jpg/500px-Sead_Kola%C5%A1inac_S04_2015.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Sead_Kola%C5%A1inac_S04_2015_%28cropped%29.jpg/500px-Sead_Kola%C5%A1inac_S04_2015_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Kolasinac_2015.jpg/500px-Kolasinac_2015.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/10_Kolasinac_%26_Bellerin_Goal_celebrations_IMG_3767_%2826289149839%29.jpg/500px-10_Kolasinac_%26_Bellerin_Goal_celebrations_IMG_3767_%2826289149839%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/13_Kolasinac_goal_celebrations_IMG_3774_%2838012099776%29.jpg/500px-13_Kolasinac_goal_celebrations_IMG_3774_%2838012099776%29.jpg"
+        ]
       },
       {
         "id": "amar-dedic",
@@ -645,7 +658,10 @@
         },
         "shirt_number_expected": 2,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/FC_Liefering_gegen_SV_Ried_%2819._Oktober_2019%29_31.jpg/330px-FC_Liefering_gegen_SV_Ried_%2819._Oktober_2019%29_31.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/FC_Liefering_gegen_SV_Ried_%2819._Oktober_2019%29_31.jpg/330px-FC_Liefering_gegen_SV_Ried_%2819._Oktober_2019%29_31.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Amar_Dedi%C4%87_RB_Salzburg_2023.jpeg/500px-Amar_Dedi%C4%87_RB_Salzburg_2023.jpeg"
+        ]
       },
       {
         "id": "nikola-katic",
@@ -705,7 +721,10 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Benjamin_Tahirovi%C4%87_-_GAE_-_Ajax_%2853465349575%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Benjamin_Tahirovi%C4%87_-_GAE_-_Ajax_%2853465349575%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Benjamin_Tahirovic_for_Br%C3%B8ndby.jpg/500px-Benjamin_Tahirovic_for_Br%C3%B8ndby.jpg"
+        ]
       },
       {
         "id": "armin-gigovic",
@@ -750,7 +769,10 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Ivan_%C5%A0unji%C4%87_2022.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Ivan_%C5%A0unji%C4%87_2022.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Ivan_Sunjic_Birmingham_2019.jpg/500px-Ivan_Sunjic_Birmingham_2019.jpg"
+        ]
       },
       {
         "id": "amar-memic",
@@ -779,7 +801,15 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/30/Amir_Hadziahmetovic_20231008_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/30/Amir_Hadziahmetovic_20231008_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/3/32/Amir_Had%C5%BEiahmetovi%C4%87_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Amir_Had%C5%BEiahmetovi%C4%87.jpg/500px-Amir_Had%C5%BEiahmetovi%C4%87.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Amir_Hadziahmetovic_20231008.jpg/500px-Amir_Hadziahmetovic_20231008.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Amir_Had%C5%BEiahmetovi%C4%87_playing_for_Be%C5%9Fikta%C5%9F.jpg/500px-Amir_Had%C5%BEiahmetovi%C4%87_playing_for_Be%C5%9Fikta%C5%9F.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Amir_Had%C5%BEiahmetovi%C4%87_playing_for_Be%C5%9Fikta%C5%9F_%28cropped%29.jpg/500px-Amir_Had%C5%BEiahmetovi%C4%87_playing_for_Be%C5%9Fikta%C5%9F_%28cropped%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Amir_Hadziahmetovic_20231005.jpg/500px-Amir_Hadziahmetovic_20231005.jpg"
+        ]
       },
       {
         "id": "dzenis-burnic",
@@ -851,7 +881,15 @@
         },
         "shirt_number_expected": 11,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/20150331_2026_AUT_BIH_2177_Edin_D%C5%BEeko_%28cropped%29.jpg/330px-20150331_2026_AUT_BIH_2177_Edin_D%C5%BEeko_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/20150331_2026_AUT_BIH_2177_Edin_D%C5%BEeko_%28cropped%29.jpg/330px-20150331_2026_AUT_BIH_2177_Edin_D%C5%BEeko_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Edin_Dzeko_in_car.jpg/500px-Edin_Dzeko_in_car.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/1/1d/Edin_D%C5%BEeko.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Dzeko_FA_Cup.jpg/500px-Dzeko_FA_Cup.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/1/12/Edin_D%C5%BEeko_-_cropped.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/0/0c/Dzeko_city.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/20150331_2025_AUT_BIH_2159_Edin_D%C5%BEeko.jpg/500px-20150331_2025_AUT_BIH_2159_Edin_D%C5%BEeko.jpg"
+        ]
       },
       {
         "id": "kerim-alajbegovic",
@@ -866,7 +904,10 @@
         },
         "shirt_number_expected": 17,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Jahresbeginnfeier_FC_RB_Salzburg_%282026-01-25_RB_Arena%29_10.jpg/330px-Jahresbeginnfeier_FC_RB_Salzburg_%282026-01-25_RB_Arena%29_10.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Jahresbeginnfeier_FC_RB_Salzburg_%282026-01-25_RB_Arena%29_10.jpg/330px-Jahresbeginnfeier_FC_RB_Salzburg_%282026-01-25_RB_Arena%29_10.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Kerim_Alajbegovi%C4%87_%282025%29.jpg/500px-Kerim_Alajbegovi%C4%87_%282025%29.jpg"
+        ]
       },
       {
         "id": "esmir-bajraktarevic",
@@ -1030,7 +1071,23 @@
     },
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
-    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)"
+    "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
+    "image_pool": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Bilan_Bosnie-Herz%C3%A9govine.JPG/500px-Bilan_Bosnie-Herz%C3%A9govine.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Bosnia-Herzegovina_fans_at_Arena_Pantanal%2C_Cuiab%C3%A1_%282014_FIFA_World_Cup%29.jpg/500px-Bosnia-Herzegovina_fans_at_Arena_Pantanal%2C_Cuiab%C3%A1_%282014_FIFA_World_Cup%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/20150331_2028_AUT_BIH_2186.jpg/500px-20150331_2028_AUT_BIH_2186.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Bosnia_and_Herzegovina_national_football_team_in_2002.jpg/500px-Bosnia_and_Herzegovina_national_football_team_in_2002.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Bosnia_and_Herzegovina_vs_Iran%2C_2014_FIFA_World_Cup_march_2014-06-25_05.jpg/500px-Bosnia_and_Herzegovina_vs_Iran%2C_2014_FIFA_World_Cup_march_2014-06-25_05.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Arnela_Sabanovic.jpg/500px-Arnela_Sabanovic.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Pripreme_reprezentacije_uo%C4%87i_susreta_kvalifikacija_za_Svijetsko_Prvenstvo_2010_protiv_Turske.jpg/500px-Pripreme_reprezentacije_uo%C4%87i_susreta_kvalifikacija_za_Svijetsko_Prvenstvo_2010_protiv_Turske.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Poland_national_football_team%2C_BiH-Poland%2C_2020.09.07_%28cropped%29.jpg/500px-Poland_national_football_team%2C_BiH-Poland%2C_2020.09.07_%28cropped%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Bosnia_and_Herzegovina_national_football_team%2C_BiH-Poland%2C_2020.09.07_%28cropped%29.jpg/500px-Bosnia_and_Herzegovina_national_football_team%2C_BiH-Poland%2C_2020.09.07_%28cropped%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Friendly_football_match%2C_Iran_5-2_Bosnia_and_Herzegovina_%2801%29.jpg/500px-Friendly_football_match%2C_Iran_5-2_Bosnia_and_Herzegovina_%2801%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Friendly_football_match%2C_Iran_5-2_Bosnia_and_Herzegovina_%2802%29.jpg/500px-Friendly_football_match%2C_Iran_5-2_Bosnia_and_Herzegovina_%2802%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/3/31/Friendly_football_match%2C_Iran_5-2_Bosnia_and_Herzegovina_%2816%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/4/48/Friendly_football_match%2C_Iran_5-2_Bosnia_and_Herzegovina_%2815%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/7/76/Friendly_football_match%2C_Iran_5-2_Bosnia_and_Herzegovina_%2813%29.jpg"
+    ]
   },
   "history": {
     "first_appearance": 2014,

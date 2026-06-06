@@ -87,6 +87,19 @@ function buildEvents(gfSelf: number, gaOpp: number, selfSlug: string, oppSlug: s
   return ev.sort((a, b) => a.minute - b.minute);
 }
 
+/**
+ * Tempo del reloj (ms entre minutos). Corre fluido a media, pero FRENA en los
+ * minutos finales de cada mitad para crear tensión (como un partido que se hace
+ * eterno cuando aguantas un resultado). Pura sensación: la simulación ya está
+ * decidida.
+ */
+function tickDelay(clock: number, target: number): number {
+  const remaining = target - clock;
+  if (remaining <= 4) return 165; // últimos minutos: agónicos
+  if (remaining <= 10) return 95;
+  return 42;
+}
+
 /** ¿El DT estuvo por detrás en el marcador en algún momento del partido? */
 function wasEverBehind(events: GoalEvent[]): boolean {
   let gf = 0;
@@ -120,21 +133,46 @@ export default function MatchLive({
   const [planId, setPlanId] = useState<string>(TACTICAL_PLANS[0].id);
   const [clock, setClock] = useState(0);
   const [events, setEvents] = useState<GoalEvent[]>([]);
+  const [goalFx, setGoalFx] = useState<GoalEvent | null>(null);
   const lsRef = useRef<LiveMatchState | null>(null);
   const resRef = useRef<LiveMatchResult | null>(null);
+  const clockRef = useRef(0);
+  const celebratingRef = useRef(false);
+  const shownCountRef = useRef(0);
 
   const selfKey = useMemo(() => keyPlayers(selfSlug), [selfSlug]);
   const oppKey = useMemo(() => keyPlayers(oppSlug), [oppSlug]);
 
-  // Reloj: corre en las dos mitades hasta su tope (60' / 90').
+  // Reloj con RITMO CINEMATOGRÁFICO: setTimeout recursivo para variar el tempo
+  // minuto a minuto (acelera a media, frena en el tramo final) y DETENERSE
+  // durante la celebración de un gol — como en FIFA, el juego para para festejar.
   useEffect(() => {
     if (phase !== "half1" && phase !== "half2") return;
     const target = phase === "half1" ? 60 : 90;
-    const id = setInterval(() => {
-      setClock((c) => (c >= target ? c : c + 1));
-    }, 45);
-    return () => clearInterval(id);
+    let active = true;
+    let timer: ReturnType<typeof setTimeout>;
+    const tick = () => {
+      if (!active) return;
+      if (celebratingRef.current) {
+        timer = setTimeout(tick, 120); // en pausa por gol: re-chequea pronto
+        return;
+      }
+      const c = clockRef.current;
+      if (c >= target) return;
+      setClock(c + 1);
+      timer = setTimeout(tick, tickDelay(c + 1, target));
+    };
+    timer = setTimeout(tick, tickDelay(clockRef.current, target));
+    return () => {
+      active = false;
+      clearTimeout(timer);
+    };
   }, [phase]);
+
+  // Espejo del reloj para leerlo dentro del tick sin recrear el efecto.
+  useEffect(() => {
+    clockRef.current = clock;
+  }, [clock]);
 
   // Transición de fase al alcanzar el tope del reloj.
   useEffect(() => {
@@ -170,6 +208,31 @@ export default function MatchLive({
     };
   }, [events, clock]);
 
+  // Cuando un gol nuevo entra en pantalla: dispara la CELEBRACIÓN a pantalla
+  // completa, pausa el reloj (celebratingRef) y vibra el móvil si es propio.
+  useEffect(() => {
+    if (shown.feed.length <= shownCountRef.current) {
+      shownCountRef.current = shown.feed.length;
+      return;
+    }
+    shownCountRef.current = shown.feed.length;
+    const newest = shown.feed[shown.feed.length - 1];
+    setGoalFx(newest);
+    celebratingRef.current = true;
+    if (newest.team === "self" && typeof navigator !== "undefined" && "vibrate" in navigator) {
+      try {
+        navigator.vibrate([45, 35, 130]);
+      } catch {
+        /* no soportado: la celebración visual basta */
+      }
+    }
+    const t = setTimeout(() => {
+      setGoalFx(null);
+      celebratingRef.current = false;
+    }, 2000);
+    return () => clearTimeout(t);
+  }, [shown.feed]);
+
   const res = resRef.current;
   const finalGf = res ? res.gf : shown.gf;
   const finalGa = res ? res.ga : shown.ga;
@@ -183,6 +246,12 @@ export default function MatchLive({
   }, [phase, finalGf, finalGa, selfSlug, oppSlug]);
 
   const decisionChoices = phase === "decision" ? choicesFor(shown.gf, shown.ga) : [];
+
+  // Lectura emocional del marcador en vivo: verde si vas ganando, rojo si pierdes.
+  const liveScoreColor = shown.gf > shown.ga ? GREEN : shown.gf < shown.ga ? RED : "#fff";
+  // Tramo final agónico: el cronómetro late en rojo y más rápido.
+  const tense = (phase === "half2" && clock >= 85) || (phase === "half1" && clock >= 57);
+  const clockColor = tense ? RED : GREEN;
 
   return (
     <div
@@ -204,9 +273,28 @@ export default function MatchLive({
         @keyframes mlGoal { 0% { transform: scale(.6); opacity: 0; } 50% { transform: scale(1.12); } 100% { transform: scale(1); opacity: 1; } }
         @keyframes mlPulse { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
         @keyframes mlScore { 0% { transform: scale(1.35); } 100% { transform: scale(1); } }
+        @keyframes mlGolWrap { 0% { opacity: 0; } 7% { opacity: 1; } 80% { opacity: 1; } 100% { opacity: 0; } }
+        @keyframes mlGolFlash { 0% { opacity: 0; transform: scale(.3); } 18% { opacity: .9; } 100% { opacity: 0; transform: scale(1.8); } }
+        @keyframes mlGolSweep { 0% { transform: translateX(-130%) skewX(-18deg); } 100% { transform: translateX(130%) skewX(-18deg); } }
+        @keyframes mlGolWord { 0% { transform: scale(.2); opacity: 0; letter-spacing: -14px; filter: blur(10px); } 45% { transform: scale(1.18); opacity: 1; letter-spacing: 10px; filter: blur(0); } 62% { transform: scale(.97); } 100% { transform: scale(1); opacity: 1; letter-spacing: 6px; } }
+        @keyframes mlGolKit { 0% { transform: translateY(46px) scale(.4) rotate(-8deg); opacity: 0; } 55% { transform: translateY(-8px) scale(1.12) rotate(2deg); } 100% { transform: translateY(0) scale(1) rotate(0); opacity: 1; } }
+        @keyframes mlGolUp { 0% { transform: translateY(26px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+        @keyframes mlWinIn { 0% { transform: scale(.5); opacity: 0; filter: blur(6px); } 60% { transform: scale(1.08); } 100% { transform: scale(1); opacity: 1; filter: blur(0); } }
+        @keyframes mlGlow { 0%,100% { opacity: .45; transform: scale(1); } 50% { opacity: .8; transform: scale(1.08); } }
       `}</style>
 
-      {phase === "fulltime" && outcome === "V" && <Confetti pieces={42} />}
+      {phase === "fulltime" && outcome === "V" && <Confetti pieces={56} />}
+
+      {/* ── CELEBRACIÓN DE GOL a pantalla completa (cinematográfica) ── */}
+      {goalFx && (
+        <GoalCelebration
+          goal={goalFx}
+          selfSlug={selfSlug}
+          oppSlug={oppSlug}
+          selfName={selfNat?.nombre ?? selfSlug}
+          oppName={oppNat?.nombre ?? oppSlug}
+        />
+      )}
 
       <div
         style={{
@@ -242,12 +330,12 @@ export default function MatchLive({
               <span style={{ fontSize: 12, fontWeight: 800, color: "#fff", textAlign: "center" }}>{selfNat?.nombre ?? selfSlug}</span>
             </div>
             <div style={{ textAlign: "center", minWidth: 96 }}>
-              <div key={`${shown.gf}-${shown.ga}`} style={{ fontSize: 42, fontWeight: 900, color: phase === "fulltime" ? outColor : "#fff", animation: "mlScore .3s ease" }}>
+              <div key={`${shown.gf}-${shown.ga}`} style={{ fontSize: 42, fontWeight: 900, color: phase === "fulltime" ? outColor : liveScoreColor, animation: "mlScore .3s ease" }}>
                 {shown.gf} - {shown.ga}
               </div>
               {phase !== "fulltime" ? (
-                <div style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 12, fontWeight: 800, color: GREEN }}>
-                  <span style={{ width: 7, height: 7, borderRadius: "50%", background: GREEN, animation: "mlPulse 1s infinite" }} />
+                <div style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 12, fontWeight: 800, color: clockColor }}>
+                  <span style={{ width: 7, height: 7, borderRadius: "50%", background: clockColor, animation: `mlPulse ${tense ? ".5s" : "1s"} infinite` }} />
                   {clock}&#39;
                 </div>
               ) : (
@@ -383,23 +471,156 @@ export default function MatchLive({
           </>
         )}
 
-        {/* ── FINAL ── */}
+        {/* ── FINAL (reacción emocional diferenciada por resultado) ── */}
         {phase === "fulltime" && (
-          <>
-            <div style={{ textAlign: "center", fontSize: 16, fontWeight: 900, color: outColor, marginBottom: 10 }}>
-              {outcome === "V" ? "Victoria" : outcome === "E" ? "Empate" : "Derrota"}
-            </div>
-            {motm && (
-              <div style={{ textAlign: "center", padding: "10px 14px", borderRadius: 12, background: BG3, border: `1px solid ${GOLD}44`, marginBottom: 14 }}>
-                <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 1.2, textTransform: "uppercase", color: GOLD }}>Figura del partido</div>
-                <div style={{ fontSize: 14.5, fontWeight: 800, color: "#fff", marginTop: 3 }}>{motm}</div>
-              </div>
+          <div style={{ position: "relative", textAlign: "center" }}>
+            {outcome === "V" && (
+              <div
+                aria-hidden
+                style={{
+                  position: "absolute",
+                  top: -30,
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  width: 320,
+                  height: 160,
+                  background: `radial-gradient(ellipse at center, ${GOLD}55 0%, transparent 70%)`,
+                  filter: "blur(6px)",
+                  animation: "mlGlow 2.4s ease-in-out infinite",
+                  pointerEvents: "none",
+                  zIndex: 0,
+                }}
+              />
             )}
-            <button type="button" onClick={() => onFinish(finalGf, finalGa, wasEverBehind(events))} style={btnGold}>
-              Ver resumen
-            </button>
-          </>
+            <div style={{ position: "relative", zIndex: 1 }}>
+              <div
+                style={{
+                  fontSize: outcome === "V" ? 30 : 22,
+                  fontWeight: 900,
+                  letterSpacing: outcome === "V" ? 3 : 1.5,
+                  textTransform: "uppercase",
+                  color: outColor,
+                  marginBottom: 4,
+                  animation: "mlWinIn .55s cubic-bezier(.2,.9,.3,1.3) both",
+                  textShadow: outcome === "V" ? `0 4px 24px ${GOLD}88` : "none",
+                }}
+              >
+                {outcome === "V" ? "¡Victoria!" : outcome === "E" ? "Empate" : "Derrota"}
+              </div>
+              <div style={{ fontSize: 12.5, color: MID, marginBottom: 14 }}>
+                {outcome === "V"
+                  ? wasEverBehind(events)
+                    ? "Remontada de bandera. El banquillo ruge contigo."
+                    : "El banquillo ruge contigo. Así se dirige."
+                  : outcome === "E"
+                    ? "Un punto que suma. A seguir construyendo."
+                    : "A levantar la cabeza, míster. Esto no acaba aquí."}
+              </div>
+              {motm && (
+                <div style={{ padding: "10px 14px", borderRadius: 12, background: BG3, border: `1px solid ${GOLD}44`, marginBottom: 14 }}>
+                  <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 1.2, textTransform: "uppercase", color: GOLD }}>Figura del partido</div>
+                  <div style={{ fontSize: 14.5, fontWeight: 800, color: "#fff", marginTop: 3 }}>{motm}</div>
+                </div>
+              )}
+              <button type="button" onClick={() => onFinish(finalGf, finalGa, wasEverBehind(events))} style={btnGold}>
+                Ver resumen
+              </button>
+            </div>
+          </div>
         )}
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Celebración de gol a PANTALLA COMPLETA (estilo FIFA): destello en el color del
+ * equipo, barrido de luz, la palabra "GOL" entrando con fuerza, la camiseta del
+ * goleador saltando y el nombre + minuto. Diferencia gol propio (euforia dorada)
+ * de gol rival (rojo, más sobrio). Se monta ~2s y se desmonta solo.
+ */
+function GoalCelebration({
+  goal,
+  selfSlug,
+  oppSlug,
+  selfName,
+  oppName,
+}: {
+  goal: GoalEvent;
+  selfSlug: string;
+  oppSlug: string;
+  selfName: string;
+  oppName: string;
+}) {
+  const mine = goal.team === "self";
+  const slug = mine ? selfSlug : oppSlug;
+  const name = mine ? selfName : oppName;
+  const accent = mine ? GOLD2 : RED;
+  const word = mine ? "\u00a1GOOOL!" : "GOL";
+
+  return (
+    <div
+      aria-hidden
+      style={{
+        position: "absolute",
+        inset: 0,
+        zIndex: 60,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        overflow: "hidden",
+        pointerEvents: "none",
+        background: "radial-gradient(ellipse at center, rgba(6,11,20,0.55) 0%, rgba(6,11,20,0.9) 80%)",
+        animation: "mlGolWrap 2s ease both",
+      }}
+    >
+      {/* Destello en el color del equipo */}
+      <div
+        style={{
+          position: "absolute",
+          width: 520,
+          height: 520,
+          borderRadius: "50%",
+          background: `radial-gradient(circle, ${accent}aa 0%, transparent 65%)`,
+          animation: "mlGolFlash 1.1s ease-out both",
+        }}
+      />
+      {/* Barrido de luz */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "55%",
+          height: "100%",
+          background: `linear-gradient(90deg, transparent, ${accent}30, transparent)`,
+          animation: "mlGolSweep 1.1s ease-out both",
+        }}
+      />
+      <div style={{ position: "relative", textAlign: "center", padding: 16 }}>
+        <div style={{ animation: "mlGolKit .7s cubic-bezier(.2,.8,.3,1.4) both" }}>
+          <Kit slug={slug} size={92} />
+        </div>
+        <div
+          style={{
+            fontSize: mine ? 56 : 40,
+            fontWeight: 900,
+            color: accent,
+            lineHeight: 1,
+            margin: "6px 0 2px",
+            textShadow: `0 6px 30px ${accent}99`,
+            animation: "mlGolWord .8s cubic-bezier(.2,.9,.3,1.2) both",
+          }}
+        >
+          {word}
+        </div>
+        <div style={{ animation: "mlGolUp .5s .25s ease both", opacity: 0 }}>
+          <div style={{ fontSize: 16, fontWeight: 800, color: "#fff" }}>{goal.scorer}</div>
+          <div style={{ fontSize: 12, fontWeight: 700, color: MID, marginTop: 2 }}>
+            {name} &middot; {goal.minute}&#39;
+          </div>
+        </div>
       </div>
     </div>
   );

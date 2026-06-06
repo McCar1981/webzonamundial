@@ -43,7 +43,7 @@ export async function GET(req: Request) {
   // Solo publicamos como MÁXIMO NEWS_DAILY_CAP noticias por día natural (UTC),
   // y solo las que pasen el crítico de calidad. Algunos días saldrán menos, o
   // ninguna: es lo correcto durante la revisión de AdSense.
-  const DAILY_PUBLISH_CAP = parseInt(process.env.NEWS_DAILY_CAP || "20", 10);
+  const DAILY_PUBLISH_CAP = parseInt(process.env.NEWS_DAILY_CAP || "30", 10);
   const todayUTC = new Date().toISOString().slice(0, 10);
   const publishedToday = store.drafts.filter(
     (d) => d.status === "published" && (d.ingestedAt ?? "").slice(0, 10) === todayUTC,

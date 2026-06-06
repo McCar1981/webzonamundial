@@ -422,16 +422,44 @@ const PJ_CSS = `
 .pj-back:hover { background: rgba(201,168,76,0.14); }
 .pj-summary { position: sticky; top: 0; z-index: 5; }
 
-/* Barra de resumen del usuario (UNA sola card horizontal compacta) en el hub.
-   Items en línea con separadores; en móvil estrecho fluyen a 2 líneas. */
+/* Resumen del usuario: mini-card compacta de dos niveles. Móvil → apilada
+   (nivel+XP arriba, barra de XP en medio, chips de racha/monedas abajo). En
+   ≥640px se reorganiza en rejilla: bloque nivel+barra a la izquierda y chips a
+   la derecha, todo en una card baja (~80px). */
 .pj-usersummary {
-  background: ${BG2}; border: ${CARD_BORDER}; border-radius: 14px; padding: 10px 14px;
-  display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px;
-  font-size: 13px; font-weight: 800; color: #fff;
+  background: ${BG2}; border: ${CARD_BORDER}; border-radius: 14px; padding: 11px 14px;
+  display: flex; flex-direction: column; gap: 9px;
 }
-.pj-usersummary-item { display: inline-flex; align-items: center; gap: 6px; min-width: 0; }
-.pj-usersummary-item:not(:last-child)::after { content: "·"; color: ${DIM}; margin-left: 8px; font-weight: 700; }
-.pj-usersummary-sub { color: ${MID}; font-weight: 700; font-size: 11.5px; }
+.pj-us-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.pj-us-level {
+  display: inline-flex; align-items: center; gap: 7px; min-width: 0;
+  font-size: 14.5px; font-weight: 900; color: #fff;
+}
+.pj-us-rank {
+  color: ${GOLD2}; font-size: 11px; font-weight: 800; letter-spacing: 0.3px;
+  text-transform: uppercase; background: rgba(232,212,139,0.10);
+  border: 1px solid rgba(232,212,139,0.28); border-radius: 99px; padding: 2px 8px;
+  white-space: nowrap;
+}
+.pj-us-xp { color: ${MID}; font-size: 12px; font-weight: 800; white-space: nowrap; flex-shrink: 0; }
+.pj-us-bar { height: 8px; background: ${BG3}; border: ${CARD_BORDER}; border-radius: 99px; overflow: hidden; }
+.pj-us-bar-fill { height: 100%; background: linear-gradient(90deg, #38bdf8, ${GOLD2}); border-radius: 99px; transition: width .4s ease; min-width: 2px; }
+.pj-us-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.pj-us-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,0.05); border: ${CARD_BORDER}; border-radius: 99px;
+  padding: 5px 11px; font-size: 12.5px; font-weight: 800; color: #fff; white-space: nowrap;
+}
+@media (min-width: 640px) {
+  .pj-usersummary {
+    display: grid; grid-template-columns: 1fr auto;
+    grid-template-areas: "top chips" "bar chips";
+    column-gap: 20px; row-gap: 8px; align-items: center;
+  }
+  .pj-us-top { grid-area: top; }
+  .pj-us-bar { grid-area: bar; }
+  .pj-us-chips { grid-area: chips; align-self: center; }
+}
 
 /* Mini barra de stats (Nivel / XP / Racha / Fútcoins) */
 /* En móviles estrechos: rejilla 2×2 para que cada tarjeta (sobre todo Fútcoins)
@@ -603,24 +631,44 @@ function UserSummaryBar() {
     return () => { alive = false; };
   }, []);
   if (!s) return null;
-  const items: { icon: typeof Trophy; color: string; label: string; sub?: string }[] = [
-    { icon: Trophy, color: GOLD2, label: `Nivel ${s.level.level}`, sub: s.level.title },
-    { icon: TrendingUp, color: "#38bdf8", label: `${s.level.xpIntoLevel}/${s.level.xpForLevel} XP` },
-    { icon: Flame, color: s.streak.active ? "#f59e0b" : DIM, label: `Racha ${s.streak.current}` },
-    { icon: Coins, color: GOLD, label: fmtCount(s.coins) },
-  ];
+  const { level, xpIntoLevel, xpForLevel, title } = s.level;
+  const xpPct = xpForLevel > 0 ? Math.min(100, Math.round((xpIntoLevel / xpForLevel) * 100)) : 0;
+  const streak = s.streak.current;
+  const coins = s.coins;
+  const flameColor = s.streak.active ? "#f59e0b" : DIM;
+
   return (
-    <div className="pj-usersummary" role="group" aria-label="Tu progreso">
-      {items.map((it) => {
-        const Icon = it.icon;
-        return (
-          <span key={it.label} className="pj-usersummary-item">
-            <Icon size={15} color={it.color} style={{ flexShrink: 0 }} />
-            <span>{it.label}</span>
-            {it.sub && <span className="pj-usersummary-sub">{it.sub}</span>}
-          </span>
-        );
-      })}
+    <div
+      className="pj-usersummary"
+      role="group"
+      aria-label={`Nivel ${level} ${title}, ${xpIntoLevel} de ${xpForLevel} XP, racha ${streak}, ${coins} fútcoins`}
+    >
+      {/* Fila superior: nivel + rango a la izquierda, XP a la derecha */}
+      <div className="pj-us-top">
+        <span className="pj-us-level">
+          <Trophy size={16} color={GOLD2} style={{ flexShrink: 0 }} />
+          Nivel {level}
+          <span className="pj-us-rank">{title}</span>
+        </span>
+        <span className="pj-us-xp">{xpIntoLevel}/{xpForLevel} XP</span>
+      </div>
+
+      {/* Barra de progreso de XP (visible aunque esté a 0) */}
+      <div className="pj-us-bar" aria-hidden>
+        <div className="pj-us-bar-fill" style={{ width: `${xpPct}%` }} />
+      </div>
+
+      {/* Chips: racha + fútcoins */}
+      <div className="pj-us-chips">
+        <span className="pj-us-chip">
+          <Flame size={14} color={flameColor} style={{ flexShrink: 0 }} />
+          Racha {streak}
+        </span>
+        <span className="pj-us-chip">
+          <Coins size={14} color={GOLD} style={{ flexShrink: 0 }} />
+          {fmtCount(coins)} Fútcoins
+        </span>
+      </div>
     </div>
   );
 }

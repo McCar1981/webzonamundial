@@ -19,6 +19,10 @@ on:
         description: "Maximo de posts a procesar en esta corrida"
         required: false
         default: "60"
+      probe:
+        description: "Diagnostico (1 = informa por que no se elige imagen, no escribe)"
+        required: false
+        default: "0"
 
 jobs:
   backfill:
@@ -30,6 +34,7 @@ jobs:
           CRON_SECRET: ${{ secrets.CRON_SECRET }}
           DRY: ${{ github.event.inputs.dry }}
           LIMIT: ${{ github.event.inputs.limit }}
+          PROBE: ${{ github.event.inputs.probe }}
         run: |
           if [ -z "$SITE_URL" ] || [ -z "$CRON_SECRET" ]; then
             echo "::error::Missing SITE_URL or CRON_SECRET secrets"
@@ -37,6 +42,6 @@ jobs:
           fi
           curl -fsSL -m 300 \
             -H "Authorization: Bearer $CRON_SECRET" \
-            "$SITE_URL/api/cron/backfill-blog-images?dry=${DRY}&limit=${LIMIT}" \
+            "$SITE_URL/api/cron/backfill-blog-images?dry=${DRY}&limit=${LIMIT}&probe=${PROBE}" \
             -o response.json
           cat response.json

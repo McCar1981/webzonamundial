@@ -93,6 +93,56 @@ export async function writeIngestStore(store: IngestStore): Promise<void> {
   return isKvEnabled() ? writeToKv(store) : writeToFs(store);
 }
 
+/* ---------- Lock distribuido ---------- */
+//
+// El store es un único blob (lee-modifica-escribe). Si dos invocaciones del
+// cron (p.ej. la programada horaria + un run manual) corren a la vez, ambas
+// leen el mismo blob, lo modifican y lo reescriben: el segundo write pisa al
+// primero y se PIERDEN publicadas (lost update). Esto drenaba el conteo.
+//
+// Solución: un lock NX en KV. Solo una ingesta tiene el lock a la vez; las
+// demás se saltan el tick (no es grave: el cron horario reintenta). TTL alto
+// para que, si una invocación muere sin liberar, el lock expire solo.
+
+const LOCK_KEY = "noticias:ingested-store:lock";
+// TTL por encima del presupuesto de trabajo del cron (~50s) + margen, para que
+// un crash no deje el lock colgado más de lo necesario.
+const LOCK_TTL_MS = 90_000;
+
+/**
+ * Intenta adquirir el lock. Devuelve true si lo consiguió (o si KV está
+ * deshabilitado: en dev con FS no hay concurrencia entre lambdas).
+ * Fail-open ante error de infra: preferimos arriesgar una carrera rara a
+ * bloquear toda la ingesta por un fallo transitorio de KV.
+ */
+export async function acquireStoreLock(
+  token: string,
+  ttlMs = LOCK_TTL_MS,
+): Promise<boolean> {
+  if (!isKvEnabled()) return true;
+  try {
+    const res = await kv.set(LOCK_KEY, token, { nx: true, px: ttlMs });
+    return res === "OK";
+  } catch (err) {
+    console.error("[store] lock acquire failed", (err as Error).message);
+    return true; // fail-open
+  }
+}
+
+/**
+ * Libera el lock SOLO si seguimos siendo los dueños (comparando el token), para
+ * no borrar por error un lock que ya expiró y readquirió otra invocación.
+ */
+export async function releaseStoreLock(token: string): Promise<void> {
+  if (!isKvEnabled()) return;
+  try {
+    const current = await kv.get<string>(LOCK_KEY);
+    if (current === token) await kv.del(LOCK_KEY);
+  } catch (err) {
+    console.error("[store] lock release failed", (err as Error).message);
+  }
+}
+
 /** Convert a published draft into the public Noticia shape. */
 function draftToNoticia(d: DraftNoticia, idx: number): Noticia {
   return {

@@ -16,7 +16,14 @@ import { ingestNews } from "@/lib/noticias-ingest";
 import { applyRewrite } from "@/lib/noticias-rewriter";
 import { enrichDraft, enrichEnabled } from "@/lib/noticias-enrich";
 import { WORLD_CUP_QUERIES, HOT_QUERY_KEYS, COLD_QUERY_KEYS, type WorldCupQueryKey } from "@/lib/gnews";
-import { readIngestStore, writeIngestStore, getStorePath } from "@/lib/noticias-store";
+import {
+  readIngestStore,
+  writeIngestStore,
+  getStorePath,
+  acquireStoreLock,
+  releaseStoreLock,
+} from "@/lib/noticias-store";
+import { randomUUID } from "node:crypto";
 import { broadcastPush } from "@/lib/push-notifications";
 import type { DraftNoticia } from "@/lib/noticias-ingest";
 
@@ -36,6 +43,21 @@ export async function GET(req: Request) {
     }
   }
 
+  // Lock distribuido: solo una ingesta escribe el store a la vez. Si el cron
+  // horario y un run manual se cruzan, sin esto el segundo write pisa al primero
+  // y se pierden publicadas. Si no conseguimos el lock, otra ingesta está en
+  // curso → nos saltamos este tick (no es error; el cron reintenta).
+  const lockToken = randomUUID();
+  const gotLock = await acquireStoreLock(lockToken);
+  if (!gotLock) {
+    return NextResponse.json({
+      ok: true,
+      skipped: "locked",
+      message: "otra ingesta en curso; este tick se omite",
+    });
+  }
+
+  try {
   const store = await readIngestStore();
   const knownHashes = new Set(store.drafts.map((d) => d.sourceUrlHash));
 
@@ -374,6 +396,10 @@ export async function GET(req: Request) {
     },
     storePath: getStorePath(),
   });
+  } finally {
+    // Liberar siempre el lock, pase lo que pase, para no bloquear el siguiente tick.
+    await releaseStoreLock(lockToken);
+  }
 }
 
 // Force dynamic so Vercel Cron always hits a fresh execution

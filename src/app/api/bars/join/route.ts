@@ -39,5 +39,15 @@ export async function POST(req: Request) {
     source: body.source ?? (body.qr ? "qr" : "link"),
     qrSourceId,
   });
-  return NextResponse.json(result);
+
+  // Contexto de bar: al entrar en la porra dejamos una cookie con el slug para
+  // que la experiencia de predicciones (/app/*) mantenga la identidad del bar
+  // (banner con logo, color y "volver a la porra"), sin dejar de ser ZM.
+  const res = NextResponse.json(result);
+  res.cookies.set("zm_bar", bar.slug, {
+    path: "/",
+    maxAge: 60 * 60 * 24 * 60, // 60 días
+    sameSite: "lax",
+  });
+  return res;
 }

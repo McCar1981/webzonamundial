@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import BarContextBanner from "@/components/bars/BarContextBanner";
 
 /**
  * Group layout for /app/* internal modules.
@@ -26,5 +27,11 @@ export const metadata: Metadata = {
 };
 
 export default function AppGroupLayout({ children }: { children: React.ReactNode }) {
-  return children;
+  return (
+    <>
+      {/* Banner de identidad del bar (solo si se entró por una porra). */}
+      <BarContextBanner />
+      {children}
+    </>
+  );
 }

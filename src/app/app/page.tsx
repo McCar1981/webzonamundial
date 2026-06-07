@@ -307,6 +307,21 @@ function ModuleCard({ mod, cat }: { mod: Mod; cat: Cat }) {
       {/* Franja de acento superior con degradado que FLUYE de lado a lado. */}
       <span aria-hidden className="zm-card-accent" style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, zIndex: 2, background: `linear-gradient(90deg, ${tint}, ${tint2}, ${tint}, ${tint2})`, backgroundSize: "300% 100%", opacity: active ? 1 : 0.9 }} />
 
+      {/* ── ZONA DE LECTURA · velo frosted localizado SOLO bajo título+descripción.
+          Banda blanca fuerte en el centro que se difumina arriba y abajo → el copy
+          se lee al instante, pero el arte sigue visible en bordes, esquinas, pie y
+          tras el CTA. Blur sutil (2px) sobre el detalle del arte = panel premium. */}
+      <span
+        aria-hidden
+        style={{
+          position: "absolute", left: 0, right: 0, top: "22%", height: "46%", zIndex: 1, pointerEvents: "none",
+          background: "linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.92) 26%, rgba(255,255,255,0.9) 64%, rgba(255,255,255,0) 100%)",
+          backdropFilter: "blur(2px)", WebkitBackdropFilter: "blur(2px)",
+          WebkitMaskImage: "linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%)",
+          maskImage: "linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%)",
+        }}
+      />
+
       <div style={{ position: "relative", zIndex: 2, display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 13 }}>
         <span style={{ position: "relative", width: 54, height: 54, borderRadius: 15, display: "inline-flex", alignItems: "center", justifyContent: "center", background: `linear-gradient(140deg, ${tint}44, ${tint2}26)`, border: `1.5px solid ${tint}99`, boxShadow: active ? `0 8px 20px ${tint}55, inset 0 1px 0 rgba(255,255,255,0.7)` : `0 4px 12px ${tint}33, inset 0 1px 0 rgba(255,255,255,0.55)`, transition: "box-shadow .25s, transform .25s", transform: active ? "scale(1.05)" : undefined }}>
           {/* brillo superior del contenedor del icono */}
@@ -329,8 +344,8 @@ function ModuleCard({ mod, cat }: { mod: Mod; cat: Cat }) {
         </span>
         <span style={badgeStyle(mod.estado)}>{mod.estado === "En vivo" ? "● En vivo" : mod.estado}</span>
       </div>
-      <h3 style={{ position: "relative", zIndex: 2, fontWeight: 800, fontSize: 16.5, color: INK, marginBottom: 5, textShadow: "0 1px 1px rgba(255,255,255,0.85)" }}>{mod.title}</h3>
-      <p style={{ position: "relative", zIndex: 2, fontSize: 12.5, color: INK_MUT, lineHeight: 1.45, marginBottom: 14, minHeight: 34, textShadow: "0 1px 1px rgba(255,255,255,0.7)" }}>{mod.desc}</p>
+      <h3 style={{ position: "relative", zIndex: 2, fontWeight: 800, fontSize: 16.5, letterSpacing: "-0.02em", color: "#071426", marginBottom: 5, textShadow: "0 1px 1px rgba(255,255,255,0.7)" }}>{mod.title}</h3>
+      <p style={{ position: "relative", zIndex: 2, fontSize: 12.5, fontWeight: 500, color: "#344154", lineHeight: 1.35, marginBottom: 14, minHeight: 34, textShadow: "0 1px 1px rgba(255,255,255,0.55)" }}>{mod.desc}</p>
       {/* CTA con identidad de categoría (premium, no gris genérico). Anclado abajo. */}
       <span
         style={{

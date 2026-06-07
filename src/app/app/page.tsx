@@ -287,16 +287,25 @@ function ModuleCard({ mod, cat }: { mod: Mod; cat: Cat }) {
         <span aria-hidden style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none", backgroundImage: `radial-gradient(135px 110px at 100% 0%, ${tint}33, transparent 72%), radial-gradient(140px 140px at 0% 100%, ${tint2}26, transparent 70%)` }} />
       )}
 
+      {/* ── Capa 1.5 · AURA viva: blob de color de categoría que deriva despacio
+          por detrás del velo. Da sensación de "energía" sin distraer (animado por
+          CSS, transform-only → barato). */}
+      <span aria-hidden className="zm-card-aura" style={{ position: "absolute", inset: "-30%", zIndex: 0, pointerEvents: "none", background: `radial-gradient(closest-side, ${glow}, transparent 70%)`, opacity: 0.55, willChange: "transform" }} />
+
       {/* ── Capa 2 · velo de legibilidad (blanco: fuerte arriba → suave abajo) +
           tinte de categoría al pie. Mantiene la card "clara premium" y el texto
           legible sin matar la imagen. Valores afinados POR CATEGORÍA. */}
       <span aria-hidden style={{ position: "absolute", inset: 0, zIndex: 1, pointerEvents: "none", background: `linear-gradient(180deg, rgba(255,255,255,${ovTop}) 0%, rgba(255,255,255,${ovMid}) 46%, rgba(255,255,255,${ovBot}) 100%), radial-gradient(120% 78% at 50% 118%, ${wash}, transparent 60%)` }} />
 
-      {/* ── Capa 3 · efectos: glow radial de esquina por categoría (sube en hover) ── */}
-      <span aria-hidden style={{ position: "absolute", inset: -1, zIndex: 1, pointerEvents: "none", background: `radial-gradient(circle at 82% 102%, ${glow}, transparent 48%)`, opacity: active ? 0.8 : 0.5, transition: "opacity .25s" }} />
+      {/* ── Capa 3 · efectos animados ──
+          Sheen: barrido diagonal de luz que cruza la card en bucle (premium). */}
+      <span aria-hidden className="zm-card-sheen" style={{ position: "absolute", top: 0, bottom: 0, width: "55%", left: "-70%", zIndex: 1, pointerEvents: "none", background: "linear-gradient(105deg, transparent 0%, rgba(255,255,255,0.55) 50%, transparent 100%)", willChange: "transform" }} />
+      {/* Glow radial de esquina por categoría que RESPIRA (escala suave en bucle) + sube en hover. */}
+      <span aria-hidden className="zm-card-glow" style={{ position: "absolute", inset: -1, zIndex: 1, pointerEvents: "none", background: `radial-gradient(circle at 82% 102%, ${glow}, transparent 48%)`, opacity: active ? 0.85 : 0.55, transition: "opacity .25s", willChange: "transform" }} />
       {/* Halo + franja de acento superior (premium). */}
       <span aria-hidden style={{ position: "absolute", top: 0, left: 0, right: 0, height: 54, zIndex: 1, pointerEvents: "none", background: `radial-gradient(75% 130% at 50% -12%, ${glow}, transparent 72%)`, opacity: active ? 1 : 0.8, transition: "opacity .25s" }} />
-      <span aria-hidden style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, zIndex: 2, background: `linear-gradient(90deg, ${tint}, ${tint2})`, opacity: active ? 1 : 0.85, transition: "opacity .25s" }} />
+      {/* Franja de acento superior con degradado que FLUYE de lado a lado. */}
+      <span aria-hidden className="zm-card-accent" style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, zIndex: 2, background: `linear-gradient(90deg, ${tint}, ${tint2}, ${tint}, ${tint2})`, backgroundSize: "300% 100%", opacity: active ? 1 : 0.9 }} />
 
       <div style={{ position: "relative", zIndex: 2, display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 13 }}>
         <span style={{ position: "relative", width: 54, height: 54, borderRadius: 15, display: "inline-flex", alignItems: "center", justifyContent: "center", background: `linear-gradient(140deg, ${tint}44, ${tint2}26)`, border: `1.5px solid ${tint}99`, boxShadow: active ? `0 8px 20px ${tint}55, inset 0 1px 0 rgba(255,255,255,0.7)` : `0 4px 12px ${tint}33, inset 0 1px 0 rgba(255,255,255,0.55)`, transition: "box-shadow .25s, transform .25s", transform: active ? "scale(1.05)" : undefined }}>
@@ -631,6 +640,51 @@ export default function AppHubPage() {
         /* Feedback táctil: el tap "hunde" levemente la card. */
         .zm-mod-card:active{ transform:scale(0.97) !important; }
         .zm-mod-card--locked:active{ transform:none !important; }
+
+        /* ── Vida detrás de cada card (animado, premium, barato: transform/opacity) ── */
+        @keyframes zm-aura {
+          0%   { transform: translate3d(-8%, -6%, 0) scale(1);    opacity:.45; }
+          50%  { transform: translate3d(10%, 8%, 0)  scale(1.18); opacity:.7;  }
+          100% { transform: translate3d(-8%, -6%, 0) scale(1);    opacity:.45; }
+        }
+        @keyframes zm-sheen {
+          0%   { transform: translateX(0); }
+          /* el barrido cruza y luego espera (gran parte del ciclo en reposo) */
+          18%  { transform: translateX(320%); }
+          100% { transform: translateX(320%); }
+        }
+        @keyframes zm-glow {
+          0%,100% { transform: scale(1);    opacity:.55; }
+          50%     { transform: scale(1.12); opacity:.85; }
+        }
+        @keyframes zm-accent { 0%{ background-position:0% 50%; } 100%{ background-position:300% 50%; } }
+
+        .zm-card-aura   { animation: zm-aura 9s ease-in-out infinite; }
+        .zm-card-sheen  { animation: zm-sheen 6.5s cubic-bezier(.6,0,.2,1) infinite; }
+        .zm-card-glow   { animation: zm-glow 5s ease-in-out infinite; }
+        .zm-card-accent { animation: zm-accent 7s linear infinite; }
+        /* Hover: el glow brilla y el sheen acelera → la card "despierta". */
+        .zm-mod-card:hover .zm-card-glow  { animation-duration: 2.4s; }
+        .zm-mod-card:hover .zm-card-sheen { animation-duration: 2.8s; }
+
+        /* Escalonado por posición → las cards no laten al unísono (más vivo). */
+        .zm-mod-card:nth-child(4n+1) .zm-card-aura,
+        .zm-mod-card:nth-child(4n+1) .zm-card-glow  { animation-delay: 0s;    }
+        .zm-mod-card:nth-child(4n+2) .zm-card-aura,
+        .zm-mod-card:nth-child(4n+2) .zm-card-glow  { animation-delay: -1.6s; }
+        .zm-mod-card:nth-child(4n+3) .zm-card-aura,
+        .zm-mod-card:nth-child(4n+3) .zm-card-glow  { animation-delay: -3.1s; }
+        .zm-mod-card:nth-child(4n)   .zm-card-aura,
+        .zm-mod-card:nth-child(4n)   .zm-card-glow  { animation-delay: -4.4s; }
+        .zm-mod-card:nth-child(3n+1) .zm-card-sheen { animation-delay: 0s;    }
+        .zm-mod-card:nth-child(3n+2) .zm-card-sheen { animation-delay: -2.2s; }
+        .zm-mod-card:nth-child(3n)   .zm-card-sheen { animation-delay: -4.3s; }
+
+        /* Accesibilidad + batería: sin movimiento si el usuario lo pide. */
+        @media (prefers-reduced-motion: reduce) {
+          .zm-card-aura, .zm-card-sheen, .zm-card-glow, .zm-card-accent { animation: none; }
+          .zm-card-sheen { display: none; }
+        }
       `}</style>
     </div>
   );

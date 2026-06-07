@@ -82,7 +82,7 @@ export default function BarKitPosterTemplate({
       }}
     >
       {/* ── LOGO ───────────────────────────────────────────── */}
-      <div style={{ ...zoneStyle(ZONES.logo), display: "flex", alignItems: "center", justifyContent: "center", padding: "32px 48px", outline: debug ? "3px solid rgba(255,0,0,.6)" : undefined }}>
+      <div style={{ ...zoneStyle(ZONES.logo), display: "flex", alignItems: "center", justifyContent: "center", padding: "12px 24px", outline: debug ? "3px solid rgba(255,0,0,.6)" : undefined }}>
         {debug && <span style={debugLabel("#ff6b6b", "#ff6b6b")}>LOGO</span>}
         {barLogoUrl ? (
           // eslint-disable-next-line @next/next/no-img-element

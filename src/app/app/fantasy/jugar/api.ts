@@ -38,20 +38,29 @@ export async function fetchServerTeam(): Promise<FantasyTeamState | null> {
   }
 }
 
+/** Resultado del guardado: ok + Fútcoins/XP abonados al confirmar jornada (0 si no). */
+export interface SaveTeamResult {
+  ok: boolean;
+  futcoins: number;
+  xpAwarded: number;
+}
+
 /** Guarda el equipo en el servidor. gameweekScore se envía al confirmar jornada. */
 export async function saveServerTeam(
   state: FantasyTeamState,
   gameweekScore?: { gw: number; points: number; powerUp: string | null },
-): Promise<boolean> {
+): Promise<SaveTeamResult> {
   try {
     const res = await fetch("/api/fantasy/team", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ state, gameweekScore }),
     });
-    return res.ok;
+    if (!res.ok) return { ok: false, futcoins: 0, xpAwarded: 0 };
+    const data = (await res.json()) as { futcoins?: number; xpAwarded?: number };
+    return { ok: true, futcoins: data.futcoins ?? 0, xpAwarded: data.xpAwarded ?? 0 };
   } catch {
-    return false;
+    return { ok: false, futcoins: 0, xpAwarded: 0 };
   }
 }
 

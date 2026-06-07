@@ -288,10 +288,17 @@ export default function FantasyGame() {
         freeTransfers: Math.min(MAX_FREE_TRANSFERS, (tc.wildcard ? team.freeTransfers : Math.max(0, team.freeTransfers - tc.transfers)) + FREE_TRANSFERS),
       };
       setTeam(next);
+      const base = tc.penalty > 0
+        ? `Jornada confirmada: +${points} −${tc.penalty} (fichajes) = +${net} pts.`
+        : `Jornada confirmada: +${net} pts.`;
       if (authed) {
-        saveServerTeam(next, { gw: team.gameweek, points: net, powerUp: usedPU }).catch(() => {});
+        // Al confirmar con sesión, el servidor abona Fútcoins (una vez por jornada
+        // ya disputada). Mostramos el premio real cuando llega; si no, solo los pts.
+        saveServerTeam(next, { gw: team.gameweek, points: net, powerUp: usedPU })
+          .then((r) => { if (r.futcoins > 0) flash(`${base} +${r.futcoins} Fútcoins · +${r.xpAwarded} XP`); })
+          .catch(() => {});
       }
-      flash(tc.penalty > 0 ? `Jornada confirmada: +${points} −${tc.penalty} (fichajes) = +${net} pts.` : `Jornada confirmada: +${net} pts.`);
+      flash(base);
       setTab("ligas");
     },
     [team, authed, flash],

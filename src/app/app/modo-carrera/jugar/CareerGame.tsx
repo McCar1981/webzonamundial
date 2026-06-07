@@ -58,6 +58,8 @@ export default function CareerGame() {
   const [trophyReveal, setTrophyReveal] = useState<Trophy | null>(null);
   const [showGuide, setShowGuide] = useState(false);
   const [narrativeQuota, setNarrativeQuota] = useState<{ remaining: number | null; exceeded: boolean }>({ remaining: null, exceeded: false });
+  // Premio de Fútcoins recién abonado por el servidor (misiones reclamadas).
+  const [coinReward, setCoinReward] = useState<{ futcoins: number; xpAwarded: number } | null>(null);
   const hydrated = useRef(false);
   const prevOverall = useRef<number | null>(null);
   const prevTrophies = useRef<number | null>(null);
@@ -96,8 +98,21 @@ export default function CareerGame() {
   useEffect(() => {
     if (!career || !hydrated.current) return;
     saveCareer(career);
-    if (authed) void saveServerCareer(career);
+    if (authed) {
+      // El servidor abona Fútcoins por misiones reclamadas (una vez por misión).
+      // Si este guardado liquidó alguna, mostramos el premio real al jugador.
+      saveServerCareer(career).then((r) => {
+        if (r.futcoins > 0 || r.xpAwarded > 0) setCoinReward(r);
+      });
+    }
   }, [career, authed]);
+
+  // El banner de premio se auto-oculta a los pocos segundos.
+  useEffect(() => {
+    if (!coinReward) return;
+    const id = window.setTimeout(() => setCoinReward(null), 4000);
+    return () => window.clearTimeout(id);
+  }, [coinReward]);
 
   // Celebración de subida de nivel: dispara el overlay cuando crece el overall.
   useEffect(() => {
@@ -216,6 +231,32 @@ export default function CareerGame() {
       {levelUp && <LevelUpOverlay overall={levelUp.overall} levels={levelUp.levels} onClose={() => setLevelUp(null)} />}
       {trophyReveal && <TrophyReveal trophy={trophyReveal} paseDT={paseDT} onClose={() => setTrophyReveal(null)} />}
       {showGuide && <GuideModal onClose={() => setShowGuide(false)} />}
+      {coinReward && (
+        <div
+          role="status"
+          style={{
+            position: "fixed",
+            top: 18,
+            left: "50%",
+            transform: "translateX(-50%)",
+            zIndex: 50,
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+            padding: "10px 18px",
+            borderRadius: 999,
+            background: "rgba(201,168,76,0.16)",
+            border: "1px solid rgba(201,168,76,0.55)",
+            color: "#e8d48b",
+            fontWeight: 800,
+            fontSize: 14,
+            boxShadow: "0 8px 24px rgba(0,0,0,0.35)",
+          }}
+        >
+          <span aria-hidden>🪙</span>
+          <span>+{coinReward.futcoins} Fútcoins · +{coinReward.xpAwarded} XP</span>
+        </div>
+      )}
       <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto 18px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
         <h1 style={{ fontSize: "clamp(22px,3vw,30px)", fontWeight: 900 }}>Modo Carrera</h1>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>

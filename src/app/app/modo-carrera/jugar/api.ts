@@ -47,15 +47,25 @@ export async function fetchServerCareer(): Promise<CareerState | null> {
   }
 }
 
-export async function saveServerCareer(state: CareerState): Promise<void> {
+/** Resultado del guardado: Fútcoins/XP abonados por misiones recién liquidadas. */
+export interface SaveCareerResult {
+  futcoins: number;
+  xpAwarded: number;
+}
+
+export async function saveServerCareer(state: CareerState): Promise<SaveCareerResult> {
   try {
-    await fetch("/api/modo-carrera/save", {
+    const res = await fetch("/api/modo-carrera/save", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ state }),
     });
+    if (!res.ok) return { futcoins: 0, xpAwarded: 0 };
+    const data = (await res.json()) as { futcoins?: number; xpAwarded?: number };
+    return { futcoins: data.futcoins ?? 0, xpAwarded: data.xpAwarded ?? 0 };
   } catch {
     /* offline: queda el guardado local */
+    return { futcoins: 0, xpAwarded: 0 };
   }
 }
 

@@ -39,8 +39,12 @@ import {
   esName,
   favoriteAtmosphere,
   favoritePhoto,
+  favoriteTeamPhoto,
   playerPhoto,
+  stadiumPhoto,
   teamFlagEmoji,
+  topValuePhoto,
+  winnerTeamPhoto,
 } from "@/lib/friendlies/teamInfo";
 
 export const runtime = "nodejs";
@@ -118,6 +122,28 @@ function scoreText(goals: Score): string {
   return `${goals[0] ?? 0}-${goals[1] ?? 0}`;
 }
 
+/** Marcador derivado de los EVENTOS hasta (e incluido) un evento dado.
+ *  api-football sirve el agregado `goals` (endpoint /fixtures) y los eventos
+ *  (endpoint /fixtures/events) por SEPARADO, y el agregado suele ir por detrás del
+ *  evento de gol → el push salía "0-0" justo en el aviso de GOL. Contar los goles
+ *  del propio stream de eventos mantiene el marcador coherente con el aviso.
+ *  El gol en propia suma al equipo CONTRARIO al del jugador que lo marca. */
+function scoreUpTo(s: FriendlySnapshot, upto: FriendlyEvent): Score {
+  let home = 0;
+  let away = 0;
+  for (const e of s.events) {
+    if (e.type === "goal" || e.type === "penalty_goal") {
+      if (e.side === "home") home++;
+      else if (e.side === "away") away++;
+    } else if (e.type === "own_goal") {
+      if (e.side === "home") away++;
+      else if (e.side === "away") home++;
+    }
+    if (e.id === upto.id) break;
+  }
+  return [home, away];
+}
+
 function eventLabel(
   e: FriendlyEvent,
   s: FriendlySnapshot,
@@ -136,6 +162,9 @@ function eventLabel(
   const min = `${e.minute}'${e.extra ? `+${e.extra}` : ""}`;
   const icon = eventIcon(e, s);
   const vs = vsText(homeEs, awayEs, homeFlag, awayFlag);
+  // Marcador coherente con el evento (contado desde los propios eventos), no el
+  // agregado `s.goals` que va por detrás y dejaba el GOL en "0-0".
+  const score = scoreText(scoreUpTo(s, e));
   switch (e.type) {
     case "goal":
     case "penalty_goal": {
@@ -144,14 +173,14 @@ function eventLabel(
       const head = player ? `GOL de ${player} (${team})${pen}` : `GOL${pen} de ${team}`;
       return {
         title: head,
-        body: `${min} · ${vs} ${scoreText(s.goals)}${e.assist ? ` · asist. ${e.assist}` : ""}`,
+        body: `${min} · ${vs} ${score}${e.assist ? ` · asist. ${e.assist}` : ""}`,
         icon,
       };
     }
     case "own_goal":
       return {
         title: player ? `GOL en propia de ${player} (${team})` : `GOL en propia (${team})`,
-        body: `${min} · ${vs} ${scoreText(s.goals)}`,
+        body: `${min} · ${vs} ${score}`,
         icon,
       };
     case "penalty_miss":
@@ -163,7 +192,7 @@ function eventLabel(
     case "red":
       return {
         title: player ? `Tarjeta roja a ${player} (${team})` : `Tarjeta roja (${team})`,
-        body: `${min} · ${vs} ${scoreText(s.goals)}`,
+        body: `${min} · ${vs} ${score}`,
         icon,
       };
     case "second_yellow":
@@ -171,7 +200,7 @@ function eventLabel(
         title: player
           ? `Tarjeta roja (doble amarilla) a ${player} (${team})`
           : `Tarjeta roja (doble amarilla) (${team})`,
-        body: `${min} · ${vs} ${scoreText(s.goals)}`,
+        body: `${min} · ${vs} ${score}`,
         icon,
       };
     default:
@@ -276,29 +305,33 @@ async function runPass(
     // (El SW tiene renotify:true, así que cada novedad re-alerta.)
     const tag = `amistoso-${fix.fixtureId}`;
 
-    // Alineaciones confirmadas (antes del saque, una sola vez).
+    // ALINEACIONES (antes del saque, una sola vez) → FOTO DEL EQUIPO FAVORITO.
     if (!prev.lineupsSent && snap.homeLineup && snap.awayLineup) {
+      const lineupImage =
+        (await favoriteTeamPhoto(snap.home.name, snap.away.name, `xi-${fix.fixtureId}`)) || contextImage;
       await push({
         title: `Alineaciones — ${vs}`,
         body: `XI confirmado. ${snap.homeLineup.formation ?? ""} vs ${snap.awayLineup.formation ?? ""}`.trim() + venueSuffix(snap),
         url,
         icon: snap.home.logo || PUSH_ICON,
-        image: contextImage,
+        image: lineupImage,
         tag,
       });
       next.lineupsSent = true;
       pushes++;
     }
 
-    // Inicio del partido. (En HT no avisamos de "comienza": ya está en curso;
-    // isLiveStatus incluye el descanso, así que lo excluimos aquí.)
+    // INICIO/PREVIA. (En HT no avisamos de "comienza": ya está en curso.)
+    // → FOTO DEL JUGADOR MÁS IMPORTANTE (mayor valor de mercado).
     if (!prev.startSent && isLiveStatus(snap.status) && snap.status !== "HT") {
+      const previaImage =
+        (await topValuePhoto(snap.home.name, snap.away.name, `previa-${fix.fixtureId}`)) || contextImage;
       await push({
         title: `¡Comienza! ${vs}`,
         body: `Amistoso internacional en juego.${venueSuffix(snap)}`,
         url,
         icon: snap.home.logo || PUSH_ICON,
-        image: contextImage,
+        image: previaImage,
         tag,
       });
       next.startSent = true;
@@ -330,36 +363,48 @@ async function runPass(
       pushes++;
     }
 
-    // Descanso.
+    // DESCANSO (MEDIO TIEMPO) → FOTO DEL ESTADIO (si es sede del banco; los
+    // amistosos suelen jugarse fuera de las sedes, así que normalmente cae al
+    // autor del último gol / ambiente).
     if (!prev.htSent && snap.status === "HT") {
+      const htImage =
+        (snap.venue ? await stadiumPhoto(snap.venue, `ht-${fix.fixtureId}`) : null) ||
+        (await lastScorerPhoto(snap)) ||
+        contextImage;
       await push({
         title: `Descanso — ${vs} ${scoreText(snap.goals)}`,
         body: `Final de la primera parte.`,
         url,
         icon: PUSH_ICON,
-        image: (await lastScorerPhoto(snap)) || contextImage,
+        image: htImage,
         tag,
       });
       next.htSent = true;
       pushes++;
     }
 
-    // Final.
+    // FINAL → CELEBRACIÓN DEL EQUIPO GANADOR (su foto de equipo); empate → ambiente.
     if (!prev.ftSent && isFinishedStatus(snap.status)) {
-      const winnerEs =
+      const winnerName =
         (snap.goals[0] ?? 0) > (snap.goals[1] ?? 0)
-          ? homeEs
+          ? snap.home.name
           : (snap.goals[1] ?? 0) > (snap.goals[0] ?? 0)
-          ? awayEs
+          ? snap.away.name
           : null;
+      const winnerEs =
+        winnerName === snap.home.name ? homeEs : winnerName === snap.away.name ? awayEs : null;
       const winnerLogo =
         winnerEs === homeEs ? snap.home.logo : winnerEs === awayEs ? snap.away.logo : null;
+      const ftImage =
+        (winnerName ? await winnerTeamPhoto(winnerName, `ft-${fix.fixtureId}`) : null) ||
+        (await lastScorerPhoto(snap)) ||
+        contextImage;
       await push({
         title: `Final — ${vs} ${scoreText(snap.goals)}`,
         body: winnerEs ? `Victoria de ${winnerEs}.` : `Empate en el amistoso.`,
         url,
         icon: winnerLogo || PUSH_ICON,
-        image: (await lastScorerPhoto(snap)) || contextImage,
+        image: ftImage,
         tag,
       });
       next.ftSent = true;

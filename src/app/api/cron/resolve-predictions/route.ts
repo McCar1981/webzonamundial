@@ -12,6 +12,7 @@
 // es idempotente — solo toca predicciones con resolved_at = null.
 
 import { NextResponse } from "next/server";
+import { recordHeartbeat } from "@/lib/ops/store";
 import { getMatchMeta } from "@/lib/predictions/match-data";
 import { getUnresolvedMatchIds, resolveMatch, type ResolveSummary } from "@/lib/predictions/store";
 import { getStagedResult, clearStagedResult, resultStoreAvailable } from "@/lib/predictions/result-store";
@@ -66,6 +67,8 @@ export async function GET(req: Request) {
     await clearStagedResult(matchId);
     resolved.push(summary);
   }
+
+  await recordHeartbeat("resolve-predictions", true, { resolved: resolved.length });
 
   return NextResponse.json({
     ok: true,

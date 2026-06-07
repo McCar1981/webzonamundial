@@ -11,6 +11,7 @@
  */
 
 import { NextResponse } from "next/server";
+import { recordHeartbeat } from "@/lib/ops/store";
 import { revalidatePath } from "next/cache";
 import { ingestNews, titleFingerprint, type IngestResult } from "@/lib/noticias-ingest";
 import { applyRewrite } from "@/lib/noticias-rewriter";
@@ -432,6 +433,8 @@ export async function GET(req: Request) {
   }
 
   const published = store.drafts.filter((d) => d.status === "published").length;
+
+  await recordHeartbeat("ingest-news", true, { new: result.drafts.length, published });
 
   return NextResponse.json({
     ok: true,

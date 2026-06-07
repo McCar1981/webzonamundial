@@ -9,6 +9,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { runStreakReminders } from "@/lib/predictions/engagement";
+import { recordHeartbeat } from "@/lib/ops/store";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -27,6 +28,7 @@ export async function GET(req: NextRequest) {
 
   try {
     const streak = await runStreakReminders();
+    await recordHeartbeat("predictions-engagement", true, { streak });
     return NextResponse.json({ ok: true, streak });
   } catch (err) {
     console.error("[predictions-engagement] failed:", (err as Error).message);

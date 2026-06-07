@@ -10,6 +10,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { runMatchReminders } from "@/lib/match-reminders";
+import { recordHeartbeat } from "@/lib/ops/store";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -28,6 +29,7 @@ export async function GET(req: NextRequest) {
 
   try {
     const reminders = await runMatchReminders();
+    await recordHeartbeat("match-reminders", true, { reminders });
     return NextResponse.json({ ok: true, reminders });
   } catch (err) {
     console.error("[match-reminders] failed:", (err as Error).message);

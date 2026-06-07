@@ -10,6 +10,7 @@
 // está presente y la request no viene de Vercel, devolvemos 401.
 
 import { NextRequest, NextResponse } from "next/server";
+import { recordHeartbeat } from "@/lib/ops/store";
 import { getCount as getRegistrosCount, getRealCount } from "@/lib/registros-store";
 import { getFoundersCount, getRevenueCents, listEvents } from "@/lib/founders/store";
 import { getAllPosts } from "@/lib/blog";
@@ -151,6 +152,8 @@ export async function GET(request: NextRequest) {
       html,
     });
   }
+
+  await recordHeartbeat("daily-stats", true, { registros: registrosReal, founders: foundersCount });
 
   return NextResponse.json({
     ok: true,

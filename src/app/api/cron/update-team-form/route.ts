@@ -12,6 +12,7 @@
 // Programado en vercel.json para correr a las 03:00 UTC diariamente.
 
 import { NextResponse } from "next/server";
+import { recordHeartbeat } from "@/lib/ops/store";
 import { BRACKET_TEAMS } from "@/lib/bracket/teams";
 import {
   API_FOOTBALL_TEAM_IDS,
@@ -107,6 +108,8 @@ export async function GET(req: Request) {
     // Pequeña pausa para no saturar (10 req/min en free tier)
     await new Promise((r) => setTimeout(r, 6500));
   }
+
+  await recordHeartbeat("update-team-form", true, { teams: summary.ok });
 
   return NextResponse.json({
     ok: true,

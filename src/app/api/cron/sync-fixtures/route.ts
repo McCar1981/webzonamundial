@@ -16,6 +16,7 @@
 //   ?full=1  → devuelve el detalle por partido (matchId, fixtureId, score)
 
 import { NextResponse } from "next/server";
+import { recordHeartbeat } from "@/lib/ops/store";
 import { syncWorldCupFixtures } from "@/lib/match-center/fixtureSync";
 
 export const runtime = "nodejs";
@@ -40,6 +41,8 @@ export async function GET(req: Request) {
   const full = url.searchParams.get("full") === "1";
 
   const report = await syncWorldCupFixtures({ dryRun });
+
+  await recordHeartbeat("sync-fixtures", report.ok, { mapped: report.mapped, unmatched: report.unmatched });
 
   return NextResponse.json(
     {

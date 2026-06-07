@@ -18,6 +18,7 @@
 // miles, migrar a envío en batches paralelos con Promise.allSettled.
 
 import { NextRequest, NextResponse } from "next/server";
+import { recordHeartbeat } from "@/lib/ops/store";
 import { getAllPublicNoticias } from "@/lib/noticias-store";
 import {
   listActiveSubscribers,
@@ -175,6 +176,8 @@ export async function GET(req: NextRequest) {
   if (sentIds.length > 0) {
     await markSent(sentIds);
   }
+
+  await recordHeartbeat("send-daily-digest", true, { sent, failed });
 
   return NextResponse.json({
     ok: true,

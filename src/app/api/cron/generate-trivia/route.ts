@@ -6,6 +6,7 @@
 // crons (Bearer CRON_SECRET o ?secret=).
 
 import { NextResponse } from "next/server";
+import { recordHeartbeat } from "@/lib/ops/store";
 import { generateQuestions } from "@/lib/trivia/generator";
 import { addToBank, getQuestionBank } from "@/lib/trivia/store";
 import { FALLBACK_QUESTIONS } from "@/data/trivia-fallback";
@@ -50,6 +51,8 @@ export async function GET(req: Request) {
   } catch {
     /* noop */
   }
+
+  await recordHeartbeat("generate-trivia", true, { added, bankSize });
 
   return NextResponse.json({
     ok: true,

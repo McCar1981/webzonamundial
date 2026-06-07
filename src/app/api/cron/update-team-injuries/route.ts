@@ -11,6 +11,7 @@
 // Programado: 04:00 UTC diariamente.
 
 import { NextResponse } from "next/server";
+import { recordHeartbeat } from "@/lib/ops/store";
 import { BRACKET_TEAMS } from "@/lib/bracket/teams";
 import {
   fetchAllTopLeaguesInjuries,
@@ -87,6 +88,8 @@ export async function GET(req: Request) {
       totalInjuries += injuries.active.length;
     }
   }
+
+  await recordHeartbeat("update-team-injuries", true, { teams: writeOk });
 
   return NextResponse.json({
     ok: true,

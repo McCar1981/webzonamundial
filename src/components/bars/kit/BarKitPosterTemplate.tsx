@@ -17,14 +17,19 @@ export const POSTER_SIZE = { width: 1122, height: 1402 } as const;
 
 export const POSTER_TEMPLATE_URL = "/assets/bar-kit/porra-digital-template-4x5.png";
 
+// Forma de una zona y del conjunto de zonas, para reutilizar en otros formatos.
+export interface PosterZone { x: number; y: number; w: number; h: number }
+export interface PosterZones { logo: PosterZone; prize: PosterZone; qr: PosterZone; url: PosterZone }
+
 // Zonas de inserción (x, y, w, h en px sobre el lienzo lógico). Centralizadas
-// para poder ajustarlas en un único sitio con ayuda del modo debug.
-export const ZONES = {
+// para poder ajustarlas en un único sitio con ayuda del modo debug. Son las
+// zonas del piloto 4:5 (1122×1402); otros formatos pasan sus propias zonas.
+export const ZONES: PosterZones = {
   logo:  { x: 110, y: 55,   w: 902, h: 245 },
   prize: { x: 90,  y: 890,  w: 470, h: 265 },
   qr:    { x: 675, y: 950,  w: 270, h: 270 },
   url:   { x: 615, y: 1300, w: 410, h: 48  },
-} as const;
+};
 
 export interface BarKitPosterTemplateProps {
   barName: string;
@@ -35,6 +40,10 @@ export interface BarKitPosterTemplateProps {
   shortUrl: string;
   templateUrl?: string;
   debug?: boolean;
+  // Lienzo y zonas opcionales: por defecto el piloto 4:5. Permite reutilizar el
+  // mismo render con otra imagen base y otras coordenadas (p. ej. WhatsApp).
+  size?: { width: number; height: number };
+  zones?: PosterZones;
 }
 
 // Tamaño de fuente del premio según longitud, para que nunca rompa la caja.
@@ -60,6 +69,7 @@ function debugLabel(text: string, color: string): CSSProperties {
 export default function BarKitPosterTemplate({
   barName, barLogoUrl, qrImageUrl, qrSvg, prizeTitle, shortUrl,
   templateUrl = POSTER_TEMPLATE_URL, debug = false,
+  size = POSTER_SIZE, zones = ZONES,
 }: BarKitPosterTemplateProps) {
   const prizeText = (prizeTitle && prizeTitle.trim()) || "Premio del bar";
   const prizeFont = getPrizeFontSize(prizeText);
@@ -69,8 +79,8 @@ export default function BarKitPosterTemplate({
     <div
       style={{
         position: "relative",
-        width: POSTER_SIZE.width,
-        height: POSTER_SIZE.height,
+        width: size.width,
+        height: size.height,
         overflow: "hidden",
         backgroundImage: `url('${templateUrl}')`,
         backgroundSize: "100% 100%",       // exacto, sin recortes → coordenadas fiables
@@ -82,7 +92,7 @@ export default function BarKitPosterTemplate({
       }}
     >
       {/* ── LOGO ───────────────────────────────────────────── */}
-      <div style={{ ...zoneStyle(ZONES.logo), display: "flex", alignItems: "center", justifyContent: "center", padding: "12px 24px", outline: debug ? "3px solid rgba(255,0,0,.6)" : undefined }}>
+      <div style={{ ...zoneStyle(zones.logo), display: "flex", alignItems: "center", justifyContent: "center", padding: "12px 24px", outline: debug ? "3px solid rgba(255,0,0,.6)" : undefined }}>
         {debug && <span style={debugLabel("#ff6b6b", "#ff6b6b")}>LOGO</span>}
         {barLogoUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
@@ -97,7 +107,7 @@ export default function BarKitPosterTemplate({
       {/* ── PREMIO ─────────────────────────────────────────── */}
       <div
         style={{
-          ...zoneStyle(ZONES.prize), display: "flex", alignItems: "center", justifyContent: "center",
+          ...zoneStyle(zones.prize), display: "flex", alignItems: "center", justifyContent: "center",
           padding: 36, textAlign: "center", color: "#f6d36b", fontWeight: 900, lineHeight: 1.08,
           textShadow: "0 3px 10px rgba(0,0,0,.85)", overflow: "hidden", fontSize: prizeFont,
           outline: debug ? "3px solid rgba(0,255,0,.6)" : undefined,
@@ -110,7 +120,7 @@ export default function BarKitPosterTemplate({
       {/* ── QR ─────────────────────────────────────────────── */}
       <div
         style={{
-          ...zoneStyle(ZONES.qr), display: "flex", alignItems: "center", justifyContent: "center",
+          ...zoneStyle(zones.qr), display: "flex", alignItems: "center", justifyContent: "center",
           background: "#ffffff", padding: 28, outline: debug ? "3px solid rgba(0,0,255,.6)" : undefined,
         }}
       >
@@ -126,7 +136,7 @@ export default function BarKitPosterTemplate({
       {/* ── URL ────────────────────────────────────────────── */}
       <div
         style={{
-          ...zoneStyle(ZONES.url), display: "flex", alignItems: "center", justifyContent: "center",
+          ...zoneStyle(zones.url), display: "flex", alignItems: "center", justifyContent: "center",
           padding: "0 18px", color: "#111111", fontSize: urlFont, fontWeight: 900, lineHeight: 1,
           textAlign: "center", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
           outline: debug ? "3px solid rgba(255,255,0,.8)" : undefined,

@@ -17,7 +17,9 @@ import { requireUser } from "@/lib/auth-helpers";
 import { getBarBySlug, listPrizes, getMainQr, getQrSourceByCode, listQrSources } from "@/lib/bars/store";
 import { getPlan } from "@/lib/bars/plans";
 import { getKitMaterial, buildKitData, siteOrigin } from "@/lib/bars/kit";
+import { getKitImageTemplate } from "@/lib/bars/kit-image-templates";
 import PremiumMundialMaterial from "@/components/bars/kit/PremiumMundialMaterial";
+import BarKitPosterTemplate from "@/components/bars/kit/BarKitPosterTemplate";
 import KitToolbar from "@/components/bars/kit/KitToolbar";
 
 export const dynamic = "force-dynamic";
@@ -32,7 +34,7 @@ const PREVIEW_MAX_W = 820;
 
 export default async function KitMaterialPage({
   params, searchParams,
-}: { params: { barSlug: string; material: string }; searchParams: { code?: string } }) {
+}: { params: { barSlug: string; material: string }; searchParams: { code?: string; debug?: string } }) {
   const material = getKitMaterial(params.material);
   if (!material) notFound();
 
@@ -62,6 +64,11 @@ export default async function KitMaterialPage({
   if (!code) notFound();
 
   const data = await buildKitData(bar, origin, code, prizes);
+
+  // Si el material tiene imagen-plantilla diseñada, se usa esa composición
+  // (la validada en el piloto); si no, se cae al fondo CSS "Premium Mundial".
+  const imageTpl = getKitImageTemplate(material.id);
+  const debug = searchParams.debug === "1";
 
   // Escala de preview: encajar el lienzo al ancho disponible (nunca ampliar).
   const scale = Math.min(1, PREVIEW_MAX_W / material.width);
@@ -102,7 +109,21 @@ export default async function KitMaterialPage({
               boxShadow: "0 8px 40px rgba(0,0,0,0.25)",
             }}
           >
-            <PremiumMundialMaterial material={material} data={data} />
+            {imageTpl ? (
+              <BarKitPosterTemplate
+                barName={data.barName}
+                barLogoUrl={data.logoUrl}
+                qrImageUrl={data.qrDataUrl}
+                prizeTitle={data.prizeTitle}
+                shortUrl={data.shortUrl}
+                templateUrl={imageTpl.templateUrl}
+                size={{ width: material.width, height: material.height }}
+                zones={imageTpl.zones}
+                debug={debug}
+              />
+            ) : (
+              <PremiumMundialMaterial material={material} data={data} />
+            )}
           </div>
         </div>
       </main>

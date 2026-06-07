@@ -70,6 +70,12 @@ export interface SquadSlot {
 
 export interface FantasyTeamState {
   teamName: string;
+  /**
+   * Slug del creador con el que el usuario se registró (profiles.fav_creator).
+   * Marca el fantasy como "de ese creador": su nombre e imagen de perfil se
+   * muestran como branding. null si el usuario no llegó vía creador.
+   */
+  creatorSlug?: string | null;
   formation: string; // "4-3-3"
   slots: SquadSlot[];
   captainId: string | null;

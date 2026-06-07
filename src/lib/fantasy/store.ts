@@ -11,6 +11,7 @@ const KEY = "zm-fantasy:v2";
 export function defaultTeam(): FantasyTeamState {
   return {
     teamName: "Mi Selección",
+    creatorSlug: null,
     formation: "4-3-3",
     slots: buildSlots("4-3-3"),
     captainId: null,

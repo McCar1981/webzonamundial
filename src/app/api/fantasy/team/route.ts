@@ -8,7 +8,7 @@
 
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
-import { getTeam, saveTeam, recordGameweekScore, awardGameweekCoins } from "@/lib/fantasy/store.server";
+import { getTeam, saveTeam, recordGameweekScore, awardGameweekCoins, getFavCreator } from "@/lib/fantasy/store.server";
 import { isValidGameweek } from "@/lib/fantasy/fixtures";
 import type { FantasyTeamState } from "@/lib/fantasy/types";
 
@@ -18,8 +18,10 @@ export const dynamic = "force-dynamic";
 export async function GET() {
   const user = await getCurrentUser();
   if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-  const team = await getTeam(user.id);
-  return NextResponse.json({ team });
+  // favCreator permite marcar el equipo con el creador del registro: el cliente
+  // lo aplica al crear el equipo (o lo backfillea si aún no lo tenía).
+  const [team, favCreator] = await Promise.all([getTeam(user.id), getFavCreator(user.id)]);
+  return NextResponse.json({ team, favCreator });
 }
 
 export async function PUT(req: Request) {

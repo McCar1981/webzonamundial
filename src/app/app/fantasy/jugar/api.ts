@@ -26,15 +26,34 @@ export interface FantasyLeagueStanding {
   position: number; user_id: string; team_name: string; display_name: string; avatar_url: string | null; points: number;
 }
 
-/** Equipo guardado en el servidor (null si el usuario aún no tiene). */
-export async function fetchServerTeam(): Promise<FantasyTeamState | null> {
+/** Equipo guardado en el servidor + creador del registro (para branding). */
+export interface ServerTeamResult {
+  team: FantasyTeamState | null; // null si el usuario aún no tiene equipo
+  favCreator: string | null; // slug del creador con el que se registró
+}
+
+export async function fetchServerTeam(): Promise<ServerTeamResult> {
   try {
     const res = await fetch("/api/fantasy/team", { cache: "no-store" });
-    if (!res.ok) return null;
-    const data = (await res.json()) as { team: FantasyTeamState | null };
-    return data.team ?? null;
+    if (!res.ok) return { team: null, favCreator: null };
+    const data = (await res.json()) as { team: FantasyTeamState | null; favCreator?: string | null };
+    return { team: data.team ?? null, favCreator: data.favCreator ?? null };
   } catch {
-    return null;
+    return { team: null, favCreator: null };
+  }
+}
+
+/** Fija el creador del usuario más adelante (quien no lo eligió al registrarse). */
+export async function setFantasyCreator(slug: string): Promise<boolean> {
+  try {
+    const res = await fetch("/api/fantasy/creator", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ slug }),
+    });
+    return res.ok;
+  } catch {
+    return false;
   }
 }
 

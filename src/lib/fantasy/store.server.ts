@@ -26,6 +26,22 @@ export async function getTeam(userId: string): Promise<FantasyTeamState | null> 
   return normalizeTeam(state);
 }
 
+/**
+ * Creador con el que el usuario se registró (profiles.fav_creator). Sirve para
+ * marcar su equipo fantasy con el nombre e imagen de ese creador. Lectura propia
+ * con RLS; devuelve null si no llegó vía creador o no hay perfil aún.
+ */
+export async function getFavCreator(userId: string): Promise<string | null> {
+  const supa = createSupabaseServerClient();
+  const { data } = await supa
+    .from("profiles")
+    .select("fav_creator")
+    .eq("id", userId)
+    .maybeSingle();
+  const slug = (data as { fav_creator?: string | null } | null)?.fav_creator;
+  return slug && slug.trim() ? slug.trim() : null;
+}
+
 export async function saveTeam(userId: string, state: FantasyTeamState): Promise<void> {
   const supa = createSupabaseServerClient();
   const { error } = await supa.from("fantasy_teams").upsert(

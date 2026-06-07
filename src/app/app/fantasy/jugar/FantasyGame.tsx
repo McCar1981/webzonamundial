@@ -11,7 +11,8 @@ import { remapFormation, validateTeam, transferCost } from "@/lib/fantasy/rules"
 import { autoDraft } from "@/lib/fantasy/coach";
 import { defaultTeam, loadTeam, saveTeam, clearTeam, normalizeTeam } from "@/lib/fantasy/store";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
-import { fetchServerTeam, saveServerTeam } from "./api";
+import { getCreadorBySlug, getCreadoresActivos } from "@/data/creadores";
+import { fetchServerTeam, saveServerTeam, setFantasyCreator } from "./api";
 import { BUDGET, FREE_TRANSFERS, MAX_FREE_TRANSFERS, type FantasyPos, type FantasyTeamState, type PowerUp, type SquadSlot } from "@/lib/fantasy/types";
 import { BG, BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED, money } from "./fx";
 import { FORMATIONS } from "@/lib/fantasy/rules";
@@ -53,6 +54,7 @@ export default function FantasyGame() {
   const [selectingSlot, setSelectingSlot] = useState<string | null>(null);
   const [toast, setToast] = useState<string | null>(null);
   const [showOnboarding, setShowOnboarding] = useState(false);
+  const [showCreatorPicker, setShowCreatorPicker] = useState(false);
   const [isWide, setIsWide] = useState(false); // ≥1024px → fondo claro (en prueba)
   const [authed, setAuthed] = useState<boolean | null>(null);
   // syncReady evita que el autoguardado pise el equipo del servidor con el
@@ -82,11 +84,23 @@ export default function FantasyGame() {
       } catch { /* sin sesión */ }
       setAuthed(isAuthed);
       if (isAuthed) {
-        const server = await fetchServerTeam();
+        const { team: server, favCreator } = await fetchServerTeam();
         if (server) {
-          setTeam(normalizeTeam(server));
-        } else if (hasProgress(local)) {
-          await saveServerTeam(local); // migra el progreso de invitado
+          const norm = normalizeTeam(server);
+          // Backfill: usuarios que ya tenían equipo antes de esta función y se
+          // registraron con un creador quedan marcados con su branding.
+          if (!norm.creatorSlug && favCreator) {
+            norm.creatorSlug = favCreator;
+            saveServerTeam(norm).catch(() => {});
+          }
+          setTeam(norm);
+        } else {
+          // Primer equipo del usuario: se marca con el creador del registro.
+          const branded = favCreator ? { ...local, creatorSlug: favCreator } : local;
+          setTeam(branded);
+          if (hasProgress(local) || favCreator) {
+            await saveServerTeam(branded); // migra el invitado y/o fija el creador
+          }
         }
       }
       syncReady.current = true;
@@ -118,6 +132,8 @@ export default function FantasyGame() {
     (flash as unknown as { _t?: number })._t = window.setTimeout(() => setToast(null), 2600);
   }, []);
 
+  // Creador del registro (branding del equipo): nombre + imagen de perfil.
+  const creador = useMemo(() => (team.creatorSlug ? getCreadorBySlug(team.creatorSlug) ?? null : null), [team.creatorSlug]);
   const validation = useMemo(() => validateTeam(team.slots, getPlayerById, team.formation), [team.slots, team.formation]);
   const ownedIds = useMemo(() => new Set(team.slots.map((s) => s.playerId).filter(Boolean) as string[]), [team.slots]);
   const nationCounts = validation.nationCounts;
@@ -258,9 +274,19 @@ export default function FantasyGame() {
 
   const resetTeam = useCallback(() => {
     clearTeam();
-    setTeam({ ...defaultTeam(), teamName: team.teamName });
+    setTeam({ ...defaultTeam(), teamName: team.teamName, creatorSlug: team.creatorSlug ?? null });
     flash("Equipo reiniciado.");
-  }, [team.teamName, flash]);
+  }, [team.teamName, team.creatorSlug, flash]);
+
+  // Elegir creador más adelante (quien no lo hizo al registrarse). Opcional:
+  // a quien no elige a nadie no se le marca nada. Marca el equipo y lo persiste.
+  const chooseCreator = useCallback((slug: string) => {
+    update((t) => ({ ...t, creatorSlug: slug }));
+    setShowCreatorPicker(false);
+    if (authed) setFantasyCreator(slug).catch(() => {});
+    const c = getCreadorBySlug(slug);
+    flash(c ? `¡Ahora juegas con ${c.nombre}!` : "Creador elegido.");
+  }, [update, authed, flash]);
 
   const startSelecting = useCallback((slotId: string) => {
     setSelectingSlot(slotId);
@@ -318,6 +344,27 @@ export default function FantasyGame() {
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "9px 16px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
             <Link href="/app/fantasy" style={{ color: MID, textDecoration: "none", fontSize: 13, fontWeight: 700 }}>← Fantasy</Link>
+            {creador && (
+              <span
+                title={`Fantasy de ${creador.nombre}`}
+                style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "3px 10px 3px 3px", borderRadius: 999, border: `1px solid ${creador.colorPrimario}66`, background: `${creador.colorPrimario}1f`, whiteSpace: "nowrap" }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={creador.imagen} alt={creador.nombre} width={22} height={22} style={{ width: 22, height: 22, borderRadius: "50%", objectFit: "cover", border: `1.5px solid ${creador.colorPrimario}` }} />
+                <span style={{ display: "inline-flex", flexDirection: "column", lineHeight: 1 }}>
+                  <span style={{ fontSize: 8, fontWeight: 800, letterSpacing: 0.6, color: creador.colorSecundario, textTransform: "uppercase" }}>Fantasy de</span>
+                  <span style={{ fontSize: 12, fontWeight: 800, color: "#fff" }}>{creador.nombre}</span>
+                </span>
+              </span>
+            )}
+            {!creador && authed && (
+              <button
+                onClick={() => setShowCreatorPicker(true)}
+                style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "5px 11px", borderRadius: 999, border: "1px dashed " + GOLD + "88", background: GOLD + "14", color: GOLD2, fontSize: 11.5, fontWeight: 800, cursor: "pointer", whiteSpace: "nowrap" }}
+              >
+                🎬 Elige tu creador
+              </button>
+            )}
             <input
               value={team.teamName}
               placeholder="Nombra tu equipo ✏️"
@@ -397,6 +444,51 @@ export default function FantasyGame() {
       )}
 
       {showOnboarding && <Onboarding onClose={dismissOnboarding} onAutoDraft={doAutoDraft} />}
+
+      {showCreatorPicker && <CreatorPicker onClose={() => setShowCreatorPicker(false)} onPick={chooseCreator} />}
+    </div>
+  );
+}
+
+/**
+ * Selector opcional de creador para quien no eligió ninguno al registrarse.
+ * Lista los creadores activos; al elegir, marca el equipo con su branding.
+ */
+function CreatorPicker({ onClose, onPick }: { onClose: () => void; onPick: (slug: string) => void }) {
+  const creadores = getCreadoresActivos();
+  return (
+    <div
+      onClick={onClose}
+      style={{ position: "fixed", inset: 0, zIndex: 60, background: "rgba(3,8,18,0.78)", backdropFilter: "blur(4px)", display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{ width: "100%", maxWidth: 460, background: BG2, border: `1px solid ${GOLD}44`, borderRadius: 16, padding: 18, boxShadow: "0 20px 60px rgba(0,0,0,0.6)" }}
+      >
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 4 }}>
+          <h3 style={{ margin: 0, fontSize: 17, fontWeight: 800, color: "#fff" }}>Elige tu creador</h3>
+          <button onClick={onClose} style={{ background: "none", border: "none", color: MID, fontSize: 20, fontWeight: 800, cursor: "pointer", lineHeight: 1 }}>×</button>
+        </div>
+        <p style={{ margin: "0 0 14px", fontSize: 12.5, color: MID }}>
+          Tu fantasy llevará su nombre e imagen. Es opcional: puedes seguir sin elegir.
+        </p>
+        <div style={{ display: "grid", gap: 8 }}>
+          {creadores.map((c) => (
+            <button
+              key={c.slug}
+              onClick={() => onPick(c.slug)}
+              style={{ display: "flex", alignItems: "center", gap: 11, padding: "9px 12px", borderRadius: 12, border: `1px solid ${c.colorPrimario}55`, background: `${c.colorPrimario}14`, cursor: "pointer", textAlign: "left" }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={c.imagen} alt={c.nombre} width={38} height={38} style={{ width: 38, height: 38, borderRadius: "50%", objectFit: "cover", border: `2px solid ${c.colorPrimario}` }} />
+              <span style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+                <span style={{ fontSize: 14, fontWeight: 800, color: "#fff" }}>{c.nombre}</span>
+                <span style={{ fontSize: 11, fontWeight: 700, color: MID }}>{c.seguidores} · {c.plataformaPrincipal}</span>
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

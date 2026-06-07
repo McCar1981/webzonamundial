@@ -2,7 +2,8 @@
 
 // Botón "Entrar en la porra" de la página pública del bar.
 // - Si el usuario está logado: lo une a la porra y lo lleva a predecir.
-// - Si no: lo manda al login y vuelve aquí para completar la unión.
+// - Si no: lo manda al login con intención de unirse (?join=1) y, al volver
+//   autenticado, completa la unión automáticamente y lleva a predecir.
 // Si llega con ?qr=, intenta unirlo en silencio al cargar (atribución del QR).
 
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -15,10 +16,12 @@ interface Props {
   primary: string;
   primaryInk: string;
   radius: number;
+  // true cuando se vuelve del login con intención explícita de unirse (?join=1).
+  autoJoin?: boolean;
 }
 
-export default function JoinButton({ slug, qr, label, primary, primaryInk, radius }: Props) {
-  const [state, setState] = useState<"idle" | "loading" | "joined">("idle");
+export default function JoinButton({ slug, qr, label, primary, primaryInk, radius, autoJoin }: Props) {
+  const [state, setState] = useState<"idle" | "loading" | "joined">(autoJoin ? "loading" : "idle");
   const autoTried = useRef(false);
 
   const join = useCallback(async (silent: boolean) => {
@@ -30,7 +33,12 @@ export default function JoinButton({ slug, qr, label, primary, primaryInk, radiu
       });
       if (res.status === 401) {
         if (silent) return; // aún no logado: esperamos al click del CTA
-        const here = `/b/${slug}${qr ? `?qr=${encodeURIComponent(qr)}` : ""}`;
+        // Conservamos la intención de unirse (y el qr, si vino) para
+        // completar la unión automáticamente al volver autenticado.
+        const params = new URLSearchParams();
+        if (qr) params.set("qr", qr);
+        params.set("join", "1");
+        const here = `/b/${slug}?${params.toString()}`;
         window.location.href = `/login?next=${encodeURIComponent(here)}`;
         return;
       }
@@ -46,8 +54,13 @@ export default function JoinButton({ slug, qr, label, primary, primaryInk, radiu
   }, [slug, qr]);
 
   useEffect(() => {
-    if (qr && !autoTried.current) { autoTried.current = true; void join(true); }
-  }, [qr, join]);
+    if (autoTried.current) return;
+    // Vuelta del login con intención de unirse: completa la unión y entra a
+    // predecir (mismo desenlace que un click manual).
+    if (autoJoin) { autoTried.current = true; void join(false); return; }
+    // Llegada por QR: unión silenciosa para atribuir el origen.
+    if (qr) { autoTried.current = true; void join(true); }
+  }, [qr, autoJoin, join]);
 
   return (
     <button

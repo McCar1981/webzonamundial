@@ -75,7 +75,7 @@ export async function completeOnboardingAction(
   return { ok: true };
 }
 
-export async function skipOnboardingAction() {
+export async function skipOnboardingAction(next?: string) {
   const supabase = createSupabaseServerClient();
   const {
     data: { user },
@@ -89,5 +89,8 @@ export async function skipOnboardingAction() {
     .update({ onboarded_at: new Date().toISOString() })
     .eq("id", user.id);
 
-  redirect("/");
+  // Respetar el destino pedido antes de loguearse (p. ej. volver a la peña
+  // del bar para completar la unión). Same-origin only: nunca open-redirect.
+  const safeNext = next && next.startsWith("/") ? next : "/";
+  redirect(safeNext);
 }

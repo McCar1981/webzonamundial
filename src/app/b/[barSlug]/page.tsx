@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: { barSlug: string }
 
 export default async function BarPublicPage({
   params, searchParams,
-}: { params: { barSlug: string }; searchParams: { qr?: string } }) {
+}: { params: { barSlug: string }; searchParams: { qr?: string; join?: string } }) {
   const bar = await getBarBySlug(params.barSlug);
   if (!bar) notFound();
 
@@ -94,7 +94,7 @@ export default async function BarPublicPage({
 
         {/* CTA principal */}
         <section style={{ marginBottom: 10 }}>
-          <JoinButton slug={bar.slug} qr={searchParams.qr} label={bar.cta_label} primary={t.primary} primaryInk={t.primaryInk} radius={t.buttonRadius} />
+          <JoinButton slug={bar.slug} qr={searchParams.qr} autoJoin={searchParams.join === "1"} label={bar.cta_label} primary={t.primary} primaryInk={t.primaryInk} radius={t.buttonRadius} />
         </section>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, color: t.textMuted, fontSize: 13, marginBottom: 20 }}>
           <Users size={14} /> {count} {count === 1 ? "participante" : "participantes"}

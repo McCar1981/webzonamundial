@@ -103,7 +103,7 @@ export default function OnboardingWizard({
 
   function skip() {
     startTransition(async () => {
-      await skipOnboardingAction();
+      await skipOnboardingAction(finishDestination);
       // skip redirige, no llega aquí
     });
   }

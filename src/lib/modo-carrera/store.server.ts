@@ -7,8 +7,11 @@
 
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { adminClient } from "@/lib/predictions/admin";
+import { grantCoins } from "@/lib/economy/wallet";
+import { careerMissionReward } from "@/lib/economy/earn";
 import { normalizeCareer } from "./store";
-import { rankForOverall } from "./constants";
+import { rankForOverall, MISSION_TEMPLATES } from "./constants";
+import { missionKey } from "./missions";
 import type { CareerState, CareerRankEntry } from "./types";
 
 // ─── Partida del usuario ─────────────────────────────────────────────────────
@@ -42,6 +45,53 @@ export async function saveCareer(userId: string, state: CareerState): Promise<vo
     { onConflict: "user_id" },
   );
   if (error) throw error;
+}
+
+/**
+ * Abona a la billetera única las Fútcoins de las misiones ya RECLAMADAS en el
+ * estado, una sola vez por misión. El importe NUNCA se toma de los números que
+ * llegan del cliente: se deriva de la plantilla del servidor (MISSION_TEMPLATES)
+ * vía la clave estable de la misión, así un cliente manipulado no puede inflar el
+ * pago. La idempotencia la garantiza modo_carrera_mission_claims (PK user_id,
+ * mission_id) con upsert ON CONFLICT DO NOTHING: solo se abona lo recién insertado.
+ * Devuelve el total de Fútcoins/XP abonado en esta llamada (0 si nada era nuevo).
+ */
+export async function settleCareerMissionRewards(
+  userId: string,
+  state: CareerState,
+): Promise<{ coins: number; xp: number }> {
+  const claimed = state.missions.filter((m) => m.status === "reclamada");
+  if (claimed.length === 0) return { coins: 0, xp: 0 };
+
+  // Recompensa autoritativa por misión, derivada de la plantilla (no del cliente).
+  const tplByKey = new Map(MISSION_TEMPLATES.map((t) => [t.key, t]));
+  const rows = claimed
+    .map((m) => {
+      const tpl = tplByKey.get(missionKey(m));
+      if (!tpl) return null;
+      const reward = careerMissionReward(tpl.rewardXp, tpl.rewardReputation);
+      return { user_id: userId, mission_id: m.id, mission_key: tpl.key, coins: reward.coins, xp: reward.xp };
+    })
+    .filter((r): r is NonNullable<typeof r> => r !== null);
+  if (rows.length === 0) return { coins: 0, xp: 0 };
+
+  const admin = adminClient();
+  // Reserva atómica: las filas que ya existían no se devuelven (no se vuelven a pagar).
+  const { data: inserted } = await admin
+    .from("modo_carrera_mission_claims")
+    .upsert(rows, { onConflict: "user_id,mission_id", ignoreDuplicates: true })
+    .select("coins,xp");
+  const fresh = (inserted ?? []) as { coins: number; xp: number }[];
+  if (fresh.length === 0) return { coins: 0, xp: 0 };
+
+  let coins = 0;
+  let xp = 0;
+  for (const r of fresh) {
+    coins += r.coins;
+    xp += r.xp;
+  }
+  if (coins > 0 || xp > 0) await grantCoins(userId, coins, xp);
+  return { coins, xp };
 }
 
 // ─── Ranking DT (cruza usuarios) ─────────────────────────────────────────────

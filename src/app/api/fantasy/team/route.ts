@@ -8,7 +8,7 @@
 
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
-import { getTeam, saveTeam, recordGameweekScore } from "@/lib/fantasy/store.server";
+import { getTeam, saveTeam, recordGameweekScore, awardGameweekCoins } from "@/lib/fantasy/store.server";
 import type { FantasyTeamState } from "@/lib/fantasy/types";
 
 export const runtime = "nodejs";
@@ -34,8 +34,12 @@ export async function PUT(req: Request) {
 
   await saveTeam(user.id, state);
   // Al confirmar una jornada el cliente envía gameweekScore para el ranking semanal.
+  // Además abonamos Fútcoins una sola vez por jornada (idempotente en el backend).
+  let reward = { coins: 0, xp: 0 };
   if (body.gameweekScore && Number.isFinite(body.gameweekScore.gw)) {
-    await recordGameweekScore(user.id, body.gameweekScore.gw, body.gameweekScore.points, body.gameweekScore.powerUp ?? null);
+    const gs = body.gameweekScore;
+    await recordGameweekScore(user.id, gs.gw, gs.points, gs.powerUp ?? null);
+    reward = await awardGameweekCoins(user.id, gs.gw, gs.points);
   }
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ ok: true, futcoins: reward.coins, xpAwarded: reward.xp });
 }

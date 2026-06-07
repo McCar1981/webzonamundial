@@ -41,6 +41,11 @@ const USER_KEY = (userId: string) => `trivia:user:${V}:${userId}`;
 const NAMES_KEY = `trivia:names:${V}`;
 const SESSION_KEY = (id: string) => `trivia:session:${V}:${id}`;
 const SESSION_TTL = 60 * 60; // 1h
+// Marca de "ya cobré Fútcoins por este modo hoy" (anti-faucet: la trivia se puede
+// rejugar infinitas veces, pero solo paga billetera una vez por modo y día UTC).
+const REWARD_KEY = (day: string, mode: string, userId: string) =>
+  `trivia:reward:${V}:${day}:${mode}:${userId}`;
+const REWARD_TTL = 60 * 60 * 48; // 48h (cubre el día UTC con holgura)
 
 const FALLBACK_PATH = path.join(process.cwd(), "data", "trivia-store.json");
 
@@ -59,6 +64,8 @@ interface FsStore {
   sessions: Record<string, ServerSession>;
   bank: TriviaQuestion[];
   seen: Record<string, string[]>;
+  /** Marcas de recompensa de billetera cobrada: clave `${day}:${mode}:${userId}`. */
+  rewards: Record<string, number>;
 }
 
 async function readFs(): Promise<FsStore> {
@@ -74,6 +81,7 @@ async function readFs(): Promise<FsStore> {
       sessions: parsed.sessions || {},
       bank: parsed.bank || [],
       seen: parsed.seen || {},
+      rewards: parsed.rewards || {},
     };
   } catch {
     return {
@@ -85,6 +93,7 @@ async function readFs(): Promise<FsStore> {
       sessions: {},
       bank: [],
       seen: {},
+      rewards: {},
     };
   }
 }
@@ -278,6 +287,31 @@ export async function recordSession(
     (store.lbDaily[result.date][userId] || 0) + result.points;
   await writeFs(store);
   return next;
+}
+
+/**
+ * Reserva (de forma atómica) la recompensa de billetera de un modo para un día.
+ * Devuelve `true` solo la PRIMERA vez del día para ese modo+usuario; las rejugadas
+ * devuelven `false` y por tanto no vuelven a pagar Fútcoins. Esto evita el faucet
+ * de monedas sin impedir seguir jugando ni sumar al ranking.
+ */
+export async function claimDailyTriviaReward(
+  userId: string,
+  day: string,
+  mode: string,
+): Promise<boolean> {
+  if (isKvEnabled()) {
+    // SET NX: solo escribe si la clave no existía → garantiza una sola reclamación.
+    // Devuelve "OK" si la creó (primera vez) o null si ya existía.
+    const ok = await kv.set(REWARD_KEY(day, mode, userId), 1, { nx: true, ex: REWARD_TTL });
+    return Boolean(ok);
+  }
+  const store = await readFs();
+  const key = `${day}:${mode}:${userId}`;
+  if (store.rewards[key]) return false;
+  store.rewards[key] = Date.now();
+  await writeFs(store);
+  return true;
 }
 
 export async function getUserStats(userId: string): Promise<TriviaUserStats | null> {

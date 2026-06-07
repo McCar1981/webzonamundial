@@ -185,6 +185,14 @@ type Featured = {
   };
 } | null;
 
+// Resumen de gamificación (subconjunto de /api/predictions/me) — billetera única.
+type GamSummary = {
+  level: { level: number; xp: number };
+  coins: number;
+  coin_name: string;
+  streak: { current: number };
+};
+
 const IN_PLAY = new Set(["1H", "HT", "2H", "ET", "BT", "P", "LIVE", "INT"]);
 const FINISHED = new Set(["FT", "AET", "PEN"]);
 
@@ -368,6 +376,7 @@ export default function AppHubPage() {
   const [username, setUsername] = useState<string | null>(null);
   const [avatar, setAvatar] = useState<string | null>(null);
   const [authed, setAuthed] = useState<boolean | null>(null);
+  const [gam, setGam] = useState<GamSummary | null>(null);
   const [match, setMatch] = useState<Featured>(null);
   const { canInstall, install } = useInstallPrompt();
 
@@ -385,6 +394,11 @@ export default function AppHubPage() {
         if (!on) return;
         setUsername(p?.username || user.email?.split("@")[0] || null);
         setAvatar(p?.avatar_url || null);
+        // Billetera única: saldo de Fútcoins, nivel y racha reales (cross-módulo).
+        fetch("/api/predictions/me")
+          .then((r) => (r.ok ? r.json() : null))
+          .then((g: GamSummary | null) => { if (on && g) setGam(g); })
+          .catch(() => {});
       } catch {
         if (on) setAuthed(false);
       }
@@ -432,7 +446,7 @@ export default function AppHubPage() {
             {/* Puntos */}
             <div style={{ display: "flex", alignItems: "center", gap: 5, padding: "6px 11px", borderRadius: 999, background: "rgba(201,168,76,0.12)", border: `1px solid ${GOLD}55` }}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 16.5 7.1 18.2l.9-5.5-4-3.9 5.5-.8z" fill={GOLD} /></svg>
-              <span style={{ fontSize: 13, fontWeight: 800, color: GOLD2 }}>{authed ? "0" : "—"}</span>
+              <span style={{ fontSize: 13, fontWeight: 800, color: GOLD2 }}>{authed ? (gam ? gam.coins.toLocaleString() : "·") : "—"}</span>
             </div>
             {/* Instalar PWA */}
             {canInstall && (
@@ -509,10 +523,10 @@ export default function AppHubPage() {
               <Link href="/app/rankings" style={{ fontSize: 12.5, fontWeight: 800, color: "#8a6a13", textDecoration: "none" }}>Ver ranking →</Link>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(110px,1fr))", gap: 10 }}>
-              <Stat k="Nivel" v="1" />
-              <Stat k="Puntos" v="0" />
-              <Stat k="Racha" v="0 días" />
-              <Stat k="Predicciones" v="0" />
+              <Stat k="Nivel" v={gam ? String(gam.level.level) : "·"} />
+              <Stat k="Fútcoins" v={gam ? gam.coins.toLocaleString() : "·"} />
+              <Stat k="XP" v={gam ? gam.level.xp.toLocaleString() : "·"} />
+              <Stat k="Racha" v={gam ? `${gam.streak.current} días` : "·"} />
             </div>
           </section>
         ) : (

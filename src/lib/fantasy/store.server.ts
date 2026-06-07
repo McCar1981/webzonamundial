@@ -7,6 +7,8 @@
 
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { adminClient } from "@/lib/predictions/admin";
+import { grantCoins } from "@/lib/economy/wallet";
+import { fantasyGameweekReward } from "@/lib/economy/earn";
 import { normalizeTeam } from "./store";
 import type { FantasyTeamState } from "./types";
 
@@ -54,6 +56,33 @@ export async function recordGameweekScore(
     { user_id: userId, gameweek, points, power_up: powerUp },
     { onConflict: "user_id,gameweek" },
   );
+}
+
+/**
+ * Abona Fútcoins + XP a la billetera única por CONFIRMAR una jornada, una sola
+ * vez por usuario y jornada. La marca fantasy_coin_claims (PK user_id,gameweek)
+ * con INSERT … ON CONFLICT DO NOTHING garantiza el pago único: solo si la fila
+ * se insertó (no existía) se abona. Se escribe con service role (admin).
+ * Devuelve las Fútcoins abonadas (0 si la jornada ya se había cobrado).
+ */
+export async function awardGameweekCoins(
+  userId: string,
+  gameweek: number,
+  points: number,
+): Promise<{ coins: number; xp: number }> {
+  const admin = adminClient();
+  const reward = fantasyGameweekReward(points);
+  // Reserva atómica del pago: si ya existía, no inserta ninguna fila.
+  const { data: inserted } = await admin
+    .from("fantasy_coin_claims")
+    .upsert(
+      { user_id: userId, gameweek, coins: reward.coins, xp: reward.xp },
+      { onConflict: "user_id,gameweek", ignoreDuplicates: true },
+    )
+    .select("gameweek");
+  if (!inserted || inserted.length === 0) return { coins: 0, xp: 0 };
+  await grantCoins(userId, reward.coins, reward.xp);
+  return reward;
 }
 
 // ─── Ranking global (acumulado del torneo) ───────────────────────────────────

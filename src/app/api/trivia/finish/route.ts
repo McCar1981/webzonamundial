@@ -7,6 +7,7 @@
 import { NextResponse } from "next/server";
 import {
   addSeenIds,
+  claimDailyTriviaReward,
   deleteSession,
   getSession,
   recordSession,
@@ -14,6 +15,9 @@ import {
 import { resolveIdentity } from "@/lib/trivia/identity";
 import { timeBonusMultiplier } from "@/lib/trivia/types";
 import type { SessionResult } from "@/lib/trivia/types";
+import { grantCoins } from "@/lib/economy/wallet";
+import { triviaSessionReward } from "@/lib/economy/earn";
+import { utcDayKey } from "@/lib/predictions/gamification";
 
 /** Quita el sufijo "-rN" que añade repeatToLength para volver al id base. */
 function baseId(id: string): string {
@@ -43,7 +47,7 @@ export async function POST(req: Request) {
   }
 
   // Identidad
-  const { userId, name } = await resolveIdentity(body.name, body.anonId);
+  const { userId, authUserId, name } = await resolveIdentity(body.name, body.anonId);
 
   // Marca como vistas las preguntas mostradas (anti-repetición), aunque no se
   // registre en ranking. Se usa el id base (sin sufijo de repetición).
@@ -87,6 +91,29 @@ export async function POST(req: Request) {
   const stats = await recordSession(userId, name, result);
   await deleteSession(session.id);
 
+  // ── Billetera única: abona Fútcoins reales en profiles.coins ──────────────
+  // Solo para usuarios AUTENTICADOS (los invitados no tienen fila en profiles) y
+  // una sola vez por modo y día (anti-faucet; la trivia se puede rejugar siempre).
+  let futcoins = 0;
+  let xpAwarded = 0;
+  let coinsBalance: number | null = null;
+  let rewardClaimed = false;
+  if (authUserId) {
+    const firstToday = await claimDailyTriviaReward(authUserId, utcDayKey(), session.mode);
+    if (firstToday) {
+      const reward = triviaSessionReward(finalPoints, session.correct, answered);
+      try {
+        const grant = await grantCoins(authUserId, reward.coins, reward.xp);
+        futcoins = grant.coinsAwarded;
+        xpAwarded = grant.xpAwarded;
+        coinsBalance = grant.coins;
+        rewardClaimed = true;
+      } catch {
+        /* si falla el abono, no rompemos el cierre de la sesión */
+      }
+    }
+  }
+
   return NextResponse.json({
     recorded: true,
     points: finalPoints,
@@ -99,5 +126,11 @@ export async function POST(req: Request) {
     bestStreak: session.bestStreak,
     survival: result.survival ?? null,
     stats,
+    // Economía: valores reales (no estimación de cliente).
+    futcoins,
+    xpAwarded,
+    coinsBalance,
+    rewardClaimed,
+    authed: Boolean(authUserId),
   });
 }

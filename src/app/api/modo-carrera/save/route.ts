@@ -9,7 +9,7 @@
 
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
-import { getCareer, saveCareer } from "@/lib/modo-carrera/store.server";
+import { getCareer, saveCareer, settleCareerMissionRewards } from "@/lib/modo-carrera/store.server";
 import { allowSave, SAVE_WINDOW_SEC } from "@/lib/modo-carrera/save-rate-limit";
 import type { CareerState } from "@/lib/modo-carrera/types";
 
@@ -47,5 +47,8 @@ export async function PUT(req: Request) {
   }
 
   await saveCareer(user.id, state);
-  return NextResponse.json({ ok: true });
+  // Abona Fútcoins de las misiones recién reclamadas (idempotente por misión; el
+  // importe se deriva de la plantilla del servidor, no de los números del cliente).
+  const reward = await settleCareerMissionRewards(user.id, state);
+  return NextResponse.json({ ok: true, futcoins: reward.coins, xpAwarded: reward.xp });
 }

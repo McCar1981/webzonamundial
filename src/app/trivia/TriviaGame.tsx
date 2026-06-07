@@ -49,6 +49,14 @@ interface FinishResp {
   answered: number;
   bestStreak: number;
   survival?: number | null;
+  /** Economía (servidor). Fútcoins reales abonadas a la billetera única. */
+  futcoins?: number;
+  xpAwarded?: number;
+  coinsBalance?: number | null;
+  /** true si esta partida abonó Fútcoins (primera del modo hoy). */
+  rewardClaimed?: boolean;
+  /** true si el jugador está autenticado (billetera disponible). */
+  authed?: boolean;
 }
 
 interface LbEntry {
@@ -663,8 +671,21 @@ function Result({
 }) {
   const pct = result.answered > 0 ? Math.round((result.correct / result.answered) * 100) : 0;
   const rank = rankFor(result.points);
-  const xp = result.points;
-  const futcoins = Math.max(1, Math.round(result.points / 10));
+  // Economía: si el servidor abonó Fútcoins (usuario autenticado, primera del modo
+  // hoy), mostramos los valores REALES de la billetera. Si está autenticado pero ya
+  // cobró hoy, muestra 0. Para invitados mostramos una estimación como gancho.
+  const claimed = Boolean(result.rewardClaimed);
+  const futcoins = claimed
+    ? result.futcoins ?? 0
+    : result.authed
+      ? 0
+      : Math.max(1, Math.round(result.points / 10));
+  const xp = claimed
+    ? result.xpAwarded ?? 0
+    : result.authed
+      ? 0
+      : result.points;
+  const alreadyClaimed = Boolean(result.authed) && !claimed && result.recorded;
   const share = async () => {
     const text =
       mode === "muerte-subita"
@@ -788,6 +809,18 @@ function Result({
       {!result.recorded && (
         <p className="zm-r-note">
           Tu puntuación no se guardó en el ranking (sin nombre). Pon tu nombre en el menú para competir.
+        </p>
+      )}
+
+      {result.recorded && !result.authed && (
+        <p className="zm-r-note">
+          Inicia sesión para guardar tus Fútcoins y gastarlas en todo ZonaMundial.
+        </p>
+      )}
+
+      {alreadyClaimed && (
+        <p className="zm-r-note">
+          Ya cobraste Fútcoins en este modo hoy. Sigues sumando al ranking; vuelve mañana para más Fútcoins.
         </p>
       )}
 

@@ -79,10 +79,12 @@ function opponentStrength(slug: string): number {
  */
 function dtBonus(c: CareerState): number {
   const s = c.skills.levels;
-  const general = (s.mental + s.gestion) * 1.2; // 0..12
-  const overallAdj = (c.progression.overall - 50) * 0.3; // 0..~15
-  const moraleAdj = (c.progression.morale - 70) * 0.15; // -10.5..+4.5
-  return overallAdj + general + moraleAdj;
+  const general = (s.mental + s.gestion) * 0.8; // 0..8
+  const overallAdj = (c.progression.overall - 50) * 0.18; // 0..~8.8
+  const moraleAdj = (c.progression.morale - 70) * 0.1; // -7..+3
+  // Un gran DT mejora al equipo, pero no lo sube de categoría: el bonus se acota
+  // para que la diferencia de fuerza no degenere en palizas irreales (9-0).
+  return clamp(overallAdj + general + moraleAdj, -8, 15);
 }
 
 /**
@@ -164,13 +166,34 @@ export function poisson(lambda: number): number {
 export function matchLambdas(c: CareerState, match: SeasonMatch): { lamFor: number; lamAg: number } {
   const { atk, def } = attackDefense(c);
   const oStr = opponentStrength(match.opponentSlug);
-  const home = match.home ? 2.5 : 0;
+  const home = match.home ? 2.0 : 0;
   const mom = formMomentum(c); // -3..+3
-  const lamFor = clamp(1.35 + (atk + home - oStr) / 9 + mom * 0.12, 0.25, 4.6);
-  // Momentum simétrico: la racha pesa igual en ataque y en defensa (antes la
-  // forma empujaba más los goles a favor (0.12) que los que evitaba (0.09)).
-  const lamAg = clamp(1.35 + (oStr - def) / 9 - mom * 0.12, 0.2, 4.4);
+
+  // Compresión de élite: un duelo entre dos potencias es más cerrado y con menos
+  // goles (igual que en la realidad). Se mide por la calidad del MÁS DÉBIL de los
+  // dos (ranking FIFA): si el peor de los dos ya es muy bueno, el partido se aprieta.
+  const minQ = Math.min(rankStrength(c.identity.nationSlug), oStr);
+  const elite = clamp(1 - (minQ - 78) * 0.016, 0.66, 1);
+
+  // Medias SATURADAS con tanh: por mucho que crezca la diferencia de fuerza, los
+  // goles esperados NO se disparan (antes la media a favor llegaba a 4.6 y la cola
+  // de Poisson hacía el resto, de ahí los 9-0). Momentum simétrico en ambos lados.
+  const lamFor = clamp((1.35 + 1.45 * Math.tanh((atk + home - oStr) / 18) + mom * 0.1) * elite, 0.28, 3.0);
+  const lamAg = clamp((1.35 + 1.45 * Math.tanh((oStr - def) / 18) - mom * 0.1) * elite, 0.3, 2.9);
   return { lamFor, lamAg };
+}
+
+/**
+ * Acota la diferencia de goles a un margen CREÍBLE. El fútbol real no produce
+ * palizas de +6 ni entre una potencia y un debutante, y entre equipos parejos
+ * rara vez se pasa de +3. El margen máximo escala con la brecha de medias
+ * (lamFor vs lamAg): partido igualado → tope ~2-3; favoritísimo claro → hasta 5.
+ */
+export function capScore(gf: number, ga: number, lamFor: number, lamAg: number): { gf: number; ga: number } {
+  const maxMargin = Math.round(clamp(2 + Math.abs(lamFor - lamAg) * 1.6, 2, 5));
+  if (gf - ga > maxMargin) return { gf: ga + maxMargin, ga };
+  if (ga - gf > maxMargin) return { gf, ga: gf + maxMargin };
+  return { gf, ga };
 }
 
 /**
@@ -192,8 +215,8 @@ export function decisiveWinner(c: CareerState, match: SeasonMatch): "self" | "op
  */
 function simulate(c: CareerState, match: SeasonMatch, decisive: boolean): { gf: number; ga: number } {
   const { lamFor, lamAg } = matchLambdas(c, match);
-  let gf = poisson(lamFor);
-  let ga = poisson(lamAg);
+  const capped = capScore(poisson(lamFor), poisson(lamAg), lamFor, lamAg);
+  let { gf, ga } = capped;
   if (decisive && gf === ga) {
     if (decisiveWinner(c, match) === "self") gf++;
     else ga++;

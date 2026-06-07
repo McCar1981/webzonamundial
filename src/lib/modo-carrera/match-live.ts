@@ -12,7 +12,7 @@
 // todos los pilares de la carrera.
 
 import type { CareerState, SeasonMatch } from "./types";
-import { matchLambdas, poisson } from "./season";
+import { matchLambdas, poisson, capScore } from "./season";
 
 // Reparto de goles esperados por ventana (los primeros 60' pesan más).
 const W1 = 0.62;
@@ -176,5 +176,8 @@ export interface LiveMatchResult {
 export function secondHalf(state: LiveMatchState, choice: InMatchChoice): LiveMatchResult {
   const gf2 = poisson(state.lamFor * W2 * choice.atkMult);
   const ga2 = poisson(state.lamAg * W2 * choice.defMult);
-  return { gf: state.gf1 + gf2, ga: state.ga1 + ga2, gf2, ga2 };
+  // Tope de margen creíble sobre el marcador final (evita palizas irreales tipo
+  // 9-0 si los planes y la cola de Poisson se alinean a favor de un lado).
+  const capped = capScore(state.gf1 + gf2, state.ga1 + ga2, state.lamFor, state.lamAg);
+  return { gf: capped.gf, ga: capped.ga, gf2, ga2 };
 }

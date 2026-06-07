@@ -480,7 +480,11 @@ export default function AppHubPage() {
       .then((r) => (r.ok ? r.json() : null))
       .then((d) => {
         if (!on) return;
-        const last: string | null = d?.stats?.lastPlayed ?? null;
+        // Sin registro de stats (invitado nuevo / sin partidas) = desconocido →
+        // dejamos el hero en BASE (null), NO forzamos el reto.
+        const stats = d?.stats;
+        if (!stats) { setTriviaPlayedToday(null); return; }
+        const last: string | null = stats.lastPlayed ?? null;
         const today = new Date().toISOString().slice(0, 10);
         setTriviaPlayedToday(!!last && last.slice(0, 10) === today);
       })

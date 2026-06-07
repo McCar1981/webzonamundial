@@ -550,7 +550,7 @@ export default function AppHubPage() {
   const heroCount = heroSlides.length;
   useEffect(() => {
     if (heroCount <= 1) return;
-    const id = setInterval(() => setHeroIdx((i) => (i + 1) % heroCount), 5500);
+    const id = setInterval(() => setHeroIdx((i) => (i + 1) % heroCount), 8000);
     return () => clearInterval(id);
   }, [heroCount]);
   // Estilo del CTA primario del hero según estado (coral/verde/dorado).
@@ -610,7 +610,7 @@ export default function AppHubPage() {
             No repite "Hacer predicción": en base invita a explorar/ver partido; en
             vivo lleva al Match Center. Fondo navy premium + textura de cancha + glow
             animado + chispas muy discretas. Estado por el partido (live/base). */}
-        <div className="zm-hero" style={{ position: "relative", borderRadius: 22, padding: "30px 24px", marginBottom: 16, overflow: "hidden", background: "linear-gradient(135deg,#102a4d 0%,#0a1b33 100%)", border: `1px solid ${hero.accent}44`, boxShadow: "0 20px 50px rgba(0,0,0,0.35)" }}>
+        <div className="zm-hero" style={{ position: "relative", borderRadius: 22, padding: "30px 24px", marginBottom: 16, overflow: "hidden", background: "linear-gradient(135deg,#102a4d 0%,#0a1b33 100%)", border: `1px solid ${hero.accent}44`, boxShadow: "0 20px 50px rgba(0,0,0,0.35)", minHeight: "clamp(244px, 42vw, 264px)", display: "flex", flexDirection: "column", justifyContent: "center" }}>
           {/* ── Arte del estado (imagen de card reutilizada): vive a la derecha,
               se funde con el navy hacia la izquierda para no tapar el texto. ── */}
           <img

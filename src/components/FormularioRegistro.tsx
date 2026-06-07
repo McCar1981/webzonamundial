@@ -471,7 +471,7 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
                 required
                 value={formData.email}
                 onChange={(e) => { setFormData({ ...formData, email: e.target.value }); setError(''); }}
-                className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-[#0B1825] border border-[#1E293B] text-white text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/50 transition-all placeholder:text-gray-600"
+                className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-white border border-[#1E293B] text-gray-900 text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/50 transition-all placeholder:text-gray-500"
                 placeholder={labels.emailPlaceholder}
               />
             </div>
@@ -492,7 +492,7 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
                   required
                   value={formData.firstName}
                   onChange={(e) => { setFormData({ ...formData, firstName: e.target.value }); setError(''); }}
-                  className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-[#0B1825] border border-[#1E293B] text-white text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/50 transition-all placeholder:text-gray-600"
+                  className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-white border border-[#1E293B] text-gray-900 text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/50 transition-all placeholder:text-gray-500"
                   placeholder={labels.firstNamePlaceholder}
                   maxLength={50}
                   autoComplete="given-name"
@@ -512,7 +512,7 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
                   required
                   value={formData.lastName}
                   onChange={(e) => { setFormData({ ...formData, lastName: e.target.value }); setError(''); }}
-                  className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-[#0B1825] border border-[#1E293B] text-white text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/50 transition-all placeholder:text-gray-600"
+                  className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-white border border-[#1E293B] text-gray-900 text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/50 transition-all placeholder:text-gray-500"
                   placeholder={labels.lastNamePlaceholder}
                   maxLength={50}
                   autoComplete="family-name"
@@ -535,7 +535,7 @@ export default function FormularioRegistro({ creadorPreseleccionado }: { creador
                 required
                 value={formData.nombre}
                 onChange={(e) => { setFormData({ ...formData, nombre: e.target.value.replace(/\s/g, '') }); setError(''); }}
-                className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-[#0B1825] border border-[#1E293B] text-white text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/50 transition-all placeholder:text-gray-600"
+                className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-white border border-[#1E293B] text-gray-900 text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/50 transition-all placeholder:text-gray-500"
                 placeholder={labels.usernamePlaceholder}
                 maxLength={30}
                 autoComplete="username"

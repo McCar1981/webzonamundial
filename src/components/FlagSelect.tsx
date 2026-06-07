@@ -145,7 +145,7 @@ export default function FlagSelect({
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-label={ariaLabel}
-        className="w-full pl-12 pr-10 py-3.5 rounded-xl bg-[#0B1825] border border-[#1E293B] text-white text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/50 transition-all cursor-pointer text-left flex items-center gap-3"
+        className="w-full pl-12 pr-10 py-3.5 rounded-xl bg-white border border-[#1E293B] text-gray-900 text-sm focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/50 transition-all cursor-pointer text-left flex items-center gap-3"
       >
         {iconLeftSlot && (
           <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none">

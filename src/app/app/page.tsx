@@ -432,7 +432,14 @@ export default function AppHubPage() {
   const [match, setMatch] = useState<Featured>(null);
   // ¿El usuario ya jugó la trivia diaria HOY? null = sin saber todavía.
   const [triviaPlayedToday, setTriviaPlayedToday] = useState<boolean | null>(null);
+  // Preview manual del hero: /app?hero=live|reto|base (solo para revisar diseño).
+  const [heroOverride, setHeroOverride] = useState<"live" | "reto" | "base" | null>(null);
   const { canInstall, install } = useInstallPrompt();
+
+  useEffect(() => {
+    const h = new URLSearchParams(window.location.search).get("hero");
+    if (h === "live" || h === "reto" || h === "base") setHeroOverride(h);
+  }, []);
 
   // Sesión + perfil (degradación limpia si faltan envs)
   useEffect(() => {
@@ -531,7 +538,13 @@ export default function AppHubPage() {
     cta1: { label: "Explorar módulos", href: "#modulos" },
     cta2: { label: "Ver partido del día", href: matchHref },
   };
-  const hero = live ? heroLive : retoAvailable ? heroReto : heroBase;
+  const hero =
+    heroOverride === "live" ? heroLive
+    : heroOverride === "reto" ? heroReto
+    : heroOverride === "base" ? heroBase
+    : live ? heroLive
+    : retoAvailable ? heroReto
+    : heroBase;
   // Estilo del CTA primario del hero según estado (coral/verde/dorado).
   const heroCta1 =
     hero.kind === "live"

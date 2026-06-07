@@ -384,7 +384,7 @@ export const CREATORS = [
   { name: "SVGiago", handle: "@svgiago", followers: "2.5M", slug: "svgiago", img: "/img/zonamundial-images/creators/svgiago.jpg", color: "#00d4ff" },
   { name: "José Cobo", handle: "@josecobo", followers: "4.7M", slug: "josecobo", img: "/img/zonamundial-images/creators/jose-cobo.jpg", color: "#c9a84c" },
   { name: "Elopi23", handle: "@elopi23", followers: "300K", slug: "elopi23", img: "/img/zonamundial-images/creators/elopi23.jpg", color: "#38bdf8" },
-  { name: "Niku", handle: "@niku2310", followers: "—", slug: "niku", img: "/img/zonamundial-images/creators/niku.jpeg", color: "#f43f5e" },
+  { name: "Niku", handle: "@niku2310", followers: "339K", slug: "niku", img: "/img/zonamundial-images/creators/niku.jpeg", color: "#f43f5e" },
   { name: "Nereita", handle: "@nereita", followers: "500K", slug: "nereita", img: "/img/zonamundial-images/creators/nereita.jpeg", color: "#e879f9" },
 ];
 

@@ -22,8 +22,8 @@ export const POSTER_TEMPLATE_URL = "/assets/bar-kit/porra-digital-template-4x5.p
 export const ZONES = {
   logo:  { x: 110, y: 55,   w: 902, h: 245 },
   prize: { x: 90,  y: 890,  w: 470, h: 265 },
-  qr:    { x: 655, y: 935,  w: 300, h: 300 },
-  url:   { x: 635, y: 1330, w: 390, h: 48  },
+  qr:    { x: 645, y: 935,  w: 300, h: 300 },
+  url:   { x: 615, y: 1300, w: 410, h: 48  },
 } as const;
 
 export interface BarKitPosterTemplateProps {

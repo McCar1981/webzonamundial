@@ -501,11 +501,13 @@ export default function AppHubPage() {
   //   3) base  → estado por defecto
   const GREEN = "#36c98f";
   const retoAvailable = !live && triviaPlayedToday === false;
-  type HeroCfg = { kind: "live" | "reto" | "base"; accent: string; eyebrow: string; title: React.ReactNode; desc: string; cta1: { label: string; href: string }; cta2?: { label: string; href: string } };
+  // `art` = imagen de fondo del hero por estado (reutiliza el arte de las cards).
+  type HeroCfg = { kind: "live" | "reto" | "base"; accent: string; eyebrow: string; title: React.ReactNode; desc: string; art: string; cta1: { label: string; href: string }; cta2?: { label: string; href: string } };
   const heroLive: HeroCfg = {
     kind: "live", accent: CORAL, eyebrow: "En vivo ahora",
     title: "El partido está en marcha",
     desc: "Sigue estadísticas, predice jugadas y entra al Match Center.",
+    art: "/assets/card-backgrounds/match-center.webp",
     cta1: { label: "Entrar al Match Center", href: matchHref },
     cta2: { label: "Micro-predicciones", href: "/app/micro" },
   };
@@ -513,6 +515,7 @@ export default function AppHubPage() {
     kind: "reto", accent: GREEN, eyebrow: "Reto diario",
     title: <>Trivia <span style={{ background: `linear-gradient(135deg,${GREEN},#7ce0b3)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>disponible</span></>,
     desc: "Responde las preguntas de hoy y suma puntos extra.",
+    art: "/assets/card-backgrounds/trivia-diaria.webp",
     cta1: { label: "Responder trivia", href: "/app/trivia" },
     cta2: { label: "Ver partido del día", href: matchHref },
   };
@@ -520,6 +523,7 @@ export default function AppHubPage() {
     kind: "base", accent: GOLD2, eyebrow: "Mundial 2026",
     title: <>Tu zona de juego del <span style={{ background: `linear-gradient(135deg,${GOLD},${GOLD2})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Mundial</span></>,
     desc: "Predice, compite y sigue cada partido en directo.",
+    art: "/assets/card-backgrounds/predicciones.webp",
     cta1: { label: "Explorar módulos", href: "#modulos" },
     cta2: { label: "Ver partido del día", href: matchHref },
   };
@@ -582,6 +586,19 @@ export default function AppHubPage() {
             vivo lleva al Match Center. Fondo navy premium + textura de cancha + glow
             animado + chispas muy discretas. Estado por el partido (live/base). */}
         <div className="zm-hero" style={{ position: "relative", borderRadius: 22, padding: "30px 24px", marginBottom: 16, overflow: "hidden", background: "linear-gradient(135deg,#102a4d 0%,#0a1b33 100%)", border: `1px solid ${hero.accent}44`, boxShadow: "0 20px 50px rgba(0,0,0,0.35)" }}>
+          {/* ── Arte del estado (imagen de card reutilizada): vive a la derecha,
+              se funde con el navy hacia la izquierda para no tapar el texto. ── */}
+          <img
+            key={hero.art} src={hero.art} alt="" aria-hidden loading="lazy" decoding="async"
+            style={{
+              position: "absolute", top: 0, bottom: 0, right: 0, width: "min(62%, 460px)", height: "100%", zIndex: 0,
+              objectFit: "cover", objectPosition: "center 38%", pointerEvents: "none", opacity: 0.62,
+              WebkitMaskImage: "linear-gradient(90deg, transparent 0%, #000 42%, #000 100%)",
+              maskImage: "linear-gradient(90deg, transparent 0%, #000 42%, #000 100%)",
+            }}
+          />
+          {/* velo navy sobre el arte para asegurar contraste del título */}
+          <span aria-hidden style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none", background: "linear-gradient(100deg, #0c2143 0%, rgba(12,33,67,0.78) 38%, rgba(10,27,51,0.30) 70%, rgba(10,27,51,0.1) 100%)" }} />
           {/* glow radial animado */}
           <span aria-hidden className="zm-hero-glow" style={{ position: "absolute", top: -70, right: -50, width: 290, height: 290, borderRadius: "50%", background: `radial-gradient(circle, ${hero.accent}30, transparent 70%)`, pointerEvents: "none" }} />
           {/* textura deportiva (rayado de cancha en diagonal, sutil) */}
@@ -593,7 +610,7 @@ export default function AppHubPage() {
           <span aria-hidden className="zm-spark zm-spark--2" style={{ position: "absolute", left: "42%", bottom: 18, width: 2, height: 2, borderRadius: "50%", background: GOLD2, pointerEvents: "none" }} />
           <span aria-hidden className="zm-spark zm-spark--3" style={{ position: "absolute", left: "68%", bottom: 30, width: 3, height: 3, borderRadius: "50%", background: hero.accent, pointerEvents: "none" }} />
 
-          <div style={{ position: "relative", maxWidth: 580 }}>
+          <div style={{ position: "relative", zIndex: 2, maxWidth: 580 }}>
             <span style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 11, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase", color: hero.accent }}>
               {hero.kind === "live" && <span className="zm-live-dot" style={{ width: 8, height: 8, borderRadius: "50%", background: hero.accent }} />}
               {hero.eyebrow}

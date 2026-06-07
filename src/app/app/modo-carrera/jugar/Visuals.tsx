@@ -48,15 +48,15 @@ const GOLD_C = "#c9a84c";
  *
  * DEGRADADO EN CASCADA (patrón `Kit`, pero en dos niveles):
  *   1. Si pasas `slug`, intenta primero la versión PERSONALIZADA del país:
- *      `/img/modo-carrera/coach/{slug}/coach-{pose}.webp`.
- *   2. Si esa no existe, cae a la GENÉRICA `/img/modo-carrera/coach/coach-{pose}.webp`.
+ *      `/img/modo-carrera/coach/{slug}/coach-{pose}.png`.
+ *   2. Si esa no existe, cae a la GENÉRICA `/img/modo-carrera/coach/coach-{pose}.png`.
  *   3. Si tampoco existe, el marco entero se oculta solo.
  * Así basta con soltar las 5 poses genéricas para los 48 países, y se pueden
  * personalizar SOLO las selecciones importantes creando su carpeta `{slug}/`.
  */
 export function Coach({ pose, size = 72, slug }: { pose: CoachPose; size?: number; slug?: string }) {
-  const generic = `/img/modo-carrera/coach/coach-${pose}.webp`;
-  const custom = slug ? `/img/modo-carrera/coach/${slug}/coach-${pose}.webp` : null;
+  const generic = `/img/modo-carrera/coach/coach-${pose}.png`;
+  const custom = slug ? `/img/modo-carrera/coach/${slug}/coach-${pose}.png` : null;
   return (
     <span
       style={{

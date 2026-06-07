@@ -205,33 +205,33 @@ Uno por cada título de `constants.ts` → `TITLES`:
 > de 5 poses genéricas en `public/img/modo-carrera/coach/` y sirve para los 48
 > países (el entrenador eres tú, el DT). Si quieres personalizar SOLO las selecciones
 > importantes, crea una subcarpeta con el slug del país y mete ahí sus 5 poses:
-> `public/img/modo-carrera/coach/{slug}/coach-{pose}.webp` (p. ej.
-> `coach/espana/coach-arenga.webp`). El código intenta primero la del país y, si no
+> `public/img/modo-carrera/coach/{slug}/coach-{pose}.png` (p. ej.
+> `coach/espana/coach-arenga.png`). El código intenta primero la del país y, si no
 > existe, usa la genérica automáticamente. No hace falta crear las 48: solo las que
 > quieras. Para la versión por país usa el MISMO personaje base pero con rasgos/tono
 > del entrenador real de esa selección (sin parecidos exactos ni nombres).
 
-### G1. `coach-neutral.webp` — 600×800 (transparente) · pose: en reposo
+### G1. `coach-neutral.png` — 600×800 (transparente) · pose: en reposo
 **Tipo:** Imagen (alpha)
 **Prompt:**
 > [PERSONAJE BASE] · POSE: de pie, en reposo, brazos sueltos a los costados, mirada serena y atenta al campo, leve confianza. Plano medio, cara arriba-centro, fondo transparente, estilo cómic con contorno dorado. `--ar 3:4 --no text, watermark, logo, background`
 
-### G2. `coach-arenga.webp` — 600×800 (transparente) · pose: motivando (charla)
+### G2. `coach-arenga.png` — 600×800 (transparente) · pose: motivando (charla)
 **Tipo:** Imagen (alpha)
 **Prompt:**
 > [PERSONAJE BASE] · POSE: gesto enérgico de arenga, puño cerrado al pecho o mano levantada motivando, boca abierta dando una charla apasionada, ceño de determinación. Dinamismo, líneas de acción sutiles. Plano medio, cara arriba-centro, fondo transparente, estilo cómic con contorno dorado. `--ar 3:4 --no text, watermark, logo, background`
 
-### G3. `coach-instruccion.webp` — 600×800 (transparente) · pose: dando órdenes
+### G3. `coach-instruccion.png` — 600×800 (transparente) · pose: dando órdenes
 **Tipo:** Imagen (alpha)
 **Prompt:**
 > [PERSONAJE BASE] · POSE: señalando hacia el campo con el brazo extendido, dando una instrucción táctica concentrada, otra mano indicando una posición, gesto de mando. Plano medio, cara arriba-centro, fondo transparente, estilo cómic con contorno dorado. `--ar 3:4 --no text, watermark, logo, background`
 
-### G4. `coach-celebra.webp` — 600×800 (transparente) · pose: celebración
+### G4. `coach-celebra.png` — 600×800 (transparente) · pose: celebración
 **Tipo:** Imagen (alpha)
 **Prompt:**
 > [PERSONAJE BASE] · POSE: brazos arriba y puños cerrados en celebración eufórica, gran sonrisa de triunfo, mirada al cielo, energía explosiva, destellos dorados sutiles alrededor. Plano medio, cara arriba-centro, fondo transparente, estilo cómic con contorno dorado. `--ar 3:4 --no text, watermark, logo, background`
 
-### G5. `coach-preocupado.webp` — 600×800 (transparente) · pose: tenso / derrota
+### G5. `coach-preocupado.png` — 600×800 (transparente) · pose: tenso / derrota
 **Tipo:** Imagen (alpha)
 **Prompt:**
 > [PERSONAJE BASE] · POSE: brazos cruzados, ceño fruncido, expresión seria y preocupada mirando el partido con tensión, mandíbula apretada. Sobrio, sombras más marcadas. Plano medio, cara arriba-centro, fondo transparente, estilo cómic con contorno dorado. `--ar 3:4 --no text, watermark, logo, background`

@@ -64,8 +64,21 @@ const PATHS: Record<string, string> = {
    borde en hover. Las cards comparten estructura (padding, icon size, badge y
    CTA) pero cada categoría aporta su matiz cromático → app de fútbol, no panel. */
 type Estado = "Disponible" | "Nuevo" | "En vivo" | "Próximamente";
-type Mod = { icon: string; title: string; desc: string; href?: string; cta: string; estado: Estado };
-type Cat = { key: string; label: string; sub: string; tint: string; tint2: string; mods: Mod[] };
+type Mod = {
+  icon: string;
+  // Icono propio opcional. Si existe el SVG en /assets/app-icons/<x>.svg, se pinta
+  // con CSS mask (se tiñe al color del tema). Si no, cae al icono inline `I`.
+  iconSrc?: string;
+  title: string; desc: string; href?: string; cta: string; estado: Estado;
+};
+type Cat = {
+  key: string; label: string; sub: string;
+  tint: string; tint2: string;
+  // Fondo decorativo de categoría (capa visual interna, NO imagen cerrada).
+  // Si el .webp no existe aún, la card degrada con elegancia (base+textura+glow).
+  bg: string; bgOpacity: number;
+  mods: Mod[];
+};
 
 const CATS: Cat[] = [
   {
@@ -73,6 +86,7 @@ const CATS: Cat[] = [
     label: "Jugar",
     sub: "Predice, responde trivias y suma puntos.",
     tint: "#c9a84c", tint2: "#36c98f",   // dorado + verde (reto / progreso)
+    bg: "/assets/card-backgrounds/card-bg-jugar.webp", bgOpacity: 0.30,
     mods: [
       { icon: "predicciones", title: "Predicciones", desc: "Acierta resultados y suma puntos.", href: "/app/predicciones", cta: "Predecir", estado: "Disponible" },
       { icon: "trivia", title: "Trivia diaria", desc: "Responde preguntas del Mundial.", href: "/app/trivia", cta: "Responder", estado: "Disponible" },
@@ -87,6 +101,7 @@ const CATS: Cat[] = [
     label: "En vivo",
     sub: "Sigue partidos, stories y jugadas en directo.",
     tint: "#ff6b5a", tint2: "#ffa14a",   // coral + naranja (urgente / vivo)
+    bg: "/assets/card-backgrounds/card-bg-en-vivo.webp", bgOpacity: 0.32,
     mods: [
       { icon: "matchcenter", title: "Match Center", desc: "Cada partido en vivo con estadísticas.", href: "/app/matchcenter", cta: "Ver", estado: "Disponible" },
       { icon: "micro", title: "Micro-predicciones", desc: "Predice jugadas en directo.", href: "/app/micro", cta: "Jugar", estado: "Nuevo" },
@@ -99,6 +114,7 @@ const CATS: Cat[] = [
     label: "Comunidad",
     sub: "Compite con otros usuarios y ligas.",
     tint: "#34b9c4", tint2: "#5b8def",   // turquesa + azul (social / conectada)
+    bg: "/assets/card-backgrounds/card-bg-comunidad.webp", bgOpacity: 0.24,
     mods: [
       { icon: "rankings", title: "Ranking global", desc: "Compite por país y por creador.", href: "/app/rankings", cta: "Ver ranking", estado: "Disponible" },
       { icon: "ligas", title: "Ligas privadas", desc: "Compite con amigos en tu liga.", href: "/app/ligas", cta: "Crear", estado: "Disponible" },
@@ -111,6 +127,7 @@ const CATS: Cat[] = [
     label: "Explora",
     sub: "Calendario, grupos, reglas y guías.",
     tint: "#8b7bd8", tint2: "#6e83c4",   // lavanda + azul grisáceo (informativa)
+    bg: "/assets/card-backgrounds/card-bg-explora.webp", bgOpacity: 0.18,
     mods: [
       { icon: "calendario", title: "Calendario", desc: "Todos los partidos del Mundial 2026.", href: "/calendario", cta: "Ver", estado: "Disponible" },
       { icon: "grupos", title: "Grupos", desc: "Las 48 selecciones por grupo.", href: "/grupos", cta: "Ver", estado: "Disponible" },
@@ -155,11 +172,17 @@ function fmtDate(date: string, time: string) {
    Disponible = verde suave · Nuevo = dorado/mostaza · En vivo = rojo ·
    Próximamente = gris-azulado (en espera, NO muerto). */
 function badgeStyle(e: Estado): React.CSSProperties {
-  const base: React.CSSProperties = { fontSize: 10, fontWeight: 800, letterSpacing: 0.4, textTransform: "uppercase", borderRadius: 999, padding: "3px 8px", whiteSpace: "nowrap" };
-  if (e === "Disponible") return { ...base, color: "#0a7d52", background: "#d6f5e6", border: "1px solid #aee9cd" };
-  if (e === "Nuevo") return { ...base, color: "#8a6a13", background: "#fbeec3", border: "1px solid #f0dca0" };
-  if (e === "En vivo") return { ...base, color: "#fff", background: "#e4483f", border: "1px solid #e4483f" };
-  return { ...base, color: "#4f6394", background: "#e3e9f5", border: "1px solid #ccd8ec" };
+  const base: React.CSSProperties = {
+    fontSize: 10, fontWeight: 800, letterSpacing: 0.4, textTransform: "uppercase",
+    borderRadius: 999, padding: "3px 9px", whiteSpace: "nowrap",
+    // Brillo interior + sombra fina → relieve "pastilla", no etiqueta plana.
+    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.55), 0 1px 2px rgba(8,16,30,0.12)",
+    backdropFilter: "saturate(140%)",
+  };
+  if (e === "Disponible") return { ...base, color: "#0a7d52", backgroundImage: "linear-gradient(180deg,#e4faee,#cdf1df)", border: "1px solid #aee9cd" };
+  if (e === "Nuevo") return { ...base, color: "#8a6a13", backgroundImage: "linear-gradient(180deg,#fdf3cf,#f7e6ac)", border: "1px solid #f0dca0" };
+  if (e === "En vivo") return { ...base, color: "#fff", backgroundImage: "linear-gradient(180deg,#f25a50,#dc3f36)", border: "1px solid #e4483f", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.3), 0 1px 6px rgba(228,72,63,0.4)" };
+  return { ...base, color: "#4f6394", backgroundImage: "linear-gradient(180deg,#eef2fa,#dde6f3)", border: "1px solid #ccd8ec" };
 }
 
 /* ─────────── Fondo decorativo reutilizable (token visual por categoría) ───────────
@@ -178,31 +201,67 @@ function cardBackground(tint: string, tint2: string, lift: boolean): React.CSSPr
   };
 }
 
-/* ─────────── Card de módulo (HTML/CSS, gamificada, premium) ─────────── */
-function ModuleCard({ mod, tint, tint2 }: { mod: Mod; tint: string; tint2: string }) {
+/* ─────────── Card de módulo (HTML/CSS, gamificada, premium) ───────────
+   Capas (de atrás hacia delante): textura/glow base → imagen de categoría
+   (decorativa, opacidad baja + máscara que se desvanece hacia el texto) →
+   velo blanco de legibilidad → contenido. La imagen NUNCA es la card cerrada. */
+function ModuleCard({ mod, tint, tint2, bg, bgOpacity }: { mod: Mod; tint: string; tint2: string; bg: string; bgOpacity: number }) {
   const [hov, setHov] = useState(false);
   const disabled = !mod.href;
   const active = hov && !disabled;
 
   const inner = (
     <>
-      {/* Banda de acento superior (sutil, da el toque "módulo de juego") */}
-      <span style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: `linear-gradient(90deg, ${tint}, ${tint2})`, opacity: active ? 1 : 0.65, transition: "opacity .25s" }} />
+      {/* Capa A — imagen decorativa de categoría (cover, opacidad baja, máscara que
+          difumina hacia abajo para que el texto siempre quede legible). */}
+      {bg && (
+        <span
+          aria-hidden
+          style={{
+            position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none",
+            backgroundImage: `url(${bg})`,
+            backgroundSize: "cover", backgroundPosition: "center",
+            opacity: active ? Math.min(bgOpacity + 0.06, 0.45) : bgOpacity,
+            WebkitMaskImage: "linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.35) 52%, transparent 84%)",
+            maskImage: "linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.35) 52%, transparent 84%)",
+            transition: "opacity .28s",
+          }}
+        />
+      )}
+      {/* Capa B — velo blanco de legibilidad (asegura contraste del contenido). */}
+      <span aria-hidden style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none", background: "linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.62) 60%, rgba(255,255,255,0.85) 100%)" }} />
 
-      <div style={{ position: "relative", display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 13 }}>
+      {/* Banda de acento superior (sutil, da el toque "módulo de juego") */}
+      <span style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, zIndex: 1, background: `linear-gradient(90deg, ${tint}, ${tint2})`, opacity: active ? 1 : 0.65, transition: "opacity .25s" }} />
+
+      <div style={{ position: "relative", zIndex: 1, display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 13 }}>
         <span style={{ position: "relative", width: 48, height: 48, borderRadius: 14, display: "inline-flex", alignItems: "center", justifyContent: "center", background: `linear-gradient(140deg, ${tint}2e, ${tint2}1c)`, border: `1px solid ${tint}55`, boxShadow: active ? `0 6px 16px ${tint}3a` : "none", transition: "box-shadow .25s" }}>
           {/* brillo superior del contenedor del icono */}
           <span style={{ position: "absolute", inset: 0, borderRadius: 14, background: "linear-gradient(180deg, rgba(255,255,255,0.5), transparent 55%)", pointerEvents: "none" }} />
-          <I d={PATHS[mod.icon] || ""} c={INK} s={25} />
+          {mod.iconSrc ? (
+            // Icono propio teñido con CSS mask (color del tema, no el del SVG).
+            <span
+              aria-hidden
+              style={{
+                width: 25, height: 25, display: "inline-block", backgroundColor: INK,
+                WebkitMaskImage: `url(${mod.iconSrc})`, maskImage: `url(${mod.iconSrc})`,
+                WebkitMaskRepeat: "no-repeat", maskRepeat: "no-repeat",
+                WebkitMaskPosition: "center", maskPosition: "center",
+                WebkitMaskSize: "contain", maskSize: "contain",
+              }}
+            />
+          ) : (
+            <I d={PATHS[mod.icon] || ""} c={INK} s={25} />
+          )}
         </span>
         <span style={badgeStyle(mod.estado)}>{mod.estado === "En vivo" ? "● En vivo" : mod.estado}</span>
       </div>
-      <h3 style={{ position: "relative", fontWeight: 800, fontSize: 16, color: INK, marginBottom: 5 }}>{mod.title}</h3>
-      <p style={{ position: "relative", fontSize: 12.5, color: INK_MUT, lineHeight: 1.45, marginBottom: 14, minHeight: 36 }}>{mod.desc}</p>
+      <h3 style={{ position: "relative", zIndex: 1, fontWeight: 800, fontSize: 16, color: INK, marginBottom: 5 }}>{mod.title}</h3>
+      <p style={{ position: "relative", zIndex: 1, fontSize: 12.5, color: INK_MUT, lineHeight: 1.45, marginBottom: 14, minHeight: 36 }}>{mod.desc}</p>
       {/* CTA uniforme: pill ancho al pie de cada card */}
       <span
         style={{
-          position: "relative",
+          position: "relative", zIndex: 1,
           display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
           width: "100%",
           fontSize: 13, fontWeight: 800,
@@ -235,12 +294,15 @@ function ModuleCard({ mod, tint, tint2 }: { mod: Mod; tint: string; tint2: strin
     boxShadow: active
       ? `0 14px 30px rgba(8,16,30,0.32), 0 0 0 1px ${tint}33`
       : "0 3px 12px rgba(8,16,30,0.18)",
-    transform: active ? "translateY(-4px)" : "none",
-    transition: "all .28s", cursor: disabled ? "default" : "pointer", opacity: disabled ? 0.94 : 1,
+    // Hover eleva; el tap (móvil) lo gestiona `.zm-mod-card:active` en CSS para no
+    // pisar la animación con un inline transform.
+    transform: active ? "translateY(-4px)" : undefined,
+    transition: "transform .18s ease, box-shadow .28s, background-color .28s, border-color .28s",
+    cursor: disabled ? "default" : "pointer", opacity: disabled ? 0.94 : 1,
   };
-  if (disabled) return <div style={style}>{inner}</div>;
+  if (disabled) return <div className="zm-mod-card zm-mod-card--locked" style={style}>{inner}</div>;
   return (
-    <Link href={mod.href!} style={style} onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}>
+    <Link className="zm-mod-card" href={mod.href!} style={style} onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}>
       {inner}
     </Link>
   );
@@ -446,8 +508,8 @@ export default function AppHubPage() {
                 <p style={{ fontSize: 12.5, color: TXT_MUT, marginTop: 2 }}>{cat.sub}</p>
               </div>
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(170px,1fr))", gap: 13 }}>
-              {cat.mods.map((m) => <ModuleCard key={m.title} mod={m} tint={cat.tint} tint2={cat.tint2} />)}
+            <div className="zm-mod-grid">
+              {cat.mods.map((m) => <ModuleCard key={m.title} mod={m} tint={cat.tint} tint2={cat.tint2} bg={cat.bg} bgOpacity={cat.bgOpacity} />)}
             </div>
           </section>
         ))}
@@ -479,7 +541,17 @@ export default function AppHubPage() {
         </div>
       </div>
 
-      <style>{`@media(max-width:420px){ .zm-hide-sm{ display:none } }`}</style>
+      <style>{`
+        @media(max-width:420px){ .zm-hide-sm{ display:none } }
+        /* Rejilla de módulos: 2 columnas en móvil (sensación app), auto en ≥560px. */
+        .zm-mod-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:11px; }
+        @media(min-width:560px){
+          .zm-mod-grid{ grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:13px; }
+        }
+        /* Feedback táctil: el tap "hunde" levemente la card. */
+        .zm-mod-card:active{ transform:scale(0.97) !important; }
+        .zm-mod-card--locked:active{ transform:none !important; }
+      `}</style>
     </div>
   );
 }

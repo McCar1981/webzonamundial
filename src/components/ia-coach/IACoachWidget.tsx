@@ -65,7 +65,7 @@ export default function IACoachWidget() {
       {!open && (
         <div
           className={inApp ? "zm-coach-launcher zm-coach-launcher--inapp" : "zm-coach-launcher"}
-          style={{ position: "fixed", bottom: 22, right: 18, zIndex: 1200, display: "flex", alignItems: "center", gap: 8 }}
+          style={{ position: "fixed", bottom: 22, right: 18, zIndex: 1200, display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8 }}
         >
           {showTip && (
             <span
@@ -74,11 +74,12 @@ export default function IACoachWidget() {
                 color: GOLD2,
                 border: `1px solid ${GOLD}44`,
                 borderRadius: 10,
-                padding: "7px 11px",
-                fontSize: 12.5,
+                padding: "6px 10px",
+                fontSize: 12,
                 fontWeight: 700,
                 whiteSpace: "nowrap",
                 boxShadow: "0 8px 22px rgba(0,0,0,0.4)",
+                marginRight: 4,
               }}
             >
               IA Coach

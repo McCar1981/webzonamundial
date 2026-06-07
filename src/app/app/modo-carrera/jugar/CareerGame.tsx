@@ -167,14 +167,17 @@ export default function CareerGame() {
     setCareer((c) => (c ? beginLiveSeason(c) ?? beginSeason(c) : c));
   const handleNextSeason = () =>
     setCareer((c) => (c ? startNextSeason(c) : c));
-  const handleResolveMatch = (gf: number, ga: number, wasBehind?: boolean, injury?: Injury): PlayResult | null => {
+  const handleResolveMatch = (gf: number, ga: number, wasBehind?: boolean, injury?: Injury, moraleDelta?: number): PlayResult | null => {
     if (!career) return null;
-    const res = resolveMatch(career, gf, ga, { wasBehind, injury });
+    const res = resolveMatch(career, gf, ga, { wasBehind, injury, moraleDelta });
     if (res.match) setCareer(res.career);
     return res;
   };
   const handleChoose = (entryId: string, choiceId: string) =>
     setCareer((c) => (c ? applyDecision(c, entryId, choiceId) : c));
+  // Designa capitán: persiste en el plantel y suma un plus de liderazgo (dtBonus).
+  const handleSetCaptain = (player: string) =>
+    setCareer((c) => (c ? { ...c, squad: { injuries: [], ...c.squad, captain: player }, updatedAt: new Date().toISOString() } : c));
 
   // Genera una entrada de narrativa (IA en el servidor; si falla, plantilla local).
   const handleGenerate = async (kind: NarrativeKind) => {
@@ -296,6 +299,7 @@ export default function CareerGame() {
           onStartLive={handleStartLiveSeason}
           onResolveMatch={handleResolveMatch}
           onChoose={handleChoose}
+          onSetCaptain={handleSetCaptain}
           onNextSeason={handleNextSeason}
         />
       )}

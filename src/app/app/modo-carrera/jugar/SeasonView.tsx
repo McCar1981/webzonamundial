@@ -12,6 +12,8 @@ import { BG, BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED, flagUrl } from "./fx";
 import { SELECCIONES } from "@/data/selecciones";
 import { STAGE_LABEL } from "@/lib/modo-carrera/season";
 import { activeInjuries } from "@/lib/modo-carrera/injuries";
+import { activeSuspensions } from "@/lib/modo-carrera/suspensions";
+import { FANTASY_ROSTERS } from "@/data/fantasy-rosters";
 import type { PlayResult } from "@/lib/modo-carrera/season";
 import { liveLockMs } from "@/lib/modo-carrera/live-season";
 import { getUserTimezone } from "@/lib/bracket/match-time";
@@ -162,6 +164,127 @@ function InjuriesPanel({ career }: { career: CareerState }) {
   );
 }
 
+/** Icono SVG de tarjeta (sanción). Sin emojis. */
+function CardIcon({ size = 16, color = GOLD2 }: { size?: number; color?: string }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="6" y="3" width="12" height="18" rx="2" stroke={color} strokeWidth="1.7" />
+    </svg>
+  );
+}
+
+/** Panel de sanciones por tarjetas activas antes del próximo partido. */
+function SuspensionsPanel({ career }: { career: CareerState }) {
+  const susp = activeSuspensions(career);
+  if (susp.length === 0) return null;
+  const zona = (pos: string) => (pos === "FWD" || pos === "MID" ? "ataque" : "defensa");
+  return (
+    <div style={{ marginBottom: 14, padding: 14, borderRadius: 14, background: "rgba(201,168,76,0.07)", border: `1px solid ${GOLD2}44` }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
+        <CardIcon size={16} />
+        <span style={{ fontSize: 12, fontWeight: 800, letterSpacing: 0.6, textTransform: "uppercase", color: GOLD2 }}>
+          Sancionados · {susp.length}
+        </span>
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        {susp.map((s) => (
+          <div key={s.player} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, fontSize: 13 }}>
+            <span style={{ color: "#fff", fontWeight: 700, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+              {s.player}
+              <span style={{ color: DIM, fontWeight: 600, marginLeft: 6 }}>
+                · {s.reason === "roja" ? "roja directa" : "ciclo de amarillas"} · merma el {zona(s.pos)}
+              </span>
+            </span>
+            <span style={{ flexShrink: 0, fontSize: 11, fontWeight: 800, color: GOLD2, border: `1px solid ${GOLD2}55`, background: `${GOLD2}14`, borderRadius: 999, padding: "3px 9px" }}>
+              {s.matchesOut === 1 ? "1 partido" : `${s.matchesOut} partidos`}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/** Icono SVG de brazalete de capitán. Sin emojis. */
+function CaptainIcon({ size = 16, color = GOLD }: { size?: number; color?: string }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="9" stroke={color} strokeWidth="1.7" />
+      <path d="M14.5 9.5a3 3 0 1 0 0 5" stroke={color} strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+/**
+ * Designación de capitán: el DT elige a un referente del plantel. Da un pequeño
+ * bonus de liderazgo (vía dtBonus) y refuerza la idea de gestión de vestuario.
+ */
+function CaptainPanel({ career, onSetCaptain }: { career: CareerState; onSetCaptain: (player: string) => void }) {
+  const [open, setOpen] = useState(false);
+  const roster = FANTASY_ROSTERS[career.identity.nationSlug ?? ""] ?? [];
+  if (roster.length === 0) return null;
+  const captain = career.squad?.captain ?? null;
+  const current = roster.find((p) => p.name === captain) ?? null;
+  // Candidatos preferentes: referentes de campo (líderes naturales del vestuario).
+  const candidates = [...roster].sort((a, b) => {
+    const rank = (pos: string) => (pos === "DEF" ? 0 : pos === "MID" ? 1 : pos === "GK" ? 2 : 3);
+    return rank(a.pos) - rank(b.pos);
+  });
+  return (
+    <div style={{ marginBottom: 14, padding: 14, borderRadius: 14, background: "rgba(201,168,76,0.06)", border: `1px solid ${GOLD}33` }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, minWidth: 0 }}>
+          <CaptainIcon size={16} />
+          <span style={{ fontSize: 12, fontWeight: 800, letterSpacing: 0.6, textTransform: "uppercase", color: GOLD }}>Capitán</span>
+          <span style={{ fontSize: 13, fontWeight: 700, color: current ? "#fff" : DIM, marginLeft: 4, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+            {current ? `${current.name} · ${current.pos}` : "Sin designar"}
+          </span>
+        </div>
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          style={{ flexShrink: 0, fontSize: 11.5, fontWeight: 800, color: GOLD2, background: `${GOLD2}14`, border: `1px solid ${GOLD2}55`, borderRadius: 999, padding: "5px 12px", cursor: "pointer" }}
+        >
+          {open ? "Cerrar" : current ? "Cambiar" : "Designar"}
+        </button>
+      </div>
+      {!current && !open && (
+        <div style={{ fontSize: 12, color: DIM, marginTop: 8, lineHeight: 1.5 }}>
+          Nombra un capitán para sumar un plus de liderazgo al vestuario.
+        </div>
+      )}
+      {open && (
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginTop: 12 }}>
+          {candidates.map((p) => {
+            const active = p.name === captain;
+            return (
+              <button
+                key={p.name}
+                type="button"
+                onClick={() => {
+                  onSetCaptain(p.name);
+                  setOpen(false);
+                }}
+                style={{
+                  textAlign: "left",
+                  padding: "9px 11px",
+                  borderRadius: 10,
+                  cursor: "pointer",
+                  background: active ? "rgba(201,168,76,0.16)" : BG3,
+                  border: `1px solid ${active ? GOLD : "rgba(255,255,255,0.06)"}`,
+                }}
+              >
+                <div style={{ fontSize: 12.5, fontWeight: 800, color: active ? GOLD2 : "#fff", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{p.name}</div>
+                <div style={{ fontSize: 11, color: DIM, marginTop: 2 }}>{p.pos}</div>
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function SeasonView({
   career,
   paseDT = false,
@@ -170,6 +293,7 @@ export default function SeasonView({
   onStartLive,
   onResolveMatch,
   onChoose,
+  onSetCaptain,
   onNextSeason,
 }: {
   career: CareerState;
@@ -177,8 +301,9 @@ export default function SeasonView({
   canLive?: boolean;
   onStart: () => void;
   onStartLive?: () => void;
-  onResolveMatch: (gf: number, ga: number, wasBehind?: boolean, injury?: Injury) => PlayResult | null;
+  onResolveMatch: (gf: number, ga: number, wasBehind?: boolean, injury?: Injury, moraleDelta?: number) => PlayResult | null;
   onChoose: (entryId: string, choiceId: string) => void;
+  onSetCaptain: (player: string) => void;
   onNextSeason: () => void;
 }) {
   const { season } = career;
@@ -320,8 +445,8 @@ export default function SeasonView({
     setLive(true);
   };
 
-  const finishMatch = (gf: number, ga: number, wasBehind?: boolean, injury?: Injury) => {
-    const res = onResolveMatch(gf, ga, wasBehind, injury);
+  const finishMatch = (gf: number, ga: number, wasBehind?: boolean, injury?: Injury, moraleDelta?: number) => {
+    const res = onResolveMatch(gf, ga, wasBehind, injury, moraleDelta);
     setLive(false);
     if (res && res.match) setReveal(res);
   };
@@ -436,7 +561,9 @@ export default function SeasonView({
       )}
 
       {/* Bajas (lesiones) del plantel */}
+      {!season.finished && <CaptainPanel career={career} onSetCaptain={onSetCaptain} />}
       {!season.finished && <InjuriesPanel career={career} />}
+      {!season.finished && <SuspensionsPanel career={career} />}
 
       {/* Calendario */}
       <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>

@@ -27,6 +27,7 @@ import { grantXp, sumReputation } from "./engine";
 import { missionKey } from "./missions";
 import { buildBoardObjective, evaluateSeason } from "./board";
 import { injuryPenalty, tickInjuries, rollInjury, activeInjuries } from "./injuries";
+import { suspensionPenalty, tickSuspensions, rollSuspension, activeSuspensions } from "./suspensions";
 import { buildPressConference } from "./press";
 import { SELECCIONES, type Seleccion } from "@/data/selecciones";
 
@@ -84,9 +85,11 @@ function dtBonus(c: CareerState): number {
   const general = (s.mental + s.gestion) * 0.8; // 0..8
   const overallAdj = (c.progression.overall - 50) * 0.18; // 0..~8.8
   const moraleAdj = (c.progression.morale - 70) * 0.1; // -7..+3
+  // Capitán designado: pequeño plus de liderazgo (el grupo tira de su referente).
+  const captain = c.squad?.captain ? 1.5 : 0;
   // Un gran DT mejora al equipo, pero no lo sube de categoría: el bonus se acota
   // para que la diferencia de fuerza no degenere en palizas irreales (9-0).
-  return clamp(overallAdj + general + moraleAdj, -8, 15);
+  return clamp(overallAdj + general + moraleAdj + captain, -8, 15);
 }
 
 /**
@@ -109,10 +112,12 @@ function attackDefense(c: CareerState): { atk: number; def: number } {
   const s = c.skills.levels;
   let atk = base + s.ataque * 2.0;
   let def = base + s.defensa * 2.0;
-  // Lesiones: cada baja resta fuerza en su zona (FWD/MID → ataque; DEF/GK → defensa).
+  // Lesiones y sanciones: cada baja resta fuerza en su zona (FWD/MID → ataque;
+  // DEF/GK → defensa). Un sancionado pesa igual que un lesionado: no juega.
   const pen = injuryPenalty(c);
-  atk -= pen.atk;
-  def -= pen.def;
+  const susp = suspensionPenalty(c);
+  atk -= pen.atk + susp.atk;
+  def -= pen.def + susp.def;
   switch (c.identity.philosophy) {
     case "ofensiva":
       atk += 6;
@@ -456,7 +461,7 @@ export function resolveMatch(
   c0: CareerState,
   gfIn: number,
   gaIn: number,
-  opts?: { wasBehind?: boolean; injury?: Injury },
+  opts?: { wasBehind?: boolean; injury?: Injury; moraleDelta?: number },
 ): PlayResult {
   const season = c0.season;
   const idx = playableIndex(season);
@@ -488,7 +493,13 @@ export function resolveMatch(
   };
 
   // ── Moral ──
-  let morale = clamp(c0.progression.morale + (outcome === "V" ? 6 : outcome === "E" ? 1 : -8), 0, 100);
+  // El resultado mueve la moral; la charla técnica al descanso (partido jugable)
+  // aporta su propio delta, que llega ya resuelto desde MatchLive.
+  let morale = clamp(
+    c0.progression.morale + (outcome === "V" ? 6 : outcome === "E" ? 1 : -8) + (opts?.moraleDelta ?? 0),
+    0,
+    100,
+  );
 
   // ── Transición de fase ──
   let stage: TournamentStage = season.stage;
@@ -697,6 +708,30 @@ export function resolveMatch(
     }
   }
 
+  // ── Sanciones por tarjetas ──
+  // Las sanciones cumplen una fecha por partido jugado; si el torneo sigue, se
+  // tira por una nueva (roja directa o acumulación de amarillas).
+  let suspensions = tickSuspensions(activeSuspensions(c0));
+  if (!finished) {
+    const newSusp = rollSuspension(c0, suspensions);
+    if (newSusp) {
+      suspensions = [...suspensions, newSusp];
+      const nationName = seleccion(c0.identity.nationSlug)?.nombre ?? "La selección";
+      const fechas = newSusp.matchesOut === 1 ? "el próximo partido" : `los próximos ${newSusp.matchesOut} partidos`;
+      const causa = newSusp.reason === "roja" ? "Tarjeta roja" : "Acumulación de amarillas";
+      narrative = [
+        {
+          id: `sancion-s${season.season}-${idx}`,
+          kind: "evento",
+          body: `${causa} en ${nationName}: ${newSusp.player} queda sancionado y se pierde ${fechas}. Tocará rehacer la zona.`,
+          createdAt: now(),
+          chosen: null,
+        },
+        ...narrative,
+      ];
+    }
+  }
+
   // ── Rueda de prensa post-partido (puede saltar según el resultado) ──
   // El contenido depende del marcador real; la decisión del DT impactará en la
   // moral del vestuario y en la confianza de la federación (vía applyDecision).
@@ -726,7 +761,7 @@ export function resolveMatch(
     narrative: narrative.slice(0, MAX_NARRATIVE),
     legacy: { trophies, records },
     board,
-    squad: { ...c0.squad, injuries },
+    squad: { ...c0.squad, injuries, suspensions },
     season: { ...season, fixtures, cursor: idx + 1, stage, finished },
     updatedAt: now(),
   };

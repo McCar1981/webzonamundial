@@ -5,7 +5,7 @@
 // tolerar saves antiguos o corruptos. Al iniciar sesión, CareerGame sincroniza
 // este estado con Supabase via /api/modo-carrera/save.
 
-import type { CareerState, SeasonState, SeasonMatch, TournamentStage, MatchOutcome, BoardState, BoardDemand, BoardVerdict, StreakState, Mission, MissionKind, MissionStatus, Trophy, SquadState, Injury } from "./types";
+import type { CareerState, SeasonState, SeasonMatch, TournamentStage, MatchOutcome, BoardState, BoardDemand, BoardVerdict, StreakState, Mission, MissionKind, MissionStatus, Trophy, SquadState, Injury, Suspension, SuspensionReason } from "./types";
 import { CAREER_STORAGE_KEY, CAREER_SCHEMA_VERSION, xpRequired, TITLES } from "./constants";
 import { sumReputation } from "./engine";
 
@@ -129,12 +129,13 @@ function normalizeStreak(raw: unknown): StreakState {
 }
 
 const INJURY_POS = new Set(["FWD", "MID", "DEF", "GK"]);
+const SUSPENSION_REASONS = new Set<SuspensionReason>(["roja", "amarillas"]);
 
 /**
- * Valida el plantel (lesiones) de un save: descarta entradas basura, recorta el
- * nombre, exige una posición válida y acota los partidos de baja (1..3, el rango
- * legítimo del motor). Cap defensivo de 11 bajas para que un save manipulado no
- * pueda inflar la penalización de fuerza ni el tamaño del JSON.
+ * Valida el plantel (lesiones, sanciones, capitán) de un save: descarta entradas
+ * basura, recorta el nombre, exige una posición válida y acota las fechas de baja
+ * (1..3, el rango legítimo del motor). Cap defensivo de 11 bajas por tipo para que
+ * un save manipulado no pueda inflar la penalización de fuerza ni el tamaño del JSON.
  */
 function normalizeSquad(raw: unknown): SquadState {
   const s = (raw && typeof raw === "object" ? raw : {}) as Partial<SquadState>;
@@ -149,7 +150,20 @@ function normalizeSquad(raw: unknown): SquadState {
         }))
         .slice(0, 11)
     : [];
-  return { injuries };
+  const suspensions: Suspension[] = Array.isArray(s.suspensions)
+    ? (s.suspensions as unknown[])
+        .map((x) => (x && typeof x === "object" ? (x as Partial<Suspension>) : null))
+        .filter((i): i is Partial<Suspension> => !!i && typeof i.player === "string" && i.player.length > 0)
+        .map((i) => ({
+          player: (i.player as string).slice(0, 60),
+          pos: INJURY_POS.has(i.pos as string) ? (i.pos as string) : "MID",
+          matchesOut: clampInt(i.matchesOut, 1, 2, 1),
+          reason: SUSPENSION_REASONS.has(i.reason as SuspensionReason) ? (i.reason as SuspensionReason) : "amarillas",
+        }))
+        .slice(0, 11)
+    : [];
+  const captain = typeof s.captain === "string" && s.captain.length > 0 ? s.captain.slice(0, 60) : null;
+  return { injuries, suspensions, captain };
 }
 
 /** Repara/normaliza la temporada en curso; devuelve null si el dato es inválido. */

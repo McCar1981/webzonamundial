@@ -141,6 +141,50 @@ export function choicesFor(gf1: number, ga1: number): InMatchChoice[] {
   ];
 }
 
+// ─── Charla técnica al descanso (solo si vas perdiendo) ──────────────────────
+/**
+ * Mini-decisión emocional cuando el DT llega al descanso por detrás en el
+ * marcador. A diferencia de la decisión táctica del 60', su efecto principal es
+ * sobre la MORAL (que se arrastra a la carrera), con un empujón menor al ataque
+ * del resto del partido. No hay opción "mala": hay tonos con más o menos riesgo.
+ */
+export interface HalftimeTalk {
+  id: string;
+  name: string;
+  description: string;
+  atkMult: number;
+  defMult: number;
+  /** Cambio de moral que se persiste en la carrera (vía resolveMatch). */
+  moraleDelta: number;
+}
+
+export const HALFTIME_TALKS: HalftimeTalk[] = [
+  {
+    id: "arenga",
+    name: "Arenga al grupo",
+    description: "Les recuerdas de qué son capaces. El equipo sale enchufado a por el partido.",
+    atkMult: 1.18,
+    defMult: 1.0,
+    moraleDelta: 3,
+  },
+  {
+    id: "calma",
+    name: "Pedir calma y orden",
+    description: "Bajas revoluciones: paciencia y cabeza. Sin volverse locos atrás.",
+    atkMult: 1.05,
+    defMult: 1.08,
+    moraleDelta: 1,
+  },
+  {
+    id: "exigir",
+    name: "Exigir y señalar",
+    description: "Aprietas fuerte al vestuario. Reacción inmediata… pero tensas el ambiente.",
+    atkMult: 1.3,
+    defMult: 0.95,
+    moraleDelta: -2,
+  },
+];
+
 // ─── Resolución por ventanas ─────────────────────────────────────────────────
 export interface LiveMatchState {
   planId: string;

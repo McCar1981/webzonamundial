@@ -155,9 +155,26 @@ export interface Injury {
   matchesOut: number;
 }
 
-/** Estado del plantel: por ahora, las lesiones activas. */
+/**
+ * Una sanción por tarjetas (roja directa o acumulación de amarillas). Reutiliza
+ * la forma de Injury: el jugador no está disponible los `matchesOut` partidos.
+ */
+export type SuspensionReason = "roja" | "amarillas";
+export interface Suspension {
+  player: string;
+  pos: string;
+  matchesOut: number;
+  /** Motivo de la sanción (para el relato). */
+  reason: SuspensionReason;
+}
+
+/** Estado del plantel: lesiones, sanciones y capitán designado. */
 export interface SquadState {
   injuries: Injury[];
+  /** Sanciones por tarjetas activas (mismo efecto de baja que una lesión). */
+  suspensions?: Suspension[];
+  /** Nombre del capitán designado por el DT (bonus de moral/liderazgo). */
+  captain?: string | null;
 }
 
 // ─── Motor de temporada (bucle de juego) ─────────────────────────────────────

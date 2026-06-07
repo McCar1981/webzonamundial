@@ -27,16 +27,18 @@ import {
   secondHalf,
   choicesFor,
   rollMatchInjury,
+  HALFTIME_TALKS,
   type TacticalPlan,
   type InMatchChoice,
   type LiveMatchState,
   type LiveMatchResult,
   type MatchInjury,
   type SubOption,
+  type HalftimeTalk,
 } from "@/lib/modo-carrera/match-live";
 import type { CareerState, SeasonMatch, Injury } from "@/lib/modo-carrera/types";
 
-type Phase = "plan" | "half1" | "injury" | "decision" | "half2" | "fulltime";
+type Phase = "plan" | "half1" | "injury" | "charla" | "decision" | "half2" | "fulltime";
 
 interface GoalEvent {
   minute: number;
@@ -63,6 +65,15 @@ function MedicalCross({ size = 22 }: { size?: number }) {
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden>
       <rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor" strokeWidth="2" />
       <path d="M12 8v8M8 12h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function WhistleIcon({ size = 22 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M3 11h9l5-3v8l-5-3" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+      <circle cx="7" cy="14" r="4" stroke="currentColor" strokeWidth="2" />
     </svg>
   );
 }
@@ -132,7 +143,7 @@ export default function MatchLive({
 }: {
   career: CareerState;
   match: SeasonMatch;
-  onFinish: (gf: number, ga: number, wasBehind: boolean, injury?: Injury) => void;
+  onFinish: (gf: number, ga: number, wasBehind: boolean, injury?: Injury, moraleDelta?: number) => void;
   onCancel: () => void;
 }) {
   const selfSlug = career.identity.nationSlug ?? "";
@@ -157,6 +168,10 @@ export default function MatchLive({
   const subMultRef = useRef<{ atk: number; def: number }>({ atk: 1, def: 1 });
   const injuredRef = useRef<Injury | null>(null);
   const [injury, setInjury] = useState<MatchInjury | null>(null);
+  // Charla técnica al descanso (solo si vas perdiendo): multiplica el resto del
+  // partido y deja un delta de moral que se arrastra a la carrera.
+  const talkMultRef = useRef<{ atk: number; def: number }>({ atk: 1, def: 1 });
+  const talkMoraleRef = useRef(0);
 
   const selfKey = useMemo(() => keyPlayers(selfSlug), [selfSlug]);
   const oppKey = useMemo(() => keyPlayers(oppSlug), [oppSlug]);
@@ -192,18 +207,26 @@ export default function MatchLive({
     clockRef.current = clock;
   }, [clock]);
 
-  // Transición de fase al alcanzar el tope del reloj. Si hubo lesión pre-tirada,
-  // se intercala la pantalla de sustitución ANTES de la decisión del minuto 60.
+  // Encadena las pantallas del descanso (min 60'): primero la sustitución por
+  // lesión (si la hubo), luego la charla técnica (solo si vas perdiendo) y por
+  // último la decisión táctica. Cada paso llama al siguiente al resolverse.
+  const goToCharlaOrDecision = () => {
+    setPhase(shown.gf < shown.ga ? "charla" : "decision");
+  };
+
+  // Transición de fase al alcanzar el tope del reloj. Al llegar al 60' se intercala
+  // la sustitución (si hay lesión) antes de la charla/decisión.
   useEffect(() => {
     if (phase === "half1" && clock >= 60) {
       if (injuryRef.current) {
         setInjury(injuryRef.current);
         setPhase("injury");
       } else {
-        setPhase("decision");
+        goToCharlaOrDecision();
       }
     }
     if (phase === "half2" && clock >= 90) setPhase("fulltime");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clock, phase]);
 
   // El DT elige el recambio: el perfil del cambio multiplica el rendimiento del
@@ -211,6 +234,13 @@ export default function MatchLive({
   const pickSub = (opt: SubOption) => {
     subMultRef.current = { atk: opt.atkMult, def: opt.defMult };
     injuredRef.current = injuryRef.current?.injured ?? null;
+    goToCharlaOrDecision();
+  };
+
+  // La charla al descanso modula el resto del partido y deja un delta de moral.
+  const pickTalk = (talk: HalftimeTalk) => {
+    talkMultRef.current = { atk: talk.atkMult, def: talk.defMult };
+    talkMoraleRef.current = talk.moraleDelta;
     setPhase("decision");
   };
 
@@ -224,6 +254,8 @@ export default function MatchLive({
     injuryRef.current = rollMatchInjury(career, match);
     subMultRef.current = { atk: 1, def: 1 };
     injuredRef.current = null;
+    talkMultRef.current = { atk: 1, def: 1 };
+    talkMoraleRef.current = 0;
     setInjury(null);
     setClock(0);
     setPhase("half1");
@@ -232,12 +264,13 @@ export default function MatchLive({
   const pickChoice = (choice: InMatchChoice) => {
     const ls = lsRef.current;
     if (!ls) return;
-    // El recambio elegido (si hubo lesión) modula la decisión del minuto 60.
+    // El recambio (lesión) y la charla al descanso modulan la decisión del 60'.
     const sub = subMultRef.current;
+    const talk = talkMultRef.current;
     const combined: InMatchChoice = {
       ...choice,
-      atkMult: choice.atkMult * sub.atk,
-      defMult: choice.defMult * sub.def,
+      atkMult: choice.atkMult * sub.atk * talk.atk,
+      defMult: choice.defMult * sub.def * talk.def,
     };
     const res = secondHalf(ls, combined);
     resRef.current = res;
@@ -482,7 +515,7 @@ export default function MatchLive({
         )}
 
         {/* ── FEED de goles (durante el partido y al final) ── */}
-        {(phase === "half1" || phase === "injury" || phase === "decision" || phase === "half2" || phase === "fulltime") && (
+        {(phase === "half1" || phase === "injury" || phase === "charla" || phase === "decision" || phase === "half2" || phase === "fulltime") && (
           <div style={{ display: "flex", flexDirection: "column", gap: 6, margin: "4px 0 12px", minHeight: 40 }}>
             {shown.feed.length === 0 ? (
               <div style={{ textAlign: "center", fontSize: 12, color: DIM, fontStyle: "italic", padding: "8px 0" }}>
@@ -622,6 +655,47 @@ export default function MatchLive({
           </>
         )}
 
+        {/* ── CHARLA TÉCNICA AL DESCANSO (solo si vas perdiendo) ── */}
+        {phase === "charla" && (
+          <>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, margin: "6px 0 4px", animation: "mlDecHdr .45s cubic-bezier(.2,.9,.3,1.3) both" }}>
+              <span style={{ display: "inline-flex", color: GOLD }}>
+                <WhistleIcon size={22} />
+              </span>
+              <div style={{ textAlign: "left" }}>
+                <div style={{ fontSize: 12, fontWeight: 900, letterSpacing: 1, textTransform: "uppercase", color: GOLD }}>Descanso · charla técnica</div>
+                <div style={{ fontSize: 11.5, color: DIM, fontStyle: "italic", marginTop: 1 }}>Vas por detrás. ¿Qué mensaje das al vestuario?</div>
+              </div>
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 4 }}>
+              {HALFTIME_TALKS.map((talk, i) => (
+                <button
+                  key={talk.id}
+                  type="button"
+                  onClick={() => pickTalk(talk)}
+                  style={{
+                    textAlign: "left",
+                    padding: "12px 14px",
+                    borderRadius: 12,
+                    cursor: "pointer",
+                    background: BG3,
+                    border: "1px solid rgba(255,255,255,0.06)",
+                    animation: `mlDecCard .4s ${0.1 + i * 0.09}s cubic-bezier(.2,.9,.3,1.2) both`,
+                  }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+                    <span style={{ fontSize: 13.5, fontWeight: 800, color: "#fff" }}>{talk.name}</span>
+                    <span style={{ fontSize: 10.5, fontWeight: 800, color: talk.moraleDelta >= 0 ? GREEN : RED }}>
+                      {talk.moraleDelta >= 0 ? "+" : ""}{talk.moraleDelta} moral
+                    </span>
+                  </div>
+                  <div style={{ fontSize: 12, color: MID, marginTop: 3, lineHeight: 1.5 }}>{talk.description}</div>
+                </button>
+              ))}
+            </div>
+          </>
+        )}
+
         {/* ── FINAL (reacción emocional diferenciada por resultado) ── */}
         {phase === "fulltime" && (
           <div style={{ position: "relative", textAlign: "center" }}>
@@ -673,7 +747,7 @@ export default function MatchLive({
                   <div style={{ fontSize: 14.5, fontWeight: 800, color: "#fff", marginTop: 3 }}>{motm}</div>
                 </div>
               )}
-              <button type="button" onClick={() => onFinish(finalGf, finalGa, wasEverBehind(events), injuredRef.current ?? undefined)} style={btnGold}>
+              <button type="button" onClick={() => onFinish(finalGf, finalGa, wasEverBehind(events), injuredRef.current ?? undefined, talkMoraleRef.current)} style={btnGold}>
                 Ver resumen
               </button>
             </div>

@@ -43,6 +43,34 @@ Reglas generales:
 |---|---|---|---|
 | `empty-misiones.webp` | `public/img/modo-carrera/` | 500×500 transp. | Ilustración "sin misiones" |
 
+## 4b. Figura del entrenador (Partido jugable) — ALTO IMPACTO
+
+> **Dirección de arte: estilo CÓMIC** (línea marcada, sombreado plano/cel-shading,
+> expresión exagerada). Es más expresivo y mucho más fácil de mantener coherente
+> entre poses que un estilo fotorrealista, y pega con el tono "épico de cromo" de
+> la marca. Mismo personaje en todas las poses (mismo peinado/ropa), **fondo
+> transparente**, en paleta de marca (dorado sobre oscuro). El código las muestra
+> como capa lateral/inferior del modal del partido; degrada a nada si el archivo no
+> existe (igual que `Kit`). Medidas sugeridas **600×800**, mirando ligeramente hacia
+> el centro de la pantalla. Idealmente un contorno/halo dorado fino para recortar
+> sobre el fondo oscuro. Consistencia recomendada: generar las 5 poses con el mismo
+> prompt base de personaje y solo variar la acción.
+
+| Archivo | Ruta | Pose | Uso |
+|---|---|---|---|
+| `coach-neutral.webp` | `public/img/modo-carrera/coach/` | En reposo, brazos sueltos | Plan táctico, Hub |
+| `coach-arenga.webp` | `public/img/modo-carrera/coach/` | Gesto enérgico, motivando | Charla al descanso |
+| `coach-instruccion.webp` | `public/img/modo-carrera/coach/` | Señalando/dando órdenes | Decisión min 60' y sustitución |
+| `coach-celebra.webp` | `public/img/modo-carrera/coach/` | Brazos arriba, puño | Final con victoria / gol |
+| `coach-preocupado.webp` | `public/img/modo-carrera/coach/` | Brazos cruzados, serio | Vas perdiendo / derrota |
+
+## 4c. Fondos del partido jugable (opcionales)
+
+| Archivo | Ruta | Medidas | Uso |
+|---|---|---|---|
+| `vestuario-bg.webp` | `public/img/modo-carrera/partido/` | 1200×800 | Fondo sutil de la charla al descanso |
+| `banquillo-bg.webp` | `public/img/modo-carrera/partido/` | 1200×800 | Fondo sutil de la decisión del minuto 60 |
+
 ---
 
 ## 5. Iconos SVG (vectoriales, `stroke="currentColor"` para heredar color)
@@ -88,6 +116,15 @@ public/img/modo-carrera/
 ├── onboarding-bg-mobile.webp
 ├── card-texture.webp
 ├── empty-misiones.webp
+├── coach/
+│   ├── coach-neutral.webp
+│   ├── coach-arenga.webp
+│   ├── coach-instruccion.webp
+│   ├── coach-celebra.webp
+│   └── coach-preocupado.webp
+├── partido/
+│   ├── vestuario-bg.webp
+│   └── banquillo-bg.webp
 ├── narrativa/
 │   ├── prensa-bg.webp
 │   └── periodico-texture.webp
@@ -110,9 +147,12 @@ public/img/modo-carrera/
 ## Prioridad de entrega (para no bloquear el desarrollo)
 
 1. **Imprescindibles F1 (ya jugable sin ellas, pero suman):** `onboarding-bg`, `card-texture`.
-2. **F4 (narrativa):** `prensa-bg`, `periodico-texture`.
-3. **F5 (legado):** `trofeo-mundial`, `vitrina-bg`, `reveal-carta.webm`, `trofeo-reveal.webm`.
-4. **Pulido:** resto de iconos, eventos, estados vacíos.
+2. **Figura del entrenador (estilo cómic) — mayor salto visual del partido jugable:**
+   empieza por `coach-arenga` (charla) e `coach-instruccion` (decisión 60'/sustitución),
+   luego `coach-celebra`, `coach-preocupado` y `coach-neutral`.
+3. **F4 (narrativa):** `prensa-bg`, `periodico-texture`.
+4. **F5 (legado):** `trofeo-mundial`, `vitrina-bg`, `reveal-carta.webm`, `trofeo-reveal.webm`.
+5. **Pulido:** fondos de partido (`vestuario-bg`, `banquillo-bg`), resto de iconos, eventos, estados vacíos.
 
 El código tolera la ausencia de cualquier asset (usa degradados/SVG inline como
 fallback). Ve soltando archivos y se integran solos.

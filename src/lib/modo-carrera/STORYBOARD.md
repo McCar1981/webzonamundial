@@ -129,6 +129,37 @@ Flujo paso a paso (wizard). Cada paso es una "escena".
 
 ---
 
+## 9. Partido interactivo (jugable, estilo FIFA)
+
+Modal a pantalla completa (`MatchLive.tsx`). Máquina de fases:
+`plan → half1 → (lesión) → (charla si pierdes) → decisión 60' → half2 → final`.
+
+| # | Escena | Qué se muestra | Animación | Asset `[estado]` |
+|---|---|---|---|---|
+| 9.1 | Plan táctico | Jugadores clave de ambos + 4 planes (equilibrado/presión/muro/contragolpe) | stagger cartas + glow al seleccionar | camisetas `[OK]` · **figura `coach-neutral` `[FALTA]`** |
+| 9.2 | Saque / reloj | Marcador + cronómetro con tempo cinematográfico | pulse del reloj, frena en tramos finales | — |
+| 9.3 | **Celebración de gol** | "GOOOL" a pantalla completa, camiseta del goleador | destello color equipo + barrido de luz + kit salta | camiseta `[OK]` |
+| 9.4 | **Lesión + sustitución** (nueva) | Titular que cae + 3 recambios reales (igual/ofensivo/defensivo) | slide-in dramático, cruz médica SVG | icono SVG `[OK inline]` · **`coach-instruccion` `[FALTA]`** |
+| 9.5 | **Charla al descanso** (nueva, solo si pierdes) | 3 tonos (arenga/calma/exigir) con delta de moral | cards en stagger, silbato SVG | **`coach-arenga` + `vestuario-bg` `[FALTA]`** |
+| 9.6 | Decisión minuto 60 | Cronómetro circular de presión + 2-3 opciones según marcador | header pop, borde dorado latiendo | **`coach-instruccion` + `banquillo-bg` `[FALTA]`** |
+| 9.7 | Final | Victoria/Empate/Derrota + figura del partido | win-in + glow dorado + confeti si V | camiseta `[OK]` · **`coach-celebra` / `coach-preocupado` `[FALTA]`** |
+
+**Estados límite:** cancelar antes del saque; auto-pick de la decisión si expira el contador (mantiene el plan); el modo rápido ("Disputar al instante") no muestra este modal.
+
+---
+
+## 10. Gestión de plantel (bajas, sanciones, capitán)
+
+Paneles en la pantalla de Temporada (`SeasonView.tsx`), antes del próximo partido.
+
+| Escena | Qué se muestra | Animación | Asset `[estado]` |
+|---|---|---|---|
+| Parte médico | Lista de lesionados + fechas de baja + zona que merma | — | cruz médica SVG `[OK inline]` |
+| **Sancionados** (nueva) | Lista por tarjetas (roja 2 fechas / amarillas 1) + zona | — | tarjeta SVG `[OK inline]` |
+| **Capitán** (nueva) | Capitán designado + selector del plantel; plus de liderazgo | expand/collapse del selector | brazalete SVG `[OK inline]` · opc. `coach-neutral` |
+
+---
+
 ## Inventario de assets a producir `[FALTA]`
 
 **Imágenes (generar):**
@@ -138,6 +169,12 @@ Flujo paso a paso (wizard). Cada paso es una "escena".
 4. Texturas de periódico/papel para titulares.
 5. Copa del Mundo (reveal de trofeo) + trofeos secundarios para la vitrina.
 6. Ilustración de estado vacío (misiones).
+7. **Figura del entrenador (5 poses)** — silueta/ilustración estilizada en paleta de
+   marca, fondo transparente: `coach-neutral`, `coach-arenga`, `coach-instruccion`,
+   `coach-celebra`, `coach-preocupado`. Es el mayor salto visual para las escenas
+   "humanas" (charla, decisión 60', sustitución, final, prensa).
+8. **Fondos de partido** (opcionales): `vestuario-bg` (charla al descanso) y
+   `banquillo-bg` (decisión minuto 60).
 
 **Iconos SVG (añadir a `src/components/icons.tsx` o inline):**
 1. 4 iconos de filosofía (ofensiva, defensiva, posesión, contragolpe).

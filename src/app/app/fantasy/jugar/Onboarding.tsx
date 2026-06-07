@@ -19,7 +19,7 @@ const STEPS: Step[] = [
     icon: "🏆",
     title: "Bienvenido al Fantasy Mundial",
     body: (
-      <>Monta tu selección con <b>jugadores reales</b> del Mundial 2026. Tienes <b>€100M</b> para fichar <b>15 jugadores</b> (11 titulares + 4 suplentes), máximo 3 por país, y compites durante <b>7 jornadas</b>.</>
+      <>Monta tu selección con <b>jugadores reales</b> del Mundial 2026. Tienes <b>€100M</b> para fichar <b>15 jugadores</b> (11 titulares + 4 suplentes), máximo 3 por país, y compites durante <b>8 jornadas</b>.</>
     ),
   },
   {

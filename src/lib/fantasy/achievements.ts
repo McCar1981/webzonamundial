@@ -16,7 +16,7 @@ export interface Achievement {
   unlocked: boolean;
   /** Progreso 0..1 para los logros con barra (los binarios usan 0 o 1). */
   progress: number;
-  /** Texto del progreso ("3/7 jornadas"). */
+  /** Texto del progreso ("3/8 jornadas"). */
   progressLabel: string;
   tier: "bronce" | "plata" | "oro" | "leyenda";
 }
@@ -144,11 +144,11 @@ export function computeAchievements(team: FantasyTeamState): Achievement[] {
       id: "maraton",
       icon: "🏁",
       title: "Hasta la final",
-      desc: "Juega las 7 jornadas del Mundial.",
+      desc: "Juega las 8 jornadas del Mundial.",
       tier: "oro",
-      unlocked: played >= 7,
-      progress: pct(played, 7),
-      progressLabel: `${Math.min(played, 7)}/7`,
+      unlocked: played >= 8,
+      progress: pct(played, 8),
+      progressLabel: `${Math.min(played, 8)}/8`,
     },
     {
       id: "francotirador",

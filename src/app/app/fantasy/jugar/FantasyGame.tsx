@@ -280,7 +280,7 @@ export default function FantasyGame() {
         totalPoints: team.totalPoints + net,
         history: [...team.history.filter((h) => h.gw !== team.gameweek), { gw: team.gameweek, points: net, powerUp: usedPU }],
         powerUpsUsed: usedPU && !team.powerUpsUsed.includes(usedPU) ? [...team.powerUpsUsed, usedPU] : team.powerUpsUsed,
-        gameweek: Math.min(7, team.gameweek + 1),
+        gameweek: Math.min(8, team.gameweek + 1),
         powerUp: null,
         // Fija la plantilla actual como base para contar los fichajes de la próxima
         // jornada y repone un fichaje gratis (tope MAX_FREE_TRANSFERS).
@@ -318,7 +318,7 @@ export default function FantasyGame() {
               style={{ flex: "1 1 160px", minWidth: 120, background: "transparent", border: "none", borderBottom: "1px dashed rgba(255,255,255,0.22)", color: "#fff", fontSize: 17, fontWeight: 800, padding: "3px 2px", outline: "none" }}
             />
             <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-              <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: 1, color: GOLD, textTransform: "uppercase" }}>Jornada {team.gameweek}/7</span>
+              <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: 1, color: GOLD, textTransform: "uppercase" }}>Jornada {team.gameweek}/8</span>
               {/* Capitán como chip compacto → libera la fila de stats y sube el campo */}
               <span title="Capitán" style={{ display: "inline-flex", alignItems: "center", gap: 5, fontSize: 11, fontWeight: 800, padding: "4px 9px", borderRadius: 999, border: "1px solid " + (team.captainId ? GOLD : "rgba(255,255,255,0.14)"), background: team.captainId ? `${GOLD}1f` : "rgba(255,255,255,0.04)", color: team.captainId ? GOLD2 : MID, whiteSpace: "nowrap" }}>
                 ⭐ {team.captainId ? short(getPlayerById(team.captainId)?.name) : "Sin capitán"}

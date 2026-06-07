@@ -11,19 +11,23 @@ import { SELECCIONES } from "@/data/selecciones";
 import type { MatchTier } from "./types";
 
 /**
- * Mapeo Jornada Fantasy → ronda real. La fase de grupos (jornadas 1-3) usa el
- * campo `j`; las eliminatorias usan la fase `p`. En eliminatorias los equipos
- * aún figuran como "tbd" hasta que el cuadro se complete, así que la resolución
- * por bandera devolverá null hasta entonces (la jornada mostrará "por comenzar").
+ * Mapeo Jornada Fantasy → ronda real. El Mundial 2026 tiene 8 jornadas Fantasy:
+ * la fase de grupos (jornadas 1-3, por el campo `j`) y 5 rondas eliminatorias
+ * (jornadas 4-8, por la fase `p`). La jornada 8 agrupa el Tercer puesto y la
+ * FINAL en la misma ventana, para que los semifinalistas eliminados también
+ * puntúen su último partido. En eliminatorias los equipos figuran como "tbd"
+ * hasta que el cuadro se completa, así que la resolución por bandera devolverá
+ * null hasta entonces (la jornada mostrará "por comenzar").
  */
-const GW_TO_ROUND: Record<number, { jornada?: number; phase?: string }> = {
+const GW_TO_ROUND: Record<number, { jornada?: number; phases?: string[] }> = {
   1: { jornada: 1 },
   2: { jornada: 2 },
   3: { jornada: 3 },
-  4: { phase: "Dieciseisavos" },
-  5: { phase: "Octavos de final" },
-  6: { phase: "Cuartos de final" },
-  7: { phase: "Semifinal" },
+  4: { phases: ["Dieciseisavos"] },
+  5: { phases: ["Octavos de final"] },
+  6: { phases: ["Cuartos de final"] },
+  7: { phases: ["Semifinal"] },
+  8: { phases: ["Tercer puesto", "FINAL"] },
 };
 
 /** Partidos reales que componen una jornada del Fantasy. */
@@ -33,7 +37,8 @@ export function gameweekMatches(gw: number): Match[] {
   if (round.jornada != null) {
     return MATCHES.filter((m) => m.p === "Fase de grupos" && m.j === round.jornada);
   }
-  return MATCHES.filter((m) => m.p === round.phase);
+  const phases = new Set(round.phases ?? []);
+  return MATCHES.filter((m) => phases.has(m.p));
 }
 
 /** Partido (y lado) de una selección, por código de bandera, en una jornada. */

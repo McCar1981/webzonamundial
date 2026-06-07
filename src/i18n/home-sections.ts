@@ -330,6 +330,7 @@ export const homeSections = {
         suffix: " · Valencia, España",
       },
       disclaimer: "Plataforma de predicciones gratuita. No implica apuesta monetaria.",
+      securePayment: "Pago seguro con",
     },
 
     /* ============ SocialDock ============ */
@@ -755,6 +756,7 @@ export const homeSections = {
         suffix: " · Valencia, Spain",
       },
       disclaimer: "Free prediction platform. Does not involve monetary betting.",
+      securePayment: "Secure payment with",
     },
 
     socialDock: {

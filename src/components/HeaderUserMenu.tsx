@@ -18,6 +18,13 @@ interface ProfileMini {
   onboarded_at: string | null;
 }
 
+interface MyRank {
+  rank: number;
+  coins: number;
+  level: number;
+  total: number;
+}
+
 /*
   HeaderUserMenu
 
@@ -40,6 +47,7 @@ export default function HeaderUserMenu({
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
   const [profile, setProfile] = useState<ProfileMini | null>(null);
+  const [rank, setRank] = useState<MyRank | null>(null);
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
   const [supabaseAvailable, setSupabaseAvailable] = useState(true);
@@ -74,8 +82,13 @@ export default function HeaderUserMenu({
       if (!active) return;
       setUser(session?.user ?? null);
       // refetch profile when session changes
-      if (session?.user) fetchProfile(session.user.id);
-      else setProfile(null);
+      if (session?.user) {
+        fetchProfile(session.user.id);
+        fetchRank();
+      } else {
+        setProfile(null);
+        setRank(null);
+      }
     });
 
     return () => {
@@ -85,9 +98,12 @@ export default function HeaderUserMenu({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Fetch profile mini when user appears
+  // Fetch profile mini + ranking when user appears
   useEffect(() => {
-    if (user) fetchProfile(user.id);
+    if (user) {
+      fetchProfile(user.id);
+      fetchRank();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.id]);
 
@@ -99,6 +115,18 @@ export default function HeaderUserMenu({
       .eq("id", userId)
       .maybeSingle();
     setProfile(data);
+  }
+
+  // Saldo de Fútcoins + puesto global (la misma fuente de verdad que el ranking).
+  async function fetchRank() {
+    try {
+      const res = await fetch("/api/ranking?only=me");
+      if (!res.ok) return;
+      const { me } = (await res.json()) as { me: MyRank | null };
+      setRank(me);
+    } catch {
+      /* sin conexión: la cabecera simplemente no muestra el chip */
+    }
   }
 
   // Close dropdown on outside click
@@ -232,7 +260,33 @@ export default function HeaderUserMenu({
   const needsOnboarding = !profile?.onboarded_at;
 
   return (
-    <div ref={dropdownRef} style={{ position: "relative" }}>
+    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+      {/* Chip de Fútcoins + puesto global → enlace al ranking */}
+      {rank && (
+        <Link
+          href="/app/rankings"
+          title={`Vas #${rank.rank} de ${rank.total} por Fútcoins`}
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 6,
+            padding: "6px 10px",
+            borderRadius: 999,
+            border: "1px solid rgba(201,168,76,0.25)",
+            background: "rgba(201,168,76,0.08)",
+            textDecoration: "none",
+            whiteSpace: "nowrap",
+            flexShrink: 0,
+          }}
+        >
+          <span style={{ fontSize: 13 }} aria-hidden>🪙</span>
+          <span style={{ color: GOLD2, fontWeight: 800, fontSize: 13 }}>
+            {rank.coins.toLocaleString()}
+          </span>
+          <span style={{ color: DIM, fontSize: 12, fontWeight: 700 }}>#{rank.rank}</span>
+        </Link>
+      )}
+      <div ref={dropdownRef} style={{ position: "relative" }}>
       <button
         onClick={() => setOpen((o) => !o)}
         aria-haspopup="menu"
@@ -425,6 +479,7 @@ export default function HeaderUserMenu({
           </button>
         </div>
       )}
+      </div>
     </div>
   );
 }

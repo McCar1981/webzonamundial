@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SvgIcon } from "@/components/icons";
@@ -11,14 +11,24 @@ gsap.registerPlugin(ScrollTrigger);
 
 const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825", GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a";
 
-const RANK_DATA = [
-  { pos: 1, name: "ProPredictor_99", pts: 2847, flag: "ar", streak: 12 },
-  { pos: 2, name: "FútbolMaster_MX", pts: 2793, flag: "mx", streak: 8 },
-  { pos: 3, name: "LaRoja_Fan", pts: 2681, flag: "es", streak: 15 },
-  { pos: 4, name: "SambaKing", pts: 2654, flag: "br", streak: 6 },
-  { pos: 5, name: "GoalHunter_CO", pts: 2598, flag: "co", streak: 9 },
-  { pos: 6, name: "TotalFootball", pts: 2567, flag: "nl", streak: 4 },
-];
+// Ranking global REAL por Fútcoins (la moneda única de la app). Lo sirve
+// /api/ranking leyendo profiles. Mientras carga se muestra un placeholder breve.
+interface RankEntry {
+  rank: number;
+  userId: string;
+  name: string | null;
+  avatarUrl: string | null;
+  country: string | null;
+  coins: number;
+  level: number;
+}
+interface MyRank {
+  userId: string;
+  rank: number;
+  coins: number;
+  level: number;
+  total: number;
+}
 
 const RANK_TYPES = [
   { icon: "ranking", title: "Global", desc: "Compite contra todos los usuarios de ZonaMundial en el ranking mundial." },
@@ -38,6 +48,25 @@ const SEASONS = [
 
 export default function RankingsPage() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [entries, setEntries] = useState<RankEntry[] | null>(null);
+  const [me, setMe] = useState<MyRank | null>(null);
+
+  // Carga el ranking global real por Fútcoins (top + mi posición si hay sesión).
+  useEffect(() => {
+    let on = true;
+    fetch("/api/ranking?limit=50")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d: { entries?: RankEntry[]; me?: MyRank | null } | null) => {
+        if (!on || !d) return;
+        setEntries(d.entries ?? []);
+        setMe(d.me ?? null);
+      })
+      .catch(() => { if (on) setEntries([]); });
+    return () => { on = false; };
+  }, []);
+
+  // ¿Mi posición queda fuera del top mostrado? Entonces vale la pena el resumen.
+  const meOutsideTop = !!me && !(entries ?? []).some((e) => e.userId === me.userId);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -50,11 +79,6 @@ export default function RankingsPage() {
       gsap.from("[data-type-card]", {
         scrollTrigger: { trigger: "[data-types-grid]", start: "top 85%" },
         y: 50, opacity: 0, duration: 0.7, stagger: 0.12, ease: "power3.out"
-      });
-
-      gsap.from("[data-rank-row]", {
-        scrollTrigger: { trigger: "[data-rank-list]", start: "top 85%" },
-        x: -30, opacity: 0, duration: 0.5, stagger: 0.08, ease: "power2.out"
       });
 
       gsap.from("[data-season-card]", {
@@ -137,38 +161,78 @@ export default function RankingsPage() {
         </div>
       </section>
 
-      {/* Ejemplo Top Global */}
+      {/* Top Global REAL (por Fútcoins, la moneda única de la app) */}
       <section style={{ padding: "80px 20px", background: BG }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 48 }}>
             <h2 style={{ fontSize: "clamp(28px,5vw,42px)", fontWeight: 800 }}>
               Top <span style={{ color: GOLD }}>Global</span>
             </h2>
-            <p style={{ color: MID, marginTop: 12, fontSize: 16 }}>Así se ve la élite de ZonaMundial</p>
+            <p style={{ color: MID, marginTop: 12, fontSize: 16 }}>
+              Clasificación por Fútcoins acumuladas en toda ZonaMundial
+            </p>
           </div>
 
-          <div data-rank-list style={{ display: "flex", flexDirection: "column", gap: 8, maxWidth: 800, margin: "0 auto" }}>
-            {RANK_DATA.map((r, i) => (
-              <div key={r.name} data-rank-row data-hover-card style={{
-                display: "flex", alignItems: "center", gap: 10, padding: "12px 16px", borderRadius: 14,
-                background: i < 3 ? `rgba(201,168,76,${0.08 - i * 0.02})` : BG2,
-                border: `1px solid ${i < 3 ? "rgba(201,168,76,0.15)" : "rgba(255,255,255,0.05)"}`,
-                cursor: "pointer", transition: "all .3s"
-              }}>
-                <div style={{
-                  width: 32, height: 32, borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center",
-                  fontWeight: 900, fontSize: 14,
-                  background: i === 0 ? "rgba(201,168,76,0.18)" : i === 1 ? "rgba(192,192,192,0.12)" : i === 2 ? "rgba(205,127,50,0.12)" : "rgba(255,255,255,0.04)",
-                  color: i === 0 ? GOLD : i === 1 ? "#d1d5db" : i === 2 ? "#d97706" : DIM
-                }}>{r.pos}</div>
-                <img src={`https://flagcdn.com/w40/${r.flag}.png`} alt="" style={{ width: 26, height: 18, borderRadius: 2, objectFit: "cover" }} />
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontWeight: 700, fontSize: 15 }}>{r.name}</div>
-                  <div style={{ fontSize: 12, color: DIM }}>Racha: {r.streak} aciertos seguidos</div>
-                </div>
-                <div style={{ fontWeight: 800, fontSize: 18, color: i === 0 ? GOLD : "#fff" }}>{r.pts.toLocaleString()}</div>
+          {/* Mi posición (si estoy logueado y fuera del top visible) */}
+          {meOutsideTop && me && (
+            <div style={{
+              display: "flex", alignItems: "center", gap: 10, padding: "12px 16px", borderRadius: 14,
+              maxWidth: 800, margin: "0 auto 16px",
+              background: "rgba(201,168,76,0.10)", border: "1px solid rgba(201,168,76,0.25)",
+            }}>
+              <div style={{
+                minWidth: 40, height: 32, padding: "0 8px", borderRadius: 8, display: "flex", alignItems: "center",
+                justifyContent: "center", fontWeight: 900, fontSize: 14, background: "rgba(201,168,76,0.18)", color: GOLD,
+              }}>#{me.rank}</div>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontWeight: 700, fontSize: 15 }}>Tu posición</div>
+                <div style={{ fontSize: 12, color: DIM }}>Nivel {me.level} · de {me.total.toLocaleString()} jugadores</div>
               </div>
-            ))}
+              <div style={{ fontWeight: 800, fontSize: 18, color: GOLD }}>{me.coins.toLocaleString()} 🪙</div>
+            </div>
+          )}
+
+          <div data-rank-list style={{ display: "flex", flexDirection: "column", gap: 8, maxWidth: 800, margin: "0 auto" }}>
+            {entries === null && (
+              <div style={{ textAlign: "center", color: DIM, padding: "32px 0", fontSize: 14 }}>Cargando ranking…</div>
+            )}
+            {entries !== null && entries.length === 0 && (
+              <div style={{ textAlign: "center", color: DIM, padding: "32px 0", fontSize: 14 }}>
+                Aún no hay nadie en el ranking. ¡Juega y gana las primeras Fútcoins!
+              </div>
+            )}
+            {(entries ?? []).map((r, i) => {
+              const isMe = !!me && r.userId === me.userId;
+              const name = r.name || "Jugador anónimo";
+              const initial = name.charAt(0).toUpperCase();
+              return (
+                <div key={r.userId} data-hover-card style={{
+                  display: "flex", alignItems: "center", gap: 10, padding: "12px 16px", borderRadius: 14,
+                  background: isMe ? "rgba(201,168,76,0.14)" : i < 3 ? `rgba(201,168,76,${0.08 - i * 0.02})` : BG2,
+                  border: `1px solid ${isMe ? "rgba(201,168,76,0.4)" : i < 3 ? "rgba(201,168,76,0.15)" : "rgba(255,255,255,0.05)"}`,
+                  transition: "all .3s"
+                }}>
+                  <div style={{
+                    width: 32, height: 32, borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center",
+                    fontWeight: 900, fontSize: 14, flexShrink: 0,
+                    background: i === 0 ? "rgba(201,168,76,0.18)" : i === 1 ? "rgba(192,192,192,0.12)" : i === 2 ? "rgba(205,127,50,0.12)" : "rgba(255,255,255,0.04)",
+                    color: i === 0 ? GOLD : i === 1 ? "#d1d5db" : i === 2 ? "#d97706" : DIM
+                  }}>{r.rank}</div>
+                  <div style={{
+                    width: 30, height: 30, borderRadius: "50%", flexShrink: 0,
+                    background: r.avatarUrl ? `url(${r.avatarUrl}) center/cover no-repeat` : `linear-gradient(135deg,${GOLD},${GOLD2})`,
+                    color: BG, fontWeight: 800, fontSize: 13, display: "flex", alignItems: "center", justifyContent: "center",
+                  }} aria-hidden>{!r.avatarUrl && initial}</div>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontWeight: 700, fontSize: 15, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                      {name}{isMe && <span style={{ color: GOLD, fontWeight: 600 }}> · tú</span>}
+                    </div>
+                    <div style={{ fontSize: 12, color: DIM }}>Nivel {r.level}</div>
+                  </div>
+                  <div style={{ fontWeight: 800, fontSize: 18, color: i === 0 || isMe ? GOLD : "#fff" }}>{r.coins.toLocaleString()} 🪙</div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

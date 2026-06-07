@@ -17,7 +17,7 @@ import { liveLockMs } from "@/lib/modo-carrera/live-season";
 import { getUserTimezone } from "@/lib/bracket/match-time";
 import { DEMAND_LABEL, VERDICT_LABEL } from "@/lib/modo-carrera/board";
 import { TITLES } from "@/lib/modo-carrera/constants";
-import type { CareerState, SeasonMatch } from "@/lib/modo-carrera/types";
+import type { CareerState, SeasonMatch, NarrativeEntry } from "@/lib/modo-carrera/types";
 import MatchLive from "./MatchLive";
 import { Kit, Confetti } from "./Visuals";
 
@@ -169,6 +169,7 @@ export default function SeasonView({
   onStart,
   onStartLive,
   onResolveMatch,
+  onChoose,
   onNextSeason,
 }: {
   career: CareerState;
@@ -177,11 +178,13 @@ export default function SeasonView({
   onStart: () => void;
   onStartLive?: () => void;
   onResolveMatch: (gf: number, ga: number, wasBehind?: boolean) => PlayResult | null;
+  onChoose: (entryId: string, choiceId: string) => void;
   onNextSeason: () => void;
 }) {
   const { season } = career;
   const [live, setLive] = useState(false);
   const [reveal, setReveal] = useState<PlayResult | null>(null);
+  const [pressConf, setPressConf] = useState<NarrativeEntry | null>(null);
   const [nowMs, setNowMs] = useState<number>(() => Date.now());
 
   // Tick por minuto para refrescar la cuenta atrás de la Temporada en Vivo.
@@ -323,6 +326,20 @@ export default function SeasonView({
     if (res && res.match) setReveal(res);
   };
 
+  // Cierra el revelado del resultado y, si saltó una rueda de prensa, la abre a
+  // continuación (decisión que impacta moral y confianza de la federación).
+  const closeReveal = () => {
+    const p = reveal?.press ?? null;
+    setReveal(null);
+    if (p) setPressConf(p);
+  };
+
+  // Resuelve la rueda de prensa: aplica el tono elegido y cierra el modal.
+  const choosePress = (choiceId: string) => {
+    if (pressConf) onChoose(pressConf.id, choiceId);
+    setPressConf(null);
+  };
+
   return (
     <div style={{ maxWidth: 820, margin: "0 auto" }}>
       <style>{`
@@ -443,7 +460,7 @@ export default function SeasonView({
         <div
           role="dialog"
           aria-modal="true"
-          onClick={() => setReveal(null)}
+          onClick={closeReveal}
           style={{
             position: "fixed",
             inset: 0,
@@ -528,7 +545,7 @@ export default function SeasonView({
 
             <button
               type="button"
-              onClick={() => setReveal(null)}
+              onClick={closeReveal}
               style={{
                 marginTop: 22,
                 padding: "11px 26px",
@@ -541,12 +558,93 @@ export default function SeasonView({
                 cursor: "pointer",
               }}
             >
-              Continuar
+              {reveal.press ? "Ir a la rueda de prensa" : "Continuar"}
             </button>
             </div>
           </div>
             );
           })()}
+        </div>
+      )}
+
+      {/* Rueda de prensa post-partido (decisión que impacta moral y confianza) */}
+      {pressConf && pressConf.choices && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 95,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "rgba(6,11,20,0.9)",
+            padding: 20,
+            animation: "mcBannerIn .25s ease both",
+          }}
+        >
+          <div
+            style={{
+              position: "relative",
+              overflow: "hidden",
+              width: "100%",
+              maxWidth: 480,
+              borderRadius: 18,
+              border: `1px solid ${GOLD}`,
+              boxShadow: "0 24px 60px rgba(0,0,0,0.6)",
+              backgroundImage:
+                "linear-gradient(180deg, rgba(6,11,20,0.78), rgba(6,11,20,0.94)), url('/img/modo-carrera/narrativa/prensa-podio.png')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <div style={{ padding: 26 }}>
+              <div style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 10, fontWeight: 800, letterSpacing: 1.4, textTransform: "uppercase", color: GOLD, border: `1px solid ${GOLD}55`, borderRadius: 999, padding: "3px 10px" }}>
+                <span style={{ width: 7, height: 7, borderRadius: "50%", background: RED, boxShadow: `0 0 8px ${RED}` }} />
+                Rueda de prensa · en directo
+              </div>
+              <p style={{ fontSize: 16, color: "#fff", lineHeight: 1.6, fontWeight: 600, margin: "16px 0 6px" }}>
+                {pressConf.body}
+              </p>
+              <p style={{ fontSize: 12, color: DIM, marginBottom: 16 }}>
+                Tu respuesta afectará a la moral del vestuario y a la confianza de la federación.
+              </p>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                {pressConf.choices.map((ch) => (
+                  <button
+                    key={ch.id}
+                    type="button"
+                    onClick={() => choosePress(ch.id)}
+                    style={{
+                      textAlign: "left",
+                      padding: "12px 16px",
+                      borderRadius: 12,
+                      background: "rgba(15,23,38,0.72)",
+                      border: "1px solid rgba(255,255,255,0.12)",
+                      color: "#fff",
+                      cursor: "pointer",
+                      fontSize: 14,
+                      fontWeight: 700,
+                      transition: "border-color .15s, background .15s",
+                    }}
+                    onMouseEnter={(ev) => {
+                      ev.currentTarget.style.borderColor = GOLD;
+                      ev.currentTarget.style.background = "rgba(201,168,76,0.14)";
+                    }}
+                    onMouseLeave={(ev) => {
+                      ev.currentTarget.style.borderColor = "rgba(255,255,255,0.12)";
+                      ev.currentTarget.style.background = "rgba(15,23,38,0.72)";
+                    }}
+                  >
+                    {ch.label}
+                    <span style={{ display: "block", fontSize: 11.5, color: MID, marginTop: 4, fontWeight: 600 }}>{ch.effect}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>

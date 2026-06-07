@@ -26,6 +26,7 @@ import { grantXp, sumReputation } from "./engine";
 import { missionKey } from "./missions";
 import { buildBoardObjective, evaluateSeason } from "./board";
 import { injuryPenalty, tickInjuries, rollInjury, activeInjuries } from "./injuries";
+import { buildPressConference } from "./press";
 import { SELECCIONES, type Seleccion } from "@/data/selecciones";
 
 const now = () => new Date().toISOString();
@@ -326,6 +327,8 @@ export interface PlayResult {
   boardVerdict: BoardVerdict | null;
   /** Confianza de la federación tras la evaluación (null si no terminó). */
   boardConfidence: number | null;
+  /** Rueda de prensa post-partido pendiente de decisión (null si no saltó). */
+  press: NarrativeEntry | null;
 }
 
 function advanceMissionInline(m: Mission): Mission {
@@ -408,6 +411,7 @@ function emptyResult(c0: CareerState): PlayResult {
     champion: false,
     boardVerdict: null,
     boardConfidence: null,
+    press: null,
   };
 }
 
@@ -689,6 +693,24 @@ export function resolveMatch(
     }
   }
 
+  // ── Rueda de prensa post-partido (puede saltar según el resultado) ──
+  // El contenido depende del marcador real; la decisión del DT impactará en la
+  // moral del vestuario y en la confianza de la federación (vía applyDecision).
+  const press = buildPressConference({
+    outcome,
+    gf,
+    ga,
+    stage: fx.stage,
+    opponentName: seleccion(fx.opponentSlug)?.nombre ?? fx.opponentSlug,
+    nationName: seleccion(c0.identity.nationSlug)?.nombre ?? "La selección",
+    dtName: c0.identity.name.trim() || "el DT",
+    champion,
+    eliminated,
+    season: season.season,
+    matchIdx: idx,
+  });
+  if (press) narrative = [press, ...narrative];
+
   // ── XP ──
   const xpGain = (outcome === "V" ? 130 : outcome === "E" ? 60 : 35) + gf * 8 + (decisive ? 20 : 0);
 
@@ -718,5 +740,6 @@ export function resolveMatch(
     champion,
     boardVerdict,
     boardConfidence: finished ? board.confidence : null,
+    press,
   };
 }

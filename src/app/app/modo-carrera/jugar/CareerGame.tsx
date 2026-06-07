@@ -295,6 +295,7 @@ export default function CareerGame() {
           onStart={handleStartSeason}
           onStartLive={handleStartLiveSeason}
           onResolveMatch={handleResolveMatch}
+          onChoose={handleChoose}
           onNextSeason={handleNextSeason}
         />
       )}

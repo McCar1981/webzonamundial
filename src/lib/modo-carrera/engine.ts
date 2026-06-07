@@ -102,13 +102,29 @@ export function unlockSkill(state: CareerState, branch: SkillBranch): CareerStat
 // narrative.ts (calma/ambicion/cantera).
 interface DecisionEffect {
   morale?: number;
+  /** Variación de la confianza de la federación/público (board.confidence, 0-100). */
+  confidence?: number;
   stats?: Partial<ReputationStats>;
 }
 
 const DECISION_EFFECTS: Record<string, DecisionEffect> = {
+  // Ruedas de prensa "de objetivos" (narrativa clásica).
   calma: { morale: 4, stats: { disciplina: 3 } },
   ambicion: { morale: 2, stats: { mediatico: 6, prestigio: 2, carisma: 3 } },
   cantera: { morale: 3, stats: { cantera: 6 } },
+  // Ruedas de prensa POST-PARTIDO (press.ts): cada tono mueve la moral del
+  // vestuario (que alimenta el rendimiento) y/o la confianza de la federación.
+  humildad: { morale: 3, confidence: 2, stats: { disciplina: 3 } },
+  euforia: { morale: 5, confidence: 1, stats: { carisma: 3, mediatico: 3 } },
+  // POLÉMICA (alto riesgo / alta recompensa): enciende al grupo y a los medios,
+  // pero la federación se incomoda y baja su confianza.
+  soberbia: { morale: 7, confidence: -5, stats: { mediatico: 7, carisma: 4 } },
+  autocritica: { morale: 2, confidence: 4, stats: { disciplina: 5 } },
+  // Proteger al grupo: el vestuario lo adora (moral), tu imagen pública sufre.
+  proteger: { morale: 8, confidence: -3, stats: { carisma: 5, prestigio: -3 } },
+  // Señalar en público: marcas autoridad de cara a la federación, pero la moral
+  // del vestuario se desploma (peor rendimiento).
+  senalar: { morale: -10, confidence: 3, stats: { mediatico: 5, disciplina: 2 } },
 };
 
 /**
@@ -130,6 +146,7 @@ export function applyDecision(state: CareerState, entryId: string, choiceId: str
   }
 
   const morale = clamp(state.progression.morale + (eff.morale ?? 0), 0, 100);
+  const confidence = clamp(state.board.confidence + (eff.confidence ?? 0), 0, 100);
   const stats = { ...state.reputation.stats };
   if (eff.stats) {
     for (const [k, v] of Object.entries(eff.stats) as [keyof ReputationStats, number][]) {
@@ -140,6 +157,7 @@ export function applyDecision(state: CareerState, entryId: string, choiceId: str
   return {
     ...state,
     progression: { ...state.progression, morale },
+    board: { ...state.board, confidence },
     reputation: { ...state.reputation, stats, total: sumReputation(stats) },
     narrative,
     updatedAt: now(),

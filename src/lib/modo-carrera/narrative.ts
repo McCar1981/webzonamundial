@@ -64,9 +64,9 @@ function ruedaPrensaBody(c: NarrativeContext): string {
 
 function eventoBody(c: NarrativeContext): string {
   return pick([
-    `Rumores de mercado rodean a ${c.nationName}: un club tantea a una de tus figuras. La estabilidad del grupo está en juego.`,
+    `Debate de convocatoria en ${c.nationName}: la prensa cuestiona a quién deja fuera ${c.dtName}. La lista siempre genera ruido.`,
     `Pequeña polémica en el entorno de ${c.nationName}. ${c.dtName} deberá gestionar el ruido externo con mano firme.`,
-    `Buenas noticias en la cantera de ${c.nationName}: una joven promesa irrumpe con fuerza en los entrenamientos.`,
+    `Buenas noticias en la cantera de ${c.nationName}: una joven promesa irrumpe con fuerza en los entrenamientos y pide paso a la absoluta.`,
   ]);
 }
 

@@ -685,6 +685,15 @@ function UserSummaryBar() {
 // Hero compacto: título de sección + subtítulo + pill de disponibilidad. Sustituye
 // al hero grande con imagen para que el partido destacado quede más arriba.
 function CompactHero({ count, pending }: { count: number; pending: number }) {
+  // Solo en contexto de bar (cookie zm_bar) mostramos el acceso al ranking de la
+  // porra. En ZM normal no aparece. Se lee tras montar para no romper la
+  // hidratación (el servidor no conoce la cookie del navegador).
+  const [barSlug, setBarSlug] = useState<string | null>(null);
+  useEffect(() => {
+    const m = document.cookie.match(/(?:^|; )zm_bar=([^;]+)/);
+    setBarSlug(m ? decodeURIComponent(m[1]) : null);
+  }, []);
+
   return (
     <section className="pj-wrap" style={{ paddingTop: 8, paddingBottom: 2 }}>
       <div style={{
@@ -693,9 +702,24 @@ function CompactHero({ count, pending }: { count: number; pending: number }) {
         border: CARD_BORDER, borderRadius: 16, padding: "13px 16px",
       }}>
         <div aria-hidden style={{ position: "absolute", top: -60, right: -40, width: 170, height: 170, borderRadius: "50%", background: "radial-gradient(circle, color-mix(in srgb, var(--zm-accent, #c9a84c) 14%, transparent), transparent 70%)", pointerEvents: "none" }} />
-        <h1 style={{ fontSize: 20, fontWeight: 900, lineHeight: 1.05, margin: 0, display: "flex", alignItems: "center", gap: 8 }}>
-          <Sparkles size={19} color={GOLD2} /> Predicciones
-        </h1>
+        <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10 }}>
+          <h1 style={{ fontSize: 20, fontWeight: 900, lineHeight: 1.05, margin: 0, display: "flex", alignItems: "center", gap: 8 }}>
+            <Sparkles size={19} color={GOLD2} /> Predicciones
+          </h1>
+          {barSlug && (
+            <Link
+              href={`/b/${barSlug}/ranking`}
+              style={{
+                flexShrink: 0, display: "inline-flex", alignItems: "center", gap: 5,
+                textDecoration: "none", fontWeight: 800, fontSize: 12.5,
+                background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: INK,
+                borderRadius: 99, padding: "6px 12px",
+              }}
+            >
+              <Trophy size={13} /> Ranking
+            </Link>
+          )}
+        </div>
         <p style={{ fontSize: 12.5, color: MID, margin: "3px 0 0", lineHeight: 1.4 }}>Completa tus pronósticos y suma puntos.</p>
         {count > 0 && (
           <div style={{ marginTop: 9, display: "flex", flexWrap: "wrap", gap: 7 }}>

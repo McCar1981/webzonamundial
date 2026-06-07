@@ -6,7 +6,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Trophy, ArrowLeft, ArrowRight, Star, Crown } from "lucide-react";
+import { Trophy, ArrowLeft, ArrowRight, Star, Crown, MapPin } from "lucide-react";
 import { getBarBySlug, barLeaderboard, barIsLive } from "@/lib/bars/store";
 import { getTheme } from "@/lib/bars/themes";
 import BarInactiveScreen from "@/components/bars/BarInactiveScreen";
@@ -32,15 +32,43 @@ export default async function BarRankingPage({ params }: { params: { barSlug: st
 
   return (
     <main style={{ minHeight: "100vh", background: t.bg, color: t.text }}>
-      <div style={{ maxWidth: 560, margin: "0 auto", padding: "20px 16px 48px" }}>
-        <Link href={`/b/${bar.slug}`} style={{ display: "inline-flex", alignItems: "center", gap: 5, color: t.textMuted, fontSize: 13, textDecoration: "none", marginBottom: 16 }}>
-          <ArrowLeft size={14} /> {bar.name}
+      <div style={{ maxWidth: 560, margin: "0 auto", padding: "16px 16px 48px" }}>
+        <Link href={`/b/${bar.slug}`} style={{ display: "inline-flex", alignItems: "center", gap: 5, color: t.textMuted, fontSize: 13, textDecoration: "none", marginBottom: 12 }}>
+          <ArrowLeft size={14} /> Volver a la porra
         </Link>
 
-        <h1 style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 22, fontWeight: 900, margin: "0 0 4px" }}>
-          <Trophy size={20} color={t.primary} /> Clasificación
-        </h1>
-        <p style={{ color: t.textMuted, fontSize: 14, margin: "0 0 20px" }}>Porra del Mundial · {bar.name}</p>
+        {/* Cabecera corporativa del bar: portada + logo + nombre. Hace que la
+            clasificación se viva como del bar, no como una pantalla genérica. */}
+        <header style={{ marginBottom: 18 }}>
+          <div style={{
+            height: 120, borderRadius: t.cardRadius, overflow: "hidden",
+            background: bar.cover_url ? `center/cover url(${bar.cover_url})` : `linear-gradient(135deg, ${t.surface}, ${t.surface2})`,
+            border: `1px solid ${t.border}`,
+          }} />
+          <div style={{ display: "flex", alignItems: "flex-end", gap: 12, marginTop: -30, padding: "0 6px" }}>
+            <div style={{
+              width: 64, height: 64, borderRadius: 16, flexShrink: 0, border: `2px solid ${t.primary}`,
+              background: bar.logo_url ? `center/cover url(${bar.logo_url})` : t.surface,
+              display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, fontSize: 24, color: t.primary,
+              boxShadow: "0 4px 16px rgba(0,0,0,0.35)",
+            }}>
+              {!bar.logo_url && bar.name.charAt(0).toUpperCase()}
+            </div>
+            <div style={{ paddingBottom: 4, minWidth: 0 }}>
+              <h1 style={{ fontSize: 20, fontWeight: 900, margin: 0, lineHeight: 1.1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{bar.name}</h1>
+              {bar.city && (
+                <div style={{ display: "flex", alignItems: "center", gap: 4, color: t.textMuted, fontSize: 13, marginTop: 2 }}>
+                  <MapPin size={13} /> {bar.city}
+                </div>
+              )}
+            </div>
+          </div>
+        </header>
+
+        <div style={{ display: "inline-flex", alignItems: "center", gap: 6, color: t.primary, fontWeight: 800, fontSize: 11.5, textTransform: "uppercase", letterSpacing: 1, marginBottom: 6 }}>
+          <Trophy size={13} /> Porra del Mundial 2026
+        </div>
+        <h2 style={{ fontSize: 22, fontWeight: 900, margin: "0 0 20px" }}>Clasificación</h2>
 
         {standings.length === 0 ? (
           <div style={{ background: t.surface, border: `1px solid ${t.border}`, borderRadius: t.cardRadius, padding: 20, color: t.textMuted, fontSize: 14, textAlign: "center" }}>

@@ -6,7 +6,7 @@
 // Hace polling al API cada 20s y permite "Escanear ahora" (POST).
 // UI deliberadamente sobria: claro de base, dorado sólo como acento.
 
-import { useCallback, useEffect, useState } from "react";
+import { Suspense, useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 type Severity = "ok" | "info" | "warning" | "critical";
@@ -60,7 +60,7 @@ function timeAgo(iso: string): string {
   return `hace ${Math.round(s / 3600)}h`;
 }
 
-export default function MonitorPage() {
+function MonitorPageInner() {
   const params = useSearchParams();
   const token = params.get("token") || "";
   const [data, setData] = useState<ApiResponse | null>(null);
@@ -231,5 +231,14 @@ export default function MonitorPage() {
         </p>
       </div>
     </div>
+  );
+}
+
+// useSearchParams() exige una frontera de Suspense para el prerender (CSR bailout).
+export default function MonitorPage() {
+  return (
+    <Suspense fallback={null}>
+      <MonitorPageInner />
+    </Suspense>
   );
 }

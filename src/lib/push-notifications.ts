@@ -423,3 +423,36 @@ export async function sendPushToEndpoints(opts: {
   }
   return { total: rows.length, sent, gone, failed };
 }
+
+/**
+ * Envía un push DIRIGIDO a uno o varios usuarios concretos (no broadcast ni por
+ * kind). Lo usan los avisos 1v1 como los Duelos en Vivo, donde el destinatario es
+ * un jugador específico. Resuelve sus subscriptions por user_id y reutiliza el
+ * envío por endpoints (mismo manejo de 410/fallos).
+ */
+export async function sendPushToUsers(opts: {
+  userIds: string[];
+  payload: PushPayload;
+}): Promise<{ total: number; sent: number; gone: number; failed: number }> {
+  const uniqUsers = [...new Set(opts.userIds)].filter(Boolean);
+  if (uniqUsers.length === 0) return { total: 0, sent: 0, gone: 0, failed: 0 };
+
+  let endpoints: string[] = [];
+  try {
+    const admin = getAdmin();
+    const { data, error } = await admin
+      .from("push_subscriptions")
+      .select("endpoint")
+      .in("user_id", uniqUsers);
+    if (error) {
+      console.error("[push] sendPushToUsers query failed:", error.message);
+      return { total: 0, sent: 0, gone: 0, failed: 0 };
+    }
+    endpoints = (data ?? []).map((r) => r.endpoint as string);
+  } catch (err) {
+    console.error("[push] sendPushToUsers threw:", (err as Error).message);
+    return { total: 0, sent: 0, gone: 0, failed: 0 };
+  }
+
+  return sendPushToEndpoints({ endpoints, payload: opts.payload });
+}

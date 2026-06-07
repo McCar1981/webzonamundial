@@ -472,6 +472,35 @@ export default function AppHubPage() {
   const finished = match ? FINISHED.has(match.status) : false;
   const matchHref = match ? `/app/matchcenter/${match.slug}` : "/app/matchcenter";
 
+  // Acentos "en vivo" (no están en la paleta base): coral + cian de retransmisión.
+  const CORAL = "#ff6b5a";
+
+  // ── HERO dinámico (Live Hub) ──
+  // Hoy el estado lo decide el partido en vivo. Queda preparado un 3er estado
+  // "reto diario" para cuando exista señal de trivia disponible (ver TODO abajo).
+  type HeroCfg = { live: boolean; accent: string; eyebrow: string; title: React.ReactNode; desc: string; cta1: { label: string; href: string }; cta2?: { label: string; href: string } };
+  const heroLive: HeroCfg = {
+    live: true, accent: CORAL, eyebrow: "En vivo ahora",
+    title: "El partido está en marcha",
+    desc: "Sigue estadísticas, predice jugadas y entra al Match Center.",
+    cta1: { label: "Entrar al Match Center", href: matchHref },
+    cta2: { label: "Micro-predicciones", href: "/app/micro" },
+  };
+  const heroBase: HeroCfg = {
+    live: false, accent: GOLD2, eyebrow: "Mundial 2026",
+    title: <>Tu zona de juego del <span style={{ background: `linear-gradient(135deg,${GOLD},${GOLD2})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Mundial</span></>,
+    desc: "Predice, compite y sigue cada partido en directo.",
+    cta1: { label: "Explorar módulos", href: "#modulos" },
+    cta2: { label: "Ver partido del día", href: matchHref },
+  };
+  // TODO(datos): cuando haya un endpoint que indique "trivia diaria disponible",
+  // anteponer un heroReto { accent: tint verde, eyebrow:"Reto diario", title:"Trivia
+  // disponible", cta1:{label:"Responder trivia", href:"/app/trivia"} }.
+  const hero = live ? heroLive : heroBase;
+
+  // Acento del Match Center según estado del partido.
+  const mcAccent = live ? CORAL : finished ? "#8a93a3" : GOLD;
+
   return (
     <div style={{ minHeight: "100vh", background: `radial-gradient(1200px 600px at 50% -10%, #12284a 0%, ${NAVY} 55%)`, color: TXT, fontFamily: "'Outfit',sans-serif", overflowX: "hidden" }}>
       <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -514,56 +543,129 @@ export default function AppHubPage() {
           </div>
         </div>
 
-        {/* ═══ 2. HERO FUNCIONAL ═══ */}
-        <div style={{ position: "relative", borderRadius: 20, padding: "28px 22px", marginBottom: 16, overflow: "hidden", background: "linear-gradient(135deg,#102a4d 0%,#0c1f3a 100%)", border: `1px solid ${LINE}` }}>
-          <div style={{ position: "absolute", top: -40, right: -30, width: 200, height: 200, borderRadius: "50%", background: "radial-gradient(circle, rgba(201,168,76,0.16), transparent 70%)", pointerEvents: "none" }} />
-          <div style={{ position: "relative", maxWidth: 560 }}>
-            <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase", color: GOLD }}>Mundial 2026</span>
+        {/* ═══ 2. HERO DINÁMICO · LIVE HUB ═══
+            No repite "Hacer predicción": en base invita a explorar/ver partido; en
+            vivo lleva al Match Center. Fondo navy premium + textura de cancha + glow
+            animado + chispas muy discretas. Estado por el partido (live/base). */}
+        <div className="zm-hero" style={{ position: "relative", borderRadius: 22, padding: "30px 24px", marginBottom: 16, overflow: "hidden", background: "linear-gradient(135deg,#102a4d 0%,#0a1b33 100%)", border: `1px solid ${hero.accent}44`, boxShadow: "0 20px 50px rgba(0,0,0,0.35)" }}>
+          {/* glow radial animado */}
+          <span aria-hidden className="zm-hero-glow" style={{ position: "absolute", top: -70, right: -50, width: 290, height: 290, borderRadius: "50%", background: `radial-gradient(circle, ${hero.accent}30, transparent 70%)`, pointerEvents: "none" }} />
+          {/* textura deportiva (rayado de cancha en diagonal, sutil) */}
+          <span aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none", opacity: 0.5, background: "repeating-linear-gradient(115deg, transparent 0 26px, rgba(255,255,255,0.022) 26px 27px)" }} />
+          {/* foco inferior tipo estadio */}
+          <span aria-hidden style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: 130, pointerEvents: "none", background: "radial-gradient(120% 80% at 50% 150%, rgba(255,255,255,0.06), transparent 60%)" }} />
+          {/* chispas / luces muy discretas */}
+          <span aria-hidden className="zm-spark zm-spark--1" style={{ position: "absolute", left: "16%", bottom: 24, width: 3, height: 3, borderRadius: "50%", background: hero.accent, pointerEvents: "none" }} />
+          <span aria-hidden className="zm-spark zm-spark--2" style={{ position: "absolute", left: "42%", bottom: 18, width: 2, height: 2, borderRadius: "50%", background: GOLD2, pointerEvents: "none" }} />
+          <span aria-hidden className="zm-spark zm-spark--3" style={{ position: "absolute", left: "68%", bottom: 30, width: 3, height: 3, borderRadius: "50%", background: hero.accent, pointerEvents: "none" }} />
+
+          <div style={{ position: "relative", maxWidth: 580 }}>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 11, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase", color: hero.accent }}>
+              {hero.live && <span className="zm-live-dot" style={{ width: 8, height: 8, borderRadius: "50%", background: hero.accent }} />}
+              {hero.eyebrow}
+            </span>
             <h1 style={{ fontSize: "clamp(25px,5.4vw,38px)", fontWeight: 900, lineHeight: 1.06, margin: "8px 0 10px" }}>
-              Tu zona de juego del <span style={{ background: `linear-gradient(135deg,${GOLD},${GOLD2})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Mundial</span>
+              {hero.title}
             </h1>
-            <p style={{ color: TXT_MUT, fontSize: 14.5, lineHeight: 1.55, marginBottom: 20, maxWidth: 440 }}>
-              Predice, compite y sube en el ranking de ZonaMundial.
+            <p style={{ color: TXT_MUT, fontSize: 14.5, lineHeight: 1.55, marginBottom: 20, maxWidth: 460 }}>
+              {hero.desc}
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
-              <Link href="/app/predicciones" style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "12px 22px", borderRadius: 12, background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: NAVY, fontWeight: 800, fontSize: 15, textDecoration: "none", boxShadow: "0 6px 20px rgba(201,168,76,0.25)" }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 4l13 8-13 8V4z" fill={NAVY} /></svg>
-                Hacer predicción
+              <Link href={hero.cta1.href} style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "12px 22px", borderRadius: 12, background: hero.live ? `linear-gradient(135deg,${CORAL},#ff9a4a)` : `linear-gradient(135deg,${GOLD},${GOLD2})`, color: hero.live ? "#1a0d08" : NAVY, fontWeight: 800, fontSize: 15, textDecoration: "none", boxShadow: hero.live ? "0 6px 20px rgba(255,107,90,0.3)" : "0 6px 20px rgba(201,168,76,0.25)" }}>
+                {hero.live
+                  ? <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#1a0d08" strokeWidth="1.8" /><circle cx="12" cy="12" r="3" fill="#1a0d08" /></svg>
+                  : <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 4l13 8-13 8V4z" fill={NAVY} /></svg>}
+                {hero.cta1.label}
               </Link>
-              <Link href={matchHref} style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "12px 20px", borderRadius: 12, background: "rgba(255,255,255,0.06)", color: TXT, fontWeight: 700, fontSize: 14.5, textDecoration: "none", border: `1px solid ${LINE}` }}>
-                Ver partido del día
-              </Link>
+              {hero.cta2 && (
+                <Link href={hero.cta2.href} style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "12px 20px", borderRadius: 12, background: "rgba(255,255,255,0.06)", color: TXT, fontWeight: 700, fontSize: 14.5, textDecoration: "none", border: `1px solid ${LINE}` }}>
+                  {hero.cta2.label}
+                </Link>
+              )}
             </div>
           </div>
         </div>
 
-        {/* ═══ 3. PARTIDO DESTACADO ═══ */}
+        {/* ═══ 3. MATCH CENTER DESTACADO (estilo retransmisión) ═══
+            El bloque más fuerte de la pantalla: navy + textura de estadio, banderas
+            grandes, VS potente, borde/glow por estado (dorado=próximo, coral=en vivo,
+            gris=finalizado) y pulso en vivo. Es la "tele" del partido del día. */}
         {match && (
-          <Link href={matchHref} style={{ display: "block", textDecoration: "none", color: TXT, borderRadius: 18, padding: "16px 18px", marginBottom: 16, background: "linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))", border: `1px solid ${live ? "#e4483f55" : LINE}` }}>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
-              <span style={{ fontSize: 11, fontWeight: 700, color: TXT_MUT, letterSpacing: 0.5 }}>
-                {match.meta.phase}{match.meta.group ? ` · Grupo ${match.meta.group}` : ""}
+          <Link href={matchHref} className={`zm-mc${live ? " zm-mc--live" : ""}`} style={{ position: "relative", display: "block", textDecoration: "none", color: TXT, borderRadius: 20, padding: "16px 18px 15px", marginBottom: 12, overflow: "hidden", background: "linear-gradient(160deg,#0e2647 0%,#0a1a31 60%,#0b1c36 100%)", border: `1.5px solid ${mcAccent}66`, boxShadow: live ? `0 18px 44px rgba(0,0,0,0.42), 0 0 0 1px ${mcAccent}55` : "0 16px 40px rgba(0,0,0,0.34)" }}>
+            {/* focos superiores */}
+            <span aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none", background: `radial-gradient(85% 55% at 50% -12%, ${mcAccent}26, transparent 60%)` }} />
+            {/* césped/líneas inferiores del estadio */}
+            <span aria-hidden style={{ position: "absolute", left: 0, right: 0, bottom: -1, height: 92, pointerEvents: "none", background: "linear-gradient(180deg, transparent, rgba(0,0,0,0.32)), repeating-linear-gradient(90deg, transparent 0 38px, rgba(255,255,255,0.04) 38px 39px)" }} />
+            {/* glow lateral (pulsa en vivo) */}
+            <span aria-hidden className={live ? "zm-mc-glow" : ""} style={{ position: "absolute", top: "52%", left: -34, width: 130, height: 130, transform: "translateY(-50%)", borderRadius: "50%", background: `radial-gradient(circle, ${mcAccent}33, transparent 70%)`, pointerEvents: "none", opacity: live ? undefined : 0.55 }} />
+
+            {/* fila superior: fase + estado */}
+            <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 4 }}>
+              <span style={{ fontSize: 10.5, fontWeight: 800, letterSpacing: 1, textTransform: "uppercase", color: mcAccent }}>
+                Partido del día{match.meta.phase ? ` · ${match.meta.phase}` : ""}{match.meta.group ? ` · Grupo ${match.meta.group}` : ""}
               </span>
               <span style={{ ...badgeStyle(live ? "En vivo" : finished ? "Disponible" : "Próximamente"), animation: live ? "zmpulse 1.6s infinite" : undefined }}>
                 {live ? `● En vivo ${match.elapsed}'` : finished ? "Finalizado" : "Próximo"}
               </span>
             </div>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 14 }}>
-              <Team name={match.meta.home.name} flag={match.meta.home.flag} align="right" />
-              <div style={{ textAlign: "center", minWidth: 78 }}>
+
+            {/* equipos + VS potente */}
+            <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, margin: "14px 2px 12px" }}>
+              <McTeam name={match.meta.home.name} flag={match.meta.home.flag} />
+              <div style={{ textAlign: "center", minWidth: 84, flexShrink: 0 }}>
                 {live || finished ? (
-                  <div style={{ fontSize: 30, fontWeight: 900, letterSpacing: 1 }}>{match.score[0]}<span style={{ color: TXT_MUT, margin: "0 4px" }}>-</span>{match.score[1]}</div>
+                  <div style={{ fontSize: 34, fontWeight: 900, letterSpacing: 1, lineHeight: 1, textShadow: "0 2px 12px rgba(0,0,0,0.5)" }}>
+                    {match.score[0]}<span style={{ color: TXT_MUT, margin: "0 5px" }}>-</span>{match.score[1]}
+                  </div>
                 ) : (
-                  <div style={{ fontSize: 17, fontWeight: 800, color: GOLD2 }}>{match.meta.time || "vs"}</div>
+                  <div style={{ fontSize: 28, fontWeight: 900, letterSpacing: 2, lineHeight: 1, background: `linear-gradient(135deg,${GOLD},${GOLD2})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>VS</div>
                 )}
-                <div style={{ fontSize: 10.5, color: TXT_MUT, marginTop: 2 }}>{!live && !finished ? fmtDate(match.meta.date, match.meta.time) : match.meta.city}</div>
+                <div style={{ fontSize: 12.5, fontWeight: 800, color: GOLD2, marginTop: 6 }}>
+                  {live ? `${match.elapsed}'` : finished ? "Final" : (match.meta.time || "")}
+                </div>
+                {!live && !finished && (
+                  <div style={{ fontSize: 10, color: TXT_MUT, marginTop: 1 }}>{fmtDate(match.meta.date, match.meta.time)}</div>
+                )}
               </div>
-              <Team name={match.meta.away.name} flag={match.meta.away.flag} align="left" />
+              <McTeam name={match.meta.away.name} flag={match.meta.away.flag} />
             </div>
-            <div style={{ display: "flex", gap: 9, marginTop: 14 }}>
-              <span style={{ flex: 1, textAlign: "center", padding: "11px 0", borderRadius: 11, background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: NAVY, fontWeight: 800, fontSize: 13.5 }}>Hacer predicción</span>
-              <span style={{ flex: 1, textAlign: "center", padding: "11px 0", borderRadius: 11, background: "rgba(255,255,255,0.06)", color: TXT, fontWeight: 700, fontSize: 13.5, border: `1px solid ${LINE}` }}>Ver Match Center</span>
+
+            {/* estadio + ciudad */}
+            {(match.meta.venue || match.meta.city) && (
+              <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", gap: 6, marginBottom: 13, color: TXT_MUT, fontSize: 11.5, fontWeight: 600 }}>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z" stroke="currentColor" strokeWidth="1.6" /><circle cx="12" cy="10" r="2.4" stroke="currentColor" strokeWidth="1.6" /></svg>
+                <span style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                  {[match.meta.venue, match.meta.city].filter(Boolean).join(" · ")}
+                </span>
+              </div>
+            )}
+
+            {/* CTA único (no compite con la predicción rápida) */}
+            <span style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", gap: 7, width: "100%", padding: "11px 0", borderRadius: 12, fontWeight: 800, fontSize: 14, color: live ? "#1a0d08" : NAVY, background: live ? `linear-gradient(135deg,${CORAL},#ff9a4a)` : `linear-gradient(135deg,${GOLD},${GOLD2})`, boxShadow: live ? "0 6px 18px rgba(255,107,90,0.35)" : "0 6px 18px rgba(201,168,76,0.28)" }}>
+              {live ? "Seguir en directo" : "Ver Match Center"}
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </span>
+          </Link>
+        )}
+
+        {/* ═══ 3b. PREDICCIÓN RÁPIDA (compacta, acción directa) ═══
+            Card delgada que NO compite con el Match Center: solo invita a predecir
+            el partido del día. Aquí vive el único "Hacer predicción" de la home. */}
+        {match && !finished && (
+          <Link href="/app/predicciones" style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 14px", marginBottom: 24, borderRadius: 14, textDecoration: "none", color: TXT, background: "linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))", border: `1px solid ${LINE}` }}>
+            <span style={{ width: 40, height: 40, borderRadius: 11, flexShrink: 0, display: "inline-flex", alignItems: "center", justifyContent: "center", background: "rgba(201,168,76,0.14)", border: `1px solid ${GOLD}55` }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M14.5 12a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" stroke={GOLD2} strokeWidth="1.7" strokeLinecap="round" /></svg>
+            </span>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontSize: 10.5, fontWeight: 800, letterSpacing: 1, textTransform: "uppercase", color: GOLD }}>Predicción rápida</div>
+              <div style={{ fontSize: 14, fontWeight: 800, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                {match.meta.home.name} <span style={{ color: TXT_MUT, fontWeight: 600 }}>vs</span> {match.meta.away.name}
+              </div>
             </div>
+            <span style={{ flexShrink: 0, display: "inline-flex", alignItems: "center", gap: 6, padding: "9px 15px", borderRadius: 999, fontWeight: 800, fontSize: 13, color: NAVY, background: `linear-gradient(135deg,${GOLD},${GOLD2})`, boxShadow: "0 5px 14px rgba(201,168,76,0.28)" }}>
+              Predecir
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke={NAVY} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </span>
           </Link>
         )}
 
@@ -603,8 +705,8 @@ export default function AppHubPage() {
         )}
 
         {/* ═══ 5 + 6. CATEGORÍAS con subtítulo ═══ */}
-        {CATS.map((cat) => (
-          <section key={cat.key} style={{ marginBottom: 32 }}>
+        {CATS.map((cat, i) => (
+          <section key={cat.key} id={i === 0 ? "modulos" : undefined} style={{ marginBottom: 32, scrollMarginTop: 14 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 11, marginBottom: 14 }}>
               <span style={{ width: 5, height: 34, borderRadius: 3, background: `linear-gradient(180deg, ${cat.tint}, ${cat.tint2})`, flexShrink: 0 }} />
               <div>
@@ -695,10 +797,37 @@ export default function AppHubPage() {
         .zm-mod-card:nth-child(3n+2) .zm-card-sheen { animation-delay: -2.2s; }
         .zm-mod-card:nth-child(3n)   .zm-card-sheen { animation-delay: -4.3s; }
 
+        /* ── Hero (Live Hub) + Match Center: vida premium ── */
+        @keyframes zm-hero-glow {
+          0%,100% { transform: translate(0,0) scale(1);        opacity:.8; }
+          50%     { transform: translate(-14px,12px) scale(1.14); opacity:1; }
+        }
+        @keyframes zm-livedot {
+          0%   { box-shadow: 0 0 0 0 rgba(255,107,90,.65); }
+          70%  { box-shadow: 0 0 0 9px rgba(255,107,90,0); }
+          100% { box-shadow: 0 0 0 0 rgba(255,107,90,0); }
+        }
+        @keyframes zm-mcglow {
+          0%,100% { opacity:.5; transform: translateY(-50%) scale(1); }
+          50%     { opacity:.9; transform: translateY(-50%) scale(1.22); }
+        }
+        @keyframes zm-spark {
+          0%   { transform: translateY(0);     opacity:0; }
+          25%  { opacity:.85; }
+          100% { transform: translateY(-46px); opacity:0; }
+        }
+        .zm-hero-glow  { animation: zm-hero-glow 7s ease-in-out infinite; will-change: transform; }
+        .zm-live-dot   { animation: zm-livedot 1.4s infinite; }
+        .zm-mc-glow    { animation: zm-mcglow 2.4s ease-in-out infinite; will-change: transform; }
+        .zm-spark      { animation: zm-spark 4.5s ease-in-out infinite; will-change: transform; }
+        .zm-spark--2   { animation-duration: 5.6s; animation-delay: -1.8s; }
+        .zm-spark--3   { animation-duration: 5.1s; animation-delay: -3.2s; }
+
         /* Accesibilidad + batería: sin movimiento si el usuario lo pide. */
         @media (prefers-reduced-motion: reduce) {
-          .zm-card-aura, .zm-card-sheen, .zm-card-glow, .zm-card-accent { animation: none; }
-          .zm-card-sheen { display: none; }
+          .zm-card-aura, .zm-card-sheen, .zm-card-glow, .zm-card-accent,
+          .zm-hero-glow, .zm-live-dot, .zm-mc-glow, .zm-spark { animation: none; }
+          .zm-card-sheen, .zm-spark { display: none; }
         }
       `}</style>
     </div>
@@ -706,18 +835,16 @@ export default function AppHubPage() {
 }
 
 /* ─────────── Subcomponentes ─────────── */
-function Team({ name, flag, align }: { name: string; flag: string; align: "left" | "right" }) {
+// Equipo del Match Center destacado: bandera grande (retransmisión) + nombre.
+function McTeam({ name, flag }: { name: string; flag: string }) {
   return (
-    <div style={{ flex: 1, display: "flex", alignItems: "center", gap: 9, justifyContent: align === "right" ? "flex-end" : "flex-start", minWidth: 0 }}>
-      {align === "left" && <Flag flag={flag} />}
-      <span style={{ fontWeight: 800, fontSize: 14.5, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", textAlign: align }}>{name}</span>
-      {align === "right" && <Flag flag={flag} />}
+    <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
+      {flag
+        ? <img src={`https://flagcdn.com/w160/${flag}.png`} alt="" width={58} height={40} style={{ borderRadius: 7, objectFit: "cover", boxShadow: "0 4px 14px rgba(0,0,0,0.55)", border: "1px solid rgba(255,255,255,0.2)" }} />
+        : <span style={{ width: 58, height: 40, borderRadius: 7, background: "rgba(255,255,255,0.1)" }} />}
+      <span style={{ fontWeight: 800, fontSize: 13.5, textAlign: "center", lineHeight: 1.15, maxWidth: "100%", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", textShadow: "0 1px 6px rgba(0,0,0,0.5)" }}>{name}</span>
     </div>
   );
-}
-function Flag({ flag }: { flag: string }) {
-  if (!flag) return <span style={{ width: 30, height: 22, borderRadius: 4, background: "rgba(255,255,255,0.1)", flexShrink: 0 }} />;
-  return <img src={`https://flagcdn.com/w80/${flag}.png`} alt="" width={30} height={22} style={{ borderRadius: 4, objectFit: "cover", flexShrink: 0, boxShadow: "0 1px 4px rgba(0,0,0,0.3)" }} />;
 }
 function Stat({ k, v }: { k: string; v: string }) {
   return (

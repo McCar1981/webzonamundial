@@ -430,6 +430,8 @@ export default function AppHubPage() {
   const [authed, setAuthed] = useState<boolean | null>(null);
   const [gam, setGam] = useState<GamSummary | null>(null);
   const [match, setMatch] = useState<Featured>(null);
+  // ¿El usuario ya jugó la trivia diaria HOY? null = sin saber todavía.
+  const [triviaPlayedToday, setTriviaPlayedToday] = useState<boolean | null>(null);
   const { canInstall, install } = useInstallPrompt();
 
   // Sesión + perfil (degradación limpia si faltan envs)
@@ -468,6 +470,24 @@ export default function AppHubPage() {
     return () => { on = false; };
   }, []);
 
+  // ¿Trivia diaria pendiente? Alimenta el estado "reto" del hero. La sesión la
+  // resuelve la cookie (logueado) o el anonId de localStorage (invitado).
+  useEffect(() => {
+    let on = true;
+    const anon = (typeof window !== "undefined" && localStorage.getItem("zm_trivia_anon")) || "";
+    const url = anon ? `/api/trivia/stats?anonId=${encodeURIComponent(anon)}` : "/api/trivia/stats";
+    fetch(url)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (!on) return;
+        const last: string | null = d?.stats?.lastPlayed ?? null;
+        const today = new Date().toISOString().slice(0, 10);
+        setTriviaPlayedToday(!!last && last.slice(0, 10) === today);
+      })
+      .catch(() => { if (on) setTriviaPlayedToday(null); });
+    return () => { on = false; };
+  }, []);
+
   const live = match ? IN_PLAY.has(match.status) : false;
   const finished = match ? FINISHED.has(match.status) : false;
   const matchHref = match ? `/app/matchcenter/${match.slug}` : "/app/matchcenter";
@@ -475,28 +495,42 @@ export default function AppHubPage() {
   // Acentos "en vivo" (no están en la paleta base): coral + cian de retransmisión.
   const CORAL = "#ff6b5a";
 
-  // ── HERO dinámico (Live Hub) ──
-  // Hoy el estado lo decide el partido en vivo. Queda preparado un 3er estado
-  // "reto diario" para cuando exista señal de trivia disponible (ver TODO abajo).
-  type HeroCfg = { live: boolean; accent: string; eyebrow: string; title: React.ReactNode; desc: string; cta1: { label: string; href: string }; cta2?: { label: string; href: string } };
+  // ── HERO dinámico (Live Hub) ── 3 estados con prioridad:
+  //   1) live  → hay partido en marcha (lo más urgente)
+  //   2) reto  → no hay partido en vivo y la trivia diaria sigue pendiente hoy
+  //   3) base  → estado por defecto
+  const GREEN = "#36c98f";
+  const retoAvailable = !live && triviaPlayedToday === false;
+  type HeroCfg = { kind: "live" | "reto" | "base"; accent: string; eyebrow: string; title: React.ReactNode; desc: string; cta1: { label: string; href: string }; cta2?: { label: string; href: string } };
   const heroLive: HeroCfg = {
-    live: true, accent: CORAL, eyebrow: "En vivo ahora",
+    kind: "live", accent: CORAL, eyebrow: "En vivo ahora",
     title: "El partido está en marcha",
     desc: "Sigue estadísticas, predice jugadas y entra al Match Center.",
     cta1: { label: "Entrar al Match Center", href: matchHref },
     cta2: { label: "Micro-predicciones", href: "/app/micro" },
   };
+  const heroReto: HeroCfg = {
+    kind: "reto", accent: GREEN, eyebrow: "Reto diario",
+    title: <>Trivia <span style={{ background: `linear-gradient(135deg,${GREEN},#7ce0b3)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>disponible</span></>,
+    desc: "Responde las preguntas de hoy y suma puntos extra.",
+    cta1: { label: "Responder trivia", href: "/app/trivia" },
+    cta2: { label: "Ver partido del día", href: matchHref },
+  };
   const heroBase: HeroCfg = {
-    live: false, accent: GOLD2, eyebrow: "Mundial 2026",
+    kind: "base", accent: GOLD2, eyebrow: "Mundial 2026",
     title: <>Tu zona de juego del <span style={{ background: `linear-gradient(135deg,${GOLD},${GOLD2})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Mundial</span></>,
     desc: "Predice, compite y sigue cada partido en directo.",
     cta1: { label: "Explorar módulos", href: "#modulos" },
     cta2: { label: "Ver partido del día", href: matchHref },
   };
-  // TODO(datos): cuando haya un endpoint que indique "trivia diaria disponible",
-  // anteponer un heroReto { accent: tint verde, eyebrow:"Reto diario", title:"Trivia
-  // disponible", cta1:{label:"Responder trivia", href:"/app/trivia"} }.
-  const hero = live ? heroLive : heroBase;
+  const hero = live ? heroLive : retoAvailable ? heroReto : heroBase;
+  // Estilo del CTA primario del hero según estado (coral/verde/dorado).
+  const heroCta1 =
+    hero.kind === "live"
+      ? { bg: `linear-gradient(135deg,${CORAL},#ff9a4a)`, color: "#1a0d08", shadow: "0 6px 20px rgba(255,107,90,0.3)", icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#1a0d08" strokeWidth="1.8" /><circle cx="12" cy="12" r="3" fill="#1a0d08" /></svg> }
+      : hero.kind === "reto"
+        ? { bg: `linear-gradient(135deg,${GREEN},#7ce0b3)`, color: "#072019", shadow: "0 6px 20px rgba(54,201,143,0.3)", icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v5c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V7l8-4ZM9 12l2 2 4-4" stroke="#072019" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg> }
+        : { bg: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: NAVY, shadow: "0 6px 20px rgba(201,168,76,0.25)", icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 4l13 8-13 8V4z" fill={NAVY} /></svg> };
 
   // Acento del Match Center según estado del partido.
   const mcAccent = live ? CORAL : finished ? "#8a93a3" : GOLD;
@@ -561,7 +595,7 @@ export default function AppHubPage() {
 
           <div style={{ position: "relative", maxWidth: 580 }}>
             <span style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 11, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase", color: hero.accent }}>
-              {hero.live && <span className="zm-live-dot" style={{ width: 8, height: 8, borderRadius: "50%", background: hero.accent }} />}
+              {hero.kind === "live" && <span className="zm-live-dot" style={{ width: 8, height: 8, borderRadius: "50%", background: hero.accent }} />}
               {hero.eyebrow}
             </span>
             <h1 style={{ fontSize: "clamp(25px,5.4vw,38px)", fontWeight: 900, lineHeight: 1.06, margin: "8px 0 10px" }}>
@@ -571,10 +605,8 @@ export default function AppHubPage() {
               {hero.desc}
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
-              <Link href={hero.cta1.href} style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "12px 22px", borderRadius: 12, background: hero.live ? `linear-gradient(135deg,${CORAL},#ff9a4a)` : `linear-gradient(135deg,${GOLD},${GOLD2})`, color: hero.live ? "#1a0d08" : NAVY, fontWeight: 800, fontSize: 15, textDecoration: "none", boxShadow: hero.live ? "0 6px 20px rgba(255,107,90,0.3)" : "0 6px 20px rgba(201,168,76,0.25)" }}>
-                {hero.live
-                  ? <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#1a0d08" strokeWidth="1.8" /><circle cx="12" cy="12" r="3" fill="#1a0d08" /></svg>
-                  : <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 4l13 8-13 8V4z" fill={NAVY} /></svg>}
+              <Link href={hero.cta1.href} style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "12px 22px", borderRadius: 12, background: heroCta1.bg, color: heroCta1.color, fontWeight: 800, fontSize: 15, textDecoration: "none", boxShadow: heroCta1.shadow }}>
+                {heroCta1.icon}
                 {hero.cta1.label}
               </Link>
               {hero.cta2 && (

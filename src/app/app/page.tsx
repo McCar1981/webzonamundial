@@ -86,7 +86,7 @@ const CATS: Cat[] = [
     label: "Jugar",
     sub: "Predice, responde trivias y suma puntos.",
     tint: "#c9a84c", tint2: "#36c98f",   // dorado + verde (reto / progreso)
-    bg: "/assets/card-backgrounds/card-bg-jugar.webp", bgOpacity: 0.30,
+    bg: "/assets/card-backgrounds/card-bg-jugar.webp", bgOpacity: 0.55,
     mods: [
       { icon: "predicciones", title: "Predicciones", desc: "Acierta resultados y suma puntos.", href: "/app/predicciones", cta: "Predecir", estado: "Disponible" },
       { icon: "trivia", title: "Trivia diaria", desc: "Responde preguntas del Mundial.", href: "/app/trivia", cta: "Responder", estado: "Disponible" },
@@ -101,7 +101,7 @@ const CATS: Cat[] = [
     label: "En vivo",
     sub: "Sigue partidos, stories y jugadas en directo.",
     tint: "#ff6b5a", tint2: "#ffa14a",   // coral + naranja (urgente / vivo)
-    bg: "/assets/card-backgrounds/card-bg-en-vivo.webp", bgOpacity: 0.32,
+    bg: "/assets/card-backgrounds/card-bg-en-vivo.webp", bgOpacity: 0.55,
     mods: [
       { icon: "matchcenter", title: "Match Center", desc: "Cada partido en vivo con estadísticas.", href: "/app/matchcenter", cta: "Ver", estado: "Disponible" },
       { icon: "micro", title: "Micro-predicciones", desc: "Predice jugadas en directo.", href: "/app/micro", cta: "Jugar", estado: "Nuevo" },
@@ -114,7 +114,7 @@ const CATS: Cat[] = [
     label: "Comunidad",
     sub: "Compite con otros usuarios y ligas.",
     tint: "#34b9c4", tint2: "#5b8def",   // turquesa + azul (social / conectada)
-    bg: "/assets/card-backgrounds/card-bg-comunidad.webp", bgOpacity: 0.24,
+    bg: "/assets/card-backgrounds/card-bg-comunidad.webp", bgOpacity: 0.50,
     mods: [
       { icon: "rankings", title: "Ranking global", desc: "Compite por país y por creador.", href: "/app/rankings", cta: "Ver ranking", estado: "Disponible" },
       { icon: "ligas", title: "Ligas privadas", desc: "Compite con amigos en tu liga.", href: "/app/ligas", cta: "Crear", estado: "Disponible" },
@@ -127,7 +127,7 @@ const CATS: Cat[] = [
     label: "Explora",
     sub: "Calendario, grupos, reglas y guías.",
     tint: "#8b7bd8", tint2: "#6e83c4",   // lavanda + azul grisáceo (informativa)
-    bg: "/assets/card-backgrounds/card-bg-explora.webp", bgOpacity: 0.18,
+    bg: "/assets/card-backgrounds/card-bg-explora.webp", bgOpacity: 0.48,
     mods: [
       { icon: "calendario", title: "Calendario", desc: "Todos los partidos del Mundial 2026.", href: "/calendario", cta: "Ver", estado: "Disponible" },
       { icon: "grupos", title: "Grupos", desc: "Las 48 selecciones por grupo.", href: "/grupos", cta: "Ver", estado: "Disponible" },
@@ -221,15 +221,15 @@ function ModuleCard({ mod, tint, tint2, bg, bgOpacity }: { mod: Mod; tint: strin
             position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none",
             backgroundImage: `url(${bg})`,
             backgroundSize: "cover", backgroundPosition: "center",
-            opacity: active ? Math.min(bgOpacity + 0.06, 0.45) : bgOpacity,
-            WebkitMaskImage: "linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.35) 52%, transparent 84%)",
-            maskImage: "linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.35) 52%, transparent 84%)",
+            opacity: active ? Math.min(bgOpacity + 0.1, 0.72) : bgOpacity,
+            WebkitMaskImage: "linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 55%, rgba(0,0,0,0.45) 100%)",
+            maskImage: "linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 55%, rgba(0,0,0,0.45) 100%)",
             transition: "opacity .28s",
           }}
         />
       )}
       {/* Capa B — velo blanco de legibilidad (asegura contraste del contenido). */}
-      <span aria-hidden style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none", background: "linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.62) 60%, rgba(255,255,255,0.85) 100%)" }} />
+      <span aria-hidden style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none", background: "linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.38) 52%, rgba(255,255,255,0.72) 100%)" }} />
 
       {/* Banda de acento superior (sutil, da el toque "módulo de juego") */}
       <span style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, zIndex: 1, background: `linear-gradient(90deg, ${tint}, ${tint2})`, opacity: active ? 1 : 0.65, transition: "opacity .25s" }} />

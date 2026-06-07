@@ -34,7 +34,7 @@ export default async function BarRankingPage({ params }: { params: { barSlug: st
     <main style={{ minHeight: "100vh", background: t.bg, color: t.text }}>
       <div style={{ maxWidth: 560, margin: "0 auto", padding: "16px 16px 48px" }}>
         <Link href={`/b/${bar.slug}`} style={{ display: "inline-flex", alignItems: "center", gap: 5, color: t.textMuted, fontSize: 13, textDecoration: "none", marginBottom: 12 }}>
-          <ArrowLeft size={14} /> Volver a la porra
+          <ArrowLeft size={14} /> Volver a la peña
         </Link>
 
         {/* Cabecera corporativa del bar: portada + logo + nombre. Hace que la
@@ -66,9 +66,9 @@ export default async function BarRankingPage({ params }: { params: { barSlug: st
         </header>
 
         <div style={{ display: "inline-flex", alignItems: "center", gap: 6, color: t.primary, fontWeight: 800, fontSize: 11.5, textTransform: "uppercase", letterSpacing: 1, marginBottom: 6 }}>
-          <Trophy size={13} /> Porra del Mundial 2026
+          <Trophy size={13} /> Peña del Mundial 2026
         </div>
-        <h2 style={{ fontSize: 22, fontWeight: 900, margin: "0 0 20px" }}>Clasificación</h2>
+        <h2 style={{ fontSize: 22, fontWeight: 900, margin: "0 0 20px" }}>Ranking de la peña</h2>
 
         {standings.length === 0 ? (
           <div style={{ background: t.surface, border: `1px solid ${t.border}`, borderRadius: t.cardRadius, padding: 20, color: t.textMuted, fontSize: 14, textAlign: "center" }}>

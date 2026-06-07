@@ -1,7 +1,7 @@
 "use client";
 
-// Dashboard del bar (FASE 1) — "Centro de control de tu porra".
-// Panel del dueño para configurar, activar, publicar y promocionar su porra.
+// Dashboard del bar (FASE 1) — "Centro de control de tu peña".
+// Panel del dueño para configurar, activar, publicar y promocionar su peña.
 // Reorganizado en 2 columnas (desktop) con card de estado, checklist de
 // activación y siguiente paso recomendado. Mobile-first. Solo iconos SVG.
 //
@@ -27,8 +27,8 @@ const BORDER = "1px solid rgba(255,255,255,0.08)";
 // Descripciones comerciales (UI). Las FEATURES reales salen de plans.ts para no
 // prometer funciones no implementadas.
 const PLAN_TAGLINE: Record<string, string> = {
-  arranque: "Para bares que quieren lanzar una porra sencilla y rápida.",
-  completo: "Todo lo necesario para activar la porra en barra, mesas, redes y pantalla TV.",
+  arranque: "Para bares que quieren lanzar una peña sencilla y rápida.",
+  completo: "Todo lo necesario para activar la peña en barra, mesas, redes y pantalla TV.",
   pro: "Para bares grandes, pubs deportivos o locales con mucha afluencia.",
 };
 
@@ -70,8 +70,8 @@ export default function BarDashboard({ initialBar, initialStats, initialQr, init
     try {
       const res = await fetch("/api/bars", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ status: "published" }) });
       const j = await res.json();
-      if (res.ok && j.bar) { setBar(j.bar); setFlash("¡Porra publicada! Tu QR ya está activo."); }
-      else setFlash(j.message || j.error || "No se pudo publicar la porra.");
+      if (res.ok && j.bar) { setBar(j.bar); setFlash("¡Peña publicada! Tu QR ya está activo."); }
+      else setFlash(j.message || j.error || "No se pudo publicar la peña.");
     } catch { setFlash("Error de red. Inténtalo de nuevo."); }
     finally { setPublishing(false); }
   }, []);
@@ -168,17 +168,17 @@ export default function BarDashboard({ initialBar, initialStats, initialQr, init
   );
 }
 
-// ─── Header: "Centro de control de tu porra" ─────────────────────────────────
+// ─── Header: "Centro de control de tu peña" ─────────────────────────────────
 function DashHeader({ bar, state, hasActivePlan, isPaused, isRefunded }: { bar: BarRow; state: CardState; hasActivePlan: boolean; isPaused: boolean; isRefunded: boolean }) {
   const badge = statusBadge(bar.status, hasActivePlan, isPaused, isRefunded);
   return (
     <header style={{ marginBottom: 18 }}>
       <div style={{ display: "inline-flex", alignItems: "center", gap: 7, color: GOLD, fontWeight: 800, fontSize: 12, textTransform: "uppercase", letterSpacing: 1 }}>
-        <Trophy size={14} /> Porra del bar
+        <Trophy size={14} /> Peña del bar
       </div>
-      <h1 style={{ fontSize: 27, fontWeight: 900, margin: "8px 0 2px", lineHeight: 1.1 }}>Centro de control de tu porra</h1>
+      <h1 style={{ fontSize: 27, fontWeight: 900, margin: "8px 0 2px", lineHeight: 1.1 }}>Centro de control de tu peña</h1>
       <p style={{ color: MID, fontSize: 14.5, margin: "0 0 12px", maxWidth: 620, lineHeight: 1.5 }}>
-        Configura, activa y comparte la porra del Mundial de tu bar desde aquí.
+        Configura, activa y comparte la peña del Mundial de tu bar desde aquí.
       </p>
       <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
         <span style={{ fontWeight: 800, fontSize: 15 }}>{bar.name}</span>
@@ -206,26 +206,26 @@ function statusBadge(status: string, hasActivePlan: boolean, isPaused: boolean, 
 function StatusCard({ state, bar, publishing, onPublish, onPlans }: { state: CardState; bar: BarRow; publishing: boolean; onPublish: () => void; onPlans: () => void }) {
   const cfg: Record<CardState, { eyebrow: string; title: string; text: string; primary: ActionCfg; secondary?: ActionCfg }> = {
     draft: {
-      eyebrow: "Estado de tu porra", title: "Tu porra está en borrador",
-      text: "Activa un plan para publicar tu porra, activar el QR y empezar a recibir participantes.",
+      eyebrow: "Estado de tu peña", title: "Tu peña está en borrador",
+      text: "Activa un plan para publicar tu peña, activar el QR y empezar a recibir participantes.",
       primary: { label: "Activar plan", icon: <CreditCard size={16} />, onClick: onPlans },
       secondary: { label: "Ver vista previa", icon: <Eye size={15} />, href: `/b/${bar.slug}` },
     },
     planActive: {
-      eyebrow: "Estado de tu porra", title: "Tu plan está activo",
-      text: "Publica tu porra para activar el QR y empezar a recibir participantes.",
-      primary: { label: "Publicar porra", icon: <Rocket size={16} />, onClick: onPublish, busy: publishing },
+      eyebrow: "Estado de tu peña", title: "Tu plan está activo",
+      text: "Publica tu peña para activar el QR y empezar a recibir participantes.",
+      primary: { label: "Publicar peña", icon: <Rocket size={16} />, onClick: onPublish, busy: publishing },
       secondary: { label: "Abrir kit de activación", icon: <Sparkles size={15} />, href: "/bar-dashboard/kit" },
     },
     published: {
-      eyebrow: "Estado de tu porra", title: "Porra publicada",
+      eyebrow: "Estado de tu peña", title: "Peña publicada",
       text: "Tu QR ya está activo. Comparte tus carteles y abre la pantalla TV durante los partidos.",
       primary: { label: "Abrir pantalla TV", icon: <Tv size={16} />, href: `/b/${bar.slug}/tv` },
       secondary: { label: "Descargar kit", icon: <Download size={15} />, href: "/bar-dashboard/kit" },
     },
     suspended: {
-      eyebrow: "Estado de tu porra", title: "Tu plan ya no está activo",
-      text: "Para volver a publicar tu porra, activa un nuevo plan.",
+      eyebrow: "Estado de tu peña", title: "Tu plan ya no está activo",
+      text: "Para volver a publicar tu peña, activa un nuevo plan.",
       primary: { label: "Activar plan", icon: <CreditCard size={16} />, onClick: onPlans },
     },
   };
@@ -269,7 +269,7 @@ function ChecklistCard({ items }: { items: { label: string; done: boolean }[] })
   return (
     <div style={{ background: BG2, border: BORDER, borderRadius: 16, padding: 16 }}>
       <div style={{ display: "flex", alignItems: "center", gap: 8, fontWeight: 800, fontSize: 14.5, marginBottom: 4 }}>
-        <CheckCircle2 size={16} color={GOLD} /> Checklist para lanzar tu porra
+        <CheckCircle2 size={16} color={GOLD} /> Checklist para lanzar tu peña
       </div>
       <div style={{ color: MID, fontSize: 12.5, marginBottom: 10 }}>{done} de {items.length} completado</div>
       <div style={{ height: 6, borderRadius: 99, background: "rgba(255,255,255,0.08)", overflow: "hidden", marginBottom: 12 }}>
@@ -294,11 +294,11 @@ function NextStepCard({ state, hasPrize, publishing, onPublish, onPlans, onPrize
     text = "Añade un premio para motivar a tus clientes a participar.";
     action = { label: "Añadir premio", icon: <Gift size={15} />, onClick: onPrizes };
   } else if (state === "draft" || state === "suspended") {
-    text = "Activa un plan para publicar tu porra.";
+    text = "Activa un plan para publicar tu peña.";
     action = { label: "Activar plan", icon: <CreditCard size={15} />, onClick: onPlans };
   } else if (state === "planActive") {
-    text = "Publica tu porra para empezar a recibir participantes.";
-    action = { label: "Publicar porra", icon: <Rocket size={15} />, onClick: onPublish, busy: publishing };
+    text = "Publica tu peña para empezar a recibir participantes.";
+    action = { label: "Publicar peña", icon: <Rocket size={15} />, onClick: onPublish, busy: publishing };
   } else {
     text = "Comparte tu QR y abre la pantalla TV durante los partidos.";
     action = { label: "Abrir pantalla TV", icon: <Tv size={15} />, href: `/b/${bar.slug}/tv` };
@@ -323,7 +323,7 @@ function QuickHelpCard({ bar, origin, onFlash }: { bar: BarRow; origin: string; 
       <div style={{ display: "flex", alignItems: "center", gap: 8, fontWeight: 800, fontSize: 14.5, marginBottom: 8 }}>
         <HelpCircle size={16} color={GOLD} /> Ayuda rápida
       </div>
-      <div style={{ color: MID, fontSize: 12.5, marginBottom: 6 }}>Enlace de tu porra</div>
+      <div style={{ color: MID, fontSize: 12.5, marginBottom: 6 }}>Enlace de tu peña</div>
       <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 12 }}>
         <code style={{ background: BG3, border: BORDER, borderRadius: 8, padding: "6px 9px", fontSize: 12, color: GOLD2, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", flex: 1 }}>{short}</code>
         <button onClick={() => { void navigator.clipboard.writeText(url); onFlash("Enlace copiado"); }} style={{ ...qa(), cursor: "pointer", padding: "6px 9px" }} title="Copiar enlace"><Copy size={14} /></button>
@@ -402,7 +402,7 @@ function Resumen({ stats, bar, origin, onFlash, hasActivePlan, isPublished }: { 
   const cards = [
     { label: "Participantes", value: stats?.participants ?? 0, icon: <Users size={16} color={GOLD2} />, help: "Aparecerán cuando los clientes se unan." },
     { label: "Escaneos QR", value: stats?.scans ?? 0, icon: <QrCode size={16} color={GOLD2} />, help: "Coloca el QR en barra, mesas o TV." },
-    { label: "Predicciones", value: stats?.predictions ?? 0, icon: <Trophy size={16} color={GOLD2} />, help: "Se activarán cuando publiques la porra." },
+    { label: "Predicciones", value: stats?.predictions ?? 0, icon: <Trophy size={16} color={GOLD2} />, help: "Se activarán cuando publiques la peña." },
   ];
   return (
     <Section icon={<BarChart3 size={17} color={GOLD} />} title="Resumen">
@@ -472,7 +472,7 @@ function PlanSection({ bar, payment, hasActivePlan, onFlash }: { bar: BarRow; pa
   return (
     <Section icon={<CreditCard size={17} color={GOLD} />} title="Activa tu plan">
       <p style={{ color: MID, fontSize: 13.5, margin: "0 0 14px", lineHeight: 1.5 }}>
-        Elige un plan para publicar tu porra, activar el QR y usarla durante todo el Mundial. Pago único.
+        Elige un plan para publicar tu peña, activar el QR y usarla durante todo el Mundial. Pago único.
       </p>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 12 }}>
         {planList().map((plan) => (
@@ -545,11 +545,11 @@ function QrSection({ bar, qr, origin, onFlash, hasActivePlan }: { bar: BarRow; q
   }, [target, bar.slug, onFlash]);
 
   return (
-    <Section icon={<QrCode size={17} color={GOLD} />} title="QR oficial de tu porra">
+    <Section icon={<QrCode size={17} color={GOLD} />} title="QR oficial de tu peña">
       <div style={{ background: BG2, border: BORDER, borderRadius: 14, padding: 16, display: "flex", gap: 16, flexWrap: "wrap", alignItems: "center" }}>
         <div style={{ background: "#fff", borderRadius: 12, padding: 8, width: 150, height: 150, display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          {png ? <img src={png} alt="QR de la porra" style={{ width: "100%", height: "100%", opacity: hasActivePlan ? 1 : 0.5 }} /> : <Loader2 size={24} className="spin" color="#0A0A0A" />}
+          {png ? <img src={png} alt="QR de la peña" style={{ width: "100%", height: "100%", opacity: hasActivePlan ? 1 : 0.5 }} /> : <Loader2 size={24} className="spin" color="#0A0A0A" />}
           {!hasActivePlan && (
             <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(255,255,255,0.35)", borderRadius: 12 }}>
               <Lock size={28} color="#0A0A0A" />
@@ -832,10 +832,10 @@ function Personalization({ bar, setBar, hasActivePlan, onFlash }: { bar: BarRow;
           {bar.status !== "published" ? (
             hasActivePlan ? (
               <button onClick={() => void save({ status: "published" })} disabled={busy} style={{ ...btn(true), opacity: busy ? 0.6 : 1 }}>
-                <Rocket size={15} /> Publicar porra
+                <Rocket size={15} /> Publicar peña
               </button>
             ) : (
-              <button onClick={() => onFlash("Activa tu plan para publicar tu porra.")} style={{ ...qa(), cursor: "pointer", color: DIM }}>
+              <button onClick={() => onFlash("Activa tu plan para publicar tu peña.")} style={{ ...qa(), cursor: "pointer", color: DIM }}>
                 <Lock size={14} /> Activa tu plan para publicar
               </button>
             )
@@ -954,16 +954,16 @@ function CreateBar({ onCreated }: { onCreated: (b: BarRow) => void }) {
       <style>{`.zm-pub-lat { display: none !important; } .google-auto-placed, ins.adsbygoogle { display: none !important; }`}</style>
       <div style={{ width: "100%", maxWidth: 440, background: BG2, border: BORDER, borderRadius: 18, padding: 24 }}>
         <div style={{ display: "inline-flex", alignItems: "center", gap: 7, color: GOLD, fontWeight: 800, fontSize: 12, textTransform: "uppercase", letterSpacing: 1 }}>
-          <Trophy size={14} /> Porras Digitales para Bares
+          <Trophy size={14} /> Peñas Digitales para Bares
         </div>
-        <h1 style={{ fontSize: 22, fontWeight: 900, margin: "8px 0 4px" }}>Crea la porra de tu bar</h1>
+        <h1 style={{ fontSize: 22, fontWeight: 900, margin: "8px 0 4px" }}>Crea la peña de tu bar</h1>
         <p style={{ color: MID, fontSize: 14, margin: "0 0 18px" }}>En un minuto tendrás tu página, tu QR y tu ranking listos para los clientes.</p>
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
           <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Nombre del bar" style={inp()} />
           <input value={city} onChange={(e) => setCity(e.target.value)} placeholder="Ciudad (opcional)" style={inp()} />
           {err && <div style={{ color: "#f87171", fontSize: 13 }}>{err}</div>}
           <button onClick={() => void create()} disabled={busy || !name.trim()} style={{ ...btn(true), opacity: busy || !name.trim() ? 0.6 : 1 }}>
-            {busy ? <Loader2 size={16} className="spin" /> : <Rocket size={16} />} Crear mi porra
+            {busy ? <Loader2 size={16} className="spin" /> : <Rocket size={16} />} Crear mi peña
           </button>
         </div>
         <p style={{ color: DIM, fontSize: 11.5, lineHeight: 1.5, marginTop: 16 }}>

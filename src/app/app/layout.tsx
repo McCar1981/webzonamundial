@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import BarContextBanner from "@/components/bars/BarContextBanner";
+import { BarContextProvider } from "@/components/bars/BarContextProvider";
 import { getBarContext, barThemeCssVars } from "@/lib/bars/context";
 
 /**
@@ -35,10 +36,14 @@ export default async function AppGroupLayout({ children }: { children: React.Rea
 
   // Con contexto de bar: banner de marca + paleta del bar inyectada como
   // variables CSS, que los módulos de /app adoptan (fondos, acentos y CTAs).
+  // El provider expone slug+nombre a los módulos cliente para conservar el
+  // lenguaje de la peña ("Predicciones de la peña", "...para [Nombre]").
   return (
-    <div style={barThemeCssVars(ctx.theme)}>
-      <BarContextBanner bar={ctx.bar} theme={ctx.theme} />
-      {children}
-    </div>
+    <BarContextProvider value={{ slug: ctx.bar.slug, name: ctx.bar.name }}>
+      <div style={barThemeCssVars(ctx.theme)}>
+        <BarContextBanner bar={ctx.bar} theme={ctx.theme} />
+        {children}
+      </div>
+    </BarContextProvider>
   );
 }

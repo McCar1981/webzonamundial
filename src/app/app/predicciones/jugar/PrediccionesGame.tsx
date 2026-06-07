@@ -5,6 +5,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import { useBarContext } from "@/components/bars/BarContextProvider";
 import { MATCHES, type Match } from "@/data/matches";
 import { SELECCIONES } from "@/data/selecciones";
 import { etToDate } from "@/lib/bracket/match-time";
@@ -685,14 +686,10 @@ function UserSummaryBar() {
 // Hero compacto: título de sección + subtítulo + pill de disponibilidad. Sustituye
 // al hero grande con imagen para que el partido destacado quede más arriba.
 function CompactHero({ count, pending }: { count: number; pending: number }) {
-  // Solo en contexto de bar (cookie zm_bar) mostramos el acceso al ranking de la
-  // porra. En ZM normal no aparece. Se lee tras montar para no romper la
-  // hidratación (el servidor no conoce la cookie del navegador).
-  const [barSlug, setBarSlug] = useState<string | null>(null);
-  useEffect(() => {
-    const m = document.cookie.match(/(?:^|; )zm_bar=([^;]+)/);
-    setBarSlug(m ? decodeURIComponent(m[1]) : null);
-  }, []);
+  // En contexto de peña (provider del layout) adaptamos el lenguaje a la peña
+  // del bar y mostramos el acceso a su ranking. En ZM normal no aparece nada de
+  // esto y los textos son los genéricos.
+  const barCtx = useBarContext();
 
   return (
     <section className="pj-wrap" style={{ paddingTop: 8, paddingBottom: 2 }}>
@@ -704,11 +701,11 @@ function CompactHero({ count, pending }: { count: number; pending: number }) {
         <div aria-hidden style={{ position: "absolute", top: -60, right: -40, width: 170, height: 170, borderRadius: "50%", background: "radial-gradient(circle, color-mix(in srgb, var(--zm-accent, #c9a84c) 14%, transparent), transparent 70%)", pointerEvents: "none" }} />
         <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10 }}>
           <h1 style={{ fontSize: 20, fontWeight: 900, lineHeight: 1.05, margin: 0, display: "flex", alignItems: "center", gap: 8 }}>
-            <Sparkles size={19} color={GOLD2} /> Predicciones
+            <Sparkles size={19} color={GOLD2} /> {barCtx ? "Predicciones de la peña" : "Predicciones"}
           </h1>
-          {barSlug && (
+          {barCtx && (
             <Link
-              href={`/b/${barSlug}/ranking`}
+              href={`/b/${barCtx.slug}/ranking`}
               style={{
                 flexShrink: 0, display: "inline-flex", alignItems: "center", gap: 5,
                 textDecoration: "none", fontWeight: 800, fontSize: 12.5,
@@ -716,15 +713,17 @@ function CompactHero({ count, pending }: { count: number; pending: number }) {
                 borderRadius: 99, padding: "6px 12px",
               }}
             >
-              <Trophy size={13} /> Ranking
+              <Trophy size={13} /> Ranking de la peña
             </Link>
           )}
         </div>
-        <p style={{ fontSize: 12.5, color: MID, margin: "3px 0 0", lineHeight: 1.4 }}>Completa tus pronósticos y suma puntos.</p>
+        <p style={{ fontSize: 12.5, color: MID, margin: "3px 0 0", lineHeight: 1.4 }}>
+          {barCtx ? `Completa tus pronósticos y suma puntos para ${barCtx.name}.` : "Completa tus pronósticos y suma puntos."}
+        </p>
         {count > 0 && (
           <div style={{ marginTop: 9, display: "flex", flexWrap: "wrap", gap: 7 }}>
             <span style={{ display: "inline-flex", alignItems: "center", gap: 5, background: "color-mix(in srgb, var(--zm-accent, #c9a84c) 12%, transparent)", border: `1px solid color-mix(in srgb, ${GOLD} 33%, transparent)`, color: GOLD2, borderRadius: 99, padding: "4px 10px", fontSize: 11.5, fontWeight: 800 }}>
-              <Globe size={12} /> {count} {count === 1 ? "partido disponible" : "partidos disponibles"}
+              <Globe size={12} /> {count} {count === 1 ? "partido para sumar puntos" : "partidos para sumar puntos"}
             </span>
             {pending > 0 && (
               <span style={{ display: "inline-flex", alignItems: "center", gap: 5, background: "rgba(255,255,255,0.05)", border: CARD_BORDER, color: MID, borderRadius: 99, padding: "4px 10px", fontSize: 11.5, fontWeight: 700 }}>
@@ -839,6 +838,7 @@ function FeaturedMatch({ m, onPick, pulse, predicted, typesTotal }: {
   m: Match; onPick: (id: string) => void; pulse: ActivityPulse | null; predicted: number; typesTotal: number;
 }) {
   const t = tierOf(m);
+  const barCtx = useBarContext();
   const [split, setSplit] = useState<WinnerSplit | null>(null);
 
   useEffect(() => {
@@ -881,7 +881,10 @@ function FeaturedMatch({ m, onPick, pulse, predicted, typesTotal }: {
           <span style={pillTag}>Grupo {m.g}</span>
           <span style={pillTag}><Calendar size={12} /> {fmtKickoff(m)}</span>
           <span style={{ ...pillTag, color: TIER_COLOR[t.label], borderColor: `${TIER_COLOR[t.label]}55` }}>
-            <TierIcon label={t.label} size={13} /> ×{t.multiplier.toFixed(2)} · {tierMood(t.multiplier)}
+            <TierIcon label={t.label} size={13} />{" "}
+            {barCtx
+              ? (t.multiplier > 1.2 ? "Partido con puntos extra" : "Bonus de puntos")
+              : <>×{t.multiplier.toFixed(2)} · {tierMood(t.multiplier)}</>}
           </span>
           {isMostPlayed && (
             <span style={{ ...pillTag, color: "var(--zm-ink, #1a1206)", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, borderColor: GOLD, fontWeight: 800 }}>
@@ -914,6 +917,13 @@ function FeaturedMatch({ m, onPick, pulse, predicted, typesTotal }: {
             ? <><CheckCircle2 size={14} /> Predicción completa · {typesTotal}/{typesTotal} tipos</>
             : <><Clock size={13} /> Progreso {predicted}/{typesTotal} tipos pendientes</>}
         </div>
+
+        {/* Microcopy de peña: deja claro que esta predicción suma a la peña del bar */}
+        {barCtx && (
+          <div style={{ position: "relative", marginTop: 10, textAlign: "center", color: GOLD2, fontSize: 12, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}>
+            <Trophy size={13} /> Esta predicción suma puntos para la peña de {barCtx.name}
+          </div>
+        )}
 
         {/* CTA principal de la pantalla */}
         <button onClick={() => onPick(String(m.i))} className="pj-cta" style={featuredBtn} aria-label={`Predecir ahora ${m.h} contra ${m.a}`}>
@@ -996,6 +1006,7 @@ const AMBER = "#f59e0b";
 function MatchCard({ m, onPick, predicted, typesTotal }: { m: Match; onPick: (id: string) => void; predicted: number; typesTotal: number }) {
   const t = tierOf(m);
   const tierColor = TIER_COLOR[t.label];
+  const barCtx = useBarContext();
 
   // Estado del usuario en este partido.
   const state: "play" | "partial" | "done" =
@@ -1029,7 +1040,9 @@ function MatchCard({ m, onPick, predicted, typesTotal }: { m: Match; onPick: (id
 
       {/* Fila inferior: mood (recompensa) + estado/acción */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: 12 }}>
-        <span style={{ fontSize: 11, color: tierColor, fontWeight: 700 }}>{tierMood(t.multiplier)}</span>
+        <span style={{ fontSize: 11, color: tierColor, fontWeight: 700 }}>
+          {barCtx ? (t.multiplier > 1.2 ? "Puntos extra" : "Suma puntos") : tierMood(t.multiplier)}
+        </span>
         {state === "done" ? (
           <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 800, color: GREEN, border: `1px solid ${GREEN}66`, background: "rgba(34,197,94,0.12)", borderRadius: 99, padding: "5px 11px" }}>
             <Check size={13} /> Ya predicho

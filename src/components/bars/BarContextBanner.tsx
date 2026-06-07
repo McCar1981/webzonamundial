@@ -77,7 +77,7 @@ export default function BarContextBanner({ bar, theme: t }: { bar: BarRow; theme
               letterSpacing: 0.8,
             }}
           >
-            <Trophy size={11} /> Estás jugando la porra de
+            <Trophy size={11} /> Estás jugando en la peña de
           </div>
           <div
             style={{
@@ -91,9 +91,22 @@ export default function BarContextBanner({ bar, theme: t }: { bar: BarRow; theme
           >
             {bar.name}
           </div>
+          <div
+            style={{
+              color: t.textMuted,
+              fontSize: 10.5,
+              lineHeight: 1.2,
+              marginTop: 1,
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }}
+          >
+            Tus predicciones suman puntos para el ranking del bar.
+          </div>
         </div>
 
-        {/* Volver a la porra del bar */}
+        {/* Volver a la peña del bar */}
         <Link
           href={`/b/${bar.slug}`}
           style={{
@@ -110,7 +123,7 @@ export default function BarContextBanner({ bar, theme: t }: { bar: BarRow; theme
             flexShrink: 0,
           }}
         >
-          <ArrowLeft size={13} /> Volver a la porra
+          <ArrowLeft size={13} /> Volver a la peña
         </Link>
 
         {/* Salir del contexto de bar (limpia la cookie) */}

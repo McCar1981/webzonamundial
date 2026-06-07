@@ -347,13 +347,13 @@ export default function FantasyGame() {
             {creador && (
               <span
                 title={`Fantasy de ${creador.nombre}`}
-                style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "3px 10px 3px 3px", borderRadius: 999, border: `1px solid ${creador.colorPrimario}66`, background: `${creador.colorPrimario}1f`, whiteSpace: "nowrap" }}
+                style={{ display: "inline-flex", alignItems: "center", gap: 9, padding: "4px 14px 4px 4px", borderRadius: 999, border: `1px solid ${creador.colorPrimario}66`, background: `${creador.colorPrimario}1f`, whiteSpace: "nowrap" }}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={creador.imagen} alt={creador.nombre} width={22} height={22} style={{ width: 22, height: 22, borderRadius: "50%", objectFit: "cover", border: `1.5px solid ${creador.colorPrimario}` }} />
-                <span style={{ display: "inline-flex", flexDirection: "column", lineHeight: 1 }}>
-                  <span style={{ fontSize: 8, fontWeight: 800, letterSpacing: 0.6, color: creador.colorSecundario, textTransform: "uppercase" }}>Fantasy de</span>
-                  <span style={{ fontSize: 12, fontWeight: 800, color: "#fff" }}>{creador.nombre}</span>
+                <img src={creador.imagen} alt={creador.nombre} width={32} height={32} style={{ width: 32, height: 32, borderRadius: "50%", objectFit: "cover", border: `2px solid ${creador.colorPrimario}` }} />
+                <span style={{ display: "inline-flex", flexDirection: "column", lineHeight: 1.1 }}>
+                  <span style={{ fontSize: 9.5, fontWeight: 800, letterSpacing: 0.7, color: creador.colorSecundario, textTransform: "uppercase" }}>Fantasy de</span>
+                  <span style={{ fontSize: 15, fontWeight: 800, color: "#fff" }}>{creador.nombre}</span>
                 </span>
               </span>
             )}

@@ -97,7 +97,7 @@ export default async function BarCartelPage({
             </div>
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: 8, color: t.primary, fontWeight: 800, fontSize: 15, textTransform: "uppercase", letterSpacing: 2 }}>
-                <Trophy size={18} /> Porra del Mundial 2026
+                <Trophy size={18} /> Peña Mundialista 2026
               </div>
               <h1 style={{ fontSize: 40, fontWeight: 900, margin: "4px 0 0", lineHeight: 1.05 }}>{bar.name}</h1>
             </div>
@@ -115,7 +115,7 @@ export default async function BarCartelPage({
           {/* QR */}
           <div style={{ marginTop: 40, padding: 18, background: "#fff", borderRadius: 24, border: `4px solid ${t.primary}` }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={qrDataUrl} alt="QR de la porra" style={{ width: 340, height: 340, display: "block" }} />
+            <img src={qrDataUrl} alt="QR de la peña" style={{ width: 340, height: 340, display: "block" }} />
           </div>
           <div style={{ marginTop: 18, textAlign: "center" }}>
             <div style={{ fontSize: 26, fontWeight: 900 }}>Escanea con la cámara y entra</div>

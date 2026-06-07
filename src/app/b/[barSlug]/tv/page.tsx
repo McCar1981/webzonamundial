@@ -68,7 +68,7 @@ export default async function BarTvPage({ params }: { params: { barSlug: string 
         </div>
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: "0.8vw", color: t.primary, fontWeight: 800, fontSize: "1.4vw", textTransform: "uppercase", letterSpacing: 2 }}>
-            <Trophy size={22} /> Porra del Mundial 2026
+            <Trophy size={22} /> Peña Mundialista 2026
           </div>
           <h1 style={{ fontSize: "3vw", fontWeight: 900, margin: "0.3vh 0 0", lineHeight: 1 }}>{bar.name}</h1>
         </div>
@@ -78,9 +78,9 @@ export default async function BarTvPage({ params }: { params: { barSlug: string 
         {/* Columna izquierda: QR + premio */}
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "2vh", width: "32%" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={qrDataUrl} alt="QR de la porra" style={{ width: "min(26vw, 42vh)", height: "auto", borderRadius: 16, border: `4px solid ${t.primary}`, background: "#fff" }} />
+          <img src={qrDataUrl} alt="QR de la peña" style={{ width: "min(26vw, 42vh)", height: "auto", borderRadius: 16, border: `4px solid ${t.primary}`, background: "#fff" }} />
           <div style={{ textAlign: "center" }}>
-            <div style={{ fontSize: "1.6vw", fontWeight: 900 }}>Escanea y entra en la porra</div>
+            <div style={{ fontSize: "1.6vw", fontWeight: 900 }}>Escanea y únete a la peña</div>
             <div style={{ fontSize: "1.2vw", color: t.secondary, fontWeight: 700, marginTop: "0.5vh" }}>{shortUrl}</div>
           </div>
           {mainPrize && (

@@ -29,9 +29,9 @@ export default function BarInactiveScreen({ bar }: { bar: BarRow }) {
 
         <div style={{ background: t.surface, border: `1px solid ${t.border}`, borderRadius: t.cardRadius, padding: "26px 22px", marginTop: 16 }}>
           <Clock size={28} color={t.secondary} style={{ margin: "0 auto" }} />
-          <h1 style={{ fontSize: 21, fontWeight: 900, margin: "12px 0 6px" }}>Esta porra todavía no está activa</h1>
+          <h1 style={{ fontSize: 21, fontWeight: 900, margin: "12px 0 6px" }}>Esta peña todavía no está activa</h1>
           <p style={{ color: t.textMuted, fontSize: 14.5, lineHeight: 1.55, margin: 0 }}>
-            {bar.name} aún está preparando su porra del Mundial. Vuelve a escanear el QR en un rato:
+            {bar.name} aún está preparando su peña del Mundial. Vuelve a escanear el QR en un rato:
             cuando esté lista, podrás predecir los partidos y competir por los premios del local.
           </p>
         </div>

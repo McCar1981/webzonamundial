@@ -109,6 +109,6 @@ export async function buildKitData(
     shortUrl: qrTarget.replace(/^https?:\/\//, ""),
     prizeTitle: mainPrize?.title ?? null,
     prizeDescription: mainPrize?.description ?? null,
-    ctaLabel: bar.cta_label || "Entrar en la porra",
+    ctaLabel: bar.cta_label || "Unirme a la peña",
   };
 }

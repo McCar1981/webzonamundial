@@ -353,8 +353,8 @@ export async function sendBarPlanConfirmationEmail(opts: {
     to: opts.to,
     subject: `Plan ${opts.planName} activado · ${opts.barName}`,
     html: brandedEmail({
-      preheader: `La porra de ${opts.barName} ya está activa con el plan ${opts.planName}.`,
-      heading: 'Tu porra de bar está activa',
+      preheader: `La peña de ${opts.barName} ya está activa con el plan ${opts.planName}.`,
+      heading: 'Tu peña de bar está activa',
       bodyHtml: `
         <p>El pago de <strong>${escapeHtml(opts.amount)} ${escapeHtml(opts.currency.toUpperCase())}</strong> para
         <strong>${escapeHtml(opts.barName)}</strong> se ha procesado correctamente.</p>
@@ -363,7 +363,7 @@ export async function sendBarPlanConfirmationEmail(opts: {
           <li>Publicar la página de tu bar y compartir el QR.</li>
           <li>Configurar premios y personalizar el aspecto.</li>
           <li>Abrir la pantalla TV para el local.</li>
-          <li>Ver el ranking y las estadísticas de tu porra.</li>
+          <li>Ver el ranking y las estadísticas de tu peña.</li>
         </ul>
         <p style="margin-top:18px;">Gracias por confiar en ZonaMundial para llenar tu bar en días de partido.</p>
         ${receiptLine}

@@ -18,10 +18,10 @@ export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: { barSlug: string } }): Promise<Metadata> {
   const bar = await getBarBySlug(params.barSlug);
-  if (!bar) return { title: "Porra no encontrada · ZonaMundial" };
+  if (!bar) return { title: "Peña no encontrada · ZonaMundial" };
   return {
-    title: `Porra del Mundial · ${bar.name}`,
-    description: bar.description || `Entra en la porra del Mundial de ${bar.name}. Predice, compite y gana premios.`,
+    title: `Peña Mundialista · ${bar.name}`,
+    description: bar.description || `Únete a la peña mundialista de ${bar.name}. Predice, compite y gana premios.`,
     robots: { index: false, follow: true },
   };
 }
@@ -74,10 +74,10 @@ export default async function BarPublicPage({
         {/* Nombre de la porra + bienvenida */}
         <section style={{ marginBottom: 16 }}>
           <div style={{ display: "inline-flex", alignItems: "center", gap: 6, color: t.primary, fontWeight: 800, fontSize: 12, textTransform: "uppercase", letterSpacing: 1 }}>
-            <Trophy size={14} /> Porra del Mundial 2026
+            <Trophy size={14} /> Peña Mundialista 2026
           </div>
           <p style={{ color: t.textMuted, fontSize: 15, lineHeight: 1.5, margin: "8px 0 0" }}>
-            {bar.welcome_message || `Predice los partidos del Mundial, compite con la clientela de ${bar.name} y gana premios.`}
+            {bar.welcome_message || `Predice los partidos del Mundial, compite con la peña de ${bar.name} y gana premios.`}
           </p>
         </section>
 
@@ -94,7 +94,7 @@ export default async function BarPublicPage({
 
         {/* CTA principal */}
         <section style={{ marginBottom: 10 }}>
-          <JoinButton slug={bar.slug} qr={searchParams.qr} autoJoin={searchParams.join === "1"} label={bar.cta_label} primary={t.primary} primaryInk={t.primaryInk} radius={t.buttonRadius} />
+          <JoinButton slug={bar.slug} qr={searchParams.qr} autoJoin={searchParams.join === "1"} label={bar.cta_label || "Unirme a la peña"} primary={t.primary} primaryInk={t.primaryInk} radius={t.buttonRadius} />
         </section>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, color: t.textMuted, fontSize: 13, marginBottom: 20 }}>
           <Users size={14} /> {count} {count === 1 ? "participante" : "participantes"}
@@ -110,7 +110,7 @@ export default async function BarPublicPage({
           </div>
           {top3.length === 0 ? (
             <div style={{ background: t.surface, border: `1px solid ${t.border}`, borderRadius: t.cardRadius, padding: 16, color: t.textMuted, fontSize: 14, textAlign: "center" }}>
-              Aún no hay participantes. ¡Sé el primero en entrar en la porra!
+              Aún no hay participantes. ¡Sé el primero en unirte a la peña!
             </div>
           ) : (
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
@@ -129,7 +129,7 @@ export default async function BarPublicPage({
         <section style={{ marginBottom: 22 }}>
           <h2 style={{ fontSize: 15, fontWeight: 800, margin: "0 0 10px" }}>Cómo funciona</h2>
           <ol style={{ margin: 0, paddingLeft: 18, color: t.textMuted, fontSize: 14, lineHeight: 1.7 }}>
-            <li>Entra en la porra con tu cuenta de ZonaMundial.</li>
+            <li>Únete a la peña con tu cuenta de ZonaMundial.</li>
             <li>Predice los partidos del Mundial desde tu móvil.</li>
             <li>Suma puntos y sube en la clasificación del bar.</li>
             <li>El premio lo entrega {bar.name} según sus reglas.</li>
@@ -176,7 +176,7 @@ export default async function BarPublicPage({
             <Link href="/legal/privacidad" style={{ color: t.textMuted, textDecoration: "none" }}>Privacidad</Link>
           </div>
           <p style={{ color: t.textMuted, fontSize: 10.5, lineHeight: 1.5, marginTop: 12, opacity: 0.8 }}>
-            Esta porra es una dinámica gratuita de predicciones y puntos. No implica apuestas ni pago por participar.
+            Esta peña es una dinámica gratuita de predicciones y puntos. No implica apuestas ni pago por participar.
             Los premios son ofrecidos y gestionados por el establecimiento.
           </p>
         </footer>

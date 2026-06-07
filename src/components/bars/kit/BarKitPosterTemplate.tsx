@@ -129,7 +129,7 @@ export default function BarKitPosterTemplate({
           <div style={{ width: "100%", height: "100%" }} dangerouslySetInnerHTML={{ __html: qrSvg }} />
         ) : qrImageUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={qrImageUrl} alt="QR de la porra" style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
+          <img src={qrImageUrl} alt="QR de la peña" style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
         ) : null}
       </div>
 

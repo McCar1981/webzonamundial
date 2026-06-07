@@ -72,7 +72,7 @@ export default function KitPanel({
           <div style={{ display: "inline-flex", alignItems: "center", gap: 8, color: GOLD, fontWeight: 800, fontSize: 12, textTransform: "uppercase", letterSpacing: 2 }}>
             <Trophy size={14} /> Kit de activación
           </div>
-          <h1 style={{ fontSize: 30, fontWeight: 900, margin: "8px 0 0", lineHeight: 1.1 }}>Tu porra ya está lista</h1>
+          <h1 style={{ fontSize: 30, fontWeight: 900, margin: "8px 0 0", lineHeight: 1.1 }}>Tu peña ya está lista</h1>
           <p style={{ color: MID, fontSize: 15, margin: "8px 0 0", maxWidth: 560, lineHeight: 1.5 }}>
             Descarga tus carteles, compártelos en redes y abre la pantalla TV para empezar a recibir participantes.
           </p>
@@ -82,10 +82,10 @@ export default function KitPanel({
         {!hasActivePlan && (
           <div style={{ marginTop: 20, background: "rgba(201,168,76,0.08)", border: "1px solid rgba(201,168,76,0.3)", borderRadius: 14, padding: "14px 16px" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8, color: GOLD2, fontWeight: 800, fontSize: 14 }}>
-              <Lock size={15} /> Activa tu plan para publicar la porra
+              <Lock size={15} /> Activa tu plan para publicar la peña
             </div>
             <p style={{ color: MID, fontSize: 13, margin: "6px 0 0", lineHeight: 1.5 }}>
-              Puedes previsualizar y descargar los materiales básicos. Para publicar tu porra y desbloquear
+              Puedes previsualizar y descargar los materiales básicos. Para publicar tu peña y desbloquear
               los materiales premium, activa un plan.
             </p>
             <Link href="/bares/precios" style={{ display: "inline-flex", alignItems: "center", gap: 6, marginTop: 10, background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#1A1208", fontWeight: 800, fontSize: 13, padding: "8px 14px", borderRadius: 999, textDecoration: "none" }}>
@@ -145,7 +145,7 @@ export default function KitPanel({
           <h2 style={{ fontSize: 14, fontWeight: 800, color: MID, textTransform: "uppercase", letterSpacing: 1.5 }}>QR y enlace</h2>
           <div style={{ marginTop: 12, background: BG2, border: BORDER, borderRadius: 14, padding: 16 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8, color: TEXT, fontWeight: 800, fontSize: 14 }}>
-              <QrCode size={16} color={GOLD} /> Código QR de la porra
+              <QrCode size={16} color={GOLD} /> Código QR de la peña
             </div>
             <div style={{ marginTop: 4, fontSize: 13, color: GOLD2, fontWeight: 700, wordBreak: "break-all" }}>{shortUrl}</div>
             <div style={{ marginTop: 12, display: "flex", flexWrap: "wrap", gap: 8 }}>

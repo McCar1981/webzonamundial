@@ -114,7 +114,7 @@ function Kicker({ u }: { u: number }) {
       display: "inline-flex", alignItems: "center", gap: u * 0.8, color: GOLD,
       fontWeight: 800, fontSize: u * 2, textTransform: "uppercase", letterSpacing: u * 0.25,
     }}>
-      <Trophy size={u * 2.4} /> Porra del Mundial 2026
+      <Trophy size={u * 2.4} /> Peña Mundialista 2026
     </div>
   );
 }
@@ -127,7 +127,7 @@ function QrPanel({ data, u, qrSize }: { data: KitData; u: number; qrSize: number
       display: "inline-flex",
     }}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={data.qrDataUrl} alt="QR de la porra" width={qrSize} height={qrSize} style={{ display: "block", borderRadius: u * 0.4 }} />
+      <img src={data.qrDataUrl} alt="QR de la peña" width={qrSize} height={qrSize} style={{ display: "block", borderRadius: u * 0.4 }} />
     </div>
   );
 }

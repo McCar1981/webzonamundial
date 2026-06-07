@@ -8,8 +8,9 @@
 // un saldo propio. Así "+X Fútcoins" significa lo mismo en toda la app y el saldo
 // que ve el usuario es el mismo en el hub, en /cuenta y dentro de cada módulo.
 //
-// Las TASAS (cuántas Fútcoins por acción) viven en earn.ts; este módulo solo se
-// ocupa de PERSISTIR el abono en la fuente de verdad.
+// Las TASAS de INGRESO (cuántas Fútcoins por acción) viven en earn.ts y las de
+// GASTO (precios de los sumideros) en spend.ts; este módulo solo PERSISTE el
+// abono (grantCoins) y el cobro (spendCoins) en la fuente de verdad.
 
 import { adminClient } from "@/lib/predictions/admin";
 import { addSeasonXp } from "@/lib/predictions/gamification-store";
@@ -23,6 +24,15 @@ export interface WalletGrant {
   coins: number;
   /** XP total resultante. */
   xp: number;
+}
+
+export interface WalletSpend {
+  /** true si el cobro se aplicó; false si el saldo era insuficiente. */
+  ok: boolean;
+  /** Saldo de Fútcoins resultante (el actual, sin cambios, si ok=false). */
+  coins: number;
+  /** Código de error cuando ok=false (insufficient_coins). */
+  error?: "insufficient_coins";
 }
 
 /**
@@ -66,4 +76,45 @@ export async function grantCoins(
 
   if (x > 0 && opts.seasonXp !== false) await addSeasonXp(uid, x).catch(() => {});
   return { coinsAwarded: c, xpAwarded: x, coins: newCoins, xp: newXp };
+}
+
+/**
+ * COBRA Fútcoins de la billetera única (el reverso de grantCoins). Es la PUERTA
+ * ÚNICA de gasto del universo ZM: cualquier sumidero (boosts/cosméticos de
+ * predicciones, pistas de trivia, chips extra de fantasy, refills de carrera…)
+ * debe debitar AQUÍ en vez de tocar profiles.coins por su cuenta.
+ *
+ * El cobro es ATÓMICO y SEGURO ante concurrencia vía la RPC spend_wallet
+ * (migración 2026-18): la comprobación de saldo y la deducción ocurren en la
+ * misma sentencia, así dos compras simultáneas no pueden sobregastar (saldo
+ * negativo). Si el saldo no alcanza, devuelve ok=false sin cobrar nada.
+ *
+ * IMPORTANTE: el GASTO no toca el XP ni la pista de temporada — el XP es
+ * progresión y no se "consume". Solo se mueven Fútcoins.
+ */
+export async function spendCoins(uid: string, coins: number): Promise<WalletSpend> {
+  const amount = Math.max(0, Math.round(coins));
+  const admin = adminClient();
+
+  const { data: rpc, error: rpcErr } = await admin.rpc("spend_wallet", {
+    p_uid: uid,
+    p_amount: amount,
+  });
+  const row = Array.isArray(rpc) ? (rpc[0] as { coins?: number } | undefined) : null;
+  if (!rpcErr) {
+    // RPC aplicada: si devolvió fila, el cobro se hizo; si no, saldo insuficiente.
+    if (row && typeof row.coins === "number") return { ok: true, coins: row.coins };
+    const { data } = await admin.from("profiles").select("coins").eq("id", uid).maybeSingle();
+    const cur = ((data ?? {}) as { coins?: number }).coins ?? 0;
+    return { ok: false, coins: cur, error: "insufficient_coins" };
+  }
+
+  // Fallback leer-comprobar-escribir (no atómico) por si la migración 2026-18 aún
+  // no se aplicó. Conserva la semántica: nunca deja el saldo negativo.
+  const { data } = await admin.from("profiles").select("coins").eq("id", uid).maybeSingle();
+  const cur = ((data ?? {}) as { coins?: number }).coins ?? 0;
+  if (cur < amount) return { ok: false, coins: cur, error: "insufficient_coins" };
+  const newCoins = cur - amount;
+  await admin.from("profiles").update({ coins: newCoins }).eq("id", uid);
+  return { ok: true, coins: newCoins };
 }

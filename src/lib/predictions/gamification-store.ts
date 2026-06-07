@@ -49,6 +49,7 @@ import { bracketPointsByUser } from "./bracket-store";
 import { cosmeticsByUser } from "./cosmetics-store";
 import type { CosmeticDisplay } from "./cosmetics";
 import { recordDuelResult } from "./rivalries-store";
+import { spendCoins, grantCoins } from "@/lib/economy/wallet";
 
 interface ProfileGam {
   xp: number;
@@ -584,12 +585,17 @@ export async function buyBoost(uid: string, boostId: string): Promise<BuyResult>
   const def = boostDef(boostId);
   if (!def) return { ok: false, error: "boost_not_found" };
   const admin = adminClient();
-  const prof = await readProfile(uid);
-  if (prof.coins < def.cost) return { ok: false, error: "insufficient_coins", coins: prof.coins };
-  const coins = prof.coins - def.cost;
-  await admin.from("profiles").update({ coins }).eq("id", uid);
-  await admin.from("prediction_boosts").insert({ user_id: uid, boost_id: boostId });
-  return { ok: true, coins };
+  // Cobro por la PUERTA ÚNICA de gasto (atómico, sin sobregasto). Otorgamos el
+  // boost solo si el cobro tuvo éxito; si la inserción falla, devolvemos las
+  // Fútcoins para no cobrar sin entregar.
+  const spent = await spendCoins(uid, def.cost);
+  if (!spent.ok) return { ok: false, error: "insufficient_coins", coins: spent.coins };
+  const { error } = await admin.from("prediction_boosts").insert({ user_id: uid, boost_id: boostId });
+  if (error) {
+    await grantCoins(uid, def.cost, 0, { seasonXp: false }).catch(() => {});
+    return { ok: false, error: "buy_failed", coins: spent.coins + def.cost };
+  }
+  return { ok: true, coins: spent.coins };
 }
 
 export function boostCatalog() {

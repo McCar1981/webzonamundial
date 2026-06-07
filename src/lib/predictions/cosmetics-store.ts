@@ -6,10 +6,12 @@
 // autentican primero y pasan el userId verificado.
 //
 // NO importa store.ts ni gamification-store.ts (evita ciclos): solo admin + la
-// lógica pura de cosmetics.ts / gamification.ts.
+// lógica pura de cosmetics.ts / gamification.ts. El COBRO va por la puerta única
+// del universo (spendCoins de economy/wallet), igual que cualquier otro sumidero.
 
 import { adminClient } from "./admin";
 import { levelForXp } from "./gamification";
+import { spendCoins, grantCoins } from "@/lib/economy/wallet";
 import {
   COSMETICS, COSMETIC_KINDS, EQUIP_COLUMN, canBuyCosmetic, cosmeticDef,
   resolveCosmetics, type CosmeticDisplay, type CosmeticKind,
@@ -109,18 +111,21 @@ export async function buyCosmetic(uid: string, cosmeticId: string): Promise<Cosm
 
   const owned = await readOwned(uid);
   if (owned.has(def.id)) return { ok: false, error: "already_owned" };
-  if (prof.coins < def.cost) return { ok: false, error: "insufficient_coins", coins: prof.coins };
 
-  // Otorgar primero (PK protege contra doble compra concurrente); si ya existía
-  // la fila, no se cobra.
+  // Cobro ATÓMICO por la puerta única (anti-sobregasto en compras concurrentes).
+  const spent = await spendCoins(uid, def.cost);
+  if (!spent.ok) return { ok: false, error: "insufficient_coins", coins: spent.coins };
+
+  // Registrar la propiedad (PK protege contra doble compra concurrente). Si la
+  // fila ya existía, devolvemos las Fútcoins cobradas: no se paga dos veces.
   const { error: ownErr } = await admin
     .from("prediction_cosmetics_owned")
     .insert({ user_id: uid, cosmetic_id: def.id });
-  if (ownErr) return { ok: false, error: "already_owned" };
-
-  const coins = prof.coins - def.cost;
-  await admin.from("profiles").update({ coins }).eq("id", uid);
-  return { ok: true, coins };
+  if (ownErr) {
+    await grantCoins(uid, def.cost, 0, { seasonXp: false }).catch(() => {});
+    return { ok: false, error: "already_owned", coins: spent.coins + def.cost };
+  }
+  return { ok: true, coins: spent.coins };
 }
 
 export interface CosmeticEquipResult { ok: boolean; error?: string }

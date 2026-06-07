@@ -19,7 +19,7 @@ import { BG, BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED, flagUrl } from "./fx";
 import { SELECCIONES } from "@/data/selecciones";
 import { FANTASY_ROSTERS, type RosterPlayer } from "@/data/fantasy-rosters";
 import { classicLabel } from "@/lib/modo-carrera/classics";
-import { Kit, Confetti } from "./Visuals";
+import { Kit, Confetti, Coach } from "./Visuals";
 import {
   TACTICAL_PLANS,
   planById,
@@ -380,6 +380,7 @@ export default function MatchLive({
         @keyframes mlDecHdr { 0% { transform: translateY(-14px) scale(.9); opacity: 0; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
         @keyframes mlDecCard { 0% { transform: translateX(-22px); opacity: 0; } 100% { transform: translateX(0); opacity: 1; } }
         @keyframes mlDecBorder { 0%,100% { box-shadow: 0 24px 70px rgba(0,0,0,0.65), 0 0 0 0 ${GOLD}00; } 50% { box-shadow: 0 24px 70px rgba(0,0,0,0.65), 0 0 26px 2px ${GOLD}55; } }
+        @keyframes mcCoachIn { 0% { transform: translateY(28px) scale(.94); opacity: 0; } 100% { transform: translateY(0) scale(1); opacity: .92; } }
       `}</style>
 
       {phase === "fulltime" && outcome === "V" && <Confetti pieces={56} />}
@@ -478,8 +479,11 @@ export default function MatchLive({
               ))}
             </div>
 
-            <div style={{ fontSize: 12, fontWeight: 800, letterSpacing: 0.6, textTransform: "uppercase", color: GOLD, marginBottom: 10 }}>
-              Elige tu plan de partido
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
+              <Coach pose="neutral" size={56} />
+              <div style={{ fontSize: 12, fontWeight: 800, letterSpacing: 0.6, textTransform: "uppercase", color: GOLD }}>
+                Elige tu plan de partido
+              </div>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               {TACTICAL_PLANS.map((p) => {
@@ -550,6 +554,7 @@ export default function MatchLive({
         {phase === "decision" && (
           <>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12, margin: "6px 0 6px", animation: "mlDecHdr .45s cubic-bezier(.2,.9,.3,1.3) both" }}>
+              <Coach pose="instruccion" size={64} />
               {/* Cronómetro circular de presión */}
               <div style={{ position: "relative", width: 44, height: 44, flexShrink: 0 }}>
                 <svg width="44" height="44" viewBox="0 0 44 44" style={{ transform: "rotate(-90deg)" }}>
@@ -607,6 +612,7 @@ export default function MatchLive({
         {phase === "injury" && injury && (
           <>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, margin: "6px 0 4px", animation: "mlDecHdr .45s cubic-bezier(.2,.9,.3,1.3) both" }}>
+              <Coach pose="instruccion" size={64} />
               <span style={{ display: "inline-flex", color: RED }}>
                 <MedicalCross size={22} />
               </span>
@@ -659,6 +665,7 @@ export default function MatchLive({
         {phase === "charla" && (
           <>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, margin: "6px 0 4px", animation: "mlDecHdr .45s cubic-bezier(.2,.9,.3,1.3) both" }}>
+              <Coach pose="arenga" size={64} />
               <span style={{ display: "inline-flex", color: GOLD }}>
                 <WhistleIcon size={22} />
               </span>
@@ -718,6 +725,9 @@ export default function MatchLive({
               />
             )}
             <div style={{ position: "relative", zIndex: 1 }}>
+              <div style={{ display: "flex", justifyContent: "center", marginBottom: 8 }}>
+                <Coach pose={outcome === "V" ? "celebra" : outcome === "D" ? "preocupado" : "neutral"} size={96} />
+              </div>
               <div
                 style={{
                   fontSize: outcome === "V" ? 30 : 22,

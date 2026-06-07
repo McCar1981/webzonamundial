@@ -35,6 +35,57 @@ export function Kit({ slug, size = 64, faded = false }: { slug: string; size?: n
   );
 }
 
+/** Las 5 poses del entrenador (estilo cómic). Ver ASSETS.md §4b. */
+export type CoachPose = "neutral" | "arenga" | "instruccion" | "celebra" | "preocupado";
+
+const GOLD_C = "#c9a84c";
+
+/**
+ * Retrato enmarcado del entrenador (estilo cromo dorado) para las pantallas de
+ * decisión del partido (charla, lesión, decisión 60', final). Es un elemento
+ * EN LÍNEA (sin posicionamiento absoluto), así que nunca tapa botones ni rompe el
+ * scroll del modal. Si el archivo aún no existe, TODO el marco se oculta solo
+ * (`onError` → el contenedor desaparece), igual que el patrón de `Kit`: el código
+ * referencia las 5 poses y aparecen en cuanto se sueltan en
+ * `public/img/modo-carrera/coach/`.
+ */
+export function Coach({ pose, size = 72 }: { pose: CoachPose; size?: number }) {
+  return (
+    <span
+      style={{
+        position: "relative",
+        flexShrink: 0,
+        width: size,
+        height: size,
+        borderRadius: "50%",
+        overflow: "hidden",
+        border: `2px solid ${GOLD_C}`,
+        background: "radial-gradient(circle at 50% 30%, rgba(201,168,76,0.22), rgba(6,11,20,0.6))",
+        boxShadow: `0 6px 18px rgba(0,0,0,0.45), 0 0 0 4px rgba(201,168,76,0.12)`,
+        animation: "mcCoachIn .5s cubic-bezier(.2,.9,.3,1.25) both",
+      }}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={`/img/modo-carrera/coach/coach-${pose}.webp`}
+        alt=""
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          objectPosition: "top center",
+          pointerEvents: "none",
+          userSelect: "none",
+        }}
+        onError={(e) => {
+          const wrap = (e.currentTarget as HTMLImageElement).parentElement;
+          if (wrap) wrap.style.display = "none";
+        }}
+      />
+    </span>
+  );
+}
+
 const CONFETTI_COLORS = ["#c9a84c", "#e8d48b", "#22c55e", "#38bdf8", "#f472b6", "#fff"];
 
 /**

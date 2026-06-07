@@ -27,7 +27,23 @@ interface MyRank {
   rank: number;
   coins: number;
   level: number;
+  country: string | null;
   total: number;
+}
+
+// Banderita por código ISO-3166 alpha-2 (lo que guarda profiles.country). Solo
+// renderiza si parece un código válido de 2 letras, para no pedir imágenes rotas.
+function Flag({ code }: { code: string | null }) {
+  if (!code || !/^[a-z]{2}$/i.test(code)) return null;
+  return (
+    <img
+      src={`https://flagcdn.com/w40/${code.toLowerCase()}.png`}
+      alt=""
+      width={24}
+      height={16}
+      style={{ borderRadius: 3, objectFit: "cover", flexShrink: 0, boxShadow: "0 1px 3px rgba(0,0,0,0.4)" }}
+    />
+  );
 }
 
 const RANK_TYPES = [
@@ -184,6 +200,7 @@ export default function RankingsPage() {
                 minWidth: 40, height: 32, padding: "0 8px", borderRadius: 8, display: "flex", alignItems: "center",
                 justifyContent: "center", fontWeight: 900, fontSize: 14, background: "rgba(201,168,76,0.18)", color: GOLD,
               }}>#{me.rank}</div>
+              <Flag code={me.country} />
               <div style={{ flex: 1 }}>
                 <div style={{ fontWeight: 700, fontSize: 15 }}>Tu posición</div>
                 <div style={{ fontSize: 12, color: DIM }}>Nivel {me.level} · de {me.total.toLocaleString()} jugadores</div>
@@ -223,6 +240,7 @@ export default function RankingsPage() {
                     background: r.avatarUrl ? `url(${r.avatarUrl}) center/cover no-repeat` : `linear-gradient(135deg,${GOLD},${GOLD2})`,
                     color: BG, fontWeight: 800, fontSize: 13, display: "flex", alignItems: "center", justifyContent: "center",
                   }} aria-hidden>{!r.avatarUrl && initial}</div>
+                  <Flag code={r.country} />
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ fontWeight: 700, fontSize: 15, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                       {name}{isMe && <span style={{ color: GOLD, fontWeight: 600 }}> · tú</span>}

@@ -38,6 +38,8 @@ export interface MyRank {
   coins: number;
   xp: number;
   level: number;
+  /** Código ISO-3166 alpha-2 (minúsculas) para la banderita; null si sin país. */
+  country: string | null;
   /** Total de jugadores con saldo > 0 (denominador del "vas #N de M"). */
   total: number;
 }
@@ -89,12 +91,13 @@ export async function getUserRank(uid: string): Promise<MyRank | null> {
   const admin = adminClient();
   const { data } = await admin
     .from("profiles")
-    .select("coins,xp")
+    .select("coins,xp,country")
     .eq("id", uid)
     .maybeSingle();
   if (!data) return null;
   const coins = (data as { coins?: number }).coins ?? 0;
   const xp = (data as { xp?: number }).xp ?? 0;
+  const country = (data as { country?: string | null }).country ?? null;
 
   // Jugadores estrictamente por encima en saldo.
   const { count: above } = await admin
@@ -121,6 +124,7 @@ export async function getUserRank(uid: string): Promise<MyRank | null> {
     coins,
     xp,
     level: levelForXp(xp),
+    country,
     total: total ?? 0,
   };
 }

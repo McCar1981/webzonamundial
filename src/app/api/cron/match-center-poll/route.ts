@@ -22,6 +22,7 @@ import { buildMeta, getFixtureId, cacheSnapshot } from "@/lib/match-center/store
 import { fetchLiveSnapshots } from "@/lib/match-center/apiFootball";
 import { processMatchPush } from "@/lib/match-center/push";
 import type { MatchMeta } from "@/lib/match-center/types";
+import { recordHeartbeat } from "@/lib/ops/store";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -150,6 +151,8 @@ export async function GET(req: Request) {
     if (budgetLeft < POLL_INTERVAL_MS + 5_000) break;
     await sleep(POLL_INTERVAL_MS);
   }
+
+  await recordHeartbeat("match-center-poll", true, { passes, cached: totalCached, pushes: totalPushes });
 
   return NextResponse.json({
     ok: true,

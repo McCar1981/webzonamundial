@@ -69,14 +69,21 @@ type Mod = {
   // Icono propio opcional. Si existe el SVG en /assets/app-icons/<x>.svg, se pinta
   // con CSS mask (se tiñe al color del tema). Si no, cae al icono inline `I`.
   iconSrc?: string;
+  // ARTE del módulo (WebP en /assets/card-backgrounds/<x>.webp). Es el protagonista
+  // visual de la card. Si falta (p.ej. álbum/penaltis aún sin arte), la card degrada
+  // con elegancia al fondo base premium sin romper el layout.
+  art?: string;
   title: string; desc: string; href?: string; cta: string; estado: Estado;
 };
 type Cat = {
   key: string; label: string; sub: string;
   tint: string; tint2: string;
-  // Fondo decorativo de categoría (capa visual interna, NO imagen cerrada).
-  // Si el .webp no existe aún, la card degrada con elegancia (base+textura+glow).
-  bg: string; bgOpacity: number;
+  // ── Ajuste fino de la imagen y el velo POR CATEGORÍA (no global) ──
+  artOpacity: number;     // opacidad base del arte (0.78–0.92)
+  artOpacityHov: number;  // opacidad del arte en hover/tap
+  ovTop: number;          // velo blanco arriba (legibilidad icono/título) 0.80–0.94
+  ovMid: number;          // velo blanco centro (descripción) 0.45–0.68
+  ovBot: number;          // velo blanco abajo (deja respirar el arte) 0.15–0.38
   // ── Tokens de tema (identidad visual fuerte por categoría) ──
   border: string;       // borde de card en reposo
   borderHov: string;    // borde de card en hover
@@ -96,17 +103,19 @@ const CATS: Cat[] = [
     label: "Jugar",
     sub: "Predice, responde trivias y suma puntos.",
     tint: "#c9a84c", tint2: "#36c98f",   // dorado + verde (reto / progreso)
-    bg: "/assets/card-backgrounds/card-bg-jugar.webp", bgOpacity: 0.5,
-    border: "rgba(80,200,120,0.34)", borderHov: "rgba(80,200,120,0.7)",
+    // Jugar = arte más protagonista (jugable, intenso). Imagen punchy.
+    artOpacity: 0.92, artOpacityHov: 1, ovTop: 0.90, ovMid: 0.56, ovBot: 0.20,
+    border: "rgba(218,190,95,0.55)", borderHov: "rgba(218,190,95,0.95)",
     glow: "rgba(80,200,120,0.5)", wash: "rgba(54,201,143,0.18)",
     ctaBg: "linear-gradient(135deg,#e8cf6a,#f3df8a)", ctaBgHov: "linear-gradient(135deg,#f0d978,#fbe79a)",
     ctaColor: "#08111f", ctaBorder: "rgba(201,168,76,0.55)", ctaShadow: "0 8px 18px rgba(201,168,76,0.45)",
     mods: [
-      { icon: "predicciones", title: "Predicciones", desc: "Acierta resultados y suma puntos.", href: "/app/predicciones", cta: "Predecir", estado: "Disponible" },
-      { icon: "trivia", title: "Trivia diaria", desc: "Responde preguntas del Mundial.", href: "/app/trivia", cta: "Responder", estado: "Disponible" },
-      { icon: "fantasy", title: "Fantasy", desc: "Arma tu equipo y compite.", href: "/app/fantasy", cta: "Ver Fantasy", estado: "Disponible" },
-      { icon: "carrera", title: "Modo Carrera", desc: "Dirige una selección como DT.", href: "/app/modo-carrera", cta: "Entrar", estado: "Nuevo" },
-      // Ocultos temporalmente hasta tenerlos listos (reactivar quitando el comentario):
+      { icon: "predicciones", art: "/assets/card-backgrounds/predicciones.webp", title: "Predicciones", desc: "Acierta resultados y suma puntos.", href: "/app/predicciones", cta: "Predecir", estado: "Disponible" },
+      { icon: "trivia", art: "/assets/card-backgrounds/trivia-diaria.webp", title: "Trivia diaria", desc: "Responde preguntas del Mundial.", href: "/app/trivia", cta: "Responder", estado: "Disponible" },
+      { icon: "fantasy", art: "/assets/card-backgrounds/fantasy.webp", title: "Fantasy", desc: "Arma tu equipo y compite.", href: "/app/fantasy", cta: "Ver Fantasy", estado: "Disponible" },
+      { icon: "carrera", art: "/assets/card-backgrounds/modo-carrera.webp", title: "Modo Carrera", desc: "Dirige una selección como DT.", href: "/app/modo-carrera", cta: "Entrar", estado: "Nuevo" },
+      // Ocultos hasta tener su arte/módulo listos. Al reactivar, añadir `art` cuando exista
+      // (sin arte la card degrada al fondo base premium sin romper el layout):
       // { icon: "album", title: "Álbum", desc: "Colecciona y completa tu álbum.", href: "/app/album", cta: "Abrir", estado: "Disponible" },
       // { icon: "penaltis", title: "Ronda de penaltis", desc: "Elige selección y gana la tanda.", cta: "Avisarme", estado: "Próximamente" },
     ],
@@ -116,17 +125,18 @@ const CATS: Cat[] = [
     label: "En vivo",
     sub: "Sigue partidos, stories y jugadas en directo.",
     tint: "#ff6b5a", tint2: "#ffa14a",   // coral + naranja (urgente / vivo)
-    bg: "/assets/card-backgrounds/card-bg-en-vivo.webp", bgOpacity: 0.46,
-    border: "rgba(255,110,90,0.34)", borderHov: "rgba(255,110,90,0.7)",
+    // En vivo = dinámico, con movimiento. Overlay algo más controlado en centro.
+    artOpacity: 0.88, artOpacityHov: 0.98, ovTop: 0.92, ovMid: 0.62, ovBot: 0.24,
+    border: "rgba(255,112,88,0.55)", borderHov: "rgba(255,112,88,0.95)",
     glow: "rgba(255,110,90,0.5)", wash: "rgba(255,120,90,0.18)",
     ctaBg: "linear-gradient(135deg, rgba(255,120,90,0.30), rgba(45,210,230,0.24))",
     ctaBgHov: "linear-gradient(135deg, rgba(255,120,90,0.52), rgba(45,210,230,0.42))",
     ctaColor: "#22120c", ctaBorder: "rgba(255,120,90,0.5)", ctaShadow: "0 8px 18px rgba(255,110,90,0.4)",
     mods: [
-      { icon: "matchcenter", title: "Match Center", desc: "Cada partido en vivo con estadísticas.", href: "/app/matchcenter", cta: "Ver", estado: "Disponible" },
-      { icon: "micro", title: "Micro-predicciones", desc: "Predice jugadas en directo.", href: "/app/micro", cta: "Jugar", estado: "Nuevo" },
-      { icon: "stories", title: "Stories", desc: "Minuto a minuto del Mundial.", href: "/app/stories", cta: "Ver", estado: "Disponible" },
-      { icon: "streaming", title: "Zona Streaming", desc: "Directos con creadores.", href: "/app/streaming", cta: "Entrar", estado: "Disponible" },
+      { icon: "matchcenter", art: "/assets/card-backgrounds/match-center.webp", title: "Match Center", desc: "Cada partido en vivo con estadísticas.", href: "/app/matchcenter", cta: "Ver", estado: "Disponible" },
+      { icon: "micro", art: "/assets/card-backgrounds/micro-predicciones.webp", title: "Micro-predicciones", desc: "Predice jugadas en directo.", href: "/app/micro", cta: "Jugar", estado: "Nuevo" },
+      { icon: "stories", art: "/assets/card-backgrounds/stories.webp", title: "Stories", desc: "Minuto a minuto del Mundial.", href: "/app/stories", cta: "Ver", estado: "Disponible" },
+      { icon: "streaming", art: "/assets/card-backgrounds/zona-streaming.webp", title: "Zona Streaming", desc: "Directos con creadores.", href: "/app/streaming", cta: "Entrar", estado: "Disponible" },
     ],
   },
   {
@@ -134,17 +144,18 @@ const CATS: Cat[] = [
     label: "Comunidad",
     sub: "Compite con otros usuarios y ligas.",
     tint: "#34b9c4", tint2: "#5b8def",   // turquesa + azul (social / conectada)
-    bg: "/assets/card-backgrounds/card-bg-comunidad.webp", bgOpacity: 0.47,
-    border: "rgba(45,210,210,0.34)", borderHov: "rgba(45,210,210,0.7)",
+    // Comunidad = social, premium, limpia para el título.
+    artOpacity: 0.85, artOpacityHov: 0.96, ovTop: 0.92, ovMid: 0.60, ovBot: 0.24,
+    border: "rgba(64,210,220,0.50)", borderHov: "rgba(64,210,220,0.92)",
     glow: "rgba(45,210,210,0.5)", wash: "rgba(80,140,255,0.16)",
     ctaBg: "linear-gradient(135deg, rgba(45,210,210,0.30), rgba(120,110,255,0.22))",
     ctaBgHov: "linear-gradient(135deg, rgba(45,210,210,0.52), rgba(120,110,255,0.42))",
     ctaColor: "#0f1d2a", ctaBorder: "rgba(45,210,210,0.5)", ctaShadow: "0 8px 18px rgba(45,210,210,0.4)",
     mods: [
-      { icon: "rankings", title: "Ranking global", desc: "Compite por país y por creador.", href: "/app/rankings", cta: "Ver ranking", estado: "Disponible" },
-      { icon: "ligas", title: "Ligas privadas", desc: "Compite con amigos en tu liga.", href: "/app/ligas", cta: "Crear", estado: "Disponible" },
-      { icon: "chat", title: "Chat por liga", desc: "Habla en vivo durante el partido.", href: "/app/chat", cta: "Entrar", estado: "Disponible" },
-      { icon: "iaCoach", title: "IA Coach", desc: "Tu analista personal con IA.", href: "/app/ia-coach", cta: "Abrir", estado: "Nuevo" },
+      { icon: "rankings", art: "/assets/card-backgrounds/ranking-global.webp", title: "Ranking global", desc: "Compite por país y por creador.", href: "/app/rankings", cta: "Ver ranking", estado: "Disponible" },
+      { icon: "ligas", art: "/assets/card-backgrounds/ligas-privadas.webp", title: "Ligas privadas", desc: "Compite con amigos en tu liga.", href: "/app/ligas", cta: "Crear", estado: "Disponible" },
+      { icon: "chat", art: "/assets/card-backgrounds/chat-por-ligas.webp", title: "Chat por liga", desc: "Habla en vivo durante el partido.", href: "/app/chat", cta: "Entrar", estado: "Disponible" },
+      { icon: "iaCoach", art: "/assets/card-backgrounds/ia-coach.webp", title: "IA Coach", desc: "Tu analista personal con IA.", href: "/app/ia-coach", cta: "Abrir", estado: "Nuevo" },
     ],
   },
   {
@@ -152,17 +163,18 @@ const CATS: Cat[] = [
     label: "Explora",
     sub: "Calendario, grupos, reglas y guías.",
     tint: "#8b7bd8", tint2: "#6e83c4",   // lavanda + azul grisáceo (informativa)
-    bg: "/assets/card-backgrounds/card-bg-explora.webp", bgOpacity: 0.48,
-    border: "rgba(150,130,255,0.34)", borderHov: "rgba(150,130,255,0.7)",
+    // Explora = informativa, ordenada. Imagen visible pero más limpia (no aburrida).
+    artOpacity: 0.82, artOpacityHov: 0.94, ovTop: 0.94, ovMid: 0.66, ovBot: 0.30,
+    border: "rgba(150,130,230,0.50)", borderHov: "rgba(150,130,230,0.92)",
     glow: "rgba(150,130,255,0.5)", wash: "rgba(150,130,255,0.16)",
     ctaBg: "linear-gradient(135deg, rgba(150,130,255,0.28), rgba(210,220,255,0.26))",
     ctaBgHov: "linear-gradient(135deg, rgba(150,130,255,0.5), rgba(180,195,255,0.46))",
     ctaColor: "#16203a", ctaBorder: "rgba(150,130,255,0.5)", ctaShadow: "0 8px 18px rgba(150,130,255,0.4)",
     mods: [
-      { icon: "calendario", title: "Calendario", desc: "Todos los partidos del Mundial 2026.", href: "/calendario", cta: "Ver", estado: "Disponible" },
-      { icon: "grupos", title: "Grupos", desc: "Las 48 selecciones por grupo.", href: "/grupos", cta: "Ver", estado: "Disponible" },
-      { icon: "reglas", title: "Reglas de puntos", desc: "Cómo se puntúa cada acierto.", href: "/formato", cta: "Ver", estado: "Disponible" },
-      { icon: "guias", title: "Guías del Mundial", desc: "Historia, datos y curiosidades.", href: "/historia", cta: "Leer", estado: "Disponible" },
+      { icon: "calendario", art: "/assets/card-backgrounds/calendario.webp", title: "Calendario", desc: "Todos los partidos del Mundial 2026.", href: "/calendario", cta: "Ver", estado: "Disponible" },
+      { icon: "grupos", art: "/assets/card-backgrounds/grupos.webp", title: "Grupos", desc: "Las 48 selecciones por grupo.", href: "/grupos", cta: "Ver", estado: "Disponible" },
+      { icon: "reglas", art: "/assets/card-backgrounds/reglas-de-puntos.webp", title: "Reglas de puntos", desc: "Cómo se puntúa cada acierto.", href: "/formato", cta: "Ver", estado: "Disponible" },
+      { icon: "guias", art: "/assets/card-backgrounds/guia-del-mundial.webp", title: "Guías del Mundial", desc: "Historia, datos y curiosidades.", href: "/historia", cta: "Leer", estado: "Disponible" },
     ],
   },
 ];
@@ -248,41 +260,45 @@ function cardBackground(tint: string, tint2: string, lift: boolean): React.CSSPr
      5. halo/acento superior + contenido
    La imagen NUNCA es la card cerrada; la identidad la dan los tokens del tema. */
 function ModuleCard({ mod, cat }: { mod: Mod; cat: Cat }) {
-  const { tint, tint2, bg, bgOpacity, border, borderHov, glow, wash, ctaBg, ctaBgHov, ctaColor, ctaBorder, ctaShadow } = cat;
+  const { tint, tint2, artOpacity, artOpacityHov, ovTop, ovMid, ovBot, border, borderHov, glow, wash, ctaBg, ctaBgHov, ctaColor, ctaBorder, ctaShadow } = cat;
   const [hov, setHov] = useState(false);
   const disabled = !mod.href;
   const active = hov && !disabled;
+  const art = mod.art;
 
   const inner = (
     <>
-      {/* Capa 2 — foto decorativa de categoría (cover, máscara suave hacia el texto). */}
-      {bg && (
-        <span
-          aria-hidden
+      {/* ── Capa 1 · ARTE del módulo (protagonista, imagen completa) ──
+          <img> nativo → lazy-load real + decode async. Cover con foco ligeramente
+          alto para que la escena del módulo se reconozca; escala 1.02→1.06 al tocar. */}
+      {art ? (
+        <img
+          src={art} alt="" aria-hidden loading="lazy" decoding="async"
           style={{
-            position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none",
-            backgroundImage: `url(${bg})`,
-            backgroundSize: "cover", backgroundPosition: "center",
-            opacity: active ? Math.min(bgOpacity + 0.1, 1) : bgOpacity,
-            // El arte se percibe más hacia abajo y esquinas (más fuerte al pie).
-            WebkitMaskImage: "linear-gradient(180deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.92) 45%, rgba(0,0,0,1) 100%)",
-            maskImage: "linear-gradient(180deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.92) 45%, rgba(0,0,0,1) 100%)",
-            transition: "opacity .28s",
+            position: "absolute", inset: 0, width: "100%", height: "100%", zIndex: 0,
+            objectFit: "cover", objectPosition: "center 40%", pointerEvents: "none",
+            opacity: active ? artOpacityHov : artOpacity,
+            transform: active ? "scale(1.06)" : "scale(1.02)",
+            transition: "transform .42s cubic-bezier(.2,.7,.2,1), opacity .3s ease",
           }}
         />
+      ) : (
+        // Sin arte aún (álbum/penaltis): textura premium de categoría, no rompe layout.
+        <span aria-hidden style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none", backgroundImage: `radial-gradient(135px 110px at 100% 0%, ${tint}33, transparent 72%), radial-gradient(140px 140px at 0% 100%, ${tint2}26, transparent 70%)` }} />
       )}
-      {/* Capa 3 — WASH de color de categoría (identidad cromática fuerte). */}
-      <span aria-hidden style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none", backgroundImage: `radial-gradient(130% 95% at 50% -8%, ${wash}, transparent 58%), linear-gradient(155deg, ${tint}24 0%, transparent 48%)` }} />
-      {/* Capa 4 — velo de legibilidad inteligente: fuerte arriba/centro (icono,
-          título y descripción siempre legibles) y más suave abajo/esquinas para
-          que el arte se perciba. El radial refuerza la zona del título. */}
-      <span aria-hidden style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none", background: "linear-gradient(180deg, rgba(255,255,255,0.80) 0%, rgba(255,255,255,0.56) 45%, rgba(255,255,255,0.32) 100%), radial-gradient(95% 65% at 50% 14%, rgba(255,255,255,0.32), transparent 74%)" }} />
 
-      {/* Halo + franja de acento superior (premium, no borde infantil). */}
+      {/* ── Capa 2 · velo de legibilidad (blanco: fuerte arriba → suave abajo) +
+          tinte de categoría al pie. Mantiene la card "clara premium" y el texto
+          legible sin matar la imagen. Valores afinados POR CATEGORÍA. */}
+      <span aria-hidden style={{ position: "absolute", inset: 0, zIndex: 1, pointerEvents: "none", background: `linear-gradient(180deg, rgba(255,255,255,${ovTop}) 0%, rgba(255,255,255,${ovMid}) 46%, rgba(255,255,255,${ovBot}) 100%), radial-gradient(120% 78% at 50% 118%, ${wash}, transparent 60%)` }} />
+
+      {/* ── Capa 3 · efectos: glow radial de esquina por categoría (sube en hover) ── */}
+      <span aria-hidden style={{ position: "absolute", inset: -1, zIndex: 1, pointerEvents: "none", background: `radial-gradient(circle at 82% 102%, ${glow}, transparent 48%)`, opacity: active ? 0.8 : 0.5, transition: "opacity .25s" }} />
+      {/* Halo + franja de acento superior (premium). */}
       <span aria-hidden style={{ position: "absolute", top: 0, left: 0, right: 0, height: 54, zIndex: 1, pointerEvents: "none", background: `radial-gradient(75% 130% at 50% -12%, ${glow}, transparent 72%)`, opacity: active ? 1 : 0.8, transition: "opacity .25s" }} />
-      <span aria-hidden style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, zIndex: 1, background: `linear-gradient(90deg, ${tint}, ${tint2})`, opacity: active ? 1 : 0.8, transition: "opacity .25s" }} />
+      <span aria-hidden style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, zIndex: 2, background: `linear-gradient(90deg, ${tint}, ${tint2})`, opacity: active ? 1 : 0.85, transition: "opacity .25s" }} />
 
-      <div style={{ position: "relative", zIndex: 1, display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 13 }}>
+      <div style={{ position: "relative", zIndex: 2, display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 13 }}>
         <span style={{ position: "relative", width: 54, height: 54, borderRadius: 15, display: "inline-flex", alignItems: "center", justifyContent: "center", background: `linear-gradient(140deg, ${tint}44, ${tint2}26)`, border: `1.5px solid ${tint}99`, boxShadow: active ? `0 8px 20px ${tint}55, inset 0 1px 0 rgba(255,255,255,0.7)` : `0 4px 12px ${tint}33, inset 0 1px 0 rgba(255,255,255,0.55)`, transition: "box-shadow .25s, transform .25s", transform: active ? "scale(1.05)" : undefined }}>
           {/* brillo superior del contenedor del icono */}
           <span style={{ position: "absolute", inset: 0, borderRadius: 15, background: "linear-gradient(180deg, rgba(255,255,255,0.55), transparent 55%)", pointerEvents: "none" }} />
@@ -304,20 +320,28 @@ function ModuleCard({ mod, cat }: { mod: Mod; cat: Cat }) {
         </span>
         <span style={badgeStyle(mod.estado)}>{mod.estado === "En vivo" ? "● En vivo" : mod.estado}</span>
       </div>
-      <h3 style={{ position: "relative", zIndex: 1, fontWeight: 800, fontSize: 16.5, color: INK, marginBottom: 5, textShadow: "0 1px 0 rgba(255,255,255,0.6)" }}>{mod.title}</h3>
-      <p style={{ position: "relative", zIndex: 1, fontSize: 12.5, color: INK_MUT, lineHeight: 1.45, marginBottom: 14, minHeight: 36, textShadow: "0 1px 0 rgba(255,255,255,0.45)" }}>{mod.desc}</p>
-      {/* CTA con identidad de categoría (premium, no gris genérico). */}
+      <h3 style={{ position: "relative", zIndex: 2, fontWeight: 800, fontSize: 16.5, color: INK, marginBottom: 5, textShadow: "0 1px 1px rgba(255,255,255,0.85)" }}>{mod.title}</h3>
+      <p style={{ position: "relative", zIndex: 2, fontSize: 12.5, color: INK_MUT, lineHeight: 1.45, marginBottom: 14, minHeight: 34, textShadow: "0 1px 1px rgba(255,255,255,0.7)" }}>{mod.desc}</p>
+      {/* CTA con identidad de categoría (premium, no gris genérico). Anclado abajo. */}
       <span
         style={{
-          position: "relative", zIndex: 1,
+          position: "relative", zIndex: 2, marginTop: "auto",
           display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
           width: "100%",
           fontSize: 13, fontWeight: 800,
           color: disabled ? "#4f6394" : ctaColor,
-          background: disabled ? "#e3e9f5" : active ? ctaBgHov : ctaBg,
+          // Placa blanca translúcida bajo el degradado de categoría → el CTA se lee
+          // nítido aunque el arte sea fuerte justo debajo (el oro de "Jugar" es opaco
+          // y la tapa no se nota). Frosted sutil para acabado premium.
+          background: disabled
+            ? "#e3e9f5"
+            : active
+              ? `${ctaBgHov}, linear-gradient(rgba(255,255,255,0.62),rgba(255,255,255,0.62))`
+              : `${ctaBg}, linear-gradient(rgba(255,255,255,0.68),rgba(255,255,255,0.68))`,
+          backdropFilter: "saturate(150%) blur(3px)", WebkitBackdropFilter: "saturate(150%) blur(3px)",
           padding: "10px 0", borderRadius: 11,
           border: `1px solid ${disabled ? "#ccd8ec" : ctaBorder}`,
-          boxShadow: active && !disabled ? `${ctaShadow}, inset 0 1px 0 rgba(255,255,255,0.4)` : "inset 0 1px 0 rgba(255,255,255,0.35)",
+          boxShadow: active && !disabled ? `${ctaShadow}, inset 0 1px 0 rgba(255,255,255,0.5)` : "inset 0 1px 0 rgba(255,255,255,0.4)",
           transition: "background .25s, color .25s, box-shadow .25s",
         }}
       >
@@ -334,7 +358,10 @@ function ModuleCard({ mod, cat }: { mod: Mod; cat: Cat }) {
   const style: React.CSSProperties = {
     position: "relative", overflow: "hidden",
     display: "flex", flexDirection: "column",
-    textDecoration: "none", borderRadius: 20, padding: "16px 16px 18px",
+    // Más alto ahora que el arte es protagonista (entrada a un "modo"). El arte ocupa
+    // toda la card al ser absoluto; min-height garantiza presencia sin cortar texto.
+    minHeight: 236,
+    textDecoration: "none", borderRadius: 22, padding: "16px 16px 18px",
     ...cardBackground(tint, tint2, active),
     border: `1.5px solid ${active ? borderHov : border}`,
     // Card "flota" sobre el navy: sombra profunda + brillo interior superior.

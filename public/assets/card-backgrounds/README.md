@@ -1,19 +1,24 @@
-# Fondos decorativos de las cards del hub /app
+# Arte de las cards del hub /app
 
-Coloca aquí los 4 fondos de categoría (formato `.webp`, ideal 800×800 o 1:1,
-peso ligero). Se usan como **capa decorativa interna** de cada card (opacidad
-controlada + máscara + velo de legibilidad), nunca como imagen cerrada.
+Un `.webp` por **módulo** (no por categoría). Es el arte protagonista de cada
+card del hub `/app`: se pinta a pantalla completa dentro de la card con un velo
+de legibilidad por encima (degradado blanco fuerte arriba → suave abajo) para
+que icono/título/CTA siempre se lean, sin matar la imagen.
 
-Nombres EXACTOS (en minúscula, con guiones):
+Formato recomendado: `.webp`, 720×900 (4:5 vertical), peso ligero (~40–90 KB).
+Fuente original (PNG) en `art-src/card-backgrounds/` (no se publica).
 
-| Categoría  | Archivo                   | Módulos que lo usan                                                   |
-|------------|---------------------------|----------------------------------------------------------------------|
-| Jugar      | `card-bg-jugar.webp`      | Predicciones, Trivia diaria, Fantasy, Modo Carrera, Álbum, Penaltis  |
-| En vivo    | `card-bg-en-vivo.webp`    | Match Center, Micro-predicciones, Stories, Zona Streaming            |
-| Comunidad  | `card-bg-comunidad.webp`  | Ranking global, Ligas privadas, Chat por liga, IA Coach             |
-| Explora    | `card-bg-explora.webp`    | Calendario, Grupos, Reglas de puntos, Guías del Mundial            |
+Ruta pública: `/assets/card-backgrounds/<archivo>.webp`
 
-Ruta pública (cómo las referencia el código): `/assets/card-backgrounds/<archivo>`
+Nombres EXACTOS (minúscula, con guiones), uno por módulo:
 
-Si un archivo no existe, la card degrada con elegancia (mantiene base clara +
-textura + glow de categoría) sin romperse.
+`predicciones.webp`, `trivia-diaria.webp`, `fantasy.webp`, `modo-carrera.webp`,
+`match-center.webp`, `micro-predicciones.webp`, `stories.webp`,
+`zona-streaming.webp`, `ranking-global.webp`, `ligas-privadas.webp`,
+`chat-por-ligas.webp`, `ia-coach.webp`, `calendario.webp`, `grupos.webp`,
+`reglas-de-puntos.webp`, `guia-del-mundial.webp`
+
+Cada módulo referencia su arte con `art: "/assets/card-backgrounds/<x>.webp"` en
+`src/app/app/page.tsx`. Si un módulo no tiene `art` (p. ej. álbum/penaltis aún
+sin arte), la card degrada con elegancia al fondo base premium de su categoría
+sin romper el layout.

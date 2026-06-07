@@ -33,6 +33,7 @@ import {
   type Score,
 } from "@/lib/friendlies/types";
 import { broadcastPush, type PushPayload } from "@/lib/push-notifications";
+import { recordHeartbeat } from "@/lib/ops/store";
 import {
   countryImage,
   esName,
@@ -411,6 +412,9 @@ export async function GET(req: Request) {
     if (budgetLeft < POLL_INTERVAL_MS + 5_000) break;
     await sleep(POLL_INTERVAL_MS);
   }
+
+  // Latido para el centro de control: confirma que el poll en vivo sigue corriendo.
+  await recordHeartbeat("poll-friendlies", true, { passes, pushes: totalPushes });
 
   return NextResponse.json({
     ok: true,

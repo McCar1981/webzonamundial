@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import BarContextBanner from "@/components/bars/BarContextBanner";
+import { getBarContext, barThemeCssVars } from "@/lib/bars/context";
 
 /**
  * Group layout for /app/* internal modules.
@@ -26,12 +27,18 @@ export const metadata: Metadata = {
   },
 };
 
-export default function AppGroupLayout({ children }: { children: React.ReactNode }) {
+export default async function AppGroupLayout({ children }: { children: React.ReactNode }) {
+  const ctx = await getBarContext();
+
+  // Sin contexto de bar: experiencia ZM intacta para el resto de usuarios.
+  if (!ctx) return <>{children}</>;
+
+  // Con contexto de bar: banner de marca + paleta del bar inyectada como
+  // variables CSS, que los módulos de /app adoptan (fondos, acentos y CTAs).
   return (
-    <>
-      {/* Banner de identidad del bar (solo si se entró por una porra). */}
-      <BarContextBanner />
+    <div style={barThemeCssVars(ctx.theme)}>
+      <BarContextBanner bar={ctx.bar} theme={ctx.theme} />
       {children}
-    </>
+    </div>
   );
 }

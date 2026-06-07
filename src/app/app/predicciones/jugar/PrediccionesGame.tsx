@@ -34,10 +34,17 @@ import {
   type WinnerResult,
 } from "@/lib/predictions/types";
 
-const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825";
-const GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a";
+// Paleta como variables CSS con el valor ZM por defecto: para el usuario normal
+// la experiencia es idéntica, pero cuando se entra por la porra de un bar el
+// layout de /app/* fija estas variables con el tema del bar (fondos, acentos,
+// CTAs y texto), de modo que el juego adopta la identidad del bar sin tocar la
+// lógica compartida. INK = color del texto sobre los botones de acento.
+const BG = "var(--zm-bg, #060B14)", BG2 = "var(--zm-surface, #0F1D32)", BG3 = "var(--zm-surface2, #0B1825)";
+const GOLD = "var(--zm-accent, #c9a84c)", GOLD2 = "var(--zm-accent2, #e8d48b)", MID = "var(--zm-text-muted, #8a94b0)", DIM = "#6a7a9a";
 const GREEN = "#22c55e", RED = "#ef4444";
-const CARD_BORDER = "1px solid rgba(255,255,255,0.07)";
+const INK = "var(--zm-ink, #060B14)";
+const TEXT = "var(--zm-text, #fff)";
+const CARD_BORDER = "1px solid var(--zm-border, rgba(255,255,255,0.07))";
 
 const flagUrl = (code: string) => `https://flagcdn.com/w40/${code}.png`;
 
@@ -296,7 +303,7 @@ export default function PrediccionesGame() {
         <div style={{
           position: "fixed", bottom: 20, left: "50%", transform: "translateX(-50%)", zIndex: 50,
           background: toast.kind === "ok" ? "rgba(34,197,94,0.95)" : "rgba(239,68,68,0.95)",
-          color: "#fff", padding: "12px 20px", borderRadius: 12, fontWeight: 600, fontSize: 14,
+          color: TEXT, padding: "12px 20px", borderRadius: 12, fontWeight: 600, fontSize: 14,
           boxShadow: "0 8px 24px rgba(0,0,0,0.4)", maxWidth: "90vw", textAlign: "center",
         }}>
           {toast.msg}
@@ -389,9 +396,9 @@ const PJ_CSS = `
 @media (min-width: 1024px) { .group-grid { grid-template-columns: repeat(3, 1fr); } }
 
 .match-row { transition: border-color .15s ease, background .15s ease; }
-.match-row:hover { border-color: rgba(201,168,76,0.45); background: #12233b; }
+.match-row:hover { border-color: color-mix(in srgb, var(--zm-accent, #c9a84c) 45%, transparent); background: #12233b; }
 .match-row:hover .match-row-chevron { color: ${GOLD2}; transform: translateX(2px); }
-.match-row:focus-visible { outline: 2px solid rgba(201,168,76,0.7); outline-offset: 2px; }
+.match-row:focus-visible { outline: 2px solid color-mix(in srgb, var(--zm-accent, #c9a84c) 70%, transparent); outline-offset: 2px; }
 .match-row-chevron { transition: color .15s ease, transform .15s ease; }
 
 .pj-cta { transition: filter .15s ease, transform .15s ease; }
@@ -403,7 +410,7 @@ const PJ_CSS = `
 @media (min-width: 560px) { .prediction-modes .pj-types-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) { .prediction-modes .pj-types-grid { grid-template-columns: repeat(4, 1fr); } }
 .pj-type-card { transition: transform .15s ease, border-color .15s ease; }
-.pj-type-card:hover { transform: translateY(-2px); border-color: rgba(201,168,76,0.35); }
+.pj-type-card:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--zm-accent, #c9a84c) 35%, transparent); }
 
 /* Underdog */
 .underdog-section .pj-underdog-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
@@ -421,7 +428,7 @@ const PJ_CSS = `
   display: flex; flex-direction: column; gap: 12px;
 }
 .pj-back { transition: background .15s ease; }
-.pj-back:hover { background: rgba(201,168,76,0.14); }
+.pj-back:hover { background: color-mix(in srgb, var(--zm-accent, #c9a84c) 14%, transparent); }
 .pj-summary { position: sticky; top: 0; z-index: 5; }
 
 /* Resumen del usuario: mini-card compacta de dos niveles. Móvil → apilada
@@ -481,7 +488,7 @@ const PJ_CSS = `
 .pj-module { transition: border-color .15s ease; scroll-margin-top: 96px; }
 .pj-module-head { transition: background .15s ease; }
 .pj-module-head:hover { background: rgba(255,255,255,0.03); }
-.pj-module-head:focus-visible { outline: 2px solid rgba(201,168,76,0.7); outline-offset: -2px; }
+.pj-module-head:focus-visible { outline: 2px solid color-mix(in srgb, var(--zm-accent, #c9a84c) 70%, transparent); outline-offset: -2px; }
 .pj-module-statelabel { display: none; }
 @media (min-width: 420px) { .pj-module-statelabel { display: inline; } }
 
@@ -515,7 +522,7 @@ const PJ_CSS = `
 
 function Shell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="predictions-page" style={{ background: BG, color: "#fff", fontFamily: "'Outfit',sans-serif", minHeight: "100vh", paddingBottom: 40 }}>
+    <div className="predictions-page" style={{ background: BG, color: TEXT, fontFamily: "'Outfit',sans-serif", minHeight: "100vh", paddingBottom: 40 }}>
       <style>{PJ_CSS}</style>
       {children}
     </div>
@@ -523,7 +530,7 @@ function Shell({ children }: { children: React.ReactNode }) {
 }
 
 // ─── Vista de aterrizaje: hero + destacado + filtros + grupos + showcase ─────
-const sectionTitle: React.CSSProperties = { fontSize: 19, fontWeight: 900, color: "#fff", margin: "0 0 14px", letterSpacing: 0.2 };
+const sectionTitle: React.CSSProperties = { fontSize: 19, fontWeight: 900, color: TEXT, margin: "0 0 14px", letterSpacing: 0.2 };
 const pillTag: React.CSSProperties = { fontSize: 11.5, fontWeight: 700, color: MID, background: "rgba(255,255,255,0.05)", border: CARD_BORDER, borderRadius: 99, padding: "5px 11px", display: "inline-flex", alignItems: "center", gap: 5 };
 
 function LandingView({ matches, onPick }: { matches: Match[]; onPick: (id: string) => void }) {
@@ -685,14 +692,14 @@ function CompactHero({ count, pending }: { count: number; pending: number }) {
         background: `radial-gradient(130% 170% at 0% 0%, ${BG2} 0%, ${BG3} 58%, ${BG} 100%)`,
         border: CARD_BORDER, borderRadius: 16, padding: "13px 16px",
       }}>
-        <div aria-hidden style={{ position: "absolute", top: -60, right: -40, width: 170, height: 170, borderRadius: "50%", background: "radial-gradient(circle, rgba(201,168,76,0.14), transparent 70%)", pointerEvents: "none" }} />
+        <div aria-hidden style={{ position: "absolute", top: -60, right: -40, width: 170, height: 170, borderRadius: "50%", background: "radial-gradient(circle, color-mix(in srgb, var(--zm-accent, #c9a84c) 14%, transparent), transparent 70%)", pointerEvents: "none" }} />
         <h1 style={{ fontSize: 20, fontWeight: 900, lineHeight: 1.05, margin: 0, display: "flex", alignItems: "center", gap: 8 }}>
           <Sparkles size={19} color={GOLD2} /> Predicciones
         </h1>
         <p style={{ fontSize: 12.5, color: MID, margin: "3px 0 0", lineHeight: 1.4 }}>Completa tus pronósticos y suma puntos.</p>
         {count > 0 && (
           <div style={{ marginTop: 9, display: "flex", flexWrap: "wrap", gap: 7 }}>
-            <span style={{ display: "inline-flex", alignItems: "center", gap: 5, background: "rgba(201,168,76,0.12)", border: `1px solid ${GOLD}55`, color: GOLD2, borderRadius: 99, padding: "4px 10px", fontSize: 11.5, fontWeight: 800 }}>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 5, background: "color-mix(in srgb, var(--zm-accent, #c9a84c) 12%, transparent)", border: `1px solid color-mix(in srgb, ${GOLD} 33%, transparent)`, color: GOLD2, borderRadius: 99, padding: "4px 10px", fontSize: 11.5, fontWeight: 800 }}>
               <Globe size={12} /> {count} {count === 1 ? "partido disponible" : "partidos disponibles"}
             </span>
             {pending > 0 && (
@@ -715,7 +722,7 @@ function MissionsRewards() {
     <section className="pj-wrap" style={{ paddingTop: 30 }}>
       <details className="pj-extras">
         <summary>
-          <span style={{ display: "inline-flex", alignItems: "center", gap: 8, color: "#fff", fontSize: 14, fontWeight: 800 }}>
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 8, color: TEXT, fontSize: 14, fontWeight: 800 }}>
             <Gift size={16} color={GOLD2} /> Misiones y recompensas
           </span>
           <ChevronRight size={18} className="pj-extras-chev" />
@@ -751,19 +758,19 @@ function LiveActivityBand({ pulse }: { pulse: ActivityPulse | null }) {
   if (pulse?.most_played && pulse.most_played.count > 0) {
     items.push({
       icon: Flame,
-      node: <><strong style={{ color: "#fff", fontWeight: 800 }}>{pulse.most_played.home_team} vs {pulse.most_played.away_team}</strong> es el partido más jugado</>,
+      node: <><strong style={{ color: TEXT, fontWeight: 800 }}>{pulse.most_played.home_team} vs {pulse.most_played.away_team}</strong> es el partido más jugado</>,
     });
   }
   if (pulse && pulse.changed_today > 0) {
     items.push({
       icon: Zap,
-      node: <><strong style={{ color: "#fff", fontWeight: 800 }}>{fmtCount(pulse.changed_today)}</strong> {pulse.changed_today === 1 ? "usuario ha cambiado" : "usuarios han cambiado"} su predicción hoy</>,
+      node: <><strong style={{ color: TEXT, fontWeight: 800 }}>{fmtCount(pulse.changed_today)}</strong> {pulse.changed_today === 1 ? "usuario ha cambiado" : "usuarios han cambiado"} su predicción hoy</>,
     });
   }
   if (me && me.xpToNext > 0) {
     items.push({
       icon: Trophy,
-      node: <><strong style={{ color: "#fff", fontWeight: 800 }}>{me.name}</strong> está a {fmtCount(me.xpToNext)} XP del nivel {me.level + 1}</>,
+      node: <><strong style={{ color: TEXT, fontWeight: 800 }}>{me.name}</strong> está a {fmtCount(me.xpToNext)} XP del nivel {me.level + 1}</>,
     });
   }
 
@@ -833,10 +840,10 @@ function FeaturedMatch({ m, onPick, pulse, predicted, typesTotal }: {
       <h2 style={sectionTitle}>Próximo partido para predecir</h2>
       <div style={{
         background: `linear-gradient(135deg, ${BG2} 0%, ${BG3} 100%)`,
-        border: "1px solid rgba(201,168,76,0.28)", borderRadius: 20, padding: "18px 18px",
+        border: "1px solid color-mix(in srgb, var(--zm-accent, #c9a84c) 28%, transparent)", borderRadius: 20, padding: "18px 18px",
         position: "relative", overflow: "hidden",
       }}>
-        <div aria-hidden style={{ position: "absolute", inset: 0, background: "radial-gradient(80% 120% at 50% -20%, rgba(201,168,76,0.10), transparent 60%)", pointerEvents: "none" }} />
+        <div aria-hidden style={{ position: "absolute", inset: 0, background: "radial-gradient(80% 120% at 50% -20%, color-mix(in srgb, var(--zm-accent, #c9a84c) 10%, transparent), transparent 60%)", pointerEvents: "none" }} />
 
         {/* 1º — protagonistas: equipos + banderas + VS */}
         <div className="pj-featured-teams" style={{ position: "relative" }}>
@@ -853,7 +860,7 @@ function FeaturedMatch({ m, onPick, pulse, predicted, typesTotal }: {
             <TierIcon label={t.label} size={13} /> ×{t.multiplier.toFixed(2)} · {tierMood(t.multiplier)}
           </span>
           {isMostPlayed && (
-            <span style={{ ...pillTag, color: "#1a1206", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, borderColor: GOLD, fontWeight: 800 }}>
+            <span style={{ ...pillTag, color: "var(--zm-ink, #1a1206)", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, borderColor: GOLD, fontWeight: 800 }}>
               <Flame size={12} /> Más jugado ahora
             </span>
           )}
@@ -922,7 +929,7 @@ function Filters({ filter, setFilter, query, setQuery, groups }: {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Buscar selección…"
-          style={{ background: BG2, border: CARD_BORDER, borderRadius: 99, color: "#fff", fontSize: 13, padding: "10px 16px", outline: "none" }}
+          style={{ background: BG2, border: CARD_BORDER, borderRadius: 99, color: TEXT, fontSize: 13, padding: "10px 16px", outline: "none" }}
         />
       </div>
       <div className="pj-filters">
@@ -936,7 +943,7 @@ function Filters({ filter, setFilter, query, setQuery, groups }: {
               style={{
                 flexShrink: 0, whiteSpace: "nowrap", cursor: "pointer", fontSize: 13, fontWeight: 600,
                 padding: "0 16px", minHeight: 40, borderRadius: 99,
-                background: active ? "rgba(201,168,76,0.16)" : BG2,
+                background: active ? "color-mix(in srgb, var(--zm-accent, #c9a84c) 16%, transparent)" : BG2,
                 color: active ? GOLD2 : MID,
                 border: active ? `1px solid ${GOLD}` : CARD_BORDER,
               }}
@@ -977,7 +984,7 @@ function MatchCard({ m, onPick, predicted, typesTotal }: { m: Match; onPick: (id
       onClick={() => onPick(String(m.i))}
       aria-label={`${stateLabel}. Predecir ${m.h} contra ${m.a}, ${fmtKickoff(m)}, multiplicador ×${t.multiplier.toFixed(2)}, ${tierMood(t.multiplier)}`}
       style={{
-        display: "block", width: "100%", textAlign: "left", cursor: "pointer", color: "#fff",
+        display: "block", width: "100%", textAlign: "left", cursor: "pointer", color: TEXT,
         background: BG2, border: CARD_BORDER, borderRadius: 14, padding: 14,
       }}
     >
@@ -1008,7 +1015,7 @@ function MatchCard({ m, onPick, predicted, typesTotal }: { m: Match; onPick: (id
             <Clock size={12} /> Pendiente · {predicted}/{typesTotal}
           </span>
         ) : (
-          <span className="match-row-chevron" style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 900, color: "#1a1206", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, borderRadius: 99, padding: "5px 12px" }}>
+          <span className="match-row-chevron" style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 900, color: "var(--zm-ink, #1a1206)", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, borderRadius: 99, padding: "5px 12px" }}>
             Jugar <ChevronRight size={15} />
           </span>
         )}
@@ -1047,7 +1054,7 @@ function GroupGrid({ matches, onPick, mine }: { matches: Match[]; onPick: (id: s
           <div key={g} className="group-card" style={{ background: BG3, border: CARD_BORDER, borderRadius: 18, padding: 16 }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 13 }}>
               <span style={{ fontSize: 14, fontWeight: 900, color: GOLD, letterSpacing: 0.5, display: "inline-flex", alignItems: "center", gap: 8 }}>
-                <span style={{ width: 26, height: 26, borderRadius: 8, background: "rgba(201,168,76,0.14)", display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 13 }}>{g}</span>
+                <span style={{ width: 26, height: 26, borderRadius: 8, background: "color-mix(in srgb, var(--zm-accent, #c9a84c) 14%, transparent)", display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 13 }}>{g}</span>
                 Grupo {g}
               </span>
               <span style={{ fontSize: 11, color: DIM, fontWeight: 600 }}>{ms.length} {ms.length === 1 ? "partido" : "partidos"}</span>
@@ -1078,7 +1085,7 @@ function TypesShowcase() {
               <div style={{ width: 42, height: 42, borderRadius: 12, background: `${meta.color}22`, display: "inline-flex", alignItems: "center", justifyContent: "center", marginBottom: 11 }}>
                 <TypeIcon size={22} color={meta.color} />
               </div>
-              <div style={{ fontSize: 15, fontWeight: 800, color: "#fff", marginBottom: 5 }}>{meta.label}</div>
+              <div style={{ fontSize: 15, fontWeight: 800, color: TEXT, marginBottom: 5 }}>{meta.label}</div>
               <p style={{ fontSize: 12.5, color: MID, lineHeight: 1.45, margin: "0 0 12px", minHeight: 36 }}>{meta.blurb}</p>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <span style={{ fontSize: 11.5, fontWeight: 800, color: meta.color }}>{meta.minPoints}–{meta.maxPoints} pts</span>
@@ -1116,7 +1123,7 @@ function UnderdogBand() {
                 <TierIcon label={t.label} size={22} />
                 <span style={{ fontSize: 18, fontWeight: 900, color: TIER_COLOR[t.label] }}>{t.mult}</span>
               </div>
-              <div style={{ fontSize: 14, fontWeight: 800, color: "#fff" }}>{t.label}</div>
+              <div style={{ fontSize: 14, fontWeight: 800, color: TEXT }}>{t.label}</div>
               <div style={{ fontSize: 12, color: MID, marginTop: 2 }}>{t.desc}</div>
             </div>
           ))}
@@ -1146,7 +1153,7 @@ function CtaFinal() {
           const Icon = c.icon;
           return (
             <div key={c.href} style={{ background: BG3, border: CARD_BORDER, borderRadius: 18, padding: "22px 20px", display: "flex", flexDirection: "column" }}>
-              <div style={{ width: 42, height: 42, borderRadius: 12, background: "rgba(201,168,76,0.14)", display: "inline-flex", alignItems: "center", justifyContent: "center", marginBottom: 12 }}>
+              <div style={{ width: 42, height: 42, borderRadius: 12, background: "color-mix(in srgb, var(--zm-accent, #c9a84c) 14%, transparent)", display: "inline-flex", alignItems: "center", justifyContent: "center", marginBottom: 12 }}>
                 <Icon size={22} color={GOLD2} />
               </div>
               <h3 style={{ fontSize: 17, fontWeight: 800, margin: "0 0 6px" }}>{c.title}</h3>
@@ -1157,11 +1164,11 @@ function CtaFinal() {
                 style={c.gold ? {
                   display: "inline-flex", alignItems: "center", justifyContent: "center", minHeight: 46,
                   padding: "0 22px", borderRadius: 12, textDecoration: "none", fontWeight: 800, fontSize: 14,
-                  background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: BG, alignSelf: "flex-start",
+                  background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: INK, alignSelf: "flex-start",
                 } : {
                   display: "inline-flex", alignItems: "center", justifyContent: "center", minHeight: 46,
                   padding: "0 22px", borderRadius: 12, textDecoration: "none", fontWeight: 800, fontSize: 14,
-                  background: "rgba(201,168,76,0.12)", color: GOLD2, border: `1px solid ${GOLD}55`, alignSelf: "flex-start",
+                  background: "color-mix(in srgb, var(--zm-accent, #c9a84c) 12%, transparent)", color: GOLD2, border: `1px solid color-mix(in srgb, ${GOLD} 33%, transparent)`, alignSelf: "flex-start",
                 }}
               >
                 {c.btn}
@@ -1176,7 +1183,7 @@ function CtaFinal() {
 
 const featuredBtn: React.CSSProperties = {
   position: "relative", width: "100%", marginTop: 14, padding: "14px", borderRadius: 12, border: "none", cursor: "pointer",
-  background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: BG, fontWeight: 900, fontSize: 15, minHeight: 48,
+  background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: INK, fontWeight: 900, fontSize: 15, minHeight: 48,
 };
 
 // ─── Vista de detalle: flujo enfocado de predicción ─────────────────────────
@@ -1514,7 +1521,7 @@ function PredictionModuleCard({ type, mult, open, done, existing, scorers, duels
         aria-expanded={open}
         aria-controls={panelId}
         className="pj-module-head"
-        style={{ width: "100%", display: "flex", alignItems: "center", gap: 11, padding: "13px 14px", cursor: "pointer", background: "none", border: "none", color: "#fff", textAlign: "left", minHeight: 56 }}
+        style={{ width: "100%", display: "flex", alignItems: "center", gap: 11, padding: "13px 14px", cursor: "pointer", background: "none", border: "none", color: TEXT, textAlign: "left", minHeight: 56 }}
       >
         <span style={{ width: 34, height: 34, borderRadius: 10, background: `${meta.color}22`, display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
           <TypeIcon size={18} color={meta.color} />
@@ -1607,7 +1614,7 @@ function CompletedView({ p, type, scorers, duels, onEdit }: { p: MatchPrediction
           onClick={onEdit}
           style={{
             marginTop: 10, width: "100%", padding: "8px", borderRadius: 8, cursor: "pointer",
-            background: "rgba(201,168,76,0.12)", border: `1px solid ${GOLD}55`, color: GOLD2, fontWeight: 700, fontSize: 13,
+            background: "color-mix(in srgb, var(--zm-accent, #c9a84c) 12%, transparent)", border: `1px solid color-mix(in srgb, ${GOLD} 33%, transparent)`, color: GOLD2, fontWeight: 700, fontSize: 13,
             display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 6,
           }}
         >
@@ -1668,15 +1675,15 @@ function TypeForm(props: {
 
 const btnPrimary: React.CSSProperties = {
   width: "100%", marginTop: 12, padding: "10px", borderRadius: 10, border: "none", cursor: "pointer",
-  background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: BG, fontWeight: 800, fontSize: 14,
+  background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: INK, fontWeight: 800, fontSize: 14,
 };
 const inputStyle: React.CSSProperties = {
-  width: "100%", padding: "8px 10px", borderRadius: 8, background: BG, border: CARD_BORDER, color: "#fff", fontSize: 14,
+  width: "100%", padding: "8px 10px", borderRadius: 8, background: BG, border: CARD_BORDER, color: TEXT, fontSize: 14,
 };
 function optBtn(active: boolean): React.CSSProperties {
   return {
     flex: 1, padding: "8px 6px", borderRadius: 8, cursor: "pointer", fontSize: 13, fontWeight: 700,
-    background: active ? "rgba(201,168,76,0.18)" : BG, color: active ? GOLD : MID,
+    background: active ? "color-mix(in srgb, var(--zm-accent, #c9a84c) 18%, transparent)" : BG, color: active ? GOLD : MID,
     border: active ? `1px solid ${GOLD}` : CARD_BORDER,
   };
 }
@@ -1724,7 +1731,7 @@ function ExactScoreForm({ match, init, editLabel, onSubmit }: { match: Match; in
 function Stepper({ label, value, onChange }: { label: string; value: number; onChange: (n: number) => void }) {
   return (
     <div style={{ textAlign: "center" }}>
-      <div style={{ fontSize: 14, fontWeight: 800, color: "#fff", marginBottom: 6, maxWidth: 110, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{label}</div>
+      <div style={{ fontSize: 14, fontWeight: 800, color: TEXT, marginBottom: 6, maxWidth: 110, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{label}</div>
       <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
         <button onClick={() => onChange(Math.max(0, value - 1))} style={stepBtn}>−</button>
         <span style={{ fontSize: 22, fontWeight: 900, minWidth: 24 }}>{value}</span>
@@ -1753,7 +1760,7 @@ function WinnerForm({ match, social, init, initConf, editLabel, onSubmit, scoreR
   return (
     <div>
       {forcedDraw && (
-        <div style={{ fontSize: 11.5, color: GOLD, background: "rgba(201,168,76,0.10)", border: `1px solid ${GOLD}40`, borderRadius: 8, padding: "7px 10px", marginBottom: 8, lineHeight: 1.4, display: "flex", gap: 6 }}>
+        <div style={{ fontSize: 11.5, color: GOLD, background: "color-mix(in srgb, var(--zm-accent, #c9a84c) 10%, transparent)", border: `1px solid color-mix(in srgb, ${GOLD} 25%, transparent)`, borderRadius: 8, padding: "7px 10px", marginBottom: 8, lineHeight: 1.4, display: "flex", gap: 6 }}>
           <Check size={14} style={{ flexShrink: 0, marginTop: 1 }} /> <span>Tu marcador es un empate, así que el ganador queda fijado en <strong>Empate</strong>. Elige solo tu nivel de confianza.</span>
         </div>
       )}
@@ -1768,11 +1775,11 @@ function WinnerForm({ match, social, init, initConf, editLabel, onSubmit, scoreR
           return (
             <button key={o.key} onClick={() => { if (!forcedDraw) setResult(o.key); }} disabled={disabled} aria-disabled={disabled} style={{
               width: "100%", padding: "8px 10px", borderRadius: 8, cursor: disabled ? "not-allowed" : "pointer", textAlign: "left",
-              position: "relative", overflow: "hidden", border: active ? `1px solid ${GOLD}` : CARD_BORDER, background: BG, color: "#fff",
+              position: "relative", overflow: "hidden", border: active ? `1px solid ${GOLD}` : CARD_BORDER, background: BG, color: TEXT,
               opacity: disabled ? 0.4 : 1,
             }}>
-              {winnerTotal > 0 && <span style={{ position: "absolute", inset: 0, width: `${pct}%`, background: "rgba(201,168,76,0.16)" }} />}
-              <span style={{ position: "relative", display: "flex", justifyContent: "space-between", fontSize: 13, fontWeight: 700, color: active ? GOLD : "#fff" }}>
+              {winnerTotal > 0 && <span style={{ position: "absolute", inset: 0, width: `${pct}%`, background: "color-mix(in srgb, var(--zm-accent, #c9a84c) 16%, transparent)" }} />}
+              <span style={{ position: "relative", display: "flex", justifyContent: "space-between", fontSize: 13, fontWeight: 700, color: active ? GOLD : TEXT }}>
                 <span>{o.label}</span>
                 {winnerTotal > 0 && <span style={{ color: MID }}>{pct}%</span>}
               </span>
@@ -1800,7 +1807,7 @@ function FirstScorerForm({ scorers, pendingTeams, init, editLabel, onSubmit }: {
   return (
     <div>
       {pendingTeams.length > 0 && (
-        <p style={{ fontSize: 11.5, color: GOLD, background: "rgba(201,168,76,0.10)", border: `1px solid ${GOLD}40`, borderRadius: 8, padding: "7px 10px", marginBottom: 8, lineHeight: 1.4, display: "flex", gap: 6 }}>
+        <p style={{ fontSize: 11.5, color: GOLD, background: "color-mix(in srgb, var(--zm-accent, #c9a84c) 10%, transparent)", border: `1px solid color-mix(in srgb, ${GOLD} 25%, transparent)`, borderRadius: 8, padding: "7px 10px", marginBottom: 8, lineHeight: 1.4, display: "flex", gap: 6 }}>
           <Clock size={14} style={{ flexShrink: 0, marginTop: 1 }} /> <span>{pendingTeams.join(" y ")} {pendingTeams.length > 1 ? "aún no han" : "aún no ha"} anunciado convocatoria definitiva. Sus jugadores aparecerán cuando se confirme la lista.</span>
         </p>
       )}
@@ -2039,7 +2046,7 @@ function SocialForm({ match, social, init, editLabel, onSubmit }: { match: Match
         return (
           <button key={o.key} onClick={() => setChoice(o.key)} style={{
             width: "100%", marginBottom: 6, padding: "8px 10px", borderRadius: 8, cursor: "pointer", textAlign: "left",
-            position: "relative", overflow: "hidden", border: active ? `1px solid ${GOLD}` : CARD_BORDER, background: BG, color: "#fff",
+            position: "relative", overflow: "hidden", border: active ? `1px solid ${GOLD}` : CARD_BORDER, background: BG, color: TEXT,
           }}>
             <span style={{ position: "absolute", inset: 0, width: `${pct}%`, background: "rgba(236,72,153,0.18)" }} />
             <span style={{ position: "relative", display: "flex", justifyContent: "space-between", fontSize: 13, fontWeight: 600 }}>
@@ -2063,7 +2070,7 @@ function SocialForm({ match, social, init, editLabel, onSubmit }: { match: Match
 
 const ctaStyle: React.CSSProperties = {
   display: "inline-block", marginTop: 24, padding: "14px 32px", borderRadius: 12,
-  background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: BG, fontWeight: 800, textDecoration: "none",
+  background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: INK, fontWeight: 800, textDecoration: "none",
 };
 const pillLink: React.CSSProperties = {
   fontSize: 12, fontWeight: 700, color: MID, textDecoration: "none", background: BG2, border: CARD_BORDER,

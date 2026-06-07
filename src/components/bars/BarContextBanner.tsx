@@ -13,22 +13,13 @@
 // porra (POST /api/bars/join). Si no hay cookie o el bar no existe, no pinta nada
 // y la experiencia ZM queda intacta para el resto de usuarios.
 
-import { cookies } from "next/headers";
 import Link from "next/link";
 import { ArrowLeft, Trophy } from "lucide-react";
-import { getBarBySlug } from "@/lib/bars/store";
-import { getTheme } from "@/lib/bars/themes";
+import type { BarRow } from "@/lib/bars/store";
+import type { BarTheme } from "@/lib/bars/themes";
 import BarContextExit from "./BarContextExit";
 
-export default async function BarContextBanner() {
-  const slug = cookies().get("zm_bar")?.value;
-  if (!slug) return null;
-
-  const bar = await getBarBySlug(slug);
-  if (!bar) return null;
-
-  const t = getTheme(bar.theme_id);
-
+export default function BarContextBanner({ bar, theme: t }: { bar: BarRow; theme: BarTheme }) {
   return (
     <div
       style={{

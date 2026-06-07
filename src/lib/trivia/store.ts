@@ -314,6 +314,29 @@ export async function claimDailyTriviaReward(
   return true;
 }
 
+/**
+ * Libera la reserva de recompensa diaria (la inversa de claimDailyTriviaReward).
+ * Se usa cuando el ABONO de Fútcoins falla DESPUÉS de reservar: sin esto, la marca
+ * quedaría puesta y el usuario nunca cobraría (la reserva bloquea el reintento).
+ * Liberarla permite que el siguiente intento del mismo día vuelva a pagar.
+ */
+export async function releaseDailyTriviaReward(
+  userId: string,
+  day: string,
+  mode: string,
+): Promise<void> {
+  if (isKvEnabled()) {
+    await kv.del(REWARD_KEY(day, mode, userId));
+    return;
+  }
+  const store = await readFs();
+  const key = `${day}:${mode}:${userId}`;
+  if (store.rewards[key]) {
+    delete store.rewards[key];
+    await writeFs(store);
+  }
+}
+
 export async function getUserStats(userId: string): Promise<TriviaUserStats | null> {
   if (isKvEnabled()) {
     return (await kv.get<TriviaUserStats>(USER_KEY(userId))) ?? null;

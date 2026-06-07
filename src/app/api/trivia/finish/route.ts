@@ -8,6 +8,7 @@ import { NextResponse } from "next/server";
 import {
   addSeenIds,
   claimDailyTriviaReward,
+  releaseDailyTriviaReward,
   deleteSession,
   getSession,
   recordSession,
@@ -99,7 +100,8 @@ export async function POST(req: Request) {
   let coinsBalance: number | null = null;
   let rewardClaimed = false;
   if (authUserId) {
-    const firstToday = await claimDailyTriviaReward(authUserId, utcDayKey(), session.mode);
+    const dayKey = utcDayKey();
+    const firstToday = await claimDailyTriviaReward(authUserId, dayKey, session.mode);
     if (firstToday) {
       const reward = triviaSessionReward(finalPoints, session.correct, answered);
       try {
@@ -109,7 +111,9 @@ export async function POST(req: Request) {
         coinsBalance = grant.coins;
         rewardClaimed = true;
       } catch {
-        /* si falla el abono, no rompemos el cierre de la sesión */
+        // Si falla el abono, liberamos la reserva para que el usuario pueda
+        // cobrar en un próximo intento (si no, la marca lo bloquearía hoy).
+        await releaseDailyTriviaReward(authUserId, dayKey, session.mode).catch(() => {});
       }
     }
   }

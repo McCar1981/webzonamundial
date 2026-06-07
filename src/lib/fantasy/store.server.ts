@@ -9,6 +9,7 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { adminClient } from "@/lib/predictions/admin";
 import { grantCoins } from "@/lib/economy/wallet";
 import { fantasyGameweekReward } from "@/lib/economy/earn";
+import { isValidGameweek, gameweekIsOver } from "./fixtures";
 import { normalizeTeam } from "./store";
 import type { FantasyTeamState } from "./types";
 
@@ -70,6 +71,10 @@ export async function awardGameweekCoins(
   gameweek: number,
   points: number,
 ): Promise<{ coins: number; xp: number }> {
+  // Anti-faucet: solo se paga por jornadas REALES (1-8) y ya disputadas. Esto
+  // bloquea el abuso de enviar jornadas inventadas (gw=999) o cobrar la
+  // simulación de pretemporada, ya que los puntos los calcula el cliente.
+  if (!isValidGameweek(gameweek) || !gameweekIsOver(gameweek)) return { coins: 0, xp: 0 };
   const admin = adminClient();
   const reward = fantasyGameweekReward(points);
   // Reserva atómica del pago: si ya existía, no inserta ninguna fila.
@@ -81,7 +86,15 @@ export async function awardGameweekCoins(
     )
     .select("gameweek");
   if (!inserted || inserted.length === 0) return { coins: 0, xp: 0 };
-  await grantCoins(userId, reward.coins, reward.xp);
+  try {
+    await grantCoins(userId, reward.coins, reward.xp);
+  } catch {
+    // Si el abono falla tras reservar, liberamos la fila para no dejar la jornada
+    // "cobrada" sin haber pagado (si no, jamás se reintentaría). El próximo
+    // confirm reintenta; el guardado del equipo no se ve afectado.
+    await admin.from("fantasy_coin_claims").delete().eq("user_id", userId).eq("gameweek", gameweek);
+    return { coins: 0, xp: 0 };
+  }
   return reward;
 }
 

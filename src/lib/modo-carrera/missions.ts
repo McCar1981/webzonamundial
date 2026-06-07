@@ -91,6 +91,33 @@ export function missionKey(m: Mission): string {
   return i >= 0 ? m.id.slice(0, i) : m.id;
 }
 
+/**
+ * Conjunto de ids de misión que el SERVIDOR habría emitido legítimamente en una
+ * ventana reciente (hoy y los últimos 14 días). Reconstruye los ciclos de cada
+ * plantilla con la MISMA función `cycleFor` que los genera, cubriendo diaria,
+ * semanal, flash (4 bloques/día) y torneo (id fijo).
+ *
+ * Sirve de lista blanca anti-faucet: la economía solo abona misiones cuyo id
+ * pertenece a este conjunto, así un cliente manipulado no puede inventar ids
+ * únicos (`racha_torneo#fakeN`) para cobrar la misma recompensa infinitas veces.
+ */
+export function legitMissionIds(ref: Date = new Date()): Set<string> {
+  const ids = new Set<string>();
+  for (const tpl of MISSION_TEMPLATES) {
+    for (let back = 0; back <= 14; back++) {
+      const d = new Date(ref);
+      d.setDate(d.getDate() - back);
+      // 4 bloques de 6 h cubren las 24 h del día (necesario para las flash).
+      for (let h = 0; h < 24; h += 6) {
+        const dd = new Date(d);
+        dd.setHours(h, 0, 0, 0);
+        ids.add(cycleFor(tpl, dd).id);
+      }
+    }
+  }
+  return ids;
+}
+
 const MAX_HISTORY = 24; // tope de misiones cerradas (reclamada/fallida) a conservar
 
 /**

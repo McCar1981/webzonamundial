@@ -41,6 +41,29 @@ export function gameweekMatches(gw: number): Match[] {
   return MATCHES.filter((m) => phases.has(m.p));
 }
 
+/** Número total de jornadas Fantasy del torneo (grupos 1-3 + eliminatorias 4-8). */
+export const TOTAL_GAMEWEEKS = 8;
+
+/** ¿Es `gw` una jornada real del torneo? Bloquea valores fabricados (anti-faucet). */
+export function isValidGameweek(gw: number): boolean {
+  return Number.isInteger(gw) && gw >= 1 && gw <= TOTAL_GAMEWEEKS;
+}
+
+/**
+ * ¿La jornada `gw` ya se disputó por completo? Es cobrable solo cuando su último
+ * partido real quedó atrás (al menos el día siguiente, en UTC), de modo que NUNCA
+ * se pagan Fútcoins por la simulación de pretemporada ni por jornadas futuras.
+ * Las fechas `d` son ISO (YYYY-MM-DD), así que la comparación de cadenas basta.
+ */
+export function gameweekIsOver(gw: number, ref: Date = new Date()): boolean {
+  if (!isValidGameweek(gw)) return false;
+  const matches = gameweekMatches(gw);
+  if (matches.length === 0) return false;
+  let last = "";
+  for (const m of matches) if (m.d > last) last = m.d;
+  return ref.toISOString().slice(0, 10) > last;
+}
+
 /** Partido (y lado) de una selección, por código de bandera, en una jornada. */
 export function matchForFlag(flag: string, gw: number): { match: Match; side: "home" | "away" } | null {
   if (!flag || flag === "tbd") return null;

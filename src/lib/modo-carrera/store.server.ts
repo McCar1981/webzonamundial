@@ -11,7 +11,7 @@ import { grantCoins } from "@/lib/economy/wallet";
 import { careerMissionReward } from "@/lib/economy/earn";
 import { normalizeCareer } from "./store";
 import { rankForOverall, MISSION_TEMPLATES } from "./constants";
-import { missionKey } from "./missions";
+import { missionKey, legitMissionIds } from "./missions";
 import type { CareerState, CareerRankEntry } from "./types";
 
 // ─── Partida del usuario ─────────────────────────────────────────────────────
@@ -60,7 +60,10 @@ export async function settleCareerMissionRewards(
   userId: string,
   state: CareerState,
 ): Promise<{ coins: number; xp: number }> {
-  const claimed = state.missions.filter((m) => m.status === "reclamada");
+  // Anti-faucet: solo misiones reclamadas cuyo id es uno que el servidor habría
+  // emitido (lista blanca de ciclos reales recientes). Bloquea ids inventados.
+  const legit = legitMissionIds();
+  const claimed = state.missions.filter((m) => m.status === "reclamada" && legit.has(m.id));
   if (claimed.length === 0) return { coins: 0, xp: 0 };
 
   // Recompensa autoritativa por misión, derivada de la plantilla (no del cliente).
@@ -80,8 +83,8 @@ export async function settleCareerMissionRewards(
   const { data: inserted } = await admin
     .from("modo_carrera_mission_claims")
     .upsert(rows, { onConflict: "user_id,mission_id", ignoreDuplicates: true })
-    .select("coins,xp");
-  const fresh = (inserted ?? []) as { coins: number; xp: number }[];
+    .select("mission_id,coins,xp");
+  const fresh = (inserted ?? []) as { mission_id: string; coins: number; xp: number }[];
   if (fresh.length === 0) return { coins: 0, xp: 0 };
 
   let coins = 0;
@@ -90,7 +93,20 @@ export async function settleCareerMissionRewards(
     coins += r.coins;
     xp += r.xp;
   }
-  if (coins > 0 || xp > 0) await grantCoins(userId, coins, xp);
+  if (coins === 0 && xp === 0) return { coins, xp };
+  try {
+    await grantCoins(userId, coins, xp);
+  } catch {
+    // Si el abono falla tras reservar, liberamos las filas recién insertadas para
+    // no dejar misiones "cobradas" sin pagar (si no, jamás se reintentarían). El
+    // próximo guardado las vuelve a liquidar; el guardado de la partida no se afecta.
+    await admin
+      .from("modo_carrera_mission_claims")
+      .delete()
+      .eq("user_id", userId)
+      .in("mission_id", fresh.map((r) => r.mission_id));
+    return { coins: 0, xp: 0 };
+  }
   return { coins, xp };
 }
 

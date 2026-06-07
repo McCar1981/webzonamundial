@@ -9,6 +9,7 @@
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
 import { getTeam, saveTeam, recordGameweekScore, awardGameweekCoins } from "@/lib/fantasy/store.server";
+import { isValidGameweek } from "@/lib/fantasy/fixtures";
 import type { FantasyTeamState } from "@/lib/fantasy/types";
 
 export const runtime = "nodejs";
@@ -36,7 +37,7 @@ export async function PUT(req: Request) {
   // Al confirmar una jornada el cliente envía gameweekScore para el ranking semanal.
   // Además abonamos Fútcoins una sola vez por jornada (idempotente en el backend).
   let reward = { coins: 0, xp: 0 };
-  if (body.gameweekScore && Number.isFinite(body.gameweekScore.gw)) {
+  if (body.gameweekScore && isValidGameweek(body.gameweekScore.gw)) {
     const gs = body.gameweekScore;
     await recordGameweekScore(user.id, gs.gw, gs.points, gs.powerUp ?? null);
     reward = await awardGameweekCoins(user.id, gs.gw, gs.points);

@@ -21,7 +21,7 @@ import { claimStreak } from "@/lib/modo-carrera/streak";
 import { templateEntry, type NarrativeContext } from "@/lib/modo-carrera/narrative";
 import { PHILOSOPHIES } from "@/lib/modo-carrera/constants";
 import { SELECCIONES } from "@/data/selecciones";
-import { fetchServerCareer, saveServerCareer, requestNarrative, fetchEntitlement } from "./api";
+import { fetchServerCareer, saveServerCareer, requestNarrative, refillNarrative, fetchEntitlement } from "./api";
 import { BG, BG2, GOLD, GOLD2, MID } from "./fx";
 import OnboardingDT from "./OnboardingDT";
 import HubView from "./HubView";
@@ -212,6 +212,16 @@ export default function CareerGame() {
     setCareer((c) => (c ? { ...c, narrative: [entry, ...c.narrative], updatedAt: new Date().toISOString() } : c));
   };
 
+  // Compra una recarga de cupo IA con Fútcoins. Si va bien, amplía el cupo del día
+  // (deja de estar agotado) para poder seguir generando con IA.
+  const handleRefill = async (): Promise<{ ok: boolean; error?: string }> => {
+    const res = await refillNarrative();
+    if (res.ok) {
+      setNarrativeQuota((q) => ({ remaining: (q.remaining ?? 0) + res.added, exceeded: false }));
+    }
+    return { ok: res.ok, error: res.error };
+  };
+
   return (
     <div style={{ position: "relative", background: BG, minHeight: "100vh", color: "#fff", fontFamily: "'Outfit',sans-serif", padding: "32px 20px 80px" }}>
       {/* Fondo de marca: cancha + escudo ZonaMundial, muy sutil tras la interfaz. */}
@@ -355,6 +365,7 @@ export default function CareerGame() {
           exceeded={narrativeQuota.exceeded}
           onChoose={handleChoose}
           onGenerate={handleGenerate}
+          onRefill={authed ? handleRefill : undefined}
         />
       )}
       {tab === "legado" && <LegacyView career={career} paseDT={paseDT} />}

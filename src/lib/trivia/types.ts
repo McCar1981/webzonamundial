@@ -123,4 +123,7 @@ export interface ServerSession {
   responseMsSum: number;
   finished: boolean;
   startedAt: string;
+  /** Pistas 50/50 compradas: questionId → índices erróneos ya descartados.
+   *  Sirve para no volver a cobrar si se re-pide la pista de la misma pregunta. */
+  hints?: Record<string, number[]>;
 }

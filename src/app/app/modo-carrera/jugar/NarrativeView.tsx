@@ -10,6 +10,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { BG2, BG3, GOLD, GOLD2, MID, DIM } from "./fx";
 import type { CareerState, NarrativeEntry, NarrativeKind } from "@/lib/modo-carrera/types";
+import { CAREER_NARRATIVE_REFILL } from "@/lib/economy/spend";
 
 const KIND_LABEL: Record<NarrativeEntry["kind"], string> = {
   briefing: "Briefing",
@@ -46,6 +47,7 @@ export default function NarrativeView({
   exceeded = false,
   onChoose,
   onGenerate,
+  onRefill,
 }: {
   career: CareerState;
   paseDT?: boolean;
@@ -53,9 +55,31 @@ export default function NarrativeView({
   exceeded?: boolean;
   onChoose: (entryId: string, choiceId: string) => void;
   onGenerate: (kind: NarrativeKind) => Promise<void>;
+  /** Compra una recarga de cupo IA con Fútcoins. Ausente si no hay sesión. */
+  onRefill?: () => Promise<{ ok: boolean; error?: string }>;
 }) {
   const entries = [...career.narrative].reverse();
   const [busy, setBusy] = useState<NarrativeKind | null>(null);
+  const [refilling, setRefilling] = useState(false);
+  const [refillErr, setRefillErr] = useState<string | null>(null);
+
+  const refill = async () => {
+    if (!onRefill || refilling) return;
+    setRefilling(true);
+    setRefillErr(null);
+    try {
+      const res = await onRefill();
+      if (!res.ok) {
+        setRefillErr(
+          res.error === "insufficient_coins"
+            ? "No te alcanzan las Fútcoins."
+            : "No se pudo recargar. Inténtalo de nuevo.",
+        );
+      }
+    } finally {
+      setRefilling(false);
+    }
+  };
 
   const generate = async (kind: NarrativeKind) => {
     if (busy) return;
@@ -156,14 +180,34 @@ export default function NarrativeView({
         <div style={{ marginBottom: 20, padding: "14px 16px", borderRadius: 12, background: "rgba(201,168,76,0.10)", border: `1px solid ${GOLD}44` }}>
           <div style={{ fontSize: 13.5, fontWeight: 800, color: GOLD2 }}>Cupo de narrativa IA agotado por hoy</div>
           <div style={{ fontSize: 12.5, color: MID, marginTop: 4, lineHeight: 1.5 }}>
-            Las nuevas entradas se escriben por plantilla. Con el <strong style={{ color: GOLD2 }}>Pase DT</strong> tu prensa se genera con IA sin límite.
+            Las nuevas entradas se escriben por plantilla. Recarga el cupo con Fútcoins o consigue el <strong style={{ color: GOLD2 }}>Pase DT</strong> para IA sin límite.
           </div>
-          <Link
-            href="/premium"
-            style={{ display: "inline-block", marginTop: 10, padding: "8px 16px", borderRadius: 999, background: GOLD, color: "#1a1407", fontSize: 13, fontWeight: 800, textDecoration: "none" }}
-          >
-            Conseguir Pase DT
-          </Link>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 10, alignItems: "center" }}>
+            {onRefill && (
+              <button
+                type="button"
+                disabled={refilling}
+                onClick={refill}
+                style={{
+                  display: "inline-flex", alignItems: "center", gap: 6,
+                  padding: "8px 16px", borderRadius: 999,
+                  background: "rgba(201,168,76,0.14)", border: `1px solid ${GOLD}`,
+                  color: GOLD2, fontSize: 13, fontWeight: 800,
+                  cursor: refilling ? "default" : "pointer", opacity: refilling ? 0.6 : 1,
+                }}
+              >
+                <span aria-hidden>🪙</span>
+                {refilling ? "Recargando…" : `Recargar IA (${CAREER_NARRATIVE_REFILL})`}
+              </button>
+            )}
+            <Link
+              href="/premium"
+              style={{ display: "inline-block", padding: "8px 16px", borderRadius: 999, background: GOLD, color: "#1a1407", fontSize: 13, fontWeight: 800, textDecoration: "none" }}
+            >
+              Conseguir Pase DT
+            </Link>
+          </div>
+          {refillErr && <div style={{ fontSize: 12, color: "#fca5a5", marginTop: 8 }}>{refillErr}</div>}
         </div>
       ) : remaining !== null ? (
         <div style={{ marginBottom: 20, fontSize: 12.5, color: MID }}>

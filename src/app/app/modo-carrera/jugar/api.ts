@@ -69,6 +69,41 @@ export async function saveServerCareer(state: CareerState): Promise<SaveCareerRe
   }
 }
 
+export interface RefillResult {
+  ok: boolean;
+  /** Generaciones IA añadidas (0 si falló). */
+  added: number;
+  /** Saldo de Fútcoins resultante (si lo devolvió el servidor). */
+  coins: number | null;
+  /** Código de error cuando ok=false. */
+  error?: string;
+}
+
+/**
+ * Compra una recarga de cupo de narrativa IA con Fútcoins. Devuelve cuántas
+ * generaciones se añadieron y el saldo resultante. Ante fallo de red devuelve
+ * ok=false sin añadir nada (no se cobra: el backend solo amplía si cobró).
+ */
+export async function refillNarrative(): Promise<RefillResult> {
+  try {
+    const res = await fetch("/api/modo-carrera/narrativa/refill", { method: "POST" });
+    const data = (await res.json().catch(() => ({}))) as {
+      ok?: boolean;
+      added?: number;
+      coins?: number;
+      error?: string;
+    };
+    return {
+      ok: !!data.ok,
+      added: data.added ?? 0,
+      coins: typeof data.coins === "number" ? data.coins : null,
+      error: data.error,
+    };
+  } catch {
+    return { ok: false, added: 0, coins: null, error: "network" };
+  }
+}
+
 export interface NarrativeResult {
   entry: NarrativeEntry | null;
   /** ¿La entrada se generó con IA (true) o por plantilla por cupo agotado (false)? */

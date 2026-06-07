@@ -7,6 +7,7 @@
 // gestionamos la experiencia: timers, feedback inmediato, racha y ranking.
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { TRIVIA_HINT_FIFTY } from "@/lib/economy/spend";
 
 const BG = "#060B14",
   BG2 = "#0F1D32",
@@ -102,6 +103,10 @@ export default function TriviaGame() {
   const [lb, setLb] = useState<LbEntry[]>([]);
   const [lbPeriod, setLbPeriod] = useState<"global" | "diaria">("global");
   const [error, setError] = useState("");
+  // Pista 50/50: índices descartados de la pregunta actual + estado de compra.
+  const [removed, setRemoved] = useState<number[]>([]);
+  const [hintBusy, setHintBusy] = useState(false);
+  const [hintErr, setHintErr] = useState<string | null>(null);
 
   const qStartRef = useRef<number>(0);
   const anonRef = useRef<string>("");
@@ -169,6 +174,8 @@ export default function TriviaGame() {
       setStreak(0);
       setSelected(null);
       setRevealed(null);
+      setRemoved([]);
+      setHintErr(null);
       setResult(null);
       setPhase("playing");
       qStartRef.current = Date.now();
@@ -199,6 +206,36 @@ export default function TriviaGame() {
     }
   }
 
+  // Compra una pista 50/50 para la pregunta actual: el servidor cobra Fútcoins y
+  // devuelve dos opciones erróneas a descartar. Solo usuarios con sesión.
+  async function buyFifty() {
+    if (revealed || hintBusy || removed.length > 0) return;
+    const q = questions[idx];
+    if (!q) return;
+    setHintBusy(true);
+    setHintErr(null);
+    try {
+      const r = await fetch("/api/trivia/hint", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionId, questionId: q.id }),
+      });
+      const data = (await r.json().catch(() => ({}))) as { ok?: boolean; removed?: number[]; error?: string };
+      if (r.ok && data.ok && Array.isArray(data.removed)) {
+        setRemoved(data.removed);
+      } else if (r.status === 401) {
+        setHintErr("Inicia sesión para usar pistas.");
+      } else if (data.error === "insufficient_coins") {
+        setHintErr("No te alcanzan las Fútcoins.");
+      } else {
+        setHintErr("No se pudo usar la pista.");
+      }
+    } catch {
+      setHintErr("Error de conexión.");
+    }
+    setHintBusy(false);
+  }
+
   async function next() {
     if (!revealed) return;
     const isLast = idx + 1 >= questions.length;
@@ -209,6 +246,8 @@ export default function TriviaGame() {
     setIdx(idx + 1);
     setSelected(null);
     setRevealed(null);
+    setRemoved([]);
+    setHintErr(null);
     qStartRef.current = Date.now();
   }
 
@@ -316,6 +355,10 @@ export default function TriviaGame() {
             onAnswer={submitAnswer}
             onNext={next}
             loading={loading}
+            removed={removed}
+            onFifty={buyFifty}
+            hintBusy={hintBusy}
+            hintErr={hintErr}
           />
         )}
 
@@ -485,6 +528,10 @@ function Play({
   onAnswer,
   onNext,
   loading,
+  removed,
+  onFifty,
+  hintBusy,
+  hintErr,
 }: {
   q: ClientQuestion;
   idx: number;
@@ -499,6 +546,10 @@ function Play({
   onAnswer: (c: number) => void;
   onNext: () => void;
   loading: boolean;
+  removed: number[];
+  onFifty: () => void;
+  hintBusy: boolean;
+  hintErr: string | null;
 }) {
   return (
     <div style={{ animation: "pop .25s ease" }}>
@@ -539,9 +590,35 @@ function Play({
         {q.question}
       </h2>
 
+      {/* Comodín 50/50 (sumidero de Fútcoins) — solo antes de responder */}
+      {!revealed && (
+        <div style={{ marginBottom: 14, display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+          <button
+            type="button"
+            disabled={hintBusy || removed.length > 0}
+            onClick={onFifty}
+            style={{
+              display: "inline-flex", alignItems: "center", gap: 6,
+              padding: "8px 14px", borderRadius: 999,
+              background: removed.length > 0 ? "rgba(255,255,255,0.04)" : "rgba(201,168,76,0.12)",
+              border: `1px solid ${removed.length > 0 ? "rgba(255,255,255,0.08)" : `${GOLD}66`}`,
+              color: removed.length > 0 ? DIM : GOLD2,
+              fontSize: 13, fontWeight: 800, fontFamily: "inherit",
+              cursor: hintBusy || removed.length > 0 ? "default" : "pointer",
+              opacity: hintBusy ? 0.6 : 1,
+            }}
+          >
+            <span aria-hidden>✂️</span>
+            {removed.length > 0 ? "50/50 usado" : hintBusy ? "Aplicando…" : `50/50 · ${TRIVIA_HINT_FIFTY} 🪙`}
+          </button>
+          {hintErr && <span style={{ fontSize: 12, color: "#fca5a5" }}>{hintErr}</span>}
+        </div>
+      )}
+
       {/* Options */}
       <div style={{ display: "grid", gap: 10 }}>
         {q.options.map((opt, i) => {
+          const isRemoved = !revealed && removed.includes(i);
           let bg = BG2;
           let border = "rgba(255,255,255,0.08)";
           let anim = "";
@@ -562,7 +639,7 @@ function Play({
             <button
               key={i}
               className="zm-opt"
-              disabled={!!revealed}
+              disabled={!!revealed || isRemoved}
               onClick={() => onAnswer(i)}
               style={{
                 textAlign: "left",
@@ -571,7 +648,7 @@ function Play({
                 background: bg,
                 border: `1.5px solid ${border}`,
                 color: "#fff",
-                cursor: revealed ? "default" : "pointer",
+                cursor: revealed || isRemoved ? "default" : "pointer",
                 fontSize: 15,
                 fontWeight: 600,
                 fontFamily: "inherit",
@@ -579,6 +656,8 @@ function Play({
                 display: "flex",
                 gap: 10,
                 alignItems: "center",
+                opacity: isRemoved ? 0.35 : 1,
+                textDecoration: isRemoved ? "line-through" : "none",
               }}
             >
               <span style={{ width: 22, height: 22, borderRadius: 6, background: "rgba(255,255,255,0.06)", display: "grid", placeItems: "center", fontSize: 12, fontWeight: 800, color: DIM, flexShrink: 0 }}>

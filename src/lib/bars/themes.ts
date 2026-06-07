@@ -75,6 +75,54 @@ export const BAR_THEMES: Record<string, BarTheme> = {
     primary: "#e8d48b", primaryInk: "#1a1206", secondary: "#c9a84c",
     text: "#F4ECD6", textMuted: "#a99a72", buttonRadius: 12, cardRadius: 16,
   },
+  "azul-electrico": {
+    id: "azul-electrico", name: "Azul eléctrico",
+    bg: "#06090F", surface: "#0E1726", surface2: "#0A111D", border: "rgba(255,255,255,0.08)",
+    primary: "#3b82f6", primaryInk: "#03122e", secondary: "#22d3ee",
+    text: "#E6EDF7", textMuted: "#8DA0BC", buttonRadius: 10, cardRadius: 14,
+  },
+  "purpura-neon": {
+    id: "purpura-neon", name: "Púrpura neón",
+    bg: "#0B0614", surface: "#1A0F2B", surface2: "#130A20", border: "rgba(255,255,255,0.09)",
+    primary: "#a855f7", primaryInk: "#1a0533", secondary: "#f0abfc",
+    text: "#F3E9FB", textMuted: "#A98FC4", buttonRadius: 14, cardRadius: 18,
+  },
+  "cian-tropical": {
+    id: "cian-tropical", name: "Cian tropical",
+    bg: "#04110F", surface: "#0B201D", surface2: "#081814", border: "rgba(255,255,255,0.08)",
+    primary: "#14b8a6", primaryInk: "#022420", secondary: "#5eead4",
+    text: "#E2F4F1", textMuted: "#82A8A2", buttonRadius: 12, cardRadius: 14,
+  },
+  "rosa-vibrante": {
+    id: "rosa-vibrante", name: "Rosa vibrante",
+    bg: "#130610", surface: "#25101F", surface2: "#1B0A16", border: "rgba(255,255,255,0.08)",
+    primary: "#ec4899", primaryInk: "#2a0418", secondary: "#fbcfe8",
+    text: "#FBE9F3", textMuted: "#C295AC", buttonRadius: 14, cardRadius: 18,
+  },
+  "grafito-plata": {
+    id: "grafito-plata", name: "Grafito plata",
+    bg: "#0C0E11", surface: "#171A1F", surface2: "#101317", border: "rgba(255,255,255,0.10)",
+    primary: "#cbd5e1", primaryInk: "#0b1016", secondary: "#94a3b8",
+    text: "#E8ECF1", textMuted: "#8a94a6", buttonRadius: 8, cardRadius: 12,
+  },
+  "oceano-profundo": {
+    id: "oceano-profundo", name: "Océano profundo",
+    bg: "#04101C", surface: "#0A2036", surface2: "#07182A", border: "rgba(255,255,255,0.08)",
+    primary: "#0ea5e9", primaryInk: "#03182b", secondary: "#38bdf8",
+    text: "#E1EEF8", textMuted: "#84A2BC", buttonRadius: 12, cardRadius: 16,
+  },
+  "cobre-vintage": {
+    id: "cobre-vintage", name: "Cobre vintage",
+    bg: "#140C07", surface: "#241710", surface2: "#1A100A", border: "rgba(214,150,90,0.16)",
+    primary: "#d97706", primaryInk: "#2a1404", secondary: "#fbbf24",
+    text: "#F3E6D7", textMuted: "#b09478", buttonRadius: 8, cardRadius: 10,
+  },
+  "carbon-lima": {
+    id: "carbon-lima", name: "Carbón lima",
+    bg: "#0A0D08", surface: "#161B11", surface2: "#10140C", border: "rgba(255,255,255,0.08)",
+    primary: "#84cc16", primaryInk: "#11200a", secondary: "#bef264",
+    text: "#ECF2E2", textMuted: "#97a585", buttonRadius: 10, cardRadius: 14,
+  },
 };
 
 export const DEFAULT_THEME_ID = "deportivo-oscuro";

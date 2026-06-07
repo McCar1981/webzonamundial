@@ -434,6 +434,8 @@ export default function AppHubPage() {
   const [triviaPlayedToday, setTriviaPlayedToday] = useState<boolean | null>(null);
   // Preview manual del hero: /app?hero=live|reto|base (solo para revisar diseño).
   const [heroOverride, setHeroOverride] = useState<"live" | "reto" | "base" | null>(null);
+  // Carrusel del hero: índice de la pantalla visible (rota sola entre estados).
+  const [heroIdx, setHeroIdx] = useState(0);
   const { canInstall, install } = useInstallPrompt();
 
   useEffect(() => {
@@ -538,13 +540,19 @@ export default function AppHubPage() {
     cta1: { label: "Explorar módulos", href: "#modulos" },
     cta2: { label: "Ver partido del día", href: matchHref },
   };
-  const hero =
-    heroOverride === "live" ? heroLive
-    : heroOverride === "reto" ? heroReto
-    : heroOverride === "base" ? heroBase
-    : live ? heroLive
-    : retoAvailable ? heroReto
-    : heroBase;
+  // Pantallas del carrusel del hero. Con ?hero= se bloquea a una sola (preview).
+  // Si no, se muestran las pertinentes y van rotando: en vivo → reto → base.
+  const heroSlides: HeroCfg[] = heroOverride
+    ? [heroOverride === "live" ? heroLive : heroOverride === "reto" ? heroReto : heroBase]
+    : [...(live ? [heroLive] : []), ...(retoAvailable ? [heroReto] : []), heroBase];
+  const hero = heroSlides[heroIdx % heroSlides.length];
+  // Auto-rotación del carrusel (pausa si solo hay una pantalla o hay preview).
+  const heroCount = heroSlides.length;
+  useEffect(() => {
+    if (heroCount <= 1) return;
+    const id = setInterval(() => setHeroIdx((i) => (i + 1) % heroCount), 5500);
+    return () => clearInterval(id);
+  }, [heroCount]);
   // Estilo del CTA primario del hero según estado (coral/verde/dorado).
   const heroCta1 =
     hero.kind === "live"
@@ -559,7 +567,7 @@ export default function AppHubPage() {
   return (
     <div style={{ minHeight: "100vh", background: `radial-gradient(1200px 600px at 50% -10%, #12284a 0%, ${NAVY} 55%)`, color: TXT, fontFamily: "'Outfit',sans-serif", overflowX: "hidden" }}>
       <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-      <style>{`*{box-sizing:border-box}::selection{background:rgba(201,168,76,.3)}@keyframes zmpulse{0%,100%{opacity:1}50%{opacity:.4}}`}</style>
+      <style>{`*{box-sizing:border-box}::selection{background:rgba(201,168,76,.3)}@keyframes zmpulse{0%,100%{opacity:1}50%{opacity:.4}}@keyframes zmHeroIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}@keyframes zmHeroArtIn{from{opacity:0}to{opacity:.62}}.zm-hero-slide{animation:zmHeroIn .5s ease both}.zm-hero-art{animation:zmHeroArtIn .6s ease both}@media (prefers-reduced-motion: reduce){.zm-hero-slide,.zm-hero-art{animation:none}}`}</style>
 
       <div style={{ maxWidth: 1080, margin: "0 auto", padding: "14px 14px 110px" }}>
 
@@ -606,7 +614,7 @@ export default function AppHubPage() {
           {/* ── Arte del estado (imagen de card reutilizada): vive a la derecha,
               se funde con el navy hacia la izquierda para no tapar el texto. ── */}
           <img
-            key={hero.art} src={hero.art} alt="" aria-hidden loading="lazy" decoding="async"
+            key={hero.art} src={hero.art} alt="" aria-hidden loading="lazy" decoding="async" className="zm-hero-art"
             style={{
               position: "absolute", top: 0, bottom: 0, right: 0, width: "min(62%, 460px)", height: "100%", zIndex: 0,
               objectFit: "cover", objectPosition: "center 38%", pointerEvents: "none", opacity: 0.62,
@@ -627,7 +635,7 @@ export default function AppHubPage() {
           <span aria-hidden className="zm-spark zm-spark--2" style={{ position: "absolute", left: "42%", bottom: 18, width: 2, height: 2, borderRadius: "50%", background: GOLD2, pointerEvents: "none" }} />
           <span aria-hidden className="zm-spark zm-spark--3" style={{ position: "absolute", left: "68%", bottom: 30, width: 3, height: 3, borderRadius: "50%", background: hero.accent, pointerEvents: "none" }} />
 
-          <div style={{ position: "relative", zIndex: 2, maxWidth: 580 }}>
+          <div key={hero.kind} className="zm-hero-slide" style={{ position: "relative", zIndex: 2, maxWidth: 580 }}>
             <span style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 11, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase", color: hero.accent }}>
               {hero.kind === "live" && <span className="zm-live-dot" style={{ width: 8, height: 8, borderRadius: "50%", background: hero.accent }} />}
               {hero.eyebrow}
@@ -650,6 +658,27 @@ export default function AppHubPage() {
               )}
             </div>
           </div>
+
+          {/* Puntitos del carrusel: indican cuántas pantallas hay y permiten saltar. */}
+          {heroSlides.length > 1 && (
+            <div style={{ position: "absolute", right: 18, bottom: 16, zIndex: 3, display: "flex", gap: 7 }}>
+              {heroSlides.map((s, i) => {
+                const activo = i === heroIdx % heroSlides.length;
+                return (
+                  <button
+                    key={s.kind}
+                    aria-label={`Ver ${s.eyebrow}`}
+                    onClick={() => setHeroIdx(i)}
+                    style={{
+                      width: activo ? 22 : 8, height: 8, borderRadius: 99, padding: 0, cursor: "pointer",
+                      border: "none", transition: "width .25s ease, background .25s ease",
+                      background: activo ? hero.accent : "rgba(255,255,255,0.32)",
+                    }}
+                  />
+                );
+              })}
+            </div>
+          )}
         </div>
 
         {/* ═══ 3. MATCH CENTER DESTACADO (estilo retransmisión) ═══

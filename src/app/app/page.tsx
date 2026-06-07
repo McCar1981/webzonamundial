@@ -106,8 +106,9 @@ const CATS: Cat[] = [
       { icon: "trivia", title: "Trivia diaria", desc: "Responde preguntas del Mundial.", href: "/app/trivia", cta: "Responder", estado: "Disponible" },
       { icon: "fantasy", title: "Fantasy", desc: "Arma tu equipo y compite.", href: "/app/fantasy", cta: "Ver Fantasy", estado: "Disponible" },
       { icon: "carrera", title: "Modo Carrera", desc: "Dirige una selección como DT.", href: "/app/modo-carrera", cta: "Entrar", estado: "Nuevo" },
-      { icon: "album", title: "Álbum", desc: "Colecciona y completa tu álbum.", href: "/app/album", cta: "Abrir", estado: "Disponible" },
-      { icon: "penaltis", title: "Ronda de penaltis", desc: "Elige selección y gana la tanda.", cta: "Avisarme", estado: "Próximamente" },
+      // Ocultos temporalmente hasta tenerlos listos (reactivar quitando el comentario):
+      // { icon: "album", title: "Álbum", desc: "Colecciona y completa tu álbum.", href: "/app/album", cta: "Abrir", estado: "Disponible" },
+      // { icon: "penaltis", title: "Ronda de penaltis", desc: "Elige selección y gana la tanda.", cta: "Avisarme", estado: "Próximamente" },
     ],
   },
   {

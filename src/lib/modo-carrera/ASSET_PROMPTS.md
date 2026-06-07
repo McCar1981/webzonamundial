@@ -200,6 +200,16 @@ Uno por cada título de `constants.ts` → `TITLES`:
 > que la cabeza debe quedar arriba-centro). Medidas **600×800**, mirando ligeramente
 > hacia el centro de la pantalla. Degrada a nada si falta el archivo. Empieza por
 > `coach-arenga` y `coach-instruccion` (las que más se ven).
+>
+> **GENÉRICO vs POR PAÍS (degradado en cascada):** lo normal es soltar UN solo set
+> de 5 poses genéricas en `public/img/modo-carrera/coach/` y sirve para los 48
+> países (el entrenador eres tú, el DT). Si quieres personalizar SOLO las selecciones
+> importantes, crea una subcarpeta con el slug del país y mete ahí sus 5 poses:
+> `public/img/modo-carrera/coach/{slug}/coach-{pose}.webp` (p. ej.
+> `coach/espana/coach-arenga.webp`). El código intenta primero la del país y, si no
+> existe, usa la genérica automáticamente. No hace falta crear las 48: solo las que
+> quieras. Para la versión por país usa el MISMO personaje base pero con rasgos/tono
+> del entrenador real de esa selección (sin parecidos exactos ni nombres).
 
 ### G1. `coach-neutral.webp` — 600×800 (transparente) · pose: en reposo
 **Tipo:** Imagen (alpha)

@@ -480,7 +480,7 @@ export default function MatchLive({
             </div>
 
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
-              <Coach pose="neutral" size={56} />
+              <Coach pose="neutral" size={56} slug={selfSlug} />
               <div style={{ fontSize: 12, fontWeight: 800, letterSpacing: 0.6, textTransform: "uppercase", color: GOLD }}>
                 Elige tu plan de partido
               </div>
@@ -554,7 +554,7 @@ export default function MatchLive({
         {phase === "decision" && (
           <>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12, margin: "6px 0 6px", animation: "mlDecHdr .45s cubic-bezier(.2,.9,.3,1.3) both" }}>
-              <Coach pose="instruccion" size={64} />
+              <Coach pose="instruccion" size={64} slug={selfSlug} />
               {/* Cronómetro circular de presión */}
               <div style={{ position: "relative", width: 44, height: 44, flexShrink: 0 }}>
                 <svg width="44" height="44" viewBox="0 0 44 44" style={{ transform: "rotate(-90deg)" }}>
@@ -612,7 +612,7 @@ export default function MatchLive({
         {phase === "injury" && injury && (
           <>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, margin: "6px 0 4px", animation: "mlDecHdr .45s cubic-bezier(.2,.9,.3,1.3) both" }}>
-              <Coach pose="instruccion" size={64} />
+              <Coach pose="instruccion" size={64} slug={selfSlug} />
               <span style={{ display: "inline-flex", color: RED }}>
                 <MedicalCross size={22} />
               </span>
@@ -665,7 +665,7 @@ export default function MatchLive({
         {phase === "charla" && (
           <>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, margin: "6px 0 4px", animation: "mlDecHdr .45s cubic-bezier(.2,.9,.3,1.3) both" }}>
-              <Coach pose="arenga" size={64} />
+              <Coach pose="arenga" size={64} slug={selfSlug} />
               <span style={{ display: "inline-flex", color: GOLD }}>
                 <WhistleIcon size={22} />
               </span>
@@ -726,7 +726,7 @@ export default function MatchLive({
             )}
             <div style={{ position: "relative", zIndex: 1 }}>
               <div style={{ display: "flex", justifyContent: "center", marginBottom: 8 }}>
-                <Coach pose={outcome === "V" ? "celebra" : outcome === "D" ? "preocupado" : "neutral"} size={96} />
+                <Coach pose={outcome === "V" ? "celebra" : outcome === "D" ? "preocupado" : "neutral"} size={96} slug={selfSlug} />
               </div>
               <div
                 style={{

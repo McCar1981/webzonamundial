@@ -44,12 +44,19 @@ const GOLD_C = "#c9a84c";
  * Retrato enmarcado del entrenador (estilo cromo dorado) para las pantallas de
  * decisión del partido (charla, lesión, decisión 60', final). Es un elemento
  * EN LÍNEA (sin posicionamiento absoluto), así que nunca tapa botones ni rompe el
- * scroll del modal. Si el archivo aún no existe, TODO el marco se oculta solo
- * (`onError` → el contenedor desaparece), igual que el patrón de `Kit`: el código
- * referencia las 5 poses y aparecen en cuanto se sueltan en
- * `public/img/modo-carrera/coach/`.
+ * scroll del modal.
+ *
+ * DEGRADADO EN CASCADA (patrón `Kit`, pero en dos niveles):
+ *   1. Si pasas `slug`, intenta primero la versión PERSONALIZADA del país:
+ *      `/img/modo-carrera/coach/{slug}/coach-{pose}.webp`.
+ *   2. Si esa no existe, cae a la GENÉRICA `/img/modo-carrera/coach/coach-{pose}.webp`.
+ *   3. Si tampoco existe, el marco entero se oculta solo.
+ * Así basta con soltar las 5 poses genéricas para los 48 países, y se pueden
+ * personalizar SOLO las selecciones importantes creando su carpeta `{slug}/`.
  */
-export function Coach({ pose, size = 72 }: { pose: CoachPose; size?: number }) {
+export function Coach({ pose, size = 72, slug }: { pose: CoachPose; size?: number; slug?: string }) {
+  const generic = `/img/modo-carrera/coach/coach-${pose}.webp`;
+  const custom = slug ? `/img/modo-carrera/coach/${slug}/coach-${pose}.webp` : null;
   return (
     <span
       style={{
@@ -67,8 +74,9 @@ export function Coach({ pose, size = 72 }: { pose: CoachPose; size?: number }) {
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={`/img/modo-carrera/coach/coach-${pose}.webp`}
+        src={custom ?? generic}
         alt=""
+        data-fallback={custom ? "0" : "1"}
         style={{
           width: "100%",
           height: "100%",
@@ -78,7 +86,14 @@ export function Coach({ pose, size = 72 }: { pose: CoachPose; size?: number }) {
           userSelect: "none",
         }}
         onError={(e) => {
-          const wrap = (e.currentTarget as HTMLImageElement).parentElement;
+          const img = e.currentTarget as HTMLImageElement;
+          // 1er fallo (versión país) → prueba la genérica; 2º fallo → oculta el marco.
+          if (img.dataset.fallback === "0") {
+            img.dataset.fallback = "1";
+            img.src = generic;
+            return;
+          }
+          const wrap = img.parentElement;
           if (wrap) wrap.style.display = "none";
         }}
       />

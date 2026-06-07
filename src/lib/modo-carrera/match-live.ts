@@ -11,8 +11,9 @@
 // (Poisson); el marcador final se entrega a resolveMatch() para aplicarlo a
 // todos los pilares de la carrera.
 
-import type { CareerState, SeasonMatch } from "./types";
+import type { CareerState, SeasonMatch, Injury } from "./types";
 import { matchLambdas, poisson, capScore } from "./season";
+import { FANTASY_ROSTERS, type RosterPlayer } from "@/data/fantasy-rosters";
 
 // Reparto de goles esperados por ventana (los primeros 60' pesan más).
 const W1 = 0.62;
@@ -170,6 +171,96 @@ export interface LiveMatchResult {
   /** Goles de la segunda ventana (60-90'). */
   gf2: number;
   ga2: number;
+}
+
+// ─── Lesión EN PARTIDO + sustitución del DT (decisión en vivo) ────────────────
+/** Probabilidad de que un titular se retire lesionado durante el partido. */
+const MATCH_INJURY_CHANCE = 0.2;
+
+/** Una opción de recambio que el DT puede meter al lesionarse un jugador. */
+export interface SubOption {
+  id: string;
+  /** Jugador real del banquillo que entra. */
+  player: string;
+  pos: string;
+  /** Etiqueta del perfil del cambio. */
+  label: string;
+  description: string;
+  /** Multiplicadores sobre el resto del partido (se combinan con la decisión 60'). */
+  atkMult: number;
+  defMult: number;
+}
+
+/** Lesión surgida en el partido: el jugador que cae y los recambios posibles. */
+export interface MatchInjury {
+  /** Jugador lesionado (se persiste como baja de la temporada). */
+  injured: Injury;
+  /** Minuto en el que se produjo (para el relato). */
+  minute: number;
+  /** Opciones de sustitución que inciden en el rendimiento del resto del partido. */
+  options: SubOption[];
+}
+
+/**
+ * Tira por una lesión DURANTE el partido. Si ocurre, devuelve el titular que cae
+ * y TRES recambios reales del banquillo con perfiles tácticos distintos (igual por
+ * igual, refuerzo ofensivo, refuerzo defensivo): la elección del DT cambia de
+ * verdad el rendimiento del resto del encuentro. Devuelve null si no hay lesión o
+ * el roster es insuficiente. Se pre-tira al saque para que el partido sea estable.
+ */
+export function rollMatchInjury(c: CareerState, _match: SeasonMatch): MatchInjury | null {
+  if (Math.random() >= MATCH_INJURY_CHANCE) return null;
+  const roster: RosterPlayer[] = FANTASY_ROSTERS[c.identity.nationSlug ?? ""] ?? [];
+  if (roster.length < 6) return null;
+
+  // El lesionado es un jugador de campo (no portero): es lo habitual.
+  const field = roster.filter((p) => p.pos !== "GK");
+  if (field.length === 0) return null;
+  const injuredPlayer = field[Math.floor(Math.random() * field.length)];
+  const matchesOut = 1 + Math.floor(Math.random() * 3); // 1..3 partidos
+  const injured: Injury = { player: injuredPlayer.name, pos: injuredPlayer.pos, matchesOut };
+
+  // Recambios reales del banquillo (excluido el lesionado).
+  const bench = roster.filter((p) => p.name !== injuredPlayer.name);
+  const pickBy = (pred: (p: RosterPlayer) => boolean): RosterPlayer => {
+    const pool = bench.filter(pred);
+    return (pool.length ? pool : bench)[Math.floor(Math.random() * (pool.length ? pool.length : bench.length))];
+  };
+  const likeFor = pickBy((p) => p.pos === injuredPlayer.pos);
+  const offensive = pickBy((p) => p.pos === "FWD" || p.pos === "MID");
+  const defensive = pickBy((p) => p.pos === "DEF" || p.pos === "MID");
+
+  const options: SubOption[] = [
+    {
+      id: "iguales",
+      player: likeFor.name,
+      pos: likeFor.pos,
+      label: "Igual por igual",
+      description: "Mantienes el dibujo. Sin sobresaltos, ligero bajón natural.",
+      atkMult: 0.95,
+      defMult: 0.95,
+    },
+    {
+      id: "ofensivo",
+      player: offensive.name,
+      pos: offensive.pos,
+      label: "Refuerzo ofensivo",
+      description: "Más pólvora arriba… te expones algo atrás.",
+      atkMult: 1.12,
+      defMult: 0.85,
+    },
+    {
+      id: "defensivo",
+      player: defensive.name,
+      pos: defensive.pos,
+      label: "Refuerzo defensivo",
+      description: "Cierras atrás a costa de mordiente.",
+      atkMult: 0.82,
+      defMult: 1.12,
+    },
+  ];
+
+  return { injured, minute: 40 + Math.floor(Math.random() * 18), options };
 }
 
 /** Resuelve los últimos 30' aplicando la decisión del minuto 60. */

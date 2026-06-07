@@ -12,7 +12,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { defaultCareer, loadCareer, saveCareer, isCareerStarted } from "@/lib/modo-carrera/store";
-import type { CareerState, CareerTab, SkillBranch, NarrativeKind, Trophy } from "@/lib/modo-carrera/types";
+import type { CareerState, CareerTab, SkillBranch, NarrativeKind, Trophy, Injury } from "@/lib/modo-carrera/types";
 import { unlockSkill, applyDecision } from "@/lib/modo-carrera/engine";
 import { beginSeason, resolveMatch, startNextSeason, type PlayResult } from "@/lib/modo-carrera/season";
 import { beginLiveSeason, hasLiveFixtures } from "@/lib/modo-carrera/live-season";
@@ -167,9 +167,9 @@ export default function CareerGame() {
     setCareer((c) => (c ? beginLiveSeason(c) ?? beginSeason(c) : c));
   const handleNextSeason = () =>
     setCareer((c) => (c ? startNextSeason(c) : c));
-  const handleResolveMatch = (gf: number, ga: number, wasBehind?: boolean): PlayResult | null => {
+  const handleResolveMatch = (gf: number, ga: number, wasBehind?: boolean, injury?: Injury): PlayResult | null => {
     if (!career) return null;
-    const res = resolveMatch(career, gf, ga, { wasBehind });
+    const res = resolveMatch(career, gf, ga, { wasBehind, injury });
     if (res.match) setCareer(res.career);
     return res;
   };

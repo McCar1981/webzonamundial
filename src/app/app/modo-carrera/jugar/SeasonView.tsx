@@ -17,7 +17,7 @@ import { liveLockMs } from "@/lib/modo-carrera/live-season";
 import { getUserTimezone } from "@/lib/bracket/match-time";
 import { DEMAND_LABEL, VERDICT_LABEL } from "@/lib/modo-carrera/board";
 import { TITLES } from "@/lib/modo-carrera/constants";
-import type { CareerState, SeasonMatch, NarrativeEntry } from "@/lib/modo-carrera/types";
+import type { CareerState, SeasonMatch, NarrativeEntry, Injury } from "@/lib/modo-carrera/types";
 import MatchLive from "./MatchLive";
 import { Kit, Confetti } from "./Visuals";
 
@@ -177,7 +177,7 @@ export default function SeasonView({
   canLive?: boolean;
   onStart: () => void;
   onStartLive?: () => void;
-  onResolveMatch: (gf: number, ga: number, wasBehind?: boolean) => PlayResult | null;
+  onResolveMatch: (gf: number, ga: number, wasBehind?: boolean, injury?: Injury) => PlayResult | null;
   onChoose: (entryId: string, choiceId: string) => void;
   onNextSeason: () => void;
 }) {
@@ -320,8 +320,8 @@ export default function SeasonView({
     setLive(true);
   };
 
-  const finishMatch = (gf: number, ga: number, wasBehind?: boolean) => {
-    const res = onResolveMatch(gf, ga, wasBehind);
+  const finishMatch = (gf: number, ga: number, wasBehind?: boolean, injury?: Injury) => {
+    const res = onResolveMatch(gf, ga, wasBehind, injury);
     setLive(false);
     if (res && res.match) setReveal(res);
   };

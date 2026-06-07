@@ -21,6 +21,7 @@ import type {
   NarrativeEntry,
   Trophy,
   BoardVerdict,
+  Injury,
 } from "./types";
 import { grantXp, sumReputation } from "./engine";
 import { missionKey } from "./missions";
@@ -455,7 +456,7 @@ export function resolveMatch(
   c0: CareerState,
   gfIn: number,
   gaIn: number,
-  opts?: { wasBehind?: boolean },
+  opts?: { wasBehind?: boolean; injury?: Injury },
 ): PlayResult {
   const season = c0.season;
   const idx = playableIndex(season);
@@ -675,7 +676,10 @@ export function resolveMatch(
   // si el torneo sigue, se tira por una nueva baja para el próximo encuentro.
   let injuries = tickInjuries(activeInjuries(c0));
   if (!finished) {
-    const newInj = rollInjury(c0, injuries);
+    // El partido interactivo ya resolvió su propia lesión (con sustitución en
+    // vivo); en ese caso se persiste esa baja y NO se tira por otra, para no
+    // duplicar lesiones. La simulación rápida tira aquí su propia lesión.
+    const newInj = opts?.injury ?? rollInjury(c0, injuries);
     if (newInj) {
       injuries = [...injuries, newInj];
       const nationName = seleccion(c0.identity.nationSlug)?.nombre ?? "La selección";

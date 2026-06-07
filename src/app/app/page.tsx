@@ -77,6 +77,16 @@ type Cat = {
   // Fondo decorativo de categoría (capa visual interna, NO imagen cerrada).
   // Si el .webp no existe aún, la card degrada con elegancia (base+textura+glow).
   bg: string; bgOpacity: number;
+  // ── Tokens de tema (identidad visual fuerte por categoría) ──
+  border: string;       // borde de card en reposo
+  borderHov: string;    // borde de card en hover
+  glow: string;         // halo/acento superior (rgba)
+  wash: string;         // tinte de categoría que se inyecta sobre el fondo
+  ctaBg: string;        // CTA en reposo
+  ctaBgHov: string;     // CTA en hover
+  ctaColor: string;     // color de texto del CTA
+  ctaBorder: string;    // borde del CTA
+  ctaShadow: string;    // sombra del CTA en hover
   mods: Mod[];
 };
 
@@ -86,7 +96,11 @@ const CATS: Cat[] = [
     label: "Jugar",
     sub: "Predice, responde trivias y suma puntos.",
     tint: "#c9a84c", tint2: "#36c98f",   // dorado + verde (reto / progreso)
-    bg: "/assets/card-backgrounds/card-bg-jugar.webp", bgOpacity: 0.85,
+    bg: "/assets/card-backgrounds/card-bg-jugar.webp", bgOpacity: 0.6,
+    border: "rgba(80,200,120,0.34)", borderHov: "rgba(80,200,120,0.7)",
+    glow: "rgba(80,200,120,0.5)", wash: "rgba(54,201,143,0.18)",
+    ctaBg: "linear-gradient(135deg,#e8cf6a,#f3df8a)", ctaBgHov: "linear-gradient(135deg,#f0d978,#fbe79a)",
+    ctaColor: "#08111f", ctaBorder: "rgba(201,168,76,0.55)", ctaShadow: "0 8px 18px rgba(201,168,76,0.45)",
     mods: [
       { icon: "predicciones", title: "Predicciones", desc: "Acierta resultados y suma puntos.", href: "/app/predicciones", cta: "Predecir", estado: "Disponible" },
       { icon: "trivia", title: "Trivia diaria", desc: "Responde preguntas del Mundial.", href: "/app/trivia", cta: "Responder", estado: "Disponible" },
@@ -101,7 +115,12 @@ const CATS: Cat[] = [
     label: "En vivo",
     sub: "Sigue partidos, stories y jugadas en directo.",
     tint: "#ff6b5a", tint2: "#ffa14a",   // coral + naranja (urgente / vivo)
-    bg: "/assets/card-backgrounds/card-bg-en-vivo.webp", bgOpacity: 0.85,
+    bg: "/assets/card-backgrounds/card-bg-en-vivo.webp", bgOpacity: 0.6,
+    border: "rgba(255,110,90,0.34)", borderHov: "rgba(255,110,90,0.7)",
+    glow: "rgba(255,110,90,0.5)", wash: "rgba(255,120,90,0.18)",
+    ctaBg: "linear-gradient(135deg, rgba(255,120,90,0.30), rgba(45,210,230,0.24))",
+    ctaBgHov: "linear-gradient(135deg, rgba(255,120,90,0.52), rgba(45,210,230,0.42))",
+    ctaColor: "#22120c", ctaBorder: "rgba(255,120,90,0.5)", ctaShadow: "0 8px 18px rgba(255,110,90,0.4)",
     mods: [
       { icon: "matchcenter", title: "Match Center", desc: "Cada partido en vivo con estadísticas.", href: "/app/matchcenter", cta: "Ver", estado: "Disponible" },
       { icon: "micro", title: "Micro-predicciones", desc: "Predice jugadas en directo.", href: "/app/micro", cta: "Jugar", estado: "Nuevo" },
@@ -114,7 +133,12 @@ const CATS: Cat[] = [
     label: "Comunidad",
     sub: "Compite con otros usuarios y ligas.",
     tint: "#34b9c4", tint2: "#5b8def",   // turquesa + azul (social / conectada)
-    bg: "/assets/card-backgrounds/card-bg-comunidad.webp", bgOpacity: 0.85,
+    bg: "/assets/card-backgrounds/card-bg-comunidad.webp", bgOpacity: 0.6,
+    border: "rgba(45,210,210,0.34)", borderHov: "rgba(45,210,210,0.7)",
+    glow: "rgba(45,210,210,0.5)", wash: "rgba(80,140,255,0.16)",
+    ctaBg: "linear-gradient(135deg, rgba(45,210,210,0.30), rgba(120,110,255,0.22))",
+    ctaBgHov: "linear-gradient(135deg, rgba(45,210,210,0.52), rgba(120,110,255,0.42))",
+    ctaColor: "#0f1d2a", ctaBorder: "rgba(45,210,210,0.5)", ctaShadow: "0 8px 18px rgba(45,210,210,0.4)",
     mods: [
       { icon: "rankings", title: "Ranking global", desc: "Compite por país y por creador.", href: "/app/rankings", cta: "Ver ranking", estado: "Disponible" },
       { icon: "ligas", title: "Ligas privadas", desc: "Compite con amigos en tu liga.", href: "/app/ligas", cta: "Crear", estado: "Disponible" },
@@ -127,7 +151,12 @@ const CATS: Cat[] = [
     label: "Explora",
     sub: "Calendario, grupos, reglas y guías.",
     tint: "#8b7bd8", tint2: "#6e83c4",   // lavanda + azul grisáceo (informativa)
-    bg: "/assets/card-backgrounds/card-bg-explora.webp", bgOpacity: 0.85,
+    bg: "/assets/card-backgrounds/card-bg-explora.webp", bgOpacity: 0.6,
+    border: "rgba(150,130,255,0.34)", borderHov: "rgba(150,130,255,0.7)",
+    glow: "rgba(150,130,255,0.5)", wash: "rgba(150,130,255,0.16)",
+    ctaBg: "linear-gradient(135deg, rgba(150,130,255,0.28), rgba(210,220,255,0.26))",
+    ctaBgHov: "linear-gradient(135deg, rgba(150,130,255,0.5), rgba(180,195,255,0.46))",
+    ctaColor: "#16203a", ctaBorder: "rgba(150,130,255,0.5)", ctaShadow: "0 8px 18px rgba(150,130,255,0.4)",
     mods: [
       { icon: "calendario", title: "Calendario", desc: "Todos los partidos del Mundial 2026.", href: "/calendario", cta: "Ver", estado: "Disponible" },
       { icon: "grupos", title: "Grupos", desc: "Las 48 selecciones por grupo.", href: "/grupos", cta: "Ver", estado: "Disponible" },
@@ -202,18 +231,22 @@ function cardBackground(tint: string, tint2: string, lift: boolean): React.CSSPr
 }
 
 /* ─────────── Card de módulo (HTML/CSS, gamificada, premium) ───────────
-   Capas (de atrás hacia delante): textura/glow base → imagen de categoría
-   (decorativa, opacidad baja + máscara que se desvanece hacia el texto) →
-   velo blanco de legibilidad → contenido. La imagen NUNCA es la card cerrada. */
-function ModuleCard({ mod, tint, tint2, bg, bgOpacity }: { mod: Mod; tint: string; tint2: string; bg: string; bgOpacity: number }) {
+   Capas (de atrás hacia delante):
+     1. base clara + microtextura + glow de esquina (cardBackground)
+     2. foto de categoría (decorativa, máscara suave)
+     3. WASH de color de categoría → da identidad aunque la foto sea pálida
+     4. velo de legibilidad inteligente (transparente arriba, protege el texto abajo)
+     5. halo/acento superior + contenido
+   La imagen NUNCA es la card cerrada; la identidad la dan los tokens del tema. */
+function ModuleCard({ mod, cat }: { mod: Mod; cat: Cat }) {
+  const { tint, tint2, bg, bgOpacity, border, borderHov, glow, wash, ctaBg, ctaBgHov, ctaColor, ctaBorder, ctaShadow } = cat;
   const [hov, setHov] = useState(false);
   const disabled = !mod.href;
   const active = hov && !disabled;
 
   const inner = (
     <>
-      {/* Capa A — imagen decorativa de categoría (cover, opacidad baja, máscara que
-          difumina hacia abajo para que el texto siempre quede legible). */}
+      {/* Capa 2 — foto decorativa de categoría (cover, máscara suave hacia el texto). */}
       {bg && (
         <span
           aria-hidden
@@ -221,29 +254,33 @@ function ModuleCard({ mod, tint, tint2, bg, bgOpacity }: { mod: Mod; tint: strin
             position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none",
             backgroundImage: `url(${bg})`,
             backgroundSize: "cover", backgroundPosition: "center",
-            opacity: active ? Math.min(bgOpacity + 0.1, 1) : bgOpacity,
-            WebkitMaskImage: "linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.95) 60%, rgba(0,0,0,0.7) 100%)",
-            maskImage: "linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.95) 60%, rgba(0,0,0,0.7) 100%)",
+            opacity: active ? Math.min(bgOpacity + 0.12, 1) : bgOpacity,
+            WebkitMaskImage: "linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.92) 55%, rgba(0,0,0,0.72) 100%)",
+            maskImage: "linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.92) 55%, rgba(0,0,0,0.72) 100%)",
             transition: "opacity .28s",
           }}
         />
       )}
-      {/* Capa B — velo blanco de legibilidad (asegura contraste del contenido). */}
-      <span aria-hidden style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none", background: "linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.5) 100%)" }} />
+      {/* Capa 3 — WASH de color de categoría (identidad cromática fuerte). */}
+      <span aria-hidden style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none", backgroundImage: `radial-gradient(130% 95% at 50% -8%, ${wash}, transparent 58%), linear-gradient(155deg, ${tint}24 0%, transparent 48%)` }} />
+      {/* Capa 4 — velo de legibilidad inteligente: deja ver la foto arriba y protege
+          el texto abajo (título, descripción y CTA siempre legibles). */}
+      <span aria-hidden style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none", background: "linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.10) 22%, rgba(255,255,255,0.5) 46%, rgba(255,255,255,0.74) 100%)" }} />
 
-      {/* Banda de acento superior (sutil, da el toque "módulo de juego") */}
-      <span style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, zIndex: 1, background: `linear-gradient(90deg, ${tint}, ${tint2})`, opacity: active ? 1 : 0.65, transition: "opacity .25s" }} />
+      {/* Halo + franja de acento superior (premium, no borde infantil). */}
+      <span aria-hidden style={{ position: "absolute", top: 0, left: 0, right: 0, height: 54, zIndex: 1, pointerEvents: "none", background: `radial-gradient(75% 130% at 50% -12%, ${glow}, transparent 72%)`, opacity: active ? 1 : 0.8, transition: "opacity .25s" }} />
+      <span aria-hidden style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, zIndex: 1, background: `linear-gradient(90deg, ${tint}, ${tint2})`, opacity: active ? 1 : 0.8, transition: "opacity .25s" }} />
 
       <div style={{ position: "relative", zIndex: 1, display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 13 }}>
-        <span style={{ position: "relative", width: 48, height: 48, borderRadius: 14, display: "inline-flex", alignItems: "center", justifyContent: "center", background: `linear-gradient(140deg, ${tint}2e, ${tint2}1c)`, border: `1px solid ${tint}55`, boxShadow: active ? `0 6px 16px ${tint}3a` : "none", transition: "box-shadow .25s" }}>
+        <span style={{ position: "relative", width: 54, height: 54, borderRadius: 15, display: "inline-flex", alignItems: "center", justifyContent: "center", background: `linear-gradient(140deg, ${tint}44, ${tint2}26)`, border: `1.5px solid ${tint}99`, boxShadow: active ? `0 8px 20px ${tint}55, inset 0 1px 0 rgba(255,255,255,0.7)` : `0 4px 12px ${tint}33, inset 0 1px 0 rgba(255,255,255,0.55)`, transition: "box-shadow .25s, transform .25s", transform: active ? "scale(1.05)" : undefined }}>
           {/* brillo superior del contenedor del icono */}
-          <span style={{ position: "absolute", inset: 0, borderRadius: 14, background: "linear-gradient(180deg, rgba(255,255,255,0.5), transparent 55%)", pointerEvents: "none" }} />
+          <span style={{ position: "absolute", inset: 0, borderRadius: 15, background: "linear-gradient(180deg, rgba(255,255,255,0.55), transparent 55%)", pointerEvents: "none" }} />
           {mod.iconSrc ? (
             // Icono propio teñido con CSS mask (color del tema, no el del SVG).
             <span
               aria-hidden
               style={{
-                width: 25, height: 25, display: "inline-block", backgroundColor: INK,
+                width: 29, height: 29, display: "inline-block", backgroundColor: INK,
                 WebkitMaskImage: `url(${mod.iconSrc})`, maskImage: `url(${mod.iconSrc})`,
                 WebkitMaskRepeat: "no-repeat", maskRepeat: "no-repeat",
                 WebkitMaskPosition: "center", maskPosition: "center",
@@ -251,27 +288,25 @@ function ModuleCard({ mod, tint, tint2, bg, bgOpacity }: { mod: Mod; tint: strin
               }}
             />
           ) : (
-            <I d={PATHS[mod.icon] || ""} c={INK} s={25} />
+            <I d={PATHS[mod.icon] || ""} c={INK} s={29} />
           )}
         </span>
         <span style={badgeStyle(mod.estado)}>{mod.estado === "En vivo" ? "● En vivo" : mod.estado}</span>
       </div>
-      <h3 style={{ position: "relative", zIndex: 1, fontWeight: 800, fontSize: 16, color: INK, marginBottom: 5 }}>{mod.title}</h3>
-      <p style={{ position: "relative", zIndex: 1, fontSize: 12.5, color: INK_MUT, lineHeight: 1.45, marginBottom: 14, minHeight: 36 }}>{mod.desc}</p>
-      {/* CTA uniforme: pill ancho al pie de cada card */}
+      <h3 style={{ position: "relative", zIndex: 1, fontWeight: 800, fontSize: 16.5, color: INK, marginBottom: 5, textShadow: "0 1px 0 rgba(255,255,255,0.6)" }}>{mod.title}</h3>
+      <p style={{ position: "relative", zIndex: 1, fontSize: 12.5, color: INK_MUT, lineHeight: 1.45, marginBottom: 14, minHeight: 36, textShadow: "0 1px 0 rgba(255,255,255,0.45)" }}>{mod.desc}</p>
+      {/* CTA con identidad de categoría (premium, no gris genérico). */}
       <span
         style={{
           position: "relative", zIndex: 1,
           display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
           width: "100%",
           fontSize: 13, fontWeight: 800,
-          color: disabled ? "#4f6394" : active ? NAVY : INK,
-          background: disabled
-            ? "#e3e9f5"
-            : active ? `linear-gradient(135deg,${GOLD},${GOLD2})` : "#dde4f0",
+          color: disabled ? "#4f6394" : ctaColor,
+          background: disabled ? "#e3e9f5" : active ? ctaBgHov : ctaBg,
           padding: "10px 0", borderRadius: 11,
-          border: disabled ? "1px solid #ccd8ec" : "none",
-          boxShadow: active ? `0 6px 16px ${GOLD}40` : "none",
+          border: `1px solid ${disabled ? "#ccd8ec" : ctaBorder}`,
+          boxShadow: active && !disabled ? `${ctaShadow}, inset 0 1px 0 rgba(255,255,255,0.4)` : "inset 0 1px 0 rgba(255,255,255,0.35)",
           transition: "background .25s, color .25s, box-shadow .25s",
         }}
       >
@@ -290,15 +325,16 @@ function ModuleCard({ mod, tint, tint2, bg, bgOpacity }: { mod: Mod; tint: strin
     display: "flex", flexDirection: "column",
     textDecoration: "none", borderRadius: 20, padding: "16px 16px 18px",
     ...cardBackground(tint, tint2, active),
-    border: `1px solid ${active ? tint + "66" : "rgba(14,28,51,0.06)"}`,
+    border: `1.5px solid ${active ? borderHov : border}`,
+    // Card "flota" sobre el navy: sombra profunda + brillo interior superior.
     boxShadow: active
-      ? `0 14px 30px rgba(8,16,30,0.32), 0 0 0 1px ${tint}33`
-      : "0 3px 12px rgba(8,16,30,0.18)",
+      ? `0 22px 46px rgba(0,0,0,0.36), 0 0 0 1px ${borderHov}, inset 0 1px 0 rgba(255,255,255,0.7)`
+      : "0 18px 40px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.65)",
     // Hover eleva; el tap (móvil) lo gestiona `.zm-mod-card:active` en CSS para no
     // pisar la animación con un inline transform.
-    transform: active ? "translateY(-4px)" : undefined,
+    transform: active ? "translateY(-5px)" : undefined,
     transition: "transform .18s ease, box-shadow .28s, background-color .28s, border-color .28s",
-    cursor: disabled ? "default" : "pointer", opacity: disabled ? 0.94 : 1,
+    cursor: disabled ? "default" : "pointer", opacity: disabled ? 0.96 : 1,
   };
   if (disabled) return <div className="zm-mod-card zm-mod-card--locked" style={style}>{inner}</div>;
   return (
@@ -509,7 +545,7 @@ export default function AppHubPage() {
               </div>
             </div>
             <div className="zm-mod-grid">
-              {cat.mods.map((m) => <ModuleCard key={m.title} mod={m} tint={cat.tint} tint2={cat.tint2} bg={cat.bg} bgOpacity={cat.bgOpacity} />)}
+              {cat.mods.map((m) => <ModuleCard key={m.title} mod={m} cat={cat} />)}
             </div>
           </section>
         ))}

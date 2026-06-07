@@ -2,7 +2,7 @@
   "name": "ZonaMundial — Predicciones y Fantasy Mundial 2026",
   "short_name": "ZonaMundial",
   "description": "Juega gratis al Mundial 2026: predicciones, fantasy, IA Coach, trivia y streaming con creators.",
-  "start_url": "/",
+  "start_url": "/app",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
@@ -32,6 +32,18 @@
     }
   ],
   "shortcuts": [
+    {
+      "name": "Abrir la app",
+      "short_name": "La app",
+      "description": "Todos los módulos del Mundial 2026",
+      "url": "/app"
+    },
+    {
+      "name": "Match Center",
+      "short_name": "En vivo",
+      "description": "Sigue el partido del día en vivo",
+      "url": "/app/matchcenter"
+    },
     {
       "name": "Predicciones",
       "short_name": "Predicciones",

@@ -14,7 +14,7 @@ export async function updateSupabaseSession(request: NextRequest) {
   const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   // If env not configured, no-op so the rest of the site keeps working.
-  if (!url || !anonKey) return response;
+  if (!url || !anonKey) return { response, user: null };
 
   const supabase = createServerClient(url, anonKey, {
     cookies: {
@@ -35,7 +35,12 @@ export async function updateSupabaseSession(request: NextRequest) {
 
   // IMPORTANT: do NOT remove this getUser() call. It's what triggers the
   // session refresh + cookie write that the rest of SSR depends on.
-  await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  return response;
+  // Devolvemos también el user para que el middleware pueda decidir
+  // redirecciones basadas EXCLUSIVAMENTE en el estado de sesión (nunca por
+  // user-agent), evitando cualquier patrón de cloaking ante Googlebot.
+  return { response, user };
 }

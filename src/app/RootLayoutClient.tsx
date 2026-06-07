@@ -13,6 +13,7 @@ import HeaderUserMenu from "@/components/HeaderUserMenu";
 import MobileUserMenu from "@/components/MobileUserMenu";
 import LiveCreatorsBanner from "@/components/LiveCreatorsBanner";
 import IACoachWidget from "@/components/ia-coach/IACoachWidget";
+import AppBottomNav from "@/components/AppBottomNav";
 
 const BG="#060B14",BG2="#0F1D32",BG3="#0B1825",GOLD="#c9a84c",GOLD2="#e8d48b",MID="#8a94b0",DIM="#6a7a9a",DARK="#4a5570";
 
@@ -189,19 +190,6 @@ function NavDropdown({ label, items, isMobile, expanded, onToggle, onNavigate }:
   );
 }
 
-function LateralAds() {
-  return (
-    <>
-      <div className="zm-pub-lat zm-pub-lat--izq">
-        <img src="/img/imagenessilviu/rotulemos120x600.webp" alt="Publicidad Rotulemos — rótulos profesionales" loading="lazy" decoding="async" />
-      </div>
-      <div className="zm-pub-lat zm-pub-lat--der">
-        <img src="/img/imagenessilviu/ChatGPT Image 8 abr 2026, 04_49_43 p.m..webp" alt="Publicidad Mr Cool Cat — cerveza artesanal" loading="lazy" decoding="async" />
-      </div>
-    </>
-  );
-}
-
 function LanguageToggle() {
   const { locale, setLocale } = useLanguage();
 
@@ -325,6 +313,26 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
               <LanguageToggle />
             </div>
 
+            {/* CTA fijo "Abrir la app": lleva al lobby de módulos /app desde
+                cualquier página del sitio editorial. Solo desktop. */}
+            <Link
+              href="/app"
+              className="app-cta-desktop"
+              style={{
+                alignItems: "center", gap: 6,
+                background: `linear-gradient(135deg,${GOLD},${GOLD2})`,
+                color: BG, fontWeight: 800, fontSize: 13.5,
+                padding: "8px 16px", borderRadius: 10, textDecoration: "none",
+                whiteSpace: "nowrap", boxShadow: "0 4px 16px rgba(201,168,76,0.18)",
+                transition: "box-shadow .25s, transform .25s",
+              }}
+              onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 8px 26px rgba(201,168,76,0.32)"; e.currentTarget.style.transform = "translateY(-1px)"; }}
+              onMouseLeave={e => { e.currentTarget.style.boxShadow = "0 4px 16px rgba(201,168,76,0.18)"; e.currentTarget.style.transform = "translateY(0)"; }}
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 3l14 9-14 9V3z" fill={BG}/></svg>
+              Abrir la app
+            </Link>
+
             {/* User menu (login / avatar+dropdown) — desktop solamente */}
             <div className="user-menu-desktop">
               <HeaderUserMenu fallbackCtaLabel={t.cta.register} />
@@ -355,6 +363,21 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
         paddingTop: 80, overflowY: "auto",
       }}>
         <nav style={{ maxWidth: 400, margin: "0 auto", padding: "20px 24px" }}>
+          {/* CTA prominente "Abrir la app" arriba del menú móvil */}
+          <Link
+            href="/app"
+            onClick={closeMobile}
+            style={{
+              display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+              background: `linear-gradient(135deg,${GOLD},${GOLD2})`,
+              color: BG, fontWeight: 800, fontSize: 16,
+              padding: "14px 16px", borderRadius: 12, textDecoration: "none",
+              marginBottom: 18, boxShadow: "0 6px 22px rgba(201,168,76,0.22)",
+            }}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 3l14 9-14 9V3z" fill={BG}/></svg>
+            Abrir la app
+          </Link>
           {NAV.map(item =>
             item.items ? (
               <NavDropdown
@@ -389,9 +412,6 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
         </nav>
       </div>
 
-      {/* ═══ LATERAL ADS — Desktop only, append directly to body to escape scroll container ═══ */}
-      <LateralAds />
-
       {/* Resincroniza la suscripción push del navegador con el backend
           una vez cada 24h por dispositivo. Útil porque Chrome móvil rota
           el endpoint sin avisar al servidor → sin esto el backend cree
@@ -410,6 +430,9 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
       {/* ═══ IA COACH — módulo independiente, ventana flotante global ═══ */}
       <IACoachWidget />
 
+      {/* ═══ BARRA INFERIOR TIPO APP — solo móvil y solo dentro de /app ═══ */}
+      <AppBottomNav />
+
       {/* ═══ FOOTER ═══ */}
       <SiteFooter />
 
@@ -417,6 +440,7 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
       <style>{`
         .desktop-nav { display: flex; }
         .cta-desktop { display: inline-flex; }
+        .app-cta-desktop { display: inline-flex; }
         .hamburger-btn { display: none; }
         .lang-toggle { display: flex; }
         .user-menu-desktop { display: flex; }
@@ -424,6 +448,7 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
         @media(max-width:768px) {
           .desktop-nav { display: none !important; }
           .cta-desktop { display: none !important; }
+          .app-cta-desktop { display: none !important; }
           .hamburger-btn { display: flex !important; }
           .lang-toggle { display: none !important; }
           .user-menu-desktop { display: none !important; }

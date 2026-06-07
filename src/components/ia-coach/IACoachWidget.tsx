@@ -14,8 +14,9 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { ReactNode } from "react";
+import { usePathname } from "next/navigation";
 import { useBracketStore } from "@/lib/bracket/useBracketStore";
 import BracketCoachPanel from "@/components/bracket/BracketCoachPanel";
 import OraclePanel from "@/components/bracket/OraclePanel";
@@ -42,37 +43,75 @@ const MODES: Array<{ id: ModeId; label: string; icon: ReactNode }> = [
 export default function IACoachWidget() {
   const [open, setOpen] = useState(false);
   const [mode, setMode] = useState<ModeId>("coach");
+  const [showTip, setShowTip] = useState(false);
   const { state, hydrated } = useBracketStore();
   const { name, ready: identityReady } = useCoachIdentity();
+
+  // Dentro de la webapp hay barra inferior fija en móvil → subimos el launcher
+  // para que no la tape ni compita con la navegación.
+  const pathname = usePathname() || "";
+  const inApp = pathname.startsWith("/app");
+
+  // Tooltip inicial "IA Coach": aparece unos segundos al cargar y se va solo.
+  useEffect(() => {
+    const t1 = setTimeout(() => setShowTip(true), 900);
+    const t2 = setTimeout(() => setShowTip(false), 6500);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
+  }, []);
 
   return (
     <>
       {/* ── Launcher flotante ── */}
       {!open && (
-        <button
-          onClick={() => setOpen(true)}
-          aria-label="Abrir IA Coach"
-          style={{
-            position: "fixed",
-            bottom: 22,
-            right: 22,
-            zIndex: 1200,
-            width: 58,
-            height: 58,
-            borderRadius: "50%",
-            border: "none",
-            cursor: "pointer",
-            background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
-            color: "#0C0F14",
-            fontSize: 26,
-            boxShadow: "0 10px 30px rgba(0,0,0,0.45), 0 0 0 1px rgba(201,168,76,0.4)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
+        <div
+          className={inApp ? "zm-coach-launcher zm-coach-launcher--inapp" : "zm-coach-launcher"}
+          style={{ position: "fixed", bottom: 22, right: 18, zIndex: 1200, display: "flex", alignItems: "center", gap: 8 }}
         >
-          <IconRobot size={28} />
-        </button>
+          {showTip && (
+            <span
+              style={{
+                background: BG2,
+                color: GOLD2,
+                border: `1px solid ${GOLD}44`,
+                borderRadius: 10,
+                padding: "7px 11px",
+                fontSize: 12.5,
+                fontWeight: 700,
+                whiteSpace: "nowrap",
+                boxShadow: "0 8px 22px rgba(0,0,0,0.4)",
+              }}
+            >
+              IA Coach
+            </span>
+          )}
+          <button
+            onClick={() => { setOpen(true); setShowTip(false); }}
+            aria-label="Abrir IA Coach"
+            title="IA Coach"
+            style={{
+              width: 54,
+              height: 54,
+              borderRadius: "50%",
+              border: "none",
+              cursor: "pointer",
+              background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
+              color: "#0C0F14",
+              fontSize: 26,
+              boxShadow: "0 10px 30px rgba(0,0,0,0.45), 0 0 0 1px rgba(201,168,76,0.4)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexShrink: 0,
+            }}
+          >
+            <IconRobot size={26} />
+          </button>
+          <style>{`
+            @media(max-width:768px){
+              .zm-coach-launcher--inapp{ bottom: calc(74px + env(safe-area-inset-bottom)) !important; }
+            }
+          `}</style>
+        </div>
       )}
 
       {/* ── Ventana flotante ── */}

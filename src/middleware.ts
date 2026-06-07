@@ -22,7 +22,28 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  return await updateSupabaseSession(request);
+  const { response, user } = await updateSupabaseSession(request);
+
+  // Bifurcación por ESTADO DE SESIÓN (no por user-agent → sin cloaking).
+  // El usuario con sesión activa que aterriza en la portada `/` va directo al
+  // lobby de la app `/app`. Googlebot nunca tiene sesión, así que siempre ve
+  // el home editorial → no hay contenido distinto para el crawler.
+  // Escape: `/?portada=1` deja ver la portada editorial aunque estés logueado.
+  if (
+    user &&
+    url.pathname === "/" &&
+    !url.searchParams.has("portada")
+  ) {
+    const appUrl = url.clone();
+    appUrl.pathname = "/app";
+    appUrl.search = "";
+    const redirect = NextResponse.redirect(appUrl);
+    // Conservar las cookies de refresco de sesión escritas por Supabase.
+    response.cookies.getAll().forEach((c) => redirect.cookies.set(c));
+    return redirect;
+  }
+
+  return response;
 }
 
 export const config = {

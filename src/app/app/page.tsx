@@ -96,7 +96,7 @@ const CATS: Cat[] = [
     label: "Jugar",
     sub: "Predice, responde trivias y suma puntos.",
     tint: "#c9a84c", tint2: "#36c98f",   // dorado + verde (reto / progreso)
-    bg: "/assets/card-backgrounds/card-bg-jugar.webp", bgOpacity: 0.6,
+    bg: "/assets/card-backgrounds/card-bg-jugar.webp", bgOpacity: 0.42,
     border: "rgba(80,200,120,0.34)", borderHov: "rgba(80,200,120,0.7)",
     glow: "rgba(80,200,120,0.5)", wash: "rgba(54,201,143,0.18)",
     ctaBg: "linear-gradient(135deg,#e8cf6a,#f3df8a)", ctaBgHov: "linear-gradient(135deg,#f0d978,#fbe79a)",
@@ -115,7 +115,7 @@ const CATS: Cat[] = [
     label: "En vivo",
     sub: "Sigue partidos, stories y jugadas en directo.",
     tint: "#ff6b5a", tint2: "#ffa14a",   // coral + naranja (urgente / vivo)
-    bg: "/assets/card-backgrounds/card-bg-en-vivo.webp", bgOpacity: 0.6,
+    bg: "/assets/card-backgrounds/card-bg-en-vivo.webp", bgOpacity: 0.35,
     border: "rgba(255,110,90,0.34)", borderHov: "rgba(255,110,90,0.7)",
     glow: "rgba(255,110,90,0.5)", wash: "rgba(255,120,90,0.18)",
     ctaBg: "linear-gradient(135deg, rgba(255,120,90,0.30), rgba(45,210,230,0.24))",
@@ -133,7 +133,7 @@ const CATS: Cat[] = [
     label: "Comunidad",
     sub: "Compite con otros usuarios y ligas.",
     tint: "#34b9c4", tint2: "#5b8def",   // turquesa + azul (social / conectada)
-    bg: "/assets/card-backgrounds/card-bg-comunidad.webp", bgOpacity: 0.6,
+    bg: "/assets/card-backgrounds/card-bg-comunidad.webp", bgOpacity: 0.38,
     border: "rgba(45,210,210,0.34)", borderHov: "rgba(45,210,210,0.7)",
     glow: "rgba(45,210,210,0.5)", wash: "rgba(80,140,255,0.16)",
     ctaBg: "linear-gradient(135deg, rgba(45,210,210,0.30), rgba(120,110,255,0.22))",
@@ -151,7 +151,7 @@ const CATS: Cat[] = [
     label: "Explora",
     sub: "Calendario, grupos, reglas y guías.",
     tint: "#8b7bd8", tint2: "#6e83c4",   // lavanda + azul grisáceo (informativa)
-    bg: "/assets/card-backgrounds/card-bg-explora.webp", bgOpacity: 0.6,
+    bg: "/assets/card-backgrounds/card-bg-explora.webp", bgOpacity: 0.40,
     border: "rgba(150,130,255,0.34)", borderHov: "rgba(150,130,255,0.7)",
     glow: "rgba(150,130,255,0.5)", wash: "rgba(150,130,255,0.16)",
     ctaBg: "linear-gradient(135deg, rgba(150,130,255,0.28), rgba(210,220,255,0.26))",
@@ -254,18 +254,20 @@ function ModuleCard({ mod, cat }: { mod: Mod; cat: Cat }) {
             position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none",
             backgroundImage: `url(${bg})`,
             backgroundSize: "cover", backgroundPosition: "center",
-            opacity: active ? Math.min(bgOpacity + 0.12, 1) : bgOpacity,
-            WebkitMaskImage: "linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.92) 55%, rgba(0,0,0,0.72) 100%)",
-            maskImage: "linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.92) 55%, rgba(0,0,0,0.72) 100%)",
+            opacity: active ? Math.min(bgOpacity + 0.1, 1) : bgOpacity,
+            // El arte se percibe más hacia abajo y esquinas (más fuerte al pie).
+            WebkitMaskImage: "linear-gradient(180deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.92) 45%, rgba(0,0,0,1) 100%)",
+            maskImage: "linear-gradient(180deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.92) 45%, rgba(0,0,0,1) 100%)",
             transition: "opacity .28s",
           }}
         />
       )}
       {/* Capa 3 — WASH de color de categoría (identidad cromática fuerte). */}
       <span aria-hidden style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none", backgroundImage: `radial-gradient(130% 95% at 50% -8%, ${wash}, transparent 58%), linear-gradient(155deg, ${tint}24 0%, transparent 48%)` }} />
-      {/* Capa 4 — velo de legibilidad inteligente: deja ver la foto arriba y protege
-          el texto abajo (título, descripción y CTA siempre legibles). */}
-      <span aria-hidden style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none", background: "linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.10) 22%, rgba(255,255,255,0.5) 46%, rgba(255,255,255,0.74) 100%)" }} />
+      {/* Capa 4 — velo de legibilidad inteligente: fuerte arriba/centro (icono,
+          título y descripción siempre legibles) y más suave abajo/esquinas para
+          que el arte se perciba. El radial refuerza la zona del título. */}
+      <span aria-hidden style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none", background: "linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.80) 40%, rgba(255,255,255,0.60) 100%), radial-gradient(95% 70% at 50% 16%, rgba(255,255,255,0.28), transparent 76%)" }} />
 
       {/* Halo + franja de acento superior (premium, no borde infantil). */}
       <span aria-hidden style={{ position: "absolute", top: 0, left: 0, right: 0, height: 54, zIndex: 1, pointerEvents: "none", background: `radial-gradient(75% 130% at 50% -12%, ${glow}, transparent 72%)`, opacity: active ? 1 : 0.8, transition: "opacity .25s" }} />

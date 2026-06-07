@@ -10,14 +10,11 @@ export const ACCENT_RED = "#e63946";
 export const LAW_WHITE = "#f8f9fa";
 
 export const IMGS = {
-  c_elopi23: "/img/zonamundial-images/creators/elopi23.jpg",
-  c_franbar: "/img/zonamundial-images/creators/franbar.jpg",
-  c_jose_cobo: "/img/zonamundial-images/creators/jose-cobo.jpg",
-  c_nachocp: "/img/zonamundial-images/creators/nachocp.jpg",
-  c_nereita: "/img/zonamundial-images/creators/nereita.jpg",
-  c_pimpeano: "/img/zonamundial-images/creators/pimpeano.jpg",
-  c_salvador: "/img/zonamundial-images/creators/salvador.jpg",
   c_svgiago: "/img/zonamundial-images/creators/svgiago.jpg",
+  c_jose_cobo: "/img/zonamundial-images/creators/jose-cobo.jpg",
+  c_elopi23: "/img/zonamundial-images/creators/elopi23.jpg",
+  c_niku: "/img/zonamundial-images/creators/niku.jpeg",
+  c_nereita: "/img/zonamundial-images/creators/nereita.jpeg",
 };
 
 export const SPONSORS = [

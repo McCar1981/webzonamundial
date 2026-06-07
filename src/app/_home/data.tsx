@@ -381,14 +381,11 @@ export const ICON_DESCUBRE: Record<string, ReactNode> = {
 };
 
 export const CREATORS = [
-  { name: "José Cobo", handle: "@josecobo", followers: "4.7M", slug: "josecobo", img: "/img/zonamundial-images/creators/jose-cobo.jpg", color: "#c9a84c" },
   { name: "SVGiago", handle: "@svgiago", followers: "2.5M", slug: "svgiago", img: "/img/zonamundial-images/creators/svgiago.jpg", color: "#00d4ff" },
-  { name: "Pimpeano", handle: "@pimpeano", followers: "2.3M", slug: "pimpeano", img: "/img/zonamundial-images/creators/pimpeano.jpg", color: "#ff6b35" },
-  { name: "Nacho CP", handle: "@nachocp", followers: "1.6M", slug: "nachocp", img: "/img/zonamundial-images/creators/nachocp.jpg", color: "#22c55e" },
-  { name: "Nereita", handle: "@nereita", followers: "500K", slug: "nereita", img: "/img/zonamundial-images/creators/nereita.jpg", color: "#e879f9" },
+  { name: "José Cobo", handle: "@josecobo", followers: "4.7M", slug: "josecobo", img: "/img/zonamundial-images/creators/jose-cobo.jpg", color: "#c9a84c" },
   { name: "Elopi23", handle: "@elopi23", followers: "300K", slug: "elopi23", img: "/img/zonamundial-images/creators/elopi23.jpg", color: "#38bdf8" },
-  { name: "Salvador", handle: "@salvador", followers: "300K", slug: "salvador", img: "/img/zonamundial-images/creators/salvador.jpg", color: "#f97316" },
-  { name: "Franbar", handle: "@franbar", followers: "130K", slug: "franbar", img: "/img/zonamundial-images/creators/franbar.jpg", color: "#a78bfa" },
+  { name: "Niku", handle: "@niku2310", followers: "—", slug: "niku", img: "/img/zonamundial-images/creators/niku.jpeg", color: "#f43f5e" },
+  { name: "Nereita", handle: "@nereita", followers: "500K", slug: "nereita", img: "/img/zonamundial-images/creators/nereita.jpeg", color: "#e879f9" },
 ];
 
 export const MODULES_BASE = [

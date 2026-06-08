@@ -534,10 +534,10 @@ export default function AppHubPage() {
     icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v5c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V7l8-4ZM9 12l2 2 4-4" stroke="#072019" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>,
     eyebrow: "Reto diario",
     title: <>Trivia <span style={{ background: `linear-gradient(135deg,${GREEN},#7ce0b3)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>disponible</span></>,
-    desc: "Responde las preguntas de hoy y suma puntos extra.",
+    desc: "Responde y suma puntos extra para el ranking.",
     art: "/assets/card-backgrounds/trivia-diaria.webp",
     cta1: { label: "Responder trivia", href: "/app/trivia" },
-    cta2: { label: "Ver partido del día", href: matchHref },
+    cta2: { label: "Ver ranking", href: "/app/rankings" },
   };
   const heroBase: HeroCfg = {
     id: "base", kind: "base", accent: GOLD2, accent2: GOLD, ctaInk: NAVY, eyebrow: "Mundial 2026",
@@ -547,34 +547,27 @@ export default function AppHubPage() {
     cta1: { label: "Explorar módulos", href: "#modulos" },
     cta2: { label: "Ver partido del día", href: matchHref },
   };
+  // Módulo destacado: una sola pantalla para empujar un modo importante (Fantasy).
+  // NO es un carrusel publicitario: es un único refuerzo contextual.
   const heroFantasy: HeroCfg = {
-    id: "fantasy", kind: "base", accent: "#a78bfa", accent2: "#c4b5fd", ctaInk: "#1a0f33", eyebrow: "Fantasy",
-    title: <>Tu <span style={{ background: "linear-gradient(135deg,#a78bfa,#c4b5fd)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Fantasy</span> del Mundial</>,
-    desc: "Arma tu equipo y compite cada jornada.",
+    id: "fantasy", kind: "base", accent: "#a78bfa", accent2: "#c4b5fd", ctaInk: "#1a0f33", eyebrow: "Modo destacado",
+    title: <>Arma tu <span style={{ background: "linear-gradient(135deg,#a78bfa,#c4b5fd)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>equipo ideal</span></>,
+    desc: "Prepara tu plantilla y compite durante el Mundial.",
     art: "/assets/card-backgrounds/fantasy.webp",
     cta1: { label: "Ver Fantasy", href: "/app/fantasy" },
+    cta2: { label: "Explorar modos", href: "#modulos" },
   };
-  const heroCarrera: HeroCfg = {
-    id: "carrera", kind: "base", accent: "#5aa9ff", accent2: "#8fc6ff", ctaInk: "#06203d", eyebrow: "Modo Carrera",
-    title: <>Dirige tu <span style={{ background: "linear-gradient(135deg,#5aa9ff,#8fc6ff)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>selección</span></>,
-    desc: "Lleva a tu país a la gloria como DT.",
-    art: "/assets/card-backgrounds/modo-carrera.webp",
-    cta1: { label: "Entrar", href: "/app/modo-carrera" },
-  };
-  const heroRanking: HeroCfg = {
-    id: "ranking", kind: "base", accent: "#ffb454", accent2: "#ffd27a", ctaInk: "#2a1700", eyebrow: "Ranking global",
-    title: <>Escala el <span style={{ background: "linear-gradient(135deg,#ffb454,#ffd27a)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>ranking</span></>,
-    desc: "Compite por país y por creador.",
-    art: "/assets/card-backgrounds/ranking-global.webp",
-    cta1: { label: "Ver ranking", href: "/app/rankings" },
-  };
-  // Pantallas del carrusel. Con ?hero= se bloquea a una sola (preview de diseño).
+  // Slider CONTEXTUAL (no publicitario). Prioridad del slide inicial:
+  //   1) live → partido en marcha   2) reto → trivia pendiente
+  //   3) base → estado general      (+) módulo destacado como refuerzo final
+  // Con ?hero= se bloquea a una sola pantalla (preview de diseño).
   const heroSlides: HeroCfg[] = heroOverride
     ? [heroOverride === "live" ? heroLive : heroOverride === "reto" ? heroReto : heroBase]
     : [
         ...(live ? [heroLive] : []),
         ...(retoAvailable ? [heroReto] : []),
-        heroBase, heroFantasy, heroCarrera, heroRanking,
+        heroBase,
+        heroFantasy,
       ];
   const hero = heroSlides[heroIdx % heroSlides.length];
   // Auto-rotación del carrusel (pausa si solo hay una pantalla o hay preview).

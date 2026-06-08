@@ -591,7 +591,7 @@ export default function AppHubPage() {
   return (
     <div style={{ minHeight: "100vh", background: `radial-gradient(1200px 600px at 50% -10%, #12284a 0%, ${NAVY} 55%)`, color: TXT, fontFamily: "'Outfit',sans-serif", overflowX: "hidden" }}>
       <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-      <style>{`*{box-sizing:border-box}::selection{background:rgba(201,168,76,.3)}@keyframes zmpulse{0%,100%{opacity:1}50%{opacity:.4}}@keyframes zmHeroIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}@keyframes zmHeroArtIn{from{opacity:0}to{opacity:.62}}.zm-hero{display:flex;align-items:center;min-height:300px}@media(max-width:560px){.zm-hero{min-height:344px}}.zm-hero-slide{animation:zmHeroIn .5s ease both}.zm-hero-art{animation:zmHeroArtIn .6s ease both}@media (prefers-reduced-motion: reduce){.zm-hero-slide,.zm-hero-art{animation:none}}`}</style>
+      <style>{`*{box-sizing:border-box}::selection{background:rgba(201,168,76,.3)}@keyframes zmpulse{0%,100%{opacity:1}50%{opacity:.4}}@keyframes zmHeroIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}@keyframes zmHeroArtIn{from{opacity:0}to{opacity:.62}}.zm-hero{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;height:264px}@media(max-width:560px){.zm-hero{height:320px}}.zm-hero-slide{animation:zmHeroIn .5s ease both}.zm-hero-art{animation:zmHeroArtIn .6s ease both}@media (prefers-reduced-motion: reduce){.zm-hero-slide,.zm-hero-art{animation:none}}`}</style>
 
       <div style={{ maxWidth: 1080, margin: "0 auto", padding: "14px 14px 110px" }}>
 
@@ -634,7 +634,7 @@ export default function AppHubPage() {
             No repite "Hacer predicción": en base invita a explorar/ver partido; en
             vivo lleva al Match Center. Fondo navy premium + textura de cancha + glow
             animado + chispas muy discretas. Estado por el partido (live/base). */}
-        <div className="zm-hero" style={{ position: "relative", borderRadius: 22, padding: "30px 18px", marginBottom: 16, overflow: "hidden", background: "linear-gradient(135deg,#102a4d 0%,#0a1b33 100%)", border: `1px solid ${hero.accent}44`, boxShadow: "0 20px 50px rgba(0,0,0,0.35)", minHeight: "clamp(244px, 42vw, 264px)", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+        <div className="zm-hero" style={{ position: "relative", borderRadius: 22, padding: "0 18px", marginBottom: 16, overflow: "hidden", background: "linear-gradient(135deg,#102a4d 0%,#0a1b33 100%)", border: `1px solid ${hero.accent}44`, boxShadow: "0 20px 50px rgba(0,0,0,0.35)" }}>
           {/* ── Arte del estado (imagen de card reutilizada): vive a la derecha,
               se funde con el navy hacia la izquierda para no tapar el texto. ── */}
           <img

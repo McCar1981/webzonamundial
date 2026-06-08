@@ -615,8 +615,7 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_850_1625.jpg/330px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_850_1625.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/2/28/Gabriel_Jesus_and_Allison_Becker_-_2019_Copa_America_Final.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/EMELEC-INTERNACIONAL_%2816861342155%29_-_Alisson_Becker.jpg/500px-EMELEC-INTERNACIONAL_%2816861342155%29_-_Alisson_Becker.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Gruppenfoto_Brasilien_850_0016.jpg/960px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Gruppenfoto_Brasilien_850_0016.jpg"
         ]
       },
       {
@@ -633,14 +632,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Weverton-Palmeiras-Liverpool-abr24.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/3/3a/Weverton_Pereira_da_Silva_%282010%29.JPG",
-          "https://upload.wikimedia.org/wikipedia/commons/1/1e/Weverton_Pereira_da_Silva.JPG",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Weverton-palmeiras-wikipedia-mar2019.png/500px-Weverton-palmeiras-wikipedia-mar2019.png",
-          "https://upload.wikimedia.org/wikipedia/commons/0/0b/Weverton-palmeiras-mar22.png",
-          "https://upload.wikimedia.org/wikipedia/commons/1/1a/Weverton-Palmeiras-abr2022.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Weverton-Palmeiras-Athletico-jul-2022.jpg/500px-Weverton-Palmeiras-Athletico-jul-2022.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "ederson",
@@ -656,9 +648,7 @@
         "shirt_number_expected": 23,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/73/Ederson_%28cropped%29.png",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Ederson_Santana_de_Moraes_-_Zenit-Benf_%282016%29.jpg/500px-Ederson_Santana_de_Moraes_-_Zenit-Benf_%282016%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "wesley",
@@ -675,12 +665,7 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f7/CORINTHIANS_X_NEWELL%27S_OLD_BOYS%E2%80%93_COPA_SUL-AMERICANA_2023_-_Wesley_Gassova.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/f/fd/Wesley_Alex_Maiolino.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/9/93/WesleySantos2008.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Wesley_moraes_ferreira_da_silva-1556197874.jpg/500px-Wesley_moraes_ferreira_da_silva-1556197874.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Wesley_Tabernacle_United_Methodist_Church_--_Galveston.jpg/500px-Wesley_Tabernacle_United_Methodist_Church_--_Galveston.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Wesley_Bell_2014_-_edit2.jpg/500px-Wesley_Bell_2014_-_edit2.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/0/03/Wesley-palmeiras-wikipedia-jan2020.png"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/International_friendly_match_Netherlands_Japan_%283922330053%29.jpg/960px-International_friendly_match_Netherlands_Japan_%283922330053%29.jpg"
         ]
       },
       {
@@ -697,10 +682,7 @@
         "shirt_number_expected": 13,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/GabrielLille2019.png/330px-GabrielLille2019.png",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Gabriel_Magalhaes_2017.png/500px-Gabriel_Magalhaes_2017.png",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/1_Gabriel_Magalh%C3%A3es_2026.jpg/500px-1_Gabriel_Magalh%C3%A3es_2026.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "marquinhos",
@@ -716,9 +698,7 @@
         "shirt_number_expected": 4,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/FC_Salzburg_gegen_Paris_Saint-Germain_UEFA_Champions_League_49_%28cropped%29.jpg/330px-FC_Salzburg_gegen_Paris_Saint-Germain_UEFA_Champions_League_49_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Marquinhos_%28Marcos_Ao%C3%A1s_Corr%C3%AAa%29%2C_PSG.JPG/500px-Marquinhos_%28Marcos_Ao%C3%A1s_Corr%C3%AAa%29%2C_PSG.JPG"
-        ]
+        "photos": []
       },
       {
         "id": "alex-sandro",
@@ -734,14 +714,7 @@
         "shirt_number_expected": 6,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/62/AlexSandroCopaAmerica2019.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Valais_Cup_2013_-_OM-FC_Porto_13-07-2013_-_Alex_Sandro_et_Rod_Fanni.jpg/500px-Valais_Cup_2013_-_OM-FC_Porto_13-07-2013_-_Alex_Sandro_et_Rod_Fanni.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Valais_Cup_2013_-_OM-FC_Porto_13-07-2013_-_Alex_Sandro.jpg/500px-Valais_Cup_2013_-_OM-FC_Porto_13-07-2013_-_Alex_Sandro.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Valais_Cup_2013_-_OM-FC_Porto_13-07-2013_-_Alex_Sandro_1.jpg/500px-Valais_Cup_2013_-_OM-FC_Porto_13-07-2013_-_Alex_Sandro_1.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Valais_Cup_2013_-_OM-FC_Porto_13-07-2013_-_Alex_Sandro_2.jpg/500px-Valais_Cup_2013_-_OM-FC_Porto_13-07-2013_-_Alex_Sandro_2.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Valais_Cup_2013_-_OM-FC_Porto_13-07-2013_-_Alex_Sandro_3.jpg/500px-Valais_Cup_2013_-_OM-FC_Porto_13-07-2013_-_Alex_Sandro_3.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Valais_Cup_2013_-_OM-FC_Porto_13-07-2013_-_Marat_Izmaylov%2C_Morgan_Amalfitano_et_Alex_Sandro.jpg/500px-Valais_Cup_2013_-_OM-FC_Porto_13-07-2013_-_Marat_Izmaylov%2C_Morgan_Amalfitano_et_Alex_Sandro.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "danilo",
@@ -758,7 +731,12 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Danilo_Luiz_850_1591.jpg/330px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Danilo_Luiz_850_1591.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/0/0a/Danilo_Luiz_da_Silva.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Brazil_vs_Chile_%2816835849958%29.jpg/960px-Brazil_vs_Chile_%2816835849958%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Brazil_vs_Chile_%2816401184244%29.jpg/960px-Brazil_vs_Chile_%2816401184244%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Brazil_vs_Chile_%2816836083970%29.jpg/960px-Brazil_vs_Chile_%2816836083970%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Brazil_vs_Chile_%2816836088640%29.jpg/960px-Brazil_vs_Chile_%2816836088640%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Brazil_vs_Chile_%2816403471953%29.jpg/960px-Brazil_vs_Chile_%2816403471953%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Brazil_vs_Chile_%2816835862418%29.jpg/960px-Brazil_vs_Chile_%2816835862418%29.jpg"
         ]
       },
       {
@@ -775,14 +753,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/30/Gleison_Bremer_with_Juventus_in_2024.webp",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/0/0e/Bremer_signs_Iraqi_Sovereignty_Transfer_document%2C_2004_June_28.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Cuxhaven_2008_-Bremer_Johanna_%28ship%2C_2008%29-_by-RaBoe001.jpg/500px-Cuxhaven_2008_-Bremer_Johanna_%28ship%2C_2008%29-_by-RaBoe001.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Bremer_Hof.png/500px-Bremer_Hof.png",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Bremer_bay.jpg/500px-Bremer_bay.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Bremer_bay_panorama.jpg/500px-Bremer_bay_panorama.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bremer_bay_panorama_from_lookout.jpg/500px-Bremer_bay_panorama_from_lookout.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "leo-pereira",
@@ -798,11 +769,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b0/L%C3%A9o_Pereira_Atl%C3%A9tico_GO_2022.png",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Leo_Pereira_Soler.JPG/500px-Leo_Pereira_Soler.JPG",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/L%C3%A9o_Pereira_%28footballer%2C_born_2000%29.jpg/500px-L%C3%A9o_Pereira_%28footballer%2C_born_2000%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Leo_Pereira.2017.jpg/500px-Leo_Pereira.2017.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "douglas-santos",
@@ -818,14 +785,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/09/Douglas_dos_Santos_2024.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Douglas_Pereira_dos_Santos.jpg/500px-Douglas_Pereira_dos_Santos.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/7/7a/Douglas_Santos_2019.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Douglas_dos_Santos_Justino_de_Melo_1.jpg/500px-Douglas_dos_Santos_Justino_de_Melo_1.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Douglas_dos_Santos_Justino_de_Melo_5.jpg/500px-Douglas_dos_Santos_Justino_de_Melo_5.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Douglas_dos_Santos_Justino_de_Melo_3.jpg/500px-Douglas_dos_Santos_Justino_de_Melo_3.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Douglas_dos_Santos_in_Zenit%2C_2019.jpg/500px-Douglas_dos_Santos_in_Zenit%2C_2019.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "roger-ibanez",
@@ -842,8 +802,12 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Roger_Iba%C3%B1ez_da_Silva.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/1/15/Roger-Ibanez-2023.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Roger_Iba%C3%B1ez_2026.jpg/500px-Roger_Iba%C3%B1ez_2026.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_28.jpg/960px-FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_28.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_38.jpg/960px-FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_38.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_44.jpg/960px-FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_44.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_47.jpg/960px-FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_47.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_53.jpg/960px-FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_53.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_62.jpg/960px-FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_62.jpg"
         ]
       },
       {
@@ -859,7 +823,14 @@
         },
         "shirt_number_expected": 5,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Casemiro_850_1575.jpg/330px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Casemiro_850_1575.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Casemiro_850_1575.jpg/330px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Casemiro_850_1575.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/2018_Russia_vs._Brazil_-_Photo_28.jpg/960px-2018_Russia_vs._Brazil_-_Photo_28.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Russia-Brazil_23_March_2018.jpg/960px-Russia-Brazil_23_March_2018.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Gruppenfoto_Brasilien_850_0016.jpg/960px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Gruppenfoto_Brasilien_850_0016.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/2019_Final_da_Copa_Am%C3%A9rica_2019_-_48225433327.jpg/960px-2019_Final_da_Copa_Am%C3%A9rica_2019_-_48225433327.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/2019_Final_da_Copa_Am%C3%A9rica_2019_-_48225428057.jpg/960px-2019_Final_da_Copa_Am%C3%A9rica_2019_-_48225428057.jpg"
+        ]
       },
       {
         "id": "bruno-guimaraes",
@@ -875,14 +846,7 @@
         "shirt_number_expected": 8,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Brunoguimaraes.jpg/330px-Brunoguimaraes.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Premier_League_Newcastle-Arsenal_2023-05-07_35_%28cropped_Bruno_Guimaraes%29.jpg/500px-Premier_League_Newcastle-Arsenal_2023-05-07_35_%28cropped_Bruno_Guimaraes%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Premier_League_Newcastle-Arsenal_2023-05-07_36_%28cropped_Bruno_Guimar%C3%A3es%29.jpg/500px-Premier_League_Newcastle-Arsenal_2023-05-07_36_%28cropped_Bruno_Guimar%C3%A3es%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Premier_League_Newcastle-Arsenal_2023-05-07_36_%28Gabriel_Martinelli%2C_Fabian_Schaar%2C_Kieran_Trippier%2C_Gabriel_Jesus_and_Bruno_Guimar%C3%A3es%29%29.jpg/500px-Premier_League_Newcastle-Arsenal_2023-05-07_36_%28Gabriel_Martinelli%2C_Fabian_Schaar%2C_Kieran_Trippier%2C_Gabriel_Jesus_and_Bruno_Guimar%C3%A3es%29%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Bruno_Guimar%C3%A3es.png/500px-Bruno_Guimar%C3%A3es.png",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Bruno_Guimar%C3%A3es_24052026_%281%29.jpg/500px-Bruno_Guimar%C3%A3es_24052026_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Nick_Woltemade%2C_Oscar_Bobb_and_Bruno_Guimar%C3%A3es_24052026_%281%29.jpg/500px-Nick_Woltemade%2C_Oscar_Bobb_and_Bruno_Guimar%C3%A3es_24052026_%281%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "fabio-tavares",
@@ -893,7 +857,10 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Brazil_vs_Chile_%2816837389379%29.jpg/960px-Brazil_vs_Chile_%2816837389379%29.jpg"
+        ]
       },
       {
         "id": "danilo-s",
@@ -909,9 +876,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/94/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Danilo_Luiz_850_1591.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Gruppenfoto_Brasilien_850_0016.jpg/500px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Gruppenfoto_Brasilien_850_0016.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "lucas-paqueta",
@@ -927,14 +892,7 @@
         "shirt_number_expected": 7,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Lucas_Paquet%C3%A1_of_West_Ham.jpeg/330px-Lucas_Paquet%C3%A1_of_West_Ham.jpeg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/URUGUAY_vs_BRASIL_SUDAMERICANO_SUB_20_%28Lucas_Paquet%C3%A1%29.jpg/500px-URUGUAY_vs_BRASIL_SUDAMERICANO_SUB_20_%28Lucas_Paquet%C3%A1%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Lucas_Paquet%C3%A1.jpg/500px-Lucas_Paquet%C3%A1.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/LucasPaqueta2018.jpg/500px-LucasPaqueta2018.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/1/1b/Lucas_Paquet%C3%A1_em_entrevista.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Lucas_Paquet%C3%A1_14092024_%281%29.jpg/500px-Lucas_Paquet%C3%A1_14092024_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Lucas_Paquet%C3%A1_14092024_%282%29.jpg/500px-Lucas_Paquet%C3%A1_14092024_%282%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "vinicius-jr",
@@ -951,12 +909,7 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/2023_05_06_Final_de_la_Copa_del_Rey_-_52879242230_%28cropped%29.jpg/330px-2023_05_06_Final_de_la_Copa_del_Rey_-_52879242230_%28cropped%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/7/77/Vin%C3%ADcius_J%C3%BAnior.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Vinicius_Junior_2018_1.jpg/500px-Vinicius_Junior_2018_1.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/6/64/Vin%C3%ADcius_J%C3%BAnior_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Vinicius_Junior_2018_1_%28cropped%29.jpg/500px-Vinicius_Junior_2018_1_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Vin%C3%ADcius_J%C3%BAnior_POTM_nov2021.png/500px-Vin%C3%ADcius_J%C3%BAnior_POTM_nov2021.png",
-          "https://upload.wikimedia.org/wikipedia/commons/3/34/Vinicius_Junior_WC2022.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/4/47/Brazil_vs_Serbia_WC2022_Vinicius_Jr_and_serbian_players.jpg"
         ]
       },
       {
@@ -974,11 +927,10 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Matheus_Cunha_%28cropped%29_20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_7968_%28cropped%29.jpg/330px-Matheus_Cunha_%28cropped%29_20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_7968_%28cropped%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Matheus_Cunha_em_2021.jpg/500px-Matheus_Cunha_em_2021.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/c/ce/Matheus_Cunha_Training_2018.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/4/40/Matheus_Cunha_%28cropped%29_Wolves_vs_West_Ham_United_Full_Time.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Matheus_Cunha_%28cropped%29_20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_7968.jpg/500px-Matheus_Cunha_%28cropped%29_20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_7968.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/a/a6/Matheus_Cunha_-_Brasil_vs_Egito_%28cropped%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_7968.jpg/960px-20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_7968.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8091.jpg/960px-20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8091.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8146.jpg/960px-20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8146.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8147.jpg/960px-20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8147.jpg"
         ]
       },
       {
@@ -994,7 +946,15 @@
         },
         "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Neymar_Jr._with_Al_Hilal%2C_3_October_2023_-_03_%28cropped%29_version_2.jpg/330px-Neymar_Jr._with_Al_Hilal%2C_3_October_2023_-_03_%28cropped%29_version_2.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Neymar_Jr._with_Al_Hilal%2C_3_October_2023_-_03_%28cropped%29_version_2.jpg/330px-Neymar_Jr._with_Al_Hilal%2C_3_October_2023_-_03_%28cropped%29_version_2.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Gruppenfoto_Brasilien_850_0016.jpg/960px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Gruppenfoto_Brasilien_850_0016.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Jesus_Dragovic_850_2058.jpg/960px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Jesus_Dragovic_850_2058.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_850_2206.jpg/960px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_850_2206.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_850_2207.jpg/960px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_850_2207.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Neymar_850_2056.jpg/960px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Neymar_850_2056.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Brazil_-_Belgium_2018.png/960px-Brazil_-_Belgium_2018.png"
+        ]
       },
       {
         "id": "raphinha",
@@ -1009,7 +969,11 @@
         },
         "shirt_number_expected": 19,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Raphael_Dias_Belloli_2023.jpg/330px-Raphael_Dias_Belloli_2023.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Raphael_Dias_Belloli_2023.jpg/330px-Raphael_Dias_Belloli_2023.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/0/0d/Brazil_vs_Serbia_WC2022_Raphinha_and_Pavlovic.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/f/f9/Brazil_vs_Serbia_WC2022_Raphinha_and_Pavlovic_%28cropped%29.jpg"
+        ]
       },
       {
         "id": "endrick",
@@ -1024,7 +988,8 @@
         },
         "shirt_number_expected": 9,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Endrick-Palmeiras-Liverpool-abr24.jpg/330px-Endrick-Palmeiras-Liverpool-abr24.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Endrick-Palmeiras-Liverpool-abr24.jpg/330px-Endrick-Palmeiras-Liverpool-abr24.jpg",
+        "photos": []
       },
       {
         "id": "luiz-henrique",
@@ -1040,14 +1005,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Luiz_Henrique_in_Zenit_2025.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Luiz_henrique_senador_2011.jpg/500px-Luiz_henrique_senador_2011.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/e/e4/Luiz_Henrique.JPG",
-          "https://upload.wikimedia.org/wikipedia/commons/d/d4/Luiz_Henrique_Mandetta.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Luiz_Henrique_Viana.jpg/500px-Luiz_Henrique_Viana.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Deputado_Luiz_Henrique_Cordeiro_Viana_.jpg/500px-Deputado_Luiz_Henrique_Cordeiro_Viana_.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Deputado_estadual_Luiz_Henrique_Viana.jpg/500px-Deputado_estadual_Luiz_Henrique_Viana.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "gabriel-martinelli",
@@ -1063,14 +1021,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Gabriel_Martinelli_2020.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/2023_MLS_All_Star_Game_2023-07-19_Gabriel_Martinelli.jpg/500px-2023_MLS_All_Star_Game_2023-07-19_Gabriel_Martinelli.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/POST-CARD-MONTAGEM-gabriel-martinelli.png/500px-POST-CARD-MONTAGEM-gabriel-martinelli.png",
-          "https://upload.wikimedia.org/wikipedia/commons/6/67/POST-CARD-MONTAGEM-gabriel-martinelli_%28cropped%29.png",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Premier_League_Newcastle-Arsenal_2023-05-07_36_%28Gabriel_Martinelli%2C_Fabian_Schaar%2C_Kieran_Trippier%2C_Gabriel_Jesus_and_Bruno_Guimar%C3%A3es%29%29.jpg/500px-Premier_League_Newcastle-Arsenal_2023-05-07_36_%28Gabriel_Martinelli%2C_Fabian_Schaar%2C_Kieran_Trippier%2C_Gabriel_Jesus_and_Bruno_Guimar%C3%A3es%29%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/1_Gabriel_Martinelli_arsenal_2025.jpg/500px-1_Gabriel_Martinelli_arsenal_2025.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/1_Gabriel_Martinelli_arsenal_2025_%28cropped%29.jpg/500px-1_Gabriel_Martinelli_arsenal_2025_%28cropped%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "igor-thiago",
@@ -1086,14 +1037,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Brentford_Players_27122025_%284%29_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Igor_thiago.jpg/500px-Igor_thiago.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Igor_Thiago%2C_Ludogorets_Razgrad_footballer.jpg/500px-Igor_Thiago%2C_Ludogorets_Razgrad_footballer.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Igor_Thiago_02082025_%281%29.jpg/500px-Igor_Thiago_02082025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Igor_Thiago_02082025_%282%29.jpg/500px-Igor_Thiago_02082025_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Jordan_Henderson_and_Igor_Thiago_29112025_%281%29.jpg/500px-Jordan_Henderson_and_Igor_Thiago_29112025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Jordan_Henderson_and_Igor_Thiago_29112025_%282%29.jpg/500px-Jordan_Henderson_and_Igor_Thiago_29112025_%282%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "rayan",
@@ -1109,14 +1053,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Rayan_2026.png",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/1/16/Rayan_nezzar_europe_sociale.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Deori_Raja_Rai_Rayan_Shamraj_Bahadur_-_Rai_Rayan_Palace.jpg/500px-Deori_Raja_Rai_Rayan_Shamraj_Bahadur_-_Rai_Rayan_Palace.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Raja_Rai_Rayan_family_at_Rai_Rayan_Palace2.jpg/500px-Raja_Rai_Rayan_family_at_Rai_Rayan_Palace2.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Rayan_rescue_infograph.png/500px-Rayan_rescue_infograph.png",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Rayan_Saffron_License.jpg/500px-Rayan_Saffron_License.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/4/43/Rayan_A%C3%AFt-Nouri.png"
-        ]
+        "photos": []
       }
     ],
     "starting_xi": {
@@ -1237,21 +1174,17 @@
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
     "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
-    "image_pool": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Brazil_women%27s_national_football_team_-_Rio_2007.jpg/500px-Brazil_women%27s_national_football_team_-_Rio_2007.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Nike_Brazil_national_football_team_scarf.JPG/500px-Nike_Brazil_national_football_team_scarf.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Brazil_national_football_team_at_the_Pal%C3%A1cio_da_Alvorada_2010-05-26_6.jpg/500px-Brazil_national_football_team_at_the_Pal%C3%A1cio_da_Alvorada_2010-05-26_6.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/9/9f/Brazil_national_football_1919.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Fans_at_Brazil_national_football_team_training_at_Randburg_High_School_2010-06-06_1.jpg/500px-Fans_at_Brazil_national_football_team_training_at_Randburg_High_School_2010-06-06_1.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Fans_at_Brazil_national_football_team_training_at_Randburg_High_School_2010-06-06_2.jpg/500px-Fans_at_Brazil_national_football_team_training_at_Randburg_High_School_2010-06-06_2.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Fans_at_Brazil_national_football_team_training_at_Randburg_High_School_2010-06-06_3.jpg/500px-Fans_at_Brazil_national_football_team_training_at_Randburg_High_School_2010-06-06_3.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Fans_at_Brazil_national_football_team_training_at_Randburg_High_School_2010-06-06_4.jpg/500px-Fans_at_Brazil_national_football_team_training_at_Randburg_High_School_2010-06-06_4.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Fans_at_Brazil_national_football_team_training_at_Randburg_High_School_2010-06-06_5.jpg/500px-Fans_at_Brazil_national_football_team_training_at_Randburg_High_School_2010-06-06_5.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Fans_at_Brazil_national_football_team_training_at_Randburg_High_School_2010-06-06_6.jpg/500px-Fans_at_Brazil_national_football_team_training_at_Randburg_High_School_2010-06-06_6.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Fans_at_Brazil_national_football_team_training_at_Randburg_High_School_2010-06-06_7.jpg/500px-Fans_at_Brazil_national_football_team_training_at_Randburg_High_School_2010-06-06_7.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Fans_at_Brazil_national_football_team_training_at_Randburg_High_School_2010-06-06_8.jpg/500px-Fans_at_Brazil_national_football_team_training_at_Randburg_High_School_2010-06-06_8.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Nike_Holland%2C_Brazil_%26_Portugal_national_soccer_team_scarves.JPG/500px-Nike_Holland%2C_Brazil_%26_Portugal_national_soccer_team_scarves.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Total_soccer_Brazil_national_football_team_P9040615.JPG/500px-Total_soccer_Brazil_national_football_team_P9040615.JPG"
+    "team_photos": [
+      "https://upload.wikimedia.org/wikipedia/commons/e/ec/Brazil_vs_Serbia_World_Cup_2022_match_Brazil_line-up.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/c/ca/Brazil_vs_Serbia_World_Cup_2022_match_Serbia_line-up.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Brazil_fans_2.jpg/960px-Brazil_fans_2.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/7/76/World_Cup_Brazil_Fans.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Brazilian_supporters_in_Berlin.jpg/960px-Brazilian_supporters_in_Berlin.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Brazilian_Football_Fans.jpg/960px-Brazilian_Football_Fans.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Brazil_v_Scotland_26_%285575222845%29.jpg/960px-Brazil_v_Scotland_26_%285575222845%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Brazil_v_Scotland_21_%285575802704%29.jpg/960px-Brazil_v_Scotland_21_%285575802704%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Brazil_v_Scotland_20_%285575209235%29.jpg/960px-Brazil_v_Scotland_20_%285575209235%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Brazil_fans_3.jpg/960px-Brazil_fans_3.jpg"
     ]
   },
   "history": {

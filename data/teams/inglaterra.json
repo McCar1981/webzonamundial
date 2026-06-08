@@ -558,10 +558,10 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Jordan_Pickford_2022-07-16_1.jpg/330px-Jordan_Pickford_2022-07-16_1.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/2017083200955_2017-03-24_Fussball_U21_Deutschland_vs_England_-_Sven_-_1D_X_-_0153_-_DV3P6479_-_Jordan_Pickford.jpg/500px-2017083200955_2017-03-24_Fussball_U21_Deutschland_vs_England_-_Sven_-_1D_X_-_0153_-_DV3P6479_-_Jordan_Pickford.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Jordan_Pickford_2018.jpg/500px-Jordan_Pickford_2018.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Jordan_Pickford_2018-07-03_1.jpg/500px-Jordan_Pickford_2018-07-03_1.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/9/9a/Jordan_Pickford_2018_%28cropped%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2824%29.jpg/960px-2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2824%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2836%29.jpg/960px-2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2836%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2839%29.jpg/960px-2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2839%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/5/51/2022_FIFA_World_Cup_England_0-0_USA_-_Pickford.jpg"
         ]
       },
       {
@@ -578,10 +578,7 @@
         "shirt_number_expected": 13,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/DeanHenderson2018.jpg/330px-DeanHenderson2018.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Dean_Henderson_2021%28cropped%29.jpg/500px-Dean_Henderson_2021%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Dean_Henderson.jpg/500px-Dean_Henderson.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "james-trafford",
@@ -596,7 +593,10 @@
         },
         "shirt_number_expected": 23,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Queen_Park_Rangers_v_Burnley_26042025_%2825%29_%28James_Trafford%29.jpg/330px-Queen_Park_Rangers_v_Burnley_26042025_%2825%29_%28James_Trafford%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Queen_Park_Rangers_v_Burnley_26042025_%2825%29_%28James_Trafford%29.jpg/330px-Queen_Park_Rangers_v_Burnley_26042025_%2825%29_%28James_Trafford%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Old_Trafford_Technical_Area_Alex_Ferguson_Sam_Allardyce.jpg/960px-Old_Trafford_Technical_Area_Alex_Ferguson_Sam_Allardyce.jpg"
+        ]
       },
       {
         "id": "ezri-konsa",
@@ -611,7 +611,8 @@
         },
         "shirt_number_expected": 3,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Ezri_Konsa.jpg/330px-Ezri_Konsa.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Ezri_Konsa.jpg/330px-Ezri_Konsa.jpg",
+        "photos": []
       },
       {
         "id": "nico-oreilly",
@@ -626,7 +627,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/7a/ManCity20240722-020.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/7a/ManCity20240722-020.jpg",
+        "photos": []
       },
       {
         "id": "john-stones",
@@ -641,7 +643,13 @@
         },
         "shirt_number_expected": 6,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/John_Stones_2018-06-24_1.jpg/330px-John_Stones_2018-06-24_1.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/John_Stones_2018-06-24_1.jpg/330px-John_Stones_2018-06-24_1.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/England_defender_John_Stones_%2822491345764%29.jpg/960px-England_defender_John_Stones_%2822491345764%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2813%29.jpg/960px-2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2813%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2824%29.jpg/960px-2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2824%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2832%29.jpg/960px-2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2832%29.jpg"
+        ]
       },
       {
         "id": "marc-guehi",
@@ -656,7 +664,8 @@
         },
         "shirt_number_expected": 5,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Marc_Guehi_December_2018.jpg/330px-Marc_Guehi_December_2018.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Marc_Guehi_December_2018.jpg/330px-Marc_Guehi_December_2018.jpg",
+        "photos": []
       },
       {
         "id": "tino-livramento",
@@ -671,7 +680,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "dan-burn",
@@ -686,7 +696,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Dan_Burn_BCFC_2013.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Dan_Burn_BCFC_2013.jpg",
+        "photos": []
       },
       {
         "id": "reece-james",
@@ -701,7 +712,8 @@
         },
         "shirt_number_expected": 2,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Reece_James_2018.jpg/330px-Reece_James_2018.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Reece_James_2018.jpg/330px-Reece_James_2018.jpg",
+        "photos": []
       },
       {
         "id": "djed-spence",
@@ -716,7 +728,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "jarell-quansah",
@@ -731,7 +744,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/15/Jarell_Quansah_06042025_%281%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/15/Jarell_Quansah_06042025_%281%29.jpg",
+        "photos": []
       },
       {
         "id": "declan-rice",
@@ -748,8 +762,12 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%288%29_%28Declan_Rice%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Declan_Rice_-_53248339464_%28cropped%29.jpg/500px-Declan_Rice_-_53248339464_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Declan_Rice_-_53248276328_%28cropped%29.jpg/500px-Declan_Rice_-_53248276328_%28cropped%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%288%29.jpg/960px-2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%288%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2818%29.jpg/960px-2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2818%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2825%29.jpg/960px-2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2825%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2832%29.jpg/960px-2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2832%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2836%29.jpg/960px-2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2836%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2833%29.jpg/960px-2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2833%29.jpg"
         ]
       },
       {
@@ -764,7 +782,8 @@
           "league": "Premier League"
         },
         "shirt_number_expected": 8,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "jude-bellingham",
@@ -781,12 +800,12 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/25th_Laureus_World_Sports_Awards_-_Red_Carpet_-_Jude_Bellingham_-_240422_190551-2_%28cropped%29.jpg/330px-25th_Laureus_World_Sports_Awards_-_Red_Carpet_-_Jude_Bellingham_-_240422_190551-2_%28cropped%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Jude_Bellingham_Birmingham_2019.jpg/500px-Jude_Bellingham_Birmingham_2019.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Danil_Krugovoy_and_Jude_Bellingham_2020.jpg/500px-Danil_Krugovoy_and_Jude_Bellingham_2020.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Danil_Krugovoy_and_Jude_Bellingham_2020_%28cropped%29.jpg/500px-Danil_Krugovoy_and_Jude_Bellingham_2020_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/5/56/Jude_Bellingham_2020_%28cropped2%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/2/26/Jude_Bellingham_2022-11-21_1.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/f/fa/Jude_Bellingham_WC2022.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2815%29.jpg/960px-2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2815%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2817%29.jpg/960px-2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2817%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2825%29.jpg/960px-2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2825%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2832%29.jpg/960px-2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2832%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2838%29.jpg/960px-2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2838%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/4/4f/2022_FIFA_World_Cup_England_0-0_USA_-_Pulisic_and_Bellingham.jpg"
         ]
       },
       {
@@ -802,7 +821,13 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/6d/FWC_2018_-_Round_of_16_-_COL_v_ENG_-_J_Henderson.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/6d/FWC_2018_-_Round_of_16_-_COL_v_ENG_-_J_Henderson.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/FWC_2018_-_Round_of_16_-_COL_v_ENG_-_Team_England_penalty_shootout.jpg/960px-FWC_2018_-_Round_of_16_-_COL_v_ENG_-_Team_England_penalty_shootout.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Croatia_-_England_2018.png/960px-Croatia_-_England_2018.png",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2836%29.jpg/960px-2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2836%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/5/53/2022_FIFA_World_Cup_England_0-0_USA_-_After_the_match.jpg"
+        ]
       },
       {
         "id": "kobbie-mainoo",
@@ -816,7 +841,8 @@
           "league": "Premier League"
         },
         "shirt_number_expected": 16,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "morgan-rogers",
@@ -831,7 +857,8 @@
         },
         "shirt_number_expected": 18,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/St._Louis_City_vs_Aston_Villa_%28Jul_2025%29_18.jpg/330px-St._Louis_City_vs_Aston_Villa_%28Jul_2025%29_18.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/St._Louis_City_vs_Aston_Villa_%28Jul_2025%29_18.jpg/330px-St._Louis_City_vs_Aston_Villa_%28Jul_2025%29_18.jpg",
+        "photos": []
       },
       {
         "id": "eberechi-eze",
@@ -846,7 +873,8 @@
         },
         "shirt_number_expected": 19,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Qpr2018eberechieeze001.jpg/330px-Qpr2018eberechieeze001.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Qpr2018eberechieeze001.jpg/330px-Qpr2018eberechieeze001.jpg",
+        "photos": []
       },
       {
         "id": "bukayo-saka",
@@ -861,7 +889,12 @@
         },
         "shirt_number_expected": 7,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/1_bukayo_saka_arsenal_2025_%28cropped%29.jpg/330px-1_bukayo_saka_arsenal_2025_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/1_bukayo_saka_arsenal_2025_%28cropped%29.jpg/330px-1_bukayo_saka_arsenal_2025_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2832%29.jpg/960px-2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2832%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2833%29.jpg/960px-2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2833%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/1/14/2022_FIFA_World_Cup_England_0-0_USA_-_Saka_vs_Pulisic.jpg"
+        ]
       },
       {
         "id": "harry-kane",
@@ -878,12 +911,12 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Harry_Kane_on_October_10%2C_2023.jpg/330px-Harry_Kane_on_October_10%2C_2023.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Harry_Kane_2015.jpg/500px-Harry_Kane_2015.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Harry_Kane_%2824685589756%29.jpg/500px-Harry_Kane_%2824685589756%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Harry_Kane_%2824685589756%29_%28cropped%29.jpg/500px-Harry_Kane_%2824685589756%29_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Harry_Kane_in_Russia_2.jpg/500px-Harry_Kane_in_Russia_2.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Harry_Kane_2018.jpg/500px-Harry_Kane_2018.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Harry_Kane_England_cap_at_the_London_Museum.jpg/500px-Harry_Kane_England_cap_at_the_London_Museum.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/England_vs_Panama_2018.jpg/960px-England_vs_Panama_2018.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/England_vs_Panama_2018_2.jpg/960px-England_vs_Panama_2018_2.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/England_national_team_Russia_2018.jpg/960px-England_national_team_Russia_2018.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/England_team_Russia_2018.jpg/960px-England_team_Russia_2018.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2820%29.jpg/960px-2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2820%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2821%29.jpg/960px-2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2821%29.jpg"
         ]
       },
       {
@@ -901,7 +934,10 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Marcus_Rashford_2022-11-21_1.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Marcus_Rashford_in_2023.jpg/500px-Marcus_Rashford_in_2023.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/FWC_2018_-_Round_of_16_-_COL_v_ENG_-_Team_England_penalty_shootout.jpg/960px-FWC_2018_-_Round_of_16_-_COL_v_ENG_-_Team_England_penalty_shootout.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2821%29.jpg/960px-2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2821%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2833%29.jpg/960px-2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2833%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2839%29.jpg/960px-2022_FIFA_World_Cup_England_6%E2%80%932_Iran_-_%2839%29.jpg"
         ]
       },
       {
@@ -919,12 +955,7 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Anthony_Gordon_%28cropped%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Gordon_in_2024.jpg/500px-Gordon_in_2024.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Anthony_Elanga_and_Anthony_Gordon_24052026_%281%29.jpg/500px-Anthony_Elanga_and_Anthony_Gordon_24052026_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Anthony_Elanga_and_Anthony_Gordon_24052026_%282%29.jpg/500px-Anthony_Elanga_and_Anthony_Gordon_24052026_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Anthony_Elanga_and_Anthony_Gordon_24052026_%283%29.jpg/500px-Anthony_Elanga_and_Anthony_Gordon_24052026_%283%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Anthony_Elanga%2C_Anthony_Gordon_and_Joe_Willock_24052026_%281%29.jpg/500px-Anthony_Elanga%2C_Anthony_Gordon_and_Joe_Willock_24052026_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Sean_Neave%2C_Joe_Willock_and_Anthony_Gordon_24052026_%281%29.jpg/500px-Sean_Neave%2C_Joe_Willock_and_Anthony_Gordon_24052026_%281%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/US_Navy_031206-N-2568S-010_Bursting_with_pride%2C_Secretary_of_the_Navy_Gordon_R._England%2C_accompanied_by_Secretary_of_Veteran%27s_Affairs_Anthony_J._Principi%2C_raises_the.jpg/960px-thumbnail.jpg"
         ]
       },
       {
@@ -940,7 +971,8 @@
         },
         "shirt_number_expected": 15,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Manchester_United_v_Aston_Villa%2C_25_September_2021_%2817%29_%28cropped%29.jpg/330px-Manchester_United_v_Aston_Villa%2C_25_September_2021_%2817%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Manchester_United_v_Aston_Villa%2C_25_September_2021_%2817%29_%28cropped%29.jpg/330px-Manchester_United_v_Aston_Villa%2C_25_September_2021_%2817%29_%28cropped%29.jpg",
+        "photos": []
       },
       {
         "id": "noni-madueke",
@@ -956,9 +988,7 @@
         "shirt_number_expected": 17,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Fulham_v_Chelsea_20042025_%287%29_%28Noni_Madueke%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/1_Noni_Madueke.jpg/500px-1_Noni_Madueke.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "ivan-toney",
@@ -973,7 +1003,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Ivan_Tony_with_Al-Ahli.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Ivan_Tony_with_Al-Ahli.jpg",
+        "photos": []
       }
     ],
     "starting_xi": {
@@ -1095,21 +1126,10 @@
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
     "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
-    "image_pool": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Norway_national_football_team_1921.jpg/500px-Norway_national_football_team_1921.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Emile_Heskey_as_a_player_of_England_national_football_team.jpg/500px-Emile_Heskey_as_a_player_of_England_national_football_team.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Italy_national_football_team_Euro_2012_vs_England.jpg/500px-Italy_national_football_team_Euro_2012_vs_England.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Lions_Family_Portrait_Masai_Mara.jpg/500px-Lions_Family_Portrait_Masai_Mara.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Emmanuel_Agyemang-Badu_%28Ghana_national_football_team_vs._England_national_football_team%29.jpg/500px-Emmanuel_Agyemang-Badu_%28Ghana_national_football_team_vs._England_national_football_team%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Scotland_football_team_1871_v_England.jpg/500px-Scotland_football_team_1871_v_England.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/England_1973_yellow.jpg/500px-England_1973_yellow.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/1954_Hungary_7%E2%80%931_England%2C_%28association_football_friendly%29_Golden_Team.jpg/500px-1954_Hungary_7%E2%80%931_England%2C_%28association_football_friendly%29_Golden_Team.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Antigua_and_Barbuda_football_team_training_in_England.jpg/500px-Antigua_and_Barbuda_football_team_training_in_England.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/England_national_team_Russia_2018.jpg/500px-England_national_team_Russia_2018.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Belgium_national_football_team_World_Cup_2018.jpg/500px-Belgium_national_football_team_World_Cup_2018.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/FWC_2018_-_Round_of_16_-_COL_v_ENG_-_Team_England_penalty_shootout.jpg/500px-FWC_2018_-_Round_of_16_-_COL_v_ENG_-_Team_England_penalty_shootout.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/England_national_team_World_Cup_2018.jpg/500px-England_national_team_World_Cup_2018.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Brazil_women%27s_national_football_team_in_Feb._2019.jpg/500px-Brazil_women%27s_national_football_team_in_Feb._2019.jpg"
+    "team_photos": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/British_Embassy_joined_World_Rugby_and_USA_Rugby_on_16_July_2025_to_host_players_and_coaches_from_each_of_the_four_national_teams_who_played_in_an_international_double-header_later_on_19_July_-_1.jpg/960px-thumbnail.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Cheerleaders_from_the_New_England_Patriots_professional_football_team_perform_during_an_Operation_Seasons_Greetings_concert_at_Hangar_814_at_Royal_Air_Force_Mildenhall%2C_England_on_D_-_DPLA_-_d5d54aa503a7ddafe49d39f9aae54d13.jpeg/960px-thumbnail.jpeg",
+      "https://upload.wikimedia.org/wikipedia/commons/8/8f/Antigua_and_Barbuda_football_team_training_in_England.jpg"
     ]
   },
   "history": {

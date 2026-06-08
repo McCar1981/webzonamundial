@@ -549,9 +549,12 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Floridsdorfer_AC_2016%E2%80%9317_%E2%80%93_Alexander_Schlager_%2801%29.jpg/330px-Floridsdorfer_AC_2016%E2%80%9317_%E2%80%93_Alexander_Schlager_%2801%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Floridsdorfer_AC_2016%E2%80%9317_%E2%80%93_Alexander_Schlager_%2802%29.jpg/500px-Floridsdorfer_AC_2016%E2%80%9317_%E2%80%93_Alexander_Schlager_%2802%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Floridsdorfer_AC_2016%E2%80%9317_%E2%80%93_Alexander_Schlager_%2803%29.jpg/500px-Floridsdorfer_AC_2016%E2%80%9317_%E2%80%93_Alexander_Schlager_%2803%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Alexander_Schlager_Sporthilfe-Gala_2019_Sportler_des_Jahres_%C3%96sterreich.jpg/500px-Alexander_Schlager_Sporthilfe-Gala_2019_Sportler_des_Jahres_%C3%96sterreich.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/FC_Red_Bull_Salzburg_gegen_FK_Austria_Wien_%282023-08-13%29_29.jpg/960px-FC_Red_Bull_Salzburg_gegen_FK_Austria_Wien_%282023-08-13%29_29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/FC_Red_Bull_Salzburg_gegen_FK_Austria_Wien_%282023-08-13%29_89.jpg/960px-FC_Red_Bull_Salzburg_gegen_FK_Austria_Wien_%282023-08-13%29_89.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/FC_Red_Bull_Salzburg_gegen_FK_Austria_Wien_%282023-08-13%29_93.jpg/960px-FC_Red_Bull_Salzburg_gegen_FK_Austria_Wien_%282023-08-13%29_93.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/FC_RB_Salzburg_gegen_SC_Austria_Lustenau_%282024-02-24%29a_02.jpg/960px-FC_RB_Salzburg_gegen_SC_Austria_Lustenau_%282024-02-24%29a_02.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/FC_RB_Salzburg_gegen_SC_Austria_Lustenau_%282024-02-24%29a_01.jpg/960px-FC_RB_Salzburg_gegen_SC_Austria_Lustenau_%282024-02-24%29a_01.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/FC_RB_Salzburg_gegen_SC_Austria_Lustenau_%282024-02-24%29a_06.jpg/960px-FC_RB_Salzburg_gegen_SC_Austria_Lustenau_%282024-02-24%29a_06.jpg"
         ]
       },
       {
@@ -567,7 +570,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "patrick-pentz",
@@ -584,9 +588,12 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/20161203_ADM_AUS_3873.jpg/330px-20161203_ADM_AUS_3873.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Pentz_%282024%29.png/500px-Pentz_%282024%29.png",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Patrick_Pentz_celebrates_victory_against_FC_Copenhagen.jpg/500px-Patrick_Pentz_celebrates_victory_against_FC_Copenhagen.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Patrick_Pentz.jpg/500px-Patrick_Pentz.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/FC_RB_Salzburg_gegen_FK_Austria_Wien_%2818._M%C3%A4rz_2018%29_40.jpg/960px-FC_RB_Salzburg_gegen_FK_Austria_Wien_%2818._M%C3%A4rz_2018%29_40.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/FC_Red_Bull_Salzburg_gegen_FK_Austria_Wien_%2831._M%C3%A4rz_2019%29_45.jpg/960px-FC_Red_Bull_Salzburg_gegen_FK_Austria_Wien_%2831._M%C3%A4rz_2019%29_45.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/FC_Red_Bull_Salzburg_versus_FK_Austria_Wien_%2831._M%C3%A4rz_2019%29_05.jpg/960px-FC_Red_Bull_Salzburg_versus_FK_Austria_Wien_%2831._M%C3%A4rz_2019%29_05.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/FC_Red_Bull_Salzburg_versus_FK_Austria_Wien_%2831._M%C3%A4rz_2019%29_19.jpg/960px-FC_Red_Bull_Salzburg_versus_FK_Austria_Wien_%2831._M%C3%A4rz_2019%29_19.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/FC_Red_Bull_Salzburg_versus_FK_Austria_Wien_%2831._M%C3%A4rz_2019%29_21.jpg/960px-FC_Red_Bull_Salzburg_versus_FK_Austria_Wien_%2831._M%C3%A4rz_2019%29_21.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/FC_RB_Salzburg_gegen_FK_Austria_Wien_%288._August_2021%29_32.jpg/960px-FC_RB_Salzburg_gegen_FK_Austria_Wien_%288._August_2021%29_32.jpg"
         ]
       },
       {
@@ -602,7 +609,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/FC_Liefering_versus_Young_Violets_Austria_Wien_%2830._August_2019%29_28.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/FC_Liefering_versus_Young_Violets_Austria_Wien_%2830._August_2019%29_28.jpg",
+        "photos": []
       },
       {
         "id": "kevin-danso",
@@ -618,10 +626,7 @@
         "shirt_number_expected": 5,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Austria_national_under-21_football_team_-_Teamcamp_October_2019_%2835%29.jpg/330px-Austria_national_under-21_football_team_-_Teamcamp_October_2019_%2835%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Kevin_Danso_v_Southampton_2017.jpg/500px-Kevin_Danso_v_Southampton_2017.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Kevin_Danso_ASSE_RCL_2425.jpg/500px-Kevin_Danso_ASSE_RCL_2425.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "stefan-posch",
@@ -636,7 +641,8 @@
         },
         "shirt_number_expected": 16,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Austria_national_under-21_football_team_-_Teamcamp_June_2017_%28110%29.jpg/330px-Austria_national_under-21_football_team_-_Teamcamp_June_2017_%28110%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Austria_national_under-21_football_team_-_Teamcamp_June_2017_%28110%29.jpg/330px-Austria_national_under-21_football_team_-_Teamcamp_June_2017_%28110%29.jpg",
+        "photos": []
       },
       {
         "id": "david-alaba",
@@ -653,10 +659,12 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_David_Alaba_850_1632.jpg/330px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_David_Alaba_850_1632.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/David_Alaba_-_%C3%96sterreiche_Fu%C3%9Fballnationalmannschaft_%2803%29.jpg/500px-David_Alaba_-_%C3%96sterreiche_Fu%C3%9Fballnationalmannschaft_%2803%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_David_Alaba_850_0050.jpg/500px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_David_Alaba_850_0050.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_David_Alaba_850_0064.jpg/500px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_David_Alaba_850_0064.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/David_Alaba_Training_2019-04-10_FC_Bayern_Muenchen-4_%28cropped%29.jpg/500px-David_Alaba_Training_2019-04-10_FC_Bayern_Muenchen-4_%28cropped%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/20130814_AT-GR_David_Alaba_2663.jpg/960px-20130814_AT-GR_David_Alaba_2663.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/20131119_AT-USA_David_Alaba_IP2O2872.JPG/960px-20131119_AT-USA_David_Alaba_IP2O2872.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/A27_David_Alaba_3294.jpg/960px-A27_David_Alaba_3294.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/A27_David_Alaba_U07_Cristian_Rodr%C3%ADguez_A18_Christoph_Leitgeb_2950.jpg/960px-A27_David_Alaba_U07_Cristian_Rodr%C3%ADguez_A18_Christoph_Leitgeb_2950.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/A27_David_Alaba_U16_Maximiliano_Pereira_3179.jpg/960px-A27_David_Alaba_U16_Maximiliano_Pereira_3179.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/A27_David_Alaba_U16_Maximiliano_Pereira_3244.jpg/960px-A27_David_Alaba_U16_Maximiliano_Pereira_3244.jpg"
         ]
       },
       {
@@ -673,10 +681,7 @@
         "shirt_number_expected": 4,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Austria_national_under-21_football_team_-_Teamcamp_November_2015_%28106%29.jpg/330px-Austria_national_under-21_football_team_-_Teamcamp_November_2015_%28106%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Philipp_Lienhart_2017.jpg/500px-Philipp_Lienhart_2017.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Philipp_Lienhart.jpg/500px-Philipp_Lienhart.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "phillipp-mwene",
@@ -691,7 +696,8 @@
         },
         "shirt_number_expected": 21,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/XXIII_Memorial_Quinocho_%28RC_Celta_vs_Mainz_05%29_-_74_%28cropped%29.jpg/330px-XXIII_Memorial_Quinocho_%28RC_Celta_vs_Mainz_05%29_-_74_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/XXIII_Memorial_Quinocho_%28RC_Celta_vs_Mainz_05%29_-_74_%28cropped%29.jpg/330px-XXIII_Memorial_Quinocho_%28RC_Celta_vs_Mainz_05%29_-_74_%28cropped%29.jpg",
+        "photos": []
       },
       {
         "id": "marco-friedl",
@@ -707,11 +713,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null,
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/20170608_U21_AUT-GIB_Ritzing_Marco_Friedl_DSC_4993.jpg/500px-20170608_U21_AUT-GIB_Ritzing_Marco_Friedl_DSC_4993.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/MarcoFriedl.jpg/500px-MarcoFriedl.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/MarcoFriedl2.jpg/500px-MarcoFriedl2.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "michael-svoboda",
@@ -726,7 +728,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/35/FC_RB_Salzburg_gegen_WSG_Swarowski_Tirol_%287._Dezember_2019%29_62_%28Michael_Svoboda%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/35/FC_RB_Salzburg_gegen_WSG_Swarowski_Tirol_%287._Dezember_2019%29_62_%28Michael_Svoboda%29.jpg",
+        "photos": []
       },
       {
         "id": "xaver-schlager",
@@ -743,7 +746,12 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/FC_Salzburg_gegen_Club_Br%C3%BCgge_%28Euroleague_Sechzehntelfinale%29_21.jpg/330px-FC_Salzburg_gegen_Club_Br%C3%BCgge_%28Euroleague_Sechzehntelfinale%29_21.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Xaver_Schlager_850_1680.jpg/500px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Xaver_Schlager_850_1680.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Schlager_Danilo_850_0071.jpg/960px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Schlager_Danilo_850_0071.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/FC_Liefering_versus_Young_Violets_Austria_Wien_%2810._August_2018%29_11.jpg/960px-FC_Liefering_versus_Young_Violets_Austria_Wien_%2810._August_2018%29_11.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/FC_Red_Bull_Salzburg_gegen_FK_Austria_Wien_%2811._August_2018%29_48.jpg/960px-FC_Red_Bull_Salzburg_gegen_FK_Austria_Wien_%2811._August_2018%29_48.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_7966.jpg/960px-20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_7966.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_7977.jpg/960px-20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_7977.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8000.jpg/960px-20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8000.jpg"
         ]
       },
       {
@@ -759,7 +767,15 @@
         },
         "shirt_number_expected": 14,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Meisterteller%C3%BCbergabe_Saison_2021-22_%282022-05-21%29_49.jpg/330px-Meisterteller%C3%BCbergabe_Saison_2021-22_%282022-05-21%29_49.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Meisterteller%C3%BCbergabe_Saison_2021-22_%282022-05-21%29_49.jpg/330px-Meisterteller%C3%BCbergabe_Saison_2021-22_%282022-05-21%29_49.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/FC_Liefering_gegen_SK_Austria_Klagenfurt_%281._Juni_2019%29_16.jpg/960px-FC_Liefering_gegen_SK_Austria_Klagenfurt_%281._Juni_2019%29_16.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/FC_Liefering_gegen_SK_Austria_Klagenfurt_%281._Juni_2019%29_20.jpg/960px-FC_Liefering_gegen_SK_Austria_Klagenfurt_%281._Juni_2019%29_20.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/FC_Liefering_gegen_Young_Violets_Austria_Wien_%2830._August_2019%29_06.jpg/960px-FC_Liefering_gegen_Young_Violets_Austria_Wien_%2830._August_2019%29_06.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/FC_Liefering_gegen_Young_Violets_Austria_Wien_%2830._August_2019%29_23.jpg/960px-FC_Liefering_gegen_Young_Violets_Austria_Wien_%2830._August_2019%29_23.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/FC_Liefering_gegen_Young_Violets_Austria_Wien_%2830._August_2019%29_45.jpg/960px-FC_Liefering_gegen_Young_Violets_Austria_Wien_%2830._August_2019%29_45.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/FC_Liefering_versus_Young_Violets_Austria_Wien_%2830._August_2019%29_15.jpg/960px-FC_Liefering_versus_Young_Violets_Austria_Wien_%2830._August_2019%29_15.jpg"
+        ]
       },
       {
         "id": "marcel-sabitzer",
@@ -776,12 +792,9 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Marcel_Sabitzer_2020_%28cropped%29.jpg/330px-Marcel_Sabitzer_2020_%28cropped%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/2014-05-30_Austria_-_Iceland_football_match%2C_Marcel_Sabitzer_0591.jpg/500px-2014-05-30_Austria_-_Iceland_football_match%2C_Marcel_Sabitzer_0591.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/2014-05-30_Austria_-_Iceland_football_match%2C_Marcel_Sabitzer_0609.jpg/500px-2014-05-30_Austria_-_Iceland_football_match%2C_Marcel_Sabitzer_0609.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/2014-05-30_Austria_-_Iceland_football_match%2C_Marcel_Sabitzer_0622.jpg/500px-2014-05-30_Austria_-_Iceland_football_match%2C_Marcel_Sabitzer_0622.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/2014-05-30_Austria_-_Iceland_football_match%2C_Marcel_Sabitzer_0691.jpg/500px-2014-05-30_Austria_-_Iceland_football_match%2C_Marcel_Sabitzer_0691.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/2014-05-30_Austria_-_Iceland_football_match%2C_Marcel_Sabitzer_0692.jpg/500px-2014-05-30_Austria_-_Iceland_football_match%2C_Marcel_Sabitzer_0692.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/2014-05-30_Austria_-_Iceland_football_match%2C_Marcel_Sabitzer_0828.jpg/500px-2014-05-30_Austria_-_Iceland_football_match%2C_Marcel_Sabitzer_0828.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_7968.jpg/960px-20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_7968.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8024.jpg/960px-20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8024.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8073.jpg/960px-20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8073.jpg"
         ]
       },
       {
@@ -799,7 +812,8 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/20180602_AUTGER_4687_%28cropped%29_Florian_Grillitsch.jpg/330px-20180602_AUTGER_4687_%28cropped%29_Florian_Grillitsch.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/FlorianGrillitsch.jpg/500px-FlorianGrillitsch.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/20180602_FIFA_Friendly_Match_Austria_vs._Germany_Mesut_%C3%96zil_850_1040.jpg/960px-20180602_FIFA_Friendly_Match_Austria_vs._Germany_Mesut_%C3%96zil_850_1040.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Alaba_interview_after_Italy-Austria_match_at_the_Euros_2020_in_London.jpg/960px-Alaba_interview_after_Italy-Austria_match_at_the_Euros_2020_in_London.jpg"
         ]
       },
       {
@@ -815,7 +829,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "romano-schmid",
@@ -832,7 +847,11 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/FC_Liefering_versus_Blau_Wei%C3%9F_Linz_%2822._September_2017%29_41.jpg/330px-FC_Liefering_versus_Blau_Wei%C3%9F_Linz_%2822._September_2017%29_41.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/RomanoSchmid.jpg/500px-RomanoSchmid.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/FC_Liefering_gegen_SC_Austria_Lustenau_%283._April_2018%29_26.jpg/960px-FC_Liefering_gegen_SC_Austria_Lustenau_%283._April_2018%29_26.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/FC_Liefering_versus_SC_Austria_Lustenau_%283._April_2018%29_02.jpg/960px-FC_Liefering_versus_SC_Austria_Lustenau_%283._April_2018%29_02.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/FC_Liefering_versus_SC_Austria_Lustenau_%283._April_2018%29_11.jpg/960px-FC_Liefering_versus_SC_Austria_Lustenau_%283._April_2018%29_11.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/UEFA_Euro_2023_Qualifiers_Austria_vs._Finland_%282022-06-03%29_32.jpg/960px-UEFA_Euro_2023_Qualifiers_Austria_vs._Finland_%282022-06-03%29_32.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/UEFA_Euro_2023_Qualifiers_Austria_vs._Finland_%282022-06-03%29_69.jpg/960px-UEFA_Euro_2023_Qualifiers_Austria_vs._Finland_%282022-06-03%29_69.jpg"
         ]
       },
       {
@@ -849,10 +868,7 @@
         "shirt_number_expected": 17,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Austria_national_under-21_football_team_-_Teamcamp_October_2019_%2860%29.jpg/330px-Austria_national_under-21_football_team_-_Teamcamp_October_2019_%2860%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/ChristophBaumgartner.jpg/500px-ChristophBaumgartner.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Christoph_Amberger%2C_%2C_Kunsthistorisches_Museum_Wien%2C_Gem%C3%A4ldegalerie_-_Christoph_Baumgartner_%281514-1586%29_-_GG_889_-_Kunsthistorisches_Museum.jpg/500px-Christoph_Amberger%2C_%2C_Kunsthistorisches_Museum_Wien%2C_Gem%C3%A4ldegalerie_-_Christoph_Baumgartner_%281514-1586%29_-_GG_889_-_Kunsthistorisches_Museum.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "konrad-laimer",
@@ -867,7 +883,15 @@
         },
         "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/2022-07-21_Fu%C3%9Fball%2C_M%C3%A4nner%2CFreundschaftsspiel%2C_RB_Leipzig_-_FC_Liverpool_1DX_2137_by_Stepro_%28cropped%29.jpg/330px-2022-07-21_Fu%C3%9Fball%2C_M%C3%A4nner%2CFreundschaftsspiel%2C_RB_Leipzig_-_FC_Liverpool_1DX_2137_by_Stepro_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/2022-07-21_Fu%C3%9Fball%2C_M%C3%A4nner%2CFreundschaftsspiel%2C_RB_Leipzig_-_FC_Liverpool_1DX_2137_by_Stepro_%28cropped%29.jpg/330px-2022-07-21_Fu%C3%9Fball%2C_M%C3%A4nner%2CFreundschaftsspiel%2C_RB_Leipzig_-_FC_Liverpool_1DX_2137_by_Stepro_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_7968.jpg/960px-20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_7968.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_7981.jpg/960px-20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_7981.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8006.jpg/960px-20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8006.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8007.jpg/960px-20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8007.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8018.jpg/960px-20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8018.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8024.jpg/960px-20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8024.jpg"
+        ]
       },
       {
         "id": "alexander-prass",
@@ -882,7 +906,15 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1a/FC_Liefering_versus_WSG_Wattens_%2824._Mai_2019%29_06.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1a/FC_Liefering_versus_WSG_Wattens_%2824._Mai_2019%29_06.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/FC_Liefering_gegen_SK_Austria_Klagenfurt_%281._Juni_2019%29_16.jpg/960px-FC_Liefering_gegen_SK_Austria_Klagenfurt_%281._Juni_2019%29_16.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/FC_Liefering_gegen_SK_Austria_Klagenfurt_%281._Juni_2019%29_20.jpg/960px-FC_Liefering_gegen_SK_Austria_Klagenfurt_%281._Juni_2019%29_20.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/FC_Liefering_gegen_SK_Austria_Klagenfurt_%281._Juni_2019%29_44.jpg/960px-FC_Liefering_gegen_SK_Austria_Klagenfurt_%281._Juni_2019%29_44.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/FC_Liefering_gegen_Young_Violets_Austria_Wien_%2830._August_2019%29_23.jpg/960px-FC_Liefering_gegen_Young_Violets_Austria_Wien_%2830._August_2019%29_23.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/FC_Liefering_gegen_Young_Violets_Austria_Wien_%2830._August_2019%29_25.jpg/960px-FC_Liefering_gegen_Young_Violets_Austria_Wien_%2830._August_2019%29_25.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/FC_Liefering_gegen_Young_Violets_Austria_Wien_%2830._August_2019%29_29.jpg/960px-FC_Liefering_gegen_Young_Violets_Austria_Wien_%2830._August_2019%29_29.jpg"
+        ]
       },
       {
         "id": "paul-wanner",
@@ -898,9 +930,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/41/Paul_wanner-1772636856_%28cropped%29.JPG",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Paul_wanner-1772636856.JPG/500px-Paul_wanner-1772636856.JPG"
-        ]
+        "photos": []
       },
       {
         "id": "alessandro-schopf",
@@ -917,9 +947,9 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/3c/2018-08-17_1._FC_Schweinfurt_05_vs._FC_Schalke_04_%28DFB-Pokal%29_by_Sandro_Halank%E2%80%93521_%28cropped%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Alessandro_Sch%C3%B6pf_%28FC_Bayern_M%C3%BCnchen%29%2C_Austria_U-19_%2801%29.jpg/500px-Alessandro_Sch%C3%B6pf_%28FC_Bayern_M%C3%BCnchen%29%2C_Austria_U-19_%2801%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Alessandro_Sch%C3%B6pf_%28FC_Bayern_M%C3%BCnchen%29%2C_Austria_U-19_%2802%29.jpg/500px-Alessandro_Sch%C3%B6pf_%28FC_Bayern_M%C3%BCnchen%29%2C_Austria_U-19_%2802%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/20180602_FIFA_Friendly_Match_Austria_vs._Germany_Alessandro_Sch%C3%B6pf_scoring_850_1182.jpg/500px-20180602_FIFA_Friendly_Match_Austria_vs._Germany_Alessandro_Sch%C3%B6pf_scoring_850_1182.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/20180602_FIFA_Friendly_Match_Austria_vs._Germany_Mesut_%C3%96zil_850_1040.jpg/960px-20180602_FIFA_Friendly_Match_Austria_vs._Germany_Mesut_%C3%96zil_850_1040.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/20180602_FIFA_Friendly_Match_Austria_vs._Germany_Alessandro_Sch%C3%B6pf_scoring_850_1182.jpg/960px-20180602_FIFA_Friendly_Match_Austria_vs._Germany_Alessandro_Sch%C3%B6pf_scoring_850_1182.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Miranda_850_0051.jpg/960px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Miranda_850_0051.jpg"
         ]
       },
       {
@@ -937,12 +967,10 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Marko_Arnautovi%C4%87_850_1633.jpg/330px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Marko_Arnautovi%C4%87_850_1633.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/6/67/Marko_Arnautovic.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Marko_Arnautovic_2010.jpg/500px-Marko_Arnautovic_2010.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/FIFA_WC-qualification_2014_-_Austria_vs_Ireland_2013-09-10_-_Marko_Arnautovic_07.JPG/500px-FIFA_WC-qualification_2014_-_Austria_vs_Ireland_2013-09-10_-_Marko_Arnautovic_07.JPG",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/2014-05-30_Austria_-_Iceland_football_match%2C_Marko_Arnautovi%C4%87_0208.jpg/500px-2014-05-30_Austria_-_Iceland_football_match%2C_Marko_Arnautovi%C4%87_0208.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/2014-05-30_Austria_-_Iceland_football_match%2C_Marko_Arnautovi%C4%87_0261.jpg/500px-2014-05-30_Austria_-_Iceland_football_match%2C_Marko_Arnautovi%C4%87_0261.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/2014-05-30_Austria_-_Iceland_football_match%2C_Marko_Arnautovi%C4%87_0688.jpg/500px-2014-05-30_Austria_-_Iceland_football_match%2C_Marko_Arnautovi%C4%87_0688.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Interviews_Italy-Austria_match_at_the_Euros_2020_in_London.jpg/960px-Interviews_Italy-Austria_match_at_the_Euros_2020_in_London.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Miranda_850_0051.jpg/960px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Miranda_850_0051.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_850_2037.jpg/960px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_850_2037.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Arnautovi%C4%87_Thiago_Silva_850_2032.jpg/960px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Arnautovi%C4%87_Thiago_Silva_850_2032.jpg"
         ]
       },
       {
@@ -959,9 +987,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Michael_Gregoritsch_U21_Austria_vs._Albania_2014-03-05_01.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Michael_Gregoritsch.jpg/500px-Michael_Gregoritsch.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "sasa-kalajdzic",
@@ -976,7 +1002,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Sasa_kalajdzic.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Sasa_kalajdzic.jpg",
+        "photos": []
       },
       {
         "id": "patrick-wimmer",
@@ -991,7 +1018,11 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/5f/UEFA_Euro_2023_Qualifiers_Austria_vs._Finland_%282022-06-03%29_29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/5f/UEFA_Euro_2023_Qualifiers_Austria_vs._Finland_%282022-06-03%29_29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/FC_Liefering_gegen_Young_Violets_Austria_Wien_%2830._August_2019%29_24.jpg/960px-FC_Liefering_gegen_Young_Violets_Austria_Wien_%2830._August_2019%29_24.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/UEFA_Euro_2023_Qualifiers_Austria_vs._Finland_%282022-06-03%29_53.jpg/960px-UEFA_Euro_2023_Qualifiers_Austria_vs._Finland_%282022-06-03%29_53.jpg"
+        ]
       }
     ],
     "starting_xi": {
@@ -1115,21 +1146,9 @@
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
     "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
-    "image_pool": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/FIFA_WC-qualification_2014_-_Austria_vs_Ireland_2013-09-10_-_Republic_of_Ireland_national_football_team.jpg/500px-FIFA_WC-qualification_2014_-_Austria_vs_Ireland_2013-09-10_-_Republic_of_Ireland_national_football_team.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Austria_national_under-21_football_team_-_Teamcamp_November_2015_%28051%29.jpg/500px-Austria_national_under-21_football_team_-_Teamcamp_November_2015_%28051%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Austria_national_under-21_football_team_-_Teamcamp_November_2015_%28071%29.jpg/500px-Austria_national_under-21_football_team_-_Teamcamp_November_2015_%28071%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Austria_national_under-21_football_team_-_Teamcamp_November_2015_%28072%29.jpg/500px-Austria_national_under-21_football_team_-_Teamcamp_November_2015_%28072%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Austria_national_under-21_football_team_-_Teamcamp_November_2015_%28041%29.jpg/500px-Austria_national_under-21_football_team_-_Teamcamp_November_2015_%28041%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Austria_national_under-21_football_team_-_Teamcamp_November_2015_%28046%29.jpg/500px-Austria_national_under-21_football_team_-_Teamcamp_November_2015_%28046%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Austria_national_under-21_football_team_-_Teamcamp_November_2015_%28042%29.jpg/500px-Austria_national_under-21_football_team_-_Teamcamp_November_2015_%28042%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Austria_national_under-21_football_team_-_Teamcamp_November_2015_%28044%29.jpg/500px-Austria_national_under-21_football_team_-_Teamcamp_November_2015_%28044%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Austria_national_under-21_football_team_-_Teamcamp_November_2015_%28022%29.jpg/500px-Austria_national_under-21_football_team_-_Teamcamp_November_2015_%28022%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Austria_national_under-21_football_team_-_Teamcamp_November_2015_%28073%29.jpg/500px-Austria_national_under-21_football_team_-_Teamcamp_November_2015_%28073%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Austria_national_under-21_football_team_-_Teamcamp_November_2015_%28030%29.jpg/500px-Austria_national_under-21_football_team_-_Teamcamp_November_2015_%28030%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Austria_national_under-21_football_team_-_Teamcamp_November_2015_%28024%29.jpg/500px-Austria_national_under-21_football_team_-_Teamcamp_November_2015_%28024%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Austria_national_under-21_football_team_-_Teamcamp_November_2015_%28058%29.jpg/500px-Austria_national_under-21_football_team_-_Teamcamp_November_2015_%28058%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Austria_national_under-21_football_team_-_Teamcamp_November_2015_%28009%29.jpg/500px-Austria_national_under-21_football_team_-_Teamcamp_November_2015_%28009%29.jpg"
+    "team_photos": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/UEFA_Euro_2023_Qualifiers_Austria_vs._Finland_%282022-06-03%29_08.jpg/960px-UEFA_Euro_2023_Qualifiers_Austria_vs._Finland_%282022-06-03%29_08.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/UEFA_Euro_2023_Qualifiers_Austria_vs._Finland_%282022-06-03%29_18.jpg/960px-UEFA_Euro_2023_Qualifiers_Austria_vs._Finland_%282022-06-03%29_18.jpg"
     ]
   },
   "history": {

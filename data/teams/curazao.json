@@ -457,10 +457,7 @@
         "shirt_number_expected": 1,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Room_Eloy_Columbus_Crew_SC_Meet_the_Team_2019.jpg/330px-Room_Eloy_Columbus_Crew_SC_Meet_the_Team_2019.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/a/a0/Eloy_Room.png",
-          "https://upload.wikimedia.org/wikipedia/commons/b/be/Eloy_Room.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "tyrick-bodak",
@@ -474,7 +471,8 @@
           "league": "Eerste Divisie"
         },
         "shirt_number_expected": 23,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "trevor-doornbusch",
@@ -489,7 +487,8 @@
         },
         "shirt_number_expected": 12,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Austria_U-18_vs._Netherlands_U-18_2017-03-23_%28095%29_%28cropped%29.jpg/330px-Austria_U-18_vs._Netherlands_U-18_2017-03-23_%28095%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Austria_U-18_vs._Netherlands_U-18_2017-03-23_%28095%29_%28cropped%29.jpg/330px-Austria_U-18_vs._Netherlands_U-18_2017-03-23_%28095%29_%28cropped%29.jpg",
+        "photos": []
       },
       {
         "id": "shurandy-sambo",
@@ -503,7 +502,8 @@
           "league": "Eredivisie"
         },
         "shirt_number_expected": 2,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "jurien-gaari",
@@ -518,7 +518,8 @@
         },
         "shirt_number_expected": 15,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Go_Ahead_Eagles_-_RKC_Waalwijk_-_52830811567_%28cropped%29.jpg/330px-Go_Ahead_Eagles_-_RKC_Waalwijk_-_52830811567_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Go_Ahead_Eagles_-_RKC_Waalwijk_-_52830811567_%28cropped%29.jpg/330px-Go_Ahead_Eagles_-_RKC_Waalwijk_-_52830811567_%28cropped%29.jpg",
+        "photos": []
       },
       {
         "id": "roshon-van-eijma",
@@ -533,7 +534,10 @@
         },
         "shirt_number_expected": 5,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Roshon_van_Eijma_2025_profile_photo_%28cropped%29.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Roshon_van_Eijma_2025_profile_photo_%28cropped%29.png",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Roshon_van_Eijma_2025_profile_photo.png/960px-Roshon_van_Eijma_2025_profile_photo.png"
+        ]
       },
       {
         "id": "sherel-floranus",
@@ -548,7 +552,8 @@
         },
         "shirt_number_expected": 3,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Sherel_Floranus_at_Antalyaspor_vs_Fatih_Karag%C3%BCmr%C3%BCk_SK_20220213.jpg/330px-Sherel_Floranus_at_Antalyaspor_vs_Fatih_Karag%C3%BCmr%C3%BCk_SK_20220213.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Sherel_Floranus_at_Antalyaspor_vs_Fatih_Karag%C3%BCmr%C3%BCk_SK_20220213.jpg/330px-Sherel_Floranus_at_Antalyaspor_vs_Fatih_Karag%C3%BCmr%C3%BCk_SK_20220213.jpg",
+        "photos": []
       },
       {
         "id": "armando-obispo",
@@ -563,7 +568,8 @@
         },
         "shirt_number_expected": 4,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Austria_U-18_vs._Netherlands_U-18_2017-03-23_%28060%29.jpg/330px-Austria_U-18_vs._Netherlands_U-18_2017-03-23_%28060%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Austria_U-18_vs._Netherlands_U-18_2017-03-23_%28060%29.jpg/330px-Austria_U-18_vs._Netherlands_U-18_2017-03-23_%28060%29.jpg",
+        "photos": []
       },
       {
         "id": "joshua-brenet",
@@ -578,7 +584,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8b/PSV_Eindhoven%2C_Teamcamp_Bad_Erlach%2C_July_2014_%28076%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8b/PSV_Eindhoven%2C_Teamcamp_Bad_Erlach%2C_July_2014_%28076%29.jpg",
+        "photos": []
       },
       {
         "id": "riechedly-bazoer",
@@ -593,7 +600,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/21/Dnepr-Ajax_%282%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/21/Dnepr-Ajax_%282%29.jpg",
+        "photos": []
       },
       {
         "id": "deveron-fonville",
@@ -608,7 +616,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "godfried-roemeratoe",
@@ -623,7 +632,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "juninho-bacuna",
@@ -638,7 +648,8 @@
         },
         "shirt_number_expected": 8,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Juninho_bacuna-1531777726.jpeg/330px-Juninho_bacuna-1531777726.jpeg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Juninho_bacuna-1531777726.jpeg/330px-Juninho_bacuna-1531777726.jpeg",
+        "photos": []
       },
       {
         "id": "livano-comenencia",
@@ -652,7 +663,8 @@
           "league": "Serie C"
         },
         "shirt_number_expected": 16,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "leandro-bacuna",
@@ -668,11 +680,7 @@
         "shirt_number_expected": 6,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Leandro_Bacuna.jpg/330px-Leandro_Bacuna.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/c/c1/Bacuna11.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/6/68/LeandroBacuna.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Leandro_Bacuna_Back_to_your_roots_Groningen.jpg/500px-Leandro_Bacuna_Back_to_your_roots_Groningen.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "arjany-martha",
@@ -687,7 +695,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/58/Ar%27jany_Martha_18042026_%283%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/58/Ar%27jany_Martha_18042026_%283%29.jpg",
+        "photos": []
       },
       {
         "id": "tahith-chong",
@@ -703,9 +712,7 @@
         "shirt_number_expected": 10,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Tahith_Chong_%2838487929362%29.jpg/330px-Tahith_Chong_%2838487929362%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/George_Wilson%2C_D%27Mani_Bughail-Mellor_%26_Tahith_Chong_%2826743950469%29.jpg/500px-George_Wilson%2C_D%27Mani_Bughail-Mellor_%26_Tahith_Chong_%2826743950469%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "kevin-felida",
@@ -720,7 +727,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Kevin_felida-1571753982.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Kevin_felida-1571753982.jpg",
+        "photos": []
       },
       {
         "id": "jurgen-locadia",
@@ -736,11 +744,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/PSV_Eindhoven%2C_Teamcamp_Bad_Erlach%2C_July_2014_%28094%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/9/9f/Jurgen_Locadia.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/J%C3%BCrgen_Locadia_playing_for_FC_Cincinnati.jpg/500px-J%C3%BCrgen_Locadia_playing_for_FC_Cincinnati.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/J%C3%BCrgen_Locadia%2C_Persepolis_v_Havadar%2C_5_September_2022.jpg/500px-J%C3%BCrgen_Locadia%2C_Persepolis_v_Havadar%2C_5_September_2022.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "jeremy-antonisse",
@@ -754,7 +758,8 @@
           "league": "Eerste Divisie"
         },
         "shirt_number_expected": 18,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "sontje-hansen",
@@ -769,7 +774,8 @@
         },
         "shirt_number_expected": 7,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/GAE_-_NEC_-_53493469456_%28Sontje_Hansen%29.jpg/330px-GAE_-_NEC_-_53493469456_%28Sontje_Hansen%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/GAE_-_NEC_-_53493469456_%28Sontje_Hansen%29.jpg/330px-GAE_-_NEC_-_53493469456_%28Sontje_Hansen%29.jpg",
+        "photos": []
       },
       {
         "id": "tyrese-noslin",
@@ -785,9 +791,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Tyrese_Noslin.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Tyrese_Noslin-1751620543.jpg/500px-Tyrese_Noslin-1751620543.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "kenji-gorre",
@@ -803,9 +807,7 @@
         "shirt_number_expected": 19,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Kenji_Gorr%C3%A9_%282015%29.jpg/330px-Kenji_Gorr%C3%A9_%282015%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/6/60/Kenji_Gorr%C3%A9_2023.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "jearl-margaritha",
@@ -820,7 +822,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "brandley-kuwas",
@@ -835,7 +838,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Brandley_Kuwas.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Brandley_Kuwas.png",
+        "photos": []
       },
       {
         "id": "gervane-kastaneer",
@@ -850,7 +854,8 @@
         },
         "shirt_number_expected": 9,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Gervane-kastaneer.jpg/330px-Gervane-kastaneer.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Gervane-kastaneer.jpg/330px-Gervane-kastaneer.jpg",
+        "photos": []
       }
     ],
     "starting_xi": {
@@ -974,17 +979,7 @@
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
     "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
-    "image_pool": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Dean_Mason_Montserrat.jpg/500px-Dean_Mason_Montserrat.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Schiphol_vertrek_Nederlands_elftal_naar_Indie%2C_Bestanddeelnr_906-6151.jpg/500px-Schiphol_vertrek_Nederlands_elftal_naar_Indie%2C_Bestanddeelnr_906-6151.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Schiphol_vertrek_Nederlands_elftal_naar_Indie%2C_Bestanddeelnr_906-6152.jpg/500px-Schiphol_vertrek_Nederlands_elftal_naar_Indie%2C_Bestanddeelnr_906-6152.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Schiphol_vertrek_Nederlands_elftal_naar_Indie%2C_Bestanddeelnr_906-6153.jpg/500px-Schiphol_vertrek_Nederlands_elftal_naar_Indie%2C_Bestanddeelnr_906-6153.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Remko_Bicentini_-_2020.jpg/500px-Remko_Bicentini_-_2020.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Selecci%C3%B3n_Argentina_Amistoso_marzo_2023_en_Santiago_Del_Estero_Estero_12.jpg/500px-Selecci%C3%B3n_Argentina_Amistoso_marzo_2023_en_Santiago_Del_Estero_Estero_12.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Selecci%C3%B3n_Argentina_Amistoso_marzo_2023_en_Santiago_Del_Estero_Estero_16.jpg/500px-Selecci%C3%B3n_Argentina_Amistoso_marzo_2023_en_Santiago_Del_Estero_Estero_16.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Selecci%C3%B3n_Argentina_Amistoso_marzo_2023_en_Santiago_Del_Estero_Estero_17.jpg/500px-Selecci%C3%B3n_Argentina_Amistoso_marzo_2023_en_Santiago_Del_Estero_Estero_17.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Selecci%C3%B3n_Argentina_Amistoso_marzo_2023_en_Santiago_Del_Estero_Estero_19.jpg/500px-Selecci%C3%B3n_Argentina_Amistoso_marzo_2023_en_Santiago_Del_Estero_Estero_19.jpg"
-    ]
+    "team_photos": []
   },
   "history": {
     "first_appearance": 2026,

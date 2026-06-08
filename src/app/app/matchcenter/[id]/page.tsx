@@ -10,6 +10,9 @@ import { buildMeta, resolveMatchId, matchSlug } from "@/lib/match-center/store";
 import { matchHeroImage } from "@/lib/match-center/heroImage";
 import MatchCenterLive from "../MatchCenterLive";
 import FollowMatchButton from "../FollowMatchButton";
+import MicroLive from "../MicroLive";
+import MicroHistory from "../MicroHistory";
+import MicroDuels from "../MicroDuels";
 
 export const dynamic = "force-dynamic";
 
@@ -49,6 +52,9 @@ export default async function MatchPage({ params, searchParams }: PageProps) {
         />
       </div>
       <MatchCenterLive matchId={matchId} meta={meta} sim={sim} heroImage={heroImage} />
+      <MicroDuels matchId={matchId} />
+      <MicroHistory matchId={matchId} />
+      <MicroLive matchId={matchId} />
     </>
   );
 }

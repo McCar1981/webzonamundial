@@ -540,7 +540,8 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "marcio-da-rosa",
@@ -555,7 +556,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Phase_de_match_Ethiopie_-_Cape_verde_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Phase_de_match_Ethiopie_-_Cape_verde_%28cropped%29.jpg",
+        "photos": []
       },
       {
         "id": "carlos-santos",
@@ -570,7 +572,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/PhraeUtdCarlosSantosdeJesusAWAZNavyApril30CAP.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/PhraeUtdCarlosSantosdeJesusAWAZNavyApril30CAP.jpg",
+        "photos": []
       },
       {
         "id": "stopira",
@@ -581,7 +584,10 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Cap-vert_vs_Ethiopi_%2825%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Cap-vert_vs_Ethiopi_%2825%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Phase_de_match_Cape_verde_-_Ethiopie.jpg/960px-Phase_de_match_Cape_verde_-_Ethiopie.jpg"
+        ]
       },
       {
         "id": "diney-borges",
@@ -592,7 +598,8 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "roberto-lopes",
@@ -608,12 +615,7 @@
         "shirt_number_expected": 5,
         "status": "fixed",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Dom_Roberto_Lopes.JPG/500px-Dom_Roberto_Lopes.JPG",
-          "https://upload.wikimedia.org/wikipedia/commons/2/2f/Heber_lopes.png",
-          "https://upload.wikimedia.org/wikipedia/commons/5/58/Roberto_Lopes_de_Miranda.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/9/9f/2012_ROBERTO_LOPES_CANDIDATO_PREFEITO_RN_NATAL_TSE_%28200000004724%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/d/d1/2016_ROBERTO_LOPES_CANDIDATO_VICE-PREFEITO_GO_SENADOR_CANEDO_TSE_%2890000018100%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/0/02/Pico_Lopes.png"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Dipo_Akinyemi%2C_Catherine_Connolly_and_Roberto_Lopes%2C_Jan_2026.jpg/960px-Dipo_Akinyemi%2C_Catherine_Connolly_and_Roberto_Lopes%2C_Jan_2026.jpg"
         ]
       },
       {
@@ -629,7 +631,10 @@
         },
         "shirt_number_expected": 14,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Logan_Costa_-_2023-02-01_%28cropped2%29.jpg/330px-Logan_Costa_-_2023-02-01_%28cropped2%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Logan_Costa_-_2023-02-01_%28cropped2%29.jpg/330px-Logan_Costa_-_2023-02-01_%28cropped2%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Zakaria_Aboukhlal_et_Logan_Costa_-_2023-02-01.jpg/960px-Zakaria_Aboukhlal_et_Logan_Costa_-_2023-02-01.jpg"
+        ]
       },
       {
         "id": "diawisa-tavares",
@@ -643,7 +648,8 @@
           "league": "Liga Portugal 2"
         },
         "shirt_number_expected": 17,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "steven-moreira",
@@ -658,7 +664,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Steven_Moreira_NYCFC_v_Columbus_10_May_2026-67_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Steven_Moreira_NYCFC_v_Columbus_10_May_2026-67_%28cropped%29.jpg",
+        "photos": []
       },
       {
         "id": "wagner-pina",
@@ -672,7 +679,8 @@
           "league": "Süper Lig"
         },
         "shirt_number_expected": 2,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "kelvin-pires",
@@ -687,7 +695,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "kevin-pina",
@@ -702,7 +711,8 @@
         },
         "shirt_number_expected": 24,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Kevin_Pina_%28footballer%29_2022.jpg/330px-Kevin_Pina_%28footballer%29_2022.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Kevin_Pina_%28footballer%29_2022.jpg/330px-Kevin_Pina_%28footballer%29_2022.jpg",
+        "photos": []
       },
       {
         "id": "jovane-cabral",
@@ -717,7 +727,8 @@
         },
         "shirt_number_expected": 19,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/JovaneCabral_2021.jpg/330px-JovaneCabral_2021.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/JovaneCabral_2021.jpg/330px-JovaneCabral_2021.jpg",
+        "photos": []
       },
       {
         "id": "joao-paulo-fernandes",
@@ -732,7 +743,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Paulinho_2021.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Paulinho_2021.png",
+        "photos": []
       },
       {
         "id": "jamiro-monteiro",
@@ -747,7 +759,11 @@
         },
         "shirt_number_expected": 8,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Jamiro_Monteiro_Philadelphia_Union_2019.jpg/330px-Jamiro_Monteiro_Philadelphia_Union_2019.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Jamiro_Monteiro_Philadelphia_Union_2019.jpg/330px-Jamiro_Monteiro_Philadelphia_Union_2019.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Phase_de_match_Ethiopie_-_Cape_verde_a_Yaound%C3%A9.jpg/960px-Phase_de_match_Ethiopie_-_Cape_verde_a_Yaound%C3%A9.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Phase_de_match_Cape_verde_-_Ethiopie.jpg/960px-Phase_de_match_Cape_verde_-_Ethiopie.jpg"
+        ]
       },
       {
         "id": "garry-rodrigues",
@@ -764,7 +780,7 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Cap-vert_vs_Ethiopi_%2824%29.jpg/330px-Cap-vert_vs_Ethiopi_%2824%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Garry_Rodrigues_2013_Catalonia.jpg/500px-Garry_Rodrigues_2013_Catalonia.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Phase_de_match_Ethiopie-Cape_Verde.jpg/960px-Phase_de_match_Ethiopie-Cape_Verde.jpg"
         ]
       },
       {
@@ -780,7 +796,8 @@
         },
         "shirt_number_expected": 6,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Deroy_Duarte_2026.jpg/330px-Deroy_Duarte_2026.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Deroy_Duarte_2026.jpg/330px-Deroy_Duarte_2026.jpg",
+        "photos": []
       },
       {
         "id": "laros-duarte",
@@ -795,7 +812,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "yannick-semedo",
@@ -809,7 +827,8 @@
           "league": "Ligue 2"
         },
         "shirt_number_expected": 13,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "willy-semedo",
@@ -824,7 +843,8 @@
         },
         "shirt_number_expected": 21,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/RC_Lens_-_Grenoble_Foot_38_%2810-02-2020%29_70.jpg/330px-RC_Lens_-_Grenoble_Foot_38_%2810-02-2020%29_70.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/RC_Lens_-_Grenoble_Foot_38_%2810-02-2020%29_70.jpg/330px-RC_Lens_-_Grenoble_Foot_38_%2810-02-2020%29_70.jpg",
+        "photos": []
       },
       {
         "id": "telmo-arcanjo",
@@ -839,7 +859,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "nuno-da-costa",
@@ -854,7 +875,14 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Valenciennes_-_UNFP_FC_%2802-07-2016%29_40_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Valenciennes_-_UNFP_FC_%2802-07-2016%29_40_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Nuno_da_Costa_10_%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_FK_20250731_%286%29.jpg/960px-Nuno_da_Costa_10_%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_FK_20250731_%286%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Nuno_da_Costa_10_%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_FK_UECL_20250821_%281%29.jpg/960px-Nuno_da_Costa_10_%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_FK_UECL_20250821_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Nuno_da_Costa_10_%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_FK_UECL_20250821_%289%29.jpg/960px-Nuno_da_Costa_10_%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_FK_UECL_20250821_%289%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Nuno_da_Costa_10_%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_FK_UECL_20250821_%286%29.jpg/960px-Nuno_da_Costa_10_%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_FK_UECL_20250821_%286%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Nuno_da_Costa_10_%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_FK_UECL_20250821_%287%29.jpg/960px-Nuno_da_Costa_10_%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_FK_UECL_20250821_%287%29.jpg"
+        ]
       },
       {
         "id": "helio-varela",
@@ -869,7 +897,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "gilson-benchimol",
@@ -884,7 +913,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Benchimol_2024.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Benchimol_2024.jpg",
+        "photos": []
       },
       {
         "id": "dailon-livramento",
@@ -898,7 +928,8 @@
           "league": "Primeira Liga"
         },
         "shirt_number_expected": 10,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "ryan-mendes",
@@ -913,7 +944,8 @@
         },
         "shirt_number_expected": 9,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Ryan_Mendes_%28LOSC_Lille%29.JPG/330px-Ryan_Mendes_%28LOSC_Lille%29.JPG"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Ryan_Mendes_%28LOSC_Lille%29.JPG/330px-Ryan_Mendes_%28LOSC_Lille%29.JPG",
+        "photos": []
       }
     ],
     "starting_xi": {
@@ -1038,15 +1070,7 @@
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
     "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
-    "image_pool": [
-      "https://upload.wikimedia.org/wikipedia/commons/8/89/Lucio_Antunes_2013_Catalonia.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Joan_Capdevila_%26_Ramilton_do_Rosario_Rambe_2013_Catalonia.jpg/500px-Joan_Capdevila_%26_Ramilton_do_Rosario_Rambe_2013_Catalonia.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/d/d1/TUN-CPV-2015-01-18.png",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/TUN-CPV-2015-01-18%281%29.png/500px-TUN-CPV-2015-01-18%281%29.png",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Uganda_Cranes_Fans_before_the_Match_between_Uganda_and_Cape_Verde.jpg/500px-Uganda_Cranes_Fans_before_the_Match_between_Uganda_and_Cape_Verde.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/A_young_Uganda_Cranes_football_fan.jpg/500px-A_young_Uganda_Cranes_football_fan.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Uganda_Cranes_Football_Fan.jpg/500px-Uganda_Cranes_Football_Fan.jpg"
-    ]
+    "team_photos": []
   },
   "history": {
     "first_appearance": 2026,

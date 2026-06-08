@@ -602,8 +602,11 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Sergio_Rochet_%282022%29.jpg/330px-Sergio_Rochet_%282022%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Sergio_Rochet.jpg/500px-Sergio_Rochet.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Rochet_and_Mercado_at_Internacional_in_2025.png/500px-Rochet_and_Mercado_at_Internacional_in_2025.png"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7037-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7037-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7059-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7059-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7072-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7072-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7104-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7104-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7113-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7113-jikatu.jpg"
         ]
       },
       {
@@ -619,7 +622,8 @@
         },
         "shirt_number_expected": 23,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Santiago_Mele.jpg/330px-Santiago_Mele.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Santiago_Mele.jpg/330px-Santiago_Mele.jpg",
+        "photos": []
       },
       {
         "id": "fernando-muslera",
@@ -634,12 +638,10 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/38/Fernando_Muslera_in_2021.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Fernando_Muslera.jpg/500px-Fernando_Muslera.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/9/93/Fernando-muslera.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Fernando_Muslera_2012.jpg/500px-Fernando_Muslera_2012.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Muslera%2713.JPG/500px-Muslera%2713.JPG",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/U01_Fernando_Muslera_7546.jpg/500px-U01_Fernando_Muslera_7546.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/U01_Fernando_Muslera_7564.jpg/500px-U01_Fernando_Muslera_7564.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Uruguay_4_-_Bolivia_2_-_Camino_a_Rusia%21_-_171011-0269-jikatu_%2837580552676%29.jpg/960px-Uruguay_4_-_Bolivia_2_-_Camino_a_Rusia%21_-_171011-0269-jikatu_%2837580552676%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Partido_Arabia_Saudita_-_Uruguay_04.jpg/960px-Partido_Arabia_Saudita_-_Uruguay_04.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7059-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7059-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7113-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7113-jikatu.jpg"
         ]
       },
       {
@@ -657,9 +659,10 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Jos%C3%A9_Mar%C3%ADa_Gim%C3%A9nez.jpg/330px-Jos%C3%A9_Mar%C3%ADa_Gim%C3%A9nez.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/6/6d/Jos%C3%A9_Gim%C3%A9nez.png",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Atl%C3%A9tico_de_Madrid_vs_UD_Almer%C3%ADa_-_12_%28Jos%C3%A9_Mar%C3%ADa_Gim%C3%A9nez%29.jpg/500px-Atl%C3%A9tico_de_Madrid_vs_UD_Almer%C3%ADa_-_12_%28Jos%C3%A9_Mar%C3%ADa_Gim%C3%A9nez%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/d/d4/Jos%C3%A9_Mar%C3%ADa_Gim%C3%A9nez_%28cropped%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7059-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7059-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7113-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7113-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/1/1c/Portugal_v_Uruguay_WC_2022.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/8/80/2022_FIFA_World_Cup_Match_32%2C_Portugal_v_Uruguay_-_04.jpg"
         ]
       },
       {
@@ -675,7 +678,8 @@
         },
         "shirt_number_expected": 3,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Sebasti%C3%A1n_C%C3%A1ceres.jpg/330px-Sebasti%C3%A1n_C%C3%A1ceres.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Sebasti%C3%A1n_C%C3%A1ceres.jpg/330px-Sebasti%C3%A1n_C%C3%A1ceres.jpg",
+        "photos": []
       },
       {
         "id": "ronald-araujo",
@@ -692,9 +696,12 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/FC_Red_Bull_Salzburg_gegen_CF_Barcelona_%28Testspiel_4._August_2021%29_45_%28cropped%29.jpg/330px-FC_Red_Bull_Salzburg_gegen_CF_Barcelona_%28Testspiel_4._August_2021%29_45_%28cropped%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Ronald_Araujo_i_Gavi_amb_els_polos_de_passeig_que_inclouen_la_marca_Catalunya_%2828-07-2023%29.jpg/500px-Ronald_Araujo_i_Gavi_amb_els_polos_de_passeig_que_inclouen_la_marca_Catalunya_%2828-07-2023%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/%D0%9C%D0%B0%D1%82%D1%87_%C2%AB%D0%94%D0%B8%D0%BD%D0%B0%D0%BC%D0%BE%C2%BB_-_%C2%AB%D0%91%D0%B0%D1%80%D1%81%D0%B5%D0%BB%D0%BE%D0%BD%D0%B0%C2%BB_0-1._2_%D0%BB%D0%B8%D1%81%D1%82%D0%BE%D0%BF%D0%B0%D0%B4%D0%B0_2021_%D1%80%D0%BE%D0%BA%D1%83_%E2%80%94_1289463_%28Ronald_Ara%C3%BAjo%29.jpg/500px-%D0%9C%D0%B0%D1%82%D1%87_%C2%AB%D0%94%D0%B8%D0%BD%D0%B0%D0%BC%D0%BE%C2%BB_-_%C2%AB%D0%91%D0%B0%D1%80%D1%81%D0%B5%D0%BB%D0%BE%D0%BD%D0%B0%C2%BB_0-1._2_%D0%BB%D0%B8%D1%81%D1%82%D0%BE%D0%BF%D0%B0%D0%B4%D0%B0_2021_%D1%80%D0%BE%D0%BA%D1%83_%E2%80%94_1289463_%28Ronald_Ara%C3%BAjo%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Ronald_Araujo_i_Gavi_amb_els_polos_de_passeig_que_inclouen_la_marca_Catalunya_%2828-07-2023%29_%28Ronald_Ara%C3%BAjo%29.jpg/500px-Ronald_Araujo_i_Gavi_amb_els_polos_de_passeig_que_inclouen_la_marca_Catalunya_%2828-07-2023%29_%28Ronald_Ara%C3%BAjo%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7037-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7037-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7059-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7059-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7072-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7072-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7104-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7104-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7113-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7113-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7167-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7167-jikatu.jpg"
         ]
       },
       {
@@ -712,12 +719,9 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Guillermo_Varela_2022.jpg/330px-Guillermo_Varela_2022.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/2/28/H%C3%A9ctor_Benigno_Varela_1907.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Florencio_Varela_centro_01.jpg/500px-Florencio_Varela_centro_01.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Florencio_Varela_centro_02.jpg/500px-Florencio_Varela_centro_02.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Florencio_Varela_centro_04.jpg/500px-Florencio_Varela_centro_04.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Florencio_Varela_centro_05.jpg/500px-Florencio_Varela_centro_05.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Florencio_Varela_centro_09.jpg/500px-Florencio_Varela_centro_09.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7059-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7059-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7113-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7113-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Jos%C3%A9_Pedro_Varela%2C_Uruguay.jpg/960px-Jos%C3%A9_Pedro_Varela%2C_Uruguay.jpg"
         ]
       },
       {
@@ -733,7 +737,12 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f5/Math%C3%ADas_Olivera_WC2022.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Math%C3%ADas_Olivera_2017.jpg/500px-Math%C3%ADas_Olivera_2017.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/ARGENTINA_URUGUAY_7_MAV_%2832239859450%29.jpg/960px-ARGENTINA_URUGUAY_7_MAV_%2832239859450%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7037-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7037-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7072-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7072-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7113-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7113-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7138-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7138-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7133-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7133-jikatu.jpg"
         ]
       },
       {
@@ -751,7 +760,8 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Mat%C3%ADas_Vi%C3%B1a.jpg/330px-Mat%C3%ADas_Vi%C3%B1a.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/0/00/Matias-vina-nacional-2019.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7059-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7059-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7113-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7113-jikatu.jpg"
         ]
       },
       {
@@ -768,10 +778,7 @@
         "shirt_number_expected": 19,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Santiago_Bueno.png/330px-Santiago_Bueno.png",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Jhon_Arias_and_Santiago_Bueno_01112025_%281%29.jpg/500px-Jhon_Arias_and_Santiago_Bueno_01112025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Santiago_Bueno_and_Jean%E2%80%90Ricner_Bellegarde_01112025_%281%29.jpg/500px-Santiago_Bueno_and_Jean%E2%80%90Ricner_Bellegarde_01112025_%281%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "manuel-ugarte",
@@ -788,12 +795,8 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/M.UGARTE.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Manuel_Ugarte.jpg/500px-Manuel_Ugarte.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Manuel_Ugarte_1908.jpg/500px-Manuel_Ugarte_1908.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/1907-07-19%2C_El_Cuento_Semanal%2C_La_leyenda_del_gaucho%2C_de_Manuel_Ugarte%2C_Tovar.jpg/500px-1907-07-19%2C_El_Cuento_Semanal%2C_La_leyenda_del_gaucho%2C_de_Manuel_Ugarte%2C_Tovar.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Manuel_Ugarte%2C_1847-1951_LCCN2002697593.jpg/500px-Manuel_Ugarte%2C_1847-1951_LCCN2002697593.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Manuel_Ugarte_LCCN2014696468.jpg/500px-Manuel_Ugarte_LCCN2014696468.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/3/31/Marcelino_Germa%26_-769%3Bn_Manuel_Ugarte_Lavalle.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7059-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7059-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7113-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7113-jikatu.jpg"
         ]
       },
       {
@@ -811,12 +814,7 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/20171114_AUT_URU_4518_-_Rodrigo_Bentancur_%28cropped%29_2.jpg/330px-20171114_AUT_URU_4518_-_Rodrigo_Bentancur_%28cropped%29_2.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Guillermo_Barros_Schelotto%2C_Sara_y_Bentancur.jpg/500px-Guillermo_Barros_Schelotto%2C_Sara_y_Bentancur.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Rodrigo_Bentancur.jpg/500px-Rodrigo_Bentancur.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Bentancur_20171010.jpg/500px-Bentancur_20171010.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/20171114_AUT_URU_4518_-_Rodrigo_Bentancur_%28cropped%29.jpg/500px-20171114_AUT_URU_4518_-_Rodrigo_Bentancur_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Bentancur-juventus-2019.jpg/500px-Bentancur-juventus-2019.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Bentancur-juventus-2019_%28cropped%29.jpg/500px-Bentancur-juventus-2019_%28cropped%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/d/d1/2022_FIFA_World_Cup_Match_32%2C_Portugal_v_Uruguay_-_03.jpg"
         ]
       },
       {
@@ -834,12 +832,8 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Nicol%C3%A1s_de_la_Cruz.jpg/330px-Nicol%C3%A1s_de_la_Cruz.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/1/1a/Nicol%C3%A1s_de_la_Cruz_%281990%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Carta_hydrographica_y_chorographica_de_las_yslas_Filipinas_-_P._Pedro_Murillo_Velarde_%3B_le_esculpio_Nicolas_de_la_Cruz_Bagay_-_btv1b532941706_%2801_of_16%29.jpg/500px-Carta_hydrographica_y_chorographica_de_las_yslas_Filipinas_-_P._Pedro_Murillo_Velarde_%3B_le_esculpio_Nicolas_de_la_Cruz_Bagay_-_btv1b532941706_%2801_of_16%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Carta_hydrographica_y_chorographica_de_las_yslas_Filipinas_-_P._Pedro_Murillo_Velarde_%3B_le_esculpio_Nicolas_de_la_Cruz_Bagay_-_btv1b532941706_%2802_of_16%29.jpg/500px-Carta_hydrographica_y_chorographica_de_las_yslas_Filipinas_-_P._Pedro_Murillo_Velarde_%3B_le_esculpio_Nicolas_de_la_Cruz_Bagay_-_btv1b532941706_%2802_of_16%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Carta_hydrographica_y_chorographica_de_las_yslas_Filipinas_-_P._Pedro_Murillo_Velarde_%3B_le_esculpio_Nicolas_de_la_Cruz_Bagay_-_btv1b532941706_%2807_of_16%29.jpg/500px-Carta_hydrographica_y_chorographica_de_las_yslas_Filipinas_-_P._Pedro_Murillo_Velarde_%3B_le_esculpio_Nicolas_de_la_Cruz_Bagay_-_btv1b532941706_%2807_of_16%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Carta_hydrographica_y_chorographica_de_las_yslas_Filipinas_-_P._Pedro_Murillo_Velarde_%3B_le_esculpio_Nicolas_de_la_Cruz_Bagay_-_btv1b532941706_%2809_of_16%29.jpg/500px-Carta_hydrographica_y_chorographica_de_las_yslas_Filipinas_-_P._Pedro_Murillo_Velarde_%3B_le_esculpio_Nicolas_de_la_Cruz_Bagay_-_btv1b532941706_%2809_of_16%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Carta_hydrographica_y_chorographica_de_las_yslas_Filipinas_-_P._Pedro_Murillo_Velarde_%3B_le_esculpio_Nicolas_de_la_Cruz_Bagay_-_btv1b532941706_%2812_of_16%29.jpg/500px-Carta_hydrographica_y_chorographica_de_las_yslas_Filipinas_-_P._Pedro_Murillo_Velarde_%3B_le_esculpio_Nicolas_de_la_Cruz_Bagay_-_btv1b532941706_%2812_of_16%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7059-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7059-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7113-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7113-jikatu.jpg"
         ]
       },
       {
@@ -857,10 +851,12 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Federico_Valverde_2021_%28cropped%29.jpg/330px-Federico_Valverde_2021_%28cropped%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Federico_Valverde_20171010.jpg/500px-Federico_Valverde_20171010.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Federico_Valverde_2021.jpg/500px-Federico_Valverde_2021.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/3/37/Federico_Valverde_Real_Madrid_2018.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7104-jikatu_%28Federico_Valverde%29.jpg/500px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7104-jikatu_%28Federico_Valverde%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7037-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7037-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7059-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7059-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7072-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7072-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7104-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7104-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7113-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7113-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7118-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7118-jikatu.jpg"
         ]
       },
       {
@@ -878,8 +874,12 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Giorgian_De_Arrascaeta_20171114_AUT_URU_4546_%28cropped%29.jpg/330px-Giorgian_De_Arrascaeta_20171114_AUT_URU_4546_%28cropped%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Enrique_de_Arrascaeta_ElIndiscreto_n32.png/500px-Enrique_de_Arrascaeta_ElIndiscreto_n32.png",
-          "https://upload.wikimedia.org/wikipedia/commons/f/ff/Giorgian_de_Arrascaeta_WC2022.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7037-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7037-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7059-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7059-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7072-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7072-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7113-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7113-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7118-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7118-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7141-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7141-jikatu.jpg"
         ]
       },
       {
@@ -897,11 +897,8 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Agust%C3%ADn_Canobbio_-_S%C3%89RIE_A_-_PALMEIRAS_0_X_2_ATHLETICO_PARANAENSE_-_52192996579_%28cropped%29.jpg/330px-Agust%C3%ADn_Canobbio_-_S%C3%89RIE_A_-_PALMEIRAS_0_X_2_ATHLETICO_PARANAENSE_-_52192996579_%28cropped%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Agust%C3%ADn_Canobbio.jpg/500px-Agust%C3%ADn_Canobbio.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Agust%C3%ADn_Canobbio_2018.jpg/500px-Agust%C3%ADn_Canobbio_2018.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Canobbio-Athletico-Palmeiras-jul-2022.jpg/500px-Canobbio-Athletico-Palmeiras-jul-2022.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/S%C3%89RIE_A_-_PALMEIRAS_0_X_2_ATHLETICO_PARANAENSE_-_Mayke_e_Agust%C3%ADn_Canobbio_em_2022.jpg/500px-S%C3%89RIE_A_-_PALMEIRAS_0_X_2_ATHLETICO_PARANAENSE_-_Mayke_e_Agust%C3%ADn_Canobbio_em_2022.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/S%C3%89RIE_A_-_PALMEIRAS_0_X_2_ATHLETICO_PARANAENSE_-_Mayke_com_a_bola%2C_Agust%C3%ADn_Canobbio_na_marca%C3%A7%C3%A3o.jpg/500px-S%C3%89RIE_A_-_PALMEIRAS_0_X_2_ATHLETICO_PARANAENSE_-_Mayke_com_a_bola%2C_Agust%C3%ADn_Canobbio_na_marca%C3%A7%C3%A3o.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7059-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7059-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7113-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7113-jikatu.jpg"
         ]
       },
       {
@@ -917,9 +914,7 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Emiliano_Martinez_%28dinamarca%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Emiliano-martinez-palmeiras-sport-ago-25-2.jpg/500px-Emiliano-martinez-palmeiras-sport-ago-25-2.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Emiliano-martinez-palmeiras-sport-ago-25.jpg/500px-Emiliano-martinez-palmeiras-sport-ago-25.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Emiliano-martinez-palmeiras-sport-ago-25-3.jpg/500px-Emiliano-martinez-palmeiras-sport-ago-25-3.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Argentina_1-1_Ecuador_-_Copa_Am%C3%A9rica_2024_-_Emiliano_Mart%C3%ADnez_festeja.jpg/960px-Argentina_1-1_Ecuador_-_Copa_Am%C3%A9rica_2024_-_Emiliano_Mart%C3%ADnez_festeja.jpg"
         ]
       },
       {
@@ -934,7 +929,8 @@
           "league": "Primeira Liga"
         },
         "shirt_number_expected": 7,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "joaquin-piquerez",
@@ -950,14 +946,7 @@
         "shirt_number_expected": 16,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Joaquin-Piquerez-Palmeiras-Athletico-jul-2022-2.jpg/330px-Joaquin-Piquerez-Palmeiras-Athletico-jul-2022-2.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/2/26/Joaquin-Piquerez-Palmeiras-Mundial-2021.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/a/a2/Piquerez-palmeiras-2022.png",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Joaquin-Piquerez-Palmeiras-02-jul-2022.png/500px-Joaquin-Piquerez-Palmeiras-02-jul-2022.png",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Joaquin-Piquerez-Palmeiras-Athletico-jul-2022.jpg/500px-Joaquin-Piquerez-Palmeiras-Athletico-jul-2022.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Joaquin-Piquerez-Palmeiras-Athletico-jul-2022-3.jpg/500px-Joaquin-Piquerez-Palmeiras-Athletico-jul-2022-3.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Piquerez-Palmeiras-Cuiaba-jul-2022-2.jpg/500px-Piquerez-Palmeiras-Cuiaba-jul-2022-2.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "juan-sanabria",
@@ -970,7 +959,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "rodrigo-zalazar",
@@ -983,7 +973,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "darwin-nunez",
@@ -999,9 +990,7 @@
         "shirt_number_expected": 9,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Darwin_N%C3%BA%C3%B1ez_%28cropped%29.jpg/330px-Darwin_N%C3%BA%C3%B1ez_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Darwin_N%C3%BA%C3%B1ez_WC2022.jpg/500px-Darwin_N%C3%BA%C3%B1ez_WC2022.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "facundo-pellistri",
@@ -1018,8 +1007,12 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Facundo_Pellistri_WC2022.jpg/330px-Facundo_Pellistri_WC2022.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Facundo_Pellistri%28cropped%29.jpg/500px-Facundo_Pellistri%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/a/a4/Facundo_Pellistri_2022.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7037-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7037-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7059-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7059-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7072-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7072-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7104-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7104-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7113-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7113-jikatu.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7138-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7138-jikatu.jpg"
         ]
       },
       {
@@ -1035,7 +1028,8 @@
         },
         "shirt_number_expected": 14,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Brian_Rodriguez.png/330px-Brian_Rodriguez.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Brian_Rodriguez.png/330px-Brian_Rodriguez.png",
+        "photos": []
       },
       {
         "id": "rodrigo-aguirre",
@@ -1050,7 +1044,10 @@
         },
         "shirt_number_expected": 18,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Rodrigo_Aguirre.png/330px-Rodrigo_Aguirre.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Rodrigo_Aguirre.png/330px-Rodrigo_Aguirre.png",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Diego_Aguirre_vs_Santos.jpg/960px-Diego_Aguirre_vs_Santos.jpg"
+        ]
       },
       {
         "id": "federico-vinas",
@@ -1065,7 +1062,8 @@
         },
         "shirt_number_expected": 26,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Federico_Vi%C3%B1as.jpg/330px-Federico_Vi%C3%B1as.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Federico_Vi%C3%B1as.jpg/330px-Federico_Vi%C3%B1as.jpg",
+        "photos": []
       }
     ],
     "starting_xi": {
@@ -1187,21 +1185,17 @@
     "squad_announced_status": "pending_official",
     "squad_announced_date": "2026-06-04",
     "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
-    "image_pool": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Uruguay_campe%C3%B3n_1920.jpg/500px-Uruguay_campe%C3%B3n_1920.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Uruguay_caravana.jpg/500px-Uruguay_caravana.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Uruguay_1902.jpg/500px-Uruguay_1902.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Uruguay_1929.JPG/500px-Uruguay_1929.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Black_Stars_%28Ghana_national_football_team%29_fans_watching_televised_match.jpg/500px-Black_Stars_%28Ghana_national_football_team%29_fans_watching_televised_match.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Black_Stars_%28Ghana_national_football_team%29_fans_watching_televised_match_Panorama.jpg/500px-Black_Stars_%28Ghana_national_football_team%29_fans_watching_televised_match_Panorama.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Colombia_team_uruguay_montevideo.jpg/500px-Colombia_team_uruguay_montevideo.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Uruguay_FIFA_U20.jpg/500px-Uruguay_FIFA_U20.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Uruguay-Holanda_1.jpg/500px-Uruguay-Holanda_1.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Uruguay-Holanda_2.jpg/500px-Uruguay-Holanda_2.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Yugoslavia_football_team_1924.jpg/500px-Yugoslavia_football_team_1924.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Netherlands_football_team_1924.jpg/500px-Netherlands_football_team_1924.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Uruguay_national_football_team_1930.jpg/500px-Uruguay_national_football_team_1930.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Uruguay_1923.jpg/500px-Uruguay_1923.jpg"
+    "team_photos": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7037-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7037-jikatu.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7087-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7087-jikatu.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7072-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7072-jikatu.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7113-jikatu.jpg/960px-URUGUAY_5_%E2%80%93_PANAM%C3%81_0_-_220611-7113-jikatu.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/2022_FIFA_World_Cup_Korea_Uruguay_02.jpg/960px-2022_FIFA_World_Cup_Korea_Uruguay_02.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Seleccion_Uruguaya_con_su_tradicional_indumentaria.jpg/960px-Seleccion_Uruguaya_con_su_tradicional_indumentaria.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Uruguay_caravana.jpg/960px-Uruguay_caravana.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Sede_Asociaci%C3%B3n_Uruguaya_de_F%C3%BAtbol.png/960px-Sede_Asociaci%C3%B3n_Uruguaya_de_F%C3%BAtbol.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/De_Uruguayaanse_trainer_Etchamendi_%28r%29%2C_Bestanddeelnr_925-6539.jpg/960px-De_Uruguayaanse_trainer_Etchamendi_%28r%29%2C_Bestanddeelnr_925-6539.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Eliminatorias_Uruguay-Colombia_2021.jpg/960px-Eliminatorias_Uruguay-Colombia_2021.jpg"
     ]
   },
   "history": {

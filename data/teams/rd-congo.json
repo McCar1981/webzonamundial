@@ -561,9 +561,7 @@
         "shirt_number_expected": 1,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Lionel_Mpasi_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Lionel_Mpasi%29.jpg/500px-Lionel_Mpasi%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "timothy-fayulu",
@@ -577,7 +575,8 @@
           "league": "Super League suiza"
         },
         "shirt_number_expected": 12,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "matthieu-epolo",
@@ -592,7 +591,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "aaron-wan-bissaka",
@@ -608,14 +608,7 @@
         "shirt_number_expected": 2,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Aaron_Wan_Bissaka_2019.jpg/330px-Aaron_Wan_Bissaka_2019.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Aaron_Wan-Bissaka_2018.jpg/500px-Aaron_Wan-Bissaka_2018.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Aaron_Wan-Bissaka_of_West_Ham_United.jpeg/500px-Aaron_Wan-Bissaka_of_West_Ham_United.jpeg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Aaron_Wan-Bissaka_and_Tom%C3%A1%C5%A1_Sou%C4%8Dek_04032026_%281%29.jpg/500px-Aaron_Wan-Bissaka_and_Tom%C3%A1%C5%A1_Sou%C4%8Dek_04032026_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Aaron_Wan-Bissaka_and_Tom%C3%A1%C5%A1_Sou%C4%8Dek_04032026_%282%29.jpg/500px-Aaron_Wan-Bissaka_and_Tom%C3%A1%C5%A1_Sou%C4%8Dek_04032026_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/James_Collins_and_Aaron_Wan-Bissaka_04032026_%281%29.jpg/500px-James_Collins_and_Aaron_Wan-Bissaka_04032026_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Aaron_Wan-Bissaka%2C_Mark_Robson%2C_Sander_Berge_and_Issa_Diop_04032026_%281%29.jpg/500px-Aaron_Wan-Bissaka%2C_Mark_Robson%2C_Sander_Berge_and_Issa_Diop_04032026_%281%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "steve-kapuadi",
@@ -630,7 +623,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "axel-tuanzebe",
@@ -645,7 +639,8 @@
         },
         "shirt_number_expected": 5,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Manchester_United_v_Everton%2C_7_August_2021_%2836%29.jpg/330px-Manchester_United_v_Everton%2C_7_August_2021_%2836%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Manchester_United_v_Everton%2C_7_August_2021_%2836%29.jpg/330px-Manchester_United_v_Everton%2C_7_August_2021_%2836%29.jpg",
+        "photos": []
       },
       {
         "id": "dylan-batubinsika",
@@ -660,7 +655,8 @@
         },
         "shirt_number_expected": 15,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Batubinsika_asse_fcn_2425.png/330px-Batubinsika_asse_fcn_2425.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Batubinsika_asse_fcn_2425.png/330px-Batubinsika_asse_fcn_2425.png",
+        "photos": []
       },
       {
         "id": "joris-kayembe",
@@ -674,7 +670,8 @@
           "league": "NB I"
         },
         "shirt_number_expected": 26,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "chancel-mbemba",
@@ -690,11 +687,7 @@
         "shirt_number_expected": 4,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/24BBRW_-_53535940590_%28cropped%29.jpg/330px-24BBRW_-_53535940590_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Chancel_Mbemba_Mangulu.JPG/500px-Chancel_Mbemba_Mangulu.JPG",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Mbemba_and_Hazard.jpg/500px-Mbemba_and_Hazard.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/2/21/Mbemba_and_Hazard_%28cropped%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "gedeon-kalulu",
@@ -710,9 +703,7 @@
         "shirt_number_expected": 14,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/G%C3%A9d%C3%A9on_Kalulu%29.jpg/330px-G%C3%A9d%C3%A9on_Kalulu%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/G%C3%A9d%C3%A9on_Kalulu_%28cropped%29.jpg/500px-G%C3%A9d%C3%A9on_Kalulu_%28cropped%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "arthur-masuaku",
@@ -728,14 +719,7 @@
         "shirt_number_expected": 3,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Hertha_BSC_vs._West_Ham_United_20190731_%28184%29.jpg/330px-Hertha_BSC_vs._West_Ham_United_20190731_%28184%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/3/3a/Arthur_Masuaku_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Arthur_Masuaku_with_West_Ham.jpg/500px-Arthur_Masuaku_with_West_Ham.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Arthur_Masuaku.jpg/500px-Arthur_Masuaku.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Arthur_Masuaku%2C_2023_%28cropped%29.jpg/500px-Arthur_Masuaku%2C_2023_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Arthur_Masuaku_20230924.jpg/500px-Arthur_Masuaku_20230924.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Arthur_Masuaku_20231011.jpg/500px-Arthur_Masuaku_20231011.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "ngal-ayel-mukau",
@@ -749,7 +733,8 @@
           "league": "Ligue 1"
         },
         "shirt_number_expected": 25,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "nathanael-mbuku",
@@ -764,7 +749,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "samuel-moutoussamy",
@@ -780,10 +766,7 @@
         "shirt_number_expected": 6,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Samuel_Moutoussamy_2018.jpg/330px-Samuel_Moutoussamy_2018.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Match_Football_FC_Nantes_x_RC_Lens_Stade_Beaujoire_-_Nantes_%28FR44%29_-_2022-09-18_-_48_%28Samuel_Moutoussamy%29.jpg/500px-Match_Football_FC_Nantes_x_RC_Lens_Stade_Beaujoire_-_Nantes_%28FR44%29_-_2022-09-18_-_48_%28Samuel_Moutoussamy%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Samuel_Moutoussamy.jpg/500px-Samuel_Moutoussamy.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "theo-bongonda",
@@ -799,10 +782,7 @@
         "shirt_number_expected": 7,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Bongonda_in_DR_Congo_national_football_team.jpg/330px-Bongonda_in_DR_Congo_national_football_team.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Bongonda_in_DR_Congo_national_football_team_2024.jpg/500px-Bongonda_in_DR_Congo_national_football_team_2024.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/1/12/Bongonda_in_DR_Congo_national_football_team_%28cropped%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "noah-sadiki",
@@ -818,9 +798,7 @@
         "shirt_number_expected": 8,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Noah_Sadiki_versus_Real_Betis_2nd_August_2025.jpg/330px-Noah_Sadiki_versus_Real_Betis_2nd_August_2025.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Noah_Sadiki_USG_2024.jpg/500px-Noah_Sadiki_USG_2024.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "aaron-tshibola",
@@ -831,7 +809,8 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Aaron_Tshibola_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Aaron_Tshibola_%28cropped%29.jpg",
+        "photos": []
       },
       {
         "id": "charles-pickel",
@@ -847,9 +826,7 @@
         "shirt_number_expected": 17,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/RC_Lens_-_Grenoble_Foot_38_%2810-02-2020%29_60.jpg/330px-RC_Lens_-_Grenoble_Foot_38_%2810-02-2020%29_60.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Charles_Pickel_2023_Africa_Cup_of_Nations_%28cropped%29.jpg/500px-Charles_Pickel_2023_Africa_Cup_of_Nations_%28cropped%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "edo-kayembe",
@@ -865,13 +842,7 @@
         "shirt_number_expected": 16,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Edo_Kayembe_2025_%28cropped%29.jpg/330px-Edo_Kayembe_2025_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Tom_Ince%2C_Edo_Kayembe_and_Jack_Grieves_09082025_%281%29.jpg/500px-Tom_Ince%2C_Edo_Kayembe_and_Jack_Grieves_09082025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Edo_Kayembe_and_Jack_Grieves_09082025_%281%29.jpg/500px-Edo_Kayembe_and_Jack_Grieves_09082025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Tom_Ince%2C_Edo_Kayembe_and_Jack_Grieves_09082025_%282%29.jpg/500px-Tom_Ince%2C_Edo_Kayembe_and_Jack_Grieves_09082025_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Edo_Kayembe_9082025_%281%29.jpg/500px-Edo_Kayembe_9082025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Edo_Kayembe_and_Imran_Louza_09082025_%281%29.jpg/500px-Edo_Kayembe_and_Imran_Louza_09082025_%281%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "brian-cipenga",
@@ -886,7 +857,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "gael-kakuta",
@@ -901,7 +873,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Entra%C3%AEnement_du_RC_Lens_-_15_juillet_2020_24.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Entra%C3%AEnement_du_RC_Lens_-_15_juillet_2020_24.jpg",
+        "photos": []
       },
       {
         "id": "meschack-elia",
@@ -917,9 +890,7 @@
         "shirt_number_expected": 19,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/db/Meschack_Elia_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Meschack_Elia.jpg/500px-Meschack_Elia.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "cedric-bakambu",
@@ -935,11 +906,7 @@
         "shirt_number_expected": 10,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/C%C3%A9dric_Bakambu_2016_%28cropped%29.jpg/330px-C%C3%A9dric_Bakambu_2016_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Cedric_Bakambu_2015.JPG/500px-Cedric_Bakambu_2015.JPG",
-          "https://upload.wikimedia.org/wikipedia/commons/4/44/Bakambu.JPG",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/C%C3%A9dric_Bakambu_2016.jpg/500px-C%C3%A9dric_Bakambu_2016.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "fiston-mayele",
@@ -953,7 +920,8 @@
           "league": "Premier League egipcia"
         },
         "shirt_number_expected": 21,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "yoane-wissa",
@@ -968,7 +936,8 @@
         },
         "shirt_number_expected": 9,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/CAN_2023RD_Congo_2-1_Guin%C3%A9e_9939_%28cropped%29.jpg/330px-CAN_2023RD_Congo_2-1_Guin%C3%A9e_9939_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/CAN_2023RD_Congo_2-1_Guin%C3%A9e_9939_%28cropped%29.jpg/330px-CAN_2023RD_Congo_2-1_Guin%C3%A9e_9939_%28cropped%29.jpg",
+        "photos": []
       },
       {
         "id": "simon-banza",
@@ -983,7 +952,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/78/Lens_-_Sochaux_%2823-11-2019%29_99_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/78/Lens_-_Sochaux_%2823-11-2019%29_99_%28cropped%29.jpg",
+        "photos": []
       }
     ],
     "starting_xi": {
@@ -1105,22 +1075,7 @@
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
     "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
-    "image_pool": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Bundesarchiv_Bild_183-N0618-0045%2C_Fu%C3%9Fball-WM%2C_Jugoslawien_-_Zaire_9-0.jpg/500px-Bundesarchiv_Bild_183-N0618-0045%2C_Fu%C3%9Fball-WM%2C_Jugoslawien_-_Zaire_9-0.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/S%C3%A9lection_national.jpg/500px-S%C3%A9lection_national.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Zaire_Road_1995.jpg/500px-Zaire_Road_1995.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Zaire_Log_Bridge.jpg/500px-Zaire_Log_Bridge.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Zaire_September_1995.jpg/500px-Zaire_September_1995.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/CON-COD-2015-01-31.png/500px-CON-COD-2015-01-31.png",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/COD-TUN-2015-01-26.png/500px-COD-TUN-2015-01-26.png",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/DRC-EQG-2015-02-07.png/500px-DRC-EQG-2015-02-07.png",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Zairische-WM-Platzierungen.PNG/500px-Zairische-WM-Platzierungen.PNG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Stade_National_Amahoro%2C_Kigali%2C_Rwanda_-_des_supporteurs_congolais_laissent_%C3%A9clater_leur_joie_lors_de_la_finale_du_CHAN_qui_opposait_la_RD_Congo_au_Mali_ce_dimanche_8_f%C3%A9vrier._%2824866284806%29.jpg/500px-thumbnail.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Leopard_RDC%2C_Kinshasa.jpg/500px-Leopard_RDC%2C_Kinshasa.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Bongonda_in_DR_Congo_national_football_team.jpg/500px-Bongonda_in_DR_Congo_national_football_team.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Bongonda_in_DR_Congo_national_football_team_2024.jpg/500px-Bongonda_in_DR_Congo_national_football_team_2024.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/1/12/Bongonda_in_DR_Congo_national_football_team_%28cropped%29.jpg"
-    ]
+    "team_photos": []
   },
   "history": {
     "first_appearance": 1974,

@@ -476,14 +476,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/ce/FC_RB_Salzburg_gegen_Derby_County_%282025-07-18_Testspiel%29_24_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Jacob_Widell_Zetterstr%C3%B6m_25042026_%282%29.jpg/500px-Jacob_Widell_Zetterstr%C3%B6m_25042026_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Jacob_Widell_Zetterstr%C3%B6m_25042026_%281%29.jpg/500px-Jacob_Widell_Zetterstr%C3%B6m_25042026_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Jacob_Widell_Zetterstr%C3%B6m_25042026_%284%29.jpg/500px-Jacob_Widell_Zetterstr%C3%B6m_25042026_%284%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Jacob_Widell_Zetterstr%C3%B6m_25042026_%283%29.jpg/500px-Jacob_Widell_Zetterstr%C3%B6m_25042026_%283%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Jacob_Widell_Zetterstr%C3%B6m_25042026_%285%29.jpg/500px-Jacob_Widell_Zetterstr%C3%B6m_25042026_%285%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Jacob_Widell_Zetterstr%C3%B6m_25042026_%286%29.jpg/500px-Jacob_Widell_Zetterstr%C3%B6m_25042026_%286%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "viktor-johansson",
@@ -499,14 +492,7 @@
         "shirt_number_expected": 1,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Viktor_Johansson_20092025_%288%29.jpg/330px-Viktor_Johansson_20092025_%288%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Viktor_Johansson_in_2015.jpg/500px-Viktor_Johansson_in_2015.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/3/3f/Viktor_Johansson%2C_2015.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Viktorjohansson.jpg/500px-Viktorjohansson.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Viktorjohansson_%28cropped%29.jpg/500px-Viktorjohansson_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Frank_Fielding_and_Viktor_Johansson_20092025_%281%29.jpg/500px-Frank_Fielding_and_Viktor_Johansson_20092025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Jack_Bonham_and_Viktor_Johansson_20092025_%281%29.jpg/500px-Jack_Bonham_and_Viktor_Johansson_20092025_%281%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "kristoffer-nordfeldt",
@@ -523,12 +509,7 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Kristoffer_Nordfeldt_%28Sweden_starting_XI_vs_Moldova%2C_12_October_2023%29.jpg/330px-Kristoffer_Nordfeldt_%28Sweden_starting_XI_vs_Moldova%2C_12_October_2023%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Kristoffer_Nordfeldt_AIK.jpg/500px-Kristoffer_Nordfeldt_AIK.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Kristoffer_Nordfeldt.jpg/500px-Kristoffer_Nordfeldt.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Kristoffer_Nordfeldt_AIK-BOIS.jpg/500px-Kristoffer_Nordfeldt_AIK-BOIS.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Kristoffer_Nordfeldt_%28AIK-Malm%C3%B6_FF%2C_2023%29.jpg/500px-Kristoffer_Nordfeldt_%28AIK-Malm%C3%B6_FF%2C_2023%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Kristoffer_Nordfeldt_%28H%C3%A4cken_vs_AIK%2C_1_October_2023%29_%282%29.jpg/500px-Kristoffer_Nordfeldt_%28H%C3%A4cken_vs_AIK%2C_1_October_2023%29_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Kristoffer_Nordfeldt_%28H%C3%A4cken_vs_AIK%2C_1_October_2023%29_%281%29.jpg/500px-Kristoffer_Nordfeldt_%28H%C3%A4cken_vs_AIK%2C_1_October_2023%29_%281%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Sweden_-_Greece14.jpg/960px-Sweden_-_Greece14.jpg"
         ]
       },
       {
@@ -545,14 +526,7 @@
         "shirt_number_expected": 22,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Gustaf_Lagerbielke_%28Sweden_vs_Moldova%2C_12_October_2023%29.jpg/330px-Gustaf_Lagerbielke_%28Sweden_vs_Moldova%2C_12_October_2023%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Br%C3%A4nnkyrka_kyrka%2C_Johan_Gustaf_Lagerbielke.JPG/500px-Br%C3%A4nnkyrka_kyrka%2C_Johan_Gustaf_Lagerbielke.JPG",
-          "https://upload.wikimedia.org/wikipedia/commons/e/ec/142-Gustaf_Lagerbielke.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Gustaf_Lagerbielke.jpg/500px-Gustaf_Lagerbielke.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gustaf_Lagerbielke_with_a_fan.jpg/500px-Gustaf_Lagerbielke_with_a_fan.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Gustaf_Lagerbielke_in_DC.jpg/500px-Gustaf_Lagerbielke_in_DC.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Celtic-20240722-060_%28Lagerbielke%29.jpg/500px-Celtic-20240722-060_%28Lagerbielke%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "victor-nilsson-lindelof",
@@ -567,7 +541,8 @@
         },
         "shirt_number_expected": 6,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Gabriel_Gudmundsson_%28Sweden_vs_Moldova%2C_12_October_2023%29_%28cropped%29.jpg/330px-Gabriel_Gudmundsson_%28Sweden_vs_Moldova%2C_12_October_2023%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Gabriel_Gudmundsson_%28Sweden_vs_Moldova%2C_12_October_2023%29_%28cropped%29.jpg/330px-Gabriel_Gudmundsson_%28Sweden_vs_Moldova%2C_12_October_2023%29_%28cropped%29.jpg",
+        "photos": []
       },
       {
         "id": "isak-hien",
@@ -581,7 +556,15 @@
           "league": "Serie A"
         },
         "shirt_number_expected": 4,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Sweden-Slovenia_Nations_League_2022-09-27_31.jpg/960px-Sweden-Slovenia_Nations_League_2022-09-27_31.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Sweden-Slovenia_Nations_League_2022-09-27_34.jpg/960px-Sweden-Slovenia_Nations_League_2022-09-27_34.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Sweden-Slovenia_Nations_League_2022-09-27_40.jpg/960px-Sweden-Slovenia_Nations_League_2022-09-27_40.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Sweden-Slovenia_Nations_League_2022-09-27_61.jpg/960px-Sweden-Slovenia_Nations_League_2022-09-27_61.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Sweden-Slovenia_Nations_League_2022-09-27_74.jpg/960px-Sweden-Slovenia_Nations_League_2022-09-27_74.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Sweden-Slovenia_Nations_League_2022-09-27_78.jpg/960px-Sweden-Slovenia_Nations_League_2022-09-27_78.jpg"
+        ]
       },
       {
         "id": "gabriel-gudmundsson",
@@ -593,13 +576,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Gabriel_Gudmundsson_%28Sweden_vs_Moldova%2C_12_October_2023%29_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/GabrielGudmundsson2019.jpg/500px-GabrielGudmundsson2019.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Gabriel_Gudmundsson_%28Sweden_vs_Moldova%2C_12_October_2023%29.jpg/500px-Gabriel_Gudmundsson_%28Sweden_vs_Moldova%2C_12_October_2023%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gudmundsson_asselosc_2425.jpg/500px-Gudmundsson_asselosc_2425.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Gabriel_Gudmundsson_and_Lukas_Nmecha_13092025_%281%29.jpg/500px-Gabriel_Gudmundsson_and_Lukas_Nmecha_13092025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Gabriel_Gudmundsson_and_Lukas_Nmecha_13092025_%282%29.jpg/500px-Gabriel_Gudmundsson_and_Lukas_Nmecha_13092025_%282%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "herman-johansson",
@@ -611,10 +588,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/95/Herman_Johansson_NY_Red_Bulls_v_FC_Dallas_2_May_2026-67_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Herman_Johansson_Emil_Forsberg_NY_Red_Bulls_v_FC_Dallas_2_May_2026-117.jpg/500px-Herman_Johansson_Emil_Forsberg_NY_Red_Bulls_v_FC_Dallas_2_May_2026-117.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Herman_Johansson_NY_Red_Bulls_v_FC_Dallas_2_May_2026-67.jpg/500px-Herman_Johansson_NY_Red_Bulls_v_FC_Dallas_2_May_2026-67.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "daniel-svensson",
@@ -630,13 +604,7 @@
         "shirt_number_expected": 14,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/2015_RiP_In_Flames_-_Daniel_Svensson_by_2eight_-_DSC5848.jpg/330px-2015_RiP_In_Flames_-_Daniel_Svensson_by_2eight_-_DSC5848.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Daniel_Svensson2006.JPG/500px-Daniel_Svensson2006.JPG",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/2015_RiP_In_Flames_-_Daniel_Svensson_by_2eight_-_DSC5982.jpg/500px-2015_RiP_In_Flames_-_Daniel_Svensson_by_2eight_-_DSC5982.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Javier_Borragan_beats_Daniel_Svensson.JPG/500px-Javier_Borragan_beats_Daniel_Svensson.JPG",
-          "https://upload.wikimedia.org/wikipedia/commons/b/ba/Daniel_Svensson_Nordsjaelland_%28Testspiel_2023-07-08%29_48_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/7/7b/Daniel_Svensson_Nordsjaelland_%28Testspiel_2023-07-08%29_48_%28cropped%29_%282%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "hjalmar-ekdal",
@@ -650,13 +618,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Hjalmar_Ekdal_%28Sirius%2C_2020%2C_cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/2020-10-24_Djurg%C3%A5rdens_IF_-_IK_Sirius_FK_-_Hjalmar_Ekdal_03.jpg/500px-2020-10-24_Djurg%C3%A5rdens_IF_-_IK_Sirius_FK_-_Hjalmar_Ekdal_03.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/2020-10-24_Djurg%C3%A5rdens_IF_-_IK_Sirius_FK_-_Hjalmar_Ekdal_01.jpg/500px-2020-10-24_Djurg%C3%A5rdens_IF_-_IK_Sirius_FK_-_Hjalmar_Ekdal_01.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/2020-10-24_Djurg%C3%A5rdens_IF_-_IK_Sirius_FK_-_Hjalmar_Ekdal_02.jpg/500px-2020-10-24_Djurg%C3%A5rdens_IF_-_IK_Sirius_FK_-_Hjalmar_Ekdal_02.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/2020-10-24_Djurg%C3%A5rdens_IF_-_IK_Sirius_FK_-_Hjalmar_Ekdal_04.jpg/500px-2020-10-24_Djurg%C3%A5rdens_IF_-_IK_Sirius_FK_-_Hjalmar_Ekdal_04.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Hjalmar_Ekdal_21032026_%281%29.jpg/500px-Hjalmar_Ekdal_21032026_%281%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "carl-starfelt",
@@ -672,9 +634,7 @@
         "shirt_number_expected": 5,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/10/Carl_Starfelt.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Carl_Starfelt_2020.jpg/500px-Carl_Starfelt_2020.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "erick-smith",
@@ -687,7 +647,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "alexander-bernhardsson",
@@ -703,11 +664,7 @@
         "shirt_number_expected": 19,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/2025-02-19_Alexander_Bernhardsson_1.jpg/330px-2025-02-19_Alexander_Bernhardsson_1.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/2025-03-05_Alexander_Bernhardsson_Holstein_Kiel_pic1.jpg/500px-2025-03-05_Alexander_Bernhardsson_Holstein_Kiel_pic1.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/2025-04-15_Alexander_Bernhardsson.jpg/500px-2025-04-15_Alexander_Bernhardsson.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/2026-03-04_Alexander_Bernhardsson.jpg/500px-2026-03-04_Alexander_Bernhardsson.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "elliot-stroud",
@@ -720,7 +677,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "lucas-bergvall",
@@ -735,7 +693,11 @@
         },
         "shirt_number_expected": 17,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Lucas_Bergvall_%28Sweden_U21_vs_Moldova_U21%2C_13_October_2023%29.jpg/330px-Lucas_Bergvall_%28Sweden_U21_vs_Moldova_U21%2C_13_October_2023%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Lucas_Bergvall_%28Sweden_U21_vs_Moldova_U21%2C_13_October_2023%29.jpg/330px-Lucas_Bergvall_%28Sweden_U21_vs_Moldova_U21%2C_13_October_2023%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Sweden_-_Greece6.jpg/960px-Sweden_-_Greece6.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Sweden_-_Greece5.jpg/960px-Sweden_-_Greece5.jpg"
+        ]
       },
       {
         "id": "benjamin-nygren",
@@ -750,7 +712,11 @@
         },
         "shirt_number_expected": 21,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Benjamin_Nygren_%28cropped%29.jpg/330px-Benjamin_Nygren_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Benjamin_Nygren_%28cropped%29.jpg/330px-Benjamin_Nygren_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Sweden_-_Greece7.jpg/960px-Sweden_-_Greece7.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Sweden_-_Greece23.jpg/960px-Sweden_-_Greece23.jpg"
+        ]
       },
       {
         "id": "ken-sema",
@@ -763,7 +729,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_52_%28Ken_Sema%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_52_%28Ken_Sema%29.jpg",
+        "photos": []
       },
       {
         "id": "jesper-karlstrom",
@@ -780,12 +747,10 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Jesper_Karlstr%C3%B6m_%28Djurg%C3%A5rden%2C_2020%2C_cropped%29.jpg/330px-Jesper_Karlstr%C3%B6m_%28Djurg%C3%A5rden%2C_2020%2C_cropped%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Jesper_Karlstr%C3%B6m_%282014%29.jpg/500px-Jesper_Karlstr%C3%B6m_%282014%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/2020-10-24_Djurg%C3%A5rdens_IF_-_IK_Sirius_FK_-_Jesper_Karlstr%C3%B6m_01.jpg/500px-2020-10-24_Djurg%C3%A5rdens_IF_-_IK_Sirius_FK_-_Jesper_Karlstr%C3%B6m_01.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/2020-10-24_Djurg%C3%A5rdens_IF_-_IK_Sirius_FK_-_Jesper_Karlstr%C3%B6m_02.jpg/500px-2020-10-24_Djurg%C3%A5rdens_IF_-_IK_Sirius_FK_-_Jesper_Karlstr%C3%B6m_02.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/2020-10-24_Djurg%C3%A5rdens_IF_-_IK_Sirius_FK_-_Jesper_Karlstr%C3%B6m_03.jpg/500px-2020-10-24_Djurg%C3%A5rdens_IF_-_IK_Sirius_FK_-_Jesper_Karlstr%C3%B6m_03.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/2020-10-24_Djurg%C3%A5rdens_IF_-_IK_Sirius_FK_-_Jesper_Karlstr%C3%B6m_04.jpg/500px-2020-10-24_Djurg%C3%A5rdens_IF_-_IK_Sirius_FK_-_Jesper_Karlstr%C3%B6m_04.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Jesper_Karlstr%C3%B6m_Lech_Pozna%C5%84_2023.jpg/500px-Jesper_Karlstr%C3%B6m_Lech_Pozna%C5%84_2023.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Sweden-Slovenia_Nations_League_2022-09-27_30.jpg/960px-Sweden-Slovenia_Nations_League_2022-09-27_30.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Sweden-Slovenia_Nations_League_2022-09-27_61.jpg/960px-Sweden-Slovenia_Nations_League_2022-09-27_61.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Sweden-Slovenia_Nations_League_2022-09-27_72.jpg/960px-Sweden-Slovenia_Nations_League_2022-09-27_72.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Sweden-Slovenia_Nations_League_2022-09-27_78.jpg/960px-Sweden-Slovenia_Nations_League_2022-09-27_78.jpg"
         ]
       },
       {
@@ -802,13 +767,7 @@
         "shirt_number_expected": 16,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Yasin_Ayari_%28Sweden_U21_vs_Moldova_U21%2C_13_October_2023%29.jpg/330px-Yasin_Ayari_%28Sweden_U21_vs_Moldova_U21%2C_13_October_2023%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Yasin_Ayari_%28Sweden_U21_starting_XI_vs_Moldova_U21%2C_13_October_2023%29.jpg/500px-Yasin_Ayari_%28Sweden_U21_starting_XI_vs_Moldova_U21%2C_13_October_2023%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Yasin_Ayari_%28Sweden_U21_vs_Moldova_U21%2C_13_October_2023%29_%28cropped%29.jpg/500px-Yasin_Ayari_%28Sweden_U21_vs_Moldova_U21%2C_13_October_2023%29_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Yasin_Ayari_24012026_%281%29.jpg/500px-Yasin_Ayari_24012026_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Emile_Smith_Rowe%2C_Yasin_Ayari_and_Jan_Paul_van_Hecke_24012026_%281%29.jpg/500px-Emile_Smith_Rowe%2C_Yasin_Ayari_and_Jan_Paul_van_Hecke_24012026_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Yasin_Ayari_and_Kaoru_Mitoma_24012026_%281%29.jpg/500px-Yasin_Ayari_and_Kaoru_Mitoma_24012026_%281%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "mattias-svanberg",
@@ -823,7 +782,8 @@
         },
         "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Mattias_Svanberg.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Mattias_Svanberg.jpg",
+        "photos": []
       },
       {
         "id": "besfort-zeneli",
@@ -836,7 +796,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Besfort_Zeneli_Union_Saint-Gilloise_2026.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Besfort_Zeneli_Union_Saint-Gilloise_2026.jpg",
+        "photos": []
       },
       {
         "id": "alexander-isak",
@@ -853,12 +814,10 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Alexander_Isak_56_%28cropped%29.jpg/330px-UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Alexander_Isak_56_%28cropped%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/6/63/Alexander_Isak_2015.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Alexander_Isak_%28training_2016%2C_cropped_2%29.jpg/500px-Alexander_Isak_%28training_2016%2C_cropped_2%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Alexander_Isak_%28training_2016%2C_cropped_1%29.jpg/500px-Alexander_Isak_%28training_2016%2C_cropped_1%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Alexander_Isak_%28training_2016%29.jpg/500px-Alexander_Isak_%28training_2016%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Alexander_Isak_%28training_2016%2C_cropped_3%29.jpg/500px-Alexander_Isak_%28training_2016%2C_cropped_3%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Isak170727.jpg/500px-Isak170727.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_190.jpg/960px-UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_190.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_191.jpg/960px-UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_191.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Sweden_-_Greece21.jpg/960px-Sweden_-_Greece21.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/UEFA_EURO_qualifiers_Sweden_vs_Romaina_20190323_Alexander_Isak_2.jpg/960px-UEFA_EURO_qualifiers_Sweden_vs_Romaina_20190323_Alexander_Isak_2.jpg"
         ]
       },
       {
@@ -876,12 +835,8 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Anthony_Elanga_%28Sweden_vs_Moldova%2C_12_October_2023%29.jpg/330px-Anthony_Elanga_%28Sweden_vs_Moldova%2C_12_October_2023%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Anthony_Elanga.jpg/500px-Anthony_Elanga.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Anthony_Elanga_2022.jpg/500px-Anthony_Elanga_2022.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Anthony_Elanga_Manchester_United_%28cropped%29.jpg/500px-Anthony_Elanga_Manchester_United_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Anthony_Elanga_and_Anthony_Gordon_24052026_%281%29.jpg/500px-Anthony_Elanga_and_Anthony_Gordon_24052026_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Anthony_Elanga_and_Anthony_Gordon_24052026_%282%29.jpg/500px-Anthony_Elanga_and_Anthony_Gordon_24052026_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Anthony_Elanga_and_Anthony_Gordon_24052026_%283%29.jpg/500px-Anthony_Elanga_and_Anthony_Gordon_24052026_%283%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Sweden_-_Greece4.jpg/960px-Sweden_-_Greece4.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Sweden_-_Greece30.jpg/960px-Sweden_-_Greece30.jpg"
         ]
       },
       {
@@ -899,9 +854,8 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Viktor_Gy%C3%B6keres_2018.jpg/330px-Viktor_Gy%C3%B6keres_2018.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/BHA_v_FC_Nantes_pre_season_03_08_2018-252_%2843135207984%29_%28Viktor_Gy%C3%B6keres%29.jpg/500px-BHA_v_FC_Nantes_pre_season_03_08_2018-252_%2843135207984%29_%28Viktor_Gy%C3%B6keres%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/BHA_v_FC_Nantes_pre_season_03_08_2018-10_%2828915962047%29_%28Victor_Gyokeres%29.jpg/500px-BHA_v_FC_Nantes_pre_season_03_08_2018-10_%2828915962047%29_%28Victor_Gyokeres%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/1_Viktor_Gy%C3%B6keres_2026.jpg/500px-1_Viktor_Gy%C3%B6keres_2026.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Sweden_-_Greece3.jpg/960px-Sweden_-_Greece3.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Sweden_-_Greece11.jpg/960px-Sweden_-_Greece11.jpg"
         ]
       },
       {
@@ -916,14 +870,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Gustaf_Nilsson_USG_2023.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/0/09/GustafNilsson1.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/0/0a/GustafNilsson2.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Gustaf_Nilsson_Malm%C3%B6_FF..jpg/500px-Gustaf_Nilsson_Malm%C3%B6_FF..jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/b/b1/Gustaf_Nilsson_Bulltofta.png",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Gustaf_Nilsson_i_sin_verkstad.jpg/500px-Gustaf_Nilsson_i_sin_verkstad.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Medalj_Gustaf_Nilsson_-_Sj%C3%B6fartsmuseet_Akvariet_-_SMG43478.jpg/500px-Medalj_Gustaf_Nilsson_-_Sj%C3%B6fartsmuseet_Akvariet_-_SMG43478.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "taha-ali",
@@ -936,7 +883,10 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Sweden_-_Greece26.jpg/960px-Sweden_-_Greece26.jpg"
+        ]
       }
     ],
     "starting_xi": {
@@ -1058,21 +1008,17 @@
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
     "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
-    "image_pool": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Gutavallen_swedish_national_team_2006.jpg/500px-Gutavallen_swedish_national_team_2006.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Swedish_national_football_team_2006.jpg/500px-Swedish_national_football_team_2006.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Swedish_national_australian_rules_football_team.jpg/500px-Swedish_national_australian_rules_football_team.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Swedish_National_football_team_starting_11_1958_WC_final.jpg/500px-Swedish_National_football_team_starting_11_1958_WC_final.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Swedishnationalteam1930.jpg/500px-Swedishnationalteam1930.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Sweden_national_football_team_20120611.jpg/500px-Sweden_national_football_team_20120611.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Ukraine_national_football_team_20120611.jpg/500px-Ukraine_national_football_team_20120611.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Sweden_national_football_team_1911.JPG/500px-Sweden_national_football_team_1911.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Sweden_national_under-21_football_team%2C_Euro_2015_celebration_01.JPG/500px-Sweden_national_under-21_football_team%2C_Euro_2015_celebration_01.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Sweden_national_under-21_football_team%2C_Euro_2015_celebration_06.JPG/500px-Sweden_national_under-21_football_team%2C_Euro_2015_celebration_06.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Sweden_national_under-21_football_team%2C_Euro_2015_celebration_05.JPG/500px-Sweden_national_under-21_football_team%2C_Euro_2015_celebration_05.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Sweden_national_under-21_football_team%2C_Euro_2015_celebration_04.JPG/500px-Sweden_national_under-21_football_team%2C_Euro_2015_celebration_04.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Sweden_national_under-21_football_team%2C_Euro_2015_celebration_07.JPG/500px-Sweden_national_under-21_football_team%2C_Euro_2015_celebration_07.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Sweden_national_under-21_football_team%2C_Euro_2015_celebration_10.JPG/500px-Sweden_national_under-21_football_team%2C_Euro_2015_celebration_10.JPG"
+    "team_photos": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Sweden_-_Serbia_02.jpg/960px-Sweden_-_Serbia_02.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Sweden_-_Serbia_04.jpg/960px-Sweden_-_Serbia_04.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Sweden_-_Serbia_07.jpg/960px-Sweden_-_Serbia_07.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Sweden_-_Serbia_09.jpg/960px-Sweden_-_Serbia_09.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Sweden_-_Serbia_10.jpg/960px-Sweden_-_Serbia_10.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Sweden_-_Serbia_15.jpg/960px-Sweden_-_Serbia_15.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Sweden_-_Serbia_20.jpg/960px-Sweden_-_Serbia_20.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Sweden_-_Serbia_29.jpg/960px-Sweden_-_Serbia_29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Sweden_-_Serbia_31.jpg/960px-Sweden_-_Serbia_31.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Sweden_-_Serbia_32.jpg/960px-Sweden_-_Serbia_32.jpg"
     ]
   },
   "history": {

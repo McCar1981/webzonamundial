@@ -566,14 +566,7 @@
         "shirt_number_expected": 1,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Dominik_Livakovi%C4%87_2021.jpg/330px-Dominik_Livakovi%C4%87_2021.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Dominik_Livakovi%C4%87_FENvsR%C4%B0Z_1102023.jpg/500px-Dominik_Livakovi%C4%87_FENvsR%C4%B0Z_1102023.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/40_Numara_Dominik_Livakovi%C4%87%2C_Fenerbah%C3%A7e_-_Rizespor%2C_1_Ekim_2023.png/500px-40_Numara_Dominik_Livakovi%C4%87%2C_Fenerbah%C3%A7e_-_Rizespor%2C_1_Ekim_2023.png",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Dominik_Livakovi%C4%87_top_toplay%C4%B1c%C4%B1_%C3%A7ocukla_sevincini_payla%C5%9F%C4%B1yor_%282%29_Fenerbah%C3%A7e_-_Rizespor%2C_1_Ekim_2023.jpg/500px-Dominik_Livakovi%C4%87_top_toplay%C4%B1c%C4%B1_%C3%A7ocukla_sevincini_payla%C5%9F%C4%B1yor_%282%29_Fenerbah%C3%A7e_-_Rizespor%2C_1_Ekim_2023.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Dominik_Livakovi%C4%87_top_toplay%C4%B1c%C4%B1_%C3%A7ocukla_sevincini_payla%C5%9F%C4%B1yor_%281%29_Fenerbah%C3%A7e_-_Rizespor%2C_1_Ekim_2023.jpg/500px-Dominik_Livakovi%C4%87_top_toplay%C4%B1c%C4%B1_%C3%A7ocukla_sevincini_payla%C5%9F%C4%B1yor_%281%29_Fenerbah%C3%A7e_-_Rizespor%2C_1_Ekim_2023.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Dominik_Livakovi%C4%87%2C_Fenerbah%C3%A7e_-_Rizespor%2C_1_Ekim_2023_%283%29.png/500px-Dominik_Livakovi%C4%87%2C_Fenerbah%C3%A7e_-_Rizespor%2C_1_Ekim_2023_%283%29.png",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Dominik_Livakovi%C4%87%2C_Fenerbah%C3%A7e_v._Ankarag%C3%BCc%C3%BC.jpg/500px-Dominik_Livakovi%C4%87%2C_Fenerbah%C3%A7e_v._Ankarag%C3%BCc%C3%BC.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "ivor-pandur",
@@ -589,10 +582,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null,
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/8/83/Hughes_and_Pandur.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/a/af/Ivor_Pandur.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "dominik-kotarski",
@@ -607,7 +597,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/cd/S%C3%B8nderjyskE_-_FC_K%C3%B8benhavn%2C_27._September_2025_-_j_%28Dominik_Kotarski%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/cd/S%C3%B8nderjyskE_-_FC_K%C3%B8benhavn%2C_27._September_2025_-_j_%28Dominik_Kotarski%29.jpg",
+        "photos": []
       },
       {
         "id": "josip-stanisic",
@@ -622,7 +613,8 @@
         },
         "shirt_number_expected": 22,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/64/Josip_Stani%C5%A1i%C4%87_during_an_Interview_in_2023.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/64/Josip_Stani%C5%A1i%C4%87_during_an_Interview_in_2023.png",
+        "photos": []
       },
       {
         "id": "marin-pongracic",
@@ -639,7 +631,12 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/FC_Admira_Wacker_M%C3%B6dling_vs._FC_Red_Bull_Salzburg_2018-04-15_%28071%29.jpg/330px-FC_Admira_Wacker_M%C3%B6dling_vs._FC_Red_Bull_Salzburg_2018-04-15_%28071%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Marin_Pongracic_2021.jpg/500px-Marin_Pongracic_2021.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_7966.jpg/960px-20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_7966.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8003.jpg/960px-20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8003.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8004.jpg/960px-20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8004.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8051.jpg/960px-20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8051.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8085.jpg/960px-20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8085.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8091.jpg/960px-20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8091.jpg"
         ]
       },
       {
@@ -656,12 +653,7 @@
         "shirt_number_expected": 20,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/2021_Jo%C5%A1ko_Gvardiol_2_%28cropped%29.jpg/330px-2021_Jo%C5%A1ko_Gvardiol_2_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Josko_Gvardiol.jpg/500px-Josko_Gvardiol.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/2021_Jo%C5%A1ko_Gvardiol_%28cropped%29.jpg/500px-2021_Jo%C5%A1ko_Gvardiol_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/2021_Jo%C5%A1ko_Gvardiol_2_%28cropped2%29.jpg/500px-2021_Jo%C5%A1ko_Gvardiol_2_%28cropped2%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2611_%28Jo%C5%A1ko_Gvardiol%29.jpg/500px-2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2611_%28Jo%C5%A1ko_Gvardiol%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "duje-caleta-car",
@@ -677,11 +669,7 @@
         "shirt_number_expected": 5,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/FC_Admira_Wacker_M%C3%B6dling_vs._FC_Red_Bull_Salzburg_%28Cup%29_2017-04-26_%28063%29_%28cropped%29.jpg/330px-FC_Admira_Wacker_M%C3%B6dling_vs._FC_Red_Bull_Salzburg_%28Cup%29_2017-04-26_%28063%29_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/20150328_Wiener_Neustadt%2C_European_Under-19_Championships_2015_Elite_Round%2C_Austria_vs._Croatia_1756_Duje_%C4%86aleta-Car.jpg/500px-20150328_Wiener_Neustadt%2C_European_Under-19_Championships_2015_Elite_Round%2C_Austria_vs._Croatia_1756_Duje_%C4%86aleta-Car.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/20150328_Wiener_Neustadt%2C_European_Under-19_Championships_2015_Elite_Round%2C_Austria_vs._Croatia_1756_Duje_%C4%86aleta-Car_%28cropped%29.jpg/500px-20150328_Wiener_Neustadt%2C_European_Under-19_Championships_2015_Elite_Round%2C_Austria_vs._Croatia_1756_Duje_%C4%86aleta-Car_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Duje_%C4%86aleta-Car.jpg/500px-Duje_%C4%86aleta-Car.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "josip-sutalo",
@@ -697,10 +685,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/65/FC_Salzburg_gegen_GNK_Dinamo_Zagreb_%28UEFA_Championsleague_2022-10-05%29_47.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Josip_%C5%A0utalo%29.jpg/500px-Josip_%C5%A0utalo%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/7/79/Qaraba%C4%9F_vs_Ajax_%2824.10.2024%29_%284%29_%28Josip_%C5%A0utalo%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "kristijan-jakic",
@@ -715,7 +700,8 @@
         },
         "shirt_number_expected": 26,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Kristijan-Jakic.png/330px-Kristijan-Jakic.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Kristijan-Jakic.png/330px-Kristijan-Jakic.png",
+        "photos": []
       },
       {
         "id": "luka-vuskovic",
@@ -730,7 +716,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "martin-erlic",
@@ -745,7 +732,8 @@
         },
         "shirt_number_expected": 6,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Martin-Erlic.png/330px-Martin-Erlic.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Martin-Erlic.png/330px-Martin-Erlic.png",
+        "photos": []
       },
       {
         "id": "nikola-moro",
@@ -760,7 +748,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Nikola_Moro_2020.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Nikola_Moro_2020.jpg",
+        "photos": []
       },
       {
         "id": "mateo-kovacic",
@@ -776,14 +765,7 @@
         "shirt_number_expected": 8,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Yokohama_F._Marinos_-_Manchester_City_%283-5%29_-_53075077396_%28cropped%29_%28cropped%29.jpg/330px-Yokohama_F._Marinos_-_Manchester_City_%283-5%29_-_53075077396_%28cropped%29_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/d/de/Mateo_Kovacic_21032013_2_Zagrebello_roberta_f.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Mateo_Kovacic.jpg/500px-Mateo_Kovacic.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Mateo_Kovacic_-_Croatia_vs._Portugal%2C_10th_June_2013.jpg/500px-Mateo_Kovacic_-_Croatia_vs._Portugal%2C_10th_June_2013.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Mateo_Kovacic_-_Croatia_vs._Portugal%2C_10th_June_2013-2.jpg/500px-Mateo_Kovacic_-_Croatia_vs._Portugal%2C_10th_June_2013-2.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Mateo_Kovacic_vs._Portugal%2C_10th_June_2013-2.jpg/500px-Mateo_Kovacic_vs._Portugal%2C_10th_June_2013-2.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Mateo_Kovacic_vs._Portugal%2C_10th_June_2013-2_%28cropped%29.jpg/500px-Mateo_Kovacic_vs._Portugal%2C_10th_June_2013-2_%28cropped%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "luka-modric",
@@ -800,12 +782,11 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Ofrenda_de_la_Liga_y_la_Champions-57-L.Mill%C3%A1n_%2852109310843%29_%28Luka_Modri%C4%87%29.jpg/330px-Ofrenda_de_la_Liga_y_la_Champions-57-L.Mill%C3%A1n_%2852109310843%29_%28Luka_Modri%C4%87%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/2/2c/Luka_Modri%C4%87_10052008.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/0/05/Luka_Modri%C4%87_spurs.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Luka_Modri%C4%87_2010.jpg/500px-Luka_Modri%C4%87_2010.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Luka_Modri%C4%87_2010_2.jpg/500px-Luka_Modri%C4%87_2010_2.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Luka_Modri%C4%87_Real_Madrid.jpg/500px-Luka_Modri%C4%87_Real_Madrid.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/4/4c/Luka_Modri%C4%87_against_Sevilla.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Croatia%27s_post-match_huddle_after_the_2018_FIFA_World_Cup_Final.jpg/960px-Croatia%27s_post-match_huddle_after_the_2018_FIFA_World_Cup_Final.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Kylian_Mbapp%C3%A9_and_Luka_Modri%C4%87_receive_the_award_for_the_best_young_player_and_best_player_in_the_2018_World_Cup_respectively.jpg/960px-Kylian_Mbapp%C3%A9_and_Luka_Modri%C4%87_receive_the_award_for_the_best_young_player_and_best_player_in_the_2018_World_Cup_respectively.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Croatia_-_England_2018.png/960px-Croatia_-_England_2018.png",
+          "https://upload.wikimedia.org/wikipedia/commons/e/eb/FIFA_World_Cup_2018_Final_19_Tasnim.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/2/24/FIFA_World_Cup_2018_Final_25_Tasnim.jpg"
         ]
       },
       {
@@ -822,11 +803,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Nikola_Vla%C5%A1i%C4%87.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Nikola_Vla%C5%A1i%C4%87_2018.jpg/500px-Nikola_Vla%C5%A1i%C4%87_2018.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Nikola_Vla%C5%A1i%C4%87_in_2018.jpg/500px-Nikola_Vla%C5%A1i%C4%87_in_2018.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Nikola_Vla%C5%A1i%C4%87_%28CSKA_Moscow%2C_19.08.2019%29.jpg/500px-Nikola_Vla%C5%A1i%C4%87_%28CSKA_Moscow%2C_19.08.2019%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "mario-pasalic",
@@ -842,10 +819,7 @@
         "shirt_number_expected": 15,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Mario_Pa%C5%A1ali%C4%87_2017.jpg/330px-Mario_Pa%C5%A1ali%C4%87_2017.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Mario_Pasalic_2015.jpg/500px-Mario_Pasalic_2015.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/2/28/Pasalic_6459_%28cropped%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "martin-baturina",
@@ -861,9 +835,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a7/FC_Salzburg_gegen_GNK_Dinamo_Zagreb_%28UEFA_Championsleague_2022-10-05%29_52.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/a/ab/Martin_Baturina.png"
-        ]
+        "photos": []
       },
       {
         "id": "petar-sucic",
@@ -878,7 +850,8 @@
         },
         "shirt_number_expected": 14,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Petar_Su%C4%8Di%C4%87.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Petar_Su%C4%8Di%C4%87.png",
+        "photos": []
       },
       {
         "id": "toni-fruk",
@@ -893,7 +866,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "luka-sucic",
@@ -910,7 +884,10 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/FC_Red_Bull_Salzburg_gegen_Wolfsberger_AC_%282022-02-20%29_32.jpg/330px-FC_Red_Bull_Salzburg_gegen_Wolfsberger_AC_%282022-02-20%29_32.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Luka_Sucic.jpg/500px-Luka_Sucic.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_06.jpg/960px-FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_06.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_37.jpg/960px-FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_37.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_40.jpg/960px-FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_40.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_43.jpg/960px-FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_43.jpg"
         ]
       },
       {
@@ -927,14 +904,7 @@
         "shirt_number_expected": 9,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Andrej_Kramari%C4%87_2018.jpg/330px-Andrej_Kramari%C4%87_2018.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/5/5f/Andrej_Kramari%C4%87_2009.JPG",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Andrej_Kramari%C4%87.jpg/500px-Andrej_Kramari%C4%87.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Andrej_Kramaric_playing_for_Leicester_City_F.C._in_2015_%282%29.jpg/500px-Andrej_Kramaric_playing_for_Leicester_City_F.C._in_2015_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Andrej_Kramaric_playing_for_Leicester_City_F.C._in_2015_%281%29.jpg/500px-Andrej_Kramaric_playing_for_Leicester_City_F.C._in_2015_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/8/86/Andrej_Kramaric_2.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/AndrejKramaric.jpg/500px-AndrejKramaric.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "ante-budimir",
@@ -950,10 +920,7 @@
         "shirt_number_expected": 17,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Budimir%2C_Ante_FCSP_15-16_WP_%28cropped%29.jpg/330px-Budimir%2C_Ante_FCSP_15-16_WP_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Budimir%2C_Ante_FCSP_15-16_WP.jpg/500px-Budimir%2C_Ante_FCSP_15-16_WP.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/1/1d/Ante-Budimir.png"
-        ]
+        "photos": []
       },
       {
         "id": "ivan-perisic",
@@ -970,10 +937,7 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/85/Ivan_Peri%C5%A1i%C4%87_%28cropped%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Ivan_Perisic.jpg/500px-Ivan_Perisic.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Peri%C5%A1i%C4%87_%28Croatia%29_vs_Cedric_%28Portugal%29_-_2016.jpg/500px-Peri%C5%A1i%C4%87_%28Croatia%29_vs_Cedric_%28Portugal%29_-_2016.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Peri%C5%A1i%C4%87_%28FC_Bruges%29.jpg/500px-Peri%C5%A1i%C4%87_%28FC_Bruges%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Ivan_Peri%C5%A1i%C4%87_-_2018_FIFA_World_Cup_-_full.jpg/500px-Ivan_Peri%C5%A1i%C4%87_-_2018_FIFA_World_Cup_-_full.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Ivan_Peri%C5%A1i%C4%87_-_2018_FIFA_World_Cup_-_full.jpg/960px-Ivan_Peri%C5%A1i%C4%87_-_2018_FIFA_World_Cup_-_full.jpg"
         ]
       },
       {
@@ -988,7 +952,8 @@
           "league": "Bundesliga"
         },
         "shirt_number_expected": 24,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "marco-pasalic",
@@ -1004,10 +969,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Inter_Miami_CF_0-3_Orlando_City_SC_%2818_May_2025%29_83_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Marco_Pa%C5%A1ali%C4%87.jpg/500px-Marco_Pa%C5%A1ali%C4%87.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Marco_Pa%C5%A1ali%C4%87_%28cropped%29.jpg/500px-Marco_Pa%C5%A1ali%C4%87_%28cropped%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "petar-musa",
@@ -1023,12 +985,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Petar_Musa_NY_Red_Bulls_v_FC_Dallas_2_May_2026-53_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/7/74/Petar_MusaSLB.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Petar_Musa_NY_Red_Bulls_v_FC_Dallas_2_May_2026-53.jpg/500px-Petar_Musa_NY_Red_Bulls_v_FC_Dallas_2_May_2026-53.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Petar_Musa_NY_Red_Bulls_v_FC_Dallas_2_May_2026-122.jpg/500px-Petar_Musa_NY_Red_Bulls_v_FC_Dallas_2_May_2026-122.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Petar_Musa_Petar_Musa_NY_Red_Bulls_v_FC_Dallas_2_May_2026-103.jpg/500px-Petar_Musa_Petar_Musa_NY_Red_Bulls_v_FC_Dallas_2_May_2026-103.jpg"
-        ]
+        "photos": []
       }
     ],
     "starting_xi": {
@@ -1151,21 +1108,11 @@
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
     "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
-    "image_pool": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/CroaciavsSuica2004.JPG/500px-CroaciavsSuica2004.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Primorac_-_Nogometni_reprezentativci.jpg/500px-Primorac_-_Nogometni_reprezentativci.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Croatia-England%2C_Zagreb.JPG/500px-Croatia-England%2C_Zagreb.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Maksimir_-_North_grandstand.jpg/500px-Maksimir_-_North_grandstand.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/GT%C4%9079.JPG/500px-GT%C4%9079.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Portland_Trail_Blazers_Practice_Facility_and_HQ.jpg/500px-Portland_Trail_Blazers_Practice_Facility_and_HQ.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Croatia-Georgia_Split_2011_1.jpg/500px-Croatia-Georgia_Split_2011_1.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Croatia-Georgia_Split_2011_2.jpg/500px-Croatia-Georgia_Split_2011_2.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Croatia-Georgia_Split_2011_3.jpg/500px-Croatia-Georgia_Split_2011_3.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Croatia-Georgia_Split_2011_4.jpg/500px-Croatia-Georgia_Split_2011_4.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Portugal_football_team_-_Croatia_vs._Portugal%2C_10th_June_2013.jpg/500px-Portugal_football_team_-_Croatia_vs._Portugal%2C_10th_June_2013.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Croatia_football_team_-_Croatia_vs._Portugal%2C_10th_June_2013.jpg/500px-Croatia_football_team_-_Croatia_vs._Portugal%2C_10th_June_2013.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Bilan_Croatie.JPG/500px-Bilan_Croatie.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Blazers_2016-02-21_10.jpg/500px-Blazers_2016-02-21_10.jpg"
+    "team_photos": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Croatia-England%2C_Zagreb.JPG/960px-Croatia-England%2C_Zagreb.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Croatia_personnel_during_game_v_England.jpg/960px-Croatia_personnel_during_game_v_England.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/CROATIA_football_team_arrival_in_Zagreb_%2841640517350%29.jpg/960px-CROATIA_football_team_arrival_in_Zagreb_%2841640517350%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Croatian_nation_football_squad_%2842545971655%29.jpg/960px-Croatian_nation_football_squad_%2842545971655%29.jpg"
     ]
   },
   "history": {

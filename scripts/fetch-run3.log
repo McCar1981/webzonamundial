@@ -1,0 +1,256 @@
+⚠ --insecure: verificación TLS desactivada (solo para proxy MITM).
+Commons/Wikidata fetch · 48 equipo(s) · APPLY (escribe) · per-player=6 · RESET
+
+[alemania]
+  · [pool] Germany … (node:44560) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ! API: HTTP 414
+200 foto(s) H en pool nacional
+  · Manuel Neuer … 0 (Q107365)
+  · Oliver Baumann … 0 (Q129116)
+  · Alexander Nübel … 0 (Q20435178)
+  · Waldemar Anton … 0 (Q23559699)
+  · Waldemar Anton … 0 (Q23559699)
+  · Jonathan Tah … 0 (Q14640027)
+  · Joshua Kimmich … 3 foto(s) [pool:0+cat:3]
+  · Nico Schlotterbeck … 1 foto(s) [pool:0+cat:1]
+  · Nathaniel Brown … 0 (Q122351097)
+  · David Raum … 2 foto(s) [pool:0+cat:2]
+  · Malick Thiaw … 0 (Q87268125)
+  · Aleksandar Pavlović … 0 (Q121068701)
+  · Leon Goretzka … 1 foto(s) [pool:0+cat:1]
+  · Jamie Leweling … 0 (Q65964628)
+  · Jamal Musiala … 1 foto(s) [pool:0+cat:1]
+  · Pascal Groß … 0 (Q509489)
+  · Angelo Stiller … 0 (Q68676722)
+  · Florian Wirtz … 0 (Q94699949)
+  · Leroy Sané … 3 foto(s) [pool:0+cat:3]
+  · Nadiem Amiri … 0 (Q19274473)
+  · Felix Nmecha … 0 (Q60889488)
+  · Lennart Karl … 0 (Q130776450)
+  · Kai Havertz … 0 (Q27310755)
+  · Nick Woltemade … 0 (Q84158344)
+  · Maximilian Beier … 0 (Q80314837)
+  · Deniz Undav … 0 (Q55955918)
+  · [equipo] Germany … 10 foto(s) H
+  ✓ escrito data\teams\alemania.json
+
+[arabia-saudi]
+  · [pool] Saudi Arabia … 284 foto(s) H en pool nacional
+  · Nawaf Al-Aqidi … 0 (Q82251502)
+  · Mohammed Al-Owais … 0 (Q22677970)
+  · Ahmed Al-Kassar … 0 (Q23712857)
+  · Ali Majrashi … 0 (Q47499724)
+  · Ali Lajami … 0 (Q22812479)
+  · Abdulelah Al-Amri … 0 (Q30308980)
+  · Hassan Tambakti … 0 (Q45108287)
+  · Saud Abdulhamid … 1 foto(s) [pool:0+cat:1]
+  · Nawaf Bu Washl … 0
+  · Hassan Kadish … 0
+  · Moteb Al-Harbi … 0 (Q97698786)
+  · Jehad Thikri … 0
+  · Mohammed Abu Alshamat … 0
+  · Nasser Al-Dawsari … 1 foto(s) [pool:0+cat:1]
+  · Musab Al-Juwayr … 0 (Q105834415)
+  · Abdullah Al-Khaibari … 0 (Q28716544)
+  · Ziyad Al-Johani … 2 foto(s) [pool:0+cat:2]
+  · Ala Al-Hajji … 0
+  · Mohammed Kanno … 0
+  · Aiman Yahya … 0
+  · Feras Al-Brikan … 0
+  · Salem Al-Dawsari … 0 (Q3945419)
+  · Saleh Al-Shehri … 0 (Q7403894)
+  · Khalid Al-Ghannam … 0 (Q64147458)
+  · Abdullah Al-Hamddan … 0 (Q47499719)
+  · Sultan Mandash … 0 (Q22340706)
+  · [equipo] Saudi Arabia … 10 foto(s) H
+  ✓ escrito data\teams\arabia-saudi.json
+
+[argelia]
+  · [pool] Algeria … 211 foto(s) H en pool nacional
+  · Melvin Mastil … 0 (Q105846503)
+  · Oussama Benbot … 0 (Q84601192)
+  · Luca Zidane … 0 (Q19952334)
+  · Aïssa Mandi … 0 (Q2876432)
+  · Achraf Abada … 0
+  · Mohamed Amine Tougai … 0 (Q81659662)
+  · Zineddine Belaïd … 0 (Q100273072)
+  · Jaouen Hadjam … 0 (Q98561102)
+  · Rayan Aït-Nouri … 0 (Q50825738)
+  · Rafik Belghali … 0 (Q106030853)
+  · Ramy Bensebaini … 1 foto(s) [pool:1+cat:0]
+  · Samir Chergui … 0 (Q104745615)
+  · Ramiz Zerrouki … 0 (Q73149048)
+  · Houssem Aouar … 1 foto(s) [pool:1+cat:0]
+  · Farès Chaïbi … 0 (Q113474248)
+  · Hicham Boudaoui … 0 (Q59306433)
+  · Nabil Bentaleb … 0 (Q15410320)
+  · Ibrahim Maza … 0 (Q118118504)
+  · Yassine Titraoui … 0
+  · Riyad Mahrez … 0 (Q8338725)
+  · Amine Gouiri … 0 (Q30045780)
+  · Anis Hadj Moussa … 0 (Q121946144)
+  · Nadhir Benbouali … 0 (Q112654639)
+  · Mohamed Amoura … 0 (Q107285723)
+  · Adil Boulbina … 0 (Q112654481)
+  · Fares Ghedjemis … 0 (Q124151324)
+  · [equipo] Algeria … 10 foto(s) H
+  ✓ escrito data\teams\argelia.json
+
+[argentina]
+  · [pool] Argentina … 165 foto(s) H en pool nacional
+  · Juan Musso … 0 (Q5951550)
+  · Gerónimo Rulli … 6 foto(s) [pool:0+cat:17]
+  · Emiliano Martínez … 6 foto(s) [pool:0+cat:7]
+  · Leonardo Balerdi … 0 (Q50233588)
+  · Nicolás Tagliafico … 6 foto(s) [pool:0+cat:11]
+  · Gonzalo Montiel … 4 foto(s) [pool:0+cat:4]
+  · Lisandro Martínez … 3 foto(s) [pool:0+cat:3]
+  · Cristian Romero … 4 foto(s) [pool:0+cat:4]
+  · Nicolás Otamendi … 6 foto(s) [pool:0+cat:20]
+  · Facundo Medina … 0 (Q28056787)
+  · Nahuel Molina … 5 foto(s) [pool:0+cat:5]
+  · Leandro Paredes … 3 foto(s) [pool:0+cat:3]
+  · Rodrigo De Paul … 6 foto(s) [pool:0+cat:7]
+  · Valentín Barco … 2 foto(s) [pool:0+cat:2]
+  · Giovani Lo Celso … 2 foto(s) [pool:0+cat:2]
+  · Exequiel Palacios … 1 foto(s) [pool:0+cat:1]
+  · Nicolás González … 5 foto(s) [pool:1+cat:4]
+  · Alexis Mac Allister … 6 foto(s) [pool:0+cat:6]
+  · Enzo Fernández … 6 foto(s) [pool:0+cat:6]
+  · Julián Álvarez … 3 foto(s) [pool:0+cat:3]
+  · Lionel Andrés Messi … 1 foto(s) [pool:1+cat:0]
+  · Thiago Almada … 1 foto(s) [pool:0+cat:1]
+  · Giuliano Simeone … 0 (Q111672750)
+  · Nicolás Paz … 0 (Q112065940)
+  · José López … 0 (Q112042831)
+  · Lautaro Martínez … 6 foto(s) [pool:0+cat:12]
+  · [equipo] Argentina … 10 foto(s) H
+  ✓ escrito data\teams\argentina.json
+
+[australia]
+  · [pool] Australia … 231 foto(s) H en pool nacional
+  · Mathew Ryan … 4 foto(s) [pool:0+cat:4]
+  · Paul Izzo … 0 (Q7151477)
+  · Patrick Beach … 0 (Q126284601)
+  · Miloš Degenek … 1 foto(s) [pool:0+cat:1]
+  · Alessandro Circati … 0 (Q111020508)
+  · Jacob Italiano … 0 (Q43303848)
+  · Jordan Bos … 0 (Q109768459)
+  · Jason Geria … 0 (Q10556049)
+  · Kai Trewin … 0 (Q87400019)
+  · Aziz Behich … 4 foto(s) [pool:0+cat:4]
+  · Harry Souttar … 3 foto(s) [pool:0+cat:3]
+  · Cameron Burgess … 0 (Q17496350)
+  · Lucas Herrington … 0 (Q133105064)
+  · Connor Metcalfe … 1 foto(s) [pool:0+cat:1]
+  · Aiden O'Neill … 0 (Q26485052)
+  · Cameron Devlin … 0 (Q57017726)
+  · Jackson Irvine … 5 foto(s) [pool:0+cat:5]
+  · Paul Okon-Engstler … 0 (Q117000107)
+  · Mathew Leckie … 5 foto(s) [pool:0+cat:5]
+  · Mohamed Toure … 0 (Q84593316)
+  · Ajdin Hrustić … 1 foto(s) [pool:0+cat:1]
+  · Awer Mabil … 2 foto(s) [pool:0+cat:2]
+  · Nestory Irankunda … 0 (Q110486192)
+  · Cristian Volpato … 0 (Q109924046)
+  · Nishan Velupillay … 0 (Q106916460)
+  · Tete Yengi … 0 (Q104604531)
+  · [equipo] Australia … 10 foto(s) H
+  ✓ escrito data\teams\australia.json
+
+[austria]
+  · [pool] Austria … 270 foto(s) H en pool nacional
+  · Alexander Schlager … 0 (Q20745286)
+  · Florian Wiegele … 0 (Q123335801)
+  · Patrick Pentz … 0 (Q24068400)
+  · David Affengruber … 0 (Q65948590)
+  · Kevin Danso … 6 foto(s) [pool:0+cat:6]
+  · Stefan Posch … 6 foto(s) [pool:0+cat:9]
+  · David Alaba … 6 foto(s) [pool:17]
+  · Philipp Lienhart … 0 (Q20078774)
+  · Phillipp Mwene … 6 foto(s) [pool:0+cat:7]
+  · Marco Friedl … 6 foto(s) [pool:0+cat:10]
+  · Michael Svoboda … 0 (Q55813157)
+  · Xaver Schlager … 0 (Q20190657)
+  · Nicolas Seiwald … 0 (Q64010197)
+  · Marcel Sabitzer … 0 (Q472300)
+  · Florian Grillitsch … 6 foto(s) [pool:0+cat:12]
+  · Carney Chukwuemeka … 0 (Q106915801)
+  · Romano Schmid … 0 (Q30080273)
+  · Christoph Baumgartner … 4 foto(s) [pool:0+cat:4]
+  · Konrad Laimer … 0 (Q18670270)
+  · Alexander Prass … 0 (Q62006510)
+  · Paul Wanner … 0 (Q110463620)
+  · Alessandro Schöpf … 0 (Q16528455)
+  · Marko Arnautović … 1 foto(s) [pool:0+cat:1]
+  · Michael Gregoritsch … 0 (Q699094)
+  · Sasa Kalajdžić … 0 (Q34058084)
+  · Patrick Wimmer … 0 (Q65948837)
+  · [equipo] Austria … 10 foto(s) H
+  ✓ escrito data\teams\austria.json
+
+[belgica]
+  · [pool] Belgium … 253 foto(s) H en pool nacional
+  · Thibaut Courtois … 4 foto(s) [pool:1+cat:3]
+  · Senne Lammens … 0 (Q98100512)
+  · Mike Penders … 0 (Q113515002)
+  · Zeno Debast … 0 (Q106686485)
+  · Arthur Theate … 0 (Q97724521)
+  · Brandon Mechele … 3 foto(s) [pool:3+cat:0]
+  · Maxim De Cuyper … 0 (Q85928265)
+  · Thomas Meunier … 5 foto(s) [pool:0+cat:5]
+  · Koni De Winter … 0 (Q108200391)
+  · Joaquin Seys … 0 (Q113510252)
+  · Timothy Castagne … 0 (Q18041089)
+  · Nathan Ngoy … 0 (Q107094087)
+  · Axel Witsel … 5 foto(s) [pool:0+cat:6]
+  · Kevin De Bruyne … 6 foto(s) [pool:0+cat:9]
+  · Youri Tielemans … 0 (Q14327453)
+  · Diego Moreira … 0 (Q110616805)
+  · Hans Vanaken … 0 (Q2359678)
+  · Alexis Saelemaekers … 0 (Q49166190)
+  · Nicolas Raskin … 0 (Q48525779)
+  · Amadou Onana … 2 foto(s) [pool:0+cat:2]
+  · Romelu Lukaku … 0 (Q313316)
+  · Leandro Trossard … 0 (Q6509762)
+  · Jérémy Doku … 2 foto(s) [pool:0+cat:2]
+  · Dodi Lukebakio … 1 foto(s) [pool:1+cat:1]
+  · Charles De Ketelaere … 0 (Q68607008)
+  · Matías Fernández-Pardo … 0 (Q117041294)
+  · [equipo] Belgium … 10 foto(s) H
+  ✓ escrito data\teams\belgica.json
+
+[bosnia]
+  · [pool] Bosnia and Herzegovina … 246 foto(s) H en pool nacional
+  · Nikola Vasilj … 0 (Q77243490)
+  · Mladen Jurkas … 0 (Q140007173)
+  · Martin Zlomislić … 0 (Q83795769)
+  · Nihad Mujakić … 0 (Q50623645)
+  · Dennis Hadžikadunić … 0 (Q27654739)
+  · Tarik Muharemović … 0 (Q106620882)
+  · Sead Kolašinac … 5 foto(s) [pool:4+cat:1]
+  · Amar Dedić … 0 (Q65948595)
+  · Nikola Katić … 0 (Q27957334)
+  · Stjepan Radeljić … 0 (Q56227031)
+  · Nidal Čelik … 0 (Q131149776)
+  · Benjamin Tahirović … 0 (Q115194574)
+  · Armin Gigović … 0 (Q70251271)
+  · Ivan Bašić … 0 (Q111536418)
+  · Ivan Šunjić … 0 (Q19662444)
+  · Amar Memić … 0 (Q124051749)
+  · Amir Hadžiahmetović … 1 foto(s) [pool:1+cat:0]
+  · Dženis Burnić … 0 (Q27468610)
+  · Ermin Mahmić … 0 (Q123139564)
+  · Samed Baždar … 0 (Q107284545)
+  · Ermedin Demirović … 0 (Q47067481)
+  · Edin Džeko … 4 foto(s) [pool:3+cat:1]
+  · Kerim Alajbegović … 0 (Q130741313)
+  · Esmir Bajraktarević … 0 (Q108518721)
+  · Haris Tabaković … 0 (Q15257381)
+  · Jovo Lukić … 0 (Q96182876)
+  · [equipo] Bosnia and Herzegovina … 10 foto(s) H
+  ✓ escrito data\teams\bosnia.json
+
+[brasil]
+  · [pool] Brazil … 

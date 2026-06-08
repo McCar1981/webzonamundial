@@ -22,14 +22,15 @@ const val = (n, d) => {
   return h ? h.split("=")[1] : d;
 };
 
-const WITH_PLAYERS = flag("players");
+// Por defecto incluimos jugadores (lo principal ahora); --no-players para omitir.
+const WITH_PLAYERS = !flag("no-players");
 const ONLY_TEAM = val("team", null);
 const TEAMS_DIR = "data/teams";
 const OUT = "scripts/image-review.html";
 
 const slugs = (
   ONLY_TEAM
-    ? [ONLY_TEAM]
+    ? ONLY_TEAM.split(",").map((s) => s.trim()).filter(Boolean)
     : fs.readdirSync(TEAMS_DIR).filter((f) => f.endsWith(".json")).map((f) => f.replace(/\.json$/, ""))
 ).sort();
 
@@ -41,7 +42,8 @@ for (const slug of slugs) {
     slug,
     name: t.name_es || t.name_en || slug,
     iso: t.iso || "",
-    pool: (wc.image_pool || []).filter(Boolean),
+    // "pool" ahora son las FOTOS DE EQUIPO (team_photos); image_pool quedó obsoleto.
+    pool: (wc.team_photos || wc.image_pool || []).filter(Boolean),
     players: [],
   };
   if (WITH_PLAYERS) {
@@ -55,8 +57,16 @@ for (const slug of slugs) {
   data.push(entry);
 }
 
+// Banco de estadios (data/stadiums.json) como sección aparte, para revisar el
+// material de MEDIO TIEMPO igual que las selecciones.
+let stadia = [];
+try {
+  stadia = JSON.parse(fs.readFileSync(path.join("data", "stadiums.json"), "utf8"));
+} catch { /* sin banco de estadios todavía */ }
+
 const totalPool = data.reduce((n, d) => n + d.pool.length, 0);
 const totalPlayers = data.reduce((n, d) => n + d.players.reduce((m, p) => m + p.photos.length, 0), 0);
+const totalStadia = stadia.reduce((n, s) => n + (s.photos || []).length, 0);
 
 const html = `<!doctype html>
 <html lang="es">
@@ -98,7 +108,7 @@ const html = `<!doctype html>
 <body>
 <header>
   <h1>Revisión de imágenes</h1>
-  <span class="muted">${data.length} países · ${totalPool} de país${WITH_PLAYERS ? ` · ${totalPlayers} de jugador` : ""}</span>
+  <span class="muted">${data.length} selecciones · ${totalPool} de equipo${WITH_PLAYERS ? ` · ${totalPlayers} de jugador` : ""} · ${stadia.length} estadios (${totalStadia})</span>
   <input id="filter" type="search" placeholder="Filtrar país…">
   <span style="flex:1"></span>
   <span class="muted">descartes: <b id="badCount">0</b></span>
@@ -111,6 +121,7 @@ const html = `<!doctype html>
 
 <script>
 const DATA = ${JSON.stringify(data)};
+const STADIA = ${JSON.stringify(stadia)};
 const KEY = "zm-image-discards";
 let bad = JSON.parse(localStorage.getItem(KEY) || "{}"); // { slug: [url,...] }
 
@@ -148,7 +159,7 @@ function render(){
     const sec = document.createElement("section");
     sec.dataset.name = t.name.toLowerCase();
     const h = document.createElement("h2");
-    h.innerHTML = t.name + ' <span class="count">('+t.pool.length+' país'+
+    h.innerHTML = t.name + ' <span class="count">('+t.pool.length+' equipo'+
       (t.players.length? ' · '+t.players.length+' jugadores':'')+')</span>';
     sec.appendChild(h);
     const grid = document.createElement("div"); grid.className="grid";
@@ -161,6 +172,18 @@ function render(){
       for (const url of p.photos) g2.appendChild(cell(t.slug,url));
       ph.appendChild(g2); sec.appendChild(ph);
     }
+    main.appendChild(sec);
+  }
+  // Estadios (MEDIO TIEMPO)
+  for (const s of STADIA){
+    const sec = document.createElement("section");
+    sec.dataset.name = ("estadio "+(s.commons||s.key||"")+" "+(s.city||"")).toLowerCase();
+    const h = document.createElement("h2");
+    h.innerHTML = '🏟 '+(s.commons||s.key)+' <span class="count">('+(s.city||"")+' · '+(s.photos||[]).length+' fotos)</span>';
+    sec.appendChild(h);
+    const grid = document.createElement("div"); grid.className="grid";
+    for (const url of (s.photos||[])) grid.appendChild(cell("stadium:"+s.key,url));
+    sec.appendChild(grid);
     main.appendChild(sec);
   }
   updateCount();

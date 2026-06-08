@@ -492,7 +492,8 @@
         },
         "shirt_number_expected": 1,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/FC_Red_Bull_Salzburg_gegen_SK_Sturm_Graz_%289._April_2017%29_02.jpg/330px-FC_Red_Bull_Salzburg_gegen_SK_Sturm_Graz_%289._April_2017%29_02.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/FC_Red_Bull_Salzburg_gegen_SK_Sturm_Graz_%289._April_2017%29_02.jpg/330px-FC_Red_Bull_Salzburg_gegen_SK_Sturm_Graz_%289._April_2017%29_02.jpg",
+        "photos": []
       },
       {
         "id": "joseph-anang",
@@ -505,7 +506,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Hertha_BSC_vs._West_Ham_United_20190731_%28199%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Hertha_BSC_vs._West_Ham_United_20190731_%28199%29.jpg",
+        "photos": []
       },
       {
         "id": "benjamin-asare",
@@ -518,7 +520,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "alidu-seidu",
@@ -532,7 +535,8 @@
           "league": "Ligue 1"
         },
         "shirt_number_expected": 2,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "jonas-adjetey",
@@ -545,7 +549,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "abdul-mumin",
@@ -560,12 +565,7 @@
         },
         "shirt_number_expected": 4,
         "status": "fixed",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/d/df/Abdul-Qadir_Abdul-Mumin.png",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Illustration_of_Sultan_Abdul_Mumin.jpg/500px-Illustration_of_Sultan_Abdul_Mumin.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Meet_Team_Buckley-_Abdul_Mumin_Abdul_Rahman_%286961601%29.jpg/500px-Meet_Team_Buckley-_Abdul_Mumin_Abdul_Rahman_%286961601%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Sheikh_Abdul_Mumin_at_a_wedding_grounds.jpg/500px-Sheikh_Abdul_Mumin_at_a_wedding_grounds.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "gideon-mensah",
@@ -580,7 +580,8 @@
         },
         "shirt_number_expected": 14,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mensah_aja_asse_2425.png/330px-Mensah_aja_asse_2425.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mensah_aja_asse_2425.png/330px-Mensah_aja_asse_2425.png",
+        "photos": []
       },
       {
         "id": "baba-rahman",
@@ -597,9 +598,9 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/12AbdulRahmanBaba.jpg/330px-12AbdulRahmanBaba.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Abdul_Rahman_Baba.JPG/500px-Abdul_Rahman_Baba.JPG",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Baba_Rahman_20160416.jpg/500px-Baba_Rahman_20160416.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/2018_Baba_Rahman_%28cropped%29.jpg/500px-2018_Baba_Rahman_%28cropped%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Ghana_%281%29.jpg/960px-Ghana_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Ghana_%282%29.jpg/960px-Ghana_%282%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Ghana-Gabon_%281%29.jpg/960px-Ghana-Gabon_%281%29.jpg"
         ]
       },
       {
@@ -613,7 +614,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Jerome_Opoku_3_%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_FK_UECL_20250813_%281%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Jerome_Opoku_3_%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_FK_UECL_20250813_%281%29.jpg",
+        "photos": []
       },
       {
         "id": "kojo-oppong",
@@ -627,9 +629,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null,
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/KOJO_OPPONG_NKRUMAH.jpg/500px-KOJO_OPPONG_NKRUMAH.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "derrick-luckassen",
@@ -642,7 +642,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Derrick_luckassen-1447005764.JPG"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Derrick_luckassen-1447005764.JPG",
+        "photos": []
       },
       {
         "id": "marvin-senaya",
@@ -655,7 +656,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "caleb-yirenkyi",
@@ -668,7 +670,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "thomas-partey",
@@ -685,8 +688,9 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/42/ATL-Madrid-Lokomotiv001-Thomas_%28cropped%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Thomas_Partey.jpg/500px-Thomas_Partey.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Thomas_Partey_2019.jpg/500px-Thomas_Partey_2019.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Ghana_%281%29.jpg/960px-Ghana_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Ghana_%282%29.jpg/960px-Ghana_%282%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Ghana-Gabon_%282%29.jpg/960px-Ghana-Gabon_%282%29.jpg"
         ]
       },
       {
@@ -700,7 +704,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "antoine-semenyo",
@@ -716,14 +721,7 @@
         "shirt_number_expected": 11,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Antoine_Semenyo_2026.png/330px-Antoine_Semenyo_2026.png",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Antoine_Semenyo_2023.jpg/500px-Antoine_Semenyo_2023.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Eli_Junior_Kroupi_and_Antoine_Semenyo_27122025_%281%29.jpg/500px-Eli_Junior_Kroupi_and_Antoine_Semenyo_27122025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Alex_Scott_and_Antoine_Semenyo_27122025_%281%29.jpg/500px-Alex_Scott_and_Antoine_Semenyo_27122025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Yehor_Yarmolyuk%2C_Antoine_Semenyo_and_Keane_Lewis-Potter_27122025_%281%29.jpg/500px-Yehor_Yarmolyuk%2C_Antoine_Semenyo_and_Keane_Lewis-Potter_27122025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Yehor_Yarmolyuk%2C_Antoine_Semenyo_and_Keane_Lewis-Potter_27122025_%282%29.jpg/500px-Yehor_Yarmolyuk%2C_Antoine_Semenyo_and_Keane_Lewis-Potter_27122025_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Evanilson%2C_Rico_Henry_and_Antoine_Semenyo_27122025_%281%29.jpg/500px-Evanilson%2C_Rico_Henry_and_Antoine_Semenyo_27122025_%281%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "elisha-owusu",
@@ -738,7 +736,8 @@
         },
         "shirt_number_expected": 8,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Lens_-_Sochaux_%2815-09-2018%29_175_%28cropped%29.jpg/330px-Lens_-_Sochaux_%2815-09-2018%29_175_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Lens_-_Sochaux_%2815-09-2018%29_175_%28cropped%29.jpg/330px-Lens_-_Sochaux_%2815-09-2018%29_175_%28cropped%29.jpg",
+        "photos": []
       },
       {
         "id": "augustine-boakye",
@@ -751,7 +750,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/05/Boakye_ASSE_MHSC_2425.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/05/Boakye_ASSE_MHSC_2425.png",
+        "photos": []
       },
       {
         "id": "fatawu-issahaku",
@@ -766,7 +766,8 @@
         },
         "shirt_number_expected": 17,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Abdul_Fatawu_24082024_%286%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Abdul_Fatawu_24082024_%286%29.jpg",
+        "photos": []
       },
       {
         "id": "jordan-ayew",
@@ -783,12 +784,12 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Jordan_Ayew_24082024_%282%29.jpg/330px-Jordan_Ayew_24082024_%282%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/0/09/Jordan_Ayew.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/5/59/Jordan_Ayew_-_TdC_2011.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/OM_-_FC_Porto_-_Valais_Cup_2013_-_Jordan_Ayew_2.jpg/500px-OM_-_FC_Porto_-_Valais_Cup_2013_-_Jordan_Ayew_2.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/OM_-_FC_Porto_-_Valais_Cup_2013_-_Jordan_Ayew_%28cropped%29.jpg/500px-OM_-_FC_Porto_-_Valais_Cup_2013_-_Jordan_Ayew_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/1/1e/Jordan_Ayew_2013.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/8/8a/Jordan_Ayew_2017.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/20150331_Mali_vs_Ghana_252.jpg/960px-20150331_Mali_vs_Ghana_252.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/20150331_Mali_vs_Ghana_254.jpg/960px-20150331_Mali_vs_Ghana_254.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/20150331_Mali_vs_Ghana_255.jpg/960px-20150331_Mali_vs_Ghana_255.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Ghana_%281%29.jpg/960px-Ghana_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Ghana_%282%29.jpg/960px-Ghana_%282%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Ghana-Gabon_%284%29.jpg/960px-Ghana-Gabon_%284%29.jpg"
         ]
       },
       {
@@ -802,7 +803,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "christopher-baah",
@@ -815,7 +817,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "inaki-williams",
@@ -830,7 +833,8 @@
         },
         "shirt_number_expected": 19,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/I%C3%B1aki_Williams.png/330px-I%C3%B1aki_Williams.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/I%C3%B1aki_Williams.png/330px-I%C3%B1aki_Williams.png",
+        "photos": []
       },
       {
         "id": "kamaldeen-sulemana",
@@ -845,7 +849,8 @@
         },
         "shirt_number_expected": 7,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Kamaldeen_Sulemana_%28cropped%29.jpg/330px-Kamaldeen_Sulemana_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Kamaldeen_Sulemana_%28cropped%29.jpg/330px-Kamaldeen_Sulemana_%28cropped%29.jpg",
+        "photos": []
       },
       {
         "id": "ernest-nuamah",
@@ -860,7 +865,8 @@
         },
         "shirt_number_expected": 18,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Nuamah_vs_FCSB.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Nuamah_vs_FCSB.png",
+        "photos": []
       },
       {
         "id": "prince-adu",
@@ -873,7 +879,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       }
     ],
     "starting_xi": {
@@ -999,21 +1006,10 @@
     "squad_announced_status": "pending_official",
     "squad_announced_date": "2026-06-04",
     "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
-    "image_pool": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Ghana_national_team_u-21.JPG/500px-Ghana_national_team_u-21.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Ghana_football_team_1960s.jpg/500px-Ghana_football_team_1960s.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Ghana_national_football_team.jpg/500px-Ghana_national_football_team.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Sulley_Muntari_%28Ghana_national_football_team%29.jpg/500px-Sulley_Muntari_%28Ghana_national_football_team%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/e/e7/Sulley_Muntari_%28Ghanaian_national_football_team%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Emmanuel_Agyemang-Badu_%28Ghana_national_football_team_vs._England_national_football_team%29.jpg/500px-Emmanuel_Agyemang-Badu_%28Ghana_national_football_team_vs._England_national_football_team%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Ghana_national_football_team_fans_%28Black_Stars_fans%29.jpg/500px-Ghana_national_football_team_fans_%28Black_Stars_fans%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Black_Stars_fans_%E2%80%93_Ghana_national_football_team_fans_%282010_FIFA_World_Cup%29.jpg/500px-Black_Stars_fans_%E2%80%93_Ghana_national_football_team_fans_%282010_FIFA_World_Cup%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Black_Stars_fans_%28Ghana_national_football_team_fans%29_%E2%80%93_2010_FIFA_World_Cup.jpg/500px-Black_Stars_fans_%28Ghana_national_football_team_fans%29_%E2%80%93_2010_FIFA_World_Cup.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Black_Stars_fans_%E2%80%93_Ghana_national_football_team_fans_goal_celebration_%282010_FIFA_World_Cup%29.jpg/500px-Black_Stars_fans_%E2%80%93_Ghana_national_football_team_fans_goal_celebration_%282010_FIFA_World_Cup%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Black_Stars_on_the_Road_1960s_%28Ghana_national_football_team%29.jpg/500px-Black_Stars_on_the_Road_1960s_%28Ghana_national_football_team%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Black_Stars_Goal_Celebration_%28Ghana_national_football_team%29.jpg/500px-Black_Stars_Goal_Celebration_%28Ghana_national_football_team%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Black_Stars_Training_%28Ghana_national_football_team%29.jpg/500px-Black_Stars_Training_%28Ghana_national_football_team%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Ghana_national_football_team_fan_%28Black_Stars_fan%29.jpg/500px-Ghana_national_football_team_fan_%28Black_Stars_fan%29.jpg"
+    "team_photos": [
+      "https://upload.wikimedia.org/wikipedia/commons/1/14/Ghana_national_football_team.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Argentina_vs._Ghana.jpg/960px-Argentina_vs._Ghana.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/20150331_Mali_vs_Ghana_042.jpg/960px-20150331_Mali_vs_Ghana_042.jpg"
     ]
   },
   "history": {

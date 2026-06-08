@@ -507,14 +507,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Max_Crocombe_14122024_%281%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/9/98/Max_Crocombe.png",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Max_Crocombe_14122024_%282%29.jpg/500px-Max_Crocombe_14122024_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Max_Crocombe_14122024_%283%29.jpg/500px-Max_Crocombe_14122024_%283%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Max_Crocombe_290425.jpg/500px-Max_Crocombe_290425.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Max_Crocombe_30082025_%281%29.jpg/500px-Max_Crocombe_30082025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Max_Crocombe_30082025_%282%29.jpg/500px-Max_Crocombe_30082025_%282%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "alex-paulsen",
@@ -529,7 +522,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/af/Alex_Paulsen.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/af/Alex_Paulsen.jpg",
+        "photos": []
       },
       {
         "id": "michael-woud",
@@ -544,7 +538,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/33/Michael_Woud.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/33/Michael_Woud.jpg",
+        "photos": []
       },
       {
         "id": "tim-payne",
@@ -560,14 +555,7 @@
         "shirt_number_expected": 2,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/67/Tim_Payne_%282025%2C_photo_2%29_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Tim_Payne.jpg/500px-Tim_Payne.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Tim_Payne_cropped.jpg/500px-Tim_Payne_cropped.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/U.S._Army_Staff_Sgt._Tim_Payne_swims_backstroke_during_the_2016_Invictus_Games_%2826959039455%29.jpg/500px-U.S._Army_Staff_Sgt._Tim_Payne_swims_backstroke_during_the_2016_Invictus_Games_%2826959039455%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Tim_Payne_-_Wellington_Phoenix.jpg/500px-Tim_Payne_-_Wellington_Phoenix.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Tim_Payne_%282025%2C_photo_1%29.jpg/500px-Tim_Payne_%282025%2C_photo_1%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Tim_Payne_%282025%2C_photo_2%29.jpg/500px-Tim_Payne_%282025%2C_photo_2%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "francis-de-vries",
@@ -582,7 +570,8 @@
         },
         "shirt_number_expected": 13,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Francis_de_Vries.jpg/330px-Francis_de_Vries.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Francis_de_Vries.jpg/330px-Francis_de_Vries.jpg",
+        "photos": []
       },
       {
         "id": "tyler-bindon",
@@ -597,9 +586,7 @@
         },
         "shirt_number_expected": 4,
         "status": "fixed",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Tyler_Bindon.jpg/500px-Tyler_Bindon.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "michael-boxall",
@@ -616,12 +603,7 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/New_Zealand-Portugal_%282%29_%28cropped%29.jpg/330px-New_Zealand-Portugal_%282%29_%28cropped%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/3/39/Michael_Boxall_with_Vancouver.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/d/df/Michael_Boxall_2.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/5/58/Michael_Joseph_Boxall.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Michael_Boxall_%2836975336216%29.jpg/500px-Michael_Boxall_%2836975336216%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Michael_Boxall_PHI_vs_MIN_2017-09-09_%2836328467294%29.jpg/500px-Michael_Boxall_PHI_vs_MIN_2017-09-09_%2836328467294%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Michael_Boxall_%2836975336216%29_%28cropped%29.jpg/500px-Michael_Boxall_%2836975336216%29_%28cropped%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Michael_Boxall_-_MNUFC_-_MLS_-_new_zealand_-_%2852125271279%29.jpg/960px-Michael_Boxall_-_MNUFC_-_MLS_-_new_zealand_-_%2852125271279%29.jpg"
         ]
       },
       {
@@ -638,9 +620,7 @@
         "shirt_number_expected": 3,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Liberato_Cacace_30082025_%281%29.jpg/330px-Liberato_Cacace_30082025_%281%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Mihailo_Ivanovi%C4%87_and_Liberato_Cacace_30082025_%281%29.jpg/500px-Mihailo_Ivanovi%C4%87_and_Liberato_Cacace_30082025_%281%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "nando-pijnaker",
@@ -654,7 +634,8 @@
           "league": "Premier irlandesa"
         },
         "shirt_number_expected": 22,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "finn-surman",
@@ -669,7 +650,8 @@
         },
         "shirt_number_expected": 15,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Finn_Surman.jpg/330px-Finn_Surman.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Finn_Surman.jpg/330px-Finn_Surman.jpg",
+        "photos": []
       },
       {
         "id": "callan-elliot",
@@ -682,7 +664,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Callan_Elliot.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Callan_Elliot.jpg",
+        "photos": []
       },
       {
         "id": "tommy-smith",
@@ -698,14 +681,7 @@
         "shirt_number_expected": 21,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Tommy_Smith_-_It_8.jpg/330px-Tommy_Smith_-_It_8.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/4/49/Tommy_Smith_of_the_Pittsburgh_Professionals_in_1907.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/0/0c/Tommy_Smith%2C_Pittsburgh_Lyceum.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/6/66/Tommy_Smith_%281966%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/TommySmith-111-2018-DerekClarkPhoto.jpg/500px-TommySmith-111-2018-DerekClarkPhoto.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Tommy-Smith_SNJO-2014-DerekClarkPhoto.jpg/500px-Tommy-Smith_SNJO-2014-DerekClarkPhoto.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Tommy-Smith_BBC-SSO_DerekClarkPhoto.jpg/500px-Tommy-Smith_BBC-SSO_DerekClarkPhoto.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "joe-bell",
@@ -721,14 +697,7 @@
         "shirt_number_expected": 14,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Joe_Bell_2023.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/3/31/Joe_Bell_Portage.png",
-          "https://upload.wikimedia.org/wikipedia/commons/b/b7/Joe_Bell_Vue%2C_Trefriw_NLW3363458.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Joe_Bell_Portage_Terriers_1942.jpg/500px-Joe_Bell_Portage_Terriers_1942.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Joe_Bell_8_Viking_FK_UECL_20250813_%281%29.jpg/500px-Joe_Bell_8_Viking_FK_UECL_20250813_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Joe_Bell_8_Viking_FK_UECL_20250813_%282%29.jpg/500px-Joe_Bell_8_Viking_FK_UECL_20250813_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Joe_Bell_8_Viking_FK_UECL_20250813_%283%29.jpg/500px-Joe_Bell_8_Viking_FK_UECL_20250813_%283%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "matthew-garbett",
@@ -742,7 +711,8 @@
           "league": "Serie A"
         },
         "shirt_number_expected": 16,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "marko-stamenic",
@@ -757,7 +727,8 @@
         },
         "shirt_number_expected": 6,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/FC_Zenit_Saint_Petersburg_vs._Red_Star_Belgrade%2C_4_July_2023_%2850%29.jpg/330px-FC_Zenit_Saint_Petersburg_vs._Red_Star_Belgrade%2C_4_July_2023_%2850%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/FC_Zenit_Saint_Petersburg_vs._Red_Star_Belgrade%2C_4_July_2023_%2850%29.jpg/330px-FC_Zenit_Saint_Petersburg_vs._Red_Star_Belgrade%2C_4_July_2023_%2850%29.jpg",
+        "photos": []
       },
       {
         "id": "sarpreet-singh",
@@ -772,7 +743,8 @@
         },
         "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Sarpreet_Singh_Training_2019-07-28_FC_Bayern_Munich.png/330px-Sarpreet_Singh_Training_2019-07-28_FC_Bayern_Munich.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Sarpreet_Singh_Training_2019-07-28_FC_Bayern_Munich.png/330px-Sarpreet_Singh_Training_2019-07-28_FC_Bayern_Munich.png",
+        "photos": []
       },
       {
         "id": "elijah-just",
@@ -787,7 +759,8 @@
         },
         "shirt_number_expected": 19,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Elijah_Just.jpg/330px-Elijah_Just.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Elijah_Just.jpg/330px-Elijah_Just.jpg",
+        "photos": []
       },
       {
         "id": "alex-rufer",
@@ -802,7 +775,8 @@
         },
         "shirt_number_expected": 17,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Alex_Rufer.jpg/330px-Alex_Rufer.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Alex_Rufer.jpg/330px-Alex_Rufer.jpg",
+        "photos": []
       },
       {
         "id": "ben-old",
@@ -818,10 +792,7 @@
         "shirt_number_expected": 18,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Ben_Old_playing_for_Wellington_v_Perth%2C_March_2022.jpg/330px-Ben_Old_playing_for_Wellington_v_Perth%2C_March_2022.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Ben_at_Old_Petrie_Town_Steam_Day-01_%2827242402463%29.jpg/500px-Ben_at_Old_Petrie_Town_Steam_Day-01_%2827242402463%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Old_asse_psg_2425.png/500px-Old_asse_psg_2425.png"
-        ]
+        "photos": []
       },
       {
         "id": "callum-mccowatt",
@@ -836,7 +807,7 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Callum_McCowatt_playing_for_New_Zealand%2C_26_March_2023_%282%29_%28cropped%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Callum_McCowatt_playing_for_New_Zealand%2C_26_March_2023.jpg/500px-Callum_McCowatt_playing_for_New_Zealand%2C_26_March_2023.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Callum_McCowatt_playing_for_New_Zealand%2C_26_March_2023.jpg/960px-Callum_McCowatt_playing_for_New_Zealand%2C_26_March_2023.jpg"
         ]
       },
       {
@@ -853,14 +824,7 @@
         "shirt_number_expected": 8,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Ryan_Thomas_2.jpg/330px-Ryan_Thomas_2.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Ryan_Thomas.jpg/500px-Ryan_Thomas.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/MAC%2C_83-85%2C_Gen_Ryan%2C_Thomas.jpg/500px-MAC%2C_83-85%2C_Gen_Ryan%2C_Thomas.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Ryan_Thomas_%28Corronation_Street%29_%286771372429%29.jpg/500px-Ryan_Thomas_%28Corronation_Street%29_%286771372429%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Ryan_thomas-1444759971.png/500px-Ryan_thomas-1444759971.png",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Ryan_Jared_Thomas.jpg/500px-Ryan_Jared_Thomas.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/2017_Confederation_Cup_-_MEXNZL_-_Ryan_Thomas.jpg/500px-2017_Confederation_Cup_-_MEXNZL_-_Ryan_Thomas.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "lachlan-bayliss",
@@ -873,7 +837,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Lachlan_Bayliss.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Lachlan_Bayliss.jpg",
+        "photos": []
       },
       {
         "id": "chris-wood",
@@ -890,12 +855,7 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Russia-New_Zeland_%2817%29.jpg/330px-Russia-New_Zeland_%2817%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Billy_Martin%2C_Chris_Wood_and_John_Medeski.jpg/500px-Billy_Martin%2C_Chris_Wood_and_John_Medeski.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Chris_Wood_golfprofessional.JPG/500px-Chris_Wood_golfprofessional.JPG",
-          "https://upload.wikimedia.org/wikipedia/commons/2/2c/ChrisWood.JPG",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Chris_Wood_Training.jpg/500px-Chris_Wood_Training.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Chris_wood_Leeds_2016.jpg/500px-Chris_wood_Leeds_2016.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/2017_Confederation_Cup_-_MEXNZL_-_Chris_Wood.jpg/500px-2017_Confederation_Cup_-_MEXNZL_-_Chris_Wood.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Russia-New_Zealand_%2813%29.jpg/960px-Russia-New_Zealand_%2813%29.jpg"
         ]
       },
       {
@@ -911,7 +871,8 @@
         },
         "shirt_number_expected": 11,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/New_Zealand-Portugal_%2824%29_%28cropped%29.jpg/330px-New_Zealand-Portugal_%2824%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/New_Zealand-Portugal_%2824%29_%28cropped%29.jpg/330px-New_Zealand-Portugal_%2824%29_%28cropped%29.jpg",
+        "photos": []
       },
       {
         "id": "ben-waine",
@@ -924,7 +885,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Ben_Waine.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Ben_Waine.jpg",
+        "photos": []
       },
       {
         "id": "jesse-randall",
@@ -939,9 +901,7 @@
         },
         "shirt_number_expected": 25,
         "status": "fixed",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Jesse_Randall.jpg/500px-Jesse_Randall.jpg"
-        ]
+        "photos": []
       }
     ],
     "starting_xi": {
@@ -1065,21 +1025,12 @@
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
     "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
-    "image_pool": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Australia_vs_New_Zealand.jpg/500px-Australia_vs_New_Zealand.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/New_Zealand_in_NSW_1884.jpg/500px-New_Zealand_in_NSW_1884.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/New_Zealand_free_kick%2C_POR_vs_NZL%2C_U20_WC_2007.jpg/500px-New_Zealand_free_kick%2C_POR_vs_NZL%2C_U20_WC_2007.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/NZvMalLineup1.JPG/500px-NZvMalLineup1.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/0/09/New_Zealand_-_Slovakia_2010-06-15.png",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Great_Britain_Womens_Football_Team.jpg/500px-Great_Britain_Womens_Football_Team.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/New_Zealand_goal.JPG/500px-New_Zealand_goal.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Israel_v_New_Zealand_-_Ramat_Gan%2C_1989_-_Ronny_Rosenthal.jpg/500px-Israel_v_New_Zealand_-_Ramat_Gan%2C_1989_-_Ronny_Rosenthal.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Maillot_ext%C3%A9rieur_de_l%27%C3%A9quipe_de_Nouvelle-Z%C3%A9lande_de_football_en_2010.JPG/500px-Maillot_ext%C3%A9rieur_de_l%27%C3%A9quipe_de_Nouvelle-Z%C3%A9lande_de_football_en_2010.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/1905_New_Zealand_rugby_football_team.jpg/500px-1905_New_Zealand_rugby_football_team.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Postcard._New_Zealand_football_team%2C_1905_-_G.W.S.M._%281905%3F%29_%2821015087913%29.jpg/500px-Postcard._New_Zealand_football_team%2C_1905_-_G.W.S.M._%281905%3F%29_%2821015087913%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Israel_v_New_Zealand_-_Ramat_Gan%2C_1989_-_Ronny_Rosenthal_%28cropped%29.jpg/500px-Israel_v_New_Zealand_-_Ramat_Gan%2C_1989_-_Ronny_Rosenthal_%28cropped%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/New_Zealand-Portugal_%2835%29.jpg/500px-New_Zealand-Portugal_%2835%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/New_Zealand-Portugal_%2836%29.jpg/500px-New_Zealand-Portugal_%2836%29.jpg"
+    "team_photos": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Philippine_Football_Federation_New_Zealand_Embassy_meet.jpg/960px-Philippine_Football_Federation_New_Zealand_Embassy_meet.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Australia_vs_New_Zealand.jpg/960px-Australia_vs_New_Zealand.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/New_Zealand_goal.JPG/960px-New_Zealand_goal.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/New_Zealand-Portugal_%2830%29_%28cropped%29.jpg/960px-New_Zealand-Portugal_%2830%29_%28cropped%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/All_Whites_versus_Socceroos%2C_%28New_Zealand_vs_Australia%29_2022.jpg/960px-All_Whites_versus_Socceroos%2C_%28New_Zealand_vs_Australia%29_2022.jpg"
     ]
   },
   "history": {

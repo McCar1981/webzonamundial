@@ -1,0 +1,1402 @@
+⚠ --insecure: verificación TLS desactivada (solo para proxy MITM).
+Commons/Wikidata fetch · 48 equipo(s) · APPLY (escribe) · per-player=6 · RESET
+
+[alemania]
+  · Manuel Neuer … (node:161484) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.
+(Use `node --trace-warnings ...` to show where the warning was created)
+6 foto(s) [cat:club(18)]
+  · Oliver Baumann … 2 foto(s) [cat:club(2)]
+  · Alexander Nübel … 2 foto(s) [cat:club(2)]
+  · Waldemar Anton … 2 foto(s) [cat:club(2)]
+  · Waldemar Anton … 2 foto(s) [cat:club(2)]
+  · Jonathan Tah … 6 foto(s) [cat:club(15)]
+  · Joshua Kimmich … 6 foto(s) [cat:5sel/43]
+  · Nico Schlotterbeck … 4 foto(s) [cat:1sel/4]
+  · Nathaniel Brown … 0 (Q122351097)
+  · David Raum … 6 foto(s) [cat:4sel/10]
+  · Malick Thiaw … 6 foto(s) [cat:club(16)]
+  · Aleksandar Pavlović … 1 foto(s) [P18]
+  · Leon Goretzka … 6 foto(s) [cat:2sel/45]
+  · Jamie Leweling … 1 foto(s) [P18]
+  · Jamal Musiala … 6 foto(s) [cat:3sel/11]
+  · Pascal Groß … 1 foto(s) [P18]
+  · Angelo Stiller … 1 foto(s) [P18]
+  · Florian Wirtz … 6 foto(s) [cat:club(17)]
+  · Leroy Sané … 1 foto(s) [P18]
+  · Nadiem Amiri … 6 foto(s) [cat:club(26)]
+  · Felix Nmecha … 6 foto(s) [cat:club(13)]
+  · Lennart Karl … 0 (Q130776450)
+  · Kai Havertz … 6 foto(s) [cat:1sel/49]
+  · Nick Woltemade … 6 foto(s) [cat:club(18)]
+  · Maximilian Beier … 1 foto(s) [P18]
+  · Deniz Undav … 6 foto(s) [cat:club(9)]
+  ✓ escrito data\teams\alemania.json
+
+[arabia-saudi]
+  · Nawaf Al-Aqidi … 6 foto(s) [cat:club(8)]
+  · Mohammed Al-Owais … 1 foto(s) [cat:club(1)]
+  · Ahmed Al-Kassar … 0 (Q23712857)
+  · Ali Majrashi … 2 foto(s) [cat:2sel/2]
+  · Ali Lajami … 1 foto(s) [P18]
+  · Abdulelah Al-Amri … 6 foto(s) [cat:club(8)]
+  · Hassan Tambakti … 0 (Q45108287)
+  · Saud Abdulhamid … 2 foto(s) [cat:2sel/2]
+  · Nawaf Bu Washl … sin wikidata
+  · Hassan Kadish … sin wikidata
+  · Moteb Al-Harbi … 0 (Q97698786)
+  · Jehad Thikri … sin wikidata
+  · Mohammed Abu Alshamat … sin wikidata
+  · Nasser Al-Dawsari … 2 foto(s) [cat:1sel/2]
+  · Musab Al-Juwayr … 0 (Q105834415)
+  · Abdullah Al-Khaibari … 6 foto(s) [cat:club(9)]
+  · Ziyad Al-Johani … 2 foto(s) [cat:2sel/2]
+  · Ala Al-Hajji … sin wikidata
+  · Mohammed Kanno … sin wikidata
+  · Aiman Yahya … sin wikidata
+  · Feras Al-Brikan … sin wikidata
+  · Salem Al-Dawsari … 4 foto(s) [cat:club(4)]
+  · Saleh Al-Shehri … 0 (Q7403894)
+  · Khalid Al-Ghannam … 0 (Q64147458)
+  · Abdullah Al-Hamddan … 0 (Q47499719)
+  · Sultan Mandash … 0 (Q22340706)
+  ✓ escrito data\teams\arabia-saudi.json
+
+[argelia]
+  · Melvin Mastil … 0 (Q105846503)
+  · Oussama Benbot … 0 (Q84601192)
+  · Luca Zidane … 2 foto(s) [cat:club(2)]
+  · Aïssa Mandi … 6 foto(s) [cat:club(21)]
+  · Achraf Abada … sin wikidata
+  · Mohamed Amine Tougai … 1 foto(s) [P18]
+  · Zineddine Belaïd … 1 foto(s) [cat:club(1)]
+  · Jaouen Hadjam … 4 foto(s) [cat:club(4)]
+  · Rayan Aït-Nouri … 6 foto(s) [cat:1sel/12]
+  · Rafik Belghali … 0 (Q106030853)
+  · Ramy Bensebaini … 6 foto(s) [cat:club(43)]
+  · Samir Chergui … 0 (Q104745615)
+  · Ramiz Zerrouki … 1 foto(s) [cat:club(1)]
+  · Houssem Aouar … 6 foto(s) [cat:club(18)]
+  · Farès Chaïbi … 1 foto(s) [P18]
+  · Hicham Boudaoui … 6 foto(s) [cat:club(10)]
+  · Nabil Bentaleb … 1 foto(s) [P18]
+  · Ibrahim Maza … 0 (Q118118504)
+  · Yassine Titraoui … sin wikidata
+  · Riyad Mahrez … 6 foto(s) [cat:1sel/37]
+  · Amine Gouiri … 6 foto(s) [cat:club(12)]
+  · Anis Hadj Moussa … 1 foto(s) [cat:club(1)]
+  · Nadhir Benbouali … 1 foto(s) [P18]
+  · Mohamed Amoura … 1 foto(s) [cat:club(1)]
+  · Adil Boulbina … 0 (Q112654481)
+  · Fares Ghedjemis … 0 (Q124151324)
+  ✓ escrito data\teams\argelia.json
+
+[argentina]
+  · Juan Musso … 1 foto(s) [P18]
+  · Gerónimo Rulli … 1 foto(s) [P18]
+  · Emiliano Martínez … 6 foto(s) [cat:8sel/33]
+  · Leonardo Balerdi … 4 foto(s) [cat:club(4)]
+  · Nicolás Tagliafico … 6 foto(s) [cat:13sel/18]
+  · Gonzalo Montiel … 6 foto(s) [cat:8sel/14]
+  · Lisandro Martínez … 5 foto(s) [cat:3sel/5]
+  · Cristian Romero … 6 foto(s) [cat:5sel/21]
+  · Nicolás Otamendi … 1 foto(s) [P18]
+  · Facundo Medina … 6 foto(s) [cat:club(11)]
+  · Nahuel Molina … 6 foto(s) [cat:5sel/6]
+  · Leandro Paredes … 6 foto(s) [cat:4sel/30]
+  · Rodrigo De Paul … 1 foto(s) [P18]
+  · Valentín Barco … 6 foto(s) [cat:8sel/12]
+  · Giovani Lo Celso … 1 foto(s) [P18]
+  · Exequiel Palacios … 4 foto(s) [cat:3sel/4]
+  · Nicolás González …   ! API: HTTP 429
+sin wikidata
+  · Alexis Mac Allister …   ! API: HTTP 429
+sin wikidata
+  · Enzo Fernández … 6 foto(s) [cat:7sel/36]
+  · Julián Álvarez … 6 foto(s) [cat:4sel/32]
+  · Lionel Andrés Messi … 6 foto(s) [cat:club(15)]
+  · Thiago Almada … 6 foto(s) [cat:4sel/7]
+  · Giuliano Simeone … 3 foto(s) [cat:1sel/3]
+  · Nicolás Paz … 0 (Q112065940)
+  · José López … 0 (Q112042831)
+  · Lautaro Martínez … 6 foto(s) [cat:18sel/31]
+  ✓ escrito data\teams\argentina.json
+
+[australia]
+  · Mathew Ryan … 6 foto(s) [cat:7sel/32]
+  · Paul Izzo … 2 foto(s) [cat:club(2)]
+  · Patrick Beach … 1 foto(s) [P18]
+  · Miloš Degenek … 6 foto(s) [cat:1sel/12]
+  · Alessandro Circati … 0 (Q111020508)
+  · Jacob Italiano … 0 (Q43303848)
+  · Jordan Bos … 5 foto(s) [cat:club(5)]
+  · Jason Geria … 1 foto(s) [cat:club(1)]
+  · Kai Trewin … 6 foto(s) [cat:club(9)]
+  · Aziz Behich … 6 foto(s) [cat:4sel/8]
+  · Harry Souttar … 6 foto(s) [cat:3sel/6]
+  · Cameron Burgess … 6 foto(s) [cat:club(9)]
+  · Lucas Herrington … 1 foto(s) [P18]
+  · Connor Metcalfe … 6 foto(s) [cat:1sel/6]
+  · Aiden O'Neill … 6 foto(s) [cat:club(29)]
+  · Cameron Devlin … 1 foto(s) [P18]
+  · Jackson Irvine … 6 foto(s) [cat:8sel/21]
+  · Paul Okon-Engstler … 0 (Q117000107)
+  · Mathew Leckie … 6 foto(s) [cat:7sel/15]
+  · Mohamed Toure … 1 foto(s) [P18]
+  · Ajdin Hrustić … 1 foto(s) [P18]
+  · Awer Mabil … 2 foto(s) [cat:2sel/2]
+  · Nestory Irankunda … 6 foto(s) [cat:club(10)]
+  · Cristian Volpato … 1 foto(s) [P18]
+  · Nishan Velupillay … 1 foto(s) [P18]
+  · Tete Yengi … 1 foto(s) [P18]
+  ✓ escrito data\teams\australia.json
+
+[austria]
+  · Alexander Schlager … 1 foto(s) [P18]
+  · Florian Wiegele … 0 (Q123335801)
+  · Patrick Pentz … 1 foto(s) [P18]
+  · David Affengruber … 1 foto(s) [P18]
+  · Kevin Danso … 6 foto(s) [cat:7sel/20]
+  · Stefan Posch … 6 foto(s) [cat:13sel/14]
+  · David Alaba … 1 foto(s) [P18]
+  · Philipp Lienhart … 1 foto(s) [P18]
+  · Phillipp Mwene … 6 foto(s) [cat:22sel/41]
+  · Marco Friedl … 6 foto(s) [cat:20sel/26]
+  · Michael Svoboda … 6 foto(s) [cat:club(9)]
+  · Xaver Schlager … 1 foto(s) [P18]
+  · Nicolas Seiwald … 1 foto(s) [P18]
+  · Marcel Sabitzer … 1 foto(s) [P18]
+  · Florian Grillitsch … 6 foto(s) [cat:18sel/38]
+  · Carney Chukwuemeka … 0 (Q106915801)
+  · Romano Schmid … 1 foto(s) [P18]
+  · Christoph Baumgartner … 6 foto(s) [cat:9sel/13]
+  · Konrad Laimer … 1 foto(s) [P18]
+  · Alexander Prass … 1 foto(s) [P18]
+  · Paul Wanner … 1 foto(s) [cat:club(1)]
+  · Alessandro Schöpf … 1 foto(s) [cat:club(1)]
+  · Marko Arnautović … 3 foto(s) [cat:1sel/3]
+  · Michael Gregoritsch … 1 foto(s) [P18]
+  · Sasa Kalajdžić … 6 foto(s) [cat:club(15)]
+  · Patrick Wimmer … 1 foto(s) [P18]
+  ✓ escrito data\teams\austria.json
+
+[belgica]
+  · Thibaut Courtois … 1 foto(s) [P18]
+  · Senne Lammens … 1 foto(s) [P18]
+  · Mike Penders … 0 (Q113515002)
+  · Zeno Debast … 4 foto(s) [cat:2sel/4]
+  · Arthur Theate … 5 foto(s) [cat:2sel/5]
+  · Brandon Mechele … 6 foto(s) [cat:3sel/19]
+  · Maxim De Cuyper … 6 foto(s) [cat:2sel/15]
+  · Thomas Meunier … 1 foto(s) [P18]
+  · Koni De Winter … 1 foto(s) [cat:1sel/1]
+  · Joaquin Seys … 5 foto(s) [cat:1sel/5]
+  · Timothy Castagne … 1 foto(s) [P18]
+  · Nathan Ngoy … 0 (Q107094087)
+  · Axel Witsel … 1 foto(s) [P18]
+  · Kevin De Bruyne … 1 foto(s) [P18]
+  · Youri Tielemans … 6 foto(s) [cat:2sel/21]
+  · Diego Moreira … 5 foto(s) [cat:club(5)]
+  · Hans Vanaken … 6 foto(s) [cat:club(17)]
+  · Alexis Saelemaekers … 6 foto(s) [cat:1sel/11]
+  · Nicolas Raskin … 4 foto(s) [cat:3sel/4]
+  · Amadou Onana … 6 foto(s) [cat:6sel/14]
+  · Romelu Lukaku … 1 foto(s) [P18]
+  · Leandro Trossard … 1 foto(s) [P18]
+  · Jérémy Doku … 6 foto(s) [cat:5sel/22]
+  · Dodi Lukebakio … 6 foto(s) [cat:3sel/15]
+  · Charles De Ketelaere … 6 foto(s) [cat:5sel/12]
+  · Matías Fernández-Pardo … 1 foto(s) [cat:club(1)]
+  ✓ escrito data\teams\belgica.json
+
+[bosnia]
+  · Nikola Vasilj … 6 foto(s) [cat:club(6)]
+  · Mladen Jurkas … 0 (Q140007173)
+  · Martin Zlomislić … 0 (Q83795769)
+  · Nihad Mujakić … 0 (Q50623645)
+  · Dennis Hadžikadunić … 6 foto(s) [cat:club(15)]
+  · Tarik Muharemović … 0 (Q106620882)
+  · Sead Kolašinac … 6 foto(s) [cat:1sel/23]
+  · Amar Dedić … 1 foto(s) [P18]
+  · Nikola Katić … 1 foto(s) [P18]
+  · Stjepan Radeljić … 0 (Q56227031)
+  · Nidal Čelik … 1 foto(s) [P18]
+  · Benjamin Tahirović … 2 foto(s) [cat:club(2)]
+  · Armin Gigović … 4 foto(s) [cat:club(4)]
+  · Ivan Bašić … 1 foto(s) [P18]
+  · Ivan Šunjić … 6 foto(s) [cat:club(13)]
+  · Amar Memić … 0 (Q124051749)
+  · Amir Hadžiahmetović … 6 foto(s) [cat:club(10)]
+  · Dženis Burnić … 1 foto(s) [P18]
+  · Ermin Mahmić … 0 (Q123139564)
+  · Samed Baždar … 0 (Q107284545)
+  · Ermedin Demirović … 0 (Q47067481)
+  · Edin Džeko … 6 foto(s) [cat:1sel/33]
+  · Kerim Alajbegović … 1 foto(s) [P18]
+  · Esmir Bajraktarević … 6 foto(s) [cat:club(8)]
+  · Haris Tabaković … 6 foto(s) [cat:club(6)]
+  · Jovo Lukić … 0 (Q96182876)
+  ✓ escrito data\teams\bosnia.json
+
+[brasil]
+  · Alisson Becker … 1 foto(s) [P18]
+  · Weverton … 0 (Q124372799)
+  · Ederson Moraes … 6 foto(s) [cat:7sel/25]
+  · Wesley … 1 foto(s) [P18 · país?]
+  · Gabriel Magalhães … 6 foto(s) [cat:club(24)]
+  · Marcos Aoás Corrêa … 1 foto(s) [P18]
+  · Alex Sandro … 6 foto(s) [cat:4sel/40]
+  · Danilo Luiz da Silva … 1 foto(s) [P18]
+  · Gleison Bremer … 0 (Q38693097)
+  · Léo Pereira … 0 (Q18199184)
+  · Douglas Santos … 1 foto(s) [P18]
+  · Roger Ibáñez … 6 foto(s) [cat:11sel/13]
+  · Carlos Henrique Casimiro … 1 foto(s) [cat:club(1)]
+  · Bruno Guimarães … 6 foto(s) [cat:club(27)]
+  · Fábio Tavares … 6 foto(s) [cat:1sel/19]
+  · Danilo S. … sin wikidata
+  · Lucas Paquetá … 6 foto(s) [cat:6sel/38]
+  · Vinícius José Paixão de Oliveira Júnior … 6 foto(s) [cat:3sel/33]
+  · Matheus Cunha … 6 foto(s) [cat:5sel/20]
+  · Neymar da Silva Santos Júnior … 6 foto(s) [cat:club(6)]
+  · Raphael Dias Belloli … 6 foto(s) [cat:8sel/15]
+  · Endrick Felipe … 6 foto(s) [cat:club(35)]
+  · Luiz Henrique … 6 foto(s) [cat:club(13)]
+  · Gabriel Martinelli … 6 foto(s) [cat:club(26)]
+  · Igor Thiago … 1 foto(s) [P18]
+  · Rayan … 1 foto(s) [P18]
+  ✓ escrito data\teams\brasil.json
+
+[cabo-verde]
+  · Vozinha … 0 (Q3018091)
+  · Márcio da Rosa … sin wikidata
+  · Carlos Santos … 0 (Q2435358)
+  · Stopira … 6 foto(s) [cat:1sel/8]
+  · Diney Borges … sin wikidata
+  · Roberto 'Pico' Lopes … sin wikidata
+  · Logan Costa … 6 foto(s) [cat:club(7)]
+  · Sidny Cabral 'Diawisa' Tavares … sin wikidata
+  · Steven Moreira … 6 foto(s) [cat:club(29)]
+  · Wagner Pina … 0 (Q126369438)
+  · Kelvin Pires … 0 (Q107806484)
+  · Kevin Pina … 2 foto(s) [cat:club(2)]
+  · Jovane Cabral … 1 foto(s) [P18]
+  · João Paulo Fernandes … 0 (Q107334828)
+  · Jamiro Monteiro … 6 foto(s) [cat:2sel/6]
+  · Garry Rodrigues … 6 foto(s) [cat:1sel/14]
+  · Deroy Duarte … 2 foto(s) [cat:club(2)]
+  · Laros Duarte … 0 (Q20676495)
+  · Yannick Semedo … 0 (Q130465245)
+  · Willy Semedo … 1 foto(s) [P18]
+  · Telmo Arcanjo … 0 (Q97580948)
+  · Nuno da Costa … 6 foto(s) [cat:club(38)]
+  · Hélio Varela … 0 (Q121907216)
+  · Gilson Benchimol … 1 foto(s) [P18]
+  · Dailon Livramento … 0 (Q110943455)
+  · Ryan Mendes … 1 foto(s) [P18]
+  ✓ escrito data\teams\cabo-verde.json
+
+[canada]
+  · Dayne St. Clair … 6 foto(s) [cat:4sel/13]
+  · Maxime Crépeau … 6 foto(s) [cat:2sel/14]
+  · Owen Goodman … 6 foto(s) [cat:club(10) · país?]
+  · Alistair Johnston … 6 foto(s) [cat:6sel/11]
+  · Alfie Jones … 1 foto(s) [P18 · país?]
+  · Luc de Fougerolles … 0 (Q121829403)
+  · Joel Waterman … 1 foto(s) [P18]
+  · Derek Cornelius … 6 foto(s) [cat:club(7)]
+  · Moïse Bombito … 2 foto(s) [cat:club(2)]
+  · Alphonso Davies … 6 foto(s) [cat:club(11)]
+  · Richie Laryea … 6 foto(s) [cat:4sel/33]
+  · Niko Sigur … 0 (Q117830854)
+  · Mathieu Choinière … 0 (Q55760452)
+  · Stephen Eustáquio … 6 foto(s) [cat:6sel/7]
+  · Ismaël Koné … 4 foto(s) [cat:2sel/4]
+  · Liam Millar … 4 foto(s) [cat:club(4)]
+  · Jacob Shaffelburg … 6 foto(s) [cat:club(25)]
+  · Jonathan Osorio … 6 foto(s) [cat:7sel/13]
+  · Nathan Saliba … 1 foto(s) [P18]
+  · Marcelo Flores … 1 foto(s) [P18]
+  · Cyle Larin … 6 foto(s) [cat:2sel/6]
+  · Jonathan David … 6 foto(s) [cat:4sel/19]
+  · Tani Oluwaseyi … 6 foto(s) [cat:club(13)]
+  · Tajon Buchanan … 2 foto(s) [cat:2sel/2]
+  · Ali Ahmed … 0 (Q111741178)
+  · Promise David … 3 foto(s) [cat:club(3)]
+  ✓ escrito data\teams\canada.json
+
+[colombia]
+  · David Ospina … 6 foto(s) [cat:3sel/34]
+  · Camilo Vargas … 4 foto(s) [cat:1sel/4]
+  · Álvaro Montero … 1 foto(s) [P18]
+  · Daniel Muñoz … 5 foto(s) [cat:club(5)]
+  · Jhon Lucumí … 6 foto(s) [cat:club(11)]
+  · Santiago Arias … 6 foto(s) [cat:1sel/14]
+  · Yerry Mina … 6 foto(s) [cat:3sel/41]
+  · Gustavo Puerta … 1 foto(s) [P18]
+  · Johan Mojica … 6 foto(s) [cat:3sel/14]
+  · Willer Ditta … 1 foto(s) [P18]
+  · Déiver Machado … 4 foto(s) [cat:club(4)]
+  · Dávinson Sánchez … 1 foto(s) [P18]
+  · Kevin Castaño … 1 foto(s) [P18]
+  · Richard Ríos … 6 foto(s) [cat:club(15)]
+  · Jorge Carrascal … 3 foto(s) [cat:club(3)]
+  · James David Rodríguez … 4 foto(s) [cat:2sel/4]
+  · Jhon Arias … 1 foto(s) [P18]
+  · Juan Camilo Portilla … sin wikidata
+  · Jefferson Lerma … 6 foto(s) [cat:2sel/18]
+  · Juan Fernando Quintero … 6 foto(s) [cat:3sel/13]
+  · Luis Fernando Díaz … 6 foto(s) [cat:6sel/38]
+  · Jhon Córdoba … 6 foto(s) [cat:club(12)]
+  · Juan Camilo "Cucho" Hernández … sin wikidata
+  · Leandro Campaz … 0 (Q30050934)
+  · Luis Javier Suárez … 1 foto(s) [P18]
+  · Andrés Gómez … 0 (Q116215934)
+  ✓ escrito data\teams\colombia.json
+
+[corea-del-sur]
+  · Kim Seung-gyu … 4 foto(s) [cat:2sel/4]
+  · Song Bum-keun … 2 foto(s) [cat:club(2)]
+  · Jo Hyeon-woo … 6 foto(s) [cat:6sel/8]
+  · Lee Han-Beom … 1 foto(s) [cat:club(1)]
+  · Kim Min-jae … 1 foto(s) [cat:club(1)]
+  · Taehyeon Kim … sin wikidata
+  · Lee Tae-seok … 2 foto(s) [cat:club(2)]
+  · Wije Cho … sin wikidata
+  · Kim Moon-hwan … 1 foto(s) [P18]
+  · Park Jin-Seob … 1 foto(s) [cat:club(1)]
+  · Seol Young-Woo … 1 foto(s) [P18]
+  · Jens Castrop … 0 (Q98829565)
+  · Gihyuk Lee … sin wikidata
+  · Hwang In-beom … 6 foto(s) [cat:3sel/8]
+  · Paik Seung-Ho … 1 foto(s) [cat:club(1)]
+  · Lee Jae-sung … 6 foto(s) [cat:10sel/19]
+  · Hwang Hee-chan … 1 foto(s) [P18]
+  · Bae Jun-ho … 1 foto(s) [P18]
+  · Lee Kang-in … 6 foto(s) [cat:club(18)]
+  · Yang Hyun-jun … 6 foto(s) [cat:club(6)]
+  · Kim Jin-Gyu … 0 (Q483070)
+  · Eom Ji-Sung … 1 foto(s) [cat:club(1)]
+  · Lee Dong-gyeong … 2 foto(s) [cat:1sel/2]
+  · Son Heung-min … 2 foto(s) [cat:club(2)]
+  · Cho Gue-sung … 5 foto(s) [cat:club(5)]
+  · Oh Hyeon-gyu … 1 foto(s) [P18]
+  ✓ escrito data\teams\corea-del-sur.json
+
+[costa-de-marfil]
+  · Yahia Fofana … 6 foto(s) [cat:club(8)]
+  · Mohamed Koné … 2 foto(s) [cat:club(2)]
+  · Alban Lafont … 6 foto(s) [cat:club(26)]
+  · Ousmane Diomande … 6 foto(s) [cat:club(17)]
+  · Ghislain Konan … 6 foto(s) [cat:8sel/36]
+  · Wilfried Singo … 6 foto(s) [cat:club(13)]
+  · Odilon Kossounou … 6 foto(s) [cat:club(18)]
+  · Christopher Operi … 6 foto(s) [cat:club(15)]
+  · Guéla Doué … 4 foto(s) [cat:club(4)]
+  · Emmanuel Agbadou … 6 foto(s) [cat:club(9)]
+  · Evan N'Dicka … 1 foto(s) [P18]
+  · Jean Michaël Seri … 6 foto(s) [cat:club(19)]
+  · Seko Fofana … 6 foto(s) [cat:club(21)]
+  · Franck Kessié … 6 foto(s) [cat:club(25)]
+  · Ali Badra Sangaré … sin wikidata
+  · Parfait Guiagon … 1 foto(s) [P18]
+  · Christiano Oulaï … sin wikidata
+  · Ange-Yoan Bonny … 0 (Q101067809)
+  · Simon Adingra … 6 foto(s) [cat:club(15)]
+  · Yan Diomande … 0 (Q133698867)
+  · Elye Wahi … 6 foto(s) [cat:club(9)]
+  · Oumar Diakité … 1 foto(s) [P18]
+  · Amad Diallo … 4 foto(s) [cat:club(4)]
+  · Nicolas Pépé … 6 foto(s) [cat:club(19)]
+  · Evann Guessand … 4 foto(s) [cat:club(4)]
+  · Bazoumana Touré … 0 (Q125805788)
+  ✓ escrito data\teams\costa-de-marfil.json
+
+[croacia]
+  · Dominik Livaković … 6 foto(s) [cat:club(7)]
+  · Ivor Pandur … 0 (Q84462730)
+  · Dominik Kotarski … 1 foto(s) [P18]
+  · Josip Stanišić … 4 foto(s) [cat:club(4)]
+  · Marin Pongračić … 1 foto(s) [cat:club(1)]
+  · Joško Gvardiol … 6 foto(s) [cat:club(10)]
+  · Duje Ćaleta-Car … 1 foto(s) [P18]
+  · Josip Šutalo … 5 foto(s) [cat:club(5)]
+  · Kristijan Jakić … 6 foto(s) [cat:club(11)]
+  · Luka Vušković … 0 (Q115162374)
+  · Martin Erlić … 1 foto(s) [P18]
+  · Nikola Moro … 1 foto(s) [P18]
+  · Mateo Kovačić … 1 foto(s) [P18]
+  · Luka Modrić … 6 foto(s) [cat:club(7)]
+  · Nikola Vlašić … 6 foto(s) [cat:club(20)]
+  · Mario Pašalić … 6 foto(s) [cat:club(7)]
+  · Martin Baturina … 6 foto(s) [cat:club(6)]
+  · Petar Sučić … 1 foto(s) [P18]
+  · Toni Fruk … 0 (Q109587383)
+  · Luka Sučić … 1 foto(s) [P18]
+  · Andrej Kramarić … 6 foto(s) [cat:1sel/9]
+  · Ante Budimir … 2 foto(s) [cat:club(2)]
+  · Ivan Perišić … 6 foto(s) [cat:6sel/16]
+  · Igor Matanović … 0 (Q102399064)
+  · Marco Pašalić … 1 foto(s) [P18]
+  · Petar Musa … 6 foto(s) [cat:club(6)]
+  ✓ escrito data\teams\croacia.json
+
+[curazao]
+  · Eloy Room … 2 foto(s) [cat:club(2)]
+  · Tyrick Bodak … 0 (Q108858343)
+  · Trevor Doornbusch … 6 foto(s) [cat:club(6)]
+  · Shurandy Sambo … 0 (Q62714742)
+  · Juriën Gaari … 3 foto(s) [cat:club(3)]
+  · Roshon van Eijma … 1 foto(s) [cat:club(1)]
+  · Sherel Floranus … 6 foto(s) [cat:club(6)]
+  · Armando Obispo … 6 foto(s) [cat:club(6)]
+  · Joshua Brenet … 3 foto(s) [cat:club(3)]
+  · Riechedly Bazoer … 6 foto(s) [cat:club(12)]
+  · Deveron Fonville … 0 (Q116215237)
+  · Godfried Roemeratoe … 1 foto(s) [cat:club(1)]
+  · Juninho Bacuna … 1 foto(s) [P18]
+  · Livano Comenencia … 0 (Q108800542)
+  · Leandro Bacuna … 6 foto(s) [cat:club(7)]
+  · Arjany Martha … sin wikidata
+  · Tahith Chong … 6 foto(s) [cat:club(6)]
+  · Kevin Felida … 1 foto(s) [P18]
+  · Jürgen Locadia … 6 foto(s) [cat:club(13)]
+  · Jeremy Antonisse … 0 (Q104531012)
+  · Sontje Hansen … 1 foto(s) [P18]
+  · Tyrese Noslin … 1 foto(s) [cat:club(1)]
+  · Kenji Gorré … 2 foto(s) [cat:club(2)]
+  · Jearl Margaritha … 0 (Q104780374)
+  · Brandley Kuwas … 1 foto(s) [P18]
+  · Gervane Kastaneer … 1 foto(s) [cat:club(1)]
+  ✓ escrito data\teams\curazao.json
+
+[ecuador]
+  · Hernán Galíndez … 5 foto(s) [cat:4sel/5]
+  · Moisés Ramírez … 0 (Q60842106)
+  · Gonzalo Valle … 0 (Q87119732)
+  · Félix Torres … 6 foto(s) [cat:9sel/10]
+  · Piero Hincapié … 3 foto(s) [cat:1sel/3]
+  · Joel Ordóñez … 2 foto(s) [cat:club(2)]
+  · William Pacho … 5 foto(s) [cat:club(5)]
+  · Pervis Estupiñán … 6 foto(s) [cat:11sel/14]
+  · Ángelo Preciado … 2 foto(s) [cat:2sel/2]
+  · Jackson Porozo … 1 foto(s) [P18]
+  · Yaimar Medina … 0 (Q116235098)
+  · Jordy Alcívar … 1 foto(s) [P18]
+  · Anthony Valencia … 0 (Q101247266)
+  · Kendry Páez … 1 foto(s) [P18]
+  · Alan Minda … 0 (Q116054089)
+  · Pedro Vite … 1 foto(s) [P18]
+  · Denil Castillo … 0 (Q117835987)
+  · Alan Franco … 0 (Q56164119)
+  · Moisés Caicedo … 6 foto(s) [cat:3sel/45]
+  · John Yeboah … 1 foto(s) [P18]
+  · Kevin Rodríguez … 0 (Q115132592)
+  · Enner Valencia … 6 foto(s) [cat:10sel/26]
+  · Jordy Caicedo … 6 foto(s) [cat:10sel/11]
+  · Gonzalo Plata … 4 foto(s) [cat:4sel/4]
+  · Nilson Angulo … 5 foto(s) [cat:club(5)]
+  · Jeremy Arévalo … 0 (Q121410218)
+  ✓ escrito data\teams\ecuador.json
+
+[egipto]
+  · Mohamed Elshenawy … sin wikidata
+  · El Mahdy Soliman … 0 (Q4702779)
+  · Mostafa Shoubir … sin wikidata
+  · Mohamed Alaa … sin wikidata
+  · Yasser Ibrahim … 1 foto(s) [cat:club(1)]
+  · Mohamed Hany … 1 foto(s) [cat:club(1)]
+  · Hossam Abdelmaguid … 6 foto(s) [cat:6sel/6]
+  · Rami Rabia … 5 foto(s) [cat:club(5)]
+  · Mohamed Abdelmoneim … 0 (Q6890925)
+  · Ahmed Fatouh … sin wikidata
+  · Karim Hafez … 5 foto(s) [cat:club(5)]
+  · Tarek Alaa … 0 (Q139986016)
+  · Hossam Hassan … 1 foto(s) [P18]
+  · Mostafa Zico … sin wikidata
+  · Hamdy Fathy … 6 foto(s) [cat:26sel/37]
+  · Mohanad Lashin … sin wikidata
+  · Nabil Donga … sin wikidata
+  · Marwan Attia … 1 foto(s) [P18]
+  · Mahmoud Saber … 1 foto(s) [P18]
+  · Mahmoud 'Trezeguet' Hassan … sin wikidata
+  · Hamza Abdel Karim … sin wikidata
+  · Mohamed Salah … 1 foto(s) [P18]
+  · Haitham Hassan … sin wikidata
+  · Ibrahim Adel … 1 foto(s) [P18]
+  · Omar Marmoush … 6 foto(s) [cat:20sel/36]
+  · Mahmoud Hamdy … 6 foto(s) [cat:17sel/27]
+  ✓ escrito data\teams\egipto.json
+
+[escocia]
+  · Angus Gunn … 6 foto(s) [cat:1sel/11]
+  · Liam Kelly … 1 foto(s) [P18]
+  · Craig Gordon … 6 foto(s) [cat:club(13)]
+  · Aaron Hickey … 1 foto(s) [P18]
+  · Andrew Robertson … 6 foto(s) [cat:5sel/43]
+  · Grant Hanley … 6 foto(s) [cat:1sel/12]
+  · Kieran Tierney … 5 foto(s) [cat:club(5)]
+  · Jack Hendry … 5 foto(s) [cat:1sel/5]
+  · John Souttar … 5 foto(s) [cat:2sel/5]
+  · Dom Hyam … sin wikidata
+  · Nathan Patterson … 1 foto(s) [P18]
+  · Anthony Ralston … 6 foto(s) [cat:1sel/17]
+  · Scott McKenna … 0 (Q24084667)
+  · Scott McTominay … 1 foto(s) [P18]
+  · John McGinn … 6 foto(s) [cat:5sel/19]
+  · Tyler Fletcher … 0 (Q137384640)
+  · Ryan Christie … 6 foto(s) [cat:1sel/26]
+  · Lewis Ferguson … 0 (Q47467341)
+  · Kenny McLean … 6 foto(s) [cat:1sel/6]
+  · Lyndon Dykes … 0 (Q26405109)
+  · Che Adams … 6 foto(s) [cat:club(9)]
+  · Ross Stewart … 0 (Q47126518)
+  · Ben Doak … 1 foto(s) [P18]
+  · George Hirst … 6 foto(s) [cat:2sel/6]
+  · Lawrence Shankland … 1 foto(s) [P18]
+  · Findlay Curtis … 0 (Q131863254)
+  ✓ escrito data\teams\escocia.json
+
+[espana]
+  · David Raya … 6 foto(s) [cat:club(7)]
+  · Joan García … 2 foto(s) [cat:club(2)]
+  · Unai Simón … 6 foto(s) [cat:2sel/6]
+  · Marc Pubill … 1 foto(s) [cat:1sel/1]
+  · Alejandro Grimaldo … 6 foto(s) [cat:4sel/22]
+  · Eric García … 6 foto(s) [cat:1sel/8]
+  · Marcos Llorente … 3 foto(s) [cat:club(3)]
+  · Pedro Porro … 2 foto(s) [cat:1sel/2]
+  · Aymeric Laporte … 6 foto(s) [cat:club(21)]
+  · Pau Cubarsí … 6 foto(s) [cat:7sel/13]
+  · Marc Cucurella … 6 foto(s) [cat:1sel/22]
+  · Mikel Merino … 6 foto(s) [cat:3sel/19]
+  · Fabián Ruiz … 6 foto(s) [cat:36sel/50]
+  · Gavi … 6 foto(s) [cat:club(10)]
+  · Álex Baena … 1 foto(s) [cat:1sel/1]
+  · Rodri Hernández … 1 foto(s) [P18]
+  · Martín Zubimendi … 6 foto(s) [cat:2sel/8]
+  · Pedro González López … 6 foto(s) [cat:1sel/13]
+  · Ferran Torres … 6 foto(s) [cat:club(10)]
+  · Dani Olmo … 6 foto(s) [cat:club(11)]
+  · Yeremy Pino … 3 foto(s) [cat:club(3)]
+  · Nicholas Williams … 6 foto(s) [cat:2sel/7]
+  · Lamine Yamal … 6 foto(s) [cat:4sel/10]
+  · Mikel Oyarzabal … 1 foto(s) [P18]
+  · Víctor Muñoz … 0 (Q381780)
+  · Borja Iglesias … 6 foto(s) [cat:club(11)]
+  ✓ escrito data\teams\espana.json
+
+[estados-unidos]
+  · Matt Turner … 6 foto(s) [cat:19sel/35]
+  · Matt Freese … 6 foto(s) [cat:3sel/36]
+  · Chris Brady … 1 foto(s) [P18]
+  · Sergiño Dest … 6 foto(s) [cat:6sel/20]
+  · Chris Richards … 6 foto(s) [cat:5sel/21]
+  · Antonee Robinson … 1 foto(s) [P18]
+  · Auston Trusty … 6 foto(s) [cat:club(9)]
+  · Miles Robinson … 3 foto(s) [cat:1sel/3]
+  · Tim Ream … 1 foto(s) [P18]
+  · Alex Freeman … 1 foto(s) [P18]
+  · Max Arfsten … 6 foto(s) [cat:4sel/10]
+  · Mark McKenzie … 2 foto(s) [cat:club(2)]
+  · Joe Scally … 5 foto(s) [cat:club(5)]
+  · Tyler Adams … 1 foto(s) [P18]
+  · Giovanni Reyna … 4 foto(s) [cat:club(4)]
+  · Weston McKennie … 1 foto(s) [P18]
+  · Sebastian Berhalter … 6 foto(s) [cat:5sel/8]
+  · Cristian Roldán … 6 foto(s) [cat:5sel/35]
+  · Malik Tillman … 6 foto(s) [cat:5sel/11]
+  · Ricardo Pepi … 6 foto(s) [cat:club(12)]
+  · Christian Pulisic … 1 foto(s) [P18]
+  · Brenden Aaronson … 1 foto(s) [P18]
+  · Haji Wright … 5 foto(s) [cat:3sel/5]
+  · Folarin Balogun … 6 foto(s) [cat:club(11)]
+  · Timothy Weah … 6 foto(s) [cat:13sel/21]
+  · Alex Zendejas … 3 foto(s) [cat:club(3)]
+  ✓ escrito data\teams\estados-unidos.json
+
+[francia]
+  · Brice Samba … 6 foto(s) [cat:2sel/28]
+  · Mike Maignan … 6 foto(s) [cat:club(14)]
+  · Robin Risser … 1 foto(s) [cat:club(1)]
+  · Malo Gusto … 6 foto(s) [cat:club(17)]
+  · Lucas Digne … 6 foto(s) [cat:2sel/24]
+  · Dayot Upamecano … 1 foto(s) [P18]
+  · Jules Koundé … 5 foto(s) [cat:club(5)]
+  · Ibrahima Konaté … 6 foto(s) [cat:16sel/43]
+  · William Saliba … 6 foto(s) [cat:club(10)]
+  · Theo Hernández … 6 foto(s) [cat:1sel/33]
+  · Lucas Hernández … 1 foto(s) [P18]
+  · Maxence Lacroix … 6 foto(s) [cat:club(27)]
+  · Manu Koné … 2 foto(s) [cat:club(2)]
+  · Aurélien Tchouaméni … 6 foto(s) [cat:2sel/9]
+  · N'Golo Kanté … 1 foto(s) [P18]
+  · Adrien Rabiot … 1 foto(s) [P18]
+  · Warren Zaïre-Emery … 1 foto(s) [P18]
+  · Rayan Cherki … 5 foto(s) [cat:club(5)]
+  · Maghnes Akliouche … 3 foto(s) [cat:club(3)]
+  · Ousmane Dembélé … 1 foto(s) [P18]
+  · Marcus Thuram … 6 foto(s) [cat:club(12)]
+  · Kylian Mbappé … 4 foto(s) [cat:club(4)]
+  · Michael Olise … 6 foto(s) [cat:club(23)]
+  · Bradley Barcola … 5 foto(s) [cat:club(5)]
+  · Désiré Doué … 6 foto(s) [cat:club(6)]
+  · Jean-Philippe Mateta … 6 foto(s) [cat:club(11)]
+  ✓ escrito data\teams\francia.json
+
+[ghana]
+  · Lawrence Ati-Zigi … 1 foto(s) [P18]
+  · Joseph Anang … 1 foto(s) [cat:club(1)]
+  · Benjamin Asare … 0 (Q106212969)
+  · Alidu Seidu … 0 (Q102426988)
+  · Jonas Adjetey … 0 (Q124045019)
+  · Abdul Mumin … 0 (Q27064119)
+  · Gideon Mensah … 1 foto(s) [P18]
+  · Baba Rahman … 1 foto(s) [P18]
+  · Jerome Opoku … 1 foto(s) [P18]
+  · Kojo Oppong … 0 (Q117848823)
+  · Derrick Luckassen … 2 foto(s) [cat:club(2)]
+  · Marvin Senaya … 0 (Q108606228)
+  · Caleb Yirenkyi … 0 (Q130337999)
+  · Thomas Partey … 6 foto(s) [cat:3sel/22]
+  · Kwasi Sibo … 0 (Q66370589)
+  · Antoine Semenyo … 6 foto(s) [cat:club(16)]
+  · Elisha Owusu … 4 foto(s) [cat:club(4)]
+  · Augustine Boakye … 5 foto(s) [cat:club(5)]
+  · Fatawu Issahaku … sin wikidata
+  · Jordan Ayew … 1 foto(s) [P18]
+  · Brandon Thomas-Asante … 0 (Q26251815)
+  · Christopher Baah … 0 (Q117408985)
+  · Iñaki Williams … 5 foto(s) [cat:club(5)]
+  · Kamaldeen Sulemana … 1 foto(s) [P18]
+  · Ernest Nuamah … 1 foto(s) [P18]
+  · Prince Adu … 6 foto(s) [cat:club(6) · país?]
+  ✓ escrito data\teams\ghana.json
+
+[haiti]
+  · Johny Placide … 1 foto(s) [cat:club(1)]
+  · Alex Pierre … sin wikidata
+  · Josué Duverger … 0 (Q42926090)
+  · Carlens Arcus … 5 foto(s) [cat:club(5)]
+  · Keeto Thermoncy … 0 (Q136466749)
+  · Ricardo Adé … 0 (Q28801770)
+  · Hannes Delcroix … 3 foto(s) [cat:club(3)]
+  · Martin Expérience … 0 (Q107426681)
+  · Markhus Lacroix … 0 (Q21621771)
+  · Jean-Kévin Duverne … 6 foto(s) [cat:club(13)]
+  · Wilguens Paugain … 0 (Q128210274)
+  · Carl Sainte … 0 (Q111345092)
+  · Jean-Ricner Bellegarde … 6 foto(s) [cat:club(32)]
+  · Leverton Pierre … 0 (Q49004376)
+  · Jean-Jacques Danley … sin wikidata
+  · Dominique Simon … 0 (Q124392516)
+  · Woodensky Pierre … 0 (Q139813358)
+  · Derrick Etienne … 0 (Q27831068)
+  · Duckens Nazon … 6 foto(s) [cat:club(34)]
+  · Louicius Deedson … 0 (Q72697581)
+  · Rubén Providence … 2 foto(s) [cat:club(2)]
+  · Lenny Joseph … 0 (Q108000394)
+  · Wilson Isidor … 6 foto(s) [cat:club(8)]
+  · Yassin Fortune … 0 (Q23772079)
+  · Frantzdy Pierrot … 0 (Q55820193)
+  ✓ escrito data\teams\haiti.json
+
+[inglaterra]
+  · Jordan Pickford … 1 foto(s) [P18]
+  · Dean Henderson … 6 foto(s) [cat:club(17)]
+  · James Trafford … 6 foto(s) [cat:club(33)]
+  · Ezri Konsa … 6 foto(s) [cat:club(17)]
+  · Nico O'Reilly … 6 foto(s) [cat:club(38)]
+  · John Stones … 1 foto(s) [P18]
+  · Marc Guéhi … 6 foto(s) [cat:club(16)]
+  · Tino Livramento … 0 (Q107930811)
+  · Dan Burn … 6 foto(s) [cat:club(46)]
+  · Reece James … 1 foto(s) [cat:club(1)]
+  · Djed Spence … 0 (Q56222532)
+  · Jarell Quansah … 2 foto(s) [cat:club(2)]
+  · Declan Rice … 1 foto(s) [P18]
+  · Elliot Anderson … 1 foto(s) [P18]
+  · Jude Bellingham … 1 foto(s) [P18]
+  · Jordan Henderson … 1 foto(s) [P18]
+  · Kobbie Mainoo … 0 (Q114703020)
+  · Morgan Rogers … 0 (Q98087876)
+  · Eberechi Eze … 6 foto(s) [cat:club(7)]
+  · Bukayo Saka … 6 foto(s) [cat:4sel/27]
+  · Harry Kane … 2 foto(s) [cat:club(2)]
+  · Marcus Rashford … 2 foto(s) [cat:club(2)]
+  · Anthony Gordon … 6 foto(s) [cat:club(30)]
+  · Ollie Watkins … 6 foto(s) [cat:club(15)]
+  · Noni Madueke … 6 foto(s) [cat:club(8)]
+  · Ivan Toney … 6 foto(s) [cat:club(8)]
+  ✓ escrito data\teams\inglaterra.json
+
+[irak]
+  · Fahad Talib … 1 foto(s) [P18]
+  · Jalal Hassan … 1 foto(s) [cat:club(1)]
+  · Ahmed Basil Hamada … sin wikidata
+  · Rebin Ghareeb … sin wikidata
+  · Hussein Ali … 5 foto(s) [cat:club(5)]
+  · Zaid Tahseen … 0 (Q114355105)
+  · Akam Hashim … 0 (Q124350127)
+  · Munaf Younus … sin wikidata
+  · Ahmed Yahya … 6 foto(s) [cat:club(18)]
+  · Merchas Doski … 1 foto(s) [P18]
+  · Mustafa Saadoon … 0 (Q125735784)
+  · Frans Putros … 0 (Q12312192)
+  · Youssef Amyn … 2 foto(s) [cat:club(2)]
+  · Ibrahim Bayesh … 0 (Q45936149)
+  · Zidane Iqbal … 4 foto(s) [cat:club(4)]
+  · Amir Al-Ammari … 1 foto(s) [cat:club(1)]
+  · Kevin Yakob … 3 foto(s) [cat:club(3)]
+  · Aimar Sher … 2 foto(s) [cat:club(2)]
+  · Zaid Ismael … sin wikidata
+  · Ali Al-Hamadi … 4 foto(s) [cat:club(4)]
+  · Mohanad Ali … 1 foto(s) [P18]
+  · Ahmed Qasim … sin wikidata
+  · Ali Yousif … 0 (Q96654340)
+  · Ali Jasim … 0 (Q123281002)
+  · Aymen Hussein … 4 foto(s) [cat:club(4)]
+  · Marko Farji … 0 (Q126373302)
+  ✓ escrito data\teams\irak.json
+
+[iran]
+  · Alireza Beiranvand … 1 foto(s) [P18]
+  · Payam Niazmand … 6 foto(s) [cat:club(7)]
+  · Majid Hosseini … 6 foto(s) [cat:29sel/49]
+  · Saleh Hardani … 1 foto(s) [P18]
+  · Ehsan Hajisafi … sin wikidata
+  · Shojae Khalilzadeh … 1 foto(s) [P18]
+  · Milad Mohammadi … 6 foto(s) [cat:11sel/34]
+  · Hossein Kanani … sin wikidata
+  · Arya Yousefi … sin wikidata
+  · Ali Nemati … 6 foto(s) [cat:1sel/17]
+  · Ramin Rezaeian … 1 foto(s) [P18]
+  · Danial Iri … sin wikidata
+  · Saeid Ezatolahi … 1 foto(s) [P18]
+  · Alireza Jahanbakhsh … 1 foto(s) [P18]
+  · Mohammad Mohebbi … sin wikidata
+  · Saman Ghoddos … 6 foto(s) [cat:32sel/36]
+  · Roozbeh Cheshmi … 1 foto(s) [cat:club(1)]
+  · Mehdi Torabi … 1 foto(s) [P18]
+  · Mohammad Ghorbani … 1 foto(s) [P18]
+  · Amirmohammad Razaghinia … sin wikidata
+  · Mehdi Taremi … 1 foto(s) [P18]
+  · Mehdi Ghayedi … 3 foto(s) [cat:3sel/3]
+  · Ali Alipour … 1 foto(s) [P18]
+  · Amirhossein Hosseinzadeh … 1 foto(s) [P18]
+  · Shahriyar Moghanloo … sin wikidata
+  · Dennis Dargahi … 3 foto(s) [cat:club(3)]
+  ✓ escrito data\teams\iran.json
+
+[japon]
+  · Zion Suzuki … 6 foto(s) [cat:6sel/7]
+  · Keisuke Osako … 1 foto(s) [P18]
+  · Tomoki Hayakawa … 0 (Q105704210)
+  · Yukinari Sugawara … 6 foto(s) [cat:club(15)]
+  · Shogo Taniguchi … 6 foto(s) [cat:11sel/15]
+  · Ko Itakura … 6 foto(s) [cat:9sel/11]
+  · Yuto Nagatomo … 6 foto(s) [cat:19sel/38]
+  · Tsuyoshi Watanabe … 0 (Q56253139)
+  · Ayumu Seko … 3 foto(s) [cat:1sel/3]
+  · Hiroki Ito … 6 foto(s) [cat:9sel/13]
+  · Takehiro Tomiyasu … 6 foto(s) [cat:9sel/21]
+  · Junnosuke Suzuki … 0 (Q109594121)
+  · Wataru Endo … 6 foto(s) [cat:6sel/11]
+  · Ao Tanaka … 6 foto(s) [cat:9sel/17]
+  · Takefusa Kubo … 5 foto(s) [cat:3sel/5]
+  · Ritsu Doan … 6 foto(s) [cat:17sel/28]
+  · Daizen Maeda … 6 foto(s) [cat:4sel/13]
+  · Kota Nakamura … sin wikidata
+  · Junya Ito … 6 foto(s) [cat:10sel/18]
+  · Daichi Kamada … 6 foto(s) [cat:4sel/36]
+  · Yuito Suzuki … 3 foto(s) [cat:club(3)]
+  · Kaishu Sano … 4 foto(s) [cat:4sel/4]
+  · Keisuke Goto … 0 (Q114736627)
+  · Ayase Ueda … 4 foto(s) [cat:club(4)]
+  · Koki Ogawa … 1 foto(s) [cat:club(1)]
+  · Kento Shiogai … 0 (Q127388493)
+  ✓ escrito data\teams\japon.json
+
+[jordania]
+  · Yazeed Abulaila … 1 foto(s) [P18]
+  · Nour Baniateyah … sin wikidata
+  · Abdallah Al-Fakhori … sin wikidata
+  · Mohammad Abu Hasheesh … 2 foto(s) [cat:1sel/2]
+  · Abdallah Nasib … 6 foto(s) [cat:7sel/8]
+  · Husam Abu Dahab … 0 (Q130244944)
+  · Yazan Al-Arab … 6 foto(s) [cat:7sel/16]
+  · Mohammad Abualnadi … sin wikidata
+  · Saleem Obaid … 0 (Q33124960)
+  · Saed Al-Rosan … 0 (Q130210573)
+  · Ehsan Haddad … sin wikidata
+  · Anas Badawi … 0 (Q135971385)
+  · Amer Jamous … 0 (Q130495887)
+  · Noor Al-Rawabdeh … 2 foto(s) [cat:1sel/2]
+  · Rajae Ayed … sin wikidata
+  · Ibrahim Sadeh … 0 (Q106173160)
+  · Mohannad Abu Taha … 0 (Q124397380)
+  · Nizar Al-Rashdan … 1 foto(s) [cat:1sel/1]
+  · Mohammad Al-Daoud … sin wikidata
+  · Mohammad Abu Zraiq … sin wikidata
+  · Ali Olwan … 1 foto(s) [cat:1sel/1]
+  · Mousa Al-Tamari … 6 foto(s) [cat:6sel/9]
+  · Odeh Fakhoury … sin wikidata
+  · Mahmoud Al-Mardi … 0 (Q21621941)
+  · Ibrahim Sabra … 0 (Q123203666)
+  · Ali Azaizeh … 0 (Q131822292)
+  ✓ escrito data\teams\jordania.json
+
+[marruecos]
+  · Yassine Bounou … 6 foto(s) [cat:1sel/9]
+  · Munir Mohamedi … 6 foto(s) [cat:10sel/12]
+  · Ahmed Reda Tagnaouti … 1 foto(s) [P18]
+  · Achraf Hakimi … 6 foto(s) [cat:13sel/42]
+  · Noussair Mazraoui … 4 foto(s) [cat:club(4)]
+  · Nayef Aguerd … 6 foto(s) [cat:1sel/22]
+  · Zakaria El Ouahdi … 4 foto(s) [cat:2sel/4]
+  · Issa Diop … 1 foto(s) [P18]
+  · Chadi Riad … 1 foto(s) [P18]
+  · Youssef Belammari … 1 foto(s) [P18]
+  · Redouane Halhal … 1 foto(s) [P18]
+  · Anass Salah-Eddine … 6 foto(s) [cat:4sel/24]
+  · Sofyan Amrabat … 6 foto(s) [cat:7sel/11]
+  · Ayyoub Bouaddi … 1 foto(s) [cat:club(1)]
+  · Chemsdine Talbi … 1 foto(s) [P18]
+  · Azzedine Ounahi … 6 foto(s) [cat:2sel/14]
+  · Ismail Saibari … sin wikidata
+  · Samir El Mourabet … 1 foto(s) [P18]
+  · Gessime Yassine … 1 foto(s) [P18]
+  · Bilal El Khannouss … 6 foto(s) [cat:2sel/14]
+  · Neil El Aynaoui … 6 foto(s) [cat:2sel/17]
+  · Soufiane Rahimi … 6 foto(s) [cat:5sel/9]
+  · Brahim Díaz … 6 foto(s) [cat:club(17)]
+  · Abde Ezzalzouli … 4 foto(s) [cat:club(4)]
+  · Ayoub El Kaabi … 6 foto(s) [cat:7sel/18]
+  · Ayoub Amaimouni … sin wikidata
+  ✓ escrito data\teams\marruecos.json
+
+[mexico]
+  · Raúl Rangel … 1 foto(s) [P18]
+  · Carlos Acevedo … 1 foto(s) [P18]
+  · Guillermo Ochoa … 6 foto(s) [cat:6sel/38]
+  · Jorge Sánchez … 0 (Q11073995)
+  · César Montes … 3 foto(s) [cat:1sel/3]
+  · Edson Álvarez … 6 foto(s) [cat:1sel/18]
+  · Johan Vásquez … 1 foto(s) [cat:club(1)]
+  · Israel Reyes … 1 foto(s) [cat:club(1)]
+  · Mateo Chávez … 1 foto(s) [P18]
+  · Jesús Gallardo … 6 foto(s) [cat:3sel/6]
+  · Erik Lira … 1 foto(s) [cat:club(1)]
+  · Luis Romo … 0 (Q56433831)
+  · Álvaro Fidalgo … 1 foto(s) [P18]
+  · Orbelín Pineda … 1 foto(s) [cat:club(1)]
+  · Obed Vargas … 0 (Q106778770)
+  · Gilberto Mora … 0 (Q129652337)
+  · Luis Chávez … 4 foto(s) [cat:3sel/4]
+  · Brian Gutiérrez … 1 foto(s) [P18]
+  · Raúl Alonso Jiménez … 1 foto(s) [P18]
+  · Alexis Vega … 5 foto(s) [cat:5sel/5]
+  · Santiago Giménez … 3 foto(s) [cat:club(3)]
+  · Armando González … 0 (Q5704503)
+  · Julián Quiñones … 4 foto(s) [cat:club(4)]
+  · César Huerta … 5 foto(s) [cat:club(5)]
+  · Guillermo Martínez … 6 foto(s) [cat:club(14)]
+  · Roberto Alvarado … 3 foto(s) [cat:2sel/3]
+  ✓ escrito data\teams\mexico.json
+
+[noruega]
+  · Ørjan Nyland … 6 foto(s) [cat:16sel/20]
+  · Sander Tangvik … 1 foto(s) [cat:club(1)]
+  · Egil Selvik … 6 foto(s) [cat:1sel/34]
+  · Kristoffer Ajer … 6 foto(s) [cat:29sel/45]
+  · Leo Østigård … 2 foto(s) [cat:2sel/2]
+  · David Møller Wolfe … 6 foto(s) [cat:36sel/38]
+  · Fredrik Bjørkan … 1 foto(s) [P18]
+  · Marcus Pedersen … 5 foto(s) [cat:5sel/5]
+  · Torbjørn Heggem … 6 foto(s) [cat:22sel/22]
+  · Sondre Langås … 1 foto(s) [P18]
+  · Henrik Falchener … 1 foto(s) [P18]
+  · Morten Thorsby … 6 foto(s) [cat:19sel/19]
+  · Patrick Berg … 6 foto(s) [cat:4sel/8]
+  · Sander Berge … 1 foto(s) [P18]
+  · Martin Ødegaard … 1 foto(s) [P18]
+  · Fredrik Aursnes … 3 foto(s) [cat:club(3)]
+  · Kristian Thorstvedt … 0 (Q61721648)
+  · Thelo Aasgaard … 0 (Q100711783)
+  · Andreas Schjelderup … 0 (Q106099213)
+  · Oscar Bobb … 6 foto(s) [cat:5sel/35]
+  · Jens Petter Hauge … 6 foto(s) [cat:club(25)]
+  · Alexander Sørloth … 6 foto(s) [cat:43sel/47]
+  · Erling Haaland … 1 foto(s) [P18]
+  · Jørgen Strand Larsen … 6 foto(s) [cat:1sel/18]
+  · Antonio Nusa … 6 foto(s) [cat:49sel/49]
+  · Julian Ryerson … 6 foto(s) [cat:27sel/33]
+  ✓ escrito data\teams\noruega.json
+
+[nueva-zelanda]
+  · Max Crocombe … 6 foto(s) [cat:club(32)]
+  · Alex Paulsen … 1 foto(s) [P18]
+  · Michael Woud … 1 foto(s) [P18]
+  · Tim Payne … 3 foto(s) [cat:club(3)]
+  · Francis de Vries … 1 foto(s) [P18]
+  · Tyler Bindon … 1 foto(s) [P18]
+  · Michael Boxall … 6 foto(s) [cat:2sel/16]
+  · Liberato Cacace … 6 foto(s) [cat:club(18)]
+  · Nando Pijnaker … 0 (Q64031855)
+  · Finn Surman … 1 foto(s) [P18]
+  · Callan Elliot … 1 foto(s) [P18]
+  · Tommy Smith … 1 foto(s) [cat:club(1)]
+  · Joe Bell … 3 foto(s) [cat:club(3)]
+  · Matthew Garbett … 0 (Q96091702)
+  · Marko Stamenic … 2 foto(s) [cat:club(2)]
+  · Sarpreet Singh … 1 foto(s) [P18]
+  · Elijah Just … 1 foto(s) [P18]
+  · Alex Rufer … 1 foto(s) [P18]
+  · Ben Old … 1 foto(s) [cat:club(1)]
+  · Callum McCowatt … 1 foto(s) [cat:1sel/1]
+  · Ryan Thomas … 5 foto(s) [cat:club(5)]
+  · Lachlan Bayliss … 1 foto(s) [P18]
+  · Chris Wood … 6 foto(s) [cat:4sel/12]
+  · Kosta Barbarouses … 6 foto(s) [cat:club(6)]
+  · Ben Waine … 1 foto(s) [P18]
+  · Jesse Randall … 1 foto(s) [P18]
+  ✓ escrito data\teams\nueva-zelanda.json
+
+[paises-bajos]
+  · Bart Verbruggen … 4 foto(s) [cat:2sel/4]
+  · Robin Roefs … 0 (Q122789696)
+  · Mark Flekken … 1 foto(s) [cat:club(1)]
+  · Jurriën Timber … 5 foto(s) [cat:club(5)]
+  · Virgil van Dijk … 1 foto(s) [P18]
+  · Nathan Aké … 6 foto(s) [cat:club(24)]
+  · Jan-Paul van Hecke … 6 foto(s) [cat:club(18)]
+  · Mats Wieffer … 2 foto(s) [cat:club(2)]
+  · Micky van de Ven … 6 foto(s) [cat:club(6)]
+  · Denzel Dumfries … 6 foto(s) [cat:club(10)]
+  · Jorrel Hato … 6 foto(s) [cat:club(8)]
+  · Marten de Roon … 2 foto(s) [cat:club(2)]
+  · Justin Kluivert … 6 foto(s) [cat:club(13)]
+  · Ryan Gravenberch … 6 foto(s) [cat:club(16)]
+  · Tijjani Reijnders … 6 foto(s) [cat:club(9)]
+  · Guus Til … 4 foto(s) [cat:club(4)]
+  · Teun Koopmeiners … 4 foto(s) [cat:club(4)]
+  · Frenkie de Jong … 6 foto(s) [cat:club(21)]
+  · Quinten Timber … 3 foto(s) [cat:club(3)]
+  · Wout Weghorst … 6 foto(s) [cat:club(7)]
+  · Memphis Depay … 6 foto(s) [cat:2sel/49]
+  · Cody Gakpo … 6 foto(s) [cat:6sel/21]
+  · Noa Lang … 1 foto(s) [cat:1sel/1]
+  · Donyell Malen … 6 foto(s) [cat:9sel/27]
+  · Brian Brobbey … 6 foto(s) [cat:club(25)]
+  · Crysencio Summerville … 6 foto(s) [cat:club(9)]
+  ✓ escrito data\teams\paises-bajos.json
+
+[panama]
+  · Luis Mejía … 6 foto(s) [cat:1sel/8]
+  · César Samudio … 0 (Q114216100)
+  · Orlando Mosquera … 1 foto(s) [cat:1sel/1]
+  · César Blackman … 0 (Q63088236)
+  · José Córdoba … 1 foto(s) [P18]
+  · Fidel Escobar … 1 foto(s) [P18]
+  · Edgardo Farina … 6 foto(s) [cat:6sel/6]
+  · Jiovany Ramos … 0 (Q62006245)
+  · Carlos Harvey … 0 (Q61990402)
+  · Eric Davis … 5 foto(s) [cat:2sel/5]
+  · Andrés Andrade … 6 foto(s) [cat:4sel/13]
+  · Michael Amir Murillo … 6 foto(s) [cat:7sel/45]
+  · Roderick Miller … 5 foto(s) [cat:5sel/5]
+  · Jorge Gutiérrez … 0 (Q117818408)
+  · Cristian Martínez … 6 foto(s) [cat:2sel/6]
+  · José Luis Rodríguez … 6 foto(s) [cat:4sel/7]
+  · Adalberto Carrasquilla … 1 foto(s) [P18]
+  · Ismael Díaz … 0 (Q18921648)
+  · Édgar Bárcenas … 6 foto(s) [cat:6sel/12]
+  · Alberto Quintero … 3 foto(s) [cat:1sel/3]
+  · Aníbal Godoy … 4 foto(s) [cat:club(4)]
+  · César Yanis … 0 (Q100271502)
+  · Tomás Rodríguez … 0 (Q117842510)
+  · José Fajardo … 0 (Q48877857)
+  · Cecilio Waterman … 3 foto(s) [cat:club(3)]
+  · Azarías Londoño … 0 (Q117304605)
+  ✓ escrito data\teams\panama.json
+
+[paraguay]
+  · Roberto Junior Fernández … 1 foto(s) [cat:club(1)]
+  · Orlando Gill … 0 (Q60842077)
+  · Gastón Olveira … 0 (Q18020415)
+  · Gustavo Velázquez … 0 (Q20888302)
+  · Omar Alderete … 2 foto(s) [cat:club(2)]
+  · Juan Cáceres … 1 foto(s) [P18 · país?]
+  · Fabián Balbuena … 6 foto(s) [cat:club(27)]
+  · Junior Alonso … 1 foto(s) [cat:club(1)]
+  · José Canale … 0 (Q50105161)
+  · Gustavo Gómez … 1 foto(s) [P18]
+  · Alexandro Maidana … 0 (Q136375048)
+  · Ramón Sosa … 1 foto(s) [P18]
+  · Diego Gómez … 6 foto(s) [cat:club(37)]
+  · Miguel Almirón … 6 foto(s) [cat:club(12)]
+  · Mauricio … 6 foto(s) [cat:club(12)]
+  · Andrés Cubas … 3 foto(s) [cat:club(3)]
+  · Damián Bobadilla … 0 (Q116223348)
+  · Braian Ojeda … 6 foto(s) [cat:club(28)]
+  · Matías Galarza Fonda … 4 foto(s) [cat:club(4)]
+  · Gustavo Caballero … 0 (Q127179158)
+  · Antonio Sanabria … 4 foto(s) [cat:club(4)]
+  · Alejandro Romero Gamarra … 1 foto(s) [cat:club(1)]
+  · Alex Arce … 0 (Q118935199)
+  · Julio Enciso … 1 foto(s) [cat:club(1)]
+  · Gabriel Ávalos … 0 (Q14592575)
+  · Isidro Pitta … 5 foto(s) [cat:club(5)]
+  ✓ escrito data\teams\paraguay.json
+
+[portugal]
+  · Diogo Costa … 6 foto(s) [cat:8sel/21]
+  · José Sá … 6 foto(s) [cat:6sel/23]
+  · Rui Silva … 1 foto(s) [P18]
+  · Nélson Semedo … 6 foto(s) [cat:2sel/13]
+  · Rúben Dias … 6 foto(s) [cat:3sel/23]
+  · Tomás Araújo … 1 foto(s) [cat:1sel/1]
+  · Diogo Dalot … 5 foto(s) [cat:5sel/5]
+  · Renato Veiga … 1 foto(s) [P18]
+  · Gonçalo Inácio … 6 foto(s) [cat:3sel/7]
+  · João Cancelo … 6 foto(s) [cat:7sel/47]
+  · Samuel Costa … 1 foto(s) [P18]
+  · Nuno Mendes … 6 foto(s) [cat:club(10)]
+  · Matheus Nunes … 6 foto(s) [cat:club(11)]
+  · Bruno Fernandes … 1 foto(s) [cat:club(1)]
+  · Bernardo Silva … 0 (Q106075808)
+  · João Neves … 4 foto(s) [cat:club(4)]
+  · Rúben Neves … 6 foto(s) [cat:2sel/15]
+  · Vítor Ferreira … 1 foto(s) [P18]
+  · Cristiano Ronaldo … 6 foto(s) [cat:1sel/8]
+  · Gonçalo Ramos … 1 foto(s) [P18]
+  · João Félix … 6 foto(s) [cat:3sel/18]
+  · Trincão … 6 foto(s) [cat:2sel/17]
+  · Rafael Leão … 6 foto(s) [cat:1sel/37]
+  · Pedro Neto … 6 foto(s) [cat:2sel/25]
+  · Gonçalo Guedes … 6 foto(s) [cat:2sel/16]
+  · Francisco Conceição … 6 foto(s) [cat:2sel/6]
+  ✓ escrito data\teams\portugal.json
+
+[qatar]
+  · Mahmoud Abunada … sin wikidata
+  · Salah Zakaria … 0 (Q95680243)
+  · Meshaal Barsham … 1 foto(s) [cat:1sel/1]
+  · Pedro Miguel Correia … sin wikidata
+  · Lucas Mendes … 6 foto(s) [cat:club(13)]
+  · Issa Laye … 0 (Q137392794)
+  · Jassem Gaber … 1 foto(s) [cat:1sel/1]
+  · Ayoub Aloui … sin wikidata
+  · Homam Ahmed … 1 foto(s) [cat:1sel/1]
+  · Boualem Khoukhi … 1 foto(s) [cat:1sel/1]
+  · Sultan Al-Brake … 1 foto(s) [P18]
+  · Al-Hashmi Al-Hussein … sin wikidata
+  · Abdulaziz Hatem … 6 foto(s) [cat:3sel/6]
+  · Karim Boudiaf … 6 foto(s) [cat:1sel/16]
+  · Ahmed Al-Ganehi … 0 (Q61983513)
+  · Ahmed Fathy Aboulela … sin wikidata
+  · Assim Madibo … 3 foto(s) [cat:3sel/3]
+  · Ahmed Alaaeldin … 1 foto(s) [cat:1sel/1]
+  · Edmilson Junior … 6 foto(s) [cat:club(7)]
+  · Mohammed Muntari … 2 foto(s) [cat:1sel/2]
+  · Hassan Al-Haydos … 6 foto(s) [cat:2sel/6]
+  · Akram Afif … 6 foto(s) [cat:3sel/8]
+  · Yusuf Abdurisag … 1 foto(s) [cat:1sel/1]
+  · Almoez Ali … 6 foto(s) [cat:15sel/18]
+  · Tahsin Jamshid … 0 (Q126258395)
+  · Mohamed Manai … sin wikidata
+  ✓ escrito data\teams\qatar.json
+
+[rd-congo]
+  · Lionel Mpasi … 1 foto(s) [P18]
+  · Timothy Fayulu … 0 (Q65680079)
+  · Matthieu Epolo … 0 (Q113628776)
+  · Aaron Wan-Bissaka … 1 foto(s) [P18]
+  · Steve Kapuadi … 0 (Q85291597)
+  · Axel Tuanzebe … 1 foto(s) [cat:club(1)]
+  · Dylan Batubinsika … 1 foto(s) [P18]
+  · Joris Kayembe … 0 (Q16979997)
+  · Chancel Mbemba … 6 foto(s) [cat:club(22)]
+  · Gédéon Kalulu … 4 foto(s) [cat:club(4)]
+  · Arthur Masuaku … 6 foto(s) [cat:club(15)]
+  · Ngal'ayel Mukau … 0 (Q116151074)
+  · Nathanaël Mbuku … 0 (Q66363768)
+  · Samuel Moutoussamy … 6 foto(s) [cat:club(23)]
+  · Théo Bongonda … 6 foto(s) [cat:2sel/28]
+  · Noah Sadiki … 4 foto(s) [cat:club(4)]
+  · Aaron Tshibola … 2 foto(s) [cat:club(2)]
+  · Charles Pickel … 6 foto(s) [cat:1sel/10]
+  · Edo Kayembe … 6 foto(s) [cat:club(9)]
+  · Brian Cipenga … 0 (Q127271091)
+  · Gaël Kakuta … 6 foto(s) [cat:club(17)]
+  · Meschack Elia … 4 foto(s) [cat:club(4)]
+  · Cédric Bakambu … 4 foto(s) [cat:club(4)]
+  · Fiston Mayele … 0 (Q117287348)
+  · Yoane Wissa … 6 foto(s) [cat:club(15)]
+  · Simon Banza … 6 foto(s) [cat:club(24)]
+  ✓ escrito data\teams\rd-congo.json
+
+[republica-checa]
+  · Matěj Kovář … 1 foto(s) [P18]
+  · Jindřich Staněk … 1 foto(s) [cat:club(1)]
+  · Lukáš Horníček … 0 (Q100271491)
+  · David Zima … 6 foto(s) [cat:club(14)]
+  · Tomáš Holeš … 1 foto(s) [cat:club(1)]
+  · Robin Hranáč … 1 foto(s) [cat:1sel/1]
+  · Vladimír Coufal … 6 foto(s) [cat:1sel/39]
+  · Štěpán Chaloupek … 0 (Q114713721)
+  · Ladislav Krejčí … 6 foto(s) [cat:club(15)]
+  · David Jurásek … 1 foto(s) [cat:1sel/1]
+  · Jaroslav Zelený … 1 foto(s) [cat:club(1)]
+  · David Doudera … 1 foto(s) [P18]
+  · Vladimír Darida … 1 foto(s) [P18]
+  · Lukáš Červ … 0 (Q97312966)
+  · Lukáš Provod … 0 (Q45288740)
+  · Michal Sadílek … 4 foto(s) [cat:club(4)]
+  · Tomáš Souček … 6 foto(s) [cat:1sel/39]
+  · Alexandr Sojka … 0 (Q131432595)
+  · Hugo Šochůrek … 0 (Q138757935)
+  · Adam Hložek … 6 foto(s) [cat:club(11)]
+  · Patrik Schick … 6 foto(s) [cat:club(20)]
+  · Jan Kuchta … 1 foto(s) [P18]
+  · Mojmír Chytil … 0 (Q104488728)
+  · Pavel Šulc … 1 foto(s) [P18]
+  · Tomáš Chorý … 2 foto(s) [cat:club(2)]
+  · Denis Višinský … 0 (Q106061470)
+  ✓ escrito data\teams\republica-checa.json
+
+[senegal]
+  · Yehvann Diouf … 3 foto(s) [cat:club(3)]
+  · Édouard Mendy … 1 foto(s) [P18]
+  · Mory Diaw … 1 foto(s) [P18]
+  · Mamadou Sarr … 6 foto(s) [cat:club(9)]
+  · Kalidou Koulibaly … 1 foto(s) [P18]
+  · Abdoulaye Seck … 6 foto(s) [cat:6sel/14]
+  · Ismail Jakobs … 1 foto(s) [cat:1sel/1]
+  · Krépin Diatta … 5 foto(s) [cat:3sel/5]
+  · Moussa Niakhaté … 4 foto(s) [cat:club(4)]
+  · Antoine Mendy … 1 foto(s) [cat:club(1)]
+  · El Hadji Malick Diouf … 0 (Q123479947)
+  · Idrissa Gueye … 1 foto(s) [P18]
+  · Pathé Ciss … 0 (Q67089591)
+  · Lamine Camara … 1 foto(s) [cat:club(1)]
+  · Pape Matar Sarr … 6 foto(s) [cat:12sel/44]
+  · Habib Diarra … 1 foto(s) [P18]
+  · Bara Ndiaye … 0 (Q137733792)
+  · Pape Gueye … 6 foto(s) [cat:17sel/46]
+  · Assane Diao … 0 (Q120509822)
+  · Bamba Dieng … 6 foto(s) [cat:15sel/38]
+  · Sadio Mané … 1 foto(s) [P18]
+  · Nicolas Jackson … 6 foto(s) [cat:club(25)]
+  · Chérif Ndiaye … 6 foto(s) [cat:club(15)]
+  · Iliman Ndiaye … 3 foto(s) [cat:club(3)]
+  · Ismaïla Sarr … 6 foto(s) [cat:22sel/47]
+  · Ibrahim Mbaye … 6 foto(s) [cat:club(16)]
+  ✓ escrito data\teams\senegal.json
+
+[sudafrica]
+  · Ronwen Williams … 1 foto(s) [P18]
+  · Sipho Chaine … 0 (Q58796434)
+  · Ricardo Goss … 0 (Q58796031)
+  · Thabang Matuludi … 0 (Q127324870)
+  · Khulumani Ndamane … 0 (Q137299823)
+  · Aubrey Modiba … 6 foto(s) [cat:club(6)]
+  · Mbekezeli Mbokazi … 0 (Q133464757)
+  · Samukelo Kabini … sin wikidata
+  · Nkosinathi Sibisi … 0 (Q58580967)
+  · Khuliso Mudau … 0 (Q58810793)
+  · Ime Okon … 0 (Q127514195)
+  · Olwethu Makhanya … 1 foto(s) [P18]
+  · Bradley Cross … 0 (Q117790110)
+  · Teboho Mokoena … 0 (Q58790870)
+  · Thalente Mbatha … 0 (Q130261099)
+  · Themba Zwane … 0 (Q7781199)
+  · Sphephelo Sithole … 0 (Q104530871)
+  · Jayden Adams … 0 (Q105520386)
+  · Oswin Appollis … 0 (Q64167435)
+  · Tshepang Moremi … 0 (Q125166783)
+  · Lyle Foster … 1 foto(s) [P18]
+  · Relebohile Mofokeng … 0 (Q119413564)
+  · Thapelo Maseko … 6 foto(s) [cat:club(8)]
+  · Iqraam Rayners … 0 (Q100565190)
+  · Evidence Makgopa … 0 (Q100984327)
+  · Kamogelo Sebelebele … 0 (Q137441719)
+  ✓ escrito data\teams\sudafrica.json
+
+[suecia]
+  · Jacob Widell Zetterström … 6 foto(s) [cat:club(14)]
+  · Viktor Johansson … 1 foto(s) [P18]
+  · Kristoffer Nordfeldt … 6 foto(s) [cat:1sel/7]
+  · Gustaf Lagerbielke … 6 foto(s) [cat:club(8)]
+  · Gabriel Gudmundsson … 6 foto(s) [cat:1sel/14]
+  · Isak Hien … 6 foto(s) [cat:13sel/13]
+  · Gabriel Gudmundsson … 6 foto(s) [cat:1sel/14]
+  · Herman Johansson … 1 foto(s) [P18]
+  · Daniel Svensson … 6 foto(s) [cat:club(8)]
+  · Hjalmar Ekdal … 6 foto(s) [cat:club(6)]
+  · Carl Starfelt … 2 foto(s) [cat:club(2)]
+  · Erick Smith … sin wikidata
+  · Alexander Bernhardsson … 3 foto(s) [cat:club(3)]
+  · Elliot Stroud …   ! API: HTTP 429
+sin wikidata
+  · Lucas Bergvall … 1 foto(s) [P18]
+  · Benjamin Nygren … 6 foto(s) [cat:club(9)]
+  · Ken Sema … 1 foto(s) [P18]
+  · Jesper Karlström … 6 foto(s) [cat:6sel/15]
+  · Yasin Ayari … 1 foto(s) [P18]
+  · Mattias Svanberg … 1 foto(s) [P18]
+  · Besfort Zeneli … 1 foto(s) [P18]
+  · Alexander Isak … 6 foto(s) [cat:5sel/21]
+  · Anthony Elanga … 1 foto(s) [P18]
+  · Viktor Gyökeres … 6 foto(s) [cat:club(11)]
+  · Gustaf Nilsson … 4 foto(s) [cat:club(4)]
+  · Taha Ali … 1 foto(s) [cat:club(1)]
+  ✓ escrito data\teams\suecia.json
+
+[suiza]
+  · Gregor Kobel … 6 foto(s) [cat:club(22)]
+  · Yvon Mvogo … 6 foto(s) [cat:3sel/20]
+  · Marvin Keller … 0 (Q108698128)
+  · Miro Muheim … 1 foto(s) [cat:club(1)]
+  · Silvan Widmer … 1 foto(s) [cat:club(1)]
+  · Nico Elvedi … 1 foto(s) [P18]
+  · Manuel Akanji … 6 foto(s) [cat:club(26)]
+  · Ricardo Rodríguez … 6 foto(s) [cat:5sel/17]
+  · Eray Cömert … 6 foto(s) [cat:club(11)]
+  · Aurèle Amenda … 0 (Q111805882)
+  · Luca Jaquez … 0 (Q122160785)
+  · Denis Zakaria … 2 foto(s) [cat:club(2)]
+  · Remo Freuler … 2 foto(s) [cat:club(2)]
+  · Johan Manzambi … 0 (Q125376751)
+  · Granit Xhaka … 6 foto(s) [cat:6sel/43]
+  · Ardon Jashari … 4 foto(s) [cat:club(4)]
+  · Djibril Sow … 6 foto(s) [cat:club(37)]
+  · Michel Aebischer … 0 (Q27469951)
+  · Fabian Rieder … 0 (Q101033685)
+  · Breel Embolo … 1 foto(s) [P18]
+  · Dan Ndoye … 1 foto(s) [cat:club(1)]
+  · Christian Fassnacht … 2 foto(s) [cat:club(2)]
+  · Ruben Vargas … 0 (Q38053896)
+  · Noah Okafor … 1 foto(s) [P18]
+  · Zeki Amdouni … 0 (Q106882153)
+  · Cedric Itten … 0 (Q22965497)
+  ✓ escrito data\teams\suiza.json
+
+[tunez]
+  · A. Chamakh … sin wikidata
+  · Aymen Dahmen … 0 (Q64520753)
+  · Sabri Ben Hessen … 0 (Q139815184)
+  · Ali Abdi … 2 foto(s) [cat:club(2)]
+  · Montassar Talbi … 6 foto(s) [cat:club(12)]
+  · Omar Rekik … 0 (Q96678415)
+  · Adem Arous … 0 (Q136092007)
+  · Dylan Bronn … 6 foto(s) [cat:club(10)]
+  · Mortadha Ben Ouanes … 3 foto(s) [cat:club(3)]
+  · Yan Valery … 6 foto(s) [cat:club(41)]
+  · M. A. Ben Hmida … sin wikidata
+  · Moutaz Neffati … 0 (Q123436577)
+  · Raed Chikhaoui … 0 (Q139816192)
+  · Hannibal Mejbri … 1 foto(s) [P18]
+  · Ismaël Gharbi … 1 foto(s) [cat:club(1)]
+  · Rani Khedira … 6 foto(s) [cat:club(7)]
+  · Khalil Ayari … 0 (Q134711363)
+  · M. Hadj Mahmoud … sin wikidata
+  · Ellyes Skhiri … 6 foto(s) [cat:club(19)]
+  · Anis Ben Slimane … 6 foto(s) [cat:club(12)]
+  · Sebastian Tounekti … 0 (Q96337717)
+  · Elias Achouri … 1 foto(s) [P18]
+  · Elias Saad … 1 foto(s) [cat:club(1)]
+  · Hazem Mastouri … 1 foto(s) [P18]
+  · Rayan Elloumi … 2 foto(s) [cat:club(2)]
+  · Firas Chaouat … 0 (Q58815643)
+  ✓ escrito data\teams\tunez.json
+
+[turquia]
+  · Mert Günok … 6 foto(s) [cat:club(15)]
+  · Altay Bayındır … 6 foto(s) [cat:club(9)]
+  · Uğurcan Çakır … 6 foto(s) [cat:1sel/9]
+  · Zeki Çelik … 4 foto(s) [cat:club(4)]
+  · Merih Demiral … 6 foto(s) [cat:club(11)]
+  · Çağlar Söyüncü … 6 foto(s) [cat:club(14)]
+  · Eren Elmalı … 4 foto(s) [cat:club(4)]
+  · Abdülkerim Bardakcı … 5 foto(s) [cat:club(5)]
+  · Ozan Kabak … 6 foto(s) [cat:club(8)]
+  · Mert Müldür … 6 foto(s) [cat:club(15)]
+  · Ferdi Kadıoğlu … 6 foto(s) [cat:club(14)]
+  · Samet Akaydın … 5 foto(s) [cat:club(5)]
+  · Salih Özcan … 6 foto(s) [cat:club(37)]
+  · Orkun Kökçü … 4 foto(s) [cat:club(4)]
+  · Hakan Çalhanoğlu … 6 foto(s) [cat:club(32)]
+  · İsmail Yüksek … 2 foto(s) [cat:club(2)]
+  · Kaan Ayhan … 6 foto(s) [cat:club(16)]
+  · Kerem Aktürkoğlu … 4 foto(s) [cat:club(4)]
+  · Arda Güler … 6 foto(s) [cat:club(6)]
+  · Deniz Gül … 0 (Q123174990)
+  · Kenan Yıldız … 1 foto(s) [cat:club(1)]
+  · İrfan Can Kahveci … 6 foto(s) [cat:club(14)]
+  · Yunus Akgün … 1 foto(s) [cat:club(1)]
+  · Barış Alper Yılmaz … 3 foto(s) [cat:club(3)]
+  · Oğuz Aydın … 0 (Q109282705)
+  · Can Uzun … 0 (Q118799181)
+  ✓ escrito data\teams\turquia.json
+
+[uruguay]
+  · Sergio Rochet … 6 foto(s) [cat:6sel/9]
+  · Santiago Mele … 1 foto(s) [cat:1sel/1]
+  · Fernando Muslera … 2 foto(s) [cat:1sel/2]
+  · José María Giménez … 3 foto(s) [cat:club(3)]
+  · Sebastián Cáceres … 1 foto(s) [P18]
+  · Ronald Araújo … 6 foto(s) [cat:15sel/27]
+  · Guillermo Varela … 1 foto(s) [cat:club(1)]
+  · Mathías Olivera … 6 foto(s) [cat:17sel/18]
+  · Matías Viña … 3 foto(s) [cat:2sel/3]
+  · Santiago Bueno … 1 foto(s) [P18]
+  · Manuel Ugarte … 3 foto(s) [cat:3sel/3]
+  · Rodrigo Bentancur … 5 foto(s) [cat:club(5)]
+  · Nicolás de la Cruz … 5 foto(s) [cat:5sel/5]
+  · Federico Valverde … 1 foto(s) [P18]
+  · Giorgian De Arrascaeta … 1 foto(s) [cat:club(1)]
+  · Agustín Canobbio … 6 foto(s) [cat:3sel/12]
+  · Emiliano Martínez … 6 foto(s) [cat:club(8)]
+  · Maximiliano Araújo … 0 (Q58011167)
+  · Joaquín Piquerez … 1 foto(s) [P18]
+  · Juan Sanabria … sin wikidata
+  · Rodrigo Zalazar … 0 (Q60842159)
+  · Darwin Núñez … 6 foto(s) [cat:1sel/15]
+  · Facundo Pellistri … 1 foto(s) [P18]
+  · Brian Rodríguez … 1 foto(s) [P18]
+  · Rodrigo Aguirre … 0 (Q2070073)
+  · Federico Viñas … 1 foto(s) [P18]
+  ✓ escrito data\teams\uruguay.json
+
+[uzbekistan]
+  · Utkir Yusupov … 2 foto(s) [cat:1sel/2]
+  · Abduvohid Nematov … 1 foto(s) [P18]
+  · Botirali Ergashev … 0 (Q51670751)
+  · Abdukodir Khusanov … 6 foto(s) [cat:1sel/9]
+  · Khojiakbar Alijonov … 1 foto(s) [P18]
+  · Farrukh Sayfiev … 2 foto(s) [cat:club(2)]
+  · Rustam Ashurmatov … 6 foto(s) [cat:club(36)]
+  · Sherzod Nasrullaev … 1 foto(s) [P18]
+  · Umarbek Eshmurodov … 1 foto(s) [P18]
+  · Abdulla Abdullaev … 0 (Q122152591)
+  · Behruzjon Karimov … sin wikidata
+  · Avazbek Ulmasaliyev … sin wikidata
+  · Jakhongir Urozov … 1 foto(s) [P18]
+  · Akmal Mozgovoy … 1 foto(s) [P18]
+  · Otabek Shukurov … 1 foto(s) [P18]
+  · Jamshid Iskanderov … 3 foto(s) [cat:1sel/3]
+  · Odiljon Xamrobekov … 6 foto(s) [cat:club(12)]
+  · Jaloliddin Masharipov … 6 foto(s) [cat:1sel/7]
+  · Oston Urunov … 3 foto(s) [cat:club(3)]
+  · Dostonbek Khamdamov … 1 foto(s) [cat:club(1)]
+  · Azizjon Ganiev … 1 foto(s) [P18]
+  · Abbosbek Fayzullaev … 6 foto(s) [cat:6sel/20]
+  · Sherzod Esanov … 1 foto(s) [P18]
+  · Eldor Shomurodov … 6 foto(s) [cat:15sel/39]
+  · Azizbek Amonov … 6 foto(s) [cat:club(19)]
+  · Igor Sergeev … 1 foto(s) [P18]
+  ✓ escrito data\teams\uzbekistan.json
+
+Listo. Informe → scripts/commons-images-report.json
+  jugadores con foto: 928 · fotos totales: 3446
+EXIT 0

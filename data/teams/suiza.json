@@ -452,9 +452,7 @@
         "shirt_number_expected": 12,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93090.jpg/330px-2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93090.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/GregorKobel.jpg/500px-GregorKobel.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "yvon-mvogo",
@@ -471,12 +469,9 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/95/20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8056.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/YB_vs._FCL_-_Mvogo_1.jpg/500px-YB_vs._FCL_-_Mvogo_1.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/YB_vs._FCL_-_Mvogo_3.jpg/500px-YB_vs._FCL_-_Mvogo_3.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/YB_vs._FCL_-_Mvogo_2a.jpg/500px-YB_vs._FCL_-_Mvogo_2a.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/YB_vs._FCL_-_Mvogo_2b.jpg/500px-YB_vs._FCL_-_Mvogo_2b.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/YB_vs._FCL_-_Mvogo_2c.jpg/500px-YB_vs._FCL_-_Mvogo_2c.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Yvon_Mvogo.jpg/500px-Yvon_Mvogo.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_7968.jpg/960px-20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_7968.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_7994.jpg/960px-20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_7994.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8085.jpg/960px-20180920_Fussball%2C_UEFA_Europa_League%2C_RB_Leipzig_-_FC_Salzburg_by_Stepro_StP_8085.jpg"
         ]
       },
       {
@@ -492,7 +487,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "miro-muheim",
@@ -507,7 +503,8 @@
         },
         "shirt_number_expected": 18,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/2025-05-16_Hamburger_SV_Miro_Muheim.jpg/330px-2025-05-16_Hamburger_SV_Miro_Muheim.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/2025-05-16_Hamburger_SV_Miro_Muheim.jpg/330px-2025-05-16_Hamburger_SV_Miro_Muheim.jpg",
+        "photos": []
       },
       {
         "id": "silvan-widmer",
@@ -522,7 +519,8 @@
         },
         "shirt_number_expected": 2,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/AUT_vs._SUI_2015-11-17_%28173%29_Silvan_Widmer.jpg/330px-AUT_vs._SUI_2015-11-17_%28173%29_Silvan_Widmer.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/AUT_vs._SUI_2015-11-17_%28173%29_Silvan_Widmer.jpg/330px-AUT_vs._SUI_2015-11-17_%28173%29_Silvan_Widmer.jpg",
+        "photos": []
       },
       {
         "id": "nico-elvedi",
@@ -537,7 +535,8 @@
         },
         "shirt_number_expected": 4,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Wales-Switzerland_match_at_Euro_2020_in_Baku_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Wales-Switzerland_match_at_Euro_2020_in_Baku_%28cropped%29.jpg",
+        "photos": []
       },
       {
         "id": "manuel-akanji",
@@ -553,12 +552,7 @@
         "shirt_number_expected": 5,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Ser-Swi_%2834%29_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/4/4c/Manuel_Akanji_2017.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Manuel_Akanji.jpg/500px-Manuel_Akanji.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2792_%28Manuel_Akanji%29.jpg/500px-2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2792_%28Manuel_Akanji%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Manuel_Akanji.png/500px-Manuel_Akanji.png"
-        ]
+        "photos": []
       },
       {
         "id": "ricardo-rodriguez",
@@ -574,14 +568,7 @@
         "shirt_number_expected": 13,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Ricardo_Rodr%C3%ADguez_2018.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Lionel_Messi_%28L%29%2C_Ricardo_Rodriguez_%28R%29_-_Switzerland_vs._Argentina%2C_29th_February_2012.jpg/500px-Lionel_Messi_%28L%29%2C_Ricardo_Rodriguez_%28R%29_-_Switzerland_vs._Argentina%2C_29th_February_2012.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Ricardo_Rodriguez_%28L%29%2C_Eduardo_Salvio_%28R%29_-_Switzerland_vs._Argentina%2C_29th_February_2012.jpg/500px-Ricardo_Rodriguez_%28L%29%2C_Eduardo_Salvio_%28R%29_-_Switzerland_vs._Argentina%2C_29th_February_2012.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Ricardo_Rodriguez_%28R%29_-_Switzerland_vs._Argentina%2C_29th_February_2012.jpg/500px-Ricardo_Rodriguez_%28R%29_-_Switzerland_vs._Argentina%2C_29th_February_2012.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Ricardo_Rodriguez_-_Switzerland_vs._Argentina%2C_29th_February_2012.jpg/500px-Ricardo_Rodriguez_-_Switzerland_vs._Argentina%2C_29th_February_2012.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Sergio_Ag%C3%BCero_%28L%29%2C_Ricardo_Rodriguez_%28C%29%2C_Valentin_Stocker_%28R%29_-_Switzerland_vs._Argentina%2C_29th_February_2012.jpg/500px-Sergio_Ag%C3%BCero_%28L%29%2C_Ricardo_Rodriguez_%28C%29%2C_Valentin_Stocker_%28R%29_-_Switzerland_vs._Argentina%2C_29th_February_2012.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Ricardo_Rodr%C3%ADguez_%28football%29.JPG/500px-Ricardo_Rodr%C3%ADguez_%28football%29.JPG"
-        ]
+        "photos": []
       },
       {
         "id": "eray-comert",
@@ -597,11 +584,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/85/Eray_C%C3%B6mert_2019.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/a/a0/Eray_C%C3%B6mert_%282016-07-13%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/4/4f/Eray_C%C3%B6mert_2019_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Eray_C%C3%B6mert_%2828-10-2023%29.jpg/500px-Eray_C%C3%B6mert_%2828-10-2023%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "aurele-amenda",
@@ -616,7 +599,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "luca-jaquez",
@@ -631,7 +615,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "denis-zakaria",
@@ -647,9 +632,7 @@
         "shirt_number_expected": 11,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Zakaria_asse_asm_2425.png/330px-Zakaria_asse_asm_2425.png",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/0/0d/Zakaria_asse_asm_2425_%28cropped%29.png"
-        ]
+        "photos": []
       },
       {
         "id": "remo-freuler",
@@ -665,9 +648,7 @@
         "shirt_number_expected": 15,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c6/RemoFreuler.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Azione_Lecce_Atalanta_-_Remo_Freuler_%28cropped%29.jpg/500px-Azione_Lecce_Atalanta_-_Remo_Freuler_%28cropped%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "johan-manzambi",
@@ -682,7 +663,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "granit-xhaka",
@@ -698,14 +680,7 @@
         "shirt_number_expected": 10,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Granit_Xhaka_%28cropped%29.jpg/330px-Granit_Xhaka_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/6/68/Granit_Xhaka.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Suisse_vs_Argentine_-_Granit_Xhaka_%26_Lionel_Messi.jpg/500px-Suisse_vs_Argentine_-_Granit_Xhaka_%26_Lionel_Messi.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Granit_Xhaka_-_Switzerland_vs._Argentina%2C_29th_February_2012.jpg/500px-Granit_Xhaka_-_Switzerland_vs._Argentina%2C_29th_February_2012.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Hugo_Campagnaro_%28L%29%2C_Granit_Xhaka_%28R%29_-_Switzerland_vs._Argentina%2C_29th_February_2012.jpg/500px-Hugo_Campagnaro_%28L%29%2C_Granit_Xhaka_%28R%29_-_Switzerland_vs._Argentina%2C_29th_February_2012.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Ezequiel_Garay_%28L%29%2C_Granit_Xhaka_%28R%29_-_Switzerland_vs._Argentina%2C_29th_February_2012.jpg/500px-Ezequiel_Garay_%28L%29%2C_Granit_Xhaka_%28R%29_-_Switzerland_vs._Argentina%2C_29th_February_2012.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Suisse_vs_Argentine_-_Granit_Xhaka_%26_Lionel_Messi_-_b.jpg/500px-Suisse_vs_Argentine_-_Granit_Xhaka_%26_Lionel_Messi_-_b.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "ardon-jashari",
@@ -721,9 +696,7 @@
         "shirt_number_expected": 8,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Ali_Maamar_RSCA_2025.jpg/330px-Ali_Maamar_RSCA_2025.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Ardon_Jashari.jpg/500px-Ardon_Jashari.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "djibril-sow",
@@ -739,10 +712,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/2c/DjibrilSow.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/a/a0/Djibril_Sow.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/DjibrilSow_%28cropped%29.jpg/500px-DjibrilSow_%28cropped%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "michel-aebischer",
@@ -756,7 +726,8 @@
           "league": "Serie A"
         },
         "shirt_number_expected": 17,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "fabian-rieder",
@@ -770,7 +741,8 @@
           "league": "Bundesliga"
         },
         "shirt_number_expected": 19,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "breel-embolo",
@@ -787,11 +759,10 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/2018-08-17_1._FC_Schweinfurt_05_vs._FC_Schalke_04_%28DFB-Pokal%29_by_Sandro_Halank%E2%80%93066_%28cropped%29.jpg/330px-2018-08-17_1._FC_Schweinfurt_05_vs._FC_Schalke_04_%28DFB-Pokal%29_by_Sandro_Halank%E2%80%93066_%28cropped%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/3/34/Breel_Embolo.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Breel_Embolo_2017.jpg/500px-Breel_Embolo_2017.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Breel_Embolo_2017-v01.jpg/500px-Breel_Embolo_2017-v01.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Breel_Embolo_2017_%282%29.jpg/500px-Breel_Embolo_2017_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Breel_Embolo_2018.jpg/500px-Breel_Embolo_2018.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/UEFA_Euro_League_FC_Salzburg_gegen_FC_Basel_50.JPG/960px-UEFA_Euro_League_FC_Salzburg_gegen_FC_Basel_50.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/UEFA_Euro_League_FC_Salzburg_vs._FC_Basel_44.JPG/960px-UEFA_Euro_League_FC_Salzburg_vs._FC_Basel_44.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Wales-Switzerland_match_at_Euro_2020_in_Baku_5.jpg/960px-Wales-Switzerland_match_at_Euro_2020_in_Baku_5.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Wales-Switzerland_match_at_Euro_2020_in_Baku_6.jpg/960px-Wales-Switzerland_match_at_Euro_2020_in_Baku_6.jpg"
         ]
       },
       {
@@ -807,7 +778,8 @@
         },
         "shirt_number_expected": 9,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Lens_-_Nice_%2823-01-2021%29_52.jpg/330px-Lens_-_Nice_%2823-01-2021%29_52.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Lens_-_Nice_%2823-01-2021%29_52.jpg/330px-Lens_-_Nice_%2823-01-2021%29_52.jpg",
+        "photos": []
       },
       {
         "id": "christian-fassnacht",
@@ -823,10 +795,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/77/Christian_Fassnacht_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Christian_Fassnacht_Dynamo_Kiew_vs._BSC_Young_Boys.jpg/500px-Christian_Fassnacht_Dynamo_Kiew_vs._BSC_Young_Boys.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Fassnacht_Jarmolenko_Dynamo_Kiew_vs._BSC_Young_Boys.jpg/500px-Fassnacht_Jarmolenko_Dynamo_Kiew_vs._BSC_Young_Boys.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "ruben-vargas",
@@ -841,9 +810,7 @@
         },
         "shirt_number_expected": 14,
         "status": "fixed",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Ruben_Vargas_Ugarte.jpg/500px-Ruben_Vargas_Ugarte.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "noah-okafor",
@@ -860,11 +827,10 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/FC_RB_Salzburg_gegen_FK_Austria_Wien_%282022-04-24%29_68.jpg/330px-FC_RB_Salzburg_gegen_FK_Austria_Wien_%282022-04-24%29_68.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Noah_Okafor_2022.jpg/500px-Noah_Okafor_2022.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Noah_Okafor_13092025_%281%29.jpg/500px-Noah_Okafor_13092025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Noah_Okafor_13092025_%282%29.jpg/500px-Noah_Okafor_13092025_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Noah_Okafor_and_James_Justin_3092025_%281%29.jpg/500px-Noah_Okafor_and_James_Justin_3092025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Noah_Okafor_13092025_%283%29.jpg/500px-Noah_Okafor_13092025_%283%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_06.jpg/960px-FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_06.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_37.jpg/960px-FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_37.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_40.jpg/960px-FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_40.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_43.jpg/960px-FC_Salzburg_gegen_AS_Roma_%28UEFA_Euroleague_play-off%2C_2023-02-16%29_43.jpg"
         ]
       },
       {
@@ -879,7 +845,8 @@
           "league": "Primeira Liga"
         },
         "shirt_number_expected": 23,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "cedric-itten",
@@ -894,7 +861,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       }
     ],
     "starting_xi": {
@@ -1016,21 +984,15 @@
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
     "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
-    "image_pool": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Swiss_national_football_team.jpg/500px-Swiss_national_football_team.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Bulgarian_national_football_team.JPG/500px-Bulgarian_national_football_team.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Swiss_national_football_team_-_Swiss_vs._Argentina%2C_29th_February_2012.jpg/500px-Swiss_national_football_team_-_Swiss_vs._Argentina%2C_29th_February_2012.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Switzerland_national_under-21_football_team_2011.jpg/500px-Switzerland_national_under-21_football_team_2011.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Croatia_football_team_-_Croatia_vs._Portugal%2C_10th_June_2013.jpg/500px-Croatia_football_team_-_Croatia_vs._Portugal%2C_10th_June_2013.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Sweden_-_Switzerland%2C_5_April_2015_%2816860734318%29.jpg/500px-Sweden_-_Switzerland%2C_5_April_2015_%2816860734318%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Sweden_-_Switzerland%2C_5_April_2015_%2817047686121%29.jpg/500px-Sweden_-_Switzerland%2C_5_April_2015_%2817047686121%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Schweizer-WM-Platzierungen.PNG/500px-Schweizer-WM-Platzierungen.PNG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Switzerland_national_football_team_World_Cup_2018.jpg/500px-Switzerland_national_football_team_World_Cup_2018.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/f/fa/Switzerland_national_football_team_World_Cup_2018_%28cropped%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/5/52/Switzerland_national_football_team_World_Cup_2018_%28cropped%293.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/3/39/Switzerland_national_football_team_World_Cup_2018_%28cropped%29_4.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/France_-_Suisse_%28Euro_2016%2C_Villeneuve_d%27Ascq%29.jpg/500px-France_-_Suisse_%28Euro_2016%2C_Villeneuve_d%27Ascq%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Spanish_national_football_team_before_the_friendly_match_against_Switzerland_in_Bern%2C_01.06.1925.jpg/500px-Spanish_national_football_team_before_the_friendly_match_against_Switzerland_in_Bern%2C_01.06.1925.jpg"
+    "team_photos": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Ilham_Aliyev_and_Mehriban_Aliyeva_watch_Wales-Switzerland_match_at_Euro_2020_in_Baku.jpg/960px-Ilham_Aliyev_and_Mehriban_Aliyeva_watch_Wales-Switzerland_match_at_Euro_2020_in_Baku.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Ilham_Aliyev_and_Mehriban_Aliyeva_watch_Wales-Switzerland_match_at_Euro_2020_in_Baku_2.jpg/960px-Ilham_Aliyev_and_Mehriban_Aliyeva_watch_Wales-Switzerland_match_at_Euro_2020_in_Baku_2.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Wales-Switzerland_match_at_Euro_2020_in_Baku_2.jpg/960px-Wales-Switzerland_match_at_Euro_2020_in_Baku_2.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Ilham_Aliyev_and_Mehriban_Aliyeva_watch_Wales-Switzerland_match_at_Euro_2020_in_Baku_3.jpg/960px-Ilham_Aliyev_and_Mehriban_Aliyeva_watch_Wales-Switzerland_match_at_Euro_2020_in_Baku_3.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Ilham_Aliyev_and_Mehriban_Aliyeva_watch_Wales-Switzerland_match_at_Euro_2020_in_Baku_4.jpg/960px-Ilham_Aliyev_and_Mehriban_Aliyeva_watch_Wales-Switzerland_match_at_Euro_2020_in_Baku_4.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Wales-Switzerland_match_at_Euro_2020_in_Baku_5.jpg/960px-Wales-Switzerland_match_at_Euro_2020_in_Baku_5.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Wales-Switzerland_match_at_Euro_2020_in_Baku_6.jpg/960px-Wales-Switzerland_match_at_Euro_2020_in_Baku_6.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Wales-Switzerland_match_at_Euro_2020_in_Baku.jpg/960px-Wales-Switzerland_match_at_Euro_2020_in_Baku.jpg"
     ]
   },
   "history": {

@@ -163,6 +163,10 @@ export interface WorldCup2026 {
    *  afición, etc. Se combina con las fotos de la convocatoria para variar la
    *  imagen de los push. Opción A acordada con Carlos (2026-06-06). */
   image_pool?: string[];
+  /** Fotos de EQUIPO de la selección (grupo/once/celebración, camiseta nacional,
+   *  HORIZONTALES) de Wikimedia Commons. Para "alineaciones" (favorito) y "final"
+   *  (ganador). Las rellena scripts/fetch-commons-images.cjs. */
+  team_photos?: string[];
 }
 
 export interface QualifyingData {

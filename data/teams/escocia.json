@@ -453,12 +453,7 @@
         "shirt_number_expected": 1,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/70/Angus.gunn.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Angus_Gunn%2C_Triple_S.jpg/500px-Angus_Gunn%2C_Triple_S.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Angus_Gunn_22122025_%281%29.jpg/500px-Angus_Gunn_22122025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Angus_Gunn_22122025_%282%29.jpg/500px-Angus_Gunn_22122025_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Angus_Gunn_22122025_%283%29.jpg/500px-Angus_Gunn_22122025_%283%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "liam-kelly",
@@ -474,10 +469,7 @@
         "shirt_number_expected": 23,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Liam_Kelly.jpg/330px-Liam_Kelly.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Liam_Kelly_July_2019.jpg/500px-Liam_Kelly_July_2019.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Massive_Liam_Kelly.jpg/500px-Massive_Liam_Kelly.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "craig-gordon",
@@ -493,10 +485,7 @@
         "shirt_number_expected": 12,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Craig_S_Gordon.jpg/330px-Craig_S_Gordon.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Bundesarchiv_B_145_Bild-F088120-0001%2C_Gordon_Craig.jpg/500px-Bundesarchiv_B_145_Bild-F088120-0001%2C_Gordon_Craig.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/2/28/FC_Salzburg_versus_Celtic_FC_%284._Oktober_2918_Gruppe_B%2C_Zweiter_Spieltag%29_07_%28Craig_Gordon%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "aaron-hickey",
@@ -512,14 +501,7 @@
         "shirt_number_expected": 2,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Aaron_Hickey_02082025_%281%29.jpg/330px-Aaron_Hickey_02082025_%281%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Aaron_Hickey_02082025_%282%29.jpg/500px-Aaron_Hickey_02082025_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Aaron_Hickey_02082025_%283%29.jpg/500px-Aaron_Hickey_02082025_%283%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Aaron_Hickey_29112025_%282%29.jpg/500px-Aaron_Hickey_29112025_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Aaron_Hickey_29112025_%281%29.jpg/500px-Aaron_Hickey_29112025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Aaron_Hickey_27122025_%282%29.jpg/500px-Aaron_Hickey_27122025_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Aaron_Hickey_27122025_%281%29.jpg/500px-Aaron_Hickey_27122025_%281%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "andrew-robertson",
@@ -535,14 +517,7 @@
         "shirt_number_expected": 6,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/LFC_Parade_2019_01_Andy_Robertson.jpg/330px-LFC_Parade_2019_01_Andy_Robertson.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Andy_Robertson_%2819596759769%29.jpg/500px-Andy_Robertson_%2819596759769%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/c/cc/Andy_Robertson_2015.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Robertson_%26_Clucas_%2834807034041%29.jpg/500px-Robertson_%26_Clucas_%2834807034041%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Robertson_%26_Clucas_%2834807034041%29_%28cropped%29.jpg/500px-Robertson_%26_Clucas_%2834807034041%29_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Andy_Robertson_%2819596759769%29_%28cropped%29.jpg/500px-Andy_Robertson_%2819596759769%29_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/7/78/Andrew_Robertson_v_Russia_2019.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "grant-hanley",
@@ -558,11 +533,7 @@
         "shirt_number_expected": 5,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Grant_Hanley_2018.jpg/330px-Grant_Hanley_2018.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Robinson_and_Hanley.jpg/500px-Robinson_and_Hanley.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/0/0d/Grant_Hanley_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Grant_Hanley.JPG/500px-Grant_Hanley.JPG"
-        ]
+        "photos": []
       },
       {
         "id": "kieran-tierney",
@@ -578,10 +549,7 @@
         "shirt_number_expected": 3,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/55/Kieran_Tierney_%2826938128442%29_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Kieran_Tierney_%2826938128442%29.jpg/500px-Kieran_Tierney_%2826938128442%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/f/f3/Kieran_Tierney_%28close-up_image%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "jack-hendry",
@@ -597,14 +565,7 @@
         "shirt_number_expected": 4,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/ac/FC_Salzburg_versus_Celtic_FC_%284._Oktober_2918_Gruppe_B%2C_Zweiter_Spieltag%29_20_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Paddling_-_John_Hendry_Park_%283822374662%29.jpg/500px-Paddling_-_John_Hendry_Park_%283822374662%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/John_Hendry_Park_Trout_Lake%2C_foggy_%2810502757096%29.jpg/500px-John_Hendry_Park_Trout_Lake%2C_foggy_%2810502757096%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Trout_Lake%2C_John_Hendry_Park.jpg/500px-Trout_Lake%2C_John_Hendry_Park.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/8/8e/Notts_county_1894_%28Hendry%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/John_Hendry_Park_Trout_Lake%2C_foggy_%2810502956933%29.jpg/500px-John_Hendry_Park_Trout_Lake%2C_foggy_%2810502956933%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/John_Hendry_Park_202510.jpg/500px-John_Hendry_Park_202510.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "john-souttar",
@@ -620,9 +581,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/22/John_Souttar_2023.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/a/a5/First_Minister_meets_with_Scottish_National_Football_Team_-_55168603663_%28souttar%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "dom-hyam",
@@ -637,7 +596,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/%D0%A3%D0%BA%D1%80%D0%B0%D0%B8%D0%BD%D0%B0_U-21_-_%D0%A8%D0%BE%D1%82%D0%BB%D0%B0%D0%BD%D0%B4%D0%B8%D1%8F_U-21_4-0._6_%D1%81%D0%B5%D0%BD%D1%82%D1%8F%D0%B1%D1%80%D1%8F_2016_%D0%B3%D0%BE%D0%B4%D0%B0_%E2%80%94_708271_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/%D0%A3%D0%BA%D1%80%D0%B0%D0%B8%D0%BD%D0%B0_U-21_-_%D0%A8%D0%BE%D1%82%D0%BB%D0%B0%D0%BD%D0%B4%D0%B8%D1%8F_U-21_4-0._6_%D1%81%D0%B5%D0%BD%D1%82%D1%8F%D0%B1%D1%80%D1%8F_2016_%D0%B3%D0%BE%D0%B4%D0%B0_%E2%80%94_708271_%28cropped%29.jpg",
+        "photos": []
       },
       {
         "id": "nathan-patterson",
@@ -652,7 +612,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d5/SPFL_Reserve_League_Winners_2018_19_-_Rangers_%2833913865528%29_%28KP%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d5/SPFL_Reserve_League_Winners_2018_19_-_Rangers_%2833913865528%29_%28KP%29.jpg",
+        "photos": []
       },
       {
         "id": "anthony-ralston",
@@ -668,11 +629,7 @@
         "shirt_number_expected": 17,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Celtic-20240722-034.jpg/330px-Celtic-20240722-034.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Anthony_Ralston_with_a_fan.jpg/500px-Anthony_Ralston_with_a_fan.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Anthony_Ralston_with_a_fan_%28cropped%29.jpg/500px-Anthony_Ralston_with_a_fan_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Anthony_Ralston.jpg/500px-Anthony_Ralston.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "scott-mckenna",
@@ -686,7 +643,8 @@
           "league": "La Liga"
         },
         "shirt_number_expected": 24,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "scott-mctominay",
@@ -701,7 +659,8 @@
         },
         "shirt_number_expected": 8,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Scott_McTominay_2021.jpg/330px-Scott_McTominay_2021.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Scott_McTominay_2021.jpg/330px-Scott_McTominay_2021.jpg",
+        "photos": []
       },
       {
         "id": "john-mcginn",
@@ -717,11 +676,7 @@
         "shirt_number_expected": 7,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/John_McGinn_2019.jpg/330px-John_McGinn_2019.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/John_McGinn_2023.jpg/500px-John_McGinn_2023.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/St._Louis_City_vs_Aston_Villa_%28Jul_2025%29_12_%28John_McGinn%29.jpg/500px-St._Louis_City_vs_Aston_Villa_%28Jul_2025%29_12_%28John_McGinn%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/First_Minister_meets_with_Scottish_National_Football_Team_%282%2C_John_McGinn%29_%28cropped%29.jpg/500px-First_Minister_meets_with_Scottish_National_Football_Team_%282%2C_John_McGinn%29_%28cropped%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "tyler-fletcher",
@@ -732,7 +687,8 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "ryan-christie",
@@ -748,14 +704,7 @@
         "shirt_number_expected": 13,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Ryan_Christie.jpg/330px-Ryan_Christie.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Ryan_Christie_%28cropped%29.jpg/500px-Ryan_Christie_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Ryan_Christie_27122025_%281%29.jpg/500px-Ryan_Christie_27122025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Ryan_Christie_27122025_%282%29.jpg/500px-Ryan_Christie_27122025_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Ryan_Christie_27122025_%283%29.jpg/500px-Ryan_Christie_27122025_%283%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Ryan_Christie_and_Will_Dennis_27122025_%281%29.jpg/500px-Ryan_Christie_and_Will_Dennis_27122025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Ryan_Christie_and_Will_Dennis_27122025_%282%29.jpg/500px-Ryan_Christie_and_Will_Dennis_27122025_%282%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "lewis-ferguson",
@@ -771,8 +720,8 @@
         "shirt_number_expected": 16,
         "status": "fixed",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/a/a6/Burning_Daylight_%281920%29_-_Lewis_%26_Ferguson.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Samuel_Lewis_Ferguson.png/500px-Samuel_Lewis_Ferguson.png"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Old_Trafford_Technical_Area_Alex_Ferguson_Sam_Allardyce.jpg/960px-Old_Trafford_Technical_Area_Alex_Ferguson_Sam_Allardyce.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Sir_Alex_Ferguson_Stand.jpg/960px-Sir_Alex_Ferguson_Stand.jpg"
         ]
       },
       {
@@ -789,9 +738,7 @@
         "shirt_number_expected": 19,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/KennyMcLean.jpg/330px-KennyMcLean.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Kenny_McLean_2021-08-07_1.jpg/500px-Kenny_McLean_2021-08-07_1.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "lyndon-dykes",
@@ -806,7 +753,8 @@
         },
         "shirt_number_expected": 21,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/89/First_Minister_meets_with_Scottish_National_Football_Team_-_55168603663_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/89/First_Minister_meets_with_Scottish_National_Football_Team_-_55168603663_%28cropped%29.jpg",
+        "photos": []
       },
       {
         "id": "che-adams",
@@ -821,7 +769,8 @@
         },
         "shirt_number_expected": 9,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Che_Adams.jpg/330px-Che_Adams.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Che_Adams.jpg/330px-Che_Adams.jpg",
+        "photos": []
       },
       {
         "id": "ross-stewart",
@@ -837,10 +786,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null,
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Information_for_Sir_James_Stewart_of_Burray_Fleuron_T224430-2.png/500px-Information_for_Sir_James_Stewart_of_Burray_Fleuron_T224430-2.png",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Information_for_Sir_James_Stewart_of_Burray_Fleuron_T224430-3.png/500px-Information_for_Sir_James_Stewart_of_Burray_Fleuron_T224430-3.png"
-        ]
+        "photos": []
       },
       {
         "id": "ben-doak",
@@ -856,14 +802,7 @@
         "shirt_number_expected": 11,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Ben_Doak_2025.jpg/330px-Ben_Doak_2025.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/d/d5/Charles_Doak_1918.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Doak_House_Sign.jpg/500px-Doak_House_Sign.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Doak_House_Info.jpg/500px-Doak_House_Info.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/William_doak_card.jpg/500px-William_doak_card.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Doak_historic_site.jpg/500px-Doak_historic_site.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/DOAK-16_US_Army.jpg/500px-DOAK-16_US_Army.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "george-hirst",
@@ -879,14 +818,7 @@
         "shirt_number_expected": 26,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/GeorgeHirst.jpg/330px-GeorgeHirst.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/2/2e/George_Hirst.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/3/3b/Hirst_pulling.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Hirst_grip.jpg/500px-Hirst_grip.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Hirst_bowling_2.jpg/500px-Hirst_bowling_2.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Hirst_pull.jpg/500px-Hirst_pull.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/George_Hirst_by_Leslie_Ward.jpg/500px-George_Hirst_by_Leslie_Ward.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "lawrence-shankland",
@@ -901,7 +833,8 @@
         },
         "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Lawrence_Shankland_2019.jpg/330px-Lawrence_Shankland_2019.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Lawrence_Shankland_2019.jpg/330px-Lawrence_Shankland_2019.jpg",
+        "photos": []
       },
       {
         "id": "findlay-curtis",
@@ -917,9 +850,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null,
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/c/c0/First_Minister_meets_with_Scottish_National_Football_Team_-_55168603663_%28cropped_findlay_curtis%29.jpg"
-        ]
+        "photos": []
       }
     ],
     "starting_xi": {
@@ -1042,21 +973,17 @@
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
     "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
-    "image_pool": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Czech_national_football_team_U21_2007.JPG/500px-Czech_national_football_team_U21_2007.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Scotland_B_national_football_team.jpg/500px-Scotland_B_national_football_team.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Wales_-_National_Football_Team_-_geograph.org.uk_-_1584292.jpg/500px-Wales_-_National_Football_Team_-_geograph.org.uk_-_1584292.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Scotland_football_team_1871_v_England.jpg/500px-Scotland_football_team_1871_v_England.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Scotland_national_team_1895.jpg/500px-Scotland_national_team_1895.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/2/28/Scotland_national_football_1872.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Hignett_19.scotland_assoc_football.jpg/500px-Hignett_19.scotland_assoc_football.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/e/e9/Scotland_national_team_1895_%28Doyle%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/c/c0/Scotland_national_team_1895_%28Lambie%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Scotland_national_team_1895_%28Jock_Drummond%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/9/96/Scotland_national_team_1895_%28Russell%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/f/fe/Scotland_national_team_1895_%28Gibson%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/4/49/Scotland_national_team_1895_%28McArthur%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/6/64/Scotland_national_team_1895_%28Gulliland%29.jpg"
+    "team_photos": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/First_Minister_meets_with_Scottish_National_Football_Team.jpg/960px-First_Minister_meets_with_Scottish_National_Football_Team.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/First_Minister_meets_with_Scottish_National_Football_Team_-_55168603663.jpg/960px-First_Minister_meets_with_Scottish_National_Football_Team_-_55168603663.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/First_Minister_meets_with_Scottish_National_Football_Team_%282%29.jpg/960px-First_Minister_meets_with_Scottish_National_Football_Team_%282%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/First_Minister_meets_with_Scottish_National_Football_Team_%283%29.jpg/960px-First_Minister_meets_with_Scottish_National_Football_Team_%283%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Scotland_v_Albania_%2844620874171%29.jpg/960px-Scotland_v_Albania_%2844620874171%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Scotland_v_Albania_%2829682174347%29.jpg/960px-Scotland_v_Albania_%2829682174347%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Scotland_v_Albania_%2830749806838%29.jpg/960px-Scotland_v_Albania_%2830749806838%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Scotland_v_Albania_%2842810081690%29.jpg/960px-Scotland_v_Albania_%2842810081690%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Scotland_v_Albania_%2844620812691%29.jpg/960px-Scotland_v_Albania_%2844620812691%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Scotland_v_Albania_%2844570605622%29.jpg/960px-Scotland_v_Albania_%2844570605622%29.jpg"
     ]
   },
   "history": {

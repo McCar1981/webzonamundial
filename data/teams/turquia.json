@@ -536,7 +536,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Mert_G%C3%BCnok_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Mert_G%C3%BCnok_%28cropped%29.jpg",
+        "photos": []
       },
       {
         "id": "altay-bayindir",
@@ -552,11 +553,7 @@
         "shirt_number_expected": 12,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Altay_Bayindir.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Altay_Bay%C4%B1nd%C4%B1r_%282021-22_S%C3%BCper_Lig%29_-_Resim1.png/500px-Altay_Bay%C4%B1nd%C4%B1r_%282021-22_S%C3%BCper_Lig%29_-_Resim1.png",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Miguel_Crespo_ve_Altay_Bay%C4%B1nd%C4%B1r_%282021-22_S%C3%BCper_Lig%29.png/500px-Miguel_Crespo_ve_Altay_Bay%C4%B1nd%C4%B1r_%282021-22_S%C3%BCper_Lig%29.png",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Altay_Bay%C4%B1nd%C4%B1r_%282021-22_S%C3%BCper_Lig%29_-_Resim2.png/500px-Altay_Bay%C4%B1nd%C4%B1r_%282021-22_S%C3%BCper_Lig%29_-_Resim2.png"
-        ]
+        "photos": []
       },
       {
         "id": "ugurcan-cakir",
@@ -571,7 +568,8 @@
         },
         "shirt_number_expected": 1,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/U%C4%9Furcan_%C3%87ak%C4%B1r_at_Antalyaspor_vs_Trabzonspor_20211211_%282%29_%28cropped%29.jpg/330px-U%C4%9Furcan_%C3%87ak%C4%B1r_at_Antalyaspor_vs_Trabzonspor_20211211_%282%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/U%C4%9Furcan_%C3%87ak%C4%B1r_at_Antalyaspor_vs_Trabzonspor_20211211_%282%29_%28cropped%29.jpg/330px-U%C4%9Furcan_%C3%87ak%C4%B1r_at_Antalyaspor_vs_Trabzonspor_20211211_%282%29_%28cropped%29.jpg",
+        "photos": []
       },
       {
         "id": "zeki-celik",
@@ -586,7 +584,8 @@
         },
         "shirt_number_expected": 2,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Zeki_%C3%A7elik_2020.jpg/330px-Zeki_%C3%A7elik_2020.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Zeki_%C3%A7elik_2020.jpg/330px-Zeki_%C3%A7elik_2020.jpg",
+        "photos": []
       },
       {
         "id": "merih-demiral",
@@ -601,7 +600,8 @@
         },
         "shirt_number_expected": 3,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Demiral_in_the_international_match_in_September_2020_%28Cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Demiral_in_the_international_match_in_September_2020_%28Cropped%29.jpg",
+        "photos": []
       },
       {
         "id": "caglar-soyuncu",
@@ -616,7 +616,8 @@
         },
         "shirt_number_expected": 6,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/AUT_vs._TUR_2016-03-29_%28381%29_%28cropped%29.jpg/330px-AUT_vs._TUR_2016-03-29_%28381%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/AUT_vs._TUR_2016-03-29_%28381%29_%28cropped%29.jpg/330px-AUT_vs._TUR_2016-03-29_%28381%29_%28cropped%29.jpg",
+        "photos": []
       },
       {
         "id": "eren-elmali",
@@ -631,7 +632,8 @@
         },
         "shirt_number_expected": 22,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Eren_Elmal%C4%B1_20251019.jpg/330px-Eren_Elmal%C4%B1_20251019.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Eren_Elmal%C4%B1_20251019.jpg/330px-Eren_Elmal%C4%B1_20251019.jpg",
+        "photos": []
       },
       {
         "id": "abdulkerim-bardakci",
@@ -646,7 +648,8 @@
         },
         "shirt_number_expected": 5,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Abd%C3%BClkerim_Bardak%C3%A7%C4%B1_-_beIN-Sports-Reklam_%282021%29_%28cropped%29.png/330px-Abd%C3%BClkerim_Bardak%C3%A7%C4%B1_-_beIN-Sports-Reklam_%282021%29_%28cropped%29.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Abd%C3%BClkerim_Bardak%C3%A7%C4%B1_-_beIN-Sports-Reklam_%282021%29_%28cropped%29.png/330px-Abd%C3%BClkerim_Bardak%C3%A7%C4%B1_-_beIN-Sports-Reklam_%282021%29_%28cropped%29.png",
+        "photos": []
       },
       {
         "id": "ozan-kabak",
@@ -659,7 +662,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Ozan_kabak.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Ozan_kabak.jpg",
+        "photos": []
       },
       {
         "id": "mert-muldur",
@@ -674,7 +678,8 @@
         },
         "shirt_number_expected": 26,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/50/Rapid-Spartak_%2815%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/50/Rapid-Spartak_%2815%29_%28cropped%29.jpg",
+        "photos": []
       },
       {
         "id": "ferdi-kadioglu",
@@ -689,7 +694,8 @@
         },
         "shirt_number_expected": 14,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Ferdi_Kad%C4%B1o%C4%9Flu_2024.jpg/330px-Ferdi_Kad%C4%B1o%C4%9Flu_2024.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Ferdi_Kad%C4%B1o%C4%9Flu_2024.jpg/330px-Ferdi_Kad%C4%B1o%C4%9Flu_2024.jpg",
+        "photos": []
       },
       {
         "id": "samet-akaydin",
@@ -704,7 +710,8 @@
         },
         "shirt_number_expected": 4,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/SAMETAKAYD%C4%B0N_4.jpg/330px-SAMETAKAYD%C4%B0N_4.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/SAMETAKAYD%C4%B0N_4.jpg/330px-SAMETAKAYD%C4%B0N_4.jpg",
+        "photos": []
       },
       {
         "id": "salih-ozcan",
@@ -719,7 +726,8 @@
         },
         "shirt_number_expected": 18,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93032.jpg/330px-2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93032.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93032.jpg/330px-2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93032.jpg",
+        "photos": []
       },
       {
         "id": "orkun-kokcu",
@@ -734,7 +742,8 @@
         },
         "shirt_number_expected": 11,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/K%C3%B6k%C3%A7%C3%BC_in_the_international_match_in_March_2024_%28Cropped%29.jpg/330px-K%C3%B6k%C3%A7%C3%BC_in_the_international_match_in_March_2024_%28Cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/K%C3%B6k%C3%A7%C3%BC_in_the_international_match_in_March_2024_%28Cropped%29.jpg/330px-K%C3%B6k%C3%A7%C3%BC_in_the_international_match_in_March_2024_%28Cropped%29.jpg",
+        "photos": []
       },
       {
         "id": "hakan-calhanoglu",
@@ -749,7 +758,8 @@
         },
         "shirt_number_expected": 10,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/AUT_vs._TUR_2016-03-29_%28342%29.jpg/330px-AUT_vs._TUR_2016-03-29_%28342%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/AUT_vs._TUR_2016-03-29_%28342%29.jpg/330px-AUT_vs._TUR_2016-03-29_%28342%29.jpg",
+        "photos": []
       },
       {
         "id": "ismail-yuksek",
@@ -764,7 +774,8 @@
         },
         "shirt_number_expected": 8,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/977561_sPICT_%28cropped%29.jpg/330px-977561_sPICT_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/977561_sPICT_%28cropped%29.jpg/330px-977561_sPICT_%28cropped%29.jpg",
+        "photos": []
       },
       {
         "id": "kaan-ayhan",
@@ -777,7 +788,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/62/Kaan-Ayhan-08-2019.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/62/Kaan-Ayhan-08-2019.jpg",
+        "photos": []
       },
       {
         "id": "kerem-akturkoglu",
@@ -792,7 +804,8 @@
         },
         "shirt_number_expected": 7,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Kerem_Akt%C3%BCrko%C4%9Flu_2021.jpg/330px-Kerem_Akt%C3%BCrko%C4%9Flu_2021.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Kerem_Akt%C3%BCrko%C4%9Flu_2021.jpg/330px-Kerem_Akt%C3%BCrko%C4%9Flu_2021.jpg",
+        "photos": []
       },
       {
         "id": "arda-guler",
@@ -808,9 +821,7 @@
         "shirt_number_expected": 17,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Derbide_Fenerbah%C3%A7e_Yedek_Oyuncu_Arda_G%C3%BCler_%282021-22_S%C3%BCper_Lig_-_Cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Arda_G%C3%BCler_%282021-22_S%C3%BCper_Lig%29_-_Resim3_%28cropped%29.png/500px-Arda_G%C3%BCler_%282021-22_S%C3%BCper_Lig%29_-_Resim3_%28cropped%29.png"
-        ]
+        "photos": []
       },
       {
         "id": "deniz-gul",
@@ -824,7 +835,8 @@
           "league": "Primeira Liga"
         },
         "shirt_number_expected": 9,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "kenan-yildiz",
@@ -839,7 +851,8 @@
         },
         "shirt_number_expected": 19,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Kenan_Y%C4%B1ld%C4%B1z_in_the_international_match_%28March_2025%29_%28cropped%29.jpg/330px-Kenan_Y%C4%B1ld%C4%B1z_in_the_international_match_%28March_2025%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Kenan_Y%C4%B1ld%C4%B1z_in_the_international_match_%28March_2025%29_%28cropped%29.jpg/330px-Kenan_Y%C4%B1ld%C4%B1z_in_the_international_match_%28March_2025%29_%28cropped%29.jpg",
+        "photos": []
       },
       {
         "id": "irfan-can-kahveci",
@@ -855,10 +868,7 @@
         "shirt_number_expected": 16,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/%C4%B0rfan_Can_Kahveci_%282021-22_S%C3%BCper_Lig%29_-_Resim2.png/330px-%C4%B0rfan_Can_Kahveci_%282021-22_S%C3%BCper_Lig%29_-_Resim2.png",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/%C4%B0rfan_Can_Kahveci_71_Kas%C4%B1mpa%C5%9Fa_SK_20260130_%281%29.jpg/500px-%C4%B0rfan_Can_Kahveci_71_Kas%C4%B1mpa%C5%9Fa_SK_20260130_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/%C4%B0rfan_Can_Kahveci_71_Kas%C4%B1mpa%C5%9Fa_SK_20260130_%282%29.jpg/500px-%C4%B0rfan_Can_Kahveci_71_Kas%C4%B1mpa%C5%9Fa_SK_20260130_%282%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "yunus-akgun",
@@ -873,7 +883,8 @@
         },
         "shirt_number_expected": 21,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Yunus_Akg%C3%BCn_20220225_7_%28cropped%29.jpg/330px-Yunus_Akg%C3%BCn_20220225_7_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Yunus_Akg%C3%BCn_20220225_7_%28cropped%29.jpg/330px-Yunus_Akg%C3%BCn_20220225_7_%28cropped%29.jpg",
+        "photos": []
       },
       {
         "id": "baris-yilmaz",
@@ -888,7 +899,8 @@
         },
         "shirt_number_expected": 20,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Bar%C4%B1%C5%9F_Alper_Y%C4%B1lmaz.jpg/330px-Bar%C4%B1%C5%9F_Alper_Y%C4%B1lmaz.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Bar%C4%B1%C5%9F_Alper_Y%C4%B1lmaz.jpg/330px-Bar%C4%B1%C5%9F_Alper_Y%C4%B1lmaz.jpg",
+        "photos": []
       },
       {
         "id": "oguz-aydn",
@@ -901,7 +913,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "can-uzun",
@@ -914,7 +927,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       }
     ],
     "starting_xi": {
@@ -1037,22 +1051,7 @@
     "squad_announced_status": "pending_official",
     "squad_announced_date": "2026-06-04",
     "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
-    "image_pool": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/T%C3%BCrkiye_Mill%C3%AE_Futbol_Tak%C4%B1m%C4%B1_Portal%C4%B1.png/500px-T%C3%BCrkiye_Mill%C3%AE_Futbol_Tak%C4%B1m%C4%B1_Portal%C4%B1.png",
-      "https://upload.wikimedia.org/wikipedia/commons/c/cf/Turkey_1923.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Tuerkische_Fu%C3%9Fballnationalmannschaft_2011-09-06_%2801%29.jpg/500px-Tuerkische_Fu%C3%9Fballnationalmannschaft_2011-09-06_%2801%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Servet_%C3%87etin_Turkey.jpg/500px-Servet_%C3%87etin_Turkey.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Egypt-Turkey_1928_Summer_Olympics.jpg/500px-Egypt-Turkey_1928_Summer_Olympics.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/1/15/Ilkmac1923.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/3/3d/Turkiyeromanya.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Turgay_%C5%9Eeren_%28left%29_and_Cor_van_der_Hart_in_4_May_1958.jpg/500px-Turgay_%C5%9Eeren_%28left%29_and_Cor_van_der_Hart_in_4_May_1958.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/0/05/First_ever_national_game.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Greece_vs_Turkey%2C_17_November_2015_%280-3%29.jpg/500px-Greece_vs_Turkey%2C_17_November_2015_%280-3%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Greece_vs_Turkey_%280-3%29%2C_17_November_2015.jpg/500px-Greece_vs_Turkey_%280-3%29%2C_17_November_2015.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Greece_vs_Turkey_%280-3%29%2C_17_November_2015%2C_3.jpg/500px-Greece_vs_Turkey_%280-3%29%2C_17_November_2015%2C_3.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/AUT_vs._TUR_2016-03-29_%28001%29.jpg/500px-AUT_vs._TUR_2016-03-29_%28001%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/AUT_vs._TUR_2016-03-29_%28215%29.jpg/500px-AUT_vs._TUR_2016-03-29_%28215%29.jpg"
-    ]
+    "team_photos": []
   },
   "history": {
     "first_appearance": 1954,

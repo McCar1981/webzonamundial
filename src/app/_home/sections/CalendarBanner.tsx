@@ -1,5 +1,6 @@
 // CalendarBanner — banner del home invitando a añadir el Mundial al calendario.
 // Compacto pero llamativo: gradiente dorado + icono de calendario + CTA.
+// El CTA es un Link simple a /calendario (NO abre modal).
 
 "use client";
 

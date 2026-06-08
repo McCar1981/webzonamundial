@@ -547,7 +547,8 @@
         },
         "shirt_number_expected": 1,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Ronwen_Williams_AFCON2025Q_35.jpg/330px-Ronwen_Williams_AFCON2025Q_35.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Ronwen_Williams_AFCON2025Q_35.jpg/330px-Ronwen_Williams_AFCON2025Q_35.jpg",
+        "photos": []
       },
       {
         "id": "sipho-chaine",
@@ -558,7 +559,8 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "ricardo-goss",
@@ -572,7 +574,8 @@
           "league": "PSL"
         },
         "shirt_number_expected": 12,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "thabang-matuludi",
@@ -586,7 +589,8 @@
           "league": "PSL"
         },
         "shirt_number_expected": 14,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "khulumani-ndamane",
@@ -600,7 +604,8 @@
           "league": "PSL"
         },
         "shirt_number_expected": 6,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "aubrey-modiba",
@@ -615,7 +620,8 @@
         },
         "shirt_number_expected": 3,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Aubrey_Modiba_%28cropped%29.jpg/330px-Aubrey_Modiba_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Aubrey_Modiba_%28cropped%29.jpg/330px-Aubrey_Modiba_%28cropped%29.jpg",
+        "photos": []
       },
       {
         "id": "mbekezeli-mbokazi",
@@ -629,7 +635,8 @@
           "league": "MLS"
         },
         "shirt_number_expected": 13,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "samukelo-kabini",
@@ -643,7 +650,8 @@
           "league": "Eliteserien"
         },
         "shirt_number_expected": 22,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "nkosinathi-sibisi",
@@ -657,7 +665,8 @@
           "league": "PSL"
         },
         "shirt_number_expected": 4,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "khuliso-mudau",
@@ -671,7 +680,8 @@
           "league": "PSL"
         },
         "shirt_number_expected": 2,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "ime-okon",
@@ -685,7 +695,8 @@
           "league": "2. Bundesliga"
         },
         "shirt_number_expected": 15,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "olwethu-makhanya",
@@ -697,14 +708,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Olwethu_Makhanya_Philadelphia_Chicago_10.26.25-037_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Hugo_Cuypers_Olwethu_Makhanya_Philadelphia_Chicago_10.26.25-056.jpg/500px-Hugo_Cuypers_Olwethu_Makhanya_Philadelphia_Chicago_10.26.25-056.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Hugo_Cuypers_Olwethu_Makhanya_Philadelphia_Chicago_10.26.25-055.jpg/500px-Hugo_Cuypers_Olwethu_Makhanya_Philadelphia_Chicago_10.26.25-055.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Olwethu_Makhanya_Andrew_Gutman_Philadelphia_Chicago_10.26.25-080.jpg/500px-Olwethu_Makhanya_Andrew_Gutman_Philadelphia_Chicago_10.26.25-080.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Olwethu_Makhanya_Philadelphia_Chicago_10.26.25-035.jpg/500px-Olwethu_Makhanya_Philadelphia_Chicago_10.26.25-035.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Olwethu_Makhanya_Philadelphia_Chicago_10.26.25-037.jpg/500px-Olwethu_Makhanya_Philadelphia_Chicago_10.26.25-037.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Olwethu_Makhanya_Philadelphia_Chicago_10.26.25-057.jpg/500px-Olwethu_Makhanya_Philadelphia_Chicago_10.26.25-057.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "bradley-cross",
@@ -716,14 +720,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null,
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Bradley_Cross_Roads_-_geograph.org.uk_-_392704.jpg/500px-Bradley_Cross_Roads_-_geograph.org.uk_-_392704.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Lime_kiln_near_Bradley_Cross_-_geograph.org.uk_-_1204590.jpg/500px-Lime_kiln_near_Bradley_Cross_-_geograph.org.uk_-_1204590.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Bradley_Cross_Lane_-_geograph.org.uk_-_2637479.jpg/500px-Bradley_Cross_Lane_-_geograph.org.uk_-_2637479.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Bradley_Cross_-_geograph.org.uk_-_4021994.jpg/500px-Bradley_Cross_-_geograph.org.uk_-_4021994.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/The_Jenny_Bradley_cross_%28remains_of%29_-_geograph.org.uk_-_4365183.jpg/500px-The_Jenny_Bradley_cross_%28remains_of%29_-_geograph.org.uk_-_4365183.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Ancient_wall_stile_above_Bradley_Cross_-_geograph.org.uk_-_4454942.jpg/500px-Ancient_wall_stile_above_Bradley_Cross_-_geograph.org.uk_-_4454942.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "teboho-mokoena",
@@ -738,9 +735,7 @@
         },
         "shirt_number_expected": 8,
         "status": "fixed",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/2/2a/Aaron_Mokoena.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "thalente-mbatha",
@@ -754,7 +749,8 @@
           "league": "PSL"
         },
         "shirt_number_expected": 17,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "themba-zwane",
@@ -768,7 +764,8 @@
           "league": "PSL"
         },
         "shirt_number_expected": 10,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "sphephelo-sithole",
@@ -782,7 +779,8 @@
           "league": "Liga Portugal"
         },
         "shirt_number_expected": 18,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "jayden-adams",
@@ -796,7 +794,8 @@
           "league": "PSL"
         },
         "shirt_number_expected": 16,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "oswin-appollis",
@@ -810,7 +809,8 @@
           "league": "PSL"
         },
         "shirt_number_expected": 11,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "tshepang-moremi",
@@ -824,7 +824,8 @@
           "league": "PSL"
         },
         "shirt_number_expected": 20,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "lyle-foster",
@@ -840,14 +841,7 @@
         "shirt_number_expected": 9,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Lyle_Foster_29112025_%286%29.jpg/330px-Lyle_Foster_29112025_%286%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Henrik_Jensen_and_Lyle_Foster_29112025_%281%29.jpg/500px-Henrik_Jensen_and_Lyle_Foster_29112025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Lyle_Foster_29112025_%281%29.jpg/500px-Lyle_Foster_29112025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Lyle_Foster_29112025_%282%29.jpg/500px-Lyle_Foster_29112025_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Lyle_Foster_29112025_%283%29.jpg/500px-Lyle_Foster_29112025_%283%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Lyle_Foster_29112025_%284%29.jpg/500px-Lyle_Foster_29112025_%284%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Lyle_Foster_29112025_%285%29.jpg/500px-Lyle_Foster_29112025_%285%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "relebohile-mofokeng",
@@ -861,7 +855,8 @@
           "league": "PSL"
         },
         "shirt_number_expected": 7,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "thapelo-maseko",
@@ -876,7 +871,8 @@
         },
         "shirt_number_expected": 26,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Go_Ahead_Eagles_-_Mamelodi_Sundowns_FC_-_53066145739.jpg/330px-Go_Ahead_Eagles_-_Mamelodi_Sundowns_FC_-_53066145739.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Go_Ahead_Eagles_-_Mamelodi_Sundowns_FC_-_53066145739.jpg/330px-Go_Ahead_Eagles_-_Mamelodi_Sundowns_FC_-_53066145739.jpg",
+        "photos": []
       },
       {
         "id": "iqraam-rayners",
@@ -887,7 +883,8 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "evidence-makgopa",
@@ -901,7 +898,8 @@
           "league": "PSL"
         },
         "shirt_number_expected": 21,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "kamogelo-sebelebele",
@@ -912,7 +910,8 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       }
     ],
     "starting_xi": {
@@ -1035,21 +1034,9 @@
     "squad_announced_status": "pending_official",
     "squad_announced_date": "2026-06-04",
     "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
-    "image_pool": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Southafrica_soccerteam.PNG/500px-Southafrica_soccerteam.PNG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Simon_Rolfes_during_friendly_match_Germany-South_Africa_on_September_5%2C_2009.jpg/500px-Simon_Rolfes_during_friendly_match_Germany-South_Africa_on_September_5%2C_2009.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/South-Africa-vs-British-Lions-1896.jpeg/500px-South-Africa-vs-British-Lions-1896.jpeg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/South_Africa_national_football_team_training_at_University_of_the_Witwatersrand_2010-06-04_1.jpg/500px-South_Africa_national_football_team_training_at_University_of_the_Witwatersrand_2010-06-04_1.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/South_Africa_national_football_team_training_at_University_of_the_Witwatersrand_2010-06-04_2.jpg/500px-South_Africa_national_football_team_training_at_University_of_the_Witwatersrand_2010-06-04_2.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/South_Africa_national_football_team_training_at_University_of_the_Witwatersrand_2010-06-04_3.jpg/500px-South_Africa_national_football_team_training_at_University_of_the_Witwatersrand_2010-06-04_3.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/South_Africa_national_football_team_training_at_University_of_the_Witwatersrand_2010-06-04_4.jpg/500px-South_Africa_national_football_team_training_at_University_of_the_Witwatersrand_2010-06-04_4.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/South_Africa_national_football_team_training_at_University_of_the_Witwatersrand_2010-06-04_6.jpg/500px-South_Africa_national_football_team_training_at_University_of_the_Witwatersrand_2010-06-04_6.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Spectators_watching_South_Africa_national_football_team_train_at_University_of_the_Witwatersrand_2010-06-04.jpg/500px-Spectators_watching_South_Africa_national_football_team_train_at_University_of_the_Witwatersrand_2010-06-04.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/4/4e/MR.HLONGWANE..SOUTH_AFRICA.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Australia_vs._South_Africa%2C_Loftus_Road_-_geograph.org.uk_-_928852.jpg/500px-Australia_vs._South_Africa%2C_Loftus_Road_-_geograph.org.uk_-_928852.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/South_African_National_Australian_Football_Team.jpg/500px-South_African_National_Australian_Football_Team.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/World_Cup_South_Africa_Fans_%284711380526%29_%283%29.jpg/500px-World_Cup_South_Africa_Fans_%284711380526%29_%283%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Harvest_Parade_2014_55_%28cropped%29.jpg/500px-Harvest_Parade_2014_55_%28cropped%29.jpg"
+    "team_photos": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/South_Africa_celebration.jpg/960px-South_Africa_celebration.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/South_Africa_celebrates_second_goal.jpg/960px-South_Africa_celebrates_second_goal.jpg"
     ]
   },
   "history": {

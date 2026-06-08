@@ -610,10 +610,12 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Norway_Italy_-_June_2025_A_10_%28cropped%29.jpg/330px-Norway_Italy_-_June_2025_A_10_%28cropped%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Orjan_Nyland_Zarya-Molde.jpg/500px-Orjan_Nyland_Zarya-Molde.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/%C3%98rjan_H%C3%A5skjold_Nyland.JPG/500px-%C3%98rjan_H%C3%A5skjold_Nyland.JPG",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/%C3%98rjan_H%C3%A5skjold_Nyland_%28cropped%29.JPG/500px-%C3%98rjan_H%C3%A5skjold_Nyland_%28cropped%29.JPG",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Nyland%2C_%C3%98rjan_Ingolstadt_17-18_%282%29_WP.jpg/500px-Nyland%2C_%C3%98rjan_Ingolstadt_17-18_%282%29_WP.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Norway_Italy_-_June_2025_A_10.jpg/960px-Norway_Italy_-_June_2025_A_10.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Norway_Italy_-_June_2025_A_43.jpg/960px-Norway_Italy_-_June_2025_A_43.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Norway_Italy_-_June_2025_A_46.jpg/960px-Norway_Italy_-_June_2025_A_46.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Norway_Italy_-_June_2025_A_47.jpg/960px-Norway_Italy_-_June_2025_A_47.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Norway_Italy_-_June_2025_A_48.jpg/960px-Norway_Italy_-_June_2025_A_48.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Norway_Italy_-_June_2025_B_01.jpg/960px-Norway_Italy_-_June_2025_B_01.jpg"
         ]
       },
       {
@@ -629,7 +631,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "egil-selvik",
@@ -646,12 +649,7 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Norway_Italy_-_June_2025_A_07_%28cropped%29.jpg/330px-Norway_Italy_-_June_2025_A_07_%28cropped%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Amin_Nabizada%2C_Egil_Selvik_and_Jack_Grieves_12072025_%282%29.jpg/500px-Amin_Nabizada%2C_Egil_Selvik_and_Jack_Grieves_12072025_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Amin_Nabizada%2C_Egil_Selvik_and_Jack_Grieves_12072025_%281%29.jpg/500px-Amin_Nabizada%2C_Egil_Selvik_and_Jack_Grieves_12072025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Egil_Selvik_12072025_%281%29.jpg/500px-Egil_Selvik_12072025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Egil_Selvik_12072025_%282%29.jpg/500px-Egil_Selvik_12072025_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Egil_Selvik_12072025_%283%29.jpg/500px-Egil_Selvik_12072025_%283%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Egil_Selvik_and_Nathan_Baxter_12072025_%281%29.jpg/500px-Egil_Selvik_and_Nathan_Baxter_12072025_%281%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Norway_Italy_-_June_2025_A_07.jpg/960px-Norway_Italy_-_June_2025_A_07.jpg"
         ]
       },
       {
@@ -669,12 +667,12 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Cel-Zen_%285%29_%28cropped%29.jpg/330px-Cel-Zen_%285%29_%28cropped%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Kristoffer_Ajer_02082025_%281%29.jpg/500px-Kristoffer_Ajer_02082025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Kristoffer_Ajer_02082025_%282%29.jpg/500px-Kristoffer_Ajer_02082025_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Kristoffer_Ajer_02082025_%283%29.jpg/500px-Kristoffer_Ajer_02082025_%283%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Kristoffer_Ajer_02082025_%284%29.jpg/500px-Kristoffer_Ajer_02082025_%284%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Alex_Scott_and_Kristoffer_Ajer_27122025_%281%29.jpg/500px-Alex_Scott_and_Kristoffer_Ajer_27122025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Mathias_Jensen_and_Kristoffer_Ajer_27122025_%281%29.jpg/500px-Mathias_Jensen_and_Kristoffer_Ajer_27122025_%281%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Kristoffer_Ajer_02082025_%281%29.jpg/960px-Kristoffer_Ajer_02082025_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Kristoffer_Ajer_02082025_%282%29.jpg/960px-Kristoffer_Ajer_02082025_%282%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Kristoffer_Ajer_02082025_%283%29.jpg/960px-Kristoffer_Ajer_02082025_%283%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Kristoffer_Ajer_02082025_%284%29.jpg/960px-Kristoffer_Ajer_02082025_%284%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Alex_Scott_and_Kristoffer_Ajer_27122025_%281%29.jpg/960px-Alex_Scott_and_Kristoffer_Ajer_27122025_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Igor_Thiago%2C_Kevin_Schade_and_Kristoffer_Ajer_27122025_%281%29.jpg/960px-Igor_Thiago%2C_Kevin_Schade_and_Kristoffer_Ajer_27122025_%281%29.jpg"
         ]
       },
       {
@@ -690,7 +688,11 @@
         },
         "shirt_number_expected": 6,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Norway_Italy_-_June_2025_A_06_%28cropped%29.jpg/330px-Norway_Italy_-_June_2025_A_06_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Norway_Italy_-_June_2025_A_06_%28cropped%29.jpg/330px-Norway_Italy_-_June_2025_A_06_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Norway_Italy_-_June_2025_A_06.jpg/960px-Norway_Italy_-_June_2025_A_06.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Norway_Italy_-_June_2025_D_43.jpg/960px-Norway_Italy_-_June_2025_D_43.jpg"
+        ]
       },
       {
         "id": "david-møller-wolfe",
@@ -705,7 +707,15 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/David_M%C3%B8ller_Wolfe.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/David_M%C3%B8ller_Wolfe.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Norway_Italy_-_June_2025_A_41.jpg/960px-Norway_Italy_-_June_2025_A_41.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Norway_Italy_-_June_2025_A_43.jpg/960px-Norway_Italy_-_June_2025_A_43.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Norway_Italy_-_June_2025_A_46.jpg/960px-Norway_Italy_-_June_2025_A_46.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Norway_Italy_-_June_2025_A_47.jpg/960px-Norway_Italy_-_June_2025_A_47.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Norway_Italy_-_June_2025_A_48.jpg/960px-Norway_Italy_-_June_2025_A_48.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Norway_Italy_-_June_2025_B_01.jpg/960px-Norway_Italy_-_June_2025_B_01.jpg"
+        ]
       },
       {
         "id": "fredrik-bjorkan",
@@ -720,7 +730,8 @@
         },
         "shirt_number_expected": 13,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/F_Bj%C3%B8rkan.jpg/330px-F_Bj%C3%B8rkan.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/F_Bj%C3%B8rkan.jpg/330px-F_Bj%C3%B8rkan.jpg",
+        "photos": []
       },
       {
         "id": "marcus-pedersen",
@@ -736,12 +747,7 @@
         "shirt_number_expected": 14,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Marcus_Holmgren_Pedersen_2022_FC_RB_Salzburg_gegen_Feyenoord_Rotterdam_%28cropped%29.jpg/330px-Marcus_Holmgren_Pedersen_2022_FC_RB_Salzburg_gegen_Feyenoord_Rotterdam_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Marcus_Pedersen_%28Vitesse_Arnhem%29_-_Norway_national_under-21_football_team_%2801%29.jpg/500px-Marcus_Pedersen_%28Vitesse_Arnhem%29_-_Norway_national_under-21_football_team_%2801%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Marcus_Pedersen_%28Vitesse_Arnhem%29_-_Norway_national_under-21_football_team_%2802%29.jpg/500px-Marcus_Pedersen_%28Vitesse_Arnhem%29_-_Norway_national_under-21_football_team_%2802%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Marcus_Pedersen_%28Vitesse_Arnhem%29_-_Norway_national_under-21_football_team_%2803%29.jpg/500px-Marcus_Pedersen_%28Vitesse_Arnhem%29_-_Norway_national_under-21_football_team_%2803%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Marcus_Pedersen_%28Vitesse_Arnhem%29_-_Norway_national_under-21_football_team_%2804%29.jpg/500px-Marcus_Pedersen_%28Vitesse_Arnhem%29_-_Norway_national_under-21_football_team_%2804%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "torbjørn-heggem",
@@ -756,7 +762,15 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Norway_Italy_-_June_2025_D_05_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Norway_Italy_-_June_2025_D_05_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Norway_Italy_-_June_2025_A_41.jpg/960px-Norway_Italy_-_June_2025_A_41.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Norway_Italy_-_June_2025_A_43.jpg/960px-Norway_Italy_-_June_2025_A_43.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Norway_Italy_-_June_2025_A_46.jpg/960px-Norway_Italy_-_June_2025_A_46.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Norway_Italy_-_June_2025_A_47.jpg/960px-Norway_Italy_-_June_2025_A_47.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Norway_Italy_-_June_2025_A_48.jpg/960px-Norway_Italy_-_June_2025_A_48.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Norway_Italy_-_June_2025_B_01.jpg/960px-Norway_Italy_-_June_2025_B_01.jpg"
+        ]
       },
       {
         "id": "alexander-fett-sorloth",
@@ -772,10 +786,7 @@
         "shirt_number_expected": 25,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Sondre_Lang%C3%A5s_25042026_%281%29.jpg/330px-Sondre_Lang%C3%A5s_25042026_%281%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Sondre_Lang%C3%A5s_25042026_%283%29.jpg/500px-Sondre_Lang%C3%A5s_25042026_%283%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Sondre_Lang%C3%A5s_25042026_%282%29.jpg/500px-Sondre_Lang%C3%A5s_25042026_%282%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "henrik-falchener",
@@ -791,14 +802,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Henrik_Falchener_25_Viking_FK_UECL_20250813_%285%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Henrik_Falchener_25_Viking_FK_UECL_20250813_%281%29.jpg/500px-Henrik_Falchener_25_Viking_FK_UECL_20250813_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Henrik_Falchener_25_Viking_FK_UECL_20250813_%282%29.jpg/500px-Henrik_Falchener_25_Viking_FK_UECL_20250813_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Henrik_Falchener_25_Viking_FK_UECL_20250813_%283%29.jpg/500px-Henrik_Falchener_25_Viking_FK_UECL_20250813_%283%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Henrik_Falchener_25_Viking_FK_UECL_20250813_%284%29.jpg/500px-Henrik_Falchener_25_Viking_FK_UECL_20250813_%284%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Henrik_Falchener_25_Viking_FK_UECL_20250813_%286%29.jpg/500px-Henrik_Falchener_25_Viking_FK_UECL_20250813_%286%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Henrik_Falchener_25_Viking_FK_UECL_20250813_%285%29_%28cropped%29.jpg/500px-Henrik_Falchener_25_Viking_FK_UECL_20250813_%285%29_%28cropped%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "morten-thorsby",
@@ -813,7 +817,15 @@
         },
         "shirt_number_expected": 8,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Norway_Italy_-_June_2025_E_24_%28cropped%29.jpg/330px-Norway_Italy_-_June_2025_E_24_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Norway_Italy_-_June_2025_E_24_%28cropped%29.jpg/330px-Norway_Italy_-_June_2025_E_24_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Norway_Italy_-_June_2025_A_41.jpg/960px-Norway_Italy_-_June_2025_A_41.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Norway_Italy_-_June_2025_A_43.jpg/960px-Norway_Italy_-_June_2025_A_43.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Norway_Italy_-_June_2025_A_46.jpg/960px-Norway_Italy_-_June_2025_A_46.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Norway_Italy_-_June_2025_A_47.jpg/960px-Norway_Italy_-_June_2025_A_47.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Norway_Italy_-_June_2025_A_48.jpg/960px-Norway_Italy_-_June_2025_A_48.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Norway_Italy_-_June_2025_B_01.jpg/960px-Norway_Italy_-_June_2025_B_01.jpg"
+        ]
       },
       {
         "id": "patrick-berg",
@@ -830,12 +842,10 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Norway_Italy_-_June_2025_A_14_%28cropped%29.jpg/330px-Norway_Italy_-_June_2025_A_14_%28cropped%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Patrick_Berg%2C_Christophe_Psych%C3%A9_and_Fitim_Azemi._Rune_Bolseth_in_the_background.jpg/500px-Patrick_Berg%2C_Christophe_Psych%C3%A9_and_Fitim_Azemi._Rune_Bolseth_in_the_background.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Patrick_Berg.jpg/500px-Patrick_Berg.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/a/ae/Patrick_Berg_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Lars_Patrick_Berg_and_Salome_Zourabichvili.jpg/500px-Lars_Patrick_Berg_and_Salome_Zourabichvili.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Bild_Lars_Patrick_Berg_2022.jpg/500px-Bild_Lars_Patrick_Berg_2022.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Patrick_Berg_July_2016.jpg/500px-Patrick_Berg_July_2016.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Norway_Italy_-_June_2025_A_14.jpg/960px-Norway_Italy_-_June_2025_A_14.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Norway_Italy_-_June_2025_D_19.jpg/960px-Norway_Italy_-_June_2025_D_19.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Norway_Italy_-_June_2025_D_20.jpg/960px-Norway_Italy_-_June_2025_D_20.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Norway_Italy_-_June_2025_E_15.jpg/960px-Norway_Italy_-_June_2025_E_15.jpg"
         ]
       },
       {
@@ -853,12 +863,12 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Norway_Italy_-_June_2025_E_25_%28cropped%29.jpg/330px-Norway_Italy_-_June_2025_E_25_%28cropped%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Sander_Berge_23122023.jpg/500px-Sander_Berge_23122023.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Sander_Berge_14092024_%281%29.jpg/500px-Sander_Berge_14092024_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Sander_Berge_14092024_%283%29.jpg/500px-Sander_Berge_14092024_%283%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Sander_Berge_14092024_%282%29.jpg/500px-Sander_Berge_14092024_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Sander_Berge_0604202_%281%29.jpg/500px-Sander_Berge_0604202_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Sander_Berge_20042025_%281%29.jpg/500px-Sander_Berge_20042025_%281%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Norway_Italy_-_June_2025_A_41.jpg/960px-Norway_Italy_-_June_2025_A_41.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Norway_Italy_-_June_2025_A_43.jpg/960px-Norway_Italy_-_June_2025_A_43.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Norway_Italy_-_June_2025_A_46.jpg/960px-Norway_Italy_-_June_2025_A_46.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Norway_Italy_-_June_2025_A_47.jpg/960px-Norway_Italy_-_June_2025_A_47.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Norway_Italy_-_June_2025_A_48.jpg/960px-Norway_Italy_-_June_2025_A_48.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Norway_Italy_-_June_2025_B_01.jpg/960px-Norway_Italy_-_June_2025_B_01.jpg"
         ]
       },
       {
@@ -876,11 +886,12 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Norway_Italy_-_June_2025_E_04.jpg/330px-Norway_Italy_-_June_2025_E_04.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Martin_%C3%98degaard.JPG/500px-Martin_%C3%98degaard.JPG",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Martin_%C3%98degaard_2015-02-08_001.jpg/500px-Martin_%C3%98degaard_2015-02-08_001.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Martin_%C3%98degaard_Madrid_2020.png/500px-Martin_%C3%98degaard_Madrid_2020.png",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/MLS_All-Star_Game_2023-07-19_Thiago_Almada_Martin_Martin_%C3%98degaard_%2853062996583%29.jpg/500px-MLS_All-Star_Game_2023-07-19_Thiago_Almada_Martin_Martin_%C3%98degaard_%2853062996583%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Arsenal_v_Everton_-_52223349030_%28Martin_%C3%98degaard%2C_capit%C3%A3o_do_Arsenal%29.jpg/500px-Arsenal_v_Everton_-_52223349030_%28Martin_%C3%98degaard%2C_capit%C3%A3o_do_Arsenal%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Norway_Italy_-_June_2025_A_03.jpg/960px-Norway_Italy_-_June_2025_A_03.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Norway_Italy_-_June_2025_A_43.jpg/960px-Norway_Italy_-_June_2025_A_43.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Norway_Italy_-_June_2025_A_46.jpg/960px-Norway_Italy_-_June_2025_A_46.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Norway_Italy_-_June_2025_A_47.jpg/960px-Norway_Italy_-_June_2025_A_47.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Norway_Italy_-_June_2025_A_48.jpg/960px-Norway_Italy_-_June_2025_A_48.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Norway_Italy_-_June_2025_B_01.jpg/960px-Norway_Italy_-_June_2025_B_01.jpg"
         ]
       },
       {
@@ -896,7 +907,8 @@
         },
         "shirt_number_expected": 18,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Zenit-Mo%3Bde_%286%29_%28cropped%29.jpg/330px-Zenit-Mo%3Bde_%286%29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Zenit-Mo%3Bde_%286%29_%28cropped%29.jpg/330px-Zenit-Mo%3Bde_%286%29_%28cropped%29.jpg",
+        "photos": []
       },
       {
         "id": "kristian-thorstvedt",
@@ -910,7 +922,8 @@
           "league": "Serie A"
         },
         "shirt_number_expected": 2,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "thelo-aasgaard",
@@ -924,7 +937,8 @@
           "league": "Scottish Premiership"
         },
         "shirt_number_expected": 19,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "andreas-schjelderup",
@@ -939,9 +953,7 @@
         },
         "shirt_number_expected": 24,
         "status": "fixed",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Johanne_Andrea_Schjelderup_Lund_%28f._1810%29_%282747196912%29.jpg/500px-Johanne_Andrea_Schjelderup_Lund_%28f._1810%29_%282747196912%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "oscar-bobb",
@@ -958,12 +970,10 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Yokohama_F._Marinos_-_Manchester_City_%283-5%29_-_53075274094_%28Oscar_Bobb%29.jpg/330px-Yokohama_F._Marinos_-_Manchester_City_%283-5%29_-_53075274094_%28Oscar_Bobb%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/ManCity20240722-050_%28Oscar_Bobb%29.jpg/500px-ManCity20240722-050_%28Oscar_Bobb%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/ManCity20240722-050_%28Oscar_Bobb2%29.jpg/500px-ManCity20240722-050_%28Oscar_Bobb2%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Oscar_Bobb_21032026_%281%29.jpg/500px-Oscar_Bobb_21032026_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Oscar_Bobb_21032026_%282%29.jpg/500px-Oscar_Bobb_21032026_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Oscar_Bobb_21032026_%283%29.jpg/500px-Oscar_Bobb_21032026_%283%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Oscar_Bobb_09052026_%281%29.jpg/500px-Oscar_Bobb_09052026_%281%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Norway_Italy_-_June_2025_A_08.jpg/960px-Norway_Italy_-_June_2025_A_08.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Norway_Italy_-_June_2025_D_44.jpg/960px-Norway_Italy_-_June_2025_D_44.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Norway_Italy_-_June_2025_D_46.jpg/960px-Norway_Italy_-_June_2025_D_46.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Norway_Italy_-_June_2025_E_18.jpg/960px-Norway_Italy_-_June_2025_E_18.jpg"
         ]
       },
       {
@@ -980,9 +990,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null,
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/2022128171253_2022-05-08_Fussball_Eintracht_Frankfurt_vs_Borussia_M%C3%B6nchengladbach_-_Sven_-_1D_X_MK_II_-_2064_-_B70I8175_%28Jens_Petter_Hauge_cropped%29.jpg/500px-2022128171253_2022-05-08_Fussball_Eintracht_Frankfurt_vs_Borussia_M%C3%B6nchengladbach_-_Sven_-_1D_X_MK_II_-_2064_-_B70I8175_%28Jens_Petter_Hauge_cropped%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "alexander-sorloth",
@@ -999,9 +1007,12 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Norway_Italy_-_June_2025_E_10.jpg/330px-Norway_Italy_-_June_2025_E_10.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Alexander_S%C3%B8rloth.JPG/500px-Alexander_S%C3%B8rloth.JPG",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Alexander_S%C3%B8rloth_%28cropped%29.JPG/500px-Alexander_S%C3%B8rloth_%28cropped%29.JPG",
-          "https://upload.wikimedia.org/wikipedia/commons/b/b3/Alexander_S%C3%B8rloth_for_RB_Leipzig_in_2022_%28cropped%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Norway_Italy_-_June_2025_A_12.jpg/960px-Norway_Italy_-_June_2025_A_12.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Norway_Italy_-_June_2025_A_43.jpg/960px-Norway_Italy_-_June_2025_A_43.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Norway_Italy_-_June_2025_A_46.jpg/960px-Norway_Italy_-_June_2025_A_46.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Norway_Italy_-_June_2025_A_47.jpg/960px-Norway_Italy_-_June_2025_A_47.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Norway_Italy_-_June_2025_B_01.jpg/960px-Norway_Italy_-_June_2025_B_01.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Norway_Italy_-_June_2025_B_17.jpg/960px-Norway_Italy_-_June_2025_B_17.jpg"
         ]
       },
       {
@@ -1019,12 +1030,12 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Erling_Haaland_June_2025.jpg/330px-Erling_Haaland_June_2025.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/f/f0/Erling_Haaland_2020.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/8/82/Erling_Haaland_2020_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Erling_Haaland_2023.jpg/500px-Erling_Haaland_2023.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Erling_Haaland_2023_%28cropped%29.jpg/500px-Erling_Haaland_2023_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Erling_Haaland_2023_%28cropped_square%29.jpg/500px-Erling_Haaland_2023_%28cropped_square%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/6/6e/Erling_Haaland_2023_%28cropped-v2%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Norway_Italy_-_June_2025_A_05.jpg/960px-Norway_Italy_-_June_2025_A_05.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Norway_Italy_-_June_2025_A_41.jpg/960px-Norway_Italy_-_June_2025_A_41.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Norway_Italy_-_June_2025_A_43.jpg/960px-Norway_Italy_-_June_2025_A_43.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Norway_Italy_-_June_2025_A_46.jpg/960px-Norway_Italy_-_June_2025_A_46.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Norway_Italy_-_June_2025_A_47.jpg/960px-Norway_Italy_-_June_2025_A_47.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Norway_Italy_-_June_2025_B_01.jpg/960px-Norway_Italy_-_June_2025_B_01.jpg"
         ]
       },
       {
@@ -1042,12 +1053,7 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Norway_Italy_-_June_2025_A_15_%28cropped%29.jpg/330px-Norway_Italy_-_June_2025_A_15_%28cropped%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/d/df/J%C3%B8rgen_Strand_Larsen_2019%2C_Zen-Sarp.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/a/a4/J%C3%B8rgen_Strand_Larsen_2019%2C_Zen-Sarp_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/J%C3%B8rgen_Strand_Larsen_01112025_%281%29.jpg/500px-J%C3%B8rgen_Strand_Larsen_01112025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Ant%C3%B3nio_Ascens%C3%A3o_and_J%C3%B8rgen_Strand_Larsen_01112025_%281%29.jpg/500px-Ant%C3%B3nio_Ascens%C3%A3o_and_J%C3%B8rgen_Strand_Larsen_01112025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/J%C3%B8rgen_Strand_Larsen_01112025_%282%29.jpg/500px-J%C3%B8rgen_Strand_Larsen_01112025_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Ladislav_Krej%C4%8D%C3%AD_and_J%C3%B8rgen_Strand_Larsen_01112025_%281%29.jpg/500px-Ladislav_Krej%C4%8D%C3%AD_and_J%C3%B8rgen_Strand_Larsen_01112025_%281%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Norway_Italy_-_June_2025_A_15.jpg/960px-Norway_Italy_-_June_2025_A_15.jpg"
         ]
       },
       {
@@ -1063,7 +1069,15 @@
         },
         "shirt_number_expected": 7,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Norway_Italy_-_June_2025_C_24.jpg/330px-Norway_Italy_-_June_2025_C_24.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Norway_Italy_-_June_2025_C_24.jpg/330px-Norway_Italy_-_June_2025_C_24.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Norway_Italy_-_June_2025_A_13.jpg/960px-Norway_Italy_-_June_2025_A_13.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Norway_Italy_-_June_2025_A_41.jpg/960px-Norway_Italy_-_June_2025_A_41.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Norway_Italy_-_June_2025_A_43.jpg/960px-Norway_Italy_-_June_2025_A_43.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Norway_Italy_-_June_2025_A_46.jpg/960px-Norway_Italy_-_June_2025_A_46.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Norway_Italy_-_June_2025_A_47.jpg/960px-Norway_Italy_-_June_2025_A_47.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Norway_Italy_-_June_2025_B_01.jpg/960px-Norway_Italy_-_June_2025_B_01.jpg"
+        ]
       },
       {
         "id": "julian-ryerson",
@@ -1078,7 +1092,15 @@
         },
         "shirt_number_expected": 5,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93157.jpg/330px-2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93157.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93157.jpg/330px-2023-08-12_TSV_Schott_Mainz_gegen_Borussia_Dortmund_%28DFB-Pokal_2023-24%29_by_Sandro_Halank%E2%80%93157.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Norway_Italy_-_June_2025_A_09.jpg/960px-Norway_Italy_-_June_2025_A_09.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Norway_Italy_-_June_2025_A_41.jpg/960px-Norway_Italy_-_June_2025_A_41.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Norway_Italy_-_June_2025_A_43.jpg/960px-Norway_Italy_-_June_2025_A_43.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Norway_Italy_-_June_2025_A_46.jpg/960px-Norway_Italy_-_June_2025_A_46.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Norway_Italy_-_June_2025_A_47.jpg/960px-Norway_Italy_-_June_2025_A_47.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Norway_Italy_-_June_2025_B_01.jpg/960px-Norway_Italy_-_June_2025_B_01.jpg"
+        ]
       }
     ],
     "starting_xi": {
@@ -1202,21 +1224,17 @@
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
     "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
-    "image_pool": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Norway_national_football_team_1921.jpg/500px-Norway_national_football_team_1921.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Norway_national_football_team_in_1912.jpg/500px-Norway_national_football_team_in_1912.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Norway_U-21-national_football_team_2011-03-29_%2801%29.jpg/500px-Norway_U-21-national_football_team_2011-03-29_%2801%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Per_Joar_Hansen_-_Norway_national_under-21_football_team_%2801%29.jpg/500px-Per_Joar_Hansen_-_Norway_national_under-21_football_team_%2801%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Per_Joar_Hansen_-_Norway_national_under-21_football_team_%2802%29.jpg/500px-Per_Joar_Hansen_-_Norway_national_under-21_football_team_%2802%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Per_Joar_Hansen_-_Norway_national_under-21_football_team_%2803%29.jpg/500px-Per_Joar_Hansen_-_Norway_national_under-21_football_team_%2803%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Arild_%C3%98stb%C3%B8_%28Viking_Stavanger%29_-_Norway_national_under-21_football_team_%2801%29.jpg/500px-Arild_%C3%98stb%C3%B8_%28Viking_Stavanger%29_-_Norway_national_under-21_football_team_%2801%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Vegar_Hedenstad_%28Stab%C3%A6k_Fotball%29_-_Norway_national_under-21_football_team_%2801%29.jpg/500px-Vegar_Hedenstad_%28Stab%C3%A6k_Fotball%29_-_Norway_national_under-21_football_team_%2801%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Vegar_Hedenstad_%28Stab%C3%A6k_Fotball%29_-_Norway_national_under-21_football_team_%2804%29.jpg/500px-Vegar_Hedenstad_%28Stab%C3%A6k_Fotball%29_-_Norway_national_under-21_football_team_%2804%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Vegar_Hedenstad_%28Stab%C3%A6k_Fotball%29_-_Norway_national_under-21_football_team_%2805%29.jpg/500px-Vegar_Hedenstad_%28Stab%C3%A6k_Fotball%29_-_Norway_national_under-21_football_team_%2805%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Amin_Nouri_%28V%C3%A5lerenga_Oslo%29_-_Norway_national_under-21_football_team_%2801%29.jpg/500px-Amin_Nouri_%28V%C3%A5lerenga_Oslo%29_-_Norway_national_under-21_football_team_%2801%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Amin_Nouri_%28V%C3%A5lerenga_Oslo%29_-_Norway_national_under-21_football_team_%2802%29.jpg/500px-Amin_Nouri_%28V%C3%A5lerenga_Oslo%29_-_Norway_national_under-21_football_team_%2802%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Simen_Wangberg_%28Rosenborg_Trondheim%29_-_Norway_national_under-21_football_team_%2801%29.jpg/500px-Simen_Wangberg_%28Rosenborg_Trondheim%29_-_Norway_national_under-21_football_team_%2801%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Simen_Wangberg_%28Rosenborg_Trondheim%29_-_Norway_national_under-21_football_team_%2802%29.jpg/500px-Simen_Wangberg_%28Rosenborg_Trondheim%29_-_Norway_national_under-21_football_team_%2802%29.jpg"
+    "team_photos": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Norway_Italy_-_June_2025_A_49.jpg/960px-Norway_Italy_-_June_2025_A_49.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Norway_Italy_-_June_2025_A_50.jpg/960px-Norway_Italy_-_June_2025_A_50.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Norway_Italy_-_June_2025_B_01.jpg/960px-Norway_Italy_-_June_2025_B_01.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618774%29.jpg/960px-International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618774%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618826%29.jpg/960px-International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618826%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618847%29.jpg/960px-International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618847%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618871%29.jpg/960px-International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618871%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618898%29.jpg/960px-International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618898%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618923%29.jpg/960px-International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618923%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618941%29.jpg/960px-International_soccer_game_between_Israel_and_Norway_with_the_2%3B1_result_%28FL61618941%29.jpg"
     ]
   },
   "history": {

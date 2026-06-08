@@ -552,9 +552,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/46/Mohamed_El_Shenawy.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/8/80/ElShenawy.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "el-mahdy-soliman",
@@ -569,7 +567,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "mostafa-shoubir",
@@ -580,7 +579,8 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "mohamed-alaa",
@@ -596,9 +596,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null,
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/The_Millennium_Festival_of_Abu_Alaa_Al-Maari.png/500px-The_Millennium_Festival_of_Abu_Alaa_Al-Maari.png"
-        ]
+        "photos": []
       },
       {
         "id": "yasser-ibrahim",
@@ -614,10 +612,7 @@
         "shirt_number_expected": 6,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Yasser_Ibrahim_in_FIFA_Club_World_Cup.jpg/330px-Yasser_Ibrahim_in_FIFA_Club_World_Cup.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/5/55/Yasser_Ibrahim%2C_Al_AHLY_TV_-_Mar_17%2C_2021.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/a/ab/Yasser_Ibrahim_in_2021_FIFA_Club_World_Cup.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "mohamed-hany",
@@ -633,9 +628,7 @@
         "shirt_number_expected": 2,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Mohamed_Hany_in_2021_FIFA_Club_World_Cup.jpg/330px-Mohamed_Hany_in_2021_FIFA_Club_World_Cup.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Aliou_Dieng_and_Mohamed_Hany_VS_C.F._Monterrey_in_2021_FIFA_Club_World_Cup.jpg/500px-Aliou_Dieng_and_Mohamed_Hany_VS_C.F._Monterrey_in_2021_FIFA_Club_World_Cup.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "hossam-abdelmaguid",
@@ -650,7 +643,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/63/Hossam_Abdel_Maguid.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/63/Hossam_Abdel_Maguid.jpg",
+        "photos": []
       },
       {
         "id": "ramy-rabia",
@@ -666,10 +660,7 @@
         "shirt_number_expected": 4,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/RamiRabea2020.jpg/330px-RamiRabea2020.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/f/f2/RamyRabia2011.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Ramy_Rabia_in_2021_FIFA_Club_World_Cup.jpg/500px-Ramy_Rabia_in_2021_FIFA_Club_World_Cup.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "mohamed-abdelmoneim",
@@ -680,7 +671,8 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "ahmed-fatouh",
@@ -691,7 +683,8 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "karim-hafez",
@@ -706,7 +699,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Karim_Hafez_%28RC_Lens%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Karim_Hafez_%28RC_Lens%29.jpg",
+        "photos": []
       },
       {
         "id": "tarek-alaa",
@@ -721,7 +715,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "emam-ashour",
@@ -736,7 +731,8 @@
         },
         "shirt_number_expected": 26,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Hossam_Hassan.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Hossam_Hassan.png",
+        "photos": []
       },
       {
         "id": "mostafa-zico",
@@ -747,7 +743,8 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "hamdy-fathy",
@@ -760,7 +757,12 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Hamdy_Fathy.png",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/4/4d/Hamdy_Fathy_2.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Equipe_D%27Egypte.jpg/960px-Equipe_D%27Egypte.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Finale_S%C3%A9n%C3%A9gal_Egypte_CAN_2021.jpg/960px-Finale_S%C3%A9n%C3%A9gal_Egypte_CAN_2021.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/D%C3%A9tente_du_gardien_%C3%89gyptien_lors_du_match_Cote_d%27Ivoire_Egypte.jpg/960px-D%C3%A9tente_du_gardien_%C3%89gyptien_lors_du_match_Cote_d%27Ivoire_Egypte.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/C%C3%A9l%C3%A9bration_Egypt_%2812%29.jpg/960px-C%C3%A9l%C3%A9bration_Egypt_%2812%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/C%C3%A9l%C3%A9bration_Egypt_%2811%29.jpg/960px-C%C3%A9l%C3%A9bration_Egypt_%2811%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/1-2_finale_Cameroun_vs_Egypte-16.jpg/960px-1-2_finale_Cameroun_vs_Egypte-16.jpg"
         ]
       },
       {
@@ -772,7 +774,8 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "nabil-donga",
@@ -783,7 +786,8 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "marwan-attia",
@@ -798,7 +802,8 @@
         },
         "shirt_number_expected": 8,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Marwan_Attia.jpg/330px-Marwan_Attia.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Marwan_Attia.jpg/330px-Marwan_Attia.jpg",
+        "photos": []
       },
       {
         "id": "ahmed-fattouh",
@@ -812,7 +817,8 @@
           "league": "Premier League EG"
         },
         "shirt_number_expected": 12,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "trezeguet",
@@ -826,7 +832,8 @@
           "league": "Premier League EG"
         },
         "shirt_number_expected": 21,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "hamza-abdel-karim",
@@ -841,7 +848,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "mohamed-salah",
@@ -858,12 +866,12 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Mohamed_Salah_2021_CAN_Final.jpg/330px-Mohamed_Salah_2021_CAN_Final.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Salah_with_a_fan.PNG/500px-Salah_with_a_fan.PNG",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Mohamed_Salah.JPG/500px-Mohamed_Salah.JPG",
-          "https://upload.wikimedia.org/wikipedia/commons/d/d7/Mohamed_Salah_in_Basel.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Mohamed_Salah_with_Chelsea_-_Jan_2015.jpg/500px-Mohamed_Salah_with_Chelsea_-_Jan_2015.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Mohamed_Salah_2015.jpg/500px-Mohamed_Salah_2015.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Mohamed_Salah_2017.jpg/500px-Mohamed_Salah_2017.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Equipe_D%27Egypte.jpg/960px-Equipe_D%27Egypte.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Finale_S%C3%A9n%C3%A9gal_Egypte_CAN_2021.jpg/960px-Finale_S%C3%A9n%C3%A9gal_Egypte_CAN_2021.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Attaque_finale_Egypte_S%C3%A9n%C3%A9gal_CAN_2021.jpg/960px-Attaque_finale_Egypte_S%C3%A9n%C3%A9gal_CAN_2021.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/C%C3%A9l%C3%A9bration_Egypt_%283%29.jpg/960px-C%C3%A9l%C3%A9bration_Egypt_%283%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/C%C3%A9l%C3%A9bration_Egypt_%282%29.jpg/960px-C%C3%A9l%C3%A9bration_Egypt_%282%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/C%C3%A9l%C3%A9bration_Egypt_%281%29.jpg/960px-C%C3%A9l%C3%A9bration_Egypt_%281%29.jpg"
         ]
       },
       {
@@ -879,7 +887,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "ibrahim-adel",
@@ -894,7 +903,8 @@
         },
         "shirt_number_expected": 19,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Ibrahim_Adel_2025.jpg/330px-Ibrahim_Adel_2025.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Ibrahim_Adel_2025.jpg/330px-Ibrahim_Adel_2025.jpg",
+        "photos": []
       },
       {
         "id": "omar-marmoush",
@@ -911,9 +921,12 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/OmarMarmoush.png/330px-OmarMarmoush.png",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/e/e4/Marmoush.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/e/e8/OmarMarmoush.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Omar_Marmoush_in_2023.jpg/500px-Omar_Marmoush_in_2023.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Equipe_D%27Egypte.jpg/960px-Equipe_D%27Egypte.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/C%C3%A9l%C3%A9bration_Egypt_%283%29.jpg/960px-C%C3%A9l%C3%A9bration_Egypt_%283%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/C%C3%A9l%C3%A9bration_Egypt_%282%29.jpg/960px-C%C3%A9l%C3%A9bration_Egypt_%282%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/C%C3%A9l%C3%A9bration_Egypt_%281%29.jpg/960px-C%C3%A9l%C3%A9bration_Egypt_%281%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/C%C3%A9l%C3%A9bration_Egypt_%286%29.jpg/960px-C%C3%A9l%C3%A9bration_Egypt_%286%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/C%C3%A9l%C3%A9bration_Egypt_%288%29.jpg/960px-C%C3%A9l%C3%A9bration_Egypt_%288%29.jpg"
         ]
       },
       {
@@ -927,7 +940,12 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f8/%D9%85%D8%AD%D9%85%D9%88%D8%AF_%D8%AD%D9%85%D8%AF%D9%8A_%D8%A7%D9%84%D9%88%D9%86%D8%B4.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/0/09/Hamdy.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Equipe_D%27Egypte.jpg/960px-Equipe_D%27Egypte.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/C%C3%A9l%C3%A9bration_Egypt_%2818%29.jpg/960px-C%C3%A9l%C3%A9bration_Egypt_%2818%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/C%C3%A9l%C3%A9bration_Egypt_%2817%29.jpg/960px-C%C3%A9l%C3%A9bration_Egypt_%2817%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/C%C3%A9l%C3%A9bration_Egypt_%2821%29.jpg/960px-C%C3%A9l%C3%A9bration_Egypt_%2821%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/1-2_finale_Cameroun_vs_Egypte-16.jpg/960px-1-2_finale_Cameroun_vs_Egypte-16.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/1-2_finale_Cameroun_vs_Egypte-40.jpg/960px-1-2_finale_Cameroun_vs_Egypte-40.jpg"
         ]
       }
     ],
@@ -1051,21 +1069,10 @@
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
     "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
-    "image_pool": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Africa_cup_final1.jpg/500px-Africa_cup_final1.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/In_de_rust_van_Egypt-Ghana.jpg/500px-In_de_rust_van_Egypt-Ghana.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/New_Zealand_goal.JPG/500px-New_Zealand_goal.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Abdo_bob_bradley.jpg/500px-Abdo_bob_bradley.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Egypt_national_football_team_them_As-Sajedeen.png/500px-Egypt_national_football_team_them_As-Sajedeen.png",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Egypt_national_football_team%2C_2012.jpg/500px-Egypt_national_football_team%2C_2012.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Egypt_national_football_team_line_up%2C_2012.jpg/500px-Egypt_national_football_team_line_up%2C_2012.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/%C3%84gyptische-WM-Platzierungen.PNG/500px-%C3%84gyptische-WM-Platzierungen.PNG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Freundschaftsspiel_zwischen_dem_Karlsruher_FV_und_der_%C3%A4gyptischen_Fu%C3%9Fballnationalmannschaft.jpg/500px-Freundschaftsspiel_zwischen_dem_Karlsruher_FV_und_der_%C3%A4gyptischen_Fu%C3%9Fballnationalmannschaft.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/1928_Egyptian_Olympic_football_team.jpg/500px-1928_Egyptian_Olympic_football_team.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Afcon_u23_closing_ceremony3.jpg/500px-Afcon_u23_closing_ceremony3.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Afcon_u23_closing_ceremony2.jpg/500px-Afcon_u23_closing_ceremony2.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Pharaohs_Golden_Parade.jpg/500px-Pharaohs_Golden_Parade.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Reconstructed_statues_of_the_kushit_pharaohs_1.jpg/500px-Reconstructed_statues_of_the_kushit_pharaohs_1.jpg"
+    "team_photos": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Africa_cup_final1.jpg/960px-Africa_cup_final1.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/f/fa/In_de_rust_van_Egypt-Ghana.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/3/35/Egypt_national_football_team_them_As-Sajedeen.png"
     ]
   },
   "history": {

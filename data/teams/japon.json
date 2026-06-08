@@ -636,7 +636,12 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/ZION_SUZUKI_-_JPN_vs_THA_-_Friendly_Match_-_2024.01.01.jpg/330px-ZION_SUZUKI_-_JPN_vs_THA_-_Friendly_Match_-_2024.01.01.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Zion_Suzuki.png/500px-Zion_Suzuki.png"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0019.jpg/960px-Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0019.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0020.jpg/960px-Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0020.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0320.jpg/960px-Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0320.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0319.jpg/960px-Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0319.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0344.jpg/960px-Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0344.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/AFC_Asian_Cup_-_Japan_v_Indonesia_-_5325.jpg/960px-AFC_Asian_Cup_-_Japan_v_Indonesia_-_5325.jpg"
         ]
       },
       {
@@ -652,7 +657,8 @@
         },
         "shirt_number_expected": 12,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Sanfrecce_Hiroshima_-1_Keisuke_OSAKO.jpg/330px-Sanfrecce_Hiroshima_-1_Keisuke_OSAKO.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Sanfrecce_Hiroshima_-1_Keisuke_OSAKO.jpg/330px-Sanfrecce_Hiroshima_-1_Keisuke_OSAKO.jpg",
+        "photos": []
       },
       {
         "id": "tomoki-hayakawa",
@@ -667,7 +673,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "yukinari-sugawara",
@@ -683,14 +690,7 @@
         "shirt_number_expected": 2,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Yukinari_Sugawara_2212024_%285%29.jpg/330px-Yukinari_Sugawara_2212024_%285%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/4/4a/4822940_AE7I9740_-_Yukinari_Sugawara.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Yukinari_Sugawara_2212024_%281%29.jpg/500px-Yukinari_Sugawara_2212024_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Yukinari_Sugawara_2212024_%282%29.jpg/500px-Yukinari_Sugawara_2212024_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Yukinari_Sugawara_2212024_%283%29.jpg/500px-Yukinari_Sugawara_2212024_%283%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Yukinari_Sugawara_2212024_%284%29.jpg/500px-Yukinari_Sugawara_2212024_%284%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Yukinari_Sugawara_2212024_%286%29.jpg/500px-Yukinari_Sugawara_2212024_%286%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "shogo-taniguchi",
@@ -703,7 +703,15 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Shogo_Taniguchi.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Shogo_Taniguchi.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0013.jpg/960px-Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0013.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0014.jpg/960px-Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0014.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0015.jpg/960px-Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0015.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0158.jpg/960px-Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0158.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0159.jpg/960px-Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0159.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0160.jpg/960px-Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0160.jpg"
+        ]
       },
       {
         "id": "ko-itakura",
@@ -720,8 +728,8 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/K%C5%8D_Itakura_-_%E6%9D%BF%E5%80%89%E5%A0%B0.jpg/330px-K%C5%8D_Itakura_-_%E6%9D%BF%E5%80%89%E5%A0%B0.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Ko_Itakura.jpg/500px-Ko_Itakura.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Ko_Itakura_%28cropped%29.jpg/500px-Ko_Itakura_%28cropped%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/d/dd/2022_FIFA_World_Cup_Germany_1%E2%80%932_Japan_-_%285%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/9/9e/2022_FIFA_World_Cup_Germany_1%E2%80%932_Japan_-_%284%29.jpg"
         ]
       },
       {
@@ -737,12 +745,10 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Yuto_Nagatomo_in_2018.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Yuto_Nagatomo_-_mixed.jpg/500px-Yuto_Nagatomo_-_mixed.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/0/0e/Yuto_nagatomo_%282%29.JPG",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Naohiro_Ishikawa_-_Yuto_Nagatomo.jpg/500px-Naohiro_Ishikawa_-_Yuto_Nagatomo.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/9/90/Yuto_Nagatomo_2009.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Yuto_Nagatomo_2011.jpg/500px-Yuto_Nagatomo_2011.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/1/16/Yuto_Nagatomo.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/6/69/JPN-TUR_20190109_Asian_Cup_1.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Qatar_v_Japan_AFC_Asian_Cup_20190201_46.jpg/960px-Qatar_v_Japan_AFC_Asian_Cup_20190201_46.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/d/dd/2022_FIFA_World_Cup_Germany_1%E2%80%932_Japan_-_%285%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/8/83/Y%C5%ABto_Nagatomo_in_Iran_-_Japan%2C_AFC_Asian_Cup_2019_20_%28cropped%29.jpg"
         ]
       },
       {
@@ -757,7 +763,8 @@
           "league": "Eredivisie"
         },
         "shirt_number_expected": 5,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "ayumu-seko",
@@ -771,10 +778,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null,
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Alex_Zendejas_and_Ayumu_Seko.jpg/500px-Alex_Zendejas_and_Ayumu_Seko.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Ayumu_Seko.jpg/500px-Ayumu_Seko.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "hiroki-ito",
@@ -791,10 +795,9 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/93/Hiroki_Ito_VfB_Stuttgart.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/d/d9/Hiroki_Ito.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Hiroki_Ito_-_Juninho.jpg/500px-Hiroki_Ito_-_Juninho.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Hiroki_Ito-2.jpg/500px-Hiroki_Ito-2.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/ItoRanch-HirokiIto-Portrait.jpg/500px-ItoRanch-HirokiIto-Portrait.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0157.jpg/960px-Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0157.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0155.jpg/960px-Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0155.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0158.jpg/960px-Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0158.jpg"
         ]
       },
       {
@@ -812,7 +815,7 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Takehiro_Tomiyasu%2C_2019_AFC_Asian_Cup_1.jpg/330px-Takehiro_Tomiyasu%2C_2019_AFC_Asian_Cup_1.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/b/b4/Takehiro_Tomiyasu.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Qatar_v_Japan_AFC_Asian_Cup_20190201_49.jpg/960px-Qatar_v_Japan_AFC_Asian_Cup_20190201_49.jpg"
         ]
       },
       {
@@ -828,7 +831,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "wataru-endo",
@@ -845,12 +849,7 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Wataru_Endo_at_Iran-Japan_pre-match_conference.jpg/330px-Wataru_Endo_at_Iran-Japan_pre-match_conference.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Wataru_Endo_Japan.jpg/500px-Wataru_Endo_Japan.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Wataru_Endo_Japan_%283%29.jpg/500px-Wataru_Endo_Japan_%283%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Wataru_Endo_Japan_%282%29.jpg/500px-Wataru_Endo_Japan_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Wataru_endo.jpg/500px-Wataru_endo.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Wataru_End%C5%8D_06042025_%281%29.jpg/500px-Wataru_End%C5%8D_06042025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Wataru_End%C5%8D_06042025_%282%29.jpg/500px-Wataru_End%C5%8D_06042025_%282%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/d/dd/2022_FIFA_World_Cup_Germany_1%E2%80%932_Japan_-_%285%29.jpg"
         ]
       },
       {
@@ -868,12 +867,9 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%285%29_%28cropped%29.jpg/330px-Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%285%29_%28cropped%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Ao_Tanaka_13092025_%281%29.jpg/500px-Ao_Tanaka_13092025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Ao_Tanaka_13092025_%282%29.jpg/500px-Ao_Tanaka_13092025_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Chris_Domogalla%2C_Jayden_Bogle%2C_Dominic_Calvert-Lewin_and_Ao_Tanaka_13092025_%281%29.jpg/500px-Chris_Domogalla%2C_Jayden_Bogle%2C_Dominic_Calvert-Lewin_and_Ao_Tanaka_13092025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Chris_Domogalla%2C_Jayden_Bogle%2C_Dominic_Calvert-Lewin%2C_Christopher_John_and_Ao_Tanaka_13092025_%281%29.jpg/500px-Chris_Domogalla%2C_Jayden_Bogle%2C_Dominic_Calvert-Lewin%2C_Christopher_John_and_Ao_Tanaka_13092025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Dominic_Calvert-Lewin%2C_Christopher_John_and_Ao_Tanaka_13092025_%281%29.jpg/500px-Dominic_Calvert-Lewin%2C_Christopher_John_and_Ao_Tanaka_13092025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Ao_Tanaka_and_Wilfried_Gnonto_13092025_%281%29.jpg/500px-Ao_Tanaka_and_Wilfried_Gnonto_13092025_%281%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/d/dd/2022_FIFA_World_Cup_Germany_1%E2%80%932_Japan_-_%285%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0322.jpg/960px-Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0322.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0344.jpg/960px-Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0344.jpg"
         ]
       },
       {
@@ -891,8 +887,7 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Takefusa_Kubo_1053.jpg/330px-Takefusa_Kubo_1053.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Takefusa_Kubo_2019.png/500px-Takefusa_Kubo_2019.png",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Takefusa_kubo.png/500px-Takefusa_kubo.png"
+          "https://upload.wikimedia.org/wikipedia/commons/d/dd/2022_FIFA_World_Cup_Germany_1%E2%80%932_Japan_-_%285%29.jpg"
         ]
       },
       {
@@ -910,11 +905,12 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Ritsu_Doan%2C_2019_AFC_Asian_Cup_1.jpg/330px-Ritsu_Doan%2C_2019_AFC_Asian_Cup_1.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Ritsu_Doan_20191301.jpg/500px-Ritsu_Doan_20191301.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Ritsudoanfcgroningen.jpg/500px-Ritsudoanfcgroningen.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/6/6b/Ritsu_Doan_20191301_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/1/14/Ritsu_Doan_20221208.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Ritsu_D%C5%8Dan_2024_%28cropped%29.jpg/500px-Ritsu_D%C5%8Dan_2024_%28cropped%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Qatar_v_Japan_AFC_Asian_Cup_20190201_55.jpg/960px-Qatar_v_Japan_AFC_Asian_Cup_20190201_55.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_5230.jpg/960px-Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_5230.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_5231.jpg/960px-Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_5231.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_5232.jpg/960px-Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_5232.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_5233.jpg/960px-Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_5233.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0011.jpg/960px-Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0011.jpg"
         ]
       },
       {
@@ -932,8 +928,8 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Celtic-20240722-018_%28cropped%29.jpg/330px-Celtic-20240722-018_%28cropped%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/6/68/Daizen_Maeda_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Daizen_Maeda.jpg/500px-Daizen_Maeda.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/d/dd/2022_FIFA_World_Cup_Germany_1%E2%80%932_Japan_-_%285%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/7/78/2022_FIFA_World_Cup_Germany_1%E2%80%932_Japan_-_%2814%29.jpg"
         ]
       },
       {
@@ -948,7 +944,8 @@
           "league": "J1 League"
         },
         "shirt_number_expected": 13,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "junya-ito",
@@ -963,7 +960,14 @@
         },
         "shirt_number_expected": 14,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Ito_asse_sr_2425.png/330px-Ito_asse_sr_2425.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Ito_asse_sr_2425.png/330px-Ito_asse_sr_2425.png",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/d/dd/2022_FIFA_World_Cup_Germany_1%E2%80%932_Japan_-_%285%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/5/55/2022_FIFA_World_Cup_Germany_1%E2%80%932_Japan_-_%2816%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0320.jpg/960px-Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0320.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0319.jpg/960px-Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0319.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0344.jpg/960px-Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0344.jpg"
+        ]
       },
       {
         "id": "daichi-kamada",
@@ -980,7 +984,9 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/2022128173756_2022-05-08_Fussball_Eintracht_Frankfurt_vs_Borussia_M%C3%B6nchengladbach_-_Sven_-_1D_X_MK_II_-_0725_-_AK8I7460_%28Daichi_Kamada_cropped%29.jpg/330px-2022128173756_2022-05-08_Fussball_Eintracht_Frankfurt_vs_Borussia_M%C3%B6nchengladbach_-_Sven_-_1D_X_MK_II_-_0725_-_AK8I7460_%28Daichi_Kamada_cropped%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/DaichiKamada.jpg/500px-DaichiKamada.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/d/dd/2022_FIFA_World_Cup_Germany_1%E2%80%932_Japan_-_%285%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/9/9e/2022_FIFA_World_Cup_Germany_1%E2%80%932_Japan_-_%284%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/c/cf/2022_FIFA_World_Cup_Germany_1%E2%80%932_Japan_-_%2821%29.jpg"
         ]
       },
       {
@@ -993,11 +999,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Suzuki_%282023%29.png",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Yuito_Suzuki_-_Racing_Club_de_Strasbourg.jpg/500px-Yuito_Suzuki_-_Racing_Club_de_Strasbourg.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Suzuki_buteur.jpg/500px-Suzuki_buteur.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Yuito_Suzuki.jpg/500px-Yuito_Suzuki.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "kaishu-sano",
@@ -1012,7 +1014,13 @@
         },
         "shirt_number_expected": 8,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Kaishu_Sano_2024_%28cropped%29.jpg/330px-Kaishu_Sano_2024_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Kaishu_Sano_2024_%28cropped%29.jpg/330px-Kaishu_Sano_2024_%28cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0320.jpg/960px-Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0320.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0321.jpg/960px-Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0321.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0322.jpg/960px-Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0322.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0344.jpg/960px-Japan-vs-Thailand-Football-International-Friendly-Match--2024-01-01_0344.jpg"
+        ]
       },
       {
         "id": "keisuke-goto",
@@ -1027,7 +1035,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "ayase-ueda",
@@ -1039,10 +1048,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/99/Go_Ahead_Eagles_-_Feyenoord_-_53679351240_%28Ayase_Ueda%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/3/33/AyaseUedaFrontPriorMatchCercleVsOHV.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/2/2f/AyaseUedaFrontPriorMatchCercleVsOHV_%28cropped%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "koki-ogawa",
@@ -1057,7 +1063,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/47/GAE_-_NEC_-_53493888105_%28Koki_Ogawa%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/47/GAE_-_NEC_-_53493888105_%28Koki_Ogawa%29.jpg",
+        "photos": []
       },
       {
         "id": "kento-shiogai",
@@ -1072,7 +1079,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       }
     ],
     "starting_xi": {
@@ -1195,21 +1203,17 @@
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
     "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
-    "image_pool": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Japan_Air_Lines_SAMURAI_BLUE_2006.JPG/500px-Japan_Air_Lines_SAMURAI_BLUE_2006.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Japan_national_afl_team_2008_IC.jpg/500px-Japan_national_afl_team_2008_IC.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Kokuritsu_Kasumigaoka_Rikujo_Kyogijo_before_Japan_national_football_team_game.JPG/500px-Kokuritsu_Kasumigaoka_Rikujo_Kyogijo_before_Japan_national_football_team_game.JPG",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Japan_national_football_team_training_session%2C_July_28%2C_2008.jpg/500px-Japan_national_football_team_training_session%2C_July_28%2C_2008.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Audi_A1_Samurai_Blue.jpg/500px-Audi_A1_Samurai_Blue.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/2012_Olympic_Football_-_Spain_v_Japan.jpg/500px-2012_Olympic_Football_-_Spain_v_Japan.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Black_Stars_on_the_Road_1960s_%28Ghana_national_football_team%29.jpg/500px-Black_Stars_on_the_Road_1960s_%28Ghana_national_football_team%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/2010_East_Asian_Football_Championship_Korea_Republic_vs_Japan.jpg/500px-2010_East_Asian_Football_Championship_Korea_Republic_vs_Japan.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/2012_Olympic_Football_-_Spain_v_Japan_%284%29.jpg/500px-2012_Olympic_Football_-_Spain_v_Japan_%284%29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Afghanistan_national_football_team_supporter_in_Tehran.jpg/500px-Afghanistan_national_football_team_supporter_in_Tehran.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/JAL_JA8979_Boeing_777-289_Samurai_Blue_Jet_2018_No.1_%28Starboard%29_at_Haneda.jpg/500px-JAL_JA8979_Boeing_777-289_Samurai_Blue_Jet_2018_No.1_%28Starboard%29_at_Haneda.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Japan_national_football_team_World_Cup_2018.jpg/500px-Japan_national_football_team_World_Cup_2018.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Poland_national_football_team_World_Cup_2018.jpg/500px-Poland_national_football_team_World_Cup_2018.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Brazil_women%27s_national_football_team_in_Feb._2019.jpg/500px-Brazil_women%27s_national_football_team_in_Feb._2019.jpg"
+    "team_photos": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Japan_warmup_in_Columbus_1.jpg/960px-Japan_warmup_in_Columbus_1.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Japan_warmup_in_Columbus_2.jpg/960px-Japan_warmup_in_Columbus_2.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Japan_national_team_players_in_Columbus_1.jpg/960px-Japan_national_team_players_in_Columbus_1.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Japan_national_team_players_in_Columbus_2.jpg/960px-Japan_national_team_players_in_Columbus_2.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Japan_national_team_players_huddling_in_Columbus.jpg/960px-Japan_national_team_players_huddling_in_Columbus.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%283%29.jpg/960px-Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%283%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%281%29.jpg/960px-Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%281%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%282%29.jpg/960px-Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%282%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%286%29.jpg/960px-Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%286%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%284%29.jpg/960px-Fumio_Kishida_with_Japan_National_Football_Team_after_Qatar_World_Cup_%284%29.jpg"
     ]
   },
   "history": {

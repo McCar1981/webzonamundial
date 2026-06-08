@@ -26,6 +26,10 @@ import {
   favoriteAtmosphere,
   playerPhoto,
   countryImage,
+  topValuePhoto,
+  favoriteTeamPhoto,
+  winnerTeamPhoto,
+  stadiumPhoto,
 } from "@/lib/friendlies/teamInfo";
 import { isFinishedStatus, isLiveStatus } from "@/lib/friendlies/types";
 import { clearFollowers, getFollowers } from "./followers";
@@ -237,24 +241,29 @@ export async function processMatchPush(snap: LiveSnapshot): Promise<number> {
     sentThisPass = true;
   };
 
-  // Alineaciones confirmadas (una sola vez, antes del saque).
+  // ALINEACIONES (una sola vez, antes del saque) → FOTO DEL EQUIPO FAVORITO.
   if (!prev.lineupsSent && lineupsConfirmed(snap)) {
+    const lineupImage =
+      (await favoriteTeamPhoto(meta.home.name, meta.away.name, `xi-${matchId}`)) || contextImage;
     await send({
       title: `Alineaciones — ${vs}`,
       body: `XI confirmado. ${snap.homeLineup?.formation ?? ""} vs ${snap.awayLineup?.formation ?? ""}`.trim(),
       icon: PUSH_ICON,
-      image: contextImage,
+      image: lineupImage,
     });
     next.lineupsSent = true;
   }
 
-  // Inicio del partido (excluye HT, que ya es "en juego" pausado).
+  // INICIO/PREVIA del partido (excluye HT) → FOTO DEL JUGADOR MÁS IMPORTANTE
+  // (mayor valor de mercado de las dos selecciones).
   if (!prev.startSent && isLiveStatus(snap.status) && snap.status !== "HT") {
+    const previaImage =
+      (await topValuePhoto(meta.home.name, meta.away.name, `previa-${matchId}`)) || contextImage;
     await send({
       title: `¡Comienza! ${vs}`,
       body: `Partido del Mundial en juego.${meta.venue ? ` · ${meta.venue}` : ""}`,
       icon: PUSH_ICON,
-      image: contextImage,
+      image: previaImage,
     });
     next.startSent = true;
   }
@@ -280,18 +289,22 @@ export async function processMatchPush(snap: LiveSnapshot): Promise<number> {
     });
   }
 
-  // Descanso.
+  // DESCANSO (MEDIO TIEMPO) → FOTO DEL ESTADIO donde se juega.
   if (!prev.htSent && snap.status === "HT") {
+    const htImage =
+      (meta.venue ? await stadiumPhoto(meta.venue, `ht-${matchId}`) : null) ||
+      (await lastScorerPhoto(snap)) ||
+      contextImage;
     await send({
       title: `Descanso — ${vs} ${scoreText(snap.score)}`,
       body: `Final de la primera parte.`,
       icon: PUSH_ICON,
-      image: (await lastScorerPhoto(snap)) || contextImage,
+      image: htImage,
     });
     next.htSent = true;
   }
 
-  // Final.
+  // FINAL → CELEBRACIÓN DEL EQUIPO GANADOR (su foto de equipo); empate → ambiente.
   if (!prev.ftSent && isFinishedStatus(snap.status)) {
     const winner =
       (snap.score[0] ?? 0) > (snap.score[1] ?? 0)
@@ -299,13 +312,17 @@ export async function processMatchPush(snap: LiveSnapshot): Promise<number> {
         : (snap.score[1] ?? 0) > (snap.score[0] ?? 0)
         ? meta.away.name
         : null;
+    const ftImage =
+      (winner ? await winnerTeamPhoto(winner, `ft-${matchId}`) : null) ||
+      (await lastScorerPhoto(snap)) ||
+      contextImage;
     // El final NO se fija (pin: false): así el seguidor puede descartarlo.
     await send(
       {
         title: `Final — ${vs} ${scoreText(snap.score)}`,
         body: winner ? `Victoria de ${winner}.` : `Empate.`,
         icon: PUSH_ICON,
-        image: (await lastScorerPhoto(snap)) || contextImage,
+        image: ftImage,
       },
       { pin: false },
     );

@@ -21,6 +21,7 @@ import { MATCHES } from "@/data/matches";
 import { buildMeta, getFixtureId, cacheSnapshot } from "@/lib/match-center/store";
 import { fetchLiveSnapshots } from "@/lib/match-center/apiFootball";
 import { processMatchPush } from "@/lib/match-center/push";
+import { processMicroGeneration } from "@/lib/micro/engine";
 import type { MatchMeta } from "@/lib/match-center/types";
 import { recordHeartbeat } from "@/lib/ops/store";
 
@@ -103,6 +104,13 @@ async function runPass(): Promise<{
       pushes += await processMatchPush(snap);
     } catch (err) {
       console.error("[mc-poll] push failed", snap.matchId, (err as Error).message);
+    }
+    // Genera micro-predicciones EN VIVO a partir del mismo snapshot (eventos +
+    // minuto). Reusa el diff ya descargado; degrada en silencio si falla.
+    try {
+      await processMicroGeneration(snap);
+    } catch (err) {
+      console.error("[mc-poll] micro generation failed", snap.matchId, (err as Error).message);
     }
   }
 

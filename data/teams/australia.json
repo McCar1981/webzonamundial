@@ -547,12 +547,10 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Ryan_rcl_asse_2425.png/330px-Ryan_rcl_asse_2425.png",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/0/03/Matthew_Ryan.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Mathew_Ryan_Club_Brugge.jpg/500px-Mathew_Ryan_Club_Brugge.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Mathew_Ryan_%286210800543%29.jpg/500px-Mathew_Ryan_%286210800543%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Mathew_Ryan%2C_Asian_Cup_2015.jpg/500px-Mathew_Ryan%2C_Asian_Cup_2015.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/2017_Confederation_Cup_-_CHIAUS_-_Mathew_Ryan.jpg/500px-2017_Confederation_Cup_-_CHIAUS_-_Mathew_Ryan.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/20180601_FIFA_Friendly_Match_Czech_Republic_vs._Australia_Matthew_Ryan_850_0230.jpg/500px-20180601_FIFA_Friendly_Match_Czech_Republic_vs._Australia_Matthew_Ryan_850_0230.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/20180601_FIFA_Friendly_Match_Czech_Republic_vs._Australia_Team_Australien_850_0291.jpg/960px-20180601_FIFA_Friendly_Match_Czech_Republic_vs._Australia_Team_Australien_850_0291.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/2/26/2022_FIFA_World_Cup_France_4%E2%80%931_Australia_-_%285%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/5/51/2022_FIFA_World_Cup_France_4%E2%80%931_Australia_-_%2811%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/b/b0/2022_FIFA_World_Cup_France_4%E2%80%931_Australia_-_%2820%29.jpg"
         ]
       },
       {
@@ -569,10 +567,7 @@
         "shirt_number_expected": 23,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Paul_Izzo_training_for_Melbourne_Victory_December_2022_%28cropped%29.jpg/330px-Paul_Izzo_training_for_Melbourne_Victory_December_2022_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Paul_Izzo_2013.jpg/500px-Paul_Izzo_2013.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Paul_Izzo_training_for_Melbourne_Victory_December_2022.jpg/500px-Paul_Izzo_training_for_Melbourne_Victory_December_2022.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "patrick-beach",
@@ -586,10 +581,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/21/PatrickBeachvWSW_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/PatrickBeachvWSW.jpg/500px-PatrickBeachvWSW.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/d/d4/PatrickBeachvWSW_%28cropped%29_%28cropped%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "milos-degenek",
@@ -604,8 +596,7 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Cameroon-Australia_%2820%29_%28cropped%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/8/83/Milos_degenek.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Degenek_Milos_Columbus_Crew_Meet_the_Team_2022.jpg/500px-Degenek_Milos_Columbus_Crew_Meet_the_Team_2022.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Cameroon-Australia_%2820%29.jpg/960px-Cameroon-Australia_%2820%29.jpg"
         ]
       },
       {
@@ -620,7 +611,8 @@
           "league": "Serie A"
         },
         "shirt_number_expected": 15,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "jacob-italiano",
@@ -633,7 +625,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "jordy-bos",
@@ -649,9 +642,7 @@
         "shirt_number_expected": 13,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4c/4822286_AE7I6649_-_Jordan_Bos.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Jordan_Bos.JPG/500px-Jordan_Bos.JPG"
-        ]
+        "photos": []
       },
       {
         "id": "jason-geria",
@@ -665,9 +656,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Geria_Victory_Training_May_2015.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Geria_Victory_Training_May_2015_%28cropped%29.jpg/500px-Geria_Victory_Training_May_2015_%28cropped%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "kai-trewin",
@@ -681,14 +670,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Kai_Trewin_NYCFC_v_Colorado_Mar_14_2026-25_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Kai_Trewin_NYCFC_v_Colorado_Mar_14_2026-107.jpg/500px-Kai_Trewin_NYCFC_v_Colorado_Mar_14_2026-107.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Kai_Trewin_NYCFC_v_Colorado_Mar_14_2026-25.jpg/500px-Kai_Trewin_NYCFC_v_Colorado_Mar_14_2026-25.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Kai_Trewin_NYCFC_v_Colorado_Mar_14_2026-112.jpg/500px-Kai_Trewin_NYCFC_v_Colorado_Mar_14_2026-112.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Kai_Trewin_NYCFC_v_Cincinnati_22_Apr_26-33.jpg/500px-Kai_Trewin_NYCFC_v_Cincinnati_22_Apr_26-33.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Kai_Trewin_NYCFC_v_Cincinnati_22_Apr_26-129.jpg/500px-Kai_Trewin_NYCFC_v_Cincinnati_22_Apr_26-129.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Kai_Trewin_NYCFC_v_Columbus_10_May_2026-59.jpg/500px-Kai_Trewin_NYCFC_v_Columbus_10_May_2026-59.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "aziz-behich",
@@ -705,8 +687,10 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/20180601_FIFA_Friendly_Match_Czech_Republic_vs._Australia_Aziz_Behich_850_0277.jpg/330px-20180601_FIFA_Friendly_Match_Czech_Republic_vs._Australia_Aziz_Behich_850_0277.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Aziz_Behich.jpg/500px-Aziz_Behich.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/2017_Confederation_Cup_-_CHIAUS_-_Aziz_Behich.jpg/500px-2017_Confederation_Cup_-_CHIAUS_-_Aziz_Behich.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/20180601_FIFA_Friendly_Match_Czech_Republic_vs._Australia_Team_Australien_850_0291.jpg/960px-20180601_FIFA_Friendly_Match_Czech_Republic_vs._Australia_Team_Australien_850_0291.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/2/26/2022_FIFA_World_Cup_France_4%E2%80%931_Australia_-_%285%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/f/f2/2022_FIFA_World_Cup_France_4%E2%80%931_Australia_-_%2813%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/7/70/2022_FIFA_World_Cup_France_4%E2%80%931_Australia_-_%2819%29.jpg"
         ]
       },
       {
@@ -724,7 +708,9 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/4822293_AE7I6590_%28cropped%29.jpg/330px-4822293_AE7I6590_%28cropped%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/9/90/Harry_Souttar_%28cropped%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/2/26/2022_FIFA_World_Cup_France_4%E2%80%931_Australia_-_%285%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/6/6e/2022_FIFA_World_Cup_France_4%E2%80%931_Australia_-_%2817%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/7/70/2022_FIFA_World_Cup_France_4%E2%80%931_Australia_-_%2819%29.jpg"
         ]
       },
       {
@@ -741,11 +727,7 @@
         "shirt_number_expected": 5,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Cameron_Burgess_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Cameron_burgess.jpg/500px-Cameron_burgess.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Cameron_Burgess_2023.jpg/500px-Cameron_Burgess_2023.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/a/ae/4822278_AE7I6744_-_Cameron_Burgess.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "lucas-herrington",
@@ -758,7 +740,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/42/Lucas_Herrington_NYCFC_v_Colorado_Mar_14_2026-29_%28cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/42/Lucas_Herrington_NYCFC_v_Colorado_Mar_14_2026-29_%28cropped%29.jpg",
+        "photos": []
       },
       {
         "id": "connor-metcalfe",
@@ -773,7 +756,10 @@
         },
         "shirt_number_expected": 18,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b2/4822293_AE7I6590_-_Connor_Metcalfe.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/b2/4822293_AE7I6590_-_Connor_Metcalfe.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Argentina_0_v_Australia_2_-_Tokyo_2020_-_2.jpg/960px-Argentina_0_v_Australia_2_-_Tokyo_2020_-_2.jpg"
+        ]
       },
       {
         "id": "aiden-oneill",
@@ -789,14 +775,7 @@
         "shirt_number_expected": 16,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Aiden_O%27Neill_CF_Montreal_NYCFC_6.28.25-034_%28cropped%29.jpg/330px-Aiden_O%27Neill_CF_Montreal_NYCFC_6.28.25-034_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/4/4f/Aiden_O%27Neill_2023.png",
-          "https://upload.wikimedia.org/wikipedia/commons/3/3b/4822286_AE7I6649_-_Aiden_O%27Neill.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Aiden_O%27Neill_NYCvATL-06.12.25-185.jpg/500px-Aiden_O%27Neill_NYCvATL-06.12.25-185.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Aiden_O%27Neill_NYCvATL-06.12.25-010_%28cropped%29.jpg/500px-Aiden_O%27Neill_NYCvATL-06.12.25-010_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Aiden_O%27Neill_NYCFC_vs_DC_United_on_Aug_30_2025-057.jpg/500px-Aiden_O%27Neill_NYCFC_vs_DC_United_on_Aug_30_2025-057.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Aiden_O%27Neill_NYCFC_vs_DC_United_on_Aug_30_2025-073.jpg/500px-Aiden_O%27Neill_NYCFC_vs_DC_United_on_Aug_30_2025-073.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "cameron-devlin",
@@ -809,7 +788,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Cameron_Devlin_2021.png"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Cameron_Devlin_2021.png",
+        "photos": []
       },
       {
         "id": "jackson-irvine",
@@ -826,11 +806,11 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Chile_VS._Australia_%283%29_%28cropped%29_2.jpg/330px-Chile_VS._Australia_%283%29_%28cropped%29_2.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Jackson_Irvine_2013.jpg/500px-Jackson_Irvine_2013.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/2017_Confederation_Cup_-_CHIAUS_-_Jackson_Irvine.jpg/500px-2017_Confederation_Cup_-_CHIAUS_-_Jackson_Irvine.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/2017_Confederation_Cup_-_CHIAUS_-_Jackson_Irvine-cropped.jpg/500px-2017_Confederation_Cup_-_CHIAUS_-_Jackson_Irvine-cropped.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Jackson_Irvine_with_a_fan.jpg/500px-Jackson_Irvine_with_a_fan.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/6/66/4822293_AE7I6590_%28Jackson_Irvine%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/2/26/2022_FIFA_World_Cup_France_4%E2%80%931_Australia_-_%285%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/8/8c/2022_FIFA_World_Cup_France_4%E2%80%931_Australia_-_%2810%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/e/ea/2022_FIFA_World_Cup_France_4%E2%80%931_Australia_-_%2812%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/f/f2/2022_FIFA_World_Cup_France_4%E2%80%931_Australia_-_%2813%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/7/70/2022_FIFA_World_Cup_France_4%E2%80%931_Australia_-_%2819%29.jpg"
         ]
       },
       {
@@ -844,7 +824,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "mathew-leckie",
@@ -859,12 +840,11 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Hertha_BSC_vs._West_Ham_United_20190731_%28054%29.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Mathew_Leckie.jpg/500px-Mathew_Leckie.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/LeckieBMG.jpg/500px-LeckieBMG.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/6/63/Mathew_Leckie_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/20180601_FIFA_Friendly_Match_Czech_Republic_vs._Australia_Mathew_Leckie_850_0510.jpg/500px-20180601_FIFA_Friendly_Match_Czech_Republic_vs._Australia_Mathew_Leckie_850_0510.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Hertha_BSC_vs._West_Ham_United_20190731_%28055%29_Mathew_Allan_Leckie.jpg/500px-Hertha_BSC_vs._West_Ham_United_20190731_%28055%29_Mathew_Allan_Leckie.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Mathew_Leckie_Melbourne_City.jpg/500px-Mathew_Leckie_Melbourne_City.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/20180601_FIFA_Friendly_Match_Czech_Republic_vs._Australia_Team_Australien_850_0291.jpg/960px-20180601_FIFA_Friendly_Match_Czech_Republic_vs._Australia_Team_Australien_850_0291.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/2/26/2022_FIFA_World_Cup_France_4%E2%80%931_Australia_-_%285%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/e/e9/2022_FIFA_World_Cup_France_4%E2%80%931_Australia_-_%2814%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/7/74/2022_FIFA_World_Cup_France_4%E2%80%931_Australia_-_%2816%29.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/7/70/2022_FIFA_World_Cup_France_4%E2%80%931_Australia_-_%2819%29.jpg"
         ]
       },
       {
@@ -881,9 +861,7 @@
         "shirt_number_expected": 21,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Lens_-_Reims_%2812-05-2023%29_21.jpg/330px-Lens_-_Reims_%2812-05-2023%29_21.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/MOHAMED_TOURE.jpg/500px-MOHAMED_TOURE.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "ajdin-hrustic",
@@ -898,7 +876,10 @@
         },
         "shirt_number_expected": 19,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/53/2022128170418_2022-05-08_Fussball_Eintracht_Frankfurt_vs_Borussia_M%C3%B6nchengladbach_-_Sven_-_1D_X_MK_II_-_2055_-_B70I8166_%28Ajdin_Hrusti%C4%87_cropped%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/53/2022128170418_2022-05-08_Fussball_Eintracht_Frankfurt_vs_Borussia_M%C3%B6nchengladbach_-_Sven_-_1D_X_MK_II_-_2055_-_B70I8166_%28Ajdin_Hrusti%C4%87_cropped%29.jpg",
+        "photos": [
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Cameroon-Australia_%287%29.jpg/960px-Cameroon-Australia_%287%29.jpg"
+        ]
       },
       {
         "id": "awer-mabil",
@@ -913,7 +894,8 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Awer_Mabil.jpg",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Awer_Mabil_for_Australia_against_Syria_15_January_2019_Asian_Cup.jpg/500px-Awer_Mabil_for_Australia_against_Syria_15_January_2019_Asian_Cup.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/AUS-SYR_20190116_Asian_Cup_7.jpg/960px-AUS-SYR_20190116_Asian_Cup_7.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Awer_Mabil_for_Australia_against_Syria_15_January_2019_Asian_Cup.jpg/960px-Awer_Mabil_for_Australia_against_Syria_15_January_2019_Asian_Cup.jpg"
         ]
       },
       {
@@ -930,10 +912,7 @@
         "shirt_number_expected": 11,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Nestory_Irankunda_and_Kwadwo_Baah_09082025_%281%29_%28cropped%29.jpg/330px-Nestory_Irankunda_and_Kwadwo_Baah_09082025_%281%29_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Nestory_Irankunda_09082025_%281%29.jpg/500px-Nestory_Irankunda_09082025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Nestory_Irankunda_and_Kwadwo_Baah_09082025_%281%29.jpg/500px-Nestory_Irankunda_and_Kwadwo_Baah_09082025_%281%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "cristian-volpato",
@@ -946,7 +925,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/9f/FC_Internazionale_Milano_v_US_Sassuolo_Calcio%2C_21_September_2025_-_08_%28Cristian_Volpato%29.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/9f/FC_Internazionale_Milano_v_US_Sassuolo_Calcio%2C_21_September_2025_-_08_%28Cristian_Volpato%29.jpg",
+        "photos": []
       },
       {
         "id": "nishan-velupillay",
@@ -960,9 +940,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Nishan_Velupillay_training_for_Melbourne_Victory_January_2023_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Nishan_Velupillay_training_for_Melbourne_Victory_January_2023.jpg/500px-Nishan_Velupillay_training_for_Melbourne_Victory_January_2023.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "tete-yengi",
@@ -975,7 +953,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Tete_Yengi_-_Kelty_Hearts_-_July_2024.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Tete_Yengi_-_Kelty_Hearts_-_July_2024.jpg",
+        "photos": []
       }
     ],
     "starting_xi": {
@@ -1099,21 +1078,17 @@
     "squad_announced_status": "pending_official",
     "squad_announced_date": "2026-06-04",
     "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
-    "image_pool": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Australia_vs_New_Zealand.jpg/500px-Australia_vs_New_Zealand.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Asian_Cup_Australia-Oman_I.jpg/500px-Asian_Cup_Australia-Oman_I.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Asian_Cup_Australia-Iraq_I.jpg/500px-Asian_Cup_Australia-Iraq_I.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Asian_Cup_Australia-Iraq_II.jpg/500px-Asian_Cup_Australia-Iraq_II.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Asian_Cup_Australia-Iraq_III.jpg/500px-Asian_Cup_Australia-Iraq_III.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Swedish_national_australian_rules_football_team.jpg/500px-Swedish_national_australian_rules_football_team.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Peres_team_for_peace.jpg/500px-Peres_team_for_peace.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Ireland_national_afl_team.jpg/500px-Ireland_national_afl_team.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Japan_national_afl_team_2008_IC.jpg/500px-Japan_national_afl_team_2008_IC.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Matildas.jpg/500px-Matildas.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Asian_Cup_2007-Australia-Oman.jpg/500px-Asian_Cup_2007-Australia-Oman.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/1924_Australian_Soccer_Team.jpg/500px-1924_Australian_Soccer_Team.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/1924_Canadian_Soccer_Team.jpg/500px-1924_Canadian_Soccer_Team.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/South_African_National_Australian_Football_Team.jpg/500px-South_African_National_Australian_Football_Team.jpg"
+    "team_photos": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/AUS-JOR_20190106_Asian_Cup_2.jpg/960px-AUS-JOR_20190106_Asian_Cup_2.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/AUS-SYR_20190116_Asian_Cup_8.jpg/960px-AUS-SYR_20190116_Asian_Cup_8.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/AUS-SYR_20190116_Asian_Cup_7.jpg/960px-AUS-SYR_20190116_Asian_Cup_7.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/b/b9/UAE%26AUS_20190125_Asian_Cup_6.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/b/bd/UAE%26AUS_20190125_Asian_Cup_9.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/MRF-D_24_3_Marines_play_soccer_against_the_Navy_Football_Federation_Australia_%288516034%29.jpg/960px-MRF-D_24_3_Marines_play_soccer_against_the_Navy_Football_Federation_Australia_%288516034%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/2/26/2022_FIFA_World_Cup_France_4%E2%80%931_Australia_-_%285%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/c/c4/2022_FIFA_World_Cup_France_4%E2%80%931_Australia_-_%286%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Perro_peruano_durante_el_partido_Australia_vs_Per%C3%BA_2022.jpg/960px-Perro_peruano_durante_el_partido_Australia_vs_Per%C3%BA_2022.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Restaurante_en_festejos_en_el_partido_Australia_vs_Per%C3%BA_2022.jpg/960px-Restaurante_en_festejos_en_el_partido_Australia_vs_Per%C3%BA_2022.jpg"
     ]
   },
   "history": {

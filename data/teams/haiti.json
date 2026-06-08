@@ -433,9 +433,7 @@
         "shirt_number_expected": 1,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Johny_Placide_in_Tsarsko_selo.jpg/330px-Johny_Placide_in_Tsarsko_selo.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Johny_Placide.jpg/500px-Johny_Placide.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "alex-pierre",
@@ -449,7 +447,8 @@
           "league": "Canadian Premier League"
         },
         "shirt_number_expected": 12,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "josue-duverger",
@@ -462,7 +461,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "carlens-arcus",
@@ -477,7 +477,8 @@
         },
         "shirt_number_expected": 2,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/RC_Lens_-_AJ_Auxerre_%2809-03-2019%29_96.jpg/330px-RC_Lens_-_AJ_Auxerre_%2809-03-2019%29_96.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/RC_Lens_-_AJ_Auxerre_%2809-03-2019%29_96.jpg/330px-RC_Lens_-_AJ_Auxerre_%2809-03-2019%29_96.jpg",
+        "photos": []
       },
       {
         "id": "keeto-thermoncy",
@@ -490,7 +491,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "ricardo-ade",
@@ -504,7 +506,8 @@
           "league": "Serie A ecuatoriana"
         },
         "shirt_number_expected": 4,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "hannes-delcroix",
@@ -519,7 +522,8 @@
         },
         "shirt_number_expected": 5,
         "status": "fixed",
-        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/FC_Red_Bull_Salzburg_gegen_RSC_Anderlecht_%28Testspiel_7._Juli_2017%29_50.jpg/330px-FC_Red_Bull_Salzburg_gegen_RSC_Anderlecht_%28Testspiel_7._Juli_2017%29_50.jpg"
+        "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/FC_Red_Bull_Salzburg_gegen_RSC_Anderlecht_%28Testspiel_7._Juli_2017%29_50.jpg/330px-FC_Red_Bull_Salzburg_gegen_RSC_Anderlecht_%28Testspiel_7._Juli_2017%29_50.jpg",
+        "photos": []
       },
       {
         "id": "martin-experience",
@@ -533,7 +537,8 @@
           "league": "MLS"
         },
         "shirt_number_expected": 20,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "markhus-lacroix",
@@ -544,7 +549,8 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "jean-kevin-duverne",
@@ -560,9 +566,7 @@
         "shirt_number_expected": 15,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/RC_Lens_-_FC_Nantes_%2828-10-2023%29_-_Duverne.jpg/330px-RC_Lens_-_FC_Nantes_%2828-10-2023%29_-_Duverne.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Jean-K%C3%A9vin_Duverne.jpg/500px-Jean-K%C3%A9vin_Duverne.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "wilguens-paugain",
@@ -575,7 +579,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "carl-sainte",
@@ -586,7 +591,8 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "jean-bellegarde",
@@ -603,12 +609,7 @@
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Lens_B_-_AC_Amiens_%2812-09-2015%29_64_%28cropped%29.JPG/330px-Lens_B_-_AC_Amiens_%2812-09-2015%29_64_%28cropped%29.JPG",
         "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Santiago_Bueno_and_Jean%E2%80%90Ricner_Bellegarde_01112025_%281%29.jpg/500px-Santiago_Bueno_and_Jean%E2%80%90Ricner_Bellegarde_01112025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Jean%E2%80%90Ricner_Bellegarde_01112025_%281%29.jpg/500px-Jean%E2%80%90Ricner_Bellegarde_01112025_%281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Jean%E2%80%90Ricner_Bellegarde_01112025_%284%29.jpg/500px-Jean%E2%80%90Ricner_Bellegarde_01112025_%284%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Jean%E2%80%90Ricner_Bellegarde_01112025_%283%29.jpg/500px-Jean%E2%80%90Ricner_Bellegarde_01112025_%283%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Jean%E2%80%90Ricner_Bellegarde_01112025_%282%29.jpg/500px-Jean%E2%80%90Ricner_Bellegarde_01112025_%282%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Jean%E2%80%90Ricner_Bellegarde_01112025_%283%29_%28cropped%29.jpg/500px-Jean%E2%80%90Ricner_Bellegarde_01112025_%283%29_%28cropped%29.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Santiago_Bueno_and_Jean%E2%80%90Ricner_Bellegarde_01112025_%281%29.jpg/960px-Santiago_Bueno_and_Jean%E2%80%90Ricner_Bellegarde_01112025_%281%29.jpg"
         ]
       },
       {
@@ -623,7 +624,8 @@
           "league": "MLS"
         },
         "shirt_number_expected": 8,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "jean-jacques-danley",
@@ -637,14 +639,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": null,
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Andrew_Gutman_Danley_Jean_Jacques_Philadelphia_Chicago_10.26.25-048.jpg/500px-Andrew_Gutman_Danley_Jean_Jacques_Philadelphia_Chicago_10.26.25-048.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Danley_Jean_Jacques_Philadelphia_Chicago_10.26.25-077.jpg/500px-Danley_Jean_Jacques_Philadelphia_Chicago_10.26.25-077.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Danley_Jean_Jacques_Philadelphia_Union_New_York_City_FC_Nov_23_2025-033.jpg/500px-Danley_Jean_Jacques_Philadelphia_Union_New_York_City_FC_Nov_23_2025-033.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Danley_Jean_Jacques_Philadelphia_Union_New_York_City_FC_Nov_23_2025-082.jpg/500px-Danley_Jean_Jacques_Philadelphia_Union_New_York_City_FC_Nov_23_2025-082.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Danley_Jean_Jacques_Philadelphia_Union_New_York_City_FC_Nov_23_2025-062.jpg/500px-Danley_Jean_Jacques_Philadelphia_Union_New_York_City_FC_Nov_23_2025-062.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Danley_Jean_Jacques_Philadelphia_Union_New_York_City_FC_Nov_23_2025-062_%28cropped%29.jpg/500px-Danley_Jean_Jacques_Philadelphia_Union_New_York_City_FC_Nov_23_2025-062_%28cropped%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "dominique-simon",
@@ -657,7 +652,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "woodensky-pierre",
@@ -668,7 +664,8 @@
         "club": null,
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "derrick-etienne",
@@ -682,14 +679,7 @@
         "shirt_number_expected": null,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/0/00/Derrick_Etienne_%2828411015376%29_%28cropped2%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/f/fa/Derrick_Etienne2015.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Derrick_Etienne%2C_Eric_Stevenson_%2828411015376%29.jpg/500px-Derrick_Etienne%2C_Eric_Stevenson_%2828411015376%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Derrick_Etienne_%2828411015376%29_%28cropped%29.jpg/500px-Derrick_Etienne_%2828411015376%29_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/CINvNY_2017-08-15_-_Gonzalo_Ver%C3%B3n%2C_Sal_Zizzo%2C_Derrick_Etienne%2C_Aur%C3%A9lien_Collin_%2842371983281%29.jpg/500px-CINvNY_2017-08-15_-_Gonzalo_Ver%C3%B3n%2C_Sal_Zizzo%2C_Derrick_Etienne%2C_Aur%C3%A9lien_Collin_%2842371983281%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/CINvNY_2017-08-15_-_Bradley_Wright-Phillips%2C_Derrick_Etienne%2C_Sacha_Kljestan_%2842371237021%29.jpg/500px-CINvNY_2017-08-15_-_Bradley_Wright-Phillips%2C_Derrick_Etienne%2C_Sacha_Kljestan_%2842371237021%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/CINvNY_2017-08-15_-_Bradley_Wright-Phillips%2C_Derrick_Etienne%2C_Sacha_Kljestan_%2827501608587%29.jpg/500px-CINvNY_2017-08-15_-_Bradley_Wright-Phillips%2C_Derrick_Etienne%2C_Sacha_Kljestan_%2827501608587%29.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "duckens-nazon",
@@ -705,12 +695,7 @@
         "shirt_number_expected": 10,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/2025_Iran_Football_Premier_League_Esteghlal_and_Zob_Ahan_football_match_3_Mehr_%28cropped%29.jpg/330px-2025_Iran_Football_Premier_League_Esteghlal_and_Zob_Ahan_football_match_3_Mehr_%28cropped%29.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Duckens_Nazon.jpg/500px-Duckens_Nazon.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Duckens_Nazon_vs_Maynor_Figueroa.jpg/500px-Duckens_Nazon_vs_Maynor_Figueroa.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Duckens_Nazon_vs_Maynor_Figueroa_%28cropped%29.jpg/500px-Duckens_Nazon_vs_Maynor_Figueroa_%28cropped%29.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Duckens_Nazon_in_CSKA.jpg/500px-Duckens_Nazon_in_CSKA.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "louicius-deedson",
@@ -724,7 +709,8 @@
           "league": "Ligue 2"
         },
         "shirt_number_expected": 19,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "ruben-providence",
@@ -738,7 +724,8 @@
           "league": "Eerste Divisie"
         },
         "shirt_number_expected": 17,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       },
       {
         "id": "lenny-joseph",
@@ -751,7 +738,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "wilson-isidor",
@@ -767,12 +755,7 @@
         "shirt_number_expected": 11,
         "status": "fixed",
         "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Wilson_Isidor_2022.jpg/330px-Wilson_Isidor_2022.jpg",
-        "photos": [
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Wilson_Isidor.jpg/500px-Wilson_Isidor.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/8/8e/Wilson_Isidor_in_2022.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/7/78/Wilson_Isidor_Lokomotiv.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Wilson_Isidor_2024.jpg/500px-Wilson_Isidor_2024.jpg"
-        ]
+        "photos": []
       },
       {
         "id": "yassin-fortune",
@@ -785,7 +768,8 @@
         },
         "shirt_number_expected": null,
         "status": "fixed",
-        "photo_url": null
+        "photo_url": null,
+        "photos": []
       },
       {
         "id": "frantzdy-pierrot",
@@ -799,7 +783,8 @@
           "league": "Pro League"
         },
         "shirt_number_expected": 9,
-        "status": "fixed"
+        "status": "fixed",
+        "photos": []
       }
     ],
     "starting_xi": {
@@ -923,21 +908,9 @@
     "squad_announced": true,
     "squad_announced_date": "2026-06-04",
     "squad_source": "Convocatoria oficial (api-football, 4 jun 2026)",
-    "image_pool": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/1st_Sardinia_Grenadiers_Bastille_Day_2007_n1.jpg/500px-1st_Sardinia_Grenadiers_Bastille_Day_2007_n1.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/d/db/Russian_grenadiers_and_musketeers_in_1762.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Bundesarchiv_Bild_183-N0619-0038%2C_Fu%C3%9Fball-WM%2C_Haiti_-_VR_Polen_0-7.jpg/500px-Bundesarchiv_Bild_183-N0619-0038%2C_Fu%C3%9Fball-WM%2C_Haiti_-_VR_Polen_0-7.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Bundesarchiv_Bild_183-N0623-0019%2C_Fu%C3%9Fball-WM%2C_Argentinien-Haiti_4-1.jpg/500px-Bundesarchiv_Bild_183-N0623-0019%2C_Fu%C3%9Fball-WM%2C_Argentinien-Haiti_4-1.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Pierre_Richard_Bruny_in_Port-au-Prince_2004-08-16.jpg/500px-Pierre_Richard_Bruny_in_Port-au-Prince_2004-08-16.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Haiti_national_football_team_after_training_in_Port-au-Prince_2004-08-16.jpg/500px-Haiti_national_football_team_after_training_in_Port-au-Prince_2004-08-16.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Haiti_national_football_team_training_in_Port-au-Prince_2004-08-16_1.jpg/500px-Haiti_national_football_team_training_in_Port-au-Prince_2004-08-16_1.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Haiti_national_football_team_training_in_Port-au-Prince_2004-08-16_2.jpg/500px-Haiti_national_football_team_training_in_Port-au-Prince_2004-08-16_2.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Haiti_national_football_team_training_in_Port-au-Prince_2004-08-16_3.jpg/500px-Haiti_national_football_team_training_in_Port-au-Prince_2004-08-16_3.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Haiti_national_football_team_training_in_Port-au-Prince_2004-08-16_4.jpg/500px-Haiti_national_football_team_training_in_Port-au-Prince_2004-08-16_4.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Battle_of_Wagram_-_Austrian_grenadiers_repulse_Molitor.png/500px-Battle_of_Wagram_-_Austrian_grenadiers_repulse_Molitor.png",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/GRENADIERS_Belgium_Tenue_Tradition.jpg/500px-GRENADIERS_Belgium_Tenue_Tradition.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Prince_Boudewijn_of_Belgium%2C_Collection_Grenadiers.jpg/500px-Prince_Boudewijn_of_Belgium%2C_Collection_Grenadiers.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/4/42/Grenadiers_kraagembleem.jpg"
+    "team_photos": [
+      "https://upload.wikimedia.org/wikipedia/commons/9/93/Bundesarchiv_Bild_183-N0619-0038%2C_Fu%C3%9Fball-WM%2C_Haiti_-_VR_Polen_0-7.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/5/57/Bundesarchiv_Bild_183-N0623-0019%2C_Fu%C3%9Fball-WM%2C_Argentinien-Haiti_4-1.jpg"
     ]
   },
   "history": {

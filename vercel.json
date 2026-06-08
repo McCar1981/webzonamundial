@@ -46,6 +46,10 @@
       "schedule": "* * * * *"
     },
     {
+      "path": "/api/cron/resolve-micro",
+      "schedule": "* * * * *"
+    },
+    {
       "path": "/api/cron/sync-fixtures",
       "schedule": "0 */6 * * *"
     },

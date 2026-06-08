@@ -8,6 +8,8 @@
 //     selección FAVORITA (mejor ranking FIFA). null si ninguna es resoluble.
 // Server-only (lee data/teams via fs). El índice se construye una sola vez.
 
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 import { loadTeam, listBibliaSlugs } from "@/lib/biblia";
 import type { NationalTeam, Player } from "@/types/team";
 import { flagEmoji, isoFromName } from "./flags";
@@ -175,6 +177,7 @@ async function getPoolIndex(): Promise<Map<string, string[]>> {
         const t = await loadTeam(slug);
         if (!t) continue;
         const imgs: string[] = [];
+        for (const u of t.wc_2026?.team_photos ?? []) if (u) imgs.push(u);
         for (const u of t.wc_2026?.image_pool ?? []) if (u) imgs.push(u);
         for (const p of t.wc_2026?.likely_squad ?? []) {
           if (p.photo_url) imgs.push(p.photo_url);
@@ -216,9 +219,10 @@ export async function countryImage(name: string, seed = ""): Promise<string | nu
   return imgs[i] ?? null;
 }
 
-// Índice nombre de selección -> SOLO image_pool curado (ambiente: selección,
-// afición, acción del equipo). Para los push de contexto (previa, descanso,
-// final) preferimos estas a los retratos sueltos de jugadores.
+// Índice nombre de selección -> fotos de EQUIPO con camiseta nacional
+// (team_photos: grupo/once/celebración; + image_pool curado si lo hubiera). Para
+// los push de contexto (previa, alineaciones, descanso, final) preferimos estas
+// al retrato suelto de un jugador. Camiseta nacional garantizada (scraper).
 let atmosphereIndexPromise: Promise<Map<string, string[]>> | null = null;
 async function getAtmosphereIndex(): Promise<Map<string, string[]>> {
   if (!atmosphereIndexPromise) {
@@ -228,7 +232,12 @@ async function getAtmosphereIndex(): Promise<Map<string, string[]>> {
       for (const slug of slugs) {
         const t = await loadTeam(slug);
         if (!t) continue;
-        const imgs = [...new Set((t.wc_2026?.image_pool ?? []).filter(Boolean))];
+        const imgs = [
+          ...new Set([
+            ...(t.wc_2026?.team_photos ?? []),
+            ...(t.wc_2026?.image_pool ?? []),
+          ].filter(Boolean)),
+        ];
         for (const key of [t.name_en, t.name_es, t.name_local, slug]) {
           if (key) map.set(norm(key), imgs);
         }
@@ -237,6 +246,44 @@ async function getAtmosphereIndex(): Promise<Map<string, string[]>> {
     })();
   }
   return atmosphereIndexPromise;
+}
+
+// Índice nombre de selección -> SOLO team_photos (grupo/once/celebración, camiseta
+// nacional). Para ALINEACIONES (foto del favorito) y FINAL (foto del ganador).
+let teamPhotosIndexPromise: Promise<Map<string, string[]>> | null = null;
+async function getTeamPhotosIndex(): Promise<Map<string, string[]>> {
+  if (!teamPhotosIndexPromise) {
+    teamPhotosIndexPromise = (async () => {
+      const map = new Map<string, string[]>();
+      const slugs = await listBibliaSlugs();
+      for (const slug of slugs) {
+        const t = await loadTeam(slug);
+        if (!t) continue;
+        const imgs = [...new Set((t.wc_2026?.team_photos ?? []).filter(Boolean))];
+        for (const key of [t.name_en, t.name_es, t.name_local, slug]) {
+          if (key) map.set(norm(key), imgs);
+        }
+      }
+      return map;
+    })();
+  }
+  return teamPhotosIndexPromise;
+}
+
+/**
+ * Foto de EQUIPO de una selección (grupo/once/celebración, camiseta nacional,
+ * horizontal). Para ALINEACIONES (favorito) y FINAL (ganador). Si la ficha no
+ * tiene team_photos, cae a la imagen de ambiente. Determinista por `seed`.
+ */
+export async function teamPhoto(name: string, seed = ""): Promise<string | null> {
+  if (!name) return null;
+  const idx = await getTeamPhotosIndex();
+  const imgs = idx.get(norm(name));
+  if (imgs && imgs.length > 0) {
+    const i = seed ? hashSeed(seed) % imgs.length : Math.floor(Math.random() * imgs.length);
+    return imgs[i] ?? null;
+  }
+  return countryAtmosphere(name, seed);
 }
 
 /**
@@ -310,4 +357,120 @@ export async function favoritePhoto(
   const hr = h?.rank ?? Number.POSITIVE_INFINITY;
   const ar = a?.rank ?? Number.POSITIVE_INFINITY;
   return hr <= ar ? hp : ap;
+}
+
+// ── MOTOR DE TIPOLOGÍA POR SITUACIÓN (reglas de Carlos, 2026-06-07) ──────────
+// PREVIA → jugador más importante (valor de mercado). ALINEACIONES → equipo
+// favorito. GOL/TARJETA → jugador concreto (playerPhoto). MEDIO TIEMPO → estadio.
+// FINAL → celebración del ganador. Todas las fotos son horizontales y de
+// camiseta nacional (garantizado por el scraper).
+
+/** Elige una imagen del jugador (photo_url + galería), determinista por seed. */
+function pickPlayerImage(p: Player, seed = ""): string | null {
+  const imgs = [p.photo_url, ...(p.photos ?? [])].filter((u): u is string => !!u);
+  if (imgs.length === 0) return null;
+  const i = seed ? hashSeed(seed) % imgs.length : 0;
+  return imgs[i] ?? null;
+}
+
+/**
+ * PREVIA: foto del JUGADOR MÁS IMPORTANTE del partido, medido por valor de
+ * mercado (market_value_eur) entre las dos convocatorias. Si nadie tiene valor,
+ * cae al jugador estrella de la favorita (favoritePhoto). Determinista por seed.
+ */
+export async function topValuePhoto(
+  homeName: string,
+  awayName: string,
+  seed = "",
+): Promise<string | null> {
+  const idx = await getSquadIndex();
+  const squads = [idx.get(norm(homeName)), idx.get(norm(awayName))];
+  let best: Player | null = null;
+  let bestVal = -1;
+  for (const squad of squads) {
+    for (const p of squad ?? []) {
+      const v = p.market_value_eur ?? 0;
+      if (v > bestVal && pickPlayerImage(p)) { bestVal = v; best = p; }
+    }
+  }
+  if (best && bestVal > 0) {
+    const photo = pickPlayerImage(best, seed);
+    if (photo) return photo;
+  }
+  return favoritePhoto(homeName, awayName);
+}
+
+/**
+ * ALINEACIONES: foto de EQUIPO de la selección FAVORITA (mejor ranking FIFA).
+ * Cae a la del rival y, en último término, a la imagen de ambiente del favorito.
+ */
+export async function favoriteTeamPhoto(
+  homeName: string,
+  awayName: string,
+  seed = "",
+): Promise<string | null> {
+  const [h, a] = await Promise.all([teamInfo(homeName), teamInfo(awayName)]);
+  const hr = h?.rank ?? Number.POSITIVE_INFINITY;
+  const ar = a?.rank ?? Number.POSITIVE_INFINITY;
+  const first = hr <= ar ? homeName : awayName;
+  const second = hr <= ar ? awayName : homeName;
+  return (await teamPhoto(first, seed)) || (await teamPhoto(second, seed));
+}
+
+/**
+ * FINAL: foto de EQUIPO (celebración) de la selección GANADORA. El llamador pasa
+ * el nombre del ganador. Si no hay team_photos, cae a su imagen de ambiente.
+ */
+export async function winnerTeamPhoto(
+  winnerName: string,
+  seed = "",
+): Promise<string | null> {
+  if (!winnerName) return null;
+  return teamPhoto(winnerName, seed);
+}
+
+// ── BANCO DE ESTADIOS (MEDIO TIEMPO) ────────────────────────────────────────
+interface StadiumEntry { key: string; commons: string; city: string; country_iso: string; aliases: string[]; photos: string[]; }
+let stadiumIndexPromise: Promise<{ byAlias: Map<string, StadiumEntry>; all: StadiumEntry[] }> | null = null;
+async function getStadiumIndex() {
+  if (!stadiumIndexPromise) {
+    stadiumIndexPromise = (async () => {
+      const byAlias = new Map<string, StadiumEntry>();
+      let all: StadiumEntry[] = [];
+      try {
+        const file = path.join(process.cwd(), "data", "stadiums.json");
+        all = JSON.parse(await readFile(file, "utf-8")) as StadiumEntry[];
+        for (const s of all) {
+          for (const a of [s.commons, s.city, ...(s.aliases ?? [])]) {
+            if (a) byAlias.set(norm(a), s);
+          }
+        }
+      } catch { /* sin banco de estadios: el llamador usará respaldo */ }
+      return { byAlias, all };
+    })();
+  }
+  return stadiumIndexPromise;
+}
+
+/**
+ * MEDIO TIEMPO: foto del ESTADIO donde se juega. Casa el texto del partido
+ * (meta.venue, p.ej. "AT&T Stadium" o "MetLife Stadium") contra los alias del
+ * banco (nombre comercial, nombre Mundial, ciudad). Determinista por seed.
+ * null si el estadio no está en el banco (p.ej. amistosos fuera de las sedes);
+ * el llamador caerá a la imagen de ambiente.
+ */
+export async function stadiumPhoto(venue: string, seed = ""): Promise<string | null> {
+  if (!venue) return null;
+  const { byAlias } = await getStadiumIndex();
+  const v = norm(venue);
+  let entry = byAlias.get(v);
+  if (!entry) {
+    // coincidencia parcial: el texto contiene un alias o viceversa
+    for (const [alias, s] of byAlias) {
+      if (alias.length >= 4 && (v.includes(alias) || alias.includes(v))) { entry = s; break; }
+    }
+  }
+  if (!entry || entry.photos.length === 0) return null;
+  const i = seed ? hashSeed(seed) % entry.photos.length : Math.floor(Math.random() * entry.photos.length);
+  return entry.photos[i] ?? null;
 }

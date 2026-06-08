@@ -88,24 +88,45 @@ export async function sendWelcomeEmail(opts: {
     preheader: 'Tu cuenta está lista. Aquí tienes el resumen de tu registro.',
     heading: `¡Bienvenido, @${escapeHtml(opts.username)}!`,
     bodyHtml: `
-      <p style="line-height:1.6;margin:0 0 16px;">
-        Tu cuenta en <strong>ZonaMundial</strong> ya está lista. Ya formas parte de la
-        comunidad que vivirá el Mundial 2026 como nunca antes.
+      <p style="line-height:1.7;margin:0 0 18px;font-size:16px;color:#1f2937;">
+        Tu cuenta en <strong style="color:#0f172a;">ZonaMundial</strong> ya está lista. 🎉
+        Ya formas parte de la comunidad que vivirá el <strong>Mundial 2026</strong> como nunca antes.
       </p>
       ${creatorLine}
-      <p style="line-height:1.6;margin:0 0 12px;font-size:13px;color:#6b7280;text-transform:uppercase;letter-spacing:0.04em;font-weight:700;">
-        Resumen de tu registro
-      </p>
-      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;background:#f9fafb;border-radius:10px;overflow:hidden;">
-        ${summaryHtml}
+
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate;background:#f9fafb;border:1px solid #eef0f3;border-radius:12px;overflow:hidden;margin:8px 0 4px;">
+        <tr><td style="background:linear-gradient(135deg,#C9A84C,#FDE68A);padding:10px 16px;">
+          <span style="font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#1A1208;">★ Resumen de tu registro</span>
+        </td></tr>
+        <tr><td style="padding:2px 0;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+            ${summaryHtml}
+          </table>
+        </td></tr>
       </table>
-      <p style="line-height:1.6;margin:24px 0 8px;">Esto es lo que te espera dentro:</p>
-      <ul style="line-height:1.8;padding-left:20px;margin:0;color:#1f2937;">
-        <li>Predicciones en vivo</li>
-        <li>Fantasy League</li>
-        <li>Rankings y competiciones</li>
-        <li>Contenido exclusivo de creadores</li>
-      </ul>
+
+      <p style="line-height:1.6;margin:28px 0 14px;font-size:13px;color:#6b7280;text-transform:uppercase;letter-spacing:0.06em;font-weight:800;">
+        Esto es lo que te espera dentro
+      </p>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate;">
+        <tr>
+          <td width="50%" valign="top" style="padding:0 6px 12px 0;">${featureCard('⚡', 'Predicciones en vivo', 'Acierta y escala el ranking')}</td>
+          <td width="50%" valign="top" style="padding:0 0 12px 6px;">${featureCard('🏆', 'Fantasy League', 'Ficha a tus cracks y compite')}</td>
+        </tr>
+        <tr>
+          <td width="50%" valign="top" style="padding:0 6px 0 0;">${featureCard('📊', 'Rankings globales', 'Mide tu nivel cada jornada')}</td>
+          <td width="50%" valign="top" style="padding:0 0 0 6px;">${featureCard('🎬', 'Creadores', 'Contenido exclusivo y retos')}</td>
+        </tr>
+      </table>
+
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:26px 0 4px;">
+        <tr><td style="background:linear-gradient(135deg,#0f172a,#13233A);border-radius:12px;padding:18px 20px;text-align:center;">
+          <p style="margin:0;color:#E7D9A8;font-size:14px;line-height:1.5;">
+            Faltan pocos meses para el pitido inicial.<br>
+            <strong style="color:#FDE68A;">Tu camino al Mundial empieza ahora.</strong>
+          </p>
+        </td></tr>
+      </table>
     `,
     ctaLabel: 'Entrar a ZonaMundial',
     ctaHref: `${siteUrl}/app`,
@@ -122,6 +143,17 @@ export async function sendWelcomeEmail(opts: {
   } catch (error) {
     console.error(`[Email] Failed to send welcome email to ${opts.to}:`, error);
   }
+}
+
+/** Tarjeta de feature para emails de marketing (emoji + título + claim). */
+function featureCard(emoji: string, title: string, claim: string): string {
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate;background:#FFFBF0;border:1px solid #F0E2BF;border-radius:12px;">
+    <tr><td style="padding:14px;">
+      <div style="font-size:22px;line-height:1;">${emoji}</div>
+      <div style="font-weight:700;color:#111827;font-size:14px;margin-top:8px;">${escapeHtml(title)}</div>
+      <div style="font-size:12px;color:#6b7280;margin-top:3px;line-height:1.4;">${escapeHtml(claim)}</div>
+    </td></tr>
+  </table>`;
 }
 
 export function escapeHtml(text: string): string {
@@ -169,6 +201,7 @@ export function brandedEmail(opts: {
   ctaLabel?: string;
   ctaHref?: string;
 }): string {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://zonamundial.app';
   const cta =
     opts.ctaLabel && opts.ctaHref
       ? `<div style="text-align: center; margin-top: 28px;">
@@ -188,9 +221,10 @@ ${preheader}
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0B1825;padding:24px 12px;">
   <tr><td align="center">
     <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;font-family:Arial,sans-serif;color:#1f2937;">
-      <tr><td style="background:linear-gradient(135deg,#0f172a,#0b1825);padding:32px;text-align:center;border-radius:16px 16px 0 0;">
-        <h1 style="color:#C9A84C;margin:0;font-size:24px;letter-spacing:-0.02em;">ZonaMundial</h1>
-        <p style="color:#94a3b8;margin:6px 0 0;font-size:13px;">Mundial 2026 · USA · México · Canadá</p>
+      <tr><td style="background:linear-gradient(135deg,#13233A,#0B1825 55%,#0E1A2B);padding:30px 32px 24px;text-align:center;border-radius:16px 16px 0 0;">
+        <img src="${siteUrl}/img/email/logo-zonamundial.png" width="132" alt="ZonaMundial" style="display:inline-block;width:132px;max-width:132px;height:auto;border:0;outline:none;text-decoration:none;">
+        <p style="color:#C9A84C;margin:14px 0 0;font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;">Mundial 2026</p>
+        <p style="color:#7E94AD;margin:4px 0 0;font-size:12px;letter-spacing:0.08em;">USA · México · Canadá</p>
       </td></tr>
       <tr><td style="padding:32px;background:#ffffff;border-radius:0 0 16px 16px;">
         <h2 style="margin:0 0 16px;color:#111827;font-size:22px;letter-spacing:-0.02em;">${escapeHtml(opts.heading)}</h2>

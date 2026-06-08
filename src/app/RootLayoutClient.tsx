@@ -10,6 +10,7 @@ import PushAutoResync from "@/components/PushAutoResync";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SocialDock } from "@/components/SocialDock";
 import HeaderUserMenu from "@/components/HeaderUserMenu";
+import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import MobileUserMenu from "@/components/MobileUserMenu";
 import LiveCreatorsBanner from "@/components/LiveCreatorsBanner";
 import IACoachWidget from "@/components/ia-coach/IACoachWidget";
@@ -240,6 +241,10 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [expandedMobile, setExpandedMobile] = useState<string | null>(null);
+  // ¿Hay sesión? El CTA "Abrir la app" solo tiene sentido para quien aún no
+  // se ha registrado; si ya tienes cuenta, la cabecera muestra tu avatar y
+  // (estando logueado) ya estás dentro de la app. null = sin saber todavía.
+  const [authed, setAuthed] = useState<boolean | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const NAV = buildNav(t);
@@ -252,7 +257,28 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Estado de sesión para decidir si mostrar el CTA "Abrir la app".
+  // Mismo patrón robusto que el resto de la app: getUser() inicial +
+  // onAuthStateChange para no quedarnos desfasados si el token se refresca.
+  useEffect(() => {
+    let on = true;
+    const sb = (() => {
+      try { return createSupabaseBrowserClient(); } catch { return null; }
+    })();
+    if (!sb) { setAuthed(false); return; }
+    sb.auth.getUser()
+      .then(({ data }) => { if (on) setAuthed(!!data.user); })
+      .catch(() => { if (on) setAuthed(false); });
+    const { data: sub } = sb.auth.onAuthStateChange((_e, session) => {
+      if (on) setAuthed(!!session?.user);
+    });
+    return () => { on = false; sub.subscription.unsubscribe(); };
+  }, []);
+
   const closeMobile = () => setMobileOpen(false);
+  // Solo lo enseñamos cuando SABEMOS que no hay sesión (authed === false),
+  // así evitamos el parpadeo de mostrarlo y ocultarlo a quien sí tiene cuenta.
+  const showAppCta = authed === false;
 
   return (
     <div
@@ -315,8 +341,10 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
               <LanguageToggle />
             </div>
 
-            {/* CTA fijo "Abrir la app": lleva al lobby de módulos /app desde
-                cualquier página del sitio editorial. Solo desktop. */}
+            {/* CTA fijo "Abrir la app": invita a entrar al lobby /app a quien
+                aún no tiene cuenta. Si ya hay sesión NO se muestra (esa persona
+                ya tiene su avatar en la cabecera y entra directa a la app). */}
+            {showAppCta && (
             <Link
               href="/app"
               className="app-cta-desktop"
@@ -334,6 +362,7 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 3l14 9-14 9V3z" fill={BG}/></svg>
               Abrir la app
             </Link>
+            )}
 
             {/* User menu (login / avatar+dropdown) — desktop solamente */}
             <div className="user-menu-desktop">
@@ -365,7 +394,9 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
         paddingTop: 80, overflowY: "auto",
       }}>
         <nav style={{ maxWidth: 400, margin: "0 auto", padding: "20px 24px" }}>
-          {/* CTA prominente "Abrir la app" arriba del menú móvil */}
+          {/* CTA prominente "Abrir la app" arriba del menú móvil — solo para
+              quien aún no se ha registrado (con sesión ya está dentro). */}
+          {showAppCta && (
           <Link
             href="/app"
             onClick={closeMobile}
@@ -380,6 +411,7 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 3l14 9-14 9V3z" fill={BG}/></svg>
             Abrir la app
           </Link>
+          )}
           {NAV.map(item =>
             item.items ? (
               <NavDropdown

@@ -70,7 +70,6 @@ Reglas generales:
 |---|---|---|---|
 | `vestuario-bg.webp` | `public/img/modo-carrera/partido/` | 1200×800 | Fondo sutil de la charla al descanso |
 | `banquillo-bg.webp` | `public/img/modo-carrera/partido/` | 1200×800 | Fondo sutil de la decisión del minuto 60 |
-| `concentracion-bg.webp` | `public/img/modo-carrera/partido/` | 1200×800 | Fondo sutil del modal de concentración/entrenamiento entre partidos (opcional, degrada a color) |
 
 ## 4d. Concentración / entrenamiento (NUEVO — semana entre partidos)
 
@@ -80,7 +79,8 @@ Reglas generales:
 
 | Archivo | Ruta | Medidas | Uso |
 |---|---|---|---|
-| `concentracion-bg-mobile.webp` | `public/img/modo-carrera/partido/` | 1080×1920 | Variante vertical del fondo del modal |
+| `concentracion-bg.webp` | `public/img/modo-carrera/concentracion/` | 1200×800 | Fondo del modal de concentración (desktop, opcional, degrada a color) |
+| `concentracion-bg-mobile.webp` | `public/img/modo-carrera/concentracion/` | 1080×1920 | Variante vertical del fondo del modal (móvil) |
 | `sesion-fisico.webp` | `public/img/modo-carrera/concentracion/` | 240×240 | Miniatura sesión Trabajo físico |
 | `sesion-tactico.webp` | `public/img/modo-carrera/concentracion/` | 240×240 | Miniatura sesión Pizarra táctica |
 | `sesion-balon-parado.webp` | `public/img/modo-carrera/concentracion/` | 240×240 | Miniatura sesión Balón parado |
@@ -142,10 +142,10 @@ public/img/modo-carrera/
 │   └── coach-preocupado.webp
 ├── partido/
 │   ├── vestuario-bg.webp
-│   ├── banquillo-bg.webp
-│   ├── concentracion-bg.webp
-│   └── concentracion-bg-mobile.webp
+│   └── banquillo-bg.webp
 ├── concentracion/
+│   ├── concentracion-bg.webp
+│   ├── concentracion-bg-mobile.webp
 │   ├── sesion-fisico.webp
 │   ├── sesion-tactico.webp
 │   ├── sesion-balon-parado.webp

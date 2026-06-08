@@ -207,13 +207,13 @@ export default function Concentracion({
           backgroundColor de marca cubren el hueco: el 404 no rompe nada. */}
       <style>{`
         .mcConcCard {
-          background-image: linear-gradient(180deg, rgba(15,29,50,0.94), rgba(11,24,37,0.97)), url(/img/modo-carrera/partido/concentracion-bg.webp);
+          background-image: linear-gradient(180deg, rgba(15,29,50,0.94), rgba(11,24,37,0.97)), url(/img/modo-carrera/concentracion/concentracion-bg.webp);
           background-size: cover;
           background-position: center;
         }
         @media (max-width: 640px) {
           .mcConcCard {
-            background-image: linear-gradient(180deg, rgba(15,29,50,0.94), rgba(11,24,37,0.97)), url(/img/modo-carrera/partido/concentracion-bg-mobile.webp);
+            background-image: linear-gradient(180deg, rgba(15,29,50,0.94), rgba(11,24,37,0.97)), url(/img/modo-carrera/concentracion/concentracion-bg-mobile.webp);
           }
         }
       `}</style>

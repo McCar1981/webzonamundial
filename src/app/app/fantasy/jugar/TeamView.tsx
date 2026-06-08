@@ -319,7 +319,7 @@ function SlotCard({ slot, team, menu, setMenu, onSlotClickEmpty, onRemove, onCap
   }
 
   return (
-    <div style={{ position: "relative", ...anim }} {...dropProps}>
+    <div style={{ position: "relative", zIndex: open ? 60 : undefined, ...anim }} {...dropProps}>
       <button draggable onDragStart={(e) => { e.dataTransfer.setData("text/plain", slot.slot); e.dataTransfer.effectAllowed = "move"; }} onClick={() => setMenu(open ? null : slot.slot)} style={{ width: W, borderRadius: compact ? 10 : 12, border: "1px solid " + (overRing ?? (isCap ? GOLD : "rgba(255,255,255,0.16)")), background: `linear-gradient(180deg, ${BG2} 0%, ${BG} 100%)`, color: "#fff", cursor: "grab", padding: compact ? "4px 3px" : "6px 4px", display: "flex", flexDirection: "column", alignItems: "center", gap: compact ? 2 : 3, boxShadow: (isCap ? `0 0 0 1px ${GOLD}55, ` : "") + "0 8px 14px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.06)" }}>
         <div style={{ position: "relative" }}>
           <img src={kitUrl(p.teamSlug)} alt={p.teamName} style={{ width: K, height: K, objectFit: "contain", filter: p.available ? "drop-shadow(0 2px 3px rgba(0,0,0,0.45))" : "grayscale(0.7) opacity(0.55)" }} />

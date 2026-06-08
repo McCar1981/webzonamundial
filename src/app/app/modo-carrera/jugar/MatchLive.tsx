@@ -30,6 +30,8 @@ import {
   thirdHalf,
   choicesFor,
   rollMatchInjury,
+  rollRedCard,
+  redCardMult,
   HALFTIME_TALKS,
   EXTRA_TIME_CHOICES,
   PENALTY_STRATEGIES,
@@ -45,6 +47,7 @@ import {
   type ExtraTimeChoice,
   type PenaltyStrategy,
   type ShootoutResult,
+  type RedCard,
 } from "@/lib/modo-carrera/match-live";
 import type { CareerState, SeasonMatch, Injury } from "@/lib/modo-carrera/types";
 
@@ -67,6 +70,10 @@ interface GoalEvent {
   team: "self" | "opp";
   scorer: string;
 }
+
+type FeedItem =
+  | { kind: "goal"; minute: number; team: "self" | "opp"; scorer: string }
+  | { kind: "red"; minute: number; team: "self" | "opp"; player: string };
 
 const sel = (slug: string) => SELECCIONES.find((s) => s.slug === slug);
 
@@ -97,6 +104,22 @@ function WhistleIcon({ size = 22 }: { size?: number }) {
       <path d="M3 11h9l5-3v8l-5-3" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
       <circle cx="7" cy="14" r="4" stroke="currentColor" strokeWidth="2" />
     </svg>
+  );
+}
+
+function RedCardIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size * 1.32} viewBox="0 0 16 21" fill="none" aria-hidden>
+      <rect x="1" y="1" width="14" height="19" rx="2.5" fill={RED} stroke="#7f1d1d" strokeWidth="1" />
+    </svg>
+  );
+}
+
+function ManDownBadge() {
+  return (
+    <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 10, fontWeight: 900, color: RED, background: "rgba(220,38,38,0.14)", border: `1px solid ${RED}55`, borderRadius: 999, padding: "2px 7px" }}>
+      <RedCardIcon size={9} /> 10
+    </span>
   );
 }
 
@@ -194,6 +217,10 @@ export default function MatchLive({
   const subMultRef = useRef<{ atk: number; def: number }>({ atk: 1, def: 1 });
   const injuredRef = useRef<Injury | null>(null);
   const [injury, setInjury] = useState<MatchInjury | null>(null);
+  // Expulsión (pre-tirada al saque): puede caer en tu equipo o en el rival y
+  // condiciona el rendimiento de los tramos posteriores a su minuto.
+  const redCardRef = useRef<RedCard | null>(null);
+  const [redCard, setRedCard] = useState<RedCard | null>(null);
   // Charla técnica al descanso (solo si vas perdiendo): multiplica el resto del
   // partido y deja un delta de moral que se arrastra a la carrera.
   const talkMultRef = useRef<{ atk: number; def: number }>({ atk: 1, def: 1 });
@@ -264,6 +291,12 @@ export default function MatchLive({
     clockRef.current = clock;
   }, [clock]);
 
+  // La expulsión (pre-tirada al saque) se revela cuando el reloj llega a su minuto.
+  useEffect(() => {
+    const rc = redCardRef.current;
+    if (rc && !redCard && clock >= rc.minute) setRedCard(rc);
+  }, [clock, redCard]);
+
   // Encadena las pantallas del descanso (min 60'): primero la sustitución por
   // lesión (si la hubo), luego la charla técnica (solo si vas perdiendo) y por
   // último la decisión táctica. Cada paso llama al siguiente al resolverse.
@@ -319,6 +352,8 @@ export default function MatchLive({
     // Pre-tirada de lesión en partido: se decide al saque para que el reloj sea
     // estable, pero la pantalla de sustitución salta al llegar al minuto 60.
     injuryRef.current = rollMatchInjury(career, match);
+    redCardRef.current = rollRedCard(career, match);
+    setRedCard(null);
     subMultRef.current = { atk: 1, def: 1 };
     injuredRef.current = null;
     talkMultRef.current = { atk: 1, def: 1 };
@@ -334,13 +369,15 @@ export default function MatchLive({
   const pickChoice = (choice: InMatchChoice) => {
     const ls = lsRef.current;
     if (!ls) return;
-    // El recambio (lesión) y la charla al descanso modulan la decisión del 60'.
+    // El recambio (lesión), la charla al descanso y una posible expulsión (si ya
+    // se produjo antes del cierre de este tramo, min 75) modulan la decisión.
     const sub = subMultRef.current;
     const talk = talkMultRef.current;
+    const red = redCardMult(redCardRef.current, 75);
     const combined: InMatchChoice = {
       ...choice,
-      atkMult: choice.atkMult * sub.atk * talk.atk,
-      defMult: choice.defMult * sub.def * talk.def,
+      atkMult: choice.atkMult * sub.atk * talk.atk * red.atk,
+      defMult: choice.defMult * sub.def * talk.def * red.def,
     };
     const mid = secondHalf(ls, combined);
     midRef.current = mid;
@@ -356,10 +393,11 @@ export default function MatchLive({
     if (!ls || !mid) return;
     const sub = subMultRef.current;
     const talk = talkMultRef.current;
+    const red = redCardMult(redCardRef.current, 90);
     const combined: InMatchChoice = {
       ...choice,
-      atkMult: choice.atkMult * sub.atk * talk.atk,
-      defMult: choice.defMult * sub.def * talk.def,
+      atkMult: choice.atkMult * sub.atk * talk.atk * red.atk,
+      defMult: choice.defMult * sub.def * talk.def * red.def,
     };
     const res = thirdHalf(ls, mid, combined);
     resRef.current = res;
@@ -396,6 +434,16 @@ export default function MatchLive({
       feed: visible,
     };
   }, [events, clock]);
+
+  // Feed combinado (goles + expulsión) ordenado por minuto. La roja NO cuenta
+  // para el marcador ni dispara celebración; solo aparece en el relato.
+  const feedItems = useMemo<FeedItem[]>(() => {
+    const items: FeedItem[] = shown.feed.map((e) => ({ kind: "goal", minute: e.minute, team: e.team, scorer: e.scorer }));
+    if (redCard && redCard.minute <= clock) {
+      items.push({ kind: "red", minute: redCard.minute, team: redCard.team, player: redCard.player });
+    }
+    return items.sort((a, b) => a.minute - b.minute);
+  }, [shown.feed, redCard, clock]);
 
   // Cuando un gol nuevo entra en pantalla: dispara la CELEBRACIÓN a pantalla
   // completa, pausa el reloj (celebratingRef) y vibra el móvil si es propio.
@@ -549,6 +597,7 @@ export default function MatchLive({
             <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
               <Flag code={selfNat?.flagCode} size={34} />
               <span style={{ fontSize: 12, fontWeight: 800, color: "#fff", textAlign: "center" }}>{selfNat?.nombre ?? selfSlug}</span>
+              {redCard?.team === "self" && redCard.minute <= clock && <ManDownBadge />}
             </div>
             <div style={{ textAlign: "center", minWidth: 96 }}>
               <div key={`${shown.gf}-${shown.ga}`} style={{ fontSize: 42, fontWeight: 900, color: phase === "fulltime" ? outColor : liveScoreColor, animation: "mlScore .3s ease" }}>
@@ -566,6 +615,7 @@ export default function MatchLive({
             <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
               <Flag code={oppNat?.flagCode} size={34} />
               <span style={{ fontSize: 12, fontWeight: 800, color: "#fff", textAlign: "center" }}>{oppNat?.nombre ?? oppSlug}</span>
+              {redCard?.team === "opp" && redCard.minute <= clock && <ManDownBadge />}
             </div>
           </div>
         )}
@@ -673,31 +723,53 @@ export default function MatchLive({
         {/* ── FEED de goles (durante el partido y al final) ── */}
         {(phase === "half1" || phase === "injury" || phase === "charla" || phase === "decision" || phase === "half2" || phase === "decision2" || phase === "half3" || phase === "et" || phase === "fulltime") && (
           <div style={{ display: "flex", flexDirection: "column", gap: 6, margin: "4px 0 12px", minHeight: 40 }}>
-            {shown.feed.length === 0 ? (
+            {feedItems.length === 0 ? (
               <div style={{ textAlign: "center", fontSize: 12, color: DIM, fontStyle: "italic", padding: "8px 0" }}>
                 Rueda el balón…
               </div>
             ) : (
-              shown.feed.map((e, i) => (
-                <div
-                  key={`${e.minute}-${i}`}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 10,
-                    padding: "7px 12px",
-                    borderRadius: 10,
-                    background: BG3,
-                    borderLeft: `3px solid ${e.team === "self" ? GREEN : RED}`,
-                    animation: "mlGoal .4s ease both",
-                  }}
-                >
-                  <span style={{ fontSize: 12, fontWeight: 900, color: GOLD2, minWidth: 30 }}>{e.minute}&#39;</span>
-                  <span style={{ fontSize: 11, fontWeight: 900, letterSpacing: 1, color: e.team === "self" ? GREEN : RED }}>GOL</span>
-                  <span style={{ fontSize: 12.5, color: "#fff", fontWeight: 600 }}>{e.scorer}</span>
-                  <Flag code={(e.team === "self" ? selfNat : oppNat)?.flagCode} size={16} />
-                </div>
-              ))
+              feedItems.map((e, i) =>
+                e.kind === "goal" ? (
+                  <div
+                    key={`g-${e.minute}-${i}`}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 10,
+                      padding: "7px 12px",
+                      borderRadius: 10,
+                      background: BG3,
+                      borderLeft: `3px solid ${e.team === "self" ? GREEN : RED}`,
+                      animation: "mlGoal .4s ease both",
+                    }}
+                  >
+                    <span style={{ fontSize: 12, fontWeight: 900, color: GOLD2, minWidth: 30 }}>{e.minute}&#39;</span>
+                    <span style={{ fontSize: 11, fontWeight: 900, letterSpacing: 1, color: e.team === "self" ? GREEN : RED }}>GOL</span>
+                    <span style={{ fontSize: 12.5, color: "#fff", fontWeight: 600 }}>{e.scorer}</span>
+                    <Flag code={(e.team === "self" ? selfNat : oppNat)?.flagCode} size={16} />
+                  </div>
+                ) : (
+                  <div
+                    key={`r-${e.minute}-${i}`}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 10,
+                      padding: "7px 12px",
+                      borderRadius: 10,
+                      background: "rgba(220,38,38,0.10)",
+                      borderLeft: `3px solid ${RED}`,
+                      animation: "mlGoal .4s ease both",
+                    }}
+                  >
+                    <span style={{ fontSize: 12, fontWeight: 900, color: GOLD2, minWidth: 30 }}>{e.minute}&#39;</span>
+                    <span style={{ display: "inline-flex" }}><RedCardIcon size={14} /></span>
+                    <span style={{ fontSize: 11, fontWeight: 900, letterSpacing: 1, color: RED }}>ROJA</span>
+                    <span style={{ flex: 1, minWidth: 0, fontSize: 12.5, color: "#fff", fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{e.player}</span>
+                    <Flag code={(e.team === "self" ? selfNat : oppNat)?.flagCode} size={16} />
+                  </div>
+                ),
+              )
             )}
           </div>
         )}

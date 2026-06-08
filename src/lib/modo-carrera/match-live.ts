@@ -335,6 +335,52 @@ export function thirdHalf(
   return { gf: capped.gf, ga: capped.ga, gf2: gf3, ga2: ga3 };
 }
 
+// ─── TARJETA ROJA / EXPULSIÓN (sucede en cualquier partido) ──────────────────
+/** Probabilidad de que haya una expulsión en el encuentro. */
+const RED_CARD_CHANCE = 0.16;
+
+/** Expulsión surgida en el partido (de tu equipo o del rival). */
+export interface RedCard {
+  /** A qué equipo se le va un jugador. */
+  team: "self" | "opp";
+  /** Minuto de la roja (para el relato y para saber qué tramos afecta). */
+  minute: number;
+  /** Jugador expulsado (real si es tu equipo; genérico si es el rival). */
+  player: string;
+}
+
+/**
+ * Tira por una expulsión durante el partido. Se pre-tira al saque para que el
+ * reloj sea estable. La roja recae más a menudo en el rival que en ti (60/40),
+ * y siempre en un jugador de campo. Si te quedas con diez, sufres el resto del
+ * partido; si es el rival, juegas con superioridad. El efecto real lo aplica
+ * redCardMult() sobre los tramos posteriores al minuto de la roja.
+ */
+export function rollRedCard(c: CareerState, _match: SeasonMatch): RedCard | null {
+  if (Math.random() >= RED_CARD_CHANCE) return null;
+  const team: "self" | "opp" = Math.random() < 0.6 ? "opp" : "self";
+  const minute = 50 + Math.floor(Math.random() * 33); // 50..82
+  let player = "Un defensa rival";
+  if (team === "self") {
+    const roster: RosterPlayer[] = FANTASY_ROSTERS[c.identity.nationSlug ?? ""] ?? [];
+    const field = roster.filter((p) => p.pos !== "GK");
+    if (field.length) player = field[Math.floor(Math.random() * field.length)].name;
+    else player = "Un titular";
+  }
+  return { team, minute, player };
+}
+
+/**
+ * Multiplicadores (lado propio) que impone una expulsión sobre un tramo que
+ * TERMINA en `windowEndMinute`. Si te quedas con diez bajas tu ataque y te
+ * exponen más atrás; si el expulsado es del rival, juegas con superioridad. El
+ * tramo solo se ve afectado si la roja ya se había producido al cerrar ese tramo.
+ */
+export function redCardMult(rc: RedCard | null, windowEndMinute: number): { atk: number; def: number } {
+  if (!rc || rc.minute > windowEndMinute) return { atk: 1, def: 1 };
+  return rc.team === "self" ? { atk: 0.78, def: 1.22 } : { atk: 1.18, def: 0.84 };
+}
+
 // ─── PRÓRROGA (solo eliminatorias empatadas a los 90') ───────────────────────
 /** Peso de los 30' de la prórroga frente a los 90' reglamentarios. */
 const W_ET = 0.26;

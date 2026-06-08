@@ -127,9 +127,9 @@ function buildEvents(gfSelf: number, gaOpp: number, selfSlug: string, oppSlug: s
  */
 function tickDelay(clock: number, target: number): number {
   const remaining = target - clock;
-  if (remaining <= 4) return 165; // últimos minutos: agónicos
-  if (remaining <= 10) return 95;
-  return 42;
+  if (remaining <= 6) return 260; // últimos minutos: agónicos
+  if (remaining <= 14) return 160;
+  return 85; // ritmo base: el partido respira, no se resuelve en 4 segundos
 }
 
 /** ¿El DT estuvo por detrás en el marcador en algún momento del partido? */

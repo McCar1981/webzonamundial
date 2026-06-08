@@ -295,6 +295,7 @@ export const homeSections = {
             { label: "Trivia", href: "/app/trivia" },
             { label: "Modo Carrera", href: "/app/modo-carrera" },
             { label: "Premium", href: "/premium" },
+            { label: "Porra Digital para Bares", href: "/bares" },
           ],
         },
         comunidad: {
@@ -721,6 +722,7 @@ export const homeSections = {
             { label: "Trivia", href: "/app/trivia" },
             { label: "Career Mode", href: "/app/modo-carrera" },
             { label: "Premium", href: "/premium" },
+            { label: "Digital Pool for Bars", href: "/bares" },
           ],
         },
         comunidad: {

@@ -44,6 +44,7 @@ function buildNav(t: Translations) {
     { id: "creadores",  label: t.nav.creadores,   href: "/creadores" },
     { id: "descarga",   label: t.nav.descarga,    href: "/descarga" },
     { id: "premium",    label: t.nav.premium,     href: "/premium" },
+    { id: "bares",      label: t.nav.bares,       href: "/bares" },
   ];
 }
 
@@ -63,6 +64,7 @@ function buildFooterLinks(t: Translations) {
       { label: t.footer.trivia,        href: "/app/trivia" },
       { label: t.footer.modoCarrera,   href: "/app/modo-carrera" },
       { label: t.footer.premium,       href: "/premium" },
+      { label: t.footer.bares,         href: "/bares" },
     ],
     [t.footer.comunidad]: [
       { label: t.footer.noticias,   href: "/noticias" },

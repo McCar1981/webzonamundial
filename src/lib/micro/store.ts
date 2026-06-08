@@ -404,7 +404,7 @@ async function payUser(userId: string, coins: number, xp: number): Promise<void>
   if (!coins && !xp) return;
   // Abono ATÓMICO por la puerta única: la resolución corre en lote (cron), así que
   // un read-modify-write podía perder Fútcoins entre pagos simultáneos.
-  await grantCoins(userId, coins, xp, { seasonXp: false });
+  await grantCoins(userId, coins, xp, { seasonXp: false, module: "micro" });
   await addSeasonXp(userId, xp).catch(() => {});
 }
 

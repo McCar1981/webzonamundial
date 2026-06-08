@@ -95,7 +95,7 @@ export async function settleCareerMissionRewards(
   }
   if (coins === 0 && xp === 0) return { coins, xp };
   try {
-    await grantCoins(userId, coins, xp);
+    await grantCoins(userId, coins, xp, { module: "modo-carrera" });
   } catch {
     // Si el abono falla tras reservar, liberamos las filas recién insertadas para
     // no dejar misiones "cobradas" sin pagar (si no, jamás se reintentarían). El

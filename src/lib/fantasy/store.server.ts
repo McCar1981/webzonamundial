@@ -103,7 +103,7 @@ export async function awardGameweekCoins(
     .select("gameweek");
   if (!inserted || inserted.length === 0) return { coins: 0, xp: 0 };
   try {
-    await grantCoins(userId, reward.coins, reward.xp);
+    await grantCoins(userId, reward.coins, reward.xp, { module: "fantasy" });
   } catch {
     // Si el abono falla tras reservar, liberamos la fila para no dejar la jornada
     // "cobrada" sin haber pagado (si no, jamás se reintentaría). El próximo

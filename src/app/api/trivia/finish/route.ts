@@ -105,7 +105,7 @@ export async function POST(req: Request) {
     if (firstToday) {
       const reward = triviaSessionReward(finalPoints, session.correct, answered);
       try {
-        const grant = await grantCoins(authUserId, reward.coins, reward.xp);
+        const grant = await grantCoins(authUserId, reward.coins, reward.xp, { module: "trivia" });
         futcoins = grant.coinsAwarded;
         xpAwarded = grant.xpAwarded;
         coinsBalance = grant.coins;

@@ -237,7 +237,7 @@ export async function grantMatchRewards(matchId: string, userIds: string[]): Pro
     // Abono ATÓMICO de Fútcoins + XP por la puerta única (evita la fuga de
     // concurrencia del read-modify-write). seasonXp:false porque la pista de
     // temporada se alimenta justo debajo con el mismo XP.
-    await grantCoins(uid, totalCoins, totalXp, { seasonXp: false });
+    await grantCoins(uid, totalCoins, totalXp, { seasonXp: false, module: "predicciones" });
 
     // Campos de racha: valores ABSOLUTOS derivados del historial completo (no son
     // incrementos), así que un update directo es seguro ante concurrencia.
@@ -275,7 +275,7 @@ async function resolveDuelsForMatch(matchId: string): Promise<void> {
       resolved_at: new Date().toISOString(),
     }).eq("id", d.id);
     if (winner) {
-      await grantCoins(winner, 50, 0);
+      await grantCoins(winner, 50, 0, { module: "predicciones" });
     }
     // Acumula el cara a cara persistente (Mejora I).
     await recordDuelResult({
@@ -422,7 +422,7 @@ export async function bumpChallengeProgress(uid: string, signals: ChallengeSigna
   }, { onConflict: "user_id,day_key" });
 
   if (completed) {
-    await grantCoins(uid, challenge.rewardCoins, challenge.rewardXp, { seasonXp: false });
+    await grantCoins(uid, challenge.rewardCoins, challenge.rewardXp, { seasonXp: false, module: "predicciones" });
     await addSeasonXp(uid, challenge.rewardXp).catch(() => {});
   }
 }
@@ -474,7 +474,7 @@ export async function claimDaily(uid: string): Promise<CheckinResult> {
 
   // Abono ATÓMICO de Fútcoins + XP por la puerta única; los campos de cadencia
   // (last_checkin/checkin_days) son valores absolutos y van en un update aparte.
-  const grant = await grantCoins(uid, gainCoins, gainXp, { seasonXp: false });
+  const grant = await grantCoins(uid, gainCoins, gainXp, { seasonXp: false, module: "predicciones" });
   await admin.from("profiles").update({
     last_checkin: today, checkin_days: newDays,
   }).eq("id", uid);
@@ -531,7 +531,7 @@ export async function claimBattlePassTier(uid: string, tier: number, track: Trac
   if (claimErr) return { ok: false, error: "already_claimed" };
 
   const reward = tierReward(tier, track);
-  const grant = await grantCoins(uid, reward.coins, 0);
+  const grant = await grantCoins(uid, reward.coins, 0, { module: "predicciones" });
   if (reward.boost) {
     await admin.from("prediction_boosts").insert({ user_id: uid, boost_id: reward.boost });
   }
@@ -570,7 +570,7 @@ export async function claimJornadaIfComplete(uid: string, dayKey: string): Promi
   });
   if (claimErr) return { ok: true, awarded: false };
 
-  await grantCoins(uid, bonus.coins, bonus.xp, { seasonXp: false });
+  await grantCoins(uid, bonus.coins, bonus.xp, { seasonXp: false, module: "predicciones" });
   await addSeasonXp(uid, bonus.xp).catch(() => {});
   return { ok: true, awarded: true, xp: bonus.xp, coins: bonus.coins };
 }

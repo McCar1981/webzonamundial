@@ -15,6 +15,16 @@
 import { adminClient } from "@/lib/predictions/admin";
 import { addSeasonXp } from "@/lib/predictions/gamification-store";
 
+/** Módulo del universo ZM que GENERA un abono. Etiqueta el ledger para poder
+ *  rankear "quién va primero" en cada módulo, todos en la misma moneda. */
+export type CoinModule =
+  | "predicciones"
+  | "trivia"
+  | "fantasy"
+  | "modo-carrera"
+  | "micro"
+  | "otros";
+
 export interface WalletGrant {
   /** Fútcoins efectivamente acreditadas en esta operación. */
   coinsAwarded: number;
@@ -45,7 +55,7 @@ export async function grantCoins(
   uid: string,
   coins: number,
   xp: number,
-  opts: { seasonXp?: boolean } = {},
+  opts: { seasonXp?: boolean; module?: CoinModule } = {},
 ): Promise<WalletGrant> {
   const c = Math.max(0, Math.round(coins));
   const x = Math.max(0, Math.round(xp));
@@ -75,6 +85,17 @@ export async function grantCoins(
   }
 
   if (x > 0 && opts.seasonXp !== false) await addSeasonXp(uid, x).catch(() => {});
+
+  // Ledger (append-only): registra de QUÉ módulo salió este abono para los
+  // rankings por módulo. Best-effort: si falla, el saldo ya quedó acreditado y el
+  // ranking global (por profiles.coins) no depende de esto. Solo registramos si
+  // hubo algo que ganar y se etiquetó un módulo.
+  if ((c > 0 || x > 0) && opts.module) {
+    await admin
+      .from("coin_ledger")
+      .insert({ user_id: uid, module: opts.module, coins: c, xp: x })
+      .then(() => {}, () => {});
+  }
   return { coinsAwarded: c, xpAwarded: x, coins: newCoins, xp: newXp };
 }
 

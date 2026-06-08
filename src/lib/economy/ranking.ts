@@ -12,6 +12,7 @@
 
 import { adminClient } from "@/lib/predictions/admin";
 import { levelForXp } from "@/lib/predictions/gamification";
+import type { CoinModule } from "@/lib/economy/wallet";
 
 export interface RankingEntry {
   /** Posición global (1 = líder). */
@@ -126,5 +127,92 @@ export async function getUserRank(uid: string): Promise<MyRank | null> {
     level: levelForXp(xp),
     country,
     total: total ?? 0,
+  };
+}
+
+// ─── Rankings POR MÓDULO (desde el ledger) ──────────────────────────────────
+// El ranking global (arriba) usa el SALDO (profiles.coins): "cuántas Fútcoins
+// tienes". Los rankings por módulo usan el LEDGER (coin_ledger): "cuántas
+// Fútcoins GENERASTE en ESE módulo". Misma moneda en todos, así son comparables
+// y cada módulo tiene su propia competencia ("quién va primero en trivia", etc.).
+
+interface ModuleAggRow {
+  user_id: string;
+  coins: number | null;
+  xp: number | null;
+}
+
+/**
+ * Top de un módulo por Fútcoins generadas en él. La agregación (SUM por usuario)
+ * la hace Postgres vía RPC module_coin_ranking; aquí solo hidratamos los perfiles
+ * (nombre/avatar/país) de los que aparecen en el top. Mantiene la misma forma que
+ * getGlobalCoinRanking para que la UI reutilice el mismo componente.
+ */
+export async function getModuleCoinRanking(module: CoinModule, limit = 50): Promise<RankingEntry[]> {
+  const admin = adminClient();
+  const { data } = await admin.rpc("module_coin_ranking", {
+    p_module: module,
+    p_limit: Math.max(1, Math.min(200, limit)),
+  });
+  const agg = (data ?? []) as ModuleAggRow[];
+  if (!agg.length) return [];
+
+  // Hidratar perfiles de los usuarios del top en una sola consulta.
+  const ids = agg.map((a) => a.user_id);
+  const { data: profs } = await admin
+    .from("profiles")
+    .select("id,username,avatar_url,country")
+    .in("id", ids);
+  const byId = new Map(
+    ((profs ?? []) as Pick<ProfRow, "id" | "username" | "avatar_url" | "country">[]).map((p) => [p.id, p]),
+  );
+
+  return agg.map((a, i) => {
+    const p = byId.get(a.user_id);
+    const coins = Number(a.coins ?? 0);
+    const xp = Number(a.xp ?? 0);
+    return {
+      rank: i + 1,
+      userId: a.user_id,
+      name: p?.username ?? null,
+      avatarUrl: p?.avatar_url ?? null,
+      country: p?.country ?? null,
+      coins,
+      xp,
+      level: levelForXp(xp),
+    };
+  });
+}
+
+/**
+ * Posición de un usuario dentro de un módulo (cuántas Fútcoins generó en él y de
+ * cuántos jugadores). La calcula Postgres vía RPC module_coin_user_rank. Devuelve
+ * null si el módulo no es válido o el usuario aún no ha generado nada ahí.
+ */
+export async function getModuleUserRank(module: CoinModule, uid: string): Promise<MyRank | null> {
+  const admin = adminClient();
+  const { data } = await admin.rpc("module_coin_user_rank", { p_module: module, p_uid: uid });
+  const row = Array.isArray(data) ? (data[0] as { rank?: number; coins?: number; xp?: number; total?: number } | undefined) : null;
+  if (!row || typeof row.rank !== "number") return null;
+  const coins = Number(row.coins ?? 0);
+  const xp = Number(row.xp ?? 0);
+  // Si no ha generado nada en el módulo, no "compite" aún.
+  if (coins <= 0) return null;
+
+  const { data: prof } = await admin
+    .from("profiles")
+    .select("country")
+    .eq("id", uid)
+    .maybeSingle();
+  const country = ((prof ?? {}) as { country?: string | null }).country ?? null;
+
+  return {
+    userId: uid,
+    rank: row.rank,
+    coins,
+    xp,
+    level: levelForXp(xp),
+    country,
+    total: Number(row.total ?? 0),
   };
 }

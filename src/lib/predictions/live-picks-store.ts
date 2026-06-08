@@ -187,7 +187,7 @@ export async function settleDuePicks(uid: string, matchId: string, state: MatchL
   if (gainedCoins || gainedXp) {
     // Abono ATÓMICO por la puerta única: varios picks en vivo del mismo partido se
     // liquidan en ráfaga, así que un read-modify-write podía perder Fútcoins.
-    await grantCoins(uid, gainedCoins, gainedXp, { seasonXp: false });
+    await grantCoins(uid, gainedCoins, gainedXp, { seasonXp: false, module: "predicciones" });
     await addSeasonXp(uid, gainedXp).catch(() => {});
   }
 }

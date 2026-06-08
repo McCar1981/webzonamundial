@@ -10,6 +10,7 @@
 
 import { adminClient } from "./admin";
 import { addSeasonXp } from "./gamification-store";
+import { grantCoins } from "@/lib/economy/wallet";
 import { getMatchMeta } from "./match-data";
 import { buildMeta, getFixtureId, getCachedSnapshot, cacheSnapshot } from "@/lib/match-center/store";
 import { buildSimulation } from "@/lib/match-center/simulation";
@@ -184,9 +185,9 @@ export async function settleDuePicks(uid: string, matchId: string, state: MatchL
   }
 
   if (gainedCoins || gainedXp) {
-    const { data: prof } = await admin.from("profiles").select("coins,xp").eq("id", uid).maybeSingle();
-    const p = (prof ?? { coins: 0, xp: 0 }) as { coins: number; xp: number };
-    await admin.from("profiles").update({ coins: p.coins + gainedCoins, xp: p.xp + gainedXp }).eq("id", uid);
+    // Abono ATÓMICO por la puerta única: varios picks en vivo del mismo partido se
+    // liquidan en ráfaga, así que un read-modify-write podía perder Fútcoins.
+    await grantCoins(uid, gainedCoins, gainedXp, { seasonXp: false });
     await addSeasonXp(uid, gainedXp).catch(() => {});
   }
 }

@@ -15,6 +15,7 @@
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { adminClient } from "@/lib/predictions/admin";
 import { addSeasonXp } from "@/lib/predictions/gamification-store";
+import { grantCoins } from "@/lib/economy/wallet";
 import { sendPushToUsers } from "@/lib/push-notifications";
 import {
   MICRO_CATALOG,
@@ -401,10 +402,9 @@ export async function settleMicro(micro: MicroRow, events: MatchEvent[]): Promis
 /** Suma puntos→monedas y XP al perfil del usuario (mismo patrón que live-picks). */
 async function payUser(userId: string, coins: number, xp: number): Promise<void> {
   if (!coins && !xp) return;
-  const admin = adminClient();
-  const { data: prof } = await admin.from("profiles").select("coins,xp").eq("id", userId).maybeSingle();
-  const p = (prof ?? { coins: 0, xp: 0 }) as { coins: number; xp: number };
-  await admin.from("profiles").update({ coins: p.coins + coins, xp: p.xp + xp }).eq("id", userId);
+  // Abono ATÓMICO por la puerta única: la resolución corre en lote (cron), así que
+  // un read-modify-write podía perder Fútcoins entre pagos simultáneos.
+  await grantCoins(userId, coins, xp, { seasonXp: false });
   await addSeasonXp(userId, xp).catch(() => {});
 }
 

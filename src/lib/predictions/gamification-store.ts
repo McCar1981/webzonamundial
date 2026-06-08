@@ -207,8 +207,6 @@ export async function grantMatchRewards(matchId: string, userIds: string[]): Pro
     }
 
     const prof = await readProfile(uid);
-    let newXp = prof.xp + gainedXp;
-    let newCoins = prof.coins + gainedCoins;
 
     // Racha: el récord se mide sobre TODO el historial; la racha "actual" solo
     // cuenta aciertos resueltos DESPUÉS del ancla (caducidad previa por inactividad).
@@ -223,29 +221,34 @@ export async function grantMatchRewards(matchId: string, userIds: string[]): Pro
       ? new Date(Date.now() + STREAK_WINDOW_MS).toISOString()
       : null;
 
-    // Logros: evaluar con el XP nuevo (para el logro de nivel).
-    const stats = buildStats(rows, newXp);
+    // Logros: evaluar con el XP que tendrá tras esta resolución (para el logro de nivel).
+    const stats = buildStats(rows, prof.xp + gainedXp);
     const { data: ach } = await admin.from("prediction_achievements").select("achievement_id").eq("user_id", uid);
     const unlocked = new Set((ach ?? []).map((a) => (a as { achievement_id: string }).achievement_id));
     const fresh = newlyUnlocked(stats, unlocked);
-    let seasonXp = gainedXp; // XP de temporada ganado en esta resolución
+    let totalCoins = gainedCoins;
+    let totalXp = gainedXp; // Fútcoins/XP totales ganados en esta resolución (+ logros).
     for (const a of fresh) {
       await admin.from("prediction_achievements").insert({ user_id: uid, achievement_id: a.id }).then(() => {}, () => {});
-      newCoins += a.rewardCoins;
-      newXp += a.rewardXp;
-      seasonXp += a.rewardXp;
+      totalCoins += a.rewardCoins;
+      totalXp += a.rewardXp;
     }
 
+    // Abono ATÓMICO de Fútcoins + XP por la puerta única (evita la fuga de
+    // concurrencia del read-modify-write). seasonXp:false porque la pista de
+    // temporada se alimenta justo debajo con el mismo XP.
+    await grantCoins(uid, totalCoins, totalXp, { seasonXp: false });
+
+    // Campos de racha: valores ABSOLUTOS derivados del historial completo (no son
+    // incrementos), así que un update directo es seguro ante concurrencia.
     await admin.from("profiles").update({
-      xp: newXp,
-      coins: newCoins,
       current_streak: current,
       best_streak: Math.max(best, prof.best_streak),
       streak_expires_at: streakExpiresAt,
     }).eq("id", uid);
 
     // Battle Pass: el mismo XP de progresión llena la pista de temporada.
-    await addSeasonXp(uid, seasonXp).catch(() => {});
+    await addSeasonXp(uid, totalXp).catch(() => {});
   }
 
   // Resolver duelos 1v1 de este partido.
@@ -272,8 +275,7 @@ async function resolveDuelsForMatch(matchId: string): Promise<void> {
       resolved_at: new Date().toISOString(),
     }).eq("id", d.id);
     if (winner) {
-      const prof = await readProfile(winner);
-      await admin.from("profiles").update({ coins: prof.coins + 50 }).eq("id", winner);
+      await grantCoins(winner, 50, 0);
     }
     // Acumula el cara a cara persistente (Mejora I).
     await recordDuelResult({
@@ -420,11 +422,7 @@ export async function bumpChallengeProgress(uid: string, signals: ChallengeSigna
   }, { onConflict: "user_id,day_key" });
 
   if (completed) {
-    const prof = await readProfile(uid);
-    await admin.from("profiles").update({
-      coins: prof.coins + challenge.rewardCoins,
-      xp: prof.xp + challenge.rewardXp,
-    }).eq("id", uid);
+    await grantCoins(uid, challenge.rewardCoins, challenge.rewardXp, { seasonXp: false });
     await addSeasonXp(uid, challenge.rewardXp).catch(() => {});
   }
 }
@@ -463,28 +461,31 @@ export async function claimDaily(uid: string): Promise<CheckinResult> {
   const newDays = prof.last_checkin === yesterday ? prof.checkin_days + 1 : 1;
   const reward = dailyCheckinReward(newDays);
 
-  let coins = prof.coins + reward.coins;
-  let xp = prof.xp + reward.xp;
+  let gainCoins = reward.coins;
+  let gainXp = reward.xp;
   let chest: ReturnType<typeof openChest> | undefined;
   if (reward.chest) {
     chest = openChest(`${uid}:${today}`);
-    coins += chest.coins; xp += chest.xp;
+    gainCoins += chest.coins; gainXp += chest.xp;
     if (chest.boost) {
       await admin.from("prediction_boosts").insert({ user_id: uid, boost_id: chest.boost });
     }
   }
 
+  // Abono ATÓMICO de Fútcoins + XP por la puerta única; los campos de cadencia
+  // (last_checkin/checkin_days) son valores absolutos y van en un update aparte.
+  const grant = await grantCoins(uid, gainCoins, gainXp, { seasonXp: false });
   await admin.from("profiles").update({
-    coins, xp, last_checkin: today, checkin_days: newDays,
+    last_checkin: today, checkin_days: newDays,
   }).eq("id", uid);
   await admin.from("prediction_daily_claims").upsert({
     user_id: uid, day_key: today, reward_coins: reward.coins, reward_xp: reward.xp,
   }, { onConflict: "user_id,day_key" });
 
   // El XP del check-in (y del cofre) también llena la pista de temporada.
-  await addSeasonXp(uid, reward.xp + (chest?.xp ?? 0)).catch(() => {});
+  await addSeasonXp(uid, gainXp).catch(() => {});
 
-  return { already: false, reward, chest, checkin_days: newDays, coins };
+  return { already: false, reward, chest, checkin_days: newDays, coins: grant.coins };
 }
 
 // ─── Battle Pass de temporada (mejora E) ─────────────────────────────────────
@@ -530,12 +531,11 @@ export async function claimBattlePassTier(uid: string, tier: number, track: Trac
   if (claimErr) return { ok: false, error: "already_claimed" };
 
   const reward = tierReward(tier, track);
-  const prof = await readProfile(uid);
-  await admin.from("profiles").update({ coins: prof.coins + reward.coins }).eq("id", uid);
+  const grant = await grantCoins(uid, reward.coins, 0);
   if (reward.boost) {
     await admin.from("prediction_boosts").insert({ user_id: uid, boost_id: reward.boost });
   }
-  return { ok: true, coins: prof.coins + reward.coins, boost: reward.boost };
+  return { ok: true, coins: grant.coins, boost: reward.boost };
 }
 
 export interface JornadaResult { ok: boolean; awarded: boolean; xp?: number; coins?: number; missing?: number }
@@ -570,11 +570,7 @@ export async function claimJornadaIfComplete(uid: string, dayKey: string): Promi
   });
   if (claimErr) return { ok: true, awarded: false };
 
-  const prof = await readProfile(uid);
-  await admin.from("profiles").update({
-    coins: prof.coins + bonus.coins,
-    xp: prof.xp + bonus.xp,
-  }).eq("id", uid);
+  await grantCoins(uid, bonus.coins, bonus.xp, { seasonXp: false });
   await addSeasonXp(uid, bonus.xp).catch(() => {});
   return { ok: true, awarded: true, xp: bonus.xp, coins: bonus.coins };
 }

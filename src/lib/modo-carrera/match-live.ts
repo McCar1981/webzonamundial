@@ -381,6 +381,65 @@ export function redCardMult(rc: RedCard | null, windowEndMinute: number): { atk:
   return rc.team === "self" ? { atk: 0.78, def: 1.22 } : { atk: 1.18, def: 0.84 };
 }
 
+// ─── BALÓN PARADO (penalti o falta a tu favor: decisión del DT) ──────────────
+/** Probabilidad de que tu equipo disponga de un balón parado de peligro. */
+const SET_PIECE_CHANCE = 0.28;
+
+/** Una jugada a balón parado a favor: el DT decide cómo ejecutarla. */
+export interface SetPiece {
+  kind: "penalti" | "falta";
+  /** Minuto en el que se produce (entre el 62 y el 87, dentro de los tramos jugables). */
+  minute: number;
+  /** Jugador que ejecuta (real del plantel). */
+  taker: string;
+}
+
+/** Opción de ejecución del balón parado, con su probabilidad de gol. */
+export interface SetPieceChoice {
+  id: string;
+  name: string;
+  description: string;
+  /** Probabilidad de marcar (0..1). */
+  scoreProb: number;
+}
+
+/**
+ * Tira por un balón parado de peligro a favor (~28%). Se pre-tira al saque para
+ * que el reloj sea estable; la pantalla de decisión salta al llegar a su minuto.
+ * El ejecutante es un atacante real del plantel.
+ */
+export function rollSetPiece(c: CareerState, _match: SeasonMatch): SetPiece | null {
+  if (Math.random() >= SET_PIECE_CHANCE) return null;
+  const roster: RosterPlayer[] = FANTASY_ROSTERS[c.identity.nationSlug ?? ""] ?? [];
+  const att = roster.filter((p) => p.pos === "FWD" || p.pos === "MID");
+  const pool = att.length ? att : roster;
+  const taker = pool.length ? pool[Math.floor(Math.random() * pool.length)].name : "Tu especialista";
+  const kind: "penalti" | "falta" = Math.random() < 0.4 ? "penalti" : "falta";
+  const minute = 62 + Math.floor(Math.random() * 26); // 62..87
+  return { kind, minute, taker };
+}
+
+/** Opciones de ejecución según el tipo de balón parado. */
+export function setPieceChoices(kind: "penalti" | "falta"): SetPieceChoice[] {
+  if (kind === "penalti") {
+    return [
+      { id: "frio", name: "Especialista a sangre fría", description: "Tu lanzador de confianza, colocado y seguro. La opción más fiable.", scoreProb: 0.83 },
+      { id: "potencia", name: "Potencia y centro", description: "A reventar la red por el medio. Mucha pegada, algo más de riesgo.", scoreProb: 0.72 },
+      { id: "picada", name: "Picarla (Panenka)", description: "Sutileza y descaro. Si entra, golazo; si la lee el portero, ridículo.", scoreProb: 0.58 },
+    ];
+  }
+  return [
+    { id: "directa", name: "Directa a la escuadra", description: "Buscas la portería con una rosca a la cepa del palo. Difícil, espectacular.", scoreProb: 0.2 },
+    { id: "centro", name: "Centro al corazón del área", description: "Colgás el balón para tu rematador. La vía más probable de gol.", scoreProb: 0.33 },
+    { id: "ensayada", name: "Jugada ensayada", description: "Combinación de pizarra para sorprender a la defensa.", scoreProb: 0.26 },
+  ];
+}
+
+/** Resuelve el balón parado: true si termina en gol. */
+export function resolveSetPiece(choice: SetPieceChoice): boolean {
+  return Math.random() < choice.scoreProb;
+}
+
 // ─── PRÓRROGA (solo eliminatorias empatadas a los 90') ───────────────────────
 /** Peso de los 30' de la prórroga frente a los 90' reglamentarios. */
 const W_ET = 0.26;

@@ -32,6 +32,9 @@ import {
   rollMatchInjury,
   rollRedCard,
   redCardMult,
+  rollSetPiece,
+  setPieceChoices,
+  resolveSetPiece,
   HALFTIME_TALKS,
   EXTRA_TIME_CHOICES,
   PENALTY_STRATEGIES,
@@ -48,6 +51,8 @@ import {
   type PenaltyStrategy,
   type ShootoutResult,
   type RedCard,
+  type SetPiece,
+  type SetPieceChoice,
 } from "@/lib/modo-carrera/match-live";
 import type { CareerState, SeasonMatch, Injury } from "@/lib/modo-carrera/types";
 
@@ -60,6 +65,7 @@ type Phase =
   | "half2"
   | "decision2"
   | "half3"
+  | "setpiece"
   | "prorroga"
   | "et"
   | "penales"
@@ -221,6 +227,14 @@ export default function MatchLive({
   // condiciona el rendimiento de los tramos posteriores a su minuto.
   const redCardRef = useRef<RedCard | null>(null);
   const [redCard, setRedCard] = useState<RedCard | null>(null);
+  // Balón parado a favor (pre-tirado al saque): penalti o falta de peligro. Salta
+  // como decisión del DT al llegar a su minuto y puede sumar un gol extra.
+  const setPieceRef = useRef<SetPiece | null>(null);
+  const setPieceGoalRef = useRef(0);
+  const setPieceDoneRef = useRef(false);
+  const resumePhaseRef = useRef<Phase>("half2");
+  const [setPiece, setSetPiece] = useState<SetPiece | null>(null);
+  const [setPieceResult, setSetPieceResult] = useState<null | { scored: boolean; choice: SetPieceChoice }>(null);
   // Charla técnica al descanso (solo si vas perdiendo): multiplica el resto del
   // partido y deja un delta de moral que se arrastra a la carrera.
   const talkMultRef = useRef<{ atk: number; def: number }>({ atk: 1, def: 1 });
@@ -297,6 +311,19 @@ export default function MatchLive({
     if (rc && !redCard && clock >= rc.minute) setRedCard(rc);
   }, [clock, redCard]);
 
+  // Balón parado: al llegar a su minuto (durante el juego) se pausa el reloj y
+  // salta la decisión. Guardamos el tramo para reanudar tras ejecutar la jugada.
+  useEffect(() => {
+    if (phase !== "half2" && phase !== "half3") return;
+    const sp = setPieceRef.current;
+    if (sp && !setPieceDoneRef.current && clock >= sp.minute) {
+      resumePhaseRef.current = phase;
+      setSetPiece(sp);
+      setPhase("setpiece");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [clock, phase]);
+
   // Encadena las pantallas del descanso (min 60'): primero la sustitución por
   // lesión (si la hubo), luego la charla técnica (solo si vas perdiendo) y por
   // último la decisión táctica. Cada paso llama al siguiente al resolverse.
@@ -354,6 +381,11 @@ export default function MatchLive({
     injuryRef.current = rollMatchInjury(career, match);
     redCardRef.current = rollRedCard(career, match);
     setRedCard(null);
+    setPieceRef.current = rollSetPiece(career, match);
+    setPieceGoalRef.current = 0;
+    setPieceDoneRef.current = false;
+    setSetPiece(null);
+    setSetPieceResult(null);
     subMultRef.current = { atk: 1, def: 1 };
     injuredRef.current = null;
     talkMultRef.current = { atk: 1, def: 1 };
@@ -403,6 +435,27 @@ export default function MatchLive({
     resRef.current = res;
     setEvents((prev) => [...prev, ...buildEvents(res.gf2, res.ga2, selfSlug, oppSlug, 76, 90)]);
     setPhase("half3");
+  };
+
+  // El DT ejecuta el balón parado: si entra, suma un gol extra (evento + agregado)
+  // y se muestra el desenlace antes de reanudar el partido en el mismo tramo.
+  const pickSetPiece = (choice: SetPieceChoice) => {
+    const sp = setPieceRef.current;
+    if (!sp) return;
+    setPieceDoneRef.current = true;
+    const scored = resolveSetPiece(choice);
+    if (scored) {
+      setPieceGoalRef.current += 1;
+      setEvents((prev) => [...prev, { minute: sp.minute, team: "self", scorer: sp.taker }]);
+    }
+    setSetPieceResult({ scored, choice });
+  };
+
+  // Tras ver el desenlace del balón parado, se reanuda el partido en su tramo.
+  const resumeFromSetPiece = () => {
+    setSetPiece(null);
+    setSetPieceResult(null);
+    setPhase(resumePhaseRef.current);
   };
 
   // El DT elige cómo afrontar la prórroga (30' extra). El enfoque modula los goles
@@ -493,7 +546,7 @@ export default function MatchLive({
   // Marcador agregado tras 90' (+ prórroga si la hubo). Los penaltis NO cambian
   // el marcador mostrado (queda el empate), pero sí deciden el ganador: +1 al
   // vencedor de la tanda para que resolveMatch produzca un resultado decisivo.
-  const aggGf = (res ? res.gf : shown.gf) + (etRef.current?.gfEt ?? 0);
+  const aggGf = (res ? res.gf : shown.gf) + (etRef.current?.gfEt ?? 0) + setPieceGoalRef.current;
   const aggGa = (res ? res.ga : shown.ga) + (etRef.current?.gaEt ?? 0);
   const finalGf = aggGf + (shootoutRes?.winner === "self" ? 1 : 0);
   const finalGa = aggGa + (shootoutRes?.winner === "opp" ? 1 : 0);
@@ -721,7 +774,7 @@ export default function MatchLive({
         )}
 
         {/* ── FEED de goles (durante el partido y al final) ── */}
-        {(phase === "half1" || phase === "injury" || phase === "charla" || phase === "decision" || phase === "half2" || phase === "decision2" || phase === "half3" || phase === "et" || phase === "fulltime") && (
+        {(phase === "half1" || phase === "injury" || phase === "charla" || phase === "decision" || phase === "half2" || phase === "decision2" || phase === "half3" || phase === "setpiece" || phase === "et" || phase === "fulltime") && (
           <div style={{ display: "flex", flexDirection: "column", gap: 6, margin: "4px 0 12px", minHeight: 40 }}>
             {feedItems.length === 0 ? (
               <div style={{ textAlign: "center", fontSize: 12, color: DIM, fontStyle: "italic", padding: "8px 0" }}>
@@ -829,6 +882,73 @@ export default function MatchLive({
                 </button>
               ))}
             </div>
+          </>
+        )}
+
+        {/* ── BALÓN PARADO a favor: penalti o falta de peligro ── */}
+        {phase === "setpiece" && setPiece && (
+          <>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12, margin: "6px 0 6px", animation: "mlDecHdr .45s cubic-bezier(.2,.9,.3,1.3) both" }}>
+              <Coach pose="instruccion" size={64} slug={selfSlug} />
+              <div style={{ textAlign: "left" }}>
+                <div style={{ fontSize: 12, fontWeight: 900, letterSpacing: 1, textTransform: "uppercase", color: GOLD }}>
+                  Minuto {setPiece.minute}&#39; · {setPiece.kind === "penalti" ? "penalti" : "falta peligrosa"}
+                </div>
+                <div style={{ fontSize: 11.5, color: DIM, fontStyle: "italic", marginTop: 1 }}>
+                  Lanza {setPiece.taker}. ¿Cómo la ejecutas?
+                </div>
+              </div>
+            </div>
+
+            {!setPieceResult ? (
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {setPieceChoices(setPiece.kind).map((ch, i) => (
+                  <button
+                    key={ch.id}
+                    type="button"
+                    onClick={() => pickSetPiece(ch)}
+                    style={{
+                      textAlign: "left",
+                      padding: "12px 14px",
+                      borderRadius: 12,
+                      cursor: "pointer",
+                      background: BG3,
+                      border: "1px solid rgba(255,255,255,0.06)",
+                      animation: `mlDecCard .4s ${0.1 + i * 0.09}s cubic-bezier(.2,.9,.3,1.2) both`,
+                    }}
+                  >
+                    <div style={{ fontSize: 13.5, fontWeight: 800, color: "#fff" }}>{ch.name}</div>
+                    <div style={{ fontSize: 12, color: MID, marginTop: 3, lineHeight: 1.5 }}>{ch.description}</div>
+                  </button>
+                ))}
+              </div>
+            ) : (
+              <>
+                <div
+                  style={{
+                    textAlign: "center",
+                    padding: "16px 14px",
+                    borderRadius: 14,
+                    background: setPieceResult.scored ? "rgba(34,197,94,0.12)" : "rgba(220,38,38,0.10)",
+                    border: `1px solid ${setPieceResult.scored ? GREEN : RED}55`,
+                    margin: "6px 0 12px",
+                    animation: "mlWinIn .4s ease both",
+                  }}
+                >
+                  <div style={{ fontSize: 26, fontWeight: 900, color: setPieceResult.scored ? GREEN : RED }}>
+                    {setPieceResult.scored ? "¡GOL!" : "Sin premio"}
+                  </div>
+                  <div style={{ fontSize: 12.5, color: MID, marginTop: 4 }}>
+                    {setPieceResult.scored
+                      ? `${setPiece.taker} la clava. ${setPieceResult.choice.name}.`
+                      : `${setPiece.taker} lo intenta con "${setPieceResult.choice.name}", pero no entra.`}
+                  </div>
+                </div>
+                <button type="button" onClick={resumeFromSetPiece} style={btnGold}>
+                  Seguir el partido
+                </button>
+              </>
+            )}
           </>
         )}
 

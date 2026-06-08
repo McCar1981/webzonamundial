@@ -508,24 +508,31 @@ export default function AppHubPage() {
   // Acentos "en vivo" (no están en la paleta base): coral + cian de retransmisión.
   const CORAL = "#ff6b5a";
 
-  // ── HERO dinámico (Live Hub) ── 3 estados con prioridad:
-  //   1) live  → hay partido en marcha (lo más urgente)
-  //   2) reto  → no hay partido en vivo y la trivia diaria sigue pendiente hoy
-  //   3) base  → estado por defecto
+  // ── HERO dinámico (Live Hub) ── carrusel de pantallas con prioridad:
+  //   1) live  → hay partido en marcha (lo más urgente; solo si aplica)
+  //   2) reto  → la trivia diaria sigue pendiente hoy (solo si aplica)
+  //   3) promos fijas → base + módulos destacados (siempre rotan)
   const GREEN = "#36c98f";
   const retoAvailable = !live && triviaPlayedToday === false;
-  // `art` = imagen de fondo del hero por estado (reutiliza el arte de las cards).
-  type HeroCfg = { kind: "live" | "reto" | "base"; accent: string; eyebrow: string; title: React.ReactNode; desc: string; art: string; cta1: { label: string; href: string }; cta2?: { label: string; href: string } };
+  // Icono de "play" por defecto del CTA primario (se tiñe del color de texto).
+  const playIcon = (c: string) => <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 4l13 8-13 8V4z" fill={c} /></svg>;
+  // `art` = imagen de fondo de la pantalla (reutiliza el arte de las cards).
+  // accent/accent2 tiñen badge, glow, dots y el CTA primario. ctaInk = texto del CTA.
+  type HeroCfg = { id: string; kind: "live" | "reto" | "base"; accent: string; accent2: string; ctaInk: string; icon?: React.ReactNode; eyebrow: string; title: React.ReactNode; desc: string; art: string; cta1: { label: string; href: string }; cta2?: { label: string; href: string } };
   const heroLive: HeroCfg = {
-    kind: "live", accent: CORAL, eyebrow: "En vivo ahora",
+    id: "live", kind: "live", accent: CORAL, accent2: "#ff9a4a", ctaInk: "#1a0d08",
+    icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#1a0d08" strokeWidth="1.8" /><circle cx="12" cy="12" r="3" fill="#1a0d08" /></svg>,
+    eyebrow: "En vivo ahora",
     title: "El partido está en marcha",
-    desc: "Sigue estadísticas, predice jugadas y entra al Match Center.",
+    desc: "Estadísticas en vivo, predice jugadas y entra al Match Center.",
     art: "/assets/card-backgrounds/match-center.webp",
     cta1: { label: "Entrar al Match Center", href: matchHref },
     cta2: { label: "Micro-predicciones", href: "/app/micro" },
   };
   const heroReto: HeroCfg = {
-    kind: "reto", accent: GREEN, eyebrow: "Reto diario",
+    id: "reto", kind: "reto", accent: GREEN, accent2: "#7ce0b3", ctaInk: "#072019",
+    icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v5c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V7l8-4ZM9 12l2 2 4-4" stroke="#072019" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>,
+    eyebrow: "Reto diario",
     title: <>Trivia <span style={{ background: `linear-gradient(135deg,${GREEN},#7ce0b3)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>disponible</span></>,
     desc: "Responde las preguntas de hoy y suma puntos extra.",
     art: "/assets/card-backgrounds/trivia-diaria.webp",
@@ -533,33 +540,57 @@ export default function AppHubPage() {
     cta2: { label: "Ver partido del día", href: matchHref },
   };
   const heroBase: HeroCfg = {
-    kind: "base", accent: GOLD2, eyebrow: "Mundial 2026",
+    id: "base", kind: "base", accent: GOLD2, accent2: GOLD, ctaInk: NAVY, eyebrow: "Mundial 2026",
     title: <>Tu zona de juego del <span style={{ background: `linear-gradient(135deg,${GOLD},${GOLD2})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Mundial</span></>,
     desc: "Predice, compite y sigue cada partido en directo.",
     art: "/assets/card-backgrounds/predicciones.webp",
     cta1: { label: "Explorar módulos", href: "#modulos" },
     cta2: { label: "Ver partido del día", href: matchHref },
   };
-  // Pantallas del carrusel del hero. Con ?hero= se bloquea a una sola (preview).
-  // Si no, se muestran las pertinentes y van rotando: en vivo → reto → base.
+  const heroFantasy: HeroCfg = {
+    id: "fantasy", kind: "base", accent: "#a78bfa", accent2: "#c4b5fd", ctaInk: "#1a0f33", eyebrow: "Fantasy",
+    title: <>Tu <span style={{ background: "linear-gradient(135deg,#a78bfa,#c4b5fd)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Fantasy</span> del Mundial</>,
+    desc: "Arma tu equipo y compite cada jornada.",
+    art: "/assets/card-backgrounds/fantasy.webp",
+    cta1: { label: "Ver Fantasy", href: "/app/fantasy" },
+  };
+  const heroCarrera: HeroCfg = {
+    id: "carrera", kind: "base", accent: "#5aa9ff", accent2: "#8fc6ff", ctaInk: "#06203d", eyebrow: "Modo Carrera",
+    title: <>Dirige tu <span style={{ background: "linear-gradient(135deg,#5aa9ff,#8fc6ff)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>selección</span></>,
+    desc: "Lleva a tu país a la gloria como DT.",
+    art: "/assets/card-backgrounds/modo-carrera.webp",
+    cta1: { label: "Entrar", href: "/app/modo-carrera" },
+  };
+  const heroRanking: HeroCfg = {
+    id: "ranking", kind: "base", accent: "#ffb454", accent2: "#ffd27a", ctaInk: "#2a1700", eyebrow: "Ranking global",
+    title: <>Escala el <span style={{ background: "linear-gradient(135deg,#ffb454,#ffd27a)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>ranking</span></>,
+    desc: "Compite por país y por creador.",
+    art: "/assets/card-backgrounds/ranking-global.webp",
+    cta1: { label: "Ver ranking", href: "/app/rankings" },
+  };
+  // Pantallas del carrusel. Con ?hero= se bloquea a una sola (preview de diseño).
   const heroSlides: HeroCfg[] = heroOverride
     ? [heroOverride === "live" ? heroLive : heroOverride === "reto" ? heroReto : heroBase]
-    : [...(live ? [heroLive] : []), ...(retoAvailable ? [heroReto] : []), heroBase];
+    : [
+        ...(live ? [heroLive] : []),
+        ...(retoAvailable ? [heroReto] : []),
+        heroBase, heroFantasy, heroCarrera, heroRanking,
+      ];
   const hero = heroSlides[heroIdx % heroSlides.length];
   // Auto-rotación del carrusel (pausa si solo hay una pantalla o hay preview).
   const heroCount = heroSlides.length;
   useEffect(() => {
     if (heroCount <= 1) return;
-    const id = setInterval(() => setHeroIdx((i) => (i + 1) % heroCount), 8000);
+    const id = setInterval(() => setHeroIdx((i) => (i + 1) % heroCount), 9000);
     return () => clearInterval(id);
   }, [heroCount]);
-  // Estilo del CTA primario del hero según estado (coral/verde/dorado).
-  const heroCta1 =
-    hero.kind === "live"
-      ? { bg: `linear-gradient(135deg,${CORAL},#ff9a4a)`, color: "#1a0d08", shadow: "0 6px 20px rgba(255,107,90,0.3)", icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#1a0d08" strokeWidth="1.8" /><circle cx="12" cy="12" r="3" fill="#1a0d08" /></svg> }
-      : hero.kind === "reto"
-        ? { bg: `linear-gradient(135deg,${GREEN},#7ce0b3)`, color: "#072019", shadow: "0 6px 20px rgba(54,201,143,0.3)", icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v5c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V7l8-4ZM9 12l2 2 4-4" stroke="#072019" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg> }
-        : { bg: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: NAVY, shadow: "0 6px 20px rgba(201,168,76,0.25)", icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 4l13 8-13 8V4z" fill={NAVY} /></svg> };
+  // Estilo del CTA primario, derivado del acento de la pantalla activa.
+  const heroCta1 = {
+    bg: `linear-gradient(135deg,${hero.accent},${hero.accent2})`,
+    color: hero.ctaInk,
+    shadow: `0 6px 20px ${hero.accent}40`,
+    icon: hero.icon ?? playIcon(hero.ctaInk),
+  };
 
   // Acento del Match Center según estado del partido.
   const mcAccent = live ? CORAL : finished ? "#8a93a3" : GOLD;
@@ -567,7 +598,7 @@ export default function AppHubPage() {
   return (
     <div style={{ minHeight: "100vh", background: `radial-gradient(1200px 600px at 50% -10%, #12284a 0%, ${NAVY} 55%)`, color: TXT, fontFamily: "'Outfit',sans-serif", overflowX: "hidden" }}>
       <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-      <style>{`*{box-sizing:border-box}::selection{background:rgba(201,168,76,.3)}@keyframes zmpulse{0%,100%{opacity:1}50%{opacity:.4}}@keyframes zmHeroIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}@keyframes zmHeroArtIn{from{opacity:0}to{opacity:.62}}.zm-hero-slide{animation:zmHeroIn .5s ease both}.zm-hero-art{animation:zmHeroArtIn .6s ease both}@media (prefers-reduced-motion: reduce){.zm-hero-slide,.zm-hero-art{animation:none}}`}</style>
+      <style>{`*{box-sizing:border-box}::selection{background:rgba(201,168,76,.3)}@keyframes zmpulse{0%,100%{opacity:1}50%{opacity:.4}}@keyframes zmHeroIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}@keyframes zmHeroArtIn{from{opacity:0}to{opacity:.62}}.zm-hero{display:flex;align-items:center;min-height:300px}@media(max-width:560px){.zm-hero{min-height:344px}}.zm-hero-slide{animation:zmHeroIn .5s ease both}.zm-hero-art{animation:zmHeroArtIn .6s ease both}@media (prefers-reduced-motion: reduce){.zm-hero-slide,.zm-hero-art{animation:none}}`}</style>
 
       <div style={{ maxWidth: 1080, margin: "0 auto", padding: "14px 14px 110px" }}>
 
@@ -635,7 +666,7 @@ export default function AppHubPage() {
           <span aria-hidden className="zm-spark zm-spark--2" style={{ position: "absolute", left: "42%", bottom: 18, width: 2, height: 2, borderRadius: "50%", background: GOLD2, pointerEvents: "none" }} />
           <span aria-hidden className="zm-spark zm-spark--3" style={{ position: "absolute", left: "68%", bottom: 30, width: 3, height: 3, borderRadius: "50%", background: hero.accent, pointerEvents: "none" }} />
 
-          <div key={hero.kind} className="zm-hero-slide" style={{ position: "relative", zIndex: 2, maxWidth: 580 }}>
+          <div key={hero.id} className="zm-hero-slide" style={{ position: "relative", zIndex: 2, maxWidth: 580 }}>
             <span style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 11, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase", color: hero.accent }}>
               {hero.kind === "live" && <span className="zm-live-dot" style={{ width: 8, height: 8, borderRadius: "50%", background: hero.accent }} />}
               {hero.eyebrow}
@@ -666,7 +697,7 @@ export default function AppHubPage() {
                 const activo = i === heroIdx % heroSlides.length;
                 return (
                   <button
-                    key={s.kind}
+                    key={s.id}
                     aria-label={`Ver ${s.eyebrow}`}
                     onClick={() => setHeroIdx(i)}
                     style={{

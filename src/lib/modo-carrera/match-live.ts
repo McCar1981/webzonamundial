@@ -379,6 +379,85 @@ export function systemChangeOptions(currentPlanId: string): TacticalPlan[] {
   return TACTICAL_PLANS.filter((p) => p.id !== currentPlanId);
 }
 
+// ─── VALORACIÓN DEL CAMBIO + REACCIÓN DEL RIVAL (estilo videojuego) ──────────
+/** Lectura de un cambio en vivo: multiplicadores efectivos + valoración. */
+export interface ChangeVerdict {
+  /** Multiplicadores YA ajustados por calidad, idoneidad y reacción rival. */
+  atkMult: number;
+  defMult: number;
+  /** Acierto del cambio (para el color/relato). */
+  rating: "acierto" | "correcto" | "dudoso" | "error";
+  /** Lectura del cambio + cómo se adapta el rival (texto para el relato). */
+  feedback: string;
+}
+
+/**
+ * Evalúa un cambio EN VIVO (sustitución o cambio de sistema) como en un
+ * videojuego: NO es un buff gratis. Pondera tres cosas y ajusta el efecto real:
+ *   1. CALIDAD del recambio → ligada a la pegada real del equipo (lamFor): una
+ *      selección top mete mejores piezas que una modesta.
+ *   2. IDONEIDAD táctica → ¿pega el cambio con el marcador? Atacar perdiendo y
+ *      defender ganando se premian; lo contrario se penaliza.
+ *   3. REACCIÓN del rival → el otro equipo LEE el cambio y se reajusta: si te
+ *      abres, te castiga a la espalda; cuanto más peligroso (lamAg), más duele.
+ * Devuelve los multiplicadores efectivos + una valoración para el relato.
+ */
+export function evaluateLiveChange(
+  state: LiveMatchState,
+  scoreline: { gf: number; ga: number },
+  intent: { atkMult: number; defMult: number; kind: "sub" | "system" },
+): ChangeVerdict {
+  const clamp = (n: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, n));
+  const margin = scoreline.gf - scoreline.ga;
+  // >0 el cambio se inclina al ataque; <0 a la defensa.
+  const offBias = intent.atkMult - intent.defMult;
+
+  // 1) CALIDAD: la pegada del equipo (lamFor ~1.3 medio) marca cuánto rinde el
+  //    recambio. Top (lamFor alto) amplifica; modesto lo atenúa.
+  const quality = clamp(0.9 + (state.lamFor - 1.3) * 0.14, 0.85, 1.16);
+
+  // 2) IDONEIDAD respecto al marcador.
+  let fit: number;
+  if (margin < 0) fit = offBias; // perdiendo → premia atacar
+  else if (margin > 0) fit = -offBias; // ganando → premia defender
+  else fit = offBias * 0.5; // empate → ligero premio a atacar
+  // Eficacia combinada (calidad × idoneidad) sobre la desviación del cambio.
+  const eff = clamp(quality * (1 + fit * 0.3), 0.78, 1.22);
+
+  // 3) REACCIÓN del rival: lee el cambio y se reajusta. Cuanto más peligroso
+  //    (lamAg) y más te hayas abierto, más te castiga a la espalda.
+  const oppDanger = clamp((state.lamAg - 1.0) * 0.45, 0, 0.55);
+  const exposure = Math.max(0, offBias);
+  const counter = clamp(oppDanger * (0.55 + exposure * 0.8), 0, 0.6);
+
+  // Multiplicadores efectivos: la idoneidad/calidad escalan la desviación del
+  // cambio; el rival erosiona tu ataque y eleva lo que concedes.
+  const atkMult = (1 + (intent.atkMult - 1) * eff) * (1 - counter * 0.32);
+  const defMult = (1 + (intent.defMult - 1) * eff) * (1 + counter * 0.34);
+
+  // Valoración: la idoneidad manda, la calidad suma, la contra del rival resta.
+  const score = fit + (quality - 1) * 1.4 - counter * 0.45;
+  const rating: ChangeVerdict["rating"] =
+    score > 0.2 ? "acierto" : score > 0.04 ? "correcto" : score > -0.16 ? "dudoso" : "error";
+
+  const reaction =
+    offBias > 0.05
+      ? "el rival se repliega y acecha tu espalda"
+      : offBias < -0.05
+        ? "el rival adelanta líneas para presionarte"
+        : "el rival ajusta su bloque";
+  const verdictWord =
+    rating === "acierto"
+      ? "Lectura acertada"
+      : rating === "correcto"
+        ? "Cambio razonable"
+        : rating === "dudoso"
+          ? "Cambio dudoso"
+          : "Cambio desacertado";
+
+  return { atkMult, defMult, rating, feedback: `${verdictWord}: ${reaction}.` };
+}
+
 /** Goles del tramo 60-75' tras la 1ª decisión en vivo (sin cerrar el marcador). */
 export function secondHalf(state: LiveMatchState, choice: InMatchChoice): { gf2: number; ga2: number } {
   return {

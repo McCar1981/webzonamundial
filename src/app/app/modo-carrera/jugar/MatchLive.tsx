@@ -37,6 +37,7 @@ import {
   resolveSetPiece,
   voluntarySubOptions,
   systemChangeOptions,
+  evaluateLiveChange,
   MAX_LIVE_SUBS,
   HALFTIME_TALKS,
   EXTRA_TIME_CHOICES,
@@ -56,6 +57,7 @@ import {
   type RedCard,
   type SetPiece,
   type SetPieceChoice,
+  type ChangeVerdict,
 } from "@/lib/modo-carrera/match-live";
 import type { CareerState, SeasonMatch, Injury } from "@/lib/modo-carrera/types";
 
@@ -256,7 +258,7 @@ export default function MatchLive({
   // los nombres en cada render, ya que voluntarySubOptions usa aleatoriedad).
   const [subOffer, setSubOffer] = useState<SubOption[]>([]);
   // Registro de cambios en vivo (para mostrarlos como "movimientos del banco").
-  const [liveChanges, setLiveChanges] = useState<string[]>([]);
+  const [liveChanges, setLiveChanges] = useState<{ text: string; rating: ChangeVerdict["rating"] }[]>([]);
   // Prórroga + penaltis (solo eliminatorias empatadas a los 90'). En el fútbol
   // real una eliminatoria nunca acaba en empate: hay 30' extra y, si sigue igual,
   // tanda de penaltis. El DT decide el enfoque de ambas.
@@ -389,28 +391,45 @@ export default function MatchLive({
     setPhase("decision");
   };
 
-  // CAMBIO VOLUNTARIO: el DT mete a un suplente desde el banquillo. Su perfil
-  // (frescas/ofensivo/defensivo) acumula multiplicador sobre el resto del partido.
-  // Tope de MAX_LIVE_SUBS cambios por encuentro (como en el fútbol real).
+  // CAMBIO VOLUNTARIO: el DT mete a un suplente desde el banquillo. El efecto NO
+  // es el nominal del perfil: pasa por evaluateLiveChange, que pondera la calidad
+  // real del equipo, lo idóneo del cambio para el marcador y la REACCIÓN del rival
+  // (se adapta y castiga tu apertura). El resultado acumula sobre el resto del
+  // partido. Tope de MAX_LIVE_SUBS cambios por encuentro (como en el fútbol real).
   const pickVolSub = (opt: SubOption) => {
+    const ls = lsRef.current;
+    const v: ChangeVerdict = ls
+      ? evaluateLiveChange(ls, { gf: shown.gf, ga: shown.ga }, { atkMult: opt.atkMult, defMult: opt.defMult, kind: "sub" })
+      : { atkMult: opt.atkMult, defMult: opt.defMult, rating: "correcto", feedback: "" };
     volSubMultRef.current = {
-      atk: volSubMultRef.current.atk * opt.atkMult,
-      def: volSubMultRef.current.def * opt.defMult,
+      atk: volSubMultRef.current.atk * v.atkMult,
+      def: volSubMultRef.current.def * v.defMult,
     };
     usedSubNamesRef.current = [...usedSubNamesRef.current, opt.player];
     setSubsUsed((n) => n + 1);
-    setLiveChanges((prev) => [...prev, `Cambio: entra ${opt.player} (${opt.label.toLowerCase()})`]);
+    setLiveChanges((prev) => [
+      ...prev,
+      { text: `Entra ${opt.player} · ${opt.label.toLowerCase()}${v.feedback ? ` — ${v.feedback}` : ""}`, rating: v.rating },
+    ]);
     setDecisionPanel("main");
   };
 
-  // CAMBIO DE SISTEMA: el DT reordena el dibujo a mitad de partido. Reemplaza el
-  // multiplicador de sistema por el del nuevo plan (no se acumula con cambios
-  // previos de sistema) y actualiza el plan vigente para próximas decisiones.
+  // CAMBIO DE SISTEMA: el DT reordena el dibujo a mitad de partido. También pasa
+  // por evaluateLiveChange (calidad + idoneidad + reacción rival) y REEMPLAZA el
+  // multiplicador de sistema por el efectivo (no se acumula con cambios previos de
+  // sistema), actualizando el plan vigente para próximas decisiones.
   const pickSystem = (plan: TacticalPlan) => {
-    systemMultRef.current = { atk: plan.atkMult, def: plan.defMult };
+    const ls = lsRef.current;
+    const v: ChangeVerdict = ls
+      ? evaluateLiveChange(ls, { gf: shown.gf, ga: shown.ga }, { atkMult: plan.atkMult, defMult: plan.defMult, kind: "system" })
+      : { atkMult: plan.atkMult, defMult: plan.defMult, rating: "correcto", feedback: "" };
+    systemMultRef.current = { atk: v.atkMult, def: v.defMult };
     setPlanId(plan.id);
     setCurrentPlanName(plan.name);
-    setLiveChanges((prev) => [...prev, `Sistema: ${plan.name}`]);
+    setLiveChanges((prev) => [
+      ...prev,
+      { text: `Sistema: ${plan.name}${v.feedback ? ` — ${v.feedback}` : ""}`, rating: v.rating },
+    ]);
     setDecisionPanel("main");
   };
 
@@ -949,6 +968,35 @@ export default function MatchLive({
                 Cambios: {subsUsed}/{MAX_LIVE_SUBS}
               </span>
             </div>
+
+            {/* Lectura de los cambios ya hechos: valoración + reacción del rival */}
+            {liveChanges.length > 0 && (
+              <div style={{ display: "flex", flexDirection: "column", gap: 6, marginBottom: 12 }}>
+                {liveChanges.map((ch, i) => {
+                  const col = ch.rating === "acierto" ? GREEN : ch.rating === "error" ? RED : ch.rating === "dudoso" ? GOLD2 : MID;
+                  return (
+                    <div
+                      key={i}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 8,
+                        padding: "6px 10px",
+                        borderRadius: 9,
+                        background: BG3,
+                        borderLeft: `3px solid ${col}`,
+                        fontSize: 11.5,
+                        color: "#dfe6f0",
+                        lineHeight: 1.4,
+                      }}
+                    >
+                      <span style={{ width: 7, height: 7, borderRadius: 999, background: col, flexShrink: 0 }} />
+                      <span>{ch.text}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
 
             {/* PANEL PRINCIPAL: órdenes tácticas + acciones de banquillo */}
             {decisionPanel === "main" && (

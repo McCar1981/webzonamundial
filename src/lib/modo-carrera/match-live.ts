@@ -3,23 +3,24 @@
 // PARTIDO INTERACTIVO (Pilar 1 de la jugabilidad estilo FIFA). En lugar de un
 // único clic que escupe el marcador, el DT:
 //   1. Elige un PLAN TÁCTICO antes del saque (afecta el ataque y la solidez).
-//   2. Toma una DECISIÓN en el minuto 60 según cómo va el marcador.
-// Ambas cosas son MULTIPLICADORES sobre las lambdas de goles esperados, así que
-// las decisiones cambian de verdad la probabilidad del resultado.
+//   2. Da la charla en el DESCANSO (45') y decide en vivo (min 70 y recta final).
+// Todo son MULTIPLICADORES sobre las lambdas de goles esperados, así que las
+// decisiones cambian de verdad la probabilidad del resultado.
 //
-// El partido se resuelve en dos ventanas: 0-60' y 60-90'. La lógica es pura
-// (Poisson); el marcador final se entrega a resolveMatch() para aplicarlo a
+// El partido se resuelve en tres ventanas: 0-45', 45-70' y 70-90'. La lógica es
+// pura (Poisson); el marcador final se entrega a resolveMatch() para aplicarlo a
 // todos los pilares de la carrera.
 
 import type { CareerState, SeasonMatch, Injury } from "./types";
 import { matchLambdas, poisson, capScore } from "./season";
 import { FANTASY_ROSTERS, type RosterPlayer } from "@/data/fantasy-rosters";
 
-// Reparto de goles esperados por ventana. El partido jugable se resuelve ahora en
-// TRES tramos para dar dos momentos de decisión al DT (min 60 y min 75):
-//   · 0-60'  (W1) con el plan de partido,
-//   · 60-75' (W2) con la 1ª decisión en vivo,
-//   · 75-90' (W3) con la 2ª decisión (recta final).
+// Reparto de goles esperados por ventana. El partido jugable se resuelve en TRES
+// tramos. El primero cierra en el DESCANSO real (45'), donde se da la charla; los
+// otros dos dan al DT sendos momentos de decisión en vivo (min 70 y recta final):
+//   · 0-45'  (W1) con el plan de partido → descanso/charla,
+//   · 45-70' (W2) con la 1ª decisión en vivo,
+//   · 70-90' (W3) con la 2ª decisión (recta final).
 const W1 = 0.62;
 const W2 = 0.22;
 const W3 = 0.16;
@@ -257,13 +258,17 @@ export interface MatchInjury {
  * verdad el rendimiento del resto del encuentro. Devuelve null si no hay lesión o
  * el roster es insuficiente. Se pre-tira al saque para que el partido sea estable.
  */
-export function rollMatchInjury(c: CareerState, _match: SeasonMatch): MatchInjury | null {
+export function rollMatchInjury(c: CareerState, _match: SeasonMatch, onFieldNames: string[] = []): MatchInjury | null {
   if (Math.random() >= MATCH_INJURY_CHANCE) return null;
   const roster: RosterPlayer[] = FANTASY_ROSTERS[c.identity.nationSlug ?? ""] ?? [];
   if (roster.length < 6) return null;
 
-  // El lesionado es un jugador de campo (no portero): es lo habitual.
-  const field = roster.filter((p) => p.pos !== "GK");
+  // El lesionado es un jugador de campo (no portero) que ESTÁ en el campo: solo se
+  // lesiona quien juega, nunca un suplente. Si no se pasó el once, cae cualquiera.
+  const onField = new Set(onFieldNames);
+  const field = roster.filter(
+    (p) => p.pos !== "GK" && (onField.size === 0 || onField.has(p.name)),
+  );
   if (field.length === 0) return null;
   const injuredPlayer = field[Math.floor(Math.random() * field.length)];
   const matchesOut = 1 + Math.floor(Math.random() * 3); // 1..3 partidos
@@ -309,7 +314,7 @@ export function rollMatchInjury(c: CareerState, _match: SeasonMatch): MatchInjur
     },
   ];
 
-  return { injured, minute: 40 + Math.floor(Math.random() * 18), options };
+  return { injured, minute: 25 + Math.floor(Math.random() * 20), options };
 }
 
 // ─── CAMBIOS EN VIVO: sustitución voluntaria + cambio de sistema ─────────────
@@ -458,7 +463,7 @@ export function evaluateLiveChange(
   return { atkMult, defMult, rating, feedback: `${verdictWord}: ${reaction}.` };
 }
 
-/** Goles del tramo 60-75' tras la 1ª decisión en vivo (sin cerrar el marcador). */
+/** Goles del tramo 45-70' tras la 1ª decisión en vivo (sin cerrar el marcador). */
 export function secondHalf(state: LiveMatchState, choice: InMatchChoice): { gf2: number; ga2: number } {
   return {
     gf2: poisson(state.lamFor * W2 * choice.atkMult),
@@ -467,7 +472,7 @@ export function secondHalf(state: LiveMatchState, choice: InMatchChoice): { gf2:
 }
 
 /**
- * Goles del tramo final 75-90' tras la 2ª decisión, y marcador definitivo de los
+ * Goles del tramo final 70-90' tras la 2ª decisión, y marcador definitivo de los
  * 90' (con tope de margen creíble para evitar palizas irreales tipo 9-0).
  */
 export function thirdHalf(

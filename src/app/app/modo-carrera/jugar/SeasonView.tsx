@@ -534,11 +534,19 @@ export default function SeasonView({
   const lockMs = season.live && nextMatch ? liveLockMs(nextMatch, nowMs) : 0;
   const locked = lockMs > 0;
 
+  // Semana de concentración (preparación + entrenamiento): es una acción propia,
+  // accesible siempre antes del partido. Antes solo se abría al pulsar "Disputar
+  // partido", lo que la escondía; ahora tiene su botón.
+  const openPrep = () => {
+    if (live || prepping || !nextMatch || locked) return;
+    setPrepping(true);
+  };
+
+  // Disputar el partido directamente. La concentración (si se hizo) ya quedó
+  // guardada en el plantel y se aplica igual; aquí se salta a la pizarra del once.
   const openMatch = () => {
     if (live || prepping || !nextMatch || locked) return;
-    // Antes del partido: semana de concentración (preparación y entrenamiento).
-    if (onSetPrep) setPrepping(true);
-    else setLive(true);
+    setLive(true);
   };
 
   const finishMatch = (gf: number, ga: number, wasBehind?: boolean, injury?: Injury, moraleDelta?: number) => {
@@ -597,23 +605,43 @@ export default function SeasonView({
               <div style={{ fontSize: 11, color: DIM, marginTop: 2 }}>Se juega a la hora real del saque</div>
             </div>
           ) : (
-            <button
-              type="button"
-              onClick={openMatch}
-              style={{
-                padding: "12px 24px",
-                borderRadius: 10,
-                border: "none",
-                background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
-                color: BG,
-                fontWeight: 900,
-                fontSize: 14,
-                cursor: "pointer",
-                boxShadow: "0 8px 22px rgba(201,168,76,0.32)",
-              }}
-            >
-              Disputar partido
-            </button>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", justifyContent: "flex-end" }}>
+              {onSetPrep && (
+                <button
+                  type="button"
+                  onClick={openPrep}
+                  style={{
+                    padding: "12px 20px",
+                    borderRadius: 10,
+                    border: `1px solid ${GOLD}`,
+                    background: career.squad?.prep?.sessions?.length ? "rgba(201,168,76,0.16)" : "transparent",
+                    color: GOLD2,
+                    fontWeight: 800,
+                    fontSize: 14,
+                    cursor: "pointer",
+                  }}
+                >
+                  {career.squad?.prep?.sessions?.length ? "Concentración lista" : "Concentración"}
+                </button>
+              )}
+              <button
+                type="button"
+                onClick={openMatch}
+                style={{
+                  padding: "12px 24px",
+                  borderRadius: 10,
+                  border: "none",
+                  background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
+                  color: BG,
+                  fontWeight: 900,
+                  fontSize: 14,
+                  cursor: "pointer",
+                  boxShadow: "0 8px 22px rgba(201,168,76,0.32)",
+                }}
+              >
+                Disputar partido
+              </button>
+            </div>
           )
         )}
       </div>

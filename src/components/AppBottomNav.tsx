@@ -62,7 +62,8 @@ export default function AppBottomNav() {
   const inApp = pathname.startsWith("/app");
   const isFullscreenGame =
     pathname.startsWith("/app/fantasy/jugar") ||
-    pathname.startsWith("/app/predicciones/jugar");
+    pathname.startsWith("/app/predicciones/jugar") ||
+    pathname.startsWith("/app/modo-carrera/jugar");
   if (!inApp || isFullscreenGame) return null;
 
   return (

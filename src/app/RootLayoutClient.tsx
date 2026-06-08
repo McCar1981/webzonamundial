@@ -459,7 +459,8 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
           Se oculta en los juegos Fantasy y Predicciones: su barra fija inferior
           tapaba las tarjetas del campo en móvil. */}
       {!pathname?.startsWith("/app/fantasy/jugar") &&
-        !pathname?.startsWith("/app/predicciones/jugar") && <SocialDock />}
+        !pathname?.startsWith("/app/predicciones/jugar") &&
+        !pathname?.startsWith("/app/modo-carrera/jugar") && <SocialDock />}
 
       {/* ═══ IA COACH — módulo independiente, ventana flotante global ═══ */}
       <IACoachWidget />

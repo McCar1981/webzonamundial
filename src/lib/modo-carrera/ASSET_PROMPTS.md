@@ -275,12 +275,12 @@ Uno por cada título de `constants.ts` → `TITLES`:
 > SELECCIONES** (sin escudos de club, sin marcas). Sin texto, sin caras en primer
 > plano reconocibles.
 
-### I1. `concentracion-bg.webp` — 1200×800 (horizontal) → `public/img/modo-carrera/partido/`
+### I1. `concentracion-bg.webp` — 1200×800 (horizontal) → `public/img/modo-carrera/concentracion/`
 **Tipo:** Imagen (fondo atenuado del modal)
 **Prompt:**
 > Interior de un centro de entrenamiento de alto rendimiento de una selección de fútbol en penumbra: conos, escaleras de agilidad, vallas y balones sobre un césped de cancha auxiliar desenfocado al fondo, una pizarra táctica insinuada en un lateral, luz cálida tenue entrando rasante. Atmósfera de concentración y trabajo silencioso antes del gran partido. Muy oscuro y de bajo contraste para ir atenuado DETRÁS de la interfaz. Estilo ilustración cómic oscura, acentos dorados #c9a84c. Sin personas en primer plano, sin texto. `--ar 3:2 --no text, watermark, logo, people, club-crest`
 
-### I1b. `concentracion-bg-mobile.webp` — 1080×1920 (vertical) → `public/img/modo-carrera/partido/`
+### I1b. `concentracion-bg-mobile.webp` — 1080×1920 (vertical) → `public/img/modo-carrera/concentracion/`
 **Tipo:** Imagen
 **Prompt:**
 > Misma escena de centro de entrenamiento que I1 pero en composición VERTICAL: pasillo de conos y escaleras de agilidad hacia una cancha auxiliar desenfocada, pizarra táctica insinuada, luz cálida rasante, muy oscuro y de bajo contraste para fondo atenuado. Estilo cómic oscuro, dorado #c9a84c. Sin personas en primer plano, sin texto. `--ar 9:16 --no text, watermark, logo, people, club-crest`

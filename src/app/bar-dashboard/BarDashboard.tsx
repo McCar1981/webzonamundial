@@ -776,6 +776,7 @@ function Personalization({ bar, setBar, hasActivePlan, onFlash }: { bar: BarRow;
     name: bar.name, city: bar.city ?? "", welcome_message: bar.welcome_message ?? "",
     cta_label: bar.cta_label, description: bar.description ?? "", instagram: bar.instagram ?? "",
     address: bar.address ?? "", theme_id: bar.theme_id, logo_url: bar.logo_url ?? "", cover_url: bar.cover_url ?? "",
+    entry_fee_note: bar.entry_fee_note ?? "",
   });
   const [busy, setBusy] = useState(false);
   const themes = useMemo(() => themeList(), []);
@@ -804,6 +805,19 @@ function Personalization({ bar, setBar, hasActivePlan, onFlash }: { bar: BarRow;
         <Field label="Ciudad"><input value={form.city} onChange={(e) => set("city", e.target.value)} style={inp()} /></Field>
         <Field label="Mensaje de bienvenida"><textarea value={form.welcome_message} onChange={(e) => set("welcome_message", e.target.value)} rows={2} style={{ ...inp(), resize: "vertical" }} /></Field>
         <Field label="Texto del botón principal"><input value={form.cta_label} onChange={(e) => set("cta_label", e.target.value)} style={inp()} /></Field>
+        <Field label="Inscripción (opcional)">
+          <textarea
+            value={form.entry_fee_note}
+            onChange={(e) => set("entry_fee_note", e.target.value)}
+            rows={2}
+            placeholder="Ej.: Participación 3 € que se abonan en barra. El premio: jamón + camiseta."
+            style={{ ...inp(), resize: "vertical" }}
+          />
+          <p style={{ fontSize: 11.5, color: DIM, margin: "6px 2px 0", lineHeight: 1.5 }}>
+            Si tu local cobra una cuota para participar, descríbela aquí. La cobras y la gestionas tú
+            directamente (en barra/efectivo): ZonaMundial no procesa ningún pago. Déjalo vacío si tu peña es gratuita.
+          </p>
+        </Field>
         <Field label="Instagram (sin @)"><input value={form.instagram} onChange={(e) => set("instagram", e.target.value)} style={inp()} /></Field>
         <Field label="Dirección"><input value={form.address} onChange={(e) => set("address", e.target.value)} style={inp()} /></Field>
         <Field label="Logo del bar"><ImageUpload kind="logo" url={form.logo_url} onChange={onImage} onFlash={onFlash} /></Field>

@@ -8,7 +8,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { MapPin, Trophy, AtSign, Gift, Users, ArrowRight, Star } from "lucide-react";
+import { MapPin, Trophy, AtSign, Gift, Users, ArrowRight, Star, Ticket } from "lucide-react";
 import { getBarBySlug, listPrizes, barLeaderboard, participantCount, barIsLive } from "@/lib/bars/store";
 import { getTheme } from "@/lib/bars/themes";
 import BarInactiveScreen from "@/components/bars/BarInactiveScreen";
@@ -89,6 +89,19 @@ export default async function BarPublicPage({
             </div>
             <div style={{ fontWeight: 900, fontSize: 19, marginTop: 6 }}>{mainPrize.title}</div>
             {mainPrize.description && <div style={{ color: t.textMuted, fontSize: 14, marginTop: 4 }}>{mainPrize.description}</div>}
+          </section>
+        )}
+
+        {/* Inscripción (opcional) — la cobra y gestiona el bar; ZM no procesa pago */}
+        {bar.entry_fee_note?.trim() && (
+          <section style={{ background: t.surface, border: `1px solid ${t.border}`, borderRadius: t.cardRadius, padding: 16, marginBottom: 16 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 7, color: t.primary, fontWeight: 800, fontSize: 12, textTransform: "uppercase", letterSpacing: 0.5 }}>
+              <Ticket size={15} /> Participación
+            </div>
+            <div style={{ color: t.text, fontSize: 14, lineHeight: 1.5, marginTop: 6, whiteSpace: "pre-line" }}>{bar.entry_fee_note}</div>
+            <div style={{ color: t.textMuted, fontSize: 11.5, lineHeight: 1.5, marginTop: 8 }}>
+              La inscripción la cobra y la gestiona {bar.name} directamente en el local. ZonaMundial no procesa este pago.
+            </div>
           </section>
         )}
 
@@ -176,8 +189,18 @@ export default async function BarPublicPage({
             <Link href="/legal/privacidad" style={{ color: t.textMuted, textDecoration: "none" }}>Privacidad</Link>
           </div>
           <p style={{ color: t.textMuted, fontSize: 10.5, lineHeight: 1.5, marginTop: 12, opacity: 0.8 }}>
-            Esta peña es una dinámica gratuita de predicciones y puntos. No implica apuestas ni pago por participar.
-            Los premios son ofrecidos y gestionados por el establecimiento.
+            {bar.entry_fee_note?.trim() ? (
+              <>
+                Dinámica de predicciones y puntos. ZonaMundial no es una casa de apuestas: solo ofrece la dinámica
+                y el ranking. La inscripción y los premios los define, cobra y gestiona {bar.name} bajo su responsabilidad;
+                ZonaMundial no procesa cobros ni gestiona premios.
+              </>
+            ) : (
+              <>
+                Esta peña es una dinámica gratuita de predicciones y puntos. No implica apuestas ni pago por participar.
+                Los premios son ofrecidos y gestionados por el establecimiento.
+              </>
+            )}
           </p>
         </footer>
       </div>

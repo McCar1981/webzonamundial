@@ -33,6 +33,7 @@ export interface BarRow {
   website: string | null;
   theme_id: string;
   cta_label: string;
+  entry_fee_note: string | null; // texto informativo de inscripción (lo cobra el bar; ZM no procesa pago)
   status: string;          // draft | pending_payment | published | paused
   plan_id: string | null;  // null (sin plan) | arranque | completo | pro
   created_at: string;
@@ -254,7 +255,7 @@ export async function createBar(uid: string, input: CreateBarInput): Promise<Bar
 const EDITABLE_FIELDS = [
   "name", "logo_url", "cover_url", "description", "welcome_message",
   "address", "city", "phone", "instagram", "website",
-  "theme_id", "cta_label", "status",
+  "theme_id", "cta_label", "entry_fee_note", "status",
 ] as const;
 
 /** Actualiza campos editables del bar del dueño. Ignora claves no permitidas. */

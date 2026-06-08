@@ -144,8 +144,9 @@ export default async function BarCartelPage({
               Powered by <span style={{ color: t.secondary, fontWeight: 900 }}>ZonaMundial</span>
             </div>
             <p style={{ fontSize: 11, lineHeight: 1.5, marginTop: 8, maxWidth: 560, opacity: 0.85 }}>
-              Dinámica gratuita de predicciones y puntos. No implica apuestas ni pago por participar.
-              Los premios los ofrece y gestiona el establecimiento.
+              {bar.entry_fee_note?.trim()
+                ? `Dinámica de predicciones y puntos. ZonaMundial no es una casa de apuestas. La inscripción y los premios los gestiona ${bar.name}; ZonaMundial no procesa cobros.`
+                : "Dinámica gratuita de predicciones y puntos. No implica apuestas ni pago por participar. Los premios los ofrece y gestiona el establecimiento."}
             </p>
           </div>
         </div>

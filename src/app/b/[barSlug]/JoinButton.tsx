@@ -33,13 +33,12 @@ export default function JoinButton({ slug, qr, label, primary, primaryInk, radiu
       });
       if (res.status === 401) {
         if (silent) return; // aún no logado: esperamos al click del CTA
-        // Conservamos la intención de unirse (y el qr, si vino) para
-        // completar la unión automáticamente al volver autenticado.
+        // Cliente sin sesión: lo llevamos al alta LIGERA con la identidad del
+        // bar (no al /login genérico de ZM). Allí crea su cuenta con el mínimo
+        // de datos y, al volver autenticado, se completa la unión a la peña.
         const params = new URLSearchParams();
         if (qr) params.set("qr", qr);
-        params.set("join", "1");
-        const here = `/b/${slug}?${params.toString()}`;
-        window.location.href = `/login?next=${encodeURIComponent(here)}`;
+        window.location.href = `/b/${slug}/unirse${params.toString() ? `?${params.toString()}` : ""}`;
         return;
       }
       if (res.ok) {

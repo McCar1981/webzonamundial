@@ -106,6 +106,13 @@ export async function GET(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
+  // Alta LIGERA desde una porra de bar: si el destino es la página de un bar
+  // (/b/...), el usuario llegó por el QR del local y NO debe pasar por el
+  // onboarding largo de ZM. Lo marcamos como onboarded automáticamente ("la
+  // trampa": queda registrado en ZM, pero sin los pasos largos) y lo dejamos
+  // continuar directo a la peña, donde se completa la unión.
+  const isBarFlow = safeNext.startsWith("/b/");
+
   if (user) {
     const { data: profile } = await supabase
       .from("profiles")
@@ -113,11 +120,18 @@ export async function GET(request: NextRequest) {
       .eq("id", user.id)
       .maybeSingle();
     if (!profile?.onboarded_at) {
-      const onboardingUrl = new URL(`${origin}/onboarding`);
-      if (safeNext !== "/") {
-        onboardingUrl.searchParams.set("next", safeNext);
+      if (isBarFlow) {
+        await supabase
+          .from("profiles")
+          .update({ onboarded_at: new Date().toISOString() })
+          .eq("id", user.id);
+      } else {
+        const onboardingUrl = new URL(`${origin}/onboarding`);
+        if (safeNext !== "/") {
+          onboardingUrl.searchParams.set("next", safeNext);
+        }
+        return NextResponse.redirect(onboardingUrl);
       }
-      return NextResponse.redirect(onboardingUrl);
     }
   }
 

@@ -284,24 +284,19 @@ export default function OnboardingDT({
             <div style={{ display: "flex", justifyContent: "center" }}>
               <div className={scene === "comienzo" ? "mc-card-reveal" : "mc-anim-pop"} style={{ position: "relative" }}>
                 {scene === "comienzo" && (
-                  /* eslint-disable-next-line @next/next/no-img-element */
-                  <img
-                    src="/img/modo-carrera/card-back.png"
-                    alt=""
+                  /* Halo dorado detrás de la carta (sin imagen de carta-fondo, que
+                     creaba una capa oscura desalineada alrededor de la dorada). */
+                  <div
                     aria-hidden
                     style={{
                       position: "absolute",
-                      top: "-14%",
-                      left: "-14%",
-                      width: "128%",
-                      height: "128%",
-                      objectFit: "contain",
-                      opacity: 0.4,
-                      filter: "drop-shadow(0 0 30px rgba(201,168,76,0.4))",
+                      inset: "-16%",
+                      borderRadius: "50%",
+                      background: "radial-gradient(ellipse at center, rgba(201,168,76,0.45) 0%, transparent 70%)",
+                      filter: "blur(8px)",
                       pointerEvents: "none",
                       zIndex: 0,
                     }}
-                    onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
                   />
                 )}
                 {scene === "comienzo" && (
@@ -310,7 +305,6 @@ export default function OnboardingDT({
                     autoPlay
                     muted
                     playsInline
-                    poster="/img/modo-carrera/card-back.png"
                     style={{
                       position: "absolute",
                       top: "-22%",

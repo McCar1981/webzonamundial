@@ -248,11 +248,14 @@ export default function CareerGame() {
 
   return (
     <div style={{ position: "relative", background: BG, minHeight: "100vh", color: "#fff", fontFamily: "'Outfit',sans-serif", padding: "32px 20px 80px" }}>
-      {/* Fondo de marca: cancha + escudo ZonaMundial, muy sutil tras la interfaz. */}
+      {/* Fondo de marca: cancha + escudo ZonaMundial, muy sutil tras la interfaz.
+          Va en ABSOLUTO (no fixed) cubriendo todo el alto del contenido: un fondo
+          fijo a pantalla completa provocaba fricción de scroll en móvil (no se
+          llegaba del todo arriba/abajo). Así el scroll es completo y natural. */}
       <div
         aria-hidden
         style={{
-          position: "fixed",
+          position: "absolute",
           inset: 0,
           zIndex: 0,
           pointerEvents: "none",

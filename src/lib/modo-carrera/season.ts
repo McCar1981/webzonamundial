@@ -269,14 +269,37 @@ export function buildSeason(c: CareerState): SeasonState {
   const myGroup = seleccion(self)?.grupo;
   const used = new Set<string>(self ? [self] : []);
 
-  // Rivales de grupo (mismos del grupo real; se completa al azar si faltan).
+  // Ranking ascendente (mejor primero): base para los bombos del sorteo y para
+  // la dificultad creciente de las eliminatorias.
+  const ranked = [...all].sort((a, b) => (a.rankingFIFA ?? 99) - (b.rankingFIFA ?? 99));
+
+  // Rivales de grupo. En la PRIMERA temporada se usa el grupo REAL del Mundial
+  // 2026 (ancla con el sorteo oficial). A partir de la 2ª, cada Mundial tiene un
+  // SORTEO NUEVO: un rival de cada bombo (alto/medio/bajo del ranking) para que
+  // el grupo varíe de torneo en torneo y tenga un reparto realista de nivel.
   const grp: string[] = [];
-  for (const s of SELECCIONES) {
-    if (grp.length >= 3) break;
-    if (s.slug !== self && s.grupo === myGroup && !used.has(s.slug)) {
-      grp.push(s.slug);
-      used.add(s.slug);
+  const drawFromBand = (lo: number, hi: number) => {
+    const band = ranked.slice(lo, hi).filter((s) => !used.has(s.slug));
+    const pool = band.length ? band : ranked.filter((s) => !used.has(s.slug));
+    if (!pool.length) return;
+    const r = pool[Math.floor(Math.random() * pool.length)];
+    grp.push(r.slug);
+    used.add(r.slug);
+  };
+  if (season <= 1) {
+    for (const s of SELECCIONES) {
+      if (grp.length >= 3) break;
+      if (s.slug !== self && s.grupo === myGroup && !used.has(s.slug)) {
+        grp.push(s.slug);
+        used.add(s.slug);
+      }
     }
+  } else {
+    // Sorteo por bombos: uno del tercio alto, uno del medio y uno del bajo.
+    const third = Math.ceil(ranked.length / 3);
+    drawFromBand(0, third);
+    drawFromBand(third, third * 2);
+    drawFromBand(third * 2, ranked.length);
   }
   while (grp.length < 3 && all.length) {
     const r = all[Math.floor(Math.random() * all.length)];
@@ -285,9 +308,6 @@ export function buildSeason(c: CareerState): SeasonState {
       used.add(r.slug);
     }
   }
-
-  // Rivales de eliminatoria: dificultad creciente desde el top del ranking.
-  const ranked = [...all].sort((a, b) => (a.rankingFIFA ?? 99) - (b.rankingFIFA ?? 99));
   const pickFrom = (pool: Seleccion[]): string => {
     const cand = pool.filter((s) => !used.has(s.slug));
     const arr = cand.length ? cand : pool;

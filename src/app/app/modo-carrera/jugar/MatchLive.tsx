@@ -299,15 +299,38 @@ export default function MatchLive({
     const f = formationById(formation);
     const custom = lineupValid(lineup, roster, f);
     const players = custom ? resolveLineup(lineup, roster) : bestXI(roster, f);
-    return { rating: xiRating(players), formationName: f.name, custom };
+    return { rating: xiRating(players), formationName: f.name, custom, players };
   }, [selfAvail, formation, lineup]);
+
+  // Candidatos a lanzar el balón parado: SOLO jugadores del once en el campo (se
+  // respeta tu alineación). El capitán va primero (lanzador de confianza), luego
+  // delanteros y centrocampistas; cierran el resto. El DT elige a mano (lo pidió
+  // el usuario) antes de decidir cómo se ejecuta la jugada.
+  const captainName = career.squad?.captain ?? null;
+  // Jugadores que YA NO están en el campo (lesionados que cayeron + sustituidos) y
+  // los que ENTRARON desde el banquillo. El balón parado debe reflejar el once REAL
+  // en ese instante: si un cambio te quitó a tu lanzador, deja de ofrecerlo.
+  const [leftPitch, setLeftPitch] = useState<string[]>([]);
+  const [enteredPitch, setEnteredPitch] = useState<RosterPlayer[]>([]);
+  const setPieceTakers = useMemo(() => {
+    const out = new Set(leftPitch);
+    const onField: RosterPlayer[] = [
+      ...xiInfo.players.filter((p) => !out.has(p.name)),
+      ...enteredPitch,
+    ];
+    const rank = (p: RosterPlayer) =>
+      (p.name === captainName ? 0 : 4) + (p.pos === "FWD" ? 1 : p.pos === "MID" ? 2 : 3);
+    return [...onField].sort((a, b) => rank(a) - rank(b)).slice(0, 6);
+  }, [xiInfo, captainName, leftPitch, enteredPitch]);
+  // Lanzador elegido para el balón parado en curso (null = aún sin elegir).
+  const [spTaker, setSpTaker] = useState<RosterPlayer | null>(null);
 
   // Reloj con RITMO CINEMATOGRÁFICO: setTimeout recursivo para variar el tempo
   // minuto a minuto (acelera a media, frena en el tramo final) y DETENERSE
   // durante la celebración de un gol — como en FIFA, el juego para para festejar.
   useEffect(() => {
     if (phase !== "half1" && phase !== "half2" && phase !== "half3" && phase !== "et") return;
-    const target = phase === "half1" ? 60 : phase === "half2" ? 75 : phase === "half3" ? 90 : 120;
+    const target = phase === "half1" ? 45 : phase === "half2" ? 70 : phase === "half3" ? 90 : 120;
     let active = true;
     let timer: ReturnType<typeof setTimeout>;
     const tick = () => {
@@ -346,23 +369,24 @@ export default function MatchLive({
     const sp = setPieceRef.current;
     if (sp && !setPieceDoneRef.current && clock >= sp.minute) {
       resumePhaseRef.current = phase;
+      setSpTaker(null); // primero el DT elige al lanzador, luego cómo se ejecuta
       setSetPiece(sp);
       setPhase("setpiece");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clock, phase]);
 
-  // Encadena las pantallas del descanso (min 60'): primero la sustitución por
-  // lesión (si la hubo), luego la charla técnica (solo si vas perdiendo) y por
+  // Encadena las pantallas del descanso (45', medio tiempo): primero la sustitución
+  // por lesión (si la hubo), luego la charla técnica (solo si vas perdiendo) y por
   // último la decisión táctica. Cada paso llama al siguiente al resolverse.
   const goToCharlaOrDecision = () => {
     setPhase(shown.gf < shown.ga ? "charla" : "decision");
   };
 
   // Transición de fase al alcanzar el tope del reloj. Al llegar al 60' se intercala
-  // la sustitución (si hay lesión) antes de la charla/decisión.
+  // la sustitución (si hay lesión) antes de la charla/decisión, en el descanso (45').
   useEffect(() => {
-    if (phase === "half1" && clock >= 60) {
+    if (phase === "half1" && clock >= 45) {
       if (injuryRef.current) {
         setInjury(injuryRef.current);
         setPhase("injury");
@@ -370,8 +394,8 @@ export default function MatchLive({
         goToCharlaOrDecision();
       }
     }
-    // Min 75: segunda decisión en vivo (recta final).
-    if (phase === "half2" && clock >= 75) setPhase("decision2");
+    // Min 70: segunda decisión en vivo (recta final).
+    if (phase === "half2" && clock >= 70) setPhase("decision2");
     if (phase === "half3" && clock >= 90) {
       // En el fútbol real una eliminatoria nunca acaba en empate: si están iguales
       // a los 90', hay prórroga. En fase de grupos el empate es válido.
@@ -389,6 +413,11 @@ export default function MatchLive({
   const pickSub = (opt: SubOption) => {
     subMultRef.current = { atk: opt.atkMult, def: opt.defMult };
     injuredRef.current = injuryRef.current?.injured ?? null;
+    // El lesionado sale del campo y el recambio entra: el balón parado pasa a
+    // ofrecer al que entró, no al que ya no está.
+    const outName = injuryRef.current?.injured.player;
+    if (outName) setLeftPitch((prev) => [...prev, outName]);
+    setEnteredPitch((prev) => [...prev, { name: opt.player, pos: opt.pos as RosterPlayer["pos"], club: "" }]);
     goToCharlaOrDecision();
   };
 
@@ -414,6 +443,7 @@ export default function MatchLive({
       def: volSubMultRef.current.def * v.defMult,
     };
     usedSubNamesRef.current = [...usedSubNamesRef.current, opt.player];
+    setEnteredPitch((prev) => [...prev, { name: opt.player, pos: opt.pos as RosterPlayer["pos"], club: "" }]);
     setSubsUsed((n) => n + 1);
     setLiveChanges((prev) => [
       ...prev,
@@ -454,10 +484,10 @@ export default function MatchLive({
     const ls = kickoff(liveCareer, match, plan);
     lsRef.current = ls;
     setPlanId(plan.id);
-    setEvents(buildEvents(ls.gf1, ls.ga1, selfSlug, oppSlug, 3, 58, selfBlocked));
+    setEvents(buildEvents(ls.gf1, ls.ga1, selfSlug, oppSlug, 3, 44, selfBlocked));
     // Pre-tirada de lesión en partido: se decide al saque para que el reloj sea
-    // estable, pero la pantalla de sustitución salta al llegar al minuto 60.
-    injuryRef.current = rollMatchInjury(career, match);
+    // estable, pero la pantalla de sustitución salta al llegar al descanso (45').
+    injuryRef.current = rollMatchInjury(career, match, xiInfo.players.map((p) => p.name));
     redCardRef.current = rollRedCard(career, match);
     setRedCard(null);
     setPieceRef.current = rollSetPiece(career, match);
@@ -480,6 +510,8 @@ export default function MatchLive({
       ...(injuryRef.current ? [injuryRef.current.injured.player] : []),
     ];
     setSubsUsed(0);
+    setLeftPitch([]);
+    setEnteredPitch([]);
     setCurrentPlanName(plan.name);
     setDecisionPanel("main");
     setLiveChanges([]);
@@ -500,7 +532,7 @@ export default function MatchLive({
     const talk = talkMultRef.current;
     const vol = volSubMultRef.current;
     const sys = systemMultRef.current;
-    const red = redCardMult(redCardRef.current, 75);
+    const red = redCardMult(redCardRef.current, 70);
     const combined: InMatchChoice = {
       ...choice,
       atkMult: choice.atkMult * sub.atk * talk.atk * vol.atk * sys.atk * red.atk,
@@ -508,7 +540,7 @@ export default function MatchLive({
     };
     const mid = secondHalf(ls, combined);
     midRef.current = mid;
-    setEvents((prev) => [...prev, ...buildEvents(mid.gf2, mid.ga2, selfSlug, oppSlug, 61, 74, selfBlocked)]);
+    setEvents((prev) => [...prev, ...buildEvents(mid.gf2, mid.ga2, selfSlug, oppSlug, 46, 69, selfBlocked)]);
     setDecisionPanel("main");
     setPhase("half2");
   };
@@ -531,21 +563,27 @@ export default function MatchLive({
     };
     const res = thirdHalf(ls, mid, combined);
     resRef.current = res;
-    setEvents((prev) => [...prev, ...buildEvents(res.gf2, res.ga2, selfSlug, oppSlug, 76, 90, selfBlocked)]);
+    setEvents((prev) => [...prev, ...buildEvents(res.gf2, res.ga2, selfSlug, oppSlug, 71, 90, selfBlocked)]);
     setDecisionPanel("main");
     setPhase("half3");
   };
 
   // El DT ejecuta el balón parado: si entra, suma un gol extra (evento + agregado)
-  // y se muestra el desenlace antes de reanudar el partido en el mismo tramo.
+  // y se muestra el desenlace antes de reanudar el partido en el mismo tramo. El
+  // LANZADOR elegido por el DT modula la probabilidad: el capitán (lanzador de
+  // confianza) y los delanteros la suben; un perfil menos fino la baja.
   const pickSetPiece = (choice: SetPieceChoice) => {
     const sp = setPieceRef.current;
     if (!sp) return;
     setPieceDoneRef.current = true;
-    const scored = resolveSetPiece(choice);
+    const takerName = spTaker?.name ?? sp.taker;
+    const takerBonus =
+      spTaker?.name === captainName ? 0.07 : spTaker?.pos === "FWD" ? 0.04 : spTaker?.pos === "MID" ? 0 : -0.08;
+    const eff: SetPieceChoice = { ...choice, scoreProb: Math.max(0.05, Math.min(0.95, choice.scoreProb + takerBonus)) };
+    const scored = resolveSetPiece(eff);
     if (scored) {
       setPieceGoalRef.current += 1;
-      setEvents((prev) => [...prev, { minute: sp.minute, team: "self", scorer: sp.taker }]);
+      setEvents((prev) => [...prev, { minute: sp.minute, team: "self", scorer: takerName }]);
     }
     setSetPieceResult({ scored, choice });
   };
@@ -957,7 +995,7 @@ export default function MatchLive({
                 </span>
               </div>
               <div style={{ textAlign: "left" }}>
-                <div style={{ fontSize: 12, fontWeight: 900, letterSpacing: 1, textTransform: "uppercase", color: GOLD }}>Minuto {phase === "decision" ? 60 : 75} · tu decisión</div>
+                <div style={{ fontSize: 12, fontWeight: 900, letterSpacing: 1, textTransform: "uppercase", color: GOLD }}>Minuto {phase === "decision" ? 45 : 70} · tu decisión</div>
                 <div style={{ fontSize: 11.5, color: DIM, fontStyle: "italic", marginTop: 1 }}>{phase === "decision" ? "El banquillo te mira…" : "Recta final. Última orden."}</div>
               </div>
             </div>
@@ -1155,12 +1193,45 @@ export default function MatchLive({
                   Minuto {setPiece.minute}&#39; · {setPiece.kind === "penalti" ? "penalti" : "falta peligrosa"}
                 </div>
                 <div style={{ fontSize: 11.5, color: DIM, fontStyle: "italic", marginTop: 1 }}>
-                  Lanza {setPiece.taker}. ¿Cómo la ejecutas?
+                  {setPieceResult
+                    ? `Lanza ${spTaker?.name ?? setPiece.taker}.`
+                    : !spTaker
+                      ? "¿Quién la lanza? Elige al ejecutante."
+                      : `Lanza ${spTaker.name}. ¿Cómo la ejecutas?`}
                 </div>
               </div>
             </div>
 
-            {!setPieceResult ? (
+            {!setPieceResult && !spTaker ? (
+              // PASO 1: el DT elige al lanzador (solo del once en el campo).
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {setPieceTakers.map((p, i) => (
+                  <button
+                    key={p.name}
+                    type="button"
+                    onClick={() => setSpTaker(p)}
+                    style={{
+                      textAlign: "left",
+                      padding: "11px 14px",
+                      borderRadius: 12,
+                      cursor: "pointer",
+                      background: BG3,
+                      border: `1px solid ${p.name === captainName ? `${GOLD}55` : "rgba(255,255,255,0.06)"}`,
+                      animation: `mlDecCard .4s ${0.08 + i * 0.07}s cubic-bezier(.2,.9,.3,1.2) both`,
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                      <span style={{ fontSize: 13.5, fontWeight: 800, color: "#fff" }}>{p.name}</span>
+                      <span style={{ fontSize: 10.5, fontWeight: 800, color: GOLD2, padding: "1px 7px", borderRadius: 999, background: "rgba(201,168,76,0.12)" }}>{p.pos}</span>
+                      {p.name === captainName && (
+                        <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: 0.6, textTransform: "uppercase", color: GOLD }}>Capitán</span>
+                      )}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            ) : !setPieceResult ? (
+              // PASO 2: elegido el lanzador, el DT decide cómo se ejecuta.
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                 {setPieceChoices(setPiece.kind).map((ch, i) => (
                   <button
@@ -1181,6 +1252,13 @@ export default function MatchLive({
                     <div style={{ fontSize: 12, color: MID, marginTop: 3, lineHeight: 1.5 }}>{ch.description}</div>
                   </button>
                 ))}
+                <button
+                  type="button"
+                  onClick={() => setSpTaker(null)}
+                  style={{ padding: "9px 12px", borderRadius: 12, cursor: "pointer", background: "transparent", border: "1px solid rgba(255,255,255,0.1)", color: DIM, fontSize: 12, fontWeight: 800, marginTop: 2 }}
+                >
+                  Cambiar lanzador
+                </button>
               </div>
             ) : (
               <>
@@ -1200,8 +1278,8 @@ export default function MatchLive({
                   </div>
                   <div style={{ fontSize: 12.5, color: MID, marginTop: 4 }}>
                     {setPieceResult.scored
-                      ? `${setPiece.taker} la clava. ${setPieceResult.choice.name}.`
-                      : `${setPiece.taker} lo intenta con "${setPieceResult.choice.name}", pero no entra.`}
+                      ? `${spTaker?.name ?? setPiece.taker} la clava. ${setPieceResult.choice.name}.`
+                      : `${spTaker?.name ?? setPiece.taker} lo intenta con "${setPieceResult.choice.name}", pero no entra.`}
                   </div>
                 </div>
                 <button type="button" onClick={resumeFromSetPiece} style={btnGold}>

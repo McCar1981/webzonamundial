@@ -443,30 +443,47 @@ export default function AppHubPage() {
     if (h === "live" || h === "match" || h === "reto" || h === "base") setHeroOverride(h);
   }, []);
 
-  // Sesión + perfil (degradación limpia si faltan envs)
+  // Sesión + perfil (degradación limpia si faltan envs).
+  // IMPORTANTE: nos suscribimos a onAuthStateChange además del getUser()
+  // inicial. Si al volver a la app el access token está caducado, el primer
+  // getUser() puede resolver a null ANTES de que termine el refresh en
+  // segundo plano; sin el listener la página se quedaba en "Modo invitado"
+  // aunque la sesión fuera válida. El evento TOKEN_REFRESHED/SIGNED_IN nos
+  // devuelve el usuario en cuanto el refresh completa.
   useEffect(() => {
     let on = true;
-    (async () => {
-      try {
-        const sb = createSupabaseBrowserClient();
-        const { data: { user } } = await sb.auth.getUser();
-        if (!on) return;
-        if (!user) { setAuthed(false); return; }
-        setAuthed(true);
-        const { data: p } = await sb.from("profiles").select("username,avatar_url").eq("id", user.id).single();
-        if (!on) return;
-        setUsername(p?.username || user.email?.split("@")[0] || null);
-        setAvatar(p?.avatar_url || null);
-        // Billetera única: saldo de Fútcoins, nivel y racha reales (cross-módulo).
-        fetch("/api/predictions/me")
-          .then((r) => (r.ok ? r.json() : null))
-          .then((g: GamSummary | null) => { if (on && g) setGam(g); })
-          .catch(() => {});
-      } catch {
-        if (on) setAuthed(false);
-      }
+
+    const sb = (() => {
+      try { return createSupabaseBrowserClient(); } catch { return null; }
     })();
-    return () => { on = false; };
+    if (!sb) { setAuthed(false); return; }
+
+    const applyUser = (user: import("@supabase/supabase-js").User | null) => {
+      if (!on) return;
+      if (!user) { setAuthed(false); setUsername(null); setAvatar(null); setGam(null); return; }
+      setAuthed(true);
+      sb.from("profiles").select("username,avatar_url").eq("id", user.id).single()
+        .then(({ data: p }) => {
+          if (!on) return;
+          setUsername(p?.username || user.email?.split("@")[0] || null);
+          setAvatar(p?.avatar_url || null);
+        });
+      // Billetera única: saldo de Fútcoins, nivel y racha reales (cross-módulo).
+      fetch("/api/predictions/me")
+        .then((r) => (r.ok ? r.json() : null))
+        .then((g: GamSummary | null) => { if (on && g) setGam(g); })
+        .catch(() => {});
+    };
+
+    sb.auth.getUser()
+      .then(({ data }) => applyUser(data.user))
+      .catch(() => { if (on) setAuthed(false); });
+
+    const { data: sub } = sb.auth.onAuthStateChange((_event, session) => {
+      applyUser(session?.user ?? null);
+    });
+
+    return () => { on = false; sub.subscription.unsubscribe(); };
   }, []);
 
   // Partido destacado

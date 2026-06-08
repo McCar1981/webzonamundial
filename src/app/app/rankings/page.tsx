@@ -62,15 +62,31 @@ const SEASONS = [
   { name: "Final", dates: "12 jul - 19 jul" },
 ];
 
+// Pestañas del ranking: el global (por saldo total) + uno por cada módulo (por
+// Fútcoins generadas en él). value=null → global; value=slug → /api/ranking?module=.
+const RANK_TABS: { value: string | null; label: string }[] = [
+  { value: null, label: "Global" },
+  { value: "predicciones", label: "Predicciones" },
+  { value: "trivia", label: "Trivia" },
+  { value: "fantasy", label: "Fantasy" },
+  { value: "modo-carrera", label: "Modo Carrera" },
+  { value: "micro", label: "Micro" },
+];
+
 export default function RankingsPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [entries, setEntries] = useState<RankEntry[] | null>(null);
   const [me, setMe] = useState<MyRank | null>(null);
+  // Módulo activo: null = ranking global; slug = competencia de ese módulo.
+  const [tab, setTab] = useState<string | null>(null);
 
-  // Carga el ranking global real por Fútcoins (top + mi posición si hay sesión).
+  // Carga el ranking del módulo activo (o el global) por Fútcoins, en vivo:
+  // top + mi posición si hay sesión. Se reejecuta al cambiar de pestaña.
   useEffect(() => {
     let on = true;
-    fetch("/api/ranking?limit=50")
+    setEntries(null); // estado de carga al cambiar de pestaña
+    const url = tab ? `/api/ranking?limit=50&module=${tab}` : "/api/ranking?limit=50";
+    fetch(url)
       .then((r) => (r.ok ? r.json() : null))
       .then((d: { entries?: RankEntry[]; me?: MyRank | null } | null) => {
         if (!on || !d) return;
@@ -79,7 +95,7 @@ export default function RankingsPage() {
       })
       .catch(() => { if (on) setEntries([]); });
     return () => { on = false; };
-  }, []);
+  }, [tab]);
 
   // ¿Mi posición queda fuera del top mostrado? Entonces vale la pena el resumen.
   const meOutsideTop = !!me && !(entries ?? []).some((e) => e.userId === me.userId);
@@ -177,16 +193,40 @@ export default function RankingsPage() {
         </div>
       </section>
 
-      {/* Top Global REAL (por Fútcoins, la moneda única de la app) */}
+      {/* Top REAL por Fútcoins (global o por módulo, según pestaña) */}
       <section style={{ padding: "80px 20px", background: BG }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 48 }}>
+          <div style={{ textAlign: "center", marginBottom: 28 }}>
             <h2 style={{ fontSize: "clamp(28px,5vw,42px)", fontWeight: 800 }}>
-              Top <span style={{ color: GOLD }}>Global</span>
+              Top <span style={{ color: GOLD }}>{tab ? RANK_TABS.find((t) => t.value === tab)?.label : "Global"}</span>
             </h2>
             <p style={{ color: MID, marginTop: 12, fontSize: 16 }}>
-              Clasificación por Fútcoins acumuladas en toda ZonaMundial
+              {tab
+                ? "Clasificación por Fútcoins ganadas en este módulo"
+                : "Clasificación por Fútcoins acumuladas en toda ZonaMundial"}
             </p>
+          </div>
+
+          {/* Selector de módulo: global + una competencia por módulo */}
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "center", marginBottom: 36 }}>
+            {RANK_TABS.map((t) => {
+              const active = t.value === tab;
+              return (
+                <button
+                  key={t.value ?? "global"}
+                  onClick={() => setTab(t.value)}
+                  style={{
+                    padding: "9px 18px", borderRadius: 999, fontSize: 14, fontWeight: 700, cursor: "pointer",
+                    color: active ? BG : MID,
+                    background: active ? `linear-gradient(135deg,${GOLD},${GOLD2})` : BG2,
+                    border: `1px solid ${active ? "transparent" : "rgba(255,255,255,0.08)"}`,
+                    transition: "all .2s",
+                  }}
+                >
+                  {t.label}
+                </button>
+              );
+            })}
           </div>
 
           {/* Mi posición (si estoy logueado y fuera del top visible) */}

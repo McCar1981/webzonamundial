@@ -206,6 +206,16 @@ type GamSummary = {
   streak: { current: number };
 };
 
+// Fila del top global por Fútcoins (subconjunto de /api/ranking).
+type TopEntry = {
+  rank: number;
+  userId: string;
+  name: string | null;
+  avatarUrl: string | null;
+  country: string | null;
+  coins: number;
+};
+
 const IN_PLAY = new Set(["1H", "HT", "2H", "ET", "BT", "P", "LIVE", "INT"]);
 const FINISHED = new Set(["FT", "AET", "PEN"]);
 
@@ -430,6 +440,8 @@ export default function AppHubPage() {
   const [authed, setAuthed] = useState<boolean | null>(null);
   const [gam, setGam] = useState<GamSummary | null>(null);
   const [match, setMatch] = useState<Featured>(null);
+  // Top-5 del ranking global por Fútcoins (preview en vivo dentro del hub).
+  const [topGlobal, setTopGlobal] = useState<TopEntry[] | null>(null);
   // ¿El usuario ya jugó la trivia diaria HOY? null = sin saber todavía.
   const [triviaPlayedToday, setTriviaPlayedToday] = useState<boolean | null>(null);
   // Preview manual del hero: /app?hero=live|match|reto|base (solo para diseño).
@@ -493,6 +505,18 @@ export default function AppHubPage() {
       .then((r) => (r.ok ? r.json() : null))
       .then((d) => { if (on && d && d.meta) setMatch(d); })
       .catch(() => {});
+    return () => { on = false; };
+  }, []);
+
+  // Top-5 del ranking global por Fútcoins (público, sin sesión necesaria).
+  useEffect(() => {
+    let on = true;
+    fetch("/api/ranking?limit=5")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d: { entries?: TopEntry[] } | null) => {
+        if (on && d) setTopGlobal(d.entries ?? []);
+      })
+      .catch(() => { if (on) setTopGlobal([]); });
     return () => { on = false; };
   }, []);
 
@@ -934,18 +958,36 @@ export default function AppHubPage() {
             <Link href="/app/rankings" style={{ fontSize: 12.5, fontWeight: 800, color: "#8a6a13", textDecoration: "none" }}>Ver completo →</Link>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-            {[1, 2, 3, 4, 5].map((pos) => (
-              <div key={pos} style={{ display: "flex", alignItems: "center", gap: 12, padding: "9px 12px", borderRadius: 10, background: "#fff", border: "1px solid rgba(14,28,51,0.05)" }}>
-                <span style={{ width: 22, textAlign: "center", fontWeight: 900, color: pos <= 3 ? "#b8902f" : "#9aa6bd", fontSize: 14 }}>{pos}</span>
-                <span style={{ width: 26, height: 26, borderRadius: "50%", background: "#e2e8f3", flexShrink: 0 }} />
-                <span style={{ flex: 1, color: "#9aa6bd", fontSize: 13.5, fontWeight: 600 }}>Plaza libre</span>
-                <span style={{ color: "#9aa6bd", fontSize: 12.5, fontWeight: 700 }}>— pts</span>
-              </div>
-            ))}
+            {/* Con datos reales: top-5 por Fútcoins. Si aún no hay nadie, se
+                rellena con "plazas libres" para no dejar la card vacía. */}
+            {(topGlobal && topGlobal.length > 0
+              ? topGlobal
+              : [1, 2, 3, 4, 5].map((pos) => ({ rank: pos, userId: `slot-${pos}`, name: null, avatarUrl: null, country: null, coins: 0 } as TopEntry))
+            ).map((e) => {
+              const filled = e.coins > 0 || !!e.name;
+              const nm = e.name || "Plaza libre";
+              return (
+                <div key={e.userId} style={{ display: "flex", alignItems: "center", gap: 12, padding: "9px 12px", borderRadius: 10, background: "#fff", border: "1px solid rgba(14,28,51,0.05)" }}>
+                  <span style={{ width: 22, textAlign: "center", fontWeight: 900, color: e.rank <= 3 ? "#b8902f" : "#9aa6bd", fontSize: 14 }}>{e.rank}</span>
+                  <span style={{
+                    width: 26, height: 26, borderRadius: "50%", flexShrink: 0,
+                    background: e.avatarUrl ? `url(${e.avatarUrl}) center/cover no-repeat` : "#e2e8f3",
+                    color: "#0e1c33", fontWeight: 800, fontSize: 12, display: "flex", alignItems: "center", justifyContent: "center",
+                  }} aria-hidden>{filled && !e.avatarUrl ? nm.charAt(0).toUpperCase() : ""}</span>
+                  {filled && e.country && /^[a-z]{2}$/i.test(e.country) && (
+                    <img src={`https://flagcdn.com/w40/${e.country.toLowerCase()}.png`} alt="" width={20} height={13} style={{ borderRadius: 2, objectFit: "cover", flexShrink: 0 }} />
+                  )}
+                  <span style={{ flex: 1, color: filled ? INK : "#9aa6bd", fontSize: 13.5, fontWeight: filled ? 700 : 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{nm}</span>
+                  <span style={{ color: filled ? "#b8902f" : "#9aa6bd", fontSize: 12.5, fontWeight: 800 }}>{filled ? `${e.coins.toLocaleString()} 🪙` : "— pts"}</span>
+                </div>
+              );
+            })}
           </div>
-          <p style={{ fontSize: 12, color: "#6a7791", marginTop: 12, textAlign: "center" }}>
-            El ranking arranca con el Mundial el 11 de junio. {authed ? "Tu posición aparecerá aquí." : "Crea tu cuenta para competir."}
-          </p>
+          {(!topGlobal || topGlobal.length === 0) && (
+            <p style={{ fontSize: 12, color: "#6a7791", marginTop: 12, textAlign: "center" }}>
+              El ranking arranca con el Mundial el 11 de junio. {authed ? "Tu posición aparecerá aquí." : "Crea tu cuenta para competir."}
+            </p>
+          )}
         </section>
 
         {/* Volver a la portada editorial (escape del redirect por sesión) */}

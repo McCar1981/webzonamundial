@@ -275,6 +275,15 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
     return () => { on = false; sub.subscription.unsubscribe(); };
   }, []);
 
+  // Cierre de sesión desde el menú hamburguesa. POST a /auth/signout para
+  // limpiar cookies en servidor y recarga para reflejar el estado invitado.
+  const handleSignOut = async () => {
+    setMobileOpen(false);
+    try { await fetch("/auth/signout", { method: "POST" }); } catch { /* fuera igualmente */ }
+    setAuthed(false);
+    window.location.href = "/";
+  };
+
   const closeMobile = () => setMobileOpen(false);
   // Solo lo enseñamos cuando SABEMOS que no hay sesión (authed === false),
   // así evitamos el parpadeo de mostrarlo y ocultarlo a quien sí tiene cuenta.
@@ -411,6 +420,28 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 3l14 9-14 9V3z" fill={BG}/></svg>
             Abrir la app
           </Link>
+          )}
+          {/* Cerrar sesión visible arriba del menú cuando hay sesión, para no
+              obligar a bajar hasta el final del menú a buscarlo. */}
+          {authed === true && (
+          <button
+            onClick={handleSignOut}
+            style={{
+              display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+              width: "100%", fontFamily: "inherit", cursor: "pointer",
+              background: "rgba(239,68,68,0.10)", color: "#ef4444",
+              fontWeight: 800, fontSize: 15,
+              padding: "13px 16px", borderRadius: 12,
+              border: "1px solid rgba(239,68,68,0.30)", marginBottom: 18,
+            }}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+              <polyline points="16 17 21 12 16 7" />
+              <line x1="21" y1="12" x2="9" y2="12" />
+            </svg>
+            Cerrar sesión
+          </button>
           )}
           {NAV.map(item =>
             item.items ? (

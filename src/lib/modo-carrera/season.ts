@@ -29,6 +29,7 @@ import { buildBoardObjective, evaluateSeason } from "./board";
 import { injuryPenalty, tickInjuries, rollInjury, activeInjuries } from "./injuries";
 import { suspensionPenalty, tickSuspensions, rollSuspension, activeSuspensions } from "./suspensions";
 import { buildPressConference } from "./press";
+import { buildDressingRoomEvent } from "./vestuario";
 import { squadBonus } from "./lineup";
 import { SELECCIONES, type Seleccion } from "@/data/selecciones";
 
@@ -824,6 +825,23 @@ export function resolveMatch(
     matchIdx: idx,
   });
   if (press) narrative = [press, ...narrative];
+
+  // ── Vida de vestuario (evento entre partidos) ──
+  // Si el torneo sigue y NO saltó rueda de prensa este partido (para no encadenar
+  // dos decisiones a la vez), puede surgir una situación de vestuario que el DT
+  // resolverá vía applyDecision: impacta moral del grupo y reputación del DT.
+  if (!finished && !press) {
+    const vestuario = buildDressingRoomEvent({
+      nationSlug: c0.identity.nationSlug,
+      nationName: seleccion(c0.identity.nationSlug)?.nombre ?? "La selección",
+      dtName: c0.identity.name.trim() || "el DT",
+      morale,
+      captain: c0.squad?.captain,
+      season: season.season,
+      matchIdx: idx,
+    });
+    if (vestuario) narrative = [vestuario, ...narrative];
+  }
 
   // ── XP ──
   // Los amistosos reparten menos XP (son de preparación, no competición oficial).

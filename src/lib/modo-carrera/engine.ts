@@ -125,6 +125,26 @@ const DECISION_EFFECTS: Record<string, DecisionEffect> = {
   // Señalar en público: marcas autoridad de cara a la federación, pero la moral
   // del vestuario se desploma (peor rendimiento).
   senalar: { morale: -10, confidence: 3, stats: { mediatico: 5, disciplina: 2 } },
+  // EVENTOS DE VESTUARIO (vestuario.ts): gestión humana del grupo entre partidos.
+  // Cada arquetipo equilibra moral del grupo, confianza de la federación y los
+  // stats de reputación del DT (liderazgo, disciplina, cantera, prestigio…).
+  dialogo: { morale: 5, confidence: 1, stats: { carisma: 3, disciplina: 2 } },
+  autoridad: { morale: -3, confidence: 4, stats: { disciplina: 5, prestigio: 1 } },
+  // Ceder ante el jugador: te ganas su moral, pero pierdes algo de autoridad ante
+  // la federación.
+  ceder: { morale: 6, confidence: -2, stats: { carisma: 3 } },
+  unidad: { morale: 4, confidence: 1, stats: { carisma: 4 } },
+  // Cortar una filtración por lo sano: disciplina arriba, el ambiente se enfría.
+  investigar: { morale: -3, confidence: 2, stats: { disciplina: 6, mediatico: -2 } },
+  restar: { morale: 1, confidence: 1, stats: { mediatico: 2 } },
+  // Tirar de veteranía vs apostar por la cantera (decisión de proyecto).
+  veterania: { morale: 2, confidence: 1, stats: { prestigio: 4, tactica: 2 } },
+  juventud: { morale: 3, stats: { cantera: 6, prestigio: -1 } },
+  equilibrio: { morale: 3, stats: { tactica: 4, disciplina: 2 } },
+  // Gestión de la fatiga de una concentración larga.
+  rotar: { morale: 4, stats: { tactica: 3 } },
+  exigir_fisico: { morale: -4, confidence: 2, stats: { disciplina: 5, tactica: 2 } },
+  motivar: { morale: 6, stats: { carisma: 4 } },
 };
 
 /**

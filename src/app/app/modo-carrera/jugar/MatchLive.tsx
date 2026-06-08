@@ -21,7 +21,7 @@ import { FANTASY_ROSTERS, type RosterPlayer } from "@/data/fantasy-rosters";
 import { classicLabel } from "@/lib/modo-carrera/classics";
 import { Kit, Confetti, Coach } from "./Visuals";
 import LineupEditor from "./LineupEditor";
-import { formationById, resolveLineup, xiRating, bestXI, lineupValid } from "@/lib/modo-carrera/lineup";
+import { formationById, resolveLineup, xiRating, bestXI, lineupValid, availableRoster, unavailableNames } from "@/lib/modo-carrera/lineup";
 import {
   TACTICAL_PLANS,
   planById,
@@ -134,15 +134,15 @@ function ManDownBadge() {
   );
 }
 
-function keyPlayers(slug: string, n = 3): RosterPlayer[] {
-  const roster = FANTASY_ROSTERS[slug] ?? [];
+function keyPlayers(slug: string, n = 3, blocked?: Set<string>): RosterPlayer[] {
+  const roster = (FANTASY_ROSTERS[slug] ?? []).filter((p) => !blocked?.has(p.name));
   const fwd = roster.filter((p) => p.pos === "FWD");
   const mid = roster.filter((p) => p.pos === "MID");
   return [...fwd, ...mid].slice(0, n);
 }
 
-function pickScorer(slug: string): string {
-  const roster = FANTASY_ROSTERS[slug] ?? [];
+function pickScorer(slug: string, blocked?: Set<string>): string {
+  const roster = (FANTASY_ROSTERS[slug] ?? []).filter((p) => !blocked?.has(p.name));
   const att = roster.filter((p) => p.pos === "FWD" || p.pos === "MID");
   const pool = att.length ? att : roster;
   if (!pool.length) return "Gol en propia";
@@ -159,9 +159,9 @@ function goalMinutes(count: number, lo: number, hi: number): number[] {
   return [...set].sort((a, b) => a - b);
 }
 
-function buildEvents(gfSelf: number, gaOpp: number, selfSlug: string, oppSlug: string, lo: number, hi: number): GoalEvent[] {
+function buildEvents(gfSelf: number, gaOpp: number, selfSlug: string, oppSlug: string, lo: number, hi: number, selfBlocked?: Set<string>): GoalEvent[] {
   const ev: GoalEvent[] = [];
-  for (const m of goalMinutes(gfSelf, lo, hi)) ev.push({ minute: m, team: "self", scorer: pickScorer(selfSlug) });
+  for (const m of goalMinutes(gfSelf, lo, hi)) ev.push({ minute: m, team: "self", scorer: pickScorer(selfSlug, selfBlocked) });
   for (const m of goalMinutes(gaOpp, lo, hi)) ev.push({ minute: m, team: "opp", scorer: pickScorer(oppSlug) });
   return ev.sort((a, b) => a.minute - b.minute);
 }
@@ -281,18 +281,26 @@ export default function MatchLive({
     [career, formation, lineup],
   );
 
-  const selfKey = useMemo(() => keyPlayers(selfSlug), [selfSlug]);
+  // Bajas de la selección (lesionados + sancionados con partidos pendientes): NO
+  // pueden jugar este partido, ni aparecer en el once, ni marcar, ni entrar de
+  // suplentes. Es el detalle que faltaba: un jugador con reposo pendiente seguía
+  // saliendo en el campo.
+  const selfBlocked = useMemo(() => unavailableNames(career), [career]);
+  const selfAvail = useMemo(() => availableRoster(career), [career]);
+
+  const selfKey = useMemo(() => keyPlayers(selfSlug, 3, selfBlocked), [selfSlug, selfBlocked]);
   const oppKey = useMemo(() => keyPlayers(oppSlug), [oppSlug]);
 
   // Resumen del dibujo + once para la pantalla de plan: valoración media del once
-  // efectivo (el guardado si es válido; si no, el mejor once por defecto).
+  // efectivo (el guardado si es válido; si no, el mejor once por defecto). Se
+  // construye SOLO con jugadores disponibles (sin lesionados/sancionados).
   const xiInfo = useMemo(() => {
-    const roster = FANTASY_ROSTERS[selfSlug] ?? [];
+    const roster = selfAvail;
     const f = formationById(formation);
     const custom = lineupValid(lineup, roster, f);
     const players = custom ? resolveLineup(lineup, roster) : bestXI(roster, f);
     return { rating: xiRating(players), formationName: f.name, custom };
-  }, [selfSlug, formation, lineup]);
+  }, [selfAvail, formation, lineup]);
 
   // Reloj con RITMO CINEMATOGRÁFICO: setTimeout recursivo para variar el tempo
   // minuto a minuto (acelera a media, frena en el tramo final) y DETENERSE
@@ -446,7 +454,7 @@ export default function MatchLive({
     const ls = kickoff(liveCareer, match, plan);
     lsRef.current = ls;
     setPlanId(plan.id);
-    setEvents(buildEvents(ls.gf1, ls.ga1, selfSlug, oppSlug, 3, 58));
+    setEvents(buildEvents(ls.gf1, ls.ga1, selfSlug, oppSlug, 3, 58, selfBlocked));
     // Pre-tirada de lesión en partido: se decide al saque para que el reloj sea
     // estable, pero la pantalla de sustitución salta al llegar al minuto 60.
     injuryRef.current = rollMatchInjury(career, match);
@@ -465,7 +473,12 @@ export default function MatchLive({
     // queda marcado como "usado" para que no se ofrezca como recambio voluntario.
     volSubMultRef.current = { atk: 1, def: 1 };
     systemMultRef.current = { atk: 1, def: 1 };
-    usedSubNamesRef.current = injuryRef.current ? [injuryRef.current.injured.player] : [];
+    // Las bajas (lesionados/sancionados de la temporada) NO están disponibles en el
+    // banquillo: se marcan como "usadas" para que no se ofrezcan como recambio.
+    usedSubNamesRef.current = [
+      ...selfBlocked,
+      ...(injuryRef.current ? [injuryRef.current.injured.player] : []),
+    ];
     setSubsUsed(0);
     setCurrentPlanName(plan.name);
     setDecisionPanel("main");
@@ -495,7 +508,7 @@ export default function MatchLive({
     };
     const mid = secondHalf(ls, combined);
     midRef.current = mid;
-    setEvents((prev) => [...prev, ...buildEvents(mid.gf2, mid.ga2, selfSlug, oppSlug, 61, 74)]);
+    setEvents((prev) => [...prev, ...buildEvents(mid.gf2, mid.ga2, selfSlug, oppSlug, 61, 74, selfBlocked)]);
     setDecisionPanel("main");
     setPhase("half2");
   };
@@ -518,7 +531,7 @@ export default function MatchLive({
     };
     const res = thirdHalf(ls, mid, combined);
     resRef.current = res;
-    setEvents((prev) => [...prev, ...buildEvents(res.gf2, res.ga2, selfSlug, oppSlug, 76, 90)]);
+    setEvents((prev) => [...prev, ...buildEvents(res.gf2, res.ga2, selfSlug, oppSlug, 76, 90, selfBlocked)]);
     setDecisionPanel("main");
     setPhase("half3");
   };
@@ -551,7 +564,7 @@ export default function MatchLive({
     if (!ls) return;
     const { gfEt, gaEt } = extraTime(ls, choice);
     etRef.current = { gfEt, gaEt };
-    setEvents((prev) => [...prev, ...buildEvents(gfEt, gaEt, selfSlug, oppSlug, 91, 120)]);
+    setEvents((prev) => [...prev, ...buildEvents(gfEt, gaEt, selfSlug, oppSlug, 91, 120, selfBlocked)]);
     setPhase("et");
   };
 
@@ -644,9 +657,10 @@ export default function MatchLive({
 
   const motm = useMemo(() => {
     if (phase !== "fulltime") return "";
-    const winnerSlug = finalGf >= finalGa ? selfSlug : oppSlug;
-    return pickScorer(winnerSlug);
-  }, [phase, finalGf, finalGa, selfSlug, oppSlug]);
+    const winnerIsSelf = finalGf >= finalGa;
+    const winnerSlug = winnerIsSelf ? selfSlug : oppSlug;
+    return pickScorer(winnerSlug, winnerIsSelf ? selfBlocked : undefined);
+  }, [phase, finalGf, finalGa, selfSlug, oppSlug, selfBlocked]);
 
   const decisionChoices = phase === "decision" || phase === "decision2" ? choicesFor(shown.gf, shown.ga) : [];
 

@@ -10,7 +10,7 @@
 
 import { useMemo, useState } from "react";
 import { BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED } from "./fx";
-import { FANTASY_ROSTERS, type RosterPlayer } from "@/data/fantasy-rosters";
+import { type RosterPlayer } from "@/data/fantasy-rosters";
 import type { FantasyPos } from "@/lib/fantasy/types";
 import type { CareerState } from "@/lib/modo-carrera/types";
 import {
@@ -23,6 +23,7 @@ import {
   bestXI,
   playerRating,
   lineupValid,
+  availableRoster,
   type Formation,
 } from "@/lib/modo-carrera/lineup";
 
@@ -45,8 +46,9 @@ export default function LineupEditor({
   onSave: (formation: string, lineup: string[]) => void;
   onClose: () => void;
 }) {
-  const slug = career.identity.nationSlug ?? "";
-  const roster = useMemo<RosterPlayer[]>(() => FANTASY_ROSTERS[slug] ?? [], [slug]);
+  // Solo jugadores DISPONIBLES: los lesionados/sancionados con partidos pendientes
+  // no pueden ser convocados al once.
+  const roster = useMemo<RosterPlayer[]>(() => availableRoster(career), [career]);
 
   const [formationId, setFormationId] = useState<string>(career.squad?.formation ?? "4-4-2");
   const formation: Formation = formationById(formationId);

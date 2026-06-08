@@ -14,6 +14,8 @@
 import type { CareerState } from "./types";
 import { FANTASY_ROSTERS, type RosterPlayer } from "@/data/fantasy-rosters";
 import type { FantasyPos } from "@/lib/fantasy/types";
+import { activeInjuries } from "./injuries";
+import { activeSuspensions } from "./suspensions";
 
 function clamp(n: number, lo: number, hi: number): number {
   return Math.max(lo, Math.min(hi, n));
@@ -87,6 +89,32 @@ export function formationById(id?: string | null): Formation {
 /** Plazas requeridas por posición para un dibujo dado. */
 export function slotsFor(f: Formation): Record<FantasyPos, number> {
   return { GK: 1, DEF: f.def, MID: f.mid, FWD: f.fwd };
+}
+
+// ─── Disponibilidad (lesiones + sanciones) ───────────────────────────────────
+/**
+ * Nombres del plantel NO disponibles para el próximo partido: lesionados y
+ * sancionados. Son quienes no pueden ser alineados ni aparecer en el once.
+ */
+export function unavailableNames(c: CareerState): Set<string> {
+  const out = new Set<string>();
+  for (const i of activeInjuries(c)) out.add(i.player);
+  for (const s of activeSuspensions(c)) out.add(s.player);
+  return out;
+}
+
+/**
+ * Roster REALMENTE disponible de la selección del DT: el plantel sin lesionados ni
+ * sancionados. Es el que debe usarse para construir/mostrar el once y elegir
+ * goleadores: un jugador de baja NO puede jugar el partido.
+ */
+export function availableRoster(c: CareerState): RosterPlayer[] {
+  const roster = FANTASY_ROSTERS[c.identity.nationSlug ?? ""] ?? [];
+  const out = unavailableNames(c);
+  const avail = roster.filter((p) => !out.has(p.name));
+  // Salvaguarda: si las bajas dejasen el roster por debajo de un once, no se filtra
+  // (situación irreal en selecciones de 26; evita un partido sin jugadores).
+  return avail.length >= 11 ? avail : roster;
 }
 
 // ─── Once titular ────────────────────────────────────────────────────────────

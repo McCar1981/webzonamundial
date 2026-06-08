@@ -12,6 +12,7 @@ import {
   Beer, Repeat, Sparkles, Medal,
 } from "lucide-react";
 import PlanCards from "./PlanCards";
+import BarPhoto from "./BarPhoto";
 
 export const metadata: Metadata = {
   title: "Porra Digital para Bares · ZonaMundial",
@@ -153,7 +154,7 @@ export default function BaresLandingPage() {
       className="min-h-screen text-zm-text overflow-hidden"
       style={{
         background:
-          "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,168,76,0.10), transparent 60%), linear-gradient(180deg, #060B14, #0B1825)",
+          "radial-gradient(ellipse 75% 45% at 50% -5%, rgba(201,168,76,0.10), transparent 60%), linear-gradient(180deg, #0A111E 0%, #0E1B2C 45%, #0B1622 100%)",
       }}
     >
       <div className="max-w-6xl mx-auto px-5 py-14 sm:py-20">
@@ -203,57 +204,98 @@ export default function BaresLandingPage() {
             </p>
           </div>
 
-          {/* Visual del hero: composición de mockups */}
+          {/* Visual del hero: foto editorial enmarcada + mockups superpuestos */}
           <div className="relative flex items-center justify-center lg:justify-end">
             <div
-              className="absolute inset-0 -z-10 blur-3xl opacity-60"
-              style={{ background: "radial-gradient(circle at 60% 40%, rgba(201,168,76,0.22), transparent 60%)" }}
+              className="absolute inset-0 -z-10 blur-3xl opacity-50"
+              style={{ background: "radial-gradient(circle at 60% 40%, rgba(201,168,76,0.20), transparent 60%)" }}
             />
-            <div className="relative flex items-center gap-4">
-              <div className="hidden sm:block">
+            <div
+              className="relative w-full max-w-[440px] aspect-[4/5] sm:aspect-[5/4] rounded-[28px] overflow-hidden"
+              style={{ border: "1px solid rgba(255,255,255,0.10)", boxShadow: "0 40px 90px -40px rgba(0,0,0,0.85)" }}
+            >
+              <BarPhoto
+                src="/images/bars/hero-porra-bar.webp"
+                alt="Clientes de un bar participando en la porra digital del Mundial"
+                priority
+                objectPosition="center"
+              >
+                {/* Fallback elegante: degradado profundo + textura dorada */}
+                <div
+                  className="w-full h-full"
+                  style={{
+                    background:
+                      "radial-gradient(120% 80% at 80% 10%, rgba(201,168,76,0.16), transparent 55%), linear-gradient(150deg, #16273E 0%, #0E1B2C 55%, #0A1422 100%)",
+                  }}
+                />
+              </BarPhoto>
+
+              {/* Overlay para legibilidad y unión con el fondo */}
+              <div
+                className="absolute inset-0"
+                style={{ background: "linear-gradient(180deg, rgba(10,17,30,0) 35%, rgba(10,17,30,0.55) 100%)" }}
+              />
+
+              {/* Teléfono con predicción, flotando */}
+              <div className="absolute -left-3 bottom-4 hidden sm:block scale-90 origin-bottom-left drop-shadow-2xl">
                 <PhoneMockup />
               </div>
-              <div className="flex flex-col items-center gap-3">
-                <div
-                  className="rounded-2xl p-4 flex flex-col items-center"
-                  style={{ background: "linear-gradient(160deg,#11233a,#0a1322)", border: "1px solid rgba(201,168,76,0.25)", boxShadow: "0 30px 60px -24px rgba(0,0,0,0.8)" }}
-                >
-                  <BarQr size={104} />
-                  <span className="mt-2.5 inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider" style={{ color: GOLD }}>
-                    <QrCode size={11} /> Escanea y juega
-                  </span>
-                </div>
-                <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider" style={{ background: GOLD_GRAD, color: "#1A1208" }}>
-                  Pago único
+
+              {/* Chip QR */}
+              <div
+                className="absolute right-4 top-4 rounded-2xl p-3 flex flex-col items-center backdrop-blur-sm"
+                style={{ background: "rgba(12,22,38,0.72)", border: "1px solid rgba(201,168,76,0.3)", boxShadow: "0 18px 40px -18px rgba(0,0,0,0.8)" }}
+              >
+                <BarQr size={76} />
+                <span className="mt-2 inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider" style={{ color: GOLD }}>
+                  <QrCode size={10} /> Escanea y juega
                 </span>
               </div>
+
+              {/* Badge pago único */}
+              <span
+                className="absolute left-4 top-4 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider"
+                style={{ background: GOLD_GRAD, color: "#1A1208", boxShadow: "0 8px 20px -8px rgba(201,168,76,0.8)" }}
+              >
+                Pago único
+              </span>
             </div>
           </div>
         </section>
 
         {/* ── CÓMO FUNCIONA ────────────────────────────────── */}
         <section className="mt-24">
-          <h2 className="text-3xl font-black text-center">Cómo funciona</h2>
+          <h2 className="text-3xl font-black text-center" style={{ color: "#F4F1E9" }}>Cómo funciona</h2>
           <div className="mt-10 grid gap-5 sm:grid-cols-3">
             {STEPS.map((s) => (
               <div
                 key={s.title}
-                className="relative rounded-3xl border p-6 transition-transform hover:-translate-y-1"
-                style={{ borderColor: "rgba(255,255,255,0.09)", background: "linear-gradient(180deg, rgba(18,33,55,0.7), rgba(11,24,37,0.4))" }}
+                className="group relative rounded-3xl border p-7 overflow-hidden transition-transform hover:-translate-y-1.5"
+                style={{
+                  borderColor: "rgba(255,255,255,0.07)",
+                  background: "linear-gradient(165deg, rgba(30,46,71,0.55) 0%, rgba(15,27,44,0.45) 100%)",
+                  boxShadow: "0 24px 50px -34px rgba(0,0,0,0.7)",
+                }}
               >
+                {/* Línea de acento superior dorada */}
+                <div className="absolute inset-x-0 top-0 h-[2px]" style={{ background: "linear-gradient(90deg, transparent, rgba(201,168,76,0.6), transparent)" }} />
                 <span
-                  className="absolute top-5 right-5 text-5xl font-black leading-none select-none"
-                  style={{ color: "rgba(201,168,76,0.16)" }}
+                  className="absolute top-5 right-6 text-6xl font-black leading-none select-none"
+                  style={{ color: "rgba(201,168,76,0.12)" }}
                 >
                   {s.n}
                 </span>
                 <span
-                  className="flex items-center justify-center w-14 h-14 rounded-2xl"
-                  style={{ background: "rgba(201,168,76,0.14)", color: GOLD, boxShadow: "inset 0 0 0 1px rgba(201,168,76,0.25)" }}
+                  className="flex items-center justify-center w-16 h-16 rounded-2xl transition-transform group-hover:scale-105"
+                  style={{
+                    background: "linear-gradient(150deg, rgba(201,168,76,0.22), rgba(201,168,76,0.08))",
+                    color: GOLD,
+                    boxShadow: "inset 0 0 0 1px rgba(201,168,76,0.28), 0 10px 26px -12px rgba(201,168,76,0.5)",
+                  }}
                 >
-                  <s.icon size={26} />
+                  <s.icon size={30} />
                 </span>
-                <h3 className="mt-5 text-lg font-black text-white">{s.title}</h3>
+                <h3 className="mt-6 text-lg font-black" style={{ color: "#F4F1E9" }}>{s.title}</h3>
                 <p className="mt-2 text-sm text-zm-text-muted leading-relaxed">{s.text}</p>
               </div>
             ))}
@@ -270,39 +312,64 @@ export default function BaresLandingPage() {
               <div className="inline-flex items-center gap-2 text-[11px] tracking-[0.2em] uppercase font-bold" style={{ color: GOLD }}>
                 <Medal size={14} /> Tu bar en acción
               </div>
-              <h2 className="mt-3 text-3xl font-black leading-tight">Tu bar, tu ranking, tus premios</h2>
+              <h2 className="mt-3 text-3xl font-black leading-tight" style={{ color: "#F4F1E9" }}>Tu bar, tu ranking, tus premios</h2>
               <p className="mt-4 max-w-md mx-auto lg:mx-0 text-zm-text-muted leading-relaxed">
                 Cada local tiene su propia porra, su QR y su clasificación para activar una dinámica propia durante el Mundial.
               </p>
               <div className="mt-6 grid gap-3 sm:grid-cols-3">
                 {WINS.map((w) => (
-                  <div key={w.title} className="rounded-2xl p-4 text-left" style={{ background: "rgba(8,16,28,0.55)", border: "1px solid rgba(255,255,255,0.07)" }}>
-                    <w.icon size={20} color={GOLD} />
-                    <p className="mt-2 text-sm font-bold text-white">{w.title}</p>
+                  <div key={w.title} className="rounded-2xl p-4 text-left" style={{ background: "linear-gradient(160deg, rgba(30,46,71,0.5), rgba(13,24,40,0.4))", border: "1px solid rgba(255,255,255,0.06)" }}>
+                    <span className="flex items-center justify-center w-9 h-9 rounded-xl mb-2" style={{ background: "rgba(201,168,76,0.14)", color: GOLD }}>
+                      <w.icon size={18} />
+                    </span>
+                    <p className="text-sm font-bold" style={{ color: "#F4F1E9" }}>{w.title}</p>
                     <p className="mt-1 text-[12px] text-zm-text-muted leading-snug">{w.text}</p>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="flex justify-center">
-              <TvMockup />
+            <div className="relative flex justify-center">
+              <div
+                className="relative w-full max-w-[420px] aspect-[4/3] rounded-[26px] overflow-hidden"
+                style={{ border: "1px solid rgba(255,255,255,0.10)", boxShadow: "0 40px 90px -42px rgba(0,0,0,0.85)" }}
+              >
+                <BarPhoto
+                  src="/images/bars/bar-ranking-tv.webp"
+                  alt="Pantalla del local mostrando el ranking de la porra durante el Mundial"
+                  objectPosition="center"
+                >
+                  <div
+                    className="w-full h-full"
+                    style={{
+                      background:
+                        "radial-gradient(110% 90% at 20% 0%, rgba(201,168,76,0.14), transparent 55%), linear-gradient(150deg, #16273E, #0C1626)",
+                    }}
+                  />
+                </BarPhoto>
+                <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(10,17,30,0) 30%, rgba(10,17,30,0.5) 100%)" }} />
+                {/* Mockup de TV/ranking superpuesto */}
+                <div className="absolute inset-0 flex items-center justify-center p-5">
+                  <TvMockup />
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         {/* ── TODO LO QUE INCLUYE ──────────────────────────── */}
         <section className="mt-24">
-          <h2 className="text-3xl font-black text-center">Todo lo que incluye</h2>
+          <h2 className="text-3xl font-black text-center" style={{ color: "#F4F1E9" }}>Todo lo que incluye</h2>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {FEATURES.map((f) => (
               <div
                 key={f.title}
                 className={`rounded-2xl border p-5 transition-transform hover:-translate-y-1 ${f.big ? "sm:col-span-2 lg:col-span-1" : ""}`}
                 style={{
-                  borderColor: f.big ? "rgba(201,168,76,0.4)" : "rgba(255,255,255,0.08)",
+                  borderColor: f.big ? "rgba(201,168,76,0.4)" : "rgba(255,255,255,0.06)",
                   background: f.big
-                    ? "linear-gradient(135deg, rgba(201,168,76,0.14), rgba(11,24,37,0.4))"
-                    : "linear-gradient(180deg, rgba(15,29,50,0.55), rgba(11,24,37,0.3))",
+                    ? "linear-gradient(135deg, rgba(201,168,76,0.16), rgba(13,24,40,0.45))"
+                    : "linear-gradient(160deg, rgba(30,46,71,0.5), rgba(13,24,40,0.35))",
+                  boxShadow: "0 22px 46px -34px rgba(0,0,0,0.65)",
                 }}
               >
                 <span
@@ -311,7 +378,7 @@ export default function BaresLandingPage() {
                 >
                   <f.icon size={24} />
                 </span>
-                <h3 className="mt-4 font-black text-white">{f.title}</h3>
+                <h3 className="mt-4 font-black" style={{ color: "#F4F1E9" }}>{f.title}</h3>
                 <p className="mt-1.5 text-sm text-zm-text-muted leading-relaxed">{f.text}</p>
               </div>
             ))}
@@ -320,7 +387,7 @@ export default function BaresLandingPage() {
 
         {/* ── PLANES ───────────────────────────────────────── */}
         <section className="mt-24">
-          <h2 className="text-3xl font-black text-center">Elige tu plan</h2>
+          <h2 className="text-3xl font-black text-center" style={{ color: "#F4F1E9" }}>Elige tu plan</h2>
           <p className="mt-3 text-center text-zm-text-muted">
             Pago único válido para todo el Mundial 2026. Sin suscripciones.
           </p>
@@ -335,12 +402,23 @@ export default function BaresLandingPage() {
 
         {/* ── CTA FINAL ────────────────────────────────────── */}
         <section
-          className="mt-24 relative text-center rounded-[32px] border overflow-hidden p-10 sm:p-14"
-          style={{ borderColor: "rgba(201,168,76,0.3)", background: "linear-gradient(180deg, rgba(201,168,76,0.12), rgba(11,24,37,0.35))" }}
+          className="mt-24 relative text-center rounded-[32px] border overflow-hidden p-10 sm:p-16"
+          style={{ borderColor: "rgba(201,168,76,0.3)", boxShadow: "0 40px 90px -50px rgba(0,0,0,0.85)" }}
         >
+          {/* Foto de cierre de fondo (con fallback degradado) */}
+          <div className="absolute inset-0 -z-20">
+            <BarPhoto
+              src="/images/bars/cta-final-bar.webp"
+              alt=""
+              objectPosition="center"
+            >
+              <div className="w-full h-full" style={{ background: "linear-gradient(180deg, #142536, #0B1622)" }} />
+            </BarPhoto>
+          </div>
+          {/* Overlay para que el botón y el texto sigan legibles */}
           <div
-            className="absolute inset-0 -z-10 opacity-50"
-            style={{ background: "radial-gradient(ellipse 60% 80% at 50% 0%, rgba(201,168,76,0.22), transparent 65%)" }}
+            className="absolute inset-0 -z-10"
+            style={{ background: "radial-gradient(ellipse 70% 90% at 50% 0%, rgba(201,168,76,0.20), transparent 60%), linear-gradient(180deg, rgba(10,17,30,0.82), rgba(11,22,37,0.92))" }}
           />
           <h2 className="text-3xl sm:text-4xl font-black leading-tight">
             Crea la porra de tu bar antes del primer partido

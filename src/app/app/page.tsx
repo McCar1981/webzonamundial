@@ -643,8 +643,8 @@ export default function AppHubPage() {
             style={{
               position: "absolute", top: 0, bottom: 0, right: 0, width: "min(62%, 460px)", height: "100%", zIndex: 0,
               objectFit: "cover", objectPosition: "center 38%", pointerEvents: "none", opacity: 0.62,
-              WebkitMaskImage: "linear-gradient(90deg, transparent 0%, #000 42%, #000 100%)",
-              maskImage: "linear-gradient(90deg, transparent 0%, #000 42%, #000 100%)",
+              WebkitMaskImage: "linear-gradient(100deg, transparent 0%, rgba(0,0,0,0.55) 55%, #000 100%)",
+              maskImage: "linear-gradient(100deg, transparent 0%, rgba(0,0,0,0.55) 55%, #000 100%)",
             }}
           />
           {/* velo navy sobre el arte para asegurar contraste del título */}

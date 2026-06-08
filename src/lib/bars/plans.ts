@@ -10,6 +10,7 @@ export interface BarPlan {
   id: BarPlanId;
   name: string;
   tagline: string;
+  idealFor: string; // a quién va dirigido (microcopy comercial de la landing)
   priceEur: number; // tarifa Europa y resto del mundo (en euros)
   priceUsd: number; // tarifa LATAM y USA (en dólares)
   features: string[];
@@ -25,6 +26,7 @@ export interface BarPlan {
 export const BAR_PLANS: Record<BarPlanId, BarPlan> = {
   arranque: {
     id: "arranque", name: "Arranque Mundial", tagline: "Lo esencial para llenar tu bar en días de partido",
+    idealFor: "Bares pequeños, peñas o locales que quieren una porra simple",
     priceEur: 49, priceUsd: 55,
     features: [
       "1 peña del bar", "1 QR dinámico", "Landing personalizada", "Ranking del bar",
@@ -34,6 +36,7 @@ export const BAR_PLANS: Record<BarPlanId, BarPlan> = {
   },
   completo: {
     id: "completo", name: "Mundial Completo", tagline: "Mantén el ambiente vivo durante todo el torneo",
+    idealFor: "Bares que quieren usar la porra durante todo el Mundial",
     priceEur: 99, priceUsd: 109, highlight: true,
     features: [
       "Todo lo de Arranque", "Hasta 3 QR por zonas", "Exportar clasificación (CSV)",
@@ -43,6 +46,7 @@ export const BAR_PLANS: Record<BarPlanId, BarPlan> = {
   },
   pro: {
     id: "pro", name: "Bar Pro", tagline: "Para cadenas y bares deportivos que van a por todas",
+    idealFor: "Bares grandes, terrazas, salones o cadenas pequeñas",
     priceEur: 179, priceUsd: 199,
     features: [
       "Todo lo de Completo", "Hasta 6 QR por zonas (barra, terraza, salón, TV)",

@@ -694,7 +694,7 @@ export default function AppHubPage() {
               {/* Capa inferior suave SOLO para legibilidad del horario + CTA.
                   Nada de azul pesado encima: no tapar la imagen. */}
               <span aria-hidden style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: "46%", zIndex: 1, pointerEvents: "none", background: "linear-gradient(to top, rgba(6,12,22,0.78) 0%, rgba(6,12,22,0.42) 45%, transparent 100%)" }} />
-              <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, zIndex: 2, display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12, padding: "0 18px 22px" }}>
+              <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, zIndex: 2, display: "flex", alignItems: "center", justifyContent: "center", flexWrap: "wrap", gap: 16, padding: "0 18px 12px" }}>
                 <span style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 13, fontWeight: 800, letterSpacing: 0.4, color: "#fff", textShadow: "0 1px 6px rgba(0,0,0,0.6)" }}>
                   {hero.kind === "live" && <span className="zm-live-dot" style={{ width: 8, height: 8, borderRadius: "50%", background: hero.accent }} />}
                   {hero.opening.time}

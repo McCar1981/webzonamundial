@@ -40,6 +40,32 @@ function sel(slug: string) {
   return SELECCIONES.find((s) => s.slug === slug);
 }
 
+// Fases del Mundial cuyos rivales NO se conocen hasta clasificar / llegar a la
+// ronda: el sorteo del Mundial ocurre DESPUÉS de la clasificación, así que no se
+// puede saber a quién enfrentas en la fase de grupos mientras aún clasificas.
+const WC_STAGE_ORDER: SeasonMatch["stage"][] = [
+  "amistoso", "clasificacion", "grupos", "octavos", "cuartos", "semifinal", "final", "campeon",
+];
+const WC_PHASES = new Set<SeasonMatch["stage"]>(["grupos", "octavos", "cuartos", "semifinal", "final"]);
+
+/** ¿Se conoce ya el rival de este partido? Las fases del Mundial se ocultan hasta
+ *  que la temporada alcanza esa ronda (los amistosos y la clasificación, no). */
+function opponentRevealed(m: SeasonMatch, seasonStage: SeasonMatch["stage"]): boolean {
+  if (m.played) return true;
+  if (!WC_PHASES.has(m.stage)) return true;
+  const cur = WC_STAGE_ORDER.indexOf(seasonStage);
+  const ms = WC_STAGE_ORDER.indexOf(m.stage);
+  return cur >= 0 && cur >= ms;
+}
+
+const HIDDEN_STAGE_HINT: Partial<Record<SeasonMatch["stage"], string>> = {
+  grupos: "Tras la clasificación",
+  octavos: "Tras la fase de grupos",
+  cuartos: "Tras octavos",
+  semifinal: "Tras cuartos",
+  final: "Tras semifinales",
+};
+
 /** "Faltan 3 días", "Faltan 5 h 20 min", etc. */
 function fmtCountdown(ms: number): string {
   if (ms <= 0) return "Disponible ahora";
@@ -83,7 +109,7 @@ function FlagName({ slug, size = 22 }: { slug: string; size?: number }) {
   );
 }
 
-function FixtureRow({ m, isNext }: { m: SeasonMatch; isNext: boolean }) {
+function FixtureRow({ m, isNext, revealed }: { m: SeasonMatch; isNext: boolean; revealed: boolean }) {
   const color = m.outcome ? OUTCOME_COLOR[m.outcome] : isNext ? GOLD2 : MID;
   return (
     <div
@@ -104,9 +130,26 @@ function FixtureRow({ m, isNext }: { m: SeasonMatch; isNext: boolean }) {
           {isNext && " · próximo"}
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 4, fontSize: 14, color: "#fff", fontWeight: 700 }}>
-          <FlagName slug={m.opponentSlug} />
-          <span style={{ fontSize: 11, color: DIM, fontWeight: 600 }}>{m.home ? "(L)" : "(V)"}</span>
+          {revealed ? (
+            <>
+              <FlagName slug={m.opponentSlug} />
+              <span style={{ fontSize: 11, color: DIM, fontWeight: 600 }}>{m.home ? "(L)" : "(V)"}</span>
+            </>
+          ) : (
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 8, color: DIM, fontWeight: 700 }}>
+              <span
+                aria-hidden
+                style={{ width: 22, height: 15.4, borderRadius: 3, background: "rgba(255,255,255,0.06)", border: "1px dashed rgba(255,255,255,0.18)", display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 11 }}
+              >
+                ?
+              </span>
+              Rival por determinar
+            </span>
+          )}
         </div>
+        {!revealed && HIDDEN_STAGE_HINT[m.stage] && (
+          <div style={{ fontSize: 11, color: DIM, marginTop: 4, fontStyle: "italic" }}>{HIDDEN_STAGE_HINT[m.stage]}</div>
+        )}
         {!m.played && m.kickoffISO && (
           <div style={{ fontSize: 11, color: DIM, marginTop: 4, textTransform: "capitalize" }}>{fmtKickoff(m.kickoffISO)}</div>
         )}
@@ -570,7 +613,12 @@ export default function SeasonView({
       {/* Calendario */}
       <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
         {season.fixtures.map((m, i) => (
-          <FixtureRow key={m.id} m={m} isNext={!season.finished && i === season.cursor} />
+          <FixtureRow
+            key={m.id}
+            m={m}
+            isNext={!season.finished && i === season.cursor}
+            revealed={opponentRevealed(m, season.stage)}
+          />
         ))}
       </div>
 
@@ -724,7 +772,7 @@ export default function SeasonView({
               border: `1px solid ${GOLD}`,
               boxShadow: "0 24px 60px rgba(0,0,0,0.6)",
               backgroundImage:
-                "linear-gradient(180deg, rgba(6,11,20,0.78), rgba(6,11,20,0.94)), url('/img/modo-carrera/narrativa/prensa-podio.png')",
+                "linear-gradient(180deg, rgba(6,11,20,0.78), rgba(6,11,20,0.94)), url('/img/modo-carrera/narrativa/prensa-podio.webp')",
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}

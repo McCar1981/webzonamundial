@@ -126,6 +126,15 @@ export default function FantasyGame() {
     return () => window.clearTimeout(id);
   }, [team, loaded, authed]);
 
+  // Al cambiar de pestaña, vuelve arriba. Sin esto, si venías scrolleado abajo
+  // en una vista larga (p.ej. Mercado) la siguiente se quedaba "cargada desde
+  // el footer". Se omite el primer render para no pisar el scroll inicial.
+  const firstTab = useRef(true);
+  useEffect(() => {
+    if (firstTab.current) { firstTab.current = false; return; }
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, [tab]);
+
   const flash = useCallback((msg: string) => {
     setToast(msg);
     window.clearTimeout((flash as unknown as { _t?: number })._t);

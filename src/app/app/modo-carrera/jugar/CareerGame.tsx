@@ -36,6 +36,7 @@ import NarrativeView from "./NarrativeView";
 import LegacyView from "./LegacyView";
 import RankingView from "./RankingView";
 import GuideModal from "./GuideModal";
+import { CoinIcon } from "./icons";
 
 const GUIDE_SEEN_KEY = "zm_mc_guide_seen";
 
@@ -286,7 +287,7 @@ export default function CareerGame() {
             boxShadow: "0 8px 24px rgba(0,0,0,0.35)",
           }}
         >
-          <span aria-hidden>🪙</span>
+          <CoinIcon size={15} />
           <span>+{coinReward.futcoins} Fútcoins · +{coinReward.xpAwarded} XP</span>
         </div>
       )}

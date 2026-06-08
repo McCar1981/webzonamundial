@@ -9,6 +9,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { BG2, BG3, GOLD, GOLD2, MID, DIM } from "./fx";
+import { CoinIcon } from "./icons";
 import type { CareerState, NarrativeEntry, NarrativeKind } from "@/lib/modo-carrera/types";
 import { CAREER_NARRATIVE_REFILL } from "@/lib/economy/spend";
 
@@ -29,8 +30,8 @@ const GENERATE_BUTTONS: { kind: NarrativeKind; label: string }[] = [
 // clave del cuerpo (lesión / oferta-fichaje). Sin coincidencia → sin icono.
 function eventIcon(body: string): string | null {
   const t = body.toLowerCase();
-  if (/lesi[óo]n|lesionad|baja|recae/.test(t)) return "/img/modo-carrera/icons/evento-lesion.png";
-  if (/oferta|fichaj|fichar|traspaso|interes/.test(t)) return "/img/modo-carrera/icons/evento-oferta.png";
+  if (/lesi[óo]n|lesionad|baja|recae/.test(t)) return "/img/modo-carrera/icons/evento-lesion.webp";
+  if (/oferta|fichaj|fichar|traspaso|interes/.test(t)) return "/img/modo-carrera/icons/evento-oferta.webp";
   return null;
 }
 
@@ -97,19 +98,19 @@ export default function NarrativeView({
         @keyframes mcDots { 0%,80%,100%{opacity:.2} 40%{opacity:1} }
         .mc-dot { animation: mcDots 1.2s infinite both; }
         .mc-prensa-head {
-          background-image: linear-gradient(180deg, rgba(6,11,20,0.55), rgba(6,11,20,0.88)), url('/img/modo-carrera/narrativa/prensa-bg.png');
+          background-image: linear-gradient(180deg, rgba(6,11,20,0.55), rgba(6,11,20,0.88)), url('/img/modo-carrera/narrativa/prensa-bg.webp');
           background-size: cover; background-position: center;
         }
         .mc-titular-paper {
-          background-image: linear-gradient(180deg, rgba(231,224,205,0.92), rgba(214,205,180,0.95)), url('/img/modo-carrera/narrativa/periodico-texture.png');
+          background-image: linear-gradient(180deg, rgba(231,224,205,0.92), rgba(214,205,180,0.95)), url('/img/modo-carrera/narrativa/periodico-texture.webp');
           background-size: cover; background-position: center;
         }
         @media (max-width: 640px) {
           .mc-prensa-head {
-            background-image: linear-gradient(180deg, rgba(6,11,20,0.55), rgba(6,11,20,0.88)), url('/img/modo-carrera/narrativa/prensa-bg-mobile.png');
+            background-image: linear-gradient(180deg, rgba(6,11,20,0.55), rgba(6,11,20,0.88)), url('/img/modo-carrera/narrativa/prensa-bg-mobile.webp');
           }
           .mc-titular-paper {
-            background-image: linear-gradient(180deg, rgba(231,224,205,0.92), rgba(214,205,180,0.95)), url('/img/modo-carrera/narrativa/periodico-texture-mobile.png');
+            background-image: linear-gradient(180deg, rgba(231,224,205,0.92), rgba(214,205,180,0.95)), url('/img/modo-carrera/narrativa/periodico-texture-mobile.webp');
           }
         }
       `}</style>
@@ -196,7 +197,7 @@ export default function NarrativeView({
                   cursor: refilling ? "default" : "pointer", opacity: refilling ? 0.6 : 1,
                 }}
               >
-                <span aria-hidden>🪙</span>
+                <CoinIcon size={15} />
                 {refilling ? "Recargando…" : `Recargar IA (${CAREER_NARRATIVE_REFILL})`}
               </button>
             )}
@@ -244,7 +245,7 @@ export default function NarrativeView({
                     padding: 18,
                     borderRadius: 14,
                     backgroundImage:
-                      "linear-gradient(180deg, rgba(6,11,20,0.72), rgba(6,11,20,0.92)), url('/img/modo-carrera/narrativa/prensa-podio.png')",
+                      "linear-gradient(180deg, rgba(6,11,20,0.72), rgba(6,11,20,0.92)), url('/img/modo-carrera/narrativa/prensa-podio.webp')",
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     border: `1px solid ${pending ? GOLD : "rgba(255,255,255,0.08)"}`,

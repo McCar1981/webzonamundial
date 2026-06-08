@@ -5,7 +5,7 @@
 "use client";
 
 import { BG2, BG3, GOLD, GOLD2, MID, DIM } from "./fx";
-import { LockIcon } from "./icons";
+import { LockIcon, StarIcon } from "./icons";
 import { TITLES } from "@/lib/modo-carrera/constants";
 import type { CareerState } from "@/lib/modo-carrera/types";
 
@@ -138,13 +138,23 @@ export default function ReputationView({ career }: { career: CareerState }) {
                 }}
               >
                 {has ? (
-                  <img
-                    src={`/img/modo-carrera/icons/badges/badge-${t.id}.png`}
-                    alt=""
-                    width={44}
-                    height={44}
-                    style={{ flexShrink: 0, objectFit: "contain", filter: "drop-shadow(0 2px 6px rgba(201,168,76,0.35))" }}
-                  />
+                  <span style={{ flexShrink: 0, display: "inline-flex", color: GOLD }}>
+                    <img
+                      src={`/img/modo-carrera/icons/badges/badge-${t.id}.png`}
+                      alt=""
+                      width={44}
+                      height={44}
+                      style={{ objectFit: "contain", filter: "drop-shadow(0 2px 6px rgba(201,168,76,0.35))" }}
+                      onError={(e) => {
+                        // Insignia sin PNG entregado: degrada al icono SVG de estrella.
+                        const img = e.currentTarget;
+                        img.style.display = "none";
+                        const star = img.nextElementSibling as HTMLElement | null;
+                        if (star) star.style.display = "inline-flex";
+                      }}
+                    />
+                    <span style={{ display: "none" }}><StarIcon size={28} /></span>
+                  </span>
                 ) : (
                   <span style={{ color: MID, marginTop: 2 }}><LockIcon size={16} /></span>
                 )}

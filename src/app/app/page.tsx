@@ -69,7 +69,7 @@ type Mod = {
   // Icono propio opcional. Si existe el SVG en /assets/app-icons/<x>.svg, se pinta
   // con CSS mask (se tiñe al color del tema). Si no, cae al icono inline `I`.
   iconSrc?: string;
-  // ARTE del módulo (WebP en /assets/card-backgrounds/<x>.webp). Es el protagonista
+  // ARTE del módulo (WebP en /assets/card-backgrounds/<x>.png). Es el protagonista
   // visual de la card. Si falta (p.ej. álbum/penaltis aún sin arte), la card degrada
   // con elegancia al fondo base premium sin romper el layout.
   art?: string;
@@ -110,10 +110,10 @@ const CATS: Cat[] = [
     ctaBg: "linear-gradient(135deg,#e8cf6a,#f3df8a)", ctaBgHov: "linear-gradient(135deg,#f0d978,#fbe79a)",
     ctaColor: "#08111f", ctaBorder: "rgba(201,168,76,0.55)", ctaShadow: "0 8px 18px rgba(201,168,76,0.45)",
     mods: [
-      { icon: "predicciones", art: "/assets/card-backgrounds/predicciones.webp", title: "Predicciones", desc: "Acierta resultados y suma puntos.", href: "/app/predicciones", cta: "Predecir", estado: "Disponible" },
-      { icon: "trivia", art: "/assets/card-backgrounds/trivia-diaria.webp", title: "Trivia diaria", desc: "Responde preguntas del Mundial.", href: "/app/trivia", cta: "Responder", estado: "Disponible" },
-      { icon: "fantasy", art: "/assets/card-backgrounds/fantasy.webp", title: "Fantasy", desc: "Arma tu equipo y compite.", href: "/app/fantasy", cta: "Ver Fantasy", estado: "Disponible" },
-      { icon: "carrera", art: "/assets/card-backgrounds/modo-carrera.webp", title: "Modo Carrera", desc: "Dirige una selección como DT.", href: "/app/modo-carrera", cta: "Entrar", estado: "Nuevo" },
+      { icon: "predicciones", art: "/assets/card-backgrounds/predicciones.png", title: "Predicciones", desc: "Acierta resultados y suma puntos.", href: "/app/predicciones", cta: "Predecir", estado: "Disponible" },
+      { icon: "trivia", art: "/assets/card-backgrounds/trivia-diaria.png", title: "Trivia diaria", desc: "Responde preguntas del Mundial.", href: "/app/trivia", cta: "Responder", estado: "Disponible" },
+      { icon: "fantasy", art: "/assets/card-backgrounds/fantasy.png", title: "Fantasy", desc: "Arma tu equipo y compite.", href: "/app/fantasy", cta: "Ver Fantasy", estado: "Disponible" },
+      { icon: "carrera", art: "/assets/card-backgrounds/modo-carrera.png", title: "Modo Carrera", desc: "Dirige una selección como DT.", href: "/app/modo-carrera", cta: "Entrar", estado: "Nuevo" },
       // Ocultos hasta tener su arte/módulo listos. Al reactivar, añadir `art` cuando exista
       // (sin arte la card degrada al fondo base premium sin romper el layout):
       // { icon: "album", title: "Álbum", desc: "Colecciona y completa tu álbum.", href: "/app/album", cta: "Abrir", estado: "Disponible" },
@@ -133,10 +133,10 @@ const CATS: Cat[] = [
     ctaBgHov: "linear-gradient(135deg, rgba(255,120,90,0.52), rgba(45,210,230,0.42))",
     ctaColor: "#22120c", ctaBorder: "rgba(255,120,90,0.5)", ctaShadow: "0 8px 18px rgba(255,110,90,0.4)",
     mods: [
-      { icon: "matchcenter", art: "/assets/card-backgrounds/match-center.webp", title: "Match Center", desc: "Cada partido en vivo con estadísticas.", href: "/app/matchcenter", cta: "Ver", estado: "Disponible" },
-      { icon: "micro", art: "/assets/card-backgrounds/micro-predicciones.webp", title: "Micro-predicciones", desc: "Predice jugadas en directo.", href: "/app/micro", cta: "Jugar", estado: "Nuevo" },
-      { icon: "stories", art: "/assets/card-backgrounds/stories.webp", title: "Stories", desc: "Minuto a minuto del Mundial.", href: "/app/stories", cta: "Ver", estado: "Disponible" },
-      { icon: "streaming", art: "/assets/card-backgrounds/zona-streaming.webp", title: "Zona Streaming", desc: "Directos con creadores.", href: "/app/streaming", cta: "Entrar", estado: "Disponible" },
+      { icon: "matchcenter", art: "/assets/card-backgrounds/match-center.png", title: "Match Center", desc: "Cada partido en vivo con estadísticas.", href: "/app/matchcenter", cta: "Ver", estado: "Disponible" },
+      { icon: "micro", art: "/assets/card-backgrounds/micro-predicciones.png", title: "Micro-predicciones", desc: "Predice jugadas en directo.", href: "/app/micro", cta: "Jugar", estado: "Nuevo" },
+      { icon: "stories", art: "/assets/card-backgrounds/stories.png", title: "Stories", desc: "Minuto a minuto del Mundial.", href: "/app/stories", cta: "Ver", estado: "Disponible" },
+      { icon: "streaming", art: "/assets/card-backgrounds/zona-streaming.png", title: "Zona Streaming", desc: "Directos con creadores.", href: "/app/streaming", cta: "Entrar", estado: "Disponible" },
     ],
   },
   {
@@ -152,10 +152,10 @@ const CATS: Cat[] = [
     ctaBgHov: "linear-gradient(135deg, rgba(45,210,210,0.52), rgba(120,110,255,0.42))",
     ctaColor: "#0f1d2a", ctaBorder: "rgba(45,210,210,0.5)", ctaShadow: "0 8px 18px rgba(45,210,210,0.4)",
     mods: [
-      { icon: "rankings", art: "/assets/card-backgrounds/ranking-global.webp", title: "Ranking global", desc: "Compite por país y por creador.", href: "/app/rankings", cta: "Ver ranking", estado: "Disponible" },
-      { icon: "ligas", art: "/assets/card-backgrounds/ligas-privadas.webp", title: "Ligas privadas", desc: "Compite con amigos en tu liga.", href: "/app/ligas", cta: "Crear", estado: "Disponible" },
-      { icon: "chat", art: "/assets/card-backgrounds/chat-por-ligas.webp", title: "Chat por liga", desc: "Habla en vivo durante el partido.", href: "/app/chat", cta: "Entrar", estado: "Disponible" },
-      { icon: "iaCoach", art: "/assets/card-backgrounds/ia-coach.webp", title: "IA Coach", desc: "Tu analista personal con IA.", href: "/app/ia-coach", cta: "Abrir", estado: "Nuevo" },
+      { icon: "rankings", art: "/assets/card-backgrounds/ranking-global.png", title: "Ranking global", desc: "Compite por país y por creador.", href: "/app/rankings", cta: "Ver ranking", estado: "Disponible" },
+      { icon: "ligas", art: "/assets/card-backgrounds/ligas-privadas.png", title: "Ligas privadas", desc: "Compite con amigos en tu liga.", href: "/app/ligas", cta: "Crear", estado: "Disponible" },
+      { icon: "chat", art: "/assets/card-backgrounds/chat-por-ligas.png", title: "Chat por liga", desc: "Habla en vivo durante el partido.", href: "/app/chat", cta: "Entrar", estado: "Disponible" },
+      { icon: "iaCoach", art: "/assets/card-backgrounds/ia-coach.png", title: "IA Coach", desc: "Tu analista personal con IA.", href: "/app/ia-coach", cta: "Abrir", estado: "Nuevo" },
     ],
   },
   {
@@ -171,10 +171,10 @@ const CATS: Cat[] = [
     ctaBgHov: "linear-gradient(135deg, rgba(150,130,255,0.5), rgba(180,195,255,0.46))",
     ctaColor: "#16203a", ctaBorder: "rgba(150,130,255,0.5)", ctaShadow: "0 8px 18px rgba(150,130,255,0.4)",
     mods: [
-      { icon: "calendario", art: "/assets/card-backgrounds/calendario.webp", title: "Calendario", desc: "Todos los partidos del Mundial 2026.", href: "/calendario", cta: "Ver", estado: "Disponible" },
-      { icon: "grupos", art: "/assets/card-backgrounds/grupos.webp", title: "Grupos", desc: "Las 48 selecciones por grupo.", href: "/grupos", cta: "Ver", estado: "Disponible" },
-      { icon: "reglas", art: "/assets/card-backgrounds/reglas-de-puntos.webp", title: "Reglas de puntos", desc: "Cómo se puntúa cada acierto.", href: "/formato", cta: "Ver", estado: "Disponible" },
-      { icon: "guias", art: "/assets/card-backgrounds/guia-del-mundial.webp", title: "Guías del Mundial", desc: "Historia, datos y curiosidades.", href: "/historia", cta: "Leer", estado: "Disponible" },
+      { icon: "calendario", art: "/assets/card-backgrounds/calendario.png", title: "Calendario", desc: "Todos los partidos del Mundial 2026.", href: "/calendario", cta: "Ver", estado: "Disponible" },
+      { icon: "grupos", art: "/assets/card-backgrounds/grupos.png", title: "Grupos", desc: "Las 48 selecciones por grupo.", href: "/grupos", cta: "Ver", estado: "Disponible" },
+      { icon: "reglas", art: "/assets/card-backgrounds/reglas-de-puntos.png", title: "Reglas de puntos", desc: "Cómo se puntúa cada acierto.", href: "/formato", cta: "Ver", estado: "Disponible" },
+      { icon: "guias", art: "/assets/card-backgrounds/guia-del-mundial.png", title: "Guías del Mundial", desc: "Historia, datos y curiosidades.", href: "/historia", cta: "Leer", estado: "Disponible" },
     ],
   },
 ];
@@ -563,7 +563,7 @@ export default function AppHubPage() {
     eyebrow: "En vivo ahora",
     title: "El partido está en marcha",
     desc: "Sigue estadísticas, eventos y micro-predicciones en directo.",
-    art: "/assets/card-backgrounds/match-center.webp",
+    art: "/assets/card-backgrounds/match-center.png",
     cta1: { label: "Entrar al Match Center", href: matchHref },
     cta2: { label: "Micro-predicciones", href: "/app/micro" },
   };
@@ -573,7 +573,7 @@ export default function AppHubPage() {
     id: "match", kind: "base", accent: GOLD2, accent2: GOLD, ctaInk: NAVY, eyebrow: "Partido del día",
     title: <><span style={{ color: GOLD2 }}>{match.meta.home.name}</span> vs <span style={{ color: GOLD2 }}>{match.meta.away.name}</span> abre tu jornada</>,
     desc: "Consulta el directo, revisa datos y prepara tu predicción.",
-    art: "/assets/card-backgrounds/match-center.webp",
+    art: "/assets/card-backgrounds/match-center.png",
     cta1: { label: "Ver Match Center", href: matchHref },
     cta2: { label: "Hacer predicción", href: "/app/predicciones" },
   } : null;
@@ -581,7 +581,7 @@ export default function AppHubPage() {
     id: "base", kind: "base", accent: GOLD2, accent2: GOLD, ctaInk: NAVY, eyebrow: "Mundial 2026",
     title: <>Tu centro vivo del <span style={{ background: `linear-gradient(135deg,${GOLD},${GOLD2})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Mundial</span></>,
     desc: "Sigue el partido del día, entra al Match Center y compite con tus predicciones.",
-    art: "/assets/card-backgrounds/predicciones.webp",
+    art: "/assets/card-backgrounds/predicciones.png",
     cta1: { label: "Ver partido del día", href: matchHref },
     cta2: { label: "Explorar modos", href: "#modulos" },
   };
@@ -591,7 +591,7 @@ export default function AppHubPage() {
     eyebrow: "Reto diario",
     title: <>Trivia <span style={{ background: `linear-gradient(135deg,${GREEN},#7ce0b3)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>disponible</span></>,
     desc: "Responde y suma puntos extra para el ranking.",
-    art: "/assets/card-backgrounds/trivia-diaria.webp",
+    art: "/assets/card-backgrounds/trivia-diaria.png",
     cta1: { label: "Responder trivia", href: "/app/trivia" },
     cta2: { label: "Ver ranking", href: "/app/rankings" },
   };

@@ -294,6 +294,7 @@ export default function SeasonView({
   onResolveMatch,
   onChoose,
   onSetCaptain,
+  onSetLineup,
   onNextSeason,
 }: {
   career: CareerState;
@@ -304,6 +305,7 @@ export default function SeasonView({
   onResolveMatch: (gf: number, ga: number, wasBehind?: boolean, injury?: Injury, moraleDelta?: number) => PlayResult | null;
   onChoose: (entryId: string, choiceId: string) => void;
   onSetCaptain: (player: string) => void;
+  onSetLineup?: (formation: string, lineup: string[]) => void;
   onNextSeason: () => void;
 }) {
   const { season } = career;
@@ -579,6 +581,7 @@ export default function SeasonView({
           match={nextMatch}
           onFinish={finishMatch}
           onCancel={() => setLive(false)}
+          onLineupChange={onSetLineup}
         />
       )}
 

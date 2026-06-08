@@ -29,6 +29,7 @@ import { buildBoardObjective, evaluateSeason } from "./board";
 import { injuryPenalty, tickInjuries, rollInjury, activeInjuries } from "./injuries";
 import { suspensionPenalty, tickSuspensions, rollSuspension, activeSuspensions } from "./suspensions";
 import { buildPressConference } from "./press";
+import { squadBonus } from "./lineup";
 import { SELECCIONES, type Seleccion } from "@/data/selecciones";
 
 const now = () => new Date().toISOString();
@@ -138,6 +139,11 @@ function attackDefense(c: CareerState): { atk: number; def: number } {
     default:
       break;
   }
+  // Dibujo + once titular elegidos por el DT: la formación aporta su sesgo y el
+  // once, un delta de calidad (alinear a tus mejores ≈ techo; sentarlos resta).
+  const sq = squadBonus(c);
+  atk += sq.atk;
+  def += sq.def;
   return { atk, def };
 }
 

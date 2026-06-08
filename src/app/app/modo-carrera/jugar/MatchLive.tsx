@@ -20,6 +20,8 @@ import { SELECCIONES } from "@/data/selecciones";
 import { FANTASY_ROSTERS, type RosterPlayer } from "@/data/fantasy-rosters";
 import { classicLabel } from "@/lib/modo-carrera/classics";
 import { Kit, Confetti, Coach } from "./Visuals";
+import LineupEditor from "./LineupEditor";
+import { formationById, resolveLineup, xiRating, bestXI, lineupValid } from "@/lib/modo-carrera/lineup";
 import {
   TACTICAL_PLANS,
   planById,
@@ -147,11 +149,14 @@ export default function MatchLive({
   match,
   onFinish,
   onCancel,
+  onLineupChange,
 }: {
   career: CareerState;
   match: SeasonMatch;
   onFinish: (gf: number, ga: number, wasBehind: boolean, injury?: Injury, moraleDelta?: number) => void;
   onCancel: () => void;
+  /** Persiste el dibujo + once elegidos en la carrera (para próximos partidos). */
+  onLineupChange?: (formation: string, lineup: string[]) => void;
 }) {
   const selfSlug = career.identity.nationSlug ?? "";
   const oppSlug = match.opponentSlug;
@@ -187,8 +192,32 @@ export default function MatchLive({
   const shootoutRef = useRef<ShootoutResult | null>(null);
   const etRef = useRef<{ gfEt: number; gaEt: number } | null>(null);
 
+  // Formación + once titular elegidos por el DT (Pilar 1: agencia). Se inicializan
+  // del plantel guardado y se aplican a ESTE partido vía liveCareer; el callback
+  // los persiste para los siguientes. Editable solo antes del saque (fase plan).
+  const [formation, setFormation] = useState<string>(career.squad?.formation ?? "4-4-2");
+  const [lineup, setLineup] = useState<string[]>(career.squad?.lineup ?? []);
+  const [editingLineup, setEditingLineup] = useState(false);
+
+  // Carrera "en vivo": misma carrera con el dibujo+once actuales inyectados en el
+  // plantel, para que kickoff()/matchLambdas() lean la alineación recién elegida.
+  const liveCareer: CareerState = useMemo(
+    () => ({ ...career, squad: { injuries: [], ...career.squad, formation, lineup } }),
+    [career, formation, lineup],
+  );
+
   const selfKey = useMemo(() => keyPlayers(selfSlug), [selfSlug]);
   const oppKey = useMemo(() => keyPlayers(oppSlug), [oppSlug]);
+
+  // Resumen del dibujo + once para la pantalla de plan: valoración media del once
+  // efectivo (el guardado si es válido; si no, el mejor once por defecto).
+  const xiInfo = useMemo(() => {
+    const roster = FANTASY_ROSTERS[selfSlug] ?? [];
+    const f = formationById(formation);
+    const custom = lineupValid(lineup, roster, f);
+    const players = custom ? resolveLineup(lineup, roster) : bestXI(roster, f);
+    return { rating: xiRating(players), formationName: f.name, custom };
+  }, [selfSlug, formation, lineup]);
 
   // Reloj con RITMO CINEMATOGRÁFICO: setTimeout recursivo para variar el tempo
   // minuto a minuto (acelera a media, frena en el tramo final) y DETENERSE
@@ -267,7 +296,7 @@ export default function MatchLive({
   };
 
   const startMatch = (plan: TacticalPlan) => {
-    const ls = kickoff(career, match, plan);
+    const ls = kickoff(liveCareer, match, plan);
     lsRef.current = ls;
     setPlanId(plan.id);
     setEvents(buildEvents(ls.gf1, ls.ga1, selfSlug, oppSlug, 3, 58));
@@ -531,6 +560,38 @@ export default function MatchLive({
                 </div>
               ))}
             </div>
+
+            {/* Formación + once titular (impacta el rendimiento real del equipo) */}
+            <button
+              type="button"
+              onClick={() => setEditingLineup(true)}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 12,
+                width: "100%",
+                textAlign: "left",
+                padding: "11px 14px",
+                borderRadius: 12,
+                cursor: "pointer",
+                background: BG3,
+                border: `1px solid ${GOLD}55`,
+                marginBottom: 14,
+              }}
+            >
+              <span style={{ fontSize: 18, fontWeight: 900, color: GOLD2, minWidth: 56 }}>{xiInfo.formationName}</span>
+              <span style={{ flex: 1, minWidth: 0 }}>
+                <span style={{ display: "block", fontSize: 12.5, fontWeight: 800, color: "#fff" }}>
+                  {xiInfo.custom ? "Tu once titular" : "Once automático (mejor 11)"}
+                </span>
+                <span style={{ display: "block", fontSize: 11.5, color: MID, marginTop: 1 }}>
+                  Valoración del once: <b style={{ color: GOLD2 }}>{xiInfo.rating ? xiInfo.rating.toFixed(0) : "--"}</b> · toca para editar
+                </span>
+              </span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+                <path d="M9 6l6 6-6 6" stroke={GOLD} strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
 
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
               <Coach pose="neutral" size={56} slug={selfSlug} />
@@ -921,6 +982,20 @@ export default function MatchLive({
           </div>
         )}
       </div>
+
+      {/* Editor de formación + once (overlay sobre la pantalla de plan) */}
+      {editingLineup && (
+        <LineupEditor
+          career={liveCareer}
+          onClose={() => setEditingLineup(false)}
+          onSave={(f, l) => {
+            setFormation(f);
+            setLineup(l);
+            onLineupChange?.(f, l);
+            setEditingLineup(false);
+          }}
+        />
+      )}
     </div>
   );
 }

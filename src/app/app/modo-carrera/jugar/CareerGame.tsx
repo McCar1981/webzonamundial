@@ -193,6 +193,9 @@ export default function CareerGame() {
   // Designa capitán: persiste en el plantel y suma un plus de liderazgo (dtBonus).
   const handleSetCaptain = (player: string) =>
     setCareer((c) => (c ? { ...c, squad: { injuries: [], ...c.squad, captain: player }, updatedAt: new Date().toISOString() } : c));
+  // Guarda el dibujo + once titular: impacta la fuerza real del equipo (squadBonus).
+  const handleSetLineup = (formation: string, lineup: string[]) =>
+    setCareer((c) => (c ? { ...c, squad: { injuries: [], ...c.squad, formation, lineup }, updatedAt: new Date().toISOString() } : c));
 
   // Genera una entrada de narrativa (IA en el servidor; si falla, plantilla local).
   const handleGenerate = async (kind: NarrativeKind) => {
@@ -351,6 +354,7 @@ export default function CareerGame() {
           onResolveMatch={handleResolveMatch}
           onChoose={handleChoose}
           onSetCaptain={handleSetCaptain}
+          onSetLineup={handleSetLineup}
           onNextSeason={handleNextSeason}
         />
       )}

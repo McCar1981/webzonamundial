@@ -175,6 +175,10 @@ export interface SquadState {
   suspensions?: Suspension[];
   /** Nombre del capitán designado por el DT (bonus de moral/liderazgo). */
   captain?: string | null;
+  /** Dibujo táctico elegido (id de FORMATIONS). Ausente = 4-4-2 por defecto. */
+  formation?: string;
+  /** Once titular designado (nombres del roster). Ausente = mejor once posible. */
+  lineup?: string[];
 }
 
 // ─── Motor de temporada (bucle de juego) ─────────────────────────────────────

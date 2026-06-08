@@ -372,8 +372,8 @@ function KitSection({ hasActivePlan }: { hasActivePlan: boolean }) {
         </h2>
         <p style={{ color: MID, fontSize: 13.5, margin: "5px 0 14px", maxWidth: 480, lineHeight: 1.5 }}>
           {hasActivePlan
-            ? "Descarga tus carteles, compártelos en redes y abre la pantalla TV para empezar a recibir participantes."
-            : "Activa tu plan para descargar carteles, QR y materiales para redes."}
+            ? "Incluido en tu plan: descarga tus carteles, compártelos en redes y abre la pantalla TV para empezar a recibir participantes."
+            : "Incluido en todos los planes: carteles, QR y materiales para redes listos para descargar."}
         </p>
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 16 }}>
           {items.map((it) => (
@@ -383,15 +383,30 @@ function KitSection({ hasActivePlan }: { hasActivePlan: boolean }) {
             </div>
           ))}
         </div>
-        {hasActivePlan ? (
+        {hasActivePlan && (
           <a href="/bar-dashboard/kit" style={{ display: "inline-flex", alignItems: "center", gap: 7, background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: "#1A1208", fontWeight: 800, fontSize: 14, padding: "11px 18px", borderRadius: 999, textDecoration: "none" }}>
             <Sparkles size={16} /> Abrir kit de activación
           </a>
-        ) : (
-          <a href="/bares/precios" target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 7, background: "rgba(255,255,255,0.06)", color: "#E2E8F0", border: BORDER, fontWeight: 800, fontSize: 14, padding: "11px 18px", borderRadius: 999, textDecoration: "none" }}>
-            <CreditCard size={16} /> Activar plan
-          </a>
         )}
+
+        {/* Póster impreso opcional: el kit digital es gratis; quien quiera el cartel
+            impreso y enviado a su local paga un recargo de 8€ (envío incluido). */}
+        <div style={{ marginTop: 14, paddingTop: 14, borderTop: BORDER, display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
+          <div style={{ flex: "1 1 240px", minWidth: 0 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 7, fontWeight: 800, fontSize: 13.5 }}>
+              <Printer size={16} color={GOLD2} /> ¿Lo quieres impreso?
+            </div>
+            <p style={{ color: MID, fontSize: 12.5, margin: "4px 0 0", lineHeight: 1.5 }}>
+              Te enviamos el póster impreso a tu local por <strong style={{ color: "#E2E8F0" }}>8&nbsp;€</strong> (envío incluido).
+            </p>
+          </div>
+          <a
+            href="mailto:gol@zonamundial.app?subject=Quiero%20el%20p%C3%B3ster%20impreso%20(8%E2%82%AC)&body=Hola%2C%20quiero%20recibir%20el%20p%C3%B3ster%20de%20mi%20porra%20impreso%20por%208%E2%82%AC%20(env%C3%ADo%20incluido).%20Mi%20bar%20es%3A%20"
+            style={{ display: "inline-flex", alignItems: "center", gap: 7, background: "rgba(255,255,255,0.06)", color: "#E2E8F0", border: BORDER, fontWeight: 800, fontSize: 13.5, padding: "10px 16px", borderRadius: 999, textDecoration: "none", whiteSpace: "nowrap" }}
+          >
+            <Printer size={15} /> Pedir impreso · 8€
+          </a>
+        </div>
       </div>
     </section>
   );

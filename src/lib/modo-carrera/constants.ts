@@ -138,6 +138,14 @@ export const TITLES: TitleDef[] = [
   { id: "remontada", name: "Rey de la remontada", description: "Gana tras ir perdiendo." },
   { id: "campeon", name: "Campeón del Mundo", description: "Levanta la copa." },
   { id: "dinastia", name: "Dinastía", description: "Gana dos torneos seguidos." },
+  // ── Hitos de carrera de largo plazo (varias temporadas) ──
+  { id: "veterano", name: "Veterano del banquillo", description: "Dirige 50 partidos." },
+  { id: "centenario", name: "Centenario", description: "Dirige 100 partidos." },
+  { id: "centurion", name: "Centurión", description: "Acumula 50 victorias." },
+  { id: "goleador", name: "Goleador histórico", description: "Tu equipo marca 100 goles." },
+  { id: "bicampeon", name: "Bicampeón del Mundo", description: "Gana dos Mundiales." },
+  { id: "tricampeon", name: "Hegemonía mundial", description: "Gana tres Mundiales." },
+  { id: "leyenda_banquillo", name: "Leyenda del banquillo", description: "Alcanza el rango Leyenda (overall 88)." },
 ];
 
 // ─── Curva de XP / overall (Pilar 2) ─────────────────────────────────────────

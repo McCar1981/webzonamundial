@@ -664,6 +664,14 @@ export function resolveMatch(
   // marcador (lo aporta el partido interactivo, que sí conoce el desarrollo).
   if (outcome === "V" && opts?.wasBehind) addTitle("remontada");
 
+  // Hitos de carrera de largo plazo (a partir de los récords acumulados): dan al
+  // DT metas a varias temporadas vista, no solo el título de cada Mundial.
+  if (records.matchesPlayed >= 50) addTitle("veterano");
+  if (records.matchesPlayed >= 100) addTitle("centenario");
+  if (records.wins >= 50) addTitle("centurion");
+  if (records.goalsFor >= 100) addTitle("goleador");
+  if (c0.progression.overall >= 88) addTitle("leyenda_banquillo");
+
   // ── Trofeo (campeón) ──
   let newTrophy: Trophy | null = null;
   let trophies = c0.legacy.trophies;
@@ -673,6 +681,9 @@ export function resolveMatch(
     newTrophy = { id: `trofeo-s${season.season}`, name: "Copa del Mundo", season: season.season, wonAt: now() };
     trophies = [...trophies, newTrophy];
     records.titlesWon += 1;
+    // Hegemonía: dos y tres Mundiales acumulados (no necesariamente seguidos).
+    if (records.titlesWon >= 2) addTitle("bicampeon");
+    if (records.titlesWon >= 3) addTitle("tricampeon");
   }
 
   // ── Reputación ──

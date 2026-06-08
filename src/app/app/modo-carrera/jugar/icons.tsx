@@ -55,6 +55,15 @@ export function BoltIcon({ size = 18 }: IconProps) {
   );
 }
 
+export function CoinIcon({ size = 18 }: IconProps) {
+  return (
+    <svg {...base(size)}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M9.5 9a2.5 2.5 0 0 1 5 0M9.5 15a2.5 2.5 0 0 0 5 0M12 7.5v9" />
+    </svg>
+  );
+}
+
 export function MissionIcon({ kind, size = 18 }: { kind: MissionKind; size?: number }) {
   const b = base(size);
   switch (kind) {

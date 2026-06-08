@@ -168,6 +168,15 @@ export interface Suspension {
   reason: SuspensionReason;
 }
 
+/**
+ * Plan de concentración para el próximo partido: las sesiones de entrenamiento
+ * que el DT eligió en la semana previa. Se consume al disputar el encuentro.
+ */
+export interface PrepPlan {
+  /** Ids de las sesiones elegidas (de PREP_SESSIONS). */
+  sessions: string[];
+}
+
 /** Estado del plantel: lesiones, sanciones y capitán designado. */
 export interface SquadState {
   injuries: Injury[];
@@ -179,6 +188,10 @@ export interface SquadState {
   formation?: string;
   /** Once titular designado (nombres del roster). Ausente = mejor once posible. */
   lineup?: string[];
+  /** Frescura del grupo (0-100), se arrastra de un partido al siguiente. */
+  frescura?: number;
+  /** Concentración elegida para el próximo partido. Ausente = sin trabajar. */
+  prep?: PrepPlan | null;
 }
 
 // ─── Motor de temporada (bucle de juego) ─────────────────────────────────────

@@ -20,7 +20,9 @@ import { getUserTimezone } from "@/lib/bracket/match-time";
 import { DEMAND_LABEL, VERDICT_LABEL } from "@/lib/modo-carrera/board";
 import { TITLES } from "@/lib/modo-carrera/constants";
 import type { CareerState, SeasonMatch, NarrativeEntry, Injury } from "@/lib/modo-carrera/types";
+import { getFrescura, type PrepSessionId } from "@/lib/modo-carrera/concentracion";
 import MatchLive from "./MatchLive";
+import Concentracion from "./Concentracion";
 import { Kit, Confetti } from "./Visuals";
 
 const OUTCOME_LABEL = { V: "Victoria", E: "Empate", D: "Derrota" } as const;
@@ -248,6 +250,32 @@ function SuspensionsPanel({ career }: { career: CareerState }) {
   );
 }
 
+/** Indicador de frescura del grupo (recurso de la concentración entre partidos). */
+function FrescuraPanel({ career }: { career: CareerState }) {
+  const f = Math.round(getFrescura(career));
+  const color = f >= 70 ? GREEN : f >= 45 ? GOLD2 : RED;
+  const label = f >= 80 ? "Pletórico" : f >= 60 ? "En forma" : f >= 40 ? "Justo" : f >= 20 ? "Cansado" : "Fundido";
+  return (
+    <div style={{ marginBottom: 14, padding: 14, borderRadius: 14, background: BG3, border: `1px solid ${color}33` }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, marginBottom: 8 }}>
+        <span style={{ fontSize: 12, fontWeight: 800, letterSpacing: 0.6, textTransform: "uppercase", color: GOLD }}>
+          Frescura del grupo
+        </span>
+        <span style={{ fontSize: 14, fontWeight: 900, color }}>
+          {f}
+          <span style={{ fontSize: 11, fontWeight: 700, color: DIM }}> · {label}</span>
+        </span>
+      </div>
+      <div style={{ height: 8, borderRadius: 999, background: "rgba(255,255,255,0.08)", overflow: "hidden" }}>
+        <div style={{ width: `${f}%`, height: "100%", background: color, transition: "width .3s" }} />
+      </div>
+      <div style={{ fontSize: 11, color: DIM, marginTop: 8, lineHeight: 1.5 }}>
+        Antes de cada partido, concentra al grupo y elige cómo entrenar. La recuperación recarga frescura; el trabajo físico exige.
+      </div>
+    </div>
+  );
+}
+
 /** Icono SVG de brazalete de capitán. Sin emojis. */
 function CaptainIcon({ size = 16, color = GOLD }: { size?: number; color?: string }) {
   return (
@@ -338,6 +366,7 @@ export default function SeasonView({
   onChoose,
   onSetCaptain,
   onSetLineup,
+  onSetPrep,
   onNextSeason,
 }: {
   career: CareerState;
@@ -349,10 +378,12 @@ export default function SeasonView({
   onChoose: (entryId: string, choiceId: string) => void;
   onSetCaptain: (player: string) => void;
   onSetLineup?: (formation: string, lineup: string[]) => void;
+  onSetPrep?: (sessions: string[]) => Injury | null;
   onNextSeason: () => void;
 }) {
   const { season } = career;
   const [live, setLive] = useState(false);
+  const [prepping, setPrepping] = useState(false);
   const [reveal, setReveal] = useState<PlayResult | null>(null);
   const [pressConf, setPressConf] = useState<NarrativeEntry | null>(null);
   const [nowMs, setNowMs] = useState<number>(() => Date.now());
@@ -486,8 +517,10 @@ export default function SeasonView({
   const locked = lockMs > 0;
 
   const openMatch = () => {
-    if (live || !nextMatch || locked) return;
-    setLive(true);
+    if (live || prepping || !nextMatch || locked) return;
+    // Antes del partido: semana de concentración (preparación y entrenamiento).
+    if (onSetPrep) setPrepping(true);
+    else setLive(true);
   };
 
   const finishMatch = (gf: number, ga: number, wasBehind?: boolean, injury?: Injury, moraleDelta?: number) => {
@@ -606,6 +639,7 @@ export default function SeasonView({
       )}
 
       {/* Bajas (lesiones) del plantel */}
+      {!season.finished && <FrescuraPanel career={career} />}
       {!season.finished && <CaptainPanel career={career} onSetCaptain={onSetCaptain} />}
       {!season.finished && <InjuriesPanel career={career} />}
       {!season.finished && <SuspensionsPanel career={career} />}
@@ -621,6 +655,20 @@ export default function SeasonView({
           />
         ))}
       </div>
+
+      {/* Concentración: semana de preparación previa al partido */}
+      {prepping && nextMatch && onSetPrep && (
+        <Concentracion
+          career={career}
+          opponentName={sel(nextMatch.opponentSlug)?.nombre ?? nextMatch.opponentSlug}
+          onConfirm={(sessions: PrepSessionId[]) => onSetPrep(sessions)}
+          onPlay={() => {
+            setPrepping(false);
+            setLive(true);
+          }}
+          onCancel={() => setPrepping(false)}
+        />
+      )}
 
       {/* Partido interactivo */}
       {live && nextMatch && (

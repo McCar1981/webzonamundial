@@ -31,6 +31,7 @@ import { suspensionPenalty, tickSuspensions, rollSuspension, activeSuspensions }
 import { buildPressConference } from "./press";
 import { buildDressingRoomEvent } from "./vestuario";
 import { squadBonus } from "./lineup";
+import { concentracionBonus, frescuraAfterMatch, prepMorale } from "./concentracion";
 import { SELECCIONES, type Seleccion } from "@/data/selecciones";
 
 const now = () => new Date().toISOString();
@@ -157,6 +158,11 @@ function attackDefense(c: CareerState): { atk: number; def: number } {
   const sq = squadBonus(c);
   atk += sq.atk;
   def += sq.def;
+  // Concentración: la semana de entrenamiento y la frescura del grupo afinan (o
+  // lastran) cómo llega el equipo a ESTE partido.
+  const prep = concentracionBonus(c);
+  atk += prep.atk;
+  def += prep.def;
   return { atk, def };
 }
 
@@ -546,9 +552,13 @@ export function resolveMatch(
 
   // ── Moral ──
   // El resultado mueve la moral; la charla técnica al descanso (partido jugable)
-  // aporta su propio delta, que llega ya resuelto desde MatchLive.
+  // aporta su propio delta, que llega ya resuelto desde MatchLive. La semana de
+  // concentración también deja su huella anímica (recuperación, pizarra…).
   let morale = clamp(
-    c0.progression.morale + (outcome === "V" ? 6 : outcome === "E" ? 1 : -8) + (opts?.moraleDelta ?? 0),
+    c0.progression.morale +
+      (outcome === "V" ? 6 : outcome === "E" ? 1 : -8) +
+      (opts?.moraleDelta ?? 0) +
+      prepMorale(c0),
     0,
     100,
   );
@@ -868,7 +878,9 @@ export function resolveMatch(
     narrative: narrative.slice(0, MAX_NARRATIVE),
     legacy: { trophies, records },
     board,
-    squad: { ...c0.squad, injuries, suspensions },
+    // La concentración se consume al jugar: se actualiza la frescura para la
+    // semana siguiente y se vacía el plan de sesiones elegido.
+    squad: { ...c0.squad, injuries, suspensions, frescura: frescuraAfterMatch(c0), prep: null },
     season: { ...season, fixtures, cursor: idx + 1, stage, finished },
     updatedAt: now(),
   };

@@ -19,6 +19,7 @@ import { beginLiveSeason, hasLiveFixtures } from "@/lib/modo-carrera/live-season
 import { ensureMissions, advanceMission, claimMission } from "@/lib/modo-carrera/missions";
 import { claimStreak } from "@/lib/modo-carrera/streak";
 import { templateEntry, type NarrativeContext } from "@/lib/modo-carrera/narrative";
+import { rollTrainingInjury, prepSessionById, type PrepSessionId } from "@/lib/modo-carrera/concentracion";
 import { PHILOSOPHIES } from "@/lib/modo-carrera/constants";
 import { SELECCIONES } from "@/data/selecciones";
 import { fetchServerCareer, saveServerCareer, requestNarrative, refillNarrative, fetchEntitlement } from "./api";
@@ -196,6 +197,25 @@ export default function CareerGame() {
   // Guarda el dibujo + once titular: impacta la fuerza real del equipo (squadBonus).
   const handleSetLineup = (formation: string, lineup: string[]) =>
     setCareer((c) => (c ? { ...c, squad: { injuries: [], ...c.squad, formation, lineup }, updatedAt: new Date().toISOString() } : c));
+  // Concentración previa al partido: persiste las sesiones elegidas y tira por una
+  // posible lesión de entrenamiento (la físicas exigen). Devuelve la baja o null
+  // para que la pantalla la muestre antes de saltar al partido.
+  const handleSetPrep = (sessions: string[]): Injury | null => {
+    if (!career) return null;
+    const valid = sessions.filter((s): s is PrepSessionId => !!prepSessionById(s));
+    const current = career.squad?.injuries ?? [];
+    const inj = rollTrainingInjury(career, valid, current);
+    setCareer((c) => {
+      if (!c) return c;
+      const nextInjuries = inj ? [...(c.squad?.injuries ?? []), inj] : c.squad?.injuries ?? [];
+      return {
+        ...c,
+        squad: { ...c.squad, injuries: nextInjuries, prep: { sessions: valid } },
+        updatedAt: new Date().toISOString(),
+      };
+    });
+    return inj;
+  };
 
   // Genera una entrada de narrativa (IA en el servidor; si falla, plantilla local).
   const handleGenerate = async (kind: NarrativeKind) => {
@@ -236,7 +256,7 @@ export default function CareerGame() {
           zIndex: 0,
           pointerEvents: "none",
           backgroundImage:
-            "linear-gradient(rgba(6,11,20,0.84), rgba(6,11,20,0.93)), url('/img/modo-carrera/hub-bg.png')",
+            "linear-gradient(rgba(6,11,20,0.84), rgba(6,11,20,0.93)), url('/img/modo-carrera/hub-bg.webp')",
           backgroundSize: "cover",
           backgroundPosition: "center top",
         }}
@@ -355,6 +375,7 @@ export default function CareerGame() {
           onChoose={handleChoose}
           onSetCaptain={handleSetCaptain}
           onSetLineup={handleSetLineup}
+          onSetPrep={handleSetPrep}
           onNextSeason={handleNextSeason}
         />
       )}

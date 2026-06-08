@@ -458,6 +458,101 @@ export async function sendBarPlanConfirmationEmail(opts: {
 }
 
 /**
+ * Email de alta en la PORRA DE UN BAR (módulo B2B).
+ *
+ * Se envía UNA sola vez, cuando un cliente del bar se une por primera vez a la
+ * peña (ver src/app/api/bars/join/route.ts → !alreadyMember). A diferencia del
+ * resto de correos, aquí el PROTAGONISTA es el BAR: su logo, su nombre y su
+ * porra son el héroe del email; ZonaMundial aparece de forma SECUNDARIA (la
+ * plataforma que lo hace posible) en el pie.
+ *
+ * IMPORTANTE: es una plantilla AUTÓNOMA (no usa brandedEmail, que lidera con el
+ * logo de ZM) precisamente para no tocar ningún otro proceso de correo.
+ */
+export async function sendBarPorraWelcomeEmail(opts: {
+  to: string;
+  barName: string;
+  barSlug: string;
+  logoUrl?: string | null;
+  accent?: string | null;     // color de acento del tema del bar
+  accentInk?: string | null;  // color de texto sobre el acento
+  prizeTitle?: string | null;
+  entryFeeNote?: string | null;
+}): Promise<boolean> {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://zonamundial.app';
+  const accent = opts.accent || '#C9A84C';
+  const accentInk = opts.accentInk || '#1A1208';
+  const barName = escapeHtml(opts.barName);
+  const barUrl = `${siteUrl}/b/${encodeURIComponent(opts.barSlug)}`;
+
+  // Avatar del bar: logo si lo hay, si no la inicial sobre el acento.
+  const avatar = opts.logoUrl
+    ? `<img src="${escapeHtml(opts.logoUrl)}" width="84" height="84" alt="${barName}" style="display:block;width:84px;height:84px;border-radius:18px;object-fit:cover;border:3px solid ${accent};">`
+    : `<div style="width:84px;height:84px;border-radius:18px;border:3px solid ${accent};background:#0F1D32;color:${accent};font-size:38px;font-weight:800;line-height:84px;text-align:center;">${escapeHtml(opts.barName.charAt(0).toUpperCase())}</div>`;
+
+  const prizeBlock = opts.prizeTitle
+    ? `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:18px 0 0;">
+         <tr><td style="background:#FFFBF0;border:1px solid #F0E2BF;border-radius:12px;padding:14px 18px;">
+           <div style="font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#8C7437;">Premio principal</div>
+           <div style="font-size:16px;font-weight:700;color:#111827;margin-top:4px;">${escapeHtml(opts.prizeTitle)}</div>
+         </td></tr>
+       </table>`
+    : '';
+
+  const feeBlock = opts.entryFeeNote && opts.entryFeeNote.trim()
+    ? `<p style="margin:16px 0 0;font-size:13px;color:#6b7280;line-height:1.5;">
+         <strong style="color:#111827;">Inscripción:</strong> ${escapeHtml(opts.entryFeeNote.trim())}<br>
+         <span style="font-size:12px;">La inscripción la cobra y la gestiona ${barName} directamente en el local. ZonaMundial no procesa este pago.</span>
+       </p>`
+    : '';
+
+  const html = `<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#0B1825;">
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;">Ya estás dentro de la porra de ${barName}. Predice los partidos del Mundial y compite por los premios del local.</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0B1825;padding:24px 12px;">
+  <tr><td align="center">
+    <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;font-family:Arial,sans-serif;color:#1f2937;">
+      <!-- HERO: el BAR es el protagonista -->
+      <tr><td style="background:linear-gradient(135deg,#0F1D32,#0B1825);padding:34px 32px 28px;text-align:center;border-radius:16px 16px 0 0;">
+        <div style="margin:0 auto 14px;width:84px;">${avatar}</div>
+        <p style="color:${accent};margin:0 0 6px;font-size:12px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;">Peña Mundialista 2026</p>
+        <h1 style="margin:0;color:#ffffff;font-size:26px;line-height:1.2;letter-spacing:-0.02em;">${barName}</h1>
+      </td></tr>
+      <!-- CUERPO -->
+      <tr><td style="padding:32px;background:#ffffff;border-radius:0 0 16px 16px;">
+        <h2 style="margin:0 0 14px;color:#111827;font-size:21px;letter-spacing:-0.01em;">¡Ya estás dentro de la porra de ${barName}!</h2>
+        <p style="line-height:1.7;margin:0 0 16px;font-size:15px;color:#1f2937;">
+          Predice los partidos del <strong>Mundial 2026</strong> desde tu móvil, sube en el
+          <strong>ranking de ${barName}</strong> y compite con el resto de la clientela del local.
+        </p>
+        ${prizeBlock}
+        ${feeBlock}
+        <div style="text-align:center;margin-top:26px;">
+          <a href="${barUrl}" style="display:inline-block;padding:14px 30px;background:${accent};color:${accentInk};text-decoration:none;border-radius:99px;font-weight:800;font-size:15px;">
+            Entrar a la porra de ${barName}
+          </a>
+        </div>
+        <hr style="border:none;border-top:1px solid #e5e7eb;margin:30px 0 16px;">
+        <p style="font-size:12px;color:#9ca3af;text-align:center;margin:0;line-height:1.6;">
+          Powered by <strong style="color:#6b7280;">ZonaMundial</strong> · zonamundial.app<br>
+          Tu cuenta también te da acceso a toda la plataforma. Si no esperabas este email, puedes ignorarlo.
+        </p>
+      </td></tr>
+    </table>
+  </td></tr>
+</table>
+</body></html>`;
+
+  return sendEmail({
+    to: opts.to,
+    subject: `Ya estás en la porra de ${opts.barName}`,
+    html,
+  });
+}
+
+/**
  * Confirmación de compra del Founders Pass.
  */
 export async function sendFounderConfirmationEmail(opts: {

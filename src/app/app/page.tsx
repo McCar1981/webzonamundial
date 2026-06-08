@@ -710,7 +710,7 @@ export default function AppHubPage() {
             key={hero.art} src={hero.art} alt="" aria-hidden loading="lazy" decoding="async" className="zm-hero-art"
             style={{
               position: "absolute", inset: 0, width: "100%", height: "100%", zIndex: 0,
-              objectFit: "cover", objectPosition: "85% 38%", pointerEvents: "none", opacity: 0.62,
+              objectFit: "cover", objectPosition: "center 38%", pointerEvents: "none", opacity: 0.62,
               WebkitMaskImage: "linear-gradient(90deg, transparent 30%, rgba(0,0,0,0.5) 62%, #000 100%)",
               maskImage: "linear-gradient(90deg, transparent 30%, rgba(0,0,0,0.5) 62%, #000 100%)",
             }}

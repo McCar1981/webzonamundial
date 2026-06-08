@@ -432,15 +432,15 @@ export default function AppHubPage() {
   const [match, setMatch] = useState<Featured>(null);
   // ¿El usuario ya jugó la trivia diaria HOY? null = sin saber todavía.
   const [triviaPlayedToday, setTriviaPlayedToday] = useState<boolean | null>(null);
-  // Preview manual del hero: /app?hero=live|reto|base (solo para revisar diseño).
-  const [heroOverride, setHeroOverride] = useState<"live" | "reto" | "base" | null>(null);
+  // Preview manual del hero: /app?hero=live|match|reto|base (solo para diseño).
+  const [heroOverride, setHeroOverride] = useState<"live" | "match" | "reto" | "base" | null>(null);
   // Carrusel del hero: índice de la pantalla visible (rota sola entre estados).
   const [heroIdx, setHeroIdx] = useState(0);
   const { canInstall, install } = useInstallPrompt();
 
   useEffect(() => {
     const h = new URLSearchParams(window.location.search).get("hero");
-    if (h === "live" || h === "reto" || h === "base") setHeroOverride(h);
+    if (h === "live" || h === "match" || h === "reto" || h === "base") setHeroOverride(h);
   }, []);
 
   // Sesión + perfil (degradación limpia si faltan envs)
@@ -508,10 +508,12 @@ export default function AppHubPage() {
   // Acentos "en vivo" (no están en la paleta base): coral + cian de retransmisión.
   const CORAL = "#ff6b5a";
 
-  // ── HERO dinámico (Live Hub) ── carrusel de pantallas con prioridad:
-  //   1) live  → hay partido en marcha (lo más urgente; solo si aplica)
-  //   2) reto  → la trivia diaria sigue pendiente hoy (solo si aplica)
-  //   3) promos fijas → base + módulos destacados (siempre rotan)
+  // ── HERO dinámico (Live Hub) ── slider CONTEXTUAL (no promo de módulos).
+  //   El hero responde a "¿qué pasa ahora en ZonaMundial?". Prioridad:
+  //   1) live    → partido en marcha (obligatorio primero)
+  //   2) partido → partido del día / próximo (protagonista del contexto)
+  //   3) base    → estado general de la app
+  //   4) reto    → trivia pendiente (secundario, NUNCA primera impresión)
   const GREEN = "#36c98f";
   const retoAvailable = !live && triviaPlayedToday === false;
   // Icono de "play" por defecto del CTA primario (se tiñe del color de texto).
@@ -524,10 +526,28 @@ export default function AppHubPage() {
     icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#1a0d08" strokeWidth="1.8" /><circle cx="12" cy="12" r="3" fill="#1a0d08" /></svg>,
     eyebrow: "En vivo ahora",
     title: "El partido está en marcha",
-    desc: "Estadísticas en vivo, predice jugadas y entra al Match Center.",
+    desc: "Sigue estadísticas, eventos y micro-predicciones en directo.",
     art: "/assets/card-backgrounds/match-center.webp",
     cta1: { label: "Entrar al Match Center", href: matchHref },
     cta2: { label: "Micro-predicciones", href: "/app/micro" },
+  };
+  // Partido del día / próximo: contextualiza el hero con el partido real SIN
+  // duplicar el Match Center (aquí es narrativa + acceso; abajo es la "tele").
+  const heroMatch: HeroCfg | null = match && !live && !finished ? {
+    id: "match", kind: "base", accent: GOLD2, accent2: GOLD, ctaInk: NAVY, eyebrow: "Partido del día",
+    title: <><span style={{ color: GOLD2 }}>{match.meta.home.name}</span> vs <span style={{ color: GOLD2 }}>{match.meta.away.name}</span> abre tu jornada</>,
+    desc: "Consulta el directo, revisa datos y prepara tu predicción.",
+    art: "/assets/card-backgrounds/match-center.webp",
+    cta1: { label: "Ver Match Center", href: matchHref },
+    cta2: { label: "Hacer predicción", href: "/app/predicciones" },
+  } : null;
+  const heroBase: HeroCfg = {
+    id: "base", kind: "base", accent: GOLD2, accent2: GOLD, ctaInk: NAVY, eyebrow: "Mundial 2026",
+    title: <>Tu centro vivo del <span style={{ background: `linear-gradient(135deg,${GOLD},${GOLD2})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Mundial</span></>,
+    desc: "Sigue el partido del día, entra al Match Center y compite con tus predicciones.",
+    art: "/assets/card-backgrounds/predicciones.webp",
+    cta1: { label: "Ver partido del día", href: matchHref },
+    cta2: { label: "Explorar modos", href: "#modulos" },
   };
   const heroReto: HeroCfg = {
     id: "reto", kind: "reto", accent: GREEN, accent2: "#7ce0b3", ctaInk: "#072019",
@@ -539,35 +559,16 @@ export default function AppHubPage() {
     cta1: { label: "Responder trivia", href: "/app/trivia" },
     cta2: { label: "Ver ranking", href: "/app/rankings" },
   };
-  const heroBase: HeroCfg = {
-    id: "base", kind: "base", accent: GOLD2, accent2: GOLD, ctaInk: NAVY, eyebrow: "Mundial 2026",
-    title: <>Tu zona de juego del <span style={{ background: `linear-gradient(135deg,${GOLD},${GOLD2})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Mundial</span></>,
-    desc: "Predice, compite y sigue cada partido en directo.",
-    art: "/assets/card-backgrounds/predicciones.webp",
-    cta1: { label: "Explorar módulos", href: "#modulos" },
-    cta2: { label: "Ver partido del día", href: matchHref },
-  };
-  // Módulo destacado: una sola pantalla para empujar un modo importante (Fantasy).
-  // NO es un carrusel publicitario: es un único refuerzo contextual.
-  const heroFantasy: HeroCfg = {
-    id: "fantasy", kind: "base", accent: "#a78bfa", accent2: "#c4b5fd", ctaInk: "#1a0f33", eyebrow: "Modo destacado",
-    title: <>Arma tu <span style={{ background: "linear-gradient(135deg,#a78bfa,#c4b5fd)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>equipo ideal</span></>,
-    desc: "Prepara tu plantilla y compite durante el Mundial.",
-    art: "/assets/card-backgrounds/fantasy.webp",
-    cta1: { label: "Ver Fantasy", href: "/app/fantasy" },
-    cta2: { label: "Explorar modos", href: "#modulos" },
-  };
-  // Slider CONTEXTUAL (no publicitario). Prioridad del slide inicial:
-  //   1) live → partido en marcha   2) reto → trivia pendiente
-  //   3) base → estado general      (+) módulo destacado como refuerzo final
+  // Orden de slides por prioridad de contexto (NO promos):
+  //   live (si hay) → partido del día (si hay) → base → reto (si pendiente).
   // Con ?hero= se bloquea a una sola pantalla (preview de diseño).
   const heroSlides: HeroCfg[] = heroOverride
-    ? [heroOverride === "live" ? heroLive : heroOverride === "reto" ? heroReto : heroBase]
+    ? [heroOverride === "live" ? heroLive : heroOverride === "match" ? (heroMatch ?? heroBase) : heroOverride === "reto" ? heroReto : heroBase]
     : [
         ...(live ? [heroLive] : []),
-        ...(retoAvailable ? [heroReto] : []),
+        ...(heroMatch ? [heroMatch] : []),
         heroBase,
-        heroFantasy,
+        ...(retoAvailable ? [heroReto] : []),
       ];
   const hero = heroSlides[heroIdx % heroSlides.length];
   // Auto-rotación del carrusel (pausa si solo hay una pantalla o hay preview).
@@ -710,7 +711,7 @@ export default function AppHubPage() {
             grandes, VS potente, borde/glow por estado (dorado=próximo, coral=en vivo,
             gris=finalizado) y pulso en vivo. Es la "tele" del partido del día. */}
         {match && (
-          <Link href={matchHref} className={`zm-mc${live ? " zm-mc--live" : ""}`} style={{ position: "relative", display: "block", textDecoration: "none", color: TXT, borderRadius: 20, padding: "16px 18px 15px", marginBottom: 12, overflow: "hidden", background: "linear-gradient(160deg,#0e2647 0%,#0a1a31 60%,#0b1c36 100%)", border: `1.5px solid ${mcAccent}66`, boxShadow: live ? `0 18px 44px rgba(0,0,0,0.42), 0 0 0 1px ${mcAccent}55` : "0 16px 40px rgba(0,0,0,0.34)" }}>
+          <Link href={matchHref} className={`zm-mc${live ? " zm-mc--live" : ""}`} style={{ position: "relative", display: "block", textDecoration: "none", color: TXT, borderRadius: 22, padding: "20px 18px 18px", marginBottom: 12, overflow: "hidden", background: "linear-gradient(160deg,#103060 0%,#0a1a31 58%,#0b1c36 100%)", border: `2px solid ${mcAccent}77`, boxShadow: live ? `0 24px 56px rgba(0,0,0,0.5), 0 0 0 1px ${mcAccent}66, 0 0 36px ${mcAccent}30` : `0 22px 50px rgba(0,0,0,0.42), 0 0 26px ${mcAccent}1f` }}>
             {/* focos superiores */}
             <span aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none", background: `radial-gradient(85% 55% at 50% -12%, ${mcAccent}26, transparent 60%)` }} />
             {/* césped/líneas inferiores del estadio */}
@@ -733,11 +734,11 @@ export default function AppHubPage() {
               <McTeam name={match.meta.home.name} flag={match.meta.home.flag} />
               <div style={{ textAlign: "center", minWidth: 84, flexShrink: 0 }}>
                 {live || finished ? (
-                  <div style={{ fontSize: 34, fontWeight: 900, letterSpacing: 1, lineHeight: 1, textShadow: "0 2px 12px rgba(0,0,0,0.5)" }}>
-                    {match.score[0]}<span style={{ color: TXT_MUT, margin: "0 5px" }}>-</span>{match.score[1]}
+                  <div style={{ fontSize: 42, fontWeight: 900, letterSpacing: 1, lineHeight: 1, textShadow: "0 2px 14px rgba(0,0,0,0.55)" }}>
+                    {match.score[0]}<span style={{ color: TXT_MUT, margin: "0 6px" }}>-</span>{match.score[1]}
                   </div>
                 ) : (
-                  <div style={{ fontSize: 28, fontWeight: 900, letterSpacing: 2, lineHeight: 1, background: `linear-gradient(135deg,${GOLD},${GOLD2})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>VS</div>
+                  <div style={{ fontSize: 38, fontWeight: 900, letterSpacing: 2, lineHeight: 1, background: `linear-gradient(135deg,${GOLD},${GOLD2})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", textShadow: "0 2px 16px rgba(201,168,76,0.25)", filter: "drop-shadow(0 2px 10px rgba(201,168,76,0.3))" }}>VS</div>
                 )}
                 <div style={{ fontSize: 12.5, fontWeight: 800, color: GOLD2, marginTop: 6 }}>
                   {live ? `${match.elapsed}'` : finished ? "Final" : (match.meta.time || "")}

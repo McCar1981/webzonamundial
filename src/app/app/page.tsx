@@ -520,7 +520,43 @@ export default function AppHubPage() {
   const playIcon = (c: string) => <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 4l13 8-13 8V4z" fill={c} /></svg>;
   // `art` = imagen de fondo de la pantalla (reutiliza el arte de las cards).
   // accent/accent2 tiñen badge, glow, dots y el CTA primario. ctaInk = texto del CTA.
-  type HeroCfg = { id: string; kind: "live" | "reto" | "base"; accent: string; accent2: string; ctaInk: string; icon?: React.ReactNode; eyebrow: string; title: React.ReactNode; desc: string; art: string; cta1: { label: string; href: string }; cta2?: { label: string; href: string } };
+  // opening = pieza visual premium ya diseñada (imagen del juego inaugural):
+  //   la imagen lo dice todo; solo se superpone una capa inferior con hora + CTA.
+  type HeroCfg = { id: string; kind: "live" | "reto" | "base"; accent: string; accent2: string; ctaInk: string; icon?: React.ReactNode; eyebrow: string; title: React.ReactNode; desc: string; art: string; cta1: { label: string; href: string }; cta2?: { label: string; href: string }; opening?: { wide: string; mobile: string; time: string } };
+
+  // ¿El partido del día es el JUEGO INAUGURAL (México vs Sudáfrica)? Solo entonces
+  // usamos la pieza visual ya diseñada; otros partidos caen al hero de texto.
+  const normName = (s: string) => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  const isOpening = !!match && (() => {
+    const t = normName(`${match.meta.home.name} ${match.meta.away.name}`);
+    return t.includes("mexico") && (t.includes("sudafrica") || t.includes("south africa"));
+  })();
+  // Horario dinámico en la zona del usuario (la fuente está en -04:00; toLocale*
+  // lo reescribe a la TZ local del navegador → "Hoy · 21:00" / "11 jun · 21:00").
+  const openingTime = (() => {
+    if (!match) return "";
+    if (live) return `EN VIVO · ${match.elapsed}'`;
+    if (finished) return "Finalizado";
+    try {
+      const d = new Date(`${match.meta.date}T${match.meta.time || "00:00"}:00-04:00`);
+      const hm = d.toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit" });
+      const sameDay = d.toDateString() === new Date().toDateString();
+      return sameDay ? `Hoy · ${hm}` : `${d.toLocaleDateString("es-ES", { day: "numeric", month: "short" })} · ${hm}`;
+    } catch {
+      return `${match.meta.date} · ${match.meta.time}`;
+    }
+  })();
+  // CTA según estado del partido (spec): próximo / en vivo / finalizado.
+  const openingCtaLabel = live ? "Seguir en directo" : finished ? "Ver resumen" : "Ver Match Center";
+  // Slide inaugural: una sola pieza de imagen que cubre estados live/próximo/final.
+  const heroOpening: HeroCfg | null = isOpening && match ? {
+    id: "opening", kind: live ? "live" : "base",
+    accent: live ? CORAL : GOLD2, accent2: live ? "#ff9a4a" : GOLD, ctaInk: "#08111f",
+    eyebrow: "", title: null, desc: "", art: "",
+    cta1: { label: openingCtaLabel, href: matchHref },
+    opening: { wide: "/images/hero/juego-inaugural-wide.webp", mobile: "/images/hero/juego-inaugural-mobile.webp", time: openingTime },
+  } : null;
+
   const heroLive: HeroCfg = {
     id: "live", kind: "live", accent: CORAL, accent2: "#ff9a4a", ctaInk: "#1a0d08",
     icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#1a0d08" strokeWidth="1.8" /><circle cx="12" cy="12" r="3" fill="#1a0d08" /></svg>,
@@ -563,10 +599,14 @@ export default function AppHubPage() {
   //   live (si hay) → partido del día (si hay) → base → reto (si pendiente).
   // Con ?hero= se bloquea a una sola pantalla (preview de diseño).
   const heroSlides: HeroCfg[] = heroOverride
-    ? [heroOverride === "live" ? heroLive : heroOverride === "match" ? (heroMatch ?? heroBase) : heroOverride === "reto" ? heroReto : heroBase]
+    ? [heroOverride === "live" ? (heroOpening ?? heroLive) : heroOverride === "match" ? (heroOpening ?? heroMatch ?? heroBase) : heroOverride === "reto" ? heroReto : heroBase]
     : [
-        ...(live ? [heroLive] : []),
-        ...(heroMatch ? [heroMatch] : []),
+        // El juego inaugural (si es el partido del día) es la pieza protagonista y
+        // cubre live/próximo/final; sustituye a los slides de texto live + partido.
+        ...(heroOpening ? [heroOpening] : [
+          ...(live ? [heroLive] : []),
+          ...(heroMatch ? [heroMatch] : []),
+        ]),
         heroBase,
         ...(retoAvailable ? [heroReto] : []),
       ];
@@ -635,7 +675,38 @@ export default function AppHubPage() {
             No repite "Hacer predicción": en base invita a explorar/ver partido; en
             vivo lleva al Match Center. Fondo navy premium + textura de cancha + glow
             animado + chispas muy discretas. Estado por el partido (live/base). */}
-        <div className="zm-hero" style={{ position: "relative", borderRadius: 22, padding: "0 18px", marginBottom: 16, overflow: "hidden", background: "linear-gradient(135deg,#102a4d 0%,#0a1b33 100%)", border: `1px solid ${hero.accent}44`, boxShadow: "0 20px 50px rgba(0,0,0,0.35)" }}>
+        <div className="zm-hero" style={{ position: "relative", borderRadius: 22, padding: hero.opening ? 0 : "0 18px", marginBottom: 16, overflow: "hidden", background: "linear-gradient(135deg,#102a4d 0%,#0a1b33 100%)", border: `1px solid ${hero.accent}44`, boxShadow: "0 20px 50px rgba(0,0,0,0.35)" }}>
+          {hero.opening ? (
+            /* ── Slide del JUEGO INAUGURAL: la imagen ya trae todo el texto
+                ("11 JUNIO · JUEGO INAUGURAL", MEXICO, VS, SUDAFRICA). Solo
+                integramos la imagen correcta por viewport + una capa inferior
+                ligera con horario dinámico y un único CTA. ── */
+            <>
+              <picture>
+                <source media="(max-width:640px)" srcSet={hero.opening.mobile} />
+                <img
+                  src={hero.opening.wide}
+                  alt="Juego inaugural · México vs Sudáfrica · 11 de junio"
+                  loading="eager" decoding="async" className="zm-hero-art"
+                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", zIndex: 0, objectFit: "cover", objectPosition: "center", pointerEvents: "none" }}
+                />
+              </picture>
+              {/* Capa inferior suave SOLO para legibilidad del horario + CTA.
+                  Nada de azul pesado encima: no tapar la imagen. */}
+              <span aria-hidden style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: "46%", zIndex: 1, pointerEvents: "none", background: "linear-gradient(to top, rgba(6,12,22,0.78) 0%, rgba(6,12,22,0.42) 45%, transparent 100%)" }} />
+              <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, zIndex: 2, display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12, padding: "0 18px 22px" }}>
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 13, fontWeight: 800, letterSpacing: 0.4, color: "#fff", textShadow: "0 1px 6px rgba(0,0,0,0.6)" }}>
+                  {hero.kind === "live" && <span className="zm-live-dot" style={{ width: 8, height: 8, borderRadius: "50%", background: hero.accent }} />}
+                  {hero.opening.time}
+                </span>
+                <Link href={hero.cta1.href} style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "12px 22px", borderRadius: 12, background: heroCta1.bg, color: heroCta1.color, fontWeight: 800, fontSize: 15, textDecoration: "none", boxShadow: heroCta1.shadow }}>
+                  {heroCta1.icon}
+                  {hero.cta1.label}
+                </Link>
+              </div>
+            </>
+          ) : (
+          <>
           {/* ── Arte del estado (imagen de card reutilizada): vive a la derecha,
               se funde con el navy hacia la izquierda para no tapar el texto. ── */}
           <img
@@ -683,10 +754,12 @@ export default function AppHubPage() {
               )}
             </div>
           </div>
+          </>
+          )}
 
           {/* Puntitos del carrusel: indican cuántas pantallas hay y permiten saltar. */}
           {heroSlides.length > 1 && (
-            <div style={{ position: "absolute", left: 0, right: 0, bottom: 16, zIndex: 3, display: "flex", justifyContent: "center", gap: 7 }}>
+            <div style={{ position: "absolute", left: 0, right: 0, bottom: hero.opening ? 70 : 16, zIndex: 3, display: "flex", justifyContent: "center", gap: 7 }}>
               {heroSlides.map((s, i) => {
                 const activo = i === heroIdx % heroSlides.length;
                 return (

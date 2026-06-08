@@ -16,7 +16,7 @@ import PlanCards from "./PlanCards";
 export const metadata: Metadata = {
   title: "Porra Digital para Bares · ZonaMundial",
   description:
-    "Llena tu bar en días de partido del Mundial 2026 con una porra digital personalizada: QR, ranking en vivo, pantalla TV y premios. Pago único, sin suscripción.",
+    "Crea la porra digital de tu bar para el Mundial 2026: QR, predicciones, ranking del local y premios que defines tú. Pago único, sin suscripción.",
   alternates: { canonical: "/bares" },
 };
 
@@ -127,20 +127,20 @@ function TvMockup() {
 const STEPS = [
   { n: 1, icon: Palette, title: "Configura tu porra", text: "Crea la página de tu bar, añade tu logo, define premios y personaliza el mensaje de bienvenida." },
   { n: 2, icon: QrCode, title: "Comparte el QR", text: "Imprime el cartel o muéstralo en pantalla. Tus clientes escanean y entran a la porra del bar." },
-  { n: 3, icon: Repeat, title: "Compiten y vuelven", text: "Predicen partidos, suben en el ranking y vuelven al local para seguir compitiendo por tu premio." },
+  { n: 3, icon: Repeat, title: "Compiten en tu ranking", text: "Predicen partidos, suman puntos y siguen la clasificación de tu bar durante el Mundial." },
 ];
 
 const WINS = [
-  { icon: Beer, title: "Más consumiciones", text: "Cada partido es una excusa para volver, pedir y quedarse a ver el ranking." },
-  { icon: Repeat, title: "Clientes que vuelven", text: "El pique de la clasificación trae a la misma gente jornada tras jornada." },
-  { icon: Sparkles, title: "Ambiente de Mundial", text: "Tu local se convierte en el punto de encuentro para vivir el torneo." },
+  { icon: Beer, title: "Participación durante el torneo", text: "Cada partido puede convertirse en una excusa para participar, comentar y seguir el ranking." },
+  { icon: Repeat, title: "Seguimiento jornada a jornada", text: "El ranking mantiene la competición activa durante todo el Mundial." },
+  { icon: Sparkles, title: "Dinámica de Mundial", text: "Tu local tiene una competición propia conectada al torneo." },
 ];
 
 // Nota: "Puerta a ZonaMundial" se retiró del listado a petición.
 const FEATURES = [
   { icon: Smartphone, title: "Landing personalizada", text: "Tu bar con su propia página del Mundial.", big: false },
   { icon: QrCode, title: "QR dinámico", text: "Tus clientes entran sin descargar nada.", big: false },
-  { icon: BarChart3, title: "Ranking en vivo", text: "Crea pique y hace que vuelvan jornada a jornada.", big: true },
+  { icon: BarChart3, title: "Ranking en vivo", text: "Mantiene la competición de tu bar activa jornada a jornada.", big: true },
   { icon: Tv, title: "Pantalla TV", text: "Muestra el QR, el top 10 y el premio en el local.", big: false },
   { icon: Gift, title: "Premios", text: "Tú decides qué incentivo ofrecer a tus clientes.", big: false },
 ];
@@ -164,19 +164,19 @@ export default function BaresLandingPage() {
               <Trophy size={13} /> Para bares y locales · Mundial 2026
             </div>
             <h1 className="mt-5 text-4xl sm:text-5xl font-black tracking-tight leading-[1.05]">
-              Llena tu bar con una{" "}
+              Tu bar, su porra, su{" "}
               <span
                 style={{
                   backgroundImage: GOLD_GRAD,
                   WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
                 }}
               >
-                porra digital del Mundial
+                ranking del Mundial
               </span>
             </h1>
             <p className="mt-5 max-w-xl mx-auto lg:mx-0 text-lg text-zm-text-muted leading-relaxed">
-              Tus clientes escanean un QR, predicen los partidos y compiten por tus premios.
-              Más ambiente, más consumiciones y más clientes que vuelven.
+              Crea una competición digital para tus clientes con QR, predicciones, clasificación
+              y premios definidos por tu local.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-3">
               <Link
@@ -272,7 +272,7 @@ export default function BaresLandingPage() {
               </div>
               <h2 className="mt-3 text-3xl font-black leading-tight">Tu bar, tu ranking, tus premios</h2>
               <p className="mt-4 max-w-md mx-auto lg:mx-0 text-zm-text-muted leading-relaxed">
-                Cada local tiene su propia porra, su QR y su clasificación para crear ambiente durante todo el Mundial.
+                Cada local tiene su propia porra, su QR y su clasificación para activar una dinámica propia durante el Mundial.
               </p>
               <div className="mt-6 grid gap-3 sm:grid-cols-3">
                 {WINS.map((w) => (
@@ -343,10 +343,10 @@ export default function BaresLandingPage() {
             style={{ background: "radial-gradient(ellipse 60% 80% at 50% 0%, rgba(201,168,76,0.22), transparent 65%)" }}
           />
           <h2 className="text-3xl sm:text-4xl font-black leading-tight">
-            Ten tu porra lista antes del primer partido
+            Crea la porra de tu bar antes del primer partido
           </h2>
           <p className="mt-4 max-w-xl mx-auto text-zm-text-muted leading-relaxed">
-            Crea la página de tu bar, comparte el QR y empieza a mover el ambiente del Mundial en minutos.
+            Configura tu página, comparte el QR y empieza a recibir predicciones de tus clientes.
           </p>
           <Link
             href="/bar-dashboard"

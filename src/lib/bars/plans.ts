@@ -25,7 +25,7 @@ export interface BarPlan {
 
 export const BAR_PLANS: Record<BarPlanId, BarPlan> = {
   arranque: {
-    id: "arranque", name: "Arranque Mundial", tagline: "Lo esencial para llenar tu bar en días de partido",
+    id: "arranque", name: "Arranque Mundial", tagline: "Lo esencial para lanzar la porra de tu bar",
     idealFor: "Bares pequeños, peñas o locales que quieren una porra simple",
     priceEur: 49, priceUsd: 55,
     features: [
@@ -35,7 +35,7 @@ export const BAR_PLANS: Record<BarPlanId, BarPlan> = {
     maxQrSources: 1, weeklyPrizes: false, exportParticipants: false, premiumMaterials: false, barVsBar: false,
   },
   completo: {
-    id: "completo", name: "Mundial Completo", tagline: "Mantén el ambiente vivo durante todo el torneo",
+    id: "completo", name: "Mundial Completo", tagline: "Mantén la competición de tu bar activa durante todo el torneo",
     idealFor: "Bares que quieren usar la porra durante todo el Mundial",
     priceEur: 99, priceUsd: 109, highlight: true,
     features: [

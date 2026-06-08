@@ -35,8 +35,8 @@ function frescuraLabel(f: number): string {
 }
 
 /** Icono SVG por tipo de sesión. Sin emojis. */
-function SessionIcon({ id, color = GOLD2 }: { id: PrepSessionId; color?: string }) {
-  const common = { width: 22, height: 22, viewBox: "0 0 24 24", fill: "none" as const };
+function SessionIcon({ id, color = GOLD2, size = 22 }: { id: PrepSessionId; color?: string; size?: number }) {
+  const common = { width: size, height: size, viewBox: "0 0 24 24", fill: "none" as const };
   switch (id) {
     case "fisico":
       return (
@@ -74,6 +74,60 @@ function SessionIcon({ id, color = GOLD2 }: { id: PrepSessionId; color?: string 
     default:
       return null;
   }
+}
+
+/** Ruta de la miniatura ilustrada de una sesión (guiones bajos → guiones). */
+function sessionArtSrc(id: PrepSessionId): string {
+  return `/img/modo-carrera/concentracion/sesion-${id.replace(/_/g, "-")}.webp`;
+}
+
+/**
+ * Arte de la sesión: muestra la miniatura ilustrada si el archivo existe; si aún
+ * no está (404), cae al icono SVG. Así se integra sola al soltar las imágenes.
+ */
+function SessionArt({ id, size = 22 }: { id: PrepSessionId; size?: number }) {
+  const [failed, setFailed] = useState(false);
+  if (failed) return <SessionIcon id={id} size={size} />;
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={sessionArtSrc(id)}
+      alt=""
+      width={size}
+      height={size}
+      onError={() => setFailed(true)}
+      style={{ width: size, height: size, objectFit: "cover", borderRadius: 8, display: "block", pointerEvents: "none", userSelect: "none" }}
+    />
+  );
+}
+
+/**
+ * Ilustración del contratiempo (lesión en el entrenamiento): muestra
+ * `contratiempo-lesion.webp` si existe; si no, cae al emblema SVG rojo.
+ */
+function ContratiempoArt() {
+  const [failed, setFailed] = useState(false);
+  if (!failed) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src="/img/modo-carrera/concentracion/contratiempo-lesion.webp"
+        alt=""
+        width={120}
+        height={120}
+        onError={() => setFailed(true)}
+        style={{ display: "block", margin: "0 auto 14px", width: 120, height: 120, objectFit: "contain", filter: "drop-shadow(0 8px 20px rgba(0,0,0,0.5))" }}
+      />
+    );
+  }
+  return (
+    <div style={{ width: 56, height: 56, margin: "0 auto 14px", borderRadius: "50%", background: "rgba(239,68,68,0.12)", border: `1px solid ${RED}66`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5l-8-3Z" stroke={RED} strokeWidth="1.6" strokeLinejoin="round" />
+        <path d="M12 8v6M9 11h6" stroke={RED} strokeWidth="1.8" strokeLinecap="round" />
+      </svg>
+    </div>
+  );
 }
 
 function Delta({ label, value, unit = "" }: { label: string; value: number; unit?: string }) {
@@ -149,7 +203,22 @@ export default function Concentracion({
         animation: "mcBannerIn .25s ease both",
       }}
     >
+      {/* Fondo de escena (desktop/mobile). Si el .webp no existe, el degradado +
+          backgroundColor de marca cubren el hueco: el 404 no rompe nada. */}
+      <style>{`
+        .mcConcCard {
+          background-image: linear-gradient(180deg, rgba(15,29,50,0.94), rgba(11,24,37,0.97)), url(/img/modo-carrera/partido/concentracion-bg.webp);
+          background-size: cover;
+          background-position: center;
+        }
+        @media (max-width: 640px) {
+          .mcConcCard {
+            background-image: linear-gradient(180deg, rgba(15,29,50,0.94), rgba(11,24,37,0.97)), url(/img/modo-carrera/partido/concentracion-bg-mobile.webp);
+          }
+        }
+      `}</style>
       <div
+        className="mcConcCard"
         style={{
           position: "relative",
           width: "100%",
@@ -161,9 +230,6 @@ export default function Concentracion({
           touchAction: "pan-y",
           padding: 20,
           borderRadius: 18,
-          // Fondo de escena de concentración (entrenamiento). Degrada al color de
-          // marca si el archivo aún no existe (el 404 de la imagen no rompe nada).
-          background: `linear-gradient(180deg, rgba(15,29,50,0.94), rgba(11,24,37,0.97)), url(/img/modo-carrera/partido/concentracion-bg.webp) center/cover`,
           backgroundColor: BG2,
           border: `1px solid ${GOLD}`,
           boxShadow: "0 24px 70px rgba(0,0,0,0.65)",
@@ -224,7 +290,7 @@ export default function Concentracion({
                   >
                     {s ? (
                       <>
-                        <SessionIcon id={s.id} />
+                        <SessionArt id={s.id} size={26} />
                         <span style={{ fontSize: 10, fontWeight: 800, color: GOLD2, textAlign: "center", lineHeight: 1.1 }}>{s.name}</span>
                       </>
                     ) : (
@@ -270,8 +336,8 @@ export default function Concentracion({
                     border: "1px solid rgba(255,255,255,0.06)",
                   }}
                 >
-                  <span style={{ flexShrink: 0 }}>
-                    <SessionIcon id={s.id} />
+                  <span style={{ flexShrink: 0, width: 40, height: 40, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <SessionArt id={s.id} size={40} />
                   </span>
                   <span style={{ flex: 1, minWidth: 0 }}>
                     <span style={{ display: "block", fontSize: 13, fontWeight: 800, color: "#fff" }}>{s.name}</span>
@@ -299,12 +365,7 @@ export default function Concentracion({
         ) : (
           // Contratiempo en el entrenamiento: una sesión dejó tocado a un jugador.
           <div style={{ textAlign: "center", padding: "10px 6px" }}>
-            <div style={{ width: 56, height: 56, margin: "0 auto 14px", borderRadius: "50%", background: "rgba(239,68,68,0.12)", border: `1px solid ${RED}66`, display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5l-8-3Z" stroke={RED} strokeWidth="1.6" strokeLinejoin="round" />
-                <path d="M12 8v6M9 11h6" stroke={RED} strokeWidth="1.8" strokeLinecap="round" />
-              </svg>
-            </div>
+            <ContratiempoArt />
             <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase", color: RED }}>Contratiempo</div>
             <h3 style={{ fontSize: 19, fontWeight: 900, color: "#fff", margin: "6px 0 8px" }}>
               {injured?.player} se resiente

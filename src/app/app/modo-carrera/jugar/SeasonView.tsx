@@ -68,6 +68,24 @@ const HIDDEN_STAGE_HINT: Partial<Record<SeasonMatch["stage"], string>> = {
   final: "Tras semifinales",
 };
 
+/** Marca del rival aún por determinar: usa `rival-incognito.webp` si existe; si no,
+ *  cae al glifo "?". El 404 de la imagen no rompe nada. */
+function RivalIncognito() {
+  const [failed, setFailed] = useState(false);
+  if (failed) return <>?</>;
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="/img/modo-carrera/rival-incognito.webp"
+      alt=""
+      width={22}
+      height={15}
+      onError={() => setFailed(true)}
+      style={{ width: "100%", height: "100%", objectFit: "contain", display: "block", pointerEvents: "none" }}
+    />
+  );
+}
+
 /** "Faltan 3 días", "Faltan 5 h 20 min", etc. */
 function fmtCountdown(ms: number): string {
   if (ms <= 0) return "Disponible ahora";
@@ -141,9 +159,9 @@ function FixtureRow({ m, isNext, revealed }: { m: SeasonMatch; isNext: boolean; 
             <span style={{ display: "inline-flex", alignItems: "center", gap: 8, color: DIM, fontWeight: 700 }}>
               <span
                 aria-hidden
-                style={{ width: 22, height: 15.4, borderRadius: 3, background: "rgba(255,255,255,0.06)", border: "1px dashed rgba(255,255,255,0.18)", display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 11 }}
+                style={{ width: 22, height: 15.4, borderRadius: 3, overflow: "hidden", background: "rgba(255,255,255,0.06)", border: "1px dashed rgba(255,255,255,0.18)", display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 11 }}
               >
-                ?
+                <RivalIncognito />
               </span>
               Rival por determinar
             </span>

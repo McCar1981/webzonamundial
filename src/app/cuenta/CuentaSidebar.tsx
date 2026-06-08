@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const TABS = [
   {
@@ -67,6 +68,23 @@ const TABS = [
 
 export default function CuentaSidebar() {
   const pathname = usePathname();
+  const router = useRouter();
+  const [signingOut, setSigningOut] = useState(false);
+
+  // Cierre de sesión: POST a /auth/signout (limpia cookies en servidor) y
+  // vuelta a la portada. Vive abajo del menú de la cuenta, que es donde el
+  // usuario lo busca de forma natural.
+  async function handleSignOut() {
+    if (signingOut) return;
+    setSigningOut(true);
+    try {
+      await fetch("/auth/signout", { method: "POST" });
+    } catch {
+      /* aunque falle la red, intentamos llevar al usuario fuera */
+    }
+    router.push("/");
+    router.refresh();
+  }
 
   return (
     <aside>
@@ -99,6 +117,30 @@ export default function CuentaSidebar() {
             </Link>
           );
         })}
+
+        {/* Separador + cierre de sesión, al fondo del menú */}
+        <div style={{ height: 1, background: "rgba(255,255,255,0.06)", margin: "8px 12px" }} />
+        <button
+          onClick={handleSignOut}
+          disabled={signingOut}
+          className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all w-full text-left"
+          style={{
+            background: "transparent",
+            border: "1px solid transparent",
+            color: "#ef4444",
+            cursor: signingOut ? "wait" : "pointer",
+            fontFamily: "inherit",
+          }}
+        >
+          <span style={{ opacity: 0.85 }}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+              <polyline points="16 17 21 12 16 7" />
+              <line x1="21" y1="12" x2="9" y2="12" />
+            </svg>
+          </span>
+          {signingOut ? "Cerrando sesión…" : "Cerrar sesión"}
+        </button>
       </nav>
     </aside>
   );

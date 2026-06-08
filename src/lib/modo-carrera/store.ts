@@ -5,7 +5,7 @@
 // tolerar saves antiguos o corruptos. Al iniciar sesión, CareerGame sincroniza
 // este estado con Supabase via /api/modo-carrera/save.
 
-import type { CareerState, SeasonState, SeasonMatch, TournamentStage, MatchOutcome, BoardState, BoardDemand, BoardVerdict, StreakState, Mission, MissionKind, MissionStatus, Trophy, SquadState, Injury, Suspension, SuspensionReason } from "./types";
+import type { CareerState, SeasonState, SeasonMatch, TournamentStage, MatchOutcome, BoardState, BoardDemand, BoardVerdict, StreakState, Mission, MissionKind, MissionStatus, Trophy, SquadState, Injury, Suspension, SuspensionReason, PrepPlan } from "./types";
 import { CAREER_STORAGE_KEY, CAREER_SCHEMA_VERSION, xpRequired, TITLES } from "./constants";
 import { sumReputation } from "./engine";
 
@@ -61,7 +61,7 @@ const clampInt = (n: unknown, lo: number, hi: number, fb: number): number => {
   return Math.max(lo, Math.min(hi, v));
 };
 
-const STAGES: TournamentStage[] = ["grupos", "octavos", "cuartos", "semifinal", "final", "campeon", "eliminado"];
+const STAGES: TournamentStage[] = ["amistoso", "clasificacion", "grupos", "octavos", "cuartos", "semifinal", "final", "campeon", "eliminado"];
 const OUTCOMES: MatchOutcome[] = ["V", "E", "D"];
 const DEMANDS: BoardDemand[] = ["octavos", "cuartos", "semifinal", "final", "campeon"];
 const VERDICTS: BoardVerdict[] = ["pendiente", "superado", "cumplido", "fallido"];
@@ -163,7 +163,27 @@ function normalizeSquad(raw: unknown): SquadState {
         .slice(0, 11)
     : [];
   const captain = typeof s.captain === "string" && s.captain.length > 0 ? s.captain.slice(0, 60) : null;
-  return { injuries, suspensions, captain };
+  const out: SquadState = { injuries, suspensions, captain };
+  // Dibujo táctico, once y plan de concentración elegidos por el DT: se conservan
+  // para que recargar la página (o sincronizar con Supabase) no borre la alineación
+  // ni reinicie la frescura/concentración trabajadas.
+  if (typeof s.formation === "string" && s.formation.length > 0) out.formation = s.formation.slice(0, 12);
+  if (Array.isArray(s.lineup)) {
+    out.lineup = (s.lineup as unknown[])
+      .filter((p): p is string => typeof p === "string" && p.length > 0)
+      .map((p) => p.slice(0, 60))
+      .slice(0, 11);
+  }
+  if (typeof s.frescura === "number" && Number.isFinite(s.frescura)) out.frescura = clampInt(s.frescura, 0, 100, 75);
+  if (s.prep && typeof s.prep === "object" && Array.isArray((s.prep as PrepPlan).sessions)) {
+    out.prep = {
+      sessions: ((s.prep as PrepPlan).sessions as unknown[])
+        .filter((x): x is string => typeof x === "string" && x.length > 0)
+        .map((x) => x.slice(0, 20))
+        .slice(0, 3),
+    };
+  }
+  return out;
 }
 
 /** Repara/normaliza la temporada en curso; devuelve null si el dato es inválido. */

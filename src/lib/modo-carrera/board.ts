@@ -36,6 +36,8 @@ export const VERDICT_LABEL: Record<BoardVerdict, string> = {
 // ─── Orden de fases (para comparar lo conseguido con lo exigido) ─────────────
 const STAGE_ORDER: Record<TournamentStage, number> = {
   eliminado: 0,
+  amistoso: 0,
+  clasificacion: 0,
   grupos: 1,
   octavos: 2,
   cuartos: 3,

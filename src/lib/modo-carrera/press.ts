@@ -82,7 +82,7 @@ export function buildPressConference(info: PressInfo): NarrativeEntry | null {
     info.eliminated ||
     info.outcome === "D" ||
     margin >= 3 ||
-    info.stage !== "grupos";
+    ["octavos", "cuartos", "semifinal", "final"].includes(info.stage);
   if (!notable && Math.random() >= PRESS_CHANCE_NORMAL) return null;
 
   let body: string;

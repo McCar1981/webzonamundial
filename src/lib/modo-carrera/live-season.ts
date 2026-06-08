@@ -19,7 +19,7 @@ import { etToDate } from "@/lib/bracket/match-time";
 const now = () => new Date().toISOString();
 
 /** Mapa fase de carrera → cadena de fase real en matches.ts (para el gate horario). */
-const KO_REAL_PHASE: Record<Exclude<TournamentStage, "grupos" | "campeon" | "eliminado">, string> = {
+const KO_REAL_PHASE: Record<Exclude<TournamentStage, "amistoso" | "clasificacion" | "grupos" | "campeon" | "eliminado">, string> = {
   octavos: "Octavos de final",
   cuartos: "Cuartos de final",
   semifinal: "Semifinal",

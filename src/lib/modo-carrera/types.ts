@@ -187,6 +187,8 @@ export type MatchOutcome = "V" | "E" | "D";
 
 /** Fases del torneo (Mundial) que dirige el DT en una temporada. */
 export type TournamentStage =
+  | "amistoso"
+  | "clasificacion"
   | "grupos"
   | "octavos"
   | "cuartos"

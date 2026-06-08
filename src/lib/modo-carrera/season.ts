@@ -41,6 +41,8 @@ const MAX_NARRATIVE = 50;
 
 // ─── Etiquetas de fase ───────────────────────────────────────────────────────
 export const STAGE_LABEL: Record<TournamentStage, string> = {
+  amistoso: "Amistosos de preparación",
+  clasificacion: "Fase de clasificación",
   grupos: "Fase de grupos",
   octavos: "Octavos de final",
   cuartos: "Cuartos de final",
@@ -51,6 +53,16 @@ export const STAGE_LABEL: Record<TournamentStage, string> = {
 };
 
 const KO_ORDER: TournamentStage[] = ["octavos", "cuartos", "semifinal", "final"];
+
+/** ¿Es una fase eliminatoria (sin empates: prórroga + penaltis)? */
+export function isKnockoutStage(stage: TournamentStage): boolean {
+  return KO_ORDER.includes(stage);
+}
+
+/** Nº de partidos de clasificación que se deben puntuar para ir al Mundial. */
+const QUALIFIERS = 4;
+/** Nº de amistosos de preparación antes del torneo. */
+const FRIENDLIES = 2;
 
 function nextKnockout(stage: TournamentStage): TournamentStage {
   const i = KO_ORDER.indexOf(stage);
@@ -290,13 +302,32 @@ export function buildSeason(c: CareerState): SeasonState {
   });
 
   const fixtures: SeasonMatch[] = [];
+
+  // 1) Amistosos de preparación: rivales variados de nivel medio. No eliminan;
+  //    sirven para rodar el once, sumar XP y forma antes de la competición.
+  const midPool = ranked.slice(20, 70);
+  for (let i = 0; i < FRIENDLIES; i++) {
+    const pool = midPool.length ? midPool : ranked;
+    fixtures.push(mk("amistoso", `Amistoso de preparación · ${i + 1}`, pickFrom(pool), i % 2 === 0));
+  }
+
+  // 2) Fase de clasificación: varios partidos previos al Mundial. Hay que sumar
+  //    al menos QUALIFIERS puntos (≈1 por partido) para clasificar; si no, la
+  //    temporada termina sin Mundial (como en el fútbol real de selecciones).
+  for (let i = 0; i < QUALIFIERS; i++) {
+    fixtures.push(mk("clasificacion", `Clasificación · J${i + 1}`, pickFrom(ranked.slice(0, 60)), i % 2 === 1));
+  }
+
+  // 3) Fase de grupos del Mundial (rivales reales del grupo).
   grp.forEach((o, i) => fixtures.push(mk("grupos", `Fase de grupos · J${i + 1}`, o, i !== 1)));
+
+  // 4) Eliminatorias: dificultad creciente desde el top del ranking.
   fixtures.push(mk("octavos", "Octavos de final", pickFrom(ranked.slice(0, 40)), true));
   fixtures.push(mk("cuartos", "Cuartos de final", pickFrom(ranked.slice(0, 24)), false));
   fixtures.push(mk("semifinal", "Semifinal", pickFrom(ranked.slice(0, 12)), true));
   fixtures.push(mk("final", "Final", pickFrom(ranked.slice(0, 6)), false));
 
-  return { season, fixtures, cursor: 0, stage: "grupos", finished: false };
+  return { season, fixtures, cursor: 0, stage: "amistoso", finished: false };
 }
 
 /**
@@ -411,6 +442,20 @@ function qualifiesFromGroup(selfSlug: string, groupMatches: SeasonMatch[]): bool
   return pos >= 0 && pos < 2;
 }
 
+/**
+ * ¿La selección del DT logra la clasificación al Mundial? Suma los puntos de sus
+ * partidos de clasificación (V=3, E=1, D=0) y exige al menos QUALIFIERS puntos
+ * (≈1 por jornada). Es deliberadamente alcanzable: solo una campaña pobre deja al
+ * DT fuera, igual que a una selección que se hunde en su grupo clasificatorio.
+ */
+function qualifiesFromQualifiers(qualMatches: SeasonMatch[]): boolean {
+  const pts = qualMatches.reduce(
+    (acc, m) => acc + (m.outcome === "V" ? 3 : m.outcome === "E" ? 1 : 0),
+    0,
+  );
+  return pts >= QUALIFIERS;
+}
+
 function emptyResult(c0: CareerState): PlayResult {
   return {
     career: c0,
@@ -453,7 +498,7 @@ export function playNextMatch(c0: CareerState): PlayResult {
   const idx = playableIndex(season);
   if (idx < 0 || !season) return emptyResult(c0);
   const fx = season.fixtures[idx];
-  const decisive = fx.stage !== "grupos";
+  const decisive = isKnockoutStage(fx.stage);
   const { gf, ga } = simulate(c0, fx, decisive);
   return resolveMatch(c0, gf, ga);
 }
@@ -474,7 +519,7 @@ export function resolveMatch(
   if (idx < 0 || !season) return emptyResult(c0);
 
   const fx = season.fixtures[idx];
-  const decisive = fx.stage !== "grupos";
+  const decisive = isKnockoutStage(fx.stage);
   let gf = Math.max(0, Math.round(gfIn));
   let ga = Math.max(0, Math.round(gaIn));
   if (decisive && gf === ga) {
@@ -513,7 +558,29 @@ export function resolveMatch(
   let champion = false;
   let eliminated = false;
 
-  if (fx.stage === "grupos") {
+  // ¿No clasificó al Mundial? (se calcula abajo, en la rama de clasificación).
+  let failedQualifying = false;
+
+  if (fx.stage === "amistoso") {
+    // Los amistosos nunca eliminan: se avanza al siguiente partido del calendario.
+    const next = fixtures[idx + 1];
+    stage = next ? next.stage : stage;
+  } else if (fx.stage === "clasificacion") {
+    const qualMatches = fixtures.filter((m) => m.stage === "clasificacion");
+    const qualDone = qualMatches.every((m) => m.played);
+    if (qualDone) {
+      if (qualifiesFromQualifiers(qualMatches)) {
+        stage = "grupos"; // clasificado: arranca el Mundial
+      } else {
+        stage = "eliminado";
+        finished = true;
+        eliminated = true;
+        failedQualifying = true;
+      }
+    } else {
+      stage = "clasificacion";
+    }
+  } else if (fx.stage === "grupos") {
     const groupMatches = fixtures.filter((m) => m.stage === "grupos");
     const groupDone = groupMatches.every((m) => m.played);
     if (groupDone) {
@@ -554,7 +621,7 @@ export function resolveMatch(
 
   // ── Rivalidades (solo en eliminatoria) ──
   let rivalries = c0.reputation.rivalries;
-  if (fx.stage !== "grupos") {
+  if (isKnockoutStage(fx.stage)) {
     const oppName = seleccion(fx.opponentSlug)?.nombre ?? fx.opponentSlug;
     const existing = rivalries.find((rv) => rv.rival === oppName);
     if (existing) {
@@ -648,13 +715,15 @@ export function resolveMatch(
 
   // ── Narrativa (titular automático en partidos clave) ──
   let narrative = c0.narrative;
-  const notable = fx.stage !== "grupos" || champion || eliminated;
+  const notable = isKnockoutStage(fx.stage) || champion || eliminated;
   if (notable) {
     const nationName = seleccion(c0.identity.nationSlug)?.nombre ?? "El equipo";
     const oppName = seleccion(fx.opponentSlug)?.nombre ?? fx.opponentSlug;
     let body: string;
     if (champion) {
       body = `¡CAMPEONES DEL MUNDO! ${nationName} vence a ${oppName} ${gf}-${ga} en la final y conquista la gloria eterna.`;
+    } else if (failedQualifying) {
+      body = `Fracaso histórico: ${nationName} no logra clasificar al Mundial. La fase de clasificación se cierra sin billete y el proyecto queda en el aire.`;
     } else if (eliminated) {
       body = `Adiós al sueño: ${nationName} cae ${gf}-${ga} ante ${oppName} y se despide del Mundial.`;
     } else {
@@ -757,7 +826,10 @@ export function resolveMatch(
   if (press) narrative = [press, ...narrative];
 
   // ── XP ──
-  const xpGain = (outcome === "V" ? 130 : outcome === "E" ? 60 : 35) + gf * 8 + (decisive ? 20 : 0);
+  // Los amistosos reparten menos XP (son de preparación, no competición oficial).
+  const friendly = fx.stage === "amistoso";
+  const xpBase = (outcome === "V" ? 130 : outcome === "E" ? 60 : 35) + gf * 8 + (decisive ? 20 : 0);
+  const xpGain = Math.round(xpBase * (friendly ? 0.5 : 1));
 
   const careerMid: CareerState = {
     ...c0,

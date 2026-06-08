@@ -242,7 +242,7 @@ export default function MatchLive({
   // Prórroga + penaltis (solo eliminatorias empatadas a los 90'). En el fútbol
   // real una eliminatoria nunca acaba en empate: hay 30' extra y, si sigue igual,
   // tanda de penaltis. El DT decide el enfoque de ambas.
-  const isKnockout = match.stage !== "grupos";
+  const isKnockout = ["octavos", "cuartos", "semifinal", "final"].includes(match.stage);
   const [shootoutRes, setShootoutRes] = useState<ShootoutResult | null>(null);
   const shootoutRef = useRef<ShootoutResult | null>(null);
   const etRef = useRef<{ gfEt: number; gaEt: number } | null>(null);

@@ -28,6 +28,10 @@ import {
   choicesFor,
   rollMatchInjury,
   HALFTIME_TALKS,
+  EXTRA_TIME_CHOICES,
+  PENALTY_STRATEGIES,
+  extraTime,
+  shootout,
   type TacticalPlan,
   type InMatchChoice,
   type LiveMatchState,
@@ -35,10 +39,13 @@ import {
   type MatchInjury,
   type SubOption,
   type HalftimeTalk,
+  type ExtraTimeChoice,
+  type PenaltyStrategy,
+  type ShootoutResult,
 } from "@/lib/modo-carrera/match-live";
 import type { CareerState, SeasonMatch, Injury } from "@/lib/modo-carrera/types";
 
-type Phase = "plan" | "half1" | "injury" | "charla" | "decision" | "half2" | "fulltime";
+type Phase = "plan" | "half1" | "injury" | "charla" | "decision" | "half2" | "prorroga" | "et" | "penales" | "fulltime";
 
 interface GoalEvent {
   minute: number;
@@ -172,6 +179,13 @@ export default function MatchLive({
   // partido y deja un delta de moral que se arrastra a la carrera.
   const talkMultRef = useRef<{ atk: number; def: number }>({ atk: 1, def: 1 });
   const talkMoraleRef = useRef(0);
+  // Prórroga + penaltis (solo eliminatorias empatadas a los 90'). En el fútbol
+  // real una eliminatoria nunca acaba en empate: hay 30' extra y, si sigue igual,
+  // tanda de penaltis. El DT decide el enfoque de ambas.
+  const isKnockout = match.stage !== "grupos";
+  const [shootoutRes, setShootoutRes] = useState<ShootoutResult | null>(null);
+  const shootoutRef = useRef<ShootoutResult | null>(null);
+  const etRef = useRef<{ gfEt: number; gaEt: number } | null>(null);
 
   const selfKey = useMemo(() => keyPlayers(selfSlug), [selfSlug]);
   const oppKey = useMemo(() => keyPlayers(oppSlug), [oppSlug]);
@@ -180,8 +194,8 @@ export default function MatchLive({
   // minuto a minuto (acelera a media, frena en el tramo final) y DETENERSE
   // durante la celebración de un gol — como en FIFA, el juego para para festejar.
   useEffect(() => {
-    if (phase !== "half1" && phase !== "half2") return;
-    const target = phase === "half1" ? 60 : 90;
+    if (phase !== "half1" && phase !== "half2" && phase !== "et") return;
+    const target = phase === "half1" ? 60 : phase === "half2" ? 90 : 120;
     let active = true;
     let timer: ReturnType<typeof setTimeout>;
     const tick = () => {
@@ -225,7 +239,15 @@ export default function MatchLive({
         goToCharlaOrDecision();
       }
     }
-    if (phase === "half2" && clock >= 90) setPhase("fulltime");
+    if (phase === "half2" && clock >= 90) {
+      // En el fútbol real una eliminatoria nunca acaba en empate: si están iguales
+      // a los 90', hay prórroga. En fase de grupos el empate es válido.
+      setPhase(isKnockout && shown.gf === shown.ga ? "prorroga" : "fulltime");
+    }
+    if (phase === "et" && clock >= 120) {
+      // Tras la prórroga: si sigue empate, tanda de penaltis; si no, final.
+      setPhase(shown.gf === shown.ga ? "penales" : "fulltime");
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clock, phase]);
 
@@ -256,6 +278,9 @@ export default function MatchLive({
     injuredRef.current = null;
     talkMultRef.current = { atk: 1, def: 1 };
     talkMoraleRef.current = 0;
+    etRef.current = null;
+    shootoutRef.current = null;
+    setShootoutRes(null);
     setInjury(null);
     setClock(0);
     setPhase("half1");
@@ -276,6 +301,26 @@ export default function MatchLive({
     resRef.current = res;
     setEvents((prev) => [...prev, ...buildEvents(res.gf2, res.ga2, selfSlug, oppSlug, 61, 90)]);
     setPhase("half2");
+  };
+
+  // El DT elige cómo afrontar la prórroga (30' extra). El enfoque modula los goles
+  // de la prórroga, que caen entre los minutos 91 y 120.
+  const pickET = (choice: ExtraTimeChoice) => {
+    const ls = lsRef.current;
+    if (!ls) return;
+    const { gfEt, gaEt } = extraTime(ls, choice);
+    etRef.current = { gfEt, gaEt };
+    setEvents((prev) => [...prev, ...buildEvents(gfEt, gaEt, selfSlug, oppSlug, 91, 120)]);
+    setPhase("et");
+  };
+
+  // El DT elige el enfoque de la tanda. La simulación resuelve los penaltis y
+  // suma +1 al ganador para que resolveMatch produzca un resultado decisivo.
+  const pickPenalty = (strat: PenaltyStrategy) => {
+    const so = shootout(match, strat);
+    shootoutRef.current = so;
+    setShootoutRes(so);
+    setPhase("fulltime");
   };
 
   // Marcador mostrado: goles cuyo minuto ya pasó el reloj.
@@ -330,8 +375,13 @@ export default function MatchLive({
   }, [phase, decisionLeft]);
 
   const res = resRef.current;
-  const finalGf = res ? res.gf : shown.gf;
-  const finalGa = res ? res.ga : shown.ga;
+  // Marcador agregado tras 90' (+ prórroga si la hubo). Los penaltis NO cambian
+  // el marcador mostrado (queda el empate), pero sí deciden el ganador: +1 al
+  // vencedor de la tanda para que resolveMatch produzca un resultado decisivo.
+  const aggGf = (res ? res.gf : shown.gf) + (etRef.current?.gfEt ?? 0);
+  const aggGa = (res ? res.ga : shown.ga) + (etRef.current?.gaEt ?? 0);
+  const finalGf = aggGf + (shootoutRes?.winner === "self" ? 1 : 0);
+  const finalGa = aggGa + (shootoutRes?.winner === "opp" ? 1 : 0);
   const outcome = finalGf > finalGa ? "V" : finalGf < finalGa ? "D" : "E";
   const outColor = outcome === "V" ? GREEN : outcome === "E" ? GOLD : RED;
 
@@ -522,7 +572,7 @@ export default function MatchLive({
         )}
 
         {/* ── FEED de goles (durante el partido y al final) ── */}
-        {(phase === "half1" || phase === "injury" || phase === "charla" || phase === "decision" || phase === "half2" || phase === "fulltime") && (
+        {(phase === "half1" || phase === "injury" || phase === "charla" || phase === "decision" || phase === "half2" || phase === "et" || phase === "fulltime") && (
           <div style={{ display: "flex", flexDirection: "column", gap: 6, margin: "4px 0 12px", minHeight: 40 }}>
             {shown.feed.length === 0 ? (
               <div style={{ textAlign: "center", fontSize: 12, color: DIM, fontStyle: "italic", padding: "8px 0" }}>
@@ -706,6 +756,87 @@ export default function MatchLive({
           </>
         )}
 
+        {/* ── PRÓRROGA: el DT elige cómo afrontar los 30' extra ── */}
+        {phase === "prorroga" && (
+          <>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, margin: "6px 0 4px", animation: "mlDecHdr .45s cubic-bezier(.2,.9,.3,1.3) both" }}>
+              <Coach pose="instruccion" size={64} slug={selfSlug} />
+              <div style={{ textAlign: "left" }}>
+                <div style={{ fontSize: 12, fontWeight: 900, letterSpacing: 1, textTransform: "uppercase", color: GOLD }}>90&#39; · al filo · prórroga</div>
+                <div style={{ fontSize: 11.5, color: DIM, fontStyle: "italic", marginTop: 1 }}>Eliminatoria igualada. No hay empate posible.</div>
+              </div>
+            </div>
+            <div style={{ textAlign: "center", fontSize: 12.5, color: MID, marginBottom: 12 }}>
+              30 minutos más. ¿Cómo afrontas la prórroga?
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              {EXTRA_TIME_CHOICES.map((ch, i) => (
+                <button
+                  key={ch.id}
+                  type="button"
+                  onClick={() => pickET(ch)}
+                  style={{
+                    textAlign: "left",
+                    padding: "12px 14px",
+                    borderRadius: 12,
+                    cursor: "pointer",
+                    background: BG3,
+                    border: "1px solid rgba(255,255,255,0.06)",
+                    animation: `mlDecCard .4s ${0.1 + i * 0.09}s cubic-bezier(.2,.9,.3,1.2) both`,
+                  }}
+                >
+                  <div style={{ fontSize: 13.5, fontWeight: 800, color: "#fff" }}>{ch.name}</div>
+                  <div style={{ fontSize: 12, color: MID, marginTop: 3, lineHeight: 1.5 }}>{ch.description}</div>
+                </button>
+              ))}
+            </div>
+          </>
+        )}
+
+        {/* ── PRÓRROGA EN JUEGO: banner mientras corre el reloj 90'→120' ── */}
+        {phase === "et" && (
+          <div style={{ textAlign: "center", fontSize: 11, fontWeight: 900, letterSpacing: 1.6, textTransform: "uppercase", color: GOLD2, marginBottom: 10 }}>
+            Prórroga en juego
+          </div>
+        )}
+
+        {/* ── PENALTIS: el DT elige el enfoque de la tanda ── */}
+        {phase === "penales" && (
+          <>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, margin: "6px 0 4px", animation: "mlDecHdr .45s cubic-bezier(.2,.9,.3,1.3) both" }}>
+              <Coach pose="instruccion" size={64} slug={selfSlug} />
+              <div style={{ textAlign: "left" }}>
+                <div style={{ fontSize: 12, fontWeight: 900, letterSpacing: 1, textTransform: "uppercase", color: GOLD }}>120&#39; · la lotería · penaltis</div>
+                <div style={{ fontSize: 11.5, color: DIM, fontStyle: "italic", marginTop: 1 }}>Todo a los once metros. Una última decisión.</div>
+              </div>
+            </div>
+            <div style={{ textAlign: "center", fontSize: 12.5, color: MID, marginBottom: 12 }}>
+              ¿Cómo encaras la tanda?
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              {PENALTY_STRATEGIES.map((st, i) => (
+                <button
+                  key={st.id}
+                  type="button"
+                  onClick={() => pickPenalty(st)}
+                  style={{
+                    textAlign: "left",
+                    padding: "12px 14px",
+                    borderRadius: 12,
+                    cursor: "pointer",
+                    background: BG3,
+                    border: "1px solid rgba(255,255,255,0.06)",
+                    animation: `mlDecCard .4s ${0.1 + i * 0.09}s cubic-bezier(.2,.9,.3,1.2) both`,
+                  }}
+                >
+                  <div style={{ fontSize: 13.5, fontWeight: 800, color: "#fff" }}>{st.name}</div>
+                  <div style={{ fontSize: 12, color: MID, marginTop: 3, lineHeight: 1.5 }}>{st.description}</div>
+                </button>
+              ))}
+            </div>
+          </>
+        )}
+
         {/* ── FINAL (reacción emocional diferenciada por resultado) ── */}
         {phase === "fulltime" && (
           <div style={{ position: "relative", textAlign: "center" }}>
@@ -754,6 +885,29 @@ export default function MatchLive({
                     ? "Un punto que suma. A seguir construyendo."
                     : "A levantar la cabeza, míster. Esto no acaba aquí."}
               </div>
+              {shootoutRes && (
+                <div style={{ padding: "12px 14px", borderRadius: 12, background: BG3, border: `1px solid ${outColor}55`, marginBottom: 14 }}>
+                  <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 1.2, textTransform: "uppercase", color: GOLD }}>Tanda de penaltis</div>
+                  <div style={{ fontSize: 22, fontWeight: 900, color: outColor, marginTop: 3 }}>
+                    {shootoutRes.self} - {shootoutRes.opp}
+                  </div>
+                  <div style={{ display: "flex", justifyContent: "center", gap: 5, marginTop: 8, flexWrap: "wrap" }}>
+                    {shootoutRes.kicks.map((k, i) => (
+                      <span
+                        key={i}
+                        title={`${k.team === "self" ? (selfNat?.nombre ?? "Tú") : (oppNat?.nombre ?? "Rival")} · ${k.scored ? "gol" : "fallo"}`}
+                        style={{
+                          width: 12,
+                          height: 12,
+                          borderRadius: "50%",
+                          border: `2px solid ${k.team === "self" ? GOLD : "rgba(255,255,255,0.4)"}`,
+                          background: k.scored ? (k.team === "self" ? GOLD : "rgba(255,255,255,0.7)") : "transparent",
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
               {motm && (
                 <div style={{ padding: "10px 14px", borderRadius: 12, background: BG3, border: `1px solid ${GOLD}44`, marginBottom: 14 }}>
                   <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 1.2, textTransform: "uppercase", color: GOLD }}>Figura del partido</div>

@@ -316,3 +316,160 @@ export function secondHalf(state: LiveMatchState, choice: InMatchChoice): LiveMa
   const capped = capScore(state.gf1 + gf2, state.ga1 + ga2, state.lamFor, state.lamAg);
   return { gf: capped.gf, ga: capped.ga, gf2, ga2 };
 }
+
+// ─── PRÓRROGA (solo eliminatorias empatadas a los 90') ───────────────────────
+/** Peso de los 30' de la prórroga frente a los 90' reglamentarios. */
+const W_ET = 0.26;
+
+/**
+ * Decisión del DT para afrontar la prórroga. En el fútbol real una eliminatoria
+ * NO puede acabar en empate: si los 90' están igualados se juegan 30' extra y, de
+ * seguir la igualdad, se va a los penaltis. El enfoque del DT mueve de verdad la
+ * probabilidad de marcar/encajar en ese tiempo añadido.
+ */
+export interface ExtraTimeChoice {
+  id: string;
+  name: string;
+  description: string;
+  atkMult: number;
+  defMult: number;
+}
+
+export const EXTRA_TIME_CHOICES: ExtraTimeChoice[] = [
+  {
+    id: "oro",
+    name: "Ir a por el gol",
+    description: "Buscas resolverlo en la prórroga. Arriesgas para no llegar a la lotería de los penaltis.",
+    atkMult: 1.45,
+    defMult: 1.35,
+  },
+  {
+    id: "equilibrio",
+    name: "Con cabeza",
+    description: "Mantienes el orden y aprovechas la primera que tengas. Equilibrio entre riesgo y solidez.",
+    atkMult: 1.05,
+    defMult: 1.0,
+  },
+  {
+    id: "penales",
+    name: "Aguantar a penaltis",
+    description: "Te blindas atrás y confías tu suerte a la tanda. Apenas generarás, pero casi no concedes.",
+    atkMult: 0.55,
+    defMult: 0.5,
+  },
+];
+
+/** Goles marcados en los 30' de prórroga según el enfoque elegido. */
+export function extraTime(state: LiveMatchState, choice: ExtraTimeChoice): { gfEt: number; gaEt: number } {
+  return {
+    gfEt: poisson(state.lamFor * W_ET * choice.atkMult),
+    gaEt: poisson(state.lamAg * W_ET * choice.defMult),
+  };
+}
+
+// ─── TANDA DE PENALTIS (si la prórroga sigue empatada) ───────────────────────
+/**
+ * Estrategia del DT para la tanda. Los penaltis son una lotería, pero las
+ * decisiones del míster (orden de tiradores, leer al rival, jugar con la presión)
+ * inclinan ligeramente la balanza: `selfBonus` sube tu conversión y `oppPenalty`
+ * baja la del rival.
+ */
+export interface PenaltyStrategy {
+  id: string;
+  name: string;
+  description: string;
+  selfBonus: number;
+  oppPenalty: number;
+}
+
+export const PENALTY_STRATEGIES: PenaltyStrategy[] = [
+  {
+    id: "confianza",
+    name: "Tiradores de confianza",
+    description: "Pones a lanzar a tus jugadores de mayor sangre fría. Más acierto desde los once metros.",
+    selfBonus: 0.07,
+    oppPenalty: 0,
+  },
+  {
+    id: "estandar",
+    name: "Orden habitual",
+    description: "Confías en el orden de siempre. Sin sorpresas, a sangre fría.",
+    selfBonus: 0,
+    oppPenalty: 0,
+  },
+  {
+    id: "portero",
+    name: "Estudiar al rival",
+    description: "Das instrucciones a tu portero sobre dónde van a tirar. Te juegas algo de tu acierto por restarle al rival.",
+    selfBonus: -0.02,
+    oppPenalty: 0.1,
+  },
+];
+
+export interface ShootoutKick {
+  team: "self" | "opp";
+  scored: boolean;
+}
+
+export interface ShootoutResult {
+  self: number;
+  opp: number;
+  winner: "self" | "opp";
+  kicks: ShootoutKick[];
+}
+
+/**
+ * Simula una tanda de penaltis: 5 lanzamientos por lado y, si persiste el empate,
+ * muerte súbita. Conversión base ~0.74 ajustada por la estrategia del DT y una
+ * leve ventaja de local. Se detiene en cuanto la tanda queda matemáticamente
+ * decidida (como en la realidad).
+ */
+export function shootout(match: SeasonMatch, strat: PenaltyStrategy): ShootoutResult {
+  const selfProb = clamp01(0.74 + strat.selfBonus + (match.home ? 0.02 : 0));
+  const oppProb = clamp01(0.74 - strat.oppPenalty);
+  const kicks: ShootoutKick[] = [];
+  let self = 0;
+  let opp = 0;
+
+  // ¿Puede el resultado cambiar aún? (tiros restantes de la fase regular de 5).
+  const decided = (sShot: number, oShot: number) => {
+    const sRem = Math.max(0, 5 - sShot);
+    const oRem = Math.max(0, 5 - oShot);
+    if (self > opp + oRem) return true;
+    if (opp > self + sRem) return true;
+    return false;
+  };
+
+  let sShot = 0;
+  let oShot = 0;
+  // Primeros 5 por lado (alternando), con corte anticipado.
+  while ((sShot < 5 || oShot < 5) && !decided(sShot, oShot)) {
+    if (sShot <= oShot) {
+      const ok = Math.random() < selfProb;
+      kicks.push({ team: "self", scored: ok });
+      if (ok) self++;
+      sShot++;
+    } else {
+      const ok = Math.random() < oppProb;
+      kicks.push({ team: "opp", scored: ok });
+      if (ok) opp++;
+      oShot++;
+    }
+  }
+
+  // Muerte súbita: pares de lanzamientos hasta que uno falle y el otro anote.
+  while (self === opp) {
+    const s = Math.random() < selfProb;
+    kicks.push({ team: "self", scored: s });
+    if (s) self++;
+    const o = Math.random() < oppProb;
+    kicks.push({ team: "opp", scored: o });
+    if (o) opp++;
+  }
+
+  return { self, opp, winner: self > opp ? "self" : "opp", kicks };
+}
+
+function clamp01(n: number): number {
+  return Math.max(0.5, Math.min(0.95, n));
+}

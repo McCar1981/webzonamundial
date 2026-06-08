@@ -312,6 +312,73 @@ export function rollMatchInjury(c: CareerState, _match: SeasonMatch): MatchInjur
   return { injured, minute: 40 + Math.floor(Math.random() * 18), options };
 }
 
+// ─── CAMBIOS EN VIVO: sustitución voluntaria + cambio de sistema ─────────────
+// Más allá del recambio FORZADO por lesión, el DT puede MOVER el banquillo cuando
+// quiera en los momentos de decisión (min 60 y 75): meter piernas frescas o un
+// perfil ofensivo/defensivo, y cambiar el SISTEMA táctico a mitad de partido.
+// Como todo en este motor, son multiplicadores que se combinan con la decisión.
+
+/** Nº máximo de cambios (sustituciones) que el DT puede hacer en un partido. */
+export const MAX_LIVE_SUBS = 3;
+
+/**
+ * Recambios VOLUNTARIOS del banquillo (no por lesión): tres perfiles tácticos con
+ * jugadores reales. `usedNames` excluye a quienes ya entraron o cayeron lesionados
+ * para no repetir nombres. Devuelve [] si no quedan suplentes suficientes.
+ *   · "frescas"  → oxígeno: pequeño plus general (piernas nuevas).
+ *   · "ofensivo" → más pólvora arriba a costa de exponerte algo atrás.
+ *   · "defensivo"→ cierras atrás a costa de mordiente.
+ */
+export function voluntarySubOptions(c: CareerState, usedNames: string[]): SubOption[] {
+  const roster: RosterPlayer[] = FANTASY_ROSTERS[c.identity.nationSlug ?? ""] ?? [];
+  const used = new Set(usedNames);
+  const bench = roster.filter((p) => !used.has(p.name));
+  if (bench.length < 3) return [];
+
+  const pickBy = (pred: (p: RosterPlayer) => boolean): RosterPlayer => {
+    const pool = bench.filter(pred);
+    return (pool.length ? pool : bench)[Math.floor(Math.random() * (pool.length ? pool.length : bench.length))];
+  };
+  const fresh = pickBy((p) => p.pos === "MID" || p.pos === "FWD");
+  const offensive = pickBy((p) => p.pos === "FWD" || p.pos === "MID");
+  const defensive = pickBy((p) => p.pos === "DEF" || p.pos === "MID");
+
+  return [
+    {
+      id: "frescas",
+      player: fresh.name,
+      pos: fresh.pos,
+      label: "Piernas frescas",
+      description: "Oxígeno desde el banquillo. Un plus de energía para el tramo final.",
+      atkMult: 1.07,
+      defMult: 1.05,
+    },
+    {
+      id: "ofensivo",
+      player: offensive.name,
+      pos: offensive.pos,
+      label: "Refuerzo ofensivo",
+      description: "Más gente de ataque. Ganas pegada, te expones algo atrás.",
+      atkMult: 1.16,
+      defMult: 0.9,
+    },
+    {
+      id: "defensivo",
+      player: defensive.name,
+      pos: defensive.pos,
+      label: "Refuerzo defensivo",
+      description: "Refuerzas el bloque. Cierras atrás a costa de mordiente.",
+      atkMult: 0.88,
+      defMult: 1.16,
+    },
+  ];
+}
+
+/** Planes a los que el DT puede CAMBIAR el sistema en vivo (todos menos el actual). */
+export function systemChangeOptions(currentPlanId: string): TacticalPlan[] {
+  return TACTICAL_PLANS.filter((p) => p.id !== currentPlanId);
+}
+
 /** Goles del tramo 60-75' tras la 1ª decisión en vivo (sin cerrar el marcador). */
 export function secondHalf(state: LiveMatchState, choice: InMatchChoice): { gf2: number; ga2: number } {
   return {

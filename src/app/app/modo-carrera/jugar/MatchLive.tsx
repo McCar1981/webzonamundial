@@ -35,6 +35,9 @@ import {
   rollSetPiece,
   setPieceChoices,
   resolveSetPiece,
+  voluntarySubOptions,
+  systemChangeOptions,
+  MAX_LIVE_SUBS,
   HALFTIME_TALKS,
   EXTRA_TIME_CHOICES,
   PENALTY_STRATEGIES,
@@ -239,6 +242,21 @@ export default function MatchLive({
   // partido y deja un delta de moral que se arrastra a la carrera.
   const talkMultRef = useRef<{ atk: number; def: number }>({ atk: 1, def: 1 });
   const talkMoraleRef = useRef(0);
+  // CAMBIOS EN VIVO (decisión del DT en min 60 y 75): sustituciones voluntarias y
+  // cambio de sistema. Acumulan multiplicadores que se combinan con la decisión.
+  const volSubMultRef = useRef<{ atk: number; def: number }>({ atk: 1, def: 1 });
+  const systemMultRef = useRef<{ atk: number; def: number }>({ atk: 1, def: 1 });
+  // Nombres ya usados (lesionado + recambios) para no repetir en el banquillo.
+  const usedSubNamesRef = useRef<string[]>([]);
+  const [subsUsed, setSubsUsed] = useState(0);
+  const [currentPlanName, setCurrentPlanName] = useState<string>(TACTICAL_PLANS[0].name);
+  // Sub-panel del momento de decisión: la orden táctica, o el banquillo/pizarra.
+  const [decisionPanel, setDecisionPanel] = useState<"main" | "sub" | "sistema">("main");
+  // Recambios ofrecidos al abrir el banquillo (se fijan una vez para no re-rotar
+  // los nombres en cada render, ya que voluntarySubOptions usa aleatoriedad).
+  const [subOffer, setSubOffer] = useState<SubOption[]>([]);
+  // Registro de cambios en vivo (para mostrarlos como "movimientos del banco").
+  const [liveChanges, setLiveChanges] = useState<string[]>([]);
   // Prórroga + penaltis (solo eliminatorias empatadas a los 90'). En el fútbol
   // real una eliminatoria nunca acaba en empate: hay 30' extra y, si sigue igual,
   // tanda de penaltis. El DT decide el enfoque de ambas.
@@ -371,6 +389,40 @@ export default function MatchLive({
     setPhase("decision");
   };
 
+  // CAMBIO VOLUNTARIO: el DT mete a un suplente desde el banquillo. Su perfil
+  // (frescas/ofensivo/defensivo) acumula multiplicador sobre el resto del partido.
+  // Tope de MAX_LIVE_SUBS cambios por encuentro (como en el fútbol real).
+  const pickVolSub = (opt: SubOption) => {
+    volSubMultRef.current = {
+      atk: volSubMultRef.current.atk * opt.atkMult,
+      def: volSubMultRef.current.def * opt.defMult,
+    };
+    usedSubNamesRef.current = [...usedSubNamesRef.current, opt.player];
+    setSubsUsed((n) => n + 1);
+    setLiveChanges((prev) => [...prev, `Cambio: entra ${opt.player} (${opt.label.toLowerCase()})`]);
+    setDecisionPanel("main");
+  };
+
+  // CAMBIO DE SISTEMA: el DT reordena el dibujo a mitad de partido. Reemplaza el
+  // multiplicador de sistema por el del nuevo plan (no se acumula con cambios
+  // previos de sistema) y actualiza el plan vigente para próximas decisiones.
+  const pickSystem = (plan: TacticalPlan) => {
+    systemMultRef.current = { atk: plan.atkMult, def: plan.defMult };
+    setPlanId(plan.id);
+    setCurrentPlanName(plan.name);
+    setLiveChanges((prev) => [...prev, `Sistema: ${plan.name}`]);
+    setDecisionPanel("main");
+  };
+
+  // Abre el banquillo: fija los recambios disponibles (3 perfiles reales) una sola
+  // vez. Si no quedan suplentes suficientes, no abre el panel.
+  const openSubPanel = () => {
+    const opts = voluntarySubOptions(career, usedSubNamesRef.current);
+    if (opts.length === 0) return;
+    setSubOffer(opts);
+    setDecisionPanel("sub");
+  };
+
   const startMatch = (plan: TacticalPlan) => {
     const ls = kickoff(liveCareer, match, plan);
     lsRef.current = ls;
@@ -390,6 +442,15 @@ export default function MatchLive({
     injuredRef.current = null;
     talkMultRef.current = { atk: 1, def: 1 };
     talkMoraleRef.current = 0;
+    // Reinicio de los cambios en vivo: el lesionado pre-tirado (si lo hay) ya
+    // queda marcado como "usado" para que no se ofrezca como recambio voluntario.
+    volSubMultRef.current = { atk: 1, def: 1 };
+    systemMultRef.current = { atk: 1, def: 1 };
+    usedSubNamesRef.current = injuryRef.current ? [injuryRef.current.injured.player] : [];
+    setSubsUsed(0);
+    setCurrentPlanName(plan.name);
+    setDecisionPanel("main");
+    setLiveChanges([]);
     etRef.current = null;
     shootoutRef.current = null;
     setShootoutRes(null);
@@ -405,15 +466,18 @@ export default function MatchLive({
     // se produjo antes del cierre de este tramo, min 75) modulan la decisión.
     const sub = subMultRef.current;
     const talk = talkMultRef.current;
+    const vol = volSubMultRef.current;
+    const sys = systemMultRef.current;
     const red = redCardMult(redCardRef.current, 75);
     const combined: InMatchChoice = {
       ...choice,
-      atkMult: choice.atkMult * sub.atk * talk.atk * red.atk,
-      defMult: choice.defMult * sub.def * talk.def * red.def,
+      atkMult: choice.atkMult * sub.atk * talk.atk * vol.atk * sys.atk * red.atk,
+      defMult: choice.defMult * sub.def * talk.def * vol.def * sys.def * red.def,
     };
     const mid = secondHalf(ls, combined);
     midRef.current = mid;
     setEvents((prev) => [...prev, ...buildEvents(mid.gf2, mid.ga2, selfSlug, oppSlug, 61, 74)]);
+    setDecisionPanel("main");
     setPhase("half2");
   };
 
@@ -425,15 +489,18 @@ export default function MatchLive({
     if (!ls || !mid) return;
     const sub = subMultRef.current;
     const talk = talkMultRef.current;
+    const vol = volSubMultRef.current;
+    const sys = systemMultRef.current;
     const red = redCardMult(redCardRef.current, 90);
     const combined: InMatchChoice = {
       ...choice,
-      atkMult: choice.atkMult * sub.atk * talk.atk * red.atk,
-      defMult: choice.defMult * sub.def * talk.def * red.def,
+      atkMult: choice.atkMult * sub.atk * talk.atk * vol.atk * sys.atk * red.atk,
+      defMult: choice.defMult * sub.def * talk.def * vol.def * sys.def * red.def,
     };
     const res = thirdHalf(ls, mid, combined);
     resRef.current = res;
     setEvents((prev) => [...prev, ...buildEvents(res.gf2, res.ga2, selfSlug, oppSlug, 76, 90)]);
+    setDecisionPanel("main");
     setPhase("half3");
   };
 
@@ -530,6 +597,9 @@ export default function MatchLive({
       setDecisionLeft(10);
       return;
     }
+    // Mientras el DT consulta el banquillo o la pizarra, el reloj de la orden se
+    // congela: no se le agota el tiempo por gestionar un cambio.
+    if (decisionPanel !== "main") return;
     if (decisionLeft <= 0) {
       // Si se agota el tiempo, el cuerpo técnico mantiene el plan (1ª opción = KEEP).
       const keep = choicesFor(shown.gf, shown.ga)[0];
@@ -540,7 +610,7 @@ export default function MatchLive({
     const t = setTimeout(() => setDecisionLeft((n) => n - 1), 1000);
     return () => clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [phase, decisionLeft]);
+  }, [phase, decisionLeft, decisionPanel]);
 
   const res = resRef.current;
   // Marcador agregado tras 90' (+ prórroga si la hubo). Los penaltis NO cambian
@@ -859,29 +929,157 @@ export default function MatchLive({
               </div>
             </div>
             <div style={{ textAlign: "center", fontSize: 12.5, color: MID, marginBottom: 12 }}>
-              {shown.gf > shown.ga ? "Vas ganando. ¿Cómo gestionas la ventaja?" : shown.gf < shown.ga ? "Vas por detrás. ¿Cómo reaccionas?" : "Todo igualado. ¿Qué arriesgas?"}
+              {decisionPanel === "sub"
+                ? "Banquillo: elige el perfil del que entra."
+                : decisionPanel === "sistema"
+                  ? "Cambia el dibujo táctico sobre la marcha."
+                  : shown.gf > shown.ga
+                    ? "Vas ganando. ¿Cómo gestionas la ventaja?"
+                    : shown.gf < shown.ga
+                      ? "Vas por detrás. ¿Cómo reaccionas?"
+                      : "Todo igualado. ¿Qué arriesgas?"}
             </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              {decisionChoices.map((ch, i) => (
+
+            {/* Resumen de cambios ya aplicados + sistema actual */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", flexWrap: "wrap", gap: 8, marginBottom: 12 }}>
+              <span style={{ fontSize: 11, fontWeight: 800, color: GOLD2, padding: "3px 9px", borderRadius: 999, background: "rgba(201,168,76,0.12)", border: "1px solid rgba(201,168,76,0.25)" }}>
+                Sistema: {currentPlanName}
+              </span>
+              <span style={{ fontSize: 11, fontWeight: 800, color: subsUsed >= MAX_LIVE_SUBS ? RED : MID, padding: "3px 9px", borderRadius: 999, background: BG3, border: "1px solid rgba(255,255,255,0.06)" }}>
+                Cambios: {subsUsed}/{MAX_LIVE_SUBS}
+              </span>
+            </div>
+
+            {/* PANEL PRINCIPAL: órdenes tácticas + acciones de banquillo */}
+            {decisionPanel === "main" && (
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {decisionChoices.map((ch, i) => (
+                  <button
+                    key={ch.id}
+                    type="button"
+                    onClick={() => (phase === "decision" ? pickChoice(ch) : pickChoice2(ch))}
+                    style={{
+                      textAlign: "left",
+                      padding: "12px 14px",
+                      borderRadius: 12,
+                      cursor: "pointer",
+                      background: BG3,
+                      border: "1px solid rgba(255,255,255,0.06)",
+                      animation: `mlDecCard .4s ${0.1 + i * 0.09}s cubic-bezier(.2,.9,.3,1.2) both`,
+                    }}
+                  >
+                    <div style={{ fontSize: 13.5, fontWeight: 800, color: "#fff" }}>{ch.name}</div>
+                    <div style={{ fontSize: 12, color: MID, marginTop: 3, lineHeight: 1.5 }}>{ch.description}</div>
+                  </button>
+                ))}
+                <div style={{ display: "flex", gap: 8, marginTop: 2 }}>
+                  <button
+                    type="button"
+                    onClick={openSubPanel}
+                    disabled={subsUsed >= MAX_LIVE_SUBS}
+                    style={{
+                      flex: 1,
+                      padding: "11px 12px",
+                      borderRadius: 12,
+                      cursor: subsUsed >= MAX_LIVE_SUBS ? "not-allowed" : "pointer",
+                      background: BG3,
+                      border: "1px solid rgba(201,168,76,0.3)",
+                      opacity: subsUsed >= MAX_LIVE_SUBS ? 0.45 : 1,
+                      color: GOLD,
+                      fontSize: 12.5,
+                      fontWeight: 800,
+                    }}
+                  >
+                    {subsUsed >= MAX_LIVE_SUBS ? "Sin cambios" : "Hacer un cambio"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setDecisionPanel("sistema")}
+                    style={{
+                      flex: 1,
+                      padding: "11px 12px",
+                      borderRadius: 12,
+                      cursor: "pointer",
+                      background: BG3,
+                      border: "1px solid rgba(201,168,76,0.3)",
+                      color: GOLD,
+                      fontSize: 12.5,
+                      fontWeight: 800,
+                    }}
+                  >
+                    Cambiar de sistema
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* PANEL CAMBIO: elegir perfil del suplente */}
+            {decisionPanel === "sub" && (
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {subOffer.map((opt, i) => (
+                  <button
+                    key={opt.id}
+                    type="button"
+                    onClick={() => pickVolSub(opt)}
+                    style={{
+                      textAlign: "left",
+                      padding: "12px 14px",
+                      borderRadius: 12,
+                      cursor: "pointer",
+                      background: BG3,
+                      border: "1px solid rgba(255,255,255,0.06)",
+                      animation: `mlDecCard .4s ${0.05 + i * 0.08}s cubic-bezier(.2,.9,.3,1.2) both`,
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                      <span style={{ fontSize: 13.5, fontWeight: 800, color: "#fff" }}>{opt.label}</span>
+                      <span style={{ fontSize: 10.5, fontWeight: 800, color: GOLD2, padding: "1px 7px", borderRadius: 999, background: "rgba(201,168,76,0.12)" }}>{opt.pos}</span>
+                    </div>
+                    <div style={{ fontSize: 12, color: GOLD2, marginTop: 3, fontWeight: 700 }}>Entra {opt.player}</div>
+                    <div style={{ fontSize: 12, color: MID, marginTop: 2, lineHeight: 1.5 }}>{opt.description}</div>
+                  </button>
+                ))}
                 <button
-                  key={ch.id}
                   type="button"
-                  onClick={() => (phase === "decision" ? pickChoice(ch) : pickChoice2(ch))}
-                  style={{
-                    textAlign: "left",
-                    padding: "12px 14px",
-                    borderRadius: 12,
-                    cursor: "pointer",
-                    background: BG3,
-                    border: "1px solid rgba(255,255,255,0.06)",
-                    animation: `mlDecCard .4s ${0.1 + i * 0.09}s cubic-bezier(.2,.9,.3,1.2) both`,
-                  }}
+                  onClick={() => setDecisionPanel("main")}
+                  style={{ padding: "9px 12px", borderRadius: 12, cursor: "pointer", background: "transparent", border: "1px solid rgba(255,255,255,0.1)", color: DIM, fontSize: 12, fontWeight: 800, marginTop: 2 }}
                 >
-                  <div style={{ fontSize: 13.5, fontWeight: 800, color: "#fff" }}>{ch.name}</div>
-                  <div style={{ fontSize: 12, color: MID, marginTop: 3, lineHeight: 1.5 }}>{ch.description}</div>
+                  Volver
                 </button>
-              ))}
-            </div>
+              </div>
+            )}
+
+            {/* PANEL SISTEMA: cambiar dibujo táctico */}
+            {decisionPanel === "sistema" && (
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {systemChangeOptions(planId).map((plan, i) => (
+                  <button
+                    key={plan.id}
+                    type="button"
+                    onClick={() => pickSystem(plan)}
+                    style={{
+                      textAlign: "left",
+                      padding: "12px 14px",
+                      borderRadius: 12,
+                      cursor: "pointer",
+                      background: BG3,
+                      border: "1px solid rgba(255,255,255,0.06)",
+                      animation: `mlDecCard .4s ${0.05 + i * 0.08}s cubic-bezier(.2,.9,.3,1.2) both`,
+                    }}
+                  >
+                    <div style={{ fontSize: 13.5, fontWeight: 800, color: "#fff" }}>{plan.name}</div>
+                    <div style={{ fontSize: 12, color: MID, marginTop: 3, lineHeight: 1.5 }}>{plan.description}</div>
+                  </button>
+                ))}
+                <button
+                  type="button"
+                  onClick={() => setDecisionPanel("main")}
+                  style={{ padding: "9px 12px", borderRadius: 12, cursor: "pointer", background: "transparent", border: "1px solid rgba(255,255,255,0.1)", color: DIM, fontSize: 12, fontWeight: 800, marginTop: 2 }}
+                >
+                  Volver
+                </button>
+              </div>
+            )}
           </>
         )}
 

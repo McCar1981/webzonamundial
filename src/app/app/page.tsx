@@ -692,7 +692,7 @@ export default function AppHubPage() {
 
           {/* Puntitos del carrusel: indican cuántas pantallas hay y permiten saltar. */}
           {heroSlides.length > 1 && (
-            <div style={{ position: "absolute", right: 18, bottom: 16, zIndex: 3, display: "flex", gap: 7 }}>
+            <div style={{ position: "absolute", left: 0, right: 0, bottom: 16, zIndex: 3, display: "flex", justifyContent: "center", gap: 7 }}>
               {heroSlides.map((s, i) => {
                 const activo = i === heroIdx % heroSlides.length;
                 return (

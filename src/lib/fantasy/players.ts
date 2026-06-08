@@ -110,16 +110,16 @@ function buildTeamPlayers(team: Seleccion, next: NextMatch): FantasyPlayer[] {
 
     const rating = clamp(strength * 0.6 + topness * 0.18 + rng() * 0.22, 0.05, 1);
     // Precio fantasy. Si hay VALOR DE MERCADO real (Transfermarkt) se deriva de
-    // él (curva logarítmica → 3.8–13.5M). Si no, precio SIMULADO determinista:
+    // él (curva logarítmica → 2.5–16.0M). Si no, precio SIMULADO determinista:
     // base baja + más peso al jugador (rating/topness) que a la fuerza del equipo
-    // => existen enablers baratos (~4M) y las estrellas destacan (~13M). En ambos
-    // casos un 11 válido entra en los €100M.
+    // => existen enablers baratos (~4M) y las estrellas destacan (~15M). En ambos
+    // casos un 11 válido entra en los €100M, pero más ajustado que antes.
     const marketValue = getMarketValue(team.slug, rp.name);
     const simPrice = round1(
       clamp(
-        2.5 + strength * 3.2 + POS_PREMIUM[pos] + topness * 1.5 + rating * 3.0 + (rng() - 0.45) * 1.1,
-        1.5,
-        13.5,
+        3.0 + strength * 3.6 + POS_PREMIUM[pos] + topness * 1.8 + rating * 3.6 + (rng() - 0.45) * 1.1,
+        2.5,
+        16.0,
       ),
     );
     const price = marketValue != null ? priceFromMarketValue(marketValue) : simPrice;
@@ -150,7 +150,7 @@ function buildTeamPlayers(team: Seleccion, next: NextMatch): FantasyPlayer[] {
     if (status === "duda") startProb = Math.round(startProb * 0.7);
 
     const form = round1(clamp(rating * 8 + (rng() - 0.4) * 3, 1, 10));
-    const ownership = round1(clamp((price / 15) * 38 + rating * 14 + (rng() - 0.5) * 12, 0.4, 88));
+    const ownership = round1(clamp((price / 16) * 38 + rating * 14 + (rng() - 0.5) * 12, 0.4, 88));
 
     // Mercado dinámico: "momentum" de precio de la semana. Sube con forma alta,
     // titularidad asegurada y partido atractivo; baja con bajas/dudas.

@@ -3,7 +3,7 @@
 // Valores de mercado REALES (fuente: Transfermarkt, transfermarkt.es) por
 // jugador y selección, en MILLONES de euros. El precio "fantasy" NO es el valor
 // de mercado: el presupuesto del juego es €100M para 15 jugadores, así que el
-// valor real se comprime a un coste 3.8–13.5M mediante priceFromMarketValue().
+// valor real se comprime a un coste 2.5–16.0M mediante priceFromMarketValue().
 //
 // Estructura: MARKET_VALUES[teamSlug][nombreNormalizado] = valorEnMillones.
 // El emparejamiento se hace por nombre normalizado (minúsculas, sin acentos),
@@ -458,13 +458,14 @@ export function getMarketValue(teamSlug: string, name: string): number | undefin
 }
 
 /**
- * Convierte el valor de mercado real (millones €) en el precio fantasy (1.5–13.5M)
- * mediante una curva logarítmica: un crack de ~200M € roza 13.5M y los jugadores
- * más modestos bajan hasta 1.5M. El suelo bajo y un punto base más contenido dejan
- * margen para construir un 11 dentro del presupuesto de €100M sin agobios.
+ * Convierte el valor de mercado real (millones €) en el precio fantasy (2.5–16.0M)
+ * mediante una curva logarítmica: un crack de ~200M € roza 16M y los jugadores
+ * más modestos bajan hasta 2.5M. Curva más empinada y techo/suelo más altos para
+ * que el presupuesto de €100M apriete: caben ~5 estrellas como mucho, no 6, y los
+ * rellenos ya no salen casi gratis.
  */
 export function priceFromMarketValue(mvMillions: number): number {
   const v = Math.max(0.01, mvMillions);
-  const price = 4.5 + 3.5 * Math.log10(v);
-  return Math.round(Math.max(1.5, Math.min(13.5, price)) * 10) / 10;
+  const price = 5.0 + 4.4 * Math.log10(v);
+  return Math.round(Math.max(2.5, Math.min(16.0, price)) * 10) / 10;
 }

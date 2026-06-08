@@ -255,15 +255,84 @@ Uno por cada título de `constants.ts` → `TITLES`:
 **Prompt:**
 > Vista desde el banquillo hacia un campo de fútbol nocturno desenfocado, focos del estadio creando bokeh dorado, borde de la zona técnica insinuado, atmósfera de tensión de partido. Muy oscuro y de bajo contraste para fondo atenuado. Estilo ilustración cómic oscura con acentos dorados #c9a84c. Sin personas en primer plano, sin texto. `--ar 3:2 --no text, watermark, logo, people`
 
-### H3. `concentracion-bg.webp` — 1200×800 · concentración / entrenamiento entre partidos
+---
+
+## I. CONCENTRACIÓN Y ENTRENAMIENTO (semana entre partidos) — NUEVO
+
+> Feature nueva: la **semana de concentración** previa a cada partido. El DT elige
+> 3 sesiones de un catálogo de 5, gestiona la **frescura** del grupo (recurso 0-100)
+> y asume un **riesgo de lesión** en el entrenamiento. Modal `Concentracion.tsx`.
+>
+> **Estado actual del arte:** los 5 iconos de sesión y los estados son **SVG inline**
+> (siguen la regla SVG-only de la UI) y NO necesitan asset. Lo que SÍ enriquece la
+> pantalla son las **escenas ilustradas** de fondo y las **miniaturas por sesión**.
+> Todo es OPCIONAL y degrada con elegancia: si falta el archivo, se usa el color de
+> marca / el icono SVG existente.
+>
+> **Dirección de arte:** misma ilustración **cómic / novela gráfica oscura** que el
+> entrenador (sección G): línea de tinta marcada, cel-shading plano, MUY oscuras y
+> de bajo contraste, acento dorado `#c9a84c` sobre azul-noche `#060B14`. **Fútbol de
+> SELECCIONES** (sin escudos de club, sin marcas). Sin texto, sin caras en primer
+> plano reconocibles.
+
+### I1. `concentracion-bg.webp` — 1200×800 (horizontal) → `public/img/modo-carrera/partido/`
+**Tipo:** Imagen (fondo atenuado del modal)
+**Prompt:**
+> Interior de un centro de entrenamiento de alto rendimiento de una selección de fútbol en penumbra: conos, escaleras de agilidad, vallas y balones sobre un césped de cancha auxiliar desenfocado al fondo, una pizarra táctica insinuada en un lateral, luz cálida tenue entrando rasante. Atmósfera de concentración y trabajo silencioso antes del gran partido. Muy oscuro y de bajo contraste para ir atenuado DETRÁS de la interfaz. Estilo ilustración cómic oscura, acentos dorados #c9a84c. Sin personas en primer plano, sin texto. `--ar 3:2 --no text, watermark, logo, people, club-crest`
+
+### I1b. `concentracion-bg-mobile.webp` — 1080×1920 (vertical) → `public/img/modo-carrera/partido/`
 **Tipo:** Imagen
 **Prompt:**
-> Interior de un centro de entrenamiento / gimnasio de alto rendimiento de fútbol en penumbra: conos, escaleras de agilidad y balones sobre un césped de cancha auxiliar desenfocado al fondo, una pizarra táctica insinuada, luz cálida tenue entrando lateral, atmósfera de concentración y trabajo previo al partido. Muy oscuro y de bajo contraste para usar como fondo atenuado detrás de la UI. Estilo ilustración cómic oscura a juego con el entrenador, acentos dorados #c9a84c. Sin personas en primer plano, sin texto. `--ar 3:2 --no text, watermark, logo, people`
+> Misma escena de centro de entrenamiento que I1 pero en composición VERTICAL: pasillo de conos y escaleras de agilidad hacia una cancha auxiliar desenfocada, pizarra táctica insinuada, luz cálida rasante, muy oscuro y de bajo contraste para fondo atenuado. Estilo cómic oscuro, dorado #c9a84c. Sin personas en primer plano, sin texto. `--ar 9:16 --no text, watermark, logo, people, club-crest`
 
-> Nota: el modal de Concentración usa **iconos SVG inline** para cada sesión
-> (físico, táctico, balón parado, análisis, recuperación) — no requieren asset.
-> La `concentracion-bg.webp` es **opcional**: si falta, el modal degrada al color
-> de fondo `BG2`. No necesita variante `-mobile` (va recortada/atenuada).
+> Miniaturas de sesión → `public/img/modo-carrera/concentracion/`. Cuadradas
+> **240×240**, ilustración cómic, fondo oscuro propio (NO transparente), un acento
+> dorado. Se muestran como arte a la izquierda de cada tarjeta de sesión; si faltan,
+> se usa el icono SVG actual.
+
+### I2. `sesion-fisico.webp` — 240×240
+**Tipo:** Imagen (miniatura)
+**Prompt:**
+> Miniatura cómic oscura: dos futbolistas de selección haciendo sprints explosivos sobre una escalera de agilidad, gotas de sudor y líneas de movimiento, esfuerzo físico intenso. Encuadre cuadrado centrado, fondo azul-noche, acento dorado #c9a84c. Sin texto, sin escudos. `--ar 1:1 --no text, watermark, logo, club-crest`
+
+### I3. `sesion-tactico.webp` — 240×240
+**Tipo:** Imagen (miniatura)
+**Prompt:**
+> Miniatura cómic oscura: pizarra táctica de fútbol con imanes y flechas de jugada, conos repartidos sobre el césped al fondo, sensación de ensayo de movimientos y presión. Cuadrado, fondo azul-noche, acento dorado #c9a84c. Sin texto legible, sin escudos. `--ar 1:1 --no readable-text, watermark, logo, club-crest`
+
+### I4. `sesion-balon-parado.webp` — 240×240
+**Tipo:** Imagen (miniatura)
+**Prompt:**
+> Miniatura cómic oscura: jugador ensayando un lanzamiento de falta directa, balón quieto sobre el césped y una barrera de maniquíes de entrenamiento, trayectoria curva insinuada con una línea dorada. Cuadrado, fondo azul-noche, acento dorado #c9a84c. Sin texto, sin escudos. `--ar 1:1 --no text, watermark, logo, club-crest`
+
+### I5. `sesion-analisis.webp` — 240×240
+**Tipo:** Imagen (miniatura)
+**Prompt:**
+> Miniatura cómic oscura: sala de vídeo en penumbra con una pantalla mostrando un esquema táctico de un rival (diagramas y flechas, SIN texto legible), una libreta y un mando, ambiente de estudio del adversario. Cuadrado, fondo azul-noche, brillo de pantalla con acento dorado #c9a84c. Sin texto, sin escudos. `--ar 1:1 --no readable-text, watermark, logo, club-crest`
+
+### I6. `sesion-recuperacion.webp` — 240×240
+**Tipo:** Imagen (miniatura)
+**Prompt:**
+> Miniatura cómic oscura: futbolista estirando con calma sobre una camilla / haciendo recuperación (rodillo de espuma, hielo), fisioterapeuta insinuado, ambiente sereno y regenerador, tonos verdosos fríos suaves. Cuadrado, fondo azul-noche, acento dorado #c9a84c tenue. Sin texto, sin escudos. `--ar 1:1 --no text, watermark, logo, club-crest`
+
+### I7. `contratiempo-lesion.webp` — 600×600 (transparente) → `public/img/modo-carrera/concentracion/`
+**Tipo:** Imagen (alpha) — pantalla "Contratiempo · {jugador} se resiente"
+**Prompt:**
+> Ilustración cómic dramática: futbolista de selección en el suelo del entrenamiento agarrándose el gemelo/muslo con gesto de dolor, un miembro del cuerpo técnico arrodillándose hacia él, tensión del momento. Fondo TRANSPARENTE, contorno limpio, paleta oscura con un acento ROJO de alarma (#ef4444) y dorado sutil. Centrado, vertical-cuadrado. Sin texto, sin escudos. `--ar 1:1 --no text, watermark, logo, background, club-crest`
+
+---
+
+## J. RIVAL INCÓGNITO — MUNDIAL SIN SORTEAR (nueva idea) → `public/img/modo-carrera/`
+
+> En Temporada con clasificación pendiente, los rivales del Mundial salen ocultos
+> ("Rival por determinar") hasta que se alcanza esa fase. El placeholder actual es
+> un **SVG** de bandera punteada con "?" (suficiente y coherente con la regla
+> SVG-only). Este asset es **opcional** por si se quiere un placeholder ilustrado.
+
+### J1. `rival-incognito.webp` — 200×200 (transparente)
+**Tipo:** Imagen (alpha) — OPCIONAL
+**Prompt:**
+> Icono ilustrado: una bandera genérica ondeando en silueta sobre un mástil, con un gran signo de interrogación dorado #c9a84c superpuesto, transmitiendo "rival aún por determinar". Estilo cómic limpio, fondo TRANSPARENTE, paleta oscura con dorado. Sin texto, sin banderas de países reales. `--ar 1:1 --no text, watermark, real-flags, background`
 
 ---
 
@@ -291,7 +360,15 @@ Uno por cada título de `constants.ts` → `TITLES`:
 | G5 | coach-preocupado | Imagen (alpha) | 600×800 | 2 |
 | H1 | vestuario-bg | Imagen | 1200×800 | 5 (opcional) |
 | H2 | banquillo-bg | Imagen | 1200×800 | 5 (opcional) |
-| H3 | concentracion-bg | Imagen | 1200×800 | 5 (opcional) |
+| I1 | concentracion-bg | Imagen | 1200×800 | **2** (concentración) |
+| I1b | concentracion-bg-mobile | Imagen (vert.) | 1080×1920 | 3 |
+| I2 | sesion-fisico | Miniatura | 240×240 | 3 |
+| I3 | sesion-tactico | Miniatura | 240×240 | 3 |
+| I4 | sesion-balon-parado | Miniatura | 240×240 | 3 |
+| I5 | sesion-analisis | Miniatura | 240×240 | 3 |
+| I6 | sesion-recuperacion | Miniatura | 240×240 | 3 |
+| I7 | contratiempo-lesion | Imagen (alpha) | 600×600 | 3 |
+| J1 | rival-incognito | Imagen (alpha) | 200×200 | 5 (opcional) |
 | F1 | reveal-carta | Vídeo (alpha) | — | 2 |
 | F2 | subida-nivel | Vídeo (alpha) | — | 3 |
 | F3 | trofeo-reveal | Vídeo | — | 3 |

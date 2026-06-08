@@ -72,6 +72,23 @@ Reglas generales:
 | `banquillo-bg.webp` | `public/img/modo-carrera/partido/` | 1200×800 | Fondo sutil de la decisión del minuto 60 |
 | `concentracion-bg.webp` | `public/img/modo-carrera/partido/` | 1200×800 | Fondo sutil del modal de concentración/entrenamiento entre partidos (opcional, degrada a color) |
 
+## 4d. Concentración / entrenamiento (NUEVO — semana entre partidos)
+
+> Todo OPCIONAL: degrada al color de marca o al icono SVG existente si falta el
+> archivo. Mismo estilo cómic oscuro que el entrenador, dorado #c9a84c, fútbol de
+> selecciones (sin escudos de club). Prompts completos en `ASSET_PROMPTS.md` (sec. I/J).
+
+| Archivo | Ruta | Medidas | Uso |
+|---|---|---|---|
+| `concentracion-bg-mobile.webp` | `public/img/modo-carrera/partido/` | 1080×1920 | Variante vertical del fondo del modal |
+| `sesion-fisico.webp` | `public/img/modo-carrera/concentracion/` | 240×240 | Miniatura sesión Trabajo físico |
+| `sesion-tactico.webp` | `public/img/modo-carrera/concentracion/` | 240×240 | Miniatura sesión Pizarra táctica |
+| `sesion-balon-parado.webp` | `public/img/modo-carrera/concentracion/` | 240×240 | Miniatura sesión Balón parado |
+| `sesion-analisis.webp` | `public/img/modo-carrera/concentracion/` | 240×240 | Miniatura sesión Análisis del rival |
+| `sesion-recuperacion.webp` | `public/img/modo-carrera/concentracion/` | 240×240 | Miniatura sesión Recuperación |
+| `contratiempo-lesion.webp` | `public/img/modo-carrera/concentracion/` | 600×600 (alpha) | Pantalla "Contratiempo · jugador se resiente" |
+| `rival-incognito.webp` | `public/img/modo-carrera/` | 200×200 (alpha) | Placeholder rival del Mundial sin sortear (opcional, hoy es SVG) |
+
 ---
 
 ## 5. Iconos SVG (vectoriales, `stroke="currentColor"` para heredar color)
@@ -126,7 +143,15 @@ public/img/modo-carrera/
 ├── partido/
 │   ├── vestuario-bg.webp
 │   ├── banquillo-bg.webp
-│   └── concentracion-bg.webp
+│   ├── concentracion-bg.webp
+│   └── concentracion-bg-mobile.webp
+├── concentracion/
+│   ├── sesion-fisico.webp
+│   ├── sesion-tactico.webp
+│   ├── sesion-balon-parado.webp
+│   ├── sesion-analisis.webp
+│   ├── sesion-recuperacion.webp
+│   └── contratiempo-lesion.webp
 ├── narrativa/
 │   ├── prensa-bg.webp
 │   └── periodico-texture.webp

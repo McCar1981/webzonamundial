@@ -27,6 +27,7 @@ import {
   planById,
   kickoff,
   secondHalf,
+  thirdHalf,
   choicesFor,
   rollMatchInjury,
   HALFTIME_TALKS,
@@ -47,7 +48,19 @@ import {
 } from "@/lib/modo-carrera/match-live";
 import type { CareerState, SeasonMatch, Injury } from "@/lib/modo-carrera/types";
 
-type Phase = "plan" | "half1" | "injury" | "charla" | "decision" | "half2" | "prorroga" | "et" | "penales" | "fulltime";
+type Phase =
+  | "plan"
+  | "half1"
+  | "injury"
+  | "charla"
+  | "decision"
+  | "half2"
+  | "decision2"
+  | "half3"
+  | "prorroga"
+  | "et"
+  | "penales"
+  | "fulltime";
 
 interface GoalEvent {
   minute: number;
@@ -171,6 +184,7 @@ export default function MatchLive({
   const [goalFx, setGoalFx] = useState<GoalEvent | null>(null);
   const [decisionLeft, setDecisionLeft] = useState(10);
   const lsRef = useRef<LiveMatchState | null>(null);
+  const midRef = useRef<{ gf2: number; ga2: number } | null>(null);
   const resRef = useRef<LiveMatchResult | null>(null);
   const clockRef = useRef(0);
   const celebratingRef = useRef(false);
@@ -223,8 +237,8 @@ export default function MatchLive({
   // minuto a minuto (acelera a media, frena en el tramo final) y DETENERSE
   // durante la celebración de un gol — como en FIFA, el juego para para festejar.
   useEffect(() => {
-    if (phase !== "half1" && phase !== "half2" && phase !== "et") return;
-    const target = phase === "half1" ? 60 : phase === "half2" ? 90 : 120;
+    if (phase !== "half1" && phase !== "half2" && phase !== "half3" && phase !== "et") return;
+    const target = phase === "half1" ? 60 : phase === "half2" ? 75 : phase === "half3" ? 90 : 120;
     let active = true;
     let timer: ReturnType<typeof setTimeout>;
     const tick = () => {
@@ -268,7 +282,9 @@ export default function MatchLive({
         goToCharlaOrDecision();
       }
     }
-    if (phase === "half2" && clock >= 90) {
+    // Min 75: segunda decisión en vivo (recta final).
+    if (phase === "half2" && clock >= 75) setPhase("decision2");
+    if (phase === "half3" && clock >= 90) {
       // En el fútbol real una eliminatoria nunca acaba en empate: si están iguales
       // a los 90', hay prórroga. En fase de grupos el empate es válido.
       setPhase(isKnockout && shown.gf === shown.ga ? "prorroga" : "fulltime");
@@ -326,10 +342,29 @@ export default function MatchLive({
       atkMult: choice.atkMult * sub.atk * talk.atk,
       defMult: choice.defMult * sub.def * talk.def,
     };
-    const res = secondHalf(ls, combined);
-    resRef.current = res;
-    setEvents((prev) => [...prev, ...buildEvents(res.gf2, res.ga2, selfSlug, oppSlug, 61, 90)]);
+    const mid = secondHalf(ls, combined);
+    midRef.current = mid;
+    setEvents((prev) => [...prev, ...buildEvents(mid.gf2, mid.ga2, selfSlug, oppSlug, 61, 74)]);
     setPhase("half2");
+  };
+
+  // 2ª decisión en vivo (min 75): el DT ajusta la recta final. Arrastra el efecto
+  // del recambio/charla igual que la primera, sobre el tramo 75-90'.
+  const pickChoice2 = (choice: InMatchChoice) => {
+    const ls = lsRef.current;
+    const mid = midRef.current;
+    if (!ls || !mid) return;
+    const sub = subMultRef.current;
+    const talk = talkMultRef.current;
+    const combined: InMatchChoice = {
+      ...choice,
+      atkMult: choice.atkMult * sub.atk * talk.atk,
+      defMult: choice.defMult * sub.def * talk.def,
+    };
+    const res = thirdHalf(ls, mid, combined);
+    resRef.current = res;
+    setEvents((prev) => [...prev, ...buildEvents(res.gf2, res.ga2, selfSlug, oppSlug, 76, 90)]);
+    setPhase("half3");
   };
 
   // El DT elige cómo afrontar la prórroga (30' extra). El enfoque modula los goles
@@ -390,12 +425,15 @@ export default function MatchLive({
   // Cuenta atrás de la decisión del 60': el banco te apura. Si llega a 0, el
   // cuerpo técnico mantiene el plan por ti (primera opción = KEEP).
   useEffect(() => {
-    if (phase !== "decision") {
+    if (phase !== "decision" && phase !== "decision2") {
       setDecisionLeft(10);
       return;
     }
     if (decisionLeft <= 0) {
-      pickChoice(choicesFor(shown.gf, shown.ga)[0]);
+      // Si se agota el tiempo, el cuerpo técnico mantiene el plan (1ª opción = KEEP).
+      const keep = choicesFor(shown.gf, shown.ga)[0];
+      if (phase === "decision") pickChoice(keep);
+      else pickChoice2(keep);
       return;
     }
     const t = setTimeout(() => setDecisionLeft((n) => n - 1), 1000);
@@ -420,12 +458,12 @@ export default function MatchLive({
     return pickScorer(winnerSlug);
   }, [phase, finalGf, finalGa, selfSlug, oppSlug]);
 
-  const decisionChoices = phase === "decision" ? choicesFor(shown.gf, shown.ga) : [];
+  const decisionChoices = phase === "decision" || phase === "decision2" ? choicesFor(shown.gf, shown.ga) : [];
 
   // Lectura emocional del marcador en vivo: verde si vas ganando, rojo si pierdes.
   const liveScoreColor = shown.gf > shown.ga ? GREEN : shown.gf < shown.ga ? RED : "#fff";
   // Tramo final agónico: el cronómetro late en rojo y más rápido.
-  const tense = (phase === "half2" && clock >= 85) || (phase === "half1" && clock >= 57);
+  const tense = (phase === "half3" && clock >= 85) || (phase === "half1" && clock >= 57) || (phase === "et" && clock >= 116);
   const clockColor = tense ? RED : GREEN;
 
   return (
@@ -633,7 +671,7 @@ export default function MatchLive({
         )}
 
         {/* ── FEED de goles (durante el partido y al final) ── */}
-        {(phase === "half1" || phase === "injury" || phase === "charla" || phase === "decision" || phase === "half2" || phase === "et" || phase === "fulltime") && (
+        {(phase === "half1" || phase === "injury" || phase === "charla" || phase === "decision" || phase === "half2" || phase === "decision2" || phase === "half3" || phase === "et" || phase === "fulltime") && (
           <div style={{ display: "flex", flexDirection: "column", gap: 6, margin: "4px 0 12px", minHeight: 40 }}>
             {shown.feed.length === 0 ? (
               <div style={{ textAlign: "center", fontSize: 12, color: DIM, fontStyle: "italic", padding: "8px 0" }}>
@@ -664,8 +702,8 @@ export default function MatchLive({
           </div>
         )}
 
-        {/* ── DECISIÓN minuto 60 (momento teatral: el banquillo te mira) ── */}
-        {phase === "decision" && (
+        {/* ── DECISIÓN en vivo (min 60 y min 75): el banquillo te mira ── */}
+        {(phase === "decision" || phase === "decision2") && (
           <>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12, margin: "6px 0 6px", animation: "mlDecHdr .45s cubic-bezier(.2,.9,.3,1.3) both" }}>
               <Coach pose="instruccion" size={64} slug={selfSlug} />
@@ -691,8 +729,8 @@ export default function MatchLive({
                 </span>
               </div>
               <div style={{ textAlign: "left" }}>
-                <div style={{ fontSize: 12, fontWeight: 900, letterSpacing: 1, textTransform: "uppercase", color: GOLD }}>Minuto 60 · tu decisión</div>
-                <div style={{ fontSize: 11.5, color: DIM, fontStyle: "italic", marginTop: 1 }}>El banquillo te mira…</div>
+                <div style={{ fontSize: 12, fontWeight: 900, letterSpacing: 1, textTransform: "uppercase", color: GOLD }}>Minuto {phase === "decision" ? 60 : 75} · tu decisión</div>
+                <div style={{ fontSize: 11.5, color: DIM, fontStyle: "italic", marginTop: 1 }}>{phase === "decision" ? "El banquillo te mira…" : "Recta final. Última orden."}</div>
               </div>
             </div>
             <div style={{ textAlign: "center", fontSize: 12.5, color: MID, marginBottom: 12 }}>
@@ -703,7 +741,7 @@ export default function MatchLive({
                 <button
                   key={ch.id}
                   type="button"
-                  onClick={() => pickChoice(ch)}
+                  onClick={() => (phase === "decision" ? pickChoice(ch) : pickChoice2(ch))}
                   style={{
                     textAlign: "left",
                     padding: "12px 14px",

@@ -15,9 +15,14 @@ import type { CareerState, SeasonMatch, Injury } from "./types";
 import { matchLambdas, poisson, capScore } from "./season";
 import { FANTASY_ROSTERS, type RosterPlayer } from "@/data/fantasy-rosters";
 
-// Reparto de goles esperados por ventana (los primeros 60' pesan más).
+// Reparto de goles esperados por ventana. El partido jugable se resuelve ahora en
+// TRES tramos para dar dos momentos de decisión al DT (min 60 y min 75):
+//   · 0-60'  (W1) con el plan de partido,
+//   · 60-75' (W2) con la 1ª decisión en vivo,
+//   · 75-90' (W3) con la 2ª decisión (recta final).
 const W1 = 0.62;
-const W2 = 0.38;
+const W2 = 0.22;
+const W3 = 0.16;
 
 // ─── Plan táctico (pre-partido) ──────────────────────────────────────────────
 export interface TacticalPlan {
@@ -307,14 +312,27 @@ export function rollMatchInjury(c: CareerState, _match: SeasonMatch): MatchInjur
   return { injured, minute: 40 + Math.floor(Math.random() * 18), options };
 }
 
-/** Resuelve los últimos 30' aplicando la decisión del minuto 60. */
-export function secondHalf(state: LiveMatchState, choice: InMatchChoice): LiveMatchResult {
-  const gf2 = poisson(state.lamFor * W2 * choice.atkMult);
-  const ga2 = poisson(state.lamAg * W2 * choice.defMult);
-  // Tope de margen creíble sobre el marcador final (evita palizas irreales tipo
-  // 9-0 si los planes y la cola de Poisson se alinean a favor de un lado).
-  const capped = capScore(state.gf1 + gf2, state.ga1 + ga2, state.lamFor, state.lamAg);
-  return { gf: capped.gf, ga: capped.ga, gf2, ga2 };
+/** Goles del tramo 60-75' tras la 1ª decisión en vivo (sin cerrar el marcador). */
+export function secondHalf(state: LiveMatchState, choice: InMatchChoice): { gf2: number; ga2: number } {
+  return {
+    gf2: poisson(state.lamFor * W2 * choice.atkMult),
+    ga2: poisson(state.lamAg * W2 * choice.defMult),
+  };
+}
+
+/**
+ * Goles del tramo final 75-90' tras la 2ª decisión, y marcador definitivo de los
+ * 90' (con tope de margen creíble para evitar palizas irreales tipo 9-0).
+ */
+export function thirdHalf(
+  state: LiveMatchState,
+  mid: { gf2: number; ga2: number },
+  choice: InMatchChoice,
+): LiveMatchResult {
+  const gf3 = poisson(state.lamFor * W3 * choice.atkMult);
+  const ga3 = poisson(state.lamAg * W3 * choice.defMult);
+  const capped = capScore(state.gf1 + mid.gf2 + gf3, state.ga1 + mid.ga2 + ga3, state.lamFor, state.lamAg);
+  return { gf: capped.gf, ga: capped.ga, gf2: gf3, ga2: ga3 };
 }
 
 // ─── PRÓRROGA (solo eliminatorias empatadas a los 90') ───────────────────────

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { addRegistro, getCount } from '@/lib/registros-store';
-import { sendWelcomeEmail, sendNewRegistrationNotification } from '@/lib/email';
+import { sendNewRegistrationNotification } from '@/lib/email';
 import { subscribe } from '@/lib/email-subscriptions';
 
 export const runtime = 'nodejs';
@@ -134,11 +134,16 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // Success: send welcome email + internal notification without blocking
-  // the response. Ambos son fire-and-forget — si Resend falla logueamos
-  // y seguimos. NUNCA bloquear el flujo de registro al user por culpa
-  // de emails secundarios.
-  void sendWelcomeEmail(email.toLowerCase().trim(), nombre.trim());
+  // Success: notificación interna sin bloquear la respuesta.
+  // Fire-and-forget — si falla logueamos y seguimos.
+  //
+  // NO mandamos aquí un "email de bienvenida": el formulario web
+  // (FormularioRegistro) llama después a supabase.auth.signInWithOtp, que
+  // ya envía EL único correo accionable (el magic link que crea la sesión
+  // y lleva a /auth/callback → /onboarding). Mandar además un correo de
+  // bienvenida con un botón a la home creaba un segundo correo "dead-end"
+  // que no inicia sesión y obligaba al usuario a repetir pasos. Un solo
+  // registro = un solo correo.
   void sendNewRegistrationNotification({
     email: email.toLowerCase().trim(),
     username: nombre.trim(),

@@ -161,7 +161,10 @@ export default function Concentracion({
           touchAction: "pan-y",
           padding: 20,
           borderRadius: 18,
-          background: BG2,
+          // Fondo de escena de concentración (entrenamiento). Degrada al color de
+          // marca si el archivo aún no existe (el 404 de la imagen no rompe nada).
+          background: `linear-gradient(180deg, rgba(15,29,50,0.94), rgba(11,24,37,0.97)), url(/img/modo-carrera/partido/concentracion-bg.webp) center/cover`,
+          backgroundColor: BG2,
           border: `1px solid ${GOLD}`,
           boxShadow: "0 24px 70px rgba(0,0,0,0.65)",
         }}

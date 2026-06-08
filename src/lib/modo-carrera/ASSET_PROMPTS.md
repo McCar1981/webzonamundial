@@ -255,6 +255,16 @@ Uno por cada título de `constants.ts` → `TITLES`:
 **Prompt:**
 > Vista desde el banquillo hacia un campo de fútbol nocturno desenfocado, focos del estadio creando bokeh dorado, borde de la zona técnica insinuado, atmósfera de tensión de partido. Muy oscuro y de bajo contraste para fondo atenuado. Estilo ilustración cómic oscura con acentos dorados #c9a84c. Sin personas en primer plano, sin texto. `--ar 3:2 --no text, watermark, logo, people`
 
+### H3. `concentracion-bg.webp` — 1200×800 · concentración / entrenamiento entre partidos
+**Tipo:** Imagen
+**Prompt:**
+> Interior de un centro de entrenamiento / gimnasio de alto rendimiento de fútbol en penumbra: conos, escaleras de agilidad y balones sobre un césped de cancha auxiliar desenfocado al fondo, una pizarra táctica insinuada, luz cálida tenue entrando lateral, atmósfera de concentración y trabajo previo al partido. Muy oscuro y de bajo contraste para usar como fondo atenuado detrás de la UI. Estilo ilustración cómic oscura a juego con el entrenador, acentos dorados #c9a84c. Sin personas en primer plano, sin texto. `--ar 3:2 --no text, watermark, logo, people`
+
+> Nota: el modal de Concentración usa **iconos SVG inline** para cada sesión
+> (físico, táctico, balón parado, análisis, recuperación) — no requieren asset.
+> La `concentracion-bg.webp` es **opcional**: si falta, el modal degrada al color
+> de fondo `BG2`. No necesita variante `-mobile` (va recortada/atenuada).
+
 ---
 
 ## Resumen / checklist rápida
@@ -281,6 +291,7 @@ Uno por cada título de `constants.ts` → `TITLES`:
 | G5 | coach-preocupado | Imagen (alpha) | 600×800 | 2 |
 | H1 | vestuario-bg | Imagen | 1200×800 | 5 (opcional) |
 | H2 | banquillo-bg | Imagen | 1200×800 | 5 (opcional) |
+| H3 | concentracion-bg | Imagen | 1200×800 | 5 (opcional) |
 | F1 | reveal-carta | Vídeo (alpha) | — | 2 |
 | F2 | subida-nivel | Vídeo (alpha) | — | 3 |
 | F3 | trofeo-reveal | Vídeo | — | 3 |

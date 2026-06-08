@@ -70,6 +70,7 @@ Reglas generales:
 |---|---|---|---|
 | `vestuario-bg.webp` | `public/img/modo-carrera/partido/` | 1200×800 | Fondo sutil de la charla al descanso |
 | `banquillo-bg.webp` | `public/img/modo-carrera/partido/` | 1200×800 | Fondo sutil de la decisión del minuto 60 |
+| `concentracion-bg.webp` | `public/img/modo-carrera/partido/` | 1200×800 | Fondo sutil del modal de concentración/entrenamiento entre partidos (opcional, degrada a color) |
 
 ---
 
@@ -124,7 +125,8 @@ public/img/modo-carrera/
 │   └── coach-preocupado.webp
 ├── partido/
 │   ├── vestuario-bg.webp
-│   └── banquillo-bg.webp
+│   ├── banquillo-bg.webp
+│   └── concentracion-bg.webp
 ├── narrativa/
 │   ├── prensa-bg.webp
 │   └── periodico-texture.webp

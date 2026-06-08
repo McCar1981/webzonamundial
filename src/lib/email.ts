@@ -24,54 +24,103 @@ if (!transporter) {
   console.warn('[Email] SMTP no configurado. Los emails de bienvenida no se enviarán.');
 }
 
-export async function sendWelcomeEmail(to: string, username: string): Promise<void> {
+/**
+ * Email de BIENVENIDA. Se envía UNA vez, cuando el usuario completa el
+ * onboarding (ver src/app/onboarding/actions.ts). Para entonces ya tiene
+ * sesión iniciada — da igual si entró por Google, Apple o magic link —
+ * así que NO es un email de "haz un paso más": es un email de bienvenida
+ * con el RESUMEN de su registro (usuario, país, selección y, si eligió
+ * uno, el creador cuya comunidad sigue).
+ *
+ * Todos los datos del resumen son opcionales: si faltan (p.ej. el usuario
+ * hizo "saltar"), simplemente no se pintan esas filas.
+ */
+export async function sendWelcomeEmail(opts: {
+  to: string;
+  username: string;
+  countryName?: string | null;
+  teamName?: string | null;
+  creatorName?: string | null;
+}): Promise<void> {
   if (!transporter) {
     console.log('[Email] Skip welcome email: SMTP not configured');
     return;
   }
 
-  const subject = 'Bienvenido a ZonaMundial 2026';
-  const html = `
-    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #1f2937;">
-      <div style="background: linear-gradient(135deg, #0f172a, #0b1825); padding: 32px; text-align: center; border-radius: 16px 16px 0 0;">
-        <h1 style="color: #C9A84C; margin: 0; font-size: 24px;">ZonaMundial</h1>
-        <p style="color: #e5e7eb; margin: 8px 0 0;">La plataforma de predicciones, fantasy y engagement para el Mundial 2026</p>
-      </div>
-      <div style="padding: 32px; background: #ffffff; border-radius: 0 0 16px 16px;">
-        <h2 style="margin-top: 0; color: #111827;">Hola, ${escapeHtml(username)}</h2>
-        <p style="line-height: 1.6;">
-          Tu registro en <strong>ZonaMundial</strong> se ha completado correctamente.
-          Ya formas parte de la comunidad que vivirá el Mundial 2026 como nunca antes.
-        </p>
-        <ul style="line-height: 1.8; padding-left: 20px;">
-          <li>Predicciones en vivo</li>
-          <li>Fantasy League</li>
-          <li>Rankings y competiciones</li>
-          <li>Contenido exclusivo de creadores</li>
-        </ul>
-        <div style="text-align: center; margin-top: 24px;">
-          <a href="https://zonamundial.app" style="display: inline-block; padding: 12px 24px; background: #C9A84C; color: #030712; text-decoration: none; border-radius: 8px; font-weight: bold;">
-            Explorar plataforma
-          </a>
-        </div>
-        <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 32px 0;" />
-        <p style="font-size: 12px; color: #6b7280; text-align: center;">
-          Si no realizaste este registro, puedes ignorar este mensaje.
-        </p>
-      </div>
-    </div>
-  `;
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://zonamundial.app';
+
+  // Filas del resumen — solo las que tienen valor.
+  const summaryRows: Array<{ label: string; value: string; gold?: boolean }> = [
+    { label: 'Usuario', value: `@${opts.username}` },
+    { label: 'Email', value: opts.to },
+  ];
+  if (opts.countryName) {
+    summaryRows.push({ label: 'País', value: opts.countryName });
+  }
+  if (opts.teamName) {
+    summaryRows.push({ label: 'Selección favorita', value: `★ ${opts.teamName}`, gold: true });
+  }
+  if (opts.creatorName) {
+    summaryRows.push({ label: 'Creador que sigues', value: opts.creatorName, gold: true });
+  }
+
+  const summaryHtml = summaryRows
+    .map((row, i) => {
+      const topBorder = i === 0 ? '' : 'border-top:1px solid #e5e7eb;';
+      const valueColor = row.gold ? '#C9A84C' : '#111827';
+      return `
+        <tr>
+          <td style="padding:10px 14px;font-size:13px;color:#6b7280;width:42%;${topBorder}">${escapeHtml(row.label)}</td>
+          <td style="padding:10px 14px;font-size:14px;color:${valueColor};font-weight:600;text-align:right;${topBorder}">${escapeHtml(row.value)}</td>
+        </tr>`;
+    })
+    .join('');
+
+  // Mensaje extra si sigue a un creador.
+  const creatorLine = opts.creatorName
+    ? `<p style="line-height:1.6;margin:0 0 16px;">Te has unido a la comunidad de
+         <strong style="color:#8C7437;">${escapeHtml(opts.creatorName)}</strong>.
+         Recibirás su contenido exclusivo y novedades dentro de la plataforma.</p>`
+    : '';
+
+  const subject = `¡Bienvenido a ZonaMundial, @${opts.username}!`;
+  const html = brandedEmail({
+    preheader: 'Tu cuenta está lista. Aquí tienes el resumen de tu registro.',
+    heading: `¡Bienvenido, @${escapeHtml(opts.username)}!`,
+    bodyHtml: `
+      <p style="line-height:1.6;margin:0 0 16px;">
+        Tu cuenta en <strong>ZonaMundial</strong> ya está lista. Ya formas parte de la
+        comunidad que vivirá el Mundial 2026 como nunca antes.
+      </p>
+      ${creatorLine}
+      <p style="line-height:1.6;margin:0 0 12px;font-size:13px;color:#6b7280;text-transform:uppercase;letter-spacing:0.04em;font-weight:700;">
+        Resumen de tu registro
+      </p>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;background:#f9fafb;border-radius:10px;overflow:hidden;">
+        ${summaryHtml}
+      </table>
+      <p style="line-height:1.6;margin:24px 0 8px;">Esto es lo que te espera dentro:</p>
+      <ul style="line-height:1.8;padding-left:20px;margin:0;color:#1f2937;">
+        <li>Predicciones en vivo</li>
+        <li>Fantasy League</li>
+        <li>Rankings y competiciones</li>
+        <li>Contenido exclusivo de creadores</li>
+      </ul>
+    `,
+    ctaLabel: 'Entrar a ZonaMundial',
+    ctaHref: `${siteUrl}/app`,
+  });
 
   try {
     await transporter.sendMail({
       from: `"ZonaMundial" <${SMTP_FROM}>`,
-      to,
+      to: opts.to,
       subject,
       html,
     });
-    console.log(`[Email] Welcome email sent to ${to}`);
+    console.log(`[Email] Welcome email sent to ${opts.to}`);
   } catch (error) {
-    console.error(`[Email] Failed to send welcome email to ${to}:`, error);
+    console.error(`[Email] Failed to send welcome email to ${opts.to}:`, error);
   }
 }
 

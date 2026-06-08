@@ -3,6 +3,10 @@
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { sendWelcomeEmail } from "@/lib/email";
+import { getCreadorBySlug } from "@/data/creadores";
+import { getSeleccionBySlug } from "@/data/selecciones";
+import { COUNTRIES } from "@/lib/countries";
 
 interface ActionResult {
   ok: boolean;
@@ -70,6 +74,25 @@ export async function completeOnboardingAction(
     { user_id: user.id },
     { onConflict: "user_id", ignoreDuplicates: true }
   );
+
+  // Email de BIENVENIDA (no es un paso del registro: el usuario ya tiene
+  // sesión). Lleva el resumen de su registro, incluido el creador si lo
+  // eligió. Fire-and-forget: si SMTP falla no rompemos el onboarding.
+  // Convertimos los slugs a nombres legibles antes de enviarlo.
+  if (user.email) {
+    const teamName = fav_team ? getSeleccionBySlug(fav_team)?.nombre ?? null : null;
+    const creatorName = fav_creator ? getCreadorBySlug(fav_creator)?.nombre ?? null : null;
+    const countryName = country
+      ? COUNTRIES.find((c) => c.code === country)?.name ?? null
+      : null;
+    void sendWelcomeEmail({
+      to: user.email,
+      username,
+      countryName,
+      teamName,
+      creatorName,
+    });
+  }
 
   revalidatePath("/");
   return { ok: true };

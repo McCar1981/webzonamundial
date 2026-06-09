@@ -19,8 +19,8 @@ export default function CrearStoryPage() {
       {/* Columna centrada tipo móvil: en escritorio NO se estira a todo el ancho. */}
       <div style={{ maxWidth: 440, margin: "0 auto", padding: 16, boxSizing: "border-box" }}>
         <header style={{ marginBottom: 12 }}>
-          <Link href="/app/stories/feed" style={{ color: GOLD, textDecoration: "none", fontSize: 14 }}>
-            ← Stories
+          <Link href="/app" style={{ color: GOLD, textDecoration: "none", fontSize: 14 }}>
+            ← Volver al inicio
           </Link>
         </header>
         <h1 style={{ fontSize: 22, fontWeight: 800, margin: "8px 0 16px" }}>Crear Story</h1>

@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS public.stories (
   author_type       VARCHAR(20) NOT NULL,                 -- creator | system | user
   league_id         UUID,                                 -- nullable (Stories de liga)
   media_type        VARCHAR(20) NOT NULL DEFAULT 'template', -- image | video | template
-  media_url         VARCHAR(500),
+  media_url         TEXT,                                 -- foto del usuario como data-URL (base64); puede superar 500 chars
   overlay_text      TEXT,
   widgets           JSONB NOT NULL DEFAULT '[]'::jsonb,    -- [{kind,...}] widgets interactivos
   template_id       VARCHAR(50),
@@ -45,6 +45,11 @@ CREATE TABLE IF NOT EXISTS public.stories (
 
 -- Compat: si la tabla ya existía sin la columna de comunidad, la añade.
 ALTER TABLE public.stories ADD COLUMN IF NOT EXISTS community_slug VARCHAR(60);
+
+-- Compat: si la tabla ya existía con media_url VARCHAR(500), la amplía a TEXT.
+-- Las Stories de foto guardan la imagen como data-URL (base64), que excede 500
+-- caracteres y hacía fallar el insert ("value too long for type varchar(500)").
+ALTER TABLE public.stories ALTER COLUMN media_url TYPE TEXT;
 
 -- Feed (carrusel): Stories activas, recientes primero.
 CREATE INDEX IF NOT EXISTS stories_active_idx

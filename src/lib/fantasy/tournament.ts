@@ -146,3 +146,25 @@ export function longevityFactor(slug: string): number {
   const r = getTeamRun(slug)?.stageRound ?? 0;
   return 0.9 + r * 0.0467; // 0 → 0.90 … 6 → ~1.18
 }
+
+// Jornada Fantasy TRAS la cual una selección que cae en cada `stageRound` queda
+// eliminada (su último partido ya se disputó). Índice = stageRound.
+//   0 grupos→GW3 · 1 16avos→GW4 · 2 octavos→GW5 · 3 cuartos→GW6 · 4 semis→GW7
+//   5 subcampeón→GW8 · 6 campeón→nunca.
+const ELIM_GW_BY_ROUND = [3, 4, 5, 6, 7, 8, Infinity];
+
+/** Jornada a partir de la cual la selección queda eliminada (según proyección). */
+export function eliminationGameweek(slug: string): number {
+  const r = getTeamRun(slug)?.stageRound ?? 0;
+  return ELIM_GW_BY_ROUND[r] ?? 3;
+}
+
+/**
+ * ¿La selección ya está eliminada en una jornada dada? Se "activa" solo cuando
+ * la ronda en la que cae (proyección determinista) YA quedó atrás, de modo que
+ * en la jornada 1 nadie está eliminado y no hay reembolsos prematuros. Cuando
+ * lleguen los resultados reales sustituirán a esta proyección.
+ */
+export function isEliminated(slug: string, gameweek: number): boolean {
+  return gameweek > eliminationGameweek(slug);
+}

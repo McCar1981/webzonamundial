@@ -24,6 +24,8 @@ export function defaultTeam(): FantasyTeamState {
     history: [],
     freeTransfers: FREE_TRANSFERS,
     committedSlots: [],
+    budgetBonus: 0,
+    refundedIds: [],
   };
 }
 
@@ -36,6 +38,8 @@ export function normalizeTeam(t: FantasyTeamState): FantasyTeamState {
     committedSlots: Array.isArray(t.committedSlots) ? t.committedSlots : [],
     history: Array.isArray(t.history) ? t.history : [],
     powerUpsUsed: Array.isArray(t.powerUpsUsed) ? t.powerUpsUsed : [],
+    budgetBonus: typeof t.budgetBonus === "number" ? t.budgetBonus : 0,
+    refundedIds: Array.isArray(t.refundedIds) ? t.refundedIds : [],
   };
 }
 

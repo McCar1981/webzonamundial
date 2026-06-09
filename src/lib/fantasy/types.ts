@@ -90,6 +90,14 @@ export interface FantasyTeamState {
   freeTransfers: number;
   /** Plantilla "fichada" al confirmar la última jornada: base para contar fichajes. */
   committedSlots: SquadSlot[];
+  /**
+   * Crédito EXTRA de presupuesto acumulado por reembolsos de jugadores cuya
+   * selección quedó eliminada (las demás piezas suben de valor en el mercado).
+   * Se suma al BUDGET base al validar el equipo.
+   */
+  budgetBonus: number;
+  /** Ids de jugadores ya reembolsados (un solo reembolso por jugador). */
+  refundedIds: string[];
 }
 
 /** Reglas de una formación: cuántos por línea (sin contar banquillo). */
@@ -107,3 +115,5 @@ export const MAX_PER_NATION = 3;
 export const FREE_TRANSFERS = 1; // fichajes gratis por jornada
 export const MAX_FREE_TRANSFERS = 1; // tope de fichajes gratis acumulables
 export const TRANSFER_PENALTY = 6; // puntos que descuenta cada fichaje extra
+export const ELIM_REFUND_PER_POINT = 0.5; // M€ de reembolso por punto del jugador eliminado
+export const ELIM_REFUND_FLOOR = 2; // M€ mínimo de reembolso por eliminación

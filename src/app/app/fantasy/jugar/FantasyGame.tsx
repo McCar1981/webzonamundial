@@ -7,7 +7,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { getPlayerById } from "@/lib/fantasy/players";
-import { remapFormation, validateTeam, transferCost } from "@/lib/fantasy/rules";
+import { remapFormation, validateTeam, transferCost, refundForElimination } from "@/lib/fantasy/rules";
+import { isEliminated } from "@/lib/fantasy/tournament";
 import { autoDraft } from "@/lib/fantasy/coach";
 import { defaultTeam, loadTeam, saveTeam, clearTeam, normalizeTeam } from "@/lib/fantasy/store";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
@@ -143,7 +144,7 @@ export default function FantasyGame() {
 
   // Creador del registro (branding del equipo): nombre + imagen de perfil.
   const creador = useMemo(() => (team.creatorSlug ? getCreadorBySlug(team.creatorSlug) ?? null : null), [team.creatorSlug]);
-  const validation = useMemo(() => validateTeam(team.slots, getPlayerById, team.formation), [team.slots, team.formation]);
+  const validation = useMemo(() => validateTeam(team.slots, getPlayerById, team.formation, team.budgetBonus), [team.slots, team.formation, team.budgetBonus]);
   const ownedIds = useMemo(() => new Set(team.slots.map((s) => s.playerId).filter(Boolean) as string[]), [team.slots]);
   const nationCounts = validation.nationCounts;
   const spent = validation.totalCost;
@@ -198,8 +199,9 @@ export default function FantasyGame() {
         return;
       }
       const newSpent = spent - (prev?.price ?? 0) + p.price;
-      if (newSpent > BUDGET + 1e-6) {
-        flash(`Te pasas del presupuesto (${newSpent.toFixed(1)}M / ${BUDGET}M).`);
+      const budgetCap = BUDGET + team.budgetBonus;
+      if (newSpent > budgetCap + 1e-6) {
+        flash(`Te pasas del presupuesto (${newSpent.toFixed(1)}M / ${budgetCap.toFixed(1)}M).`);
         return;
       }
       update((t) => {
@@ -230,6 +232,44 @@ export default function FantasyGame() {
       });
     },
     [update],
+  );
+
+  // Reembolso por eliminación: da de baja a un jugador cuya selección ya quedó
+  // eliminada y acredita un crédito EXTRA de presupuesto (0.5M/punto, suelo 2M).
+  // Requisitos anti-abuso: la selección debe estar realmente eliminada en la
+  // jornada actual, el jugador tiene que estar en la plantilla CONFIRMADA (no
+  // recién fichado para exprimir el crédito) y solo se reembolsa una vez.
+  const refundPlayer = useCallback(
+    (slotId: string) => {
+      const s = team.slots.find((x) => x.slot === slotId);
+      const pid = s?.playerId ?? null;
+      const p = pid ? getPlayerById(pid) : null;
+      if (!p || !pid) return;
+      if (!isEliminated(p.teamSlug, team.gameweek)) {
+        flash(`${p.teamName} sigue en competición.`);
+        return;
+      }
+      if (team.refundedIds.includes(pid)) {
+        flash("Ese jugador ya fue reembolsado.");
+        return;
+      }
+      const committed = team.committedSlots.some((c) => c.playerId === pid);
+      if (!committed) {
+        flash("Solo se reembolsan jugadores que ya tenías fichados.");
+        return;
+      }
+      const refund = refundForElimination(p.totalPoints);
+      update((t) => ({
+        ...t,
+        slots: t.slots.map((x) => (x.slot === slotId ? { ...x, playerId: null } : x)),
+        captainId: t.captainId === pid ? null : t.captainId,
+        viceId: t.viceId === pid ? null : t.viceId,
+        budgetBonus: Math.round((t.budgetBonus + refund) * 10) / 10,
+        refundedIds: [...t.refundedIds, pid],
+      }));
+      flash(`💸 Reembolso por ${p.name} (eliminado): +${money(refund)}.`);
+    },
+    [team.slots, team.gameweek, team.refundedIds, team.committedSlots, update, flash],
   );
 
   // Intercambia (o mueve) los jugadores de dos huecos respetando posiciones.
@@ -392,7 +432,7 @@ export default function FantasyGame() {
 
           {/* Stats — tira compacta de 3 (capitán vive en la cabecera) para subir el campo */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(112px,1fr))", gap: 8, marginTop: 9 }}>
-            <Stat label="Presupuesto" value={money(budgetRemaining)} sub={`Coste ${money(spent)}`} bar={pct} barColor={budgetRemaining < 0 ? RED : GOLD} />
+            <Stat label="Presupuesto" value={money(budgetRemaining)} sub={`Coste ${money(spent)}${team.budgetBonus > 0 ? ` · +${money(team.budgetBonus)} reemb.` : ""}`} bar={pct} barColor={budgetRemaining < 0 ? RED : GOLD} />
             <Stat label="Puntos totales" value={String(team.totalPoints)} sub={`${team.history.length} jornadas`} />
             <Stat label="Plantilla" value={`${ownedIds.size}/15`} sub={validation.ok ? "Válida ✓" : "Incompleta"} valueColor={validation.ok ? GREEN : RED} />
           </div>
@@ -422,6 +462,7 @@ export default function FantasyGame() {
             validation={validation}
             onSlotClickEmpty={startSelecting}
             onRemove={removePlayer}
+            onRefund={refundPlayer}
             onCaptain={setCaptain}
             onVice={setVice}
             onSwap={swapSlots}

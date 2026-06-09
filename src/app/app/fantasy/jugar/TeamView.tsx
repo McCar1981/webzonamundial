@@ -4,7 +4,8 @@ import { useState } from "react";
 import { getPlayerById } from "@/lib/fantasy/players";
 import { POWER_UPS } from "@/lib/fantasy/scoring";
 import type { FantasyPlayer, FantasyTeamState, FormationRule, PowerUp, SquadSlot } from "@/lib/fantasy/types";
-import type { TeamValidation } from "@/lib/fantasy/rules";
+import { refundForElimination, type TeamValidation } from "@/lib/fantasy/rules";
+import { isEliminated } from "@/lib/fantasy/tournament";
 import { BG, BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED, money, flagUrl, kitUrl, lastName, POS_COLOR, POS_LABEL } from "./fx";
 import PlayerModal from "./PlayerModal";
 
@@ -13,6 +14,7 @@ interface Props {
   validation: TeamValidation;
   onSlotClickEmpty: (slotId: string) => void;
   onRemove: (slotId: string) => void;
+  onRefund: (slotId: string) => void;
   onCaptain: (id: string) => void;
   onVice: (id: string) => void;
   onSwap: (a: string, b: string) => void;
@@ -24,7 +26,7 @@ interface Props {
   wide?: boolean;
 }
 
-export default function TeamView({ team, validation, onSlotClickEmpty, onRemove, onCaptain, onVice, onSwap, onSetFormation, onSetPowerUp, onAutoDraft, onReset, formations, wide }: Props) {
+export default function TeamView({ team, validation, onSlotClickEmpty, onRemove, onRefund, onCaptain, onVice, onSwap, onSetFormation, onSetPowerUp, onAutoDraft, onReset, formations, wide }: Props) {
   const [menu, setMenu] = useState<string | null>(null);
   const [detail, setDetail] = useState<FantasyPlayer | null>(null);
 
@@ -101,7 +103,7 @@ export default function TeamView({ team, validation, onSlotClickEmpty, onRemove,
               {(["GK", "DEF", "MID", "FWD"] as const).map((pref, li) => (
                 <div key={pref} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: 6 }}>
                   {lineSlots(pref).map((s, i) => (
-                    <SlotCard key={s.slot} slot={s} team={team} menu={menu} setMenu={setMenu} onSlotClickEmpty={onSlotClickEmpty} onRemove={onRemove} onCaptain={onCaptain} onVice={onVice} onSwap={onSwap} onProfile={setDetail} delay={(li * 3 + i) * 40} compact />
+                    <SlotCard key={s.slot} slot={s} team={team} menu={menu} setMenu={setMenu} onSlotClickEmpty={onSlotClickEmpty} onRemove={onRemove} onRefund={onRefund} onCaptain={onCaptain} onVice={onVice} onSwap={onSwap} onProfile={setDetail} delay={(li * 3 + i) * 40} compact />
                   ))}
                 </div>
               ))}
@@ -125,7 +127,7 @@ export default function TeamView({ team, validation, onSlotClickEmpty, onRemove,
               {(["FWD", "MID", "DEF", "GK"] as const).map((pref, li) => (
                 <div key={pref} style={{ display: "flex", justifyContent: "center", gap: 6, flexWrap: "wrap" }}>
                   {lineSlots(pref).map((s, i) => (
-                    <SlotCard key={s.slot} slot={s} team={team} menu={menu} setMenu={setMenu} onSlotClickEmpty={onSlotClickEmpty} onRemove={onRemove} onCaptain={onCaptain} onVice={onVice} onSwap={onSwap} onProfile={setDetail} delay={(li * 5 + i) * 35} />
+                    <SlotCard key={s.slot} slot={s} team={team} menu={menu} setMenu={setMenu} onSlotClickEmpty={onSlotClickEmpty} onRemove={onRemove} onRefund={onRefund} onCaptain={onCaptain} onVice={onVice} onSwap={onSwap} onProfile={setDetail} delay={(li * 5 + i) * 35} />
                   ))}
                 </div>
               ))}
@@ -139,7 +141,7 @@ export default function TeamView({ team, validation, onSlotClickEmpty, onRemove,
         <div style={{ fontSize: 11, fontWeight: 800, color: DIM, textTransform: "uppercase", letterSpacing: 1, marginBottom: 8 }}>Banquillo</div>
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "center" }}>
           {benchSlots.map((s) => (
-            <SlotCard key={s.slot} slot={s} team={team} menu={menu} setMenu={setMenu} onSlotClickEmpty={onSlotClickEmpty} onRemove={onRemove} onCaptain={onCaptain} onVice={onVice} onSwap={onSwap} onProfile={setDetail} bench />
+            <SlotCard key={s.slot} slot={s} team={team} menu={menu} setMenu={setMenu} onSlotClickEmpty={onSlotClickEmpty} onRemove={onRemove} onRefund={onRefund} onCaptain={onCaptain} onVice={onVice} onSwap={onSwap} onProfile={setDetail} bench />
           ))}
         </div>
       </div>
@@ -290,12 +292,20 @@ function PitchSVG({ orientation }: { orientation: "v" | "h" }) {
   );
 }
 
-function SlotCard({ slot, team, menu, setMenu, onSlotClickEmpty, onRemove, onCaptain, onVice, onSwap, onProfile, bench, compact, delay }: { slot: SquadSlot; team: FantasyTeamState; menu: string | null; setMenu: (s: string | null) => void; onSlotClickEmpty: (id: string) => void; onRemove: (id: string) => void; onCaptain: (id: string) => void; onVice: (id: string) => void; onSwap: (a: string, b: string) => void; onProfile: (p: FantasyPlayer) => void; bench?: boolean; compact?: boolean; delay?: number }) {
+function SlotCard({ slot, team, menu, setMenu, onSlotClickEmpty, onRemove, onRefund, onCaptain, onVice, onSwap, onProfile, bench, compact, delay }: { slot: SquadSlot; team: FantasyTeamState; menu: string | null; setMenu: (s: string | null) => void; onSlotClickEmpty: (id: string) => void; onRemove: (id: string) => void; onRefund: (id: string) => void; onCaptain: (id: string) => void; onVice: (id: string) => void; onSwap: (a: string, b: string) => void; onProfile: (p: FantasyPlayer) => void; bench?: boolean; compact?: boolean; delay?: number }) {
   const p = slot.playerId ? getPlayerById(slot.playerId) : null;
   const isCap = p && team.captainId === p.id;
   const isVice = p && team.viceId === p.id;
   const open = menu === slot.slot;
   const [over, setOver] = useState(false);
+
+  // Reembolso por eliminación: la selección ya cayó en esta jornada, el jugador
+  // estaba en la plantilla confirmada y aún no se reembolsó. El crédito se basa
+  // en sus puntos (0.5M/punto, suelo 2M).
+  const eliminated = !!p && isEliminated(p.teamSlug, team.gameweek);
+  const refundable =
+    !!p && eliminated && !team.refundedIds.includes(p.id) && team.committedSlots.some((c) => c.playerId === p.id);
+  const refundAmt = refundable && p ? refundForElimination(p.totalPoints) : 0;
 
   // Recibe un jugador arrastrado desde otro hueco.
   const dropProps = {
@@ -345,7 +355,7 @@ function SlotCard({ slot, team, menu, setMenu, onSlotClickEmpty, onRemove, onCap
           <span style={{ fontSize: priceFs, fontWeight: 800, color: GOLD2 }}>{money(p.price)}</span>
           {p.next.tier.multiplier > 1 && <span title={`Partido ${p.next.tier.label}`} style={{ fontSize: priceFs }}>{p.next.tier.emoji}{p.next.tier.multiplier}</span>}
         </div>
-        {!p.available && <span style={{ fontSize: 8, color: RED, fontWeight: 800 }}>BAJA</span>}
+        {eliminated ? <span style={{ fontSize: 8, color: RED, fontWeight: 800 }}>ELIMINADO</span> : !p.available && <span style={{ fontSize: 8, color: RED, fontWeight: 800 }}>BAJA</span>}
       </button>
 
       {open && (
@@ -353,6 +363,7 @@ function SlotCard({ slot, team, menu, setMenu, onSlotClickEmpty, onRemove, onCap
           <MenuBtn label="📋 Ver ficha" onClick={() => { onProfile(p); setMenu(null); }} />
           {!bench && <MenuBtn label="⭐ Capitán" onClick={() => { onCaptain(p.id); setMenu(null); }} />}
           {!bench && <MenuBtn label="🅥 Vice-capitán" onClick={() => { onVice(p.id); setMenu(null); }} />}
+          {refundable && <MenuBtn label={`💸 Reembolsar +${money(refundAmt)}`} gold onClick={() => { onRefund(slot.slot); setMenu(null); }} />}
           <MenuBtn label="🗑️ Quitar" danger onClick={() => { onRemove(slot.slot); setMenu(null); }} />
           <MenuBtn label="Cerrar" onClick={() => setMenu(null)} />
         </div>
@@ -361,8 +372,8 @@ function SlotCard({ slot, team, menu, setMenu, onSlotClickEmpty, onRemove, onCap
   );
 }
 
-function MenuBtn({ label, onClick, danger }: { label: string; onClick: () => void; danger?: boolean }) {
+function MenuBtn({ label, onClick, danger, gold }: { label: string; onClick: () => void; danger?: boolean; gold?: boolean }) {
   return (
-    <button onClick={onClick} style={{ padding: "6px 8px", borderRadius: 7, border: "none", background: "transparent", color: danger ? "#fca5a5" : "#fff", fontWeight: 700, fontSize: 12, textAlign: "left", cursor: "pointer" }}>{label}</button>
+    <button onClick={onClick} style={{ padding: "6px 8px", borderRadius: 7, border: gold ? `1px solid ${GOLD}66` : "none", background: gold ? `${GOLD}1f` : "transparent", color: danger ? "#fca5a5" : gold ? GOLD2 : "#fff", fontWeight: gold ? 800 : 700, fontSize: 12, textAlign: "left", cursor: "pointer" }}>{label}</button>
   );
 }

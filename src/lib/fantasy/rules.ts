@@ -4,6 +4,8 @@
 
 import {
   BUDGET,
+  ELIM_REFUND_FLOOR,
+  ELIM_REFUND_PER_POINT,
   MAX_PER_NATION,
   TRANSFER_PENALTY,
   type FantasyPlayer,
@@ -104,6 +106,17 @@ export function transferCost(committed: SquadSlot[], current: SquadSlot[], freeT
   return { transfers, free: freeTransfers, paid, penalty: paid * TRANSFER_PENALTY, wildcard: false };
 }
 
+/**
+ * Reembolso (en M€) por dar de baja a un jugador cuya selección quedó eliminada.
+ * Se basa en los PUNTOS que acumuló, no en su precio: 0.5M por punto, con suelo
+ * de 2M. Es un crédito EXTRA de presupuesto (las piezas que siguen vivas suben
+ * de valor al salir las eliminadas del mercado), no un simple "deshacer fichaje".
+ */
+export function refundForElimination(points: number): number {
+  const r = Math.max(ELIM_REFUND_FLOOR, ELIM_REFUND_PER_POINT * Math.max(0, points));
+  return Math.round(r * 10) / 10;
+}
+
 export interface TeamValidation {
   ok: boolean;
   errors: string[];
@@ -118,8 +131,10 @@ export function validateTeam(
   slots: SquadSlot[],
   byId: (id: string) => FantasyPlayer | undefined,
   formationCode: string,
+  budgetBonus = 0,
 ): TeamValidation {
   const errors: string[] = [];
+  const budget = BUDGET + (budgetBonus || 0);
   const f = getFormation(formationCode);
   let totalCost = 0;
   const counts: Record<FantasyPos, number> = { GK: 0, DEF: 0, MID: 0, FWD: 0 };
@@ -137,8 +152,8 @@ export function validateTeam(
   }
 
   if (filled < 15) errors.push(`Faltan ${15 - filled} jugadores por fichar.`);
-  if (totalCost > BUDGET + 1e-6)
-    errors.push(`Presupuesto excedido: ${totalCost.toFixed(1)}M de ${BUDGET}M.`);
+  if (totalCost > budget + 1e-6)
+    errors.push(`Presupuesto excedido: ${totalCost.toFixed(1)}M de ${budget.toFixed(1)}M.`);
   if (counts.DEF !== f.def || counts.MID !== f.mid || counts.FWD !== f.fwd) {
     errors.push(`La formación ${f.code} requiere ${f.def} DEF, ${f.mid} MED y ${f.fwd} DEL en el once.`);
   }
@@ -153,7 +168,7 @@ export function validateTeam(
     ok: errors.length === 0,
     errors,
     totalCost: Math.round(totalCost * 10) / 10,
-    budgetRemaining: Math.round((BUDGET - totalCost) * 10) / 10,
+    budgetRemaining: Math.round((budget - totalCost) * 10) / 10,
     counts,
     nationCounts,
   };

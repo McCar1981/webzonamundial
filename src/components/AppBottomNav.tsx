@@ -94,19 +94,15 @@ export default function AppBottomNav() {
     return () => { on = false; sub.subscription.unsubscribe(); };
   }, []);
 
-  // Mostramos la barra en toda la superficie de la webapp: dentro de /app, en
-  // las páginas-módulo de fuera de /app, y en cualquier página si hay sesión.
-  // Solo se oculta en el sitio editorial para anónimos y en las pantallas de
-  // juego a pantalla completa, que tienen su propia barra inferior fija.
+  // Mostramos la barra en toda la superficie de la webapp: dentro de /app
+  // (incluidos los juegos a pantalla completa), en las páginas-módulo de fuera
+  // de /app, y en cualquier página si hay sesión. Solo se oculta en el sitio
+  // editorial para visitantes anónimos. Los juegos que tienen su propio pie de
+  // acción fijo (predicciones) lo recolocan por encima de la barra vía CSS.
   const inApp = pathname.startsWith("/app");
   const inWebappRoute = WEBAPP_ROUTES.some(
     (r) => pathname === r || pathname.startsWith(r + "/"),
   );
-  const isFullscreenGame =
-    pathname.startsWith("/app/fantasy/jugar") ||
-    pathname.startsWith("/app/predicciones/jugar") ||
-    pathname.startsWith("/app/modo-carrera/jugar");
-  if (isFullscreenGame) return null;
   if (!inApp && !inWebappRoute && !authed) return null;
 
   return (
@@ -171,7 +167,18 @@ export default function AppBottomNav() {
         })}
       </div>
       <style>{`
-        @media(max-width:768px){ .app-bottom-nav{ display:block !important; } }
+        @media(max-width:768px){
+          .app-bottom-nav{ display:block !important; }
+          /* El juego de predicciones tiene su propio pie de acción fijo en
+             bottom:0; lo subimos por encima de la barra para que no quede
+             tapado, y damos holgura extra al contenido para que el último
+             bloque no se esconda detrás de ambos. */
+          .pj-sticky-footer{
+            bottom: calc(54px + env(safe-area-inset-bottom)) !important;
+            padding-bottom: 10px !important;
+          }
+          .pj-detail{ padding-bottom: calc(150px + env(safe-area-inset-bottom)) !important; }
+        }
       `}</style>
     </nav>
   );

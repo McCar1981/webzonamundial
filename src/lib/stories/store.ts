@@ -26,6 +26,7 @@ import {
 } from "./demo";
 import { storiesForSnapshot } from "./generator";
 import { getFavCreator } from "@/lib/fantasy/store.server";
+import { CREADORES } from "@/data/creadores";
 import type { LiveSnapshot } from "@/lib/match-center/types";
 import type {
   StoryRow,
@@ -62,10 +63,17 @@ function toDTO(row: StoryRow, seen?: boolean): StoryDTO {
   };
 }
 
+// Nombre + foto de perfil reales del creador, por slug (community_slug de la
+// Story de creador). Fuente de verdad: src/data/creadores.ts.
+const CREADOR_BY_SLUG = new Map(CREADORES.map((c) => [c.slug, c]));
+
 // Clave de agrupación del carrusel: las del mismo autor/grupo van en un reel.
+// Las de creador se agrupan por su slug (community_slug) → una burbuja por
+// creador con su nombre y foto.
 function reelKey(row: StoryRow): string {
   switch (row.type) {
     case "creator":
+      return `creator:${row.community_slug ?? row.author_id ?? "anon"}`;
     case "user":
       return row.author_id ?? "anon";
     case "league":
@@ -115,9 +123,11 @@ export async function getFeed(userId?: string | null): Promise<StoryReelDTO[]> {
   if (error) throw new Error(`stories.getFeed: ${error.message}`);
   const allRows = (data ?? []) as StoryRow[];
 
-  // Scope de comunidad para las Stories de USUARIO: solo se ven entre miembros de
-  // la misma comunidad de creador (profiles.fav_creator). El resto de tipos
-  // (system/narrative/creator/league) son públicos. Las propias siempre se ven.
+  // Scope de comunidad de creador (profiles.fav_creator):
+  //   - USER y CREATOR solo se ven a los miembros de ESA comunidad. Quien no
+  //     está con ningún creador (sin fav_creator) NO ve Stories de creador.
+  //   - system/narrative/league son públicos.
+  //   - Las Stories propias del usuario siempre se ven.
   let viewerCommunity: string | null = null;
   if (userId) {
     try {
@@ -127,9 +137,15 @@ export async function getFeed(userId?: string | null): Promise<StoryReelDTO[]> {
     }
   }
   const rows = allRows.filter((r) => {
-    if (r.type !== "user") return true;
-    if (userId && r.author_id === userId) return true; // propias
-    return r.community_slug != null && r.community_slug === viewerCommunity;
+    if (r.type === "user") {
+      if (userId && r.author_id === userId) return true; // propias
+      return r.community_slug != null && r.community_slug === viewerCommunity;
+    }
+    if (r.type === "creator") {
+      // Solo a los miembros de la comunidad de ese creador.
+      return r.community_slug != null && r.community_slug === viewerCommunity;
+    }
+    return true; // system/narrative/league públicos
   });
 
   // Qué stories ya vio el usuario (para el flag seen y el anillo del reel).
@@ -152,11 +168,21 @@ export async function getFeed(userId?: string | null): Promise<StoryReelDTO[]> {
     const key = reelKey(row);
     let reel = reels.get(key);
     if (!reel) {
+      // Creador: nombre + foto de perfil reales desde src/data/creadores.ts.
+      let label = reelLabel(row.type);
+      let avatarUrl: string | null = null;
+      if (row.type === "creator" && row.community_slug) {
+        const c = CREADOR_BY_SLUG.get(row.community_slug);
+        if (c) {
+          label = c.nombre;
+          avatarUrl = c.imagen;
+        }
+      }
       reel = {
         key,
-        label: reelLabel(row.type),
+        label,
         type: row.type,
-        avatarUrl: row.author_id ? null : null, // avatar real se resuelve en fase creador
+        avatarUrl,
         stories: [],
         allSeen: true,
       };

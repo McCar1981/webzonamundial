@@ -185,9 +185,19 @@ function CarouselBar({
                   display: "grid",
                   placeItems: "center",
                   fontSize: 22,
+                  overflow: "hidden",
                 }}
               >
-                {reelEmoji(reel.type)}
+                {reel.avatarUrl ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={reel.avatarUrl}
+                    alt={reel.label}
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  />
+                ) : (
+                  reelEmoji(reel.type)
+                )}
               </span>
             </span>
             <span style={{ color: "#c9d2e3", fontSize: 12, maxWidth: 72, textAlign: "center" }}>
@@ -380,7 +390,16 @@ function Overlay({
 
         {/* cabecera */}
         <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "2px 12px 8px" }}>
-          <span style={{ fontSize: 20 }}>{reelEmoji(reel.type)}</span>
+          {reel.avatarUrl ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={reel.avatarUrl}
+              alt={reel.label}
+              style={{ width: 26, height: 26, borderRadius: "50%", objectFit: "cover" }}
+            />
+          ) : (
+            <span style={{ fontSize: 20 }}>{reelEmoji(reel.type)}</span>
+          )}
           <span style={{ color: "#fff", fontWeight: 600, fontSize: 14 }}>{reel.label}</span>
           <button
             onClick={onClose}

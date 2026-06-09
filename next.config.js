@@ -55,6 +55,14 @@ const nextConfig = {
     //  - img-src https: data: blob: soporta imágenes externas variables.
     //  - connect-src incluye Supabase, Apple, Google, Analytics, Vercel, Upstash y Anthropic.
     //  - frame-src permite Google Ads/DoubleClick y proveedores OAuth.
+    //  - Adsterra (Native Banner): su invoke.js hace XHR (connect-src) y abre
+    //    iframes (frame-src) contra dominios propios ROTATORIOS. Los vistos el
+    //    09/06/2026 dentro del invoke.js son fizzyacerbitymellow.com,
+    //    protrafficinspector.com y cdn.cloudvideosa.com, pero cambian sin
+    //    avisar, por eso connect-src y frame-src replican el comodín
+    //    https://*.com / https://*.net que ya se asumió en script-src.
+    //    Riesgo de malvertising asumido por el dueño (handoff-adsterra.md §6).
+    //    Para endurecer en el futuro: quitar comodines y dejar explícitos.
     const csp = [
       "default-src 'self'",
       "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://googlesyndication.com https://googletagmanager.com https://google-analytics.com https://vercel-scripts.com https://google.com https://cdn-apple.com https://*.com https://*.net",
@@ -62,8 +70,8 @@ const nextConfig = {
       "font-src 'self' data: https://cdn-apple.com",
       "img-src 'self' data: blob: https:",
       "media-src 'self' https:",
-      "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://appleid.apple.com https://accounts.google.com https://www.google-analytics.com https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.upstash.io https://api.anthropic.com",
-      "frame-src 'self' https://googleads.g.doubleclick.net https://appleid.apple.com https://accounts.google.com",
+      "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://appleid.apple.com https://accounts.google.com https://www.google-analytics.com https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.upstash.io https://api.anthropic.com https://*.effectivecpmnetwork.com https://fizzyacerbitymellow.com https://protrafficinspector.com https://cdn.cloudvideosa.com https://*.com https://*.net",
+      "frame-src 'self' https://googleads.g.doubleclick.net https://appleid.apple.com https://accounts.google.com https://*.effectivecpmnetwork.com https://fizzyacerbitymellow.com https://protrafficinspector.com https://cdn.cloudvideosa.com https://*.com https://*.net",
       "base-uri 'self'",
       "form-action 'self' https://appleid.apple.com https://accounts.google.com",
       "frame-ancestors 'none'",

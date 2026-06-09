@@ -56,6 +56,10 @@
     {
       "path": "/api/cron/match-reminders",
       "schedule": "*/10 * * * *"
+    },
+    {
+      "path": "/api/stories/generate",
+      "schedule": "*/2 * * * *"
     }
   ]
 }

@@ -104,6 +104,6 @@ export interface FormationRule {
 export const BUDGET = 100; // €100M
 export const SQUAD_SIZE = 15; // 11 titulares + 4 banquillo
 export const MAX_PER_NATION = 3;
-export const FREE_TRANSFERS = 2; // fichajes gratis por jornada
-export const MAX_FREE_TRANSFERS = 2; // tope de fichajes gratis acumulables
-export const TRANSFER_PENALTY = 4; // puntos que descuenta cada fichaje extra
+export const FREE_TRANSFERS = 1; // fichajes gratis por jornada
+export const MAX_FREE_TRANSFERS = 1; // tope de fichajes gratis acumulables
+export const TRANSFER_PENALTY = 6; // puntos que descuenta cada fichaje extra

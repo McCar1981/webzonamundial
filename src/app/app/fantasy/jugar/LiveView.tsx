@@ -205,7 +205,7 @@ export default function LiveView({ team, onCommit, transfers }: Props) {
             Jornada en curso — podrás confirmarla al terminar todos tus partidos.
           </div>
         )}
-        {/* Coste de fichajes de la jornada (Fase 2): 2 gratis, −4 pts por extra) */}
+        {/* Coste de fichajes de la jornada (Fase 2): 1 gratis, −6 pts por extra) */}
         {transfers.transfers > 0 && (
           <div style={{ fontSize: 12, marginTop: 8, fontWeight: 700, color: transfers.penalty > 0 ? RED : GREEN }}>
             {transfers.wildcard

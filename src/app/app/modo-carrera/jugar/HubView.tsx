@@ -80,6 +80,9 @@ export default function HubView({
           <div style={{ height: 8, borderRadius: 4, background: BG3, overflow: "hidden" }}>
             <div style={{ height: "100%", width: `${xpPct}%`, background: `linear-gradient(90deg,${GOLD},${GOLD2})`, borderRadius: 4 }} />
           </div>
+          <div style={{ marginTop: 10, fontSize: 12, color: MID, lineHeight: 1.5 }}>
+            Ganas <strong style={{ color: "#fff" }}>XP</strong> jugando partidos (más por victoria y por goles). Al llenar la barra <strong style={{ color: GOLD2 }}>subes de nivel</strong>: +1 a tu overall y <strong style={{ color: GOLD2 }}>+1 punto de habilidad</strong> para tu árbol.
+          </div>
         </Card>
 
         {/* Junta directiva / federación (objetivo + confianza) */}

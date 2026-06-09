@@ -150,13 +150,21 @@ export const TITLES: TitleDef[] = [
 
 // ─── Curva de XP / overall (Pilar 2) ─────────────────────────────────────────
 /**
- * XP necesaria para el siguiente nivel según el overall actual. Curva CUADRÁTICA
- * (antes lineal 100+overall*20, demasiado plana): cada nivel cuesta cada vez más,
- * así que llegar a la élite (90+) es un logro de largo plazo, no un trámite.
- * Ej.: overall 50 ≈ 2250 XP · 75 ≈ 4425 · 99 ≈ 7219.
+ * XP necesaria para el siguiente nivel según el overall actual.
+ *
+ * Regla mental sencilla para el jugador: GANAR PARTIDOS SUBE TU NIVEL.
+ * Un partido reparte ~130-170 XP (victoria), así que al principio subes de
+ * nivel cada ~3 victorias y la barra se mueve de forma visible. La curva es
+ * cuadrática suave: cada nivel cuesta un poco más, de modo que llegar a la
+ * élite (90+) sigue siendo un logro de largo plazo, pero NO invisible.
+ *
+ * Ej.: overall 50 ≈ 460 XP (~3 victorias) · 70 ≈ 845 · 90 ≈ 1356 · 99 ≈ 1628.
+ *
+ * (Antes: 150 + 12·overall + 0.6·overall² → 2250 XP al nivel 50. Eso hacía que
+ * ni ganando el Mundial entero subieras un solo nivel: nadie entendía la barra.)
  */
 export function xpRequired(overall: number): number {
-  return Math.round(150 + overall * 12 + overall * overall * 0.6);
+  return Math.round(60 + overall * overall * 0.16);
 }
 
 // ─── Misiones semilla (Pilar 4) ──────────────────────────────────────────────

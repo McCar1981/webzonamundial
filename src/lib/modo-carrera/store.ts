@@ -256,7 +256,10 @@ export function normalizeCareer(raw: Partial<CareerState> | null | undefined): C
     progression: {
       overall,
       xp: clampInt(pr.xp, 0, 1_000_000, 0),
-      xpToNext: clampInt(pr.xpToNext, 1, 1_000_000, xpRequired(overall)),
+      // xpToNext es un valor DERIVADO del overall: lo recalculamos siempre con la
+      // curva vigente en vez de confiar en el guardado, para que las partidas
+      // antiguas adopten la curva nueva (antes quedaban ancladas a 2250).
+      xpToNext: xpRequired(overall),
       morale: clampInt(pr.morale, 0, 100, base.progression.morale),
       season: clampInt(pr.season, 1, 999, 1),
     },

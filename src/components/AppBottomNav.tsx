@@ -1,16 +1,21 @@
 "use client";
 
 // src/components/AppBottomNav.tsx
-// Barra inferior fija tipo app nativa. Solo se monta dentro de la experiencia
-// de la webapp (/app/*), para que el usuario navegue entre módulos como en una
-// app instalada. En las páginas editoriales (/, /noticias, etc.) NO aparece:
-// allí manda la navegación de sitio web (header + footer).
+// Barra inferior fija tipo app nativa. Acompaña al usuario por toda la
+// experiencia de la webapp para que navegue entre módulos como en una app
+// instalada. Aparece en /app/*, en las páginas-módulo que viven fuera de /app
+// (trivia, calendario, grupos, etc.) y en cualquier página cuando ya hay
+// sesión iniciada. En el sitio editorial para visitantes anónimos
+// (/, /noticias, blog...) NO aparece: allí manda la navegación de sitio web
+// (header + footer).
 //
 // Estilo: indicador dorado superior en tab activo (barra fina), icono+label
 // dorados cuando está activo, gris azulado en reposo. Fondo navy oscuro.
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 
 const GOLD = "#c9a84c";
 const DIM = "#5a6a8a";
@@ -51,7 +56,7 @@ const ITEMS: Item[] = [
   {
     href: "/trivia",
     label: "Trivia",
-    match: (p) => p.startsWith("/app/trivia"),
+    match: (p) => p.startsWith("/app/trivia") || p === "/trivia" || p.startsWith("/trivia/"),
     icon: stroke("M12 3l8 4v5c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V7l8-4ZM12 8v.5M12 11v3"),
   },
   {
@@ -62,17 +67,47 @@ const ITEMS: Item[] = [
   },
 ];
 
+// Páginas-módulo que viven FUERA de /app pero forman parte de la webapp:
+// son destino directo de las cards del hub y de la propia barra inferior.
+// Aquí la barra debe seguir presente para no romper la sensación de app.
+const WEBAPP_ROUTES = ["/trivia", "/calendario", "/grupos", "/formato", "/historia"];
+
 export default function AppBottomNav() {
   const pathname = usePathname() || "";
 
-  // Solo dentro de la webapp. Y nos quitamos de en medio en las pantallas de
-  // juego a pantalla completa que tienen su propia barra inferior fija.
+  // ¿Hay sesión? Si el usuario ya entró a la app, la barra lo acompaña por
+  // cualquier página (es una webapp). Patrón robusto: getUser() inicial +
+  // onAuthStateChange para no quedarnos desfasados si el token se refresca.
+  const [authed, setAuthed] = useState(false);
+  useEffect(() => {
+    let on = true;
+    const sb = (() => {
+      try { return createSupabaseBrowserClient(); } catch { return null; }
+    })();
+    if (!sb) return;
+    sb.auth.getUser()
+      .then(({ data }) => { if (on) setAuthed(!!data.user); })
+      .catch(() => {});
+    const { data: sub } = sb.auth.onAuthStateChange((_e, session) => {
+      if (on) setAuthed(!!session?.user);
+    });
+    return () => { on = false; sub.subscription.unsubscribe(); };
+  }, []);
+
+  // Mostramos la barra en toda la superficie de la webapp: dentro de /app, en
+  // las páginas-módulo de fuera de /app, y en cualquier página si hay sesión.
+  // Solo se oculta en el sitio editorial para anónimos y en las pantallas de
+  // juego a pantalla completa, que tienen su propia barra inferior fija.
   const inApp = pathname.startsWith("/app");
+  const inWebappRoute = WEBAPP_ROUTES.some(
+    (r) => pathname === r || pathname.startsWith(r + "/"),
+  );
   const isFullscreenGame =
     pathname.startsWith("/app/fantasy/jugar") ||
     pathname.startsWith("/app/predicciones/jugar") ||
     pathname.startsWith("/app/modo-carrera/jugar");
-  if (!inApp || isFullscreenGame) return null;
+  if (isFullscreenGame) return null;
+  if (!inApp && !inWebappRoute && !authed) return null;
 
   return (
     <nav

@@ -14,5 +14,9 @@ export async function GET() {
   const user = await getCurrentUser();
   if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   const summary = await getGamificationSummary(user.id);
-  return NextResponse.json(summary);
+  // no-store: el saldo de Fútcoins/XP cambia tras cada partida. Sin esto el
+  // navegador cachea la respuesta y "Tu progreso" + el chip quedan congelados en
+  // un valor viejo (p. ej. 0) aunque el abono ya esté en profiles. Igual que el
+  // ranking, esta lectura debe ser siempre fresca.
+  return NextResponse.json(summary, { headers: { "Cache-Control": "no-store" } });
 }

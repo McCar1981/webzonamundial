@@ -67,6 +67,20 @@ export default function StoryViewer({ hideWhenEmpty = false }: StoryViewerProps)
     });
   }, []);
 
+  // Eliminar una Story propia: la quita del feed y cierra el visor. Si el reel
+  // se queda sin Stories, también desaparece su burbuja.
+  const removeStory = useCallback((storyId: string) => {
+    setReels((prev) =>
+      prev
+        .map((r) => {
+          const stories = r.stories.filter((s) => s.id !== storyId);
+          return { ...r, stories, allSeen: stories.every((s) => s.seen) };
+        })
+        .filter((r) => r.stories.length > 0)
+    );
+    setOpen(null);
+  }, []);
+
   if (loading) {
     if (hideWhenEmpty) return null;
     return <p style={{ color: "#8a94b0", padding: "1rem" }}>Cargando Stories…</p>;
@@ -85,6 +99,7 @@ export default function StoryViewer({ hideWhenEmpty = false }: StoryViewerProps)
           onClose={() => setOpen(null)}
           onAdvance={setOpen}
           onSeen={markSeen}
+          onDelete={removeStory}
         />
       )}
     </>
@@ -233,17 +248,20 @@ function Overlay({
   onClose,
   onAdvance,
   onSeen,
+  onDelete,
 }: {
   reels: StoryReelDTO[];
   open: OpenState;
   onClose: () => void;
   onAdvance: (s: OpenState) => void;
   onSeen: (reelIndex: number, storyIndex: number) => void;
+  onDelete: (storyId: string) => void;
 }) {
   const reel = reels[open.reelIndex];
   const story = reel?.stories[open.storyIndex];
   const [paused, setPaused] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [deleting, setDeleting] = useState(false);
   const rafRef = useRef<number | null>(null);
   const startRef = useRef<number>(0);
   const elapsedRef = useRef<number>(0);
@@ -333,6 +351,31 @@ function Overlay({
     return () => window.removeEventListener("keydown", onKey);
   }, [next, prev, onClose]);
 
+  // Eliminar la Story propia que se está viendo.
+  const handleDelete = useCallback(async () => {
+    if (!story || deleting) return;
+    setPaused(true);
+    if (!window.confirm("¿Eliminar esta Story? No se puede deshacer.")) {
+      setPaused(false);
+      return;
+    }
+    setDeleting(true);
+    try {
+      const res = await fetch(`/api/stories/${story.id}`, { method: "DELETE" });
+      if (res.ok) {
+        onDelete(story.id);
+      } else {
+        setDeleting(false);
+        setPaused(false);
+        window.alert("No se pudo eliminar la Story. Inténtalo de nuevo.");
+      }
+    } catch {
+      setDeleting(false);
+      setPaused(false);
+      window.alert("Sin conexión. Inténtalo de nuevo.");
+    }
+  }, [story, deleting, onDelete]);
+
   if (!reel || !story) return null;
 
   return (
@@ -401,10 +444,30 @@ function Overlay({
             <span style={{ fontSize: 20 }}>{reelEmoji(reel.type)}</span>
           )}
           <span style={{ color: "#fff", fontWeight: 600, fontSize: 14 }}>{reel.label}</span>
+          {reel.isMine && (
+            <button
+              onClick={handleDelete}
+              disabled={deleting}
+              style={{
+                marginLeft: "auto",
+                background: "none",
+                border: "none",
+                color: "#fff",
+                fontSize: 18,
+                cursor: deleting ? "default" : "pointer",
+                opacity: deleting ? 0.5 : 1,
+                lineHeight: 1,
+              }}
+              aria-label="Eliminar Story"
+              title="Eliminar Story"
+            >
+              🗑️
+            </button>
+          )}
           <button
             onClick={onClose}
             style={{
-              marginLeft: "auto",
+              marginLeft: reel.isMine ? 8 : "auto",
               background: "none",
               border: "none",
               color: "#fff",

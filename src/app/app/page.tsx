@@ -135,7 +135,7 @@ const CATS: Cat[] = [
     mods: [
       { icon: "matchcenter", art: "/assets/card-backgrounds/match-center.webp", title: "Match Center", desc: "Cada partido en vivo con estadísticas.", href: "/app/matchcenter", cta: "Ver", estado: "Disponible" },
       { icon: "micro", art: "/assets/card-backgrounds/micro-predicciones.webp", title: "Micro-predicciones", desc: "Predice jugadas en directo.", href: "/app/micro", cta: "Jugar", estado: "Nuevo" },
-      { icon: "stories", art: "/assets/card-backgrounds/stories.webp", title: "Stories", desc: "Minuto a minuto del Mundial.", href: "/app/stories", cta: "Ver", estado: "Disponible" },
+      { icon: "stories", art: "/assets/card-backgrounds/stories.webp", title: "Stories", desc: "Minuto a minuto del Mundial.", href: "/app/stories/feed", cta: "Ver", estado: "Disponible" },
       { icon: "streaming", art: "/assets/card-backgrounds/zona-streaming.webp", title: "Zona Streaming", desc: "Directos con creadores.", href: "/app/streaming", cta: "Entrar", estado: "Disponible" },
     ],
   },

@@ -23,6 +23,7 @@ import LiveView from "./LiveView";
 import LeaguesView from "./LeaguesView";
 import CoachView from "./CoachView";
 import AchievementsView from "./AchievementsView";
+import GuideView from "./GuideView";
 import Onboarding from "./Onboarding";
 
 const ONBOARDED_KEY = "zm-fantasy-onboarded:v1";
@@ -37,7 +38,7 @@ const FANTASY_BG =
   "radial-gradient(1400px 760px at 50% 110%, rgba(20,150,86,0.34), transparent 60%)," + // verde césped al pie
   "linear-gradient(180deg, #0b1a30 0%, #091324 50%, #060c18 100%)"; // base azul noche
 
-type Tab = "equipo" | "mercado" | "vivo" | "ligas" | "logros" | "coach";
+type Tab = "equipo" | "mercado" | "vivo" | "ligas" | "logros" | "coach" | "guia";
 
 const TABS: { id: Tab; label: string; icon: string }[] = [
   { id: "equipo", label: "Mi Equipo", icon: "🧩" },
@@ -393,6 +394,13 @@ export default function FantasyGame() {
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "9px 16px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
             <Link href="/app/fantasy" style={{ color: MID, textDecoration: "none", fontSize: 13, fontWeight: 700 }}>← Fantasy</Link>
+            <button
+              onClick={() => setTab("guia")}
+              title="Guía de uso: normas y reglas"
+              style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "5px 11px", borderRadius: 999, border: "1px solid " + (tab === "guia" ? GOLD : GOLD + "55"), background: tab === "guia" ? GOLD + "22" : GOLD + "12", color: GOLD2, fontSize: 11.5, fontWeight: 800, cursor: "pointer", whiteSpace: "nowrap" }}
+            >
+              📖 Guía
+            </button>
             {creador && (
               <span
                 title={`Fantasy de ${creador.nombre}`}
@@ -487,6 +495,7 @@ export default function FantasyGame() {
         {tab === "ligas" && <LeaguesView team={team} authed={authed === true} />}
         {tab === "logros" && <AchievementsView team={team} />}
         {tab === "coach" && <CoachView team={team} ownedIds={ownedIds} budgetRemaining={budgetRemaining} onAutoDraft={doAutoDraft} onCaptain={setCaptain} onGoMarket={() => setTab("mercado")} />}
+        {tab === "guia" && <GuideView />}
       </div>
 
       {toast && (

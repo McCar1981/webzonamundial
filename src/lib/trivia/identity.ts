@@ -30,15 +30,17 @@ export async function resolveIdentity(
     if (user) {
       userId = user.id;
       authUserId = user.id;
-      if (!name) {
-        const { data: profile } = await supabase
-          .from("profiles")
-          .select("username")
-          .eq("id", user.id)
-          .maybeSingle();
-        name =
-          (profile?.username as string) || user.email?.split("@")[0] || "Jugador";
-      }
+      // Para un usuario AUTENTICADO el nombre del ranking sale SIEMPRE de su
+      // perfil, nunca del nombre que manda el cliente: así un alias viejo cacheado
+      // en localStorage (zm_trivia_name) no puede suplantar al username real de la
+      // cuenta (p. ej. mostrar "Mccar81" cuando la cuenta es "sprintmarkt").
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("username")
+        .eq("id", user.id)
+        .maybeSingle();
+      name =
+        (profile?.username as string) || user.email?.split("@")[0] || "Jugador";
     }
   } catch {
     /* sin sesión supabase → anon */

@@ -18,8 +18,8 @@ export default function StoriesFeedPage() {
   return (
     <main style={{ minHeight: "100vh", background: NAVY, color: "#fff", padding: "16px" }}>
       <header style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 4 }}>
-        <Link href="/app/stories" style={{ color: GOLD, textDecoration: "none", fontSize: 14 }}>
-          ← Stories
+        <Link href="/app" style={{ color: GOLD, textDecoration: "none", fontSize: 14 }}>
+          ← Volver
         </Link>
       </header>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, margin: "8px 0 4px" }}>

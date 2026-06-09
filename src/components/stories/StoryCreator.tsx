@@ -68,6 +68,7 @@ export default function StoryCreator() {
   const [stickers, setStickers] = useState<StorySticker[]>([]);
   const [publishing, setPublishing] = useState(false);
   const [publishedId, setPublishedId] = useState<string | null>(null);
+  const [publishError, setPublishError] = useState<string | null>(null);
 
   // Buscador de stickers Giphy.
   const [giphyOpen, setGiphyOpen] = useState(false);
@@ -180,6 +181,7 @@ export default function StoryCreator() {
   async function publish() {
     if (!canPublish) return;
     setPublishing(true);
+    setPublishError(null);
     try {
       const payload =
         mode === "photo"
@@ -199,10 +201,19 @@ export default function StoryCreator() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      const json = await res.json();
-      if (json.ok && json.story) setPublishedId(json.story.id);
+      const json = await res.json().catch(() => ({}));
+      if (res.ok && json.ok && json.story) {
+        setPublishedId(json.story.id);
+      } else {
+        // Mensaje claro de por qué no se creó (sesión caducada, validación…).
+        setPublishError(
+          res.status === 401
+            ? "Inicia sesión para publicar tu Story."
+            : json.error || "No se pudo crear la Story. Inténtalo de nuevo."
+        );
+      }
     } catch {
-      /* noop */
+      setPublishError("Sin conexión. Revisa tu internet e inténtalo de nuevo.");
     } finally {
       setPublishing(false);
     }
@@ -531,9 +542,16 @@ export default function StoryCreator() {
           </label>
 
           {!publishedId ? (
-            <button onClick={publish} disabled={publishing || !canPublish} style={primaryBtn}>
-              {publishing ? "Publicando…" : "Publicar Story"}
-            </button>
+            <div style={{ display: "grid", gap: 8 }}>
+              <button onClick={publish} disabled={publishing || !canPublish} style={primaryBtn}>
+                {publishing ? "Publicando…" : "Publicar Story"}
+              </button>
+              {publishError && (
+                <p style={{ color: "#f87171", fontSize: 13, fontWeight: 600, margin: 0, textAlign: "center" }}>
+                  ⚠️ {publishError}
+                </p>
+              )}
+            </div>
           ) : (
             <div style={{ display: "grid", gap: 10 }}>
               <p style={{ color: "#4ade80", fontSize: 14, fontWeight: 700, margin: 0 }}>

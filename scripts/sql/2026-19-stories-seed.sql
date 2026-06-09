@@ -5,55 +5,37 @@
 -- SOLO toca la tabla stories del módulo Stories. Idempotente: borra primero el
 -- seed previo (template_data->>'seed' = 'true') y reinserta. Stories activas 24h.
 -- Correr de nuevo refresca el TTL.
+--
+-- INFORMACIÓN CIERTA: este seed NO inventa hechos de partidos (marcadores,
+-- goles, % de comunidad, número de partidos del día). Esas Stories de sistema
+-- las EMITE el motor automático (/api/stories/generate) con datos REALES del
+-- Match Center cuando hay partidos en ventana. Aquí solo dejamos:
+--   - 1 Story de sistema neutra (bienvenida, sin cifras inventadas).
+--   - Stories de CREADOR atadas a creadores REALES (community_slug = su slug de
+--     src/data/creadores.ts) → el feed muestra su NOMBRE y FOTO de perfil, y
+--     SOLO las ven los usuarios de la comunidad de ese creador (fav_creator).
 -- ============================================================================
 
 -- Limpieza idempotente del seed anterior.
 DELETE FROM public.stories WHERE template_data ->> 'seed' = 'true';
 
 INSERT INTO public.stories
-  (type, author_id, author_type, media_type, overlay_text, widgets, template_data, related_match_id, is_active, expires_at)
+  (type, author_id, author_type, media_type, overlay_text, widgets, template_data, community_slug, related_match_id, is_active, expires_at)
 VALUES
-  -- — Sistema: pre-partido con encuesta —
+  -- — Sistema: bienvenida neutra (sin datos inventados) —
   ('system', NULL, 'system', 'template',
-   '⚽ España 🇪🇸 vs Brasil 🇧🇷 — hoy 21:00',
-   '[{"kind":"poll","id":"w-pre-1","question":"¿Quién gana?","options":[{"key":"esp","label":"🇪🇸 España"},{"key":"draw","label":"Empate"},{"key":"bra","label":"🇧🇷 Brasil"}]}]'::jsonb,
-   '{"seed":true}'::jsonb, 'demo-esp-bra', TRUE, NOW() + INTERVAL '24 hours'),
+   '⚽ Bienvenido a ZonaMundial. Sigue el Mundial en directo.',
+   '[{"kind":"cta","id":"w-welcome-1","label":"Ver el Match Center","href":"/app/matchcenter"}]'::jsonb,
+   '{"seed":true}'::jsonb, NULL, NULL, TRUE, NOW() + INTERVAL '24 hours'),
 
-  -- — Sistema: predicción de la comunidad + CTA a predecir —
-  ('system', NULL, 'system', 'template',
-   '📊 La comunidad predice: 67% España, 33% Brasil',
-   '[{"kind":"quick_prediction","id":"w-pre-2","label":"Haz tu predicción ahora","matchId":"demo-esp-bra"}]'::jsonb,
-   '{"seed":true}'::jsonb, 'demo-esp-bra', TRUE, NOW() + INTERVAL '24 hours'),
-
-  -- — Sistema: gol en vivo con micro-reto —
-  ('system', NULL, 'system', 'template',
-   '⚽ GOOOL de Yamal (min 34) — España 1-0',
-   '[{"kind":"micro_challenge","id":"w-goal-1","question":"¿Habrá más goles?"}]'::jsonb,
-   '{"seed":true}'::jsonb, 'demo-esp-bra', TRUE, NOW() + INTERVAL '24 hours'),
-
-  -- — Sistema: diaria con CTA —
-  ('system', NULL, 'system', 'template',
-   '☀️ Buenos días, DT. Hoy hay 3 partidos, 1 es 💎 Diamante ×2.0',
-   '[{"kind":"cta","id":"w-daily-1","label":"Ver partidos del día","href":"/app/matchcenter"}]'::jsonb,
-   '{"seed":true}'::jsonb, NULL, TRUE, NOW() + INTERVAL '24 hours'),
-
-  -- — Narrativa (IA / revista) —
-  ('narrative', NULL, 'system', 'template',
-   '📖 ¿Sabías que...? Brasil tiene 28% de probabilidad de ganar el Mundial según el modelo.',
-   '[]'::jsonb, '{"seed":true}'::jsonb, NULL, TRUE, NOW() + INTERVAL '24 hours'),
-
-  ('narrative', NULL, 'system', 'template',
-   '💡 El dato del día: 14 de los últimos 20 partidos de España terminaron con +2.5 goles.',
-   '[]'::jsonb, '{"seed":true}'::jsonb, NULL, TRUE, NOW() + INTERVAL '24 hours'),
-
-  -- — Creador: predicción cifrada + CTA a liga —
+  -- — Creador REAL (José Cobo): se muestra con su nombre y foto; solo lo ve su comunidad —
   ('creator', NULL, 'creator', 'template',
-   '🎬 Mi predicción del España vs Brasil 🔒 — mañana la revelo',
+   '🎬 Hoy analizo las claves del Mundial en mi directo. ¿Te lo pierdes?',
    '[{"kind":"cta","id":"w-creator-1","label":"Únete a mi liga","href":"/app/ligas"}]'::jsonb,
-   '{"seed":true}'::jsonb, NULL, TRUE, NOW() + INTERVAL '24 hours'),
+   '{"seed":true}'::jsonb, 'josecobo', NULL, TRUE, NOW() + INTERVAL '24 hours'),
 
-  -- — Creador: equipo fantasy + encuesta —
+  -- — Creador REAL (SVGiago): encuesta a su comunidad —
   ('creator', NULL, 'creator', 'template',
-   '🔥 Este es mi once para la jornada. ¿Mejor que el tuyo?',
-   '[{"kind":"poll","id":"w-creator-2","question":"¿Mi equipo o el tuyo?","options":[{"key":"yours","label":"El tuyo es mejor"},{"key":"mine","label":"El mío gana"}]}]'::jsonb,
-   '{"seed":true}'::jsonb, NULL, TRUE, NOW() + INTERVAL '24 hours');
+   '🔥 ¿Con qué selección vas en este Mundial?',
+   '[{"kind":"poll","id":"w-creator-2","question":"¿Tu favorita?","options":[{"key":"esp","label":"España"},{"key":"arg","label":"Argentina"},{"key":"otra","label":"Otra"}]}]'::jsonb,
+   '{"seed":true}'::jsonb, 'svgiago', NULL, TRUE, NOW() + INTERVAL '24 hours');

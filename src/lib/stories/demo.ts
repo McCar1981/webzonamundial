@@ -12,10 +12,15 @@
 
 import type { StoryDTO, StoryReelDTO, StoryType, StoryWidget, StoryMediaType } from "./types";
 import type { LiveSnapshot } from "@/lib/match-center/types";
+import { CREADORES } from "@/data/creadores";
 
 // Comunidad del "espectador" demo: el creador con el que se habría registrado.
-// Las Stories de usuario solo se ven entre miembros de la misma comunidad.
-const DEMO_COMMUNITY = "creador-demo";
+// Las Stories de usuario y de CREADOR solo se ven entre miembros de la misma
+// comunidad. Usamos un creador REAL (José Cobo) para ver su nombre+foto.
+const DEMO_COMMUNITY = "josecobo";
+
+// Nombre + foto reales por slug de creador (fuente: src/data/creadores.ts).
+const CREADOR_BY_SLUG = new Map(CREADORES.map((c) => [c.slug, c]));
 
 /** TRUE si estamos en entorno con service role (producción). */
 export function hasServiceRole(): boolean {
@@ -31,7 +36,8 @@ function dto(
   type: StoryType,
   overlay: string,
   widgets: StoryDTO["widgets"] = [],
-  relatedMatchId: string | null = null
+  relatedMatchId: string | null = null,
+  communitySlug: string | null = null
 ): StoryDTO {
   return {
     id,
@@ -44,6 +50,7 @@ function dto(
     templateId: null,
     templateData: { demo: true },
     relatedMatchId,
+    communitySlug,
     viewCount: Math.floor(Math.random() * 9000) + 500,
     createdAt: new Date().toISOString(),
     expiresAt: expiresIso(),
@@ -51,45 +58,28 @@ function dto(
   };
 }
 
-// Stories de ejemplo (mismo contenido que el seed SQL, en memoria).
+// Stories de ejemplo (mismo contenido que el seed SQL, en memoria). SIN datos
+// inventados de partido: el sistema solo lleva una bienvenida; los goles/previas
+// reales los emite el motor. Las de creador van atadas a creadores REALES.
 const DEMO: StoryDTO[] = [
-  dto("demo-sys-1", "system", "⚽ España 🇪🇸 vs Brasil 🇧🇷 — hoy 21:00", [
-    {
-      kind: "poll",
-      id: "w-pre-1",
-      question: "¿Quién gana?",
-      options: [
-        { key: "esp", label: "🇪🇸 España" },
-        { key: "draw", label: "Empate" },
-        { key: "bra", label: "🇧🇷 Brasil" },
-      ],
-    },
-  ], "demo-esp-bra"),
-  dto("demo-sys-2", "system", "📊 La comunidad predice: 67% España, 33% Brasil", [
-    { kind: "quick_prediction", id: "w-pre-2", label: "Haz tu predicción ahora", matchId: "demo-esp-bra" },
-  ], "demo-esp-bra"),
-  dto("demo-sys-3", "system", "⚽ GOOOL de Yamal (min 34) — España 1-0", [
-    { kind: "micro_challenge", id: "w-goal-1", question: "¿Habrá más goles?" },
-  ], "demo-esp-bra"),
-  dto("demo-sys-4", "system", "☀️ Buenos días, DT. Hoy hay 3 partidos, 1 es 💎 Diamante ×2.0", [
-    { kind: "cta", id: "w-daily-1", label: "Ver partidos del día", href: "/app/matchcenter" },
+  dto("demo-sys-1", "system", "⚽ Bienvenido a ZonaMundial. Sigue el Mundial en directo.", [
+    { kind: "cta", id: "w-welcome-1", label: "Ver el Match Center", href: "/app/matchcenter" },
   ]),
-  dto("demo-nar-1", "narrative", "📖 ¿Sabías que...? Brasil tiene 28% de probabilidad de ganar el Mundial según el modelo."),
-  dto("demo-nar-2", "narrative", "💡 El dato del día: 14 de los últimos 20 partidos de España terminaron con +2.5 goles."),
-  dto("demo-cre-1", "creator", "🎬 Mi predicción del España vs Brasil 🔒 — mañana la revelo", [
+  dto("demo-cre-1", "creator", "🎬 Hoy analizo las claves del Mundial en mi directo. ¿Te lo pierdes?", [
     { kind: "cta", id: "w-creator-1", label: "Únete a mi liga", href: "/app/ligas" },
-  ]),
-  dto("demo-cre-2", "creator", "🔥 Este es mi once para la jornada. ¿Mejor que el tuyo?", [
+  ], null, "josecobo"),
+  dto("demo-cre-2", "creator", "🔥 ¿Con qué selección vas en este Mundial?", [
     {
       kind: "poll",
       id: "w-creator-2",
-      question: "¿Mi equipo o el tuyo?",
+      question: "¿Tu favorita?",
       options: [
-        { key: "yours", label: "El tuyo es mejor" },
-        { key: "mine", label: "El mío gana" },
+        { key: "esp", label: "España" },
+        { key: "arg", label: "Argentina" },
+        { key: "otra", label: "Otra" },
       ],
     },
-  ]),
+  ], null, "svgiago"),
 ];
 
 function reelLabel(type: StoryType): string {
@@ -111,16 +101,41 @@ function reelLabel(type: StoryType): string {
 /** Reels demo: tipos públicos por tipo + Stories de usuario por autor (con
  *  scope de comunidad, igual que producción). */
 export function demoFeed(): StoryReelDTO[] {
-  // 1) Tipos públicos (creator/system/narrative/league) agrupados por tipo.
+  const reels: StoryReelDTO[] = [];
+
+  // 1a) CREADOR: con scope de comunidad (igual que producción). El espectador
+  // demo pertenece a DEMO_COMMUNITY → solo ve a ESE creador, con su nombre+foto
+  // reales. Un creador de otra comunidad queda fuera.
+  const byCreator = new Map<string, StoryDTO[]>();
+  for (const s of [...GENERATED, ...DEMO]) {
+    if (s.type !== "creator") continue;
+    if (s.communitySlug !== DEMO_COMMUNITY) continue; // no estás con ese creador → no sale
+    const slug = s.communitySlug;
+    const arr = byCreator.get(slug) ?? [];
+    arr.push(s);
+    byCreator.set(slug, arr);
+  }
+  for (const [slug, stories] of byCreator) {
+    const c = CREADOR_BY_SLUG.get(slug);
+    reels.push({
+      key: `creator:${slug}`,
+      label: c?.nombre ?? reelLabel("creator"),
+      type: "creator",
+      avatarUrl: c?.imagen ?? null,
+      stories,
+      allSeen: false,
+    });
+  }
+
+  // 1b) Tipos públicos restantes (system/narrative/league) agrupados por tipo.
   const byType = new Map<StoryType, StoryDTO[]>();
   for (const s of [...GENERATED, ...DEMO]) {
-    if (s.type === "user") continue;
+    if (s.type === "user" || s.type === "creator") continue;
     const arr = byType.get(s.type) ?? [];
     arr.push(s);
     byType.set(s.type, arr);
   }
-  const order: StoryType[] = ["creator", "system", "narrative", "league"];
-  const reels: StoryReelDTO[] = [];
+  const order: StoryType[] = ["system", "narrative", "league"];
   for (const type of order) {
     const stories = byType.get(type);
     if (!stories?.length) continue;

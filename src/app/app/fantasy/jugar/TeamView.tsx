@@ -89,8 +89,12 @@ export default function TeamView({ team, validation, onSlotClickEmpty, onRemove,
       {wide ? (
         // Panel blanco bajo el campo → mismo "héroe" que en móvil, máximo contraste.
         <div style={{ maxWidth: 1000, margin: "0 auto", padding: 12, borderRadius: 20, background: "linear-gradient(180deg,#ffffff 0%,#e9eff7 100%)", animation: "zmRise .5s ease both, zmFieldGlow 6s ease-in-out infinite .6s" }}>
-          <div style={{ position: "relative", aspectRatio: "900 / 560", borderRadius: 14, overflow: "hidden", boxShadow: "inset 0 0 0 1px rgba(125,255,206,0.14)" }}>
-            <PitchSVG orientation="h" />
+          <div style={{ position: "relative", aspectRatio: "900 / 560", borderRadius: 14, boxShadow: "inset 0 0 0 1px rgba(125,255,206,0.14)" }}>
+            {/* El césped se recorta a esquinas redondeadas; los jugadores NO, para que
+                el menú emergente pueda salir totalmente al frente sin recortarse. */}
+            <div style={{ position: "absolute", inset: 0, borderRadius: 14, overflow: "hidden" }}>
+              <PitchSVG orientation="h" />
+            </div>
 
             {/* Capa de jugadores DENTRO del césped: portero a la izquierda → delanteros a la derecha. */}
             <div style={{ position: "absolute", inset: 0, padding: "6% 8%", display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "stretch", zIndex: 2 }}>
@@ -107,8 +111,12 @@ export default function TeamView({ team, validation, onSlotClickEmpty, onRemove,
       ) : (
         // Panel blanco bajo el campo → contraste y base para animaciones.
         <div style={{ maxWidth: 470, margin: "0 auto", padding: 9, borderRadius: 22, background: "linear-gradient(180deg,#ffffff 0%,#e9eff7 100%)", animation: "zmRise .5s ease both, zmFieldGlow 6s ease-in-out infinite .6s" }}>
-          <div style={{ position: "relative", aspectRatio: "400 / 680", borderRadius: 15, overflow: "hidden", boxShadow: "inset 0 0 0 1px rgba(125,255,206,0.14)" }}>
-            <PitchSVG orientation="v" />
+          <div style={{ position: "relative", aspectRatio: "400 / 680", borderRadius: 15, boxShadow: "inset 0 0 0 1px rgba(125,255,206,0.14)" }}>
+            {/* El césped se recorta a esquinas redondeadas; los jugadores NO, para que
+                el menú emergente pueda salir totalmente al frente sin recortarse. */}
+            <div style={{ position: "absolute", inset: 0, borderRadius: 15, overflow: "hidden" }}>
+              <PitchSVG orientation="v" />
+            </div>
 
             {/* Capa de jugadores: delanteros arriba (portería rival) → portero abajo (la nuestra).
                 Campo más alto + más aire arriba/abajo → todas las líneas (incl. el portero,

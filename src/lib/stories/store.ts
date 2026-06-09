@@ -162,6 +162,22 @@ export async function getFeed(userId?: string | null): Promise<StoryReelDTO[]> {
     }
   }
 
+  // Perfil (nombre + foto) de los AUTORES de Stories de usuario, para pintar su
+  // avatar real en la burbuja; si no tiene foto, el front usa la inicial del nombre.
+  const userAuthorIds = Array.from(
+    new Set(rows.filter((r) => r.type === "user" && r.author_id).map((r) => r.author_id as string))
+  );
+  const profileMap = new Map<string, { username: string | null; avatarUrl: string | null }>();
+  if (userAuthorIds.length) {
+    const { data: profs } = await admin
+      .from("profiles")
+      .select("id,username,avatar_url")
+      .in("id", userAuthorIds);
+    for (const p of (profs ?? []) as Array<{ id: string; username: string | null; avatar_url: string | null }>) {
+      profileMap.set(p.id, { username: p.username, avatarUrl: p.avatar_url });
+    }
+  }
+
   // Agrupar en reels preservando el orden (más reciente primero).
   const reels = new Map<string, StoryReelDTO>();
   for (const row of rows) {
@@ -171,12 +187,22 @@ export async function getFeed(userId?: string | null): Promise<StoryReelDTO[]> {
       // Creador: nombre + foto de perfil reales desde src/data/creadores.ts.
       let label = reelLabel(row.type);
       let avatarUrl: string | null = null;
+      let avatarInitial: string | undefined;
       if (row.type === "creator" && row.community_slug) {
         const c = CREADOR_BY_SLUG.get(row.community_slug);
         if (c) {
           label = c.nombre;
           avatarUrl = c.imagen;
         }
+      } else if (row.type === "user" && row.author_id) {
+        // Autor: su nombre + foto de perfil. El espectador ve "Tú" en su propio reel.
+        const prof = profileMap.get(row.author_id);
+        const name = prof?.username?.trim() || null;
+        const isSelf = !!userId && row.author_id === userId;
+        label = isSelf ? "Tú" : name ?? "Usuario";
+        avatarUrl = prof?.avatarUrl ?? null;
+        // Inicial: del nombre real del autor (no de "Tú"), para el fallback sin foto.
+        avatarInitial = (name ?? label).charAt(0).toUpperCase();
       }
       // Reel propio: Stories de usuario cuyo autor es el espectador → puede borrarlas.
       const isMine = row.type === "user" && !!userId && row.author_id === userId;
@@ -185,6 +211,7 @@ export async function getFeed(userId?: string | null): Promise<StoryReelDTO[]> {
         label,
         type: row.type,
         avatarUrl,
+        avatarInitial,
         stories: [],
         allSeen: true,
         isMine,

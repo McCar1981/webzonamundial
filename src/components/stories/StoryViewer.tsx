@@ -211,7 +211,7 @@ function CarouselBar({
                     style={{ width: "100%", height: "100%", objectFit: "cover" }}
                   />
                 ) : (
-                  reelEmoji(reel.type)
+                  reelFallback(reel)
                 )}
               </span>
             </span>
@@ -223,6 +223,19 @@ function CarouselBar({
       })}
     </div>
   );
+}
+
+// Contenido de la burbuja cuando NO hay foto: para stories de usuario, la
+// inicial de su nombre sobre fondo dorado; para el resto, el emoji del tipo.
+function reelFallback(reel: StoryReelDTO): JSX.Element | string {
+  if (reel.type === "user" && reel.avatarInitial) {
+    return (
+      <span style={{ color: GOLD, fontWeight: 800, fontSize: 24, lineHeight: 1 }}>
+        {reel.avatarInitial}
+      </span>
+    );
+  }
+  return reelEmoji(reel.type);
 }
 
 function reelEmoji(type: StoryReelDTO["type"]): string {
@@ -440,6 +453,22 @@ function Overlay({
               alt={reel.label}
               style={{ width: 26, height: 26, borderRadius: "50%", objectFit: "cover" }}
             />
+          ) : reel.type === "user" && reel.avatarInitial ? (
+            <span
+              style={{
+                width: 26,
+                height: 26,
+                borderRadius: "50%",
+                background: `linear-gradient(135deg, ${GOLD}, #e8d48b)`,
+                color: NAVY,
+                fontWeight: 800,
+                fontSize: 13,
+                display: "grid",
+                placeItems: "center",
+              }}
+            >
+              {reel.avatarInitial}
+            </span>
           ) : (
             <span style={{ fontSize: 20 }}>{reelEmoji(reel.type)}</span>
           )}

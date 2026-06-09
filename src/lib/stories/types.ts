@@ -142,6 +142,8 @@ export interface StoryReelDTO {
   type: StoryType;
   /** Avatar/imagen de la burbuja. */
   avatarUrl: string | null;
+  /** Inicial a mostrar si no hay avatarUrl (1ª letra del nombre del autor). */
+  avatarInitial?: string;
   stories: StoryDTO[];
   /** TRUE si TODAS las stories del reel ya fueron vistas por el usuario. */
   allSeen: boolean;

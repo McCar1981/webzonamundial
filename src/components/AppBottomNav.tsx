@@ -37,7 +37,7 @@ const ITEMS: Item[] = [
     icon: stroke("M3 11.5L12 4l9 7.5M5 10v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9"),
   },
   {
-    href: "/app/predicciones",
+    href: "/app/predicciones/jugar",
     label: "Predice",
     match: (p) => p.startsWith("/app/predicciones") || p.startsWith("/app/micro"),
     icon: stroke("M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1M14.5 12a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"),
@@ -49,7 +49,7 @@ const ITEMS: Item[] = [
     icon: stroke("M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18ZM12 3v3l3 2M12 3l-3 4M9 7l-4 3.5M12 21v-3l-3-2M12 21l3-4M15 17l4-3.5"),
   },
   {
-    href: "/app/trivia",
+    href: "/trivia",
     label: "Trivia",
     match: (p) => p.startsWith("/app/trivia"),
     icon: stroke("M12 3l8 4v5c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V7l8-4ZM12 8v.5M12 11v3"),

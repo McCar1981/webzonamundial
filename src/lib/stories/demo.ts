@@ -164,6 +164,8 @@ export function demoFeed(): StoryReelDTO[] {
       label: name,
       type: "user",
       avatarUrl: null,
+      // Sin foto en demo → inicial del nombre (igual que producción).
+      avatarInitial: name.charAt(0).toUpperCase(),
       stories: byAuthor.get(name)!,
       allSeen: false,
       // En demo, el reel "Tú" es el del propio espectador → puede eliminar.

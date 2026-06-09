@@ -71,15 +71,10 @@ export default function StoryViewer({ hideWhenEmpty = false }: StoryViewerProps)
     if (hideWhenEmpty) return null;
     return <p style={{ color: "#8a94b0", padding: "1rem" }}>Cargando Stories…</p>;
   }
-  if (!reels.length) {
-    if (hideWhenEmpty) return null;
-    return (
-      <p style={{ color: "#8a94b0", padding: "1rem" }}>
-        No hay Stories activas ahora mismo.
-      </p>
-    );
-  }
 
+  // Ya cargado: la barra se muestra SIEMPRE (estilo IG). Aunque no haya Stories
+  // activas, el carrusel pinta la burbuja "+ Tu historia" para crear. Así la
+  // barra nunca desaparece del lobby cuando el feed queda vacío.
   return (
     <>
       <CarouselBar reels={reels} onOpen={(r, s) => setOpen({ reelIndex: r, storyIndex: s })} />

@@ -722,6 +722,11 @@ export default function AppHubPage() {
           </div>
         </div>
 
+        {/* ═══ Stories (burbujas estilo IG) — arriba del todo, bajo el saludo ═══ */}
+        <div style={{ margin: "4px 0 18px" }}>
+          <StoryViewer hideWhenEmpty />
+        </div>
+
         {/* ═══ 2. HERO DINÁMICO · LIVE HUB ═══
             No repite "Hacer predicción": en base invita a explorar/ver partido; en
             vivo lleva al Match Center. Fondo navy premium + textura de cancha + glow
@@ -951,11 +956,6 @@ export default function AppHubPage() {
             </div>
           </section>
         )}
-
-        {/* ═══ Stories (burbujas estilo IG) — se ocultan si no hay ninguna ═══ */}
-        <div style={{ marginBottom: 26 }}>
-          <StoryViewer hideWhenEmpty />
-        </div>
 
         {/* ═══ 5 + 6. CATEGORÍAS con subtítulo ═══ */}
         {CATS.map((cat, i) => (

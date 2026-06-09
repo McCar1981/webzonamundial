@@ -91,7 +91,8 @@ En la pestaña **Network** del navegador, las peticiones a `invoke.js` salen con
 
 - [x] ~~Pedir a Adsterra la lista de dominios~~ → innecesario: dominios extraídos directamente del `invoke.js` (`fizzyacerbitymellow.com`, `protrafficinspector.com`, `cdn.cloudvideosa.com`) + comodín por la rotación.
 - [x] Aplicar esos dominios en `next.config.js` (`connect-src` + `frame-src`) y desplegar a **`main`** con build nuevo → commit `2206929`, pusheado 09/06.
-- [ ] Verificar tras el build de Vercel que la cabecera CSP de producción incluye los dominios nuevos y que en Network ya no hay `blocked:csp`.
+- [x] Verificar que la cabecera CSP de producción incluye los dominios nuevos → confirmado el 09/06 a las 22:34 (header de zonamundial.app ya sirve `fizzyacerbitymellow.com` y los comodines en `connect-src` y `frame-src`).
+- [ ] Comprobación visual en navegador: Network sin `blocked:csp` y banner renderizado. **Humano** (o agente con navegador).
 - [ ] Probar en dispositivo limpio (móvil con datos, sin antivirus/adblocker). **Humano.**
 - [ ] Confirmar impresiones reales en STATISTICS → Today. **Humano.**
 - [ ] KYC / documentación de cobro en Adsterra (acción del dueño). **Humano.**

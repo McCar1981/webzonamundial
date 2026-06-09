@@ -3,7 +3,7 @@
 **Fecha:** 2026-06-09
 **Sitio:** zonamundial.app (Next.js App Router, desplegado en Vercel)
 **Objetivo:** Mostrar el Native Banner de Adsterra en la web como puente de monetización para el Mundial 2026 (empieza 11/06).
-**Estado actual:** 🟡 Arreglo COMPLETO de CSP aplicado y desplegado a `main` (commit `2206929`, 09/06). Falta verificar en producción tras el build de Vercel (ver sección 5) y confirmar impresiones.
+**Estado actual:** ✅ Arreglo de CSP aplicado, desplegado a `main` (commit `2206929`) y **verificado en producción** el 09/06 a las 22:34 (la cabecera CSP ya permite Adsterra en `script-src`, `connect-src` y `frame-src`). Solo quedan comprobaciones humanas: ver el banner en un dispositivo limpio y confirmar impresiones en STATISTICS.
 
 ---
 

@@ -11,8 +11,15 @@
 //   - enabled=false (founder o sin ADSENSE) → no carga.
 //   - rutas excluidas (/bracket limpio + zonas privadas) → no carga.
 //   - script async, data-cfasync="false" (Cloudflare Rocket Loader off).
+//
+// SPA / cambio de página: Next.js NO re-ejecuta los <script> en navegaciones de
+// cliente (solo en carga inicial y recarga). El invoke.js de Adsterra rellena el
+// contenedor UNA sola vez, así que al cambiar de ruta el banner desaparecía.
+// Por eso inyectamos el script a mano en CADA cambio de ruta: limpiamos el
+// contenedor, recreamos el <div> destino y añadimos un <script> fresco → fuerza
+// el re-render del banner en cada página (y evita banners duplicados/apilados).
 
-import Script from "next/script";
+import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 
 const SRC = process.env.NEXT_PUBLIC_ADSTERRA_NATIVE_SRC;
@@ -36,22 +43,38 @@ const EXCLUDED_PREFIXES = [
 
 export default function AdsterraNative({ enabled }: { enabled: boolean }) {
   const pathname = usePathname();
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
-  if (!enabled || !SRC || !CONTAINER_ID) return null;
-  if (EXCLUDED_PREFIXES.some((p) => pathname === p || pathname.startsWith(p + "/"))) {
-    return null;
-  }
-
-  return (
-    <div style={{ maxWidth: 970, margin: "0 auto", padding: "8px 0" }}>
-      <div id={CONTAINER_ID} />
-      <Script
-        id="adsterra-native"
-        src={SRC}
-        strategy="afterInteractive"
-        async
-        data-cfasync="false"
-      />
-    </div>
+  const excluded = EXCLUDED_PREFIXES.some(
+    (p) => pathname === p || pathname.startsWith(p + "/")
   );
+  const active = enabled && Boolean(SRC) && Boolean(CONTAINER_ID) && !excluded;
+
+  useEffect(() => {
+    if (!active) return;
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+
+    // Render limpio: contenedor vacío que el invoke.js volverá a rellenar.
+    wrapper.innerHTML = "";
+    const container = document.createElement("div");
+    container.id = CONTAINER_ID as string;
+    wrapper.appendChild(container);
+
+    // Script FRESCO en cada navegación: el navegador re-ejecuta los <script>
+    // insertados dinámicamente, así Adsterra vuelve a pintar el banner.
+    const script = document.createElement("script");
+    script.src = SRC as string;
+    script.async = true;
+    script.setAttribute("data-cfasync", "false");
+    wrapper.appendChild(script);
+
+    return () => {
+      wrapper.innerHTML = "";
+    };
+  }, [pathname, active]);
+
+  if (!active) return null;
+
+  return <div ref={wrapperRef} style={{ maxWidth: 970, margin: "0 auto", padding: "8px 0" }} />;
 }

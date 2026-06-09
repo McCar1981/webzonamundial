@@ -46,12 +46,19 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "missing_text" }, { status: 400 });
   }
 
-  const story = await createUserStory(userId, {
-    templateId: isPhoto ? null : body.template_id ?? null,
-    overlayText: overlay,
-    mediaType: isPhoto ? "image" : "template",
-    mediaUrl: isPhoto ? body.media_url ?? null : null,
-    templateData: body.template_data,
-  });
-  return NextResponse.json({ ok: true, story }, { status: 201 });
+  try {
+    const story = await createUserStory(userId, {
+      templateId: isPhoto ? null : body.template_id ?? null,
+      overlayText: overlay,
+      mediaType: isPhoto ? "image" : "template",
+      mediaUrl: isPhoto ? body.media_url ?? null : null,
+      templateData: body.template_data,
+    });
+    return NextResponse.json({ ok: true, story }, { status: 201 });
+  } catch (e) {
+    // Devolvemos el motivo real del fallo (p. ej. columna media_url muy corta,
+    // RLS, etc.) para no quedarnos con un "no se pudo crear" opaco.
+    const detail = e instanceof Error ? e.message : String(e);
+    return NextResponse.json({ error: "create_failed", detail }, { status: 500 });
+  }
 }

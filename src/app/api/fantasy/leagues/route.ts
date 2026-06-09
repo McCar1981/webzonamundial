@@ -1,6 +1,6 @@
 // src/app/api/fantasy/leagues/route.ts
 //
-// GET  /api/fantasy/leagues → ligas del usuario.
+// GET  /api/fantasy/leagues → ligas del usuario (con is_owner).
 // POST /api/fantasy/leagues → crear liga ({ name }) o unirse ({ code }).
 
 import { NextResponse } from "next/server";
@@ -25,12 +25,20 @@ export async function POST(req: Request) {
 
   if (body.code) {
     const result = await joinLeague(user.id, body.code);
-    if (!result.ok) return NextResponse.json(result, { status: 404 });
+    // 404 solo cuando la liga no existe; el resto de rechazos son 409 (conflicto).
+    if (!result.ok) {
+      const status = result.error === "league_not_found" ? 404 : result.error === "invalid_code" ? 400 : 409;
+      return NextResponse.json(result, { status });
+    }
     return NextResponse.json(result);
   }
   if (body.name && body.name.trim()) {
-    const league = await createLeague(user.id, body.name.trim());
-    return NextResponse.json({ ok: true, league }, { status: 201 });
+    const result = await createLeague(user.id, body.name.trim());
+    if (!result.ok) {
+      const status = result.error === "too_many_leagues" ? 409 : 400;
+      return NextResponse.json(result, { status });
+    }
+    return NextResponse.json(result, { status: 201 });
   }
   return NextResponse.json({ error: "bad_request", message: "Indica name (crear) o code (unirse)" }, { status: 400 });
 }

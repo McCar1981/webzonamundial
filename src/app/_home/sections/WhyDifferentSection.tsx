@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { BG2 } from "../constants";
 
 export function WhyDifferentSection({ h }: { h: any }) {
@@ -5,17 +6,15 @@ export function WhyDifferentSection({ h }: { h: any }) {
     <section className="py-24 px-4 relative overflow-hidden" style={{ background: BG2 }}>
       {/* Stadium atmosphere background */}
       <div className="absolute inset-0">
-        <picture>
-          <source srcSet="/img/heroes/why-different-stadium.webp" type="image/webp" />
-          <img
-            src="/img/heroes/why-different-stadium.jpg"
-            alt=""
-            role="presentation"
-            className="w-full h-full object-cover"
-            loading="lazy"
-            decoding="async"
-          />
-        </picture>
+        <Image
+          src="/img/heroes/why-different-stadium.webp"
+          alt=""
+          role="presentation"
+          fill
+          sizes="100vw"
+          className="object-cover"
+          loading="lazy"
+        />
         <div className="absolute inset-0 bg-[#0F1D32]/90" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0F1D32] via-transparent to-[#0F1D32]" />
       </div>

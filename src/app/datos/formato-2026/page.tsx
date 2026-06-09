@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useLanguage } from '@/i18n/LanguageContext';
 import { BracketDiagram } from '@/components/BracketDiagram';
@@ -63,12 +64,13 @@ export default function Formato2026Page() {
       {/* HERO */}
       <section className="relative mb-10 overflow-hidden rounded-3xl sm:mb-14">
         <div className="absolute inset-0">
-          <img
+          <Image
             src="/img/zonamundial-images/stadiums/metlife-stadium.jpg"
             alt="MetLife Stadium, sede de la final del Mundial 2026 en Nueva Jersey"
-            className="h-full w-full object-cover"
+            fill
+            sizes="100vw"
+            className="object-cover"
             loading="lazy"
-            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#060B14] via-[#060B14]/90 to-[#060B14]/70" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#060B14] via-transparent to-transparent" />

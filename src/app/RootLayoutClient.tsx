@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useRef, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { createPortal } from "react-dom";
@@ -304,9 +305,11 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
         <div style={{ maxWidth: 1440, margin: "0 auto", padding: "0 28px", height: 64, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24 }}>
           {/* Logo */}
           <Link href="/" style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", textDecoration: "none", flexShrink: 0 }} onClick={closeMobile}>
-            <img
+            <Image
               src="/img/zonamundial-images/imagenes/IMG-20260302-WA0016-removebg-preview.webp"
               alt="ZonaMundial Logo"
+              width={36}
+              height={36}
               style={{ width: 36, height: 36, objectFit: "contain" }}
             />
             <div style={{ display: "flex", alignItems: "center", gap: 3 }}>

@@ -1,6 +1,7 @@
 "use client";
 // src/app/historia/campeones/CampeonesClient.tsx
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useLanguage } from '@/i18n/LanguageContext';
 import { SvgIcon } from '@/components/icons';
@@ -90,7 +91,7 @@ export default function CampeonesClient() {
       <div className="w-full bg-[#0B1825] border border-[#1a2a3f] rounded-lg flex items-center justify-center mb-6 sm:mb-8 py-3"
         data-sponsor-slot="historia-campeones">
         <a href="#" target="_blank" rel="noopener noreferrer">
-          <img src="/img/imagenessilviu/ChatGPT Image 8 abr 2026, 04_53_21 p.m..webp" alt="Publicidad" className="rounded-lg" style={{maxWidth:"100%",height:"auto"}} />
+          <Image src="/img/imagenessilviu/ChatGPT Image 8 abr 2026, 04_53_21 p.m..webp" alt="Publicidad" width={800} height={250} sizes="(max-width: 768px) 100vw, 800px" className="rounded-lg" style={{maxWidth:"100%",height:"auto"}} />
         </a>
       </div>
 

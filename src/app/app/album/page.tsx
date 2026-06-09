@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -157,9 +158,12 @@ export default function AlbumPage() {
                 background: BG,
                 padding: 4,
               }}>
-                <img
+                <Image
                   src="/img/zonamundial-images/3ed8e8c7-8e9f-49d0-9a54-518d3f7b4dcb.webp"
                   alt="Álbum de cromos ZonaMundial 2026"
+                  width={1200}
+                  height={675}
+                  sizes="(max-width: 768px) 100vw, 600px"
                   style={{
                     width: "100%",
                     height: "auto",

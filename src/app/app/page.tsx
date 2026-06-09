@@ -326,7 +326,6 @@ function ModuleCard({ mod, cat }: { mod: Mod; cat: Cat }) {
         style={{
           position: "absolute", left: 0, right: 0, top: "22%", height: "46%", zIndex: 1, pointerEvents: "none",
           background: "linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.92) 26%, rgba(255,255,255,0.9) 64%, rgba(255,255,255,0) 100%)",
-          backdropFilter: "blur(2px)", WebkitBackdropFilter: "blur(2px)",
           WebkitMaskImage: "linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%)",
           maskImage: "linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%)",
         }}
@@ -372,7 +371,6 @@ function ModuleCard({ mod, cat }: { mod: Mod; cat: Cat }) {
             : active
               ? `${ctaBgHov}, linear-gradient(rgba(255,255,255,0.62),rgba(255,255,255,0.62))`
               : `${ctaBg}, linear-gradient(rgba(255,255,255,0.68),rgba(255,255,255,0.68))`,
-          backdropFilter: "saturate(150%) blur(3px)", WebkitBackdropFilter: "saturate(150%) blur(3px)",
           padding: "10px 0", borderRadius: 11,
           border: `1px solid ${disabled ? "#ccd8ec" : ctaBorder}`,
           boxShadow: active && !disabled ? `${ctaShadow}, inset 0 1px 0 rgba(255,255,255,0.5)` : "inset 0 1px 0 rgba(255,255,255,0.4)",

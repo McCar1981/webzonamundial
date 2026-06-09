@@ -317,6 +317,12 @@ function SlotCard({ slot, team, menu, setMenu, onSlotClickEmpty, onRemove, onCap
   const priceFs = compact ? 9.5 : 10.5;
   const anim = delay != null ? { animation: `zmPop .45s ease both`, animationDelay: `${delay}ms` } : {};
 
+  // Dirección del menú emergente: las líneas bajas del campo vertical (defensas y
+  // portero) y el banquillo abren HACIA ARRIBA, sobre la propia tarjeta, para no
+  // desbordar bajo el campo y quedar tapados por los suplentes. El resto abre
+  // hacia abajo. En el campo horizontal (compact) siempre hacia abajo.
+  const openUp = !compact && (bench || slot.pos === "DEF" || slot.pos === "GK");
+
   if (!p) {
     return (
       <button {...dropProps} onClick={() => onSlotClickEmpty(slot.slot)} style={{ width: W, height: compact ? 88 : 112, borderRadius: compact ? 10 : 12, border: "2px dashed " + (overRing ?? "rgba(255,255,255,0.3)"), background: over ? `${GREEN}1a` : "rgba(0,0,0,0.22)", color: "#fff", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 4, ...anim }}>
@@ -343,7 +349,7 @@ function SlotCard({ slot, team, menu, setMenu, onSlotClickEmpty, onRemove, onCap
       </button>
 
       {open && (
-        <div style={{ position: "absolute", top: "calc(100% + 4px)", left: "50%", transform: "translateX(-50%)", zIndex: 10, background: BG2, border: "1px solid rgba(255,255,255,0.14)", borderRadius: 10, padding: 6, display: "flex", flexDirection: "column", gap: 4, minWidth: 110, boxShadow: "0 10px 24px rgba(0,0,0,0.5)" }}>
+        <div style={{ position: "absolute", ...(openUp ? { bottom: "calc(100% + 4px)" } : { top: "calc(100% + 4px)" }), left: "50%", transform: "translateX(-50%)", zIndex: 10, background: BG2, border: "1px solid rgba(255,255,255,0.14)", borderRadius: 10, padding: 6, display: "flex", flexDirection: "column", gap: 4, minWidth: 110, boxShadow: "0 10px 24px rgba(0,0,0,0.5)" }}>
           <MenuBtn label="📋 Ver ficha" onClick={() => { onProfile(p); setMenu(null); }} />
           {!bench && <MenuBtn label="⭐ Capitán" onClick={() => { onCaptain(p.id); setMenu(null); }} />}
           {!bench && <MenuBtn label="🅥 Vice-capitán" onClick={() => { onVice(p.id); setMenu(null); }} />}

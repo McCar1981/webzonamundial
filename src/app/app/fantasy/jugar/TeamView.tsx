@@ -89,8 +89,12 @@ export default function TeamView({ team, validation, onSlotClickEmpty, onRemove,
       {wide ? (
         // Panel blanco bajo el campo → mismo "héroe" que en móvil, máximo contraste.
         <div style={{ maxWidth: 1000, margin: "0 auto", padding: 12, borderRadius: 20, background: "linear-gradient(180deg,#ffffff 0%,#e9eff7 100%)", animation: "zmRise .5s ease both, zmFieldGlow 6s ease-in-out infinite .6s" }}>
-          <div style={{ position: "relative", aspectRatio: "900 / 560", borderRadius: 14, overflow: "hidden", boxShadow: "inset 0 0 0 1px rgba(125,255,206,0.14)" }}>
-            <PitchSVG orientation="h" />
+          <div style={{ position: "relative", aspectRatio: "900 / 560", borderRadius: 14, boxShadow: "inset 0 0 0 1px rgba(125,255,206,0.14)" }}>
+            {/* El césped se recorta a esquinas redondeadas; los jugadores NO, para que
+                el menú emergente pueda salir totalmente al frente sin recortarse. */}
+            <div style={{ position: "absolute", inset: 0, borderRadius: 14, overflow: "hidden" }}>
+              <PitchSVG orientation="h" />
+            </div>
 
             {/* Capa de jugadores DENTRO del césped: portero a la izquierda → delanteros a la derecha. */}
             <div style={{ position: "absolute", inset: 0, padding: "6% 8%", display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "stretch", zIndex: 2 }}>
@@ -107,8 +111,12 @@ export default function TeamView({ team, validation, onSlotClickEmpty, onRemove,
       ) : (
         // Panel blanco bajo el campo → contraste y base para animaciones.
         <div style={{ maxWidth: 470, margin: "0 auto", padding: 9, borderRadius: 22, background: "linear-gradient(180deg,#ffffff 0%,#e9eff7 100%)", animation: "zmRise .5s ease both, zmFieldGlow 6s ease-in-out infinite .6s" }}>
-          <div style={{ position: "relative", aspectRatio: "400 / 680", borderRadius: 15, overflow: "hidden", boxShadow: "inset 0 0 0 1px rgba(125,255,206,0.14)" }}>
-            <PitchSVG orientation="v" />
+          <div style={{ position: "relative", aspectRatio: "400 / 680", borderRadius: 15, boxShadow: "inset 0 0 0 1px rgba(125,255,206,0.14)" }}>
+            {/* El césped se recorta a esquinas redondeadas; los jugadores NO, para que
+                el menú emergente pueda salir totalmente al frente sin recortarse. */}
+            <div style={{ position: "absolute", inset: 0, borderRadius: 15, overflow: "hidden" }}>
+              <PitchSVG orientation="v" />
+            </div>
 
             {/* Capa de jugadores: delanteros arriba (portería rival) → portero abajo (la nuestra).
                 Campo más alto + más aire arriba/abajo → todas las líneas (incl. el portero,
@@ -309,6 +317,12 @@ function SlotCard({ slot, team, menu, setMenu, onSlotClickEmpty, onRemove, onCap
   const priceFs = compact ? 9.5 : 10.5;
   const anim = delay != null ? { animation: `zmPop .45s ease both`, animationDelay: `${delay}ms` } : {};
 
+  // Dirección del menú emergente: las líneas bajas del campo vertical (defensas y
+  // portero) y el banquillo abren HACIA ARRIBA, sobre la propia tarjeta, para no
+  // desbordar bajo el campo y quedar tapados por los suplentes. El resto abre
+  // hacia abajo. En el campo horizontal (compact) siempre hacia abajo.
+  const openUp = !compact && (bench || slot.pos === "DEF" || slot.pos === "GK");
+
   if (!p) {
     return (
       <button {...dropProps} onClick={() => onSlotClickEmpty(slot.slot)} style={{ width: W, height: compact ? 88 : 112, borderRadius: compact ? 10 : 12, border: "2px dashed " + (overRing ?? "rgba(255,255,255,0.3)"), background: over ? `${GREEN}1a` : "rgba(0,0,0,0.22)", color: "#fff", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 4, ...anim }}>
@@ -335,7 +349,7 @@ function SlotCard({ slot, team, menu, setMenu, onSlotClickEmpty, onRemove, onCap
       </button>
 
       {open && (
-        <div style={{ position: "absolute", top: "calc(100% + 4px)", left: "50%", transform: "translateX(-50%)", zIndex: 10, background: BG2, border: "1px solid rgba(255,255,255,0.14)", borderRadius: 10, padding: 6, display: "flex", flexDirection: "column", gap: 4, minWidth: 110, boxShadow: "0 10px 24px rgba(0,0,0,0.5)" }}>
+        <div style={{ position: "absolute", ...(openUp ? { bottom: "calc(100% + 4px)" } : { top: "calc(100% + 4px)" }), left: "50%", transform: "translateX(-50%)", zIndex: 10, background: BG2, border: "1px solid rgba(255,255,255,0.14)", borderRadius: 10, padding: 6, display: "flex", flexDirection: "column", gap: 4, minWidth: 110, boxShadow: "0 10px 24px rgba(0,0,0,0.5)" }}>
           <MenuBtn label="📋 Ver ficha" onClick={() => { onProfile(p); setMenu(null); }} />
           {!bench && <MenuBtn label="⭐ Capitán" onClick={() => { onCaptain(p.id); setMenu(null); }} />}
           {!bench && <MenuBtn label="🅥 Vice-capitán" onClick={() => { onVice(p.id); setMenu(null); }} />}

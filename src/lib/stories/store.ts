@@ -178,6 +178,8 @@ export async function getFeed(userId?: string | null): Promise<StoryReelDTO[]> {
           avatarUrl = c.imagen;
         }
       }
+      // Reel propio: Stories de usuario cuyo autor es el espectador → puede borrarlas.
+      const isMine = row.type === "user" && !!userId && row.author_id === userId;
       reel = {
         key,
         label,
@@ -185,6 +187,7 @@ export async function getFeed(userId?: string | null): Promise<StoryReelDTO[]> {
         avatarUrl,
         stories: [],
         allSeen: true,
+        isMine,
       };
       reels.set(key, reel);
     }

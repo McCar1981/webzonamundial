@@ -166,6 +166,8 @@ export function demoFeed(): StoryReelDTO[] {
       avatarUrl: null,
       stories: byAuthor.get(name)!,
       allSeen: false,
+      // En demo, el reel "Tú" es el del propio espectador → puede eliminar.
+      isMine: name === "Tú",
     });
   }
 

@@ -145,4 +145,6 @@ export interface StoryReelDTO {
   stories: StoryDTO[];
   /** TRUE si TODAS las stories del reel ya fueron vistas por el usuario. */
   allSeen: boolean;
+  /** TRUE si el reel es del propio usuario (puede eliminar sus Stories). */
+  isMine?: boolean;
 }

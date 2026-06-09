@@ -3,7 +3,9 @@
 **Fecha:** 2026-06-09
 **Sitio:** zonamundial.app (Next.js App Router, desplegado en Vercel)
 **Objetivo:** Mostrar el Native Banner de Adsterra en la web como puente de monetización para el Mundial 2026 (empieza 11/06).
-**Estado actual:** ✅ Arreglo de CSP aplicado, desplegado a `main` (commit `2206929`) y **verificado en producción** el 09/06 a las 22:34 (la cabecera CSP ya permite Adsterra en `script-src`, `connect-src` y `frame-src`). Solo quedan comprobaciones humanas: ver el banner en un dispositivo limpio y confirmar impresiones en STATISTICS.
+**Estado actual:** ✅ **RESUELTO Y VERIFICADO** (09/06 noche). CSP arreglada (commit `2206929`), desplegada y comprobada con navegador real contra producción: 0 violaciones de CSP y el banner renderiza 4 anuncios reales. Quedan solo: confirmar impresiones en STATISTICS al día siguiente y el KYC del dueño.
+
+⚠️ **Aviso de calidad de anuncios:** entre los 4 anuncios servidos apareció uno tipo scareware ("Unsecured network detected. Tap to fix") y otro de citas. Es el perfil conocido de Adsterra. Si daña la imagen, en el panel de Adsterra se pueden bloquear categorías (Ad Filters) a costa de eCPM.
 
 ---
 
@@ -92,7 +94,7 @@ En la pestaña **Network** del navegador, las peticiones a `invoke.js` salen con
 - [x] ~~Pedir a Adsterra la lista de dominios~~ → innecesario: dominios extraídos directamente del `invoke.js` (`fizzyacerbitymellow.com`, `protrafficinspector.com`, `cdn.cloudvideosa.com`) + comodín por la rotación.
 - [x] Aplicar esos dominios en `next.config.js` (`connect-src` + `frame-src`) y desplegar a **`main`** con build nuevo → commit `2206929`, pusheado 09/06.
 - [x] Verificar que la cabecera CSP de producción incluye los dominios nuevos → confirmado el 09/06 a las 22:34 (header de zonamundial.app ya sirve `fizzyacerbitymellow.com` y los comodines en `connect-src` y `frame-src`).
-- [ ] Comprobación visual en navegador: Network sin `blocked:csp` y banner renderizado. **Humano** (o agente con navegador).
-- [ ] Probar en dispositivo limpio (móvil con datos, sin antivirus/adblocker). **Humano.**
+- [x] Comprobación en navegador real → hecha el 09/06 ~23:00 con Edge headless contra producción: **0 violaciones de CSP en consola** y el contenedor renderiza el widget completo con **4 anuncios reales** (títulos + imágenes desde `cdn.storageimagedisplay.com`). El banner FUNCIONA de extremo a extremo.
+- [ ] Probar en dispositivo limpio (móvil con datos, sin antivirus/adblocker) — ya solo como confirmación visual rápida. **Humano.**
 - [ ] Confirmar impresiones reales en STATISTICS → Today. **Humano.**
 - [ ] KYC / documentación de cobro en Adsterra (acción del dueño). **Humano.**

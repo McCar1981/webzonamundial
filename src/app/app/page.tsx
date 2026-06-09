@@ -333,15 +333,15 @@ function ModuleCard({ mod, cat }: { mod: Mod; cat: Cat }) {
       />
 
       <div style={{ position: "relative", zIndex: 2, display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 13 }}>
-        <span style={{ position: "relative", width: 54, height: 54, borderRadius: 15, display: "inline-flex", alignItems: "center", justifyContent: "center", background: `linear-gradient(140deg, ${tint}44, ${tint2}26)`, border: `1.5px solid ${tint}99`, boxShadow: active ? `0 8px 20px ${tint}55, inset 0 1px 0 rgba(255,255,255,0.7)` : `0 4px 12px ${tint}33, inset 0 1px 0 rgba(255,255,255,0.55)`, transition: "box-shadow .25s, transform .25s", transform: active ? "scale(1.05)" : undefined }}>
+        <span style={{ position: "relative", width: 56, height: 56, borderRadius: 16, display: "inline-flex", alignItems: "center", justifyContent: "center", background: `linear-gradient(140deg, ${tint}44, ${tint2}26)`, border: `1.5px solid ${tint}99`, boxShadow: active ? `0 8px 20px ${tint}55, inset 0 1px 0 rgba(255,255,255,0.7)` : `0 4px 12px ${tint}33, inset 0 1px 0 rgba(255,255,255,0.55)`, transition: "box-shadow .25s, transform .25s", transform: active ? "scale(1.05)" : undefined }}>
           {/* brillo superior del contenedor del icono */}
-          <span style={{ position: "absolute", inset: 0, borderRadius: 15, background: "linear-gradient(180deg, rgba(255,255,255,0.55), transparent 55%)", pointerEvents: "none" }} />
+          <span style={{ position: "absolute", inset: 0, borderRadius: 16, background: "linear-gradient(180deg, rgba(255,255,255,0.55), transparent 55%)", pointerEvents: "none" }} />
           {mod.iconSrc ? (
             // Icono propio teñido con CSS mask (color del tema, no el del SVG).
             <span
               aria-hidden
               style={{
-                width: 29, height: 29, display: "inline-block", backgroundColor: INK,
+                width: 30, height: 30, display: "inline-block", backgroundColor: INK,
                 WebkitMaskImage: `url(${mod.iconSrc})`, maskImage: `url(${mod.iconSrc})`,
                 WebkitMaskRepeat: "no-repeat", maskRepeat: "no-repeat",
                 WebkitMaskPosition: "center", maskPosition: "center",
@@ -349,7 +349,7 @@ function ModuleCard({ mod, cat }: { mod: Mod; cat: Cat }) {
               }}
             />
           ) : (
-            <I d={PATHS[mod.icon] || ""} c={INK} s={29} />
+            <I d={PATHS[mod.icon] || ""} c={INK} s={30} />
           )}
         </span>
         <span style={badgeStyle(mod.estado)}>{mod.estado === "En vivo" ? "● En vivo" : mod.estado}</span>
@@ -395,7 +395,7 @@ function ModuleCard({ mod, cat }: { mod: Mod; cat: Cat }) {
     // Más alto ahora que el arte es protagonista (entrada a un "modo"). El arte ocupa
     // toda la card al ser absoluto; min-height garantiza presencia sin cortar texto.
     minHeight: 236,
-    textDecoration: "none", borderRadius: 22, padding: "16px 16px 18px",
+    textDecoration: "none", borderRadius: 20, padding: "16px 16px 18px",
     ...cardBackground(tint, tint2, active),
     border: `1.5px solid ${active ? borderHov : border}`,
     // Card "flota" sobre el navy: sombra profunda + brillo interior superior.
@@ -567,7 +567,7 @@ export default function AppHubPage() {
 
   // ¿El partido del día es el JUEGO INAUGURAL (México vs Sudáfrica)? Solo entonces
   // usamos la pieza visual ya diseñada; otros partidos caen al hero de texto.
-  const normName = (s: string) => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  const normName = (s: string) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
   const isOpening = !!match && (() => {
     const t = normName(`${match.meta.home.name} ${match.meta.away.name}`);
     return t.includes("mexico") && (t.includes("sudafrica") || t.includes("south africa"));
@@ -698,6 +698,15 @@ export default function AppHubPage() {
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 16.5 7.1 18.2l.9-5.5-4-3.9 5.5-.8z" fill={GOLD} /></svg>
               <span style={{ fontSize: 13, fontWeight: 800, color: GOLD2 }}>{authed ? (gam ? gam.coins.toLocaleString() : "·") : "—"}</span>
             </div>
+            {/* Nivel + XP */}
+            {authed && gam && (
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <span style={{ fontSize: 11, fontWeight: 800, color: GOLD }}>Nivel {gam.level.level}</span>
+                <div style={{ width: 50, height: 5, borderRadius: 99, background: "rgba(255,255,255,0.07)", overflow: "hidden" }}>
+                  <div style={{ width: `${Math.min(100, ((gam.level.xp % 1000) / 1000) * 100)}%`, height: "100%", borderRadius: 99, background: `linear-gradient(90deg,${GOLD},${GOLD2})` }} />
+                </div>
+              </div>
+            )}
             {/* Instalar PWA */}
             {canInstall && (
               <button onClick={install} title="Instalar app" style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "6px 11px", borderRadius: 999, background: "rgba(255,255,255,0.06)", border: `1px solid ${LINE}`, color: TXT, fontFamily: "inherit", fontSize: 12.5, fontWeight: 700, cursor: "pointer" }}>
@@ -830,14 +839,21 @@ export default function AppHubPage() {
             {/* glow lateral (pulsa en vivo) */}
             <span aria-hidden className={live ? "zm-mc-glow" : ""} style={{ position: "absolute", top: "52%", left: -34, width: 130, height: 130, transform: "translateY(-50%)", borderRadius: "50%", background: `radial-gradient(circle, ${mcAccent}33, transparent 70%)`, pointerEvents: "none", opacity: live ? undefined : 0.55 }} />
 
-            {/* fila superior: fase + estado */}
-            <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 4 }}>
+            {/* fila superior: fase + estado + predicciones */}
+            <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 4, gap: 8 }}>
               <span style={{ fontSize: 10.5, fontWeight: 800, letterSpacing: 1, textTransform: "uppercase", color: mcAccent }}>
                 Partido del día{match.meta.phase ? ` · ${match.meta.phase}` : ""}{match.meta.group ? ` · Grupo ${match.meta.group}` : ""}
               </span>
-              <span style={{ ...badgeStyle(live ? "En vivo" : finished ? "Disponible" : "Próximamente"), animation: live ? "zmpulse 1.6s infinite" : undefined }}>
-                {live ? `● En vivo ${match.elapsed}'` : finished ? "Finalizado" : "Próximo"}
-              </span>
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                {!finished && (
+                  <Link href="/app/predicciones" onClick={(e) => e.stopPropagation()} style={{ fontSize: 10, fontWeight: 800, letterSpacing: 0.4, textTransform: "uppercase", borderRadius: 999, padding: "3px 9px", whiteSpace: "nowrap", color: "#8a6a13", backgroundImage: "linear-gradient(180deg,#fdf3cf,#f7e6ac)", border: "1px solid #f0dca0", textDecoration: "none", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.55), 0 1px 2px rgba(8,16,30,0.12)", flexShrink: 0 }}>
+                    Predicciones
+                  </Link>
+                )}
+                <span style={{ ...badgeStyle(live ? "En vivo" : finished ? "Disponible" : "Próximamente"), animation: live ? "zmpulse 1.6s infinite" : undefined }}>
+                  {live ? `● En vivo ${match.elapsed}'` : finished ? "Finalizado" : "Próximo"}
+                </span>
+              </div>
             </div>
 
             {/* equipos + VS potente */}
@@ -1068,7 +1084,7 @@ export default function AppHubPage() {
         .zm-hero-glow  { animation: zm-hero-glow 7s ease-in-out infinite; will-change: transform; }
         .zm-live-dot   { animation: zm-livedot 1.4s infinite; }
         .zm-mc-glow    { animation: zm-mcglow 2.4s ease-in-out infinite; will-change: transform; }
-        .zm-spark      { animation: zm-spark 4.5s ease-in-out infinite; will-change: transform; }
+        .zm-spark      { animation: zm-spark 4.5s ease-out infinite; will-change: transform; }
         .zm-spark--2   { animation-duration: 5.6s; animation-delay: -1.8s; }
         .zm-spark--3   { animation-duration: 5.1s; animation-delay: -3.2s; }
 

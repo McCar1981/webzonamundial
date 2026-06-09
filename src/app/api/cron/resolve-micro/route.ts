@@ -12,6 +12,7 @@
 // Auth idéntico al resto de crones: Authorization: Bearer ${CRON_SECRET} o ?secret=.
 
 import { NextResponse } from "next/server";
+import { requireCron } from "@/lib/auth-helpers";
 import {
   getDueMicros,
   settleMicro,
@@ -31,15 +32,8 @@ const TIME_BUDGET_MS = 55_000;
 export async function GET(req: Request) {
   const startMs = Date.now();
 
-  const expected = process.env.CRON_SECRET;
-  if (expected) {
-    const auth = req.headers.get("authorization");
-    const headerOk = auth === `Bearer ${expected}`;
-    const queryOk = new URL(req.url).searchParams.get("secret") === expected;
-    if (!headerOk && !queryOk) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-    }
-  }
+  const denied = requireCron(req);
+  if (denied) return denied;
 
   const due = await getDueMicros();
   // Cachea el estado autoritativo por partido para no re-pedirlo por cada micro.

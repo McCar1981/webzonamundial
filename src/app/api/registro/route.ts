@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { kv } from '@vercel/kv';
 import { addRegistro, getCount } from '@/lib/registros-store';
 import { sendNewRegistrationNotification } from '@/lib/email';
 import { subscribe } from '@/lib/email-subscriptions';
@@ -34,7 +35,33 @@ function getClientIp(request: NextRequest): string {
   );
 }
 
+const RATE_LIMIT_WINDOW_S = 60;
+const RATE_LIMIT_MAX = 5;
+
+async function checkRateLimit(ip: string): Promise<boolean> {
+  // H-001-11: fail-closed. Sin KV o error → bloquear.
+  if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) {
+    return false;
+  }
+  try {
+    const key = `registro:rate:${ip}`;
+    const count = await kv.incr(key);
+    if (count === 1) {
+      await kv.expire(key, RATE_LIMIT_WINDOW_S);
+    }
+    return count <= RATE_LIMIT_MAX;
+  } catch {
+    return false;
+  }
+}
+
 export async function POST(request: NextRequest) {
+  const ip = getClientIp(request);
+  const allowed = await checkRateLimit(ip);
+  if (!allowed) {
+    return NextResponse.json({ error: 'rate_limited' }, { status: 429 });
+  }
+
   let body: RegistroBody;
   try {
     body = (await request.json()) as RegistroBody;

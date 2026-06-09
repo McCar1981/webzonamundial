@@ -3,19 +3,27 @@
 //
 // Layout:
 //   founders:emails:set        — Set de emails con pass activo (uniqueness + count)
+//   founders:user:<user_id>    — Índice inverso email→user_id para lookup por user.id
 //   founders:record:<email>    — JSON con detalles (precio, moneda, fecha, customerId, etc.)
 //   founders:events:list       — Auditoría de eventos (compras, refunds) latest-first
 //   founders:revenue:total     — Contador acumulado en céntimos para analytics rápido
+//
+// IDENTIDAD: la entitlement se vincula al email (para compatibilidad con Stripe)
+// Y al user_id (para sobrevivir cambios de email). El lookup primero intenta
+// por email; si no encuentra, por user_id.
 
 import { kv } from "@vercel/kv";
 
 const KEY_EMAILS = "founders:emails:set";
+const KEY_USER = (userId: string) => `founders:user:${userId}`;
 const KEY_RECORD = (email: string) => `founders:record:${email.toLowerCase()}`;
 const KEY_EVENTS = "founders:events:list";
 const KEY_REVENUE = "founders:revenue:total";
 
 export interface FounderRecord {
   email: string;
+  /** Supabase user.id (auth.users.id) para lookup robusto ante cambio de email. */
+  userId?: string | null;
   /** Importe en céntimos (ej. 800 = 8.00 €). */
   amount: number;
   /** Código ISO 4217 minúsculas (eur, usd). */
@@ -45,11 +53,16 @@ function normalize(email: string): string {
 /**
  * Marca un email como Founder. Idempotente: si el email ya existía, sólo
  * actualiza el record (útil cuando el webhook se entrega varias veces).
+ * Si el record incluye userId, se crea un índice inverso para lookup robusto.
  */
 export async function markFounder(record: FounderRecord): Promise<void> {
   const email = normalize(record.email);
   const wasNew = await kv.sadd(KEY_EMAILS, email);
   await kv.set(KEY_RECORD(email), JSON.stringify({ ...record, email }));
+  // Índice inverso por user_id para sobrevivir cambios de email.
+  if (record.userId) {
+    await kv.set(KEY_USER(record.userId), email);
+  }
   if (wasNew === 1) {
     // Sólo contamos ingresos la primera vez para no inflar al reintentar.
     await kv.incrby(KEY_REVENUE, record.amount);
@@ -71,6 +84,14 @@ export async function isFounder(email: string): Promise<boolean> {
   return result === 1;
 }
 
+/** Comprueba si un user_id es Founder activo (útil tras cambio de email). */
+export async function isFounderByUserId(userId: string): Promise<boolean> {
+  if (!userId) return false;
+  const email = await kv.get<string>(KEY_USER(userId));
+  if (!email) return false;
+  return isFounder(email);
+}
+
 /** Devuelve el record completo o null. */
 export async function getFounderRecord(email: string): Promise<FounderRecord | null> {
   const raw = await kv.get(KEY_RECORD(normalize(email)));
@@ -82,6 +103,14 @@ export async function getFounderRecord(email: string): Promise<FounderRecord | n
   }
 }
 
+/** Devuelve el record por user_id (lookup robusto ante cambio de email). */
+export async function getFounderRecordByUserId(userId: string): Promise<FounderRecord | null> {
+  if (!userId) return null;
+  const email = await kv.get<string>(KEY_USER(userId));
+  if (!email) return null;
+  return getFounderRecord(email);
+}
+
 /** Para reembolsos: marca como refunded sin borrar el record histórico. */
 export async function markFounderRefunded(email: string): Promise<void> {
   const e = normalize(email);
@@ -90,6 +119,10 @@ export async function markFounderRefunded(email: string): Promise<void> {
   if (record) {
     record.refundedAt = new Date().toISOString();
     await kv.set(KEY_RECORD(e), JSON.stringify(record));
+    // Limpiar índice inverso para que el user_id ya no resuelva a founder.
+    if (record.userId) {
+      await kv.del(KEY_USER(record.userId));
+    }
     const event: FounderEvent = {
       type: "refund",
       email: e,

@@ -31,7 +31,7 @@ export default function PhaseCompleteOverlay({ trigger, onClear }: Props) {
   return (
     <div className={styles.phaseComplete} data-show={show}>
       <div className={styles.phaseCompleteInner}>
-        <div className={styles.phaseCompleteEyebrow}>// FASE COMPLETADA</div>
+        <div className={styles.phaseCompleteEyebrow}>{/* FASE COMPLETADA */}</div>
         <div className={styles.phaseCompleteTitle}>{trigger.title}</div>
         <div className={styles.phaseCompleteSub}>{trigger.sub}</div>
       </div>

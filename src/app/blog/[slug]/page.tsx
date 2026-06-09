@@ -18,6 +18,7 @@ import {
 import { CATEGORY_LABELS, CATEGORY_COLORS } from "@/lib/blog/types";
 import ArticleHero from "@/components/blog/ArticleHero";
 import BlockRenderer from "@/components/blog/BlockRenderer";
+import AdInArticle from "@/components/ads/AdInArticle";
 import ReadingProgress from "@/components/blog/ReadingProgress";
 import ShareBar from "@/components/blog/ShareBar";
 import styles from "@/components/blog/blog.module.css";
@@ -103,7 +104,20 @@ export default async function BlogPostPage({ params }: Params) {
       <ArticleHero post={post} />
 
       <article className={styles.article} data-article>
-        <BlockRenderer blocks={post.body} />
+        {/* Dividir bloques para insertar anuncio in-article a la mitad. */}
+        {(() => {
+          const mid = Math.floor(post.body.length / 2);
+          const firstHalf = post.body.slice(0, mid);
+          const secondHalf = post.body.slice(mid);
+          const showAd = post.body.length >= 4;
+          return (
+            <>
+              <BlockRenderer blocks={firstHalf} />
+              {showAd && <AdInArticle />}
+              <BlockRenderer blocks={secondHalf} />
+            </>
+          );
+        })()}
         <ShareBar title={post.title} slug={post.slug} />
         <EditorialFooter />
       </article>

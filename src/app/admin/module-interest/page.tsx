@@ -18,7 +18,9 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false, nocache: true },
 };
 
-export const revalidate = 60;
+// Páginas admin deben ser dinámicas (no prerenderizables): leen datos
+// en vivo de KV. H-000-01
+export const dynamic = "force-dynamic";
 
 export default async function ModuleInterestAdminPage() {
   const [counts, totalUsers] = await Promise.all([

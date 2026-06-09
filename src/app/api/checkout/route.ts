@@ -115,9 +115,10 @@ export async function POST(request: NextRequest) {
           },
         },
       ],
-      // Metadata: el webhook necesita saber a qué email asignar el pass.
+      // Metadata: el webhook necesita saber a qué email/user asignar el pass.
       metadata: {
         email: userEmail,
+        user_id: user.id,
         currency: price.currency,
         amount: String(price.amount),
         product: "founders_pass",
@@ -134,7 +135,7 @@ export async function POST(request: NextRequest) {
       // el dashboard. Si no, el precio que cobramos es total.
       automatic_tax: { enabled: false },
       // URLs de retorno
-      success_url: `${origin}/cuenta?purchase=success&session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${origin}/cuenta/founders-pass?purchase=success&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/cuenta/comprar?canceled=1`,
       // Allow promotional codes en futuro.
       allow_promotion_codes: false,
@@ -163,7 +164,6 @@ export async function POST(request: NextRequest) {
       currency,
       userEmail,
       hasSecretKey: !!process.env.STRIPE_SECRET_KEY,
-      secretKeyPrefix: process.env.STRIPE_SECRET_KEY?.slice(0, 8),
     });
     return NextResponse.json(
       {

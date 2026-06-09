@@ -5,6 +5,7 @@
 // Borra la antigua (si existe) y guarda la nueva.
 
 import { NextRequest, NextResponse } from "next/server";
+import { getCurrentUser } from "@/lib/auth-helpers";
 import {
   deletePushSubscription,
   savePushSubscription,
@@ -20,6 +21,11 @@ interface Body {
 }
 
 export async function POST(request: NextRequest) {
+  const user = await getCurrentUser();
+  if (!user) {
+    return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  }
+
   let body: Body;
   try {
     body = (await request.json()) as Body;
@@ -44,6 +50,7 @@ export async function POST(request: NextRequest) {
 
   const result = await savePushSubscription({
     subscription: sub,
+    userId: user.id,
     userAgent: request.headers.get("user-agent") ?? undefined,
   });
   if (!result.ok) {

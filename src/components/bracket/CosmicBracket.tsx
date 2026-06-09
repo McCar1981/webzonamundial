@@ -320,7 +320,7 @@ export default function CosmicBracket({ state, onOpenMatch }: Props) {
 
         {/* Etiqueta del trofeo */}
         <div className={styles.coreLabel}>
-          <div className={styles.coreLabelEyebrow}>// CAMPEÓN PREDICHO</div>
+          <div className={styles.coreLabelEyebrow}>{/* CAMPEÓN PREDICHO */}</div>
           <div className={styles.coreLabelName}>{champion ? champion.name : "—"}</div>
           <div className={styles.coreLabelSub}>mundial 2026 · final</div>
         </div>
@@ -330,7 +330,7 @@ export default function CosmicBracket({ state, onOpenMatch }: Props) {
           <div className={styles.phasePill}>
             <span className={styles.phasePillDot} />
             <div className={styles.phasePillText}>
-              <small>// FASE ACTUAL</small>
+              <small>{/* FASE ACTUAL */}</small>
               <b>{currentPhase.name}</b>
             </div>
           </div>

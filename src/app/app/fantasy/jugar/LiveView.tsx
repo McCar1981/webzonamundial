@@ -230,7 +230,7 @@ export default function LiveView({ team, onCommit, transfers }: Props) {
             {feed.length === 0 && <div style={{ color: DIM, fontSize: 13, textAlign: "center", padding: 20 }}>Sin acciones de tus jugadores todavía…</div>}
             {[...feed].reverse().map((e, i) => (
               <div key={`${e.player}-${e.minute}-${i}`} style={{ display: "flex", alignItems: "center", gap: 8, background: BG3, borderRadius: 8, padding: "7px 10px" }}>
-                <span style={{ fontSize: 11, fontWeight: 800, color: DIM, width: 30 }}>{e.minute}'</span>
+                <span style={{ fontSize: 11, fontWeight: 800, color: DIM, width: 30 }}>{e.minute}&apos;</span>
                 <span style={{ fontSize: 16 }}>{e.emoji}</span>
                 <img src={flagUrl(e.flag)} alt="" style={{ width: 20, height: 14, borderRadius: 2, objectFit: "cover" }} />
                 <div style={{ flex: 1, minWidth: 0 }}>

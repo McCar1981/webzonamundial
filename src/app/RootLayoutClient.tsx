@@ -95,7 +95,7 @@ function HamburgerIcon({ open }: { open: boolean }) {
     transform: rot || "none", opacity: op,
   });
   return (
-    <div style={{ width: 22, height: 16, position: "relative", cursor: "pointer" }}>
+    <div style={{ width: 22, height: 16, position: "relative", pointerEvents: "none" }}>
       <span style={bar(open ? 7 : 0, open ? "rotate(45deg)" : undefined)} />
       <span style={bar(7, open ? "translateX(-8px)" : undefined, open ? 0 : 1)} />
       <span style={bar(open ? 7 : 14, open ? "rotate(-45deg)" : undefined)} />
@@ -371,7 +371,7 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
 
             {/* Hamburger mobile */}
             <button className="hamburger-btn" onClick={() => setMobileOpen(!mobileOpen)}
-              style={{ background: "none", border: "none", cursor: "pointer", padding: 8, alignItems: "center", justifyContent: "center" }}>
+              style={{ display: "flex", background: "none", border: "none", cursor: "pointer", padding: 8, alignItems: "center", justifyContent: "center" }}>
               <HamburgerIcon open={mobileOpen} />
             </button>
           </div>
@@ -386,7 +386,7 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
 
       {/* ═══ MOBILE OVERLAY ═══ */}
       <div style={{
-        position: "fixed", inset: 0, zIndex: 99,
+        position: "fixed", inset: 0, zIndex: 999,
         background: "rgba(6,11,20,0.98)",
         backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
         transition: "opacity 0.35s,visibility 0.35s",

@@ -10,6 +10,7 @@
 // está presente y la request no viene de Vercel, devolvemos 401.
 
 import { NextRequest, NextResponse } from "next/server";
+import { requireCron } from "@/lib/auth-helpers";
 import { recordHeartbeat } from "@/lib/ops/store";
 import { getCount as getRegistrosCount, getRealCount } from "@/lib/registros-store";
 import { getFoundersCount, getRevenueCents, listEvents } from "@/lib/founders/store";
@@ -32,22 +33,9 @@ interface Snapshot {
   eventsToday: number;
 }
 
-function isAuthorized(request: NextRequest): boolean {
-  const auth = request.headers.get("authorization") || "";
-  const secret = process.env.CRON_SECRET;
-  if (!secret) {
-    // Sin secret configurado: solo permitimos si la req parece venir de
-    // Vercel (header x-vercel-cron). En dev cualquiera puede testear.
-    if (process.env.NODE_ENV !== "production") return true;
-    return request.headers.get("x-vercel-cron") === "1";
-  }
-  return auth === `Bearer ${secret}`;
-}
-
 export async function GET(request: NextRequest) {
-  if (!isAuthorized(request)) {
-    return NextResponse.json({ error: "No autorizado" }, { status: 401 });
-  }
+  const denied = requireCron(request);
+  if (denied) return denied;
 
   const today = new Date().toISOString().slice(0, 10);
 

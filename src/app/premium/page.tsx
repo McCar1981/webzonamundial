@@ -6,6 +6,7 @@ import { FeatureIcon } from "@/components/FeatureIcon";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { StatCounter } from "@/components/StatCounter";
 import { SvgIcon } from "@/components/icons";
+import { FOUNDERS_PASS_PRICES } from "@/lib/stripe/pricing";
 
 const BG = "#060B14",
   BG2 = "#0F1D32",
@@ -32,7 +33,17 @@ export default function PremiumPage() {
   const pT = t.premium;
   const isEN = t.nav.selecciones === "48 Teams";
   const COMPARISON_DATA = pT.comparison;
-  const PRICING_PLANS = pT.plans;
+  // Precios desde el catálogo server (fuente única de verdad) para evitar
+  // desincronización si cambia el precio en el catálogo.
+  // Los textos (name, region label, description, badge, period) siguen en i18n.
+  const i18nPlans = pT.plans as Array<{
+    badge: string; region: string; name: string; price: string; period: string; description: string;
+  }>;
+  const PRICING_PLANS = i18nPlans.map((plan, idx) => ({
+    ...plan,
+    // Sobrescribimos el precio con el del catálogo: idx 0 = EUR, idx 1 = USD
+    price: idx === 0 ? FOUNDERS_PASS_PRICES.eur.display : FOUNDERS_PASS_PRICES.usd.display,
+  }));
   const PREMIUM_FEATURES = pT.features;
   const [showTable, setShowTable] = useState(false);
 

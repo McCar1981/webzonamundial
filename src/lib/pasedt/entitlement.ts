@@ -13,14 +13,24 @@
 // Server-only: se resuelve siempre desde la sesión autenticada, nunca desde el
 // cliente, para que no se pueda falsear el acceso premium.
 
-import { isFounder } from "@/lib/founders/store";
+import { isFounder, isFounderByUserId } from "@/lib/founders/store";
 
 /**
- * ¿Tiene este email acceso al Pase DT?
+ * ¿Tiene este usuario acceso al Pase DT?
  * Hoy: equivale a tener Founders Pass activo.
  * Mañana: founder OR miembro del set de Pase DT (add-on independiente).
+ *
+ * El lookup intenta por email (rápido, compatibilidad histórica) y, si no
+ * encuentra, por user_id (robusto ante cambios de email).
  */
-export async function isPaseDT(email: string): Promise<boolean> {
-  if (!email) return false;
-  return isFounder(email);
+export async function isPaseDT(email: string, userId?: string | null): Promise<boolean> {
+  if (!email && !userId) return false;
+  if (email) {
+    const byEmail = await isFounder(email);
+    if (byEmail) return true;
+  }
+  if (userId) {
+    return isFounderByUserId(userId);
+  }
+  return false;
 }

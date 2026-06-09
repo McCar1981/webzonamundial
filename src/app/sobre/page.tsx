@@ -108,7 +108,7 @@ export default function SobrePage() {
             En vez de hacer otra app de quinielas, decidimos construir un producto editorial-first: cada selección,
             cada sede, cada partido tiene su ficha redactada por personas con conocimiento real del fútbol, con
             fuentes citadas, fotos con licencia libre, y datos cruzados con FIFA, federaciones nacionales y
-            cobertura especializada (L'Équipe, A Bola, Olé, Marca, The Athletic, Globo, Goal, etc.).
+            cobertura especializada (L&apos;Équipe, A Bola, Olé, Marca, The Athletic, Globo, Goal, etc.).
           </p>
           <p style={{ marginTop: 16 }}>
             Queremos que el sitio sea útil incluso si nunca usas la app: la ficha de Argentina te sirva para entender
@@ -178,7 +178,7 @@ export default function SobrePage() {
             </li>
             <li>
               <strong style={{ color: "#E2E8F0" }}>Correcciones transparentes.</strong> Si publicamos un error, lo
-              corregimos visible y públicamente con sello "Actualizado el [fecha]". No reescribimos historia sin avisar.
+              corregimos visible y públicamente con sello &quot;Actualizado el [fecha]&quot;. No reescribimos historia sin avisar.
             </li>
           </ul>
         </Section>

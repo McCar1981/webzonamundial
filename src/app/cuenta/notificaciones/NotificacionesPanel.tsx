@@ -310,7 +310,7 @@ export default function NotificacionesPanel({
         </Link>
 
         <div className="text-[11px] tracking-[0.22em] uppercase font-mono font-bold text-[#C9A84C] mb-3">
-          // NOTIFICACIONES
+          {"/* NOTIFICACIONES */"}
         </div>
         <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight leading-tight mb-3">
           Tus notificaciones

@@ -8,17 +8,15 @@ export const dynamic = "force-dynamic";
 /*
   POST /api/account/delete
 
-  Borra la cuenta del usuario autenticado. Borrar de auth.users requiere
-  la service_role key (admin), que NUNCA debe ir al frontend. Por eso
-  vive aquí en una API route server-only.
+  Borra la cuenta del usuario autenticado de forma completa (GDPR).
+  Borrar de auth.users requiere la service_role key (admin).
 
   Defensa en profundidad:
     1. Validamos sesión via SSR client (cookies HttpOnly).
-    2. Comparamos user.id de la sesión con cualquier id que venga en
-       el body (no aceptamos user_id por parámetro). El admin client
-       solo puede borrar el id que confirmó la sesión.
-    3. RLS + ON DELETE CASCADE en profiles → al borrar el user de
-       auth.users, su row de profiles cae automáticamente.
+    2. El admin client solo puede borrar el id que confirmó la sesión.
+    3. ON DELETE CASCADE limpia profiles, predictions, etc.
+    4. BORRADO EXPLÍCITO de tablas que NO cascaden (email_subscriptions
+       con user_id NULL, user_preferences sin FK verificable).
 
   Env vars:
     NEXT_PUBLIC_SUPABASE_URL
@@ -50,11 +48,31 @@ export async function POST(_request: NextRequest) {
     auth: { autoRefreshToken: false, persistSession: false },
   });
 
-  // 3. Borra del auth.users (cascade limpia profiles + storage objects?)
-  const { error } = await admin.auth.admin.deleteUser(user.id);
-  if (error) {
-    console.error("[account/delete] deleteUser error:", error.message);
-    return NextResponse.json({ error: "Delete failed" }, { status: 500 });
+  // 3. BORRADO EXPLÍCITO GDPR — tablas que pueden quedar huérfanas
+  //    porque no tienen FK con ON DELETE CASCADE a auth.users
+  const userEmail = user.email ?? "";
+
+  // 3a. email_subscriptions: puede tener user_id NULL (suscripciones sin
+  //     cuenta vinculada). El cascade no aplica → borramos por email.
+  if (userEmail) {
+    const { error: unsubErr } = await admin
+      .from("email_subscriptions")
+      .delete()
+      .eq("email", userEmail);
+    if (unsubErr) {
+      console.warn("[account/delete] email_subscriptions cleanup:", unsubErr.message);
+      // No bloqueante: logueamos y seguimos.
+    }
+  }
+
+  // 3b. user_preferences: no tiene migración FK verificable en el repo.
+  //     Borramos explícito por user_id para no dejar PII huérfana.
+  const { error: prefErr } = await admin
+    .from("user_preferences")
+    .delete()
+    .eq("user_id", user.id);
+  if (prefErr) {
+    console.warn("[account/delete] user_preferences cleanup:", prefErr.message);
   }
 
   // 4. Limpieza extra: borrar avatares del Storage (no cae por cascade)
@@ -65,9 +83,14 @@ export async function POST(_request: NextRequest) {
       await admin.storage.from("avatars").remove(paths);
     }
   } catch (err) {
-    // No bloqueante: si falla la limpieza de storage, el user ya está
-    // borrado de auth y profiles. Logueamos y seguimos.
     console.warn("[account/delete] avatar cleanup failed:", (err as Error).message);
+  }
+
+  // 5. Borra del auth.users (cascade limpia profiles, predictions, etc.)
+  const { error } = await admin.auth.admin.deleteUser(user.id);
+  if (error) {
+    console.error("[account/delete] deleteUser error:", error.message);
+    return NextResponse.json({ error: "Delete failed" }, { status: 500 });
   }
 
   return NextResponse.json({ ok: true });

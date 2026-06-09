@@ -5,21 +5,29 @@
 // de la webapp (/app/*), para que el usuario navegue entre módulos como en una
 // app instalada. En las páginas editoriales (/, /noticias, etc.) NO aparece:
 // allí manda la navegación de sitio web (header + footer).
+//
+// Estilo: indicador dorado superior en tab activo (barra fina), icono+label
+// dorados cuando está activo, gris azulado en reposo. Fondo navy oscuro.
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const GOLD = "#c9a84c";
-const DIM = "#6a7a9a";
+const DIM = "#5a6a8a";
 const BG = "#060B14";
 
-type Item = { href: string; label: string; match: (p: string) => boolean; icon: React.ReactNode };
+const ACTIVE_BAR = "#c9a84c";
+const INACTIVE_TEXT = "#6a7a9a";
 
-const stroke = (d: string) => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-    <path d={d} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
+function stroke(d: string, fill?: string) {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <path d={d} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+type Item = { href: string; label: string; match: (p: string) => boolean; icon: React.ReactNode };
 
 const ITEMS: Item[] = [
   {
@@ -100,11 +108,29 @@ export default function AppBottomNav() {
                 padding: "9px 0 8px",
                 textDecoration: "none",
                 color: active ? GOLD : DIM,
+                position: "relative",
                 transition: "color .2s",
               }}
             >
+              {/* Indicador dorado superior — barra fina del tab activo */}
+              <span
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  width: active ? 32 : 0,
+                  height: 2.5,
+                  borderRadius: "0 0 2px 2px",
+                  background: ACTIVE_BAR,
+                  opacity: active ? 1 : 0,
+                  transition: "width .25s ease, opacity .2s ease",
+                }}
+              />
               {it.icon}
-              <span style={{ fontSize: 10.5, fontWeight: active ? 800 : 600, letterSpacing: 0.2 }}>{it.label}</span>
+              <span style={{ fontSize: 10.5, fontWeight: active ? 800 : 600, letterSpacing: 0.2 }}>
+                {it.label}
+              </span>
             </Link>
           );
         })}

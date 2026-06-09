@@ -19,6 +19,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { Noticia } from "@/data/noticias";
+import AdSidebar from "@/components/ads/AdSidebar";
 import styles from "./NoticiasIndex.module.css";
 
 const CAT_LABELS: Record<string, string> = {
@@ -591,6 +592,9 @@ export default function NoticiasClient({
                     ))}
                   </ol>
                 </div>
+
+                {/* AdSense: sidebar en columna lateral. */}
+                <AdSidebar />
 
                 <div className={`${styles.sideBlock} ${styles.sidePromo}`}>
                   <small>JUEGA GRATIS</small>

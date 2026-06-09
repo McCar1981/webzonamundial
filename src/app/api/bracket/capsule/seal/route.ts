@@ -8,11 +8,35 @@
 //  - Si todo OK → 201 Created con { hash }.
 
 import { NextRequest, NextResponse } from "next/server";
+import { kv } from "@vercel/kv";
 import { sealCapsule, isWithinSealWindow } from "@/lib/bracket/timecapsule";
 import { sendEmail, brandedEmail, escapeHtml } from "@/lib/email";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+
+const RATE_WINDOW_SEC = 60;
+const RATE_MAX = 3;
+
+async function rateLimited(ip: string): Promise<boolean> {
+  if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) return false;
+  try {
+    const key = `capsule-seal:rate:${ip}`;
+    const count = await kv.incr(key);
+    if (count === 1) await kv.expire(key, RATE_WINDOW_SEC);
+    return count > RATE_MAX;
+  } catch {
+    return false;
+  }
+}
+
+function getClientIp(request: NextRequest): string {
+  return (
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    request.headers.get("x-real-ip") ||
+    "unknown"
+  );
+}
 
 interface Body {
   email?: string;
@@ -25,6 +49,14 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       { error: "El plazo para sellar cápsulas terminó el 11 de junio de 2026." },
       { status: 410 }
+    );
+  }
+
+  const ip = getClientIp(request);
+  if (await rateLimited(ip)) {
+    return NextResponse.json(
+      { error: "Demasiadas solicitudes. Espera un minuto." },
+      { status: 429 }
     );
   }
 

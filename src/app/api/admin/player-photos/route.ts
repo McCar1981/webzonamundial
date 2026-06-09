@@ -33,8 +33,13 @@ function checkAuth(req: NextRequest): boolean {
   if (!token) return false;
   const auth = req.headers.get("authorization") ?? "";
   const headerToken = auth.startsWith("Bearer ") ? auth.slice(7).trim() : "";
-  const queryToken = req.nextUrl.searchParams.get("token") ?? "";
-  return Boolean(headerToken === token || queryToken === token);
+  // H-001-06: token NUNCA por query string (fuga en logs/Referer).
+  return headerToken === token;
+}
+
+/** H-001-07: validar slug contra path traversal. Solo letras, números, guiones. */
+function isValidSlug(s: string): boolean {
+  return /^[a-z0-9-]+$/i.test(s);
 }
 
 export async function GET(req: NextRequest) {
@@ -46,8 +51,8 @@ export async function GET(req: NextRequest) {
   }
 
   const slug = req.nextUrl.searchParams.get("slug");
-  if (!slug) {
-    return NextResponse.json({ error: "Falta ?slug=" }, { status: 400 });
+  if (!slug || !isValidSlug(slug)) {
+    return NextResponse.json({ error: "Slug inválido" }, { status: 400 });
   }
 
   const file = path.join(process.cwd(), "data", "teams", `${slug}.json`);

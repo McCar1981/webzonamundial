@@ -7,9 +7,12 @@ const ADMIN_COOKIE = "zm_admin";
 export async function middleware(request: NextRequest) {
   const url = request.nextUrl;
 
-  // Protect /admin/* (except /admin/login itself).
+  // Protect /admin/* and /api/admin/* (except /admin/login itself).
+  // H-001-05: las rutas API empiezan por /api/admin, no /admin.
+  const isAdminRoute =
+    url.pathname.startsWith("/admin") || url.pathname.startsWith("/api/admin");
   if (
-    url.pathname.startsWith("/admin") &&
+    isAdminRoute &&
     !url.pathname.startsWith("/admin/login")
   ) {
     const cookie = request.cookies.get(ADMIN_COOKIE)?.value;

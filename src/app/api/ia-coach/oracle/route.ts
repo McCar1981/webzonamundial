@@ -21,6 +21,7 @@ import {
   generateOracleFollowup,
 } from "@/lib/ia-coach/oracle-client";
 import { ORACLE_PROMPT_VERSION } from "@/lib/ia-coach/oracle-system-prompt";
+import { getCurrentUser, rateLimitByUser } from "@/lib/auth-helpers";
 import type {
   OracleNarration,
   OracleFollowupMessage,
@@ -74,6 +75,15 @@ async function getSim(): Promise<OracleSimResult> {
 }
 
 export async function POST(req: Request) {
+  const user = await getCurrentUser();
+  if (!user) {
+    return errorResponse("unauthorized", 401);
+  }
+  const rl = await rateLimitByUser(user.id, "ia-coach:oracle", 5, 60);
+  if (rl.limited) {
+    return errorResponse("rate_limited", 429);
+  }
+
   let body: OracleRequest = {};
   try {
     body = (await req.json()) as OracleRequest;

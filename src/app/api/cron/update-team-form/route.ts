@@ -12,6 +12,7 @@
 // Programado en vercel.json para correr a las 03:00 UTC diariamente.
 
 import { NextResponse } from "next/server";
+import { requireCron } from "@/lib/auth-helpers";
 import { recordHeartbeat } from "@/lib/ops/store";
 import { BRACKET_TEAMS } from "@/lib/bracket/teams";
 import {
@@ -34,17 +35,8 @@ interface Summary {
 }
 
 export async function GET(req: Request) {
-  // Auth
-  const expected = process.env.CRON_SECRET;
-  if (expected) {
-    const auth = req.headers.get("authorization");
-    const headerOk = auth === `Bearer ${expected}`;
-    const querySecret = new URL(req.url).searchParams.get("secret");
-    const queryOk = querySecret === expected;
-    if (!headerOk && !queryOk) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-    }
-  }
+  const denied = requireCron(req);
+  if (denied) return denied;
 
   if (!process.env.API_SPORTS_KEY && !process.env.RAPIDAPI_KEY) {
     return NextResponse.json(

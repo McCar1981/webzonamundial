@@ -25,7 +25,7 @@ export async function POST() {
   }
 
   // El Pase DT ya tiene IA ilimitada: recargar no tendría sentido.
-  if (user.email && (await isPaseDT(user.email))) {
+  if (user.email && (await isPaseDT(user.email, user.id))) {
     return NextResponse.json({ ok: false, error: "already_unlimited" }, { status: 400 });
   }
 

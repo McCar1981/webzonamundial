@@ -41,7 +41,7 @@ export default function CreadoresEditorial() {
             marginBottom: 14,
           }}
         >
-          // Editorial · Comunidad de creadores
+          {/* Editorial · Comunidad de creadores */}
         </div>
 
         <h2
@@ -93,14 +93,14 @@ export default function CreadoresEditorial() {
           <strong>2. Streaming sincronizado durante los partidos.</strong>{" "}
           Algunos creadores hacen directos comentando los partidos en
           paralelo a la retransmisión oficial. ZonaMundial integra esos
-          streams en la sección "Zona Streaming" para que puedas reaccionar y
+          streams en la sección &quot;Zona Streaming&quot; para que puedas reaccionar y
           chatear con la comunidad sin abandonar la app.
         </p>
 
         <p>
           <strong>3. Predicciones públicas.</strong> Cada creador publica sus
           propios pronósticos por partido y tipo de mercado (resultado,
-          goleador, corners, tarjetas). El usuario decide si "sigue" al
+          goleador, corners, tarjetas). El usuario decide si &quot;sigue&quot; al
           creador y replica sus picks o si compite contra él. Es un formato
           honesto: si el creador acierta, gana ranking; si falla, pierde
           puntos como cualquier jugador.
@@ -211,7 +211,7 @@ export default function CreadoresEditorial() {
               margin: 0,
             }}
           >
-            // Próximos pasos
+            {/* Próximos pasos */}
           </p>
           <p style={{ margin: 0, fontSize: 15, color: TEXT }}>
             Sigue a tu creador favorito en{" "}

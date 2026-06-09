@@ -64,7 +64,7 @@ export default function CapsuleSealModal({ open, state, onClose }: Props) {
     >
       <div className={styles.modal} style={{ maxWidth: 460 }}>
         <div className={styles.modalHead}>
-          <span className={styles.modalPhaseTag}>// CÁPSULA DEL TIEMPO</span>
+          <span className={styles.modalPhaseTag}>{/* CÁPSULA DEL TIEMPO */}</span>
           <button className={styles.modalClose} onClick={onClose} aria-label="Cerrar">
             ×
           </button>

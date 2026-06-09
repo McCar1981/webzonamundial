@@ -54,7 +54,7 @@ export default function ModuleFreeVsFounders({ moduleLabel, rows }: Props) {
           marginBottom: 8,
         }}
       >
-        // QUÉ INCLUYE
+        {/* QUÉ INCLUYE */}
       </div>
       <h3
         style={{

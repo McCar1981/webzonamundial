@@ -17,6 +17,7 @@
 // ?secret=XXX. Idempotente: si no hay partidos en ventana, no hace nada.
 
 import { NextResponse } from "next/server";
+import { requireCron } from "@/lib/auth-helpers";
 import { MATCHES } from "@/data/matches";
 import { buildMeta, getFixtureId, cacheSnapshot } from "@/lib/match-center/store";
 import { fetchLiveSnapshots } from "@/lib/match-center/apiFootball";
@@ -120,15 +121,8 @@ async function runPass(): Promise<{
 export async function GET(req: Request) {
   const startMs = Date.now();
 
-  const expected = process.env.CRON_SECRET;
-  if (expected) {
-    const auth = req.headers.get("authorization");
-    const headerOk = auth === `Bearer ${expected}`;
-    const queryOk = new URL(req.url).searchParams.get("secret") === expected;
-    if (!headerOk && !queryOk) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-    }
-  }
+  const denied = requireCron(req);
+  if (denied) return denied;
 
   if (!apiKeyPresent()) {
     return NextResponse.json(

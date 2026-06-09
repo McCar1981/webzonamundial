@@ -7,6 +7,13 @@ import { sendWelcomeEmail } from "@/lib/email";
 import { getCreadorBySlug } from "@/data/creadores";
 import { getSeleccionBySlug } from "@/data/selecciones";
 import { COUNTRIES } from "@/lib/countries";
+import {
+  isValidIsoDate,
+  isAdult,
+  validateCountry,
+  validateFavTeam,
+  validateFavCreator,
+} from "@/lib/profile-validation";
 
 interface ActionResult {
   ok: boolean;
@@ -39,15 +46,25 @@ export async function completeOnboardingAction(
     };
   }
 
-  const country =
-    ((formData.get("country") as string | null)?.trim() || null) as string | null;
-  const fav_team =
-    ((formData.get("fav_team") as string | null)?.trim() || null) as string | null;
-  const fav_creator =
-    ((formData.get("fav_creator") as string | null)?.trim() || null) as string | null;
+  const countryRaw = (formData.get("country") as string | null)?.trim() || null;
+  const fav_teamRaw = (formData.get("fav_team") as string | null)?.trim() || null;
+  const fav_creatorRaw = (formData.get("fav_creator") as string | null)?.trim() || null;
   const localeRaw = (formData.get("locale") as string | null)?.trim() ?? "es";
   const locale = localeRaw === "en" ? "en" : "es";
   const birth_date = (formData.get("birth_date") as string | null)?.trim() || null;
+
+  // Validar birth_date: ISO real + mayoría de edad (18+)
+  if (!isValidIsoDate(birth_date)) {
+    return { ok: false, error: "Fecha de nacimiento inválida" };
+  }
+  if (birth_date && !isAdult(birth_date)) {
+    return { ok: false, error: "Debes ser mayor de edad (18+) para participar en premios" };
+  }
+
+  // Validar contra catálogo — valores no encontrados se descartan (null)
+  const country = validateCountry(countryRaw);
+  const fav_team = validateFavTeam(fav_teamRaw);
+  const fav_creator = validateFavCreator(fav_creatorRaw);
 
   const { error } = await supabase
     .from("profiles")
@@ -114,6 +131,8 @@ export async function skipOnboardingAction(next?: string) {
 
   // Respetar el destino pedido antes de loguearse (p. ej. volver a la peña
   // del bar para completar la unión). Same-origin only: nunca open-redirect.
-  const safeNext = next && next.startsWith("/") ? next : "/";
+  // Defensa doble: startsWith("/") + !startsWith("//") bloquea protocol-relative.
+  const safeNext =
+    next && next.startsWith("/") && !next.startsWith("//") ? next : "/";
   redirect(safeNext);
 }

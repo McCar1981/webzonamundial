@@ -5,7 +5,7 @@
 
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
-import { leagueLeaderboard, leaveLeague } from "@/lib/predictions/gamification-store";
+import { leagueLeaderboard, leaveLeague, isLeagueMember } from "@/lib/predictions/gamification-store";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -13,6 +13,11 @@ export const dynamic = "force-dynamic";
 export async function GET(_req: Request, { params }: { params: { id: string } }) {
   const user = await getCurrentUser();
   if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  // H-001-17: validar membresía antes de devolver clasificación.
+  const member = await isLeagueMember(user.id, params.id);
+  if (!member) {
+    return NextResponse.json({ error: "not_a_member" }, { status: 403 });
+  }
   const standings = await leagueLeaderboard(params.id);
   return NextResponse.json({ league_id: params.id, standings });
 }

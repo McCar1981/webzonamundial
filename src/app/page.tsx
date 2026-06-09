@@ -33,6 +33,7 @@ import { CalendarBanner } from "./_home/sections/CalendarBanner";
 import { BracketBanner } from "./_home/sections/BracketBanner";
 import { HomeTriviaPlaySection } from "./_home/sections/HomeTriviaPlaySection";
 import { HomeMatchPredictSection } from "./_home/sections/HomeMatchPredictSection";
+import AdBanner from "@/components/ads/AdBanner";
 
 export default function HomePage() {
   const { t } = useLanguage();
@@ -117,6 +118,8 @@ export default function HomePage() {
         enlazan a su Match Center. Aditivo, no reemplaza prosa.
       */}
       <HomeMatchPredictSection />
+      {/* AdSense: banner entre contenido editorial y vitrina de producto. */}
+      <AdBanner />
       {/* Vitrina de producto: debajo del contenido editorial. */}
       <ModulesGridSection />
       <PlatformShowcaseSection />
@@ -128,6 +131,8 @@ export default function HomePage() {
       <WaitlistSection />
       <SocialProofTicker items={h.testimonials} />
       <FinalCTASection />
+      {/* AdSense: banner antes del footer. */}
+      <AdBanner />
       {/* Push banner: aparece tras 7s en la primera visita (config interno).
           Antes solo estaba en /noticias y resultaba que tenía 1 suscriptor.
           La home recibe ~10× más tráfico → multiplicador de captación. */}

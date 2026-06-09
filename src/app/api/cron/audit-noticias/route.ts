@@ -17,6 +17,7 @@
 
 import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
+import { requireCron } from "@/lib/auth-helpers";
 import { readIngestStore, writeIngestStore } from "@/lib/noticias-store";
 import { evaluateArticle, shouldPublish } from "@/lib/noticias-critic";
 
@@ -24,15 +25,8 @@ export const dynamic = "force-dynamic";
 export const maxDuration = 300;
 
 export async function GET(req: Request) {
-  const expected = process.env.CRON_SECRET;
-  if (expected) {
-    const auth = req.headers.get("authorization");
-    const headerOk = auth === `Bearer ${expected}`;
-    const querySecret = new URL(req.url).searchParams.get("secret");
-    if (!headerOk && querySecret !== expected) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-    }
-  }
+  const denied = requireCron(req);
+  if (denied) return denied;
 
   const url = new URL(req.url);
   const dryRun = url.searchParams.get("dryRun") === "1";

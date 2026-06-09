@@ -24,7 +24,6 @@
 //   node scripts/fetch-commons-images.cjs --reset         # limpia photos/image_pool
 //   node scripts/fetch-commons-images.cjs --per-player=6
 //   node scripts/fetch-commons-images.cjs --apply         # ESCRIBE en las fichas
-//   node scripts/fetch-commons-images.cjs --insecure      # proxy MITM (TLS)
 
 const fs = require("fs");
 const path = require("path");
@@ -38,10 +37,6 @@ const val = (name, def) => {
 };
 
 const APPLY = flag("apply");
-if (flag("insecure")) {
-  process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-  console.warn("⚠ --insecure: verificación TLS desactivada (solo para proxy MITM).");
-}
 const RESET = flag("reset");
 const COUNTRY = flag("country");
 const ONLY_TEAM = val("team", null);

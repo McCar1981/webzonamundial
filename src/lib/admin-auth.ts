@@ -13,14 +13,14 @@
 
 const ENC = new TextEncoder();
 
-function getPassword(): string {
-  const p = process.env.ADMIN_PASSWORD;
-  if (!p) {
-    // Fail closed: if the env var is missing in dev, set a known dev password.
-    // In production we always set it on Vercel so this branch never runs.
-    return "zm-admin-dev-only";
-  }
-  return p;
+function getPassword(): string | null {
+  return process.env.ADMIN_PASSWORD || null;
+}
+
+function getCookieSecret(): string {
+  // Preferir ADMIN_TOKEN (variable independiente) como secreto de cookie.
+  // Fallback: derivar del password, pero nunca hardcodeado.
+  return process.env.ADMIN_TOKEN || process.env.ADMIN_PASSWORD || "";
 }
 
 async function hmac(message: string, secret: string): Promise<string> {
@@ -42,19 +42,23 @@ function bufToHex(buf: ArrayBuffer): string {
 }
 
 /** Build a signed cookie value: `expires|hmac` */
-export async function buildAdminCookie(ttlHours = 24): Promise<string> {
+export async function buildAdminCookie(ttlHours = 24): Promise<string | null> {
+  const secret = getCookieSecret();
+  if (!secret) return null;
   const expires = Date.now() + ttlHours * 60 * 60 * 1000;
-  const sig = await hmac(String(expires), getPassword());
+  const sig = await hmac(String(expires), secret);
   return `${expires}.${sig}`;
 }
 
 /** Validate cookie: HMAC matches AND not expired. */
 export async function isValidAdminCookie(cookie: string): Promise<boolean> {
+  const secret = getCookieSecret();
+  if (!secret) return false;
   const [expiresStr, sig] = cookie.split(".");
   if (!expiresStr || !sig) return false;
   const expires = parseInt(expiresStr, 10);
   if (!expires || Date.now() > expires) return false;
-  const expected = await hmac(String(expires), getPassword());
+  const expected = await hmac(String(expires), secret);
   // constant-time-ish compare
   if (sig.length !== expected.length) return false;
   let mismatch = 0;

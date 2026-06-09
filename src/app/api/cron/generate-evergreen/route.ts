@@ -20,6 +20,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
+import { requireCron } from "@/lib/auth-helpers";
 import { GRUPOS } from "@/data/selecciones";
 import {
   buildGroupDossier,
@@ -67,15 +68,8 @@ function selectJobs(only: string | null): Job[] {
 }
 
 export async function GET(req: NextRequest) {
-  const expected = process.env.CRON_SECRET;
-  if (expected) {
-    const auth = req.headers.get("authorization");
-    const headerOk = auth === `Bearer ${expected}`;
-    const querySecret = new URL(req.url).searchParams.get("secret");
-    if (!headerOk && querySecret !== expected) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-    }
-  }
+  const denied = requireCron(req);
+  if (denied) return denied;
 
   const url = new URL(req.url);
   const dryRun = url.searchParams.get("dryRun") === "1";

@@ -11,6 +11,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
+import { requireCron } from "@/lib/auth-helpers";
 import { buildBlogPost } from "@/lib/blog/generator";
 import { appendAutoPost, getAllUsedSlugs, getRecentTitles } from "@/lib/blog/store";
 import { evaluateBlogPost, shouldPublish } from "@/lib/blog/critic-adapter";
@@ -26,17 +27,8 @@ export const maxDuration = 300;
 const SITE = "https://zonamundial.app";
 
 export async function GET(req: NextRequest) {
-  // Auth.
-  const expected = process.env.CRON_SECRET;
-  if (expected) {
-    const auth = req.headers.get("authorization");
-    const headerOk = auth === `Bearer ${expected}`;
-    const querySecret = new URL(req.url).searchParams.get("secret");
-    const queryOk = querySecret === expected;
-    if (!headerOk && !queryOk) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-    }
-  }
+  const denied = requireCron(req);
+  if (denied) return denied;
 
   // Opcional: ?topic=... para forzar un tema en concreto desde debug.
   const topic =

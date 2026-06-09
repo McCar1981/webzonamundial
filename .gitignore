@@ -9,3 +9,4 @@ data/noticias-ingested.json
 .env
 .env.local
 .env.*.local
+value.txt

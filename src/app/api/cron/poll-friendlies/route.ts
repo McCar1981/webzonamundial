@@ -13,6 +13,7 @@
 // o ?secret=XXX. Es idempotente: si no hay novedades, no manda nada.
 
 import { NextResponse } from "next/server";
+import { requireCron } from "@/lib/auth-helpers";
 import {
   fetchFriendliesByDate,
   fetchFriendlySnapshot,
@@ -421,15 +422,8 @@ async function runPass(
 export async function GET(req: Request) {
   const startMs = Date.now();
 
-  const expected = process.env.CRON_SECRET;
-  if (expected) {
-    const auth = req.headers.get("authorization");
-    const headerOk = auth === `Bearer ${expected}`;
-    const queryOk = new URL(req.url).searchParams.get("secret") === expected;
-    if (!headerOk && !queryOk) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-    }
-  }
+  const denied = requireCron(req);
+  if (denied) return denied;
 
   if (!apiFootballEnabled()) {
     return NextResponse.json(

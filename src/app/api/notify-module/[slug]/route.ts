@@ -20,7 +20,7 @@ export const dynamic = "force-dynamic";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const RATE_WINDOW_SEC = 60;
-const RATE_MAX = 5;
+const RATE_MAX = 3; // H-001-25: más restrictivo
 
 function getClientIp(request: NextRequest): string {
   return (
@@ -31,10 +31,18 @@ function getClientIp(request: NextRequest): string {
 }
 
 async function rateLimited(email: string, ip: string): Promise<boolean> {
-  const key = `modint:ratelimit:${email}:${ip}`;
-  const count = await kv.incr(key);
-  if (count === 1) await kv.expire(key, RATE_WINDOW_SEC);
-  return count > RATE_MAX;
+  // H-001-25: rate-limit por IP (principal) y por email (secundario).
+  // Cambiar el email no evade el límite si la IP es la misma.
+  const ipKey = `modint:ratelimit:ip:${ip}`;
+  const emailKey = `modint:ratelimit:email:${email}`;
+
+  const ipCount = await kv.incr(ipKey);
+  if (ipCount === 1) await kv.expire(ipKey, RATE_WINDOW_SEC);
+
+  const emailCount = await kv.incr(emailKey);
+  if (emailCount === 1) await kv.expire(emailKey, RATE_WINDOW_SEC);
+
+  return ipCount > RATE_MAX || emailCount > RATE_MAX;
 }
 
 const MODULE_LABELS: Record<string, string> = {

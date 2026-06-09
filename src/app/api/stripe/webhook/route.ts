@@ -40,6 +40,7 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
   if (product !== "founders_pass") return;
 
   const email = (session.metadata?.email || session.customer_email || "").toLowerCase().trim();
+  const userId = session.metadata?.user_id || null;
   if (!email) {
     console.warn("[stripe webhook] checkout.session.completed sin email", session.id);
     return;
@@ -70,6 +71,7 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
 
   const record: FounderRecord = {
     email,
+    userId,
     amount,
     currency,
     customerId: typeof session.customer === "string" ? session.customer : session.customer?.id ?? null,
@@ -170,6 +172,47 @@ async function handleChargeRefunded(charge: Stripe.Charge) {
   await markFounderRefunded(email);
 }
 
+async function handleDisputeCreated(dispute: Stripe.Dispute) {
+  // Una disputa/chargeback implica que el usuario reclamó el dinero
+  // a través de su banco/emisor. Revocamos la entitlement igual que
+  // con un refund para no dejar acceso activo sin pago válido.
+  const chargeId = typeof dispute.charge === "string" ? dispute.charge : dispute.charge.id;
+  if (!chargeId) {
+    console.warn("[stripe webhook] charge.dispute.created sin chargeId", dispute.id);
+    return;
+  }
+
+  try {
+    const stripe = getStripe();
+    const charge = await stripe.charges.retrieve(chargeId);
+    const product = charge.metadata?.product;
+
+    // Disputa de plan de bar.
+    if (product?.startsWith("bar_plan_")) {
+      const barId = charge.metadata?.bar_id;
+      if (!barId) {
+        console.warn("[stripe webhook] dispute (bar) sin bar_id", dispute.id);
+        return;
+      }
+      await markBarPaymentRefunded(barId);
+      console.log("[stripe webhook] dispute → bar plan revoked", barId);
+      return;
+    }
+
+    // Disputa del Founders Pass.
+    if (product !== "founders_pass") return;
+    const email = (charge.metadata?.email || charge.receipt_email || "").toLowerCase().trim();
+    if (!email) {
+      console.warn("[stripe webhook] dispute sin email", dispute.id);
+      return;
+    }
+    await markFounderRefunded(email);
+    console.log("[stripe webhook] dispute → founder revoked", email);
+  } catch (err) {
+    console.error("[stripe webhook] fallo resolviendo charge para dispute:", (err as Error).message);
+  }
+}
+
 export async function POST(request: NextRequest) {
   const sig = request.headers.get("stripe-signature");
   const secret = process.env.STRIPE_WEBHOOK_SECRET;
@@ -206,6 +249,9 @@ export async function POST(request: NextRequest) {
       }
       case "charge.refunded":
         await handleChargeRefunded(event.data.object as Stripe.Charge);
+        break;
+      case "charge.dispute.created":
+        await handleDisputeCreated(event.data.object as Stripe.Dispute);
         break;
       default:
         // Eventos que no procesamos: respondemos 200 igual para que Stripe

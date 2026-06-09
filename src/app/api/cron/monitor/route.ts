@@ -8,26 +8,16 @@
 // Auth idéntica al resto de crons: Authorization: Bearer <CRON_SECRET>.
 
 import { NextRequest, NextResponse } from "next/server";
+import { requireCron } from "@/lib/auth-helpers";
 import { runMonitor } from "@/lib/ops/monitor";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
-function isAuthorized(request: NextRequest): boolean {
-  const auth = request.headers.get("authorization") || "";
-  const secret = process.env.CRON_SECRET;
-  if (!secret) {
-    if (process.env.NODE_ENV !== "production") return true;
-    return request.headers.get("x-vercel-cron") === "1";
-  }
-  return auth === `Bearer ${secret}`;
-}
-
 export async function GET(request: NextRequest) {
-  if (!isAuthorized(request)) {
-    return NextResponse.json({ error: "No autorizado" }, { status: 401 });
-  }
+  const denied = requireCron(request);
+  if (denied) return denied;
   try {
     const report = await runMonitor();
     return NextResponse.json(report, {

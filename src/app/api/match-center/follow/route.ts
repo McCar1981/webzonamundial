@@ -9,6 +9,7 @@
 //   GET   ?matchId=&endpoint=                          → ¿lo sigue este browser?
 
 import { NextRequest, NextResponse } from "next/server";
+import { getCurrentUser } from "@/lib/auth-helpers";
 import { resolveMatchId } from "@/lib/match-center/slug";
 import {
   followMatch,
@@ -27,6 +28,11 @@ interface Body {
 }
 
 export async function POST(request: NextRequest) {
+  const user = await getCurrentUser();
+  if (!user) {
+    return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  }
+
   let body: Body;
   try {
     body = (await request.json()) as Body;
@@ -61,6 +67,7 @@ export async function POST(request: NextRequest) {
   // aseguramos la fila con la categoría del torneo.
   await savePushSubscription({
     subscription: sub,
+    userId: user.id,
     userAgent: request.headers.get("user-agent") ?? undefined,
     kinds: ["tournament-key-events"],
   });

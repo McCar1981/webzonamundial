@@ -62,7 +62,7 @@ export async function POST(req: Request) {
   // invitado tienen cupo diario. Al agotarlo se sirve la versión por plantilla
   // (sin tokens): el DT nunca se queda sin contenido, solo sin IA.
   const user = await getCurrentUser();
-  const paseDT = user?.email ? await isPaseDT(user.email) : false;
+  const paseDT = user?.email ? await isPaseDT(user.email, user.id) : false;
   const quota = await consumeNarrativeQuota({ userId: user?.id ?? null, paseDT });
 
   const entry = quota.allowed ? await generateNarrative(kind, ctx) : templateEntry(kind, ctx);

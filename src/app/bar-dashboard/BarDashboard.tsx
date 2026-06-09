@@ -58,7 +58,7 @@ export default function BarDashboard({ initialBar, initialStats, initialQr, init
   // Feedback de retorno desde Stripe (?purchase=success / ?canceled=1).
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    if (params.get("purchase") === "success") setFlash("Pago confirmado. Tu plan está activo.");
+    if (params.get("purchase") === "success") setFlash("Pago procesado. Verificando activación… refresca en unos segundos.");
     else if (params.get("canceled") === "1") setFlash("Has cancelado el pago. Puedes intentarlo cuando quieras.");
     if (params.has("purchase") || params.has("canceled") || params.has("session_id")) {
       window.history.replaceState({}, "", "/bar-dashboard");

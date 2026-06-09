@@ -63,7 +63,7 @@ export default function EditorialBlock({ data }: { data: EditorialData }) {
             marginBottom: 14,
           }}
         >
-          // {data.eyebrow}
+          {/* {data.eyebrow} */}
         </div>
 
         <h2
@@ -122,7 +122,7 @@ export default function EditorialBlock({ data }: { data: EditorialData }) {
                 margin: 0,
               }}
             >
-              // {data.closingTitle || "Para saber más"}
+              {/* {data.closingTitle || "Para saber más"} */}
             </p>
             <p style={{ margin: 0, fontSize: 15, color: TEXT }}>
               {data.closing}

@@ -44,8 +44,9 @@ function getClientIp(request: NextRequest): string {
 }
 
 async function checkRateLimit(ip: string): Promise<boolean> {
+  // H-001-10: fail-closed. Si no hay KV o falla, bloqueamos.
   if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) {
-    return true; // dev local sin KV
+    return false;
   }
   try {
     const key = `check-email:rate:${ip}`;
@@ -55,7 +56,7 @@ async function checkRateLimit(ip: string): Promise<boolean> {
     }
     return count <= RATE_LIMIT_MAX;
   } catch {
-    return true; // fail-open
+    return false; // fail-closed
   }
 }
 

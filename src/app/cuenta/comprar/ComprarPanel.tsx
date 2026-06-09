@@ -74,7 +74,7 @@ export default function ComprarPanel({ email, country, currency }: Props) {
         </Link>
 
         <div className="text-[11px] tracking-[0.22em] uppercase font-mono font-bold text-[#C9A84C] mb-3">
-          // FOUNDERS PASS
+          {"/* FOUNDERS PASS */"}
         </div>
         <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight leading-tight mb-3">
           Apoya el proyecto y desbloquea{" "}

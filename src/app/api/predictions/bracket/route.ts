@@ -9,12 +9,18 @@ import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
 import { getUserBracket, getUserBracketScore, saveUserBracket } from "@/lib/predictions/bracket-store";
 import { maxBracketScore } from "@/lib/bracket/scoring";
+import { CAPSULE_DEADLINE } from "@/lib/bracket/timecapsule";
 import type { Pick } from "@/lib/bracket/types";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const MAX_PICKS = 104;
+
+/** H-001-16: el bracket no se puede modificar una vez iniciado el torneo. */
+function isBracketEditable(): boolean {
+  return Date.now() < CAPSULE_DEADLINE;
+}
 
 export async function GET() {
   const user = await getCurrentUser();
@@ -42,6 +48,14 @@ function isValidPicks(v: unknown): v is Record<string, Pick> {
 export async function PUT(req: Request) {
   const user = await getCurrentUser();
   if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+
+  // H-001-16: bracket cerrado tras iniciar el torneo.
+  if (!isBracketEditable()) {
+    return NextResponse.json(
+      { error: "bracket_closed", message: "El bracket cerró al iniciar el torneo." },
+      { status: 403 },
+    );
+  }
 
   let body: { picks?: unknown; champion?: unknown; total_goals?: unknown };
   try { body = await req.json(); } catch { return NextResponse.json({ error: "bad_request" }, { status: 400 }); }

@@ -105,7 +105,7 @@ export default function ModuleNotifyCTA({
             marginBottom: 12,
           }}
         >
-          // YA DISPONIBLE
+          {/* YA DISPONIBLE */}
         </div>
         <h3 style={{ fontSize: 22, fontWeight: 800, color: "#fff", marginBottom: 18, letterSpacing: "-0.02em" }}>
           {label} ya está disponible
@@ -174,7 +174,7 @@ export default function ModuleNotifyCTA({
           marginBottom: 10,
         }}
       >
-        // PRE-LANZAMIENTO
+        {/* PRE-LANZAMIENTO */}
       </div>
       <h3
         style={{

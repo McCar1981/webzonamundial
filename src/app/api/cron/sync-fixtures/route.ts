@@ -16,6 +16,7 @@
 //   ?full=1  → devuelve el detalle por partido (matchId, fixtureId, score)
 
 import { NextResponse } from "next/server";
+import { requireCron } from "@/lib/auth-helpers";
 import { recordHeartbeat } from "@/lib/ops/store";
 import { syncWorldCupFixtures } from "@/lib/match-center/fixtureSync";
 
@@ -27,15 +28,8 @@ export async function GET(req: Request) {
   const startMs = Date.now();
   const url = new URL(req.url);
 
-  const expected = process.env.CRON_SECRET;
-  if (expected) {
-    const auth = req.headers.get("authorization");
-    const headerOk = auth === `Bearer ${expected}`;
-    const queryOk = url.searchParams.get("secret") === expected;
-    if (!headerOk && !queryOk) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-    }
-  }
+  const denied = requireCron(req);
+  if (denied) return denied;
 
   const dryRun = url.searchParams.get("dry") === "1";
   const full = url.searchParams.get("full") === "1";

@@ -37,11 +37,12 @@ export default function DeepTabs({ team }: { team: NationalTeam }) {
 
   // Si todo está vacío, no renderizar la sección entera
   const total = tabs.reduce((acc, t) => acc + (t.count ?? 0), 0);
-  if (total === 0) return null;
 
-  // Empezar por la primera con datos
+  // Empezar por la primera con datos (hook ANTES de cualquier return)
   const initial = tabs.find((t) => (t.count ?? 0) > 0)?.id ?? "historia";
   const [active, setActive] = useState<TabId>(initial);
+
+  if (total === 0) return null;
 
   return (
     <SectionCard id="profundidad">

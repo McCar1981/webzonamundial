@@ -50,7 +50,7 @@ export default function BracketEditorialIntro() {
             marginBottom: 14,
           }}
         >
-          // Guía del Bracket Challenge
+          {/* Guía del Bracket Challenge */}
         </div>
 
         <h2
@@ -189,7 +189,7 @@ export default function BracketEditorialIntro() {
           Después llegan los dieciseisavos, octavos, cuartos, semifinales y
           la final. En cada cruce el bracket te muestra los dos equipos que
           predijiste y eliges quién pasa. Puedes deshacer cualquier elección
-          con el botón "Atrás" del HUD superior. Cuando hayas terminado, el
+          con el botón &quot;Atrás&quot; del HUD superior. Cuando hayas terminado, el
           sistema te ofrece guardar tu bracket con un nombre de usuario para
           competir en el ranking global, o simplemente compartirlo en redes
           como una imagen. Toda esta lógica funciona{" "}
@@ -201,8 +201,8 @@ export default function BracketEditorialIntro() {
 
         <h3 style={h3}>Pide análisis al Coach IA en partidos clave</h3>
         <p>
-          Cada partido del bracket cuenta con un botón "Pedir análisis al
-          Coach IA". Esa función llama a un modelo Claude Sonnet 4.5 que cruza
+          Cada partido del bracket cuenta con un botón &quot;Pedir análisis al
+          Coach IA&quot;. Esa función llama a un modelo Claude Sonnet 4.5 que cruza
           datos reales de api-football (forma reciente, lesiones, head-to-head
           histórico, cuotas implícitas del mercado) y devuelve un análisis
           breve — máximo 150 caracteres — más cuatro factores clave y un
@@ -247,7 +247,7 @@ export default function BracketEditorialIntro() {
               margin: 0,
             }}
           >
-            // Consejo final
+            {/* Consejo final */}
           </p>
           <p style={{ margin: 0, fontSize: 15, color: TEXT }}>
             No hay un bracket perfecto. Incluso los analistas más respetados
@@ -255,8 +255,8 @@ export default function BracketEditorialIntro() {
             Diviértete construyendo el tuyo, comparte el resultado con tus
             amigos, y vuelve después del Mundial para ver cuántos puntos
             sumaste. Lo importante es vivir el torneo con la emoción de
-            "tengo a Marruecos en cuartos" o "el campeón es Brasil porque
-            confío en Ancelotti".
+            &quot;tengo a Marruecos en cuartos&quot; o &quot;el campeón es Brasil porque
+            confío en Ancelotti&quot;.
           </p>
         </div>
       </article>

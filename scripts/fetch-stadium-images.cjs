@@ -14,7 +14,6 @@
 // Uso:
 //   node scripts/fetch-stadium-images.cjs            # dry-run
 //   node scripts/fetch-stadium-images.cjs --apply    # escribe data/stadiums.json
-//   node scripts/fetch-stadium-images.cjs --insecure # proxy MITM (TLS)
 
 const fs = require("fs");
 
@@ -23,10 +22,6 @@ const flag = (n) => args.includes(`--${n}`);
 const val = (n, d) => { const h = args.find((a) => a.startsWith(`--${n}=`)); return h ? h.split("=")[1] : d; };
 
 const APPLY = flag("apply");
-if (flag("insecure")) {
-  process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-  console.warn("⚠ --insecure: verificación TLS desactivada (solo para proxy MITM).");
-}
 const PER_STADIUM = parseInt(val("per", "8"), 10);
 const DELAY_MS = parseInt(val("delay", "150"), 10);
 

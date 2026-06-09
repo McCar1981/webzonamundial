@@ -56,8 +56,7 @@ function writeConsent(status: "granted" | "denied"): void {
 function applyConsentToGoogle(status: "granted" | "denied"): void {
   if (typeof window === "undefined") return;
   // Inicializa dataLayer si no existe (gtag.js lo crea normalmente)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const w = window as any;
+  const w = window as unknown as { dataLayer: unknown[] };
   w.dataLayer = w.dataLayer || [];
   function gtag(...args: unknown[]) {
     w.dataLayer.push(args);

@@ -50,7 +50,7 @@ export default function ModuleFAQ({ moduleLabel, items }: Props) {
             marginBottom: 8,
           }}
         >
-          // PREGUNTAS FRECUENTES
+          {/* PREGUNTAS FRECUENTES */}
         </div>
         <h3
           style={{

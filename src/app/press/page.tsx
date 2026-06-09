@@ -71,7 +71,7 @@ export default function PressPage() {
             marginBottom: 14,
           }}
         >
-          // KIT DE PRENSA
+          {/* KIT DE PRENSA */}
         </div>
         <h1
           style={{

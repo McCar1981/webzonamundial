@@ -49,7 +49,10 @@ export default function OnboardingWizard({
   // Destino al terminar onboarding (lo pasamos desde el callback OAuth si
   // el usuario venía de pedir una ruta específica antes de loguearse).
   const nextParam = searchParamsHook.get("next");
-  const finishDestination = nextParam && nextParam.startsWith("/") ? nextParam : "/";
+  const finishDestination =
+    nextParam && nextParam.startsWith("/") && !nextParam.startsWith("//")
+      ? nextParam
+      : "/";
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [pending, startTransition] = useTransition();
   const [error, setError] = useState("");

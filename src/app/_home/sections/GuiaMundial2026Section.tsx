@@ -55,7 +55,7 @@ export function GuiaMundial2026Section() {
             marginBottom: 14,
           }}
         >
-          // Guía editorial · ZonaMundial
+          {/* Guía editorial · ZonaMundial */}
         </div>
 
         <h2
@@ -243,7 +243,7 @@ export function GuiaMundial2026Section() {
           repechaje en una historia épica), <strong>Endrick</strong> (Brasil) y{" "}
           <strong>Désiré Doué</strong> (Francia). En la portería, el español{" "}
           <strong>Unai Simón</strong> y el argentino{" "}
-          <strong>Emiliano "Dibu" Martínez</strong> defienden sus arcos como
+          <strong>Emiliano &quot;Dibu&quot; Martínez</strong> defienden sus arcos como
           los más en forma del último ciclo.
         </p>
 
@@ -349,7 +349,7 @@ export function GuiaMundial2026Section() {
           }}
         >
           <p style={{ color: GOLD3, fontSize: 13, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", margin: 0, marginBottom: 8 }}>
-            // Próximos pasos
+            {/* Próximos pasos */}
           </p>
           <p style={{ margin: 0, fontSize: 15, color: TEXT }}>
             Explora{" "}

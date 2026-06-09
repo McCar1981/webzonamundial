@@ -72,7 +72,7 @@ export default async function FoundersLandingPage() {
               marginBottom: 18,
             }}
           >
-            // FOUNDERS PASS · MUNDIAL 2026
+            {/* FOUNDERS PASS · MUNDIAL 2026 */}
           </div>
           <h1
             style={{
@@ -250,7 +250,7 @@ export default async function FoundersLandingPage() {
             marginBottom: 14,
           }}
         >
-          // TRANSPARENCIA
+          {/* TRANSPARENCIA */}
         </div>
         <h2 style={{ fontWeight: 800, fontSize: 24, letterSpacing: "-0.02em", marginBottom: 14 }}>
           ¿A dónde va tu dinero?

@@ -12,6 +12,7 @@
 // es idempotente — solo toca predicciones con resolved_at = null.
 
 import { NextResponse } from "next/server";
+import { requireCron } from "@/lib/auth-helpers";
 import { recordHeartbeat } from "@/lib/ops/store";
 import { getMatchMeta } from "@/lib/predictions/match-data";
 import { getUnresolvedMatchIds, resolveMatch, type ResolveSummary } from "@/lib/predictions/store";
@@ -30,15 +31,8 @@ const TIME_BUDGET_MS = 55_000;
 export async function GET(req: Request) {
   const startMs = Date.now();
 
-  const expected = process.env.CRON_SECRET;
-  if (expected) {
-    const auth = req.headers.get("authorization");
-    const headerOk = auth === `Bearer ${expected}`;
-    const queryOk = new URL(req.url).searchParams.get("secret") === expected;
-    if (!headerOk && !queryOk) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-    }
-  }
+  const denied = requireCron(req);
+  if (denied) return denied;
 
   if (!resultStoreAvailable()) {
     return NextResponse.json({ error: "kv_not_configured", message: "KV_REST_API_URL / KV_REST_API_TOKEN requeridos" }, { status: 500 });

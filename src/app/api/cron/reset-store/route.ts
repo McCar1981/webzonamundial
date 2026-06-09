@@ -9,6 +9,7 @@
  */
 
 import { NextResponse } from "next/server";
+import { requireCron } from "@/lib/auth-helpers";
 import { kv } from "@vercel/kv";
 import { revalidatePath } from "next/cache";
 
@@ -19,13 +20,8 @@ const KV_KEYS = [
 ];
 
 export async function GET(req: Request) {
-  const expected = process.env.CRON_SECRET;
-  if (expected) {
-    const auth = req.headers.get("authorization");
-    if (auth !== `Bearer ${expected}`) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-    }
-  }
+  const denied = requireCron(req);
+  if (denied) return denied;
 
   // Hard delete every known KV key (current + legacy) so no stale data
   // can leak through cache layers.

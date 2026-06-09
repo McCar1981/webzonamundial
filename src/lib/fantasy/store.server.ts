@@ -44,12 +44,13 @@ export async function getFavCreator(userId: string): Promise<string | null> {
 
 export async function saveTeam(userId: string, state: FantasyTeamState): Promise<void> {
   const supa = createSupabaseServerClient();
+  // H-001-18: NO persistir total_points del cliente. Se recalcula server-side
+  // desde fantasy_gameweek_scores al confirmar cada jornada.
   const { error } = await supa.from("fantasy_teams").upsert(
     {
       user_id: userId,
       team_name: (state.teamName || "Mi Selección").slice(0, 40),
       state,
-      total_points: state.totalPoints ?? 0,
       gameweek: state.gameweek ?? 1,
       updated_at: new Date().toISOString(),
     },
@@ -61,6 +62,9 @@ export async function saveTeam(userId: string, state: FantasyTeamState): Promise
 /**
  * Registra (o actualiza) los puntos de una jornada para el ranking semanal y la
  * auditoría. Lectura propia con RLS; un usuario solo escribe su fila.
+ *
+ * H-001-18: Recalcula total_points server-side desde gameweek_scores para
+ * evitar manipulación del ranking global.
  */
 export async function recordGameweekScore(
   userId: string,
@@ -68,11 +72,24 @@ export async function recordGameweekScore(
   points: number,
   powerUp: string | null,
 ): Promise<void> {
+  // Validación server-side: puntos máximos teóricos por jornada (~200).
+  const MAX_GW_POINTS = 200;
+  const clampedPoints = Math.max(0, Math.min(points, MAX_GW_POINTS));
+
   const supa = createSupabaseServerClient();
   await supa.from("fantasy_gameweek_scores").upsert(
-    { user_id: userId, gameweek, points, power_up: powerUp },
+    { user_id: userId, gameweek, points: clampedPoints, power_up: powerUp },
     { onConflict: "user_id,gameweek" },
   );
+
+  // Recalcular total_points server-side como suma de todos los gameweek scores.
+  const admin = adminClient();
+  const { data: scores } = await admin
+    .from("fantasy_gameweek_scores")
+    .select("points")
+    .eq("user_id", userId);
+  const total = (scores ?? []).reduce((sum, s) => sum + ((s as { points?: number }).points ?? 0), 0);
+  await admin.from("fantasy_teams").update({ total_points: total }).eq("user_id", userId);
 }
 
 /**

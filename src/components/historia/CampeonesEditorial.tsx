@@ -41,7 +41,7 @@ export default function CampeonesEditorial() {
             marginBottom: 14,
           }}
         >
-          // Análisis · 96 años de historia
+          {/* Análisis · 96 años de historia */}
         </div>
 
         <h2
@@ -113,7 +113,7 @@ export default function CampeonesEditorial() {
         </p>
 
         <p>
-          El Mundial 2026 cae en la categoría "neutral compartido": tres
+          El Mundial 2026 cae en la categoría &quot;neutral compartido&quot;: tres
           países anfitriones, tres confederaciones distintas (CONCACAF como
           anfitrión principal, aunque ni México ni Estados Unidos ni Canadá
           son favoritos). Históricamente, ese tipo de Mundiales benefician a
@@ -222,7 +222,7 @@ export default function CampeonesEditorial() {
               margin: 0,
             }}
           >
-            // Dato curioso
+            {/* Dato curioso */}
           </p>
           <p style={{ margin: 0, fontSize: 15, color: TEXT }}>
             Si Argentina gana el Mundial 2026 igualaría a Italia y Alemania

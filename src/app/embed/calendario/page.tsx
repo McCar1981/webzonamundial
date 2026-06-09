@@ -109,7 +109,7 @@ export default function EmbedCalendarioPage({ searchParams }: PageProps) {
               fontFamily: "JetBrains Mono, monospace",
             }}
           >
-            // CALENDARIO MUNDIAL 2026
+            {/* CALENDARIO MUNDIAL 2026 */}
           </div>
           <div style={{ fontSize: 12, color: "#94a3b8", marginTop: 2 }}>
             {filtered.length} {filtered.length === 1 ? "partido" : "partidos"}

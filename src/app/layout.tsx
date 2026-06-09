@@ -6,6 +6,7 @@ import RootLayoutClient from "./RootLayoutClient";
 import { LanguageProvider } from "@/i18n/LanguageContext";
 import CookieConsent from "@/components/CookieConsent";
 import NativeAppGuard from "@/components/NativeAppGuard";
+import { isAdSenseEnabled } from "@/lib/adsense";
 
 // Self-host Outfit via next/font for zero CLS + no render-blocking <link>.
 const outfit = Outfit({
@@ -283,11 +284,16 @@ export default async function RootLayout({
   } catch {
     isFounderUser = false;
   }
-  const showAds = !!ADSENSE_ID && !isFounderUser;
+  // AdSense SOLO cuando está habilitado (NEXT_PUBLIC_ADSENSE_ENABLED=true)
+  // y el usuario no es Founder. Durante la revisión de aprobación de Google,
+  // el flag debe estar en false para no mostrar anuncios.
+  const showAds = isAdSenseEnabled && !!ADSENSE_ID && !isFounderUser;
 
   return (
     <html lang="es" className={outfit.variable}>
       <head>
+        {/* Google AdSense verification — ayuda a Google a verificar la propiedad. */}
+        <meta name="google-adsense-account" content={ADSENSE_ID} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

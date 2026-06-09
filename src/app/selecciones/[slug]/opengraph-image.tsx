@@ -160,7 +160,7 @@ export default async function OgImage({ params }: Props) {
                 display: "flex",
               }}
             >
-              // Selección · Mundial 2026
+              {/* Selección · Mundial 2026 */}
             </div>
             <div
               style={{

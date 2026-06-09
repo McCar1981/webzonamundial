@@ -13,8 +13,9 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false, nocache: true },
 };
 
-// Re-render every 60s so freshly arrived real registros (from KV) reflect.
-export const revalidate = 60;
+// Páginas admin deben ser dinámicas (no prerenderizables): leen datos
+// en vivo de KV y pueden contener PII. H-000-01
+export const dynamic = "force-dynamic";
 
 export default async function RegistrosPage() {
   const stats = await getDashboardStats();

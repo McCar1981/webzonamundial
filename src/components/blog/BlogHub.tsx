@@ -12,6 +12,7 @@ import {
   type BlogCategory,
   type BlogPost,
 } from "@/lib/blog/types";
+import AdBanner from "@/components/ads/AdBanner";
 import styles from "./BlogHub.module.css";
 import blogStyles from "./blog.module.css";
 
@@ -52,7 +53,7 @@ export default function BlogHub({ posts }: Props) {
     <div className={`${styles.root} ${blogStyles.scope}`}>
       {/* HERO */}
       <header className={styles.hubHero}>
-        <div className={styles.hubEyebrow}>// EDITORIAL ZONA MUNDIAL</div>
+        <div className={styles.hubEyebrow}>{/* EDITORIAL ZONA MUNDIAL */}</div>
         <h1 className={styles.hubTitle}>
           Análisis y datos para vivir el <span>Mundial 2026</span>.
         </h1>
@@ -111,6 +112,9 @@ export default function BlogHub({ posts }: Props) {
               </Link>
             </div>
           )}
+
+          {/* AdSense: banner entre featured y grid. */}
+          <AdBanner />
 
           {/* GRID DEL RESTO */}
           {rest.length > 0 && (

@@ -119,7 +119,7 @@ export default function NotFoundPreview(){
         {/* Quick links a páginas populares */}
         <div style={{marginTop:32,paddingTop:24,borderTop:`1px solid ${BG2}`}}>
           <p style={{fontSize:11,color:DIM,letterSpacing:"0.18em",textTransform:"uppercase",marginBottom:14,fontFamily:"'JetBrains Mono', monospace"}}>
-            // O explora estas secciones
+            {/* O explora estas secciones */}
           </p>
           <div style={{display:"flex",flexWrap:"wrap",justifyContent:"center",gap:8}}>
             {QUICK_LINKS.map(l => (

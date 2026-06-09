@@ -12,6 +12,8 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Noticia, NoticiaBlock } from "@/data/noticias";
 import { getAuthor } from "@/data/noticias-authors";
+import AdInArticle from "@/components/ads/AdInArticle";
+import AdSidebar from "@/components/ads/AdSidebar";
 import styles from "./ArticleView.module.css";
 
 const CAT_LABELS: Record<string, string> = {
@@ -265,9 +267,16 @@ export function ArticleView({
 
         {/* ARTICLE */}
         <article ref={articleRef} className={styles.article}>
-          {noticia.body.map((b, i) => (
-            <Block key={i} block={b} />
-          ))}
+          {noticia.body.map((b, i) => {
+            const midIndex = Math.floor(noticia.body.length / 2);
+            const showAd = noticia.body.length >= 4 && i === midIndex;
+            return (
+              <>
+                <Block key={i} block={b} />
+                {showAd && <AdInArticle key={`ad-${i}`} />}
+              </>
+            );
+          })}
 
           {/* Tags */}
           {noticia.tags.length > 0 && (
@@ -357,6 +366,9 @@ export function ArticleView({
               ))}
             </ol>
           </div>
+
+          {/* AdSense: sidebar en columna lateral del artículo. */}
+          <AdSidebar />
 
           <div className={`${styles.sidebarBlock} ${styles.sidebarPromo}`}>
             <small>JUEGA GRATIS</small>

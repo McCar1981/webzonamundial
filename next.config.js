@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Ignorar errores de TypeScript y ESLint durante el build
+  // TypeScript y ESLint deben fallar el build ante errores (Fase 0 resuelta).
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: false,
   },
   // Permitir imágenes externas (banderas, estadios, etc.)
   // Nota: imágenes de Pexels migradas a /public/img/heroes/ en PR de performance (2026-04-23)
@@ -68,7 +68,7 @@ const nextConfig = {
     //    algunos providers usan iframes para el popup de login.
     const csp = [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://pagead2.googlesyndication.com https://www.googletagmanager.com https://www.google-analytics.com https://va.vercel-scripts.com https://accounts.google.com https://appleid.cdn-apple.com",
+      "script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://www.googletagmanager.com https://www.google-analytics.com https://va.vercel-scripts.com https://accounts.google.com https://appleid.cdn-apple.com",
       "style-src 'self' 'unsafe-inline' https://appleid.cdn-apple.com",
       "font-src 'self' data: https://appleid.cdn-apple.com",
       "img-src 'self' data: blob: https:",

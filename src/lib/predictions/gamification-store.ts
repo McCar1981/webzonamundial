@@ -639,6 +639,18 @@ export async function leaveLeague(uid: string, leagueId: string): Promise<void> 
   await admin.from("prediction_league_members").delete().eq("league_id", leagueId).eq("user_id", uid);
 }
 
+/** H-001-17: verifica si el usuario es miembro de la liga. */
+export async function isLeagueMember(uid: string, leagueId: string): Promise<boolean> {
+  const admin = adminClient();
+  const { data } = await admin
+    .from("prediction_league_members")
+    .select("user_id")
+    .eq("league_id", leagueId)
+    .eq("user_id", uid)
+    .maybeSingle();
+  return !!data;
+}
+
 export async function myLeagues(uid: string): Promise<LeagueOut[]> {
   const admin = adminClient();
   const { data: mem } = await admin.from("prediction_league_members").select("league_id").eq("user_id", uid);

@@ -5,6 +5,7 @@
 // Identidad: usuario Supabase si hay sesión, si no un anonId del cliente.
 
 import { NextResponse } from "next/server";
+import { kv } from "@vercel/kv";
 import {
   addSeenIds,
   claimDailyTriviaReward,
@@ -25,10 +26,47 @@ function baseId(id: string): string {
   return id.replace(/-r\d+$/, "");
 }
 
+function getClientIp(req: Request): string {
+  return (
+    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    req.headers.get("x-real-ip") ||
+    "unknown"
+  );
+}
+
+const RATE_WINDOW_SEC = 60;
+const RATE_MAX = 10;
+
+async function rateLimited(ip: string): Promise<boolean> {
+  if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) return false;
+  try {
+    const key = `trivia-finish:rate:${ip}`;
+    const count = await kv.incr(key);
+    if (count === 1) await kv.expire(key, RATE_WINDOW_SEC);
+    return count > RATE_MAX;
+  } catch {
+    return false;
+  }
+}
+
+/** H-001-22: sanitiza nombre de ranking anónimo (quita HTML/scripts). */
+function sanitizeName(raw: string): string {
+  return raw
+    .replace(/<[^]*?>/g, "") // quita tags HTML
+    .replace(/[\x00-\x1F\x7F]/g, "") // quita control chars
+    .slice(0, 24)
+    .trim();
+}
+
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function POST(req: Request) {
+  const ip = getClientIp(req);
+  if (await rateLimited(ip)) {
+    return NextResponse.json({ error: "rate_limited" }, { status: 429 });
+  }
+
   let body: { sessionId?: string; name?: string; anonId?: string };
   try {
     body = await req.json();
@@ -38,6 +76,9 @@ export async function POST(req: Request) {
   if (!body.sessionId) {
     return NextResponse.json({ error: "bad_request" }, { status: 400 });
   }
+
+  // Sanitizar nombre antes de usarlo
+  if (body.name) body.name = sanitizeName(body.name);
 
   const session = await getSession(body.sessionId);
   if (!session) {

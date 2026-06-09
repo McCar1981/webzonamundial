@@ -2,12 +2,10 @@
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { createSupabaseBrowserClient } from "@/lib/supabase/client";
-import { deleteAccountAction } from "../actions";
+import { deleteAccountAction, updateEmailAction } from "../actions";
 
 export default function SecurityPanel({ email }: { email: string }) {
   const router = useRouter();
-  const supabase = createSupabaseBrowserClient();
 
   const [newEmail, setNewEmail] = useState("");
   const [emailSending, setEmailSending] = useState(false);
@@ -30,18 +28,18 @@ export default function SecurityPanel({ email }: { email: string }) {
     }
 
     setEmailSending(true);
-    const { error } = await supabase.auth.updateUser({
-      email: newEmail.trim().toLowerCase(),
-    });
+    const fd = new FormData();
+    fd.set("email", newEmail.trim().toLowerCase());
+    const res = await updateEmailAction(fd);
     setEmailSending(false);
 
-    if (error) {
-      setEmailFeedback({ type: "error", msg: error.message });
+    if (!res.ok) {
+      setEmailFeedback({ type: "error", msg: res.error ?? "Error desconocido" });
       return;
     }
     setEmailFeedback({
       type: "ok",
-      msg: "Te enviamos un email a la nueva dirección. Confírmalo para activar el cambio.",
+      msg: res.error ?? "Te enviamos un email a la nueva dirección. Confírmalo para activar el cambio.",
     });
     setNewEmail("");
   }

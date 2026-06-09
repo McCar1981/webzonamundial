@@ -15,6 +15,7 @@
 // Auth: Authorization: Bearer ${CRON_SECRET} o ?secret=XXX.
 
 import { NextResponse } from "next/server";
+import { requireCron } from "@/lib/auth-helpers";
 import { readIngestStore, writeIngestStore } from "@/lib/noticias-store";
 import { makeSlug } from "@/lib/noticias-ingest";
 import { revalidatePath } from "next/cache";
@@ -23,17 +24,8 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function GET(req: Request) {
-  // Auth
-  const expected = process.env.CRON_SECRET;
-  if (expected) {
-    const auth = req.headers.get("authorization");
-    const headerOk = auth === `Bearer ${expected}`;
-    const querySecret = new URL(req.url).searchParams.get("secret");
-    const queryOk = querySecret === expected;
-    if (!headerOk && !queryOk) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-    }
-  }
+  const denied = requireCron(req);
+  if (denied) return denied;
 
   const url = new URL(req.url);
   const dryRun = url.searchParams.get("dryRun") === "1";

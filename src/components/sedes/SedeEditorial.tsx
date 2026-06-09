@@ -50,7 +50,7 @@ export default function SedeEditorial({ sede }: { sede: Sede }) {
             marginBottom: 12,
           }}
         >
-          // Guía editorial · {ciudad}
+          {/* Guía editorial · {ciudad} */}
         </div>
 
         <h2
@@ -220,7 +220,7 @@ export default function SedeEditorial({ sede }: { sede: Sede }) {
               margin: 0,
             }}
           >
-            // Ficha rápida
+            {/* Ficha rápida */}
           </p>
           <p style={{ margin: 0, fontSize: 15, color: TEXT }}>
             <strong>Estadio:</strong> {estadio} · <strong>Capacidad:</strong>{" "}

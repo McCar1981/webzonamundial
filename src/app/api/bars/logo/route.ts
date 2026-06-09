@@ -23,12 +23,12 @@ export const dynamic = "force-dynamic";
 
 const BUCKET = "bar-logos";
 const MAX_BYTES = 2 * 1024 * 1024;
-const ALLOWED_MIME = new Set(["image/jpeg", "image/png", "image/webp", "image/svg+xml"]);
+// H-001-12: SVG eliminado (XSS almacenado). Solo formatos raster seguros.
+const ALLOWED_MIME = new Set(["image/jpeg", "image/png", "image/webp"]);
 const MIME_TO_EXT: Record<string, string> = {
   "image/jpeg": "jpg",
   "image/png": "png",
   "image/webp": "webp",
-  "image/svg+xml": "svg",
 };
 
 // Tipo de imagen → columna del bar. "logo" por defecto.
@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
 
   // 4. Validar MIME + size en server
   if (!ALLOWED_MIME.has(file.type)) {
-    return NextResponse.json({ error: "Formato no soportado. Usa JPG, PNG, WEBP o SVG." }, { status: 415 });
+    return NextResponse.json({ error: "Formato no soportado. Usa JPG, PNG o WEBP." }, { status: 415 });
   }
   if (file.size > MAX_BYTES) {
     return NextResponse.json({ error: "Archivo demasiado grande. Máximo 2 MB." }, { status: 413 });

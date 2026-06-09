@@ -10,9 +10,25 @@ import { adminClient } from "@/lib/predictions/admin";
 import { grantCoins } from "@/lib/economy/wallet";
 import { careerMissionReward } from "@/lib/economy/earn";
 import { normalizeCareer } from "./store";
-import { rankForOverall, MISSION_TEMPLATES } from "./constants";
+import { rankForOverall, MISSION_TEMPLATES, xpRequired } from "./constants";
 import { missionKey, legitMissionIds } from "./missions";
 import type { CareerState, CareerRankEntry } from "./types";
+
+/**
+ * H-001-21: Recalcula overall desde XP de forma autoritativa (server-side).
+ * Evita que el cliente envíe overall=99 con xp=0.
+ */
+function deriveOverallFromXp(xp: number): number {
+  let overall = 50; // nivel inicial
+  let accumulated = 0;
+  while (overall < 99) {
+    const needed = xpRequired(overall);
+    if (accumulated + needed > xp) break;
+    accumulated += needed;
+    overall++;
+  }
+  return overall;
+}
 
 // ─── Partida del usuario ─────────────────────────────────────────────────────
 export async function getCareer(userId: string): Promise<CareerState | null> {
@@ -30,14 +46,27 @@ export async function getCareer(userId: string): Promise<CareerState | null> {
 export async function saveCareer(userId: string, state: CareerState): Promise<void> {
   const supa = createSupabaseServerClient();
   const safe = normalizeCareer(state);
+
+  // H-001-21: Recalcular overall y reputation server-side (no confiar en cliente).
+  const serverOverall = deriveOverallFromXp(safe.progression.xp);
+  // Reputation se deriva de los stats (que ya están acotados por normalizeCareer).
+  const repStats = safe.reputation.stats;
+  const serverReputation =
+    (repStats?.prestigio ?? 0) +
+    (repStats?.carisma ?? 0) +
+    (repStats?.tactica ?? 0) +
+    (repStats?.disciplina ?? 0) +
+    (repStats?.mediatico ?? 0) +
+    (repStats?.cantera ?? 0);
+
   const { error } = await supa.from("modo_carrera_saves").upsert(
     {
       user_id: userId,
       dt_name: (safe.identity.name || "Nuevo DT").slice(0, 40),
       nation_slug: safe.identity.nationSlug,
       philosophy: safe.identity.philosophy,
-      overall: safe.progression.overall,
-      reputation: safe.reputation.total,
+      overall: serverOverall,
+      reputation: serverReputation,
       season: safe.progression.season,
       state: safe,
       updated_at: new Date().toISOString(),

@@ -8,6 +8,7 @@
 // o ?secret=XXX como query.
 
 import { NextResponse } from "next/server";
+import { requireCron } from "@/lib/auth-helpers";
 import { scoreAllBrackets } from "@/lib/predictions/bracket-store";
 
 export const runtime = "nodejs";
@@ -15,15 +16,8 @@ export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
 export async function GET(req: Request) {
-  const expected = process.env.CRON_SECRET;
-  if (expected) {
-    const auth = req.headers.get("authorization");
-    const headerOk = auth === `Bearer ${expected}`;
-    const queryOk = new URL(req.url).searchParams.get("secret") === expected;
-    if (!headerOk && !queryOk) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-    }
-  }
+  const denied = requireCron(req);
+  if (denied) return denied;
 
   const result = await scoreAllBrackets();
   return NextResponse.json({ ok: true, ...result });

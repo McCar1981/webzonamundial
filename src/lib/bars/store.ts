@@ -258,12 +258,24 @@ const EDITABLE_FIELDS = [
   "theme_id", "cta_label", "entry_fee_note", "status",
 ] as const;
 
+/** H-001-13: quita tags HTML y control chars de texto libre. */
+function sanitizeText(raw: unknown): string | null {
+  if (typeof raw !== "string") return null;
+  const cleaned = raw.replace(/<[^]*?>/g, "").replace(/[\x00-\x1F\x7F]/g, "").trim();
+  return cleaned || null;
+}
+
 /** Actualiza campos editables del bar del dueño. Ignora claves no permitidas. */
 export async function updateBar(uid: string, patch: Record<string, unknown>): Promise<BarRow | null> {
   const admin = adminClient();
   const update: Record<string, unknown> = { updated_at: new Date().toISOString() };
   for (const k of EDITABLE_FIELDS) {
-    if (k in patch && patch[k] !== undefined) update[k] = patch[k];
+    if (k in patch && patch[k] !== undefined) {
+      const val = patch[k];
+      // Sanitizar campos de texto libre (H-001-13)
+      const textFields = ["name", "description", "welcome_message", "address", "city", "phone", "instagram", "website", "cta_label", "entry_fee_note"];
+      update[k] = textFields.includes(k) ? sanitizeText(val) ?? val : val;
+    }
   }
   const { data } = await admin.from("bars").update(update)
     .eq("owner_user_id", uid).select("*").maybeSingle();
@@ -322,9 +334,13 @@ export async function createPrize(uid: string, barId: string, input: PrizeInput)
   const bar = await getBarById(barId);
   if (!bar || bar.owner_user_id !== uid) return null;
   const { data } = await admin.from("bar_prizes").insert({
-    bar_id: barId, title: input.title.trim().slice(0, 120),
-    description: input.description?.trim() || null, prize_type: input.prizeType || "principal",
-    conditions: input.conditions?.trim() || null, valid_until: input.validUntil || null,
+    bar_id: barId,
+    // H-001-13: sanitizar texto libre
+    title: sanitizeText(input.title)?.slice(0, 120) ?? input.title.trim().slice(0, 120),
+    description: sanitizeText(input.description) ?? null,
+    prize_type: input.prizeType || "principal",
+    conditions: sanitizeText(input.conditions) ?? null,
+    valid_until: input.validUntil || null,
   }).select("*").single();
   return (data as BarPrize | null) ?? null;
 }

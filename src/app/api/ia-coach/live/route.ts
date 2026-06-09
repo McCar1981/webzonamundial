@@ -16,6 +16,7 @@ import { buildMeta } from "@/lib/match-center/store";
 import { buildLiveContext } from "@/lib/ia-coach/live-context";
 import { generateLiveAnalysis } from "@/lib/ia-coach/live-client";
 import { LIVE_PROMPT_VERSION } from "@/lib/ia-coach/live-system-prompt";
+import { getCurrentUser, rateLimitByUser } from "@/lib/auth-helpers";
 import type {
   IACoachLiveAnalysis,
   IACoachLiveResponse,
@@ -45,6 +46,15 @@ function kvEnabled(): boolean {
 }
 
 export async function POST(req: Request) {
+  const user = await getCurrentUser();
+  if (!user) {
+    return errorResponse("unauthorized", 401);
+  }
+  const rl = await rateLimitByUser(user.id, "ia-coach:live", 10, 60);
+  if (rl.limited) {
+    return errorResponse("rate_limited", 429);
+  }
+
   let body: Body;
   try {
     body = (await req.json()) as Body;

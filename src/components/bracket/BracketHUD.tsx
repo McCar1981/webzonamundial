@@ -44,7 +44,7 @@ export default function BracketHUD({
           <div className={styles.hudTitle}>
             Bracket Challenge<span> · 2026</span>
           </div>
-          <div className={styles.hudEyebrow}>// predice tu mundial</div>
+          <div className={styles.hudEyebrow}>{/* predice tu mundial */}</div>
         </div>
       </div>
 

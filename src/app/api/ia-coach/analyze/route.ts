@@ -14,6 +14,7 @@ import { NextResponse } from "next/server";
 import { buildContext } from "@/lib/ia-coach/context-builder";
 import { generateAnalysis } from "@/lib/ia-coach/anthropic-client";
 import { readCache, writeCache } from "@/lib/ia-coach/cache";
+import { getCurrentUser, rateLimitByUser } from "@/lib/auth-helpers";
 import type { BracketMatch } from "@/lib/bracket/types";
 import type {
   IACoachResponse,
@@ -32,6 +33,15 @@ interface Body {
 }
 
 export async function POST(req: Request) {
+  const user = await getCurrentUser();
+  if (!user) {
+    return errorResponse("unauthorized", 401);
+  }
+  const rl = await rateLimitByUser(user.id, "ia-coach:analyze", 10, 60);
+  if (rl.limited) {
+    return errorResponse("rate_limited", 429);
+  }
+
   let body: Body;
   try {
     body = (await req.json()) as Body;

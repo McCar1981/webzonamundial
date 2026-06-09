@@ -11,6 +11,7 @@
  */
 
 import { NextResponse } from "next/server";
+import { requireCron } from "@/lib/auth-helpers";
 import { recordHeartbeat } from "@/lib/ops/store";
 import { revalidatePath } from "next/cache";
 import { ingestNews, titleFingerprint, type IngestResult } from "@/lib/noticias-ingest";
@@ -29,20 +30,8 @@ import { broadcastPush } from "@/lib/push-notifications";
 import type { DraftNoticia } from "@/lib/noticias-ingest";
 
 export async function GET(req: Request) {
-  // Auth: Vercel Cron sends Authorization: Bearer ${CRON_SECRET}
-  // También aceptamos ?secret=XXX como query param para poder
-  // invocar el cron manualmente desde el navegador (debug). El
-  // secret nunca se logea ni se devuelve en la respuesta.
-  const expected = process.env.CRON_SECRET;
-  if (expected) {
-    const auth = req.headers.get("authorization");
-    const headerOk = auth === `Bearer ${expected}`;
-    const querySecret = new URL(req.url).searchParams.get("secret");
-    const queryOk = querySecret === expected;
-    if (!headerOk && !queryOk) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-    }
-  }
+  const denied = requireCron(req);
+  if (denied) return denied;
 
   // Lock distribuido: solo una ingesta escribe el store a la vez. Si el cron
   // horario y un run manual se cruzan, sin esto el segundo write pisa al primero

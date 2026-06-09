@@ -11,6 +11,8 @@
 
 import type { Metadata } from "next";
 import Link from "next/link";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -141,6 +143,21 @@ async function runChecks(): Promise<CheckResult[]> {
 const GOLD = "#c9a84c", GOLD2 = "#e8d48b", BG = "#060B14", BG2 = "#0B1825";
 
 export default async function AuthDebugPage() {
+  // Protección en producción: solo accesible si se posee la cookie
+  // de sesión de admin. En dev/local siempre permitido.
+  const isProd = process.env.NODE_ENV === "production";
+  if (isProd) {
+    const cookieStore = cookies();
+    const adminSession = cookieStore.get("admin_session")?.value;
+    // El valor debe coincidir con un hash/admin token configurado.
+    // Si no coincide, actuamos como si la página no existiera (404).
+    const adminToken = process.env.ADMIN_DEBUG_TOKEN;
+    const hasAdminAccess = adminSession && adminToken && adminSession === adminToken;
+    if (!hasAdminAccess) {
+      redirect("/login");
+    }
+  }
+
   const checks = await runChecks();
   const allOk = checks.every((c) => c.ok);
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";

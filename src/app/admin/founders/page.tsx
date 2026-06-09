@@ -17,7 +17,9 @@ export const metadata: Metadata = {
 };
 
 // Refresca cada 60s para que el panel refleje los pagos recientes.
-export const revalidate = 60;
+// Páginas admin deben ser dinámicas (no prerenderizables): leen datos
+// en vivo de KV y pueden contener PII. H-000-01
+export const dynamic = "force-dynamic";
 
 function censorEmail(email: string): string {
   const [local, domain] = email.split("@");

@@ -9,6 +9,7 @@
 // acepta ?secret=XXX para disparo manual de debug.
 
 import { NextRequest, NextResponse } from "next/server";
+import { requireCron } from "@/lib/auth-helpers";
 import { runMatchReminders } from "@/lib/match-reminders";
 import { recordHeartbeat } from "@/lib/ops/store";
 
@@ -17,15 +18,8 @@ export const dynamic = "force-dynamic";
 export const maxDuration = 300;
 
 export async function GET(req: NextRequest) {
-  const expected = process.env.CRON_SECRET;
-  if (expected) {
-    const auth = req.headers.get("authorization");
-    const headerOk = auth === `Bearer ${expected}`;
-    const queryOk = new URL(req.url).searchParams.get("secret") === expected;
-    if (!headerOk && !queryOk) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-    }
-  }
+  const denied = requireCron(req);
+  if (denied) return denied;
 
   try {
     const reminders = await runMatchReminders();

@@ -33,21 +33,21 @@ export async function GET(req: Request) {
   const url = new URL(req.url);
   const onlyMe = url.searchParams.get("only") === "me";
   const limit = Number(url.searchParams.get("limit")) || 50;
-  const module = parseModule(url.searchParams.get("module"));
+  const mod = parseModule(url.searchParams.get("module"));
 
   const user = await getCurrentUser();
   const me = user
-    ? module
-      ? await getModuleUserRank(module, user.id)
+    ? mod
+      ? await getModuleUserRank(mod, user.id)
       : await getUserRank(user.id)
     : null;
 
   if (onlyMe) {
-    return NextResponse.json({ module, me }, { headers: { "Cache-Control": "no-store" } });
+    return NextResponse.json({ module: mod, me }, { headers: { "Cache-Control": "no-store" } });
   }
 
-  const entries = module
-    ? await getModuleCoinRanking(module, limit)
+  const entries = mod
+    ? await getModuleCoinRanking(mod, limit)
     : await getGlobalCoinRanking(limit);
-  return NextResponse.json({ module, entries, me }, { headers: { "Cache-Control": "no-store" } });
+  return NextResponse.json({ module: mod, entries, me }, { headers: { "Cache-Control": "no-store" } });
 }

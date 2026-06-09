@@ -106,7 +106,7 @@ export async function GET(request: Request) {
               display: "flex",
             }}
           >
-            // FOUNDER #{num}
+            {/* FOUNDER #{num} */}
           </div>
           <div
             style={{

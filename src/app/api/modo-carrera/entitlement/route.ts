@@ -23,7 +23,7 @@ export async function GET() {
   }
   let paseDT = false;
   try {
-    paseDT = await isPaseDT(user.email);
+    paseDT = await isPaseDT(user.email, user.id);
   } catch {
     // Degrada a sin acceso: nunca concedemos premium ante un fallo de KV.
     paseDT = false;

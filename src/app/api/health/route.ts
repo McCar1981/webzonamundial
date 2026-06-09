@@ -54,13 +54,14 @@ const REQUIRED_ENV_VARS = [
   "CRON_SECRET",
 ] as const;
 
-function checkEnvVars(): CheckResult & { missing?: string[] } {
+function checkEnvVars(): CheckResult {
   const missing: string[] = [];
   for (const key of REQUIRED_ENV_VARS) {
     if (!process.env[key]) missing.push(key);
   }
   if (missing.length > 0) {
-    return { ok: false, error: "env_vars_missing", missing };
+    // H-001-26: no exponer qué variables faltan (info disclosure).
+    return { ok: false, error: `env_vars_missing (${missing.length})` };
   }
   return { ok: true };
 }
@@ -160,7 +161,8 @@ export async function GET() {
     },
     timestamp: new Date().toISOString(),
     uptime_s: Math.round((Date.now() - PROCESS_START_MS) / 1000),
-    region: process.env.VERCEL_REGION ?? null,
+    // H-001-26: no exponer región ni uptime (info disclosure mínima).
+    // region: process.env.VERCEL_REGION ?? null,
   };
 
   return NextResponse.json(response, {

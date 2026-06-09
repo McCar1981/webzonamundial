@@ -6,6 +6,7 @@
 // crons (Bearer CRON_SECRET o ?secret=).
 
 import { NextResponse } from "next/server";
+import { requireCron } from "@/lib/auth-helpers";
 import { recordHeartbeat } from "@/lib/ops/store";
 import { generateQuestions } from "@/lib/trivia/generator";
 import { addToBank, getQuestionBank } from "@/lib/trivia/store";
@@ -17,15 +18,8 @@ export const dynamic = "force-dynamic";
 export const maxDuration = 120;
 
 export async function GET(req: Request) {
-  const expected = process.env.CRON_SECRET;
-  if (expected) {
-    const auth = req.headers.get("authorization");
-    const headerOk = auth === `Bearer ${expected}`;
-    const querySecret = new URL(req.url).searchParams.get("secret");
-    if (!headerOk && querySecret !== expected) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-    }
-  }
+  const denied = requireCron(req);
+  if (denied) return denied;
 
   const url = new URL(req.url);
   const count = Math.min(

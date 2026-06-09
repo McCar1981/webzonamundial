@@ -9,6 +9,7 @@
 // configuremos. Plan Hobby de Vercel permite 1/min, suficiente.
 
 import { NextRequest, NextResponse } from "next/server";
+import { requireCron } from "@/lib/auth-helpers";
 import { CREADORES } from "@/data/creadores";
 import { getLiveStreams } from "@/lib/creators-live/twitch";
 import {
@@ -23,17 +24,8 @@ export const dynamic = "force-dynamic";
 export const maxDuration = 30;
 
 export async function GET(req: NextRequest) {
-  // Auth.
-  const expected = process.env.CRON_SECRET;
-  if (expected) {
-    const auth = req.headers.get("authorization");
-    const headerOk = auth === `Bearer ${expected}`;
-    const querySecret = new URL(req.url).searchParams.get("secret");
-    const queryOk = querySecret === expected;
-    if (!headerOk && !queryOk) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-    }
-  }
+  const denied = requireCron(req);
+  if (denied) return denied;
 
   // 1. Build mapa twitchUser \u2192 creator del repo (solo los que tienen Twitch).
   type CreatorRef = {

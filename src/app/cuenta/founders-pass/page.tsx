@@ -8,7 +8,13 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { requireUser } from "@/lib/auth-helpers";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { getFounderRecord, getFoundersCount, isFounder } from "@/lib/founders/store";
+import {
+  getFounderRecord,
+  getFounderRecordByUserId,
+  getFoundersCount,
+  isFounder,
+  isFounderByUserId,
+} from "@/lib/founders/store";
 import FoundersActions from "./FoundersActions";
 import PurchaseSuccessBanner from "./PurchaseSuccessBanner";
 
@@ -42,8 +48,14 @@ export default async function FoundersPassPage() {
     data: { user },
   } = await supabase.auth.getUser();
   const email = user?.email ?? "";
-  const founder = email ? await isFounder(email) : false;
-  const record = founder ? await getFounderRecord(email) : null;
+  const userId = user?.id ?? "";
+  // Lookup robusto: primero por email, luego por user_id (sobrevive cambio de email).
+  const founderByEmail = email ? await isFounder(email) : false;
+  const founderByUserId = !founderByEmail && userId ? await isFounderByUserId(userId) : false;
+  const founder = founderByEmail || founderByUserId;
+  const record = founder
+    ? (founderByEmail ? await getFounderRecord(email) : userId ? await getFounderRecordByUserId(userId) : null)
+    : null;
   const totalFounders = founder ? await getFoundersCount() : 0;
 
   return (
@@ -182,7 +194,7 @@ function BuyCard() {
         <li>📊 <b>Estadísticas avanzadas</b> (xG, mapas de calor, comparativas)</li>
         <li>🚀 <b>Beta access</b> a nuevas funcionalidades</li>
         <li>💎 <b>Sticker pack exclusivo</b> para WhatsApp e Instagram</li>
-        <li>🏅 <b>Insignia "Founders"</b> permanente en tu perfil</li>
+        <li>🏅 <b>Insignia &quot;Founders&quot;</b> permanente en tu perfil</li>
       </ul>
 
       <Link

@@ -7,6 +7,7 @@
 import { NextResponse } from "next/server";
 import { narrateAll } from "@/lib/match-center/narrator";
 import { buildMeta } from "@/lib/match-center/store";
+import { getCurrentUser, rateLimitByUser } from "@/lib/auth-helpers";
 import type { MatchEvent } from "@/lib/match-center/types";
 
 export const runtime = "nodejs";
@@ -14,6 +15,15 @@ export const dynamic = "force-dynamic";
 export const maxDuration = 20;
 
 export async function POST(req: Request) {
+  const user = await getCurrentUser();
+  if (!user) {
+    return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  }
+  const rl = await rateLimitByUser(user.id, "match-center:narrate", 20, 60);
+  if (rl.limited) {
+    return NextResponse.json({ error: "rate_limited" }, { status: 429 });
+  }
+
   let body: { matchId?: number; events?: MatchEvent[] };
   try {
     body = await req.json();

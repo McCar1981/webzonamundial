@@ -123,6 +123,21 @@ export async function deletePushSubscription(
   }
 }
 
+/** H-001-24: devuelve el user_id de una subscription (null si no existe o es anónima). */
+export async function getPushSubscriptionOwner(endpoint: string): Promise<string | null> {
+  try {
+    const admin = getAdmin();
+    const { data } = await admin
+      .from("push_subscriptions")
+      .select("user_id")
+      .eq("endpoint", endpoint)
+      .maybeSingle();
+    return (data as { user_id?: string | null } | null)?.user_id ?? null;
+  } catch {
+    return null;
+  }
+}
+
 /**
  * Devuelve todas las subscriptions suscritas a un kind dado.
  *

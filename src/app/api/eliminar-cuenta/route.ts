@@ -10,6 +10,7 @@
 
 import { NextResponse } from "next/server";
 import { sendEmail, brandedEmail, escapeHtml } from "@/lib/email";
+import { getCurrentUser } from "@/lib/auth-helpers";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -29,6 +30,14 @@ function isValidEmail(s: string): boolean {
 }
 
 export async function POST(req: Request) {
+  const user = await getCurrentUser();
+  if (!user || !user.email) {
+    return NextResponse.json(
+      { ok: false, error: "Se requiere iniciar sesión" },
+      { status: 401 },
+    );
+  }
+
   let body: DeleteRequestBody;
   try {
     body = (await req.json()) as DeleteRequestBody;
@@ -40,6 +49,14 @@ export async function POST(req: Request) {
   }
 
   const email = (body.email || "").trim();
+  // H-001-09: el email debe coincidir con el de la sesión para evitar
+  // email-bombing a víctimas arbitrarias.
+  if (email.toLowerCase() !== user.email.toLowerCase()) {
+    return NextResponse.json(
+      { ok: false, error: "El email no coincide con tu cuenta" },
+      { status: 403 },
+    );
+  }
   const username = (body.username || "").trim();
   const motivo = (body.motivo || "").trim().slice(0, 1000);
 

@@ -18,6 +18,7 @@
 // miles, migrar a envío en batches paralelos con Promise.allSettled.
 
 import { NextRequest, NextResponse } from "next/server";
+import { requireCron } from "@/lib/auth-helpers";
 import { recordHeartbeat } from "@/lib/ops/store";
 import { getAllPublicNoticias } from "@/lib/noticias-store";
 import {
@@ -38,18 +39,8 @@ export const maxDuration = 300;
 const SITE = "https://zonamundial.app";
 
 export async function GET(req: NextRequest) {
-  // Auth: Vercel Cron envía Authorization: Bearer ${CRON_SECRET}.
-  // También aceptamos ?secret=XXX para debug manual.
-  const expected = process.env.CRON_SECRET;
-  if (expected) {
-    const auth = req.headers.get("authorization");
-    const headerOk = auth === `Bearer ${expected}`;
-    const querySecret = new URL(req.url).searchParams.get("secret");
-    const queryOk = querySecret === expected;
-    if (!headerOk && !queryOk) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-    }
-  }
+  const denied = requireCron(req);
+  if (denied) return denied;
 
   // 1. Cargar las 5 noticias más recientes.
   //

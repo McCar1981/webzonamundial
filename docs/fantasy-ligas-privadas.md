@@ -1,0 +1,125 @@
+# Módulo de Ligas Privadas (Fantasy)
+
+Ligas cerradas donde managers **reales** compiten entre sí mediante un **código de
+invitación de 6 caracteres**. Es una de las tres superficies de clasificación del
+Fantasy, junto a **Global** (🌍 torneo completo) y **Jornada** (📅 gameweek actual).
+Las privadas se identifican con 🔒.
+
+> Estado: **listo para producción** (Fase 1, backend real en Supabase). Sin app
+> nativa: vive dentro de la webapp en `/app/fantasy/jugar`.
+
+---
+
+## Arquitectura
+
+| Capa | Archivo | Rol |
+|------|---------|-----|
+| UI | `src/app/app/fantasy/jugar/LeaguesView.tsx` | Pestañas, panel crear/unirse, gestión de dueño, toggle Total/Jornada |
+| Cliente HTTP | `src/app/app/fantasy/jugar/api.ts` | Envuelve `/api/fantasy/*`; degrada a `[]`/`null` sin sesión |
+| API REST | `src/app/api/fantasy/leagues/route.ts` | Listar / crear / unirse |
+| API REST | `src/app/api/fantasy/leagues/[id]/route.ts` | Clasificación, renombrar, salir/borrar/expulsar |
+| Lógica server-only | `src/lib/fantasy/leagues.server.ts` | Toda la lógica con `adminClient` (service role) |
+| Código de invitación | `src/lib/predictions/gamification.ts` → `leagueCode()` | Genera el código de 6 chars (alfabeto sin ambiguos) |
+
+**Por qué service role:** la clasificación y la gestión cruzan a varios usuarios,
+que RLS no permite leer entre sí. Igual que las ligas de Predicciones, todo el
+cómputo se hace server-side con el cliente admin que bypassa RLS.
+
+---
+
+## Modelo de datos (Supabase — migración `2026-09-fantasy.sql`)
+
+```
+fantasy_leagues          id, name (≤60), code (único, ≤10), owner_id, created_at
+fantasy_league_members   league_id, user_id, joined_at   (PK compuesta)
+fantasy_teams            user_id, team_name, total_points, gameweek, state(JSONB)
+fantasy_gameweek_scores  user_id, gameweek, points        (PK user_id+gameweek)
+```
+
+- La **clasificación total** ordena por `fantasy_teams.total_points`.
+- La **clasificación por jornada** ordena por `fantasy_gameweek_scores.points` de
+  esa gameweek (mismos miembros).
+- **No se requiere migración nueva** para las mejoras de gestión: todo se enforce
+  en código con el service role.
+
+---
+
+## API
+
+### `GET /api/fantasy/leagues`
+Ligas del usuario. → `{ leagues: FantasyLeague[] }` con `is_owner` por liga.
+
+### `POST /api/fantasy/leagues`
+- `{ name }` → crea liga (el creador queda inscrito y es dueño). `201`.
+- `{ code }` → se une por código. Idempotente si ya es miembro.
+
+Errores (`{ ok:false, error }`):
+
+| error | HTTP | Significado |
+|-------|------|-------------|
+| `bad_name` | 400 | Nombre vacío tras normalizar |
+| `too_many_leagues` | 409 | Superó el tope de creadas/unidas |
+| `invalid_code` | 400 | El código no tiene 6 chars válidos |
+| `league_not_found` | 404 | No existe liga con ese código |
+| `league_full` | 409 | Liga al máximo de miembros |
+
+### `GET /api/fantasy/leagues/{id}?gw=N`
+Clasificación (solo miembros, `403` si no). `gw` opcional → ranking de esa jornada.
+→ `{ standings, is_owner, gameweek }`.
+
+### `PATCH /api/fantasy/leagues/{id}`  `{ name }`
+Renombra. **Solo dueño** (`403` si no).
+
+### `DELETE /api/fantasy/leagues/{id}`
+- Sin body: **miembro** → sale; **dueño** → borra la liga entera (cascade).
+- `{ memberId }`: **dueño** expulsa a ese miembro.
+
+→ `{ ok:true, action: "left" | "deleted" | "kicked" }`.
+
+---
+
+## Reglas de negocio
+
+1. **Crear**: genera código único (hasta 5 reintentos anticolisión); el creador
+   queda inscrito automáticamente como dueño.
+2. **Unirse**: por código normalizado a mayúsculas; idempotente (no duplica ni
+   consume cupo si ya eres miembro).
+3. **Gestión del dueño** (👑): renombrar, expulsar miembros, borrar la liga. El
+   dueño no puede expulsarse a sí mismo: para irse, borra la liga.
+4. **Autorización**: solo miembros leen la clasificación; solo el dueño gestiona.
+5. **Invitados (sin sesión)**: ven una previsualización **simulada con bots** y un
+   CTA de login. Nunca compiten de verdad hasta iniciar sesión.
+
+### Topes anti-abuso (`leagues.server.ts`)
+
+| Constante | Valor | Motivo |
+|-----------|-------|--------|
+| `MAX_MEMBERS_PER_LEAGUE` | 100 | Acota relleno/spam y mantiene las consultas baratas |
+| `MAX_LEAGUES_OWNED` | 20 | Evita creación masiva de ligas por un usuario |
+| `MAX_LEAGUES_JOINED` | 50 | Evita unirse a un número absurdo de ligas |
+
+---
+
+## Decisión: SIN premios en Fútcoins por ganar liga privada
+
+Los puntos del Fantasy son **cliente-autoritativos** (ver
+`src/lib/economy/earn.ts` y la economía unificada). Pagar Fútcoins al ganador de
+una liga privada abriría un vector de farmeo: crear una liga con cuentas alt,
+"ganarla" y cobrar. Hasta endurecer el anti-cheat (recomputar puntos server-side),
+**las ligas privadas no abonan economía**: solo dan estatus/ranking social.
+
+Trabajo futuro cuando el scoring sea server-autoritativo: premio acotado al ganador
+de una liga con N miembros reales mínimos, vía `grantCoins(..., module: "fantasy")`.
+
+---
+
+## Pruebas manuales recomendadas antes de producción
+
+- [ ] Crear liga → aparece pestaña 🔒 con código; soy 👑 dueño.
+- [ ] Unirse desde otra cuenta con el código → cuenta de miembros sube.
+- [ ] Toggle **Total / Jornada** cambia el orden de la tabla.
+- [ ] Dueño renombra → el nombre cambia para todos.
+- [ ] Dueño expulsa a un miembro → desaparece de la tabla.
+- [ ] Miembro pulsa "Salir" → deja la liga; dueño pulsa "Borrar liga" → desaparece para todos.
+- [ ] Código inválido / inexistente → mensaje claro, sin romper la vista.
+- [ ] Invitado (sesión cerrada) → ve preview simulada + CTA login.

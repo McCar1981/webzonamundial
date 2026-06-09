@@ -19,11 +19,11 @@ export interface FantasyRankEntry {
 }
 
 export interface FantasyLeague {
-  id: string; name: string; code: string; owner_id: string; member_count: number;
+  id: string; name: string; code: string; owner_id: string; member_count: number; is_owner: boolean;
 }
 
 export interface FantasyLeagueStanding {
-  position: number; user_id: string; team_name: string; display_name: string; avatar_url: string | null; points: number;
+  position: number; user_id: string; team_name: string; display_name: string; avatar_url: string | null; points: number; is_owner: boolean;
 }
 
 /** Equipo guardado en el servidor + creador del registro (para branding). */
@@ -134,7 +134,7 @@ export async function createServerLeague(name: string): Promise<{ ok: boolean; l
       body: JSON.stringify({ name }),
     });
     const data = (await res.json()) as { ok?: boolean; league?: FantasyLeague; error?: string };
-    return { ok: res.ok, league: data.league, error: data.error };
+    return { ok: res.ok && data.ok !== false, league: data.league, error: data.error };
   } catch {
     return { ok: false, error: "network" };
   }
@@ -154,20 +154,56 @@ export async function joinServerLeague(code: string): Promise<{ ok: boolean; lea
   }
 }
 
-export async function fetchLeagueStandings(id: string): Promise<FantasyLeagueStanding[]> {
+/** Clasificación de una liga. `gw` opcional → ranking de esa jornada (no el total). */
+export async function fetchLeagueStandings(
+  id: string,
+  gw?: number,
+): Promise<{ standings: FantasyLeagueStanding[]; is_owner: boolean }> {
   try {
-    const res = await fetch(`/api/fantasy/leagues/${id}`, { cache: "no-store" });
-    if (!res.ok) return [];
-    const data = (await res.json()) as { standings: FantasyLeagueStanding[] };
-    return data.standings ?? [];
+    const qs = gw ? `?gw=${gw}` : "";
+    const res = await fetch(`/api/fantasy/leagues/${id}${qs}`, { cache: "no-store" });
+    if (!res.ok) return { standings: [], is_owner: false };
+    const data = (await res.json()) as { standings: FantasyLeagueStanding[]; is_owner?: boolean };
+    return { standings: data.standings ?? [], is_owner: data.is_owner ?? false };
   } catch {
-    return [];
+    return { standings: [], is_owner: false };
   }
 }
 
-export async function leaveServerLeague(id: string): Promise<boolean> {
+/** Abandonar (miembro) o borrar (dueño) la liga. Devuelve la acción aplicada. */
+export async function leaveServerLeague(id: string): Promise<"left" | "deleted" | null> {
   try {
     const res = await fetch(`/api/fantasy/leagues/${id}`, { method: "DELETE" });
+    if (!res.ok) return null;
+    const data = (await res.json()) as { action?: "left" | "deleted" };
+    return data.action ?? "left";
+  } catch {
+    return null;
+  }
+}
+
+/** Renombra una liga (solo dueño). */
+export async function renameServerLeague(id: string, name: string): Promise<boolean> {
+  try {
+    const res = await fetch(`/api/fantasy/leagues/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name }),
+    });
+    return res.ok;
+  } catch {
+    return false;
+  }
+}
+
+/** Expulsa a un miembro de la liga (solo dueño). */
+export async function kickServerMember(id: string, memberId: string): Promise<boolean> {
+  try {
+    const res = await fetch(`/api/fantasy/leagues/${id}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ memberId }),
+    });
     return res.ok;
   } catch {
     return false;

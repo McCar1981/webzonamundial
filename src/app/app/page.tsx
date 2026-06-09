@@ -14,6 +14,7 @@
 import Link from "next/link";
 import { useEffect, useState, useCallback } from "react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
+import StoryViewer from "@/components/stories/StoryViewer";
 
 /* ─────────── Paleta: navy base + cards claras + dorado de acento ─────────── */
 const NAVY = "#0a1729";
@@ -950,6 +951,11 @@ export default function AppHubPage() {
             </div>
           </section>
         )}
+
+        {/* ═══ Stories (burbujas estilo IG) — se ocultan si no hay ninguna ═══ */}
+        <div style={{ marginBottom: 26 }}>
+          <StoryViewer hideWhenEmpty />
+        </div>
 
         {/* ═══ 5 + 6. CATEGORÍAS con subtítulo ═══ */}
         {CATS.map((cat, i) => (

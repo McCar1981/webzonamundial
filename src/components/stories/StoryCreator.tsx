@@ -206,10 +206,13 @@ export default function StoryCreator() {
         setPublishedId(json.story.id);
       } else {
         // Mensaje claro de por qué no se creó (sesión caducada, validación…).
+        // Si el backend manda `detail` (causa real del fallo), lo mostramos.
         setPublishError(
           res.status === 401
             ? "Inicia sesión para publicar tu Story."
-            : json.error || "No se pudo crear la Story. Inténtalo de nuevo."
+            : json.detail
+              ? `No se pudo crear: ${json.detail}`
+              : json.error || "No se pudo crear la Story. Inténtalo de nuevo."
         );
       }
     } catch {

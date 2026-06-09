@@ -11,7 +11,11 @@ import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
 import { getCareer, saveCareer, settleCareerMissionRewards } from "@/lib/modo-carrera/store.server";
 import { allowSave, SAVE_WINDOW_SEC } from "@/lib/modo-carrera/save-rate-limit";
+import { consumeSeasonQuota } from "@/lib/modo-carrera/season-quota";
 import type { CareerState } from "@/lib/modo-carrera/types";
+import { isPro } from "@/lib/pro/entitlement";
+import { FREE_LIMITS, PRO_REQUIRED_CODE } from "@/lib/pro/limits";
+import { trackLimitHit } from "@/lib/pro/metrics";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -44,6 +48,31 @@ export async function PUT(req: Request) {
       { error: "rate_limited", message: "Demasiados guardados seguidos." },
       { status: 429, headers: { "Retry-After": String(SAVE_WINDOW_SEC) } },
     );
+  }
+
+  // ── Cupo de temporadas del plan Free ──
+  // Si este guardado arranca una temporada NUEVA (progression.season sube
+  // respecto a lo persistido), consume cupo: máx. N temporadas y lockout de
+  // 12h al agotarlas. Pro = ilimitado. El primer sync de una carrera local no
+  // cuenta (no hay estado previo con el que comparar).
+  const stored = await getCareer(user.id);
+  const startsNewSeason =
+    !!stored && (state.progression?.season ?? 0) > (stored.progression?.season ?? 0);
+  if (startsNewSeason && !(await isPro(user.id, user.email))) {
+    const q = await consumeSeasonQuota(user.id);
+    if (!q.allowed) {
+      trackLimitHit("carrera_seasons");
+      return NextResponse.json(
+        {
+          error: `Has jugado tus ${FREE_LIMITS.carrera.maxSeasonsPerDay} temporadas. Continúa en unas horas o pásate a Pro para jugar sin límite.`,
+          code: PRO_REQUIRED_CODE,
+          feature: "carrera_seasons",
+          limit: FREE_LIMITS.carrera.maxSeasonsPerDay,
+          retry_at: q.retryAt,
+        },
+        { status: 403 },
+      );
+    }
   }
 
   await saveCareer(user.id, state);

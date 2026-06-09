@@ -543,6 +543,25 @@ export default function AppHubPage() {
     return () => { on = false; };
   }, []);
 
+  // Reveal-on-scroll: las secciones marcadas con data-reveal entran con fade+lift
+  // al asomar en el viewport, y sus hijos (cards, stats, filas) escalonan por CSS.
+  // Se re-ejecuta cuando llegan datos async (match/ranking) porque esos bloques se
+  // montan tarde. Si el usuario pide reduced-motion, no se anima nada.
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const els = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]:not(.zm-in)"));
+    if (!els.length) return;
+    els.forEach((el) => el.classList.add("zm-reveal"));
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((en) => {
+        if (en.isIntersecting) { en.target.classList.add("zm-in"); io.unobserve(en.target); }
+      }),
+      { threshold: 0.1, rootMargin: "0px 0px -6% 0px" },
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, [authed, match, topGlobal]);
+
   const live = match ? IN_PLAY.has(match.status) : false;
   const finished = match ? FINISHED.has(match.status) : false;
   const matchHref = match ? `/app/matchcenter/${match.slug}` : "/app/matchcenter";
@@ -621,7 +640,7 @@ export default function AppHubPage() {
   } : null;
   const heroBase: HeroCfg = {
     id: "base", kind: "base", accent: GOLD2, accent2: GOLD, ctaInk: NAVY, eyebrow: "Mundial 2026",
-    title: <>Tu centro vivo del <span style={{ background: `linear-gradient(135deg,${GOLD},${GOLD2})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Mundial</span></>,
+    title: <>Tu centro vivo del <span className="zm-shimmer" style={{ background: `linear-gradient(110deg,${GOLD},${GOLD2},#fff7dd,${GOLD2},${GOLD})`, backgroundSize: "220% 100%", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Mundial</span></>,
     desc: "Sigue el partido del día, entra al Match Center y compite con tus predicciones.",
     art: "/assets/card-backgrounds/predicciones.webp",
     cta1: { label: "Ver partido del día", href: matchHref },
@@ -631,7 +650,7 @@ export default function AppHubPage() {
     id: "reto", kind: "reto", accent: GREEN, accent2: "#7ce0b3", ctaInk: "#072019",
     icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v5c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V7l8-4ZM9 12l2 2 4-4" stroke="#072019" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>,
     eyebrow: "Reto diario",
-    title: <>Trivia <span style={{ background: `linear-gradient(135deg,${GREEN},#7ce0b3)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>disponible</span></>,
+    title: <>Trivia <span className="zm-shimmer" style={{ background: `linear-gradient(110deg,${GREEN},#7ce0b3,#d8fff0,#7ce0b3,${GREEN})`, backgroundSize: "220% 100%", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>disponible</span></>,
     desc: "Responde y suma puntos extra para el ranking.",
     art: "/assets/card-backgrounds/trivia-diaria.webp",
     cta1: { label: "Responder trivia", href: "/app/trivia" },
@@ -672,14 +691,22 @@ export default function AppHubPage() {
   const mcAccent = live ? CORAL : finished ? "#8a93a3" : GOLD;
 
   return (
-    <div style={{ minHeight: "100vh", background: `radial-gradient(1200px 600px at 50% -10%, #12284a 0%, ${NAVY} 55%)`, color: TXT, fontFamily: "'Outfit',sans-serif", overflowX: "hidden" }}>
+    <div style={{ position: "relative", minHeight: "100vh", backgroundColor: NAVY, backgroundImage: `radial-gradient(1200px 600px at 50% -10%, #12284a 0%, ${NAVY} 55%), radial-gradient(circle at 1px 1px, rgba(255,255,255,0.022) 1px, transparent 1.6px)`, backgroundSize: "100% 100%, 22px 22px", color: TXT, fontFamily: "'Outfit',sans-serif", overflowX: "hidden" }}>
+      {/* filo dorado superior: marca premium de la app */}
+      <span aria-hidden style={{ position: "fixed", top: 0, left: 0, right: 0, height: 2, zIndex: 60, background: `linear-gradient(90deg, transparent, ${GOLD}aa 30%, ${GOLD2} 50%, ${GOLD}aa 70%, transparent)`, pointerEvents: "none" }} />
+      {/* luces ambientales: dos glows enormes que derivan lentísimo tras el contenido
+          (transform-only → baratos). Dan profundidad de "estadio de noche". */}
+      <span aria-hidden className="zm-bg-blob" style={{ position: "absolute", top: 420, left: "-12%", width: 560, height: 560, borderRadius: "50%", background: "radial-gradient(circle, rgba(201,168,76,0.08), transparent 65%)", pointerEvents: "none", zIndex: 0 }} />
+      <span aria-hidden className="zm-bg-blob zm-bg-blob--2" style={{ position: "absolute", top: 1300, right: "-14%", width: 640, height: 640, borderRadius: "50%", background: "radial-gradient(circle, rgba(52,185,196,0.07), transparent 65%)", pointerEvents: "none", zIndex: 0 }} />
       <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
       <style>{`*{box-sizing:border-box}::selection{background:rgba(201,168,76,.3)}@keyframes zmpulse{0%,100%{opacity:1}50%{opacity:.4}}@keyframes zmHeroIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}@keyframes zmHeroArtIn{from{opacity:0}to{opacity:.62}}.zm-hero{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;height:264px}@media(max-width:560px){.zm-hero{height:320px}.zm-open-cta{padding:9px 16px!important;font-size:13.5px!important}}@media(min-width:561px){.zm-hero-art--text{object-position:center 62%!important;opacity:.72!important;-webkit-mask-image:linear-gradient(90deg,transparent 4%,rgba(0,0,0,.6) 34%,#000 64%)!important;mask-image:linear-gradient(90deg,transparent 4%,rgba(0,0,0,.6) 34%,#000 64%)!important}}.zm-hero-slide{animation:zmHeroIn .5s ease both}.zm-hero-art{animation:zmHeroArtIn .6s ease both}@media (prefers-reduced-motion: reduce){.zm-hero-slide,.zm-hero-art{animation:none}}`}</style>
 
-      <div style={{ maxWidth: 1080, margin: "0 auto", padding: "14px 14px 110px" }}>
+      <div style={{ position: "relative", zIndex: 1, maxWidth: 1080, margin: "0 auto", padding: "14px 14px 110px" }}>
 
-        {/* ═══ 1. HEADER COMPACTO ═══ */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, padding: "10px 14px", borderRadius: 14, background: "rgba(255,255,255,0.04)", border: `1px solid ${LINE}`, marginBottom: 18 }}>
+        {/* ═══ 1. HEADER COMPACTO (sticky, cristal) ═══
+            Se queda pegado arriba al hacer scroll: la identidad (saldo, nivel,
+            perfil) siempre visible sin robar altura — blur + navy translúcido. */}
+        <div style={{ position: "sticky", top: 8, zIndex: 50, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, padding: "10px 14px", borderRadius: 14, background: "rgba(12,27,50,0.78)", backdropFilter: "blur(14px) saturate(140%)", WebkitBackdropFilter: "blur(14px) saturate(140%)", border: `1px solid ${LINE}`, boxShadow: "0 10px 30px rgba(0,0,0,0.28)", marginBottom: 18 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
             <span style={{ width: 30, height: 30, borderRadius: 8, background: `linear-gradient(135deg,${GOLD},${GOLD2})`, display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke={NAVY} strokeWidth="1.6" /><path d="M12 3v4l3 2M12 3 9 7" stroke={NAVY} strokeWidth="1.4" strokeLinecap="round" /></svg>
@@ -694,8 +721,8 @@ export default function AppHubPage() {
             </div>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
-            {/* Puntos */}
-            <div style={{ display: "flex", alignItems: "center", gap: 5, padding: "6px 11px", borderRadius: 999, background: "rgba(201,168,76,0.12)", border: `1px solid ${GOLD}55` }}>
+            {/* Puntos — barrido de luz periódico sobre la píldora dorada */}
+            <div className="zm-cta-shine" style={{ display: "flex", alignItems: "center", gap: 5, padding: "6px 11px", borderRadius: 999, background: "rgba(201,168,76,0.12)", border: `1px solid ${GOLD}55` }}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 16.5 7.1 18.2l.9-5.5-4-3.9 5.5-.8z" fill={GOLD} /></svg>
               <span style={{ fontSize: 13, fontWeight: 800, color: GOLD2 }}>{authed ? (gam ? gam.coins.toLocaleString() : "·") : "—"}</span>
             </div>
@@ -703,8 +730,10 @@ export default function AppHubPage() {
             {authed && gam && (
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                 <span style={{ fontSize: 11, fontWeight: 800, color: GOLD }}>Nivel {gam.level.level}</span>
-                <div style={{ width: 50, height: 5, borderRadius: 99, background: "rgba(255,255,255,0.07)", overflow: "hidden" }}>
+                <div style={{ position: "relative", width: 50, height: 5, borderRadius: 99, background: "rgba(255,255,255,0.07)", overflow: "hidden" }}>
                   <div style={{ width: `${Math.min(100, ((gam.level.xp % 1000) / 1000) * 100)}%`, height: "100%", borderRadius: 99, background: `linear-gradient(90deg,${GOLD},${GOLD2})` }} />
+                  {/* destello que recorre la barra de XP */}
+                  <span aria-hidden className="zm-xp-shine" style={{ position: "absolute", top: 0, bottom: 0, left: 0, width: 14, background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.75), transparent)" }} />
                 </div>
               </div>
             )}
@@ -715,9 +744,11 @@ export default function AppHubPage() {
                 <span className="zm-hide-sm">Instalar</span>
               </button>
             )}
-            {/* Perfil */}
-            <Link href={authed ? "/cuenta" : "/login"} title="Perfil" style={{ width: 34, height: 34, borderRadius: "50%", display: "inline-flex", alignItems: "center", justifyContent: "center", overflow: "hidden", background: avatar ? "transparent" : "rgba(255,255,255,0.08)", border: `1px solid ${GOLD}55`, color: GOLD2, fontWeight: 800, fontSize: 14, textDecoration: "none", flexShrink: 0 }}>
-              {avatar ? <img src={avatar} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : (username?.[0]?.toUpperCase() || (authed ? "U" : "?"))}
+            {/* Perfil — anillo degradado dorado alrededor del avatar */}
+            <Link href={authed ? "/cuenta" : "/login"} title="Perfil" style={{ width: 36, height: 36, borderRadius: "50%", padding: 2, display: "inline-flex", flexShrink: 0, background: `linear-gradient(135deg,${GOLD},${GOLD2},${GOLD})`, textDecoration: "none", boxShadow: "0 2px 10px rgba(201,168,76,0.3)" }}>
+              <span style={{ width: "100%", height: "100%", borderRadius: "50%", display: "inline-flex", alignItems: "center", justifyContent: "center", overflow: "hidden", background: avatar ? NAVY : "#13294a", color: GOLD2, fontWeight: 800, fontSize: 14 }}>
+                {avatar ? <img src={avatar} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : (username?.[0]?.toUpperCase() || (authed ? "U" : "?"))}
+              </span>
             </Link>
           </div>
         </div>
@@ -752,7 +783,7 @@ export default function AppHubPage() {
                   {hero.kind === "live" && <span className="zm-live-dot" style={{ width: 8, height: 8, borderRadius: "50%", background: hero.accent }} />}
                   {hero.opening.time}
                 </span>
-                <Link href={hero.cta1.href} className="zm-open-cta" style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "12px 22px", borderRadius: 12, background: heroCta1.bg, color: heroCta1.color, fontWeight: 800, fontSize: 15, textDecoration: "none", boxShadow: heroCta1.shadow }}>
+                <Link href={hero.cta1.href} className="zm-open-cta zm-cta-shine" style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "12px 22px", borderRadius: 12, background: heroCta1.bg, color: heroCta1.color, fontWeight: 800, fontSize: 15, textDecoration: "none", boxShadow: heroCta1.shadow }}>
                   {heroCta1.icon}
                   {hero.cta1.label}
                 </Link>
@@ -783,6 +814,8 @@ export default function AppHubPage() {
           <span aria-hidden className="zm-spark zm-spark--1" style={{ position: "absolute", left: "16%", bottom: 24, width: 3, height: 3, borderRadius: "50%", background: hero.accent, pointerEvents: "none" }} />
           <span aria-hidden className="zm-spark zm-spark--2" style={{ position: "absolute", left: "42%", bottom: 18, width: 2, height: 2, borderRadius: "50%", background: GOLD2, pointerEvents: "none" }} />
           <span aria-hidden className="zm-spark zm-spark--3" style={{ position: "absolute", left: "68%", bottom: 30, width: 3, height: 3, borderRadius: "50%", background: hero.accent, pointerEvents: "none" }} />
+          <span aria-hidden className="zm-spark zm-spark--4" style={{ position: "absolute", left: "30%", bottom: 36, width: 2, height: 2, borderRadius: "50%", background: GOLD2, pointerEvents: "none" }} />
+          <span aria-hidden className="zm-spark zm-spark--5" style={{ position: "absolute", left: "84%", bottom: 20, width: 2.5, height: 2.5, borderRadius: "50%", background: hero.accent, pointerEvents: "none" }} />
 
           <div key={hero.id} className="zm-hero-slide" style={{ position: "relative", zIndex: 2, maxWidth: 580 }}>
             <span style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 11, fontWeight: 800, letterSpacing: 2, textTransform: "uppercase", color: hero.accent }}>
@@ -796,7 +829,7 @@ export default function AppHubPage() {
               {hero.desc}
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
-              <Link href={hero.cta1.href} style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "12px 22px", borderRadius: 12, background: heroCta1.bg, color: heroCta1.color, fontWeight: 800, fontSize: 15, textDecoration: "none", boxShadow: heroCta1.shadow }}>
+              <Link href={hero.cta1.href} className="zm-cta-shine" style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "12px 22px", borderRadius: 12, background: heroCta1.bg, color: heroCta1.color, fontWeight: 800, fontSize: 15, textDecoration: "none", boxShadow: heroCta1.shadow }}>
                 {heroCta1.icon}
                 {hero.cta1.label}
               </Link>
@@ -837,7 +870,7 @@ export default function AppHubPage() {
             grandes, VS potente, borde/glow por estado (dorado=próximo, coral=en vivo,
             gris=finalizado) y pulso en vivo. Es la "tele" del partido del día. */}
         {match && (
-          <Link href={matchHref} className={`zm-mc${live ? " zm-mc--live" : ""}`} style={{ position: "relative", display: "block", textDecoration: "none", color: TXT, borderRadius: 22, padding: "20px 18px 18px", marginBottom: 12, overflow: "hidden", background: "linear-gradient(160deg,#103060 0%,#0a1a31 58%,#0b1c36 100%)", border: `2px solid ${mcAccent}77`, boxShadow: live ? `0 24px 56px rgba(0,0,0,0.5), 0 0 0 1px ${mcAccent}66, 0 0 36px ${mcAccent}30` : `0 22px 50px rgba(0,0,0,0.42), 0 0 26px ${mcAccent}1f` }}>
+          <Link href={matchHref} data-reveal className={`zm-mc${live ? " zm-mc--live" : ""}`} style={{ position: "relative", display: "block", textDecoration: "none", color: TXT, borderRadius: 22, padding: "20px 18px 18px", marginBottom: 12, overflow: "hidden", background: "linear-gradient(160deg,#103060 0%,#0a1a31 58%,#0b1c36 100%)", border: `2px solid ${mcAccent}77`, boxShadow: live ? `0 24px 56px rgba(0,0,0,0.5), 0 0 0 1px ${mcAccent}66, 0 0 36px ${mcAccent}30` : `0 22px 50px rgba(0,0,0,0.42), 0 0 26px ${mcAccent}1f` }}>
             {/* focos superiores */}
             <span aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none", background: `radial-gradient(85% 55% at 50% -12%, ${mcAccent}26, transparent 60%)` }} />
             {/* césped/líneas inferiores del estadio */}
@@ -871,7 +904,7 @@ export default function AppHubPage() {
                     {match.score[0]}<span style={{ color: TXT_MUT, margin: "0 6px" }}>-</span>{match.score[1]}
                   </div>
                 ) : (
-                  <div style={{ fontSize: 38, fontWeight: 900, letterSpacing: 2, lineHeight: 1, background: `linear-gradient(135deg,${GOLD},${GOLD2})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", textShadow: "0 2px 16px rgba(201,168,76,0.25)", filter: "drop-shadow(0 2px 10px rgba(201,168,76,0.3))" }}>VS</div>
+                  <div className="zm-vs" style={{ fontSize: 38, fontWeight: 900, letterSpacing: 2, lineHeight: 1, background: `linear-gradient(135deg,${GOLD},${GOLD2})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", textShadow: "0 2px 16px rgba(201,168,76,0.25)", filter: "drop-shadow(0 2px 10px rgba(201,168,76,0.3))" }}>VS</div>
                 )}
                 <div style={{ fontSize: 12.5, fontWeight: 800, color: GOLD2, marginTop: 6 }}>
                   {live ? `${match.elapsed}'` : finished ? "Final" : (match.meta.time || "")}
@@ -894,7 +927,7 @@ export default function AppHubPage() {
             )}
 
             {/* CTA único (no compite con la predicción rápida) */}
-            <span style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", gap: 7, width: "100%", padding: "11px 0", borderRadius: 12, fontWeight: 800, fontSize: 14, color: live ? "#1a0d08" : NAVY, background: live ? `linear-gradient(135deg,${CORAL},#ff9a4a)` : `linear-gradient(135deg,${GOLD},${GOLD2})`, boxShadow: live ? "0 6px 18px rgba(255,107,90,0.35)" : "0 6px 18px rgba(201,168,76,0.28)" }}>
+            <span className="zm-cta-shine" style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", gap: 7, width: "100%", padding: "11px 0", borderRadius: 12, fontWeight: 800, fontSize: 14, color: live ? "#1a0d08" : NAVY, background: live ? `linear-gradient(135deg,${CORAL},#ff9a4a)` : `linear-gradient(135deg,${GOLD},${GOLD2})`, boxShadow: live ? "0 6px 18px rgba(255,107,90,0.35)" : "0 6px 18px rgba(201,168,76,0.28)" }}>
               {live ? "Seguir en directo" : "Ver Match Center"}
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </span>
@@ -905,7 +938,7 @@ export default function AppHubPage() {
             Card delgada que NO compite con el Match Center: solo invita a predecir
             el partido del día. Aquí vive el único "Hacer predicción" de la home. */}
         {match && !finished && (
-          <Link href="/app/predicciones" style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 14px", marginBottom: 24, borderRadius: 14, textDecoration: "none", color: TXT, background: "linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))", border: `1px solid ${LINE}` }}>
+          <Link href="/app/predicciones" className="zm-quick" style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 14px", marginBottom: 24, borderRadius: 14, textDecoration: "none", color: TXT, background: "linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))", border: `1px solid ${LINE}`, transition: "border-color .25s, background .25s, transform .18s" }}>
             <span style={{ width: 40, height: 40, borderRadius: 11, flexShrink: 0, display: "inline-flex", alignItems: "center", justifyContent: "center", background: "rgba(201,168,76,0.14)", border: `1px solid ${GOLD}55` }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M14.5 12a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" stroke={GOLD2} strokeWidth="1.7" strokeLinecap="round" /></svg>
             </span>
@@ -915,7 +948,7 @@ export default function AppHubPage() {
                 {match.meta.home.name} <span style={{ color: TXT_MUT, fontWeight: 600 }}>vs</span> {match.meta.away.name}
               </div>
             </div>
-            <span style={{ flexShrink: 0, display: "inline-flex", alignItems: "center", gap: 6, padding: "9px 15px", borderRadius: 999, fontWeight: 800, fontSize: 13, color: NAVY, background: `linear-gradient(135deg,${GOLD},${GOLD2})`, boxShadow: "0 5px 14px rgba(201,168,76,0.28)" }}>
+            <span className="zm-cta-shine" style={{ flexShrink: 0, display: "inline-flex", alignItems: "center", gap: 6, padding: "9px 15px", borderRadius: 999, fontWeight: 800, fontSize: 13, color: NAVY, background: `linear-gradient(135deg,${GOLD},${GOLD2})`, boxShadow: "0 5px 14px rgba(201,168,76,0.28)" }}>
               Predecir
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke={NAVY} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </span>
@@ -924,20 +957,24 @@ export default function AppHubPage() {
 
         {/* ═══ 4. RANKING / PROGRESO — subido tras el partido destacado ═══ */}
         {authed ? (
-          <section style={{ marginBottom: 26, borderRadius: 18, padding: "18px 18px", background: LIGHT, border: "1px solid rgba(14,28,51,0.06)" }}>
+          <section data-reveal style={{ marginBottom: 26, borderRadius: 18, padding: "18px 18px", background: LIGHT, border: "1px solid rgba(14,28,51,0.06)", boxShadow: "0 16px 36px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.8)" }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14, gap: 12 }}>
               <h2 style={{ fontSize: 16, fontWeight: 800, color: INK }}>Tu progreso</h2>
               <Link href="/app/rankings" style={{ fontSize: 12.5, fontWeight: 800, color: "#8a6a13", textDecoration: "none" }}>Ver ranking →</Link>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(110px,1fr))", gap: 10 }}>
-              <Stat k="Nivel" v={gam ? String(gam.level.level) : "·"} />
-              <Stat k="Fútcoins" v={gam ? gam.coins.toLocaleString() : "·"} />
-              <Stat k="XP" v={gam ? gam.level.xp.toLocaleString() : "·"} />
-              <Stat k="Racha" v={gam ? `${gam.streak.current} días` : "·"} />
+              <Stat k="Nivel" v={gam ? String(gam.level.level) : "·"} tint="#5b8def"
+                icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v5c0 5-3.4 8.4-8 9.8C7.4 20.4 4 16.8 4 12V7l8-4Z" stroke="#5b8def" strokeWidth="1.8" strokeLinejoin="round" /><path d="M9.5 12.5l2 2 3.5-4" stroke="#5b8def" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>} />
+              <Stat k="Fútcoins" v={gam ? gam.coins.toLocaleString() : "·"} tint={GOLD}
+                icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke={GOLD} strokeWidth="1.8" /><path d="M12 8v8M9.5 10.2c.5-.8 1.4-1.2 2.5-1.2 1.5 0 2.5.7 2.5 1.8s-1 1.4-2.5 1.7c-1.5.3-2.5.7-2.5 1.8s1 1.7 2.5 1.7c1.1 0 2-.4 2.5-1.2" stroke={GOLD} strokeWidth="1.5" strokeLinecap="round" /></svg>} />
+              <Stat k="XP" v={gam ? gam.level.xp.toLocaleString() : "·"} tint="#36c98f"
+                icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M13 2 4.5 13.5H11L9.5 22 19 10h-6.5L13 2Z" stroke="#36c98f" strokeWidth="1.8" strokeLinejoin="round" /></svg>} />
+              <Stat k="Racha" v={gam ? `${gam.streak.current} días` : "·"} tint="#ff6b5a"
+                icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 22c4 0 7-2.7 7-6.8 0-3-1.8-5.2-3.4-7C14.3 6.7 13 4.8 13 2c-3.5 2-5 4.8-5 7.2 0 .8.1 1.5.4 2.2C7.2 10.7 6.3 9.8 6 8.5 5 10 5 11.8 5 13c0 4.8 3 9 7 9Z" stroke="#ff6b5a" strokeWidth="1.8" strokeLinejoin="round" /></svg>} />
             </div>
           </section>
         ) : (
-          <section style={{ position: "relative", overflow: "hidden", marginBottom: 26, borderRadius: 18, padding: "22px 20px", background: "linear-gradient(135deg, #fff 0%, #eef2fb 100%)", border: `1px solid ${GOLD}55`, boxShadow: "0 6px 22px rgba(8,16,30,0.22)" }}>
+          <section data-reveal style={{ position: "relative", overflow: "hidden", marginBottom: 26, borderRadius: 18, padding: "22px 20px", background: "linear-gradient(135deg, #fff 0%, #eef2fb 100%)", border: `1px solid ${GOLD}55`, boxShadow: "0 6px 22px rgba(8,16,30,0.22)" }}>
             <div style={{ position: "absolute", top: -30, right: -20, width: 150, height: 150, borderRadius: "50%", background: "radial-gradient(circle, rgba(201,168,76,0.22), transparent 70%)", pointerEvents: "none" }} />
             <div style={{ position: "relative", display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
               <span style={{ width: 52, height: 52, borderRadius: 15, flexShrink: 0, display: "inline-flex", alignItems: "center", justifyContent: "center", background: `linear-gradient(135deg,${GOLD},${GOLD2})` }}>
@@ -959,13 +996,18 @@ export default function AppHubPage() {
 
         {/* ═══ 5 + 6. CATEGORÍAS con subtítulo ═══ */}
         {CATS.map((cat, i) => (
-          <section key={cat.key} id={i === 0 ? "modulos" : undefined} style={{ marginBottom: 32, scrollMarginTop: 14 }}>
+          <section key={cat.key} id={i === 0 ? "modulos" : undefined} data-reveal style={{ marginBottom: 32, scrollMarginTop: 14 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 11, marginBottom: 14 }}>
-              <span style={{ width: 5, height: 34, borderRadius: 3, background: `linear-gradient(180deg, ${cat.tint}, ${cat.tint2})`, flexShrink: 0 }} />
-              <div>
+              <span className="zm-cat-bar" style={{ width: 5, height: 34, borderRadius: 3, background: `linear-gradient(180deg, ${cat.tint}, ${cat.tint2})`, flexShrink: 0, boxShadow: `0 0 10px ${cat.tint}66` }} />
+              <div style={{ minWidth: 0 }}>
                 <h2 style={{ fontSize: 18, fontWeight: 800, lineHeight: 1.1 }}>{cat.label}</h2>
                 <p style={{ fontSize: 12.5, color: TXT_MUT, marginTop: 2 }}>{cat.sub}</p>
               </div>
+              {/* línea de fuga en el acento de la categoría + nº de modos */}
+              <span aria-hidden style={{ flex: 1, height: 1, background: `linear-gradient(90deg, ${cat.tint}44, transparent)` }} />
+              <span style={{ flexShrink: 0, fontSize: 10.5, fontWeight: 800, letterSpacing: 0.6, color: TXT_MUT, padding: "3px 10px", borderRadius: 999, border: `1px solid ${cat.tint}33`, background: `${cat.tint}14` }}>
+                {cat.mods.length} modos
+              </span>
             </div>
             <div className="zm-mod-grid">
               {cat.mods.map((m) => <ModuleCard key={m.title} mod={m} cat={cat} />)}
@@ -974,7 +1016,7 @@ export default function AppHubPage() {
         ))}
 
         {/* ═══ 7. RANKING GLOBAL (card clara, top 5) ═══ */}
-        <section style={{ marginBottom: 26, borderRadius: 18, padding: "20px 20px", background: LIGHT2, border: "1px solid rgba(14,28,51,0.06)" }}>
+        <section data-reveal style={{ marginBottom: 26, borderRadius: 18, padding: "20px 20px", background: LIGHT2, border: "1px solid rgba(14,28,51,0.06)", boxShadow: "0 16px 36px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.8)" }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
             <h2 style={{ fontSize: 16, fontWeight: 800, color: INK }}>Ranking global</h2>
             <Link href="/app/rankings" style={{ fontSize: 12.5, fontWeight: 800, color: "#8a6a13", textDecoration: "none" }}>Ver completo →</Link>
@@ -988,9 +1030,18 @@ export default function AppHubPage() {
             ).map((e) => {
               const filled = e.coins > 0 || !!e.name;
               const nm = e.name || "Plaza libre";
+              // Medallas del podio: oro / plata / bronce; del 4º en adelante, número plano.
+              const medal =
+                e.rank === 1 ? { bg: "linear-gradient(135deg,#f3df8a,#dcae3c)", c: "#6b4e0a", ring: "#e8cf6a" } :
+                e.rank === 2 ? { bg: "linear-gradient(135deg,#eef2f8,#c4cedd)", c: "#4d5a70", ring: "#cdd7e5" } :
+                e.rank === 3 ? { bg: "linear-gradient(135deg,#f0cfae,#cf9054)", c: "#6e3f12", ring: "#dca873" } : null;
               return (
-                <div key={e.userId} style={{ display: "flex", alignItems: "center", gap: 12, padding: "9px 12px", borderRadius: 10, background: "#fff", border: "1px solid rgba(14,28,51,0.05)" }}>
-                  <span style={{ width: 22, textAlign: "center", fontWeight: 900, color: e.rank <= 3 ? "#b8902f" : "#9aa6bd", fontSize: 14 }}>{e.rank}</span>
+                <div key={e.userId} className="zm-rank-row" style={{ display: "flex", alignItems: "center", gap: 12, padding: "9px 12px", borderRadius: 10, background: e.rank === 1 && filled ? "linear-gradient(90deg,#fffdf4,#fff)" : "#fff", border: e.rank === 1 && filled ? "1px solid #eddfae" : "1px solid rgba(14,28,51,0.05)" }}>
+                  {medal ? (
+                    <span style={{ width: 22, height: 22, borderRadius: "50%", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, fontSize: 11.5, color: medal.c, background: medal.bg, border: `1px solid ${medal.ring}`, boxShadow: "inset 0 1px 0 rgba(255,255,255,0.6), 0 1px 3px rgba(8,16,30,0.15)" }}>{e.rank}</span>
+                  ) : (
+                    <span style={{ width: 22, textAlign: "center", fontWeight: 900, color: "#9aa6bd", fontSize: 14 }}>{e.rank}</span>
+                  )}
                   <span style={{
                     width: 26, height: 26, borderRadius: "50%", flexShrink: 0,
                     background: e.avatarUrl ? `url(${e.avatarUrl}) center/cover no-repeat` : "#e2e8f3",
@@ -1014,7 +1065,10 @@ export default function AppHubPage() {
 
         {/* Volver a la portada editorial (escape del redirect por sesión) */}
         <div style={{ textAlign: "center" }}>
-          <Link href="/?portada=1" style={{ color: TXT_MUT, fontSize: 13, textDecoration: "none" }}>← Volver a la portada de ZonaMundial</Link>
+          <Link href="/?portada=1" className="zm-back" style={{ display: "inline-flex", alignItems: "center", gap: 7, color: TXT_MUT, fontSize: 13, fontWeight: 600, textDecoration: "none", padding: "9px 18px", borderRadius: 999, border: `1px solid ${LINE}`, background: "rgba(255,255,255,0.03)", transition: "color .25s, border-color .25s, background .25s" }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            Volver a la portada de ZonaMundial
+          </Link>
         </div>
       </div>
 
@@ -1028,6 +1082,78 @@ export default function AppHubPage() {
         /* Feedback táctil: el tap "hunde" levemente la card. */
         .zm-mod-card:active{ transform:scale(0.97) !important; }
         .zm-mod-card--locked:active{ transform:none !important; }
+
+        /* ── Micro-interacciones de las piezas claras ── */
+        .zm-stat{ transition: transform .2s ease, box-shadow .2s ease; }
+        .zm-stat:hover{ transform: translateY(-2px); box-shadow: 0 8px 18px rgba(8,16,30,0.1); }
+        .zm-rank-row{ transition: transform .18s ease, box-shadow .2s ease; }
+        .zm-rank-row:hover{ transform: translateX(3px); box-shadow: 0 4px 14px rgba(8,16,30,0.08); }
+        .zm-quick:hover{ border-color: rgba(201,168,76,0.5); background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(255,255,255,0.03)); transform: translateY(-1px); }
+        .zm-back:hover{ color: #eef2fb; border-color: rgba(201,168,76,0.45); background: rgba(201,168,76,0.08); }
+
+        /* Teclado: anillo dorado visible al navegar con Tab. */
+        a:focus-visible, button:focus-visible{ outline: 2px solid rgba(232,212,139,0.85); outline-offset: 2px; border-radius: 12px; }
+
+        /* ── Reveal-on-scroll: la sección entra con fade+lift… ── */
+        .zm-reveal{ opacity:0; transform:translateY(18px); transition:opacity .65s ease, transform .65s cubic-bezier(.2,.7,.2,1); }
+        .zm-reveal.zm-in{ opacity:1; transform:none; }
+        /* …y sus hijos (cards, stats, filas del ranking) escalonan en cascada.
+           fill "backwards" → al terminar vuelven a su estilo natural y el hover
+           (translate/lift) sigue funcionando. */
+        @keyframes zm-card-in{ from{ opacity:0; transform:translateY(16px) scale(.97); } to{ opacity:1; transform:none; } }
+        .zm-reveal:not(.zm-in) .zm-mod-card,
+        .zm-reveal:not(.zm-in) .zm-stat,
+        .zm-reveal:not(.zm-in) .zm-rank-row{ opacity:0; }
+        .zm-in .zm-mod-card{ animation: zm-card-in .55s cubic-bezier(.2,.7,.2,1) backwards; }
+        .zm-in .zm-mod-card:nth-child(2){ animation-delay:.08s; }
+        .zm-in .zm-mod-card:nth-child(3){ animation-delay:.16s; }
+        .zm-in .zm-mod-card:nth-child(4){ animation-delay:.24s; }
+        .zm-in .zm-stat{ animation: zm-card-in .5s ease backwards; }
+        .zm-in .zm-stat:nth-child(2){ animation-delay:.07s; }
+        .zm-in .zm-stat:nth-child(3){ animation-delay:.14s; }
+        .zm-in .zm-stat:nth-child(4){ animation-delay:.21s; }
+        .zm-in .zm-rank-row{ animation: zm-card-in .45s ease backwards; }
+        .zm-in .zm-rank-row:nth-child(2){ animation-delay:.06s; }
+        .zm-in .zm-rank-row:nth-child(3){ animation-delay:.12s; }
+        .zm-in .zm-rank-row:nth-child(4){ animation-delay:.18s; }
+        .zm-in .zm-rank-row:nth-child(5){ animation-delay:.24s; }
+
+        /* ── Barrido de luz en CTAs y píldoras doradas (bucle con larga pausa) ── */
+        .zm-cta-shine{ position:relative; overflow:hidden; }
+        .zm-cta-shine::after{
+          content:""; position:absolute; top:0; bottom:0; left:-70%; width:55%;
+          background:linear-gradient(105deg, transparent, rgba(255,255,255,0.45), transparent);
+          animation: zm-pill-shine 4.2s cubic-bezier(.6,0,.2,1) infinite; pointer-events:none;
+        }
+        @keyframes zm-pill-shine{
+          0%       { transform: translateX(0) skewX(-12deg); }
+          42%,100% { transform: translateX(340%) skewX(-12deg); }
+        }
+
+        /* Shimmer del texto degradado del hero (dorado/verde que "respira" luz). */
+        @keyframes zm-text-shine{ 0%,100%{ background-position:0% 50%; } 50%{ background-position:100% 50%; } }
+        .zm-shimmer{ animation: zm-text-shine 4.5s ease-in-out infinite; }
+
+        /* Destello que recorre la barra de XP del header. */
+        @keyframes zm-xp{ 0%,55%{ transform:translateX(-16px); } 90%,100%{ transform:translateX(64px); } }
+        .zm-xp-shine{ animation: zm-xp 3.2s ease-in-out infinite; }
+
+        /* El "VS" del Match Center flota suavemente (expectativa de duelo). */
+        @keyframes zm-vs-float{ 0%,100%{ transform:translateY(0) scale(1); } 50%{ transform:translateY(-3px) scale(1.04); } }
+        .zm-vs{ animation: zm-vs-float 3.2s ease-in-out infinite; }
+
+        /* La barra de acento de cada categoría "respira". */
+        @keyframes zm-bar-breathe{ 0%,100%{ transform:scaleY(1); opacity:1; } 50%{ transform:scaleY(.82); opacity:.8; } }
+        .zm-cat-bar{ animation: zm-bar-breathe 3.6s ease-in-out infinite; transform-origin:center; }
+
+        /* Luces ambientales del fondo: deriva lentísima, profundidad de estadio. */
+        @keyframes zm-blob{ 0%,100%{ transform:translate3d(0,0,0) scale(1); } 50%{ transform:translate3d(46px,-34px,0) scale(1.16); } }
+        .zm-bg-blob{ animation: zm-blob 24s ease-in-out infinite; }
+        .zm-bg-blob--2{ animation-duration:30s; animation-delay:-11s; }
+
+        /* Chispas extra del hero (duraciones distintas para no sincronizar). */
+        .zm-spark--4{ animation-duration:6.2s; animation-delay:-2.6s; }
+        .zm-spark--5{ animation-duration:4.8s; animation-delay:-0.9s; }
 
         /* ── Vida detrás de cada card (animado, premium, barato: transform/opacity) ── */
         @keyframes zm-aura {
@@ -1097,8 +1223,13 @@ export default function AppHubPage() {
         /* Accesibilidad + batería: sin movimiento si el usuario lo pide. */
         @media (prefers-reduced-motion: reduce) {
           .zm-card-aura, .zm-card-sheen, .zm-card-glow, .zm-card-accent,
-          .zm-hero-glow, .zm-live-dot, .zm-mc-glow, .zm-spark { animation: none; }
-          .zm-card-sheen, .zm-spark { display: none; }
+          .zm-hero-glow, .zm-live-dot, .zm-mc-glow, .zm-spark,
+          .zm-shimmer, .zm-xp-shine, .zm-vs, .zm-cat-bar, .zm-bg-blob,
+          .zm-mod-card, .zm-stat, .zm-rank-row { animation: none; }
+          .zm-card-sheen, .zm-spark, .zm-xp-shine { display: none; }
+          .zm-cta-shine::after { display: none; }
+          .zm-reveal, .zm-reveal:not(.zm-in) .zm-mod-card,
+          .zm-reveal:not(.zm-in) .zm-stat, .zm-reveal:not(.zm-in) .zm-rank-row{ opacity:1; transform:none; transition:none; }
         }
       `}</style>
     </div>
@@ -1117,11 +1248,19 @@ function McTeam({ name, flag }: { name: string; flag: string }) {
     </div>
   );
 }
-function Stat({ k, v }: { k: string; v: string }) {
+// Stat de progreso: filo de color arriba + icono en chip teñido → cada métrica
+// tiene identidad propia (no cuatro cajas blancas iguales).
+function Stat({ k, v, tint = GOLD, icon }: { k: string; v: string; tint?: string; icon?: React.ReactNode }) {
   return (
-    <div style={{ textAlign: "center", padding: "12px 8px", borderRadius: 12, background: "#fff", border: "1px solid rgba(14,28,51,0.05)" }}>
-      <div style={{ fontSize: 20, fontWeight: 900, color: INK }}>{v}</div>
-      <div style={{ fontSize: 11, color: "#6a7791", fontWeight: 600, marginTop: 2 }}>{k}</div>
+    <div className="zm-stat" style={{ position: "relative", overflow: "hidden", textAlign: "center", padding: "13px 8px 11px", borderRadius: 14, background: "#fff", border: "1px solid rgba(14,28,51,0.05)", boxShadow: "0 2px 8px rgba(8,16,30,0.05)" }}>
+      <span aria-hidden style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: `linear-gradient(90deg, ${tint}, ${tint}55)` }} />
+      {icon && (
+        <span style={{ width: 30, height: 30, margin: "2px auto 7px", borderRadius: 9, display: "flex", alignItems: "center", justifyContent: "center", background: `${tint}1f`, border: `1px solid ${tint}44` }}>
+          {icon}
+        </span>
+      )}
+      <div style={{ fontSize: 20, fontWeight: 900, color: INK, letterSpacing: "-0.02em" }}>{v}</div>
+      <div style={{ fontSize: 10.5, color: "#6a7791", fontWeight: 700, letterSpacing: 0.6, textTransform: "uppercase", marginTop: 2 }}>{k}</div>
     </div>
   );
 }

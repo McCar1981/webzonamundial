@@ -132,6 +132,8 @@ export interface PredictionRow {
   confidence_multiplier: number;
   is_contrarian: boolean;
   match_multiplier: number;
+  /** Foto del entitlement al crear: multiplicadores solo si era Pro. */
+  was_pro: boolean;
   points_before_multiplier: number | null;
   points_earned: number | null;
   is_correct: boolean | null;

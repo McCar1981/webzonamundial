@@ -69,6 +69,12 @@ interface RawFixtureRow {
   league: { id: number; name: string; season: number };
   teams: { home: RawTeam; away: RawTeam };
   goals: { home: number | null; away: number | null };
+  // `/fixtures?id=` embebe estos bloques en la propia respuesta del fixture, de
+  // modo que UNA petición trae eventos+alineaciones+stats (antes eran 4). Si la
+  // API no los incluye, caemos a los endpoints sueltos como respaldo.
+  events?: RawEvent[];
+  lineups?: RawLineup[];
+  statistics?: RawStatRow[];
 }
 interface RawEvent {
   time: { elapsed: number | null; extra: number | null };
@@ -261,17 +267,44 @@ function mapEventType(type: string, detail: string): FriendlyEventType {
   return "other";
 }
 
-async function fetchEvents(fixtureId: number, homeId: number, awayId: number): Promise<FriendlyEvent[]> {
-  const raw = await apiGet<RawEvent[]>(`/fixtures/events?fixture=${fixtureId}`);
+/** ID ESTABLE por contenido. Independiente del orden de la API, así un reorden
+ *  no cambia el id de un suceso ya visto (evita re-notificar). El llamador añade
+ *  un sufijo `#n` si dos eventos producen exactamente la misma clave. */
+function eventKey(
+  fixtureId: number,
+  e: RawEvent,
+  type: FriendlyEventType,
+): string {
+  const min = e.time.elapsed ?? 0;
+  const extra = e.time.extra ?? 0;
+  // Preferimos el id de jugador (numérico, estable); si no, su nombre normalizado.
+  const who = e.player.id != null ? `p${e.player.id}` : norm(e.player.name ?? "");
+  return `${fixtureId}-${min}-${extra}-${e.team.id}-${type}-${who}`;
+}
+
+/** Mapea eventos crudos (de `/fixtures/events` o del bloque embebido) a
+ *  FriendlyEvent[] con id estable, ordenados ascendente por minuto. */
+function mapEvents(
+  raw: RawEvent[] | null,
+  fixtureId: number,
+  homeId: number,
+  awayId: number,
+): FriendlyEvent[] {
   if (!raw) return [];
-  const events = raw.map((e, idx) => {
+  const used = new Map<string, number>();
+  const events = raw.map((e) => {
     const minute = e.time.elapsed ?? 0;
     const extra = e.time.extra ?? undefined;
     const type = mapEventType(e.type, e.detail);
     const side: FriendlyEvent["side"] =
       e.team.id === homeId ? "home" : e.team.id === awayId ? "away" : "neutral";
+    // Desambiguación de colisiones: misma clave de contenido → sufijo incremental.
+    const base = eventKey(fixtureId, e, type);
+    const n = used.get(base) ?? 0;
+    used.set(base, n + 1);
+    const id = n === 0 ? base : `${base}#${n}`;
     return {
-      id: `${fixtureId}-${idx}`,
+      id,
       minute,
       extra,
       type,
@@ -284,6 +317,11 @@ async function fetchEvents(fixtureId: number, homeId: number, awayId: number): P
     } as FriendlyEvent;
   });
   return events.sort((a, b) => a.minute + (a.extra || 0) - (b.minute + (b.extra || 0)));
+}
+
+async function fetchEvents(fixtureId: number, homeId: number, awayId: number): Promise<FriendlyEvent[]> {
+  const raw = await apiGet<RawEvent[]>(`/fixtures/events?fixture=${fixtureId}`);
+  return mapEvents(raw, fixtureId, homeId, awayId);
 }
 
 function toLineup(raw: RawLineup | undefined): FriendlyLineup | null {
@@ -338,14 +376,13 @@ const STAT_ORDER = [
   "Passes %",
 ];
 
-async function fetchStats(
-  fixtureId: number,
+/** Mapea filas crudas de estadísticas (de `/fixtures/statistics` o del bloque
+ *  embebido) a FriendlyStat[] comparadas y ordenadas por relevancia. */
+function mapStats(
+  raw: RawStatRow[] | null,
   homeId: number,
   awayId: number,
-): Promise<FriendlyStat[]> {
-  const raw = await apiGet<RawStatRow[]>(
-    `/fixtures/statistics?fixture=${fixtureId}`,
-  );
+): FriendlyStat[] {
   if (!raw || raw.length === 0) return [];
   const home = raw.find((r) => r.team.id === homeId);
   const away = raw.find((r) => r.team.id === awayId);
@@ -368,13 +405,23 @@ async function fetchStats(
     .filter((s) => s.home != null || s.away != null);
 }
 
-/** Solo las alineaciones de un fixture (para el push previo al partido). */
-export async function fetchLineups(
+async function fetchStats(
   fixtureId: number,
   homeId: number,
   awayId: number,
-): Promise<{ home: FriendlyLineup | null; away: FriendlyLineup | null }> {
-  const raw = await apiGet<RawLineup[]>(`/fixtures/lineups?fixture=${fixtureId}`);
+): Promise<FriendlyStat[]> {
+  const raw = await apiGet<RawStatRow[]>(
+    `/fixtures/statistics?fixture=${fixtureId}`,
+  );
+  return mapStats(raw, homeId, awayId);
+}
+
+/** Mapea el bloque crudo de alineaciones (suelto o embebido) a {home, away}. */
+function mapLineups(
+  raw: RawLineup[] | null,
+  homeId: number,
+  awayId: number,
+): { home: FriendlyLineup | null; away: FriendlyLineup | null } {
   if (!raw || raw.length === 0) return { home: null, away: null };
   return {
     home: toLineup(raw.find((l) => l.team.id === homeId)),
@@ -382,18 +429,61 @@ export async function fetchLineups(
   };
 }
 
-/** Snapshot completo (fixture + eventos + alineaciones) para la vista detalle. */
+/** Solo las alineaciones de un fixture (para el push previo al partido). */
+export async function fetchLineups(
+  fixtureId: number,
+  homeId: number,
+  awayId: number,
+): Promise<{ home: FriendlyLineup | null; away: FriendlyLineup | null }> {
+  const raw = await apiGet<RawLineup[]>(`/fixtures/lineups?fixture=${fixtureId}`);
+  return mapLineups(raw, homeId, awayId);
+}
+
+/** ¿La cronología viene PARCIAL? El agregado `goals` tiene más goles de los que
+ *  aparecen como eventos de gol → al proveedor le faltan sucesos de este amistoso. */
+function detectPartialEvents(goals: Score, events: FriendlyEvent[]): boolean {
+  const aggregate = (goals[0] ?? 0) + (goals[1] ?? 0);
+  if (aggregate === 0) return false; // sin goles agregados no hay nada que contrastar
+  const goalEvents = events.filter(
+    (e) => e.type === "goal" || e.type === "penalty_goal" || e.type === "own_goal",
+  ).length;
+  return goalEvents < aggregate;
+}
+
+/** Snapshot completo (fixture + eventos + alineaciones) para la vista detalle.
+ *  Aprovecha los bloques EMBEBIDOS en `/fixtures?id=` (1 request trae fixture +
+ *  eventos + alineaciones + stats). Solo si la API no los incluye caemos a los
+ *  endpoints sueltos (3 requests extra). Baja el gasto de cuota de 4 a 1. */
 export async function fetchFriendlySnapshot(fixtureId: number): Promise<FriendlySnapshot | null> {
   const rows = await apiGet<RawFixtureRow[]>(`/fixtures?id=${fixtureId}`);
   if (!rows || rows.length === 0) return null;
-  const fixture = toFixture(rows[0]);
-  const [events, lineups, stats] = await Promise.all([
-    fetchEvents(fixtureId, fixture.home.id, fixture.away.id),
-    fetchLineups(fixtureId, fixture.home.id, fixture.away.id),
-    fetchStats(fixtureId, fixture.home.id, fixture.away.id),
-  ]);
+  const row = rows[0];
+  const fixture = toFixture(row);
+  const { id: homeId } = fixture.home;
+  const { id: awayId } = fixture.away;
+
+  let events: FriendlyEvent[];
+  let lineups: { home: FriendlyLineup | null; away: FriendlyLineup | null };
+  let stats: FriendlyStat[];
+
+  if (row.events != null || row.lineups != null || row.statistics != null) {
+    // Bloques embebidos presentes → 0 peticiones extra. Un bloque ausente como
+    // [] (p.ej. aún sin stats) se mapea a vacío, no dispara el respaldo.
+    events = mapEvents(row.events ?? null, fixtureId, homeId, awayId);
+    lineups = mapLineups(row.lineups ?? null, homeId, awayId);
+    stats = mapStats(row.statistics ?? null, homeId, awayId);
+  } else {
+    // La API no embebió nada: respaldo a los endpoints sueltos (comportamiento previo).
+    [events, lineups, stats] = await Promise.all([
+      fetchEvents(fixtureId, homeId, awayId),
+      fetchLineups(fixtureId, homeId, awayId),
+      fetchStats(fixtureId, homeId, awayId),
+    ]);
+  }
+
   return {
     ...fixture,
+    eventsPartial: detectPartialEvents(fixture.goals, events),
     events,
     homeLineup: lineups.home,
     awayLineup: lineups.away,

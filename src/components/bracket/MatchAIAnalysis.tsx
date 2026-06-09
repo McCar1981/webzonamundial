@@ -25,6 +25,7 @@ import type {
 } from "@/lib/ia-coach/types";
 import styles from "./MatchAIAnalysis.module.css";
 import { FUN_FACTS } from "@/lib/ia-coach/fun-facts";
+import { handleProRequired } from "@/lib/pro/paywall-client";
 
 interface Props {
   match: BracketMatch;
@@ -71,6 +72,11 @@ export default function MatchAIAnalysis({
       });
       const data = (await r.json()) as IACoachResponse | IACoachErrorResponse;
       if (data.ok === false) {
+        // Cuota IA del plan Free agotada: abre el paywall global.
+        if (handleProRequired(data, "ia_coach_daily")) {
+          setError("Has usado tu consulta IA gratuita de hoy.");
+          return;
+        }
         setError(humanError(data.error));
       } else if (data.ok === true) {
         setAnalysis(data.analysis);

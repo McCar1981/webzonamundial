@@ -7,6 +7,8 @@ import { LanguageProvider } from "@/i18n/LanguageContext";
 import CookieConsent from "@/components/CookieConsent";
 import NativeAppGuard from "@/components/NativeAppGuard";
 import AdsterraNative from "@/components/ads/AdsterraNative";
+import { EntitlementsProvider } from "@/components/pro/EntitlementsProvider";
+import PaywallModal from "@/components/pro/PaywallModal";
 import { isAdSenseEnabled } from "@/lib/adsense";
 
 // Self-host Outfit via next/font for zero CLS + no render-blocking <link>.
@@ -272,23 +274,24 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Suprimir AdSense para Founders (cumple la promesa "navegación sin
-  // publicidad"). Cualquier error en lookup → cargamos AdSense por defecto.
-  let isFounderUser = false;
+  // Suprimir AdSense para usuarios Pro — suscripción activa O Founders
+  // (cumple la promesa "navegación sin publicidad" de ambos planes).
+  // Cualquier error en lookup → cargamos AdSense por defecto.
+  let isProUser = false;
   try {
     const { getCurrentUser } = await import("@/lib/auth-helpers");
-    const { isFounder } = await import("@/lib/founders/store");
+    const { isPro } = await import("@/lib/pro/entitlement");
     const u = await getCurrentUser();
-    if (u?.email) {
-      isFounderUser = await isFounder(u.email);
+    if (u) {
+      isProUser = await isPro(u.id, u.email);
     }
   } catch {
-    isFounderUser = false;
+    isProUser = false;
   }
   // AdSense SOLO cuando está habilitado (NEXT_PUBLIC_ADSENSE_ENABLED=true)
-  // y el usuario no es Founder. Durante la revisión de aprobación de Google,
+  // y el usuario no es Pro. Durante la revisión de aprobación de Google,
   // el flag debe estar en false para no mostrar anuncios.
-  const showAds = isAdSenseEnabled && !!ADSENSE_ID && !isFounderUser;
+  const showAds = isAdSenseEnabled && !!ADSENSE_ID && !isProUser;
 
   return (
     <html lang="es" className={outfit.variable}>
@@ -329,12 +332,17 @@ export default async function RootLayout({
         </Script>
         <NativeAppGuard />
         <LanguageProvider>
-          <RootLayoutClient>{children}</RootLayoutClient>
+          <EntitlementsProvider>
+            <RootLayoutClient>{children}</RootLayoutClient>
+            {/* Paywall contextual global: lo abre cualquier juego al recibir
+                un error pro_required de la API (handleProRequired). */}
+            <PaywallModal />
+          </EntitlementsProvider>
         </LanguageProvider>
         {/* Adsterra (puente de monetización Mundial). Independiente de la
-            aprobación de AdSense: solo se apaga para Founders. El propio
+            aprobación de AdSense: solo se apaga para usuarios Pro. El propio
             componente además exige las env vars y excluye rutas privadas. */}
-        <AdsterraNative enabled={!isFounderUser} />
+        <AdsterraNative enabled={!isProUser} />
         {showAds ? <CookieConsent /> : null}
       </body>
     </html>

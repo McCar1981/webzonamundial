@@ -14,6 +14,7 @@ import { NextResponse } from "next/server";
 import { buildContext } from "@/lib/ia-coach/context-builder";
 import { generateAnalysis } from "@/lib/ia-coach/anthropic-client";
 import { readCache, writeCache } from "@/lib/ia-coach/cache";
+import { consumeIaCoachQuota, refundIaCoachQuota } from "@/lib/ia-coach/pro-quota";
 import { getCurrentUser, rateLimitByUser } from "@/lib/auth-helpers";
 import type { BracketMatch } from "@/lib/bracket/types";
 import type {
@@ -85,7 +86,14 @@ export async function POST(req: Request) {
     });
   }
 
-  // 3. Llamar a Claude
+  // 3. Cuota Pro/Free: solo las generaciones reales consumen consulta diaria
+  //    (la caché de arriba sale gratis). Free = 1/día entre todos los modos.
+  const quota = await consumeIaCoachQuota(user);
+  if (!quota.allowed) {
+    return errorResponse("pro_required", 402, matchId);
+  }
+
+  // 4. Llamar a Claude
   let analysis;
   try {
     analysis = await generateAnalysis(context.contextMarkdown);
@@ -94,10 +102,12 @@ export async function POST(req: Request) {
       "[ia-coach] generateAnalysis threw:",
       (err as Error).message,
     );
+    // La consulta del día no se pierde por un fallo nuestro.
+    if (!quota.pro) await refundIaCoachQuota(user.id);
     return errorResponse("anthropic_failed", 502, matchId);
   }
 
-  // 4. Persistir en cache
+  // 5. Persistir en cache
   await writeCache(matchId, context.dataVersion, analysis);
 
   const resp: IACoachResponse = {

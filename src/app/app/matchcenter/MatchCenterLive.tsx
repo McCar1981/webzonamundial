@@ -17,6 +17,8 @@ import { createSound, type MatchSound } from "@/lib/match-center/sound";
 import { zoneForEvent } from "@/lib/match-center/zones";
 import FootballScoreboard from "@/components/FootballScoreboard";
 import { teamAbbr } from "@/lib/team-abbr";
+import { useEntitlements } from "@/components/pro/EntitlementsProvider";
+import { handleProRequired } from "@/lib/pro/paywall-client";
 import {
   EMPTY_STATS,
   type LiveStats,
@@ -414,6 +416,8 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
   const [paused, setPaused] = useState(false);
   const [speed, setSpeed] = useState(12);
   const [showHeat, setShowHeat] = useState(false);
+  // Estado Pro del usuario (gating de UI de stats avanzadas: mapa de calor).
+  const entitlements = useEntitlements();
   const [tactical, setTactical] = useState(false);
   const [hoverPlayer, setHoverPlayer] = useState<{ num: number; label: string; side: "home" | "away"; pos: string } | null>(null);
   const [showHighlights, setShowHighlights] = useState(false);
@@ -864,6 +868,11 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
       });
       const data = (await r.json()) as IACoachLiveResponse | IACoachLiveErrorResponse;
       if (data.ok === false) {
+        // Cuota IA del plan Free agotada: abre el paywall global.
+        if (handleProRequired(data, "ia_coach_daily")) {
+          setCoachError("Has usado tu consulta IA gratuita de hoy.");
+          return;
+        }
         setCoachError(liveCoachError(data.error));
       } else if (data.ok === true) {
         setCoachAnalysis(data.analysis);
@@ -1031,8 +1040,18 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
               <button onClick={() => setTactical((t) => !t)} style={tactical ? btnGoldSm : btnGhostSm}>
                 <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>{tactical ? <TacticalIcon size={14} /> : <CameraIcon size={14} />} {tactical ? "Vista táctica 2D" : "Vista cámara 3D"}</span>
               </button>
-              <button onClick={() => setShowHeat((h) => !h)} style={showHeat ? btnGoldSm : btnGhostSm}>
-                <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><HeatIcon size={14} /> {showHeat ? "Mapa de calor ON" : "Mapa de calor"}</span>
+              {/* Mapa de calor = stats avanzadas (plan Pro). Free ve el botón
+                  con candado y aterriza en /pro al tocarlo. */}
+              <button
+                onClick={() => {
+                  if (!entitlements.isPro) { window.location.href = "/pro"; return; }
+                  setShowHeat((h) => !h);
+                }}
+                style={showHeat ? btnGoldSm : btnGhostSm}
+              >
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+                  <HeatIcon size={14} /> {!entitlements.isPro ? "Mapa de calor · 🔒 Pro" : showHeat ? "Mapa de calor ON" : "Mapa de calor"}
+                </span>
               </button>
             </div>
 

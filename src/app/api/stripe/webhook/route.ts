@@ -5,7 +5,10 @@
 // procesamos:
 //
 //   checkout.session.completed → marca al usuario como Founder + envía email
-//                                 de confirmación
+//                                 de confirmación. Si metadata.product es
+//                                 "pro", da de alta la suscripción Pro.
+//   customer.subscription.updated/deleted → ciclo de vida de la suscripción
+//                                 Pro (renovación, impago, cancelación)
 //   charge.refunded            → marca como refunded en KV (le quitamos el pass)
 //
 // CRITICAL: este endpoint NUNCA debe leer request.json() — Stripe firma el
@@ -22,7 +25,20 @@ import {
 } from "@/lib/founders/store";
 import { recordBarPlanPayment, markBarPaymentRefunded, getBarById } from "@/lib/bars/store";
 import { getPlan } from "@/lib/bars/plans";
-import { sendFounderConfirmationEmail, sendBarPlanConfirmationEmail } from "@/lib/email";
+import {
+  sendFounderConfirmationEmail,
+  sendBarPlanConfirmationEmail,
+  sendProWelcomeEmail,
+  sendProPaymentFailedEmail,
+} from "@/lib/email";
+import {
+  upsertSubscription,
+  updateSubscriptionStatus,
+  type ProPlan,
+  type ProStatus,
+} from "@/lib/pro/subscriptions";
+import { trackProEvent } from "@/lib/pro/metrics";
+import { kv } from "@vercel/kv";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -146,6 +162,138 @@ async function handleBarPlanCheckout(session: Stripe.Checkout.Session) {
   }
 }
 
+// ─── Plan PRO (suscripción) ──────────────────────────────────────────────────
+
+/** Mapea el estado de Stripe a los 4 que persistimos. */
+function mapProStatus(s: Stripe.Subscription.Status): ProStatus {
+  if (s === "active") return "active";
+  if (s === "trialing") return "trialing";
+  if (s === "past_due") return "past_due";
+  // canceled | unpaid | incomplete | incomplete_expired | paused → sin acceso.
+  return "canceled";
+}
+
+/**
+ * Fin del periodo pagado. En versiones recientes de la API de Stripe (Basil,
+ * 2025+) current_period_end vive en el subscription ITEM; en las anteriores,
+ * en la suscripción. Probamos ambas para no depender del apiVersion de la
+ * cuenta (no lo pineamos — ver lib/stripe/client.ts).
+ */
+function subscriptionPeriodEnd(sub: Stripe.Subscription): string | null {
+  const onSub = (sub as unknown as { current_period_end?: number }).current_period_end;
+  const onItem = (sub.items?.data?.[0] as unknown as { current_period_end?: number } | undefined)
+    ?.current_period_end;
+  const raw = onSub ?? onItem;
+  return raw ? new Date(raw * 1000).toISOString() : null;
+}
+
+/** Alta Pro: checkout.session.completed con metadata.product === "pro". */
+async function handleProCheckout(session: Stripe.Checkout.Session) {
+  const userId = session.metadata?.user_id;
+  const email = (session.metadata?.email || session.customer_email || "").toLowerCase().trim();
+  if (!userId || !email) {
+    console.warn("[stripe webhook] pro checkout sin user_id/email", session.id);
+    return;
+  }
+
+  const subscriptionId =
+    typeof session.subscription === "string" ? session.subscription : session.subscription?.id ?? null;
+  const plan: ProPlan = session.metadata?.plan === "monthly" ? "monthly" : "yearly";
+
+  // Recuperamos la suscripción para el estado y el fin de periodo reales.
+  let status: ProStatus = "active";
+  let periodEnd: string | null = null;
+  let cancelAtPeriodEnd = false;
+  if (subscriptionId) {
+    try {
+      const stripe = getStripe();
+      const sub = await stripe.subscriptions.retrieve(subscriptionId);
+      status = mapProStatus(sub.status);
+      periodEnd = subscriptionPeriodEnd(sub);
+      cancelAtPeriodEnd = sub.cancel_at_period_end ?? false;
+    } catch (err) {
+      console.warn("[stripe webhook] no pude leer la suscripción pro", (err as Error).message);
+    }
+  }
+
+  const currency = (session.currency ?? session.metadata?.currency ?? "eur").toLowerCase();
+  const amount = session.amount_total ?? Number(session.metadata?.amount ?? 0);
+
+  await upsertSubscription({
+    userId,
+    email,
+    stripeCustomerId:
+      typeof session.customer === "string" ? session.customer : session.customer?.id ?? null,
+    stripeSubscriptionId: subscriptionId,
+    plan,
+    status,
+    currentPeriodEnd: periodEnd,
+    cancelAtPeriodEnd,
+    currency,
+    amount,
+  });
+
+  trackProEvent("checkout_completed");
+  // Bienvenida (no bloquea el ack al webhook).
+  void sendProWelcomeEmail({ to: email, plan, amount: formatAmount(amount, currency), currency });
+}
+
+/**
+ * Ciclo de vida Pro: customer.subscription.updated/deleted (renovaciones,
+ * impagos, cancelaciones). Actualiza por subscription id; si aún no existe la
+ * fila (carrera con checkout.completed), la crea desde la metadata que
+ * sembramos en subscription_data al hacer el checkout.
+ */
+async function handleProSubscriptionChange(sub: Stripe.Subscription) {
+  if (sub.metadata?.product !== "pro") return;
+
+  const status = mapProStatus(sub.status);
+
+  // Funnel + dunning: cancelación definitiva y aviso de impago (una sola vez
+  // por suscripción, con marca NX en KV para no reenviar en cada reintento).
+  if (status === "canceled" && sub.status !== "incomplete" && sub.status !== "incomplete_expired") {
+    trackProEvent("sub_canceled");
+  }
+  if (status === "past_due") {
+    const email = (sub.metadata?.email || "").toLowerCase().trim();
+    if (email) {
+      try {
+        const fresh = await kv.set(`pro:dunning:${sub.id}`, 1, { nx: true, ex: 60 * 60 * 24 * 14 });
+        if (fresh) void sendProPaymentFailedEmail({ to: email });
+      } catch {
+        /* sin KV no arriesgamos a spamear: no enviamos */
+      }
+    }
+  }
+
+  const updated = await updateSubscriptionStatus({
+    stripeSubscriptionId: sub.id,
+    status,
+    currentPeriodEnd: subscriptionPeriodEnd(sub),
+    cancelAtPeriodEnd: sub.cancel_at_period_end ?? false,
+  });
+  if (updated) return;
+
+  const userId = sub.metadata?.user_id;
+  const email = (sub.metadata?.email || "").toLowerCase().trim();
+  if (!userId || !email) {
+    console.warn("[stripe webhook] subscription pro sin fila ni metadata", sub.id);
+    return;
+  }
+  await upsertSubscription({
+    userId,
+    email,
+    stripeCustomerId: typeof sub.customer === "string" ? sub.customer : sub.customer?.id ?? null,
+    stripeSubscriptionId: sub.id,
+    plan: sub.metadata?.plan === "monthly" ? "monthly" : "yearly",
+    status,
+    currentPeriodEnd: subscriptionPeriodEnd(sub),
+    cancelAtPeriodEnd: sub.cancel_at_period_end ?? false,
+    currency: sub.currency ?? null,
+    amount: sub.items?.data?.[0]?.price?.unit_amount ?? null,
+  });
+}
+
 async function handleChargeRefunded(charge: Stripe.Charge) {
   const product = charge.metadata?.product;
   if (charge.amount_refunded === 0) return;
@@ -242,11 +390,17 @@ export async function POST(request: NextRequest) {
         const session = event.data.object as Stripe.Checkout.Session;
         if (session.metadata?.product?.startsWith("bar_plan_")) {
           await handleBarPlanCheckout(session);
+        } else if (session.metadata?.product === "pro") {
+          await handleProCheckout(session);
         } else {
           await handleCheckoutCompleted(session);
         }
         break;
       }
+      case "customer.subscription.updated":
+      case "customer.subscription.deleted":
+        await handleProSubscriptionChange(event.data.object as Stripe.Subscription);
+        break;
       case "charge.refunded":
         await handleChargeRefunded(event.data.object as Stripe.Charge);
         break;

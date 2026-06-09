@@ -7,6 +7,9 @@
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
 import { createBar, getBarByOwner, updateBar, barHasActivePlan } from "@/lib/bars/store";
+import { isPro } from "@/lib/pro/entitlement";
+import { PRO_REQUIRED_CODE, type ProRequiredPayload } from "@/lib/pro/limits";
+import { trackLimitHit } from "@/lib/pro/metrics";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -21,6 +24,19 @@ export async function GET() {
 export async function POST(req: Request) {
   const user = await getCurrentUser();
   if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+
+  // Crear un bar es feature Pro (unirse a bares sigue libre para todos).
+  // Publicarlo, además, exige el plan de bar (PATCH de abajo): Pro desbloquea
+  // crear/configurar; el plan B2B, salir al público.
+  if (!(await isPro(user.id, user.email))) {
+    trackLimitHit("bars_create");
+    const payload: ProRequiredPayload = {
+      error: "Crear un bar propio es una función del plan Pro.",
+      code: PRO_REQUIRED_CODE,
+      feature: "bars_create",
+    };
+    return NextResponse.json(payload, { status: 403 });
+  }
 
   const existing = await getBarByOwner(user.id);
   if (existing) return NextResponse.json({ error: "already_exists", bar: existing }, { status: 409 });

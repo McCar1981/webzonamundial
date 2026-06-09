@@ -17,6 +17,7 @@ import { buildLiveContext } from "@/lib/ia-coach/live-context";
 import { generateLiveAnalysis } from "@/lib/ia-coach/live-client";
 import { LIVE_PROMPT_VERSION } from "@/lib/ia-coach/live-system-prompt";
 import { getCurrentUser, rateLimitByUser } from "@/lib/auth-helpers";
+import { consumeIaCoachQuota, refundIaCoachQuota } from "@/lib/ia-coach/pro-quota";
 import type {
   IACoachLiveAnalysis,
   IACoachLiveResponse,
@@ -108,12 +109,19 @@ export async function POST(req: Request) {
     }
   }
 
+  // Cuota Pro/Free: solo las generaciones reales consumen consulta diaria.
+  const quota = await consumeIaCoachQuota(user);
+  if (!quota.allowed) {
+    return errorResponse("pro_required", 402, matchId);
+  }
+
   // Genera
   let analysis: IACoachLiveAnalysis;
   try {
     analysis = await generateLiveAnalysis(built.contextMarkdown);
   } catch (err) {
     console.error("[ia-coach/live] generateLiveAnalysis threw:", (err as Error).message);
+    if (!quota.pro) await refundIaCoachQuota(user.id);
     return errorResponse("anthropic_failed", 502, matchId);
   }
 

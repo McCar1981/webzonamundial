@@ -45,7 +45,11 @@ export type FriendlyEventType =
   | "other";
 
 export interface FriendlyEvent {
-  id: string; // estable: `${fixtureId}-${idx}`
+  // ID ESTABLE basado en el CONTENIDO del evento (minuto+extra+equipo+tipo+
+  // jugador), no en su posición en la respuesta. Así, si api-football reordena o
+  // intercala eventos entre polls, el id de un suceso ya visto no cambia y el
+  // cron de push no lo vuelve a notificar. Sufijo `#n` solo si hay colisión exacta.
+  id: string;
   minute: number;
   extra?: number;
   type: FriendlyEventType;
@@ -85,6 +89,11 @@ export interface FriendlySnapshot extends FriendlyFixture {
   awayLineup: FriendlyLineup | null;
   stats: FriendlyStat[];
   updatedAt: number;
+  /** true cuando la cobertura de eventos de api-football para este amistoso es
+   *  PARCIAL: el marcador agregado tiene más goles de los que aparecen en la
+   *  cronología. La UI lo usa para avisar de que faltan sucesos (limitación del
+   *  proveedor de datos en la liga 10, no un fallo de la web). */
+  eventsPartial?: boolean;
 }
 
 /** Estado persistido por fixture para detectar cambios entre polls del cron. */

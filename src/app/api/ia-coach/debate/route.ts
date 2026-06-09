@@ -6,7 +6,7 @@
 //
 // MULTI-TURN + GATED:
 //   1. Requiere cuenta (getCurrentUser).
-//   2. Requiere Founders Pass (isFounder) — es una feature premium.
+//   2. Requiere plan Pro (isPro; los Founders lo heredan) — feature premium.
 //   3. Reenvía el historial al Retador (Claude) y devuelve su turno.
 //
 // No cacheamos: cada conversación es única. Limitamos el nº de turnos para
@@ -14,7 +14,7 @@
 
 import { NextResponse } from "next/server";
 import { getCurrentUserWithName } from "@/lib/auth-helpers";
-import { isFounder } from "@/lib/founders/store";
+import { isPro } from "@/lib/pro/entitlement";
 import { TEAM_BY_ID } from "@/lib/bracket/teams";
 import { generateDebateReply } from "@/lib/ia-coach/debate-client";
 import { readDebateMemory, writeDebateMemory } from "@/lib/ia-coach/debate-memory";
@@ -42,14 +42,14 @@ export async function POST(req: Request) {
     return errorResponse("auth_required", 401);
   }
 
-  // ── 2. Premium (Founders Pass) ──
-  let founder = false;
+  // ── 2. Premium (plan Pro; los Founders lo heredan) ──
+  let pro = false;
   try {
-    founder = await isFounder(user.email);
+    pro = await isPro(user.id, user.email);
   } catch {
     return errorResponse("premium_check_failed", 503);
   }
-  if (!founder) {
+  if (!pro) {
     return errorResponse("premium_required", 402);
   }
 

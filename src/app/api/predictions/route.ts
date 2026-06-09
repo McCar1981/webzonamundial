@@ -13,10 +13,13 @@ import {
   type SocialData,
 } from "@/lib/predictions/types";
 import { validatePredictionData, checkOpen, isEarlyBird } from "@/lib/predictions/rules";
-import { getMatch, getMatchMeta, matchMultiplier } from "@/lib/predictions/match-data";
+import { getMatch, getMatchMeta, matchMultiplier, allMatchIdsOnDate } from "@/lib/predictions/match-data";
 import { potentialPoints } from "@/lib/predictions/scoring";
-import { isPremium, findPrediction, createPrediction } from "@/lib/predictions/store";
+import { findPrediction, createPrediction, countPredictionsForMatches } from "@/lib/predictions/store";
 import { bumpChallengeProgress, claimJornadaIfComplete, extendStreakWindow } from "@/lib/predictions/gamification-store";
+import { isPro } from "@/lib/pro/entitlement";
+import { FREE_LIMITS, PRO_REQUIRED_CODE, type ProRequiredPayload } from "@/lib/pro/limits";
+import { trackLimitHit } from "@/lib/pro/metrics";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -44,7 +47,37 @@ export async function POST(req: Request) {
   const meta = getMatchMeta(match_id);
   if (!meta) return NextResponse.json({ error: "match_not_found", message: "Partido no encontrado" }, { status: 404 });
 
-  const premium = await isPremium(user.id);
+  // Pro = suscripción activa o Founder (sustituye al viejo profiles.is_premium).
+  const premium = await isPro(user.id, user.email);
+
+  // ── Límites del plan Free ──
+  if (!premium) {
+    // Solo "resultado exacto" en Free.
+    if (!FREE_LIMITS.predictions.allowedTypes.includes(prediction_type)) {
+      trackLimitHit("predictions_type");
+      const payload: ProRequiredPayload = {
+        error: "En el plan gratuito solo puedes predecir el resultado exacto. Los 8 tipos son del plan Pro.",
+        code: PRO_REQUIRED_CODE,
+        feature: "predictions_type",
+      };
+      return NextResponse.json(payload, { status: 403 });
+    }
+    // Máximo N predicciones por jornada (todos los partidos del mismo día).
+    const match = getMatch(match_id);
+    if (match) {
+      const used = await countPredictionsForMatches(user.id, allMatchIdsOnDate(match.d));
+      if (used >= FREE_LIMITS.predictions.maxPerJornada) {
+        trackLimitHit("predictions_jornada");
+        const payload: ProRequiredPayload = {
+          error: `Has usado tus ${FREE_LIMITS.predictions.maxPerJornada} predicciones de esta jornada. Con Pro no hay límite.`,
+          code: PRO_REQUIRED_CODE,
+          feature: "predictions_jornada",
+          limit: FREE_LIMITS.predictions.maxPerJornada,
+        };
+        return NextResponse.json(payload, { status: 403 });
+      }
+    }
+  }
 
   // Validación del payload.
   const v = validatePredictionData(prediction_type, prediction_data, premium);
@@ -73,7 +106,11 @@ export async function POST(req: Request) {
     ? (prediction_data as SocialData).community_pct_at_time < 50
     : false;
 
-  const mult = matchMultiplier(match_id);
+  // Multiplicadores = beneficio Pro. En Free el partido vale ×1 (y la
+  // resolución, además, no aplica racha/early-bird gracias a was_pro).
+  const mult = premium
+    ? matchMultiplier(match_id)
+    : { multiplier: 1, label: "Estelar", emoji: "🟢" };
 
   const row = await createPrediction({
     userId: user.id,
@@ -83,6 +120,7 @@ export async function POST(req: Request) {
     confidence,
     isContrarian,
     matchMult: mult.multiplier,
+    wasPro: premium,
   });
 
   // Reto diario: avanza/paga la misión de hoy según esta predicción.

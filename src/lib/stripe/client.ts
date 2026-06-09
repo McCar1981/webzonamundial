@@ -10,7 +10,12 @@ export {
   isValidCurrency,
   PRODUCT_NAME,
   PRODUCT_DESCRIPTION,
+  PRO_PRICES,
+  isValidProInterval,
+  PRO_PRODUCT_NAME,
+  PRO_PRODUCT_DESCRIPTION,
   type FoundersCurrency,
+  type ProBillingInterval,
 } from "./pricing";
 
 let _stripe: Stripe | null = null;

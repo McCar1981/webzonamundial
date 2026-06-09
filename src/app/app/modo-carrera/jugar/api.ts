@@ -3,6 +3,7 @@
 
 import type { CareerState, CareerRankEntry, NarrativeEntry, NarrativeKind } from "@/lib/modo-carrera/types";
 import type { NarrativeContext } from "@/lib/modo-carrera/narrative";
+import { handleProRequired } from "@/lib/pro/paywall-client";
 
 export interface CareerEntitlement {
   authed: boolean;
@@ -60,7 +61,13 @@ export async function saveServerCareer(state: CareerState): Promise<SaveCareerRe
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ state }),
     });
-    if (!res.ok) return { futcoins: 0, xpAwarded: 0 };
+    if (!res.ok) {
+      // Cupo de temporadas Free agotado: abre el paywall global con la
+      // cuenta atrás del lockout (retry_at viene en el payload).
+      const err = await res.json().catch(() => ({}));
+      handleProRequired(err);
+      return { futcoins: 0, xpAwarded: 0 };
+    }
     const data = (await res.json()) as { futcoins?: number; xpAwarded?: number };
     return { futcoins: data.futcoins ?? 0, xpAwarded: data.xpAwarded ?? 0 };
   } catch {

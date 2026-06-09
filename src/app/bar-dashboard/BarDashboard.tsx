@@ -19,6 +19,7 @@ import {
 import { themeList } from "@/lib/bars/themes";
 import { planList, getPlan, type BarPlan } from "@/lib/bars/plans";
 import type { BarRow, QrSource, BarPrize, BarStats, BarPayment } from "@/lib/bars/store";
+import { handleProRequired } from "@/lib/pro/paywall-client";
 
 const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825";
 const GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#94A3B8", DIM = "#64748B", GREEN = "#22c55e", RED = "#f87171";
@@ -974,6 +975,7 @@ function CreateBar({ onCreated }: { onCreated: (b: BarRow) => void }) {
       const res = await fetch("/api/bars", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name, city }) });
       const j = await res.json();
       if (res.ok && j.bar) onCreated(j.bar);
+      else if (handleProRequired(j)) { /* crear bar = Pro: paywall global abierto */ }
       else setErr(j.message || "No se pudo crear el bar");
     } catch { setErr("Error de red"); } finally { setBusy(false); }
   }, [name, city, onCreated]);

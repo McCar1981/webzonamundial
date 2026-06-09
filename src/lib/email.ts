@@ -588,3 +588,60 @@ export async function sendFounderConfirmationEmail(opts: {
     }),
   });
 }
+
+/**
+ * Bienvenida al plan Pro (suscripción activada).
+ */
+export async function sendProWelcomeEmail(opts: {
+  to: string;
+  plan: 'monthly' | 'yearly';
+  amount: string;
+  currency: string;
+}): Promise<boolean> {
+  const planLabel = opts.plan === 'yearly' ? 'anual' : 'mensual';
+  return sendEmail({
+    to: opts.to,
+    subject: '¡Tu plan Pro de ZonaMundial está activo!',
+    html: brandedEmail({
+      preheader: 'Juega el Mundial sin límites: tu suscripción Pro ya está activa.',
+      heading: '⭐ Ya eres Pro',
+      bodyHtml: `
+        <p>Tu suscripción <strong>Pro ${planLabel}</strong> de <strong>${escapeHtml(opts.amount)} ${escapeHtml(opts.currency.toUpperCase())}</strong> está activa. Desde ya tienes:</p>
+        <ul style="line-height:1.8;padding-left:20px;color:#1f2937;">
+          <li>🎯 <strong>Los 8 tipos de predicción</strong> con multiplicadores de puntos</li>
+          <li>🤖 <strong>IA Coach ilimitada</strong>: Oracle, Live, Coach, Análisis y Debate</li>
+          <li>⚽ <strong>Fantasy en vivo</strong>: sustituciones y puntos en tiempo real</li>
+          <li>🏟️ <strong>Modo Carrera sin límites</strong> de temporadas</li>
+          <li>🧠 <strong>Trivia infinita</strong> + modo contrarreloj</li>
+          <li>👥 <strong>Ligas privadas</strong> ilimitadas con amigos</li>
+          <li>🚫 <strong>Cero anuncios</strong> en toda la plataforma</li>
+        </ul>
+        <p style="margin-top:18px;">Puedes gestionar tu suscripción (método de pago, facturas, cancelación) desde tu cuenta cuando quieras.</p>
+      `,
+      ctaLabel: 'Empezar a jugar sin límites',
+      ctaHref: 'https://zonamundial.app/app',
+    }),
+  });
+}
+
+/**
+ * Aviso de pago fallido de la suscripción Pro (dunning). El acceso se mantiene
+ * hasta el fin del periodo ya pagado; si Stripe no logra cobrar, se pierde.
+ */
+export async function sendProPaymentFailedEmail(opts: { to: string }): Promise<boolean> {
+  return sendEmail({
+    to: opts.to,
+    subject: 'No pudimos cobrar tu plan Pro de ZonaMundial',
+    html: brandedEmail({
+      preheader: 'Actualiza tu método de pago para no perder tus beneficios Pro.',
+      heading: '⚠️ Problema con tu pago Pro',
+      bodyHtml: `
+        <p>El último cobro de tu suscripción <strong>Pro</strong> no se pudo procesar (tarjeta caducada, fondos insuficientes o un rechazo del banco).</p>
+        <p>Tranquilo: <strong>mantienes tus beneficios Pro</strong> mientras dure el periodo ya pagado, y Stripe reintentará el cobro automáticamente.</p>
+        <p>Para no perder el acceso (predicciones ilimitadas, IA Coach, fantasy en vivo, sin anuncios…), actualiza tu método de pago:</p>
+      `,
+      ctaLabel: 'Actualizar método de pago',
+      ctaHref: 'https://zonamundial.app/cuenta/pro',
+    }),
+  });
+}

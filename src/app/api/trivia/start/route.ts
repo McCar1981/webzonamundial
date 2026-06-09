@@ -22,6 +22,10 @@ import { resolveIdentity } from "@/lib/trivia/identity";
 import { newSessionId, pickQuestions, toClientQuestion } from "@/lib/trivia/play";
 import { FALLBACK_QUESTIONS } from "@/data/trivia-fallback";
 import type { ServerSession, TriviaMode, TriviaQuestion } from "@/lib/trivia/types";
+import { isPro } from "@/lib/pro/entitlement";
+import { consumeDailyQuota, consumeDailyQuotaUnits, peekDailyQuota } from "@/lib/pro/quota";
+import { FREE_LIMITS, PRO_REQUIRED_CODE, type ProRequiredPayload } from "@/lib/pro/limits";
+import { trackLimitHit } from "@/lib/pro/metrics";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -39,7 +43,49 @@ export async function POST(req: Request) {
     ? (body.mode as TriviaMode)
     : "diaria";
 
-  const { userId } = await resolveIdentity(body.name, body.anonId);
+  const { userId, authUserId } = await resolveIdentity(body.name, body.anonId);
+
+  // ── Límites del plan Free ──
+  // Diaria: FREE_LIMITS.trivia.dailyQuestions preguntas al día (acumulado).
+  // Relámpago y Muerte Súbita: 1 partida al día cada uno. Pro = sin límites.
+  // La cuota se ancla a la identidad de juego (auth o anonId). Sin identidad
+  // (p. ej. la pregunta de muestra de la home, que no manda anonId) cae a un
+  // cupo GLOBAL compartido y generoso — protege el gasto sin romper la demo
+  // (mismo criterio que el cupo de invitados de la narrativa del Modo Carrera).
+  const pro = authUserId ? await isPro(authUserId) : false;
+  const isGuestGlobal = !userId;
+  const quotaId = userId || "guest-global";
+  const dailyQuestionsLimit = isGuestGlobal ? 500 : FREE_LIMITS.trivia.dailyQuestions;
+  const runsLimit = isGuestGlobal ? 300 : FREE_LIMITS.trivia.dailyRunsOtherModes;
+  let diariaRemaining: number | null = null;
+  if (!pro) {
+    if (mode === "diaria") {
+      const peek = await peekDailyQuota(quotaId, "trivia-diaria", dailyQuestionsLimit);
+      if (peek.exhausted) {
+        trackLimitHit("trivia_daily");
+        const payload: ProRequiredPayload = {
+          error: `Has jugado tus ${FREE_LIMITS.trivia.dailyQuestions} preguntas diarias. Con Pro la trivia no tiene límite.`,
+          code: PRO_REQUIRED_CODE,
+          feature: "trivia_daily",
+          limit: FREE_LIMITS.trivia.dailyQuestions,
+        };
+        return NextResponse.json(payload, { status: 403 });
+      }
+      diariaRemaining = peek.remaining;
+    } else {
+      const q = await consumeDailyQuota(quotaId, `trivia-${mode}`, runsLimit);
+      if (!q.allowed) {
+        trackLimitHit("trivia_runs");
+        const payload: ProRequiredPayload = {
+          error: "Ya jugaste tu partida diaria de este modo. Con Pro puedes jugar sin límite.",
+          code: PRO_REQUIRED_CODE,
+          feature: "trivia_runs",
+          limit: FREE_LIMITS.trivia.dailyRunsOtherModes,
+        };
+        return NextResponse.json(payload, { status: 403 });
+      }
+    }
+  }
 
   // 1) Banco acumulativo. Se siembra con el banco verificado a mano la primera vez.
   let bank = await getQuestionBank();
@@ -71,7 +117,13 @@ export async function POST(req: Request) {
     pool = bank;
   }
 
-  const questions = pickQuestions(pool, mode);
+  let questions = pickQuestions(pool, mode);
+  // Free + diaria: la partida se recorta a las preguntas que le quedan hoy y
+  // se descuentan del cupo al servirlas.
+  if (diariaRemaining !== null) {
+    questions = questions.slice(0, diariaRemaining);
+    await consumeDailyQuotaUnits(quotaId, "trivia-diaria", dailyQuestionsLimit, questions.length);
+  }
   const session: ServerSession = {
     id: newSessionId(),
     mode,

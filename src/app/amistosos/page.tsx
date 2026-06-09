@@ -435,6 +435,28 @@ function Cronologia({ snap }: { snap: FriendlySnapshot }) {
           </span>
         </div>
       )}
+      {snap.eventsPartial && (
+        <div
+          style={{
+            display: "flex",
+            gap: 8,
+            background: "rgba(230,200,92,0.10)",
+            border: `1px solid ${GOLD}44`,
+            borderRadius: 10,
+            padding: "8px 12px",
+            fontSize: 12,
+            color: GRAY,
+            lineHeight: 1.4,
+          }}
+        >
+          <Icon path={ICON.ball} color={GOLD} size={14} />
+          <span>
+            Cobertura parcial: el proveedor de datos no detalla todos los sucesos de
+            este amistoso, así que la cronología puede no estar completa. El marcador
+            es correcto.
+          </span>
+        </div>
+      )}
       {started && snap.events.length === 0 && (
         <p style={{ color: GRAY, fontSize: 13, margin: 0 }}>El partido está en juego. Aún sin goles ni tarjetas.</p>
       )}

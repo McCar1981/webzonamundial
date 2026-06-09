@@ -22,6 +22,7 @@ import {
 } from "@/lib/ia-coach/oracle-client";
 import { ORACLE_PROMPT_VERSION } from "@/lib/ia-coach/oracle-system-prompt";
 import { getCurrentUser, rateLimitByUser } from "@/lib/auth-helpers";
+import { consumeIaCoachQuota, refundIaCoachQuota } from "@/lib/ia-coach/pro-quota";
 import type {
   OracleNarration,
   OracleFollowupMessage,
@@ -116,6 +117,11 @@ export async function POST(req: Request) {
     if (userTurns > MAX_FOLLOWUP_TURNS) {
       return errorResponse("turn_limit", 429);
     }
+    // Cada turno de seguimiento es una generación real → consume cuota Free.
+    const followupQuota = await consumeIaCoachQuota(user);
+    if (!followupQuota.allowed) {
+      return errorResponse("pro_required", 402);
+    }
     try {
       const oddsTable = buildOracleOddsTable(sim.teams, sim.iterations, championId);
       const reply = await generateOracleFollowup(oddsTable, messages);
@@ -129,6 +135,7 @@ export async function POST(req: Request) {
       });
     } catch (err) {
       console.error("[ia-coach/oracle] followup failed:", (err as Error).message);
+      if (!followupQuota.pro) await refundIaCoachQuota(user.id);
       return errorResponse("anthropic_failed", 502);
     }
   }
@@ -161,12 +168,19 @@ export async function POST(req: Request) {
     }
   }
 
+  // Cuota Pro/Free: la narración cacheada de arriba sale gratis; generar, no.
+  const quota = await consumeIaCoachQuota(user);
+  if (!quota.allowed) {
+    return errorResponse("pro_required", 402);
+  }
+
   let narration: OracleNarration;
   try {
     const context = buildOracleContext(sim.teams, sim.iterations, championId);
     narration = await generateOracleNarration(context);
   } catch (err) {
     console.error("[ia-coach/oracle] narration failed:", (err as Error).message);
+    if (!quota.pro) await refundIaCoachQuota(user.id);
     return errorResponse("anthropic_failed", 502);
   }
 

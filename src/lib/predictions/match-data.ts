@@ -87,6 +87,11 @@ export function matchesOnDate(dateKey: string): string[] {
   return MATCHES.filter((m) => m.p === "Fase de grupos" && m.d === dateKey).map((m) => String(m.i));
 }
 
+/** Todos los partidos (cualquier fase) de un día — para el cupo Free por jornada. */
+export function allMatchIdsOnDate(dateKey: string): string[] {
+  return MATCHES.filter((m) => m.d === dateKey).map((m) => String(m.i));
+}
+
 /** Fechas (YYYY-MM-DD) con partidos de fase de grupos, en orden de calendario. */
 export function matchDays(): string[] {
   const set = new Set<string>();

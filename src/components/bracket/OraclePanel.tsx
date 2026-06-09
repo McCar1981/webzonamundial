@@ -18,6 +18,7 @@ import type {
   OracleErrorResponse,
 } from "@/lib/ia-coach/oracle-types";
 import type { TeamOdds } from "@/lib/ia-coach/oracle-sim";
+import { handleProRequired } from "@/lib/pro/paywall-client";
 
 const MAX_FOLLOWUP_TURNS = 8;
 
@@ -93,6 +94,12 @@ export default function OraclePanel({ state }: { state: BracketState }) {
         setChat([]);
         setChatError(null);
       } else {
+        // Cuota IA del plan Free agotada: abre el paywall global.
+        if (handleProRequired(data, "ia_coach_daily")) {
+          setError("Has usado tu consulta IA gratuita de hoy.");
+          setNarration(null);
+          return;
+        }
         setError(oracleError("error" in data ? data.error : "unknown"));
         setNarration(null);
       }

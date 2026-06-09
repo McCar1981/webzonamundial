@@ -44,6 +44,8 @@ export interface CreateInput {
   confidence: number;
   isContrarian: boolean;
   matchMult: number;
+  /** Foto del entitlement al crear: los multiplicadores solo aplican si era Pro. */
+  wasPro: boolean;
 }
 
 export async function findPrediction(userId: string, matchId: string, type: PredictionType): Promise<PredictionRow | null> {
@@ -68,6 +70,7 @@ export async function createPrediction(input: CreateInput): Promise<PredictionRo
       confidence_multiplier: input.confidence,
       is_contrarian: input.isContrarian,
       match_multiplier: input.matchMult,
+      was_pro: input.wasPro,
     })
     .select("*")
     .single();
@@ -93,6 +96,18 @@ export async function getPredictionById(id: string): Promise<PredictionRow | nul
   const supa = createSupabaseServerClient();
   const { data } = await supa.from("predictions").select("*").eq("id", id).maybeSingle();
   return (data as PredictionRow | null) ?? null;
+}
+
+/** Predicciones del usuario entre un conjunto de partidos (cupo Free por jornada). */
+export async function countPredictionsForMatches(userId: string, matchIds: string[]): Promise<number> {
+  if (matchIds.length === 0) return 0;
+  const supa = createSupabaseServerClient();
+  const { count } = await supa
+    .from("predictions")
+    .select("id", { count: "exact", head: true })
+    .eq("user_id", userId)
+    .in("match_id", matchIds);
+  return count ?? 0;
 }
 
 /** Cuántos cambios ha hecho hoy (UTC) el usuario. Premium: máximo 1/día. */
@@ -327,10 +342,14 @@ export async function resolveMatch(matchId: string, result: MatchResultReal): Pr
       }
     }
 
-    const streakActive = (streakByUser.get(p.user_id) ?? 0) >= STREAK_THRESHOLD;
+    // Multiplicadores = beneficio Pro: se gatean con la foto was_pro tomada al
+    // crear la predicción (no con el entitlement actual, que pudo cambiar).
+    // Las filas históricas tienen was_pro=TRUE por DEFAULT → sin nerf retro.
+    const wasPro = p.was_pro !== false;
+    const streakActive = wasPro && (streakByUser.get(p.user_id) ?? 0) >= STREAK_THRESHOLD;
     const ctx = {
-      matchMultiplier: Number(p.match_multiplier) || 1,
-      isEarlyBird: isEarlyBird(matchId, new Date(p.created_at)),
+      matchMultiplier: wasPro ? Number(p.match_multiplier) || 1 : 1,
+      isEarlyBird: wasPro && isEarlyBird(matchId, new Date(p.created_at)),
       streakActive,
     };
     const final = applyBonuses(base, ctx);

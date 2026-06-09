@@ -9,8 +9,11 @@
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
 import { getTeam, saveTeam, recordGameweekScore, awardGameweekCoins, getFavCreator } from "@/lib/fantasy/store.server";
-import { isValidGameweek } from "@/lib/fantasy/fixtures";
+import { isValidGameweek, gameweekLockedForFree } from "@/lib/fantasy/fixtures";
 import type { FantasyTeamState } from "@/lib/fantasy/types";
+import { isPro } from "@/lib/pro/entitlement";
+import { FREE_LIMITS, PRO_REQUIRED_CODE, type ProRequiredPayload } from "@/lib/pro/limits";
+import { trackLimitHit } from "@/lib/pro/metrics";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -33,6 +36,28 @@ export async function PUT(req: Request) {
   const state = body.state;
   if (!state || !Array.isArray(state.slots)) {
     return NextResponse.json({ error: "bad_request", message: "state inválido" }, { status: 400 });
+  }
+
+  // ── Bloqueo del plan Free ──
+  // La plantilla se congela 24h antes del primer partido de la jornada y
+  // durante la jornada (Pro = sustituciones en vivo). Las escrituras que NO
+  // tocan la alineación (confirmar puntos de jornada, metadatos) pasan igual.
+  if (gameweekLockedForFree(state.gameweek, FREE_LIMITS.fantasy.lockHoursBeforeGameweek) &&
+      !(await isPro(user.id, user.email))) {
+    const current = await getTeam(user.id);
+    const lineup = (s: FantasyTeamState) =>
+      JSON.stringify({ slots: s.slots, captain: s.captainId, vice: s.viceId, formation: s.formation });
+    const lineupChanged = !current || lineup(current) !== lineup(state);
+    if (lineupChanged) {
+      trackLimitHit("fantasy_lock");
+      const payload: ProRequiredPayload = {
+        error: `Tu plantilla está cerrada desde ${FREE_LIMITS.fantasy.lockHoursBeforeGameweek} h antes de la jornada. Con Pro haces sustituciones en vivo.`,
+        code: PRO_REQUIRED_CODE,
+        feature: "fantasy_lock",
+        limit: FREE_LIMITS.fantasy.lockHoursBeforeGameweek,
+      };
+      return NextResponse.json(payload, { status: 403 });
+    }
   }
 
   await saveTeam(user.id, state);

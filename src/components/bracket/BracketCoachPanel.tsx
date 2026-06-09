@@ -10,6 +10,7 @@ import { useCallback, useState } from "react";
 import type { BracketState } from "@/lib/bracket/types";
 import { TEAM_BY_ID } from "@/lib/bracket/teams";
 import { IconWhistle } from "@/components/ia-coach/icons";
+import { handleProRequired } from "@/lib/pro/paywall-client";
 import type {
   IACoachBracketAnalysis,
   IACoachBracketResponse,
@@ -109,6 +110,12 @@ export default function BracketCoachPanel({
         setAnalysis(data.analysis);
         setCached(data.cached);
       } else {
+        // Cuota IA del plan Free agotada: abre el paywall global.
+        if (handleProRequired(data, "ia_coach_daily")) {
+          setError("Has usado tu consulta IA gratuita de hoy.");
+          setAnalysis(null);
+          return;
+        }
         setError(coachError("error" in data ? data.error : "unknown"));
         setAnalysis(null);
       }

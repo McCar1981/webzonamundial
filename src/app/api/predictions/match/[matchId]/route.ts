@@ -7,7 +7,8 @@ import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
 import { PREDICTION_TYPES, type PredictionType } from "@/lib/predictions/types";
 import { getMatchMeta, matchMultiplier, predictionsCloseAt } from "@/lib/predictions/match-data";
-import { isPremium, getMatchPredictions } from "@/lib/predictions/store";
+import { getMatchPredictions } from "@/lib/predictions/store";
+import { isPro } from "@/lib/pro/entitlement";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -19,7 +20,7 @@ export async function GET(_req: Request, { params }: { params: { matchId: string
   const meta = getMatchMeta(params.matchId);
   if (!meta) return NextResponse.json({ error: "match_not_found" }, { status: 404 });
 
-  const premium = await isPremium(user.id);
+  const premium = await isPro(user.id, user.email);
   const rows = await getMatchPredictions(user.id, params.matchId);
   const completed = rows.map((r) => r.prediction_type);
   const remaining = PREDICTION_TYPES.filter((t) => !completed.includes(t)) as PredictionType[];

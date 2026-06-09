@@ -4,33 +4,21 @@
 // Mundial), la narrativa IA ilimitada y el resto de ventajas premium.
 //
 // DECISIÓN DE PRODUCTO (hoy):
-//   El Pase DT está incluido en el Founders Pass. No hay un SKU de pago aparte
-//   todavía. Toda la app pregunta por `isPaseDT(email)` en lugar de `isFounder`
-//   directamente, de modo que el día que exista un add-on independiente baste
-//   con ampliar ESTA función (founder OR grant explícito) sin tocar ningún
-//   punto de llamada (rutas API, gating de UI, etc.).
+//   El Pase DT está incluido en el plan PRO (y los Founders heredan Pro de
+//   por vida), así que esta función delega en isPro(). Se mantiene como
+//   alias para no tocar los puntos de llamada históricos del Modo Carrera;
+//   código nuevo debe preguntar directamente por isPro() de @/lib/pro.
 //
 // Server-only: se resuelve siempre desde la sesión autenticada, nunca desde el
 // cliente, para que no se pueda falsear el acceso premium.
 
-import { isFounder, isFounderByUserId } from "@/lib/founders/store";
+import { isPro } from "@/lib/pro/entitlement";
 
 /**
  * ¿Tiene este usuario acceso al Pase DT?
- * Hoy: equivale a tener Founders Pass activo.
- * Mañana: founder OR miembro del set de Pase DT (add-on independiente).
- *
- * El lookup intenta por email (rápido, compatibilidad histórica) y, si no
- * encuentra, por user_id (robusto ante cambios de email).
+ * Equivale a tener Pro activo (suscripción Stripe o Founders Pass).
  */
 export async function isPaseDT(email: string, userId?: string | null): Promise<boolean> {
   if (!email && !userId) return false;
-  if (email) {
-    const byEmail = await isFounder(email);
-    if (byEmail) return true;
-  }
-  if (userId) {
-    return isFounderByUserId(userId);
-  }
-  return false;
+  return isPro(userId ?? null, email || null);
 }

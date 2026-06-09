@@ -6,6 +6,7 @@ import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, Crown, Flame, Swords, Users } from "../icons";
 import { PositionBadge, TitleChip, nameColorStyle, type CosmeticDisplay } from "../cosmetic-render";
+import { handleProRequired } from "@/lib/pro/paywall-client";
 
 const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825";
 const GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a", GREEN = "#22c55e";
@@ -57,7 +58,10 @@ export default function LigasPage() {
     setBusy(true);
     try {
       const r = await fetch("/api/predictions/leagues", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name }) });
-      if (r.ok) { setName(""); setToast("Liga creada"); await loadLeagues(); } else setToast("No se pudo crear");
+      const j = await r.json().catch(() => ({}));
+      if (r.ok) { setName(""); setToast("Liga creada"); await loadLeagues(); }
+      else if (handleProRequired(j)) { /* crear ligas = Pro: paywall global abierto */ }
+      else setToast("No se pudo crear");
     } finally { setBusy(false); }
   }, [name, loadLeagues]);
 

@@ -16,6 +16,7 @@ import BattlePass from "./BattlePass";
 import Cosmetics from "./Cosmetics";
 import LiveMicroPicks from "./LiveMicroPicks";
 import PrediccionAIAnalysis, { type AISuggestion } from "./PrediccionAIAnalysis";
+import { handleProRequired } from "@/lib/pro/paywall-client";
 import {
   TYPE_ICON, TIER_ICON,
   ArrowLeft, Calendar, Check, CheckCircle2, ChevronRight, Clock, Coins, Flame, Gem, Gift, Globe, Pencil, Radio, Sparkles, TrendingUp, Trophy, Users, X, Zap,
@@ -252,6 +253,9 @@ export default function PrediccionesGame() {
       setEditing((prev) => { const next = new Set(prev); next.delete(type); return next; });
       setToast({ kind: "ok", msg: `${existing ? "Predicción actualizada" : "¡Predicción guardada!"} · ${TYPE_META[type].label}` });
       await loadMatch(matchId);
+    } else if (handleProRequired(json)) {
+      // Límite Free (tipo Pro o cupo de jornada): el paywall global ya explica
+      // el upgrade; no apilamos un toast de error encima.
     } else {
       setToast({ kind: "err", msg: json.message || json.error || "No se pudo guardar la predicción" });
     }

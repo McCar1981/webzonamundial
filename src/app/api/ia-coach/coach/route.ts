@@ -15,6 +15,7 @@ import { buildCoachContext } from "@/lib/ia-coach/coach-context";
 import { generateBracketCoaching } from "@/lib/ia-coach/coach-client";
 import { COACH_PROMPT_VERSION } from "@/lib/ia-coach/coach-system-prompt";
 import { getCurrentUser, rateLimitByUser } from "@/lib/auth-helpers";
+import { consumeIaCoachQuota, refundIaCoachQuota } from "@/lib/ia-coach/pro-quota";
 import type {
   IACoachBracketAnalysis,
   IACoachBracketResponse,
@@ -100,11 +101,18 @@ export async function POST(req: Request) {
     }
   }
 
+  // Cuota Pro/Free: solo las generaciones reales consumen consulta diaria.
+  const quota = await consumeIaCoachQuota(user);
+  if (!quota.allowed) {
+    return errorResponse("pro_required", 402);
+  }
+
   let analysis: IACoachBracketAnalysis;
   try {
     analysis = await generateBracketCoaching(built.contextMarkdown);
   } catch (err) {
     console.error("[ia-coach/coach] generateBracketCoaching threw:", (err as Error).message);
+    if (!quota.pro) await refundIaCoachQuota(user.id);
     return errorResponse("anthropic_failed", 502);
   }
 

@@ -22,6 +22,7 @@ import type {
   IACoachErrorResponse,
 } from "@/lib/ia-coach/types";
 import { FUN_FACTS } from "@/lib/ia-coach/fun-facts";
+import { handleProRequired } from "@/lib/pro/paywall-client";
 
 const BG2 = "#0F1D32", BG3 = "#0B1825";
 const GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a";
@@ -125,7 +126,9 @@ export default function PrediccionAIAnalysis({ match, onApply }: Props) {
         signal: ac.signal,
       });
       const data = (await r.json()) as IACoachResponse | IACoachErrorResponse;
-      if (data.ok === false) setError(humanError(data.error));
+      // Cuota IA del plan Free agotada: abre el paywall global.
+      if (data.ok === false && handleProRequired(data, "ia_coach_daily")) setError("Has usado tu consulta IA gratuita de hoy.");
+      else if (data.ok === false) setError(humanError(data.error));
       else if (data.ok === true) { setAnalysis(data.analysis); setCached(data.cached); }
       else setError("Respuesta inválida del servidor.");
     } catch (err) {

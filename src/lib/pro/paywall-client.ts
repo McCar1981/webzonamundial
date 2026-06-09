@@ -1,0 +1,122 @@
+// src/lib/pro/paywall-client.ts
+//
+// Lado CLIENTE del paywall contextual. Cuando una API devuelve el payload
+// `pro_required` (ver limits.ts), el call-site llama a handleProRequired(json)
+// y, si aplica, se abre el <PaywallModal> global (montado en el layout) con el
+// copy específico del límite alcanzado. Así cada juego integra el paywall con
+// UNA línea, sin montar su propio modal.
+//
+// Client-safe: sin imports de servidor.
+
+import type { ProFeature } from "./limits";
+
+export const PRO_PAYWALL_EVENT = "zm:pro-required";
+
+export interface PaywallDetail {
+  feature: ProFeature | "generic";
+  /** Mensaje del servidor (ya viene humano desde el gate). */
+  message?: string;
+  limit?: number;
+  /** Si el bloqueo es temporal (lockout Modo Carrera), cuándo reintenta. */
+  retryAt?: string | null;
+}
+
+/** Copy por feature para el modal (título + qué desbloquea Pro). */
+export const PAYWALL_COPY: Record<PaywallDetail["feature"], { title: string; perk: string }> = {
+  predictions_type: {
+    title: "Este tipo de predicción es Pro",
+    perk: "Con Pro juegas los 8 tipos (ganador, goleador, cadenas, duelos…) y con multiplicadores de puntos.",
+  },
+  predictions_jornada: {
+    title: "Has agotado tus predicciones de la jornada",
+    perk: "Con Pro predices sin límite en todas las jornadas, con multiplicadores de puntos.",
+  },
+  fantasy_live: {
+    title: "Los puntos en vivo son Pro",
+    perk: "Con Pro ves los puntos de tu equipo en tiempo real y haces sustituciones en vivo.",
+  },
+  fantasy_lock: {
+    title: "Tu plantilla está cerrada",
+    perk: "Con Pro cambias tu equipo hasta el último minuto y haces sustituciones en vivo.",
+  },
+  carrera_seasons: {
+    title: "Has jugado tus temporadas de hoy",
+    perk: "Con Pro las temporadas del Modo Carrera son ilimitadas: sigue tu dinastía sin esperas.",
+  },
+  carrera_cloud_save: {
+    title: "El guardado en la nube es Pro",
+    perk: "Con Pro tu carrera te sigue en todos tus dispositivos.",
+  },
+  carrera_rival_report: {
+    title: "Los informes de rival son Pro",
+    perk: "Con Pro la IA te prepara un informe del rival antes de cada partido.",
+  },
+  ia_coach_daily: {
+    title: "Has usado tu consulta IA de hoy",
+    perk: "Con Pro el IA Coach es ilimitado: Oracle, Live, Coach, Análisis y Debate.",
+  },
+  trivia_daily: {
+    title: "Has jugado tus preguntas de hoy",
+    perk: "Con Pro la trivia diaria no tiene límite y desbloqueas el contrarreloj infinito.",
+  },
+  trivia_runs: {
+    title: "Ya jugaste tu partida diaria de este modo",
+    perk: "Con Pro juegas Relámpago y Muerte Súbita todas las veces que quieras.",
+  },
+  match_center_narration: {
+    title: "La narración avanzada es Pro",
+    perk: "Con Pro el relato del partido lo escribe la IA, con alertas personalizadas.",
+  },
+  match_center_alerts: {
+    title: "Las alertas personalizadas son Pro",
+    perk: "Con Pro recibes avisos por jugador y equipo: goles, tarjetas, cambios.",
+  },
+  bars_create: {
+    title: "Crear tu bar es una función Pro",
+    perk: "Con Pro creas tu bar con cartel personalizado y QR para tu porra.",
+  },
+  leagues_create: {
+    title: "Crear ligas privadas es Pro",
+    perk: "Con Pro creas ligas privadas ilimitadas e invitas a tus amigos (unirse es gratis).",
+  },
+  stats_advanced: {
+    title: "Las estadísticas avanzadas son Pro",
+    perk: "Con Pro desbloqueas mapas de calor y comparativas históricas.",
+  },
+  generic: {
+    title: "Esta función es del plan Pro",
+    perk: "Desbloquea todo ZonaMundial sin límites desde 12 €/año.",
+  },
+};
+
+/** Abre el paywall global con el detalle dado. */
+export function openProPaywall(detail: PaywallDetail): void {
+  if (typeof window === "undefined") return;
+  window.dispatchEvent(new CustomEvent<PaywallDetail>(PRO_PAYWALL_EVENT, { detail }));
+}
+
+/**
+ * Detecta el payload `pro_required` en una respuesta de error y abre el
+ * paywall. Devuelve true si lo era (el call-site corta ahí su manejo de error).
+ * Acepta tanto el payload estándar ({ code, feature }) como el formato de las
+ * rutas de IA Coach ({ ok: false, error: "pro_required" }).
+ */
+export function handleProRequired(
+  json: unknown,
+  fallbackFeature: PaywallDetail["feature"] = "generic",
+): boolean {
+  if (!json || typeof json !== "object") return false;
+  const o = json as Record<string, unknown>;
+  const isProRequired = o.code === "pro_required" || o.error === "pro_required";
+  if (!isProRequired) return false;
+  const feature = (typeof o.feature === "string" && o.feature in PAYWALL_COPY
+    ? o.feature
+    : fallbackFeature) as PaywallDetail["feature"];
+  openProPaywall({
+    feature,
+    message: typeof o.error === "string" && o.error !== "pro_required" ? o.error : undefined,
+    limit: typeof o.limit === "number" ? o.limit : undefined,
+    retryAt: typeof o.retry_at === "string" ? o.retry_at : null,
+  });
+  return true;
+}

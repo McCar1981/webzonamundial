@@ -8,6 +8,7 @@ import { NextResponse } from "next/server";
 import { narrateAll } from "@/lib/match-center/narrator";
 import { buildMeta } from "@/lib/match-center/store";
 import { getCurrentUser, rateLimitByUser } from "@/lib/auth-helpers";
+import { isPro } from "@/lib/pro/entitlement";
 import type { MatchEvent } from "@/lib/match-center/types";
 
 export const runtime = "nodejs";
@@ -38,7 +39,9 @@ export async function POST(req: Request) {
   const meta = buildMeta(matchId);
   if (!meta) return NextResponse.json({ lines: {} });
 
-  const useAI = !!process.env.ANTHROPIC_API_KEY;
+  // Narración AVANZADA (Claude) = beneficio Pro. Free recibe siempre la
+  // narración por plantilla — nunca se queda sin relato, solo sin IA.
+  const useAI = !!process.env.ANTHROPIC_API_KEY && (await isPro(user.id, user.email));
   const lines = await narrateAll(events, meta, useAI);
   return NextResponse.json({ lines });
 }

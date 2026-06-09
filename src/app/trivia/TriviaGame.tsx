@@ -8,6 +8,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { TRIVIA_HINT_FIFTY } from "@/lib/economy/spend";
+import { handleProRequired } from "@/lib/pro/paywall-client";
 
 const BG = "#060B14",
   BG2 = "#0F1D32",
@@ -162,6 +163,11 @@ export default function TriviaGame() {
       });
       if (!r.ok) {
         const e = await r.json().catch(() => ({}));
+        if (handleProRequired(e)) {
+          // Cupo diario Free agotado: el paywall global explica el upgrade.
+          setLoading(false);
+          return;
+        }
         setError(e.message || "No se pudo iniciar la trivia. Inténtalo en un momento.");
         setLoading(false);
         return;

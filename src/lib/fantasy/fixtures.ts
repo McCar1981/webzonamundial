@@ -8,6 +8,7 @@
 
 import { MATCHES, type Match } from "@/data/matches";
 import { SELECCIONES } from "@/data/selecciones";
+import { etToDate } from "@/lib/bracket/match-time";
 import type { MatchTier } from "./types";
 
 /**
@@ -62,6 +63,29 @@ export function gameweekIsOver(gw: number, ref: Date = new Date()): boolean {
   let last = "";
   for (const m of matches) if (m.d > last) last = m.d;
   return ref.toISOString().slice(0, 10) > last;
+}
+
+/** Kickoff del primer partido real de la jornada (null si no resoluble). */
+export function gameweekFirstKickoff(gw: number): Date | null {
+  let first: Date | null = null;
+  for (const m of gameweekMatches(gw)) {
+    const k = etToDate(m.d, m.t);
+    if (k && (!first || k < first)) first = k;
+  }
+  return first;
+}
+
+/**
+ * Bloqueo del plan Free: la plantilla se congela desde `lockHours` horas antes
+ * del primer kickoff de la jornada hasta que la jornada termina (Pro hace
+ * sustituciones en vivo). Si el calendario no es resoluble, no bloquea.
+ */
+export function gameweekLockedForFree(gw: number, lockHours: number, ref: Date = new Date()): boolean {
+  if (!isValidGameweek(gw)) return false;
+  if (gameweekIsOver(gw, ref)) return false;
+  const first = gameweekFirstKickoff(gw);
+  if (!first) return false;
+  return ref.getTime() >= first.getTime() - lockHours * 3_600_000;
 }
 
 /** Partido (y lado) de una selección, por código de bandera, en una jornada. */

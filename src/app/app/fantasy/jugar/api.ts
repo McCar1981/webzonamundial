@@ -7,6 +7,7 @@
 
 import type { FantasyTeamState } from "@/lib/fantasy/types";
 import type { LiveSnapshot } from "@/lib/match-center/types";
+import { handleProRequired } from "@/lib/pro/paywall-client";
 
 export interface FantasyRankEntry {
   position: number;
@@ -75,7 +76,13 @@ export async function saveServerTeam(
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ state, gameweekScore }),
     });
-    if (!res.ok) return { ok: false, futcoins: 0, xpAwarded: 0 };
+    if (!res.ok) {
+      // Plantilla cerrada para Free (lock 24h / jornada en juego): abre el
+      // paywall global con el copy del límite.
+      const err = await res.json().catch(() => ({}));
+      handleProRequired(err);
+      return { ok: false, futcoins: 0, xpAwarded: 0 };
+    }
     const data = (await res.json()) as { futcoins?: number; xpAwarded?: number };
     return { ok: true, futcoins: data.futcoins ?? 0, xpAwarded: data.xpAwarded ?? 0 };
   } catch {
@@ -134,6 +141,7 @@ export async function createServerLeague(name: string): Promise<{ ok: boolean; l
       body: JSON.stringify({ name }),
     });
     const data = (await res.json()) as { ok?: boolean; league?: FantasyLeague; error?: string };
+    if (!res.ok) handleProRequired(data); // crear ligas privadas = Pro
     return { ok: res.ok && data.ok !== false, league: data.league, error: data.error };
   } catch {
     return { ok: false, error: "network" };

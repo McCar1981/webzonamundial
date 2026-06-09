@@ -8,10 +8,10 @@ import { getCurrentUser } from "@/lib/auth-helpers";
 import type { PredictionData, SocialData } from "@/lib/predictions/types";
 import { validatePredictionData, checkOpen } from "@/lib/predictions/rules";
 import {
-  isPremium,
   getPredictionById,
   updatePredictionData,
 } from "@/lib/predictions/store";
+import { isPro } from "@/lib/pro/entitlement";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -45,7 +45,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
   try { body = await req.json(); } catch { return NextResponse.json({ error: "bad_request" }, { status: 400 }); }
   if (!body.prediction_data) return NextResponse.json({ error: "bad_request", message: "prediction_data requerido" }, { status: 400 });
 
-  const premium = await isPremium(user.id);
+  const premium = await isPro(user.id, user.email);
   const v = validatePredictionData(row.prediction_type, body.prediction_data, premium);
   if (!v.ok) return NextResponse.json(v, { status: v.error === "chain_limit_reached" ? 403 : 400 });
 

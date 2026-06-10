@@ -18,7 +18,14 @@ import { NextResponse } from "next/server";
 import { MATCHES } from "@/data/matches";
 import { getLastSnapshot } from "@/lib/match-center/store";
 import { hasServiceRole, demoSampleSnapshots } from "@/lib/stories/demo";
-import { runSystemGeneration } from "@/lib/stories/store";
+import {
+  runSystemGeneration,
+  archiveExpired,
+  resolveMicroChallenges,
+  existingGenKeys,
+  createSystemStory,
+} from "@/lib/stories/store";
+import { dailyStory, genKeyDaily, FINAL_STATUSES } from "@/lib/stories/generator";
 import type { LiveSnapshot } from "@/lib/match-center/types";
 
 export const runtime = "nodejs";
@@ -52,11 +59,57 @@ async function readWindowedSnapshots(): Promise<LiveSnapshot[]> {
   return out;
 }
 
+// Fecha y hora actuales en ET (los horarios de MATCHES van en Eastern Time;
+// en junio-julio rige EDT = UTC-4, igual que kickoffMs arriba).
+function nowInET(): { dateStr: string; hour: number } {
+  const et = new Date(Date.now() - 4 * 3600 * 1000);
+  return { dateStr: et.toISOString().slice(0, 10), hour: et.getUTCHours() };
+}
+
+// Story diaria "Buenos días, DT": una por día (gen_key diario:fecha), solo si
+// hay partidos ese día y a partir de las 08:00 ET. Datos 100% reales (MATCHES).
+async function emitDailyStory(existing: Set<string>): Promise<number> {
+  const { dateStr, hour } = nowInET();
+  if (hour < 8) return 0;
+  const key = genKeyDaily(dateStr);
+  if (existing.has(key)) return 0;
+  const matchCount = MATCHES.filter((m) => m.d === dateStr).length;
+  if (matchCount === 0) return 0;
+  await createSystemStory(dailyStory(dateStr, matchCount));
+  return 1;
+}
+
 async function run() {
   // Sin service role (local) → snapshots de ejemplo para demostrar el motor.
   const snapshots = hasServiceRole() ? await readWindowedSnapshots() : demoSampleSnapshots();
   const result = await runSystemGeneration(snapshots);
-  return { ok: true, snapshots: snapshots.length, ...result };
+
+  // Story diaria (reutiliza las claves ya emitidas para no duplicar).
+  let daily = 0;
+  try {
+    daily = await emitDailyStory(await existingGenKeys());
+  } catch {
+    daily = 0; // no bloquea la pasada del motor
+  }
+
+  // Partidos terminados en ventana → corregir micro-retos "¿Habrá más goles?".
+  const finals = snapshots.filter((s) => FINAL_STATUSES.has(s.status));
+  let resolved = 0;
+  try {
+    resolved = (await resolveMicroChallenges(finals)).resolved;
+  } catch {
+    resolved = 0;
+  }
+
+  // Archivado: apaga is_active de las Stories vencidas (TTL 24h).
+  let archived = 0;
+  try {
+    archived = (await archiveExpired()).archived;
+  } catch {
+    archived = 0;
+  }
+
+  return { ok: true, snapshots: snapshots.length, ...result, daily, resolved, archived };
 }
 
 function authorized(req: Request): boolean {

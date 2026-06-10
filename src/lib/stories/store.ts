@@ -43,7 +43,11 @@ const STORY_COLS =
   "id,type,author_id,author_type,league_id,media_type,media_url,overlay_text,widgets,template_id,template_data,related_match_id,community_slug,view_count,interaction_count,share_count,is_active,expires_at,created_at";
 
 // ─── Mapeo fila → DTO ───────────────────────────────────────────────────────
-function toDTO(row: StoryRow, seen?: boolean): StoryDTO {
+function toDTO(
+  row: StoryRow,
+  seen?: boolean,
+  myAnswers?: Record<string, unknown>
+): StoryDTO {
   return {
     id: row.id,
     type: row.type,
@@ -60,6 +64,7 @@ function toDTO(row: StoryRow, seen?: boolean): StoryDTO {
     createdAt: row.created_at,
     expiresAt: row.expires_at,
     ...(seen === undefined ? {} : { seen }),
+    ...(myAnswers && Object.keys(myAnswers).length ? { myAnswers } : {}),
   };
 }
 
@@ -139,7 +144,10 @@ export async function getFeed(userId?: string | null): Promise<StoryReelDTO[]> {
   const rows = allRows.filter((r) => {
     if (r.type === "user") {
       if (userId && r.author_id === userId) return true; // propias
-      return r.community_slug != null && r.community_slug === viewerCommunity;
+      // Sin comunidad (no se registró vía creador) → pública para todos.
+      // Antes quedaba invisible: el autor publicaba y nadie la veía.
+      if (r.community_slug == null) return true;
+      return r.community_slug === viewerCommunity;
     }
     if (r.type === "creator") {
       // Solo a los miembros de la comunidad de ese creador.
@@ -148,17 +156,24 @@ export async function getFeed(userId?: string | null): Promise<StoryReelDTO[]> {
     return true; // system/narrative/league públicos
   });
 
-  // Qué stories ya vio el usuario (para el flag seen y el anillo del reel).
+  // Qué stories ya vio el usuario (anillo del reel) + sus respuestas a widgets
+  // (para pintar "ya votaste" al reabrir).
   let seenSet = new Set<string>();
+  const answersByStory = new Map<string, Record<string, unknown>>();
   if (userId) {
     const ids = rows.map((r) => r.id);
     if (ids.length) {
       const { data: views } = await admin
         .from("story_views")
-        .select("story_id")
+        .select("story_id,interaction_data")
         .eq("user_id", userId)
         .in("story_id", ids);
-      seenSet = new Set((views ?? []).map((v: { story_id: string }) => v.story_id));
+      for (const v of (views ?? []) as Array<{ story_id: string; interaction_data: Record<string, unknown> | null }>) {
+        seenSet.add(v.story_id);
+        if (v.interaction_data && Object.keys(v.interaction_data).length) {
+          answersByStory.set(v.story_id, v.interaction_data);
+        }
+      }
     }
   }
 
@@ -219,7 +234,7 @@ export async function getFeed(userId?: string | null): Promise<StoryReelDTO[]> {
       reels.set(key, reel);
     }
     const seen = userId ? seenSet.has(row.id) : undefined;
-    reel.stories.push(toDTO(row, seen));
+    reel.stories.push(toDTO(row, seen, answersByStory.get(row.id)));
     if (!seen) reel.allSeen = false;
   }
 
@@ -242,18 +257,43 @@ export async function getStory(
 
   if (error) throw new Error(`stories.getStory: ${error.message}`);
   if (!data) return null;
+  const row = data as StoryRow;
+
+  // Mismo scope de visibilidad que el feed: pedir una Story por id no debe
+  // saltarse la comunidad (user/creator). system/narrative/league son públicas.
+  if (row.type === "user" || row.type === "creator") {
+    const isOwn = Boolean(userId && row.author_id === userId);
+    if (!isOwn) {
+      let viewerCommunity: string | null = null;
+      if (userId) {
+        try {
+          viewerCommunity = await getFavCreator(userId);
+        } catch {
+          viewerCommunity = null;
+        }
+      }
+      const visible =
+        row.type === "user"
+          ? row.community_slug == null || row.community_slug === viewerCommunity
+          : row.community_slug != null && row.community_slug === viewerCommunity;
+      if (!visible) return null;
+    }
+  }
 
   let seen: boolean | undefined;
+  let myAnswers: Record<string, unknown> | undefined;
   if (userId) {
     const { data: view } = await admin
       .from("story_views")
-      .select("story_id")
+      .select("story_id,interaction_data")
       .eq("story_id", storyId)
       .eq("user_id", userId)
       .maybeSingle();
     seen = Boolean(view);
+    const ia = (view as { interaction_data?: Record<string, unknown> } | null)?.interaction_data;
+    if (ia && Object.keys(ia).length) myAnswers = ia;
   }
-  return toDTO(data as StoryRow, seen);
+  return toDTO(row, seen, myAnswers);
 }
 
 // ─── Registrar vista ────────────────────────────────────────────────────────
@@ -281,7 +321,7 @@ export async function recordView(
 
   const { data: story } = await admin
     .from("stories")
-    .select("id")
+    .select("id,author_id")
     .eq("id", storyId)
     .maybeSingle();
   if (!story) return { ok: false, error: "not_found" };
@@ -293,21 +333,35 @@ export async function recordView(
     .eq("user_id", userId)
     .maybeSingle();
 
-  const firstView = !existing;
+  let firstView = !existing;
 
   if (firstView) {
-    await admin.from("story_views").insert({
-      story_id: storyId,
-      user_id: userId,
-      completed,
-      viewed_at: new Date().toISOString(),
-    });
-    // Incremento atómico del contador agregado.
-    await admin.rpc("increment_story_counter", {
-      p_story_id: storyId,
-      p_column: "view_count",
-      p_delta: 1,
-    });
+    // Upsert con ignoreDuplicates: si dos peticiones del mismo usuario llegan a
+    // la vez, solo UNA inserta de verdad (la otra no devuelve fila) → el
+    // contador no se infla por la carrera read-then-insert.
+    const { data: inserted } = await admin
+      .from("story_views")
+      .upsert(
+        {
+          story_id: storyId,
+          user_id: userId,
+          completed,
+          viewed_at: new Date().toISOString(),
+        },
+        { onConflict: "story_id,user_id", ignoreDuplicates: true }
+      )
+      .select("id");
+    firstView = (inserted?.length ?? 0) > 0;
+    // Verse a uno mismo no cuenta como vista (el autor reabre su Story N veces).
+    const isAuthor = (story as { author_id: string | null }).author_id === userId;
+    if (firstView && !isAuthor) {
+      // Incremento atómico del contador agregado.
+      await admin.rpc("increment_story_counter", {
+        p_story_id: storyId,
+        p_column: "view_count",
+        p_delta: 1,
+      });
+    }
   } else if (completed && !(existing as { completed: boolean }).completed) {
     await admin
       .from("story_views")
@@ -327,7 +381,8 @@ export async function recordInteraction(
   widgetId: string,
   answer: unknown
 ): Promise<
-  { ok: false; error: "not_found" } | { ok: true; firstInteraction: boolean }
+  | { ok: false; error: "not_found" }
+  | { ok: true; firstInteraction: boolean; results?: Record<string, number> }
 > {
   // Demo local: no persiste, pero respondemos ok para que el widget responda.
   if (!hasServiceRole()) {
@@ -397,7 +452,101 @@ export async function recordInteraction(
     });
   }
 
-  return { ok: true, firstInteraction };
+  // Resultados agregados del widget tras votar: el visor pinta los % en vivo.
+  const results = await widgetResults(storyId, widgetId);
+  return { ok: true, firstInteraction, results };
+}
+
+// ─── Resultados agregados de un widget ──────────────────────────────────────
+// Cuenta las respuestas de TODOS los usuarios a un widget (encuesta/micro-reto)
+// para mostrar "resultados en vivo" tras votar. Respuestas no-string (objetos)
+// se descartan del conteo.
+export async function widgetResults(
+  storyId: string,
+  widgetId: string
+): Promise<Record<string, number>> {
+  if (!hasServiceRole()) return {};
+
+  const admin = adminClient();
+  const { data } = await admin
+    .from("story_views")
+    .select("interaction_data")
+    .eq("story_id", storyId)
+    .eq("widget_interacted", true)
+    .limit(5000);
+
+  const counts: Record<string, number> = {};
+  for (const v of (data ?? []) as Array<{ interaction_data: Record<string, unknown> | null }>) {
+    const ans = v.interaction_data?.[widgetId];
+    if (typeof ans !== "string" && typeof ans !== "number" && typeof ans !== "boolean") continue;
+    const key = String(ans).slice(0, 40);
+    counts[key] = (counts[key] ?? 0) + 1;
+  }
+  return counts;
+}
+
+// ─── Archivado de Stories vencidas ──────────────────────────────────────────
+// Apaga is_active de las Stories cuyo TTL venció. El feed ya filtra por
+// expires_at, pero así la tabla refleja el estado real (y las queries del motor
+// sobre "activas" no arrastran filas muertas). Lo dispara el cron del motor.
+export async function archiveExpired(): Promise<{ archived: number }> {
+  if (!hasServiceRole()) return { archived: 0 };
+
+  const admin = adminClient();
+  const nowIso = new Date().toISOString();
+  const { data, error } = await admin
+    .from("stories")
+    .update({ is_active: false })
+    .eq("is_active", true)
+    .lt("expires_at", nowIso)
+    .select("id");
+  if (error) throw new Error(`stories.archiveExpired: ${error.message}`);
+  return { archived: (data ?? []).length };
+}
+
+// ─── Resolutor de micro-retos "¿Habrá más goles?" ───────────────────────────
+// Para cada partido TERMINADO, corrige los micro-retos de las Stories de gol:
+// compara los goles que había al emitir la Story (template_data.goals_at) con el
+// total final del snapshot. Escribe correctOption en el widget → el visor enseña
+// "✅ Acertaste / ❌ Esta vez no" con el resultado REAL del partido.
+export async function resolveMicroChallenges(
+  finalSnapshots: LiveSnapshot[]
+): Promise<{ resolved: number }> {
+  if (!hasServiceRole() || !finalSnapshots.length) return { resolved: 0 };
+
+  const admin = adminClient();
+  let resolved = 0;
+
+  for (const snap of finalSnapshots) {
+    const totalFinal = snap.score[0] + snap.score[1];
+    const { data } = await admin
+      .from("stories")
+      .select("id,widgets,template_data")
+      .eq("type", "system")
+      .eq("related_match_id", String(snap.matchId))
+      .limit(100);
+
+    for (const row of (data ?? []) as Array<{
+      id: string;
+      widgets: StoryWidget[];
+      template_data: Record<string, unknown> | null;
+    }>) {
+      const widgets = Array.isArray(row.widgets) ? row.widgets : [];
+      const goalsAt = Number(row.template_data?.goals_at);
+      if (!Number.isFinite(goalsAt)) continue; // Story sin dato de emisión → no se puede corregir
+      let changed = false;
+      const next = widgets.map((w) => {
+        if (w.kind !== "micro_challenge" || w.correctOption != null) return w;
+        changed = true;
+        return { ...w, correctOption: (totalFinal > goalsAt ? "yes" : "no") as "yes" | "no" };
+      });
+      if (!changed) continue;
+      const { error } = await admin.from("stories").update({ widgets: next }).eq("id", row.id);
+      if (!error) resolved++;
+    }
+  }
+
+  return { resolved };
 }
 
 // ─── Crear Story del sistema/narrativa (service role) ───────────────────────

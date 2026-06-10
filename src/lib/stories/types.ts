@@ -132,6 +132,9 @@ export interface StoryDTO {
   expiresAt: string;
   /** Solo presente con sesión: si el usuario ya la vio/completó/interactuó. */
   seen?: boolean;
+  /** Solo con sesión: respuestas del usuario a los widgets (widget_id → answer).
+   *  Permite pintar "ya votaste" al reabrir la Story. */
+  myAnswers?: Record<string, unknown>;
 }
 
 // Una "burbuja" del carrusel: agrupa las Stories de un mismo autor/grupo.

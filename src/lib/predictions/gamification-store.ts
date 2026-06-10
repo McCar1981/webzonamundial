@@ -66,22 +66,41 @@ interface ProfileGam {
 
 async function readProfile(uid: string): Promise<ProfileGam> {
   const admin = adminClient();
-  const { data } = await admin
+
+  // coins/xp se leen con un SELECT mínimo (el mismo que usa el ranking de la
+  // cabecera, que funciona) separado de las columnas de racha: si alguna
+  // columna de racha falta en el entorno, ese fallo no debe arrastrar
+  // coins/xp a 0. Antes un único SELECT de 10 columnas fallaba entero y el
+  // error se descartaba en silencio → la home mostraba 0 Fútcoins.
+  const { data: core, error: coreErr } = await admin
     .from("profiles")
-    .select("xp,coins,current_streak,best_streak,last_checkin,checkin_days,username,avatar_url,streak_expires_at,streak_anchor")
+    .select("xp,coins,username,avatar_url")
     .eq("id", uid).maybeSingle();
-  const p = (data ?? {}) as Partial<ProfileGam>;
+  if (coreErr) {
+    console.error("[gamification] readProfile core select failed:", coreErr.message);
+  }
+  const c = (core ?? {}) as Partial<ProfileGam>;
+
+  const { data: streak, error: streakErr } = await admin
+    .from("profiles")
+    .select("current_streak,best_streak,last_checkin,checkin_days,streak_expires_at,streak_anchor")
+    .eq("id", uid).maybeSingle();
+  if (streakErr) {
+    console.error("[gamification] readProfile streak select failed (defaults):", streakErr.message);
+  }
+  const s = (streak ?? {}) as Partial<ProfileGam>;
+
   return {
-    xp: p.xp ?? 0,
-    coins: p.coins ?? 0,
-    current_streak: p.current_streak ?? 0,
-    best_streak: p.best_streak ?? 0,
-    last_checkin: p.last_checkin ?? null,
-    checkin_days: p.checkin_days ?? 0,
-    username: p.username ?? null,
-    avatar_url: p.avatar_url ?? null,
-    streak_expires_at: p.streak_expires_at ?? null,
-    streak_anchor: p.streak_anchor ?? null,
+    xp: c.xp ?? 0,
+    coins: c.coins ?? 0,
+    username: c.username ?? null,
+    avatar_url: c.avatar_url ?? null,
+    current_streak: s.current_streak ?? 0,
+    best_streak: s.best_streak ?? 0,
+    last_checkin: s.last_checkin ?? null,
+    checkin_days: s.checkin_days ?? 0,
+    streak_expires_at: s.streak_expires_at ?? null,
+    streak_anchor: s.streak_anchor ?? null,
   };
 }
 

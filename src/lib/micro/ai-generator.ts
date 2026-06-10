@@ -59,7 +59,7 @@ PREDICADOS DISPONIBLES (campo "kind"):
 REGLAS:
 1. Elige el predicado más interesante según el contexto (p.ej. con un equipo volcado al ataque, "ai_goal_yesno"; partido caliente con faltas, "ai_card_yesno").
 2. La pregunta va en español, máx 90 caracteres, sin emojis, concreta y emocionante. Usa los nombres reales de los equipos cuando aporte.
-3. "windowSeconds": entre 120 y 180 (cuánto dura abierta la predicción, en segundos de juego).
+3. "windowSeconds": entre 120 y 180 — es el HORIZONTE de la pregunta en segundos de juego (180 = "¿gol en los próximos 3 minutos?"). La ventana para RESPONDER la fija el sistema (15s); tú no la decides. La pregunta debe ser coherente con el horizonte que elijas.
 4. "basePoints": entre 12 y 30 según dificultad estimada (gol = más difícil = más puntos).
 5. NO repitas literalmente la pregunta por defecto; aporta contexto del partido.
 6. Devuelve SOLO un JSON válido, sin markdown ni texto extra.
@@ -151,9 +151,11 @@ Genera la micro-predicción ahora. Devuelve SOLO el JSON.`;
     question,
     options: def.options ?? [],
     context: {},
-    // Tope 180s = MIN_GAP_MS del motor: evita que dos micros se solapen y que la
-    // anterior quede activa pero invisible (getActiveMicro solo devuelve la última).
-    windowSeconds: clampInt(parsed.windowSeconds, 120, 180, def.windowSeconds),
+    // HORIZONTE del predicado (no la ventana de respuesta, que es fija de 15s en
+    // el catálogo): cuántos segundos de juego abarca la pregunta. 120-180 mantiene
+    // la resolución rápida (2-3 min). Fallback 150 = punto medio; ya no sirve
+    // def.windowSeconds, que ahora es la ventana de respuesta (15).
+    windowSeconds: clampInt(parsed.windowSeconds, 120, 180, 150),
     basePoints: clampInt(parsed.basePoints, 12, 30, def.basePoints),
     // Un solo intento de IA por minuto y partido (idempotencia en createMicro).
     triggerEventId: `ai-${snap.matchId}-${snap.elapsed}`,

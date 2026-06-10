@@ -190,7 +190,9 @@ export async function processMicroGeneration(snap: LiveSnapshot): Promise<number
           options: ai.options,
           context: ai.context,
           triggerEventId: ai.triggerEventId,
-          windowSeconds: ai.windowSeconds,
+          // El generador decide el HORIZONTE del predicado ("¿gol en 3 min?");
+          // la ventana de respuesta es la del catálogo (15s).
+          resolveHorizonSeconds: ai.windowSeconds,
           basePoints: ai.basePoints,
         });
         if (created) {
@@ -216,7 +218,9 @@ async function pushMicro(snap: LiveSnapshot, micro: MicroRow): Promise<void> {
     kind: PUSH_KIND,
     payload: {
       title: `${emoji} Micro-predicción · ${home} vs ${away}`,
-      body: `${micro.question} ¡Tienes ${micro.window_seconds}s!`,
+      // Sin prometer segundos: con ventana de 15s, quien llega del push juega
+      // la SIGUIENTE micro (la tarjeta "llegaste tarde" se lo explica).
+      body: `${micro.question} ¡Está pasando ahora — entra al partido!`,
       url: `/app/matchcenter/${snap.matchId}`,
       tag: `micro-${snap.matchId}`,
       icon: PUSH_ICON,

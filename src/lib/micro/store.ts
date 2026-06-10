@@ -83,8 +83,14 @@ export interface CreateMicroInput {
   options?: { key: string; label: string }[];
   context?: ResolveContext;
   triggerEventId?: string;
-  /** Override de ventana (segundos). Las micros de IA fijan su propia duración. */
+  /** Override de la ventana de RESPUESTA (segundos). Por defecto, el catálogo (15s). */
   windowSeconds?: number;
+  /**
+   * Horizonte del PREDICADO en segundos (solo micros de IA): cuánto abarca la
+   * pregunta ("¿gol en los próximos 3 min?" → 180). Fija resolve_minute; la
+   * ventana para responder sigue siendo windowSeconds (15s).
+   */
+  resolveHorizonSeconds?: number;
   /** Override de puntos base. Las micros de IA fijan su propia dificultad. */
   basePoints?: number;
 }
@@ -103,9 +109,14 @@ export async function createMicro(input: CreateMicroInput): Promise<MicroRow | n
   const basePoints = input.basePoints ?? def.basePoints;
   const closesAt = new Date(now + windowSeconds * 1000).toISOString();
   // La ventana de respuesta (closesAt) es independiente del horizonte de
-  // resolución (resolveMinute): "¿gol antes del 30?" se contesta en 60s pero solo
-  // se resuelve cuando el partido llega al minuto 30.
-  const resolveMinute = resolveMinuteFor(input.kind, input.openMinute, windowSeconds);
+  // resolución (resolveMinute): "¿gol antes del 30?" se contesta en 15s pero solo
+  // se resuelve cuando el partido llega al minuto 30. En las micros de IA el
+  // horizonte lo decide el generador (resolveHorizonSeconds), no la ventana.
+  const resolveMinute = resolveMinuteFor(
+    input.kind,
+    input.openMinute,
+    input.resolveHorizonSeconds ?? windowSeconds,
+  );
 
   const row = {
     match_id: input.matchId,

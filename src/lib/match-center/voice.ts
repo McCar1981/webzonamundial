@@ -19,6 +19,19 @@ export interface VoiceProvider {
 }
 
 // --- Provider Web Speech API ---
+
+// Voz preferida: narrador MASCULINO en español. La Web Speech API no expone el
+// género, así que se reconoce por los nombres de voz habituales por plataforma
+// (Windows: Álvaro/Raúl/Pablo; iOS/macOS: Jorge/Diego/Carlos/Juan; Android
+// suele dar solo "Google español", neutra). Si ninguna pista cuadra, se evita
+// al menos caer en una voz femenina conocida; el resto del carácter "narrador"
+// lo aportan tono (pitch grave) y ritmo. El salto de calidad real vendrá con
+// el provider ElevenLabs (placeholder más abajo).
+const MALE_VOICE_RE =
+  /\b(álvaro|alvaro|jorge|diego|carlos|juan|pablo|ra[uú]l|andr[eé]s|enrique|miguel|tom[aá]s|gonzalo|male|hombre)\b/i;
+const FEMALE_VOICE_RE =
+  /\b(m[oó]nica|paulina|helena|laura|luc[ií]a|elvira|sabina|marisol|isabela|camila|francisca|soledad|ximena|female|mujer)\b/i;
+
 class WebSpeechProvider implements VoiceProvider {
   readonly id = "web";
   private voice: SpeechSynthesisVoice | null = null;
@@ -32,11 +45,17 @@ class WebSpeechProvider implements VoiceProvider {
     if (this.picked || !this.isAvailable()) return;
     const voices = window.speechSynthesis.getVoices();
     if (voices.length === 0) return; // aún no cargadas
-    // Preferimos español; latino si está disponible.
+    const spanish = voices.filter((v) => /^es/i.test(v.lang));
+    // Orden: masculina conocida > desconocida > femenina conocida; a igualdad,
+    // acento latino primero (es-419/MX/US/AR/CO), como antes.
+    const genderRank = (v: SpeechSynthesisVoice) =>
+      MALE_VOICE_RE.test(v.name) ? 0 : FEMALE_VOICE_RE.test(v.name) ? 2 : 1;
+    const accentRank = (v: SpeechSynthesisVoice) =>
+      /es[-_](419|MX|US|AR|CO)/i.test(v.lang) ? 0 : 1;
     this.voice =
-      voices.find((v) => /es[-_](419|MX|US|AR|CO)/i.test(v.lang)) ||
-      voices.find((v) => /^es/i.test(v.lang)) ||
-      null;
+      [...spanish].sort(
+        (a, b) => genderRank(a) - genderRank(b) || accentRank(a) - accentRank(b),
+      )[0] ?? null;
     this.picked = true;
   }
 
@@ -50,8 +69,9 @@ class WebSpeechProvider implements VoiceProvider {
     const u = new SpeechSynthesisUtterance(text);
     if (this.voice) u.voice = this.voice;
     u.lang = this.voice?.lang || "es-ES";
-    u.rate = 1.08;
-    u.pitch = 1.0;
+    // Tono de narrador deportivo: voz algo más grave y ritmo vivo.
+    u.rate = 1.12;
+    u.pitch = 0.9;
     u.volume = 1.0;
     try {
       synth.speak(u);

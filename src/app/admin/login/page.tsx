@@ -11,5 +11,5 @@ export default function AdminLoginPage({
 }: {
   searchParams: { next?: string };
 }) {
-  return <LoginClient nextPath={searchParams.next || "/admin/registros"} />;
+  return <LoginClient nextPath={searchParams.next || "/admin/panel"} />;
 }

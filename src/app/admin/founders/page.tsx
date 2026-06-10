@@ -10,6 +10,8 @@ import {
   listFounders,
   listEvents,
 } from "@/lib/founders/store";
+import { creatorsAdminClient, getAllCreators } from "@/lib/creators/program";
+import AdminHeader from "@/components/admin/AdminHeader";
 
 export const metadata: Metadata = {
   title: "Founders · Panel interno",
@@ -50,12 +52,36 @@ export default async function FoundersAdminPage() {
     listEvents(20),
   ]);
 
+  // Atribución a creador: el founder con cuenta (userId) trae su profiles.fav_creator.
+  // Resolvemos userId → slug → nombre del creador. Si no hay service key, tabla o
+  // userId, la columna queda en "—" sin romper el panel.
+  const creatorByUser = new Map<string, string>();
+  const userIds = founders.map((f) => f.userId).filter(Boolean) as string[];
+  if (userIds.length > 0) {
+    try {
+      const admin = creatorsAdminClient();
+      const [{ data: profiles }, creators] = await Promise.all([
+        admin.from("profiles").select("id, fav_creator").in("id", userIds),
+        getAllCreators(),
+      ]);
+      const nameBySlug = new Map(creators.map((c) => [c.slug, c.display_name]));
+      for (const row of (profiles ?? []) as { id: string; fav_creator: string | null }[]) {
+        if (row.fav_creator) creatorByUser.set(row.id, nameBySlug.get(row.fav_creator) ?? row.fav_creator);
+      }
+    } catch {
+      /* sin service key / tabla creator_program: columna queda vacía */
+    }
+  }
+  const creatorFor = (userId?: string | null): string =>
+    userId ? creatorByUser.get(userId) ?? "directo" : "—";
+
   return (
     <div className="px-6 py-8 max-w-6xl mx-auto text-white">
-      <h1 className="text-3xl font-black mb-2 tracking-tight">Founders Pass</h1>
-      <p className="text-gray-400 text-sm mb-8">
-        Estado del Founders Pass del Mundial 2026. Datos en vivo desde Vercel KV.
-      </p>
+      <AdminHeader
+        title="Founders Pass"
+        current="/admin/founders"
+        description="Estado del Founders Pass del Mundial 2026. Datos en vivo desde Vercel KV. La columna «Creador» indica qué creador atrajo a cada founder (si compró con su cuenta)."
+      />
 
       {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
@@ -77,6 +103,7 @@ export default async function FoundersAdminPage() {
           <thead>
             <tr className="bg-white/5 text-left text-xs uppercase tracking-wider text-gray-400">
               <th className="px-3 py-2.5">Email (censurado)</th>
+              <th className="px-3 py-2.5">Creador</th>
               <th className="px-3 py-2.5">Importe</th>
               <th className="px-3 py-2.5">Fecha</th>
               <th className="px-3 py-2.5">Estado</th>
@@ -87,6 +114,14 @@ export default async function FoundersAdminPage() {
             {founders.map((f) => (
               <tr key={f.checkoutSessionId || f.email} className="border-t border-white/5">
                 <td className="px-3 py-2.5 font-mono text-xs">{censorEmail(f.email)}</td>
+                <td className="px-3 py-2.5 text-xs">
+                  {(() => {
+                    const c = creatorFor(f.userId);
+                    if (c === "—") return <span className="text-gray-600">—</span>;
+                    if (c === "directo") return <span className="text-gray-400">directo</span>;
+                    return <span className="text-[#C9A84C] font-semibold">{c}</span>;
+                  })()}
+                </td>
                 <td className="px-3 py-2.5 font-medium">{fmtAmount(f.amount, f.currency)}</td>
                 <td className="px-3 py-2.5 text-gray-400">{fmtDate(f.purchasedAt)}</td>
                 <td className="px-3 py-2.5">
@@ -113,7 +148,7 @@ export default async function FoundersAdminPage() {
             ))}
             {founders.length === 0 && (
               <tr>
-                <td colSpan={5} className="px-3 py-6 text-center text-gray-500">
+                <td colSpan={6} className="px-3 py-6 text-center text-gray-500">
                   Aún no hay Founders. Cuando alguien compre, aparecerá aquí.
                 </td>
               </tr>

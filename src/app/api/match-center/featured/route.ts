@@ -34,6 +34,20 @@ const POSTMATCH_MS = 210 * 60_000;
 const IN_PLAY = new Set(["1H", "HT", "2H", "ET", "BT", "P", "LIVE", "INT"]);
 const FINISHED = new Set(["FT", "AET", "PEN"]);
 
+// Slots de PRUEBA/amistosos (id >= 9000): se "montan" sobre KV con un fixture
+// real que cambia de día y de rival, así que su snapshot puede quedar guardado
+// de una configuración anterior. Hay que validarlo contra la fila actual.
+const TEST_SLOT_MIN = 9000;
+
+/** ¿El snapshot guardado corresponde a la config ACTUAL del slot (mismo saque)?
+ *  Un amistoso anterior deja en KV un snapshot FINISHED de otra fecha que, si no
+ *  se ignora, haría saltar el hero al inaugural por error y serviría datos viejos. */
+function snapshotMatchesConfig(last: LiveSnapshot | null, ko: number): boolean {
+  if (!last?.kickoff || Number.isNaN(ko)) return false;
+  const t = new Date(last.kickoff).getTime();
+  return !Number.isNaN(t) && Math.abs(t - ko) < 12 * 60 * 60_000;
+}
+
 function kickoffMs(date: string, time: string): number {
   const iso = `${date}T${time.length === 5 ? time : "00:00"}:00-04:00`;
   const t = new Date(iso).getTime();
@@ -52,14 +66,31 @@ async function pickFeaturedId(now: number): Promise<number> {
     .sort((a, b) => kickoffMs(a.d, a.t) - kickoffMs(b.d, b.t));
 
   for (const m of programmed) {
-    // El estado REAL conocido (KV) manda sobre la ventana temporal.
+    const ko = kickoffMs(m.d, m.t);
     const last = await getLastSnapshot(m.i);
+
+    // ── Slot de PRUEBA (amistoso real montado sobre KV) ──
+    // Se da por ACABADO (→ inaugural) si ya pasó la ventana por reloj (aunque se
+    // perdiera el pitido final) o si su snapshot REAL del día dice FINISHED. Solo
+    // creemos un snapshot cuyo saque coincide con la config actual: así un
+    // amistoso anterior (otra fecha) no lo marca como terminado por error.
+    if (m.i >= TEST_SLOT_MIN) {
+      if (Number.isNaN(ko)) continue;
+      if (now > ko + POSTMATCH_MS) continue; // terminó por reloj -> inaugural
+      if (snapshotMatchesConfig(last, ko)) {
+        if (FINISHED.has(last!.status)) continue; // terminó de verdad -> inaugural
+        if (IN_PLAY.has(last!.status)) return m.i; // en vivo -> amistoso
+      }
+      return m.i; // próximo / en vivo dentro de ventana -> amistoso
+    }
+
+    // ── Partidos reales del Mundial: el estado REAL conocido (KV) manda sobre
+    // la ventana temporal. ──
     if (last) {
       if (FINISHED.has(last.status)) continue; // terminó -> siguiente
       if (IN_PLAY.has(last.status)) return m.i; // en juego -> este
       // NS (por comenzar): cae a la lógica de ventana de abajo.
     }
-    const ko = kickoffMs(m.d, m.t);
     if (Number.isNaN(ko)) {
       if (last) return m.i;
       continue;
@@ -81,15 +112,23 @@ async function feedFor(matchId: number): Promise<LiveSnapshot | null> {
   const meta = buildMeta(matchId);
   if (!meta) return null;
 
+  // Slot de PRUEBA: ignora snapshots de una config anterior (otra fecha) — su
+  // saque no coincide con la fila actual de MATCHES → servir "por comenzar" con
+  // los datos del día en vez de un resultado viejo de otro amistoso.
+  const ko = matchId >= TEST_SLOT_MIN ? kickoffMs(meta.date, meta.time) : 0;
+  const fresh = (s: LiveSnapshot | null): s is LiveSnapshot =>
+    !!s && (matchId < TEST_SLOT_MIN || snapshotMatchesConfig(s, ko));
+
   const cached = await getCachedSnapshot(matchId);
-  if (cached) return cached;
+  if (fresh(cached)) return cached;
 
   // Último estado conocido (copia durable mc:last:, sobrevive al TTL del
   // snapshot fresco): mejor un dato algo viejo que resetear el hero a "NS".
   const last = await getLastSnapshot(matchId);
-  if (last) return last;
+  if (fresh(last)) return last;
 
-  // Sin datos en vivo: estado estático "por comenzar" con la fecha del calendario.
+  // Sin datos en vivo (o snapshot viejo de otra config): estado estático "por
+  // comenzar" con la fecha del calendario.
   return scheduledSnapshot(meta, isoKickoff(meta.date, meta.time));
 }
 

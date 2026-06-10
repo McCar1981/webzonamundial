@@ -967,38 +967,45 @@ function CreateBar({ onCreated }: { onCreated: (b: BarRow) => void }) {
   const [city, setCity] = useState("");
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
+  const [isEmpresa, setIsEmpresa] = useState(false);
+
+  // Alta de empresa (?tipo=empresa, desde la landing /empresas): la porra nace
+  // marcada como kind='empresa' y su kit usa el cartel de empresa, sin tocar la BD.
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get("tipo") === "empresa") setIsEmpresa(true);
+  }, []);
 
   const create = useCallback(async () => {
     if (!name.trim()) return;
     setBusy(true); setErr(null);
     try {
-      const res = await fetch("/api/bars", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name, city }) });
+      const res = await fetch("/api/bars", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name, city, kind: isEmpresa ? "empresa" : "bar" }) });
       const j = await res.json();
       if (res.ok && j.bar) onCreated(j.bar);
       else if (handleProRequired(j)) { /* crear bar = Pro: paywall global abierto */ }
       else setErr(j.message || "No se pudo crear el bar");
     } catch { setErr("Error de red"); } finally { setBusy(false); }
-  }, [name, city, onCreated]);
+  }, [name, city, isEmpresa, onCreated]);
 
   return (
     <div style={{ minHeight: "100vh", background: BG, color: "#E2E8F0", display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}>
       <style>{`.zm-pub-lat { display: none !important; } .google-auto-placed, ins.adsbygoogle { display: none !important; }`}</style>
       <div style={{ width: "100%", maxWidth: 440, background: BG2, border: BORDER, borderRadius: 18, padding: 24 }}>
         <div style={{ display: "inline-flex", alignItems: "center", gap: 7, color: GOLD, fontWeight: 800, fontSize: 12, textTransform: "uppercase", letterSpacing: 1 }}>
-          <Trophy size={14} /> Peñas Digitales para Bares
+          <Trophy size={14} /> {isEmpresa ? "Porra Corporativa para Empresas" : "Peñas Digitales para Bares"}
         </div>
-        <h1 style={{ fontSize: 22, fontWeight: 900, margin: "8px 0 4px" }}>Crea la peña de tu bar</h1>
-        <p style={{ color: MID, fontSize: 14, margin: "0 0 18px" }}>En un minuto tendrás tu página, tu QR y tu ranking listos para los clientes.</p>
+        <h1 style={{ fontSize: 22, fontWeight: 900, margin: "8px 0 4px" }}>{isEmpresa ? "Crea la liga de tu empresa" : "Crea la peña de tu bar"}</h1>
+        <p style={{ color: MID, fontSize: 14, margin: "0 0 18px" }}>{isEmpresa ? "En un minuto tendrás tu página privada, tu invitación y tu ranking por departamentos." : "En un minuto tendrás tu página, tu QR y tu ranking listos para los clientes."}</p>
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-          <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Nombre del bar" style={inp()} />
+          <input value={name} onChange={(e) => setName(e.target.value)} placeholder={isEmpresa ? "Nombre de la empresa" : "Nombre del bar"} style={inp()} />
           <input value={city} onChange={(e) => setCity(e.target.value)} placeholder="Ciudad (opcional)" style={inp()} />
           {err && <div style={{ color: "#f87171", fontSize: 13 }}>{err}</div>}
           <button onClick={() => void create()} disabled={busy || !name.trim()} style={{ ...btn(true), opacity: busy || !name.trim() ? 0.6 : 1 }}>
-            {busy ? <Loader2 size={16} className="spin" /> : <Rocket size={16} />} Crear mi peña
+            {busy ? <Loader2 size={16} className="spin" /> : <Rocket size={16} />} {isEmpresa ? "Crear la liga" : "Crear mi peña"}
           </button>
         </div>
         <p style={{ color: DIM, fontSize: 11.5, lineHeight: 1.5, marginTop: 16 }}>
-          Dinámica gratuita de predicciones. No implica apuestas. Los premios los gestiona el establecimiento.
+          Dinámica gratuita de predicciones. No implica apuestas. Los premios los gestiona {isEmpresa ? "la empresa" : "el establecimiento"}.
         </p>
       </div>
     </div>

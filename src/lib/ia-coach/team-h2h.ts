@@ -14,8 +14,14 @@
 
 import { kv } from "@vercel/kv";
 import { API_FOOTBALL_TEAM_IDS } from "./team-form";
+import { TEAM_BY_ID } from "@/lib/bracket/teams";
 
-const KV_PREFIX = "ia-coach:h2h:v1:";
+// v2 (2026-06-10): el récord se cuenta POR EQUIPO (vía api-ID del ganador) y se
+// expresa con nombres absolutos, robusto a la orientación de la clave canónica.
+// Antes decía "3 v. local, 4 v. visitante" (no decía QUIÉN ganó) y al cachearse
+// en orientación inversa quedaba referido al equipo equivocado. El bump invalida
+// los cachés con el formato antiguo.
+const KV_PREFIX = "ia-coach:h2h:v2:";
 const KV_TTL_SECONDS = 30 * 24 * 60 * 60; // 30 días
 
 const API_SPORTS_HOST = "v3.football.api-sports.io";
@@ -29,6 +35,9 @@ export interface H2HMatch {
   date: string; // ISO
   homeTeam: string;
   awayTeam: string;
+  /** api-football IDs del local/visitante DE ESE fixture (para atribuir victorias). */
+  homeApiId: number;
+  awayApiId: number;
   goalsHome: number | null;
   goalsAway: number | null;
   competition: string;
@@ -121,32 +130,45 @@ async function fetchH2H(
   }
 }
 
-/** Build summary text "8 partidos: ESP 3, URU 4, 1 empate" */
+/** Récord con nombres absolutos: "8 partidos: España 3, Uruguay 4, 1 empate".
+ *  Atribuye cada victoria al EQUIPO ganador (vía su api-ID en ese fixture), no al
+ *  "local/visitante" del fixture —que varía partido a partido—, así que el texto es
+ *  correcto sea cual sea la orientación con la que se consulte la clave canónica. */
 function buildRecordText(
   homeId: string,
   awayId: string,
   matches: H2HMatch[],
 ): string {
   if (matches.length === 0) return "Sin enfrentamientos directos en datos recientes";
+  const apiHome = API_FOOTBALL_TEAM_IDS[homeId];
+  const apiAway = API_FOOTBALL_TEAM_IDS[awayId];
+  const homeName = TEAM_BY_ID[homeId]?.name ?? homeId;
+  const awayName = TEAM_BY_ID[awayId]?.name ?? awayId;
+
   let homeWins = 0;
   let awayWins = 0;
   let draws = 0;
-  // Necesitamos saber qué team del fixture corresponde a homeId / awayId.
-  // En el H2H de api-football, el orden home/away varía por partido. Vamos a
-  // contar resultados pero referenciando los names: comparamos goalsHome/Away.
-  // Para esto, devolvemos el récord en términos del fixture (home gana / away
-  // gana / empate). El nombre por ID se infiere por el primer match.
-  // Truco simpler: contamos victorias por team1 (homeId) usando match.homeTeam
-  // nombre vs match.awayTeam. Pero no tenemos el nombre del bracket team aquí.
-  // Más simple: el caller hace formatH2HForPrompt que sabe el name.
+  let counted = 0;
   for (const m of matches) {
     if (m.goalsHome === null || m.goalsAway === null) continue;
-    if (m.goalsHome > m.goalsAway) homeWins++;
-    else if (m.goalsAway > m.goalsHome) awayWins++;
-    else draws++;
+    if (m.goalsHome === m.goalsAway) {
+      draws++;
+      counted++;
+      continue;
+    }
+    const winnerApiId = m.goalsHome > m.goalsAway ? m.homeApiId : m.awayApiId;
+    if (winnerApiId === apiHome) {
+      homeWins++;
+      counted++;
+    } else if (winnerApiId === apiAway) {
+      awayWins++;
+      counted++;
+    }
+    // Ganador no atribuible a ninguno de los dos → se omite del récord.
   }
-  const total = matches.length;
-  return `${total} partidos recientes: ${homeWins} v. local, ${awayWins} v. visitante, ${draws} empates`;
+  if (counted === 0) return "Sin enfrentamientos directos en datos recientes";
+  const drawTxt = draws === 1 ? "1 empate" : `${draws} empates`;
+  return `${counted} partidos: ${homeName} ${homeWins}, ${awayName} ${awayWins}, ${drawTxt}`;
 }
 
 /**
@@ -176,6 +198,8 @@ export async function getH2H(
     date: f.fixture.date,
     homeTeam: f.teams?.home?.name || "",
     awayTeam: f.teams?.away?.name || "",
+    homeApiId: f.teams?.home?.id ?? 0,
+    awayApiId: f.teams?.away?.id ?? 0,
     goalsHome: f.goals?.home ?? null,
     goalsAway: f.goals?.away ?? null,
     competition: f.league?.name || "",

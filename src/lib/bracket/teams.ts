@@ -29,7 +29,7 @@ export const BRACKET_TEAMS: BracketTeam[] = [
   { id: "MEX", name: "México",         iso: "mx",     slug: "mexico",         group: "A", color: "#0E5C36", confed: "CONCACAF" },
   { id: "ZAF", name: "Sudáfrica",      iso: "za",     slug: "sudafrica",      group: "A", color: "#007A4D", confed: "CAF" },
   { id: "KOR", name: "Corea del Sur",  iso: "kr",     slug: "corea-del-sur",  group: "A", color: "#003478", confed: "AFC" },
-  { id: "CZE", name: "Rep. Checa",     iso: "cz",     slug: "chequia",        group: "A", color: "#11457E", confed: "UEFA" },
+  { id: "CZE", name: "Rep. Checa",     iso: "cz",     slug: "republica-checa", group: "A", color: "#11457E", confed: "UEFA" },
   // Grupo B
   { id: "CAN", name: "Canadá",         iso: "ca",     slug: "canada",         group: "B", color: "#FF0000", confed: "CONCACAF" },
   { id: "QAT", name: "Qatar",          iso: "qa",     slug: "qatar",          group: "B", color: "#8A1538", confed: "AFC" },

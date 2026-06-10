@@ -21,6 +21,7 @@
 // Mapeo team ID api-football ↔ selección Mundial 2026: en API_FOOTBALL_TEAM_IDS.
 
 import { kv } from "@vercel/kv";
+import { BRACKET_TEAMS } from "@/lib/bracket/teams";
 
 const KV_PREFIX = "ia-coach:form:v1:";
 const KV_TTL_SECONDS = 36 * 60 * 60; // 36 h (margen sobre el cron diario)
@@ -33,35 +34,55 @@ function getApiKey(): string | undefined {
   return process.env.API_SPORTS_KEY || process.env.RAPIDAPI_KEY;
 }
 
-// IDs de api-football.com para las 48 selecciones del Mundial 2026.
-// Mapeo manual: keys son los `id` de BRACKET_TEAMS (ISO3 upper).
-// Fuente: api-football /teams?search={name} — verificados Mayo 2026.
+// IDs de api-football.com (v3.football.api-sports.io) para las 48 selecciones del
+// Mundial 2026. Keys = `id` de BRACKET_TEAMS (ISO3 upper). VALORES = id de la
+// selección ABSOLUTA MASCULINA en api-football.
+//
+// Verificados 2026-06-10 resolviendo cada selección vía /teams?search= (filtrando
+// national===true y descartando femeninas/juveniles) y confirmando que cada id
+// devuelve partidos recientes de selección en /fixtures?last=. Sin duplicados.
+// NO editar a mano: si cambia el bracket, re-resolver con el mismo método.
 export const API_FOOTBALL_TEAM_IDS: Record<string, number> = {
   // Grupo A
-  MEX: 16, ZAF: 32, KOR: 25, CZE: 24,
+  MEX: 16, ZAF: 1531, KOR: 17, CZE: 770,
   // Grupo B
-  CAN: 22, QAT: 23, BIH: 17, SUI: 15,
+  CAN: 5529, QAT: 1569, BIH: 1113, SUI: 15,
   // Grupo C
-  BRA: 6, HAI: 33, MAR: 31, SCO: 1108,
+  BRA: 6, HAI: 2386, MAR: 31, SCO: 1108,
   // Grupo D
-  USA: 2384, PAR: 8, AUS: 20, TUR: 21,
+  USA: 2384, AUS: 20, PAR: 2380, TUR: 777,
   // Grupo E
-  GER: 25, CIV: 27, CUW: 1535, ECU: 7,
+  GER: 25, CIV: 1501, CUW: 5530, ECU: 2382,
   // Grupo F
-  NED: 1118, JPN: 12, SWE: 9, TUN: 28,
+  NED: 1118, TUN: 28, JPN: 12, SWE: 5,
   // Grupo G
-  BEL: 1, NZL: 18, EGY: 19, IRN: 29,
+  BEL: 1, NZL: 4673, EGY: 32, IRN: 22,
   // Grupo H
-  ESP: 9, CPV: 1531, KSA: 26, URU: 11,
+  ESP: 9, CPV: 1533, URU: 7, KSA: 23,
   // Grupo I
-  FRA: 2, SEN: 30, NOR: 12, // playoff TBD
+  FRA: 2, SEN: 13, NOR: 1090, IRQ: 1567,
   // Grupo J
-  ARG: 26, ALG: 14, AUT: 16, JOR: 1106,
+  ARG: 26, ALG: 1532, AUT: 775, JOR: 1548,
   // Grupo K
-  POR: 27, UZB: 1107, COL: 8,
+  POR: 27, UZB: 1568, COL: 8, COD: 1508,
   // Grupo L
-  ENG: 10, CRO: 3, GHA: 13, PAN: 1111,
+  ENG: 10, CRO: 3, GHA: 1504, PAN: 11,
 };
+
+// Sanity check (build-time): el mapeo debe cubrir las 48 selecciones del bracket
+// y NO repetir ningún id de api-football (un id duplicado haría que una selección
+// reciba la forma/H2H de otra — el bug corregido el 2026-06-10).
+{
+  const ids = Object.values(API_FOOTBALL_TEAM_IDS);
+  const dup = ids.find((v, i) => ids.indexOf(v) !== i);
+  if (dup !== undefined) {
+    throw new Error(`[ia-coach/team-form] API_FOOTBALL_TEAM_IDS tiene un id duplicado: ${dup}`);
+  }
+  const missing = BRACKET_TEAMS.filter((t) => !(t.id in API_FOOTBALL_TEAM_IDS)).map((t) => t.id);
+  if (missing.length > 0) {
+    throw new Error(`[ia-coach/team-form] faltan selecciones en API_FOOTBALL_TEAM_IDS: ${missing.join(", ")}`);
+  }
+}
 
 export interface TeamRecentMatch {
   date: string; // ISO date
@@ -158,7 +179,7 @@ export async function fetchTeamRecentMatches(
     const data = (await r.json()) as ApiFootballResponse;
     if (!Array.isArray(data.response)) return null;
 
-    return data.response.map((f): TeamRecentMatch => {
+    const mapped = data.response.map((f): TeamRecentMatch => {
       const isHome = f.teams.home.id === apiId;
       const me = isHome ? f.teams.home : f.teams.away;
       const opp = isHome ? f.teams.away : f.teams.home;
@@ -178,6 +199,10 @@ export async function fetchTeamRecentMatches(
         competition: f.league.name,
       };
     });
+    // No confiamos en que la API devuelva orden cronológico: ordenamos nosotros
+    // (más reciente primero) para que "últimos 5" y la racha W-W-D-L sean reales.
+    mapped.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    return mapped;
   } catch (err) {
     console.error(`[team-form] fetch failed ${teamId}:`, (err as Error).message);
     return null;

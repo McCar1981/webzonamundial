@@ -1,10 +1,17 @@
 // src/lib/bracket/useBracketStore.ts
 // Hook React que gestiona el estado del bracket con persistencia en localStorage.
 // Anónimo, sin login. La firma queda lista para enchufar Vercel KV en C2.
+//
+// Store COMPARTIDO (singleton + useSyncExternalStore): todas las instancias del
+// hook leen y escriben el MISMO estado en memoria. Antes cada `useBracketStore()`
+// tenía su propia copia con useState, así que el IA Coach (montado en el layout
+// raíz) nunca veía los picks hechos en /bracket dentro de la misma sesión y
+// mostraba "0/8". Ahora un pick en cualquier componente notifica a todos —incluido
+// el widget— y además sincroniza entre pestañas vía el evento `storage`.
 
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useSyncExternalStore } from "react";
 import {
   applyPick,
   createInitialState,
@@ -72,47 +79,111 @@ export interface BracketStore {
   hydrated: boolean;
 }
 
+// ─────────────── Store singleton (compartido entre instancias) ───────────────
+
+interface Snapshot {
+  state: BracketState;
+  canUndo: boolean;
+  hydrated: boolean;
+}
+
+// Snapshot de servidor: estable y determinista (sin localStorage) para que la
+// hidratación SSR no produzca mismatch. hydrated=false hasta que el cliente lee.
+const SERVER_SNAPSHOT: Snapshot = {
+  state: createInitialState(),
+  canUndo: false,
+  hydrated: false,
+};
+
+let _state: BracketState = createInitialState();
+let _hydrated = false;
+let _snapshot: Snapshot = { state: _state, canUndo: false, hydrated: false };
+const listeners = new Set<() => void>();
+
+function recomputeSnapshot() {
+  _snapshot = {
+    state: _state,
+    canUndo: _state.history.length > 0,
+    hydrated: _hydrated,
+  };
+}
+
+function emit() {
+  for (const l of listeners) l();
+}
+
+/** Aplica una transición, persiste y notifica a todas las instancias. */
+function commit(next: BracketState) {
+  _state = next;
+  recomputeSnapshot();
+  persist(_state);
+  emit();
+}
+
+/** Lee localStorage una sola vez (primer montaje en cliente). */
+function ensureHydrated() {
+  if (_hydrated) return;
+  _hydrated = true;
+  _state = hydrate(loadPersisted());
+  recomputeSnapshot();
+  emit();
+}
+
+/** Re-lee localStorage cuando otra pestaña modifica el bracket. */
+function onStorage(e: StorageEvent) {
+  if (e.key !== STORAGE_KEY) return;
+  _state = hydrate(loadPersisted());
+  recomputeSnapshot();
+  emit();
+}
+
+function subscribe(listener: () => void): () => void {
+  if (listeners.size === 0 && typeof window !== "undefined") {
+    window.addEventListener("storage", onStorage);
+  }
+  listeners.add(listener);
+  // Hidrata en el primer montaje del cliente (idempotente).
+  ensureHydrated();
+  return () => {
+    listeners.delete(listener);
+    if (listeners.size === 0 && typeof window !== "undefined") {
+      window.removeEventListener("storage", onStorage);
+    }
+  };
+}
+
+function getSnapshot(): Snapshot {
+  return _snapshot;
+}
+
+function getServerSnapshot(): Snapshot {
+  return SERVER_SNAPSHOT;
+}
+
 export function useBracketStore(): BracketStore {
-  const [state, setState] = useState<BracketState>(() => createInitialState());
-  const [hydrated, setHydrated] = useState(false);
-  const hydratedRef = useRef(false);
-
-  // Hidratar desde localStorage al montar
-  useEffect(() => {
-    if (hydratedRef.current) return;
-    hydratedRef.current = true;
-    const persisted = loadPersisted();
-    setState(hydrate(persisted));
-    setHydrated(true);
-  }, []);
-
-  // Persistir en cada cambio (post-hidratación)
-  useEffect(() => {
-    if (!hydrated) return;
-    persist(state);
-  }, [state, hydrated]);
+  const snap = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   const pick = useCallback(
     (matchId: string, data: Omit<Pick, "matchId" | "ts">) => {
-      setState((prev) => applyPick(prev, matchId, data));
+      commit(applyPick(_state, matchId, data));
     },
     []
   );
 
   const undo = useCallback(() => {
-    setState((prev) => undoPick(prev));
+    commit(undoPick(_state));
   }, []);
 
   const reset = useCallback(() => {
-    setState(resetState());
+    commit(resetState());
   }, []);
 
   return {
-    state,
+    state: snap.state,
     pick,
     undo,
     reset,
-    canUndo: state.history.length > 0,
-    hydrated,
+    canUndo: snap.canUndo,
+    hydrated: snap.hydrated,
   };
 }

@@ -13,7 +13,7 @@
 // acotar el coste por sesión.
 
 import { NextResponse } from "next/server";
-import { getCurrentUserWithName } from "@/lib/auth-helpers";
+import { getCurrentUserWithName, rateLimitByUser } from "@/lib/auth-helpers";
 import { isPro } from "@/lib/pro/entitlement";
 import { TEAM_BY_ID } from "@/lib/bracket/teams";
 import { generateDebateReply } from "@/lib/ia-coach/debate-client";
@@ -51,6 +51,16 @@ export async function POST(req: Request) {
   }
   if (!pro) {
     return errorResponse("premium_required", 402);
+  }
+
+  // ── 2.b Rate-limit por usuario ──
+  // Freno de COSTE real: el tope de turnos por sesión se cuenta sobre el historial
+  // que envía el cliente (manipulable enviando siempre 1 mensaje), así que por sí
+  // solo no impide llamadas ilimitadas a Claude. Un debate humano no supera ~10
+  // mensajes/min; este límite corta el abuso automatizado sin molestar al usuario.
+  const rl = await rateLimitByUser(user.id, "ia-coach:debate", 10, 60);
+  if (rl.limited) {
+    return errorResponse("rate_limited", 429);
   }
 
   // ── 3. Body ──

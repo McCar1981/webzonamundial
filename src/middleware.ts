@@ -9,10 +9,15 @@ export async function middleware(request: NextRequest) {
 
   // Protect /admin/* and /api/admin/* (except /admin/login itself).
   // H-001-05: las rutas API empiezan por /api/admin, no /admin.
+  // La RAÍZ exacta /admin queda fuera del guard: es el panel de creadores y
+  // resuelve su propio acceso (cookie admin → gestión; sesión Supabase cuyo
+  // email está en creator_program → su panel; nada → selector de acceso).
   const isAdminRoute =
     url.pathname.startsWith("/admin") || url.pathname.startsWith("/api/admin");
+  const isAdminRoot = url.pathname === "/admin" || url.pathname === "/admin/";
   if (
     isAdminRoute &&
+    !isAdminRoot &&
     !url.pathname.startsWith("/admin/login")
   ) {
     const cookie = request.cookies.get(ADMIN_COOKIE)?.value;

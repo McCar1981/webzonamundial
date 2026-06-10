@@ -16,6 +16,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState, useCallback, useRef } from "react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import StoryViewer from "@/components/stories/StoryViewer";
+import { heroImageForSlug } from "@/data/hero-match-images";
 import CalendarExportButton from "@/components/CalendarExportButton";
 
 /* ─────────── Paleta: navy base + cards claras + dorado de acento ─────────── */
@@ -703,17 +704,15 @@ export default function AppHubPage() {
   const playIcon = (c: string) => <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 4l13 8-13 8V4z" fill={c} /></svg>;
   // `art` = imagen de fondo de la pantalla (reutiliza el arte de las cards).
   // accent/accent2 tiñen badge, glow, dots y el CTA primario. ctaInk = texto del CTA.
-  // opening = pieza visual premium ya diseñada (imagen del juego inaugural):
+  // opening = pieza visual premium ya diseñada para ESE partido (imagen propia):
   //   la imagen lo dice todo; solo se superpone una capa inferior con hora + CTA.
-  type HeroCfg = { id: string; kind: "live" | "reto" | "base"; accent: string; accent2: string; ctaInk: string; icon?: React.ReactNode; eyebrow: string; title: React.ReactNode; desc: string; art: string; cta1: { label: string; href: string }; cta2?: { label: string; href: string }; opening?: { wide: string; mobile: string; time: string } };
+  type HeroCfg = { id: string; kind: "live" | "reto" | "base"; accent: string; accent2: string; ctaInk: string; icon?: React.ReactNode; eyebrow: string; title: React.ReactNode; desc: string; art: string; cta1: { label: string; href: string }; cta2?: { label: string; href: string }; opening?: { wide: string; mobile: string; time: string; alt: string } };
 
-  // ¿El partido del día es el JUEGO INAUGURAL (México vs Sudáfrica)? Solo entonces
-  // usamos la pieza visual ya diseñada; otros partidos caen al hero de texto.
-  const normName = (s: string) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
-  const isOpening = !!match && (() => {
-    const t = normName(`${match.meta.home.name} ${match.meta.away.name}`);
-    return t.includes("mexico") && (t.includes("sudafrica") || t.includes("south africa"));
-  })();
+  // ¿El partido destacado tiene su PIEZA VISUAL propia? (mapa por slug en
+  // src/data/hero-match-images.ts). Si la tiene, el hero la usa a pantalla
+  // completa; si no, cae al hero de texto. Antes esto era un check hardcodeado
+  // solo del inaugural; ahora cada partido puede traer su imagen.
+  const heroImg = match ? heroImageForSlug(match.slug) : null;
   // Horario dinámico en la zona del usuario (la fuente está en -04:00; toLocale*
   // lo reescribe a la TZ local del navegador → "Hoy · 21:00" / "11 jun · 21:00").
   const openingTime = (() => {
@@ -746,13 +745,14 @@ export default function AppHubPage() {
   })();
   // CTA según estado del partido (spec): próximo / en vivo / finalizado.
   const openingCtaLabel = live ? "Seguir en directo" : finished ? "Ver resumen" : "Ver Match Center";
-  // Slide inaugural: una sola pieza de imagen que cubre estados live/próximo/final.
-  const heroOpening: HeroCfg | null = isOpening && match ? {
+  // Slide del partido con imagen propia: una sola pieza que cubre los estados
+  // live/próximo/final. Solo se arma si ese partido tiene pieza en el mapa.
+  const heroOpening: HeroCfg | null = heroImg && match ? {
     id: "opening", kind: live ? "live" : "base",
     accent: live ? CORAL : GOLD2, accent2: live ? "#ff9a4a" : GOLD, ctaInk: "#08111f",
     eyebrow: "", title: null, desc: "", art: "",
     cta1: { label: openingCtaLabel, href: matchHref },
-    opening: { wide: "/images/hero/juego-inaugural-wide.webp", mobile: "/images/hero/juego-inaugural-mobile.webp", time: openingTime },
+    opening: { wide: heroImg.wide, mobile: heroImg.mobile, time: openingTime, alt: `${match.meta.home.name} vs ${match.meta.away.name}` },
   } : null;
 
   const heroLive: HeroCfg = {
@@ -942,7 +942,7 @@ export default function AppHubPage() {
                 <source media="(max-width:640px)" srcSet={hero.opening.mobile} />
                 <img
                   src={hero.opening.wide}
-                  alt="Juego inaugural · México vs Sudáfrica · 11 de junio"
+                  alt={hero.opening.alt}
                   loading="eager" decoding="async" className="zm-hero-art"
                   style={{ position: "absolute", inset: 0, width: "100%", height: "100%", zIndex: 0, objectFit: "cover", objectPosition: "center", pointerEvents: "none" }}
                 />

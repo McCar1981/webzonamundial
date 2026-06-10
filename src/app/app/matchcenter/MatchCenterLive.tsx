@@ -1109,15 +1109,15 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
     : null;
 
   return (
-    // paddingBottom: la barra de navegación inferior de la app es fija; sin este
-    // colchón tapaba el final de la página (ficha del partido / módulos micro).
+    // El colchón para la bottom-nav vive al FINAL de la página ([id]/page.tsx):
+    // las micro-predicciones se montan después de este componente y un padding
+    // aquí solo dejaba un hueco en medio sin proteger el final real del scroll.
     <div
       style={{
         background: BG,
         color: "#fff",
         minHeight: "100vh",
         fontFamily: "'Outfit',sans-serif",
-        paddingBottom: "calc(88px + env(safe-area-inset-bottom))",
       }}
     >
       <style>{`

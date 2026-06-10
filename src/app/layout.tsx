@@ -6,7 +6,6 @@ import RootLayoutClient from "./RootLayoutClient";
 import { LanguageProvider } from "@/i18n/LanguageContext";
 import CookieConsent from "@/components/CookieConsent";
 import NativeAppGuard from "@/components/NativeAppGuard";
-import AdsterraNative from "@/components/ads/AdsterraNative";
 import { EntitlementsProvider } from "@/components/pro/EntitlementsProvider";
 import PaywallModal from "@/components/pro/PaywallModal";
 import { isAdSenseEnabled } from "@/lib/adsense";
@@ -339,10 +338,6 @@ export default async function RootLayout({
             <PaywallModal />
           </EntitlementsProvider>
         </LanguageProvider>
-        {/* Adsterra (puente de monetización Mundial). Independiente de la
-            aprobación de AdSense: solo se apaga para usuarios Pro. El propio
-            componente además exige las env vars y excluye rutas privadas. */}
-        <AdsterraNative enabled={!isProUser} />
         {showAds ? <CookieConsent /> : null}
       </body>
     </html>

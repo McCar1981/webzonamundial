@@ -90,7 +90,12 @@ export default function MarketView({ ownedIds, nationCounts, budgetRemaining, se
 
   const list = useMemo(() => {
     const term = q.trim().toLowerCase();
-    const value = (p: FantasyPlayer) => (p.totalPoints / p.price) * (0.7 + p.form / 20) * p.next.tier.multiplier;
+    // Calidad: puntos reales si ya los hay; antes del torneo, la forma estimada
+    // hace de proxy (×7 ≈ misma escala) para que "Mejor valor" no quede ciego.
+    const value = (p: FantasyPlayer) => {
+      const quality = p.totalPoints > 0 ? p.totalPoints : p.form * 7;
+      return (quality / p.price) * (0.7 + p.form / 20) * p.next.tier.multiplier;
+    };
     let arr = pool.filter((p) => {
       if (pos !== "ALL" && p.pos !== pos) return false;
       if (benchNonGk && p.pos === "GK") return false;

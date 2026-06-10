@@ -173,6 +173,19 @@ function statLineFor(p: FantasyPlayer, matchId: string, hard: boolean): MatchSta
   };
 }
 
+/**
+ * Línea a CERO para partidos ya DISPUTADOS: la simulación jamás se presenta como
+ * resultado real. Las líneas reales por partido llegarán de api-football en una
+ * fase posterior; hasta entonces, disputado sin ingesta = 0.
+ */
+function zeroLine(): MatchStatLine {
+  return {
+    minutos: 0, goles: 0, asistencias: 0, tiros: 0, tirosPuerta: 0, pasesClave: 0,
+    pasesCompletados: 0, regatesExito: 0, tackles: 0, despejes: 0, faltasCometidas: 0,
+    amarillas: 0, rojas: 0, paradas: 0, golesEncajados: 0,
+  };
+}
+
 const GOAL_PTS: Record<FantasyPlayer["pos"], number> = { FWD: 5, MID: 6, DEF: 8, GK: 10 };
 
 /** Puntos fantasy de una línea (mismo baremo que SCORING_TABLE de scoring.ts). */
@@ -198,13 +211,16 @@ export function getPlayerSeasonStats(p: FantasyPlayer, now: Date = new Date()): 
   const reach = run?.stageRound ?? 0; // 0 grupos · 1 r32 … 5 final
   const fixtures: PlayerFixture[] = [];
 
-  // 1) Grupos (reales).
+  // 1) Grupos (calendario real). Los futuros llevan línea PROYECTADA (ayuda de
+  // draft); los ya disputados van a CERO hasta que exista la ingesta real por
+  // partido — nunca se enseña simulación como si fuera resultado.
   for (const m of groupFixtures(p.teamSlug)) {
     const home = m.homeSlug === p.teamSlug;
     const oppSlug = home ? m.awaySlug : m.homeSlug;
     const opp = SLUG_TO_SEL.get(oppSlug);
     const hard = (opp?.rankingFIFA ?? 90) < (SLUG_TO_SEL.get(p.teamSlug)?.rankingFIFA ?? 90) - 12;
-    const stats = statLineFor(p, m.id, hard);
+    const isPlayed = +new Date(m.fecha) < +now;
+    const stats = isPlayed ? zeroLine() : statLineFor(p, m.id, hard);
     fixtures.push({
       matchId: m.id,
       stage: "grupos",
@@ -216,10 +232,10 @@ export function getPlayerSeasonStats(p: FantasyPlayer, now: Date = new Date()): 
       opponentFlag: opp?.flagCode ?? "un",
       home,
       venue: m.ciudad,
-      played: +new Date(m.fecha) < +now,
-      projected: false,
+      played: isPlayed,
+      projected: !isPlayed,
       stats,
-      points: pointsFromStats(p, stats),
+      points: isPlayed ? 0 : pointsFromStats(p, stats),
     });
   }
 
@@ -230,7 +246,8 @@ export function getPlayerSeasonStats(p: FantasyPlayer, now: Date = new Date()): 
     const { stage } = KO_AFTER_GROUPS[i];
     koDate += 4 * 86_400_000; // ~4 días entre rondas
     const matchId = `${p.teamSlug}-ko${i + 1}`;
-    const stats = statLineFor(p, matchId, true); // KO siempre exigente
+    const isPlayed = koDate < +now;
+    const stats = isPlayed ? zeroLine() : statLineFor(p, matchId, true); // KO siempre exigente
     fixtures.push({
       matchId,
       stage,
@@ -242,10 +259,10 @@ export function getPlayerSeasonStats(p: FantasyPlayer, now: Date = new Date()): 
       opponentFlag: "un",
       home: false,
       venue: null,
-      played: koDate < +now,
+      played: isPlayed,
       projected: true,
       stats,
-      points: pointsFromStats(p, stats),
+      points: isPlayed ? 0 : pointsFromStats(p, stats),
     });
   }
 

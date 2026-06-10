@@ -34,12 +34,22 @@ interface State {
 export default function OnboardingWizard({
   email,
   initialUsername,
+  initialCountry,
+  initialLocale,
+  initialBirthDate,
+  initialFavTeam,
+  initialFavCreator,
   countries,
   selecciones,
   creadores,
 }: {
   email: string;
   initialUsername: string;
+  initialCountry: string;
+  initialLocale: "es" | "en";
+  initialBirthDate: string;
+  initialFavTeam: string;
+  initialFavCreator: string;
   countries: CountryOption[];
   selecciones: SeleccionOption[];
   creadores: CreadorOption[];
@@ -57,14 +67,27 @@ export default function OnboardingWizard({
   const [pending, startTransition] = useTransition();
   const [error, setError] = useState("");
 
-  const [state, setState] = useState<State>({
+  // Prefill con lo que el pre-registro ya guardó en profiles: el usuario
+  // confirma en vez de re-teclear país/selección/creador. Validamos cada
+  // valor contra su catálogo (slugs muertos → vacío). El flujo OAuth llega
+  // con ?creador=<slug> desde la página del creador: lo usamos de fallback
+  // si el perfil aún no tiene creador (antes este parámetro se ignoraba).
+  const creadorParam = (searchParamsHook.get("creador") ?? "").toLowerCase();
+  const [state, setState] = useState<State>(() => ({
     username: initialUsername,
-    country: "",
-    locale: "es",
-    birth_date: "",
-    fav_team: "",
-    fav_creator: "",
-  });
+    country: countries.some((c) => c.code === initialCountry)
+      ? initialCountry
+      : "",
+    locale: initialLocale,
+    birth_date: initialBirthDate,
+    fav_team: selecciones.some((s) => s.slug === initialFavTeam)
+      ? initialFavTeam
+      : "",
+    fav_creator:
+      [initialFavCreator, creadorParam].find(
+        (slug) => slug && creadores.some((c) => c.slug === slug)
+      ) ?? "",
+  }));
 
   function set<K extends keyof State>(key: K, value: State[K]) {
     setState((s) => ({ ...s, [key]: value }));

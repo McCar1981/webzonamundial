@@ -121,10 +121,14 @@ export async function GET(request: NextRequest) {
       .maybeSingle();
     if (!profile?.onboarded_at) {
       if (isBarFlow) {
+        // upsert: si la fila de profiles aún no existe, update() afectaría
+        // 0 filas en silencio y el usuario del bar quedaría sin marcar.
         await supabase
           .from("profiles")
-          .update({ onboarded_at: new Date().toISOString() })
-          .eq("id", user.id);
+          .upsert(
+            { id: user.id, onboarded_at: new Date().toISOString() },
+            { onConflict: "id" }
+          );
       } else {
         const onboardingUrl = new URL(`${origin}/onboarding`);
         if (safeNext !== "/") {

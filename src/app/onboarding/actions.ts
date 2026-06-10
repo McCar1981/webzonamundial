@@ -58,29 +58,61 @@ export async function completeOnboardingAction(
     return { ok: false, error: "Fecha de nacimiento inválida" };
   }
   if (birth_date && !isAdult(birth_date)) {
-    return { ok: false, error: "Debes ser mayor de edad (18+) para participar en premios" };
+    return {
+      ok: false,
+      error:
+        "Para optar a premios debes ser mayor de 18 años. Si no lo eres, deja la fecha vacía y continúa.",
+    };
   }
 
-  // Validar contra catálogo — valores no encontrados se descartan (null)
-  const country = validateCountry(countryRaw);
-  const fav_team = validateFavTeam(fav_teamRaw);
-  const fav_creator = validateFavCreator(fav_creatorRaw);
-
-  const { error } = await supabase
+  // Perfil actual: el pre-registro web ya guardó país/selección/creador
+  // (trigger handle_new_user). Sin este merge, un campo que el usuario no
+  // re-seleccionara en el wizard se escribía como NULL y machacaba el dato
+  // bueno del registro — p.ej. la selección favorita desaparecía y el email
+  // de bienvenida salía sin esa fila.
+  const { data: existing } = await supabase
     .from("profiles")
-    .update({
-      username,
-      country,
-      fav_team,
-      fav_creator,
-      locale,
-      birth_date,
-      onboarded_at: new Date().toISOString(),
-    })
-    .eq("id", user.id);
+    .select("country, fav_team, fav_creator, birth_date")
+    .eq("id", user.id)
+    .maybeSingle();
 
-  if (error) {
-    if (error.message.includes("duplicate") || error.message.includes("unique")) {
+  // Validar contra catálogo — valores no encontrados se descartan y, si el
+  // formulario vino vacío, se conserva lo que ya hubiera en el perfil.
+  const country = validateCountry(countryRaw) ?? existing?.country ?? null;
+  const fav_team = validateFavTeam(fav_teamRaw) ?? existing?.fav_team ?? null;
+  const fav_creator =
+    validateFavCreator(fav_creatorRaw) ?? existing?.fav_creator ?? null;
+  const birthDateFinal = birth_date ?? existing?.birth_date ?? null;
+
+  // upsert + select: con update() a secas, si la fila de profiles no
+  // existía (trigger caído o usuario anterior al trigger) se afectaban 0
+  // filas SIN error → devolvíamos ok:true, mandábamos el email de
+  // bienvenida y onboarded_at nunca quedaba marcado, así que el wizard
+  // volvía a aparecer en cada login pidiendo todo "otra vez". El select
+  // confirma que la fila quedó escrita de verdad.
+  const { data: saved, error } = await supabase
+    .from("profiles")
+    .upsert(
+      {
+        id: user.id,
+        username,
+        country,
+        fav_team,
+        fav_creator,
+        locale,
+        birth_date: birthDateFinal,
+        onboarded_at: new Date().toISOString(),
+      },
+      { onConflict: "id" }
+    )
+    .select("id")
+    .maybeSingle();
+
+  if (error || !saved) {
+    if (
+      error &&
+      (error.message.includes("duplicate") || error.message.includes("unique"))
+    ) {
       return { ok: false, error: "Ese nombre de usuario ya está en uso." };
     }
     return { ok: false, error: "Error guardando tu perfil. Inténtalo de nuevo." };
@@ -123,11 +155,15 @@ export async function skipOnboardingAction(next?: string) {
   if (!user) redirect("/login");
 
   // Marcar como onboarded sin pedir datos adicionales. El usuario
-  // siempre puede ir a /cuenta luego.
+  // siempre puede ir a /cuenta luego. upsert: si la fila de profiles no
+  // existe, update() afectaría 0 filas en silencio y el wizard volvería
+  // a salir en cada login.
   await supabase
     .from("profiles")
-    .update({ onboarded_at: new Date().toISOString() })
-    .eq("id", user.id);
+    .upsert(
+      { id: user.id, onboarded_at: new Date().toISOString() },
+      { onConflict: "id" }
+    );
 
   // Respetar el destino pedido antes de loguearse (p. ej. volver a la peña
   // del bar para completar la unión). Same-origin only: nunca open-redirect.

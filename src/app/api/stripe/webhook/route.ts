@@ -37,6 +37,14 @@ import {
   type ProPlan,
   type ProStatus,
 } from "@/lib/pro/subscriptions";
+import {
+  applyPack,
+  applyPowerup,
+  getPurchase,
+  markPowerupRefunded,
+  markPurchaseApplied,
+  markPurchaseFailed,
+} from "@/lib/powerups/store";
 import { trackProEvent } from "@/lib/pro/metrics";
 import { kv } from "@vercel/kv";
 
@@ -159,6 +167,72 @@ async function handleBarPlanCheckout(session: Stripe.Checkout.Session) {
       dashboardUrl: "https://zonamundial.app/bar-dashboard",
       receiptUrl,
     });
+  }
+}
+
+// ─── Comodines (microtransacciones one-off) ──────────────────────────────────
+
+/**
+ * checkout.session.completed con metadata.product === "powerup".
+ *
+ * Aplica el efecto del comodín (cambiar pick / activar x2 / revivir trivia) y
+ * marca la compra 'applied'. Si la ventana de elegibilidad se cerró mientras el
+ * usuario pagaba (p.ej. arrancó la 2ª parte), la compra pasa a 'failed' y se
+ * REEMBOLSA automáticamente: nunca cobramos un comodín sin aplicarlo.
+ * Todo idempotente: el reintento de Stripe no duplica efectos.
+ */
+async function handlePowerupCheckout(session: Stripe.Checkout.Session) {
+  const purchaseId = session.metadata?.purchase_id;
+  if (!purchaseId) {
+    console.warn("[stripe webhook] powerup checkout sin purchase_id", session.id);
+    return;
+  }
+  const purchase = await getPurchase(purchaseId);
+  if (!purchase) {
+    console.warn("[stripe webhook] powerup purchase no encontrada", purchaseId);
+    return;
+  }
+  const paymentIntentId =
+    typeof session.payment_intent === "string"
+      ? session.payment_intent
+      : session.payment_intent?.id ?? null;
+
+  // Pack Comodines ×3: claim + abono de créditos en una RPC transaccional
+  // (idempotente) y aplicación fail-soft del comodín pedido. El pack NUNCA se
+  // reembolsa automáticamente: aunque el intent caduque durante el pago, los
+  // 3 usos quedan en el monedero.
+  if (purchase.sku === "pack3") {
+    await applyPack(purchase, paymentIntentId);
+    return;
+  }
+
+  const refund = async (reason: string) => {
+    await markPurchaseFailed(purchaseId, paymentIntentId, reason);
+    if (!paymentIntentId) {
+      console.error("[stripe webhook] powerup sin payment_intent: refund manual", purchaseId);
+      return;
+    }
+    try {
+      await getStripe().refunds.create({ payment_intent: paymentIntentId });
+      console.log("[stripe webhook] powerup reembolsado:", purchaseId, reason);
+    } catch (err) {
+      // La compra ya está 'failed' (no surte efecto); el refund queda para
+      // reintento manual desde el Dashboard si Stripe falló aquí.
+      console.error("[stripe webhook] refund de powerup falló:", purchaseId, (err as Error).message);
+    }
+  };
+
+  // Compat: compras sueltas de la v1 (sesiones de Checkout creadas antes del
+  // deploy del pack y pagadas dentro de su ventana de 30 min).
+  const result = await applyPowerup(purchase);
+  if (!result.ok) {
+    await refund(`${result.error ?? "apply_failed"}: ${result.message ?? ""}`);
+    return;
+  }
+  const marked = await markPurchaseApplied(purchaseId, paymentIntentId);
+  if (!marked.ok && marked.duplicate) {
+    // Pagó dos veces el mismo comodín (doble checkout): el segundo se devuelve.
+    await refund("duplicate: ya existe un comodín efectivo igual");
   }
 }
 
@@ -298,6 +372,20 @@ async function handleChargeRefunded(charge: Stripe.Charge) {
   const product = charge.metadata?.product;
   if (charge.amount_refunded === 0) return;
 
+  // Reembolso de un comodín: la compra deja de surtir efecto (un double_down
+  // 'refunded' ya no lo multiplica la resolución). Si el efecto ya se consumió
+  // (pick cambiado, trivia revivida), no hay marcha atrás del efecto — solo
+  // queda registrado el refund.
+  if (product === "powerup") {
+    const purchaseId = charge.metadata?.purchase_id;
+    if (!purchaseId) {
+      console.warn("[stripe webhook] charge.refunded (powerup) sin purchase_id", charge.id);
+      return;
+    }
+    await markPowerupRefunded(purchaseId);
+    return;
+  }
+
   // Reembolso de un plan de bar.
   if (product?.startsWith("bar_plan_")) {
     const barId = charge.metadata?.bar_id;
@@ -334,6 +422,16 @@ async function handleDisputeCreated(dispute: Stripe.Dispute) {
     const stripe = getStripe();
     const charge = await stripe.charges.retrieve(chargeId);
     const product = charge.metadata?.product;
+
+    // Disputa de un comodín: mismo tratamiento que un refund.
+    if (product === "powerup") {
+      const purchaseId = charge.metadata?.purchase_id;
+      if (purchaseId) {
+        await markPowerupRefunded(purchaseId);
+        console.log("[stripe webhook] dispute → powerup revocado", purchaseId);
+      }
+      return;
+    }
 
     // Disputa de plan de bar.
     if (product?.startsWith("bar_plan_")) {
@@ -392,6 +490,8 @@ export async function POST(request: NextRequest) {
           await handleBarPlanCheckout(session);
         } else if (session.metadata?.product === "pro") {
           await handleProCheckout(session);
+        } else if (session.metadata?.product === "powerup") {
+          await handlePowerupCheckout(session);
         } else {
           await handleCheckoutCompleted(session);
         }

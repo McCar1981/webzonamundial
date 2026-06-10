@@ -331,4 +331,5 @@ export type CareerTab =
   | "reputacion"
   | "narrativa"
   | "legado"
-  | "ranking";
+  | "ranking"
+  | "guia";

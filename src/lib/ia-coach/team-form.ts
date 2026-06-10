@@ -179,7 +179,7 @@ export async function fetchTeamRecentMatches(
     const data = (await r.json()) as ApiFootballResponse;
     if (!Array.isArray(data.response)) return null;
 
-    return data.response.map((f): TeamRecentMatch => {
+    const mapped = data.response.map((f): TeamRecentMatch => {
       const isHome = f.teams.home.id === apiId;
       const me = isHome ? f.teams.home : f.teams.away;
       const opp = isHome ? f.teams.away : f.teams.home;
@@ -199,6 +199,10 @@ export async function fetchTeamRecentMatches(
         competition: f.league.name,
       };
     });
+    // No confiamos en que la API devuelva orden cronológico: ordenamos nosotros
+    // (más reciente primero) para que "últimos 5" y la racha W-W-D-L sean reales.
+    mapped.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    return mapped;
   } catch (err) {
     console.error(`[team-form] fetch failed ${teamId}:`, (err as Error).message);
     return null;

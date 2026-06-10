@@ -18,6 +18,7 @@ import { isPro } from "@/lib/pro/entitlement";
 import { TEAM_BY_ID } from "@/lib/bracket/teams";
 import { generateDebateReply } from "@/lib/ia-coach/debate-client";
 import { readDebateMemory, writeDebateMemory } from "@/lib/ia-coach/debate-memory";
+import { buildDebateChampionContext } from "@/lib/ia-coach/debate-context";
 import type {
   DebateMessage,
   DebateRequest,
@@ -92,6 +93,10 @@ export async function POST(req: Request) {
   const isNewSession = turnsUsed === 1;
   const priorMemory = isNewSession ? await readDebateMemory(user.id) : null;
 
+  // Datos REALES del campeón (ranking, grupo, DT, estrella, forma) para anclar al
+  // Retador y que no invente. Barato y best-effort: degrada a null sin romper.
+  const championData = championId ? await buildDebateChampionContext(championId) : null;
+
   // ── 5. Turno del Retador ──
   let turn: DebateTurn;
   try {
@@ -101,6 +106,7 @@ export async function POST(req: Request) {
       turnsUsed,
       maxTurns: MAX_USER_TURNS,
       priorMemory,
+      championData,
     });
   } catch (err) {
     console.error("[ia-coach/debate] reply failed:", (err as Error).message);

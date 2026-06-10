@@ -36,6 +36,9 @@ export interface DebateContext {
   maxTurns?: number;
   /** Memoria de sesiones anteriores (cross-session), si existe. */
   priorMemory?: DebateMemory | null;
+  /** Datos REALES del campeón (ranking, grupo, DT, estrella, forma) para anclar
+   *  al Retador y que no invente. Markdown ya formateado; null si no hay. */
+  championData?: string | null;
 }
 
 /** Construye el bloque "Contexto de esta sesión" que se anexa al system prompt. */
@@ -80,8 +83,18 @@ function systemFor(ctx: DebateContext): string {
     }
   }
 
-  if (lines.length === 0) return DEBATE_SYSTEM_PROMPT;
-  return `${DEBATE_SYSTEM_PROMPT}\n\n## Contexto de esta sesión\n\n${lines.map((l) => `- ${l}`).join("\n")}`;
+  // Bloque de datos REALES del campeón: ancla anti-invención. El Retador puede
+  // razonar con lógica, pero rankings/forma/lesiones deben salir de aquí.
+  const championBlock =
+    ctx.championData && team
+      ? `\n\n## Datos reales de ${team.name} (úsalos; NO inventes rankings, lesiones ni formas que no aparezcan aquí)\n\n${ctx.championData}`
+      : "";
+
+  if (lines.length === 0 && !championBlock) return DEBATE_SYSTEM_PROMPT;
+  const sessionBlock = lines.length
+    ? `\n\n## Contexto de esta sesión\n\n${lines.map((l) => `- ${l}`).join("\n")}`
+    : "";
+  return `${DEBATE_SYSTEM_PROMPT}${sessionBlock}${championBlock}`;
 }
 
 export async function generateDebateReply(

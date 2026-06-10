@@ -21,8 +21,11 @@ export interface FantasyRankEntry {
 }
 
 export interface FantasyLeague {
-  id: string; name: string; code: string; owner_id: string; member_count: number; is_owner: boolean;
+  id: string; name: string; code: string; owner_id: string; member_count: number; is_owner: boolean; is_draft: boolean;
 }
+
+/** Conflicto de exclusividad en liga Draft: jugador que ya tiene otro manager. */
+export interface DraftConflict { player_id: string; held_by: string }
 
 export interface FantasyLeagueStanding {
   position: number; user_id: string; team_name: string; display_name: string; avatar_url: string | null; points: number; is_owner: boolean;
@@ -68,6 +71,8 @@ export interface SaveTeamResult {
   confirmed: boolean;
   /** Puntos netos AUTORITATIVOS de la jornada (calculados en servidor), o null. */
   gameweekPoints: number | null;
+  /** Liga Draft: jugadores de la alineación que pertenecen a otro manager (guardado RECHAZADO). */
+  draftConflicts?: DraftConflict[];
 }
 
 /** Guarda el equipo en el servidor. gameweekScore se envía al confirmar jornada. */
@@ -75,6 +80,7 @@ export async function saveServerTeam(
   state: FantasyTeamState,
   gameweekScore?: { gw: number; points: number; powerUp: string | null },
 ): Promise<SaveTeamResult> {
+  const fail: SaveTeamResult = { ok: false, futcoins: 0, xpAwarded: 0, confirmed: false, gameweekPoints: null };
   try {
     const res = await fetch("/api/fantasy/team", {
       method: "PUT",
@@ -82,11 +88,16 @@ export async function saveServerTeam(
       body: JSON.stringify({ state, gameweekScore }),
     });
     if (!res.ok) {
+      const err = (await res.json().catch(() => ({}))) as { error?: string; conflicts?: DraftConflict[] };
+      // Liga Draft: la alineación incluye jugadores de otro manager → el juego
+      // muestra cuáles y de quién (el guardado no se aplicó).
+      if (res.status === 409 && err.error === "draft_conflict") {
+        return { ...fail, draftConflicts: err.conflicts ?? [] };
+      }
       // Plantilla cerrada para Free (lock 24h / jornada en juego): abre el
       // paywall global con el copy del límite.
-      const err = await res.json().catch(() => ({}));
       handleProRequired(err);
-      return { ok: false, futcoins: 0, xpAwarded: 0, confirmed: false, gameweekPoints: null };
+      return fail;
     }
     const data = (await res.json()) as { futcoins?: number; xpAwarded?: number; confirmed?: boolean; gameweekPoints?: number | null };
     return {
@@ -97,7 +108,23 @@ export async function saveServerTeam(
       gameweekPoints: data.gameweekPoints ?? null,
     };
   } catch {
-    return { ok: false, futcoins: 0, xpAwarded: 0, confirmed: false, gameweekPoints: null };
+    return fail;
+  }
+}
+
+/**
+ * Jugadores pillados por otros managers de mi liga Draft (mapa playerId → dueño).
+ * null si no estoy en ninguna liga Draft. El mercado y el picker los bloquean.
+ */
+export async function fetchDraftTaken(): Promise<{ leagueName: string; taken: Map<string, string> } | null> {
+  try {
+    const res = await fetch("/api/fantasy/leagues/claims", { cache: "no-store" });
+    if (!res.ok) return null;
+    const data = (await res.json()) as { league_id: string | null; league_name: string | null; taken: DraftConflict[] };
+    if (!data.league_id) return null;
+    return { leagueName: data.league_name ?? "Draft", taken: new Map(data.taken.map((t) => [t.player_id, t.held_by])) };
+  } catch {
+    return null;
   }
 }
 
@@ -159,12 +186,12 @@ export async function fetchMyLeagues(): Promise<FantasyLeague[]> {
   }
 }
 
-export async function createServerLeague(name: string): Promise<{ ok: boolean; league?: FantasyLeague; error?: string; proRequired?: boolean }> {
+export async function createServerLeague(name: string, draft = false): Promise<{ ok: boolean; league?: FantasyLeague; error?: string; proRequired?: boolean }> {
   try {
     const res = await fetch("/api/fantasy/leagues", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name }),
+      body: JSON.stringify({ name, draft }),
     });
     const data = (await res.json()) as { ok?: boolean; league?: FantasyLeague; error?: string; code?: string };
     // crear ligas privadas = Pro. Si el gate saltó, abrimos el paywall y avisamos
@@ -176,15 +203,15 @@ export async function createServerLeague(name: string): Promise<{ ok: boolean; l
   }
 }
 
-export async function joinServerLeague(code: string): Promise<{ ok: boolean; league?: FantasyLeague; error?: string }> {
+export async function joinServerLeague(code: string): Promise<{ ok: boolean; league?: FantasyLeague; error?: string; conflicts?: DraftConflict[] }> {
   try {
     const res = await fetch("/api/fantasy/leagues", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ code }),
     });
-    const data = (await res.json()) as { ok?: boolean; league?: FantasyLeague; error?: string };
-    return { ok: res.ok && data.ok !== false, league: data.league, error: data.error };
+    const data = (await res.json()) as { ok?: boolean; league?: FantasyLeague; error?: string; conflicts?: DraftConflict[] };
+    return { ok: res.ok && data.ok !== false, league: data.league, error: data.error, conflicts: data.conflicts };
   } catch {
     return { ok: false, error: "network" };
   }

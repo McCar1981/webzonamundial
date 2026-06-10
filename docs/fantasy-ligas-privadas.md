@@ -161,3 +161,52 @@ Repaso completo de arquitectura, lógica, backend y frontend. Cambios:
 **Diferido por decisión de producto (no es bug):** el recompute server-side de los
 puntos por jornada (hoy el cliente los calcula, con clamp a 200). Mientras siga
 así, las ligas privadas **no** abonan Fútcoins (anti-farmeo).
+> Actualización 2026-06-10: el PR #25 hizo el scoring server-authoritative; el
+> premio en Fútcoins por liga privada queda como decisión de producto pendiente.
+
+---
+
+## Ligas DRAFT — jugadores exclusivos (2026-06-10)
+
+**Regla:** dentro de una liga Draft, si un manager tiene a un jugador, **ningún
+otro miembro puede tenerlo**. El primero que lo ficha (guarda su equipo con él)
+se lo queda. Al venderlo, salir de la liga o ser expulsado, queda libre.
+
+**Cómo funciona (diseño):**
+- El equipo del usuario sigue siendo **único y global** (`fantasy_teams`). La
+  exclusividad vive en `fantasy_league_player_claims`: una fila por
+  `(league_id, player_id)` con su dueño. La **PK compuesta garantiza la
+  exclusividad en la base de datos** (INSERT … ON CONFLICT DO NOTHING =
+  primero-que-llega; un claim jamás se "roba" con update).
+- Como un mismo equipo global no puede obedecer las reglas de dos ligas Draft a
+  la vez, **cada usuario está como mucho en UNA liga Draft** (`draft_limit`).
+- Se elige al **crear la liga** (toggle "Draft: jugadores exclusivos"); no se
+  puede cambiar después.
+- **Crear** la liga reclama la plantilla actual del dueño. **Unirse** reclama la
+  del que llega; sus jugadores que ya tenían dueño quedan "en conflicto": puede
+  entrar y competir, pero **no puede guardar cambios de alineación** hasta
+  venderlos (el aviso lista cuáles y de quién son).
+- **Enforcement servidor** en `PUT /api/fantasy/team`: si la alineación cambió y
+  contiene jugadores de otro miembro → `409 draft_conflict` (no se guarda). Tras
+  cada guardado válido se sincronizan los claims (libera vendidos, reclama
+  nuevos). Los guardados sin cambio de alineación (confirmar jornada, metadatos)
+  pasan siempre.
+- **UX cliente:** el Mercado muestra los pillados bloqueados ("🔒 De {manager}
+  (Draft)"), el picker rechaza ficharlos con aviso, y si el autoguardado es
+  rechazado el toast explica el porqué (sin esto sería un fallo silencioso).
+  Los pillados se refrescan al entrar a Mercado/Ligas.
+- El **auto-draft IA** no consulta los claims: puede proponer jugadores pillados
+  y el guardado los rechazará con aviso. Conocido; mejora futura.
+
+**Endpoints:**
+- `POST /api/fantasy/leagues` `{name, draft: true}` → crea liga Draft (Pro).
+  Errores: `draft_limit` (409) además de los existentes.
+- `GET /api/fantasy/leagues/claims` → jugadores pillados por OTROS en mi liga
+  Draft (`{league_id, league_name, taken:[{player_id, held_by}]}`).
+- `PUT /api/fantasy/team` → `409 {error:"draft_conflict", conflicts:[…]}` si la
+  alineación incluye jugadores ajenos; respuesta OK incluye `draftWarnings`
+  (carreras perdidas de guardado simultáneo, rarísimo y auto-curativo).
+
+**SQL:** `scripts/sql/2026-24-fantasy-draft-leagues.sql` (requiere 2026-09 y
+2026-22 aplicadas). Idempotente. RLS: lectura solo miembros (vía
+`is_fantasy_league_member`), escritura solo service role.

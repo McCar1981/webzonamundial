@@ -9,6 +9,7 @@
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
 import { getTeam, saveTeam, recordGameweekScore, awardGameweekCoins, sweepPendingGameweekCoins, getFavCreator } from "@/lib/fantasy/store.server";
+import { draftConflictsForTeam, syncDraftClaims } from "@/lib/fantasy/leagues.server";
 import { scoreGameweekFromState } from "@/lib/fantasy/scoring.server";
 import { isValidGameweek, gameweekLockedForFree, gameweekFirstKickoff } from "@/lib/fantasy/fixtures";
 import { isFantasyLive } from "@/lib/fantasy/season";
@@ -87,6 +88,29 @@ export async function PUT(req: Request) {
     }
   }
 
+  // ── Exclusividad en liga Draft ──
+  // Si el usuario está en una liga Draft y su NUEVA alineación incluye jugadores
+  // que pertenecen a otro miembro, se rechaza el guardado (409) diciendo cuáles
+  // y de quién son. Solo se comprueba si la lista de jugadores cambió: los
+  // guardados de metadatos/confirmación con la misma plantilla pasan siempre
+  // (así un conflicto heredado al unirse no bloquea confirmar la jornada).
+  const newIds = state.slots.map((s) => s.playerId).filter((id): id is string => Boolean(id));
+  {
+    const savedIds = new Set((prev?.slots ?? []).map((s) => s.playerId).filter(Boolean) as string[]);
+    const lineupChanged = newIds.length !== savedIds.size || newIds.some((id) => !savedIds.has(id));
+    if (lineupChanged) {
+      const { league, conflicts } = await draftConflictsForTeam(user.id, newIds);
+      if (conflicts.length) {
+        return NextResponse.json({
+          error: "draft_conflict",
+          league,
+          conflicts,
+          message: `En tu liga Draft "${league}" esos jugadores ya tienen dueño.`,
+        }, { status: 409 });
+      }
+    }
+  }
+
   // ── Congelado de capitán/vice/chip al primer saque (anti edición retroactiva) ──
   // Inmutable una vez fijado; derivado del estado guardado, no del entrante.
   state.gwLock = computeGameweekLock(prev, state.gameweek);
@@ -117,5 +141,9 @@ export async function PUT(req: Request) {
   }
 
   await saveTeam(user.id, state);
-  return NextResponse.json({ ok: true, confirmed, gameweekPoints, futcoins: reward.coins, xpAwarded: reward.xp });
+  // Liga Draft: tras guardar, sincroniza los claims (libera vendidos, reclama
+  // nuevos). Si una carrera de guardados simultáneos dejó algún jugador en manos
+  // de otro, se devuelve como aviso (el próximo cambio de alineación lo exigirá).
+  const draftWarnings = await syncDraftClaims(user.id, newIds).catch(() => []);
+  return NextResponse.json({ ok: true, confirmed, gameweekPoints, futcoins: reward.coins, xpAwarded: reward.xp, draftWarnings });
 }

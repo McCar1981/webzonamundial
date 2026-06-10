@@ -14,7 +14,7 @@ import { autoDraft } from "@/lib/fantasy/coach";
 import { defaultTeam, loadTeam, saveTeam, clearTeam, normalizeTeam } from "@/lib/fantasy/store";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { getCreadorBySlug, getCreadoresActivos } from "@/data/creadores";
-import { fetchServerTeam, saveServerTeam, setFantasyCreator, fetchRealPlayerStats } from "./api";
+import { fetchServerTeam, saveServerTeam, setFantasyCreator, fetchDraftTaken, fetchRealPlayerStats } from "./api";
 import { BUDGET, FREE_TRANSFERS, MAX_FREE_TRANSFERS, type FantasyPos, type FantasyTeamState, type PowerUp, type SquadSlot } from "@/lib/fantasy/types";
 import { BG, BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED, money } from "./fx";
 import { FORMATIONS } from "@/lib/fantasy/rules";
@@ -60,9 +60,17 @@ export default function FantasyGame() {
   const [showCreatorPicker, setShowCreatorPicker] = useState(false);
   const [isWide, setIsWide] = useState(false); // ≥1024px → fondo claro (en prueba)
   const [authed, setAuthed] = useState<boolean | null>(null);
+  // Liga Draft (jugadores exclusivos): mapa playerId → manager que lo tiene en
+  // MI liga Draft. El picker rechaza ficharlos y el autoguardado avisa si el
+  // servidor rechazó la alineación. null = no estoy en ninguna liga Draft.
+  const [draftTaken, setDraftTaken] = useState<{ leagueName: string; taken: Map<string, string> } | null>(null);
   // syncReady evita que el autoguardado pise el equipo del servidor con el
   // estado por defecto durante el breve instante previo a la carga inicial.
   const syncReady = useRef(false);
+
+  const refreshDraftTaken = useCallback(async () => {
+    try { setDraftTaken(await fetchDraftTaken()); } catch { /* sin red: se queda lo último */ }
+  }, []);
 
   useEffect(() => {
     // Deep-link a una pestaña concreta (?tab=ligas) — permite que la card del
@@ -116,11 +124,19 @@ export default function FantasyGame() {
           }
         }
       }
+      if (isAuthed) refreshDraftTaken();
       syncReady.current = true;
     })();
 
     return () => window.removeEventListener("resize", onResize);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Los pillados de la liga Draft se refrescan al entrar al Mercado (otro
+  // manager puede haber fichado mientras tanto) y al volver a Ligas.
+  useEffect(() => {
+    if (authed && (tab === "mercado" || tab === "ligas")) refreshDraftTaken();
+  }, [tab, authed, refreshDraftTaken]);
 
   // Estadísticas REALES del torneo: el pool arranca a 0 y aquí se vuelca el
   // acumulado de api-football sobre él (una vez por visita; el servidor cachea
@@ -148,9 +164,21 @@ export default function FantasyGame() {
 
   // Autoguardado en el servidor (debounce) cuando hay sesión. No se dispara
   // hasta que la carga inicial terminó (syncReady) para no pisar lo del backend.
+  // Si la liga Draft rechaza la alineación (jugador de otro manager), se avisa:
+  // sin esto el rechazo sería silencioso y el usuario creería tenerlo fichado.
   useEffect(() => {
     if (!loaded || !authed || !syncReady.current) return;
-    const id = window.setTimeout(() => { saveServerTeam(team).catch(() => {}); }, 1200);
+    const id = window.setTimeout(() => {
+      saveServerTeam(team).then((r) => {
+        if (!r.ok && r.draftConflicts?.length) {
+          const who = r.draftConflicts
+            .map((c) => `${getPlayerById(c.player_id)?.name ?? c.player_id} (de ${c.held_by})`)
+            .join(", ");
+          setToast(`🔒 Liga Draft: no se guardó tu equipo — ya tienen dueño: ${who}. Véndelos para seguir.`);
+          window.setTimeout(() => setToast(null), 5000);
+        }
+      }).catch(() => {});
+    }, 1200);
     return () => window.clearTimeout(id);
   }, [team, loaded, authed]);
 
@@ -205,6 +233,12 @@ export default function FantasyGame() {
         flash("Ya tienes a ese jugador.");
         return;
       }
+      // Liga Draft: jugador con dueño en mi liga → no se puede fichar.
+      const heldBy = draftTaken?.taken.get(playerId);
+      if (heldBy) {
+        flash(`🔒 ${p.name} ya es de ${heldBy} en tu liga "${draftTaken!.leagueName}" (Draft).`);
+        return;
+      }
       // Hueco destino: el indicado o el primero compatible vacío.
       const target = slotId
         ? team.slots.find((s) => s.slot === slotId)
@@ -242,7 +276,7 @@ export default function FantasyGame() {
       flash(`Fichado: ${p.name} (${money(p.price)}).`);
       setSelectingSlot(null);
     },
-    [team.slots, ownedIds, nationCounts, spent, update, flash],
+    [team.slots, ownedIds, nationCounts, spent, update, flash, draftTaken],
   );
 
   const removePlayer = useCallback(
@@ -533,6 +567,7 @@ export default function FantasyGame() {
             budgetRemaining={budgetRemaining}
             selectingSlot={selectingSlot ? team.slots.find((s) => s.slot === selectingSlot) ?? null : null}
             onPick={assignPlayer}
+            draftTaken={draftTaken?.taken ?? null}
           />
         )}
         {tab === "vivo" && <LiveView team={team} onCommit={commitGameweek} transfers={transfers} />}

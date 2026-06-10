@@ -34,6 +34,10 @@
       "schedule": "*/30 * * * *"
     },
     {
+      "path": "/api/cron/stage-results",
+      "schedule": "*/2 * * * *"
+    },
+    {
       "path": "/api/cron/predictions-engagement",
       "schedule": "0 20 * * *"
     },

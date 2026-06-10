@@ -299,6 +299,35 @@ function snapshotFromFixture(fx: RawFixture, meta: MatchMeta): LiveSnapshot {
   };
 }
 
+// --- Ratings finales por jugador (resolución de duelos de Predicciones) ---
+interface RawPlayersBlock {
+  team: { id: number };
+  players: {
+    player: { id: number | null; name: string | null };
+    statistics: { games: { rating: string | number | null } }[];
+  }[];
+}
+
+/**
+ * Ratings del partido por nombre de jugador (1 request a /fixtures/players).
+ * Devuelve lista plana nombre→rating; el mapeo a ids internos lo hace el
+ * consumidor. Lista vacía si la API falla o aún no publicó ratings (fail-soft).
+ */
+export async function fetchPlayerRatings(fixtureId: number): Promise<{ name: string; rating: number }[]> {
+  const blocks = await apiGet<RawPlayersBlock[]>(`/fixtures/players?fixture=${fixtureId}`);
+  if (!blocks) return [];
+  const out: { name: string; rating: number }[] = [];
+  for (const b of blocks) {
+    for (const it of b.players ?? []) {
+      const name = it.player?.name;
+      const raw = it.statistics?.[0]?.games?.rating;
+      const rating = raw == null ? NaN : parseFloat(String(raw));
+      if (name && Number.isFinite(rating)) out.push({ name, rating });
+    }
+  }
+  return out;
+}
+
 /**
  * Snapshot ESTÁTICO de "por comenzar" cuando no hay datos en vivo todavía
  * (o la API no responde). Mantiene el partido parado: estado NS, sin eventos,

@@ -50,6 +50,34 @@ import { cosmeticsByUser } from "./cosmetics-store";
 import type { CosmeticDisplay } from "./cosmetics";
 import { recordDuelResult } from "./rivalries-store";
 import { spendCoins, grantCoins } from "@/lib/economy/wallet";
+import { kv } from "@/lib/kv";
+
+// ── Check-in diario anclado en KV ────────────────────────────────────────────
+// El check-in diario usa Vercel KV como ANCLA de idempotencia (igual que la
+// trivia), NO la columna profiles.last_checkin. Esa columna (y la tabla
+// prediction_daily_claims) pertenecen a la migración 2026-07, que puede NO
+// estar aplicada en producción. Sin un ancla que persista de verdad, el estado
+// "reclamado" se perdía (la misión volvía a "Reclamar" al instante) y, peor,
+// se podían farmear Fútcoins reclamando en bucle. KV está probado en prod
+// (lo usan ops y la trivia) y persiste entre recargas y sesiones.
+const DAILY_CLAIM_TTL = 60 * 60 * 48;        // 48 h: cubre el día con holgura
+const DAILY_STREAK_TTL = 60 * 60 * 24 * 10;  // 10 días: ventana de racha viva
+const dailyClaimKey = (uid: string, day: string) => `daily:claim:${uid}:${day}`;
+const dailyStreakKey = (uid: string) => `daily:streak:${uid}`;
+interface DailyStreakRec { day: string; streak: number }
+
+/** Estado del check-in desde KV: si ya reclamó hoy y la racha consecutiva. */
+async function readDailyState(uid: string): Promise<{ claimedToday: boolean; streak: number; lastDay: string | null }> {
+  try {
+    const [mark, rec] = await Promise.all([
+      kv.get(dailyClaimKey(uid, utcDayKey())),
+      kv.get<DailyStreakRec>(dailyStreakKey(uid)),
+    ]);
+    return { claimedToday: !!mark, streak: rec?.streak ?? 0, lastDay: rec?.day ?? null };
+  } catch {
+    return { claimedToday: false, streak: 0, lastDay: null };
+  }
+}
 
 interface ProfileGam {
   xp: number;
@@ -364,8 +392,14 @@ export async function getGamificationSummary(uid: string): Promise<GamificationS
     return { id, name: def?.name ?? id, emoji: def?.emoji ?? "🎁", count };
   });
 
+  // Check-in diario desde KV (robusto a columnas de 2026-07 ausentes).
   const today = utcDayKey();
-  const canClaim = prof.last_checkin !== today;
+  const yesterdayKey = utcDayKey(new Date(Date.now() - 86_400_000));
+  const dstate = await readDailyState(uid);
+  const streakAlive = dstate.lastDay === today || dstate.lastDay === yesterdayKey ? dstate.streak : 0;
+  const canClaim = !dstate.claimedToday;
+  const checkinDays = dstate.claimedToday ? dstate.streak : streakAlive;
+  const nextCheckinDays = dstate.claimedToday ? dstate.streak : streakAlive + 1;
 
   // Racha: aplica caducidad por inactividad de forma perezosa.
   const { current: streakCurrent, expiresAt: streakExpiresAt } = await settleStreakExpiry(uid, prof);
@@ -396,8 +430,8 @@ export async function getGamificationSummary(uid: string): Promise<GamificationS
       challenge_target: challengeTarget(challenge.key),
       challenge_completed: Boolean(sameChallenge && chr!.completed_at),
       can_claim: canClaim,
-      checkin_days: prof.checkin_days,
-      next_reward: dailyCheckinReward(canClaim ? prof.checkin_days + 1 : prof.checkin_days),
+      checkin_days: checkinDays,
+      next_reward: dailyCheckinReward(nextCheckinDays),
     },
     flash: flashMultiplier(),
     boosts,
@@ -470,14 +504,33 @@ export interface CheckinResult {
 }
 export async function claimDaily(uid: string): Promise<CheckinResult> {
   const admin = adminClient();
-  const prof = await readProfile(uid);
   const today = utcDayKey();
-  if (prof.last_checkin === today) {
-    return { already: true, checkin_days: prof.checkin_days, coins: prof.coins };
-  }
-  // ¿Día consecutivo? (ayer = last_checkin) si no, reinicia la cadena.
   const yesterday = utcDayKey(new Date(Date.now() - 86_400_000));
-  const newDays = prof.last_checkin === yesterday ? prof.checkin_days + 1 : 1;
+
+  // Guard ATÓMICO de idempotencia en KV: SET con NX crea la marca de HOY solo
+  // si no existía y devuelve "OK"; si ya existía devuelve null → ya reclamó
+  // (no se vuelve a abonar). Esto cierra el farmeo de Fútcoins que permitía el
+  // antiguo guard por last_checkin cuando esa columna no persiste.
+  let kvOk = false;
+  try {
+    const set = await kv.set(dailyClaimKey(uid, today), Date.now(), { nx: true, ex: DAILY_CLAIM_TTL });
+    kvOk = true;
+    if (!set) {
+      const prof = await readProfile(uid);
+      const rec = await kv.get<DailyStreakRec>(dailyStreakKey(uid)).catch(() => null);
+      return { already: true, checkin_days: rec?.streak ?? prof.checkin_days, coins: prof.coins };
+    }
+  } catch {
+    // KV no disponible: fallback al guard por columna (comportamiento previo).
+    const prof = await readProfile(uid);
+    if (prof.last_checkin === today) {
+      return { already: true, checkin_days: prof.checkin_days, coins: prof.coins };
+    }
+  }
+
+  // Racha consecutiva desde KV (ayer = última marca) → independiente de columnas.
+  const rec = kvOk ? await kv.get<DailyStreakRec>(dailyStreakKey(uid)).catch(() => null) : null;
+  const newDays = rec && rec.day === yesterday ? rec.streak + 1 : 1;
   const reward = dailyCheckinReward(newDays);
 
   let gainCoins = reward.coins;
@@ -491,15 +544,20 @@ export async function claimDaily(uid: string): Promise<CheckinResult> {
     }
   }
 
-  // Abono ATÓMICO de Fútcoins + XP por la puerta única; los campos de cadencia
-  // (last_checkin/checkin_days) son valores absolutos y van en un update aparte.
+  // Abono ATÓMICO de Fútcoins + XP por la puerta única (billetera).
   const grant = await grantCoins(uid, gainCoins, gainXp, { seasonXp: false, module: "predicciones" });
-  await admin.from("profiles").update({
-    last_checkin: today, checkin_days: newDays,
-  }).eq("id", uid);
-  await admin.from("prediction_daily_claims").upsert({
+
+  // Persiste la racha en KV (fuente de verdad robusta a la migración pendiente).
+  if (kvOk) {
+    await kv.set(dailyStreakKey(uid), { day: today, streak: newDays } as DailyStreakRec, { ex: DAILY_STREAK_TTL }).catch(() => {});
+  }
+
+  // Best-effort: si las columnas/tabla de 2026-07 YA existen, mantenlas al día
+  // (audit + forward-compat). Si no existen, el error se ignora en silencio.
+  admin.from("profiles").update({ last_checkin: today, checkin_days: newDays }).eq("id", uid).then(() => {}, () => {});
+  admin.from("prediction_daily_claims").upsert({
     user_id: uid, day_key: today, reward_coins: reward.coins, reward_xp: reward.xp,
-  }, { onConflict: "user_id,day_key" });
+  }, { onConflict: "user_id,day_key" }).then(() => {}, () => {});
 
   // El XP del check-in (y del cofre) también llena la pista de temporada.
   await addSeasonXp(uid, gainXp).catch(() => {});

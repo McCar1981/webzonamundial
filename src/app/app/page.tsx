@@ -464,6 +464,9 @@ export default function AppHubPage() {
   const [predictedFeatured, setPredictedFeatured] = useState<boolean | null>(null);
   // Reclamo del check-in diario en curso (evita doble tap).
   const [claiming, setClaiming] = useState(false);
+  // Pin de sesión: una vez reclamado hoy, la misión queda "Reclamado" pase lo
+  // que pase con los refetch (seguro extra sobre el estado del servidor).
+  const [claimedToday, setClaimedToday] = useState(false);
   // Tick de reloj (30s) para la cuenta atrás del partido inaugural.
   const [nowTick, setNowTick] = useState(() => Date.now());
   // iOS no dispara beforeinstallprompt: mostramos instrucciones manuales.
@@ -605,16 +608,17 @@ export default function AppHubPage() {
     } catch { /* noop */ }
   }, []);
 
-  // Reclamar el check-in diario (endpoint ya existente, idempotente por día
-  // UTC y validado en servidor → anti-cheat ok). El estado pasa a "Reclamado"
-  // AL INSTANTE (flip optimista de can_claim) y luego el refetch del resumen
-  // trae saldo/racha reales — así el botón nunca se queda "colgado".
+  // Reclamar el check-in diario (endpoint idempotente vía KV, validado en
+  // servidor → anti-cheat ok). El estado pasa a "Reclamado" AL INSTANTE (flip
+  // optimista) y se FIJA con claimedToday para la sesión: aunque un refetch
+  // tardío devolviera can_claim true, la misión no vuelve a "Reclamar".
   const claimDaily = useCallback(async () => {
     if (claiming) return;
     setClaiming(true);
     try {
       const r = await fetch("/api/predictions/daily", { method: "POST" });
       if (r.ok || r.status === 409) {
+        setClaimedToday(true);
         setGam((prev) => prev?.daily ? { ...prev, daily: { ...prev.daily, can_claim: false } } : prev);
         const g = await fetch("/api/predictions/me").then((x) => (x.ok ? x.json() : null)).catch(() => null);
         if (g) setGam(g);
@@ -1161,12 +1165,14 @@ export default function AppHubPage() {
           <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
             {authed ? (
               <>
-                {gam?.daily && (
+                {gam?.daily && (() => {
+                  const claimed = claimedToday || !gam.daily.can_claim;
+                  return (
                   <MissionRow
-                    done={!gam.daily.can_claim}
+                    done={claimed}
                     label="Reclama tu recompensa diaria"
                     doneLabel="Reclamado"
-                    sub={gam.daily.can_claim
+                    sub={!claimed
                       ? `Día ${gam.daily.checkin_days + 1} de check-in${gam.daily.next_reward?.coins ? ` · +${gam.daily.next_reward.coins} Fútcoins` : ""}`
                       : "Vuelve mañana por la siguiente"}
                     action={
@@ -1175,7 +1181,8 @@ export default function AppHubPage() {
                       </button>
                     }
                   />
-                )}
+                  );
+                })()}
                 <MissionRow
                   done={predictedFeatured === true}
                   label={match?.meta ? `Predice ${match.meta.home.name} vs ${match.meta.away.name}` : "Predice el partido del día"}

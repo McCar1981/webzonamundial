@@ -389,6 +389,73 @@
 .zmChipAi .zmChipMain { font-size: 12px; }
 .zmChipAi .zmChipSub { font-size: 9px; }
 
+/* ===== LA JUGADA EN BUCLE (turnos de las chips) =====
+   HeroRight rota el turno cada 4s: directo → predicción → ranking → coach.
+   El realce de turno va por box-shadow/filter/border a propósito: el
+   transform de la chip lo posee zmChipFloat y no hay que pisarlo. */
+.zmChipCard { transition: box-shadow .5s ease, border-color .5s ease, filter .5s ease; }
+.zmChipTurn {
+  border-color: rgba(212,168,83,0.45);
+  box-shadow: 0 16px 44px -8px rgba(0,0,0,0.7), 0 0 26px -2px rgba(212,168,83,0.30);
+  filter: brightness(1.13);
+}
+
+/* Pick validado: check dorado con anillo en la esquina de la chip predicción */
+.zmChipCheck {
+  position: absolute; top: -7px; right: -7px;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--zm-brand-gold), #e8d48b);
+  color: #0B0B16;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transform: scale(0.4);
+  transition: opacity .35s ease, transform .35s var(--zm-ease-out);
+}
+.zmChipCheckOn { opacity: 1; transform: scale(1); animation: zmCheckPop .5s var(--zm-ease-out); }
+.zmChipCheckOn::after {
+  content: ""; position: absolute; inset: -2px; border-radius: 50%;
+  border: 2px solid rgba(212,168,83,0.65);
+  animation: zmRingOut .9s ease-out .1s forwards;
+}
+
+/* Subida de puntos: bump del número + ▲ que salta (chip ranking) */
+.zmScoreBump { transform-origin: left center; animation: zmScoreBump .7s var(--zm-ease-out); }
+.zmDeltaPop { display: inline-block; animation: zmDeltaPop 1.4s var(--zm-ease-out); }
+
+/* El coach “escribe”: puntitos junto al título (chip IA) */
+.zmTypingDots {
+  display: inline-flex; gap: 3px; margin-left: 6px;
+  opacity: 0; transition: opacity .3s ease; vertical-align: middle;
+}
+.zmTypingDots i { width: 4px; height: 4px; border-radius: 50%; background: #B980F0; display: block; }
+.zmTypingDotsOn { opacity: 1; }
+.zmTypingDotsOn i { animation: zmTypingDot 1s ease-in-out infinite; }
+.zmTypingDotsOn i:nth-child(2) { animation-delay: .18s; }
+.zmTypingDotsOn i:nth-child(3) { animation-delay: .36s; }
+
+@keyframes zmCheckPop {
+  0% { transform: scale(0.4); }
+  55% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+@keyframes zmRingOut {
+  from { transform: scale(0.8); opacity: 1; }
+  to { transform: scale(1.9); opacity: 0; }
+}
+@keyframes zmScoreBump {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.16); }
+  100% { transform: scale(1); }
+}
+@keyframes zmDeltaPop {
+  0% { transform: translateY(6px); opacity: 0; }
+  30% { transform: translateY(-2px); opacity: 1; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+@keyframes zmTypingDot {
+  0%, 100% { transform: translateY(0); opacity: .5; }
+  50% { transform: translateY(-3px); opacity: 1; }
+}
+
 /* ===== STATS BAR ===== */
 .zmStats { position: relative; z-index: 10; background: transparent; }
 .zmStatsInner {

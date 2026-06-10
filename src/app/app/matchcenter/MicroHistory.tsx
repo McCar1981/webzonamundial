@@ -88,6 +88,10 @@ export default function MicroHistory({ matchId }: { matchId: number }) {
             points: Number(data.points ?? 0),
           },
         }));
+      } else if (data?.error === "ghost_expired") {
+        // Caducó entre el render y el clic: oculta los botones (el render
+        // recalcula la frescura con la hora actual).
+        setItems((prev) => [...prev]);
       }
     } catch {
       /* silencioso */
@@ -197,7 +201,13 @@ export default function MicroHistory({ matchId }: { matchId: number }) {
               const g = ghost[m.id];
               // Solo se puede jugar en fantasma una micro YA resuelta (no anulada)
               // que NO jugaste en vivo.
-              const ghostable = resolved && !!m.correct_option && !m.mine;
+              // El fantasma CADUCA a los 5 min de resolverse: rejugar "la que se
+              // te acaba de escapar", no elegir micros del min 30 yendo por el 73.
+              const ghostFresh =
+                resolved && m.resolved_at
+                  ? Date.now() - new Date(m.resolved_at).getTime() <= 5 * 60_000
+                  : false;
+              const ghostable = ghostFresh && !!m.correct_option && !m.mine;
               const borderColor =
                 myCorrect === true ? "rgba(74,222,128,0.45)" : myCorrect === false ? "rgba(255,107,53,0.40)" : "rgba(255,255,255,0.10)";
               return (
@@ -273,7 +283,7 @@ export default function MicroHistory({ matchId }: { matchId: number }) {
                   {ghostable && !g && (
                     <div style={{ marginTop: 10 }}>
                       <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.5)", marginBottom: 6 }}>
-                        👻 Jugar en fantasma <span style={{ opacity: 0.7 }}>(práctica · solo XP ×0.5, sin monedas ni racha)</span>
+                        👻 Jugar en fantasma <span style={{ opacity: 0.7 }}>(recién resuelta · solo XP ×0.5 · disponible 5 min)</span>
                       </div>
                       <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                         {m.options.map((o) => (

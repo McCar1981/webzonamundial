@@ -19,7 +19,7 @@ import PrediccionAIAnalysis, { type AISuggestion } from "./PrediccionAIAnalysis"
 import { handleProRequired } from "@/lib/pro/paywall-client";
 import {
   TYPE_ICON, TIER_ICON,
-  ArrowLeft, Calendar, Check, CheckCircle2, ChevronRight, Clock, Coins, Flame, Gem, Gift, Globe, Pencil, Radio, Sparkles, TrendingUp, Trophy, Users, X, Zap,
+  ArrowLeft, Calendar, Check, CheckCircle2, ChevronRight, Clock, Coins, Flame, Gem, Gift, Globe, Pencil, Radio, ShieldCheck, Sparkles, Timer, TrendingDown, TrendingUp, Trophy, Users, X, Zap,
 } from "./icons";
 import {
   MINUTE_RANGES,
@@ -116,6 +116,8 @@ interface MatchPrediction {
   status: "pending" | "resolved";
   points_earned: number | null;
   is_correct: boolean | null;
+  secured_at?: string | null;
+  secured_points?: number | null;
 }
 interface MatchState {
   match_id: string;
@@ -143,7 +145,7 @@ interface SocialStatsOut { total_predictions: number; stats: Record<string, Soci
 interface LiveVerdictOut {
   id: string;
   prediction_type: PredictionType;
-  now: "winning" | "losing" | "pending" | "resolved";
+  now: "winning" | "losing" | "pending" | "resolved" | "secured";
   points_now?: number;
   detail?: string;
 }
@@ -1359,6 +1361,9 @@ function MatchDetailView({
     }
   }, [live?.finished, onRetry]);
 
+  // "Asegurar ahora" abre del minuto 60 al final (mismo gate que el backend).
+  const secureEligible = !!live && live.live && (live.minute ?? 0) >= 60;
+
   // Cierre de predicciones: tras el deadline el backend ya rechaza con 403, pero
   // bloqueamos también la UI (forms + botón Editar) para no hacer rellenar en
   // balde. Reutiliza la misma cuenta atrás que la cabecera.
@@ -1515,6 +1520,8 @@ function MatchDetailView({
                   scorers={scorers}
                   duels={duels}
                   liveNow={liveVerdicts.get(type) ?? null}
+                  canSecure={secureEligible}
+                  onSecured={onRetry}
                   onEdit={locked || closed ? undefined : () => startEdit(type)}
                 />
               )}
@@ -1776,22 +1783,39 @@ function Badge({ children }: { children: React.ReactNode }) {
 }
 
 // ─── Vista de predicción ya enviada ──────────────────────────────────────────
-function CompletedView({ p, type, scorers, duels, liveNow, onEdit }: { p: MatchPrediction; type: PredictionType; scorers: ScorerCandidate[]; duels: DuelOut[]; liveNow?: LiveVerdictOut | null; onEdit?: () => void }) {
+function CompletedView({ p, type, scorers, duels, liveNow, canSecure, onSecured, onEdit }: { p: MatchPrediction; type: PredictionType; scorers: ScorerCandidate[]; duels: DuelOut[]; liveNow?: LiveVerdictOut | null; canSecure?: boolean; onSecured?: () => void; onEdit?: () => void }) {
   const summary = summarize(type, p, scorers, duels);
   const resolved = p.status === "resolved";
+  // "Asegurada": vendida en vivo a puntos fijos. Prevalece sobre el chip vivo.
+  const secured = !!p.secured_at || liveNow?.now === "secured";
   // Mientras el partido se juega, la tarjeta "vive": verde si ahora mismo la
   // ganas, roja si ahora la pierdes (puede cambiar con cada gol — la emoción).
-  const inLive = !resolved && liveNow && liveNow.now !== "resolved";
+  const inLive = !resolved && !secured && liveNow && liveNow.now !== "resolved";
   const liveColor = liveNow?.now === "winning" ? GREEN : liveNow?.now === "losing" ? RED : DIM;
-  const color = resolved ? (p.is_correct ? GREEN : RED) : inLive && liveNow.now !== "pending" ? liveColor : GOLD;
+  const color = resolved
+    ? (p.secured_at ? GOLD : p.is_correct ? GREEN : RED)
+    : secured ? GOLD
+    : inLive && liveNow.now !== "pending" ? liveColor : GOLD;
+  const securedPts = p.secured_points ?? liveNow?.points_now ?? 0;
   return (
     <div style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${color}40`, borderRadius: 12, padding: 12 }}>
       <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-        <span style={{ color: resolved ? color : GOLD, fontWeight: 800, fontSize: 13, display: "inline-flex", alignItems: "center", gap: 4 }}>
-          {resolved && !p.is_correct ? <X size={14} /> : <Check size={14} />}
-          {resolved ? (p.is_correct ? "Acertaste" : "Fallaste") : "Enviada"}
+        <span style={{ color: resolved || secured ? color : GOLD, fontWeight: 800, fontSize: 13, display: "inline-flex", alignItems: "center", gap: 4 }}>
+          {resolved && !p.secured_at && !p.is_correct ? <X size={14} />
+            : secured ? <ShieldCheck size={14} />
+            : <Check size={14} />}
+          {resolved ? (p.secured_at ? "Asegurada" : p.is_correct ? "Acertaste" : "Fallaste") : secured ? "Asegurada" : "Enviada"}
         </span>
         {resolved && <span style={{ marginLeft: "auto", fontWeight: 800, color }}>{(p.points_earned ?? 0) > 0 ? "+" : ""}{p.points_earned ?? 0} pts</span>}
+        {!resolved && secured && (
+          <span style={{
+            marginLeft: "auto", fontWeight: 800, fontSize: 12, display: "inline-flex", alignItems: "center", gap: 4,
+            color: GOLD2, background: "color-mix(in srgb, var(--zm-accent, #c9a84c) 14%, transparent)",
+            border: `1px solid color-mix(in srgb, ${GOLD} 40%, transparent)`, borderRadius: 99, padding: "3px 9px",
+          }}>
+            <ShieldCheck size={13} /> +{securedPts} pts fijos
+          </span>
+        )}
         {inLive && (
           <span style={{
             marginLeft: "auto", fontWeight: 800, fontSize: 12, display: "inline-flex", alignItems: "center", gap: 4,
@@ -1801,11 +1825,15 @@ function CompletedView({ p, type, scorers, duels, liveNow, onEdit }: { p: MatchP
             borderRadius: 99, padding: "3px 9px",
           }}>
             {liveNow.now === "winning"
-              ? <>▲ La vas ganando{typeof liveNow.points_now === "number" && liveNow.points_now > 0 ? ` +${liveNow.points_now}` : ""}</>
-              : liveNow.now === "losing" ? "▼ Ahora la pierdes" : "⏳ Se decide al final"}
+              ? <><TrendingUp size={13} /> La vas ganando{typeof liveNow.points_now === "number" && liveNow.points_now > 0 ? ` +${liveNow.points_now}` : ""}</>
+              : liveNow.now === "losing" ? <><TrendingDown size={13} /> Ahora la pierdes</>
+              : <><Timer size={13} /> Se decide al final</>}
           </span>
         )}
       </div>
+      {inLive && liveNow.now === "winning" && canSecure && onSecured && (
+        <SecureBar predictionId={p.id} pointsNow={liveNow.points_now ?? 0} onSecured={onSecured} />
+      )}
       <div style={{ fontSize: 13, color: MID, marginTop: 6 }}>{summary}</div>
       {onEdit && (
         <button
@@ -1819,6 +1847,70 @@ function CompletedView({ p, type, scorers, duels, liveNow, onEdit }: { p: MatchP
           <Pencil size={13} /> Editar predicción
         </button>
       )}
+    </div>
+  );
+}
+
+// ─── "Asegurar ahora": cobrar el 60% fijo de una predicción que va ganando ───
+function SecureBar({ predictionId, pointsNow, onSecured }: { predictionId: string; pointsNow: number; onSecured: () => void }) {
+  const offer = Math.max(1, Math.round(pointsNow * 0.6));
+  const [phase, setPhase] = useState<"idle" | "armed" | "busy">("idle");
+  const [err, setErr] = useState<string | null>(null);
+
+  // El paso de confirmación caduca solo: nadie asegura por un toque accidental.
+  useEffect(() => {
+    if (phase !== "armed") return;
+    const t = setTimeout(() => setPhase("idle"), 5000);
+    return () => clearTimeout(t);
+  }, [phase]);
+
+  const secure = async () => {
+    setPhase("busy");
+    setErr(null);
+    try {
+      const r = await fetch(`/api/predictions/${predictionId}/secure`, { method: "POST" });
+      const j = (await r.json().catch(() => null)) as { message?: string; secured_points?: number } | null;
+      if (!r.ok) {
+        setErr(j?.message ?? "No se pudo asegurar, reintenta");
+        setPhase("idle");
+        return;
+      }
+      onSecured();
+    } catch {
+      setErr("Sin conexión, reintenta");
+      setPhase("idle");
+    }
+  };
+
+  return (
+    <div style={{ marginTop: 10 }}>
+      {phase === "armed" ? (
+        <button
+          onClick={secure}
+          style={{
+            width: "100%", padding: "9px 12px", borderRadius: 10, cursor: "pointer", minHeight: 42,
+            background: `linear-gradient(135deg,${GOLD},${GOLD2})`, border: "none", color: INK,
+            fontWeight: 800, fontSize: 13, display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 6,
+          }}
+        >
+          <ShieldCheck size={15} /> Confirmar: +{offer} pts fijos (renuncias a multiplicadores)
+        </button>
+      ) : (
+        <button
+          disabled={phase === "busy"}
+          onClick={() => setPhase("armed")}
+          style={{
+            width: "100%", padding: "9px 12px", borderRadius: 10, cursor: "pointer", minHeight: 42,
+            background: "color-mix(in srgb, var(--zm-accent, #c9a84c) 12%, transparent)",
+            border: `1px solid color-mix(in srgb, ${GOLD} 40%, transparent)`, color: GOLD2,
+            fontWeight: 800, fontSize: 13, display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 6,
+            opacity: phase === "busy" ? 0.6 : 1,
+          }}
+        >
+          <ShieldCheck size={15} /> {phase === "busy" ? "Asegurando…" : `Asegurar +${offer} pts ya`}
+        </button>
+      )}
+      {err && <div style={{ color: RED, fontSize: 12, marginTop: 6 }}>{err}</div>}
     </div>
   );
 }

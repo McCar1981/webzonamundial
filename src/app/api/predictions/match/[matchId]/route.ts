@@ -47,6 +47,8 @@ export async function GET(_req: Request, { params }: { params: { matchId: string
       status: r.resolved_at ? "resolved" : "pending",
       points_earned: r.points_earned,
       is_correct: r.is_correct,
+      secured_at: r.secured_at ?? null,
+      secured_points: r.secured_points ?? null,
       created_at: r.created_at,
     })),
     types_completed: completed,

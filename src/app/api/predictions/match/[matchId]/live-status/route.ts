@@ -24,7 +24,7 @@ export const dynamic = "force-dynamic";
 interface LiveVerdict {
   id: string;
   prediction_type: string;
-  now: "winning" | "losing" | "pending" | "resolved";
+  now: "winning" | "losing" | "pending" | "resolved" | "secured";
   points_now?: number;
   detail?: string;
 }
@@ -64,8 +64,17 @@ export async function GET(_req: Request, { params }: { params: { matchId: string
       return {
         id: r.id,
         prediction_type: r.prediction_type,
-        now: "resolved",
+        now: "resolved" as const,
         points_now: r.points_earned ?? 0,
+      };
+    }
+    // Ya asegurada en vivo: puntos fijos pase lo que pase.
+    if (r.secured_at) {
+      return {
+        id: r.id,
+        prediction_type: r.prediction_type,
+        now: "secured" as const,
+        points_now: r.secured_points ?? 0,
       };
     }
     // Mismo motor que la resolución oficial, sobre el estado ACTUAL del

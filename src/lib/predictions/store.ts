@@ -371,6 +371,27 @@ export async function resolveMatch(matchId: string, result: MatchResultReal): Pr
   const pointsByUser = new Map<string, number>();
 
   for (const p of list) {
+    // "Asegurar ahora": la fila se vendió EN VIVO a puntos fijos. Se respeta tal
+    // cual (sin boosts ni multiplicadores — ese fue el trato) y cuenta como
+    // acierto para racha y stats. Mismo CAS que el resto.
+    if (p.secured_at && p.secured_points != null) {
+      const { data: claimedSec } = await admin.from("predictions").update({
+        points_before_multiplier: p.secured_points,
+        points_earned: p.secured_points,
+        is_correct: true,
+        resolution_breakdown: `Asegurada en vivo: +${p.secured_points} pts fijos (renunciaste a multiplicadores)`,
+        resolved_at: new Date().toISOString(),
+      }).eq("id", p.id).is("resolved_at", null).select("id");
+      if (!claimedSec || claimedSec.length === 0) continue;
+      usersInMatch.add(p.user_id);
+      streakByUser.set(p.user_id, (streakByUser.get(p.user_id) ?? 0) + 1);
+      sum += p.secured_points;
+      totalByUser.set(p.user_id, (totalByUser.get(p.user_id) ?? 0) + 1);
+      pointsByUser.set(p.user_id, (pointsByUser.get(p.user_id) ?? 0) + p.secured_points);
+      correctByUser.set(p.user_id, (correctByUser.get(p.user_id) ?? 0) + 1);
+      continue;
+    }
+
     const base = scoreBase(p.prediction_type, p.prediction_data, p.confidence_multiplier, result);
 
     // Elegir el boost aplicable (orden de prioridad simple). OJO: NO lo

@@ -165,7 +165,14 @@ export function EditorialIntro() {
       </div>
 
       {/* Mobile: stats grid 2x2 (más cómodo) */}
-      <style>{`
+      {/*
+        dangerouslySetInnerHTML obligatorio: como texto JSX, el SSR escapa
+        ">" y '"' (&gt;/&quot;), el HTML del servidor no coincide al hidratar
+        y React re-renderiza toda la home en cliente.
+      */}
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
         @media (max-width: 540px) {
           .zm-edit-stats {
             grid-template-columns: repeat(2, 1fr) !important;
@@ -192,7 +199,9 @@ export function EditorialIntro() {
         }
         .zm-edit-more[open] > summary::after { content: "−"; }
         .zm-edit-more[open] > summary { margin-bottom: 4px; }
-      `}</style>
+      `,
+        }}
+      />
     </section>
   );
 }

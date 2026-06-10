@@ -19,7 +19,7 @@ import PrediccionAIAnalysis, { type AISuggestion } from "./PrediccionAIAnalysis"
 import { handleProRequired } from "@/lib/pro/paywall-client";
 import {
   TYPE_ICON, TIER_ICON, OracleIcon,
-  ArrowLeft, Calendar, Check, CheckCircle2, ChevronRight, Clock, Coins, Flame, Gem, Gift, Globe, Lock, Pencil, Radio, ShieldCheck, Sparkles, Swords, Timer, TrendingDown, TrendingUp, Trophy, Users, X, Zap,
+  ArrowLeft, Calendar, Check, CheckCircle2, ChevronRight, Clock, Coins, Flame, Gem, Gift, Globe, Lock, Pencil, Radio, ShieldCheck, Snowflake, Sparkles, Swords, Timer, TrendingDown, TrendingUp, Trophy, Users, X, Zap,
 } from "./icons";
 import {
   MINUTE_RANGES,
@@ -1636,15 +1636,53 @@ function useCloseCountdown(close: Date | null): string | null {
 
 function UserMiniStatsBar() {
   const [s, setS] = useState<GamificationSummary | null>(null);
-  useEffect(() => {
-    let alive = true;
-    fetch("/api/predictions/me")
-      .then((r) => (r.ok ? r.json() : null))
-      .then((j) => { if (alive && j) setS(j); })
-      .catch(() => {});
-    return () => { alive = false; };
+  const [buying, setBuying] = useState(false);
+  const [shieldMsg, setShieldMsg] = useState<string | null>(null);
+
+  const load = useCallback(async () => {
+    try {
+      const r = await fetch("/api/predictions/me");
+      if (r.ok) setS((await r.json()) as GamificationSummary);
+    } catch { /* la barra simplemente no se pinta */ }
   }, []);
+  useEffect(() => { void load(); }, [load]);
+
+  useEffect(() => {
+    if (!shieldMsg) return;
+    const t = setTimeout(() => setShieldMsg(null), 4000);
+    return () => clearTimeout(t);
+  }, [shieldMsg]);
+
   if (!s) return null;
+
+  // Seguro de racha: el boost "Congelar Racha" ya existe en la tienda; aquí lo
+  // hacemos VISIBLE justo cuando duele perderla (racha 3+ = multiplicador vivo).
+  const shieldCount = s.boosts.find((b) => b.id === "streak_freeze")?.count ?? 0;
+  const streakAtRisk = s.streak.current >= 3;
+  const shielded = shieldCount > 0;
+
+  const buyShield = async () => {
+    setBuying(true);
+    try {
+      const r = await fetch("/api/predictions/boosts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ boost_id: "streak_freeze" }),
+      });
+      const j = (await r.json().catch(() => null)) as { error?: string } | null;
+      if (!r.ok) {
+        setShieldMsg(j?.error === "insufficient_coins" ? "No te llegan los Fútcoins (100)" : "No se pudo comprar, reintenta");
+        return;
+      }
+      setShieldMsg("Racha protegida: un fallo no la romperá");
+      await load();
+    } catch {
+      setShieldMsg("Sin conexión, reintenta");
+    } finally {
+      setBuying(false);
+    }
+  };
+
   const items: { icon: typeof Trophy; color: string; label: string; value: string; sub?: string }[] = [
     { icon: Trophy, color: GOLD2, label: "Nivel", value: String(s.level.level), sub: s.level.title },
     { icon: TrendingUp, color: "#38bdf8", label: "XP", value: `${s.level.xpIntoLevel}/${s.level.xpForLevel}` },
@@ -1652,19 +1690,40 @@ function UserMiniStatsBar() {
     { icon: Coins, color: GOLD, label: "Fútcoins", value: fmtCount(s.coins) },
   ];
   return (
-    <div className="pj-ministats" role="group" aria-label="Tu progreso">
-      {items.map((it) => {
-        const Icon = it.icon;
-        return (
-          <div key={it.label} className="pj-ministat">
-            <Icon size={15} color={it.color} style={{ flexShrink: 0 }} />
-            <div style={{ minWidth: 0 }}>
-              <div style={{ fontSize: 9.5, color: DIM, fontWeight: 700, letterSpacing: 0.4, textTransform: "uppercase", lineHeight: 1.1 }}>{it.label}</div>
-              <div style={{ fontSize: 13, fontWeight: 800, lineHeight: 1.15, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{it.value}</div>
+    <div>
+      <div className="pj-ministats" role="group" aria-label="Tu progreso">
+        {items.map((it) => {
+          const Icon = it.icon;
+          const isStreak = it.label === "Racha";
+          return (
+            <div key={it.label} className="pj-ministat">
+              <Icon size={15} color={it.color} style={{ flexShrink: 0 }} />
+              <div style={{ minWidth: 0 }}>
+                <div style={{ fontSize: 9.5, color: DIM, fontWeight: 700, letterSpacing: 0.4, textTransform: "uppercase", lineHeight: 1.1 }}>{it.label}</div>
+                <div style={{ fontSize: 13, fontWeight: 800, lineHeight: 1.15, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", display: "inline-flex", alignItems: "center", gap: 4 }}>
+                  {it.value}
+                  {isStreak && streakAtRisk && shielded && <ShieldCheck size={12} color={GREEN} aria-label="Racha protegida" />}
+                </div>
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
+      {streakAtRisk && !shielded && (
+        <button
+          disabled={buying}
+          onClick={buyShield}
+          style={{
+            marginTop: 8, width: "100%", padding: "8px 12px", borderRadius: 10, cursor: "pointer", minHeight: 40,
+            background: "rgba(56,189,248,0.10)", border: "1px solid rgba(56,189,248,0.35)", color: "#7dd3fc",
+            fontWeight: 800, fontSize: 12.5, display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 6,
+            opacity: buying ? 0.6 : 1,
+          }}
+        >
+          <Snowflake size={14} /> {buying ? "Comprando…" : `Tu racha de ${s.streak.current} está en juego — protégela por 100 Fútcoins`}
+        </button>
+      )}
+      {shieldMsg && <div style={{ color: shieldMsg.startsWith("Racha") ? GREEN : RED, fontSize: 12, marginTop: 6, fontWeight: 700 }}>{shieldMsg}</div>}
     </div>
   );
 }

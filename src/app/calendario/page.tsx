@@ -1,27 +1,35 @@
 // src/app/calendario/page.tsx
 // ZonaMundial.app — Calendario del Mundial 2026 (Diseño ESPECTACULAR)
+//
+// Horarios: matches.ts guarda las horas en ET; aquí TODO se muestra en la
+// zona horaria del usuario (detectada vía Intl tras hidratar) y los partidos
+// se agrupan por el día LOCAL del usuario — un sábado 22:00 de América es
+// domingo de madrugada en Europa y se lista en el domingo del usuario.
 
 "use client";
 
-import { useState, useMemo, useRef, useEffect } from "react";
+import { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { SvgIcon } from "@/components/icons";
 import { SELECCIONES } from "@/data/selecciones";
+import { PHASES, GROUPS, flagUrl, GOLD, MID } from "@/data/matches";
+import type { Match } from "@/data/matches";
 import {
-  MATCHES,
-  PHASES,
-  GROUPS,
-  VENUES,
-  flagUrl,
-  GOLD,
-  MID,
-  DIM,
-} from "@/data/matches";
-import useCountdown from "@/hooks/useCountdown";
+  WC_MATCHES,
+  WC_VENUES,
+  TOURNAMENT_DAYS,
+  SOURCE_TZ,
+  OPENING_INSTANT,
+  FINAL_INSTANT,
+  POSTMATCH_MS,
+  getUserTimezone,
+  groupByLocalDay,
+  tzCityLabel,
+  currentPhaseAt,
+} from "@/lib/calendario/time";
 import {
   CountdownBanner,
   DateHeader,
@@ -31,9 +39,8 @@ import {
   MatchModal,
   MobileTimeline,
 } from "./_components";
+import { useLiveScores } from "./_components/useLiveScores";
 import CalendarExportButton from "@/components/CalendarExportButton";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const BG = "#060B14";
 
@@ -45,18 +52,66 @@ const COUNTRY_LABELS: Record<string, string> = {
 };
 
 export default function CalendarioPage() {
-  const { t, locale } = useLanguage();
+  const { t } = useLanguage();
   const cT = t.calendario;
   const nav = t.nav;
 
   const [phase, setPhase] = useState("Fase de grupos");
   const [group, setGroup] = useState("all");
-  const [selected, setSelected] = useState<(typeof MATCHES)[0] | null>(null);
+  const [selected, setSelected] = useState<Match | null>(null);
   const [teamFilter, setTeamFilter] = useState<string>("all");
   const [venueFilter, setVenueFilter] = useState<string>("all");
   const [favoritesOnly, setFavoritesOnly] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+
+  // TZ del usuario. Arranca en ET (mismo render en servidor y cliente, sin
+  // hydration mismatch) y tras montar cambia a la del navegador.
+  const [tz, setTz] = useState(SOURCE_TZ);
+  const [mounted, setMounted] = useState(false);
+  const [liveActive, setLiveActive] = useState(false);
+
+  useEffect(() => {
+    setTz(getUserTimezone());
+    setMounted(true);
+
+    const now = Date.now();
+    // Polling de marcadores solo desde 1h antes del saque inaugural hasta que
+    // acaba la final; fuera de ese rango, ni una petición.
+    setLiveActive(
+      now >= OPENING_INSTANT.getTime() - 3_600_000 &&
+        now <= FINAL_INSTANT.getTime() + POSTMATCH_MS
+    );
+
+    // Fase por defecto según el momento del torneo (en eliminatorias no tiene
+    // sentido aterrizar en la fase de grupos ya jugada).
+    const current = currentPhaseAt(now);
+    if (current === null) setPhase("all");
+    else if (current !== "Fase de grupos") setPhase(current);
+  }, []);
+
+  const liveMap = useLiveScores(liveActive);
+
+  // Modal con deep-link: #match-<id> abre el partido (las URLs del JSON-LD y
+  // del feed ICS apuntan aquí), y abrir/cerrar mantiene el hash compartible.
+  const openMatch = useCallback((m: Match | null) => {
+    setSelected(m);
+    if (typeof window === "undefined") return;
+    if (m) {
+      window.history.replaceState(null, "", `#match-${m.i}`);
+    } else {
+      window.history.replaceState(null, "", window.location.pathname + window.location.search);
+    }
+  }, []);
+
+  useEffect(() => {
+    const hash = typeof window !== "undefined" ? window.location.hash : "";
+    const match = /^#match-(\d+)$/.exec(hash);
+    if (match) {
+      const found = WC_MATCHES.find((x) => x.i === Number(match[1]));
+      if (found) setSelected(found);
+    }
+  }, []);
 
   const FAVORITE_TEAMS = useMemo(
     () => ["ar", "br", "es", "fr", "mx", "us", "pt", "de", "gb-eng"],
@@ -76,7 +131,7 @@ export default function CalendarioPage() {
   );
 
   const venueOptions = useMemo(() => {
-    const sortedVenues = [...VENUES].sort((a, b) => {
+    const sortedVenues = [...WC_VENUES].sort((a, b) => {
       const aOrder = COUNTRY_ORDER[a.flag] ?? 99;
       const bOrder = COUNTRY_ORDER[b.flag] ?? 99;
       if (aOrder !== bOrder) return aOrder - bOrder;
@@ -104,7 +159,7 @@ export default function CalendarioPage() {
 
   const filtered = useMemo(
     () =>
-      MATCHES.filter((m) => {
+      WC_MATCHES.filter((m) => {
         if (phase !== "all" && m.p !== phase) return false;
         if (group !== "all" && m.g !== group) return false;
         if (teamFilter !== "all" && m.hf !== teamFilter && m.af !== teamFilter)
@@ -121,18 +176,14 @@ export default function CalendarioPage() {
     [phase, group, teamFilter, venueFilter, favoritesOnly, FAVORITE_TEAMS]
   );
 
-  const grouped = useMemo(() => {
-    const map = new Map<string, typeof MATCHES>();
-    filtered.forEach((m) => {
-      if (!map.has(m.d)) map.set(m.d, []);
-      map.get(m.d)!.push(m);
-    });
-    return new Map([...map.entries()].sort());
-  }, [filtered]);
+  // Agrupación por día LOCAL del usuario, con días y partidos ordenados por
+  // instante real de saque (antes se agrupaba por fecha ET y en orden de id,
+  // con horas descolocadas dentro del día).
+  const grouped = useMemo(() => groupByLocalDay(filtered, tz), [filtered, tz]);
 
   const handleNav = (id: number) => {
-    const m = MATCHES.find((x) => x.i === id);
-    if (m) setSelected(m);
+    const m = WC_MATCHES.find((x) => x.i === id);
+    if (m) openMatch(m);
   };
 
   // Animación de contenido al cambiar filtros
@@ -205,16 +256,20 @@ export default function CalendarioPage() {
                 <div className="flex flex-wrap justify-center gap-4">
                   <div className="rounded-2xl border border-white/[0.06] bg-[#0F1D32] px-6 py-4">
                     <p className="text-2xl font-black text-[#c9a84c] sm:text-[28px]">
-                      {MATCHES.length}
+                      {WC_MATCHES.length}
                     </p>
                     <p className="text-[13px] text-[#6a7a9a]">{cT.partidos}</p>
                   </div>
                   <div className="rounded-2xl border border-white/[0.06] bg-[#0F1D32] px-6 py-4">
-                    <p className="text-2xl font-black text-white sm:text-[28px]">16</p>
+                    <p className="text-2xl font-black text-white sm:text-[28px]">
+                      {WC_VENUES.length}
+                    </p>
                     <p className="text-[13px] text-[#6a7a9a]">{cT.sedes}</p>
                   </div>
                   <div className="rounded-2xl border border-white/[0.06] bg-[#0F1D32] px-6 py-4">
-                    <p className="text-2xl font-black text-white sm:text-[28px]">39</p>
+                    <p className="text-2xl font-black text-white sm:text-[28px]">
+                      {TOURNAMENT_DAYS}
+                    </p>
                     <p className="text-[13px] text-[#6a7a9a]">{cT.dias}</p>
                   </div>
                 </div>
@@ -226,10 +281,7 @@ export default function CalendarioPage() {
 
               {/* Calendario descargable / suscripción */}
               <div className="mt-8 flex justify-center">
-                <CalendarExportButton
-                  variant="panel"
-                  label="Añadir el Mundial 2026 a tu calendario"
-                />
+                <CalendarExportButton variant="panel" label={cT.addCalendar} />
               </div>
             </div>
           </AnimatedSection>
@@ -251,7 +303,7 @@ export default function CalendarioPage() {
           {PHASES.map((p) => (
             <FilterBtn
               key={p}
-              label={p}
+              label={cT.phases[p] ?? p}
               active={phase === p}
               onClick={() => {
                 setPhase(p);
@@ -306,7 +358,7 @@ export default function CalendarioPage() {
                     d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
                   />
                 </svg>
-                Solo favoritos
+                {cT.soloFavoritos}
               </button>
             </div>
             <div className="flex items-center justify-between gap-3 sm:justify-end">
@@ -334,6 +386,13 @@ export default function CalendarioPage() {
               )}
             </div>
           </div>
+          {/* Aviso de zona horaria: todas las horas van en el reloj del usuario */}
+          {mounted && (
+            <p className="mt-2 text-[11px] text-[#6a7a9a]">
+              🌍 {cT.horariosEnTuZona}:{" "}
+              <strong className="font-semibold text-[#8a94b0]">{tzCityLabel(tz)}</strong>
+            </p>
+          )}
         </div>
 
         {/* Tabs de Grupo (solo en fase de grupos) */}
@@ -367,13 +426,13 @@ export default function CalendarioPage() {
         )}
 
         {/* Vista móvil: timeline */}
-        <MobileTimeline matches={filtered} onClick={setSelected} />
+        <MobileTimeline matches={filtered} onClick={openMatch} tz={tz} live={liveMap} />
 
-        {/* Vista desktop: lista de partidos por fecha */}
+        {/* Vista desktop: lista de partidos por fecha (día LOCAL del usuario) */}
         <div ref={contentRef} className="hidden sm:block">
-          {[...grouped.entries()].map(([date, matches]) => (
-            <div key={date} className="mb-8">
-              <DateHeader date={date} count={matches.length} />
+          {grouped.map((day) => (
+            <div key={day.key} className="mb-8">
+              <DateHeader instant={day.instant} tz={tz} count={day.matches.length} />
 
               <div
                 className="grid gap-4"
@@ -381,8 +440,14 @@ export default function CalendarioPage() {
                   gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))",
                 }}
               >
-                {matches.map((m) => (
-                  <MatchCard key={m.i} m={m} onClick={() => setSelected(m)} />
+                {day.matches.map((m) => (
+                  <MatchCard
+                    key={m.i}
+                    m={m}
+                    tz={tz}
+                    live={liveMap[m.i]}
+                    onClick={() => openMatch(m)}
+                  />
                 ))}
               </div>
             </div>
@@ -407,8 +472,8 @@ export default function CalendarioPage() {
                 />
               </svg>
             </div>
-            <h3 className="mb-2 text-xl font-bold text-white">No hay partidos</h3>
-            <p className="text-[#6a7a9a]">Ajusta los filtros para ver más partidos</p>
+            <h3 className="mb-2 text-xl font-bold text-white">{cT.noPartidos}</h3>
+            <p className="text-[#6a7a9a]">{cT.ajustaFiltros}</p>
           </div>
         )}
 
@@ -437,7 +502,9 @@ export default function CalendarioPage() {
       {selected && (
         <MatchModal
           m={selected}
-          onClose={() => setSelected(null)}
+          tz={tz}
+          live={liveMap[selected.i]}
+          onClose={() => openMatch(null)}
           onNav={handleNav}
         />
       )}

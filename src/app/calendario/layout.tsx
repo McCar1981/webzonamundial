@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Outfit } from "next/font/google";
-import { MATCHES } from "@/data/matches";
+import { WC_MATCHES, matchInstant } from "@/lib/calendario/time";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -9,17 +9,19 @@ const outfit = Outfit({
   display: "swap",
 });
 
-/** Construye un ItemList con SportsEvent estructurado para los 104 partidos.
- *  Mejora el SEO para queries del tipo "México vs Sudáfrica horario" y
- *  habilita rich snippets en Google. */
+/** Construye un ItemList con SportsEvent estructurado para los 104 partidos
+ *  REALES (el fixture de prueba del Match Center queda fuera). Mejora el SEO
+ *  para queries del tipo "México vs Sudáfrica horario" y habilita rich
+ *  snippets en Google. startDate va como instante UTC absoluto (las horas de
+ *  matches.ts están en ET; sin offset Google interpretaba la hora a su aire). */
 function buildSportsEventListLd() {
   const SITE = "https://zonamundial.app";
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: "Calendario completo del Mundial FIFA 2026",
-    numberOfItems: MATCHES.length,
-    itemListElement: MATCHES.map((m, i) => ({
+    numberOfItems: WC_MATCHES.length,
+    itemListElement: WC_MATCHES.map((m, i) => ({
       "@type": "ListItem",
       position: i + 1,
       item: {
@@ -27,7 +29,7 @@ function buildSportsEventListLd() {
         "@id": `${SITE}/calendario#match-${m.i}`,
         name: `${m.h} vs ${m.a} — ${m.p}${m.j ? ` · J${m.j}` : ""} · Mundial 2026`,
         description: `${m.h} contra ${m.a} en ${m.vn} (${m.vc}). ${m.p}${m.j ? ` jornada ${m.j}` : ""} del Mundial FIFA 2026.`,
-        startDate: `${m.d}T${m.t}:00`,
+        startDate: matchInstant(m)?.toISOString() ?? `${m.d}T${m.t}:00-04:00`,
         eventStatus: "https://schema.org/EventScheduled",
         eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
         sport: "Soccer",
@@ -53,7 +55,7 @@ function buildSportsEventListLd() {
 export const metadata: Metadata = {
   title: "Calendario Mundial 2026: todos los partidos, fechas y horarios",
   description:
-    "Calendario completo del Mundial 2026: 104 partidos, 48 selecciones, 16 sedes. Consulta fechas, horarios y resultados en directo.",
+    "Calendario completo del Mundial 2026: 104 partidos, 48 selecciones, 16 sedes. Consulta fechas, horarios en tu zona y resultados en directo.",
   keywords: [
     "calendario mundial 2026",
     "partidos mundial 2026",

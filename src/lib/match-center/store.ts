@@ -140,6 +140,30 @@ export async function getLastSnapshot(matchId: number): Promise<LiveSnapshot | n
   }
 }
 
+/** Lectura en LOTE de las copias durables (mc:last:) para varios partidos:
+ *  1 comando MGET por bloque en vez de 2 GET por partido. La usa la parrilla
+ *  del calendario para pintar marcadores. Degrada a mapa vacío sin KV. */
+export async function getLastSnapshotsBulk(
+  ids: number[],
+): Promise<Record<number, LiveSnapshot>> {
+  const out: Record<number, LiveSnapshot> = {};
+  if (!isKvEnabled() || ids.length === 0) return out;
+  try {
+    const CHUNK = 100;
+    for (let i = 0; i < ids.length; i += CHUNK) {
+      const slice = ids.slice(i, i + CHUNK);
+      const keys = slice.map((id) => `${LAST_PREFIX}${id}`);
+      const vals = await kv.mget<(LiveSnapshot | null)[]>(...keys);
+      vals.forEach((v, j) => {
+        if (v) out[slice[j]] = v;
+      });
+    }
+  } catch {
+    /* sin datos en vivo: la parrilla muestra horarios y ya */
+  }
+  return out;
+}
+
 /**
  * Snapshot cacheado SOLO si sigue fresco. Para partidos en juego, descarta el
  * cacheado si `updatedAt` es demasiado viejo (defensa ante un TTL de KV que no

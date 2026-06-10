@@ -19,7 +19,7 @@
  */
 
 import type { Match } from "@/data/matches";
-import { resolveVenueTimezone, buildKickoffDate } from "@/lib/timezone";
+import { matchInstant } from "@/lib/calendario/time";
 
 // ═══════════════════════════════════════════════════════════════════
 // Datos auxiliares
@@ -145,8 +145,12 @@ export function buildEventBlock(
 ): string {
   const { reminders = true, anthems = true } = opts;
 
-  const tz = resolveVenueTimezone(m.vc, m.vf);
-  const startDate = buildKickoffDate(m.d, m.t, tz);
+  // OJO: matches.ts guarda "t" en ET (no en hora local del estadio). La
+  // versión anterior la interpretaba como hora de la sede y los eventos
+  // salían desplazados +1h (Central), +2h (México) o +3h (Pacífico) — con
+  // los 3 recordatorios heredando el error. matchInstant() aplica la
+  // convención correcta (y normaliza los saques "23:59" → 00:00 ET).
+  const startDate = matchInstant(m);
   if (!startDate) return ""; // sin fecha válida → omitimos
   const endDate = new Date(startDate.getTime() + 110 * 60 * 1000); // +1h50min (90min + descanso + añadidos)
 
@@ -163,7 +167,8 @@ export function buildEventBlock(
   const summary = `${phaseEmoji} ${homeFlag} ${m.h} vs ${m.a} ${awayFlag} · ${phaseLabel} · ZonaMundial`;
 
   // DESCRIPTION: CTAs hacia zonamundial.app + himno
-  const matchUrl = `${SITE}/calendario#m${m.i}`;
+  // #match-<id> abre la ficha del partido en /calendario (deep-link real).
+  const matchUrl = `${SITE}/calendario#match-${m.i}`;
   const homeTeamUrl = `${SITE}/selecciones/${slugFromName(m.h)}`;
   const awayTeamUrl = `${SITE}/selecciones/${slugFromName(m.a)}`;
   const stadiumUrl = `${SITE}/sedes/${slugFromCity(m.vc)}`;

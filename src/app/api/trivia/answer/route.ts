@@ -78,6 +78,9 @@ export async function POST(req: Request) {
     points = Math.round(base * streakMult * speedMult);
     session.correct += 1;
   } else {
+    // Guardar la racha que se rompe: el comodín "Salvarracha" (revive de
+    // Muerte Súbita) la restaura tal cual si el usuario paga.
+    session.streakBeforeMiss = session.streak;
     session.streak = 0;
   }
 

@@ -134,4 +134,11 @@ export interface ServerSession {
   /** Pistas 50/50 compradas: questionId → índices erróneos ya descartados.
    *  Sirve para no volver a cobrar si se re-pide la pista de la misma pregunta. */
   hints?: Record<string, number[]>;
+  /** Racha que llevaba ANTES del último fallo. La restaura el comodín
+   *  "Salvarracha" (revive de Muerte Súbita). */
+  streakBeforeMiss?: number;
+  /** Revives ya aplicados en esta partida (máximo 1). */
+  revives?: number;
+  /** Compras que ya revivieron esta sesión (idempotencia del webhook). */
+  revivedPurchaseIds?: string[];
 }

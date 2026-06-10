@@ -9,6 +9,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { TRIVIA_HINT_FIFTY } from "@/lib/economy/spend";
 import { handleProRequired } from "@/lib/pro/paywall-client";
+import { POWERUPS } from "@/lib/powerups/catalog";
 
 const BG = "#060B14",
   BG2 = "#0F1D32",
@@ -111,6 +112,17 @@ export default function TriviaGame() {
   // true mientras un POST /answer está en vuelo: bloquea doble-envío (doble clic
   // o timeout del timer que coincide con un clic).
   const [submitting, setSubmitting] = useState(false);
+
+  // Comodín "Salvarracha": revive de pago en Muerte Súbita (1 por partida).
+  // El efecto lo aplica el webhook de Stripe sobre la sesión del servidor;
+  // aquí: oferta al morir, pago en pestaña nueva y polling de confirmación.
+  const [reviveOffer, setReviveOffer] = useState(false);
+  const [reviveWaiting, setReviveWaiting] = useState(false);
+  const [reviveErr, setReviveErr] = useState<string | null>(null);
+  const [lostStreak, setLostStreak] = useState(0);
+  const revivedOnce = useRef(false);
+  const revivePoll = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => { if (revivePoll.current) clearTimeout(revivePoll.current); }, []);
 
   const qStartRef = useRef<number>(0);
   const anonRef = useRef<string>("");
@@ -221,6 +233,9 @@ export default function TriviaGame() {
         return;
       }
       const data: AnswerResp = await r.json();
+      // Racha que se acaba de romper (este closure aún ve el valor previo):
+      // la enseña la oferta del Salvarracha ("llevabas N seguidas").
+      if (!data.correct) setLostStreak(streak);
       setRevealed(data);
       setScore(data.totalPoints);
       setStreak(data.streak);
@@ -265,6 +280,12 @@ export default function TriviaGame() {
     if (!revealed) return;
     const isLast = idx + 1 >= questions.length;
     if (revealed.gameOver || isLast) {
+      // Muerte Súbita: antes de cerrar la partida, UNA oferta de revive de pago
+      // (si quedan preguntas que jugar).
+      if (revealed.gameOver && mode === "muerte-subita" && !revivedOnce.current && !isLast) {
+        setReviveOffer(true);
+        return;
+      }
       await finishGame();
       return;
     }
@@ -274,6 +295,102 @@ export default function TriviaGame() {
     setRemoved([]);
     setHintErr(null);
     qStartRef.current = Date.now();
+  }
+
+  // ── Salvarracha (revive de pago) ──────────────────────────────────────────
+
+  /** El webhook ya revivió la sesión en el servidor: reanudar la partida. */
+  function resumeAfterRevive(restoredStreak: number) {
+    revivedOnce.current = true;
+    if (revivePoll.current) clearTimeout(revivePoll.current);
+    setReviveOffer(false);
+    setReviveWaiting(false);
+    setReviveErr(null);
+    setStreak(restoredStreak);
+    setIdx((i) => i + 1);
+    setSelected(null);
+    setRevealed(null);
+    setRemoved([]);
+    setHintErr(null);
+    qStartRef.current = Date.now();
+  }
+
+  function pollRevive(pid: string, tries: number) {
+    if (tries > 48) {
+      // ~2 min sin confirmación: no cerramos la partida (la sesión vive 1h),
+      // pero dejamos de esperar en bucle.
+      setReviveWaiting(false);
+      setReviveErr("La confirmación está tardando. Si has pagado, pulsa «Seguir esperando».");
+      return;
+    }
+    revivePoll.current = setTimeout(async () => {
+      try {
+        const r = await fetch(`/api/powerups/status?pid=${encodeURIComponent(pid)}`);
+        if (r.ok) {
+          const j = (await r.json()) as { status: string; trivia?: { streak: number } | null };
+          if (j.status === "applied") {
+            resumeAfterRevive(j.trivia?.streak ?? 0);
+            return;
+          }
+          if (j.status === "failed" || j.status === "refunded") {
+            setReviveWaiting(false);
+            setReviveErr("El pago no pudo aplicarse y se ha devuelto automáticamente.");
+            return;
+          }
+        }
+      } catch {
+        /* siguiente tick */
+      }
+      pollRevive(pid, tries + 1);
+    }, 2500);
+  }
+
+  const reviveRetryPid = useRef<string | null>(null);
+
+  async function buyRevive() {
+    setReviveErr(null);
+    // Reintento tras timeout: solo reanudar el polling, sin nuevo checkout.
+    if (reviveRetryPid.current) {
+      setReviveWaiting(true);
+      pollRevive(reviveRetryPid.current, 0);
+      return;
+    }
+    // Abrir la pestaña dentro del gesto del usuario (popup blockers) y poner la
+    // URL de Stripe cuando llegue.
+    const payTab = window.open("about:blank", "_blank");
+    try {
+      const r = await fetch("/api/powerups/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sku: "trivia_revive", trivia_session_id: sessionId }),
+      });
+      const j = (await r.json().catch(() => null)) as { url?: string; purchase_id?: string; message?: string } | null;
+      if (r.status === 401) {
+        payTab?.close();
+        setReviveErr("Inicia sesión para salvar tu racha.");
+        return;
+      }
+      if (!r.ok || !j?.url || !j.purchase_id) {
+        payTab?.close();
+        setReviveErr(j?.message ?? "No se pudo iniciar el pago.");
+        return;
+      }
+      if (payTab) payTab.location.href = j.url;
+      else window.open(j.url, "_blank");
+      reviveRetryPid.current = j.purchase_id;
+      setReviveWaiting(true);
+      pollRevive(j.purchase_id, 0);
+    } catch {
+      payTab?.close();
+      setReviveErr("Sin conexión, reintenta.");
+    }
+  }
+
+  function declineRevive() {
+    if (revivePoll.current) clearTimeout(revivePoll.current);
+    setReviveOffer(false);
+    setReviveWaiting(false);
+    void finishGame();
   }
 
   async function finishGame() {
@@ -399,6 +516,16 @@ export default function TriviaGame() {
             onFifty={buyFifty}
             hintBusy={hintBusy}
             hintErr={hintErr}
+          />
+        )}
+
+        {phase === "playing" && reviveOffer && (
+          <ReviveOverlay
+            lostStreak={lostStreak}
+            waiting={reviveWaiting}
+            err={reviveErr}
+            onBuy={buyRevive}
+            onDecline={declineRevive}
           />
         )}
 
@@ -976,6 +1103,66 @@ function Result({
           <img src={`${R}/icon-menu.svg`} alt="" />
           Menú
         </button>
+      </div>
+    </div>
+  );
+}
+
+// ─── Salvarracha: overlay de revive en Muerte Súbita ─────────────────────────
+
+function ReviveOverlay({ lostStreak, waiting, err, onBuy, onDecline }: {
+  lostStreak: number;
+  waiting: boolean;
+  err: string | null;
+  onBuy: () => void;
+  onDecline: () => void;
+}) {
+  const def = POWERUPS.trivia_revive;
+  return (
+    <div style={{ position: "fixed", inset: 0, zIndex: 2000, background: "rgba(6,11,20,0.82)", backdropFilter: "blur(8px)", display: "flex", alignItems: "center", justifyContent: "center", padding: 18 }}>
+      <div style={{ background: "#0F1D32", border: `1px solid ${GOLD}55`, borderRadius: 20, padding: "28px 22px", maxWidth: 400, width: "100%", textAlign: "center", animation: "pop .18s ease-out" }}>
+        <div style={{ fontSize: 44, lineHeight: 1 }}>💀</div>
+        <h3 style={{ margin: "10px 0 6px", fontSize: 20, fontWeight: 900, color: "#fff" }}>¡Has caído!</h3>
+        <p style={{ margin: "0 0 16px", fontSize: 14, color: MID, lineHeight: 1.55 }}>
+          {lostStreak >= 3
+            ? <>Llevabas <b style={{ color: GOLD2 }}>{lostStreak} seguidas</b>. Revive y conserva tu racha y tu multiplicador.</>
+            : <>La partida no tiene por qué acabar aquí. Revive y sigue sumando.</>}
+        </p>
+
+        {waiting ? (
+          <div style={{ background: "rgba(255,255,255,0.04)", border: `1px solid ${GOLD}33`, borderRadius: 12, padding: "14px 12px", fontSize: 13.5, color: MID, lineHeight: 1.5 }}>
+            🕐 Termina el pago en la pestaña que se ha abierto.
+            <br />Esta pantalla seguirá sola en cuanto se confirme.
+          </div>
+        ) : (
+          <button
+            onClick={onBuy}
+            style={{
+              width: "100%", padding: "13px 16px", borderRadius: 12, border: "none", cursor: "pointer",
+              background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: "#0B1220",
+              fontWeight: 900, fontSize: 15, fontFamily: "inherit",
+            }}
+          >
+            {def.emoji} Revivir y salvar mi racha · {def.prices.eur.display}
+          </button>
+        )}
+
+        {err && <p style={{ margin: "12px 0 0", fontSize: 12.5, color: "#fca5a5", lineHeight: 1.45 }}>{err}</p>}
+
+        <button
+          onClick={onDecline}
+          disabled={waiting}
+          style={{
+            marginTop: 12, width: "100%", padding: "11px 16px", borderRadius: 12, cursor: waiting ? "default" : "pointer",
+            background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)", color: waiting ? "#475569" : MID,
+            fontWeight: 700, fontSize: 13.5, fontFamily: "inherit",
+          }}
+        >
+          Terminar partida
+        </button>
+        <p style={{ margin: "10px 0 0", fontSize: 11, color: "#64748B", lineHeight: 1.45 }}>
+          Un revive por partida. Si el pago no llega a aplicarse, se devuelve automáticamente.
+        </p>
       </div>
     </div>
   );

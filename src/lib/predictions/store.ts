@@ -27,6 +27,7 @@ import { grantMatchRewards } from "./gamification-store";
 import { STREAK_THRESHOLD, boostDef, computeStreak } from "./gamification";
 import { cosmeticsByUser } from "./cosmetics-store";
 import type { CosmeticDisplay } from "./cosmetics";
+import { getDoubleDownUsers, consumeDoubleDowns } from "@/lib/powerups/store";
 
 // ─── Premium ─────────────────────────────────────────────────────────────────
 export async function isPremium(userId: string): Promise<boolean> {
@@ -360,6 +361,8 @@ export async function resolveMatch(matchId: string, result: MatchResultReal): Pr
   const streakByUser = await getActiveStreaks(candidateUsers, frozenUsers);
   // Boosts disponibles por usuario (se consume a lo sumo uno por predicción).
   const boostsByUser = await getAvailableBoostsByUser(candidateUsers);
+  // Comodín de pago "Partido x2": usuarios que lo activaron en ESTE partido.
+  const doubledUsers = await getDoubleDownUsers(matchId);
   // FIX 5: usuarios con al menos una predicción resuelta POR esta ejecución
   // (los que ganaron el compare-and-set). Solo ellos reciben recompensas.
   const usersInMatch = new Set<string>();
@@ -433,6 +436,14 @@ export async function resolveMatch(matchId: string, result: MatchResultReal): Pr
     // la racha y no consume boosts.
     const voided = final.voided === true;
 
+    // "Partido x2" (comodín de pago): duplica los puntos POSITIVOS de todas las
+    // predicciones del usuario en este partido. No amplifica negativos y no toca
+    // las aseguradas (ya salieron del bucle: ese trato renuncia a multiplicadores).
+    if (!voided && final.points > 0 && doubledUsers.has(p.user_id)) {
+      final.points = final.points * 2;
+      boostNote += " · ⚡ Partido x2";
+    }
+
     // FIX 5: compare-and-set. Solo "ganamos" la fila si seguía sin resolver.
     // .select("id") nos dice si este UPDATE fue el que la resolvió.
     const { data: claimed } = await admin.from("predictions").update({
@@ -502,6 +513,13 @@ export async function resolveMatch(matchId: string, result: MatchResultReal): Pr
     await settleChallenges(matchId, result);
   } catch (e) {
     console.error(`[resolve] settleChallenges falló en ${matchId}:`, e);
+  }
+
+  // Dar por gastados los "Partido x2" del partido (idempotente, fail-soft).
+  try {
+    await consumeDoubleDowns(matchId);
+  } catch (e) {
+    console.error(`[resolve] consumeDoubleDowns falló en ${matchId}:`, e);
   }
 
   return {

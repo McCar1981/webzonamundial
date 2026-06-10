@@ -16,6 +16,7 @@ import BattlePass from "./BattlePass";
 import Cosmetics from "./Cosmetics";
 import LiveMicroPicks from "./LiveMicroPicks";
 import PrediccionAIAnalysis, { type AISuggestion } from "./PrediccionAIAnalysis";
+import { DoubleMatchCard, SecondChanceButton, usePowerupState } from "./Powerups";
 import { handleProRequired } from "@/lib/pro/paywall-client";
 import {
   TYPE_ICON, TIER_ICON, OracleIcon,
@@ -1370,6 +1371,12 @@ function MatchDetailView({
   const closeAt = state?.predictions_close_at ? new Date(state.predictions_close_at) : null;
   const closed = useCloseCountdown(closeAt) === "cerrado";
 
+  // Comodines de pago: estado efectivo en este partido + ventana aproximada de
+  // la Segunda Oportunidad (cerrada la predicción y, como tarde, el descanso —
+  // el backend revalida con el snapshot real al cobrar).
+  const powerups = usePowerupState(String(match.i));
+  const scWindowOpen = closed && !live?.finished && (!live?.live || (live.minute ?? 0) <= 45);
+
   const [openType, setOpenType] = useState<PredictionType | null>(null);
   const pendingAdvance = useRef<PredictionType | null>(null);
   const userTouched = useRef(false);
@@ -1456,6 +1463,7 @@ function MatchDetailView({
 
       <OracleCard match={match} hasWinner={completedTypes.has("winner")} />
       <PiquesCard match={match} hasWinner={completedTypes.has("winner")} closed={closed} />
+      <DoubleMatchCard matchId={String(match.i)} closed={closed} active={powerups.doubleDown} currency={powerups.currency} />
 
       {loading && !state && <p style={{ color: DIM, textAlign: "center", padding: 24 }}>Cargando predicciones…</p>}
       {!loading && loadFailed && !state && (
@@ -1526,6 +1534,16 @@ function MatchDetailView({
                   canSecure={secureEligible}
                   onSecured={onRetry}
                   onEdit={locked || closed ? undefined : () => startEdit(type)}
+                  secondChance={
+                    scWindowOpen && (type === "winner" || type === "exact_score")
+                      ? {
+                          matchHome: match.h,
+                          matchAway: match.a,
+                          used: powerups.secondChancePredictions.includes(existing!.id),
+                          currency: powerups.currency,
+                        }
+                      : null
+                  }
                 />
               )}
             </PredictionModuleCard>
@@ -1845,7 +1863,7 @@ function Badge({ children }: { children: React.ReactNode }) {
 }
 
 // ─── Vista de predicción ya enviada ──────────────────────────────────────────
-function CompletedView({ p, type, scorers, duels, liveNow, canSecure, onSecured, onEdit }: { p: MatchPrediction; type: PredictionType; scorers: ScorerCandidate[]; duels: DuelOut[]; liveNow?: LiveVerdictOut | null; canSecure?: boolean; onSecured?: () => void; onEdit?: () => void }) {
+function CompletedView({ p, type, scorers, duels, liveNow, canSecure, onSecured, onEdit, secondChance }: { p: MatchPrediction; type: PredictionType; scorers: ScorerCandidate[]; duels: DuelOut[]; liveNow?: LiveVerdictOut | null; canSecure?: boolean; onSecured?: () => void; onEdit?: () => void; secondChance?: { matchHome: string; matchAway: string; used: boolean; currency: "eur" | "usd" } | null }) {
   const summary = summarize(type, p, scorers, duels);
   const resolved = p.status === "resolved";
   // "Asegurada": vendida en vivo a puntos fijos. Prevalece sobre el chip vivo.
@@ -1908,6 +1926,19 @@ function CompletedView({ p, type, scorers, duels, liveNow, canSecure, onSecured,
         >
           <Pencil size={13} /> Editar predicción
         </button>
+      )}
+      {/* Comodín de pago: cambiar el pick con la predicción YA cerrada (hasta el
+          descanso). Solo Ganador y Marcador exacto; nunca sobre aseguradas. */}
+      {!resolved && !secured && !onEdit && secondChance && (type === "winner" || type === "exact_score") && (
+        <SecondChanceButton
+          predictionId={p.id}
+          type={type}
+          currentData={p.prediction_data}
+          matchHome={secondChance.matchHome}
+          matchAway={secondChance.matchAway}
+          alreadyUsed={secondChance.used}
+          currency={secondChance.currency}
+        />
       )}
     </div>
   );

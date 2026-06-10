@@ -224,8 +224,12 @@ export interface LiveMatchResult {
 }
 
 // ─── Lesión EN PARTIDO + sustitución del DT (decisión en vivo) ────────────────
-/** Probabilidad de que un titular se retire lesionado durante el partido. */
-const MATCH_INJURY_CHANCE = 0.2;
+/**
+ * Probabilidad de que un titular se retire lesionado durante el partido.
+ * Calibrada con INJURY_CHANCE/SUSPENSION_CHANCE (modo rápido) para que el ciclo
+ * partido+post-partido no genere bajas casi cada jornada.
+ */
+const MATCH_INJURY_CHANCE = 0.12;
 
 /** Una opción de recambio que el DT puede meter al lesionarse un jugador. */
 export interface SubOption {
@@ -694,12 +698,13 @@ export interface ShootoutResult {
 
 /**
  * Simula una tanda de penaltis: 5 lanzamientos por lado y, si persiste el empate,
- * muerte súbita. Conversión base ~0.74 ajustada por la estrategia del DT y una
- * leve ventaja de local. Se detiene en cuanto la tanda queda matemáticamente
+ * muerte súbita. Conversión base ~0.74 ajustada por la estrategia del DT. Sin
+ * ventaja de local: las tandas solo ocurren en eliminatorias de Mundial, que se
+ * juegan en sede neutral. Se detiene en cuanto la tanda queda matemáticamente
  * decidida (como en la realidad).
  */
-export function shootout(match: SeasonMatch, strat: PenaltyStrategy): ShootoutResult {
-  const selfProb = clamp01(0.74 + strat.selfBonus + (match.home ? 0.02 : 0));
+export function shootout(_match: SeasonMatch, strat: PenaltyStrategy): ShootoutResult {
+  const selfProb = clamp01(0.74 + strat.selfBonus);
   const oppProb = clamp01(0.74 - strat.oppPenalty);
   const kicks: ShootoutKick[] = [];
   let self = 0;

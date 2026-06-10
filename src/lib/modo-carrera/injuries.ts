@@ -14,8 +14,12 @@
 import type { CareerState, Injury } from "./types";
 import { FANTASY_ROSTERS, type RosterPlayer } from "@/data/fantasy-rosters";
 
-/** Probabilidad de que ocurra una lesión tras un partido. */
-export const INJURY_CHANCE = 0.22;
+/**
+ * Probabilidad de que ocurra una lesión tras un partido. Calibrada junto a la de
+ * sanción (suspensions.ts): antes 0.22 + 0.16 hacían que ~1 de cada 3 partidos
+ * dejara una baja nueva y el plantel viviera crónicamente mermado.
+ */
+export const INJURY_CHANCE = 0.12;
 
 /** Baja mínima y máxima (en partidos) de una lesión. */
 const MIN_OUT = 1;

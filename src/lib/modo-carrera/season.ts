@@ -100,8 +100,10 @@ function dtBonus(c: CareerState): number {
   const general = (s.mental + s.gestion) * 0.8; // 0..8
   const overallAdj = (c.progression.overall - 50) * 0.18; // 0..~8.8
   const moraleAdj = (c.progression.morale - 70) * 0.1; // -7..+3
-  // Capitán designado: pequeño plus de liderazgo (el grupo tira de su referente).
-  const captain = c.squad?.captain ? 1.5 : 0;
+  // Capitán designado: plus de liderazgo LIGADO a la moral del grupo. Un brazalete
+  // no rinde solo (antes era +1.5 plano, un buff gratis que siempre convenía):
+  // con el vestuario entregado llega a +1.5, con el grupo roto apenas +0.3.
+  const captain = c.squad?.captain ? clamp(0.5 + (c.progression.morale - 50) * 0.02, 0.3, 1.5) : 0;
   // Un gran DT mejora al equipo, pero no lo sube de categoría: el bonus se acota
   // para que la diferencia de fuerza no degenere en palizas irreales (9-0).
   return clamp(overallAdj + general + moraleAdj + captain, -8, 15);
@@ -178,6 +180,18 @@ export function formMomentum(c: CareerState): number {
 }
 
 // ─── Simulación de un partido ────────────────────────────────────────────────
+/**
+ * Ventaja de campo REALISTA para fútbol de selecciones: solo existe en amistosos
+ * y clasificación (ida/vuelta de verdad). Las fases del Mundial se juegan en sede
+ * única y neutral, así que el flag `home` ahí es solo "equipo designado local"
+ * (camiseta), sin efecto en el rendimiento. Antes pesaba 2.0-2.5 en TODAS las
+ * fases y decidía eliminatorias por un sorteo de localía que el DT no controla.
+ */
+function homeBonus(match: SeasonMatch, weight: number): number {
+  if (!match.home) return 0;
+  return match.stage === "amistoso" || match.stage === "clasificacion" ? weight : 0;
+}
+
 /** Muestreo de Poisson (algoritmo de Knuth) para los goles. */
 export function poisson(lambda: number): number {
   const L = Math.exp(-lambda);
@@ -198,7 +212,7 @@ export function poisson(lambda: number): number {
 export function matchLambdas(c: CareerState, match: SeasonMatch): { lamFor: number; lamAg: number } {
   const { atk, def } = attackDefense(c);
   const oStr = opponentStrength(match.opponentSlug);
-  const home = match.home ? 2.0 : 0;
+  const home = homeBonus(match, 1.2);
   const mom = formMomentum(c); // -3..+3
 
   // Compresión de élite: un duelo entre dos potencias es más cerrado y con menos
@@ -235,7 +249,7 @@ export function capScore(gf: number, ga: number, lamFor: number, lamAg: number):
 export function decisiveWinner(c: CareerState, match: SeasonMatch): "self" | "opp" {
   const { atk } = attackDefense(c);
   const oStr = opponentStrength(match.opponentSlug);
-  const home = match.home ? 2.5 : 0;
+  const home = homeBonus(match, 1.5);
   const mine = atk + home + Math.random() * 10;
   const theirs = oStr + Math.random() * 10;
   return mine >= theirs ? "self" : "opp";
@@ -421,8 +435,12 @@ function advanceMissionInline(m: Mission): Mission {
 function simNeutral(aSlug: string, bSlug: string): { ga: number; gb: number } {
   const sa = opponentStrength(aSlug);
   const sb = opponentStrength(bSlug);
-  const ga = Math.max(0, Math.round(clamp(1.3 + (sa - sb) / 12, 0.22, 4.2)));
-  const gb = Math.max(0, Math.round(clamp(1.3 + (sb - sa) / 12, 0.22, 4.2)));
+  // Divisor 8 (antes 12): la brecha de calidad se nota también en la DIFERENCIA
+  // de goles, no solo en el ganador. Con /12 un rival 6-9 puntos mejor solo
+  // ganaba 2-1 y los desempates del grupo quedaban aplanados; con /8 ese mismo
+  // partido da 2-0/3-0 y la tabla refleja el nivel real (sigue determinista).
+  const ga = Math.max(0, Math.round(clamp(1.1 + (sa - sb) / 8, 0.22, 4.2)));
+  const gb = Math.max(0, Math.round(clamp(1.1 + (sb - sa) / 8, 0.22, 4.2)));
   return { ga, gb };
 }
 

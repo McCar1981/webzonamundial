@@ -682,12 +682,18 @@ export default function MatchLive({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase, decisionLeft, decisionPanel]);
 
-  const res = resRef.current;
-  // Marcador agregado tras 90' (+ prórroga si la hubo). Los penaltis NO cambian
-  // el marcador mostrado (queda el empate), pero sí deciden el ganador: +1 al
-  // vencedor de la tanda para que resolveMatch produzca un resultado decisivo.
-  const aggGf = (res ? res.gf : shown.gf) + (etRef.current?.gfEt ?? 0) + setPieceGoalRef.current;
-  const aggGa = (res ? res.ga : shown.ga) + (etRef.current?.gaEt ?? 0);
+  // El marcador definitivo es EXACTAMENTE el de los goles que el DT vio caer: cada
+  // gol (tramos, balón parado y prórroga) es un evento de `events`, así que se
+  // cuentan directamente. Antes el agregado recomputaba con `capScore` (tope de
+  // palizas) y re-sumaba balón parado/prórroga por fuera, lo que desincronizaba lo
+  // mostrado de lo registrado (un 7-0 en pantalla se guardaba 5-0) y dejaba el gol
+  // de balón parado fuera del tope. El tope sigue vigente en la simulación
+  // AI-vs-AI de la temporada; el partido que el DT juega registra lo que se vio.
+  // Es independiente del reloj: el resultado es correcto aunque el crono no haya
+  // llegado al minuto final. Los penaltis NO cambian el marcador en juego (queda
+  // el empate), pero suman +1 al ganador para que resolveMatch sea decisivo.
+  const aggGf = events.filter((e) => e.team === "self").length;
+  const aggGa = events.filter((e) => e.team === "opp").length;
   const finalGf = aggGf + (shootoutRes?.winner === "self" ? 1 : 0);
   const finalGa = aggGa + (shootoutRes?.winner === "opp" ? 1 : 0);
   const outcome = finalGf > finalGa ? "V" : finalGf < finalGa ? "D" : "E";
@@ -939,7 +945,7 @@ export default function MatchLive({
                   >
                     <span style={{ fontSize: 12, fontWeight: 900, color: GOLD2, minWidth: 30 }}>{e.minute}&#39;</span>
                     <span style={{ fontSize: 11, fontWeight: 900, letterSpacing: 1, color: e.team === "self" ? GREEN : RED }}>GOL</span>
-                    <span style={{ fontSize: 12.5, color: "#fff", fontWeight: 600 }}>{e.scorer}</span>
+                    <span style={{ flex: 1, minWidth: 0, fontSize: 12.5, color: "#fff", fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{e.scorer}</span>
                     <Flag code={(e.team === "self" ? selfNat : oppNat)?.flagCode} size={16} />
                   </div>
                 ) : (

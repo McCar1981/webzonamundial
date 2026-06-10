@@ -31,7 +31,7 @@ import { suspensionPenalty, tickSuspensions, rollSuspension, activeSuspensions }
 import { buildPressConference } from "./press";
 import { buildDressingRoomEvent } from "./vestuario";
 import { squadBonus } from "./lineup";
-import { concentracionBonus, frescuraAfterMatch, prepMorale } from "./concentracion";
+import { concentracionBonus, frescuraAfterMatch, prepMorale, FRESCURA_START } from "./concentracion";
 import { SELECCIONES, type Seleccion } from "@/data/selecciones";
 
 const now = () => new Date().toISOString();
@@ -369,6 +369,11 @@ export function beginSeason(c: CareerState): CareerState {
     // Las misiones de torneo (p. ej. racha) son por Mundial: se descartan al
     // iniciar uno nuevo para que ensureMissions las resiembre desde cero.
     missions: c.missions.filter((m) => m.kind !== "torneo"),
+    // Plantel: una campaña nueva empieza con el grupo SANO y descansado. Se
+    // limpian bajas, sanciones y la concentración pendiente, y se restablece la
+    // frescura; se conservan las decisiones del DT (capitán, dibujo, once). Antes
+    // las lesiones/sanciones de la final anterior se arrastraban al Mundial nuevo.
+    squad: { ...c.squad, injuries: [], suspensions: [], frescura: FRESCURA_START, prep: null },
     season: buildSeason(c),
     updatedAt: now(),
   };

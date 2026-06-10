@@ -55,6 +55,9 @@ export async function GET(req: Request) {
       stateByMatch.set(micro.match_id, state);
     }
     if (!state) continue; // sin datos del partido aún: reintenta en la próxima pasada
+    // NUNCA liquidar con simulación: si la API/caché fallan, authoritativeState
+    // degrada a "sim" y pagaríamos con eventos falsos. Reintenta en la próxima.
+    if (state.source !== "live") continue;
 
     const summary = await settleMicro(micro, state.events, state.minute, state.finished);
     if (summary) settled.push(summary);
@@ -72,7 +75,9 @@ export async function GET(req: Request) {
         state = await authoritativeState(matchId);
         stateByMatch.set(matchId, state);
       }
-      if (state?.finished) duelsResolved += await resolveMicroDuelsForMatch(matchId);
+      // Igual que el settle: el "final del partido" debe venir del feed real,
+      // no de la duración de la simulación.
+      if (state?.source === "live" && state.finished) duelsResolved += await resolveMicroDuelsForMatch(matchId);
     }
   } catch (err) {
     console.error("[resolve-micro] duel resolution failed", (err as Error).message);

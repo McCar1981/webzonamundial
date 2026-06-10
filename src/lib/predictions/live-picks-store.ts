@@ -29,6 +29,10 @@ export interface MatchLiveState {
   /** Minuto de juego autoritativo (1..90+). */
   minute: number;
   finished: boolean;
+  /** Origen de los datos: "live" = feed real api-football; "sim" = simulación
+   *  determinista (fallback). Los consumidores que pagan con dinero/monedas
+   *  reales (micro-predicciones) NO deben liquidar con "sim". */
+  source: "live" | "sim";
   /** Eventos ocurridos hasta `minute`. */
   events: MatchEvent[];
 }
@@ -43,7 +47,7 @@ export async function authoritativeState(matchId: string): Promise<MatchLiveStat
   if (Number.isNaN(id)) return null;
   const kickoffMs = new Date(pred.kickoff_at).getTime();
   const now = Date.now();
-  if (now < kickoffMs) return { live: false, minute: 0, finished: false, events: [] };
+  if (now < kickoffMs) return { live: false, minute: 0, finished: false, source: "live", events: [] };
 
   const meta = buildMeta(id);
   if (!meta) return null;
@@ -58,7 +62,7 @@ export async function authoritativeState(matchId: string): Promise<MatchLiveStat
     }
     if (snap) {
       const finished = FINISHED_STATUSES.includes(snap.status);
-      return { live: !finished, minute: snap.elapsed, finished, events: snap.events };
+      return { live: !finished, minute: snap.elapsed, finished, source: "live", events: snap.events };
     }
     // si la API falla, caemos a simulación
   }
@@ -69,7 +73,7 @@ export async function authoritativeState(matchId: string): Promise<MatchLiveStat
   const finished = elapsedSec >= script.durationSeconds;
   const minute = Math.min(Math.floor(elapsedSec / 60) + 1, Math.ceil(script.durationSeconds / 60));
   const events = script.events.filter((e) => e.t <= elapsedSec);
-  return { live: !finished, minute, finished, events };
+  return { live: !finished, minute, finished, source: "sim", events };
 }
 
 export interface LivePickRow {

@@ -15,6 +15,7 @@ import MobileUserMenu from "@/components/MobileUserMenu";
 import LiveCreatorsBanner from "@/components/LiveCreatorsBanner";
 import IACoachWidget from "@/components/ia-coach/IACoachWidget";
 import AppBottomNav from "@/components/AppBottomNav";
+import UpdateToast from "@/components/UpdateToast";
 
 const BG="#060B14",BG2="#0F1D32",BG3="#0B1825",GOLD="#c9a84c",GOLD2="#e8d48b",MID="#8a94b0",DIM="#6a7a9a",DARK="#4a5570";
 
@@ -467,6 +468,9 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
 
       {/* ═══ BARRA INFERIOR TIPO APP — solo móvil y solo dentro de /app ═══ */}
       <AppBottomNav />
+
+      {/* ═══ AVISO DE VERSIÓN NUEVA — la PWA puede quedarse en un deploy viejo ═══ */}
+      <UpdateToast />
 
       {/* ═══ FOOTER ═══ */}
       <SiteFooter />

@@ -18,11 +18,13 @@ import { useEffect, useState } from "react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 
 const GOLD = "#c9a84c";
-const DIM = "#5a6a8a";
+// Contraste WCAG AA sobre #060B14: los grises anteriores (#5a6a8a / #6a7a9a)
+// daban ~3.2:1 y fallaban AA para texto pequeño; estos llegan a ≥4.5:1.
+const DIM = "#8294b0";
 const BG = "#060B14";
 
 const ACTIVE_BAR = "#c9a84c";
-const INACTIVE_TEXT = "#6a7a9a";
+const INACTIVE_TEXT = "#8294b0";
 
 function stroke(d: string, fill?: string) {
   return (
@@ -130,6 +132,7 @@ export default function AppBottomNav() {
             <Link
               key={it.href}
               href={it.href}
+              aria-current={active ? "page" : undefined}
               style={{
                 flex: 1,
                 display: "flex",

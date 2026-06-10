@@ -13,7 +13,6 @@ import { isAdSenseEnabled } from "@/lib/adsense";
 // Self-host Outfit via next/font for zero CLS + no render-blocking <link>.
 const outfit = Outfit({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
   display: "swap",
   variable: "--zm-font-outfit",
 });

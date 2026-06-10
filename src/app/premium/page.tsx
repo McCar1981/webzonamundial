@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { FeatureIcon } from "@/components/FeatureIcon";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -563,13 +564,14 @@ export default function PremiumPage() {
             style={{ borderColor: `${GOLD}25` }}
           >
             {/* Stadium bg */}
-            <img
+            <Image
               src="/img/imagenessilviu/Estadio Atmosphere.webp"
               alt=""
               role="presentation"
-              className="absolute inset-0 w-full h-full object-cover"
+              fill
+              sizes="(max-width: 896px) 100vw, 896px"
+              className="object-cover"
               loading="lazy"
-              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#060B14] via-[#060B14]/90 to-[#060B14]/75" />
 

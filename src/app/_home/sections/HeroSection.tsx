@@ -1,6 +1,7 @@
 "use client";
 
 import { RefObject, useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { CREADORES } from "@/data/creadores";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -257,16 +258,14 @@ function HeroRight() {
         <div className={styles.zmPhoneGlow} />
 
         <div className={styles.zmPhone}>
-          <picture>
-            <source srcSet="/img/hero/app-phone.webp" type="image/webp" />
-            <img
-              src="/img/hero/app-phone.webp"
-              alt={t.phoneAlt}
-              loading="eager"
-              fetchPriority="high"
-              decoding="async"
-            />
-          </picture>
+          <Image
+            src="/img/hero/app-phone.webp"
+            alt={t.phoneAlt}
+            width={900}
+            height={1047}
+            sizes="(max-width: 768px) 280px, 420px"
+            priority
+          />
         </div>
 
         <div className={`${styles.zmChipCard} ${styles.zmChipLive}`}>

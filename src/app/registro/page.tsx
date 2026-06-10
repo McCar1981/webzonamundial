@@ -3,6 +3,7 @@
 
 "use client";
 
+import Image from 'next/image';
 import Link from 'next/link';
 import FormularioRegistro from '@/components/FormularioRegistro';
 import { getTotalSeguidores, getCreadoresActivos } from '@/data/creadores';
@@ -92,9 +93,11 @@ export default function RegistroPage() {
               <div className="flex items-center gap-4 mb-7">
                 <div className="w-14 h-14 rounded-2xl flex items-center justify-center overflow-hidden"
                   style={{ background: 'linear-gradient(135deg, rgba(201,168,76,0.2), rgba(201,168,76,0.05))', border: '1px solid rgba(201,168,76,0.3)' }}>
-                  <img
+                  <Image
                     src="/img/zonamundial-images/imagenes/IMG-20260302-WA0016-removebg-preview.webp"
                     alt="ZonaMundial"
+                    width={40}
+                    height={40}
                     className="w-10 h-10 object-contain"
                   />
                 </div>

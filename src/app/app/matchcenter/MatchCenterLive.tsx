@@ -1223,7 +1223,10 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
         .mc-moments>button{scroll-snap-align:start}
       `}</style>
 
-      <div style={{ maxWidth: 1080, margin: "0 auto", padding: "16px 16px 80px" }}>
+      {/* padding inferior corto: el colchón de la bottom-nav vive al final de
+          la PÁGINA ([id]/page.tsx); 80px aquí solo abría un hueco entre la
+          ficha del partido y las secciones micro que vienen después. */}
+      <div style={{ maxWidth: 1080, margin: "0 auto", padding: "16px 16px 24px" }}>
         {/* Top bar */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
           <Link href="/app/matchcenter" style={{ color: MID, textDecoration: "none", fontSize: 14, fontWeight: 600, display: "inline-flex", alignItems: "center", gap: 6 }}>
@@ -1929,9 +1932,20 @@ function Highlights({ log, meta, score, onRelive, onClose }: { log: MatchEvent[]
                 color: "#fff",
               }}>
                 <EventIcon type={e.type} size={24} />
-                <div style={{ flex: 1 }}>
+                <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ fontWeight: 800, fontSize: 14 }}>{e.player || (isGoal ? "Gol" : "Jugada")}</div>
-                  <div style={{ fontSize: 11, color: side ? side.color : MID, fontWeight: 700 }}>{side ? side.name : ""}{e.detail ? ` · ${e.detail}` : ""}</div>
+                  <div style={{ fontSize: 11, color: side ? side.color : MID, fontWeight: 700, display: "flex", alignItems: "center", gap: 5 }}>
+                    {side && (
+                      <img
+                        src={flagUrl(side.flag)}
+                        alt={side.name}
+                        style={{ width: 18, height: 12, borderRadius: 2, objectFit: "cover", flexShrink: 0 }}
+                      />
+                    )}
+                    <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                      {side ? side.name : ""}{e.detail ? ` · ${e.detail}` : ""}
+                    </span>
+                  </div>
                 </div>
                 <span className="mc-num" style={{ fontSize: 14, fontWeight: 700, color: GOLD2 }}>{e.minute}{e.extra ? `+${e.extra}` : ""}{"'"}</span>
                 <span style={{ fontSize: 12, color: GOLD, display: "inline-flex", alignItems: "center", gap: 4 }}><ReliveIcon size={12} /> Revivir</span>

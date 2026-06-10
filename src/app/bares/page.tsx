@@ -14,11 +14,32 @@ import {
 import PlanCards from "./PlanCards";
 import BarPhoto from "./BarPhoto";
 
+const BARES_TITLE = "Porra Digital para Bares · ZonaMundial";
+const BARES_DESCRIPTION =
+  "Crea la porra digital de tu bar para el Mundial 2026: QR en la barra, predicciones, ranking del local y premios que defines tú. Pago único, sin suscripción.";
+
 export const metadata: Metadata = {
-  title: "Porra Digital para Bares · ZonaMundial",
-  description:
-    "Crea la porra digital de tu bar para el Mundial 2026: QR, predicciones, ranking del local y premios que defines tú. Pago único, sin suscripción.",
+  title: BARES_TITLE,
+  description: BARES_DESCRIPTION,
   alternates: { canonical: "/bares" },
+  // OG/Twitter propios para que el preview (WhatsApp, Telegram, redes) sea de
+  // la Porra Digital y no herede el genérico de ZM del layout raíz. La imagen
+  // la inyecta automáticamente src/app/bares/opengraph-image.tsx.
+  openGraph: {
+    type: "website",
+    locale: "es_ES",
+    url: "/bares",
+    siteName: "ZonaMundial",
+    title: BARES_TITLE,
+    description: BARES_DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@zonamundial",
+    creator: "@zonamundial",
+    title: BARES_TITLE,
+    description: BARES_DESCRIPTION,
+  },
 };
 
 const GOLD = "#c9a84c";

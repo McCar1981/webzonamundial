@@ -10,7 +10,6 @@ import Link from "next/link";
 import Pitch from "./Pitch";
 import MatchFx from "./MatchFx";
 import PreMatchHero from "./PreMatchHero";
-import PreMatchPreview from "./PreMatchPreview";
 import CommentsPanel from "./CommentsPanel";
 import { createSpeaker, type Speaker } from "@/lib/match-center/voice";
 import { createSound, type MatchSound } from "@/lib/match-center/sound";
@@ -1026,14 +1025,10 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
 
         {feed && lineups && (
           <>
-            {/* Previa: cabecera con cuenta atrás + análisis editorial antes de
-                empezar. La previa es específica del amistoso de prueba
-                Portugal-Chile (id 9002). */}
+            {/* Previa: cabecera con cuenta atrás antes de empezar. (La previa
+                editorial específica del amistoso se omite: cambia de rival.) */}
             {feed.mode === "live" && !finished && !isInPlay(status) && status !== "HT" && (
-              <>
-                <PreMatchHero meta={meta} kickoff={kickoff} image={heroImage} />
-                {matchId === 9002 && <PreMatchPreview />}
-              </>
+              <PreMatchHero meta={meta} kickoff={kickoff} image={heroImage} />
             )}
 
             {/* Marcador. Antes del saque NO se muestra: la cabecera con cuenta

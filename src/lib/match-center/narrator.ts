@@ -11,7 +11,12 @@
 
 import Anthropic from "@anthropic-ai/sdk";
 import { kv } from "@/lib/kv";
+import { teamName, templateNarration } from "./templates";
 import type { MatchEvent, MatchMeta } from "./types";
+
+// Las plantillas viven en ./templates (módulo sin deps de servidor, importable
+// desde el cliente). Se reexportan para no romper a los consumidores actuales.
+export { templateNarration } from "./templates";
 
 const DEFAULT_MODEL = "claude-haiku-4-5-20251001";
 
@@ -22,64 +27,6 @@ const LIVENARR_TTL = 6 * 60 * 60; // un partido entero con margen
 
 function kvEnabled(): boolean {
   return !!process.env.KV_REST_API_URL && !!process.env.KV_REST_API_TOKEN;
-}
-
-function teamName(meta: MatchMeta, side: MatchEvent["side"]): string {
-  if (side === "home") return meta.home.name;
-  if (side === "away") return meta.away.name;
-  return "";
-}
-
-function who(e: MatchEvent): string {
-  return e.player ? e.player : "el equipo";
-}
-
-/** Narración por plantilla. Siempre devuelve algo. */
-export function templateNarration(e: MatchEvent, meta: MatchMeta): string {
-  const team = teamName(meta, e.side);
-  const min = `'${e.minute}`;
-  switch (e.type) {
-    case "kickoff":
-      return `¡Rueda el balón! Arranca ${meta.home.name} contra ${meta.away.name}.`;
-    case "goal":
-      return `¡GOOOOL de ${team}! ${who(e)} la manda al fondo${e.assist ? `, tras asistencia de ${e.assist}` : ""}. ${min}.`;
-    case "penalty_goal":
-      return `¡GOL de penalti! ${who(e)} no perdona desde los once metros para ${team}. ${min}.`;
-    case "own_goal":
-      return `¡Gol en propia puerta! Desafortunado ${who(e)}, sube al marcador para ${team}. ${min}.`;
-    case "penalty_miss":
-      return `¡La falló! ${who(e)} desperdicia el penalti. Sigue todo igual. ${min}.`;
-    case "yellow":
-      return `Tarjeta amarilla para ${who(e)} de ${team}. ${e.detail || "Falta táctica"}. ${min}.`;
-    case "second_yellow":
-      return `¡Segunda amarilla! ${who(e)} se va a la ducha, ${team} con uno menos. ${min}.`;
-    case "red":
-      return `¡Roja directa! ${who(e)} deja a ${team} en inferioridad. ${min}.`;
-    case "sub":
-      return `Cambio en ${team}: entra ${e.playerIn || "un refresco"} por ${who(e)}. ${min}.`;
-    case "var":
-      return `El árbitro va al VAR... revisión en marcha. ${min}.`;
-    case "corner":
-      return `Saque de esquina para ${team}. Oportunidad de peligro. ${min}.`;
-    case "shot_on":
-      return `¡Remate de ${who(e)}! ${team} avisa, atento el portero. ${min}.`;
-    case "shot":
-      return `Disparo de ${team}, se va desviado por poco. ${min}.`;
-    case "save":
-      return `¡Paradón! El meta salva a su equipo ante ${team}. ${min}.`;
-    case "offside":
-      return `Fuera de juego de ${team}. Se anula la jugada. ${min}.`;
-    case "injury":
-      return `Atención médica sobre el césped para ${who(e)}. ${min}.`;
-    case "chance":
-      return `¡Qué ocasión de ${team}! Estuvo cerquísima. ${min}.`;
-    case "half_time":
-      return `Final del primer tiempo. ${meta.home.name} ${meta.away.name} se van al descanso.`;
-    case "full_time":
-      return `¡Final del partido! Se acabó en ${meta.venue}.`;
-    default:
-      return `${team} ${min}.`;
-  }
 }
 
 let _client: Anthropic | null = null;

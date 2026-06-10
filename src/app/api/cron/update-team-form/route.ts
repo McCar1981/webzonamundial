@@ -1,10 +1,11 @@
 // src/app/api/cron/update-team-form/route.ts
 //
 // Cron diario que actualiza la forma reciente de cada selección del Mundial 2026
-// en Vercel KV. Lo lee api-football.com (via RapidAPI).
+// en Vercel KV. Lo lee api-football.com (api-sports directo).
 //
-// Free tier: 100 req/día. Con 48 selecciones, una pasada gasta 48/100 (~48%).
-// Si tienes plan superior puedes pasar `?last=15` para más histórico.
+// Plan Ultra: 75.000 req/día (~450 req/min). Las 48 selecciones se cubren en UNA
+// pasada (~17s con pausa de 350ms). Si tienes plan superior puedes pasar
+// `?last=15` para más histórico.
 //
 // Auth idéntico al resto de crones: Authorization: Bearer ${CRON_SECRET}
 // o ?secret=XXX como query.
@@ -61,12 +62,12 @@ export async function GET(req: Request) {
 
   const summary: Summary = { ok: 0, failed: 0, skipped: 0, errors: [] };
 
-  // Procesa secuencial para no saturar el rate-limit del free tier (10 req/min).
-  // Con 48 equipos a ~1.5s cada uno → ~72s. Con maxDuration 60s puede no terminar
-  // todo en una sola ejecución. Solución: si llegamos al límite, devolvemos lo que
-  // hayamos hecho y el siguiente día se completa.
+  // Procesa secuencial con una pausa corta. Plan Ultra admite ~450 req/min, así que
+  // 48 selecciones a 350ms (~170 req/min) se cubren TODAS en ~17s, dentro del
+  // presupuesto. El límite de tiempo queda solo como red de seguridad.
   const startMs = Date.now();
   const HARD_BUDGET_MS = 55_000; // deja 5s de margen para responder
+  const PAUSE_MS = 350; // ~170 req/min, holgado bajo el límite de Ultra (450/min)
 
   for (const team of BRACKET_TEAMS) {
     if (onlyList && !onlyList.has(team.id)) continue;
@@ -97,11 +98,19 @@ export async function GET(req: Request) {
     await writeTeamForm(form);
     summary.ok++;
 
-    // Pequeña pausa para no saturar (10 req/min en free tier)
-    await new Promise((r) => setTimeout(r, 6500));
+    // Pausa corta entre llamadas (plan Ultra admite ~450 req/min).
+    await new Promise((r) => setTimeout(r, PAUSE_MS));
   }
 
-  await recordHeartbeat("update-team-form", true, { teams: summary.ok });
+  // Salud condicional: solo verde si se actualizó al menos un equipo y no falló más
+  // de un puñado. Antes era `true` incondicional y ocultaba fallos masivos de datos
+  // (p.ej. una API key inválida → 48 fetch fallidos pero heartbeat en verde).
+  const healthy = summary.ok > 0 && summary.failed <= 3;
+  await recordHeartbeat("update-team-form", healthy, {
+    teams: summary.ok,
+    failed: summary.failed,
+    skipped: summary.skipped,
+  });
 
   return NextResponse.json({
     ok: true,

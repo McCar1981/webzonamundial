@@ -21,7 +21,9 @@ function who(e: MatchEvent): string {
 /** Narración por plantilla. Siempre devuelve algo. */
 export function templateNarration(e: MatchEvent, meta: MatchMeta): string {
   const team = teamName(meta, e.side);
-  const min = `'${e.minute}`;
+  // "Minuto 76" y no "'76": el TTS lee el número pelado sin contexto y en
+  // pantalla también se aprecia mejor (petición de Carlos viendo el directo).
+  const min = `Minuto ${e.minute}`;
   switch (e.type) {
     case "kickoff":
       // El hito de reanudación usa detail para distinguir la 2ª parte.

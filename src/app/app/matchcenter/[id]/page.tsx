@@ -55,6 +55,11 @@ export default async function MatchPage({ params, searchParams }: PageProps) {
       <MicroDuels matchId={matchId} />
       <MicroHistory matchId={matchId} />
       <MicroLive matchId={matchId} />
+      {/* Colchón final de página: la bottom-nav fija (~64px) más los botones
+          flotantes (comentarios/Coach, hasta ~130px) tapaban la última
+          micro-predicción al llegar al fondo del scroll. Vive AQUÍ y no en el
+          root de MatchCenterLive porque las micros se montan después de él. */}
+      <div aria-hidden style={{ height: "calc(140px + env(safe-area-inset-bottom))" }} />
     </>
   );
 }

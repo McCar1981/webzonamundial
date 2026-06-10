@@ -10,9 +10,9 @@ import { NextResponse } from "next/server";
 import { buildMeta, getFixtureId, getCachedSnapshot, cacheSnapshot } from "@/lib/match-center/store";
 import { fetchLiveSnapshots } from "@/lib/match-center/apiFootball";
 import { EMPTY_STATS, type LiveSnapshot, type MatchMeta } from "@/lib/match-center/types";
+import { snapshotStarted, snapshotFinished } from "@/lib/fantasy/scoring.live";
 import { getCurrentUser } from "@/lib/auth-helpers";
 import { isPro } from "@/lib/pro/entitlement";
-import { PRO_REQUIRED_CODE, type ProRequiredPayload } from "@/lib/pro/limits";
 import { trackLimitHit } from "@/lib/pro/metrics";
 
 export const dynamic = "force-dynamic";
@@ -35,20 +35,24 @@ function scheduledSnapshot(meta: MatchMeta): LiveSnapshot {
   };
 }
 
+/**
+ * Versión "directo bloqueado" para no-Pro: mantiene el marcador y el estado real
+ * del partido EN JUEGO, pero oculta el detalle (eventos, alineaciones, narración)
+ * del que cuelga la puntuación minuto a minuto. Así los no-Pro ven que la jornada
+ * está en curso pero sus puntos se materializan al final del partido (cuando se
+ * sirve el snapshot completo). Ver la jornada EN VIVO sigue siendo un perk Pro.
+ */
+function liveLockedSnapshot(s: LiveSnapshot): LiveSnapshot {
+  return { ...s, events: [], narration: {}, stats: EMPTY_STATS, homeLineup: null, awayLineup: null };
+}
+
 export async function GET(req: Request) {
-  // Puntuación EN VIVO = beneficio Pro (Free ve los puntos al resolverse la
-  // jornada). El gate vive aquí porque este endpoint es la única fuente de
-  // snapshots en vivo del Fantasy.
+  // Los snapshots de partidos TERMINADOS (y por comenzar) son para TODOS: así
+  // cualquier usuario —incluido Free e invitado— ve sus puntos al resolverse la
+  // jornada y puede confirmarla. El minuto a minuto EN JUEGO se reserva a Pro:
+  // a los no-Pro se les oculta el detalle del partido en curso (más abajo).
   const user = await getCurrentUser();
-  if (!user || !(await isPro(user.id, user.email))) {
-    if (user) trackLimitHit("fantasy_live");
-    const payload: ProRequiredPayload = {
-      error: "Los puntos en tiempo real del Fantasy son una función del plan Pro.",
-      code: PRO_REQUIRED_CODE,
-      feature: "fantasy_live",
-    };
-    return NextResponse.json(payload, { status: user ? 403 : 401 });
-  }
+  const pro = user ? await isPro(user.id, user.email) : false;
 
   const url = new URL(req.url);
   const raw = url.searchParams.get("ids") || "";
@@ -91,5 +95,19 @@ export async function GET(req: Request) {
     }
   }
 
-  return NextResponse.json({ snapshots }, { headers: { "Cache-Control": "no-store" } });
+  // Gate del DIRECTO (no del resultado): a los no-Pro se les oculta el detalle de
+  // los partidos EN JUEGO; los terminados y los que no han empezado pasan intactos.
+  let liveLocked = false;
+  if (!pro) {
+    for (const id of Object.keys(snapshots)) {
+      const s = snapshots[Number(id)];
+      if (snapshotStarted(s) && !snapshotFinished(s)) {
+        snapshots[Number(id)] = liveLockedSnapshot(s);
+        liveLocked = true;
+      }
+    }
+    if (liveLocked && user) trackLimitHit("fantasy_live"); // oportunidad de upsell
+  }
+
+  return NextResponse.json({ snapshots, liveLocked }, { headers: { "Cache-Control": "no-store" } });
 }

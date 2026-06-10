@@ -8,8 +8,10 @@
 
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
-import { getTeam, saveTeam, recordGameweekScore, awardGameweekCoins, getFavCreator } from "@/lib/fantasy/store.server";
+import { getTeam, saveTeam, recordGameweekScore, awardGameweekCoins, sweepPendingGameweekCoins, getFavCreator } from "@/lib/fantasy/store.server";
+import { scoreGameweekFromState } from "@/lib/fantasy/scoring.server";
 import { isValidGameweek, gameweekLockedForFree } from "@/lib/fantasy/fixtures";
+import { isFantasyLive } from "@/lib/fantasy/season";
 import type { FantasyTeamState } from "@/lib/fantasy/types";
 import { isPro } from "@/lib/pro/entitlement";
 import { FREE_LIMITS, PRO_REQUIRED_CODE, type ProRequiredPayload } from "@/lib/pro/limits";
@@ -24,6 +26,10 @@ export async function GET() {
   // favCreator permite marcar el equipo con el creador del registro: el cliente
   // lo aplica al crear el equipo (o lo backfillea si aún no lo tenía).
   const [team, favCreator] = await Promise.all([getTeam(user.id), getFavCreator(user.id)]);
+  // Al abrir el juego, abona cualquier Fútcoin pendiente de una jornada ya cerrada
+  // que se confirmó "pronto" (sus partidos acabaron antes que el cierre de ventana).
+  // Idempotente; las monedas caen en la billetera aunque no se muestre toast aquí.
+  await sweepPendingGameweekCoins(user.id).catch(() => {});
   return NextResponse.json({ team, favCreator });
 }
 
@@ -60,14 +66,33 @@ export async function PUT(req: Request) {
     }
   }
 
-  await saveTeam(user.id, state);
-  // Al confirmar una jornada el cliente envía gameweekScore para el ranking semanal.
-  // Además abonamos Fútcoins una sola vez por jornada (idempotente en el backend).
+  // ── Confirmación de jornada SERVER-AUTHORITATIVE ──
+  // El ranking y las Fútcoins NO pueden depender de los puntos que diga el
+  // cliente (forjar 200/jornada sería trivial). Recalculamos desde el equipo
+  // GUARDADO (el que jugó, antes de avanzar) + datos reales, e ignoramos
+  // body.gameweekScore.points por completo. Leemos `prev` ANTES de guardar el
+  // estado avanzado para puntuar la alineación correcta.
   let reward = { coins: 0, xp: 0 };
-  if (body.gameweekScore && isValidGameweek(body.gameweekScore.gw)) {
-    const gs = body.gameweekScore;
-    await recordGameweekScore(user.id, gs.gw, gs.points, gs.powerUp ?? null);
-    reward = await awardGameweekCoins(user.id, gs.gw, gs.points);
+  let gameweekPoints: number | null = null;
+  let confirmed = false;
+  if (body.gameweekScore && isValidGameweek(body.gameweekScore.gw) && isFantasyLive()) {
+    const gw = body.gameweekScore.gw;
+    const prev = await getTeam(user.id);
+    // Solo se confirma la jornada vigente del usuario (evita replays y dobles cobros).
+    if (prev && gw === prev.gameweek) {
+      const sc = await scoreGameweekFromState(prev, gw);
+      // Solo se registra al terminar TODOS los partidos del usuario (datos finales).
+      if (sc.allFinished) {
+        await recordGameweekScore(user.id, gw, sc.net, prev.powerUp ?? null);
+        const award = await awardGameweekCoins(user.id, gw, sc.net);
+        const pending = await sweepPendingGameweekCoins(user.id);
+        reward = { coins: award.coins + pending.coins, xp: award.xp + pending.xp };
+        gameweekPoints = sc.net;
+        confirmed = true;
+      }
+    }
   }
-  return NextResponse.json({ ok: true, futcoins: reward.coins, xpAwarded: reward.xp });
+
+  await saveTeam(user.id, state);
+  return NextResponse.json({ ok: true, confirmed, gameweekPoints, futcoins: reward.coins, xpAwarded: reward.xp });
 }

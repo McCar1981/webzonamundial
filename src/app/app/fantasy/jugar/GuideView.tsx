@@ -18,6 +18,7 @@ import {
 import { FORMATIONS } from "@/lib/fantasy/rules";
 import { SCORING_TABLE, POWER_UPS } from "@/lib/fantasy/scoring";
 import { TOTAL_GAMEWEEKS } from "@/lib/fantasy/fixtures";
+import { FREE_LIMITS } from "@/lib/pro/limits";
 import { BG, BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED, money } from "./fx";
 
 // Franjas del Modo Underdog (mismas que tierFromGap en fixtures.ts).
@@ -120,9 +121,9 @@ export default function GuideView() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(150px,1fr))", gap: 10 }}>
           {[
             { n: "1", t: "Ficha 15 jugadores", d: `Con tu presupuesto de ${BUDGET}M €.` },
-            { n: "2", t: "Elige capitán", d: "Su puntuación se duplica." },
-            { n: "3", t: "Confirma la jornada", d: "Antes de que empiecen los partidos." },
-            { n: "4", t: "Suma y compite", d: "Repite cada jornada y sube en tu liga." },
+            { n: "2", t: "Elige capitán", d: "Su puntuación se duplica. Queda fijado al primer saque." },
+            { n: "3", t: "Vive la jornada", d: "Tus jugadores puntúan con los partidos reales." },
+            { n: "4", t: "Confirma al final", d: "Al acabar tus partidos: tus puntos suben al ranking." },
           ].map((s) => (
             <Card key={s.n}>
               <div style={{ fontSize: 22, fontWeight: 900, color: GOLD }}>{s.n}</div>
@@ -204,6 +205,13 @@ export default function GuideView() {
             <div style={{ fontSize: 12, color: DIM, marginTop: 2 }}>Si el capitán no juega, hereda el bonus.</div>
           </Card>
         </div>
+        <Card>
+          <p style={{ fontSize: 13, lineHeight: 1.7, color: MID, margin: 0 }}>
+            ⏱️ <b style={{ color: GOLD2 }}>Se congelan al primer saque.</b> Desde que arranca el primer partido de tu
+            jornada, el capitán, el vice y el power-up quedan <b>fijados</b> — elegir al goleador con el partido ya
+            visto sería trampa. Decide antes del pitido.
+          </p>
+        </Card>
       </Section>
 
       {/* 6 · Modo Underdog */}
@@ -248,11 +256,38 @@ export default function GuideView() {
         </Card>
       </Section>
 
-      {/* 8 · Power-ups */}
+      {/* 8 · La jornada en vivo (del saque a confirmar) */}
+      <Section id="envivo" icon="🔴" title="La jornada, en vivo" lead="Del primer saque a confirmar tus puntos" open={open === "envivo"} onToggle={toggle}>
+        <div style={{ display: "grid", gap: 8 }}>
+          {[
+            { e: "🔒", t: `${FREE_LIMITS.fantasy.lockHoursBeforeGameweek}h antes`, d: "Con el plan gratuito, tu alineación se cierra. Con Pro haces sustituciones en vivo hasta el final." },
+            { e: "⏱️", t: "Primer saque", d: "Capitán, vice y power-up quedan congelados para todos. Lo que elegiste, va a misa." },
+            { e: "📡", t: "Durante los partidos", d: "Con Pro sigues tus puntos minuto a minuto. Con el plan gratuito aparecen al final de cada partido." },
+            { e: "✅", t: "Al terminar TODOS tus partidos", d: "Pulsa Confirmar: el servidor recalcula tus puntos con los datos oficiales del Mundial — aquí no hay trampas posibles — y suben al ranking y a tus ligas." },
+          ].map((x) => (
+            <div key={x.t} style={{ display: "flex", gap: 12, padding: "10px 14px", background: BG2, borderRadius: 12, border: "1px solid rgba(255,255,255,0.06)" }}>
+              <span style={{ fontSize: 20, flexShrink: 0 }}>{x.e}</span>
+              <span style={{ minWidth: 0 }}>
+                <span style={{ display: "block", fontSize: 13, fontWeight: 800, color: GOLD2 }}>{x.t}</span>
+                <span style={{ display: "block", fontSize: 12, color: MID, lineHeight: 1.55, marginTop: 2 }}>{x.d}</span>
+              </span>
+            </div>
+          ))}
+        </div>
+        <Card>
+          <p style={{ fontSize: 12, lineHeight: 1.7, color: MID, margin: 0 }}>
+            💰 <b style={{ color: GOLD2 }}>¿Y las Fútcoins?</b> El premio de la jornada se abona cuando la jornada
+            completa termina (su último partido). Si confirmaste antes, tranquilo: se acreditan <b>solas</b> en tu
+            próxima visita. Y el banquillo trabaja por ti: si un titular no juega, entra el suplente automáticamente.
+          </p>
+        </Card>
+      </Section>
+
+      {/* 9 · Power-ups */}
       <Section id="powerups" icon="🃏" title="Power-ups (comodines)" lead={`${POWER_UPS.length} cartas con un solo uso en todo el torneo`} open={open === "powerups"} onToggle={toggle}>
         <p style={{ fontSize: 13, color: MID, lineHeight: 1.6, margin: 0 }}>
-          Cada power-up se <b>arma para una jornada</b> y solo puedes usar <b>cada uno una vez</b> en todo el Mundial.
-          Guárdalos para el momento perfecto:
+          Cada power-up se <b>arma para una jornada</b>, queda <b>fijado al primer saque</b> y solo puedes usar{" "}
+          <b>cada uno una vez</b> en todo el Mundial. Guárdalos para el momento perfecto:
         </p>
         <div style={{ display: "grid", gap: 8 }}>
           {POWER_UPS.map((p) => (
@@ -267,7 +302,7 @@ export default function GuideView() {
         </div>
       </Section>
 
-      {/* 9 · Fichajes */}
+      {/* 10 · Fichajes */}
       <Section id="fichajes" icon="🔁" title="Fichajes entre jornadas" lead={`${FREE_TRANSFERS} gratis · cada extra cuesta -${TRANSFER_PENALTY} pts`} open={open === "fichajes"} onToggle={toggle}>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
           <Card>
@@ -287,11 +322,12 @@ export default function GuideView() {
         </Card>
       </Section>
 
-      {/* 10 · Reembolso por eliminación */}
+      {/* 11 · Reembolso por eliminación */}
       <Section id="reembolso" icon="💸" title="Reembolso por eliminación" lead="Cuando una selección cae, recuperas valor" open={open === "reembolso"} onToggle={toggle}>
         <Card accent>
           <p style={{ fontSize: 13, lineHeight: 1.7, color: "#dfe6f2", margin: 0 }}>
-            Si la selección de un jugador tuyo queda <b>eliminada</b>, puedes darlo de baja y recibir un{" "}
+            Si la selección de un jugador tuyo queda <b>eliminada de verdad</b> (según el cuadro real del Mundial, no
+            pronósticos), puedes darlo de baja y recibir un{" "}
             <b style={{ color: GOLD2 }}>reembolso en presupuesto extra</b> para reforzarte. La idea: al salir
             selecciones del mercado, las piezas que siguen vivas suben de valor.
           </p>
@@ -302,18 +338,18 @@ export default function GuideView() {
             reembolso = máx( {money(ELIM_REFUND_FLOOR)} , {ELIM_REFUND_PER_POINT} × puntos del jugador )
           </div>
           <p style={{ fontSize: 12, color: DIM, lineHeight: 1.6, margin: "8px 0 0" }}>
-            Es decir, <b>{ELIM_REFUND_PER_POINT}M € por cada punto</b> que te haya dado, con un suelo de{" "}
-            <b>{money(ELIM_REFUND_FLOOR)}</b>. Solo se reembolsa <b>una vez por jugador</b>.
+            Es decir, <b>{ELIM_REFUND_PER_POINT}M € por cada punto REAL</b> que haya acumulado en el torneo, con un
+            suelo de <b>{money(ELIM_REFUND_FLOOR)}</b>. Solo se reembolsa <b>una vez por jugador</b>.
           </p>
         </Card>
       </Section>
 
-      {/* 11 · Herramientas */}
+      {/* 12 · Herramientas */}
       <Section id="herramientas" icon="🧰" title="Tus herramientas" lead="Coach IA, Mercado, Ligas y Logros" open={open === "herramientas"} onToggle={toggle}>
         <div style={{ display: "grid", gap: 8 }}>
           {[
             { e: "🤖", t: "Coach IA", d: "Te sugiere capitán, detecta gangas «Diamante» y arma un once válido en un clic." },
-            { e: "📈", t: "Mercado", d: "Probabilidad de titularidad, estado físico, tendencia de precio y ruta proyectada de cada selección." },
+            { e: "📈", t: "Mercado", d: "Estadísticas REALES del torneo (arrancan a 0 y se rellenan partido a partido), precio fijo según valor de mercado, titularidad estimada y ruta proyectada." },
             { e: "🏟️", t: "Ligas", d: "Compite contra amigos y rivales; sube en la clasificación jornada a jornada." },
             { e: "🏅", t: "Logros", d: "Desbloquea hitos por tus decisiones y rachas." },
           ].map((x) => (
@@ -328,7 +364,7 @@ export default function GuideView() {
         </div>
       </Section>
 
-      {/* 12 · Consejos */}
+      {/* 13 · Consejos */}
       <Section id="consejos" icon="🧠" title="5 consejos para empezar fuerte" lead="Trucos de entrenador veterano" open={open === "consejos"} onToggle={toggle}>
         <div style={{ display: "grid", gap: 8 }}>
           {[
@@ -336,7 +372,7 @@ export default function GuideView() {
             "Pon de capitán a quien tenga partido fácil Y buen multiplicador Underdog.",
             "Fija jugadores de selecciones que lleguen lejos: puntúan más jornadas.",
             "Guarda los power-ups para una jornada con doble partido o muchos goles esperados.",
-            "Revisa el estado físico en el Mercado antes de confirmar: un lesionado da 0.",
+            "Vigila la titularidad estimada en el Mercado: un jugador que no salta al campo da 0 puntos (aunque el banquillo te cubre).",
           ].map((c, i) => (
             <div key={i} style={{ display: "flex", gap: 12, padding: "10px 14px", background: BG2, borderRadius: 12, border: "1px solid rgba(255,255,255,0.06)" }}>
               <span style={{ fontSize: 14, fontWeight: 900, color: GOLD, flexShrink: 0 }}>{i + 1}</span>

@@ -1340,8 +1340,12 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
               />
             </div>
 
-            {/* Stats + Timeline */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 14, marginTop: 14 }}>
+            {/* Stats + Timeline. OJO minmax(0,1fr): con "1fr" a secas los grid
+                items no encogen por debajo de su contenido (min-width:auto) y
+                la tira scrolleable de momentos (~50px por chip) ensanchaba el
+                track ENTERO — todos los paneles desbordaban la pantalla en
+                móvil en cuanto el partido acumulaba eventos. */}
+            <div style={{ display: "grid", gridTemplateColumns: "minmax(0, 1fr)", gap: 14, marginTop: 14 }}>
               <StatsPanel stats={stats} meta={meta} />
               <Timeline log={log} meta={meta} onRelive={relive} />
               <MatchSummary log={log} meta={meta} />

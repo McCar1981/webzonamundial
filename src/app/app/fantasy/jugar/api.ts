@@ -6,6 +6,7 @@
 // funcionando en modo invitado (localStorage).
 
 import type { FantasyTeamState } from "@/lib/fantasy/types";
+import type { RealPlayerAgg } from "@/lib/fantasy/players";
 import type { LiveSnapshot } from "@/lib/match-center/types";
 import { handleProRequired } from "@/lib/pro/paywall-client";
 
@@ -97,6 +98,21 @@ export async function saveServerTeam(
     };
   } catch {
     return { ok: false, futcoins: 0, xpAwarded: 0, confirmed: false, gameweekPoints: null };
+  }
+}
+
+/**
+ * Acumulado REAL del torneo por jugador (api-football). El pool arranca a 0 y
+ * estas cifras lo rellenan vía applyRealStats. {} si aún no hay datos.
+ */
+export async function fetchRealPlayerStats(): Promise<Record<string, RealPlayerAgg>> {
+  try {
+    const res = await fetch("/api/fantasy/player-stats", { cache: "no-store" });
+    if (!res.ok) return {};
+    const data = (await res.json()) as { stats?: Record<string, RealPlayerAgg> };
+    return data.stats ?? {};
+  } catch {
+    return {};
   }
 }
 

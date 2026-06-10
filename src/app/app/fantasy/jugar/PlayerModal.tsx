@@ -153,15 +153,16 @@ function PlayerAnalysis({ player }: { player: FantasyPlayer }) {
 
   return (
     <div style={{ padding: "0 16px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
-      {/* Resumen del torneo */}
+      {/* Resumen del torneo — SIEMPRE datos reales acumulados (el pool arranca a
+          0 y se rellena con api-football vía applyRealStats). */}
       <div>
-        <div style={secTitle}>📊 {projected ? "Proyección Mundial 2026" : "Mundial 2026"}</div>
+        <div style={secTitle}>📊 Mundial 2026</div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 6 }}>
           {[
-            ["Pts", t.puntos],
-            ["Media", t.media],
-            ["Goles", t.goles],
-            ["Asist.", t.asistencias],
+            ["Pts", player.totalPoints],
+            ["Media", player.avgPoints],
+            ["Goles", player.stats.goals],
+            ["Asist.", player.stats.assists],
           ].map(([label, val]) => (
             <div key={String(label)} style={{ background: BG2, borderRadius: 10, padding: "9px 6px", textAlign: "center", border: "1px solid rgba(255,255,255,0.06)" }}>
               <div style={{ fontSize: 18, fontWeight: 900, color: GOLD2, fontVariantNumeric: "tabular-nums" }}>{val}</div>
@@ -169,7 +170,9 @@ function PlayerAnalysis({ player }: { player: FantasyPlayer }) {
             </div>
           ))}
         </div>
-        {projected && <div style={{ fontSize: 10, color: DIM, marginTop: 5 }}>Cifras proyectadas hasta el pitido inicial · {t.partidos} partidos estimados</div>}
+        {player.stats.minutes === 0 && (
+          <div style={{ fontSize: 10, color: DIM, marginTop: 5 }}>A cero hasta que juegue: se rellena con los datos reales del torneo.</div>
+        )}
       </div>
 
       {/* Próximos partidos (calendario real) */}

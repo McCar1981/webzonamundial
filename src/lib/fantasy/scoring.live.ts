@@ -263,6 +263,33 @@ function liveBonusMap(snapshots: Record<number, LiveSnapshot>): Map<number, Map<
   return out;
 }
 
+// ── Línea REAL acumulable (stats de torneo del pool) ─────────────────────────
+
+/** Resumen real de un jugador en un partido terminado (para acumulados). */
+export interface RealMatchLine {
+  played: boolean;
+  minutes: number;
+  goals: number;
+  assists: number;
+  cleanSheet: boolean;
+  basePoints: number; // puntos fantasy base (sin multiplicador ni capitán)
+}
+
+/** Línea real de `p` en su partido, a partir del snapshot (api-football). */
+export function realLineFor(p: FantasyPlayer, snap: LiveSnapshot, side: Side): RealMatchLine {
+  const perf = perfFromSnapshot(p, snap, side);
+  if (!perf.played) return { played: false, minutes: 0, goals: 0, assists: 0, cleanSheet: false, basePoints: 0 };
+  const act = scanActions(p.name, side, snap.events);
+  return {
+    played: true,
+    minutes: perf.minutes,
+    goals: act.goals,
+    assists: act.assists,
+    cleanSheet: perf.events.some((e) => e.type === "cleansheet"),
+    basePoints: perf.base,
+  };
+}
+
 interface Row {
   slot: SquadSlot;
   p: FantasyPlayer;

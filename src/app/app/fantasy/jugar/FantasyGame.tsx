@@ -6,14 +6,15 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import { getPlayerById } from "@/lib/fantasy/players";
+import { getPlayerById, applyRealStats } from "@/lib/fantasy/players";
 import { remapFormation, validateTeam, transferCost, refundForElimination } from "@/lib/fantasy/rules";
 import { isEliminated } from "@/lib/fantasy/tournament";
+import { isFantasyLive } from "@/lib/fantasy/season";
 import { autoDraft } from "@/lib/fantasy/coach";
 import { defaultTeam, loadTeam, saveTeam, clearTeam, normalizeTeam } from "@/lib/fantasy/store";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { getCreadorBySlug, getCreadoresActivos } from "@/data/creadores";
-import { fetchServerTeam, saveServerTeam, setFantasyCreator } from "./api";
+import { fetchServerTeam, saveServerTeam, setFantasyCreator, fetchRealPlayerStats } from "./api";
 import { BUDGET, FREE_TRANSFERS, MAX_FREE_TRANSFERS, type FantasyPos, type FantasyTeamState, type PowerUp, type SquadSlot } from "@/lib/fantasy/types";
 import { BG, BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED, money } from "./fx";
 import { FORMATIONS } from "@/lib/fantasy/rules";
@@ -119,6 +120,21 @@ export default function FantasyGame() {
     })();
 
     return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  // Estadísticas REALES del torneo: el pool arranca a 0 y aquí se vuelca el
+  // acumulado de api-football sobre él (una vez por visita; el servidor cachea
+  // 30 min). El bump fuerza el re-render con el pool ya actualizado.
+  const [, bumpRealStats] = useState(0);
+  useEffect(() => {
+    if (!isFantasyLive()) return;
+    let alive = true;
+    fetchRealPlayerStats().then((stats) => {
+      if (!alive || Object.keys(stats).length === 0) return;
+      applyRealStats(stats);
+      bumpRealStats((v) => v + 1);
+    });
+    return () => { alive = false; };
   }, []);
 
   const dismissOnboarding = useCallback(() => {

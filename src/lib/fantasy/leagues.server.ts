@@ -67,6 +67,14 @@ export async function createLeague(uid: string, name: string): Promise<{ ok: boo
   if (error) throw error;
   const league = data as { id: string; name: string; code: string; owner_id: string };
   await admin.from("fantasy_league_members").insert({ league_id: league.id, user_id: uid });
+
+  // Reconciliación anti-carrera: el chequeo previo de ownedCount es TOCTOU (dos
+  // creates simultáneos podrían superar el tope). Tras insertar, reverificamos;
+  // el que sobra retira su propia liga (cascade borra la membresía).
+  if (await ownedCount(admin, uid) > MAX_LEAGUES_OWNED) {
+    await admin.from("fantasy_leagues").delete().eq("id", league.id);
+    return { ok: false, error: "too_many_leagues" };
+  }
   return { ok: true, league: { ...league, member_count: 1, is_owner: true } };
 }
 
@@ -90,6 +98,14 @@ export async function joinLeague(uid: string, code: string): Promise<{ ok: boole
   await admin.from("fantasy_league_members")
     .upsert({ league_id: l.id, user_id: uid }, { onConflict: "league_id,user_id" });
   const count = await memberCount(admin, l.id);
+
+  // Reconciliación anti-carrera: el chequeo previo de aforo es TOCTOU. Si dos
+  // joins simultáneos superan el tope, el que sobra retira su propia membresía
+  // (solo si acaba de entrar; a un miembro ya existente no se le echa).
+  if (!already && count > MAX_MEMBERS_PER_LEAGUE) {
+    await admin.from("fantasy_league_members").delete().eq("league_id", l.id).eq("user_id", uid);
+    return { ok: false, error: "league_full" };
+  }
   return { ok: true, league: { ...l, member_count: count, is_owner: l.owner_id === uid } };
 }
 
@@ -131,11 +147,16 @@ export async function myLeagues(uid: string): Promise<FantasyLeagueOut[]> {
   const ids = (mem ?? []).map((m) => (m as { league_id: string }).league_id);
   if (!ids.length) return [];
   const { data: leagues } = await admin.from("fantasy_leagues").select("id,name,code,owner_id").in("id", ids);
-  const out: FantasyLeagueOut[] = [];
-  for (const l of (leagues ?? []) as { id: string; name: string; code: string; owner_id: string }[]) {
-    out.push({ ...l, member_count: await memberCount(admin, l.id), is_owner: l.owner_id === uid });
+
+  // Conteo de miembros de TODAS las ligas en una sola query (antes era N+1: una
+  // consulta memberCount por liga). Se tabula en memoria por league_id.
+  const { data: allMembers } = await admin.from("fantasy_league_members").select("league_id").in("league_id", ids);
+  const counts = new Map<string, number>();
+  for (const m of (allMembers ?? []) as { league_id: string }[]) {
+    counts.set(m.league_id, (counts.get(m.league_id) ?? 0) + 1);
   }
-  return out;
+  return ((leagues ?? []) as { id: string; name: string; code: string; owner_id: string }[])
+    .map((l) => ({ ...l, member_count: counts.get(l.id) ?? 0, is_owner: l.owner_id === uid }));
 }
 
 export interface FantasyLeagueStanding {

@@ -123,3 +123,41 @@ de una liga con N miembros reales mínimos, vía `grantCoins(..., module: "fanta
 - [ ] Miembro pulsa "Salir" → deja la liga; dueño pulsa "Borrar liga" → desaparece para todos.
 - [ ] Código inválido / inexistente → mensaje claro, sin romper la vista.
 - [ ] Invitado (sesión cerrada) → ve preview simulada + CTA login.
+
+---
+
+## Auditoría 2026-06-10 — correcciones aplicadas
+
+Repaso completo de arquitectura, lógica, backend y frontend. Cambios:
+
+**Backend / datos**
+- **RLS recursiva (latente):** la policy de lectura de `fantasy_league_members` se
+  auto-referenciaba → `infinite recursion detected in policy` si alguna lectura
+  usaba el cliente autenticado (hoy todo va por service role, estaba dormido).
+  Arreglado con la función `SECURITY DEFINER public.is_fantasy_league_member(...)`
+  que rompe la recursión (`scripts/sql/2026-22-fantasy-leagues-rls-fix.sql`).
+- **TOCTOU en los topes:** `createLeague`/`joinLeague` reverifican el aforo TRAS
+  insertar y el que sobra retira su propia fila/liga (el chequeo previo solo no
+  era atómico).
+- **N+1:** `myLeagues` cuenta miembros de todas las ligas en una sola query.
+- **Rate-limit:** el `POST /api/fantasy/leagues` limita a 20 acciones/min por
+  usuario (frena enumeración de códigos y spam). Degrada sin KV.
+- **`?gw` inválido:** antes `?gw=abc` caía a jornada 1 en silencio; ahora valida
+  1–8 y devuelve 400.
+
+**Frontend / UX**
+- **Crear = Pro señalizado:** badge `PRO` en los accesos de "Crear liga" (preview
+  de invitado y panel real); a un Free el botón abre el paywall directo en vez de
+  dejarle chocar con el 403. *Unirse sigue siendo gratis.*
+- **Errores en rojo:** los mensajes distinguen éxito (verde) de error (rojo);
+  antes todo salía en verde de éxito.
+- **Anti doble-clic:** los botones Crear/Unirse se deshabilitan mientras procesan
+  (evita crear ligas duplicadas).
+- **Te resaltas a ti mismo** en la clasificación de la liga privada ("(tú)" +
+  fila dorada), igual que en el ranking global.
+- **Jornada final:** corregido el off-by-one que mostraba la jornada 7 tras
+  confirmar la 8.
+
+**Diferido por decisión de producto (no es bug):** el recompute server-side de los
+puntos por jornada (hoy el cliente los calcula, con clamp a 200). Mientras siga
+así, las ligas privadas **no** abonan Fútcoins (anti-farmeo).

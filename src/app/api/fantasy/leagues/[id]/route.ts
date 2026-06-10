@@ -22,11 +22,20 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
   if (!(await isMember(user.id, params.id))) {
     return NextResponse.json({ error: "forbidden" }, { status: 403 });
   }
+  // Validación estricta de la jornada: antes `?gw=abc` caía a 1 en silencio.
   const gwParam = new URL(req.url).searchParams.get("gw");
-  const gw = gwParam ? Math.max(1, parseInt(gwParam, 10) || 0) : undefined;
+  let gw: number | undefined;
+  if (gwParam !== null) {
+    const n = Number(gwParam);
+    if (!Number.isInteger(n) || n < 1 || n > 8) {
+      return NextResponse.json({ error: "bad_gameweek" }, { status: 400 });
+    }
+    gw = n;
+  }
   const standings = await leagueLeaderboard(params.id, gw);
   const is_owner = await isOwner(user.id, params.id);
-  return NextResponse.json({ league_id: params.id, standings, is_owner, gameweek: gw ?? null });
+  // `me` permite al cliente resaltar TU fila en la clasificación de la liga.
+  return NextResponse.json({ league_id: params.id, standings, is_owner, me: user.id, gameweek: gw ?? null });
 }
 
 export async function PATCH(req: Request, { params }: { params: { id: string } }) {

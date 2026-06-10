@@ -16,6 +16,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState, useCallback, useRef } from "react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import StoryViewer from "@/components/stories/StoryViewer";
+import CalendarExportButton from "@/components/CalendarExportButton";
 
 /* ─────────── Paleta: navy base + cards claras + dorado de acento ─────────── */
 const NAVY = "#0a1729";
@@ -1270,6 +1271,36 @@ export default function AppHubPage() {
             </div>
           </section>
         ))}
+
+        {/* ═══ 6b. EL MUNDIAL EN TU CALENDARIO — mismo CTA que el home web,
+               aquí en versión compacta para el móvil. El botón abre el modal
+               con Apple / Google / .ics (suscripción webcal que se actualiza
+               sola cuando cambian fechas). ═══ */}
+        <section
+          data-reveal
+          style={{
+            marginBottom: 26,
+            borderRadius: 18,
+            padding: "18px 20px",
+            border: "1px solid rgba(201,168,76,0.32)",
+            background: "linear-gradient(135deg, rgba(201,168,76,0.16), rgba(11,24,37,0.6))",
+            display: "flex",
+            alignItems: "center",
+            gap: 14,
+            flexWrap: "wrap",
+          }}
+        >
+          <div style={{ flex: "1 1 220px", minWidth: 0 }}>
+            <h2 style={{ fontSize: 16, fontWeight: 900, color: TXT, marginBottom: 3 }}>
+              📅 Llévate el Mundial a tu calendario
+            </h2>
+            <p style={{ fontSize: 12.5, color: TXT_MUT, lineHeight: 1.5 }}>
+              Los 104 partidos en tu móvil con recordatorios antes de cada kickoff.
+              Apple, Google y Outlook · se actualiza solo si cambian fechas.
+            </p>
+          </div>
+          <CalendarExportButton variant="hero" label="Añadir a mi calendario" />
+        </section>
 
         {/* ═══ 7. RANKING GLOBAL (card clara, top 5) ═══ */}
         <section data-reveal style={{ marginBottom: 26, borderRadius: 18, padding: "20px 20px", background: LIGHT2, border: "1px solid rgba(14,28,51,0.06)", boxShadow: "0 16px 36px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.8)" }}>

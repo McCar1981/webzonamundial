@@ -4,7 +4,7 @@
 // POST /api/fantasy/leagues → crear liga ({ name }) o unirse ({ code }).
 
 import { NextResponse } from "next/server";
-import { getCurrentUser } from "@/lib/auth-helpers";
+import { getCurrentUser, rateLimitByUser } from "@/lib/auth-helpers";
 import { createLeague, joinLeague, myLeagues } from "@/lib/fantasy/leagues.server";
 import { isPro } from "@/lib/pro/entitlement";
 import { PRO_REQUIRED_CODE, type ProRequiredPayload } from "@/lib/pro/limits";
@@ -23,6 +23,13 @@ export async function GET() {
 export async function POST(req: Request) {
   const user = await getCurrentUser();
   if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+
+  // Rate-limit por usuario: frena la enumeración de códigos al unirse y el spam
+  // de creación. Ventana holgada para el uso normal (crear/unirse alguna liga).
+  // Degrada sin KV (fail-open) — ver rateLimitByUser.
+  const { limited } = await rateLimitByUser(user.id, "fantasy:leagues:write", 20, 60);
+  if (limited) return NextResponse.json({ error: "rate_limited", message: "Demasiados intentos. Espera un momento." }, { status: 429 });
+
   let body: { name?: string; code?: string };
   try { body = await req.json(); } catch { return NextResponse.json({ error: "bad_request" }, { status: 400 }); }
 

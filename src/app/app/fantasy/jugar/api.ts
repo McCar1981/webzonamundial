@@ -133,16 +133,18 @@ export async function fetchMyLeagues(): Promise<FantasyLeague[]> {
   }
 }
 
-export async function createServerLeague(name: string): Promise<{ ok: boolean; league?: FantasyLeague; error?: string }> {
+export async function createServerLeague(name: string): Promise<{ ok: boolean; league?: FantasyLeague; error?: string; proRequired?: boolean }> {
   try {
     const res = await fetch("/api/fantasy/leagues", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name }),
     });
-    const data = (await res.json()) as { ok?: boolean; league?: FantasyLeague; error?: string };
-    if (!res.ok) handleProRequired(data); // crear ligas privadas = Pro
-    return { ok: res.ok && data.ok !== false, league: data.league, error: data.error };
+    const data = (await res.json()) as { ok?: boolean; league?: FantasyLeague; error?: string; code?: string };
+    // crear ligas privadas = Pro. Si el gate saltó, abrimos el paywall y avisamos
+    // al call-site para que NO muestre además un error rojo (ya hay modal).
+    const proRequired = !res.ok && handleProRequired(data, "leagues_create");
+    return { ok: res.ok && data.ok !== false, league: data.league, error: data.error, proRequired };
   } catch {
     return { ok: false, error: "network" };
   }
@@ -166,15 +168,15 @@ export async function joinServerLeague(code: string): Promise<{ ok: boolean; lea
 export async function fetchLeagueStandings(
   id: string,
   gw?: number,
-): Promise<{ standings: FantasyLeagueStanding[]; is_owner: boolean }> {
+): Promise<{ standings: FantasyLeagueStanding[]; is_owner: boolean; me: string | null }> {
   try {
     const qs = gw ? `?gw=${gw}` : "";
     const res = await fetch(`/api/fantasy/leagues/${id}${qs}`, { cache: "no-store" });
-    if (!res.ok) return { standings: [], is_owner: false };
-    const data = (await res.json()) as { standings: FantasyLeagueStanding[]; is_owner?: boolean };
-    return { standings: data.standings ?? [], is_owner: data.is_owner ?? false };
+    if (!res.ok) return { standings: [], is_owner: false, me: null };
+    const data = (await res.json()) as { standings: FantasyLeagueStanding[]; is_owner?: boolean; me?: string };
+    return { standings: data.standings ?? [], is_owner: data.is_owner ?? false, me: data.me ?? null };
   } catch {
-    return { standings: [], is_owner: false };
+    return { standings: [], is_owner: false, me: null };
   }
 }
 

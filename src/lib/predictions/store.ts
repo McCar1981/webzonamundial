@@ -496,6 +496,14 @@ export async function resolveMatch(matchId: string, result: MatchResultReal): Pr
     console.error(`[resolve] settleOracleChallenges falló en ${matchId}:`, e);
   }
 
+  // Liquidar los piques 1v1 del partido (mismo contrato: idempotente, fail-soft).
+  try {
+    const { settleChallenges } = await import("./challenges");
+    await settleChallenges(matchId, result);
+  } catch (e) {
+    console.error(`[resolve] settleChallenges falló en ${matchId}:`, e);
+  }
+
   return {
     match_id: matchId,
     predictions_resolved: resolvedCount,

@@ -1455,6 +1455,7 @@ function MatchDetailView({
       <PrediccionAIAnalysis match={match} onApply={applyAI} />
 
       <OracleCard match={match} hasWinner={completedTypes.has("winner")} />
+      <PiquesCard match={match} hasWinner={completedTypes.has("winner")} closed={closed} />
 
       {loading && !state && <p style={{ color: DIM, textAlign: "center", padding: 24 }}>Cargando predicciones…</p>}
       {!loading && loadFailed && !state && (
@@ -1961,6 +1962,186 @@ function OracleCard({ match, hasWinner }: { match: Match; hasWinner: boolean }) 
         </div>
       ) : null}
       {err && <div style={{ color: RED, fontSize: 12, marginTop: 8 }}>{err}</div>}
+    </div>
+  );
+}
+
+// ─── Piques 1v1: reto entre amigos con Fútcoins en juego ─────────────────────
+interface ChallengeOut {
+  id: string;
+  match_id: string;
+  creator_id: string;
+  opponent_id: string | null;
+  stake: number;
+  code: string;
+  status: "open" | "accepted" | "settled" | "refunded";
+  winner_id: string | null;
+}
+
+function PiquesCard({ match, hasWinner, closed }: { match: Match; hasWinner: boolean; closed: boolean }) {
+  const [rows, setRows] = useState<ChallengeOut[] | null>(null);
+  const [me, setMe] = useState<string | null>(null);
+  const [stake, setStake] = useState<25 | 50 | 100>(50);
+  const [code, setCode] = useState("");
+  const [busy, setBusy] = useState<"create" | "accept" | null>(null);
+  const [msg, setMsg] = useState<{ kind: "ok" | "err"; text: string } | null>(null);
+  const [copied, setCopied] = useState<string | null>(null);
+
+  const load = useCallback(async () => {
+    try {
+      const r = await fetch(`/api/predictions/challenges?match_id=${match.i}`);
+      if (!r.ok) return;
+      const j = (await r.json()) as { challenges: ChallengeOut[]; me: string };
+      setRows(j.challenges);
+      setMe(j.me);
+    } catch { /* la card no se pinta */ }
+  }, [match.i]);
+
+  useEffect(() => { void load(); }, [load]);
+
+  useEffect(() => {
+    if (!msg) return;
+    const t = setTimeout(() => setMsg(null), 4000);
+    return () => clearTimeout(t);
+  }, [msg]);
+
+  const create = async () => {
+    setBusy("create");
+    try {
+      const r = await fetch("/api/predictions/challenges", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ match_id: String(match.i), stake }),
+      });
+      const j = (await r.json().catch(() => null)) as { message?: string } | null;
+      if (!r.ok) { setMsg({ kind: "err", text: j?.message ?? "No se pudo crear" }); return; }
+      setMsg({ kind: "ok", text: "Pique creado: comparte el código" });
+      await load();
+    } catch { setMsg({ kind: "err", text: "Sin conexión, reintenta" }); }
+    finally { setBusy(null); }
+  };
+
+  const accept = async () => {
+    setBusy("accept");
+    try {
+      const r = await fetch("/api/predictions/challenges/accept", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code }),
+      });
+      const j = (await r.json().catch(() => null)) as { message?: string } | null;
+      if (!r.ok) { setMsg({ kind: "err", text: j?.message ?? "No se pudo aceptar" }); return; }
+      setMsg({ kind: "ok", text: "Pique sellado: que gane el mejor" });
+      setCode("");
+      await load();
+    } catch { setMsg({ kind: "err", text: "Sin conexión, reintenta" }); }
+    finally { setBusy(null); }
+  };
+
+  const share = async (c: ChallengeOut) => {
+    const text = `Te reto en ZonaMundial: ${match.h} vs ${match.a} · ${c.stake} Fútcoins en juego. Mi código: ${c.code}. Entra en https://www.zonamundial.app/app/predicciones/jugar, predice el ganador y acepta mi pique.`;
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(c.id);
+      setTimeout(() => setCopied(null), 2500);
+    } catch { setMsg({ kind: "err", text: `Código: ${c.code}` }); }
+  };
+
+  if (!rows) return null;
+  const canPlay = hasWinner && !closed;
+
+  const statusLine = (c: ChallengeOut) => {
+    const mine = c.creator_id === me;
+    if (c.status === "open") return { color: GOLD2, text: mine ? "Esperando rival" : "Abierto" };
+    if (c.status === "accepted") return { color: "#38bdf8", text: "Sellado · se resuelve al final" };
+    if (c.status === "refunded") return { color: MID, text: "Devuelto (sin rival o empate)" };
+    return c.winner_id === me
+      ? { color: GREEN, text: `Ganaste +${c.stake * 2} Fútcoins` }
+      : { color: RED, text: "Perdiste el pique" };
+  };
+
+  return (
+    <div style={{ background: BG3, border: CARD_BORDER, borderRadius: 14, padding: 14 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <Swords size={17} color={GOLD2} />
+        <span style={{ fontWeight: 900, fontSize: 14, color: TEXT }}>Piques 1v1</span>
+        <span style={{ marginLeft: "auto", fontSize: 11, color: DIM }}>El ganador se lleva el bote</span>
+      </div>
+
+      {rows.length > 0 && (
+        <div style={{ display: "flex", flexDirection: "column", gap: 7, marginTop: 10 }}>
+          {rows.map((c) => {
+            const s = statusLine(c);
+            return (
+              <div key={c.id} style={{ display: "flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.03)", border: CARD_BORDER, borderRadius: 10, padding: "8px 10px", flexWrap: "wrap" }}>
+                <span style={{ fontWeight: 800, fontSize: 12.5, color: TEXT, display: "inline-flex", alignItems: "center", gap: 5 }}>
+                  <Coins size={13} color={GOLD} /> {c.stake}
+                </span>
+                <span style={{ fontSize: 12, fontWeight: 700, color: s.color }}>{s.text}</span>
+                {c.status === "open" && c.creator_id === me && (
+                  <button
+                    onClick={() => share(c)}
+                    style={{ marginLeft: "auto", cursor: "pointer", background: "color-mix(in srgb, var(--zm-accent, #c9a84c) 12%, transparent)", border: `1px solid color-mix(in srgb, ${GOLD} 33%, transparent)`, color: GOLD2, fontWeight: 800, fontSize: 12, borderRadius: 8, padding: "5px 10px", display: "inline-flex", alignItems: "center", gap: 5 }}
+                  >
+                    {copied === c.id ? <><Check size={12} /> Copiado</> : <>Copiar reto · {c.code}</>}
+                  </button>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {canPlay ? (
+        <>
+          <div style={{ display: "flex", alignItems: "center", gap: 7, marginTop: 12, flexWrap: "wrap" }}>
+            {([25, 50, 100] as const).map((s) => (
+              <button
+                key={s}
+                onClick={() => setStake(s)}
+                style={{
+                  cursor: "pointer", borderRadius: 9, padding: "7px 12px", fontWeight: 800, fontSize: 12.5, minHeight: 36,
+                  background: stake === s ? `linear-gradient(135deg,${GOLD},${GOLD2})` : "rgba(255,255,255,0.04)",
+                  color: stake === s ? INK : MID, border: stake === s ? "none" : CARD_BORDER,
+                  display: "inline-flex", alignItems: "center", gap: 5,
+                }}
+              >
+                <Coins size={13} /> {s}
+              </button>
+            ))}
+            <button
+              disabled={busy === "create"}
+              onClick={create}
+              style={{ cursor: "pointer", borderRadius: 9, padding: "7px 14px", fontWeight: 800, fontSize: 12.5, minHeight: 36, background: "color-mix(in srgb, var(--zm-accent, #c9a84c) 14%, transparent)", border: `1px solid color-mix(in srgb, ${GOLD} 40%, transparent)`, color: GOLD2, display: "inline-flex", alignItems: "center", gap: 6, opacity: busy === "create" ? 0.6 : 1 }}
+            >
+              <Swords size={14} /> {busy === "create" ? "Creando…" : "Crear pique"}
+            </button>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: 7, marginTop: 9 }}>
+            <input
+              value={code}
+              onChange={(e) => setCode(e.target.value.toUpperCase())}
+              placeholder="Código de un amigo"
+              maxLength={6}
+              style={{ flex: 1, minWidth: 0, background: "rgba(255,255,255,0.05)", border: CARD_BORDER, borderRadius: 9, color: TEXT, fontWeight: 800, fontSize: 13, letterSpacing: 2, padding: "8px 10px", minHeight: 36, outline: "none", textTransform: "uppercase" }}
+            />
+            <button
+              disabled={busy === "accept" || code.trim().length < 4}
+              onClick={accept}
+              style={{ cursor: "pointer", borderRadius: 9, padding: "7px 14px", fontWeight: 800, fontSize: 12.5, minHeight: 36, background: "rgba(56,189,248,0.12)", border: "1px solid rgba(56,189,248,0.4)", color: "#38bdf8", display: "inline-flex", alignItems: "center", gap: 6, opacity: busy === "accept" || code.trim().length < 4 ? 0.55 : 1 }}
+            >
+              <Check size={14} /> {busy === "accept" ? "Aceptando…" : "Aceptar"}
+            </button>
+          </div>
+        </>
+      ) : (
+        <div style={{ marginTop: 10, fontSize: 12, color: DIM, display: "flex", alignItems: "center", gap: 6 }}>
+          <Lock size={13} />
+          {closed ? "Predicciones cerradas: los piques de este partido están sellados." : "Envía tu predicción de Ganador para crear o aceptar piques."}
+        </div>
+      )}
+
+      {msg && <div style={{ color: msg.kind === "ok" ? GREEN : RED, fontSize: 12, marginTop: 8, fontWeight: 700 }}>{msg.text}</div>}
     </div>
   );
 }

@@ -13,7 +13,9 @@ interface Entry {
   user: { id: string; display_name: string; avatar_url: string | null; is_premium: boolean; cosmetics: CosmeticDisplay | null };
   total_points: number;
   predictions_count: number;
-  accuracy_pct: number;
+  // En el ranking semanal el backend no calcula precisión (la manda 0/null);
+  // por eso aceptamos null y la ocultamos en ese periodo.
+  accuracy_pct: number | null;
 }
 
 export default function RankingPage() {
@@ -64,7 +66,13 @@ export default function RankingPage() {
                   </span>
                   <TitleChip title={e.user.cosmetics?.title} />
                 </span>
-                <span style={{ fontSize: 12, color: DIM }}>{e.accuracy_pct}% · {e.predictions_count}</span>
+                <span style={{ fontSize: 12, color: DIM }}>
+                  {/* Semanal: el backend no aporta precisión real (0/null) → mostramos
+                      solo el nº de predicciones. En "Mundial" sí enseñamos el %. */}
+                  {period === "weekly" || e.accuracy_pct == null
+                    ? `${e.predictions_count} predicciones`
+                    : `${e.accuracy_pct}% · ${e.predictions_count}`}
+                </span>
                 <span style={{ fontWeight: 800, color: GOLD, minWidth: 56, textAlign: "right" }}>{e.total_points} pts</span>
               </div>
             ))}

@@ -23,7 +23,7 @@ import {
   type SocialData,
   type WinnerData,
 } from "./types";
-import { getMatchMeta } from "./match-data";
+import { getMatchMeta, generateOverUnderLines, generateDuels } from "./match-data";
 
 export interface ValidationResult { ok: boolean; error?: string; message?: string; field?: string }
 
@@ -38,6 +38,9 @@ export function validatePredictionData(
   type: PredictionType,
   data: PredictionData,
   premium: boolean,
+  // FIX 2/3: matchId opcional. Si está presente, validamos over_under y duel
+  // contra las líneas/duelos REALMENTE generados para ese partido (anti-exploit).
+  matchId?: string,
 ): ValidationResult {
   switch (type) {
     case "exact_score": {
@@ -82,6 +85,16 @@ export function validatePredictionData(
     case "duel": {
       const d = data as { duel_id?: string; winner_player_id?: string };
       if (!d.duel_id || !d.winner_player_id) return err("invalid_prediction_data", "duel_id y winner_player_id requeridos", "prediction_data");
+      // FIX 3: cruzar contra los duelos generados del partido para impedir
+      // matchups fabricados (crack vs suplente) o ganadores ajenos al duelo.
+      if (matchId) {
+        const duels = generateDuels(matchId);
+        const duel = duels.find((x) => x.duel_id === d.duel_id);
+        if (!duel) return err("invalid_prediction_data", "El duelo no existe para este partido", "prediction_data.duel_id");
+        if (d.winner_player_id !== duel.player_a.id && d.winner_player_id !== duel.player_b.id) {
+          return err("invalid_prediction_data", "winner_player_id no pertenece a este duelo", "prediction_data.winner_player_id");
+        }
+      }
       return ok;
     }
     case "over_under": {
@@ -90,6 +103,15 @@ export function validatePredictionData(
       if (!["over", "under"].includes(d.choice)) return err("invalid_prediction_data", "choice debe ser over|under", "prediction_data.choice");
       if (!["easy", "medium", "hard"].includes(d.difficulty)) return err("invalid_prediction_data", "difficulty inválida", "prediction_data.difficulty");
       if (typeof d.line !== "number") return err("invalid_prediction_data", "line debe ser numérica", "prediction_data.line");
+      // FIX 2: cruzar (category, difficulty, line) contra las líneas generadas
+      // del partido. Evita líneas/puntos fabricados (p.ej. line:-1 hard = 20 pts seguros).
+      if (matchId) {
+        const lines = generateOverUnderLines(matchId);
+        const cat = lines.find((l) => l.category === d.category);
+        if (!cat) return err("invalid_prediction_data", "category inválida para este partido", "prediction_data.category");
+        const tier = cat[d.difficulty];
+        if (!tier || tier.line !== d.line) return err("invalid_prediction_data", "La línea no coincide con la generada para este partido", "prediction_data.line");
+      }
       return ok;
     }
     case "minute_drama": {

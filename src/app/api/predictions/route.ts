@@ -4,7 +4,7 @@
 // Auth requerida. Valida tipo, payload, ventana de cierre y unicidad.
 
 import { NextResponse } from "next/server";
-import { getCurrentUser } from "@/lib/auth-helpers";
+import { getCurrentUser, rateLimitByUser } from "@/lib/auth-helpers";
 import {
   PREDICTION_TYPES,
   TYPE_META,
@@ -27,6 +27,10 @@ export const dynamic = "force-dynamic";
 export async function POST(req: Request) {
   const user = await getCurrentUser();
   if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+
+  // FIX 2: rate-limit de escritura (30 creaciones/min). Mismo patrón que ia-coach.
+  const rl = await rateLimitByUser(user.id, "pred:create", 30, 60);
+  if (rl.limited) return NextResponse.json({ error: "rate_limited" }, { status: 429 });
 
   let body: {
     match_id?: string;
@@ -80,7 +84,8 @@ export async function POST(req: Request) {
   }
 
   // Validación del payload.
-  const v = validatePredictionData(prediction_type, prediction_data, premium);
+  // FIX 1: pasamos match_id para que rules.ts valide over_under/duel server-side.
+  const v = validatePredictionData(prediction_type, prediction_data, premium, match_id);
   if (!v.ok) {
     const status = v.error === "chain_limit_reached" || v.error === "premium_required" ? 403 : 400;
     return NextResponse.json(v, { status });

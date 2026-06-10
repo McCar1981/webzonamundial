@@ -17,7 +17,8 @@ export async function GET() {
   const user = await getCurrentUser();
   if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   const leagues = await myLeagues(user.id);
-  return NextResponse.json({ leagues });
+  // FIX 5: ligas del usuario → no cachear en el navegador.
+  return NextResponse.json({ leagues }, { headers: { "Cache-Control": "private, no-store" } });
 }
 
 export async function POST(req: Request) {

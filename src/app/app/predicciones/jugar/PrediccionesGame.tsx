@@ -70,7 +70,10 @@ function TierIcon({ label, size = 16 }: { label: string; size?: number }) {
 const fmtKickoff = (m: Match): string => {
   const d = etToDate(m.d, m.t);
   if (!d) return "Por confirmar";
-  return d.toLocaleString("es", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" });
+  // timeZone fija (España, hora del torneo): esta página es estática y sin una
+  // zona explícita el HTML del servidor (UTC) difiere del cliente → mismatch de
+  // hidratación. Fijarla garantiza que servidor y cliente formateen igual.
+  return d.toLocaleString("es", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit", timeZone: "Europe/Madrid" });
 };
 
 const flagUrlLg = (code: string) => `https://flagcdn.com/w80/${code}.png`;
@@ -151,6 +154,9 @@ export default function PrediccionesGame() {
   const [matchId, setMatchId] = useState<string | null>(null);
   const [state, setState] = useState<MatchState | null>(null);
   const [loading, setLoading] = useState(false);
+  // true cuando la última carga del detalle falló (red/500): permite distinguir
+  // "sin datos por error" de "cargando" y mostrar un reintento.
+  const [loadFailed, setLoadFailed] = useState(false);
   const [toast, setToast] = useState<{ kind: "ok" | "err"; msg: string } | null>(null);
 
   const [scorers, setScorers] = useState<ScorerCandidate[]>([]);
@@ -185,6 +191,7 @@ export default function PrediccionesGame() {
   const loadMatch = useCallback(async (id: string) => {
     latestLoad.current = id;
     setLoading(true);
+    setLoadFailed(false);
     try {
       const [mRes, sRes, dRes, oRes, socRes] = await Promise.all([
         fetch(`/api/predictions/match/${id}`),
@@ -203,12 +210,25 @@ export default function PrediccionesGame() {
       // Ignora respuestas obsoletas: si el usuario ya cambió de partido, una
       // petición lenta de un partido anterior no debe pisar los datos actuales.
       if (latestLoad.current !== id) return;
-      if (mJson) setState(mJson);
+      // El detalle del partido es lo único imprescindible; si esa respuesta no
+      // llega (500/red), lo tratamos como error en lugar de pintar un acordeón
+      // vacío como si fuera estado real.
+      if (!mRes.ok || !mJson) {
+        setLoadFailed(true);
+        setToast({ kind: "err", msg: "No se pudieron cargar tus predicciones, reintenta" });
+        return;
+      }
+      setState(mJson);
       setScorers(sJson?.candidates ?? []);
       setPendingTeams(sJson?.pending_teams ?? []);
       setDuels(dJson?.duels ?? []);
       setOuLines(oJson?.lines ?? []);
       setSocial(socJson ?? null);
+    } catch {
+      // Un fallo de red en Promise.all dejaba el acordeón vacío y silencioso.
+      if (latestLoad.current !== id) return;
+      setLoadFailed(true);
+      setToast({ kind: "err", msg: "No se pudieron cargar tus predicciones, reintenta" });
     } finally {
       if (latestLoad.current === id) setLoading(false);
     }
@@ -226,6 +246,7 @@ export default function PrediccionesGame() {
     setOuLines([]);
     setSocial(null);
     setEditing(new Set());
+    setLoadFailed(false);
     void loadMatch(id);
   }, [loadMatch]);
 
@@ -237,27 +258,34 @@ export default function PrediccionesGame() {
     if (!matchId) return;
     // Si ya existe una predicción de este tipo, editamos (PATCH); si no, creamos (POST).
     const existing = stateRef.current?.predictions.find((p) => p.prediction_type === type) ?? null;
-    const res = existing
-      ? await fetch(`/api/predictions/${existing.id}`, {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ prediction_data: data, confidence_multiplier: confidence }),
-        })
-      : await fetch("/api/predictions", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ match_id: matchId, prediction_type: type, prediction_data: data, confidence_multiplier: confidence }),
-        });
-    const json = await res.json().catch(() => ({}));
-    if (res.ok) {
-      setEditing((prev) => { const next = new Set(prev); next.delete(type); return next; });
-      setToast({ kind: "ok", msg: `${existing ? "Predicción actualizada" : "¡Predicción guardada!"} · ${TYPE_META[type].label}` });
-      await loadMatch(matchId);
-    } else if (handleProRequired(json)) {
-      // Límite Free (tipo Pro o cupo de jornada): el paywall global ya explica
-      // el upgrade; no apilamos un toast de error encima.
-    } else {
-      setToast({ kind: "err", msg: json.message || json.error || "No se pudo guardar la predicción" });
+    // try/catch: si el fetch lanza (offline/timeout) no debe propagar al form
+    // (cuyo finally rehabilita el botón) sin avisar al usuario. Mostramos toast
+    // de error y dejamos que el form recupere su estado por su cuenta.
+    try {
+      const res = existing
+        ? await fetch(`/api/predictions/${existing.id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ prediction_data: data, confidence_multiplier: confidence }),
+          })
+        : await fetch("/api/predictions", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ match_id: matchId, prediction_type: type, prediction_data: data, confidence_multiplier: confidence }),
+          });
+      const json = await res.json().catch(() => ({}));
+      if (res.ok) {
+        setEditing((prev) => { const next = new Set(prev); next.delete(type); return next; });
+        setToast({ kind: "ok", msg: `${existing ? "Predicción actualizada" : "¡Predicción guardada!"} · ${TYPE_META[type].label}` });
+        await loadMatch(matchId);
+      } else if (handleProRequired(json)) {
+        // Límite Free (tipo Pro o cupo de jornada): el paywall global ya explica
+        // el upgrade; no apilamos un toast de error encima.
+      } else {
+        setToast({ kind: "err", msg: json.message || json.error || "No se pudo guardar la predicción" });
+      }
+    } catch {
+      setToast({ kind: "err", msg: "Sin conexión: no se pudo guardar. Reintenta." });
     }
   }, [matchId, loadMatch]);
 
@@ -292,6 +320,8 @@ export default function PrediccionesGame() {
           match={selectedMatch}
           state={state}
           loading={loading}
+          loadFailed={loadFailed}
+          onRetry={() => { if (matchId) void loadMatch(matchId); }}
           scorers={scorers}
           pendingTeams={pendingTeams}
           duels={duels}
@@ -305,7 +335,7 @@ export default function PrediccionesGame() {
       )}
 
       {toast && (
-        <div style={{
+        <div role="status" aria-live="polite" style={{
           position: "fixed", bottom: 20, left: "50%", transform: "translateX(-50%)", zIndex: 50,
           background: toast.kind === "ok" ? "rgba(34,197,94,0.95)" : "rgba(239,68,68,0.95)",
           color: TEXT, padding: "12px 20px", borderRadius: 12, fontWeight: 600, fontSize: 14,
@@ -852,7 +882,10 @@ function FeaturedMatch({ m, onPick, pulse, predicted, typesTotal }: {
       .then((j: { total_predictions: number; stats: Record<string, { option_key: string; count: number; pct: number }[]> } | null) => {
         if (!alive || !j) return;
         const w = j.stats?.winner ?? [];
-        const get = (k: string) => Math.round(w.find((o) => o.option_key === k)?.pct ?? 0);
+        // El backend guarda las claves del ganador con prefijo (optionKeyForStats
+        // en store.ts): "winner:home" / "winner:draw" / "winner:away". Sin el
+        // prefijo el find nunca casa y la barra quedaba siempre al 0%.
+        const get = (k: string) => Math.round(w.find((o) => o.option_key === `winner:${k}`)?.pct ?? 0);
         setSplit({ home: get("home"), draw: get("draw"), away: get("away"), total: j.total_predictions ?? 0 });
       })
       .catch(() => {});
@@ -1236,6 +1269,8 @@ interface DetailProps {
   match: Match;
   state: MatchState | null;
   loading: boolean;
+  loadFailed: boolean;
+  onRetry: () => void;
   scorers: ScorerCandidate[];
   pendingTeams: string[];
   duels: DuelOut[];
@@ -1248,13 +1283,19 @@ interface DetailProps {
 }
 
 function MatchDetailView({
-  match, state, loading, scorers, pendingTeams, duels, ouLines, social,
+  match, state, loading, loadFailed, onRetry, scorers, pendingTeams, duels, ouLines, social,
   editing, setEditing, onSubmit, onBack,
 }: DetailProps) {
   const completedTypes = useMemo(() => new Set(state?.types_completed ?? []), [state]);
   const completedCount = completedTypes.size;
   const total = PREDICTION_TYPES.length;
   const mult = state?.match_multiplier ?? tierOf(match).multiplier;
+
+  // Cierre de predicciones: tras el deadline el backend ya rechaza con 403, pero
+  // bloqueamos también la UI (forms + botón Editar) para no hacer rellenar en
+  // balde. Reutiliza la misma cuenta atrás que la cabecera.
+  const closeAt = state?.predictions_close_at ? new Date(state.predictions_close_at) : null;
+  const closed = useCloseCountdown(closeAt) === "cerrado";
 
   const [openType, setOpenType] = useState<PredictionType | null>(null);
   const pendingAdvance = useRef<PredictionType | null>(null);
@@ -1341,6 +1382,19 @@ function MatchDetailView({
       <PrediccionAIAnalysis match={match} onApply={applyAI} />
 
       {loading && !state && <p style={{ color: DIM, textAlign: "center", padding: 24 }}>Cargando predicciones…</p>}
+      {!loading && loadFailed && !state && (
+        <div style={{ textAlign: "center", padding: 24, background: BG3, border: `1px solid ${RED}40`, borderRadius: 14 }}>
+          <p style={{ color: MID, fontSize: 13.5, margin: "0 0 12px", lineHeight: 1.5 }}>
+            No se pudieron cargar tus predicciones de este partido.
+          </p>
+          <button
+            onClick={onRetry}
+            style={{ cursor: "pointer", background: "color-mix(in srgb, var(--zm-accent, #c9a84c) 12%, transparent)", border: `1px solid color-mix(in srgb, ${GOLD} 33%, transparent)`, color: GOLD2, fontWeight: 800, fontSize: 13.5, borderRadius: 10, padding: "9px 18px", minHeight: 42 }}
+          >
+            Reintentar
+          </button>
+        </div>
+      )}
 
       <div className="pj-accordion">
         {PREDICTION_TYPES.map((type) => {
@@ -1383,6 +1437,7 @@ function MatchDetailView({
                     scoreResult={scoreResult}
                     initial={isEditing ? existing : null}
                     onSubmit={handleSubmit}
+                    disabled={closed}
                   />
                 </>
               ) : (
@@ -1391,7 +1446,7 @@ function MatchDetailView({
                   type={type}
                   scorers={scorers}
                   duels={duels}
-                  onEdit={locked ? undefined : () => startEdit(type)}
+                  onEdit={locked || closed ? undefined : () => startEdit(type)}
                 />
               )}
             </PredictionModuleCard>
@@ -1426,6 +1481,7 @@ function MatchSummaryCard({ match, state, completed, total, onBack }: {
   const tierColor = TIER_COLOR[t.label];
   const close = state?.predictions_close_at ? new Date(state.predictions_close_at) : null;
   const closeRel = useCloseCountdown(close);
+  const closed = closeRel === "cerrado";
   const pct = Math.round((completed / total) * 100);
   return (
     <div className="pj-summary" style={{ background: BG2, border: CARD_BORDER, borderRadius: 16, padding: "12px 14px" }}>
@@ -1448,13 +1504,13 @@ function MatchSummaryCard({ match, state, completed, total, onBack }: {
       <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 7, marginTop: 10 }}>
         {match.vn && <Badge><Globe size={12} /> {match.vn}{match.vc ? ` · ${match.vc}` : ""}</Badge>}
         <Badge><Calendar size={12} /> {fmtKickoff(match)}</Badge>
-        {closeRel && <Badge><Clock size={12} /> Cierra {closeRel}</Badge>}
+        {closeRel && <Badge><Clock size={12} /> {closed ? "Predicciones cerradas" : `Cierra ${closeRel}`}</Badge>}
       </div>
 
       <div style={{ marginTop: 12 }}>
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, color: MID, marginBottom: 4 }}>
           <span>{completed}/{total} predicciones</span>
-          {completed === total && <span style={{ color: GOLD, fontWeight: 700, display: "inline-flex", alignItems: "center", gap: 4 }}><Sparkles size={12} /> ¡Posible pleno! +500</span>}
+          {completed === total && <span style={{ color: GOLD, fontWeight: 700, display: "inline-flex", alignItems: "center", gap: 4 }}><Sparkles size={12} /> ¡8/8! Logro Predicción Perfecta</span>}
         </div>
         <div style={{ height: 6, borderRadius: 6, background: "rgba(255,255,255,0.08)", overflow: "hidden" }}>
           <div style={{ width: `${pct}%`, height: "100%", background: `linear-gradient(90deg,${GOLD},${GOLD2})`, transition: "width .4s" }} />
@@ -1680,7 +1736,10 @@ function summarize(type: PredictionType, p: MatchPrediction, scorers: ScorerCand
     }
     case "over_under": return `${CATEGORY_LABEL[d.category as OverUnderCategory]}: ${d.choice === "over" ? "Más de" : "Menos de"} ${d.line}`;
     case "minute_drama": return d.no_event ? `${DRAMA_LABEL[d.event as DramaEvent]}: no ocurre` : `${DRAMA_LABEL[d.event as DramaEvent]}: ${d.minute_range}'`;
-    case "social": return `${d.choice} ${p.is_contrarian ? "(contrarian)" : "(con la manada)"}`;
+    case "social": {
+      const label = d.choice === "home" ? "Local" : d.choice === "away" ? "Visitante" : d.choice === "draw" ? "Empate" : String(d.choice ?? "");
+      return `${label} ${p.is_contrarian ? "(a contracorriente)" : "(con la manada)"}`;
+    }
     default: return "Predicción enviada";
   }
 }
@@ -1699,6 +1758,9 @@ function TypeForm(props: {
   scoreResult: WinnerResult | null;
   initial: MatchPrediction | null;
   onSubmit: SubmitFn;
+  // true tras el deadline: el backend ya rechaza, pero deshabilitamos el envío
+  // para no dejar al usuario rellenar en balde.
+  disabled?: boolean;
 }) {
   const d = (props.initial?.prediction_data ?? null) as unknown as Record<string, unknown> | null;
   const editLabel = props.initial ? "Actualizar" : null;
@@ -1751,7 +1813,16 @@ function ManadaHint({ pct, total }: { pct: number; total: number }) {
   );
 }
 
-function ExactScoreForm({ match, init, editLabel, onSubmit }: { match: Match; init: Record<string, unknown> | null; editLabel: string | null; onSubmit: SubmitFn }) {
+/** Aviso de cierre reutilizable: las predicciones de este partido ya cerraron. */
+function ClosedNote() {
+  return (
+    <div style={{ fontSize: 11.5, color: MID, background: "rgba(255,255,255,0.04)", border: CARD_BORDER, borderRadius: 8, padding: "7px 10px", marginTop: 10, display: "flex", alignItems: "center", gap: 6, lineHeight: 1.4 }}>
+      <Clock size={13} style={{ flexShrink: 0 }} /> Predicciones cerradas para este partido.
+    </div>
+  );
+}
+
+function ExactScoreForm({ match, init, editLabel, onSubmit, disabled }: { match: Match; init: Record<string, unknown> | null; editLabel: string | null; onSubmit: SubmitFn; disabled?: boolean }) {
   const [h, setH] = useState(typeof init?.home_goals === "number" ? init.home_goals : 0);
   const [a, setA] = useState(typeof init?.away_goals === "number" ? init.away_goals : 0);
   const [busy, setBusy] = useState(false);
@@ -1762,7 +1833,8 @@ function ExactScoreForm({ match, init, editLabel, onSubmit }: { match: Match; in
         <span style={{ fontWeight: 900, color: DIM }}>–</span>
         <Stepper label={match.a} value={a} onChange={setA} />
       </div>
-      <button disabled={busy} style={btnPrimary} onClick={async () => { setBusy(true); await onSubmit("exact_score", { home_goals: h, away_goals: a }); setBusy(false); }}>
+      {disabled && <ClosedNote />}
+      <button disabled={busy || disabled} style={{ ...btnPrimary, opacity: disabled ? 0.5 : 1 }} onClick={async () => { setBusy(true); try { await onSubmit("exact_score", { home_goals: h, away_goals: a }); } finally { setBusy(false); } }}>
         {editLabel ?? "Guardar"} marcador
       </button>
     </div>
@@ -1774,16 +1846,16 @@ function Stepper({ label, value, onChange }: { label: string; value: number; onC
     <div style={{ textAlign: "center" }}>
       <div style={{ fontSize: 14, fontWeight: 800, color: TEXT, marginBottom: 6, maxWidth: 110, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{label}</div>
       <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-        <button onClick={() => onChange(Math.max(0, value - 1))} style={stepBtn}>−</button>
+        <button aria-label={`Quitar gol a ${label}`} onClick={() => onChange(Math.max(0, value - 1))} style={stepBtn}>−</button>
         <span style={{ fontSize: 22, fontWeight: 900, minWidth: 24 }}>{value}</span>
-        <button onClick={() => onChange(Math.min(20, value + 1))} style={stepBtn}>+</button>
+        <button aria-label={`Sumar gol a ${label}`} onClick={() => onChange(Math.min(20, value + 1))} style={stepBtn}>+</button>
       </div>
     </div>
   );
 }
 const stepBtn: React.CSSProperties = { width: 28, height: 28, borderRadius: 8, border: CARD_BORDER, background: BG, color: GOLD, fontSize: 18, fontWeight: 800, cursor: "pointer" };
 
-function WinnerForm({ match, social, init, initConf, editLabel, onSubmit, scoreResult }: { match: Match; social: SocialStatsOut | null; init: Record<string, unknown> | null; initConf: number; editLabel: string | null; onSubmit: SubmitFn; scoreResult: WinnerResult | null }) {
+function WinnerForm({ match, social, init, initConf, editLabel, onSubmit, scoreResult, disabled }: { match: Match; social: SocialStatsOut | null; init: Record<string, unknown> | null; initConf: number; editLabel: string | null; onSubmit: SubmitFn; scoreResult: WinnerResult | null; disabled?: boolean }) {
   // Si el marcador exacto guardado es empate, el ganador queda fijado en
   // "Empate": no tiene sentido elegir una selección que contradiga el marcador.
   const forcedDraw = scoreResult === "draw";
@@ -1833,15 +1905,16 @@ function WinnerForm({ match, social, init, initConf, editLabel, onSubmit, scoreR
       <div style={{ display: "flex", gap: 6 }}>
         {[1, 2, 3].map((c) => <button key={c} onClick={() => setConf(c)} style={optBtn(conf === c)}>×{c}</button>)}
       </div>
-      <button disabled={busy || !result} style={{ ...btnPrimary, opacity: result ? 1 : 0.5 }}
-        onClick={async () => { if (!result) return; setBusy(true); await onSubmit("winner", { result }, conf); setBusy(false); }}>
+      {disabled && <ClosedNote />}
+      <button disabled={busy || !result || disabled} style={{ ...btnPrimary, opacity: result && !disabled ? 1 : 0.5 }}
+        onClick={async () => { if (!result) return; setBusy(true); try { await onSubmit("winner", { result }, conf); } finally { setBusy(false); } }}>
         {editLabel ?? "Guardar"} ganador
       </button>
     </div>
   );
 }
 
-function FirstScorerForm({ scorers, pendingTeams, init, editLabel, onSubmit }: { scorers: ScorerCandidate[]; pendingTeams: string[]; init: Record<string, unknown> | null; editLabel: string | null; onSubmit: SubmitFn }) {
+function FirstScorerForm({ scorers, pendingTeams, init, editLabel, onSubmit, disabled }: { scorers: ScorerCandidate[]; pendingTeams: string[]; init: Record<string, unknown> | null; editLabel: string | null; onSubmit: SubmitFn; disabled?: boolean }) {
   const [playerId, setPlayerId] = useState<string>(typeof init?.player_id === "string" ? init.player_id : "");
   const [noGoals, setNoGoals] = useState(init?.no_goals === true);
   const [busy, setBusy] = useState(false);
@@ -1860,8 +1933,9 @@ function FirstScorerForm({ scorers, pendingTeams, init, editLabel, onSubmit }: {
         <input type="checkbox" checked={noGoals} onChange={(e) => setNoGoals(e.target.checked)} />
         Nadie marca (0-0)
       </label>
-      <button disabled={busy || (!noGoals && !playerId)} style={{ ...btnPrimary, opacity: noGoals || playerId ? 1 : 0.5 }}
-        onClick={async () => { setBusy(true); await onSubmit("first_scorer", { player_id: noGoals ? null : playerId, no_goals: noGoals }); setBusy(false); }}>
+      {disabled && <ClosedNote />}
+      <button disabled={busy || (!noGoals && !playerId) || disabled} style={{ ...btnPrimary, opacity: (noGoals || playerId) && !disabled ? 1 : 0.5 }}
+        onClick={async () => { setBusy(true); try { await onSubmit("first_scorer", { player_id: noGoals ? null : playerId, no_goals: noGoals }); } finally { setBusy(false); } }}>
         {editLabel ?? "Guardar"} goleador
       </button>
     </div>
@@ -1872,7 +1946,7 @@ function FirstScorerForm({ scorers, pendingTeams, init, editLabel, onSubmit }: {
 // envía el que corresponde al event_type elegido (ver toEventData).
 type ChainDraft = { event_type: ChainEventType; team: "home" | "away"; result: WinnerResult; home: number; away: number };
 
-function ChainForm({ match, init, editLabel, onSubmit }: { match: Match; init: Record<string, unknown> | null; editLabel: string | null; onSubmit: SubmitFn }) {
+function ChainForm({ match, init, editLabel, onSubmit, disabled }: { match: Match; init: Record<string, unknown> | null; editLabel: string | null; onSubmit: SubmitFn; disabled?: boolean }) {
   const initSteps: ChainDraft[] | null = Array.isArray(init?.chain)
     ? (init!.chain as ChainStep[]).map((s) => ({
         event_type: s.event_type,
@@ -1925,10 +1999,12 @@ function ChainForm({ match, init, editLabel, onSubmit }: { match: Match; init: R
           <ChainStepDetail step={s} match={match} onChange={(patch) => update(i, patch)} />
         </div>
       ))}
-      <button disabled={busy} style={btnPrimary} onClick={async () => {
+      {disabled && <ClosedNote />}
+      <button disabled={busy || disabled} style={{ ...btnPrimary, opacity: disabled ? 0.5 : 1 }} onClick={async () => {
         setBusy(true);
-        await onSubmit("chain", { chain: steps.map((s, i) => ({ step: i + 1, event_type: s.event_type, event_data: toEventData(s) })) });
-        setBusy(false);
+        try {
+          await onSubmit("chain", { chain: steps.map((s, i) => ({ step: i + 1, event_type: s.event_type, event_data: toEventData(s) })) });
+        } finally { setBusy(false); }
       }}>
         {editLabel ?? "Guardar"} cadena (3 eslabones)
       </button>
@@ -1971,7 +2047,7 @@ function ChainStepDetail({ step, match, onChange }: { step: ChainDraft; match: M
   }
 }
 
-function DuelForm({ duels, init, editLabel, onSubmit }: { duels: DuelOut[]; init: Record<string, unknown> | null; editLabel: string | null; onSubmit: SubmitFn }) {
+function DuelForm({ duels, init, editLabel, onSubmit, disabled }: { duels: DuelOut[]; init: Record<string, unknown> | null; editLabel: string | null; onSubmit: SubmitFn; disabled?: boolean }) {
   const [pick, setPick] = useState<{ duelId: string; playerId: string } | null>(
     typeof init?.duel_id === "string" && typeof init?.winner_player_id === "string"
       ? { duelId: init.duel_id, playerId: init.winner_player_id }
@@ -1990,22 +2066,26 @@ function DuelForm({ duels, init, editLabel, onSubmit }: { duels: DuelOut[]; init
               return (
                 <button key={pl.id} onClick={() => setPick({ duelId: d.duel_id, playerId: pl.id })} style={{ ...optBtn(active), flexDirection: "column", textAlign: "left", alignItems: "flex-start", padding: 8 }}>
                   <span style={{ fontSize: 12 }}>{pl.name}</span>
-                  <span style={{ fontSize: 10, color: DIM }}>{pl.team} · forma {pl.stats.form}</span>
+                  {/* FIX: "forma"/stats del jugador son sintéticos (PRNG, no datos
+                      reales del Mundial). Mostramos solo nombre, equipo y posición,
+                      que sí son reales. */}
+                  <span style={{ fontSize: 10, color: DIM }}>{pl.team}{pl.position ? ` · ${pl.position}` : ""}</span>
                 </button>
               );
             })}
           </div>
         </div>
       ))}
-      <button disabled={busy || !pick} style={{ ...btnPrimary, opacity: pick ? 1 : 0.5 }}
-        onClick={async () => { if (!pick) return; setBusy(true); await onSubmit("duel", { duel_id: pick.duelId, winner_player_id: pick.playerId }); setBusy(false); }}>
+      {disabled && <ClosedNote />}
+      <button disabled={busy || !pick || disabled} style={{ ...btnPrimary, opacity: pick && !disabled ? 1 : 0.5 }}
+        onClick={async () => { if (!pick) return; setBusy(true); try { await onSubmit("duel", { duel_id: pick.duelId, winner_player_id: pick.playerId }); } finally { setBusy(false); } }}>
         {editLabel ?? "Guardar"} duelo
       </button>
     </div>
   );
 }
 
-function OverUnderForm({ ouLines, social, init, editLabel, onSubmit }: { ouLines: OverUnderLineOut[]; social: SocialStatsOut | null; init: Record<string, unknown> | null; editLabel: string | null; onSubmit: SubmitFn }) {
+function OverUnderForm({ ouLines, social, init, editLabel, onSubmit, disabled }: { ouLines: OverUnderLineOut[]; social: SocialStatsOut | null; init: Record<string, unknown> | null; editLabel: string | null; onSubmit: SubmitFn; disabled?: boolean }) {
   const [category, setCategory] = useState<OverUnderCategory>((init?.category as OverUnderCategory) ?? "goals");
   const [difficulty, setDifficulty] = useState<OverUnderDifficulty>((init?.difficulty as OverUnderDifficulty) ?? "medium");
   const [choice, setChoice] = useState<"over" | "under" | null>((init?.choice as "over" | "under") ?? null);
@@ -2033,15 +2113,16 @@ function OverUnderForm({ ouLines, social, init, editLabel, onSubmit }: { ouLines
         </div>
       )}
       {community && <ManadaHint pct={community.pct} total={community.total} />}
-      <button disabled={busy || !choice || !sel} style={{ ...btnPrimary, opacity: choice && sel ? 1 : 0.5 }}
-        onClick={async () => { if (!choice || !sel) return; setBusy(true); await onSubmit("over_under", { category, line: sel.line, choice, difficulty }); setBusy(false); }}>
+      {disabled && <ClosedNote />}
+      <button disabled={busy || !choice || !sel || disabled} style={{ ...btnPrimary, opacity: choice && sel && !disabled ? 1 : 0.5 }}
+        onClick={async () => { if (!choice || !sel) return; setBusy(true); try { await onSubmit("over_under", { category, line: sel.line, choice, difficulty }); } finally { setBusy(false); } }}>
         {editLabel ?? "Guardar"} over/under
       </button>
     </div>
   );
 }
 
-function MinuteDramaForm({ social, init, editLabel, onSubmit }: { social: SocialStatsOut | null; init: Record<string, unknown> | null; editLabel: string | null; onSubmit: SubmitFn }) {
+function MinuteDramaForm({ social, init, editLabel, onSubmit, disabled }: { social: SocialStatsOut | null; init: Record<string, unknown> | null; editLabel: string | null; onSubmit: SubmitFn; disabled?: boolean }) {
   const [event, setEvent] = useState<DramaEvent>((init?.event as DramaEvent) ?? "first_goal");
   const [range, setRange] = useState<MinuteRange>((init?.minute_range as MinuteRange) ?? "0-10");
   const [noEvent, setNoEvent] = useState(init?.no_event === true);
@@ -2060,15 +2141,16 @@ function MinuteDramaForm({ social, init, editLabel, onSubmit }: { social: Social
         El evento no ocurre
       </label>
       {community && <ManadaHint pct={community.pct} total={community.total} />}
-      <button disabled={busy} style={btnPrimary}
-        onClick={async () => { setBusy(true); await onSubmit("minute_drama", noEvent ? { event, no_event: true } : { event, minute_range: range }); setBusy(false); }}>
+      {disabled && <ClosedNote />}
+      <button disabled={busy || disabled} style={{ ...btnPrimary, opacity: disabled ? 0.5 : 1 }}
+        onClick={async () => { setBusy(true); try { await onSubmit("minute_drama", noEvent ? { event, no_event: true } : { event, minute_range: range }); } finally { setBusy(false); } }}>
         {editLabel ?? "Guardar"} minuto
       </button>
     </div>
   );
 }
 
-function SocialForm({ match, social, init, editLabel, onSubmit }: { match: Match; social: SocialStatsOut | null; init: Record<string, unknown> | null; editLabel: string | null; onSubmit: SubmitFn }) {
+function SocialForm({ match, social, init, editLabel, onSubmit, disabled }: { match: Match; social: SocialStatsOut | null; init: Record<string, unknown> | null; editLabel: string | null; onSubmit: SubmitFn; disabled?: boolean }) {
   const [choice, setChoice] = useState<WinnerResult | null>((init?.choice as WinnerResult) ?? null);
   const [busy, setBusy] = useState(false);
   const winnerStats = social?.stats?.winner ?? [];
@@ -2101,8 +2183,9 @@ function SocialForm({ match, social, init, editLabel, onSubmit }: { match: Match
           {chosenPct < 50 ? <><Flame size={13} /> Vas contra la manada: más puntos si aciertas</> : "Vas con la mayoría"}
         </div>
       )}
-      <button disabled={busy || !choice} style={{ ...btnPrimary, opacity: choice ? 1 : 0.5 }}
-        onClick={async () => { if (!choice) return; setBusy(true); await onSubmit("social", { question_key: "winner", choice, community_pct_at_time: chosenPct }); setBusy(false); }}>
+      {disabled && <ClosedNote />}
+      <button disabled={busy || !choice || disabled} style={{ ...btnPrimary, opacity: choice && !disabled ? 1 : 0.5 }}
+        onClick={async () => { if (!choice) return; setBusy(true); try { await onSubmit("social", { question_key: "winner", choice, community_pct_at_time: chosenPct }); } finally { setBusy(false); } }}>
         {editLabel ?? "Guardar en"} Modo Manada
       </button>
     </div>

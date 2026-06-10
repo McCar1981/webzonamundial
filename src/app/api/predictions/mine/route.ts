@@ -16,5 +16,6 @@ export async function GET() {
   const user = await getCurrentUser();
   if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   const counts = await predictedCountsByUser(user.id);
-  return NextResponse.json({ counts, types_total: PREDICTION_TYPES.length });
+  // FIX 5: conteo de predicciones del usuario → no cachear en el navegador.
+  return NextResponse.json({ counts, types_total: PREDICTION_TYPES.length }, { headers: { "Cache-Control": "private, no-store" } });
 }

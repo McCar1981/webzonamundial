@@ -6,6 +6,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import type { LucideIcon } from "lucide-react";
+import { TYPE_META, type PredictionType } from "@/lib/predictions/types";
 import {
   ACHIEVEMENT_ICON, BOOST_ICON, CHALLENGE_ICON,
   CheckCircle2, Coins, Flame, Gift, Medal, ShoppingCart,
@@ -165,7 +166,7 @@ export default function GamificationHUD() {
         {/* Hora Feliz (flash) */}
         {fl.active && (
           <div style={{ background: "rgba(232,212,139,0.12)", border: `1px solid ${GOLD}`, borderRadius: 14, padding: "9px 14px", color: GOLD2, fontWeight: 800, fontSize: 13.5, textAlign: "center" }}>
-            {fl.label} — termina a las {new Date(fl.endsAt).toLocaleTimeString("es", { hour: "2-digit", minute: "2-digit" })}
+            ⚡ Hora Feliz: {flashTypeLabel(fl.type)} ×{fl.multiplier} — termina a las {new Date(fl.endsAt).toLocaleTimeString("es", { hour: "2-digit", minute: "2-digit" })}
           </div>
         )}
 
@@ -232,12 +233,19 @@ export default function GamificationHUD() {
       </div>
 
       {flash && (
-        <div style={{ position: "fixed", bottom: 20, left: "50%", transform: "translateX(-50%)", background: BG2, border: `1px solid ${GOLD}`, color: GOLD2, borderRadius: 12, padding: "11px 18px", fontWeight: 700, fontSize: 13.5, zIndex: 50, boxShadow: "0 8px 30px rgba(0,0,0,0.5)" }}>
+        <div role="status" aria-live="polite" style={{ position: "fixed", bottom: 20, left: "50%", transform: "translateX(-50%)", background: BG2, border: `1px solid ${GOLD}`, color: GOLD2, borderRadius: 12, padding: "11px 18px", fontWeight: 700, fontSize: 13.5, zIndex: 50, boxShadow: "0 8px 30px rgba(0,0,0,0.5)" }}>
           {flash}
         </div>
       )}
     </>
   );
+}
+
+// Etiqueta legible del flash: el backend manda el tipo en crudo (p.ej.
+// "exact_score"); lo mapeamos al nombre humano del tipo. "all" → "TODO".
+function flashTypeLabel(type: string | null): string {
+  if (!type || type === "all") return "TODO";
+  return TYPE_META[type as PredictionType]?.label ?? type;
 }
 
 function challengeIcon(key: string) {

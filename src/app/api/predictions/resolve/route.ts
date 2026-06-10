@@ -6,6 +6,7 @@
 // Disparado por el worker/webhook de la API de partidos.
 
 import { NextResponse } from "next/server";
+import { requireCron } from "@/lib/auth-helpers";
 import type { MatchResultReal } from "@/lib/predictions/types";
 import { getMatchMeta } from "@/lib/predictions/match-data";
 import { resolveMatch } from "@/lib/predictions/store";
@@ -16,11 +17,9 @@ export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
 export async function POST(req: Request) {
-  const expected = process.env.CRON_SECRET;
-  const auth = req.headers.get("authorization") || "";
-  if (!expected || auth !== `Bearer ${expected}`) {
-    return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-  }
+  // FIX 4: guard de cron timing-safe y fail-closed (igual que /api/cron/*).
+  const denied = requireCron(req);
+  if (denied) return denied;
 
   let body: { match_id?: string; match_result?: MatchResultReal; mode?: "now" | "stage" };
   try { body = await req.json(); } catch { return NextResponse.json({ error: "bad_request" }, { status: 400 }); }

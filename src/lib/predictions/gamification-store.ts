@@ -237,6 +237,27 @@ function buildStats(rows: ResolvedRow[], xp: number): AchievementStats {
 export async function grantMatchRewards(matchId: string, userIds: string[]): Promise<void> {
   const admin = adminClient();
   for (const uid of userIds) {
+    // IDEMPOTENCIA por (usuario, partido): si grantMatchRewards corre dos veces
+    // para el mismo partido (resoluciones concurrentes), antes pagaba doble. El
+    // INSERT a prediction_match_rewards (PK user_id,match_id) actúa de candado:
+    // solo la PRIMERA ejecución por usuario gana; si choca con 23505 ya se pagó y
+    // saltamos a ese usuario sin volver a abonar.
+    // FALLO SEGURO: si la tabla aún no existe en algún entorno, NO bloqueamos la
+    // resolución del partido — capturamos el error y seguimos con el comportamiento
+    // actual (mejor pagar que dejar partidos sin resolver el día del Mundial).
+    const { error: rewardLockErr } = await admin
+      .from("prediction_match_rewards")
+      .insert({ user_id: uid, match_id: matchId });
+    if (rewardLockErr) {
+      const code = (rewardLockErr as { code?: string }).code;
+      if (code === "23505") continue; // ya recompensado por (usuario, partido)
+      // Cualquier otro error (p.ej. tabla inexistente): log y continúa pagando.
+      console.error(
+        `[gamification] prediction_match_rewards lock fallback (uid=${uid} match=${matchId}):`,
+        rewardLockErr.message,
+      );
+    }
+
     const { data } = await admin
       .from("predictions")
       .select("prediction_type,points_earned,is_correct,is_contrarian,match_multiplier,match_id,resolved_at")
@@ -322,7 +343,12 @@ async function resolveDuelsForMatch(matchId: string): Promise<void> {
       resolved_at: new Date().toISOString(),
     }).eq("id", d.id);
     if (winner) {
-      await grantCoins(winner, 50, 0, { module: "predicciones" });
+      // ANTI-CHEAT (colusión): los duelos son SOLO bragging-rights, NO acuñan
+      // moneda. Antes el ganador recibía 50 Fútcoins acuñadas de la nada y sin
+      // coste para el retador, así que dos cuentas en colusión farmeaban infinito
+      // (un par gana siempre, sin tope por par/partido). Mismo criterio que el
+      // Modo Fantasma (micro): pagar SOLO XP, nunca Fútcoins. 0 coins + 30 XP.
+      await grantCoins(winner, 0, 30, { seasonXp: false, module: "predicciones" });
     }
     // Acumula el cara a cara persistente (Mejora I).
     await recordDuelResult({
@@ -539,13 +565,15 @@ export async function claimDaily(uid: string): Promise<CheckinResult> {
   if (reward.chest) {
     chest = openChest(`${uid}:${today}`);
     gainCoins += chest.coins; gainXp += chest.xp;
-    if (chest.boost) {
-      await admin.from("prediction_boosts").insert({ user_id: uid, boost_id: chest.boost });
-    }
   }
 
   // Abono ATÓMICO de Fútcoins + XP por la puerta única (billetera).
   const grant = await grantCoins(uid, gainCoins, gainXp, { seasonXp: false, module: "predicciones" });
+
+  // El boost del cofre se entrega solo tras ganar el gate KV — exactamente una vez.
+  if (chest?.boost) {
+    await admin.from("prediction_boosts").insert({ user_id: uid, boost_id: chest.boost });
+  }
 
   // Persiste la racha en KV (fuente de verdad robusta a la migración pendiente).
   if (kvOk) {
@@ -665,7 +693,15 @@ export async function buyBoost(uid: string, boostId: string): Promise<BuyResult>
   if (!spent.ok) return { ok: false, error: "insufficient_coins", coins: spent.coins };
   const { error } = await admin.from("prediction_boosts").insert({ user_id: uid, boost_id: boostId });
   if (error) {
-    await grantCoins(uid, def.cost, 0, { seasonXp: false }).catch(() => {});
+    // Reembolso del cobro al no poder entregar el boost. Si el propio reembolso
+    // falla, NO lo tragamos: dejamos rastro (uid/importe/motivo) para reconciliar
+    // a mano, en vez de perder Fútcoins del usuario en silencio.
+    await grantCoins(uid, def.cost, 0, { seasonXp: false }).catch((refundErr) => {
+      console.error(
+        `[gamification] buyBoost rollback FALLIDO — reconciliar a mano: uid=${uid} cost=${def.cost} boost=${boostId} motivo=`,
+        refundErr,
+      );
+    });
     return { ok: false, error: "buy_failed", coins: spent.coins + def.cost };
   }
   return { ok: true, coins: spent.coins };
@@ -801,7 +837,14 @@ export async function createDuel(challengerId: string, opponentUsername: string,
   const { data, error } = await admin.from("prediction_duels")
     .insert({ challenger_id: challengerId, opponent_id: opponentId, match_id: matchId, status: "pending" })
     .select("*").single();
-  if (error) throw error;
+  // 23505 = unique_violation del índice (challenger_id, opponent_id, match_id)
+  // WHERE status IN ('pending','active') que añade otro agente vía SQL: ya hay un
+  // duelo vivo contra ese rival en ese partido. Devolvemos un error legible en
+  // vez de explotar (evita además crear N duelos del mismo par/partido).
+  if (error) {
+    if ((error as { code?: string }).code === "23505") return { ok: false, error: "duel_exists" };
+    throw error;
+  }
   return { ok: true, duel: data as DuelOut };
 }
 

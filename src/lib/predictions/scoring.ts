@@ -29,6 +29,10 @@ export interface BaseScore {
   correct: boolean;
   points: number;
   detail: string; // texto del desglose ("Resultado exacto", "Ganador con marcador erróneo", ...)
+  // FIX 9: si el feed del partido llega INCOMPLETO para este tipo, la predicción
+  // se "anula" (void) en vez de puntuar 0: 0 pts pero NO cuenta como fallo en
+  // stats/racha (es neutra). resolveMatch lee este flag.
+  voided?: boolean;
 }
 
 const STREAK_MULT = 1.5;
@@ -113,7 +117,14 @@ function scoreFirstScorer(d: FirstScorerData, r: MatchResultReal): BaseScore {
 export interface ChainStepResult { step: number; correct: boolean }
 export function evalChain(d: ChainData, r: MatchResultReal): { results: ChainStepResult[]; inOrder: number } {
   const goals = r.events.filter((e) => e.type === "goal").sort((a, b) => a.minute - b.minute);
+  // FIX 4: tarjetas ordenadas por minuto + cursor de minuto consumido. Igual
+  // que los goles, cada eslabón "card" debe consumir una tarjeta DISTINTA del
+  // equipo indicado con minuto estrictamente creciente respecto a la anterior
+  // consumida. Así una cadena trivial repetida [card,card,card] ya no acierta.
+  const cards = r.events.filter((e) => e.type === "card").sort((a, b) => a.minute - b.minute);
   let goalCursor = 0;
+  let cardLastMinute = -Infinity; // minuto de la última tarjeta consumida
+  const cardUsed = new Set<number>(); // índices de tarjetas ya consumidas
   const results: ChainStepResult[] = [];
   for (const step of d.chain) {
     let ok = false;
@@ -137,7 +148,16 @@ export function evalChain(d: ChainData, r: MatchResultReal): { results: ChainSte
         break;
       }
       case "card": {
-        ok = r.events.some((e) => e.type === "card" && e.team === step.event_data.team);
+        // Busca la primera tarjeta no consumida, del equipo indicado, con minuto
+        // estrictamente mayor al de la última consumida; la consume si existe.
+        const idx = cards.findIndex(
+          (c, i) => !cardUsed.has(i) && c.team === step.event_data.team && c.minute > cardLastMinute,
+        );
+        if (idx !== -1) {
+          ok = true;
+          cardUsed.add(idx);
+          cardLastMinute = cards[idx].minute;
+        }
         break;
       }
     }
@@ -168,8 +188,14 @@ function scoreDuel(d: DuelData, r: MatchResultReal): BaseScore {
   // duel_id codifica "playerA__playerB" para no depender de un store.
   const [pa, pb] = d.duel_id.split("__");
   if (!pa || !pb) return { correct: false, points: 0, detail: "Duelo inválido" };
-  const ra = r.player_ratings[pa] ?? 0;
-  const rb = r.player_ratings[pb] ?? 0;
+  // FIX 9: si el feed no trae rating para AMBOS jugadores del duelo, anular
+  // (no penalizar al usuario por datos incompletos).
+  const ratings: Record<string, number> = r.player_ratings ?? {};
+  if (ratings[pa] == null || ratings[pb] == null) {
+    return { correct: false, points: 0, detail: "Anulado: sin ratings", voided: true };
+  }
+  const ra = ratings[pa];
+  const rb = ratings[pb];
   const winner = ra === rb ? null : ra > rb ? pa : pb;
   if (winner && winner === d.winner_player_id) {
     return { correct: true, points: 15, detail: "Duelo acertado" };
@@ -178,12 +204,21 @@ function scoreDuel(d: DuelData, r: MatchResultReal): BaseScore {
 }
 
 function scoreOverUnder(d: OverUnderData, r: MatchResultReal): BaseScore {
+  // FIX 9: las categorías de estadística (no goles) dependen de r.stats. Si el
+  // feed no trae esa categoría, anular en vez de puntuar 0 injusto.
+  const stats = r.stats as MatchResultReal["stats"] | undefined;
   let actual = 0;
   switch (d.category) {
     case "goals": actual = r.score.home + r.score.away; break;
-    case "corners": actual = r.stats.corners.home + r.stats.corners.away; break;
-    case "cards": actual = r.stats.cards.home + r.stats.cards.away; break;
-    case "shots_on_target": actual = r.stats.shots_on_target.home + r.stats.shots_on_target.away; break;
+    case "corners":
+      if (!stats?.corners) return { correct: false, points: 0, detail: "Anulado: sin datos de córners", voided: true };
+      actual = stats.corners.home + stats.corners.away; break;
+    case "cards":
+      if (!stats?.cards) return { correct: false, points: 0, detail: "Anulado: sin datos de tarjetas", voided: true };
+      actual = stats.cards.home + stats.cards.away; break;
+    case "shots_on_target":
+      if (!stats?.shots_on_target) return { correct: false, points: 0, detail: "Anulado: sin datos de tiros a puerta", voided: true };
+      actual = stats.shots_on_target.home + stats.shots_on_target.away; break;
   }
   const isOver = actual > d.line;
   const hit = (d.choice === "over" && isOver) || (d.choice === "under" && !isOver);
@@ -200,6 +235,11 @@ function scoreMinuteDrama(d: MinuteDramaData, r: MatchResultReal): BaseScore {
     return noGoals
       ? { correct: true, points: 25, detail: "Acertaste el 0-0" }
       : { correct: false, points: 0, detail: "Sí hubo evento" };
+  }
+  // FIX 9: first_sub depende de r.first_sub_minute; si el feed no lo trae,
+  // anular (no es lo mismo "no hubo dato" que "el evento no ocurrió").
+  if (d.event === "first_sub" && r.first_sub_minute == null) {
+    return { correct: false, points: 0, detail: "Anulado: sin minuto del primer cambio", voided: true };
   }
   let evMinute: number | undefined;
   switch (d.event) {
@@ -260,6 +300,8 @@ export interface FinalScore {
   pointsBeforeMatchMultiplier: number;
   breakdown: string;
   correct: boolean;
+  // FIX 9: propaga la anulación hasta resolveMatch (0 pts, neutra en racha/stats).
+  voided?: boolean;
 }
 
 /**
@@ -268,6 +310,16 @@ export interface FinalScore {
  * pero sí se amplifican por el match_multiplier (más riesgo en Diamante).
  */
 export function applyBonuses(base: BaseScore, ctx: ResolutionContext): FinalScore {
+  // FIX 9: una predicción anulada no se multiplica ni suma; sale 0 pts y neutra.
+  if (base.voided) {
+    return {
+      points: 0,
+      pointsBeforeMatchMultiplier: 0,
+      breakdown: `${base.detail} (anulada: feed incompleto) = 0 pts`,
+      correct: false,
+      voided: true,
+    };
+  }
   let pts = base.points;
   const parts: string[] = [base.detail + `: ${base.points} pts`];
 

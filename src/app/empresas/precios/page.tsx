@@ -24,6 +24,7 @@ const FAQ = [
   { q: "¿Emitís factura?", a: "Sí. Emitimos factura a nombre de tu empresa para que puedas justificar el gasto como actividad interna de equipo." },
   { q: "¿La liga es solo para mi equipo?", a: "Sí. Es una liga privada y cerrada: tus empleados entran por invitación o código de empresa, nadie de fuera." },
   { q: "¿Qué pasa si somos más de 150 empleados?", a: "El plan Corporate cubre empresas grandes y multi-sede. Si necesitas algo a medida, escríbenos a gol@zonamundial.app y lo montamos contigo." },
+  { q: "¿Y si mi empresa está en LATAM?", a: "De momento estamos enfocados en España. Si tu empresa está en LATAM, escríbenos a gol@zonamundial.app y te pasamos precios locales." },
 ];
 
 export default function EmpresasPreciosPage() {
@@ -43,7 +44,7 @@ export default function EmpresasPreciosPage() {
         <header className="mt-6 text-center">
           <h1 className="text-4xl sm:text-5xl font-black tracking-tight">Precios para empresas</h1>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-zm-text-muted leading-relaxed">
-            Un pago único válido para todo el Mundial 2026, con factura. Elige el plan que encaje con tu equipo.
+            Un pago único válido para todo el Mundial 2026, con factura y enfocado a España. Elige el plan que encaje con tu equipo.
           </p>
         </header>
 

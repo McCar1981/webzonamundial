@@ -20,7 +20,6 @@ interface EmpresaPlan {
   tagline: string;
   idealFor: string;
   priceEur: number;
-  priceUsd: number;
   features: string[];
   highlight?: boolean;
   cta: { label: string; href: string };
@@ -34,7 +33,6 @@ const EMPRESA_PLANS: EmpresaPlan[] = [
     tagline: "Lo esencial para lanzar la liga de tu equipo",
     idealFor: "Equipos y pymes de hasta 30 personas",
     priceEur: 149,
-    priceUsd: 165,
     features: [
       "Liga privada cerrada",
       "Ranking individual",
@@ -51,7 +49,6 @@ const EMPRESA_PLANS: EmpresaPlan[] = [
     tagline: "La liga completa para que compitan los departamentos",
     idealFor: "Empresas de hasta 150 empleados",
     priceEur: 299,
-    priceUsd: 329,
     highlight: true,
     features: [
       "Todo lo de Equipo",
@@ -70,7 +67,6 @@ const EMPRESA_PLANS: EmpresaPlan[] = [
     tagline: "Para empresas grandes y varias oficinas",
     idealFor: "Empresas grandes y multi-sede",
     priceEur: 499,
-    priceUsd: 549,
     features: [
       "Todo lo de Empresa",
       "Departamentos ilimitados",
@@ -127,7 +123,7 @@ export default function EmpresaPlanCards() {
             </div>
             <p className="mt-1.5 inline-flex items-center gap-1.5 text-[11px] font-bold" style={{ color: GOLD }}>
               <span className="inline-block w-1.5 h-1.5 rounded-full" style={{ background: GOLD }} />
-              Pago único · {plan.priceUsd} USD en LATAM y USA
+              Pago único · Precio para España
             </p>
 
             <div

@@ -16,6 +16,8 @@ import {
   Lock, Megaphone, Monitor, FileText, Sparkles, Medal,
 } from "lucide-react";
 import EmpresaPlanCards from "./EmpresaPlanCards";
+// Reutiliza el cargador de imagen con fallback de /bares (genérico, no toca /bares).
+import BarPhoto from "../bares/BarPhoto";
 
 const EMPRESAS_TITLE = "Porra Corporativa para Empresas · ZonaMundial";
 const EMPRESAS_DESCRIPTION =
@@ -225,10 +227,30 @@ export default function EmpresasLandingPage() {
               style={{
                 border: "1px solid rgba(255,255,255,0.10)",
                 boxShadow: "0 40px 90px -40px rgba(0,0,0,0.85)",
-                background:
-                  "radial-gradient(120% 80% at 80% 10%, rgba(201,168,76,0.16), transparent 55%), linear-gradient(150deg, #16273E 0%, #0E1B2C 55%, #0A1422 100%)",
               }}
             >
+              {/* Foto del hero (slot): aparece sola al subir el .webp; mientras, el mockup */}
+              <BarPhoto
+                src="/images/empresas/hero-porra-empresa.webp"
+                alt="Equipo de una empresa participando en la liga del Mundial"
+                priority
+                objectPosition="center"
+              >
+                <div
+                  className="w-full h-full"
+                  style={{
+                    background:
+                      "radial-gradient(120% 80% at 80% 10%, rgba(201,168,76,0.16), transparent 55%), linear-gradient(150deg, #16273E 0%, #0E1B2C 55%, #0A1422 100%)",
+                  }}
+                />
+              </BarPhoto>
+
+              {/* Overlay para legibilidad de los mockups sobre la foto */}
+              <div
+                className="absolute inset-0"
+                style={{ background: "linear-gradient(180deg, rgba(10,17,30,0.45) 0%, rgba(10,17,30,0.30) 45%, rgba(10,17,30,0.68) 100%)" }}
+              />
+
               {/* Ranking por departamentos, centrado */}
               <div className="absolute inset-0 flex items-center justify-center p-6">
                 <RankingMockup
@@ -336,23 +358,38 @@ export default function EmpresasLandingPage() {
             </div>
             <div className="relative flex justify-center">
               <div
-                className="relative w-full max-w-[420px] aspect-[4/3] rounded-[26px] overflow-hidden flex items-center justify-center p-5"
+                className="relative w-full max-w-[420px] aspect-[4/3] rounded-[26px] overflow-hidden"
                 style={{
                   border: "1px solid rgba(255,255,255,0.10)",
                   boxShadow: "0 40px 90px -42px rgba(0,0,0,0.85)",
-                  background:
-                    "radial-gradient(110% 90% at 20% 0%, rgba(201,168,76,0.14), transparent 55%), linear-gradient(150deg, #16273E, #0C1626)",
                 }}
               >
-                <RankingMockup
-                  place="TuEmpresa S.L."
-                  rows={[
-                    { p: "1", n: "Ventas", pts: "1.840" },
-                    { p: "2", n: "Marketing", pts: "1.712" },
-                    { p: "3", n: "Operaciones", pts: "1.689" },
-                    { p: "4", n: "Dirección", pts: "1.520" },
-                  ]}
-                />
+                {/* Foto de oficina (slot): aparece sola al subir el .webp; mientras, el mockup */}
+                <BarPhoto
+                  src="/images/empresas/empresa-ranking-oficina.webp"
+                  alt="Pantalla en la oficina mostrando el ranking por departamentos durante el Mundial"
+                  objectPosition="center"
+                >
+                  <div
+                    className="w-full h-full"
+                    style={{
+                      background:
+                        "radial-gradient(110% 90% at 20% 0%, rgba(201,168,76,0.14), transparent 55%), linear-gradient(150deg, #16273E, #0C1626)",
+                    }}
+                  />
+                </BarPhoto>
+                <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(10,17,30,0.30) 30%, rgba(10,17,30,0.6) 100%)" }} />
+                <div className="absolute inset-0 flex items-center justify-center p-5">
+                  <RankingMockup
+                    place="TuEmpresa S.L."
+                    rows={[
+                      { p: "1", n: "Ventas", pts: "1.840" },
+                      { p: "2", n: "Marketing", pts: "1.712" },
+                      { p: "3", n: "Operaciones", pts: "1.689" },
+                      { p: "4", n: "Dirección", pts: "1.520" },
+                    ]}
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -391,7 +428,7 @@ export default function EmpresasLandingPage() {
         <section id="planes" className="mt-24 scroll-mt-24">
           <h2 className="text-3xl font-black text-center" style={{ color: "#F4F1E9" }}>Elige el plan de tu empresa</h2>
           <p className="mt-3 text-center text-zm-text-muted">
-            Pago único válido para todo el Mundial 2026. Sin suscripciones. Con factura.
+            Pago único válido para todo el Mundial 2026. Sin suscripciones. Con factura. Precios para España.
           </p>
           <div className="mt-12">
             <EmpresaPlanCards />
@@ -404,6 +441,11 @@ export default function EmpresasLandingPage() {
           <p className="mt-3 mx-auto max-w-xl text-center text-[11px] text-zm-text-muted leading-relaxed">
             Emitimos factura. Actividad interna de empresa, sin premios en metálico gestionados por la plataforma.
           </p>
+          <p className="mt-2 text-center text-[11px] text-zm-text-muted">
+            ¿Tu empresa está en LATAM?{" "}
+            <a href="mailto:gol@zonamundial.app?subject=Porra%20Empresas%20LATAM" style={{ color: GOLD }}>Escríbenos</a>{" "}
+            y te pasamos precios locales.
+          </p>
         </section>
 
         {/* ── CTA FINAL ────────────────────────────────────── */}
@@ -411,6 +453,12 @@ export default function EmpresasLandingPage() {
           className="mt-24 relative text-center rounded-[32px] border overflow-hidden p-10 sm:p-16"
           style={{ borderColor: "rgba(201,168,76,0.3)", boxShadow: "0 40px 90px -50px rgba(0,0,0,0.85)" }}
         >
+          {/* Foto de cierre (slot): aparece sola al subir el .webp; mientras, degradado */}
+          <div className="absolute inset-0 -z-20">
+            <BarPhoto src="/images/empresas/cta-final-empresa.webp" alt="" objectPosition="center">
+              <div className="w-full h-full" style={{ background: "linear-gradient(180deg, #142536, #0B1622)" }} />
+            </BarPhoto>
+          </div>
           <div
             className="absolute inset-0 -z-10"
             style={{ background: "radial-gradient(ellipse 70% 90% at 50% 0%, rgba(201,168,76,0.20), transparent 60%), linear-gradient(180deg, rgba(10,17,30,0.82), rgba(11,22,37,0.92))" }}

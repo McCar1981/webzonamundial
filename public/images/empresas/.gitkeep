@@ -1,0 +1,9 @@
+# Imágenes de la landing /empresas (Porra Corporativa).
+# Sube aquí los .webp con EXACTAMENTE estos nombres y aparecen solos
+# (mientras no existan, la landing muestra los mockups CSS de respaldo):
+#
+#   hero-porra-empresa.webp        -> visual del hero (equipo/oficina). Recomendado ~1200x1500 (4:5) o 1500x1200.
+#   empresa-ranking-oficina.webp   -> bloque "Tu empresa en acción" (pantalla/oficina). ~1200x900 (4:3).
+#   cta-final-empresa.webp         -> fondo del CTA final. ~1600x900 (16:9), apaisado.
+#
+# Formato WebP, optimizadas para web. Sin escudos ni jugadores reales.

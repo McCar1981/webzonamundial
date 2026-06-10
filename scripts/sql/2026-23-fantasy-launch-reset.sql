@@ -1,4 +1,4 @@
--- scripts/sql/2026-22-fantasy-launch-reset.sql
+-- scripts/sql/2026-23-fantasy-launch-reset.sql
 --
 -- RESET DE LANZAMIENTO DEL FANTASY — EJECUTAR UNA SOLA VEZ, ANTES DEL PITIDO
 -- INICIAL (11 jun 2026, 12:00 ET). DESTRUCTIVO a propósito.

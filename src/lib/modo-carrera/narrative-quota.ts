@@ -21,6 +21,28 @@ function utcDay(ref: Date = new Date()): string {
   return ref.toISOString().slice(0, 10);
 }
 
+/** Rate-limit por IP para invitados: ventana y tope de generaciones IA. */
+const GUEST_IP_WINDOW_SEC = 60 * 60; // 1 hora
+const GUEST_IP_MAX = 12; // generaciones IA/hora por IP anónima
+
+/**
+ * Rate-limit POR IP para invitados (sin sesión). Sin esto, el cupo de invitados es
+ * un único cubo global (GUEST_DAILY_AI_GLOBAL): UNA IP anónima en bucle podía
+ * agotarlo para todos y quemar el presupuesto de tokens de Claude del día. Limita
+ * cada IP a GUEST_IP_MAX generaciones/hora. Ante fallo de KV degrada a "no
+ * limitado" (no romper la experiencia por un incidente de infraestructura).
+ */
+export async function guestIpRateLimited(ip: string): Promise<boolean> {
+  const key = `mc:narrativa:guestip:${ip}`;
+  try {
+    const count = await kv.incr(key);
+    if (count === 1) await kv.expire(key, GUEST_IP_WINDOW_SEC);
+    return count > GUEST_IP_MAX;
+  } catch {
+    return false;
+  }
+}
+
 /** Clave del cupo EXTRA (comprado con Fútcoins) de un usuario para el día. */
 function bonusKey(uid: string, day: string): string {
   return `mc:narrativa:bonus:u:${uid}:${day}`;

@@ -96,17 +96,28 @@ export default function CareerGame() {
     })();
   }, []);
 
-  // Autoguardado (local + servidor si hay sesión).
+  // Autoguardado. El local (localStorage) es inmediato; el del servidor va con
+  // DEBOUNCE: el efecto se re-ejecuta en cada cambio de `career` y su cleanup
+  // cancela el POST anterior, así una ráfaga de cambios (un partido en vivo, que
+  // muta el estado muchas veces) produce UN solo guardado ~1.2 s tras el último
+  // cambio, en vez de encadenar peticiones que pueden llegar desordenadas.
   useEffect(() => {
     if (!career || !hydrated.current) return;
-    saveCareer(career);
-    if (authed) {
+    saveCareer(career); // local: siempre, al instante (no se pierde progreso)
+    if (!authed) return;
+    const t = setTimeout(() => {
       // El servidor abona Fútcoins por misiones reclamadas (una vez por misión).
       // Si este guardado liquidó alguna, mostramos el premio real al jugador.
-      saveServerCareer(career).then((r) => {
-        if (r.futcoins > 0 || r.xpAwarded > 0) setCoinReward(r);
-      });
-    }
+      saveServerCareer(career)
+        .then((r) => {
+          if (r.futcoins > 0 || r.xpAwarded > 0) setCoinReward(r);
+        })
+        .catch(() => {
+          // Red/sesión caída: el progreso local ya quedó guardado y el próximo
+          // cambio reintenta. Evita un unhandled rejection silencioso.
+        });
+    }, 1200);
+    return () => clearTimeout(t);
   }, [career, authed]);
 
   // El banner de premio se auto-oculta a los pocos segundos.

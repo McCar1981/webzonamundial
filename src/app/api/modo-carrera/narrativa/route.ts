@@ -14,13 +14,22 @@ import { templateEntry, type NarrativeContext } from "@/lib/modo-carrera/narrati
 import type { NarrativeKind } from "@/lib/modo-carrera/types";
 import { getCurrentUser } from "@/lib/auth-helpers";
 import { isPaseDT } from "@/lib/pasedt/entitlement";
-import { consumeNarrativeQuota } from "@/lib/modo-carrera/narrative-quota";
+import { consumeNarrativeQuota, guestIpRateLimited } from "@/lib/modo-carrera/narrative-quota";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 30;
 
 const VALID_KINDS: NarrativeKind[] = ["briefing", "titular", "rueda_prensa", "evento"];
+
+/** IP del cliente (cabeceras de proxy de Vercel). */
+function getClientIp(req: Request): string {
+  return (
+    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    req.headers.get("x-real-ip") ||
+    "unknown"
+  );
+}
 
 interface Body {
   kind?: NarrativeKind;
@@ -63,7 +72,13 @@ export async function POST(req: Request) {
   // (sin tokens): el DT nunca se queda sin contenido, solo sin IA.
   const user = await getCurrentUser();
   const paseDT = user?.email ? await isPaseDT(user.email, user.id) : false;
-  const quota = await consumeNarrativeQuota({ userId: user?.id ?? null, paseDT });
+  // Invitado: rate-limit por IP ANTES de consumir el cupo global, para que una
+  // sola IP anónima no lo drene ni queme tokens. Si supera su tope, se sirve
+  // plantilla (sin IA), igual que cuando el cupo se agota.
+  const ipLimited = !user ? await guestIpRateLimited(getClientIp(req)) : false;
+  const quota = ipLimited
+    ? { allowed: false, remaining: 0, exceeded: true }
+    : await consumeNarrativeQuota({ userId: user?.id ?? null, paseDT });
 
   const entry = quota.allowed ? await generateNarrative(kind, ctx) : templateEntry(kind, ctx);
   return NextResponse.json(

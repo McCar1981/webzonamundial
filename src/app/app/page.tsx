@@ -78,6 +78,11 @@ type Mod = {
   // con elegancia al fondo base premium sin romper el layout.
   art?: string;
   title: string; desc: string; href?: string; cta: string; estado: Estado;
+  // Acción especial al pulsar: en vez de navegar, dispara algo en la propia app.
+  // "ia-coach" abre el widget flotante del IA Coach (montado en RootLayoutClient)
+  // sin salir del lobby a la landing estática. El href se conserva como respaldo
+  // (enlace real si falla el JS / para crawlers).
+  action?: "ia-coach";
 };
 type Cat = {
   key: string; label: string; sub: string;
@@ -159,7 +164,7 @@ const CATS: Cat[] = [
       { icon: "rankings", art: "/assets/card-backgrounds/ranking-global.webp", title: "Ranking global", desc: "Compite por país y por creador.", href: "/app/rankings", cta: "Ver ranking", estado: "Disponible" },
       { icon: "ligas", art: "/assets/card-backgrounds/ligas-privadas.webp", title: "Ligas privadas", desc: "Crea tu liga e invita a tus amigos.", href: "/app/fantasy/jugar?tab=ligas", cta: "Crear liga", estado: "Disponible" },
       { icon: "chat", art: "/assets/card-backgrounds/chat-por-ligas.webp", title: "Chat por liga", desc: "Habla en vivo durante el partido.", href: "/app/chat", cta: "Entrar", estado: "Disponible" },
-      { icon: "iaCoach", art: "/assets/card-backgrounds/ia-coach.webp", title: "IA Coach", desc: "Tu analista personal con IA.", href: "/app/ia-coach", cta: "Abrir", estado: "Nuevo" },
+      { icon: "iaCoach", art: "/assets/card-backgrounds/ia-coach.webp", title: "IA Coach", desc: "Tu analista personal con IA.", href: "/app/ia-coach", action: "ia-coach", cta: "Abrir", estado: "Nuevo" },
     ],
   },
   {
@@ -424,8 +429,14 @@ function ModuleCard({ mod, cat }: { mod: Mod; cat: Cat }) {
     cursor: disabled ? "default" : "pointer", opacity: disabled ? 0.96 : 1,
   };
   if (disabled) return <div className="zm-mod-card zm-mod-card--locked" style={style}>{inner}</div>;
+  // Cards de ACCIÓN (p.ej. IA Coach): siguen siendo un enlace real (respaldo si
+  // falla el JS), pero interceptamos el clic para abrir el widget en la propia
+  // app en vez de irnos a la landing estática.
+  const onClick = mod.action === "ia-coach"
+    ? (e: React.MouseEvent) => { e.preventDefault(); window.dispatchEvent(new CustomEvent("zm:open-coach")); }
+    : undefined;
   return (
-    <Link className="zm-mod-card" href={mod.href!} style={style} onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}>
+    <Link className="zm-mod-card" href={mod.href!} onClick={onClick} style={style} onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}>
       {inner}
     </Link>
   );

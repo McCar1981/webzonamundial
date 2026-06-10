@@ -59,6 +59,20 @@ export default function IACoachWidget() {
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
 
+  // Apertura externa: cualquier parte de la app (p.ej. la card "IA Coach" del
+  // lobby) abre el widget disparando en `window` el evento "zm:open-coach".
+  // Opcional `detail.mode` para entrar directo en un modo (coach/oracle/…).
+  useEffect(() => {
+    const onOpen = (e: Event) => {
+      const m = (e as CustomEvent<{ mode?: ModeId }>).detail?.mode;
+      if (m) setMode(m);
+      setShowTip(false);
+      setOpen(true);
+    };
+    window.addEventListener("zm:open-coach", onOpen);
+    return () => window.removeEventListener("zm:open-coach", onOpen);
+  }, []);
+
   return (
     <>
       {/* ── Launcher flotante ── */}

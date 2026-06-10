@@ -394,7 +394,7 @@ export default function TriviaPage() {
                 <SvgIcon name={cat.icon} size={28} />
                 <span style={{fontWeight:700,fontSize:16}}>{cat.name}</span>
                 <span style={{fontSize:14,color:DIM}}>{cat.desc}</span>
-                <span style={{textAlign:"center",fontWeight:700,color:GOLD}}>2,000+</span>
+                <span style={{textAlign:"center",fontWeight:700,color:GOLD}}>Varias</span>
               </div>
             ])}
             </div>

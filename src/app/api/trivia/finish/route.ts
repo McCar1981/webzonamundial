@@ -5,10 +5,11 @@
 // Identidad: usuario Supabase si hay sesión, si no un anonId del cliente.
 
 import { NextResponse } from "next/server";
-import { kv } from "@vercel/kv";
+import { kv } from "@/lib/kv";
 import {
   addSeenIds,
   claimDailyTriviaReward,
+  claimSessionFinish,
   releaseDailyTriviaReward,
   deleteSession,
   getSession,
@@ -88,13 +89,23 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "already_finished" }, { status: 409 });
   }
 
+  // Reserva atómica: solo la PRIMERA petición concurrente cierra y registra esta
+  // sesión. Sin esto, N /finish en paralelo con la misma sesión la registraban N
+  // veces en stats y leaderboard (la billetera ya estaba protegida por su NX).
+  if (!(await claimSessionFinish(session.id))) {
+    return NextResponse.json({ error: "already_finished" }, { status: 409 });
+  }
+
   // Identidad
   const { userId, authUserId, name } = await resolveIdentity(body.name, body.anonId);
 
   // Marca como vistas las preguntas mostradas (anti-repetición), aunque no se
   // registre en ranking. Se usa el id base (sin sufijo de repetición).
   if (userId) {
-    const seenIds = [...new Set(session.questions.map((q) => baseId(q.id)))];
+    // Solo se marcan como vistas las preguntas REALMENTE respondidas, no todas
+    // las servidas (Muerte Súbita sirve hasta 40). Si no, el banco se agotaba en
+    // una o dos sesiones por usuario y cada /start posterior tenía que generar.
+    const seenIds = [...new Set(session.answered.map((id) => baseId(id)))];
     await addSeenIds(userId, seenIds);
   }
 
@@ -114,7 +125,10 @@ export async function POST(req: Request) {
   // Bonus de horario + día perfecto
   const { mult, bonus } = timeBonusMultiplier(new Date());
   const answered = session.answered.length;
-  const perfectDay = answered > 0 && session.correct === answered;
+  // "Día Perfecto" exige un mínimo de respuestas: sin esto, una partida de 1 sola
+  // pregunta acertada (p.ej. el último cupo Free del día, o un anónimo rotando id)
+  // regalaba el +50.
+  const perfectDay = answered >= 5 && session.correct === answered;
   let finalPoints = Math.round(session.points * mult);
   if (perfectDay) finalPoints += 50;
 

@@ -9,7 +9,6 @@
 // acumulan; si el usuario ya jugó todo el banco, se recicla su historial.
 
 import { NextResponse } from "next/server";
-import { generateQuestions } from "@/lib/trivia/generator";
 import {
   addToBank,
   getQuestionBank,
@@ -98,21 +97,16 @@ export async function POST(req: Request) {
   const seen = await getSeenIds(userId);
   let pool: TriviaQuestion[] = bank.filter((q) => !seen.has(q.id));
 
-  // 3) Si quedan pocas sin ver, generar más (verificadas) y acumular. Para
-  // muerte-súbita basta un colchón menor: repeatToLength rellena la partida.
+  // 3) Si no quedan preguntas sin ver suficientes para una partida completa,
+  // reciclamos el historial de "visto" de este usuario y reusamos el banco.
+  //
+  // IMPORTANTE: aquí NO se generan preguntas nuevas. Generarlas implica una
+  // llamada de IA + verificación (decenas de segundos) DENTRO del request: en
+  // Vercel eso da timeout (504) y, peor, en el plan Free el cupo del día ya se
+  // había descontado → el usuario perdía su partida sin jugar. El banco lo
+  // alimenta el cron diario `generate-trivia`; aquí solo se sirve y se recicla.
   const target = mode === "muerte-subita" ? 12 : 10;
   if (pool.length < target) {
-    const avoid = bank.map((q) => q.question);
-    const fresh = await generateQuestions(20, avoid);
-    if (fresh.length > 0) {
-      await addToBank(fresh);
-      bank = await getQuestionBank();
-      pool = bank.filter((q) => !seen.has(q.id));
-    }
-  }
-
-  // 4) Si el usuario ya jugó TODO el banco, reciclar su historial.
-  if (pool.length === 0) {
     await resetSeen(userId);
     pool = bank;
   }
@@ -137,6 +131,7 @@ export async function POST(req: Request) {
     responseMsSum: 0,
     finished: false,
     startedAt: new Date().toISOString(),
+    lastTickAt: Date.now(),
   };
   await saveSession(session);
 

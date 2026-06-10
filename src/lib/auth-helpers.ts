@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { NextResponse } from "next/server";
 import { timingSafeEqual } from "node:crypto";
-import { kv } from "@vercel/kv";
+import { kv } from "@/lib/kv";
 
 /**
  * Fail-closed cron guard.

@@ -139,6 +139,56 @@ interface OverUnderLineOut {
 interface SocialStatRow { option_key: string; count: number; pct: number }
 interface SocialStatsOut { total_predictions: number; stats: Record<string, SocialStatRow[]> }
 
+// ─── Estado EN VIVO de mis predicciones (emoción minuto a minuto) ────────────
+interface LiveVerdictOut {
+  id: string;
+  prediction_type: PredictionType;
+  now: "winning" | "losing" | "pending" | "resolved";
+  points_now?: number;
+  detail?: string;
+}
+interface LiveStatusOut {
+  live: boolean;
+  finished: boolean;
+  status?: string;
+  minute?: number;
+  score?: { home: number; away: number };
+  verdicts: LiveVerdictOut[];
+}
+
+// Sondea el veredicto provisional mientras el partido está en juego (cada 60s,
+// solo dentro de la ventana kickoff → +3h) y se detiene al pitido final. Fuera
+// de la ventana no hace ni una petición.
+function useLiveMatchStatus(matchId: string, kickoffAt: string | null): LiveStatusOut | null {
+  const [st, setSt] = useState<LiveStatusOut | null>(null);
+  useEffect(() => {
+    setSt(null);
+    if (!kickoffAt) return;
+    const kickoff = new Date(kickoffAt).getTime();
+    const windowEnd = kickoff + 3 * 60 * 60_000;
+    let alive = true;
+    let timer: ReturnType<typeof setInterval> | null = null;
+    const stop = () => { if (timer) { clearInterval(timer); timer = null; } };
+    const pull = async () => {
+      const now = Date.now();
+      if (now < kickoff) return;
+      if (now > windowEnd) { stop(); return; }
+      try {
+        const r = await fetch(`/api/predictions/match/${matchId}/live-status`);
+        if (!r.ok) return;
+        const j = (await r.json()) as LiveStatusOut;
+        if (!alive) return;
+        setSt(j);
+        if (j.finished) stop();
+      } catch { /* se reintenta en el próximo tick */ }
+    };
+    void pull();
+    timer = setInterval(() => { void pull(); }, 60_000);
+    return () => { alive = false; stop(); };
+  }, [matchId, kickoffAt]);
+  return st;
+}
+
 const CATEGORY_LABEL: Record<OverUnderCategory, string> = {
   goals: "Goles", corners: "Córners", cards: "Tarjetas", shots_on_target: "Tiros a puerta",
 };
@@ -1291,6 +1341,24 @@ function MatchDetailView({
   const total = PREDICTION_TYPES.length;
   const mult = state?.match_multiplier ?? tierOf(match).multiplier;
 
+  // Veredicto provisional en vivo ("la vas ganando / la pierdes") por tipo.
+  const live = useLiveMatchStatus(String(match.i), state?.match.kickoff_at ?? null);
+  const liveVerdicts = useMemo(() => {
+    const m = new Map<PredictionType, LiveVerdictOut>();
+    for (const v of live?.verdicts ?? []) m.set(v.prediction_type, v);
+    return m;
+  }, [live]);
+
+  // Al pitido final con la vista abierta, recarga UNA vez: las predicciones
+  // pasan a "resolved" con los puntos oficiales del cron de resolución.
+  const reloadedAfterFinal = useRef(false);
+  useEffect(() => {
+    if (live?.finished && !reloadedAfterFinal.current) {
+      reloadedAfterFinal.current = true;
+      onRetry();
+    }
+  }, [live?.finished, onRetry]);
+
   // Cierre de predicciones: tras el deadline el backend ya rechaza con 403, pero
   // bloqueamos también la UI (forms + botón Editar) para no hacer rellenar en
   // balde. Reutiliza la misma cuenta atrás que la cabecera.
@@ -1374,7 +1442,7 @@ function MatchDetailView({
 
   return (
     <section className="pj-detail">
-      <MatchSummaryCard match={match} state={state} completed={completedCount} total={total} onBack={onBack} />
+      <MatchSummaryCard match={match} state={state} completed={completedCount} total={total} onBack={onBack} live={live} />
       <UserMiniStatsBar />
       <PredictionProgressBar completed={completedCount} total={total} />
       <LiveMicroPicks matchId={String(match.i)} />
@@ -1446,6 +1514,7 @@ function MatchDetailView({
                   type={type}
                   scorers={scorers}
                   duels={duels}
+                  liveNow={liveVerdicts.get(type) ?? null}
                   onEdit={locked || closed ? undefined : () => startEdit(type)}
                 />
               )}
@@ -1474,8 +1543,8 @@ function MatchDetailView({
   );
 }
 
-function MatchSummaryCard({ match, state, completed, total, onBack }: {
-  match: Match; state: MatchState | null; completed: number; total: number; onBack: () => void;
+function MatchSummaryCard({ match, state, completed, total, onBack, live }: {
+  match: Match; state: MatchState | null; completed: number; total: number; onBack: () => void; live?: LiveStatusOut | null;
 }) {
   const t = tierOf(match);
   const tierColor = TIER_COLOR[t.label];
@@ -1500,6 +1569,21 @@ function MatchSummaryCard({ match, state, completed, total, onBack }: {
         <span style={{ fontWeight: 900, color: DIM, fontSize: 14 }}>VS</span>
         <TeamTag flag={match.af} name={match.a} right />
       </div>
+
+      {live && (live.live || live.finished) && live.score && (
+        <div style={{ display: "flex", justifyContent: "center", marginTop: 10 }}>
+          <span style={{
+            display: "inline-flex", alignItems: "center", gap: 7, fontWeight: 900, fontSize: 15,
+            color: live.live ? GREEN : MID,
+            background: live.live ? "rgba(34,197,94,0.12)" : "rgba(255,255,255,0.05)",
+            border: `1px solid ${live.live ? "rgba(34,197,94,0.4)" : "rgba(255,255,255,0.12)"}`,
+            borderRadius: 99, padding: "6px 14px",
+          }}>
+            {live.live ? <>🔴 EN VIVO · {live.minute ?? 0}&apos;</> : <>Final</>}
+            <span style={{ fontVariantNumeric: "tabular-nums" }}>{live.score.home}–{live.score.away}</span>
+          </span>
+        </div>
+      )}
 
       <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 7, marginTop: 10 }}>
         {match.vn && <Badge><Globe size={12} /> {match.vn}{match.vc ? ` · ${match.vc}` : ""}</Badge>}
@@ -1692,18 +1776,35 @@ function Badge({ children }: { children: React.ReactNode }) {
 }
 
 // ─── Vista de predicción ya enviada ──────────────────────────────────────────
-function CompletedView({ p, type, scorers, duels, onEdit }: { p: MatchPrediction; type: PredictionType; scorers: ScorerCandidate[]; duels: DuelOut[]; onEdit?: () => void }) {
+function CompletedView({ p, type, scorers, duels, liveNow, onEdit }: { p: MatchPrediction; type: PredictionType; scorers: ScorerCandidate[]; duels: DuelOut[]; liveNow?: LiveVerdictOut | null; onEdit?: () => void }) {
   const summary = summarize(type, p, scorers, duels);
   const resolved = p.status === "resolved";
-  const color = resolved ? (p.is_correct ? GREEN : RED) : GOLD;
+  // Mientras el partido se juega, la tarjeta "vive": verde si ahora mismo la
+  // ganas, roja si ahora la pierdes (puede cambiar con cada gol — la emoción).
+  const inLive = !resolved && liveNow && liveNow.now !== "resolved";
+  const liveColor = liveNow?.now === "winning" ? GREEN : liveNow?.now === "losing" ? RED : DIM;
+  const color = resolved ? (p.is_correct ? GREEN : RED) : inLive && liveNow.now !== "pending" ? liveColor : GOLD;
   return (
     <div style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${color}40`, borderRadius: 12, padding: 12 }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-        <span style={{ color, fontWeight: 800, fontSize: 13, display: "inline-flex", alignItems: "center", gap: 4 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+        <span style={{ color: resolved ? color : GOLD, fontWeight: 800, fontSize: 13, display: "inline-flex", alignItems: "center", gap: 4 }}>
           {resolved && !p.is_correct ? <X size={14} /> : <Check size={14} />}
           {resolved ? (p.is_correct ? "Acertaste" : "Fallaste") : "Enviada"}
         </span>
         {resolved && <span style={{ marginLeft: "auto", fontWeight: 800, color }}>{(p.points_earned ?? 0) > 0 ? "+" : ""}{p.points_earned ?? 0} pts</span>}
+        {inLive && (
+          <span style={{
+            marginLeft: "auto", fontWeight: 800, fontSize: 12, display: "inline-flex", alignItems: "center", gap: 4,
+            color: liveColor,
+            background: liveNow.now === "winning" ? "rgba(34,197,94,0.12)" : liveNow.now === "losing" ? "rgba(239,68,68,0.12)" : "rgba(255,255,255,0.06)",
+            border: `1px solid ${liveNow.now === "winning" ? "rgba(34,197,94,0.4)" : liveNow.now === "losing" ? "rgba(239,68,68,0.4)" : "rgba(255,255,255,0.12)"}`,
+            borderRadius: 99, padding: "3px 9px",
+          }}>
+            {liveNow.now === "winning"
+              ? <>▲ La vas ganando{typeof liveNow.points_now === "number" && liveNow.points_now > 0 ? ` +${liveNow.points_now}` : ""}</>
+              : liveNow.now === "losing" ? "▼ Ahora la pierdes" : "⏳ Se decide al final"}
+          </span>
+        )}
       </div>
       <div style={{ fontSize: 13, color: MID, marginTop: 6 }}>{summary}</div>
       {onEdit && (

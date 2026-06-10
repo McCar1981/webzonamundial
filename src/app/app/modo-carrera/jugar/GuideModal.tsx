@@ -34,7 +34,7 @@ const STEPS: Step[] = [
   {
     color: "#ef4444",
     title: "Habilidades",
-    body: "Subes de nivel y ganas puntos para tu árbol de habilidades (Ataque, Defensa, Mental). Cada rama mejora cómo rinde tu equipo en los partidos.",
+    body: "Subes de nivel y ganas puntos para tu árbol de habilidades (Ataque, Defensa, Mental y Gestión). Cada rama mejora cómo rinde tu equipo en los partidos.",
     icon: <I><path d="M12 2v6M12 22v-6M2 12h6M22 12h-6" /><circle cx="12" cy="12" r="3" /></I>,
   },
   {
@@ -57,7 +57,7 @@ const STEPS: Step[] = [
   },
 ];
 
-export default function GuideModal({ onClose }: { onClose: () => void }) {
+export default function GuideModal({ onClose, onOpenFullGuide }: { onClose: () => void; onOpenFullGuide?: () => void }) {
   const dialogRef = useModalA11y<HTMLDivElement>(onClose);
   return (
     <div
@@ -144,6 +144,27 @@ export default function GuideModal({ onClose }: { onClose: () => void }) {
         >
           Entendido, ¡a jugar!
         </button>
+
+        {onOpenFullGuide && (
+          <button
+            type="button"
+            onClick={onOpenFullGuide}
+            style={{
+              marginTop: 10,
+              width: "100%",
+              padding: "12px 24px",
+              borderRadius: 12,
+              border: `1px solid ${GOLD}55`,
+              background: "transparent",
+              color: GOLD2,
+              fontWeight: 800,
+              fontSize: 14,
+              cursor: "pointer",
+            }}
+          >
+            Ver la guía completa (todas las reglas)
+          </button>
+        )}
       </div>
     </div>
   );

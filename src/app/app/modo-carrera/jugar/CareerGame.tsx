@@ -36,6 +36,7 @@ import NarrativeView from "./NarrativeView";
 import LegacyView from "./LegacyView";
 import RankingView from "./RankingView";
 import GuideModal from "./GuideModal";
+import GuideView from "./GuideView";
 import { CoinIcon } from "./icons";
 
 const GUIDE_SEEN_KEY = "zm_mc_guide_seen";
@@ -49,6 +50,7 @@ const TABS: { id: CareerTab; label: string }[] = [
   { id: "narrativa", label: "Narrativa" },
   { id: "legado", label: "Legado" },
   { id: "ranking", label: "Ranking" },
+  { id: "guia", label: "Guía" },
 ];
 
 export default function CareerGame() {
@@ -278,7 +280,15 @@ export default function CareerGame() {
       />
       {levelUp && <LevelUpOverlay overall={levelUp.overall} levels={levelUp.levels} onClose={() => setLevelUp(null)} />}
       {trophyReveal && <TrophyReveal trophy={trophyReveal} paseDT={paseDT} onClose={() => setTrophyReveal(null)} />}
-      {showGuide && <GuideModal onClose={() => setShowGuide(false)} />}
+      {showGuide && (
+        <GuideModal
+          onClose={() => setShowGuide(false)}
+          onOpenFullGuide={() => {
+            setShowGuide(false);
+            setTab("guia");
+          }}
+        />
+      )}
       {coinReward && (
         <div
           role="status"
@@ -410,6 +420,7 @@ export default function CareerGame() {
       )}
       {tab === "legado" && <LegacyView career={career} paseDT={paseDT} />}
       {tab === "ranking" && <RankingView />}
+      {tab === "guia" && <GuideView paseDT={paseDT} />}
       </div>
     </div>
   );

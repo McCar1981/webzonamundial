@@ -38,13 +38,15 @@ const PUNTOS_ICONOS = [
   ICON_V3.predicciones,  // Autogol
   ICON_V3.predicciones,  // Penalti fallado
 ];
-const PUNTOS_VALORES = ["+5","+6","+8","+10","+3","+5","+4","+2","+1","-1","-3","-2","-2"];
+const PUNTOS_VALORES = ["+5","+6","+8","+10","+3","+5","+4","+2","+1","-1","-3","-3","-3"];
 
+// 5 power-ups reales del juego (Tridente, Muro, Francotirador, Comodín, Joker).
 const CHIPS_ICONOS = [
-  ICON_V3.predicciones,
-  ICON_V3.rankings,
-  ICON_V3.carrera,
-  ICON_V3.iaCoach,
+  ICON_V3.rankings,    // Tridente
+  ICON_V3.fantasy,     // Muro
+  ICON_V3.microPred,   // Francotirador
+  ICON_V3.carrera,     // Comodín
+  ICON_V3.iaCoach,     // Joker
 ];
 
 const LIST_FEAT_ICONS = [
@@ -91,6 +93,7 @@ export default function FantasyPage() {
     { icono: CHIPS_ICONOS[1], nombre: fT.chip2fNombre, usos: fT.chip2fUsos, desc: fT.chip2fDesc, cuando: fT.chip2fCuando },
     { icono: CHIPS_ICONOS[2], nombre: fT.chip3fNombre, usos: fT.chip3fUsos, desc: fT.chip3fDesc, cuando: fT.chip3fCuando },
     { icono: CHIPS_ICONOS[3], nombre: fT.chip4fNombre, usos: fT.chip4fUsos, desc: fT.chip4fDesc, cuando: fT.chip4fCuando },
+    { icono: CHIPS_ICONOS[4], nombre: fT.chip5fNombre, usos: fT.chip5fUsos, desc: fT.chip5fDesc, cuando: fT.chip5fCuando },
   ];
 
   const aliFeatList = [
@@ -501,26 +504,6 @@ export default function FantasyPage() {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* DUELOS HEAD-TO-HEAD */}
-      <section data-duelos-section style={{padding:"60px 20px"}}>
-        <div style={{maxWidth:800,margin:"0 auto",textAlign:"center"}}>
-          <div data-duelos-card style={{padding:40,borderRadius:24,background:`linear-gradient(135deg,${GOLD}10,transparent)`,border:`1px solid ${GOLD}30`}}>
-            <span style={{width:64,height:64,display:"flex",alignItems:"center",justifyContent:"center",marginBottom:16,margin:"0 auto 16px"}}><svg viewBox="0 0 24 24" fill="none" width="64" height="64">{ICON_V3.microPred.props.children}</svg></span>
-            <h2 style={{fontSize:"clamp(24px,4vw,36px)",fontWeight:800,marginBottom:16}}>
-              {fT.duelosTitle} <span style={{color:GOLD}}>1vs1</span>
-            </h2>
-            <p style={{color:MID,fontSize:16,lineHeight:1.7,maxWidth:600,margin:"0 auto 24px"}}>
-              {fT.duelosDesc}
-            </p>
-            <div style={{display:"flex",gap:16,justifyContent:"center",flexWrap:"wrap"}}>
-              <span style={{padding:"10px 20px",borderRadius:20,background:BG2,fontSize:14,color:MID}}>{fT.duelosTag1}</span>
-              <span style={{padding:"10px 20px",borderRadius:20,background:BG2,fontSize:14,color:MID}}>{fT.duelosTag2}</span>
-              <span style={{padding:"10px 20px",borderRadius:20,background:BG2,fontSize:14,color:MID}}>{fT.duelosTag3}</span>
-            </div>
           </div>
         </div>
       </section>

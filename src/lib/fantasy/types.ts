@@ -98,6 +98,23 @@ export interface FantasyTeamState {
   budgetBonus: number;
   /** Ids de jugadores ya reembolsados (un solo reembolso por jugador). */
   refundedIds: string[];
+  /**
+   * Capitán / vice / power-up CONGELADOS al primer saque de la jornada en curso.
+   * Lo fija el servidor (desde el estado ya guardado) y es inmutable hasta que
+   * cambia la jornada. Mientras está activo, la puntuación usa estos valores y NO
+   * los del estado vivo: cierra la edición retroactiva (poner de capitán al
+   * goleador con el resultado ya conocido). Las sustituciones de jugadores (perk
+   * Pro) siguen contando. null fuera de jornada o antes del saque.
+   */
+  gwLock?: GameweekLock | null;
+}
+
+/** Capitán, vice y chip congelados al saque de una jornada (anti retroactivo). */
+export interface GameweekLock {
+  gw: number;
+  captainId: string | null;
+  viceId: string | null;
+  powerUp: PowerUp | null;
 }
 
 /** Reglas de una formación: cuántos por línea (sin contar banquillo). */

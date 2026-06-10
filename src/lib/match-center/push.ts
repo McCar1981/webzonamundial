@@ -91,6 +91,27 @@ function scoreText(score: Pair): string {
   return `${score[0] ?? 0}-${score[1] ?? 0}`;
 }
 
+/** Marcador derivado de los EVENTOS hasta (e incluido) un evento dado.
+ *  El agregado `goals` del fixture suele ir POR DETRÁS del evento de gol (el
+ *  push salía "GOL ... 0-0" en amistosos hasta que se corrigió así, ver
+ *  poll-friendlies). Además, con 2 goles en la misma pasada cada aviso muestra
+ *  su marcador, no el final de ambos. El gol en propia suma al CONTRARIO. */
+function scoreUpTo(snap: LiveSnapshot, upto: MatchEvent): Pair {
+  let home = 0;
+  let away = 0;
+  for (const e of snap.events) {
+    if (e.type === "goal" || e.type === "penalty_goal") {
+      if (e.side === "home") home++;
+      else if (e.side === "away") away++;
+    } else if (e.type === "own_goal") {
+      if (e.side === "home") away++;
+      else if (e.side === "away") home++;
+    }
+    if (e.id === upto.id) break;
+  }
+  return [home, away];
+}
+
 /** ¿La API ya publicó alineaciones reales? (el adaptador rellena un 4-3-3 por
  *  defecto sin nombres; solo contamos como confirmadas si traen nombres). */
 function lineupsConfirmed(snap: LiveSnapshot): boolean {
@@ -208,10 +229,16 @@ export async function processMatchPush(snap: LiveSnapshot): Promise<number> {
     };
 
   const seen = new Set(prev.seenEventIds);
+  // UNIÓN previos ∪ actuales (la lista nunca encoge durante el partido):
+  // api-football a veces devuelve `events` vacío/parcial de forma transitoria;
+  // si reemplazáramos la lista, la siguiente pasada re-notificaría TODOS los
+  // goles del partido en ráfaga.
+  const unionIds = new Set(prev.seenEventIds);
+  for (const e of snap.events) unionIds.add(e.id);
   const next: MatchPushState = {
     status: snap.status,
     score: snap.score,
-    seenEventIds: snap.events.map((e) => e.id),
+    seenEventIds: [...unionIds],
     lineupsSent: prev.lineupsSent,
     startSent: prev.startSent,
     htSent: prev.htSent,
@@ -271,7 +298,9 @@ export async function processMatchPush(snap: LiveSnapshot): Promise<number> {
   // Eventos nuevos: goles y tarjetas rojas llevan imagen (los más compartibles).
   for (const e of snap.events) {
     if (seen.has(e.id)) continue;
-    const label = eventLabel(e, meta, snap.score);
+    // Marcador ACUMULADO hasta este evento (no el agregado del fixture, que va
+    // por detrás del evento y producía avisos "GOL ... 0-0").
+    const label = eventLabel(e, meta, scoreUpTo(snap, e));
     if (!label) continue;
     // Foto del PROTAGONISTA (goleador/expulsado) cruzando su nombre con la
     // convocatoria BIBLIA; respaldo: estrella del equipo / favorito.

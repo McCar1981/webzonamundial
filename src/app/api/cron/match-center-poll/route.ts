@@ -18,9 +18,11 @@
 
 import { NextResponse } from "next/server";
 import { requireCron } from "@/lib/auth-helpers";
+import { kv } from "@/lib/kv";
 import { MATCHES } from "@/data/matches";
 import { buildMeta, getFixtureId, cacheSnapshot } from "@/lib/match-center/store";
 import { fetchLiveSnapshots } from "@/lib/match-center/apiFootball";
+import { liveNarration } from "@/lib/match-center/narrator";
 import { processMatchPush } from "@/lib/match-center/push";
 import { processMicroGeneration } from "@/lib/micro/engine";
 import type { MatchMeta } from "@/lib/match-center/types";
@@ -34,9 +36,21 @@ export const maxDuration = 60;
 // Ventana de sondeo alrededor del saque. Los horarios de MATCHES están en ET
 // (EDT en junio = UTC-4), así que componemos el instante con ese offset.
 const PREKICK_MS = 30 * 60_000;
-const POSTMATCH_MS = 150 * 60_000;
+// 210 min: una eliminatoria con añadidos + prórroga + tanda de penaltis dura
+// ~160-185 min desde el saque; con 150 el poller abandonaba ANTES del desenlace
+// (sin push de final, snapshot congelado en plena tanda).
+const POSTMATCH_MS = 210 * 60_000;
 // Margen para responder dentro del maxDuration.
 const TIME_BUDGET_MS = 50_000;
+// Set KV de partidos cuyo último estado conocido sigue EN JUEGO: los mantiene
+// sondeados aunque su ventana temporal expire (saque retrasado, prórroga
+// larguísima) y cubre el caso inverso (fecha de MATCHES desactualizada NO se
+// autocura con esto: la entrada debe estar en ventana al menos una vez).
+const LIVESET_KEY = "mc:liveset:v1";
+
+function kvEnabled(): boolean {
+  return !!process.env.KV_REST_API_URL && !!process.env.KV_REST_API_TOKEN;
+}
 // Opción 1: bucle interno sub-minuto. Mientras haya algún partido EN VIVO,
 // repetimos la pasada cada POLL_INTERVAL_MS para bajar la latencia del push de
 // ~1-4 min (drift/skips del cron de Vercel) a ~15s.
@@ -66,7 +80,7 @@ function apiKeyPresent(): boolean {
 
 /** Una pasada completa: ventana → fixtureIds → lote → caché + push. Devuelve los
  *  contadores y cuántos snapshots siguen EN VIVO (para decidir si repetir). */
-async function runPass(): Promise<{
+async function runPass(startMs: number): Promise<{
   windowed: number;
   mapped: number;
   cached: number;
@@ -74,7 +88,24 @@ async function runPass(): Promise<{
   live: number;
 }> {
   const now = Date.now();
-  const windowed = MATCHES.filter((m) => inLiveWindow(m.d, m.t, now));
+  const windowedIds = new Set(
+    MATCHES.filter((m) => inLiveWindow(m.d, m.t, now)).map((m) => m.i),
+  );
+  // Partidos cuyo último estado conocido sigue EN JUEGO aunque su ventana
+  // temporal haya pasado (prórroga + penaltis, saque retrasado): se siguen
+  // sondeando hasta ver un estado terminal. Degrada en silencio sin KV.
+  if (kvEnabled()) {
+    try {
+      const stillLive = await kv.smembers(LIVESET_KEY);
+      for (const id of stillLive ?? []) {
+        const n = Number(id);
+        if (Number.isInteger(n)) windowedIds.add(n);
+      }
+    } catch {
+      /* solo ventana temporal */
+    }
+  }
+  const windowed = MATCHES.filter((m) => windowedIds.has(m.i));
 
   // Resuelve fixtureIds (KV/env) solo para los que tienen mapeo real.
   const pairs: { matchId: number; fixtureId: number; meta: MatchMeta }[] = [];
@@ -96,9 +127,29 @@ async function runPass(): Promise<{
   let pushes = 0;
   let live = 0;
   for (const snap of Object.values(snapshots)) {
+    // Locución ANTES de cachear: plantillas siempre + IA solo para eventos sin
+    // frase cacheada (una vez por evento, aquí en el cron — el endpoint /live
+    // nunca espera a la IA). Si falla, quedan las plantillas.
+    try {
+      snap.narration = await liveNarration(snap.events, snap.meta, snap.matchId, {
+        ai: !!process.env.ANTHROPIC_API_KEY,
+      });
+    } catch {
+      /* plantillas/vacío */
+    }
     await cacheSnapshot(snap);
     cached++;
-    if (LIVE_STATUSES.has(snap.status)) live++;
+    const isLive = LIVE_STATUSES.has(snap.status);
+    if (isLive) live++;
+    // Mantiene el set de "siguen vivos" para sondear más allá de la ventana.
+    if (kvEnabled()) {
+      try {
+        if (isLive) await kv.sadd(LIVESET_KEY, String(snap.matchId));
+        else await kv.srem(LIVESET_KEY, String(snap.matchId));
+      } catch {
+        /* no crítico */
+      }
+    }
     // Tras calentar la caché, diff contra el estado guardado y manda los push
     // de novedades (gol, roja, inicio, descanso, final). No falla la pasada si
     // el push peta: la caché ya está servida.
@@ -114,6 +165,10 @@ async function runPass(): Promise<{
     } catch (err) {
       console.error("[mc-poll] micro generation failed", snap.matchId, (err as Error).message);
     }
+    // Presupuesto DENTRO del bucle: con varios partidos simultáneos una pasada
+    // lenta (fotos del push + IA) no debe estrellarse contra maxDuration — la
+    // caché de los procesados ya quedó servida; el resto entra en la siguiente.
+    if (Date.now() - startMs > TIME_BUDGET_MS) break;
   }
 
   return { windowed: windowed.length, mapped: pairs.length, cached, pushes, live };
@@ -153,7 +208,7 @@ export async function GET(req: Request) {
   let passes = 0;
 
   for (;;) {
-    const { windowed, mapped, cached, pushes, live } = await runPass();
+    const { windowed, mapped, cached, pushes, live } = await runPass(startMs);
     totalCached += cached;
     totalPushes += pushes;
     lastWindowed = windowed;

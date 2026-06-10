@@ -11,10 +11,11 @@
 // El cliente reproduce el feed con su propio reloj; en modo live hace polling.
 
 import { NextResponse } from "next/server";
-import { kv } from "@vercel/kv";
+import { kv } from "@/lib/kv";
 import { buildMeta, getFixtureId, getCachedSnapshot, getLastSnapshot, cacheSnapshot } from "@/lib/match-center/store";
 import { buildSimulation } from "@/lib/match-center/simulation";
 import { fetchLiveSnapshot, scheduledSnapshot } from "@/lib/match-center/apiFootball";
+import { liveNarration } from "@/lib/match-center/narrator";
 
 // Partidos que SOLO deben mostrar datos reales (nunca simulación). Antes del
 // saque se quedan parados en "por comenzar". Derivado de la fuente única de
@@ -37,6 +38,16 @@ export const maxDuration = 30;
 
 const SIMNARR_PREFIX = "mc:simnarr:v2:"; // v2: nombres de jugador (no dorsales)
 const SIMNARR_TTL = 24 * 60 * 60;
+
+// CDN corto cuando el balón rueda: el caché edge se SUMA a la antigüedad del
+// snapshot (cron/KV), no se solapa — con 10+20s un gol podía llegar 30 s más
+// viejo de lo necesario. Fuera de juego el dato no cambia: 10s está bien.
+const IN_PLAY_CDN = new Set(["1H", "HT", "2H", "ET", "BT", "P", "LIVE", "INT", "SUSP"]);
+function liveCacheHeader(status: string): string {
+  return IN_PLAY_CDN.has(status)
+    ? "public, s-maxage=3, stale-while-revalidate=5"
+    : "public, s-maxage=10, stale-while-revalidate=20";
+}
 
 function kvEnabled(): boolean {
   return !!process.env.KV_REST_API_URL && !!process.env.KV_REST_API_TOKEN;
@@ -70,21 +81,19 @@ export async function GET(
       const cached = await getCachedSnapshot(matchId);
       if (cached) {
         return NextResponse.json(cached, {
-          headers: { "Cache-Control": "public, s-maxage=10, stale-while-revalidate=20" },
+          headers: { "Cache-Control": liveCacheHeader(cached.status) },
         });
       }
       const snap = await fetchLiveSnapshot(fixtureId, meta);
       if (snap) {
-        if (useAI && snap.events.length > 0) {
-          try {
-            snap.narration = await aiNarrateBatch(snap.events, meta);
-          } catch {
-            /* plantillas en cliente */
-          }
-        }
+        // Narración SIN bloquear: plantillas + frases IA ya cacheadas (la IA
+        // solo la genera el cron, una vez por evento). Antes este endpoint
+        // re-narraba el partido ENTERO con Claude en cada cache-miss: +1-5 s
+        // de latencia para el visitante y coste repetido de la key compartida.
+        snap.narration = await liveNarration(snap.events, meta, matchId, { ai: false });
         await cacheSnapshot(snap);
         return NextResponse.json(snap, {
-          headers: { "Cache-Control": "public, s-maxage=10, stale-while-revalidate=20" },
+          headers: { "Cache-Control": liveCacheHeader(snap.status) },
         });
       }
       // El refetch falló (API caída o sin cuota). Si teníamos un snapshot previo

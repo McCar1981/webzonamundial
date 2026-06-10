@@ -127,6 +127,11 @@ function isInPlay(status: string): boolean {
   return IN_PLAY.has(status);
 }
 
+// Estados en los que los equipos ya cambiaron de lado (flip del campo). El feed
+// real NUNCA emite un evento "half_time", así que la 2ª parte se deriva del
+// STATUS del snapshot, no del log de eventos.
+const SECOND_HALF = new Set(["HT", "2H", "ET", "BT", "P", "PEN", "FT", "AET"]);
+
 /** Formatea el saque (ISO) a fecha y hora en la zona horaria del usuario. */
 function fmtKickoff(iso?: string): { date: string; time: string } | null {
   if (!iso) return null;
@@ -502,12 +507,17 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
       const snd = soundRef.current;
       const isGoal = e.type === "goal" || e.type === "penalty_goal" || e.type === "own_goal";
       if (isGoal && e.side !== "neutral") {
-        setScore((s) => {
-          const next: Pair = [...s] as Pair;
-          if (e.side === "home") next[0] += 1;
-          else next[1] += 1;
-          return next;
-        });
+        // En LIVE el marcador lo fija el snapshot del servidor (applySnapshot):
+        // sumar aquí adelantaría goles que el agregado aún no refleja o que el
+        // VAR puede anular. En simulación sí se acumula localmente.
+        if (feedRef.current?.mode !== "live") {
+          setScore((s) => {
+            const next: Pair = [...s] as Pair;
+            if (e.side === "home") next[0] += 1;
+            else next[1] += 1;
+            return next;
+          });
+        }
         setLastScorer({ side: e.side, player: e.player, minute: e.minute });
         lastGoalRef.current = e;
         if (animate) {
@@ -594,8 +604,18 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
         setLog([...data.events].reverse().slice(0, 60));
         setStatus(data.status);
         setKickoff(data.kickoff);
-        setSecondHalf(data.elapsed >= 45 || data.status === "2H" || data.status === "ET");
+        // 2ª parte por STATUS (no por elapsed>=45: en el añadido del 1T la API
+        // reporta elapsed=45 con el primer tiempo aún en juego).
+        setSecondHalf(SECOND_HALF.has(data.status));
         setFinished(data.status === "FT" || data.status === "AET" || data.status === "PEN");
+        // Siembra la locución con el último evento: al entrar a mitad de
+        // partido el panel no se queda en "el relato aparecerá aquí…".
+        const lastEv = data.events[data.events.length - 1];
+        const seedText = lastEv ? data.narration[lastEv.id] : "";
+        if (seedText) {
+          setNarration(seedText);
+          lastNarrAtRef.current = Date.now();
+        }
       }
       setFeed(data);
     } catch (err) {
@@ -640,34 +660,99 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
     return () => clearInterval(interval);
   }, [feed, finished, status]);
 
-  // Polling de datos reales (modo live)
+  // --- Polling de datos reales (modo live) ---
+  // Cadencia según estado (en juego 8 s; previa/descanso 15 s), refetch
+  // inmediato al volver a la pestaña, fetch abortable, y aplicación MONOTÓNICA:
+  // una respuesta lenta con un snapshot más viejo que el ya aplicado se
+  // descarta (no puede retroceder marcador, minuto ni cronología).
+  const statusRef = useRef("");
   useEffect(() => {
-    if (!feed || feed.mode !== "live" || finished) return;
-    const interval = setInterval(async () => {
+    statusRef.current = status;
+  }, [status]);
+  const lastAppliedRef = useRef(0);
+
+  const applySnapshot = useCallback(
+    (data: MatchFeed) => {
+      if (data.mode !== "live") return;
+      const stamp = data.updatedAt ?? 0;
+      if (stamp && stamp < lastAppliedRef.current) return; // más viejo: fuera
+      if (stamp) lastAppliedRef.current = stamp;
+      feedRef.current = data;
+      // Reloj sin retrocesos: avanza al minuto de la API; solo rebobina si la
+      // deriva es grande (corrección real), no en cada poll (elapsed es entero
+      // de minutos y reseteaba el reloj al inicio del minuto: 24' → 23').
+      const target = data.elapsed * 60;
+      if (target > secRef.current || secRef.current - target > 120) {
+        secRef.current = target;
+      }
+      setSec(secRef.current);
+      setStats(data.stats);
+      // FX/voz solo para eventos nuevos…
+      for (const e of data.events) {
+        if (!firedRef.current.has(e.id)) fireEvent(e, true);
+      }
+      // …pero la CRONOLOGÍA refleja SIEMPRE el snapshot tal cual: aparición
+      // inmediata al recibir los datos, orden correcto y los goles anulados
+      // por el VAR desaparecen del timeline (el log aditivo los dejaba fijos).
+      setLog([...data.events].reverse().slice(0, 60));
+      setScore(data.score);
+      setStatus(data.status);
+      setKickoff(data.kickoff);
+      setSecondHalf(SECOND_HALF.has(data.status));
+      // Refresca también alineaciones/formación cuando la API las publica.
+      setFeed(data);
+      if (data.status === "FT" || data.status === "AET" || data.status === "PEN") setFinished(true);
+    },
+    [fireEvent],
+  );
+
+  const liveMode = feed?.mode === "live";
+  useEffect(() => {
+    if (!liveMode || finished) return;
+    let alive = true;
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    let ctrl: AbortController | null = null;
+
+    const delayFor = () => (isInPlay(statusRef.current) ? 8000 : 15000);
+
+    const poll = async () => {
+      if (!alive) return;
+      ctrl = new AbortController();
+      const kill = setTimeout(() => ctrl?.abort(), 10000);
       try {
-        const r = await fetch(`/api/match-center/live/${matchId}?ai=1`, { cache: "no-store" });
-        if (!r.ok) return;
-        const data = (await r.json()) as MatchFeed;
-        if (data.mode !== "live") return;
-        feedRef.current = data;
-        secRef.current = data.elapsed * 60;
-        setSec(secRef.current);
-        setStats(data.stats);
-        for (const e of data.events) {
-          if (!firedRef.current.has(e.id)) fireEvent(e, true);
+        const r = await fetch(`/api/match-center/live/${matchId}?ai=1`, {
+          cache: "no-store",
+          signal: ctrl.signal,
+        });
+        if (r.ok) {
+          const data = (await r.json()) as MatchFeed;
+          if (alive && data.mode === "live") applySnapshot(data);
         }
-        setScore(data.score);
-        setStatus(data.status);
-        setKickoff(data.kickoff);
-        // Refresca también alineaciones/formación cuando la API las publica.
-        setFeed(data);
-        if (data.status === "FT" || data.status === "AET" || data.status === "PEN") setFinished(true);
       } catch {
         /* reintenta al siguiente tick */
+      } finally {
+        clearTimeout(kill);
+        if (alive) timer = setTimeout(poll, delayFor());
       }
-    }, 15000);
-    return () => clearInterval(interval);
-  }, [feed, finished, matchId, fireEvent]);
+    };
+
+    timer = setTimeout(poll, delayFor());
+
+    // Al volver a la pestaña, poll inmediato (sin esperar el tick pendiente).
+    const onVisible = () => {
+      if (!alive || document.visibilityState !== "visible") return;
+      if (timer) clearTimeout(timer);
+      void poll();
+    };
+    document.addEventListener("visibilitychange", onVisible);
+
+    return () => {
+      alive = false;
+      if (timer) clearTimeout(timer);
+      ctrl?.abort();
+      document.removeEventListener("visibilitychange", onVisible);
+    };
+  }, [liveMode, finished, matchId, applySnapshot]);
 
   // Mantiene statsRef sincronizado para el relleno ambiente (lee sin re-crear
   // su intervalo en cada actualización de stats).
@@ -798,13 +883,25 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
 
   const phase = useMemo(() => {
     if (finished) return "Final";
+    // En vivo la fase sale del STATUS real del snapshot: el feed nunca emite un
+    // evento "half_time", así que derivarla del log dejaba "Descanso" durante
+    // todo el 2º tiempo (y se lo contaba así al Coach IA).
+    if (feed?.mode === "live") {
+      if (status === "HT") return "Descanso";
+      if (status === "2H") return "2º tiempo";
+      if (status === "ET" || status === "BT") return "Prórroga";
+      if (status === "P" || status === "PEN") return "Penaltis";
+      if (status === "1H") return "1º tiempo";
+      if (isInPlay(status)) return "En juego";
+      return "Previa";
+    }
     const mm = Math.floor(sec / 60);
     const htFired = log.some((e) => e.type === "half_time");
     if (mm < 1) return "Previa";
     if (htFired && mm >= 45) return "2º tiempo";
     if (mm >= 45 && !htFired) return "Descanso";
     return "1º tiempo";
-  }, [sec, finished, log]);
+  }, [sec, finished, log, feed?.mode, status]);
 
   // Momentum: ventaja instantánea de un equipo (-1 visitante .. +1 local).
   // Combina los eventos recientes (peso por tipo y por frescura) con la

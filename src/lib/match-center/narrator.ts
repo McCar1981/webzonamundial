@@ -10,9 +10,19 @@
 // La capa de VOZ (TTS) vive en el cliente; aquí solo producimos TEXTO.
 
 import Anthropic from "@anthropic-ai/sdk";
+import { kv } from "@/lib/kv";
 import type { MatchEvent, MatchMeta } from "./types";
 
 const DEFAULT_MODEL = "claude-haiku-4-5-20251001";
+
+// Caché de locución IA por partido (hash eventId -> frase). Permite narrar cada
+// evento UNA sola vez (la genera el cron) y servirla a todos los visitantes.
+const LIVENARR_PREFIX = "mc:livenarr:v1:";
+const LIVENARR_TTL = 6 * 60 * 60; // un partido entero con margen
+
+function kvEnabled(): boolean {
+  return !!process.env.KV_REST_API_URL && !!process.env.KV_REST_API_TOKEN;
+}
 
 function teamName(meta: MatchMeta, side: MatchEvent["side"]): string {
   if (side === "home") return meta.home.name;
@@ -171,4 +181,53 @@ export async function narrateAll(
   if (!useAI) return base;
   const ai = await aiNarrateBatch(events, meta);
   return { ...base, ...ai };
+}
+
+/**
+ * Narración para snapshots EN VIVO, sin coste repetido y sin bloquear al
+ * visitante:
+ *   - Base: plantilla para TODOS los eventos (cero latencia, nunca mudo).
+ *   - Overlay: frases IA ya cacheadas en KV (las escribió una pasada anterior).
+ *   - Con ai=true (solo el CRON), narra ÚNICAMENTE los eventos sin frase
+ *     cacheada y persiste el resultado — cada evento se paga una sola vez.
+ * El endpoint /live debe llamar con ai=false: nunca espera a la IA.
+ */
+export async function liveNarration(
+  events: MatchEvent[],
+  meta: MatchMeta,
+  matchId: number,
+  opts: { ai: boolean },
+): Promise<Record<string, string>> {
+  const lines: Record<string, string> = {};
+  for (const e of events) lines[e.id] = templateNarration(e, meta);
+  if (events.length === 0) return lines;
+
+  const cacheKey = `${LIVENARR_PREFIX}${matchId}`;
+  let cached: Record<string, string> = {};
+  if (kvEnabled()) {
+    try {
+      cached = (await kv.get<Record<string, string>>(cacheKey)) ?? {};
+    } catch {
+      cached = {};
+    }
+  }
+  for (const [id, text] of Object.entries(cached)) {
+    if (lines[id]) lines[id] = text;
+  }
+  if (!opts.ai) return lines;
+
+  const pending = events.filter((e) => !cached[e.id]);
+  if (pending.length === 0) return lines;
+  try {
+    const ai = await aiNarrateBatch(pending, meta);
+    if (Object.keys(ai).length > 0) {
+      Object.assign(lines, ai);
+      if (kvEnabled()) {
+        await kv.set(cacheKey, { ...cached, ...ai }, { ex: LIVENARR_TTL });
+      }
+    }
+  } catch {
+    /* plantillas ya puestas */
+  }
+  return lines;
 }

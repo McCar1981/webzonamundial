@@ -4,12 +4,18 @@
 // bracket) y caché de snapshots en vivo en Vercel KV. Si KV no está
 // configurado, todo degrada limpiamente (se recalcula on-demand).
 
-import { kv } from "@vercel/kv";
+// OJO: cliente KV de @/lib/kv (lecturas no-store), NO el crudo de @vercel/kv —
+// el crudo deja que el Data Cache de Next congele las lecturas (ver lib/kv.ts).
+import { kv } from "@/lib/kv";
 import { MATCHES } from "@/data/matches";
 import { BRACKET_TEAMS } from "@/lib/bracket/teams";
 import type { LiveSnapshot, MatchMeta, MatchTeamMeta } from "./types";
 
 const SNAP_PREFIX = "mc:snap:v1:";
+// Última copia DURABLE del snapshot (sin TTL): sobrevive a la caducidad de la
+// clave fresca, de modo que "el último estado real conocido" exista de verdad.
+// Sin esto, si api-football falla >TTL el partido se resetea a "por comenzar".
+const LAST_PREFIX = "mc:last:v1:";
 const FIXTURE_PREFIX = "mc:fixture:v1:";
 const SNAP_TTL_SECONDS = 25; // ligeramente por encima del intervalo de polling
 
@@ -121,11 +127,14 @@ export async function setFixtureId(matchId: number, fixtureId: number): Promise<
   }
 }
 
-/** Lee el último snapshot de KV, exista o no frescura (puede estar caducado). */
+/** Lee el último snapshot conocido: la copia fresca si existe, y si caducó,
+ *  la copia durable (sin TTL). Puede estar viejo; el llamador decide. */
 export async function getLastSnapshot(matchId: number): Promise<LiveSnapshot | null> {
   if (!isKvEnabled()) return null;
   try {
-    return (await kv.get<LiveSnapshot>(`${SNAP_PREFIX}${matchId}`)) || null;
+    const fresh = await kv.get<LiveSnapshot>(`${SNAP_PREFIX}${matchId}`);
+    if (fresh) return fresh;
+    return (await kv.get<LiveSnapshot>(`${LAST_PREFIX}${matchId}`)) || null;
   } catch {
     return null;
   }
@@ -146,7 +155,11 @@ export async function getCachedSnapshot(matchId: number): Promise<LiveSnapshot |
 export async function cacheSnapshot(snap: LiveSnapshot): Promise<void> {
   if (!isKvEnabled()) return;
   try {
-    await kv.set(`${SNAP_PREFIX}${snap.matchId}`, snap, { ex: SNAP_TTL_SECONDS });
+    await Promise.all([
+      kv.set(`${SNAP_PREFIX}${snap.matchId}`, snap, { ex: SNAP_TTL_SECONDS }),
+      // Copia durable: el "último estado real conocido" no caduca con el TTL.
+      kv.set(`${LAST_PREFIX}${snap.matchId}`, snap),
+    ]);
   } catch (err) {
     console.error("[mc-store] cacheSnapshot failed", (err as Error).message);
   }

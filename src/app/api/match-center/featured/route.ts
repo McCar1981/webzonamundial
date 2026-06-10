@@ -28,7 +28,9 @@ export const dynamic = "force-dynamic";
 export const maxDuration = 30;
 
 // Ventana de saque (horarios de MATCHES en ET; EDT en junio = UTC-4).
-const POSTMATCH_MS = 150 * 60_000;
+// 210 min: cubre prórroga + tanda de penaltis (con 150 el destacado saltaba al
+// siguiente partido en plena tanda).
+const POSTMATCH_MS = 210 * 60_000;
 const IN_PLAY = new Set(["1H", "HT", "2H", "ET", "BT", "P", "LIVE", "INT"]);
 const FINISHED = new Set(["FT", "AET", "PEN"]);
 
@@ -82,6 +84,8 @@ async function feedFor(matchId: number): Promise<LiveSnapshot | null> {
   const cached = await getCachedSnapshot(matchId);
   if (cached) return cached;
 
+  // Último estado conocido (copia durable mc:last:, sobrevive al TTL del
+  // snapshot fresco): mejor un dato algo viejo que resetear el hero a "NS".
   const last = await getLastSnapshot(matchId);
   if (last) return last;
 
@@ -103,10 +107,15 @@ export async function GET() {
   if (!feed) {
     return NextResponse.json({ error: "no match" }, { status: 404 });
   }
+  // CDN corto cuando el balón rueda (el caché edge se SUMA a la antigüedad del
+  // snapshot); fuera de juego el dato apenas cambia y 10s está bien.
+  const cdn = IN_PLAY.has(feed.status)
+    ? "public, s-maxage=3, stale-while-revalidate=5"
+    : "public, s-maxage=10, stale-while-revalidate=20";
   return NextResponse.json(
     { matchId: servedId, slug: matchSlug(servedId), ...feed },
     {
-      headers: { "Cache-Control": "public, s-maxage=10, stale-while-revalidate=20" },
+      headers: { "Cache-Control": cdn },
     },
   );
 }

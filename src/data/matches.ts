@@ -143,8 +143,11 @@ export const MATCHES: Match[] = [
   { "i": 104, "g": "", "p": "FINAL", "j": 0, "h": "W191", "hf": "tbd", "a": "W102", "af": "tbd", "d": "2026-07-19", "t": "15:00", "vn": "MetLife Stadium", "vc": "Nueva York/NJ", "vf": "us" },
   // ── PRUEBA Match Center con datos reales de un amistoso (no se lista: j=99).
   //    El fixture real se autoresuelve desde api-football (liga 10) por nombres.
-  //    t en ET: 13:45 ET = 19:45 (hora de España, CEST) del sábado 6/6/2026.
-  { "i": 9002, "g": "", "p": "Amistoso", "j": 99, "h": "Portugal", "hf": "pt", "a": "Chile", "af": "cl", "d": "2026-06-06", "t": "13:45", "vn": "Amistoso internacional", "vc": "", "vf": "" },
+  //    t en ET: 13:45 ET = 19:45 (hora de España, CEST) del miércoles 10/6/2026.
+  //    OJO: las ventanas del cron/featured se derivan de esta fecha; si el
+  //    partido cambia de día hay que actualizarla (el 10-jun se quedó con la
+  //    fecha del 6 y el poller no cubrió el partido en vivo).
+  { "i": 9002, "g": "", "p": "Amistoso", "j": 99, "h": "Portugal", "hf": "pt", "a": "Chile", "af": "cl", "d": "2026-06-10", "t": "13:45", "vn": "Amistoso internacional", "vc": "", "vf": "" },
 ];
 
 export const PHASE_COLORS: Record<string, string> = {

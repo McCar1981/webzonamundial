@@ -73,7 +73,7 @@ interface RawFixture {
 interface RawEvent {
   time: { elapsed: number | null; extra: number | null };
   team: { id: number };
-  player: { name: string | null };
+  player: { id?: number | null; name: string | null };
   assist: { name: string | null };
   type: string;
   detail: string;
@@ -208,14 +208,29 @@ function snapshotFromFixture(fx: RawFixture, meta: MatchMeta): LiveSnapshot {
   const rawStats = fx.statistics ?? null;
   const rawLineups = fx.lineups ?? null;
 
-  const events: MatchEvent[] = (rawEvents || []).map((e, idx) => {
+  // ID ESTABLE por contenido (no por índice): api-football inserta/reordena
+  // eventos entre polls (VAR, correcciones) y un id posicional desplazaría los
+  // ids de eventos ya vistos → push duplicados, micros duplicadas y
+  // re-celebraciones en el cliente. Misma técnica ya probada en
+  // src/lib/friendlies/api.ts (eventKey + sufijo #n para colisiones).
+  const usedKeys = new Map<string, number>();
+  const events: MatchEvent[] = (rawEvents || []).map((e) => {
     const minute = e.time.elapsed ?? 0;
     const extra = e.time.extra ?? undefined;
     const side = sideOf(e.team.id);
     const type = mapEventType(e.type, e.detail);
-    const t = (minute + (extra || 0)) * 60;
+    // extra se suma como SEGUNDOS (no minutos): así el 45+2 (2702) ordena antes
+    // del 46' (2760) en vez de colarse en el segundo tiempo.
+    const t = minute * 60 + (extra ?? 0);
+    const who =
+      e.player.id != null
+        ? `p${e.player.id}`
+        : (e.player.name ?? "").toLowerCase().replace(/[^a-z]/g, "");
+    const base = `live-${fixtureId}-${minute}-${extra ?? 0}-${e.team.id}-${type}-${who}`;
+    const n = usedKeys.get(base) ?? 0;
+    usedKeys.set(base, n + 1);
     return {
-      id: `live-${fixtureId}-${idx}`,
+      id: n === 0 ? base : `${base}#${n}`,
       t,
       minute,
       extra,
@@ -227,7 +242,7 @@ function snapshotFromFixture(fx: RawFixture, meta: MatchMeta): LiveSnapshot {
       detail: e.detail || undefined,
     };
   });
-  events.sort((a, b) => a.t - b.t);
+  events.sort((a, b) => a.minute - b.minute || (a.extra ?? 0) - (b.extra ?? 0));
   // El feed real no trae posición de jugada: la máquina de zonas asigna x/y por
   // tipo+lado, de modo que un gol viaja al área correcta y el balón nunca queda
   // en el lado equivocado. Eventos como cambio/VAR no mueven el balón.

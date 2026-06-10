@@ -320,26 +320,26 @@ export const MODULE_CONTENT: Record<string, ModuleContent> = {
 
   micro: {
     slug: "micro",
-    label: "Micro-publicaciones",
+    label: "Micro-predicciones",
     shortPitch:
-      "Predicciones cortas, reacciones, GIF y memes durante el partido en directo. Tipo Twitter pero solo del Mundial.",
+      "Jugadas relámpago durante el partido en vivo: ¿gol en los próximos minutos?, ¿se marca el penalti?, ¿cae tarjeta? Eliges en segundos y se resuelve solo con datos reales.",
     compare: [
-      { feature: "Publicar micro-posts", free: true, founders: true },
-      { feature: "Adjuntar imágenes/GIFs", free: true, founders: true },
-      { feature: "Crear encuestas en posts", free: false, founders: true },
+      { feature: "Micro-predicciones en vivo en cada partido", free: true, founders: true },
+      { feature: "Recompensas en Fútcoins y XP (billetera única)", free: true, founders: true },
+      { feature: "Modo Fantasma (práctica, solo XP)", free: true, founders: true },
       { feature: "Insignia Founders visible", free: false, founders: true },
     ],
     faq: [
       {
-        q: "¿En qué se diferencia del chat?",
-        a: "Chat es efímero por sala. Micro es un timeline público que persiste y otros usuarios pueden likear, repostear y comentar tus posts.",
+        q: "¿En qué se diferencia de las Predicciones normales?",
+        a: "Las Predicciones se hacen antes del partido; las micro-predicciones se juegan DURANTE el directo sobre lo que está a punto de pasar, y se resuelven en minutos con los eventos oficiales del partido.",
       },
       {
-        q: "¿Cuál es el límite de caracteres?",
-        a: "280 caracteres por post, igual que tu red social favorita. Multimedia opcional.",
+        q: "¿Qué pasa si la jugada se anula (VAR, penalti repetido…)?",
+        a: "La micro-predicción se anula con ella: no cuenta como fallo. Solo resuelven las jugadas con desenlace real confirmado por los datos del partido.",
       },
     ],
-    keywords: ["micropublicaciones mundial 2026", "redes sociales mundial 2026"],
+    keywords: ["micro predicciones mundial 2026", "predicciones en vivo mundial 2026"],
   },
 
   "modo-carrera": {

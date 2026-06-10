@@ -56,7 +56,7 @@ const MODULE_LABELS: Record<string, string> = {
   streaming: "Streaming + Creators",
   album: "Álbum Digital",
   chat: "Chat y Comunidad",
-  micro: "Micro-publicaciones",
+  micro: "Micro-predicciones",
   "modo-carrera": "Modo Carrera",
   stories: "Stories",
 };

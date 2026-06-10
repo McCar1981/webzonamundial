@@ -472,8 +472,11 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
       {/* ═══ AVISO DE VERSIÓN NUEVA — la PWA puede quedarse en un deploy viejo ═══ */}
       <UpdateToast />
 
-      {/* ═══ FOOTER ═══ */}
-      <SiteFooter />
+      {/* ═══ FOOTER ═══
+          Solo en el sitio editorial. Dentro de la webapp (/app/*) el footer de
+          enlaces SEO rompe la sensación de app: allí navegan la barra inferior
+          y el menú; los enlaces legales siguen accesibles desde /cuenta y /. */}
+      {!pathname?.startsWith("/app") && <SiteFooter />}
 
       {/* Responsive CSS */}
       <style>{`

@@ -14,5 +14,6 @@ export async function GET() {
   const user = await getCurrentUser();
   if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   const rivalries = await myRivalries(user.id);
-  return NextResponse.json({ rivalries });
+  // FIX 5: rivalidades 1v1 del usuario → no cachear en el navegador.
+  return NextResponse.json({ rivalries }, { headers: { "Cache-Control": "private, no-store" } });
 }

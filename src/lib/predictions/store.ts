@@ -24,7 +24,7 @@ import { isEarlyBird } from "./rules";
 import { matchMultiplier } from "./match-data";
 import { adminClient } from "./admin";
 import { grantMatchRewards } from "./gamification-store";
-import { STREAK_THRESHOLD, boostDef } from "./gamification";
+import { STREAK_THRESHOLD, boostDef, computeStreak } from "./gamification";
 import { cosmeticsByUser } from "./cosmetics-store";
 import type { CosmeticDisplay } from "./cosmetics";
 
@@ -59,16 +59,32 @@ export async function findPrediction(userId: string, matchId: string, type: Pred
 }
 
 export async function createPrediction(input: CreateInput): Promise<PredictionRow> {
-  const supa = createSupabaseServerClient();
-  const { data, error } = await supa
+  // FIX 1: escritura de predicción con cliente ADMIN (service role), no con el
+  // cliente RLS+JWT del usuario. Evita que un usuario inserte columnas sensibles
+  // vía PostgREST. Seguro: solo se llama desde rutas server que autentican y
+  // pasan userId explícito.
+  const supa = adminClient();
+
+  // FIX 6 (Modo Manada): sellar community_pct_at_time e isContrarian en el
+  // servidor. Ignoramos por completo lo que mandó el cliente: leemos el % real
+  // de la comunidad para la opción elegida ANTES de este voto.
+  let data = input.data;
+  let isContrarian = input.isContrarian;
+  if (input.type === "social") {
+    const pct = await communityPctBeforeVote(input.matchId, input.data as SocialData);
+    data = { ...(input.data as SocialData), community_pct_at_time: pct };
+    isContrarian = pct < 50;
+  }
+
+  const { data: row, error } = await supa
     .from("predictions")
     .insert({
       user_id: input.userId,
       match_id: input.matchId,
       prediction_type: input.type,
-      prediction_data: input.data,
+      prediction_data: data,
       confidence_multiplier: input.confidence,
-      is_contrarian: input.isContrarian,
+      is_contrarian: isContrarian,
       match_multiplier: input.matchMult,
       was_pro: input.wasPro,
     })
@@ -77,10 +93,10 @@ export async function createPrediction(input: CreateInput): Promise<PredictionRo
   if (error) throw error;
   // Cadena: persistir eslabones.
   if (input.type === "chain") {
-    const steps = (input.data as { chain: { step: number; event_type: string; event_data: unknown }[] }).chain;
+    const steps = (data as { chain: { step: number; event_type: string; event_data: unknown }[] }).chain;
     await supa.from("prediction_chains").insert(
       steps.map((s) => ({
-        prediction_id: (data as PredictionRow).id,
+        prediction_id: (row as PredictionRow).id,
         step_number: s.step,
         event_type: s.event_type,
         event_data: s.event_data as object,
@@ -88,8 +104,30 @@ export async function createPrediction(input: CreateInput): Promise<PredictionRo
     );
   }
   // Sumar al agregado social (no bloqueante en caso de error).
-  bumpSocialStat(input.matchId, input.type, optionKeyForStats(input.type, input.data)).catch(() => {});
-  return data as PredictionRow;
+  bumpSocialStat(input.matchId, input.type, optionKeyForStats(input.type, data)).catch(() => {});
+  return row as PredictionRow;
+}
+
+/**
+ * FIX 6: % real de la comunidad para la opción del usuario ANTES de su voto.
+ * Lee los agregados sociales reales del partido (prediction_social_stats) con el
+ * cliente admin, dentro del grupo de la misma question_key (option_key prefijo).
+ * pct = round(100 · votos_de_su_opción / total_votos_del_grupo). Si total==0 → 100
+ * (es el primero, va con "la mayoría", no contrarian).
+ */
+async function communityPctBeforeVote(matchId: string, d: SocialData): Promise<number> {
+  const admin = adminClient();
+  const optionKey = optionKeyForStats("social", d); // "<question_key>:<choice>"
+  const group = optionKey.split(":")[0];            // grupo = question_key
+  const { data: rows } = await admin
+    .from("prediction_social_stats")
+    .select("option_key,vote_count")
+    .eq("match_id", matchId).eq("prediction_type", group);
+  const list = (rows ?? []) as { option_key: string; vote_count: number }[];
+  const total = list.reduce((s, r) => s + (r.vote_count ?? 0), 0);
+  if (total === 0) return 100; // primer voto del grupo → no contrarian
+  const mine = list.find((r) => r.option_key === optionKey)?.vote_count ?? 0;
+  return Math.round((100 * mine) / total);
 }
 
 export async function getPredictionById(id: string): Promise<PredictionRow | null> {
@@ -130,7 +168,9 @@ export async function updatePredictionData(
   confidence: number,
   isContrarian: boolean,
 ): Promise<PredictionRow> {
-  const supa = createSupabaseServerClient();
+  // FIX 1: actualización con cliente ADMIN (service role), no con el cliente
+  // RLS+JWT del usuario (la ruta ya autentica al dueño y pasa el id).
+  const supa = adminClient();
   const { data: row, error } = await supa
     .from("predictions")
     .update({
@@ -299,20 +339,33 @@ export interface ResolveSummary {
 export async function resolveMatch(matchId: string, result: MatchResultReal): Promise<ResolveSummary> {
   const t0 = Date.now();
   const admin = adminClient();
+  // FIX 8: orden estable (created_at, luego id) para que la racha intra-partido
+  // y el ×1.5 se apliquen de forma determinista, no según el orden que devuelva PG.
   const { data: rows } = await admin
     .from("predictions")
     .select("*")
     .eq("match_id", matchId)
-    .is("resolved_at", null);
+    .is("resolved_at", null)
+    .order("created_at", { ascending: true })
+    .order("id", { ascending: true });
   const list = (rows ?? []) as PredictionRow[];
 
+  // Candidatos por usuario (la racha real se calcula sobre filas EFECTIVAMENTE
+  // resueltas por esta ejecución — ver CAS más abajo).
+  const candidateUsers = [...new Set(list.map((p) => p.user_id))];
+  // FIX 7(b): consumir (a lo sumo uno) el boost "Congelar Racha" por usuario y
+  // pasar frozen=true a su cálculo de racha para absorber un fallo reciente.
+  const frozenUsers = await consumeStreakFreezes(candidateUsers);
   // Racha vigente de cada usuario (aciertos consecutivos ya resueltos).
-  const usersInMatch = [...new Set(list.map((p) => p.user_id))];
-  const streakByUser = await getActiveStreaks(usersInMatch);
+  const streakByUser = await getActiveStreaks(candidateUsers, frozenUsers);
   // Boosts disponibles por usuario (se consume a lo sumo uno por predicción).
-  const boostsByUser = await getAvailableBoostsByUser(usersInMatch);
+  const boostsByUser = await getAvailableBoostsByUser(candidateUsers);
+  // FIX 5: usuarios con al menos una predicción resuelta POR esta ejecución
+  // (los que ganaron el compare-and-set). Solo ellos reciben recompensas.
+  const usersInMatch = new Set<string>();
 
   let sum = 0;
+  let voidedCount = 0; // FIX 9: filas anuladas resueltas por esta ejecución
   const correctByUser = new Map<string, number>();
   const totalByUser = new Map<string, number>();
   const pointsByUser = new Map<string, number>();
@@ -320,25 +373,25 @@ export async function resolveMatch(matchId: string, result: MatchResultReal): Pr
   for (const p of list) {
     const base = scoreBase(p.prediction_type, p.prediction_data, p.confidence_multiplier, result);
 
-    // Consumir un boost aplicable (orden de prioridad simple).
+    // Elegir el boost aplicable (orden de prioridad simple). OJO: NO lo
+    // consumimos todavía — solo tras GANAR el compare-and-set (FIX 5), para que
+    // una ejecución concurrente que pierda la fila no queme boosts del usuario.
     const inv = boostsByUser.get(p.user_id) ?? [];
     let boostNote = "";
-    let consumedBoostId: string | null = null;
+    let boostToConsume: BoostRow | null = null;
     if (base.points > 0) {
       const dbl = inv.find((b) => boostDef(b.boost_id)?.scoreMultiplier);
       if (dbl) {
         base.points = Math.round(base.points * (boostDef(dbl.boost_id)!.scoreMultiplier ?? 1));
         boostNote = ` · ${boostDef(dbl.boost_id)!.emoji} ${boostDef(dbl.boost_id)!.name}`;
-        consumedBoostId = dbl.id;
-        inv.splice(inv.indexOf(dbl), 1);
+        boostToConsume = dbl;
       }
     } else if (base.points < 0) {
       const shield = inv.find((b) => boostDef(b.boost_id)?.shieldsNegative);
       if (shield) {
         base.points = 0;
         base.detail += " (escudo: 0 pts)";
-        consumedBoostId = shield.id;
-        inv.splice(inv.indexOf(shield), 1);
+        boostToConsume = shield;
       }
     }
 
@@ -353,18 +406,40 @@ export async function resolveMatch(matchId: string, result: MatchResultReal): Pr
       streakActive,
     };
     const final = applyBonuses(base, ctx);
-    await admin.from("predictions").update({
-      points_before_multiplier: final.pointsBeforeMatchMultiplier,
-      points_earned: final.points,
-      is_correct: final.correct,
-      resolution_breakdown: final.breakdown + boostNote,
-      resolved_at: new Date().toISOString(),
-    }).eq("id", p.id);
 
-    if (consumedBoostId) {
+    // FIX 9: predicción anulada (feed incompleto) → resolvemos con 0 pts e
+    // is_correct=null; es NEUTRA: no cuenta como acierto ni como fallo, no toca
+    // la racha y no consume boosts.
+    const voided = final.voided === true;
+
+    // FIX 5: compare-and-set. Solo "ganamos" la fila si seguía sin resolver.
+    // .select("id") nos dice si este UPDATE fue el que la resolvió.
+    const { data: claimed } = await admin.from("predictions").update({
+      points_before_multiplier: voided ? 0 : final.pointsBeforeMatchMultiplier,
+      points_earned: voided ? 0 : final.points,
+      is_correct: voided ? null : final.correct,
+      resolution_breakdown: final.breakdown + (voided ? "" : boostNote),
+      resolved_at: new Date().toISOString(),
+    }).eq("id", p.id).is("resolved_at", null).select("id");
+
+    // Otra ejecución ya la resolvió: no contamos nada (ni pago, ni racha, ni boost).
+    if (!claimed || claimed.length === 0) continue;
+
+    // Esta ejecución es la dueña de la fila. A partir de aquí: pago + contadores.
+    usersInMatch.add(p.user_id);
+
+    if (!voided && boostToConsume) {
+      // Consumir el boost solo ahora (ganamos el CAS) y quitarlo del inventario.
+      inv.splice(inv.indexOf(boostToConsume), 1);
       await admin.from("prediction_boosts")
         .update({ consumed_at: new Date().toISOString(), applied_to: p.id })
-        .eq("id", consumedBoostId);
+        .eq("id", boostToConsume.id);
+    }
+
+    if (voided) {
+      // Neutra: no altera la racha en curso ni los contadores de acierto/fallo.
+      voidedCount++;
+      continue;
     }
 
     // Actualizar racha en curso para las siguientes predicciones del usuario.
@@ -382,20 +457,29 @@ export async function resolveMatch(matchId: string, result: MatchResultReal): Pr
     if (correct >= 8 && totalByUser.get(uid) === 8) perfect++;
   }
 
+  // FIX 5: nº de predicciones EFECTIVAMENTE resueltas por esta ejecución
+  // (incluye las anuladas) — no list.length, que cuenta también las que otra
+  // ejecución concurrente resolvió.
+  const resolvedCount = [...totalByUser.values()].reduce((a, b) => a + b, 0) + voidedCount;
+
   // Otorgar progresión (XP/monedas/rachas/logros) y resolver duelos del partido.
-  await grantMatchRewards(matchId, usersInMatch);
+  // Solo a usuarios con alguna fila resuelta por esta ejecución (ganadores del CAS).
+  await grantMatchRewards(matchId, [...usersInMatch]);
 
   return {
     match_id: matchId,
-    predictions_resolved: list.length,
-    avg_points: list.length ? Math.round((sum / list.length) * 10) / 10 : 0,
+    predictions_resolved: resolvedCount,
+    avg_points: resolvedCount ? Math.round((sum / resolvedCount) * 10) / 10 : 0,
     perfect_predictions: perfect,
     processing_time_ms: Date.now() - t0,
   };
 }
 
 // Aciertos consecutivos ya resueltos (antes de este partido) por usuario.
-async function getActiveStreaks(userIds: string[]): Promise<Map<string, number>> {
+// FIX 7(b): `frozenUsers` = usuarios con un "Congelar Racha" ya consumido para
+// este partido; su racha se calcula con computeStreak(..., frozen=true) para que
+// el freeze absorba un fallo reciente (antes era un no-op).
+async function getActiveStreaks(userIds: string[], frozenUsers?: Set<string>): Promise<Map<string, number>> {
   const out = new Map<string, number>();
   if (!userIds.length) return out;
   const admin = adminClient();
@@ -410,9 +494,8 @@ async function getActiveStreaks(userIds: string[]): Promise<Map<string, number>>
     (byUser.get(r.user_id) ?? byUser.set(r.user_id, []).get(r.user_id)!).push(Boolean(r.is_correct));
   }
   for (const [uid, results] of byUser) {
-    let run = 0;
-    for (let i = results.length - 1; i >= 0; i--) { if (results[i]) run++; else break; }
-    out.set(uid, run);
+    // Reutilizamos la lógica pura de racha (incluye absorción del freeze).
+    out.set(uid, computeStreak(results, frozenUsers?.has(uid) ?? false).current);
   }
   return out;
 }
@@ -431,6 +514,47 @@ async function getAvailableBoostsByUser(userIds: string[]): Promise<Map<string, 
     (out.get(r.user_id) ?? out.set(r.user_id, []).get(r.user_id)!).push({ id: r.id, boost_id: r.boost_id });
   }
   return out;
+}
+
+/**
+ * FIX 7(b): consume (a lo sumo UNO por usuario) el boost con `freezesStreak`
+ * disponible y devuelve el set de usuarios cuya racha debe calcularse con
+ * frozen=true. Idempotente: el filtro consumed_at=null garantiza que un boost ya
+ * gastado no se vuelva a aplicar; marcamos consumed_at al reservarlo (CAS).
+ *
+ * NOTA (trade-off conocido): el freeze se consume aunque el usuario no tuviera un
+ * fallo reciente que absorber (computeStreak solo lo "usa" si hay un !ok). Es lo
+ * que pide la spec ("consumir a lo sumo uno"). Si se quisiera consumir SOLO cuando
+ * realmente salva la racha, habría que hacer que computeStreak informe si usó el
+ * freeze; se deja así para no ampliar la API ni romper la resolución. TODO opcional.
+ */
+async function consumeStreakFreezes(userIds: string[]): Promise<Set<string>> {
+  const frozen = new Set<string>();
+  if (!userIds.length) return frozen;
+  const admin = adminClient();
+  const { data } = await admin
+    .from("prediction_boosts")
+    .select("id,user_id,boost_id")
+    .in("user_id", userIds)
+    .is("consumed_at", null);
+  // Un freeze por usuario (el primero que aparezca).
+  const pickByUser = new Map<string, string>(); // user_id → boost row id
+  for (const r of (data ?? []) as { id: string; user_id: string; boost_id: string }[]) {
+    if (boostDef(r.boost_id)?.freezesStreak && !pickByUser.has(r.user_id)) {
+      pickByUser.set(r.user_id, r.id);
+    }
+  }
+  for (const [uid, boostRowId] of pickByUser) {
+    // CAS sobre el boost: solo lo aplicamos si seguía sin consumir.
+    const { data: claimed } = await admin
+      .from("prediction_boosts")
+      .update({ consumed_at: new Date().toISOString() })
+      .eq("id", boostRowId)
+      .is("consumed_at", null)
+      .select("id");
+    if (claimed && claimed.length > 0) frozen.add(uid);
+  }
+  return frozen;
 }
 
 /** IDs de partidos con al menos una predicción sin resolver (para el worker). */

@@ -8,7 +8,7 @@
 // Auth requerida. La compra (sumidero de monedas) se valida en el backend.
 
 import { NextResponse } from "next/server";
-import { getCurrentUser } from "@/lib/auth-helpers";
+import { getCurrentUser, rateLimitByUser } from "@/lib/auth-helpers";
 import { buyCosmetic, equipCosmetic, getCosmeticsState } from "@/lib/predictions/cosmetics-store";
 import { cosmeticDef } from "@/lib/predictions/cosmetics";
 import type { CosmeticKind } from "@/lib/predictions/cosmetics";
@@ -26,12 +26,17 @@ const BUY_ERROR_STATUS: Record<string, number> = {
 export async function GET() {
   const user = await getCurrentUser();
   if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-  return NextResponse.json(await getCosmeticsState(user.id));
+  // FIX 5: inventario/monedas por-usuario → no cachear en el navegador.
+  return NextResponse.json(await getCosmeticsState(user.id), { headers: { "Cache-Control": "private, no-store" } });
 }
 
 export async function POST(req: Request) {
   const user = await getCurrentUser();
   if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+
+  // FIX 2: rate-limit de escritura (20 acciones/min: buy/equip/unequip).
+  const rl = await rateLimitByUser(user.id, "pred:cosmetic", 20, 60);
+  if (rl.limited) return NextResponse.json({ error: "rate_limited" }, { status: 429 });
 
   let body: { action?: string; id?: string; kind?: string };
   try { body = await req.json(); } catch { return NextResponse.json({ error: "bad_request" }, { status: 400 }); }

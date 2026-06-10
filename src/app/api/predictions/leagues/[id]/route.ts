@@ -19,7 +19,8 @@ export async function GET(_req: Request, { params }: { params: { id: string } })
     return NextResponse.json({ error: "not_a_member" }, { status: 403 });
   }
   const standings = await leagueLeaderboard(params.id);
-  return NextResponse.json({ league_id: params.id, standings });
+  // FIX 5: clasificación de liga tras gate de membresía (datos privados) → no cachear.
+  return NextResponse.json({ league_id: params.id, standings }, { headers: { "Cache-Control": "private, no-store" } });
 }
 
 export async function DELETE(_req: Request, { params }: { params: { id: string } }) {

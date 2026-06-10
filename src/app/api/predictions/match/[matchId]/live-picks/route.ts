@@ -6,7 +6,7 @@
 //   POST → crea un micro-pick para un mercado. Auth requerida.
 
 import { NextResponse } from "next/server";
-import { getCurrentUser } from "@/lib/auth-helpers";
+import { getCurrentUser, rateLimitByUser } from "@/lib/auth-helpers";
 import { LIVE_MARKETS, LIVE_MARKET_KEYS, LIVE_MAX_MINUTE } from "@/lib/predictions/live-picks";
 import {
   authoritativeState,
@@ -34,13 +34,14 @@ export async function GET(_req: Request, { params }: { params: { matchId: string
       ? LIVE_MARKET_KEYS.filter((m) => !pendingMarkets.has(m)).map((m) => LIVE_MARKETS[m])
       : [];
 
+  // FIX 5: incluye los picks del usuario y su liquidación → no cachear.
   return NextResponse.json({
     live: state.live,
     minute: state.minute,
     finished: state.finished,
     markets,
     picks,
-  });
+  }, { headers: { "Cache-Control": "private, no-store" } });
 }
 
 const ERROR_STATUS: Record<string, number> = {
@@ -56,6 +57,10 @@ const ERROR_STATUS: Record<string, number> = {
 export async function POST(req: Request, { params }: { params: { matchId: string } }) {
   const user = await getCurrentUser();
   if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+
+  // FIX 2: rate-limit de escritura (30 micro-picks/min; en vivo el ritmo es alto).
+  const rl = await rateLimitByUser(user.id, "pred:livepick", 30, 60);
+  if (rl.limited) return NextResponse.json({ error: "rate_limited" }, { status: 429 });
 
   let body: { market?: string; choice?: string };
   try {

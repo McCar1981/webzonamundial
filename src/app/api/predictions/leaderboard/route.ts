@@ -19,12 +19,14 @@ export async function GET(req: Request) {
 
   if (weekly) {
     const week = await getWeeklyLeaderboard(limit);
+    // FIX 6: el ranking semanal NO calcula accuracy real (lo hará otro pase).
+    // Antes mapeaba accuracy_pct: 0 (dato falso); ahora se OMITE para que el
+    // front pueda ocultar la columna en vez de mostrar un 0% mentiroso.
     const rankings = week.map((e) => ({
       position: e.position,
       user: { id: e.user_id, display_name: e.display_name, avatar_url: e.avatar_url, is_premium: false, cosmetics: e.cosmetics },
       total_points: e.points,
       predictions_count: e.predictions,
-      accuracy_pct: 0,
     }));
     const myPosition = user ? (rankings.find((r) => r.user.id === user.id)?.position ?? null) : null;
     return NextResponse.json({ type: "global", period: "weekly", total_users: rankings.length, rankings, my_position: myPosition });

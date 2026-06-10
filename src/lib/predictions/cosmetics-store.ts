@@ -122,7 +122,15 @@ export async function buyCosmetic(uid: string, cosmeticId: string): Promise<Cosm
     .from("prediction_cosmetics_owned")
     .insert({ user_id: uid, cosmetic_id: def.id });
   if (ownErr) {
-    await grantCoins(uid, def.cost, 0, { seasonXp: false }).catch(() => {});
+    // Reembolso del cobro al no poder registrar la propiedad. Si el propio
+    // reembolso falla, NO lo tragamos: dejamos rastro (uid/importe/motivo) para
+    // reconciliar a mano, en vez de perder Fútcoins del usuario en silencio.
+    await grantCoins(uid, def.cost, 0, { seasonXp: false }).catch((refundErr) => {
+      console.error(
+        `[cosmetics] buyCosmetic rollback FALLIDO — reconciliar a mano: uid=${uid} cost=${def.cost} cosmetic=${def.id} motivo=`,
+        refundErr,
+      );
+    });
     return { ok: false, error: "already_owned", coins: spent.coins + def.cost };
   }
   return { ok: true, coins: spent.coins };

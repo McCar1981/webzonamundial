@@ -213,11 +213,15 @@ export function computeStreak(resultsChrono: boolean[], frozen = false): StreakS
     else run = 0;
   }
   // racha "actual" = aciertos consecutivos al final.
+  // FIX 7(a): si hay "Congelar Racha", absorbe UN fallo reciente: en vez de
+  // cortar al primer !ok, lo saltamos una vez (consume el freeze) y seguimos
+  // contando hacia atrás. `used` garantiza que solo se absorbe un fallo.
   let current = 0;
+  let used = false;
   for (let i = resultsChrono.length - 1; i >= 0; i--) {
     if (resultsChrono[i]) current++;
     else {
-      if (frozen && current > 0) { /* el freeze absorbe este fallo */ }
+      if (frozen && !used && current > 0) { used = true; continue; }
       break;
     }
   }

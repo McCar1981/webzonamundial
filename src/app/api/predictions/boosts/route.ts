@@ -4,7 +4,7 @@
 // POST /api/predictions/boosts → comprar un boost con monedas. Auth requerida.
 
 import { NextResponse } from "next/server";
-import { getCurrentUser } from "@/lib/auth-helpers";
+import { getCurrentUser, rateLimitByUser } from "@/lib/auth-helpers";
 import { boostCatalog, buyBoost } from "@/lib/predictions/gamification-store";
 
 export const runtime = "nodejs";
@@ -17,6 +17,9 @@ export async function GET() {
 export async function POST(req: Request) {
   const user = await getCurrentUser();
   if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  // FIX 2: rate-limit de escritura (20 compras/min).
+  const rl = await rateLimitByUser(user.id, "pred:boost", 20, 60);
+  if (rl.limited) return NextResponse.json({ error: "rate_limited" }, { status: 429 });
   let body: { boost_id?: string };
   try { body = await req.json(); } catch { return NextResponse.json({ error: "bad_request" }, { status: 400 }); }
   if (!body.boost_id) return NextResponse.json({ error: "bad_request", message: "boost_id requerido" }, { status: 400 });

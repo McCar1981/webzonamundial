@@ -158,6 +158,12 @@ export async function createLivePick(
  * select), evitando doble pago ante polling concurrente.
  */
 export async function settleDuePicks(uid: string, matchId: string, state: MatchLiveState): Promise<void> {
+  // NP-04 (auditoría 2026-06-10): NUNCA liquidar picks con dinero/monedas reales
+  // contra eventos SIMULADOS. Si el estado autoritativo cae a simulación (la API
+  // de fútbol falló o no hay fixture mapeado), dejamos los picks pendientes hasta
+  // que vuelva el feed real. Coherente con `source` en authoritativeState.
+  if (state.source === "sim") return;
+
   const admin = adminClient();
   const { data } = await admin
     .from("prediction_live_picks")

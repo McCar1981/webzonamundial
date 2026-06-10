@@ -38,6 +38,7 @@ import {
   type ProStatus,
 } from "@/lib/pro/subscriptions";
 import {
+  applyPack,
   applyPowerup,
   getPurchase,
   markPowerupRefunded,
@@ -196,6 +197,15 @@ async function handlePowerupCheckout(session: Stripe.Checkout.Session) {
       ? session.payment_intent
       : session.payment_intent?.id ?? null;
 
+  // Pack Comodines ×3: claim + abono de créditos en una RPC transaccional
+  // (idempotente) y aplicación fail-soft del comodín pedido. El pack NUNCA se
+  // reembolsa automáticamente: aunque el intent caduque durante el pago, los
+  // 3 usos quedan en el monedero.
+  if (purchase.sku === "pack3") {
+    await applyPack(purchase, paymentIntentId);
+    return;
+  }
+
   const refund = async (reason: string) => {
     await markPurchaseFailed(purchaseId, paymentIntentId, reason);
     if (!paymentIntentId) {
@@ -212,6 +222,8 @@ async function handlePowerupCheckout(session: Stripe.Checkout.Session) {
     }
   };
 
+  // Compat: compras sueltas de la v1 (sesiones de Checkout creadas antes del
+  // deploy del pack y pagadas dentro de su ventana de 30 min).
   const result = await applyPowerup(purchase);
   if (!result.ok) {
     await refund(`${result.error ?? "apply_failed"}: ${result.message ?? ""}`);

@@ -1463,7 +1463,7 @@ function MatchDetailView({
 
       <OracleCard match={match} hasWinner={completedTypes.has("winner")} />
       <PiquesCard match={match} hasWinner={completedTypes.has("winner")} closed={closed} />
-      <DoubleMatchCard matchId={String(match.i)} closed={closed} active={powerups.doubleDown} currency={powerups.currency} />
+      <DoubleMatchCard matchId={String(match.i)} closed={closed} active={powerups.doubleDown} currency={powerups.currency} credits={powerups.credits} onUsed={powerups.reload} />
 
       {loading && !state && <p style={{ color: DIM, textAlign: "center", padding: 24 }}>Cargando predicciones…</p>}
       {!loading && loadFailed && !state && (
@@ -1541,6 +1541,11 @@ function MatchDetailView({
                           matchAway: match.a,
                           used: powerups.secondChancePredictions.includes(existing!.id),
                           currency: powerups.currency,
+                          credits: powerups.credits,
+                          onApplied: () => {
+                            onRetry();
+                            powerups.reload();
+                          },
                         }
                       : null
                   }
@@ -1863,7 +1868,7 @@ function Badge({ children }: { children: React.ReactNode }) {
 }
 
 // ─── Vista de predicción ya enviada ──────────────────────────────────────────
-function CompletedView({ p, type, scorers, duels, liveNow, canSecure, onSecured, onEdit, secondChance }: { p: MatchPrediction; type: PredictionType; scorers: ScorerCandidate[]; duels: DuelOut[]; liveNow?: LiveVerdictOut | null; canSecure?: boolean; onSecured?: () => void; onEdit?: () => void; secondChance?: { matchHome: string; matchAway: string; used: boolean; currency: "eur" | "usd" } | null }) {
+function CompletedView({ p, type, scorers, duels, liveNow, canSecure, onSecured, onEdit, secondChance }: { p: MatchPrediction; type: PredictionType; scorers: ScorerCandidate[]; duels: DuelOut[]; liveNow?: LiveVerdictOut | null; canSecure?: boolean; onSecured?: () => void; onEdit?: () => void; secondChance?: { matchHome: string; matchAway: string; used: boolean; currency: "eur" | "usd"; credits: number; onApplied?: () => void } | null }) {
   const summary = summarize(type, p, scorers, duels);
   const resolved = p.status === "resolved";
   // "Asegurada": vendida en vivo a puntos fijos. Prevalece sobre el chip vivo.
@@ -1938,6 +1943,8 @@ function CompletedView({ p, type, scorers, duels, liveNow, canSecure, onSecured,
           matchAway={secondChance.matchAway}
           alreadyUsed={secondChance.used}
           currency={secondChance.currency}
+          credits={secondChance.credits}
+          onApplied={secondChance.onApplied}
         />
       )}
     </div>

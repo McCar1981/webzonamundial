@@ -9,7 +9,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { TRIVIA_HINT_FIFTY } from "@/lib/economy/spend";
 import { handleProRequired } from "@/lib/pro/paywall-client";
-import { POWERUPS } from "@/lib/powerups/catalog";
+import { POWERUP_PACK } from "@/lib/powerups/catalog";
 
 const BG = "#060B14",
   BG2 = "#0F1D32",
@@ -113,10 +113,12 @@ export default function TriviaGame() {
   // o timeout del timer que coincide con un clic).
   const [submitting, setSubmitting] = useState(false);
 
-  // Comodín "Salvarracha": revive de pago en Muerte Súbita (1 por partida).
-  // El efecto lo aplica el webhook de Stripe sobre la sesión del servidor;
-  // aquí: oferta al morir, pago en pestaña nueva y polling de confirmación.
+  // Comodín "Salvarracha": revive en Muerte Súbita (1 por partida). Con usos
+  // del Pack ×3 en el monedero la aplicación es INSTANTÁNEA (POST /use); sin
+  // usos se compra el pack en pestaña nueva y se confirma por polling.
   const [reviveOffer, setReviveOffer] = useState(false);
+  const [reviveCredits, setReviveCredits] = useState<number | null>(null);
+  const [reviveBusy, setReviveBusy] = useState(false);
   const [reviveWaiting, setReviveWaiting] = useState(false);
   const [reviveErr, setReviveErr] = useState<string | null>(null);
   const [lostStreak, setLostStreak] = useState(0);
@@ -280,10 +282,19 @@ export default function TriviaGame() {
     if (!revealed) return;
     const isLast = idx + 1 >= questions.length;
     if (revealed.gameOver || isLast) {
-      // Muerte Súbita: antes de cerrar la partida, UNA oferta de revive de pago
-      // (si quedan preguntas que jugar).
+      // Muerte Súbita: antes de cerrar la partida, UNA oferta de revive
+      // (si quedan preguntas que jugar). De paso miramos el monedero para
+      // ofrecer "usa 1 comodín" o la compra del pack.
       if (revealed.gameOver && mode === "muerte-subita" && !revivedOnce.current && !isLast) {
         setReviveOffer(true);
+        setReviveCredits(null);
+        fetch("/api/powerups/status?wallet=1")
+          .then(async (r) => {
+            if (!r.ok) return setReviveCredits(0);
+            const j = (await r.json()) as { credits?: number };
+            setReviveCredits(typeof j.credits === "number" ? j.credits : 0);
+          })
+          .catch(() => setReviveCredits(0));
         return;
       }
       await finishGame();
@@ -315,6 +326,27 @@ export default function TriviaGame() {
     qStartRef.current = Date.now();
   }
 
+  /** Gasta 1 uso del monedero en revivir ESTA sesión. "not_game_over" cuenta
+   *  como éxito: significa que el revive ya se aplicó (p.ej. el intent del
+   *  pack llegó justo antes que nosotros). */
+  async function tryUseRevive(): Promise<{ ok: boolean; streak?: number; message?: string }> {
+    try {
+      const r = await fetch("/api/powerups/use", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sku: "trivia_revive", trivia_session_id: sessionId }),
+      });
+      const j = (await r.json().catch(() => null)) as {
+        ok?: boolean; trivia?: { streak: number } | null; error?: string; message?: string;
+      } | null;
+      if (r.ok && j?.ok) return { ok: true, streak: j.trivia?.streak ?? lostStreak };
+      if (j?.error === "not_game_over") return { ok: true, streak: lostStreak };
+      return { ok: false, message: j?.message ?? "No se pudo aplicar el comodín." };
+    } catch {
+      return { ok: false, message: "Sin conexión, reintenta." };
+    }
+  }
+
   function pollRevive(pid: string, tries: number) {
     if (tries > 48) {
       // ~2 min sin confirmación: no cerramos la partida (la sesión vive 1h),
@@ -327,10 +359,30 @@ export default function TriviaGame() {
       try {
         const r = await fetch(`/api/powerups/status?pid=${encodeURIComponent(pid)}`);
         if (r.ok) {
-          const j = (await r.json()) as { status: string; trivia?: { streak: number } | null };
-          if (j.status === "applied") {
-            resumeAfterRevive(j.trivia?.streak ?? 0);
-            return;
+          const j = (await r.json()) as {
+            status: string;
+            trivia?: { streak: number; revived: boolean } | null;
+            credits?: number;
+          };
+          if (j.status === "applied" || j.status === "consumed") {
+            if (j.trivia?.revived) {
+              resumeAfterRevive(j.trivia.streak);
+              return;
+            }
+            // Pack acreditado pero el revive automático aún no consta: tras un
+            // par de ticks lo aplicamos nosotros con uno de los usos comprados.
+            if (tries >= 2) {
+              const used = await tryUseRevive();
+              if (used.ok) {
+                resumeAfterRevive(used.streak ?? lostStreak);
+              } else {
+                setReviveWaiting(false);
+                setReviveErr(
+                  `${used.message ?? "No se pudo revivir."} Tus usos del pack quedan en tu monedero.`,
+                );
+              }
+              return;
+            }
           }
           if (j.status === "failed" || j.status === "refunded") {
             setReviveWaiting(false);
@@ -349,20 +401,31 @@ export default function TriviaGame() {
 
   async function buyRevive() {
     setReviveErr(null);
+
+    // Con usos en el monedero: aplicación instantánea, sin Stripe.
+    if ((reviveCredits ?? 0) > 0) {
+      setReviveBusy(true);
+      const used = await tryUseRevive();
+      setReviveBusy(false);
+      if (used.ok) resumeAfterRevive(used.streak ?? lostStreak);
+      else setReviveErr(used.message ?? "No se pudo aplicar el comodín.");
+      return;
+    }
+
     // Reintento tras timeout: solo reanudar el polling, sin nuevo checkout.
     if (reviveRetryPid.current) {
       setReviveWaiting(true);
       pollRevive(reviveRetryPid.current, 0);
       return;
     }
-    // Abrir la pestaña dentro del gesto del usuario (popup blockers) y poner la
-    // URL de Stripe cuando llegue.
+    // Sin usos: comprar el Pack ×3. Abrir la pestaña dentro del gesto del
+    // usuario (popup blockers) y poner la URL de Stripe cuando llegue.
     const payTab = window.open("about:blank", "_blank");
     try {
       const r = await fetch("/api/powerups/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ sku: "trivia_revive", trivia_session_id: sessionId }),
+        body: JSON.stringify({ intent: { sku: "trivia_revive", trivia_session_id: sessionId } }),
       });
       const j = (await r.json().catch(() => null)) as { url?: string; purchase_id?: string; message?: string } | null;
       if (r.status === 401) {
@@ -522,6 +585,8 @@ export default function TriviaGame() {
         {phase === "playing" && reviveOffer && (
           <ReviveOverlay
             lostStreak={lostStreak}
+            credits={reviveCredits}
+            busy={reviveBusy}
             waiting={reviveWaiting}
             err={reviveErr}
             onBuy={buyRevive}
@@ -1110,14 +1175,24 @@ function Result({
 
 // ─── Salvarracha: overlay de revive en Muerte Súbita ─────────────────────────
 
-function ReviveOverlay({ lostStreak, waiting, err, onBuy, onDecline }: {
+function ReviveOverlay({ lostStreak, credits, busy, waiting, err, onBuy, onDecline }: {
   lostStreak: number;
+  /** Usos en el monedero; null mientras se consulta. */
+  credits: number | null;
+  busy: boolean;
   waiting: boolean;
   err: string | null;
   onBuy: () => void;
   onDecline: () => void;
 }) {
-  const def = POWERUPS.trivia_revive;
+  const hasCredits = (credits ?? 0) > 0;
+  const cta = busy
+    ? "Aplicando…"
+    : credits === null
+      ? "💛 Revivir y salvar mi racha"
+      : hasCredits
+        ? `💛 Usar Salvarracha · te quedan ${credits}`
+        : `💛 Revivir con ${POWERUP_PACK.emoji} Pack ×3 · ${POWERUP_PACK.prices.eur.display}`;
   return (
     <div style={{ position: "fixed", inset: 0, zIndex: 2000, background: "rgba(6,11,20,0.82)", backdropFilter: "blur(8px)", display: "flex", alignItems: "center", justifyContent: "center", padding: 18 }}>
       <div style={{ background: "#0F1D32", border: `1px solid ${GOLD}55`, borderRadius: 20, padding: "28px 22px", maxWidth: 400, width: "100%", textAlign: "center", animation: "pop .18s ease-out" }}>
@@ -1137,13 +1212,16 @@ function ReviveOverlay({ lostStreak, waiting, err, onBuy, onDecline }: {
         ) : (
           <button
             onClick={onBuy}
+            disabled={busy || credits === null}
             style={{
-              width: "100%", padding: "13px 16px", borderRadius: 12, border: "none", cursor: "pointer",
+              width: "100%", padding: "13px 16px", borderRadius: 12, border: "none",
+              cursor: busy || credits === null ? "default" : "pointer",
               background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: "#0B1220",
               fontWeight: 900, fontSize: 15, fontFamily: "inherit",
+              opacity: busy || credits === null ? 0.75 : 1,
             }}
           >
-            {def.emoji} Revivir y salvar mi racha · {def.prices.eur.display}
+            {cta}
           </button>
         )}
 
@@ -1151,17 +1229,19 @@ function ReviveOverlay({ lostStreak, waiting, err, onBuy, onDecline }: {
 
         <button
           onClick={onDecline}
-          disabled={waiting}
+          disabled={waiting || busy}
           style={{
-            marginTop: 12, width: "100%", padding: "11px 16px", borderRadius: 12, cursor: waiting ? "default" : "pointer",
-            background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)", color: waiting ? "#475569" : MID,
+            marginTop: 12, width: "100%", padding: "11px 16px", borderRadius: 12, cursor: waiting || busy ? "default" : "pointer",
+            background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)", color: waiting || busy ? "#475569" : MID,
             fontWeight: 700, fontSize: 13.5, fontFamily: "inherit",
           }}
         >
           Terminar partida
         </button>
         <p style={{ margin: "10px 0 0", fontSize: 11, color: "#64748B", lineHeight: 1.45 }}>
-          Un revive por partida. Si el pago no llega a aplicarse, se devuelve automáticamente.
+          {hasCredits
+            ? "Un revive por partida. Se aplica al instante con uno de tus usos."
+            : `Un revive por partida. El pack trae 3 usos: gastas 1 aquí y te quedan 2 para cualquier comodín.`}
         </p>
       </div>
     </div>

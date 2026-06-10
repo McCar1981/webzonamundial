@@ -1,20 +1,20 @@
 // src/app/app/predicciones/jugar/Powerups.tsx
 //
-// UI de los comodines de pago del módulo de predicciones:
-//   · DoubleMatchCard    — "⚡ Partido x2" (se compra antes del cierre)
+// UI de los comodines del módulo de predicciones:
+//   · DoubleMatchCard    — "⚡ Partido x2" (se activa antes del cierre)
 //   · SecondChanceButton — "⏪ Segunda Oportunidad" (cambiar un pick cerrado,
 //                          hasta el descanso), con mini-modal para el nuevo pick
 //
-// El cobro es Stripe Checkout (redirect); el efecto lo aplica el webhook
-// server-side. Aquí solo: estado, elegibilidad aproximada (el servidor revalida
-// siempre) y arranque del checkout.
+// Modelo de cobro: la ÚNICA compra es el Pack Comodines ×3 (Stripe Checkout,
+// redirect). Con usos en el monedero, aplicar un comodín es INSTANTÁNEO
+// (POST /api/powerups/use, sin redirect). El servidor revalida siempre.
 
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { X, Zap, RotateCcw } from "lucide-react";
-import { POWERUPS } from "@/lib/powerups/catalog";
+import { POWERUP_PACK } from "@/lib/powerups/catalog";
 
 const BG3 = "#0B1825";
 const GOLD = "#c9a84c";
@@ -30,14 +30,16 @@ export interface PowerupState {
   doubleDown: boolean;
   secondChancePredictions: string[];
   currency: "eur" | "usd";
+  credits: number;
   reload: () => void;
 }
 
-/** Comodines efectivos del usuario en este partido (una consulta por vista). */
+/** Comodines efectivos del usuario en este partido + saldo del monedero. */
 export function usePowerupState(matchId: string): PowerupState {
   const [doubleDown, setDoubleDown] = useState(false);
   const [scPreds, setScPreds] = useState<string[]>([]);
   const [currency, setCurrency] = useState<"eur" | "usd">("eur");
+  const [credits, setCredits] = useState(0);
 
   const load = useCallback(async () => {
     try {
@@ -47,10 +49,12 @@ export function usePowerupState(matchId: string): PowerupState {
         double_down?: boolean;
         second_chance_predictions?: string[];
         currency?: "eur" | "usd";
+        credits?: number;
       };
       setDoubleDown(Boolean(j.double_down));
       setScPreds(j.second_chance_predictions ?? []);
       if (j.currency === "usd" || j.currency === "eur") setCurrency(j.currency);
+      setCredits(typeof j.credits === "number" ? j.credits : 0);
     } catch {
       /* sin red: sin marcas */
     }
@@ -60,27 +64,28 @@ export function usePowerupState(matchId: string): PowerupState {
     void load();
   }, [load]);
 
-  return { doubleDown, secondChancePredictions: scPreds, currency, reload: () => void load() };
+  return { doubleDown, secondChancePredictions: scPreds, currency, credits, reload: () => void load() };
 }
 
-// ─── Checkout común ──────────────────────────────────────────────────────────
+// ─── Llamadas comunes ────────────────────────────────────────────────────────
 
-type CheckoutBody = {
+interface UseBody {
   sku: "second_chance" | "double_down";
   match_id?: string;
   prediction_id?: string;
   payload?: unknown;
-};
+}
 
-async function startCheckout(body: CheckoutBody): Promise<{ ok: boolean; message?: string }> {
+/** Compra del pack: redirect a Stripe con el comodín pedido como intent. */
+async function startPackCheckout(intent: UseBody): Promise<{ ok: boolean; message?: string }> {
   try {
     const r = await fetch("/api/powerups/checkout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
+      body: JSON.stringify({ intent }),
     });
     const j = (await r.json().catch(() => null)) as { url?: string; message?: string } | null;
-    if (r.status === 401) return { ok: false, message: "Inicia sesión para comprar comodines." };
+    if (r.status === 401) return { ok: false, message: "Inicia sesión para usar comodines." };
     if (!r.ok || !j?.url) return { ok: false, message: j?.message ?? "No se pudo iniciar el pago." };
     window.location.href = j.url;
     return { ok: true };
@@ -89,31 +94,61 @@ async function startCheckout(body: CheckoutBody): Promise<{ ok: boolean; message
   }
 }
 
+/** Uso instantáneo de 1 crédito del monedero (sin Stripe). */
+async function spendUse(body: UseBody): Promise<{ ok: boolean; message?: string; credits?: number }> {
+  try {
+    const r = await fetch("/api/powerups/use", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    const j = (await r.json().catch(() => null)) as { ok?: boolean; message?: string; credits?: number } | null;
+    if (r.status === 401) return { ok: false, message: "Inicia sesión para usar comodines." };
+    if (!r.ok || !j?.ok) return { ok: false, message: j?.message ?? "No se pudo aplicar el comodín.", credits: j?.credits };
+    return { ok: true, credits: j.credits };
+  } catch {
+    return { ok: false, message: "Sin conexión, reintenta." };
+  }
+}
+
+/** Texto del CTA: usar un crédito disponible o comprar el pack. */
+function ctaLabel(action: string, credits: number, currency: "eur" | "usd"): string {
+  return credits > 0
+    ? `${action} · usa 1 comodín (te quedan ${credits})`
+    : `${action} · ${POWERUP_PACK.emoji} Pack ×3 · ${POWERUP_PACK.prices[currency].display}`;
+}
+
 // ─── Partido x2 ──────────────────────────────────────────────────────────────
 
-export function DoubleMatchCard({ matchId, closed, active, currency = "eur", onPurchased }: {
+export function DoubleMatchCard({ matchId, closed, active, currency = "eur", credits = 0, onUsed }: {
   matchId: string;
   closed: boolean;
   active: boolean;
   currency?: "eur" | "usd";
-  onPurchased?: () => void;
+  credits?: number;
+  onUsed?: () => void;
 }) {
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
-  const def = POWERUPS.double_down;
 
-  // Activo: recordatorio permanente. Cerrado sin comprar: no hay nada que vender.
+  // Activo: recordatorio permanente. Cerrado sin activar: no hay nada que vender.
   if (!active && closed) return null;
 
   const buy = async () => {
     setBusy(true);
     setErr(null);
-    const res = await startCheckout({ sku: "double_down", match_id: matchId });
-    if (!res.ok) {
-      setErr(res.message ?? "No se pudo iniciar el pago.");
+    const body: UseBody = { sku: "double_down", match_id: matchId };
+    if (credits > 0) {
+      const res = await spendUse(body);
       setBusy(false);
+      if (!res.ok) setErr(res.message ?? "No se pudo aplicar el comodín.");
+      else onUsed?.();
     } else {
-      onPurchased?.();
+      const res = await startPackCheckout(body);
+      if (!res.ok) {
+        setErr(res.message ?? "No se pudo iniciar el pago.");
+        setBusy(false);
+      }
     }
   };
 
@@ -148,8 +183,13 @@ export function DoubleMatchCard({ matchId, closed, active, currency = "eur", onP
               opacity: busy ? 0.7 : 1,
             }}
           >
-            <Zap size={15} /> {busy ? "Abriendo pago…" : `Activar Partido x2 · ${def.prices[currency].display}`}
+            <Zap size={15} /> {busy ? "Aplicando…" : ctaLabel("Activar Partido x2", credits, currency)}
           </button>
+          {credits === 0 && (
+            <p style={{ margin: "8px 0 0", fontSize: 11, color: DIM, lineHeight: 1.45 }}>
+              {POWERUP_PACK.emoji} El pack trae 3 usos: gastas 1 aquí y te quedan 2 para cualquier comodín.
+            </p>
+          )}
           {err && <p style={{ margin: "8px 0 0", fontSize: 12.5, color: "#fca5a5" }}>{err}</p>}
         </>
       )}
@@ -161,7 +201,7 @@ export function DoubleMatchCard({ matchId, closed, active, currency = "eur", onP
 
 type WinnerPick = "home" | "draw" | "away";
 
-export function SecondChanceButton({ predictionId, type, currentData, matchHome, matchAway, alreadyUsed, currency = "eur" }: {
+export function SecondChanceButton({ predictionId, type, currentData, matchHome, matchAway, alreadyUsed, currency = "eur", credits = 0, onApplied }: {
   predictionId: string;
   type: "winner" | "exact_score";
   currentData: unknown;
@@ -169,9 +209,10 @@ export function SecondChanceButton({ predictionId, type, currentData, matchHome,
   matchAway: string;
   alreadyUsed: boolean;
   currency?: "eur" | "usd";
+  credits?: number;
+  onApplied?: () => void;
 }) {
   const [open, setOpen] = useState(false);
-  const def = POWERUPS.second_chance;
 
   if (alreadyUsed) {
     return (
@@ -192,7 +233,7 @@ export function SecondChanceButton({ predictionId, type, currentData, matchHome,
           fontWeight: 800, fontSize: 13, display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 6,
         }}
       >
-        <RotateCcw size={13} /> Segunda Oportunidad · cambia tu pick · {def.prices[currency].display}
+        <RotateCcw size={13} /> Segunda Oportunidad · cambia tu pick
       </button>
       {open && (
         <SecondChanceModal
@@ -202,6 +243,8 @@ export function SecondChanceButton({ predictionId, type, currentData, matchHome,
           matchHome={matchHome}
           matchAway={matchAway}
           currency={currency}
+          credits={credits}
+          onApplied={onApplied}
           onClose={() => setOpen(false)}
         />
       )}
@@ -209,13 +252,15 @@ export function SecondChanceButton({ predictionId, type, currentData, matchHome,
   );
 }
 
-function SecondChanceModal({ predictionId, type, currentData, matchHome, matchAway, currency, onClose }: {
+function SecondChanceModal({ predictionId, type, currentData, matchHome, matchAway, currency, credits, onApplied, onClose }: {
   predictionId: string;
   type: "winner" | "exact_score";
   currentData: unknown;
   matchHome: string;
   matchAway: string;
   currency: "eur" | "usd";
+  credits: number;
+  onApplied?: () => void;
   onClose: () => void;
 }) {
   const cur = currentData as { result?: WinnerPick; home_goals?: number; away_goals?: number };
@@ -224,7 +269,6 @@ function SecondChanceModal({ predictionId, type, currentData, matchHome, matchAw
   const [awayGoals, setAwayGoals] = useState<number>(cur.away_goals ?? 0);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
-  const def = POWERUPS.second_chance;
 
   const samePick = type === "winner"
     ? winner === null || winner === cur.result
@@ -237,10 +281,22 @@ function SecondChanceModal({ predictionId, type, currentData, matchHome, matchAw
     const payload = type === "winner"
       ? { result: winner }
       : { home_goals: homeGoals, away_goals: awayGoals };
-    const res = await startCheckout({ sku: "second_chance", prediction_id: predictionId, payload });
-    if (!res.ok) {
-      setErr(res.message ?? "No se pudo iniciar el pago.");
+    const body: UseBody = { sku: "second_chance", prediction_id: predictionId, payload };
+    if (credits > 0) {
+      const res = await spendUse(body);
       setBusy(false);
+      if (!res.ok) {
+        setErr(res.message ?? "No se pudo aplicar el comodín.");
+      } else {
+        onClose();
+        onApplied?.();
+      }
+    } else {
+      const res = await startPackCheckout(body);
+      if (!res.ok) {
+        setErr(res.message ?? "No se pudo iniciar el pago.");
+        setBusy(false);
+      }
     }
   };
 
@@ -293,14 +349,14 @@ function SecondChanceModal({ predictionId, type, currentData, matchHome, matchAw
         style={{ background: "#0F1D32", border: `1px solid color-mix(in srgb, ${GOLD} 30%, transparent)`, borderRadius: 20, padding: "24px 20px", maxWidth: 400, width: "100%" }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
-          <span style={{ fontSize: 20 }}>{def.emoji}</span>
+          <span style={{ fontSize: 20 }}>⏪</span>
           <h3 style={{ margin: 0, color: TEXT, fontSize: 16, fontWeight: 900 }}>Segunda Oportunidad</h3>
           <button onClick={onClose} aria-label="Cerrar" style={{ marginLeft: "auto", background: "none", border: "none", color: DIM, cursor: "pointer", padding: 4 }}>
             <X size={18} />
           </button>
         </div>
         <p style={{ margin: "0 0 14px", fontSize: 12.5, color: MID, lineHeight: 1.5 }}>
-          Elige tu nuevo pick. El cambio se aplica al confirmarse el pago y solo es posible hasta el descanso.
+          Elige tu nuevo pick. Solo es posible hasta el descanso.
         </p>
 
         {type === "winner" ? (
@@ -330,10 +386,16 @@ function SecondChanceModal({ predictionId, type, currentData, matchHome, matchAw
             opacity: busy ? 0.7 : 1,
           }}
         >
-          {busy ? "Abriendo pago…" : samePick ? "Elige un pick distinto" : `Cambiar mi pick · ${def.prices[currency].display}`}
+          {busy
+            ? "Aplicando…"
+            : samePick
+              ? "Elige un pick distinto"
+              : ctaLabel("Cambiar mi pick", credits, currency)}
         </button>
         <p style={{ margin: "10px 0 0", fontSize: 11, color: DIM, textAlign: "center", lineHeight: 1.45 }}>
-          Si el descanso termina antes de completarse el pago, te devolvemos el importe automáticamente.
+          {credits > 0
+            ? "El cambio se aplica al instante con uno de tus usos."
+            : `${POWERUP_PACK.emoji} El pack trae 3 usos: gastas 1 aquí y te quedan 2. Si el descanso termina antes de completarse el pago, conservas los 3 usos.`}
         </p>
       </div>
     </div>,

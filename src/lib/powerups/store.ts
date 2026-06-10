@@ -22,17 +22,24 @@ import { getLastSnapshot } from "@/lib/match-center/store";
 import { snapshotStarted } from "@/lib/fantasy/scoring.live";
 import { getSession, saveSession } from "@/lib/trivia/store";
 import type { PredictionData, PredictionRow } from "@/lib/predictions/types";
-import type { PowerupSku, PowerupStatus } from "./catalog";
+import { POWERUP_PACK, type PowerupSku, type PowerupStatus, type PurchaseSku } from "./catalog";
+
+/** payload de una fila pack3: el comodín que el usuario quería aplicar YA
+ *  ("intent"); el contexto (match/prediction/sesión) va en sus columnas. */
+export interface PackIntentPayload {
+  intent_sku: PowerupSku;
+  pick?: PredictionData | null;
+}
 
 export interface PowerupPurchaseRow {
   id: string;
   user_id: string;
-  sku: PowerupSku;
+  sku: PurchaseSku;
   status: PowerupStatus;
   match_id: string | null;
   prediction_id: string | null;
   trivia_session_id: string | null;
-  payload: PredictionData | null;
+  payload: PredictionData | PackIntentPayload | null;
   amount: number;
   currency: string;
   stripe_session_id: string | null;
@@ -110,13 +117,13 @@ export async function doubleDownApplyWindow(matchId: string): Promise<WindowChec
 
 export async function createPendingPurchase(input: {
   userId: string;
-  sku: PowerupSku;
+  sku: PurchaseSku;
   amount: number;
   currency: string;
   matchId?: string | null;
   predictionId?: string | null;
   triviaSessionId?: string | null;
-  payload?: PredictionData | null;
+  payload?: PredictionData | PackIntentPayload | null;
 }): Promise<PowerupPurchaseRow> {
   const { data, error } = await adminClient()
     .from("powerup_purchases")
@@ -198,13 +205,148 @@ export async function consumeDoubleDowns(matchId: string): Promise<void> {
 }
 
 /** Marca refund externo (charge.refunded / dispute). Un double_down reembolsado
- *  deja de estar 'applied', así que la resolución ya no lo multiplica. */
+ *  deja de estar 'applied', así que la resolución ya no lo multiplica. Si lo
+ *  reembolsado es un pack, retira los créditos que aún le queden al usuario
+ *  (sin bajar de 0; los usos ya gastados no se revierten). */
 export async function markPowerupRefunded(purchaseId: string): Promise<void> {
-  await adminClient()
+  const admin = adminClient();
+  const { data } = await admin
     .from("powerup_purchases")
     .update({ status: "refunded", refunded_at: new Date().toISOString() })
     .eq("id", purchaseId)
-    .neq("status", "refunded");
+    .neq("status", "refunded")
+    .select("user_id,sku");
+  const row = (data ?? [])[0] as { user_id: string; sku: PurchaseSku } | undefined;
+  if (row?.sku === "pack3") {
+    await admin.rpc("powerup_revoke_credits", { p_uid: row.user_id, p_n: POWERUP_PACK.credits });
+  }
+}
+
+// ─── Monedero de usos (Pack Comodines ×3) ────────────────────────────────────
+
+/** Saldo de usos del usuario (0 si nunca compró un pack). */
+export async function getCredits(userId: string): Promise<number> {
+  const { data } = await adminClient()
+    .from("powerup_wallet")
+    .select("credits")
+    .eq("user_id", userId)
+    .maybeSingle();
+  return (data as { credits: number } | null)?.credits ?? 0;
+}
+
+/** Gasta 1 uso de forma atómica. Devuelve el saldo restante o null si no había. */
+async function spendCredit(userId: string): Promise<number | null> {
+  const { data, error } = await adminClient().rpc("powerup_spend_credit", { p_uid: userId });
+  if (error) throw error;
+  return (data as number | null) ?? null;
+}
+
+/** Compensación: devuelve 1 uso si la aplicación falló tras el débito. */
+async function refundCredit(userId: string): Promise<void> {
+  await adminClient().rpc("powerup_grant_credits", { p_uid: userId, p_n: 1 });
+}
+
+export interface UseCreditResult {
+  ok: boolean;
+  error?: string;
+  message?: string;
+  /** Saldo tras la operación (si se llegó a tocar el monedero). */
+  credits?: number;
+}
+
+/**
+ * Gasta 1 crédito del monedero y aplica un comodín AHORA (sin Stripe).
+ * Orden: débito atómico → fila de uso (amount 0) → aplicar efecto → applied.
+ * Si el efecto no puede aplicarse, el crédito se devuelve (compensación).
+ */
+export async function useCredit(userId: string, ctx: {
+  sku: PowerupSku;
+  matchId?: string | null;
+  predictionId?: string | null;
+  triviaSessionId?: string | null;
+  payload?: PredictionData | null;
+}): Promise<UseCreditResult> {
+  const left = await spendCredit(userId);
+  if (left === null) {
+    return { ok: false, error: "no_credits", message: "No te quedan usos de comodín" };
+  }
+
+  let usage: PowerupPurchaseRow;
+  try {
+    usage = await createPendingPurchase({
+      userId,
+      sku: ctx.sku,
+      amount: 0,
+      currency: "credit",
+      matchId: ctx.matchId ?? null,
+      predictionId: ctx.predictionId ?? null,
+      triviaSessionId: ctx.triviaSessionId ?? null,
+      payload: ctx.payload ?? null,
+    });
+  } catch (err) {
+    await refundCredit(userId);
+    throw err;
+  }
+
+  const result = await applyPowerup(usage);
+  if (!result.ok) {
+    await markPurchaseFailed(usage.id, null, `${result.error ?? "apply_failed"}: ${result.message ?? ""}`);
+    await refundCredit(userId);
+    return { ok: false, error: result.error, message: result.message, credits: left + 1 };
+  }
+  const marked = await markPurchaseApplied(usage.id, null);
+  if (!marked.ok && marked.duplicate) {
+    // Carrera con otro uso idéntico: este débito se devuelve.
+    await markPurchaseFailed(usage.id, null, "duplicate: ya existe un comodín efectivo igual");
+    await refundCredit(userId);
+    return { ok: false, error: "duplicate", message: "Ya tienes ese comodín activo", credits: left + 1 };
+  }
+  return { ok: true, credits: left };
+}
+
+/**
+ * Compra de pack pagada (la llama el webhook): claim + abono de créditos en una
+ * RPC transaccional (idempotente frente a reintentos de Stripe) y, si la compra
+ * llevaba un comodín pedido ("intent"), lo aplica gastando 1 de esos créditos.
+ * El intent es fail-soft: si su ventana caducó durante el pago, los créditos
+ * quedan en el monedero (no se reembolsa el pack).
+ */
+export async function applyPack(
+  purchase: PowerupPurchaseRow,
+  stripePaymentIntentId: string | null,
+): Promise<ApplyResult> {
+  const admin = adminClient();
+  const { data, error } = await admin.rpc("powerup_apply_pack", {
+    p_purchase_id: purchase.id,
+    p_credits: POWERUP_PACK.credits,
+    p_payment_intent: stripePaymentIntentId,
+  });
+  if (error) throw error; // 500 → Stripe reintenta (la RPC es idempotente)
+  if (data === null || data === undefined) {
+    return { ok: true, alreadyApplied: true }; // reintento: no re-abonar ni re-aplicar
+  }
+
+  const intent = purchase.payload as PackIntentPayload | null;
+  if (intent?.intent_sku) {
+    try {
+      const used = await useCredit(purchase.user_id, {
+        sku: intent.intent_sku,
+        matchId: purchase.match_id,
+        predictionId: purchase.prediction_id,
+        triviaSessionId: purchase.trivia_session_id,
+        payload: intent.pick ?? null,
+      });
+      if (!used.ok) {
+        await admin
+          .from("powerup_purchases")
+          .update({ error: `intent_failed ${used.error ?? ""}: ${used.message ?? ""}` })
+          .eq("id", purchase.id);
+      }
+    } catch (err) {
+      console.error("[powerups] intent del pack falló:", purchase.id, (err as Error).message);
+    }
+  }
+  return { ok: true };
 }
 
 // ─── Aplicadores (los llama el webhook tras el pago) ─────────────────────────
@@ -237,12 +379,17 @@ export async function applyPowerup(purchase: PowerupPurchaseRow): Promise<ApplyR
       return applyDoubleDown(purchase);
     case "trivia_revive":
       return applyTriviaRevive(purchase);
+    default:
+      // pack3 tiene su propio flujo transaccional (applyPack, desde el webhook).
+      return { ok: false, error: "bad_sku", message: `applyPowerup no aplica sku ${purchase.sku}` };
   }
 }
 
 async function applySecondChance(purchase: PowerupPurchaseRow): Promise<ApplyResult> {
   const admin = adminClient();
-  if (!purchase.prediction_id || !purchase.payload) {
+  // En filas second_chance el payload es siempre el nuevo pick.
+  const newPick = purchase.payload as PredictionData | null;
+  if (!purchase.prediction_id || !newPick) {
     return { ok: false, error: "bad_purchase", message: "Compra sin predicción o sin nuevo pick" };
   }
 
@@ -266,7 +413,7 @@ async function applySecondChance(purchase: PowerupPurchaseRow): Promise<ApplyRes
   if (!win.ok) return win;
 
   // El nuevo pick se validó al crear el checkout; revalidamos por si acaso.
-  const v = validatePredictionData(row.prediction_type, purchase.payload, true, row.match_id);
+  const v = validatePredictionData(row.prediction_type, newPick, true, row.match_id);
   if (!v.ok) return { ok: false, error: v.error ?? "invalid", message: v.message ?? "Pick inválido" };
 
   // Update directo (no updatePredictionData): NO tocamos changed_at — el cambio
@@ -274,7 +421,7 @@ async function applySecondChance(purchase: PowerupPurchaseRow): Promise<ApplyRes
   // cuenta por ese timestamp). CAS contra resolución/aseguramiento concurrentes.
   const { data: claimed, error } = await admin
     .from("predictions")
-    .update({ prediction_data: purchase.payload })
+    .update({ prediction_data: newPick })
     .eq("id", row.id)
     .is("resolved_at", null)
     .is("secured_at", null)

@@ -29,6 +29,8 @@ function ComodinReturnInner() {
 
   const [status, setStatus] = useState<Status>("checking");
   const [message, setMessage] = useState<string | null>(null);
+  const [isPack, setIsPack] = useState(false);
+  const [credits, setCredits] = useState<number | null>(null);
   const tries = useRef(0);
 
   useEffect(() => {
@@ -44,8 +46,10 @@ function ComodinReturnInner() {
       try {
         const r = await fetch(`/api/powerups/status?pid=${encodeURIComponent(pid)}`);
         if (r.ok) {
-          const j = (await r.json()) as { status: string; error?: string | null };
+          const j = (await r.json()) as { status: string; sku?: string; error?: string | null; credits?: number };
           if (j.status === "applied" || j.status === "consumed") {
+            setIsPack(j.sku === "pack3");
+            if (typeof j.credits === "number") setCredits(j.credits);
             setStatus("applied");
             return;
           }
@@ -88,8 +92,15 @@ function ComodinReturnInner() {
         {status === "applied" && (
           <>
             <div style={{ fontSize: 40, marginBottom: 12 }}>✅</div>
-            <h1 style={{ color: GREEN, fontSize: 19, fontWeight: 900, margin: "0 0 8px" }}>¡Comodín aplicado!</h1>
+            <h1 style={{ color: GREEN, fontSize: 19, fontWeight: 900, margin: "0 0 8px" }}>
+              {isPack ? "¡Pack de comodines acreditado!" : "¡Comodín aplicado!"}
+            </h1>
             <p style={{ color: MID, fontSize: 14, lineHeight: 1.55, margin: 0 }}>
+              {isPack && (
+                <>
+                  Tu comodín se ha aplicado{credits !== null ? <> y te quedan <b style={{ color: GOLD2 }}>{credits} usos</b> para lo que quieras</> : null}.{" "}
+                </>
+              )}
               {isTrivia
                 ? "Vuelve a la pestaña de tu partida: tu racha te está esperando."
                 : "Ya está activo en tu partido. ¡Suerte!"}

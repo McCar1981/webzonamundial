@@ -67,5 +67,28 @@ export function powerupPrice(sku: PowerupSku, currency: PowerupCurrency): Poweru
   return POWERUPS[sku].prices[currency];
 }
 
+/**
+ * Pack Comodines ×3 — la ÚNICA compra real. La comisión fija de Stripe (~0,25 €)
+ * hace inviable cobrar 0,99 € sueltos (~27% de comisión); el pack la diluye al
+ * ~14% y deja al usuario con usos en el monedero (re-engagement). Los comodines
+ * individuales se CONSUMEN del monedero (1 uso = 1 comodín cualquiera).
+ */
+export const POWERUP_PACK = {
+  sku: "pack3" as const,
+  name: "Pack Comodines ×3",
+  emoji: "🃏",
+  credits: 3,
+  description:
+    "3 usos de comodín para lo que quieras: Segunda Oportunidad, Partido x2 o Salvarracha. Los usos no caducan durante el Mundial.",
+  prices: {
+    eur: { amount: 199, display: "1,99 €" },
+    usd: { amount: 199, display: "1.99 USD" },
+  } as Record<PowerupCurrency, PowerupPrice>,
+};
+
+/** Sku que puede aparecer en una fila de powerup_purchases: los 3 comodines
+ *  (filas de USO, amount=0) o el pack (fila de COMPRA Stripe). */
+export type PurchaseSku = PowerupSku | "pack3";
+
 /** Estados del ciclo de vida de una compra (espejo del CHECK de la tabla). */
 export type PowerupStatus = "pending" | "applied" | "consumed" | "failed" | "refunded";

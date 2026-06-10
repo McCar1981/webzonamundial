@@ -437,6 +437,16 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
   const [soundOn, setSoundOn] = useState(false);
   const [soundAvailable, setSoundAvailable] = useState(false);
 
+  // MODO TV (anti-spoiler): los datos llegan ~30 s después del gol real, pero
+  // las emisiones de TV/streaming van 30-90 s por detrás del directo — sin
+  // esto la app "canta" el gol antes de que el usuario lo vea en su tele. Con
+  // tvOffset > 0, los snapshots se encolan y solo se APLICAN cuando su edad
+  // alcanza el offset: marcador, cronología, animaciones y locución van
+  // sincronizados con la emisión del usuario. 0 = directo. Persistido.
+  const [tvOffset, setTvOffset] = useState(0);
+  const tvOffsetRef = useRef(0);
+  const tvBufferRef = useRef<Extract<MatchFeed, { mode: "live" }>[]>([]);
+
   // Coach IA en vivo (Modo 2)
   const [coachOpen, setCoachOpen] = useState(false);
   const [coachLoading, setCoachLoading] = useState(false);
@@ -799,6 +809,39 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
     [fireEvent, pushSynthetic],
   );
 
+  // Aplica del buffer el snapshot más reciente cuya edad ya alcanzó el offset
+  // del modo TV (los demás siguen esperando "su momento de emisión").
+  const drainTvBuffer = useCallback(() => {
+    const off = tvOffsetRef.current;
+    if (off <= 0) return;
+    const cutoff = Date.now() - off * 1000;
+    const buf = tvBufferRef.current;
+    let pick: Extract<MatchFeed, { mode: "live" }> | null = null;
+    for (const s of buf) {
+      if ((s.updatedAt ?? 0) <= cutoff) pick = s;
+      else break;
+    }
+    if (pick) applySnapshot(pick);
+    tvBufferRef.current = buf.filter((s) => (s.updatedAt ?? 0) > cutoff);
+  }, [applySnapshot]);
+
+  // Entrada única de snapshots del poll: directo (offset 0) o vía buffer TV.
+  const enqueueSnapshot = useCallback(
+    (data: MatchFeed) => {
+      if (data.mode !== "live") return;
+      if (tvOffsetRef.current <= 0) {
+        tvBufferRef.current = [];
+        applySnapshot(data);
+        return;
+      }
+      const buf = tvBufferRef.current;
+      buf.push(data);
+      if (buf.length > 40) buf.splice(0, buf.length - 40);
+      drainTvBuffer();
+    },
+    [applySnapshot, drainTvBuffer],
+  );
+
   const liveMode = feed?.mode === "live";
   useEffect(() => {
     if (!liveMode || finished) return;
@@ -819,7 +862,7 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
         });
         if (r.ok) {
           const data = (await r.json()) as MatchFeed;
-          if (alive && data.mode === "live") applySnapshot(data);
+          if (alive && data.mode === "live") enqueueSnapshot(data);
         }
       } catch {
         /* reintenta al siguiente tick */
@@ -845,7 +888,49 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
       ctrl?.abort();
       document.removeEventListener("visibilitychange", onVisible);
     };
-  }, [liveMode, finished, matchId, applySnapshot]);
+  }, [liveMode, finished, matchId, enqueueSnapshot]);
+
+  // Modo TV: drenaje fino entre polls (un snapshot puede "alcanzar su momento"
+  // antes del siguiente fetch) + offset recordado por dispositivo.
+  useEffect(() => {
+    try {
+      const v = parseInt(localStorage.getItem("mc:tvOffset") || "0", 10);
+      if (Number.isFinite(v) && v > 0) {
+        setTvOffset(v);
+        tvOffsetRef.current = v;
+      }
+    } catch {
+      /* sin persistencia */
+    }
+  }, []);
+  useEffect(() => {
+    if (!liveMode || finished || tvOffset <= 0) return;
+    const id = setInterval(drainTvBuffer, 2000);
+    return () => clearInterval(id);
+  }, [liveMode, finished, tvOffset, drainTvBuffer]);
+
+  // Cicla el offset del modo TV (0 → 15 → 30 → 45 → 60 → 90 → 0). Al volver a
+  // "directo" se aplica al instante lo más fresco del buffer.
+  const cycleTvOffset = useCallback(() => {
+    const STEPS = [0, 15, 30, 45, 60, 90];
+    const idx = STEPS.indexOf(tvOffsetRef.current);
+    const next = STEPS[(idx + 1) % STEPS.length];
+    setTvOffset(next);
+    tvOffsetRef.current = next;
+    try {
+      localStorage.setItem("mc:tvOffset", String(next));
+    } catch {
+      /* sin persistencia */
+    }
+    if (next === 0) {
+      const buf = tvBufferRef.current;
+      const last = buf[buf.length - 1];
+      tvBufferRef.current = [];
+      if (last) applySnapshot(last);
+    } else {
+      drainTvBuffer();
+    }
+  }, [applySnapshot, drainTvBuffer]);
 
   // Mantiene statsRef sincronizado para el relleno ambiente (lee sin re-crear
   // su intervalo en cada actualización de stats).
@@ -1225,6 +1310,22 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
               <button onClick={toggleSound} disabled={!soundAvailable} style={soundOn ? btnGold : btnGhost}>
                 <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><SoundIcon size={15} off={!soundOn} /> {soundOn ? "Sonido ON" : "Sonido OFF"}</span>
               </button>
+              {feed.mode === "live" && !finished && (
+                <button
+                  onClick={cycleTvOffset}
+                  style={tvOffset > 0 ? btnGold : btnGhost}
+                  title="Modo TV anti-spoiler: retrasa marcador, cronología y locución para ir sincronizado con tu emisión (la TV va 30-90 s por detrás del directo). Toca para cambiar el retardo."
+                  aria-label={tvOffset > 0 ? `Modo TV: retardo de ${tvOffset} segundos` : "Modo TV anti-spoiler desactivado"}
+                >
+                  <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden>
+                      <rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" strokeWidth="1.8" />
+                      <path d="M9 21h6M8 3l4 3 4-3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    {tvOffset > 0 ? `TV +${tvOffset}s` : "TV Directo"}
+                  </span>
+                </button>
+              )}
               {feed.mode === "sim" && (
                 <>
                   <button onClick={() => setPaused((p) => !p)} disabled={finished} style={btnGhost}>

@@ -11,7 +11,7 @@ import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
 import { getCareer, saveCareer, settleCareerMissionRewards } from "@/lib/modo-carrera/store.server";
 import { allowSave, SAVE_WINDOW_SEC } from "@/lib/modo-carrera/save-rate-limit";
-import { consumeSeasonQuota } from "@/lib/modo-carrera/season-quota";
+import { consumeSeasonQuota, isNewSeasonStart } from "@/lib/modo-carrera/season-quota";
 import type { CareerState } from "@/lib/modo-carrera/types";
 import { isPro } from "@/lib/pro/entitlement";
 import { FREE_LIMITS, PRO_REQUIRED_CODE } from "@/lib/pro/limits";
@@ -51,14 +51,14 @@ export async function PUT(req: Request) {
   }
 
   // ── Cupo de temporadas del plan Free ──
-  // Si este guardado arranca una temporada NUEVA (progression.season sube
-  // respecto a lo persistido), consume cupo: máx. N temporadas y lockout de
-  // 12h al agotarlas. Pro = ilimitado. El primer sync de una carrera local no
+  // Si este guardado arranca un torneo NUEVO, consume cupo: máx. N temporadas y
+  // lockout de 12h al agotarlas. Pro = ilimitado. La detección es autoritativa
+  // (isNewSeasonStart): no se fía solo del contador que manda el cliente, sino
+  // de la identidad del sorteo y del progreso — re-rollear el torneo sin subir
+  // progression.season también consume. El primer sync de una carrera local no
   // cuenta (no hay estado previo con el que comparar).
   const stored = await getCareer(user.id);
-  const startsNewSeason =
-    !!stored && (state.progression?.season ?? 0) > (stored.progression?.season ?? 0);
-  if (startsNewSeason && !(await isPro(user.id, user.email))) {
+  if (isNewSeasonStart(stored, state) && !(await isPro(user.id, user.email))) {
     const q = await consumeSeasonQuota(user.id);
     if (!q.allowed) {
       trackLimitHit("carrera_seasons");

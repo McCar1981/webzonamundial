@@ -51,13 +51,31 @@ interface RecentResult {
   correct_label: string | null;
   resolved_at: string;
 }
+interface LastClosed {
+  id: string;
+  emoji: string;
+  question: string;
+  options: MicroOption[];
+  status: string;
+  correct_option: string | null;
+  closes_at: string;
+}
 interface ActiveResponse {
   match_id: string;
   micro: ActiveMicro | null;
+  last_closed?: LastClosed | null;
   already_responded: boolean;
   my_option: string | null;
   fire_chain: FireChain;
   recent_result: RecentResult | null;
+}
+/** Estado "llegaste tarde": qué micro acaba de cerrarse y cómo contarlo. */
+interface LateInfo {
+  emoji: string;
+  question: string;
+  correctLabel: string | null;
+  closedAgoS: number;
+  note?: string;
 }
 
 export default function MicroLive({ matchId }: { matchId: number }) {
@@ -70,6 +88,7 @@ export default function MicroLive({ matchId }: { matchId: number }) {
   const [authed, setAuthed] = useState<boolean | null>(null);
   const [closing, setClosing] = useState(false);
   const [result, setResult] = useState<RecentResult | null>(null);
+  const [late, setLate] = useState<LateInfo | null>(null);
 
   const aliveRef = useRef(true);
   // Id de la micro que ya mostramos: para reiniciar estado al cambiar de micro.
@@ -79,6 +98,17 @@ export default function MicroLive({ matchId }: { matchId: number }) {
   const seenResultsRef = useRef<Set<string>>(new Set());
   const resultInitRef = useRef(false);
   const resultTimerRef = useRef<number | null>(null);
+  // Primer sondeo tras montar (llegada típica desde el push).
+  const arrivalRef = useRef(true);
+  const lateTimerRef = useRef<number | null>(null);
+
+  const showLate = useCallback((info: LateInfo) => {
+    setLate(info);
+    if (lateTimerRef.current) window.clearTimeout(lateTimerRef.current);
+    lateTimerRef.current = window.setTimeout(() => {
+      if (aliveRef.current) setLate(null);
+    }, 12_000);
+  }, []);
 
   // ── Sesión (para saber si puede responder o invitarle a entrar) ─────────────
   useEffect(() => {
@@ -94,8 +124,13 @@ export default function MicroLive({ matchId }: { matchId: number }) {
 
   // ── Sondeo de la micro activa ───────────────────────────────────────────────
   const poll = useCallback(async () => {
+    // ?arrival=1 solo en el PRIMER sondeo: si la ventana ya venció (lo normal al
+    // entrar desde el push), el backend devuelve la última micro cerrada para
+    // explicar "llegaste tarde" en vez de no mostrar nada.
+    const arrival = arrivalRef.current;
+    arrivalRef.current = false;
     try {
-      const res = await fetch(`/api/micro/match/${matchId}/active`, { cache: "no-store" });
+      const res = await fetch(`/api/micro/match/${matchId}/active${arrival ? "?arrival=1" : ""}`, { cache: "no-store" });
       if (!res.ok) return;
       const data = (await res.json()) as ActiveResponse;
       if (!aliveRef.current) return;
@@ -119,7 +154,20 @@ export default function MicroLive({ matchId }: { matchId: number }) {
 
       const next = data.micro;
       if (!next) {
-        // No hay micro: cerramos el popup si estaba abierto.
+        // Sin micro activa. Si acabamos de llegar (push) y una se cerró hace
+        // nada, cuéntalo en vez de dejar la pantalla muda.
+        const lc = data.last_closed;
+        if (arrival && lc && !shownIdRef.current) {
+          showLate({
+            emoji: lc.emoji,
+            question: lc.question,
+            correctLabel: lc.correct_option
+              ? lc.options.find((o) => o.key === lc.correct_option)?.label ?? lc.correct_option
+              : null,
+            closedAgoS: Math.max(1, Math.round((Date.now() - new Date(lc.closes_at).getTime()) / 1000)),
+          });
+        }
+        // Cerramos el popup si estaba abierto.
         if (shownIdRef.current) {
           shownIdRef.current = null;
           setMicro(null);
@@ -134,6 +182,7 @@ export default function MicroLive({ matchId }: { matchId: number }) {
         setMicro(next);
         setAnswered(data.already_responded);
         setMyOption(data.my_option);
+        setLate(null); // la micro real manda sobre el aviso de "llegaste tarde"
       } else {
         // Misma micro: solo refresca si el backend ya registró nuestra respuesta.
         if (data.already_responded) {
@@ -144,7 +193,7 @@ export default function MicroLive({ matchId }: { matchId: number }) {
     } catch {
       /* silencioso: reintenta en el siguiente tick */
     }
-  }, [matchId]);
+  }, [matchId, showLate]);
 
   // Más frecuente cuando hay micro abierta (timer fino); lento en reposo.
   useEffect(() => {
@@ -157,9 +206,10 @@ export default function MicroLive({ matchId }: { matchId: number }) {
     };
   }, [poll, micro]);
 
-  // Limpia el timer del toast al desmontar.
+  // Limpia los timers (toast y aviso de cierre) al desmontar.
   useEffect(() => () => {
     if (resultTimerRef.current) window.clearTimeout(resultTimerRef.current);
+    if (lateTimerRef.current) window.clearTimeout(lateTimerRef.current);
   }, []);
 
   // ── Cuenta atrás de la ventana ──────────────────────────────────────────────
@@ -211,9 +261,26 @@ export default function MicroLive({ matchId }: { matchId: number }) {
         if (typeof data.fire_multiplier === "number") {
           setFireChain((p) => (p ? { ...p, multiplier: data.fire_multiplier } : p));
         }
-      } else {
-        // 409 ya respondida, 400 ventana cerrada… reflejamos como respondida.
+      } else if (res.status === 409) {
+        // Ya respondida (otra pestaña / carrera): sí está registrada.
         setAnswered(true);
+      } else {
+        // 400 (ventana cerrada justo antes de llegar tu respuesta): NO finjas
+        // que quedó registrada. Cierra el popup y dilo claro.
+        setMyOption(null);
+        setClosing(true);
+        window.setTimeout(() => {
+          if (!aliveRef.current) return;
+          shownIdRef.current = null;
+          setMicro(null);
+        }, 350);
+        showLate({
+          emoji: micro.emoji,
+          question: micro.question,
+          correctLabel: null,
+          closedAgoS: 0,
+          note: "Tu respuesta llegó justo después del cierre — no quedó registrada.",
+        });
       }
     } catch {
       if (aliveRef.current) setMyOption(null);
@@ -224,8 +291,87 @@ export default function MicroLive({ matchId }: { matchId: number }) {
 
   const resultToast = result ? <MicroResultToast result={result} raised={!!micro} /> : null;
 
+  // Tarjeta "llegaste tarde": misma esquina que el popup, sin timer ni opciones.
+  const lateCard =
+    !micro && late ? (
+      <div
+        role="status"
+        style={{
+          position: "fixed",
+          bottom: 20,
+          right: 20,
+          width: "min(360px, calc(100vw - 32px))",
+          zIndex: 9997,
+          borderRadius: 18,
+          background: `linear-gradient(180deg, ${SURFACE} 0%, ${BG} 100%)`,
+          border: "1px solid rgba(201,168,76,0.30)",
+          padding: 18,
+          color: "#fff",
+          animation: "micro-slide-up 0.42s cubic-bezier(0.16,1,0.3,1)",
+          fontFamily: "var(--font-inter, Inter, system-ui, sans-serif)",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <span style={{ fontSize: 22, lineHeight: 1 }}>{late.emoji}</span>
+            <span
+              style={{
+                fontSize: 10,
+                fontWeight: 800,
+                letterSpacing: 1.2,
+                textTransform: "uppercase",
+                color: "rgba(255,255,255,0.55)",
+                padding: "3px 8px",
+                borderRadius: 999,
+                background: "rgba(255,255,255,0.06)",
+                border: "1px solid rgba(255,255,255,0.12)",
+              }}
+            >
+              Micro · cerrada
+            </span>
+          </div>
+          <button
+            onClick={() => setLate(null)}
+            aria-label="Cerrar aviso"
+            style={{
+              background: "transparent",
+              border: "none",
+              color: "rgba(255,255,255,0.55)",
+              fontSize: 16,
+              fontWeight: 800,
+              cursor: "pointer",
+              padding: "2px 6px",
+              lineHeight: 1,
+            }}
+          >
+            ✕
+          </button>
+        </div>
+
+        <h3 style={{ fontSize: 15, fontWeight: 800, lineHeight: 1.3, margin: "0 0 8px", color: "rgba(255,255,255,0.85)" }}>
+          {late.question}
+        </h3>
+
+        {late.correctLabel && (
+          <div style={{ fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.7)", marginBottom: 8 }}>
+            Correcta: <span style={{ color: GOLD_LIGHT, fontWeight: 800 }}>{late.correctLabel}</span>
+          </div>
+        )}
+
+        <div style={{ fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.6)", lineHeight: 1.5 }}>
+          {late.note ?? `⏱️ Se cerró hace ${late.closedAgoS}s — llegaste tarde.`}{" "}
+          La próxima salta en cualquier momento: quédate en el partido. 👀
+        </div>
+      </div>
+    ) : null;
+
   if (!micro) {
-    return resultToast;
+    return (
+      <>
+        {resultToast}
+        {lateCard}
+      </>
+    );
   }
 
   const total = Math.max(1, micro.window_seconds);

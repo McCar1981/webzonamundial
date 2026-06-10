@@ -7,15 +7,22 @@
 
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
-import { getActiveMicro, myMicroResponses, currentFireChain, latestResolvedResult } from "@/lib/micro/store";
+import { getActiveMicro, latestClosedMicro, myMicroResponses, currentFireChain, latestResolvedResult } from "@/lib/micro/store";
 import { fireTier } from "@/lib/micro/micro";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-export async function GET(_req: Request, { params }: { params: { id: string } }) {
+export async function GET(req: Request, { params }: { params: { id: string } }) {
   const matchId = params.id;
   const micro = await getActiveMicro(matchId);
+
+  // ?arrival=1 → primer sondeo tras cargar la página (típicamente al tocar el
+  // push). Si la ventana ya venció, devolvemos la última micro cerrada para que
+  // la UI explique "llegaste tarde" en vez de no mostrar nada. Solo en ese
+  // primer sondeo: no encarece el polling continuo.
+  const arrival = new URL(req.url).searchParams.get("arrival") === "1";
+  const lastClosed = !micro && arrival ? await latestClosedMicro(matchId) : null;
 
   const user = await getCurrentUser();
   let alreadyResponded = false;
@@ -48,6 +55,17 @@ export async function GET(_req: Request, { params }: { params: { id: string } })
           match_multiplier: micro.match_multiplier,
           activated_at: micro.activated_at,
           closes_at: micro.closes_at,
+        }
+      : null,
+    last_closed: lastClosed
+      ? {
+          id: lastClosed.id,
+          emoji: lastClosed.trigger_data?.emoji ?? "⚡",
+          question: lastClosed.question,
+          options: lastClosed.options,
+          status: lastClosed.status,
+          correct_option: lastClosed.correct_option,
+          closes_at: lastClosed.closes_at,
         }
       : null,
     already_responded: alreadyResponded,

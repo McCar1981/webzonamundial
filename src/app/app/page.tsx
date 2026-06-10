@@ -969,7 +969,7 @@ export default function AppHubPage() {
                 icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke={GOLD} strokeWidth="1.8" /><path d="M12 8v8M9.5 10.2c.5-.8 1.4-1.2 2.5-1.2 1.5 0 2.5.7 2.5 1.8s-1 1.4-2.5 1.7c-1.5.3-2.5.7-2.5 1.8s1 1.7 2.5 1.7c1.1 0 2-.4 2.5-1.2" stroke={GOLD} strokeWidth="1.5" strokeLinecap="round" /></svg>} />
               <Stat k="XP" v={gam ? gam.level.xp.toLocaleString() : "·"} tint="#36c98f"
                 icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M13 2 4.5 13.5H11L9.5 22 19 10h-6.5L13 2Z" stroke="#36c98f" strokeWidth="1.8" strokeLinejoin="round" /></svg>} />
-              <Stat k="Racha" v={gam ? `${gam.streak.current} días` : "·"} tint="#ff6b5a"
+              <Stat k="Racha de aciertos" v={gam ? `${gam.streak.current} seguidos` : "·"} tint="#ff6b5a"
                 icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 22c4 0 7-2.7 7-6.8 0-3-1.8-5.2-3.4-7C14.3 6.7 13 4.8 13 2c-3.5 2-5 4.8-5 7.2 0 .8.1 1.5.4 2.2C7.2 10.7 6.3 9.8 6 8.5 5 10 5 11.8 5 13c0 4.8 3 9 7 9Z" stroke="#ff6b5a" strokeWidth="1.8" strokeLinejoin="round" /></svg>} />
             </div>
           </section>

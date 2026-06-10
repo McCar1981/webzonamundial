@@ -12,7 +12,8 @@
 // SESIÓN (middleware), nunca por user-agent → sin cloaking.
 
 import Link from "next/link";
-import { useEffect, useState, useCallback } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import StoryViewer from "@/components/stories/StoryViewer";
 
@@ -201,11 +202,22 @@ type Featured = {
 
 // Resumen de gamificación (subconjunto de /api/predictions/me) — billetera única.
 type GamSummary = {
-  level: { level: number; xp: number };
+  // `progress` (0..1) viene de levelInfo(): la curva real es cuadrática
+  // (50·(L-1)·L), NO 1000 XP fijos por nivel.
+  level: { level: number; xp: number; progress?: number };
   coins: number;
   coin_name: string;
-  streak: { current: number };
+  streak: { current: number; active?: boolean; hours_left?: number | null };
+  // Check-in diario (ya implementado en el backend; el lobby lo expone).
+  daily?: {
+    can_claim: boolean;
+    checkin_days: number;
+    next_reward?: { coins?: number; xp?: number };
+  };
 };
+
+// Posición propia en el ranking global (subconjunto de /api/ranking?only=me).
+type MyRank = { rank: number; total: number; coins: number };
 
 // Fila del top global por Fútcoins (subconjunto de /api/ranking).
 type TopEntry = {
@@ -436,13 +448,27 @@ function useInstallPrompt() {
 
 /* ════════════════════════════ PÁGINA ════════════════════════════ */
 export default function AppHubPage() {
+  const router = useRouter();
   const [username, setUsername] = useState<string | null>(null);
   const [avatar, setAvatar] = useState<string | null>(null);
   const [authed, setAuthed] = useState<boolean | null>(null);
   const [gam, setGam] = useState<GamSummary | null>(null);
-  const [match, setMatch] = useState<Featured>(null);
+  // undefined = cargando (skeleton reserva el hueco → sin salto de layout);
+  // null = sin partido destacado; objeto = datos reales.
+  const [match, setMatch] = useState<Featured | undefined>(undefined);
   // Top-5 del ranking global por Fútcoins (preview en vivo dentro del hub).
   const [topGlobal, setTopGlobal] = useState<TopEntry[] | null>(null);
+  // Posición propia en el ranking (solo con sesión).
+  const [myRank, setMyRank] = useState<MyRank | null>(null);
+  // ¿Ya predijo el partido destacado? null = sin saber (alimenta las misiones).
+  const [predictedFeatured, setPredictedFeatured] = useState<boolean | null>(null);
+  // Reclamo del check-in diario en curso (evita doble tap).
+  const [claiming, setClaiming] = useState(false);
+  // Tick de reloj (30s) para la cuenta atrás del partido inaugural.
+  const [nowTick, setNowTick] = useState(() => Date.now());
+  // iOS no dispara beforeinstallprompt: mostramos instrucciones manuales.
+  const [iosInstall, setIosInstall] = useState(false);
+  const [iosHelpOpen, setIosHelpOpen] = useState(false);
   // ¿El usuario ya jugó la trivia diaria HOY? null = sin saber todavía.
   const [triviaPlayedToday, setTriviaPlayedToday] = useState<boolean | null>(null);
   // Preview manual del hero: /app?hero=live|match|reto|base (solo para diseño).
@@ -499,15 +525,101 @@ export default function AppHubPage() {
     return () => { on = false; sub.subscription.unsubscribe(); };
   }, []);
 
-  // Partido destacado
+  // Partido destacado — con POLLING: el lobby es la "tele" del partido del día
+  // y sin re-fetch el marcador/minuto se congelaba para siempre. Cadencia: 30s
+  // si hay partido en vivo u hoy; sin datos aún, reintento suave a 60s. Pausa
+  // con la pestaña oculta y refresca al volver (visibilitychange).
   useEffect(() => {
     let on = true;
-    fetch("/api/match-center/featured")
+    let current: Featured | undefined = undefined;
+
+    const load = () => {
+      fetch("/api/match-center/featured")
+        .then((r) => (r.ok ? r.json() : null))
+        .then((d) => {
+          if (!on) return;
+          if (d && d.meta) { current = d; setMatch(d); }
+          else if (current === undefined) { current = null; setMatch(null); }
+        })
+        .catch(() => { if (on && current === undefined) { current = null; setMatch(null); } });
+    };
+
+    const kickoffSoon = () => {
+      if (!current?.meta) return false;
+      try {
+        const ko = new Date(`${current.meta.date}T${current.meta.time || "00:00"}:00-04:00`).getTime();
+        return Math.abs(ko - Date.now()) < 6 * 3600_000; // ±6h alrededor del saque
+      } catch { return false; }
+    };
+
+    load();
+    const id = setInterval(() => {
+      if (document.hidden) return;
+      const liveNow = !!current && IN_PLAY.has(current.status);
+      if (liveNow || kickoffSoon() || current === undefined) load();
+    }, 30_000);
+    const onVisible = () => { if (!document.hidden) load(); };
+    document.addEventListener("visibilitychange", onVisible);
+    return () => { on = false; clearInterval(id); document.removeEventListener("visibilitychange", onVisible); };
+  }, []);
+
+  // Reloj de la cuenta atrás del hero (solo re-render, sin red).
+  useEffect(() => {
+    const id = setInterval(() => setNowTick(Date.now()), 30_000);
+    return () => clearInterval(id);
+  }, []);
+
+  // ¿Predijo ya el partido destacado? (misiones del día; auth requerida)
+  useEffect(() => {
+    if (!authed || !match?.matchId) { setPredictedFeatured(null); return; }
+    let on = true;
+    fetch("/api/predictions/mine")
       .then((r) => (r.ok ? r.json() : null))
-      .then((d) => { if (on && d && d.meta) setMatch(d); })
+      .then((d: { counts?: Record<string, number> } | null) => {
+        if (on && d?.counts) setPredictedFeatured((d.counts[String(match.matchId)] ?? 0) > 0);
+      })
       .catch(() => {});
     return () => { on = false; };
+  }, [authed, match?.matchId]);
+
+  // Posición propia en el ranking global (debajo del top-5).
+  useEffect(() => {
+    if (!authed) { setMyRank(null); return; }
+    let on = true;
+    fetch("/api/ranking?only=me")
+      .then((r) => (r.ok ? r.json() : null))
+      // Solo si ya compite (con saldo): con 0 Fútcoins el rank sale fuera del
+      // total ("#152 de 80") y confunde más de lo que aporta.
+      .then((d: { me?: MyRank } | null) => { if (on && d?.me && d.me.rank > 0 && d.me.coins > 0) setMyRank(d.me); })
+      .catch(() => {});
+    return () => { on = false; };
+  }, [authed]);
+
+  // Detección iOS para el hint de instalación (en effect → sin hydration mismatch).
+  useEffect(() => {
+    try {
+      const ios = /iphone|ipad|ipod/i.test(navigator.userAgent);
+      const standalone = window.matchMedia("(display-mode: standalone)").matches
+        || (navigator as unknown as { standalone?: boolean }).standalone === true;
+      setIosInstall(ios && !standalone);
+    } catch { /* noop */ }
   }, []);
+
+  // Reclamar el check-in diario (endpoint ya existente, idempotente por día
+  // UTC y validado en servidor → anti-cheat ok). Tras reclamar, refrescamos el
+  // resumen para que saldo/racha/misión se actualicen al instante.
+  const claimDaily = useCallback(async () => {
+    if (claiming) return;
+    setClaiming(true);
+    try {
+      const r = await fetch("/api/predictions/daily", { method: "POST" });
+      if (r.ok || r.status === 409) {
+        const g = await fetch("/api/predictions/me").then((x) => (x.ok ? x.json() : null)).catch(() => null);
+        if (g) setGam(g);
+      }
+    } catch { /* la misión sigue visible; el usuario puede reintentar */ }
+    finally { setClaiming(false); }
+  }, [claiming]);
 
   // Top-5 del ranking global por Fútcoins (público, sin sesión necesaria).
   useEffect(() => {
@@ -525,7 +637,10 @@ export default function AppHubPage() {
   // resuelve la cookie (logueado) o el anonId de localStorage (invitado).
   useEffect(() => {
     let on = true;
-    const anon = (typeof window !== "undefined" && localStorage.getItem("zm_trivia_anon")) || "";
+    // Safari en navegación privada LANZA al tocar localStorage: try-catch.
+    const anon = (() => {
+      try { return localStorage.getItem("zm_trivia_anon") || ""; } catch { return ""; }
+    })();
     const url = anon ? `/api/trivia/stats?anonId=${encodeURIComponent(anon)}` : "/api/trivia/stats";
     fetch(url)
       .then((r) => (r.ok ? r.json() : null))
@@ -607,6 +722,21 @@ export default function AppHubPage() {
       return `${match.meta.date} · ${match.meta.time}`;
     }
   })();
+  // Cuenta atrás al saque (chip junto a la hora, solo si falta <48h). El tick
+  // de 30s (nowTick) la mantiene viva sin red. Urgencia real, dato real.
+  const openingCountdown = (() => {
+    if (!match || live || finished) return "";
+    try {
+      const ko = new Date(`${match.meta.date}T${match.meta.time || "00:00"}:00-04:00`).getTime();
+      const left = ko - nowTick;
+      if (left <= 0) return "¡A punto de empezar!";
+      if (left > 48 * 3600_000) return "";
+      const h = Math.floor(left / 3600_000);
+      const m = Math.floor((left % 3600_000) / 60_000);
+      if (h === 0) return m <= 1 ? "¡Arranca en 1 min!" : `⏱ Faltan ${m} min`;
+      return `⏱ Faltan ${h}h ${String(m).padStart(2, "0")}m`;
+    } catch { return ""; }
+  })();
   // CTA según estado del partido (spec): próximo / en vivo / finalizado.
   const openingCtaLabel = live ? "Seguir en directo" : finished ? "Ver resumen" : "Ver Match Center";
   // Slide inaugural: una sola pieza de imagen que cubre estados live/próximo/final.
@@ -636,7 +766,7 @@ export default function AppHubPage() {
     desc: "Consulta el directo, revisa datos y prepara tu predicción.",
     art: "/assets/card-backgrounds/match-center.webp",
     cta1: { label: "Ver Match Center", href: matchHref },
-    cta2: { label: "Hacer predicción", href: "/app/predicciones" },
+    cta2: { label: "Hacer predicción", href: "/app/predicciones/jugar" },
   } : null;
   const heroBase: HeroCfg = {
     id: "base", kind: "base", accent: GOLD2, accent2: GOLD, ctaInk: NAVY, eyebrow: "Mundial 2026",
@@ -653,7 +783,7 @@ export default function AppHubPage() {
     title: <>Trivia <span className="zm-shimmer" style={{ background: `linear-gradient(110deg,${GREEN},#7ce0b3,#d8fff0,#7ce0b3,${GREEN})`, backgroundSize: "220% 100%", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>disponible</span></>,
     desc: "Responde y suma puntos extra para el ranking.",
     art: "/assets/card-backgrounds/trivia-diaria.webp",
-    cta1: { label: "Responder trivia", href: "/app/trivia" },
+    cta1: { label: "Responder trivia", href: "/trivia" },
     cta2: { label: "Ver ranking", href: "/app/rankings" },
   };
   // Orden de slides por prioridad de contexto (NO promos):
@@ -672,13 +802,21 @@ export default function AppHubPage() {
         ...(retoAvailable ? [heroReto] : []),
       ];
   const hero = heroSlides[heroIdx % heroSlides.length];
-  // Auto-rotación del carrusel (pausa si solo hay una pantalla o hay preview).
+  // Auto-rotación del carrusel. Reglas:
+  //   - Con partido EN VIVO no rota sola: el directo es lo importante y rotar
+  //     al slide genérico diluía la urgencia (los puntos siguen permitiendo
+  //     navegar a mano).
+  //   - Tras una interacción manual, respeta la elección 20s antes de retomar.
   const heroCount = heroSlides.length;
+  const lastManualRef = useRef(0);
   useEffect(() => {
-    if (heroCount <= 1) return;
-    const id = setInterval(() => setHeroIdx((i) => (i + 1) % heroCount), 9000);
+    if (heroCount <= 1 || live) return;
+    const id = setInterval(() => {
+      if (Date.now() - lastManualRef.current < 20_000) return;
+      setHeroIdx((i) => (i + 1) % heroCount);
+    }, 9000);
     return () => clearInterval(id);
-  }, [heroCount]);
+  }, [heroCount, live]);
   // Estilo del CTA primario, derivado del acento de la pantalla activa.
   const heroCta1 = {
     bg: `linear-gradient(135deg,${hero.accent},${hero.accent2})`,
@@ -731,18 +869,42 @@ export default function AppHubPage() {
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                 <span style={{ fontSize: 11, fontWeight: 800, color: GOLD }}>Nivel {gam.level.level}</span>
                 <div style={{ position: "relative", width: 50, height: 5, borderRadius: 99, background: "rgba(255,255,255,0.07)", overflow: "hidden" }}>
-                  <div style={{ width: `${Math.min(100, ((gam.level.xp % 1000) / 1000) * 100)}%`, height: "100%", borderRadius: 99, background: `linear-gradient(90deg,${GOLD},${GOLD2})` }} />
+                  {/* progress viene del servidor con la curva real (cuadrática);
+                      el viejo (xp % 1000)/1000 mentía a partir del nivel 2. */}
+                  <div style={{ width: `${Math.min(100, Math.round((gam.level.progress ?? 0) * 100))}%`, height: "100%", borderRadius: 99, background: `linear-gradient(90deg,${GOLD},${GOLD2})` }} />
                   {/* destello que recorre la barra de XP */}
                   <span aria-hidden className="zm-xp-shine" style={{ position: "absolute", top: 0, bottom: 0, left: 0, width: 14, background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.75), transparent)" }} />
                 </div>
               </div>
             )}
-            {/* Instalar PWA */}
+            {/* Instalar PWA (Chromium dispara beforeinstallprompt) */}
             {canInstall && (
               <button onClick={install} title="Instalar app" style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "6px 11px", borderRadius: 999, background: "rgba(255,255,255,0.06)", border: `1px solid ${LINE}`, color: TXT, fontFamily: "inherit", fontSize: 12.5, fontWeight: 700, cursor: "pointer" }}>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 3v12M7 10l5 5 5-5M5 21h14" stroke={GOLD2} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 <span className="zm-hide-sm">Instalar</span>
               </button>
+            )}
+            {/* iOS no dispara beforeinstallprompt NUNCA: instrucciones manuales. */}
+            {!canInstall && iosInstall && (
+              <div style={{ position: "relative" }}>
+                <button onClick={() => setIosHelpOpen((v) => !v)} title="Instalar app" style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "6px 11px", borderRadius: 999, background: "rgba(255,255,255,0.06)", border: `1px solid ${LINE}`, color: TXT, fontFamily: "inherit", fontSize: 12.5, fontWeight: 700, cursor: "pointer" }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 3v12M7 10l5 5 5-5M5 21h14" stroke={GOLD2} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                  <span className="zm-hide-sm">Instalar</span>
+                </button>
+                {iosHelpOpen && (
+                  <div role="dialog" aria-label="Cómo instalar la app" style={{ position: "absolute", top: "calc(100% + 10px)", right: 0, zIndex: 60, width: 248, padding: "13px 14px", borderRadius: 14, background: "rgba(12,27,50,0.97)", border: `1px solid ${GOLD}55`, boxShadow: "0 14px 36px rgba(0,0,0,0.5)" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+                      <span style={{ fontSize: 12.5, fontWeight: 800, color: GOLD2 }}>Instala ZonaMundial</span>
+                      <button onClick={() => setIosHelpOpen(false)} aria-label="Cerrar" style={{ background: "none", border: "none", color: TXT_MUT, fontSize: 16, cursor: "pointer", padding: 0, lineHeight: 1 }}>×</button>
+                    </div>
+                    <ol style={{ margin: 0, paddingLeft: 18, fontSize: 12, lineHeight: 1.7, color: TXT }}>
+                      <li>Toca <strong>Compartir</strong> <span aria-hidden>(⬆️)</span> en Safari</li>
+                      <li>Elige <strong>«Añadir a pantalla de inicio»</strong></li>
+                      <li>Confirma con <strong>Añadir</strong></li>
+                    </ol>
+                  </div>
+                )}
+              </div>
             )}
             {/* Perfil — anillo degradado dorado alrededor del avatar */}
             <Link href={authed ? "/cuenta" : "/login"} title="Perfil" style={{ width: 36, height: 36, borderRadius: "50%", padding: 2, display: "inline-flex", flexShrink: 0, background: `linear-gradient(135deg,${GOLD},${GOLD2},${GOLD})`, textDecoration: "none", boxShadow: "0 2px 10px rgba(201,168,76,0.3)" }}>
@@ -783,6 +945,11 @@ export default function AppHubPage() {
                   {hero.kind === "live" && <span className="zm-live-dot" style={{ width: 8, height: 8, borderRadius: "50%", background: hero.accent }} />}
                   {hero.opening.time}
                 </span>
+                {openingCountdown && (
+                  <span style={{ display: "inline-flex", alignItems: "center", padding: "5px 12px", borderRadius: 999, fontSize: 12.5, fontWeight: 800, letterSpacing: 0.3, color: "#0a1729", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, boxShadow: "0 3px 12px rgba(201,168,76,0.4)" }}>
+                    {openingCountdown}
+                  </span>
+                )}
                 <Link href={hero.cta1.href} className="zm-open-cta zm-cta-shine" style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "12px 22px", borderRadius: 12, background: heroCta1.bg, color: heroCta1.color, fontWeight: 800, fontSize: 15, textDecoration: "none", boxShadow: heroCta1.shadow }}>
                   {heroCta1.icon}
                   {hero.cta1.label}
@@ -851,8 +1018,8 @@ export default function AppHubPage() {
                 return (
                   <button
                     key={s.id}
-                    aria-label={`Ver ${s.eyebrow}`}
-                    onClick={() => setHeroIdx(i)}
+                    aria-label={`Ver ${s.eyebrow || (s.id === "opening" ? "juego inaugural" : "partido")}`}
+                    onClick={() => { lastManualRef.current = Date.now(); setHeroIdx(i); }}
                     style={{
                       width: activo ? 22 : 8, height: 8, borderRadius: 99, padding: 0, cursor: "pointer",
                       border: "none", transition: "width .25s ease, background .25s ease",
@@ -869,6 +1036,14 @@ export default function AppHubPage() {
             El bloque más fuerte de la pantalla: navy + textura de estadio, banderas
             grandes, VS potente, borde/glow por estado (dorado=próximo, coral=en vivo,
             gris=finalizado) y pulso en vivo. Es la "tele" del partido del día. */}
+        {/* Mientras llega el featured, un skeleton RESERVA el hueco del bloque
+            (~300px): antes el bloque aparecía async y empujaba los módulos
+            hacia abajo en cada visita (CLS). */}
+        {match === undefined && (
+          <div aria-hidden style={{ borderRadius: 22, height: 298, marginBottom: 12, border: "2px solid rgba(201,168,76,0.18)", background: "linear-gradient(160deg,#0e2746 0%,#0a1a31 60%)", animation: "zmpulse 1.8s ease-in-out infinite", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: TXT_MUT }}>Cargando partido del día…</span>
+          </div>
+        )}
         {match && (
           <Link href={matchHref} data-reveal className={`zm-mc${live ? " zm-mc--live" : ""}`} style={{ position: "relative", display: "block", textDecoration: "none", color: TXT, borderRadius: 22, padding: "20px 18px 18px", marginBottom: 12, overflow: "hidden", background: "linear-gradient(160deg,#103060 0%,#0a1a31 58%,#0b1c36 100%)", border: `2px solid ${mcAccent}77`, boxShadow: live ? `0 24px 56px rgba(0,0,0,0.5), 0 0 0 1px ${mcAccent}66, 0 0 36px ${mcAccent}30` : `0 22px 50px rgba(0,0,0,0.42), 0 0 26px ${mcAccent}1f` }}>
             {/* focos superiores */}
@@ -885,9 +1060,19 @@ export default function AppHubPage() {
               </span>
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                 {!finished && (
-                  <Link href="/app/predicciones" onClick={(e) => e.stopPropagation()} style={{ fontSize: 10, fontWeight: 800, letterSpacing: 0.4, textTransform: "uppercase", borderRadius: 999, padding: "3px 9px", whiteSpace: "nowrap", color: "#8a6a13", backgroundImage: "linear-gradient(180deg,#fdf3cf,#f7e6ac)", border: "1px solid #f0dca0", textDecoration: "none", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.55), 0 1px 2px rgba(8,16,30,0.12)", flexShrink: 0 }}>
+                  // OJO: NO usar <Link> aquí — este bloque vive DENTRO del
+                  // <Link> grande del Match Center y un <a> anidado en otro <a>
+                  // es HTML inválido (el navegador re-parsea el DOM y rompe la
+                  // hidratación). Navegamos a mano con el router.
+                  <span
+                    role="link"
+                    tabIndex={0}
+                    onClick={(e) => { e.preventDefault(); e.stopPropagation(); router.push("/app/predicciones/jugar"); }}
+                    onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.stopPropagation(); router.push("/app/predicciones/jugar"); } }}
+                    style={{ fontSize: 10, fontWeight: 800, letterSpacing: 0.4, textTransform: "uppercase", borderRadius: 999, padding: "3px 9px", whiteSpace: "nowrap", color: "#8a6a13", backgroundImage: "linear-gradient(180deg,#fdf3cf,#f7e6ac)", border: "1px solid #f0dca0", textDecoration: "none", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.55), 0 1px 2px rgba(8,16,30,0.12)", flexShrink: 0, cursor: "pointer" }}
+                  >
                     Predicciones
-                  </Link>
+                  </span>
                 )}
                 <span style={{ ...badgeStyle(live ? "En vivo" : finished ? "Disponible" : "Próximamente"), animation: live ? "zmpulse 1.6s infinite" : undefined }}>
                   {live ? `● En vivo ${match.elapsed}'` : finished ? "Finalizado" : "Próximo"}
@@ -938,7 +1123,7 @@ export default function AppHubPage() {
             Card delgada que NO compite con el Match Center: solo invita a predecir
             el partido del día. Aquí vive el único "Hacer predicción" de la home. */}
         {match && !finished && (
-          <Link href="/app/predicciones" className="zm-quick" style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 14px", marginBottom: 24, borderRadius: 14, textDecoration: "none", color: TXT, background: "linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))", border: `1px solid ${LINE}`, transition: "border-color .25s, background .25s, transform .18s" }}>
+          <Link href="/app/predicciones/jugar" className="zm-quick" style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 14px", marginBottom: 24, borderRadius: 14, textDecoration: "none", color: TXT, background: "linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))", border: `1px solid ${LINE}`, transition: "border-color .25s, background .25s, transform .18s" }}>
             <span style={{ width: 40, height: 40, borderRadius: 11, flexShrink: 0, display: "inline-flex", alignItems: "center", justifyContent: "center", background: "rgba(201,168,76,0.14)", border: `1px solid ${GOLD}55` }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M14.5 12a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" stroke={GOLD2} strokeWidth="1.7" strokeLinecap="round" /></svg>
             </span>
@@ -954,6 +1139,69 @@ export default function AppHubPage() {
             </span>
           </Link>
         )}
+
+        {/* ═══ 3c. MISIONES DE HOY ═══
+            El loop diario en una card: check-in (recompensa server-side ya
+            existente), predicción del partido del día y trivia. Estados REALES
+            (nada inventado): daily.can_claim, /api/predictions/mine y
+            triviaPlayedToday. Para invitados, versión con gancho a registro. */}
+        <section data-reveal style={{ marginBottom: 24, borderRadius: 18, padding: "16px 16px 13px", background: LIGHT, border: "1px solid rgba(14,28,51,0.06)", boxShadow: "0 16px 36px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.8)" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, marginBottom: 12, flexWrap: "wrap" }}>
+            <h2 style={{ fontSize: 16, fontWeight: 800, color: INK, display: "flex", alignItems: "center", gap: 8 }}>
+              <span aria-hidden style={{ width: 26, height: 26, borderRadius: 8, display: "inline-flex", alignItems: "center", justifyContent: "center", background: `linear-gradient(135deg,${GOLD}33,${GOLD2}22)`, border: `1px solid ${GOLD}55`, fontSize: 13 }}>🎯</span>
+              Misiones de hoy
+            </h2>
+            {/* Racha en riesgo: loss-aversion con datos reales del servidor. */}
+            {authed && gam?.streak.active && typeof gam.streak.hours_left === "number" && gam.streak.hours_left <= 12 && gam.streak.current > 0 && (
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "4px 11px", borderRadius: 999, fontSize: 11.5, fontWeight: 800, color: "#fff", background: "linear-gradient(135deg,#f25a50,#dc3f36)", boxShadow: "0 2px 10px rgba(228,72,63,0.35)", animation: "zmpulse 2.2s infinite" }}>
+                🔥 Racha de {gam.streak.current} días — expira en {Math.max(1, Math.floor(gam.streak.hours_left))}h
+              </span>
+            )}
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
+            {authed ? (
+              <>
+                {gam?.daily && (
+                  <MissionRow
+                    done={!gam.daily.can_claim}
+                    label="Reclama tu recompensa diaria"
+                    sub={gam.daily.can_claim
+                      ? `Día ${gam.daily.checkin_days + 1} de check-in${gam.daily.next_reward?.coins ? ` · +${gam.daily.next_reward.coins} Fútcoins` : ""}`
+                      : "Vuelve mañana por la siguiente"}
+                    action={
+                      <button onClick={claimDaily} disabled={claiming} style={{ flexShrink: 0, display: "inline-flex", alignItems: "center", gap: 5, padding: "8px 14px", borderRadius: 999, fontWeight: 800, fontSize: 12.5, color: NAVY, background: `linear-gradient(135deg,${GOLD},${GOLD2})`, border: "none", cursor: claiming ? "wait" : "pointer", boxShadow: "0 4px 12px rgba(201,168,76,0.3)", fontFamily: "inherit", opacity: claiming ? 0.7 : 1 }}>
+                        {claiming ? "Reclamando…" : "Reclamar"}
+                      </button>
+                    }
+                  />
+                )}
+                <MissionRow
+                  done={predictedFeatured === true}
+                  label={match?.meta ? `Predice ${match.meta.home.name} vs ${match.meta.away.name}` : "Predice el partido del día"}
+                  sub="Suma puntos si aciertas el resultado"
+                  href="/app/predicciones/jugar"
+                />
+                <MissionRow
+                  done={triviaPlayedToday === true}
+                  label="Responde la trivia diaria"
+                  sub="Puntos extra para el ranking"
+                  href="/trivia"
+                />
+              </>
+            ) : (
+              <>
+                <MissionRow
+                  done={triviaPlayedToday === true}
+                  label="Responde la trivia diaria"
+                  sub="Puedes jugar sin cuenta"
+                  href="/trivia"
+                />
+                <MissionRow done={false} label="Explora los modos de juego" sub="Predicciones, Fantasy, Modo Carrera…" href="#modulos" />
+                <MissionRow done={false} label="Crea tu cuenta gratis" sub="Guarda rachas, Fútcoins y compite en el ranking" href="/registro" />
+              </>
+            )}
+          </div>
+        </section>
 
         {/* ═══ 4. RANKING / PROGRESO — subido tras el partido destacado ═══ */}
         {authed ? (
@@ -1056,6 +1304,22 @@ export default function AppHubPage() {
               );
             })}
           </div>
+          {/* Tu posición: el top ajeno informa, la posición PROPIA engancha. */}
+          {authed && myRank && (
+            <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "10px 12px", borderRadius: 10, marginTop: 9, background: "linear-gradient(90deg,#fff8e2,#fffdf6)", border: "1px solid #e8d9a8", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.8)" }}>
+              <span style={{ minWidth: 34, textAlign: "center", fontWeight: 900, color: "#8a6a13", fontSize: 13 }}>#{myRank.rank.toLocaleString()}</span>
+              <span style={{
+                width: 26, height: 26, borderRadius: "50%", flexShrink: 0,
+                background: avatar ? `url(${avatar}) center/cover no-repeat` : `linear-gradient(135deg,${GOLD},${GOLD2})`,
+                color: NAVY, fontWeight: 800, fontSize: 12, display: "flex", alignItems: "center", justifyContent: "center",
+              }} aria-hidden>{!avatar ? (username?.[0]?.toUpperCase() || "T") : ""}</span>
+              <span style={{ flex: 1, color: INK, fontSize: 13.5, fontWeight: 800, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                Tú{username ? ` · ${username}` : ""}
+              </span>
+              <span style={{ color: "#b8902f", fontSize: 12.5, fontWeight: 800 }}>{myRank.coins.toLocaleString()} 🪙</span>
+              {myRank.total > 0 && <span style={{ color: "#9aa6bd", fontSize: 11.5, fontWeight: 700, flexShrink: 0 }}>de {myRank.total.toLocaleString()}</span>}
+            </div>
+          )}
           {(!topGlobal || topGlobal.length === 0) && (
             <p style={{ fontSize: 12, color: "#6a7791", marginTop: 12, textAlign: "center" }}>
               El ranking arranca con el Mundial el 11 de junio. {authed ? "Tu posición aparecerá aquí." : "Crea tu cuenta para competir."}
@@ -1237,6 +1501,42 @@ export default function AppHubPage() {
 }
 
 /* ─────────── Subcomponentes ─────────── */
+// Fila de misión diaria: check verde al completarla; si no, CTA (link o botón).
+function MissionRow({ done, label, sub, href, action }: {
+  done: boolean;
+  label: string;
+  sub?: string;
+  href?: string;
+  action?: React.ReactNode;
+}) {
+  const inner = (
+    <>
+      <span aria-hidden style={{ width: 26, height: 26, borderRadius: "50%", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 900, color: done ? "#fff" : "#9aa6bd", background: done ? "linear-gradient(135deg,#36c98f,#2bb47e)" : "#eaeff8", border: done ? "1px solid #2bb47e" : "1px solid #d9e1ef", boxShadow: done ? "0 2px 8px rgba(54,201,143,0.35)" : "none" }}>
+        {done ? "✓" : "·"}
+      </span>
+      <span style={{ flex: 1, minWidth: 0 }}>
+        <span style={{ display: "block", fontSize: 13.5, fontWeight: 800, color: done ? "#8a96ad" : INK, textDecoration: done ? "line-through" : "none", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{label}</span>
+        {sub && !done && <span style={{ display: "block", fontSize: 11.5, color: "#7a87a0", marginTop: 1 }}>{sub}</span>}
+      </span>
+      {done ? (
+        <span style={{ flexShrink: 0, fontSize: 11, fontWeight: 800, letterSpacing: 0.4, textTransform: "uppercase", color: "#0a7d52" }}>Hecho</span>
+      ) : action ? action : (
+        <svg aria-hidden width="15" height="15" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}><path d="M5 12h14M12 5l7 7-7 7" stroke="#8a6a13" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+      )}
+    </>
+  );
+  const style: React.CSSProperties = {
+    display: "flex", alignItems: "center", gap: 11, padding: "10px 12px", borderRadius: 11,
+    background: done ? "#f4f9f4" : "#fff",
+    border: done ? "1px solid #cdeedd" : "1px solid rgba(14,28,51,0.06)",
+    textDecoration: "none",
+  };
+  if (!done && href) {
+    return <Link href={href} className="zm-rank-row" style={style}>{inner}</Link>;
+  }
+  return <div className={done ? undefined : "zm-rank-row"} style={style}>{inner}</div>;
+}
+
 // Equipo del Match Center destacado: bandera grande (retransmisión) + nombre.
 function McTeam({ name, flag }: { name: string; flag: string }) {
   return (

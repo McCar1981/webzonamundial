@@ -67,6 +67,9 @@ export async function getGlobalCoinRanking(limit = 50): Promise<RankingEntry[]> 
     .gt("coins", 0)
     .order("coins", { ascending: false })
     .order("xp", { ascending: false })
+    // Tercer criterio ESTABLE: sin él, los empates coins+xp salen en orden
+    // indefinido y el podio puede "bailar" entre dos cargas seguidas.
+    .order("id", { ascending: true })
     .limit(Math.max(1, Math.min(200, limit)));
 
   const rows = (data ?? []) as ProfRow[];
@@ -100,24 +103,27 @@ export async function getUserRank(uid: string): Promise<MyRank | null> {
   const xp = (data as { xp?: number }).xp ?? 0;
   const country = (data as { country?: string | null }).country ?? null;
 
-  // Jugadores estrictamente por encima en saldo.
-  const { count: above } = await admin
-    .from("profiles")
-    .select("id", { count: "exact", head: true })
-    .gt("coins", coins);
-
-  // Empatados en saldo pero con MÁS XP (van por delante en el desempate).
-  const { count: tiedAhead } = await admin
-    .from("profiles")
-    .select("id", { count: "exact", head: true })
-    .eq("coins", coins)
-    .gt("xp", xp);
-
-  // Total de jugadores que ya compiten (saldo > 0).
-  const { count: total } = await admin
-    .from("profiles")
-    .select("id", { count: "exact", head: true })
-    .gt("coins", 0);
+  // Los tres counts son independientes entre sí: en paralelo la latencia es
+  // 1×RTT en vez de 3×RTT (este cálculo está en el camino del header del lobby).
+  const [
+    { count: above },   // estrictamente por encima en saldo
+    { count: tiedAhead }, // empatados en saldo pero con MÁS XP (desempate)
+    { count: total },   // total de jugadores que ya compiten (saldo > 0)
+  ] = await Promise.all([
+    admin
+      .from("profiles")
+      .select("id", { count: "exact", head: true })
+      .gt("coins", coins),
+    admin
+      .from("profiles")
+      .select("id", { count: "exact", head: true })
+      .eq("coins", coins)
+      .gt("xp", xp),
+    admin
+      .from("profiles")
+      .select("id", { count: "exact", head: true })
+      .gt("coins", 0),
+  ]);
 
   return {
     userId: uid,

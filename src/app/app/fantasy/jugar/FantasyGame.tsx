@@ -64,6 +64,16 @@ export default function FantasyGame() {
   const syncReady = useRef(false);
 
   useEffect(() => {
+    // Deep-link a una pestaña concreta (?tab=ligas) — permite que la card del
+    // lobby y el menú entren DIRECTOS al módulo de Ligas privadas, sin pasar
+    // por "Mi Equipo". Solo se aceptan pestañas válidas; cualquier otra cae al
+    // valor por defecto. No afecta a la liga del creador (eso vive en el equipo).
+    try {
+      const wanted = new URLSearchParams(window.location.search).get("tab");
+      const valid: Tab[] = ["equipo", "mercado", "vivo", "ligas", "logros", "coach", "guia"];
+      if (wanted && (valid as string[]).includes(wanted)) setTab(wanted as Tab);
+    } catch { /* ignore */ }
+
     const local = loadTeam() ?? defaultTeam();
     setTeam(local);
     setLoaded(true);

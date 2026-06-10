@@ -19,9 +19,19 @@ export interface KitImageTemplate {
 // IMPORTANTE: las zonas se definen sobre el tamaño del material en kit.ts.
 // WhatsApp es 1080×1350 (4:5), idéntica proporción al piloto 1122×1402, por eso
 // reutiliza la imagen validada. Las zonas son las del piloto escaladas a 1080×1350.
+// Imagen base del cartel por tipo de porra. Misma proporción 4:5 y MISMAS zonas;
+// solo cambia el diseño de fondo ("EN TU BAR" vs "EN TU EMPRESA").
+export const POSTER_TEMPLATE_BAR = "/assets/bar-kit/porra-digital-template-4x5.png";
+export const POSTER_TEMPLATE_EMPRESA = "/assets/empresas-kit/porra-digital-template-empresa-4x5.png";
+
+/** URL del cartel base según el tipo de porra (bar | empresa). */
+export function kitTemplateUrlForKind(kind: string | null | undefined): string {
+  return kind === "empresa" ? POSTER_TEMPLATE_EMPRESA : POSTER_TEMPLATE_BAR;
+}
+
 export const KIT_IMAGE_TEMPLATES: Partial<Record<KitMaterialId, KitImageTemplate>> = {
   whatsapp: {
-    templateUrl: "/assets/bar-kit/porra-digital-template-4x5.png",
+    templateUrl: POSTER_TEMPLATE_BAR,
     zones: {
       logo:  { x: 106, y: 53,   w: 868, h: 236 },
       prize: { x: 87,  y: 857,  w: 452, h: 255 },
@@ -31,6 +41,12 @@ export const KIT_IMAGE_TEMPLATES: Partial<Record<KitMaterialId, KitImageTemplate
   },
 };
 
-export function getKitImageTemplate(id: KitMaterialId): KitImageTemplate | null {
-  return KIT_IMAGE_TEMPLATES[id] ?? null;
+// `kind` elige el cartel base (bar/empresa); las zonas son idénticas.
+export function getKitImageTemplate(
+  id: KitMaterialId,
+  kind: string | null | undefined = "bar",
+): KitImageTemplate | null {
+  const tpl = KIT_IMAGE_TEMPLATES[id];
+  if (!tpl) return null;
+  return { ...tpl, templateUrl: kitTemplateUrlForKind(kind) };
 }

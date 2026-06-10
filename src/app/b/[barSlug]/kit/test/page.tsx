@@ -23,7 +23,8 @@ import QRCode from "qrcode";
 import { requireUser } from "@/lib/auth-helpers";
 import { getBarBySlug, listPrizes, getMainQr } from "@/lib/bars/store";
 import { siteOrigin } from "@/lib/bars/kit";
-import BarKitPosterTemplate, { POSTER_SIZE, POSTER_TEMPLATE_URL } from "@/components/bars/kit/BarKitPosterTemplate";
+import BarKitPosterTemplate, { POSTER_SIZE } from "@/components/bars/kit/BarKitPosterTemplate";
+import { kitTemplateUrlForKind } from "@/lib/bars/kit-image-templates";
 import TestToolbar from "./TestToolbar";
 
 export const dynamic = "force-dynamic";
@@ -72,7 +73,7 @@ export default async function KitTestPage({
   });
 
   const mainPrize = prizes.find((p) => p.prize_type === "principal") ?? prizes[0] ?? null;
-  const prizeText = mainPrize?.title ?? "Premio del bar";
+  const prizeText = mainPrize?.title ?? (bar.kind === "empresa" ? "Premio de la empresa" : "Premio del bar");
 
   const debug = searchParams.debug === "1";
   const logoTest = searchParams.logoTest;
@@ -115,7 +116,7 @@ export default async function KitTestPage({
               qrImageUrl={qrDataUrl}
               prizeTitle={prizeText}
               shortUrl={shortUrl}
-              templateUrl={POSTER_TEMPLATE_URL}
+              templateUrl={kitTemplateUrlForKind(bar.kind)}
               debug={debug}
             />
           </div>

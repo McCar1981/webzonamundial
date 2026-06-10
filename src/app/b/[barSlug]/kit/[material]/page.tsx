@@ -67,7 +67,7 @@ export default async function KitMaterialPage({
 
   // Si el material tiene imagen-plantilla diseñada, se usa esa composición
   // (la validada en el piloto); si no, se cae al fondo CSS "Premium Mundial".
-  const imageTpl = getKitImageTemplate(material.id);
+  const imageTpl = getKitImageTemplate(material.id, bar.kind);
   const debug = searchParams.debug === "1";
 
   // Escala de preview: encajar el lienzo al ancho disponible (nunca ampliar).

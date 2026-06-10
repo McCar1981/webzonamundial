@@ -36,6 +36,7 @@ export interface BarRow {
   entry_fee_note: string | null; // texto informativo de inscripción (lo cobra el bar; ZM no procesa pago)
   status: string;          // draft | pending_payment | published | paused
   plan_id: string | null;  // null (sin plan) | arranque | completo | pro
+  kind: string;            // bar | empresa — elige el cartel del kit (default 'bar')
   created_at: string;
   updated_at: string;
 }

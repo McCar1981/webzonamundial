@@ -214,11 +214,23 @@ export default function IACoachWidget() {
             })}
           </div>
 
-          {/* Cuerpo (scrollable) */}
+          {/* Cuerpo (scrollable). Los 3 paneles se mantienen MONTADOS y se ocultan
+              con display:none al cambiar de modo, para no perder el chat del Debate
+              ni la narración/interrogatorio del Oráculo al alternar pestañas. */}
           <div style={{ overflowY: "auto", padding: "4px 14px 16px", flex: 1 }}>
-            {hydrated && mode === "coach" && <BracketCoachPanel state={state} userName={name} />}
-            {hydrated && mode === "oracle" && <OraclePanel state={state} />}
-            {hydrated && mode === "debate" && <DebatePanel state={state} userName={name} />}
+            {hydrated && (
+              <>
+                <div style={{ display: mode === "coach" ? "block" : "none" }}>
+                  <BracketCoachPanel state={state} userName={name} />
+                </div>
+                <div style={{ display: mode === "oracle" ? "block" : "none" }}>
+                  <OraclePanel state={state} />
+                </div>
+                <div style={{ display: mode === "debate" ? "block" : "none" }}>
+                  <DebatePanel state={state} userName={name} />
+                </div>
+              </>
+            )}
           </div>
         </div>
       )}

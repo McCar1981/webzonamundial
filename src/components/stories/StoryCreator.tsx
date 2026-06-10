@@ -85,7 +85,9 @@ export default function StoryCreator() {
 
   function pick(t: TemplateDTO) {
     setSelected(t);
-    setText(t.defaultText);
+    // El texto SIEMPRE lo escribe el usuario: la guía de la plantilla va como
+    // placeholder, nunca pre-rellenada (regla: nada de datos inventados).
+    setText("");
     setPublishedId(null);
   }
 
@@ -528,7 +530,7 @@ export default function StoryCreator() {
               onChange={(e) => setText(e.target.value)}
               rows={2}
               maxLength={120}
-              placeholder={mode === "photo" ? "Añade un texto…" : ""}
+              placeholder={mode === "photo" ? "Añade un texto…" : selected?.defaultText ?? "Escribe tu texto…"}
               style={{
                 width: "100%",
                 boxSizing: "border-box",

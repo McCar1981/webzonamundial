@@ -34,5 +34,10 @@ export async function POST(req: Request, { params }: { params: { id: string } })
   if ("error" in result) {
     return NextResponse.json({ error: result.error }, { status: 404 });
   }
-  return NextResponse.json({ ok: true, first_interaction: result.firstInteraction });
+  // results: conteo agregado por opción → el visor pinta los % en vivo al votar.
+  return NextResponse.json({
+    ok: true,
+    first_interaction: result.firstInteraction,
+    results: result.results ?? null,
+  });
 }

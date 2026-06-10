@@ -18,6 +18,8 @@ import type { CreateSystemStoryInput } from "./store";
 
 // Estados de api-football que cuentan como "partido en curso".
 const LIVE_STATUSES = new Set(["1H", "HT", "2H", "ET", "BT", "P", "LIVE", "INT"]);
+// Estados de partido terminado (resultado final conocido).
+export const FINAL_STATUSES = new Set(["FT", "AET", "PEN"]);
 // Tipos de evento que cuentan como gol.
 const GOAL_TYPES = new Set(["goal", "own_goal", "penalty_goal"]);
 
@@ -27,6 +29,12 @@ export function genKeyPreMatch(matchId: number): string {
 }
 export function genKeyGoal(matchId: number, eventId: string): string {
   return `gol:${matchId}:${eventId}`;
+}
+export function genKeyHalfTime(matchId: number): string {
+  return `descanso:${matchId}`;
+}
+export function genKeyFullTime(matchId: number): string {
+  return `final:${matchId}`;
 }
 export function genKeyDaily(dateStr: string): string {
   return `diario:${dateStr}`;
@@ -65,6 +73,9 @@ export function goalStory(snap: LiveSnapshot, ev: MatchEvent): CreateSystemStory
   const scorer = ev.player ? ` de ${ev.player}` : "";
   const score = `${snap.score[0]}-${snap.score[1]}`;
   const teamName = ev.side === "home" ? snap.meta.home.name : snap.meta.away.name;
+  // goals_at: total de goles cuando se emite la Story. El resolutor compara
+  // contra el total FINAL para corregir el micro-reto "¿Habrá más goles?".
+  const goalsAt = snap.score[0] + snap.score[1];
   return {
     type: "system",
     overlayText: `⚽ GOOOL${scorer} (min ${ev.minute}) — ${teamName} · ${score}`,
@@ -76,7 +87,55 @@ export function goalStory(snap: LiveSnapshot, ev: MatchEvent): CreateSystemStory
       },
     ],
     relatedMatchId: String(matchId),
-    templateData: { gen_key: genKeyGoal(matchId, ev.id), auto: true },
+    templateData: { gen_key: genKeyGoal(matchId, ev.id), auto: true, goals_at: goalsAt },
+  };
+}
+
+/** Descanso: marcador real al descanso + encuesta sobre la segunda parte. */
+export function halfTimeStory(snap: LiveSnapshot): CreateSystemStoryInput {
+  const matchId = snap.matchId;
+  const home = snap.meta.home.name;
+  const away = snap.meta.away.name;
+  const score = `${snap.score[0]}-${snap.score[1]}`;
+  return {
+    type: "system",
+    overlayText: `⏸️ Descanso — ${home} ${score} ${away}`,
+    widgets: [
+      {
+        kind: "poll",
+        id: `poll-descanso-${matchId}`,
+        question: "¿Quién gana la 2ª parte?",
+        options: [
+          { key: "home", label: home },
+          { key: "draw", label: "Empate" },
+          { key: "away", label: away },
+        ],
+      },
+    ],
+    relatedMatchId: String(matchId),
+    templateData: { gen_key: genKeyHalfTime(matchId), auto: true },
+  };
+}
+
+/** Final: resultado real del partido + CTA al Match Center. */
+export function fullTimeStory(snap: LiveSnapshot): CreateSystemStoryInput {
+  const matchId = snap.matchId;
+  const home = snap.meta.home.name;
+  const away = snap.meta.away.name;
+  const score = `${snap.score[0]}-${snap.score[1]}`;
+  return {
+    type: "system",
+    overlayText: `🏁 Final — ${home} ${score} ${away}`,
+    widgets: [
+      {
+        kind: "cta",
+        id: `cta-final-${matchId}`,
+        label: "Ver el partido completo",
+        href: `/app/matchcenter/${matchId}`,
+      },
+    ],
+    relatedMatchId: String(matchId),
+    templateData: { gen_key: genKeyFullTime(matchId), auto: true },
   };
 }
 
@@ -93,8 +152,9 @@ export function dailyStory(dateStr: string, matchCount: number): CreateSystemSto
 // ─── Decisión por snapshot ──────────────────────────────────────────────────
 // Dado un snapshot y las claves ya emitidas, devuelve las Stories nuevas a crear.
 // - NS (no empezado) → previa (una sola vez por partido).
-// - En vivo → una Story por cada gol nuevo.
-// No emite nada para partidos finalizados.
+// - En vivo → una Story por cada gol nuevo; al descanso (HT), Story de descanso.
+// - Terminado (FT/AET/PEN) → Story de resultado final (una sola vez).
+// Todo sale del snapshot REAL del Match Center: nada inventado.
 export function storiesForSnapshot(
   snap: LiveSnapshot,
   existingKeys: Set<string>
@@ -108,12 +168,22 @@ export function storiesForSnapshot(
   }
 
   if (LIVE_STATUSES.has(snap.status)) {
+    if (snap.status === "HT") {
+      const key = genKeyHalfTime(snap.matchId);
+      if (!existingKeys.has(key)) out.push(halfTimeStory(snap));
+    }
     for (const ev of snap.events) {
       if (!GOAL_TYPES.has(ev.type)) continue;
       const key = genKeyGoal(snap.matchId, ev.id);
       if (existingKeys.has(key)) continue;
       out.push(goalStory(snap, ev));
     }
+    return out;
+  }
+
+  if (FINAL_STATUSES.has(snap.status)) {
+    const key = genKeyFullTime(snap.matchId);
+    if (!existingKeys.has(key)) out.push(fullTimeStory(snap));
   }
 
   return out;

@@ -474,6 +474,14 @@ function Overlay({
           )}
           <span style={{ color: "#fff", fontWeight: 600, fontSize: 14 }}>{reel.label}</span>
           {reel.isMine && (
+            <span
+              style={{ color: "#c9d2e3", fontSize: 12, fontWeight: 600, marginLeft: 4 }}
+              title="Personas que han visto tu Story"
+            >
+              👁 {story.viewCount}
+            </span>
+          )}
+          {reel.isMine && (
             <button
               onClick={handleDelete}
               disabled={deleting}
@@ -533,11 +541,22 @@ function Overlay({
           <StickerLayer story={story} />
         </div>
 
-        {/* widgets */}
+        {/* widgets + reacciones */}
         <div style={{ padding: 14, display: "flex", flexDirection: "column", gap: 10 }}>
           {story.widgets.map((w) => (
-            <WidgetView key={w.id} storyId={story.id} widget={w} onBusy={setPaused} />
+            <WidgetView
+              key={`${story.id}:${w.id}`}
+              storyId={story.id}
+              widget={w}
+              myAnswer={story.myAnswers?.[w.id]}
+              onBusy={setPaused}
+            />
           ))}
+          <ReactionsBar
+            key={`rx:${story.id}`}
+            storyId={story.id}
+            initial={story.myAnswers?.["reaction"]}
+          />
         </div>
       </div>
     </div>
@@ -653,65 +672,138 @@ function StickerLayer({ story }: { story: StoryDTO }) {
 function WidgetView({
   storyId,
   widget,
+  myAnswer,
   onBusy,
 }: {
   storyId: string;
   widget: StoryWidget;
+  /** Respuesta previa del usuario a ESTE widget (viene del feed con sesión). */
+  myAnswer?: unknown;
   onBusy: (b: boolean) => void;
 }) {
-  const [answered, setAnswered] = useState<string | null>(null);
+  const prior = typeof myAnswer === "string" ? myAnswer : null;
+  const [answered, setAnswered] = useState<string | null>(prior);
+  const [results, setResults] = useState<Record<string, number> | null>(null);
+
+  const isVotable = widget.kind === "poll" || widget.kind === "micro_challenge";
+  const resolvedChallenge =
+    widget.kind === "micro_challenge" &&
+    (widget.correctOption === "yes" || widget.correctOption === "no");
+
+  // Traemos los resultados al montar si ya votó antes (myAnswer del feed) o si
+  // el micro-reto ya está resuelto (se muestran las barras aunque no votara).
+  useEffect(() => {
+    if (!isVotable || (!prior && !resolvedChallenge)) return;
+    let alive = true;
+    fetch(`/api/stories/${storyId}/results?widget_id=${encodeURIComponent(widget.id)}`, { cache: "no-store" })
+      .then((r) => r.json())
+      .then((j) => {
+        if (alive && j?.results) setResults(j.results);
+      })
+      .catch(() => {});
+    return () => {
+      alive = false;
+    };
+  }, [isVotable, prior, resolvedChallenge, storyId, widget.id]);
 
   const send = useCallback(
     async (answer: unknown, key: string) => {
       setAnswered(key);
       onBusy(true);
       try {
-        await fetch(`/api/stories/${storyId}/interact`, {
+        const res = await fetch(`/api/stories/${storyId}/interact`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ widget_id: widget.id, answer }),
         });
+        const json = await res.json().catch(() => ({}));
+        if (json?.results) {
+          setResults(json.results);
+        } else if (isVotable) {
+          // Anónimo: /interact no agrega; pedimos los resultados públicos.
+          const r = await fetch(
+            `/api/stories/${storyId}/results?widget_id=${encodeURIComponent(widget.id)}`,
+            { cache: "no-store" }
+          );
+          const j = await r.json().catch(() => ({}));
+          if (j?.results) setResults(j.results);
+        }
       } catch {
         /* noop */
       } finally {
         onBusy(false);
       }
     },
-    [storyId, widget.id, onBusy]
+    [storyId, widget.id, onBusy, isVotable]
   );
 
   if (widget.kind === "poll") {
     return (
       <div>
         <p style={{ color: "#fff", fontSize: 14, marginBottom: 6 }}>{widget.question}</p>
-        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-          {widget.options.map((o) => (
-            <button
-              key={o.key}
-              disabled={answered !== null}
-              onClick={() => send(o.key, o.key)}
-              style={pillStyle(answered === o.key)}
-            >
-              {o.label}
-            </button>
-          ))}
-        </div>
+        {answered === null ? (
+          <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+            {widget.options.map((o) => (
+              <button key={o.key} onClick={() => send(o.key, o.key)} style={pillStyle(false)}>
+                {o.label}
+              </button>
+            ))}
+          </div>
+        ) : (
+          <ResultBars
+            options={widget.options}
+            results={results}
+            answered={answered}
+          />
+        )}
       </div>
     );
   }
 
   if (widget.kind === "micro_challenge") {
+    const resolved = widget.correctOption === "yes" || widget.correctOption === "no";
+    const YESNO = [
+      { key: "yes", label: "SÍ" },
+      { key: "no", label: "NO" },
+    ];
     return (
       <div>
         <p style={{ color: "#fff", fontSize: 14, marginBottom: 6 }}>{widget.question}</p>
-        <div style={{ display: "flex", gap: 8 }}>
-          <button disabled={answered !== null} onClick={() => send("yes", "yes")} style={pillStyle(answered === "yes")}>
-            SÍ
-          </button>
-          <button disabled={answered !== null} onClick={() => send("no", "no")} style={pillStyle(answered === "no")}>
-            NO
-          </button>
-        </div>
+        {answered === null && !resolved ? (
+          <div style={{ display: "flex", gap: 8 }}>
+            {YESNO.map((o) => (
+              <button key={o.key} onClick={() => send(o.key, o.key)} style={pillStyle(false)}>
+                {o.label}
+              </button>
+            ))}
+          </div>
+        ) : (
+          <>
+            <ResultBars
+              options={YESNO}
+              results={results}
+              answered={answered}
+              correct={resolved ? widget.correctOption : null}
+            />
+            {resolved ? (
+              answered !== null ? (
+                <p style={{ color: answered === widget.correctOption ? "#4ade80" : "#f87171", fontSize: 13, fontWeight: 700, margin: "6px 0 0" }}>
+                  {answered === widget.correctOption ? "✅ ¡Acertaste!" : "❌ Esta vez no"}
+                </p>
+              ) : (
+                <p style={{ color: "#c9d2e3", fontSize: 12, margin: "6px 0 0" }}>
+                  Resuelto: {widget.correctOption === "yes" ? "SÍ" : "NO"} hubo más goles.
+                </p>
+              )
+            ) : (
+              answered !== null && (
+                <p style={{ color: "#8a94b0", fontSize: 12, margin: "6px 0 0" }}>
+                  Voto registrado · se resuelve al final del partido
+                </p>
+              )
+            )}
+          </>
+        )}
       </div>
     );
   }
@@ -729,6 +821,132 @@ function WidgetView({
     <a href={widget.href} style={ctaStyle} onClick={() => send("tap", "tap")}>
       {widget.label}
     </a>
+  );
+}
+
+// Barras de resultados (estilo encuesta IG): % por opción, la tuya marcada.
+function ResultBars({
+  options,
+  results,
+  answered,
+  correct,
+}: {
+  options: { key: string; label: string }[];
+  results: Record<string, number> | null;
+  answered: string | null;
+  correct?: string | null;
+}) {
+  const total = results ? Object.values(results).reduce((a, b) => a + b, 0) : 0;
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+      {options.map((o) => {
+        const count = results?.[o.key] ?? 0;
+        const pct = total > 0 ? Math.round((count / total) * 100) : 0;
+        const mine = answered === o.key;
+        const isCorrect = correct != null && o.key === correct;
+        return (
+          <div
+            key={o.key}
+            style={{
+              position: "relative",
+              borderRadius: 999,
+              border: `1px solid ${isCorrect ? "#4ade80" : mine ? GOLD : "rgba(255,255,255,0.25)"}`,
+              overflow: "hidden",
+              background: "rgba(255,255,255,0.08)",
+            }}
+          >
+            <span
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: `${total > 0 ? pct : 0}%`,
+                background: isCorrect
+                  ? "rgba(74,222,128,0.25)"
+                  : mine
+                  ? "rgba(201,168,76,0.3)"
+                  : "rgba(255,255,255,0.12)",
+                transition: "width 600ms ease",
+              }}
+            />
+            <span
+              style={{
+                position: "relative",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                gap: 8,
+                padding: "9px 14px",
+                color: "#fff",
+                fontSize: 13,
+                fontWeight: mine ? 800 : 600,
+              }}
+            >
+              <span>
+                {o.label} {mine ? " · tu voto" : ""} {isCorrect ? " ✓" : ""}
+              </span>
+              <span>{total > 0 ? `${pct}%` : "—"}</span>
+            </span>
+          </div>
+        );
+      })}
+      <span style={{ color: "#8a94b0", fontSize: 11 }}>
+        {total === 1 ? "1 voto" : `${total} votos`}
+      </span>
+    </div>
+  );
+}
+
+// ─── Reacciones rápidas (estilo IG) ─────────────────────────────────────────
+// Una fila de emojis; el tap registra la reacción como interacción del widget
+// virtual "reaction". Cambiar de emoji actualiza la reacción (no suma otra).
+const REACTIONS = ["❤️", "🔥", "👏", "😮"];
+
+function ReactionsBar({ storyId, initial }: { storyId: string; initial?: unknown }) {
+  const [selected, setSelected] = useState<string | null>(
+    typeof initial === "string" ? initial : null
+  );
+  const [pop, setPop] = useState<string | null>(null);
+
+  const react = useCallback(
+    (emoji: string) => {
+      setSelected(emoji);
+      setPop(emoji);
+      window.setTimeout(() => setPop(null), 350);
+      fetch(`/api/stories/${storyId}/interact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ widget_id: "reaction", answer: emoji }),
+      }).catch(() => {});
+    },
+    [storyId]
+  );
+
+  return (
+    <div style={{ display: "flex", justifyContent: "flex-end", gap: 10 }}>
+      {REACTIONS.map((e) => (
+        <button
+          key={e}
+          onClick={() => react(e)}
+          aria-label={`Reaccionar ${e}`}
+          style={{
+            background: selected === e ? "rgba(201,168,76,0.25)" : "rgba(255,255,255,0.08)",
+            border: `1px solid ${selected === e ? GOLD : "rgba(255,255,255,0.18)"}`,
+            borderRadius: "50%",
+            width: 38,
+            height: 38,
+            fontSize: 18,
+            lineHeight: 1,
+            cursor: "pointer",
+            display: "grid",
+            placeItems: "center",
+            transform: pop === e ? "scale(1.35)" : "scale(1)",
+            transition: "transform 250ms ease, background 200ms ease",
+          }}
+        >
+          {e}
+        </button>
+      ))}
+    </div>
   );
 }
 

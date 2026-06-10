@@ -17,7 +17,9 @@ export interface UserStoryTemplate {
   emoji: string;
   /** Gradiente de fondo del cromo (CSS background). */
   gradient: string;
-  /** Texto por defecto / ejemplo del overlay. */
+  /** Guía del overlay. Se muestra como PLACEHOLDER en el editor, nunca se
+   *  pre-rellena ni publica: el usuario escribe su texto real (regla: nada de
+   *  datos inventados en el feed). */
   defaultText: string;
   /** Solo en plan premium (free = los 3 básicos). */
   premium: boolean;
@@ -32,7 +34,7 @@ export const USER_TEMPLATES: UserStoryTemplate[] = [
     category: "user",
     emoji: "🎯",
     gradient: "linear-gradient(135deg,#22c55e,#15803d)",
-    defaultText: "Mi predicción: España 2 - 1 Brasil",
+    defaultText: "Escribe tu predicción para el próximo partido…",
     premium: false,
     dataSource: "predictions",
   },
@@ -42,7 +44,7 @@ export const USER_TEMPLATES: UserStoryTemplate[] = [
     category: "user",
     emoji: "✅",
     gradient: "linear-gradient(135deg,#06b6d4,#0e7490)",
-    defaultText: "Acerté 6/8 en España vs Brasil",
+    defaultText: "Cuenta cómo te fue con tus predicciones…",
     premium: false,
     dataSource: "predictions",
   },
@@ -52,7 +54,7 @@ export const USER_TEMPLATES: UserStoryTemplate[] = [
     category: "user",
     emoji: "🔥",
     gradient: "linear-gradient(135deg,#ef4444,#b91c1c)",
-    defaultText: "🔥 12 aciertos seguidos",
+    defaultText: "Presume tu racha real de aciertos…",
     premium: false,
     dataSource: "predictions",
   },
@@ -62,7 +64,7 @@ export const USER_TEMPLATES: UserStoryTemplate[] = [
     category: "user",
     emoji: "🪪",
     gradient: "linear-gradient(135deg,#a855f7,#7e22ce)",
-    defaultText: "DT Nivel 12 · Rating 87",
+    defaultText: "Comparte tu nivel y rating de DT…",
     premium: true,
     dataSource: "career",
   },
@@ -72,7 +74,7 @@ export const USER_TEMPLATES: UserStoryTemplate[] = [
     category: "user",
     emoji: "⚽",
     gradient: "linear-gradient(135deg,#f59e0b,#b45309)",
-    defaultText: "Mi once para la jornada",
+    defaultText: "Presenta tu once fantasy…",
     premium: true,
     dataSource: "fantasy",
   },
@@ -82,7 +84,7 @@ export const USER_TEMPLATES: UserStoryTemplate[] = [
     category: "user",
     emoji: "🌟",
     gradient: "linear-gradient(135deg,#3b82f6,#1d4ed8)",
-    defaultText: "¡Mi momento épico del Mundial!",
+    defaultText: "Comparte tu momento del Mundial…",
     premium: true,
     dataSource: null,
   },

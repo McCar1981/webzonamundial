@@ -374,6 +374,19 @@ export async function respondMicro(
  * micros YA resueltas, contando desde la última hacia atrás hasta el primer fallo.
  * Es el valor "antes de" la próxima micro (lo que se muestra en vivo).
  */
+/** Racha desde la lista CRONOLÓGICA de is_correct: aciertos desde el final hacia
+ *  atrás hasta el primer fallo; las anuladas (null) ni suman ni rompen. */
+function chainFromResults(results: (boolean | null)[]): number {
+  let run = 0;
+  for (let i = results.length - 1; i >= 0; i--) {
+    const c = results[i];
+    if (c === null) continue; // anulada (sin desenlace): no suma ni rompe la racha
+    if (c) run++;
+    else break;
+  }
+  return run;
+}
+
 export async function currentFireChain(userId: string, matchId: string): Promise<number> {
   const admin = adminClient();
   // Respuestas resueltas del usuario en este partido, en orden cronológico.
@@ -385,15 +398,38 @@ export async function currentFireChain(userId: string, matchId: string): Promise
     .eq("ghost", false) // el Modo Fantasma (replay) no cuenta para la racha real
     .not("resolved_at", "is", null)
     .order("resolved_at", { ascending: true });
-  const results = (data ?? []) as { is_correct: boolean | null }[];
-  let run = 0;
-  for (let i = results.length - 1; i >= 0; i--) {
-    const c = results[i].is_correct;
-    if (c === null) continue; // anulada (sin desenlace): no suma ni rompe la racha
-    if (c) run++;
-    else break;
+  return chainFromResults(((data ?? []) as { is_correct: boolean | null }[]).map((r) => r.is_correct));
+}
+
+/**
+ * Rachas vigentes de VARIOS usuarios en un partido en consultas POR LOTE (en vez
+ * de una por usuario): el settle de una micro con N respuestas pasa de N
+ * consultas de racha a ceil(N/150). El IN va troceado para no desbordar la URL
+ * de PostgREST.
+ */
+async function fireChainsForUsers(matchId: string, userIds: string[]): Promise<Map<string, number>> {
+  const admin = adminClient();
+  const chains = new Map<string, number>();
+  if (userIds.length === 0) return chains;
+  const byUser = new Map<string, (boolean | null)[]>();
+  const CHUNK = 150;
+  for (let i = 0; i < userIds.length; i += CHUNK) {
+    const { data } = await admin
+      .from("micro_responses")
+      .select("user_id,is_correct,resolved_at,micro_predictions!inner(match_id)")
+      .in("user_id", userIds.slice(i, i + CHUNK))
+      .eq("micro_predictions.match_id", matchId)
+      .eq("ghost", false)
+      .not("resolved_at", "is", null)
+      .order("resolved_at", { ascending: true });
+    for (const r of (data ?? []) as { user_id: string; is_correct: boolean | null }[]) {
+      const arr = byUser.get(r.user_id) ?? [];
+      if (arr.length === 0) byUser.set(r.user_id, arr);
+      arr.push(r.is_correct);
+    }
   }
-  return run;
+  for (const uid of userIds) chains.set(uid, chainFromResults(byUser.get(uid) ?? []));
+  return chains;
 }
 
 // ─── Resolución (admin / worker) ──────────────────────────────────────────────
@@ -403,6 +439,80 @@ export interface SettleSummary {
   correct_option: string | null;
   responses_resolved: number;
   winners: number;
+}
+
+interface SettleTarget {
+  micro_id: string;
+  /** Opción correcta ya fijada, o null si la micro quedó ANULADA. */
+  correct_option: string | null;
+  base_points: number;
+  match_multiplier: number;
+}
+
+/**
+ * Liquida un lote de respuestas pendientes de UNA micro ya fijada. Los fallos se
+ * cierran con UN update por micro_id (sin listas de ids: no desborda la URL y
+ * alcanza también a las filas que la consulta no trajo por el tope de PostgREST).
+ * Los aciertos se marcan uno a uno con guardia por fila (si otra pasada ya tomó
+ * la fila, no se paga doble) y se abonan tras marcar. Si el proceso muere a
+ * mitad, las filas restantes siguen con resolved_at NULL y el barrido de
+ * reparación las retoma en la siguiente pasada del cron.
+ */
+async function settleResponsesBatch(
+  target: SettleTarget,
+  responses: MicroResponseRow[],
+  chains: Map<string, number>,
+): Promise<number> {
+  const admin = adminClient();
+
+  // Micro anulada: cierre masivo, nadie gana ni pierde (is_correct NULL).
+  if (target.correct_option === null) {
+    await admin
+      .from("micro_responses")
+      .update({ is_correct: null, points_earned: 0, resolved_at: new Date().toISOString() })
+      .eq("micro_id", target.micro_id)
+      .is("resolved_at", null);
+    return 0;
+  }
+
+  // Fallos: un solo update (0 puntos; conservan su fire_chain_before estimado).
+  await admin
+    .from("micro_responses")
+    .update({ is_correct: false, points_earned: 0, resolved_at: new Date().toISOString() })
+    .eq("micro_id", target.micro_id)
+    .neq("selected_option", target.correct_option)
+    .is("resolved_at", null);
+
+  // Aciertos: marca con guardia + pago, en orden de llegada.
+  let winners = 0;
+  for (const r of responses) {
+    if (r.selected_option !== target.correct_option) continue;
+    const chainBefore = chains.get(r.user_id) ?? 0;
+    const sc = scoreMicro({
+      basePoints: target.base_points,
+      chainBefore,
+      matchMultiplier: Number(target.match_multiplier) || 1,
+      ghost: r.ghost,
+    });
+    const { data: updated } = await admin
+      .from("micro_responses")
+      .update({
+        is_correct: true,
+        points_earned: sc.points,
+        fire_chain_before: chainBefore,
+        fire_multiplier: sc.fireMultiplier,
+        resolved_at: new Date().toISOString(),
+      })
+      .eq("id", r.id)
+      .is("resolved_at", null)
+      .select("id");
+    if (updated && updated.length > 0) {
+      winners++;
+      const xpBonus = fireBonusXp(chainBefore + 1);
+      await payUser(r.user_id, sc.points, sc.points + xpBonus);
+    }
+  }
+  return winners;
 }
 
 /**
@@ -454,7 +564,7 @@ export async function settleMicro(
   // Si otra pasada ya la resolvió, no repetimos pagos.
   if (!locked || locked.length === 0) return null;
 
-  // Respuestas pendientes de esta micro, en orden de llegada (para racha).
+  // Respuestas pendientes de esta micro, en orden de llegada.
   const { data: respData } = await admin
     .from("micro_responses")
     .select(RESP_COLS)
@@ -463,39 +573,19 @@ export async function settleMicro(
     .order("created_at", { ascending: true });
   const responses = (respData ?? []) as MicroResponseRow[];
 
-  let winners = 0;
-  for (const r of responses) {
-    const isCorrect = r.selected_option === correct;
-    // Racha real ANTES de esta micro (recalculada con datos ya resueltos).
-    const chainBefore = await currentFireChain(r.user_id, micro.match_id);
-    const sc = isCorrect
-      ? scoreMicro({
-          basePoints: micro.base_points,
-          chainBefore,
-          matchMultiplier: Number(micro.match_multiplier) || 1,
-          ghost: r.ghost,
-        })
-      : { points: 0, fireMultiplier: 1, breakdown: "fallo · cadena rota" };
-
-    const { data: updated } = await admin
-      .from("micro_responses")
-      .update({
-        is_correct: isCorrect,
-        points_earned: sc.points,
-        fire_chain_before: chainBefore,
-        fire_multiplier: sc.fireMultiplier,
-        resolved_at: new Date().toISOString(),
-      })
-      .eq("id", r.id)
-      .is("resolved_at", null)
-      .select("id");
-
-    if (isCorrect && updated && updated.length > 0) {
-      winners++;
-      const xpBonus = fireBonusXp(chainBefore + 1);
-      await payUser(r.user_id, sc.points, sc.points + xpBonus);
-    }
-  }
+  // Rachas de TODOS los respondedores en lote (cada usuario responde una sola
+  // vez por micro, así que su racha no cambia dentro del propio lote).
+  const chains = await fireChainsForUsers(micro.match_id, [...new Set(responses.map((r) => r.user_id))]);
+  const winners = await settleResponsesBatch(
+    {
+      micro_id: micro.id,
+      correct_option: correct,
+      base_points: micro.base_points,
+      match_multiplier: Number(micro.match_multiplier) || 1,
+    },
+    responses,
+    chains,
+  );
 
   return { micro_id: micro.id, correct_option: correct, responses_resolved: responses.length, winners };
 }
@@ -553,8 +643,64 @@ export async function getDueMicros(): Promise<MicroRow[]> {
     .select(MICRO_COLS)
     .neq("status", "resolved")
     .lte("closes_at", new Date().toISOString())
-    .order("activated_at", { ascending: true });
+    .order("activated_at", { ascending: true })
+    .limit(200); // cota por pasada; lo que no quepa, a la siguiente (cron por minuto)
   return (data as MicroRow[] | null) ?? [];
+}
+
+/**
+ * Barrido de REPARACIÓN: respuestas que quedaron con resolved_at NULL aunque su
+ * micro ya está resuelta. Pasa si un settle muere a mitad (timeout/crash del
+ * cron) o si la micro tenía más respuestas que el tope de filas de PostgREST en
+ * la consulta del settle. Re-liquida con la correct_option YA fijada (sin pedir
+ * eventos). Acotado por pasada; devuelve cuántas respuestas cerró.
+ */
+export async function repairOrphanResponses(limit = 300): Promise<number> {
+  const admin = adminClient();
+  const { data } = await admin
+    .from("micro_responses")
+    .select(`${RESP_COLS},micro_predictions!inner(match_id,status,correct_option,base_points,match_multiplier)`)
+    .is("resolved_at", null)
+    .eq("micro_predictions.status", "resolved")
+    .order("created_at", { ascending: true })
+    .limit(limit);
+
+  type OrphanRow = MicroResponseRow & {
+    micro_predictions: {
+      match_id: string;
+      status: string;
+      correct_option: string | null;
+      base_points: number;
+      match_multiplier: number;
+    };
+  };
+  const orphans = (data ?? []) as unknown as OrphanRow[];
+  if (orphans.length === 0) return 0;
+
+  // Agrupa por micro y liquida cada grupo con la misma maquinaria del settle.
+  const byMicro = new Map<string, OrphanRow[]>();
+  for (const o of orphans) {
+    const arr = byMicro.get(o.micro_id) ?? [];
+    if (arr.length === 0) byMicro.set(o.micro_id, arr);
+    arr.push(o);
+  }
+  let repaired = 0;
+  for (const [microId, group] of byMicro) {
+    const m = group[0].micro_predictions;
+    const chains = await fireChainsForUsers(m.match_id, [...new Set(group.map((r) => r.user_id))]);
+    await settleResponsesBatch(
+      {
+        micro_id: microId,
+        correct_option: m.correct_option,
+        base_points: m.base_points,
+        match_multiplier: Number(m.match_multiplier) || 1,
+      },
+      group,
+      chains,
+    );
+    repaired += group.length;
+  }
+  return repaired;
 }
 
 /** Mis respuestas a las micros de un partido (RLS, para pintar resultados). */

@@ -15,6 +15,7 @@ import { NextResponse } from "next/server";
 import {
   getDueMicros,
   settleMicro,
+  repairOrphanResponses,
   matchesWithActiveMicroDuels,
   resolveMicroDuelsForMatch,
   type SettleSummary,
@@ -63,6 +64,16 @@ export async function GET(req: Request) {
     if (summary) settled.push(summary);
   }
 
+  // ── Barrido de reparación: respuestas que un settle interrumpido (timeout,
+  //    crash, tope de filas) dejó sin liquidar aunque su micro ya esté resuelta.
+  //    Sin esto quedaban huérfanas PARA SIEMPRE (el cron no revisita resueltas). ──
+  let repaired = 0;
+  try {
+    if (Date.now() - startMs < TIME_BUDGET_MS) repaired = await repairOrphanResponses();
+  } catch (err) {
+    console.error("[resolve-micro] repair sweep failed", (err as Error).message);
+  }
+
   // ── Duelo en Vivo (Fase 2): resuelve los duelos cuyos partidos ya terminaron.
   //    Reusa la caché de estado por partido para no re-pedir. ──
   let duelsResolved = 0;
@@ -83,13 +94,14 @@ export async function GET(req: Request) {
     console.error("[resolve-micro] duel resolution failed", (err as Error).message);
   }
 
-  await recordHeartbeat("resolve-micro", true, { due: due.length, settled: settled.length });
+  await recordHeartbeat("resolve-micro", true, { due: due.length, settled: settled.length, repaired });
 
   return NextResponse.json({
     ok: true,
     due: due.length,
     settled_count: settled.length,
     settled,
+    repaired,
     duels_resolved: duelsResolved,
     duration_ms: Date.now() - startMs,
   });

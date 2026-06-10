@@ -9,7 +9,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { BG2, BG3, GOLD, GOLD2, MID, DIM } from "./fx";
-import { CoinIcon } from "./icons";
+import { CoinIcon, InjuryIcon, TransferIcon } from "./icons";
 import type { CareerState, NarrativeEntry, NarrativeKind } from "@/lib/modo-carrera/types";
 import { CAREER_NARRATIVE_REFILL } from "@/lib/economy/spend";
 
@@ -28,10 +28,12 @@ const GENERATE_BUTTONS: { kind: NarrativeKind; label: string }[] = [
 
 // Los eventos no llevan subtipo en los datos; elegimos el icono por palabras
 // clave del cuerpo (lesión / oferta-fichaje). Sin coincidencia → sin icono.
-function eventIcon(body: string): string | null {
+// SVG inline (antes eran webp pintados de blanco con filter, contra la regla
+// de iconos SVG del proyecto).
+function eventIcon(body: string): React.ReactNode {
   const t = body.toLowerCase();
-  if (/lesi[óo]n|lesionad|baja|recae/.test(t)) return "/img/modo-carrera/icons/evento-lesion.webp";
-  if (/oferta|fichaj|fichar|traspaso|interes/.test(t)) return "/img/modo-carrera/icons/evento-oferta.webp";
+  if (/lesi[óo]n|lesionad|baja|recae/.test(t)) return <InjuryIcon size={20} />;
+  if (/oferta|fichaj|fichar|traspaso|interes/.test(t)) return <TransferIcon size={20} />;
   return null;
 }
 
@@ -255,13 +257,9 @@ export default function NarrativeView({
               <article key={e.id} className={isTitular ? "mc-titular-paper" : undefined} style={baseStyle}>
                 <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
                   {e.kind === "evento" && eventIcon(e.body) && (
-                    <img
-                      src={eventIcon(e.body) as string}
-                      alt=""
-                      width={20}
-                      height={20}
-                      style={{ objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.92 }}
-                    />
+                    <span aria-hidden style={{ display: "inline-flex", color: "#fff", opacity: 0.92 }}>
+                      {eventIcon(e.body)}
+                    </span>
                   )}
                   <span
                     style={{

@@ -6,6 +6,7 @@
 "use client";
 
 import { BG, BG2, BG3, GOLD, GOLD2, GREEN, MID, DIM } from "./fx";
+import { useModalA11y } from "./useModalA11y";
 
 function I(props: { children: React.ReactNode }) {
   return (
@@ -57,12 +58,16 @@ const STEPS: Step[] = [
 ];
 
 export default function GuideModal({ onClose }: { onClose: () => void }) {
+  const dialogRef = useModalA11y<HTMLDivElement>(onClose);
   return (
     <div
+      ref={dialogRef}
+      tabIndex={-1}
       role="dialog"
       aria-modal="true"
       onClick={onClose}
       style={{
+        outline: "none",
         position: "fixed",
         inset: 0,
         zIndex: 95,

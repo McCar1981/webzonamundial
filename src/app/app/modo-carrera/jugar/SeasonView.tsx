@@ -24,6 +24,7 @@ import { getFrescura, type PrepSessionId } from "@/lib/modo-carrera/concentracio
 import MatchLive from "./MatchLive";
 import Concentracion from "./Concentracion";
 import { Kit, Confetti } from "./Visuals";
+import { useModalA11y } from "./useModalA11y";
 
 const OUTCOME_LABEL = { V: "Victoria", E: "Empate", D: "Derrota" } as const;
 const OUTCOME_COLOR = { V: GREEN, E: GOLD, D: RED } as const;
@@ -569,6 +570,11 @@ export default function SeasonView({
     setPressConf(null);
   };
 
+  // A11y de los diálogos de la vista: foco al abrirse y Escape donde hay cierre
+  // seguro. La rueda de prensa EXIGE decisión (no tiene cierre), solo recibe foco.
+  const revealRef = useModalA11y<HTMLDivElement>(closeReveal, !!(reveal && reveal.match));
+  const pressRef = useModalA11y<HTMLDivElement>(undefined, !!(pressConf && pressConf.choices));
+
   return (
     <div style={{ maxWidth: 820, margin: "0 auto" }}>
       <style>{`
@@ -730,10 +736,13 @@ export default function SeasonView({
       {/* Revelado del resultado */}
       {reveal && reveal.match && (
         <div
+          ref={revealRef}
+          tabIndex={-1}
           role="dialog"
           aria-modal="true"
           onClick={closeReveal}
           style={{
+            outline: "none",
             position: "fixed",
             inset: 0,
             zIndex: 90,
@@ -842,9 +851,12 @@ export default function SeasonView({
       {/* Rueda de prensa post-partido (decisión que impacta moral y confianza) */}
       {pressConf && pressConf.choices && (
         <div
+          ref={pressRef}
+          tabIndex={-1}
           role="dialog"
           aria-modal="true"
           style={{
+            outline: "none",
             position: "fixed",
             inset: 0,
             zIndex: 95,

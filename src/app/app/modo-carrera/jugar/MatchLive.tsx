@@ -20,6 +20,7 @@ import { SELECCIONES } from "@/data/selecciones";
 import { FANTASY_ROSTERS, type RosterPlayer } from "@/data/fantasy-rosters";
 import { classicLabel } from "@/lib/modo-carrera/classics";
 import { Kit, Confetti, Coach } from "./Visuals";
+import { useModalA11y } from "./useModalA11y";
 import LineupEditor from "./LineupEditor";
 import { formationById, resolveLineup, xiRating, bestXI, lineupValid, availableRoster, unavailableNames } from "@/lib/modo-carrera/lineup";
 import {
@@ -82,9 +83,16 @@ interface GoalEvent {
   scorer: string;
 }
 
-type FeedItem =
+type FeedItemContent =
   | { kind: "goal"; minute: number; team: "self" | "opp"; scorer: string }
   | { kind: "red"; minute: number; team: "self" | "opp"; player: string };
+
+/**
+ * `key`: clave React ESTABLE derivada del contenido (no del índice): el feed se
+ * ordena por minuto y una roja/gol tardío puede insertarse en medio; con key={i}
+ * las filas posteriores se re-montaban y re-disparaban su animación de entrada.
+ */
+type FeedItem = FeedItemContent & { key: string };
 
 const sel = (slug: string) => SELECCIONES.find((s) => s.slug === slug);
 
@@ -212,6 +220,10 @@ export default function MatchLive({
   const classic = classicLabel(selfSlug, oppSlug);
 
   const [phase, setPhase] = useState<Phase>("plan");
+  // Foco dentro del diálogo al abrir; Escape solo cancela ANTES del saque (en la
+  // pizarra). Con el partido en marcha no hay cierre con Escape: abandonar a
+  // mitad perdería el encuentro sin confirmación.
+  const dialogRef = useModalA11y<HTMLDivElement>(phase === "plan" ? onCancel : undefined);
   const [planId, setPlanId] = useState<string>(TACTICAL_PLANS[0].id);
   const [clock, setClock] = useState(0);
   const [events, setEvents] = useState<GoalEvent[]>([]);
@@ -628,9 +640,23 @@ export default function MatchLive({
   // Feed combinado (goles + expulsión) ordenado por minuto. La roja NO cuenta
   // para el marcador ni dispara celebración; solo aparece en el relato.
   const feedItems = useMemo<FeedItem[]>(() => {
-    const items: FeedItem[] = shown.feed.map((e) => ({ kind: "goal", minute: e.minute, team: e.team, scorer: e.scorer }));
+    // La numeración de duplicados sigue el orden de inserción (append-only), así
+    // que la clave de cada fila no cambia aunque el sort la recoloque.
+    const seen = new Map<string, number>();
+    const withKey = (it: FeedItemContent): FeedItem => {
+      const base =
+        it.kind === "goal"
+          ? `g-${it.minute}-${it.team}-${it.scorer}`
+          : `r-${it.minute}-${it.team}-${it.player}`;
+      const n = (seen.get(base) ?? 0) + 1;
+      seen.set(base, n);
+      return { ...it, key: n > 1 ? `${base}-${n}` : base };
+    };
+    const items: FeedItem[] = shown.feed.map((e) =>
+      withKey({ kind: "goal", minute: e.minute, team: e.team, scorer: e.scorer }),
+    );
     if (redCard && redCard.minute <= clock) {
-      items.push({ kind: "red", minute: redCard.minute, team: redCard.team, player: redCard.player });
+      items.push(withKey({ kind: "red", minute: redCard.minute, team: redCard.team, player: redCard.player }));
     }
     return items.sort((a, b) => a.minute - b.minute);
   }, [shown.feed, redCard, clock]);
@@ -716,9 +742,12 @@ export default function MatchLive({
 
   return (
     <div
+      ref={dialogRef}
+      tabIndex={-1}
       role="dialog"
       aria-modal="true"
       style={{
+        outline: "none",
         position: "fixed",
         inset: 0,
         zIndex: 95,
@@ -928,10 +957,10 @@ export default function MatchLive({
                 Rueda el balón…
               </div>
             ) : (
-              feedItems.map((e, i) =>
+              feedItems.map((e) =>
                 e.kind === "goal" ? (
                   <div
-                    key={`g-${e.minute}-${i}`}
+                    key={e.key}
                     style={{
                       display: "flex",
                       alignItems: "center",
@@ -950,7 +979,7 @@ export default function MatchLive({
                   </div>
                 ) : (
                   <div
-                    key={`r-${e.minute}-${i}`}
+                    key={e.key}
                     style={{
                       display: "flex",
                       alignItems: "center",

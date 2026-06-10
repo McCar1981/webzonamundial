@@ -5,10 +5,11 @@
 // tolerar saves antiguos o corruptos. Al iniciar sesión, CareerGame sincroniza
 // este estado con Supabase via /api/modo-carrera/save.
 
-import type { CareerState, SeasonState, SeasonMatch, TournamentStage, MatchOutcome, BoardState, BoardDemand, BoardVerdict, StreakState, Mission, MissionKind, MissionStatus, Trophy, SquadState, Injury, Suspension, SuspensionReason, PrepPlan, Rivalry, NarrativeEntry, NarrativeKind } from "./types";
+import type { CareerState, SeasonState, SeasonMatch, TournamentStage, MatchOutcome, BoardState, BoardDemand, BoardVerdict, StreakState, Mission, MissionKind, MissionStatus, Trophy, SquadState, Injury, Suspension, SuspensionReason, PrepPlan, Rivalry, NarrativeEntry, NarrativeKind, Philosophy } from "./types";
 import { NARRATIVE_KINDS } from "./types";
-import { CAREER_STORAGE_KEY, CAREER_SCHEMA_VERSION, xpRequired, cumulativeXpForOverall, TITLES } from "./constants";
+import { CAREER_STORAGE_KEY, CAREER_SCHEMA_VERSION, xpRequired, cumulativeXpForOverall, TITLES, PHILOSOPHIES } from "./constants";
 import { sumReputation } from "./engine";
+import { SELECCIONES } from "@/data/selecciones";
 
 /** Partida vacía inicial (DT sin crear todavía). */
 export function defaultCareer(): CareerState {
@@ -70,6 +71,11 @@ const VERDICTS: BoardVerdict[] = ["pendiente", "superado", "cumplido", "fallido"
 const MISSION_KINDS: MissionKind[] = ["diaria", "semanal", "torneo", "flash"];
 const MISSION_STATUSES: MissionStatus[] = ["activa", "completada", "fallida", "reclamada"];
 const VALID_TITLE_IDS = new Set(TITLES.map((t) => t.id));
+// Identidad contra catálogo: una filosofía o selección inventadas por un save
+// manipulado no deben entrar al estado (acababan en BD vía /save y en la columna
+// nation_slug del ranking). Inválido → null = el DT vuelve al onboarding.
+const VALID_PHILOSOPHIES = new Set<Philosophy>(PHILOSOPHIES.map((p) => p.id));
+const VALID_NATION_SLUGS = new Set(SELECCIONES.map((s) => s.slug));
 
 // Topes legítimos de recompensa por misión (la plantilla más jugosa da 300 XP /
 // 25 reputación; dejamos margen sin abrir la puerta a saves manipulados).
@@ -296,8 +302,8 @@ export function normalizeCareer(raw: Partial<CareerState> | null | undefined): C
     version: CAREER_SCHEMA_VERSION,
     identity: {
       name: typeof id.name === "string" ? id.name.slice(0, 40) : base.identity.name,
-      philosophy: id.philosophy ?? base.identity.philosophy,
-      nationSlug: id.nationSlug ?? base.identity.nationSlug,
+      philosophy: VALID_PHILOSOPHIES.has(id.philosophy as Philosophy) ? (id.philosophy as Philosophy) : null,
+      nationSlug: typeof id.nationSlug === "string" && VALID_NATION_SLUGS.has(id.nationSlug) ? id.nationSlug : null,
       avatarSeed: clampInt(id.avatarSeed, 0, 1_000_000, base.identity.avatarSeed),
       createdAt: id.createdAt ?? base.identity.createdAt,
     },

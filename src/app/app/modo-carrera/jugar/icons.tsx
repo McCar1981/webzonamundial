@@ -47,10 +47,42 @@ export function StarIcon({ size = 18 }: IconProps) {
   );
 }
 
-export function BoltIcon({ size = 18 }: IconProps) {
+// Solo se usa dentro de MissionIcon (misiones flash); no se exporta.
+function BoltIcon({ size = 18 }: IconProps) {
   return (
     <svg {...base(size)}>
       <path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z" />
+    </svg>
+  );
+}
+
+/** Silbato de entrenamiento (misión de entreno diario). */
+export function TrainingIcon({ size = 18 }: IconProps) {
+  return (
+    <svg {...base(size)}>
+      <path d="M14 8h4a3 3 0 0 1 3 3v1a6 6 0 1 1-12 0v-1l5-3z" />
+      <circle cx="15" cy="12.5" r="1.4" fill="currentColor" stroke="none" />
+      <path d="M9 8 7 5M12 7V4M5 10H2" />
+    </svg>
+  );
+}
+
+/** Cruz médica (evento de lesión en la narrativa). */
+export function InjuryIcon({ size = 18 }: IconProps) {
+  return (
+    <svg {...base(size)}>
+      <rect x="3" y="6" width="18" height="14" rx="3" />
+      <path d="M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M12 10v6M9 13h6" />
+    </svg>
+  );
+}
+
+/** Contrato/oferta (evento de mercado en la narrativa). */
+export function TransferIcon({ size = 18 }: IconProps) {
+  return (
+    <svg {...base(size)}>
+      <path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7l-5-5z" />
+      <path d="M14 2v5h5M9 13h6M9 17h4" />
     </svg>
   );
 }

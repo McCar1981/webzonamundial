@@ -93,9 +93,15 @@ export function missionKey(m: Mission): string {
 
 /**
  * Conjunto de ids de misión que el SERVIDOR habría emitido legítimamente en una
- * ventana reciente (hoy y los últimos 14 días). Reconstruye los ciclos de cada
- * plantilla con la MISMA función `cycleFor` que los genera, cubriendo diaria,
- * semanal, flash (4 bloques/día) y torneo (id fijo).
+ * ventana reciente (mañana, hoy y los últimos 14 días). Reconstruye los ciclos de
+ * cada plantilla con la MISMA función `cycleFor` que los genera, cubriendo
+ * diaria, semanal, flash (4 bloques/día) y torneo (id fijo).
+ *
+ * Incluye MAÑANA porque los ids se generan con la fecha LOCAL del jugador y este
+ * conjunto se calcula en el servidor (UTC en Vercel): un jugador por delante de
+ * UTC (España de madrugada, Asia, Oceanía) crea ids del día siguiente al del
+ * servidor, y sin el +1 sus recompensas legítimas se rechazaban. El día extra
+ * también cubre el salto de semana ISO del domingo por la noche.
  *
  * Sirve de lista blanca anti-faucet: la economía solo abona misiones cuyo id
  * pertenece a este conjunto, así un cliente manipulado no puede inventar ids
@@ -104,7 +110,7 @@ export function missionKey(m: Mission): string {
 export function legitMissionIds(ref: Date = new Date()): Set<string> {
   const ids = new Set<string>();
   for (const tpl of MISSION_TEMPLATES) {
-    for (let back = 0; back <= 14; back++) {
+    for (let back = -1; back <= 14; back++) {
       const d = new Date(ref);
       d.setDate(d.getDate() - back);
       // 4 bloques de 6 h cubren las 24 h del día (necesario para las flash).

@@ -16,13 +16,11 @@ import { MATCHES } from "@/data/matches";
 import { PROGRAMMED_MATCH_IDS, firstWorldCupMatchId } from "@/lib/match-center/programmed";
 import {
   buildMeta,
-  getFixtureId,
   getCachedSnapshot,
   getLastSnapshot,
-  cacheSnapshot,
   matchSlug,
 } from "@/lib/match-center/store";
-import { fetchLiveSnapshot, scheduledSnapshot } from "@/lib/match-center/apiFootball";
+import { scheduledSnapshot } from "@/lib/match-center/apiFootball";
 import type { LiveSnapshot } from "@/lib/match-center/types";
 
 export const runtime = "nodejs";
@@ -72,7 +70,11 @@ async function pickFeaturedId(now: number): Promise<number> {
   return firstWorldCupMatchId();
 }
 
-/** Mejor feed disponible para un partido (cacheado > vivo > por comenzar). */
+/** Mejor feed disponible para un partido (cacheado > último conocido > por
+ *  comenzar). IMPORTANTE: este endpoint NUNCA pega a api-football — lo abre
+ *  cada visitante del lobby y en cache-miss masivo agotaría la cuota diaria.
+ *  Quien calienta KV es el cron match-center-poll; si el cron se cae durante
+ *  un partido, servimos el último snapshot conocido (y el cron alerta). */
 async function feedFor(matchId: number): Promise<LiveSnapshot | null> {
   const meta = buildMeta(matchId);
   if (!meta) return null;
@@ -80,30 +82,29 @@ async function feedFor(matchId: number): Promise<LiveSnapshot | null> {
   const cached = await getCachedSnapshot(matchId);
   if (cached) return cached;
 
-  const fixtureId = await getFixtureId(matchId);
-  if (fixtureId) {
-    const snap = await fetchLiveSnapshot(fixtureId, meta);
-    if (snap) {
-      await cacheSnapshot(snap);
-      return snap;
-    }
-    const last = await getLastSnapshot(matchId);
-    if (last) return last;
-  }
+  const last = await getLastSnapshot(matchId);
+  if (last) return last;
 
-  // Sin fixture/datos: estado estático "por comenzar" con la fecha del calendario.
+  // Sin datos en vivo: estado estático "por comenzar" con la fecha del calendario.
   return scheduledSnapshot(meta, isoKickoff(meta.date, meta.time));
 }
 
 export async function GET() {
   const now = Date.now();
   const matchId = await pickFeaturedId(now);
-  const feed = await feedFor(matchId);
+  let feed = await feedFor(matchId);
+  // Último recurso: si el id elegido no resuelve meta (estado inconsistente),
+  // caemos al primer partido del Mundial antes que dejar el hero sin datos.
+  let servedId = matchId;
+  if (!feed) {
+    servedId = firstWorldCupMatchId();
+    feed = await feedFor(servedId);
+  }
   if (!feed) {
     return NextResponse.json({ error: "no match" }, { status: 404 });
   }
   return NextResponse.json(
-    { matchId, slug: matchSlug(matchId), ...feed },
+    { matchId: servedId, slug: matchSlug(servedId), ...feed },
     {
       headers: { "Cache-Control": "public, s-maxage=10, stale-while-revalidate=20" },
     },

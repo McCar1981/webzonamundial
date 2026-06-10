@@ -25,6 +25,7 @@ import { processMatchPush } from "@/lib/match-center/push";
 import { processMicroGeneration } from "@/lib/micro/engine";
 import type { MatchMeta } from "@/lib/match-center/types";
 import { recordHeartbeat } from "@/lib/ops/store";
+import { sendOpsAlert } from "@/lib/ops/alert";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -125,6 +126,17 @@ export async function GET(req: Request) {
   if (denied) return denied;
 
   if (!apiKeyPresent()) {
+    // Sin key el lobby degrada a "Por comenzar" para TODOS los partidos.
+    // Alerta crítica (con throttle por key) en vez de morir en silencio.
+    await sendOpsAlert({
+      key: "mc_poll_no_api_key",
+      severity: "critical",
+      title: "Match Center sin API key",
+      body: "match-center-poll no encuentra API_SPORTS_KEY/RAPIDAPI_KEY. El hero y el Match Center quedan congelados en 'Por comenzar'.",
+      repeatMinutes: 30,
+      url: "/admin/monitor",
+    });
+    await recordHeartbeat("match-center-poll", false, { error: "api_not_configured" });
     return NextResponse.json(
       { error: "api_not_configured", message: "API_SPORTS_KEY requerida" },
       { status: 500 },
@@ -154,7 +166,21 @@ export async function GET(req: Request) {
     await sleep(POLL_INTERVAL_MS);
   }
 
-  await recordHeartbeat("match-center-poll", true, { passes, cached: totalCached, pushes: totalPushes });
+  // Partidos en ventana con fixture mapeado pero CERO snapshots descargados =
+  // api-football no devuelve nada (key inválida/revocada o cuota agotada).
+  // Es distinto de "no hay partidos ahora" (lastMapped === 0, normal).
+  if (lastMapped > 0 && totalCached === 0) {
+    await sendOpsAlert({
+      key: "mc_poll_zero_snapshots",
+      severity: "critical",
+      title: "api-football no devuelve datos",
+      body: `match-center-poll: ${lastMapped} partido(s) en ventana y 0 snapshots descargados. Posible key inválida o cuota agotada — el marcador en vivo está congelado.`,
+      repeatMinutes: 15,
+      url: "/admin/monitor",
+    });
+  }
+
+  await recordHeartbeat("match-center-poll", totalCached > 0 || lastMapped === 0, { passes, cached: totalCached, pushes: totalPushes });
 
   return NextResponse.json({
     ok: true,

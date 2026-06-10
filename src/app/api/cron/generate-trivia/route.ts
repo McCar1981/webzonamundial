@@ -8,6 +8,7 @@
 import { NextResponse } from "next/server";
 import { requireCron } from "@/lib/auth-helpers";
 import { recordHeartbeat } from "@/lib/ops/store";
+import { sendOpsAlert } from "@/lib/ops/alert";
 import { generateQuestions } from "@/lib/trivia/generator";
 import { addToBank, getQuestionBank } from "@/lib/trivia/store";
 import { FALLBACK_QUESTIONS } from "@/data/trivia-fallback";
@@ -46,7 +47,20 @@ export async function GET(req: Request) {
     /* noop */
   }
 
-  await recordHeartbeat("generate-trivia", true, { added, bankSize });
+  // Si Claude no generó NADA, el banco deja de crecer y las preguntas se
+  // repetirán en pocos días. Aviso (con throttle) en vez de fallo silencioso.
+  if (questions.length === 0) {
+    await sendOpsAlert({
+      key: "trivia_gen_zero",
+      severity: "warning",
+      title: "Trivia diaria sin preguntas nuevas",
+      body: `generate-trivia generó 0 preguntas (banco: ${bankSize}). Revisa saldo/key de Anthropic — si sigue así el banco se repite.`,
+      repeatMinutes: 360,
+      url: "/admin/monitor",
+    });
+  }
+
+  await recordHeartbeat("generate-trivia", questions.length > 0, { added, bankSize });
 
   return NextResponse.json({
     ok: true,

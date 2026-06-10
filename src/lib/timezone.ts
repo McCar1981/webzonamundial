@@ -1,14 +1,16 @@
 /**
  * Multi-timezone helpers para Mundial 2026.
  *
- * Mundial 2026 se juega en 3 países, 4 husos horarios (Pacific, Mountain,
- * Central, Eastern) más zonas mexicanas. Cada partido tiene su hora local
- * del estadio. El visitante de la web está en su propio huso (España,
- * México, Argentina, etc.).
+ * ⚠️ AVISO DE CONVENCIÓN: el campo "t" de src/data/matches.ts NO es hora
+ * local del estadio — está SIEMPRE en Eastern Time (ET), tal como lo publica
+ * el FIFA Sortable Schedule. Para convertir partidos de matches.ts usa
+ * src/lib/calendario/time.ts (matchInstant), no buildKickoffDate con la TZ
+ * de la sede: esa mala interpretación desplazó los eventos del feed ICS
+ * 1-3 horas (bug corregido el 10-jun-2026).
  *
- * Estrategia:
- *   1. JSON guarda kickoff_local (hora del estadio) + venue.country_iso
- *      + venue.timezone (IANA, ej. "America/New_York").
+ * Estos helpers siguen siendo válidos para datos que SÍ vengan en hora local
+ * del estadio (p.ej. kickoff_local de api-football):
+ *   1. kickoff_local (hora del estadio) + venue.timezone (IANA).
  *   2. Construimos un Date UTC con esa info.
  *   3. Renderizamos en CUALQUIER huso usando Intl.DateTimeFormat.
  *

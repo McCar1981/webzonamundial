@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { MATCHES, type Match } from "@/data/matches";
+import { type Match } from "@/data/matches";
+import { WC_MATCHES } from "@/lib/calendario/time";
 import { buildCalendar } from "@/lib/ics-builder";
 
 export const runtime = "nodejs";
@@ -34,7 +35,9 @@ export const revalidate = 3600;
  */
 export async function GET(req: NextRequest) {
   const params = req.nextUrl.searchParams;
-  const filtered = filterMatches(MATCHES, params);
+  // Solo los 104 partidos reales: el fixture de prueba del Match Center
+  // (j=99) no debe llegar al calendario de nadie.
+  const filtered = filterMatches(WC_MATCHES, params);
   const name = buildCalendarName(params, filtered.length);
 
   const reminders = params.get("reminders") !== "0";

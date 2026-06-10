@@ -3,7 +3,8 @@
 //
 // Filtros opcionales por query string:
 //   ?team=es           → solo partidos de un equipo (flag ISO)
-//   ?phase=grupos      → solo fase de grupos
+//   ?phase=grupos      → fase: grupos | dieciseisavos | octavos | cuartos |
+//                        semis | tercer-puesto | final
 //   ?venue=us          → solo sedes de un país
 //   ?compact=1         → modo compacto (sin imagen banderas)
 //
@@ -11,17 +12,23 @@
 //   <iframe src="https://zonamundial.app/embed/calendario?team=es"
 //           width="100%" height="600" frameborder="0"
 //           style="border:0;border-radius:14px"></iframe>
+//
+// NOTA: esta página se renderiza por petición (dynamic) — con force-static
+// los searchParams llegaban vacíos en build y los filtros no funcionaban.
+// Horarios: se muestran en ET (hora del Este) con etiqueta; el servidor no
+// conoce la zona del lector del blog, así que se etiqueta en vez de adivinar.
 
 import type { Metadata } from "next";
 import Link from "next/link";
-import { MATCHES } from "@/data/matches";
+import type { Match } from "@/data/matches";
+import { WC_MATCHES, matchInstant } from "@/lib/calendario/time";
 
 export const metadata: Metadata = {
   title: "Calendario Mundial 2026 — Embed",
   robots: { index: false, follow: true },
 };
 
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 
 interface PageProps {
   searchParams: {
@@ -32,26 +39,57 @@ interface PageProps {
   };
 }
 
+// Slug de la URL → nombre EXACTO de fase en matches.ts. La versión anterior
+// filtraba por substring y "final" devolvía también octavos/cuartos/semis
+// ("...de final"), mientras que "semis" no devolvía nada.
 const PHASE_MAP: Record<string, string> = {
   grupos: "Fase de grupos",
   "fase-de-grupos": "Fase de grupos",
-  octavos: "Octavos",
-  cuartos: "Cuartos",
-  semis: "Semifinales",
-  semifinales: "Semifinales",
-  final: "Final",
+  dieciseisavos: "Dieciseisavos",
+  octavos: "Octavos de final",
+  cuartos: "Cuartos de final",
+  semis: "Semifinal",
+  semifinal: "Semifinal",
+  semifinales: "Semifinal",
   "tercer-puesto": "Tercer puesto",
+  final: "FINAL",
 };
 
 function flagSrc(iso: string): string {
   return `https://flagcdn.com/${iso}.svg`;
 }
 
+/** Bandera del embed; los partidos KO sin equipo definido ("tbd") no tienen
+ *  bandera en flagcdn — placeholder neutro en vez de un <img> roto. */
+function EmbedFlag({ iso, compact }: { iso: string; compact: boolean }) {
+  if (compact) return null;
+  if (!iso || iso === "tbd") {
+    return (
+      <span
+        style={{
+          display: "inline-block",
+          width: 18,
+          height: 13,
+          borderRadius: 2,
+          background: "rgba(255,255,255,0.08)",
+        }}
+      />
+    );
+  }
+  return (
+    /* eslint-disable-next-line @next/next/no-img-element */
+    <img src={flagSrc(iso)} alt="" width={18} height={13} style={{ borderRadius: 2 }} />
+  );
+}
+
 function fmtDate(iso: string): string {
-  return new Date(iso).toLocaleDateString("es-ES", {
+  // Mediodía UTC + formateo en UTC: el día mostrado no depende de la TZ del
+  // servidor que renderice.
+  return new Date(`${iso}T12:00:00Z`).toLocaleDateString("es-ES", {
     weekday: "short",
     day: "numeric",
     month: "short",
+    timeZone: "UTC",
   });
 }
 
@@ -61,15 +99,19 @@ export default function EmbedCalendarioPage({ searchParams }: PageProps) {
   const venueFilter = (searchParams.venue || "").toLowerCase().trim();
   const compact = searchParams.compact === "1";
 
-  let filtered = MATCHES;
+  let filtered: Match[] = [...WC_MATCHES].sort((a, b) => {
+    const ta = matchInstant(a)?.getTime() ?? 0;
+    const tb = matchInstant(b)?.getTime() ?? 0;
+    return ta - tb;
+  });
   if (teamFilter) {
     filtered = filtered.filter(
       (m) => m.hf.toLowerCase() === teamFilter || m.af.toLowerCase() === teamFilter
     );
   }
   if (phaseFilter) {
-    const targetPhase = PHASE_MAP[phaseFilter] || phaseFilter;
-    filtered = filtered.filter((m) => m.p.toLowerCase().includes(targetPhase.toLowerCase()));
+    const targetPhase = PHASE_MAP[phaseFilter] ?? phaseFilter;
+    filtered = filtered.filter((m) => m.p.toLowerCase() === targetPhase.toLowerCase());
   }
   if (venueFilter) {
     filtered = filtered.filter((m) => m.vf.toLowerCase() === venueFilter);
@@ -173,16 +215,13 @@ export default function EmbedCalendarioPage({ searchParams }: PageProps) {
               }}
             >
               {fmtDate(m.d)}
-              <div style={{ color: "#C9A84C", marginTop: 2 }}>{m.t}</div>
+              <div style={{ color: "#C9A84C", marginTop: 2 }}>{m.t} ET</div>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 8, justifyContent: "flex-end", minWidth: 0 }}>
               <span style={{ fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                 {m.h}
               </span>
-              {!compact && (
-                /* eslint-disable-next-line @next/next/no-img-element */
-                <img src={flagSrc(m.hf)} alt="" width={18} height={13} style={{ borderRadius: 2 }} />
-              )}
+              <EmbedFlag iso={m.hf} compact={compact} />
             </div>
             <div
               style={{
@@ -197,10 +236,7 @@ export default function EmbedCalendarioPage({ searchParams }: PageProps) {
               vs
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 8, minWidth: 0 }}>
-              {!compact && (
-                /* eslint-disable-next-line @next/next/no-img-element */
-                <img src={flagSrc(m.af)} alt="" width={18} height={13} style={{ borderRadius: 2 }} />
-              )}
+              <EmbedFlag iso={m.af} compact={compact} />
               <span style={{ fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                 {m.a}
               </span>
@@ -234,7 +270,10 @@ export default function EmbedCalendarioPage({ searchParams }: PageProps) {
         }}
       >
         <span>
-          Datos · <Link href="/calendario" target="_top" style={{ color: "#FDE68A", textDecoration: "none" }}>zonamundial.app</Link>
+          Horarios en hora del Este (ET) ·{" "}
+          <Link href="/calendario" target="_top" style={{ color: "#FDE68A", textDecoration: "none" }}>
+            zonamundial.app
+          </Link>
         </span>
         <span style={{ fontFamily: "JetBrains Mono, monospace", letterSpacing: "0.1em" }}>
           MUNDIAL 2026

@@ -5,53 +5,113 @@ import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { SvgIcon } from "@/components/icons";
-import { MATCHES, PHASE_COLORS, flagUrl, fmtDate, GOLD, BG, BG2, BG3, MID, DIM } from "@/data/matches";
+import { PHASE_COLORS, flagUrl, GOLD, BG2 } from "@/data/matches";
 import type { Match } from "@/data/matches";
+import {
+  WC_MATCHES,
+  SOURCE_TZ,
+  matchInstant,
+  fmtTime,
+  fmtDayLong,
+  tzCityLabel,
+} from "@/lib/calendario/time";
+import { isFinished, isLive, type LiveLite } from "@/lib/calendario/live";
+import { matchSlug } from "@/lib/match-center/slug";
+
+const LIVE_RED = "#ff6b57";
 
 interface MatchModalProps {
   m: Match;
   onClose: () => void;
   onNav: (id: number) => void;
+  /** TZ del usuario: fechas y horas del modal se muestran en SU reloj. */
+  tz: string;
+  live?: LiveLite;
 }
 
-export function MatchModal({ m, onClose, onNav }: MatchModalProps) {
-  const { t } = useLanguage();
+export function MatchModal({ m, onClose, onNav, tz, live }: MatchModalProps) {
+  const { t, locale } = useLanguage();
   const cT = t.calendario;
 
-  const sameDay = useMemo(() => MATCHES.filter((x) => x.d === m.d && x.i !== m.i).slice(0, 4), [m.d, m.i]);
-  const groupM = useMemo(() => (m.g ? MATCHES.filter((x) => x.g === m.g && x.i !== m.i).slice(0, 3) : []), [m.g, m.i]);
-  const idx = MATCHES.findIndex((x) => x.i === m.i);
+  // Navegación anterior/siguiente SOLO sobre los 104 partidos reales (la
+  // versión anterior iteraba MATCHES y tras la FINAL ofrecía el amistoso de
+  // prueba Portugal-Chile).
+  const groupM = useMemo(
+    () => (m.g ? WC_MATCHES.filter((x) => x.g === m.g && x.i !== m.i).slice(0, 3) : []),
+    [m.g, m.i]
+  );
+  const idx = WC_MATCHES.findIndex((x) => x.i === m.i);
   const [anim, setAnim] = useState(false);
 
   useEffect(() => {
-    const t = setTimeout(() => setAnim(true), 50);
+    const timer = setTimeout(() => setAnim(true), 50);
     return () => {
-      clearTimeout(t);
+      clearTimeout(timer);
       setAnim(false);
     };
   }, [m.i]);
 
+  // Escape cierra + scroll-lock del fondo mientras el modal está abierto.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [onClose]);
+
   const isFinal = m.p === "FINAL";
   const isSemifinal = m.p === "Semifinal";
   const phaseColor = PHASE_COLORS[m.p] || GOLD;
+  const phaseLabel = cT.phases[m.p] ?? m.p;
+
+  const instant = matchInstant(m);
+  const localTime = instant ? fmtTime(instant, tz) : m.t;
+  const localDate = instant ? fmtDayLong(instant, tz, locale) : m.d;
+  const showSourceTime = tz !== SOURCE_TZ;
+
+  const playing = isLive(live);
+  const ended = isFinished(live);
+  const hasScore = (playing || ended) && !!live;
+  const slug = matchSlug(m.i) ?? String(m.i);
+
+  const statusLabel = !live
+    ? ""
+    : live.s === "HT"
+      ? cT.descanso
+      : live.s === "PEN"
+        ? cT.penales
+        : live.s === "ET" || live.s === "AET"
+          ? cT.prorroga
+          : playing
+            ? `${cT.enVivo} · ${live.el}'`
+            : cT.finalizado;
 
   const handleReminder = async () => {
-    const text = `Recordatorio: ${m.h} vs ${m.a} - ${fmtDate(m.d)} ${m.t} en ${m.vn}`;
+    const text = `${cT.recordatorioTitulo}: ${m.h} vs ${m.a} — ${localDate}, ${localTime} (${tzCityLabel(tz)}) — ${m.vn}`;
     if (typeof navigator !== "undefined" && "share" in navigator) {
       try {
-        await navigator.share({ title: "Recordatorio Mundial 2026", text });
+        await navigator.share({ title: cT.recordatorioTitulo, text });
         return;
       } catch {
         // fallback
       }
     }
-    const subject = encodeURIComponent("Recordatorio Mundial 2026");
+    const subject = encodeURIComponent(cT.recordatorioTitulo);
     const body = encodeURIComponent(text);
     window.open(`mailto:?subject=${subject}&body=${body}`);
   };
 
   return (
     <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={`${m.h} vs ${m.a}`}
       className="fixed inset-0 z-[100] flex items-center justify-center p-5 transition-opacity duration-300"
       style={{
         background: "rgba(6,11,20,0.95)",
@@ -84,7 +144,7 @@ export function MatchModal({ m, onClose, onNav }: MatchModalProps) {
             onClick={handleReminder}
             className="rounded-lg border border-[#c9a84c]/30 bg-[#c9a84c]/10 px-3 py-2 text-xs font-bold text-[#c9a84c] transition-colors hover:bg-[#c9a84c]/20"
           >
-            + Recordatorio
+            {cT.recordatorio}
           </button>
 
           {(isFinal || isSemifinal) && (
@@ -114,24 +174,31 @@ export function MatchModal({ m, onClose, onNav }: MatchModalProps) {
                   className="rounded-[10px] px-3.5 py-1.5 text-[13px] font-extrabold"
                   style={{ color: phaseColor, background: `${phaseColor}15` }}
                 >
-                  {m.p}
+                  {phaseLabel}
                 </span>
               )}
             </div>
 
-            <div className="mb-2 flex items-center justify-center gap-3">
-              <span className="text-lg font-semibold text-[#8a94b0]">{fmtDate(m.d)}</span>
+            <div className="mb-2 flex flex-wrap items-center justify-center gap-3">
+              <span className="text-lg font-semibold text-[#8a94b0]">{localDate}</span>
               <span className="text-white/20">|</span>
               <span className="rounded-[10px] bg-[#c9a84c]/10 px-4 py-1.5 text-xl font-extrabold text-[#c9a84c]">
-                {m.t}
+                {localTime}
               </span>
             </div>
+            {/* Hora local del usuario + referencia ET de la fuente oficial */}
+            <p className="text-xs text-[#6a7a9a]">
+              {tzCityLabel(tz)} · {cT.tuHora}
+              {showSourceTime && instant && (
+                <span className="ml-2 text-[#4a5570]">
+                  ({fmtTime(instant, SOURCE_TZ)} ET)
+                </span>
+              )}
+            </p>
           </div>
 
           {/* Equipos */}
-          <div
-            className="mb-8 flex items-center justify-center gap-6 rounded-[20px] border border-[#c9a84c]/10 bg-gradient-to-br from-[#c9a84c]/5 to-transparent p-6 sm:gap-10 sm:p-8"
-          >
+          <div className="mb-8 flex items-center justify-center gap-6 rounded-[20px] border border-[#c9a84c]/10 bg-gradient-to-br from-[#c9a84c]/5 to-transparent p-6 sm:gap-10 sm:p-8">
             {/* Local */}
             <div className="flex-1 text-center">
               <div className="mx-auto mb-4 h-[70px] w-[100px] overflow-hidden rounded-2xl border-[3px] border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
@@ -147,9 +214,37 @@ export function MatchModal({ m, onClose, onNav }: MatchModalProps) {
               <span className="text-[13px] text-[#6a7a9a]">{cT.local}</span>
             </div>
 
-            {/* VS */}
-            <div className="flex h-16 w-16 items-center justify-center rounded-[20px] border-2 border-[#c9a84c]/30 bg-gradient-to-br from-[#c9a84c]/20 to-[#c9a84c]/10 shadow-[0_0_30px_rgba(201,168,76,0.2)]">
-              <span className="text-lg font-black text-[#c9a84c]">VS</span>
+            {/* Marcador o VS */}
+            <div className="flex flex-col items-center gap-2">
+              {hasScore ? (
+                <>
+                  <div
+                    className="flex h-16 min-w-[5rem] items-center justify-center rounded-[20px] border-2 px-3"
+                    style={{
+                      borderColor: playing ? "rgba(255,107,87,0.45)" : "rgba(201,168,76,0.35)",
+                      background: playing ? "rgba(255,107,87,0.10)" : "rgba(201,168,76,0.10)",
+                      boxShadow: playing ? "0 0 30px rgba(255,107,87,0.15)" : "0 0 30px rgba(201,168,76,0.15)",
+                    }}
+                  >
+                    <span
+                      className="text-2xl font-black tabular-nums"
+                      style={{ color: playing ? LIVE_RED : "#e8d48b" }}
+                    >
+                      {live!.sc[0]}–{live!.sc[1]}
+                    </span>
+                  </div>
+                  <span
+                    className="text-[11px] font-extrabold uppercase tracking-wider"
+                    style={{ color: playing ? LIVE_RED : "#8a94b0" }}
+                  >
+                    {statusLabel}
+                  </span>
+                </>
+              ) : (
+                <div className="flex h-16 w-16 items-center justify-center rounded-[20px] border-2 border-[#c9a84c]/30 bg-gradient-to-br from-[#c9a84c]/20 to-[#c9a84c]/10 shadow-[0_0_30px_rgba(201,168,76,0.2)]">
+                  <span className="text-lg font-black text-[#c9a84c]">VS</span>
+                </div>
+              )}
             </div>
 
             {/* Visitante */}
@@ -167,6 +262,23 @@ export function MatchModal({ m, onClose, onNav }: MatchModalProps) {
               <span className="text-[13px] text-[#6a7a9a]">{cT.visitante}</span>
             </div>
           </div>
+
+          {/* CTA Match Center cuando hay partido en marcha o acabado */}
+          {hasScore && (
+            <Link
+              href={`/app/matchcenter/${slug}`}
+              className="mb-8 flex items-center justify-center gap-2 rounded-2xl border px-6 py-4 text-sm font-extrabold no-underline transition-all hover:scale-[1.01]"
+              style={{
+                borderColor: playing ? "rgba(255,107,87,0.4)" : "rgba(201,168,76,0.3)",
+                background: playing
+                  ? "linear-gradient(135deg, rgba(255,107,87,0.15), rgba(255,107,87,0.05))"
+                  : "linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05))",
+                color: playing ? LIVE_RED : "#e8d48b",
+              }}
+            >
+              {cT.verMatchCenter}
+            </Link>
+          )}
 
           {/* Estadio */}
           <div className="mb-8 flex items-center justify-center gap-3 rounded-2xl border border-white/5 bg-[#0B1825] px-6 py-4">
@@ -211,23 +323,28 @@ export function MatchModal({ m, onClose, onNav }: MatchModalProps) {
                 </span>
               </h3>
               <div className="flex flex-col gap-2">
-                {groupM.map((x) => (
-                  <div
-                    key={x.i}
-                    onClick={() => onNav(x.i)}
-                    className="flex cursor-pointer items-center gap-3 rounded-xl border border-white/[0.04] bg-[#0B1825] px-4 py-3 transition-all hover:border-[#c9a84c]/20 hover:bg-[#c9a84c]/[0.03]"
-                  >
-                    <span className="rounded-md bg-[#c9a84c]/10 px-2.5 py-1 text-[11px] font-extrabold text-[#c9a84c]">
-                      J{x.j}
-                    </span>
-                    <div className="flex flex-1 items-center gap-2">
-                      <span className="font-semibold">{x.h}</span>
-                      <span className="text-[#4a5570]">vs</span>
-                      <span className="font-semibold">{x.a}</span>
+                {groupM.map((x) => {
+                  const at = matchInstant(x);
+                  return (
+                    <div
+                      key={x.i}
+                      onClick={() => onNav(x.i)}
+                      className="flex cursor-pointer items-center gap-3 rounded-xl border border-white/[0.04] bg-[#0B1825] px-4 py-3 transition-all hover:border-[#c9a84c]/20 hover:bg-[#c9a84c]/[0.03]"
+                    >
+                      <span className="rounded-md bg-[#c9a84c]/10 px-2.5 py-1 text-[11px] font-extrabold text-[#c9a84c]">
+                        J{x.j}
+                      </span>
+                      <div className="flex flex-1 items-center gap-2">
+                        <span className="font-semibold">{x.h}</span>
+                        <span className="text-[#4a5570]">vs</span>
+                        <span className="font-semibold">{x.a}</span>
+                      </div>
+                      <span className="text-[13px] text-[#6a7a9a]">
+                        {at ? fmtTime(at, tz) : x.t}
+                      </span>
                     </div>
-                    <span className="text-[13px] text-[#6a7a9a]">{x.t}</span>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           )}
@@ -236,20 +353,20 @@ export function MatchModal({ m, onClose, onNav }: MatchModalProps) {
           <div className="flex justify-between border-t border-white/[0.06] pt-6">
             {idx > 0 ? (
               <button
-                onClick={() => onNav(MATCHES[idx - 1].i)}
+                onClick={() => onNav(WC_MATCHES[idx - 1].i)}
                 className="flex items-center gap-2 bg-transparent text-sm text-[#8a94b0] transition-colors hover:text-white"
               >
-                ← {MATCHES[idx - 1].h} vs {MATCHES[idx - 1].a}
+                ← {WC_MATCHES[idx - 1].h} vs {WC_MATCHES[idx - 1].a}
               </button>
             ) : (
               <span />
             )}
-            {idx < MATCHES.length - 1 && (
+            {idx >= 0 && idx < WC_MATCHES.length - 1 && (
               <button
-                onClick={() => onNav(MATCHES[idx + 1].i)}
+                onClick={() => onNav(WC_MATCHES[idx + 1].i)}
                 className="flex items-center gap-2 bg-transparent text-sm text-[#8a94b0] transition-colors hover:text-white"
               >
-                {MATCHES[idx + 1].h} vs {MATCHES[idx + 1].a} →
+                {WC_MATCHES[idx + 1].h} vs {WC_MATCHES[idx + 1].a} →
               </button>
             )}
           </div>

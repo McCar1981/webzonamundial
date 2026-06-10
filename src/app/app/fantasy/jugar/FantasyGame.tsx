@@ -353,39 +353,57 @@ export default function FantasyGame() {
     setTab("mercado");
   }, []);
 
-  // Confirma la jornada: aplica el coste de fichajes, guarda puntos netos en el
-  // historial, consume el chip, repone fichajes gratis y avanza de jornada.
-  // Si hay sesión, persiste de inmediato y registra la puntuación semanal.
+  // Confirma la jornada. Con sesión, el SERVIDOR es la autoridad: recalcula los
+  // puntos con DATOS REALES (no se fía del número del cliente), registra el
+  // ranking y abona Fútcoins. Por eso confirmamos PRIMERO contra el servidor y
+  // solo avanzamos de jornada con su veredicto — así jamás se avanza sin haber
+  // puntuado (perdiendo puntos). Invitado: confirmación solo local (no compite).
   const commitGameweek = useCallback(
     (points: number) => {
+      const gwBeing = team.gameweek;
+      // Evita reconfirmar una jornada ya cerrada (sobre todo la 8, que no avanza
+      // más): sin esto, cada clic volvería a sumar puntos al total local.
+      if (team.history.some((h) => h.gw === gwBeing)) { flash("Esta jornada ya está confirmada."); return; }
       const tc = transferCost(team.committedSlots, team.slots, team.freeTransfers, team.powerUp === "comodin");
-      const net = points - tc.penalty;
       const usedPU = team.powerUp;
-      const next: FantasyTeamState = {
+      // Construye el estado de la próxima jornada con los puntos NETOS confirmados.
+      const advance = (net: number): FantasyTeamState => ({
         ...team,
         totalPoints: team.totalPoints + net,
-        history: [...team.history.filter((h) => h.gw !== team.gameweek), { gw: team.gameweek, points: net, powerUp: usedPU }],
+        history: [...team.history.filter((h) => h.gw !== gwBeing), { gw: gwBeing, points: net, powerUp: usedPU }],
         powerUpsUsed: usedPU && !team.powerUpsUsed.includes(usedPU) ? [...team.powerUpsUsed, usedPU] : team.powerUpsUsed,
-        gameweek: Math.min(8, team.gameweek + 1),
+        gameweek: Math.min(8, gwBeing + 1),
         powerUp: null,
         // Fija la plantilla actual como base para contar los fichajes de la próxima
         // jornada y repone un fichaje gratis (tope MAX_FREE_TRANSFERS).
         committedSlots: team.slots.map((s) => ({ ...s })),
         freeTransfers: Math.min(MAX_FREE_TRANSFERS, (tc.wildcard ? team.freeTransfers : Math.max(0, team.freeTransfers - tc.transfers)) + FREE_TRANSFERS),
-      };
-      setTeam(next);
-      const base = tc.penalty > 0
-        ? `Jornada confirmada: +${points} −${tc.penalty} (fichajes) = +${net} pts.`
-        : `Jornada confirmada: +${net} pts.`;
-      if (authed) {
-        // Al confirmar con sesión, el servidor abona Fútcoins (una vez por jornada
-        // ya disputada). Mostramos el premio real cuando llega; si no, solo los pts.
-        saveServerTeam(next, { gw: team.gameweek, points: net, powerUp: usedPU })
-          .then((r) => { if (r.futcoins > 0) flash(`${base} +${r.futcoins} Fútcoins · +${r.xpAwarded} XP`); })
-          .catch(() => {});
+      });
+
+      if (!authed) {
+        // Invitado: confirmación local con la estimación del cliente (no compite
+        // en ranking ni gana Fútcoins; eso requiere cuenta y validación server-side).
+        const net = Math.max(0, points - tc.penalty);
+        setTeam(advance(net));
+        flash(tc.penalty > 0 ? `Jornada confirmada: +${points} −${tc.penalty} = +${net} pts.` : `Jornada confirmada: +${net} pts.`);
+        setTab("ligas");
+        return;
       }
-      flash(base);
-      setTab("ligas");
+
+      flash("Confirmando jornada…");
+      saveServerTeam(team, { gw: gwBeing, points, powerUp: usedPU })
+        .then((r) => {
+          if (!r.ok) { flash("⚠️ No se pudo confirmar la jornada. Reintenta en un momento."); return; }
+          if (!r.confirmed) { flash("Aún no se puede confirmar: espera a que terminen todos tus partidos."); return; }
+          const net = r.gameweekPoints ?? Math.max(0, points - tc.penalty);
+          setTeam(advance(net));
+          const base = tc.penalty > 0
+            ? `Jornada confirmada: +${net + tc.penalty} −${tc.penalty} = +${net} pts.`
+            : `Jornada confirmada: +${net} pts.`;
+          flash(r.futcoins > 0 ? `${base} +${r.futcoins} Fútcoins · +${r.xpAwarded} XP` : base);
+          setTab("ligas");
+        })
+        .catch(() => flash("⚠️ No se pudo confirmar la jornada. Reintenta en un momento."));
     },
     [team, authed, flash],
   );

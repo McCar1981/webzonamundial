@@ -72,8 +72,10 @@ export async function recordGameweekScore(
   points: number,
   powerUp: string | null,
 ): Promise<void> {
-  // Validación server-side: puntos máximos teóricos por jornada (~200).
-  const MAX_GW_POINTS = 200;
+  // `points` ya viene calculado SERVER-SIDE con datos reales (scoreGameweekFromState),
+  // así que no es forjable. El tope solo actúa como cinturón de seguridad ante un
+  // bug del motor (un capitán ×6 con bonus puede superar holgadamente los 200).
+  const MAX_GW_POINTS = 500;
   const clampedPoints = Math.max(0, Math.min(points, MAX_GW_POINTS));
 
   const supa = createSupabaseServerClient();
@@ -129,6 +131,34 @@ export async function awardGameweekCoins(
     return { coins: 0, xp: 0 };
   }
   return reward;
+}
+
+/**
+ * Abona las Fútcoins de jornadas YA disputadas que aún no se cobraron. Repara el
+ * caso de confirmar una jornada antes de que termine por completo (sus partidos
+ * acabaron pero el último de la ventana aún no): en ese momento awardGameweekCoins
+ * devuelve 0 y, sin esto, las monedas se perdían para siempre porque el cliente
+ * nunca reenvía la jornada. Es idempotente (fantasy_coin_claims) y barato: dos
+ * lecturas + un award solo por las jornadas pendientes-y-ya-cerradas. Se llama al
+ * confirmar y al abrir el juego (GET). Devuelve lo abonado en esta pasada.
+ */
+export async function sweepPendingGameweekCoins(userId: string): Promise<{ coins: number; xp: number }> {
+  const admin = adminClient();
+  const [{ data: scores }, { data: claims }] = await Promise.all([
+    admin.from("fantasy_gameweek_scores").select("gameweek,points").eq("user_id", userId),
+    admin.from("fantasy_coin_claims").select("gameweek").eq("user_id", userId),
+  ]);
+  const claimed = new Set((claims ?? []).map((c) => (c as { gameweek: number }).gameweek));
+  let coins = 0;
+  let xp = 0;
+  for (const row of (scores ?? []) as { gameweek: number; points: number }[]) {
+    if (claimed.has(row.gameweek)) continue; // ya cobrada
+    if (!gameweekIsOver(row.gameweek)) continue; // aún no cerrada → no toca pagar
+    const r = await awardGameweekCoins(userId, row.gameweek, row.points);
+    coins += r.coins;
+    xp += r.xp;
+  }
+  return { coins, xp };
 }
 
 // ─── Ranking global (acumulado del torneo) ───────────────────────────────────

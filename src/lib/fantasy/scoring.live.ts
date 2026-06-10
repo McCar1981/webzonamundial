@@ -53,9 +53,15 @@ function namesMatch(a: string | undefined, b: string | undefined): boolean {
   const tb = nb.split(" ");
   const la = ta[ta.length - 1];
   const lb = tb[tb.length - 1];
-  if (la === lb && la.length >= 4) return true; // mismo apellido distintivo
-  // inicial + apellido en cualquiera de los dos sentidos
-  if (la === lb && ta.length >= 2 && tb.length >= 2 && ta[0][0] === tb[0][0]) return true;
+  if (la === lb && la.length >= 4) {
+    // Mismo apellido distintivo. Si AMBOS nombres traen nombre de pila o inicial,
+    // exigimos que la inicial coincida: así no se confunde a compañeros con el
+    // mismo apellido (p. ej. los tres Martínez de Argentina — Emiliano, Lisandro
+    // y Lautaro). Si uno es solo apellido (api-football no siempre da el nombre),
+    // se acepta como única opción razonable.
+    if (ta.length >= 2 && tb.length >= 2) return ta[0][0] === tb[0][0];
+    return true;
+  }
   return false;
 }
 

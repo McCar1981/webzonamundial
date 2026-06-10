@@ -63,6 +63,10 @@ export interface SaveTeamResult {
   ok: boolean;
   futcoins: number;
   xpAwarded: number;
+  /** true si el servidor registró la jornada (puntos recalculados con datos reales). */
+  confirmed: boolean;
+  /** Puntos netos AUTORITATIVOS de la jornada (calculados en servidor), o null. */
+  gameweekPoints: number | null;
 }
 
 /** Guarda el equipo en el servidor. gameweekScore se envía al confirmar jornada. */
@@ -81,12 +85,18 @@ export async function saveServerTeam(
       // paywall global con el copy del límite.
       const err = await res.json().catch(() => ({}));
       handleProRequired(err);
-      return { ok: false, futcoins: 0, xpAwarded: 0 };
+      return { ok: false, futcoins: 0, xpAwarded: 0, confirmed: false, gameweekPoints: null };
     }
-    const data = (await res.json()) as { futcoins?: number; xpAwarded?: number };
-    return { ok: true, futcoins: data.futcoins ?? 0, xpAwarded: data.xpAwarded ?? 0 };
+    const data = (await res.json()) as { futcoins?: number; xpAwarded?: number; confirmed?: boolean; gameweekPoints?: number | null };
+    return {
+      ok: true,
+      futcoins: data.futcoins ?? 0,
+      xpAwarded: data.xpAwarded ?? 0,
+      confirmed: data.confirmed ?? false,
+      gameweekPoints: data.gameweekPoints ?? null,
+    };
   } catch {
-    return { ok: false, futcoins: 0, xpAwarded: 0 };
+    return { ok: false, futcoins: 0, xpAwarded: 0, confirmed: false, gameweekPoints: null };
   }
 }
 

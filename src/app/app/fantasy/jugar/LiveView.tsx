@@ -33,6 +33,9 @@ export default function LiveView({ team, onCommit, transfers }: Props) {
   const filled = team.slots.filter((s) => s.playerId).length;
   const ready = filled === 15;
   const gw = team.gameweek;
+  // ¿Ya confirmada esta jornada? Si está en el historial, no se vuelve a confirmar
+  // (clave en la jornada 8, que ya no avanza, para no re-sumar puntos).
+  const alreadyConfirmed = team.history.some((h) => h.gw === gw);
 
   // Puerta temporal: hasta la inauguración (11 jun 2026) el modo En Vivo está en
   // pretemporada. Se evalúa en cliente para reflejar el paso del tiempo.
@@ -194,12 +197,17 @@ export default function LiveView({ team, onCommit, transfers }: Props) {
         <div style={{ display: "flex", gap: 8, justifyContent: "center", marginTop: 14, flexWrap: "wrap" }}>
           {phase !== "playing" && <button onClick={play} style={btnGhost}>↻ Repetir narración</button>}
           {phase === "playing" && <button onClick={skip} style={btnGhost}>⏭️ Saltar al final</button>}
-          {allFinished && (
+          {allFinished && !alreadyConfirmed && (
             <button onClick={() => onCommit(result.total)} style={btnPrimary}>
               ✓ Confirmar jornada (+{result.total - transfers.penalty})
             </button>
           )}
         </div>
+        {allFinished && alreadyConfirmed && (
+          <div style={{ fontSize: 12, marginTop: 10, color: GREEN, fontWeight: 800 }}>
+            ✓ Jornada confirmada — tus puntos ya cuentan en el ranking.
+          </div>
+        )}
         {!allFinished && (
           <div style={{ fontSize: 12, marginTop: 10, color: MID, fontWeight: 700 }}>
             Jornada en curso — podrás confirmarla al terminar todos tus partidos.

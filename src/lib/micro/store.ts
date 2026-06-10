@@ -754,19 +754,29 @@ export interface GhostResult {
   points?: number;
 }
 
+/** El fantasma CADUCA: solo se puede rejugar una micro durante los minutos
+ *  siguientes a su resolución ("la que se te acaba de escapar"). Sin esto, el
+ *  historial ofrecía elegir micros del minuto 30 cuando el partido iba por el
+ *  73 — parecía apuesta en vivo y no lo era. */
+export const GHOST_REPLAY_WINDOW_MS = 5 * 60_000;
+
 /**
- * Juega una micro YA RESUELTA en modo Fantasma (replay/práctica): el usuario
+ * Juega una micro RECIÉN RESUELTA en modo Fantasma (replay/práctica): el usuario
  * adivina a toro pasado, se le dice al instante si acertó y gana XP a ×0.5 —
  * NUNCA Fútcoins: la opción correcta es visible en el historial, así que pagar
  * monedas sería un grifo infinito (anti-cheat). No afecta la Cadena de Fuego
  * real (currentFireChain filtra ghost=false) y la propia respuesta se marca
  * resuelta al vuelo. Un usuario que ya la jugó en vivo no puede repetirla en
- * fantasma (índice único micro_id,user_id).
+ * fantasma (índice único micro_id,user_id). Caduca a los 5 min de resolverse.
  */
 export async function respondGhostMicro(userId: string, microId: string, option: string): Promise<GhostResult> {
   const micro = await getMicroById(microId);
   if (!micro) return { ok: false, error: "not_found" };
   if (micro.status !== "resolved" || !micro.correct_option) return { ok: false, error: "not_replayable" };
+  const resolvedAtMs = micro.resolved_at ? new Date(micro.resolved_at).getTime() : 0;
+  if (!resolvedAtMs || Date.now() - resolvedAtMs > GHOST_REPLAY_WINDOW_MS) {
+    return { ok: false, error: "ghost_expired" };
+  }
   if (!micro.options.some((o) => o.key === option)) return { ok: false, error: "invalid_option" };
 
   const isCorrect = option === micro.correct_option;

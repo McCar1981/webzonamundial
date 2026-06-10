@@ -8,6 +8,7 @@
 // proyección se sustituirá por los resultados oficiales.
 
 import { SELECCIONES, type Seleccion } from "@/data/selecciones";
+import { MATCHES } from "@/data/matches";
 
 export type Stage = "grupos" | "r32" | "octavos" | "cuartos" | "semis" | "final" | "campeon";
 
@@ -147,23 +148,81 @@ export function longevityFactor(slug: string): number {
   return 0.9 + r * 0.0467; // 0 → 0.90 … 6 → ~1.18
 }
 
-// Jornada Fantasy TRAS la cual una selección que cae en cada `stageRound` queda
-// eliminada (su último partido ya se disputó). Índice = stageRound.
-//   0 grupos→GW3 · 1 16avos→GW4 · 2 octavos→GW5 · 3 cuartos→GW6 · 4 semis→GW7
-//   5 subcampeón→GW8 · 6 campeón→nunca.
-const ELIM_GW_BY_ROUND = [3, 4, 5, 6, 7, 8, Infinity];
+// ── Eliminación REAL (no proyectada) ─────────────────────────────────────────
+// La proyección de arriba (buildRuns) sirve para VALORAR jugadores (ruta probable
+// en el mercado/coach), pero los REEMBOLSOS deben mirar el cuadro REAL tal y como
+// se rellena en matches.ts: una selección queda eliminada cuando, disputada su
+// última ronda, NO aparece en la siguiente (que ya tiene equipos). Mientras eso no
+// se pueda afirmar se devuelve Infinity → nunca hay reembolso de una selección que
+// sigue viva. En pretemporada los KO están "tbd", así que nadie está eliminado.
 
-/** Jornada a partir de la cual la selección queda eliminada (según proyección). */
-export function eliminationGameweek(slug: string): number {
-  const r = getTeamRun(slug)?.stageRound ?? 0;
-  return ELIM_GW_BY_ROUND[r] ?? 3;
+// Fases KO por ronda (alineadas con GW_TO_ROUND de fixtures.ts). La última agrupa
+// Tercer puesto + FINAL, ambos en la ventana de la jornada 8.
+const KO_PHASES_BY_ROUND: string[][] = [
+  ["Dieciseisavos"], // → GW4
+  ["Octavos de final"], // → GW5
+  ["Cuartos de final"], // → GW6
+  ["Semifinal"], // → GW7
+  ["Tercer puesto", "FINAL"], // → GW8
+];
+// Jornada en que se disputa cada ronda KO (índice = ronda 0-based).
+const KO_GW_BY_ROUND = [4, 5, 6, 7, 8];
+
+const FLAG_BY_SLUG: Map<string, string> = new Map(SELECCIONES.map((s) => [s.slug, s.flagCode]));
+
+// Banderas (no "tbd") presentes en un conjunto de fases del calendario real.
+function flagsInPhases(phases: string[]): Set<string> {
+  const want = new Set(phases);
+  const out = new Set<string>();
+  for (const m of MATCHES) {
+    if (!want.has(m.p)) continue;
+    if (m.hf && m.hf !== "tbd") out.add(m.hf);
+    if (m.af && m.af !== "tbd") out.add(m.af);
+  }
+  return out;
+}
+
+// Presencia por ronda KO (matches.ts es estático en runtime → se cachea).
+let _koPresence: Set<string>[] | null = null;
+function koPresence(): Set<string>[] {
+  if (!_koPresence) _koPresence = KO_PHASES_BY_ROUND.map(flagsInPhases);
+  return _koPresence;
 }
 
 /**
- * ¿La selección ya está eliminada en una jornada dada? Se "activa" solo cuando
- * la ronda en la que cae (proyección determinista) YA quedó atrás, de modo que
- * en la jornada 1 nadie está eliminado y no hay reembolsos prematuros. Cuando
- * lleguen los resultados reales sustituirán a esta proyección.
+ * Jornada a partir de la cual una selección (por flagCode) queda eliminada según
+ * el CUADRO REAL de matches.ts. Devuelve Infinity mientras no se pueda afirmar la
+ * caída (sigue viva, o la ronda siguiente aún no tiene equipos): así nunca hay
+ * reembolsos prematuros. Con los KO en "tbd" (pretemporada) → Infinity.
+ */
+export function eliminationGameweekByFlag(flag: string): number {
+  if (!flag || flag === "tbd") return Infinity;
+  const pres = koPresence();
+  let deepest = -1;
+  for (let r = 0; r < pres.length; r++) if (pres[r].has(flag)) deepest = r;
+
+  if (deepest === -1) {
+    // No aparece en ningún KO: si los Dieciseisavos ya están poblados, cayó en grupos.
+    return pres[0].size > 0 ? 3 : Infinity;
+  }
+  const next = deepest + 1;
+  if (next < pres.length && pres[next].size > 0 && !pres[next].has(flag)) {
+    return KO_GW_BY_ROUND[deepest]; // su última ronda fue `deepest`; cae tras esa jornada
+  }
+  return Infinity; // sigue viva o la siguiente ronda aún no está definida
+}
+
+/** Jornada de eliminación por SLUG de selección (mapea a su flagCode real). */
+export function eliminationGameweek(slug: string): number {
+  const flag = FLAG_BY_SLUG.get(slug);
+  return flag ? eliminationGameweekByFlag(flag) : Infinity;
+}
+
+/**
+ * ¿La selección ya está eliminada en `gameweek`? Mira el cuadro REAL (matches.ts):
+ * solo es true cuando su última ronda quedó atrás y no figura en la siguiente.
+ * En la jornada en curso (su partido) aún es false; pasa a true a partir de la
+ * jornada siguiente, habilitando entonces el reembolso.
  */
 export function isEliminated(slug: string, gameweek: number): boolean {
   return gameweek > eliminationGameweek(slug);

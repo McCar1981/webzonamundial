@@ -99,15 +99,23 @@ export async function scoreGameweekFromState(
   const anyStarted = relevant.some(snapshotStarted);
   const allFinished = relevant.length > 0 && relevant.every(snapshotFinished);
 
+  // Congelado de capitán/vice/chip al saque (anti edición retroactiva): si la
+  // jornada está bloqueada se puntúa con esos valores, no con los del estado vivo.
+  // Las sustituciones de jugadores (slots) siguen contando: ese es el perk Pro.
+  const lock = team.gwLock && team.gwLock.gw === gw ? team.gwLock : null;
+  const captainId = lock ? lock.captainId : team.captainId;
+  const viceId = lock ? lock.viceId : team.viceId;
+  const powerUp = lock ? lock.powerUp : team.powerUp;
+
   const valid = validateTeam(team.slots, getPlayerById, team.formation, team.budgetBonus ?? 0).ok;
-  const result = scoreGameweekLive(team.slots, team.captainId, team.viceId, team.powerUp, gw, snapshots);
+  const result = scoreGameweekLive(team.slots, captainId, viceId, powerUp, gw, snapshots);
   const gross = valid ? result.total : 0;
 
   const tc = transferCost(
     team.committedSlots ?? [],
     team.slots,
     team.freeTransfers ?? 0,
-    team.powerUp === "comodin",
+    powerUp === "comodin",
   );
   const net = Math.max(0, gross - tc.penalty);
 

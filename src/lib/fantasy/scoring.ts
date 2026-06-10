@@ -24,9 +24,6 @@ export const SCORING_TABLE: ScoringRow[] = [
   { accion: "Gol de portero", puntos: "+10", nota: "Rarísimo" },
   { accion: "Asistencia", puntos: "+3" },
   { accion: "Portería a cero (DEF/POR)", puntos: "+4 / +5", nota: "Si juega 60+ min" },
-  { accion: "Penalti parado (POR)", puntos: "+8" },
-  { accion: "3+ tiros a puerta", puntos: "+1" },
-  { accion: "MVP del partido", puntos: "+5", nota: "Calculado por IA" },
   { accion: "Hat-trick", puntos: "+5", nota: "Bonus extra" },
   { accion: "Puntos de bonificación (BPS)", puntos: "+3 / +2 / +1", nota: "Los 3 mejores de cada partido" },
   { accion: "Tarjeta amarilla", puntos: "-1", neg: true },
@@ -40,7 +37,7 @@ export const POWER_UPS: { id: PowerUp; emoji: string; name: string; desc: string
   { id: "muro", emoji: "🛡️", name: "Muro", desc: "Tus defensas puntúan doble esta jornada." },
   { id: "francotirador", emoji: "🎯", name: "Francotirador", desc: "Si tu capitán marca, puntúa x3 en vez de x2." },
   { id: "comodin", emoji: "♻️", name: "Comodín", desc: "Transfers ilimitados esta jornada." },
-  { id: "joker", emoji: "🃏", name: "Joker", desc: "Copia los puntos del mejor jugador de la jornada y súmalos." },
+  { id: "joker", emoji: "🃏", name: "Joker", desc: "Copia los puntos de tu mejor jugador de la jornada y súmalos." },
 ];
 
 export interface PlayerEvent {

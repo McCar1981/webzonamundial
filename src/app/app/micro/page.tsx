@@ -13,7 +13,7 @@ const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825", GOLD = "#c9a84c", GOLD2 
 
 // Preguntas reales que emite el motor en vivo (catálogo de micro.ts).
 const MICRO_TYPES = [
-  { emoji: "⚡", title: "Penalti", desc: "¡Penalti! ¿Gol o fallo? Tienes 25 segundos.", pts: "20 pts" },
+  { emoji: "⚡", title: "Penalti", desc: "¡Penalti! ¿Gol o fallo? Tienes 15 segundos.", pts: "20 pts" },
   { emoji: "🎯", title: "Próximo gol", desc: "Tras cada gol: ¿quién marca el siguiente? Local, visitante o ninguno.", pts: "15 pts" },
   { emoji: "🟥", title: "Roja", desc: "¿Marcará el equipo en inferioridad antes del final?", pts: "25 pts" },
   { emoji: "🔄", title: "Cambio ofensivo", desc: "¿El sustituto que acaba de entrar marcará o asistirá?", pts: "30 pts" },
@@ -40,7 +40,7 @@ const MODES = [
 const STEPS = [
   { num: "1", title: "Entra al partido", desc: "Abre el Match Center de un partido en vivo." },
   { num: "2", title: "Salta la micro", desc: "Cuando pasa algo (gol, penalti, roja…) aparece una pregunta con cuenta atrás." },
-  { num: "3", title: "Predice rápido", desc: "Tienes entre 25 y 120 segundos según la pregunta. Elige tu opción." },
+  { num: "3", title: "Predice rápido", desc: "Tienes 15 segundos. Decide con instinto." },
   { num: "4", title: "Encadena", desc: "Aciertos seguidos suben tu Cadena de Fuego y multiplican los puntos." },
 ];
 

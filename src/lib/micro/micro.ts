@@ -92,7 +92,7 @@ export const MICRO_CATALOG: Record<MicroKind, MicroKindDef> = {
       { key: "goal", label: "⚽ Gol" },
       { key: "miss", label: "❌ Fallo" },
     ],
-    windowSeconds: 25,
+    windowSeconds: 15,
     basePoints: 20,
   },
   red_card_response: {
@@ -101,7 +101,7 @@ export const MICRO_CATALOG: Record<MicroKind, MicroKindDef> = {
     question: "Roja: ¿marcará el equipo en inferioridad antes del final?",
     emoji: "🟥",
     options: YES_NO,
-    windowSeconds: 45,
+    windowSeconds: 15,
     basePoints: 25,
   },
   var_goal_review: {
@@ -110,7 +110,7 @@ export const MICRO_CATALOG: Record<MicroKind, MicroKindDef> = {
     question: "Gol anulado por el VAR. ¿Llegará un gol válido en los próximos 15'?",
     emoji: "📺",
     options: YES_NO,
-    windowSeconds: 45,
+    windowSeconds: 15,
     basePoints: 20,
   },
   scorer_sub_impact: {
@@ -119,7 +119,7 @@ export const MICRO_CATALOG: Record<MicroKind, MicroKindDef> = {
     question: "Cambio ofensivo: ¿el sustituto marcará o asistirá antes del final?",
     emoji: "🔄",
     options: YES_NO,
-    windowSeconds: 45,
+    windowSeconds: 15,
     basePoints: 30,
   },
   next_scorer_side: {
@@ -128,7 +128,7 @@ export const MICRO_CATALOG: Record<MicroKind, MicroKindDef> = {
     question: "¿Quién marca el próximo gol?",
     emoji: "🎯",
     options: SIDE_OR_NONE,
-    windowSeconds: 45,
+    windowSeconds: 15,
     basePoints: 15,
   },
   // ── Temporales ──
@@ -138,7 +138,7 @@ export const MICRO_CATALOG: Record<MicroKind, MicroKindDef> = {
     question: "¿Habrá gol antes del minuto 30?",
     emoji: "⏱️",
     options: YES_NO,
-    windowSeconds: 60,
+    windowSeconds: 15,
     basePoints: 15,
   },
   halftime_result: {
@@ -147,7 +147,7 @@ export const MICRO_CATALOG: Record<MicroKind, MicroKindDef> = {
     question: "¿Cómo van al descanso?",
     emoji: "🟰",
     options: RESULT_3WAY,
-    windowSeconds: 60,
+    windowSeconds: 15,
     basePoints: 20,
   },
   first_second_half: {
@@ -156,7 +156,7 @@ export const MICRO_CATALOG: Record<MicroKind, MicroKindDef> = {
     question: "¿Quién marca primero en la segunda parte?",
     emoji: "🥅",
     options: SIDE_OR_NONE,
-    windowSeconds: 120,
+    windowSeconds: 15,
     basePoints: 20,
   },
   more_goals_after_60: {
@@ -165,7 +165,7 @@ export const MICRO_CATALOG: Record<MicroKind, MicroKindDef> = {
     question: "¿Habrá más goles a partir de ahora?",
     emoji: "➕",
     options: YES_NO,
-    windowSeconds: 45,
+    windowSeconds: 15,
     basePoints: 12,
   },
   goal_in_stoppage: {
@@ -174,7 +174,7 @@ export const MICRO_CATALOG: Record<MicroKind, MicroKindDef> = {
     question: "¿Habrá gol en el tiempo de descuento?",
     emoji: "🔚",
     options: YES_NO,
-    windowSeconds: 30,
+    windowSeconds: 15,
     basePoints: 25,
   },
   // ── IA (Fase 2) ── La pregunta y los puntos los fija el generador; aquí van
@@ -185,7 +185,7 @@ export const MICRO_CATALOG: Record<MicroKind, MicroKindDef> = {
     question: "¿Habrá gol en los próximos minutos?",
     emoji: "🤖",
     options: YES_NO,
-    windowSeconds: 90,
+    windowSeconds: 15,
     basePoints: 20,
   },
   ai_goal_side: {
@@ -194,7 +194,7 @@ export const MICRO_CATALOG: Record<MicroKind, MicroKindDef> = {
     question: "¿Quién marca el próximo gol?",
     emoji: "🤖",
     options: SIDE_OR_NONE,
-    windowSeconds: 90,
+    windowSeconds: 15,
     basePoints: 20,
   },
   ai_card_yesno: {
@@ -203,7 +203,7 @@ export const MICRO_CATALOG: Record<MicroKind, MicroKindDef> = {
     question: "¿Habrá tarjeta en los próximos minutos?",
     emoji: "🤖",
     options: YES_NO,
-    windowSeconds: 90,
+    windowSeconds: 15,
     basePoints: 18,
   },
 };

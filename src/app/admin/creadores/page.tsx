@@ -27,6 +27,7 @@ import {
   type MonthlyPoint,
 } from "@/lib/creators/program";
 import AdminForm from "./AdminForm";
+import AdminHeader from "@/components/admin/AdminHeader";
 import {
   addSponsor,
   createCreator,
@@ -47,16 +48,6 @@ const INPUT =
   "rounded-xl bg-[#0B1825] border border-[#1E293B] text-white text-sm px-3 py-2 " +
   "focus:border-[#C9A84C] focus:outline-none focus:ring-1 focus:ring-[#C9A84C]/40 placeholder:text-gray-600";
 const LABEL = "text-[11px] font-bold text-gray-400 uppercase tracking-wider";
-
-const TOOLS = [
-  ["/admin/registros", "Registros"],
-  ["/admin/founders", "Founders"],
-  ["/admin/pro", "Plan Pro"],
-  ["/admin/monitor", "Monitor"],
-  ["/admin/newsletter", "Newsletter"],
-  ["/admin/bars", "Bares"],
-  ["/admin/module-interest", "Módulos"],
-] as const;
 
 const ESTADOS_SPONSOR = [
   ["propuesto", "Propuesto"],
@@ -135,27 +126,11 @@ export default async function AdminCreadoresPage() {
   return (
     <div className="min-h-screen bg-[#060B14] text-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
-        <header className="flex items-baseline justify-between flex-wrap gap-3 mb-2">
-          <h1 className="text-3xl font-black tracking-tight">
-            Programa de <span className="text-[#C9A84C]">creadores</span>
-          </h1>
-          <nav className="flex gap-2 flex-wrap text-xs">
-            {TOOLS.map(([href, label]) => (
-              <Link
-                key={href}
-                href={href}
-                className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-gray-300 hover:border-[#C9A84C]/50 transition-all"
-              >
-                {label}
-              </Link>
-            ))}
-          </nav>
-        </header>
-        <p className="text-sm text-gray-400 mb-8">
-          Registros y premium en vivo desde Supabase (atribución por <code>fav_creator</code>). El bono se
-          calcula por mes natural (hora de Madrid) con techo por nivel. Los creadores entran en{" "}
-          <code>/admin</code> con la cuenta del email vinculado.
-        </p>
+        <AdminHeader
+          title="Programa de creadores"
+          current="/admin/creadores"
+          description="Registros y premium en vivo desde Supabase (atribución por fav_creator). El bono se calcula por mes natural (hora de Madrid) con techo por nivel. Los creadores entran en /admin con la cuenta del email vinculado."
+        />
 
         {/* Totales del programa */}
         <section className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">

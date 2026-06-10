@@ -3,6 +3,7 @@
 
 import type { Metadata } from "next";
 import NewsletterComposer from "./NewsletterComposer";
+import AdminHeader from "@/components/admin/AdminHeader";
 
 export const metadata: Metadata = {
   title: "Newsletter · Panel interno",
@@ -14,11 +15,11 @@ export const dynamic = "force-dynamic";
 export default function NewsletterAdminPage() {
   return (
     <div className="px-6 py-8 max-w-4xl mx-auto text-white">
-      <h1 className="text-3xl font-black mb-2 tracking-tight">Newsletter</h1>
-      <p className="text-gray-400 text-sm mb-8">
-        Envío masivo a la lista de registros. Empieza con un dry-run para ver el
-        número de destinatarios antes de mandar de verdad.
-      </p>
+      <AdminHeader
+        title="Newsletter"
+        current="/admin/newsletter"
+        description="Envío masivo a la lista de registros. Empieza con un dry-run para ver el número de destinatarios antes de mandar de verdad."
+      />
       <NewsletterComposer />
     </div>
   );

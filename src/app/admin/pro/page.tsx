@@ -7,6 +7,7 @@
 
 import type { Metadata } from "next";
 import { readProMetrics } from "@/lib/pro/metrics";
+import AdminHeader from "@/components/admin/AdminHeader";
 
 export const metadata: Metadata = {
   title: "Plan Pro · Panel interno",
@@ -55,10 +56,11 @@ export default async function ProAdminPage() {
 
   return (
     <div className="px-6 py-8 max-w-6xl mx-auto text-white">
-      <h1 className="text-3xl font-black mb-2 tracking-tight">Plan Pro</h1>
-      <p className="text-gray-400 text-sm mb-8">
-        Funnel de conversión y choques con límites Free de los últimos 14 días. Datos en vivo desde Vercel KV.
-      </p>
+      <AdminHeader
+        title="Plan Pro"
+        current="/admin/pro"
+        description="Funnel de conversión y choques con límites Free de los últimos 14 días. Datos en vivo desde Vercel KV."
+      />
 
       {/* Stats del funnel */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">

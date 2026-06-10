@@ -9,6 +9,7 @@ import Link from "next/link";
 import { listAllBars } from "@/lib/bars/store";
 import { getPlan } from "@/lib/bars/plans";
 import BarPlanActions from "./BarPlanActions";
+import AdminHeader from "@/components/admin/AdminHeader";
 
 export const metadata: Metadata = {
   title: "Bares · Panel interno",
@@ -34,10 +35,11 @@ export default async function BarsAdminPage() {
 
   return (
     <div className="px-6 py-8 max-w-6xl mx-auto text-white">
-      <h1 className="text-3xl font-black mb-2 tracking-tight">Porras de Bares</h1>
-      <p className="text-gray-400 text-sm mb-8">
-        Estado de las porras digitales para bares del Mundial 2026.
-      </p>
+      <AdminHeader
+        title="Porras de Bares"
+        current="/admin/bars"
+        description="Estado de las porras digitales para bares del Mundial 2026."
+      />
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
         <Stat label="Bares totales" value={bars.length.toString()} />

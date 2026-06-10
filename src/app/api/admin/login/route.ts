@@ -32,7 +32,7 @@ export async function POST(req: Request) {
   if (!cookie) {
     return NextResponse.json({ error: "admin_not_configured" }, { status: 503 });
   }
-  const res = NextResponse.json({ ok: true, next: body.next || "/admin/registros" });
+  const res = NextResponse.json({ ok: true, next: body.next || "/admin/panel" });
   res.cookies.set(ADMIN_COOKIE_NAME, cookie, {
     httpOnly: true,
     sameSite: "lax",

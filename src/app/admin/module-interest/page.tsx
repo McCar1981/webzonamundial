@@ -12,6 +12,7 @@ import {
   type ModuleSlug,
 } from "@/lib/module-interest/store";
 import { MODULE_CONTENT } from "@/data/app-modules-content";
+import AdminHeader from "@/components/admin/AdminHeader";
 
 export const metadata: Metadata = {
   title: "Interés por módulo · Panel interno",
@@ -35,11 +36,11 @@ export default async function ModuleInterestAdminPage() {
 
   return (
     <div className="px-6 py-8 max-w-5xl mx-auto text-white">
-      <h1 className="text-3xl font-black mb-2 tracking-tight">Interés por módulo</h1>
-      <p className="text-gray-400 text-sm mb-8">
-        Cuántas personas han pedido aviso para cada módulo de la app. Los datos
-        se actualizan en tiempo real (refresh cada 60s).
-      </p>
+      <AdminHeader
+        title="Interés por módulo"
+        current="/admin/module-interest"
+        description="Cuántas personas han pedido aviso para cada módulo de la app. Los datos se actualizan en tiempo real (refresh cada 60s)."
+      />
 
       {/* Stats globales */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">

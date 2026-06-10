@@ -114,6 +114,9 @@ function MonitorPageInner() {
   return (
     <div style={{ minHeight: "100vh", background: "#0f1115", color: "#e7e9ee", fontFamily: "ui-sans-serif, system-ui" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "32px 20px" }}>
+        <a href="/admin/panel" style={{ color: "#9aa0ac", fontSize: 13, textDecoration: "none", display: "inline-block", marginBottom: 16 }}>
+          ← Panel interno
+        </a>
         {/* Header */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
           <div>

@@ -71,6 +71,11 @@ export default function RegistrosDashboard({
 
   return (
     <div className={styles.page}>
+      <div style={{ padding: "12px 20px 0" }}>
+        <a href="/admin/panel" style={{ color: "#9aa0ac", fontSize: 13, textDecoration: "none" }}>
+          ← Panel interno
+        </a>
+      </div>
       {/* Top bar */}
       <header className={styles.topbar}>
         <div className={styles.brand}>

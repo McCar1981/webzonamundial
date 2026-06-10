@@ -29,7 +29,7 @@ export default async function AdminRootPage() {
   // 1) Administración (Carlos): cookie firmada → dashboard de gestión.
   const adminCookie = cookies().get(ADMIN_COOKIE_NAME)?.value;
   if (adminCookie && (await isValidAdminCookie(adminCookie))) {
-    redirect("/admin/creadores");
+    redirect("/admin/panel");
   }
 
   // 2) Creador con su cuenta normal de la web.
@@ -95,7 +95,7 @@ function LoginChooser() {
           </p>
         </Link>
         <Link
-          href="/admin/login?next=/admin/creadores"
+          href="/admin/login?next=/admin/panel"
           className="block rounded-2xl border border-white/10 bg-white/5 p-6 transition-all hover:border-white/25"
         >
           <div className="text-lg font-bold">Administración</div>
@@ -123,7 +123,7 @@ function NotLinked({ email }: { email: string }) {
         {/* Salida para el administrador: aunque tenga sesión de usuario normal,
             puede pasar a la gestión del programa con su contraseña de admin. */}
         <Link
-          href="/admin/login?next=/admin/creadores"
+          href="/admin/login?next=/admin/panel"
           className="block mt-5 rounded-xl border border-[#C9A84C]/40 bg-[#C9A84C]/10 px-4 py-3 text-sm font-bold text-[#C9A84C] transition-all hover:border-[#C9A84C]/70"
         >
           ¿Eres el administrador? Entra aquí →

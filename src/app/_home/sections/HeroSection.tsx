@@ -33,6 +33,7 @@ const ICON_PATHS: Record<string, string> = {
   lock: "M19 11H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2zM7 11V7a5 5 0 1 1 10 0v4",
   flame:
     "M8.5 14.5A2.5 2.5 0 0 0 11 17c1.5 0 2.5-1 2.5-2.5 0-1.5-2-2.5-3.5-6 0 0-3 3-3 6.5A4 4 0 0 0 12 22a4 4 0 0 0 4-4c0-3-3-7-4-10-1 3-3.5 5.5-3.5 7z",
+  check: "M20 6L9 17l-5-5",
 };
 
 function Icon({ name, size = 18 }: { name: keyof typeof ICON_PATHS; size?: number }) {
@@ -247,9 +248,31 @@ function HeroLeft({
 }
 
 /* ---------- HERO RIGHT (phone stage) ---------- */
+/* La “jugada” en bucle: cada BEAT_MS le toca el turno a una chip (directo →
+   predicción → ranking → coach), para que el stage se sienta un partido en
+   marcha y no solo la primera card. Con prefers-reduced-motion no hay turnos. */
+const PLAY_BEATS = 4;
+const BEAT_MS = 4000;
+
 function HeroRight() {
   const { locale } = useLanguage();
   const t = homeSections[locale].hero;
+  const [beat, setBeat] = useState(0);
+  const [motionOk, setMotionOk] = useState(true);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (mq.matches) {
+      setMotionOk(false);
+      return;
+    }
+    const id = setInterval(() => setBeat((b) => (b + 1) % PLAY_BEATS), BEAT_MS);
+    return () => clearInterval(id);
+  }, []);
+
+  const turn = (i: number) => (motionOk && beat === i ? ` ${styles.zmChipTurn}` : "");
+  const on = (i: number) => motionOk && beat === i;
+
   return (
     <div className={styles.zmRight}>
       <div className={styles.zmPhoneStage}>
@@ -269,7 +292,7 @@ function HeroRight() {
           </picture>
         </div>
 
-        <div className={`${styles.zmChipCard} ${styles.zmChipLive}`}>
+        <div className={`${styles.zmChipCard} ${styles.zmChipLive}${turn(0)}`}>
           <div className={styles.zmChipIc}>
             <Icon name="flame" size={14} />
           </div>
@@ -282,7 +305,14 @@ function HeroRight() {
           </div>
         </div>
 
-        <div className={`${styles.zmChipCard} ${styles.zmChipScore}`}>
+        <div className={`${styles.zmChipCard} ${styles.zmChipScore}${turn(1)}`}>
+          {/* Pick validado: aparece solo durante su turno */}
+          <span
+            className={`${styles.zmChipCheck}${on(1) ? ` ${styles.zmChipCheckOn}` : ""}`}
+            aria-hidden="true"
+          >
+            <Icon name="check" size={11} />
+          </span>
           <div className={styles.zmChipIc}>
             <Icon name="target" size={14} />
           </div>
@@ -292,25 +322,41 @@ function HeroRight() {
           </div>
         </div>
 
-        <div className={`${styles.zmChipCard} ${styles.zmChipPoints}`}>
+        <div className={`${styles.zmChipCard} ${styles.zmChipPoints}${turn(2)}`}>
           <div className={styles.zmChipIc}>
             <Icon name="trophy" size={14} />
           </div>
           <div>
             <div className={styles.zmChipSub}>{t.chips.ranking}</div>
-            <div className={styles.zmChipVal}>
+            <div className={`${styles.zmChipVal}${on(2) ? ` ${styles.zmScoreBump}` : ""}`}>
               1.847{" "}
-              <small style={{ fontSize: 11, color: "#10B981", fontWeight: 600 }}>▲ 24</small>
+              <small
+                className={on(2) ? styles.zmDeltaPop : undefined}
+                style={{ fontSize: 11, color: "#10B981", fontWeight: 600 }}
+              >
+                ▲ 24
+              </small>
             </div>
           </div>
         </div>
 
-        <div className={`${styles.zmChipCard} ${styles.zmChipAi}`}>
+        <div className={`${styles.zmChipCard} ${styles.zmChipAi}${turn(3)}`}>
           <div className={styles.zmChipIc}>
             <Icon name="bot" size={14} />
           </div>
           <div>
-            <div className={styles.zmChipMain}>{t.chips.coachSuggests}</div>
+            <div className={styles.zmChipMain}>
+              {t.chips.coachSuggests}
+              {/* El coach “escribe” durante su turno */}
+              <span
+                className={`${styles.zmTypingDots}${on(3) ? ` ${styles.zmTypingDotsOn}` : ""}`}
+                aria-hidden="true"
+              >
+                <i />
+                <i />
+                <i />
+              </span>
+            </div>
             <div className={styles.zmChipSub}>{t.chips.coachSwap}</div>
           </div>
         </div>

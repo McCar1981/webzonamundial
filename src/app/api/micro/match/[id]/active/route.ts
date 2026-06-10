@@ -7,7 +7,7 @@
 
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth-helpers";
-import { getActiveMicro, myMicroResponses, currentFireChain } from "@/lib/micro/store";
+import { getActiveMicro, myMicroResponses, currentFireChain, latestResolvedResult } from "@/lib/micro/store";
 import { fireTier } from "@/lib/micro/micro";
 
 export const runtime = "nodejs";
@@ -21,8 +21,10 @@ export async function GET(_req: Request, { params }: { params: { id: string } })
   let alreadyResponded = false;
   let myOption: string | null = null;
   let chain = 0;
+  let recentResult = null;
   if (user) {
     chain = await currentFireChain(user.id, matchId);
+    recentResult = await latestResolvedResult(user.id, matchId);
     if (micro) {
       const mine = await myMicroResponses(user.id, matchId);
       const r = mine.find((x) => x.micro_id === micro.id);
@@ -51,5 +53,6 @@ export async function GET(_req: Request, { params }: { params: { id: string } })
     already_responded: alreadyResponded,
     my_option: myOption,
     fire_chain: { count: chain, multiplier: tier.multiplier, label: tier.label, emoji: tier.emoji },
+    recent_result: recentResult,
   });
 }

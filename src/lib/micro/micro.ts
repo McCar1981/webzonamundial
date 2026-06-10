@@ -220,6 +220,58 @@ export function isMicroKind(s: string): s is MicroKind {
   return Object.prototype.hasOwnProperty.call(MICRO_CATALOG, s);
 }
 
+// ─── Horizonte de RESOLUCIÓN ──────────────────────────────────────────────────
+// IMPORTANTE: la VENTANA DE RESPUESTA (windowSeconds) es cuánto tiempo tiene el
+// usuario para contestar (segundos reales). El HORIZONTE DE RESOLUCIÓN es el
+// tramo de PARTIDO sobre el que se evalúa el predicado, y es independiente:
+// "¿gol antes del 30?" se responde en 60s pero solo se resuelve cuando el partido
+// llega al minuto 30. Antes ambos se derivaban de windowSeconds, lo que resolvía
+// casi todas las micros en ~1 minuto de juego (incorrecto respecto a la pregunta).
+export type ResolveHorizon =
+  | { type: "fromOpen"; minutes: number }   // open + N minutos de partido
+  | { type: "absolute"; minute: number }    // hasta un minuto fijo del partido
+  | { type: "endOfMatch" };                 // hasta el final (resto del partido)
+
+// Cota segura del "final": cubre 90' + prórroga + descuento sin que ningún
+// partido la alcance, de modo que eventsInWindow incluya todo lo posterior al
+// open y el cron solo liquide cuando finished === true.
+export const END_OF_MATCH_MIN = 200;
+
+export const MICRO_RESOLVE_HORIZON: Record<MicroKind, ResolveHorizon> = {
+  // Reactivas
+  penalty_outcome:     { type: "fromOpen", minutes: 3 },   // el lanzamiento llega enseguida
+  red_card_response:   { type: "endOfMatch" },             // "antes del final"
+  var_goal_review:     { type: "fromOpen", minutes: 15 },  // "próximos 15'"
+  scorer_sub_impact:   { type: "endOfMatch" },             // "antes del final"
+  next_scorer_side:    { type: "endOfMatch" },             // el "próximo" gol, cuando llegue
+  // Temporales
+  goal_before_30:      { type: "absolute", minute: 30 },
+  halftime_result:     { type: "absolute", minute: 45 },   // resuelve al descanso
+  first_second_half:   { type: "endOfMatch" },             // primer gol de la 2ª parte
+  more_goals_after_60: { type: "endOfMatch" },             // "a partir de ahora"
+  goal_in_stoppage:    { type: "endOfMatch" },             // gol en el descuento
+  // IA: el horizonte se deriva de su propia windowSeconds (ver resolveMinuteFor).
+  ai_goal_yesno:       { type: "fromOpen", minutes: 0 },
+  ai_goal_side:        { type: "fromOpen", minutes: 0 },
+  ai_card_yesno:       { type: "fromOpen", minutes: 0 },
+};
+
+/**
+ * Minuto de partido a partir del cual la micro es resoluble (ya se han producido
+ * todos los eventos que la pregunta abarca). El cron espera a que el partido lo
+ * alcance —o a que termine— antes de liquidar. Para las micros de IA, que fijan
+ * su propia ventana de predicción, el horizonte se deriva de windowSeconds.
+ */
+export function resolveMinuteFor(kind: MicroKind, openMinute: number, windowSeconds: number): number {
+  if (isAiMicroKind(kind)) return openMinute + Math.ceil(windowSeconds / 60);
+  const h = MICRO_RESOLVE_HORIZON[kind];
+  switch (h.type) {
+    case "fromOpen":   return openMinute + Math.max(1, h.minutes);
+    case "absolute":   return Math.max(openMinute + 1, h.minute);
+    case "endOfMatch": return END_OF_MATCH_MIN;
+  }
+}
+
 // ─── Cadena de Fuego 🔥 ───────────────────────────────────────────────────────
 // Aciertos consecutivos en un mismo partido elevan el multiplicador. Un fallo la
 // rompe. Tabla del spec (2→×1.5, 3→×2, 4→×3, 5+→×5).

@@ -41,12 +41,23 @@ interface FireChain {
   label: string;
   emoji: string;
 }
+interface RecentResult {
+  micro_id: string;
+  question: string;
+  emoji: string;
+  is_correct: boolean;
+  points: number;
+  selected_label: string | null;
+  correct_label: string | null;
+  resolved_at: string;
+}
 interface ActiveResponse {
   match_id: string;
   micro: ActiveMicro | null;
   already_responded: boolean;
   my_option: string | null;
   fire_chain: FireChain;
+  recent_result: RecentResult | null;
 }
 
 export default function MicroLive({ matchId }: { matchId: number }) {
@@ -58,10 +69,16 @@ export default function MicroLive({ matchId }: { matchId: number }) {
   const [secondsLeft, setSecondsLeft] = useState(0);
   const [authed, setAuthed] = useState<boolean | null>(null);
   const [closing, setClosing] = useState(false);
+  const [result, setResult] = useState<RecentResult | null>(null);
 
   const aliveRef = useRef(true);
   // Id de la micro que ya mostramos: para reiniciar estado al cambiar de micro.
   const shownIdRef = useRef<string | null>(null);
+  // Resultados ya mostrados (por micro_id) + baseline en el primer sondeo, para
+  // no toastear resoluciones antiguas al abrir la página.
+  const seenResultsRef = useRef<Set<string>>(new Set());
+  const resultInitRef = useRef(false);
+  const resultTimerRef = useRef<number | null>(null);
 
   // ── Sesión (para saber si puede responder o invitarle a entrar) ─────────────
   useEffect(() => {
@@ -84,6 +101,21 @@ export default function MicroLive({ matchId }: { matchId: number }) {
       if (!aliveRef.current) return;
 
       setFireChain(data.fire_chain ?? null);
+
+      // ── Resultado recién resuelto → toast (acierto/fallo + puntos + 🔥) ──
+      const rr = data.recent_result;
+      if (!resultInitRef.current) {
+        // Primer sondeo: marca lo ya resuelto como visto (baseline) sin toastear.
+        if (rr) seenResultsRef.current.add(rr.micro_id);
+        resultInitRef.current = true;
+      } else if (rr && !seenResultsRef.current.has(rr.micro_id)) {
+        seenResultsRef.current.add(rr.micro_id);
+        setResult(rr);
+        if (resultTimerRef.current) window.clearTimeout(resultTimerRef.current);
+        resultTimerRef.current = window.setTimeout(() => {
+          if (aliveRef.current) setResult(null);
+        }, 6000);
+      }
 
       const next = data.micro;
       if (!next) {
@@ -124,6 +156,11 @@ export default function MicroLive({ matchId }: { matchId: number }) {
       clearInterval(id);
     };
   }, [poll, micro]);
+
+  // Limpia el timer del toast al desmontar.
+  useEffect(() => () => {
+    if (resultTimerRef.current) window.clearTimeout(resultTimerRef.current);
+  }, []);
 
   // ── Cuenta atrás de la ventana ──────────────────────────────────────────────
   useEffect(() => {
@@ -185,7 +222,11 @@ export default function MicroLive({ matchId }: { matchId: number }) {
     }
   };
 
-  if (!micro) return null;
+  const resultToast = result ? <MicroResultToast result={result} raised={!!micro} /> : null;
+
+  if (!micro) {
+    return resultToast;
+  }
 
   const total = Math.max(1, micro.window_seconds);
   const pct = Math.max(0, Math.min(100, (secondsLeft / total) * 100));
@@ -193,8 +234,11 @@ export default function MicroLive({ matchId }: { matchId: number }) {
   const hasFire = !!fireChain && fireChain.count >= 2;
 
   return (
+    <>
+    {resultToast}
     <div
       role="dialog"
+      aria-label="Micro-predicción en vivo"
       aria-live="polite"
       style={{
         position: "fixed",
@@ -234,6 +278,7 @@ export default function MicroLive({ matchId }: { matchId: number }) {
           </span>
         </div>
         <div
+          aria-hidden="true"
           style={{
             minWidth: 38,
             textAlign: "center",
@@ -333,6 +378,78 @@ export default function MicroLive({ matchId }: { matchId: number }) {
           : authed === false
             ? "Inicia sesión para participar"
             : `+${micro.base_points} pts${micro.match_multiplier > 1 ? ` · ×${Number(micro.match_multiplier).toFixed(1)} partido` : ""}`}
+      </div>
+    </div>
+    </>
+  );
+}
+
+// ── Toast de resultado ─────────────────────────────────────────────────────────
+// Aparece abajo-derecha cuando una micro en la que participaste se resuelve.
+// `raised` lo sube para no solaparse con el popup de pregunta si hay una activa.
+function MicroResultToast({ result, raised }: { result: RecentResult; raised: boolean }) {
+  const ok = result.is_correct;
+  const accent = ok ? "#4ade80" : "#ff6b6b";
+  return (
+    <div
+      role="status"
+      aria-live="polite"
+      style={{
+        position: "fixed",
+        bottom: raised ? 384 : 20,
+        right: 20,
+        width: "min(360px, calc(100vw - 32px))",
+        zIndex: 9998,
+        borderRadius: 16,
+        background: `linear-gradient(180deg, ${SURFACE} 0%, ${BG} 100%)`,
+        border: `1px solid ${ok ? "rgba(74,222,128,0.45)" : "rgba(255,107,53,0.45)"}`,
+        padding: "14px 16px",
+        color: "#fff",
+        boxShadow: "0 12px 40px rgba(0,0,0,0.45)",
+        animation: "micro-slide-up 0.42s cubic-bezier(0.16,1,0.3,1)",
+        fontFamily: "var(--font-inter, Inter, system-ui, sans-serif)",
+        display: "flex",
+        alignItems: "center",
+        gap: 12,
+      }}
+    >
+      <span
+        aria-hidden="true"
+        style={{
+          fontSize: 26,
+          lineHeight: 1,
+          width: 40,
+          height: 40,
+          flexShrink: 0,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          borderRadius: 12,
+          background: ok ? "rgba(74,222,128,0.15)" : "rgba(255,107,53,0.15)",
+        }}
+      >
+        {ok ? "✅" : "❌"}
+      </span>
+      <div style={{ minWidth: 0, flex: 1 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+          <span style={{ fontSize: 14 }}>{result.emoji}</span>
+          <span style={{ fontSize: 13, fontWeight: 800, color: accent }}>
+            {ok ? `¡Acertaste! +${result.points} pts` : "Fallaste · cadena rota"}
+          </span>
+        </div>
+        <div
+          style={{
+            fontSize: 12,
+            fontWeight: 600,
+            color: "rgba(255,255,255,0.6)",
+            marginTop: 3,
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+        >
+          {result.correct_label ? `Correcto: ${result.correct_label}` : result.question}
+        </div>
       </div>
     </div>
   );

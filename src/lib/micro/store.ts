@@ -23,6 +23,7 @@ import {
   type ResolveContext,
   eventsInWindow,
   resolveMicro,
+  resolveMinuteFor,
   scoreMicro,
   fireBonusXp,
 } from "./micro";
@@ -100,7 +101,10 @@ export async function createMicro(input: CreateMicroInput): Promise<MicroRow | n
   const windowSeconds = input.windowSeconds ?? def.windowSeconds;
   const basePoints = input.basePoints ?? def.basePoints;
   const closesAt = new Date(now + windowSeconds * 1000).toISOString();
-  const resolveMinute = input.openMinute + Math.ceil(windowSeconds / 60);
+  // La ventana de respuesta (closesAt) es independiente del horizonte de
+  // resolución (resolveMinute): "¿gol antes del 30?" se contesta en 60s pero solo
+  // se resuelve cuando el partido llega al minuto 30.
+  const resolveMinute = resolveMinuteFor(input.kind, input.openMinute, windowSeconds);
 
   const row = {
     match_id: input.matchId,
@@ -228,6 +232,75 @@ export async function getMatchMicroHistory(matchId: string, limit = 30): Promise
   return (data as MicroRow[] | null) ?? [];
 }
 
+/**
+ * Última micro del partido que el usuario YA tiene resuelta, si se resolvió hace
+ * poco (`withinMs`). Sirve para el toast de resultado en vivo: el sondeo de la UI
+ * lo detecta a los pocos segundos de que el cron la liquide. Excluye fantasma.
+ * Consulta de una fila, indexada por (user_id, resolved_at).
+ */
+export interface RecentMicroResult {
+  micro_id: string;
+  question: string;
+  emoji: string;
+  is_correct: boolean;
+  points: number;
+  selected_label: string | null;
+  correct_label: string | null;
+  resolved_at: string;
+}
+
+export async function latestResolvedResult(
+  userId: string,
+  matchId: string,
+  withinMs = 25_000,
+): Promise<RecentMicroResult | null> {
+  const admin = adminClient();
+  const since = new Date(Date.now() - withinMs).toISOString();
+  const { data } = await admin
+    .from("micro_responses")
+    .select(
+      "micro_id,selected_option,is_correct,points_earned,resolved_at," +
+        "micro_predictions!inner(match_id,question,options,trigger_data,correct_option)",
+    )
+    .eq("user_id", userId)
+    .eq("ghost", false)
+    .eq("micro_predictions.match_id", matchId)
+    .not("resolved_at", "is", null)
+    .gte("resolved_at", since)
+    .order("resolved_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+  if (!data) return null;
+
+  const r = data as unknown as {
+    micro_id: string;
+    selected_option: string;
+    is_correct: boolean | null;
+    points_earned: number | null;
+    resolved_at: string;
+    micro_predictions: {
+      question: string;
+      options: { key: string; label: string }[];
+      trigger_data: { emoji?: string } | null;
+      correct_option: string | null;
+    };
+  };
+  const micro = r.micro_predictions;
+  const labelOf = (k: string | null): string | null =>
+    k ? micro.options.find((o) => o.key === k)?.label ?? k : null;
+
+  return {
+    micro_id: r.micro_id,
+    question: micro.question,
+    emoji: micro.trigger_data?.emoji ?? "⚡",
+    is_correct: r.is_correct === true,
+    points: r.points_earned ?? 0,
+    selected_label: labelOf(r.selected_option),
+    correct_label: labelOf(micro.correct_option),
+    resolved_at: r.resolved_at,
+  };
+}
+
 // ─── Responder (usuario, RLS) ─────────────────────────────────────────────────
 export interface RespondResult {
   ok: boolean;
@@ -334,11 +407,24 @@ export interface SettleSummary {
  * con `resolved_at IS NULL`, y la propia micro pasa a `resolved` con guardia.
  *
  * `events` son los eventos autoritativos del partido hasta el momento (del Match
- * Center). El llamador (cron) garantiza que la ventana ya venció.
+ * Center). El llamador (cron) garantiza que la ventana de respuesta ya venció;
+ * `matchMinute`/`finished` son el estado actual del partido para esperar al
+ * horizonte de resolución antes de liquidar.
  */
-export async function settleMicro(micro: MicroRow, events: MatchEvent[]): Promise<SettleSummary | null> {
+export async function settleMicro(
+  micro: MicroRow,
+  events: MatchEvent[],
+  matchMinute: number,
+  finished: boolean,
+): Promise<SettleSummary | null> {
   const admin = adminClient();
   if (!isMicroKindRow(micro.kind)) return null;
+
+  // Espera a que el partido alcance el horizonte de resolución (o termine). Una
+  // micro de "antes del final" no es resoluble a los 60s de abrirse: hay que
+  // esperar a que pasen los eventos que la pregunta abarca. Reintenta en la
+  // próxima pasada del cron sin tocar la DB.
+  if (!finished && matchMinute < micro.resolve_minute) return null;
 
   const windowEvents = eventsInWindow(events, micro.open_minute, micro.resolve_minute);
   const correct = resolveMicro(micro.kind, windowEvents, micro.trigger_data);
@@ -412,14 +498,20 @@ function isMicroKindRow(s: string): s is MicroKind {
   return Object.prototype.hasOwnProperty.call(MICRO_CATALOG, s);
 }
 
-/** Micros activas cuya ventana ya venció (para que el cron las resuelva). */
+/**
+ * Micros cuya ventana de respuesta ya venció (para que el cron las resuelva).
+ * Orden CRONOLÓGICO por apertura: la Cadena de Fuego se recalcula eslabón a
+ * eslabón, así que liquidarlas fuera de orden subestimaría/inconsistiría el
+ * multiplicador de aciertos consecutivos.
+ */
 export async function getDueMicros(): Promise<MicroRow[]> {
   const admin = adminClient();
   const { data } = await admin
     .from("micro_predictions")
     .select(MICRO_COLS)
     .neq("status", "resolved")
-    .lte("closes_at", new Date().toISOString());
+    .lte("closes_at", new Date().toISOString())
+    .order("activated_at", { ascending: true });
   return (data as MicroRow[] | null) ?? [];
 }
 

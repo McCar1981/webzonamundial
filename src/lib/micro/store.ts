@@ -19,6 +19,7 @@ import { grantCoins } from "@/lib/economy/wallet";
 import { sendPushToUsers } from "@/lib/push-notifications";
 import {
   MICRO_CATALOG,
+  END_OF_MATCH_MIN,
   type MicroKind,
   type ResolveContext,
   eventsInWindow,
@@ -266,6 +267,7 @@ export async function latestResolvedResult(
     .eq("ghost", false)
     .eq("micro_predictions.match_id", matchId)
     .not("resolved_at", "is", null)
+    .not("is_correct", "is", null) // las ANULADAS no generan toast (ni "fallaste")
     .gte("resolved_at", since)
     .order("resolved_at", { ascending: false })
     .limit(1)
@@ -386,7 +388,9 @@ export async function currentFireChain(userId: string, matchId: string): Promise
   const results = (data ?? []) as { is_correct: boolean | null }[];
   let run = 0;
   for (let i = results.length - 1; i >= 0; i--) {
-    if (results[i].is_correct) run++;
+    const c = results[i].is_correct;
+    if (c === null) continue; // anulada (sin desenlace): no suma ni rompe la racha
+    if (c) run++;
     else break;
   }
   return run;
@@ -395,7 +399,8 @@ export async function currentFireChain(userId: string, matchId: string): Promise
 // ─── Resolución (admin / worker) ──────────────────────────────────────────────
 export interface SettleSummary {
   micro_id: string;
-  correct_option: string;
+  /** Opción correcta, o null si la micro se ANULÓ (sin desenlace en el feed). */
+  correct_option: string | null;
   responses_resolved: number;
   winners: number;
 }
@@ -420,14 +425,24 @@ export async function settleMicro(
   const admin = adminClient();
   if (!isMicroKindRow(micro.kind)) return null;
 
-  // Espera a que el partido alcance el horizonte de resolución (o termine). Una
-  // micro de "antes del final" no es resoluble a los 60s de abrirse: hay que
-  // esperar a que pasen los eventos que la pregunta abarca. Reintenta en la
-  // próxima pasada del cron sin tocar la DB.
-  if (!finished && matchMinute < micro.resolve_minute) return null;
+  // El penalti resuelve EN CUANTO el feed trae su desenlace (puede tardar más que
+  // el horizonte nominal si el VAR se alarga): busca hasta el final del partido y
+  // no espera al horizonte. El resto espera a que el partido alcance su horizonte
+  // de resolución (o termine): una micro de "antes del final" no es resoluble a
+  // los 60s de abrirse. Reintenta en la próxima pasada del cron sin tocar la DB.
+  const isPenalty = micro.kind === "penalty_outcome";
+  if (!isPenalty && !finished && matchMinute < micro.resolve_minute) return null;
 
-  const windowEvents = eventsInWindow(events, micro.open_minute, micro.resolve_minute);
+  const windowEnd = isPenalty ? END_OF_MATCH_MIN : micro.resolve_minute;
+  const windowEvents = eventsInWindow(events, micro.open_minute, windowEnd);
   const correct = resolveMicro(micro.kind, windowEvents, micro.trigger_data);
+
+  // Irresoluble (penalti aún sin desenlace en el feed): espera otra pasada; si el
+  // partido terminó sin desenlace, ANULA (nadie gana ni pierde, racha intacta).
+  if (correct === null) {
+    if (!finished) return null;
+    return voidMicro(micro);
+  }
 
   // Cierra la micro de forma idempotente: solo si seguía sin resolver.
   const { data: locked } = await admin
@@ -483,6 +498,33 @@ export async function settleMicro(
   }
 
   return { micro_id: micro.id, correct_option: correct, responses_resolved: responses.length, winners };
+}
+
+/**
+ * Anula una micro irresoluble (el partido terminó sin el evento que la decide:
+ * penalti rescindido o desenlace ausente del feed): la marca `resolved` SIN
+ * opción correcta y cierra sus respuestas con is_correct NULL y 0 puntos. Nadie
+ * gana ni pierde, y currentFireChain ignora estas respuestas (no rompen racha).
+ * Idempotente con la misma guardia de estado que settleMicro.
+ */
+async function voidMicro(micro: MicroRow): Promise<SettleSummary | null> {
+  const admin = adminClient();
+  const { data: locked } = await admin
+    .from("micro_predictions")
+    .update({ status: "resolved", correct_option: null, resolved_at: new Date().toISOString() })
+    .eq("id", micro.id)
+    .neq("status", "resolved")
+    .select("id");
+  if (!locked || locked.length === 0) return null;
+
+  const { data: closed } = await admin
+    .from("micro_responses")
+    .update({ is_correct: null, points_earned: 0, resolved_at: new Date().toISOString() })
+    .eq("micro_id", micro.id)
+    .is("resolved_at", null)
+    .select("id");
+
+  return { micro_id: micro.id, correct_option: null, responses_resolved: closed?.length ?? 0, winners: 0 };
 }
 
 /** Suma puntos→monedas y XP al perfil del usuario (mismo patrón que live-picks). */

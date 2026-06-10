@@ -239,7 +239,7 @@ export const END_OF_MATCH_MIN = 200;
 
 export const MICRO_RESOLVE_HORIZON: Record<MicroKind, ResolveHorizon> = {
   // Reactivas
-  penalty_outcome:     { type: "fromOpen", minutes: 3 },   // el lanzamiento llega enseguida
+  penalty_outcome:     { type: "fromOpen", minutes: 3 },   // nominal: el settle busca el desenlace hasta el final y resuelve en cuanto aparece
   red_card_response:   { type: "endOfMatch" },             // "antes del final"
   var_goal_review:     { type: "fromOpen", minutes: 15 },  // "próximos 15'"
   scorer_sub_impact:   { type: "endOfMatch" },             // "antes del final"
@@ -375,21 +375,25 @@ export interface ResolveContext {
 
 /**
  * Resuelve una micro-predicción: devuelve la opción CORRECTA dada la ventana de
- * eventos y el contexto, o null si aún no es resoluble (no debería ocurrir si se
- * llama tras vencer la ventana). El llamador compara con la opción del usuario.
+ * eventos y el contexto, o null si AÚN no es resoluble (hoy solo el penalti: sin
+ * desenlace en el feed no se adivina). Con null el llamador espera otra pasada
+ * y, si el partido termina sin desenlace, ANULA la micro (nadie gana ni pierde).
  */
 export function resolveMicro(
   kind: MicroKind,
   windowEvents: MatchEvent[],
   ctx: ResolveContext = {},
-): OptionKey {
+): OptionKey | null {
   switch (kind) {
     case "penalty_outcome": {
-      // Primer desenlace de penalti en la ventana.
+      // Primer desenlace de penalti tras abrir la ventana. Si el feed aún no lo
+      // trae (VAR largo, lanzamiento demorado), NO se resuelve por defecto:
+      // devolver "miss" pagaría mal un penalti que sí entró.
       const pen = windowEvents.find(
         (e) => e.type === "penalty_goal" || e.type === "penalty_miss",
       );
-      return pen?.type === "penalty_goal" ? "goal" : "miss";
+      if (!pen) return null;
+      return pen.type === "penalty_goal" ? "goal" : "miss";
     }
     case "red_card_response": {
       const side = ctx.side;

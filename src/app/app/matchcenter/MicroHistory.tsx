@@ -191,8 +191,9 @@ export default function MicroHistory({ matchId }: { matchId: number }) {
               const myLabel = m.mine ? labelOf(m.options, m.mine.option) : null;
               const myCorrect = m.mine?.correct;
               const g = ghost[m.id];
-              // Solo se puede jugar en fantasma una micro YA resuelta que NO jugaste en vivo.
-              const ghostable = resolved && !m.mine;
+              // Solo se puede jugar en fantasma una micro YA resuelta (no anulada)
+              // que NO jugaste en vivo.
+              const ghostable = resolved && !!m.correct_option && !m.mine;
               const borderColor =
                 myCorrect === true ? "rgba(74,222,128,0.45)" : myCorrect === false ? "rgba(255,107,53,0.40)" : "rgba(255,255,255,0.10)";
               return (
@@ -211,7 +212,7 @@ export default function MicroHistory({ matchId }: { matchId: number }) {
                       min {m.open_minute}
                     </span>
                     <span style={{ marginLeft: "auto", fontSize: 10, fontWeight: 800, letterSpacing: 0.6, textTransform: "uppercase", color: resolved ? "rgba(255,255,255,0.55)" : GOLD }}>
-                      {resolved ? "Resuelta" : m.status === "active" ? "En vivo" : "Cerrada"}
+                      {resolved ? (m.correct_option ? "Resuelta" : "Anulada") : m.status === "active" ? "En vivo" : "Cerrada"}
                     </span>
                   </div>
 

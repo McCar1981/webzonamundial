@@ -101,6 +101,21 @@ export default function MicroLive({ matchId }: { matchId: number }) {
   // Primer sondeo tras montar (llegada típica desde el push).
   const arrivalRef = useRef(true);
   const lateTimerRef = useRef<number | null>(null);
+  // Cierre automático tras responder (el popup no debe tapar el partido).
+  const closeTimerRef = useRef<number | null>(null);
+
+  /** Cierra el popup con su animación SIN olvidar la micro mostrada (shownIdRef
+   *  se conserva para que el sondeo no la vuelva a abrir). */
+  const dismissPopup = useCallback((delayMs: number) => {
+    if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
+    closeTimerRef.current = window.setTimeout(() => {
+      if (!aliveRef.current) return;
+      setClosing(true);
+      window.setTimeout(() => {
+        if (aliveRef.current) setMicro(null);
+      }, 330);
+    }, delayMs);
+  }, []);
 
   const showLate = useCallback((info: LateInfo) => {
     setLate(info);
@@ -177,10 +192,17 @@ export default function MicroLive({ matchId }: { matchId: number }) {
 
       // Nueva micro distinta a la mostrada: reinicia el estado de respuesta.
       if (shownIdRef.current !== next.id) {
+        // Ya respondida (recarga u otra pestaña): no la abras — el popup solo
+        // tapa pantalla mientras se puede jugar.
+        if (data.already_responded) {
+          shownIdRef.current = next.id;
+          return;
+        }
+        if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
         shownIdRef.current = next.id;
         setClosing(false);
         setMicro(next);
-        setAnswered(data.already_responded);
+        setAnswered(false);
         setMyOption(data.my_option);
         setLate(null); // la micro real manda sobre el aviso de "llegaste tarde"
       } else {
@@ -206,10 +228,11 @@ export default function MicroLive({ matchId }: { matchId: number }) {
     };
   }, [poll, micro]);
 
-  // Limpia los timers (toast y aviso de cierre) al desmontar.
+  // Limpia los timers (toast, aviso de cierre y auto-cierre) al desmontar.
   useEffect(() => () => {
     if (resultTimerRef.current) window.clearTimeout(resultTimerRef.current);
     if (lateTimerRef.current) window.clearTimeout(lateTimerRef.current);
+    if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
   }, []);
 
   // ── Cuenta atrás de la ventana ──────────────────────────────────────────────
@@ -261,9 +284,12 @@ export default function MicroLive({ matchId }: { matchId: number }) {
         if (typeof data.fire_multiplier === "number") {
           setFireChain((p) => (p ? { ...p, multiplier: data.fire_multiplier } : p));
         }
+        // Confirmación breve y fuera: el popup no debe tapar el partido.
+        dismissPopup(1100);
       } else if (res.status === 409) {
         // Ya respondida (otra pestaña / carrera): sí está registrada.
         setAnswered(true);
+        dismissPopup(700);
       } else {
         // 400 (ventana cerrada justo antes de llegar tu respuesta): NO finjas
         // que quedó registrada. Cierra el popup y dilo claro.

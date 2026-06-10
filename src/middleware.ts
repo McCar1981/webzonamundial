@@ -12,12 +12,21 @@ export async function middleware(request: NextRequest) {
   // La RAÍZ exacta /admin queda fuera del guard: es el panel de creadores y
   // resuelve su propio acceso (cookie admin → gestión; sesión Supabase cuyo
   // email está en creator_program → su panel; nada → selector de acceso).
+  //
+  // El ENDPOINT de login `/api/admin/login` también queda fuera: es quien
+  // ENTREGA la cookie de admin, así que no puede exigirla (sería un círculo
+  // imposible — el formulario de /admin/login posteaba aquí y el guard lo
+  // redirigía a sí mismo). El handler ya es fail-closed: valida ADMIN_PASSWORD
+  // con timingSafeEqual y responde 401/503. Lo mismo para logout.
+  const isPublicAdminApi =
+    url.pathname === "/api/admin/login" || url.pathname === "/api/admin/logout";
   const isAdminRoute =
     url.pathname.startsWith("/admin") || url.pathname.startsWith("/api/admin");
   const isAdminRoot = url.pathname === "/admin" || url.pathname === "/admin/";
   if (
     isAdminRoute &&
     !isAdminRoot &&
+    !isPublicAdminApi &&
     !url.pathname.startsWith("/admin/login")
   ) {
     const cookie = request.cookies.get(ADMIN_COOKIE)?.value;

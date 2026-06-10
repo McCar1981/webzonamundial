@@ -209,6 +209,7 @@ export interface CreateBarInput {
   name: string;
   city?: string;
   themeId?: string;
+  kind?: "bar" | "empresa";  // tipo de porra; por defecto 'bar'
 }
 
 /** Crea el bar + su liga de predicciones + el QR principal, y une al dueño. */
@@ -235,6 +236,7 @@ export async function createBar(uid: string, input: CreateBarInput): Promise<Bar
     owner_user_id: uid, league_id: leagueId, name, slug,
     city: input.city?.trim().slice(0, 80) || null,
     theme_id: input.themeId || DEFAULT_THEME_ID, plan_id: null, status: "draft",
+    kind: input.kind === "empresa" ? "empresa" : "bar",
   }).select("*").single();
   if (bErr) throw bErr;
   const row = bar as BarRow;

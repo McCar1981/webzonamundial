@@ -55,9 +55,10 @@ export const metadata: Metadata = {
 const GOLD = "#c9a84c";
 const GOLD_GRAD = "linear-gradient(135deg, #C9A84C, #E8C76B 50%, #FDE68A)";
 
-// CTA de alta. TODO (fase 2): el panel todavía no diferencia el tipo "empresa";
-// cuando lo haga, enlazar con /bar-dashboard?tipo=empresa.
-const CTA_HREF = "/bar-dashboard";
+// CTA de alta: lleva el tipo "empresa" para que la porra nazca marcada como tal.
+// El panel lo lee de ?tipo=empresa y crea la porra con kind='empresa' (su kit
+// usará el cartel de empresa automáticamente, sin tocar la BD a mano).
+const CTA_HREF = "/bar-dashboard?tipo=empresa";
 
 /* ─── Mockups decorativos (UI de producto, SVG/JSX — sin fotos) ───────────── */
 

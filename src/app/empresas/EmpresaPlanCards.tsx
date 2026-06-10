@@ -41,7 +41,7 @@ const EMPRESA_PLANS: EmpresaPlan[] = [
       "Premio principal",
       "Estadísticas básicas",
     ],
-    cta: { label: "Empezar", href: "/bar-dashboard" },
+    cta: { label: "Empezar", href: "/bar-dashboard?tipo=empresa" },
   },
   {
     id: "empresa",
@@ -59,7 +59,7 @@ const EMPRESA_PLANS: EmpresaPlan[] = [
       "Informe final en PDF",
       "Soporte prioritario",
     ],
-    cta: { label: "Empezar", href: "/bar-dashboard" },
+    cta: { label: "Empezar", href: "/bar-dashboard?tipo=empresa" },
   },
   {
     id: "corporate",

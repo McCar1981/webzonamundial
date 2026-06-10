@@ -41,11 +41,11 @@ export async function POST(req: Request) {
   const existing = await getBarByOwner(user.id);
   if (existing) return NextResponse.json({ error: "already_exists", bar: existing }, { status: 409 });
 
-  let body: { name?: string; city?: string; themeId?: string };
+  let body: { name?: string; city?: string; themeId?: string; kind?: string };
   try { body = await req.json(); } catch { return NextResponse.json({ error: "bad_request" }, { status: 400 }); }
   if (!body.name || !body.name.trim()) return NextResponse.json({ error: "bad_request", message: "name requerido" }, { status: 400 });
 
-  const bar = await createBar(user.id, { name: body.name, city: body.city, themeId: body.themeId });
+  const bar = await createBar(user.id, { name: body.name, city: body.city, themeId: body.themeId, kind: body.kind === "empresa" ? "empresa" : "bar" });
   return NextResponse.json({ ok: true, bar }, { status: 201 });
 }
 

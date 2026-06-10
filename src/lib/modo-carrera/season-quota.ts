@@ -8,14 +8,52 @@
 //
 // Las temporadas del Modo Carrera son cortas (~12 partidos) y el juego corre en
 // el cliente, así que el enforcement vive en el PUT de guardado: una partida
-// que arranca temporada nueva (progression.season incrementa) consume cupo; si
-// está agotado, el guardado se rechaza y el cliente muestra la cuenta atrás.
+// que arranca temporada nueva (ver isNewSeasonStart) consume cupo; si está
+// agotado, el guardado se rechaza y el cliente muestra la cuenta atrás.
 //
 // Layout KV:  mc:seasons:{userId}  (contador, TTL = lockout)
 // Ante fallo de KV degrada a "permitido" (criterio narrative-quota).
 
 import { kv } from "@vercel/kv";
 import { FREE_LIMITS } from "@/lib/pro/limits";
+import type { CareerState } from "./types";
+
+/**
+ * ¿Este guardado ARRANCA un torneo nuevo respecto a lo persistido? Es la señal
+ * AUTORITATIVA del servidor para consumir cupo. No basta con que suba
+ * `progression.season` (un número que manda el cliente): un cliente manipulado
+ * puede re-rollear torneos sin subirlo. Por eso se mira la identidad del torneo:
+ *
+ *  1. El contador de temporada sube → arranque legítimo (caso normal).
+ *  2. Mismo contador pero el PRIMER fixture cambia de id → otro sorteo: torneo
+ *     nuevo re-rollado. (Los ids `s{N}-{fase}-{rival}` se generan una sola vez
+ *     por torneo en buildSeason y nunca cambian durante la temporada.)
+ *  3. Mismo torneo (mismo sorteo) pero el cursor vuelve a 0 con progreso previo
+ *     → replay del mismo calendario. En juego legal el cursor nunca retrocede.
+ *  4. Aparece un torneo donde no lo había: gratis solo si la carrera está virgen
+ *     (su primer torneo real); con partidos ya jugados en el legado es un
+ *     re-arranque tras reset y también consume.
+ *
+ * El primer sync de una carrera local (sin estado previo en el servidor) nunca
+ * cuenta, igual que antes.
+ */
+export function isNewSeasonStart(stored: CareerState | null, incoming: CareerState): boolean {
+  if (!stored) return false; // primer sync de una partida de invitado
+  const inc = incoming.season;
+  if (!inc || !Array.isArray(inc.fixtures) || inc.fixtures.length === 0) return false;
+
+  const incNum = incoming.progression?.season ?? 0;
+  const prevNum = stored.progression?.season ?? 0;
+  if (incNum > prevNum) return true; // (1)
+
+  const prev = stored.season;
+  if (!prev || !prev.fixtures?.length) {
+    return (stored.legacy?.records?.matchesPlayed ?? 0) > 0; // (4)
+  }
+  if (prev.fixtures[0]?.id !== inc.fixtures[0]?.id) return true; // (2)
+  if ((prev.cursor ?? 0) > 0 && (inc.cursor ?? 0) === 0) return true; // (3)
+  return false;
+}
 
 const KEY = (uid: string) => `mc:seasons:${uid}`;
 const LIMIT = FREE_LIMITS.carrera.maxSeasonsPerDay;

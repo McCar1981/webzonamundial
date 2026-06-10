@@ -36,6 +36,7 @@ import NarrativeView from "./NarrativeView";
 import LegacyView from "./LegacyView";
 import RankingView from "./RankingView";
 import GuideModal from "./GuideModal";
+import { CoinIcon } from "./icons";
 
 const GUIDE_SEEN_KEY = "zm_mc_guide_seen";
 
@@ -95,17 +96,28 @@ export default function CareerGame() {
     })();
   }, []);
 
-  // Autoguardado (local + servidor si hay sesión).
+  // Autoguardado. El local (localStorage) es inmediato; el del servidor va con
+  // DEBOUNCE: el efecto se re-ejecuta en cada cambio de `career` y su cleanup
+  // cancela el POST anterior, así una ráfaga de cambios (un partido en vivo, que
+  // muta el estado muchas veces) produce UN solo guardado ~1.2 s tras el último
+  // cambio, en vez de encadenar peticiones que pueden llegar desordenadas.
   useEffect(() => {
     if (!career || !hydrated.current) return;
-    saveCareer(career);
-    if (authed) {
+    saveCareer(career); // local: siempre, al instante (no se pierde progreso)
+    if (!authed) return;
+    const t = setTimeout(() => {
       // El servidor abona Fútcoins por misiones reclamadas (una vez por misión).
       // Si este guardado liquidó alguna, mostramos el premio real al jugador.
-      saveServerCareer(career).then((r) => {
-        if (r.futcoins > 0 || r.xpAwarded > 0) setCoinReward(r);
-      });
-    }
+      saveServerCareer(career)
+        .then((r) => {
+          if (r.futcoins > 0 || r.xpAwarded > 0) setCoinReward(r);
+        })
+        .catch(() => {
+          // Red/sesión caída: el progreso local ya quedó guardado y el próximo
+          // cambio reintenta. Evita un unhandled rejection silencioso.
+        });
+    }, 1200);
+    return () => clearTimeout(t);
   }, [career, authed]);
 
   // El banner de premio se auto-oculta a los pocos segundos.
@@ -247,11 +259,14 @@ export default function CareerGame() {
 
   return (
     <div style={{ position: "relative", background: BG, minHeight: "100vh", color: "#fff", fontFamily: "'Outfit',sans-serif", padding: "32px 20px 80px" }}>
-      {/* Fondo de marca: cancha + escudo ZonaMundial, muy sutil tras la interfaz. */}
+      {/* Fondo de marca: cancha + escudo ZonaMundial, muy sutil tras la interfaz.
+          Va en ABSOLUTO (no fixed) cubriendo todo el alto del contenido: un fondo
+          fijo a pantalla completa provocaba fricción de scroll en móvil (no se
+          llegaba del todo arriba/abajo). Así el scroll es completo y natural. */}
       <div
         aria-hidden
         style={{
-          position: "fixed",
+          position: "absolute",
           inset: 0,
           zIndex: 0,
           pointerEvents: "none",
@@ -286,7 +301,7 @@ export default function CareerGame() {
             boxShadow: "0 8px 24px rgba(0,0,0,0.35)",
           }}
         >
-          <span aria-hidden>🪙</span>
+          <CoinIcon size={15} />
           <span>+{coinReward.futcoins} Fútcoins · +{coinReward.xpAwarded} XP</span>
         </div>
       )}

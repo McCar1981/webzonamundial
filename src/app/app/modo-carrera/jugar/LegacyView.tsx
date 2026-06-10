@@ -58,6 +58,13 @@ export default function LegacyView({ career, paseDT = false }: { career: CareerS
   // Re-ver la celebración al pulsar un trofeo de la vitrina. El auto-reveal al
   // GANAR uno nuevo lo dispara CareerGame (vale en cualquier pestaña).
   const [reveal, setReveal] = useState<Trophy | null>(null);
+  // Confirmación de copia inline (antes era un alert() que bloqueaba la página).
+  const [copied, setCopied] = useState(false);
+  useEffect(() => {
+    if (!copied) return;
+    const t = setTimeout(() => setCopied(false), 2500);
+    return () => clearTimeout(t);
+  }, [copied]);
 
   const share = async () => {
     const nation = SELECCIONES.find((s) => s.slug === career.identity.nationSlug)?.nombre ?? "su selección";
@@ -70,7 +77,7 @@ export default function LegacyView({ career, paseDT = false }: { career: CareerS
         await navigator.share({ title: "Mi legado DT — ZonaMundial", text });
       } else {
         await navigator.clipboard.writeText(text);
-        alert("Legado copiado al portapapeles.");
+        setCopied(true);
       }
     } catch {
       /* el usuario canceló el diálogo de compartir */
@@ -103,15 +110,15 @@ export default function LegacyView({ career, paseDT = false }: { career: CareerS
           style={{
             padding: "10px 18px",
             borderRadius: 10,
-            border: `1px solid ${GOLD}`,
-            background: "rgba(201,168,76,0.12)",
-            color: GOLD2,
+            border: `1px solid ${copied ? "#22c55e" : GOLD}`,
+            background: copied ? "rgba(34,197,94,0.12)" : "rgba(201,168,76,0.12)",
+            color: copied ? "#22c55e" : GOLD2,
             fontWeight: 800,
             fontSize: 13.5,
             cursor: "pointer",
           }}
         >
-          Compartir mi legado
+          {copied ? "Copiado al portapapeles" : "Compartir mi legado"}
         </button>
       </div>
 

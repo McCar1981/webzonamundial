@@ -10,6 +10,7 @@
 
 import { useMemo, useState } from "react";
 import { BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED } from "./fx";
+import { useModalA11y } from "./useModalA11y";
 import { type RosterPlayer } from "@/data/fantasy-rosters";
 import type { FantasyPos } from "@/lib/fantasy/types";
 import type { CareerState } from "@/lib/modo-carrera/types";
@@ -86,11 +87,16 @@ export default function LineupEditor({
 
   const autoBest = () => setPicked(defaultLineup(roster, formation));
 
+  const dialogRef = useModalA11y<HTMLDivElement>(onClose);
+
   return (
     <div
+      ref={dialogRef}
+      tabIndex={-1}
       role="dialog"
       aria-modal="true"
       style={{
+        outline: "none",
         position: "fixed",
         inset: 0,
         zIndex: 110,

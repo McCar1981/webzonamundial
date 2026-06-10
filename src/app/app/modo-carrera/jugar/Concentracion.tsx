@@ -10,6 +10,7 @@
 
 import { useMemo, useState } from "react";
 import { BG, BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED } from "./fx";
+import { useModalA11y } from "./useModalA11y";
 import type { CareerState, Injury } from "@/lib/modo-carrera/types";
 import {
   PREP_SESSIONS,
@@ -187,11 +188,18 @@ export default function Concentracion({
     }
   };
 
+  // Escape = volver al hub sin jugar (mismo efecto que el botón Cancelar). Tras
+  // confirmar la concentración ya no hay vuelta atrás, así que se desactiva.
+  const dialogRef = useModalA11y<HTMLDivElement>(done ? undefined : onCancel);
+
   return (
     <div
+      ref={dialogRef}
+      tabIndex={-1}
       role="dialog"
       aria-modal="true"
       style={{
+        outline: "none",
         position: "fixed",
         inset: 0,
         zIndex: 110,

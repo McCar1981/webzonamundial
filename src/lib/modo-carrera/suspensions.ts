@@ -18,8 +18,12 @@ import type { CareerState, Injury, Suspension } from "./types";
 import { FANTASY_ROSTERS, type RosterPlayer } from "@/data/fantasy-rosters";
 import { activeInjuries } from "./injuries";
 
-/** Probabilidad de que se produzca una sanción tras un partido. */
-export const SUSPENSION_CHANCE = 0.16;
+/**
+ * Probabilidad de que se produzca una sanción tras un partido. Calibrada junto a
+ * la de lesión (injuries.ts) para que la suma de bajas nuevas por partido sea
+ * ocasional (~1 de cada 5), no crónica como con 0.22+0.16.
+ */
+export const SUSPENSION_CHANCE = 0.08;
 
 /** Penalización de fuerza por sancionado (idéntica a la de una lesión: no juega). */
 const PENALTY_PER_SUSPENSION = 3.5;

@@ -57,7 +57,7 @@ export default function RankingView() {
             const top = i < 3;
             return (
               <div
-                key={e.user_id}
+                key={e.position}
                 style={{
                   display: "flex",
                   alignItems: "center",

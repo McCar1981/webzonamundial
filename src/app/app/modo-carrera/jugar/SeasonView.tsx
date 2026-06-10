@@ -24,6 +24,7 @@ import { getFrescura, type PrepSessionId } from "@/lib/modo-carrera/concentracio
 import MatchLive from "./MatchLive";
 import Concentracion from "./Concentracion";
 import { Kit, Confetti } from "./Visuals";
+import { useModalA11y } from "./useModalA11y";
 
 const OUTCOME_LABEL = { V: "Victoria", E: "Empate", D: "Derrota" } as const;
 const OUTCOME_COLOR = { V: GREEN, E: GOLD, D: RED } as const;
@@ -534,11 +535,19 @@ export default function SeasonView({
   const lockMs = season.live && nextMatch ? liveLockMs(nextMatch, nowMs) : 0;
   const locked = lockMs > 0;
 
+  // Semana de concentración (preparación + entrenamiento): es una acción propia,
+  // accesible siempre antes del partido. Antes solo se abría al pulsar "Disputar
+  // partido", lo que la escondía; ahora tiene su botón.
+  const openPrep = () => {
+    if (live || prepping || !nextMatch || locked) return;
+    setPrepping(true);
+  };
+
+  // Disputar el partido directamente. La concentración (si se hizo) ya quedó
+  // guardada en el plantel y se aplica igual; aquí se salta a la pizarra del once.
   const openMatch = () => {
     if (live || prepping || !nextMatch || locked) return;
-    // Antes del partido: semana de concentración (preparación y entrenamiento).
-    if (onSetPrep) setPrepping(true);
-    else setLive(true);
+    setLive(true);
   };
 
   const finishMatch = (gf: number, ga: number, wasBehind?: boolean, injury?: Injury, moraleDelta?: number) => {
@@ -560,6 +569,11 @@ export default function SeasonView({
     if (pressConf) onChoose(pressConf.id, choiceId);
     setPressConf(null);
   };
+
+  // A11y de los diálogos de la vista: foco al abrirse y Escape donde hay cierre
+  // seguro. La rueda de prensa EXIGE decisión (no tiene cierre), solo recibe foco.
+  const revealRef = useModalA11y<HTMLDivElement>(closeReveal, !!(reveal && reveal.match));
+  const pressRef = useModalA11y<HTMLDivElement>(undefined, !!(pressConf && pressConf.choices));
 
   return (
     <div style={{ maxWidth: 820, margin: "0 auto" }}>
@@ -597,23 +611,43 @@ export default function SeasonView({
               <div style={{ fontSize: 11, color: DIM, marginTop: 2 }}>Se juega a la hora real del saque</div>
             </div>
           ) : (
-            <button
-              type="button"
-              onClick={openMatch}
-              style={{
-                padding: "12px 24px",
-                borderRadius: 10,
-                border: "none",
-                background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
-                color: BG,
-                fontWeight: 900,
-                fontSize: 14,
-                cursor: "pointer",
-                boxShadow: "0 8px 22px rgba(201,168,76,0.32)",
-              }}
-            >
-              Disputar partido
-            </button>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", justifyContent: "flex-end" }}>
+              {onSetPrep && (
+                <button
+                  type="button"
+                  onClick={openPrep}
+                  style={{
+                    padding: "12px 20px",
+                    borderRadius: 10,
+                    border: `1px solid ${GOLD}`,
+                    background: career.squad?.prep?.sessions?.length ? "rgba(201,168,76,0.16)" : "transparent",
+                    color: GOLD2,
+                    fontWeight: 800,
+                    fontSize: 14,
+                    cursor: "pointer",
+                  }}
+                >
+                  {career.squad?.prep?.sessions?.length ? "Concentración lista" : "Concentración"}
+                </button>
+              )}
+              <button
+                type="button"
+                onClick={openMatch}
+                style={{
+                  padding: "12px 24px",
+                  borderRadius: 10,
+                  border: "none",
+                  background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`,
+                  color: BG,
+                  fontWeight: 900,
+                  fontSize: 14,
+                  cursor: "pointer",
+                  boxShadow: "0 8px 22px rgba(201,168,76,0.32)",
+                }}
+              >
+                Disputar partido
+              </button>
+            </div>
           )
         )}
       </div>
@@ -702,10 +736,13 @@ export default function SeasonView({
       {/* Revelado del resultado */}
       {reveal && reveal.match && (
         <div
+          ref={revealRef}
+          tabIndex={-1}
           role="dialog"
           aria-modal="true"
           onClick={closeReveal}
           style={{
+            outline: "none",
             position: "fixed",
             inset: 0,
             zIndex: 90,
@@ -814,9 +851,12 @@ export default function SeasonView({
       {/* Rueda de prensa post-partido (decisión que impacta moral y confianza) */}
       {pressConf && pressConf.choices && (
         <div
+          ref={pressRef}
+          tabIndex={-1}
           role="dialog"
           aria-modal="true"
           style={{
+            outline: "none",
             position: "fixed",
             inset: 0,
             zIndex: 95,

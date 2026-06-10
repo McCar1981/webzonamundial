@@ -10,8 +10,6 @@ import Link from "next/link";
 import { BG, GOLD, GOLD2, MID } from "./fx";
 import type { Trophy } from "@/lib/modo-carrera/types";
 
-const TROPHY_IMG = "/img/modo-carrera/trofeos/trofeo-mundial.png";
-
 // Piezas de confeti deterministas (sin random en render para evitar parpadeos).
 const CONFETTI = Array.from({ length: 28 }, (_, i) => ({
   left: (i * 37) % 100,
@@ -57,7 +55,7 @@ export default function TrophyReveal({ trophy, paseDT = false, onClose }: { trop
         @keyframes mcTrConfetti { 0% { transform: translateY(-12vh) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 100% { transform: translateY(96vh) rotate(540deg); opacity: 0; } }
       `}</style>
 
-      {/* Vídeo de reveal (de fondo; si no carga, quedan rayos + confeti + copa) */}
+      {/* Vídeo del trofeo: ÚNICO protagonista del reveal (sin copa estática encima). */}
       <video
         aria-hidden
         autoPlay
@@ -69,8 +67,6 @@ export default function TrophyReveal({ trophy, paseDT = false, onClose }: { trop
           width: "100%",
           height: "100%",
           objectFit: "cover",
-          opacity: 0.4,
-          mixBlendMode: "screen",
           pointerEvents: "none",
         }}
         onError={(e) => { (e.currentTarget as HTMLVideoElement).style.display = "none"; }}
@@ -108,45 +104,6 @@ export default function TrophyReveal({ trophy, paseDT = false, onClose }: { trop
             }}
           />
         ))}
-      </div>
-
-      {/* Copa */}
-      <div style={{ position: "relative", zIndex: 1, animation: "mcTrRise 1s cubic-bezier(.2,.8,.2,1) both" }}>
-        {/* Fallback CSS (copa dibujada) — queda detrás de la imagen si existe. */}
-        <div aria-hidden style={{ position: "relative", width: 180, height: 240, margin: "0 auto" }}>
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <svg width={150} height={210} viewBox="0 0 150 210" aria-hidden>
-              <defs>
-                <linearGradient id="mcCup" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stopColor={GOLD2} />
-                  <stop offset="0.6" stopColor={GOLD} />
-                  <stop offset="1" stopColor="#8a6f28" />
-                </linearGradient>
-              </defs>
-              <path d="M40 20 h70 v34 a35 35 0 0 1-70 0z" fill="url(#mcCup)" />
-              <path d="M40 28 H22 a14 14 0 0 0 18 22 M110 28 h18 a14 14 0 0 1-18 22" fill="none" stroke="url(#mcCup)" strokeWidth="7" />
-              <rect x="68" y="86" width="14" height="34" fill="url(#mcCup)" />
-              <rect x="50" y="120" width="50" height="12" rx="3" fill="url(#mcCup)" />
-              <rect x="44" y="134" width="62" height="16" rx="4" fill="url(#mcCup)" />
-            </svg>
-          </div>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={TROPHY_IMG}
-            alt=""
-            aria-hidden
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain" }}
-            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
-          />
-        </div>
       </div>
 
       {/* Texto */}

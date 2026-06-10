@@ -8,7 +8,7 @@
 
 import { useState } from "react";
 import { BG2, BG3, GOLD, GOLD2, GREEN, MID, DIM } from "./fx";
-import { CheckIcon, StarIcon } from "./icons";
+import { CheckIcon, StarIcon, MissionIcon, TrainingIcon } from "./icons";
 import { missionKey } from "@/lib/modo-carrera/missions";
 import type { CareerState, Mission, MissionKind } from "@/lib/modo-carrera/types";
 
@@ -164,13 +164,9 @@ function MissionCard({
       }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-        <img
-          src={isTraining ? "/img/modo-carrera/icons/entrenamiento.png" : `/img/modo-carrera/icons/mission-${m.kind}.png`}
-          alt=""
-          width={22}
-          height={22}
-          style={{ objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.92 }}
-        />
+        <span aria-hidden style={{ display: "inline-flex", color: "#fff", opacity: 0.92 }}>
+          {isTraining ? <TrainingIcon size={22} /> : <MissionIcon kind={m.kind} size={22} />}
+        </span>
         <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: 1, textTransform: "uppercase", color, border: `1px solid ${color}55`, borderRadius: 999, padding: "2px 8px" }}>
           {KIND_LABEL[m.kind]}
         </span>

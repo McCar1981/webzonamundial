@@ -28,9 +28,17 @@ function dayBefore(day: string): string {
   return localDay(dt);
 }
 
-/** XP de la recompensa para el día `n` de la racha (crece y se estabiliza). */
+/**
+ * XP de la recompensa para el día `n` de la racha. Rampa fuerte la primera semana
+ * (60..180) y crecimiento suave después (+4/día hasta un tope de 300, ~día 37):
+ * antes se congelaba en el día 7 y una racha de 30 días pagaba igual que una de 7,
+ * matando el incentivo de "no romper la cadena".
+ */
 export function streakXp(dayN: number): number {
-  return 40 + Math.min(Math.max(dayN, 1), 7) * 20; // 60..180
+  const d = Math.max(dayN, 1);
+  const base = 40 + Math.min(d, 7) * 20; // 60..180 la primera semana
+  const beyond = Math.max(0, d - 7) * 4; // después sigue subiendo, sin dispararse
+  return Math.min(base + beyond, 300);
 }
 
 /** ¿El día `n` otorga punto de habilidad? (cada 7 días: hito semanal). */

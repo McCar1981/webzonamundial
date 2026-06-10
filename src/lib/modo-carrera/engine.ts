@@ -34,7 +34,11 @@ export function grantXp(state: CareerState, amount: number): XpResult {
   let { overall, xp, xpToNext } = state.progression;
   let points = state.skills.points;
   let gained = 0;
-  xp += Math.round(amount);
+  const inc = Math.round(amount);
+  xp += inc;
+  // xpTotal nunca decrece: acumula TODA la XP ganada (no se le resta al subir de
+  // nivel). Es la fuente con la que el servidor reconstruye el overall del ranking.
+  const xpTotal = (state.progression.xpTotal ?? 0) + inc;
 
   while (overall < 99 && xp >= xpToNext) {
     xp -= xpToNext;
@@ -53,7 +57,7 @@ export function grantXp(state: CareerState, amount: number): XpResult {
   return {
     state: {
       ...state,
-      progression: { ...state.progression, overall, xp, xpToNext },
+      progression: { ...state.progression, overall, xp, xpToNext, xpTotal },
       skills: { ...state.skills, points },
       updatedAt: now(),
     },

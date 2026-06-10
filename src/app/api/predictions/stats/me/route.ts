@@ -14,5 +14,6 @@ export async function GET() {
   const user = await getCurrentUser();
   if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   const stats = await getMyStats(user.id);
-  return NextResponse.json(stats);
+  // FIX 5: estadísticas por-usuario → no cachear en el navegador.
+  return NextResponse.json(stats, { headers: { "Cache-Control": "private, no-store" } });
 }

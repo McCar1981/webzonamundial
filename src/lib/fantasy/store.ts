@@ -26,6 +26,7 @@ export function defaultTeam(): FantasyTeamState {
     committedSlots: [],
     budgetBonus: 0,
     refundedIds: [],
+    gwLock: null,
   };
 }
 
@@ -40,6 +41,7 @@ export function normalizeTeam(t: FantasyTeamState): FantasyTeamState {
     powerUpsUsed: Array.isArray(t.powerUpsUsed) ? t.powerUpsUsed : [],
     budgetBonus: typeof t.budgetBonus === "number" ? t.budgetBonus : 0,
     refundedIds: Array.isArray(t.refundedIds) ? t.refundedIds : [],
+    gwLock: t.gwLock && typeof t.gwLock.gw === "number" ? t.gwLock : null,
   };
 }
 

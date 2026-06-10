@@ -52,5 +52,5 @@ export async function GET(_req: Request, { params }: { params: { matchId: string
     types_completed: completed,
     types_remaining: remaining,
     completion_pct: Math.round((completed.length / PREDICTION_TYPES.length) * 100),
-  });
+  }, { headers: { "Cache-Control": "private, no-store" } });
 }

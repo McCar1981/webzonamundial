@@ -3,10 +3,15 @@
 // Pool de jugadores del Fantasy construido a partir de las convocatorias REALES
 // del Mundial 2026 (src/data/fantasy-rosters.ts). Solo se incluyen las
 // selecciones con lista oficial confirmada; las pendientes quedan fuera del pool
-// hasta que publiquen su lista. Precios, puntos y forma son SIMULADOS de forma
-// DETERMINISTA (misma semilla => mismos datos siempre) a partir del ranking FIFA
-// de la selección. Calcula también el multiplicador "Modo Underdog"
-// (Estelar/Bronce/Oro/Diamante) del próximo partido de cada selección.
+// hasta que publiquen su lista.
+//
+// Las ESTADÍSTICAS ACUMULADAS (puntos, goles, asistencias, minutos, porterías)
+// arrancan EN CERO: el torneo no ha empezado y solo se rellenan con datos REALES
+// de api-football vía `applyRealStats` (el cliente las baja de
+// /api/fantasy/player-stats). Lo único estimado a priori es precio (Transfermarkt
+// cuando existe), forma y probabilidad de titularidad, generados de forma
+// DETERMINISTA (misma semilla => mismos datos para todos). Calcula también el
+// multiplicador "Modo Underdog" del próximo partido de cada selección.
 
 import { SELECCIONES, type Seleccion } from "@/data/selecciones";
 import { FANTASY_ROSTERS } from "@/data/fantasy-rosters";
@@ -123,10 +128,6 @@ function buildTeamPlayers(team: Seleccion, next: NextMatch): FantasyPlayer[] {
       ),
     );
     const price = marketValue != null ? priceFromMarketValue(marketValue) : simPrice;
-    const totalPoints = Math.round(rating * 58 + rng() * 16);
-    const goals = pos === "FWD" ? Math.round(rating * 5 + rng() * 2) : pos === "MID" ? Math.round(rating * 3 + rng()) : Math.round(rng() * (pos === "DEF" ? 1 : 0));
-    const assists = Math.round(rating * (pos === "MID" ? 4 : pos === "FWD" ? 2 : 1) + rng());
-    const cleanSheets = pos === "GK" || pos === "DEF" ? Math.round(rating * 2 + rng()) : 0;
 
     // Estado físico/disciplinario (simulado, determinista).
     const sRoll = rng();
@@ -152,18 +153,6 @@ function buildTeamPlayers(team: Seleccion, next: NextMatch): FantasyPlayer[] {
     const form = round1(clamp(rating * 8 + (rng() - 0.4) * 3, 1, 10));
     const ownership = round1(clamp((price / 16) * 38 + rating * 14 + (rng() - 0.5) * 12, 0.4, 88));
 
-    // Mercado dinámico: "momentum" de precio de la semana. Sube con forma alta,
-    // titularidad asegurada y partido atractivo; baja con bajas/dudas.
-    const momentum =
-      (form - 5) * 0.45 +
-      (startProb - 55) / 28 +
-      (next.tier.multiplier - 1) * 1.4 +
-      (status === "duda" ? -1.6 : 0) +
-      (!available ? -2.4 : 0) +
-      (rng() - 0.5) * 1.1;
-    const priceTrend: "up" | "down" | "flat" = momentum > 0.8 ? "up" : momentum < -0.8 ? "down" : "flat";
-    const priceDelta = priceTrend === "flat" ? 0 : round1(clamp(Math.abs(momentum) * 0.12, 0.1, 0.3));
-
     return {
       id: `${team.slug}-p${idx}`,
       name: rp.name,
@@ -175,10 +164,12 @@ function buildTeamPlayers(team: Seleccion, next: NextMatch): FantasyPlayer[] {
       pos,
       price,
       marketValue,
-      priceTrend,
-      priceDelta,
-      totalPoints,
-      avgPoints: round1(totalPoints / 3),
+      // El precio NO se mueve (mercado estático en el torneo): sin flechas falsas.
+      priceTrend: "flat",
+      priceDelta: 0,
+      // Acumulados REALES del torneo: a cero hasta que applyRealStats los rellene.
+      totalPoints: 0,
+      avgPoints: 0,
       form,
       ownership,
       available,
@@ -186,7 +177,7 @@ function buildTeamPlayers(team: Seleccion, next: NextMatch): FantasyPlayer[] {
       xiProbable: isXI,
       status,
       real: true,
-      stats: { goals, assists, minutes: 180 + Math.round(rng() * 90), cleanSheets },
+      stats: { goals: 0, assists: 0, minutes: 0, cleanSheets: 0 },
       next,
     } satisfies FantasyPlayer;
   });
@@ -222,6 +213,37 @@ export function getPlayerById(id: string): FantasyPlayer | undefined {
 
 export function getPlayersByIds(ids: (string | null)[]): (FantasyPlayer | null)[] {
   return ids.map((id) => (id ? getPlayerById(id) ?? null : null));
+}
+
+// ── Estadísticas REALES del torneo (api-football) ────────────────────────────
+
+/** Acumulado real de torneo de un jugador (lo agrega el servidor por partido). */
+export interface RealPlayerAgg {
+  pts: number; // puntos fantasy (base × multiplicador del partido)
+  played: number; // partidos disputados
+  goals: number;
+  assists: number;
+  minutes: number;
+  cleanSheets: number;
+}
+
+/**
+ * Vuelca el acumulado REAL sobre el pool (que arranca a 0). Muta los objetos del
+ * pool en sitio, así TODAS las vistas (Mercado, ficha, equipo, coach) ven los
+ * datos reales sin re-plumbing. Devuelve cuántos jugadores recibieron datos.
+ */
+export function applyRealStats(stats: Record<string, RealPlayerAgg>): number {
+  const pool = getPlayerPool();
+  let applied = 0;
+  for (const p of pool) {
+    const r = stats[p.id];
+    if (!r) continue;
+    p.totalPoints = r.pts;
+    p.avgPoints = r.played > 0 ? round1(r.pts / r.played) : 0;
+    p.stats = { goals: r.goals, assists: r.assists, minutes: r.minutes, cleanSheets: r.cleanSheets };
+    applied++;
+  }
+  return applied;
 }
 
 // Selecciones con convocatoria real disponible (para mensajes informativos).

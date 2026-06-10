@@ -14,5 +14,6 @@ export async function GET() {
   const user = await getCurrentUser();
   if (!user) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   const view = await getBattlePass(user.id);
-  return NextResponse.json(view);
+  // FIX 5: progreso de battle pass por-usuario → no cachear en el navegador.
+  return NextResponse.json(view, { headers: { "Cache-Control": "private, no-store" } });
 }

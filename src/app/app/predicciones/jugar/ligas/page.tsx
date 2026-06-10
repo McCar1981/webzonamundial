@@ -7,6 +7,7 @@ import Link from "next/link";
 import { ArrowLeft, Crown, Flame, Swords, Users } from "../icons";
 import { PositionBadge, TitleChip, nameColorStyle, type CosmeticDisplay } from "../cosmetic-render";
 import { handleProRequired } from "@/lib/pro/paywall-client";
+import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 
 const BG = "#060B14", BG2 = "#0F1D32", BG3 = "#0B1825";
 const GOLD = "#c9a84c", GOLD2 = "#e8d48b", MID = "#8a94b0", DIM = "#6a7a9a", GREEN = "#22c55e";
@@ -33,6 +34,9 @@ export default function LigasPage() {
   const [standings, setStandings] = useState<Record<string, Standing[]>>({});
   const [toast, setToast] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  // Id del usuario actual: distingue duelos entrantes (soy el oponente y puedo
+  // aceptar/rechazar) de los salientes (los envié yo, espero respuesta).
+  const [meId, setMeId] = useState<string | null>(null);
 
   // Duelo
   const [oppName, setOppName] = useState("");
@@ -51,6 +55,12 @@ export default function LigasPage() {
     if (r.ok) setRivalries((await r.json()).rivalries ?? []);
   }, []);
   useEffect(() => { void loadLeagues(); void loadDuels(); void loadRivalries(); }, [loadLeagues, loadDuels, loadRivalries]);
+  useEffect(() => {
+    let alive = true;
+    const supa = createSupabaseBrowserClient();
+    supa.auth.getUser().then(({ data }) => { if (alive) setMeId(data.user?.id ?? null); });
+    return () => { alive = false; };
+  }, []);
   useEffect(() => { if (toast) { const id = setTimeout(() => setToast(null), 3000); return () => clearTimeout(id); } }, [toast]);
 
   const create = useCallback(async () => {
@@ -99,6 +109,11 @@ export default function LigasPage() {
     try {
       const r = await fetch("/api/predictions/duels", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ duel_id: duelId, accept }) });
       if (r.ok) { setToast(accept ? "Duelo aceptado" : "Duelo rechazado"); await loadDuels(); }
+      else {
+        // El back rechaza con "not_your_duel" si intento responder uno que envié yo.
+        const j = await r.json().catch(() => ({}));
+        setToast(j.error === "not_your_duel" ? "No puedes responder este duelo" : "No se pudo responder el duelo");
+      }
     } finally { setBusy(false); }
   }, [loadDuels]);
 
@@ -191,10 +206,16 @@ export default function LigasPage() {
                   {d.status === "resolved" && <span style={{ color: GOLD2 }}> — {d.challenger_points} vs {d.opponent_points}</span>}
                 </div>
                 {d.status === "pending" && (
-                  <div style={{ display: "flex", gap: 8 }}>
-                    <button onClick={() => respond(d.id, true)} disabled={busy} style={{ ...btn(busy), padding: "6px 12px" }}>Aceptar</button>
-                    <button onClick={() => respond(d.id, false)} disabled={busy} style={{ cursor: "pointer", background: BG3, border: CARD_BORDER, borderRadius: 9, color: MID, fontWeight: 700, fontSize: 13, padding: "6px 12px" }}>Rechazar</button>
-                  </div>
+                  // Solo el oponente (duelo entrante) puede aceptar/rechazar. Si lo
+                  // envié yo (saliente), muestro que está pendiente de respuesta.
+                  meId != null && d.opponent_id === meId ? (
+                    <div style={{ display: "flex", gap: 8 }}>
+                      <button onClick={() => respond(d.id, true)} disabled={busy} style={{ ...btn(busy), padding: "6px 12px" }}>Aceptar</button>
+                      <button onClick={() => respond(d.id, false)} disabled={busy} style={{ cursor: "pointer", background: BG3, border: CARD_BORDER, borderRadius: 9, color: MID, fontWeight: 700, fontSize: 13, padding: "6px 12px" }}>Rechazar</button>
+                    </div>
+                  ) : (
+                    <span style={{ fontSize: 12.5, color: DIM, fontWeight: 700 }}>Pendiente de respuesta</span>
+                  )
                 )}
               </div>
             ))}

@@ -41,6 +41,13 @@ const USER_KEY = (userId: string) => `trivia:user:${V}:${userId}`;
 const NAMES_KEY = `trivia:names:${V}`;
 const SESSION_KEY = (id: string) => `trivia:session:${V}:${id}`;
 const SESSION_TTL = 60 * 60; // 1h
+// Locks NX anti-concurrencia. Mismo patrón que la reserva de recompensa: SET NX
+// solo lo gana la PRIMERA petición; las que pierden la carrera reciben null y
+// abortan. Cierran: doble registro en ranking (/finish), doble puntuación de la
+// misma pregunta (/answer) y doble cobro de la pista 50/50 (/hint).
+const FINISH_LOCK_KEY = (id: string) => `trivia:finishing:${V}:${id}`;
+const ANSWER_LOCK_KEY = (sid: string, qid: string) => `trivia:answered:${V}:${sid}:${qid}`;
+const HINT_LOCK_KEY = (sid: string, qid: string) => `trivia:hintlock:${V}:${sid}:${qid}`;
 // Marca de "ya cobré Fútcoins por este modo hoy" (anti-faucet: la trivia se puede
 // rejugar infinitas veces, pero solo paga billetera una vez por modo y día UTC).
 const REWARD_KEY = (day: string, mode: string, userId: string) =>
@@ -410,6 +417,61 @@ export async function deleteSession(id: string): Promise<void> {
   const store = await readFs();
   delete store.sessions[id];
   await writeFs(store);
+}
+
+// ───────────────────────── locks anti-concurrencia ─────────────────────────
+// En KV son SET NX atómicos. En el fallback de fichero (dev, un solo proceso)
+// basta un Set en memoria: no hay concurrencia entre procesos en local.
+const _fsLocks = new Set<string>();
+
+/** Reserva el cierre de una sesión. Devuelve true SOLO a la primera llamada;
+ *  las peticiones /finish concurrentes con la misma sesión reciben false y no
+ *  vuelven a registrar el resultado en el ranking. */
+export async function claimSessionFinish(sessionId: string): Promise<boolean> {
+  if (isKvEnabled()) {
+    const ok = await kv.set(FINISH_LOCK_KEY(sessionId), 1, { nx: true, ex: 120 });
+    return Boolean(ok);
+  }
+  const k = `finish:${sessionId}`;
+  if (_fsLocks.has(k)) return false;
+  _fsLocks.add(k);
+  return true;
+}
+
+/** Reserva el procesado de una respuesta (sesión+pregunta). true solo la 1ª vez:
+ *  un doble-submit de la misma pregunta (timer+clic, doble clic) no puntúa dos veces. */
+export async function claimAnswer(sessionId: string, questionId: string): Promise<boolean> {
+  if (isKvEnabled()) {
+    const ok = await kv.set(ANSWER_LOCK_KEY(sessionId, questionId), 1, { nx: true, ex: SESSION_TTL });
+    return Boolean(ok);
+  }
+  const k = `ans:${sessionId}:${questionId}`;
+  if (_fsLocks.has(k)) return false;
+  _fsLocks.add(k);
+  return true;
+}
+
+/** Reserva la compra de una pista (sesión+pregunta). true solo la 1ª vez: dos
+ *  clics simultáneos no cobran dos veces las Fútcoins. */
+export async function claimHint(sessionId: string, questionId: string): Promise<boolean> {
+  if (isKvEnabled()) {
+    const ok = await kv.set(HINT_LOCK_KEY(sessionId, questionId), 1, { nx: true, ex: SESSION_TTL });
+    return Boolean(ok);
+  }
+  const k = `hint:${sessionId}:${questionId}`;
+  if (_fsLocks.has(k)) return false;
+  _fsLocks.add(k);
+  return true;
+}
+
+/** Libera la reserva de pista. Se usa si el cobro falla DESPUÉS de reservar, para
+ *  que el usuario pueda reintentar (si no, el lock lo bloquearía hasta el TTL). */
+export async function releaseHint(sessionId: string, questionId: string): Promise<void> {
+  if (isKvEnabled()) {
+    await kv.del(HINT_LOCK_KEY(sessionId, questionId));
+    return;
+  }
+  _fsLocks.delete(`hint:${sessionId}:${questionId}`);
 }
 
 export function todayUTC(): string {

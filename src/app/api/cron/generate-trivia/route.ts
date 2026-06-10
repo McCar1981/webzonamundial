@@ -47,9 +47,14 @@ export async function GET(req: Request) {
     /* noop */
   }
 
+  // El heartbeat refleja si la generación funcionó: `added` puede ser 0
+  // legítimamente (todo duplicado), por eso la señal de salud es `generated > 0`,
+  // no `added > 0`.
+  const healthy = questions.length > 0;
+
   // Si Claude no generó NADA, el banco deja de crecer y las preguntas se
   // repetirán en pocos días. Aviso (con throttle) en vez de fallo silencioso.
-  if (questions.length === 0) {
+  if (!healthy) {
     await sendOpsAlert({
       key: "trivia_gen_zero",
       severity: "warning",
@@ -60,10 +65,10 @@ export async function GET(req: Request) {
     });
   }
 
-  await recordHeartbeat("generate-trivia", questions.length > 0, { added, bankSize });
+  await recordHeartbeat("generate-trivia", healthy, { generated: questions.length, added, bankSize });
 
   return NextResponse.json({
-    ok: true,
+    ok: healthy,
     generated: questions.length, // pasaron generación + verificación
     added, // nuevas (no duplicadas) que entraron al banco
     bankSize, // tamaño real del banco tras añadir

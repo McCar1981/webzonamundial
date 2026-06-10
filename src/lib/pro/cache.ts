@@ -4,7 +4,7 @@
 // archivo para que tanto entitlement.ts (lee/escribe) como subscriptions.ts
 // (invalida desde el webhook) la compartan sin import circular.
 
-import { kv } from "@vercel/kv";
+import { kv } from "@/lib/kv";
 import type { Entitlements } from "./entitlement";
 
 export const CACHE_TTL_SECONDS = 60;

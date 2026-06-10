@@ -123,7 +123,9 @@ export async function generateQuestions(
     const client = getClient();
     resp = await client.messages.create({
       model,
-      max_tokens: 4500,
+      // 8000 (no 4500): con count 30-40 y explicaciones, 4500 truncaba el JSON a
+      // medias → parse fail → 0 preguntas ese día en silencio.
+      max_tokens: 8000,
       temperature: 0.8,
       system: SYSTEM_PROMPT,
       messages: [{ role: "user", content: userMessage }],

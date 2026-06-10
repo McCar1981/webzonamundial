@@ -48,7 +48,7 @@ const MARKET_ICON: Record<string, typeof Goal> = {
 
 const CHOICE_LABEL: Record<string, string> = {
   yes: "Sí", no: "No", goal: "Gol", card: "Tarjeta", corner: "Córner",
-  none: "Nada", home: "Local", away: "Visitante",
+  none: "Ninguno", home: "Local", away: "Visitante",
 };
 
 const POLL_MS = 20_000;
@@ -60,30 +60,58 @@ export default function LiveMicroPicks({ matchId }: { matchId: string }) {
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const alive = useRef(true);
 
-  const load = useCallback(async () => {
+  const load = useCallback(async (): Promise<LiveResponse | null> => {
     try {
       const res = await fetch(`/api/predictions/match/${matchId}/live-picks`);
-      if (!res.ok) { if (alive.current) setData(null); return; }
+      if (!res.ok) { if (alive.current) setData(null); return null; }
       const json = (await res.json()) as LiveResponse;
       if (alive.current) setData(json);
+      return json;
     } catch {
       /* reintenta en el próximo ciclo */
+      return null;
     }
   }, [matchId]);
 
   useEffect(() => {
     alive.current = true;
-    void load();
+
+    // ¿Tiene sentido seguir sondeando? No, si el partido terminó o si no está en
+    // vivo y no quedan picks abiertos por resolver. Así dejamos de pegar al
+    // endpoint cada 20s para partidos finalizados o que aún no han empezado.
+    const shouldKeepPolling = (d: LiveResponse | null): boolean => {
+      if (!d) return true; // error puntual: reintenta
+      if (d.finished) return false;
+      if (!d.live && !d.picks.some((p) => p.status === "pending")) return false;
+      return true;
+    };
+
+    const clear = () => { if (timer.current) { clearTimeout(timer.current); timer.current = null; } };
+
     const tick = () => {
+      clear();
+      // Pausa mientras la pestaña esté oculta: reanudará en visibilitychange.
+      if (typeof document !== "undefined" && document.hidden) return;
       timer.current = setTimeout(async () => {
-        await load();
-        if (alive.current) tick();
+        const d = await load();
+        if (alive.current && shouldKeepPolling(d)) tick();
       }, POLL_MS);
     };
-    tick();
+
+    // Carga inicial inmediata; programa el siguiente ciclo solo si procede.
+    void load().then((d) => { if (alive.current && shouldKeepPolling(d)) tick(); });
+
+    const onVisibility = () => {
+      if (document.hidden) { clear(); return; }
+      // Al volver: refresca ya y reanuda el ciclo si sigue habiendo algo vivo.
+      void load().then((d) => { if (alive.current && shouldKeepPolling(d)) tick(); });
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+
     return () => {
       alive.current = false;
-      if (timer.current) clearTimeout(timer.current);
+      clear();
+      document.removeEventListener("visibilitychange", onVisibility);
     };
   }, [load]);
 

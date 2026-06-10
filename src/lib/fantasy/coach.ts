@@ -16,10 +16,13 @@ export interface CoachTip {
 }
 
 function value(p: FantasyPlayer): number {
-  // Relación puntos-precio ponderada por forma, multiplicador del partido,
+  // Relación calidad-precio ponderada por forma, multiplicador del partido,
   // probabilidad de ser titular (un suplente puntúa poco aunque sea barato) y
   // la ruta proyectada de su selección (avanzar = más partidos = más puntos).
-  return (p.totalPoints / p.price) * (0.7 + p.form / 20) * p.next.tier.multiplier * (0.55 + p.startProb / 222) * longevityFactor(p.teamSlug);
+  // Calidad = puntos REALES si ya los hay; antes de que existan, la forma
+  // estimada hace de proxy (×7 ≈ misma escala) para que el draft no quede ciego.
+  const quality = p.totalPoints > 0 ? p.totalPoints : p.form * 7;
+  return (quality / p.price) * (0.7 + p.form / 20) * p.next.tier.multiplier * (0.55 + p.startProb / 222) * longevityFactor(p.teamSlug);
 }
 
 export function suggestCaptain(slots: SquadSlot[]): { player: FantasyPlayer; why: string } | null {

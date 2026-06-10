@@ -12,7 +12,7 @@
 //     los mismos índices). Así un re-render o un doble clic no cobran dos veces.
 
 import { NextResponse } from "next/server";
-import { getSession, saveSession } from "@/lib/trivia/store";
+import { claimHint, getSession, releaseHint, saveSession } from "@/lib/trivia/store";
 import { getCurrentUser } from "@/lib/auth-helpers";
 import { spendCoins } from "@/lib/economy/wallet";
 import { TRIVIA_HINT_FIFTY } from "@/lib/economy/spend";
@@ -55,8 +55,23 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true, removed: cached, charged: false });
   }
 
+  // Reserva atómica: solo la PRIMERA petición concurrente llega a cobrar. Sin
+  // esto, dos clics casi simultáneos pasaban ambos el check de "cached" y cobraban
+  // las 30 Fútcoins por duplicado.
+  if (!(await claimHint(sessionId, questionId))) {
+    // Otra petición está cobrando o ya cobró: devolvemos lo que haya en la sesión
+    // sin volver a cobrar.
+    const fresh = await getSession(sessionId);
+    const r = fresh?.hints?.[questionId];
+    if (r) return NextResponse.json({ ok: true, removed: r, charged: false });
+    return NextResponse.json({ ok: false, error: "hint_in_progress" }, { status: 409 });
+  }
+
   const spent = await spendCoins(user.id, TRIVIA_HINT_FIFTY);
   if (!spent.ok) {
+    // No se cobró nada: liberamos la reserva para permitir reintentar más tarde
+    // (si no, el lock bloquearía la compra hasta que expire el TTL).
+    await releaseHint(sessionId, questionId).catch(() => {});
     return NextResponse.json(
       { ok: false, error: "insufficient_coins", coins: spent.coins, price: TRIVIA_HINT_FIFTY },
       { status: 402 },

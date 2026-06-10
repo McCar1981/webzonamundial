@@ -14,7 +14,9 @@ const BG="#060B14", BG2="#0F1D32", BG3="#0B1825", GOLD="#c9a84c", GOLD2="#e8d48b
 
 const PREDICTION_TYPE_NUMS = ["1","2","3","4","5","6","7","8"];
 const PREDICTION_TYPE_DIFFICULTIES = ["4/5","2/5","5/5","5/5","3/5","3/5","4/5","1/5"];
-const PREDICTION_TYPE_POINTS = ["Hasta 50x","Hasta 15x","Hasta 100x","Hasta 200x","Hasta 25x","Hasta 20x","Hasta 75x","Hasta 10x"];
+// Siempre "pts": son multiplicadores de PUNTOS del juego, no cuotas — el
+// vocabulario de casa de apuestas está vetado en ZonaMundial (brand/AdSense).
+const PREDICTION_TYPE_POINTS = ["Hasta 50x pts","Hasta 15x pts","Hasta 100x pts","Hasta 200x pts","Hasta 25x pts","Hasta 20x pts","Hasta 75x pts","Hasta 10x pts"];
 
 const MULTIPLIER_ICONS = [
   "micro-predicciones",
@@ -206,7 +208,7 @@ export default function PrediccionesPage() {
               }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/img/zonamundial-images/imagenes/apuestas para pagina apuestas.jpeg"
+                  src="/img/zonamundial-images/imagenes/app-predicciones.jpeg"
                   alt="App de Predicciones ZonaMundial"
                   style={{width:"100%",height:"auto",display:"block"}}
                 />

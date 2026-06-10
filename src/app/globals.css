@@ -49,8 +49,15 @@ html {
   overflow-x: clip; /* permite sticky pero evita scroll horizontal accidental */
 }
 
+/* Estilos base del body. Antes iban inline en el <body> de layout.tsx, pero
+   ScrollTrigger re-serializa el atributo style del body al registrarse (antes
+   de hidratar) y React avisaba "Prop `style` did not match" en dev en todas
+   las rutas. Aquí no hay prop que comparar. La fuente usa la variable de
+   next/font (--zm-font-outfit) con 'Outfit' del @import como fallback. */
 body {
-  font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: var(--zm-font-outfit), 'Outfit', system-ui, -apple-system, sans-serif;
   background-color: var(--zm-bg);
   color: var(--zm-text);
   -webkit-font-smoothing: antialiased;

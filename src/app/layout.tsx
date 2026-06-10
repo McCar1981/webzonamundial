@@ -302,7 +302,11 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body style={{ margin: 0, padding: 0, fontFamily: "var(--zm-font-outfit), system-ui, sans-serif" }}>
+      {/* Los estilos base del body viven en globals.css, NUNCA inline aquí:
+          ScrollTrigger re-serializa el atributo style del body al registrarse
+          (en module-eval, antes de hidratar) y React avisaría en dev de
+          "Prop `style` did not match" en todas las rutas. */}
+      <body>
         {showAds ? (
           <>
             {/* Google Consent Mode v2: por defecto todo denied. CookieConsent

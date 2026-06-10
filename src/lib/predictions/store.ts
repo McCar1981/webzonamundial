@@ -487,6 +487,15 @@ export async function resolveMatch(matchId: string, result: MatchResultReal): Pr
   // Solo a usuarios con alguna fila resuelta por esta ejecución (ganadores del CAS).
   await grantMatchRewards(matchId, [...usersInMatch]);
 
+  // Liquidar los retos contra el Oráculo de este partido. Fail-soft: un fallo
+  // aquí no puede tumbar la resolución (el cron lo reintenta en otra pasada).
+  try {
+    const { settleOracleChallenges } = await import("./oracle");
+    await settleOracleChallenges(matchId, result);
+  } catch (e) {
+    console.error(`[resolve] settleOracleChallenges falló en ${matchId}:`, e);
+  }
+
   return {
     match_id: matchId,
     predictions_resolved: resolvedCount,

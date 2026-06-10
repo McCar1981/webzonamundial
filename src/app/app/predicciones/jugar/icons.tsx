@@ -71,6 +71,31 @@ export const TIER_ICON: Record<string, LucideIcon> = {
   Diamante: Gem,
 };
 
+// ─── El Oráculo (icono propio: ojo con balón de iris y destellos) ────────────
+export function OracleIcon({ size = 16, color = "currentColor" }: { size?: number; color?: string }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color}
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      {/* párpados */}
+      <path d="M2.2 12c2.8-4.6 6-6.9 9.8-6.9s7 2.3 9.8 6.9c-2.8 4.6-6 6.9-9.8 6.9S5 16.6 2.2 12Z" />
+      {/* iris-balón: pentágono central y radios */}
+      <circle cx="12" cy="12" r="3.5" />
+      <path d="M12 9.4v1.5M9.4 11.2l1.3.9M14.6 11.2l-1.3.9M10.5 14.7l.7-1.3M13.5 14.7l-.7-1.3" strokeWidth="1.3" />
+      {/* destellos de clarividencia */}
+      <path d="M12 2.2v1.4M4.4 4.9l1 1M19.6 4.9l-1 1" strokeWidth="1.3" />
+    </svg>
+  );
+}
+
 // Iconos sueltos reutilizados por la UI.
 export {
   ArrowLeft, Award, Brain, Calendar, Check, CheckCircle2, ChevronRight, Circle, Clock, Coins,

@@ -18,8 +18,8 @@ import LiveMicroPicks from "./LiveMicroPicks";
 import PrediccionAIAnalysis, { type AISuggestion } from "./PrediccionAIAnalysis";
 import { handleProRequired } from "@/lib/pro/paywall-client";
 import {
-  TYPE_ICON, TIER_ICON,
-  ArrowLeft, Calendar, Check, CheckCircle2, ChevronRight, Clock, Coins, Flame, Gem, Gift, Globe, Pencil, Radio, ShieldCheck, Sparkles, Timer, TrendingDown, TrendingUp, Trophy, Users, X, Zap,
+  TYPE_ICON, TIER_ICON, OracleIcon,
+  ArrowLeft, Calendar, Check, CheckCircle2, ChevronRight, Clock, Coins, Flame, Gem, Gift, Globe, Lock, Pencil, Radio, ShieldCheck, Sparkles, Swords, Timer, TrendingDown, TrendingUp, Trophy, Users, X, Zap,
 } from "./icons";
 import {
   MINUTE_RANGES,
@@ -1454,6 +1454,8 @@ function MatchDetailView({
 
       <PrediccionAIAnalysis match={match} onApply={applyAI} />
 
+      <OracleCard match={match} hasWinner={completedTypes.has("winner")} />
+
       {loading && !state && <p style={{ color: DIM, textAlign: "center", padding: 24 }}>Cargando predicciones…</p>}
       {!loading && loadFailed && !state && (
         <div style={{ textAlign: "center", padding: 24, background: BG3, border: `1px solid ${RED}40`, borderRadius: 14 }}>
@@ -1847,6 +1849,118 @@ function CompletedView({ p, type, scorers, duels, liveNow, canSecure, onSecured,
           <Pencil size={13} /> Editar predicción
         </button>
       )}
+    </div>
+  );
+}
+
+// ─── Reta al Oráculo ─────────────────────────────────────────────────────────
+interface OracleStateOut {
+  sealed: boolean;
+  can_challenge: boolean;
+  pick: { winner: WinnerResult; score: { home: number; away: number }; reasoning: string } | null;
+  my_challenge: {
+    user_pick: { result: WinnerResult };
+    oracle_pick: { winner: WinnerResult; score: { home: number; away: number } };
+    outcome: "user" | "oracle" | "tie" | null;
+    reward_coins: number | null;
+    resolved_at: string | null;
+  } | null;
+  scoreboard: { user: number; oracle: number; tie: number };
+}
+
+function OracleCard({ match, hasWinner }: { match: Match; hasWinner: boolean }) {
+  const [st, setSt] = useState<OracleStateOut | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState<string | null>(null);
+
+  const load = useCallback(async () => {
+    try {
+      const r = await fetch(`/api/predictions/oracle?match_id=${match.i}`);
+      if (!r.ok) return;
+      setSt((await r.json()) as OracleStateOut);
+    } catch { /* la card simplemente no se pinta */ }
+  }, [match.i]);
+
+  useEffect(() => { void load(); }, [load, hasWinner]);
+
+  const challenge = async () => {
+    setBusy(true);
+    setErr(null);
+    try {
+      const r = await fetch("/api/predictions/oracle/challenge", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ match_id: String(match.i) }),
+      });
+      const j = (await r.json().catch(() => null)) as { message?: string } | null;
+      if (!r.ok) { setErr(j?.message ?? "No se pudo sellar el reto"); return; }
+      await load();
+    } catch {
+      setErr("Sin conexión, reintenta");
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  if (!st) return null;
+
+  const teamName = (w: WinnerResult) => (w === "home" ? match.h : w === "away" ? match.a : "Empate");
+  const ch = st.my_challenge;
+  const PURPLE = "#a78bfa";
+
+  return (
+    <div style={{ background: BG3, border: `1px solid color-mix(in srgb, ${PURPLE} 35%, transparent)`, borderRadius: 14, padding: 14 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <span style={{ color: PURPLE, display: "inline-flex" }}><OracleIcon size={18} /></span>
+        <span style={{ fontWeight: 900, fontSize: 14, color: TEXT }}>Reta al Oráculo</span>
+        <span style={{ marginLeft: "auto", fontSize: 11, fontWeight: 800, color: MID, display: "inline-flex", alignItems: "center", gap: 5, background: "rgba(255,255,255,0.05)", border: CARD_BORDER, borderRadius: 99, padding: "4px 10px" }}>
+          <Users size={12} /> {st.scoreboard.user} — {st.scoreboard.oracle} <OracleIcon size={12} />
+        </span>
+      </div>
+
+      {ch ? (
+        ch.resolved_at ? (
+          <div style={{ marginTop: 10, display: "flex", alignItems: "center", gap: 8, fontWeight: 800, fontSize: 13.5, color: ch.outcome === "user" ? GREEN : ch.outcome === "oracle" ? RED : MID }}>
+            {ch.outcome === "user" ? <Trophy size={15} /> : ch.outcome === "oracle" ? <OracleIcon size={15} /> : <Swords size={15} />}
+            {ch.outcome === "user"
+              ? <>Domaste al Oráculo · +{ch.reward_coins ?? 0} Fútcoins</>
+              : ch.outcome === "oracle" ? "El Oráculo acertó esta vez" : <>Tablas · +{ch.reward_coins ?? 0} Fútcoins</>}
+          </div>
+        ) : (
+          <div style={{ marginTop: 10, fontSize: 13, color: MID, display: "flex", alignItems: "center", gap: 7 }}>
+            <Swords size={14} color={PURPLE} />
+            <span>Reto sellado: tú dices <b style={{ color: TEXT }}>{teamName(ch.user_pick.result)}</b>, él dice <b style={{ color: PURPLE }}>{teamName(ch.oracle_pick.winner)}</b>. Se resuelve al pitido final.</span>
+          </div>
+        )
+      ) : st.sealed ? (
+        <div style={{ marginTop: 10, fontSize: 13, color: MID, display: "flex", alignItems: "center", gap: 7 }}>
+          <Lock size={14} />
+          <span>El Oráculo ya selló su pronóstico. Envía tu predicción de <b style={{ color: GOLD2 }}>Ganador</b> para verlo y retarle.</span>
+        </div>
+      ) : st.pick ? (
+        <div style={{ marginTop: 10 }}>
+          <div style={{ fontSize: 13.5, color: TEXT }}>
+            El Oráculo dice: <b style={{ color: PURPLE }}>{teamName(st.pick.winner)}</b>
+            <span style={{ fontWeight: 800, color: MID }}> · {st.pick.score.home}–{st.pick.score.away}</span>
+          </div>
+          <div style={{ fontSize: 11.5, color: DIM, marginTop: 4 }}>{st.pick.reasoning}</div>
+          {st.can_challenge && (
+            <button
+              disabled={busy}
+              onClick={challenge}
+              style={{
+                marginTop: 10, width: "100%", padding: "9px 12px", borderRadius: 10, cursor: "pointer", minHeight: 42,
+                background: `color-mix(in srgb, ${PURPLE} 14%, transparent)`, border: `1px solid color-mix(in srgb, ${PURPLE} 45%, transparent)`,
+                color: PURPLE, fontWeight: 800, fontSize: 13, display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 6,
+                opacity: busy ? 0.6 : 1,
+              }}
+            >
+              <Swords size={15} /> {busy ? "Sellando reto…" : "Retarle: si le ganas, +40 Fútcoins"}
+            </button>
+          )}
+        </div>
+      ) : null}
+      {err && <div style={{ color: RED, fontSize: 12, marginTop: 8 }}>{err}</div>}
     </div>
   );
 }

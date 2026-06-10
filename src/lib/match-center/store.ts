@@ -87,6 +87,19 @@ export function buildMeta(matchId: number): MatchMeta | null {
  * Devuelve null si aún no hay mapeo (se servirá simulación).
  */
 export async function getFixtureId(matchId: number): Promise<number | null> {
+  // Partido de PRUEBA (id 9002): rastrea un amistoso REAL que cambia de día y de
+  // rival, así que SIEMPRE re-resolvemos en fresco contra api-football (liga 10,
+  // nombres en inglés) y reescribimos KV — así un fixture viejo cacheado de una
+  // configuración anterior (otro rival/fecha) nunca "se queda pegado".
+  if (matchId === 9002) {
+    const { findFriendlyFixtureId } = await import("@/lib/friendlies/api");
+    const fid = await findFriendlyFixtureId("Portugal", "Nigeria");
+    if (fid) {
+      await setFixtureId(matchId, fid);
+      return fid;
+    }
+    // La API aún no expone el fixture: cae al posible valor de KV/env de respaldo.
+  }
   if (isKvEnabled()) {
     try {
       const v = await kv.get<number>(`${FIXTURE_PREFIX}${matchId}`);
@@ -103,16 +116,6 @@ export async function getFixtureId(matchId: number): Promise<number | null> {
       if (typeof v === "number") return v;
     } catch {
       /* ignore */
-    }
-  }
-  // Partido de PRUEBA (id 9002): autoresuelve el fixture real del amistoso
-  // Portugal-Chile desde api-football (nombres en inglés) y lo cachea en KV.
-  if (matchId === 9002) {
-    const { findFriendlyFixtureId } = await import("@/lib/friendlies/api");
-    const fid = await findFriendlyFixtureId("Portugal", "Chile");
-    if (fid) {
-      await setFixtureId(matchId, fid);
-      return fid;
     }
   }
   return null;

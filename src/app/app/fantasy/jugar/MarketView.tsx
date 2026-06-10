@@ -31,6 +31,8 @@ interface Props {
   budgetRemaining: number;
   selectingSlot: SquadSlot | null;
   onPick: (playerId: string, slotId?: string) => void;
+  /** Liga Draft: playerId → manager que ya lo tiene (esos se muestran bloqueados). */
+  draftTaken?: Map<string, string> | null;
 }
 
 type SortKey = "value" | "price" | "points" | "form" | "mult" | "trend";
@@ -57,7 +59,7 @@ function signedDelta(p: FantasyPlayer): number {
   return p.priceTrend === "up" ? p.priceDelta : p.priceTrend === "down" ? -p.priceDelta : 0;
 }
 
-export default function MarketView({ ownedIds, nationCounts, budgetRemaining, selectingSlot, onPick }: Props) {
+export default function MarketView({ ownedIds, nationCounts, budgetRemaining, selectingSlot, onPick, draftTaken }: Props) {
   const pool = useMemo(() => getPlayerPool(), []);
   const teams = useMemo(() => {
     const seen = new Map<string, string>();
@@ -164,7 +166,9 @@ export default function MarketView({ ownedIds, nationCounts, budgetRemaining, se
           const owned = ownedIds.has(p.id);
           const tooPricey = p.price > budgetRemaining + 1e-6;
           const nationFull = (nationCounts[p.teamSlug] ?? 0) >= 3 && !owned;
-          const disabled = owned || tooPricey || nationFull || !p.available;
+          // Liga Draft: jugador con dueño en mi liga → bloqueado en el mercado.
+          const takenBy = !owned ? draftTaken?.get(p.id) ?? null : null;
+          const disabled = owned || tooPricey || nationFull || !p.available || !!takenBy;
           const picked = compareMode && !!compareSel.find((x) => x.id === p.id);
           return (
             <div key={p.id} style={{ background: BG2, border: "1px solid " + (picked ? GOLD : "rgba(255,255,255,0.07)"), borderRadius: 12, padding: 12, display: "flex", flexDirection: "column", gap: 8 }}>
@@ -217,7 +221,7 @@ export default function MarketView({ ownedIds, nationCounts, budgetRemaining, se
                 disabled={disabled}
                 style={{ marginTop: "auto", padding: "8px 10px", borderRadius: 9, border: "none", fontWeight: 800, fontSize: 13, cursor: disabled ? "not-allowed" : "pointer", background: disabled ? "rgba(255,255,255,0.08)" : `linear-gradient(135deg,${GOLD},${GOLD2})`, color: disabled ? MID : "#060B14" }}
               >
-                {owned ? "✓ En tu equipo" : nationFull ? "Máx. 3 de su país" : tooPricey ? "Fuera de presupuesto" : "＋ Fichar"}
+                {owned ? "✓ En tu equipo" : takenBy ? `🔒 De ${takenBy} (Draft)` : nationFull ? "Máx. 3 de su país" : tooPricey ? "Fuera de presupuesto" : "＋ Fichar"}
               </button>
             </div>
           );

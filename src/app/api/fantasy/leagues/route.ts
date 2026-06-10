@@ -30,7 +30,7 @@ export async function POST(req: Request) {
   const { limited } = await rateLimitByUser(user.id, "fantasy:leagues:write", 20, 60);
   if (limited) return NextResponse.json({ error: "rate_limited", message: "Demasiados intentos. Espera un momento." }, { status: 429 });
 
-  let body: { name?: string; code?: string };
+  let body: { name?: string; code?: string; draft?: boolean };
   try { body = await req.json(); } catch { return NextResponse.json({ error: "bad_request" }, { status: 400 }); }
 
   if (body.code) {
@@ -54,9 +54,10 @@ export async function POST(req: Request) {
       };
       return NextResponse.json(payload, { status: 403 });
     }
-    const result = await createLeague(user.id, body.name.trim());
+    // body.draft → liga con jugadores exclusivos (modo Draft).
+    const result = await createLeague(user.id, body.name.trim(), body.draft === true);
     if (!result.ok) {
-      const status = result.error === "too_many_leagues" ? 409 : 400;
+      const status = result.error === "too_many_leagues" || result.error === "draft_limit" ? 409 : 400;
       return NextResponse.json(result, { status });
     }
     return NextResponse.json(result, { status: 201 });

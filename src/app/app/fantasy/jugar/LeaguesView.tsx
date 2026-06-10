@@ -7,6 +7,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { getPlayerById } from "@/lib/fantasy/players";
 import type { FantasyTeamState } from "@/lib/fantasy/types";
 import { BG2, BG3, GOLD, GOLD2, MID, DIM, GREEN, RED } from "./fx";
 import {
@@ -148,6 +149,7 @@ function RealLeagues({ team }: { team: FantasyTeamState }) {
   const [busy, setBusy] = useState(false); // bloquea doble-clic en crear/unirse
   const [panel, setPanel] = useState(false);
   const [newName, setNewName] = useState("");
+  const [newDraft, setNewDraft] = useState(false);
   const [joinCode, setJoinCode] = useState("");
   const [msg, setMsg] = useState<{ text: string; kind: "ok" | "error" } | null>(null);
   const flash = useCallback((text: string, kind: "ok" | "error" = "ok") => setMsg({ text, kind }), []);
@@ -189,15 +191,15 @@ function RealLeagues({ team }: { team: FantasyTeamState }) {
     const name = newName.trim();
     if (!name) { flash("Ponle nombre a tu liga.", "error"); return; }
     setBusy(true);
-    const res = await createServerLeague(name);
+    const res = await createServerLeague(name, newDraft);
     setBusy(false);
     if (res.ok && res.league) {
       await reloadLeagues();
-      setNewName(""); setPanel(false); setActive("code:" + res.league.id);
-      flash(`Liga creada. Comparte el código ${res.league.code}.`, "ok");
+      setNewName(""); setNewDraft(false); setPanel(false); setActive("code:" + res.league.id);
+      flash(`Liga ${res.league.is_draft ? "Draft " : ""}creada. Comparte el código ${res.league.code}.`, "ok");
     } else if (!res.proRequired) {
       // proRequired ya abrió el paywall; no duplicamos con un error rojo.
-      flash("No se pudo crear la liga.", "error");
+      flash(res.error === "draft_limit" ? "Solo puedes estar en una liga Draft a la vez." : "No se pudo crear la liga.", "error");
     }
   };
   const join = async () => {
@@ -210,8 +212,23 @@ function RealLeagues({ team }: { team: FantasyTeamState }) {
     if (res.ok && res.league) {
       await reloadLeagues();
       setJoinCode(""); setPanel(false); setActive("code:" + res.league.id);
-      flash(`Te uniste a ${res.league.name}.`, "ok");
-    } else flash(res.error === "league_not_found" ? "No existe una liga con ese código." : "No se pudo unir.", "error");
+      if (res.conflicts?.length) {
+        // Liga Draft: entró, pero parte de su plantilla ya tiene dueño aquí.
+        const who = res.conflicts
+          .map((c) => `${getPlayerById(c.player_id)?.name ?? c.player_id} (de ${c.held_by})`)
+          .join(", ");
+        flash(`Te uniste a ${res.league.name} (Draft). Ya tienen dueño: ${who}. Véndelos para poder cambiar tu equipo.`, "error");
+      } else {
+        flash(`Te uniste a ${res.league.name}.`, "ok");
+      }
+    } else {
+      flash(
+        res.error === "league_not_found" ? "No existe una liga con ese código."
+          : res.error === "draft_limit" ? "Solo puedes estar en una liga Draft a la vez."
+          : "No se pudo unir.",
+        "error",
+      );
+    }
   };
   const leave = async (id: string, owner: boolean) => {
     if (owner && !confirm("Eres el dueño: salir BORRARÁ la liga para todos. ¿Continuar?")) return;
@@ -257,6 +274,15 @@ function RealLeagues({ team }: { team: FantasyTeamState }) {
           <div>
             <div style={{ fontSize: 12, fontWeight: 800, color: GOLD2, marginBottom: 8, display: "flex", alignItems: "center", gap: 6 }}><IconPlus />Crear liga privada{!isPro && <ProBadge size={9} />}</div>
             <input value={newName} onChange={(e) => setNewName(e.target.value)} placeholder="Nombre de la liga" style={{ ...inputStyle, width: "100%", marginBottom: 8 }} />
+            <label style={{ display: "flex", alignItems: "center", gap: 7, fontSize: 12, fontWeight: 700, color: newDraft ? GOLD2 : MID, marginBottom: 4, cursor: "pointer", userSelect: "none" }}>
+              <input type="checkbox" checked={newDraft} onChange={(e) => setNewDraft(e.target.checked)} style={{ accentColor: GOLD, width: 14, height: 14, cursor: "pointer" }} />
+              <IconLock size={13} />Draft: jugadores exclusivos
+            </label>
+            <div style={{ fontSize: 11, color: DIM, lineHeight: 1.5, marginBottom: 8 }}>
+              {newDraft
+                ? "El primero que ficha a un jugador se lo queda: nadie más de la liga podrá tenerlo. Solo se puede estar en una liga Draft a la vez."
+                : "Liga clásica: cada manager ficha con libertad (los equipos pueden repetir jugadores)."}
+            </div>
             <button onClick={create} disabled={busy} style={{ width: "100%", padding: "9px 12px", borderRadius: 9, border: "none", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: "#060B14", fontWeight: 800, fontSize: 13, cursor: busy ? "default" : "pointer", opacity: busy ? 0.6 : 1 }}>{busy ? "Creando…" : "Crear y generar código"}</button>
           </div>
           <div>
@@ -282,6 +308,7 @@ function RealLeagues({ team }: { team: FantasyTeamState }) {
           ) : (
             <>
               <span style={{ fontSize: 13, fontWeight: 800 }}>{activeLeague.name}</span>
+              {activeLeague.is_draft && <span title="Jugadores exclusivos: si un manager tiene a un jugador, nadie más de la liga puede ficharlo." style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11, fontWeight: 800, color: GOLD2, border: `1px solid ${GOLD}66`, background: `${GOLD}1c`, borderRadius: 6, padding: "2px 7px" }}><IconLock size={11} />Draft</span>}
               {leagueOwner && <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 11, fontWeight: 800, color: "#060B14", background: GOLD2, borderRadius: 6, padding: "2px 7px" }}><IconCrown size={12} color="#060B14" />Dueño</span>}
               {leagueOwner && <button onClick={() => { setRenaming(true); setRenameVal(activeLeague.name); }} style={{ padding: "5px 10px", borderRadius: 8, border: "1px solid rgba(255,255,255,0.15)", background: BG2, color: "#fff", fontWeight: 700, fontSize: 12, cursor: "pointer" }}>Renombrar</button>}
             </>
@@ -291,6 +318,12 @@ function RealLeagues({ team }: { team: FantasyTeamState }) {
           <span style={{ fontSize: 12, color: MID }}>{activeLeague.member_count} managers</span>
           <div style={{ flex: 1 }} />
           <button onClick={() => leave(activeLeague.id, leagueOwner)} style={{ padding: "5px 10px", borderRadius: 8, border: `1px solid ${RED}55`, background: "transparent", color: "#fca5a5", fontWeight: 700, fontSize: 12, cursor: "pointer" }}>{leagueOwner ? "Borrar liga" : "Salir"}</button>
+        </div>
+      )}
+
+      {activeLeague?.is_draft && (
+        <div style={{ fontSize: 11.5, color: DIM, lineHeight: 1.5, marginBottom: 12, display: "flex", alignItems: "center", gap: 6 }}>
+          <IconLock size={12} color={DIM} />Liga Draft: cada jugador pertenece al primero que lo fichó. Los pillados aparecen bloqueados en el Mercado.
         </div>
       )}
 

@@ -43,7 +43,7 @@ function norm(s: string): string {
     .trim();
 }
 
-function namesMatch(a: string | undefined, b: string | undefined): boolean {
+export function namesMatch(a: string | undefined, b: string | undefined): boolean {
   if (!a || !b) return false;
   const na = norm(a);
   const nb = norm(b);

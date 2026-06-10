@@ -142,6 +142,9 @@ export interface PredictionRow {
   locked_at: string | null;
   resolved_at: string | null;
   created_at: string;
+  /** "Asegurar ahora": vendida en vivo a puntos fijos (sin multiplicadores). */
+  secured_at?: string | null;
+  secured_points?: number | null;
 }
 
 // ─── Datos reales del partido (para resolución) ──────────────────────────────

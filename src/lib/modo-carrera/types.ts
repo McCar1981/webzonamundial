@@ -35,10 +35,16 @@ export interface DTIdentity {
 export interface Progression {
   /** Valoración global del DT, 0-99 (estilo overall FIFA). */
   overall: number;
-  /** Experiencia acumulada en el nivel actual. */
+  /** Experiencia acumulada en el nivel actual (residual, < xpToNext). */
   xp: number;
   /** XP necesaria para subir de nivel (crece con el overall). */
   xpToNext: number;
+  /**
+   * XP TOTAL acumulada en toda la carrera (nunca decrece). Es la fuente
+   * autoritativa de la que el servidor deriva el overall del ranking: a
+   * diferencia de `xp` (residual del nivel actual), reconstruye el overall real.
+   */
+  xpTotal: number;
   /** Moral del vestuario, 0-100 (afecta rendimiento). */
   morale: number;
   /** Temporada actual de la carrera. */
@@ -120,6 +126,8 @@ export interface NarrativeEntry {
   /** Opción elegida por el usuario, si aplica. */
   chosen?: string | null;
 }
+
+export const NARRATIVE_KINDS: readonly NarrativeKind[] = ["briefing", "titular", "rueda_prensa", "evento"];
 
 // ─── Pilar 7: Legado DT ──────────────────────────────────────────────────────
 export interface Trophy {
@@ -305,7 +313,6 @@ export interface CareerState {
 /** Entrada del ranking global de DTs (cruza usuarios). */
 export interface CareerRankEntry {
   position: number;
-  user_id: string;
   dt_name: string;
   nation_slug: string | null;
   display_name: string;

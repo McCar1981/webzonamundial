@@ -167,6 +167,21 @@ export function xpRequired(overall: number): number {
   return Math.round(60 + overall * overall * 0.16);
 }
 
+/** Nivel inicial del DT (overall de partida). La curva de XP arranca aquí. */
+export const START_OVERALL = 50;
+
+/**
+ * XP TOTAL acumulada necesaria para alcanzar `overall` desde el nivel inicial.
+ * Inversa de `xpRequired`: el servidor deriva el overall autoritativo del ranking
+ * a partir de la XP total, y los saves antiguos (sin `xpTotal`) lo reconstruyen
+ * con esta función. `cumulativeXpForOverall(START_OVERALL) === 0`.
+ */
+export function cumulativeXpForOverall(overall: number): number {
+  let total = 0;
+  for (let k = START_OVERALL; k < overall; k++) total += xpRequired(k);
+  return total;
+}
+
 // ─── Misiones semilla (Pilar 4) ──────────────────────────────────────────────
 // Plantillas base; el motor de misiones (fase posterior) generará instancias
 // con fechas e ids concretos. Aquí solo el catálogo de referencia.

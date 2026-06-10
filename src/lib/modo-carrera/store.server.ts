@@ -15,15 +15,17 @@ import { missionKey, legitMissionIds } from "./missions";
 import type { CareerState, CareerRankEntry } from "./types";
 
 /**
- * H-001-21: Recalcula overall desde XP de forma autoritativa (server-side).
- * Evita que el cliente envíe overall=99 con xp=0.
+ * H-001-21: Recalcula el overall desde la XP TOTAL de la carrera, de forma
+ * autoritativa (server-side). Evita que el cliente envíe overall=99 con xp=0.
+ * El argumento debe ser `progression.xpTotal` (XP acumulada de toda la carrera),
+ * NO `progression.xp` (residual del nivel actual).
  */
-function deriveOverallFromXp(xp: number): number {
+function deriveOverallFromXp(xpTotal: number): number {
   let overall = 50; // nivel inicial
   let accumulated = 0;
   while (overall < 99) {
     const needed = xpRequired(overall);
-    if (accumulated + needed > xp) break;
+    if (accumulated + needed > xpTotal) break;
     accumulated += needed;
     overall++;
   }
@@ -48,7 +50,10 @@ export async function saveCareer(userId: string, state: CareerState): Promise<vo
   const safe = normalizeCareer(state);
 
   // H-001-21: Recalcular overall y reputation server-side (no confiar en cliente).
-  const serverOverall = deriveOverallFromXp(safe.progression.xp);
+  // OJO: se deriva de xpTotal (XP de TODA la carrera), no de progression.xp, que
+  // es solo la XP residual del nivel actual (< xpToNext). Usar el residual hacía
+  // que el ranking guardara overall≈50 para todos.
+  const serverOverall = deriveOverallFromXp(safe.progression.xpTotal);
   // Reputation se deriva de los stats (que ya están acotados por normalizeCareer).
   const repStats = safe.reputation.stats;
   const serverReputation =
@@ -156,6 +161,9 @@ export async function getCareerLeaderboard(limit = 50): Promise<CareerRankEntry[
     overall: number;
     reputation: number;
   }[];
+  // user_id (UUID de Supabase Auth) se usa SOLO server-side para unir con perfiles;
+  // NUNCA se serializa en la respuesta pública del ranking (evita filtrar el id de
+  // auth de cada usuario, que es la clave de RLS).
 
   const ids = rows.map((r) => r.user_id);
   const { data: profs } = ids.length
@@ -170,7 +178,6 @@ export async function getCareerLeaderboard(limit = 50): Promise<CareerRankEntry[
 
   return rows.map((r, i) => ({
     position: i + 1,
-    user_id: r.user_id,
     dt_name: r.dt_name || "Nuevo DT",
     nation_slug: r.nation_slug,
     display_name: pmap.get(r.user_id)?.username ?? "Anónimo",

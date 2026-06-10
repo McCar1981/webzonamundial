@@ -5,8 +5,9 @@
 // tolerar saves antiguos o corruptos. Al iniciar sesión, CareerGame sincroniza
 // este estado con Supabase via /api/modo-carrera/save.
 
-import type { CareerState, SeasonState, SeasonMatch, TournamentStage, MatchOutcome, BoardState, BoardDemand, BoardVerdict, StreakState, Mission, MissionKind, MissionStatus, Trophy, SquadState, Injury, Suspension, SuspensionReason, PrepPlan } from "./types";
-import { CAREER_STORAGE_KEY, CAREER_SCHEMA_VERSION, xpRequired, TITLES } from "./constants";
+import type { CareerState, SeasonState, SeasonMatch, TournamentStage, MatchOutcome, BoardState, BoardDemand, BoardVerdict, StreakState, Mission, MissionKind, MissionStatus, Trophy, SquadState, Injury, Suspension, SuspensionReason, PrepPlan, Rivalry, NarrativeEntry, NarrativeKind } from "./types";
+import { NARRATIVE_KINDS } from "./types";
+import { CAREER_STORAGE_KEY, CAREER_SCHEMA_VERSION, xpRequired, cumulativeXpForOverall, TITLES } from "./constants";
 import { sumReputation } from "./engine";
 
 /** Partida vacía inicial (DT sin crear todavía). */
@@ -25,6 +26,7 @@ export function defaultCareer(): CareerState {
       overall: 50,
       xp: 0,
       xpToNext: xpRequired(50),
+      xpTotal: 0,
       morale: 70,
       season: 1,
     },
@@ -105,6 +107,51 @@ function normalizeTrophy(raw: unknown): Trophy | null {
     name: typeof t.name === "string" ? t.name.slice(0, 80) : "Trofeo",
     season: clampInt(t.season, 1, 999, 1),
     wonAt: typeof t.wonAt === "string" ? t.wonAt : new Date().toISOString(),
+  };
+}
+
+const NARRATIVE_KIND_SET = new Set<NarrativeKind>(NARRATIVE_KINDS);
+
+/**
+ * Valida una rivalidad elemento a elemento. Antes se volcaba el array del cliente
+ * tal cual (Array.isArray sin más): permitía inyectar objetos arbitrarios que se
+ * persistían en BD y se reenviaban. Acota campos y descarta basura.
+ */
+function normalizeRivalry(raw: unknown): Rivalry | null {
+  if (!raw || typeof raw !== "object") return null;
+  const r = raw as Partial<Rivalry>;
+  if (typeof r.rival !== "string" || !r.rival) return null;
+  return {
+    rival: r.rival.slice(0, 60),
+    intensity: clampInt(r.intensity, 0, 100, 0),
+    wins: clampInt(r.wins, 0, 1_000_000, 0),
+    losses: clampInt(r.losses, 0, 1_000_000, 0),
+  };
+}
+
+/**
+ * Valida una entrada de narrativa. Era la ÚNICA colección persistida sin sanear:
+ * el cliente podía inyectar `kind`/`choices`/`body` arbitrarios (texto sin tope)
+ * que acababan en BD y se re-servían. Acota el texto y valida la forma.
+ */
+function normalizeNarrativeEntry(raw: unknown): NarrativeEntry | null {
+  if (!raw || typeof raw !== "object") return null;
+  const n = raw as Partial<NarrativeEntry>;
+  if (typeof n.id !== "string" || !n.id) return null;
+  if (!NARRATIVE_KIND_SET.has(n.kind as NarrativeKind)) return null;
+  const choices = Array.isArray(n.choices)
+    ? n.choices
+        .filter((c): c is { id: string; label: string; effect: string } => !!c && typeof c === "object" && typeof (c as { id?: unknown }).id === "string")
+        .slice(0, 4)
+        .map((c) => ({ id: c.id.slice(0, 40), label: String(c.label ?? "").slice(0, 120), effect: String(c.effect ?? "").slice(0, 120) }))
+    : undefined;
+  return {
+    id: n.id.slice(0, 80),
+    kind: n.kind as NarrativeKind,
+    body: typeof n.body === "string" ? n.body.slice(0, 600) : "",
+    createdAt: typeof n.createdAt === "string" ? n.createdAt : new Date().toISOString(),
+    ...(choices && choices.length ? { choices } : {}),
+    chosen: typeof n.chosen === "string" ? n.chosen.slice(0, 40) : null,
   };
 }
 
@@ -233,6 +280,7 @@ export function normalizeCareer(raw: Partial<CareerState> | null | undefined): C
   const leg: Partial<CareerState["legacy"]> = raw.legacy ?? {};
 
   const overall = clampInt(pr.overall, 0, 99, base.progression.overall);
+  const xpResidual = clampInt(pr.xp, 0, 1_000_000, 0);
 
   // Stats de reputación acotados; el total NO se confía al cliente, se recalcula.
   const repStats = {
@@ -255,11 +303,15 @@ export function normalizeCareer(raw: Partial<CareerState> | null | undefined): C
     },
     progression: {
       overall,
-      xp: clampInt(pr.xp, 0, 1_000_000, 0),
+      xp: xpResidual,
       // xpToNext es un valor DERIVADO del overall: lo recalculamos siempre con la
       // curva vigente en vez de confiar en el guardado, para que las partidas
       // antiguas adopten la curva nueva (antes quedaban ancladas a 2250).
       xpToNext: xpRequired(overall),
+      // xpTotal (XP de toda la carrera): si el save es antiguo y no lo trae, se
+      // reconstruye desde overall + xp residual para que el overall del ranking
+      // que el servidor deriva de aquí coincida con el real.
+      xpTotal: clampInt(pr.xpTotal, 0, 100_000_000, cumulativeXpForOverall(overall) + xpResidual),
       morale: clampInt(pr.morale, 0, 100, base.progression.morale),
       season: clampInt(pr.season, 1, 999, 1),
     },
@@ -280,12 +332,16 @@ export function normalizeCareer(raw: Partial<CareerState> | null | undefined): C
     reputation: {
       total: sumReputation(repStats),
       stats: repStats,
-      rivalries: Array.isArray(rep.rivalries) ? rep.rivalries : [],
+      rivalries: Array.isArray(rep.rivalries)
+        ? rep.rivalries.map(normalizeRivalry).filter((r): r is Rivalry => r !== null).slice(0, 50)
+        : [],
       titles: Array.isArray(rep.titles)
         ? rep.titles.filter((t): t is string => typeof t === "string" && VALID_TITLE_IDS.has(t))
         : [],
     },
-    narrative: Array.isArray(raw.narrative) ? raw.narrative.slice(0, 50) : [],
+    narrative: Array.isArray(raw.narrative)
+      ? raw.narrative.map(normalizeNarrativeEntry).filter((n): n is NarrativeEntry => n !== null).slice(0, 50)
+      : [],
     legacy: {
       trophies: Array.isArray(leg.trophies)
         ? leg.trophies.map(normalizeTrophy).filter((t): t is Trophy => t !== null).slice(0, 200)

@@ -120,7 +120,15 @@ function NotLinked({ email }: { email: string }) {
           </a>{" "}
           y lo activamos.
         </p>
-        <Link href="/app" className="inline-block mt-5 text-sm text-gray-300 underline">
+        {/* Salida para el administrador: aunque tenga sesión de usuario normal,
+            puede pasar a la gestión del programa con su contraseña de admin. */}
+        <Link
+          href="/admin/login?next=/admin/creadores"
+          className="block mt-5 rounded-xl border border-[#C9A84C]/40 bg-[#C9A84C]/10 px-4 py-3 text-sm font-bold text-[#C9A84C] transition-all hover:border-[#C9A84C]/70"
+        >
+          ¿Eres el administrador? Entra aquí →
+        </Link>
+        <Link href="/app" className="inline-block mt-4 text-sm text-gray-300 underline">
           Volver a la app
         </Link>
       </div>

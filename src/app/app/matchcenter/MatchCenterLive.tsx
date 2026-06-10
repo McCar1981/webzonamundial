@@ -14,6 +14,7 @@ import CommentsPanel from "./CommentsPanel";
 import { createSpeaker, type Speaker } from "@/lib/match-center/voice";
 import { createSound, type MatchSound } from "@/lib/match-center/sound";
 import { zoneForEvent } from "@/lib/match-center/zones";
+import { templateNarration } from "@/lib/match-center/templates";
 import FootballScoreboard from "@/components/FootballScoreboard";
 import { teamAbbr } from "@/lib/team-abbr";
 import { useEntitlements } from "@/components/pro/EntitlementsProvider";
@@ -22,6 +23,7 @@ import {
   EMPTY_STATS,
   type LiveStats,
   type MatchEvent,
+  type MatchEventType,
   type MatchFeed,
   type MatchMeta,
   type Pair,
@@ -113,11 +115,16 @@ function ambientLine(
   return pool[seed % pool.length];
 }
 
+// Reloj de juego en MINUTO:SEGUNDO. El feed da el minuto entero (elapsed) y el
+// tick local de 1 s rellena los segundos entre polls (aproximación honesta, el
+// reloj nunca retrocede — ver applySnapshot). Más allá del 90 se mantiene la
+// convención de añadido "90+X".
 function clockLabel(sec: number, finished: boolean): string {
   if (finished) return "FINAL";
   const mm = Math.floor(sec / 60);
-  if (mm <= 90) return `${Math.max(1, mm)}'`;
-  return `90+${mm - 90}'`;
+  const ss = String(Math.floor(sec % 60)).padStart(2, "0");
+  if (mm > 90) return `90+${mm - 90}:${ss}`;
+  return `${mm}:${ss}`;
 }
 
 // Estados api-football en los que el balón rueda (el reloj corre).
@@ -442,6 +449,14 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
   const statsRef = useRef<LiveStats>(EMPTY_STATS);
   const firedRef = useRef<Set<string>>(new Set());
   const lastGoalRef = useRef<MatchEvent | null>(null);
+  // Eventos SINTÉTICOS generados en cliente desde datos reales del snapshot:
+  // hitos de estado (inicio/descanso/reanudación/final) y actividad derivada de
+  // los deltas de stats (tiros/córners). Dan vida a la cronología y al campo
+  // entre los eventos mayores del feed (lo único que publica api-football).
+  const syntheticsRef = useRef<MatchEvent[]>([]);
+  const synthSeqRef = useRef(0);
+  // Última animación con balón: la deriva ambiental no pisa un FX reciente.
+  const lastFxAtRef = useRef(0);
   // Marca de tiempo (real) de la última locución mostrada. La usa el relleno
   // ambiente para no hablar encima de un evento reciente.
   const lastNarrAtRef = useRef(0);
@@ -485,9 +500,14 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
     speakerRef.current?.speak(text, { priority });
   }, []);
 
-  const narrationFor = useCallback((e: MatchEvent): string => {
-    return feedRef.current?.narration[e.id] || "";
-  }, []);
+  const narrationFor = useCallback(
+    (e: MatchEvent): string => {
+      // Frase del feed (IA o plantilla del servidor) y, si aún no llegó,
+      // plantilla local: la cronología nunca se queda muda.
+      return feedRef.current?.narration[e.id] || templateNarration(e, meta);
+    },
+    [meta],
+  );
 
   // Procesa un evento: animación + voz + marcador + log
   const fireEvent = useCallback(
@@ -556,6 +576,7 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
       }
       if (coords) {
         setBall({ x: coords.x, y: coords.y });
+        lastFxAtRef.current = Date.now();
       }
       const text = narrationFor(e);
       if (text) {
@@ -568,6 +589,32 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
       setLog((l) => [e, ...l].slice(0, 60));
     },
     [narrationFor, speak],
+  );
+
+  // Crea y dispara un evento SINTÉTICO (hito de estado o actividad derivada de
+  // stats). No inventa jugadas: cada uno nace de un dato real del snapshot
+  // (cambio de status, o un contador de tiros/córners que subió). Se conservan
+  // en syntheticsRef para que el merge de la cronología no los pierda.
+  const pushSynthetic = useCallback(
+    (
+      type: MatchEventType,
+      side: MatchEvent["side"],
+      minute: number,
+      detail?: string,
+    ) => {
+      synthSeqRef.current += 1;
+      const e: MatchEvent = {
+        id: `syn-${matchId}-${synthSeqRef.current}-${type}`,
+        t: minute * 60,
+        minute,
+        type,
+        side,
+        detail,
+      };
+      syntheticsRef.current = [e, ...syntheticsRef.current].slice(0, 40);
+      fireEvent(e, true);
+    },
+    [matchId, fireEvent],
   );
 
   // Carga del feed
@@ -615,6 +662,16 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
           setNarration(seedText);
           lastNarrAtRef.current = Date.now();
         }
+        // Partido EN JUEGO sin eventos mayores aún (típico primeros minutos):
+        // siembra el hito real de saque para que la cronología no nazca vacía.
+        if (isInPlay(data.status) && data.events.length === 0) {
+          pushSynthetic(
+            "kickoff",
+            "neutral",
+            1,
+            SECOND_HALF.has(data.status) ? "Segunda parte" : undefined,
+          );
+        }
       }
       setFeed(data);
     } catch (err) {
@@ -622,7 +679,7 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
     } finally {
       setLoading(false);
     }
-  }, [matchId, sim]);
+  }, [matchId, sim, pushSynthetic]);
 
   useEffect(() => {
     load();
@@ -676,6 +733,8 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
       const stamp = data.updatedAt ?? 0;
       if (stamp && stamp < lastAppliedRef.current) return; // más viejo: fuera
       if (stamp) lastAppliedRef.current = stamp;
+      const prevStatus = statusRef.current;
+      const prevStats = statsRef.current;
       feedRef.current = data;
       // Reloj sin retrocesos: avanza al minuto de la API; solo rebobina si la
       // deriva es grande (corrección real), no en cada poll (elapsed es entero
@@ -686,14 +745,49 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
       }
       setSec(secRef.current);
       setStats(data.stats);
-      // FX/voz solo para eventos nuevos…
-      for (const e of data.events) {
-        if (!firedRef.current.has(e.id)) fireEvent(e, true);
+      const mm = Math.max(1, Math.floor(data.elapsed || 0));
+      // HITOS reales por transición de estado: el feed nunca emite eventos de
+      // inicio/descanso/final, así que la cronología los gana aquí (silbato,
+      // entrada en el log y locución incluidos).
+      if (prevStatus && prevStatus !== data.status) {
+        if (prevStatus === "NS" && isInPlay(data.status)) {
+          pushSynthetic("kickoff", "neutral", 1);
+        } else if (data.status === "HT") {
+          pushSynthetic("half_time", "neutral", 45);
+        } else if (prevStatus === "HT" && isInPlay(data.status)) {
+          pushSynthetic("kickoff", "neutral", 46, "Segunda parte");
+        } else if (data.status === "FT" || data.status === "AET" || data.status === "PEN") {
+          pushSynthetic("full_time", "neutral", mm);
+        }
       }
-      // …pero la CRONOLOGÍA refleja SIEMPRE el snapshot tal cual: aparición
-      // inmediata al recibir los datos, orden correcto y los goles anulados
-      // por el VAR desaparecen del timeline (el log aditivo los dejaba fijos).
-      setLog([...data.events].reverse().slice(0, 60));
+      // FX/voz solo para eventos nuevos…
+      const newReal = data.events.filter((e) => !firedRef.current.has(e.id));
+      for (const e of newReal) fireEvent(e, true);
+      // ACTIVIDAD derivada de stats REALES: si entre polls subió el contador de
+      // tiros a puerta / córners / tiros de un equipo, se refleja como jugada en
+      // el campo y línea de cronología ("Remate de Portugal…"). Solo cuando no
+      // llegó ningún evento mayor en esta pasada (un gol ya cuenta su remate) y
+      // sin cambio de estado (los acumulados saltan raro al volver del descanso).
+      if (isInPlay(data.status) && prevStatus === data.status && newReal.length === 0) {
+        for (const i of [0, 1] as const) {
+          const side = i === 0 ? "home" : "away";
+          if ((data.stats.shotsOn[i] ?? 0) > (prevStats.shotsOn[i] ?? 0)) {
+            pushSynthetic("shot_on", side, mm);
+          } else if ((data.stats.corners[i] ?? 0) > (prevStats.corners[i] ?? 0)) {
+            pushSynthetic("corner", side, mm);
+          } else if ((data.stats.shots[i] ?? 0) > (prevStats.shots[i] ?? 0)) {
+            pushSynthetic("shot", side, mm);
+          }
+        }
+      }
+      // …pero la CRONOLOGÍA refleja SIEMPRE el snapshot (más los sintéticos):
+      // aparición inmediata al recibir los datos, orden correcto y los goles
+      // anulados por el VAR desaparecen del timeline (el log aditivo los
+      // dejaba fijos).
+      const merged = [...syntheticsRef.current, ...data.events].sort(
+        (a, b) => a.minute - b.minute || (a.extra ?? 0) - (b.extra ?? 0),
+      );
+      setLog(merged.reverse().slice(0, 60));
       setScore(data.score);
       setStatus(data.status);
       setKickoff(data.kickoff);
@@ -702,7 +796,7 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
       setFeed(data);
       if (data.status === "FT" || data.status === "AET" || data.status === "PEN") setFinished(true);
     },
-    [fireEvent],
+    [fireEvent, pushSynthetic],
   );
 
   const liveMode = feed?.mode === "live";
@@ -756,6 +850,25 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
   // Mantiene statsRef sincronizado para el relleno ambiente (lee sin re-crear
   // su intervalo en cada actualización de stats).
   useEffect(() => { statsRef.current = stats; }, [stats]);
+
+  // DERIVA ambiental del balón (solo live, partido en juego): el feed real solo
+  // publica eventos mayores, así que entre ellos el balón quedaba CLAVADO y el
+  // campo parecía muerto. Cada ~3,5 s el balón ronda el campo del equipo
+  // dominado usando la POSESIÓN real del snapshot (no inventa jugadas: solo
+  // refleja quién manda). Convención de zones.ts: home ataca hacia x=1; el flip
+  // de la 2ª parte lo aplica Pitch. No pisa animaciones de eventos recientes.
+  useEffect(() => {
+    if (!liveMode || finished || !isInPlay(status)) return;
+    const id = setInterval(() => {
+      if (Date.now() - lastFxAtRef.current < 6000) return;
+      const possHome = statsRef.current.possession[0] || 50;
+      const dom = Math.max(-1, Math.min(1, (possHome - 50) / 35)); // -1..1
+      const x = 0.5 + dom * 0.2 + (Math.random() - 0.5) * 0.3;
+      const y = 0.22 + Math.random() * 0.56;
+      setBall({ x: Math.min(0.92, Math.max(0.08, x)), y });
+    }, 3500);
+    return () => clearInterval(id);
+  }, [liveMode, finished, status]);
 
   // Locución AMBIENTE: si pasan >60s reales sin nueva locución y el partido está
   // en juego, emite una frase de relleno (posesión/minuto, datos reales) para
@@ -996,7 +1109,17 @@ export default function MatchCenterLive({ matchId, meta, sim, heroImage }: Props
     : null;
 
   return (
-    <div style={{ background: BG, color: "#fff", minHeight: "100vh", fontFamily: "'Outfit',sans-serif" }}>
+    // paddingBottom: la barra de navegación inferior de la app es fija; sin este
+    // colchón tapaba el final de la página (ficha del partido / módulos micro).
+    <div
+      style={{
+        background: BG,
+        color: "#fff",
+        minHeight: "100vh",
+        fontFamily: "'Outfit',sans-serif",
+        paddingBottom: "calc(88px + env(safe-area-inset-bottom))",
+      }}
+    >
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Oswald:wght@600;700&display=swap');
         @keyframes mcPulse{0%{opacity:.4}50%{opacity:1}100%{opacity:.4}}

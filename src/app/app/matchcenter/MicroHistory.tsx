@@ -266,7 +266,7 @@ export default function MicroHistory({ matchId }: { matchId: number }) {
                   {ghostable && !g && (
                     <div style={{ marginTop: 10 }}>
                       <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.5)", marginBottom: 6 }}>
-                        👻 Jugar en fantasma <span style={{ opacity: 0.7 }}>(práctica · puntos ×0.5, no afecta tu racha)</span>
+                        👻 Jugar en fantasma <span style={{ opacity: 0.7 }}>(práctica · solo XP ×0.5, sin monedas ni racha)</span>
                       </div>
                       <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                         {m.options.map((o) => (
@@ -318,7 +318,7 @@ export default function MicroHistory({ matchId }: { matchId: number }) {
                         {labelOf(m.options, g.option)}
                       </span>
                       <span style={{ marginLeft: "auto", color: g.is_correct ? OK : BAD, fontWeight: 800 }}>
-                        {g.is_correct ? `+${g.points} pts ×0.5` : "Fallaste"}
+                        {g.is_correct ? `+${g.points} XP ×0.5` : "Fallaste"}
                       </span>
                     </div>
                   )}

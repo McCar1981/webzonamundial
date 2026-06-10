@@ -34,7 +34,7 @@ const FIRE = [
 const MODES = [
   { emoji: "🤖", title: "Micros con IA", desc: "Cuando no hay un disparo claro, la IA redacta una micro contextual atada al partido en directo." },
   { emoji: "⚔️", title: "Duelo en Vivo", desc: "Reta a un amigo 1v1. Gana quien sume más micro-puntos cuando el partido termina." },
-  { emoji: "👻", title: "Modo Fantasma", desc: "¿Te perdiste una micro? Juégala a toro pasado para practicar. Puntos a ×0.5, sin afectar tu racha." },
+  { emoji: "👻", title: "Modo Fantasma", desc: "¿Te perdiste una micro? Juégala a toro pasado para practicar. Solo XP a ×0.5, sin monedas y sin afectar tu racha." },
 ];
 
 const STEPS = [

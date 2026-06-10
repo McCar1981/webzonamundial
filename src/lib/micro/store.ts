@@ -537,10 +537,12 @@ export interface GhostResult {
 
 /**
  * Juega una micro YA RESUELTA en modo Fantasma (replay/práctica): el usuario
- * adivina a toro pasado, se le dice al instante si acertó y gana puntos a ×0.5.
- * No afecta la Cadena de Fuego real (currentFireChain filtra ghost=false) y la
- * propia respuesta se marca resuelta al vuelo. Un usuario que ya la jugó en vivo
- * no puede repetirla en fantasma (índice único micro_id,user_id).
+ * adivina a toro pasado, se le dice al instante si acertó y gana XP a ×0.5 —
+ * NUNCA Fútcoins: la opción correcta es visible en el historial, así que pagar
+ * monedas sería un grifo infinito (anti-cheat). No afecta la Cadena de Fuego
+ * real (currentFireChain filtra ghost=false) y la propia respuesta se marca
+ * resuelta al vuelo. Un usuario que ya la jugó en vivo no puede repetirla en
+ * fantasma (índice único micro_id,user_id).
  */
 export async function respondGhostMicro(userId: string, microId: string, option: string): Promise<GhostResult> {
   const micro = await getMicroById(microId);
@@ -577,7 +579,8 @@ export async function respondGhostMicro(userId: string, microId: string, option:
     if ((error as { code?: string }).code === "23505") return { ok: false, error: "already_played" };
     return { ok: false, error: "insert_failed" };
   }
-  if (isCorrect && sc.points > 0) await payUser(userId, sc.points, sc.points);
+  // Solo XP (0 monedas): el fantasma es práctica, no fuente de Fútcoins.
+  if (isCorrect && sc.points > 0) await payUser(userId, 0, sc.points);
   return { ok: true, is_correct: isCorrect, correct_option: micro.correct_option, points: sc.points };
 }
 

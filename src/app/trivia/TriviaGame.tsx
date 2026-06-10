@@ -108,6 +108,9 @@ export default function TriviaGame() {
   const [removed, setRemoved] = useState<number[]>([]);
   const [hintBusy, setHintBusy] = useState(false);
   const [hintErr, setHintErr] = useState<string | null>(null);
+  // true mientras un POST /answer está en vuelo: bloquea doble-envío (doble clic
+  // o timeout del timer que coincide con un clic).
+  const [submitting, setSubmitting] = useState(false);
 
   const qStartRef = useRef<number>(0);
   const anonRef = useRef<string>("");
@@ -192,9 +195,10 @@ export default function TriviaGame() {
   }
 
   async function submitAnswer(choice: number) {
-    if (revealed) return;
+    if (revealed || submitting) return;
     const q = questions[idx];
     if (!q) return;
+    setSubmitting(true);
     setSelected(choice);
     const responseMs = Date.now() - qStartRef.current;
     try {
@@ -203,13 +207,28 @@ export default function TriviaGame() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ sessionId, questionId: q.id, choice, responseMs }),
       });
+      if (!r.ok) {
+        // 404 sesión expirada (TTL 1h), 409 ya respondida, 429 rate-limit. No
+        // tratamos el cuerpo de error como una respuesta válida (eso daba
+        // "undefined pts" y racha NaN): avisamos y dejamos reintentar.
+        setError(
+          r.status === 404
+            ? "Tu partida expiró. Vuelve al menú y empieza otra."
+            : "No se pudo registrar la respuesta. Inténtalo de nuevo.",
+        );
+        setSelected(null);
+        setSubmitting(false);
+        return;
+      }
       const data: AnswerResp = await r.json();
       setRevealed(data);
       setScore(data.totalPoints);
       setStreak(data.streak);
     } catch {
       setError("Error al enviar respuesta.");
+      setSelected(null);
     }
+    setSubmitting(false);
   }
 
   // Compra una pista 50/50 para la pregunta actual: el servidor cobra Fútcoins y
@@ -269,6 +288,20 @@ export default function TriviaGame() {
           anonId: anonRef.current,
         }),
       });
+      if (!r.ok) {
+        // La sesión pudo expirar (TTL 1h) o chocar con el rate-limit (429). No
+        // pintamos la pantalla de resultado con datos inválidos (eso crasheaba en
+        // points.toLocaleString()): avisamos y volvemos al menú.
+        setError(
+          r.status === 429
+            ? "Vas muy rápido. Espera unos segundos antes de volver a finalizar."
+            : "No pudimos guardar el resultado. Tu partida pudo expirar.",
+        );
+        setPhase("menu");
+        setLoading(false);
+        loadLeaderboard(lbPeriod);
+        return;
+      }
       const data: FinishResp = await r.json();
       setResult(data);
       setPhase("result");
@@ -361,11 +394,30 @@ export default function TriviaGame() {
             onAnswer={submitAnswer}
             onNext={next}
             loading={loading}
+            submitting={submitting}
             removed={removed}
             onFifty={buyFifty}
             hintBusy={hintBusy}
             hintErr={hintErr}
           />
+        )}
+
+        {phase === "playing" && !q && (
+          <div style={{ textAlign: "center", padding: "48px 0", color: MID }}>
+            <p style={{ marginBottom: 18, fontSize: 15 }}>
+              No hay preguntas disponibles en este momento. Inténtalo de nuevo en un rato.
+            </p>
+            <button
+              onClick={() => setPhase("menu")}
+              style={{
+                padding: "12px 24px", borderRadius: 12, border: "none", cursor: "pointer",
+                background: `linear-gradient(135deg,${GOLD},${GOLD2})`, color: BG,
+                fontWeight: 800, fontFamily: "inherit",
+              }}
+            >
+              Volver al menú
+            </button>
+          </div>
         )}
 
         {phase === "result" && result && (
@@ -534,6 +586,7 @@ function Play({
   onAnswer,
   onNext,
   loading,
+  submitting,
   removed,
   onFifty,
   hintBusy,
@@ -552,6 +605,7 @@ function Play({
   onAnswer: (c: number) => void;
   onNext: () => void;
   loading: boolean;
+  submitting: boolean;
   removed: number[];
   onFifty: () => void;
   hintBusy: boolean;
@@ -645,7 +699,7 @@ function Play({
             <button
               key={i}
               className="zm-opt"
-              disabled={!!revealed || isRemoved}
+              disabled={!!revealed || isRemoved || submitting}
               onClick={() => onAnswer(i)}
               style={{
                 textAlign: "left",
@@ -654,7 +708,7 @@ function Play({
                 background: bg,
                 border: `1.5px solid ${border}`,
                 color: "#fff",
-                cursor: revealed || isRemoved ? "default" : "pointer",
+                cursor: revealed || isRemoved || submitting ? "default" : "pointer",
                 fontSize: 15,
                 fontWeight: 600,
                 fontFamily: "inherit",
@@ -760,16 +814,14 @@ function Result({
   // hoy), mostramos los valores REALES de la billetera. Si está autenticado pero ya
   // cobró hoy, muestra 0. Para invitados mostramos una estimación como gancho.
   const claimed = Boolean(result.rewardClaimed);
-  const futcoins = claimed
-    ? result.futcoins ?? 0
-    : result.authed
-      ? 0
-      : Math.max(1, Math.round(result.points / 10));
-  const xp = claimed
-    ? result.xpAwarded ?? 0
-    : result.authed
-      ? 0
-      : result.points;
+  // Estimación para invitados (gancho de registro): debe COINCIDIR con lo que el
+  // servidor abonará al registrarse, no una cifra inventada. Misma fórmula que
+  // triviaSessionReward (coinsForResolved / xpForResolved): éxito = acertar ≥ 50%.
+  const estSuccess = result.answered > 0 && result.correct / result.answered >= 0.5;
+  const estCoins = estSuccess ? 10 + Math.round(result.points * 0.25) : 1;
+  const estXp = (estSuccess ? 15 : 3) + Math.round(result.points * 0.5);
+  const futcoins = claimed ? result.futcoins ?? 0 : result.authed ? 0 : estCoins;
+  const xp = claimed ? result.xpAwarded ?? 0 : result.authed ? 0 : estXp;
   const alreadyClaimed = Boolean(result.authed) && !claimed && result.recorded;
   const share = async () => {
     const text =

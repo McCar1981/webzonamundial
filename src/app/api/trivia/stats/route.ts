@@ -6,6 +6,7 @@
 import { NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { getUserStats } from "@/lib/trivia/store";
+import { isValidAnonId } from "@/lib/trivia/identity";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -13,11 +14,6 @@ export const dynamic = "force-dynamic";
 // Respuesta por usuario (cookie/anonId): cache PRIVADA del navegador. Evita
 // que cada navegación al lobby re-pegue a KV sin cachear nada compartido.
 const CACHE_HEADERS = { "Cache-Control": "private, max-age=30" };
-
-// El anonId lo genera el cliente como UUID y lo guarda en localStorage. Todo
-// lo que no parezca un id nuestro se descarta SIN tocar KV (anti-enumeración
-// y anti-basura: el día del Mundial este endpoint lo abre cada visitante).
-const ANON_ID_RE = /^[A-Za-z0-9_-]{8,40}$/;
 
 export async function GET(req: Request) {
   const url = new URL(req.url);
@@ -31,9 +27,15 @@ export async function GET(req: Request) {
   } catch {
     /* anon */
   }
+  // Sin sesión solo se pueden leer stats de una identidad anónima con formato
+  // válido (anon-…): así un ?anonId=<UUID ajeno> no permite espiar las stats de
+  // otro usuario (el id de un usuario autenticado es un UUID, nunca "anon-…").
+  // Esto también sirve de anti-enumeración: el día del Mundial este endpoint lo
+  // abre cada visitante y todo lo que no parezca un id nuestro se descarta sin
+  // tocar KV.
   if (!userId) {
     const anon = (url.searchParams.get("anonId") || "").trim();
-    if (ANON_ID_RE.test(anon)) userId = anon;
+    if (isValidAnonId(anon)) userId = anon;
   }
   if (!userId) {
     return NextResponse.json({ stats: null }, { headers: CACHE_HEADERS });

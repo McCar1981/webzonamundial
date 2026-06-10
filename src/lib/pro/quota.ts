@@ -11,7 +11,7 @@
 // incidente de infraestructura — mismo criterio que narrative-quota). Los
 // usuarios Pro NUNCA pasan por aquí: el gate comprueba isPro() antes.
 
-import { kv } from "@vercel/kv";
+import { kv } from "@/lib/kv";
 
 /** Día UTC en formato YYYY-MM-DD (clave determinista en servidor). */
 export function utcDay(ref: Date = new Date()): string {

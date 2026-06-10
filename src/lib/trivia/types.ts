@@ -122,7 +122,15 @@ export interface ServerSession {
   bestStreak: number;
   responseMsSum: number;
   finished: boolean;
+  /** Muerte Súbita: se pone a true al primer fallo. Congela la partida en el
+   *  servidor (no se aceptan más respuestas) para que el récord de supervivencia
+   *  no se pueda inflar ignorando el gameOver en el cliente. */
+  gameOver?: boolean;
   startedAt: string;
+  /** Epoch ms de la última interacción servida (inicio o última respuesta).
+   *  El servidor lo usa para acotar el responseMs del cliente en Modo Relámpago,
+   *  de modo que enviar responseMs=0 no regale el multiplicador de rapidez. */
+  lastTickAt?: number;
   /** Pistas 50/50 compradas: questionId → índices erróneos ya descartados.
    *  Sirve para no volver a cobrar si se re-pide la pista de la misma pregunta. */
   hints?: Record<string, number[]>;

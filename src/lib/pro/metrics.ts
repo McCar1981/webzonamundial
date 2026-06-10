@@ -11,7 +11,7 @@
 // Todo es best-effort y fire-and-forget: una métrica perdida no puede romper
 // ni retrasar una respuesta de juego.
 
-import { kv } from "@vercel/kv";
+import { kv } from "@/lib/kv";
 import { utcDay } from "./quota";
 import type { ProFeature } from "./limits";
 

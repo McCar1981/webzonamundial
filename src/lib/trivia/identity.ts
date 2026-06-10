@@ -14,6 +14,21 @@ export interface TriviaIdentity {
   name: string;
 }
 
+/**
+ * Valida que un anonId tenga EXACTAMENTE el formato que genera el cliente
+ * (`anon-<alfanumérico>`, ver ensureAnonId en TriviaGame.tsx).
+ *
+ * Es una defensa de seguridad, no una validación cosmética: el `userId` de un
+ * usuario autenticado es su UUID de Supabase (con guiones) y viaja en el ranking
+ * público. Sin esta comprobación, un atacante podía mandar `anonId = <UUID de la
+ * víctima>` y, al cerrar la partida, sumar puntos a las stats de esa víctima e
+ * incluso renombrarla en el leaderboard. El prefijo obligatorio "anon-" y la
+ * ausencia de guiones internos hacen imposible colisionar con un UUID real.
+ */
+export function isValidAnonId(raw: string): boolean {
+  return /^anon-[a-z0-9]{6,64}$/i.test(raw);
+}
+
 export async function resolveIdentity(
   bodyName?: string,
   anonId?: string,
@@ -47,8 +62,14 @@ export async function resolveIdentity(
   }
 
   if (!userId) {
-    userId = (anonId || "").trim().slice(0, 40);
-    if (userId) name = name || "Anónimo";
+    const raw = (anonId || "").trim();
+    // Solo aceptamos el anonId si tiene el formato del cliente. Cualquier otra
+    // cosa (incluido el UUID de otro usuario) se descarta → identidad vacía, que
+    // /finish trata como "no registrar en ranking".
+    if (isValidAnonId(raw)) {
+      userId = raw;
+      name = name || "Anónimo";
+    }
   }
 
   return { userId, authUserId, name };

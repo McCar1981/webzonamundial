@@ -37,6 +37,7 @@ export async function GET(_req: Request, { params }: { params: { id: string } })
       base_points: m.base_points,
       open_minute: m.open_minute,
       activated_at: m.activated_at,
+      closes_at: m.closes_at,
       resolved_at: m.resolved_at,
       mine: myByMicro.get(m.id) ?? null,
     })),

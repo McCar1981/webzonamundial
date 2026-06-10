@@ -215,6 +215,26 @@ export async function getActiveMicro(matchId: string): Promise<MicroRow | null> 
   return (data as MicroRow | null) ?? null;
 }
 
+/**
+ * Última micro RECIENTE con la ventana ya vencida. Para el estado "llegaste
+ * tarde": quien entra desde el push suele llegar cuando los 25-60s de ventana ya
+ * pasaron (latencia de entrega + abrir la app); en vez de no mostrar nada, la UI
+ * enseña qué micro fue y que la próxima salta en cualquier momento.
+ */
+export async function latestClosedMicro(matchId: string, withinMs = 5 * 60_000): Promise<MicroRow | null> {
+  const admin = adminClient();
+  const { data } = await admin
+    .from("micro_predictions")
+    .select(MICRO_COLS)
+    .eq("match_id", matchId)
+    .lte("closes_at", new Date().toISOString())
+    .gte("activated_at", new Date(Date.now() - withinMs).toISOString())
+    .order("activated_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+  return (data as MicroRow | null) ?? null;
+}
+
 export async function getMicroById(id: string): Promise<MicroRow | null> {
   const admin = adminClient();
   const { data } = await admin.from("micro_predictions").select(MICRO_COLS).eq("id", id).maybeSingle();

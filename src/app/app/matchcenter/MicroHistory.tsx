@@ -37,6 +37,7 @@ interface MicroItem {
   base_points: number;
   open_minute: number;
   activated_at: string;
+  closes_at: string;
   resolved_at: string | null;
   mine: MyEntry | null;
 }
@@ -187,6 +188,9 @@ export default function MicroHistory({ matchId }: { matchId: number }) {
           <div style={{ display: "flex", flexDirection: "column", gap: 8, padding: "0 14px 16px" }}>
             {items.map((m) => {
               const resolved = m.status === "resolved";
+              // "active" con la ventana vencida = ya no se puede responder: para
+              // el usuario está CERRADA (en espera de resolución), no "en vivo".
+              const expired = !resolved && new Date(m.closes_at).getTime() <= Date.now();
               const correctLabel = labelOf(m.options, m.correct_option);
               const myLabel = m.mine ? labelOf(m.options, m.mine.option) : null;
               const myCorrect = m.mine?.correct;
@@ -211,8 +215,10 @@ export default function MicroHistory({ matchId }: { matchId: number }) {
                     <span style={{ fontSize: 10, fontWeight: 700, color: GOLD_LIGHT, opacity: 0.8 }}>
                       min {m.open_minute}
                     </span>
-                    <span style={{ marginLeft: "auto", fontSize: 10, fontWeight: 800, letterSpacing: 0.6, textTransform: "uppercase", color: resolved ? "rgba(255,255,255,0.55)" : GOLD }}>
-                      {resolved ? (m.correct_option ? "Resuelta" : "Anulada") : m.status === "active" ? "En vivo" : "Cerrada"}
+                    <span style={{ marginLeft: "auto", fontSize: 10, fontWeight: 800, letterSpacing: 0.6, textTransform: "uppercase", color: resolved || expired ? "rgba(255,255,255,0.55)" : GOLD }}>
+                      {resolved
+                        ? (m.correct_option ? "Resuelta" : "Anulada")
+                        : m.status === "active" && !expired ? "En vivo" : expired && m.status === "active" ? "Se resuelve en vivo" : "Cerrada"}
                     </span>
                   </div>
 

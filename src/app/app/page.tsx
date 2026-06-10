@@ -606,14 +606,16 @@ export default function AppHubPage() {
   }, []);
 
   // Reclamar el check-in diario (endpoint ya existente, idempotente por día
-  // UTC y validado en servidor → anti-cheat ok). Tras reclamar, refrescamos el
-  // resumen para que saldo/racha/misión se actualicen al instante.
+  // UTC y validado en servidor → anti-cheat ok). El estado pasa a "Reclamado"
+  // AL INSTANTE (flip optimista de can_claim) y luego el refetch del resumen
+  // trae saldo/racha reales — así el botón nunca se queda "colgado".
   const claimDaily = useCallback(async () => {
     if (claiming) return;
     setClaiming(true);
     try {
       const r = await fetch("/api/predictions/daily", { method: "POST" });
       if (r.ok || r.status === 409) {
+        setGam((prev) => prev?.daily ? { ...prev, daily: { ...prev.daily, can_claim: false } } : prev);
         const g = await fetch("/api/predictions/me").then((x) => (x.ok ? x.json() : null)).catch(() => null);
         if (g) setGam(g);
       }
@@ -940,20 +942,18 @@ export default function AppHubPage() {
                   style={{ position: "absolute", inset: 0, width: "100%", height: "100%", zIndex: 0, objectFit: "cover", objectPosition: "center", pointerEvents: "none" }}
                 />
               </picture>
-              <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, zIndex: 2, display: "flex", alignItems: "center", justifyContent: "center", flexWrap: "wrap", gap: 16, padding: "0 18px 12px" }}>
-                <span style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 13, fontWeight: 800, letterSpacing: 0.4, color: "#fff", textShadow: "0 1px 6px rgba(0,0,0,0.6)" }}>
+              {/* Sin CTA: el Match Center vive justo debajo y duplicarlo aquí
+                  sobraba. Solo horario + cuenta atrás, centrados. */}
+              <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, zIndex: 2, display: "flex", alignItems: "center", justifyContent: "center", flexWrap: "wrap", gap: 12, padding: "0 18px 14px" }}>
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 14, fontWeight: 800, letterSpacing: 0.4, color: "#fff", textShadow: "0 1px 6px rgba(0,0,0,0.6)" }}>
                   {hero.kind === "live" && <span className="zm-live-dot" style={{ width: 8, height: 8, borderRadius: "50%", background: hero.accent }} />}
                   {hero.opening.time}
                 </span>
                 {openingCountdown && (
-                  <span style={{ display: "inline-flex", alignItems: "center", padding: "5px 12px", borderRadius: 999, fontSize: 12.5, fontWeight: 800, letterSpacing: 0.3, color: "#0a1729", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, boxShadow: "0 3px 12px rgba(201,168,76,0.4)" }}>
+                  <span style={{ display: "inline-flex", alignItems: "center", padding: "6px 14px", borderRadius: 999, fontSize: 13, fontWeight: 800, letterSpacing: 0.3, color: "#0a1729", background: `linear-gradient(135deg,${GOLD},${GOLD2})`, boxShadow: "0 3px 12px rgba(201,168,76,0.4)" }}>
                     {openingCountdown}
                   </span>
                 )}
-                <Link href={hero.cta1.href} className="zm-open-cta zm-cta-shine" style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "12px 22px", borderRadius: 12, background: heroCta1.bg, color: heroCta1.color, fontWeight: 800, fontSize: 15, textDecoration: "none", boxShadow: heroCta1.shadow }}>
-                  {heroCta1.icon}
-                  {hero.cta1.label}
-                </Link>
               </div>
             </>
           ) : (
@@ -1165,6 +1165,7 @@ export default function AppHubPage() {
                   <MissionRow
                     done={!gam.daily.can_claim}
                     label="Reclama tu recompensa diaria"
+                    doneLabel="Reclamado"
                     sub={gam.daily.can_claim
                       ? `Día ${gam.daily.checkin_days + 1} de check-in${gam.daily.next_reward?.coins ? ` · +${gam.daily.next_reward.coins} Fútcoins` : ""}`
                       : "Vuelve mañana por la siguiente"}
@@ -1502,12 +1503,14 @@ export default function AppHubPage() {
 
 /* ─────────── Subcomponentes ─────────── */
 // Fila de misión diaria: check verde al completarla; si no, CTA (link o botón).
-function MissionRow({ done, label, sub, href, action }: {
+function MissionRow({ done, label, sub, href, action, doneLabel = "Hecho" }: {
   done: boolean;
   label: string;
   sub?: string;
   href?: string;
   action?: React.ReactNode;
+  /** Texto del badge al completar ("Hecho", "Reclamado"…). */
+  doneLabel?: string;
 }) {
   const inner = (
     <>
@@ -1519,7 +1522,7 @@ function MissionRow({ done, label, sub, href, action }: {
         {sub && !done && <span style={{ display: "block", fontSize: 11.5, color: "#7a87a0", marginTop: 1 }}>{sub}</span>}
       </span>
       {done ? (
-        <span style={{ flexShrink: 0, fontSize: 11, fontWeight: 800, letterSpacing: 0.4, textTransform: "uppercase", color: "#0a7d52" }}>Hecho</span>
+        <span style={{ flexShrink: 0, fontSize: 11, fontWeight: 800, letterSpacing: 0.4, textTransform: "uppercase", color: "#0a7d52" }}>{doneLabel}</span>
       ) : action ? action : (
         <svg aria-hidden width="15" height="15" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}><path d="M5 12h14M12 5l7 7-7 7" stroke="#8a6a13" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
       )}

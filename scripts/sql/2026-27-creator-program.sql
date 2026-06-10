@@ -180,23 +180,38 @@ $$;
 
 -- Suscripciones premium vivas de la comunidad del creador y su equivalente
 -- mensual en céntimos (yearly se prorratea /12). Base del revenue share.
+--
+-- plpgsql A PROPÓSITO: pro_subscriptions la crea la migración 2026-20 (Plan
+-- Pro), que puede no estar aplicada aún. LANGUAGE sql valida las tablas al
+-- CREAR la función (y abortaría esta migración entera); plpgsql solo las
+-- resuelve al ejecutar cada rama, así que con el guard de to_regclass la
+-- función devuelve ceros hasta que exista la tabla, y datos reales después
+-- sin tener que recrearla.
 CREATE OR REPLACE FUNCTION public.creator_premium_revenue(p_slug TEXT)
 RETURNS TABLE (subs_activas BIGINT, ingresos_mes_cents BIGINT)
-LANGUAGE sql
+LANGUAGE plpgsql
 STABLE
 SECURITY DEFINER
 SET search_path = public
 AS $$
+BEGIN
+  IF to_regclass('public.pro_subscriptions') IS NULL THEN
+    RETURN QUERY SELECT 0::BIGINT, 0::BIGINT;
+    RETURN;
+  END IF;
+
+  RETURN QUERY
   SELECT
-    COUNT(*) AS subs_activas,
+    COUNT(*)::BIGINT,
     COALESCE(SUM(
       CASE WHEN s.plan = 'yearly' THEN COALESCE(s.amount, 0) / 12
            ELSE COALESCE(s.amount, 0) END
-    ), 0)::BIGINT AS ingresos_mes_cents
+    ), 0)::BIGINT
   FROM public.pro_subscriptions s
   JOIN public.profiles p ON p.id = s.user_id
   WHERE p.fav_creator = p_slug
     AND s.status IN ('active', 'trialing');
+END;
 $$;
 
 REVOKE ALL ON FUNCTION public.creator_program_stats() FROM PUBLIC;

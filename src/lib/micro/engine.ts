@@ -60,15 +60,26 @@ interface Candidate {
  * Deriva las micros CANDIDATAS de un snapshot. No toca DB: solo decide qué se
  * podría emitir AHORA. El llamador filtra por rate-control e idempotencia.
  */
+// Frescura de las reactivas: solo eventos de los últimos minutos disparan micro.
+// Un evento viejo (poller arrancado tarde, backlog del throttle de 3 min) abriría
+// una pregunta cuya ventana real ya pasó — p.ej. un penalti lanzado hace 10 min
+// que acabaría anulado, o un "próximo gol" de un gol antiguo.
+const FRESH_MINUTES = 4;
+
 export function candidatesFromSnapshot(snap: LiveSnapshot): Candidate[] {
   const out: Candidate[] = [];
   const minute = snap.elapsed;
 
-  // ── Reactivas (por evento) ──
+  // ── Reactivas (por evento reciente) ──
   for (const e of snap.events) {
-    // Penalti confirmado por VAR (antes del lanzamiento) o señalado.
+    if (e.minute < minute - FRESH_MINUTES) continue;
+    // Penalti confirmado por VAR (antes del lanzamiento) o señalado. Si el feed
+    // ya trae el desenlace (poll tardío), no se pregunta lo ya sabido.
     if (e.type === "var" && /penalty confirmed/i.test(e.detail ?? "")) {
-      out.push({ kind: "penalty_outcome", triggerEventId: e.id });
+      const decided = snap.events.some(
+        (p) => (p.type === "penalty_goal" || p.type === "penalty_miss") && p.minute >= e.minute,
+      );
+      if (!decided) out.push({ kind: "penalty_outcome", triggerEventId: e.id });
     }
     // Gol anulado por VAR.
     if (e.type === "var" && /goal cancelled|disallow/i.test(e.detail ?? "")) {
